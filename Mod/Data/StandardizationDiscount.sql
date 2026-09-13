@@ -1,0 +1,15 @@
+-- D0015 scope; native dual-currency cost effect accepted conditionally in D0016.
+CREATE TABLE SPC_B054_Targets(BuildingType TEXT NOT NULL, Level INTEGER NOT NULL, CarrierType TEXT NOT NULL UNIQUE, PRIMARY KEY(BuildingType,Level));
+INSERT INTO SPC_B054_Targets
+SELECT b.BuildingType,l.Level,'BUILDING_SPC_B054_'||b.BuildingType||'_'||l.Level
+FROM Buildings b JOIN HD_BuildingTiers h ON h.BuildingType=b.BuildingType AND h.PrereqDistrict=b.PrereqDistrict
+CROSS JOIN (SELECT 1 AS Level UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4) l
+WHERE b.InternalOnly=0 AND b.IsWonder=0 AND NOT EXISTS (SELECT 1 FROM HD_DUMMY_BUILDINGS d WHERE d.BuildingType=b.BuildingType)
+AND (h.PrereqDistrict IN ('DISTRICT_CAMPUS','DISTRICT_THEATER','DISTRICT_INDUSTRIAL_ZONE','DISTRICT_COMMERCIAL_HUB','DISTRICT_ENCAMPMENT','DISTRICT_HARBOR','DISTRICT_HOLY_SITE','DISTRICT_AERODROME','DISTRICT_AQUEDUCT','DISTRICT_DAM','DISTRICT_NEIGHBORHOOD','DISTRICT_ENTERTAINMENT_COMPLEX','DISTRICT_WATER_ENTERTAINMENT_COMPLEX','DISTRICT_PRESERVE','DISTRICT_DIPLOMATIC_QUARTER') OR (h.PrereqDistrict='DISTRICT_CITY_CENTER' AND b.BuildingType IN ('BUILDING_MONUMENT','BUILDING_GRANARY','BUILDING_WATER_MILL','BUILDING_NILOMETER_HD','BUILDING_HD_TABLES_OF_LAW','BUILDING_EXHIBITION','BUILDING_HD_POLICE_STATION')));
+INSERT INTO Types(Type,Kind) SELECT CarrierType,'KIND_BUILDING' FROM SPC_B054_Targets;
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)
+SELECT CarrierType,'Standardization discount carrier',1,'DISTRICT_CITY_CENTER',1,0,0 FROM SPC_B054_Targets;
+INSERT INTO Modifiers(ModifierId,ModifierType) SELECT CarrierType,'MODIFIER_CITY_ADJUST_BUILDING_PURCHASE_COST' FROM SPC_B054_Targets;
+INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT CarrierType,'BuildingType',BuildingType FROM SPC_B054_Targets;
+INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT CarrierType,'Amount',Level*10 FROM SPC_B054_Targets;
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) SELECT CarrierType,CarrierType FROM SPC_B054_Targets;

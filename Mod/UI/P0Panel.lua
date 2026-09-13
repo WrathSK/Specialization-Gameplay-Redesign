@@ -1,3 +1,5 @@
+include("BoostGreatWorkRead")
+include("PurchaseProbeRead")
 include("Probe")
 include("GPPReadout")
 include("Lv4CopyRead")
@@ -15,6 +17,12 @@ local function trace(s)
   status(P.VERSION.." | "..s)
 end
 local pendingAction
+local gwaFlight
+local function gwaDiagnostics()
+  local d=ExposedMembers.SPC_P0 or {};local i=d.RequestIngress or {}
+  local bg=ExposedMembers.SPC_DialogueBackground or {}
+  return "后台模块="..tostring(d.GreatWorkAdjacency~=nil).." / 最近收到="..tostring(i.action).." / 本次已收到="..tostring(i.token==pendingToken).."[NEWLINE]相邻采样="..tostring(bg.adjacencyError or "未报告错误")
+end
 local function displayResponse()
   local data=ExposedMembers.SPC_P0 or {}
   if pendingToken and data.Version==P.VERSION and data.LastToken==pendingToken then
@@ -39,6 +47,27 @@ local function displayResponse()
       else report='Lv4读取未完成：城市或请求已变化。' end
       localReport=report;print('[SPC][B049][COPY] '..report)
     end
+    if pendingAction and pendingAction:find('^PURCHASE_') then
+      local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
+      if c then report=report.."\n"..SPCPurchaseProbeRead.Render(P,c) end
+      localReport=report;print("[SPC][B053][PRICES] "..report)
+    end
+    if pendingAction=='BOOST_READ' or pendingAction=='BOOST_BASELINE' then
+      report=report..'\n'..SPCBoostGreatWorkRead.Boost(P,pendingAction=='BOOST_BASELINE');localReport=report
+    elseif pendingAction and pendingAction:find('^GWA_') then
+      gwaFlight=nil
+      local ok,native=pcall(function()
+        local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
+        return c and SPCBoostGreatWorkRead.Adjacency(P,c) or '城市不可用'
+      end)
+      report=report..'\n'..tostring(native)
+      report=report..'\n'..gwaDiagnostics()
+      localReport=report
+    elseif pendingAction and (pendingAction:find('^GW_') or pendingAction:find('^DIALOGUE_')) then
+      local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
+      if c then report=report..'\n'..SPCBoostGreatWorkRead.Works(P,c,pendingAction=='GW_BASELINE') end
+      localReport=report
+    end
     status(P.VERSION.." | ACK | "..report:gsub("\n","[NEWLINE]"))
     return true
   end
@@ -49,6 +78,25 @@ local function displayResponse()
     return true
   end
   return false
+end
+-- B060 read/control requests are idempotent. Only an outstanding click may retry;
+-- event pulses do not collect works or adjacency and never create a scan loop.
+local function gwaPulse()
+  local f=gwaFlight;if not f or f.busy then return end
+  if displayResponse() then gwaFlight=nil;ContextPtr:ClearUpdate();return end
+  f.pulses=f.pulses+1
+  if f.pulses<3 then return end
+  f.pulses=0
+  if f.retries>=2 then
+    gwaFlight=nil;ContextPtr:ClearUpdate()
+    status(P.VERSION.." | 相邻请求未收到回复[NEWLINE]"..gwaDiagnostics())
+    return
+  end
+  f.retries=f.retries+1;f.busy=true
+  local ok,err=pcall(UI.RequestPlayerOperation,f.pid,PlayerOperations.EXECUTE_SCRIPT,f.packet)
+  f.busy=false
+  if displayResponse() then gwaFlight=nil;ContextPtr:ClearUpdate()
+  elseif not ok then status('相邻发送失败：'..tostring(err)..'[NEWLINE]'..gwaDiagnostics()) end
 end
 local function waitForResponse()
   if displayResponse() then return end
@@ -64,6 +112,7 @@ local function waitForResponse()
 end
 request=function(action,advance)
   ContextPtr:ClearUpdate()
+  gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
   if not P.IsTestPlayer(playerID) then trace("OUTSIDE_TEST_CIV");return end
   local storageAction=action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
@@ -94,10 +143,13 @@ request=function(action,advance)
   trace("BEFORE_DISPATCH "..action.." city="..tostring(city and city:GetID()))
   local envelope=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.EnvelopeProbe
   local expectedStage=envelope and envelope.players[playerID] and envelope.players[playerID].step
-  local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,
-    {OnStart="SPC_P0_Request",Action=action,Token=pendingToken,ExpectedStage=action=="ENVELOPE_NEXT" and expectedStage or nil,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken})
+  local packet={OnStart="SPC_P0_Request",Action=action,Token=pendingToken,ExpectedStage=action=="ENVELOPE_NEXT" and expectedStage or nil,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken}
+  if action:find('^GWA_') then gwaFlight={pid=playerID,packet=packet,pulses=0,retries=0,busy=true} end
+  local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
+  if gwaFlight then gwaFlight.busy=false end
   trace(ok and ("READING "..action) or ("DISPATCH_ERROR "..P.Scalar(err)))
   if ok then waitForResponse() end
+  if gwaFlight then status(P.VERSION.." | READING "..action.."[NEWLINE]"..gwaDiagnostics()) end
 end
 local function copy(asBaseline)
   if localReport then
@@ -240,6 +292,31 @@ local function initialize()
   Controls.HalfReadButton:RegisterCallback(Mouse.eLClick,function() request('HALF_READ') end)
   Controls.HalfOnButton:RegisterCallback(Mouse.eLClick,function() request('HALF_ON') end)
   Controls.HalfOffButton:RegisterCallback(Mouse.eLClick,function() request('HALF_OFF') end)
+  Controls.BoostTestZeroButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_ZERO') end)
+  Controls.BoostTestHalfButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_HALF') end)
+  Controls.BoostTestHighButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_HIGH') end)
+  Controls.BoostTestAutoButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_AUTO') end)
+  Controls.BoostReadButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_READ') end)
+  Controls.BoostBaseButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_BASELINE') end)
+  Controls.DialogueTest25Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST25') end)
+  Controls.DialogueTest50Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST50') end)
+  Controls.DialogueTest100Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST100') end)
+  Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function() request('GWA_READ') end)
+  Controls.GWAOffButton:RegisterCallback(Mouse.eLClick,function() request('GWA_OFF') end)
+  Controls.GWAAutoButton:RegisterCallback(Mouse.eLClick,function() request('GWA_AUTO') end)
+  Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
+  Controls.GWReadButton:RegisterCallback(Mouse.eLClick,function() request('GW_READ') end)
+  Controls.GWCityButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_AUTO') end)
+  Controls.GWObjectButton:RegisterCallback(Mouse.eLClick,function() request('GW_OBJECT') end)
+  Controls.GWOffButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_OFF') end)
+  Controls.DiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ') end)
+  Controls.NextDiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ',true) end)
+  Controls.PurchaseBaseButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_BASE') end)
+  Controls.PurchaseOnButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_ON') end)
+  Controls.PurchaseOffButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_OFF') end)
+  Controls.PurchaseReadButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_READ') end)
+  Controls.TemplatesButton:RegisterCallback(Mouse.eLClick,function() request("STANDARDIZATION_READ") end)
+  Controls.NextTemplatesButton:RegisterCallback(Mouse.eLClick,function() request("STANDARDIZATION_READ",true) end)
   Controls.Lv4CopyButton:RegisterCallback(Mouse.eLClick,function() request("LV4_COPY_READ") end)
   Controls.AdjacencyButton:RegisterCallback(Mouse.eLClick,function() request("ADJACENCY") end)
   Controls.BackgroundRoutesButton:RegisterCallback(Mouse.eLClick,function()
@@ -276,4 +353,5 @@ local function initialize()
 end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
-ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+Events.SystemUpdateUI.Add(gwaPulse)
+ContextPtr:SetShutdown(function() gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

@@ -9,7 +9,7 @@ Handoff State: READY_WITH_NOTED_GAPS
 ## 新代理阅读顺序
 
 1. [AGENTS](AGENTS.md)：写入权限、禁止启动游戏、证据等级、截图与交付约定。
-2. [Accepted Design Spec](Design/Specialization_v0.1_Design_Spec.md)及[ChangeLog](Design/Design_ChangeLog.md)：当前D0014；只在用户明确决定后改规则。
+2. [Accepted Design Spec](Design/Specialization_v0.1_Design_Spec.md)及[ChangeLog](Design/Design_ChangeLog.md)：当前D0024；只在用户明确决定后改规则。
 3. [Status](Status/Specialization_P0_Status.md)：唯一当前验证矩阵、待办和最小用户测试。
 4. [Architecture](Architecture/Specialization_v0.1_Architecture.md)：当前运行模块和边界。
 5. [技术索引](Reports/Technical/README.md)与[测试运行说明](../DevelopmentTests/README.md)：按待办读相关报告，不重做已解决调查。
@@ -19,14 +19,14 @@ Handoff State: READY_WITH_NOTED_GAPS
 
 - 仓库根R是本目录的父目录；[唯一源码](../Mod/)为`R/Mod/`。
 - 外部游戏SpecializationP0仅为部署副本；机器路径见忽略的`R/local/config.json`。
-- 运行保持P0-B-051.67 / modinfo67，UUID不变。
+- 运行版本以Status为准；当前P0-B-060.85 / modinfo85；B061商业四代码已隔离，暂停开发，UUID不变。
 - [Tests](../DevelopmentTests/)已迁入；七个必要基准位于Fixtures。其余历史测试适用性见测试README。
 - 旧Backups、截图投递、PNG证据、DB、日志仍在外部旧工作区；[路径与证据说明](Reports/Proposals/Phase1_External_Materials.md)。
-- Phase 1未初始化Git；必须等待用户批准Phase 2。
+- Phase 1/2已获用户批准完成，GitHub initial baseline已建立；后续本地修改不自动commit/push。
 
 ## 权威边界
 
-玩法意图：Accepted Spec > Architecture > Status > 历史材料。运行现状及任务顺序以Status为准，Spec内旧“本轮不开发”等发布背景不构成永久暂停。D0014标题/ChangeLog/hash与具名Rule ID优先于Spec尾段残留的D0010版本叙述；本次不改Accepted Spec字节。
+玩法意图：Accepted Spec > Architecture > Status > 历史材料。运行现状及任务顺序以Status为准，Spec内旧“本轮不开发”等发布背景不构成永久暂停。当前D0024标题/ChangeLog/hash与具名Rule ID优先于Spec尾段残留的旧版本叙述；D0017记录本轮明确批准的小数处理，不推断GW未决曲线。
 
 v0.1仅Research/Culture/Industry/Commerce、共同成长、网络、Crew与相关跨系统机制。其它专业/辅助区仍Future；科研IV读取其它区域产出不等于实现其专业化能力。
 

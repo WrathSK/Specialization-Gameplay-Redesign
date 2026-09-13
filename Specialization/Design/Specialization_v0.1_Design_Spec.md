@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0014
+Design Revision: D0024
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-09-12
-Acceptance Evidence: 用户明确科研IV不区分区域类型，复制所有非学院区域Actual产出的50%，包括社区/娱乐等非专业化区域通过行业等获得的产出
-Previous Accepted Revision: [D0013冻结原文](Revisions/Specialization_Design_Spec_D0013.md)
-Latest Accepted Design Revision: D0014
+Acceptance Date: 2026-09-13
+Acceptance Evidence: 用户确认巨作相邻全部pass且接受原生小数截断不修复；商业四最终汇聚向下取整；采用此前已授权的实际总产出条件备选。
+Previous Accepted Revision: [D0023冻结原文](Revisions/Specialization_Design_Spec_D0023.md)
+Latest Accepted Design Revision: D0024
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** 本文为Specialization Gameplay Redesign的WHAT。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001** 本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -131,17 +131,19 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 | CUL-001 | Lv1 | 每名Theater工作专家额外+3F、+3P |
 | CUL-002 | Lv2 | 获得SHARED-001住房；每名专家同时获得三种文化伟人基础GPP |
 | CUL-003 | Lv3 | 专家支持提升至+5F、+5P；本城增加`0.5 × Population × working Theater specialist count`基础Culture |
-| CUL-004 | Lv4 | 每名Theater工作专家使本城Culture增加5个百分点；获得GW-001时代保值及GW-002巨作基础相邻能力 |
+| CUL-004 | Lv4 | 每名Theater工作专家使本城Culture增加5个百分点；获得GW-001时代对话及GW-002巨作基础相邻能力 |
 
 **CUL-005** Culture Network增加Eureka完成比例的额外百分点；使用NET-RC，不交换Research/Culture对应的Boost种类。
 
 ### Great Works — GW
 
-**GW-001** Culture Lv4的旧Great Works随时代获得补贴，使其达到当前时代对应的基础Great Work yield level。目标是补足基础水平，不擅自以帝国最高产作品替代当代标准。时代口径、作品类别对应曲线及缺失标准时的规则TBD。
+**GW-001 — 时代对话 / Dialogue Across Eras** Culture Lv4以跨创作者时代收藏为主题。`D`为本城合格Great Works覆盖的不同巨作创作者时代数量；普通合格作品使用其关联伟人的EraType，文物没有伟人创作者，按用户明确例外使用文物自身原生历史时代。合并后统一按时代去重，不区分“文物时代”与同名“伟人时代”另计两次。不是当前游戏/城市时代、作品获得/激活时代或建筑时代。`BonusPercent = 15% × max(0,D−1)`，本城全部合格作品的Culture与Tourism统一提高此百分比。D=1/2/3/4/5/6/7分别+0%/+15%/+30%/+45%/+60%/+75%/+90%；12件覆盖6时代，每件均+75%，件数不直接进入百分比公式。15%为第一版正式起测值；不新增cap、不把7时代当上限、不添加复杂曲线。著作、音乐、艺术、文物保持合格，Product/Relic排除，未知自定义类别不自行扩大。此规则取代D0021固定每件+Culture/+Tourism，以及更早最高基础值/逐件差额保值；不再开发单件setter或补差模拟。关联缺失/时代未知或运行创作者与数据库关联冲突须报告，不擅自代入玩家时代。
 
-**GW-002** Culture Lv4每件符合条件的文化Great Work额外获得本城专业区域Base Adjacency Yields的50%。明确使用BASE，不使用Actual复制基数，不将政策翻倍算入这部分基础相邻。
+**GW-002** Culture ACTIVE Lv4每件合格文化Great Work额外获得本城全部已完成专业区域Base Adjacency Yields的50%。包含剧院广场及特色替代区域；专业区域按本机Districts.RequiresPopulation分类。作品采用Writing/Music/Sculpture/Portrait/Landscape/Religious art/Artifact七类，排除Relic、Product及未知自定义类别。各yield保留原种类：学院Science、工业Production、商业Gold等，不统一转Culture。明确使用BASE，不使用Actual复制基数，不将政策翻倍或建筑非相邻产出算入；每件按本城对应基础相邻合计的50%取得，作品数量不再乘入单件Modifier。
 
-**GW-003** 优先排除Product及其它非标准文化Great Works。Relic、未知自定义类别和非传统区域的最终适用清单仍DESIGN_DECISION_REQUIRED，不把宗教题材艺术与Relic混为一类。Culture、Tourism、theming和作品专属加成如何影响补贴的最终玩法边界需用户确认；不假定所有倍率当然适用。
+**GW-002A — Native fractional behavior / ACCEPTED D0024** 用户已实机确认巨作基础相邻效果，并接受原生逐件小数截断：例如基础Production 3，理论每件1.5，实际每件1。当前不补偿、不改城市补贴、不把余数跨作品合并；此许可仅针对GW002，不外推其它接口。
+
+**GW-003** GW-001沿用D0020合格文化分类：Product、Relic排除；Artifact保留，宗教题材艺术不等于Relic；未知自定义类别不自行纳入。时代对话不再以精确恢复单件补差及所有作品专属倍率/主题化为前提。优先采用整类/城市Great Work百分比Modifier，按正常Modifier体系与theming自然叠加即采用。若发现意外结算顺序，报告实际表现，不自行设计补偿层或逐件模拟。Culture/Tourism各自的原生结算关系需实测，不假定一致。GW-002基础相邻能力与其它Culture IV能力不因本变更而改变，其范围已由D0023明确。
 
 ## 7. Industry / Industrial Zone — IND
 
@@ -156,17 +158,29 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **IND-NET-001** 接收Industrial Network的城市可获得建筑Gold购买折扣：Industry I/II/III/IV为10%/20%/30%/40%。目标建筑模板须在当前有效工业来源模板并集中；模板提供者与最高折扣提供者可以不是同一城市。优先按相同District和Building Tier匹配；若需固定同Tier建筑组，必须明确范围，不暗中扩大适用对象。
 
-**IND-NET-002** 仅影响Gold购买，不能同时改变Faith购买。不得以退款、放宽解锁或改变购买资格等方式默默改变实际玩法语义。标准化账本保持，但断开/消失的源不再提供当前资格。
+**IND-NET-002** 优先仅影响Gold购买；若技术上排除Faith折扣较难实现，用户已授权同一合格建筑的既有合法Faith购买也可享受折扣。采用时须报告实际货币行为，不再为这一兼容选择重复请求授权；不因此扩大到其它未启用/仅可Faith购买的建筑。不得以退款、放宽解锁或改变购买资格等方式默默改变实际玩法语义。标准化账本保持，但断开/消失的源不再提供当前资格。
 
 **IND-NET-003 — Industry多来源 / ACCEPTED** 对同一接收城市，以下三项分别按当前有效工业网络来源计算，不以历史连接代替当前资格：
 
 1. **Industry IV Production Output**：`Received Industry IV Production = max(valid source Industry IV Production outputs)`。比较各有效Lv4来源实际能提供的产出，不求和、不按来源数量增加倍率，不套Research/Culture的`L=max(...)`后生成虚构来源。保留建设更强工业核心的价值，避免多个高级工业城令输出线性爆炸。
 2. **Standardization Template Set**：`Available Template Set = union(all templates from valid connected Industry sources)`。当前网络共享有效工业来源掌握模板的并集；不同中心可贡献不同合法模板。来源断网、摧毁、征服或失去source资格即停止贡献旧网络当前集合；不是曾接通过就永久全国解锁。来源城市自身已掌握的永久模板记录仍保留，征服后依PROG-004归新Owner并按真实网络重新判断资格。
-3. **Standardization Discount**：`Discount = max(valid Industry source discounts)`。目标建筑存在于当前模板并集时，可使用当前最高有效等级的Gold折扣，即10%/20%/30%/40%；模板资格与折扣不要求同源，不逐模板限定独立折扣提供者。全国共享成熟模板，最先进的工业专家体系指导最高水平的标准化生产。仅影响Gold purchase，不自动影响Faith或改变其它购买资格。
+3. **Standardization Discount**：`Discount = max(valid Industry source discounts)`。目标建筑存在于当前模板并集时，可使用当前最高有效等级的Gold折扣，即10%/20%/30%/40%；模板资格与折扣不要求同源，不逐模板限定独立折扣提供者。全国共享成熟模板，最先进的工业专家体系指导最高水平的标准化生产。货币适用遵循IND-NET-002的条件授权，不改变其它购买资格。
 
 多个工业中心仍有模板并集价值；来源失效时三项按剩余有效来源重新计算，不保留旧来源贡献。
 
-**IND-NET-004 — Template Acquisition / ACCEPTED D0013** Industry专业城以任何方式合法获得或完成合格建筑时，记录其标准化模板。首次成为Industry专业时，对本城已经存在的合格建筑做一次初始化补录；此后使用事件式增量记录，不持续进行全城扫描。只有HD Tier表明确分类成功、且属于本项目允许范围的建筑才生效；缺失/不明确分类或超出允许范围，不自动推断为合格。具体允许清单依已确认范围维护，本条不自行扩大建筑范围。永久记录与当前网络贡献继续遵循IND-NET-002/003和PROG-004。
+**IND-NET-004 — Template Acquisition / ACCEPTED D0015** Industry专业城以任何方式合法获得或完成建筑时，记录所有合格建筑的标准化模板，不以当前是否开放折扣作为记录条件。这里承接HD明确分类的真实建筑目录（包括特色、宗教、当前不可金币购买和当前未开放折扣的建筑）；不把奇观、内部/HD虚拟建筑或缺失/不明确HD分类自动视为合格。首次成为Industry专业时，对本城已经存在的合格建筑做一次初始化补录；此后使用事件式增量记录，不持续进行全城扫描。具体BuildingType及其分类证据永久保留，记录与当前网络贡献仍遵循IND-NET-002/003和PROG-004。未开放建筑的模板不丢弃，未来经用户批准可开启其标准化折扣资格，无需因当前禁用而重新获得建筑。
+
+**IND-NET-005 — v0.1 Discount Activation / ACCEPTED D0015** 模板记录范围与当前折扣启用范围独立维护。v0.1开启学院、剧院广场、工业区、商业中心、军营、港口、圣地、航空港、水渠、堤坝、社区、娱乐中心、水上乐园、保护区、外交区的建筑，包含特色建筑；只有目标建筑在当前游戏状态下本来就可合法使用Gold购买时，才可在满足有效工业网络与模板条件后使用Gold折扣。仍按相同区域+HD Tier匹配，除下述明确市中心分组。记录模板或开启折扣都不会新增Gold购买资格、解锁特色/宗教建筑、改变科技/市政/互斥条件；Faith价格适用IND-NET-002的条件授权。当前不能合法Gold购买的建筑仍可记录，当前不获得金币折扣；不以Faith字段推导放宽购买权限。
+
+市中心不直接按整个HD Tier0共享。v0.1只开放以下三个模板匹配组：
+
+| 组 | 具体建筑 | 共享规则 |
+|---|---|---|
+| 市中心基础组 | 纪念碑 BUILDING_MONUMENT、粮仓 BUILDING_GRANARY、磨坊 BUILDING_WATER_MILL、测量仪 BUILDING_NILOMETER_HD、法表 BUILDING_HD_TABLES_OF_LAW | 五者视为同一标准化Tier，相互匹配 |
+| 会展中心独立组 | BUILDING_EXHIBITION | 仅自身匹配 |
+| 警署独立组 | BUILDING_HD_POLICE_STATION | 仅自身匹配 |
+
+这些是本项目标准化分组，不改写HD原始Tier表。市政广场与上述七栋以外的市中心建筑，当前仅记录而不开放标准化折扣；明确列名的市中心组不自动扩充未列出的特色替代建筑。以后可以由用户批准增加开放范围或组成员，不删除既有模板、不自动将未来范围提前启用。
 
 ### Construction Crew — CREW
 
@@ -193,15 +207,17 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 | COM-001 | Lv1 | 每名Commercial Hub工作专家+3F、+3P；该商业专业城市具有Trade Center身份 |
 | COM-002 | Lv2 | 获得SHARED-001住房与Merchant基础GPP |
 | COM-003 | Lv3 | 专家支持提升至+5F、+5P；每接入Research/Culture/Industry网络类型，专家分别额外+2S/+2C/+2P。同类型多源不重复提供该类型奖励 |
-| COM-004 | Lv4 | Convergence／专业汇聚：对直接接入本中心的Research、Culture、Industry分别选Eligible Local Source Yield Basis最高的有效source，获得其对应Science／Culture／Production的20%；同类型不求和，不跨yield转换；见COM-005至008 |
+| COM-004 | Lv4 | Convergence／专业汇聚：对直接接入本中心的Research、Culture、Industry分别选Actual Source City Yield Basis最高的有效source，获得其对应Science／Culture／Production的20%；同类型不求和，不跨yield转换；见COM-005至008 |
 
-**COM-005 — Convergence / ACCEPTED** Commerce IV向内汇聚帝国最强专业核心，与Industry向外输出形成不同主题。当前v0.1分别处理Research→Science、Culture→Culture、Industry→Production，三个类型独立选择最高有效direct source，不跨yield转Gold。`Convergence_Y = 20% × max(eligible local Y basis of valid direct sources of corresponding specialization)`；没有该类型有效direct source则无对应汇聚收益。20%是正式初始Design/balance value，未来调整须新Design Revision，不是未接受候选。
+**COM-005 — Convergence / ACCEPTED** Commerce IV向内汇聚帝国最强专业核心，与Industry向外输出形成不同主题。当前v0.1分别处理Research→Science、Culture→Culture、Industry→Production，三个类型独立选择最高有效direct source，不跨yield转Gold。`Convergence_Y = 20% × max(actual city Y basis of valid direct sources of corresponding specialization)`；没有该类型有效direct source则无对应汇聚收益。20%是正式初始Design/balance value，未来调整须新Design Revision，不是未接受候选。
 
 最高source按对应eligible yield比较，不按最高ACTIVE选择或虚构来源，不把多来源求和。例如直接接入的科研源为2000/900/700 eligible Science时，选择2000，额外获得400 Science，而非三者相加后乘20%。保留多source冗余和其它网络价值，避免同类铺城线性放大；Research/Culture/Industry分别选择自己的最高source。
 
-**COM-006 — Eligible Local Source Yield Basis / ACCEPTED** 使用来源城市自身产生的对应Science/Culture/Production，排除其它Specialization Network输入、Commerce IV Convergence输入，以及其它明确属于跨城Specialization transfer/copy的yield。不能直接复制已含这些输入的最终城市总yield；本地自产可以汇聚，他城经Specialization转入的产出不得再次打包输出。该basis不同于原有区域Actual复制基数，不擅自用最终city yield或其它替代定义。精确取得方式标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`。
+**COM-006 — Actual Source City Yield Basis / ACCEPTED D0024** v0.1采用用户此前有条件授权的来源城市实际总产出备选：目前未找到可靠的精确本地/外来收益分解接口，故读取对应来源城市实际Science/Culture/Production总产出，允许包含外来输入。取代此前要求剥离全部Specialization transfer的纯本地产出基数。仅直接有效Research/Culture/Industry源可参与，Commerce不得作为汇聚源；汇聚输出施加在城市层，不加入区域复制基数；不按各源分别求和。该选择不证明任意第三方Mod的跨城反馈均无环；出现实际回边需独立调查，不靠反复累加或未知来源保留旧值。
 
-**COM-007 — Direct sources only / ACCEPTED** Convergence只看直接接入本Trade Center的有效专业sources。A科研源→B商业IV→C贸易中心时，B接收A网络、汇聚A本地产出并可向C分发；C仅接收网络，不因此将A视为自己的direct source，即使C是Commerce IV也不能仅凭该distribution再次汇聚A。来源/连接失效不继续贡献；动态更新/撤销的具体处理留Development，不改变有效来源限定。
+**COM-009 — Final integer grant / ACCEPTED D0024** 每yield分别计算`Raw = 0.20 × max(valid direct source actual city yield)`，仅在最终城市基础追加接口执行`Applied = floor(Raw)`。三类独立取整、不先截断来源基数，不将各来源分别取整相加。之后正常受接收城原生倍率影响。刷新绝对替换旧Applied，不累加；无有效来源或商业ACTIVE低于4时撤销。
+
+**COM-007 — Direct sources only / ACCEPTED** Convergence只看直接接入本Trade Center的有效专业sources。A科研源→B商业IV→C贸易中心时，B接收A网络、汇聚A实际城市产出并可向C分发；C仅接收网络，不因此将A视为自己的direct source，即使C是Commerce IV也不能仅凭该distribution再次汇聚A。来源/连接失效不继续贡献；动态更新/撤销的具体处理留Development，不改变有效来源限定。
 
 **COM-008 — 首都战略与继承能力 / ACCEPTED** Commerce IV首都可由其它科研/文化/工业核心通过direct routes接入，自己接收网络、保留Commerce III对应专家+2S/+2C/+2P、分别汇聚各类最高有效来源的20%，并继续分发，无须Capital→Capital路线。Research IV首都则天然direct self-connect、自身接收并可分发；其它Commerce IV城市若要汇聚该科研首都，仍须合法Research Capital→该商业中心direct connection。科研首都偏本地专业核心，商业首都偏全国汇聚与组织，不要求数学等价。Commerce I–III不变，Lv4为追加能力。
 
@@ -227,7 +243,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military共享pool另按MIL-004的PROVISIONAL模型；Industry按实际source output取最大及模板并集；Community国内网络只分发人口。
 
-**NET-RC-005** Culture IV、16个接收城市为+16个百分点；8城约+11.31个百分点。小数/量化规则TBD，不自行round/floor/ceil；不假设所有环境的基础Boost比例固定为40%。已触发Boost不补发，额外进度不能溢入下一科技/市政；最终封顶等未明示细节须另行确认。
+**NET-RC-005** Research/Culture内部保持完整浮点：RawStrength=k_R或k_C×L×sqrt(N)，所有合法Network modifiers与未来Entertainment效率修正均在浮点上执行。仅在最终整数Boost接口边界量化一次：`AppliedBoost = floor(FinalRawBoost + 0.5)`（Boost非负）；显式使用此式，不使用默认round/banker's rounding，不提前量化、不重复量化。1.49→1、1.50→2、3.50→4；L4/N2原值约5.657→6个百分点。不同Raw值映射同整数时仅保持该AppliedBoost，不重复叠加；网络失效回零。正式权重1/2/3/4、独立k_R/k_C=1、L为有效来源最高ACTIVE、N为recipient UID去重不变。此规则取代D0017“浮点原样交引擎并接受截断不修复”。正式集成前以Raw1.5→接口2、Raw3.8→接口4最小原生测试确认；不再尝试让引擎保留fractional percentage points。不改变原生基础Boost规则，不假定固定40%；已触发Boost不补发、额外进度不得溢入下一科技/市政；最终封顶仍待确认。Entertainment具体效率参数未由本决定设定。
 
 ## 10. Future专业 — OUT_OF_V0.1
 
@@ -578,8 +594,8 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 | OPEN-02 | TBD / DESIGN_DECISION_REQUIRED | 神学战斗力数值、本城宗教锁定边界、foreign pressure公式/多源、belief吸收资格/数量/类别/冲突、贸易宗教压力规模公式；REL-003至006 |
 | OPEN-03 | TBD | Government Network Loyalty具体数值；GOV-004 |
 | OPEN-04 | IMPLEMENTATION / FUTURE_COMPATIBILITY / TBD | 旧档初始化仍独立OPEN，不自动沿用Conquest snapshot；永久UID及LegacySet冻结保存、Claim提供/移除、模式互斥与完成事件隔离留Development审查；Claim精确成本待定但受极低/短确认约束。无Identity征服城分流已由PROG-006至010正式解决，已有Identity继承不变 |
-| OPEN-06 | TBD / DESIGN_DECISION_REQUIRED | Boost精度、量化、最终封顶等细节；NET-RC，不更改已定max规则 |
-| OPEN-08 | TBD / DESIGN_DECISION_REQUIRED | Great Work时代/曲线/类别、theming/Tourism倍率、非传统区域与Actual范围；GW/TERMS |
+| OPEN-06 | TBD / DESIGN_DECISION_REQUIRED | Boost最终封顶等细节；最终一次floor(x+0.5)量化契约已按D0018确认；整数写入的实机验证属于Implementation，不是未决设计；不更改已定max规则 |
+| OPEN-08 | IMPLEMENTATION_VALIDATION / TBD | GW-001百分比公式/创作者时代及文物历史时代例外已由D0022确定；固定yield与旧逐件补差路线均退出。百分比Modifier与theming结算待实机验证；异常创作者关联、未知自定义类别独立保留；GW002范围已由D0023确认 |
 | OPEN-09 | RESOLVED / D0012 | 五档从工业Lv1全部开放；两侧按速度缩放，Crew生产力缩放后向下取整并显示整数，项目成本保留原生计算。 |
 | OPEN-10 | PROVISIONAL BALANCE MODEL / TBD | Military IV归属/持续资格、合格陆军/战斗及快照口径见MIL-013；Mobilization已形成共享pool、L最高ACTIVE、N接收城去重、L√N/回合与阈值100的暂定模型，tier/合法编制双限制及最高ACTIVE源生成方向已记录；最终平衡、同级source tie-break、未明示资格及无位置处理待定；ENT适用范围仍独立；MIL-004 |
 | OPEN-11 | ACCEPTED DIRECTION / TBD | Harbor商业等级/GPP与收益系数、Export接入/收益；Naval II–IV默认平移已登记（Harbor/合法City Center训练，排除Canal），具体Naval eligibility、特殊建筑额外互动和Naval Mobilization独立细化；HARB-005至009 |
@@ -595,7 +611,7 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 
 **COMPAT-001 — IMPLEMENTATION / FUTURE_COMPATIBILITY** 旧档初始化见OPEN-04；多enabled玩家的多人确定性、AI实际行为质量、eligibility carrier和只对参与者运行的过滤方式留待Development／未来兼容处理。技术问题标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`，不能把通用资格设计、AI可参与、白板非永久唯一载体或征服休眠语义重新列为未决。
 
-**COMPAT-002 — Commerce IV / IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT** Eligible Local Source Yield Basis读取、动态Convergence更新/撤销、小数/取整、同回合source yield变化刷新时点留Development feasibility；本轮不选择量化方式、不调查getter或Modifier、不以替代basis改变设计。Direct接收与新Commerce IV本身已定，不作为核心玩法OPEN。
+**COMPAT-002 — Commerce IV / IMPLEMENTATION_VALIDATION** D0024采用来源实际总产出与最终floor。动态择优/撤销、同回合刷新和第三方间接反馈仍需实测；不是任意Mod无环保证。
 
 ## 13. 设计审阅边界
 

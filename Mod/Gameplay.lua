@@ -15,7 +15,88 @@ local function stage(value)
   if #shared.Events>32 then table.remove(shared.Events,1) end
 end
 local function request(playerID,params)
+  shared.RequestIngress=shared.RequestIngress or {count=0}
+  local ingress=shared.RequestIngress;ingress.count=ingress.count+1
+  ingress.player=playerID;ingress.shape=type(params)
+  ingress.action=type(params)=='table' and P.Scalar(params.Action) or 'NO_TABLE'
+  ingress.token=type(params)=='table' and P.Scalar(params.Token) or 'NO_TABLE'
+  if type(params)=='table' and params.Action=='DIALOGUE_SAMPLE' then
+    shared.DialogueIngress={player=playerID,token=P.Scalar(params.Token),seq=P.Scalar(params.Seq),dataBytes=type(params.Data)=='string' and #params.Data or -1}
+  end
   if type(params)~="table" or type(params.Token)~="string" or #params.Token>100 then return end
+  if params.Action=='DIALOGUE_SAMPLE' then
+    local ok,err=pcall(shared.Dialogue.Receive,playerID,params)
+    if not ok then
+      if shared.Dialogue and P.IsTestPlayer(playerID) then shared.Dialogue.errors[playerID]='DIALOGUE_RECEIVE_EXCEPTION: '..tostring(err) end
+      print('[SPC][B059][SAMPLE] '..tostring(err))
+    end
+    return
+  end
+  if params.Action=='GWA_READ' or params.Action=='GWA_OFF' or params.Action=='GWA_AUTO' then
+    shared.RequestToken=params.Token
+    local ok,out=pcall(function()
+      assert(P.IsTestPlayer(playerID),'GWA_NOT_TEST_PLAYER')
+      local c=Players[playerID]:GetCities():FindID(params.CityID)
+      assert(c and c:GetOwner()==playerID,'GWA_CITY_UNAVAILABLE')
+      local d=assert(shared.GreatWorkAdjacency,'GWA_MODULE_NOT_LOADED')
+      assert(type(d.Describe)=='function','GWA_MODULE_INCOMPLETE')
+      if params.Action~='GWA_READ' then d.off[playerID]=params.Action=='GWA_OFF';d.Audit(playerID) end
+      return d.Describe(playerID,c)
+    end)
+    shared.Snapshot=ok and out or ('巨作相邻请求失败：'..tostring(out))
+    shared.LastToken=params.Token
+    return
+  end
+  if params.Action=='GW_READ' or params.Action=='GW_BASELINE' or params.Action=='DIALOGUE_OFF' or params.Action=='DIALOGUE_AUTO' or params.Action=='DIALOGUE_TEST25' or params.Action=='DIALOGUE_TEST50' or params.Action=='DIALOGUE_TEST100' then
+    if not P.IsTestPlayer(playerID) then return end
+    local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end
+    if params.Action~='GW_READ' and params.Action~='GW_BASELINE' then
+      local percent=({DIALOGUE_TEST25=25,DIALOGUE_TEST50=50,DIALOGUE_TEST100=100})[params.Action]
+      shared.Dialogue.test[playerID]=percent and {city=c:GetID(),percent=percent} or nil
+      shared.Dialogue.off[playerID]=params.Action=='DIALOGUE_OFF';shared.Dialogue.Audit(playerID) end
+    shared.Snapshot=shared.Dialogue.Describe(playerID,c);shared.LastToken=params.Token;return
+  end
+  if params.Action=='BOOST_INIT' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,err=pcall(function()
+      shared.NetworkBoost.EnsureReady(playerID)
+      if not shared.GreatWorkProbe.ready then shared.GreatWorkProbe.Clean() end
+    end)
+    if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
+    return
+  end
+  if params.Action=='BOOST_TEST_ZERO' or params.Action=='BOOST_TEST_HALF' or params.Action=='BOOST_TEST_HIGH' or params.Action=='BOOST_TEST_AUTO' then
+    if not P.IsTestPlayer(playerID) then return end
+    local raw=({BOOST_TEST_ZERO=0,BOOST_TEST_HALF=1.5,BOOST_TEST_HIGH=3.8})[params.Action]
+    local ok,out=pcall(shared.NetworkBoost.Test,playerID,raw)
+    shared.Snapshot=ok and out or ('整数实验未启用：'..tostring(out));shared.LastToken=params.Token;return
+  end
+  if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
+    if not P.IsTestPlayer(playerID) then return end
+    shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return
+  end
+  if params.Action=='GW_READ' or params.Action=='GW_CITY' or params.Action=='GW_OBJECT' or params.Action=='GW_OFF' then
+    if not P.IsTestPlayer(playerID) then return end
+    local c=Players[playerID]:GetCities():FindID(params.CityID)
+    if not c or c:GetOwner()~=playerID then return end
+    local ok,out=pcall(shared.GreatWorkProbe.Run,playerID,c,params.Action)
+    if not ok then print('[SPC][B055][GW] '..tostring(out)) end
+    shared.Snapshot=ok and out or '巨作实验未完成，请回传报告/日志。';shared.LastToken=params.Token;return
+  end
+  if params.Action=='DISCOUNT_INIT' then
+    if shared.StandardizationDiscount then shared.StandardizationDiscount.EnsureReady(playerID) end
+    return
+  end
+  if params.Action=='DISCOUNT_ELIGIBILITY' then
+    if shared.StandardizationDiscount then shared.StandardizationDiscount.Receive(playerID,params) end
+    return
+  end
+  if params.Action=='DISCOUNT_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    local c=Players[playerID]:GetCities():FindID(params.CityID)
+    if not c or c:GetOwner()~=playerID then return end
+    shared.Snapshot=shared.StandardizationDiscount.Describe(playerID,c,params.Page);shared.LastToken=params.Token;return
+  end
   if params.Action=='COPY_YIELD_SAMPLE' then
     if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
     return
@@ -27,6 +108,22 @@ local function request(playerID,params)
     local ok,result=pcall(shared.HalfYieldProbe.Run,playerID,c,params.Action)
     if not ok then print('[SPC][B050][REQUEST] '..tostring(result)) end
     shared.Snapshot=ok and result or '半点实验未完成，请回传日志。';shared.LastToken=params.Token;return
+  end
+  if params.Action=='PURCHASE_BASE' or params.Action=='PURCHASE_ON' or params.Action=='PURCHASE_OFF' or params.Action=='PURCHASE_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    local c=Players[playerID]:GetCities():FindID(params.CityID)
+    if not c or c:GetOwner()~=playerID then return end
+    local ok,v=pcall(shared.PurchaseProbe.Run,playerID,c,params.Action)
+    shared.Snapshot=ok and v or ('B053实验未完成：'..(tostring(v):match('B053_[A-Z_]+') or 'UNKNOWN'))
+    if not ok then print('[SPC][B053] '..tostring(v)) end
+    shared.LastToken=params.Token;return
+  end
+  if params.Action=="STANDARDIZATION_READ" then
+    if not P.IsTestPlayer(playerID) then return end
+    local c=Players[playerID]:GetCities():FindID(params.CityID)
+    if not c or c:GetOwner()~=playerID then return end
+    shared.Snapshot=shared.Standardization.Describe(playerID,c,params.Page)
+    shared.LastToken=params.Token;return
   end
   if params.Action=="LV4_COPY_READ" then
     if not P.IsTestPlayer(playerID) then return end
@@ -54,6 +151,8 @@ local function request(playerID,params)
     if shared.Lv2GPP then shared.Lv2GPP.Audit() end
     if shared.Lv3Support then shared.Lv3Support.Audit() end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
+    if shared.NetworkBoost then shared.NetworkBoost.Audit() end
+    if shared.Dialogue then shared.Dialogue.Audit(playerID) end
     return
   end
   if params.Action=="UNIT_TARGETS_READ" then
@@ -68,6 +167,8 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit() end
     if P.IsTestPlayer(playerID) and shared.Lv3Support then shared.Lv3Support.Audit() end
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit() end
+    if P.IsTestPlayer(playerID) and shared.NetworkBoost then shared.NetworkBoost.Audit() end
+    if shared.Dialogue then shared.Dialogue.Audit(playerID) end
     return
   end
   if params.Action=="NETWORK_PUSH" then
@@ -308,3 +409,24 @@ SPCHalfYieldProbe.Start(P,shared)
 
 include("CopyYields")
 SPCCopyYields.Start(P,shared)
+
+include("StandardizationCatalog")
+include("Standardization")
+SPCStandardization.Start(P,shared)
+
+include("PurchaseProbe")
+SPCPurchaseProbe.Start(P,shared)
+
+include("StandardizationDiscount")
+SPCStandardizationDiscount.Start(P,shared)
+
+include("NetworkBoost")
+SPCNetworkBoost.Start(P,shared)
+include("GreatWorkProbe")
+SPCGreatWorkProbe.Start(P,shared)
+
+include("Dialogue")
+SPCDialogue.Start(P,shared)
+
+include("GreatWorkAdjacency")
+SPCGWAdjacency.Start(P,shared)

@@ -1,0 +1,21 @@
+-- B057 isolated explicit-integer interface test. Never added alongside network Boost.
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_B057_RESEARCH_2','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_B057_RESEARCH_2','Specialization integer Boost test',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_B057_RESEARCH_2','MODIFIER_PLAYER_ADJUST_CIVIC_BOOST'),('SPC_B057_RESEARCH_2_HD','MODIFIER_PLAYER_ADJUST_PROPERTY');
+INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_B057_RESEARCH_2','Amount','2'),('SPC_B057_RESEARCH_2_HD','Key','HD_Player_Extra_Civic_Boost'),('SPC_B057_RESEARCH_2_HD','Amount','2');
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_B057_RESEARCH_2','SPC_B057_RESEARCH_2'),('BUILDING_SPC_B057_RESEARCH_2','SPC_B057_RESEARCH_2_HD');
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_B057_RESEARCH_4','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_B057_RESEARCH_4','Specialization integer Boost test',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_B057_RESEARCH_4','MODIFIER_PLAYER_ADJUST_CIVIC_BOOST'),('SPC_B057_RESEARCH_4_HD','MODIFIER_PLAYER_ADJUST_PROPERTY');
+INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_B057_RESEARCH_4','Amount','4'),('SPC_B057_RESEARCH_4_HD','Key','HD_Player_Extra_Civic_Boost'),('SPC_B057_RESEARCH_4_HD','Amount','4');
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_B057_RESEARCH_4','SPC_B057_RESEARCH_4'),('BUILDING_SPC_B057_RESEARCH_4','SPC_B057_RESEARCH_4_HD');
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_B057_CULTURE_2','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_B057_CULTURE_2','Specialization integer Boost test',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_B057_CULTURE_2','MODIFIER_PLAYER_ADJUST_TECHNOLOGY_BOOST'),('SPC_B057_CULTURE_2_HD','MODIFIER_PLAYER_ADJUST_PROPERTY');
+INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_B057_CULTURE_2','Amount','2'),('SPC_B057_CULTURE_2_HD','Key','HD_Player_Extra_Tech_Boost'),('SPC_B057_CULTURE_2_HD','Amount','2');
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_B057_CULTURE_2','SPC_B057_CULTURE_2'),('BUILDING_SPC_B057_CULTURE_2','SPC_B057_CULTURE_2_HD');
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_B057_CULTURE_4','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_B057_CULTURE_4','Specialization integer Boost test',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_B057_CULTURE_4','MODIFIER_PLAYER_ADJUST_TECHNOLOGY_BOOST'),('SPC_B057_CULTURE_4_HD','MODIFIER_PLAYER_ADJUST_PROPERTY');
+INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_B057_CULTURE_4','Amount','4'),('SPC_B057_CULTURE_4_HD','Key','HD_Player_Extra_Tech_Boost'),('SPC_B057_CULTURE_4_HD','Amount','4');
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_B057_CULTURE_4','SPC_B057_CULTURE_4'),('BUILDING_SPC_B057_CULTURE_4','SPC_B057_CULTURE_4_HD');

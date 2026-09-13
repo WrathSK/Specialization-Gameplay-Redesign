@@ -1,3 +1,5 @@
+> 当前同步：D0015已确认全目录记录、独立折扣启用策略及市中心三组。下文早期“允许范围待定”属于研究历史，由Accepted Spec IND-NET-004/005取代。Gold-only、持久身份与事件覆盖的技术边界仍保留。
+
 # 工业标准化：永久记录与当前网络资格
 
 Document Owner: Codex
@@ -46,3 +48,7 @@ DESIGN_DECISION_REQUIRED仅保留尚未明确的允许建筑目录/特殊分组�
 ## 验证
 
 STATIC_CONFIRMED：上述表结构/分类/参数查询，使用只读DB。LOCAL_SIMULATION_PASS：重复记录、同区域同Tier、跨区域不混、跨Tier不混、不同来源模板与折扣、来源撤销、城市成果换owner继续保留、旧owner拒绝、非授权不记录。真实征服继承、学习事件和购买价格尚未实机验证。本轮不为标准化派游戏测试。
+
+## 候选目录已完成，尚未批准
+
+见[中文分组目录](Specialization_Standardization_Catalog_Candidate.md)及其JSON：167栋、17类区域；四专业50栋中44栋无Trait限制、6栋有Trait限制。当前PurchaseYield为Gold121/Faith20/空26。市中心14栋同为Tier0，须单独决定组；额外17条未入HD Tier的非InternalOnly非Wonder记录均属HD dummy，不能自动纳入。全部是静态候选，不新增runtime、Design允许清单或实机结论。

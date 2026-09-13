@@ -34,11 +34,19 @@ def snapshot(path):
 
 def check(source,target):
     source=no_symlinks(source);target=no_symlinks(target)
+    if target.parent.name!='Mods': raise ValueError('Expected explicit Mods parent for scan isolation')
     if target.name!='SpecializationP0': raise ValueError('Target basename must be SpecializationP0')
     if source==target or source in target.parents or target in source.parents:
         raise ValueError('Source and deployment target must be independent directories')
     marker=target.parent/'.specialization-deploy-pending.json'
     if marker.exists(): raise RuntimeError('Unresolved deployment transaction: inspect '+str(marker))
+    # Hidden backup directories are scanned by Civ VI too. Reject duplicate identities.
+    for manifest in target.parent.rglob('*.modinfo'):
+        if manifest == target/'SpecializationP0.modinfo': continue
+        try: identity=ET.parse(manifest).getroot().get('id','')
+        except ET.ParseError: continue
+        if identity.lower()==UUID.lower():
+            raise ValueError('Duplicate Mod UUID in game scan directory: '+str(manifest))
     before=snapshot(target);after=snapshot(source)
     # Never erase an unrecognized runtime file by replacing the directory.
     unknown=set(before['files'])-set(after['files'])
@@ -59,7 +67,12 @@ def apply(source,target,expected_source,expected_runtime,failpoint=None):
         json.dump(dict(state,phase='STARTED'),f);f.flush();os.fsync(f.fileno())
     stage=None;backup=None;moved=False
     try:
-        stage=Path(tempfile.mkdtemp(prefix='.SpecializationP0-stage-',dir=target.parent))
+        # All staging, rollback and retained copies stay outside the scanned Mods tree.
+        archive=no_symlinks(target.parent.parent/'SpecializationDeploymentBackups')
+        if archive==source or archive in source.parents or source in archive.parents:
+            raise ValueError('Backup directory overlaps canonical source')
+        archive.mkdir(exist_ok=True)
+        stage=Path(tempfile.mkdtemp(prefix='.SpecializationP0-stage-',dir=archive))
         backup=stage.with_name(stage.name.replace('-stage-','-backup-'))
         if backup.exists(): raise RuntimeError('Backup collision')
         shutil.copytree(source,stage,dirs_exist_ok=True)

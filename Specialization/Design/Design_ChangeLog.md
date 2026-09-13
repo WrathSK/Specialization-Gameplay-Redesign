@@ -3,8 +3,108 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0014
+Latest Accepted Design Revision: D0024
 Document State: ACCEPTED
+
+## Accepted D0024 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户本轮GW002全部pass/小数截断不修复；商业四“最终汇聚收益向下取整，先做可玩版”；实际总产出备选来自此前明确条件授权，现因精确外来分解接口不可得而采用。
+Accepted Spec SHA256: 4f7d0169a3a8abce67501010a9c8ca600e345ce8b1ae23f3af6c28be069144f1
+Previous Accepted Revision: D0023
+Frozen D0023: [原文](Revisions/Specialization_Design_Spec_D0023.md)
+
+GW002A记录原生逐件截断边界。COM006采用Actual总产出替代纯本地；COM009三类各自20%后floor一次、城市层绝对替换，不求和、不允许Commerce作源。未改Boost量化、Network拓扑或其它能力。三方间接反馈不声称已排除。
+
+## Accepted D0023 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户“没错，然后推进到需要实机测试”确认此前三个GW002范围条目。
+Accepted Spec SHA256: 6a4dfdeb4a2dc8abe736fa428b0640b7c1fa627ba01b0ef167a9378c6edf265a
+Previous Accepted Revision: D0022
+Frozen D0022: [原文](Revisions/Specialization_Design_Spec_D0022.md)
+
+GW002明确七类(含Artifact、不含Relic/Product)、全部已完成专业区域含Theater和特色替代、分别保留原yield的50%BASE。政策倍率/非相邻产出不计；不统一转Culture，不改GW001。原生半点精度等待实机，不擅自截断或改城市补贴。
+
+## Accepted D0022 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确时代对话改15%×max(0,D−1) Culture/Tourism；D采用创作者时代，用户另明确接受文物历史时代例外。
+Accepted Spec SHA256: 10e6d7d1b618f2fda3a745602a6a6413fa7773b8023075048520946352204557
+Previous Accepted Revision: D0021
+Frozen D0021: [原文](Revisions/Specialization_Design_Spec_D0021.md)
+
+GW-001/003和OPEN-08同步；退出D0021固定yield及固定旅游追加路线，不再逐件保值。不加cap，D7仅例子；作品数不决定百分比。Product/Relic排除，Artifact保留；GW002和其它CultureIV及Boost规则未改。原生theming实际叠加仍需实测。
+
+## Accepted D0021 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确以“时代对话”替换逐件保值：D为不同创作时代数，每件k×max(0,D−1) Culture/Tourism，k=1；theming保留自然行为并报告。
+Accepted Spec SHA256: 1a14fc5f98ea364706b20f8db5ecb957a0bf2bcbd6b7958acf184fbc32d2eb10
+Previous Accepted Revision: D0020
+Frozen D0020: [原文](Revisions/Specialization_Design_Spec_D0020.md)
+
+GW-001/003、CUL-004引用与OPEN-08同步。逐件补差/最高基础值及强制恢复所有倍率路线superseded；Product/Relic排除、Artifact保留、GW002及其它CultureIV、Boost规则不变。仅确认设计，不等于统一旅游业接口或theming已实机通过。
+
+## Accepted D0020 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户将遗物与产品一样排除出巨作保值；本机遗物基础均4Faith/8Tourism，无保值差额。
+Accepted Spec SHA256: 971fa1618e13362cf310efaec85400aa9c024cf4952dc814056a1d6829adad9f
+Previous Accepted Revision: D0019
+Frozen D0019: [原文](Revisions/Specialization_Design_Spec_D0019.md)
+
+仅修正GW-001/003与OPEN-08的遗物保值范围；文物ARTIFACT仍适用，Culture/Tourism逐项最大和作品倍率/主题化要求不变。其它Mod将来新增不同基础遗物，不会自行重新纳入；需用户另行授权。
+
+## Accepted D0019 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 本轮用户回答：分别取最大；遗物补信仰和旅游业；作品专属倍率与主题化也必须适用。
+Accepted Spec SHA256: 63948c5abf683d6e0340af47ae0121b8891188b427cd7245a4025fb763a9e8df
+Previous Accepted Revision: D0018
+Frozen D0018: [原文](Revisions/Specialization_Design_Spec_D0018.md)
+
+GW-001/003与OPEN-08同步。拒绝把普通城市补贴作为最终替代；实现需遵循倍率要求。未修改Boost契约或GW002范围。
+
+## Accepted D0018 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确决定最终Boost接口floor(x+0.5)一次量化，并将巨作改为本城文化类/遗物分组最高基础值补齐；产品排除。
+Accepted Spec SHA256: 398de69aea82c26e7993b423558645b1bfb15a596b833261d247f30a09b71610
+Previous Accepted Revision: D0017
+Frozen D0017: [原文](Revisions/Specialization_Design_Spec_D0017.md)
+
+NET-RC-005取代D0017舍去不修复策略；先验证明确整数写入，再正式集成，不改k/L/N/topology或Entertainment参数。GW-001/003取代时代曲线，未擅自确定不同yield排序、遗物yield维度或主题化倍率；OPEN-06/08同步。历史原文冻结，已通过的原生截断观察仍有效，但不再是目标实现契约。
+
+## Accepted D0017 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确接受Boost引擎舍去小数时不修复，直接构建实测；首批临时权重1.1/2.2/3.3/4.5。
+Accepted Spec SHA256: 5132c9a300853d0107ad84cf4adebadd5f7c173dbc0c72943a4b3e241deb2d06
+Previous Accepted Revision: D0016
+Frozen D0016: [原文](Revisions/Specialization_Design_Spec_D0016.md)
+
+仅NET-RC-005/OPEN-06的小数策略与测试配置；正式公式、max ACTIVE、recipient去重、k_R/k_C独立不变。最终封顶、GW时代曲线及未决类别不因此确定。开发接口实验不等于已完成GW玩法或实机通过。
+
+## Accepted D0016 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确“如果想要排除信仰打折较难实现，那么也接受信仰打折”。
+Accepted Spec SHA256: 2ddfffd482fff85b35fb82f06e902346e18501beb8c877a9fc674b2aba1b4759
+Previous Accepted Revision: D0015
+Frozen D0015: [原文](Revisions/Specialization_Design_Spec_D0015.md)
+
+IND-NET-002记录条件授权，003/005引用一致；不自动扩大目录或解锁购买。B053将调查实际货币效果，设计授权不等于实机通过。
+
+## Accepted D0015 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户指定所有合格建筑记录模板，v0.1按区域与市中心三组开放原本合法Gold购买的标准化折扣，包含特色建筑并保留后续开放资格。
+Accepted Spec SHA256: 9cf3eb5c57552e560fd61ba45160c92691b958a42598ba0b9abbc3a74ffa971e
+Previous Accepted Revision: D0014
+Frozen D0014: [原文](Revisions/Specialization_Design_Spec_D0014.md)
+
+更新IND-NET-004并新增IND-NET-005；规则只在Spec正文维护。目录/启用分离，Faith与购买资格不变。属于设计确认，未实现模板账本或折扣，不升级任何游戏验证状态。D0014科研复制与其它既定数值不变。
 
 ## Accepted D0014 — 2026-09-12
 

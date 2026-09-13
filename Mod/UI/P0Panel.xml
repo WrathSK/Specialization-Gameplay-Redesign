@@ -3,20 +3,45 @@
   <GridButton ID="OpenButton" Anchor="R,T" Offset="20,145" Size="165,32" Style="MainButton" String="Specialization P0" />
   <Container ID="Window" Anchor="C,C" Size="840,664">
     <Box Size="840,664" Color="12,19,27,250" />
-    <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="SPC P0-B-051.66 | Specialization diagnostics" />
+    <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="SPC P0-B-060.84 | Specialization diagnostics" />
     <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton" String="Close" />
-    <Label ID="Status" Anchor="L,T" Offset="18,62" Style="FontNormal14" WrapWidth="800" String="B051.67：自动科研/工业IV复制。先关闭B050半点实验，选择城市点击Read Lv4 copy观察。" />
-    <GridButton ID="HalfReadButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read half test" />
+    <Label ID="Status" Anchor="L,T" Offset="18,62" Style="FontNormal14" WrapWidth="800" String="B059：时代对话自动百分比；可OFF/恢复自动作同收藏对照。" />
+    <GridButton Hidden="1" ID="HalfReadButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read half test" />
     <GridButton Hidden="1" ID="Lv2GPPButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read Lv2 GPP" />
-    <GridButton ID="HalfOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Half +0.5 ON" />
+    <GridButton Hidden="1" ID="HalfOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Half +0.5 ON" />
     <GridButton Hidden="1" ID="InvestPrepareButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Prepare investment" />
-    <GridButton ID="HalfOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Half OFF" />
+    <GridButton Hidden="1" ID="HalfOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Half OFF" />
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
     <GridButton ID="NetworkButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" String="Read network (Game)" />
-    <GridButton ID="SourceYieldButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read progression" />
-    <GridButton ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
-    <GridButton ID="Lv4CopyButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read Lv4 copy" />
+    <GridButton ID="SourceYieldButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Read progression" />
+    <GridButton Hidden="1" ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
+    <GridButton Hidden="1" ID="PurchaseBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Purchase BASE" />
+    <GridButton Hidden="1" ID="PurchaseOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Purchase -20% ON" />
+    <GridButton Hidden="1" ID="PurchaseOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Purchase OFF" />
+    <GridButton Hidden="1" ID="PurchaseReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read purchase" />
+    <GridButton Hidden="1" ID="DiscountsButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read discounts" />
+    <GridButton Hidden="1" ID="NextDiscountsButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next discounts" />
+    <GridButton Hidden="1" ID="TemplatesButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read templates" />
+    <GridButton Hidden="1" ID="NextTemplatesButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Next templates" />
+    <GridButton Hidden="1" ID="Lv4CopyButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read Lv4 copy" />
     <GridButton Hidden="1" ID="SpecialistsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read specialists" />
+    <GridButton Hidden="1" ID="BoostBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Boost baseline" />
+    <GridButton Hidden="1" ID="BoostReadButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read boosts" />
+    <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" />
+    <GridButton ID="GWReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read Great Works" />
+    <GridButton ID="GWCityButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Dialogue AUTO" />
+    <GridButton Hidden="1" ID="GWObjectButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="GW per work +2C" />
+    <GridButton ID="GWOffButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Dialogue OFF" />
+    <GridButton Hidden="1" ID="BoostTestZeroButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Boost test 0" />
+    <GridButton Hidden="1" ID="BoostTestHalfButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Raw 1.5 -> 2" />
+    <GridButton Hidden="1" ID="BoostTestHighButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Raw 3.8 -> 4" />
+    <GridButton Hidden="1" ID="BoostTestAutoButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Restore auto Boost" />
+    <GridButton Hidden="1" ID="DialogueTest25Button" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Dialogue TEST +25%" />
+    <GridButton Hidden="1" ID="DialogueTest50Button" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Dialogue TEST +50%" />
+    <GridButton Hidden="1" ID="DialogueTest100Button" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Dialogue TEST +100%" />
+    <GridButton ID="GWAReadButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="GW adjacency Read" />
+    <GridButton ID="GWAOffButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="GW adjacency Off" />
+    <GridButton ID="GWAAutoButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="GW adjacency Auto" />
     <Container ID="LegacyProbeButtons" Size="840,664" Hidden="1">
       <GridButton ID="BackgroundRoutesButton" Anchor="L,T" Offset="230,12" Size="225,32" Style="MainButton" String="Background routes" />
       <GridButton ID="RouteStateButton" Anchor="L,T" Offset="465,12" Size="240,32" Style="MainButton" String="Route state (Game)" />
@@ -46,7 +71,7 @@
       <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" />
       <GridButton ID="GovernorButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Read governor" />
     </Container>
-    <GridButton ID="Lv4PercentButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv4 percent" />
+    <GridButton Hidden="1" ID="Lv4PercentButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv4 percent" />
     <GridButton Hidden="1" ID="ConstructionPreviewButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Preview construction" />
     <GridButton Hidden="1" ID="ConstructionApplyButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Inject 250 (DEV)" />
   </Container>

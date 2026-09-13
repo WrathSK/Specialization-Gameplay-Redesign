@@ -1,0 +1,10 @@
+# B053 指定建筑购买折扣
+
+Document Owner: Codex
+Evidence: STATIC_CONFIRMED / LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED
+
+静态本机DB：MODIFIER_CITY_ADJUST_BUILDING_PURCHASE_COST = COLLECTION_OWNER + EFFECT_ADJUST_BUILDING_PURCHASE_COST。Amount / BuildingType是现有参数；没有已找到的货币参数先例。瓦莱塔墙折扣和HD MESSIAH市中心折扣使用同一Effect，不能推断Gold隔离。MODIFIER_CITY_ENABLE_BUILDING_FAITH_PURCHASE使用DistrictType（Jesuit Education/HD宗教等先例）。原版ProductionPanel.lua读取City:GetGold():GetPurchaseCost(YIELD_TYPE,building.Hash)。getter不等于CanPurchase。
+
+D0016已授权困难时双币折扣，本轮未提前选择或宣布引擎行为。手动测试只对纪念碑和粮仓挂载20%折扣；BASE为所选城添加市中心Faith购买临时条件。没有Trait自动挂载、永久专业规则、网络结算、退款或购买调用。OFF与读档删除两个内部建筑；默认无测试状态。InternalOnly不会进入B052合格模板目录。
+
+test_b053_purchase.py：只读外部DB复制内存后执行SQL，Modifier引用和参数检查；真实Lua模拟手动门控、重复不叠加、OFF、读档清除、owner拒绝；Lua/XML及按钮位置检查。STATIC_CONFIRMED不等于游戏通过；LOCAL_SIMULATION_PASS不模拟或预设原生货币语义。原生价格行为是下一实机停止点。临时fixture赋予购买能力是明确测试条件，不是正式Design fallback。

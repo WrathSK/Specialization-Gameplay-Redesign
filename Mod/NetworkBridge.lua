@@ -42,6 +42,8 @@ function SPCNetworkBridge.Start(P,shared)
   end)
   if not ok then b.reason=short(err);print("[SPC][B027][DETAIL] "..tostring(err)) end
   if shared.Lv3Effects then shared.Lv3Effects.Audit() end
+  if shared.StandardizationDiscount then shared.StandardizationDiscount.Audit() end
+  if shared.NetworkBoost then shared.NetworkBoost.Audit() end
   print("[SPC][B027][BRIDGE] player="..pid.." seq="..b.seq.." "..b.reason)
  end
  derive=function(pid,rows)
@@ -88,6 +90,27 @@ function SPCNetworkBridge.Start(P,shared)
   assert(Players[pid]:GetTrade():CountOutgoingRoutes()==#b.routes,'CURRENT_COUNT_CHANGED')
   local sources,centers=derive(pid,b.routes);local result={}
   for src in pairs(centers[selected:GetID()] or {}) do result[sources[src]]=true end
+  return result
+ end
+ -- B055 national union: a recipient counts once if at least one current ACTIVE source reaches it.
+ function d.National(pid)
+  assert(P.IsTestPlayer(pid) and d.ready,'NETWORK_NOT_READY_OR_OWNER')
+  local b=d.players[pid]
+  assert(b and b.routes and b.turn==Game.GetCurrentGameTurn() and b.signal==(shared.RouteSignalRevision or 0),'NETWORK_REFRESH_PENDING')
+  assert(Players[pid]:GetTrade():CountOutgoingRoutes()==#b.routes,'CURRENT_COUNT_CHANGED')
+  local _,_,recipients=derive(pid,b.routes);local result={}
+  for _,kind in ipairs({'RESEARCH','CULTURE'}) do
+   local r={n=0,level=0,sources={},recipients={}};result[kind]=r
+   for cid,set in pairs(recipients[kind] or {}) do
+    for src in pairs(set) do
+     local ok,f=pcall(shared.EffectiveFacts.Read,pid,city(pid,src))
+     if ok and f.specialization==kind and type(f.active)=='number' and f.active>=1 and f.active<=4 and f.active%1==0 then
+      r.sources[src]=f.active;r.recipients[cid]=true;r.level=math.max(r.level,f.active)
+     end
+    end
+   end
+   for _ in pairs(r.recipients) do r.n=r.n+1 end
+  end
   return result
  end
  -- B049 readonly current source identities, never a history/event-derived list.
@@ -169,6 +192,8 @@ function SPCNetworkBridge.Start(P,shared)
    else b.sources=nil;b.centers=nil;b.recipients=nil end
   end
   if shared.Lv3Effects then shared.Lv3Effects.Audit() end
+  if shared.StandardizationDiscount then shared.StandardizationDiscount.Audit() end
+  if shared.NetworkBoost then shared.NetworkBoost.Audit() end
  end
  for _,name in ipairs({"OnDistrictConstructed","CityBuilt"}) do
   local ev=P.Field(GameEvents,name);if ev and ev.Add then ev.Add(d.Rebuild) end

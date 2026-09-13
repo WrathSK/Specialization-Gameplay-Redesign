@@ -1,17 +1,57 @@
-<?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="67">
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="85">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>P0-B-051.67. All non-Campus districts included per D0014. Background engine-event refresh and visible pipeline diagnostics. Automatic Research IV local copy and Industry IV network production; background district sampling, reversible city effects, integer/half amounts. Native integration awaits user tests.</Description>
+    <Description>P0-B-060.85 / modinfo85. Final-only quantized automatic Boost; event-driven Dialogue Across Eras native percentages. Automatic national network Boost with formal level weights 1/2/3/4. Native boost modifiers, no custom progress grants. Isolated reversible Great Work backend comparison.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
-    <UpdateDatabase id="SPC_B051_Copy"><Properties><LoadOrder>2000000</LoadOrder></Properties><File>Data/CopyYields.sql</File></UpdateDatabase>
-    <AddUserInterfaces id="SPC_B051_Background"><Properties><Context>InGame</Context></Properties><File>UI/CopyYieldRefresh.xml</File></AddUserInterfaces>
-    <UpdateDatabase id="SPC_B050_Half"><Properties><LoadOrder>2000000</LoadOrder></Properties><File>Data/HalfYieldProbe.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_B054_Discounts">
+      <Properties>
+        <LoadOrder>2000001</LoadOrder>
+      </Properties>
+      <File>Data/StandardizationDiscount.sql</File>
+    </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B054_Eligibility">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/DiscountEligibility.xml</File>
+    </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B053_Purchase">
+      <Properties>
+        <LoadOrder>2000000</LoadOrder>
+      </Properties>
+      <File>Data/PurchaseProbe.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_B051_Copy">
+      <Properties>
+        <LoadOrder>2000000</LoadOrder>
+      </Properties>
+      <File>Data/CopyYields.sql</File>
+    </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B051_Background">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/CopyYieldRefresh.xml</File>
+    </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B050_Half">
+      <Properties>
+        <LoadOrder>2000000</LoadOrder>
+      </Properties>
+      <File>Data/HalfYieldProbe.sql</File>
+    </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
+      <File>StandardizationDiscount.lua</File>
+      <File>UI/DiscountEligibility.lua</File>
+      <File>UI/DiscountEligibility.xml</File>
+      <File>PurchaseProbe.lua</File>
+      <File>PurchaseProbeRead.lua</File>
+      <File>StandardizationCatalog.lua</File>
+      <File>Standardization.lua</File>
       <File>CopyYields.lua</File>
       <File>UI/CopyYieldRefresh.lua</File>
       <File>UI/CopyYieldRefresh.xml</File>
@@ -53,6 +93,18 @@
       <File>CrewProjects.lua</File>
       <File>CrewPrecision.lua</File>
       <File>Lv4Percent.lua</File>
+      <File>BoostConfig.lua</File>
+      <File>NetworkBoost.lua</File>
+      <File>GreatWorkProbe.lua</File>
+      <File>UI/BoostGreatWorkRead.lua</File>
+      <File>UI/BoostRefresh.lua</File>
+      <File>UI/BoostRefresh.xml</File>
+      <File>BoostIntegerConfig.lua</File>
+      <File>UI/GreatWorkBasis.lua</File>
+      <File>DialogueModel.lua</File>
+      <File>GreatWorkAdjacencyModel.lua</File>
+      <File>GreatWorkAdjacency.lua</File>
+      <File>Dialogue.lua</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -193,8 +245,40 @@
       </Properties>
       <File>Data/Lv4Percent.sql</File>
     </UpdateDatabase>
+    <UpdateDatabase id="SPC_B055_Boost">
+      <Properties>
+        <LoadOrder>2000002</LoadOrder>
+      </Properties>
+      <File>Data/NetworkBoost.sql</File>
+      <File>Data/BoostIntegerTest.sql</File>
+      <File>Data/NetworkBoostInteger.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_B055_GW">
+      <Properties>
+        <LoadOrder>2000002</LoadOrder>
+      </Properties>
+      <File>Data/GreatWorkProbe.sql</File>
+    </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B055_Background">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/BoostRefresh.xml</File>
+    </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B060_Adjacency"><Properties><LoadOrder>2000004</LoadOrder></Properties><File>Data/GreatWorkAdjacency.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_B059_Dialogue"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/Dialogue.sql</File></UpdateDatabase>
+    <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>StandardizationDiscount.lua</File>
+    <File>UI/DiscountEligibility.lua</File>
+    <File>UI/DiscountEligibility.xml</File>
+    <File>Data/StandardizationDiscount.sql</File>
+    <File>PurchaseProbe.lua</File>
+    <File>PurchaseProbeRead.lua</File>
+    <File>Data/PurchaseProbe.sql</File>
+    <File>StandardizationCatalog.lua</File>
+    <File>Standardization.lua</File>
     <File>CopyYields.lua</File>
     <File>Data/CopyYields.sql</File>
     <File>UI/CopyYieldRefresh.lua</File>
@@ -271,6 +355,26 @@
     <File>UI/CrewProjectOrder.lua</File>
     <File>Lv4Percent.lua</File>
     <File>Data/Lv4Percent.sql</File>
+    <File>BoostConfig.lua</File>
+    <File>NetworkBoost.lua</File>
+    <File>GreatWorkProbe.lua</File>
+    <File>UI/BoostGreatWorkRead.lua</File>
+    <File>UI/BoostRefresh.lua</File>
+    <File>UI/BoostRefresh.xml</File>
+    <File>Data/NetworkBoost.sql</File>
+      <File>Data/BoostIntegerTest.sql</File>
+      <File>Data/NetworkBoostInteger.sql</File>
+    <File>Data/GreatWorkProbe.sql</File>
+    <File>BoostIntegerConfig.lua</File>
+    <File>UI/GreatWorkBasis.lua</File>
+    <File>DialogueModel.lua</File>
+      <File>GreatWorkAdjacencyModel.lua</File>
+      <File>GreatWorkAdjacency.lua</File>
+    <File>Dialogue.lua</File>
+    <File>Data/Dialogue.sql</File>
+    <File>Data/GreatWorkAdjacency.sql</File>
+    <File>UI/DialogueRefresh.lua</File>
+    <File>UI/DialogueRefresh.xml</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />
