@@ -1,0 +1,30 @@
+{
+  "B051-before-copy/InvestmentAction.lua": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/InvestmentAction.lua",
+    "sha256": "fabaf4525fc7b143fa5daae97f9934c77f9f467940844422b1872372541f180c"
+  },
+  "B051-before-copy/UnitActions.lua": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/UnitActions.lua",
+    "sha256": "a74228619381993132f48fb090af5f18441f213a007f57e1945873a1f11e1d75"
+  },
+  "B051-before-copy/NetworkBridge.lua": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/NetworkBridge.lua",
+    "sha256": "4d7f26125aa53d25b74336ee38c93f101b898a0e17efae63f7de2682122b71de"
+  },
+  "B051-before-copy/Lv4Percent.lua": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/Lv4Percent.lua",
+    "sha256": "515e7fed84524ccc7ff4b72bd7d8772507706424355eee61a79fe641cc558734"
+  },
+  "B051-before-copy/CrewProjects.lua": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/CrewProjects.lua",
+    "sha256": "9a48acf35835b67d9288ef0466017ce64b45ee3d832404162daf8f372a265ae8"
+  },
+  "B051-before-copy/Data/CrewProjects.sql": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/Data/CrewProjects.sql",
+    "sha256": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674"
+  },
+  "B051-before-copy/HalfYieldProbe.lua": {
+    "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/HalfYieldProbe.lua",
+    "sha256": "aa95d67392059146fb0104ad5c66317b1b32ec7b9f9170ec6484d07ebcf24317"
+  }
+}

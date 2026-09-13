@@ -1,0 +1,53 @@
+{
+  "status": "LOCAL_SIMULATION_PASS",
+  "build": "P0-B-044 / modinfo57",
+  "test": "DevelopmentTests/test_crew_projects.py",
+  "coverage": [
+    "5 project/unit mappings",
+    "25 speed/catalog and actual executor-to-mock combinations",
+    "access grant/revoke/load/idempotence",
+    "tooltip format",
+    "existing action/investment regressions",
+    "Lua syntax/XML/manifest paths",
+    "Localization SQL in memory copy",
+    "Icon SQL alias-shaped fixture (not engine art proof)"
+  ],
+  "user_game_test": "REQUIRED: native project creation/repeat/reload and speed precision",
+  "design_sha256": "29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7",
+  "runtime_changed_files": [
+    "ArtDefs/Units.artdef",
+    "CrewProjects.lua",
+    "Data/Crew.sql",
+    "Data/CrewProjects.sql",
+    "Data/Icons.sql",
+    "Gameplay.lua",
+    "IndustrySupport.lua",
+    "Probe.lua",
+    "SpecializationP0.modinfo",
+    "Text/TestText.sql",
+    "UI/UnitPanelActions.lua",
+    "UI/UnitSites.lua",
+    "UI/UnitSites.xml",
+    "UI/UnitTargetMarkers.lua",
+    "UnitActions.lua",
+    "UnitTargets.lua"
+  ],
+  "runtime_sha256": {
+    "ArtDefs/Units.artdef": "00386b8d0c1c2faaac652e134f9c73dacb6522d023a1be168add87b0e17b64e0",
+    "CrewProjects.lua": "9a48acf35835b67d9288ef0466017ce64b45ee3d832404162daf8f372a265ae8",
+    "Data/Crew.sql": "998c2e6a95228f967082be4b93c45fbb32223a899b3641977534187cf22fcc2d",
+    "Data/CrewProjects.sql": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674",
+    "Data/Icons.sql": "5e40f7d09a96253628136424d72ae93cfda31de14c0eae135594adb535e2a343",
+    "Gameplay.lua": "152b98b91346c193f37193c48ec82c2d81c41c9975c743ad00752742f8aeb0e1",
+    "IndustrySupport.lua": "177ee19019cb8285c8412bf8b3922aba3c63803599c693b0f80735f6308facec",
+    "Probe.lua": "19efa790ac1fc30c6a71a46aa185532e086c179e4732697aa0e525c1bd9b6d5d",
+    "SpecializationP0.modinfo": "668580df94a77669c671777f0ddaf56aa80b235e3c25d32edf74e35bb5321b4d",
+    "Text/TestText.sql": "3ff23f50e0bbebbaad4d700a135ffd0f592032bb4c91e070475a600b958bf43f",
+    "UI/UnitPanelActions.lua": "01f6439f8414fd67565c0a696dff3bf88d55fc492743ddd8e3feefcb9f609fbf",
+    "UI/UnitSites.lua": "3ce4e2ad59888a31431d93d464ea0e0700304895424bb30e2a69dcaf8edd203b",
+    "UI/UnitSites.xml": "8cb86986ab5389109f9bf02cfaa75245c6aee03c3061d082ed298516ff11a8c4",
+    "UI/UnitTargetMarkers.lua": "9768be60bc2defc5914608893c9a9cd7d6f97004432863eebe509909ca8cfde3",
+    "UnitActions.lua": "e5bcf760a87376e5968991a8d5f6d2acf3ac62c471b5cc513101f922b04a00c0",
+    "UnitTargets.lua": "8a0114e22303d071aa1b5152cb84898ae6a3f13da5c8727eee4bc3f479abda7b"
+  }
+}

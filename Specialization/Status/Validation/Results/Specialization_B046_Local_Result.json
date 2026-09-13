@@ -1,0 +1,25 @@
+{
+  "build": "P0-B-046 / modinfo59",
+  "status": "LOCAL_SIMULATION_PASS",
+  "test": "DevelopmentTests/test_crew_precision.py",
+  "runtime_changed_files": [
+    "CrewPrecision.lua",
+    "Gameplay.lua",
+    "Probe.lua",
+    "SpecializationP0.modinfo",
+    "UI/CrewProjectOrder.lua",
+    "UI/UnitSites.lua",
+    "UI/UnitSites.xml"
+  ],
+  "design_sha256_unchanged": "29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7",
+  "engine_precision": "USER_GAME_TEST_REQUIRED",
+  "runtime_sha256": {
+    "CrewPrecision.lua": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
+    "Gameplay.lua": "4db13304fd2b3ab332ecf58077537316cef87dbc57a78e272b87f1e3dc96804b",
+    "Probe.lua": "3bb0c342be49c75bf08afb618a4eac213ebc6bcd256797208d18f82eb2f8965b",
+    "SpecializationP0.modinfo": "4048fa5b3655b7aaa82908162d6d5311195f61113554f3726a31739c9e0505c4",
+    "UI/CrewProjectOrder.lua": "8b902c93e450e5ffcf6620bd5154382c36f38b34418cd1aa0856da661cf45522",
+    "UI/UnitSites.lua": "9816a5c573a812fd7a8b46d5ed73f81cf269ebcbe9894c073afdd7f72c502aa3",
+    "UI/UnitSites.xml": "c120830d3e810b271668e4906312f1cb835d0dca7e8e28ac6366a97b9ed345e2"
+  }
+}

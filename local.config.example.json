@@ -1,0 +1,5 @@
+{
+  "runtime_dir": "/absolute/path/to/Mods/SpecializationP0",
+  "debug_gameplay_db": "/absolute/path/to/DebugGameplay.sqlite",
+  "legacy_workspace": "/optional/path/to/legacy/workspace"
+}

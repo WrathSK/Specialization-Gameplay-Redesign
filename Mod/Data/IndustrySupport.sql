@@ -1,0 +1,28 @@
+-- B036: native per-worker yields; weights encode BASE adjacency, never workers.
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_-1','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_-1','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_-1','YIELD_FOOD',3);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_0','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_0','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_0','YIELD_PRODUCTION',1);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_1','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_1','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_1','YIELD_PRODUCTION',2);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_2','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_2','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_2','YIELD_PRODUCTION',4);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_3','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_3','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_3','YIELD_PRODUCTION',8);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_4','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_4','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_4','YIELD_PRODUCTION',16);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_5','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_5','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_5','YIELD_PRODUCTION',32);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_6','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_6','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_6','YIELD_PRODUCTION',64);
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_7','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_7','Industry specialist support (Test)',1,'DISTRICT_INDUSTRIAL_ZONE',1,0,0);
+INSERT INTO Building_CitizenYieldChanges(BuildingType,YieldType,YieldChange) VALUES ('BUILDING_SPC_DEV_INDUSTRY_LV1_7','YIELD_PRODUCTION',128);

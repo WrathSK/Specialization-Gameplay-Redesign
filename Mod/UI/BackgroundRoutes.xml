@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Deliberately no controls/window: data sampling does not require opening a panel. -->
+<Context Name="SPCBackgroundRoutes" />

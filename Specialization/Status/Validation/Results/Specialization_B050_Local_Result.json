@@ -1,0 +1,11 @@
+{
+  "state": "LOCAL_SIMULATION_PASS",
+  "build": "P0-B-050 / modinfo64",
+  "test": "DevelopmentTests/test_b050_half_standardization.py",
+  "probe_population_cases": 255,
+  "new_runtime_sql_buildings": 32,
+  "standardization_runtime_enabled": false,
+  "formal_lv4_copy_enabled": false,
+  "game_launched": false,
+  "design_sha256": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551"
+}

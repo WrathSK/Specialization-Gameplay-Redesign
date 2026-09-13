@@ -1,0 +1,25 @@
+{
+  "protected_baseline_unchanged": 126,
+  "intentional_changed_existing": [
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/SpecializationP0.modinfo",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Gameplay.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Probe.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/EffectiveFacts.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/P0Panel.xml",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/P0Panel.lua",
+    "Specialization/README.md",
+    "Specialization/AGENTS.md",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "Specialization/Status/Specialization_P0_Status.md",
+    "Specialization/Reports/Technical/README.md"
+  ],
+  "accepted_design_sha256": "07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8",
+  "new_files": [
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv2Housing.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv2Housing.sql",
+    "DevelopmentTests/test_lv2_housing.py",
+    "Specialization/Reports/Technical/Specialization_B034_Lv2_Housing.md",
+    "Specialization/Status/Validation/Cases/B034_Lv2_Housing.md"
+  ],
+  "game_started": false
+}

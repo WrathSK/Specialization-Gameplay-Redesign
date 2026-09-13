@@ -1,0 +1,11 @@
+{
+  "build": "P0-B-049 / modinfo63",
+  "state": "LOCAL_SIMULATION_PASS",
+  "test": "DevelopmentTests/test_b049_network_notice.py",
+  "runtime_changes": [
+    "Lv4CopyRead.lua",
+    "SpecializationP0.modinfo"
+  ],
+  "design_sha256": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551",
+  "game_launched": false
+}

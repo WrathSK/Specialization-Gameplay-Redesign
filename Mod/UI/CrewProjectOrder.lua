@@ -1,0 +1,22 @@
+-- Narrow HD adapter: retain its production panel and all original item data.
+include('DL_ProductionPanel')
+local ranks={PROJECT_SPC_CREW_250=1,PROJECT_SPC_CREW_420=2,PROJECT_SPC_CREW_750=3,PROJECT_SPC_CREW_1000=4,PROJECT_SPC_CREW_1360=5}
+local baseGetData=GetDataHelper
+function GetDataHelper(...)
+ local data=baseGetData(...)
+ if not data or not data.ProjectItems then return data end
+ local items=data.ProjectItems;local crew,others={},{};local insertion
+ for _,item in ipairs(items) do
+  if ranks[item.Type] then
+   insertion=insertion or (#others+1);crew[#crew+1]=item
+  else others[#others+1]=item end
+ end
+ if not insertion then return data end
+ table.sort(crew,function(a,b) return ranks[a.Type]<ranks[b.Type] end)
+ local result={}
+ for i=1,#others+1 do
+  if i==insertion then for _,item in ipairs(crew) do result[#result+1]=item end end
+  if others[i] then result[#result+1]=others[i] end
+ end
+ data.ProjectItems=result;return data
+end

@@ -1,0 +1,14 @@
+{
+  "build": "B042/modinfo55",
+  "status": "LOCAL_SIMULATION_PASS",
+  "test": "test_crew_unit_actions.py exit0",
+  "game": "USER_GAME_TEST_REQUIRED",
+  "sha256": {
+    "Data/Crew.sql": "73454bc619a88eea26a0d0098543c99fe258dadfc78cc85f01b69c389a757241",
+    "UnitActions.lua": "13756ffac1aa66d03c50eb8b713bc31d63fb87e60d309ab040dd32655d06a405",
+    "InvestmentAction.lua": "c61fadb42277aa2e011e7c23d783c13f4c564773bb701e9ead418fb7ae0cede9",
+    "ArtDefs/Units.artdef": "8c2b5ee13d2ac993e73d1864f73ce76b0efbe34ba4b9b7c9752cd8ffb4a810b1",
+    "Specialization.dep": "2a825b453df53475a7ca858ba4adfcab60e33f017f17b0ac2ef0d5489735e0f8",
+    "SpecializationP0.modinfo": "b100a5ded9251d217f43a9daf9ccfb95008d48a39671c940783937dc1a9bd644"
+  }
+}

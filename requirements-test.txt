@@ -1,0 +1,3 @@
+# Expected Lupa distribution from existing test installation; requires lupa.lua55.
+# Existing local installation has incomplete package metadata; see migration report.
+lupa==2.8

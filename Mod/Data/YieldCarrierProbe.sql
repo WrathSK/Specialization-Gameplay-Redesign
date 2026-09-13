@@ -1,0 +1,27 @@
+-- B030 precision control: legacy HALF slot now 1.5; IDs retained. New game required. Not Commerce IV.
+INSERT INTO Requirements (RequirementId,RequirementType) VALUES ('SPC_B029_ONE_REQ','REQUIREMENT_PLOT_PROPERTY_MATCHES');
+INSERT INTO RequirementArguments (RequirementId,Name,Value) VALUES ('SPC_B029_ONE_REQ','PropertyName','SPC_B029_ONE'),('SPC_B029_ONE_REQ','PropertyMinimum','1');
+INSERT INTO RequirementSets (RequirementSetId,RequirementSetType) VALUES ('SPC_B029_ONE_SET','REQUIREMENTSET_TEST_ALL');
+INSERT INTO RequirementSetRequirements (RequirementSetId,RequirementId) VALUES ('SPC_B029_ONE_SET','SPC_B029_ONE_REQ');
+INSERT INTO Modifiers (ModifierId,ModifierType,SubjectRequirementSetId) VALUES ('SPC_B029_ONE_SCIENCE','MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE','SPC_B029_ONE_SET');
+INSERT INTO ModifierArguments (ModifierId,Name,Value) VALUES ('SPC_B029_ONE_SCIENCE','YieldType','YIELD_SCIENCE'),('SPC_B029_ONE_SCIENCE','Amount','1');
+INSERT INTO TraitModifiers (TraitType,ModifierId) VALUES ('TRAIT_CIVILIZATION_SPC_TEST','SPC_B029_ONE_SCIENCE');
+INSERT INTO Modifiers (ModifierId,ModifierType,SubjectRequirementSetId) VALUES ('SPC_B029_ONE_CULTURE','MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE','SPC_B029_ONE_SET');
+INSERT INTO ModifierArguments (ModifierId,Name,Value) VALUES ('SPC_B029_ONE_CULTURE','YieldType','YIELD_CULTURE'),('SPC_B029_ONE_CULTURE','Amount','1');
+INSERT INTO TraitModifiers (TraitType,ModifierId) VALUES ('TRAIT_CIVILIZATION_SPC_TEST','SPC_B029_ONE_CULTURE');
+INSERT INTO Modifiers (ModifierId,ModifierType,SubjectRequirementSetId) VALUES ('SPC_B029_ONE_PRODUCTION','MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE','SPC_B029_ONE_SET');
+INSERT INTO ModifierArguments (ModifierId,Name,Value) VALUES ('SPC_B029_ONE_PRODUCTION','YieldType','YIELD_PRODUCTION'),('SPC_B029_ONE_PRODUCTION','Amount','1');
+INSERT INTO TraitModifiers (TraitType,ModifierId) VALUES ('TRAIT_CIVILIZATION_SPC_TEST','SPC_B029_ONE_PRODUCTION');
+INSERT INTO Requirements (RequirementId,RequirementType) VALUES ('SPC_B029_HALF_REQ','REQUIREMENT_PLOT_PROPERTY_MATCHES');
+INSERT INTO RequirementArguments (RequirementId,Name,Value) VALUES ('SPC_B029_HALF_REQ','PropertyName','SPC_B029_HALF'),('SPC_B029_HALF_REQ','PropertyMinimum','1');
+INSERT INTO RequirementSets (RequirementSetId,RequirementSetType) VALUES ('SPC_B029_HALF_SET','REQUIREMENTSET_TEST_ALL');
+INSERT INTO RequirementSetRequirements (RequirementSetId,RequirementId) VALUES ('SPC_B029_HALF_SET','SPC_B029_HALF_REQ');
+INSERT INTO Modifiers (ModifierId,ModifierType,SubjectRequirementSetId) VALUES ('SPC_B029_HALF_SCIENCE','MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE','SPC_B029_HALF_SET');
+INSERT INTO ModifierArguments (ModifierId,Name,Value) VALUES ('SPC_B029_HALF_SCIENCE','YieldType','YIELD_SCIENCE'),('SPC_B029_HALF_SCIENCE','Amount','1.5');
+INSERT INTO TraitModifiers (TraitType,ModifierId) VALUES ('TRAIT_CIVILIZATION_SPC_TEST','SPC_B029_HALF_SCIENCE');
+INSERT INTO Modifiers (ModifierId,ModifierType,SubjectRequirementSetId) VALUES ('SPC_B029_HALF_CULTURE','MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE','SPC_B029_HALF_SET');
+INSERT INTO ModifierArguments (ModifierId,Name,Value) VALUES ('SPC_B029_HALF_CULTURE','YieldType','YIELD_CULTURE'),('SPC_B029_HALF_CULTURE','Amount','1.5');
+INSERT INTO TraitModifiers (TraitType,ModifierId) VALUES ('TRAIT_CIVILIZATION_SPC_TEST','SPC_B029_HALF_CULTURE');
+INSERT INTO Modifiers (ModifierId,ModifierType,SubjectRequirementSetId) VALUES ('SPC_B029_HALF_PRODUCTION','MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE','SPC_B029_HALF_SET');
+INSERT INTO ModifierArguments (ModifierId,Name,Value) VALUES ('SPC_B029_HALF_PRODUCTION','YieldType','YIELD_PRODUCTION'),('SPC_B029_HALF_PRODUCTION','Amount','1.5');
+INSERT INTO TraitModifiers (TraitType,ModifierId) VALUES ('TRAIT_CIVILIZATION_SPC_TEST','SPC_B029_HALF_PRODUCTION');

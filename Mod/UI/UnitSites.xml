@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCUnitSites">
+ <GridButton ID="ReadButton" Anchor="R,T" Offset="20,183" Size="200,32" Style="MainButton" String="Unit actions / sites" />
+ <Container ID="Window" Anchor="C,C" Size="850,440" Hidden="1">
+  <Box Size="850,440" Color="12,19,27,250" />
+  <Label Anchor="L,T" Offset="18,15" Style="FontNormal18" String="B047 | Unit diagnostics / DEV spawn" />
+  <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton" String="Close" />
+  <Label ID="Report" Anchor="L,T" Offset="18,62" Style="FontNormal14" WrapWidth="805" String="Select a Settler or Builder." />
+  <GridButton ID="BuilderTargetsButton" Anchor="L,B" Offset="18,12" Size="270,32" Style="MainButton" String="Builder targets ON / OFF (test)" />
+  <Label ID="TargetStatus" Anchor="L,B" Offset="300,18" Style="FontNormal14" WrapWidth="525" String="Settler targets automatic" />
+  <GridButton ID="SpawnCrewButton" Anchor="L,B" Offset="18,60" Size="250,32" Style="MainButton" String="Spawn Crew 250 (DEV free)" />
+  <GridButton ID="PrecisionButton" Anchor="L,B" Offset="290,60" Size="250,32" Style="MainButton" String="Read Crew precision" />
+  <GridButton Hidden="1" ID="PrepareUnitButton" Anchor="L,B" Offset="290,60" Size="250,32" Style="MainButton" String="Prepare unit action" />
+  <GridButton Hidden="1" ID="ConfirmUnitButton" Anchor="L,B" Offset="562,60" Size="250,32" Style="MainButton" String="Confirm unit action" />
+ </Container>
+</Context>

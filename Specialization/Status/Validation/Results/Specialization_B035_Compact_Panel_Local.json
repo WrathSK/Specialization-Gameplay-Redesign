@@ -1,0 +1,14 @@
+{
+  "build": "B036/modinfo45",
+  "test": "test_compact_p0_panel.py",
+  "result": "LOCAL_SIMULATION_PASS",
+  "static": "STATIC_CONFIRMED",
+  "game": "USER_GAME_TEST_REQUIRED",
+  "visible_task_buttons": 9,
+  "source_changes": [
+    "UI/P0Panel.xml",
+    "UI/P0Panel.lua",
+    "SpecializationP0.modinfo"
+  ],
+  "design_sha256": "a8393b5fa879b060acfa3b89c8a3fc906a2d50849a1a83bcea193506ed9a12e2"
+}

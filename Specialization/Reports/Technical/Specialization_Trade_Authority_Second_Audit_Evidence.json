@@ -1,0 +1,55 @@
+{
+  "evidenceLevel": "STATIC_CONFIRMED_ONLY_NOT_GAME_TEST",
+  "scope": "Local installed Civ VI / HD and cached database; negative search is not proof of API absence",
+  "files": {
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization VI/Civ6.app/Contents/MacOS/GameCore_XP2.dll": {
+      "sha256": "3ad7b6d897489001e913f58b3a7a2d9c46bf407a6b198458edf58f2fcfd4c774",
+      "bytes": 42170144
+    },
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization VI/Civ6.app/Contents/Assets/Base/Assets/UI/TradeSupport.lua": {
+      "sha256": "ab92aa52c5c5a10dcfe74e6188ec92fedf541e58782ca6fd0518978888cbf896",
+      "bytes": 7446
+    },
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization VI/Civ6.app/Contents/Assets/Base/Assets/UI/TradeOverview.lua": {
+      "sha256": "59fdf9ab7d3e73d0f4dfd309f073469d6783481396da53648fb7a45ea03fe8d7",
+      "bytes": 33665
+    },
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization VI/Civ6.app/Contents/Assets/DLC/Expansion2/Data/Expansion1_Modifiers.xml": {
+      "sha256": "2c8e80a4df943806a1e706dc23cbb5e2be310f7ddb3934fd56c6d2892fe0ccec",
+      "bytes": 56381
+    },
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/workshop/content/289070/2465378070/Gameplay/CityYield.lua": {
+      "sha256": "ffa37e3e7113415f49f2ea4037b0a4dfe7e513bd5395bb87549bc4453e2b3898",
+      "bytes": 6337
+    },
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/workshop/content/289070/2465378070/DL.modinfo": {
+      "sha256": "1dd999b1717c1968d54e0deef62af48ec9394bf6e59ffd95afa285c4f9be21c8",
+      "bytes": 167275
+    },
+    "/Users/xutingzheng/Library/Application Support/Steam/steamapps/workshop/content/289070/2465378070/ModSupport/BetterTradeScreen/TradeSupport.lua": {
+      "sha256": "e53fdcbbbaaf22f28ef5d9f235cff5ef1cd1afeaa286db0f44785b814a803822",
+      "bytes": 95128
+    },
+    "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Firaxis Games/Sid Meier's Civilization VI/Cache/DebugGameplay.sqlite": {
+      "sha256": "5f91e5be8671cdd38ff85cfcdc6ad2b1d0e2254590de0b3432bbf6fdce359e4f",
+      "bytes": 29155328
+    }
+  },
+  "dynamicModifiersWithTradeCollection": [
+    [
+      "MODIFIER_ALLIANCE_TRADE_ROUTE_ADJUST_YIELD",
+      "COLLECTION_ALLIANCE_TRADEROUTES",
+      "EFFECT_ADJUST_TRADE_ROUTE_YIELD_CHANGE"
+    ],
+    [
+      "MODIFIER_EMERGENCY_TRADE_ROUTES_ADJUST_YIELDS",
+      "COLLECTION_EMERGENCY_TRADE_ROUTES",
+      "EFFECT_ADJUST_TRADE_ROUTE_YIELD_CHANGE"
+    ],
+    [
+      "MODIFIER_EMERGENCY_TRADE_ROUTES_CANCEL",
+      "COLLECTION_EMERGENCY_TRADE_ROUTES",
+      "EFFECT_TRADE_ROUTE_CANCEL"
+    ]
+  ]
+}

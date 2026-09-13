@@ -1,0 +1,33 @@
+{
+  "design_revision": "D0010",
+  "accepted_design_sha256": "a8393b5fa879b060acfa3b89c8a3fc906a2d50849a1a83bcea193506ed9a12e2",
+  "architecture": "A0078",
+  "status": "S0080",
+  "runtime": "P0-B-034 / modinfo42",
+  "runtime_hashes_match_pre_sync": true,
+  "design_hashes_match_pre_sync": true,
+  "baseline_files_unchanged": 134,
+  "intentional_changed_existing": [
+    "DevelopmentTests/test_player_eligibility.py",
+    "DevelopmentTests/CitySpecializationState.lua",
+    "Specialization/README.md",
+    "Specialization/AGENTS.md",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "Specialization/Status/Specialization_P0_Status.md",
+    "Specialization/Reports/Technical/README.md"
+  ],
+  "new_files": [
+    "DevelopmentTests/ConquestInitialization.lua",
+    "DevelopmentTests/test_conquest_initialization.py",
+    "Specialization/Reports/Technical/Specialization_D0010_Architecture_Sync.md"
+  ],
+  "local_pass": [
+    "test_conquest_initialization.py",
+    "test_player_eligibility.py",
+    "test_d0005_models.py",
+    "test_district_family.py"
+  ],
+  "game_test_added": false,
+  "existing_active_batch": "B034",
+  "game_started": false
+}

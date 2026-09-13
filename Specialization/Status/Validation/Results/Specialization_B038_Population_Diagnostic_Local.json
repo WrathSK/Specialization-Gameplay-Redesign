@@ -1,0 +1,7 @@
+{
+  "build": "B038/modinfo49",
+  "test": "test_lv3_population_diagnostics.py",
+  "result": "LOCAL_SIMULATION_PASS",
+  "game": "USER_GAME_TEST_REQUIRED",
+  "no_formula_or_refresh_change": true
+}

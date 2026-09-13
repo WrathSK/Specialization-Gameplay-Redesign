@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="67">
+  <Properties>
+    <Name>Scotland (Specialization Test) + P0</Name>
+    <Description>P0-B-051.67. All non-Campus districts included per D0014. Background engine-event refresh and visible pipeline diagnostics. Automatic Research IV local copy and Industry IV network production; background district sampling, reversible city effects, integer/half amounts. Native integration awaits user tests.</Description>
+    <Authors>Local development</Authors>
+    <CompatibleVersions>2.0</CompatibleVersions>
+    <AffectsSavedGames>1</AffectsSavedGames>
+  </Properties>
+  <InGameActions>
+    <UpdateDatabase id="SPC_B051_Copy"><Properties><LoadOrder>2000000</LoadOrder></Properties><File>Data/CopyYields.sql</File></UpdateDatabase>
+    <AddUserInterfaces id="SPC_B051_Background"><Properties><Context>InGame</Context></Properties><File>UI/CopyYieldRefresh.xml</File></AddUserInterfaces>
+    <UpdateDatabase id="SPC_B050_Half"><Properties><LoadOrder>2000000</LoadOrder></Properties><File>Data/HalfYieldProbe.sql</File></UpdateDatabase>
+    <ImportFiles id="SPCP0_Common">
+      <File>CopyYields.lua</File>
+      <File>UI/CopyYieldRefresh.lua</File>
+      <File>UI/CopyYieldRefresh.xml</File>
+      <File>HalfYieldProbe.lua</File>
+      <File>Lv4CopyRead.lua</File>
+      <File>Probe.lua</File>
+      <File>TradeRouteProbe.lua</File>
+      <File>CompletionProbe.lua</File>
+      <File>StorageProbe.lua</File>
+      <File>EnvelopeProbe.lua</File>
+      <File>FreshBindingHook.lua</File>
+      <File>CityFlowProbe.lua</File>
+      <File>ResearchSupport.lua</File>
+      <File>IndustrySupport.lua</File>
+      <File>UI/IndustryRefresh.lua</File>
+      <File>UI/IndustryRefresh.xml</File>
+      <File>Lv2Housing.lua</File>
+      <File>Lv2GPP.lua</File>
+      <File>Lv3Support.lua</File>
+      <File>Lv3Effects.lua</File>
+      <File>ConstructionProbe.lua</File>
+      <File>GPPReadout.lua</File>
+      <File>InvestmentAction.lua</File>
+      <File>EffectiveFacts.lua</File>
+      <File>NetworkBridge.lua</File>
+      <File>NetworkSender.lua</File>
+      <File>BindingProbe.lua</File>
+      <File>CompletionRecordProbe.lua</File>
+      <File>CityJournalProbe.lua</File>
+      <File>EligibilityProbe.lua</File>
+      <File>QualificationProbe.lua</File>
+      <File>ShadowRouteState.lua</File>
+      <File>SourceYieldProbe.lua</File>
+      <File>YieldCarrierProbe.lua</File>
+      <File>UnitActionSitePolicy.lua</File>
+      <File>UnitSiteProbe.lua</File>
+      <File>UnitTargets.lua</File>
+      <File>UnitActions.lua</File>
+      <File>CrewProjects.lua</File>
+      <File>CrewPrecision.lua</File>
+      <File>Lv4Percent.lua</File>
+    </ImportFiles>
+    <UpdateDatabase id="SPC_B029_Carrier">
+      <Properties>
+        <LoadOrder>1100</LoadOrder>
+      </Properties>
+      <File>Data/YieldCarrierProbe.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_B034_Housing">
+      <Properties>
+        <LoadOrder>1200</LoadOrder>
+      </Properties>
+      <File>Data/Lv2Housing.sql</File>
+    </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B036_IndustryRefresh">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/IndustryRefresh.xml</File>
+    </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B038_Lv3Effects">
+      <Properties>
+        <LoadOrder>10001003</LoadOrder>
+      </Properties>
+      <File>Data/Lv3Effects.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_B037_Lv3Support">
+      <Properties>
+        <LoadOrder>10001002</LoadOrder>
+      </Properties>
+      <File>Data/Lv3Support.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_B036_Industry">
+      <Properties>
+        <LoadOrder>10001001</LoadOrder>
+      </Properties>
+      <File>Data/IndustrySupport.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_B035_GPP">
+      <Properties>
+        <LoadOrder>10001000</LoadOrder>
+      </Properties>
+      <File>Data/Lv2GPP.sql</File>
+    </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B035_GPPRefresh">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/GPPRefresh.xml</File>
+    </AddUserInterfaces>
+    <AddGameplayScripts id="SPCP0_Gameplay">
+      <File>Gameplay.lua</File>
+    </AddGameplayScripts>
+    <AddUserInterfaces id="SPCP0_UI">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/P0Panel.xml</File>
+    </AddUserInterfaces>
+    <AddUserInterfaces id="SPCP0_BackgroundRoutes">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/BackgroundRoutes.xml</File>
+    </AddUserInterfaces>
+    <UpdateText id="SPC_IG_Text">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Text/TestText.sql</File>
+    </UpdateText>
+    <UpdateIcons id="SPC_IG_Icons">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Data/Icons.sql</File>
+    </UpdateIcons>
+    <UpdateColors id="SPC_IG_Colors">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Data/Colors.sql</File>
+    </UpdateColors>
+    <UpdateDatabase id="SPC_IG_Identity">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Data/Identity.sql</File>
+      <File>Data/GovernorProbe.sql</File>
+      <File>Data/ResearchSupport.sql</File>
+      <File>Data/ConstantSupport.sql</File>
+    </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B040_UnitSites">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/UnitSites.xml</File>
+    </AddUserInterfaces>
+    <AddUserInterfaces id="SPC_B041_TargetMarkers">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/UnitTargetMarkers.xml</File>
+    </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B042_Crew">
+      <Properties>
+        <LoadOrder>10001004</LoadOrder>
+      </Properties>
+      <File>Data/Crew.sql</File>
+    </UpdateDatabase>
+    <UpdateArt id="SPC_B042_CrewArt">
+      <Properties>
+        <LoadOrder>10001004</LoadOrder>
+      </Properties>
+      <File>Specialization.dep</File>
+    </UpdateArt>
+    <AddUserInterfaces id="SPC_B043_UnitPanelActions">
+      <Properties>
+        <Context>InGame</Context>
+      </Properties>
+      <File>UI/UnitPanelActions.xml</File>
+    </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B044_CrewProjects">
+      <Properties>
+        <LoadOrder>10001005</LoadOrder>
+      </Properties>
+      <File>Data/CrewProjects.sql</File>
+    </UpdateDatabase>
+    <ReplaceUIScript id="SPC_B046_ProjectOrder">
+      <Properties>
+        <LoadOrder>150100</LoadOrder>
+        <LuaContext>ProductionPanel</LuaContext>
+        <LuaReplace>UI/CrewProjectOrder.lua</LuaReplace>
+      </Properties>
+    </ReplaceUIScript>
+    <UpdateDatabase id="SPC_B048_Lv4Percent">
+      <Properties>
+        <LoadOrder>10001006</LoadOrder>
+      </Properties>
+      <File>Data/Lv4Percent.sql</File>
+    </UpdateDatabase>
+  </InGameActions>
+  <Files>
+    <File>CopyYields.lua</File>
+    <File>Data/CopyYields.sql</File>
+    <File>UI/CopyYieldRefresh.lua</File>
+    <File>UI/CopyYieldRefresh.xml</File>
+    <File>HalfYieldProbe.lua</File>
+    <File>Data/HalfYieldProbe.sql</File>
+    <File>Lv4CopyRead.lua</File>
+    <File>Data/Lv3Effects.sql</File>
+    <File>Data/Lv3Support.sql</File>
+    <File>Data/IndustrySupport.sql</File>
+    <File>Data/Lv2GPP.sql</File>
+    <File>UI/GPPRefresh.xml</File>
+    <File>UI/GPPRefresh.lua</File>
+    <File>Data/Lv2Housing.sql</File>
+    <File>YieldCarrierProbe.lua</File>
+    <File>Data/YieldCarrierProbe.sql</File>
+    <File>SourceYieldProbe.lua</File>
+    <File>Probe.lua</File>
+    <File>TradeRouteProbe.lua</File>
+    <File>CompletionProbe.lua</File>
+    <File>StorageProbe.lua</File>
+    <File>EnvelopeProbe.lua</File>
+    <File>FreshBindingHook.lua</File>
+    <File>CityFlowProbe.lua</File>
+    <File>ResearchSupport.lua</File>
+    <File>IndustrySupport.lua</File>
+    <File>UI/IndustryRefresh.lua</File>
+    <File>UI/IndustryRefresh.xml</File>
+    <File>Lv2Housing.lua</File>
+    <File>Lv2GPP.lua</File>
+    <File>Lv3Support.lua</File>
+    <File>Lv3Effects.lua</File>
+    <File>ConstructionProbe.lua</File>
+    <File>GPPReadout.lua</File>
+    <File>InvestmentAction.lua</File>
+    <File>EffectiveFacts.lua</File>
+    <File>NetworkBridge.lua</File>
+    <File>NetworkSender.lua</File>
+    <File>BindingProbe.lua</File>
+    <File>CompletionRecordProbe.lua</File>
+    <File>CityJournalProbe.lua</File>
+    <File>EligibilityProbe.lua</File>
+    <File>QualificationProbe.lua</File>
+    <File>ShadowRouteState.lua</File>
+    <File>Gameplay.lua</File>
+    <File>UI/P0Panel.xml</File>
+    <File>UI/P0Panel.lua</File>
+    <File>UI/BackgroundRoutes.xml</File>
+    <File>UI/BackgroundRoutes.lua</File>
+    <File>Config/Players.sql</File>
+    <File>Data/Identity.sql</File>
+    <File>Data/GovernorProbe.sql</File>
+    <File>Data/ResearchSupport.sql</File>
+    <File>Data/ConstantSupport.sql</File>
+    <File>Data/Icons.sql</File>
+    <File>Data/Colors.sql</File>
+    <File>Text/TestText.sql</File>
+    <File>UnitActionSitePolicy.lua</File>
+    <File>UnitSiteProbe.lua</File>
+    <File>UI/UnitSites.xml</File>
+    <File>UI/UnitSites.lua</File>
+    <File>UnitTargets.lua</File>
+    <File>UI/UnitTargetMarkers.lua</File>
+    <File>UI/UnitTargetMarkers.xml</File>
+    <File>UnitActions.lua</File>
+    <File>Data/Crew.sql</File>
+    <File>Specialization.dep</File>
+    <File>ArtDefs/Units.artdef</File>
+    <File>UI/UnitPanelActions.xml</File>
+    <File>UI/UnitPanelActions.lua</File>
+    <File>CrewProjects.lua</File>
+    <File>Data/CrewProjects.sql</File>
+    <File>CrewPrecision.lua</File>
+    <File>UI/CrewProjectOrder.lua</File>
+    <File>Lv4Percent.lua</File>
+    <File>Data/Lv4Percent.sql</File>
+  </Files>
+  <Dependencies>
+    <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />
+    <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Gathering Storm" />
+  </Dependencies>
+  <FrontEndActions>
+    <UpdateText id="SPC_FE_Text">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Text/TestText.sql</File>
+    </UpdateText>
+    <UpdateIcons id="SPC_FE_Icons">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Data/Icons.sql</File>
+    </UpdateIcons>
+    <UpdateColors id="SPC_FE_Colors">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Data/Colors.sql</File>
+    </UpdateColors>
+    <UpdateDatabase id="SPC_FE_Identity">
+      <Properties>
+        <LoadOrder>1000</LoadOrder>
+      </Properties>
+      <File>Config/Players.sql</File>
+    </UpdateDatabase>
+  </FrontEndActions>
+</Mod>

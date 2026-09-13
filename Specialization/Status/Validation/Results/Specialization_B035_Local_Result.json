@@ -1,0 +1,50 @@
+{
+  "build": "P0-B-035 / modinfo43",
+  "architecture": "A0080",
+  "status": "S0082",
+  "design": "D0010",
+  "design_and_existing_tests_unchanged": true,
+  "baseline_unchanged_count": 131,
+  "intentional_changed_existing": [
+    "Specialization/README.md",
+    "Specialization/AGENTS.md",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "Specialization/Status/Specialization_P0_Status.md",
+    "Specialization/Reports/Technical/README.md",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/SpecializationP0.modinfo",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Gameplay.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Probe.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv2Housing.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/EffectiveFacts.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/P0Panel.xml",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/P0Panel.lua"
+  ],
+  "new_files": [
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv2GPP.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/GPPReadout.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv2GPP.sql",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/GPPRefresh.lua",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/GPPRefresh.xml",
+    "DevelopmentTests/test_lv2_gpp.py",
+    "Specialization/Reports/Technical/Specialization_B035_Lv2_GPP.md",
+    "Specialization/Status/Validation/Cases/B035_Lv2_GPP.md"
+  ],
+  "new_file_sha256": {
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv2GPP.lua": "1e53cedcc1a122654577334ea8fd8c0fb740fde6f875b3f65f15cfeaf1797b55",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv2GPP.sql": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/GPPRefresh.lua": "7c402645b04d2c72fa669716c5a70206953cb7bf89cb8a5626ea5736e59e1b30",
+    "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/GPPRefresh.xml": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
+    "DevelopmentTests/test_lv2_gpp.py": "f2b697c2f8df31644755f9e0c590afcf9b5bc7445d441206e565a53da7f0da70",
+    "Specialization/Reports/Technical/Specialization_B035_Lv2_GPP.md": "7159766fbf3277030b128546604f84758cd007706b59126e758237e782e659b7",
+    "Specialization/Status/Validation/Cases/B035_Lv2_GPP.md": "fad4bdde8b48af47f3db737fc84c330a20872fdeea503941ce85bb7edc6a600a"
+  },
+  "tests": [
+    "test_lv2_gpp.py",
+    "test_native_investment.py (in-memory version adaptation)",
+    "test_effective_facts.py (in-memory version/text adaptation)",
+    "test_lv2_housing.py (actual Lua section)"
+  ],
+  "native_gpp_test": "USER_GAME_TEST_REQUIRED",
+  "game_started": false
+}

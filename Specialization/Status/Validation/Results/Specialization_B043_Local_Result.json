@@ -1,0 +1,14 @@
+{
+  "build": "B043/modinfo56",
+  "status": "LOCAL_SIMULATION_PASS",
+  "test": "test_unit_panel_actions.py exit0",
+  "game": "USER_GAME_TEST_REQUIRED",
+  "design": "D0011",
+  "design_sha256": "29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7",
+  "sha256": {
+    "UI/UnitPanelActions.lua": "eba56a4b94b7107794a36e39e37acfeaec6484c90ecaaec049ece35139c58eaf",
+    "UI/UnitPanelActions.xml": "f11d12c1c0e7aea64ab3de41f3b939cec27f94e73b94bf4df7aa2065167d5bcf",
+    "UnitActions.lua": "59af0195c216b5bbc01d6103f80916bbb91097841eae591196fda84d62a4be5b",
+    "SpecializationP0.modinfo": "bc94aa9212f75bb26553cddd43c0171d2a942eca9a0f0a5026239664affe3b6d"
+  }
+}

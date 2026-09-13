@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCUnitPanelActions">
+ <!-- Fixed width for Crew: confirmation never grows/reflows the parent action bar. -->
+ <Grid ID="ActionGroup" Size="90,53" Hidden="1">
+  <Button ID="PrepareButton" Anchor="L,T" Offset="46,0" Size="44,53" Texture="UnitPanel_ActionButton">
+   <Image ID="PrepareIcon" Anchor="C,C" Offset="0,-2" Size="38,38" />
+  </Button>
+  <Button ID="ConfirmButton" Anchor="L,T" Offset="0,0" Size="44,53" Texture="UnitPanel_ActionButton" Hidden="1">
+   <Image ID="ConfirmIcon" Anchor="C,C" Offset="0,-2" Size="38,38" />
+   <Label Anchor="C,B" Offset="0,1" Style="FontNormal12" String="确认" />
+  </Button>
+ </Grid>
+</Context>

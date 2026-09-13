@@ -1,0 +1,42 @@
+{
+  "verdict": "READY_WITH_NOTED_GAPS",
+  "design_sha256": "759365dd68c3b4a166b0f05e250b72f14e33dcc145c3889f6afefa16f999005c",
+  "runtime_version": "P0-B-051.67 / modinfo67",
+  "runtime_owned_files": 77,
+  "old_workspace_hashed_files_unchanged": 5126,
+  "expected_modified_copies": [
+    "Specialization/README.md",
+    "Specialization/AGENTS.md",
+    "Specialization/Status/Specialization_P0_Status.md",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "DevelopmentTests/test_b051_copy_yields.py",
+    "DevelopmentTests/README.md"
+  ],
+  "test_assertions_preserved": true,
+  "tests": [
+    {
+      "command": "python3 DevelopmentTests/test_b051_all_districts.py",
+      "returncode": 0,
+      "output": "[SPC][B051][DETAIL] [string \"<python>\"]:28: COPY_BACKGROUND_PENDING\n[SPC][B051][DETAIL] [string \"<python>\"]:28: COPY_BACKGROUND_PENDING\nLOCAL_SIMULATION_PASS B051.66 EVENT ONLY (including synchronous publish reentry): actual Lua/background bridge, half plans 255 populations, automatic apply/remove/max fallback, stale/partial/unknown scope, reload/resend/drop recovery, repeat/read idempotence; SQL 80 carriers; Lua/XML/manifest; protected mechanics unchanged. Native integration USER_GAME_TEST_REQUIRED.\nPASS diagnostic distinguishes unstarted/pending/current sample; no formula/SQL changes\nLOCAL_SIMULATION_PASS D0014 all types / no population-slot filter / city center / zero-yield / cross-yield / incomplete excluded / Campus excluded / ACTIVE gating / readout same scope. Native new scope USER_GAME_TEST_REQUIRED.\n"
+    },
+    {
+      "command": "python3 DevelopmentTests/test_deployment.py",
+      "returncode": 0,
+      "output": "LOCAL_SIMULATION_PASS deployment: no-op, hash conflict, staged swap, rollback, retained backup, unknown files, pending crash marker, symlinks, UUID, unrelated Mod untouched\n"
+    },
+    {
+      "command": "python3 DevelopmentTests/test_convergence_plan.py",
+      "returncode": 0,
+      "output": "LOCAL_SIMULATION_PASS: conditional TOTAL vs LOCAL planner, yield-max not ACTIVE, separate yields, fractional values retained, no Commerce/received-only relay, absolute repeated refresh, source loss/owner/ACTIVE changes, invalid inputs, cycle counterexample and conservative graph rejection. No native API proof.\n"
+    },
+    {
+      "command": "python3 tools/deploy.py",
+      "returncode": 0,
+      "output": "{\n  \"source\": \"/Users/xutingzheng/Projects/Specialization-Gameplay-Redesign/Mod\",\n  \"target\": \"/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Sid Meier's Civilization VI/Mods/SpecializationP0\",\n  \"source_hash\": \"8d75ee5bf8c12d9c489ef0a15c01204140a22042de0e0c6c81536228b2380585\",\n  \"runtime_hash\": \"8d75ee5bf8c12d9c489ef0a15c01204140a22042de0e0c6c81536228b2380585\",\n  \"identical\": true,\n  \"version\": \"67\",\n  \"files\": 77\n}\n"
+    }
+  ],
+  "credential_pattern_hits": [],
+  "git_operations": false,
+  "game_launch": false,
+  "live_deployment": false
+}

@@ -1,0 +1,243 @@
+# Design ChangeLog
+
+Document Owner: Codex
+Design Authority: User
+Latest Draft Design Revision: NONE
+Latest Accepted Design Revision: D0014
+Document State: ACCEPTED
+
+## Accepted D0014 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户本轮明确科研IV原设计不区分非学院区域类型，社区/娱乐等非专业化区域的实际产出也复制50%。
+Accepted Spec SHA256: 759365dd68c3b4a166b0f05e250b72f14e33dcc145c3889f6afefa16f999005c
+Previous Accepted Revision: D0013
+Frozen D0013: [原文](Revisions/Specialization_Design_Spec_D0013.md)
+
+RES-004删除“合格专业区域”的窄范围歧义，采用所有非Campus区域Actual复制基数；不改变50%、ACTIVE门槛、学院专家百分比、工业输出、精度或标准化规则。按用户明确修正落盘，其它TBD保持。
+
+## Accepted D0013 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户本轮明确确认IND-NET-004的四项学习规则。
+Accepted Spec SHA256: abce0024d9a1003ef7f7ac5aa680da9643bbc7e9df346441b007aab7d5959569
+Previous Accepted Revision: D0012
+Frozen D0012: [原文](Revisions/Specialization_Design_Spec_D0012.md)
+
+新增IND-NET-004：任何合法获得/完成、首次Industry一次补录、后续事件增量、HD Tier+允许范围双门槛。没有改变等级、折扣、网络、永久继承、Crew或任何其它设计。用户未授权恢复实现；本轮仅文档同步。
+
+## Accepted D0012 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确“接受，并且显示整数”，承接Crew按游戏速度缩放后向下取整提案。
+Accepted Spec SHA256: 2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551
+Previous Accepted Revision: D0011
+Frozen D0011: [原文](Revisions/Specialization_Design_Spec_D0011.md)
+Frozen D0011 SHA256: 29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7
+
+CREW-004与OPEN-09明确Crew=floor(标准金额×速度系数)，提示与执行统一整数；项目成本继续原生计算，基础数值和其它规则不变。每队不足1点的比例差异得到用户接受；不影响其它系统的小数产出。
+
+## Accepted D0011 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确选择“五档从工业Lv1全部开放；项目成本与施工力均按游戏速度同比缩放”。
+Accepted Spec SHA256: 29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7
+Previous Accepted Revision: D0010
+Frozen D0010: [原文](Revisions/Specialization_Design_Spec_D0010.md)
+
+CREW-004确定全部五档的开放与双侧速度缩放，OPEN-09原设计问题关闭；五档基准数值不变，未新增档位。非整数引擎精度仍需技术验证，不授权静默取整。D0010其它设计、成熟度及征服规则保持。
+
+## Accepted D0010 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户正式确认征服无Identity城市的Legacy Claim初始化与空集合普通完成模式，要求影响当前Development/Conquest测试的正常sync。
+Accepted Spec SHA256: a8393b5fa879b060acfa3b89c8a3fc906a2d50849a1a83bcea193506ed9a12e2
+Previous Accepted Revision: D0009
+Frozen D0009: [原文](Revisions/Specialization_Design_Spec_D0009.md)
+Frozen D0009 SHA256: 07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8
+
+- PROG-006/007：ownership transition完成时只snapshot一次当时完整合法v0.1专业区域及正式replacement family。非空LegacySet冻结，项目仅在此集合选择；可永远不选，后续完成不增候选、不触发first-completion。
+- PROG-008：Claim低成本/1-turn确认方向，精确成本TBD但不能让低生产城等多回合；选择后Identity锁定、Potential=1，其它Claim失效，进入已专业化状态。
+- PROG-009：空LegacySet才进入普通first-completion，无Claim，从征服完成时起记录；两模式互斥，不随后续建设切换。
+- PROG-001/004/005及ELIG-005修正旧笼统初始化表述。已有Identity/Potential直接继承，不进入Legacy Claim；永久成果与新Owner派生重算不变。
+- OPEN-04保留独立old-save、技术识别/持久化/项目与模式边界审查及精确Claim成本；不把旧档与征服初始化自动等同。
+- PROG-010列出A既有区域Claim、B无区域普通完成、已有Identity继承三种独立案例，并登记Development应审查的技术问题。本轮只更新Design文件并冻结D0009；随后通知现有Development任务正常sync与Conquest计划检查，不由Design调查或实现。
+
+## Accepted D0009 — 2026-09-12
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确要求同一Design Revision纠正Network direct接收并重做Commerce IV，20%为正式初始值。
+Accepted Spec SHA256: 07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8
+Previous Accepted Revision: D0008
+Frozen D0008: [原文](Revisions/Specialization_Design_Spec_D0008.md)
+Frozen D0008 SHA256: 3dca4434a468f81a8e203a7a19d8c87dff5b24170d0667f50283ed2a23bd761c
+
+- NET-001/002/003、NET-RC-002：任一Trade Center直接接入网络即接收且可分发，包括首都天然自身专业连接；无需虚构self-route或Commerce IV，recipient按UID去重。仅收到distribution仍是receive-only，不得推导direct-source、递归relay或Convergence。
+- 废弃旧COM-004免费自接收，新增COM-004至008 Convergence：Research/Science、Culture/Culture、Industry/Production分别取当前直接有效来源中eligible local对应yield最高者的20%；不求和、不按最高ACTIVE选取、不转Gold。Commerce I–III保持。
+- Eligible Local Source Yield Basis排除其它Network输入、Convergence输入及其它跨城Specialization transfer/copy，防止重复复制和循环；不擅改为最终city yield。登记首都两条战略路线和样本平衡理由，样本不作为游戏规则。
+- 删除当前首都source self-connection不能自然self-receive的限制；旧规则仅保留在冻结历史。当前没有独立“Commerce IV重做”OPEN，已定规则不新增为未决；COMPAT-002保留basis读取、动态刷新/撤销、精度及同回合时点的Development feasibility。
+- 继承D0008其它成熟度，未变更Future专业或动员/外交候选。仅更新Design Spec/ChangeLog并冻结D0008；不修改Architecture/Status/Source/Tests，不调查getter/Modifier或启动游戏，不打断v0.1开发。Development后续自行读取新版作正式sync与冲突检查。
+
+## Accepted D0008 — Design同步（各条成熟度独立保留）
+
+Acceptance: ACCEPTED（登记及明确方向；不统一接受候选为最终玩法）
+Acceptance Evidence: 用户要求同步Harbor Naval branch、Military Mobilization模型及外交任务，并严格保留各项成熟度；不得影响另一对话v0.1开发。
+Accepted Spec SHA256: 3dca4434a468f81a8e203a7a19d8c87dff5b24170d0667f50283ed2a23bd761c
+Previous Accepted Revision: D0007
+Frozen D0007: [原文](Revisions/Specialization_Design_Spec_D0007.md)
+Frozen D0007 SHA256: 15e011b665c6a53232673f8195d88acca954f80aa0d18efcdd256d1995cd3d88
+
+- HARB-005至009/MIL-013：海军平移为ACCEPTED DIRECTION，默认II每专家15%正常Combat XP、III实际晋升Insight、IV完整驻扎后+1训练及邻近海军带教；训练仅Harbor和可合法进入的本城City Center，不含Canal。海军资格、额外建筑互动、Naval Mobilization继续独立待定，商业/GPP不覆盖。
+- MIL-004：PROVISIONAL BALANCE MODEL，全国共享pool，L最高有效ACTIVE、N实际recipient UID去重，每回合L√N，阈值100为PROVISIONAL BALANCE VALUE；合法最高近战陆军，建筑tier与正常解锁共同限制编制；最高ACTIVE源生成，军营优先/中心备选；tie-break及无位置处理留待后续，进度不丢。时间轴仅建模假设。
+- DIP-MISSION-001至014：保留Spy/Diplomat框架，一域多任务、不强求和平逐一镜像；成功任务仍可无secondary reward。学院改为概率Eureka，剧院三任务，商业三任务及其它区域方向逐条记录；fallback不默认启用。
+- 严格保留成熟度：公共外交PROVISIONAL REWARD；移民约10回合仅候选；Infrastructure Coordination为PREFERRED DESIGN CANDIDATE且技术待审；Civilian Conversion为THEME CANDIDATE ONLY；军演公式方向暂定；外交区/市政广场仍Future骨架；其它概率、倍率、资格等TBD。
+- OPEN-10/11/13及跨系统说明按新内容更新，删除旧动员整体未定、海军位置完全未定及学术交流必定出Eureka等冲突描述。Community基础公式和PROVISIONAL状态保持，移民任务只修正目标盟友份额。
+- 当前v0.1开发在另一对话继续；本次不要求暂停、重启或改变其工作。不修改Architecture/Status/Source/Tests，不开展技术调查、代码、性能/P0/游戏验证；技术疑问仅登记IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT。
+
+## Accepted D0007 — 2026-09-11
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确确认Universal System + Opt-in Player Eligibility、仅参与者运行成本、AI同规则资格及Conquest × Eligibility四种情形，并要求新Design Revision。
+Accepted Spec SHA256: 15e011b665c6a53232673f8195d88acca954f80aa0d18efcdd256d1995cd3d88
+Previous Accepted Revision: D0006
+Frozen D0006: [原文](Revisions/Specialization_Design_Spec_D0006.md)
+Frozen D0006 SHA256: 666acc471f1f441b9987dab547afec2801d0c04fa5823c5e1706e60dd88b6f11
+
+- 新增ELIG-001至006：只有明确enabled Player参与专业身份/投资/ACTIVE/网络/Local/Community/Military/Auxiliary等全系统；不是Human-only，不永久绑定测试文明或领袖。未启用者不建立或运行专业状态，已有永久成果可休眠保存。
+- ELIG-002/ID-001：白板文明是当前无额外传统加成的载体和平衡基准，不是系统本体；保留原版/HD/Mod文明、多玩家、多人及通用模式复用可能，已有文明能力原则上可共存，不承诺本轮实现或兼容。
+- ELIG-003/004：enabled AI可用同一套规则；无新增AI planner、隐藏补偿或为AI削弱机制。只对参与者承担系统运行/状态成本，不能因实现成本反向改为Human-only。
+- ELIG-005/PROG-004：从未启用且无成果的征服城以未专业化进入；enabled城被未启用Owner取得保留永久成果、停止全部效果；再次由enabled取得恢复并重算；enabled之间征服保留成果、按新Owner重算。
+- OPEN-04缩为Implementation/Future Compatibility：旧档初始化与永久UID技术事项仍保留。新增COMPAT-001登记多人确定性、AI行为、eligibility carrier/过滤技术事项，不把已确定资格和征服语义写成核心玩法未决。此前没有独立Human-only或test-hardcode OPEN行，本轮以ELIG明确排除这些限制。
+- 不改变现有专业公式或平衡：Settler/Governor、网络、Industry、Research/Culture、Community、Military和辅助区域机制保持D0006；PROG仅增加Owner资格语义，永久成果定义不变。
+- 仅更新Spec/ChangeLog并冻结D0006；既有接受记录原样保留，不修改Architecture/Status/Source/Tests或测试文明，不调查API、AI或性能，不恢复Development。
+
+## Accepted D0006 — 2026-09-11
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确确认Military IV Professional Standing Army / 职业常备军体系，要求登记新正式Design Revision。
+Accepted Spec SHA256: 666acc471f1f441b9987dab547afec2801d0c04fa5823c5e1706e60dd88b6f11
+Previous Accepted Revision: D0005
+Frozen D0005: [原文](Revisions/Specialization_Design_Spec_D0005.md)
+Frozen D0005 SHA256: ca5af83f6ab722e80199c47add0dae781a1d06d34c74404a6666af08028c80a0
+
+- MIL-003/009：Military IV城市的City Center、Encampment提供后方训练；合格己方陆地战斗单位连续完整驻扎周期后每有效回合+1独立Training XP。首次进入不奖励；离开清除连续状态，返回重新计周期；不受Combat XP modifiers放大。
+- MIL-010：独立前线Mentorship，战斗时局部检查fighter周围1格合格己方陆军，取实际Promotions最多的mentor；奖励max(0, floor((P_mentor-P_fighter)/2))，不叠加导师、不设额外hard cap，不受Combat XP modifiers放大，不要求后方驻扎。
+- MIL-010/011：实际Promotion包含合法合并继承及其它实际授予；保留Military III原公式，登记新兵/中级/老兵的Insight与Mentorship互补及典型例子。正常8 XP Combat cap不变。
+- MIL-012：仅战斗局部一次判定，不要求全国持续扫描或关系维护；Military Academy无额外虚拟导师/专家或训练/带教奖励，Political Department不变。
+- MIL-008/013/OPEN-10：移除Military IV训练频率/系数/上限整体未定描述，仅保留体系归属/持续资格、合格单位/战斗分类和精确快照口径等未明示边界。Harbor仅保留未来镜像参考，不锁定位置或分类；Mobilization和ENT未决不变。
+- 冻结D0005原文与历史接受记录；本轮仅更新Design Spec/ChangeLog及新增D0005设计快照，不进行Architecture设计、实现、技术调查、性能测试、P0测试或游戏验证。
+
+## Accepted D0005 — 2026-09-11
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确将Industry多来源、Capital天然Trade Center自身专业自接入、Conquest继承登记为正式设计，并要求建立新revision。
+Accepted Spec SHA256: ca5af83f6ab722e80199c47add0dae781a1d06d34c74404a6666af08028c80a0
+Previous Accepted Revision: D0004
+Frozen D0004: [原文](Revisions/Specialization_Design_Spec_D0004.md)
+Frozen D0004 SHA256: a3fd779fdcb166ecd3d39e1560fabe26ef3d26cb67c499ab632c9dac7eeebbab
+
+- IND-004/IND-NET-001/003：Lv4生产力取有效来源实际output最大值；模板取当前有效来源并集；Gold折扣取有效来源最高值，模板与折扣允许不同源。保留10%/20%/30%/40%、Gold-only及来源自身永久模板，撤销失效来源当前网络贡献。
+- NET-001/002：首都自身专业天然接入本Trade Center，无须商路；仅source self-connection，不自动授予recipient self-reception，不泛化到所有Trade Center。
+- PROG-004：征服保留Identity、Potential、永久Settler投资及城市掌握的模板；ACTIVE与所有网络资格/当前收益依新Owner真实状态重算。跨owner/cityID识别只标IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT，不调查实现或改变继承设计。
+- OPEN-05首都自接入、OPEN-07工业多源已关闭并从当前OPEN表移除；OPEN-04关闭征服继承，仍保留旧档初始化与Development永久UID识别审查事项。
+- 当前基线已为D0004，故本次为D0005。用户表示同时完成可以保持OPEN，但其顺序在D0004/PROG-005已经接受；本轮沿用该规则，不重新开放或覆盖此前决定。
+- 修正当前Spec结尾遗留的旧revision文字；冻结D0004原文，不回写历史。仅修改Design Spec/ChangeLog并新增D0004设计快照，未修改Architecture/Status/Source/Tests，未开展技术调查或任何P0工作。
+
+## Accepted D0004 — 2026-09-11
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户针对按有效完成通知先后锁定的建议明确答复“是的，你的建议没问题，继续”。
+Accepted Spec SHA256: a3fd779fdcb166ecd3d39e1560fabe26ef3d26cb67c499ab632c9dac7eeebbab
+Previous Accepted Revision: D0003
+Frozen D0003: [原文](Revisions/Specialization_Design_Spec_D0003.md)
+Frozen D0003 SHA256: 0e2891b44ff507c5cb7fce32396bf9266020f3e275461352af7e378ca87d4fa6
+
+- 新增PROG-005；PROG-004/OPEN-04移除同时完成顺序待决，旧档初始化和征服继承继续保留。
+- 继承D0003 Community的PROVISIONAL BUT ACCEPTED FRAMEWORK；不扩大v0.1。
+- 接受设计不是完成引擎接入或新增实机PASS。
+
+## Accepted D0003 — 2026-09-11
+
+Acceptance: ACCEPTED
+Community Framework Status: PROVISIONAL BUT ACCEPTED FRAMEWORK
+Acceptance Evidence: 用户明确要求登记Community / Metropolis新框架并建立下一版；接受框架不等于最终数值定稿。
+Accepted Spec SHA256: 0e2891b44ff507c5cb7fce32396bf9266020f3e275461352af7e378ca87d4fa6
+Previous Accepted Revision: D0002
+Frozen D0002: [原文](Revisions/Specialization_Design_Spec_D0002.md)
+Frozen D0002 SHA256: 22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32
+
+- COMM-002/003：循环改为Foreign World → Metropolis → Domestic Network → Empire；国际移民增帝国人口，国内网络仅分配现有人口，不扣具体外国城人口。旧国内Migration进度公式被取代。
+- COMM-006：Lv1实际专家额外3F3P，Lv3提升至5F5P；明确Lv1–4暂定结构，不重复提供HD金币，不强加对称能力。
+- COMM-007/008：第一版A=H+2M+D+2E，H取空余住房、M取非负正宜居度、D按已建建筑tier加权、E仅真实专家；每回合国际进度A*C_met，阈值100*C_map，入城+1人口并累计国际移民，扣阈值保留overflow。
+- COMM-003/004/005：超过保护基盘且存在合法recipient时自动分发；保留低人口、住房和宜居度优先原则；Floor参考10/15/20仍不锁定，来源依据也TBD。
+- COMM-009：登记开放大都会、限制入境、人口留存三个持续状态项目；限制入境保留进度、不累积、不补发，仍可国内疏散；不增第四模式。
+- COMM-010：Lv4按成功吸引国际移民累计生成Settler，立即国内分发也计数；阈值8为PROVISIONAL BALANCE VALUE，扣除阈值保留overflow。
+- OPEN-14/COMM-011：更新剩余TBD和第一版参数状态；ENT虚拟专家适用范围仍独立未决。未提供的精确边界仅登记TBD，不自行选取答案。
+- 仅修改当前Spec、ChangeLog并冻结D0002原文；其它专业不变，不修改Architecture/Status/Source/Tests，不开展技术调查、实现、P0测试或游戏验证。
+
+## Accepted D0002 — 2026-09-11
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确要求将已确认的Military II / Military III经验体系登记为正式Design，不再作为balance candidate，并建立下一版Design revision。
+Accepted Spec SHA256: 22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32
+Previous Accepted Revision: D0001
+Frozen D0001: [原文](Revisions/Specialization_Design_Spec_D0001.md)
+Frozen D0001 SHA256: 10323a0350ff5b97be179b25c1c315b42aa7c6a41cb4cf6d55b9c7a34aee2ae6
+
+- MIL-001/005：每名实际工作军营专家+15% Combat XP正式接受；保留正常modifier叠加、政策互动与8 XP cap，明确人口/建筑/政策机会成本和无额外XP政策的主要平衡环境。
+- MIL-002/007：Military III改为正式Insight XP体系，保留5F5P；登记用户原公式`min(E, floor(P / 2))`、晋升档位表和示例。E仅真实工作专家；P为战斗时实际拥有的Promotions，合法包括合并继承，不用XP level或累计XP推算。Insight在正常Combat XP之外独立追加，不修改正常8 XP cap。
+- MIL-002上限边界已由用户明确澄清并关闭：原公式保持，无额外硬上限；档位修正为6–7对应+3、8–9对应+4，更高P继续按公式增长并受E限制。当前E≤4，实际最高天然为+4。
+- MIL-006/008：否决Military Academy额外虚拟专家；保持HD三级建筑各自路线，不追求严格数学等价或50/50选率。ENT虚拟专家参与Military II/III仍独立未决。
+- 删除当前Spec中MIL-005的BALANCE_CANDIDATE_NOT_ACCEPTED、MIL-001/006的+15%候选描述、OPEN-10的XP增幅和整条Lv3曲线未定描述。历史D0001及以下历史日志中的候选记录原样保留。
+- Military I、III的5F5P、IV训练/带教、Mobilization、Harbor mirror、Aerodrome扩展保持；Military IV及Mobilization参数仍TBD，Future范围不变。
+- 仅设计文档修订及D0001原文冻结；未修改Architecture、Status、Source或Tests，未开展技术调查或游戏验证。Insight仅标记IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT。
+
+### D0002边界澄清 — ACCEPTED
+
+Acceptance Evidence: 用户明确确认保持`Insight XP = min(E, floor(P / 2))`，不增加额外+3硬上限，并要求作为D0002边界澄清登记。
+Clarification Previous Spec SHA256: 1a4fd1e72aebae441ca4d1fd97ac795c9ae17eb0a582c02dcdadb57afaed933c
+Clarified Accepted Spec SHA256: 22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32
+
+- 修正晋升档位：P=0–1/2–3/4–5/6–7/8–9分别对应理论Insight 0/+1/+2/+3/+4；更高P理论上继续增加，仍受E限制。
+- 当前真实工作专家槽最多4个，E≤4，因此实际最高天然为+4；没有新增人工hard cap。
+- 第四专家在P≥8时仍有Military III价值；普通6–7 Promotion老兵仍最多+3。当前极端情况8正常Combat XP+4独立Insight XP=12总XP正式接受，正常8 XP cap不变。
+- P仍为实际Promotions（包括合法合并继承），E仍仅真实工作专家；Military Academy无额外虚拟专家。ENT适用范围及其它Military未决参数不变。
+- 删除当前Spec冲突档位、公式上限待决段落和OPEN-10对应未决事项；仅修改Design Spec / Design ChangeLog，D0001冻结原文不变，不开展技术调查或实现。
+
+## Accepted D0001 — 2026-09-11
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确回复“D0001接受”
+Accepted Spec SHA256: 10323a0350ff5b97be179b25c1c315b42aa7c6a41cb4cf6d55b9c7a34aee2ae6
+
+接受包括最后确认的GOV-002永久Potential头衔规则。现有TBD、PROVISIONAL及BALANCE_CANDIDATE_NOT_ACCEPTED不因版本接受而变为确定规则。Architecture尚未正式同步，P0继续暂停；设计接受不等于实现或游戏验证通过。
+
+以下Pending条目为接受前的过程记录，保留审计，不代表当前状态。
+
+## Pending D0001 — 首次设计迁移
+
+Acceptance: NOT_YET_ACCEPTED
+
+由用户授权Codex从过渡Architecture及用户明确补充整理整个Specialization Gameplay Redesign的WHAT。此次记录不是ACCEPTED，尚无接受日期或接受凭据。
+
+Rule families：SCOPE、ID/TERMS、PROG、SHARED、RES、CUL/GW、IND/IND-NET/CREW、COM、NET/NET-RC；Future LAND、REL、MIL、HARB、GOV、DIP/DIP-MISSION、COMM、ENT、AQ、DAM、CAN、AIR、SPACE。
+
+范围区分CURRENT IMPLEMENTATION SCOPE v0.1与ACCEPTED FUTURE DESIGN OUT_OF_V0.1；后者保留此前用户确认的机制，不覆盖Community的PROVISIONAL或任何TBD/candidate。Landscape/Religion/Government既有设计已按用户补充恢复；未指定数值继续保留TBD。具体规则与未决项仅见Spec，不在ChangeLog重复。
+
+协作调整：Codex为唯一本地文件维护者，用户为最终Design Authority；外部Design Chat仅proposal/review。此职责调整已由用户明确授权，不等于用户已接受本次D0001草案。
+
+## Pending D0001 — 既有Future设计恢复（2026-09-11）
+
+仍为DRAFT_PENDING_USER_ACCEPTANCE；本次不是正式接受，不建立accepted hash、不同步Architecture，也不恢复P0。
+
+- Landscape：重写LAND-001/002资料占位，新增LAND-003至006，恢复Lv1–4与Network。OPEN-01缩为剩余参数，不再标SOURCE_DETAIL_REQUIRED。
+- Religion：重写REL-001/002资料占位，新增REL-003至006，恢复Lv1–4与Network。OPEN-02缩为强度、宗教稳定和belief吸收边界，不再标SOURCE_DETAIL_REQUIRED。
+- Government：按用户指定将原占位GOV-001/002改为同Tier建筑完成与永久Governor Titles规则，新增GOV-003/004。OPEN-03只保留永久授予语义及Loyalty参数；同Tier建筑实现可行性不改变WHAT。
+- Military：修正MIL-001，OPEN-10不再列共同支持/住房/GPP资料缺口；MIL-005的+15%经验仍为BALANCE_CANDIDATE_NOT_ACCEPTED，其余经验/训练参数未定。
+- 仅恢复Future范围；没有改动当前v0.1规则。规则正文与具体未决只以Spec为准；此前首轮审阅报告中的三个整套资料缺口现已被本次恢复取代。
+
+## Pending D0001 — Government永久头衔授予依据确认
+
+用户明确决定GOV-002绑定永久Potential投资：建立Government专业的Lv1及首次提升至Lv2/3/4时各永久授予1个Governor Title，累计最多4个；总督调离、未建立或ACTIVE下降均不收回。OPEN-03缩为Government Network Loyalty数值TBD，取代前次记录中的授予依据/收回语义未决。GOV-003仍使用`W = min(ACTIVE L, Government Tier)`，未改动。
+
+D0001继续保持DRAFT_PENDING_USER_ACCEPTANCE；未自动接受，未进行Architecture sync或恢复P0。

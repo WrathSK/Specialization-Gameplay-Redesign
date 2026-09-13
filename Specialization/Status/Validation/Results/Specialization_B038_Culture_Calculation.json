@@ -1,0 +1,14 @@
+{
+  "native_values": [
+    "167/64",
+    "1705/256",
+    "1371/128"
+  ],
+  "delta": "1037/256",
+  "delta_decimal": 4.05078125,
+  "model": "(3 + 0.5*3)*0.9",
+  "model_delta": 4.05,
+  "difference": 0.00078125,
+  "all_values_on_1_over_256_grid": true,
+  "rounding_policy": "NOT_DETERMINED"
+}

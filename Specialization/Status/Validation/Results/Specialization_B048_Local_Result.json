@@ -1,0 +1,19 @@
+{
+  "build": "P0-B-048 / modinfo61",
+  "status": "LOCAL_SIMULATION_PASS",
+  "test": "DevelopmentTests/test_lv4_percent.py",
+  "design_sha256_unchanged": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551",
+  "runtime_changed_files": [
+    "Data/Lv4Percent.sql",
+    "Gameplay.lua",
+    "Lv3Effects.lua",
+    "Lv4Percent.lua",
+    "Probe.lua",
+    "SpecializationP0.modinfo",
+    "Text/TestText.sql",
+    "UI/P0Panel.lua",
+    "UI/P0Panel.xml"
+  ],
+  "engine_yields": "USER_GAME_TEST_REQUIRED",
+  "scope": "RES-004/CUL-004 percentage only"
+}

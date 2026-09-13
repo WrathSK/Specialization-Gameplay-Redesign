@@ -1,0 +1,17 @@
+{
+  "build": "P0-B-047 / modinfo60",
+  "design": "D0012",
+  "design_sha256": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551",
+  "status": "LOCAL_SIMULATION_PASS",
+  "test": "DevelopmentTests/test_crew_integer_speed.py",
+  "amount_cases": 25,
+  "executor_cases": 50,
+  "quick": [
+    167,
+    281,
+    502,
+    670,
+    911
+  ],
+  "display_game_verification": "USER_GAME_TEST_REQUIRED; deferred to next normal test, no separate batch"
+}

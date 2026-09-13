@@ -1,0 +1,2169 @@
+{
+  "source_alias": "W = external legacy_workspace from local configuration",
+  "copied_files": {
+    "Mod/ResearchSupport.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/ResearchSupport.lua",
+      "sha256": "c5ffca80d370c15187315c886a29275c1f6cd2f8886add02e60f1df3a49af1c7"
+    },
+    "Mod/CompletionRecordProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CompletionRecordProbe.lua",
+      "sha256": "b2d8907f138145072560ab10e8f01c6766d89249f6aa65875bcdbe85d9b02dab"
+    },
+    "Mod/FreshBindingHook.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/FreshBindingHook.lua",
+      "sha256": "c7bdef1fe0612731a95cadf4227df25281c45c9d23ff0a7347be6a19aecb60bd"
+    },
+    "Mod/NetworkBridge.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/NetworkBridge.lua",
+      "sha256": "4d7f26125aa53d25b74336ee38c93f101b898a0e17efae63f7de2682122b71de"
+    },
+    "Mod/Lv4Percent.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv4Percent.lua",
+      "sha256": "515e7fed84524ccc7ff4b72bd7d8772507706424355eee61a79fe641cc558734"
+    },
+    "Mod/Specialization.dep": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Specialization.dep",
+      "sha256": "2a825b453df53475a7ca858ba4adfcab60e33f017f17b0ac2ef0d5489735e0f8"
+    },
+    "Mod/Lv2GPP.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv2GPP.lua",
+      "sha256": "1e53cedcc1a122654577334ea8fd8c0fb740fde6f875b3f65f15cfeaf1797b55"
+    },
+    "Mod/SpecializationP0.modinfo": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/SpecializationP0.modinfo",
+      "sha256": "1fdec711a923d38b2b050c06c98af85c1f5df109041b082671632f3cf335117e"
+    },
+    "Mod/QualificationProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/QualificationProbe.lua",
+      "sha256": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59"
+    },
+    "Mod/SourceYieldProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/SourceYieldProbe.lua",
+      "sha256": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e"
+    },
+    "Mod/UnitActionSitePolicy.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UnitActionSitePolicy.lua",
+      "sha256": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d"
+    },
+    "Mod/GPPReadout.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/GPPReadout.lua",
+      "sha256": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243"
+    },
+    "Mod/ConstructionProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/ConstructionProbe.lua",
+      "sha256": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127"
+    },
+    "Mod/YieldCarrierProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/YieldCarrierProbe.lua",
+      "sha256": "293f6c763972008196a800bb15f156a2f6c5366177a37b6f2fe401dfdf9e6b6a"
+    },
+    "Mod/Lv4CopyRead.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv4CopyRead.lua",
+      "sha256": "a98c9ca08432768ed95b5782be75c2aa990e95f0cacdbbe0ed01b72324c52eb1"
+    },
+    "Mod/ShadowRouteState.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/ShadowRouteState.lua",
+      "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6"
+    },
+    "Mod/TradeRouteProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/TradeRouteProbe.lua",
+      "sha256": "05f4855796ee85d8cba38806d9d400e5f2db201f37e4eaf64bf643a2fd2dcb69"
+    },
+    "Mod/CityFlowProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CityFlowProbe.lua",
+      "sha256": "3291e94a6b8fa7926a2e2c3a67d3abd47f671fa76f4c51a08f2b533bc6e6f920"
+    },
+    "Mod/Lv3Effects.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv3Effects.lua",
+      "sha256": "b3781c09c602b17821a9937deaf6c592ba2ae0c895f3f7ca0afdc5eed19aa4fb"
+    },
+    "Mod/Gameplay.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Gameplay.lua",
+      "sha256": "72845a69ff25ced08b81329a50771ee2f9d1ecc4bce241ce4f5ab34095c0d1e8"
+    },
+    "Mod/CopyYields.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CopyYields.lua",
+      "sha256": "e6d240ddf0cbada4caa30a426a64ab45741a807b70cc67b794374dd900870a3f"
+    },
+    "Mod/UnitTargets.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UnitTargets.lua",
+      "sha256": "8a0114e22303d071aa1b5152cb84898ae6a3f13da5c8727eee4bc3f479abda7b"
+    },
+    "Mod/NetworkSender.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/NetworkSender.lua",
+      "sha256": "ed16560026e50e02c26fe5326f8874f732c5d57dd884066fa92cbe2f46a86e75"
+    },
+    "Mod/Probe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Probe.lua",
+      "sha256": "1addbb31180ec1ebbbd78cf690845b3586cbf2175cf77e4cf0c263d94f7f833a"
+    },
+    "Mod/UnitActions.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UnitActions.lua",
+      "sha256": "a74228619381993132f48fb090af5f18441f213a007f57e1945873a1f11e1d75"
+    },
+    "Mod/StorageProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/StorageProbe.lua",
+      "sha256": "61880e787f1df8841eb8bb09d10a580125d8e8d8603c57956c30938fe8b61b52"
+    },
+    "Mod/EligibilityProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/EligibilityProbe.lua",
+      "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e"
+    },
+    "Mod/HalfYieldProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/HalfYieldProbe.lua",
+      "sha256": "aa95d67392059146fb0104ad5c66317b1b32ec7b9f9170ec6484d07ebcf24317"
+    },
+    "Mod/CompletionProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CompletionProbe.lua",
+      "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b"
+    },
+    "Mod/BindingProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/BindingProbe.lua",
+      "sha256": "e51d4259aa96a9d3893100ae1e9705bf7aa2dcfcc49908ac5d3549e697481dcf"
+    },
+    "Mod/Lv3Support.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv3Support.lua",
+      "sha256": "9a0d00eb5dabb24c87bd59b13765fa8017a21907c676d6458a04c958fac6bf3d"
+    },
+    "Mod/EnvelopeProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/EnvelopeProbe.lua",
+      "sha256": "d5e98f44ca106df56a88352e4f871dbfb4d938e95fd2f797531e856fe49ffac6"
+    },
+    "Mod/IndustrySupport.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/IndustrySupport.lua",
+      "sha256": "177ee19019cb8285c8412bf8b3922aba3c63803599c693b0f80735f6308facec"
+    },
+    "Mod/Lv2Housing.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Lv2Housing.lua",
+      "sha256": "16905ac36c03add0486c887016d2bd555b649058c366e4e7d1f7cc964f77e176"
+    },
+    "Mod/UnitSiteProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UnitSiteProbe.lua",
+      "sha256": "7939baab91767033421f40f49a5aa88083e1a7e720c422e58e84584e77c7cc34"
+    },
+    "Mod/EffectiveFacts.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/EffectiveFacts.lua",
+      "sha256": "6e05f37c18571dc46f12630d2bf2a4b78585e4c3133b21f35cecd39801edc144"
+    },
+    "Mod/CrewPrecision.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CrewPrecision.lua",
+      "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215"
+    },
+    "Mod/InvestmentAction.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/InvestmentAction.lua",
+      "sha256": "fabaf4525fc7b143fa5daae97f9934c77f9f467940844422b1872372541f180c"
+    },
+    "Mod/CityJournalProbe.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CityJournalProbe.lua",
+      "sha256": "8c566c528eb7530152c72df26f6bd2b7142a6baf59d9c52594db74f028e3b04e"
+    },
+    "Mod/CrewProjects.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/CrewProjects.lua",
+      "sha256": "9a48acf35835b67d9288ef0466017ce64b45ee3d832404162daf8f372a265ae8"
+    },
+    "Mod/UI/UnitSites.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/UnitSites.lua",
+      "sha256": "9816a5c573a812fd7a8b46d5ed73f81cf269ebcbe9894c073afdd7f72c502aa3"
+    },
+    "Mod/UI/UnitSites.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/UnitSites.xml",
+      "sha256": "75deff24b5b00291f09b05047b7dd0d2c6aaddd2d301a5535bc0f1eef184ff04"
+    },
+    "Mod/UI/IndustryRefresh.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/IndustryRefresh.xml",
+      "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe"
+    },
+    "Mod/UI/IndustryRefresh.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/IndustryRefresh.lua",
+      "sha256": "52bb904fe6f4bc133f068721b420287688760ab80ae32940c3926d6d397823f1"
+    },
+    "Mod/UI/UnitPanelActions.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/UnitPanelActions.xml",
+      "sha256": "69587034c08cbb154cd36642be8aa1958505724405828e1bb87d0de018b73d4b"
+    },
+    "Mod/UI/UnitPanelActions.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/UnitPanelActions.lua",
+      "sha256": "2c13b4da4a8c7739d150d1130479ccdec780a9ea4874d67574ea778493b1c5a6"
+    },
+    "Mod/UI/CrewProjectOrder.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/CrewProjectOrder.lua",
+      "sha256": "8b902c93e450e5ffcf6620bd5154382c36f38b34418cd1aa0856da661cf45522"
+    },
+    "Mod/UI/P0Panel.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/P0Panel.xml",
+      "sha256": "517979d5f0fe70dbccfc7d3e3ad59e30eddaf4c646d0c00caba49085d98e270d"
+    },
+    "Mod/UI/P0Panel.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/P0Panel.lua",
+      "sha256": "d21d835e7eba16a2884b3b8ae48689a1873f80a6536b6275ee2a2b3a24b2014c"
+    },
+    "Mod/UI/GPPRefresh.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/GPPRefresh.xml",
+      "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109"
+    },
+    "Mod/UI/GPPRefresh.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/GPPRefresh.lua",
+      "sha256": "b7e741fec5460436776dcb8509ccee1bd114ec4d436e224eb6755361ae0d11d5"
+    },
+    "Mod/UI/CopyYieldRefresh.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/CopyYieldRefresh.xml",
+      "sha256": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9"
+    },
+    "Mod/UI/CopyYieldRefresh.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/CopyYieldRefresh.lua",
+      "sha256": "585ddfa0d84595aaacc00bb5a34335ff2d2bcf7f9cdace168bd7f10e4c9b8af9"
+    },
+    "Mod/UI/BackgroundRoutes.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/BackgroundRoutes.lua",
+      "sha256": "100c7b3278e0f987a3a84ad5bd5888d993e05c7506ceb4246400529e64531d23"
+    },
+    "Mod/UI/BackgroundRoutes.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/BackgroundRoutes.xml",
+      "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547"
+    },
+    "Mod/UI/UnitTargetMarkers.xml": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/UnitTargetMarkers.xml",
+      "sha256": "702547855b6d30069b023a71a62643ddae7060ec270b5aab3f0219733609ba68"
+    },
+    "Mod/UI/UnitTargetMarkers.lua": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/UI/UnitTargetMarkers.lua",
+      "sha256": "9768be60bc2defc5914608893c9a9cd7d6f97004432863eebe509909ca8cfde3"
+    },
+    "Mod/Config/Players.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Config/Players.sql",
+      "sha256": "ca577b88faa4fa150bd786031f7f23754331b3fb9ceafac0d175b0c578de7ada"
+    },
+    "Mod/ArtDefs/Units.artdef": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/ArtDefs/Units.artdef",
+      "sha256": "00386b8d0c1c2faaac652e134f9c73dacb6522d023a1be168add87b0e17b64e0"
+    },
+    "Mod/Text/TestText.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Text/TestText.sql",
+      "sha256": "30c441085ef3977057079e091611b1c2f16173bfde28f5c72e61e9352a59465d"
+    },
+    "Mod/Data/Icons.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Icons.sql",
+      "sha256": "5e40f7d09a96253628136424d72ae93cfda31de14c0eae135594adb535e2a343"
+    },
+    "Mod/Data/GovernorProbe.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/GovernorProbe.sql",
+      "sha256": "147edbe54f4c357d498f578ee3cf1de530581253310686134a0d46e2bf6badfd"
+    },
+    "Mod/Data/HalfYieldProbe.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/HalfYieldProbe.sql",
+      "sha256": "923db9239ae09d9d3a76f8d66d247cf31019b2cd632123490c33f277b8733669"
+    },
+    "Mod/Data/Lv3Support.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv3Support.sql",
+      "sha256": "79c764f8adae7581272a0dc39e03c92e6d1dbbb32d6a5fc5e74e675d343cbf57"
+    },
+    "Mod/Data/Identity.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Identity.sql",
+      "sha256": "f401fd35654dea6abd5dcc0f0027f35a91408a714b56bf1b2f0098c8d1a894d2"
+    },
+    "Mod/Data/IndustrySupport.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/IndustrySupport.sql",
+      "sha256": "cfc3b01995f758362026fb1bcfe280012a980f7341b798071ab567f7743a4064"
+    },
+    "Mod/Data/Lv2Housing.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv2Housing.sql",
+      "sha256": "b909ba34e6569eaa36e5c877d3123aa8ffac2d990893774f18144eb63c4c18ba"
+    },
+    "Mod/Data/ConstantSupport.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/ConstantSupport.sql",
+      "sha256": "94963738321a1f7c4a1c25a34e4f1cb1360ce9d971e3a94d5ac4422b98f9ae83"
+    },
+    "Mod/Data/CrewProjects.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/CrewProjects.sql",
+      "sha256": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674"
+    },
+    "Mod/Data/ResearchSupport.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/ResearchSupport.sql",
+      "sha256": "fa06b82c35d28e4dc805cca7c6d84795fd4fadefb3bbdfe113524b95ecdce376"
+    },
+    "Mod/Data/Colors.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Colors.sql",
+      "sha256": "f68513481314fea0d7a75d71c3972e0c94a03fdb82b25477da0d7b890c949308"
+    },
+    "Mod/Data/Lv4Percent.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv4Percent.sql",
+      "sha256": "76daaefdf7c3edffe1839ff1199386b633f041e283beafc51f88877c97c34c29"
+    },
+    "Mod/Data/Lv2GPP.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv2GPP.sql",
+      "sha256": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d"
+    },
+    "Mod/Data/Crew.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Crew.sql",
+      "sha256": "998c2e6a95228f967082be4b93c45fbb32223a899b3641977534187cf22fcc2d"
+    },
+    "Mod/Data/YieldCarrierProbe.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/YieldCarrierProbe.sql",
+      "sha256": "b63ddc3d9c7d6a1ca0634eeba3d610850fe4bfa2fe5f345237d2dcd14ffe91cd"
+    },
+    "Mod/Data/Lv3Effects.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/Lv3Effects.sql",
+      "sha256": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975"
+    },
+    "Mod/Data/CopyYields.sql": {
+      "source": "Sid Meier's Civilization VI/Mods/SpecializationP0/Data/CopyYields.sql",
+      "sha256": "180ac97afbdb3f68c90fd944632bdc3bcbd9c6b50058143b4b7a11b0636546c6"
+    },
+    "Specialization/README.md": {
+      "source": "Specialization/README.md",
+      "sha256": "4a6f981d7eb78bb5a1916666fc4718c1a9c896620a5759c8520b79ffc9aa5363"
+    },
+    "Specialization/AGENTS.md": {
+      "source": "Specialization/AGENTS.md",
+      "sha256": "653317344bad81b8ecfd23108da0b96b49f8b76e0e343112e4ebf42bcaf4ee1b"
+    },
+    "Specialization/Design/Design_ChangeLog.md": {
+      "source": "Specialization/Design/Design_ChangeLog.md",
+      "sha256": "2553e2b693594582c73f414dd07ef8dfe8289358c284fab9a767c90ef36b6426"
+    },
+    "Specialization/Design/Specialization_v0.1_Design_Spec.md": {
+      "source": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "sha256": "759365dd68c3b4a166b0f05e250b72f14e33dcc145c3889f6afefa16f999005c"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0004.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0004.md",
+      "sha256": "a3fd779fdcb166ecd3d39e1560fabe26ef3d26cb67c499ab632c9dac7eeebbab"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0010.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0010.md",
+      "sha256": "a8393b5fa879b060acfa3b89c8a3fc906a2d50849a1a83bcea193506ed9a12e2"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0011.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0011.md",
+      "sha256": "29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0001.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0001.md",
+      "sha256": "10323a0350ff5b97be179b25c1c315b42aa7c6a41cb4cf6d55b9c7a34aee2ae6"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0005.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0005.md",
+      "sha256": "ca5af83f6ab722e80199c47add0dae781a1d06d34c74404a6666af08028c80a0"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0012.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0012.md",
+      "sha256": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0002.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0002.md",
+      "sha256": "22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0006.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0006.md",
+      "sha256": "666acc471f1f441b9987dab547afec2801d0c04fa5823c5e1706e60dd88b6f11"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0007.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0007.md",
+      "sha256": "15e011b665c6a53232673f8195d88acca954f80aa0d18efcdd256d1995cd3d88"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0013.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0013.md",
+      "sha256": "abce0024d9a1003ef7f7ac5aa680da9643bbc7e9df346441b007aab7d5959569"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0003.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0003.md",
+      "sha256": "0e2891b44ff507c5cb7fce32396bf9266020f3e275461352af7e378ca87d4fa6"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0008.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0008.md",
+      "sha256": "3dca4434a468f81a8e203a7a19d8c87dff5b24170d0667f50283ed2a23bd761c"
+    },
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0009.md": {
+      "source": "Specialization/Design/Revisions/Specialization_Design_Spec_D0009.md",
+      "sha256": "07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8"
+    },
+    "Specialization/Status/Specialization_P0_Status.md": {
+      "source": "Specialization/Status/Specialization_P0_Status.md",
+      "sha256": "30b709a95f01b1ecb3eff29762376aedb142e381d30824914986f0f18b0567ae"
+    },
+    "Specialization/Status/Validation/README.md": {
+      "source": "Specialization/Status/Validation/README.md",
+      "sha256": "06aa79dd92bd7a6bc6f1dde0c5eda0a7070fcfa6c4ec8aca60d68693163ab9d7"
+    },
+    "Specialization/Status/Validation/Cases/B029_Fixed_Yield_Carrier.md": {
+      "source": "Specialization/Status/Validation/Cases/B029_Fixed_Yield_Carrier.md",
+      "sha256": "2a94ef4af004f78f52d1c2ea7fb2be327a96934ef6f64960e4204136d7ce27e7"
+    },
+    "Specialization/Status/Validation/Cases/B043_Unit_Panel.md": {
+      "source": "Specialization/Status/Validation/Cases/B043_Unit_Panel.md",
+      "sha256": "e58a5af95ed951ac25d3f6143bfe10fda8725bbeacc269f104bb1b115fb1aef1"
+    },
+    "Specialization/Status/Validation/Cases/Deferred_Mechanics.md": {
+      "source": "Specialization/Status/Validation/Cases/Deferred_Mechanics.md",
+      "sha256": "3f853d6f5189e143c2f21a591f414b96b1f11d3d1517bee89c518c51ed3a4827"
+    },
+    "Specialization/Status/Validation/Cases/B022_Research_Lv1_Yields.md": {
+      "source": "Specialization/Status/Validation/Cases/B022_Research_Lv1_Yields.md",
+      "sha256": "312d2e433e1a6ae3d8bc79d9138842105137b23f3a43b8cf51f91e41cdfd2427"
+    },
+    "Specialization/Status/Validation/Cases/B039_Construction_Injection.md": {
+      "source": "Specialization/Status/Validation/Cases/B039_Construction_Injection.md",
+      "sha256": "365c0ca8392f30fc2d1de520dc16e5f7c0fc39ad257ce3a6b589e2d2fdcbdb1c"
+    },
+    "Specialization/Status/Validation/Cases/B029_Fractional_Followup.md": {
+      "source": "Specialization/Status/Validation/Cases/B029_Fractional_Followup.md",
+      "sha256": "4726645542a090a25fd0ab541a024f7dac2db78826a775749ff2b1b579e71083"
+    },
+    "Specialization/Status/Validation/Cases/B046_Crew_Precision.md": {
+      "source": "Specialization/Status/Validation/Cases/B046_Crew_Precision.md",
+      "sha256": "7085b34d95d50f05dbc74c314ca1c0b1fcdc5bce364a733543052c17d8fa455f"
+    },
+    "Specialization/Status/Validation/Cases/B012_Table_Storage.md": {
+      "source": "Specialization/Status/Validation/Cases/B012_Table_Storage.md",
+      "sha256": "46979f2102b3febef3d29ce20af522d1b0dad1fae202fb56596e1b75b61a6142"
+    },
+    "Specialization/Status/Validation/Cases/B037_Lv3_Support.md": {
+      "source": "Specialization/Status/Validation/Cases/B037_Lv3_Support.md",
+      "sha256": "9d88da74cca434ee39da13a12e665082e890dba554291e855a2a1d04f660b113"
+    },
+    "Specialization/Status/Validation/Cases/B041_Target_Markers.md": {
+      "source": "Specialization/Status/Validation/Cases/B041_Target_Markers.md",
+      "sha256": "acd4c8211ad3de8bd761326f85ffb7a25e826e96dd1c9ea31ee6006eafdac73a"
+    },
+    "Specialization/Status/Validation/Cases/B035_Four_Family_GPP.md": {
+      "source": "Specialization/Status/Validation/Cases/B035_Four_Family_GPP.md",
+      "sha256": "ab996a3e3847510f85362c2319ec89b0460d767b6b946233f5b3869c528b09af"
+    },
+    "Specialization/Status/Validation/Cases/B050_Half_Yield.md": {
+      "source": "Specialization/Status/Validation/Cases/B050_Half_Yield.md",
+      "sha256": "389ba7c55dde7731ac0bab0805f787c0a22e55a402fe7eb4c336198042473d5f"
+    },
+    "Specialization/Status/Validation/Cases/B019_Envelope_Recovery.md": {
+      "source": "Specialization/Status/Validation/Cases/B019_Envelope_Recovery.md",
+      "sha256": "30761e7ddb08ee1749891012e6d7a4f8e7e8b1d2b59ea1a907b98545e6a74fb4"
+    },
+    "Specialization/Status/Validation/Cases/B011_Completion_Events.md": {
+      "source": "Specialization/Status/Validation/Cases/B011_Completion_Events.md",
+      "sha256": "14a7170bb860f5cdc15ebcf7c1f718914ffaea7ff4d43a832267aa427215105d"
+    },
+    "Specialization/Status/Validation/Cases/B017_Unknown_Slots.md": {
+      "source": "Specialization/Status/Validation/Cases/B017_Unknown_Slots.md",
+      "sha256": "54ba2dfdbb68019d2457fcc5918ffebc300aa3a348f33d85289fd0a36ae0f6be"
+    },
+    "Specialization/Status/Validation/Cases/B040_Unit_Sites.md": {
+      "source": "Specialization/Status/Validation/Cases/B040_Unit_Sites.md",
+      "sha256": "05c07a66764c47e046e84ac2ba40ad059f12c431dcfa8544873fa2efa29a6450"
+    },
+    "Specialization/Status/Validation/Cases/B021_Normal_Load_Resume.md": {
+      "source": "Specialization/Status/Validation/Cases/B021_Normal_Load_Resume.md",
+      "sha256": "bd98de4ded66b1372a2c6a1fca7ce0e6846a27101de707e8349ecffa26ea2915"
+    },
+    "Specialization/Status/Validation/Cases/B029_New_Game_Control.md": {
+      "source": "Specialization/Status/Validation/Cases/B029_New_Game_Control.md",
+      "sha256": "29ea73dced41a04840b9bd28ddcf9417138338ed0199f81c888a1af9bf2393fe"
+    },
+    "Specialization/Status/Validation/Cases/B048_Lv4_Percent.md": {
+      "source": "Specialization/Status/Validation/Cases/B048_Lv4_Percent.md",
+      "sha256": "b4bfdad848794824fb2edb7b2d641019a1d1c01600f9470c10b95d2012ae5440"
+    },
+    "Specialization/Status/Validation/Cases/B025_Background_Network.md": {
+      "source": "Specialization/Status/Validation/Cases/B025_Background_Network.md",
+      "sha256": "cfcebad3c1ac8ea551702fb4c18f579e1efcd596980ae69c47ca87c80ef8bb18"
+    },
+    "Specialization/Status/Validation/Cases/B038_Population_Diagnostic.md": {
+      "source": "Specialization/Status/Validation/Cases/B038_Population_Diagnostic.md",
+      "sha256": "b766dd5abf95f47c058713a8de4342229ab6ccaff34b8bf3464e705ed7bd4d24"
+    },
+    "Specialization/Status/Validation/Cases/B028_Source_Totals.md": {
+      "source": "Specialization/Status/Validation/Cases/B028_Source_Totals.md",
+      "sha256": "99d0ebf020d81095064e2a12806ca734fd8955127b0ccdf6dc3f59ef44b4143e"
+    },
+    "Specialization/Status/Validation/Cases/B036_Industry_Lv1.md": {
+      "source": "Specialization/Status/Validation/Cases/B036_Industry_Lv1.md",
+      "sha256": "66c0067def4aa0cd63d2c9ba1a53f4d323e9d25071e884bf893440fa0ddca839"
+    },
+    "Specialization/Status/Validation/Cases/B015_City_Journal.md": {
+      "source": "Specialization/Status/Validation/Cases/B015_City_Journal.md",
+      "sha256": "e717e40c9e5d3c2e33844563ff24872558ea90c59821a704ab10ce6ed93e9667"
+    },
+    "Specialization/Status/Validation/Cases/B035_Lv2_GPP.md": {
+      "source": "Specialization/Status/Validation/Cases/B035_Lv2_GPP.md",
+      "sha256": "fad4bdde8b48af47f3db737fc84c330a20872fdeea503941ce85bb7edc6a600a"
+    },
+    "Specialization/Status/Validation/Cases/B042_Crew_And_Investment.md": {
+      "source": "Specialization/Status/Validation/Cases/B042_Crew_And_Investment.md",
+      "sha256": "f7dc6aa66174da5d449dc6ffc5fd8d3535ee3b88b90122d5f4b743ddde326f35"
+    },
+    "Specialization/Status/Validation/Cases/B023_Automatic_Constant_Lv1.md": {
+      "source": "Specialization/Status/Validation/Cases/B023_Automatic_Constant_Lv1.md",
+      "sha256": "7c4a8fd4f778f2707e6873f9cd657fe85718d6c2e216bf8fcb6429cc185adef6"
+    },
+    "Specialization/Status/Validation/Cases/B049_Lv4_Copy_Basis.md": {
+      "source": "Specialization/Status/Validation/Cases/B049_Lv4_Copy_Basis.md",
+      "sha256": "e213d7612f0238bd0aa4a55d51359cdc90fec44a5dc583899a4180365087d30f"
+    },
+    "Specialization/Status/Validation/Cases/B016_Eligibility.md": {
+      "source": "Specialization/Status/Validation/Cases/B016_Eligibility.md",
+      "sha256": "1af36ff9d4e523c415b343d994c32c2e2f6a9d7e304fb9de7538c91ddbaf010c"
+    },
+    "Specialization/Status/Validation/Cases/B031_Network_Withdrawal.md": {
+      "source": "Specialization/Status/Validation/Cases/B031_Network_Withdrawal.md",
+      "sha256": "83c158798638a63b097c69a18ef093e1bdecf27aa16e54733d9a7385977d87cf"
+    },
+    "Specialization/Status/Validation/Cases/B027_Direct_Reception.md": {
+      "source": "Specialization/Status/Validation/Cases/B027_Direct_Reception.md",
+      "sha256": "15d3f0d34dd10c546918c5cf15b3908754645d29d47fa301555dc406ce4edf29"
+    },
+    "Specialization/Status/Validation/Cases/B051_Automatic_Copy_Yields.md": {
+      "source": "Specialization/Status/Validation/Cases/B051_Automatic_Copy_Yields.md",
+      "sha256": "c3d2df285af7d2cfa3f8c0538bfd0ac194cde66111b9516e883cd02483ec4a80"
+    },
+    "Specialization/Status/Validation/Cases/B010_Deferred.md": {
+      "source": "Specialization/Status/Validation/Cases/B010_Deferred.md",
+      "sha256": "53330175f81e33cf857aea4a49b5d2fa41aa1a12cefdd888f22807aa85b576db"
+    },
+    "Specialization/Status/Validation/Cases/B014_Completion_Record.md": {
+      "source": "Specialization/Status/Validation/Cases/B014_Completion_Record.md",
+      "sha256": "47c0ebd977e8ad664932eed81797c8f2fa4a078c8bf247fd1e7ad890ac56d56b"
+    },
+    "Specialization/Status/Validation/Cases/B020_City_Flow.md": {
+      "source": "Specialization/Status/Validation/Cases/B020_City_Flow.md",
+      "sha256": "d3749e858887bcd13d53ffb5a627941488bd2e4f6b774570241f78dfee9eb2f5"
+    },
+    "Specialization/Status/Validation/Cases/B018_Runtime_Eligibility.md": {
+      "source": "Specialization/Status/Validation/Cases/B018_Runtime_Eligibility.md",
+      "sha256": "4296d7314c012d2d5a1e00b9c208fa7731b0190d3217e65f05965f8d774710a1"
+    },
+    "Specialization/Status/Validation/Cases/B030_Precision_Control.md": {
+      "source": "Specialization/Status/Validation/Cases/B030_Precision_Control.md",
+      "sha256": "6856f4064824328f60b429865eb6c43c3309018599b2039cbf56c1a7773d8f21"
+    },
+    "Specialization/Status/Validation/Cases/B034_Lv2_Housing.md": {
+      "source": "Specialization/Status/Validation/Cases/B034_Lv2_Housing.md",
+      "sha256": "1c16e6adeb017d80cdfe9cc01e2ca40333ee681be60a2cd86d075cd78aaa6745"
+    },
+    "Specialization/Status/Validation/Cases/B038_Lv3_Remaining.md": {
+      "source": "Specialization/Status/Validation/Cases/B038_Lv3_Remaining.md",
+      "sha256": "9bfabbcd4573180654363194cc841ce6fdb0d792d198384a2e4215ab459e3288"
+    },
+    "Specialization/Status/Validation/Cases/B013_New_City_Binding.md": {
+      "source": "Specialization/Status/Validation/Cases/B013_New_City_Binding.md",
+      "sha256": "9600c452f5a0c92aed1bb3a89c56dae607629d4ec0f77b3372d79df9fbd84354"
+    },
+    "Specialization/Status/Validation/Cases/B044_Crew_Projects.md": {
+      "source": "Specialization/Status/Validation/Cases/B044_Crew_Projects.md",
+      "sha256": "0e83a8add92701a93abef9fc53cf5a652914cc69a8cc42af289e955fd1413a7b"
+    },
+    "Specialization/Status/Validation/Cases/B033_Settler_Investment.md": {
+      "source": "Specialization/Status/Validation/Cases/B033_Settler_Investment.md",
+      "sha256": "fbec65ca3ea577ec6a8f30a121a0bc26bb54a06ef147708bcadd8da5180f5d3a"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B037_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B037_Local_Result.json",
+      "sha256": "4e1fdb9706b50dee87dcac15970915576f38a0a3a5e547021763d7cee9fbc08c"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B051_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B051_Local_Result.json",
+      "sha256": "87f5d1ed89f0805f2375b8892e1469e81aed43275ec4b25c5b4fae133fc864f8"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B029_New_Game_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B029_New_Game_Result.md",
+      "sha256": "ec10cad9c181e99edd9052bd077b6281629d310ed9bd5db1cb39781993437846"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B036_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B036_User_Result.md",
+      "sha256": "9dda8017097e0867e3920e016c9f8dc37f3d7e48138d047f9083e207e10de270"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B040_Visibility_Fix.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B040_Visibility_Fix.md",
+      "sha256": "157cd1e427a18a19a602abb8640e54f29d2fa1b1d59cf1e36aa8eaa91b1238f1"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B048_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B048_User_Result.md",
+      "sha256": "0dee907df7d04e0bfdd6d99a55b2acb54dd1d00736a684805ece594f25afda34"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B036_User_Confirmation.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B036_User_Confirmation.md",
+      "sha256": "0f3d9c9e5bc58389c42b11502ab3932ff3ce92f77cad58d05ac39a24e9030214"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B039_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B039_User_Result.md",
+      "sha256": "f293bbddf6b83346e6778274f69b34e879170a49bfd06b1eff1c93c967b094bb"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B048_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B048_Local_Result.json",
+      "sha256": "8ff56c4c1f142f4b262e0e26fd45452b21ec625f28a3b600e78cdf0d1a12e810"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B031_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B031_User_Result.md",
+      "sha256": "81cd933e39d5af5c6fe44790c905a363e694ce631e6e38bb0db172ff437e05de"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B024_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B024_User_Result.md",
+      "sha256": "3ff3c6324da7032e4bc77efc5e922df0a0c71d8e23dcda4ae60338e7c369f362"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_A007_NewGame_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_A007_NewGame_Result.md",
+      "sha256": "92b13e7d8c4edb6a23d59e390a36de82f126bfefa254cb539ee71bc1a7741961"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B040_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B040_User_Result.md",
+      "sha256": "d0288f422b3311e934fa3d1b508d7154c2953bb82a6fa65fee34b3f9f0e9dd7a"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B049_Notice_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B049_Notice_Local_Result.json",
+      "sha256": "ef726d11fec1a6978ced28d306682e4c18646f16f6ac8c53aadf0d200ebfac09"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B036_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B036_Local_Result.json",
+      "sha256": "8f570b7c0fa61756656e229cf61eb32c0878eea73b2ecec40bccd1e1712b02a9"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B030_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B030_User_Result.md",
+      "sha256": "a91ecab27a61fc52773e1c1ab33116e8bd314222aba693b5e9ec365b231ff15f"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B018_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B018_Local_Result.md",
+      "sha256": "e14e6fb236739c270ce1864380658cc1d965b4c6f42c8ca61d2a94f14c695de1"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B050_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B050_Local_Result.json",
+      "sha256": "5c097844484fb47a3f47aebef0db1f9b35d69e9d5f3c5c64cacc94c013264f43"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B029_Old_Save_Failure.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B029_Old_Save_Failure.md",
+      "sha256": "fece862c055e9ac9975cf1257f933b2e422eec48751254df7c1964fbd07ebe99"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B034_Local_Manifest.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B034_Local_Manifest.json",
+      "sha256": "1c170688862ea9c3b36f6195c18c1bc21279293f3be1793730d58c8ff20746b8"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B049_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B049_User_Result.md",
+      "sha256": "4d20ca80945510ac02731122de5c74230001dbf4437a52efd53a1163e84a0cac"
+    },
+    "Specialization/Status/Validation/Results/Specialization_D0013_Research_Protection.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_D0013_Research_Protection.json",
+      "sha256": "016659215bf07777a95644ed4a14f499bd4afe93bf76d5722e6986fddc477c10"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B037_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B037_User_Result.md",
+      "sha256": "a0ef392492e657d7f910742a04444e8778a3181443640fef27a848b91da5d544"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B022_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B022_User_Result.md",
+      "sha256": "852b5800ecdb4568c495f41ff07c92bc52c7653758ff7fd44851e61c3e34483c"
+    },
+    "Specialization/Status/Validation/Results/Specialization_D0010_Sync_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_D0010_Sync_Local_Result.json",
+      "sha256": "10b8c06a3376f190faa70ffcc49a33aa595b94263013128fbfc1cb9eeabd64e0"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B046_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B046_User_Result.md",
+      "sha256": "2c4d6e56687fe674d2876af142f5a79fd5cc93f6f7c73ef6cb2f22fa9fd61a9c"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B037_Promotion_User_Pass.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B037_Promotion_User_Pass.md",
+      "sha256": "95a3b47ae5354f617450cc46fcd91012212473313283fbe58895b6b2a51f6d83"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B017_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B017_Local_Result.md",
+      "sha256": "dae3912280c48fa64594fbf9311b4e46dad75508ce926046f3f0340cead5648e"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B049_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B049_Local_Result.json",
+      "sha256": "08dc119d8880dc7e872bcb3f710b8563d1957c9d1da02f7557ad1e26abf0d759"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_A007_Result_Analysis.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_A007_Result_Analysis.md",
+      "sha256": "5e01726c09f504507d45e7f9bda5ea78f41b7c932d761b37fa181e14efbe8ab6"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B035_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B035_Local_Result.json",
+      "sha256": "22bf0d8990b90fe416ae1bb430797d8a2a1ad424e4fe400780ff3172c0657671"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B035_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B035_User_Result.md",
+      "sha256": "c34fc6bd7ab5e572edc4de490ca33ff750dd056a6723bc6648b2a87a19e4ba92"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B020_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B020_User_Result.md",
+      "sha256": "fd27dbadd4fe79d8437590b9d0d5164528b4fb4a365c6d3200006b32b4a3d744"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B028_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B028_User_Result.md",
+      "sha256": "1eb2ad77c2264d7c8edfe22edf1bf707db4db94891ce0a9b42858eee30d1f679"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B043_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B043_User_Result.md",
+      "sha256": "89bb3efc93b70a8d46dd5590f130de92b09254cf9645ce90a79f1f5302c08779"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B027_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B027_User_Result.md",
+      "sha256": "36554c3f663d34f6ead84b78ede5ad5036fddeeaadc7f14630359e75582ecf8e"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B029_Fractional_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B029_Fractional_Result.md",
+      "sha256": "23e4c784fe4472aef6c79fe069e54fe47c4c15ccf0dc2543d7d54bb7664d9e0e"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B041_Partial_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B041_Partial_User_Result.md",
+      "sha256": "099931dd7c251135eb816ed3bda6dfe407c3cb16236bc7ee92620179d9a48a8c"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B016_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B016_Local_Result.md",
+      "sha256": "4becb0e0c06a85e416153f22b40dbbed066e528bd1a6189a44540c4d860dffb1"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B011_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B011_Local_Result.md",
+      "sha256": "74df7f7ede4165b5098aad3f6c41e13b6f44279b44d0798252780e1b697076d1"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B042_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B042_User_Result.md",
+      "sha256": "150bda0dcd021ba874b7fa0f54d4c72e77b70146fd2341d8630aa5eedccaba54"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B033_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B033_User_Result.md",
+      "sha256": "c00a28bad33ed93ed8a9ba2235906df63ff24c81fb73cacaa337cf5728ffe4cf"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B026_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B026_User_Result.md",
+      "sha256": "881dd52049ee0a6b78aebde2fc25f1df6f100b1df346cdc28ad02af696de04da"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B035_GPP_Refresh_Note.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B035_GPP_Refresh_Note.md",
+      "sha256": "db552c91c735c66b44c4d98bea0e7033664e9390d4c58f61439c10b5edba80ff"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B051_User_Failure.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B051_User_Failure.md",
+      "sha256": "5bd1930e94d96ad228d2d8fa54a6f84db29ab84d5f260fbb0e6de33f895b96bd"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B045_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B045_User_Result.md",
+      "sha256": "67aa18931a25847663ab24d1c632231d718b2e8efe6c4f26800421f57e2fdf9d"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B050_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B050_User_Result.md",
+      "sha256": "52a361259cb9ad42106c359f6df5f971d852fd426ca3e56d20e646a17c8ed434"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B021_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B021_User_Result.md",
+      "sha256": "ec62a383cd81c348db276c158a8c6ed9bb7ead953d99858efac37c442efbc6d1"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B034_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B034_User_Result.md",
+      "sha256": "402c4a4ed4ae8dbd0ddf16d185eb3c14427e84534cb008cce106923cb347fe3b"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B038_Population_Diagnostic_Local.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B038_Population_Diagnostic_Local.json",
+      "sha256": "e174beeb06b14730b76f244fad2df53151f601424814477a780dd6d823680fee"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B038_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B038_Local_Result.json",
+      "sha256": "aed1c1a8c1df0a210f1c368a4e75aeb1473fb06604e44a809150435b923d603d"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B015_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B015_User_Result.md",
+      "sha256": "4c8cd71290a49b9468719a3b57467d1bf5adc783a0bd1b0f8d0ec8993422a141"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B042_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B042_Local_Result.json",
+      "sha256": "60df0a1433cebd79fec573373f2b505c13485dfc3456b6be56292b4d977f0188"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B051_Copy_Diagnostic.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B051_Copy_Diagnostic.md",
+      "sha256": "ff41e94d5eab5b226693afd0dfd3c83439c83c5421611d252f73107e37011701"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B038_Culture_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B038_Culture_User_Result.md",
+      "sha256": "af5aea7b5684d9e28b1b61ee24bf781ae55e70bcb337d2bd98d8393efc35360a"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B014_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B014_Local_Result.md",
+      "sha256": "87d067165ef3a51bd84e4e987e39f0e331cb3db270823efcc6f945330c2a8a9d"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B041_Wonder_User_Pass.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B041_Wonder_User_Pass.md",
+      "sha256": "4d7c4b735addb8d85387930c8edbc233e2b696c7f46f0e092b682da9f40de243"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B047_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B047_Local_Result.json",
+      "sha256": "9871dc06acb47275d7d86a43c5738a32e6df00742aac0bc8b6530ddcc6f1c75a"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B012_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B012_User_Result.md",
+      "sha256": "c5a67b9b1d9c74d6adca8e90e5568bbccc98d9c94a89f9d598f7b746227cdd7b"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B013_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B013_User_Result.md",
+      "sha256": "a212813507a7d4888424b02a31a9f66d0142d5a35ce6092fa454b0fb0ab2b11e"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B039_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B039_Local_Result.json",
+      "sha256": "b57de1c2874a1c82f2089f03ec87ca99093b54a90525fe27484e17a163a857c2"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B013_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B013_Local_Result.md",
+      "sha256": "1fa977e2eef58d72fab9e11e3ae6dc0f709b3b949a0e1a367e0e2c9a9f92bdec"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_B005_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_B005_User_Result.md",
+      "sha256": "a7c3a79583d048bc5a1c24fcc06a0b58a56f1d55547ad43242803bd23b37bab4"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B043_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B043_Local_Result.json",
+      "sha256": "e675992cff98445906b25e0ae2d982728ac22991954a4cd7bf90c0699bcda52d"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B038_User_Anomaly.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B038_User_Anomaly.md",
+      "sha256": "026e318037f4d9394b5f6ee840217af39554dfbb249b86f157e9574978d6cc0a"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B023_Failure_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B023_Failure_Result.md",
+      "sha256": "9d6299920feb21640fd4fb5549abaa1d0ec810279d4f1255e60be194c66382ff"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B014_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B014_User_Result.md",
+      "sha256": "1ea246f1e8a9a0a96c8ef6b72f18790cc09c31b5576ec800cec3b17b4ec1a490"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B046_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B046_Local_Result.json",
+      "sha256": "56eb13a1ee22275ae1e6452a17e958fb135a0cdb17fa54162feeba8dce73f852"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B051_66_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B051_66_User_Result.md",
+      "sha256": "90acfc91281f0991f7af39f27e6f57f4d03635925c4f522f8ee462a0544540a9"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_B002_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_B002_User_Result.md",
+      "sha256": "423b4e0df86b97634f0d604bdaabcac1ec18a545fd56b1ad7d73e9797c1fbd25"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B016_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B016_User_Result.md",
+      "sha256": "171760dbd6edc90e2a07945e91d9fa077c128195da473bb0bb35694023d99dae"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B025_Failure_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B025_Failure_Result.md",
+      "sha256": "754b6e7440264a6bf429ccd5a182180e694c51c6b6dcfb0752a611c6bc37ea11"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_B008_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_B008_User_Result.md",
+      "sha256": "0a284806fe84c5d6706627faf2bb8dfc183b48f6c5b1a211cff5914f3a0d39e5"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B012_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B012_Local_Result.md",
+      "sha256": "111543cb04e265b999ea781ce8adc02659a7476494752f7c6353cea622b87d1f"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B040_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B040_Local_Result.json",
+      "sha256": "36a7b324c07b620a4a610b097ca520d7777d4b3faac1db665ad01f54507e7127"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B011_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B011_User_Result.md",
+      "sha256": "f0feb6c1573b5863d6dd2f2d090625b1476c5bdd3493faf3e583d62ab0310a99"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B035_Compact_Panel_Local.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B035_Compact_Panel_Local.json",
+      "sha256": "082c43d4bfc3da4f8cafd67198a1f52e691ed7ba8cf5975930539db3dda8f001"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_B007_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_B007_User_Result.md",
+      "sha256": "694aa5fda646fec3bad438fd05afdf6d3d7693ebae7275561b43726f9e55469e"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B045_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B045_Local_Result.json",
+      "sha256": "0cb5a4af59f1e1faebf5749a7e2f7059012c5f87edb1ce1b2b8c17e70c723a79"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B019_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B019_User_Result.md",
+      "sha256": "bfda7fc1a938d467cae0d86647452025d4806f05ce911e1fc7bf412a18e5ffbc"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B038_Population_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B038_Population_User_Result.md",
+      "sha256": "4aa7c4ba9d7b598a2c71214f663a68563b682c2af5e74410907ccc77a9d865f9"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B018_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B018_User_Result.md",
+      "sha256": "dc08bdc806cffb7467216eaeffb5f75a73d46c3f2254cc8f42e38b923a63fd48"
+    },
+    "Specialization/Status/Validation/Results/Specialization_City_State_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_City_State_Local_Result.md",
+      "sha256": "9357263a556c093eb7adf4165129aafc351f56574e0ca84418f0a1a561c36622"
+    },
+    "Specialization/Status/Validation/Results/Specialization_Network_Multisource_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_Network_Multisource_Local_Result.md",
+      "sha256": "a833c5d0dbd69e169e1288615404b5a39f194294b62bffe96849fe696e580763"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B041_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B041_Local_Result.json",
+      "sha256": "d60c4e7bacfaad343d4bce6b81fe7adfcb69dca25fb11e208bf93a64874c2d06"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B015_Local_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B015_Local_Result.md",
+      "sha256": "2e2925d053b8f9310e0060f07a0d7eacd1f21ed56d7094b1fc266a5a8e52216d"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B046_User_Clarification.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B046_User_Clarification.md",
+      "sha256": "24b354cf0221f7e62c6724359289755709ea86cb72a9e9e085349c34dd93044f"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B017_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B017_User_Result.md",
+      "sha256": "fb353adfad9f168be4c797492af97373215af1736ffb0fd1c19128dfc2ddf68a"
+    },
+    "Specialization/Status/Validation/Results/Specialization_P0_B009_User_Result.md": {
+      "source": "Specialization/Status/Validation/Results/Specialization_P0_B009_User_Result.md",
+      "sha256": "ad2fed3905ff0a15b24e53d060d19fd7adffbd34e1dacede838d4579a93ac719"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B044_Local_Result.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B044_Local_Result.json",
+      "sha256": "15d7282801bf68ceec942cb6827b91655b678c359965599959b6f813a293a5ed"
+    },
+    "Specialization/Status/Validation/Results/Specialization_B038_Culture_Calculation.json": {
+      "source": "Specialization/Status/Validation/Results/Specialization_B038_Culture_Calculation.json",
+      "sha256": "a0713ef1254c1beb4da9deb6036ef62b342508711aeab1a36a65b4f0ed543bdb"
+    },
+    "Specialization/Historical/README.md": {
+      "source": "Specialization/Historical/README.md",
+      "sha256": "cb632be0e60be876e2124a580afac7db4b9c4d448ad1a4e33ef96f58dc2a4483"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B005_Unit_Type_Fix.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B005_Unit_Type_Fix.md",
+      "sha256": "fb2ecae3c451edc9234450560799b630df5f6d90ec99784edfeaad49399d242c"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Batch_A.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Batch_A.md",
+      "sha256": "7ed9252c4825ab55fd5ebdfc8bac79c6411b6821ba023c388d2c72c3c7a0b9e5"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Network_Sqrt.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Network_Sqrt.md",
+      "sha256": "1a591c3a8ccb908487fca9bab6602f4ccbab891aad447a8733b0730fd98174bc"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Batch_B006.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Batch_B006.md",
+      "sha256": "c1f1a3655b51a9ad1a6fa50e49653accd1703a7a87adcdba26321f6e26c47354"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Shadow_Network_Integration.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Shadow_Network_Integration.md",
+      "sha256": "f01c03c6c4373031304276f6d7f109a6fdc809b252689a62076ccae11aa7c017"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B007_Background_Dispatch_Fix.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B007_Background_Dispatch_Fix.md",
+      "sha256": "dbc36d432e2ccb32859668444c9653dde8474fe86439de5e4e7106d823d64b22"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B009_Shadow_State.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B009_Shadow_State.md",
+      "sha256": "c6dc6e535cd30c73d325f9c1399c938913a204dcc6060bae2655a7e3914a1165"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_B004_Binary_Evidence.txt": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_B004_Binary_Evidence.txt",
+      "sha256": "3abebb621b13cddae4c8c50d24544036fcc799c0893c5629cae568c2803b3245"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_A005_Reading_Fix.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_A005_Reading_Fix.md",
+      "sha256": "7cf07d494f822715a55cb4455aa8728db9d163354e5c4ffbe3a1921638300636"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Marker_Storage.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Marker_Storage.md",
+      "sha256": "9c36a73749f490c7107986ee4cccd65d1ad7fe2a6944234558a3444360a4247c"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B010_City_Role_Facts.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B010_City_Role_Facts.md",
+      "sha256": "28a63d86dd5e60be40f427fa4cd85e4fe8b1eb5c66447f90e1da13b9341a6901"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_A006_Governor_Fix.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_A006_Governor_Fix.md",
+      "sha256": "d348eca97aaf82f644548b2330079f9937567a6288cfd01697df24def1a875ad"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B003_Readability.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B003_Readability.md",
+      "sha256": "edc40ddf16899eb69c4e2b1ba472f839c0c038395306ba734330818aacb87538"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_A007_Native_Governor.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_A007_Native_Governor.md",
+      "sha256": "8ac28c761c8bd7c7bedc6eaade74f090bf8effc687dd753cba793c40b7f97739"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B008_Batch_Flush.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B008_Batch_Flush.md",
+      "sha256": "f6544eafec2a971ec531bd83493ae0be23f53efffcd236a675b1fb55656a0b47"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Batch_A004.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Batch_A004.md",
+      "sha256": "3f1d19ea9b98d1888d7bf1306f5993cfe9e766540f56b7a7436daddd884c18e8"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Deferred_Cases.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Deferred_Cases.md",
+      "sha256": "7a8c8e902ab29218592ccd38a70bf3b17de05b237ced21019f2dbb9d0a94bcb1"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B008_User_Result.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B008_User_Result.md",
+      "sha256": "c2ddd25b656cf07a297dd777dc833246db05d3d3e70e46851700660578e18cfc"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B007_User_Result.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B007_User_Result.md",
+      "sha256": "87e9fa134ed7a5e201dd3c213ae6022384d4a7c7d41d6d339bbb09287768fcf2"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B002_Findings.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B002_Findings.md",
+      "sha256": "f8afa14845b43961012a43b22f2cd50a44e19621fd5fd36ca479f246c3a60433"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Batch_B001.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Batch_B001.md",
+      "sha256": "bd138f5abaad46c5221a83005b360a8ac1107b252b6a84e210c37369a3d6c99b"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B006_Background_Routes.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B006_Background_Routes.md",
+      "sha256": "0ebb407142ad0cffa0b1116948b8c89b267bf240213ffbb5e9e94e2b77732733"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_BTS_Background_Read.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_BTS_Background_Read.md",
+      "sha256": "91daf63bc7384154642f1bb6a1d8df3fb2e5ed871d551fa6335520b86ef82eb9"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B004_Trade_Route_State.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B004_Trade_Route_State.md",
+      "sha256": "230f6f7e70913ce340dc238ce587bfa799b65e64ef8c1c56281de3a937f1d91d"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_Batch_B004.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_Batch_B004.md",
+      "sha256": "a080c395273a1210b56858dc1bf00ce36de4c4615073104c594edee23622139e"
+    },
+    "Specialization/Historical/LegacyReports/Specialization_P0_B009_User_Result.md": {
+      "source": "Specialization/Historical/LegacyReports/Specialization_P0_B009_User_Result.md",
+      "sha256": "97c1f8ab906d8b539c35ed1f670db73a24bf7ce6c8d42bf446bcbd4d527a335e"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_fresh_agent_handoff.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_fresh_agent_handoff.md",
+      "sha256": "ff58a8fa5e9daf46fcd0994eb30222f5b6af03dfce077af98db1ddc5687c195f"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_fresh_agent_handoff.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_fresh_agent_handoff.md",
+      "sha256": "ac84b76962de163c5c33c137b6c572a3a737a55a59cd21361176aea072be2b73"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B012_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B012_user_review.md",
+      "sha256": "08ea147056850c42e5b6e1d560d7560f2bb3e62b564078d81ec70771ee6a2ccd"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B014.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B014.md",
+      "sha256": "1de5e5562adf732ee36c6ac63138655ce2f978eb7b98b4b308fb6bed039eacec"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B011_user_review_20260911.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B011_user_review_20260911.md",
+      "sha256": "db63a76fd7198f61d4e0608dfd6ddb3756ca8060ba6103da7c68bce64a411bde"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B015_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B015_user_review.md",
+      "sha256": "b2a194276b04293aa321caddbf4679ce0ec126f3b0fa097d4188cd68a26e4d66"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0007_before_completion_adapter.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0007_before_completion_adapter.md",
+      "sha256": "a687c39f4a1eafbc1ba91c1ca69bc409f0e13369305b7d76d4efe726bfd18136"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B013.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B013.md",
+      "sha256": "afb6a073396a356130560450be195f49a620b64213a1b3a20d39cf7349e0c4a6"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0112_before_B051_failure.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0112_before_B051_failure.md",
+      "sha256": "91ae1763b55204bf5a264cf073d4d186bd4eec99cb88d2b4fde0de47408d8c8e"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B015_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B015_user_review.md",
+      "sha256": "1dfac502659d9ca6ff167f1daf7a09ddcf546e06bae8d1947e79280c5f94f851"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_technical_before_A0009.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_technical_before_A0009.md",
+      "sha256": "deb3f2b838e14f98e599b6ad4be73909dfb86d53b62735a149e644f3560146d0"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B012_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B012_user_review.md",
+      "sha256": "f4b515d706161a31f333e9befae2ba6f574c52142e4b82835c27c548bb584c0e"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0006_before_city_state.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0006_before_city_state.md",
+      "sha256": "66410db39a7f6c05aab4faa51796815b53073d1ceb47d5bfd80094e90c0b78e6"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B012.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B012.md",
+      "sha256": "4878924b09caf7bdaacaead6efec40e93bf86354c9649bff90e7d415c3d8e7c9"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B013_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B013_user_review.md",
+      "sha256": "507d18740b05ccca44c1b11c5b8771cc94368a66330180a57370807db70da7a6"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0004_before_multisource.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0004_before_multisource.md",
+      "sha256": "6ed23f2313251b81e9045b5610c9e69920ae95ad48849927d3e2b3cd19a81512"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0008_before_B011.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0008_before_B011.md",
+      "sha256": "c3c8e52e1fd407880f0e411b3c08ef4efa3b6986cbb8bc2bd107f5d86fc75ab2"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0001_before_D0001_sync.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0001_before_D0001_sync.md",
+      "sha256": "e15cc943f480225bedba39051ad09c331f660c8411c286723105238147190820"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0005_before_completion_adapter.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0005_before_completion_adapter.md",
+      "sha256": "42916e75b5cb28b2a06d5a1b14e49503049c8bbdf3f4b2d2d43c842b576c4d74"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_A0009.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_A0009.md",
+      "sha256": "fd684903276b9e6adf21bcdac62369ea9c00cc1fa9a0ad043b41f35c902ed615"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B014_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B014_user_review.md",
+      "sha256": "f39e069930ebfe0da31eaa02705d50039740ac730d9271afcaee5e5183bc9caf"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_completion_history_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_completion_history_review.md",
+      "sha256": "58c1c783964e26570256796171310558e3c40dd5d1793ec29a8cf74dc82ca99e"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B014_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B014_user_review.md",
+      "sha256": "62a1d661f6301321a8944c550b27bcb01d63da612d9735f295114bcd0a72866c"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_A0010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_A0010.md",
+      "sha256": "e7c1d974cbf14d0f3246119790f4bf8ec6d40714a0abd573288bed0dcb8cc270"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0005_before_route_audit.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0005_before_route_audit.md",
+      "sha256": "b4e6ae00ad333a6b5a2429de4f5390cc477a5b464e97dfb27bc68c00ccea19f4"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_archive_binding.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_archive_binding.md",
+      "sha256": "8d3b097030e6a17d45de25f36126a92421a6c4d1620082140e6ab11bb4257ddd"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B013_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B013_user_review.md",
+      "sha256": "dcb0e67e3edaf5eceaff39b06341395a779cdd7197455b097d3e6d7813d92cbf"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B011_user_review_20260911.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B011_user_review_20260911.md",
+      "sha256": "dcf1931daaa8ef5e9c3ca87fde35b109c20d283b3d6ae2cb6647dc459e279dd9"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0006_before_B011.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0006_before_B011.md",
+      "sha256": "bb9fff7d248a78340f4d1228639b758bbe42ca30ffa7042988a209d2d949d6ac"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_completion_history_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_completion_history_review.md",
+      "sha256": "15e198a451f81b887f21d040476d390ba80f3433dcac8c1d67966fae832ab87d"
+    },
+    "Specialization/Historical/DocumentSnapshots/Technical_Index_before_completion_history_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Technical_Index_before_completion_history_review.md",
+      "sha256": "e8dfda9f28dbf4be2f8b39bfe4c12276b80647d03109f48ee7ab12c31a0328d2"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_through_B003.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_through_B003.md",
+      "sha256": "b51328d9b3ba04977c7b1a858539925d45ecb4f68aa19935af60fd64287c5144"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B012.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B012.md",
+      "sha256": "8a85fc2df0e36186dc98f5dd6b0899bde862e456342b964d072c6ad77a1965c9"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_A0009.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_A0009.md",
+      "sha256": "97e2a7fc848558ade121285addc310521f10992a16403bbf73b5d10e283740e9"
+    },
+    "Specialization/Historical/DocumentSnapshots/Technical_Index_before_fresh_agent_handoff.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Technical_Index_before_fresh_agent_handoff.md",
+      "sha256": "4b58fd9b9e089c26841c39f882ada95579300c6d93fc90cfaf8d11802409f178"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_phase1_B010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_phase1_B010.md",
+      "sha256": "a43517577b3cef5ac249efbf99a257d500518f2cec2fea2d3f0cae6b9cbc8a8a"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B013.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B013.md",
+      "sha256": "e49b97b797b0dda85b07776b2fcd952ffda6ee0bb52275eb77e1478d530f3428"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B014.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B014.md",
+      "sha256": "e3fe6a7edbe36fe56fc9efbc6a858d2a4747eda524eed2fb377623dcea1f840b"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_A0009.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_A0009.md",
+      "sha256": "eebe546950ae6abaed805ff878ced45141b4e16c5c97724c0ed42d95819f69e0"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_through_B003.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_through_B003.md",
+      "sha256": "6f7566c8da739cf8ac5effac532036d8a8895d7ecbb2bc97f3c8e14ea883813f"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_completion_history_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_completion_history_review.md",
+      "sha256": "8cdf6da4438c01907ea8950c8171198442608437a158171b938e568cc3e13ef4"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_A0010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_A0010.md",
+      "sha256": "3e026e5da1879f8631fb44093235e41e2606312d3e220fd54a419af2fc6b4867"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B014.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B014.md",
+      "sha256": "45848d114c438cd384c6a213b18417958e466dc340fe137e1106e236c7a21c0b"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0003_before_D0001_sync.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_S0003_before_D0001_sync.md",
+      "sha256": "85f3e08f8e1174d7c540b02b2ab86133d835b4a9e95a322b300b2586886d1d78"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_A0009.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_A0009.md",
+      "sha256": "dd2ad3bf2b2417cb16633b19ae927b80d25066b1b2bfdbc51f32ece6665b0c1c"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B013.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B013.md",
+      "sha256": "9eeb61d449e4e4b7527f96fbbf2f23fa0e95c9b59c6766ccaa53ea8e7815a986"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0004_before_city_state.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0004_before_city_state.md",
+      "sha256": "568e9dd6bcd38a8d0b74950f06f76e8e9a1e561e098cb96a7dbfeb524e863deb"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B011_user_review_20260911.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B011_user_review_20260911.md",
+      "sha256": "336b427263174de683bf507f9e497dec90bce2b540e6510f0e5ea4943cf16d04"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_phase1_B010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_phase1_B010.md",
+      "sha256": "c1f846d5211290455da9b1cbf656332b21fda6105d15c8632bebc5732707c3e0"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B012.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B012.md",
+      "sha256": "b76dac0d21bb5f2d01dc2850c7c50e1e4d9e7a115929d44ccc546b73caf45643"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_technical_before_A0010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_technical_before_A0010.md",
+      "sha256": "7a5c6f602f7d7449499a186bbc94e55e571ed3003a37934901e6ba5f70fd2ec2"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_archive_binding.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_archive_binding.md",
+      "sha256": "a068c8f8e1fdeb14a3eb880f0e631d53b1e2a3d2d58f9ce9e99be94dc072cdde"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B011_user_review_20260911.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B011_user_review_20260911.md",
+      "sha256": "b6bfbf6b4a477a57a677588d337e8ae7068bb60967da983ff3c6eeb5e04eaa0f"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B012.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B012.md",
+      "sha256": "66a579a89ffde1330429bf9f20f64b1a9b71adde6745e57bb62303ae429b301d"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B014_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B014_user_review.md",
+      "sha256": "c7d50e53997ce4e21f9f18725f644f502141fdc5c1d5f788b3d3353f920d828f"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B015_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B015_user_review.md",
+      "sha256": "858f14040785bfc9795c1603cfc569312888837f0faacccf2493ccc7cc1396ee"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_completion_history_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_completion_history_review.md",
+      "sha256": "6226b5087481c5d80a66830b51eab5fdb71a2b3e85b508c64e7d81f16bd0d72a"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B013_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B013_user_review.md",
+      "sha256": "42ae34a5e83561236f57ea82271a277d7a355fc41b4752c28622fc6707a19417"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_A0010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_A0010.md",
+      "sha256": "4c586284ca0ec69079a88b6d324f825670d162c26f0d587005a72ac7ff19374b"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B012_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B012_user_review.md",
+      "sha256": "3f81ba1a185af26b1f4e2106ffe55ca7088ae06973fabf711196dda4ecd261b6"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_fresh_agent_handoff.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_fresh_agent_handoff.md",
+      "sha256": "70c06bba9221c1724df146b9d5cb9acebafe58f2868394ebb1705a0aef88ff68"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B014.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_B014.md",
+      "sha256": "40a1ff81d3f3378d50778a62088fef1cf22a9bc3e5fefe168602388d8adb6dac"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_archive_binding.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_archive_binding.md",
+      "sha256": "b61d2f29af4ca6d3bc0c32329ee78ae674ec4caea0b1150688e4636a2aac32cf"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B013_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B013_user_review.md",
+      "sha256": "15da7f5cabb03b8893056a507c3017ff0bdbb0a62992ccf156deb35ecd8e662d"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_archive_binding.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_archive_binding.md",
+      "sha256": "d1e5873403583dd6ac7254d5e34089b7633f0c5f77dfcf83b72484be2d288551"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0003_before_route_audit.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0003_before_route_audit.md",
+      "sha256": "d85de5cd22a2834eff5022d60c63060b0f266c73bfa614d106fe77214f18482a"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md",
+      "sha256": "1266642548d1b8f0d9e20016b1377e6c7228bbb2aeecd7284e0b3b449ad7560f"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B012_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B012_user_review.md",
+      "sha256": "dde40c2d0b200d9f3f5a1fd46ba9f9803d0a17722419d2094fa1a399ae75c709"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_A0010.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_A0010.md",
+      "sha256": "b0e9342030630b2cbe2c1f169b3b796d72d61c84b8318999d9a78801703502b6"
+    },
+    "Specialization/Historical/DocumentSnapshots/AGENTS_before_B013.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/AGENTS_before_B013.md",
+      "sha256": "120b18240245991049c6b31ed49df1123dc3fb0c7096790615e8450b4cb2985f"
+    },
+    "Specialization/Historical/DocumentSnapshots/README_before_B014_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/README_before_B014_user_review.md",
+      "sha256": "b542a009307ff9fc470979690142413b582c1fd82e8aff7ba7bb33d33a294912"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B015_user_review.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_B015_user_review.md",
+      "sha256": "cbf9f1f9215abc92956ce98b7b311c4a79ea570297f039e3e8f112a5635435d8"
+    },
+    "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0002_before_multisource.md": {
+      "source": "Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_A0002_before_multisource.md",
+      "sha256": "d082a190fadd8e86c0221a90b87b4c72dcad78bcb1f8a9d9a26e62c2d98d8581"
+    },
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md": {
+      "source": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "sha256": "87f2a8ec37c84b4994f9723e55b49094bb2bb2f47bdfce836bf649836978c1a9"
+    },
+    "Specialization/Reports/Technical/Specialization_B049_Settler_UX_Lv4_Copy.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B049_Settler_UX_Lv4_Copy.md",
+      "sha256": "2f1ff454613431c06b61e19bc9d7db7695f349f38451b902f5552cd51a4a6c5c"
+    },
+    "Specialization/Reports/Technical/Specialization_D0014_All_District_Copy.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0014_All_District_Copy.md",
+      "sha256": "62ade566de12b3c0ab6bc19ba95d4a126c445b78bb15d4aabaeed91be6114565"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Binding_Recovery.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Binding_Recovery.md",
+      "sha256": "803c2706b2071bd585e70caf361a2b134c600985d7b6f891108ac1e3ec278493"
+    },
+    "Specialization/Reports/Technical/Specialization_HD_Sacrifice_Investment_Bridge.md": {
+      "source": "Specialization/Reports/Technical/Specialization_HD_Sacrifice_Investment_Bridge.md",
+      "sha256": "ae555e3d7c7d88a73968a2afa31a5fc89ab298004b12a43180133908b89333d2"
+    },
+    "Specialization/Reports/Technical/Specialization_P0_Network_Sqrt.md": {
+      "source": "Specialization/Reports/Technical/Specialization_P0_Network_Sqrt.md",
+      "sha256": "8179971c4a764eaddaaf327f073f0d18719a34878e38f80712e030a763741044"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Commit_Readback.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Commit_Readback.md",
+      "sha256": "1107ebae4d7f54b21da27162b2cc85178f6c51db3b12a5e7ae91b75aab3826fa"
+    },
+    "Specialization/Reports/Technical/Specialization_D0010_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0010_Architecture_Sync.md",
+      "sha256": "5088d18e751dddb6c30027cac887b1c1b32ea1c1a1f1362676796f428331dace"
+    },
+    "Specialization/Reports/Technical/Specialization_Eligibility_Lifecycle.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Eligibility_Lifecycle.md",
+      "sha256": "5413e945bce602664f2424516cb34b56365dd6c7fb3180751675d3f1c174010b"
+    },
+    "Specialization/Reports/Technical/Specialization_B044_Crew_Projects.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B044_Crew_Projects.md",
+      "sha256": "cec45369479077d634cacf2594212af771de6121a00eca998ceaf74621e4ff3b"
+    },
+    "Specialization/Reports/Technical/Specialization_B040_Unit_Sites.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B040_Unit_Sites.md",
+      "sha256": "146c36628f791b76d898bb8164d577c1140e6ceb2ff08fe1c1a5c4d8f3f553e3"
+    },
+    "Specialization/Reports/Technical/Specialization_B037_Governor_Promotion_Fix.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B037_Governor_Promotion_Fix.md",
+      "sha256": "55005531ebe716467c32555bca0ee572e6a2d8b98e4c16a6b6e88ca0c6165f7d"
+    },
+    "Specialization/Reports/Technical/Specialization_Eligibility_Carrier_Research.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Eligibility_Carrier_Research.md",
+      "sha256": "079a2fd21e624aed28e568921119909491d14ce178a7d359c69c8637129015ea"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Fact_Write_Plan.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Fact_Write_Plan.md",
+      "sha256": "137c198caff142a9e488e4ba5105397a7394e1e9af64e53a35b8f799f9468c1f"
+    },
+    "Specialization/Reports/Technical/Specialization_Standardization_Storage_Research.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Standardization_Storage_Research.md",
+      "sha256": "a223aabc0431b351d1c1b9c77a020abc7a4774b930c0466e7fa1cf1d47e2e6be"
+    },
+    "Specialization/Reports/Technical/Specialization_B029_Yield_Carrier.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B029_Yield_Carrier.md",
+      "sha256": "3787a930abd9f8b255b430890bf8ed389ebe7da7f806a4a22b5c63ae8340661b"
+    },
+    "Specialization/Reports/Technical/Specialization_D0007_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0007_Architecture_Sync.md",
+      "sha256": "ad3725364c9d594c34a0aecec077ffc1bbc5e7a9e31f0c6c2d0366cb105d32ec"
+    },
+    "Specialization/Reports/Technical/Specialization_B033_Settler_Investment.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B033_Settler_Investment.md",
+      "sha256": "fd1a6476838c22be2eae977b0c7bf5031fd3408db6287d873d562a761bbd3962"
+    },
+    "Specialization/Reports/Technical/Specialization_Fractional_PerPopulation_Evidence.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Fractional_PerPopulation_Evidence.md",
+      "sha256": "ac3a9e7230968ab46035cefd6965f6af14d59f49588e1b875b99c13da89d135a"
+    },
+    "Specialization/Reports/Technical/Specialization_Completion_History_Boundary.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Completion_History_Boundary.md",
+      "sha256": "cfd1194d0ccbfc60a3e96e2552950019b7e8a45a7a294d30d3e5b399a31abfed"
+    },
+    "Specialization/Reports/Technical/Specialization_D0002_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0002_Architecture_Sync.md",
+      "sha256": "ec75f6f20a0ff539f0b09994f02ffbbc4258e1e4ecdb7b92a7c8eae76dcaeb8e"
+    },
+    "Specialization/Reports/Technical/Specialization_Native_Fresh_Hook.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Native_Fresh_Hook.md",
+      "sha256": "aa0a4869c0533399b4a41385a22f977f27dc37bfc503f75cdeb64558758d82fa"
+    },
+    "Specialization/Reports/Technical/Specialization_B039_Construction_Injection.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B039_Construction_Injection.md",
+      "sha256": "433e6066d6560bf568300f63387c921ccff39c6f1a4b1bce3840f97cc7b02219"
+    },
+    "Specialization/Reports/Technical/Specialization_v01_Remaining_Work_Review.md": {
+      "source": "Specialization/Reports/Technical/Specialization_v01_Remaining_Work_Review.md",
+      "sha256": "946afcdedde3b677205ec0695a1e4deca54755ff87ba6b91c88a70fe58c95dd5"
+    },
+    "Specialization/Reports/Technical/Specialization_Settler_Investment_Executor.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Settler_Investment_Executor.md",
+      "sha256": "cb3ce71470e8ca5707f1abc19106394b3956bd333e498c0b3d4410ee6266dc28"
+    },
+    "Specialization/Reports/Technical/Specialization_B037_Lv3_Specialist_Support.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B037_Lv3_Specialist_Support.md",
+      "sha256": "fe4e4d70fb88bb0d680c5057c57f2ac36ee2b3e0975cc1c1355b6484e4b71bff"
+    },
+    "Specialization/Reports/Technical/Specialization_B019_Envelope_Probe.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B019_Envelope_Probe.md",
+      "sha256": "22e5e86a533e3e09c6971b4fa00e70be93428e653c50dec835034b914e3804ce"
+    },
+    "Specialization/Reports/Technical/Specialization_B041_Wonder_Bridge_Fix.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B041_Wonder_Bridge_Fix.md",
+      "sha256": "ec99425ce0d6d89f949d6e4a738bb46c4f28c54b34452b14662aea4f2f0773f1"
+    },
+    "Specialization/Reports/Technical/Specialization_B035_Compact_Panel.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B035_Compact_Panel.md",
+      "sha256": "c7875b9c47b06b5c7ea0c9da9d563b8de26aa8e568f1cf73f070045335e4c1f3"
+    },
+    "Specialization/Reports/Technical/Specialization_D0008_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0008_Architecture_Sync.md",
+      "sha256": "2f3c3a9f7baa55803286e4aa6818afb4e391e7761d34998c0c36657124809edc"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Property_Bridge.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Property_Bridge.md",
+      "sha256": "69faabbedcdb0bb5536fd0b50704e5fa551ac454d07a6e719ff41ad6bee65fda"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Event_Flow.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Event_Flow.md",
+      "sha256": "55600e40ca3971a30075e3cd9d0bb6f35b7eb23cdd90243736463faba740a72e"
+    },
+    "Specialization/Reports/Technical/Specialization_Current_Player_Roster.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Current_Player_Roster.md",
+      "sha256": "d8ab6616a07b67219827da57d180cf98a92f8c741fc2202f6c4cc35181359fae"
+    },
+    "Specialization/Reports/Technical/Specialization_B045_Crew_UX.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B045_Crew_UX.md",
+      "sha256": "c712a738876efed4071b9ba51e8dce20fad9d52b8b58fc5b1ec73fd72becf6a5"
+    },
+    "Specialization/Reports/Technical/Specialization_B043_Unit_Panel.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B043_Unit_Panel.md",
+      "sha256": "f8c0d6be4ecabc6dac9a45d2e50ce066800c72b64c78908b3a29beab170a8a9d"
+    },
+    "Specialization/Reports/Technical/Specialization_Unified_City_Envelope.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Unified_City_Envelope.md",
+      "sha256": "bc146c9d11daadbfb6506353d29b672854f9c1fc923117d992fab81882e6109d"
+    },
+    "Specialization/Reports/Technical/Specialization_Recorded_City_Commit.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Recorded_City_Commit.md",
+      "sha256": "131f4547647f5543a8f302e4f00c37b96cbab0939c034c64b1bff9cd02fd3238"
+    },
+    "Specialization/Reports/Technical/Specialization_B032_Effective_Facts.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B032_Effective_Facts.md",
+      "sha256": "347e42d73feb3da05e2c587601eb860cae8216f306eadeb97654b0595785d7fc"
+    },
+    "Specialization/Reports/Technical/Specialization_D0009_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0009_Architecture_Sync.md",
+      "sha256": "359dcb5a19f6874ee84606a232e49e9cb41946397f478e94e0a3af82f8f4f15a"
+    },
+    "Specialization/Reports/Technical/Specialization_B023_Auto_Constant_Lv1.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B023_Auto_Constant_Lv1.md",
+      "sha256": "a789108b477404e36240d35d68495db7b59698ce01290621f93a46ef88099ed3"
+    },
+    "Specialization/Reports/Technical/Specialization_B034_Lv2_Housing.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B034_Lv2_Housing.md",
+      "sha256": "b46bdb489ee27d7e1fa18c8207ba7ddba5828779013f7b418ad5314eca8f4c08"
+    },
+    "Specialization/Reports/Technical/Specialization_D0007_Eligibility_Model.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0007_Eligibility_Model.md",
+      "sha256": "e4753f8259bf9c0518012f890435acd02744c467c5cd43f9c3bf54c900910a9f"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Identity_Storage.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Identity_Storage.md",
+      "sha256": "110a3bba111978bc9ca0e99eae9bb1d4c0ac238864110c256a2bd482fe461a15"
+    },
+    "Specialization/Reports/Technical/Specialization_Trade_Authority_Second_Audit.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Trade_Authority_Second_Audit.md",
+      "sha256": "e267bd4c66fc45beff39e97af4a07a4e894b55c17fa0dcf315753cef5ed04dbd"
+    },
+    "Specialization/Reports/Technical/Specialization_P0_Marker_Storage.md": {
+      "source": "Specialization/Reports/Technical/Specialization_P0_Marker_Storage.md",
+      "sha256": "db75b20bed3fb6c6c73efd6772576635cf0ab513cc335e0dcb3b849facc3d268"
+    },
+    "Specialization/Reports/Technical/README.md": {
+      "source": "Specialization/Reports/Technical/README.md",
+      "sha256": "009e8297062130d317ff152efa0d95fed7619eedd571b0ae96c0564003e5a276"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Terminal_Record.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Terminal_Record.md",
+      "sha256": "1c0fc11f4513e30782f4b72c0818f9c8b0d88a7e22f399bb6f8e7510fdee631e"
+    },
+    "Specialization/Reports/Technical/Specialization_CommerceIV_Basis_And_Cycles.md": {
+      "source": "Specialization/Reports/Technical/Specialization_CommerceIV_Basis_And_Cycles.md",
+      "sha256": "ce813529c9e6f5d38a02d866eb0346005e6b97694d05088f127672c0497f1a29"
+    },
+    "Specialization/Reports/Technical/Specialization_B021_Normal_Load_Resume.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B021_Normal_Load_Resume.md",
+      "sha256": "74e97e93ae8d769251a1533830b526272ba60846682d1ab0a6278d54af8e2d0a"
+    },
+    "Specialization/Reports/Technical/Specialization_Implementation_Caveats.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Implementation_Caveats.md",
+      "sha256": "b0d330ff361358e5aaa7e42981bac0e49ce6be5559825a2b43e684146d134975"
+    },
+    "Specialization/Reports/Technical/Specialization_B031_Network_Report_Withdrawal.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B031_Network_Report_Withdrawal.md",
+      "sha256": "b7ba0b3bca01964da685f96e846be6131bd952dd917bcb8ce589277037ae10bc"
+    },
+    "Specialization/Reports/Technical/Specialization_D0005_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0005_Architecture_Sync.md",
+      "sha256": "24bbeef04a3f7ef4171f7841efe2725512dfe5ad6637be781c8e040fab026704"
+    },
+    "Specialization/Reports/Technical/Specialization_B041_Target_Markers.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B041_Target_Markers.md",
+      "sha256": "bf5a614ac3d99e58ca09a081b13dd6e71affecd88b5622fce02adb2186ce272b"
+    },
+    "Specialization/Reports/Technical/Specialization_B036_Industry_Lv1.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B036_Industry_Lv1.md",
+      "sha256": "eb8783ff1617c32594c02a355f4fd99dda8e617ba76321ca22a027f46703b9e9"
+    },
+    "Specialization/Reports/Technical/Specialization_B038_Population_Diagnostics.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B038_Population_Diagnostics.md",
+      "sha256": "eebaf3d6a18fb60303a6fd45eda43da94e5e35d9acd470b458f9caa8fe276812"
+    },
+    "Specialization/Reports/Technical/Specialization_B022_Research_Lv1_Yields.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B022_Research_Lv1_Yields.md",
+      "sha256": "4eba7fec324f6b2bda13b18c13815b98befb6fd7bc5d037557e223b2f583652e"
+    },
+    "Specialization/Reports/Technical/Specialization_B038_Lv3_Remaining_Effects.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B038_Lv3_Remaining_Effects.md",
+      "sha256": "9def22c7c912ddfe3c67fd7bbff1c3070daf28421ec48bcfbf23578e30e278ed"
+    },
+    "Specialization/Reports/Technical/Specialization_B027_Direct_Reception.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B027_Direct_Reception.md",
+      "sha256": "da42bdc00d6412a53c9a8eeb9bde19ba349c9b708fc4227e77c862e890c5732a"
+    },
+    "Specialization/Reports/Technical/Specialization_Pending_City_Recovery.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Pending_City_Recovery.md",
+      "sha256": "1006f67b9fddaf501e7a00d45ac1f10862ad4db42dfbc909234e3c77a38ff763"
+    },
+    "Specialization/Reports/Technical/Specialization_Network_Background_Source_Decision.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Network_Background_Source_Decision.md",
+      "sha256": "f56e12eb9c577ade15d483040b12b1bdc6122bf797959fc3c7d660da5d57dda1"
+    },
+    "Specialization/Reports/Technical/Specialization_B051_Automatic_Copy_Yields.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B051_Automatic_Copy_Yields.md",
+      "sha256": "0e0522ce1330f2999bcd04b7d3b786a699893ea0b346d4baca7cd9701cc7cdff"
+    },
+    "Specialization/Reports/Technical/Specialization_Trade_Authority_Second_Audit_Evidence.json": {
+      "source": "Specialization/Reports/Technical/Specialization_Trade_Authority_Second_Audit_Evidence.json",
+      "sha256": "91aef526f7fa91f8640417fdd6e11de18fd72f68df4a29c08cf6fd13626ada14"
+    },
+    "Specialization/Reports/Technical/Specialization_B030_Precision_Control.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B030_Precision_Control.md",
+      "sha256": "646b58fd654f7976328a50dba00a4ea90688d75b7ddf8aba10272338046ab51c"
+    },
+    "Specialization/Reports/Technical/Specialization_B050_Half_Yield_Experiment.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B050_Half_Yield_Experiment.md",
+      "sha256": "8a2df97eeecc9d6978f2e8d4dd564fb389b5f0115a7b5223850f811549b6431a"
+    },
+    "Specialization/Reports/Technical/Specialization_B026_Trade_Count_Fix.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B026_Trade_Count_Fix.md",
+      "sha256": "58ef43b39343a0a3dfd058f1de1323201ec49e29f1ec30318906883988b03c97"
+    },
+    "Specialization/Reports/Technical/Specialization_B051_Background_Fix.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B051_Background_Fix.md",
+      "sha256": "3e5ee2f4258bb550793967414ace09b9621deee95feca28f51ce57ff277d22c1"
+    },
+    "Specialization/Reports/Technical/Specialization_B025_Background_Network.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B025_Background_Network.md",
+      "sha256": "cf701c8a5aeab0a3d24fd1f1ab82dc7208150ec5fd29fcb9f2f7ffa1838fdb4a"
+    },
+    "Specialization/Reports/Technical/Specialization_District_Completion_Adapter.md": {
+      "source": "Specialization/Reports/Technical/Specialization_District_Completion_Adapter.md",
+      "sha256": "ae7d3f633f24b992b56f8b2a5a5a6bf7acc5d44cf28e869384377a14d82739ac"
+    },
+    "Specialization/Reports/Technical/Specialization_B028_Source_Yield_Probe.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B028_Source_Yield_Probe.md",
+      "sha256": "97bc68342fafc2e84cf4605cd0534af3bc78c2d826b8d6ba9cc9dd7765c65de2"
+    },
+    "Specialization/Reports/Technical/Specialization_Load_History_Ambiguity.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Load_History_Ambiguity.md",
+      "sha256": "cf6b464a12b96f6b3f8d944136c71b9332ea40c082262e0c97ae34af6c8be5aa"
+    },
+    "Specialization/Reports/Technical/Specialization_D0012_Integer_Crews.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0012_Integer_Crews.md",
+      "sha256": "7a44b1399829256edef866497f315e16c46d301711f3870d1c5623fc9b2087fd"
+    },
+    "Specialization/Reports/Technical/Specialization_D0004_Completion_Journal.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0004_Completion_Journal.md",
+      "sha256": "cb17d0fe7aa1c0a001dbab43ccb4ffc70c78c72fbb0939ce9a76d2ff7f24baa5"
+    },
+    "Specialization/Reports/Technical/Specialization_B020_City_Flow.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B020_City_Flow.md",
+      "sha256": "84006119a01017923383e463ab8ef717bcfbdfa33f116fe7300a6487f4168c66"
+    },
+    "Specialization/Reports/Technical/Specialization_B042_Crew_Unit_Actions.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B042_Crew_Unit_Actions.md",
+      "sha256": "e43f2d3b5ce87c631c4dbdbc349404e380ebe61c9383d2d91610d967312e7a57"
+    },
+    "Specialization/Reports/Technical/Specialization_Fresh_Agent_Handoff_Audit.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Fresh_Agent_Handoff_Audit.md",
+      "sha256": "a54dae910767b2e63b7b4d8ead7b9a91e2871530e74f899fd6d06633485918cc"
+    },
+    "Specialization/Reports/Technical/Specialization_D0001_Architecture_Sync.md": {
+      "source": "Specialization/Reports/Technical/Specialization_D0001_Architecture_Sync.md",
+      "sha256": "ae32c971fdea7bad8dc1f16586816050949eab1f981d44b42451d2dcf6853c20"
+    },
+    "Specialization/Reports/Technical/Specialization_City_Operation_Gate.md": {
+      "source": "Specialization/Reports/Technical/Specialization_City_Operation_Gate.md",
+      "sha256": "ffb5588cc7cc512ecfabf57a47e2960677cf22b76df13bda537016540f279326"
+    },
+    "Specialization/Reports/Technical/Specialization_Unit_Actions_And_Sites.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Unit_Actions_And_Sites.md",
+      "sha256": "3c4a0b2c3712683a56c6940c4caff236998f8d539678e97b2e4f908f0f6afb2d"
+    },
+    "Specialization/Reports/Technical/Specialization_B024_Auto_Scan_Fix.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B024_Auto_Scan_Fix.md",
+      "sha256": "60c8aabd6f8b0ae11a09653091d4825c020e1ad1e9824579c115832c6fc361e2"
+    },
+    "Specialization/Reports/Technical/Specialization_Unit_Action_Highlighting.md": {
+      "source": "Specialization/Reports/Technical/Specialization_Unit_Action_Highlighting.md",
+      "sha256": "d52dad89762ea55dfb7be2164d3ce9d311b5a85fe383b141e790fd5b6cf49fdc"
+    },
+    "Specialization/Reports/Technical/Specialization_P0_BTS_Background_Read.md": {
+      "source": "Specialization/Reports/Technical/Specialization_P0_BTS_Background_Read.md",
+      "sha256": "9529b1542eaf117cf802fd4f87139786105db94d70f49591b75a13a8831d9886"
+    },
+    "Specialization/Reports/Technical/Specialization_B035_Lv2_GPP.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B035_Lv2_GPP.md",
+      "sha256": "7159766fbf3277030b128546604f84758cd007706b59126e758237e782e659b7"
+    },
+    "Specialization/Reports/Technical/Specialization_B046_Project_Precision.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B046_Project_Precision.md",
+      "sha256": "8c28fc7f48137aa23a824bcaf8e88a4ddb9eec3083e37f0ba24cf55972984a3e"
+    },
+    "Specialization/Reports/Technical/Specialization_B048_Lv4_Percent.md": {
+      "source": "Specialization/Reports/Technical/Specialization_B048_Lv4_Percent.md",
+      "sha256": "781618b1c1d429ad36ed802a73be2057b0791b5310519e138a3a0814707d98f6"
+    },
+    "Specialization/Reports/Proposals/Specialization_Network_Connection_Distribution_Plan.md": {
+      "source": "Specialization/Reports/Proposals/Specialization_Network_Connection_Distribution_Plan.md",
+      "sha256": "92f1519da8728d7ed2b6b8062e01ede3cab8371ce9cd91b55ce612c54f4ede3d"
+    },
+    "Specialization/Reports/Proposals/Phase1_Path_Map.json": {
+      "source": "Specialization/Reports/Proposals/Phase1_Path_Map.json",
+      "sha256": "a3e948cfb5da97451da2f7ac49ffa2f1ab977c4d6a2d354da34bdae91c008ae0"
+    },
+    "Specialization/Reports/Proposals/Specialization_D0001_Draft_Review.md": {
+      "source": "Specialization/Reports/Proposals/Specialization_D0001_Draft_Review.md",
+      "sha256": "b5e0fa14d4a9b25b6d7f654e58e8c758807fb15a18e789a98bf9d545a6b17b6b"
+    },
+    "Specialization/Reports/Proposals/Specialization_Phase1_Migration_Report.md": {
+      "source": "Specialization/Reports/Proposals/Specialization_Phase1_Migration_Report.md",
+      "sha256": "fefca3584678179c5f790073bda09b5d5f395436629b6cfc4d9e996a7c24043e"
+    },
+    "Specialization/Reports/Proposals/Specialization_File_Structure_Proposal.md": {
+      "source": "Specialization/Reports/Proposals/Specialization_File_Structure_Proposal.md",
+      "sha256": "43e33361051ad8590dca1a3f6a6bbd22c67619ddcbf9c12ef149ff76b0b4872d"
+    },
+    "DevelopmentTests/PendingCityRecovery.lua": {
+      "source": "DevelopmentTests/PendingCityRecovery.lua",
+      "sha256": "7e05d598fc8df4e988e029859555d30433f1a0d2c4edb737bd9dbd08e89716df"
+    },
+    "DevelopmentTests/test_unit_action_site_policy.py": {
+      "source": "DevelopmentTests/test_unit_action_site_policy.py",
+      "sha256": "edd08010cc9527155b3d70a708a65823c32c10cdf5fea2e0f6758572e6c35dbc"
+    },
+    "DevelopmentTests/test_player_eligibility.py": {
+      "source": "DevelopmentTests/test_player_eligibility.py",
+      "sha256": "519063c5261a749edae37e2f934f809597acddcf927abda73185e3e4cf17846c"
+    },
+    "DevelopmentTests/IndustryNetwork.lua": {
+      "source": "DevelopmentTests/IndustryNetwork.lua",
+      "sha256": "8aeea4d496476b217adc3ae4bdd2731f9fe3163935220a2d5ad6b05172e87fe1"
+    },
+    "DevelopmentTests/test_conquest_initialization.py": {
+      "source": "DevelopmentTests/test_conquest_initialization.py",
+      "sha256": "62e9e19bda01f0aa963243db3c9d6dfbf218e616d05c73093ac831aea561c99c"
+    },
+    "DevelopmentTests/test_specialization_identity.py": {
+      "source": "DevelopmentTests/test_specialization_identity.py",
+      "sha256": "b21b88b7a923a3862719c47ebcce01975a9ec5a10346bf0e76e78cc66447d69b"
+    },
+    "DevelopmentTests/test_current_player_roster.py": {
+      "source": "DevelopmentTests/test_current_player_roster.py",
+      "sha256": "b4e86424d387ef9b3a0ad13375c84741dac3d8f61d37bab727ee6289686b478a"
+    },
+    "DevelopmentTests/test_crew_projects.py": {
+      "source": "DevelopmentTests/test_crew_projects.py",
+      "sha256": "ba5740ae54464c7adb89ebaf588e7e4e49f99c4e64049bc47afaee68b914e96d"
+    },
+    "DevelopmentTests/test_specialization_network.py": {
+      "source": "DevelopmentTests/test_specialization_network.py",
+      "sha256": "972dad5c8a46aa558eb0e6fa02b690ba948bf0bc716f9d12802f18932acb53a5"
+    },
+    "DevelopmentTests/CityEventFlow.lua": {
+      "source": "DevelopmentTests/CityEventFlow.lua",
+      "sha256": "9cbfdb1be63201a2d8cbf5bc8e9507f8ccfd7a7d682a8a5ad4e452acce7f2f52"
+    },
+    "DevelopmentTests/test_trade_route_probe.py": {
+      "source": "DevelopmentTests/test_trade_route_probe.py",
+      "sha256": "f99f71b123ed10418c59a161d1f82b4d1d867638bd2496ad7ca5f3b616071d4a"
+    },
+    "DevelopmentTests/test_background_network_sender.py": {
+      "source": "DevelopmentTests/test_background_network_sender.py",
+      "sha256": "c8281df971c2d4fd28a407ac11f3671ccc6e06ea6a517d903145a20ac9da1bb2"
+    },
+    "DevelopmentTests/ConvergencePlan.lua": {
+      "source": "DevelopmentTests/ConvergencePlan.lua",
+      "sha256": "4ef75e7c26864b804aefeacfcd4cb8a2f17e926020f5a9e14585a274fc381f3a"
+    },
+    "DevelopmentTests/snapshot_fixture.lua": {
+      "source": "DevelopmentTests/snapshot_fixture.lua",
+      "sha256": "1efca2f960d3e6888ec988ebc4ba19e1fc9161f87f2e426d0ccac1aa734251de"
+    },
+    "DevelopmentTests/test_network_bridge.py": {
+      "source": "DevelopmentTests/test_network_bridge.py",
+      "sha256": "d6a122c4eaece47566b3c281003beeefbaed28bbed77580e275cf585a1a5a38f"
+    },
+    "DevelopmentTests/test_city_event_flow.py": {
+      "source": "DevelopmentTests/test_city_event_flow.py",
+      "sha256": "24e24a9bea6f552535351ee626d604981f11a4766861db4a52dad33647007bff"
+    },
+    "DevelopmentTests/test_crew_integer_speed.py": {
+      "source": "DevelopmentTests/test_crew_integer_speed.py",
+      "sha256": "1409c5ba3db797264359c4914f39d342c0c12d0a31501ad74a813eb12a8d7cd3"
+    },
+    "DevelopmentTests/test_b049_network_notice.py": {
+      "source": "DevelopmentTests/test_b049_network_notice.py",
+      "sha256": "13f2b49ffb0d6d77c0f6baa143b31885040af74b7970c58da11b30496cac1a70"
+    },
+    "DevelopmentTests/test_unified_city_envelope.py": {
+      "source": "DevelopmentTests/test_unified_city_envelope.py",
+      "sha256": "d3ef4402510bf130e6b0da2c4c32ba05e053ab92bcb255565b354ffda008cec2"
+    },
+    "DevelopmentTests/test_city_terminal_record.py": {
+      "source": "DevelopmentTests/test_city_terminal_record.py",
+      "sha256": "36f6856de955c95998bab2103b21f3e6a00ba783c6a755794e8d2135e78e422c"
+    },
+    "DevelopmentTests/SettlerInvestmentExecutor.lua": {
+      "source": "DevelopmentTests/SettlerInvestmentExecutor.lua",
+      "sha256": "56d95b24dd2b072189b9d4767b72f397e88cc27b8f05dc67fd1960779d325e28"
+    },
+    "DevelopmentTests/test_envelope_probe.py": {
+      "source": "DevelopmentTests/test_envelope_probe.py",
+      "sha256": "fb1c642eba647fdda39a53d1110571d6e1b766578f534fc70fb36e61568d444c"
+    },
+    "DevelopmentTests/test_industry_support.py": {
+      "source": "DevelopmentTests/test_industry_support.py",
+      "sha256": "f77bee0546966ac9b21a3db5c980decd29cd34dabaa5d49bbf7801349a936045"
+    },
+    "DevelopmentTests/test_compact_p0_panel.py": {
+      "source": "DevelopmentTests/test_compact_p0_panel.py",
+      "sha256": "918df70852567c984318f638ec189e8860fdcad08a846f129a8eb39ba3625c50"
+    },
+    "DevelopmentTests/InvestmentStoreBridge.lua": {
+      "source": "DevelopmentTests/InvestmentStoreBridge.lua",
+      "sha256": "655a97e3acf2239a8dd1a054cf46cb57b30119e399086441b20867ea8443b2cc"
+    },
+    "DevelopmentTests/test_qualification_probe.py": {
+      "source": "DevelopmentTests/test_qualification_probe.py",
+      "sha256": "d00b638f275dd16b0ca6e1d5a7a12c238259075e95aa2a434ed7318f305dc4e3"
+    },
+    "DevelopmentTests/test_completion_probe.py": {
+      "source": "DevelopmentTests/test_completion_probe.py",
+      "sha256": "f804e8d74ce3776188807b7123cdfe91c215667b4805622c30b281421d504e36"
+    },
+    "DevelopmentTests/test_effective_facts.py": {
+      "source": "DevelopmentTests/test_effective_facts.py",
+      "sha256": "c5bf1fc2620f385476171474922f9da2dccfcc88ef23f631ea54c55743ebfdd0"
+    },
+    "DevelopmentTests/test_eligibility_carrier.py": {
+      "source": "DevelopmentTests/test_eligibility_carrier.py",
+      "sha256": "a51b5d1cb00ac16a6604c7a37bbb256e8142612f585ba2c1edd156165bd5be3a"
+    },
+    "DevelopmentTests/test_lv2_gpp.py": {
+      "source": "DevelopmentTests/test_lv2_gpp.py",
+      "sha256": "f2b697c2f8df31644755f9e0c590afcf9b5bc7445d441206e565a53da7f0da70"
+    },
+    "DevelopmentTests/test_lv3_population_diagnostics.py": {
+      "source": "DevelopmentTests/test_lv3_population_diagnostics.py",
+      "sha256": "4078aecf2d1e9bc81cd4505a444f6e2ecea5cbc45af872c89293183fb93d24ea"
+    },
+    "DevelopmentTests/test_unit_targets_wonder_bridge.py": {
+      "source": "DevelopmentTests/test_unit_targets_wonder_bridge.py",
+      "sha256": "e5b031d2118bbc6181cb5b5ed39fce42cecdd8b6e3a59676c88be84e201e0736"
+    },
+    "DevelopmentTests/StandardizationLedger.lua": {
+      "source": "DevelopmentTests/StandardizationLedger.lua",
+      "sha256": "04740abb415c3820c7dd34fe57b4d1d77057280876dc266ff7127af14e07bde6"
+    },
+    "DevelopmentTests/test_source_yield_probe.py": {
+      "source": "DevelopmentTests/test_source_yield_probe.py",
+      "sha256": "1ae78d01d84650ed07d15c1e7fe43641c2fecf4a3246c93ae4a42a7e29f09f7b"
+    },
+    "DevelopmentTests/ConquestInitialization.lua": {
+      "source": "DevelopmentTests/ConquestInitialization.lua",
+      "sha256": "c97e42a6f32610bcb8c5ef210b190325e52ac21f7499a6d6d09d135323c9c698"
+    },
+    "DevelopmentTests/TradeRouteState.lua": {
+      "source": "DevelopmentTests/TradeRouteState.lua",
+      "sha256": "7ddc356310ba11015ca87fd5df2e0007ec5e69b7be1e984b3d5f2fbe74a565c5"
+    },
+    "DevelopmentTests/test_yield_carrier_probe.py": {
+      "source": "DevelopmentTests/test_yield_carrier_probe.py",
+      "sha256": "a00f0eb1fedf54c1dc84eac97268d350aad0948539c5cc0d3c1e18a54e939ad5"
+    },
+    "DevelopmentTests/test_trade_route_state.py": {
+      "source": "DevelopmentTests/test_trade_route_state.py",
+      "sha256": "5922942ddb5b1e5953779e6c5d0a00be8cbf34fe432c3ca8c47fd21d63e6146a"
+    },
+    "DevelopmentTests/test_city_binding_recovery.py": {
+      "source": "DevelopmentTests/test_city_binding_recovery.py",
+      "sha256": "aa0b17dd7ce5dbe7357d8661d72cc0eba59e655c23130f150f569fc88395e719"
+    },
+    "DevelopmentTests/NetworkStrength.lua": {
+      "source": "DevelopmentTests/NetworkStrength.lua",
+      "sha256": "77e72a0ed7659ba04b5f6b2f524aa03eca1892abec0d08cbec450f1d9db4e581"
+    },
+    "DevelopmentTests/test_unit_targets.py": {
+      "source": "DevelopmentTests/test_unit_targets.py",
+      "sha256": "b529047a5409fb94409101ba5e02ab026c0a31ad16bfde82bfd9c671b3c91a0d"
+    },
+    "DevelopmentTests/CityOperationGate.lua": {
+      "source": "DevelopmentTests/CityOperationGate.lua",
+      "sha256": "31e3cdff95407955ca3bc6893287991e3565b073ea93001e592b343fb9644c3c"
+    },
+    "DevelopmentTests/test_eligibility_lifecycle.py": {
+      "source": "DevelopmentTests/test_eligibility_lifecycle.py",
+      "sha256": "27a4a4248e61ff48f5b69c38c1c1263fac5d5bf6d89c778209cbed44656a168a"
+    },
+    "DevelopmentTests/test_d0005_models.py": {
+      "source": "DevelopmentTests/test_d0005_models.py",
+      "sha256": "e6dcc8ff10be5d2cea7a84295bb9a057789e02c7ea2c41c83b413519648a95a1"
+    },
+    "DevelopmentTests/test_crew_unit_actions.py": {
+      "source": "DevelopmentTests/test_crew_unit_actions.py",
+      "sha256": "78c55d1ebf954aa47b006071a4fb482aa12d41d32913c0179938dab43275fc27"
+    },
+    "DevelopmentTests/CityBindingRecovery.lua": {
+      "source": "DevelopmentTests/CityBindingRecovery.lua",
+      "sha256": "8aa61da6b6b3888b9b9eacd6b2dbbf394d3f5134278220178b9cde73950c1572"
+    },
+    "DevelopmentTests/test_district_family.py": {
+      "source": "DevelopmentTests/test_district_family.py",
+      "sha256": "46c3ed14987d7a3f6f8cba14870720923ebfa11f1f6cdeea3f745ff0c411f311"
+    },
+    "DevelopmentTests/test_b049_settler_copy.py": {
+      "source": "DevelopmentTests/test_b049_settler_copy.py",
+      "sha256": "7c204fdf822d32dda46ac5a7e5c602caecc5283d6fc6807a3ef108f187df5a7c"
+    },
+    "DevelopmentTests/test_shadow_route_state.py": {
+      "source": "DevelopmentTests/test_shadow_route_state.py",
+      "sha256": "af6e06acfd709fbfc03764c569849002c915dc70a67f075ca2360e6b16edf5eb"
+    },
+    "DevelopmentTests/test_auto_constant_support.py": {
+      "source": "DevelopmentTests/test_auto_constant_support.py",
+      "sha256": "4b30dc58298243440f93c407ad343a2d6dc1e8ea7ff6b9f881becfd457479482"
+    },
+    "DevelopmentTests/test_lv3_governor_promotion.py": {
+      "source": "DevelopmentTests/test_lv3_governor_promotion.py",
+      "sha256": "e1c9e5bf100e2f09a0deb8cc1949f2b9befadb2b2764fd3ae94685abee1b7c67"
+    },
+    "DevelopmentTests/test_b051_copy_yields.py": {
+      "source": "DevelopmentTests/test_b051_copy_yields.py",
+      "sha256": "b468ee9a57a046d02a634453b689386fdc11f85ce780359281b9ed2851ff34a0"
+    },
+    "DevelopmentTests/DistrictCompletionCandidate.lua": {
+      "source": "DevelopmentTests/DistrictCompletionCandidate.lua",
+      "sha256": "808a22d897a6c8723fdca0bbabc9182e0473eb18a196316241257667f6e3aeda"
+    },
+    "DevelopmentTests/test_crew_ux.py": {
+      "source": "DevelopmentTests/test_crew_ux.py",
+      "sha256": "d57eb4f3cc8e76311ef22930a41cf2807c3c1ef8808b451eed3c95572cd694d8"
+    },
+    "DevelopmentTests/test_city_flow_probe.py": {
+      "source": "DevelopmentTests/test_city_flow_probe.py",
+      "sha256": "0865457aeb8708619e24b85b22fbd8983ef845aa6cf3076d4f8af77936cf0194"
+    },
+    "DevelopmentTests/test_crew_precision.py": {
+      "source": "DevelopmentTests/test_crew_precision.py",
+      "sha256": "ecaebd663af7353f108b705a88dab0242625f1608a0854887c0e55dc866faa1e"
+    },
+    "DevelopmentTests/test_lv2_housing.py": {
+      "source": "DevelopmentTests/test_lv2_housing.py",
+      "sha256": "16bd4e4b9a320a7825ac2352f76008d282ce8342d086f991aab9453604c65ad2"
+    },
+    "DevelopmentTests/test_precision_control.py": {
+      "source": "DevelopmentTests/test_precision_control.py",
+      "sha256": "ab45fba102eb734a20605e4cb2f921f4b0f19171b0eb0ff561432ed0af78cc78"
+    },
+    "DevelopmentTests/test_city_role_facts.py": {
+      "source": "DevelopmentTests/test_city_role_facts.py",
+      "sha256": "440fd099228246d66ccd651fdce54a986c9923bfabf03cbc9ac242c4265b3c9a"
+    },
+    "DevelopmentTests/test_eligibility_probe.py": {
+      "source": "DevelopmentTests/test_eligibility_probe.py",
+      "sha256": "098b50db7b7178e014b03ccd0e041e8ef086df1e4a43ea3784ccba5d409205b2"
+    },
+    "DevelopmentTests/test_d0009_network_runtime.py": {
+      "source": "DevelopmentTests/test_d0009_network_runtime.py",
+      "sha256": "5319431df4c127e47f8096aa3a6e0c0f12a474f9bbb6b224dbc698063c287cd4"
+    },
+    "DevelopmentTests/README.md": {
+      "source": "DevelopmentTests/README.md",
+      "sha256": "8010281a4a419230763201000aa7ced40fd36e588e142922a2fd21db96548a66"
+    },
+    "DevelopmentTests/test_city_flow_resume.py": {
+      "source": "DevelopmentTests/test_city_flow_resume.py",
+      "sha256": "e407aba230ddc103b360be067a8c52adfeb5dabfa23f57aaf6e14107bd0eaece"
+    },
+    "DevelopmentTests/test_network_gameplay_count_fix.py": {
+      "source": "DevelopmentTests/test_network_gameplay_count_fix.py",
+      "sha256": "0b83837984c728d7d3156b311e4ad010600552bdab9232ae007fa0b43aae74c9"
+    },
+    "DevelopmentTests/test_specialization_p0.py": {
+      "source": "DevelopmentTests/test_specialization_p0.py",
+      "sha256": "3eee2e496da98b7418710218bf76c1e5195ef2de42cbe739c3811639024649b6"
+    },
+    "DevelopmentTests/NetworkState.lua": {
+      "source": "DevelopmentTests/NetworkState.lua",
+      "sha256": "d41a8e88f1fd7704e116d9f23d8e3153bc42b3385d001334b63421d2bcad4570"
+    },
+    "DevelopmentTests/test_city_operation_gate.py": {
+      "source": "DevelopmentTests/test_city_operation_gate.py",
+      "sha256": "1227ca2c2d9b583da4519de390e87e082e7d5e29b12473e5e3022a84080de7c9"
+    },
+    "DevelopmentTests/NativeFreshHookCandidate.lua": {
+      "source": "DevelopmentTests/NativeFreshHookCandidate.lua",
+      "sha256": "908d7f046aeac36ff07e193d3b2984c7f415fea86584bf91823e6f581a2134a3"
+    },
+    "DevelopmentTests/test_lv4_percent.py": {
+      "source": "DevelopmentTests/test_lv4_percent.py",
+      "sha256": "31b068b7459cac1e6390852e147ce0b0298d59f600a5f5e20825383bcec48c48"
+    },
+    "DevelopmentTests/test_unit_panel_actions.py": {
+      "source": "DevelopmentTests/test_unit_panel_actions.py",
+      "sha256": "48dec1f19762ff2a31362006409b1c2f27ff8ae8df428f3896e6d61e301440c4"
+    },
+    "DevelopmentTests/test_auto_support_scan_fix.py": {
+      "source": "DevelopmentTests/test_auto_support_scan_fix.py",
+      "sha256": "9518e3b5072cb26342f0867432a54dd520a8f4e6ed42615b3fceff308fe80d1e"
+    },
+    "DevelopmentTests/PlayerEligibility.lua": {
+      "source": "DevelopmentTests/PlayerEligibility.lua",
+      "sha256": "8ffefbf34c7b6a01929b62229a4f713093373820479ca28b4c40dc17e0c31dff"
+    },
+    "DevelopmentTests/test_city_property_bridge.py": {
+      "source": "DevelopmentTests/test_city_property_bridge.py",
+      "sha256": "d222d776f66b7437e00e5895a774f69c9b339c82c0895672beed05f86a81169a"
+    },
+    "DevelopmentTests/test_unit_site_probe.py": {
+      "source": "DevelopmentTests/test_unit_site_probe.py",
+      "sha256": "e743a3c5472fd1705a1052f16698684fb3d450b6422563f70a839838ed504936"
+    },
+    "DevelopmentTests/test_city_identity_registry.py": {
+      "source": "DevelopmentTests/test_city_identity_registry.py",
+      "sha256": "3ad09e7d4bd22c5952078b52f09d18f75bc686965c6cf5eb5eaa3f55156a8486"
+    },
+    "DevelopmentTests/test_native_investment.py": {
+      "source": "DevelopmentTests/test_native_investment.py",
+      "sha256": "46098cd2fb23e3d4b7425ccbdc64d58960b30be485f337a26608f587c4a9c081"
+    },
+    "DevelopmentTests/test_unit_site_visibility.py": {
+      "source": "DevelopmentTests/test_unit_site_visibility.py",
+      "sha256": "de669a8dea2cd8e696a2b3b82b2cebef7c378103b75bc4ffe98de8faec00fb63"
+    },
+    "DevelopmentTests/test_load_history_ambiguity.py": {
+      "source": "DevelopmentTests/test_load_history_ambiguity.py",
+      "sha256": "ef306e5b33aeba74866fbee2767e00c7c29a76a96b922db6ab4dbe8b27b8bd6c"
+    },
+    "DevelopmentTests/test_city_commit_readback.py": {
+      "source": "DevelopmentTests/test_city_commit_readback.py",
+      "sha256": "22e9ad1c20e6d07156ce867ab8ad4c661d89ebf764ec77d77a13895514c641e3"
+    },
+    "DevelopmentTests/test_city_completion_journal.py": {
+      "source": "DevelopmentTests/test_city_completion_journal.py",
+      "sha256": "2f39b21f4ac6f0ad88606ba826fbb68e9fb8d42a9ecb3eb1b7eab242659a2c8e"
+    },
+    "DevelopmentTests/test_city_specialization_state.py": {
+      "source": "DevelopmentTests/test_city_specialization_state.py",
+      "sha256": "791bdc42b8c5e3f19276a51e8ca45a7347a1513c67aa5778d9fa001c877722e4"
+    },
+    "DevelopmentTests/test_city_fact_write_plan.py": {
+      "source": "DevelopmentTests/test_city_fact_write_plan.py",
+      "sha256": "27c96ef7ffa8feace140a91f73d250d98295735ab70b31103bf3d939c0968660"
+    },
+    "DevelopmentTests/test_convergence_plan.py": {
+      "source": "DevelopmentTests/test_convergence_plan.py",
+      "sha256": "72acbb5652b28c865f0c8acb0b8dbd5903341b4c9f1bae623f6ea107ccdb7b39"
+    },
+    "DevelopmentTests/test_city_journal_probe.py": {
+      "source": "DevelopmentTests/test_city_journal_probe.py",
+      "sha256": "d955e11908aefcbd6456a9d57704b994626a3bade5a8d9328d4cb2a942296587"
+    },
+    "DevelopmentTests/test_recorded_city_commit.py": {
+      "source": "DevelopmentTests/test_recorded_city_commit.py",
+      "sha256": "e84e8b64ff31cdb98ad95461b1319c4c8cbdbfd2390335f69f7edc6fb4ad15a5"
+    },
+    "DevelopmentTests/test_construction_probe.py": {
+      "source": "DevelopmentTests/test_construction_probe.py",
+      "sha256": "04a41c9bd38b63f6236f48b0e953916ccf852d275c3e8eb68e378ef4b46df78f"
+    },
+    "DevelopmentTests/CitySpecializationState.lua": {
+      "source": "DevelopmentTests/CitySpecializationState.lua",
+      "sha256": "31bb7bcd02a531bfc99adda8f92752cfecf1cc89cd8a65508d854506f1c8df9b"
+    },
+    "DevelopmentTests/test_lv3_support.py": {
+      "source": "DevelopmentTests/test_lv3_support.py",
+      "sha256": "e27459ef3d6a627543c1d214214af7e0d6f5e931d4715fc326499a7f471743aa"
+    },
+    "DevelopmentTests/test_binding_probe.py": {
+      "source": "DevelopmentTests/test_binding_probe.py",
+      "sha256": "68bdc2bafea1789e796ecf7389bfeb80612363dcc86cecec8d8263aad6ee7043"
+    },
+    "DevelopmentTests/test_network_multisource.py": {
+      "source": "DevelopmentTests/test_network_multisource.py",
+      "sha256": "846386ea13af29d38a6f5b2332f2c33ac814483f04436990a88af121e8c43561"
+    },
+    "DevelopmentTests/CurrentPlayerRoster.lua": {
+      "source": "DevelopmentTests/CurrentPlayerRoster.lua",
+      "sha256": "f8db958028fdbbba52fd4ecdb4dc59eb77e42fe9bd3d7133c219098cef9be81d"
+    },
+    "DevelopmentTests/test_network_report_withdrawal.py": {
+      "source": "DevelopmentTests/test_network_report_withdrawal.py",
+      "sha256": "7c8dfbec9ff0e7e0c73055dc00ee90b08874c438fc9f90e633cfa306ebc65880"
+    },
+    "DevelopmentTests/test_completion_record_probe.py": {
+      "source": "DevelopmentTests/test_completion_record_probe.py",
+      "sha256": "83ea8e429d75be3e7a6d9bcbb7540fab4b0556a2fa80b18865250ade001efc14"
+    },
+    "DevelopmentTests/test_b051_all_districts.py": {
+      "source": "DevelopmentTests/test_b051_all_districts.py",
+      "sha256": "fdbe8f62ec5661895e5d5a92eb6d81e4bcd3ef5473db5bb2dc81be360f3b1fe8"
+    },
+    "DevelopmentTests/test_pending_city_recovery.py": {
+      "source": "DevelopmentTests/test_pending_city_recovery.py",
+      "sha256": "0cebd2d732713fed0f93bd14997aa39cf093df6feda9f37a394b1e9a805d87c7"
+    },
+    "DevelopmentTests/test_b050_half_standardization.py": {
+      "source": "DevelopmentTests/test_b050_half_standardization.py",
+      "sha256": "b20ab43023fb4189ee2feae442d617ac7dd678d837a0070acd068d8f1fc77ea0"
+    },
+    "DevelopmentTests/CityIdentityRegistry.lua": {
+      "source": "DevelopmentTests/CityIdentityRegistry.lua",
+      "sha256": "309b103eaa6a784ffb351172a971afee627135a8968c1e534bf0cd5be5181ce6"
+    },
+    "DevelopmentTests/test_settler_investment_executor.py": {
+      "source": "DevelopmentTests/test_settler_investment_executor.py",
+      "sha256": "2f5a495c3776c82a2498f33df893d953a40fb0c02faf0e5872d30eb6baecf350"
+    },
+    "DevelopmentTests/test_lv3_effects.py": {
+      "source": "DevelopmentTests/test_lv3_effects.py",
+      "sha256": "b8da80c7db76f85e176237a11c20c90fe46de300f78935c1f0a0f2e98fe17edb"
+    },
+    "DevelopmentTests/test_native_fresh_hook.py": {
+      "source": "DevelopmentTests/test_native_fresh_hook.py",
+      "sha256": "2cc61495b3682e938683d8e2f36e882eeca350dcec5cbaecbc5cfa6225ca4c26"
+    },
+    "DevelopmentTests/DistrictFamily.lua": {
+      "source": "DevelopmentTests/DistrictFamily.lua",
+      "sha256": "7e472bc4e6434e9426b1332d4e8ea5f50ae4e23b0371f800bec2233a1ca31e93"
+    },
+    "DevelopmentTests/CityCompletionJournal.lua": {
+      "source": "DevelopmentTests/CityCompletionJournal.lua",
+      "sha256": "4e1a0d03b4162aa50334d3939b5cc0ab92ae06ff69d2605172894354d35dc79a"
+    },
+    "DevelopmentTests/test_shadow_network_state.py": {
+      "source": "DevelopmentTests/test_shadow_network_state.py",
+      "sha256": "93de8127fc2217cf071c371e5dd6e9608e313b856159219cef43d3118e649cd4"
+    },
+    "DevelopmentTests/EligibilityCarrierCandidate.lua": {
+      "source": "DevelopmentTests/EligibilityCarrierCandidate.lua",
+      "sha256": "2e7a7184917fc13492478215c211078e830f9faa1e96146c59848aa5b57bfabb"
+    },
+    "DevelopmentTests/UnifiedCityEnvelope.lua": {
+      "source": "DevelopmentTests/UnifiedCityEnvelope.lua",
+      "sha256": "72aa6d79b87bc19cbec4fc3f7cccf625aa11507f949da8de181cb5837a704246"
+    },
+    "DevelopmentTests/test_investment_store_bridge.py": {
+      "source": "DevelopmentTests/test_investment_store_bridge.py",
+      "sha256": "66b0be9c500876dbb14e5e5f1e7c4baa42b41eb2b272016d79135f02bc865b2c"
+    },
+    "DevelopmentTests/test_storage_probe.py": {
+      "source": "DevelopmentTests/test_storage_probe.py",
+      "sha256": "fd27e1407daeda4b2ee94b12b7caef98127b32a14e5e00170fc3a64cf0262400"
+    },
+    "DevelopmentTests/test_b051_background_fix.py": {
+      "source": "DevelopmentTests/test_b051_background_fix.py",
+      "sha256": "677db56f4804c774944e5b2784b7895bac57eb5463a54ab5d0387db1b145c9aa"
+    },
+    "DevelopmentTests/test_background_routes.py": {
+      "source": "DevelopmentTests/test_background_routes.py",
+      "sha256": "258642220305c098c53dab306617f7def424c0edf592325fa738d5671a115fd7"
+    },
+    "DevelopmentTests/EligibilityLifecycle.lua": {
+      "source": "DevelopmentTests/EligibilityLifecycle.lua",
+      "sha256": "6600dfffc0c3306ee74893eda1750f077e45568f70effcb9825de397684a3971"
+    },
+    "DevelopmentTests/CityPropertyBridge.lua": {
+      "source": "DevelopmentTests/CityPropertyBridge.lua",
+      "sha256": "230ee100609fc4987c71516d5cf536a965177b5320393b58a5badc6a88e3cae8"
+    },
+    "DevelopmentTests/test_completion_history_boundary.py": {
+      "source": "DevelopmentTests/test_completion_history_boundary.py",
+      "sha256": "612fa70ec7fb8f682a6b2a406b4d23a5e3a02bef7197d380b2109547f688c7f8"
+    },
+    "DevelopmentTests/test_research_support.py": {
+      "source": "DevelopmentTests/test_research_support.py",
+      "sha256": "31b1d75ce32302d989699a4d2dac99ab94a5b04af5583835633c356af70df3f9"
+    },
+    "DevelopmentTests/CityFactWritePlan.lua": {
+      "source": "DevelopmentTests/CityFactWritePlan.lua",
+      "sha256": "70eef1fe8bfe3205b405bef95572a7bbd557927991f6bce52d05c133c25ccbdc"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/InvestmentAction.lua": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/InvestmentAction.lua",
+      "sha256": "fabaf4525fc7b143fa5daae97f9934c77f9f467940844422b1872372541f180c"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/UnitActions.lua": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/UnitActions.lua",
+      "sha256": "a74228619381993132f48fb090af5f18441f213a007f57e1945873a1f11e1d75"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/NetworkBridge.lua": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/NetworkBridge.lua",
+      "sha256": "4d7f26125aa53d25b74336ee38c93f101b898a0e17efae63f7de2682122b71de"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/Lv4Percent.lua": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/Lv4Percent.lua",
+      "sha256": "515e7fed84524ccc7ff4b72bd7d8772507706424355eee61a79fe641cc558734"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/CrewProjects.lua": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/CrewProjects.lua",
+      "sha256": "9a48acf35835b67d9288ef0466017ce64b45ee3d832404162daf8f372a265ae8"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/Data/CrewProjects.sql": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/Data/CrewProjects.sql",
+      "sha256": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674"
+    },
+    "DevelopmentTests/Fixtures/B051-before-copy/HalfYieldProbe.lua": {
+      "source": "DevelopmentBackups/Specialization-before-B051-copy-yields/RuntimeSnapshot/HalfYieldProbe.lua",
+      "sha256": "aa95d67392059146fb0104ad5c66317b1b32ec7b9f9170ec6484d07ebcf24317"
+    }
+  },
+  "expected_modified_copies": [
+    "Specialization/README.md",
+    "Specialization/AGENTS.md",
+    "Specialization/Status/Specialization_P0_Status.md",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "DevelopmentTests/test_b051_copy_yields.py",
+    "DevelopmentTests/README.md"
+  ]
+}

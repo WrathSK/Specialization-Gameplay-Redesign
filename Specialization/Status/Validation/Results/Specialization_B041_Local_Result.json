@@ -1,0 +1,12 @@
+{
+  "status": "LOCAL_SIMULATION_PASS",
+  "build": "B041/modinfo53",
+  "test": "test_unit_targets.py exit0",
+  "game": "USER_GAME_TEST_REQUIRED",
+  "sha256": {
+    "UnitTargets.lua": "5f2ff65c99909b7a3198182c9a4cba721abe6a85ddd5b11eb33bd9efb253f18c",
+    "UI/UnitTargetMarkers.lua": "208bb235ab3fa160d104575c4e6186194bd01d410ff05dbc6329a8c378a6e1d4",
+    "UI/UnitTargetMarkers.xml": "702547855b6d30069b023a71a62643ddae7060ec270b5aab3f0219733609ba68",
+    "SpecializationP0.modinfo": "fbc30f2e2c6dc73fb1279a11b94fbc221b1687945bb8b1a65f3df5f060a66ff9"
+  }
+}

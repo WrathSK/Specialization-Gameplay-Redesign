@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCP0Panel">
+  <GridButton ID="OpenButton" Anchor="R,T" Offset="20,145" Size="165,32" Style="MainButton" String="Specialization P0" />
+  <Container ID="Window" Anchor="C,C" Size="840,664">
+    <Box Size="840,664" Color="12,19,27,250" />
+    <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="SPC P0-B-051.66 | Specialization diagnostics" />
+    <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton" String="Close" />
+    <Label ID="Status" Anchor="L,T" Offset="18,62" Style="FontNormal14" WrapWidth="800" String="B051.67：自动科研/工业IV复制。先关闭B050半点实验，选择城市点击Read Lv4 copy观察。" />
+    <GridButton ID="HalfReadButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read half test" />
+    <GridButton Hidden="1" ID="Lv2GPPButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read Lv2 GPP" />
+    <GridButton ID="HalfOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Half +0.5 ON" />
+    <GridButton Hidden="1" ID="InvestPrepareButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Prepare investment" />
+    <GridButton ID="HalfOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Half OFF" />
+    <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
+    <GridButton ID="NetworkButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" String="Read network (Game)" />
+    <GridButton ID="SourceYieldButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read progression" />
+    <GridButton ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
+    <GridButton ID="Lv4CopyButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read Lv4 copy" />
+    <GridButton Hidden="1" ID="SpecialistsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read specialists" />
+    <Container ID="LegacyProbeButtons" Size="840,664" Hidden="1">
+      <GridButton ID="BackgroundRoutesButton" Anchor="L,T" Offset="230,12" Size="225,32" Style="MainButton" String="Background routes" />
+      <GridButton ID="RouteStateButton" Anchor="L,T" Offset="465,12" Size="240,32" Style="MainButton" String="Route state (Game)" />
+      <GridButton ID="CarrierStepButton" Anchor="L,B" Offset="542,370" Size="240,32" Style="MainButton" String="Network details / Next" />
+      <GridButton ID="CarrierOffButton" Anchor="L,B" Offset="280,326" Size="240,32" Style="MainButton" String="Carrier OFF" />
+      <GridButton ID="CityFlowButton" Anchor="L,B" Offset="18,326" Size="240,32" Style="MainButton" String="Read city flow (B021)" />
+      <GridButton ID="EnvelopeReadButton" Anchor="L,B" Offset="280,282" Size="240,32" Style="MainButton" String="Read envelope (B019)" />
+      <GridButton ID="EnvelopeNextButton" Anchor="L,B" Offset="542,282" Size="240,32" Style="MainButton" String="Next envelope stage" />
+      <GridButton ID="QualificationButton" Anchor="L,B" Offset="18,282" Size="240,32" Style="MainButton" String="Runtime eligibility" />
+      <GridButton ID="EligibilityUnknownButton" Anchor="L,B" Offset="542,238" Size="240,32" Style="MainButton" String="Eligibility unknowns" />
+      <GridButton ID="EligibilityButton" Anchor="L,B" Offset="280,238" Size="240,32" Style="MainButton" String="Read eligibility" />
+      <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" />
+      <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" />
+      <GridButton ID="StorageReadButton" Anchor="L,B" Offset="18,194" Size="240,32" Style="MainButton" String="Read storage" />
+      <GridButton ID="StorageWriteButton" Anchor="L,B" Offset="280,194" Size="240,32" Style="MainButton" String="Write test table" />
+      <GridButton ID="CompletionRecordButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Read completion record" />
+      <GridButton ID="CompletionButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Completion events" />
+      <GridButton ID="CompletionNextButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Older completion events" />
+      <GridButton ID="AdjacencyButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read adjacency (UI)" />
+      <GridButton ID="TradeButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read routes (UI)" />
+      <GridButton ID="NextButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next district / route" />
+      <GridButton ID="RouteEventsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Route events (Game)" />
+      <GridButton ID="CaptureButton" Anchor="L,B" Offset="18,18" Size="160,32" Style="MainButton" String="Read marker" />
+      <GridButton ID="CopyButton" Anchor="L,B" Offset="190,18" Size="160,32" Style="MainButton" String="Show / Copy" />
+      <GridButton ID="MarkButton" Anchor="L,B" Offset="365,18" Size="200,32" Style="MainButton" String="Mark selected city" />
+      <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" />
+      <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" />
+      <GridButton ID="GovernorButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Read governor" />
+    </Container>
+    <GridButton ID="Lv4PercentButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv4 percent" />
+    <GridButton Hidden="1" ID="ConstructionPreviewButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Preview construction" />
+    <GridButton Hidden="1" ID="ConstructionApplyButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Inject 250 (DEV)" />
+  </Container>
+</Context>

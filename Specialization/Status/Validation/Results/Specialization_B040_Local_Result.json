@@ -1,0 +1,14 @@
+{
+  "build": "B040/modinfo51",
+  "local_test": "test_unit_site_probe.py exit0",
+  "status": "LOCAL_SIMULATION_PASS",
+  "game": "USER_GAME_TEST_REQUIRED",
+  "sha256": {
+    "UnitSiteProbe.lua": "7c1526bcc09de92a0dbb60290843ad0b2d260d4f7aee92829adcfd4f66a9c029",
+    "UI/UnitSites.lua": "12ff9fac74538bd6c0db4696fe37e5225d1bc2195b70b34858a0b4e751405057",
+    "UI/UnitSites.xml": "6bfbe29fa373839c8a9da8c7d4d81427ce3c191aaaf23709f4061c58c93fd6dc",
+    "Gameplay.lua": "46a3cd934c909f67631c593c31cf2801088dfc118c2e7efa866b35797bf7d545",
+    "Probe.lua": "50e736f46444bdc61482b9b7b9cf324ed7c361d23da68d07c9b55248c8e21960",
+    "SpecializationP0.modinfo": "ef4b226ec79ec43ae21d17705abb61b5fb81d250b3cfa5e0960da2ecd804d408"
+  }
+}

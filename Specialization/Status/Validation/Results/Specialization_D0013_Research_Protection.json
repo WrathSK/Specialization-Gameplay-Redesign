@@ -1,0 +1,10 @@
+{
+  "runtime": "P0-B-050/modinfo64",
+  "mode": "RESEARCH_ONLY",
+  "protected_files": 187,
+  "source_tests_unchanged": true,
+  "new_spec_hash": "abce0024d9a1003ef7f7ac5aa680da9643bbc7e9df346441b007aab7d5959569",
+  "prior_spec_hash": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551",
+  "images_archived": 5,
+  "game_launched": false
+}

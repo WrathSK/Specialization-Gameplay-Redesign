@@ -1,0 +1,17 @@
+{
+  "build": "P0-B-045 / modinfo58",
+  "status": "LOCAL_SIMULATION_PASS",
+  "test": "DevelopmentTests/test_crew_ux.py",
+  "runtime_changed_files": [
+    "Gameplay.lua",
+    "Probe.lua",
+    "SpecializationP0.modinfo",
+    "Text/TestText.sql",
+    "UI/UnitPanelActions.lua",
+    "UI/UnitPanelActions.xml",
+    "UnitActions.lua"
+  ],
+  "design_sha256_unchanged": "29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7",
+  "native_layout": "USER_GAME_TEST_REQUIRED",
+  "scope": "UX only; complete UnitActions.Run and protected gameplay files byte-identical"
+}

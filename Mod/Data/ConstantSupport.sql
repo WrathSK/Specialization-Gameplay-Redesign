@@ -1,0 +1,12 @@
+-- B023: remaining constant Lv1 carriers; Research definition remains in ResearchSupport.sql.
+INSERT INTO Types (Type,Kind) VALUES
+('BUILDING_SPC_DEV_CULTURE_SUPPORT','KIND_BUILDING'),
+('BUILDING_SPC_DEV_COMMERCE_SUPPORT','KIND_BUILDING');
+INSERT INTO Buildings (BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots) VALUES
+('BUILDING_SPC_DEV_CULTURE_SUPPORT','Culture specialist support (Test)',1,'DISTRICT_THEATER',1,0),
+('BUILDING_SPC_DEV_COMMERCE_SUPPORT','Commerce specialist support (Test)',1,'DISTRICT_COMMERCIAL_HUB',1,0);
+INSERT INTO Building_CitizenYieldChanges (BuildingType,YieldType,YieldChange) VALUES
+('BUILDING_SPC_DEV_CULTURE_SUPPORT','YIELD_FOOD',3),
+('BUILDING_SPC_DEV_CULTURE_SUPPORT','YIELD_PRODUCTION',3),
+('BUILDING_SPC_DEV_COMMERCE_SUPPORT','YIELD_FOOD',3),
+('BUILDING_SPC_DEV_COMMERCE_SUPPORT','YIELD_PRODUCTION',3);
