@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0168
+Status Revision: S0169
 Implementation Build: P0-B-069.96 / modinfo96
-Architecture Revision Reviewed: A0149
+Architecture Revision Reviewed: A0150
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: STABLE_LONG_PLAYTEST_DEVELOP_ISOLATED
+Work State: DEVELOP_ARCH_V2_INVESTIGATION_REVIEW_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+develop AV2-I001文档调查完成，等用户审阅后授权重构：[调查报告](../Architecture/v2/README.md)。本轮仅static inspection与文档完整性检查；没有新游戏实现或实机测试。稳定main/运行B069.96不变，当前长局继续。Carrier inventory/完整Compatibility map仍后续，不在本轮展开。
 
 2026-09-14 workflow：以[部署合同](../Architecture/Playtest_Workflow.md)与根AGENTS为准；下文历史“不commit/push/停止长局”不再派发当前任务。
 

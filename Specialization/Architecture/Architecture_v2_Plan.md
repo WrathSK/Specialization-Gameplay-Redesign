@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Work branch: develop
-State: PLANNED — no refactor implemented
+State: Phase 1–3 investigated (AV2-I001), awaiting user review — no refactor implemented
 Stable runtime: B069.96 untouched
 
 ## Ordered deliverables
@@ -25,3 +25,7 @@ High-frequency paths only update fixed-size integer counters. No per-event disk 
 ## Gate
 
 Research identifies measurable batches and tests. Implement on develop only after scope is authorized; coherent local-verification commit and matching branch push even when user test pending. Live develop test needs explicit temporary-switch/restore agreement. No ownership reactivation, balance or speculative optimization in this infrastructure phase.
+
+## 第一轮交付
+
+[AV2-I001当前源码地图与候选批次](v2/README.md)覆盖上述1–3项。4仅记录当前revision/扫描证据以解释依赖；不构建缓存或预算实现。5/6未展开。

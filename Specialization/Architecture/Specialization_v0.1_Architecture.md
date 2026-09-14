@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0149
+# Specialization v0.1 Architecture — A0150
 
 Document Owner: Codex
-Architecture Revision: A0149
+Architecture Revision: A0150
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
@@ -10,6 +10,8 @@ Sync Status: SYNCED_WITH_LIMITATIONS
 Implementation Build: P0-B-069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+develop调查 AV2-I001已完成：[状态/保存、依赖/桥接、事件/dirty地图](v2/README.md)。仅STATIC_CONFIRMED；未改运行行为，TARGET未实施。main仍A0149/B069.96；此A0150只属于develop。
 
 2026-09-14 workflow：以[部署合同](Playtest_Workflow.md)与根AGENTS为准；下文历史“不commit/push/停止长局”不再派发当前任务。
 
