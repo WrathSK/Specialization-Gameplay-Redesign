@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bounded, opt-in SpecializationP0 deployment. Default: read-only check."""
 from pathlib import Path
-import argparse, hashlib, json, os, shutil, tempfile, xml.etree.ElementTree as ET
+import argparse, hashlib, json, os, shutil, subprocess, tempfile, xml.etree.ElementTree as ET
 
 UUID='df9efdad-dd48-40a7-b868-87f0617bc16d'
 ROOT=Path(__file__).resolve().parents[1]
@@ -55,7 +55,21 @@ def check(source,target):
             'runtime_hash':before['digest'],'identical':before['files']==after['files'],
             'version':after['version'],'files':len(after['files'])}
 
-def apply(source,target,expected_source,expected_runtime,failpoint=None):
+def stable_gate(source, authorized=False):
+    if not authorized: raise ValueError('Stable deployment requires explicit user-approved update (--authorize-stable-update)')
+    source=no_symlinks(source)
+    def git(*args):
+        p=subprocess.run(['git','-C',str(source.parent),*args],capture_output=True,text=True)
+        if p.returncode: raise ValueError('Deployment requires a committed main worktree')
+        return p.stdout.strip()
+    if Path(git('rev-parse','--show-toplevel')).resolve()!=source.parent.resolve() or source.name!='Mod':
+        raise ValueError('Source must be worktree root/Mod')
+    if git('symbolic-ref','--short','HEAD')!='main': raise ValueError('Develop/detached deployment is blocked; stable runtime only')
+    git('rev-parse','--verify','HEAD')
+    if git('status','--porcelain','--untracked-files=all'): raise ValueError('Commit/review worktree changes before stable deployment')
+
+def apply(source,target,expected_source,expected_runtime,failpoint=None,*,authorized=False):
+    stable_gate(source, authorized)
     source=no_symlinks(source);target=no_symlinks(target)
     state=check(source,target)
     if state['source_hash']!=expected_source or state['runtime_hash']!=expected_runtime:
@@ -100,13 +114,14 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',type=Path,default=ROOT/'local/config.json')
     parser.add_argument('--apply',action='store_true')
+    parser.add_argument('--authorize-stable-update',action='store_true',help='Only after explicit user-approved stable update; main/clean required')
     parser.add_argument('--expected-source');parser.add_argument('--expected-runtime')
     args=parser.parse_args()
     config=json.loads(args.config.read_text());target=Path(config['runtime_dir']).expanduser()
     if not target.is_absolute(): parser.error('runtime_dir must be absolute')
     if args.apply:
         if not args.expected_source or not args.expected_runtime:parser.error('Apply requires both reviewed hashes')
-        result=apply(ROOT/'Mod',target,args.expected_source,args.expected_runtime)
+        result=apply(ROOT/'Mod',target,args.expected_source,args.expected_runtime,authorized=args.authorize_stable_update)
     else: result=check(ROOT/'Mod',target)
     print(json.dumps(result,indent=2))
 

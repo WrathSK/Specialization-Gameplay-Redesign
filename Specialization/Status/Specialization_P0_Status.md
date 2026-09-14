@@ -1,23 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0167
+Status Revision: S0168
 Implementation Build: P0-B-069.96 / modinfo96
-Architecture Revision Reviewed: A0148
+Architecture Revision Reviewed: A0149
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: PERFORMANCE_BLOCKER_SHORT_TEST_REQUIRED
+Work State: STABLE_LONG_PLAYTEST_DEVELOP_ISOLATED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B069.96是第一阶段P0性能短测版，PERFORMANCE BLOCKER仍未解除。普通非商人任务不再发商路dirty；无法可靠识别时只NEEDS_REVALIDATION，保留最近完整验证状态。完整快照内容相同不发布、不增加topology revision、不通知收益消费者。读取失败最多3次本批尝试；明确端点/商人消失、战争或读取失败后的原生数量下降仍会撤销。失败包不覆盖已验证完整集合，发送只允许单个in-flight，ACK后空闲UI通知不再调用sender。
+2026-09-14 workflow：以[部署合同](../Architecture/Playtest_Workflow.md)与根AGENTS为准；下文历史“不commit/push/停止长局”不再派发当前任务。
+
+B069.96现为用户指定的v0.1 Playtest Baseline；用户继续长局，main冻结玩法，develop承接后续开发。此前性能短测没有回传完整计数证据，不能标为已解决或实机PASS；风险留在Playtest Backlog按严重程度分诊。普通非商人任务不再发商路dirty；无法可靠识别时只NEEDS_REVALIDATION，保留最近完整验证状态。完整快照内容相同不发布、不增加topology revision、不通知收益消费者。读取失败最多3次本批尝试；明确端点/商人消失、战争或读取失败后的原生数量下降仍会撤销。失败包不覆盖已验证完整集合，发送只允许单个in-flight，ACK后空闲UI通知不再调用sender。
 
 STATIC_CONFIRMED（源码静态证据，非实机）：全部SQL/数值/Design不变；继承三模块逐字节保留且未启用；其它模块仅添加固定计数/原调用转发。未实现shared derive缓存或扫描重构。LOCAL_SIMULATION_PASS（本地Lua模拟，不等于游戏通过）：真实后台collector/sender/receiver与Commerce模块的10次已知/未知单位事件、相同输入零建拆/Property/发布/derive；真实路线增删、端点失效、读取失败有限重试、请求重入/拒绝ACK、跨回合；固定schema模拟10000回合不增加容器节点数。
 
 Performance Counters为固定条目current/total/previous/peak；新增两个纯读取诊断入口。计数为本Mod直接Lua原生调用，不包括其它Mod或引擎内部Modifier的Property写。独立自动runtime log未启用：未验证安全的Civ VI文件写入/轮转接口，按用户J10/J12回退为Counters+手动Snapshot，禁止用永久Property或无限print替代。无自动日志文件要求。
 
-USER_GAME_TEST_REQUIRED：仅短测[普通单位移动前后与一回合计数](Validation/Specialization_B069_User_Tests.md)，不继续长局。UI微调、Potential改进、新机制、balance、ownership、Crew账本/历史缓存清理及其它扫描重构继续暂停。完整[实现说明](../Reports/Technical/Specialization_B069_Performance_Phase1.md)。
+USER_GAME_TEST_REQUIRED：仅短测[普通单位移动前后与一回合计数](Validation/Specialization_B069_User_Tests.md)；这是保留的未验证案例，不再要求用户暂停长局或现在重测。UI/性能/架构后续工作仅在develop按授权推进，ownership仍隔离。完整[实现说明](../Reports/Technical/Specialization_B069_Performance_Phase1.md)。
 
 ### HISTORICAL：B068.95 UI修订（暂停继续验收/微调）
 

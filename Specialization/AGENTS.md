@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Design Authority: User
-Governance Revision: G0008
+Governance Revision: G0009
 
 1. Codex是项目唯一日常本地文件写入者，包括Design Spec、Design ChangeLog、Architecture、Status、Reports、Source、Tests及README/AGENTS。外部Design Chat仅提供proposal/review，没有本地文件写权限；用户转交其建议不等于接受设计。
 2. 用户是最终Design Authority。Codex可讨论、整理、提出风险/方案，并按用户确认落盘；只有用户明确接受才能将Design标为ACCEPTED，不得自行升级proposal或draft。
@@ -59,14 +59,18 @@ Governance Revision: G0008
 
 不必固定9个按钮，约15个以内一般可接受；优先保留报告可读空间。按当前批次保留常用入口，及时隐藏暂不用按钮并保留代码供复用，避免再次堆到二十多个。不是要求马上增加按钮或改布局。
 
-## 交接操作约束
+## HISTORICAL：旧交接操作约束（已被当前Status与根AGENTS工作流取代）
 
 本次交接整理结束后停止功能开发；新代理先按Status处理B051.67待回传结果，再按用户后续继续指令工作。运行层与离线模型分开识别；旧case/test的版本断言、历史错误不能当当前待办。具体测试环境与命令见DevelopmentTests/README.md（从本文目录为../DevelopmentTests/README.md）。
 
-## Phase 1 repository boundary (user approved)
+## HISTORICAL：Phase 1 repository boundary（阶段禁令已由Git授权取代，资产保护继续适用）
 
 - Accepted Design is WHAT; Architecture is HOW; Status is the sole current validation/task queue. Codex is the only local writer under user authorization. No silent fallback changing design: DESIGN_DECISION_REQUIRED.
 - Preserve user changes; never overwrite unreviewed source/runtime edits. Deployment requires reviewed hashes, exact UUID/target name, no symlinks, and explicit apply. Use tools/deploy.py; inspect pending transaction before retrying. No automatic deletion of backups.
 - External Civ VI/HD/Workshop/DB are dependencies or read-only research references, never project-owned files. Do not initialize Git in the game workspace or import it wholesale.
 - Root AGENTS.md and this document apply together. Phase 1 stops after migration validation. Git/GitHub and new gameplay require subsequent user authorization.
 - Current screenshot inbox and bulk evidence remain in external legacy workspace. Resolve historical W paths with ignored local/config.json; do not pretend evidence is bundled.
+
+## G0009：稳定游玩与开发隔离
+
+根AGENTS的stable/develop、自动coherent commit/push与部署门禁为当前持久规则，取代旧迁移阶段停止/Git禁令。main只接获准最小修复；普通工作去develop。用户当前长局无需暂停；不将baseline建立当作性能实机PASS。详见Architecture/Playtest_Workflow.md。
