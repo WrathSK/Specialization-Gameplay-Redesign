@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context Name="SPCCityPotential">
+ <GridButton ID="Badge" Anchor="L,T" Offset="8,156" Size="165,28" Style="MainButton" Hidden="1"><Label ID="BadgeCaption" Anchor="C,C" Style="FontNormal14" String="" Color="255,255,255,255" /></GridButton>
+</Context>

@@ -9,7 +9,7 @@ function M.Parts(base)
 end
 function M.Collect(P,pid)
  local rows={}
- for _,d in Players[pid]:GetDistricts():Members() do
+ for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
   local c=d:GetCity();local def=P.Info('Districts',d:GetType())
   if c and c:GetOwner()==pid and def and def.RequiresPopulation and def.RequiresPopulation~=0 and d:IsComplete() then
    local r={c:GetID(),d:GetID(),def.DistrictType};local plot=assert(Map.GetPlot(d:GetX(),d:GetY()),'GWA_PLOT')

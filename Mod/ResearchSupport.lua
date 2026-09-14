@@ -15,7 +15,7 @@ function SPCResearchSupport.Start(P,shared)
   if not districts[f.specialization] then return nil end
   assert(f.potential>=1 and f.first,"SPECIALTY_FACT_INVALID")
   local count=0
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    count=count+1;assert(count<=512,"DISTRICT_SCAN_LIMIT")
    local c=d:GetCity()
    if c and c:GetID()==city:GetID() and c:GetOwner()==pid and d:GetID()==f.first.districtID then
@@ -28,12 +28,12 @@ function SPCResearchSupport.Start(P,shared)
   error("SPECIALTY_DISTRICT_MISSING")
  end
  local function set(city,id,wanted)
-  local b=city:GetBuildings();local present=b:HasBuilding(id)
+  local b=city:GetBuildings();local present=P.HasBuilding(b,id)
   assert(type(present)=="boolean","BUILDING_READ_UNKNOWN")
   if present==wanted then return end
   data.changes=data.changes+1
-  if wanted then city:GetBuildQueue():CreateBuilding(id) else b:RemoveBuilding(id) end
-  assert(b:HasBuilding(id)==wanted,"CARRIER_CHANGE_UNCONFIRMED")
+  if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end
+  assert(P.HasBuilding(b,id)==wanted,"CARRIER_CHANGE_UNCONFIRMED")
  end
  local function key(pid,city) return pid..":"..city:GetID() end
  local function reconcile(pid,city)
@@ -55,7 +55,7 @@ function SPCResearchSupport.Start(P,shared)
   if not ok then data.errors[k]=tostring(err);print("[SPC][B024][AUTO_ERROR] "..k.." "..tostring(err)) end
  end
  function data.Audit()
-  if not data.ready or data.busy then return end
+  if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true
   local checked,skipped=0,0
   local scanOK,scanError=pcall(function()
@@ -64,7 +64,7 @@ function SPCResearchSupport.Start(P,shared)
     local ok,err=pcall(function()
      local cities=player:GetCities()
      if not cities then return end
-     for _,city in cities:Members() do process(pid,city);checked=checked+1 end
+     for _,city in cities:Members() do P.Count('city_scan'); process(pid,city);checked=checked+1 end
     end)
     if not ok then skipped=skipped+1;print("[SPC][B024][PLAYER_SCAN_ERROR] "..tostring(pid).." "..tostring(err)) end
    end
@@ -74,7 +74,7 @@ function SPCResearchSupport.Start(P,shared)
   print("[SPC][B024][SCAN] "..data.scan)
  end
  local function completed(pid,index,x,y)
-  if not data.ready or data.busy then return end
+  if not data.ready or data.busy then P.Count('busy_skip');return end
   data.events=data.events+1
   data.busy=true
   local ok,err=pcall(function()
@@ -96,7 +96,7 @@ function SPCResearchSupport.Start(P,shared)
    local enabled={}
    for _,k in ipairs(kinds) do
     local row=P.Info("Buildings","BUILDING_SPC_DEV_"..k.."_SUPPORT")
-    if row and city:GetBuildings():HasBuilding(row.Index) then enabled[#enabled+1]=k end
+    if row and P.HasBuilding(city:GetBuildings(),row.Index) then enabled[#enabled+1]=k end
    end
    if expected then definition(expected) end
    local workers="N/A"

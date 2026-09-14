@@ -1,3 +1,5 @@
+include('DiagnosticLog')
+local print=SPCDiagnosticLog and SPCDiagnosticLog.For('DiscountEligibility') or print
 -- Background native purchase checks, independent of any open panel.
 include('Probe')
 local P=SPCP0;local busy=false;local sent;local seq=0;local hooks={};local generation;local initialized=false

@@ -35,8 +35,9 @@ function SPCCityFlowProbe.Start(P,shared)
   assert(not b.halted and P.IsTestPlayer(pid) and data.ready,"WRITE_NOT_AUTHORIZED")
   assert(same(read(pid,city),old),"STALE_FLOW")
   assert(identity(pid,city)==nextValue.token,"WRITE_IDENTITY_CHANGED")
-  b.writes=b.writes+1;pcall(function() city:SetProperty(KEY,clone(nextValue)) end)
+  b.writes=b.writes+1;pcall(function() P.SetProperty(city,KEY,clone(nextValue)) end)
   assert(same(read(pid,city),nextValue),"FLOW_WRITE_UNCONFIRMED")
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'CityFlowProbe.lua') end
  end
  local function commit(pid,city,target)
   local b=bucket(pid);local old=read(pid,city)
@@ -136,7 +137,7 @@ function SPCCityFlowProbe.Start(P,shared)
   if source.specialization=="NONE" then
    -- Reject an observable gap; this scan does not prove all past history.
    local center=false;local scanned=0
-   for _,d in Players[pid]:GetDistricts():Members() do
+   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
     scanned=scanned+1;assert(scanned<=512,"LOAD_SCAN_LIMIT")
     local c=d:GetCity();assert(c,"LOAD_DISTRICT_CITY")
     if c:GetOwner()==pid and c:GetID()==city:GetID() then
@@ -152,6 +153,11 @@ function SPCCityFlowProbe.Start(P,shared)
   end
   data.active[v.token]="RESUMED_NORMAL";data.owners[v.token]=pid
  end
+ function data.ResumeInherited(pid,city)
+  shared.CityJournalProbe.EnsureInherited(pid)
+  assert(data.ready and not bucket(pid).halted,"INHERIT_FLOW_HELD")
+  resume(pid,city)
+ end
  local event=P.Field(GameEvents,"OnDistrictConstructed")
  if event and event.Add then local ok=pcall(event.Add,complete);data.hooks.complete=ok and "REGISTERED" or "ERROR" end
  local load=P.Field(Events,"LoadScreenClose")
@@ -160,7 +166,7 @@ function SPCCityFlowProbe.Start(P,shared)
   for pid,player in pairs(Players) do if P.IsTestPlayer(pid) then
    local b=bucket(pid)
    if not b.halted then
-    local ok,err=pcall(function() for _,city in player:GetCities():Members() do resume(pid,city) end end)
+    local ok,err=pcall(function() for _,city in player:GetCities():Members() do P.Count('city_scan'); resume(pid,city) end end)
     if not ok then
      b.halted=true;b.last=tostring(err)
      -- Player-wide failure must not leave previously scanned cities displayed active.
@@ -169,7 +175,7 @@ function SPCCityFlowProbe.Start(P,shared)
      end
     else b.last="LOAD_CHECK_COMPLETE" end
    end
-   for _,city in player:GetCities():Members() do data.Read(pid,city) end
+   for _,city in player:GetCities():Members() do P.Count('city_scan'); data.Read(pid,city) end
   end end
  end) end
 end

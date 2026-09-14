@@ -74,7 +74,7 @@ function SPCCompletionRecordProbe.Start(P,shared)
     districtID=district:GetID(),districtType=info.DistrictType,observedFamily=f,turn=Game.GetCurrentGameTurn()}
    assert(integer(v.districtID) and integer(v.turn),"INVALID_EVENT_FIELDS")
    assert(shared.BindingProbe.Resolve(pid,city)==token and city:GetProperty(KEY)==nil,"STALE_BINDING_OR_RECORD")
-   b.writes=b.writes+1;pcall(function() city:SetProperty(KEY,v) end)
+   b.writes=b.writes+1;pcall(function() P.SetProperty(city,KEY,v) end)
    local after=read(pid,city,token);assert(after,"WRITE_UNCONFIRMED")
    for k,value in pairs(v) do assert(after[k]==value,"READBACK_MISMATCH") end
    for k in pairs(after) do assert(v[k]~=nil,"EXTRA_READBACK_FIELD") end

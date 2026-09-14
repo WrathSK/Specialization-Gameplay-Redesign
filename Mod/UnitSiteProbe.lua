@@ -17,7 +17,7 @@ function SPCUnitSiteProbe.Start(P,shared)
    assert(city and city:GetOwner()==pid,'CITY_UNKNOWN')
    lines[#lines+1]='City='..city:GetName()..' #'..city:GetID()
    local districts={}
-   for _,d in Players[pid]:GetDistricts():Members() do
+   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
     local c=d:GetCity()
     if c and c:GetOwner()==pid and c:GetID()==city:GetID() then districts[#districts+1]=d end
    end
@@ -45,7 +45,7 @@ function SPCUnitSiteProbe.Start(P,shared)
     if not building and not district then return 'NO BUILDING / DISTRICT / WONDER TARGET' end
     local targetPlot,kind,complete,source
     if building and building.IsWonder then
-     kind='WONDER';complete=city:GetBuildings():HasBuilding(building.Index)
+     kind='WONDER';complete=P.HasBuilding(city:GetBuildings(),building.Index)
      -- HD placed-wonder marker is cross-checked against the current queue and
      -- actual wonder district on this plot; never accepted by itself.
      local wonder=P.Info('Districts','DISTRICT_WONDER')
@@ -60,8 +60,8 @@ function SPCUnitSiteProbe.Start(P,shared)
       if di and di.DistrictType==expected then
        assert(not targetPlot,'AMBIGUOUS_DISTRICT')
        targetPlot=Map.GetPlot(d:GetX(),d:GetY())
-       complete=building and city:GetBuildings():HasBuilding(building.Index) or d:IsComplete()
-       if building then complete=city:GetBuildings():HasBuilding(building.Index) end
+       complete=building and P.HasBuilding(city:GetBuildings(),building.Index) or d:IsComplete()
+       if building then complete=P.HasBuilding(city:GetBuildings(),building.Index) end
       end
      end
      source='Gameplay district coordinates'

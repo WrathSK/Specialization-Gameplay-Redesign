@@ -1,3 +1,5 @@
+include('DiagnosticLog')
+local print=SPCDiagnosticLog and SPCDiagnosticLog.For('GPPRefresh') or print
 -- Background dirty notification only. Never sends worker counts, yields or city facts.
 include("Probe")
 local P=SPCP0

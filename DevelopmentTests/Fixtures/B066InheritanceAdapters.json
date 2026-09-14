@@ -1,0 +1,14 @@
+{
+  "BindingProbe.lua": {
+    "old": "  local state,_,token=inspect(pid,city)",
+    "new": "  if shared.CityInheritance then local uid,status=shared.CityInheritance.Resolve(pid,city);if uid then return uid,status end end\n  local state,_,token=inspect(pid,city)"
+  },
+  "CityJournalProbe.lua": {
+    "old": " local function listen(ns,name,fn)",
+    "new": " function j.EnsureInherited(pid)\n  assert(j.phase==\"AFTER_LOAD_CLOSE\" and not bucket(pid).halted,\"INHERIT_JOURNAL_HELD\")\n end\n local function listen(ns,name,fn)"
+  },
+  "CityFlowProbe.lua": {
+    "old": " local event=P.Field(GameEvents,\"OnDistrictConstructed\")",
+    "new": " function data.ResumeInherited(pid,city)\n  shared.CityJournalProbe.EnsureInherited(pid)\n  assert(data.ready and not bucket(pid).halted,\"INHERIT_FLOW_HELD\")\n  resume(pid,city)\n end\n local event=P.Field(GameEvents,\"OnDistrictConstructed\")"
+  }
+}

@@ -30,7 +30,7 @@ function SPCLv2GPP.Start(P,shared)
   local f=shared.EffectiveFacts.Read(pid,city);local districtType=districts[f.specialization]
   if not districtType then return {workers=0,enabled=false,reason="NO_SUPPORTED_SPECIALIZATION"} end
   assert(f.first,"SPECIALTY_ANCHOR_MISSING")
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local c=d:GetCity()
    if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
     local row=P.Info("Districts",d:GetType())
@@ -44,10 +44,10 @@ function SPCLv2GPP.Start(P,shared)
   error("SPECIALTY_DISTRICT_MISSING")
  end
  local function set(city,id,wanted)
-  local b=city:GetBuildings();local present=b:HasBuilding(id);assert(type(present)=="boolean","GPP_CARRIER_READ_UNKNOWN")
+  local b=city:GetBuildings();local present=P.HasBuilding(b,id);assert(type(present)=="boolean","GPP_CARRIER_READ_UNKNOWN")
   if present==wanted then return end
-  if wanted then city:GetBuildQueue():CreateBuilding(id) else b:RemoveBuilding(id) end
-  assert(b:HasBuilding(id)==wanted,"GPP_CARRIER_CHANGE_UNCONFIRMED");data.changes=data.changes+1
+  if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end
+  assert(P.HasBuilding(b,id)==wanted,"GPP_CARRIER_CHANGE_UNCONFIRMED");data.changes=data.changes+1
  end
  local function reconcile(pid,city)
   local ok,f=pcall(function() validateDefinitions();return inspect(pid,city) end)
@@ -68,12 +68,12 @@ function SPCLv2GPP.Start(P,shared)
   if not ok then error(f) end
  end
  function data.Audit()
-  if not data.ready or data.busy then return end
+  if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;data.refreshes=data.refreshes+1
   for pid,player in pairs(Players) do
    local good,err=pcall(function()
     local cities=player:GetCities()
-    if cities then for _,city in cities:Members() do
+    if cities then for _,city in cities:Members() do P.Count('city_scan');
      local key=pid..":"..city:GetID();local ok,e=pcall(reconcile,pid,city)
      data.errors[key]=not ok and tostring(e) or nil
      if not ok then print("[SPC][B035][GPP_ERROR] "..key.." "..tostring(e)) end
@@ -88,7 +88,7 @@ function SPCLv2GPP.Start(P,shared)
    assert(data.ready,"GPP_NOT_READY");validateDefinitions()
    local f=inspect(pid,city);local n=f.enabled and f.workers or 0;local actual,other=0,0
    for _,kind in ipairs(kinds) do for bit=0,7 do
-    if city:GetBuildings():HasBuilding(P.Info("Buildings",name(kind,bit)).Index) then
+    if P.HasBuilding(city:GetBuildings(),P.Info("Buildings",name(kind,bit)).Index) then
      if kind==f.kind then actual=actual+2^bit else other=other+2^bit end
     end
    end end

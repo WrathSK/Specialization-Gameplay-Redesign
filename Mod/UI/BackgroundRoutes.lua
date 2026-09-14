@@ -48,7 +48,7 @@ local function collect(pid)
   local iter,state,key=members(cities);assert(type(iter)=="function","CITY_ITERATOR_INVALID")
   local routes,traders={},{};local scanned,raw=0,0
   for _,city in iter,state,key do
-    scanned=scanned+1;assert(scanned<=512,"CITY_SCAN_LIMIT")
+    P.Count('city_scan');scanned=scanned+1;assert(scanned<=512,"CITY_SCAN_LIMIT")
     local owner,id=need(city,"GetOwner"),need(city,"GetID")
     assert(owner==pid and integer(id),"CITY_SCOPE_CHANGED")
     local list=need(need(city,"GetTrade"),"GetOutgoingRoutes")
@@ -89,153 +89,101 @@ local function comparison(s)
   if n~=s.count or g.engineCount~=s.count then return "MISMATCH（数量不同）" end
   return "MATCH（仅数量与商人ID，不证明端点权威性）"
 end
+
 local function render()
-  if public.status~="COMPLETE_UI_SHADOW" then normalized:Invalidate(public.error or pendingReason) end
-  local lines={"来源：独立后台 UI / SHADOW ONLY；未接入收益"}
-  if public.status=="COMPLETE_UI_SHADOW" then
-    local s=public.snapshot
-    lines[#lines+1]="状态：COMPLETE_UI_SHADOW | turn="..s.turn.." | seq="..generation
-    lines[#lines+1]="触发："..public.reason.."；本玩家当前商路："..s.count
-    lines[#lines+1]="Gameplay对照："..comparison(s)
-    if firstComplete then lines[#lines+1]="首次自动完成："..firstComplete.reason.." / "..firstComplete.count.."条" end
-    if lastChange then lines[#lines+1]="最近变化：+"..lastChange.added.." / -"..lastChange.removed end
-    if lastChange and lastChange.firstRemoved then lines[#lines+1]="已移除："..lastChange.firstRemoved end
-    for i=1,math.min(#s.keys,6) do lines[#lines+1]=i..". "..s.routes[s.keys[i]].display end
-    if #s.keys>6 then lines[#lines+1]="仅显示前6条；缓存完整数量="..s.count end
-  else
-    lines[#lines+1]="状态："..public.status.."；原因："..(public.error or pendingReason)
-    lines[#lines+1]="没有可用的当前快照；不把未知当零条，也不使用旧结果。"
-  end
-  lines[#lines+1]="刷新次数="..generation.."；系统通知="..systemPulses.."；Context更新="..contextPulses
-  lines[#lines+1]="发布完成="..publishPulses.."；播放完成="..playbackPulses.."；本批尝试="..attempts.."/3"
-  lines[#lines+1]="采样入口："..lastFlush
-  lines[#lines+1]="标准缓存："..normalized:Summary()
-  lines[#lines+1]="此按钮只看缓存，不触发采样。"
-  public.text=table.concat(lines,"\n")
-  sendNetwork(public)
+ local snapshot=public.snapshot
+ public.text='B069 route state='..public.status..' | '..(public.revalidation or 'IDLE')
+  ..'\nverified routes='..tostring(snapshot and snapshot.count or 'NONE')..' scans='..generation
+  ..' reason='..pendingReason..' attempts='..attempts..'/3'
+  ..'\n'..normalized:Summary()..(public.error and ('\n'..public.error) or '')
 end
 local function mark(reason)
-  if not active then return end
-  if not dirty then sinceDirty=0 end
-  dirty=true;pendingReason=reason
-  attempts=0;retryPending=false
-  public.status="UNKNOWN";public.snapshot=nil;public.error=nil
-  render()
+ if not active then return end
+ P.Count('revalidate')
+ if not dirty then attempts=0 end
+ dirty=true;pendingReason=reason;public.revalidation='NEEDS_REVALIDATION'
+ -- The verified snapshot and formal consumer state remain intact.
 end
 local function refresh()
-  generation=generation+1;scanAge=0
-  local pid=Game.GetLocalPlayer()
-  if not P.IsTestPlayer(pid) then
-    lastGood=nil;firstComplete=nil;lastChange=nil;normalized:Reset()
-    public.status="OUTSIDE_TEST_CIV";public.snapshot=nil;public.error=nil;dirty=false;render();return
+ P.Count('route_scan');generation=generation+1
+ local pid=Game.GetLocalPlayer()
+ if not P.IsTestPlayer(pid) then dirty=false;return end
+ local ok,s=pcall(collect,pid)
+ if ok then
+  local accepted,err=normalized:Replace(s);if not accepted then ok=false;s=err end
+ end
+ if ok then
+  if lastGood and lastGood.player==s.player and lastGood.fingerprint==s.fingerprint then P.Count('same_snapshot') end
+  lastGood=s;public.snapshot=s;public.status='COMPLETE_UI_SHADOW';public.error=nil
+  public.revalidation='VERIFIED';dirty=false;retryPending=false
+  sendNetwork(public) -- sender also compares content + epoch + receiver ACK
+ else
+  P.Count('route_failure');public.error=short(s);public.revalidation='NEEDS_REVALIDATION'
+  -- No invalid packet solely because a read failed. Gameplay independently checks
+  -- count decrease / missing endpoints before permitting use of the old routes.
+  retryPending=attempts<3;dirty=false
+  if not retryPending then
+   local g=ExposedMembers.SPC_P0;local b=g and g.NetworkBridge
+   if b then pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
+    {OnStart='SPC_P0_Request',Action='NETWORK_REVALIDATE_FAILURE',Token=P.VERSION..':proof:'..generation,Epoch=b.epoch}) end
   end
-  local ok,s=pcall(function()
-    local snapshot=collect(pid)
-    local accepted,err=normalized:Replace(snapshot)
-    if not accepted then error(err) end
-    return snapshot
-  end)
-  if ok then
-    local added,removed=0,0;local firstRemoved
-    if lastGood and lastGood.player~=pid then lastGood=nil;firstComplete=nil;lastChange=nil end
-    for _,k in ipairs(s.keys) do if not lastGood or not lastGood.routes[k] then added=added+1 end end
-    if lastGood then for _,k in ipairs(lastGood.keys) do if not s.routes[k] then removed=removed+1;firstRemoved=firstRemoved or lastGood.routes[k].display end end end
-    if added>0 or removed>0 or not lastGood then lastChange={added=added,removed=removed,firstRemoved=firstRemoved} end
-    firstComplete=firstComplete or {reason=pendingReason,count=s.count}
-    lastGood=s;public.snapshot=s;public.status=s.status;public.reason=pendingReason;public.error=nil
-  else public.status="UNKNOWN";public.snapshot=nil;public.error=short(s) end
-  public.generation=generation;dirty=false
-  render()
-  print("[SPC]["..P.VERSION.."][BACKGROUND_ROUTES] seq="..generation.." reason="..pendingReason.." "..public.status.." "..(public.error or ("count="..public.snapshot.count)))
+ end
+ public.generation=generation;render()
 end
 local function observeGame()
-  local game=ExposedMembers.SPC_P0
-  if game~=lastGame then
-    if lastGame~=nil then lastGood=nil;firstComplete=nil;lastChange=nil;normalized:Reset() end
-    lastGame=game;lastSignal=game and game.RouteSignalRevision
-    mark("GAMEPLAY_CONTEXT_READY_OR_RESET")
-  elseif game and game.RouteSignalRevision~=lastSignal then
-    lastSignal=game.RouteSignalRevision;mark("GAMEPLAY_DIRTY_SIGNAL")
-  end
+ local game=ExposedMembers.SPC_P0
+ if game~=lastGame then
+  lastGame=game;lastSignal=game and game.RouteSignalRevision
+  lastGood=nil;public.snapshot=nil;public.status='UNKNOWN';normalized:Reset()
+  mark('GAMEPLAY_CONTEXT_READY_OR_RESET')
+ elseif game and game.RouteSignalRevision~=lastSignal then
+  lastSignal=game.RouteSignalRevision;mark('GAMEPLAY_DIRTY_SIGNAL')
+ end
 end
-local function dispatch(source)
-  if not active or dispatching then return end
-  dispatching=true
-  attempts=attempts+1;lastFlush=source or pendingReason
-  local ok,err=pcall(refresh)
-  dispatching=false
-  if not ok then public.status="UNKNOWN";public.snapshot=nil;public.error=short(err);dirty=false end
-  retryPending=public.status=="UNKNOWN" and attempts<3
-  render()
+local function flush()
+ if not active then return end
+ if dispatching then P.Count('busy_skip');return end
+ observeGame()
+ if not dirty and not retryPending then
+  -- ACK checking is bounded, and sender returns before encoding unchanged data.
+  if public.snapshot and public.awaitingNetwork then sendNetwork(public) end
+  return
+ end
+ dispatching=true;attempts=attempts+1
+ local ok=pcall(refresh)
+ dispatching=false
+ if not ok then P.Count('route_failure');dirty=false;retryPending=false;public.revalidation='RETRY_STOPPED' end
 end
-local function listen(name)
-  local event=P.Field(Events,name)
-  if event and type(P.Field(event,"Add"))=="function" then
-    local callback=function()
-      mark(name)
-      -- These lifecycle boundaries must not depend on an empty context receiving SetUpdate.
-      if name=="LoadScreenClose" or name=="PlayerTurnActivated" or name=="PlayerTurnDeactivated" then dispatch() end
-    end
-    event.Add(callback);hooks[#hooks+1]={event=event,callback=callback}
-  end
+local function bind(name,fn)
+ local e=P.Field(Events,name)
+ if e and e.Add then e.Add(fn);hooks[#hooks+1]={event=e,callback=fn} end
 end
 local function initialize()
-  if active then return end
-  active=true
-  public={version=P.VERSION,status="UNKNOWN",sourceContext="UI",authority="UI_SHADOW_ONLY"}
-  public.ReadNormalizedRoutes=function() return normalized:Read() end
-  ExposedMembers.SPC_P0_BackgroundRoutes=public
-  lastGame=ExposedMembers.SPC_P0;lastSignal=lastGame and lastGame.RouteSignalRevision
-  for _,name in ipairs({"LoadScreenClose","TradeRouteActivityChanged","TradeRouteAddedToMap","TradeRouteRemovedFromMap",
-    "UnitOperationStarted","UnitOperationsCleared","UnitOperationDeactivated","UnitRemovedFromMap",
-    "CityAddedToMap","CityRemovedFromMap","DiplomacyDeclareWar","PlayerTurnActivated","PlayerTurnDeactivated"}) do listen(name) end
-  -- Native UI uses publish-complete to flush a batch of GameCore changes.
-  -- No visibility check, UI opening, or event payload as route truth.
-  for _,name in ipairs({"GameCoreEventPublishComplete","GameCoreEventPlaybackComplete"}) do
-    local event=P.Field(Events,name)
-    if event and type(P.Field(event,"Add"))=="function" then
-      local callback=function()
-        if not active then return end
-        if name=="GameCoreEventPublishComplete" then publishPulses=publishPulses+1 else playbackPulses=playbackPulses+1 end
-        local ok,err=pcall(function()
-          observeGame()
-          if dirty or retryPending then dispatch(name) else render() end
-        end)
-        if not ok then public.status="UNKNOWN";public.snapshot=nil;public.error=short(err);dirty=false;retryPending=false;render() end
-      end
-      event.Add(callback);hooks[#hooks+1]={event=event,callback=callback}
-    end
-  end
-  local systemEvent=P.Field(Events,"SystemUpdateUI")
-  if systemEvent and type(P.Field(systemEvent,"Add"))=="function" then
-    local callback=function()
-      if not active then return end
-      systemPulses=systemPulses+1
-      local ok,err=pcall(function()
-        observeGame()
-        if dirty then dispatch() else render() end
-      end)
-      if not ok then public.status="UNKNOWN";public.snapshot=nil;public.error=short(err);dirty=false;render() end
-    end
-    systemEvent.Add(callback);hooks[#hooks+1]={event=systemEvent,callback=callback}
-  end
-  dispatch() -- no panel/UI open action involved
-  ContextPtr:SetUpdate(function(dt)
-    contextPulses=contextPulses+1
-    if not active or type(dt)~="number" or dt<0 then return end
-    clock=clock+dt;scanAge=scanAge+dt;sinceDirty=sinceDirty+dt
-    if clock<0.25 then return end;clock=0
-    local ok,err=pcall(function()
-      observeGame()
-      if scanAge>=10 and not dirty then mark("TIMER_FALLBACK") end
-      if dirty and sinceDirty>=0.20 then dispatch() else render() end
-    end)
-    if not ok then public.status="UNKNOWN";public.snapshot=nil;public.error=short(err);dirty=false;render() end
+ if active then return end;active=true
+ public={version=P.VERSION,status='UNKNOWN',sourceContext='UI',authority='UI_SHADOW_ONLY'}
+ public.ReadNormalizedRoutes=function() return normalized:Read() end
+ ExposedMembers.SPC_P0_BackgroundRoutes=public
+ lastGame=ExposedMembers.SPC_P0;lastSignal=lastGame and lastGame.RouteSignalRevision
+ for _,name in ipairs({'LoadScreenClose','TradeRouteActivityChanged','TradeRouteAddedToMap','TradeRouteRemovedFromMap',
+  'UnitOperationStarted','UnitOperationsCleared','UnitOperationDeactivated','UnitRemovedFromMap',
+  'CityAddedToMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar','PlayerTurnActivated','PlayerTurnDeactivated'}) do
+  local eventName=name
+  bind(name,function(pid,id)
+   if eventName:find('^Unit') then
+    P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
+   end
+   if eventName:find('^PlayerTurn') and pid~=Game.GetLocalPlayer() then return end
+   mark(eventName)
+   if eventName=='LoadScreenClose' or eventName:find('^PlayerTurn') then flush() end
   end)
+ end
+ for _,name in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete','SystemUpdateUI'}) do bind(name,flush) end
+ flush()
+ -- No recurring full-scan timer. Events and local turn boundaries remain primary.
 end
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
-  active=false;normalized:Reset();ContextPtr:ClearUpdate()
-  for _,h in ipairs(hooks) do if type(P.Field(h.event,"Remove"))=="function" then h.event.Remove(h.callback) end end
-  if ExposedMembers.SPC_P0_BackgroundRoutes==public then ExposedMembers.SPC_P0_BackgroundRoutes=nil end
+ active=false;normalized:Reset();ContextPtr:ClearUpdate()
+ for _,h in ipairs(hooks) do if h.event.Remove then h.event.Remove(h.callback) end end
+ if ExposedMembers.SPC_P0_BackgroundRoutes==public then ExposedMembers.SPC_P0_BackgroundRoutes=nil end
 end)

@@ -1,3 +1,5 @@
+include('DiagnosticLog')
+local print=SPCDiagnosticLog and SPCDiagnosticLog.For('DialogueRefresh') or print
 -- Event-driven collection refresh. Generic UI notifications ONLY drain dirty/ACK state.
 include('Probe')
 include('DialogueModel')
@@ -47,7 +49,7 @@ local function refresh()
  local adjData,adjCount='',0
  local rows,signature={},{};public.scans=public.scans+1
  local ok,why=pcall(function()
-  local cities={};for _,c in Players[pid]:GetCities():Members() do cities[#cities+1]=c end
+  local cities={};for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan'); cities[#cities+1]=c end
   table.sort(cities,function(a,b) return a:GetID()<b:GetID() end)
   for _,c in ipairs(cities) do
    local id=c:GetID();rows[#rows+1]=id..',-1,EMPTY'

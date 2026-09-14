@@ -1,0 +1,86 @@
+{
+  "baseline": "B067.93",
+  "changed": {
+    "Data/Colors.sql": {
+      "before": "f68513481314fea0d7a75d71c3972e0c94a03fdb82b25477da0d7b890c949308",
+      "after": "adac5b8d0599024c96d440b56b03af0d32b3e98dcfc36a753fe4a0cfe600ef0c"
+    },
+    "DiagnosticLog.lua": {
+      "before": null,
+      "after": "fd4c52434a868a69f74177321a8588aef51ea3e55cc4b0e5d53715ca0b780db3"
+    },
+    "Gameplay.lua": {
+      "before": "c112689aff5fe8d4215792d7956bd9e4fcd28c037ea9e1a9ece6c7c8aceead4f",
+      "after": "337ca9f2c3700e0b0f9aa1c95bf51ee4a61bd88b7e3d57ec2db91ff0cd2a55a5"
+    },
+    "Probe.lua": {
+      "before": "8d19bcf5a9593250147ea25b22b47864c015b10fe682f22671b633299fcb31d6",
+      "after": "14b8d24976288cb588f594f21f0df5a52b0c568fbc0e35e85d933ddb3567a6a7"
+    },
+    "SpecializationP0.modinfo": {
+      "before": "8e4f8616dfa0428c9884ae697cf886ce197a2806cea5ed41ae7e433a6b789e66",
+      "after": "87fc3b910e94e4315fe5fed48be9d52eb0126177a94492ca036f984563eb25b9"
+    },
+    "UI/BoostRefresh.lua": {
+      "before": "1139d90eb0a00bb14c82b0e4cf73ba9b2198b9d6e5b3e93d712cfb21330914cb",
+      "after": "efa5ada911a77781831f8dfa3a04c34974e404b989159a7b1c3cffae8d777cbf"
+    },
+    "UI/CityPotential.lua": {
+      "before": null,
+      "after": "2b77c89525debb3e4caa641bcb82a50a1183d8f8cb893db32f2fb56f46a7c643"
+    },
+    "UI/CityPotential.xml": {
+      "before": null,
+      "after": "e8a2797a8c597e77fc07b9ff40f84bd7a436e56ed031126c07dcd78fc55d9aff"
+    },
+    "UI/CopyYieldRefresh.lua": {
+      "before": "585ddfa0d84595aaacc00bb5a34335ff2d2bcf7f9cdace168bd7f10e4c9b8af9",
+      "after": "c94ced82f1d78253864cdab06a25a4ace5dab89bb29bd2cee1015179b63cab1a"
+    },
+    "UI/DialogueRefresh.lua": {
+      "before": "40ce8d9e42a038b5475404c9b449be73a8cbc225b90e8d6cc82673cb20b007ee",
+      "after": "6cafbaa513e75ba090f4701f75c107e4b8aef4216eaf3bf650b8ca17bc94a8d2"
+    },
+    "UI/DiscountEligibility.lua": {
+      "before": "8cb9896cb6492c192bd23aa5877ea6a2fd75cf68bb38c02e17a3c726425d626c",
+      "after": "9f573d28d1b9649084c71eb25d248eb1e5c6a506997db31bdea62f0d7a272e84"
+    },
+    "UI/GPPRefresh.lua": {
+      "before": "b7e741fec5460436776dcb8509ccee1bd114ec4d436e224eb6755361ae0d11d5",
+      "after": "6064f761608590e35314447145e9f746f699fbb3cbbcc714b8c608b2a55d8162"
+    },
+    "UI/IndustryRefresh.lua": {
+      "before": "52bb904fe6f4bc133f068721b420287688760ab80ae32940c3926d6d397823f1",
+      "after": "af3c1531d9fe25f878f60d5f5be5f5ba378305ba0d6b394961ad3c523ac6e834"
+    },
+    "UI/P0Panel.lua": {
+      "before": "f19c654d5c1267e5016f8f29c2d3c2253f6884dc67e301fb5f8a59cb8052666d",
+      "after": "6b5ff1f9334e8517d1e147c092594a75def9d4d30d247f5ec4567dacf15bc5e0"
+    },
+    "UI/P0Panel.xml": {
+      "before": "5344bbfcca9864592c3fe5c71893c7b64721d7df848108d1a4e002d3dc531777",
+      "after": "a8df2f7e0cc6f6dc7643a82eaaa0ced2d3921354b9f7d3333dca1047331b8cf8"
+    },
+    "UI/UnitPanelActions.lua": {
+      "before": "2c13b4da4a8c7739d150d1130479ccdec780a9ea4874d67574ea778493b1c5a6",
+      "after": "49491d8ff7de48f8cbf24c1d90789878fcfaf7b81857c129113e2e4a0497e91c"
+    },
+    "UI/UnitSites.lua": {
+      "before": "9816a5c573a812fd7a8b46d5ed73f81cf269ebcbe9894c073afdd7f72c502aa3",
+      "after": "98e70745fdbc14aef01492d75487555b85ae260d23ff894bd03b242a57c042ff"
+    },
+    "UI/UnitSites.xml": {
+      "before": "75deff24b5b00291f09b05047b7dd0d2c6aaddd2d301a5535bc0f1eef184ff04",
+      "after": "70d9f2854b603bfa9922fbb869b5a74e44ec7427b757b047851ee939aecaaa6e"
+    },
+    "UI/UnitTargetMarkers.lua": {
+      "before": "9768be60bc2defc5914608893c9a9cd7d6f97004432863eebe509909ca8cfde3",
+      "after": "037d291fb402a3220e639e1f8bb05eb16f0374565c0cc31e95d60e7bb8e73a3d"
+    },
+    "UI/UnitTargetMarkers.xml": {
+      "before": "702547855b6d30069b023a71a62643ddae7060ec270b5aab3f0219733609ba68",
+      "after": "d4a976b7811eb6f5df0f668f15b8a260e4c01576bca3716bfd8ad09e12792331"
+    }
+  },
+  "unchanged_files": 94
+}

@@ -1,3 +1,5 @@
+include('DiagnosticLog')
+local print=SPCDiagnosticLog and SPCDiagnosticLog.For('CopyYieldRefresh') or print
 -- B051 bounded background UI sampling; no panel dependency and no city-total feedback.
 include('Probe')
 local P=SPCP0
@@ -13,7 +15,7 @@ local function refresh()
  busy=true;public.generation=shared.CopyYields.generation;public.attempts=public.attempts+1;public.state='SAMPLING'
  local count=0;local rows={}
  local ok,err=pcall(function()
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local c=d:GetCity();local row=P.Info('Districts',d:GetType())
    if c and c:GetOwner()==pid and d:IsComplete() and row then
     local sum,prod=0,0

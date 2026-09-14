@@ -29,8 +29,9 @@ function SPCStandardization.Start(P,shared)
  end
  local function write(c,old,nextValue)
   assert(same(c:GetProperty(KEY),old),'STD_CONCURRENT_CHANGE')
-  c:SetProperty(KEY,nextValue)
+  P.SetProperty(c,KEY,nextValue)
   assert(same(c:GetProperty(KEY),nextValue),'STD_WRITE_UNCONFIRMED')
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1
  end
  local function facts(pid,c)
@@ -39,7 +40,7 @@ function SPCStandardization.Start(P,shared)
  end
  local function learn(c,v,id,evidence)
   local row=catalog().buildings[id];if not row then return false end
-  if not c:GetBuildings():HasBuilding(row.index) then return false end
+  if not P.HasBuilding(c:GetBuildings(),row.index) then return false end
   local prior=v.learned[id]
   if prior then
    assert(prior.district==row.district and prior.tier==row.tier,'STD_CATALOG_MIGRATION_REQUIRED');return false
@@ -67,9 +68,9 @@ function SPCStandardization.Start(P,shared)
   return ok
  end
  function data.Discover(pid)
-  if not data.ready or data.busy then return end;data.busy=true
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for id,player in pairs(Players) do if (pid==nil or pid==id) and P.IsTestPlayer(id) then
-   for _,c in player:GetCities():Members() do guard(id,c,function() initialize(id,c) end) end
+   for _,c in player:GetCities():Members() do P.Count('city_scan'); guard(id,c,function() initialize(id,c) end) end
   end end
   data.busy=false
  end
@@ -83,7 +84,7 @@ function SPCStandardization.Start(P,shared)
   data.pending[k].buildings[b.BuildingType]=data.pending[k].buildings[b.BuildingType] or {evidence=event,turn=Game.GetCurrentGameTurn()}
  end
  function data.Flush()
-  if not data.ready or data.busy then return end;data.busy=true
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for k,q in pairs(data.pending) do
    local player=Players[q.pid];local c=player and player:GetCities():FindID(q.cid)
    if not c or c:GetOwner()~=q.pid or not P.IsTestPlayer(q.pid) then data.pending[k]=nil
@@ -105,7 +106,7 @@ function SPCStandardization.Start(P,shared)
      local nextValue=clone(old);local changed=false
      for id,e in pairs(q.buildings) do
       local row=catalog().buildings[id]
-      if row and c:GetBuildings():HasBuilding(row.index) then
+      if row and P.HasBuilding(c:GetBuildings(),row.index) then
        if learn(c,nextValue,id,e.evidence) then changed=true;data.last[k]=id end
       else retry(id,e) end
      end
@@ -163,7 +164,7 @@ function SPCStandardization.Start(P,shared)
   local b=P.Info('Buildings',bid);local ok,cat=pcall(catalog)
   if not ok or not b or not cat.buildings[b.BuildingType] then return end
   local player=Players[pid];if not player then return end
-  for _,c in player:GetCities():Members() do data.Queue(pid,c:GetID(),bid,'BUILDING_ADDED_RECHECK') end
+  for _,c in player:GetCities():Members() do P.Count('city_scan'); data.Queue(pid,c:GetID(),bid,'BUILDING_ADDED_RECHECK') end
   data.Flush()
  end)
  hook(Events,'GameCoreEventPublishComplete',data.Flush)

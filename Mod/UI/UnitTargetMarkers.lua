@@ -1,11 +1,21 @@
 include('Probe')
-include('InstanceManager')
 local P=SPCP0
-local manager,selection,pending,timer,age,active
+local selection,pending,timer,age,active
+local layer=UILens.CreateLensLayerHash('Hex_Coloring_Great_People')
+local ownsLayer=false
+local renderedKey,lastLog
 local builderPreview=false
 local hooks={}
 local function clear()
- if manager then manager:ResetInstances() end
+ if ownsLayer then
+  local u=UI.GetHeadSelectedUnit();local row=u and GameInfo.Units[u:GetType()]
+  -- A newly selected native great person/naturalist owns this layer now.
+  if not row or (not row.GreatPersonClass and row.UnitType~='UNIT_NATURALIST') then
+   UILens.ClearLayerHexes(layer);UILens.ToggleLayerOff(layer)
+  end
+  ownsLayer=false
+ end
+ renderedKey=nil
  pending=nil
 end
 local function eligible()
@@ -17,7 +27,7 @@ local function eligible()
  if row and (row.UnitType=='UNIT_SETTLER' or P.CrewBase(row.UnitType)~=nil or (builderPreview and row.UnitType=='UNIT_BUILDER')) then return u end
 end
 local function request(u)
- clear()
+ pending=nil
  ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
  pending=P.VERSION..':TARGETS:'..ExposedMembers.SPC_P0_UISequence;age=0
  local ok,err=pcall(UI.RequestPlayerOperation,Game.GetLocalPlayer(),PlayerOperations.EXECUTE_SCRIPT,
@@ -40,30 +50,40 @@ local function update(dt)
   local shared=ExposedMembers.SPC_P0 or {};local s=shared.UnitTargetSnapshot
   if s and s.version==P.VERSION and s.token==pending and s.owner==u:GetOwner() and s.unitID==u:GetID() then
    pending=nil
-   local count=0
+   local plots={}
    if not s.error then
     for _,r in ipairs(s.plots or {}) do
      local visibility=PlayersVisibility[s.owner]
-     if visibility and visibility:IsVisible(r.plot) then
-      local instance=manager:GetInstance();local x,y=UI.GridToWorld(r.plot)
-      instance.Anchor:SetWorldPositionVal(x,y,35)
-      instance.Caption:SetText(s.mode);count=count+1
-     end
+     if visibility and visibility:IsVisible(r.plot) then plots[#plots+1]=r.plot end
     end
    end
-   ExposedMembers.SPC_TargetMarkerStatus=s.error or (s.mode..' markers='..count..' | unknown cities='..#(s.unknown or {})..' | locations, not movement range')
-   if s.unknown and s.unknown[1] then
-    ExposedMembers.SPC_TargetMarkerStatus=ExposedMembers.SPC_TargetMarkerStatus..' | city '..s.unknown[1].cityID..': '..s.unknown[1].reason
+   table.sort(plots)
+   local nextKey=s.owner..':'..table.concat(plots,',')
+   if nextKey~=renderedKey then
+    clear()
+    if #plots>0 then
+     local ok,err=pcall(function()
+      UILens.ClearLayerHexes(layer);ownsLayer=true
+      UILens.SetLayerHexesColoredArea(layer,s.owner,plots,UI.GetColorValue('COLOR_SPC_LEGAL_TARGET'))
+      UILens.ToggleLayerOn(layer)
+     end)
+     if not ok then clear();s.error=tostring(err) end
+    end
+    renderedKey=nextKey
    end
-   print('[SPC][B041][TARGETS] '..ExposedMembers.SPC_TargetMarkerStatus)
-   for _,v in ipairs(s.unknown or {}) do print('[SPC][B041][TARGET_UNKNOWN] '..v.cityID..' '..v.reason) end
+   local message=s.error or (s.mode..' purple targets='..#plots..' | unknown cities='..#(s.unknown or {}))
+   ExposedMembers.SPC_TargetMarkerStatus=message
+   if message~=lastLog then
+    print('[SPC][TARGETS] '..message)
+    for _,v in ipairs(s.unknown or {}) do print('[SPC][TARGET_UNKNOWN] '..v.cityID..' '..v.reason) end
+    lastLog=message
+   end
   elseif age>10 then clear();ExposedMembers.SPC_TargetMarkerStatus='Target read timed out' end
  end
  -- Bounded read-only reconciliation for queue/investment changes with no selection event.
  if not pending and age>5 and not UI.IsGameCoreBusy() then request(u) end
 end
 local function init()
- manager=InstanceManager:new('TargetInstance','Anchor',ContextPtr)
  ContextPtr:SetHide(false);timer=0;age=0;active=true
  ContextPtr:SetUpdate(function(dt) if active then update(dt) end end)
  LuaEvents.SPC_ToggleBuilderTargets.Add(toggle)

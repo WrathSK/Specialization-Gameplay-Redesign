@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Context Name="SPCUnitTargetMarkers" Layer="WorldAnchor">
- <Instance Name="TargetInstance">
-  <WorldAnchor ID="Anchor" Size="2,2">
-   <Box Anchor="C,C" Size="92,28" Color="15,85,110,220" />
-   <Label ID="Caption" Anchor="C,C" Style="FontNormal14" String="INVEST" />
-  </WorldAnchor>
- </Instance>
-</Context>
+<Context Name="SPCUnitTargetMarkers" />

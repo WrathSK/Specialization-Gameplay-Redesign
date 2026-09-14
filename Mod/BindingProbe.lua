@@ -52,6 +52,7 @@ function SPCBindingProbe.Start(P,shared)
  end
  function data.Resolve(pid,city)
   if not P.IsTestPlayer(pid) then return nil,"OUTSIDE_TEST_CIV" end
+  if shared.CityInheritance then local uid,status=shared.CityInheritance.Resolve(pid,city);if uid then return uid,status end end
   local state,_,token=inspect(pid,city)
   if state~="BOUND_MATCH" then return nil,state end
   return token,state
@@ -71,7 +72,7 @@ function SPCBindingProbe.Start(P,shared)
  local function gameWrite(pid,b,before,next)
   assert(same(ledger(pid),before,0),"STALE_LEDGER")
   b.gameWrites=b.gameWrites+1
-  pcall(function() Game:SetProperty(key(pid),next) end)
+  pcall(function() P.SetProperty(Game,key(pid),next) end)
   assert(same(ledger(pid),next,0),"GAME_WRITE_UNCONFIRMED")
  end
  local function foundation(pid,cid,x,y)
@@ -89,7 +90,7 @@ function SPCBindingProbe.Start(P,shared)
    assert(state=="UNTRACKED_NO_WRITE","EXISTING_BINDING_NO_REPAIR")
    if old==nil then
     -- DEV bootstrap only: a missing ledger must not strand extant city tokens.
-    for _,c in Players[pid]:GetCities():Members() do assert(c:GetProperty(TOKEN)==nil,"TOKEN_WITHOUT_LEDGER") end
+    for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan'); assert(c:GetProperty(TOKEN)==nil,"TOKEN_WITHOUT_LEDGER") end
    end
    local next=clone(old or {schema=1,owner=pid,counter=0,records={}})
    assert(next.counter<32,"DEV_CITY_LIMIT_32")
@@ -100,11 +101,12 @@ function SPCBindingProbe.Start(P,shared)
    city=CityManager.GetCity(pid,cid)
    assert(city and city:GetID()==cid and city:GetOwner()==pid and city:GetX()==x and city:GetY()==y
     and city:GetProperty(TOKEN)==nil,"CITY_CHANGED_BEFORE_WRITE")
-   b.cityWrites=b.cityWrites+1;pcall(function() city:SetProperty(TOKEN,uid) end)
+   b.cityWrites=b.cityWrites+1;pcall(function() P.SetProperty(city,TOKEN,uid) end)
    assert(city:GetProperty(TOKEN)==uid,"CITY_WRITE_UNCONFIRMED")
    local confirmed=clone(next);confirmed.records[tostring(cid)].state="CONFIRMED"
    gameWrite(pid,b,next,confirmed)
    assert(inspect(pid,city)=="BOUND_MATCH","FINAL_BINDING_MISMATCH")
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'BindingProbe.lua') end
    b.last="NEW_CITY_BOUND"
    if shared.OnFreshCityBinding then shared.OnFreshCityBinding(pid,city) end
   end)
@@ -124,7 +126,7 @@ function SPCBindingProbe.Start(P,shared)
   -- Automatic read-only audit; no repair, allocation or confirmation during load.
   for pid,player in pairs(Players) do
    if P.IsTestPlayer(pid) then
-    local ok,err=pcall(function() for _,city in player:GetCities():Members() do data.Read(pid,city) end end)
+    local ok,err=pcall(function() for _,city in player:GetCities():Members() do P.Count('city_scan'); data.Read(pid,city) end end)
     if not ok then bucket(pid).last="LOAD_AUDIT_ERROR "..tostring(err) end
    end
   end

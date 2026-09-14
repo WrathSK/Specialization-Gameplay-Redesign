@@ -11,22 +11,22 @@ function SPCGWAdjacency.Start(P,shared)
   for _,y in ipairs(M.Yields) do for _,sign in ipairs({'P','N'}) do for bit=0,12 do
    local id=key(y,sign..bit);local r=P.Info('Buildings',id)
    assert(r,'GWA_DATABASE_MISSING')
-   if b:HasBuilding(r.Index) and not want[id] then b:RemoveBuilding(r.Index);assert(not b:HasBuilding(r.Index),'GWA_REMOVE_FAILED') end
+   if P.HasBuilding(b,r.Index) and not want[id] then P.RemoveBuilding(b,r.Index);assert(not P.HasBuilding(b,r.Index),'GWA_REMOVE_FAILED') end
   end end end
   for id in pairs(want) do local r=P.Info('Buildings',id)
-   if not b:HasBuilding(r.Index) then c:GetBuildQueue():CreateBuilding(r.Index) end
-   assert(b:HasBuilding(r.Index),'GWA_WRITE_FAILED')
+   if not P.HasBuilding(b,r.Index) then P.CreateBuilding(c:GetBuildQueue(),r.Index) end
+   assert(P.HasBuilding(b,r.Index),'GWA_WRITE_FAILED')
   end
  end
  function d.Init()
   if d.ready then return end
-  for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do carriers(c,{}) end end end
+  for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan'); carriers(c,{}) end end end
   d.ready=true
  end
  function d.Audit(pid)
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
   d.last[pid]={}
-  for _,c in Players[pid]:GetCities():Members() do
+  for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
    local ok,plan=pcall(function()
     local sample=d.samples[pid];local collection=shared.Dialogue.samples[pid]
     assert(sample and collection and sample.turn==Game.GetCurrentGameTurn() and collection.turn==sample.turn,'GWA_SAMPLE_PENDING')
@@ -52,7 +52,7 @@ function SPCGWAdjacency.Start(P,shared)
    d.Init()
    assert(type(a.AdjCount)=='number' and a.AdjCount>=0,'GWA_UI_BASE_READ_FAILED')
    assert(a.Valid==1 and a.Turn==Game.GetCurrentGameTurn() and type(a.AdjData)=='string' and #a.AdjData<=100000,'GWA_SAMPLE_INVALID')
-   local expected={};for _,district in Players[pid]:GetDistricts():Members() do
+   local expected={};for _,district in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
     local c=district:GetCity();local def=P.Info('Districts',district:GetType())
     if c and c:GetOwner()==pid and def and def.RequiresPopulation and def.RequiresPopulation~=0 and district:IsComplete() then expected[district:GetID()]={city=c:GetID(),kind=def.DistrictType} end
    end

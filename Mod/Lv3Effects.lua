@@ -13,7 +13,7 @@ function SPCLv3Effects.Start(P,shared)
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
   local found=false
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local city=d:GetCity();local row=P.Info('Districts',d:GetType())
    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
     assert(row and row.DistrictType==districts[f.specialization] and f.first.type==row.DistrictType and d:IsComplete()==true,'LV3_ANCHOR_INVALID');found=true;break
@@ -22,7 +22,7 @@ function SPCLv3Effects.Start(P,shared)
   assert(found,'LV3_DISTRICT_MISSING')
   if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
    local target
-   for _,d in Players[pid]:GetDistricts():Members() do
+   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
     local city=d:GetCity()
     if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then target=d;break end
    end
@@ -40,7 +40,7 @@ function SPCLv3Effects.Start(P,shared)
   local coefficients={RESEARCH=0,CULTURE=0};local flags={}
   for _,name in ipairs(names) do
    local row=P.Info('Buildings',name);assert(row and row.Index,'B038_DATABASE_MISSING')
-   if c:GetBuildings():HasBuilding(row.Index) then
+   if P.HasBuilding(c:GetBuildings(),row.Index) then
     local k,bit=name:match('_POP_(%u+)_(%d+)$')
     if k then coefficients[k]=coefficients[k]+0.5*2^tonumber(bit)
     else flags[#flags+1]=name:match('_COM_(%u+)$') end
@@ -48,12 +48,12 @@ function SPCLv3Effects.Start(P,shared)
   end
   return coefficients,flags
  end
- function data.Audit()
-  if not data.ready or data.busy then return end;data.busy=true
+ function data.Audit() P.Count('audit_lv3');
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for pid,player in pairs(Players) do
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
-    for _,c in cities:Members() do
+    for _,c in cities:Members() do P.Count('city_scan');
      local good,wanted=pcall(desired,pid,c);local reason=not good and tostring(wanted) or nil
      if not good then wanted={} end
      local applied,why=pcall(function()
@@ -62,10 +62,10 @@ function SPCLv3Effects.Start(P,shared)
        local row=P.Info('Buildings',name);assert(row and row.Index,'B038_DATABASE_MISSING')
        local want=wanted[name]==true
        if want==adding then
-        local b=c:GetBuildings();local present=b:HasBuilding(row.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
+        local b=c:GetBuildings();local present=P.HasBuilding(b,row.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
         if present~=want then
-         if want then c:GetBuildQueue():CreateBuilding(row.Index) else b:RemoveBuilding(row.Index) end
-         assert(b:HasBuilding(row.Index)==want,'LV3_WRITE_UNCONFIRMED');data.changes=data.changes+1
+         if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
+         assert(P.HasBuilding(b,row.Index)==want,'LV3_WRITE_UNCONFIRMED');data.changes=data.changes+1
         end
        end
       end end
@@ -86,7 +86,7 @@ function SPCLv3Effects.Start(P,shared)
    local lines={}
    if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
     local workers
-    for _,d in Players[pid]:GetDistricts():Members() do
+    for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
      local city=d:GetCity()
      if f.first and city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
       workers=Map.GetPlot(d:GetX(),d:GetY()):GetWorkerCount();break

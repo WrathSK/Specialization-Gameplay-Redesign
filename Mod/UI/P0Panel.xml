@@ -1,78 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <Context Name="SPCP0Panel">
-  <GridButton ID="OpenButton" Anchor="R,T" Offset="20,145" Size="165,32" Style="MainButton" String="Specialization P0" />
+  <GridButton ID="OpenButton" Anchor="L,T" Offset="8,120" Size="165,32" Style="MainButton" AnchorSide="I,I"><Label ID="OpenButtonCaption" Anchor="C,C" Style="FontNormal14" String="专业化诊断" Color="255,255,255,255" /></GridButton>
   <Container ID="Window" Anchor="C,C" Size="840,664">
     <Box Size="840,664" Color="12,19,27,250" />
-    <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="SPC P0-B-060.84 | Specialization diagnostics" />
-    <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton" String="Close" />
-    <Label ID="Status" Anchor="L,T" Offset="18,62" Style="FontNormal14" WrapWidth="800" String="B059：时代对话自动百分比；可OFF/恢复自动作同收藏对照。" />
+    <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="SPC P0-B-068.95 | Specialization diagnostics" />
+    <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton"><Label ID="CloseButtonCaption" Anchor="C,C" Style="FontNormal14" String="关闭" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="1" ID="HalfReadButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read half test" />
     <GridButton Hidden="1" ID="Lv2GPPButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read Lv2 GPP" />
     <GridButton Hidden="1" ID="HalfOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Half +0.5 ON" />
     <GridButton Hidden="1" ID="InvestPrepareButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Prepare investment" />
     <GridButton Hidden="1" ID="HalfOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Half OFF" />
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
-    <GridButton ID="NetworkButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" String="Read network (Game)" />
-    <GridButton ID="SourceYieldButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Read progression" />
+    <GridButton Hidden="1" ID="CommerceOFFButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Commerce OFF / baseline" />
+    <GridButton Hidden="1" ID="CommerceTEST5Button" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Commerce TEST +5" />
+    <GridButton ID="InheritRecordButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Select shadow city" Hidden="1" />
+    <GridButton ID="InheritReadButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Read shadow / events" Hidden="1" />
+    <GridButton ID="CommerceAUTOButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Commerce AUTO" Hidden="1" />
     <GridButton Hidden="1" ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
     <GridButton Hidden="1" ID="PurchaseBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Purchase BASE" />
     <GridButton Hidden="1" ID="PurchaseOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Purchase -20% ON" />
     <GridButton Hidden="1" ID="PurchaseOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Purchase OFF" />
     <GridButton Hidden="1" ID="PurchaseReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read purchase" />
-    <GridButton Hidden="1" ID="DiscountsButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read discounts" />
     <GridButton Hidden="1" ID="NextDiscountsButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next discounts" />
-    <GridButton Hidden="1" ID="TemplatesButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read templates" />
     <GridButton Hidden="1" ID="NextTemplatesButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Next templates" />
-    <GridButton Hidden="1" ID="Lv4CopyButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read Lv4 copy" />
-    <GridButton Hidden="1" ID="SpecialistsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Read specialists" />
     <GridButton Hidden="1" ID="BoostBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Boost baseline" />
-    <GridButton Hidden="1" ID="BoostReadButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read boosts" />
-    <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" />
-    <GridButton ID="GWReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read Great Works" />
-    <GridButton ID="GWCityButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Dialogue AUTO" />
+    <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" Hidden="1" />
+    <GridButton ID="GWCityButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Dialogue AUTO" Hidden="1" />
     <GridButton Hidden="1" ID="GWObjectButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="GW per work +2C" />
-    <GridButton ID="GWOffButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Dialogue OFF" />
+    <GridButton ID="GWOffButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Dialogue OFF" Hidden="1" />
     <GridButton Hidden="1" ID="BoostTestZeroButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Boost test 0" />
-    <GridButton Hidden="1" ID="BoostTestHalfButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Raw 1.5 -> 2" />
-    <GridButton Hidden="1" ID="BoostTestHighButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Raw 3.8 -> 4" />
+    <GridButton Hidden="1" ID="BoostTestHalfButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Raw 1.5 -&gt; 2" />
+    <GridButton Hidden="1" ID="BoostTestHighButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Raw 3.8 -&gt; 4" />
     <GridButton Hidden="1" ID="BoostTestAutoButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Restore auto Boost" />
     <GridButton Hidden="1" ID="DialogueTest25Button" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Dialogue TEST +25%" />
     <GridButton Hidden="1" ID="DialogueTest50Button" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Dialogue TEST +50%" />
     <GridButton Hidden="1" ID="DialogueTest100Button" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Dialogue TEST +100%" />
-    <GridButton ID="GWAReadButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="GW adjacency Read" />
-    <GridButton ID="GWAOffButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="GW adjacency Off" />
-    <GridButton ID="GWAAutoButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="GW adjacency Auto" />
+    <GridButton Hidden="1" ID="GWAOffButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="GW adjacency Off" />
+    <GridButton Hidden="1" ID="GWAAutoButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="GW adjacency Auto" />
     <Container ID="LegacyProbeButtons" Size="840,664" Hidden="1">
-      <GridButton ID="BackgroundRoutesButton" Anchor="L,T" Offset="230,12" Size="225,32" Style="MainButton" String="Background routes" />
-      <GridButton ID="RouteStateButton" Anchor="L,T" Offset="465,12" Size="240,32" Style="MainButton" String="Route state (Game)" />
-      <GridButton ID="CarrierStepButton" Anchor="L,B" Offset="542,370" Size="240,32" Style="MainButton" String="Network details / Next" />
-      <GridButton ID="CarrierOffButton" Anchor="L,B" Offset="280,326" Size="240,32" Style="MainButton" String="Carrier OFF" />
-      <GridButton ID="CityFlowButton" Anchor="L,B" Offset="18,326" Size="240,32" Style="MainButton" String="Read city flow (B021)" />
-      <GridButton ID="EnvelopeReadButton" Anchor="L,B" Offset="280,282" Size="240,32" Style="MainButton" String="Read envelope (B019)" />
-      <GridButton ID="EnvelopeNextButton" Anchor="L,B" Offset="542,282" Size="240,32" Style="MainButton" String="Next envelope stage" />
-      <GridButton ID="QualificationButton" Anchor="L,B" Offset="18,282" Size="240,32" Style="MainButton" String="Runtime eligibility" />
-      <GridButton ID="EligibilityUnknownButton" Anchor="L,B" Offset="542,238" Size="240,32" Style="MainButton" String="Eligibility unknowns" />
-      <GridButton ID="EligibilityButton" Anchor="L,B" Offset="280,238" Size="240,32" Style="MainButton" String="Read eligibility" />
-      <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" />
-      <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" />
-      <GridButton ID="StorageReadButton" Anchor="L,B" Offset="18,194" Size="240,32" Style="MainButton" String="Read storage" />
-      <GridButton ID="StorageWriteButton" Anchor="L,B" Offset="280,194" Size="240,32" Style="MainButton" String="Write test table" />
-      <GridButton ID="CompletionRecordButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Read completion record" />
-      <GridButton ID="CompletionButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Completion events" />
-      <GridButton ID="CompletionNextButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Older completion events" />
-      <GridButton ID="AdjacencyButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read adjacency (UI)" />
-      <GridButton ID="TradeButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read routes (UI)" />
-      <GridButton ID="NextButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next district / route" />
-      <GridButton ID="RouteEventsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Route events (Game)" />
-      <GridButton ID="CaptureButton" Anchor="L,B" Offset="18,18" Size="160,32" Style="MainButton" String="Read marker" />
-      <GridButton ID="CopyButton" Anchor="L,B" Offset="190,18" Size="160,32" Style="MainButton" String="Show / Copy" />
-      <GridButton ID="MarkButton" Anchor="L,B" Offset="365,18" Size="200,32" Style="MainButton" String="Mark selected city" />
-      <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" />
-      <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" />
-      <GridButton ID="GovernorButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Read governor" />
-    </Container>
+      <GridButton ID="RouteStateButton" Anchor="L,T" Offset="465,12" Size="240,32" Style="MainButton" String="Route state (Game)" Hidden="1" />
+      <GridButton ID="CarrierOffButton" Anchor="L,B" Offset="280,326" Size="240,32" Style="MainButton" String="Carrier OFF" Hidden="1" />
+      <GridButton ID="CityFlowButton" Anchor="L,B" Offset="18,326" Size="240,32" Style="MainButton" String="Read city flow (B021)" Hidden="1" />
+      <GridButton ID="EnvelopeReadButton" Anchor="L,B" Offset="280,282" Size="240,32" Style="MainButton" String="Read envelope (B019)" Hidden="1" />
+      <GridButton ID="EnvelopeNextButton" Anchor="L,B" Offset="542,282" Size="240,32" Style="MainButton" String="Next envelope stage" Hidden="1" />
+      <GridButton ID="QualificationButton" Anchor="L,B" Offset="18,282" Size="240,32" Style="MainButton" String="Runtime eligibility" Hidden="1" />
+      <GridButton ID="EligibilityUnknownButton" Anchor="L,B" Offset="542,238" Size="240,32" Style="MainButton" String="Eligibility unknowns" Hidden="1" />
+      <GridButton ID="EligibilityButton" Anchor="L,B" Offset="280,238" Size="240,32" Style="MainButton" String="Read eligibility" Hidden="1" />
+      <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" Hidden="1" />
+      <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" Hidden="1" />
+      <GridButton ID="StorageReadButton" Anchor="L,B" Offset="18,194" Size="240,32" Style="MainButton" String="Read storage" Hidden="1" />
+      <GridButton ID="StorageWriteButton" Anchor="L,B" Offset="280,194" Size="240,32" Style="MainButton" String="Write test table" Hidden="1" />
+      <GridButton ID="CompletionRecordButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Read completion record" Hidden="1" />
+      <GridButton ID="CompletionButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Completion events" Hidden="1" />
+      <GridButton ID="CompletionNextButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Older completion events" Hidden="1" />
+      <GridButton ID="AdjacencyButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read adjacency (UI)" Hidden="1" />
+      <GridButton ID="TradeButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read routes (UI)" Hidden="1" />
+      <GridButton ID="NextButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next district / route" Hidden="1" />
+      <GridButton ID="RouteEventsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Route events (Game)" Hidden="1" />
+      <GridButton ID="CaptureButton" Anchor="L,B" Offset="18,18" Size="160,32" Style="MainButton" String="Read marker" Hidden="1" />
+      <GridButton ID="MarkButton" Anchor="L,B" Offset="365,18" Size="200,32" Style="MainButton" String="Mark selected city" Hidden="1" />
+      <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" Hidden="1" />
+      <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" Hidden="1" />
+      </Container>
     <GridButton Hidden="1" ID="Lv4PercentButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv4 percent" />
     <GridButton Hidden="1" ID="ConstructionPreviewButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Preview construction" />
     <GridButton Hidden="1" ID="ConstructionApplyButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Inject 250 (DEV)" />
-  </Container>
+  <GridButton ID="SourceYieldButton" Anchor="L,B" Offset="18,178" Size="240,32" Style="MainButton" Hidden="0"><Label ID="SourceYieldButtonCaption" Anchor="C,C" Style="FontNormal14" String="城市专业 / 潜力" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="GovernorButton" Anchor="L,B" Offset="280,178" Size="240,32" Style="MainButton" Hidden="0"><Label ID="GovernorButtonCaption" Anchor="C,C" Style="FontNormal14" String="总督条件" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="0" ID="SpecialistsButton" Anchor="L,B" Offset="542,178" Size="240,32" Style="MainButton"><Label ID="SpecialistsButtonCaption" Anchor="C,C" Style="FontNormal14" String="专家与岗位" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="GWReadButton" Anchor="L,B" Offset="18,138" Size="240,32" Style="MainButton" Hidden="0"><Label ID="GWReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="巨作 / 时代对话" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="0" ID="GWAReadButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton"><Label ID="GWAReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="巨作相邻" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="0" ID="Lv4CopyButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton"><Label ID="Lv4CopyButtonCaption" Anchor="C,C" Style="FontNormal14" String="四级区域收益" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="BackgroundRoutesButton" Anchor="L,B" Offset="18,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="BackgroundRoutesButtonCaption" Anchor="C,C" Style="FontNormal14" String="当前商路" Color="255,255,255,255" /></GridButton>
+      <GridButton ID="NetworkButton" Anchor="L,B" Offset="280,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="NetworkButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络概况" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="CarrierStepButton" Anchor="L,B" Offset="542,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CarrierStepButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络来源 / 接收" Color="255,255,255,255" /></GridButton>
+      <GridButton Hidden="0" ID="BoostReadButton" Anchor="L,B" Offset="18,58" Size="240,32" Style="MainButton"><Label ID="BoostReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="尤里卡 / 鼓舞" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="CommerceREADButton" Anchor="L,B" Offset="280,58" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CommerceREADButtonCaption" Anchor="C,C" Style="FontNormal14" String="商业四汇聚" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="0" ID="DiscountsButton" Anchor="L,B" Offset="542,58" Size="240,32" Style="MainButton"><Label ID="DiscountsButtonCaption" Anchor="C,C" Style="FontNormal14" String="工业网络折扣" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="0" ID="TemplatesButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton"><Label ID="TemplatesButtonCaption" Anchor="C,C" Style="FontNormal14" String="标准化模板" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="UnitReadButton" Size="240,32" Style="MainButton" Hidden="0" Anchor="L,B" Offset="280,18"><Label ID="UnitReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="移民 / 施工队" Color="255,255,255,255" /></GridButton><GridButton ID="CopyButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CopyButtonCaption" Anchor="C,C" Style="FontNormal14" String="写入诊断日志" Color="255,255,255,255" /></GridButton>
+      <GridButton ID="PerformanceReadButton" Anchor="L,B" Offset="280,220" Size="240,32" Style="MainButton"><Label Anchor="C,C" Style="FontNormal14" String="Read Performance Counters" /></GridButton>
+    <GridButton ID="PerformanceSnapshotButton" Anchor="L,B" Offset="542,220" Size="240,32" Style="MainButton"><Label Anchor="C,C" Style="FontNormal14" String="Performance Snapshot" /></GridButton>
+    <ScrollPanel ID="ReportScroll" Anchor="L,T" Offset="18,58" Size="804,310" Vertical="1" AutoScrollBar="1"><Label ID="Status" Anchor="L,T" Offset="0,0" Style="FontNormal14" WrapWidth="775" String="选中城市后读取；移民 / 施工队入口需先选中单位。所有主面板入口只读。" />
+    </ScrollPanel><Label Anchor="L,B" Offset="18,220" Style="FontNormal14" String="只读诊断 · 历史实验控制已隐藏" /></Container>
 </Context>

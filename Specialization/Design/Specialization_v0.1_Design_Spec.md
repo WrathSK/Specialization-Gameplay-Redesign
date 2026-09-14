@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0024
+Design Revision: D0025
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-09-13
-Acceptance Evidence: 用户确认巨作相邻全部pass且接受原生小数截断不修复；商业四最终汇聚向下取整；采用此前已授权的实际总产出条件备选。
-Previous Accepted Revision: [D0023冻结原文](Revisions/Specialization_Design_Spec_D0023.md)
-Latest Accepted Design Revision: D0024
+Acceptance Evidence: 用户明确要求时代对话系数由15%调整到25%，无需新增实机验证。
+Previous Accepted Revision: [D0024冻结原文](Revisions/Specialization_Design_Spec_D0024.md)
+Latest Accepted Design Revision: D0025
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** 本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001** D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -137,7 +137,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Great Works — GW
 
-**GW-001 — 时代对话 / Dialogue Across Eras** Culture Lv4以跨创作者时代收藏为主题。`D`为本城合格Great Works覆盖的不同巨作创作者时代数量；普通合格作品使用其关联伟人的EraType，文物没有伟人创作者，按用户明确例外使用文物自身原生历史时代。合并后统一按时代去重，不区分“文物时代”与同名“伟人时代”另计两次。不是当前游戏/城市时代、作品获得/激活时代或建筑时代。`BonusPercent = 15% × max(0,D−1)`，本城全部合格作品的Culture与Tourism统一提高此百分比。D=1/2/3/4/5/6/7分别+0%/+15%/+30%/+45%/+60%/+75%/+90%；12件覆盖6时代，每件均+75%，件数不直接进入百分比公式。15%为第一版正式起测值；不新增cap、不把7时代当上限、不添加复杂曲线。著作、音乐、艺术、文物保持合格，Product/Relic排除，未知自定义类别不自行扩大。此规则取代D0021固定每件+Culture/+Tourism，以及更早最高基础值/逐件差额保值；不再开发单件setter或补差模拟。关联缺失/时代未知或运行创作者与数据库关联冲突须报告，不擅自代入玩家时代。
+**GW-001 — 时代对话 / Dialogue Across Eras** Culture Lv4以跨创作者时代收藏为主题。`D`为本城合格Great Works覆盖的不同巨作创作者时代数量；普通合格作品使用其关联伟人的EraType，文物没有伟人创作者，按用户明确例外使用文物自身原生历史时代。合并后统一按时代去重，不区分“文物时代”与同名“伟人时代”另计两次。不是当前游戏/城市时代、作品获得/激活时代或建筑时代。`BonusPercent = 25% × max(0,D−1)`，本城全部合格作品的Culture与Tourism统一提高此百分比。D=1/2/3/4/5/6/7分别+0%/+25%/+50%/+75%/+100%/+125%/+150%；12件覆盖6时代，每件均+125%，件数不直接进入百分比公式。25%为D0025当前正式系数（取代原15%）；不新增cap、不把7时代当上限、不添加复杂曲线。著作、音乐、艺术、文物保持合格，Product/Relic排除，未知自定义类别不自行扩大。此规则取代D0021固定每件+Culture/+Tourism，以及更早最高基础值/逐件差额保值；不再开发单件setter或补差模拟。关联缺失/时代未知或运行创作者与数据库关联冲突须报告，不擅自代入玩家时代。
 
 **GW-002** Culture ACTIVE Lv4每件合格文化Great Work额外获得本城全部已完成专业区域Base Adjacency Yields的50%。包含剧院广场及特色替代区域；专业区域按本机Districts.RequiresPopulation分类。作品采用Writing/Music/Sculpture/Portrait/Landscape/Religious art/Artifact七类，排除Relic、Product及未知自定义类别。各yield保留原种类：学院Science、工业Production、商业Gold等，不统一转Culture。明确使用BASE，不使用Actual复制基数，不将政策翻倍或建筑非相邻产出算入；每件按本城对应基础相邻合计的50%取得，作品数量不再乘入单件Modifier。
 

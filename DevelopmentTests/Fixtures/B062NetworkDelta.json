@@ -1,0 +1,4 @@
+{
+  "old": "   assert(integer(p.Count) and p.Count<=128 and type(p.Data)==\"string\" and #p.Data<=16384,\"BATCH_LIMIT_OR_SHAPE\")\n   local rows,seen={},{}\n   for line in p.Data:gmatch(\"[^;]+\") do",
+  "new": "   local count=p.Count\n   if p.WireCount~=nil then\n    assert(integer(p.WireCount) and p.WireCount>=1 and p.WireCount<=129,\"WIRE_COUNT_INVALID\")\n    count=p.WireCount-1\n    assert(p.Count==nil or p.Count==count,\"WIRE_COUNT_CONFLICT\")\n   end\n   assert(integer(count) and count<=128,\"ROUTE_COUNT_INVALID\")\n   local routeData=p.Data\n   if count==0 and routeData==\"EMPTY\" then routeData=\"\" end\n   assert(type(routeData)==\"string\" and #routeData<=16384,\"ROUTE_DATA_INVALID\")\n   local rows,seen={},{}\n   for line in routeData:gmatch(\"[^;]+\") do"
+}

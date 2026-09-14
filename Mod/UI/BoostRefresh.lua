@@ -1,3 +1,5 @@
+include('DiagnosticLog')
+local print=SPCDiagnosticLog and SPCDiagnosticLog.For('BoostRefresh') or print
 -- Background startup retry: no dependency on opening P0 or the native trade screen.
 include('Probe')
 local P=SPCP0;local busy=false;local hooks={}

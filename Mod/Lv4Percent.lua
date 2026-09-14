@@ -9,7 +9,7 @@ function SPCLv4Percent.Start(P,shared)
   local f=shared.EffectiveFacts.Read(pid,c);local kind=f.specialization
   if not districts[kind] then return nil,0,f.active end
   assert(f.first and f.potential>=1 and (f.active~=4 or f.potential==4),'LV4_FACT_INVALID')
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local dc=d:GetCity()
    if dc and dc:GetOwner()==pid and dc:GetID()==c:GetID() and d:GetID()==f.first.districtID then
     local row=P.Info('Districts',d:GetType())
@@ -22,11 +22,11 @@ function SPCLv4Percent.Start(P,shared)
   error('LV4_DISTRICT_MISSING')
  end
  function data.Audit()
-  if not data.ready or data.busy then return end;data.busy=true
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for pid,player in pairs(Players) do
    local scanned,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
-    for _,c in cities:Members() do
+    for _,c in cities:Members() do P.Count('city_scan');
      local ok,kind,n=pcall(facts,pid,c);local reason=not ok and tostring(kind) or nil
      if not ok then kind=nil;n=0 end
      local changed,why=pcall(function()
@@ -35,10 +35,10 @@ function SPCLv4Percent.Start(P,shared)
         local row=P.Info('Buildings',name(k,i));assert(row and row.Index,'B048_DATABASE_MISSING')
         local want=kind==k and math.floor(n/2^i)%2==1
         if want==adding then
-         local b=c:GetBuildings();local present=b:HasBuilding(row.Index);assert(type(present)=='boolean','LV4_CARRIER_UNKNOWN')
+         local b=c:GetBuildings();local present=P.HasBuilding(b,row.Index);assert(type(present)=='boolean','LV4_CARRIER_UNKNOWN')
          if present~=want then
-          if want then c:GetBuildQueue():CreateBuilding(row.Index) else b:RemoveBuilding(row.Index) end
-          assert(b:HasBuilding(row.Index)==want,'LV4_WRITE_UNCONFIRMED');data.changes=data.changes+1
+          if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
+          assert(P.HasBuilding(b,row.Index)==want,'LV4_WRITE_UNCONFIRMED');data.changes=data.changes+1
          end
         end
        end end
@@ -56,7 +56,7 @@ function SPCLv4Percent.Start(P,shared)
    local kind,n,active,workers=facts(pid,c);shared.Lv4PercentRead={owner=pid,cityID=c:GetID(),kind=kind};local science,culture=0,0
    for _,k in ipairs({'RESEARCH','CULTURE'}) do for i=0,7 do
     local row=P.Info('Buildings',name(k,i));assert(row and row.Index,'B048_DATABASE_MISSING')
-    if c:GetBuildings():HasBuilding(row.Index) then
+    if P.HasBuilding(c:GetBuildings(),row.Index) then
      if k=='RESEARCH' then science=science+5*2^i else culture=culture+5*2^i end
     end
    end end

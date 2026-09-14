@@ -12,14 +12,14 @@ function SPCUnitTargets.Start(P,shared)
    assert(invest or P.CrewBase(row.UnitType)~=nil or (row.UnitType=='UNIT_BUILDER' and params.BuilderPreview==true),'UNIT_NOT_ENABLED')
    response.mode=invest and 'INVEST' or (P.CrewBase(row.UnitType)~=nil and 'BUILD' or 'BUILD TEST')
    local districts={}
-   for _,d in Players[pid]:GetDistricts():Members() do
+   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
     local c=d:GetCity()
     if c and c:GetOwner()==pid then
      local id=c:GetID();districts[id]=districts[id] or {};table.insert(districts[id],d)
     end
    end
    local seen={}
-   for _,c in Players[pid]:GetCities():Members() do
+   for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
     local good,value=pcall(function()
      assert(c:GetOwner()==pid,'OWNER_CHANGED')
      local candidates={};local ds=districts[c:GetID()] or {}
@@ -37,7 +37,7 @@ function SPCUnitTargets.Start(P,shared)
       local current=c:GetBuildQueue():CurrentlyBuilding()
       local b=P.Info('Buildings',current);local dr=P.Info('Districts',current)
       if not b and not dr then return nil end
-      if b and c:GetBuildings():HasBuilding(b.Index) then return nil end
+      if b and P.HasBuilding(c:GetBuildings(),b.Index) then return nil end
       if b and b.IsWonder then
        local wi=P.Info('Districts','DISTRICT_WONDER');assert(wi,'WONDER_TYPE_UNKNOWN')
        local utils=ExposedMembers.DLHD and ExposedMembers.DLHD.Utils

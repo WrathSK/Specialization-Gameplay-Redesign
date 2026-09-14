@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0024
+Latest Accepted Design Revision: D0025
 Document State: ACCEPTED
+
+## Accepted D0025 — 2026-09-13
+
+Acceptance: ACCEPTED
+Acceptance Evidence: 用户明确要求时代对话从15%调整到25%，不需要验证。
+Accepted Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
+Previous Accepted Revision: D0024
+Frozen D0024: [原文](Revisions/Specialization_Design_Spec_D0024.md)
+
+仅GW-001系数改为25%×max(0,D−1)；作品分类、创作者时代/文物例外、原生theming、其它Culture IV能力不变。不新增实机测试，不将此决定冒充25%版本实机PASS。
 
 ## Accepted D0024 — 2026-09-13
 

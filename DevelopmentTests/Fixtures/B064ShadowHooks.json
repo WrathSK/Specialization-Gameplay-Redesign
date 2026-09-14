@@ -1,0 +1,22 @@
+{
+  "BindingProbe.lua": {
+    "old": "   assert(inspect(pid,city)==\"BOUND_MATCH\",\"FINAL_BINDING_MISMATCH\")",
+    "new": "   assert(inspect(pid,city)==\"BOUND_MATCH\",\"FINAL_BINDING_MISMATCH\")\n  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'BindingProbe.lua') end"
+  },
+  "CityFlowProbe.lua": {
+    "old": "  assert(same(read(pid,city),nextValue),\"FLOW_WRITE_UNCONFIRMED\")",
+    "new": "  assert(same(read(pid,city),nextValue),\"FLOW_WRITE_UNCONFIRMED\")\n  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'CityFlowProbe.lua') end"
+  },
+  "CityJournalProbe.lua": {
+    "old": "  assert(equal(read(pid,city),nextValue,0),\"WRITE_UNCONFIRMED\")",
+    "new": "  assert(equal(read(pid,city),nextValue,0),\"WRITE_UNCONFIRMED\")\n  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'CityJournalProbe.lua') end"
+  },
+  "InvestmentAction.lua": {
+    "old": "  assert(not halted[pid] and same(c:GetProperty(KEY),nextValue),'LEDGER_WRITE_UNCONFIRMED')",
+    "new": "  assert(not halted[pid] and same(c:GetProperty(KEY),nextValue),'LEDGER_WRITE_UNCONFIRMED')\n  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'InvestmentAction.lua') end"
+  },
+  "Standardization.lua": {
+    "old": "  assert(same(c:GetProperty(KEY),nextValue),'STD_WRITE_UNCONFIRMED')",
+    "new": "  assert(same(c:GetProperty(KEY),nextValue),'STD_WRITE_UNCONFIRMED')\n  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end"
+  }
+}

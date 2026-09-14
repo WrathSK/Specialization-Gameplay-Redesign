@@ -5,13 +5,13 @@ function SPCGreatWorkProbe.Start(P,shared)
  local function set(c,mode,want)
   local r=assert(P.Info('Buildings','BUILDING_SPC_B055_GW_'..mode),'B055_GW_DATABASE_MISSING')
   local b=c:GetBuildings()
-  if b:HasBuilding(r.Index)~=want then
-   if want then c:GetBuildQueue():CreateBuilding(r.Index) else b:RemoveBuilding(r.Index) end
+  if P.HasBuilding(b,r.Index)~=want then
+   if want then P.CreateBuilding(c:GetBuildQueue(),r.Index) else P.RemoveBuilding(b,r.Index) end
   end
-  assert(b:HasBuilding(r.Index)==want,'B055_GW_WRITE_UNCONFIRMED')
+  assert(P.HasBuilding(b,r.Index)==want,'B055_GW_WRITE_UNCONFIRMED')
  end
  function d.Clean()
-  for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do
+  for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
    set(c,'CITY',false);set(c,'OBJECT',false)
   end end end;d.ready=true
  end
@@ -27,7 +27,7 @@ function SPCGreatWorkProbe.Start(P,shared)
   local mode='OFF'
   for _,m in ipairs({'CITY','OBJECT'}) do
    local r=P.Info('Buildings','BUILDING_SPC_B055_GW_'..m)
-   if c:GetBuildings():HasBuilding(r.Index) then mode=m end
+   if P.HasBuilding(c:GetBuildings(),r.Index) then mode=m end
   end
   return 'B055 巨作接口对照 | city='..c:GetID()..' | '..mode
    ..'\nCITY：整城固定+2基础文化；OBJECT：每件标准文化巨作+2文化。'

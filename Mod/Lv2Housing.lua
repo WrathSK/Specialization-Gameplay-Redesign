@@ -19,7 +19,7 @@ function SPCLv2Housing.Start(P,shared)
   if type(f.active)~="number" then return wanted,"ACTIVE_UNKNOWN" end
   if f.active<2 then return wanted,"ACTIVE="..f.active end
   local found=false
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local ownerCity=d:GetCity()
    if ownerCity and ownerCity:GetID()==city:GetID() and ownerCity:GetOwner()==pid and f.first and d:GetID()==f.first.districtID then
     local row=P.Info("Districts",d:GetType())
@@ -35,17 +35,17 @@ function SPCLv2Housing.Start(P,shared)
    if row.DistrictType==districtType then
     assert(type(row.Tier)=="number" and row.Tier>=1 and row.Tier<=8 and row.Tier%1==0,"UNSUPPORTED_BUILDING_TIER")
     local b=P.Info("Buildings",row.BuildingType)
-    if b and city:GetBuildings():HasBuilding(b.Index) then wanted[row.Tier]=true end
+    if b and P.HasBuilding(city:GetBuildings(),b.Index) then wanted[row.Tier]=true end
    end
   end
   return wanted,f.specialization.." ACTIVE="..f.active
  end
  local function set(city,id,wanted)
-  local buildings=city:GetBuildings();local present=buildings:HasBuilding(id)
+  local buildings=city:GetBuildings();local present=P.HasBuilding(buildings,id)
   assert(type(present)=="boolean","HOUSING_CARRIER_READ_UNKNOWN")
   if present==wanted then return end
-  if wanted then city:GetBuildQueue():CreateBuilding(id) else buildings:RemoveBuilding(id) end
-  assert(buildings:HasBuilding(id)==wanted,"HOUSING_CHANGE_UNCONFIRMED")
+  if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(buildings,id) end
+  assert(P.HasBuilding(buildings,id)==wanted,"HOUSING_CHANGE_UNCONFIRMED")
   data.changes=data.changes+1
  end
  local function process(pid,city)
@@ -62,12 +62,12 @@ function SPCLv2Housing.Start(P,shared)
   if data.errors[k] then print("[SPC][B034][HOUSING_ERROR] "..k.." "..data.errors[k]) end
  end
  function data.Audit()
-  if not data.ready or data.busy then return end
+  if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;data.events=data.events+1
   for pid,player in pairs(Players) do
    local ok,err=pcall(function()
     local cities=player:GetCities()
-    if cities then for _,city in cities:Members() do process(pid,city) end end
+    if cities then for _,city in cities:Members() do P.Count('city_scan'); process(pid,city) end end
    end)
    if not ok then print("[SPC][B034][SCAN_ERROR] "..tostring(pid).." "..tostring(err)) end
   end
@@ -80,7 +80,7 @@ function SPCLv2Housing.Start(P,shared)
    local wanted,reason=expected(pid,city);local n,actual,tiers=0,0,{}
    for i=0,8 do
     if wanted[i] then n=n+1;if i>0 then tiers[#tiers+1]=i end end
-    if city:GetBuildings():HasBuilding(carrier(i)) then actual=actual+1 end
+    if P.HasBuilding(city:GetBuildings(),carrier(i)) then actual=actual+1 end
    end
    local err=data.errors[pid..":"..city:GetID()]
    return "city="..city:GetID().." "..reason

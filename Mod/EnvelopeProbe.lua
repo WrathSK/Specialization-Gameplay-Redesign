@@ -51,7 +51,7 @@ function M.Start(P,shared)
     if again~=step or not equal(value,old) then outcome="CHANGED_NO_WRITE";b.halted=true
     else
      b.attempts=b.attempts+1
-     local ok=pcall(function() Game:SetProperty("SPC_DEV_ENVELOPE_B019_P"..pid,M.Expected(pid,step+1)) end)
+     local ok=pcall(function() P.SetProperty(Game,"SPC_DEV_ENVELOPE_B019_P"..pid,M.Expected(pid,step+1)) end)
      local after=read(pid)
      if after==step+1 then outcome=ok and "SAVED_READBACK_MATCH" or "SAVED_AFTER_THROW"
      else outcome="WRITE_UNCONFIRMED_HELD";b.halted=true end

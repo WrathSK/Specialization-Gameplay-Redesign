@@ -9,7 +9,7 @@ neras=db.execute('select count(*) from Eras').fetchone()[0]
 assert db.execute('select count(*) from SPC_DialogueLevels').fetchone()[0]==neras-1
 for n in range(2,neras+1):
  rows=db.execute("select a.Value from BuildingModifiers b join ModifierArguments a using(ModifierId) where b.BuildingType=? and a.Name='ScalingFactor'",('BUILDING_SPC_B059_D'+str(n),)).fetchall()
- assert len(rows)==14 and all(int(x[0])==100+15*(n-1) for x in rows)
+ assert len(rows)==14 and all(int(x[0])==100+25*(n-1) for x in rows)
 assert not db.execute("select 1 from ModifierArguments where ModifierId like 'SPC_B059_%' and Value in ('GREATWORKOBJECT_RELIC','GREATWORKOBJECT_PRODUCT')").fetchall()
 assert not db.execute("select 1 from Modifiers m left join DynamicModifiers d using(ModifierType) where m.ModifierId like 'SPC_B059_%' and d.ModifierType is null").fetchall()
 root=ET.parse(M/'SpecializationP0.modinfo').getroot();assert root.get('version')=='77'
@@ -49,15 +49,15 @@ l.execute((M/'DialogueModel.lua').read_text());l.execute((M/'Dialogue.lua').read
 l.execute("""
 local m=SPCDialogueModel
 local p=m.Plan(P,{{id=1,type='A'},{id=2,type='B'},{id=3,type='C'},{id=4,type='X'},{id=5,type='R'}})
-assert(p.d==2 and p.count==3 and p.excluded==2 and p.percent==15 and p.eras.E1 and not p.eras.E8)
+assert(p.d==2 and p.count==3 and p.excluded==2 and p.percent==25 and p.eras.E1 and not p.eras.E8)
 assert(m.Plan(P,{}).percent==0)
 local all={{id=1,type='A'},{id=2,type='B'}};for i=3,9 do all[#all+1]={id=i,type='W'..i} end
-assert(m.Plan(P,all).percent==120) -- no D7 cap
+assert(m.Plan(P,all).percent==200) -- no D7 cap
 assert(not pcall(m.Plan,P,{{id=1,type='A'},{id=1,type='B'}}))
 SPCDialogue.Start(P,shared);local d=shared.Dialogue
 function send(data,valid) sequence=(sequence or 0)+1;d.Receive(0,{Generation=d.generation,Seq=sequence,Valid=valid or 1,Turn=turn,Data=data,Count=select(2,data:gsub(';',''))+1}) end
 send('1,-1,EMPTY;1,10,A;1,11,B;2,-1,EMPTY')
-assert(c1.b.BUILDING_SPC_B059_D2 and not c2.b.BUILDING_SPC_B059_D2 and d.last[0][1].applied==15)
+assert(c1.b.BUILDING_SPC_B059_D2 and not c2.b.BUILDING_SPC_B059_D2 and d.last[0][1].applied==25)
 local n=c1.writes;send('1,-1,EMPTY;1,10,A;1,11,B;2,-1,EMPTY');assert(c1.writes==n)
 c1.active=3;d.Audit(0);assert(not c1.b.BUILDING_SPC_B059_D2)
 c1.active=4;d.Audit(0);assert(c1.b.BUILDING_SPC_B059_D2)

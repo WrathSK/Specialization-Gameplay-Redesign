@@ -53,8 +53,9 @@ function SPCCityJournalProbe.Start(P,shared)
  local function write(pid,city,b,old,nextValue)
   assert(equal(read(pid,city),old,0),"STALE_JOURNAL")
   b.writes=b.writes+1
-  pcall(function() city:SetProperty(KEY,nextValue) end)
+  pcall(function() P.SetProperty(city,KEY,nextValue) end)
   assert(equal(read(pid,city),nextValue,0),"WRITE_UNCONFIRMED")
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'CityJournalProbe.lua') end
  end
  -- A failure stops ALL further submissions for this player in this session.
  -- Preserve a GAP if storage remains usable. Never overwrite identity conflicts.
@@ -145,6 +146,9 @@ function SPCCityJournalProbe.Start(P,shared)
    .."\n仅DEV候选事实；未启用专业收益或正式继承。"
   print("[SPC][B015][JOURNAL] "..result);return result
  end
+ function j.EnsureInherited(pid)
+  assert(j.phase=="AFTER_LOAD_CLOSE" and not bucket(pid).halted,"INHERIT_JOURNAL_HELD")
+ end
  local function listen(ns,name,fn)
   local e=P.Field(ns,name)
   if e and type(e.Add)=="function" then local ok=pcall(e.Add,fn);j.hooks[name]=ok and "REGISTERED" or "REGISTER_ERROR"
@@ -154,7 +158,7 @@ function SPCCityJournalProbe.Start(P,shared)
  listen(Events,"LoadScreenClose",function()
   j.phase="AFTER_LOAD_CLOSE"
   for pid,player in pairs(Players) do if P.IsTestPlayer(pid) then
-   local ok,err=pcall(function() for _,city in player:GetCities():Members() do j.Read(pid,city) end end)
+   local ok,err=pcall(function() for _,city in player:GetCities():Members() do P.Count('city_scan'); j.Read(pid,city) end end)
    if not ok then bucket(pid).halted=true;bucket(pid).last="LOAD_AUDIT_ERROR "..tostring(err) end
   end end
  end)

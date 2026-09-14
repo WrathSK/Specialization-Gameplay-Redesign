@@ -28,7 +28,7 @@ function SPCStorageProbe.Start(P,shared)
   end
   if write and state=="EMPTY" then
    b.attempts=b.attempts+1
-   local ack=pcall(function() Game:SetProperty(key,want) end)
+   local ack=pcall(function() P.SetProperty(Game,key,want) end)
    local readOK,after=pcall(function() return Game:GetProperty(key) end)
    state=readOK and (equal(after,expected(pid),0) and "MATCH" or "WRITE_UNCONFIRMED") or "READBACK_ERROR"
    b.ack=ack and "RETURNED" or "THREW_CHECK_READBACK"

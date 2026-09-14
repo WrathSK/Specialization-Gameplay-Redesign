@@ -11,7 +11,7 @@ local function selected()
  if r and (r.UnitType=='UNIT_SETTLER' or r.UnitType=='UNIT_BUILDER' or P.CrewBase(r.UnitType)~=nil) then return u end
 end
 local function refresh()
- local u=selected();Controls.ReadButton:SetHide(false)
+ local u=selected();Controls.ReadButton:SetHide(true)
  local now=u and (u:GetID()..':'..u:GetX()..':'..u:GetY()) or nil
  if now~=selection then
   selection=now;if not token then Controls.Window:SetHide(true) end

@@ -7,6 +7,7 @@ local P=SPCP0
 -- B004 adds bounded automatic trader-operation diagnostics at the bottom.
 ExposedMembers.SPC_P0={Version=P.VERSION,Stage="INITIALIZED",Events={}}
 local shared=ExposedMembers.SPC_P0
+ExposedMembers.SPC_Performance=SPCPerformance.New()
 local function stage(value)
   shared.Stage=value
   local line="[SPC]["..P.VERSION.."][GAMEPLAY] "..value
@@ -24,6 +25,23 @@ local function request(playerID,params)
     shared.DialogueIngress={player=playerID,token=P.Scalar(params.Token),seq=P.Scalar(params.Seq),dataBytes=type(params.Data)=='string' and #params.Data or -1}
   end
   if type(params)~="table" or type(params.Token)~="string" or #params.Token>100 then return end
+  -- B068 presentation is a disposable mirror, never a source of city state.
+  if params.Action=='NETWORK_REVALIDATE_FAILURE' then
+    if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
+    return
+  end
+  if params.Action=='CITY_PRESENTATION_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,f=pcall(function()
+      local c=Players[playerID]:GetCities():FindID(params.CityID)
+      assert(c and c:GetOwner()==playerID,'PRESENTATION_CITY_UNAVAILABLE')
+      return shared.EffectiveFacts.Read(playerID,c)
+    end)
+    shared.CityPresentationView={token=params.Token,owner=playerID,cityID=params.CityID,
+      specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
+      investments=ok and f.investmentCount or nil,error=not ok and tostring(f) or nil}
+    return
+  end
   if params.Action=='DIALOGUE_SAMPLE' then
     local ok,err=pcall(shared.Dialogue.Receive,playerID,params)
     if not ok then
@@ -31,6 +49,37 @@ local function request(playerID,params)
       print('[SPC][B059][SAMPLE] '..tostring(err))
     end
     return
+  end
+  if params.Action=='SHADOW_SELECT' or params.Action=='SHADOW_READ' then
+    shared.RequestToken=params.Token
+    if shared.InheritanceIsolation then
+      shared.Snapshot='城市所有权/继承模块已暂停。已有备份保留；不再记录转移或执行恢复。其它专业诊断入口仍可使用。'
+      shared.LastToken=params.Token;return
+    end
+    local ok,out=pcall(function()
+      local d=assert(shared.InheritanceShadow,'SHADOW_MODULE_NOT_LOADED')
+      if params.Action=='SHADOW_SELECT' then return d.Select(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
+      return shared.CityInheritance and shared.CityInheritance.Describe(playerID) or d.Describe(playerID)
+    end)
+    shared.Snapshot=ok and out or ('继承备份读取失败：'..tostring(out));shared.LastToken=params.Token;return
+  end
+  if params.Action=='INHERIT_RECORD' or params.Action=='INHERIT_READ' then
+    local ok,out=pcall(function()
+      local d=assert(shared.CityInheritanceRead,'INHERIT_MODULE_NOT_LOADED')
+      if params.Action=='INHERIT_RECORD' then return d.Record(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
+      return d.Read(playerID)
+    end)
+    shared.Snapshot=ok and out or ('继承观察未完成：'..tostring(out));shared.LastToken=params.Token;return
+  end
+  if type(params.Action)=='string' and params.Action:find('^COMMERCE_') then
+    shared.RequestToken=params.Token
+    local ok,out=pcall(function()
+      assert(P.IsTestPlayer(playerID),'CONTROL_OWNER')
+      local c=Players[playerID]:GetCities():FindID(params.CityID);assert(c and c:GetOwner()==playerID,'CONTROL_CITY')
+      local d=assert(shared.CommerceConvergence,'COMMERCE_MODULE_NOT_LOADED')
+      d.Control(playerID,c,params.Action:sub(10));return d.Describe(playerID,c)
+    end)
+    shared.Snapshot=ok and out or ('商业四读取失败：'..tostring(out));shared.LastToken=params.Token;return
   end
   if params.Action=='GWA_READ' or params.Action=='GWA_OFF' or params.Action=='GWA_AUTO' then
     shared.RequestToken=params.Token
@@ -287,7 +336,7 @@ local function request(playerID,params)
   stage("AFTER_GET marker="..P.Scalar(marker))
   if params.Action=="MARK_CITY" and marker==nil then
     stage("BEFORE_SET")
-    city:SetProperty("SPC_P0_MARKER",params.Token)
+    P.SetProperty(city,"SPC_P0_MARKER",params.Token)
     stage("AFTER_SET")
     marker=city:GetProperty("SPC_P0_MARKER")
     if marker~=params.Token then stage("ERROR_ROUNDTRIP");return end
@@ -430,3 +479,14 @@ SPCDialogue.Start(P,shared)
 
 include("GreatWorkAdjacency")
 SPCGWAdjacency.Start(P,shared)
+
+include("CommerceConvergence")
+SPCCommerceConvergence.Start(P,shared)
+
+-- B067: ownership work is isolated for the self-founded-city playable scope.
+-- Keep source and saved ledgers intact; no inheritance/backup listeners are installed.
+shared.CityInheritanceRead=nil
+shared.InheritanceShadow=nil
+shared.CityInheritance=nil
+shared.OnPermanentCityWrite=nil
+shared.InheritanceIsolation=true

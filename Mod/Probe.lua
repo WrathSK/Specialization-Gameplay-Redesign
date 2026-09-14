@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-060.85"
+P.VERSION = "P0-B-069.96"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -516,4 +516,23 @@ function P.NetworkProbe(city,action,stage,page)
     out[#out+1]=table.concat(diagnostics,"\n")
   else error("UNKNOWN_NETWORK_PROBE") end
   return table.concat(out,"\n")
+end
+
+-- Instrument only owned call sites; do not monkey-patch engine objects.
+include('PerformanceCounters')
+P.Count=SPCPerformance.Count
+function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end
+function P.CreateBuilding(object,id) P.Count('building_create');return object:CreateBuilding(id) end
+function P.RemoveBuilding(object,id) P.Count('building_remove');return object:RemoveBuilding(id) end
+function P.SetProperty(object,key,value) P.Count('property_write');return object:SetProperty(key,value) end
+-- A live non-trader is a reliable negative. Missing/removed/unknown unit is not.
+function P.RouteUnitRelevant(pid,id)
+ if type(pid)~='number' or type(id)~='number' then return true end
+ local player=Players and Players[pid]
+ if not player then return true end
+ local ok,u=pcall(function() return player:GetUnits():FindID(id) end)
+ if not ok or not u then return true end
+ local good,info=pcall(function() return P.Info('Units',u:GetType()) end)
+ if not good or not info or info.MakeTradeRoute==nil then return true end
+ return info.MakeTradeRoute==true or info.MakeTradeRoute==1
 end

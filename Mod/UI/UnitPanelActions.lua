@@ -93,7 +93,7 @@ local function update(dt)
   if s.Version==P.VERSION and s.LastToken==pending then
    feedback=tostring(s.Snapshot);ExposedMembers.SPC_UnitPanelStatus=feedback
    print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;nextView=0
-  elseif elapsed>10 then pending=nil;feedback='等待结果超时；请查看Unit actions诊断，不要重复确认。';ExposedMembers.SPC_UnitPanelStatus=feedback end
+  elseif elapsed>10 then pending=nil;feedback='等待结果超时；请查看专业化诊断中的移民 / 施工队，不要重复确认。';ExposedMembers.SPC_UnitPanelStatus=feedback end
  end
  local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID())
  if unitKey~=key then unitKey=key;feedback=nil;view=nil;viewToken=nil;nextView=0 end

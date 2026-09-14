@@ -5,12 +5,13 @@ include("GPPReadout")
 include("Lv4CopyRead")
 local P=SPCP0
 local pendingToken,baseline
+local readings={}
 local localReport
 local page=1
 local pageAction,pageCity
 local request
 local uiStage="READY"
-local function status(s) Controls.Status:SetText(s) end
+local function status(s) Controls.Status:SetText(s);if Controls.ReportScroll then Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring() end end
 local function trace(s)
   uiStage=s
   print("[SPC]["..P.VERSION.."][UI] "..s)
@@ -68,6 +69,7 @@ local function displayResponse()
       if c then report=report..'\n'..SPCBoostGreatWorkRead.Works(P,c,pendingAction=='GW_BASELINE') end
       localReport=report
     end
+    readings[(pendingAction or "READ")..":"..tostring(pageCity)..":"..tostring(page)]=report
     status(P.VERSION.." | ACK | "..report:gsub("\n","[NEWLINE]"))
     return true
   end
@@ -82,7 +84,7 @@ end
 -- B060 read/control requests are idempotent. Only an outstanding click may retry;
 -- event pulses do not collect works or adjacency and never create a scan loop.
 local function gwaPulse()
-  local f=gwaFlight;if not f or f.busy then return end
+  local f=gwaFlight;if not f or f.busy then P.Count('busy_skip');return end
   if displayResponse() then gwaFlight=nil;ContextPtr:ClearUpdate();return end
   f.pulses=f.pulses+1
   if f.pulses<3 then return end
@@ -115,9 +117,14 @@ request=function(action,advance)
   gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
   if not P.IsTestPlayer(playerID) then trace("OUTSIDE_TEST_CIV");return end
-  local storageAction=action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
+  if action=="UNIT_SITE_READ" then
+    local u=UI.GetHeadSelectedUnit()
+    if not u or u:GetOwner()~=playerID then status('请先选中己方移民或施工队。');return end
+    investmentUnitID=u:GetID()
+  end
   if action=="INVEST_PREPARE" then
     local unit=UI.GetHeadSelectedUnit()
     if not unit or unit:GetOwner()~=playerID then trace("Select an owned Settler at a city center.");return end
@@ -151,7 +158,7 @@ request=function(action,advance)
   if ok then waitForResponse() end
   if gwaFlight then status(P.VERSION.." | READING "..action.."[NEWLINE]"..gwaDiagnostics()) end
 end
-local function copy(asBaseline)
+local function legacyCopy(asBaseline)
   if localReport then
     print(localReport)
     P.Call(UIManager,"SetClipboardString",localReport)
@@ -178,6 +185,35 @@ local function copy(asBaseline)
     .."[NEWLINE]"..delivery)
 
 end
+local function copy()
+  local lines={'SPC_DIAGNOSTIC_REPORT_BEGIN',P.VERSION,'turn='..Game.GetCurrentGameTurn()}
+  local c=UI.GetHeadSelectedCity();local u=UI.GetHeadSelectedUnit()
+  lines[#lines+1]='city='..tostring(c and c:GetID())..' unit='..tostring(u and u:GetID())
+  for k,v in pairs(readings) do lines[#lines+1]='['..k..']\n'..v end
+  if localReport then lines[#lines+1]='[LATEST UI]\n'..localReport end
+  local seen={};local count=0
+  local function dump(path,v,depth)
+    local t=type(v)
+    if t=='function' or t=='userdata' or t=='thread' then return end
+    if count>=12000 then return end
+    if t=='table' then
+      if seen[v] then return end;seen[v]=true
+      if depth>12 then lines[#lines+1]=path..'=<depth limit>';return end
+      for k,x in pairs(v) do if type(k)=='string' or type(k)=='number' then dump(path..'.'..tostring(k),x,depth+1) end end
+    else count=count+1;lines[#lines+1]=path..'='..tostring(v) end
+  end
+  dump('GAME',ExposedMembers.SPC_P0 or {},0)
+  dump('ROUTES_UI',ExposedMembers.SPC_P0_BackgroundRoutes or {},0)
+  dump('COLLECTION_UI',ExposedMembers.SPC_DialogueBackground or {},0)
+  dump('UI_LOG_REPETITIONS',ExposedMembers.SPC_UILog or {},0)
+  lines[#lines+1]='TARGETS='..tostring(ExposedMembers.SPC_TargetMarkerStatus)
+  lines[#lines+1]='UNIT='..tostring(ExposedMembers.SPC_UnitPanelStatus)
+  lines[#lines+1]='scalar_count='..count..(count>=12000 and ' REPORT_LIMIT_REACHED' or '')
+  lines[#lines+1]='SPC_DIAGNOSTIC_REPORT_END'
+  for _,line in ipairs(lines) do print(line) end
+  status('诊断报告已输出到游戏 Lua.log。[NEWLINE]请保存该日志后回传；不依赖剪贴板。[NEWLINE]包含已读取报告与当前后台缓存，不会重建或修改游戏状态。')
+end
+
 local completionPage=1
 local function showCompletion(older)
   ContextPtr:ClearUpdate();pendingToken=nil
@@ -198,8 +234,60 @@ local function showCompletion(older)
   lines[#lines+1]="计数每次读档重置；未写专业/Potential。截图即可。"
   localReport=table.concat(lines,"\n");status(localReport:gsub("\n","[NEWLINE]"))
 end
-local function showRoot() ContextPtr:SetHide(not P.IsTestPlayer(Game.GetLocalPlayer())) end
+local entryHeader,entryWidth,anchorWarning
+local function placeEntry()
+  if not entryHeader then
+    entryHeader=ContextPtr:LookUpControl('/InGame/WorldTracker/WorldTrackerHeader')
+    if entryHeader then Controls.OpenButton:ChangeParent(entryHeader)
+    elseif not anchorWarning then
+      anchorWarning=true;print('[SPC][UI_ANCHOR] WorldTrackerHeader unavailable; upper-left fallback')
+    end
+  end
+  if entryHeader then
+    local width=entryHeader:GetSizeX()
+    if width~=entryWidth then entryWidth=width;Controls.OpenButton:SetOffsetVal(width+8,0) end
+  end
+end
+local function showRoot()
+  local enabled=P.IsTestPlayer(Game.GetLocalPlayer())
+  ContextPtr:SetHide(not enabled);placeEntry();Controls.OpenButton:SetHide(not enabled)
+end
 local function initialize()
+  -- Explicit labels bypass GridButton style-owned text rendering.
+  Controls.OpenButtonCaption:SetText('专业化诊断')
+  Controls.OpenButton:SetToolTipString('专业化诊断')
+  Controls.CloseButtonCaption:SetText('关闭')
+  Controls.CloseButton:SetToolTipString('关闭')
+  Controls.SourceYieldButtonCaption:SetText('城市专业 / 潜力')
+  Controls.SourceYieldButton:SetToolTipString('城市专业 / 潜力')
+  Controls.GovernorButtonCaption:SetText('总督条件')
+  Controls.GovernorButton:SetToolTipString('总督条件')
+  Controls.SpecialistsButtonCaption:SetText('专家与岗位')
+  Controls.SpecialistsButton:SetToolTipString('专家与岗位')
+  Controls.GWReadButtonCaption:SetText('巨作 / 时代对话')
+  Controls.GWReadButton:SetToolTipString('巨作 / 时代对话')
+  Controls.GWAReadButtonCaption:SetText('巨作相邻')
+  Controls.GWAReadButton:SetToolTipString('巨作相邻')
+  Controls.Lv4CopyButtonCaption:SetText('四级区域收益')
+  Controls.Lv4CopyButton:SetToolTipString('四级区域收益')
+  Controls.BackgroundRoutesButtonCaption:SetText('当前商路')
+  Controls.BackgroundRoutesButton:SetToolTipString('当前商路')
+  Controls.NetworkButtonCaption:SetText('网络概况')
+  Controls.NetworkButton:SetToolTipString('网络概况')
+  Controls.CarrierStepButtonCaption:SetText('网络来源 / 接收')
+  Controls.CarrierStepButton:SetToolTipString('网络来源 / 接收')
+  Controls.BoostReadButtonCaption:SetText('尤里卡 / 鼓舞')
+  Controls.BoostReadButton:SetToolTipString('尤里卡 / 鼓舞')
+  Controls.CommerceREADButtonCaption:SetText('商业四汇聚')
+  Controls.CommerceREADButton:SetToolTipString('商业四汇聚')
+  Controls.DiscountsButtonCaption:SetText('工业网络折扣')
+  Controls.DiscountsButton:SetToolTipString('工业网络折扣')
+  Controls.TemplatesButtonCaption:SetText('标准化模板')
+  Controls.TemplatesButton:SetToolTipString('标准化模板')
+  Controls.UnitReadButtonCaption:SetText('移民 / 施工队')
+  Controls.UnitReadButton:SetToolTipString('移民 / 施工队')
+  Controls.CopyButtonCaption:SetText('写入诊断日志')
+  Controls.CopyButton:SetToolTipString('写入诊断日志')
   showRoot();Controls.Window:SetHide(true)
   Controls.Title:SetText("SPC "..P.VERSION.." | Specialization diagnostics")
   Controls.OpenButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(false) end)
@@ -269,8 +357,11 @@ local function initialize()
   Controls.CityJournalButton:RegisterCallback(Mouse.eLClick,function() request("CITY_JOURNAL_READ") end)
   Controls.CompletionRecordButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETION_RECORD_READ") end)
   Controls.BindingReadButton:RegisterCallback(Mouse.eLClick,function() request("BINDING_READ") end)
-  Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_DETAIL") end)
+  Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_DETAIL",true) end)
   Controls.CarrierOffButton:RegisterCallback(Mouse.eLClick,function() request("CARRIER_OFF") end)
+  for _,a in ipairs({"READ","OFF","AUTO","TEST5"}) do local action=a;Controls["Commerce"..a.."Button"]:RegisterCallback(Mouse.eLClick,function() request("COMMERCE_"..action) end) end
+  Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("SHADOW_SELECT") end)
+  Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("SHADOW_READ") end)
   Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_READ") end)
   Controls.ConstructionPreviewButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_PREVIEW") end)
   Controls.ConstructionApplyButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_APPLY") end)
@@ -309,13 +400,13 @@ local function initialize()
   Controls.GWCityButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_AUTO') end)
   Controls.GWObjectButton:RegisterCallback(Mouse.eLClick,function() request('GW_OBJECT') end)
   Controls.GWOffButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_OFF') end)
-  Controls.DiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ') end)
+  Controls.DiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ',true) end)
   Controls.NextDiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ',true) end)
   Controls.PurchaseBaseButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_BASE') end)
   Controls.PurchaseOnButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_ON') end)
   Controls.PurchaseOffButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_OFF') end)
   Controls.PurchaseReadButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_READ') end)
-  Controls.TemplatesButton:RegisterCallback(Mouse.eLClick,function() request("STANDARDIZATION_READ") end)
+  Controls.TemplatesButton:RegisterCallback(Mouse.eLClick,function() request("STANDARDIZATION_READ",true) end)
   Controls.NextTemplatesButton:RegisterCallback(Mouse.eLClick,function() request("STANDARDIZATION_READ",true) end)
   Controls.Lv4CopyButton:RegisterCallback(Mouse.eLClick,function() request("LV4_COPY_READ") end)
   Controls.AdjacencyButton:RegisterCallback(Mouse.eLClick,function() request("ADJACENCY") end)
@@ -349,9 +440,22 @@ local function initialize()
   Controls.MarkButton:RegisterCallback(Mouse.eLClick,function() request("MARK_CITY") end)
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
-  trace("READY ISOLATED_PROBES")
+  Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)
+  status('请选择城市，再读取所需项目。[NEWLINE]模板 / 折扣 / 网络明细可重复点击翻页。移民 / 施工队请先选择单位。[NEWLINE]写入诊断日志会保存本次已读取内容与后台状态，不要求剪贴板。')
+end
+local oldInitialize=initialize
+initialize=function()
+ oldInitialize()
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()
+  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;localReport=SPCPerformance.Describe(false);status(localReport:gsub('\n','[NEWLINE]'))
+ end)
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()
+  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;P.Count('manual_snapshot');localReport=SPCPerformance.Describe(true)
+  status(localReport:gsub('\n','[NEWLINE]'));print('[SPC_PERF_SNAPSHOT] '..localReport)
+ end)
 end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(gwaPulse)
-ContextPtr:SetShutdown(function() gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+Events.SystemUpdateUI.Add(placeEntry)
+ContextPtr:SetShutdown(function() Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="85">
+<?xml version='1.0' encoding='utf-8'?>
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="96">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>P0-B-060.85 / modinfo85. Final-only quantized automatic Boost; event-driven Dialogue Across Eras native percentages. Automatic national network Boost with formal level weights 1/2/3/4. Native boost modifiers, no custom progress grants. Isolated reversible Great Work backend comparison.</Description>
+    <Description>B069.96 performance short-test build: verified network revalidation without dirty-to-zero transitions; bounded performance counters. Performance blocker remains under investigation.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -45,6 +45,7 @@
       <File>Data/HalfYieldProbe.sql</File>
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
+      <File>PerformanceCounters.lua</File>
       <File>StandardizationDiscount.lua</File>
       <File>UI/DiscountEligibility.lua</File>
       <File>UI/DiscountEligibility.xml</File>
@@ -85,6 +86,10 @@
       <File>QualificationProbe.lua</File>
       <File>ShadowRouteState.lua</File>
       <File>SourceYieldProbe.lua</File>
+      <File>CommerceConvergence.lua</File>
+      <File>CityInheritanceRead.lua</File>
+      <File>InheritanceShadow.lua</File>
+      <File>CityInheritance.lua</File>
       <File>YieldCarrierProbe.lua</File>
       <File>UnitActionSitePolicy.lua</File>
       <File>UnitSiteProbe.lua</File>
@@ -105,7 +110,7 @@
       <File>GreatWorkAdjacencyModel.lua</File>
       <File>GreatWorkAdjacency.lua</File>
       <File>Dialogue.lua</File>
-    </ImportFiles>
+    <File>UI/CityPotential.lua</File><File>DiagnosticLog.lua</File></ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
         <LoadOrder>1100</LoadOrder>
@@ -196,6 +201,10 @@
       <File>Data/ResearchSupport.sql</File>
       <File>Data/ConstantSupport.sql</File>
     </UpdateDatabase>
+    <AddUserInterfaces id="SPC_B068_CityPotential">
+      <Properties><Context>InGame</Context></Properties>
+      <File>UI/CityPotential.xml</File>
+    </AddUserInterfaces>
     <AddUserInterfaces id="SPC_B040_UnitSites">
       <Properties>
         <Context>InGame</Context>
@@ -265,11 +274,13 @@
       </Properties>
       <File>UI/BoostRefresh.xml</File>
     </AddUserInterfaces>
+    <UpdateDatabase id="SPC_B062_Commerce"><Properties><LoadOrder>2000005</LoadOrder></Properties><File>Data/CommerceConvergence.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_B060_Adjacency"><Properties><LoadOrder>2000004</LoadOrder></Properties><File>Data/GreatWorkAdjacency.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_B059_Dialogue"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/Dialogue.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>PerformanceCounters.lua</File>
     <File>StandardizationDiscount.lua</File>
     <File>UI/DiscountEligibility.lua</File>
     <File>UI/DiscountEligibility.xml</File>
@@ -296,6 +307,10 @@
     <File>YieldCarrierProbe.lua</File>
     <File>Data/YieldCarrierProbe.sql</File>
     <File>SourceYieldProbe.lua</File>
+      <File>CommerceConvergence.lua</File>
+      <File>CityInheritanceRead.lua</File>
+      <File>InheritanceShadow.lua</File>
+      <File>CityInheritance.lua</File>
     <File>Probe.lua</File>
     <File>TradeRouteProbe.lua</File>
     <File>CompletionProbe.lua</File>
@@ -342,6 +357,8 @@
     <File>UI/UnitSites.lua</File>
     <File>UnitTargets.lua</File>
     <File>UI/UnitTargetMarkers.lua</File>
+    <File>UI/CityPotential.xml</File>
+    <File>UI/CityPotential.lua</File>
     <File>UI/UnitTargetMarkers.xml</File>
     <File>UnitActions.lua</File>
     <File>Data/Crew.sql</File>
@@ -373,9 +390,10 @@
     <File>Dialogue.lua</File>
     <File>Data/Dialogue.sql</File>
     <File>Data/GreatWorkAdjacency.sql</File>
+    <File>Data/CommerceConvergence.sql</File>
     <File>UI/DialogueRefresh.lua</File>
     <File>UI/DialogueRefresh.xml</File>
-  </Files>
+  <File>DiagnosticLog.lua</File></Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />
     <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Gathering Storm" />

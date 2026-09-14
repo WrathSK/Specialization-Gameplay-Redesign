@@ -16,16 +16,16 @@ function SPCNetworkBoost.Start(P,shared)
  local kinds={'RESEARCH','CULTURE'}
  local function row(id) return assert(P.Info('Buildings',id),'B055_DATABASE_MISSING') end
  local function set(c,id,want)
-  local r=row(id);local b=c:GetBuildings();local present=b:HasBuilding(r.Index)
+  local r=row(id);local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index)
   assert(type(present)=='boolean','B055_CARRIER_UNKNOWN')
   if present~=want then
-   if want then c:GetBuildQueue():CreateBuilding(r.Index) else b:RemoveBuilding(r.Index) end
-   assert(b:HasBuilding(r.Index)==want,'B055_WRITE_UNCONFIRMED');d.changes=d.changes+1
+   if want then P.CreateBuilding(c:GetBuildQueue(),r.Index) else P.RemoveBuilding(b,r.Index) end
+   assert(P.HasBuilding(b,r.Index)==want,'B055_WRITE_UNCONFIRMED');d.changes=d.changes+1
   end
  end
  function d.Clean()
   -- Only initialization/ownership transitions scan for saved derived carriers.
-  for _,player in pairs(Players) do local cities=player:GetCities();if cities then for _,c in cities:Members() do
+  for _,player in pairs(Players) do local cities=player:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
    for _,r in pairs(SPCBoostConfig.rows) do set(c,r.building,false) end
    for _,id in pairs(SPCBoostIntegerConfig.rows) do if P.Info('Buildings',id) then set(c,id,false) end end
    for _,id in ipairs(testRows) do if P.Info('Buildings',id) then set(c,id,false) end end
@@ -58,8 +58,8 @@ function SPCNetworkBoost.Start(P,shared)
   end
   return result
  end
- function d.Audit()
-  if not d.ready or d.busy then return end;d.busy=true
+ function d.Audit() P.Count('audit_boost');
+  if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   for pid,player in pairs(Players) do
    if P.IsTestPlayer(pid) or d.applied[pid] then
     local ok,plan=pcall(function() if P.IsTestPlayer(pid) then return d.Plan(pid) end return {} end)
@@ -88,7 +88,7 @@ function SPCNetworkBoost.Start(P,shared)
   d.busy=false
  end
  function d.EnsureReady(pid)
-  if not P.IsTestPlayer(pid) or d.busy then return end
+  if not P.IsTestPlayer(pid) or d.busy then P.Count('busy_skip');return end
   if not d.ready then
    d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
    if not ok then d.errors[pid]=tostring(err);return end

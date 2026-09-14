@@ -38,7 +38,7 @@ function SPCBoostGreatWorkRead.Works(P,c,mark)
  local ok,out=pcall(function()
   local b=c:GetBuildings();local count,eligible,culture,tourism=0,0,0,0;local seen={};local names={};local themed=0;local themeUnknown=0;local signature={};local themedCulture,themedTourism=0,0
   local types={WRITING=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true,MUSIC=true}
-  for r in GameInfo.Buildings() do if b:HasBuilding(r.Index) then
+  for r in GameInfo.Buildings() do if P.HasBuilding(b,r.Index) then
    local n=b:GetNumGreatWorkSlots(r.Index)
    if n and n>0 then
     local tok,tval=pcall(function() return b:IsBuildingThemedCorrectly(r.Index) end)
@@ -82,7 +82,7 @@ function SPCBoostGreatWorkRead.Adjacency(P,c)
  local ok,result=pcall(function()
   local totals={};local b=c:GetBuildings();local ys={'FOOD','PRODUCTION','GOLD','SCIENCE','CULTURE','FAITH'}
   for _,y in ipairs(ys) do totals[y]=0 end
-  for r in GameInfo.Buildings() do if b:HasBuilding(r.Index) and b:GetNumGreatWorkSlots(r.Index)>0 then
+  for r in GameInfo.Buildings() do if P.HasBuilding(b,r.Index) and b:GetNumGreatWorkSlots(r.Index)>0 then
    for _,y in ipairs(ys) do totals[y]=totals[y]+b:GetBuildingYieldFromGreatWorks(P.Info('Yields','YIELD_'..y).Index,r.Index) end
   end end
   local rows={'原生作品收益 / 整城产出率（含其它来源与倍率）：'}

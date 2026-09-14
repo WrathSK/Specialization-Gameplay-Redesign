@@ -51,7 +51,7 @@ function SPCLv4CopyRead.Render(P,m)
   local lines={'区域与来源复核（读取不修改收益）',label(c)..' | '..m.kind..' ACTIVE='..m.active}
   local sum=0;local raw={};local wanted={}
   for _,v in ipairs(m.sources) do wanted[v.cityID..':'..v.districtID]=true end
-  for _,d in Players[m.owner]:GetDistricts():Members() do
+  for _,d in Players[m.owner]:GetDistricts():Members() do P.Count('district_scan');
    local dc=d:GetCity();local row=P.Info('Districts',d:GetType())
    if dc and dc:GetOwner()==m.owner and d:IsComplete() and
     ((dc:GetID()==m.cityID and row)

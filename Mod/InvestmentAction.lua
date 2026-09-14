@@ -22,7 +22,7 @@ function SPCInvestmentAction.Start(P,shared)
   assert(info and info.UnitType=='UNIT_SETTLER','NOT_A_SETTLER')
   if site then
    local f=facts(pid,c);local found=false
-   for _,d in Players[pid]:GetDistricts():Members() do
+   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
     local dc=d:GetCity();local di=P.Info('Districts',d:GetType())
     if dc and dc:GetOwner()==pid and dc:GetID()==c:GetID() and f.first and d:GetID()==f.first.districtID
      and di and di.DistrictType==f.first.type and d:IsComplete() and u:GetX()==d:GetX() and u:GetY()==d:GetY() then found=true end
@@ -34,8 +34,9 @@ function SPCInvestmentAction.Start(P,shared)
  local function write(pid,c,old,nextValue)
   assert(not halted[pid],'REENTRANT_HELD');facts(pid,c)
   assert(same(c:GetProperty(KEY),old),'STALE_LEDGER')
-  c:SetProperty(KEY,cp(nextValue))
+  P.SetProperty(c,KEY,cp(nextValue))
   assert(not halted[pid] and same(c:GetProperty(KEY),nextValue),'LEDGER_WRITE_UNCONFIRMED')
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'InvestmentAction.lua') end
   facts(pid,c) -- same native reader used by Lv1/network validates each state
  end
  local function finish(pid,c,ledger)
@@ -111,7 +112,7 @@ function SPCInvestmentAction.Start(P,shared)
    intent.pending={stage='INTENT',receipt=token,unitUID=uid,unitID=p.unitID,owner=pid,
     cityUID=f.token,expectedRevision=intent.revision}
    destructive=true;write(pid,c,old,intent)
-   u=settler(pid,c,p.unitID,p.site);u:SetProperty(UNIT_KEY,uid)
+   u=settler(pid,c,p.unitID,p.site);P.SetProperty(u,UNIT_KEY,uid)
    assert(u:GetProperty(UNIT_KEY)==uid and not halted[pid],'UNIT_RESERVATION_UNCONFIRMED')
    Players[pid]:GetUnits():Destroy(u)
    assert(not Players[pid]:GetUnits():FindID(p.unitID),'UNIT_DEBIT_UNCONFIRMED')
@@ -135,7 +136,7 @@ function SPCInvestmentAction.Start(P,shared)
   plans={};shared.InvestmentPreview=nil
   for pid,player in pairs(Players) do
    if P.IsTestPlayer(pid) then
-    for _,c in player:GetCities():Members() do
+    for _,c in player:GetCities():Members() do P.Count('city_scan');
      local ledger=c:GetProperty(KEY)
      if type(ledger)=='table' and ledger.pending then
       local ok,err=pcall(function() facts(pid,c);finish(pid,c,ledger) end)

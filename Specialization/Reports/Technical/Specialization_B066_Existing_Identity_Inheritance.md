@@ -1,0 +1,14 @@
+# B066 已有专业的跨Owner继承
+
+Document Owner: Codex
+Design: D0025 unchanged
+
+CityInheritance.lua新增SPC_CITY_INHERITANCE_V1 Game表：旧token作为已登记城市稳定别名，记录current owner/cityID、source快照、transfer revision、DORMANT/PENDING/PROJECTING/APPLIED、retired状态。不是Claim、不是通用UID迁移，也不凭现有建筑重造投资。
+
+仅明确转移事件+实际端点+已存来源+无歧义位置允许登记。CityTransfered按原版UI先例两参(newOwner,newCityID)验证实际对象；CityConquered按HD Gameplay五参验证。缺事件/未知形状不使用CityAddedToMap自动继承。B065仅口述事件正常，没有原始参数，不假称这两个签名在当前赠送/取回场景均已证实。
+
+未启用玩家只持久登记，不写城市专业；返回启用玩家时先检验源FLOW DONE、Identity存在、无pending投资，目的Property必须为空或与本次投影完全一致，随后写JOURNAL/FLOW/INVEST/TEMPLATES及最后token。历史first/receipt/unitUID不改，仅明确当前owner/cityID锚点更新。Binding.Resolve在注册且token/端点一致时认可继承绑定；CityFlow恢复现有支持读链，EffectiveFacts重新计算ACTIVE；共享收益重算不复制路线。
+
+转移登记先于City写入持久保存。重复转移确认不写/不加投资；来源优先使用注册旧Owner的最新shadow revision，AI休眠期间保留上次已确认source。错误保留现场，事务pending拒绝，不以原子跨Property写入宣传。投影中断仍可能被旧加载保护拦住，应报告，不自动清空player halted。现有DEV32城绑定、全局UID生成器/资格泛化、无Identity Legacy Claim、其它毁城与漏事件边界仍后续。
+
+测试DevelopmentTests/test_b066_inheritance.py实际执行继承与EffectiveFacts，mock CityFlow恢复接口并断言字段/Resolve契约；真实CityFlow/CityJournal新增入口本机静态审查、原功能回归仍运行，不冒充新入口完整原生或集成覆盖。Fixture B066InheritanceAdapters.json仅三项明确新增接口白名单，旧收益断言保留。新测试模拟AI不写、Potential4/ACTIVE2、凭据模板、连续转移、重复、原址新建retire、pending及不同token冲突。没有启动游戏/修改Design/Git提交。

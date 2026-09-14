@@ -10,7 +10,7 @@ function SPCIndustrySupport.Start(P,shared)
   local f=shared.EffectiveFacts.Read(pid,city)
   if f.specialization~='INDUSTRY' then return nil end
   assert(f.potential>=1 and f.first,'INDUSTRY_FACT_INVALID')
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local c=d:GetCity()
    if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
     local row=P.Info('Districts',d:GetType())
@@ -29,11 +29,11 @@ function SPCIndustrySupport.Start(P,shared)
   for bit=-1,7 do
    local row=P.Info('Buildings',name(bit));assert(row and row.Index,'B036_DATABASE_MISSING: restart/new test game required')
    local wanted=n~=nil and (bit==-1 or math.floor(n/2^bit)%2==1)
-   local b=city:GetBuildings();local present=b:HasBuilding(row.Index)
+   local b=city:GetBuildings();local present=P.HasBuilding(b,row.Index)
    assert(type(present)=='boolean','CARRIER_READ_UNKNOWN')
    if write and present~=wanted then
-    if wanted then city:GetBuildQueue():CreateBuilding(row.Index) else b:RemoveBuilding(row.Index) end
-    assert(b:HasBuilding(row.Index)==wanted,'CARRIER_WRITE_UNCONFIRMED')
+    if wanted then P.CreateBuilding(city:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
+    assert(P.HasBuilding(b,row.Index)==wanted,'CARRIER_WRITE_UNCONFIRMED')
     data.changes=data.changes+1;present=wanted
    end
    if present then if bit==-1 then food=3 else total=total+2^bit end end
@@ -41,11 +41,11 @@ function SPCIndustrySupport.Start(P,shared)
   return total,food
  end
  function data.Audit()
-  if not data.ready or data.busy then return end;data.busy=true
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for pid,player in pairs(Players) do
    local scanOK,scanError=pcall(function()
     local cities=player:GetCities();if not cities then return end
-    for _,city in cities:Members() do
+    for _,city in cities:Members() do P.Count('city_scan');
      local k=pid..':'..city:GetID();local ok,n=pcall(inspect,pid,city)
      local changed,err=pcall(carriers,city,ok and n or nil,true)
      data.errors[k]=not ok and tostring(n) or (not changed and tostring(err) or nil)
@@ -65,7 +65,7 @@ function SPCIndustrySupport.Start(P,shared)
   local n=params.BaseProduction
   if n~=-1 and not (n>=0 and n<=255 and n%1==0) then return end
   -- Only a current owned matching district is admitted; inspect still checks permanent specialty anchor.
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local c=d:GetCity();local row=P.Info('Districts',d:GetType())
    if c and c:GetOwner()==pid and c:GetID()==params.CityID and d:GetID()==params.DistrictID
     and row and row.DistrictType=='DISTRICT_INDUSTRIAL_ZONE' and d:IsComplete()==true then

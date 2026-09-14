@@ -19,20 +19,20 @@ function SPCHalfYieldProbe.Start(P,shared)
     local row=P.Info('Buildings',name(y,mode,bit));assert(row,'B050_DATABASE_MISSING')
     local want=plan~=nil and ((mode=='POP' and plan.bit==bit) or (mode=='SUB' and math.floor(plan.subtract/2^bit)%2==1))
     if want==adding then
-     local b=c:GetBuildings();local has=b:HasBuilding(row.Index)
+     local b=c:GetBuildings();local has=P.HasBuilding(b,row.Index)
      if has~=want then
-      if want then c:GetBuildQueue():CreateBuilding(row.Index) else b:RemoveBuilding(row.Index) end
-      assert(b:HasBuilding(row.Index)==want,'B050_WRITE_UNCONFIRMED')
+      if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
+      assert(P.HasBuilding(b,row.Index)==want,'B050_WRITE_UNCONFIRMED')
      end
     end
    end end end
   end
  end
  function data.Audit()
-  if not data.ready or data.busy then return end;data.busy=true
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for pid,p in pairs(Players) do
    local ok,err=pcall(function()
-    for _,c in p:GetCities():Members() do
+    for _,c in p:GetCities():Members() do P.Count('city_scan');
      local enabled=c:GetProperty(key)==true
      if enabled then
       local good,plan=pcall(function() assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'OWNER_CHANGED');return SPCHalfYieldProbe.Plan(c:GetPopulation()) end)
@@ -63,10 +63,10 @@ function SPCHalfYieldProbe.Start(P,shared)
   if action=='HALF_ON' then
    SPCHalfYieldProbe.Plan(c:GetPopulation())
    if c:GetProperty(key)~=true then data.baseline[pid..':'..c:GetID()]=totals(c) end
-   c:SetProperty(key,true);data.ready=true;data.Audit()
+   P.SetProperty(c,key,true);data.ready=true;data.Audit()
   elseif action=='HALF_OFF' then
    -- Revoke carriers before clearing flag, so an uncertain removal can be retried.
-   reconcile(pid,c,nil);c:SetProperty(key,false);data.errors[pid..':'..c:GetID()]=nil
+   reconcile(pid,c,nil);P.SetProperty(c,key,false);data.errors[pid..':'..c:GetID()]=nil
   end
   return data.Describe(pid,c)
  end

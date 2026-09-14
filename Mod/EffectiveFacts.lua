@@ -10,7 +10,7 @@ function SPCEffectiveFacts.Start(P,shared)
   for k in pairs(b) do if a[k]==nil then return false end end;return true
  end
  local data={};shared.EffectiveFacts=data
- function data.Read(pid,city)
+ function data.Read(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local f=shared.CityFlowProbe.SupportFacts(pid,city)
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')

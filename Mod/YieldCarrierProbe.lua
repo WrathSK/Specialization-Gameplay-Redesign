@@ -1,6 +1,7 @@
 -- Isolated fixed-amount experiment, not network settlement. Plot flags persist until OFF.
 SPCYieldCarrierProbe={}
 local baseline={}
+local P=SPCP0
 local function plotFor(pid,c)
  assert(c:GetOwner()==pid,'OWNER_CHANGED')
  local p=Map.GetPlot(c:GetX(),c:GetY());assert(p and p:GetOwner()==pid,'PLOT_OWNER_CHANGED');return p
@@ -18,14 +19,14 @@ function SPCYieldCarrierProbe.Run(pid,c,action)
   local p=plotFor(pid,c);local one,half=flags(p)
   if action=='OFF' then
    -- OFF always available, even if the SQL definitions are missing in this save.
-   p:SetProperty('SPC_B029_ONE',0);p:SetProperty('SPC_B029_HALF',0)
+   P.SetProperty(p,'SPC_B029_ONE',0);P.SetProperty(p,'SPC_B029_HALF',0)
   elseif action=='STEP' then
    for _,bit in ipairs({'ONE','HALF'}) do for _,y in ipairs({'SCIENCE','CULTURE','PRODUCTION'}) do
     assert(GameInfo.Modifiers['SPC_B029_'..bit..'_'..y],'DEFINITIONS_ABSENT_RELOAD_OR_NEW_TEST_GAME')
    end end
    if not one and not half then baseline[pid..':'..c:GetID()]=read(c) end
-   p:SetProperty('SPC_B029_ONE',1)
-   p:SetProperty('SPC_B029_HALF',one and 1 or 0)
+   P.SetProperty(p,'SPC_B029_ONE',1)
+   P.SetProperty(p,'SPC_B029_HALF',one and 1 or 0)
   else assert(action=='READ','ACTION') end
   return SPCYieldCarrierProbe.Describe(pid,c)
  end)

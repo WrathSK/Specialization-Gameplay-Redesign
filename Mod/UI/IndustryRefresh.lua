@@ -1,3 +1,5 @@
+include('DiagnosticLog')
+local print=SPCDiagnosticLog and SPCDiagnosticLog.For('IndustryRefresh') or print
 -- B036: background UI raw/base adjacency sampling; never opens a panel.
 include('Probe')
 local P=SPCP0
@@ -13,7 +15,7 @@ local function refresh()
  busy=true
  local ok,err=pcall(function()
   local live={}
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local row=P.Info('Districts',d:GetType());local c=d:GetCity()
    if row and row.DistrictType=='DISTRICT_INDUSTRIAL_ZONE' and c and c:GetOwner()==pid and d:IsComplete() then
     local id=c:GetID();local k=pid..':'..id..':'..d:GetID();live[k]=true

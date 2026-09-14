@@ -31,7 +31,7 @@ function SPCGreatWorkBasis.Collect(P,c)
   y[r.YieldType]=(y[r.YieldType] or 0)+number(r.YieldChange)
  end
  local b=c:GetBuildings();local seen,works={},{}
- for r in GameInfo.Buildings() do if b:HasBuilding(r.Index) then
+ for r in GameInfo.Buildings() do if P.HasBuilding(b,r.Index) then
   local n=b:GetNumGreatWorkSlots(r.Index)
   assert(type(n)=='number' and n>=0 and n%1==0,'GW_SLOT_COUNT_UNKNOWN')
   for slot=0,n-1 do

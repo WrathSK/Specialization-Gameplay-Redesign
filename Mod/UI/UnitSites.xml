@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context Name="SPCUnitSites">
- <GridButton ID="ReadButton" Anchor="R,T" Offset="20,183" Size="200,32" Style="MainButton" String="Unit actions / sites" />
+ <GridButton Hidden="1" ID="ReadButton" Anchor="R,T" Offset="20,183" Size="200,32" Style="MainButton" String="Unit actions / sites" />
  <Container ID="Window" Anchor="C,C" Size="850,440" Hidden="1">
   <Box Size="850,440" Color="12,19,27,250" />
   <Label Anchor="L,T" Offset="18,15" Style="FontNormal18" String="B047 | Unit diagnostics / DEV spawn" />

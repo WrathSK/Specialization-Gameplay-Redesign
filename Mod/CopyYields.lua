@@ -16,7 +16,7 @@ function SPCCopyYields.Start(P,shared)
  local function city(pid,id) local c=Players[pid]:GetCities():FindID(id);assert(c and c:GetOwner()==pid,'COPY_CITY_OWNER');return c end
  local function currentDistricts(pid)
   local out={}
-  for _,d in Players[pid]:GetDistricts():Members() do
+  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local c=d:GetCity();local row=P.Info('Districts',d:GetType())
    if c and c:GetOwner()==pid and d:IsComplete() and row then
     out[c:GetID()..':'..d:GetID()]={cityID=c:GetID(),id=d:GetID(),type=row.DistrictType}
@@ -68,20 +68,20 @@ function SPCCopyYields.Start(P,shared)
      (mode=='NEG' and n<0 and math.floor(-n/2^bit)%2==1)
     want=want==true
     if want==add then
-     local id=row(y,mode,bit).Index;local has=b:HasBuilding(id);assert(type(has)=='boolean','COPY_CARRIER_UNKNOWN')
+     local id=row(y,mode,bit).Index;local has=P.HasBuilding(b,id);assert(type(has)=='boolean','COPY_CARRIER_UNKNOWN')
      if has~=want then
-      if want then c:GetBuildQueue():CreateBuilding(id) else b:RemoveBuilding(id) end
-      assert(b:HasBuilding(id)==want,'COPY_WRITE_UNCONFIRMED');data.changes=data.changes+1
+      if want then P.CreateBuilding(c:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end
+      assert(P.HasBuilding(b,id)==want,'COPY_WRITE_UNCONFIRMED');data.changes=data.changes+1
      end
     end
    end
   end end
  end
- function data.Audit()
-  if not data.ready or data.busy then return end;data.busy=true
+ function data.Audit() P.Count('audit_copy');
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for pid,p in pairs(Players) do if P.IsTestPlayer(pid) then
    local ok,why=pcall(function()
-    for _,c in p:GetCities():Members() do for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
+    for _,c in p:GetCities():Members() do P.Count('city_scan'); for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
      local key=pid..':'..c:GetID()..':'..y
      local good,plan=pcall(function() return SPCCopyYields.Plan(target(pid,c,y),c:GetPopulation()) end)
      local reason=not good and tostring(plan) or nil
@@ -145,7 +145,7 @@ function SPCCopyYields.Start(P,shared)
  -- Only lifecycle cleanup visits ineligible owners; no periodic specialization work for them.
  local function cleanupDormant()
   for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then
-   local ok,err=pcall(function() for _,c in p:GetCities():Members() do
+   local ok,err=pcall(function() for _,c in p:GetCities():Members() do P.Count('city_scan');
     for _,y in ipairs({'SCIENCE','PRODUCTION'}) do reconcile(c,y,SPCCopyYields.Plan(0,1)) end
    end end)
    if not ok then print('[SPC][B051][CLEANUP_ERROR] '..tostring(err)) end

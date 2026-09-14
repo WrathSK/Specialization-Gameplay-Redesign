@@ -123,10 +123,15 @@ function SPCTradeRouteProbe.Start(P,shared)
   -- Event payloads are never route facts. No assumption about start/end semantics.
   for _,name in ipairs({"TradeRouteActivityChanged","TradeRouteRemovedFromMap","UnitRemovedFromMap",
       "UnitOperationDeactivated","UnitOperationStarted","UnitOperationsCleared","CityRemovedFromMap","CityAddedToMap","DiplomacyDeclareWar"}) do
-    local eventName=name;listen(Events,eventName,function() pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1;if shared.Lv3Effects then shared.Lv3Effects.Audit() end end)
+    local eventName=name;listen(Events,eventName,function(pid,id)
+      if eventName:find('^Unit') then
+        P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
+      end
+      pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1
+    end)
   end
   for _,name in ipairs({"CityConquered","TradeRoutePlundered"}) do
-    local eventName=name;listen(GameEvents,eventName,function() pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1;if shared.Lv3Effects then shared.Lv3Effects.Audit() end end)
+    local eventName=name;listen(GameEvents,eventName,function() pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1 end)
   end
   listen(Events,"LoadScreenClose",function() refresh("LoadScreenClose") end)
   listen(Events,"PlayerTurnActivated",function(pid)

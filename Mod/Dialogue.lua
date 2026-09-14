@@ -5,14 +5,14 @@ function SPCDialogue.Start(P,shared)
  local levels={};for _ in GameInfo.Eras() do levels[#levels+1]=true end
  local function set(c,id,want)
   local row=assert(P.Info('Buildings',id),'DIALOGUE_DATABASE_MISSING');local b=c:GetBuildings()
-  if b:HasBuilding(row.Index)~=want then
-   if want then c:GetBuildQueue():CreateBuilding(row.Index) else b:RemoveBuilding(row.Index) end
-   assert(b:HasBuilding(row.Index)==want,'DIALOGUE_WRITE_FAILED');d.changes=d.changes+1
+  if P.HasBuilding(b,row.Index)~=want then
+   if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
+   assert(P.HasBuilding(b,row.Index)==want,'DIALOGUE_WRITE_FAILED');d.changes=d.changes+1
   end
  end
  function d.Init()
   if d.ready then return end
-  for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do
+  for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
    for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id) then set(c,id,false) end end
    for _,v in ipairs({25,50,100}) do local id='BUILDING_SPC_B059_TEST'..v;if P.Info('Buildings',id) then set(c,id,false) end end
    for _,m in ipairs({'CITY','OBJECT'}) do local id='BUILDING_SPC_B055_GW_'..m;if P.Info('Buildings',id) then set(c,id,false) end end
@@ -22,7 +22,7 @@ function SPCDialogue.Start(P,shared)
  function d.Audit(pid)
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
   local s=d.samples[pid];local output={};d.last[pid]=output
-  for _,c in Players[pid]:GetCities():Members() do
+  for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
    local id=c:GetID();local ok,p=pcall(function()
     local f=shared.EffectiveFacts.Read(pid,c)
     local works=s and s.turn==Game.GetCurrentGameTurn() and s.cities[id]
@@ -74,7 +74,7 @@ function SPCDialogue.Start(P,shared)
     count=count+1
    end
    assert(count==a.Count,'DIALOGUE_COUNT')
-   for _,c in Players[pid]:GetCities():Members() do assert(cities[c:GetID()],'DIALOGUE_CITY_MISSING') end
+   for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan'); assert(cities[c:GetID()],'DIALOGUE_CITY_MISSING') end
    return {turn=a.Turn,cities=cities}
   end)
   d.samples[pid]=ok and res or nil;d.errors[pid]=not ok and tostring(res) or nil;d.received[pid].stage=ok and 'ACCEPTED' or 'REJECTED_SAMPLE';d.Audit(pid)

@@ -1,15 +1,127 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0155
-Implementation Build: P0-B-060.85 / modinfo85
-Architecture Revision Reviewed: A0137
-Design Revision Reviewed: D0024
-Latest Accepted Design Revision: D0024
+Status Revision: S0167
+Implementation Build: P0-B-069.96 / modinfo96
+Architecture Revision Reviewed: A0148
+Design Revision Reviewed: D0025
+Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: COMMERCE_IV_ISOLATED_BASELINE_RESTORED
+Work State: PERFORMANCE_BLOCKER_SHORT_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B069.96是第一阶段P0性能短测版，PERFORMANCE BLOCKER仍未解除。普通非商人任务不再发商路dirty；无法可靠识别时只NEEDS_REVALIDATION，保留最近完整验证状态。完整快照内容相同不发布、不增加topology revision、不通知收益消费者。读取失败最多3次本批尝试；明确端点/商人消失、战争或读取失败后的原生数量下降仍会撤销。失败包不覆盖已验证完整集合，发送只允许单个in-flight，ACK后空闲UI通知不再调用sender。
+
+STATIC_CONFIRMED（源码静态证据，非实机）：全部SQL/数值/Design不变；继承三模块逐字节保留且未启用；其它模块仅添加固定计数/原调用转发。未实现shared derive缓存或扫描重构。LOCAL_SIMULATION_PASS（本地Lua模拟，不等于游戏通过）：真实后台collector/sender/receiver与Commerce模块的10次已知/未知单位事件、相同输入零建拆/Property/发布/derive；真实路线增删、端点失效、读取失败有限重试、请求重入/拒绝ACK、跨回合；固定schema模拟10000回合不增加容器节点数。
+
+Performance Counters为固定条目current/total/previous/peak；新增两个纯读取诊断入口。计数为本Mod直接Lua原生调用，不包括其它Mod或引擎内部Modifier的Property写。独立自动runtime log未启用：未验证安全的Civ VI文件写入/轮转接口，按用户J10/J12回退为Counters+手动Snapshot，禁止用永久Property或无限print替代。无自动日志文件要求。
+
+USER_GAME_TEST_REQUIRED：仅短测[普通单位移动前后与一回合计数](Validation/Specialization_B069_User_Tests.md)，不继续长局。UI微调、Potential改进、新机制、balance、ownership、Crew账本/历史缓存清理及其它扫描重构继续暂停。完整[实现说明](../Reports/Technical/Specialization_B069_Performance_Phase1.md)。
+
+### HISTORICAL：B068.95 UI修订（暂停继续验收/微调）
+
+B068.95为UI小修：用户已实机确认两种单位紫色滤镜、左上诊断入口位置通过（USER_GAME_TEST_PASS）；按钮文字为空为USER_GAME_TEST_FAIL。改为显式Label并初始化SetText，保留原回调；城市潜力移到同一WorldTrackerHeader诊断入口下方，仅显示“工业1级”等四字符短文本，仍代表永久Potential，悬停信息不变。
+
+本机UserInterface/Localization日志未直接证明空白根因，未找到Lua.log，不将导出登记通过。STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：6个UI/版本文件变化，108个运行文件不变，实际UI mock/语法通过。USER_GAME_TEST_REQUIRED仅新文字及短标识位置，已通过的滤镜不重测。[结果与最小验收](Validation/Results/Specialization_B068_95_Result.md)。
+
+### HISTORICAL：B068.94初版界面
+
+用户批准进入v0.1 playable UX polish。B068.94只修改展示与诊断，核心保持B067.93；无玩法、数值、Design、自动继承恢复或32次限制变更。
+
+Potential未创建真实建筑：HD按建筑枚举存在副作用风险，按用户允许的安全替代方案采用原生城市面板只读标识。真实EffectiveFacts/Property仍为权威；选中城市显示四档名称与永久潜力。诊断入口移到WorldTracker header右侧，15只读主入口，长报告可滚动，旧实验控制和UnitSites常驻入口隐藏。原有投资/施工确认流程不变，合法目标改紫色原生高亮；日志直接输出Lua.log，重复UI错误保留首条与次数。
+
+STATIC_CONFIRMED（静态证据，非实机）：94个既有文件不变，Gameplay仅新增独立只读展示分支；D0025 hash不变。LOCAL_SIMULATION_PASS（本地模拟，非实机）：Potential1–4/切城、目标去重/清理、日志去重、15入口以及既有机制/SQL/隔离回归。USER_GAME_TEST_REQUIRED：真实HUD位置、tooltip、紫色层颜色/切换兼容和Lua.log输出；不将本轮参考截图登记PASS。
+
+[实现与兼容性报告](../Reports/Technical/Specialization_B068_Playable_UX.md)，[最小三项验收](Validation/Specialization_B068_User_Tests.md)。完整恢复点local/before-b068；不commit/push。当前等待用户顺手验收UI，不重发核心能力测试。原32次新城/通用资格/所有权仍隔离或未来事项。
+
+### HISTORICAL：B067隔离完成时状态
+
+用户确认当前可玩范围只考虑自行建立且不易主的城市；累计32次新城绑定列未来处理，通用ELIG暂缓，整体验收由用户游玩中进行，不追加测试批次。界面整理等待用户给要求，必须保留可进入的诊断入口或日志证据。此为实施/验收顺序，不修改D0025征服/资格玩法设计。
+
+B067.93已隔离所有权实验：Gameplay不再Start CityInheritanceRead/InheritanceShadow/CityInheritance，清空对应shared入口与OnPermanentCityWrite，故不再注册这三模块监听、写影子账本或调用继承Resolve覆盖。源文件/manifest ImportFiles和既有Game备份不删；恢复辅助函数保留但没有运行调用入口。普通收益模块原有路线端点撤销事件不移除。SHADOW按钮暂保留布局但返回明确暂停提示，不报模块缺失；其它P0诊断继续可用。D0025时代对话25%、商业四及既有核心收益不变。
+
+LOCAL_SIMULATION_PASS：实际Gameplay隔离段、暂停按钮ACK/无city与ledger访问、三模块未Start、shared回调/覆盖为空；核心前批回归和25%模型/SQL检查通过。不是新原生PASS；按用户要求不新增实机测试。整体验收由用户游玩中完成。
+
+当前收尾只有：等待用户界面要求，整理玩家可读专业/网络/投资信息与可进入的诊断层；版本/已知限制说明；完成后复核默认AUTO和测试开关、建立经用户授权的checkpoint。日志可记录错误/主动读取/关键变化，不周期全扫描或每帧打印。32次和通用资格不重新插入当前任务；未来专业不扩大。见[诊断与收尾评估](../Reports/Technical/Specialization_B067_Isolation_and_Diagnostics_Plan.md)。无新Design Revision、commit/push。
+
+### HISTORICAL：B066范围评估与继承过程（不再派发测试）
+
+用户B066回报Read shadow / events提示尚无确认转移记录，本次登记/报告路径USER_GAME_TEST_FAIL，未取得恢复PASS。该按钮按已保存watch UID读取，不要求选AI城；无记录分支未区分watch缺失与登记缺失，并隐藏底层日志，根因未凭一句提示确定。当前停止扩展，用户先评估排除城市易主/占领后的收尾范围，不新增测试。
+
+[自建城市范围盘点](../Reports/Technical/Specialization_Self_Founded_v01_Readiness.md)：固定测试文明且全程自建不易主时，四专业核心能力基本实现，尚需处理累计32次DEV绑定限制、玩家入口/说明等；通用ELIG未实现，完整D0025仍含未完成Conquest/Claim。停止开发不等于禁用，B066仍有绑定读取与事件入口，建议可逆隔离后做自建城市可玩版，不整体回滚丢失商业四/25%成果。本轮未修改源码、Design或运行包。
+
+### B066实现与原测试要求（本次评估期间暂不继续）
+
+B065用户口述“没有问题，继续推进”，事件回调本批USER_GAME_TEST_PASS。无新截图或具体参数，不能把口述扩大为所有事件形状均已确认。见[结果](Validation/Results/Specialization_B065_User_Result.md)。
+
+B066.92实现已有Identity的转移登记与返回恢复：加载结束后，仅CityTransfered(newOwner,newCityID)可定位实际新端点，或HD已有CityConquered(newOwner,oldOwner,newCityID,x,y)形状可校验时处理；未知形状/来源歧义不猜。Game登记当前Owner/CityID、转移revision和完整来源快照；未启用Owner为DORMANT，不恢复City记录/收益；启用Owner时验证已有Identity、FLOW完成、无pending投资和目的地无冲突，按明确字段重建City Property，保存原UID/first/投资凭据/模板，恢复现有读链并重算ACTIVE。重复事件不叠加，不复制路线集合。
+
+Binding.Resolve新增对已确认继承绑定的读取入口，CityJournal/CityFlow增加严格恢复入口；Shadow允许仅已APPLIED的同UID新端点同步，下一次转移使用更新后的账本。CityBuilt遇原址不同端点注销旧关联；不在load仅凭坐标推断转移、不在CityRemoved立即删成果。尚未切换为全局新UID生成器/所有写入的单一权威账本；原32城DEV绑定限制、缺史旧城、无Identity Claim仍后续。部分投影失败保留PROJECTING与错误，不能宣称多次Property写入原子。
+
+LOCAL_SIMULATION_PASS：真实继承模块+EffectiveFacts验证AI阶段无City写入，返回后3凭据→Potential4、Governor2→ACTIVE2、模板保留，重复事件/加载不写、连续转移/最新快照、原址新建注销、pending和冲突拒绝；前批回归保留。真实CityFlow恢复/游戏事件顺序及实际收益为USER_GAME_TEST_REQUIRED，不能用模拟代替。
+
+USER_GAME_TEST_REQUIRED：[B066最小测试](Validation/Specialization_B066_User_Tests.md)：同工业城转给AI→取回→读档，最多3图。用更新前易主前存档；不自动追认此前未被本模块登记的历史转移。D0025/时代对话25%不变，无新设计决定，无commit/push。
+
+### HISTORICAL：B065修复与待测记录（现已口述通过）
+
+B064三图已复核：Game备份INDUSTRY/3笔投资/6模板在赠送AI及重载后保留，重载写入0，USER_GAME_TEST_PASS仅此范围。事件总序号始终0且InheritanceShadow.lua74报function expected instead of nil；注册成功但callback未执行。保存原因SELECT说明此前自动加载备份未被证明。见[结果](Validation/Results/Specialization_B064_User_Result.md)。
+
+B065.91修复：去掉table.unpack依赖，safe(fn,...)直接通过pcall转发参数；兼容缺unpack且保留nil/false/0。完整堆栈只写Lua.log，面板显示短错误码。修正Probe/XML漏留B063.89的标题，当前明确B065.91。D0025和时代对话25%不变，不接正式继承或改收益。
+
+LOCAL_SIMULATION_PASS（非实机）：禁用table.unpack和全局unpack后的真实加载/转移回调、nil/false/0参数、自动备份、事件持久/24条上限、重复/读档/错误隔离及前批回归通过。先前模拟用标准Lua而漏此运行库差异，已新增针对性回归。
+
+USER_GAME_TEST_REQUIRED：只补一次转移后的事件报告，不重测备份保存读档。重载易主前存档、Select shadow city、赠送AI，Read shadow / events截图一张；错误=无，相关事件序号增加并显示参数。若仍为0/报错回传即可，不继续接正式身份迁移。
+
+### HISTORICAL：B064准备记录（结果以B065顶部为准）
+
+D0025已按用户明确决定接受：时代对话GW-001系数15%→25%，模型与14类C/T ModifierArguments生成式同步，D=1/2/6/7对应0/25/125/150%。不新增用户实机测试，不把新系数标实机通过。作品范围、创作者时代/文物例外、theming、GW002不变；D0024原文已冻结。
+
+B064.90独立影子账本已加入：Game Property保存现有有效城市的五项完整原始记录及pending阶段；加载时一次读取已启用玩家合法绑定城市，并在现有身份/投资/模板写入确认后同步。失败只报告，不再次消耗移民；正式玩法仍读取原账本。新账本不自动恢复City Property、不关联易主身份、不授予收益。它是持久备份验证，尚非正式永久UID/继承切换。旧token仅作备份键，禁止不同Owner/ID覆盖同键。
+
+事件仅记录相关已登记城市的CityTransfered/Added/Removed/Initialized和Game CityBuilt/Conquered原始参数、原位置当前端点；保留最近24条，面板最后6条、Lua.log完整当次事件。事件不用于自动认领，已知旧Owner/ID及实际端点/坐标过滤可能漏未知形状，需本次实机检查。未启用Owner不会获得新专业或收益。每条相关事件核对已登记位置，不是每帧/回合扫描；移除不删备份，原址新token另记不继承。
+
+LOCAL_SIMULATION_PASS（本地非游戏）：真实Lua易主后五项City Property缺失而Game保留投资/模板，重建Lua环境后持久读取、pending阶段、重复100次无写、24条上限、无关/空闲事件无写、原址新城不同token不串账、备份写失败不改城市；B062/B063与前批回归、D0025模型及内存SQL通过。
+
+USER_GAME_TEST_REQUIRED：仅[独立备份小批次](Validation/Specialization_B064_User_Tests.md)。用易主前有效存档，首次加载自动备份后选中观察城市，赠送/转自由城，读报告，再保存重载读报告；不验证正式继承收益，也不重测时代对话。运行B064.90/modinfo90，未commit/push。
+
+### HISTORICAL：B063研究结论（下一实施已由B064取代）
+
+B063赠送AI补图已复核：原Owner/CityID0/393221→1/196610，位置65,31，两区域仍在，五项Property仍原有→现无。此为用户所述赠送路径的追加证据，正式继承未实现，不扩大为军事征服/事件顺序实测。见[补充结果](Validation/Results/Specialization_B063_Gift_User_Result.md)。
+
+静态研究推荐Game Property完整永久账本+稳定UID+经验证的转移关联；现有Game绑定表只保留编号，不含投资/模板，不能单独恢复。HD已有Game表格和Gameplay CityConquered(newPlayer,oldPlayer,newCityID,x,y)先例，但赠送/自由城覆盖、事件顺序/旧对象存活时点仍未知。下一小步为影子账本与有上限事件日志，再切换正式继承；不使用位置独自认定身份、不在CityRemoved时直接删成果、不每帧扫描。详见[研究](../Reports/Technical/Specialization_City_Inheritance_Ledger_Research.md)。本轮只研究/文档和归档，运行B063.89不变，暂无新用户测试。
+
+### B063自由城市首批结果（补充见上）
+
+B063用户两图已复核：Cheat Panel转自由城市，Owner/CityID由0/393221变62/65536；位置65,31及已完成市中心/工业区保留，TOKEN/FLOW/JOURNAL/INVEST/TEMPLATES五项均由有变无。原INDUSTRY、3笔投资、6模板不能从新City对象读取。B063观察入口USER_GAME_TEST_PASS，正式继承尚未实现，不能标通过；仅该转移方式有实机证据。
+
+本机Cheat MakeFreeCity直接调用CityManager.TransferCityToFreeCities（STATIC_CONFIRMED源码证据）；不是已证明所有军事征服/赠送都相同，也不能断定引擎内部具体清除时点。需先建立独立持久账本与可靠转移映射，再恢复城市关联并重算ACTIVE/网络；不能只改Owner或依赖易主后读取旧Property。无新设计决定，当前无需追加用户测试。详见[本批结果](Validation/Results/Specialization_B063_User_Result.md)。运行仍B063.89；本轮仅记录/归档，不修改运行源码。
+
+### B063准备记录（测试要求已由上述结果关闭）
+
+商业四本批已按用户回报收口：截图科技6→11，源28.4219×20%最终floor5，实际载体1+4；第二源不叠加。零路线、反序更新/读档、分发不二次汇聚、总督撤销按用户证据通过。文化/工业未独立实测，用户接受暂缓，不冒充USER_GAME_TEST_PASS。城市面板同回合延迟接受不修复。详见[结果](Validation/Results/Specialization_B062_User_Result.md)。
+
+B063.89新增只读城市继承观察：记录选中城市五项原始Property深拷贝，换Owner后按原位置定位并对照Owner/CityID、token、专业账本、投资、模板。仅主动点击读取，无后台扫描、不写Property/收益、不执行继承、不重置投资。坐标只是此次观察定位，不作为永久UID。内存基线读档即失效。
+
+STATIC_CONFIRMED（源码静态证据，非实机）：新模块没有状态写入/生命周期扫描；已有Owner锚点确实需要正式迁移适配。LOCAL_SIMULATION_PASS（非游戏）：真实Lua深拷贝、Owner/CityID变化、Property保留/变化/消失、城市位置空缺、读档清空观察以及B062回归通过。
+
+USER_GAME_TEST_REQUIRED：仅一项城市易主前后只读对照，见[最小测试](Validation/Specialization_B063_User_Tests.md)。当前不是完整征服继承已实现；四专业能力主线已接入，完整v0.1仍需征服/Claim、通用资格及发布收尾。无新Design修改、Git commit或push。
+
+### HISTORICAL：B062实现与待测记录（现已由上述结果取代）
+
+用户重新授权从已提交/推送3382d7d B060.85基线审查并重做商业四。B062.88（modinfo88）为新独立CommerceConvergence.lua，D0024保持不变；B061.86/87隔离目录不覆盖，不恢复旧重试和跨回合扫描。
+
+问题审查：用户B061.86 OFF图source28.4219→floor5、实际S6；AUTO6→7只有口述，没有AUTO载体证据，仍不能解释实际+1。B061.87共用网络报BATCH_LIMIT_OR_SHAPE、0/5路线。真实3382d7d接收代码在Count/Data缺失的零路线模拟中同样失败；说明存在先于87的空值协议脆弱性，不是已经证明游戏原生如何序列化。B062发送WireCount=count+1、空数据EMPTY，接收严格decode/count冲突/实际路线数校验；旧非空协议仍兼容。不把UNKNOWN冒充有效空集合。
+
+STATIC_CONFIRMED：BackgroundRoutes.lua与3382d7d逐字节相同；NetworkSender只改明确空包字段，没有87重试；NetworkBridge只改解码及商业模块新快照后通知，旧主体由精确diff回归。沿用此前48个整数载体的定义/ID便于清除旧档残留，并非恢复旧Commerce Lua。
+
+LOCAL_SIMULATION_PASS（非游戏）：真实sender/receiver经过丢弃Count0/空Data边界fixture，非空→空清除网络和商业收益、重复空包/错误count/非空缺数据拒绝；直接源按对应总yield最高，不按等级、不求和、不通过distribution继承，最终floor；100次相同计划无额外写入；OFF/固定TEST5/AUTO共享apply，1+4载体核对、ACTIVE降级/重载清理及前批回归。全部来源计划先算完再写city层。只读报告分别显示预期、最后配置、实际载体组成、原生城市读数/OFF基线差值，不用配置冒充实测。
+
+USER_GAME_TEST_REQUIRED：B062最小批次见Validation/Specialization_B062_User_Tests.md。完整退出再启动加载原档；先零商路验证共用网络空集合，再原商业4城OFF→TEST+5（不需要商路）检验同一承载层，再恢复AUTO接一条科研直连验证20%与跨回合。任何前项失败即停止。不要求重新做全部高级收益/多源矩阵。无新commit/push。
+
+技术边界：缺当前网络时撤销本项而非沿用旧来源；城市UI/实际收益刷新时点、+5原生效果及第三方间接回路未实机确认。技术目录0..65535不clamp；报告错误。TEST5只作用选中Commerce4城，本玩家其它汇聚暂清除；OFF关闭本玩家汇聚且记录选中城读数；AUTO恢复所有合格城市，读档默认AUTO。控制均不改变Potential/身份/永久账本。
+
+### HISTORICAL：B061隔离与B060.85 checkpoint（仍保留）
 
 用户明确要求回滚/隔离商业四并提交之前成果。当前源码恢复商业四实现前的完整B060.85（modinfo85，106文件），SHA256 a0e0fd75e87872612ab61a7354882ca7081767890149917efa688a60412216d4，与独立部署备份逐文件一致。B061.86/87商业汇聚及对NetworkBridge/NetworkSender/BackgroundRoutes的后续修改不在当前运行源码内。商业四停止开发，不能把历史B061测试计划当作当前任务。
 
@@ -231,25 +343,24 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 | Research/Culture IV专家百分比 | 运行 | [B048](Validation/Results/Specialization_B048_User_Result.md) USER_GAME_TEST_PASS；不是Culture全部IV完成 |
 | Research/Industry IV固定复制 | B051.67运行 | [B051.66结果](Validation/Results/Specialization_B051_66_User_Result.md)工业4.5P/科研标准区域半点通过；旧范围错误修复后的[B051.67最小补测](Validation/Results/Specialization_B051_67_User_Result.md)用户口头通过；无截图/数值，不外推全部区域组合 |
 | 标准化模板 / 购买折扣 | B052账本；B054后台自动网络折扣 | B052/B053用户口述通过；B054.71 USER_GAME_TEST_PASS：等级变化、最高等级、并集去重、撤销/重载。D0017允许必要时双币折扣，不开放购买资格 |
-| Research/Culture Boost | B055原生自动配置，临时小数测试权重 | T1/T2/T3用户实机通过：同目标增量/降级/新增recipient支持整数百分点先截断，按D0017不修复；正式权重待恢复，绝对基数偏差/最终封顶另保留 |
-| Culture IV两项Great Work效果 | B055手动后端对照；自动时代补贴/基础相邻尚未实现 | 本地互斥/清理/分类测试通过；作品/城市对照USER_GAME_TEST_REQUIRED，时代曲线及最终倍率仍有待决 |
-| Commerce IV汇聚 | B061实现已隔离，当前无正式汇聚 | D0024设计保留；失败调查暂停，禁止继续旧批测试 |
-| 通用ELIG / Conquest Claim与跨Owner继承 | 离线契约/候选，运行适配不完整 | 固定测试载体与owner锚点仍在；不能重置投资解决征服，也不能把Future全部提到v0.1 |
+| Research/Culture Boost | B058正式k=1、Lmax、sqrt(N)、最终一次floor(x+0.5) | 用户整数接口实测通过；保留最终封顶OPEN-06，不再使用B055临时权重或D0017旧隐式截断 |
+| Culture IV两项Great Work效果 | B059时代对话百分比；B060逐作品BASE相邻均运行 | 已有原生C/T及主题化对照；用户停止主题化深挖。GW002用户全部PASS，逐件半点截断按D0024接受；旧逐件保值退出 |
+| Commerce IV汇聚 | B062独立direct/max/total/20%/floor | 本批Science及拓扑/撤销USER_GAME_TEST_PASS，C/P用户接受暂缓实测；不重发固定5测试 |
+| 通用ELIG / Conquest Claim与跨Owner继承 | B067所有权隔离；ELIG/Claim暂缓 | 用户确认自建不易主范围；B066无确认转移登记的历史失败保留，不派补测 |
 
 ## 下一任务（只有此队列有效）
 
-1. **B051.67当前最小验收已关闭。** 用户口头PASS见结果，不重发本次测试；如未来有反例，再按具体失败场景诊断。原三案的其它未明确实测边界保留。
-2. **B054当前验收已关闭。** 用户确认完整批次通过，不重复派测试；保留源账本、现有原生尾数与D0017货币规则。
-
-3. 已收到B055部分结果，巨作稳定单件对照已通过，同目标Boost增量/原生小数舍去已按最新结果通过，绝对基数边界仍保留；不将全批次关闭。小数截断按D0017记录不修复。回报后恢复正式1/2/3/4权重（显式下一版变更），再按GW接口结果、时代曲线设计决定推进GW001/002。Commerce IV/通用资格/Conquest仍待后续，不在B055展开。
+1. 等待用户提供界面整理要求；保留可访问诊断入口，先不改布局。
+2. 按UI要求完成玩家信息/诊断分层与日志策略，整理当前版本说明、已知限制、默认自动模式及实验开关可见性。
+3. 用户在游玩中验收并回报具体问题；不追加大批整体验收。checkpoint/commit/push须单独授权。
+4. FUTURE / DEFERRED：累计32次建城绑定限制、通用ELIG、所有权继承/Conquest Claim。B067已隔离所有权模块，不继续B066测试。所有Future专业不进入本轮。
 
 ## BLOCKED / DESIGN DECISION REQUIRED / DEFERRED
 
-- CONFIRMED_DESIGN：标准化记录全目录与v0.1折扣启用范围/市中心三组已由D0015 IND-NET-004/005确定，不再列未决。新模组未知分类或未来新增范围不自动推断。货币隔离困难时双币折扣已由D0017授权；B054自动接入当前批次已由用户实机确认。
-- DESIGN_DECISION_REQUIRED：Boost最终封顶（量化按D0017已解决，不再先调查），Great Work时代标准/类别/Tourism与theming语义，Claim精确成本等按Spec OPEN保留。Research全非学院范围已由D0014解决，不再列未决；GW范围不是自动同步扩展。
-- IMPLEMENTATION_LIMITATION：固定复制仅整数/半点及当前人口/金额范围；跨Owner稳定UID、完整Conquest、旧存档缺史初始化、非参与者周期成本、多玩家/多人一致性未完成。无可靠纯Gameplay端点全集不再是主线BLOCKED。
-- DEFERRED：B010原探针未测且用户明确延后；商路自然结束/战争/取消/商人掠夺等尚无完整对应实机证据，不把Cheat删除城市等同所有生命周期通过。不给用户重发旧大批测试。
-- NO_FIX / NO_ADDITIONAL_TEST：已接受住房/GPP显示与getter刷新延迟；未来失败须区分载体状态和原生总量，不用该备注掩盖真正未应用。
+- DESIGN_DECISION_REQUIRED：Spec OPEN-06 Boost最终封顶、OPEN-04 Claim精确成本仍保留，不阻塞本次只读调查。Boost最终量化已由D0018解决，GW规则由D0022–24解决，不再列旧时代保值/范围待决。
+- IMPLEMENTATION_LIMITATION：跨Owner稳定身份锚点/完整Conquest、旧档缺史初始化、通用资格与多人一致性未完成。固定复制整数/半点支持边界不变。
+- DEFERRED：B010及未覆盖的自然结束/战争/掠夺，不把删除城市等同所有生命周期。商业C/P用户暂缓独立实测；第三方间接收益回路未普遍证明。
+- NO_FIX / NO_ADDITIONAL_TEST：住房/GPP/商业城市面板刷新延迟已接受；GW002逐件半点截断接受。不能以此掩盖真正未生效。
 
 ## 交接与证据
 
@@ -259,4 +370,4 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 
 ## Phase 1停止点
 
-Phase 1/2已由用户审核完成并建立GitHub initial baseline；以上迁移阶段文字为历史。当前B051.67最小补测已口头通过，下一任务以本页当前队列为准；B054当前批次已通过；新增实机要求仅见B055。旧Evidence、ScreenShots、DevelopmentBackups均为外部只读审计材料；路径映射见../Reports/Proposals/Phase1_External_Materials.md。
+Phase 1/2已由用户审核完成并建立GitHub initial baseline；以上迁移阶段文字为历史。当前B051.67最小补测已口头通过，下一任务以本页当前队列为准；B054当前批次已通过；新增实机要求仅见当前队列B063。旧Evidence、ScreenShots、DevelopmentBackups均为外部只读审计材料；路径映射见../Reports/Proposals/Phase1_External_Materials.md。

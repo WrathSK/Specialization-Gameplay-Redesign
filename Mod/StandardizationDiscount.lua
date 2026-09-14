@@ -27,15 +27,15 @@ function SPCStandardizationDiscount.Start(P,shared)
  local function reconcile(pid,c,want)
   local key=pid..':'..c:GetID();local b=c:GetBuildings();local old=d.applied[key]
   if not old then
-   old={};for id,levels in pairs(carriers) do for level,index in pairs(levels) do if b:HasBuilding(index) then old[index]=true end end end
+   old={};for id,levels in pairs(carriers) do for level,index in pairs(levels) do if P.HasBuilding(b,index) then old[index]=true end end end
    d.applied[key]=old
   end
   local needed={};for id,level in pairs(want) do needed[carriers[id][level]]=true end
   for index in pairs(old) do if not needed[index] then
-   b:RemoveBuilding(index);assert(not b:HasBuilding(index),'DISCOUNT_REMOVE_UNCONFIRMED');old[index]=nil;d.changes=d.changes+1
+   P.RemoveBuilding(b,index);assert(not P.HasBuilding(b,index),'DISCOUNT_REMOVE_UNCONFIRMED');old[index]=nil;d.changes=d.changes+1
   end end
-  for index in pairs(needed) do if not b:HasBuilding(index) then
-   c:GetBuildQueue():CreateBuilding(index);assert(b:HasBuilding(index),'DISCOUNT_ADD_UNCONFIRMED');d.changes=d.changes+1
+  for index in pairs(needed) do if not P.HasBuilding(b,index) then
+   P.CreateBuilding(c:GetBuildQueue(),index);assert(P.HasBuilding(b,index),'DISCOUNT_ADD_UNCONFIRMED');d.changes=d.changes+1
   end;old[index]=true end
  end
  function d.EnsureReady(pid)
@@ -46,13 +46,13 @@ function SPCStandardizationDiscount.Start(P,shared)
   end
   d.Audit()
  end
- function d.Audit()
-  if not d.ready or d.busy then return end;d.busy=true
+ function d.Audit() P.Count('audit_standard');
+  if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   local success,why=pcall(function()
    init()
    for pid,p in pairs(Players) do if P.IsTestPlayer(pid) then
     local targets,info,parts={},{},{}
-    for _,c in p:GetCities():Members() do
+    for _,c in p:GetCities():Members() do P.Count('city_scan');
      local id=c:GetID();local ok,t,names,level=pcall(candidate,pid,c)
      targets[id]=ok and t or {};info[id]={sources=ok and names or {},level=ok and level or 0,reason=not ok and tostring(t) or nil}
      parts[#parts+1]='C'..id..':'..c:GetX()..':'..c:GetY()
@@ -63,7 +63,7 @@ function SPCStandardizationDiscount.Start(P,shared)
      d.plans[pid]={revision=previous and previous.revision+1 or 1,signature=sig,targets=targets,info=info};d.samples[pid]=nil
     else previous.info=info end
     local sample=d.samples[pid];local current=sample and sample.turn==Game.GetCurrentGameTurn() and sample.revision==d.plans[pid].revision
-    for _,c in p:GetCities():Members() do
+    for _,c in p:GetCities():Members() do P.Count('city_scan');
      local want={};local id=c:GetID()
      if current then for building,l in pairs(targets[id]) do if (sample.rows[id] or {})[building] then want[building]=l end end end
      local ok,err=pcall(reconcile,pid,c,want)
@@ -113,7 +113,7 @@ function SPCStandardizationDiscount.Start(P,shared)
  end
  local function hook(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f) end end
  cleanupOtherOwners=function()
-  local ok,err=pcall(function() init();for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then for _,c in p:GetCities():Members() do reconcile(pid,c,{}) end end end end)
+  local ok,err=pcall(function() init();for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then for _,c in p:GetCities():Members() do P.Count('city_scan'); reconcile(pid,c,{}) end end end end)
   if not ok then print('[SPC][B054][CLEANUP] '..tostring(err)) end
  end
  hook('LoadScreenClose',function() d.ready=true;d.generation=d.generation+1;d.samples={};d.seq={};d.applied={};cleanupOtherOwners();d.Audit() end)

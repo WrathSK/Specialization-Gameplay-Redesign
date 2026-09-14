@@ -36,7 +36,7 @@ function SPCUnitActions.Start(P,shared)
    if kind=='UNIT_SETTLER' then
     -- Locate the district before checking the cap, to give a specific cap tooltip.
     local city
-    for _,d in Players[pid]:GetDistricts():Members() do
+    for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
      local c=d:GetCity()
      if c and c:GetOwner()==pid and d:GetX()==u:GetX() and d:GetY()==u:GetY() then city=c;break end
     end
@@ -84,7 +84,7 @@ function SPCUnitActions.Start(P,shared)
     end
     local seen=Players[pid]:GetProperty('SPC_CREW_DEV_SPAWN') or {}
     assert(not seen[p.Token],'SPAWN_REQUEST_ALREADY_USED');seen[p.Token]=true
-    Players[pid]:SetProperty('SPC_CREW_DEV_SPAWN',seen)
+    P.SetProperty(Players[pid],'SPC_CREW_DEV_SPAWN',seen)
     destructive=true;UnitManager.InitUnit(pid,'UNIT_SPC_CREW_250',c:GetX(),c:GetY())
     return 'DEV spawn requested: Crew 250. Select unit; verify appearance and 1 charge. No project paid.'
    end
@@ -117,9 +117,9 @@ function SPCUnitActions.Start(P,shared)
    local receipts=Players[pid]:GetProperty(KEY) or {};assert(not receipts[plan.token],'RECEIPT_EXISTS')
    local function record(state)
     receipts[plan.token]={state=state,unitID=plan.unitID,cityID=c:GetID(),target=s.target,amount=math.min(amount,s.cost-s.progress)}
-    Players[pid]:SetProperty(KEY,receipts)
+    P.SetProperty(Players[pid],KEY,receipts)
    end
-   destructive=true;record('INTENT');u:SetProperty('SPC_CREW_RESERVED',plan.token)
+   destructive=true;record('INTENT');P.SetProperty(u,'SPC_CREW_RESERVED',plan.token)
    assert(u:GetProperty('SPC_CREW_RESERVED')==plan.token,'RESERVATION_UNCONFIRMED')
    Players[pid]:GetUnits():Destroy(u)
    assert(not Players[pid]:GetUnits():FindID(plan.unitID),'UNIT_DEBIT_UNCONFIRMED')
