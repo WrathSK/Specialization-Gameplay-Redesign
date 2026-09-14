@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Work branch: develop
-State: Phase 1–3 investigated (AV2-I001), awaiting user review — no refactor implemented
+State: AV2-I001 reviewed; Batch A input/publication contract implemented locally on develop; B–E not authorized
 Stable runtime: B069.96 untouched
 
 ## Ordered deliverables
@@ -29,3 +29,7 @@ Research identifies measurable batches and tests. Implement on develop only afte
 ## 第一轮交付
 
 [AV2-I001当前源码地图与候选批次](v2/README.md)覆盖上述1–3项。4仅记录当前revision/扫描证据以解释依赖；不构建缓存或预算实现。5/6未展开。
+
+## Batch A implementation
+
+[B070.97合同及本地验证](v2/Batch_A_Input_Contract.md)。只实施用户批准的事实版本/发布/撤销；不含shared cache或其它后续批次。未部署；等待用户审核。

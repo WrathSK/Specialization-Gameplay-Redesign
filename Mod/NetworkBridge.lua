@@ -1,4 +1,5 @@
--- B027 bounded single-player diagnostic bridge. No Property, Modifier or yields.
+-- AV2-A: versioned accepted network inputs. Derived queries still recompute (Batch B deferred).
+include("NetworkInput")
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={}};shared.NetworkBridge=d
@@ -14,15 +15,52 @@ function SPCNetworkBridge.Start(P,shared)
   return (first:match(":%d+: (.+)$") or first):sub(1,180)
  end
  local derive
- local function notify()
-  if shared.Lv3Effects then shared.Lv3Effects.Audit() end
-  if shared.StandardizationDiscount then shared.StandardizationDiscount.Audit() end
-  if shared.NetworkBoost then shared.NetworkBoost.Audit() end
-  if shared.CommerceConvergence then shared.CommerceConvergence.Audit() end
+ local function bucket(pid)
+  if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
+  return d.players[pid]
  end
- -- Concrete native evidence only; a dirty signal or changed turn is not evidence.
+ -- Metadata is a value copy. Input revision belongs to this Gameplay epoch, not the save.
+ function d.Input(pid)
+  local b=bucket(pid)
+  return {contract=1,epoch=d.epoch,player=pid,inputVersion=b.inputRevision,signature=b.inputSignature,
+   validity=b.validity,availability=b.availability,routeRevision=b.revision,routeValidity=b.routes and 'VERIFIED' or b.validity,revalidation=b.revalidation,
+   derivedRevision=b.derivedRevision,derivedFor=b.derivedFor,withdrawal=b.withdrawal==true}
+ end
+ local function notify(pid)
+  local publication=d.Input(pid)
+  -- Existing independent consumer listeners remain Batch D. This publisher only notifies on diff.
+  for _,name in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence'}) do
+   local consumer=shared[name]
+   if consumer then local ok,err=pcall(consumer.Audit,publication)
+    if not ok then bucket(pid).consumerError=short(err) end
+   end
+  end
+ end
+ local function publish(pid,b,input,sources,centers,recipients,withdrawal)
+  if b.inputSignature==input.signature then P.Count('input_duplicate');return false end
+  b.inputRevision=b.inputRevision+1;b.inputSignature=input.signature;b.input=input
+  b.validity=input.validity;b.withdrawal=withdrawal==true
+  b.sources=sources;b.centers=centers;b.recipients=recipients
+  if input.validity=='VERIFIED' then b.derivedRevision=b.derivedRevision+1;b.derivedFor=b.inputRevision
+  else b.derivedFor=nil end
+  P.Count('fact_change');P.Count('input_publication')
+  if withdrawal then P.Count('withdrawal') end
+  notify(pid);return true
+ end
+ local function withdraw(pid,b,reason)
+  if b.validity=='CONFIRMED_INVALID' and not b.routes then return false end
+  b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.reason='CONFIRMED_INVALID';b.error=reason
+  b.revalidation='CONFIRMED_INVALID';b.availability='UNAVAILABLE';b.revision=b.revision+1
+  P.Count('confirmed_invalid')
+  local input={validity='CONFIRMED_INVALID',routeSignature='',cities={}}
+  input.signature=SPCNetworkInput.Signature(input)
+  local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=0 end
+  return publish(pid,b,input,nil,nil,nil,true)
+ end
+ -- Concrete native evidence only. Unknown getters preserve the accepted snapshot.
  function d.Verified(pid,failedFullRead)
   local b=d.players[pid];if not b or not b.routes then return false end
+  if b.refreshing then return true end
   local ok,invalid=pcall(function()
    if failedFullRead and Players[pid]:GetTrade():CountOutgoingRoutes()<#b.routes then return true end
    for _,r in ipairs(b.routes) do
@@ -30,6 +68,8 @@ function SPCNetworkBridge.Start(P,shared)
     if not op or not dp then return true end
     local o,z=op:GetCities():FindID(r.oc),dp:GetCities():FindID(r.dc)
     if not o or not z or o:GetOwner()~=r.op or z:GetOwner()~=r.dp then return true end
+    local refs=b.routeReferences and b.routeReferences[r.trader]
+    if refs and (SPCNetworkInput.Reference(o)~=refs.origin or SPCNetworkInput.Reference(z)~=refs.destination) then return true end
     local known,u=pcall(function() return op:GetUnits():FindID(r.trader) end)
     if known and not u then return true end
     if r.op~=r.dp then
@@ -40,24 +80,91 @@ function SPCNetworkBridge.Start(P,shared)
    return false
   end)
   if ok and invalid then
-   b.routes=nil;b.sources=nil;b.centers=nil;b.recipients=nil;b.fingerprint=nil;b.reason='CONFIRMED_INVALID'
-   P.Count('confirmed_invalid') -- topology revision advances only on a complete replacement
-   local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=0 end
-   return false
+   b.refreshing=true;withdraw(pid,b,'NATIVE_ROUTE_INVALID');b.refreshing=false;return false
   end
-  return true -- transient unreadability is not confirmed removal
+  if not ok then b.availability='NEEDS_REVALIDATION';b.revalidation='NEEDS_REVALIDATION' end
+  return true
+ end
+ -- Capture a coherent complete input before changing any officially published input.
+ function d.Refresh(pid)
+  if not P.IsTestPlayer(pid) or not d.ready then return false end
+  local b=bucket(pid)
+  if b.refreshing then P.Count('busy_skip');return false end
+  if not b.candidate and not d.Verified(pid) then return false end
+  b.refreshing=true
+  local candidate=b.candidate
+  if candidate and (candidate.turn~=Game.GetCurrentGameTurn() or candidate.signal~=(shared.RouteSignalRevision or 0)) then
+   b.candidate=nil;candidate=nil;P.Count('stale_input')
+  end
+  if not candidate and not b.routes then b.refreshing=false;return false end
+  local rows=candidate and candidate.routes or b.routes
+  local fingerprint=candidate and candidate.fingerprint or b.fingerprint
+  local ok,input=pcall(function()
+   if candidate then assert(Players[pid]:GetTrade():CountOutgoingRoutes()==#rows,'NETWORK_CANDIDATE_COUNT_CHANGED') end
+   return SPCNetworkInput.Capture(P,shared,pid,rows,fingerprint,b.input)
+  end)
+  local changed=false
+  if ok then
+   b.availability=(input.pending or b.revalidation=='NEEDS_REVALIDATION') and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=nil
+   if b.inputSignature==input.signature then
+    b.candidate=nil;P.Count('input_duplicate')
+   else
+    local good,s,c,r=pcall(derive,pid,rows,input)
+    if good then
+     local withdrawal=b.input and b.input.capital~=nil and b.input.capital~=input.capital or false
+     if candidate and b.routes then
+      local present={};for _,route in ipairs(rows) do present[route.trader..':'..route.oc..':'..route.dp..':'..route.dc]=true end
+      for _,route in ipairs(b.routes) do
+       if not present[route.trader..':'..route.oc..':'..route.dp..':'..route.dc] then withdrawal=true end
+      end
+     end
+     for id,old in pairs(b.input and b.input.cities or {}) do
+      local new=input.cities[id]
+      if old.potential>=1 and (not new or new.reference~=old.reference or new.specialization~=old.specialization
+       or new.active<old.active or new.potential<1) then withdrawal=true end
+     end
+     if candidate then
+      if b.fingerprint~=fingerprint or not b.routes then b.revision=b.revision+1;P.Count('publication') end
+      b.routes=rows;b.routeReferences=candidate.references;b.fingerprint=fingerprint
+      b.turn=candidate.turn;b.signal=candidate.signal;b.reason='READY_BACKGROUND_UI';b.revalidation='VERIFIED';b.candidate=nil
+      local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=#rows end
+     end
+     changed=publish(pid,b,input,s,c,r,withdrawal)
+    else b.availability='NEEDS_REVALIDATION';b.error=short(s) end
+   end
+  else
+   b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.error=short(input)
+   -- A failed new sample cannot hide independently confirmed loss of an old input.
+   local confirmed=false
+   local checked,lost=pcall(function()
+    for id,old in pairs(b.input and b.input.cities or {}) do
+     local c=Players[pid]:GetCities():FindID(id)
+     if not c or c:GetOwner()~=pid then return true end
+     local good,reference=pcall(SPCNetworkInput.Reference,c)
+     if good and reference~=old.reference then return true end
+    end
+    if candidate and b.routes then
+     local current={};for _,r in ipairs(candidate.routes) do current[r.trader..':'..r.oc..':'..r.dp..':'..r.dc]=true end
+     for _,r in ipairs(b.routes) do if not current[r.trader..':'..r.oc..':'..r.dp..':'..r.dc] then return true end end
+    end
+    return false
+   end)
+   confirmed=checked and lost
+   if confirmed then changed=withdraw(pid,b,'CONFIRMED_INPUT_LOSS_WHILE_SAMPLE_PENDING') end
+  end
+  b.refreshing=false;return changed
  end
  function d.Receive(pid,p)
   P.Count('net_receive')
-  if not P.IsTestPlayer(pid) or p.Epoch~=d.epoch or not integer(p.Seq) then return end
-  local b=d.players[pid] or {seq=-1,revision=0};d.players[pid]=b
-  if p.Seq<=b.seq then P.Count('send_duplicate');return end
-  b.seq=p.Seq
-  local changed=false
+  if not P.IsTestPlayer(pid) or p.Epoch~=d.epoch or not integer(p.Seq) then P.Count('stale_input');return end
+  local b=bucket(pid)
+  if b.refreshing then P.Count('busy_skip');return end
+  if p.Seq<=b.seq then P.Count('send_duplicate');P.Count('stale_input');return end
+  b.seq=p.Seq;b.candidate=nil -- a newer packet supersedes any unpublished older candidate
   local ok,err=pcall(function()
    assert(d.ready,'LOAD_NOT_READY')
    assert(p.Turn==Game.GetCurrentGameTurn() and p.Signal==(shared.RouteSignalRevision or 0),'STALE_SIGNAL_OR_TURN')
-   if p.Valid~=1 then b.revalidation='NEEDS_REVALIDATION';return end
+   if p.Valid~=1 then b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';return end
    local count=p.Count
    if p.WireCount~=nil then
     assert(integer(p.WireCount) and p.WireCount>=1 and p.WireCount<=129,'WIRE_COUNT_INVALID')
@@ -73,6 +180,8 @@ function SPCNetworkBridge.Start(P,shared)
     for _,v in ipairs({a,o,c,z,u}) do assert(integer(v),'ROW_RANGE') end
     assert(a==pid and not seen[u],'ORIGIN_OR_DUPLICATE_TRADER');seen[u]=true
     city(a,o);city(c,z)
+    local known,unit=pcall(function() return Players[a]:GetUnits():FindID(u) end)
+    assert(not known or unit,'CURRENT_TRADER_MISSING')
     rows[#rows+1]={op=a,oc=o,dp=c,dc=z,trader=u}
     keys[#keys+1]=a..':'..u..'|'..a..':'..o..'>'..c..':'..z
    end
@@ -80,28 +189,22 @@ function SPCNetworkBridge.Start(P,shared)
    assert(Players[pid]:GetTrade():CountOutgoingRoutes()==count,'CURRENT_COUNT_CHANGED')
    table.sort(keys);local fingerprint=table.concat(keys,'\n')
    if b.routes and b.fingerprint==fingerprint then
-    b.turn=p.Turn;b.signal=p.Signal;b.revalidation='VERIFIED';P.Count('same_snapshot');return
+    b.turn=p.Turn;b.signal=p.Signal;b.revalidation='VERIFIED';P.Count('same_snapshot');P.Count('revalidate_same');return
    end
-   local sources,centers,recipients=derive(pid,rows)
-   b.routes=rows;b.sources=sources;b.centers=centers;b.recipients=recipients;b.fingerprint=fingerprint
-   b.turn=p.Turn;b.signal=p.Signal;b.reason='READY_BACKGROUND_UI';b.revalidation='VERIFIED'
-   b.revision=b.revision+1;b.error=nil;changed=true;P.Count('publication')
-   local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=#rows end
+   local references={}
+   for _,r in ipairs(rows) do references[r.trader]={origin=SPCNetworkInput.Reference(city(r.op,r.oc)),destination=SPCNetworkInput.Reference(city(r.dp,r.dc))} end
+   b.candidate={routes=rows,references=references,fingerprint=fingerprint,turn=p.Turn,signal=p.Signal}
   end)
-  if not ok then b.revalidation='NEEDS_REVALIDATION';b.error=short(err);P.Count('route_failure') end
-  local previously=b.routes~=nil
-  d.Verified(pid)
-  if changed or (previously and not b.routes) then notify() end
+  if not ok then b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.error=short(err);P.Count('route_failure');P.Count('stale_input') end
+  if ok and p.Valid==1 then d.Refresh(pid) else d.Verified(pid) end
  end
- derive=function(pid,rows)
+ derive=function(pid,rows,input)
   P.Count("derive")
   local sources,centers,recipients={},{},{}
-  local player=Players[pid];local capital=player:GetCities():GetCapitalCity()
-  local scanned=0
-  for _,c in player:GetCities():Members() do P.Count('city_scan');
-   scanned=scanned+1;assert(scanned<=512,"CITY_LIMIT")
-   local id=c:GetID();local ok,f=pcall(shared.EffectiveFacts.Read,pid,c)
-   if ok and f.potential>=1 then
+  input=input or assert(d.players[pid].input,'NETWORK_INPUT_UNAVAILABLE')
+  local capital=input.capital and city(pid,input.capital) or nil
+  for id,f in pairs(input.cities) do
+   if f.potential>=1 then
     if f.specialization=="RESEARCH" or f.specialization=="CULTURE" or f.specialization=="INDUSTRY" then sources[id]=f.specialization end
     if f.specialization=="COMMERCE" then centers[id]={} end
    end
@@ -133,8 +236,9 @@ function SPCNetworkBridge.Start(P,shared)
  -- Fresh direct connection types for Commerce III; never use display text or source count as yield.
  function d.ConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
+  d.Refresh(pid)
   local b=d.players[pid]
-  assert(d.Verified(pid),'NETWORK_REFRESH_PENDING')
+  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
   -- Current route additions are reconciled by the next complete snapshot.
   local sources,centers=derive(pid,b.routes);local result={}
   for src in pairs(centers[selected:GetID()] or {}) do result[sources[src]]=true end
@@ -143,16 +247,17 @@ function SPCNetworkBridge.Start(P,shared)
  -- B055 national union: a recipient counts once if at least one current ACTIVE source reaches it.
  function d.National(pid)
   assert(P.IsTestPlayer(pid) and d.ready,'NETWORK_NOT_READY_OR_OWNER')
+  d.Refresh(pid)
   local b=d.players[pid]
-  assert(d.Verified(pid),'NETWORK_REFRESH_PENDING')
+  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
   -- Current route additions are reconciled by the next complete snapshot.
   local _,_,recipients=derive(pid,b.routes);local result={}
   for _,kind in ipairs({'RESEARCH','CULTURE'}) do
    local r={n=0,level=0,sources={},recipients={}};result[kind]=r
    for cid,set in pairs(recipients[kind] or {}) do
     for src in pairs(set) do
-     local ok,f=pcall(shared.EffectiveFacts.Read,pid,city(pid,src))
-     if ok and f.specialization==kind and type(f.active)=='number' and f.active>=1 and f.active<=4 and f.active%1==0 then
+     local f=b.input.cities[src]
+     if f and f.specialization==kind and type(f.active)=='number' and f.active>=1 and f.active<=4 and f.active%1==0 then
       r.sources[src]=f.active;r.recipients[cid]=true;r.level=math.max(r.level,f.active)
      end
     end
@@ -164,8 +269,9 @@ function SPCNetworkBridge.Start(P,shared)
  -- B049 readonly current source identities, never a history/event-derived list.
  function d.RecipientSources(pid,selected,kind)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
+  d.Refresh(pid)
   local b=d.players[pid]
-  assert(d.Verified(pid),'NETWORK_REFRESH_PENDING')
+  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
   -- Current route additions are reconciled by the next complete snapshot.
   local _,_,recipients=derive(pid,b.routes);local result={}
   for src in pairs((recipients[kind] or {})[selected:GetID()] or {}) do result[#result+1]=src end
@@ -182,6 +288,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local detailPage={}
  function d.Read(pid,selected,details)
+  d.Refresh(pid)
   local b=d.players[pid]
   if not b or not b.routes then return "B031 网络待刷新: "..(b and b.reason or "NO_BACKGROUND_BATCH") end
   if not d.Verified(pid) then return "B031 网络待刷新: REFRESH_PENDING" end
@@ -233,28 +340,23 @@ function SPCNetworkBridge.Start(P,shared)
   return ok and out or ("B031 网络待刷新: "..short(out))
  end
  function d.Rebuild()
-  for pid,b in pairs(d.players) do
-   if d.Verified(pid) then
-    local ok,s,c,r=pcall(derive,pid,b.routes)
-    if ok then b.sources=s;b.centers=c;b.recipients=r else b.error=short(s);b.revalidation='NEEDS_REVALIDATION' end
-   else b.sources=nil;b.centers=nil;b.recipients=nil end
-  end
-  if shared.Lv3Effects then shared.Lv3Effects.Audit() end
-  if shared.StandardizationDiscount then shared.StandardizationDiscount.Audit() end
-  if shared.NetworkBoost then shared.NetworkBoost.Audit() end
-  if shared.CommerceConvergence then shared.CommerceConvergence.Audit() end
+  for pid in pairs(d.players) do d.Refresh(pid) end
  end
  for _,name in ipairs({"OnDistrictConstructed","CityBuilt"}) do
   local ev=P.Field(GameEvents,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
  function d.CheckEvidence(failedFullRead)
-  local changed=false
-  for pid,b in pairs(d.players) do local had=b.routes~=nil;d.Verified(pid,failedFullRead);if had and not b.routes then changed=true end end
-  if changed then notify() end
+  for pid,b in pairs(d.players) do
+   if b.routes then b.revalidation='NEEDS_REVALIDATION';d.Verified(pid,failedFullRead) end
+   d.Refresh(pid)
+  end
  end
  for _,name in ipairs({'TradeRouteActivityChanged','TradeRouteRemovedFromMap','UnitRemovedFromMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar'}) do
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function() d.CheckEvidence(false) end) end
  end
- local turn=P.Field(Events,"PlayerTurnActivated");if turn and turn.Add then turn.Add(d.Rebuild) end
- local e=P.Field(Events,"LoadScreenClose");if e and e.Add then e.Add(function() d.ready=true end) end
+ -- Current facts, not the event name/turn, determine whether a version is published.
+ for _,name in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CapitalCityChanged','CityAddedToMap'}) do
+  local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(d.Rebuild) end
+ end
+ local e=P.Field(Events,"LoadScreenClose");if e and e.Add then e.Add(function() d.ready=true;d.Rebuild() end) end
 end

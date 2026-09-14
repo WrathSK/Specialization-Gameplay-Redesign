@@ -1,19 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0169
-Implementation Build: P0-B-069.96 / modinfo96
-Architecture Revision Reviewed: A0150
+Status Revision: S0170
+Implementation Build: develop P0-B-070.97 / modinfo97; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0151
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: DEVELOP_ARCH_V2_INVESTIGATION_REVIEW_REQUIRED
+Work State: DEVELOP_BATCH_A_LOCAL_PASS_REVIEW_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-develop AV2-I001文档调查完成，等用户审阅后授权重构：[调查报告](../Architecture/v2/README.md)。本轮仅static inspection与文档完整性检查；没有新游戏实现或实机测试。稳定main/运行B069.96不变，当前长局继续。Carrier inventory/完整Compatibility map仍后续，不在本轮展开。
+develop AV2-A / B070.97完成，等待用户审阅；[合同与验证](../Architecture/v2/Batch_A_Input_Contract.md)。LOCAL_SIMULATION_PASS（真实Lua本地模拟，非Civ VI实机）：A–I、初始化UNKNOWN/已确认撤销/重入/旧候选/epoch、24组新旧输出、原B069行为回归及73个Lua编译。STATIC_CONFIRMED：SQL、D0025、main与实际B069.96包未改；未部署。
+
+本轮不要求立即切develop测试。Batch B可评估Network共享视图；C/D样本与消费者自身暂空路径仍待处理，E保存迁移仍未动。不得把Batch A完成表述为全部性能风险解决。用户当前长局继续stable。
 
 2026-09-14 workflow：以[部署合同](../Architecture/Playtest_Workflow.md)与根AGENTS为准；下文历史“不commit/push/停止长局”不再派发当前任务。
+
+### Stable B069.96既有验证记录（本轮未改变）
 
 B069.96现为用户指定的v0.1 Playtest Baseline；用户继续长局，main冻结玩法，develop承接后续开发。此前性能短测没有回传完整计数证据，不能标为已解决或实机PASS；风险留在Playtest Backlog按严重程度分诊。普通非商人任务不再发商路dirty；无法可靠识别时只NEEDS_REVALIDATION，保留最近完整验证状态。完整快照内容相同不发布、不增加topology revision、不通知收益消费者。读取失败最多3次本批尝试；明确端点/商人消失、战争或读取失败后的原生数量下降仍会撤销。失败包不覆盖已验证完整集合，发送只允许单个in-flight，ACK后空闲UI通知不再调用sender。
 

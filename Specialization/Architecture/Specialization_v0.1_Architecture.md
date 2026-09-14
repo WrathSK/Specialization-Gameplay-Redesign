@@ -1,19 +1,23 @@
-# Specialization v0.1 Architecture — A0150
+# Specialization v0.1 Architecture — A0151
 
 Document Owner: Codex
-Architecture Revision: A0150
+Architecture Revision: A0151
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: P0-B-069.96 / modinfo96
+Implementation Build: develop P0-B-070.97 / modinfo97; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
 
-develop调查 AV2-I001已完成：[状态/保存、依赖/桥接、事件/dirty地图](v2/README.md)。仅STATIC_CONFIRMED；未改运行行为，TARGET未实施。main仍A0149/B069.96；此A0150只属于develop。
+develop Batch A已实现并本地验证：[完整输入版本/发布/撤销合同](v2/Batch_A_Input_Contract.md)。仅Network合同层；共享cache、UI样本协议、消费者listener及保存迁移未实施。事实相等不发布，确认失效正式撤销，UNKNOWN保留最近确认输入。Design D0025不变；没有部署。
+
+AV2-I001为B069.96调查快照，实施差异以Batch A增量为准。main仍A0149/B069.96；此A0151只属于develop。
 
 2026-09-14 workflow：以[部署合同](Playtest_Workflow.md)与根AGENTS为准；下文历史“不commit/push/停止长局”不再派发当前任务。
+
+### Stable B069.96既有验证记录（本轮未改变）
 
 B069.96现为用户指定的v0.1 Playtest Baseline；用户继续长局，main冻结玩法，develop承接后续开发。此前性能短测没有回传完整计数证据，不能标为已解决或实机PASS；风险留在Playtest Backlog按严重程度分诊。普通非商人任务不再发商路dirty；无法可靠识别时只NEEDS_REVALIDATION，保留最近完整验证状态。完整快照内容相同不发布、不增加topology revision、不通知收益消费者。读取失败最多3次本批尝试；明确端点/商人消失、战争或读取失败后的原生数量下降仍会撤销。失败包不覆盖已验证完整集合，发送只允许单个in-flight，ACK后空闲UI通知不再调用sender。
 

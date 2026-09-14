@@ -7,6 +7,10 @@ Source/runtime: B069.96 / modinfo96
 Accepted Design: D0025 (unchanged)
 Evidence: STATIC_CONFIRMED — 当前代码/SQL注册和调用链的静态证据，不等于事件实际频率、内存泄漏或游戏内故障已获证实。
 
+## 当前实施增量
+
+[Batch A版本/发布合同](Batch_A_Input_Contract.md)已在develop B070.97实现并本地验证；下文AV2-I001仍是B069.96源代码调查快照。Batch B–E尚未实施，stable不变。
+
 ## 阅读顺序 / 范围
 
 1. [状态归属与保存合同](State_Ownership_Save.md)

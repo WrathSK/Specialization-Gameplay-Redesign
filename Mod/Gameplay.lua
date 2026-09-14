@@ -196,6 +196,7 @@ local function request(playerID,params)
   if params.Action=="UNIT_ACTION_SPAWN" or params.Action=="UNIT_ACTION_PREPARE" or params.Action=="UNIT_ACTION_CONFIRM" then
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
+    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if shared.Lv2Housing then shared.Lv2Housing.Audit() end
     if shared.Lv2GPP then shared.Lv2GPP.Audit() end
     if shared.Lv3Support then shared.Lv3Support.Audit() end
@@ -213,6 +214,7 @@ local function request(playerID,params)
     return
   end
   if params.Action=="LV2_GPP_DIRTY" then
+    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit() end
     if P.IsTestPlayer(playerID) and shared.Lv3Support then shared.Lv3Support.Audit() end
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -256,6 +258,7 @@ local function request(playerID,params)
     elseif type(params.PlanToken)=="string" and #params.PlanToken<=400 then
       shared.Snapshot=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
     else shared.Snapshot="B033 REJECTED: PREPARE_FIRST" end
+    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if shared.Lv2Housing then shared.Lv2Housing.Audit() end
     if shared.Lv2GPP then shared.Lv2GPP.Audit() end
     if shared.Lv3Support then shared.Lv3Support.Audit() end
