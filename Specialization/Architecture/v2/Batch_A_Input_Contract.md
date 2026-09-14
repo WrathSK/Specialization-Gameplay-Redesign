@@ -1,11 +1,13 @@
 # AV2-A — 事实版本、发布与撤销合同
 
 Document Owner: Codex
-State: IMPLEMENTED_IN_DEVELOP / LOCAL_SIMULATION_PASS / awaiting user review
+State: USER_REVIEW_ACCEPTED / historical Batch A implementation baseline
 Develop build: P0-B-070.97 / modinfo97
 Stable runtime: B069.96 / modinfo96 — UNCHANGED, NOT DEPLOYED
 Design: D0025 unchanged
 Base: AV2-I001 / commit 79281ff98cebbe12260703fce780df98c0cc8155
+
+当前查询实现已由[Batch B共享视图](Batch_B_Shared_Network.md)更新；下文“每query重算/Batch B待办”为A完成时历史边界，输入合同仍有效。
 
 ## 范围与证据
 

@@ -1,4 +1,4 @@
--- AV2-A: versioned accepted network inputs. Derived queries still recompute (Batch B deferred).
+-- AV2-B: one private derived view per accepted complete input; no consumer-yield cache.
 include("NetworkInput")
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
@@ -15,6 +15,32 @@ function SPCNetworkBridge.Start(P,shared)
   return (first:match(":%d+: (.+)$") or first):sub(1,180)
  end
  local derive
+ local views={} -- private, at most one view per player; never keyed by historical versions
+ local function copy(v)
+  if type(v)~='table' then return v end
+  local out={};for k,x in pairs(v) do out[k]=copy(x) end;return out
+ end
+ local function buildView(pid,rows,input)
+  P.Count('derive_requested');P.Count('derived_cache_miss')
+  local sources,centers,recipients=derive(pid,rows,input)
+  local connected,national={},{}
+  for id,set in pairs(centers) do
+   connected[id]={};for src in pairs(set) do connected[id][sources[src]]=true end
+  end
+  for _,kind in ipairs({'RESEARCH','CULTURE'}) do
+   local n={n=0,level=0,sources={},recipients={}};national[kind]=n
+   for cid,set in pairs(recipients[kind] or {}) do
+    for src in pairs(set) do
+     local f=input.cities[src]
+     if f and f.specialization==kind and type(f.active)=='number' and f.active>=1 and f.active<=4 and f.active%1==0 then
+      n.sources[src]=f.active;n.recipients[cid]=true;n.level=math.max(n.level,f.active)
+     end
+    end
+   end
+   for _ in pairs(n.recipients) do n.n=n.n+1 end
+  end
+  return {sources=sources,centers=centers,recipients=recipients,connected=connected,national=national}
+ end
  local function bucket(pid)
   if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
   return d.players[pid]
@@ -36,14 +62,21 @@ function SPCNetworkBridge.Start(P,shared)
    end
   end
  end
- local function publish(pid,b,input,sources,centers,recipients,withdrawal)
+ local function publish(pid,b,input,view,withdrawal)
   if b.inputSignature==input.signature then P.Count('input_duplicate');return false end
   b.inputRevision=b.inputRevision+1;b.inputSignature=input.signature;b.input=input
   b.validity=input.validity;b.withdrawal=withdrawal==true
-  b.sources=sources;b.centers=centers;b.recipients=recipients
+  if views[pid] then P.Count('derived_invalidation') end
+  views[pid]=view
+  if view then
+   view.contract=1;view.epoch=d.epoch;view.player=pid;view.inputVersion=b.inputRevision
+   view.derivedFor=b.inputRevision;view.validity='VERIFIED';view.signature=input.signature
+  end
+  -- Compatibility/debug projections must not expose the private cache to mutation.
+  b.sources=view and copy(view.sources);b.centers=view and copy(view.centers);b.recipients=view and copy(view.recipients)
   if input.validity=='VERIFIED' then b.derivedRevision=b.derivedRevision+1;b.derivedFor=b.inputRevision
   else b.derivedFor=nil end
-  P.Count('fact_change');P.Count('input_publication')
+  P.Count('fact_change');P.Count('input_version_change');P.Count('input_publication')
   if withdrawal then P.Count('withdrawal') end
   notify(pid);return true
  end
@@ -55,7 +88,7 @@ function SPCNetworkBridge.Start(P,shared)
   local input={validity='CONFIRMED_INVALID',routeSignature='',cities={}}
   input.signature=SPCNetworkInput.Signature(input)
   local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=0 end
-  return publish(pid,b,input,nil,nil,nil,true)
+  return publish(pid,b,input,nil,true)
  end
  -- Concrete native evidence only. Unknown getters preserve the accepted snapshot.
  function d.Verified(pid,failedFullRead)
@@ -109,7 +142,7 @@ function SPCNetworkBridge.Start(P,shared)
    if b.inputSignature==input.signature then
     b.candidate=nil;P.Count('input_duplicate')
    else
-    local good,s,c,r=pcall(derive,pid,rows,input)
+    local good,view=pcall(buildView,pid,rows,input)
     if good then
      local withdrawal=b.input and b.input.capital~=nil and b.input.capital~=input.capital or false
      if candidate and b.routes then
@@ -129,8 +162,8 @@ function SPCNetworkBridge.Start(P,shared)
       b.turn=candidate.turn;b.signal=candidate.signal;b.reason='READY_BACKGROUND_UI';b.revalidation='VERIFIED';b.candidate=nil
       local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=#rows end
      end
-     changed=publish(pid,b,input,s,c,r,withdrawal)
-    else b.availability='NEEDS_REVALIDATION';b.error=short(s) end
+     changed=publish(pid,b,input,view,withdrawal)
+    else b.availability='NEEDS_REVALIDATION';b.error=short(view) end
    end
   else
    b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.error=short(input)
@@ -199,7 +232,7 @@ function SPCNetworkBridge.Start(P,shared)
   if ok and p.Valid==1 then d.Refresh(pid) else d.Verified(pid) end
  end
  derive=function(pid,rows,input)
-  P.Count("derive")
+  P.Count("derive");P.Count("derive_executed")
   local sources,centers,recipients={},{},{}
   input=input or assert(d.players[pid].input,'NETWORK_INPUT_UNAVAILABLE')
   local capital=input.capital and city(pid,input.capital) or nil
@@ -233,48 +266,31 @@ function SPCNetworkBridge.Start(P,shared)
   end
   return sources,centers,recipients
  end
- -- Fresh direct connection types for Commerce III; never use display text or source count as yield.
+ -- Refresh remains the Batch A fact boundary (its scans are not cached in Batch B).
+ local function currentView(pid)
+  P.Count('derive_requested')
+  d.Refresh(pid)
+  local b=d.players[pid]
+  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
+  local v=views[pid]
+  local matches=v and v.contract==1 and v.epoch==d.epoch and v.player==pid
+   and v.validity=='VERIFIED' and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
+   and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
+  if not matches then P.Count('derived_cache_miss');error('NETWORK_DERIVED_VIEW_UNAVAILABLE') end
+  P.Count('derived_cache_hit');return v
+ end
  function d.ConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
-  d.Refresh(pid)
-  local b=d.players[pid]
-  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
-  -- Current route additions are reconciled by the next complete snapshot.
-  local sources,centers=derive(pid,b.routes);local result={}
-  for src in pairs(centers[selected:GetID()] or {}) do result[sources[src]]=true end
-  return result
+  return copy(currentView(pid).connected[selected:GetID()] or {})
  end
- -- B055 national union: a recipient counts once if at least one current ACTIVE source reaches it.
  function d.National(pid)
   assert(P.IsTestPlayer(pid) and d.ready,'NETWORK_NOT_READY_OR_OWNER')
-  d.Refresh(pid)
-  local b=d.players[pid]
-  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
-  -- Current route additions are reconciled by the next complete snapshot.
-  local _,_,recipients=derive(pid,b.routes);local result={}
-  for _,kind in ipairs({'RESEARCH','CULTURE'}) do
-   local r={n=0,level=0,sources={},recipients={}};result[kind]=r
-   for cid,set in pairs(recipients[kind] or {}) do
-    for src in pairs(set) do
-     local f=b.input.cities[src]
-     if f and f.specialization==kind and type(f.active)=='number' and f.active>=1 and f.active<=4 and f.active%1==0 then
-      r.sources[src]=f.active;r.recipients[cid]=true;r.level=math.max(r.level,f.active)
-     end
-    end
-   end
-   for _ in pairs(r.recipients) do r.n=r.n+1 end
-  end
-  return result
+  return copy(currentView(pid).national)
  end
- -- B049 readonly current source identities, never a history/event-derived list.
  function d.RecipientSources(pid,selected,kind)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
-  d.Refresh(pid)
-  local b=d.players[pid]
-  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
-  -- Current route additions are reconciled by the next complete snapshot.
-  local _,_,recipients=derive(pid,b.routes);local result={}
-  for src in pairs((recipients[kind] or {})[selected:GetID()] or {}) do result[#result+1]=src end
+  local v=currentView(pid);local result={}
+  for src in pairs((v.recipients[kind] or {})[selected:GetID()] or {}) do result[#result+1]=src end
   table.sort(result);return result
  end
  local kinds={"RESEARCH","CULTURE","INDUSTRY"}
@@ -295,7 +311,8 @@ function SPCNetworkBridge.Start(P,shared)
   local ok,out=pcall(function()
    assert(selected:GetOwner()==pid,"SELECTED_OWNER_CHANGED")
    assert(d.Verified(pid),"CURRENT_ROUTE_INVALID")
-   local sources,centers,recipients=derive(pid,b.routes)
+   local v=currentView(pid)
+   local sources,centers,recipients=v.sources,v.centers,v.recipients
    local id=selected:GetID();local title="B031 "..name(pid,id)
    if details then
     local entries={}

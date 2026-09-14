@@ -1,15 +1,19 @@
-# Specialization v0.1 Architecture — A0151
+# Specialization v0.1 Architecture — A0152
 
 Document Owner: Codex
-Architecture Revision: A0151
+Architecture Revision: A0152
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: develop P0-B-070.97 / modinfo97; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-071.98 / modinfo98; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+develop Batch B共享Network派生视图已完成本地验证：[cache owner/key/query/lifetime及结果](v2/Batch_B_Shared_Network.md)。沿用已接受Batch A完整事实合同，每玩家/VERIFIED inputVersion一次派生，National/ConnectedKinds/RecipientSources/Read共享；返回副本。UNKNOWN保留与确认撤销不变。事实捕获扫描及consumer监听仍未缩减，不表示55GB根因已解决。没有部署，main/live仍B069.96。
+
+### Historical: Batch A实施说明（已获用户接受；共享cache由B取代）
 
 develop Batch A已实现并本地验证：[完整输入版本/发布/撤销合同](v2/Batch_A_Input_Contract.md)。仅Network合同层；共享cache、UI样本协议、消费者listener及保存迁移未实施。事实相等不发布，确认失效正式撤销，UNKNOWN保留最近确认输入。Design D0025不变；没有部署。
 

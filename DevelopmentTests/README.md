@@ -18,3 +18,9 @@ Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB
 Other retained Python scripts are historical, version-specific regression evidence unless listed in the migration validation report. Their original paths/assertions are preserved; some require external historical snapshots and old manifests and are not portable current entry points. Do not batch-run and rewrite them until green. Their presence is not a promise that all historical suites pass against B051.67. Offline Lua models describe preparation, not implemented gameplay. `test_gpp.py`, `test_discovery.py`, `collect_gpp_log.py` belong to CityGPPProbe and are deliberately excluded.
 
 Results mean LOCAL_SIMULATION_PASS (local simulation), never USER_GAME_TEST_PASS. No game launch or GUI automation. Use no-bytecode mode. Deployment tests operate only in temporary directories and never touch the game runtime.
+
+## Current Architecture v2 Batch B (B071.98, develop only)
+
+`PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_batch_b.py`
+
+Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory manifest-stamp adaptation, runs actual Discount/Bridge/Counters, and compares 168 full output cases against both Git baselines (79281ff, d1ac666). Keep that history available; no network/game access or deployment. Covers cold/warm derives, unknown/withdrawal, reentry, mutation and player/epoch isolation. Standalone A test retains its historical modinfo97 assertion; use this B entry for current develop.

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="97">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="98">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B070.97 develop only: Architecture v2 Batch A network input versions and publication contract. Not deployed to the stable playtest.</Description>
+    <Description>B071.98 develop only: Architecture v2 Batch B shared network derived view. Not deployed to the stable playtest.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

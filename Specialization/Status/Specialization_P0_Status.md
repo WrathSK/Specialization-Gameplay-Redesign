@@ -1,15 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0170
-Implementation Build: develop P0-B-070.97 / modinfo97; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0151
+Status Revision: S0171
+Implementation Build: develop P0-B-071.98 / modinfo98; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0152
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: DEVELOP_BATCH_A_LOCAL_PASS_REVIEW_REQUIRED
+Work State: DEVELOP_BATCH_B_LOCAL_PASS_REVIEW_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+Batch A（d1ac666 / B070.97）用户已审阅通过。develop Batch B / B071.98本地实现完成：[共享Network视图及证据](../Architecture/v2/Batch_B_Shared_Network.md)。LOCAL_SIMULATION_PASS（本地真实Lua模拟，非实机）：168组三方完整输出、9步A合同metadata、真实四城市Discount cold1/warm0派生、102次Audit累计1派生408命中、玩家/epoch/修改隔离及原B069/A回归。STATIC_CONFIRMED：仅Bridge/Counters/版本标识改变，consumer、UI、SQL、NetworkInput、Design与stable包不变。无部署。
+
+当前等待用户审阅及是否授权临时develop短测；不自动切换运行包。今日stable 44→55GB事件仍需独立内存趋势验证，本批只解决重复Network derive，不能标记内存BLOCKER已解决。C/D/E、UI轮询等保持未实施。
+
+### Historical: Batch A完成时状态（已获用户接受）
 
 develop AV2-A / B070.97完成，等待用户审阅；[合同与验证](../Architecture/v2/Batch_A_Input_Contract.md)。LOCAL_SIMULATION_PASS（真实Lua本地模拟，非Civ VI实机）：A–I、初始化UNKNOWN/已确认撤销/重入/旧候选/epoch、24组新旧输出、原B069行为回归及73个Lua编译。STATIC_CONFIRMED：SQL、D0025、main与实际B069.96包未改；未部署。
 

@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Work branch: develop
-State: AV2-I001 reviewed; Batch A input/publication contract implemented locally on develop; B–E not authorized
+State: Batch A accepted; Batch B shared network view locally passed on develop; C–E not implemented
 Stable runtime: B069.96 untouched
 
 ## Ordered deliverables
@@ -33,3 +33,7 @@ Research identifies measurable batches and tests. Implement on develop only afte
 ## Batch A implementation
 
 [B070.97合同及本地验证](v2/Batch_A_Input_Contract.md)。只实施用户批准的事实版本/发布/撤销；不含shared cache或其它后续批次。未部署；等待用户审核。
+
+## Batch B implementation
+
+[B071.98共享视图与本地回归](v2/Batch_B_Shared_Network.md)。只执行授权Batch B，不部署。下一步等待用户审阅，不自动推进C/D或stable修复。
