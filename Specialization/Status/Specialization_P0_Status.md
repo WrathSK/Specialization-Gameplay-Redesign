@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0173
+Status Revision: S0174
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: RUNTIME_AUDIT_LOCAL_PASS_NATIVE_FILE_GATE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B072.99已获用户临时部署授权并确认游戏完全退出，实际运行包现与8b2ca3a的Mod逐文件一致。此前B071.98与B069.96均保留可恢复整包，main不变。部署证据和最小原生日志验证见[本次切换记录](Validation/Specialization_B072_Temporary_Playtest.md)。下文“本轮未部署/live B071.98”是实现批次结束时历史状态，由本项取代。尚未获得原生文件接口实机结果，不宣告长局日志可用。
 
 B072.99仅新增低频Runtime Audit、受限文件sink和既有Counters中的状态说明。[实现/字段/上限/测试/原生接口限制](../Reports/Technical/Specialization_B072_Runtime_Audit.md)。LOCAL_SIMULATION_PASS：100万counter事件零I/O，10000回合固定节点及4MiB轮转，8文件保留，失败停止，真实Network ON/OFF输出和计数一致。STATIC_CONFIRMED：没有新Gameplay请求/收益/Design变更。
 
