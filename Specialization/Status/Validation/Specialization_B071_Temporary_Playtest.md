@@ -24,3 +24,9 @@ Develop package SHA256: 87ed79bded5c4786050dbd26297d3e5fd8f142418c33e70519599627
 ## 恢复
 
 测试结束用户完全退出游戏后，使用W0002恢复入口和外部receipt，整包恢复至上述stable hash。保留stable原始备份及出去的develop包，main不变。实际恢复未执行前不宣称已恢复；用户当前授权只执行测试切换，不提前撤销测试包。
+
+## 实际切换结果（2026-09-14）
+
+DEPLOYED_TEMPORARY / USER_GAME_TEST_REQUIRED。receipt phase=DEVELOP_ACTIVE；运行116文件/modinfo98与develop逐文件一致，保留的stable备份115文件/modinfo96与main逐文件一致；hash均等于上列值。没有残留pending transaction，main工作树clean、HEAD仍e3651f9。没有启动游戏，没有修改游戏配置或存档。恢复尚未执行。
+
+Deployment tooling commit: 170cdb349be92f901ccdcc5b518df6c8284f177c（Mod与a9302a5相同）。保留目录由receipt的stable_backup指向，位于SpecializationDeploymentBackups内，不能删除；receipt是当前切换的机器本地恢复入口。

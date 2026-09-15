@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0171
+Status Revision: S0172
 Implementation Build: develop P0-B-071.98 / modinfo98; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0152
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: DEVELOP_BATCH_B_LOCAL_PASS_REVIEW_REQUIRED
+Work State: TEMPORARY_DEVELOP_PLAYTEST_USER_RESULTS_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-14用户授权临时develop实机测试且确认游戏已退出，已切换实际运行包至B071.98/modinfo98；[切换证据、短测与恢复说明](Validation/Specialization_B071_Temporary_Playtest.md)。stable/main仍B069.96，完整恢复副本在Mods扫描目录外保留并与main逐文件hash一致。当前运行覆盖是有明确授权的一次测试，不是promotion；未启动游戏、未改配置或存档，USER_GAME_TEST_REQUIRED。下文“未部署/等待切包”是Batch B完成时历史状态，已由本项取代。
 
 Batch A（d1ac666 / B070.97）用户已审阅通过。develop Batch B / B071.98本地实现完成：[共享Network视图及证据](../Architecture/v2/Batch_B_Shared_Network.md)。LOCAL_SIMULATION_PASS（本地真实Lua模拟，非实机）：168组三方完整输出、9步A合同metadata、真实四城市Discount cold1/warm0派生、102次Audit累计1派生408命中、玩家/epoch/修改隔离及原B069/A回归。STATIC_CONFIRMED：仅Bridge/Counters/版本标识改变，consumer、UI、SQL、NetworkInput、Design与stable包不变。无部署。
 
