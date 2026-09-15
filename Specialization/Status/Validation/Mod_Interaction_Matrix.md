@@ -66,3 +66,7 @@ No DISCOUNT_AUTO_AUDIT_OFF, trigger instrumentation, formal Discount optimizatio
 ## CORE重新加入，2026-09-15 05:45–05:55（取代上节待测步骤）
 
 [8图与崩溃](Results/Specialization_HD_Rechallenge_20260915.md)。同七Mod协议，第一次PID68667首图9.15GB后原生pure-virtual abort；无终点，不计算斜率。第二次PID69145零城316秒9.13→9.37→9.58GB（+.45）；audit+18342≈58/s，事实/扫描/派生/写入0，inflight1。ON/OFF/ON关联已复现，不是sole-HD根因证明。下一轮仅去SPC、保留CORE及其它五项，原版Robert替代已移除测试领袖；5分钟0城，只需Memory。领袖差异明确记录，必要时再匹配原版领袖对照。不改Discount，不加其它HD组件。
+
+## 去SPC保留CORE：06:02–06:07（已完成，勿重发）
+
+[6图](Results/Specialization_HD_Without_SPC_20260915.md)。CORE+BTS+EMM+TITLE+AREA+Cheat（按用户协议上下文），PID70353，Turn1/0城308秒8.78→8.92→8.97GB。前158秒+.14、后150秒+.05，增长减速；持续泄漏与平台期均未确认，不能列入明确non-repro或同根因repro。无SPC counters，不填0。原版Robert/不同地图/无诊断面板为比较差异。后续仅必要时延长同组合观察，不重做刚完成步骤；无源码修改。
