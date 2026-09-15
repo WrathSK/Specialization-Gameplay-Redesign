@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0187
+Status Revision: S0188
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+优先级改为Mod interaction isolation：[依赖图](../Reports/Technical/Specialization_Mod_Interaction_Dependencies.md)、[当前矩阵/短测决策树](Validation/Mod_Interaction_Matrix.md)。BASE=SPC+BTS+EMM在观察窗无持续增长；FULL11复现，非112历史组合。当前只派T1=BASE+HD Civ6 Plus，0城300秒，垄断模式保持ON（用户确认）。IND依赖CORE及两项Monopoly++；CIV/DIST分别依赖CORE。Discount OFF/计数扩展/优化暂停，C²证据保留；memory与crash分开。仅文档，无源码/部署变更。
 
 城市规模调查：[Discount嵌套扫描与请求计数边界](../Reports/Technical/Specialization_Discount_Idle_Scaling.md)。双城窗口facts=4×Audit、city_scan=8×Audit与C²/C²+2C代码路径精确吻合；内存因果仍UNKNOWN。纠正此前宽泛“发送不增加”：net_send/receive仅Network桥接，不能排除Discount UI未计数的INIT/ELIGIBILITY重发。单/双城网络就绪与回合状态不同，不以约2.46倍内存斜率断定规模律。本轮只读研究、文档记录，未实施实验或修复。
 
