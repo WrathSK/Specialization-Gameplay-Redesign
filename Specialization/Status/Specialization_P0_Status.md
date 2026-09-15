@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0181
+Status Revision: S0182
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+最新读档Mod集合已核实：[111项与证据边界](Validation/Results/Specialization_Loaded_Mod_Set_Verification.md)。相对默认112项仅移除Switch Civilization；日志后续确有组件应用/Gameplay初始化/反序列化。111 UUID唯一数据库映射，72绝对路径XML核对，39官方相对路径未独立解析。该加载晚于监控，不能追溯证明前一PID配置；不需要用户逐个截图，不据此判定冲突。
 
 双footprint实机证据已复核：[分类增量/Mod配置边界](Validation/Results/Specialization_External_Monitor_Paired_Footprint.md)。同PID间隔630.895秒，MALLOC_TINY815→3513原生MB，graphics5308→5311MB；堆分配器是本窗口增长主项，不能归因某Mod或等同Lua泄漏。当前较晚Modding.log提取112 UUID/name条目（含官方内容），仅当前启用配置，不冒充被测存档加载集合。6原件11176字节hash归档；无源码/部署改动。
 
