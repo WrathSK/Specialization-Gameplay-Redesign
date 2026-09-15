@@ -24,3 +24,7 @@ Results mean LOCAL_SIMULATION_PASS (local simulation), never USER_GAME_TEST_PASS
 `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_batch_b.py`
 
 Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory manifest-stamp adaptation, runs actual Discount/Bridge/Counters, and compares 168 full output cases against both Git baselines (79281ff, d1ac666). Keep that history available; no network/game access or deployment. Covers cold/warm derives, unknown/withdrawal, reentry, mutation and player/epoch isolation. Standalone A test retains its historical modinfo97 assertion; use this B entry for current develop.
+
+## Current B072.99 instrumentation (develop, no deployment)
+
+Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTests/test_runtime_audit_regression.py` with the same no-bytecode/Lupa environment. File tests use TemporaryDirectory only. Regression wraps B/A/B069 version assertions for99 without changing historical tests. Covers1M increments,10k turns,8×4MiB ring, capability/failure gates, duplicate turns and real Network output/counter ON/OFF equivalence. Does not verify Civ VI exposes standard Lua io/os; native gate remains required before a long-play logging claim.

@@ -9,6 +9,9 @@ Evidence: STATIC_CONFIRMED — 当前代码/SQL注册和调用链的静态证据
 
 ## 当前实施增量
 
+B072.99独立instrumentation：[Runtime Audit](../../Reports/Technical/Specialization_B072_Runtime_Audit.md)，本地通过、原生文件能力待验证，不是Batch C/D。[Yield Precision Contract待办](Yield_Precision_Backlog.md)只记录、不实施。
+
+
 [Batch A版本/发布合同](Batch_A_Input_Contract.md)已在develop B070.97实现并本地验证；下文AV2-I001仍是B069.96源代码调查快照。Batch A已获用户接受；[Batch B共享视图](Batch_B_Shared_Network.md)在develop B071.98本地验证完成，C–E尚未实施，stable不变。
 
 ## 阅读顺序 / 范围

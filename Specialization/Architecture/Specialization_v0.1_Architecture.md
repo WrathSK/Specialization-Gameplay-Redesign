@@ -1,15 +1,19 @@
-# Specialization v0.1 Architecture — A0152
+# Specialization v0.1 Architecture — A0153
 
 Document Owner: Codex
-Architecture Revision: A0152
+Architecture Revision: A0153
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: develop P0-B-071.98 / modinfo98; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+B072.99增量：[Runtime Audit合同](../Reports/Technical/Specialization_B072_Runtime_Audit.md)。独立UI观察器只在LocalPlayerTurnEnd读取固定Counters累计差值/已有Network metadata，输出8×4MiB TSV轮转；io/os能力缺失或写入失败即禁用，无Gameplay请求和扫描链。native文件sink未实机验证，不能承诺已可追溯整局。main B069.96不变；当前live为此前获准的B071.98，本轮未部署。Yield Precision仅加入[架构待办](v2/Yield_Precision_Backlog.md)，C/D/E不实施。
+
+### Historical: Batch B完成时说明
 
 develop Batch B共享Network派生视图已完成本地验证：[cache owner/key/query/lifetime及结果](v2/Batch_B_Shared_Network.md)。沿用已接受Batch A完整事实合同，每玩家/VERIFIED inputVersion一次派生，National/ConnectedKinds/RecipientSources/Read共享；返回副本。UNKNOWN保留与确认撤销不变。事实捕获扫描及consumer监听仍未缩减，不表示55GB根因已解决。没有部署，main/live仍B069.96。
 

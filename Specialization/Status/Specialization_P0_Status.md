@@ -1,15 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0172
-Implementation Build: develop P0-B-071.98 / modinfo98; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0152
+Status Revision: S0173
+Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: TEMPORARY_DEVELOP_PLAYTEST_USER_RESULTS_PENDING
+Work State: RUNTIME_AUDIT_LOCAL_PASS_NATIVE_FILE_GATE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B072.99仅新增低频Runtime Audit、受限文件sink和既有Counters中的状态说明。[实现/字段/上限/测试/原生接口限制](../Reports/Technical/Specialization_B072_Runtime_Audit.md)。LOCAL_SIMULATION_PASS：100万counter事件零I/O，10000回合固定节点及4MiB轮转，8文件保留，失败停止，真实Network ON/OFF输出和计数一致。STATIC_CONFIRMED：没有新Gameplay请求/收益/Design变更。
+
+**尚不能保证长局自动日志可用**：原生UI是否提供io.open/os.getenv尚无实机证据；不存在时明确DISABLED，绝不以print或Property伪装落盘。USER_GAME_TEST_REQUIRED：用户授权切包后，一次读取状态+一回合产生TSV，成功才可称long-play logging candidate。当前没有部署；live继续B071.98，main继续B069.96。用户无需现在停止当前游戏。55GB事件不宣告解决；小数精度仅登记[后续合同](../Architecture/v2/Yield_Precision_Backlog.md)。
+
+### B071临时部署事实（当前live仍为此版本）
 
 2026-09-14用户授权临时develop实机测试且确认游戏已退出，已切换实际运行包至B071.98/modinfo98；[切换证据、短测与恢复说明](Validation/Specialization_B071_Temporary_Playtest.md)。stable/main仍B069.96，完整恢复副本在Mods扫描目录外保留并与main逐文件hash一致。当前运行覆盖是有明确授权的一次测试，不是promotion；未启动游戏、未改配置或存档，USER_GAME_TEST_REQUIRED。下文“未部署/等待切包”是Batch B完成时历史状态，已由本项取代。
 
