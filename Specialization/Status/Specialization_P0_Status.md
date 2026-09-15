@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0179
+Status Revision: S0180
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+External Monitor1.0.1修复导出后重启失败：实地只读确认session-20260915T025957200955-3dfae769只剩.DS_Store，旧prune无条件读取session.json。现跳过空/Finder-only残留目录且不删除；缺元数据但仍有其它证据时明确拒绝，symlink保护保持。LOCAL_SIMULATION_PASS（临时目录/模拟进程，非游戏）：15测试通过，含移走后重新创建session、部分日志和悬空symlink保护。采样/600秒冷却/Mod B072.99/main/运行包均不变；未启动监控或自动连接游戏。
 
 第三份外部session成功取得footprint分类：[结果](Validation/Results/Specialization_External_Monitor_Footprint_Session.md)。USER_GAME_TEST_PASS仅指此次采集：0.4096秒、exit0；原生图形5290MB，六类MALLOC合计约5734MB（保留工具单位/舍入），两类均需保留排查。90秒physical footprint11.856→12.380 decimalGB，但只有一张分类快照，无法判定增长属于哪类，根因UNKNOWN。五文件4731字节已外部hash归档；无代码/部署改动，不要求重复证明采集可用。
 

@@ -15,6 +15,22 @@ class Tests(unittest.TestCase):
    self.assertEqual(len(list(s.path.iterdir())),4);s.close('test')
    for _ in range(25):root.prune();a=m.Session(root,ID,'test',30,'off');a.close('test')
    self.assertEqual(len(list(root.path.glob('session-*'))),20);self.assertLess(m.dir_size(root.path),m.ROOT_CAP);root.close()
+ def test_exported_empty_sessions_do_not_block_start(self):
+  with tempfile.TemporaryDirectory(dir='/private/tmp') as tmp:
+   root=m.LogRoot(Path(tmp)/'logs')
+   for name in ['session-empty','session-finder']:(root.path/name).mkdir()
+   finder=root.path/'session-finder'/'.DS_Store';finder.write_bytes(b'finder metadata')
+   root.prune();s=m.Session(root,ID,'test',30,'off');s.collect(ROW);s.close('test')
+   self.assertTrue((s.path/'session.json').exists());self.assertEqual(finder.read_bytes(),b'finder metadata')
+   self.assertTrue((root.path/'session-empty').is_dir());root.close()
+ def test_partial_and_symlink_sessions_stay_protected(self):
+  with tempfile.TemporaryDirectory(dir='/private/tmp') as tmp:
+   root=m.LogRoot(Path(tmp)/'logs');p=root.path/'session-partial';p.mkdir();log=p/'trend.tsv';log.write_text('evidence')
+   with self.assertRaisesRegex(ValueError,'Incomplete session'):root.prune()
+   self.assertEqual(log.read_text(),'evidence');log.unlink()
+   (p/'session.json').symlink_to(Path(tmp)/'missing')
+   with self.assertRaisesRegex(ValueError,'Symlink'):root.prune()
+   self.assertTrue((p/'session.json').is_symlink());root.close()
  def test_total_bytes_retention(self):
   with tempfile.TemporaryDirectory(dir='/private/tmp') as tmp:
    root=m.LogRoot(Path(tmp)/'logs')

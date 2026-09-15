@@ -1,4 +1,4 @@
-# Specialization External Runtime Monitor 1.0
+# Specialization External Runtime Monitor 1.0.1
 
 Document Owner: Codex
 Scope: optional macOS developer tooling, not Mod content. Never deploy or add to modinfo.
@@ -81,3 +81,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 tools/external_monitor/benchmark.py local/exte
 ```
 
 Benchmark deliberately creates its OWN worker. Do not replace its PID with a game PID. Raw outputs are temporary/ignored, not bundled gameplay assets.
+
+## 1.0.1 export recovery
+
+Moving session files out can leave an empty directory or only Finder `.DS_Store`. Startup now skips these remnants without deleting them. A missing session.json with other files still fails safely with a clear incomplete-session message; preserve/archive those files first. Symlinks remain rejected. No game/build change, sampling/cooldown change or automatic attachment.

@@ -5,7 +5,7 @@ import argparse, collections, csv, ctypes, datetime as dt, errno, fcntl, io, jso
 import os, platform, selectors, shutil, signal, statistics, subprocess, sys, time, uuid
 from pathlib import Path
 
-VERSION='1.0'; SCHEMA=1
+VERSION='1.0.1'; SCHEMA=1
 OWNER='SpecializationExternalRuntimeMonitor-v1'
 ROOT=Path.home()/'Library/Logs/SpecializationExternalMonitor'
 MiB=1024*1024
@@ -67,6 +67,15 @@ class LogRoot:
         sessions=[]
         for p in self.path.iterdir():
             if p.name.startswith('session-'):
+                p=no_links(p)
+                if p.is_dir() and not (p/'session.json').exists():
+                    # User may MOVE exported evidence out, leaving an empty Finder folder.
+                    # Preserve it; never infer ownership of a partial log from its name.
+                    children=list(p.iterdir())
+                    for child in children:no_links(child)
+                    if all(child.name=='.DS_Store' and child.is_file() for child in children):
+                        continue
+                    raise ValueError('Incomplete session contains files; preserve and archive it before retrying: '+str(p))
                 owned_session(p);sessions.append((p.name,p,dir_size(p)))
         sessions.sort()
         # Reserve a complete new bounded session, rather than pruning during collection.
