@@ -70,3 +70,7 @@ No DISCOUNT_AUTO_AUDIT_OFF, trigger instrumentation, formal Discount optimizatio
 ## 去SPC保留CORE：06:02–06:07（已完成，勿重发）
 
 [6图](Results/Specialization_HD_Without_SPC_20260915.md)。CORE+BTS+EMM+TITLE+AREA+Cheat（按用户协议上下文），PID70353，Turn1/0城308秒8.78→8.92→8.97GB。前158秒+.14、后150秒+.05，增长减速；持续泄漏与平台期均未确认，不能列入明确non-repro或同根因repro。无SPC counters，不填0。原版Robert/不同地图/无诊断面板为比较差异。后续仅必要时延长同组合观察，不重做刚完成步骤；无源码修改。
+
+## 无SPC的HD十分钟窗口（当前最新）
+
+[4图](Results/Specialization_HD_Only_10min_20260915.md)。按上下文CORE+BTS+EMM+TITLE+AREA+Cheat，无SPC；仅Activity Monitor，配置/0城未独立截图。新PID71307（不是前场续测），621秒9.03→8.98→8.99→8.99GB，后302秒持平。记为本窗口no sustained growth observed；不将前场+.19短期增长视为同类持续泄漏已复现。两侧单独存在均有持平窗、一起有增长窗，支持交互候选但测试领袖/面板状态仍有差异。下一步只读交互路径调查，不派发新用户测试或改代码。

@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0192
+Status Revision: S0193
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+HD无SPC十分钟窗：[4图](Validation/Results/Specialization_HD_Only_10min_20260915.md)。新PID71307，621秒9.03→8.98→8.99→8.99GB，5到10分钟显示持平；不是前场PID70353延长。本窗未复现持续增长，交互候选加强但根因UNKNOWN，配置按上下文、无游戏画面独立确认。不继续要求静置；下一步只读SPC×CORE交界调查，源码/运行包保持不变。
 
 去SPC保留CORE测试已完成：[6图](Validation/Results/Specialization_HD_Without_SPC_20260915.md)。PID70353零城308秒8.78→8.92→8.97GB，净+.19但后半段增速减小；不能称完全不增长或确认同类持续泄漏。无SPC counter不填0。下一步仅必要时延长同配置观察，勿重复派发刚完成测试；源码/运行包不变，原件hash归档。
 
