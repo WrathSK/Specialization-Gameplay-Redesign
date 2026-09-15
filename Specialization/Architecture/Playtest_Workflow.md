@@ -1,7 +1,7 @@
 # v0.1 Playtest / Development contract
 
 Document Owner: Codex
-Workflow Revision: W0001
+Workflow Revision: W0002
 Baseline: B069.96 / modinfo96 / accepted D0025
 Baseline tag: v0.1-playtest-b069.96
 
@@ -26,3 +26,15 @@ Classify reports first. Crash/save damage/turn blocker/confirmed severe performa
 ## Evidence and current session
 
 User's current long play continues on the unchanged package. Earlier crash attribution is unresolved; prior performance counters have local evidence, not a new user PASS. Record future reports in [Playtest Backlog](../Status/Playtest_Backlog.md). Do not retroactively accept untested balance, remove frozen evidence or rewrite published history.
+
+## Explicit temporary develop test (W0002)
+
+2026-09-14 user explicitly authorized one temporary B071.98/modinfo98 test and confirmed Civ VI fully exited. This does not promote develop to main or authorize future automatic deployments. Stable deployment tool/gate remains unchanged.
+
+Separate entry: `tools/temporary_playtest.py`. Default check-only. Apply requires `--authorize-temporary-switch --confirmed-game-exited`, reviewed source/runtime digests, clean committed develop and main. Activation requires live runtime exactly match main. Receipt and retained whole-package stable backup go to external `SpecializationDeploymentBackups`, outside Mods scan. Transaction marker, staged copy/hash check, atomic directory renames and error rollback prevent a mixed package. Only the one live SpecializationP0 UUID remains in Mods.
+
+Restore uses action `restore`, the same receipt and stable-root/config, expected-source=recorded stable hash and expected-runtime=recorded develop hash, plus explicit apply/authorization/game-exited flags. It restores the recorded complete stable backup, verifies main still matches, refuses unexpected live modifications and retains the outgoing develop runtime outside Mods. Full directory replacement removes develop-only files; backup is preserved. Pending transactions must be reviewed, never overwritten. A hard termination keeps recovery paths in the receipt/marker.
+
+Temporary test is tracked by the external receipt phase `DEVELOP_ACTIVE`; stable restoration is only complete at `STABLE_RESTORED` plus exact package hash verification. Git main remains B069.96 throughout. User should use a separate test save slot; no promise that a save rewritten by develop can be safely continued with stable. Normal future develop work still cannot deploy without separate authorization.
+
+Local regression: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_temporary_playtest.py` (temporary directories only).

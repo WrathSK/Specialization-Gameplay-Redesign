@@ -25,3 +25,7 @@ Two directory renames are not one crash-atomic operation. A process/machine cras
 The migration tested this tool on temporary packages with an injected swap failure. The actual game runtime was checked only and not replaced. Backups are never automatically cleaned. Phase 1 performs no Git operation.
 
 Stable-only gate: apply requires explicit user-approved current-playtest update and clean committed main. Develop/detached apply is rejected even with the authorization flag. Default check is read-only. Temporary develop game tests require a separately approved recovery/switch procedure; never bypass the gate. See ../Specialization/Architecture/Playtest_Workflow.md.
+
+## Authorized temporary playtest
+
+`temporary_playtest.py activate|restore` is a separate, check-only-by-default entry. It requires explicit hashes/config/stable-root/receipt; `--apply --authorize-temporary-switch --confirmed-game-exited` is only used after user authorizes that switch. Never call from normal builds/tests. See Architecture/Playtest_Workflow.md W0002. Ordinary deploy.py remains stable/main only.
