@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0185
+Status Revision: S0186
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+五组新局/无城/双城对照已复核：[时间线与counter增量](Validation/Results/Specialization_Idle_City_Comparison_20260914.md)。同PID无城376秒Memory+0.36GB，双城静置317秒+1.14GB；后者Discount+18602、事实+74408、城市扫描+148816，但完整derive/建拆/Property/send/receive均不增。重复检查是真实热点，内存因果UNKNOWN。Turn1单个in-flight长期等待；抑制计数不是队列长度。10原图hash归档。只记录调查，不改代码、不部署，不重发本测试。
 
 21:25:30缩减Mod新局崩溃已保存：[50项加载集合/11第三方/原生abort](Validation/Results/Specialization_Crash_20260914_212530.md)。用户称静置4–5分钟、缓慢增长；TBB线程__cxa_pure_virtual→abort，根因UNKNOWN，不等于OOM或已证明HD冲突。原日志/崩溃文本/Mod数据库一致性副本/UUID清单已在外部hash归档，可安全重启后核对。未改源码、配置或部署。
 
