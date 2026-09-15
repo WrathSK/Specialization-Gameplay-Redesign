@@ -62,3 +62,7 @@ No DISCOUNT_AUTO_AUDIT_OFF, trigger instrumentation, formal Discount optimizatio
 ## Fresh-process zero-city toggle, 2026-09-15 (current priority)
 
 [14-image result](Results/Specialization_HD_Toggle_20260915.md). OFF fixed companions=BASE+TITLE+AREA+Cheat; ON adds CORE, membership by user/protocol context. ON PID66765:307s9.12→9.30→9.51GB; OFF PID67538:315s8.89→8.86→8.88GB. Both zero city/Turn1, cities/districts/facts/writes all0, audit entry≈58/s both. No crash observed in windows. Extra settings pair excluded. OFF six-Mod set is largest documented no-growth window by cardinality among these current trials, not indefinite PASS; prior six-Mod positive set withoutCheat remains smaller growth-observed set than this seven-Mod ON. No irreducible culprit established. Current next test only re-enable CORE with companions/settings fixed and fresh process0city300s, completing ON/OFF/ON. Do not add optional HD modules or change Discount.
+
+## CORE重新加入，2026-09-15 05:45–05:55（取代上节待测步骤）
+
+[8图与崩溃](Results/Specialization_HD_Rechallenge_20260915.md)。同七Mod协议，第一次PID68667首图9.15GB后原生pure-virtual abort；无终点，不计算斜率。第二次PID69145零城316秒9.13→9.37→9.58GB（+.45）；audit+18342≈58/s，事实/扫描/派生/写入0，inflight1。ON/OFF/ON关联已复现，不是sole-HD根因证明。下一轮仅去SPC、保留CORE及其它五项，原版Robert替代已移除测试领袖；5分钟0城，只需Memory。领袖差异明确记录，必要时再匹配原版领袖对照。不改Discount，不加其它HD组件。

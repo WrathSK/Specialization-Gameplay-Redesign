@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0190
+Status Revision: S0191
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+HD重新加入已复现增长：[8图/崩溃](Validation/Results/Specialization_HD_Rechallenge_20260915.md)。第二场PID69145零城316秒9.13→9.37→9.58GB；Audit约58/s但事实/扫描/派生/写入0。完成ON/OFF/ON关联，非根因证明。第一场PID68667的pure-virtual/9223148崩溃签名与前次一致，仍与memory分别记录。下一步仅保留CORE去SPC，原版Robert替代测试领袖（差异显式保留），0城5分钟。只更新develop文档，原件hash归档，源码/运行包不变。
 
 独立进程0城HD开关对照：[14图结果](Validation/Results/Specialization_HD_Toggle_20260915.md)。ON307秒9.12→9.30→9.51GB；OFF315秒8.89→8.86→8.88GB，PID不同。两边Audit约58/s且事实/城/区域扫描及写入全0；城市C²路径不解释本窗口差异。支持CORE加入关联但非根因证明。下一步仅恢复CORE作ON/OFF/ON确认，不扩Mod、不改Discount。14图hash归档；只更新develop文档。
 
