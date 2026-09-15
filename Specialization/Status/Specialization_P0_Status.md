@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0180
+Status Revision: S0181
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+双footprint实机证据已复核：[分类增量/Mod配置边界](Validation/Results/Specialization_External_Monitor_Paired_Footprint.md)。同PID间隔630.895秒，MALLOC_TINY815→3513原生MB，graphics5308→5311MB；堆分配器是本窗口增长主项，不能归因某Mod或等同Lua泄漏。当前较晚Modding.log提取112 UUID/name条目（含官方内容），仅当前启用配置，不冒充被测存档加载集合。6原件11176字节hash归档；无源码/部署改动。
 
 External Monitor1.0.1修复导出后重启失败：实地只读确认session-20260915T025957200955-3dfae769只剩.DS_Store，旧prune无条件读取session.json。现跳过空/Finder-only残留目录且不删除；缺元数据但仍有其它证据时明确拒绝，symlink保护保持。LOCAL_SIMULATION_PASS（临时目录/模拟进程，非游戏）：15测试通过，含移走后重新创建session、部分日志和悬空symlink保护。采样/600秒冷却/Mod B072.99/main/运行包均不变；未启动监控或自动连接游戏。
 
