@@ -29,3 +29,7 @@ Stable-only gate: apply requires explicit user-approved current-playtest update 
 ## Authorized temporary playtest
 
 `temporary_playtest.py activate|restore` is a separate, check-only-by-default entry. It requires explicit hashes/config/stable-root/receipt; `--apply --authorize-temporary-switch --confirmed-game-exited` is only used after user authorizes that switch. Never call from normal builds/tests. See Architecture/Playtest_Workflow.md W0002. Ordinary deploy.py remains stable/main only.
+
+## External runtime monitor (no deployment)
+
+[Optional macOS monitor](external_monitor/README.md) runs only when the user starts it. Independent bounded process-resource logs; no Mod/package dependency, no game launch/injection. Current game is not auto-attached by setup.

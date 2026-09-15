@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0175
+Status Revision: S0176
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+External Runtime Monitor1.0已加入develop独立工具：[使用入口](../../tools/external_monitor/README.md)、[本地开销/边界证据](../Reports/Technical/Specialization_External_Monitor_Validation.md)。13项测试、10000采样、有界保留、仅自建测试进程OFF/ON及系统工具验证通过；未连接当前Civ VI、未启动监控、未部署或增加Mod版本。用户自行启动后可记录进程趋势；默认自动快照关闭，sample仅手动。不能替代尚不可用的游戏内日志或读取Turn/counters；不宣告内存问题解决。
 
 B072.99实机日志门禁失败：三组截图均FILE_API_UNAVAILABLE；自动日志不能承担长局证据。USER_GAME_TEST_FAIL（用户实际游戏显示未达到日志验收标准）。同回合59、55秒Memory11.06→11.34GB；Discount Audit+2222、事实/城市/区域扫描持续增加，但完整derive保持1、建拆/Property/发送接收无增量。[逐项读数与归因边界](Validation/Results/Specialization_B072_Idle_Incident.md)。全部29份投递文件已外部归档并核对hash，无新代码/部署，main及live保持不变。此结果取代下文“原生接口待测”：当前io路径已确认不可用。下一步需要另行授权可行日志transport及定向重复检查调查，不宣告55GB问题解决。
 
