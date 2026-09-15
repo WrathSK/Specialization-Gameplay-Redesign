@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0177
+Status Revision: S0178
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+第二份外部session复核：[读档/静置与vmmap超时](Validation/Results/Specialization_External_Monitor_Load_Idle_Session.md)。用户先监控后读档，随后无操作；不能把4.23→12.44GB全部算作idle增长。末155秒仍+0.75GB，具体加载完成时刻未知。vmmap基线5秒超时、0字节，随后禁用且趋势继续；没有内存分类证据。五原件含空文件已hash归档。仅文档更新，根因UNKNOWN，不改源码/部署。
 
 External Monitor首份用户实机session已复核：[结果](Validation/Results/Specialization_External_Monitor_First_Session.md)。15次30秒采样、同PID/启动身份、正常停止；USER_GAME_TEST_PASS仅指外部趋势采集。约7分钟physical footprint10.38→16.58GB（+6.20GB），RSS同时下降，不可混为一个内存口径。自动快照OFF、无marker/同窗Counters，根因UNKNOWN；不能与此前不同PID的19:07截图直接配对。四文件2743字节已外部归档/hash验证；无代码/部署变化。
 
