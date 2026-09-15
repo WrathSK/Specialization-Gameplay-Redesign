@@ -133,7 +133,7 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or '巨作实验未完成，请回传报告/日志。';shared.LastToken=params.Token;return
   end
   if params.Action=='DISCOUNT_INIT' then
-    if shared.StandardizationDiscount then shared.StandardizationDiscount.EnsureReady(playerID) end
+    if shared.StandardizationDiscount then shared.StandardizationDiscount.Initialize(playerID,params) end
     return
   end
   if params.Action=='DISCOUNT_ELIGIBILITY' then

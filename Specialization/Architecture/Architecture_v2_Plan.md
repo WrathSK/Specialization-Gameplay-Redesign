@@ -2,8 +2,12 @@
 
 Document Owner: Codex
 Work branch: develop
-State: Batch A accepted; Batch B shared network view locally passed on develop; C–E not implemented
+State: A/B complete; C1 locally complete; D1/C2/D2 pending; E deferred
 Stable runtime: B069.96 untouched
+
+## Current implementation mainline
+
+A → B → C1 → D1 → C2 → D2 → E. C1/C2 split original C; D1/D2 split original D. [C1 contract](v2/Batch_C1_Discount_Lifecycle.md): Discount request/sample lifecycle only, local regression passed, no deployment. D1 scan/dirty optimization is next recommendation, not automatically started. Runtime incident evidence remains evidence, not a parallel repair roadmap.
 
 ## Ordered deliverables
 

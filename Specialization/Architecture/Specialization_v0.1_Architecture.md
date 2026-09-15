@@ -1,15 +1,19 @@
-# Specialization v0.1 Architecture — A0153
+# Specialization v0.1 Architecture — A0154
 
 Document Owner: Codex
-Architecture Revision: A0153
+Architecture Revision: A0154
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-073.100 / modinfo100; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+B073.100：[Architecture v2 C1](v2/Batch_C1_Discount_Lifecycle.md)折扣single-flight/ACK/样本完整替换与确认撤销，本地回归通过，未部署。主线A→B→C1→D1→C2→D2→E；A/B完成，原C仅C1完成，D1未开始。现有扫描频率/C²/Network Capture保留给D1，不能宣称内存问题修复。Design D0025字节不变。
+
+### Historical B072 instrumentation batch
 
 B072.99增量：[Runtime Audit合同](../Reports/Technical/Specialization_B072_Runtime_Audit.md)。独立UI观察器只在LocalPlayerTurnEnd读取固定Counters累计差值/已有Network metadata，输出8×4MiB TSV轮转；io/os能力缺失或写入失败即禁用，无Gameplay请求和扫描链。native文件sink未实机验证，不能承诺已可追溯整局。main B069.96不变；当前live为此前获准的B071.98，本轮未部署。Yield Precision仅加入[架构待办](v2/Yield_Precision_Backlog.md)，C/D/E不实施。
 

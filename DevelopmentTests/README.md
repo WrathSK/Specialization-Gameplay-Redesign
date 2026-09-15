@@ -28,3 +28,9 @@ Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory m
 ## Current B072.99 instrumentation (develop, no deployment)
 
 Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTests/test_runtime_audit_regression.py` with the same no-bytecode/Lupa environment. File tests use TemporaryDirectory only. Regression wraps B/A/B069 version assertions for99 without changing historical tests. Covers1M increments,10k turns,8×4MiB ring, capability/failure gates, duplicate turns and real Network output/counter ON/OFF equivalence. Does not verify Civ VI exposes standard Lua io/os; native gate remains required before a long-play logging claim.
+
+## Architecture v2 C1 — B073.100 (current develop)
+
+`PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_c1.py`
+
+Requires Lupa lua55. Actual Discount UI/Gameplay mocked transport/native permissions,200k pending notifications,bounded retry/epoch/withdrawal and12 normal B071 comparisons. Runs A/B/B069 and runtime-audit equivalence via in-memory stamp-only adaptation to100; preserves historical tests. No DB/game/deployment. The local installed Lupa2.8 currently resides outside the repository; use an interpreter compatible with that installation. C1 does not optimize generic Audit/C² scans.

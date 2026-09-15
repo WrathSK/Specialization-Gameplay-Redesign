@@ -1,15 +1,20 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0193
-Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0153
+Status Revision: S0194
+Implementation Build: develop P0-B-073.100 / modinfo100; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0154
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
+Work State: AV2_C1_LOCAL_COMPLETE_AWAITING_REVIEW_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
+
+Architecture v2主线恢复：A/B已完成；[C1折扣request/sample lifecycle](../Architecture/v2/Batch_C1_Discount_Lifecycle.md)B073.100 LOCAL_SIMULATION_PASS（实际Lua+mock，非实机）。20万pending通知仅2实际请求；重复样本无apply，坏包/暂空不clear，确认失效撤销；retry每逻辑输入最多3次；load/new epoch拒绝旧pending。12正常折扣矩阵与B071一致，A/B/B069回归通过。没有部署，main及用户运行包未改。下一步建议D1，需用户授权；C2/D2/E未做，原C/D不能标整体完成。55GB/HD/扫描证据保留，当前不另建内存修复路线，不派发测试。
+
+### Prior runtime evidence (historical test proposals below are paused)
+
 
 HD无SPC十分钟窗：[4图](Validation/Results/Specialization_HD_Only_10min_20260915.md)。新PID71307，621秒9.03→8.98→8.99→8.99GB，5到10分钟显示持平；不是前场PID70353延长。本窗未复现持续增长，交互候选加强但根因UNKNOWN，配置按上下文、无游戏画面独立确认。不继续要求静置；下一步只读SPC×CORE交界调查，源码/运行包保持不变。
 
