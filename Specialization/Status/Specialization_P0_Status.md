@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0186
+Status Revision: S0187
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+城市规模调查：[Discount嵌套扫描与请求计数边界](../Reports/Technical/Specialization_Discount_Idle_Scaling.md)。双城窗口facts=4×Audit、city_scan=8×Audit与C²/C²+2C代码路径精确吻合；内存因果仍UNKNOWN。纠正此前宽泛“发送不增加”：net_send/receive仅Network桥接，不能排除Discount UI未计数的INIT/ELIGIBILITY重发。单/双城网络就绪与回合状态不同，不以约2.46倍内存斜率断定规模律。本轮只读研究、文档记录，未实施实验或修复。
 
 五组新局/无城/双城对照已复核：[时间线与counter增量](Validation/Results/Specialization_Idle_City_Comparison_20260914.md)。同PID无城376秒Memory+0.36GB，双城静置317秒+1.14GB；后者Discount+18602、事实+74408、城市扫描+148816，但完整derive/建拆/Property/send/receive均不增。重复检查是真实热点，内存因果UNKNOWN。Turn1单个in-flight长期等待；抑制计数不是队列长度。10原图hash归档。只记录调查，不改代码、不部署，不重发本测试。
 
