@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0176
+Status Revision: S0177
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+External Monitor首份用户实机session已复核：[结果](Validation/Results/Specialization_External_Monitor_First_Session.md)。15次30秒采样、同PID/启动身份、正常停止；USER_GAME_TEST_PASS仅指外部趋势采集。约7分钟physical footprint10.38→16.58GB（+6.20GB），RSS同时下降，不可混为一个内存口径。自动快照OFF、无marker/同窗Counters，根因UNKNOWN；不能与此前不同PID的19:07截图直接配对。四文件2743字节已外部归档/hash验证；无代码/部署变化。
 
 External Runtime Monitor1.0已加入develop独立工具：[使用入口](../../tools/external_monitor/README.md)、[本地开销/边界证据](../Reports/Technical/Specialization_External_Monitor_Validation.md)。13项测试、10000采样、有界保留、仅自建测试进程OFF/ON及系统工具验证通过；未连接当前Civ VI、未启动监控、未部署或增加Mod版本。用户自行启动后可记录进程趋势；默认自动快照关闭，sample仅手动。不能替代尚不可用的游戏内日志或读取Turn/counters；不宣告内存问题解决。
 
