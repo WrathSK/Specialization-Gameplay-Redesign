@@ -4,6 +4,7 @@ include('Probe')
 local P=SPCP0;local busy=false;local seq=0;local hooks={};local generation;local initialized=false
 local public={state='LOADED'};ExposedMembers.SPC_DiscountEligibility=public
 local pending;local clock=0;local epoch;local last;local retries=0;local retryKey
+local sampledKey;local permissionRevision=0
 local MAX_SENDS=3;local TIMEOUT=5
 local function count(n) if P.Count then P.Count(n) end end
 local function reset()
@@ -11,6 +12,7 @@ local function reset()
  epoch=ExposedMembers.SPC_DiscountClientEpoch
  ExposedMembers.SPC_DiscountIssued=nil
  pending=nil;last=nil;retryKey=nil;retries=0;seq=0;initialized=false;generation=nil
+ sampledKey=nil;permissionRevision=0
  public.pending=0;public.state='RESET'
 end
 local function transmit(pid,packet,key)
@@ -57,7 +59,13 @@ local function refresh()
   return
  end
  if not d.plans[pid] then public.state='WAIT_PLAN';return end
- busy=true;local plan=d.plans[pid];local revision=plan.revision
+ local plan=d.plans[pid];local revision=plan.revision
+ -- Scheduling only: pending/ACK/timeout handling above remains the C1 contract.
+ local key=generation..':'..revision..':'..Game.GetCurrentGameTurn()..':'..permissionRevision
+ if sampledKey==key and ((initialized and last==retryKey) or retries>=MAX_SENDS) then
+  count('discount_skipped_clean');return
+ end
+ sampledKey=key;count('discount_ui_scan');busy=true
  local rows={};local rowCount=0
  local ok,err=pcall(function()
   for cid,buildings in pairs(plan.targets) do
@@ -76,7 +84,7 @@ local function refresh()
 
  local turn=Game.GetCurrentGameTurn();local payload=ok and table.concat(rows,';') or ''
  local signature=generation..':'..revision..':'..turn..':'..tostring(ok)..':'..payload
- -- Scanning remains on existing events; D1 owns this cost. Unchanged ACK is a no-op.
+ -- Unchanged native permission remains a C1 sample no-op.
  if signature~=last then
   transmit(pid,{Action='DISCOUNT_ELIGIBILITY',Generation=generation,Revision=revision,Turn=turn,
     Valid=ok and 1 or 0,Count=ok and rowCount or 0,Data=payload},signature)
@@ -93,6 +101,20 @@ ContextPtr:SetInitHandler(function()
  reset()
  for _,n in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete','PlayerTurnActivated'}) do bind(n,safe) end
  bind('LoadScreenClose',function() reset();safe() end)
+ local function permissionChanged(pid)
+  if pid~=Game.GetLocalPlayer() then return end
+  permissionRevision=permissionRevision+1;safe()
+ end
+ for _,n in ipairs({'ResearchCompleted','CivicCompleted','GovernmentChanged','GovernmentPolicyChanged','CityProductionChanged','DistrictAddedToMap','DistrictRemovedFromMap'}) do
+  bind(n,permissionChanged)
+ end
+ local function buildingChanged(x,y,bid,pid)
+  local b=P.Info('Buildings',bid)
+  if b and b.BuildingType and not b.BuildingType:match('^BUILDING_SPC_') then permissionChanged(pid) end
+ end
+ bind('BuildingAddedToMap',buildingChanged);bind('BuildingRemovedFromMap',buildingChanged)
+ -- Unknown/mod-specific prerequisites are reconciled once on the next turn key.
+
  bind('SystemUpdateUI',function()
   local shared=ExposedMembers.SPC_P0;local d=shared and shared.StandardizationDiscount
   if pending or not initialized or (d and d.generation~=generation) then safe() end

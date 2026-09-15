@@ -33,6 +33,7 @@ function SPCStandardization.Start(P,shared)
   assert(same(c:GetProperty(KEY),nextValue),'STD_WRITE_UNCONFIRMED')
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1
+  if shared.StandardizationDiscount then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
  end
  local function facts(pid,c)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'STD_OWNER_CHANGED')

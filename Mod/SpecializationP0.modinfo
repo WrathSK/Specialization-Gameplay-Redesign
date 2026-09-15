@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="100">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="101">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B073.100 develop: Architecture v2 C1 Discount request and sample lifecycle. Not deployed.</Description>
+    <Description>B074.101 develop: Architecture v2 D1 Discount event and scan propagation. Not deployed.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

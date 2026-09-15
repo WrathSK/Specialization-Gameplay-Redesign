@@ -279,6 +279,13 @@ function SPCNetworkBridge.Start(P,shared)
   if not matches then P.Count('derived_cache_miss');error('NETWORK_DERIVED_VIEW_UNAVAILABLE') end
   P.Count('derived_cache_hit');return v
  end
+ -- D1: one synchronous consumer batch, copied projection; never retain across batches.
+ -- Performs the complete A/B confirmation once, not once per recipient query.
+ function d.DiscountBatch(pid)
+  assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
+  local v=currentView(pid)
+  return {input=d.Input(pid),recipients=copy(v.recipients.INDUSTRY or {})}
+ end
  function d.ConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
   return copy(currentView(pid).connected[selected:GetID()] or {})

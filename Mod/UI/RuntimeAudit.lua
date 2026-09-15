@@ -22,7 +22,7 @@ local function init()
   -- Current supported platform: macOS native Civ VI log directory. Never create guessed directories.
   local dir=home.."/Library/Application Support/Sid Meier's Civilization VI/Firaxis Games/Sid Meier's Civilization VI/Logs"
   local sink=M.FileSink(io,dir)
-  return M.New(c,sink,{build='B073.100',modinfo=100,sourceBase='03cbcd5',start=startTime,turn=Game.GetCurrentGameTurn()})
+  return M.New(c,sink,{build='B074.101',modinfo=101,sourceBase='affe4c8',start=startTime,turn=Game.GetCurrentGameTurn()})
  end)
  state=ok and result or {state='DISABLED',reason=tostring(result):sub(1,160)}
  ExposedMembers.SPC_RuntimeAudit=state

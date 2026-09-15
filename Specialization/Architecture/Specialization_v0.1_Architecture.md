@@ -1,17 +1,21 @@
-# Specialization v0.1 Architecture — A0154
+# Specialization v0.1 Architecture — A0155
 
 Document Owner: Codex
-Architecture Revision: A0154
+Architecture Revision: A0155
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: develop P0-B-073.100 / modinfo100; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-074.101 / modinfo101; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
 
-B073.100：[Architecture v2 C1](v2/Batch_C1_Discount_Lifecycle.md)折扣single-flight/ACK/样本完整替换与确认撤销，本地回归通过，未部署。主线A→B→C1→D1→C2→D2→E；A/B完成，原C仅C1完成，D1未开始。现有扫描频率/C²/Network Capture保留给D1，不能宣称内存问题修复。Design D0025字节不变。
+B074.101：[Architecture v2 D1](v2/Batch_D1_Discount_Propagation.md)折扣direct dirty/回合兜底/批次共享Network确认，本地回归通过、未部署。C1已获用户接受，协议保持；10,000无关通知0扫描，1/2/4/8城全国facts由1/4/16/64降为1/2/4/8。主线A→B→C1→D1→C2→D2→E；D1等待审阅，C2/D2/E未做。Design D0025字节不变；不声称内存异常修复。
+
+### Historical C1 implementation
+
+B073.100：[C1合同](v2/Batch_C1_Discount_Lifecycle.md)single-flight/ACK/样本完整替换与确认撤销已获用户审阅通过。此前留给D1的扫描工作见当前增量，历史报告不倒改。
 
 ### Historical B072 instrumentation batch
 

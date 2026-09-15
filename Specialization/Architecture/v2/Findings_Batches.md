@@ -1,12 +1,12 @@
 # 第一轮调查结论与建议批次
 
 Document Owner: Codex
-State: historical AV2-I001 findings; current progress A/B/C1 complete locally; D1/C2/D2 pending; E deferred
+State: historical AV2-I001 findings; current progress A/B/C1 accepted; D1 locally complete; C2/D2 pending; E deferred
 Evidence: STATIC_CONFIRMED only; no new gameplay validation, no source changes
 
 ## Current authorized sequence
 
-A → B → C1 → D1 → C2 → D2 → E. C1/C2 are original C subdivisions; D1/D2 are original D subdivisions. [C1](Batch_C1_Discount_Lifecycle.md)implemented only Discount transport/sample lifecycle; no scan or generic listener optimization. Historical table below is preserved as rationale, not a second current roadmap.
+A → B → C1 → D1 → C2 → D2 → E. C1/C2 are original C subdivisions; D1/D2 are original D subdivisions. [C1](Batch_C1_Discount_Lifecycle.md)implemented only Discount transport/sample lifecycle; no scan or generic listener optimization. [D1](Batch_D1_Discount_Propagation.md) now gates Discount scans and shares one Network confirmation per batch; local completion awaits review, no deployment. Historical table below is preserved as rationale, not a second current roadmap.
 
 ## authority最大的三个问题
 

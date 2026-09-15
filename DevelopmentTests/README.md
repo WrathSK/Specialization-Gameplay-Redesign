@@ -29,7 +29,11 @@ Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory m
 
 Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTests/test_runtime_audit_regression.py` with the same no-bytecode/Lupa environment. File tests use TemporaryDirectory only. Regression wraps B/A/B069 version assertions for99 without changing historical tests. Covers1M increments,10k turns,8×4MiB ring, capability/failure gates, duplicate turns and real Network output/counter ON/OFF equivalence. Does not verify Civ VI exposes standard Lua io/os; native gate remains required before a long-play logging claim.
 
-## Architecture v2 C1 — B073.100 (current develop)
+## Architecture v2 D1 — B074.101 (current develop)
+
+`test_arch_v2_d1.py`: Lupa lua55, actual Discount/Network/Standardization modules with mock native events. 10k generic pulses, 1/2/4/8 city scaling, 39 B073 output cases, C1 lifecycle and A/B/B069 network regression. C1 fixture explicit fact mutations are marked dirty for D1; historical B consumer count assertions run with the historical consumer. Historical test files remain unchanged. No deployment/DB, no memory-causation claim. See Architecture/v2/Batch_D1_Discount_Propagation.md for counter meanings and local interpreter command.
+
+## Architecture v2 C1 — B073.100 (historical entry)
 
 `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_c1.py`
 

@@ -2,6 +2,7 @@
 SPCStandardizationDiscount={}
 function SPCStandardizationDiscount.Start(P,shared)
  local d={ready=false,busy=false,generation=0,plans={},samples={},seq={},applied={},errors={},changes=0,responses={},appliedSamples=0,holdLoaded=true};shared.StandardizationDiscount=d
+ local dirty,lastTurn,lastNetwork={},{},{} -- bounded by player count; no event history
  local catalog,carriers,cleanupOtherOwners
  local function init()
   if catalog then return end
@@ -12,11 +13,22 @@ function SPCStandardizationDiscount.Start(P,shared)
   catalog,carriers=cat,rows
  end
  local function count(n) if P.Count then P.Count(n) end end
+ -- Only actual upstream publications, permanent writes, native building changes,
+ -- accepted samples, initialization and once-per-turn reconciliation create work.
+ function d.MarkDirty(pid,reason)
+  if not P.IsTestPlayer(pid) then return end
+  local q=dirty[pid] or {};dirty[pid]=q
+  if not q[reason] then count('discount_dirty_mark');q[reason]=true end
+ end
+ local function markAll(reason)
+  for pid in pairs(Players) do d.MarkDirty(pid,reason) end
+ end
  local function ref(c) return c:GetOwner()..':'..c:GetID()..':'..c:GetX()..':'..c:GetY() end
  local function city(pid,id) local c=Players[pid]:GetCities():FindID(id);assert(c and c:GetOwner()==pid,'DISCOUNT_OWNER_CHANGED');return c end
- local function candidate(pid,c)
+ local function candidate(pid,c,batch)
   local out={};local groups={};local maxLevel=0;local sourceNames={}
-  local ok,ids=pcall(shared.NetworkBridge.RecipientSources,pid,c,'INDUSTRY')
+  local ok,ids=batch.ok,{}
+  if ok then for id in pairs(batch.view.recipients[c:GetID()] or {}) do ids[#ids+1]=id end else ids=batch.error end
   if not ok then
    local b=shared.NetworkBridge.players and shared.NetworkBridge.players[pid]
    if b and b.validity=='CONFIRMED_INVALID' then return out,sourceNames,0 end
@@ -26,10 +38,20 @@ function SPCStandardizationDiscount.Start(P,shared)
    local source=Players[pid]:GetCities():FindID(id)
    -- An absent/transferred source is confirmed loss; unreadable ACTIVE is not.
    if source and source:GetOwner()==pid then
-   local f=shared.EffectiveFacts.Read(pid,source)
+   local cached=batch.sources[id]
+   if not cached then
+    local yes,value=pcall(function()
+     local f=shared.EffectiveFacts.Read(pid,source)
+     assert(type(f.specialization)=='string' and type(f.active)=='number' and f.active>=0 and f.active<=4 and f.active%1==0,'DISCOUNT_SOURCE_UNRESOLVED')
+     return {facts=f,ledger=f.specialization=='INDUSTRY' and f.active>=1 and shared.Standardization.ReadLedger(pid,source) or nil}
+    end)
+    cached={ok=yes,value=value};batch.sources[id]=cached
+   end
+   assert(cached.ok,cached.value)
+   local f=cached.value.facts
    assert(type(f.specialization)=='string' and type(f.active)=='number' and f.active>=0 and f.active<=4 and f.active%1==0,'DISCOUNT_SOURCE_UNRESOLVED')
    if f.specialization=='INDUSTRY' and f.active>=1 then
-   local ledger=shared.Standardization.ReadLedger(pid,source)
+   local ledger=cached.value.ledger
    for building in pairs(ledger.learned) do local b=catalog.buildings[building];assert(b,'DISCOUNT_CLASSIFICATION_CHANGED');groups[b.group]=true end
    maxLevel=math.max(maxLevel,f.active);sourceNames[#sourceNames+1]=tostring(source:GetName())..' ACTIVE '..f.active
    end end
@@ -74,16 +96,40 @@ function SPCStandardizationDiscount.Start(P,shared)
    d.ready=true;d.generation=d.generation+1;d.samples={};d.seq={};d.applied={}
    if cleanupOtherOwners then cleanupOtherOwners() end
   end
-  d.Audit()
+  d.MarkDirty(pid,'initialize');d.Audit()
  end
- function d.Audit() P.Count('audit_standard');
+ function d.Audit(publication)
+  if type(publication)=='table' and publication.player~=nil then
+   local old=lastNetwork[publication.player]
+   if not old or old.epoch~=publication.epoch or old.inputVersion~=publication.inputVersion or old.validity~=publication.validity then
+    lastNetwork[publication.player]=publication;d.MarkDirty(publication.player,'network')
+   end
+  end
+  if next(dirty)==nil then count('discount_skipped_clean');return end
   if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   local success,why=pcall(function()
    init()
-   for pid,p in pairs(Players) do if P.IsTestPlayer(pid) then
+   for pid,p in pairs(Players) do if P.IsTestPlayer(pid) and dirty[pid] then
+    local work=dirty[pid];dirty[pid]=nil;count('audit_standard')
+    if work.reconcile then count('discount_reconcile') else count('discount_direct_refresh') end
+    local full=not d.plans[pid]
+    for reason in pairs(work) do if reason~='sample' then full=true end end
+    local batch={sources={}}
+    if full then
+     count('discount_fact_capture')
+     batch.ok,batch.view=pcall(shared.NetworkBridge.DiscountBatch,pid)
+     if not batch.ok then batch.error=batch.view end
+     -- Refresh may publish a new verified version while this batch is busy.
+     -- That exact publication is already represented by this acquired view.
+     if batch.ok then lastNetwork[pid]=batch.view.input end
+     if batch.ok and dirty[pid] then
+      dirty[pid].network=nil;if next(dirty[pid])==nil then dirty[pid]=nil end
+     end
+    end
     local targets,info,parts,refs={},{},{},{};local previous=d.plans[pid]
+    if full then
     for _,c in p:GetCities():Members() do P.Count('city_scan');
-     local id=c:GetID();local ok,t,names,level=pcall(candidate,pid,c)
+     local id=c:GetID();local ok,t,names,level=pcall(candidate,pid,c,batch)
      refs[id]=ref(c)
      targets[id]=ok and t or (previous and previous.refs[id]==refs[id] and previous.targets[id] or {})
      local lastInfo=previous and previous.refs[id]==refs[id] and previous.info[id]
@@ -95,6 +141,7 @@ function SPCStandardizationDiscount.Start(P,shared)
     if not previous or previous.signature~=sig then
      d.plans[pid]={revision=previous and previous.revision+1 or 1,signature=sig,targets=targets,info=info,refs=refs}
     else previous.info=info end
+    else targets,info,refs=previous.targets,previous.info,previous.refs end
     local sample=d.samples[pid];local current=sample~=nil
     if sample then
      -- Confirmed plan/reference loss permanently retires that permission observation.
@@ -107,7 +154,7 @@ function SPCStandardizationDiscount.Start(P,shared)
      end
     end
     for _,c in p:GetCities():Members() do P.Count('city_scan');
-     local want={};local id=c:GetID()
+     count('discount_city_processed');local want={};local id=c:GetID()
      if current and sample.refs[id]==refs[id] then for building,l in pairs(targets[id]) do if (sample.rows[id] or {})[building] then want[building]=l end end end
      local held=d.holdLoaded and not sample and info[id].reason~=nil
      if d.holdLoaded and not sample and not held then
@@ -126,7 +173,13 @@ function SPCStandardizationDiscount.Start(P,shared)
     end
    end end
   end)
-  if not success then d.globalError=tostring(why);print('[SPC][B054] '..tostring(why)) else d.globalError=nil end
+  if not success then
+   -- A broken batch waits for a direct change or the bounded turn reconciliation.
+   -- Never retry a static initialization failure on every generic publish.
+   dirty={};local message=tostring(why)
+   if d.globalError~=message then print('[SPC][B054] '..message) end
+   d.globalError=message
+  else d.globalError=nil end
   d.busy=false
  end
  function d.Receive(pid,p)
@@ -134,7 +187,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   if not d.ready or not P.IsTestPlayer(pid) or not clientValid(p) or p.Generation~=d.generation then count('discount_stale');return end
   local ack=d.responses[pid]
   if ack and ack.ClientEpoch==p.ClientEpoch and p.Seq<=ack.Seq then count('discount_duplicate');return end
-  -- Still performs the existing pre-Audit. D1 owns its scan cost.
+  -- Drain signalled input changes before validating the C1 response; clean is O(1).
   d.Audit()
   local plan=d.plans[pid]
   if not plan or p.Revision~=plan.revision or p.Turn~=Game.GetCurrentGameTurn() then
@@ -165,7 +218,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   end
   -- Validate the entire replacement before publishing it. False rows are confirmed loss.
   d.samples[pid]={revision=p.Revision,turn=p.Turn,rows=rows,refs=refs,signature=signature}
-  d.appliedSamples=d.appliedSamples+1;count('discount_apply');respond(pid,p,'ACCEPTED');d.Audit()
+  d.appliedSamples=d.appliedSamples+1;count('discount_apply');respond(pid,p,'ACCEPTED');d.MarkDirty(pid,'sample');d.Audit()
  end
  function d.Describe(pid,c,page)
   local plan=d.plans[pid];if not plan then return 'B054.71：后台折扣尚未初始化。ready='..tostring(d.ready)..' busy='..tostring(d.busy)..' generation='..d.generation..(d.globalError and (' 状态='..(d.globalError:match('DISCOUNT_[A-Z_]+') or 'ERROR')) or '') end
@@ -187,7 +240,24 @@ function SPCStandardizationDiscount.Start(P,shared)
   local ok,err=pcall(function() init();for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then for _,c in p:GetCities():Members() do P.Count('city_scan'); reconcile(pid,c,{}) end end end end)
   if not ok then print('[SPC][B054][CLEANUP] '..tostring(err)) end
  end
- hook('LoadScreenClose',function() d.ready=true;d.generation=d.generation+1;d.samples={};d.seq={};d.responses={};d.plans={};d.applied={};d.holdLoaded=true;cleanupOtherOwners();d.Audit() end)
- hook('CityTransfered',function() d.applied={};cleanupOtherOwners();d.Audit() end)
- for _,n in ipairs({'GameCoreEventPublishComplete','PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'}) do hook(n,d.Audit) end
+ hook('LoadScreenClose',function() d.ready=true;d.generation=d.generation+1;d.samples={};d.seq={};d.responses={};d.plans={};d.applied={};d.holdLoaded=true;dirty={};lastTurn={};lastNetwork={};cleanupOtherOwners();markAll('load');d.Audit() end)
+ hook('CityTransfered',function() d.applied={};cleanupOtherOwners();markAll('owner');d.Audit() end)
+ -- Generic publish only drains dirty work. Governor/capital/qualification changes
+ -- arrive through NetworkBridge's complete input publication, not a second listener.
+ hook('GameCoreEventPublishComplete',function() d.Audit() end)
+ hook('PlayerTurnActivated',function(pid)
+  if not P.IsTestPlayer(pid) then return end
+  local turn=Game.GetCurrentGameTurn();if lastTurn[pid]==turn then return end
+  lastTurn[pid]=turn;d.MarkDirty(pid,'reconcile');d.Audit()
+ end)
+ local function building(x,y,bid,pid)
+  if not P.IsTestPlayer(pid) then return end
+  local b=P.Info('Buildings',bid)
+  -- Exclude implementation carriers, including our own feedback notifications.
+  if not b or not b.BuildingType or b.BuildingType:match('^BUILDING_SPC_') then return end
+  d.MarkDirty(pid,'building');d.Audit()
+ end
+ hook('BuildingAddedToMap',building);hook('BuildingRemovedFromMap',building)
+ -- Other purchase prerequisites (tech/civic/policies etc.) are UI permission facts.
+ -- No Gameplay-wide audit is needed until the accepted permission sample changes.
 end
