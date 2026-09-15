@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0178
+Status Revision: S0179
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+第三份外部session成功取得footprint分类：[结果](Validation/Results/Specialization_External_Monitor_Footprint_Session.md)。USER_GAME_TEST_PASS仅指此次采集：0.4096秒、exit0；原生图形5290MB，六类MALLOC合计约5734MB（保留工具单位/舍入），两类均需保留排查。90秒physical footprint11.856→12.380 decimalGB，但只有一张分类快照，无法判定增长属于哪类，根因UNKNOWN。五文件4731字节已外部hash归档；无代码/部署改动，不要求重复证明采集可用。
 
 第二份外部session复核：[读档/静置与vmmap超时](Validation/Results/Specialization_External_Monitor_Load_Idle_Session.md)。用户先监控后读档，随后无操作；不能把4.23→12.44GB全部算作idle增长。末155秒仍+0.75GB，具体加载完成时刻未知。vmmap基线5秒超时、0字节，随后禁用且趋势继续；没有内存分类证据。五原件含空文件已hash归档。仅文档更新，根因UNKNOWN，不改源码/部署。
 
