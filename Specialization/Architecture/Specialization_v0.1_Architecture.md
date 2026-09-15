@@ -1,17 +1,21 @@
-# Specialization v0.1 Architecture — A0155
+# Specialization v0.1 Architecture — A0156
 
 Document Owner: Codex
-Architecture Revision: A0155
+Architecture Revision: A0156
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: develop P0-B-074.101 / modinfo101; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-075.102 / modinfo102; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
 
-B074.101：[Architecture v2 D1](v2/Batch_D1_Discount_Propagation.md)折扣direct dirty/回合兜底/批次共享Network确认，本地回归通过、未部署。C1已获用户接受，协议保持；10,000无关通知0扫描，1/2/4/8城全国facts由1/4/16/64降为1/2/4/8。主线A→B→C1→D1→C2→D2→E；D1等待审阅，C2/D2/E未做。Design D0025字节不变；不声称内存异常修复。
+B075.102：[Architecture v2 C2](v2/Batch_C2_Copy_Industry_Lifecycle.md)完成Copy/Industry独立完整批次、single-flight/ACK、reference/epoch校验、temporary hold及确认撤销，本地通过、未部署。主线A→B→C1→D1→C2→D2→E；D1已获接受，C2待审阅，D2/E未做。63组正常载体map与B074一致，D1等回归通过。Design D0025及精度/公式不变，不宣称内存问题修复。
+
+### Historical D1 implementation
+
+B074.101：[D1](v2/Batch_D1_Discount_Propagation.md)无关通知早停、批次共享Network事实已获用户审阅通过。C2未修改Discount/Network，旧工作量断言仍通过。
 
 ### Historical C1 implementation
 

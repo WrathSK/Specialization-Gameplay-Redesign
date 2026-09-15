@@ -2,12 +2,12 @@
 
 Document Owner: Codex
 Work branch: develop
-State: A/B/C1 accepted; D1 locally complete; C2/D2 pending; E deferred
+State: A/B/C1/D1 accepted; C2 locally complete; D2 pending; E deferred
 Stable runtime: B069.96 untouched
 
 ## Current implementation mainline
 
-A → B → C1 → D1 → C2 → D2 → E. C1/C2 split original C; D1/D2 split original D. [C1 contract](v2/Batch_C1_Discount_Lifecycle.md): Discount request/sample lifecycle only, local regression passed, no deployment. [D1 scan/dirty optimization](v2/Batch_D1_Discount_Propagation.md) is now locally complete, awaiting review. C2 is the next recommendation, not automatically started. Runtime incident evidence remains evidence, not a parallel repair roadmap.
+A → B → C1 → D1 → C2 → D2 → E. C1/C2 split original C; D1/D2 split original D. [C1 contract](v2/Batch_C1_Discount_Lifecycle.md): Discount request/sample lifecycle only, local regression passed, no deployment. [D1 scan/dirty optimization](v2/Batch_D1_Discount_Propagation.md) is accepted. [C2 Copy/Industry lifecycle](v2/Batch_C2_Copy_Industry_Lifecycle.md) is locally complete, awaiting review. D2 is the next recommendation, not automatically started. Runtime incident evidence remains evidence, not a parallel repair roadmap.
 
 ## Ordered deliverables
 

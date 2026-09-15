@@ -14,14 +14,18 @@ function SPCLv3Support.Start(P,shared)
   local found=false
   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
    local city=d:GetCity();local row=P.Info('Districts',d:GetType())
+   if f.specialization=='INDUSTRY' then assert(city,'INDUSTRY_SAMPLE_UNAVAILABLE') end
    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
+    if f.specialization=='INDUSTRY' then assert(row and type(d:IsComplete())=='boolean','INDUSTRY_SAMPLE_UNAVAILABLE') end
     assert(row and row.DistrictType==districts[f.specialization] and f.first.type==row.DistrictType and d:IsComplete()==true,'LV3_ANCHOR_INVALID');found=true;break
    end
   end
   assert(found,'LV3_DISTRICT_MISSING')
   wanted['BUILDING_SPC_DEV_LV3_'..f.specialization]=true
   if f.specialization=='INDUSTRY' then
-   local base=shared.IndustrySupport.ReadBase(pid,c)
+   local readable,base=pcall(shared.IndustrySupport.ReadBase,pid,c)
+   assert(readable,'INDUSTRY_SAMPLE_UNAVAILABLE')
+   if base==nil then return {} end
    assert(type(base)=='number' and base>=0 and base<=255 and base%1==0,'LV3_BASE_UNKNOWN')
    for i=0,7 do if math.floor(base/2^i)%2==1 then wanted['BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_'..i]=true end end
   end
@@ -45,8 +49,10 @@ function SPCLv3Support.Start(P,shared)
     local cities=player:GetCities();if not cities then return end
     for _,c in cities:Members() do P.Count('city_scan');
      local good,wanted=pcall(desired,pid,c);local reason=not good and tostring(wanted) or nil
+     local hold=reason and (reason:find('BASE_BACKGROUND_SAMPLE_PENDING',1,true) or reason:find('INDUSTRY_FACT_INVALID',1,true) or reason:find('INDUSTRY_SAMPLE_UNAVAILABLE',1,true))
      if not good then wanted={} end
      local applied,why=pcall(function()
+      if hold then return end
       -- Remove obsolete carriers before adding current carriers.
       for _,adding in ipairs({false,true}) do for _,name in ipairs(names) do
        local row=P.Info('Buildings',name);assert(row and row.Index,'B037_DATABASE_MISSING')

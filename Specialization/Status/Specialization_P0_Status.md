@@ -1,19 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0195
-Implementation Build: develop P0-B-074.101 / modinfo101; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0155
+Status Revision: S0196
+Implementation Build: develop P0-B-075.102 / modinfo102; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0156
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: AV2_D1_LOCAL_COMPLETE_AWAITING_REVIEW_NO_DEPLOYMENT
+Work State: AV2_C2_LOCAL_COMPLETE_AWAITING_REVIEW_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-Architecture v2：A/B/C1已接受；[D1折扣调度与批次扫描](../Architecture/v2/Batch_D1_Discount_Propagation.md)B074.101 LOCAL_SIMULATION_PASS（实际Lua+mock，非实机）。10,000组无关通知0完整Audit/Network确认/UI资格扫描/建筑写；1/2/4/8城全国facts从1/4/16/64变1/2/4/8；39组B073全载体map一致，C1及A/B/B069回归通过。每玩家每turn一次兜底；templates/native资格/Network独立dirty，C1生命周期不变。下一步建议C2，等待用户审阅授权，不自动开始。C2/D2未做、E后置。没有部署、没有改main或当前live B072.99；55GB内存异常未宣布解决。当前不新增用户测试。UI/private-Mod事件覆盖留作后续实机边界。
+Architecture v2：A/B/C1/D1已获接受；[C2 Copy+Industry样本生命周期](../Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md)B075.102 LOCAL_SIMULATION_PASS（实际Lua+mock，非实机），等待审阅。各通道pending 10,000通知只发1次/无写；每逻辑输入最多3发送；坏包/暂不可用不clear；确认reference/资格失效撤销；63正常载体map与B074一致。D1/C1/A/B/B069回归通过，Discount/Network代码及旧测试字节不变。没有部署，main B069.96、当前live B072.99保持。D2为下一建议，等待用户授权；E后置，GreatWork/Commerce/precision等不在本批，不自动启动。55GB根因仍UNKNOWN。
 
-实施/验证文件：[D1测试](../../DevelopmentTests/test_arch_v2_d1.py)。下一次性能比较应使用实际facts/扫描/写入；audit_standard现在计实际玩家批次，旧版计每次入口，不能直接同口径相除。
+验证入口：[C2实际Lua回归](../../DevelopmentTests/test_arch_v2_c2.py)。无立即用户测试要求，跨Context/HD真实时序仍属未来实机范围。Copy原每秒及通用通知扫描、Industry通用扫描、重复district/Network query仍留D2，不把本次single-flight当全面性能修复。
 
 ### Prior runtime evidence (historical test proposals below are paused)
 

@@ -29,7 +29,11 @@ Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory m
 
 Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTests/test_runtime_audit_regression.py` with the same no-bytecode/Lupa environment. File tests use TemporaryDirectory only. Regression wraps B/A/B069 version assertions for99 without changing historical tests. Covers1M increments,10k turns,8×4MiB ring, capability/failure gates, duplicate turns and real Network output/counter ON/OFF equivalence. Does not verify Civ VI exposes standard Lua io/os; native gate remains required before a long-play logging claim.
 
-## Architecture v2 D1 — B074.101 (current develop)
+## Architecture v2 C2 — B075.102 (current develop)
+
+`test_arch_v2_c2.py`: actual Copy/Industry UI+Gameplay transport, pending10k, duplicate/stale/reference/load, bounded timeout/throwing transport, temporary hold/confirmed retirement; 63 B074 carrier-map comparisons including Industry Lv3; Copy precision unchanged. Includes D1/C1/A/B/B069 regression with in-memory build stamp adjustment only. Lupa lua55; no DB/game/deployment. Example local dependency: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14 DevelopmentTests/test_arch_v2_c2.py`.
+
+## Architecture v2 D1 — B074.101 (historical entry)
 
 `test_arch_v2_d1.py`: Lupa lua55, actual Discount/Network/Standardization modules with mock native events. 10k generic pulses, 1/2/4/8 city scaling, 39 B073 output cases, C1 lifecycle and A/B/B069 network regression. C1 fixture explicit fact mutations are marked dirty for D1; historical B consumer count assertions run with the historical consumer. Historical test files remain unchanged. No deployment/DB, no memory-causation claim. See Architecture/v2/Batch_D1_Discount_Propagation.md for counter meanings and local interpreter command.
 
