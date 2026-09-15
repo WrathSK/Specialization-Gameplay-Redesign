@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0182
+Status Revision: S0183
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户确认原存档组合含Switch Civilization；固定已归档112项为原基线，后续111/94项属于另行测试配置。[新局隔离边界与监听初查](Validation/Results/Specialization_Mod_Isolation_Baseline.md)。当前log与选中ModGroup不同步，不能声称立即刷新或用最新选择覆盖原基线。开始只读检查原列表脚本；未发现Switch空闲高频循环的直接证据，不等于排除交互问题。新局阴性不能排除成熟城市才触发的机制。
 
 最新读档Mod集合已核实：[111项与证据边界](Validation/Results/Specialization_Loaded_Mod_Set_Verification.md)。相对默认112项仅移除Switch Civilization；日志后续确有组件应用/Gameplay初始化/反序列化。111 UUID唯一数据库映射，72绝对路径XML核对，39官方相对路径未独立解析。该加载晚于监控，不能追溯证明前一PID配置；不需要用户逐个截图，不据此判定冲突。
 
