@@ -3,6 +3,8 @@
 Document Owner: Codex
 User clarification: original save set includes Switch Civilization; user will disable groups and test new games.
 
+User subsequently reviewed the enumerated third-party list (original112-entry numbering, official DLC omitted) and replied “这些都存在”. In the context of the requested original-save enabled-set confirmation, record all listed third-party entries as user-confirmed baseline members, including Switch Civilization and Specialization. No exclusions were supplied. This is user configuration evidence, not runtime proof every script executes or compatibility PASS. Barbarian Clans and Tech/Civic Shuffle actual in-game activation remain separately unconfirmed. Later test configurations must record their own removed entries and must not overwrite this baseline.
+
 Use frozen112 UUID/name list at external W/Specialization/Status/Validation/Evidence/ExternalMonitor-20260914-201233/Current-enabled-config.tsv as the user-confirmed original set. Do not substitute later111 or94 sets. Current latest native log20:41:27 last block2737071.864 has94 entries without Switch; selected database group 原版 includes Switch with Disabled0. These describe different selection/configuration stages and cannot establish immediate refresh semantics. Preserve original baseline independently of subsequent user toggles.
 
 Initial static search covered local absolute-path manifests in the112 list and their Lua files, not arbitrary installed mods. Literal event matches include unselected/imported variants and comments: they are leads, not execution or leak evidence. No external source edited.
