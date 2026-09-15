@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0189
+Status Revision: S0190
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+独立进程0城HD开关对照：[14图结果](Validation/Results/Specialization_HD_Toggle_20260915.md)。ON307秒9.12→9.30→9.51GB；OFF315秒8.89→8.86→8.88GB，PID不同。两边Audit约58/s且事实/城/区域扫描及写入全0；城市C²路径不解释本窗口差异。支持CORE加入关联但非根因证明。下一步仅恢复CORE作ON/OFF/ON确认，不扩Mod、不改Discount。14图hash归档；只更新develop文档。
 
 新两组非严格对照已复核：[12图结果](Validation/Results/Specialization_Mod_Isolation_2232.md)。Run1=BASE+CORE+TITLE+AREA，双城203秒+0.68GB；Run2去HD加Cheat三城1121秒+0.39GB，用户确认两项UI辅助均保留。所有截图PID45352，用户确认只回主菜单换Mod；不称独立重启ABA。无HD仍Audit+57440、district_scan+344640，但Network未ACK、事实查询路径不同；不认定HD是高频入口唯一来源。原T1没有按指定四Mod/0城执行，六Mod增长集合较FULL11缩小但未最小化。只记录证据，Discount优化继续暂停。
 
