@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0174
+Status Revision: S0175
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: RUNTIME_AUDIT_LOCAL_PASS_NATIVE_FILE_GATE_REQUIRED
+Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B072.99实机日志门禁失败：三组截图均FILE_API_UNAVAILABLE；自动日志不能承担长局证据。USER_GAME_TEST_FAIL（用户实际游戏显示未达到日志验收标准）。同回合59、55秒Memory11.06→11.34GB；Discount Audit+2222、事实/城市/区域扫描持续增加，但完整derive保持1、建拆/Property/发送接收无增量。[逐项读数与归因边界](Validation/Results/Specialization_B072_Idle_Incident.md)。全部29份投递文件已外部归档并核对hash，无新代码/部署，main及live保持不变。此结果取代下文“原生接口待测”：当前io路径已确认不可用。下一步需要另行授权可行日志transport及定向重复检查调查，不宣告55GB问题解决。
 
 B072.99已获用户临时部署授权并确认游戏完全退出，实际运行包现与8b2ca3a的Mod逐文件一致。此前B071.98与B069.96均保留可恢复整包，main不变。部署证据和最小原生日志验证见[本次切换记录](Validation/Specialization_B072_Temporary_Playtest.md)。下文“本轮未部署/live B071.98”是实现批次结束时历史状态，由本项取代。尚未获得原生文件接口实机结果，不宣告长局日志可用。
 
