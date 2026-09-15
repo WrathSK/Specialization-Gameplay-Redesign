@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0188
+Status Revision: S0189
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+新两组非严格对照已复核：[12图结果](Validation/Results/Specialization_Mod_Isolation_2232.md)。Run1=BASE+CORE+TITLE+AREA，双城203秒+0.68GB；Run2去HD加Cheat三城1121秒+0.39GB，用户确认两项UI辅助均保留。所有截图PID45352，用户确认只回主菜单换Mod；不称独立重启ABA。无HD仍Audit+57440、district_scan+344640，但Network未ACK、事实查询路径不同；不认定HD是高频入口唯一来源。原T1没有按指定四Mod/0城执行，六Mod增长集合较FULL11缩小但未最小化。只记录证据，Discount优化继续暂停。
 
 优先级改为Mod interaction isolation：[依赖图](../Reports/Technical/Specialization_Mod_Interaction_Dependencies.md)、[当前矩阵/短测决策树](Validation/Mod_Interaction_Matrix.md)。BASE=SPC+BTS+EMM在观察窗无持续增长；FULL11复现，非112历史组合。当前只派T1=BASE+HD Civ6 Plus，0城300秒，垄断模式保持ON（用户确认）。IND依赖CORE及两项Monopoly++；CIV/DIST分别依赖CORE。Discount OFF/计数扩展/优化暂停，C²证据保留；memory与crash分开。仅文档，无源码/部署变更。
 

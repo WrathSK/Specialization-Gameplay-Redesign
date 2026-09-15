@@ -54,3 +54,7 @@ At first candidate-positive stop adding components; remove the LAST added closur
 ## Priority contract
 
 No DISCOUNT_AUTO_AUDIT_OFF, trigger instrumentation, formal Discount optimization, Batch C/D or compatibility patches until smallest-known set investigation is reviewed. Existing C² issue retained as independent performance debt. Once candidate closure is confirmed compare Discount behavior in BASE vs candidate to find interaction boundary, not pre-assume Discount root cause. Crash and memory outcomes remain separate columns. No new test outcome fabricated.
+
+## Follow-up 22:32–23:04 (supersedes pending assumption that T1 was run exactly)
+
+[Results](Results/Specialization_Mod_Isolation_2232.md). Run1=BASE+CORE+TITLE+AREA,1city204s9.30→9.50GB;2city203s11.08→11.76GB. Smaller known growth-observed set now six Mods, not an irreducible set. Run2=noHD+Cheat,3city1121s9.30→9.69GB; user confirms both helpers retained; Cheat UUID not independently captured, no new largest non-repro declared. Same PID45352 both runs. No crash captured; independent monotonic time series absent. Initial four-Mod T1 remains untested. Prefer next controlled CORE-only toggle with helpers+Cheat fixed; user confirms main-menu-only switching; no addon expansion or Discount change.
