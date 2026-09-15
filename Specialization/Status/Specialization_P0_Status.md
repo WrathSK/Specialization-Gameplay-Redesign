@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0184
+Status Revision: S0185
 Implementation Build: develop P0-B-072.99 / modinfo99; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0153
 Design Revision Reviewed: D0025
@@ -10,6 +10,8 @@ Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: NATIVE_LOG_GATE_FAILED_RESIDUAL_IDLE_WORK_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+21:25:30缩减Mod新局崩溃已保存：[50项加载集合/11第三方/原生abort](Validation/Results/Specialization_Crash_20260914_212530.md)。用户称静置4–5分钟、缓慢增长；TBB线程__cxa_pure_virtual→abort，根因UNKNOWN，不等于OOM或已证明HD冲突。原日志/崩溃文本/Mod数据库一致性副本/UUID清单已在外部hash归档，可安全重启后核对。未改源码、配置或部署。
 
 用户逐表确认原存档第三方Mod均存在、未提出剔除项；按本轮启用组合核对上下文登记为原基线成员，含Switch Civilization。[基线记录](Validation/Results/Specialization_Mod_Isolation_Baseline.md)。官方游戏模式实际开启状态不据此推断。后续禁用/新局是独立测试配置；不升级任何兼容性或内存修复PASS。
 
