@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0026
+Design Revision: D0025
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-09-15
-Acceptance Evidence: 用户授权冻结Research，并明确区域资格/同yield相加/逐建筑计值/传统速度floor/全等级3F3P。
-Previous Accepted Revision: [D0025冻结原文](Revisions/Specialization_Design_Spec_D0025.md)
-Latest Accepted Design Revision: D0026
+Acceptance Date: 2026-09-13
+Acceptance Evidence: 用户明确要求时代对话系数由15%调整到25%，无需新增实机验证。
+Previous Accepted Revision: [D0024冻结原文](Revisions/Specialization_Design_Spec_D0024.md)
+Latest Accepted Design Revision: D0025
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001** D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -115,20 +115,14 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 5. Research / Campus — RES
 
-**D0026: DESIGN_FROZEN — implementation / balance validation pending.**
+| Rule ID | ACTIVE等级 | 当前设计 |
+|---|---|---|
+| RES-001 | Lv1 | 每名Campus工作专家额外+3F、+3P |
+| RES-002 | Lv2 | 获得SHARED-001住房及SHARED-002 Scientist基础GPP |
+| RES-003 | Lv3 | 专家支持提升至+5F、+5P；本城增加`0.5 × Population × working Campus specialist count`基础Science |
+| RES-004 | Lv4 | 每名Campus工作专家使本城Science增加5个百分点；本城所有非Campus区域的Actual复制基数各类产出总和的50%转为Science；不按专业类型或人口名额筛选，包含军营、圣地、政府区及社区、娱乐中心等区域通过行业等获得的实际产出；不把住房、宜居度或城市总产出计入该基数 |
 
-唯一新规则与文案正文：[Research规范化Content](Content/Research_D0026.json)。[Schema](Content/README.md)；[边界确认与自审](Research_D0026_Review.md)。机构永久随Potential累积，ACTIVE仅控制对应阶段能力；机构为presentation-only，不进入普通建筑体系。
-
-| Rule ID | 当前权威content条目 |
-|---|---|
-| RES-001 | RES_BASE_SUPPORT：各等级基础专家支持；RES_INST_1学者结社，无named ability |
-| RES-002 | RES_L2_TRAIN：RES_INST_2研修院的人才培养，引用SHARED住房/GPP合同 |
-| RES-003 | RES_L3_CROSS / RES_L3_APPLY：RES_INST_3学术联合会的跨学科研究/学以致用；替换旧人口Science与旧支持提升 |
-| RES-004 | RES_L4_INFRA / RES_L4_CHAIR / RES_L4_TRADITION：RES_INST_4学术总署；替换旧专家百分比和全区域Actual复制 |
-
-SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPORT；其它专业的SHARED与Local规则不变。具体公式、映射及第一版Tooltip只在content维护，旧D0025正文见冻结快照，不将新设计视为B076.103已实现。
-
-**RES-005** Research Network增加Inspiration完成比例的额外百分点；强度统一按NET-RC规则，不按路线线性叠加。本次不变。
+**RES-005** Research Network增加Inspiration完成比例的额外百分点；强度统一按NET-RC规则，不按路线线性叠加。
 
 ## 6. Culture / Theater Square — CUL
 

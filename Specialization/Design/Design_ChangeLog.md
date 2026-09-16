@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0025
+Latest Accepted Design Revision: D0026
 Document State: ACCEPTED
+
+## Accepted D0026 — 2026-09-15
+
+Acceptance: ACCEPTED / Research DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户本轮冻结授权，并确认特色归一/完成未掠夺/未知类型默认排除、同yield相加、逐建筑计值、传统按速度缩放floor、全等级3F3P。
+Accepted Spec SHA256: 1265719810ce087cca1c6ceb28cf7ad4bf2a5ae153c0c358b86af5a90c30996b
+Canonical Research Content SHA256: 14cad8a62621baea8bcf6b5813f83d683aba2d4d18503606196cda2a99a952ff
+Previous Accepted Revision: D0025
+Frozen D0025: [原文](Revisions/Specialization_Design_Spec_D0025.md)
+Content: [Research](Content/Research_D0026.json) / [schema](Content/README.md) / [review](Research_D0026_Review.md)
+
+仅Research本地等级更新；Network及其它专业不变。机构累计、6个阶段能力与统一领域映射；旧三级人口Science/5F5P与四级旧效果被替换。五组待决已关闭；英文TBD和社区Food候选不阻塞。Architecture仍synced D0025，需后续设计适配审查；本轮未实现、未部署，不升级任何游戏验证状态。
 
 ## Accepted D0025 — 2026-09-13
 
