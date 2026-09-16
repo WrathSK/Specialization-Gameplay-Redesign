@@ -9,13 +9,13 @@ Evidence: STATIC_CONFIRMED — 当前代码/SQL注册和调用链的静态证据
 
 ## 当前实施增量
 
-当前主线：**A✅ → B✅ → C1✅ → D1✅ → C2✅ → D2 → E**。[D2 B076.103](Batch_D2_Runtime_Propagation.md)本地完成、未部署、待审阅。建议Runtime Milestone Candidate；E后置，建议先用户授权临时部署长测。以下AV2-I001为历史调查，不把旧未实施描述当当前状态。
+当前主线：**A✅ → B✅ → C1✅ → D1✅ → C2✅ → D2✅ → E（未开始）**。B076.103已临时部署；[短时实机验证](../../Status/Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)支持`av2-runtime-b076.103` Runtime milestone，仅限已测idle改善，保留ACK未完成/长局内存未知。不是stable promotion。以下AV2-I001是历史调查。
 
 
 B072.99独立instrumentation：[Runtime Audit](../../Reports/Technical/Specialization_B072_Runtime_Audit.md)，本地通过、原生文件能力待验证，不是Batch C/D。[Yield Precision Contract待办](Yield_Precision_Backlog.md)只记录、不实施。
 
 
-[Batch A版本/发布合同](Batch_A_Input_Contract.md)已在develop B070.97实现并本地验证；下文AV2-I001仍是B069.96源代码调查快照。Batch A已获用户接受；[Batch B共享视图](Batch_B_Shared_Network.md)在develop B071.98本地验证完成，C已拆分且C1及本轮限定Copy/Industry的C2本地完成，D1已接受，D2本地完成等待审阅，E尚未实施，stable不变。
+[Batch A版本/发布合同](Batch_A_Input_Contract.md)已在develop B070.97实现并本地验证；下文AV2-I001仍是B069.96源代码调查快照。Batch A已获用户接受；[Batch B共享视图](Batch_B_Shared_Network.md)在develop B071.98本地验证完成，C已拆分且C1及本轮限定Copy/Industry的C2本地完成，D1已接受，D2本地完成且短时idle实机通过（范围见上），E尚未实施，stable不变。
 
 ## 阅读顺序 / 范围
 

@@ -4,7 +4,7 @@ Document Owner: Codex
 Build: develop B076.103 / modinfo103
 Baseline: B075.102 / 5dc6221 (accepted C2)
 Design: D0025 unchanged
-State: LOCAL_SIMULATION_PASS; pending runtime review; NO DEPLOYMENT
+State: LOCAL_SIMULATION_PASS; USER_GAME_TEST_PASS scoped short idle; temporarily deployed; no stable promotion
 Mainline: A → B → C1 → D1 → C2 → D2 → E
 
 ## 用户摘要
@@ -84,3 +84,7 @@ Protection check: main remains e3651f9 / clean. Live119 files match deployed8b2c
 Recovered the expected 30 modified and three untracked files on develop at 5dc6221; nothing restored/reset/discarded. Existing D2 implementation and test/report files were intact, with no unexplained non-D2 changes. Re-ran the D2 suite (including A/B/C1/D1/C2/B069) and both deployment safety suites; all passed. Deployment tests use temporary fixtures, not the live package.
 
 Final review removed an out-of-scope `confirmedOnly` global reference from the manual Network diagnostic entrypoint and added an explicit refresh assertion. Corrected the v2 index's stale D2-pending sentence. No gameplay rules, Design, main or deployed files changed. No real-game validation claimed; commit/push records this recovered batch, not new scope.
+
+## Subsequent user validation / milestone
+
+See [2026-09-15 paired screenshots](../../Status/Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md). Short idle expensive-work suppression passed; Memory stable at displayed precision. Tag `av2-runtime-b076.103` records this scoped milestone. Earlier no-deployment/candidate statements describe implementation completion, superseded by authorized temporary deployment and this evidence. Network/Discount pending with zero ACK remains unresolved; no full gameplay or55GB root-cause closure.

@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0197
+Status Revision: S0198
 Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0157
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: AV2_D2_LOCAL_COMPLETE_AWAITING_REVIEW_NO_DEPLOYMENT
+Work State: AV2_RUNTIME_MILESTONE_SHORT_IDLE_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-Architecture v2：A/B/C1/D1/C2已接受；[D2](../Architecture/v2/Batch_D2_Runtime_Propagation.md)B076.103 LOCAL_SIMULATION_PASS（实际Lua+mock，非实机），等待审阅。9模块1728正常载体对照一致，Copy/Industry10k idle无扫描/发送/写，30k共享查询无Capture，三个正式UI10k tick无重复请求，C2/C1/D1/A/B/B069回归通过。
+Architecture v2：A/B/C1/D1/C2/D2已完成；B076.103已获准临时部署。用户五组截图复核：[Runtime milestone验证](Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)。USER_GAME_TEST_PASS仅限本次零城101秒/四城35秒静置无昂贵扫描/写入增长、无显示内存持续增长；不扩展为全部玩法验收或55GB根因关闭。
 
-未部署：main B069.96不变，实际运行包仍是此前临时部署B072.99。Design D0025不变。中断现场已恢复核对，D2及前序回归、部署安全测试重新通过；Runtime Milestone Candidate以本轮commit/push/clean确认作为收尾门槛；不自动tag/promotion。下一步建议用户选A临时部署性能/内存长测，未授权前不切包；E等待用户决定。55GB ROOT CAUSE UNKNOWN；Lua自动日志FILE_API_UNAVAILABLE既有结果不变。当前无新增必须立即执行的实机测试。
+Milestone：`av2-runtime-b076.103`。Mod仍为6a84027提交内容，本次只提交验证文档。main B069.96不变，实际运行包B076.103；不是stable promotion。D0025不变，E未开始，无新增强制测试。
 
-测试入口：[D2本地回归](../../DevelopmentTests/test_arch_v2_d2.py)。原C2 generic-pulse测试在新入口明确提供直接事实变更信号，旧文件冻结。用户真实HD事件覆盖及长局性能仍为USER_GAME_TEST_REQUIRED，不能把本地通过当实机PASS。
+保留待查：本次T1全窗net_receive=0、discount_ack=0、inflight=1、discount_send=2，不能把未完成初始化的网络/折扣视为功能PASS。抑制计数持续增加不等于实际请求队列增长。长局趋势与功能完整性仍需后续证据；不自动实施修复。原本地1728正常载体对照、10k idle、30k共享查询、前序回归仍有效。
 
 ### Historical C2 completion (accepted; its D2-pending wording is superseded above)
 
