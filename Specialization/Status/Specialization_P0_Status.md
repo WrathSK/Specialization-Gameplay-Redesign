@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0198
+Status Revision: S0200
 Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0157
+Architecture Revision Reviewed: A0159
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
 Work State: AV2_RUNTIME_MILESTONE_SHORT_IDLE_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+当前工作：[PAC-I001机构/能力/载体调查](../Architecture/v2/Presentation_Institution_Carrier_Model.md)完成，STATIC_CONFIRMED仅源码/数据库证据，不等于新UI实机通过；完整1894定义分类见报告。PAC-R0002累计机构方案USER_CONFIRMED：Potential决定永久机构集合，ACTIVE只影响能力状态；分阶段Tooltip，presentation-only不进入建筑统计；具体UI接入PENDING_REVIEW；未改源码/玩法/Design/运行包，不启动新四专业玩法或BatchE，无当前测试要求。下一步等待Design/Architecture审阅，不能把机构候选自动公开。
 
 Architecture v2：A/B/C1/D1/C2/D2已完成；B076.103已获准临时部署。用户五组截图复核：[Runtime milestone验证](Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)。USER_GAME_TEST_PASS仅限本次零城101秒/四城35秒静置无昂贵扫描/写入增长、无显示内存持续增长；不扩展为全部玩法验收或55GB根因关闭。
 

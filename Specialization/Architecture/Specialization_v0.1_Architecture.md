@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0157
+# Specialization v0.1 Architecture — A0159
 
 Document Owner: Codex
-Architecture Revision: A0157
+Architecture Revision: A0159
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
@@ -11,7 +11,9 @@ Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinf
 
 ## CURRENT AUTHORITATIVE STATE
 
-B076.103：[D2运行消费者调度](v2/Batch_D2_Runtime_Propagation.md)本地完成、未部署；A/B/C1/D1/C2已接受，D2待审阅，E后置。当前验证覆盖实际Lua批次索引、共享Network只读查询、脏标记采样、去执行型fan-out、UI空闲请求；玩法/精度/Design不变。建议Runtime Milestone Candidate并先实机长测，55GB根因UNKNOWN。
+B076.103为`av2-runtime-b076.103` Runtime milestone，已临时部署；A–D2完成，短时idle实机范围与桥接ACK未完成疑点见Status，E未开始，main保持B069.96。不能据此关闭55GB长局根因问题。
+
+新Presentation原则：[Institution / Ability / Carrier调查 PAC-I001](v2/Presentation_Institution_Carrier_Model.md)。用户确认三层语义分离；用户进一步确认PAC-R0002：机构随永久Potential累积，ACTIVE只影响能力；每个机构解释本阶段新增能力。采用presentation-only条目，不是真实Building；具体UI接入待审阅/授权。不得默认一个Modifier载体对应一个可见建筑；机构排除普通Tier/Infrastructure Value/标准化，技术bits保持隐藏，Tooltip按能力而非Modifier组织。优先事件驱动缓存+按需显示，保护Runtime milestone。永久性、累计展示、presentation-only已定；命名成熟度、具体UI落点及状态样式仍见报告待审项。D0025与Mod字节不变。
 
 ### Historical C2 implementation
 

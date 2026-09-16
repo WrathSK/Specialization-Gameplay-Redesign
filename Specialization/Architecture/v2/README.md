@@ -9,6 +9,8 @@ Evidence: STATIC_CONFIRMED — 当前代码/SQL注册和调用链的静态证据
 
 ## 当前实施增量
 
+[Presentation / Institution / Ability / Carrier — PAC-I001](Presentation_Institution_Carrier_Model.md)：用户确认分层及PAC-R0002永久Potential累计机构、阶段能力归属、presentation-only路线；现有载体与Tooltip调查已完成，具体UI接入待审阅。独立于A–D2完成状态，不是BatchE或新玩法实施。[完整ID分类](Presentation_Carrier_Inventory.json)。
+
 当前主线：**A✅ → B✅ → C1✅ → D1✅ → C2✅ → D2✅ → E（未开始）**。B076.103已临时部署；[短时实机验证](../../Status/Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)支持`av2-runtime-b076.103` Runtime milestone，仅限已测idle改善，保留ACK未完成/长局内存未知。不是stable promotion。以下AV2-I001是历史调查。
 
 
