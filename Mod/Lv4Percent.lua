@@ -1,15 +1,21 @@
+include('RuntimeWork')
 -- B048: only RES-004/CUL-004 per-specialist percentage component.
 SPCLv4Percent={}
 function SPCLv4Percent.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local function districtsFor(pid,c)
+  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
+ end
  local data={ready=false,busy=false,errors={},changes=0};shared.Lv4Percent=data
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER'}
  local function name(k,i) return 'BUILDING_SPC_LV4_PERCENT_'..k..'_'..i end
  local function facts(pid,c)
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return nil,0,nil end
-  local f=shared.EffectiveFacts.Read(pid,c);local kind=f.specialization
+  local f=readFacts(pid,c);local kind=f.specialization
   if not districts[kind] then return nil,0,f.active end
   assert(f.first and f.potential>=1 and (f.active~=4 or f.potential==4),'LV4_FACT_INVALID')
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in districtsFor(pid,c) do
    local dc=d:GetCity()
    if dc and dc:GetOwner()==pid and dc:GetID()==c:GetID() and d:GetID()==f.first.districtID then
     local row=P.Info('Districts',d:GetType())
@@ -21,9 +27,9 @@ function SPCLv4Percent.Start(P,shared)
   end
   error('LV4_DISTRICT_MISSING')
  end
- function data.Audit()
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,player in pairs(Players) do
+ function data.Audit(scope)
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local scanned,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
     for _,c in cities:Members() do P.Count('city_scan');
@@ -48,8 +54,8 @@ function SPCLv4Percent.Start(P,shared)
     end
    end)
    if not scanned then print('[SPC][B048][ERROR] '..tostring(err)) end
-  end
-  data.busy=false
+  end end
+  data.busy=false;batch=nil
  end
  function data.Describe(pid,c)
   local ok,out=pcall(function()
@@ -70,6 +76,6 @@ function SPCLv4Percent.Start(P,shared)
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','PlayerTurnDeactivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged','DistrictRemovedFromMap'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged','DistrictRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
 end

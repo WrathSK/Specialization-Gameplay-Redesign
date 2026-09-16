@@ -1,6 +1,12 @@
+include('RuntimeWork')
 -- B038: native population yield per specialist; Commerce direct connected types.
 SPCLv3Effects={}
 function SPCLv3Effects.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local function districtsFor(pid,c)
+  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
+ end
  local data={ready=false,busy=false,errors={},changes=0,observed={}};shared.Lv3Effects=data
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',COMMERCE='DISTRICT_COMMERCIAL_HUB',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE'}
  local names={}
@@ -9,11 +15,11 @@ function SPCLv3Effects.Start(P,shared)
  local function desired(pid,c)
   local wanted={}
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
-  local f=shared.EffectiveFacts.Read(pid,c)
+  local f=readFacts(pid,c)
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
   local found=false
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in districtsFor(pid,c) do
    local city=d:GetCity();local row=P.Info('Districts',d:GetType())
    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
     assert(row and row.DistrictType==districts[f.specialization] and f.first.type==row.DistrictType and d:IsComplete()==true,'LV3_ANCHOR_INVALID');found=true;break
@@ -22,7 +28,7 @@ function SPCLv3Effects.Start(P,shared)
   assert(found,'LV3_DISTRICT_MISSING')
   if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
    local target
-   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+   for _,d in districtsFor(pid,c) do
     local city=d:GetCity()
     if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then target=d;break end
    end
@@ -31,7 +37,7 @@ function SPCLv3Effects.Start(P,shared)
    assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'WORKERS_UNKNOWN_OR_OUT_OF_RANGE')
    for i=0,7 do if math.floor(n/2^i)%2==1 then wanted['BUILDING_SPC_DEV_LV3_POP_'..f.specialization..'_'..i]=true end end
   elseif f.specialization=='COMMERCE' then
-   local kinds=shared.NetworkBridge.ConnectedKinds(pid,c)
+   local kinds=(shared.NetworkBridge.CurrentConnectedKinds or shared.NetworkBridge.ConnectedKinds)(pid,c)
    for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do if kinds[k] then wanted['BUILDING_SPC_DEV_LV3_COM_'..k]=true end end
   end
   return wanted
@@ -48,9 +54,9 @@ function SPCLv3Effects.Start(P,shared)
   end
   return coefficients,flags
  end
- function data.Audit() P.Count('audit_lv3');
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,player in pairs(Players) do
+ function data.Audit(scope) P.Count('audit_lv3');
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
     for _,c in cities:Members() do P.Count('city_scan');
@@ -74,19 +80,17 @@ function SPCLv3Effects.Start(P,shared)
     end
    end)
    if not ok then print('[SPC][B038][SCAN_ERROR] '..tostring(err)) end
-  end
-  data.busy=false
-  if shared.Lv4Percent then shared.Lv4Percent.Audit() end
-  if shared.CopyYields then shared.CopyYields.Audit() end
+  end end
+  data.busy=false;batch=nil
  end
  function data.Describe(pid,c)
   local ok,out=pcall(function()
    local coef,flags=read(c);local pop=c:GetPopulation()
-   local f=shared.EffectiveFacts.Read(pid,c)
+   local f=readFacts(pid,c)
    local lines={}
    if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
     local workers
-    for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+    for _,d in districtsFor(pid,c) do
      local city=d:GetCity()
      if f.first and city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
       workers=Map.GetPlot(d:GetX(),d:GetY()):GetWorkerCount();break
@@ -112,6 +116,6 @@ function SPCLv3Effects.Start(P,shared)
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','PlayerTurnDeactivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
 end

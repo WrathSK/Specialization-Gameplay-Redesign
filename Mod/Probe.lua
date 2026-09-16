@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-075.102"
+P.VERSION = "P0-B-076.103"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -522,9 +522,9 @@ end
 include('PerformanceCounters')
 P.Count=SPCPerformance.Count
 function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end
-function P.CreateBuilding(object,id) P.Count('building_create');return object:CreateBuilding(id) end
-function P.RemoveBuilding(object,id) P.Count('building_remove');return object:RemoveBuilding(id) end
-function P.SetProperty(object,key,value) P.Count('property_write');return object:SetProperty(key,value) end
+function P.CreateBuilding(object,id) P.Count('building_create');local r=object:CreateBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
+function P.RemoveBuilding(object,id) P.Count('building_remove');local r=object:RemoveBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
+function P.SetProperty(object,key,value) P.Count('property_write');local r=object:SetProperty(key,value);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
 -- A live non-trader is a reliable negative. Missing/removed/unknown unit is not.
 function P.RouteUnitRelevant(pid,id)
  if type(pid)~='number' or type(id)~='number' then return true end

@@ -214,12 +214,11 @@ local function request(playerID,params)
     return
   end
   if params.Action=="LV2_GPP_DIRTY" then
-    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit() end
-    if P.IsTestPlayer(playerID) and shared.Lv3Support then shared.Lv3Support.Audit() end
-    if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit() end
-    if P.IsTestPlayer(playerID) and shared.NetworkBoost then shared.NetworkBoost.Audit() end
-    if shared.Dialogue then shared.Dialogue.Audit(playerID) end
+    if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
+    if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.Lv3Support then shared.Lv3Support.Audit({player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
     return
   end
   if params.Action=="NETWORK_PUSH" then

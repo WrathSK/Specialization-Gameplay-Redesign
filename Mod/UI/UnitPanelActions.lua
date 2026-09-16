@@ -2,7 +2,7 @@ include('Probe')
 local P=SPCP0
 local parent,pending,elapsed,timer,unitKey,feedback
 local view,viewToken,viewRequestedAt,viewReceivedAt
-local clock=0;local nextView=0
+local clock=0;local nextView=0;local dirty=true;local hooks={};local renderKey;local revision
 local function current()
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then return nil end
  local u=UI.GetHeadSelectedUnit();if not u or u:GetOwner()~=pid then return nil end
@@ -16,7 +16,7 @@ local function preview(u)
 end
 -- Raw responses remain in SPC_UnitPanelStatus/log; tooltips use structured views.
 local function crewView(u)
- if view and clock-(viewReceivedAt or 0)<1.5 and view.owner==u:GetOwner() and view.unitID==u:GetID()
+ if view and view.owner==u:GetOwner() and view.unitID==u:GetID()
   and view.turn==Game.GetCurrentGameTurn() and view.x==u:GetX() and view.y==u:GetY() then return view end
 end
 local function readView(u)
@@ -25,7 +25,8 @@ local function readView(u)
   local v=(ExposedMembers.SPC_P0 or {}).UnitActionView
   if v and v.token==viewToken then view=v;viewReceivedAt=clock;viewToken=nil end
  end
- if not viewToken and clock>=nextView and not pending then
+ if not viewToken and dirty and not pending then
+  dirty=false
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
   viewToken=P.VERSION..':VIEW:'..ExposedMembers.SPC_P0_UISequence;viewRequestedAt=clock;nextView=clock+0.5
   local ok=pcall(UI.RequestPlayerOperation,u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,
@@ -92,18 +93,27 @@ local function update(dt)
   elapsed=elapsed+step;local s=ExposedMembers.SPC_P0 or {}
   if s.Version==P.VERSION and s.LastToken==pending then
    feedback=tostring(s.Snapshot);ExposedMembers.SPC_UnitPanelStatus=feedback
-   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;nextView=0
+   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;nextView=0;dirty=true
   elseif elapsed>10 then pending=nil;feedback='等待结果超时；请查看专业化诊断中的移民 / 施工队，不要重复确认。';ExposedMembers.SPC_UnitPanelStatus=feedback end
  end
- local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID())
- if unitKey~=key then unitKey=key;feedback=nil;view=nil;viewToken=nil;nextView=0 end
+ local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID()..':'..u:GetX()..':'..u:GetY()..':'..Game.GetCurrentGameTurn())
+ if unitKey~=key then unitKey=key;feedback=nil;view=nil;viewToken=nil;nextView=0;dirty=true end
+ local r=ExposedMembers.SPC_RuntimeUIRevision or 0;if r~=revision then revision=r;dirty=true end
  local visible=u~=nil and UI.GetInterfaceMode()==InterfaceModeTypes.SELECTION
- Controls.ActionGroup:SetHide(not visible)
+ if not visible then
+  if renderKey~=false then Controls.ActionGroup:SetHide(true);renderKey=false;parent:CalculateSize();parent:ReprocessAnchoring() end
+  return
+ end
+ if renderKey==false or renderKey==nil then Controls.ActionGroup:SetHide(false) end
  if visible then
   local invest=kind=='UNIT_SETTLER';local icon=invest and 'ICON_UNITOPERATION_FOUND_CITY' or 'ICON_UNITOPERATION_BUILD_IMPROVEMENT'
-  Controls.PrepareIcon:SetIcon(icon);Controls.ConfirmIcon:SetIcon(icon)
+
   readView(u);local v=crewView(u);local a,b
   if invest then a,b=investmentTips(v) else a,b=crewTips(v) end
+  local confirmed=v and v.prepared and preview(u) and preview(u).token==v.planToken
+  local newKey=icon..'|'..a..'|'..tostring(b)..'|'..tostring(confirmed)..'|'..tostring(pending~=nil)
+  if newKey==renderKey then return end;renderKey=newKey
+  Controls.PrepareIcon:SetIcon(icon);Controls.ConfirmIcon:SetIcon(icon)
   -- Reserve both positions in both states. Confirm never replaces the first click.
   Controls.ActionGroup:SetSizeX(90)
   Controls.PrepareButton:SetOffsetX(46);Controls.ConfirmButton:SetOffsetX(0)
@@ -116,8 +126,12 @@ local function update(dt)
 end
 ContextPtr:SetInitHandler(function()
  timer=0;ContextPtr:SetHide(false)
+ for _,name in ipairs({'CityProductionChanged','CityProductionUpdated','CityProductionCompleted','CityBuildQueueChanged',
+  'BuildingAddedToMap','BuildingRemovedFromMap','DistrictBuildProgressChanged','DistrictRemovedFromMap','CityTransfered','InterfaceModeChanged'}) do
+  local e=P.Field(Events,name);if e and e.Add then local f=function() dirty=true end;e.Add(f);hooks[#hooks+1]={e,f} end
+ end
  Controls.PrepareButton:RegisterCallback(Mouse.eLClick,function() dispatch(false) end)
  Controls.ConfirmButton:RegisterCallback(Mouse.eLClick,function() dispatch(true) end)
  ContextPtr:SetUpdate(update)
 end)
-ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true) end)
+ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true);for _,h in ipairs(hooks) do h[1].Remove(h[2]) end end)

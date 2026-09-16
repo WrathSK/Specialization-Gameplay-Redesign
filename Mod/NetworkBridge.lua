@@ -55,7 +55,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function notify(pid)
   local publication=d.Input(pid)
   -- Existing independent consumer listeners remain Batch D. This publisher only notifies on diff.
-  for _,name in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence'}) do
+  for _,name in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence','CopyYields'}) do
    local consumer=shared[name]
    if consumer then local ok,err=pcall(consumer.Audit,publication)
     if not ok then bucket(pid).consumerError=short(err) end
@@ -267,11 +267,11 @@ function SPCNetworkBridge.Start(P,shared)
   return sources,centers,recipients
  end
  -- Refresh remains the Batch A fact boundary (its scans are not cached in Batch B).
- local function currentView(pid)
+ local function currentView(pid,confirmedOnly)
   P.Count('derive_requested')
-  d.Refresh(pid)
+  if not confirmedOnly then d.Refresh(pid) end
   local b=d.players[pid]
-  assert(b and b.input and b.validity=='VERIFIED' and d.Verified(pid),'NETWORK_REFRESH_PENDING')
+  assert(b and b.input and b.validity=='VERIFIED' and (confirmedOnly or d.Verified(pid)),'NETWORK_REFRESH_PENDING')
   local v=views[pid]
   local matches=v and v.contract==1 and v.epoch==d.epoch and v.player==pid
    and v.validity=='VERIFIED' and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
@@ -285,6 +285,20 @@ function SPCNetworkBridge.Start(P,shared)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
   local v=currentView(pid)
   return {input=d.Input(pid),recipients=copy(v.recipients.INDUSTRY or {})}
+ end
+ function d.CurrentConnectedKinds(pid,selected)
+  assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
+  return copy(currentView(pid,true).connected[selected:GetID()] or {})
+ end
+ function d.CurrentNational(pid)
+  assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
+  return copy(currentView(pid,true).national)
+ end
+ function d.CurrentRecipientSources(pid,selected,kind)
+  assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
+  local v=currentView(pid,true);local ids={}
+  for id in pairs((v.recipients[kind] or {})[selected:GetID()] or {}) do ids[#ids+1]=id end
+  table.sort(ids);return ids
  end
  function d.ConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')

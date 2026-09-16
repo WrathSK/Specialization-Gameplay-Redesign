@@ -1,3 +1,4 @@
+include('RuntimeWork')
 -- One current native player boost per kind, carried by the capital. Never grants progress.
 include('BoostConfig')
 include('BoostIntegerConfig')
@@ -43,7 +44,7 @@ function SPCNetworkBoost.Start(P,shared)
    end
    return result
   end
-  local network=shared.NetworkBridge.National(pid)
+  local network=(shared.NetworkBridge.CurrentNational or shared.NetworkBridge.National)(pid)
   for _,kind in ipairs(kinds) do
    local source=network[kind];local n=source.n;local level=source.level
    assert(n<=SPCBoostConfig.maxRecipients,'B055_RECIPIENT_LIMIT')
@@ -58,10 +59,10 @@ function SPCNetworkBoost.Start(P,shared)
   end
   return result
  end
- function d.Audit() P.Count('audit_boost');
+ function d.Audit(scope) P.Count('audit_boost');
   if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   for pid,player in pairs(Players) do
-   if P.IsTestPlayer(pid) or d.applied[pid] then
+   if SPCRuntimeWork.Player(scope,pid) and (P.IsTestPlayer(pid) or d.applied[pid]) then
     local ok,plan=pcall(function() if P.IsTestPlayer(pid) then return d.Plan(pid) end return {} end)
     d.errors[pid]=not ok and tostring(plan) or nil
     if not ok then plan={} end
@@ -121,7 +122,7 @@ function SPCNetworkBoost.Start(P,shared)
   return table.concat(out,'\n')
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- for _,n in ipairs({'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','PlayerTurnActivated','PlayerTurnDeactivated'}) do hook(Events,n,d.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated'}) do SPCRuntimeWork.Hook(P,Events,n,d.Audit) end
  hook(Events,'CityTransfered',function() if d.ready and not d.busy then
   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
   if not ok then print('[SPC][B055][CLEAN] '..tostring(err));d.ready=false;return end;d.Audit()

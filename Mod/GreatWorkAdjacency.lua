@@ -26,12 +26,16 @@ function SPCGWAdjacency.Start(P,shared)
  function d.Audit(pid)
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
   d.last[pid]={}
+  local rowsByCity={}
+  for _,r in pairs(d.samples[pid] and d.samples[pid].rows or {}) do
+   rowsByCity[r.city]=rowsByCity[r.city] or {};table.insert(rowsByCity[r.city],r)
+  end
   for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
    local ok,plan=pcall(function()
     local sample=d.samples[pid];local collection=shared.Dialogue.samples[pid]
     assert(sample and collection and sample.turn==Game.GetCurrentGameTurn() and collection.turn==sample.turn,'GWA_SAMPLE_PENDING')
     local f=shared.EffectiveFacts.Read(pid,c);local base={};for _,y in ipairs(M.Yields) do base[y]=0 end
-    for _,r in pairs(sample.rows) do if r.city==c:GetID() then for i,y in ipairs(M.Yields) do base[y]=base[y]+r.values[i] end end end
+    for _,r in pairs(rowsByCity[c:GetID()] or {}) do if r.city==c:GetID() then for i,y in ipairs(M.Yields) do base[y]=base[y]+r.values[i] end end end
     local count=0;for _,w in ipairs(collection.cities[c:GetID()] or {}) do
      local def=assert(P.Info('GreatWorks',w.type),'GWA_WORK_TYPE');local kind=def.GreatWorkObjectType:gsub('GREATWORKOBJECT_','')
      if allowed[kind] then count=count+1 end

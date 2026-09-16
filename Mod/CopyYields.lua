@@ -1,3 +1,4 @@
+include('RuntimeWork')
 include('SampleLifecycle')
 -- B051: absolute city-layer copy yields. No permanent design facts or history-derived routes.
 SPCCopyYields={}
@@ -12,10 +13,13 @@ function SPCCopyYields.Plan(amount,pop)
  return {integer=integer,bit=bit,coefficient=coefficient,amount=amount}
 end
 function SPCCopyYields.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local data={ready=false,busy=false,generation=0,samples={},seq={},receiveErrors={},errors={},last={},changes=0};shared.CopyYields=data
  SPCSampleLifecycle.Reset(data,'copy')
- local function currentDistricts(pid) return SPCSampleLifecycle.Live(P,pid,false) end
+ local function currentDistricts(pid) return batch and batch.Live(pid,false) or SPCSampleLifecycle.Live(P,pid,false) end
  local function sample(pid)
+  if batch and batch.copyRows and batch.copyRows[pid] then return batch.copyRows[pid] end
   local s=data.samples[pid];assert(s,'COPY_BACKGROUND_PENDING')
   local live=currentDistricts(pid);local rows={}
   local retired=false
@@ -25,11 +29,12 @@ function SPCCopyYields.Start(P,shared)
    -- Changed reference is confirmed loss of that old observation, not a reusable value.
    if r and r.reference==d.reference then rows[key]=r end
   end
+  if batch then batch.copyRows=batch.copyRows or {};batch.copyRows[pid]=rows end
   return rows
  end
  local function target(pid,c,y)
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return 0 end
-  local f=shared.EffectiveFacts.Read(pid,c)
+  local f=readFacts(pid,c)
   assert(type(f.specialization)=='string' and type(f.active)=='number','COPY_FACTS_UNAVAILABLE')
   if y=='SCIENCE' then
    if f.specialization~='RESEARCH' or f.active~=4 then return 0 end
@@ -37,7 +42,15 @@ function SPCCopyYields.Start(P,shared)
    local live=currentDistricts(pid);local anchorLive=live[c:GetID()..':'..f.first.districtID]
    if not anchorLive or anchorLive.type~=f.first.type then return 0 end
    local rows=sample(pid);local sum=0;local anchor=false
-   for _,d in pairs(rows) do if d.cityID==c:GetID() then
+   local cityRows=rows
+   if batch then
+    batch.copyCities=batch.copyCities or {}
+    if not batch.copyCities[pid] then
+     local t={};for _,r in pairs(rows) do t[r.cityID]=t[r.cityID] or {};t[r.cityID][#t[r.cityID]+1]=r end;batch.copyCities[pid]=t
+    end
+    cityRows=batch.copyCities[pid][c:GetID()] or {}
+   end
+   for _,d in pairs(cityRows) do if d.cityID==c:GetID() then
     if d.id==f.first.districtID and d.type==f.first.type and d.type=='DISTRICT_CAMPUS' then anchor=true end
     if d.type~='DISTRICT_CAMPUS' then
      sum=sum+d.total
@@ -45,7 +58,7 @@ function SPCCopyYields.Start(P,shared)
    end end
    if not anchor then return 0 end;return sum*0.5
   end
-  local ok,ids=pcall(shared.NetworkBridge.RecipientSources,pid,c,'INDUSTRY')
+  local ok,ids=pcall(shared.NetworkBridge.CurrentRecipientSources or shared.NetworkBridge.RecipientSources,pid,c,'INDUSTRY')
   if not ok then
    local b=shared.NetworkBridge.players and shared.NetworkBridge.players[pid]
    if b and b.validity=='CONFIRMED_INVALID' then return 0 end
@@ -56,7 +69,7 @@ function SPCCopyYields.Start(P,shared)
   for _,id in ipairs(ids) do
    local source=Players[pid]:GetCities():FindID(id)
    if source and source:GetOwner()==pid then
-   local sf=shared.EffectiveFacts.Read(pid,source)
+   local sf=readFacts(pid,source)
    assert(type(sf.specialization)=='string' and type(sf.active)=='number','COPY_FACTS_UNAVAILABLE')
    if sf.specialization=='INDUSTRY' and sf.active==4 then
     rows=rows or sample(pid);local d=rows[id..':'..sf.first.districtID]
@@ -86,9 +99,9 @@ function SPCCopyYields.Start(P,shared)
   end end
   if removed and plan.amount==0 and confirmed then P.Count('copy_withdraw') end
  end
- function data.Audit() P.Count('audit_copy');
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,p in pairs(Players) do if P.IsTestPlayer(pid) then
+ function data.Audit(scope) P.Count('audit_copy');
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,p in pairs(Players) do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid) then
    local ok,why=pcall(function()
     for _,c in p:GetCities():Members() do P.Count('city_scan'); for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
      local key=pid..':'..c:GetID()..':'..y
@@ -104,10 +117,10 @@ function SPCCopyYields.Start(P,shared)
    end)
    if not ok then print('[SPC][B051][AUDIT_ERROR] '..tostring(why)) end
   end end
-  data.busy=false
+  data.busy=false;batch=nil
  end
  function data.Receive(pid,p)
-  if SPCSampleLifecycle.Receive(P,data,'copy',pid,p,false) then data.Audit() end
+  if SPCSampleLifecycle.Receive(P,data,'copy',pid,p,false) then data.Audit({player=pid}) end
  end
  function data.Describe(pid,c)
   local lines={'B051.67自动复制 | city='..c:GetID()..' | 人口='..c:GetPopulation()}
@@ -146,5 +159,5 @@ function SPCCopyYields.Start(P,shared)
  end
  hook(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'copy');data.receiveErrors={};cleanupDormant();data.Audit() end)
  hook(Events,'CityTransfered',cleanupDormant)
- for _,n in ipairs({'PlayerTurnActivated','CityPopulationChanged','GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','CityTransfered','DistrictRemovedFromMap'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityPopulationChanged','GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','CityTransfered','DistrictRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
 end

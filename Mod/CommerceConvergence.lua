@@ -1,10 +1,15 @@
+include('RuntimeWork')
 -- D0024: independently planned, absolute city-layer integer grants.
 SPCCommerceConvergence={}
 function SPCCommerceConvergence.Start(P,shared)
  local d={busy=false,ready=false,last={},errors={},mode={},testCity={},baseline={},writes=0};shared.CommerceConvergence=d
+ local batch
  local ys={'SCIENCE','CULTURE','PRODUCTION'};local map={RESEARCH='SCIENCE',CULTURE='CULTURE',INDUSTRY='PRODUCTION'}
- local function yield(c,y) local n=c:GetYield(P.Info('Yields','YIELD_'..y).Index);assert(type(n)=='number' and n==n and math.abs(n)<math.huge,'CITY_YIELD_INVALID');return n end
- local function facts(pid,c) assert(c and c:GetOwner()==pid,'CITY_OWNER');return shared.EffectiveFacts.Read(pid,c) end
+ local function yield(c,y)
+  local key=c:GetOwner()..':'..c:GetID()..':'..y
+  if batch and batch.yields[key]~=nil then return batch.yields[key] end
+  local n=c:GetYield(P.Info('Yields','YIELD_'..y).Index);assert(type(n)=='number' and n==n and math.abs(n)<math.huge,'CITY_YIELD_INVALID');if batch then batch.yields[key]=n end;return n end
+ local function facts(pid,c) assert(c and c:GetOwner()==pid,'CITY_OWNER');return batch and batch.facts.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local function eligible(pid,c) local f=facts(pid,c);return P.IsTestPlayer(pid) and f.specialization=='COMMERCE' and f.active==4 end
  function d.Plan(pid,c)
   local out={amount={},raw={},source={},basis={},eligible=eligible(pid,c)}
@@ -16,10 +21,25 @@ function SPCCommerceConvergence.Start(P,shared)
   end
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players[pid]
   assert(bridge and bridge.ready and b and b.routes and b.reason=='READY_BACKGROUND_UI','NETWORK_UNAVAILABLE')
-  assert(bridge.Verified(pid),'NETWORK_PENDING')
+  if bridge.Input then assert(bridge.Input(pid).validity=='VERIFIED','NETWORK_PENDING')
+  else assert(bridge.Verified(pid),'NETWORK_PENDING') end
   -- Retain verified topology while a possible addition is revalidated.
+  local routes=b.routes
+  if batch then
+   if not batch.routes[pid] then
+    local index={}
+    for _,r in ipairs(routes) do
+     local op,dp=Players[r.op],Players[r.dp]
+     local a=op and op:GetCities():FindID(r.oc);local z=dp and dp:GetCities():FindID(r.dc)
+     assert(a and z and a:GetOwner()==r.op and z:GetOwner()==r.dp,'ROUTE_ENDPOINT_CHANGED')
+     if r.op==pid and r.dp==pid then index[r.dc]=index[r.dc] or {};index[r.dc][#index[r.dc]+1]=r end
+    end
+    batch.routes[pid]=index
+   end
+   routes=batch.routes[pid][c:GetID()] or {}
+  end
   local seen={}
-  for _,route in ipairs(b.routes) do
+  for _,route in ipairs(routes) do
    assert(Players[route.op] and Players[route.dp],'ROUTE_OWNER_MISSING')
    local origin=Players[route.op]:GetCities():FindID(route.oc);local destination=Players[route.dp]:GetCities():FindID(route.dc)
    assert(origin and destination and origin:GetOwner()==route.op and destination:GetOwner()==route.dp,'ROUTE_ENDPOINT_CHANGED')
@@ -53,15 +73,15 @@ function SPCCommerceConvergence.Start(P,shared)
   end end
   for _,y in ipairs(ys) do assert(observed(c,y)==(amount[y] or 0),'CARRIER_VERIFY_FAILED') end
  end
- function d.Audit() P.Count('audit_commerce');
-  if d.busy then P.Count('busy_skip');return end;d.busy=true
+ function d.Audit(scope) P.Count('audit_commerce');
+  if d.busy then P.Count('busy_skip');return end;d.busy=true;batch={facts=SPCRuntimeWork.New(P,shared),yields={},routes={}}
   local ok,err=pcall(function()
    if not d.ready then
     for _,p in pairs(Players) do local cs=p:GetCities();if cs then for _,c in cs:Members() do P.Count('city_scan'); apply(c,{}) end end end
     d.ready=true
    end
    local plans={}
-   for pid,p in pairs(Players) do local cs=p:GetCities();if cs then for _,c in cs:Members() do P.Count('city_scan');
+   for pid,p in pairs(Players) do local cs=SPCRuntimeWork.Player(scope,pid) and p:GetCities();if cs then for _,c in cs:Members() do P.Count('city_scan');
     local key=pid..':'..c:GetID();local good,plan=pcall(d.Plan,pid,c)
     plans[#plans+1]={key=key,c=c,plan=good and plan or {amount={}},error=not good and tostring(plan) or nil}
    end end end
@@ -71,7 +91,7 @@ function SPCCommerceConvergence.Start(P,shared)
     d.last[x.key]=good and x.plan or nil
    end
   end)
-  d.busy=false;d.error=not ok and tostring(err) or nil
+  d.busy=false;batch=nil;d.error=not ok and tostring(err) or nil
   if not ok then print('[SPC][B062] '..tostring(err)) end
  end
  function d.Control(pid,c,action)
@@ -99,7 +119,18 @@ function SPCCommerceConvergence.Start(P,shared)
   rows[#rows+1]='网络：'..tostring(b and b.reason)..' | 当前/样本回合='..Game.GetCurrentGameTurn()..'/'..tostring(b and b.turn)
   return table.concat(rows,'\n')
  end
- local function hook(t,name) local e=P.Field(t,name);if e and e.Add then e.Add(d.Audit) end end
- for _,name in ipairs({'LoadScreenClose','PlayerTurnActivated','PlayerTurnDeactivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityTransfered'}) do hook(Events,name) end
+ -- Native city yield can change when another specialization actually writes a carrier.
+ -- Generic pulse reads one scalar; no output change means no Audit or native read.
+ local seenOutput=ExposedMembers.SPC_RuntimeUIRevision or 0
+ local function outputChanged()
+  local now=ExposedMembers.SPC_RuntimeUIRevision or 0
+  if now==seenOutput then return end
+  seenOutput=now;d.Audit();seenOutput=ExposedMembers.SPC_RuntimeUIRevision or 0
+ end
+ for _,n in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete'}) do
+  local e=P.Field(Events,n);if e and e.Add then e.Add(outputChanged) end
+ end
+ local function hook(t,name) local e=P.Field(t,name);if e and e.Add then SPCRuntimeWork.Hook(P,t,name,d.Audit) end end
+ for _,name in ipairs({'LoadScreenClose','PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityTransfered','BuildingAddedToMap','BuildingRemovedFromMap','CityProductionCompleted','CityTileOwnershipChanged','GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'}) do hook(Events,name) end
  for _,name in ipairs({'CityBuilt','OnBuildingConstructed','OnDistrictConstructed'}) do hook(GameEvents,name) end
 end

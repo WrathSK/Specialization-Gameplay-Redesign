@@ -79,6 +79,7 @@ local function initialize()
  Controls.CloseButton:RegisterCallback(Mouse.eLClick,function() token=nil;Controls.Window:SetHide(true) end)
  local timer=0
  ContextPtr:SetUpdate(function(dt)
+  if Controls.Window:IsHidden() and not token then return end
   timer=timer+dt;if timer<0.2 then return end
   local step=timer;timer=0;refresh()
   if not token and not precisionVisible and ExposedMembers.SPC_UnitPanelStatus then Controls.Report:SetText(tostring(ExposedMembers.SPC_UnitPanelStatus):gsub("\n","[NEWLINE]")) end

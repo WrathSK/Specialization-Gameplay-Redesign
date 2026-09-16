@@ -1,6 +1,12 @@
+include('RuntimeWork')
 -- B035: working-specialist count -> native building base GPP. No ChangePointsTotal.
 SPCLv2GPP={}
 function SPCLv2GPP.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local function districtsFor(pid,c)
+  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
+ end
  local data={ready=false,busy=false,changes=0,refreshes=0,errors={}};shared.Lv2GPP=data
  local kinds={"RESEARCH","CULTURE","INDUSTRY","COMMERCE"}
  local districts={RESEARCH="DISTRICT_CAMPUS",CULTURE="DISTRICT_THEATER",INDUSTRY="DISTRICT_INDUSTRIAL_ZONE",COMMERCE="DISTRICT_COMMERCIAL_HUB"}
@@ -27,10 +33,10 @@ function SPCLv2GPP.Start(P,shared)
  local function inspect(pid,city)
   assert(city:GetOwner()==pid,"CITY_OWNER_CHANGED")
   if not P.IsTestPlayer(pid) then return {workers=0,enabled=false,reason="OUTSIDE_TEST_PLAYER"} end
-  local f=shared.EffectiveFacts.Read(pid,city);local districtType=districts[f.specialization]
+  local f=readFacts(pid,city);local districtType=districts[f.specialization]
   if not districtType then return {workers=0,enabled=false,reason="NO_SUPPORTED_SPECIALIZATION"} end
   assert(f.first,"SPECIALTY_ANCHOR_MISSING")
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in districtsFor(pid,city) do
    local c=d:GetCity()
    if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
     local row=P.Info("Districts",d:GetType())
@@ -67,10 +73,10 @@ function SPCLv2GPP.Start(P,shared)
   end end end
   if not ok then error(f) end
  end
- function data.Audit()
+ function data.Audit(scope)
   if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;data.refreshes=data.refreshes+1
-  for pid,player in pairs(Players) do
+  data.busy=true;batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local good,err=pcall(function()
     local cities=player:GetCities()
     if cities then for _,city in cities:Members() do P.Count('city_scan');
@@ -80,8 +86,8 @@ function SPCLv2GPP.Start(P,shared)
     end end
    end)
    if not good then print("[SPC][B035][SCAN_ERROR] "..tostring(pid).." "..tostring(err)) end
-  end
-  data.busy=false
+  end end
+  data.busy=false;batch=nil
  end
  function data.Describe(pid,city)
   local ok,result=pcall(function()
@@ -111,6 +117,6 @@ function SPCLv2GPP.Start(P,shared)
  end
  local function bind(events,event,fn) local e=P.Field(events,event);if e and e.Add then e.Add(fn) end end
  bind(Events,"LoadScreenClose",function() data.ready=true;data.Audit() end)
- for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","PlayerTurnActivated","PlayerTurnDeactivated","CityTransfered"}) do bind(Events,event,data.Audit) end
+ for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","PlayerTurnActivated","CityTransfered"}) do SPCRuntimeWork.Hook(P,Events,event,data.Audit) end
  for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt"}) do bind(GameEvents,event,data.Audit) end
 end

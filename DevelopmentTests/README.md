@@ -19,17 +19,17 @@ Other retained Python scripts are historical, version-specific regression eviden
 
 Results mean LOCAL_SIMULATION_PASS (local simulation), never USER_GAME_TEST_PASS. No game launch or GUI automation. Use no-bytecode mode. Deployment tests operate only in temporary directories and never touch the game runtime.
 
-## Current Architecture v2 Batch B (B071.98, develop only)
+## Historical Architecture v2 Batch B (B071.98, develop only)
 
 `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_batch_b.py`
 
 Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory manifest-stamp adaptation, runs actual Discount/Bridge/Counters, and compares 168 full output cases against both Git baselines (79281ff, d1ac666). Keep that history available; no network/game access or deployment. Covers cold/warm derives, unknown/withdrawal, reentry, mutation and player/epoch isolation. Standalone A test retains its historical modinfo97 assertion; use this B entry for current develop.
 
-## Current B072.99 instrumentation (develop, no deployment)
+## Historical B072.99 instrumentation (develop, no deployment)
 
 Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTests/test_runtime_audit_regression.py` with the same no-bytecode/Lupa environment. File tests use TemporaryDirectory only. Regression wraps B/A/B069 version assertions for99 without changing historical tests. Covers1M increments,10k turns,8×4MiB ring, capability/failure gates, duplicate turns and real Network output/counter ON/OFF equivalence. Does not verify Civ VI exposes standard Lua io/os; native gate remains required before a long-play logging claim.
 
-## Architecture v2 C2 — B075.102 (current develop)
+## Architecture v2 C2 — B075.102 (historical entry)
 
 `test_arch_v2_c2.py`: actual Copy/Industry UI+Gameplay transport, pending10k, duplicate/stale/reference/load, bounded timeout/throwing transport, temporary hold/confirmed retirement; 63 B074 carrier-map comparisons including Industry Lv3; Copy precision unchanged. Includes D1/C1/A/B/B069 regression with in-memory build stamp adjustment only. Lupa lua55; no DB/game/deployment. Example local dependency: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14 DevelopmentTests/test_arch_v2_c2.py`.
 
@@ -42,3 +42,7 @@ Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTes
 `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_c1.py`
 
 Requires Lupa lua55. Actual Discount UI/Gameplay mocked transport/native permissions,200k pending notifications,bounded retry/epoch/withdrawal and12 normal B071 comparisons. Runs A/B/B069 and runtime-audit equivalence via in-memory stamp-only adaptation to100; preserves historical tests. No DB/game/deployment. The local installed Lupa2.8 currently resides outside the repository; use an interpreter compatible with that installation. C1 does not optimize generic Audit/C² scans.
+
+## Current Architecture v2 D2 — B076.103
+
+Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with Lupa lua55 (local validated environment: `PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14`). Actual current Lua, 1728 B075 carrier maps, nonzero Commerce source changes, Great Work scenarios,10k idle/UI stress,1/2/4/8 scaling,30k published-view queries. Includes C2/C1/D1/A/B/B069; in-memory historical build/scheduling adaptations are explicit, frozen test files unchanged. Git baseline5dc6221 and older regression commits must remain available locally. No DB/game/network/deployment needed. LOCAL_SIMULATION_PASS only. See Architecture/v2/Batch_D2_Runtime_Propagation.md.

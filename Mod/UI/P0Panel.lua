@@ -84,7 +84,8 @@ end
 -- B060 read/control requests are idempotent. Only an outstanding click may retry;
 -- event pulses do not collect works or adjacency and never create a scan loop.
 local function gwaPulse()
-  local f=gwaFlight;if not f or f.busy then P.Count('busy_skip');return end
+  local f=gwaFlight;if not f then return end
+  if f.busy then P.Count('busy_skip');return end
   if displayResponse() then gwaFlight=nil;ContextPtr:ClearUpdate();return end
   f.pulses=f.pulses+1
   if f.pulses<3 then return end

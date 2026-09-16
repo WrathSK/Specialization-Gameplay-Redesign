@@ -1,18 +1,21 @@
+include('RuntimeWork')
 include('SampleLifecycle')
 -- B036 IND-001: native per-specialist Food + base Production adjacency.
 -- No actual-adjacency fallback, rounding or city-wide multiplication. Crew access is independently audited.
 SPCIndustrySupport={}
 function SPCIndustrySupport.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local data={ready=false,busy=false,changes=0,errors={}};shared.IndustrySupport=data
  SPCSampleLifecycle.Reset(data,'industry')
  local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end
- local function inspect(pid,city)
+ local function inspect(pid,city,externalBatch)
   if city:GetOwner()~=pid or not P.IsTestPlayer(pid) then return nil end
-  local f=shared.EffectiveFacts.Read(pid,city)
+  local f=externalBatch and externalBatch.Facts(pid,city) or readFacts(pid,city)
   assert(type(f.specialization)=='string','INDUSTRY_FACT_INVALID')
   if f.specialization~='INDUSTRY' then return nil end
   assert(f.potential>=1 and f.first,'INDUSTRY_FACT_INVALID')
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in (externalBatch or batch or SPCRuntimeWork.New(P,shared)).Districts(pid,city) do
    local c=d:GetCity()
    if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
     local row=P.Info('Districts',d:GetType())
@@ -45,9 +48,9 @@ function SPCIndustrySupport.Start(P,shared)
   if removed and n==nil then P.Count('industry_withdraw') end
   return total,food
  end
- function data.Audit()
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,player in pairs(Players) do
+ function data.Audit(scope)
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local scanOK,scanError=pcall(function()
     local cities=player:GetCities();if not cities then return end
     for _,city in cities:Members() do P.Count('city_scan');
@@ -59,14 +62,15 @@ function SPCIndustrySupport.Start(P,shared)
     end
    end)
    if not scanOK then print('[SPC][B036][SCAN_ERROR] '..tostring(scanError)) end
-  end
-  data.busy=false
-  if shared.Lv3Support then shared.Lv3Support.Audit() end
-  if shared.CrewProjects then shared.CrewProjects.Audit() end
+  end end
+  data.busy=false;batch=nil
  end
  data.ReadBase=inspect
  function data.Receive(pid,params)
-  if SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true) then data.Audit() end
+  if SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true) then
+   data.Audit({player=pid})
+   if shared.Lv3Support then shared.Lv3Support.Audit({player=pid}) end
+  end
  end
  function data.Describe(pid,city)
   local bg=ExposedMembers.SPC_IndustryBackground
@@ -83,6 +87,6 @@ function SPCIndustrySupport.Start(P,shared)
  end
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','PlayerTurnDeactivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','CityWorkerChanged'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
 end

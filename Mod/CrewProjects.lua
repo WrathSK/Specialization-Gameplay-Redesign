@@ -1,13 +1,19 @@
+include('RuntimeWork')
 -- B044 derived access only. The engine completes projects and grants units; no Lua grant replay.
 SPCCrewProjects={}
 function SPCCrewProjects.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local function districtsFor(pid,c)
+  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
+ end
  local data={ready=false,busy=false,errors={}};shared.CrewProjects=data
  local function eligible(pid,c)
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return false end
-  local f=shared.EffectiveFacts.Read(pid,c)
+  local f=readFacts(pid,c)
   if f.specialization~='INDUSTRY' then return false end
   assert(f.potential>=1 and f.first,'INDUSTRY_FACT_INVALID')
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in districtsFor(pid,c) do
    local dc=d:GetCity();local row=P.Info('Districts',d:GetType())
    if dc and dc:GetOwner()==pid and dc:GetID()==c:GetID() and d:GetID()==f.first.districtID then
     return row and row.DistrictType=='DISTRICT_INDUSTRIAL_ZONE' and f.first.type==row.DistrictType and d:IsComplete()==true
@@ -15,11 +21,11 @@ function SPCCrewProjects.Start(P,shared)
   end
   return false
  end
- function data.Audit()
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
+ function data.Audit(scope)
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   local row=P.Info('Buildings','BUILDING_SPC_CREW_PROJECT_ACCESS')
-  if not row or not row.Index then data.busy=false;print('[SPC][B044] PROJECT_DATABASE_MISSING');return end
-  for pid,player in pairs(Players) do
+  if not row or not row.Index then data.busy=false;batch=nil;print('[SPC][B044] PROJECT_DATABASE_MISSING');return end
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
     for _,c in cities:Members() do P.Count('city_scan');
@@ -38,11 +44,11 @@ function SPCCrewProjects.Start(P,shared)
     end
    end)
    if not ok then print('[SPC][B044] PROJECT_ACCESS_SCAN_ERROR '..tostring(err)) end
-  end
-  data.busy=false
+  end end
+  data.busy=false;batch=nil
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictBuildProgressChanged','DistrictRemovedFromMap','CityProductionCompleted'}) do hook(Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictBuildProgressChanged','DistrictRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
 end

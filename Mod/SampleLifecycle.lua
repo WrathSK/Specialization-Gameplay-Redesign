@@ -81,6 +81,8 @@ function L.Client(P,k,action,public)
   end
   return true
  end
+ -- D2 scheduling query only; ACK/retry ownership stays inside this client.
+ function c.NeedsSample() return not pending and tries<3 and (not key or key~=last) end
  function c.Send(pid,data,valid,rows,n)
   local turn=Game.GetCurrentGameTurn();local payload=valid and table.concat(rows,';') or ''
   local signature=generation..':'..turn..':'..tostring(valid)..':'..payload

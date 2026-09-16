@@ -6,18 +6,19 @@ local P=SPCP0
 local active=false
 local dirty=true
 local busy=false
-local seq=0
+local seq=0;local tries=0;local lastTurn;local factsDirty=true
 local hooks={}
-local function mark() dirty=true end
+local function mark() dirty=true;tries=0 end
 local function flush()
- if not active or not dirty or busy then return end
+ if not active or not dirty or busy or tries>=3 then return end
  local g=ExposedMembers.SPC_P0
  if not g or g.Version~=P.VERSION or not g.Lv2GPP or not g.Lv2GPP.ready then return end
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then return end
- busy=true;dirty=false;seq=seq+1
+ busy=true;dirty=false;seq=seq+1;tries=tries+1
  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
-  {OnStart="SPC_P0_Request",Action="LV2_GPP_DIRTY",Token=P.VERSION..":gpp:"..seq})
+  {OnStart="SPC_P0_Request",Action="LV2_GPP_DIRTY",Token=P.VERSION..":gpp:"..seq,FactsChanged=factsDirty})
  if not ok then dirty=true;print("[SPC][B035][GPP_SEND_ERROR] "..tostring(err)) end
+ if ok then factsDirty=false end
  busy=false
 end
 local function bind(name,fn)
@@ -26,8 +27,8 @@ local function bind(name,fn)
 end
 ContextPtr:SetInitHandler(function()
  if active then return end;active=true
- for _,name in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorChanged","GovernorEstablished","GovernorPromoted"}) do bind(name,mark) end
- for _,name in ipairs({"LoadScreenClose","PlayerTurnActivated","PlayerTurnDeactivated"}) do bind(name,function() mark();flush() end) end
+ for _,name in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorChanged","GovernorEstablished","GovernorPromoted"}) do bind(name,function() if name:match("^Governor") then factsDirty=true end;mark() end) end
+ for _,name in ipairs({"LoadScreenClose","PlayerTurnActivated"}) do bind(name,function() local t=Game.GetCurrentGameTurn();if lastTurn~=t then lastTurn=t;mark();flush() end end) end
  for _,name in ipairs({"GameCoreEventPublishComplete","GameCoreEventPlaybackComplete","SystemUpdateUI"}) do bind(name,flush) end
  flush()
 end)

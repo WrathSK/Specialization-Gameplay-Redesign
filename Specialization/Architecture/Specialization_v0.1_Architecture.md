@@ -1,15 +1,20 @@
-# Specialization v0.1 Architecture — A0156
+# Specialization v0.1 Architecture — A0157
 
 Document Owner: Codex
-Architecture Revision: A0156
+Architecture Revision: A0157
 Design Spec Synced Through: D0025
 Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Latest Accepted Design Revision: D0025
 Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Sync Status: SYNCED_WITH_LIMITATIONS
-Implementation Build: develop P0-B-075.102 / modinfo102; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+B076.103：[D2运行消费者调度](v2/Batch_D2_Runtime_Propagation.md)本地完成、未部署；A/B/C1/D1/C2已接受，D2待审阅，E后置。当前验证覆盖实际Lua批次索引、共享Network只读查询、脏标记采样、去执行型fan-out、UI空闲请求；玩法/精度/Design不变。建议Runtime Milestone Candidate并先实机长测，55GB根因UNKNOWN。
+
+### Historical C2 implementation
+
 
 B075.102：[Architecture v2 C2](v2/Batch_C2_Copy_Industry_Lifecycle.md)完成Copy/Industry独立完整批次、single-flight/ACK、reference/epoch校验、temporary hold及确认撤销，本地通过、未部署。主线A→B→C1→D1→C2→D2→E；D1已获接受，C2待审阅，D2/E未做。63组正常载体map与B074一致，D1等回归通过。Design D0025及精度/公式不变，不宣称内存问题修复。
 

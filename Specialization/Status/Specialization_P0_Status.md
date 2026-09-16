@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0196
-Implementation Build: develop P0-B-075.102 / modinfo102; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0156
+Status Revision: S0197
+Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0157
 Design Revision Reviewed: D0025
 Latest Accepted Design Revision: D0025
 Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: AV2_C2_LOCAL_COMPLETE_AWAITING_REVIEW_NO_DEPLOYMENT
+Work State: AV2_D2_LOCAL_COMPLETE_AWAITING_REVIEW_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
+
+Architecture v2：A/B/C1/D1/C2已接受；[D2](../Architecture/v2/Batch_D2_Runtime_Propagation.md)B076.103 LOCAL_SIMULATION_PASS（实际Lua+mock，非实机），等待审阅。9模块1728正常载体对照一致，Copy/Industry10k idle无扫描/发送/写，30k共享查询无Capture，三个正式UI10k tick无重复请求，C2/C1/D1/A/B/B069回归通过。
+
+未部署：main B069.96不变，实际运行包仍是此前临时部署B072.99。Design D0025不变。中断现场已恢复核对，D2及前序回归、部署安全测试重新通过；Runtime Milestone Candidate以本轮commit/push/clean确认作为收尾门槛；不自动tag/promotion。下一步建议用户选A临时部署性能/内存长测，未授权前不切包；E等待用户决定。55GB ROOT CAUSE UNKNOWN；Lua自动日志FILE_API_UNAVAILABLE既有结果不变。当前无新增必须立即执行的实机测试。
+
+测试入口：[D2本地回归](../../DevelopmentTests/test_arch_v2_d2.py)。原C2 generic-pulse测试在新入口明确提供直接事实变更信号，旧文件冻结。用户真实HD事件覆盖及长局性能仍为USER_GAME_TEST_REQUIRED，不能把本地通过当实机PASS。
+
+### Historical C2 completion (accepted; its D2-pending wording is superseded above)
+
 
 Architecture v2：A/B/C1/D1已获接受；[C2 Copy+Industry样本生命周期](../Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md)B075.102 LOCAL_SIMULATION_PASS（实际Lua+mock，非实机），等待审阅。各通道pending 10,000通知只发1次/无写；每逻辑输入最多3发送；坏包/暂不可用不clear；确认reference/资格失效撤销；63正常载体map与B074一致。D1/C1/A/B/B069回归通过，Discount/Network代码及旧测试字节不变。没有部署，main B069.96、当前live B072.99保持。D2为下一建议，等待用户授权；E后置，GreatWork/Commerce/precision等不在本批，不自动启动。55GB根因仍UNKNOWN。
 

@@ -1,6 +1,12 @@
+include('RuntimeWork')
 -- B037: Lv3 specialist support only. Incremental +2 upgrades Lv1 3 to 5, never 3+5.
 SPCLv3Support={}
 function SPCLv3Support.Start(P,shared)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local function districtsFor(pid,c)
+  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
+ end
  local data={ready=false,busy=false,errors={},changes=0};shared.Lv3Support=data
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',COMMERCE='DISTRICT_COMMERCIAL_HUB',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE'}
  local names={};for k in pairs(districts) do names[#names+1]='BUILDING_SPC_DEV_LV3_'..k end
@@ -8,11 +14,11 @@ function SPCLv3Support.Start(P,shared)
  local function desired(pid,c)
   local wanted={}
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
-  local f=shared.EffectiveFacts.Read(pid,c)
+  local f=readFacts(pid,c)
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
   local found=false
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in districtsFor(pid,c) do
    local city=d:GetCity();local row=P.Info('Districts',d:GetType())
    if f.specialization=='INDUSTRY' then assert(city,'INDUSTRY_SAMPLE_UNAVAILABLE') end
    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
@@ -23,7 +29,7 @@ function SPCLv3Support.Start(P,shared)
   assert(found,'LV3_DISTRICT_MISSING')
   wanted['BUILDING_SPC_DEV_LV3_'..f.specialization]=true
   if f.specialization=='INDUSTRY' then
-   local readable,base=pcall(shared.IndustrySupport.ReadBase,pid,c)
+   local readable,base=pcall(shared.IndustrySupport.ReadBase,pid,c,batch)
    assert(readable,'INDUSTRY_SAMPLE_UNAVAILABLE')
    if base==nil then return {} end
    assert(type(base)=='number' and base>=0 and base<=255 and base%1==0,'LV3_BASE_UNKNOWN')
@@ -42,14 +48,14 @@ function SPCLv3Support.Start(P,shared)
   end
   return f,p,g
  end
- function data.Audit() P.Count('audit_lv3');
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,player in pairs(Players) do
+ function data.Audit(scope) P.Count('audit_lv3');
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
     for _,c in cities:Members() do P.Count('city_scan');
      local good,wanted=pcall(desired,pid,c);local reason=not good and tostring(wanted) or nil
-     local hold=reason and (reason:find('BASE_BACKGROUND_SAMPLE_PENDING',1,true) or reason:find('INDUSTRY_FACT_INVALID',1,true) or reason:find('INDUSTRY_SAMPLE_UNAVAILABLE',1,true))
+     local hold=reason and (reason:find('BASE_BACKGROUND_SAMPLE_PENDING',1,true) or reason:find('INDUSTRY_FACT_INVALID',1,true) or reason:find('INDUSTRY_SAMPLE_UNAVAILABLE',1,true) or reason:find('SAMPLE_CITY_UNAVAILABLE',1,true))
      if not good then wanted={} end
      local applied,why=pcall(function()
       if hold then return end
@@ -70,8 +76,8 @@ function SPCLv3Support.Start(P,shared)
     end
    end)
    if not ok then print('[SPC][B037][SCAN_ERROR] '..tostring(err)) end
-  end
-  data.busy=false
+  end end
+  data.busy=false;batch=nil
  end
  function data.Describe(pid,c)
   local ok,f,p,g=pcall(read,c)
@@ -80,6 +86,6 @@ function SPCLv3Support.Start(P,shared)
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','PlayerTurnDeactivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','DistrictRemovedFromMap','DistrictBuildProgressChanged'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
 end

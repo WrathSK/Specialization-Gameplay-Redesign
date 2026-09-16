@@ -47,7 +47,6 @@ function SPCDialogue.Start(P,shared)
    output[id]=p
   end
   d.busy=false
-  if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
  end
  function d.Receive(pid,a)
   if not P.IsTestPlayer(pid) then return end
@@ -103,8 +102,10 @@ function SPCDialogue.Start(P,shared)
   rows[#rows+1]='配置≠实测；请比较下方作品实际产出，theming按原生行为。'
   return table.concat(rows,'\n')
  end
- local function auditAll() for pid in pairs(Players) do d.Audit(pid) end end
- for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','PlayerTurnActivated','PlayerTurnDeactivated'}) do
+ local function auditAll() for pid in pairs(Players) do
+  d.Audit(pid);if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
+ end end
+ for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'}) do
   local e=P.Field(Events,name);if e and e.Add then e.Add(auditAll) end
  end
  local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() d.ready=false;d.samples={};d.last={};d.Init();auditAll() end) end
