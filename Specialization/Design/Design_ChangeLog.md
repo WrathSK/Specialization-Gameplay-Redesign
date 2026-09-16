@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0026
+Latest Accepted Design Revision: D0027
 Document State: ACCEPTED
+
+## Accepted D0027 — 2026-09-15
+
+Acceptance: ACCEPTED / Industry DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户Industry冻结授权及七项边界明确回复；指定暂沿用规则保持review markers，1360为第五档正确参考。
+Accepted Spec SHA256: 8dc189f80c33c4edbf946869b7835c6473ff6a0be67ee6a01be620fa477c2746
+Canonical Industry Content SHA256: 762648eb6e21edffb179b700451a15bbf25e6e7712d83ab1c616196c509387d0
+Previous Accepted Revision: D0026
+Frozen D0026: [原文](Revisions/Specialization_Design_Spec_D0026.md)
+Content: [Industry](Content/Industry_D0027.json) / [review](Industry_D0027_Review.md)
+
+Industry机构累计、Lv3标准化/工程动员、Lv4巨构工程学/实践/传统；旧低级网络折扣和IV直接产出、旧施工队范围/解锁被替代。两种效率与曲线/cap/传统门槛BALANCE_REQUIRED，未擅定数值；命名候选不升级。Research D0026原content保持不变，Architecture尚未sync，源码/运行包未改。
 
 ## Accepted D0026 — 2026-09-15
 

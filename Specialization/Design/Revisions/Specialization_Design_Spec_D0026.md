@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0027
+Design Revision: D0026
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-09-15
-Acceptance Evidence: 用户授权Industry冻结并逐项确认七组边界；数值待平衡、命名候选及指定暂沿用项保持独立状态。
-Previous Accepted Revision: [D0026冻结原文](Revisions/Specialization_Design_Spec_D0026.md)
-Latest Accepted Design Revision: D0027
+Acceptance Evidence: 用户授权冻结Research，并明确区域资格/同yield相加/逐建筑计值/传统速度floor/全等级3F3P。
+Previous Accepted Revision: [D0025冻结原文](Revisions/Specialization_Design_Spec_D0025.md)
+Latest Accepted Design Revision: D0026
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** D0027仅冻结Industry新机构/能力合同及关联标准化/施工队规则，见IND节；数值BALANCE_REQUIRED、候选命名和暂沿用复审标记不升级为最终定值。以下为历史修订背景：D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001** D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -153,22 +153,58 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 ## 7. Industry / Industrial Zone — IND
 
-**D0027: DESIGN_FROZEN — implementation / balance validation pending.**
+| Rule ID | ACTIVE等级 | 当前设计 |
+|---|---|---|
+| IND-001 | Lv1 | 每名IZ工作专家+3F，并增加相当于本城IZ Base Production adjacency的Production；从Lv1固有可用Construction Crew |
+| IND-002 | Lv2 | 获得SHARED-001住房与Engineer基础GPP |
+| IND-003 | Lv3 | 专家Food提升至+5F，保留100% Base Production adjacency的Production，并增加其2倍的Gold；不改为通用固定5P |
+| IND-004 | Lv4 | 本城IZ Production的Actual复制基数50%经工业网络输出；同一接收城市取当前有效来源实际可提供的最高Industry IV Production output，不叠加；见IND-NET-003 |
 
-唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0027.json)。[冻结审阅](Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
+### Industrial Network / Standardization — IND-NET
 
-| Rule ID | 当前权威content条目 |
-|---|---|
-| IND-001 | IND_BASE_SUPPORT / IND_INST_1匠作坊；无named ability |
-| IND-002 | IND_L2_DIVISION / IND_INST_2百工会馆 |
-| IND-003 | IND_L3_STANDARD、IND_L3_MOBILIZE / IND_INST_3工程局 |
-| IND-004 | IND_L4_MACRO、IND_L4_PRACTICE、IND_L4_TRADITION / IND_INST_4土木工程总局 |
-| IND-NET-001至005 | contracts.template_knowledge / standardization_scope / network，保留目录及有条件Faith授权；旧等级折扣数值、旧IV直接生产力输出被替代 |
-| CREW-001至004 | contracts.teams及parameters；取代旧Lv1全档开放和普通区域/建筑施工目标，其余未推翻合同保留 |
+**IND-NET-001** 接收Industrial Network的城市可获得建筑Gold购买折扣：Industry I/II/III/IV为10%/20%/30%/40%。目标建筑模板须在当前有效工业来源模板并集中；模板提供者与最高折扣提供者可以不是同一城市。优先按相同District和Building Tier匹配；若需固定同Tier建筑组，必须明确范围，不暗中扩大适用对象。
 
-IND-REVIEW-01/02/03为用户明确“暂时沿用并mark”的决定，不是未回答问题，也不升级为永不复审的最终规则。名称、五档名称、效率数值/曲线/cap/传统门槛按各自状态保留，不为冻结擅填。
+**IND-NET-002** 优先仅影响Gold购买；若技术上排除Faith折扣较难实现，用户已授权同一合格建筑的既有合法Faith购买也可享受折扣。采用时须报告实际货币行为，不再为这一兼容选择重复请求授权；不因此扩大到其它未启用/仅可Faith购买的建筑。不得以退款、放宽解锁或改变购买资格等方式默默改变实际玩法语义。标准化账本保持，但断开/消失的源不再提供当前资格。
 
-Research D0026及Culture/Commerce本身规则不改；共同Network topology保留。旧Industry条文在D0026冻结原文，不能与新能力叠加。其它段落若仍描述旧Industry向外直接输出，以本节新content取代该Industry含义；不据此自行重做Commerce收益。当前Mod尚未实现此新设计。
+**IND-NET-003 — Industry多来源 / ACCEPTED** 对同一接收城市，以下三项分别按当前有效工业网络来源计算，不以历史连接代替当前资格：
+
+1. **Industry IV Production Output**：`Received Industry IV Production = max(valid source Industry IV Production outputs)`。比较各有效Lv4来源实际能提供的产出，不求和、不按来源数量增加倍率，不套Research/Culture的`L=max(...)`后生成虚构来源。保留建设更强工业核心的价值，避免多个高级工业城令输出线性爆炸。
+2. **Standardization Template Set**：`Available Template Set = union(all templates from valid connected Industry sources)`。当前网络共享有效工业来源掌握模板的并集；不同中心可贡献不同合法模板。来源断网、摧毁、征服或失去source资格即停止贡献旧网络当前集合；不是曾接通过就永久全国解锁。来源城市自身已掌握的永久模板记录仍保留，征服后依PROG-004归新Owner并按真实网络重新判断资格。
+3. **Standardization Discount**：`Discount = max(valid Industry source discounts)`。目标建筑存在于当前模板并集时，可使用当前最高有效等级的Gold折扣，即10%/20%/30%/40%；模板资格与折扣不要求同源，不逐模板限定独立折扣提供者。全国共享成熟模板，最先进的工业专家体系指导最高水平的标准化生产。货币适用遵循IND-NET-002的条件授权，不改变其它购买资格。
+
+多个工业中心仍有模板并集价值；来源失效时三项按剩余有效来源重新计算，不保留旧来源贡献。
+
+**IND-NET-004 — Template Acquisition / ACCEPTED D0015** Industry专业城以任何方式合法获得或完成建筑时，记录所有合格建筑的标准化模板，不以当前是否开放折扣作为记录条件。这里承接HD明确分类的真实建筑目录（包括特色、宗教、当前不可金币购买和当前未开放折扣的建筑）；不把奇观、内部/HD虚拟建筑或缺失/不明确HD分类自动视为合格。首次成为Industry专业时，对本城已经存在的合格建筑做一次初始化补录；此后使用事件式增量记录，不持续进行全城扫描。具体BuildingType及其分类证据永久保留，记录与当前网络贡献仍遵循IND-NET-002/003和PROG-004。未开放建筑的模板不丢弃，未来经用户批准可开启其标准化折扣资格，无需因当前禁用而重新获得建筑。
+
+**IND-NET-005 — v0.1 Discount Activation / ACCEPTED D0015** 模板记录范围与当前折扣启用范围独立维护。v0.1开启学院、剧院广场、工业区、商业中心、军营、港口、圣地、航空港、水渠、堤坝、社区、娱乐中心、水上乐园、保护区、外交区的建筑，包含特色建筑；只有目标建筑在当前游戏状态下本来就可合法使用Gold购买时，才可在满足有效工业网络与模板条件后使用Gold折扣。仍按相同区域+HD Tier匹配，除下述明确市中心分组。记录模板或开启折扣都不会新增Gold购买资格、解锁特色/宗教建筑、改变科技/市政/互斥条件；Faith价格适用IND-NET-002的条件授权。当前不能合法Gold购买的建筑仍可记录，当前不获得金币折扣；不以Faith字段推导放宽购买权限。
+
+市中心不直接按整个HD Tier0共享。v0.1只开放以下三个模板匹配组：
+
+| 组 | 具体建筑 | 共享规则 |
+|---|---|---|
+| 市中心基础组 | 纪念碑 BUILDING_MONUMENT、粮仓 BUILDING_GRANARY、磨坊 BUILDING_WATER_MILL、测量仪 BUILDING_NILOMETER_HD、法表 BUILDING_HD_TABLES_OF_LAW | 五者视为同一标准化Tier，相互匹配 |
+| 会展中心独立组 | BUILDING_EXHIBITION | 仅自身匹配 |
+| 警署独立组 | BUILDING_HD_POLICE_STATION | 仅自身匹配 |
+
+这些是本项目标准化分组，不改写HD原始Tier表。市政广场与上述七栋以外的市中心建筑，当前仅记录而不开放标准化折扣；明确列名的市中心组不自动扩充未列出的特色替代建筑。以后可以由用户批准增加开放范围或组成员，不删除既有模板、不自动将未来范围提前启用。
+
+### Construction Crew — CREW
+
+**CREW-001** Industry Lv1起的默认固有能力。固定成本城市项目产生固定Production施工队；以下五档是项目/施工队规格，**不是专业Lv1–Lv5**。
+
+| 项目Production成本 | Crew可转移Production |
+|---:|---:|
+| 280 | 250 |
+| 460 | 420 |
+| 820 | 750 |
+| 1100 | 1000 |
+| 1500 | 1360 |
+
+**CREW-002** 效率约为110投入换100可转移生产力，现档位为适应奇观成本而整数调整；不增加1800/2000档，避免单个最高级施工队直接完成后期大型奇观。
+
+**CREW-003** 施工队移动到目标己方城市并消耗，向当前合法在建District、Building或Wonder注入该队固定Production。只应用目标所需部分，多余施工力直接浪费，不流入下一队列，不递归overflow。750施工力、剩余300的目标：完成目标，450消失，下一项获得0。
+
+**CREW-004** 空队列或非法目标拒绝动作，不消耗单位。五档项目从Industry Lv1全部开放，不新增科技/市政/专业等级档位门槛。项目Production成本和Crew可转移Production均按游戏速度缩放，设计表数值作为基准；项目成本保留原生引擎计算，不修改基础Cost。Crew可转移Production = floor(基准Production × 游戏速度CostMultiplier / 100)，即缩放后向下取整。施工按钮、预览及确认提示显示同一整数金额。明确接受每支队伍相较精确比例舍弃不足1点Production；不得四舍五入或向上取整。五档标准速度数值、1点劳动力、合法目标与超额浪费规则不变。
 
 ## 8. Commerce / Commercial Hub — COM
 
@@ -211,7 +247,7 @@ Research D0026及Culture/Commerce本身规则不改；共同Network topology保�
 
 **NET-RC-003** 多个当前有效接入的同类型来源，`L = max(all valid source ACTIVE specialization levels)`；使用ACTIVE而非Potential。来源数量本身不增加N。统一选L后只计算一次强度，禁止分别按来源求强度后相加，禁止`Σ(k × L_i × sqrt(N))`或逐中心求和。
 
-**NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military共享pool另按MIL-004的PROVISIONAL模型；Industry按D0027标准模板并集及有效来源效率最大值；Community国内网络只分发人口。
+**NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military共享pool另按MIL-004的PROVISIONAL模型；Industry按实际source output取最大及模板并集；Community国内网络只分发人口。
 
 **NET-RC-005** Research/Culture内部保持完整浮点：RawStrength=k_R或k_C×L×sqrt(N)，所有合法Network modifiers与未来Entertainment效率修正均在浮点上执行。仅在最终整数Boost接口边界量化一次：`AppliedBoost = floor(FinalRawBoost + 0.5)`（Boost非负）；显式使用此式，不使用默认round/banker's rounding，不提前量化、不重复量化。1.49→1、1.50→2、3.50→4；L4/N2原值约5.657→6个百分点。不同Raw值映射同整数时仅保持该AppliedBoost，不重复叠加；网络失效回零。正式权重1/2/3/4、独立k_R/k_C=1、L为有效来源最高ACTIVE、N为recipient UID去重不变。此规则取代D0017“浮点原样交引擎并接受截断不修复”。正式集成前以Raw1.5→接口2、Raw3.8→接口4最小原生测试确认；不再尝试让引擎保留fractional percentage points。不改变原生基础Boost规则，不假定固定40%；已触发Boost不补发、额外进度不得溢入下一科技/市政；最终封顶仍待确认。Entertainment具体效率参数未由本决定设定。
 
