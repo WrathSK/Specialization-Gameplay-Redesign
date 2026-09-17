@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0028
+Latest Accepted Design Revision: D0029
 Document State: ACCEPTED
+
+## Accepted D0029 — 2026-09-17
+
+Acceptance: ACCEPTED / Culture DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户明确三组Culture边界及CUL-REVIEW-01至04状态；本轮不实现。
+Accepted Spec SHA256: 89c3f72484555610512a932d7006cb6cf53946b5bf0a4d344aa983150941cc94
+Canonical Culture Content SHA256: 00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b
+Previous Accepted Revision: D0028
+Frozen D0028: [原文](Revisions/Specialization_Design_Spec_D0028.md)
+Content: [Culture D0029](Content/Culture_D0029.json) / [Review](Culture_D0029_Review.md)
+
+见闻original-owner/source-city scope正式确认且收回城市可恢复；Dialogue city scope保留倍率/启动时代额度；来源独立3/3集合先成立再并集；Major资格与战争不中断正式明确，City-State独立Future Candidate。旧D0028条文冻结，Shared/Research/Industry不改；没有数值、能力、Mission或实现变更。
 
 ## Accepted D0028 — 2026-09-16
 

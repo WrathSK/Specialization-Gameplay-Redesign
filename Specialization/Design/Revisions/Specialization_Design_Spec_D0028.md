@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0029
+Design Revision: D0028
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-09-17
-Acceptance Evidence: 用户明确Culture见闻原Owner归属、Dialogue城市归属及时代额度、多源完整考察文明并集、外国主要文明资格和战争不中断。
-Previous Accepted Revision: [D0028冻结原文](Revisions/Specialization_Design_Spec_D0028.md)
-Latest Accepted Design Revision: D0029
+Acceptance Date: 2026-09-16
+Acceptance Evidence: 用户明确Culture边界、Shared被掠夺规则、Research改用区域完善度及考察团成功后保留；Culture Network多源合并明确后置。
+Previous Accepted Revision: [D0027冻结原文](Revisions/Specialization_Design_Spec_D0027.md)
+Latest Accepted Design Revision: D0028
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** D0029仅补充Culture永久记录归属、多源Network并集与外交资格，见CUL节；Shared、Research、Industry不变。以下为历史修订背景，不覆盖当前CUL：D0028冻结Culture本体、Shared区域完善度/产出份额/建筑当前资格，并按用户明确要求将Research基础设施输入改为区域完善度；Culture旧Eureka网络退出，新网络多源合并后置，Research网络标记需要重设计但本轮不修改。以下为历史背景：D0027仅冻结Industry新机构/能力合同及关联标准化/施工队规则，见IND节；数值BALANCE_REQUIRED、候选命名和暂沿用复审标记不升级为最终定值。以下为历史修订背景：D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001** D0028冻结Culture本体、Shared区域完善度/产出份额/建筑当前资格，并按用户明确要求将Research基础设施输入改为区域完善度；Culture旧Eureka网络退出，新网络多源合并后置，Research网络标记需要重设计但本轮不修改。以下为历史背景：D0027仅冻结Industry新机构/能力合同及关联标准化/施工队规则，见IND节；数值BALANCE_REQUIRED、候选命名和暂沿用复审标记不升级为最终定值。以下为历史修订背景：D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -138,9 +138,9 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 ## 6. Culture / Theater Square — CUL
 
-**D0029: DESIGN_FROZEN；本轮三组边界已解决，implementation / balance validation pending.**
+**D0028: DESIGN_FROZEN（Culture本体）；Network多源合并后置，implementation / balance validation pending.**
 
-唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0029](Content/Culture_D0029.json)。[Amendment Review](Culture_D0029_Review.md)。各能力引用Shared_D0028，不复制第二套区域完善度/产出份额。
+唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0028](Content/Culture_D0028.json)。[Freeze Review](Culture_D0028_Review.md)。各能力引用Shared_D0028，不复制第二套区域完善度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|
@@ -148,12 +148,12 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 | CUL-002 | CUL_L2_PATRONAGE / 赞助人行会 |
 | CUL-003 | CUL_L3_DIALOGUE、CUL_L3_AESTHETIC / 人文联合会 |
 | CUL-004 | CUL_L4_MEANING、CUL_L4_INSPIRE、CUL_L4_EXPEDITION / 博雅总院 |
-| CUL-005 | contracts.network_effect；新见闻传播取代旧Eureka；不继承NET-RC公式，多源按各来源独立完整考察文明集合并集 |
+| CUL-005 | contracts.network_effect；新见闻传播取代旧Eureka；不继承NET-RC公式，多源合并明确未决 |
 | GW-001 | contracts.dialogue；同名项目替换旧动态时代多样性百分比 |
 | GW-002 | CUL_L4_MEANING；区域完善度产出份额替换旧基础相邻 |
 | GW-002A / GW-003 | contracts.work_pool与dialogue.precision/target/fallback；旧逐件固定yield截断许可不自动迁入新能力 |
 
-中文机构、能力、Mission名称CONFIRMED。时期次数、记录归属、源城绑定、目标合法性、战争及成功后保留单位详见content。CUL-REVIEW-01至04已正式确认：见闻按原Owner/来源城保存，Dialogue倍率及启动时代额度跟城，多源完整考察文明集合并集，外国已遇见存活Major允许且战争本身不中断。城邦排除并列Future Candidate，自由城市排除；不新增外交许可或商路要求。未知Mod作品默认排除。原生收益倍率不放大意义延展追加值。所有BALANCE_REQUIRED与TECHNICAL flags保留，不把冻结当实现。
+中文机构、能力、Mission名称CONFIRMED。时期次数、记录归属、源城绑定、目标合法性、战争及成功后保留单位详见content。CUL-REVIEW-01/02/03为用户指定暂定复审，04为后置Network合并，不默选max/sum/union。未知Mod作品默认排除。原生收益倍率不放大意义延展追加值。所有BALANCE_REQUIRED与TECHNICAL flags保留，不把冻结当实现。
 
 ## 7. Industry / Industrial Zone — IND
 
@@ -209,7 +209,7 @@ Research D0026及Culture/Commerce本身规则不改；共同Network topology保�
 
 ### Research当前网络 / Culture旧网络历史 — NET-RC
 
-**D0028适用范围覆盖声明：** 下列NET-RC条款继续用于Research；其中Culture/Eureka、k_C等描述只保留旧合同审计，不再是当前Culture规则。Culture以CUL-005为准，新网络按CUL-005合并完整考察文明集合；不得叠加旧Eureka奖励。Research标记NETWORK_REDESIGN_REQUIRED而未改公式。
+**D0028适用范围覆盖声明：** 下列NET-RC条款继续用于Research；其中Culture/Eureka、k_C等描述只保留旧合同审计，不再是当前Culture规则。Culture以CUL-005为准，新网络多源合并未决；不得叠加旧Eureka奖励。Research标记NETWORK_REDESIGN_REQUIRED而未改公式。
 
 **NET-RC-001** `Network Strength = k × L × sqrt(N)`。Research使用独立可调k_R，Culture使用k_C，初始测试均为1。结果是Research额外Inspiration百分点、Culture额外Eureka百分点。
 
@@ -583,9 +583,9 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 | OPEN-17 | TBD | Canal叠加/归属/Community分支；CAN |
 | OPEN-18 | TBD | Air训练未定参数、Airport Gold/Tourism系数及重复范围；AIR |
 
-### 当前未决与技术适配（D0029）
+### D0028当前未决与技术适配
 
-- CUL-REVIEW-01至04已由D0029解决；多源完整文明集合并集、两种ownership分别明确。City-State inclusion仅Future Candidate，不是当前资格未决。
+- CUL-REVIEW-04：Culture多源Network合并DESIGN_DECISION_REQUIRED，明确后置，不阻塞本体冻结。
 - Research Network：NETWORK_REDESIGN_REQUIRED，现有Research规则保留；Culture已替代旧Eureka。
 - 固定完整生产回合、native-only巨作倍率、0.1基础GPP、城市整体Tourism及非敌对独立Spy-style流程：TECHNICAL_INVESTIGATION_REQUIRED，不能因此自行降级Design。
 - Dialogue cap与见闻Tourism系数BALANCE_REQUIRED；指定初值按content保留。

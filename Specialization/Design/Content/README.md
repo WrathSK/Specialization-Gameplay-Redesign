@@ -9,9 +9,9 @@ Design Authority: User
 
 ## D0028共享入口
 
-[Shared_D0028](Shared_D0028.json)是区域完善度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威；[Culture](Culture_D0028.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0028](Shared_D0028.json)是区域完善度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威；[Culture](Culture_D0029.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
-未来Civilopedia只从Shared生成一份术语说明，Tooltip引用“区域完善度”“一份产出”；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；Network merge为后置待决，不因本体冻结而自动有默认规则。
+未来Civilopedia只从Shared生成一份术语说明，Tooltip引用“区域完善度”“一份产出”；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029已确认Culture完整考察文明集合并集及见闻/Dialogue分离归属；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 
 ## 规范化表与本地化
 
