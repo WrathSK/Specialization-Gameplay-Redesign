@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0029
+Latest Accepted Design Revision: D0030
 Document State: ACCEPTED
+
+## Accepted D0030 — 2026-09-17
+
+Acceptance: ACCEPTED / Research DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户明确学以致用采用区域完善度，K暂定0.5，并要求审查科研/文化/工业其它类似机制。
+Accepted Spec SHA256: 85ed1e4b8cf4a148dd06abbe69f6a358a0db5e966a59820b6ec17168c976c050
+Canonical Research Content SHA256: 646abdbb4dcdc16a5f4a061ba6ac58184f0c663428dee157db7aa9f2c05e9e3e
+Previous Accepted Revision: D0029
+Frozen D0029: [原文](Revisions/Specialization_Design_Spec_D0029.md)
+Content: [Research D0030](Content/Research_D0030.json) / [三专业审查](Research_D0030_Review.md)
+
+仅RES_L3_APPLY从不同类型数X改各领域D，沿用既有领域/yield与Shared份额，K显式0.5；其余能力只审查不修改。Shared、Culture D0029、Industry D0027、源码/运行包不变；历史Research保留，不自行改精度。
 
 ## Accepted D0029 — 2026-09-17
 
