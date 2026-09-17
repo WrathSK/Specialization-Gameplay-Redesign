@@ -3,8 +3,22 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0027
+Latest Accepted Design Revision: D0028
 Document State: ACCEPTED
+
+## Accepted D0028 — 2026-09-16
+
+Acceptance: ACCEPTED / Culture body DESIGN_FROZEN; Network merge explicitly deferred; implementation and balance validation pending
+Acceptance Evidence: 用户逐项回答13组边界，明确Research改区域完善度，并确认考察成功保留单位继续考察。
+Accepted Spec SHA256: 5490ac7ec699fe3ed9adc0f3850b8ab8268a0903c4a5dd850bcb0803de1ba5d2
+Canonical Culture Content SHA256: ed16ada45442037207bd736f90b7ec00b293d29316f02382eab7662e4debabf2
+Canonical Shared Content SHA256: 9ce20c5047d525321d5efc025f0578afac25a63f91b75acddefd631cc1f5d05a
+Canonical Research Content SHA256: 372fdd5f6d6687935f8ddf906b6dd365ac7b1f79c72ebee21ba3e04401f4f2e4
+Previous Accepted Revision: D0027
+Frozen D0027: [原文](Revisions/Specialization_Design_Spec_D0027.md)
+Review: [Culture D0028](Culture_D0028_Review.md)
+
+Culture项目累积/建筑审美/完善度巨作产出与GPP/非敌对考察及国内见闻网络；原Owner记录等暂定标记保留。旧Culture Eureka退出，Research网络待重设计。Shared建筑掠夺默认排除、区域完善度cap10、产出份额独立权威；Research基础设施输入按用户新指令迁入cap10，历史D0026与Industry D0027内容不改。Architecture尚未sync、Mod不变，不将技术接口或多源合并宣称完成。
 
 ## Accepted D0027 — 2026-09-15
 

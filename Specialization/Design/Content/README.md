@@ -3,9 +3,15 @@
 Document Owner: Codex
 Design Authority: User
 
-[Research D0026](Research_D0026.json)是Research Lv1–Lv4的唯一结构化内容正文，保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
+[Research D0028](Research_D0028.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
 [Industry D0027](Industry_D0027.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
+
+## D0028共享入口
+
+[Shared_D0028](Shared_D0028.json)是区域完善度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威；[Culture](Culture_D0028.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+
+未来Civilopedia只从Shared生成一份术语说明，Tooltip引用“区域完善度”“一份产出”；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；Network merge为后置待决，不因本体冻结而自动有默认规则。
 
 ## 规范化表与本地化
 
@@ -21,4 +27,4 @@ Design Authority: User
 
 ## 单一权威与修订
 
-本轮的公式、文案、映射以JSON为唯一编辑位置；[审阅记录](../Research_D0026_Review.md)引用ID，不复制第二套权威公式。Accepted Spec的RES条目已指向content；D0025历史原文冻结不倒改。Industry已加入；其余专业后续沿同schema分别维护，不强制命名能力数量。各专业JSON是自身内容权威，Spec引用，Review只作审阅记录。
+本轮的公式、文案、映射以JSON为唯一编辑位置；[审阅记录](../Research_D0026_Review.md)引用ID，不复制第二套权威公式。Accepted Spec的RES条目已指向content；D0025历史原文冻结不倒改。Industry及Culture已加入；其余专业后续沿同schema分别维护，不强制命名能力数量。各专业JSON是自身内容权威，Spec引用，Review只作审阅记录。
