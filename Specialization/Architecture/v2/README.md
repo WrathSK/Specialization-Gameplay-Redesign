@@ -1,7 +1,11 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
 
-## 当前入口：A0160 / D0032
+## 当前实现：P0-A / A0161
+
+[P0-A区域完善度与科研影子](P0_A_District_Completeness.md)：B077.104/modinfo104，LOCAL_SIMULATION_PASS，原生接口/事件及诊断显示尚待用户实机。无新收益/新carrier/旧writer退出，未部署；live B076.103、main B069.96保持。用户授权的首批已完成，不自动推进下一批。
+
+## 目标架构入口：A0160 / D0032
 
 D0032是玩法权威；本目录新增目标合同不代表已实现。Runtime仍B076.103，A/B/C1/D1/C2/D2保留，E未实施。
 

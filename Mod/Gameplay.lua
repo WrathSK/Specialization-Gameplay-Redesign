@@ -30,6 +30,17 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
   end
+  if params.Action=='COMPLETENESS_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    shared.RequestToken=params.Token
+    local ok,report=pcall(function()
+      local c=Players[playerID]:GetCities():FindID(params.CityID)
+      assert(c and c:GetOwner()==playerID,'DC_SELECTED_CITY_UNAVAILABLE')
+      return SPCResearchInfrastructureShadow.Describe(P,shared,playerID,c)
+    end)
+    shared.Snapshot=ok and report or ('P0-A读取未完成：'..tostring(report))
+    shared.LastToken=params.Token;return
+  end
   if params.Action=='CITY_PRESENTATION_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,f=pcall(function()
@@ -410,6 +421,13 @@ SPCCityFlowProbe.Start(P,shared)
 
 include("EffectiveFacts")
 SPCEffectiveFacts.Start(P,shared)
+
+-- P0-A shared facts and pure shadow consumer; no old writer is replaced.
+include("OrdinaryBuildingCatalog")
+include("DistrictCompleteness")
+include("CurrentSpecializationFacts")
+include("ResearchInfrastructureShadow")
+SPCDistrictCompleteness.Start(P,shared)
 
 include("InvestmentAction")
 SPCInvestmentAction.Start(P,shared)

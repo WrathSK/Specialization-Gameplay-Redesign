@@ -447,6 +447,7 @@ end
 local oldInitialize=initialize
 initialize=function()
  oldInitialize()
+ Controls.CompletenessButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETENESS_READ") end)
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;localReport=SPCPerformance.Describe(false);status(localReport:gsub('\n','[NEWLINE]'))
  end)

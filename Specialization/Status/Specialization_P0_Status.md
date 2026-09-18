@@ -1,15 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0201
-Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0160
+Status Revision: S0202
+Implementation Build: develop P0-B-077.104 / modinfo104; live B076.103 / modinfo103; stable B069.96 / modinfo96
+Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
 Latest Accepted Design Revision: D0032
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: D0032_ARCHITECTURE_READY_FOR_P0_A_AWAITING_AUTHORIZATION
+Work State: P0_A_LOCAL_SIMULATION_PASS_AWAITING_USER_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-A B077.104已完成本地实现：[A0161报告](../Architecture/v2/P0_A_District_Completeness.md)、[测试](../../DevelopmentTests/test_p0_a.py)。**LOCAL_SIMULATION_PASS，不是USER_GAME_TEST_PASS**。新增D权威事实、当前专业只读适配、科研基础设施shadow、一个诊断按钮；没有新Gameplay收益、carrier、保存写入或旧writer退出。115个审核普通建筑ID；未审核对象排除并说明。
+
+D0/1/3/6/10、同Tier、缺Tier、cap、最高单区域、特色、免费、掠夺/未完成、UNKNOWN/epoch、诊断dispatch及UI均本地通过。10k无关通知0昂贵工作，1/2/4/8城读取线性，cache≤8；旧A–D2和部署安全回归通过。当前待补证据只有原生Gameplay接口/事件及按钮实机。
+
+Design目录、全部SQL/Data及旧效果模块不变。main B069.96、实际运行包B076.103不变；**未部署B077.104**，用户现在无需操作。报告给出未来获准部署后的一次最小同城读取/掠夺/修复流程，不要求长局。
+
+本批commit/push后停止。推荐下一Implementation为P0-B1，但须用户另行授权；P0-C及所有其它能力未开始。
+
+### Historical A0160 planning status
+
 
 D0032 Architecture Adaptation & v0.1 Implementation Planning 文档完成：[A0160合同](../Architecture/v2/D0032_Adaptation.md)、[考古矩阵](../Architecture/v2/D0032_Runtime_Archaeology.md)、[依赖与批次](../Architecture/v2/D0032_Implementation_Plan.md)、[技术门禁](../Architecture/v2/D0032_Technical_Spikes.md)、[验证](../Architecture/v2/D0032_Validation.md)。**None blocking P0-A / GATE B — READY FOR P0-A**，但尚未授权或实施任何P0批次。
 

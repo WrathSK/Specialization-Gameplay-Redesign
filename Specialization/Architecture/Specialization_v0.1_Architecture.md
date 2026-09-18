@@ -1,15 +1,24 @@
-# Specialization v0.1 Architecture — A0160
+# Specialization v0.1 Architecture — A0161
 
 Document Owner: Codex
-Architecture Revision: A0160
+Architecture Revision: A0161
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-077.104 / modinfo104; live B076.103 / modinfo103; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-A已获用户授权并完成：B077.104/modinfo104，[实现与证据](v2/P0_A_District_Completeness.md)。Shared D事实、只读专业适配、Research Infrastructure shadow及手动诊断已LOCAL_SIMULATION_PASS；原生接口/事件与按钮仍USER_GAME_TEST_REQUIRED。没有收益写入、新carrier、旧writer关闭或其它专业能力。A0160目标合同保持，Design D0032不变。仅develop；live仍B076.103、main B069.96，无部署。
+
+新D服务是独立只读authority，不接管旧收益输入；最高单区域、逐建筑解释、8城缓存、direct dirty和按需每回合兜底已实现。当前所有永久进度仍由旧EffectiveFacts/Flow等负责；未实现新cityKey/History/REALLOCATING。
+
+下一步停下等待审阅；推荐后续P0-B1，不能自动开始B/C或历史Batch E。
+
+### Historical A0160 planning gate
+
 
 D0032 Architecture Adaptation / A0160 已完成文档与静态审查，**GATE B — READY FOR P0-A**。这是目标架构，不代表B076.103已实现新Design。推荐第一批为区域完善度权威事实＋现有专业状态只读适配＋科研基础设施纯影子consumer＋按需诊断；不写收益，等待用户单独授权。
 

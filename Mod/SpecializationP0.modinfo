@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="103">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="104">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B076.103 develop: Architecture v2 D2 runtime consumer scheduling. Not deployed.</Description>
+    <Description>B077.104 develop: P0-A shared District Completeness facts and Research shadow diagnostics. No new yields. Not deployed.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -63,6 +63,10 @@
       <File>CopyYields.lua</File>
       <File>SampleLifecycle.lua</File>
       <File>RuntimeWork.lua</File>
+      <File>OrdinaryBuildingCatalog.lua</File>
+      <File>DistrictCompleteness.lua</File>
+      <File>CurrentSpecializationFacts.lua</File>
+      <File>ResearchInfrastructureShadow.lua</File>
       <File>UI/CopyYieldRefresh.lua</File>
       <File>UI/CopyYieldRefresh.xml</File>
       <File>HalfYieldProbe.lua</File>
@@ -306,6 +310,10 @@
     <File>CopyYields.lua</File>
     <File>SampleLifecycle.lua</File>
     <File>RuntimeWork.lua</File>
+    <File>OrdinaryBuildingCatalog.lua</File>
+    <File>DistrictCompleteness.lua</File>
+    <File>CurrentSpecializationFacts.lua</File>
+    <File>ResearchInfrastructureShadow.lua</File>
     <File>Data/CopyYields.sql</File>
     <File>UI/CopyYieldRefresh.lua</File>
     <File>UI/CopyYieldRefresh.xml</File>

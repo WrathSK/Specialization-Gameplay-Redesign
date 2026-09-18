@@ -1,0 +1,745 @@
+{
+  "evidence": "STATIC_CONFIRMED installed HD catalog 2026-09-18; not game-context API validation",
+  "rows": [
+    {
+      "BuildingType": "BUILDING_AMPHITHEATER",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 1,
+      "Cost": 110
+    },
+    {
+      "BuildingType": "BUILDING_ARMORY",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 2,
+      "Cost": 200
+    },
+    {
+      "BuildingType": "BUILDING_BANK",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 2,
+      "Cost": 250
+    },
+    {
+      "BuildingType": "BUILDING_BARRACKS",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 1,
+      "Cost": 90
+    },
+    {
+      "BuildingType": "BUILDING_BASILIKOI_PAIDES",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 1,
+      "Cost": 90
+    },
+    {
+      "BuildingType": "BUILDING_BROADCAST_CENTER",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 4,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_CATHEDRAL",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_CHANCERY",
+      "PrereqDistrict": "DISTRICT_DIPLOMATIC_QUARTER",
+      "Tier": 2,
+      "Cost": 300
+    },
+    {
+      "BuildingType": "BUILDING_COAL_POWER_PLANT",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 4,
+      "Cost": 500
+    },
+    {
+      "BuildingType": "BUILDING_CONSULATE",
+      "PrereqDistrict": "DISTRICT_DIPLOMATIC_QUARTER",
+      "Tier": 1,
+      "Cost": 150
+    },
+    {
+      "BuildingType": "BUILDING_DAR_E_MEHR",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_ELECTRONICS_FACTORY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 4,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_FACTORY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 3,
+      "Cost": 360
+    },
+    {
+      "BuildingType": "BUILDING_FILM_STUDIO",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 4,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_FOOD_MARKET",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 2,
+      "Cost": 360
+    },
+    {
+      "BuildingType": "BUILDING_FOSSIL_FUEL_POWER_PLANT",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 4,
+      "Cost": 550
+    },
+    {
+      "BuildingType": "BUILDING_GOV_CITYSTATES",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 2,
+      "Cost": 300
+    },
+    {
+      "BuildingType": "BUILDING_GOV_CONQUEST",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 1,
+      "Cost": 150
+    },
+    {
+      "BuildingType": "BUILDING_GOV_CULTURE",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 3,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_GOV_FAITH",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 2,
+      "Cost": 300
+    },
+    {
+      "BuildingType": "BUILDING_GOV_MILITARY",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 3,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_GOV_SCIENCE",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 3,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_GOV_SPIES",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 2,
+      "Cost": 300
+    },
+    {
+      "BuildingType": "BUILDING_GOV_TALL",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 1,
+      "Cost": 150
+    },
+    {
+      "BuildingType": "BUILDING_GOV_WIDE",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 1,
+      "Cost": 150
+    },
+    {
+      "BuildingType": "BUILDING_GRAND_BAZAAR",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 2,
+      "Cost": 550
+    },
+    {
+      "BuildingType": "BUILDING_GURDWARA",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_HD_INN",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 1,
+      "Cost": 120
+    },
+    {
+      "BuildingType": "BUILDING_HD_REGIONAL_COUNCIL_CENTER",
+      "PrereqDistrict": "DISTRICT_DIPLOMATIC_QUARTER",
+      "Tier": 3,
+      "Cost": 750
+    },
+    {
+      "BuildingType": "BUILDING_HD_TAVERN",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 1,
+      "Cost": 120
+    },
+    {
+      "BuildingType": "BUILDING_HD_WORLD_PARLIAMENT_HEADQUARTERS",
+      "PrereqDistrict": "DISTRICT_DIPLOMATIC_QUARTER",
+      "Tier": 3,
+      "Cost": 750
+    },
+    {
+      "BuildingType": "BUILDING_IZ_WATER_MILL",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 1,
+      "Cost": 100
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ACADEMY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 1,
+      "Cost": 100
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ALTAR",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 1,
+      "Cost": 80
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ARCHITECTURE",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 3,
+      "Cost": 500
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ARSENAL",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 3,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ART_GALLERY",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 2,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ASSEMBLY",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 1,
+      "Cost": 100
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CABINET",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 2,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CANDI",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CAVALIER",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 2,
+      "Cost": 200
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CHEMICAL",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 3,
+      "Cost": 360
+    },
+    {
+      "BuildingType": "BUILDING_JNR_COMMODITY_EXCHANGE",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 3,
+      "Cost": 550
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CRUISE_TERMINAL",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 3,
+      "Cost": 400
+    },
+    {
+      "BuildingType": "BUILDING_JNR_DAOGUAN",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_DEPOT",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 2,
+      "Cost": 200
+    },
+    {
+      "BuildingType": "BUILDING_JNR_EDUCATION",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 4,
+      "Cost": 800
+    },
+    {
+      "BuildingType": "BUILDING_JNR_FREEPORT",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 2,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_FREIGHT_YARD",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 4,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_GARDEN",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 4,
+      "Cost": 240
+    },
+    {
+      "BuildingType": "BUILDING_JNR_GRAND_HOTEL",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 3,
+      "Cost": 330
+    },
+    {
+      "BuildingType": "BUILDING_JNR_GUILDHALL",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 2,
+      "Cost": 200
+    },
+    {
+      "BuildingType": "BUILDING_JNR_HAVEN",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 2,
+      "Cost": 200
+    },
+    {
+      "BuildingType": "BUILDING_JNR_HOSPITAL",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 2,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_HOSPITIUM",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 4,
+      "Cost": 240
+    },
+    {
+      "BuildingType": "BUILDING_JNR_JINJA",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_KHALWAT",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_LABORATORY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 3,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_LIBERAL_ARTS",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 3,
+      "Cost": 420
+    },
+    {
+      "BuildingType": "BUILDING_JNR_LIGHTHOUSE_TRADE",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 1,
+      "Cost": 120
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MANDIR",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MANSION",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 2,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MANUFACTURY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 2,
+      "Cost": 200
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MARKETING_AGENCY",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 3,
+      "Cost": 500
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MBARI",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MEDIA_CENTER",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 4,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MEDITATION",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 2,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MERCHANT_QUARTER",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 2,
+      "Cost": 225
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MINT",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 1,
+      "Cost": 110
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MONASTERY",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 2,
+      "Cost": 140
+    },
+    {
+      "BuildingType": "BUILDING_JNR_NAVAL_BASE",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 3,
+      "Cost": 320
+    },
+    {
+      "BuildingType": "BUILDING_JNR_OPERA",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 3,
+      "Cost": 330
+    },
+    {
+      "BuildingType": "BUILDING_JNR_PERIPTEROS",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_PRISON",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 3,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_REAL_ACADEMY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 3,
+      "Cost": 500
+    },
+    {
+      "BuildingType": "BUILDING_JNR_RECYCLING_PLANT",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 2,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_JNR_SCHOOL",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 2,
+      "Cost": 275
+    },
+    {
+      "BuildingType": "BUILDING_JNR_SOBOR",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_TARGET_RANGE",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 1,
+      "Cost": 110
+    },
+    {
+      "BuildingType": "BUILDING_JNR_TOOLING_SHOP",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 1,
+      "Cost": 100
+    },
+    {
+      "BuildingType": "BUILDING_JNR_TRANSIT_HUB",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 1,
+      "Cost": 300
+    },
+    {
+      "BuildingType": "BUILDING_JNR_TZACUALLI",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_JNR_WAYSTATION",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 1,
+      "Cost": 110
+    },
+    {
+      "BuildingType": "BUILDING_JNR_WIND_MILL",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 1,
+      "Cost": 100
+    },
+    {
+      "BuildingType": "BUILDING_LIBRARY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 1,
+      "Cost": 95
+    },
+    {
+      "BuildingType": "BUILDING_LIGHTHOUSE",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 1,
+      "Cost": 120
+    },
+    {
+      "BuildingType": "BUILDING_MADRASA",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 2,
+      "Cost": 250
+    },
+    {
+      "BuildingType": "BUILDING_MARAE",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 1,
+      "Cost": 135
+    },
+    {
+      "BuildingType": "BUILDING_MARKET",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 1,
+      "Cost": 110
+    },
+    {
+      "BuildingType": "BUILDING_MEETING_HOUSE",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_MILITARY_ACADEMY",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 3,
+      "Cost": 450
+    },
+    {
+      "BuildingType": "BUILDING_MOSQUE",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_MUSEUM_ART",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 3,
+      "Cost": 180
+    },
+    {
+      "BuildingType": "BUILDING_MUSEUM_ARTIFACT",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "Tier": 3,
+      "Cost": 180
+    },
+    {
+      "BuildingType": "BUILDING_NAVIGATION_SCHOOL",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 2,
+      "Cost": 275
+    },
+    {
+      "BuildingType": "BUILDING_ORDU",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 1,
+      "Cost": 90
+    },
+    {
+      "BuildingType": "BUILDING_PAGODA",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_POWER_PLANT",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 4,
+      "Cost": 600
+    },
+    {
+      "BuildingType": "BUILDING_PRASAT",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 2,
+      "Cost": 140
+    },
+    {
+      "BuildingType": "BUILDING_QUEENS_BIBLIOTHEQUE",
+      "PrereqDistrict": "DISTRICT_GOVERNMENT",
+      "Tier": 2,
+      "Cost": 225
+    },
+    {
+      "BuildingType": "BUILDING_RESEARCH_LAB",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 4,
+      "Cost": 800
+    },
+    {
+      "BuildingType": "BUILDING_SEAPORT",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 3,
+      "Cost": 400
+    },
+    {
+      "BuildingType": "BUILDING_SHIPYARD",
+      "PrereqDistrict": "DISTRICT_HARBOR",
+      "Tier": 2,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_SHOPPING_MALL",
+      "PrereqDistrict": "DISTRICT_NEIGHBORHOOD",
+      "Tier": 2,
+      "Cost": 360
+    },
+    {
+      "BuildingType": "BUILDING_SHRINE",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 1,
+      "Cost": 80
+    },
+    {
+      "BuildingType": "BUILDING_STABLE",
+      "PrereqDistrict": "DISTRICT_ENCAMPMENT",
+      "Tier": 1,
+      "Cost": 90
+    },
+    {
+      "BuildingType": "BUILDING_STAVE_CHURCH",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 2,
+      "Cost": 140
+    },
+    {
+      "BuildingType": "BUILDING_STOCK_EXCHANGE",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 3,
+      "Cost": 550
+    },
+    {
+      "BuildingType": "BUILDING_STUPA",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_SUKIENNICE",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "Tier": 1,
+      "Cost": 110
+    },
+    {
+      "BuildingType": "BUILDING_SYNAGOGUE",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_TEMPLE",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 2,
+      "Cost": 140
+    },
+    {
+      "BuildingType": "BUILDING_UNIVERSITY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "Tier": 2,
+      "Cost": 275
+    },
+    {
+      "BuildingType": "BUILDING_WAT",
+      "PrereqDistrict": "DISTRICT_HOLY_SITE",
+      "Tier": 3,
+      "Cost": 220
+    },
+    {
+      "BuildingType": "BUILDING_WORKSHOP",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "Tier": 2,
+      "Cost": 200
+    }
+  ],
+  "replaces": [
+    {
+      "CivUniqueBuildingType": "BUILDING_MADRASA",
+      "ReplacesBuildingType": "BUILDING_UNIVERSITY"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_ELECTRONICS_FACTORY",
+      "ReplacesBuildingType": "BUILDING_JNR_FREIGHT_YARD"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_PRASAT",
+      "ReplacesBuildingType": "BUILDING_TEMPLE"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_ORDU",
+      "ReplacesBuildingType": "BUILDING_STABLE"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_NAVIGATION_SCHOOL",
+      "ReplacesBuildingType": "BUILDING_JNR_SCHOOL"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_HD_WORLD_PARLIAMENT_HEADQUARTERS",
+      "ReplacesBuildingType": "BUILDING_HD_REGIONAL_COUNCIL_CENTER"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_SUKIENNICE",
+      "ReplacesBuildingType": "BUILDING_MARKET"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_MARAE",
+      "ReplacesBuildingType": "BUILDING_JNR_ASSEMBLY"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_FILM_STUDIO",
+      "ReplacesBuildingType": "BUILDING_BROADCAST_CENTER"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_STAVE_CHURCH",
+      "ReplacesBuildingType": "BUILDING_JNR_MONASTERY"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_BASILIKOI_PAIDES",
+      "ReplacesBuildingType": "BUILDING_BARRACKS"
+    },
+    {
+      "CivUniqueBuildingType": "BUILDING_BASILIKOI_PAIDES",
+      "ReplacesBuildingType": "BUILDING_STABLE"
+    }
+  ]
+}

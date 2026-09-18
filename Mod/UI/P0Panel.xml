@@ -82,5 +82,5 @@
       <GridButton ID="PerformanceReadButton" Anchor="L,B" Offset="280,220" Size="240,32" Style="MainButton"><Label Anchor="C,C" Style="FontNormal14" String="Read Performance Counters" /></GridButton>
     <GridButton ID="PerformanceSnapshotButton" Anchor="L,B" Offset="542,220" Size="240,32" Style="MainButton"><Label Anchor="C,C" Style="FontNormal14" String="Performance Snapshot" /></GridButton>
     <ScrollPanel ID="ReportScroll" Anchor="L,T" Offset="18,58" Size="804,310" Vertical="1" AutoScrollBar="1"><Label ID="Status" Anchor="L,T" Offset="0,0" Style="FontNormal14" WrapWidth="775" String="选中城市后读取；移民 / 施工队入口需先选中单位。所有主面板入口只读。" />
-    </ScrollPanel><Label Anchor="L,B" Offset="18,220" Style="FontNormal14" String="只读诊断 · 历史实验控制已隐藏" /></Container>
+    </ScrollPanel><GridButton ID="CompletenessButton" Anchor="L,B" Offset="18,220" Size="240,32" Style="MainButton"><Label Anchor="C,C" Style="FontNormal14" String="区域完善度 / 科研影子" /></GridButton></Container>
 </Context>

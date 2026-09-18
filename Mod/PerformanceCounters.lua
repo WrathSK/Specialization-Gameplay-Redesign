@@ -5,6 +5,7 @@ local names={'unit_cb','unit_ignored','revalidate','route_scan','publication','s
 for _,k in ipairs({'copy','industry'}) do
  for _,n in ipairs({'attempt','send','receive','pending','retry','stale','apply','withdraw','duplicate','timeout'}) do names[#names+1]=k..'_'..n end
 end
+for _,n in ipairs({'read','capture','hit','dirty','publish','failure'}) do names[#names+1]='dc_'..n end
 function M.New()
  local s={schema=1,turn=Game.GetCurrentGameTurn(),startTurn=Game.GetCurrentGameTurn(),entries={},inflight=0,peakInflight=0,revision=0,routes=0,enabled=true}
  for _,n in ipairs(names) do s.entries[n]={current=0,total=0,previous=0,peak=0} end
@@ -42,6 +43,7 @@ function M.Describe(detailed)
   groups[#groups+1]={k..'_retry',k..'_stale',k..'_apply',k..'_withdraw',k..'_duplicate',k..'_timeout'}
  end
  for _,g in ipairs(groups) do local a={};for _,n in ipairs(g) do local e=s.entries[n];a[#a+1]=n..'='..e.current..'/'..e.total end;lines[#lines+1]=table.concat(a,'  ') end
+ local dc={};for _,n in ipairs({'read','capture','hit','dirty','publish','failure'}) do local e=s.entries['dc_'..n];dc[#dc+1]='dc_'..n..'='..e.current..'/'..e.total end;lines[#lines+1]=table.concat(dc,'  ')
  local audit=ExposedMembers.SPC_RuntimeAudit
  lines[#lines+1]='Runtime audit='..(audit and audit.state or 'NOT_INITIALIZED')..' | '..(audit and audit.reason or '')
  if audit and audit.sink then lines[#lines+1]='Audit file='..audit.sink.path..' | rows='..tostring(audit.rows) end
