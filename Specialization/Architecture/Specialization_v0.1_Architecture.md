@@ -1,15 +1,31 @@
-# Specialization v0.1 Architecture — A0159
+# Specialization v0.1 Architecture — A0160
 
 Document Owner: Codex
-Architecture Revision: A0159
-Design Spec Synced Through: D0025
-Design Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
-Latest Accepted Design Revision: D0025
-Latest Accepted Design SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
-Sync Status: SYNCED_WITH_LIMITATIONS
+Architecture Revision: A0160
+Design Spec Synced Through: D0032
+Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
+Latest Accepted Design Revision: D0032
+Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
+Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+D0032 Architecture Adaptation / A0160 已完成文档与静态审查，**GATE B — READY FOR P0-A**。这是目标架构，不代表B076.103已实现新Design。推荐第一批为区域完善度权威事实＋现有专业状态只读适配＋科研基础设施纯影子consumer＋按需诊断；不写收益，等待用户单独授权。
+
+当前权威：Design Spec D0032；Commerce/Industry D0032，Research D0031，Culture Gameplay D0029，Shared D0028，Culture Era Presentation D0032。Design字节未改。Runtime保留B076.103，main B069.96；本批没有代码、部署或新实机验证。A–D2性能合同继续适用，原Batch E未实施。
+
+- [状态 / Shared / Network / Presentation合同](v2/D0032_Adaptation.md)
+- [实际runtime及KEEP/ADAPT/REPLACE/RETIRE](v2/D0032_Runtime_Archaeology.md)
+- [实施依赖 / 批次 / cutover / save门禁](v2/D0032_Implementation_Plan.md)
+- [技术spike门禁](v2/D0032_Technical_Spikes.md)
+- [完整源码索引及hash](v2/D0032_Runtime_Inventory.json)
+- [本轮静态验证](v2/D0032_Validation.md)
+
+上述文件是D0032目标架构入口；以下旧条款保留为历史runtime合同/证据。与新Design目标冲突时，不以旧条款推翻Design；实际代码尚未切换时，也不能把目标文档当作已部署事实。PAC累计presentation-only原则继续有效，其旧能力映射由当前各专业canonical取代。
+
+### Historical B076 / PAC record
+
 
 B076.103为`av2-runtime-b076.103` Runtime milestone，已临时部署；A–D2完成，短时idle实机范围与桥接ACK未完成疑点见Status，E未开始，main保持B069.96。不能据此关闭55GB长局根因问题。
 

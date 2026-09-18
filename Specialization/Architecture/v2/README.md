@@ -1,4 +1,19 @@
-# Architecture v2 第一轮调查 — AV2-I001
+# Architecture v2 — current D0032 adaptation / historical AV2-I001
+
+
+## 当前入口：A0160 / D0032
+
+D0032是玩法权威；本目录新增目标合同不代表已实现。Runtime仍B076.103，A/B/C1/D1/C2/D2保留，E未实施。
+
+1. [D0032目标架构与状态合同](D0032_Adaptation.md)
+2. [Runtime考古和旧效果退出矩阵](D0032_Runtime_Archaeology.md)
+3. [实施依赖、P0批次与迁移](D0032_Implementation_Plan.md)
+4. [技术spike](D0032_Technical_Spikes.md)
+5. [全源码索引/hash](D0032_Runtime_Inventory.json)、[文档验证](D0032_Validation.md)
+
+**GATE B — READY FOR P0-A**；第一批只建议Shared区域完善度影子纵切，待用户授权。没有runtime改动/部署。A–D2报告是已完成的性能合同；PAC的累计presentation-only原则有效，但旧能力候选需以D0032映射为准。以下AV2-I001与旧地图是B069历史证据，不是当前源码逐项现状。
+
+## Historical AV2-I001 header and investigation
 
 Document Owner: Codex
 State: Investigation complete / awaiting user review; NO REFACTOR

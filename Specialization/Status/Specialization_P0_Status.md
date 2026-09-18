@@ -1,15 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0200
+Status Revision: S0201
 Implementation Build: develop P0-B-076.103 / modinfo103; stable B069.96 / modinfo96
-Architecture Revision Reviewed: A0159
-Design Revision Reviewed: D0025
-Latest Accepted Design Revision: D0025
-Design Sync State: SYNCED_WITH_LIMITATIONS
-Work State: AV2_RUNTIME_MILESTONE_SHORT_IDLE_PASS
+Architecture Revision Reviewed: A0160
+Design Revision Reviewed: D0032
+Latest Accepted Design Revision: D0032
+Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
+Work State: D0032_ARCHITECTURE_READY_FOR_P0_A_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+D0032 Architecture Adaptation & v0.1 Implementation Planning 文档完成：[A0160合同](../Architecture/v2/D0032_Adaptation.md)、[考古矩阵](../Architecture/v2/D0032_Runtime_Archaeology.md)、[依赖与批次](../Architecture/v2/D0032_Implementation_Plan.md)、[技术门禁](../Architecture/v2/D0032_Technical_Spikes.md)、[验证](../Architecture/v2/D0032_Validation.md)。**None blocking P0-A / GATE B — READY FOR P0-A**，但尚未授权或实施任何P0批次。
+
+推荐P0-A：单一区域完善度事实、当前专业事实只读适配、科研基础设施纯影子计算、按需诊断。它不施加新收益、不关闭旧收益、不迁移存档；第一次真实effect cutover另设门禁。后续跨owner城市标识、持久成果、合同/重组和高风险primitive都有明确依赖，不能合入第一批。
+
+Runtime仍B076.103/modinfo103，保留已测试A–D2；Design Spec D0032及混合专业authority字节不变。main与live不修改，无部署、无游戏启动、无当前用户测试。规划不宣称55GB长局异常根因解决。既有ACK未完成证据继续保留。
+
+下一步：停止，等待用户授权P0-A implementation；不自动开始历史Batch E或任何新玩法。
+
+### Historical B076 / PAC status (prior Design-sync metadata superseded above)
+
 
 当前工作：[PAC-I001机构/能力/载体调查](../Architecture/v2/Presentation_Institution_Carrier_Model.md)完成，STATIC_CONFIRMED仅源码/数据库证据，不等于新UI实机通过；完整1894定义分类见报告。PAC-R0002累计机构方案USER_CONFIRMED：Potential决定永久机构集合，ACTIVE只影响能力状态；分阶段Tooltip，presentation-only不进入建筑统计；具体UI接入PENDING_REVIEW；未改源码/玩法/Design/运行包，不启动新四专业玩法或BatchE，无当前测试要求。下一步等待Design/Architecture审阅，不能把机构候选自动公开。
 

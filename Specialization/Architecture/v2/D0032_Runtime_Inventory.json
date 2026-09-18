@@ -1,0 +1,4722 @@
+{
+  "schema": 1,
+  "evidence": "STATIC_CONFIRMED_SOURCE_INVENTORY_NOT_ENGINE_PASS",
+  "source_commit": "65170105c289bfcfc098ed3276cef795c6399a77",
+  "runtime_build": "B076.103 / modinfo103",
+  "scope": "all Mod files; classification details and mixed effect/primitive responsibilities in D0032_Runtime_Archaeology.md",
+  "files": [
+    {
+      "path": "ArtDefs/Units.artdef",
+      "sha256": "00386b8d0c1c2faaac652e134f9c73dacb6522d023a1be168add87b0e17b64e0",
+      "lines": 1096,
+      "manifest_roles": [],
+      "classification": "KEEP_INFRASTRUCTURE",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "BindingProbe.lua",
+      "sha256": "ce6a8e07186332f424975da95daefa0b6af47eaa5a99e58b6e098d70693b126b",
+      "lines": 134,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCBindingProbe.Start(P,shared)"
+        },
+        {
+          "line": 8,
+          "text": "local function key(pid) return \"SPC_DEV_BINDING_B013_P\"..pid end"
+        },
+        {
+          "line": 9,
+          "text": "local function integer(n) return type(n)==\"number\" and n>=0 and n%1==0 and n<1000000000 end"
+        },
+        {
+          "line": 10,
+          "text": "local function bucket(pid)"
+        },
+        {
+          "line": 14,
+          "text": "local function same(a,b,depth)"
+        },
+        {
+          "line": 21,
+          "text": "local function clone(v)"
+        },
+        {
+          "line": 25,
+          "text": "local function ledger(pid)"
+        },
+        {
+          "line": 41,
+          "text": "local function inspect(pid,city)"
+        },
+        {
+          "line": 53,
+          "text": "function data.Resolve(pid,city)"
+        },
+        {
+          "line": 60,
+          "text": "function data.Read(pid,city)"
+        },
+        {
+          "line": 72,
+          "text": "local function gameWrite(pid,b,before,next)"
+        },
+        {
+          "line": 75,
+          "text": "pcall(function() P.SetProperty(Game,key(pid),next) end)"
+        },
+        {
+          "line": 78,
+          "text": "local function foundation(pid,cid,x,y)"
+        },
+        {
+          "line": 104,
+          "text": "b.cityWrites=b.cityWrites+1;pcall(function() P.SetProperty(city,TOKEN,uid) end)"
+        },
+        {
+          "line": 117,
+          "text": "local function listen(ns,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "BoostConfig.lua",
+      "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
+      "lines": 1034,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "BoostIntegerConfig.lua",
+      "sha256": "8e43d3e3ce29758d770f58682cd53e8d8abba7659f2587b3226a62881a4f65ab",
+      "lines": 91,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "CityFlowProbe.lua",
+      "sha256": "a6a5eb9462f9a951274c259b84473e29460683d8f3bbab7a196b2018b0c19bf9",
+      "lines": 181,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCityFlowProbe.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function clone(v) if type(v)~=\"table\" then return v end;local c={};for k,x in pairs(v) do c[k]=clone(x) end;return c end"
+        },
+        {
+          "line": 7,
+          "text": "local function same(a,b,n)"
+        },
+        {
+          "line": 13,
+          "text": "local function bucket(pid)"
+        },
+        {
+          "line": 16,
+          "text": "local function identity(pid,city)"
+        },
+        {
+          "line": 21,
+          "text": "local function read(pid,city)"
+        },
+        {
+          "line": 34,
+          "text": "local function write(pid,city,b,old,nextValue)"
+        },
+        {
+          "line": 38,
+          "text": "b.writes=b.writes+1;pcall(function() P.SetProperty(city,KEY,clone(nextValue)) end)"
+        },
+        {
+          "line": 42,
+          "text": "local function commit(pid,city,target)"
+        },
+        {
+          "line": 51,
+          "text": "local function guarded(pid,fn)"
+        },
+        {
+          "line": 69,
+          "text": "local function family(name)"
+        },
+        {
+          "line": 82,
+          "text": "local function complete(pid,index,x,y)"
+        },
+        {
+          "line": 104,
+          "text": "function data.Read(pid,city)"
+        },
+        {
+          "line": 120,
+          "text": "function data.SupportFacts(pid,city)"
+        },
+        {
+          "line": 127,
+          "text": "local function resume(pid,city)"
+        },
+        {
+          "line": 156,
+          "text": "function data.ResumeInherited(pid,city)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CityInheritance.lua",
+      "sha256": "98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618",
+      "lines": 130,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_ISOLATED",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCityInheritance.Start(P,shared)"
+        },
+        {
+          "line": 8,
+          "text": "local function cp(v) if type(v)~='table' then return v end;local r={};for k,x in pairs(v) do r[k]=cp(x) end;return r end"
+        },
+        {
+          "line": 9,
+          "text": "local function eq(a,b)"
+        },
+        {
+          "line": 13,
+          "text": "local function read()"
+        },
+        {
+          "line": 17,
+          "text": "local function save(v) Game:SetProperty(KEY,cp(v));assert(eq(read(),v),'INHERIT_WRITE_FAILED') end"
+        },
+        {
+          "line": 18,
+          "text": "local function shadow() return Game:GetProperty('SPC_INHERITANCE_SHADOW_V1') or {records={}} end"
+        },
+        {
+          "line": 19,
+          "text": "local function valid(s)"
+        },
+        {
+          "line": 28,
+          "text": "local function find(v,pid,cid)"
+        },
+        {
+          "line": 33,
+          "text": "function d.Resolve(pid,c)"
+        },
+        {
+          "line": 37,
+          "text": "function d.AllowsShadow(uid,c)"
+        },
+        {
+          "line": 40,
+          "text": "local function projection(r)"
+        },
+        {
+          "line": 42,
+          "text": "local function anchor(t) if t then t.owner=r.owner;t.cityID=r.cityID end end"
+        },
+        {
+          "line": 48,
+          "text": "local function restore(uid)"
+        },
+        {
+          "line": 61,
+          "text": "if a[k]~=nil and not eq(c:GetProperty(fields[k]),a[k]) then c:SetProperty(fields[k],cp(a[k]));assert(eq(c:GetProperty(fields[k]),a[k]),'INHERIT_CITY_WRITE_FAILED') end"
+        },
+        {
+          "line": 74,
+          "text": "local function transfer(newpid,newcid,oldpid,x,y,kind)"
+        },
+        {
+          "line": 98,
+          "text": "local function safe(fn,...)"
+        },
+        {
+          "line": 101,
+          "text": "local function hook(ns,n,fn) local e=ns and ns[n];if e and type(e.Add)=='function' then e.Add(function(...) safe(fn,...) end) end end"
+        },
+        {
+          "line": 125,
+          "text": "function d.Describe(pid)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CityInheritanceRead.lua",
+      "sha256": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
+      "lines": 42,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_ISOLATED",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCityInheritanceRead.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function copy(v,n) n=n or 0;assert(n<=16,'PROPERTY_DEPTH');if type(v)~='table' then return v end;local r={};for k,x in pairs(v) do r[k]=copy(x,n+1) end;return r end"
+        },
+        {
+          "line": 8,
+          "text": "local function same(a,b,n) n=n or 0;if n>16 or type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end;for k,v in pairs(a) do if not same(v,b[k],n+1) then return false end end;for k in pairs(b) do if a[k]==nil then return false end end;return true end"
+        },
+        {
+          "line": 9,
+          "text": "local function count(v) local n=0;if type(v)=='table' then for _ in pairs(v) do n=n+1 end end;return n end"
+        },
+        {
+          "line": 10,
+          "text": "local function sample(c)"
+        },
+        {
+          "line": 18,
+          "text": "function d.Record(pid,c)"
+        },
+        {
+          "line": 23,
+          "text": "function d.Read(pid)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CityJournalProbe.lua",
+      "sha256": "d13212a7595fe383819ea5903b2f8c99c0a2ac537e7945fcf8d735784d3d4cbc",
+      "lines": 165,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCityJournalProbe.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function bucket(pid)"
+        },
+        {
+          "line": 11,
+          "text": "local function int(v) return type(v)==\"number\" and v>=0 and v%1==0 and v<math.huge end"
+        },
+        {
+          "line": 12,
+          "text": "local function clone(v)"
+        },
+        {
+          "line": 16,
+          "text": "local function equal(a,b,depth)"
+        },
+        {
+          "line": 22,
+          "text": "local function family(name)"
+        },
+        {
+          "line": 35,
+          "text": "local function read(pid,city)"
+        },
+        {
+          "line": 53,
+          "text": "local function write(pid,city,b,old,nextValue)"
+        },
+        {
+          "line": 56,
+          "text": "pcall(function() P.SetProperty(city,KEY,nextValue) end)"
+        },
+        {
+          "line": 62,
+          "text": "local function run(pid,city,fn)"
+        },
+        {
+          "line": 108,
+          "text": "local function completed(pid,index,x,y)"
+        },
+        {
+          "line": 132,
+          "text": "function j.Read(pid,city)"
+        },
+        {
+          "line": 149,
+          "text": "function j.EnsureInherited(pid)"
+        },
+        {
+          "line": 152,
+          "text": "local function listen(ns,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CommerceConvergence.lua",
+      "sha256": "62159672ae47e1e0b6e3ad80e1179db44e0f6c498065b9e8b035e1ff3f4b4483",
+      "lines": 136,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 4,
+          "text": "function SPCCommerceConvergence.Start(P,shared)"
+        },
+        {
+          "line": 8,
+          "text": "local function yield(c,y)"
+        },
+        {
+          "line": 12,
+          "text": "local function facts(pid,c) assert(c and c:GetOwner()==pid,'CITY_OWNER');return batch and batch.facts.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 13,
+          "text": "local function eligible(pid,c) local f=facts(pid,c);return P.IsTestPlayer(pid) and f.specialization=='COMMERCE' and f.active==4 end"
+        },
+        {
+          "line": 14,
+          "text": "function d.Plan(pid,c)"
+        },
+        {
+          "line": 57,
+          "text": "local function row(y,bit) return P.Info('Buildings','BUILDING_SPC_B061_'..y..'_'..bit) end"
+        },
+        {
+          "line": 58,
+          "text": "local function observed(c,y)"
+        },
+        {
+          "line": 63,
+          "text": "local function apply(c,amount)"
+        },
+        {
+          "line": 69,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),r.Index) else P.RemoveBuilding(b,r.Index) end"
+        },
+        {
+          "line": 76,
+          "text": "function d.Audit(scope) P.Count('audit_commerce');"
+        },
+        {
+          "line": 97,
+          "text": "function d.Control(pid,c,action)"
+        },
+        {
+          "line": 105,
+          "text": "function d.Describe(pid,c)"
+        },
+        {
+          "line": 125,
+          "text": "local function outputChanged()"
+        },
+        {
+          "line": 133,
+          "text": "local function hook(t,name) local e=P.Field(t,name);if e and e.Add then SPCRuntimeWork.Hook(P,t,name,d.Audit) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CompletionProbe.lua",
+      "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
+      "lines": 95,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCompletionProbe.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function scalar(v) return P.Scalar(v):sub(1,100) end"
+        },
+        {
+          "line": 8,
+          "text": "local function call(object,method,...)"
+        },
+        {
+          "line": 14,
+          "text": "local function bucket(pid)"
+        },
+        {
+          "line": 19,
+          "text": "local function family(info)"
+        },
+        {
+          "line": 41,
+          "text": "local function observe(kind,pid,cityID,x,y,typeID,instanceID)"
+        },
+        {
+          "line": 83,
+          "text": "local function listen(namespace,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CompletionRecordProbe.lua",
+      "sha256": "4c1d6cc4cdd1555cd04fce2a6c7240ef0c1f38d212bee61bf6252e78fa0028cd",
+      "lines": 93,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCompletionRecordProbe.Start(P,shared)"
+        },
+        {
+          "line": 9,
+          "text": "local function bucket(pid)"
+        },
+        {
+          "line": 13,
+          "text": "local function integer(v) return type(v)==\"number\" and v>=0 and v%1==0 and v<math.huge end"
+        },
+        {
+          "line": 14,
+          "text": "local function family(typeName)"
+        },
+        {
+          "line": 30,
+          "text": "local function read(pid,city,token)"
+        },
+        {
+          "line": 39,
+          "text": "function d.Read(pid,city)"
+        },
+        {
+          "line": 55,
+          "text": "local function onComplete(pid,index,x,y)"
+        },
+        {
+          "line": 77,
+          "text": "b.writes=b.writes+1;pcall(function() P.SetProperty(city,KEY,v) end)"
+        },
+        {
+          "line": 86,
+          "text": "local function listen(ns,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Config/Players.sql",
+      "sha256": "ca577b88faa4fa150bd786031f7f23754331b3fb9ceafac0d175b0c578de7ada",
+      "lines": 10,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_FE_Identity"
+      ],
+      "classification": "KEEP_INFRASTRUCTURE",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "ConstructionProbe.lua",
+      "sha256": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
+      "lines": 64,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCConstructionProbe.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function key(pid,c) return pid..':'..c:GetID() end"
+        },
+        {
+          "line": 7,
+          "text": "local function snapshot(pid,c)"
+        },
+        {
+          "line": 27,
+          "text": "local function short(err) return tostring(err):match('[^\\r\\n]+') or 'UNKNOWN' end"
+        },
+        {
+          "line": 28,
+          "text": "function data.Prepare(pid,c)"
+        },
+        {
+          "line": 43,
+          "text": "function data.Apply(pid,c)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CopyYields.lua",
+      "sha256": "bbb74d05865d217947f84197543024d99d698fbe61f8197a877bd51f544b7c93",
+      "lines": 163,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 2,
+          "text": "include('SampleLifecycle')"
+        },
+        {
+          "line": 5,
+          "text": "function SPCCopyYields.Plan(amount,pop)"
+        },
+        {
+          "line": 15,
+          "text": "function SPCCopyYields.Start(P,shared)"
+        },
+        {
+          "line": 17,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 20,
+          "text": "local function currentDistricts(pid) return batch and batch.Live(pid,false) or SPCSampleLifecycle.Live(P,pid,false) end"
+        },
+        {
+          "line": 21,
+          "text": "local function sample(pid)"
+        },
+        {
+          "line": 35,
+          "text": "local function target(pid,c,y)"
+        },
+        {
+          "line": 82,
+          "text": "local function row(y,mode,bit) return assert(P.Info('Buildings','BUILDING_SPC_B051_'..y..'_'..mode..'_'..bit),'B051_DATABASE_MISSING') end"
+        },
+        {
+          "line": 83,
+          "text": "local function reconcile(c,y,plan,confirmed)"
+        },
+        {
+          "line": 94,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),id) else P.RemoveBuilding(b,id);removed=true end"
+        },
+        {
+          "line": 102,
+          "text": "function data.Audit(scope) P.Count('audit_copy');"
+        },
+        {
+          "line": 122,
+          "text": "function data.Receive(pid,p)"
+        },
+        {
+          "line": 125,
+          "text": "function data.Describe(pid,c)"
+        },
+        {
+          "line": 127,
+          "text": "local function code(err) return tostring(err):match('COPY_[A-Z_]+') or tostring(err):match('SAMPLE_[A-Z_]+') or tostring(err):match('B051_[A-Z_]+') or tostring(err):match('NETWORK_[A-Z_]+') or 'COPY_GAMEPLAY_EXCEPTION' end"
+        },
+        {
+          "line": 150,
+          "text": "local function hook(source,n,f) local e=P.Field(source,n);if e and e.Add then e.Add(f) end end"
+        },
+        {
+          "line": 152,
+          "text": "local function cleanupDormant()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CrewPrecision.lua",
+      "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
+      "lines": 47,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCCrewPrecision.Start(P,shared)"
+        },
+        {
+          "line": 4,
+          "text": "local function before(pid,params)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "CrewProjects.lua",
+      "sha256": "cb0592a4f15cbaf5fc8caa3801906f4e499a5022390dcd62a20658b1dada57f0",
+      "lines": 54,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 4,
+          "text": "function SPCCrewProjects.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 7,
+          "text": "local function districtsFor(pid,c)"
+        },
+        {
+          "line": 11,
+          "text": "local function eligible(pid,c)"
+        },
+        {
+          "line": 24,
+          "text": "function data.Audit(scope)"
+        },
+        {
+          "line": 39,
+          "text": "if wanted then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end"
+        },
+        {
+          "line": 50,
+          "text": "local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/BoostIntegerTest.sql",
+      "sha256": "063262ae3b652682f91d3110e64b53cbc2407517b3e470a88c1da93316497f11",
+      "lines": 21,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B055_Boost"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_PLAYER_ADJUST_CIVIC_BOOST",
+        "MODIFIER_PLAYER_ADJUST_PROPERTY",
+        "MODIFIER_PLAYER_ADJUST_TECHNOLOGY_BOOST"
+      ]
+    },
+    {
+      "path": "Data/Colors.sql",
+      "sha256": "adac5b8d0599024c96d440b56b03af0d32b3e98dcfc36a753fe4a0cfe600ef0c",
+      "lines": 5,
+      "manifest_roles": [
+        "UpdateColors:SPC_IG_Colors",
+        "UpdateColors:SPC_FE_Colors"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/CommerceConvergence.sql",
+      "sha256": "33fd1c2e1d7a9598d5ca0cc61bfd4e20a738ddfc7dcbb84c99d863f6bf2dc50f",
+      "lines": 241,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B062_Commerce"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_YIELD_CHANGE"
+      ]
+    },
+    {
+      "path": "Data/ConstantSupport.sql",
+      "sha256": "94963738321a1f7c4a1c25a34e4f1cb1360ce9d971e3a94d5ac4422b98f9ae83",
+      "lines": 12,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_IG_Identity"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/CopyYields.sql",
+      "sha256": "180ac97afbdb3f68c90fd944632bdc3bcbd9c6b50058143b4b7a11b0636546c6",
+      "lines": 401,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B051_Copy"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_CITY_YIELD_PER_POPULATION",
+        "MODIFIER_SINGLE_CITY_ADJUST_YIELD_CHANGE"
+      ]
+    },
+    {
+      "path": "Data/Crew.sql",
+      "sha256": "998c2e6a95228f967082be4b93c45fbb32223a899b3641977534187cf22fcc2d",
+      "lines": 17,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B042_Crew"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/CrewProjects.sql",
+      "sha256": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674",
+      "lines": 28,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B044_CrewProjects"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_GRANT_UNIT_IN_CITY"
+      ]
+    },
+    {
+      "path": "Data/Dialogue.sql",
+      "sha256": "c9845e9fe06810130cae28dc47cf3f6a8a25e425b62c4e710792967f0932e72a",
+      "lines": 85,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B059_Dialogue"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_GREATWORK_YIELD",
+        "MODIFIER_SINGLE_CITY_ADJUST_TOURISM"
+      ]
+    },
+    {
+      "path": "Data/GovernorProbe.sql",
+      "sha256": "147edbe54f4c357d498f578ee3cf1de530581253310686134a0d46e2bf6badfd",
+      "lines": 56,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_IG_Identity"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SPC_P0_GOV_PROPERTY"
+      ]
+    },
+    {
+      "path": "Data/GreatWorkAdjacency.sql",
+      "sha256": "e14afd55f26d2e0727cb481d8fae9e875b8bc7f89173621c7e1657571c3b516d",
+      "lines": 3589,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B060_Adjacency"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_GREATWORK_YIELD"
+      ]
+    },
+    {
+      "path": "Data/GreatWorkProbe.sql",
+      "sha256": "12dc0f6336eaf75f6ec75eeb62a6371cedb7dd9e07bda98290b50b275cd483f2",
+      "lines": 36,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B055_GW"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_GREATWORK_YIELD",
+        "MODIFIER_SINGLE_CITY_ADJUST_YIELD_CHANGE"
+      ]
+    },
+    {
+      "path": "Data/HalfYieldProbe.sql",
+      "sha256": "923db9239ae09d9d3a76f8d66d247cf31019b2cd632123490c33f277b8733669",
+      "lines": 161,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B050_Half"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_CITY_YIELD_PER_POPULATION",
+        "MODIFIER_SINGLE_CITY_ADJUST_YIELD_CHANGE"
+      ]
+    },
+    {
+      "path": "Data/Icons.sql",
+      "sha256": "5e40f7d09a96253628136424d72ae93cfda31de14c0eae135594adb535e2a343",
+      "lines": 20,
+      "manifest_roles": [
+        "UpdateIcons:SPC_IG_Icons",
+        "UpdateIcons:SPC_FE_Icons"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/Identity.sql",
+      "sha256": "f401fd35654dea6abd5dcc0f0027f35a91408a714b56bf1b2f0098c8d1a894d2",
+      "lines": 28,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_IG_Identity"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/IndustrySupport.sql",
+      "sha256": "cfc3b01995f758362026fb1bcfe280012a980f7341b798071ab567f7743a4064",
+      "lines": 28,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B036_Industry"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/Lv2GPP.sql",
+      "sha256": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d",
+      "lines": 113,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B035_GPP"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/Lv2Housing.sql",
+      "sha256": "b909ba34e6569eaa36e5c877d3123aa8ffac2d990893774f18144eb63c4c18ba",
+      "lines": 70,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B034_Housing"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/Lv3Effects.sql",
+      "sha256": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975",
+      "lines": 90,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B038_Lv3Effects"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_CITY_YIELD_PER_POPULATION"
+      ]
+    },
+    {
+      "path": "Data/Lv3Support.sql",
+      "sha256": "79c764f8adae7581272a0dc39e03c92e6d1dbbb32d6a5fc5e74e675d343cbf57",
+      "lines": 40,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B037_Lv3Support"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/Lv4Percent.sql",
+      "sha256": "76daaefdf7c3edffe1839ff1199386b633f041e283beafc51f88877c97c34c29",
+      "lines": 81,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B048_Lv4Percent"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_SINGLE_CITY_ADJUST_CITY_YIELD_MODIFIER"
+      ]
+    },
+    {
+      "path": "Data/NetworkBoost.sql",
+      "sha256": "548f682535b9044881ec3b612629d765eded660411b9f707f8cc67879ab4307d",
+      "lines": 5161,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B055_Boost"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_PLAYER_ADJUST_CIVIC_BOOST",
+        "MODIFIER_PLAYER_ADJUST_PROPERTY",
+        "MODIFIER_PLAYER_ADJUST_TECHNOLOGY_BOOST"
+      ]
+    },
+    {
+      "path": "Data/NetworkBoostInteger.sql",
+      "sha256": "64857bb6231f593d0ebb1b55caf29b89a58f688f96653ddf56be853441cd4fb8",
+      "lines": 451,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B055_Boost"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_PLAYER_ADJUST_CIVIC_BOOST",
+        "MODIFIER_PLAYER_ADJUST_PROPERTY",
+        "MODIFIER_PLAYER_ADJUST_TECHNOLOGY_BOOST"
+      ]
+    },
+    {
+      "path": "Data/PurchaseProbe.sql",
+      "sha256": "ea043f7ee0cf7cdb6aaf198cf971424e9bf2f5cf749e8d1dea2b39ca302f9a75",
+      "lines": 16,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B053_Purchase"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_CITY_ADJUST_BUILDING_PURCHASE_COST",
+        "MODIFIER_CITY_ENABLE_BUILDING_FAITH_PURCHASE"
+      ]
+    },
+    {
+      "path": "Data/ResearchSupport.sql",
+      "sha256": "fa06b82c35d28e4dc805cca7c6d84795fd4fadefb3bbdfe113524b95ecdce376",
+      "lines": 8,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_IG_Identity"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Data/StandardizationDiscount.sql",
+      "sha256": "bdbb77b6bb8cc55d905b13bafa161a7b28b14e87dcbd09bee1a064b2392beac3",
+      "lines": 15,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B054_Discounts"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_CITY_ADJUST_BUILDING_PURCHASE_COST"
+      ]
+    },
+    {
+      "path": "Data/YieldCarrierProbe.sql",
+      "sha256": "b63ddc3d9c7d6a1ca0634eeba3d610850fe4bfa2fe5f345237d2dcd14ffe91cd",
+      "lines": 27,
+      "manifest_roles": [
+        "UpdateDatabase:SPC_B029_Carrier"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [],
+      "modifier_types": [
+        "MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE"
+      ]
+    },
+    {
+      "path": "DiagnosticLog.lua",
+      "sha256": "fd4c52434a868a69f74177321a8588aef51ea3e55cc4b0e5d53715ca0b780db3",
+      "lines": 15,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCDiagnosticLog.For(scope)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Dialogue.lua",
+      "sha256": "f6a5d077c47afcc29058ddfee5e09a8e6ab4c351cf819b4fd07b3e11406d8d6f",
+      "lines": 112,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('DialogueModel')"
+        },
+        {
+          "line": 3,
+          "text": "function SPCDialogue.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function set(c,id,want)"
+        },
+        {
+          "line": 9,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end"
+        },
+        {
+          "line": 13,
+          "text": "function d.Init()"
+        },
+        {
+          "line": 22,
+          "text": "function d.Audit(pid)"
+        },
+        {
+          "line": 51,
+          "text": "function d.Receive(pid,a)"
+        },
+        {
+          "line": 82,
+          "text": "function d.Describe(pid,c)"
+        },
+        {
+          "line": 105,
+          "text": "local function auditAll() for pid in pairs(Players) do"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "DialogueModel.lua",
+      "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
+      "lines": 35,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "function SPCDialogueModel.Plan(P,works)"
+        },
+        {
+          "line": 23,
+          "text": "function SPCDialogueModel.Collect(P,c)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "EffectiveFacts.lua",
+      "sha256": "eef44026a81b5c6ba31187a0c52eedc47f41190e46cf1483d25086f935bcbdf8",
+      "lines": 68,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCEffectiveFacts.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function clone(v) if type(v)~='table' then return v end;local r={};for k,x in pairs(v) do r[k]=clone(x) end;return r end"
+        },
+        {
+          "line": 7,
+          "text": "local function same(a,b)"
+        },
+        {
+          "line": 13,
+          "text": "function data.Read(pid,city) P.Count('facts');"
+        },
+        {
+          "line": 57,
+          "text": "function data.Describe(pid,city)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "EligibilityProbe.lua",
+      "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
+      "lines": 53,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCEligibilityProbe.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function read(pid)"
+        },
+        {
+          "line": 27,
+          "text": "local function sample(phase)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "EnvelopeProbe.lua",
+      "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
+      "lines": 87,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 5,
+          "text": "local function equal(a,b,depth)"
+        },
+        {
+          "line": 12,
+          "text": "function M.Expected(pid,step)"
+        },
+        {
+          "line": 14,
+          "text": "local function facts(rev)"
+        },
+        {
+          "line": 30,
+          "text": "function M.Start(P,shared)"
+        },
+        {
+          "line": 32,
+          "text": "local function read(pid)"
+        },
+        {
+          "line": 38,
+          "text": "function data.Run(pid,action,expectedStep)"
+        },
+        {
+          "line": 54,
+          "text": "local ok=pcall(function() P.SetProperty(Game,\"SPC_DEV_ENVELOPE_B019_P\"..pid,M.Expected(pid,step+1)) end)"
+        },
+        {
+          "line": 71,
+          "text": "local function onLoad()"
+        },
+        {
+          "line": 83,
+          "text": "if Events and Events.LoadScreenClose and Events.LoadScreenClose.Add then"
+        },
+        {
+          "line": 84,
+          "text": "local ok=pcall(function() Events.LoadScreenClose.Add(onLoad) end)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "FreshBindingHook.lua",
+      "sha256": "c7bdef1fe0612731a95cadf4227df25281c45c9d23ff0a7347be6a19aecb60bd",
+      "lines": 49,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "function M.Install(shared,P,observer,context)"
+        },
+        {
+          "line": 19,
+          "text": "local function verify()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "GPPReadout.lua",
+      "sha256": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
+      "lines": 18,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCGPPReadout.Render(P,report)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Gameplay.lua",
+      "sha256": "ba3230605ad4ba9a7738f9e5fdd3c5dd5d75580de56cd708c20e4ba0d959b836",
+      "lines": 494,
+      "manifest_roles": [
+        "AddGameplayScripts:SPCP0_Gameplay"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include(\"Probe\")"
+        },
+        {
+          "line": 2,
+          "text": "include(\"SourceYieldProbe\")"
+        },
+        {
+          "line": 3,
+          "text": "include(\"Lv4CopyRead\")"
+        },
+        {
+          "line": 4,
+          "text": "include(\"YieldCarrierProbe\")"
+        },
+        {
+          "line": 11,
+          "text": "local function stage(value)"
+        },
+        {
+          "line": 18,
+          "text": "local function request(playerID,params)"
+        },
+        {
+          "line": 341,
+          "text": "P.SetProperty(city,\"SPC_P0_MARKER\",params.Token)"
+        },
+        {
+          "line": 350,
+          "text": "GameEvents.SPC_P0_Request.Add(function(...)"
+        },
+        {
+          "line": 359,
+          "text": "local function onTradeActivity(actor,op,oc,dp,dc,...)"
+        },
+        {
+          "line": 378,
+          "text": "include(\"TradeRouteProbe\")"
+        },
+        {
+          "line": 382,
+          "text": "include(\"CompletionProbe\")"
+        },
+        {
+          "line": 385,
+          "text": "include(\"StorageProbe\")"
+        },
+        {
+          "line": 388,
+          "text": "include(\"BindingProbe\")"
+        },
+        {
+          "line": 391,
+          "text": "include(\"CompletionRecordProbe\")"
+        },
+        {
+          "line": 394,
+          "text": "include(\"CityJournalProbe\")"
+        },
+        {
+          "line": 398,
+          "text": "include(\"EligibilityProbe\")"
+        },
+        {
+          "line": 401,
+          "text": "include(\"QualificationProbe\")"
+        },
+        {
+          "line": 404,
+          "text": "include(\"EnvelopeProbe\")"
+        },
+        {
+          "line": 407,
+          "text": "include(\"FreshBindingHook\")"
+        },
+        {
+          "line": 408,
+          "text": "include(\"CityFlowProbe\")"
+        },
+        {
+          "line": 411,
+          "text": "include(\"EffectiveFacts\")"
+        },
+        {
+          "line": 414,
+          "text": "include(\"InvestmentAction\")"
+        },
+        {
+          "line": 417,
+          "text": "include(\"ResearchSupport\")"
+        },
+        {
+          "line": 419,
+          "text": "include(\"Lv2Housing\")"
+        },
+        {
+          "line": 421,
+          "text": "include(\"Lv2GPP\")"
+        },
+        {
+          "line": 424,
+          "text": "include(\"NetworkBridge\")"
+        },
+        {
+          "line": 427,
+          "text": "include(\"IndustrySupport\")"
+        },
+        {
+          "line": 430,
+          "text": "include(\"Lv3Support\")"
+        },
+        {
+          "line": 433,
+          "text": "include(\"Lv3Effects\")"
+        },
+        {
+          "line": 436,
+          "text": "include(\"ConstructionProbe\")"
+        },
+        {
+          "line": 439,
+          "text": "include(\"UnitActionSitePolicy\")"
+        },
+        {
+          "line": 440,
+          "text": "include(\"UnitSiteProbe\")"
+        },
+        {
+          "line": 443,
+          "text": "include(\"UnitTargets\")"
+        },
+        {
+          "line": 446,
+          "text": "include(\"UnitActions\")"
+        },
+        {
+          "line": 449,
+          "text": "include(\"CrewProjects\")"
+        },
+        {
+          "line": 452,
+          "text": "include(\"CrewPrecision\")"
+        },
+        {
+          "line": 455,
+          "text": "include(\"Lv4Percent\")"
+        },
+        {
+          "line": 458,
+          "text": "include(\"HalfYieldProbe\")"
+        },
+        {
+          "line": 461,
+          "text": "include(\"CopyYields\")"
+        },
+        {
+          "line": 464,
+          "text": "include(\"StandardizationCatalog\")"
+        },
+        {
+          "line": 465,
+          "text": "include(\"Standardization\")"
+        },
+        {
+          "line": 468,
+          "text": "include(\"PurchaseProbe\")"
+        },
+        {
+          "line": 471,
+          "text": "include(\"StandardizationDiscount\")"
+        },
+        {
+          "line": 474,
+          "text": "include(\"NetworkBoost\")"
+        },
+        {
+          "line": 476,
+          "text": "include(\"GreatWorkProbe\")"
+        },
+        {
+          "line": 479,
+          "text": "include(\"Dialogue\")"
+        },
+        {
+          "line": 482,
+          "text": "include(\"GreatWorkAdjacency\")"
+        },
+        {
+          "line": 485,
+          "text": "include(\"CommerceConvergence\")"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "GreatWorkAdjacency.lua",
+      "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
+      "lines": 84,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('GreatWorkAdjacencyModel')"
+        },
+        {
+          "line": 3,
+          "text": "function SPCGWAdjacency.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function key(y,part) return 'BUILDING_SPC_B060_'..y..'_'..part end"
+        },
+        {
+          "line": 8,
+          "text": "local function carriers(c,want)"
+        },
+        {
+          "line": 14,
+          "text": "if P.HasBuilding(b,r.Index) and not want[id] then P.RemoveBuilding(b,r.Index);assert(not P.HasBuilding(b,r.Index),'GWA_REMOVE_FAILED') end"
+        },
+        {
+          "line": 17,
+          "text": "if not P.HasBuilding(b,r.Index) then P.CreateBuilding(c:GetBuildQueue(),r.Index) end"
+        },
+        {
+          "line": 21,
+          "text": "function d.Init()"
+        },
+        {
+          "line": 26,
+          "text": "function d.Audit(pid)"
+        },
+        {
+          "line": 53,
+          "text": "function d.Receive(pid,a)"
+        },
+        {
+          "line": 76,
+          "text": "function d.Describe(pid,c)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "GreatWorkAdjacencyModel.lua",
+      "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
+      "lines": 24,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "function M.Parts(base)"
+        },
+        {
+          "line": 10,
+          "text": "function M.Collect(P,pid)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "GreatWorkProbe.lua",
+      "sha256": "8c8b7e1d85190d0ffd60c7922aafd5cacc0e968823c85b057a8cfed9e43721db",
+      "lines": 38,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCGreatWorkProbe.Start(P,shared)"
+        },
+        {
+          "line": 5,
+          "text": "local function set(c,mode,want)"
+        },
+        {
+          "line": 9,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),r.Index) else P.RemoveBuilding(b,r.Index) end"
+        },
+        {
+          "line": 13,
+          "text": "function d.Clean()"
+        },
+        {
+          "line": 18,
+          "text": "function d.Run(pid,c,action)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "HalfYieldProbe.lua",
+      "sha256": "aef824eb6fc83cc064d42908dbbefa91ba96099408ee09324f42cb0c6e25f499",
+      "lines": 76,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCHalfYieldProbe.Plan(pop)"
+        },
+        {
+          "line": 9,
+          "text": "function SPCHalfYieldProbe.Start(P,shared)"
+        },
+        {
+          "line": 12,
+          "text": "local function name(y,mode,bit) return 'BUILDING_SPC_B050_'..y..'_'..mode..'_'..bit end"
+        },
+        {
+          "line": 13,
+          "text": "local function totals(c)"
+        },
+        {
+          "line": 16,
+          "text": "local function reconcile(pid,c,plan)"
+        },
+        {
+          "line": 24,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end"
+        },
+        {
+          "line": 31,
+          "text": "function data.Audit()"
+        },
+        {
+          "line": 48,
+          "text": "function data.Describe(pid,c)"
+        },
+        {
+          "line": 61,
+          "text": "function data.Run(pid,c,action)"
+        },
+        {
+          "line": 66,
+          "text": "P.SetProperty(c,key,true);data.ready=true;data.Audit()"
+        },
+        {
+          "line": 69,
+          "text": "reconcile(pid,c,nil);P.SetProperty(c,key,false);data.errors[pid..':'..c:GetID()]=nil"
+        },
+        {
+          "line": 73,
+          "text": "local function hook(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "IndustrySupport.lua",
+      "sha256": "4f316f6b24e13267b165042908c2685f3a98dbec1e636e9645cf883afa30fbbe",
+      "lines": 92,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 2,
+          "text": "include('SampleLifecycle')"
+        },
+        {
+          "line": 6,
+          "text": "function SPCIndustrySupport.Start(P,shared)"
+        },
+        {
+          "line": 8,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 11,
+          "text": "local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end"
+        },
+        {
+          "line": 12,
+          "text": "local function inspect(pid,city,externalBatch)"
+        },
+        {
+          "line": 34,
+          "text": "local function carriers(city,n,write)"
+        },
+        {
+          "line": 42,
+          "text": "if wanted then P.CreateBuilding(city:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index);removed=true end"
+        },
+        {
+          "line": 51,
+          "text": "function data.Audit(scope)"
+        },
+        {
+          "line": 69,
+          "text": "function data.Receive(pid,params)"
+        },
+        {
+          "line": 75,
+          "text": "function data.Describe(pid,city)"
+        },
+        {
+          "line": 88,
+          "text": "local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "InheritanceShadow.lua",
+      "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
+      "lines": 83,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_ISOLATED",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCInheritanceShadow.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function cp(v,n) n=n or 0;assert(n<20,'SHADOW_DEPTH');if type(v)~='table' then return v end;local r={};for k,x in pairs(v) do r[k]=cp(x,n+1) end;return r end"
+        },
+        {
+          "line": 8,
+          "text": "local function eq(a,b,n) n=n or 0;if n>20 or type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end;for k,v in pairs(a) do if not eq(v,b[k],n+1) then return false end end;for k in pairs(b) do if a[k]==nil then return false end end;return true end"
+        },
+        {
+          "line": 9,
+          "text": "local function count(t) local n=0;if type(t)=='table' then for _ in pairs(t) do n=n+1 end end;return n end"
+        },
+        {
+          "line": 10,
+          "text": "local function read()"
+        },
+        {
+          "line": 16,
+          "text": "local function save(old,v)"
+        },
+        {
+          "line": 19,
+          "text": "Game:SetProperty(KEY,cp(v));assert(eq(read(),v),'SHADOW_WRITE_UNCONFIRMED');d.writes=d.writes+1"
+        },
+        {
+          "line": 21,
+          "text": "local function safe(fn,...)"
+        },
+        {
+          "line": 24,
+          "text": "function d.Capture(c,reason)"
+        },
+        {
+          "line": 37,
+          "text": "function d.Select(pid,c)"
+        },
+        {
+          "line": 43,
+          "text": "function d.Describe(pid)"
+        },
+        {
+          "line": 58,
+          "text": "local function event(name,...)"
+        },
+        {
+          "line": 73,
+          "text": "local function hook(ns,name,fn,label)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "InvestmentAction.lua",
+      "sha256": "dc2b76792302c7227d8c0f78da200e254eec477bddc962596db4394aa91640b2",
+      "lines": 149,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCInvestmentAction.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function cp(v) if type(v)~='table' then return v end;local c={};for k,x in pairs(v) do c[k]=cp(x) end;return c end"
+        },
+        {
+          "line": 7,
+          "text": "local function same(a,b)"
+        },
+        {
+          "line": 12,
+          "text": "local function anchor(f) return {owner=f.owner,cityID=f.cityID,token=f.token,first=cp(f.first),specialization=f.specialization} end"
+        },
+        {
+          "line": 13,
+          "text": "local function facts(pid,c)"
+        },
+        {
+          "line": 17,
+          "text": "local function settler(pid,c,id,site)"
+        },
+        {
+          "line": 34,
+          "text": "local function write(pid,c,old,nextValue)"
+        },
+        {
+          "line": 37,
+          "text": "P.SetProperty(c,KEY,cp(nextValue))"
+        },
+        {
+          "line": 42,
+          "text": "local function finish(pid,c,ledger)"
+        },
+        {
+          "line": 53,
+          "text": "function data.ReadView(pid,c,id)"
+        },
+        {
+          "line": 75,
+          "text": "function data.CancelPreview(pid,id)"
+        },
+        {
+          "line": 78,
+          "text": "function data.Prepare(pid,c,unitID,requestToken,site)"
+        },
+        {
+          "line": 96,
+          "text": "function data.Confirm(pid,c,token)"
+        },
+        {
+          "line": 115,
+          "text": "u=settler(pid,c,p.unitID,p.site);P.SetProperty(u,UNIT_KEY,uid)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Lv2GPP.lua",
+      "sha256": "c70780c85d34d0d0185c7d98adede074c0b3b5c683074e635a73972d7f427535",
+      "lines": 122,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 4,
+          "text": "function SPCLv2GPP.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 7,
+          "text": "local function districtsFor(pid,c)"
+        },
+        {
+          "line": 15,
+          "text": "local function int(v) return type(v)==\"number\" and v>=0 and v%1==0 and v<math.huge end"
+        },
+        {
+          "line": 16,
+          "text": "local function name(kind,bit) return \"BUILDING_SPC_DEV_GPP_\"..kind..\"_\"..bit end"
+        },
+        {
+          "line": 17,
+          "text": "local function validateDefinitions()"
+        },
+        {
+          "line": 33,
+          "text": "local function inspect(pid,city)"
+        },
+        {
+          "line": 52,
+          "text": "local function set(city,id,wanted)"
+        },
+        {
+          "line": 55,
+          "text": "if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end"
+        },
+        {
+          "line": 58,
+          "text": "local function reconcile(pid,city)"
+        },
+        {
+          "line": 76,
+          "text": "function data.Audit(scope)"
+        },
+        {
+          "line": 92,
+          "text": "function data.Describe(pid,city)"
+        },
+        {
+          "line": 118,
+          "text": "local function bind(events,event,fn) local e=P.Field(events,event);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Lv2Housing.lua",
+      "sha256": "f7ba314a03f16d8afbf5c7b638037c50299050fa9d1308795a40a3f8b3188b50",
+      "lines": 101,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCLv2Housing.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function carrier(i)"
+        },
+        {
+          "line": 12,
+          "text": "local function expected(pid,city)"
+        },
+        {
+          "line": 43,
+          "text": "local function set(city,id,wanted)"
+        },
+        {
+          "line": 47,
+          "text": "if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(buildings,id) end"
+        },
+        {
+          "line": 51,
+          "text": "local function process(pid,city)"
+        },
+        {
+          "line": 64,
+          "text": "function data.Audit()"
+        },
+        {
+          "line": 76,
+          "text": "function data.Describe(pid,city)"
+        },
+        {
+          "line": 95,
+          "text": "local function bind(events,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Lv3Effects.lua",
+      "sha256": "b85d70976a2fa62a3608c7021b517afcc61a04d1f9935cd96d0785cdb1878d65",
+      "lines": 121,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 4,
+          "text": "function SPCLv3Effects.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 7,
+          "text": "local function districtsFor(pid,c)"
+        },
+        {
+          "line": 15,
+          "text": "local function desired(pid,c)"
+        },
+        {
+          "line": 45,
+          "text": "local function read(c)"
+        },
+        {
+          "line": 57,
+          "text": "function data.Audit(scope) P.Count('audit_lv3');"
+        },
+        {
+          "line": 73,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end"
+        },
+        {
+          "line": 86,
+          "text": "function data.Describe(pid,c)"
+        },
+        {
+          "line": 117,
+          "text": "local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Lv3Support.lua",
+      "sha256": "c9d990974d9f35c04fcae18af49f00f5ef9880ed24e65cbac04d1dc84c412dd1",
+      "lines": 91,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 4,
+          "text": "function SPCLv3Support.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 7,
+          "text": "local function districtsFor(pid,c)"
+        },
+        {
+          "line": 14,
+          "text": "local function desired(pid,c)"
+        },
+        {
+          "line": 40,
+          "text": "local function read(c)"
+        },
+        {
+          "line": 51,
+          "text": "function data.Audit(scope) P.Count('audit_lv3');"
+        },
+        {
+          "line": 69,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end"
+        },
+        {
+          "line": 82,
+          "text": "function data.Describe(pid,c)"
+        },
+        {
+          "line": 87,
+          "text": "local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Lv4CopyRead.lua",
+      "sha256": "5d58f139be76577107a7dda0f0088ad81cecaed49ca7c52653e40508369c627c",
+      "lines": 98,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "local function notice(raw)"
+        },
+        {
+          "line": 12,
+          "text": "function SPCLv4CopyRead.Metadata(P,shared,pid,c,token)"
+        },
+        {
+          "line": 31,
+          "text": "function SPCLv4CopyRead.Half(n)"
+        },
+        {
+          "line": 35,
+          "text": "function SPCLv4CopyRead.Maximum(sources)"
+        },
+        {
+          "line": 44,
+          "text": "function SPCLv4CopyRead.Render(P,m)"
+        },
+        {
+          "line": 50,
+          "text": "local function label(city) return Locale.Lookup(city:GetName())..' (#'..city:GetID()..')' end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Lv4Percent.lua",
+      "sha256": "f6859395cef39a802ee6cbe70f6ead5c81bbf304f9de47d3c2d4cde041ce24a8",
+      "lines": 81,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "REPLACE_OR_RETIRE_EFFECT_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 4,
+          "text": "function SPCLv4Percent.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end"
+        },
+        {
+          "line": 7,
+          "text": "local function districtsFor(pid,c)"
+        },
+        {
+          "line": 12,
+          "text": "local function name(k,i) return 'BUILDING_SPC_LV4_PERCENT_'..k..'_'..i end"
+        },
+        {
+          "line": 13,
+          "text": "local function facts(pid,c)"
+        },
+        {
+          "line": 30,
+          "text": "function data.Audit(scope)"
+        },
+        {
+          "line": 46,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end"
+        },
+        {
+          "line": 60,
+          "text": "function data.Describe(pid,c)"
+        },
+        {
+          "line": 77,
+          "text": "local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "NetworkBoost.lua",
+      "sha256": "619ef2f6001bc812011b50a66677b09691b91a90d2efedeb0f5fdc1bac60926b",
+      "lines": 130,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('RuntimeWork')"
+        },
+        {
+          "line": 3,
+          "text": "include('BoostConfig')"
+        },
+        {
+          "line": 4,
+          "text": "include('BoostIntegerConfig')"
+        },
+        {
+          "line": 7,
+          "text": "function SPCNetworkBoost.Quantize(finalRaw)"
+        },
+        {
+          "line": 15,
+          "text": "function SPCNetworkBoost.Start(P,shared)"
+        },
+        {
+          "line": 18,
+          "text": "local function row(id) return assert(P.Info('Buildings',id),'B055_DATABASE_MISSING') end"
+        },
+        {
+          "line": 19,
+          "text": "local function set(c,id,want)"
+        },
+        {
+          "line": 23,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),r.Index) else P.RemoveBuilding(b,r.Index) end"
+        },
+        {
+          "line": 27,
+          "text": "function d.Clean()"
+        },
+        {
+          "line": 36,
+          "text": "function d.Plan(pid)"
+        },
+        {
+          "line": 62,
+          "text": "function d.Audit(scope) P.Count('audit_boost');"
+        },
+        {
+          "line": 91,
+          "text": "function d.EnsureReady(pid)"
+        },
+        {
+          "line": 100,
+          "text": "function d.Test(pid,raw)"
+        },
+        {
+          "line": 111,
+          "text": "function d.Describe(pid)"
+        },
+        {
+          "line": 124,
+          "text": "local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "NetworkBridge.lua",
+      "sha256": "3c29503b8dd728e06a2c4ecae7888de08e016207210c7c1adf5b7c1b887ed745",
+      "lines": 400,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 2,
+          "text": "include(\"NetworkInput\")"
+        },
+        {
+          "line": 4,
+          "text": "function SPCNetworkBridge.Start(P,shared)"
+        },
+        {
+          "line": 8,
+          "text": "local function integer(n) return type(n)==\"number\" and n>=0 and n%1==0 and n<2147483648 end"
+        },
+        {
+          "line": 9,
+          "text": "local function city(pid,id)"
+        },
+        {
+          "line": 13,
+          "text": "local function short(err)"
+        },
+        {
+          "line": 19,
+          "text": "local function copy(v)"
+        },
+        {
+          "line": 23,
+          "text": "local function buildView(pid,rows,input)"
+        },
+        {
+          "line": 44,
+          "text": "local function bucket(pid)"
+        },
+        {
+          "line": 49,
+          "text": "function d.Input(pid)"
+        },
+        {
+          "line": 55,
+          "text": "local function notify(pid)"
+        },
+        {
+          "line": 65,
+          "text": "local function publish(pid,b,input,view,withdrawal)"
+        },
+        {
+          "line": 83,
+          "text": "local function withdraw(pid,b,reason)"
+        },
+        {
+          "line": 94,
+          "text": "function d.Verified(pid,failedFullRead)"
+        },
+        {
+          "line": 122,
+          "text": "function d.Refresh(pid)"
+        },
+        {
+          "line": 190,
+          "text": "function d.Receive(pid,p)"
+        },
+        {
+          "line": 270,
+          "text": "local function currentView(pid,confirmedOnly)"
+        },
+        {
+          "line": 284,
+          "text": "function d.DiscountBatch(pid)"
+        },
+        {
+          "line": 289,
+          "text": "function d.CurrentConnectedKinds(pid,selected)"
+        },
+        {
+          "line": 293,
+          "text": "function d.CurrentNational(pid)"
+        },
+        {
+          "line": 297,
+          "text": "function d.CurrentRecipientSources(pid,selected,kind)"
+        },
+        {
+          "line": 303,
+          "text": "function d.ConnectedKinds(pid,selected)"
+        },
+        {
+          "line": 307,
+          "text": "function d.National(pid)"
+        },
+        {
+          "line": 311,
+          "text": "function d.RecipientSources(pid,selected,kind)"
+        },
+        {
+          "line": 319,
+          "text": "local function size(set) local n=0;for _ in pairs(set or {}) do n=n+1 end;return n end"
+        },
+        {
+          "line": 320,
+          "text": "local function name(pid,id)"
+        },
+        {
+          "line": 327,
+          "text": "function d.Read(pid,selected,details)"
+        },
+        {
+          "line": 380,
+          "text": "function d.Rebuild()"
+        },
+        {
+          "line": 386,
+          "text": "function d.CheckEvidence(failedFullRead)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "NetworkInput.lua",
+      "sha256": "9c0b66a127b4047d9d05a3916ad8a535fd1f76770d9700c1f00317a50a57a5e5",
+      "lines": 66,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "local function atom(v)"
+        },
+        {
+          "line": 7,
+          "text": "function N.Reference(c)"
+        },
+        {
+          "line": 11,
+          "text": "function N.Signature(input)"
+        },
+        {
+          "line": 20,
+          "text": "function N.Capture(P,shared,pid,rows,routeSignature,previous)"
+        },
+        {
+          "line": 50,
+          "text": "-- Include all endpoints, including international references, without interpreting foreign progression."
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "NetworkSender.lua",
+      "sha256": "d7edcb8cf3f2dc5989861747661ecb8e0f40c93129cfd887c021718113924257",
+      "lines": 37,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCNetworkSender.New(P)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "PerformanceCounters.lua",
+      "sha256": "e73dd4c908cefb40011409691abedf0bfb54d0c5388e76f4f387ecd8420d2871",
+      "lines": 53,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 8,
+          "text": "function M.New()"
+        },
+        {
+          "line": 13,
+          "text": "function M.Count(n,amount)"
+        },
+        {
+          "line": 24,
+          "text": "function M.Flight(n)"
+        },
+        {
+          "line": 28,
+          "text": "function M.Describe(detailed)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Probe.lua",
+      "sha256": "d9352c1ed97096fdec66b9082ab59b5c5ae69b90c32349bdfd00f6100e516eff",
+      "lines": 538,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 14,
+          "text": "function P.CrewBase(kind)"
+        },
+        {
+          "line": 17,
+          "text": "function P.CrewAmount(kind)"
+        },
+        {
+          "line": 27,
+          "text": "function P.Scalar(value)"
+        },
+        {
+          "line": 34,
+          "text": "function P.IsTestPlayer(playerID)"
+        },
+        {
+          "line": 41,
+          "text": "function P.Summary(playerID,cityID)"
+        },
+        {
+          "line": 46,
+          "text": "local function val(object,method,...)"
+        },
+        {
+          "line": 89,
+          "text": "function P.Field(object, key)"
+        },
+        {
+          "line": 94,
+          "text": "function P.Call(object, method, ...)"
+        },
+        {
+          "line": 99,
+          "text": "function P.Rows(name)"
+        },
+        {
+          "line": 107,
+          "text": "function P.Info(name, key) return P.Field(P.Field(GameInfo, name), key) end"
+        },
+        {
+          "line": 108,
+          "text": "function P.Encode(v, seen)"
+        },
+        {
+          "line": 120,
+          "text": "function P.Family(districtType)"
+        },
+        {
+          "line": 135,
+          "text": "function P.CrewPreview(charge, cost, progress, kind)"
+        },
+        {
+          "line": 147,
+          "text": "function P.Snapshot(context, playerID, reason, cityID)"
+        },
+        {
+          "line": 152,
+          "text": "local function log(key, value)"
+        },
+        {
+          "line": 156,
+          "text": "local function read(key, object, method, ...)"
+        },
+        {
+          "line": 162,
+          "text": "local function members(key, object, fn)"
+        },
+        {
+          "line": 302,
+          "text": "function P.CityRoleFacts(city)"
+        },
+        {
+          "line": 313,
+          "text": "local function prop(key)"
+        },
+        {
+          "line": 354,
+          "text": "function P.FocusProbe(city,action,stage)"
+        },
+        {
+          "line": 355,
+          "text": "local function get(object,method,...)"
+        },
+        {
+          "line": 421,
+          "text": "function P.NetworkProbe(city,action,stage,page)"
+        },
+        {
+          "line": 422,
+          "text": "local function get(o,m,...)"
+        },
+        {
+          "line": 465,
+          "text": "local function number(ok,v)"
+        },
+        {
+          "line": 493,
+          "text": "local function endpoint(p,c)"
+        },
+        {
+          "line": 522,
+          "text": "include('PerformanceCounters')"
+        },
+        {
+          "line": 524,
+          "text": "function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end"
+        },
+        {
+          "line": 525,
+          "text": "function P.CreateBuilding(object,id) P.Count('building_create');local r=object:CreateBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end"
+        },
+        {
+          "line": 526,
+          "text": "function P.RemoveBuilding(object,id) P.Count('building_remove');local r=object:RemoveBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end"
+        },
+        {
+          "line": 527,
+          "text": "function P.SetProperty(object,key,value) P.Count('property_write');local r=object:SetProperty(key,value);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end"
+        },
+        {
+          "line": 529,
+          "text": "function P.RouteUnitRelevant(pid,id)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "PurchaseProbe.lua",
+      "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
+      "lines": 35,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCPurchaseProbe.Start(P,shared)"
+        },
+        {
+          "line": 5,
+          "text": "local function row(kind) local r=P.Info('Buildings','BUILDING_SPC_B053_'..kind);assert(r,'B053_DATABASE_MISSING');return r end"
+        },
+        {
+          "line": 6,
+          "text": "local function set(c,kind,want)"
+        },
+        {
+          "line": 9,
+          "text": "if want then P.CreateBuilding(c:GetBuildQueue(),r.Index) else P.RemoveBuilding(b,r.Index) end"
+        },
+        {
+          "line": 13,
+          "text": "function d.Describe(c)"
+        },
+        {
+          "line": 19,
+          "text": "function d.Run(pid,c,action)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "PurchaseProbeRead.lua",
+      "sha256": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24",
+      "lines": 15,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCPurchaseProbeRead.Render(P,c)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "QualificationProbe.lua",
+      "sha256": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59",
+      "lines": 205,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 7,
+          "text": "function M.New(env,trait)"
+        },
+        {
+          "line": 10,
+          "text": "function C.Read(player)"
+        },
+        {
+          "line": 41,
+          "text": "local function integer(n) return type(n)==\"number\" and n>=0 and n<math.huge and n%1==0 end"
+        },
+        {
+          "line": 42,
+          "text": "function M.Collect(env,readEligibility)"
+        },
+        {
+          "line": 72,
+          "text": "function M.Classify(snapshot,pid)"
+        },
+        {
+          "line": 87,
+          "text": "function M.New(collect,context)"
+        },
+        {
+          "line": 91,
+          "text": "function S.Invalidate()"
+        },
+        {
+          "line": 95,
+          "text": "function S.Refresh(phase)"
+        },
+        {
+          "line": 122,
+          "text": "function S.Acquire(player)"
+        },
+        {
+          "line": 128,
+          "text": "function S.Check(token,player)"
+        },
+        {
+          "line": 137,
+          "text": "function SPCQualificationProbe.Start(P,shared)"
+        },
+        {
+          "line": 141,
+          "text": "local function collect()"
+        },
+        {
+          "line": 148,
+          "text": "local function ranges(ids)"
+        },
+        {
+          "line": 150,
+          "text": "local function flush() if first~=nil then out[#out+1]=first==last and tostring(first) or (first..\"-\"..last) end end"
+        },
+        {
+          "line": 156,
+          "text": "local function publish(phase,check)"
+        },
+        {
+          "line": 182,
+          "text": "local function onLoad()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "ResearchSupport.lua",
+      "sha256": "dc436a43f10874765aff8ad75fb07e94c5e618ba4b5048638cbaa61dca5a6d6a",
+      "lines": 126,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCResearchSupport.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function definition(kind)"
+        },
+        {
+          "line": 12,
+          "text": "local function eligible(pid,city)"
+        },
+        {
+          "line": 30,
+          "text": "local function set(city,id,wanted)"
+        },
+        {
+          "line": 35,
+          "text": "if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end"
+        },
+        {
+          "line": 38,
+          "text": "local function key(pid,city) return pid..\":\"..city:GetID() end"
+        },
+        {
+          "line": 39,
+          "text": "local function reconcile(pid,city)"
+        },
+        {
+          "line": 51,
+          "text": "local function process(pid,city)"
+        },
+        {
+          "line": 57,
+          "text": "function data.Audit()"
+        },
+        {
+          "line": 76,
+          "text": "local function completed(pid,index,x,y)"
+        },
+        {
+          "line": 89,
+          "text": "function data.Run(pid,city,action)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "RuntimeAuditCore.lua",
+      "sha256": "4d48025888451ef30e89473cdb5f3179b17646511bd4067f4dfad3da09833b1b",
+      "lines": 90,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 7,
+          "text": "local function cell(v) return tostring(v==nil and 'NA' or v):gsub('[\\t\\r\\n]',' '):sub(1,160) end"
+        },
+        {
+          "line": 10,
+          "text": "function M.FileSink(lib,dir)"
+        },
+        {
+          "line": 17,
+          "text": "function s.Rotate(header)"
+        },
+        {
+          "line": 29,
+          "text": "function s.Append(text,header)"
+        },
+        {
+          "line": 39,
+          "text": "function M.New(counters,sink,options)"
+        },
+        {
+          "line": 46,
+          "text": "local function header(serial)"
+        },
+        {
+          "line": 52,
+          "text": "function s.Fail(reason) s.state='DISABLED';s.reason=cell(reason) end"
+        },
+        {
+          "line": 55,
+          "text": "function s.EndTurn(turn,c,info)"
+        },
+        {
+          "line": 65,
+          "text": "local function flag(k,n) flags[#flags+1]=k..':'..tostring(n) end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "RuntimeWork.lua",
+      "sha256": "25ad4f655c3991bf17eb27fa5c0ef73c7da71aa0948d64db5d37d14f8991e541",
+      "lines": 54,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCRuntimeWork.New(P,shared)"
+        },
+        {
+          "line": 5,
+          "text": "function b.Facts(pid,c)"
+        },
+        {
+          "line": 10,
+          "text": "function b.Districts(pid,c)"
+        },
+        {
+          "line": 21,
+          "text": "function b.Live(pid,industry)"
+        },
+        {
+          "line": 30,
+          "text": "function SPCRuntimeWork.Player(scope,pid)"
+        },
+        {
+          "line": 33,
+          "text": "function SPCRuntimeWork.Hook(P,source,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "SampleLifecycle.lua",
+      "sha256": "adc9b499856f1536a81f4187e6d68284d72735f3d61778daf3637cacba0ad5b9",
+      "lines": 106,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "local function count(P,k,n) if P.Count then P.Count(k..'_'..n) end end"
+        },
+        {
+          "line": 5,
+          "text": "local function integer(n) return type(n)=='number' and n>=0 and n%1==0 end"
+        },
+        {
+          "line": 6,
+          "text": "function L.Reference(c,d,row)"
+        },
+        {
+          "line": 7,
+          "text": "local function a(v) local s=type(v)..':'..tostring(v);return (#s..':'..s):gsub('[%%,;]',function(x) return string.format('%%%02X',string.byte(x)) end) end"
+        },
+        {
+          "line": 11,
+          "text": "function L.Live(P,pid,industry)"
+        },
+        {
+          "line": 24,
+          "text": "function L.Reset(data,k)"
+        },
+        {
+          "line": 28,
+          "text": "function L.Receive(P,data,k,pid,p,industry)"
+        },
+        {
+          "line": 36,
+          "text": "local function respond(status) data.responses[pid]={epoch=p.ClientEpoch,seq=p.Seq,generation=p.Generation,status=status} end"
+        },
+        {
+          "line": 61,
+          "text": "function L.Client(P,k,action,public)"
+        },
+        {
+          "line": 63,
+          "text": "local function reset()"
+        },
+        {
+          "line": 69,
+          "text": "function c.Tick(dt) if type(dt)=='number' and dt>=0 then c.clock=c.clock+math.min(dt,10) end end"
+        },
+        {
+          "line": 70,
+          "text": "function c.Before(data)"
+        },
+        {
+          "line": 85,
+          "text": "function c.NeedsSample() return not pending and tries<3 and (not key or key~=last) end"
+        },
+        {
+          "line": 86,
+          "text": "function c.Send(pid,data,valid,rows,n)"
+        },
+        {
+          "line": 101,
+          "text": "function c.Close()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "ShadowRouteState.lua",
+      "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
+      "lines": 68,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "local function integer(n) return type(n)==\"number\" and n>=0 and n<math.huge and n%1==0 end"
+        },
+        {
+          "line": 4,
+          "text": "local function copy(t)"
+        },
+        {
+          "line": 8,
+          "text": "local function cityKey(p,c) return p..\":\"..c end"
+        },
+        {
+          "line": 9,
+          "text": "local function normalize(s)"
+        },
+        {
+          "line": 40,
+          "text": "function M.New()"
+        },
+        {
+          "line": 44,
+          "text": "function state:Invalidate(why) current=nil;reason=why or \"DIRTY\" end"
+        },
+        {
+          "line": 45,
+          "text": "function state:Reset() current=nil;lastGood=nil;revision=0;reason=\"CONTEXT_RESET\" end"
+        },
+        {
+          "line": 46,
+          "text": "function state:Replace(snapshot)"
+        },
+        {
+          "line": 58,
+          "text": "function state:Read()"
+        },
+        {
+          "line": 62,
+          "text": "function state:Summary()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "SourceYieldProbe.lua",
+      "sha256": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e",
+      "lines": 31,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCSourceYieldProbe.Read(playerID,city,shared)"
+        },
+        {
+          "line": 27,
+          "text": "lines[#lines+1]='Includes outside inputs; NOT verified local-only basis.'"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Specialization.dep",
+      "sha256": "2a825b453df53475a7ca858ba4adfcab60e33f017f17b0ac2ef0d5489735e0f8",
+      "lines": 49,
+      "manifest_roles": [
+        "UpdateArt:SPC_B042_CrewArt"
+      ],
+      "classification": "KEEP_INFRASTRUCTURE",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "SpecializationP0.modinfo",
+      "sha256": "988cb8d8d2b025dc5802436236d7e957d8efe36c7635b21f5191f8fad9132fba",
+      "lines": 443,
+      "manifest_roles": [],
+      "classification": "KEEP_INFRASTRUCTURE",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "Standardization.lua",
+      "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
+      "lines": 172,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCStandardization.Start(P,shared)"
+        },
+        {
+          "line": 6,
+          "text": "local function clone(t) if type(t)~='table' then return t end;local o={};for k,v in pairs(t) do o[k]=clone(v) end;return o end"
+        },
+        {
+          "line": 7,
+          "text": "local function same(a,b)"
+        },
+        {
+          "line": 12,
+          "text": "local function key(pid,cid) return tostring(pid)..':'..tostring(cid) end"
+        },
+        {
+          "line": 13,
+          "text": "local function catalog()"
+        },
+        {
+          "line": 17,
+          "text": "local function validate(c,v)"
+        },
+        {
+          "line": 30,
+          "text": "local function write(c,old,nextValue)"
+        },
+        {
+          "line": 32,
+          "text": "P.SetProperty(c,KEY,nextValue)"
+        },
+        {
+          "line": 38,
+          "text": "local function facts(pid,c)"
+        },
+        {
+          "line": 42,
+          "text": "local function learn(c,v,id,evidence)"
+        },
+        {
+          "line": 52,
+          "text": "local function initialize(pid,c)"
+        },
+        {
+          "line": 62,
+          "text": "local function guard(pid,c,fn)"
+        },
+        {
+          "line": 71,
+          "text": "function data.Discover(pid)"
+        },
+        {
+          "line": 78,
+          "text": "function data.Queue(pid,cid,bid,event)"
+        },
+        {
+          "line": 87,
+          "text": "function data.Flush()"
+        },
+        {
+          "line": 94,
+          "text": "local function retry(id,e)"
+        },
+        {
+          "line": 123,
+          "text": "function data.ReadLedger(pid,c)"
+        },
+        {
+          "line": 128,
+          "text": "function data.Describe(pid,c,page)"
+        },
+        {
+          "line": 153,
+          "text": "local function hook(src,n,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "StandardizationCatalog.lua",
+      "sha256": "df4f28def5d5bca9ed1bc947b89a46149dc6b19d475a34122063b51974c80bfa",
+      "lines": 25,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCStandardizationCatalog.Build(P)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "StandardizationDiscount.lua",
+      "sha256": "a2fedf96482913159c46372a1e5fb69e429121058ca9b9bc89d0f01a66be5954",
+      "lines": 263,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCStandardizationDiscount.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function init()"
+        },
+        {
+          "line": 15,
+          "text": "local function count(n) if P.Count then P.Count(n) end end"
+        },
+        {
+          "line": 18,
+          "text": "function d.MarkDirty(pid,reason)"
+        },
+        {
+          "line": 23,
+          "text": "local function markAll(reason)"
+        },
+        {
+          "line": 26,
+          "text": "local function ref(c) return c:GetOwner()..':'..c:GetID()..':'..c:GetX()..':'..c:GetY() end"
+        },
+        {
+          "line": 27,
+          "text": "local function city(pid,id) local c=Players[pid]:GetCities():FindID(id);assert(c and c:GetOwner()==pid,'DISCOUNT_OWNER_CHANGED');return c end"
+        },
+        {
+          "line": 28,
+          "text": "local function candidate(pid,c,batch)"
+        },
+        {
+          "line": 62,
+          "text": "local function reconcile(pid,c,want)"
+        },
+        {
+          "line": 70,
+          "text": "P.RemoveBuilding(b,index);count('discount_withdraw');assert(not P.HasBuilding(b,index),'DISCOUNT_REMOVE_UNCONFIRMED');old[index]=nil;d.changes=d.changes+1"
+        },
+        {
+          "line": 73,
+          "text": "P.CreateBuilding(c:GetBuildQueue(),index);assert(P.HasBuilding(b,index),'DISCOUNT_ADD_UNCONFIRMED');d.changes=d.changes+1"
+        },
+        {
+          "line": 77,
+          "text": "local function clientValid(p)"
+        },
+        {
+          "line": 83,
+          "text": "local function respond(pid,p,status)"
+        },
+        {
+          "line": 86,
+          "text": "function d.Initialize(pid,p)"
+        },
+        {
+          "line": 93,
+          "text": "function d.EnsureReady(pid)"
+        },
+        {
+          "line": 101,
+          "text": "function d.Audit(publication)"
+        },
+        {
+          "line": 185,
+          "text": "function d.Receive(pid,p)"
+        },
+        {
+          "line": 223,
+          "text": "function d.Describe(pid,c,page)"
+        },
+        {
+          "line": 238,
+          "text": "local function hook(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f) end end"
+        },
+        {
+          "line": 253,
+          "text": "local function building(x,y,bid,pid)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "StorageProbe.lua",
+      "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
+      "lines": 47,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCStorageProbe.Start(P,shared)"
+        },
+        {
+          "line": 5,
+          "text": "local function expected(pid)"
+        },
+        {
+          "line": 10,
+          "text": "local function equal(a,b,depth)"
+        },
+        {
+          "line": 17,
+          "text": "function data.Run(pid,write)"
+        },
+        {
+          "line": 31,
+          "text": "local ack=pcall(function() P.SetProperty(Game,key,want) end)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "Text/TestText.sql",
+      "sha256": "30c441085ef3977057079e091611b1c2f16173bfde28f5c72e61e9352a59465d",
+      "lines": 67,
+      "manifest_roles": [
+        "UpdateText:SPC_IG_Text",
+        "UpdateText:SPC_FE_Text"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "TradeRouteProbe.lua",
+      "sha256": "d87d68674052a1acd2c280dce5b1280b7fd47d8cb61c7cf4ea094a4d324572a1",
+      "lines": 144,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "function SPCTradeRouteProbe.Start(P,shared)"
+        },
+        {
+          "line": 11,
+          "text": "local function scalar(v) return P.Scalar(v) end"
+        },
+        {
+          "line": 12,
+          "text": "local function need(obj,method,...)"
+        },
+        {
+          "line": 17,
+          "text": "local function optional(obj,method,...)"
+        },
+        {
+          "line": 22,
+          "text": "local function shortError(err)"
+        },
+        {
+          "line": 26,
+          "text": "local function scan(player)"
+        },
+        {
+          "line": 64,
+          "text": "local function refresh(reason)"
+        },
+        {
+          "line": 118,
+          "text": "local function listen(namespace,name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/BackgroundRoutes.lua",
+      "sha256": "847add4e3fc5f862249d2d502adc80b1d3619a1f1537103edca4ccd1e22a7887",
+      "lines": 189,
+      "manifest_roles": [],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 2,
+          "text": "include(\"Probe\")"
+        },
+        {
+          "line": 3,
+          "text": "include(\"ShadowRouteState\")"
+        },
+        {
+          "line": 6,
+          "text": "include(\"NetworkSender\")"
+        },
+        {
+          "line": 22,
+          "text": "local function integer(n) return type(n)==\"number\" and n>=0 and n<math.huge and n%1==0 end"
+        },
+        {
+          "line": 23,
+          "text": "local function need(o,m,...)"
+        },
+        {
+          "line": 26,
+          "text": "local function short(err)"
+        },
+        {
+          "line": 30,
+          "text": "local function ordered(map) local a={};for k in pairs(map) do a[#a+1]=k end;table.sort(a);return a end"
+        },
+        {
+          "line": 31,
+          "text": "local function endpoint(playerID,cityID)"
+        },
+        {
+          "line": 42,
+          "text": "local function collect(pid)"
+        },
+        {
+          "line": 81,
+          "text": "local function comparison(s)"
+        },
+        {
+          "line": 93,
+          "text": "local function render()"
+        },
+        {
+          "line": 100,
+          "text": "local function mark(reason)"
+        },
+        {
+          "line": 107,
+          "text": "local function refresh()"
+        },
+        {
+          "line": 133,
+          "text": "local function observeGame()"
+        },
+        {
+          "line": 143,
+          "text": "local function flush()"
+        },
+        {
+          "line": 157,
+          "text": "local function bind(name,fn)"
+        },
+        {
+          "line": 161,
+          "text": "local function initialize()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/BackgroundRoutes.xml",
+      "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
+      "lines": 3,
+      "manifest_roles": [
+        "AddUserInterfaces:SPCP0_BackgroundRoutes"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/BoostGreatWorkRead.lua",
+      "sha256": "2c73c0cc0b9146f8b5900f8ac155455a5293c0a889d693d8907527fa766d31e9",
+      "lines": 93,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "local function snapshot(P)"
+        },
+        {
+          "line": 15,
+          "text": "function SPCBoostGreatWorkRead.Boost(P,mark)"
+        },
+        {
+          "line": 37,
+          "text": "function SPCBoostGreatWorkRead.Works(P,c,mark)"
+        },
+        {
+          "line": 81,
+          "text": "function SPCBoostGreatWorkRead.Adjacency(P,c)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/BoostRefresh.lua",
+      "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
+      "lines": 22,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('DiagnosticLog')"
+        },
+        {
+          "line": 4,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 6,
+          "text": "local function refresh()"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/BoostRefresh.xml",
+      "sha256": "ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595",
+      "lines": 1,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common",
+        "AddUserInterfaces:SPC_B055_Background"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/CityPotential.lua",
+      "sha256": "396066723ea51e58f6a09f88305a8f2b2464e3b73619b1cd161436bf3dbc2e1d",
+      "lines": 61,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 2,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 8,
+          "text": "local function hide(v) if hidden~=v then hidden=v;Controls.Badge:SetHide(v) end end"
+        },
+        {
+          "line": 10,
+          "text": "local function reportError(err)"
+        },
+        {
+          "line": 16,
+          "text": "local function update(dt)"
+        },
+        {
+          "line": 60,
+          "text": "ContextPtr:SetInitHandler(function() ContextPtr:SetHide(false);ContextPtr:SetUpdate(update) end)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/CityPotential.xml",
+      "sha256": "3971290a3b79bf2b8be2fa603647bafca8c27b48b0d543835610acc5edf8fa40",
+      "lines": 4,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B068_CityPotential"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/CopyYieldRefresh.lua",
+      "sha256": "c1ea4f3d76042ecfdd7ece121fc2136f16da56de7cff46156ea1e49c4920ac30",
+      "lines": 60,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 2,
+          "text": "include('SampleLifecycle')"
+        },
+        {
+          "line": 6,
+          "text": "local function refresh()"
+        },
+        {
+          "line": 32,
+          "text": "local function safe() local ok,err=pcall(refresh);if not ok then busy=false;public.state='ERROR';public.error=tostring(err) end end"
+        },
+        {
+          "line": 33,
+          "text": "local function bind(name,fn) local e=P.Field(Events,name);if e and e.Add then e.Add(fn);hooks[#hooks+1]={e,fn} end end"
+        },
+        {
+          "line": 34,
+          "text": "local function mark() dirty=true end"
+        },
+        {
+          "line": 53,
+          "text": "ContextPtr:SetUpdate(function(dt) client.Tick(dt) end) -- scalar timeout clock, never reads game state or sends"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/CopyYieldRefresh.xml",
+      "sha256": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9",
+      "lines": 1,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B051_Background",
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/CrewProjectOrder.lua",
+      "sha256": "8b902c93e450e5ffcf6620bd5154382c36f38b34418cd1aa0856da661cf45522",
+      "lines": 22,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 2,
+          "text": "include('DL_ProductionPanel')"
+        },
+        {
+          "line": 5,
+          "text": "function GetDataHelper(...)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/DialogueRefresh.lua",
+      "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
+      "lines": 95,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('DiagnosticLog')"
+        },
+        {
+          "line": 4,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 5,
+          "text": "include('DialogueModel')"
+        },
+        {
+          "line": 6,
+          "text": "include('GreatWorkAdjacencyModel')"
+        },
+        {
+          "line": 10,
+          "text": "local function mark(reason)"
+        },
+        {
+          "line": 13,
+          "text": "-- Empty background contexts do not reliably receive SetUpdate in Civ VI."
+        },
+        {
+          "line": 16,
+          "text": "local function stopRetry() end"
+        },
+        {
+          "line": 17,
+          "text": "local function dispatch(pid,packet)"
+        },
+        {
+          "line": 23,
+          "text": "local function pulse()"
+        },
+        {
+          "line": 37,
+          "text": "local function refresh()"
+        },
+        {
+          "line": 79,
+          "text": "local function bind(name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/DialogueRefresh.xml",
+      "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
+      "lines": 1,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B059_Dialogue"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/DiscountEligibility.lua",
+      "sha256": "3e50f8ddef2a676673c83d98167dd8ff12a4fa8493e0118e43229eb115248d7f",
+      "lines": 131,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('DiagnosticLog')"
+        },
+        {
+          "line": 3,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 9,
+          "text": "local function count(n) if P.Count then P.Count(n) end end"
+        },
+        {
+          "line": 10,
+          "text": "local function reset()"
+        },
+        {
+          "line": 18,
+          "text": "local function transmit(pid,packet,key)"
+        },
+        {
+          "line": 31,
+          "text": "local function refresh()"
+        },
+        {
+          "line": 95,
+          "text": "local function safe()"
+        },
+        {
+          "line": 99,
+          "text": "local function bind(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f);hooks[#hooks+1]={e,f} end end"
+        },
+        {
+          "line": 104,
+          "text": "local function permissionChanged(pid)"
+        },
+        {
+          "line": 111,
+          "text": "local function buildingChanged(x,y,bid,pid)"
+        },
+        {
+          "line": 123,
+          "text": "ContextPtr:SetUpdate(function(dt) if type(dt)=='number' and dt>=0 then clock=clock+math.min(dt,10) end end)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/DiscountEligibility.xml",
+      "sha256": "83f53d04f035643a3b31783ac2a49c94d34d530d3dbbe69105dac7fd403b67e2",
+      "lines": 1,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B054_Eligibility",
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/GPPRefresh.lua",
+      "sha256": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
+      "lines": 39,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('DiagnosticLog')"
+        },
+        {
+          "line": 4,
+          "text": "include(\"Probe\")"
+        },
+        {
+          "line": 11,
+          "text": "local function mark() dirty=true;tries=0 end"
+        },
+        {
+          "line": 12,
+          "text": "local function flush()"
+        },
+        {
+          "line": 24,
+          "text": "local function bind(name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/GPPRefresh.xml",
+      "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
+      "lines": 2,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B035_GPPRefresh"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/GreatWorkBasis.lua",
+      "sha256": "c76edc36a68408e790c0ff1d7bd05e5df0b11b473c6efb2baa0f54006f59574c",
+      "lines": 65,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "local function number(n)"
+        },
+        {
+          "line": 7,
+          "text": "function SPCGreatWorkBasis.Plan(works)"
+        },
+        {
+          "line": 27,
+          "text": "function SPCGreatWorkBasis.Collect(P,c)"
+        },
+        {
+          "line": 50,
+          "text": "function SPCGreatWorkBasis.Describe(P,c)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/IndustryRefresh.lua",
+      "sha256": "ecc7fe971b022a71a23ed80f6860520ef85820c8a61c7e84099693308e094940",
+      "lines": 58,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 2,
+          "text": "include('SampleLifecycle')"
+        },
+        {
+          "line": 6,
+          "text": "local function refresh()"
+        },
+        {
+          "line": 30,
+          "text": "local function safe() local ok,err=pcall(refresh);if not ok then busy=false;public.state='ERROR';public.error=tostring(err) end end"
+        },
+        {
+          "line": 31,
+          "text": "local function bind(name,fn) local e=P.Field(Events,name);if e and e.Add then e.Add(fn);hooks[#hooks+1]={e,fn} end end"
+        },
+        {
+          "line": 32,
+          "text": "local function mark() dirty=true end"
+        },
+        {
+          "line": 51,
+          "text": "ContextPtr:SetUpdate(function(dt) client.Tick(dt) end) -- scalar timeout clock, never reads game state or sends"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/IndustryRefresh.xml",
+      "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
+      "lines": 2,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common",
+        "AddUserInterfaces:SPC_B036_IndustryRefresh"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/P0Panel.lua",
+      "sha256": "55b2c11876d0ead591ec1fe58e90c47dfd37caf2ff7b932b8dd569f44446f0fa",
+      "lines": 462,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include(\"BoostGreatWorkRead\")"
+        },
+        {
+          "line": 2,
+          "text": "include(\"PurchaseProbeRead\")"
+        },
+        {
+          "line": 3,
+          "text": "include(\"Probe\")"
+        },
+        {
+          "line": 4,
+          "text": "include(\"GPPReadout\")"
+        },
+        {
+          "line": 5,
+          "text": "include(\"Lv4CopyRead\")"
+        },
+        {
+          "line": 14,
+          "text": "local function status(s) Controls.Status:SetText(s);if Controls.ReportScroll then Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring() end end"
+        },
+        {
+          "line": 15,
+          "text": "local function trace(s)"
+        },
+        {
+          "line": 22,
+          "text": "local function gwaDiagnostics()"
+        },
+        {
+          "line": 27,
+          "text": "local function displayResponse()"
+        },
+        {
+          "line": 86,
+          "text": "local function gwaPulse()"
+        },
+        {
+          "line": 104,
+          "text": "local function waitForResponse()"
+        },
+        {
+          "line": 107,
+          "text": "ContextPtr:SetUpdate(function(dt)"
+        },
+        {
+          "line": 162,
+          "text": "local function legacyCopy(asBaseline)"
+        },
+        {
+          "line": 189,
+          "text": "local function copy()"
+        },
+        {
+          "line": 196,
+          "text": "local function dump(path,v,depth)"
+        },
+        {
+          "line": 219,
+          "text": "local function showCompletion(older)"
+        },
+        {
+          "line": 239,
+          "text": "local function placeEntry()"
+        },
+        {
+          "line": 252,
+          "text": "local function showRoot()"
+        },
+        {
+          "line": 256,
+          "text": "local function initialize()"
+        },
+        {
+          "line": 294,
+          "text": "Controls.OpenButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(false) end)"
+        },
+        {
+          "line": 295,
+          "text": "Controls.CloseButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(true) end)"
+        },
+        {
+          "line": 296,
+          "text": "Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 308,
+          "text": "Controls.EligibilityUnknownButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 335,
+          "text": "Controls.EligibilityButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 358,
+          "text": "Controls.CityJournalButton:RegisterCallback(Mouse.eLClick,function() request(\"CITY_JOURNAL_READ\") end)"
+        },
+        {
+          "line": 359,
+          "text": "Controls.CompletionRecordButton:RegisterCallback(Mouse.eLClick,function() request(\"COMPLETION_RECORD_READ\") end)"
+        },
+        {
+          "line": 360,
+          "text": "Controls.BindingReadButton:RegisterCallback(Mouse.eLClick,function() request(\"BINDING_READ\") end)"
+        },
+        {
+          "line": 361,
+          "text": "Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request(\"NETWORK_DETAIL\",true) end)"
+        },
+        {
+          "line": 362,
+          "text": "Controls.CarrierOffButton:RegisterCallback(Mouse.eLClick,function() request(\"CARRIER_OFF\") end)"
+        },
+        {
+          "line": 363,
+          "text": "for _,a in ipairs({\"READ\",\"OFF\",\"AUTO\",\"TEST5\"}) do local action=a;Controls[\"Commerce\"..a..\"Button\"]:RegisterCallback(Mouse.eLClick,function() request(\"COMMERCE_\"..action) end) end"
+        },
+        {
+          "line": 364,
+          "text": "Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request(\"SHADOW_SELECT\") end)"
+        },
+        {
+          "line": 365,
+          "text": "Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request(\"SHADOW_READ\") end)"
+        },
+        {
+          "line": 366,
+          "text": "Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request(\"PROGRESSION_READ\") end)"
+        },
+        {
+          "line": 367,
+          "text": "Controls.ConstructionPreviewButton:RegisterCallback(Mouse.eLClick,function() request(\"CONSTRUCTION_PREVIEW\") end)"
+        },
+        {
+          "line": 368,
+          "text": "Controls.ConstructionApplyButton:RegisterCallback(Mouse.eLClick,function() request(\"CONSTRUCTION_APPLY\") end)"
+        },
+        {
+          "line": 369,
+          "text": "Controls.Lv2GPPButton:RegisterCallback(Mouse.eLClick,function() request(\"LV2_GPP_READ\") end)"
+        },
+        {
+          "line": 370,
+          "text": "Controls.Lv2HousingButton:RegisterCallback(Mouse.eLClick,function() request(\"LV2_HOUSING_READ\") end)"
+        },
+        {
+          "line": 371,
+          "text": "Controls.InvestPrepareButton:RegisterCallback(Mouse.eLClick,function() request(\"INVEST_PREPARE\") end)"
+        },
+        {
+          "line": 372,
+          "text": "Controls.InvestConfirmButton:RegisterCallback(Mouse.eLClick,function() request(\"INVEST_CONFIRM\") end)"
+        },
+        {
+          "line": 373,
+          "text": "Controls.NetworkButton:RegisterCallback(Mouse.eLClick,function() request(\"NETWORK_READ\") end)"
+        },
+        {
+          "line": 374,
+          "text": "Controls.Lv4PercentButton:RegisterCallback(Mouse.eLClick,function() request(\"LV4_PERCENT_READ\") end)"
+        },
+        {
+          "line": 375,
+          "text": "Controls.ResearchReadButton:RegisterCallback(Mouse.eLClick,function() request(\"RESEARCH_READ\") end)"
+        },
+        {
+          "line": 376,
+          "text": "Controls.CityFlowButton:RegisterCallback(Mouse.eLClick,function() request(\"CITY_FLOW_READ\") end)"
+        },
+        {
+          "line": 377,
+          "text": "Controls.EnvelopeReadButton:RegisterCallback(Mouse.eLClick,function() request(\"ENVELOPE_READ\") end)"
+        },
+        {
+          "line": 378,
+          "text": "Controls.EnvelopeNextButton:RegisterCallback(Mouse.eLClick,function() request(\"ENVELOPE_NEXT\") end)"
+        },
+        {
+          "line": 379,
+          "text": "Controls.StorageReadButton:RegisterCallback(Mouse.eLClick,function() request(\"STORAGE_READ\") end)"
+        },
+        {
+          "line": 380,
+          "text": "Controls.StorageWriteButton:RegisterCallback(Mouse.eLClick,function() request(\"STORAGE_WRITE\") end)"
+        },
+        {
+          "line": 381,
+          "text": "Controls.CompletionButton:RegisterCallback(Mouse.eLClick,function() showCompletion(false) end)"
+        },
+        {
+          "line": 382,
+          "text": "Controls.CompletionNextButton:RegisterCallback(Mouse.eLClick,function() showCompletion(true) end)"
+        },
+        {
+          "line": 383,
+          "text": "Controls.CaptureButton:RegisterCallback(Mouse.eLClick,function() request(\"CAPTURE\") end)"
+        },
+        {
+          "line": 384,
+          "text": "Controls.HalfReadButton:RegisterCallback(Mouse.eLClick,function() request('HALF_READ') end)"
+        },
+        {
+          "line": 385,
+          "text": "Controls.HalfOnButton:RegisterCallback(Mouse.eLClick,function() request('HALF_ON') end)"
+        },
+        {
+          "line": 386,
+          "text": "Controls.HalfOffButton:RegisterCallback(Mouse.eLClick,function() request('HALF_OFF') end)"
+        },
+        {
+          "line": 387,
+          "text": "Controls.BoostTestZeroButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_ZERO') end)"
+        },
+        {
+          "line": 388,
+          "text": "Controls.BoostTestHalfButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_HALF') end)"
+        },
+        {
+          "line": 389,
+          "text": "Controls.BoostTestHighButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_HIGH') end)"
+        },
+        {
+          "line": 390,
+          "text": "Controls.BoostTestAutoButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_AUTO') end)"
+        },
+        {
+          "line": 391,
+          "text": "Controls.BoostReadButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_READ') end)"
+        },
+        {
+          "line": 392,
+          "text": "Controls.BoostBaseButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_BASELINE') end)"
+        },
+        {
+          "line": 393,
+          "text": "Controls.DialogueTest25Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST25') end)"
+        },
+        {
+          "line": 394,
+          "text": "Controls.DialogueTest50Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST50') end)"
+        },
+        {
+          "line": 395,
+          "text": "Controls.DialogueTest100Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST100') end)"
+        },
+        {
+          "line": 396,
+          "text": "Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function() request('GWA_READ') end)"
+        },
+        {
+          "line": 397,
+          "text": "Controls.GWAOffButton:RegisterCallback(Mouse.eLClick,function() request('GWA_OFF') end)"
+        },
+        {
+          "line": 398,
+          "text": "Controls.GWAAutoButton:RegisterCallback(Mouse.eLClick,function() request('GWA_AUTO') end)"
+        },
+        {
+          "line": 399,
+          "text": "Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)"
+        },
+        {
+          "line": 400,
+          "text": "Controls.GWReadButton:RegisterCallback(Mouse.eLClick,function() request('GW_READ') end)"
+        },
+        {
+          "line": 401,
+          "text": "Controls.GWCityButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_AUTO') end)"
+        },
+        {
+          "line": 402,
+          "text": "Controls.GWObjectButton:RegisterCallback(Mouse.eLClick,function() request('GW_OBJECT') end)"
+        },
+        {
+          "line": 403,
+          "text": "Controls.GWOffButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_OFF') end)"
+        },
+        {
+          "line": 404,
+          "text": "Controls.DiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ',true) end)"
+        },
+        {
+          "line": 405,
+          "text": "Controls.NextDiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ',true) end)"
+        },
+        {
+          "line": 406,
+          "text": "Controls.PurchaseBaseButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_BASE') end)"
+        },
+        {
+          "line": 407,
+          "text": "Controls.PurchaseOnButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_ON') end)"
+        },
+        {
+          "line": 408,
+          "text": "Controls.PurchaseOffButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_OFF') end)"
+        },
+        {
+          "line": 409,
+          "text": "Controls.PurchaseReadButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_READ') end)"
+        },
+        {
+          "line": 410,
+          "text": "Controls.TemplatesButton:RegisterCallback(Mouse.eLClick,function() request(\"STANDARDIZATION_READ\",true) end)"
+        },
+        {
+          "line": 411,
+          "text": "Controls.NextTemplatesButton:RegisterCallback(Mouse.eLClick,function() request(\"STANDARDIZATION_READ\",true) end)"
+        },
+        {
+          "line": 412,
+          "text": "Controls.Lv4CopyButton:RegisterCallback(Mouse.eLClick,function() request(\"LV4_COPY_READ\") end)"
+        },
+        {
+          "line": 413,
+          "text": "Controls.AdjacencyButton:RegisterCallback(Mouse.eLClick,function() request(\"ADJACENCY\") end)"
+        },
+        {
+          "line": 414,
+          "text": "Controls.BackgroundRoutesButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 422,
+          "text": "Controls.RouteStateButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 434,
+          "text": "Controls.RouteEventsButton:RegisterCallback(Mouse.eLClick,function() request(\"TRADE_EVENTS\") end)"
+        },
+        {
+          "line": 435,
+          "text": "Controls.TradeButton:RegisterCallback(Mouse.eLClick,function() request(\"TRADE\") end)"
+        },
+        {
+          "line": 436,
+          "text": "Controls.NextButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 439,
+          "text": "Controls.GovernorButton:RegisterCallback(Mouse.eLClick,function() request(\"GOVERNOR\") end)"
+        },
+        {
+          "line": 440,
+          "text": "Controls.SpecialistsButton:RegisterCallback(Mouse.eLClick,function() request(\"SPECIALISTS\") end)"
+        },
+        {
+          "line": 441,
+          "text": "Controls.MarkButton:RegisterCallback(Mouse.eLClick,function() request(\"MARK_CITY\") end)"
+        },
+        {
+          "line": 442,
+          "text": "Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)"
+        },
+        {
+          "line": 443,
+          "text": "Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)"
+        },
+        {
+          "line": 444,
+          "text": "Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)"
+        },
+        {
+          "line": 450,
+          "text": "Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 453,
+          "text": "Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()"
+        },
+        {
+          "line": 459,
+          "text": "Events.LoadScreenClose.Add(showRoot)"
+        },
+        {
+          "line": 460,
+          "text": "Events.SystemUpdateUI.Add(gwaPulse)"
+        },
+        {
+          "line": 461,
+          "text": "Events.SystemUpdateUI.Add(placeEntry)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/P0Panel.xml",
+      "sha256": "b8e29ec384326a8274632751653221533ea192c4e8e6cf39eec6abb86c2793be",
+      "lines": 86,
+      "manifest_roles": [
+        "AddUserInterfaces:SPCP0_UI"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/RuntimeAudit.lua",
+      "sha256": "296833b0e0d4fad0eae252810196b88e01ca51c8c29b1dc26c8f8cfb29675ce3",
+      "lines": 56,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "KEEP_FOUNDATION_WITH_DOCUMENTED_LIMITS",
+      "source_anchors": [
+        {
+          "line": 2,
+          "text": "include('RuntimeAuditCore')"
+        },
+        {
+          "line": 7,
+          "text": "local function now()"
+        },
+        {
+          "line": 10,
+          "text": "local function count(t)"
+        },
+        {
+          "line": 13,
+          "text": "local function init()"
+        },
+        {
+          "line": 31,
+          "text": "local function finish()"
+        },
+        {
+          "line": 51,
+          "text": "local function start() local ok,why=pcall(init);if not ok then state.state='DISABLED';state.reason=tostring(why):sub(1,160);ExposedMembers.SPC_RuntimeAudit=state end end"
+        },
+        {
+          "line": 52,
+          "text": "Events.LoadScreenClose.Add(start)"
+        },
+        {
+          "line": 53,
+          "text": "Events.LocalPlayerTurnEnd.Add(finish)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/RuntimeAudit.xml",
+      "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
+      "lines": 2,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_RuntimeAudit",
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/UnitPanelActions.lua",
+      "sha256": "80d10426ab64fb9ea23ec3218e152d58d90989567f97b4411534c58e0f4cf022",
+      "lines": 137,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 6,
+          "text": "local function current()"
+        },
+        {
+          "line": 12,
+          "text": "local function preview(u)"
+        },
+        {
+          "line": 18,
+          "text": "local function crewView(u)"
+        },
+        {
+          "line": 22,
+          "text": "local function readView(u)"
+        },
+        {
+          "line": 37,
+          "text": "local function number(n) return tostring(n):gsub('%.0+$','') end"
+        },
+        {
+          "line": 38,
+          "text": "local function crewTips(v)"
+        },
+        {
+          "line": 49,
+          "text": "local function investmentTips(v)"
+        },
+        {
+          "line": 65,
+          "text": "local function dispatch(confirm)"
+        },
+        {
+          "line": 83,
+          "text": "local function update(dt)"
+        },
+        {
+          "line": 133,
+          "text": "Controls.PrepareButton:RegisterCallback(Mouse.eLClick,function() dispatch(false) end)"
+        },
+        {
+          "line": 134,
+          "text": "Controls.ConfirmButton:RegisterCallback(Mouse.eLClick,function() dispatch(true) end)"
+        },
+        {
+          "line": 135,
+          "text": "ContextPtr:SetUpdate(update)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/UnitPanelActions.xml",
+      "sha256": "69587034c08cbb154cd36642be8aa1958505724405828e1bb87d0de018b73d4b",
+      "lines": 13,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B043_UnitPanelActions"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/UnitSites.lua",
+      "sha256": "e9f5f28e6118ec091fff180e7d7a27ade57362f6a109468bb3b9b821a53f542f",
+      "lines": 100,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 5,
+          "text": "local function selected()"
+        },
+        {
+          "line": 13,
+          "text": "local function refresh()"
+        },
+        {
+          "line": 20,
+          "text": "local function read(action)"
+        },
+        {
+          "line": 34,
+          "text": "local function precision()"
+        },
+        {
+          "line": 43,
+          "text": "local function n(v) return type(v)=='number' and string.format('%.17g',v) or tostring(v) end"
+        },
+        {
+          "line": 68,
+          "text": "local function showRoot()"
+        },
+        {
+          "line": 71,
+          "text": "local function initialize()"
+        },
+        {
+          "line": 73,
+          "text": "Controls.PrecisionButton:RegisterCallback(Mouse.eLClick,precision)"
+        },
+        {
+          "line": 74,
+          "text": "Controls.ReadButton:RegisterCallback(Mouse.eLClick,function() read() end)"
+        },
+        {
+          "line": 75,
+          "text": "Controls.SpawnCrewButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_SPAWN') end)"
+        },
+        {
+          "line": 76,
+          "text": "Controls.PrepareUnitButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_PREPARE') end)"
+        },
+        {
+          "line": 77,
+          "text": "Controls.ConfirmUnitButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_CONFIRM') end)"
+        },
+        {
+          "line": 78,
+          "text": "Controls.BuilderTargetsButton:RegisterCallback(Mouse.eLClick,function() LuaEvents.SPC_ToggleBuilderTargets() end)"
+        },
+        {
+          "line": 79,
+          "text": "Controls.CloseButton:RegisterCallback(Mouse.eLClick,function() token=nil;Controls.Window:SetHide(true) end)"
+        },
+        {
+          "line": 81,
+          "text": "ContextPtr:SetUpdate(function(dt)"
+        },
+        {
+          "line": 99,
+          "text": "Events.LoadScreenClose.Add(showRoot)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/UnitSites.xml",
+      "sha256": "70d9f2854b603bfa9922fbb869b5a74e44ec7427b757b047851ee939aecaaa6e",
+      "lines": 16,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B040_UnitSites"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/UnitTargetMarkers.lua",
+      "sha256": "03ccc4ff3ef3d80802f45638fabec6e603815e96357d3b25c58dffebb8c3ea8d",
+      "lines": 99,
+      "manifest_roles": [],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 1,
+          "text": "include('Probe')"
+        },
+        {
+          "line": 9,
+          "text": "local function clear()"
+        },
+        {
+          "line": 21,
+          "text": "local function eligible()"
+        },
+        {
+          "line": 29,
+          "text": "local function request(u)"
+        },
+        {
+          "line": 37,
+          "text": "local function changed() selection=nil;clear() end"
+        },
+        {
+          "line": 38,
+          "text": "local function toggle()"
+        },
+        {
+          "line": 42,
+          "text": "local function update(dt)"
+        },
+        {
+          "line": 87,
+          "text": "local function init()"
+        },
+        {
+          "line": 89,
+          "text": "ContextPtr:SetUpdate(function(dt) if active then update(dt) end end)"
+        },
+        {
+          "line": 90,
+          "text": "LuaEvents.SPC_ToggleBuilderTargets.Add(toggle)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UI/UnitTargetMarkers.xml",
+      "sha256": "d4a976b7811eb6f5df0f668f15b8a260e4c01576bca3716bfd8ad09e12792331",
+      "lines": 2,
+      "manifest_roles": [
+        "AddUserInterfaces:SPC_B041_TargetMarkers"
+      ],
+      "classification": "ADAPT_PRESENTATION_AS_NEEDED",
+      "source_anchors": [],
+      "modifier_types": []
+    },
+    {
+      "path": "UnitActionSitePolicy.lua",
+      "sha256": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d",
+      "lines": 21,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 4,
+          "text": "function SPCUnitActionSitePolicy.Check(action,unit,target)"
+        },
+        {
+          "line": 8,
+          "text": "local function integer(v) return type(v)=='number' and v>=0 and v<math.huge and v%1==0 end"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UnitActions.lua",
+      "sha256": "0e87494ff86dbc2dd211865b092853025fec315272bac65e04129593b014e02b",
+      "lines": 167,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCUnitActions.Start(P,shared)"
+        },
+        {
+          "line": 7,
+          "text": "local function unit(pid,id)"
+        },
+        {
+          "line": 12,
+          "text": "local function target(pid,u)"
+        },
+        {
+          "line": 21,
+          "text": "local function fresh(pid,u)"
+        },
+        {
+          "line": 30,
+          "text": "function data.ReadView(pid,id,token)"
+        },
+        {
+          "line": 72,
+          "text": "function data.Run(pid,p)"
+        },
+        {
+          "line": 87,
+          "text": "P.SetProperty(Players[pid],'SPC_CREW_DEV_SPAWN',seen)"
+        },
+        {
+          "line": 118,
+          "text": "local function record(state)"
+        },
+        {
+          "line": 120,
+          "text": "P.SetProperty(Players[pid],KEY,receipts)"
+        },
+        {
+          "line": 122,
+          "text": "destructive=true;record('INTENT');P.SetProperty(u,'SPC_CREW_RESERVED',plan.token)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UnitSiteProbe.lua",
+      "sha256": "f54c582cc46ba965ddbfc3c631dcba198bbb2663e14d982693d0503b8c7f1d43",
+      "lines": 81,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCUnitSiteProbe.Start(P,shared)"
+        },
+        {
+          "line": 5,
+          "text": "function data.Read(pid,id)"
+        },
+        {
+          "line": 24,
+          "text": "local function result(name,fn)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "UnitTargets.lua",
+      "sha256": "66f58e958a7ee1ebd4d0e19c2ed6b81c0db9e0e09e89562eaddfde613b88b08f",
+      "lines": 79,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 3,
+          "text": "function SPCUnitTargets.Start(P,shared)"
+        },
+        {
+          "line": 5,
+          "text": "function data.Refresh(pid,params)"
+        }
+      ],
+      "modifier_types": []
+    },
+    {
+      "path": "YieldCarrierProbe.lua",
+      "sha256": "6f91b0f71c9811034da652c18bcb1a2e643a6b15fce41e963bdd36f44be3f22e",
+      "lines": 49,
+      "manifest_roles": [
+        "ImportFiles:SPCP0_Common"
+      ],
+      "classification": "ADAPT_OR_KEEP_SUBRESPONSIBILITY_SEE_MATRIX",
+      "source_anchors": [
+        {
+          "line": 5,
+          "text": "local function plotFor(pid,c)"
+        },
+        {
+          "line": 9,
+          "text": "local function read(c)"
+        },
+        {
+          "line": 16,
+          "text": "local function flags(p) return p:GetProperty('SPC_B029_ONE')==1,p:GetProperty('SPC_B029_HALF')==1 end"
+        },
+        {
+          "line": 17,
+          "text": "function SPCYieldCarrierProbe.Run(pid,c,action)"
+        },
+        {
+          "line": 22,
+          "text": "P.SetProperty(p,'SPC_B029_ONE',0);P.SetProperty(p,'SPC_B029_HALF',0)"
+        },
+        {
+          "line": 28,
+          "text": "P.SetProperty(p,'SPC_B029_ONE',1)"
+        },
+        {
+          "line": 29,
+          "text": "P.SetProperty(p,'SPC_B029_HALF',one and 1 or 0)"
+        },
+        {
+          "line": 35,
+          "text": "function SPCYieldCarrierProbe.Describe(pid,c)"
+        }
+      ],
+      "modifier_types": []
+    }
+  ],
+  "design_hashes": {
+    "Specialization/Design/Boundary_D0031_Review.md": "63ebef7a554f1292f456cf57f6cd31364618690033a1b5f803714e5c90cf2306",
+    "Specialization/Design/Commerce_D0032_Review.md": "689d2ff9ab6fdef875006ead261b60e762ed80c980c4abd71e4ba2c62d06ed94",
+    "Specialization/Design/Commerce_Freeze_Candidate_Review.md": "2b9efd324516d3f4dc8afb396c9cf63cd8f7fb537bd94c8fb7f8ae8540fae5c9",
+    "Specialization/Design/Content/Commerce_D0032.json": "deef125d3c12b25830fb6b1e9ce9c0a6ae510b7e5c143f03cf8b8c70c4d1ba75",
+    "Specialization/Design/Content/Commerce_Freeze_Candidate.json": "1afc4e1c9b60b54bf9f5166859063df609e20210b01db88fca28c5a44ea02f1c",
+    "Specialization/Design/Content/Culture_D0028.json": "ed16ada45442037207bd736f90b7ec00b293d29316f02382eab7662e4debabf2",
+    "Specialization/Design/Content/Culture_D0029.json": "00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b",
+    "Specialization/Design/Content/Industry_D0027.json": "762648eb6e21edffb179b700451a15bbf25e6e7712d83ab1c616196c509387d0",
+    "Specialization/Design/Content/Industry_D0031.json": "4660d2146caff847979281f094c51a01175758a9b55dd65e41ff37555bb9a11a",
+    "Specialization/Design/Content/Industry_D0032.json": "89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4ab3f404c63e19ae8510",
+    "Specialization/Design/Content/README.md": "e822a946c1168f3ab7471039a22e7da07b67705d0e103f6df0e85f30564fb8d7",
+    "Specialization/Design/Content/Research_D0026.json": "14cad8a62621baea8bcf6b5813f83d683aba2d4d18503606196cda2a99a952ff",
+    "Specialization/Design/Content/Research_D0028.json": "372fdd5f6d6687935f8ddf906b6dd365ac7b1f79c72ebee21ba3e04401f4f2e4",
+    "Specialization/Design/Content/Research_D0030.json": "646abdbb4dcdc16a5f4a061ba6ac58184f0c663428dee157db7aa9f2c05e9e3e",
+    "Specialization/Design/Content/Research_D0031.json": "6253c4eff548394fd3ee351e6f02abd2665b468e6c46f30865352351177b6dc1",
+    "Specialization/Design/Content/Shared_D0028.json": "9ce20c5047d525321d5efc025f0578afac25a63f91b75acddefd631cc1f5d05a",
+    "Specialization/Design/Culture_D0028_Review.md": "a321f9fbb5bc70fde72a78e36e92d08a5104667ffb2b5b4a4d5e3cfe20468b37",
+    "Specialization/Design/Culture_D0029_Review.md": "3da0e485b030532d7dc29ac1b16c33b072e814ce0d0fdcb66eb9a8746e29a53c",
+    "Specialization/Design/Culture_Era_Presentation_D0031.md": "c2340ef8ddc4b5d340e7cf9758cfd55b105a58d19b0cace77bba651c48c902ad",
+    "Specialization/Design/Culture_Era_Presentation_D0032.md": "e1a3e21e24fcca6d078299059a6b1299588c9148921784db8befd232ca8b1fb9",
+    "Specialization/Design/Design_ChangeLog.md": "e40bf58fa51a009e330f96a945dfdd522239b9ba0fb6b2f93fe2087385ee66cd",
+    "Specialization/Design/Industry_D0027_Review.md": "2363167161cdf447e57d3b3948b8f3cd3fe4bc66c07ad6aa7870c885b22d266d",
+    "Specialization/Design/Research_D0026_Review.md": "c58339ec2b1887c3dc593c5e06a02440b758660203a99dad5d0c3a11828a5789",
+    "Specialization/Design/Research_D0030_Review.md": "fa17f6e613e091116caa328258c218ee1e5e26412778516a1ab7801bb2522e99",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0001.md": "10323a0350ff5b97be179b25c1c315b42aa7c6a41cb4cf6d55b9c7a34aee2ae6",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0002.md": "22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0003.md": "0e2891b44ff507c5cb7fce32396bf9266020f3e275461352af7e378ca87d4fa6",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0004.md": "a3fd779fdcb166ecd3d39e1560fabe26ef3d26cb67c499ab632c9dac7eeebbab",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0005.md": "ca5af83f6ab722e80199c47add0dae781a1d06d34c74404a6666af08028c80a0",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0006.md": "666acc471f1f441b9987dab547afec2801d0c04fa5823c5e1706e60dd88b6f11",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0007.md": "15e011b665c6a53232673f8195d88acca954f80aa0d18efcdd256d1995cd3d88",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0008.md": "3dca4434a468f81a8e203a7a19d8c87dff5b24170d0667f50283ed2a23bd761c",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0009.md": "07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0010.md": "a8393b5fa879b060acfa3b89c8a3fc906a2d50849a1a83bcea193506ed9a12e2",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0011.md": "29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0012.md": "2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0013.md": "abce0024d9a1003ef7f7ac5aa680da9643bbc7e9df346441b007aab7d5959569",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0014.md": "759365dd68c3b4a166b0f05e250b72f14e33dcc145c3889f6afefa16f999005c",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0015.md": "9cf3eb5c57552e560fd61ba45160c92691b958a42598ba0b9abbc3a74ffa971e",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0016.md": "2ddfffd482fff85b35fb82f06e902346e18501beb8c877a9fc674b2aba1b4759",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0017.md": "5132c9a300853d0107ad84cf4adebadd5f7c173dbc0c72943a4b3e241deb2d06",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0018.md": "398de69aea82c26e7993b423558645b1bfb15a596b833261d247f30a09b71610",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0019.md": "63948c5abf683d6e0340af47ae0121b8891188b427cd7245a4025fb763a9e8df",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0020.md": "971fa1618e13362cf310efaec85400aa9c024cf4952dc814056a1d6829adad9f",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0021.md": "1a14fc5f98ea364706b20f8db5ecb957a0bf2bcbd6b7958acf184fbc32d2eb10",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0022.md": "10e6d7d1b618f2fda3a745602a6a6413fa7773b8023075048520946352204557",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0023.md": "6a4dfdeb4a2dc8abe736fa428b0640b7c1fa627ba01b0ef167a9378c6edf265a",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0024.md": "4f7d0169a3a8abce67501010a9c8ca600e345ce8b1ae23f3af6c28be069144f1",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0025.md": "81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0026.md": "1265719810ce087cca1c6ceb28cf7ad4bf2a5ae153c0c358b86af5a90c30996b",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0027.md": "8dc189f80c33c4edbf946869b7835c6473ff6a0be67ee6a01be620fa477c2746",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0028.md": "5490ac7ec699fe3ed9adc0f3850b8ab8268a0903c4a5dd850bcb0803de1ba5d2",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0029.md": "89c3f72484555610512a932d7006cb6cf53946b5bf0a4d344aa983150941cc94",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0030.md": "85ed1e4b8cf4a148dd06abbe69f6a358a0db5e966a59820b6ec17168c976c050",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0031.md": "48845fe2ccc53c57d8aca4439b6a3ad70ac22ac90b8c485e140d3d12bfb2b830",
+    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9"
+  },
+  "historical_v2_hashes": {
+    "Specialization/Architecture/v2/Batch_A_Input_Contract.md": "7a3ad4ba4ca1f4c93d1d9a413557f5d2562a9b0788bf6d4d7dea50a6101fff18",
+    "Specialization/Architecture/v2/Batch_B_Shared_Network.md": "fbc47da6f118f5ab96d283c865d70ea2abb6fc399c5150976c806a904b96ed04",
+    "Specialization/Architecture/v2/Batch_C1_Discount_Lifecycle.md": "906ab386bf861728d5c9158292b7395074bccf529fc4256c16ff55083d075694",
+    "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
+    "Specialization/Architecture/v2/Batch_D1_Discount_Propagation.md": "c5374e8bf684a9543d65b4d8467fe37e7ecc5672cb11a2a945e52ee6b3d74d9b",
+    "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
+    "Specialization/Architecture/v2/Dependencies_Bridges.md": "f74419ed4001c0174931d188e88eab015d948d314217f8a911688a59b7faa654",
+    "Specialization/Architecture/v2/Event_Catalog.tsv": "3f585bbad8f6558434174e6f7cd14e7ea68c5b3ad12f8b9f6a98a8d01cbbd087",
+    "Specialization/Architecture/v2/Events_Dirty.md": "2facd54c436e089e99aaf6d55246912d85abfea4f17ee1404cab5896c005e986",
+    "Specialization/Architecture/v2/Findings_Batches.md": "c03b8d84d2b501562b3442ea2b337758a8a73668b499137fb49dba8fb5d0c26d",
+    "Specialization/Architecture/v2/Presentation_Carrier_Inventory.json": "93187ff20ea6f54aeb71c0ffd4d541dbcd1c5b498fdd2760c16d88df7ab59004",
+    "Specialization/Architecture/v2/Presentation_Institution_Carrier_Model.md": "74f613d8f134721c9d1f964282937afd48080da86fab880dfee80f234ef67f07",
+    "Specialization/Architecture/v2/Source_Index.md": "62233a625206dbe7adf59ff63151979b0b9c6faedbaa11a66caa51b31bdbece8",
+    "Specialization/Architecture/v2/State_Ownership_Save.md": "bc9501c135f3bdd85813453f03ff15025d3e1addcae7f0598f53342a68ef0314",
+    "Specialization/Architecture/v2/Validation.md": "d34fc04ac92f9b2f18db4b297b4fc7107c8d8b95fdd9376575a39219d51a7e4f",
+    "Specialization/Architecture/v2/Yield_Precision_Backlog.md": "52b96adbd4607400ddf13fe403c32a21ba7f58aafa7b2b506ca78f1c3db2fbeb"
+  }
+}
