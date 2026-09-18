@@ -3,8 +3,22 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0030
+Latest Accepted Design Revision: D0031
 Document State: ACCEPTED
+
+## Accepted D0031 — 2026-09-17
+
+Acceptance: ACCEPTED boundaries / implementation pending; UI direction recommendation unapproved
+Acceptance Evidence: 用户复审仅确认有限施工队库存、Research身份离开暂停传统及Culture时代覆盖展示需求。
+Accepted Spec SHA256: 48845fe2ccc53c57d8aca4439b6a3ad70ac22ac90b8c485e140d3d12bfb2b830
+Canonical Research Content SHA256: 6253c4eff548394fd3ee351e6f02abd2665b468e6c46f30865352351177b6dc1
+Canonical Industry Content SHA256: 4660d2146caff847979281f094c51a01175758a9b55dd65e41ff37555bb9a11a
+Previous Accepted Revision: D0030
+Frozen D0030: [原文](Revisions/Specialization_Design_Spec_D0030.md)
+Review: [边界审阅](Boundary_D0031_Review.md)
+Presentation: [需求及UI调查](Culture_Era_Presentation_D0031.md)
+
+Culture_D0029与Shared_D0028不变。容量具体规则仍待决；其它外部Reviewer意见不导入。UI建议非已批准Architecture；源码/运行包不变。
 
 ## Accepted D0030 — 2026-09-17
 
