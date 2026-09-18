@@ -3,8 +3,23 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0031
+Latest Accepted Design Revision: D0032
 Document State: ACCEPTED
+
+## Accepted D0032 — 2026-09-18
+
+Acceptance: ACCEPTED / Commerce DESIGN_FROZEN; explicit deferred items retained
+Acceptance Evidence: 用户Commerce冻结正文及明确边界回复；Industry来源容量2、Culture Hybrid D批准。非用户接受的Red Team意见未采用。
+Accepted Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
+Canonical Commerce Content SHA256: deef125d3c12b25830fb6b1e9ce9c0a6ae510b7e5c143f03cf8b8c70c4d1ba75
+Canonical Industry Content SHA256: 89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4ab3f404c63e19ae8510
+Confirmed closures: 隐藏失败保护按Commerce来源城独立、同城所有风险领域共享；发展投资仅签约检查出发路线，之后断路不改变原期限/效果，无合格路线不能新签；易主/征服/Identity丧失仍后置。
+Previous Accepted Revision: D0031
+Frozen D0031: [原文](Revisions/Specialization_Design_Spec_D0031.md)
+Review: [Commerce freeze / cross-design review](Commerce_D0032_Review.md)
+Presentation: [Hybrid D approved](Culture_Era_Presentation_D0032.md)
+
+旧Commerce20%汇聚及III网络支持/5F5P退出，Trade Center及Lv1/Lv2基础保留。新能力合同、两种路线方向、锁定结果/pity、Production-only重组及REALLOCATING明确；未定数值/mapping/信誉细项/Legacy不擅填。Research_D0031、Culture_D0029、Shared_D0028、旧Industry_D0031及既有历史文件不改。Industry capacity open关闭但易主边界保留；Culture展示方向确认不改变Gameplay。源码、运行包、main、Architecture/Status均未修改；不tag、不部署。
 
 ## Accepted D0031 — 2026-09-17
 
