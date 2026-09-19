@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0209
+Status Revision: S0210
 Implementation Build: develop P0-B-079.106 / modinfo106; live B079.106 / modinfo106; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_B1_USER_PASS_AWAITING_P0_B2_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-B2已完成源码核对与[具体计划](../Architecture/v2/P0_B2_Plan.md)，等待用户授权，未实施。范围仅II住房/GPP资格、UNKNOWN保留与有界刷新；旧住房目录与Shared目录差异必须先核对，不将住房改成加权D。本轮无源码、版本、运行包或部署变化。
 
 P0-B1已获用户授权并完成本地实现：B079.106/modinfo106，[报告及测试](../Architecture/v2/P0_B1_Specialist_Support.md)。科研/文化/商业全等级基础3F3P，工业3F+BASE P；只退出旧III额外支持及工业Gold，其他旧能力留各自cutover。LOCAL_SIMULATION_PASS（实际Lua+mock/SQL，不等于实机PASS）。完整前序回归、10k idle、线性批次读取与精确12载体清理通过。已按W0003安全部署；用户明确确认P0-B1及工业城验收PASS，登记为USER_GAME_TEST_PASS：[用户验收](Validation/Results/Specialization_B079_P0B1_User_Pass.md)。不自动推进B2/C/E。
 

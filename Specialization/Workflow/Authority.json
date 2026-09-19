@@ -10,7 +10,7 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0209",
+    "status": "S0210",
     "runtime": "B079.106 / modinfo106"
   },
   "paths": {
@@ -30,7 +30,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "b420a967f9b9ae468c5829a8de192dd443e9c6ea",
   "current_batch": null,
-  "next_batch": "P0-B2 (not authorized)",
+  "next_batch": "P0-B2 PLAN_READY (not authorized)",
   "manifest": "Specialization/Workflow/P0-B1.json",
   "live": "B079.106 / modinfo106; P0-B1 user game PASS including Industry; W0003 active",
   "stable": "main B069.96 / modinfo96",

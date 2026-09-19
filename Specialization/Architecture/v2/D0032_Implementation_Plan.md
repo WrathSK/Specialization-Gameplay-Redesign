@@ -9,6 +9,8 @@ Gate: GATE B — READY FOR P0-A (only after user authorization)
 
 P0-A B078: user confirms D and working-specialist reads; pillage untested. P0-B1 separately authorized and completed in B079.106: [scope, retirement and local evidence](P0_B1_Specialist_Support.md). Only existing basic support cutover; no new Research Infrastructure effect. P0-B1 local PASS and user-reported game PASS including Industry; see Status validation record. P0-B2 remains recommended, not authorized. A0160 plan and frozen Design rules are unchanged.
 
+P0-B2具体计划：[Lv2住房/GPP资格](P0_B2_Plan.md)，PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED；仅计划，不改变冻结规则。
+
 ## Dependency graph
 
 | Layer/node | Depends on | Consumers / gate |
