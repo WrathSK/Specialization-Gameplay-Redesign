@@ -11,7 +11,7 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0203",
+    "status": "S0204",
     "runtime": "B077.104 / modinfo104"
   },
   "goal_reference": "Specialization/Architecture/v2/D0032_Implementation_Plan.md#实施批次合同",
@@ -326,7 +326,7 @@
     }
   ],
   "dependencies": [
-    "P0-A LOCAL_SIMULATION_PASS; native APIs/events still USER_GAME_TEST_REQUIRED",
+    "P0-A LOCAL_SIMULATION_PASS; native DistrictCompleteness capture USER_GAME_TEST_FAIL, repair/review before relying on facts; see current Status",
     "C2 Industry lifecycle",
     "D2 propagation"
   ],
@@ -436,7 +436,7 @@
   ],
   "result": {
     "implementation": "NOT_STARTED",
-    "dry_run": "See Dry_Run.md; context only",
+    "dry_run": "Historical W0001 context dry-run passed; current P0-A engine failure changes prerequisite evidence, not P0-B1 authorization",
     "computer_use": "UNRESOLVED / DEFERRED"
   }
 }

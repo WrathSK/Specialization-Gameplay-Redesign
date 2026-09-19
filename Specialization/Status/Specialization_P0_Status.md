@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0203
-Implementation Build: develop P0-B-077.104 / modinfo104; live B076.103 / modinfo103; stable B069.96 / modinfo96
+Status Revision: S0204
+Implementation Build: develop P0-B-077.104 / modinfo104; live B077.104 / modinfo104; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
 Latest Accepted Design Revision: D0032
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_A_LOCAL_SIMULATION_PASS_AWAITING_USER_REVIEW
+Work State: P0_A_USER_GAME_TEST_FAIL_NATIVE_CAPTURE
 
 ## CURRENT AUTHORITATIVE STATE
+
+B077.104已获用户授权部署；[P0-A两图与刷新声调查](Validation/Results/Specialization_B077_P0A_20260918.md)：USER_GAME_TEST_FAIL限D原生读取，DistrictCompleteness.lua:67区域迭代失败，未到建筑读取。Potential4/ACTIVE1须分开；静置高频声音用户报告保留，来源UNKNOWN，无counter不能推断Building churn或内存回归。截图/6日志已外部hash归档；本轮仅调查记录，无源码修复/部署/P0-B1。下文未部署/待首次实机的文字为先前批次结果，本项取代。
 
 Workflow W0001已建立：[按批读取入口](../Workflow/README.md)、[Authority](../Workflow/Authority.json)、[P0-B1 context manifest](../Workflow/P0-B1.json)。仅context acquisition / validation planning；A0161/D0032/B077.104不变。普通batch按W0001读取当前metadata、相关规则/合同和直接源码，不默认加载本页历史全文；writer cutover/Shared/save/Network等触发仍扩大审计。P0-B1未实施；Computer Use UNRESOLVED / DEFERRED。下次用户授权P0-B1即可按manifest恢复必要上下文。
 
