@@ -40,7 +40,7 @@
     "Mod/UI/P0Panel.xml": "995551c0a8c7a8f84c6e35d58d41486a88f4790be97399297441ea1489d66b5d",
     "Specialization/AGENTS.md": "bd0ee8ddb648de15a10bb448de093f780e9b63ba17eb10431840a792f5ae3700",
     "Specialization/Architecture/Playtest_Workflow.md": "31985c762824a789f1ad144f6fe68173ad491f1c6d719fe7751810e18c56ba88",
-    "Specialization/Architecture/Specialization_v0.1_Architecture.md": "772e8bb6173f5d6d489a2d6311ea2bedb73a1763e393aef0a2755d7393982773",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md": "fbd1c641e214da581a5b01a466d0c52d78aa13d9c53bef728a3257113cdf9e70",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "9b54c8562a38bf0494bc36733f509b140aff57c7f0ee1792601d919d2e2cb32b",
@@ -59,8 +59,9 @@
     "Specialization/Design/Design_ChangeLog.md": "e40bf58fa51a009e330f96a945dfdd522239b9ba0fb6b2f93fe2087385ee66cd",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "1af5dd1d65f53e3531773e57dc558b14fb33e60d6fbe0c5b455a34dd7cd97cbb",
+    "Specialization/Status/Specialization_P0_Status.md": "a734a1c28c9207fe64d6255a283f43598e78cafbcce0ccc1fcfe4ea33bb9fca3",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
-    "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203"
+    "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
+    "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e"
   }
 }

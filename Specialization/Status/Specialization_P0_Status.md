@@ -1,19 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0205
-Implementation Build: develop P0-B-078.105 / modinfo105; live B077.104 / modinfo104; stable B069.96 / modinfo96
+Status Revision: S0206
+Implementation Build: develop P0-B-078.105 / modinfo105; live B078.105 / modinfo105; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
 Latest Accepted Design Revision: D0032
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_A_NATIVE_FIX_LOCAL_PASS_AWAITING_DEPLOYMENT_AND_USER_TEST
+Work State: P0_A_B078_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
 B078.105修复P0-A Gameplay原生区域/建筑位置读取：[修复与统一验收](../Architecture/v2/P0_A_Native_Read_Fix_B078.md)。**LOCAL_SIMULATION_PASS，不是实机PASS**。ACTIVE不足四级不妨碍D读取；Library+University本地D3。D、shadow、cache/ref/epoch、10k idle、A–D2全部回归及部署安全测试通过。没有新收益、carrier、旧writer改动，未推进P0-B1。
 
-用户静置刷新声仍UNKNOWN；未根据声音推定Building churn，也未声称此次读取修复解决声音。现有证据不足；下一次统一验收若仍出现，只需现有Counters前后对照。用户现在无需测试；等待独立临时部署授权后统一验证。实际运行包仍B077.104，main仍B069.96；本轮没有部署/启动游戏。
+用户静置刷新声仍UNKNOWN；未根据声音推定Building churn，也未声称此次读取修复解决声音。现有证据不足；下一次统一验收若仍出现，只需现有Counters前后对照。用户已授权并完成B078.105临时部署：[部署/备份/hash记录](Validation/Results/Specialization_B078_Deployment_20260918.md)。125文件逐项一致；main仍B069.96，未启动游戏。当前等待一次统一验收。W0003临时默认部署授权生效直到用户指定长局节点，退出/备份/hash/Git门禁不变。
 
 [B077用户失败与归档证据](Validation/Results/Specialization_B077_P0A_20260918.md)冻结保留。原测试mock错误提供了UI-shaped接口，现已改为Gameplay索引接口并用旧模块实际重现失败。建筑读取改为每选中城市一次数据库catalog扫描，fixture120条时1/2/4/8城checks120/240/480/960；不把计数口径变化误称新idle扫描。
 

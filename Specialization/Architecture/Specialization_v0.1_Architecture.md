@@ -7,11 +7,11 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-077.104 / modinfo104; live B076.103 / modinfo103; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-078.105 / modinfo105; live B078.105 / modinfo105; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前P0-A原生读取修复：B078.105/modinfo105，[修复报告](v2/P0_A_Native_Read_Fix_B078.md)。只读Gameplay区域索引/建筑位置接口，本地回归通过、未部署；原生验收待补，刷新声来源UNKNOWN。A0161合同不变，P0-B1未实施。live仍B077.104、main B069.96。
+当前P0-A原生读取修复：B078.105/modinfo105，[修复报告](v2/P0_A_Native_Read_Fix_B078.md)。只读Gameplay区域索引/建筑位置接口，本地回归通过、已按W0003授权部署且125文件hash一致；原生验收待补，刷新声来源UNKNOWN。A0161合同不变，P0-B1未实施。live B078.105、main B069.96。
 
 以下为原B077批次记录：P0-A已获用户授权并完成：B077.104/modinfo104，[实现与证据](v2/P0_A_District_Completeness.md)。Shared D事实、只读专业适配、Research Infrastructure shadow及手动诊断已LOCAL_SIMULATION_PASS；原生接口/事件与按钮仍USER_GAME_TEST_REQUIRED。没有收益写入、新carrier、旧writer关闭或其它专业能力。A0160目标合同保持，Design D0032不变。仅develop；live仍B076.103、main B069.96，无部署。
 

@@ -10,7 +10,7 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0205",
+    "status": "S0206",
     "runtime": "B078.105 / modinfo105"
   },
   "paths": {
@@ -32,7 +32,7 @@
   "current_batch": null,
   "next_batch": "P0-B1",
   "manifest": "Specialization/Workflow/P0-B1.json",
-  "live": "B077.104 / modinfo104; authorized P0-A test; native capture USER_GAME_TEST_FAIL",
+  "live": "B078.105 / modinfo105; W0003 authorized deployment, 125-file hash verified; native user acceptance pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
