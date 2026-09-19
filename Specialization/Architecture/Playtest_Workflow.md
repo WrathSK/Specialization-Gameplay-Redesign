@@ -1,7 +1,7 @@
 # v0.1 Playtest / Development contract
 
 Document Owner: Codex
-Workflow Revision: W0002
+Workflow Revision: W0003
 Baseline: B069.96 / modinfo96 / accepted D0025
 Baseline tag: v0.1-playtest-b069.96
 
@@ -10,6 +10,20 @@ develop worktree: `/Users/xutingzheng/Projects/Specialization-Gameplay-Redesign-
 These are machine-local locations, not hardcoded tooling dependencies. Git worktree owns isolation; no second manually maintained source/runtime tree.
 
 The original unchanged source/document checkpoint is `ca54045`. A following infrastructure-only commit adds this contract and deployment gates; the annotated baseline tag and both initial branches point to that final infrastructure commit, with identical Mod/ contents. This is a playtest milestone, not a final release or balance/performance certification.
+
+## Current temporary development-test mode — W0003
+
+2026-09-18 user explicitly authorizes B078.105 deployment and standing deployment of completed develop testing batches until the user declares a node ready for long-play testing. This section overrides older per-switch authorization prose below for this phase only; historical W0002 receipts remain valid.
+
+- Main/stable semantics, separate Git worktrees, source ownership, no automatic promotion and no game launch remain unchanged. This is temporary permission to update the external testing package, not a source-tree merge.
+- After an authorized implementation batch passes local checks: review diff → commit/push develop → confirm clean source → verify game fully exited → reviewed backup/hash transaction → per-file verification and receipt. Docs-only tasks need no package redeploy when Mod hash is unchanged.
+- Game exit can be established by safe OS process inspection. Running/uncertain process state blocks replacement; ask only for missing exit confirmation, not repeat deployment permission. Never close/kill the game automatically.
+- Existing `tools/temporary_playtest.py` flags remain mandatory. `--confirmed-game-exited` asserts the verified condition (user confirmation or reliable OS check); `--authorize-temporary-switch` cites this standing authorization.
+- Existing tool only accepts stable→develop: when another develop package is active, use its exact receipt to restore stable first (retaining the outgoing develop package), then activate the new committed build with a new receipt. No game launch between these two steps. Verify source/stable/live hashes at both steps; stop on any mismatch or pending transaction. Backups stay outside Mods and are not deleted.
+- No new implementation is authorized by automatic deployment. Known unresolved evidence, such as idle sounds, must still be reported honestly.
+- Stop this temporary mode when the USER identifies a long-play-ready milestone or revokes it. Resume explicit deployment approvals / development-runtime separation; do not silently restore a different package or promote main without user direction.
+
+Current authorization is ACTIVE. This changes deployment permission only, not Gameplay, Design or A0161 state contracts.
 
 ## Deployment
 

@@ -2,7 +2,7 @@
   "schema": 1,
   "review_basis": "B078 native read repair reviewed against eb8f2a1; original Design/contracts unchanged",
   "files": {
-    "AGENTS.md": "63ce47b0f08d333232c983ef8cd5af676eafaa45a41e2481c38b08b68352cf29",
+    "AGENTS.md": "18a30c39c68eb868b139dffab9e661de6efd661687190a05b913e32890293f0f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
     "DevelopmentTests/test_arch_v2_c1.py": "f83aa9027a2a7d4368e0047c952511f685cb25efcfb64569732007d53c901103",
     "DevelopmentTests/test_arch_v2_c2.py": "86f8775044ae7380508c8e58544c1773ee7825f2103a02f02071181ecf24c97c",
@@ -39,7 +39,7 @@
     "Mod/UI/P0Panel.lua": "29c0b65f26491d7364c673723eb70db8206c158a66377859494671c4244637b6",
     "Mod/UI/P0Panel.xml": "995551c0a8c7a8f84c6e35d58d41486a88f4790be97399297441ea1489d66b5d",
     "Specialization/AGENTS.md": "bd0ee8ddb648de15a10bb448de093f780e9b63ba17eb10431840a792f5ae3700",
-    "Specialization/Architecture/Playtest_Workflow.md": "da1b531fd09565899a6aa267f54674ca6327445aa591c67d2bfd07241ff4a86c",
+    "Specialization/Architecture/Playtest_Workflow.md": "31985c762824a789f1ad144f6fe68173ad491f1c6d719fe7751810e18c56ba88",
     "Specialization/Architecture/Specialization_v0.1_Architecture.md": "772e8bb6173f5d6d489a2d6311ea2bedb73a1763e393aef0a2755d7393982773",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",

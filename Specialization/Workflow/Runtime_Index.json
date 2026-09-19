@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "See commit containing B078.105 in Git; source base eb8f2a1",
+  "runtime_commit": "5c3b254ebfc310d3c997fb36361eb75c957c159a",
   "runtime": "B078.105 / modinfo105",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

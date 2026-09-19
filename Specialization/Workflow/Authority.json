@@ -28,7 +28,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "See commit containing B078.105 in Git; source base eb8f2a1",
+  "runtime_commit": "5c3b254ebfc310d3c997fb36361eb75c957c159a",
   "current_batch": null,
   "next_batch": "P0-B1",
   "manifest": "Specialization/Workflow/P0-B1.json",
@@ -41,5 +41,6 @@
     "Specialization/Architecture/v2/Source_Index.md",
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
-  "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay."
+  "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
+  "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain"
 }
