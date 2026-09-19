@@ -1,35 +1,24 @@
 include('RuntimeWork')
 include('SampleLifecycle')
+include('SpecialistSupport')
 -- B036 IND-001: native per-specialist Food + base Production adjacency.
 -- No actual-adjacency fallback, rounding or city-wide multiplication. Crew access is independently audited.
 SPCIndustrySupport={}
 function SPCIndustrySupport.Start(P,shared)
  local batch
- local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local data={ready=false,busy=false,changes=0,errors={}};shared.IndustrySupport=data
  SPCSampleLifecycle.Reset(data,'industry')
  local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end
  local function inspect(pid,city,externalBatch)
-  if city:GetOwner()~=pid or not P.IsTestPlayer(pid) then return nil end
-  local f=externalBatch and externalBatch.Facts(pid,city) or readFacts(pid,city)
-  assert(type(f.specialization)=='string','INDUSTRY_FACT_INVALID')
-  if f.specialization~='INDUSTRY' then return nil end
-  assert(f.potential>=1 and f.first,'INDUSTRY_FACT_INVALID')
-  for _,d in (externalBatch or batch or SPCRuntimeWork.New(P,shared)).Districts(pid,city) do
-   local c=d:GetCity()
-   if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
-    local row=P.Info('Districts',d:GetType())
-    assert(row and type(d:IsComplete())=='boolean','INDUSTRY_FACT_INVALID')
-    if row.DistrictType~='DISTRICT_INDUSTRIAL_ZONE' or f.first.type~=row.DistrictType or d:IsComplete()~=true then return nil end
-    local batch=data.samples[pid];local sample=batch and batch.rows[city:GetID()..':'..d:GetID()]
-    assert(sample,'BASE_BACKGROUND_SAMPLE_PENDING')
-    if sample.reference~=SPCSampleLifecycle.Reference(city,d,row) then return nil end
-    local n=sample.value
-    assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
-    return n
-   end
-  end
-  return nil -- complete enumeration proves anchor absent
+  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,city,externalBatch or batch or SPCRuntimeWork.New(P,shared))
+  if kind~='INDUSTRY' then return nil end
+  local row=assert(P.Info('Districts',d:GetType()),'INDUSTRY_FACT_INVALID')
+  local batch=data.samples[pid];local sample=batch and batch.rows[city:GetID()..':'..d:GetID()]
+  assert(sample,'BASE_BACKGROUND_SAMPLE_PENDING')
+  if sample.reference~=SPCSampleLifecycle.Reference(city,d,row) then return nil end
+  local n=sample.value
+  assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
+  return n
  end
  local function carriers(city,n,write)
   local total,food=0,0;local removed=false
@@ -56,7 +45,7 @@ function SPCIndustrySupport.Start(P,shared)
     for _,city in cities:Members() do P.Count('city_scan');
      local k=pid..':'..city:GetID();local ok,n=pcall(inspect,pid,city)
      local changed,err=true,nil
-     if ok then changed,err=pcall(carriers,city,n,true) end -- unreadable sample preserves projection
+     if ok then changed,err=pcall(function() SPCSpecialistSupport.Retire(P,city);carriers(city,n,true) end) end -- unreadable sample preserves projection
      data.errors[k]=not ok and tostring(n) or (not changed and tostring(err) or nil)
 
     end
@@ -69,24 +58,23 @@ function SPCIndustrySupport.Start(P,shared)
  function data.Receive(pid,params)
   if SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true) then
    data.Audit({player=pid})
-   if shared.Lv3Support then shared.Lv3Support.Audit({player=pid}) end
   end
  end
  function data.Describe(pid,city)
   local bg=ExposedMembers.SPC_IndustryBackground
   local ok,n=pcall(inspect,pid,city)
   local valid,p,f=pcall(carriers,city,nil,false)
-  return 'B036 Industry Lv1 city='..city:GetID()
+  return 'P0-B1 Industry ACTIVE1–4 city='..city:GetID()
    ..'\nBASE Production adjacency='..(ok and tostring(n or 'N/A') or 'ERROR '..tostring(n))
    ..'\nPer worker expected='..(ok and n~=nil and ('3F / '..n..'P') or 'NONE')
    ..' carrier='..(valid and (f..'F / '..p..'P') or ('ERROR '..tostring(p)))
    ..'\nbackground='..tostring(bg and bg.state or 'NOT_STARTED')..' pending='..tostring(bg and bg.pending or 0)..' requests='..tostring(bg and bg.requests or 0)
    ..' receive='..tostring(data.receiveErrors and data.receiveErrors[pid] or 'NONE')
    ..'\nchanges='..data.changes..' error='..tostring(data.errors[pid..':'..city:GetID()] or 'NONE')
-   ..'\nRead only; verify native specialist yields. Crew projects available from Industry Lv1; project engine behavior requires B044 testing.'
+   ..'\nRead only; verify native specialist yields. Native district yields are additional; retired III Food/Gold upgrade cannot reactivate.'
  end
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt','OnPillage'}) do hook(GameEvents,n,data.Audit) end
 end

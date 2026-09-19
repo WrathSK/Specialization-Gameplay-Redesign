@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-B1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0032",
     "research": "D0031",
@@ -11,8 +11,8 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0206",
-    "runtime": "B078.105 / modinfo105"
+    "status": "S0207",
+    "runtime": "B079.106 / modinfo106"
   },
   "goal_reference": "Specialization/Architecture/v2/D0032_Implementation_Plan.md#实施批次合同",
   "context": [
@@ -323,10 +323,25 @@
       "path": "DevelopmentTests/test_arch_v2_d2.py",
       "kind": "full",
       "reason": "composite regression/carrier comparison"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "kind": "full",
+      "reason": "P0-B1 current implementation/evidence"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_b1.py",
+      "kind": "full",
+      "reason": "P0-B1 current implementation/evidence"
+    },
+    {
+      "path": "Mod/SpecialistSupport.lua",
+      "kind": "full",
+      "reason": "P0-B1 current implementation/evidence"
     }
   ],
   "dependencies": [
-    "P0-A LOCAL_SIMULATION_PASS; B077 native failure repaired in B078 local tests; engine confirmation pending before relying on facts; see current Status",
+    "P0-A B078 D/worker USER_GAME_TEST_PASS; pillage untested; scope in Status",
     "C2 Industry lifecycle",
     "D2 propagation"
   ],
@@ -403,8 +418,8 @@
     "save ownership migration",
     "Network redesign",
     "new Industry/Culture/Commerce mechanics",
-    "deployment/game launch",
-    "Computer Use investigation"
+    "Computer Use investigation",
+    "game launch; deployment only under W0003 safety contract"
   ],
   "validation": {
     "level": "Full runtime regression: B1 retires an active writer despite narrow scope",
@@ -423,7 +438,7 @@
       "test_deployment.py and test_temporary_playtest.py in temp only; never apply",
       "Design unchanged, unrelated carrier maps unchanged"
     ],
-    "user": "Only after separate deployment approval: one prepared multi-city save, workers/governor/reload and native support observation; no game test for workflow."
+    "user": "W0003 authorizes safe automatic deployment; one prepared save workers/governor/support diagnostic; no forced pillage."
   },
   "full_audit_triggers": [
     "B1 writer cutover requires targeted full-Mod writer search + full runtime regression",
@@ -435,8 +450,9 @@
     "integration/release"
   ],
   "result": {
-    "implementation": "NOT_STARTED",
+    "implementation": "B079.106 LOCAL_SIMULATION_PASS; explicit user authorization; awaiting engine acceptance",
     "dry_run": "Historical W0001 context dry-run passed; current P0-A engine failure changes prerequisite evidence, not P0-B1 authorization",
-    "computer_use": "UNRESOLVED / DEFERRED"
+    "computer_use": "UNRESOLVED / DEFERRED",
+    "report": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md"
   }
 }

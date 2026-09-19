@@ -14,7 +14,7 @@ function L.Live(P,pid,industry)
   local c=assert(d:GetCity(),'SAMPLE_CITY_UNAVAILABLE');local complete=d:IsComplete()
   assert(type(complete)=='boolean' and type(c:GetOwner())=='number','SAMPLE_DISTRICT_UNAVAILABLE')
   local row=assert(P.Info('Districts',d:GetType()),'SAMPLE_TYPE_UNAVAILABLE')
-  if c:GetOwner()==pid and complete and (not industry or row.DistrictType=='DISTRICT_INDUSTRIAL_ZONE') then
+  if c:GetOwner()==pid and complete and (not industry or P.Family(row.DistrictType)=='INDUSTRY') then
    n=n+1;assert(n<=512,'SAMPLE_ROW_LIMIT')
    out[c:GetID()..':'..d:GetID()]={cityID=c:GetID(),id=d:GetID(),type=row.DistrictType,reference=L.Reference(c,d,row),district=d,city=c}
   end

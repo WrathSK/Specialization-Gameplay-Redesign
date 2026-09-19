@@ -255,6 +255,8 @@ local function showRoot()
 end
 local function initialize()
   -- Explicit labels bypass GridButton style-owned text rendering.
+  Controls.CompletenessButtonCaption:SetText('区域完善度 / 科研影子')
+  Controls.CompletenessButton:SetToolTipString('区域完善度 / 科研影子')
   Controls.OpenButtonCaption:SetText('专业化诊断')
   Controls.OpenButton:SetToolTipString('专业化诊断')
   Controls.CloseButtonCaption:SetText('关闭')

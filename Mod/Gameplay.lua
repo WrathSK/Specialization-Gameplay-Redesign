@@ -210,7 +210,8 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if shared.Lv2Housing then shared.Lv2Housing.Audit() end
     if shared.Lv2GPP then shared.Lv2GPP.Audit() end
-    if shared.Lv3Support then shared.Lv3Support.Audit() end
+    if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
+    if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
     if shared.NetworkBoost then shared.NetworkBoost.Audit() end
     if shared.Dialogue then shared.Dialogue.Audit(playerID) end
@@ -227,7 +228,6 @@ local function request(playerID,params)
   if params.Action=="LV2_GPP_DIRTY" then
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv3Support then shared.Lv3Support.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
     return
@@ -271,7 +271,8 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if shared.Lv2Housing then shared.Lv2Housing.Audit() end
     if shared.Lv2GPP then shared.Lv2GPP.Audit() end
-    if shared.Lv3Support then shared.Lv3Support.Audit() end
+    if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
+    if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
     shared.LastToken=params.Token;stage("ACK INVESTMENT");return
   end
@@ -340,6 +341,13 @@ local function request(playerID,params)
   end
   if params.Action=="GOVERNOR" or params.Action=="SPECIALISTS" then
     shared.Snapshot=P.FocusProbe(city,params.Action,stage)
+    if params.Action=="SPECIALISTS" then
+      local ok,f=pcall(shared.EffectiveFacts.Read,playerID,city)
+      if ok and f.specialization=='INDUSTRY' then
+        shared.Snapshot=shared.Snapshot..'\n'..shared.IndustrySupport.Describe(playerID,city)
+      else shared.Snapshot=shared.Snapshot..'\n'..shared.ResearchSupport.Run(playerID,city,'READ') end
+      shared.Snapshot=shared.Snapshot..shared.Lv3Support.Describe(playerID,city)
+    end
     shared.LastToken=params.Token
     stage("ACK "..params.Action)
     return

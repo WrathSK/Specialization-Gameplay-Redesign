@@ -33,7 +33,7 @@ local function mark() dirty=true end
 ContextPtr:SetInitHandler(function()
  -- Generic notifications only drain marked work / bounded C2 pending state.
  for _,name in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete','SystemUpdateUI'}) do bind(name,safe) end
- for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged',
+ for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired',
   'CityProductionCompleted','ImprovementAddedToMap','ImprovementRemovedFromMap',
   'FeatureAddedToMap','FeatureRemovedFromMap','CityTileOwnershipChanged','CityAddedToMap','CityRemovedFromMap','CityTransfered',
   'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityWorkerChanged','CityFocusChanged',

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "5c3b254ebfc310d3c997fb36361eb75c957c159a",
-  "runtime": "B078.105 / modinfo105",
+  "runtime_commit": "See implementation commit containing B079.106 (baseline 324f455)",
+  "runtime": "B079.106 / modinfo106",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -181,9 +181,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Lv3Support.sql": {
-      "sha256": "79c764f8adae7581272a0dc39e03c92e6d1dbbb32d6a5fc5e74e675d343cbf57",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "688298fec1e2e9637e277d32c6bc8dc39643ce6101e8185a848764f158153c7b",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/Data/Lv4Percent.sql": {
       "sha256": "76daaefdf7c3edffe1839ff1199386b633f041e283beafc51f88877c97c34c29",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "fcfa1c850e12a343e6f69b83d53a1c1a8daf1552147022f1ee9912447962a46a",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "6c897fe30e2864fcedfa09946aaab905af8fce22c637646a3e3c55328aebed9f",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -291,9 +291,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "4f316f6b24e13267b165042908c2685f3a98dbec1e636e9645cf883afa30fbbe",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "edb373cfe3619d90ceb203c50b6b52d31eadd49d0f1e5742f6f2baa591354b4f",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/InheritanceShadow.lua": {
       "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
@@ -321,9 +321,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Lv3Support.lua": {
-      "sha256": "c9d990974d9f35c04fcae18af49f00f5ef9880ed24e65cbac04d1dc84c412dd1",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "f58cf09bda2b1e3bc4532b95bc4db6e0814ef879ef413414b039c53bab8900d7",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/Lv4CopyRead.lua": {
       "sha256": "5d58f139be76577107a7dda0f0088ad81cecaed49ca7c52653e40508369c627c",
@@ -366,9 +366,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Probe.lua": {
-      "sha256": "ef1c9ec343d8f56c27d991bb73c77d67b7f12fb2b48553e9ca75be08b9dd1a31",
-      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
-      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
+      "sha256": "ff0ccb67c6a7f1d03ee5fad23c5929b82c340e8d754717edba25c9041f44cd72",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -391,9 +391,9 @@
       "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "dc436a43f10874765aff8ad75fb07e94c5e618ba4b5048638cbaa61dca5a6d6a",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "80fa642830ef5e6c31ebadc57adbaa76b3722a376b1d6367195fc167b040940f",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/RuntimeAuditCore.lua": {
       "sha256": "4d48025888451ef30e89473cdb5f3179b17646511bd4067f4dfad3da09833b1b",
@@ -406,9 +406,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SampleLifecycle.lua": {
-      "sha256": "adc9b499856f1536a81f4187e6d68284d72735f3d61778daf3637cacba0ad5b9",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/ShadowRouteState.lua": {
       "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "326211eb57b6d6e131ce585adf816b8f6c59162ff837c9f338d2aecec772fb06",
-      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
-      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
+      "sha256": "3a00935036f014435c06ed8ddf03820ca632cc46cd8dbd8669a1bbfabe28b57a",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -546,9 +546,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/IndustryRefresh.lua": {
-      "sha256": "ecc7fe971b022a71a23ed80f6860520ef85820c8a61c7e84099693308e094940",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/UI/IndustryRefresh.xml": {
       "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
@@ -556,19 +556,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "29c0b65f26491d7364c673723eb70db8206c158a66377859494671c4244637b6",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "d317ecee83ef917918c91e43d33a81dda1b1b89bbc222724c5174649acb9a927",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "995551c0a8c7a8f84c6e35d58d41486a88f4790be97399297441ea1489d66b5d",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "e03eb1545fc01dec22a4bd2e8b8009d847db469f90933ad20b4941cdf217d62e",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "8c3007cae05f24168b7b78fa713ef66ec4d906bcb12e92c3d51cf4bb94102a26",
-      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
-      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
+      "sha256": "ada33f5b3aa69bd473a3e876eba67c3842ec1f66df7bc22fc43c85850d56d7b2",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -629,6 +629,11 @@
       "sha256": "6f91b0f71c9811034da652c18bcb1a2e643a6b15fce41e963bdd36f44be3f22e",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/SpecialistSupport.lua": {
+      "sha256": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     }
   }
 }

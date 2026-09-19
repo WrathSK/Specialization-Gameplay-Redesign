@@ -5,6 +5,10 @@ Revision: A0160 planning gate, 2026-09-18
 Authority: D0032; no Gameplay implementation authorized by this plan
 Gate: GATE B — READY FOR P0-A (only after user authorization)
 
+## Implementation progress (2026-09-18)
+
+P0-A B078: user confirms D and working-specialist reads; pillage untested. P0-B1 separately authorized and completed in B079.106: [scope, retirement and local evidence](P0_B1_Specialist_Support.md). Only existing basic support cutover; no new Research Infrastructure effect. P0-B1 local PASS / user validation pending. P0-B2 remains recommended, not authorized. A0160 plan and frozen Design rules are unchanged.
+
 ## Dependency graph
 
 | Layer/node | Depends on | Consumers / gate |

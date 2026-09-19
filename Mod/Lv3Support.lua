@@ -1,7 +1,7 @@
 include('RuntimeWork')
 -- B037: Lv3 specialist support only. Incremental +2 upgrades Lv1 3 to 5, never 3+5.
 SPCLv3Support={}
-function SPCLv3Support.Start(P,shared)
+local function historicalStart(P,shared)
  local batch
  local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local function districtsFor(pid,c)
@@ -88,4 +88,32 @@ function SPCLv3Support.Start(P,shared)
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
  for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','DistrictRemovedFromMap','DistrictBuildProgressChanged'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+end
+
+-- P0-B1 permanent code gate: historicalStart is intentionally unreachable.
+-- Exact tombstone IDs remain in DB, with no CitizenYieldChanges.
+include('SpecialistSupport')
+function SPCLv3Support.Start(P,shared)
+ local data={ready=false,busy=false,errors={},changes=0,ruleset='RETIRED_D0032_P0B1'};shared.Lv3Support=data
+ function data.Audit(scope)
+  if not data.ready or data.busy then return end
+  data.busy=true
+  for pid,p in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
+   local ok,err=pcall(function()
+    for _,c in p:GetCities():Members() do
+     P.Count('city_scan');local good,n=pcall(SPCSpecialistSupport.Retire,P,c)
+     data.errors[pid..':'..c:GetID()]=not good and tostring(n) or nil
+     if good then data.changes=data.changes+n end
+    end
+   end)
+   data.errors['player:'..pid]=not ok and tostring(err) or nil
+  end end
+  data.busy=false
+ end
+ function data.Describe(pid,c)
+  return '\n旧三级专家升级：RETIRED（额外2F/2P、工业Gold不再生效）'
+   ..'\nretiredRemoved='..data.changes..' error='..tostring(data.errors[pid..':'..c:GetID()] or 'NONE')
+ end
+ local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function() data.ready=true;data.Audit() end) end
+ SPCRuntimeWork.Hook(P,Events,'CityTransfered',data.Audit)
 end

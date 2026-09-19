@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="105">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="106">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B078.105 develop: P0-A shared District Completeness facts and Research shadow diagnostics. No new yields. Not deployed.</Description>
+    <Description>B079.106 develop: P0-B1 all-level specialist support; retired old III upgrades. Development test build.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -78,7 +78,7 @@
       <File>EnvelopeProbe.lua</File>
       <File>FreshBindingHook.lua</File>
       <File>CityFlowProbe.lua</File>
-      <File>ResearchSupport.lua</File>
+      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File>
       <File>IndustrySupport.lua</File>
       <File>UI/IndustryRefresh.lua</File>
       <File>UI/IndustryRefresh.xml</File>
@@ -341,7 +341,7 @@
     <File>EnvelopeProbe.lua</File>
     <File>FreshBindingHook.lua</File>
     <File>CityFlowProbe.lua</File>
-    <File>ResearchSupport.lua</File>
+    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File>
     <File>IndustrySupport.lua</File>
     <File>UI/IndustryRefresh.lua</File>
     <File>UI/IndustryRefresh.xml</File>

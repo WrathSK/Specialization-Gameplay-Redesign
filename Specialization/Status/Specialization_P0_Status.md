@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0206
-Implementation Build: develop P0-B-078.105 / modinfo105; live B078.105 / modinfo105; stable B069.96 / modinfo96
+Status Revision: S0207
+Implementation Build: develop P0-B-079.106 / modinfo106; live B078.105 / modinfo105; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
 Latest Accepted Design Revision: D0032
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_A_B078_DEPLOYED_AWAITING_USER_TEST
+Work State: P0_B1_LOCAL_PASS_AWAITING_DEPLOYMENT_AND_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-B078.105修复P0-A Gameplay原生区域/建筑位置读取：[修复与统一验收](../Architecture/v2/P0_A_Native_Read_Fix_B078.md)。**LOCAL_SIMULATION_PASS，不是实机PASS**。ACTIVE不足四级不妨碍D读取；Library+University本地D3。D、shadow、cache/ref/epoch、10k idle、A–D2全部回归及部署安全测试通过。没有新收益、carrier、旧writer改动，未推进P0-B1。
+P0-B1已获用户授权并完成本地实现：B079.106/modinfo106，[报告及测试](../Architecture/v2/P0_B1_Specialist_Support.md)。科研/文化/商业全等级基础3F3P，工业3F+BASE P；只退出旧III额外支持及工业Gold，其他旧能力留各自cutover。LOCAL_SIMULATION_PASS（实际Lua+mock/SQL，不等于实机PASS）。完整前序回归、10k idle、线性批次读取与精确12载体清理通过。当前等待安全部署及用户短测；不自动推进B2/C/E。
 
-用户静置刷新声仍UNKNOWN；未根据声音推定Building churn，也未声称此次读取修复解决声音。现有证据不足；下一次统一验收若仍出现，只需现有Counters前后对照。用户已授权并完成B078.105临时部署：[部署/备份/hash记录](Validation/Results/Specialization_B078_Deployment_20260918.md)。125文件逐项一致；main仍B069.96，未启动游戏。当前等待一次统一验收。W0003临时默认部署授权生效直到用户指定长局节点，退出/备份/hash/Git门禁不变。
+[B078用户证据](Validation/Results/Specialization_B078_P0A_20260918.md)：D3→D10、工作专家读取通过；刷新声已消失。掠夺未测是缺少玩家可控操作，不是游戏卡死。原图已hash归档。按钮文字修正在B079，仅本地确认，等待实际显示反馈。P0-A仍不施加shadow收益。
 
-[B077用户失败与归档证据](Validation/Results/Specialization_B077_P0A_20260918.md)冻结保留。原测试mock错误提供了UI-shaped接口，现已改为Gameplay索引接口并用旧模块实际重现失败。建筑读取改为每选中城市一次数据库catalog扫描，fixture120条时1/2/4/8城checks120/240/480/960；不把计数口径变化误称新idle扫描。
-
-Workflow W0001：[入口](../Workflow/README.md)、[Authority](../Workflow/Authority.json)、[P0-B1 manifest](../Workflow/P0-B1.json)仅导航，P0-B1仍未授权。Architecture A0161 / Design D0032合同不变；新修复证据不覆盖先前实机FAIL。Computer Use仍DEFERRED。完成commit/push后停止。
+W0003临时默认部署授权有效，需退出/恢复点/hash/clean commit门禁。当前live仍B078.105；main B069.96不改。Architecture A0161目标合同与Design D0032未改；P0-B1是已批准目标的实现。Workflow W0001导航更新为本批待用户验收。
 
 ### Historical B077 implementation
 
