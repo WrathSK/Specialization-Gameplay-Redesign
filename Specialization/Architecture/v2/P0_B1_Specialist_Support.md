@@ -2,8 +2,8 @@
 
 Document Owner: Codex
 Authority: D0032; A0160 implementation plan under A0161; no Design revision change
-State: IMPLEMENTATION_COMPLETE_AWAITING_USER
-Evidence: STATIC_CONFIRMED + LOCAL_SIMULATION_PASS; not engine PASS
+State: COMPLETE — user acceptance recorded separately
+Evidence: STATIC_CONFIRMED + LOCAL_SIMULATION_PASS; subsequent user acceptance: [B079 result](../../Status/Validation/Results/Specialization_B079_P0B1_User_Pass.md)
 Baseline: 324f455 / B078.105. Main B069.96 unchanged.
 
 ## Scope and exclusive writer
@@ -49,4 +49,4 @@ Existing 专家与岗位 / SPECIALISTS now appends expected/actual support and r
 
 Minimal combined game check after safe W0003 deployment: load a prepared test save, confirm B079.106; select an ACTIVE3/4 Research (or Culture/Commerce) city, assign/remove one working specialist and read 专家与岗位; base support must be extra3F3P rather than old5F5P. If an Industry city is already available, check extra3F + BASE P and no old III BASE×2 Gold. Other old abilities/native yields remain, so compare support components, not an unexplained entire-city total. Save/reload once only if convenient to check retired support stays absent. Confirm the D diagnostic button text. Do not manufacture disasters/AI wars for pillage.
 
-P0-B1 local gate PASS, engine acceptance pending. Recommend P0-B2 next only after separate authorization; no B2/C/BatchE implementation. Memory55GB cause is not declared solved.
+P0-B1 local gate PASS; user subsequently confirms game PASS including Industry (scope in linked result). Recommend P0-B2 next only after separate authorization; no B2/C/BatchE implementation. Memory55GB cause is not declared solved.

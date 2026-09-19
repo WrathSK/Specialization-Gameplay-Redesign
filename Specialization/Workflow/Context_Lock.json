@@ -44,7 +44,7 @@
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "9b54c8562a38bf0494bc36733f509b140aff57c7f0ee1792601d919d2e2cb32b",
-    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "5a7176a8b6d5578ea1bde0fa24736241d7e107ee1c0743d8a02ac6d694cedfb8",
+    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "996241729ec819a48ba10107fb92fa31c665320a00cf23bd52eefc5c21f96829",
     "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md": "d45b89723ee95880e8eeda34c35962eee3a7d1971997bdd5dc0a810d9232c680",
     "Specialization/Architecture/v2/D0032_Runtime_Inventory.json": "03ad69688b0bdd807964f77c0920cb562a8e5079c2584bc05bab1f409f63d6ce",
     "Specialization/Architecture/v2/D0032_Technical_Spikes.md": "024d006c5ca2ef798a59a959105ced84bb4bca50f5f91f88c181426b7a546e75",
@@ -59,11 +59,11 @@
     "Specialization/Design/Design_ChangeLog.md": "e40bf58fa51a009e330f96a945dfdd522239b9ba0fb6b2f93fe2087385ee66cd",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "a866abd52fac7d10ccf3536f852ebe8e3fac127d6baa56d9c4748d005546bc33",
+    "Specialization/Status/Specialization_P0_Status.md": "c19d5fc179d940babd9fb05175a422a55e766263e7d4686ab38ce941a5fac0f1",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
-    "Specialization/Architecture/v2/P0_B1_Specialist_Support.md": "ef4582b0d0ed58c4052c65e286059aaee63895eaf0897d4225ef33389a8ef381",
+    "Specialization/Architecture/v2/P0_B1_Specialist_Support.md": "a618e85dd272cbd0a6561ff6286bbadb7e46358379e7cf858115429007be8568",
     "DevelopmentTests/test_p0_b1.py": "b29f397c4034e6f3dbd820c4ef90de53577f4cda3bd7bc84aeb4e4c4908ae55e",
     "Mod/SpecialistSupport.lua": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f"
   }

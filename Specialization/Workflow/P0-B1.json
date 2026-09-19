@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-B1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0032",
     "research": "D0031",
@@ -11,7 +11,7 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0208",
+    "status": "S0209",
     "runtime": "B079.106 / modinfo106"
   },
   "goal_reference": "Specialization/Architecture/v2/D0032_Implementation_Plan.md#实施批次合同",
@@ -453,6 +453,7 @@
     "implementation": "B079.106 LOCAL_SIMULATION_PASS; explicit user authorization; awaiting engine acceptance",
     "dry_run": "Historical W0001 context dry-run passed; current P0-A engine failure changes prerequisite evidence, not P0-B1 authorization",
     "computer_use": "UNRESOLVED / DEFERRED",
-    "report": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md"
+    "report": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+    "user_validation": "USER_GAME_TEST_PASS including Industry; Specialization/Status/Validation/Results/Specialization_B079_P0B1_User_Pass.md"
   }
 }
