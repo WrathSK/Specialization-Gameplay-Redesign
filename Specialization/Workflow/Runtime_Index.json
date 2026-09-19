@@ -1,0 +1,634 @@
+{
+  "schema": 1,
+  "runtime_commit": "cb5a3d48f18640d254f45a2af24f84bc2b2bb062",
+  "runtime": "B077.104 / modinfo104",
+  "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
+  "role": "provenance overlay; not a new full audit",
+  "files": {
+    "Mod/ArtDefs/Units.artdef": {
+      "sha256": "00386b8d0c1c2faaac652e134f9c73dacb6522d023a1be168add87b0e17b64e0",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/BindingProbe.lua": {
+      "sha256": "ce6a8e07186332f424975da95daefa0b6af47eaa5a99e58b6e098d70693b126b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/BoostConfig.lua": {
+      "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/BoostIntegerConfig.lua": {
+      "sha256": "8e43d3e3ce29758d770f58682cd53e8d8abba7659f2587b3226a62881a4f65ab",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CityFlowProbe.lua": {
+      "sha256": "a6a5eb9462f9a951274c259b84473e29460683d8f3bbab7a196b2018b0c19bf9",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CityInheritance.lua": {
+      "sha256": "98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CityInheritanceRead.lua": {
+      "sha256": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CityJournalProbe.lua": {
+      "sha256": "d13212a7595fe383819ea5903b2f8c99c0a2ac537e7945fcf8d735784d3d4cbc",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CommerceConvergence.lua": {
+      "sha256": "62159672ae47e1e0b6e3ad80e1179db44e0f6c498065b9e8b035e1ff3f4b4483",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CompletionProbe.lua": {
+      "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CompletionRecordProbe.lua": {
+      "sha256": "4c1d6cc4cdd1555cd04fce2a6c7240ef0c1f38d212bee61bf6252e78fa0028cd",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Config/Players.sql": {
+      "sha256": "ca577b88faa4fa150bd786031f7f23754331b3fb9ceafac0d175b0c578de7ada",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/ConstructionProbe.lua": {
+      "sha256": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CopyYields.lua": {
+      "sha256": "bbb74d05865d217947f84197543024d99d698fbe61f8197a877bd51f544b7c93",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CrewPrecision.lua": {
+      "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CrewProjects.lua": {
+      "sha256": "cb0592a4f15cbaf5fc8caa3801906f4e499a5022390dcd62a20658b1dada57f0",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CurrentSpecializationFacts.lua": {
+      "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/Data/BoostIntegerTest.sql": {
+      "sha256": "063262ae3b652682f91d3110e64b53cbc2407517b3e470a88c1da93316497f11",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Colors.sql": {
+      "sha256": "adac5b8d0599024c96d440b56b03af0d32b3e98dcfc36a753fe4a0cfe600ef0c",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/CommerceConvergence.sql": {
+      "sha256": "33fd1c2e1d7a9598d5ca0cc61bfd4e20a738ddfc7dcbb84c99d863f6bf2dc50f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/ConstantSupport.sql": {
+      "sha256": "94963738321a1f7c4a1c25a34e4f1cb1360ce9d971e3a94d5ac4422b98f9ae83",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/CopyYields.sql": {
+      "sha256": "180ac97afbdb3f68c90fd944632bdc3bcbd9c6b50058143b4b7a11b0636546c6",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Crew.sql": {
+      "sha256": "998c2e6a95228f967082be4b93c45fbb32223a899b3641977534187cf22fcc2d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/CrewProjects.sql": {
+      "sha256": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Dialogue.sql": {
+      "sha256": "c9845e9fe06810130cae28dc47cf3f6a8a25e425b62c4e710792967f0932e72a",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/GovernorProbe.sql": {
+      "sha256": "147edbe54f4c357d498f578ee3cf1de530581253310686134a0d46e2bf6badfd",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/GreatWorkAdjacency.sql": {
+      "sha256": "e14afd55f26d2e0727cb481d8fae9e875b8bc7f89173621c7e1657571c3b516d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/GreatWorkProbe.sql": {
+      "sha256": "12dc0f6336eaf75f6ec75eeb62a6371cedb7dd9e07bda98290b50b275cd483f2",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/HalfYieldProbe.sql": {
+      "sha256": "923db9239ae09d9d3a76f8d66d247cf31019b2cd632123490c33f277b8733669",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Icons.sql": {
+      "sha256": "5e40f7d09a96253628136424d72ae93cfda31de14c0eae135594adb535e2a343",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Identity.sql": {
+      "sha256": "f401fd35654dea6abd5dcc0f0027f35a91408a714b56bf1b2f0098c8d1a894d2",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/IndustrySupport.sql": {
+      "sha256": "cfc3b01995f758362026fb1bcfe280012a980f7341b798071ab567f7743a4064",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv2GPP.sql": {
+      "sha256": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv2Housing.sql": {
+      "sha256": "b909ba34e6569eaa36e5c877d3123aa8ffac2d990893774f18144eb63c4c18ba",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv3Effects.sql": {
+      "sha256": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv3Support.sql": {
+      "sha256": "79c764f8adae7581272a0dc39e03c92e6d1dbbb32d6a5fc5e74e675d343cbf57",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv4Percent.sql": {
+      "sha256": "76daaefdf7c3edffe1839ff1199386b633f041e283beafc51f88877c97c34c29",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/NetworkBoost.sql": {
+      "sha256": "548f682535b9044881ec3b612629d765eded660411b9f707f8cc67879ab4307d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/NetworkBoostInteger.sql": {
+      "sha256": "64857bb6231f593d0ebb1b55caf29b89a58f688f96653ddf56be853441cd4fb8",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/PurchaseProbe.sql": {
+      "sha256": "ea043f7ee0cf7cdb6aaf198cf971424e9bf2f5cf749e8d1dea2b39ca302f9a75",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/ResearchSupport.sql": {
+      "sha256": "fa06b82c35d28e4dc805cca7c6d84795fd4fadefb3bbdfe113524b95ecdce376",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/StandardizationDiscount.sql": {
+      "sha256": "bdbb77b6bb8cc55d905b13bafa161a7b28b14e87dcbd09bee1a064b2392beac3",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/YieldCarrierProbe.sql": {
+      "sha256": "b63ddc3d9c7d6a1ca0634eeba3d610850fe4bfa2fe5f345237d2dcd14ffe91cd",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/DiagnosticLog.lua": {
+      "sha256": "fd4c52434a868a69f74177321a8588aef51ea3e55cc4b0e5d53715ca0b780db3",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Dialogue.lua": {
+      "sha256": "f6a5d077c47afcc29058ddfee5e09a8e6ab4c351cf819b4fd07b3e11406d8d6f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/DialogueModel.lua": {
+      "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/DistrictCompleteness.lua": {
+      "sha256": "f052ca111da9fb343a4b747f90c055bc2357b46319ee76e2d1574f6a2b432114",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/EffectiveFacts.lua": {
+      "sha256": "eef44026a81b5c6ba31187a0c52eedc47f41190e46cf1483d25086f935bcbdf8",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/EligibilityProbe.lua": {
+      "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/EnvelopeProbe.lua": {
+      "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/FreshBindingHook.lua": {
+      "sha256": "c7bdef1fe0612731a95cadf4227df25281c45c9d23ff0a7347be6a19aecb60bd",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/GPPReadout.lua": {
+      "sha256": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Gameplay.lua": {
+      "sha256": "fcfa1c850e12a343e6f69b83d53a1c1a8daf1552147022f1ee9912447962a46a",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/GreatWorkAdjacency.lua": {
+      "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/GreatWorkAdjacencyModel.lua": {
+      "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/GreatWorkProbe.lua": {
+      "sha256": "8c8b7e1d85190d0ffd60c7922aafd5cacc0e968823c85b057a8cfed9e43721db",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/HalfYieldProbe.lua": {
+      "sha256": "aef824eb6fc83cc064d42908dbbefa91ba96099408ee09324f42cb0c6e25f499",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/IndustrySupport.lua": {
+      "sha256": "4f316f6b24e13267b165042908c2685f3a98dbec1e636e9645cf883afa30fbbe",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/InheritanceShadow.lua": {
+      "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/InvestmentAction.lua": {
+      "sha256": "dc2b76792302c7227d8c0f78da200e254eec477bddc962596db4394aa91640b2",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Lv2GPP.lua": {
+      "sha256": "c70780c85d34d0d0185c7d98adede074c0b3b5c683074e635a73972d7f427535",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Lv2Housing.lua": {
+      "sha256": "f7ba314a03f16d8afbf5c7b638037c50299050fa9d1308795a40a3f8b3188b50",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Lv3Effects.lua": {
+      "sha256": "b85d70976a2fa62a3608c7021b517afcc61a04d1f9935cd96d0785cdb1878d65",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Lv3Support.lua": {
+      "sha256": "c9d990974d9f35c04fcae18af49f00f5ef9880ed24e65cbac04d1dc84c412dd1",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Lv4CopyRead.lua": {
+      "sha256": "5d58f139be76577107a7dda0f0088ad81cecaed49ca7c52653e40508369c627c",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Lv4Percent.lua": {
+      "sha256": "f6859395cef39a802ee6cbe70f6ead5c81bbf304f9de47d3c2d4cde041ce24a8",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/NetworkBoost.lua": {
+      "sha256": "619ef2f6001bc812011b50a66677b09691b91a90d2efedeb0f5fdc1bac60926b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/NetworkBridge.lua": {
+      "sha256": "3c29503b8dd728e06a2c4ecae7888de08e016207210c7c1adf5b7c1b887ed745",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/NetworkInput.lua": {
+      "sha256": "9c0b66a127b4047d9d05a3916ad8a535fd1f76770d9700c1f00317a50a57a5e5",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/NetworkSender.lua": {
+      "sha256": "d7edcb8cf3f2dc5989861747661ecb8e0f40c93129cfd887c021718113924257",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/OrdinaryBuildingCatalog.lua": {
+      "sha256": "c209d44ef4666ce740b3cbecdedbfb827a74889e2e332fe9de433fff2ad1d7d0",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/PerformanceCounters.lua": {
+      "sha256": "4913e7a76d4f2f8cd00ed94748eaf1acd19cad0ab8eb2cbc275ec7bba321fa97",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/Probe.lua": {
+      "sha256": "8fe639cf1890496c1f1ce83e867f2a0838bfb46c15be628beef98f3aa9e1b2fd",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/PurchaseProbe.lua": {
+      "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/PurchaseProbeRead.lua": {
+      "sha256": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/QualificationProbe.lua": {
+      "sha256": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/ResearchInfrastructureShadow.lua": {
+      "sha256": "6fe85603847908f7bfc786e57c0cbc475d7ee1e394ccef9394a9041e7b459ff2",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/ResearchSupport.lua": {
+      "sha256": "dc436a43f10874765aff8ad75fb07e94c5e618ba4b5048638cbaa61dca5a6d6a",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/RuntimeAuditCore.lua": {
+      "sha256": "4d48025888451ef30e89473cdb5f3179b17646511bd4067f4dfad3da09833b1b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/RuntimeWork.lua": {
+      "sha256": "25ad4f655c3991bf17eb27fa5c0ef73c7da71aa0948d64db5d37d14f8991e541",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/SampleLifecycle.lua": {
+      "sha256": "adc9b499856f1536a81f4187e6d68284d72735f3d61778daf3637cacba0ad5b9",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/ShadowRouteState.lua": {
+      "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/SourceYieldProbe.lua": {
+      "sha256": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Specialization.dep": {
+      "sha256": "2a825b453df53475a7ca858ba4adfcab60e33f017f17b0ac2ef0d5489735e0f8",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/SpecializationP0.modinfo": {
+      "sha256": "b5662b03a259cf458d214c46c906a93899d886dd6c83cd2cb2cc8baf18c76dea",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/Standardization.lua": {
+      "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/StandardizationCatalog.lua": {
+      "sha256": "df4f28def5d5bca9ed1bc947b89a46149dc6b19d475a34122063b51974c80bfa",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/StandardizationDiscount.lua": {
+      "sha256": "a2fedf96482913159c46372a1e5fb69e429121058ca9b9bc89d0f01a66be5954",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/StorageProbe.lua": {
+      "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Text/TestText.sql": {
+      "sha256": "30c441085ef3977057079e091611b1c2f16173bfde28f5c72e61e9352a59465d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/TradeRouteProbe.lua": {
+      "sha256": "d87d68674052a1acd2c280dce5b1280b7fd47d8cb61c7cf4ea094a4d324572a1",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BackgroundRoutes.lua": {
+      "sha256": "847add4e3fc5f862249d2d502adc80b1d3619a1f1537103edca4ccd1e22a7887",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BackgroundRoutes.xml": {
+      "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BoostGreatWorkRead.lua": {
+      "sha256": "2c73c0cc0b9146f8b5900f8ac155455a5293c0a889d693d8907527fa766d31e9",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BoostRefresh.lua": {
+      "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BoostRefresh.xml": {
+      "sha256": "ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CityPotential.lua": {
+      "sha256": "396066723ea51e58f6a09f88305a8f2b2464e3b73619b1cd161436bf3dbc2e1d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CityPotential.xml": {
+      "sha256": "3971290a3b79bf2b8be2fa603647bafca8c27b48b0d543835610acc5edf8fa40",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CopyYieldRefresh.lua": {
+      "sha256": "c1ea4f3d76042ecfdd7ece121fc2136f16da56de7cff46156ea1e49c4920ac30",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CopyYieldRefresh.xml": {
+      "sha256": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CrewProjectOrder.lua": {
+      "sha256": "8b902c93e450e5ffcf6620bd5154382c36f38b34418cd1aa0856da661cf45522",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/DialogueRefresh.lua": {
+      "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/DialogueRefresh.xml": {
+      "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/DiscountEligibility.lua": {
+      "sha256": "3e50f8ddef2a676673c83d98167dd8ff12a4fa8493e0118e43229eb115248d7f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/DiscountEligibility.xml": {
+      "sha256": "83f53d04f035643a3b31783ac2a49c94d34d530d3dbbe69105dac7fd403b67e2",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/GPPRefresh.lua": {
+      "sha256": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/GPPRefresh.xml": {
+      "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/GreatWorkBasis.lua": {
+      "sha256": "c76edc36a68408e790c0ff1d7bd05e5df0b11b473c6efb2baa0f54006f59574c",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/IndustryRefresh.lua": {
+      "sha256": "ecc7fe971b022a71a23ed80f6860520ef85820c8a61c7e84099693308e094940",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/IndustryRefresh.xml": {
+      "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/P0Panel.lua": {
+      "sha256": "29c0b65f26491d7364c673723eb70db8206c158a66377859494671c4244637b6",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/UI/P0Panel.xml": {
+      "sha256": "995551c0a8c7a8f84c6e35d58d41486a88f4790be97399297441ea1489d66b5d",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/UI/RuntimeAudit.lua": {
+      "sha256": "b28e50443257a259083996a15cdd0694957e7a9ecd4dc62676b59901319f222a",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/UI/RuntimeAudit.xml": {
+      "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitPanelActions.lua": {
+      "sha256": "80d10426ab64fb9ea23ec3218e152d58d90989567f97b4411534c58e0f4cf022",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitPanelActions.xml": {
+      "sha256": "69587034c08cbb154cd36642be8aa1958505724405828e1bb87d0de018b73d4b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitSites.lua": {
+      "sha256": "e9f5f28e6118ec091fff180e7d7a27ade57362f6a109468bb3b9b821a53f542f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitSites.xml": {
+      "sha256": "70d9f2854b603bfa9922fbb869b5a74e44ec7427b757b047851ee939aecaaa6e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitTargetMarkers.lua": {
+      "sha256": "03ccc4ff3ef3d80802f45638fabec6e603815e96357d3b25c58dffebb8c3ea8d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitTargetMarkers.xml": {
+      "sha256": "d4a976b7811eb6f5df0f668f15b8a260e4c01576bca3716bfd8ad09e12792331",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UnitActionSitePolicy.lua": {
+      "sha256": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UnitActions.lua": {
+      "sha256": "0e87494ff86dbc2dd211865b092853025fec315272bac65e04129593b014e02b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UnitSiteProbe.lua": {
+      "sha256": "f54c582cc46ba965ddbfc3c631dcba198bbb2663e14d982693d0503b8c7f1d43",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UnitTargets.lua": {
+      "sha256": "66f58e958a7ee1ebd4d0e19c2ed6b81c0db9e0e09e89562eaddfde613b88b08f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/YieldCarrierProbe.lua": {
+      "sha256": "6f91b0f71c9811034da652c18bcb1a2e643a6b15fce41e963bdd36f44be3f22e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    }
+  }
+}

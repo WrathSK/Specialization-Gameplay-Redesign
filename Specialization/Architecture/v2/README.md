@@ -1,6 +1,8 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
 
+开发导航：[Workflow W0001](../../Workflow/README.md) → [Authority](../../Workflow/Authority.json) → batch manifest。只改变context加载，不改变Architecture合同；当前A0161状态优先于后面的历史标题。
+
 ## 当前实现：P0-A / A0161
 
 [P0-A区域完善度与科研影子](P0_A_District_Completeness.md)：B077.104/modinfo104，LOCAL_SIMULATION_PASS，原生接口/事件及诊断显示尚待用户实机。无新收益/新carrier/旧writer退出，未部署；live B076.103、main B069.96保持。用户授权的首批已完成，不自动推进下一批。

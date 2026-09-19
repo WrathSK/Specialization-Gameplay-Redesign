@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "W0001 batch manifest; P0-B1 is worked template",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "batch",
+    "status",
+    "authority_versions",
+    "goal_reference",
+    "context",
+    "dependencies",
+    "old_writers",
+    "conditional_context",
+    "non_scope",
+    "validation",
+    "full_audit_triggers",
+    "result"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "batch": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PLANNED_NOT_AUTHORIZED",
+        "AUTHORIZED",
+        "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+        "COMPLETE"
+      ]
+    },
+    "context": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "kind",
+          "reason"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "full",
+              "head",
+              "section",
+              "rows",
+              "json"
+            ]
+          },
+          "selector": {},
+          "reason": {
+            "type": "string"
+          },
+          "expected_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

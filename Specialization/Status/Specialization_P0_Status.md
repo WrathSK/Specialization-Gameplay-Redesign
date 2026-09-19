@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0202
+Status Revision: S0203
 Implementation Build: develop P0-B-077.104 / modinfo104; live B076.103 / modinfo103; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_A_LOCAL_SIMULATION_PASS_AWAITING_USER_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
+
+Workflow W0001已建立：[按批读取入口](../Workflow/README.md)、[Authority](../Workflow/Authority.json)、[P0-B1 context manifest](../Workflow/P0-B1.json)。仅context acquisition / validation planning；A0161/D0032/B077.104不变。普通batch按W0001读取当前metadata、相关规则/合同和直接源码，不默认加载本页历史全文；writer cutover/Shared/save/Network等触发仍扩大审计。P0-B1未实施；Computer Use UNRESOLVED / DEFERRED。下次用户授权P0-B1即可按manifest恢复必要上下文。
 
 P0-A B077.104已完成本地实现：[A0161报告](../Architecture/v2/P0_A_District_Completeness.md)、[测试](../../DevelopmentTests/test_p0_a.py)。**LOCAL_SIMULATION_PASS，不是USER_GAME_TEST_PASS**。新增D权威事实、当前专业只读适配、科研基础设施shadow、一个诊断按钮；没有新Gameplay收益、carrier、保存写入或旧writer退出。115个审核普通建筑ID；未审核对象排除并说明。
 

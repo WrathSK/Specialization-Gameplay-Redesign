@@ -1,0 +1,45 @@
+{
+  "workflow": "W0001",
+  "role": "Navigation only. Referenced Design/Architecture override workflow. Hash match proves unchanged, not correct.",
+  "versions": {
+    "design": "D0032",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0028",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0203",
+    "runtime": "B077.104 / modinfo104"
+  },
+  "paths": {
+    "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+    "research": "Specialization/Design/Content/Research_D0031.json",
+    "industry": "Specialization/Design/Content/Industry_D0032.json",
+    "culture": "Specialization/Design/Content/Culture_D0029.json",
+    "commerce": "Specialization/Design/Content/Commerce_D0032.json",
+    "shared": "Specialization/Design/Content/Shared_D0028.json",
+    "presentation": "Specialization/Design/Culture_Era_Presentation_D0032.md",
+    "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "status": "Specialization/Status/Specialization_P0_Status.md",
+    "runtime": "Mod/SpecializationP0.modinfo"
+  },
+  "acceptance": "Specialization/Design/Design_ChangeLog.md",
+  "content_index": "Specialization/Design/Content/README.md",
+  "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+  "runtime_commit": "cb5a3d48f18640d254f45a2af24f84bc2b2bb062",
+  "current_batch": null,
+  "next_batch": "P0-B1",
+  "manifest": "Specialization/Workflow/P0-B1.json",
+  "live": "B076.103 / modinfo103",
+  "stable": "main B069.96 / modinfo96",
+  "historical_only": [
+    "Specialization/Design/Revisions/",
+    "Specialization/Architecture/v2/State_Ownership_Save.md",
+    "Specialization/Architecture/v2/Events_Dirty.md",
+    "Specialization/Architecture/v2/Source_Index.md",
+    "Specialization/Architecture/v2/Event_Catalog.tsv"
+  ],
+  "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay."
+}

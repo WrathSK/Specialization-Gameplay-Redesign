@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "batch": "P0-B1",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0032",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0028",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0203",
+    "runtime": "B077.104 / modinfo104"
+  },
+  "goal_reference": "Specialization/Architecture/v2/D0032_Implementation_Plan.md#实施批次合同",
+  "context": [
+    {
+      "path": "AGENTS.md",
+      "kind": "full",
+      "reason": "Git/deployment boundary"
+    },
+    {
+      "path": "Specialization/AGENTS.md",
+      "kind": "full",
+      "reason": "governance/evidence"
+    },
+    {
+      "path": "Specialization/README.md",
+      "kind": "full",
+      "reason": "mandatory entry; version drift warning in Authority"
+    },
+    {
+      "path": "Specialization/Workflow/README.md",
+      "kind": "full",
+      "reason": "workflow contract"
+    },
+    {
+      "path": "Specialization/Workflow/Authority.json",
+      "kind": "full",
+      "reason": "current pointers"
+    },
+    {
+      "path": "Specialization/Workflow/P0-B1.json",
+      "kind": "full",
+      "reason": "scope, not execution authorization"
+    },
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "head",
+      "reason": "current queue",
+      "selector": 24
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "head",
+      "reason": "current A0161",
+      "selector": 20
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "head",
+      "reason": "current metadata",
+      "selector": 13
+    },
+    {
+      "path": "Specialization/Design/Design_ChangeLog.md",
+      "kind": "section",
+      "reason": "acceptance/supersession",
+      "selector": "## Accepted D0032 — 2026-09-18"
+    },
+    {
+      "path": "Specialization/Design/Content/README.md",
+      "kind": "full",
+      "reason": "schema/current authority routing"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "reason": "whole base effect object incl gates/notes",
+      "expected_id": "RES_BASE_SUPPORT",
+      "selector": "/base_effects"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0032.json",
+      "kind": "json",
+      "reason": "whole base effect object incl gates/notes",
+      "expected_id": "IND_BASE_SUPPORT",
+      "selector": "/base_effects"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "whole base effect object incl gates/notes",
+      "expected_id": "CUL_BASE_SUPPORT",
+      "selector": "/base_effects"
+    },
+    {
+      "path": "Specialization/Design/Content/Commerce_D0032.json",
+      "kind": "json",
+      "reason": "whole base effect object incl gates/notes",
+      "expected_id": "COM_BASE_SUPPORT",
+      "selector": "/base_effects"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0032.json",
+      "kind": "json",
+      "reason": "approved support parameters only",
+      "selector": "/parameters/specialist_food"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0032.json",
+      "kind": "json",
+      "reason": "approved support parameters only",
+      "selector": "/parameters/specialist_production_K"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0028.json",
+      "kind": "json",
+      "reason": "shared eligibility/ontology",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0028.json",
+      "kind": "json",
+      "reason": "shared eligibility/ontology",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "participation/worker/BASE/Identity/ACTIVE boundaries",
+      "selector": "### Universal System + Opt-in Player Eligibility — ELIG"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "participation/worker/BASE/Identity/ACTIVE boundaries",
+      "selector": "## 2. 测试文明与基本术语 — ID / TERMS"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "participation/worker/BASE/Identity/ACTIVE boundaries",
+      "selector": "## 3. 共同成长与永久投资 — PROG"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "binding architecture contract",
+      "selector": "## Canonical state model — target contracts, not implemented schemas"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "binding architecture contract",
+      "selector": "## Shared facts and services"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "binding architecture contract",
+      "selector": "## Balance, observability and performance budget"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "rows",
+      "reason": "exact batch + common acceptance",
+      "selector": [
+        "| P0-B1 ",
+        "**所有批次共同的完成定义**",
+        "**每批回滚边界**"
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "section",
+      "reason": "save/writer gate",
+      "selector": "## Migration / cutover合同"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "section",
+      "reason": "retirement ownership",
+      "selector": "## 明确的旧效果切换责任"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "kind": "rows",
+      "reason": "active writers/families",
+      "selector": [
+        "| Gameplay.lua",
+        "| ResearchSupport /",
+        "| IndustrySupport /",
+        "| Lv3Support /",
+        "| EffectiveFacts ",
+        "| Probe.lua",
+        "| ResearchSupport+ConstantSupport",
+        "| IndustrySupport |",
+        "| Lv3Support |"
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "kind": "full",
+      "reason": "actual P0-A outcome/native limits"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md",
+      "kind": "full",
+      "reason": "Industry sample contract"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md",
+      "kind": "full",
+      "reason": "idle/shared-read budget"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Technical_Spikes.md",
+      "kind": "rows",
+      "reason": "support primitive gate",
+      "selector": [
+        "| TS19 "
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/Playtest_Workflow.md",
+      "kind": "full",
+      "reason": "save/deployment/rollback"
+    },
+    {
+      "path": "Mod/ResearchSupport.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/IndustrySupport.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Lv3Support.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/SampleLifecycle.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/UI/IndustryRefresh.lua",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Data/ResearchSupport.sql",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Data/ConstantSupport.sql",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Data/IndustrySupport.sql",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/Data/Lv3Support.sql",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "direct dependency: read source even when hash unchanged"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_a.py",
+      "kind": "full",
+      "reason": "actual current test entry and limits"
+    },
+    {
+      "path": "DevelopmentTests/test_arch_v2_d2.py",
+      "kind": "full",
+      "reason": "composite regression/carrier comparison"
+    }
+  ],
+  "dependencies": [
+    "P0-A LOCAL_SIMULATION_PASS; native APIs/events still USER_GAME_TEST_REQUIRED",
+    "C2 Industry lifecycle",
+    "D2 propagation"
+  ],
+  "old_writers": {
+    "adapt": [
+      "Mod/ResearchSupport.lua",
+      "Mod/IndustrySupport.lua"
+    ],
+    "retire": [
+      "Mod/Lv3Support.lua",
+      "Mod/Data/Lv3Support.sql"
+    ],
+    "entry_points": [
+      "Gameplay.lua Start/dispatch/Audit/Describe",
+      "IndustrySupport.Receive -> Lv3Support.Audit",
+      "Lv3Support event/load callbacks"
+    ],
+    "families": [
+      "BUILDING_SPC_DEV_LV3_{RESEARCH,CULTURE,COMMERCE,INDUSTRY}",
+      "BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_0..7"
+    ],
+    "guard": "Before cutover search ALL Mod for Lv3Support and exact carrier IDs/attachments. Inspect all startup, load, hidden controls and callers; preserve recognizable old IDs until supported-save cleanup proven."
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityFlowProbe.lua",
+        "Mod/CityJournalProbe.lua",
+        "Mod/BindingProbe.lua",
+        "Mod/InvestmentAction.lua"
+      ],
+      "trigger": "changed/inconsistent facts or Identity/receipt/owner contract; unchanged transitive summaries otherwise"
+    },
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/PerformanceCounters.lua"
+      ],
+      "trigger": "diagnostic/counter dispatch changed; no implicit polish"
+    },
+    {
+      "paths": [
+        "Mod/CopyYields.lua",
+        "Mod/Lv3Effects.lua",
+        "Mod/NetworkInput.lua",
+        "Mod/NetworkBridge.lua"
+      ],
+      "trigger": "shared/caller contract changes or protected-output regression"
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_arch_v2_c2.py",
+        "DevelopmentTests/test_arch_v2_d1.py",
+        "DevelopmentTests/test_arch_v2_c1.py",
+        "DevelopmentTests/test_arch_v2_batch_b.py",
+        "DevelopmentTests/test_deployment.py",
+        "DevelopmentTests/test_temporary_playtest.py"
+      ],
+      "trigger": "run required regression at writer cutover; read source on relevant change/failure"
+    },
+    {
+      "paths": [
+        "Specialization/Design/Revisions/"
+      ],
+      "trigger": "explicit current citation, Legacy/intent/regression trace or user request"
+    }
+  ],
+  "non_scope": [
+    "B2 Housing/GPP",
+    "C Research new yields",
+    "new III abilities",
+    "precision redesign",
+    "save ownership migration",
+    "Network redesign",
+    "new Industry/Culture/Commerce mechanics",
+    "deployment/game launch",
+    "Computer Use investigation"
+  ],
+  "validation": {
+    "level": "Full runtime regression: B1 retires an active writer despite narrow scope",
+    "local": [
+      "four professions ACTIVE1..4, workers0/nonzero, unique/pillaged districts, UNKNOWN hold vs invalid withdrawal",
+      "old III fixed4 + IndustryGold8 removed once; load/turn/manual/receive cannot recreate",
+      "Industry BASE != actual, C2 pending/duplicate/stale/ref/epoch/retry preserved",
+      "10k unrelated pulses zero expensive work; normal cases no module errors"
+    ],
+    "dependency": [
+      "test_p0_a.py: retain shared/no-write assertions for P0-A; new wrapper for intentional support changes",
+      "test_arch_v2_d2.py composite A/B/C1/D1/C2; record intended B1 deltas, preserve unrelated maps and frozen history"
+    ],
+    "safety": [
+      "Lua compile, exact effect allowlist, SQL/modinfo consistency",
+      "test_deployment.py and test_temporary_playtest.py in temp only; never apply",
+      "Design unchanged, unrelated carrier maps unchanged"
+    ],
+    "user": "Only after separate deployment approval: one prepared multi-city save, workers/governor/reload and native support observation; no game test for workflow."
+  },
+  "full_audit_triggers": [
+    "B1 writer cutover requires targeted full-Mod writer search + full runtime regression",
+    "unknown writer/carrier",
+    "authority/contract changed",
+    "new/deleted/hash-mismatched runtime file",
+    "hidden dependency/unexplained effect",
+    "save/Network/shared primitive semantic change",
+    "integration/release"
+  ],
+  "result": {
+    "implementation": "NOT_STARTED",
+    "dry_run": "See Dry_Run.md; context only",
+    "computer_use": "UNRESOLVED / DEFERRED"
+  }
+}
