@@ -1,27 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0204
-Implementation Build: develop P0-B-077.104 / modinfo104; live B077.104 / modinfo104; stable B069.96 / modinfo96
+Status Revision: S0205
+Implementation Build: develop P0-B-078.105 / modinfo105; live B077.104 / modinfo104; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
 Latest Accepted Design Revision: D0032
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_A_USER_GAME_TEST_FAIL_NATIVE_CAPTURE
+Work State: P0_A_NATIVE_FIX_LOCAL_PASS_AWAITING_DEPLOYMENT_AND_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
-B077.104已获用户授权部署；[P0-A两图与刷新声调查](Validation/Results/Specialization_B077_P0A_20260918.md)：USER_GAME_TEST_FAIL限D原生读取，DistrictCompleteness.lua:67区域迭代失败，未到建筑读取。Potential4/ACTIVE1须分开；静置高频声音用户报告保留，来源UNKNOWN，无counter不能推断Building churn或内存回归。截图/6日志已外部hash归档；本轮仅调查记录，无源码修复/部署/P0-B1。下文未部署/待首次实机的文字为先前批次结果，本项取代。
+B078.105修复P0-A Gameplay原生区域/建筑位置读取：[修复与统一验收](../Architecture/v2/P0_A_Native_Read_Fix_B078.md)。**LOCAL_SIMULATION_PASS，不是实机PASS**。ACTIVE不足四级不妨碍D读取；Library+University本地D3。D、shadow、cache/ref/epoch、10k idle、A–D2全部回归及部署安全测试通过。没有新收益、carrier、旧writer改动，未推进P0-B1。
 
-Workflow W0001已建立：[按批读取入口](../Workflow/README.md)、[Authority](../Workflow/Authority.json)、[P0-B1 context manifest](../Workflow/P0-B1.json)。仅context acquisition / validation planning；A0161/D0032/B077.104不变。普通batch按W0001读取当前metadata、相关规则/合同和直接源码，不默认加载本页历史全文；writer cutover/Shared/save/Network等触发仍扩大审计。P0-B1未实施；Computer Use UNRESOLVED / DEFERRED。下次用户授权P0-B1即可按manifest恢复必要上下文。
+用户静置刷新声仍UNKNOWN；未根据声音推定Building churn，也未声称此次读取修复解决声音。现有证据不足；下一次统一验收若仍出现，只需现有Counters前后对照。用户现在无需测试；等待独立临时部署授权后统一验证。实际运行包仍B077.104，main仍B069.96；本轮没有部署/启动游戏。
 
-P0-A B077.104已完成本地实现：[A0161报告](../Architecture/v2/P0_A_District_Completeness.md)、[测试](../../DevelopmentTests/test_p0_a.py)。**LOCAL_SIMULATION_PASS，不是USER_GAME_TEST_PASS**。新增D权威事实、当前专业只读适配、科研基础设施shadow、一个诊断按钮；没有新Gameplay收益、carrier、保存写入或旧writer退出。115个审核普通建筑ID；未审核对象排除并说明。
+[B077用户失败与归档证据](Validation/Results/Specialization_B077_P0A_20260918.md)冻结保留。原测试mock错误提供了UI-shaped接口，现已改为Gameplay索引接口并用旧模块实际重现失败。建筑读取改为每选中城市一次数据库catalog扫描，fixture120条时1/2/4/8城checks120/240/480/960；不把计数口径变化误称新idle扫描。
 
-D0/1/3/6/10、同Tier、缺Tier、cap、最高单区域、特色、免费、掠夺/未完成、UNKNOWN/epoch、诊断dispatch及UI均本地通过。10k无关通知0昂贵工作，1/2/4/8城读取线性，cache≤8；旧A–D2和部署安全回归通过。当前待补证据只有原生Gameplay接口/事件及按钮实机。
+Workflow W0001：[入口](../Workflow/README.md)、[Authority](../Workflow/Authority.json)、[P0-B1 manifest](../Workflow/P0-B1.json)仅导航，P0-B1仍未授权。Architecture A0161 / Design D0032合同不变；新修复证据不覆盖先前实机FAIL。Computer Use仍DEFERRED。完成commit/push后停止。
 
-Design目录、全部SQL/Data及旧效果模块不变。main B069.96、实际运行包B076.103不变；**未部署B077.104**，用户现在无需操作。报告给出未来获准部署后的一次最小同城读取/掠夺/修复流程，不要求长局。
+### Historical B077 implementation
 
-本批commit/push后停止。推荐下一Implementation为P0-B1，但须用户另行授权；P0-C及所有其它能力未开始。
+原P0-A B077实现及当时本地门禁：[A0161报告](../Architecture/v2/P0_A_District_Completeness.md)。原生capture的实机FAIL及B078修复按上述当前记录为准。
 
 ### Historical A0160 planning status
 

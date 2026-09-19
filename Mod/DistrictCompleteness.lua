@@ -63,26 +63,47 @@ function M.Start(P,shared)
   count('capture')
   catalog=catalog or SPCOrdinaryBuildingCatalog.Build(P)
   local buildings=c:GetBuildings();local districts=c:GetDistricts()
-  local raw={districts={},unplaced={}};local seen={}
-  for _,d in districts:Members() do
+  local raw={districts={},unplaced={}};local seen={};local byPlot={}
+  -- Use indexed Gameplay CityDistricts and Gameplay building locations, not UI enumeration.
+  local n=districts:GetNumDistricts()
+  assert(type(n)=='number' and n>=0 and n%1==0,'DC_DISTRICT_COUNT_UNAVAILABLE')
+  for i=0,n-1 do
+   local d=assert(districts:GetDistrictByIndex(i),'DC_DISTRICT_ENTRY_UNAVAILABLE')
    P.Count('district_scan')
    local plot=assert(Map.GetPlot(d:GetX(),d:GetY()),'DC_PLOT_UNAVAILABLE')
    local row=assert(P.Info('Districts',d:GetType()),'DC_DISTRICT_TYPE_UNKNOWN')
    local rec={id=d:GetID(),type=row.DistrictType,plot=plot:GetIndex(),
     complete=bool(d:IsComplete(),'DC_COMPLETION_UNKNOWN'),pillaged=bool(d:IsPillaged(),'DC_DISTRICT_PILLAGE_UNKNOWN'),buildings={}}
-   local list=buildings:GetBuildingsAtLocation(rec.plot)
-   assert(type(list)=='table','DC_BUILDING_LIST_UNAVAILABLE')
-   for _,index in ipairs(list) do
-    P.Count('building_check');assert(not seen[index],'DC_DUPLICATE_BUILDING_LOCATION');seen[index]=true
-    rec.buildings[#rec.buildings+1]={index=index,complete=bool(buildings:HasBuilding(index),'DC_BUILDING_COMPLETION_UNKNOWN'),
-     pillaged=bool(buildings:IsPillaged(index),'DC_BUILDING_PILLAGE_UNKNOWN')}
+   assert(not byPlot[rec.plot],'DC_DUPLICATE_DISTRICT_LOCATION')
+   byPlot[rec.plot]=rec;raw.districts[#raw.districts+1]=rec
+  end
+  -- One DB catalog pass for this selected city, not one pass per district/player.
+  -- Includes non-ordinary entries so exclusions remain visible in diagnostics.
+  for row in GameInfo.Buildings() do
+   local index=row.Index;P.Count('building_check')
+   if bool(buildings:HasBuilding(index),'DC_BUILDING_COMPLETION_UNKNOWN') then
+    seen[index]=true
+    local location=buildings:GetBuildingLocation(index)
+    local located=type(location)=='number' and location>=0
+    local entry=catalog.buildings[index]
+    assert(located or not (entry and entry.ordinary),'DC_BUILDING_LOCATION_UNAVAILABLE')
+    local pillaged=bool(buildings:IsPillaged(index),'DC_BUILDING_PILLAGE_UNKNOWN')
+    local rec=located and byPlot[location]
+    if rec then
+     rec.buildings[#rec.buildings+1]={index=index,complete=true,pillaged=pillaged}
+    else
+     -- Wonders/internal objects can live off district plots. Never drop a known
+     -- ordinary building silently: that would publish an incomplete D as zero.
+     assert(not (entry and entry.ordinary),'DC_ORDINARY_LOCATION_UNRESOLVED')
+     raw.unplaced[#raw.unplaced+1]={type=row.BuildingType,reason=entry and entry.reason or 'UNREVIEWED_BUILDING',
+      contribution=0,pillaged=pillaged,plot=location}
+    end
    end
-   raw.districts[#raw.districts+1]=rec
   end
   -- Only the current unfinished Building is diagnostic evidence, not a contribution.
   local current=c:GetBuildQueue():CurrentlyBuilding();local row=P.Info('Buildings',current)
   if row and not seen[row.Index] and not buildings:HasBuilding(row.Index) then
-   raw.unplaced[1]={type=row.BuildingType,reason='UNDER_CONSTRUCTION',contribution=0,pillaged=false}
+   raw.unplaced[#raw.unplaced+1]={type=row.BuildingType,reason='UNDER_CONSTRUCTION',contribution=0,pillaged=false}
   end
   assert(c:GetOwner()==pid,'DC_OWNER_CHANGED_DURING_READ')
   return M.Calculate(catalog,raw)

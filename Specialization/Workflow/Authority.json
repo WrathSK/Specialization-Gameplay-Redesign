@@ -10,8 +10,8 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0204",
-    "runtime": "B077.104 / modinfo104"
+    "status": "S0205",
+    "runtime": "B078.105 / modinfo105"
   },
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -28,7 +28,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "cb5a3d48f18640d254f45a2af24f84bc2b2bb062",
+  "runtime_commit": "See commit containing B078.105 in Git; source base eb8f2a1",
   "current_batch": null,
   "next_batch": "P0-B1",
   "manifest": "Specialization/Workflow/P0-B1.json",

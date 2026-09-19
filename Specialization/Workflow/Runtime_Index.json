@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "cb5a3d48f18640d254f45a2af24f84bc2b2bb062",
-  "runtime": "B077.104 / modinfo104",
+  "runtime_commit": "See commit containing B078.105 in Git; source base eb8f2a1",
+  "runtime": "B078.105 / modinfo105",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -236,9 +236,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "f052ca111da9fb343a4b747f90c055bc2357b46319ee76e2d1574f6a2b432114",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "fbfd67d9de0f749a4bcfa56c47b5e3e30aff1d2ba1b532fe8f78d30b3751ef47",
+      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
+      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/EffectiveFacts.lua": {
       "sha256": "eef44026a81b5c6ba31187a0c52eedc47f41190e46cf1483d25086f935bcbdf8",
@@ -366,9 +366,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Probe.lua": {
-      "sha256": "8fe639cf1890496c1f1ce83e867f2a0838bfb46c15be628beef98f3aa9e1b2fd",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "ef1c9ec343d8f56c27d991bb73c77d67b7f12fb2b48553e9ca75be08b9dd1a31",
+      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
+      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -386,9 +386,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/ResearchInfrastructureShadow.lua": {
-      "sha256": "6fe85603847908f7bfc786e57c0cbc475d7ee1e394ccef9394a9041e7b459ff2",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
+      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
+      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
       "sha256": "dc436a43f10874765aff8ad75fb07e94c5e618ba4b5048638cbaa61dca5a6d6a",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b5662b03a259cf458d214c46c906a93899d886dd6c83cd2cb2cc8baf18c76dea",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "326211eb57b6d6e131ce585adf816b8f6c59162ff837c9f338d2aecec772fb06",
+      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
+      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -566,9 +566,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "b28e50443257a259083996a15cdd0694957e7a9ecd4dc62676b59901319f222a",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "8c3007cae05f24168b7b78fa713ef66ec4d906bcb12e92c3d51cf4bb94102a26",
+      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
+      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",

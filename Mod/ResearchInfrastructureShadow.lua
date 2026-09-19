@@ -41,7 +41,7 @@ function M.Describe(P,shared,pid,city)
   '只读影子计算；实际新增收益=0；旧writer保持运行。',
   '专业='..tostring(f.identity)..' Potential='..tostring(f.potential)..' ACTIVE='..tostring(f.active)..' facts='..f.validity..' ACTIVE status='..tostring(f.activeStatus),
   'D validity='..d.validity..' availability='..d.availability..' revision='..tostring(d.revision)}
- if f.reason then lines[#lines+1]=f.reason end;if d.error then lines[#lines+1]='保留上次完整事实，不当作0：'..d.error end
+ if f.reason then lines[#lines+1]=f.reason end;if d.error then lines[#lines+1]=(d.value and '保留上次完整事实，不当作0：' or '尚无完整事实，不当作0：')..d.error end
  if d.value then
   for _,r in ipairs(d.value.districts) do
    local selected=r.domain and d.value.domains[r.domain]

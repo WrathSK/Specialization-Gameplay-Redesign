@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="104">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="105">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B077.104 develop: P0-A shared District Completeness facts and Research shadow diagnostics. No new yields. Not deployed.</Description>
+    <Description>B078.105 develop: P0-A shared District Completeness facts and Research shadow diagnostics. No new yields. Not deployed.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

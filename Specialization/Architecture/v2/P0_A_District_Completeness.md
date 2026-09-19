@@ -7,6 +7,10 @@ Source baseline: 04a629ec61f677894eb28e642c81b9f16bc1c774 / B076.103
 State: IMPLEMENTATION_COMPLETE / LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED
 Deployment: NONE; live remains B076.103, main remains B069.96
 
+## Current correction — B078.105
+
+B077 native capture failed in user testing; the original UI-shaped API evidence was insufficient for Gameplay. [B078 repair and new local evidence](P0_A_Native_Read_Fix_B078.md) supersedes the native-reader implementation and scaling claims below. A0161/Design unchanged; USER_GAME_TEST_REQUIRED. The remainder records the original B077 batch, not current deployment state.
+
 ## 用户摘要
 
 完成一个只读数据链：原生城市/建筑事实 → 统一区域完善度 → 当前专业只读适配 → 科研基础设施影子plan → 手动诊断。没有新的Gameplay收益、carrier、Property保存、旧writer退出或其它专业能力。P0-A本地门禁通过；没有把mock等同Civ VI引擎验证。

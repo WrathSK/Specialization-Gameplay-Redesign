@@ -16,7 +16,7 @@ function db(rows,key)
  local t={};for _,r in ipairs(rows) do t[r[key]]=r;if r.Index~=nil then t[r.Index]=r end end
  return setmetatable(t,{__call=function() local i=0;return function() i=i+1;return rows[i] end end})
 end
-P={VERSION='P0-B-077.104',IsTestPlayer=function(p) return p==0 or p==1 end,Field=function(t,k) return t[k] end,
+P={VERSION='P0-B-078.105',IsTestPlayer=function(p) return p==0 or p==1 end,Field=function(t,k) return t[k] end,
  Count=function(n) counters[n]=(counters[n] or 0)+1 end,CreateBuilding=bomb,RemoveBuilding=bomb,SetProperty=bomb}
 function P.Info(t,k) return k~=nil and GameInfo[t][k] or nil end
 local types={'CAMPUS','THEATER','INDUSTRIAL_ZONE','COMMERCIAL_HUB','HARBOR','ENCAMPMENT','HOLY_SITE','GOVERNMENT','DIPLOMATIC_QUARTER','NEIGHBORHOOD','CITY_CENTER','SEOWON','UNKNOWN'}
@@ -29,10 +29,10 @@ function newCity(id,owner)
  c.GetID=function() return c.id end;c.GetOwner=function() return c.owner end;c.GetX=function() return c.x end;c.GetY=function() return c.y end
  c.SetProperty=bomb;c.GetProperty=function(_,key) return key=='SPC_DEV_INVESTMENT_LEDGER_V1' and c.ledger or nil end
  c.GetBuildQueue=function() return {CurrentlyBuilding=function() reads=reads+1;return c.queued end,CreateBuilding=bomb} end
- c.GetDistricts=function() return {Members=function() reads=reads+1;return ipairs(c.ds) end} end
+ c.GetDistricts=function() return {GetNumDistricts=function() reads=reads+1;return #c.ds end,GetDistrictByIndex=function(_,i) reads=reads+1;return c.ds[i+1] end} end
  c.GetBuildings=function() return {SetPillaged=bomb,RemoveBuilding=bomb,
-  GetBuildingsAtLocation=function(_,plot) reads=reads+1;if failRead then error('TEMPORARY_NATIVE_UNAVAILABLE') end
-   for _,d in ipairs(c.ds) do if d.plot==plot then local out={};for _,b in ipairs(d.bs) do out[#out+1]=b.index end;return out end end;error('NO_DISTRICT') end,
+  GetBuildingLocation=function(_,id) reads=reads+1;if failRead then error('TEMPORARY_NATIVE_UNAVAILABLE') end
+   for _,d in ipairs(c.ds) do for _,b in ipairs(d.bs) do if b.index==id then return b.location or d.plot end end end;return -1 end,
   HasBuilding=function(_,id) reads=reads+1;for _,d in ipairs(c.ds) do for _,b in ipairs(d.bs) do if b.index==id then return b.complete end end end;return false end,
   IsPillaged=function(_,id) reads=reads+1;for _,d in ipairs(c.ds) do for _,b in ipairs(d.bs) do if b.index==id then return b.pillaged end end end;return false end} end
  cities[id]=c;return c
@@ -83,12 +83,19 @@ for names,want in seq:
  l.globals().names=to_lua(l,names);l.globals().expected=want
  l.execute("setBuildings(d,names);svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.validity=='VERIFIED' and v.availability=='READY');assert(v.value.domains.DISTRICT_CAMPUS.value==expected);assert(writes==0)")
 print('D PASS 0/1/3/6/10; missing lower tiers; same-tier sum; 13 capped10')
-l.execute("assert(v.value.districts[1].uncapped==13);setBuildings(d,{'BUILDING_LIBRARY','BUILDING_MADRASA','BUILDING_UNKNOWN_MOD','BUILDING_WONDER','BUILDING_SPC_INTERNAL','BUILDING_FAKE_DUMMY'});d.bs[1].pillaged=true;d.bs[2].complete=false;svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.value.domains.DISTRICT_CAMPUS.value==0)")
-l.execute("reasons={};for _,b in ipairs(v.value.districts[1].buildings) do reasons[b.type]=b.reason end;assert(reasons.BUILDING_LIBRARY=='BUILDING_PILLAGED');assert(reasons.BUILDING_MADRASA=='UNDER_CONSTRUCTION');assert(reasons.BUILDING_UNKNOWN_MOD=='UNREVIEWED_BUILDING');assert(reasons.BUILDING_SPC_INTERNAL=='INTERNAL_OR_TECHNICAL');assert(reasons.BUILDING_WONDER=='WONDER');assert(reasons.BUILDING_FAKE_DUMMY=='INTERNAL_OR_TECHNICAL')")
+l.execute("assert(v.value.districts[1].uncapped==13);setBuildings(d,{'BUILDING_LIBRARY','BUILDING_MADRASA','BUILDING_UNKNOWN_MOD','BUILDING_WONDER','BUILDING_SPC_INTERNAL','BUILDING_FAKE_DUMMY'});d.bs[1].pillaged=true;d.bs[2].complete=false;c.queued='BUILDING_MADRASA';svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.value.domains.DISTRICT_CAMPUS.value==0)")
+l.execute("reasons={};for _,b in ipairs(v.value.districts[1].buildings) do reasons[b.type]=b.reason end;assert(reasons.BUILDING_LIBRARY=='BUILDING_PILLAGED');assert(v.value.excluded[1].type=='BUILDING_MADRASA' and v.value.excluded[1].reason=='UNDER_CONSTRUCTION');c.queued=nil;assert(reasons.BUILDING_UNKNOWN_MOD=='UNREVIEWED_BUILDING');assert(reasons.BUILDING_SPC_INTERNAL=='INTERNAL_OR_TECHNICAL');assert(reasons.BUILDING_WONDER=='WONDER');assert(reasons.BUILDING_FAKE_DUMMY=='INTERNAL_OR_TECHNICAL')")
 l.execute("setBuildings(d,{'BUILDING_MADRASA'});svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.value.domains.DISTRICT_CAMPUS.value==2);assert(v.value.districts[1].buildings[1].tierSource=='REPLACEMENT_TIER');d.type=GameInfo.Districts.DISTRICT_SEOWON.Index;svc.MarkDirty();assert(svc.Read(0,c,c.token).value.domains.DISTRICT_CAMPUS.value==2)")
 l.execute("d2=addDistrict(c,12,'DISTRICT_CAMPUS');setBuildings(d2,{'BUILDING_RESEARCH_LAB'});svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.value.domains.DISTRICT_CAMPUS.value==4 and v.value.domains.DISTRICT_CAMPUS.districtID==12)")
 l.execute("d2.pillaged=true;fire('OnPillage');assert(svc.Read(0,c,c.token).value.domains.DISTRICT_CAMPUS.value==2);d.complete=false;fire('DistrictBuildProgressChanged');assert(svc.Read(0,c,c.token).value.domains.DISTRICT_CAMPUS==nil);d.complete=true;d2.pillaged=false;fire('CityBuildingsChanged',0,1)")
 print('D PASS explicit exclusions, replacement tier, unique district, highest single district, district pillage/unfinished')
+# Reproduce the real context boundary, not a UI-shaped native mock.
+a=runtime();a.execute("assert(c:GetDistricts().Members==nil and c:GetBuildings().GetBuildingsAtLocation==nil);setBuildings(d,{'BUILDING_LIBRARY','BUILDING_UNIVERSITY'});v=svc.Read(0,c,c.token);assert(v.validity=='VERIFIED' and v.value.domains.DISTRICT_CAMPUS.value==3);c.active=1;assert(svc.Read(0,c,c.token).value.domains.DISTRICT_CAMPUS.value==3)")
+old=runtime();old.execute(subprocess.check_output(['git','show','eb8f2a1:Mod/DistrictCompleteness.lua'],cwd=R,text=True))
+old.execute("SPCDistrictCompleteness.Start(P,shared);setBuildings(d,{'BUILDING_LIBRARY','BUILDING_UNIVERSITY'});local v=shared.DistrictCompleteness.Read(0,c,c.token);assert(v.validity=='UNKNOWN' and v.availability=='TEMPORARILY_UNAVAILABLE' and v.error)")
+a.execute("local before=reads;local rev=v.revision;for i=1,10000 do local v=svc.Read(0,c,c.token);assert(v.revision==rev) end;assert(reads==before and writes==0)")
+a.execute("d.bs[1].location=-1;svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.availability=='TEMPORARILY_UNAVAILABLE' and v.value.domains.DISTRICT_CAMPUS.value==3);d.bs[1].location=9999;svc.MarkDirty();assert(svc.Read(0,c,c.token).availability=='TEMPORARILY_UNAVAILABLE');d.bs[1].location=nil;setBuildings(d,{'BUILDING_WONDER'});d.bs[1].location=9999;svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.availability=='READY' and v.value.excluded[1].reason=='WONDER');setBuildings(d,{'BUILDING_SPC_INTERNAL'});d.bs[1].location=-1;svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.availability=='READY' and v.value.excluded[1].reason=='INTERNAL_OR_TECHNICAL');c.GetDistricts=function() return {GetNumDistricts=function() return 1 end,GetDistrictByIndex=function() return nil end} end;svc.MarkDirty();assert(svc.Read(0,c,c.token).availability=='TEMPORARILY_UNAVAILABLE')")
+print('NATIVE CONTRACT PASS Gameplay indexed districts / building locations; UI API absent reproduces B077 failure; unresolved ordinary location held; off-district Wonder excluded; partial district sample held')
 # Same result = same revision; detached returned data cannot corrupt authority.
 l.execute("v=svc.Read(0,c,c.token);rev=v.revision;v.value.domains.DISTRICT_CAMPUS.value=999;svc.MarkDirty();v=svc.Read(0,c,c.token);assert(v.revision==rev and v.value.domains.DISTRICT_CAMPUS.value==4)")
 l.execute("local before=reads;local caps=counters.dc_capture;for i=1,10000 do fire('GameCoreEventPublishComplete');fire('GameCoreEventPlaybackComplete');fire('UnitOperationStarted');fire('SystemUpdateUI') end;assert(reads==before and counters.dc_capture==caps and writes==0)")
@@ -110,8 +117,8 @@ l.execute("foundation={owner=0,cityID=c.id,token=c.token,specialization='RESEARC
 print('ADAPTER PASS actual unchanged EffectiveFacts + investment ledger + governor; read-only')
 for n in [1,2,4,8]:
  a=runtime();a.globals().n=n
- a.execute("for i=1,n do local c=newCity(i);local d=addDistrict(c,20+i,'DISTRICT_CAMPUS');setBuildings(d,{'BUILDING_LIBRARY'});svc.Read(0,c,c.token) end;assert(counters.dc_capture==n and counters.district_scan==n and counters.building_check==n and writes==0)")
- print(f'SCALING {n} cities: captures={n} district reads={n} building checks={n}; network queries=0')
+ a.execute("for i=1,n do local c=newCity(i);local d=addDistrict(c,20+i,'DISTRICT_CAMPUS');setBuildings(d,{'BUILDING_LIBRARY'});svc.Read(0,c,c.token) end;assert(counters.dc_capture==n and counters.district_scan==n and counters.building_check==n*#brows and writes==0)")
+ print(f'SCALING {n} cities: captures={n} district reads={n} building checks={a.eval("counters.building_check")}; network queries=0')
 l=runtime();l.execute("for i=1,1000 do local c=newCity(i);addDistrict(c,1000+i,'DISTRICT_CAMPUS');svc.Read(0,c,c.token);assert(svc.CacheSize()<=8) end;assert(writes==0)")
 print('BOUNDED PASS 1000 queried cities, cache <=8 (LRU, no history)')
 # Ontology negative boundaries are explicit, not guessed from HD Tier alone.
@@ -139,7 +146,7 @@ print('INTEGRATION PASS actual request dispatch read-only; actual diagnostic but
 compiler=LuaRuntime(unpack_returned_tuples=True)
 for p in M.rglob('*.lua'):
  compiler.globals().src=p.read_text();compiler.execute("assert(load(src))")
-x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='104'
+x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='105'
 for n in NEW:
  assert x.find("./Files/File[.='"+n+".lua']") is not None
  assert x.find("./InGameActions/ImportFiles/File[.='"+n+".lua']") is not None
@@ -150,8 +157,8 @@ for p in ['EffectiveFacts.lua','CityFlowProbe.lua','NetworkBridge.lua','Research
  assert (M/p).read_bytes()==subprocess.check_output(['git','show','04a629e:Mod/'+p],cwd=R),p
 for p in (M/'Data').glob('*'):
  assert p.read_bytes()==subprocess.check_output(['git','show','04a629e:Mod/Data/'+p.name],cwd=R),p
-print('STATIC PASS all Lua syntax; manifest104; old effect writers and Data unchanged; new modules no write/send/timer primitives')
+print('STATIC PASS all Lua syntax; manifest105; old effect writers and Data unchanged; new modules no write/send/timer primitives')
 # Explicit historical stamp-only adaptation; do not alter frozen test files.
 if __name__=='__main__' and '--regression' in __import__('sys').argv:
- s=(R/'DevelopmentTests/test_arch_v2_d2.py').read_text().replace("get('version')=='103'", "get('version')=='104'").replace('P0-B-076.103','P0-B-077.104')
- exec(compile(s,'D2_stamp104_only','exec'),{'__file__':str(R/'DevelopmentTests/test_arch_v2_d2.py')})
+ s=(R/'DevelopmentTests/test_arch_v2_d2.py').read_text().replace("get('version')=='103'", "get('version')=='105'").replace('P0-B-076.103','P0-B-078.105')
+ exec(compile(s,'D2_stamp105_only','exec'),{'__file__':str(R/'DevelopmentTests/test_arch_v2_d2.py')})

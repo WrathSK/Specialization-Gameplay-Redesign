@@ -11,7 +11,9 @@ Implementation Build: develop P0-B-077.104 / modinfo104; live B076.103 / modinfo
 
 ## CURRENT AUTHORITATIVE STATE
 
-P0-A已获用户授权并完成：B077.104/modinfo104，[实现与证据](v2/P0_A_District_Completeness.md)。Shared D事实、只读专业适配、Research Infrastructure shadow及手动诊断已LOCAL_SIMULATION_PASS；原生接口/事件与按钮仍USER_GAME_TEST_REQUIRED。没有收益写入、新carrier、旧writer关闭或其它专业能力。A0160目标合同保持，Design D0032不变。仅develop；live仍B076.103、main B069.96，无部署。
+当前P0-A原生读取修复：B078.105/modinfo105，[修复报告](v2/P0_A_Native_Read_Fix_B078.md)。只读Gameplay区域索引/建筑位置接口，本地回归通过、未部署；原生验收待补，刷新声来源UNKNOWN。A0161合同不变，P0-B1未实施。live仍B077.104、main B069.96。
+
+以下为原B077批次记录：P0-A已获用户授权并完成：B077.104/modinfo104，[实现与证据](v2/P0_A_District_Completeness.md)。Shared D事实、只读专业适配、Research Infrastructure shadow及手动诊断已LOCAL_SIMULATION_PASS；原生接口/事件与按钮仍USER_GAME_TEST_REQUIRED。没有收益写入、新carrier、旧writer关闭或其它专业能力。A0160目标合同保持，Design D0032不变。仅develop；live仍B076.103、main B069.96，无部署。
 
 新D服务是独立只读authority，不接管旧收益输入；最高单区域、逐建筑解释、8城缓存、direct dirty和按需每回合兜底已实现。当前所有永久进度仍由旧EffectiveFacts/Flow等负责；未实现新cityKey/History/REALLOCATING。
 
