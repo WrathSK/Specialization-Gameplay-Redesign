@@ -10,7 +10,7 @@
     "shared": "D0028",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0207",
+    "status": "S0208",
     "runtime": "B079.106 / modinfo106"
   },
   "paths": {
@@ -28,11 +28,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "See implementation commit containing B079.106 (baseline 324f455)",
+  "runtime_commit": "b420a967f9b9ae468c5829a8de192dd443e9c6ea",
   "current_batch": "P0-B1",
   "next_batch": "P0-B2 (not authorized)",
   "manifest": "Specialization/Workflow/P0-B1.json",
-  "live": "B078.105 / modinfo105 until W0003 safe deployment",
+  "live": "B079.106 / modinfo106; W0003 deployed; 126-file exact hash PASS; user acceptance pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

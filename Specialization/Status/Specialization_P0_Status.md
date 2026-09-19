@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0207
-Implementation Build: develop P0-B-079.106 / modinfo106; live B078.105 / modinfo105; stable B069.96 / modinfo96
+Status Revision: S0208
+Implementation Build: develop P0-B-079.106 / modinfo106; live B079.106 / modinfo106; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0032
 Latest Accepted Design Revision: D0032
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_B1_LOCAL_PASS_AWAITING_DEPLOYMENT_AND_USER
+Work State: P0_B1_DEPLOYED_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-P0-B1已获用户授权并完成本地实现：B079.106/modinfo106，[报告及测试](../Architecture/v2/P0_B1_Specialist_Support.md)。科研/文化/商业全等级基础3F3P，工业3F+BASE P；只退出旧III额外支持及工业Gold，其他旧能力留各自cutover。LOCAL_SIMULATION_PASS（实际Lua+mock/SQL，不等于实机PASS）。完整前序回归、10k idle、线性批次读取与精确12载体清理通过。当前等待安全部署及用户短测；不自动推进B2/C/E。
+P0-B1已获用户授权并完成本地实现：B079.106/modinfo106，[报告及测试](../Architecture/v2/P0_B1_Specialist_Support.md)。科研/文化/商业全等级基础3F3P，工业3F+BASE P；只退出旧III额外支持及工业Gold，其他旧能力留各自cutover。LOCAL_SIMULATION_PASS（实际Lua+mock/SQL，不等于实机PASS）。完整前序回归、10k idle、线性批次读取与精确12载体清理通过。已按W0003安全部署，等待用户短测；不自动推进B2/C/E。
 
 [B078用户证据](Validation/Results/Specialization_B078_P0A_20260918.md)：D3→D10、工作专家读取通过；刷新声已消失。掠夺未测是缺少玩家可控操作，不是游戏卡死。原图已hash归档。按钮文字修正在B079，仅本地确认，等待实际显示反馈。P0-A仍不施加shadow收益。
 
-W0003临时默认部署授权有效，需退出/恢复点/hash/clean commit门禁。当前live仍B078.105；main B069.96不改。Architecture A0161目标合同与Design D0032未改；P0-B1是已批准目标的实现。Workflow W0001导航更新为本批待用户验收。
+W0003临时默认部署授权有效，需退出/恢复点/hash/clean commit门禁。当前live B079.106，126文件逐项hash一致，B078完整恢复点已核验：[部署记录](Validation/Results/Specialization_B079_Deployment_20260918.md)。main B069.96不改。Architecture A0161目标合同与Design D0032未改；P0-B1是已批准目标的实现。Workflow W0001导航更新为本批待用户验收。
 
 ### Historical B077 implementation
 

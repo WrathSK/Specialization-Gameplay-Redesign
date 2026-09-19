@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "See implementation commit containing B079.106 (baseline 324f455)",
+  "runtime_commit": "b420a967f9b9ae468c5829a8de192dd443e9c6ea",
   "runtime": "B079.106 / modinfo106",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

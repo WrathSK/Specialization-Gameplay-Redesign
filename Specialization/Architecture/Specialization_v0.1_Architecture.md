@@ -7,13 +7,13 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-079.106 / modinfo106; live B078.105 / modinfo105; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-079.106 / modinfo106; live B079.106 / modinfo106; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
 
 P0-B1 B079.106已完成本地实现：[基础专家支持及精确retirement合同](v2/P0_B1_Specialist_Support.md)。现有A0160/A0161目标不改，Design D0032不改；本批将基础支持接入当前事实/BASE样本，旧III支持writer只保留清理门面，12旧ID成为无收益tombstone。其他旧能力不随本批退役。无新carrier/Property/存档schema。
 
-P0-A B078用户确认D和专家读取正确、刷新声消失，掠夺未测。新按钮文字待B079视觉确认。Shared D与Research shadow继续只读，不是P0-C收益。P0-B2/C/E未实施。当前live B078.105、main B069.96；B079安全部署另行记录。
+P0-A B078用户确认D和专家读取正确、刷新声消失，掠夺未测。新按钮文字待B079视觉确认。Shared D与Research shadow继续只读，不是P0-C收益。P0-B2/C/E未实施。当前live B079.106、main B069.96；[安全部署记录](../Status/Validation/Results/Specialization_B079_Deployment_20260918.md)确认126文件hash及B078恢复点。
 
 ### Historical A0160 planning gate
 
