@@ -118,7 +118,7 @@ request=function(action,advance)
   gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
   if not P.IsTestPlayer(playerID) then trace("OUTSIDE_TEST_CIV");return end
-  local storageAction=action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=="UNIT_SITE_READ" then
@@ -363,8 +363,13 @@ local function initialize()
   Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_DETAIL",true) end)
   Controls.CarrierOffButton:RegisterCallback(Mouse.eLClick,function() request("CARRIER_OFF") end)
   for _,a in ipairs({"READ","OFF","AUTO","TEST5"}) do local action=a;Controls["Commerce"..a.."Button"]:RegisterCallback(Mouse.eLClick,function() request("COMMERCE_"..action) end) end
-  Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("SHADOW_SELECT") end)
-  Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("SHADOW_READ") end)
+  Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_RECORD") end)
+  Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_COMPARE") end)
+  Controls.InheritReadButton:RegisterCallback(Mouse.eRClick,function() request("IDENTITY_DETAIL") end)
+  Controls.InheritRecordButtonCaption:SetText('记录城市身份')
+  Controls.InheritReadButtonCaption:SetText('身份对照')
+  Controls.InheritRecordButton:SetToolTipString('选择己方城市，记录本次加载的只读基线；不保存或迁移。')
+  Controls.InheritReadButton:SetToolTipString('左键：简明结论。右键：记录保留情况与最近城市事件。')
   Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_READ") end)
   Controls.ConstructionPreviewButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_PREVIEW") end)
   Controls.ConstructionApplyButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_APPLY") end)

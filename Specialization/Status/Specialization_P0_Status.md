@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0230
-Implementation Build: develop P0-B-087.114 / modinfo114; live B087.114 deployed W0003; stable B069.96
+Status Revision: S0231
+Implementation Build: develop P0-B-088.115 / modinfo115; live B087.114 until W0003 deployment confirmation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_PLAN_AWAITING_AUTHORIZATION
+Work State: P0_E1_READONLY_LOCAL_PASS_NATIVE_GATE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-E1已获授权并完成只读实现：[B088.115证据/迁移预演](../Architecture/v2/P0_E1_Identity_Evidence.md)。LOCAL_SIMULATION_PASS（实际Lua/事件模型，不是Civ VI实机证明）；原Owner结构匹配仅候选，所有migrationAllowed=false。32条事件环、30k通知无读取/写入；完整前序回归通过。旧writer/Design/收益SQL/main不变，未迁移存档。原生跨Owner/冷load连续性TECHNICAL_INVESTIGATION_REQUIRED；E1整体未PASS，不进入E2/F。部署以最新单独记录为准。以下旧计划阶段叙述为历史。
 
 U1前置原型技术USER_GAME_TEST_PASS：[四图归档/验收](Validation/Results/Specialization_B087_U1_User_Pass.md)。布局、文字、其它surface和完整U1后置。回到D3后的[P0-E1城市身份保存门禁计划](../Architecture/v2/P0_E1_Plan.md)，仅计划未授权实施。B087.114源码/运行包、Design/main不变，无部署；下方旧等待U1验收状态为历史。
 

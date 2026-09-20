@@ -13,8 +13,8 @@
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
     <GridButton Hidden="1" ID="CommerceOFFButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Commerce OFF / baseline" />
     <GridButton Hidden="1" ID="CommerceTEST5Button" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Commerce TEST +5" />
-    <GridButton ID="InheritRecordButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Select shadow city" Hidden="1" />
-    <GridButton ID="InheritReadButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Read shadow / events" Hidden="1" />
+    <GridButton ID="InheritRecordButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton"><Label ID="InheritRecordButtonCaption" Anchor="C,C" Style="FontNormal14" String="记录城市身份" Color="255,255,255,255" /></GridButton>
+    <GridButton ID="InheritReadButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton"><Label ID="InheritReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="身份对照" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CommerceAUTOButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Commerce AUTO" Hidden="1" />
     <GridButton Hidden="1" ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
     <GridButton Hidden="1" ID="PurchaseBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Purchase BASE" />
@@ -69,8 +69,8 @@
     <GridButton ID="GovernorButton" Anchor="L,B" Offset="280,178" Size="240,32" Style="MainButton" Hidden="0"><Label ID="GovernorButtonCaption" Anchor="C,C" Style="FontNormal14" String="总督条件" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="0" ID="SpecialistsButton" Anchor="L,B" Offset="542,178" Size="240,32" Style="MainButton"><Label ID="SpecialistsButtonCaption" Anchor="C,C" Style="FontNormal14" String="专家与岗位" Color="255,255,255,255" /></GridButton>
     <GridButton ID="GWReadButton" Anchor="L,B" Offset="18,138" Size="240,32" Style="MainButton" Hidden="0"><Label ID="GWReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="巨作 / 时代对话" Color="255,255,255,255" /></GridButton>
-    <GridButton Hidden="0" ID="GWAReadButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton"><Label ID="GWAReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="巨作相邻" Color="255,255,255,255" /></GridButton>
-    <GridButton Hidden="0" ID="Lv4CopyButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton"><Label ID="Lv4CopyButtonCaption" Anchor="C,C" Style="FontNormal14" String="四级区域收益" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="1" ID="GWAReadButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton"><Label ID="GWAReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="巨作相邻" Color="255,255,255,255" /></GridButton>
+    <GridButton Hidden="1" ID="Lv4CopyButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton"><Label ID="Lv4CopyButtonCaption" Anchor="C,C" Style="FontNormal14" String="四级区域收益" Color="255,255,255,255" /></GridButton>
     <GridButton ID="BackgroundRoutesButton" Anchor="L,B" Offset="18,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="BackgroundRoutesButtonCaption" Anchor="C,C" Style="FontNormal14" String="当前商路" Color="255,255,255,255" /></GridButton>
       <GridButton ID="NetworkButton" Anchor="L,B" Offset="280,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="NetworkButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络概况" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CarrierStepButton" Anchor="L,B" Offset="542,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CarrierStepButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络来源 / 接收" Color="255,255,255,255" /></GridButton>

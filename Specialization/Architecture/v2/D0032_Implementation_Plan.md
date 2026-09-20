@@ -1,6 +1,6 @@
 # D0032 v0.1 implementation dependency and migration plan
 
-当前进度：P0-D3 B086.113 [学术主持实现](P0_D3_Research_Chair.md)完成静态/本地验证，真实逐建筑收益待用户验收；D2用户PASS。Design不改，不启动下一批。下方旧进度为历史。
+当前进度：D3与U1前置原型用户PASS；[P0-E1只读交付](P0_E1_Identity_Evidence.md)B088.115本地通过，城市跨Owner/冷读档连续性仍待原生证据。E2/F门禁保持关闭，不改变下表依赖。
 
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18

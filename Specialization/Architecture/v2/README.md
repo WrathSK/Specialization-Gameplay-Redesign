@@ -1,6 +1,6 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前进度：U1原型技术用户PASS，四图保留作后续排版证据；回主线[P0-E1计划](P0_E1_Plan.md)，未授权实施。
+当前进度：[P0-E1只读身份核对B088.115](P0_E1_Identity_Evidence.md)本地完成；原生连续性门禁待核验，不进入E2/F。U1技术用户PASS，最终排版后置。
 
 历史进度：[U1科研展示原型B087.114](U1_Presentation_Prototype.md)本地通过，待实际显示确认；非完整U1，不继续下一批。
 

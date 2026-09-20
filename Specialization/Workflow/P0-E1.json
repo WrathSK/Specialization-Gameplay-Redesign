@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-E1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,11 +24,11 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0230",
-    "runtime": "B087.114 / modinfo114",
+    "status": "S0231",
+    "runtime": "B088.115 / modinfo115",
     "military": "D0034"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_E1_Plan.md",
+  "goal_reference": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
   "context": [
     {
       "path": "Specialization/Architecture/v2/P0_E1_Plan.md",
@@ -66,6 +66,16 @@
       "selector": "/abilities/5",
       "expected_id": "RES_L4_TRADITION",
       "reason": "Future dependent ability; not E1 implementation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
+      "kind": "full",
+      "reason": "Actual evidence limits, native gate and readonly contract"
+    },
+    {
+      "path": "Mod/CityIdentityRead.lua",
+      "kind": "full",
+      "reason": "Actual readonly resolver/observer"
     }
   ],
   "dependencies": [
@@ -119,7 +129,9 @@
     "old writer activation/change"
   ],
   "result": {
-    "planning": "Complete",
-    "blocking_design": "None blocking readonly E1; native continuity remains technical gate"
+    "local": "LOCAL_SIMULATION_PASS",
+    "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
+    "migration": "No writes; every preview migrationAllowed=false",
+    "next": "Stop; E2/F not authorized"
   }
 }

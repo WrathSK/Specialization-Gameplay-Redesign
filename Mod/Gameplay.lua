@@ -26,6 +26,18 @@ local function request(playerID,params)
   end
   if type(params)~="table" or type(params.Token)~="string" or #params.Token>100 then return end
   -- B068 presentation is a disposable mirror, never a source of city state.
+  if params.Action=='IDENTITY_RECORD' or params.Action=='IDENTITY_COMPARE' or params.Action=='IDENTITY_DETAIL' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,out=pcall(function()
+      if params.Action=='IDENTITY_RECORD' then
+        local c=Players[playerID]:GetCities():FindID(params.CityID)
+        return shared.CityIdentityRead.Record(playerID,c)
+      end
+      return shared.CityIdentityRead.Describe(playerID,params.Action=='IDENTITY_DETAIL')
+    end)
+    shared.Snapshot=ok and out or '城市身份：读取未完成；请选择己方城市。未执行迁移。'
+    shared.LastToken=params.Token;return
+  end
   if params.Action=='NETWORK_REVALIDATE_FAILURE' then
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
@@ -566,3 +578,7 @@ shared.InheritanceShadow=nil
 shared.CityInheritance=nil
 shared.OnPermanentCityWrite=nil
 shared.InheritanceIsolation=true
+
+-- Independent read-only evidence; never start the isolated inheritance writers.
+include("CityIdentityRead")
+SPCCityIdentityRead.Start(P,shared)
