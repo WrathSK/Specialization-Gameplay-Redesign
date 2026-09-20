@@ -7,9 +7,11 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-085.112 / modinfo112; live deployment state in Status; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-086.113 / modinfo113; live deployment state in Status; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-D3 B086.113：[学术主持逐建筑writer](v2/P0_D3_Research_Chair.md)已实现并本地验证；原生建筑归属/收益仍待实机。共享事实/Design不改，不进入下一批。以下旧进度为历史。
 
 P0-D2 B085.112：[学以致用整数专家投影](v2/P0_D2_Research_Apply.md)，用户明确每名floor、原生工作科研专家结算；本地通过，实机待验收。A0161目标/Design未改，P0-D3不开始。以下旧实施进度为历史。
 

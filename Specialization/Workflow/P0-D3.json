@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D3",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,11 +24,11 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0225",
-    "runtime": "B085.112 / modinfo112",
+    "status": "S0226",
+    "runtime": "B086.113 / modinfo113",
     "military": "D0034"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_D3_Plan.md",
+  "goal_reference": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
   "context": [
     {
       "path": "Specialization/Architecture/v2/P0_D3_Plan.md",
@@ -105,6 +105,26 @@
         "| P0-D3 "
       ],
       "reason": "Batch boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
+      "kind": "full",
+      "reason": "Actual D3 contract and unique writer"
+    },
+    {
+      "path": "Mod/ResearchChair.lua",
+      "kind": "full",
+      "reason": "Actual D3 contract and unique writer"
+    },
+    {
+      "path": "Mod/ResearchChairModel.lua",
+      "kind": "full",
+      "reason": "Actual D3 contract and unique writer"
+    },
+    {
+      "path": "Mod/Data/ResearchChair.sql",
+      "kind": "full",
+      "reason": "Actual D3 contract and unique writer"
     }
   ],
   "dependencies": [
@@ -160,10 +180,10 @@
     "Native building attribution must not be replaced by flat city/district/specialist equivalent"
   ],
   "result": {
-    "plan": "READY_FOR_AUTHORIZATION",
-    "implementation": "NOT_STARTED",
-    "blocking_design": "None identified",
-    "technical_gate": "Building-specific city-local Science projection/owner/recipient/unique/pillage not yet game confirmed",
-    "report": "Specialization/Architecture/v2/P0_D3_Plan.md"
+    "implementation": "LOCAL_SIMULATION_PASS",
+    "user": "USER_GAME_TEST_REQUIRED",
+    "technical_gate": "OWNER building-specific static precedent and actual SQL projection confirmed; native settlement pending",
+    "report": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
+    "blocking_design": "None; no Design changes"
   }
 }

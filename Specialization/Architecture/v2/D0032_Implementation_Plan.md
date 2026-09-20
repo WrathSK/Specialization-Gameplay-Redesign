@@ -1,6 +1,6 @@
 # D0032 v0.1 implementation dependency and migration plan
 
-当前进度：P0-D2 B085.112用户整体验收PASS；[P0-D3学术主持计划](P0_D3_Plan.md)为PLANNED_NOT_AUTHORIZED。逐建筑原生收益路径需独立技术门禁，当前仅计划，无runtime/Design/部署变化。以下旧状态为历史。
+当前进度：P0-D3 B086.113 [学术主持实现](P0_D3_Research_Chair.md)完成静态/本地验证，真实逐建筑收益待用户验收；D2用户PASS。Design不改，不启动下一批。下方旧进度为历史。
 
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18

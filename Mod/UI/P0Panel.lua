@@ -449,6 +449,10 @@ end
 local oldInitialize=initialize
 initialize=function()
  oldInitialize()
+ Controls.DP05ButtonCaption:SetText('学术主持')
+ Controls.DP05Button:RegisterCallback(Mouse.eLClick,function() request('RESEARCH_CHAIR_READ') end)
+ Controls.DP05Button:RegisterCallback(Mouse.eRClick,function() request('RESEARCH_CHAIR_DETAIL') end)
+ Controls.DP05Button:SetToolTipString('左键：专家数、合格建筑数与预期；右键：逐建筑明细。只读。')
  Controls.DP03ButtonCaption:SetText('学以致用')
  Controls.DP03Button:RegisterCallback(Mouse.eLClick,function() request('RESEARCH_APPLY_READ') end)
  Controls.DP03Button:RegisterCallback(Mouse.eRClick,function() request('RESEARCH_APPLY_DETAIL') end)

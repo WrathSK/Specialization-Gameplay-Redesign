@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0225
-Implementation Build: develop P0-B-085.112 / modinfo112; live B085.112 deployed W0003; stable B069.96
+Status Revision: S0226
+Implementation Build: develop P0-B-086.113 / modinfo113; live B085.112 until verified W0003 transaction; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_D2_USER_PASS_P0_D3_PLANNED_NOT_AUTHORIZED
+Work State: P0_D3_LOCAL_PASS_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-D3已获授权实施，B086.113：[学术主持合同/证据](../Architecture/v2/P0_D3_Research_Chair.md)。每座合格普通学院建筑+工作科研专家数Science；OWNER scope、非平铺/非专家收益，D不反馈。210配置、实际SQL/Lua生命周期、三consumer共享capture、10k idle和完整前序回归LOCAL_SIMULATION_PASS；不是实机PASS。Design、非目标writer不变。待commit/push和W0003退出/恢复/hash门禁后测试；不进入下一批。下方旧计划状态为历史。
 
 [P0-D2用户整体验收](Validation/Results/Specialization_B085_P0D2_User_Pass.md)已记录；未提供逐项边界证据，不扩大结论。[P0-D3学术主持计划](../Architecture/v2/P0_D3_Plan.md)完成，等待单独实施授权；逐座普通学院建筑收益，不按D加权，不做城市补偿。Runtime/live仍B085.112，main/Design不改，本轮无实施/部署。以下D2等待验收措辞为历史。
 

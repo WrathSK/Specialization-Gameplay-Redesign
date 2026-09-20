@@ -30,6 +30,14 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
   end
+  if params.Action=='RESEARCH_CHAIR_READ' or params.Action=='RESEARCH_CHAIR_DETAIL' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,text=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'CHAIR_CITY_UNKNOWN')
+      return shared.ResearchChair.Describe(playerID,c,params.Action=='RESEARCH_CHAIR_DETAIL')
+    end)
+    shared.Snapshot=ok and text or '学术主持：城市暂不可读';shared.LastToken=params.Token;return
+  end
   if params.Action=='RESEARCH_APPLY_READ' or params.Action=='RESEARCH_APPLY_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,text=pcall(function()
@@ -230,6 +238,7 @@ local function request(playerID,params)
     if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
+    if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -254,6 +263,7 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     return
   end
   if params.Action=="NETWORK_PUSH" then
@@ -298,6 +308,7 @@ local function request(playerID,params)
     if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
+    if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -514,6 +525,8 @@ include("ResearchCross")
 SPCResearchCross.Start(P,shared)
 include("ResearchApply")
 SPCResearchApply.Start(P,shared)
+include("ResearchChair")
+SPCResearchChair.Start(P,shared)
 include("HalfYieldProbe")
 SPCHalfYieldProbe.Start(P,shared)
 
