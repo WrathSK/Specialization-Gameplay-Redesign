@@ -71,3 +71,5 @@ Gameplay.lua中的Start顺序、modinfo的AddGameplayScripts/AddUserInterfaces/R
 永久成果、引擎事实、重建样本、收益投影、测试开关分开。Property和Building仅说明存放介质，不能说明权威等级。没有把已批准的后台UI当前商路来源降级为不可靠历史日志，也没有假造纯Gameplay全集API。
 
 main与外部运行包只读；没有新增实机要求。完成后develop单独commit/push，不promotion，不自动打tag。建议报告为 **Architecture v2 Investigation Milestone Candidate**，不是重构完成里程碑。
+
+Current P0-D1 technical gate: [B082 district precision probe](P0_D1_District_Precision_Probe.md), opt-in only, not formal cutover. User requires district yield attribution; fallback quantum0.5/1 does not change50% conversion. Native validation pending.

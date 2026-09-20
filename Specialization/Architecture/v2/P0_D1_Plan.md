@@ -4,6 +4,10 @@ Status: AUTHORIZED / PRE_CUTOVER_GATE_OPEN. 用户已授权实施；见[P0-D1门
 Authority: Design D0035 / Research D0031 RES_L3_CROSS及district_qualification；Shared D0035；Architecture A0161 / D0032_Implementation_Plan P0-D1。
 Baseline: B081.108/modinfo108，runtime6736fc5；P0-C用户Pass见89020ae。v0.1仍仅科研/文化/工业/商业；Military不加入。
 
+## 2026-09-20 用户增量（优先于下方历史市级承载措辞）
+
+收益必须体现在区域；备用0.5/1是最终收益步长，不是转换系数。本轮[区域精度实验](P0_D1_District_Precision_Probe.md)先验证原值，不实施量化/正式cutover。旧writer保留；W0003允许已本地验证的实验包部署。正式区域落点与量化舍入若需要改变明确规则，不能自行补定。
+
 ## 目标
 
 当前Research Identity、Potential及ACTIVE达到III时，本城合格非学院区域的BASE相邻产出总和×0.5，提供额外基础城市Science。IV继承此能力。不是每名专家收益，不乘人口、不乘专家、不乘D，也不采用Yield Share的Gold×3换算。

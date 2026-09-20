@@ -1,6 +1,7 @@
 include("BoostGreatWorkRead")
 include("PurchaseProbeRead")
 include("Probe")
+include("DistrictPrecisionRead")
 include("GPPReadout")
 include("Lv4CopyRead")
 local P=SPCP0
@@ -17,6 +18,7 @@ local function trace(s)
   print("[SPC]["..P.VERSION.."][UI] "..s)
   status(P.VERSION.." | "..s)
 end
+local precisionReadToken,precisionReadText
 local pendingAction
 local gwaFlight
 local function gwaDiagnostics()
@@ -28,6 +30,10 @@ local function displayResponse()
   local data=ExposedMembers.SPC_P0 or {}
   if pendingToken and data.Version==P.VERSION and data.LastToken==pendingToken then
     local report=tostring(data.Snapshot)
+    if pendingAction=='DP_READ' then
+      if precisionReadToken~=pendingToken then precisionReadText=SPCDistrictPrecisionRead.Render(P,data.DistrictPrecisionProbe and data.DistrictPrecisionProbe.view,pendingToken);precisionReadToken=pendingToken end
+      report=report..'\n'..precisionReadText;localReport=report
+    end
     if pendingAction=="LV2_GPP_READ" then report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report) end
     if pendingAction=="LV4_PERCENT_READ" then
       local f=data.Lv4PercentRead
@@ -444,11 +450,15 @@ local function initialize()
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
   Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)
-  status('请选择城市，再读取所需项目。[NEWLINE]模板 / 折扣 / 网络明细可重复点击翻页。移民 / 施工队请先选择单位。[NEWLINE]写入诊断日志会保存本次已读取内容与后台状态，不要求剪贴板。')
+  status('B082区域精度实验默认OFF。[NEWLINE]选中有学院的城市：先右键OFF，再左键读数；逐项开启0.3/0.5/1并读数，最后OFF读数。[NEWLINE]实验按钮会临时添加收益；不要在实验ON时推进长局。')
 end
 local oldInitialize=initialize
 initialize=function()
  oldInitialize()
+ Controls.DPReadButton:RegisterCallback(Mouse.eLClick,function() request('DP_READ') end)
+ Controls.DPReadButton:RegisterCallback(Mouse.eRClick,function() request('DP_OFF') end)
+ Controls.DPReadButton:SetToolTipString('左键读数；右键关闭实验。先OFF读基线，再依次测试0.3、0.5、1，每次另点读数；最后OFF读数。')
+ for _,s in ipairs({'03','05','1'}) do local a=s;Controls['DP'..s..'Button']:RegisterCallback(Mouse.eLClick,function() request('DP_SET_'..a) end) end
  Controls.CompletenessButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETENESS_READ") end)
  if Mouse.eRClick then Controls.CompletenessButton:RegisterCallback(Mouse.eRClick,function() request("RESEARCH_INFRA_DETAIL") end) end
  Controls.CompletenessButton:SetToolTipString("左键：科研基础设施摘要；右键：学院建筑组成")

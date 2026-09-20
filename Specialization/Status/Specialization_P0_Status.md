@@ -1,19 +1,18 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0219
-Implementation Build: develop P0-B-081.108 / modinfo108; live B081.108 / modinfo108; stable B069.96 / modinfo96
+Status Revision: S0220
+Implementation Build: develop P0-B-082.109 / modinfo109 (district precision experiment); live B081.108 / modinfo108; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_D1_AUTHORIZED_PRE_CUTOVER_GATE_OPEN
+Work State: P0_D1_DISTRICT_PRIMITIVE_USER_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-P0-D1已获实施授权；[原生精度门禁](../Architecture/v2/P0_D1_Primitive_Gate.md)尚未关闭。离线纯模型与1785组既有primitive数学验证通过；0.25/0.65为本地反例，不是当前游戏BASE实测。未退出旧8效果、未新增运行writer/采样/载体、未部署；B081/P0-C验收保持。既有实施授权继续有效，下一步仅D1技术门禁，不进入D2。以下计划未授权文字为历史。
+P0-D1仍获授权、未正式cutover。用户新增区域归属要求，备用0.5/1明确指收益步长；50%转换系数不变，量化未启用。B082.109完成[区域原生精度实验](../Architecture/v2/P0_D1_District_Precision_Probe.md)：默认OFF，手动0.3/0.5/1，按需区域/城市原生读数，OFF/load准确撤销；8旧Research人口效果与所有其它正式能力保持。LOCAL_SIMULATION_PASS只证明控制/SQL/隔离/性能合同，区域小数保留待用户实机。不要把实验包称为P0-D1完成。W0003仍有效；部署状态以本页最新部署记录为准，不启动游戏。
 
-[P0-D1具体计划](../Architecture/v2/P0_D1_Plan.md)已备：仅科研III跨学科研究BASE×0.5，精确退出8旧人口载体；学以致用留D2。BASE口径与小数原生结算为实施技术门禁，无新增Design决定。等待用户授权实施；本轮仅文档，无runtime/部署变化。下文等待计划措辞为此前状态。
 
 P0-C完成B081.108/modinfo108：[科研基础设施实施](../Architecture/v2/P0_C_Research_Infrastructure.md)。用户明确单学院环境，多学院顾虑不再阻塞；四原生专家Science bit承载D，精确退出48旧Research IV百分比/复制effect。Culture/Industry等保持；无Design改动。100配置、真实生命周期/清理/诊断、线性读取/10k idle及完整前序回归LOCAL_SIMULATION_PASS；不是引擎PASS。诊断左键简明摘要、右键学院组成；用户随后回复“Pass”，登记P0-C整体USER_GAME_TEST_PASS（用户实际游戏验收通过）：[验收记录](Validation/Results/Specialization_B081_P0C_User_Pass.md)。未单独报告的边界不升级，等待P0-D1具体计划授权。已按W0003部署，128文件逐项hash一致、B080完整恢复点保留：[部署记录](Validation/Results/Specialization_B081_P0C_Deployment_20260920.md)。main B069.96保持。下一批不启动。
 

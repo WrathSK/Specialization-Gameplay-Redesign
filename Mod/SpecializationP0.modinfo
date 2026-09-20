@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="108">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="109">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B081.108 develop: P0-C Research IV infrastructure base Science; retired legacy Research IV percent/copy. Development test build.</Description>
+    <Description>B082.109 develop: opt-in district Science precision probe 0.3/0.5/1; P0-D1 cutover not active.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_B082_DistrictPrecision"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/DistrictPrecisionProbe.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_RuntimeAudit">
       <Properties><Context>InGame</Context></Properties>
       <File>UI/RuntimeAudit.xml</File>
@@ -71,6 +72,8 @@
       <File>UI/CopyYieldRefresh.lua</File>
       <File>UI/CopyYieldRefresh.xml</File>
       <File>HalfYieldProbe.lua</File>
+      <File>DistrictPrecisionProbe.lua</File>
+      <File>DistrictPrecisionRead.lua</File>
       <File>Lv4CopyRead.lua</File>
       <File>Probe.lua</File>
       <File>TradeRouteProbe.lua</File>
@@ -324,7 +327,10 @@
     <File>UI/CopyYieldRefresh.lua</File>
     <File>UI/CopyYieldRefresh.xml</File>
     <File>HalfYieldProbe.lua</File>
+      <File>DistrictPrecisionProbe.lua</File>
+      <File>DistrictPrecisionRead.lua</File>
     <File>Data/HalfYieldProbe.sql</File>
+    <File>Data/DistrictPrecisionProbe.sql</File>
     <File>Lv4CopyRead.lua</File>
     <File>Data/Lv3Effects.sql</File>
     <File>Data/Lv3Support.sql</File>

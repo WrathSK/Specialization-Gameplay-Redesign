@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0219",
-    "runtime": "B081.108 / modinfo108",
+    "status": "S0220",
+    "runtime": "B082.109 / modinfo109",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_D1_Plan.md",
@@ -106,6 +106,11 @@
       "path": "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md",
       "kind": "full",
       "reason": "Current native gate and evidence boundaries before continuing implementation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "kind": "full",
+      "reason": "Latest user district attribution constraint, authorized fallback steps, isolated native probe evidence"
     }
   ],
   "dependencies": [
@@ -157,10 +162,10 @@
   ],
   "result": {
     "authorization": "User explicitly authorized implementation after86a67bc plan",
-    "implementation": "PRE_CUTOVER_GATE_OPEN; offline pure model only, no runtime changes",
-    "local": "test_p0_d1_gate PASS; exact formula/eligibility and1785 decompositions; not native or lifecycle PASS",
+    "implementation": "PRE_CUTOVER_GATE_OPEN; B082 opt-in district precision probe only; exact8 old writer retained",
+    "local": "Probe lifecycle/idle/SQL/scope and protected regressions PASS; not engine precision PASS",
     "technical_gates": "Native finer-fraction settlement or supported BASE return domain requires evidence; synthetic counterexamples not runtime observations",
-    "game_test": "No new test package deployed; do not ask user to operate nonexistent entry",
-    "report": "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md"
+    "game_test": "B082 explicit OFF/read/0.3/read/0.5/read/1/read/OFF/read; final compact report",
+    "report": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md"
   }
 }

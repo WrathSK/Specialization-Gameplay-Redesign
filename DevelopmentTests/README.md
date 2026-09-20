@@ -50,3 +50,7 @@ Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with
 ## P0-B2 Lv2 qualification
 
 `test_p0_b2.py` actual Lua housing/GPP + P0-A capture/ontology, SQL41/48, four professions × ACTIVE/workers, catalog50, unknown/withdraw/load,10k idle/turn guards,1/2/4/8 scaling, combined read-only diagnostic. `test_p0_b2_regression.py` runs frozen B1/P0-A/A–D2 with explicit B2 version/byte/diagnostic-fixture adaptations; no historical assertions silently removed. Use the documented Lua55/Lupa environment. Native Housing/GPP/pillage timing remains user-game validation, not local PASS.
+
+## B082 district precision native probe
+
+`test_district_precision_probe.py` verifies isolated explicit control/cleanup, UI idle, SQL in read-only external DB's memory copy and exact runtime scope. `test_district_precision_regression.py` runs P0-C and earlier protected suites with explicit probe-file/version adaptations; historical tests remain unchanged. Native district decimal retention remains USER_GAME_TEST_REQUIRED, not inferred from SQLite or mock floats. Use the Lua55/Lupa environment above.

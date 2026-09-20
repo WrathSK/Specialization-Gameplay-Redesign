@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "6736fc55f5f7e3f890a89c830e3ece59d0067008",
-  "runtime": "B081.108 / modinfo108",
+  "runtime_commit": "B082 implementation commit containing this index",
+  "runtime": "B082.109 / modinfo109",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "885cea89917e029ad919f8d16b70e0da381102fdfcabf1ca3ba3832dc7c4aa76",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "1e1b961cb74532c0a077ef059d8442d173a1623e18d5e07edba705448edc3a32",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -366,9 +366,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Probe.lua": {
-      "sha256": "e40ead63c315cc68dbddbf88a6ec090576787ac62ee02c8f43e01a78b8ada742",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "903a1934a56ff1982fcd2829e6c81d5175345c25f41ca71ac4c6b9485e92869a",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9361a92f02f97138507af68c369ec3c773e7e87fc6db1d0ec9dae7bda53e10db",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "a074ced6bb30ffa5eb82f321b694520ab8bb26d1ca26268b88dea2b86aa62782",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,19 +556,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "74b101a5b846d606cd97df5281b93147aa0bacdcc19b4a8a0426b4696f237330",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "c70152ff994b78789981c89ee55d6453c1d9be543b4cc6e9dca3f1dc976f92cb",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "e03eb1545fc01dec22a4bd2e8b8009d847db469f90933ad20b4941cdf217d62e",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "c12b182c5903124a0d96fba0b22b52f699cfd3b376b34acb1a7f8a56d98e3dd3",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "0af57f2a7f16b5d80a88f9e2aa3e02073b1536aadd97c8b4f2eecab56e0a7f1e",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "6b50f69668cdc3aef9e9cbfcbe40eafa1dd2a39afabcac6a6eb07f88079adabc",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -644,6 +644,21 @@
       "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
       "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+    },
+    "Mod/DistrictPrecisionRead.lua": {
+      "sha256": "180e8ecc6e783550c7c6fbe090968491a30cff809bd4cff0b58ae8d498162a6c",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
+    },
+    "Mod/DistrictPrecisionProbe.lua": {
+      "sha256": "f415f0a25261540069d4fe1be54cc098842a9fbfd3285a330e524619adca01c6",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
+    },
+    "Mod/Data/DistrictPrecisionProbe.sql": {
+      "sha256": "8c5927957342032f6f3ccaeb009d4295eb8aed2cb90a52f754e2e9a7161b74d2",
+      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
+      "provenance": "B082 isolated precision probe, formal writers unchanged"
     }
   }
 }

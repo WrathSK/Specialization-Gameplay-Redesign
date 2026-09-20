@@ -30,6 +30,15 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
   end
+  if type(params.Action)=='string' and params.Action:find('^DP_') then
+    local ok,out=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'DP_CITY_UNAVAILABLE')
+      return shared.DistrictPrecisionProbe.Run(playerID,c,params.Action)
+    end)
+    if ok then shared.DistrictPrecisionProbe.view.token=params.Token end
+    shared.Snapshot=ok and out or ('区域实验未完成：'..tostring(out))
+    shared.LastToken=params.Token;return
+  end
   if params.Action=='COMPLETENESS_READ' or params.Action=='RESEARCH_INFRA_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     shared.RequestToken=params.Token
@@ -487,6 +496,8 @@ SPCLv4Percent.Start(P,shared)
 include("ResearchInfrastructure")
 SPCResearchInfrastructure.Start(P,shared)
 
+include("DistrictPrecisionProbe")
+SPCDistrictPrecisionProbe.Start(P,shared)
 include("HalfYieldProbe")
 SPCHalfYieldProbe.Start(P,shared)
 
