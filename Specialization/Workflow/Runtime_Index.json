@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "84a6f12ce2c7dc8bf727892cd2d2d5b2a88bf50e",
-  "runtime": "B086.113 / modinfo113",
+  "runtime_commit": "B087.114 coherent implementation commit (see git history)",
+  "runtime": "B087.114 / modinfo114",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "42ee4cc3da5b22e57cebc78b72faffff4fbda755abb07a3f0993ba21dd4e9606",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "sha256": "434e12b8946e2ca296b7b8581fb4432af09f5e53cf118a2f1e2eef188cb4b7c7",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "76ec4263e82681846c16033032ba079b192d077e8bd4788bbcd5c861d3ac226b",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "sha256": "18775ca11fc6dc003e17f4865bdb6858d894dce6b518ca452942e082801cb2ce",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ce12db7709b7d0113e3bcc5cec39682d857f3b714333c4725fd200af9142da36",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "sha256": "bf6a2eb0928b6c5df7dd765e646e22d2509f9f277aee222f36d2603b6bc50661",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -486,9 +486,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CityPotential.lua": {
-      "sha256": "396066723ea51e58f6a09f88305a8f2b2464e3b73619b1cd161436bf3dbc2e1d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "82a25b3f58d08b2bfd26f3797ad35a1f73e4918553957fbc830c775e44983f7f",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     },
     "Mod/UI/CityPotential.xml": {
       "sha256": "3971290a3b79bf2b8be2fa603647bafca8c27b48b0d543835610acc5edf8fa40",
@@ -566,9 +566,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "402e4d906f822d3c7de64d9fc164fd9eb0ab4342179d41f87807767e9c435bc8",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "sha256": "140d564a7c8ea5333fb8ab701cfa01e708ac4b676a7398b6b68841834061104e",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -719,6 +719,26 @@
       "sha256": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",
       "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+    },
+    "Mod/InstitutionPresentation.lua": {
+      "sha256": "abdc795324a97daa67b35ed67d591d0317d28272dc325db2cb8fa54e16bce63a",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+    },
+    "Mod/UI/InstitutionOverview.lua": {
+      "sha256": "ecd7daa7b5450c72efecb40054f1a9c59c3e085314f675a9e297d97578bcc578",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+    },
+    "Mod/UI/Institutions.lua": {
+      "sha256": "c185cfd65b3461e6454dac13721919051fdb8bf3c4d5ebd198283aa64904dd60",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+    },
+    "Mod/UI/Institutions.xml": {
+      "sha256": "8527a5fd082b89c5ab938644fc8cc06b8a77a91c7422d301999f72b96df64863",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     }
   }
 }

@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0228",
-    "runtime": "B086.113 / modinfo113",
+    "status": "S0229",
+    "runtime": "B087.114 / modinfo114",
     "military": "D0034"
   },
   "paths": {
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "84a6f12ce2c7dc8bf727892cd2d2d5b2a88bf50e",
-  "current_batch": "U1 presentation prototype PLANNED_NOT_AUTHORIZED",
-  "next_batch": "Await authorization for bounded U1 feasibility/display prototype, not full U1",
+  "runtime_commit": "B087.114 coherent implementation commit (see git history)",
+  "current_batch": "U1 prototype IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "next_batch": "Await one Research city display check; no full U1 expansion",
   "manifest": "Specialization/Workflow/P0-U1.json",
-  "live": "B086.113 / modinfo113; P0-D3 user overall PASS; no deployment in U1 planning",
+  "live": "B086.113 retained pending B087.114 W0003 hash transaction",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "User narrowed early U1 to Research presentation prototype; no runtime/Design changes",
+  "context_review_status": "Actual scoped UI prototype and protected regressions reviewed",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,5 +59,5 @@
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_U1_Plan.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/U1_Presentation_Prototype.md"
 }

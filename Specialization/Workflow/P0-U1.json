@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-U1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0228",
-    "runtime": "B086.113 / modinfo113",
+    "status": "S0229",
+    "runtime": "B087.114 / modinfo114",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_U1_Plan.md",
@@ -96,6 +96,31 @@
       "selector": "/abilities/4",
       "expected_id": "RES_L4_CHAIR",
       "reason": "Implemented stage-owned ability tooltip identity"
+    },
+    {
+      "path": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "kind": "full",
+      "reason": "Actual prototype contract/implementation"
+    },
+    {
+      "path": "Mod/InstitutionPresentation.lua",
+      "kind": "full",
+      "reason": "Actual prototype contract/implementation"
+    },
+    {
+      "path": "Mod/UI/InstitutionOverview.lua",
+      "kind": "full",
+      "reason": "Actual prototype contract/implementation"
+    },
+    {
+      "path": "Mod/UI/Institutions.lua",
+      "kind": "full",
+      "reason": "Actual prototype contract/implementation"
+    },
+    {
+      "path": "Mod/UI/Institutions.xml",
+      "kind": "full",
+      "reason": "Actual prototype contract/implementation"
     }
   ],
   "dependencies": [
@@ -148,8 +173,10 @@
     }
   ],
   "result": {
-    "planning": "Scope narrowed by user; implementation remains unauthorized",
-    "blocking_design": "None for current institutions; UI hook remains prototype gate"
+    "implementation": "LOCAL_SIMULATION_PASS",
+    "user": "USER_GAME_TEST_REQUIRED",
+    "report": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+    "scope": "Research one city-details surface only; no full U1 completion"
   },
   "goal": "Bounded feasibility/display prototype, not full U1"
 }

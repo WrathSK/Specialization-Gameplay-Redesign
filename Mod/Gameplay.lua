@@ -75,7 +75,9 @@ local function request(playerID,params)
     end)
     shared.CityPresentationView={token=params.Token,owner=playerID,cityID=params.CityID,
       specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
-      investments=ok and f.investmentCount or nil,error=not ok and tostring(f) or nil}
+      investments=ok and f.investmentCount or nil,active=ok and f.active or nil,activeStatus=ok and f.activeStatus or nil,
+      x=ok and Players[playerID]:GetCities():FindID(params.CityID):GetX() or nil,
+      y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
   if params.Action=='DIALOGUE_SAMPLE' then

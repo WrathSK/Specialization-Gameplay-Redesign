@@ -1,6 +1,6 @@
 # U1 前置展示原型 — 技术可行性与显示效果计划
 
-Status: PLANNED_NOT_AUTHORIZED。用户澄清：不要求提前完整实施U1。本节取代下方此前较宽实施范围；下方仅保留为未来完整U1参考，不构成本次授权。
+Status: PROTOTYPE_IMPLEMENTED_AWAITING_USER。用户已授权并完成B087.114本地原型，见[实施证据](U1_Presentation_Prototype.md)。以下计划授权措辞为历史。用户澄清：不要求提前完整实施U1。本节取代下方此前较宽实施范围；下方仅保留为未来完整U1参考，不构成本次授权。
 
 ## 当前最小范围
 

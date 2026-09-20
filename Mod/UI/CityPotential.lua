@@ -37,6 +37,7 @@ local function update(dt)
   local v=(ExposedMembers.SPC_P0 or {}).CityPresentationView
   if v and v.token==token and v.owner==pid and v.cityID==c:GetID() then
    token=nil;reportError(v.error)
+   if LuaEvents and LuaEvents.SPC_PresentationChanged then LuaEvents.SPC_PresentationChanged() end
    local name=names[v.specialization];local title=titles[v.potential]
    hide(not (name and title))
    if name and title and shown~=name..v.potential..tostring(v.investments) then
