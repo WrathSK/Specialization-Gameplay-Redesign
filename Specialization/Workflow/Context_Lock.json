@@ -40,7 +40,7 @@
     "Mod/UI/P0Panel.xml": "e03eb1545fc01dec22a4bd2e8b8009d847db469f90933ad20b4941cdf217d62e",
     "Specialization/AGENTS.md": "bd0ee8ddb648de15a10bb448de093f780e9b63ba17eb10431840a792f5ae3700",
     "Specialization/Architecture/Playtest_Workflow.md": "31985c762824a789f1ad144f6fe68173ad491f1c6d719fe7751810e18c56ba88",
-    "Specialization/Architecture/Specialization_v0.1_Architecture.md": "ee00f9d51d3deb2d8bf741c5fc0cc183c0da18042f17b9159c8aba618d98a9ba",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md": "1c60150f5c3b45ac0d6a5cc59c78281aed3175f04d34022fa065cf55baa53ac7",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "9b54c8562a38bf0494bc36733f509b140aff57c7f0ee1792601d919d2e2cb32b",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "44aafd92b025adaaf1c2b5b03950920f163ff5a342c48c183a3fdec97767bb71",
+    "Specialization/Status/Specialization_P0_Status.md": "3b9b602d884696933e2eb163f1eb903527d613c0032ff6069779bcb70184ed84",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -79,6 +79,7 @@
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md": "f657b5b836e5b898f2d3f26fedaf77e63eeb3336f5a0334ab708fd81a798fdc0",
     "DevelopmentTests/test_p0_b2.py": "d767741f9968759bcb733f6295cc08750d2fa8c3111a5cca42adbc8e8c424acf",
-    "DevelopmentTests/test_p0_b2_regression.py": "62c7fc4096b04bc8890ce53dad7b7620894338d2cc8588b1a09ffc7a020b80f6"
+    "DevelopmentTests/test_p0_b2_regression.py": "62c7fc4096b04bc8890ce53dad7b7620894338d2cc8588b1a09ffc7a020b80f6",
+    "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc"
   }
 }

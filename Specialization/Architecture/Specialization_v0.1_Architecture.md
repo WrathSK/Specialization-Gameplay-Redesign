@@ -7,7 +7,7 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-080.107 / modinfo107; live B079.106 / modinfo106; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-080.107 / modinfo107; live B080.107 / modinfo107; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
 

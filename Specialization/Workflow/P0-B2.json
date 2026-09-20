@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0211",
+    "status": "S0212",
     "runtime": "B080.107 / modinfo107",
     "military": "D0034"
   },
@@ -442,7 +442,9 @@
     "implementation": "COMPLETE / LOCAL_SIMULATION_PASS; user explicitly authorized P0-B2",
     "report": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
     "game_test": "USER_GAME_TEST_REQUIRED",
-    "exit": "No automatic P0-C; W0003 deployment gates unchanged"
+    "exit": "No automatic P0-C; W0003 deployment gates unchanged",
+    "deployment": "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md",
+    "implementation_commit": "c56c6de793ba5bac4d6c5a6de61f360c3490d81a"
   },
   "context_status": "IMPLEMENTATION_REVIEWED_D0035"
 }

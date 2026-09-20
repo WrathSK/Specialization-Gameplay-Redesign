@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "P0-B2 implementation commit (resolve by Runtime_Index hashes / git history)",
+  "runtime_commit": "c56c6de793ba5bac4d6c5a6de61f360c3490d81a",
   "runtime": "B080.107 / modinfo107",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
