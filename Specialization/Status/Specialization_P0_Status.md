@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0220
-Implementation Build: develop P0-B-082.109 / modinfo109 (district precision experiment); live B081.108 / modinfo108; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-082.109 / modinfo109 (district precision experiment); live B082.109 / modinfo109; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_D1_DISTRICT_PRIMITIVE_USER_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B082已按W0003临时部署，131文件逐项hash一致，完整B081恢复包保留：[部署记录](Validation/Results/Specialization_B082_District_Precision_Deployment_20260920.md)。当前仅等待一次原生区域精度测试。
 
 P0-D1仍获授权、未正式cutover。用户新增区域归属要求，备用0.5/1明确指收益步长；50%转换系数不变，量化未启用。B082.109完成[区域原生精度实验](../Architecture/v2/P0_D1_District_Precision_Probe.md)：默认OFF，手动0.3/0.5/1，按需区域/城市原生读数，OFF/load准确撤销；8旧Research人口效果与所有其它正式能力保持。LOCAL_SIMULATION_PASS只证明控制/SQL/隔离/性能合同，区域小数保留待用户实机。不要把实验包称为P0-D1完成。W0003仍有效；部署状态以本页最新部署记录为准，不启动游戏。
 

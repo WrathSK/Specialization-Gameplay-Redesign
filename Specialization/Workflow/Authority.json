@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "B082 implementation commit containing this index",
+  "runtime_commit": "9e6a1061c97578b4a05b0e917985714d559218a0",
   "current_batch": "P0-D1 AUTHORIZED / DISTRICT_PRIMITIVE_USER_TEST_REQUIRED",
   "next_batch": "User native district precision result, then continue P0-D1; no P0-D2",
   "manifest": "Specialization/Workflow/P0-D1.json",
-  "live": "B081.108 / modinfo108 deployed W0003; 128 file hashes verified; B080 recovery retained; P0-C USER_GAME_TEST_PASS (overall user report)",
+  "live": "B082.109 / modinfo109 deployed W0003; 131 exact file hashes; complete B081 backup retained; native precision USER_GAME_TEST_REQUIRED",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
