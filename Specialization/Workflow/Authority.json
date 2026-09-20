@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "B085.112 implementation commit recorded after commit",
+  "runtime_commit": "f149f8434a48419b11f618fe4cff857c274e2d8d",
   "current_batch": "P0-D2 IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "next_batch": "Await P0-D2 user validation; do not start P0-D3",
   "manifest": "Specialization/Workflow/P0-D2.json",
-  "live": "B084.111 / modinfo111 deployed W0003;137 exact file hashes; B083/B082/B081 recovery retained; P0-D1 user overall PASS",
+  "live": "B085.112 / modinfo112 deployed W0003;140 exact file hashes; B084 recovery retained; P0-D2 user validation pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

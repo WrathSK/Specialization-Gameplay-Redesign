@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0224
-Implementation Build: develop P0-B-085.112 / modinfo112; live B084.111 until verified W0003 transaction; stable B069.96
+Implementation Build: develop P0-B-085.112 / modinfo112; live B085.112 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -11,7 +11,7 @@ Work State: P0_D2_LOCAL_PASS_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-P0-D2已授权完成B085.112：[学以致用](../Architecture/v2/P0_D2_Research_Apply.md)。用户确认每名专家先floor，按人数由原生专家收益结算；不是城级平铺。120配置、实际writer生命周期/五产出编码、10k idle、1/2/4/8城共享读取及前序回归LOCAL_SIMULATION_PASS。Design字节不改；目录未审对象明确排除提示，不宣称全环境覆盖。等待一次用户最小实机验收；W0003部署需完成commit/退出/hash门禁。不进入P0-D3。下方旧D2半点门禁/未授权描述均为历史。
+P0-D2已授权完成B085.112：[学以致用](../Architecture/v2/P0_D2_Research_Apply.md)。用户确认每名专家先floor，按人数由原生专家收益结算；不是城级平铺。120配置、实际writer生命周期/五产出编码、10k idle、1/2/4/8城共享读取及前序回归LOCAL_SIMULATION_PASS。Design字节不改；目录未审对象明确排除提示，不宣称全环境覆盖。等待一次用户最小实机验收；W0003部署已完成commit/退出/hash门禁，140文件逐项一致，B084恢复包已核验：[部署记录](Validation/Results/Specialization_B085_P0D2_Deployment_20260920.md)。不进入P0-D3。下方旧D2半点门禁/未授权描述均为历史。
 
 [P0-D1用户整体PASS](Validation/Results/Specialization_B084_P0D1_User_Pass.md)已记录；无逐项边界证据，不扩大结论。[P0-D2学以致用计划](../Architecture/v2/P0_D2_Plan.md)已备，等待单独实施授权。专家0.5步长单独验证，不继承D1临时floor。Runtime/live仍B084.111，main/Design不变；本轮无部署。以下待D1验收措辞均为历史。
 
