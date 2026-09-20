@@ -2,12 +2,12 @@
   "workflow": "W0001",
   "role": "Navigation only. Referenced Design/Architecture override workflow. Hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0034",
+    "design": "D0035",
     "research": "D0031",
     "industry": "D0032",
     "culture": "D0029",
     "commerce": "D0032",
-    "shared": "D0028",
+    "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
     "status": "S0210",
@@ -20,7 +20,7 @@
     "industry": "Specialization/Design/Content/Industry_D0032.json",
     "culture": "Specialization/Design/Content/Culture_D0029.json",
     "commerce": "Specialization/Design/Content/Commerce_D0032.json",
-    "shared": "Specialization/Design/Content/Shared_D0028.json",
+    "shared": "Specialization/Design/Content/Shared_D0035.json",
     "presentation": "Specialization/Design/Culture_Era_Presentation_D0032.md",
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
     "status": "Specialization/Status/Specialization_P0_Status.md",
@@ -45,5 +45,5 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "STALE_PENDING_REVIEW: Design D0034 Military depth-efficiency amendment. A0161 remains adapted through D0032; completed P0-B1 evidence unchanged. No implementation authorized; review before context reuse."
+  "context_review_status": "STALE_PENDING_REVIEW: D0035 Shared semantic clarification. Military remains D0034; A0161 adapted through D0032; P0-B1 completion evidence unchanged. Current Spec resolves prior Shared_D0028 references through D0035. No implementation authorization or hash refresh."
 }

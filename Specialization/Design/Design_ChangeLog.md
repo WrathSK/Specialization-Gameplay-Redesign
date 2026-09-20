@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0034
+Latest Accepted Design Revision: D0035
 Document State: ACCEPTED
+
+## Accepted D0035 — 2026-09-20
+
+Acceptance: ACCEPTED / Shared semantic clarification and consumer confirmation; no new Gameplay formula
+Acceptance Evidence: 用户以D0034为基线确认Absolute Infrastructure Depth、不引入Relative Completeness、consumer矩阵与catalog分离，授权最小术语修订。
+Accepted Spec SHA256: be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5
+Canonical Shared Content SHA256: f690053a45d54f702468180d0d957444b411c5f7ab7bd3656800e875c91b19a1
+Previous Accepted Revision: D0034
+Frozen D0034: [原文](Revisions/Specialization_Design_Spec_D0034.md)
+Review: [Shared语义与consumer审阅](Shared_D0035_Review.md)
+
+正式中文“区域基础设施深度”；公式min(10,ΣTier1/2/3/4)不变，三层D6与四层D10均为有意允许的结果。旧profession Shared_D0028引用按当前Spec语义覆盖，原文件及Military_D0034不改。Catalog缺口独立登记，既有P0-A PASS不扩展。未实现、未改runtime/main、未部署；不进入P0-B2。
 
 ## Accepted D0034 — 2026-09-20
 
