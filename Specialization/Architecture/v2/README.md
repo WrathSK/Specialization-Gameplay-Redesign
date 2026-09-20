@@ -3,7 +3,7 @@
 
 开发导航：[Workflow W0001](../../Workflow/README.md) → [Authority](../../Workflow/Authority.json) → batch manifest。只改变context加载，不改变Architecture合同；当前A0161状态优先于后面的历史标题。
 
-## 当前工作：P0-C B081.108本地完成，待实机验收
+## 当前工作：P0-C B081.108用户实机验收通过，等待下一批计划授权
 
 [实施/cutover与本地证据](P0_C_Research_Infrastructure.md)：四bit专家Science、旧48精确退出、摘要/详情按需；用户单学院澄清解除旧门禁。无下一批实施。
 

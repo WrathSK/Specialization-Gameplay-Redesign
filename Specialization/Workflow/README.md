@@ -3,9 +3,9 @@
 Owner: Codex. Scope: development navigation/context only; user authorization 2026-09-18.
 Design / Architecture always override Workflow. No Gameplay rule, implementation authorization or new Architecture revision is created here.
 
-## Current entry — D0035 / P0-C local completion
+## Current entry — D0035 / P0-C user acceptance
 
-Use `python3 Specialization/Workflow/context.py check P0-C` (also plan/read/self-test). [P0-C.json](P0-C.json) is IMPLEMENTATION_COMPLETE_AWAITING_USER; see [implementation](../Architecture/v2/P0_C_Research_Infrastructure.md). Single-Campus environment clarified by user; old Research IV cutover complete, native Science settlement awaits user acceptance. [Concrete plan](../Architecture/v2/P0_C_Plan.md) records48 old Research IV carrier IDs, shared fact inputs, specialist Science primitive gate and protected Industry/Culture boundaries. P0-B2 user PASS recorded without invented screenshots or per-edge claims; completed B1/B2 manifests retain historical authority maps.
+Use `python3 Specialization/Workflow/context.py check P0-C` (also plan/read/self-test). [P0-C.json](P0-C.json) is COMPLETE / USER_GAME_TEST_PASS; see [implementation](../Architecture/v2/P0_C_Research_Infrastructure.md). Single-Campus environment clarified by user; old Research IV cutover complete, user has reported overall PASS; unreported edge cases retain prior evidence levels. Next: wait for P0-D1 plan authorization. [Concrete plan](../Architecture/v2/P0_C_Plan.md) records48 old Research IV carrier IDs, shared fact inputs, specialist Science primitive gate and protected Industry/Culture boundaries. P0-B2 user PASS recorded without invented screenshots or per-edge claims; completed B1/B2 manifests retain historical authority maps.
 
 v0.1 scope remains Research/Culture/Commerce/Industry only. Military authority metadata creates no new runtime dependency. D0035 absolute-depth semantics remain; Design remains unchanged; current implementation/deployment status follows Authority/Status. W0001 integrity checks are never implementation permission.
 

@@ -1,7 +1,11 @@
 # P0-C — 科研基础设施正式切换 / B081.108
 
-Status: IMPLEMENTATION_COMPLETE_AWAITING_USER / LOCAL_SIMULATION_PASS.
+Status: COMPLETE / LOCAL_SIMULATION_PASS / USER_GAME_TEST_PASS (overall user acceptance; see scope below).
 Authority: A0161, D0035 Shared / Research D0031 RES_L4_INFRA. Baseline B080.107 (4f26050 documents; c56c6de runtime). No Design changes.
+
+## 用户验收更新
+
+用户回复“Pass”，P0-C整体实机验收完成：[证据范围](../../Status/Validation/Results/Specialization_B081_P0C_User_Pass.md)。以下实施交付时的待测文字保留为历史测试要求，不代表仍需重复测试；未单独报告的边界不升级为实机PASS。下一批未授权。
 
 ## 用户摘要与环境澄清
 

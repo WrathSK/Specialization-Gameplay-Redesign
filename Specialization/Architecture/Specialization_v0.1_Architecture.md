@@ -11,7 +11,7 @@ Implementation Build: develop P0-B-081.108 / modinfo108; live deployment state i
 
 ## CURRENT AUTHORITATIVE STATE
 
-P0-C B081.108 [科研基础设施正式writer/cutover](v2/P0_C_Research_Infrastructure.md)已完成本地验证，待用户原生结算验收。用户明确单学院环境，先前多学院门禁不再阻塞；A0161目标合同未变。四新bit载体、旧48无效tombstone、简明按需诊断，非目标能力保持。以下实施前门禁段落为历史状态。
+P0-C B081.108 [科研基础设施正式writer/cutover](v2/P0_C_Research_Infrastructure.md)已完成本地验证及用户整体实机验收（回复“Pass”；未单独报告边界不扩大）。用户明确单学院环境，先前多学院门禁不再阻塞；A0161目标合同未变。四新bit载体、旧48无效tombstone、简明按需诊断，非目标能力保持。以下实施前门禁段落为历史状态。
 
 P0-C已授权，当前[原生专家收益门禁](v2/P0_C_Primitive_Gate.md)待关闭；仅离线计算/SQL候选验证，正式writer和旧48效果尚未切换。A0161目标不变、运行B080不变；以下“P0-C未开始”属于前次状态。
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-C",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0216",
+    "status": "S0217",
     "runtime": "B081.108 / modinfo108",
     "military": "D0034"
   },
@@ -264,7 +264,7 @@
   "dependencies": [
     "P0-A verified D/worker facts (not universal catalog/pillage PASS)",
     "P0-B1/B2 user PASS",
-    "TS02 native citizen-yield table reused; user single-Campus clarification; final Science settlement awaiting game test",
+    "TS02 native citizen-yield table reused; user single-Campus clarification; overall P0-C user acceptance recorded; unreported edge cases retain prior evidence",
     "A–D2 verified-input/no-op/bounded lifecycle contracts"
   ],
   "old_writers": {
@@ -317,8 +317,9 @@
   "result": {
     "implementation": "B081.108 completed; user clarified single Campus per city, no multi-Campus blocker",
     "local": "LOCAL_SIMULATION_PASS test_p0_c + test_p0_c_regression + deployment safety; actual new writer and precise retired48 absence",
-    "game_test": "USER_GAME_TEST_REQUIRED native specialist Science settlement",
-    "deployment": "W0003 B081.108 deployed; 128 per-file hashes match implementation6736fc5, B080 backup retained"
+    "game_test": "USER_GAME_TEST_PASS: user replies Pass; overall acceptance, no individual measurements or unreported edge coverage inferred",
+    "deployment": "W0003 B081.108 deployed; 128 per-file hashes match implementation6736fc5, B080 backup retained",
+    "acceptance_record": "Specialization/Status/Validation/Results/Specialization_B081_P0C_User_Pass.md"
   },
   "implementation_scope": {
     "v0_1": [
