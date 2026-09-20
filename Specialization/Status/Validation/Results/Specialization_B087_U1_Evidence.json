@@ -1,0 +1,35 @@
+{
+  "batch": "B087.114 U1 presentation prototype",
+  "user_result": "Technical acceptance PASS; layout/text polish deferred",
+  "review": "All four original screenshots visually reviewed; originals moved, unchanged bytes verified",
+  "files": [
+    {
+      "original_name": "Screenshot 2026-09-20 at 11.45.02 AM.png",
+      "sha256": "35783355537393cc279d21946e76c193c16a585b9c79f830efa49fa1f6bd93c0",
+      "bytes": 11384421,
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B087_U1_Technical_PASS_20260920/Screenshot 2026-09-20 at 11.45.02 AM.png",
+      "observation": "四机构累计列表；学者结社说明；高阶段未激活仍存在"
+    },
+    {
+      "original_name": "Screenshot 2026-09-20 at 11.45.57 AM.png",
+      "sha256": "d62ea24460e16d3d048c5dc51e421bea0b66e1c5e5794aba8886ef74e2223b8c",
+      "bytes": 11333445,
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B087_U1_Technical_PASS_20260920/Screenshot 2026-09-20 at 11.45.57 AM.png",
+      "observation": "研修院／人才培养Tooltip"
+    },
+    {
+      "original_name": "Screenshot 2026-09-20 at 11.45.58 AM.png",
+      "sha256": "f49c5635e6aa5d67bd7becaac69f6d3dfa9367679dbe9ed8177e27f4e0d9f7ce",
+      "bytes": 11352683,
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B087_U1_Technical_PASS_20260920/Screenshot 2026-09-20 at 11.45.58 AM.png",
+      "observation": "学术联合会／跨学科研究与学以致用Tooltip"
+    },
+    {
+      "original_name": "Screenshot 2026-09-20 at 11.45.59 AM.png",
+      "sha256": "a43b36bd601fc28a2d0f0f9c077418928172539516d08ccdbfe2df45f3dd4966",
+      "bytes": 11360050,
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B087_U1_Technical_PASS_20260920/Screenshot 2026-09-20 at 11.45.59 AM.png",
+      "observation": "学术总署／科研基础设施、学术主持及学术传统未实现说明"
+    }
+  ]
+}

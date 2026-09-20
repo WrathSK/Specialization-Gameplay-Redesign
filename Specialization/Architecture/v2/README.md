@@ -1,6 +1,8 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前进度：[U1科研展示原型B087.114](U1_Presentation_Prototype.md)本地通过，待实际显示确认；非完整U1，不继续下一批。
+当前进度：U1原型技术用户PASS，四图保留作后续排版证据；回主线[P0-E1计划](P0_E1_Plan.md)，未授权实施。
+
+历史进度：[U1科研展示原型B087.114](U1_Presentation_Prototype.md)本地通过，待实际显示确认；非完整U1，不继续下一批。
 
 历史计划：U1已收窄为[前置展示原型计划](P0_U1_Plan.md)，仅验证机构/能力文字/carrier隐藏的技术与显示；非完整实施，等待授权。
 

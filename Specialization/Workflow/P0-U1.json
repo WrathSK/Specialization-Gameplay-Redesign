@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-U1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -174,9 +174,10 @@
   ],
   "result": {
     "implementation": "LOCAL_SIMULATION_PASS",
-    "user": "USER_GAME_TEST_REQUIRED",
+    "user": "USER_GAME_TEST_PASS — prototype technical path only; polish deferred",
     "report": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-    "scope": "Research one city-details surface only; no full U1 completion"
+    "scope": "Research one city-details surface only; no full U1 completion",
+    "user_report": "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md"
   },
   "goal": "Bounded feasibility/display prototype, not full U1"
 }

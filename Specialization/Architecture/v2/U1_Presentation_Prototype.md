@@ -1,5 +1,7 @@
 # U1 前置展示原型 — B087.114 / modinfo114
 
+最新：用户技术验收PASS；[四图/证据边界](../../Status/Validation/Results/Specialization_B087_U1_User_Pass.md)。排版与文字润色后置，完整U1未完成。下方待实机为原交付时状态。
+
 Status: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED。用户授权的是技术/显示原型，不是完整U1。Design D0035及四专业authority不改；D3整体用户PASS保留。
 
 ## 实际范围与显示

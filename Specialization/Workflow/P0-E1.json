@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-E1",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0230",
+    "runtime": "B087.114 / modinfo114",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_E1_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Plan.md",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Mod/BindingProbe.lua",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Mod/CityInheritanceRead.lua",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/5",
+      "expected_id": "RES_L4_TRADITION",
+      "reason": "Future dependent ability; not E1 implementation"
+    }
+  ],
+  "dependencies": [
+    "P0-A current facts",
+    "D3 accepted baseline",
+    "native city continuity evidence gate"
+  ],
+  "old_writers": {
+    "retire": [],
+    "preserve": [
+      "Binding/Journal/Flow/Investment",
+      "all ability carriers/writers"
+    ],
+    "keep_isolated": [
+      "CityInheritance",
+      "InheritanceShadow"
+    ]
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityJournalProbe.lua",
+        "Mod/CityFlowProbe.lua",
+        "Mod/InvestmentAction.lua",
+        "Mod/CityInheritance.lua",
+        "Mod/InheritanceShadow.lua",
+        "Mod/Gameplay.lua"
+      ],
+      "trigger": "Read full exact property/writer/event contracts before implementation"
+    }
+  ],
+  "non_scope": [
+    "formal migration/E2",
+    "Academic Tradition/F",
+    "per-specialization conquest policies",
+    "new persistent markers without explicit spike review",
+    "UI polish/full U1",
+    "Design/deployment in planning"
+  ],
+  "validation": {
+    "local": [
+      "read-only preview/property equality",
+      "duplicate/transfer/raze/refound/ID reuse/unknown conflicts",
+      "bounded idle/old writer regression"
+    ],
+    "user": "Only native gap: one controlled transfer/regain/reload on independent save"
+  },
+  "full_audit_triggers": [
+    "new persistent writes",
+    "ambiguous engine city continuity",
+    "old writer activation/change"
+  ],
+  "result": {
+    "planning": "Complete",
+    "blocking_design": "None blocking readonly E1; native continuity remains technical gate"
+  }
+}

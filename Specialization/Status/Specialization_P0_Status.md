@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0229
+Status Revision: S0230
 Implementation Build: develop P0-B-087.114 / modinfo114; live B087.114 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: U1_PROTOTYPE_LOCAL_PASS_AWAITING_USER
+Work State: P0_E1_PLAN_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+U1前置原型技术USER_GAME_TEST_PASS：[四图归档/验收](Validation/Results/Specialization_B087_U1_User_Pass.md)。布局、文字、其它surface和完整U1后置。回到D3后的[P0-E1城市身份保存门禁计划](../Architecture/v2/P0_E1_Plan.md)，仅计划未授权实施。B087.114源码/运行包、Design/main不变，无部署；下方旧等待U1验收状态为历史。
 
 [U1展示原型B087.114](../Architecture/v2/U1_Presentation_Prototype.md)获授权并本地完成：科研累计机构、阶段文字、城市详情carrier显示过滤，完整U1未实施。147文件，前序收益回归/新显示生命周期/10k重复通知/部署保护通过LOCAL_SIMULATION_PASS；实际HD加载与显示待用户短测。Design、收益writer/SQL、main不变。W0003部署已完成：[147文件/恢复点核验](Validation/Results/Specialization_B087_U1_Deployment.md)，不启动游戏。以下旧计划状态为历史。
 

@@ -163,7 +163,7 @@ def self_test(m):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('command',choices=['check','plan','read','self-test'])
-    p.add_argument('batch',choices=['P0-B1','P0-B2','P0-C','P0-D1','P0-D2','P0-D3','P0-U1']);p.add_argument('item',nargs='?')
+    p.add_argument('batch',choices=['P0-B1','P0-B2','P0-C','P0-D1','P0-D2','P0-D3','P0-U1','P0-E1']);p.add_argument('item',nargs='?')
     args=p.parse_args();m=load(args.batch+'.json')
     if args.command=='check': result=check(m)
     elif args.command=='self-test': result=self_test(m)
