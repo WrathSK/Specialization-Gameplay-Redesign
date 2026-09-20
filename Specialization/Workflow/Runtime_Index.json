@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B083 fix commit containing this index",
+  "runtime_commit": "8a163f2045c432f9c15877656187ba9a5eaeacea",
   "runtime": "B083.110 / modinfo110",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

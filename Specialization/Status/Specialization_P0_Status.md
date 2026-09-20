@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0221
-Implementation Build: develop P0-B-083.110 / modinfo110 (district probe API/caption repair); live B082.109 / modinfo109; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-083.110 / modinfo110 (district probe API/caption repair); live B083.110 / modinfo110; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_D1_DISTRICT_PRIMITIVE_USER_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B083修正版已部署](Validation/Results/Specialization_B083_Deployment_20260920.md)：131文件逐项hash核对，B082/B081恢复点保留；等待同一短测。
 
 最新B082用户测试未完成：[两图归档/原因/B083修复](Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md)。Gameplay Members不可用、无城市容器和按钮缺字；尚未施加三档实验收益，不能判定小数接口失败。B083完成局部修复/明确context mock/简明错误，LOCAL_SIMULATION_PASS，原生结果待同一短测。旧正式writer/SQL不改。以下B082部署及本地记录保留历史证据；最新部署记录优先。
 
