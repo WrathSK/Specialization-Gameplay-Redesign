@@ -2,7 +2,7 @@
   "workflow": "W0001",
   "role": "Navigation only. Referenced Design/Architecture override workflow. Hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0033",
+    "design": "D0034",
     "research": "D0031",
     "industry": "D0032",
     "culture": "D0029",
@@ -12,7 +12,7 @@
     "architecture": "A0161",
     "status": "S0210",
     "runtime": "B079.106 / modinfo106",
-    "military": "D0033"
+    "military": "D0034"
   },
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -25,7 +25,7 @@
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
     "status": "Specialization/Status/Specialization_P0_Status.md",
     "runtime": "Mod/SpecializationP0.modinfo",
-    "military": "Specialization/Design/Content/Military_D0033.json"
+    "military": "Specialization/Design/Content/Military_D0034.json"
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
@@ -45,5 +45,5 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "STALE_PENDING_REVIEW: Design D0033 Military freeze. A0161 remains adapted through D0032; P0-B1 completed evidence preserved at its baseline, not reusable as current authority without review. No new implementation authorized."
+  "context_review_status": "STALE_PENDING_REVIEW: Design D0034 Military depth-efficiency amendment. A0161 remains adapted through D0032; completed P0-B1 evidence unchanged. No implementation authorized; review before context reuse."
 }

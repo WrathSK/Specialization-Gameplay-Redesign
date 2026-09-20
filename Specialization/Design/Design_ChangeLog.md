@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0033
+Latest Accepted Design Revision: D0034
 Document State: ACCEPTED
+
+## Accepted D0034 — 2026-09-20
+
+Acceptance: ACCEPTED / Military comprehensive-training structural amendment; conversion details deferred
+Acceptance Evidence: 用户F–F8确认Breadth→Quality和Depth→Training Efficiency，绝对D而非相对完成度；具体Production转换、汇总、cap、速度、兵种与购买适用未定。
+Accepted Spec SHA256: 3554bb9b6ad956580db01e399f34bc9eb8992b754ad1dd5be2e58f1ee9d44fae
+Canonical Military Content SHA256: 0c5ea293621f8cd22f6b3e14969801a65a65548bae49bd073a2d747bb0a845ad
+Previous Accepted Revision: D0033
+Frozen D0033: [原文](Revisions/Specialization_Design_Spec_D0033.md)
+Review: [综合训练双层结构](Military_D0034_Review.md)
+
+T1永久+1CS/领域且最多5不变；相同五领域的基础设施深度增加本城训练效率，T1-only无深度收益、T2阶段开始，三层D6和四层D10差异为预期。不新建Ability或Shared指标，不自动推导D>=3精确门槛/线性公式/购买折扣。其它Military规则、Shared、四专业及runtime不改。历史D0033保留。
 
 ## Accepted D0033 — 2026-09-20
 

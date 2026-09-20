@@ -42,3 +42,7 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 ## D0033 Military freeze
 
 [Military_D0033](Military_D0033.json) is DESIGN_FROZEN with [review](../Military_D0033_Review.md). Five candidate blockers resolved; units keep permanent birth ability snapshots, formation max per ability, full upgrade-line mobilization and separate commanders for disconnected networks. Naming placeholders/Balance/Technical/Legacy remain explicit. Other profession and Shared authority unchanged. Military implementation is not authorized; old candidate/source records remain historical.
+
+## D0034 Military amendment — current authority
+
+[Military_D0034](Military_D0034.json) replaces D0033 for Military only: 综合训练 now combines breadth→permanent unit quality and absolute Shared D→local training efficiency, within the same named ability. [Review and explicit deferred conversion details](../Military_D0034_Review.md). No relative normalization, no invented Production coefficients; Shared and other professions unchanged. D0033 links above are historical freeze provenance.
