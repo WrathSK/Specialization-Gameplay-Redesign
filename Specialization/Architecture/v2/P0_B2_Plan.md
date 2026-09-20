@@ -1,9 +1,19 @@
 # P0-B2 — Lv2 Housing / base GPP qualification plan
 
 Status: PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED
-Authority: D0032, Research D0031, Culture D0029, Industry/Commerce D0032, Shared D0028; A0160 plan / A0161 runtime contracts.
+Authority: D0035, Research D0031, Culture D0029, Industry/Commerce D0032, Shared D0035; A0160 plan / A0161 runtime contracts.
 Baseline: B079.106 / modinfo106; implementation b420a96; P0-B1 user PASS (including Industry), recorded fe07b5b.
 Evidence here: STATIC_CONFIRMED source observations only. No new implementation, prototype, deployment or game test.
+
+## D0035 revalidation — 2026-09-20
+
+[Executable context manifest](../../Workflow/P0-B2.json) and [review evidence](../../Workflow/P0-B2_Revalidation.md). This remains a plan, not implementation authorization. v0.1 scope is exactly Research/Culture/Industry/Commerce. Military D0034 and other future Designs add no required consumers, dependencies, carriers or tests to B2.
+
+Shared D0035 changes semantic/display interpretation of D, not ordinary eligibility or Lv2 rules. Housing uses distinct Tier existence, never weighted D/relative completion, and GPP uses actual workers. Do not import Military depth-efficiency or birth-buff rules. Existing scope, rollback B079.106 and exit gates stand.
+
+Catalog preflight remains mandatory:50 old housing IDs,45 directly present in current Shared allowlist; five absent IDs are FAIR, HD_ART_PUBLISHING_HOUSE, HD_DATA_CENTER, HD_ELECTRONICS_FACTORY and HD_INTERNET_COMPANY (BUILDING_ prefix). Absence does not authorize deletion. Old DATA_CENTER Tier5 versus shared supported0..4 must be resolved from installed definitions/authority before cutover, not clamped. This is not a newly decided Tier cap for Housing. Audit only four-profession relevant entries/replacements; Harbor/Neighborhood completeness and Military are separate future work. Unknown or ambiguous rows cannot silently shrink valid housing.
+
+Actual diagnostics buttons exist but are Hidden=1 in P0Panel.xml. Future B2 may expose/reuse a bounded existing diagnostic entry as necessary; no panel redesign. LV2_GPP_DIRTY also calls old Lv3/Lv4 consumers; preserve unrelated call behavior, do not widen B2 into their redesign. CityInheritance's caller is quarantined/unstarted, not permission to restore ownership.
 
 ## Goal / unchanged rules
 

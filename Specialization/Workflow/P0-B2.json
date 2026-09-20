@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "batch": "P0-B2",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0210",
+    "runtime": "B079.106 / modinfo106",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_B2_Plan.md",
+  "context": [
+    {
+      "path": "AGENTS.md",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/AGENTS.md",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/README.md",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Workflow/README.md",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Workflow/Authority.json",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Workflow/P0-B2.json",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Workflow/P0-B2_Revalidation.md",
+      "kind": "full",
+      "reason": "Governance/navigation/scope; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "head",
+      "reason": "Current status + scoped revalidation note",
+      "selector": 28
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "head",
+      "reason": "A0161 unchanged runtime contract; latest Design handled by scoped review",
+      "selector": 20
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "head",
+      "reason": "D0035 metadata",
+      "selector": 13
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Lv2 numerical rules and Shared semantic override",
+      "selector": "## 4. v0.1共同Lv2规则 — SHARED"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Enabled player/current identity/ACTIVE/anchor qualification",
+      "selector": "### Universal System + Opt-in Player Eligibility — ELIG"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Enabled player/current identity/ACTIVE/anchor qualification",
+      "selector": "## 3. 共同成长与永久投资 — PROG"
+    },
+    {
+      "path": "Specialization/Design/Design_ChangeLog.md",
+      "kind": "section",
+      "reason": "Current semantic amendment acceptance",
+      "selector": "## Accepted D0035 — 2026-09-20"
+    },
+    {
+      "path": "Specialization/Design/Content/README.md",
+      "kind": "full",
+      "reason": "Current content resolution; future content is not runtime scope"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "reason": "Complete Lv2 ability object with gates/notes",
+      "selector": "/abilities/0",
+      "expected_id": "RES_L2_TRAIN"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0032.json",
+      "kind": "json",
+      "reason": "Complete Lv2 ability object with gates/notes",
+      "selector": "/abilities/0",
+      "expected_id": "IND_L2_DIVISION"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Complete Lv2 ability object with gates/notes",
+      "selector": "/abilities/0",
+      "expected_id": "CUL_L2_PATRONAGE"
+    },
+    {
+      "path": "Specialization/Design/Content/Commerce_D0032.json",
+      "kind": "json",
+      "reason": "Complete Lv2 ability object with gates/notes",
+      "selector": "/abilities/0",
+      "expected_id": "COM_L2_GUILD"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Ontology/qualification; D explicitly not Housing",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Ontology/qualification; D explicitly not Housing",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Ontology/qualification; D explicitly not Housing",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Current semantic interpretation / non-consumer boundary",
+      "selector": "/consumer_confirmation"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Current semantic interpretation / non-consumer boundary",
+      "selector": "/reference_resolution"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "Unchanged four-profession Architecture contract",
+      "selector": "## Canonical state model — target contracts, not implemented schemas"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "Unchanged four-profession Architecture contract",
+      "selector": "## Shared facts and services"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "Unchanged four-profession Architecture contract",
+      "selector": "## Balance, observability and performance budget"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_B2_Plan.md",
+      "kind": "full",
+      "reason": "B2 complete sequence, local/user acceptance, exit/rollback"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "rows",
+      "reason": "B2 and common exit/rollback",
+      "selector": [
+        "| P0-B2 ",
+        "**所有批次共同的完成定义**",
+        "**每批回滚边界**"
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "section",
+      "reason": "No dual writer authority; save boundary",
+      "selector": "## Migration / cutover合同"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Technical_Spikes.md",
+      "kind": "rows",
+      "reason": "Only relevant shared/Lv2 spikes",
+      "selector": [
+        "| TS01 ",
+        "| TS19 "
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "kind": "full",
+      "reason": "Inherited P0-A/B1/shared performance and rollback evidence; no new feature authorization"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "kind": "full",
+      "reason": "Inherited P0-A/B1/shared performance and rollback evidence; no new feature authorization"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md",
+      "kind": "full",
+      "reason": "Inherited P0-A/B1/shared performance and rollback evidence; no new feature authorization"
+    },
+    {
+      "path": "Specialization/Architecture/Playtest_Workflow.md",
+      "kind": "full",
+      "reason": "Inherited P0-A/B1/shared performance and rollback evidence; no new feature authorization"
+    },
+    {
+      "path": "Mod/Lv2Housing.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/Lv2GPP.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/Data/Lv2Housing.sql",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/Data/Lv2GPP.sql",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/UI/GPPRefresh.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/GPPReadout.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct B2 writer/producer/entry/definition; read actual source before implementation"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_a.py",
+      "kind": "full",
+      "reason": "Protected consumer/full-regression evidence; unchanged hashes reused for planning, inspect for implementation assertions"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_b1.py",
+      "kind": "full",
+      "reason": "Protected consumer/full-regression evidence; unchanged hashes reused for planning, inspect for implementation assertions"
+    },
+    {
+      "path": "DevelopmentTests/test_arch_v2_d2.py",
+      "kind": "full",
+      "reason": "Protected consumer/full-regression evidence; unchanged hashes reused for planning, inspect for implementation assertions"
+    }
+  ],
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military metadata remains discoverable but no Military content is a P0-B2 required context."
+  },
+  "dependencies": [
+    "P0-A B078 confirmed D/workers reads; catalog/pillage coverage not universal PASS",
+    "P0-B1 B079.106 user PASS including Industry",
+    "A–D2 validity/idempotency/bounded-work contracts; shared batch facts"
+  ],
+  "old_writers": {
+    "adapt": [
+      "Mod/Lv2Housing.lua",
+      "Mod/Lv2GPP.lua"
+    ],
+    "retire": [
+      "Old independent housing tier inference only after audited replacement",
+      "Old UNKNOWN-to-empty reconciliation, not carrier IDs or unrelated effects"
+    ],
+    "families": [
+      "BUILDING_SPC_DEV_LV2_HOUSING_0..8 (9)",
+      "BUILDING_SPC_DEV_GPP_{RESEARCH,CULTURE,INDUSTRY,COMMERCE}_0..7 (32)"
+    ],
+    "entry_points": [
+      "LoadScreenClose and native governor/worker/turn/building/district events",
+      "Gameplay UNIT_ACTION_* / INVEST_* calls",
+      "Gameplay LV2_GPP_DIRTY; preserve other consumer calls",
+      "LV2_GPP_READ/LV2_HOUSING_READ Describe only",
+      "CityInheritance.restore caller is quarantined, must remain disabled"
+    ],
+    "guard": "Search all Mod for exact families/startup/load/hidden actions before authorized cutover; sole writer each family, no new carriers, no reactivation of B1 retired carriers."
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/PerformanceCounters.lua"
+      ],
+      "trigger": "Only necessary diagnostic/counter integration; existing read buttons hidden; no UX polish"
+    },
+    {
+      "paths": [
+        "Mod/CityFlowProbe.lua",
+        "Mod/CityJournalProbe.lua",
+        "Mod/BindingProbe.lua",
+        "Mod/InvestmentAction.lua",
+        "Mod/CityInheritance.lua"
+      ],
+      "trigger": "Changed facts/anchor/ownership contract or caller ambiguity; otherwise reuse unchanged indexed evidence, never restore inheritance"
+    },
+    {
+      "paths": [
+        "Mod/Lv3Effects.lua",
+        "Mod/Lv4Percent.lua",
+        "Mod/NetworkBridge.lua",
+        "Mod/SpecialistSupport.lua"
+      ],
+      "trigger": "Shared/event caller changes affect outputs; preserve unrelated consumers"
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_deployment.py",
+        "DevelopmentTests/test_temporary_playtest.py",
+        "DevelopmentTests/test_arch_v2_c2.py",
+        "DevelopmentTests/test_arch_v2_d1.py",
+        "DevelopmentTests/test_arch_v2_c1.py",
+        "DevelopmentTests/test_arch_v2_batch_b.py"
+      ],
+      "trigger": "Required regression/safety at implementation cutover; not executed as gameplay tests in this revalidation"
+    }
+  ],
+  "non_scope": [
+    "Military and all future professions, including their tests/carriers/normalizers",
+    "P0-C new yields, III/IV redesign, Network/Standardization/Commerce changes",
+    "Global catalog completion beyond required four-profession housing closure",
+    "UI polish/API rename/relative D/new formula",
+    "Save/ownership/History/inheritance/BatchE",
+    "Implementation/deployment/game launch in this synchronization task"
+  ],
+  "validation": {
+    "level": "Future writer cutover: focused tests plus dependency/full-runtime regression; this task context/static only",
+    "local": [
+      "ACTIVE1..4, four professions, worker0/1/multiple",
+      "Housing empty/T1/T1T2/T1T2T3/T1..T4/onlyT3 =>1/2/3/4/5/2; duplicates one perTier",
+      "free/unique/pillaged/repaired/unfinished/institution exclusion and anchor location",
+      "temporary UNKNOWN holds complete prior projection; confirmed invalid/zero withdraws once",
+      "reference/load/epoch correctness; identical input0writes",
+      "1/2/4/8 cities no quadratic national district capture; 10k unrelated notifications no scans/sends/writes",
+      "GPP2base perworking specialist, Culture three classes, native percent path; no ChangePointsTotal",
+      "full50-row old housing catalog compatibility matrix and exact41carrier definitions; no silent omission/Tier clamp"
+    ],
+    "dependency": [
+      "P0-A/P0-B1 and A–D2 composite; normal scenarios contain no module errors",
+      "Document deliberate eligibility/UNKNOWN deltas, preserve valid-input output and unrelated carrier maps"
+    ],
+    "safety": [
+      "Lua syntax/SQL/modinfo/carrier allowlist",
+      "deployment safety/temp tests without apply",
+      "no Design change; no new Property/save schema"
+    ],
+    "user": "After separately authorized implementation: one prepared ACTIVE2 city, housing read +workers0→1→2/GPP; optional existing Culture and governor check; no forced disasters. No current game test."
+  },
+  "full_audit_triggers": [
+    "Authorized Lv2 writer cutover requires full-Mod writer search/full regression",
+    "Unknown/new/deleted/hash-mismatched runtime dependency",
+    "Shared fact/anchor/Network/persistence contract change",
+    "Unexplained output or hidden writer; no blindly refreshed hash"
+  ],
+  "result": {
+    "revalidation": "STATIC_CONFIRMED plan/current-rule/source boundary review; context tests recorded in P0-B2_Revalidation.md",
+    "implementation": "NOT_STARTED / NOT_AUTHORIZED",
+    "game_test": "NOT_REQUESTED",
+    "exit": "Plan remains ready subject to mandatory catalog preflight before code cutover; B079.106 rollback; no automatic P0-C"
+  },
+  "context_status": "REVALIDATED_D0035"
+}

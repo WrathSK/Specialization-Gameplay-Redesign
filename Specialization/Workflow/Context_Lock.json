@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "P0-B1 B079 diff and dependencies reviewed against 324f455; frozen Design unchanged",
+  "review_basis": "D0035 scoped four-profession P0-B2 revalidation; changed authority documents reviewed; unchanged runtime/test/Architecture hashes inherit B079 evidence. See P0-B2_Revalidation.md; no implementation authorization.",
   "files": {
     "AGENTS.md": "18a30c39c68eb868b139dffab9e661de6efd661687190a05b913e32890293f0f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -52,19 +52,30 @@
     "Specialization/Design/Content/Commerce_D0032.json": "deef125d3c12b25830fb6b1e9ce9c0a6ae510b7e5c143f03cf8b8c70c4d1ba75",
     "Specialization/Design/Content/Culture_D0029.json": "00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b",
     "Specialization/Design/Content/Industry_D0032.json": "89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4ab3f404c63e19ae8510",
-    "Specialization/Design/Content/README.md": "e822a946c1168f3ab7471039a22e7da07b67705d0e103f6df0e85f30564fb8d7",
+    "Specialization/Design/Content/README.md": "f7972a6b08300ab04d4fb93429184d537a4dbb3f0da69448a1e03c2372abe9bb",
     "Specialization/Design/Content/Research_D0031.json": "6253c4eff548394fd3ee351e6f02abd2665b468e6c46f30865352351177b6dc1",
     "Specialization/Design/Content/Shared_D0028.json": "9ce20c5047d525321d5efc025f0578afac25a63f91b75acddefd631cc1f5d05a",
     "Specialization/Design/Culture_Era_Presentation_D0032.md": "e1a3e21e24fcca6d078299059a6b1299588c9148921784db8befd232ca8b1fb9",
-    "Specialization/Design/Design_ChangeLog.md": "e40bf58fa51a009e330f96a945dfdd522239b9ba0fb6b2f93fe2087385ee66cd",
-    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9",
+    "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
+    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "d8730bcb34c6a1a5ba3b86b2e9961b0bc0babbc72f17fcf8e53a4cc61d7a012a",
+    "Specialization/Status/Specialization_P0_Status.md": "183915e3593cafd391be8be314cd6ab5c048964044cc19602731618cdf8b5a15",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Architecture/v2/P0_B1_Specialist_Support.md": "a618e85dd272cbd0a6561ff6286bbadb7e46358379e7cf858115429007be8568",
     "DevelopmentTests/test_p0_b1.py": "b29f397c4034e6f3dbd820c4ef90de53577f4cda3bd7bc84aeb4e4c4908ae55e",
-    "Mod/SpecialistSupport.lua": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f"
+    "Mod/SpecialistSupport.lua": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f",
+    "Specialization/Design/Content/Shared_D0035.json": "f690053a45d54f702468180d0d957444b411c5f7ab7bd3656800e875c91b19a1",
+    "Specialization/Architecture/v2/P0_B2_Plan.md": "a9834e43b9da3d8c08f14d97e8cd3846cf94590633a376d80cd4c56c69df7ba3",
+    "Mod/Lv2Housing.lua": "f7ba314a03f16d8afbf5c7b638037c50299050fa9d1308795a40a3f8b3188b50",
+    "Mod/Lv2GPP.lua": "c70780c85d34d0d0185c7d98adede074c0b3b5c683074e635a73972d7f427535",
+    "Mod/Data/Lv2Housing.sql": "b909ba34e6569eaa36e5c877d3123aa8ffac2d990893774f18144eb63c4c18ba",
+    "Mod/Data/Lv2GPP.sql": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d",
+    "Mod/UI/GPPRefresh.lua": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
+    "Mod/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
+    "Specialization/Workflow/context.py": "3557b580569f151e768919978ae403d69c35b9035bb6ae187406a0130e6797f0",
+    "Specialization/Workflow/README.md": "cc5982b9833302f1cf90a4416bf93cd94ea7533cbe7064d0efd4b8e86b2fedac",
+    "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc"
   }
 }

@@ -33,7 +33,7 @@
   "runtime_commit": "b420a967f9b9ae468c5829a8de192dd443e9c6ea",
   "current_batch": null,
   "next_batch": "P0-B2 PLAN_READY (not authorized)",
-  "manifest": "Specialization/Workflow/P0-B1.json",
+  "manifest": "Specialization/Workflow/P0-B2.json",
   "live": "B079.106 / modinfo106; P0-B1 user game PASS including Industry; W0003 active",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
@@ -45,5 +45,19 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "STALE_PENDING_REVIEW: D0035 Shared semantic clarification. Military remains D0034; A0161 adapted through D0032; P0-B1 completion evidence unchanged. Current Spec resolves prior Shared_D0028 references through D0035. No implementation authorization or hash refresh."
+  "context_review_status": "P0-B2 REVALIDATED against D0035; PLANNED_NOT_AUTHORIZED. A0161 contracts retained for unchanged four-profession scope; no claim of Military Architecture adaptation. P0-B1 remains completed historical D0032 evidence.",
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military metadata remains discoverable but no Military content is a P0-B2 required context."
+  },
+  "context_revalidation_report": "Specialization/Workflow/P0-B2_Revalidation.md"
 }
