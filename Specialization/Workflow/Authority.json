@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0215",
+    "status": "S0216",
     "runtime": "B081.108 / modinfo108",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "PENDING_P0_C_IMPLEMENTATION_COMMIT",
+  "runtime_commit": "6736fc55f5f7e3f890a89c830e3ece59d0067008",
   "current_batch": "P0-C IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "next_batch": "P0-C user validation; P0-D1 plan only after user request",
   "manifest": "Specialization/Workflow/P0-C.json",
-  "live": "B080.107 / modinfo107 deployed under W0003; 126 per-file hashes verified; P0-B2 user-reported PASS; B079 recovery retained",
+  "live": "B081.108 / modinfo108 deployed W0003; 128 file hashes verified; B080 recovery retained; P0-C USER_GAME_TEST_REQUIRED",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

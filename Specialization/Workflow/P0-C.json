@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0215",
+    "status": "S0216",
     "runtime": "B081.108 / modinfo108",
     "military": "D0034"
   },
@@ -317,7 +317,8 @@
   "result": {
     "implementation": "B081.108 completed; user clarified single Campus per city, no multi-Campus blocker",
     "local": "LOCAL_SIMULATION_PASS test_p0_c + test_p0_c_regression + deployment safety; actual new writer and precise retired48 absence",
-    "game_test": "USER_GAME_TEST_REQUIRED native specialist Science settlement"
+    "game_test": "USER_GAME_TEST_REQUIRED native specialist Science settlement",
+    "deployment": "W0003 B081.108 deployed; 128 per-file hashes match implementation6736fc5, B080 backup retained"
   },
   "implementation_scope": {
     "v0_1": [

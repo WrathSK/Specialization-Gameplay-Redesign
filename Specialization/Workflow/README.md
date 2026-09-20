@@ -7,7 +7,7 @@ Design / Architecture always override Workflow. No Gameplay rule, implementation
 
 Use `python3 Specialization/Workflow/context.py check P0-C` (also plan/read/self-test). [P0-C.json](P0-C.json) is IMPLEMENTATION_COMPLETE_AWAITING_USER; see [implementation](../Architecture/v2/P0_C_Research_Infrastructure.md). Single-Campus environment clarified by user; old Research IV cutover complete, native Science settlement awaits user acceptance. [Concrete plan](../Architecture/v2/P0_C_Plan.md) records48 old Research IV carrier IDs, shared fact inputs, specialist Science primitive gate and protected Industry/Culture boundaries. P0-B2 user PASS recorded without invented screenshots or per-edge claims; completed B1/B2 manifests retain historical authority maps.
 
-v0.1 scope remains Research/Culture/Commerce/Industry only. Military authority metadata creates no new runtime dependency. D0035 absolute-depth semantics remain; no Design/runtime/deployment changes in this planning batch. W0001 integrity checks are never implementation permission.
+v0.1 scope remains Research/Culture/Commerce/Industry only. Military authority metadata creates no new runtime dependency. D0035 absolute-depth semantics remain; Design remains unchanged; current implementation/deployment status follows Authority/Status. W0001 integrity checks are never implementation permission.
 
 Entry: [Authority](Authority.json) → requested [batch manifest](P0-B1.json) → relevant rules/contracts → direct source → conditional dependencies → triggered full audit.
 

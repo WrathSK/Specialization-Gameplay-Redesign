@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "de0d5b75b339de4c6fa56982497644cd3a9699d76c9105d7a71d5fa5304f8464",
+    "Specialization/Status/Specialization_P0_Status.md": "e5a676145c7fbfb0ee9c86404652aad7d1e7f930726879d95d01c4b6ff29a274",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -75,7 +75,7 @@
     "Mod/UI/GPPRefresh.lua": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
     "Mod/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
     "Specialization/Workflow/context.py": "c1f5fdf32a26ad36556b8b00c388b27145aff576f394e33a07548e374699f12a",
-    "Specialization/Workflow/README.md": "9da5455370637e9a3d258743456b36c4697a95e29c5b9f976b9d8bc4f165d446",
+    "Specialization/Workflow/README.md": "85ba0c346cc7791503247e34451587a0250e7b8f74ed4be3ae67c794ce1ab196",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md": "f657b5b836e5b898f2d3f26fedaf77e63eeb3336f5a0334ab708fd81a798fdc0",
     "DevelopmentTests/test_p0_b2.py": "d767741f9968759bcb733f6295cc08750d2fa8c3111a5cca42adbc8e8c424acf",
@@ -99,6 +99,7 @@
     "Mod/ResearchInfrastructure.lua": "03bae7fc39398c8c7b21a71b0b3bca307f2a0c55fe5f0e758bc04208c2052a6c",
     "Mod/Data/ResearchInfrastructure.sql": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
     "DevelopmentTests/test_p0_c.py": "a96bb8fb3ad3433b20861f4e0ec88455e6e980eba01a3c503d0153ef98016ced",
-    "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025"
+    "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025",
+    "Specialization/Status/Validation/Results/Specialization_B081_P0C_Deployment_20260920.md": "44f6bf5ff8abc3d881ee4364d8036b83c4a8876bae1fa41e1dd0e9ba3a99b728"
   }
 }
