@@ -105,8 +105,9 @@
     "Specialization/Architecture/v2/README.md": "a4129a22488dfc90e66076ad908550e41d888adc61118f026c0d7fc3e46176f7",
     "Mod/Data/Lv3Effects.sql": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975",
     "DevelopmentTests/test_p0_d1_gate.py": "b0ac8baedfaef8bac50d63fec4d3851c2b7e8780cf05e2d60d2b15996373197b",
-    "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "e99959f88435f6f9cde75a287d9a7710a2f78eab624ccb2970fd95d46e656951",
+    "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "91f1abc35f7827ab333addcd8f15d4043d491532800bafbe3ef311dc6d0630a5",
     "DevelopmentTests/Fixtures/P0D1/ResearchCrossModel.lua": "2e58009303ad9ab6ec47e66e23fd9b614a74e6eb77ba47de83538a315d6a3351",
-    "DevelopmentTests/Fixtures/P0D1/static_evidence.json": "3d2e5ca25018c4c7dccb43976281ec304da07db3e605ab014c25b3e32325a1dd"
+    "DevelopmentTests/Fixtures/P0D1/static_evidence.json": "3d2e5ca25018c4c7dccb43976281ec304da07db3e605ab014c25b3e32325a1dd",
+    "Specialization/Reports/Technical/HD_Policy_Fractional_PerPopulation_P0D1.md": "64eb7f825dfb41502f5bfccf677a0a20ddc175264b600c95ae871f61b215bf5d"
   }
 }

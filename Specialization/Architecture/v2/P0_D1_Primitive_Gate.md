@@ -3,6 +3,10 @@
 Status: AUTHORIZED / PRE_CUTOVER_GATE_OPEN. P0-D1未完成，不标PASS。
 Baseline: 86a67bc；runtime仍B081.108/modinfo108，P0-C用户Pass有效。Design D0035/Research D0031不改。
 
+## HD政策补充证据（优先于下方先前停止依据）
+
+[四政策专项调查](../../Reports/Technical/HD_Policy_Fractional_PerPopulation_P0D1.md)确认原生同一per-population Effect存在0.2/0.3/0.7正式参数。旧Copy编码器限制不能作为原生只能半点的证据；上一轮因此停止调查过早。后续在既有P0-D1授权内优先验证固定目标量的等价承载及人口变化/量化，不新增Design人口乘数。原生门禁尚未通过，旧writer保持完整。
+
 ## 本轮已完成
 
 - 按用户实施授权检查实际Lv3Effects、SampleLifecycle、IndustryRefresh、CopyYieldRefresh及相关写入/派发入口；没有实施writer切换。
