@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0231",
+    "status": "S0232",
     "runtime": "B088.115 / modinfo115",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "3136810dd37ea2035b1a8ef1538a38d90e55b733",
   "current_batch": "P0-E1 IMPLEMENTATION_COMPLETE_AWAITING_USER",
-  "next_batch": "Native identity evidence review; E2/F gated, no automatic continuation",
+  "next_batch": "E1 native property-loss evidence held; investigate transfer mapping before any persistence spike; no E2/F",
   "manifest": "Specialization/Workflow/P0-E1.json",
   "live": "B088.115 / modinfo115 deployed W0003;148 exact hashes;B087 and stable recovery verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Read-only E1 implementation and bounded event model verified; old writer and Design hashes protected",
+  "context_review_status": "Three B088 screenshots reviewed and archived; capital reload and branch-city transfer separated; no runtime change",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

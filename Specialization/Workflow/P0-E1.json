@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0231",
+    "status": "S0232",
     "runtime": "B088.115 / modinfo115",
     "military": "D0034"
   },
@@ -76,6 +76,11 @@
       "path": "Mod/CityIdentityRead.lua",
       "kind": "full",
       "reason": "Actual readonly resolver/observer"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Native_Review.md",
+      "kind": "full",
+      "reason": "Native negative persistence evidence and exact two-city test boundary"
     }
   ],
   "dependencies": [
@@ -132,6 +137,7 @@
     "local": "LOCAL_SIMULATION_PASS",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
     "migration": "No writes; every preview migrationAllowed=false",
-    "next": "Stop; E2/F not authorized"
+    "next": "E1 gate held; investigate before requesting more native tests; no E2/F",
+    "native_observation": "Capital original-anchor reload readable; branch-city Free City transfer loses five City properties; UNKNOWN protection passed"
   }
 }

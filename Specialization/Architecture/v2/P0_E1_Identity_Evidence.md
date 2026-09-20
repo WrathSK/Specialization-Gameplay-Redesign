@@ -1,7 +1,9 @@
 # P0-E1 — 只读城市身份核对 / B088.115
 
 Authority: A0161 / D0035，四专业范围不变。用户已授权E1实施。
-Status: **LOCAL_SIMULATION_PASS；跨Owner/冷读档城市连续性门禁 TECHNICAL_INVESTIGATION_REQUIRED。**
+Status: **LOCAL_SIMULATION_PASS；首都原范围读档/分城UNKNOWN保护已有用户实机证据；跨Owner永久城市连续性门禁仍 TECHNICAL_INVESTIGATION_REQUIRED。**
+
+最新[三图实机复核](../../Status/Validation/Results/Specialization_B088_P0E1_Native_Review.md)：分城转自由城市后五项City记录原有现无；不能依赖这些City Properties自动跨Owner保留。两张首都读档图与分城易主图分开记证据。以下实现范围/原测试计划保留，不要求用户立即重复。
 本批可交付观察工具，但不是E1全部门禁PASS；E2/F不开放。没有正式迁移、持久marker、旧继承writer启动或新收益。
 
 ## 1. 实际实现

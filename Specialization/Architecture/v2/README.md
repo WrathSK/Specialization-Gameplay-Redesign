@@ -1,6 +1,6 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前进度：[P0-E1只读身份核对B088.115](P0_E1_Identity_Evidence.md)本地完成；原生连续性门禁待核验，不进入E2/F。U1技术用户PASS，最终排版后置。
+当前进度：[P0-E1只读身份核对B088.115](P0_E1_Identity_Evidence.md)本地完成；原生观察发现分城转自由城后City记录缺失，正确UNKNOWN；永久连续性门禁保留，不进入E2/F。U1技术用户PASS，最终排版后置。
 
 历史进度：[U1科研展示原型B087.114](U1_Presentation_Prototype.md)本地通过，待实际显示确认；非完整U1，不继续下一批。
 

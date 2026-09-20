@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0231
+Status Revision: S0232
 Implementation Build: develop P0-B-088.115 / modinfo115; live B088.115 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_READONLY_LOCAL_PASS_NATIVE_GATE_PENDING
+Work State: P0_E1_NATIVE_PROPERTY_LOSS_OBSERVED_GATE_HELD
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B088 E1三图实机复核](Validation/Results/Specialization_B088_P0E1_Native_Review.md)：首都测试1/2支持原范围读档后记录可核对；分城测试3转自由城市0/131073→62/65536时五项旧City记录均原有现无，正确UNKNOWN并停止认领。诊断保护行为USER_GAME_TEST_PASS（本例），永久城市连续性门禁仍TECHNICAL_INVESTIGATION_REQUIRED；不拼接两城证据，不进入E2/F。三原图已hash归档；无需用户立即补测。下一步仅建议调查原Game账本/转移事件可靠映射，任何持久实验另审。本轮仅证据/Status更新，runtime/main/部署不变。
 
 P0-E1已获授权并完成只读实现：[B088.115证据/迁移预演](../Architecture/v2/P0_E1_Identity_Evidence.md)。LOCAL_SIMULATION_PASS（实际Lua/事件模型，不是Civ VI实机证明）；原Owner结构匹配仅候选，所有migrationAllowed=false。32条事件环、30k通知无读取/写入；完整前序回归通过。旧writer/Design/收益SQL/main不变，未迁移存档。原生跨Owner/冷load连续性TECHNICAL_INVESTIGATION_REQUIRED；E1整体未PASS，不进入E2/F。[W0003部署完成](Validation/Results/Specialization_B088_P0E1_Deployment.md)：148文件逐项一致，B087/stable完整恢复点核验，无启动游戏。以下旧计划阶段叙述为历史。
 

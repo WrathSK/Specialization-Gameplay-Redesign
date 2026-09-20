@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "Authorized E1 readonly scope; actual model/dispatch/UI and protected regressions; native continuity not claimed",
+  "review_basis": "B088 native screenshots review; docs/status only, runtime and Design unchanged",
   "files": {
     "AGENTS.md": "18a30c39c68eb868b139dffab9e661de6efd661687190a05b913e32890293f0f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "e205dd7aef1af9ad1ce947e58eefc65f0565668c3b06c2523b0f7a60195742e2",
+    "Specialization/Status/Specialization_P0_Status.md": "1cbe29e58921da2cc37c83c32a0fc037ba1e1dfde4e6cce45552f628b52e1645",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -102,7 +102,7 @@
     "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025",
     "Specialization/Status/Validation/Results/Specialization_B081_P0C_Deployment_20260920.md": "44f6bf5ff8abc3d881ee4364d8036b83c4a8876bae1fa41e1dd0e9ba3a99b728",
     "Specialization/Architecture/v2/P0_D1_Plan.md": "8e0eade15be491a2c157b4e4f43e493bc2559e4039e31a0709120753da95d324",
-    "Specialization/Architecture/v2/README.md": "0ecc3357531d16d97c6ea77ebb9798ce8b70d27ed567322b19d2c268909bedbd",
+    "Specialization/Architecture/v2/README.md": "6e93dc14a592f6f4b4ae011569a2cf1de29d3e3f97251298799affd73487f125",
     "Mod/Data/Lv3Effects.sql": "6b202d054f7911dfe909185498744db6211c49fb6d1f31bdc5d89be73761f8d0",
     "DevelopmentTests/test_p0_d1_gate.py": "b0ac8baedfaef8bac50d63fec4d3851c2b7e8780cf05e2d60d2b15996373197b",
     "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "c997fab84525ae74051b9c0b56b39c8414b28685fd0415b7cb790488a301c3a5",
@@ -154,12 +154,14 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "953e9b2e1e04a7741ead86292da4c5002d34fc25593956efba266e59f8c7caef",
-    "Specialization/Workflow/Authority.json": "afb3102492f96a6f7e883d15ce2698e39935516c0ee62ae3473fce5478a530fe",
+    "Specialization/Workflow/Authority.json": "0c828a4a382f9abe407ad55cf9d8138c9891d30db677ca718cf068c525fc0b55",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
-    "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "0c53e7c455eed5ba8adac0a3d71560af0507b72c9be0b2e0e79fc91a19125f2e",
+    "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "c9182b61704d5739c8bb140790ac6ce2eae667e37780fe63f7ed0349687ac9e7",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
     "DevelopmentTests/test_p0_e1.py": "d80735ad2b70ae5566265a0a95f6721a501e120935569bca4aa054bbc0979439",
     "DevelopmentTests/test_p0_e1_regression.py": "fbcae1f1b02ad635e8f2125ae381206b79dc4bc86014f9063bcb5e690cd01333",
-    "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Deployment.md": "089ae43a288b0854358dc71c6faf53b3832756dc69c3a690daa9c203710834df"
+    "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Deployment.md": "089ae43a288b0854358dc71c6faf53b3832756dc69c3a690daa9c203710834df",
+    "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Native_Review.md": "86088c560ebb8e1221baf1a785c2fbb2c2d851c725b653ef9c0901362dce6f95",
+    "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Evidence.json": "76ee68e1dbd74b2848bbddc70520055b2b791981893ca5f35f300056f7aa0543"
   }
 }
