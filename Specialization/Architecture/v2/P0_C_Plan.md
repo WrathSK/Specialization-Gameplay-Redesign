@@ -1,6 +1,6 @@
 # P0-C — Research IV 科研基础设施：具体实施计划
 
-Status: AUTHORIZED (2026-09-20). Implementation preflight started; native specialist scope gate remains open. See [gate evidence](P0_C_Primitive_Gate.md). Original plan below preserved; no formal cutover yet.
+Status: IMPLEMENTATION_COMPLETE_AWAITING_USER, B081.108. User clarified single Campus per city; multi-Campus concern does not block this environment. See [implementation](P0_C_Research_Infrastructure.md). Original approved plan below is retained as provenance, with the environment clarification superseding its multi-Campus implementation gate.
 Authority: D0035 / Shared D0035; Research D0031 RES_L4_INFRA; A0161 and D0032_Implementation_Plan P0-C. Four-profession v0.1 scope unchanged; Military future only.
 Baseline: B080.107/modinfo107, implementation c56c6de, repository39d5b09. P0-A facts and B1/B2 user acceptance inherited; new C effect not implemented/tested. STATIC_CONFIRMED below means source evidence, not engine acceptance.
 

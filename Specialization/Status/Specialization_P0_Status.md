@@ -1,15 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0214
-Implementation Build: develop P0-B-080.107 / modinfo107; live B080.107 / modinfo107; stable B069.96 / modinfo96
+Status Revision: S0215
+Implementation Build: develop P0-B-081.108 / modinfo108; live B080.107 / modinfo107 pending W0003 deployment; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_C_AUTHORIZED_PRIMITIVE_GATE_OPEN
+Work State: P0_C_LOCAL_PASS_AWAITING_USER_GAME_TEST
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-C完成B081.108/modinfo108：[科研基础设施实施](../Architecture/v2/P0_C_Research_Infrastructure.md)。用户明确单学院环境，多学院顾虑不再阻塞；四原生专家Science bit承载D，精确退出48旧Research IV百分比/复制effect。Culture/Industry等保持；无Design改动。100配置、真实生命周期/清理/诊断、线性读取/10k idle及完整前序回归LOCAL_SIMULATION_PASS；不是引擎PASS。诊断左键简明摘要、右键学院组成；新Science原生结算待一次科研城短测。已检查游戏无进程，待clean commit/push后按W0003安全部署；实际完成另记。main B069.96保持。下一批不启动。
+
+### Historical pre-cutover gate (superseded by user single-Campus clarification)
 
 P0-C已明确授权，完成实施前本地计算/SQL候选验证，**尚未完成正式收益切换**：[TS02门禁证据](../Architecture/v2/P0_C_Primitive_Gate.md)。100组实际shared Lua计算通过，多学院最高D/全部专家和掠夺排除的计算通过；原生载体是否覆盖多个学院实例仍UNKNOWN，不能据mock宣布支持或不支持。已找到带plot参数的外部调用线索，待独立原生验证。旧Research IV两个writer和48载体未关闭，无半迁移。Mod/Design未改，B080.107运行包不变，无部署。诊断易读性要求已持久化。下一步仍是P0-C primitive验证；不重问整个实施授权，不进入下一批。
 

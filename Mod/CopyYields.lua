@@ -36,28 +36,6 @@ function SPCCopyYields.Start(P,shared)
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return 0 end
   local f=readFacts(pid,c)
   assert(type(f.specialization)=='string' and type(f.active)=='number','COPY_FACTS_UNAVAILABLE')
-  if y=='SCIENCE' then
-   if f.specialization~='RESEARCH' or f.active~=4 then return 0 end
-   assert(f.first,'COPY_FACTS_UNAVAILABLE')
-   local live=currentDistricts(pid);local anchorLive=live[c:GetID()..':'..f.first.districtID]
-   if not anchorLive or anchorLive.type~=f.first.type then return 0 end
-   local rows=sample(pid);local sum=0;local anchor=false
-   local cityRows=rows
-   if batch then
-    batch.copyCities=batch.copyCities or {}
-    if not batch.copyCities[pid] then
-     local t={};for _,r in pairs(rows) do t[r.cityID]=t[r.cityID] or {};t[r.cityID][#t[r.cityID]+1]=r end;batch.copyCities[pid]=t
-    end
-    cityRows=batch.copyCities[pid][c:GetID()] or {}
-   end
-   for _,d in pairs(cityRows) do if d.cityID==c:GetID() then
-    if d.id==f.first.districtID and d.type==f.first.type and d.type=='DISTRICT_CAMPUS' then anchor=true end
-    if d.type~='DISTRICT_CAMPUS' then
-     sum=sum+d.total
-    end
-   end end
-   if not anchor then return 0 end;return sum*0.5
-  end
   local ok,ids=pcall(shared.NetworkBridge.CurrentRecipientSources or shared.NetworkBridge.RecipientSources,pid,c,'INDUSTRY')
   if not ok then
    local b=shared.NetworkBridge.players and shared.NetworkBridge.players[pid]
@@ -103,7 +81,7 @@ function SPCCopyYields.Start(P,shared)
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   for pid,p in pairs(Players) do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid) then
    local ok,why=pcall(function()
-    for _,c in p:GetCities():Members() do P.Count('city_scan'); for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
+    for _,c in p:GetCities():Members() do P.Count('city_scan'); for _,y in ipairs({'PRODUCTION'}) do
      local key=pid..':'..c:GetID()..':'..y
      local good,plan=pcall(function() return SPCCopyYields.Plan(target(pid,c,y),c:GetPopulation()) end)
      local reason=not good and tostring(plan) or nil
@@ -130,7 +108,7 @@ function SPCCopyYields.Start(P,shared)
   lines[#lines+1]='后台='..(bg and tostring(bg.state) or '未启动')..' | 请求='..(bg and tostring(bg.requests) or '0')..' | 接收序号='..tostring(data.seq[pid] or '无')..' | 有效批次='..(s and tostring(s.turn) or '无')
   if bg and bg.error then lines[#lines+1]='后台原因：'..bg.error end
   if data.receiveErrors[pid] then lines[#lines+1]='接收原因：'..code(data.receiveErrors[pid]) end
-  for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
+  for _,y in ipairs({'PRODUCTION'}) do
    local key=pid..':'..c:GetID()..':'..y;local plan=data.last[key];local err=data.errors[key]
    local good,n=pcall(target,pid,c,y)
    lines[#lines+1]=y..' 本项预期='..(good and tostring(n) or '暂不可判断')..' | 已配置='..(plan and tostring(plan.amount) or '未知')
@@ -152,7 +130,7 @@ function SPCCopyYields.Start(P,shared)
  local function cleanupDormant()
   for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then
    local ok,err=pcall(function() for _,c in p:GetCities():Members() do P.Count('city_scan');
-    for _,y in ipairs({'SCIENCE','PRODUCTION'}) do reconcile(c,y,SPCCopyYields.Plan(0,1),true) end
+    for _,y in ipairs({'PRODUCTION'}) do reconcile(c,y,SPCCopyYields.Plan(0,1),true) end
    end end)
    if not ok then print('[SPC][B051][CLEANUP_ERROR] '..tostring(err)) end
   end end

@@ -49,28 +49,19 @@ function SPCLv4CopyRead.Render(P,m)
   assert(c and c:GetOwner()==m.owner,'OWNER_CHANGED')
   local function label(city) return Locale.Lookup(city:GetName())..' (#'..city:GetID()..')' end
   local lines={'区域与来源复核（读取不修改收益）',label(c)..' | '..m.kind..' ACTIVE='..m.active}
-  local sum=0;local raw={};local wanted={}
+  local raw={};local wanted={}
   for _,v in ipairs(m.sources) do wanted[v.cityID..':'..v.districtID]=true end
   for _,d in Players[m.owner]:GetDistricts():Members() do P.Count('district_scan');
-   local dc=d:GetCity();local row=P.Info('Districts',d:GetType())
+   local dc=d:GetCity()
    if dc and dc:GetOwner()==m.owner and d:IsComplete() and
-    ((dc:GetID()==m.cityID and row)
-     or wanted[dc:GetID()..':'..d:GetID()]) then
+    wanted[dc:GetID()..':'..d:GetID()] then
     local yields={};local total=0
     for _,key in ipairs({'FOOD','PRODUCTION','GOLD','SCIENCE','CULTURE','FAITH'}) do
      local n=d:GetYield(P.Info('Yields','YIELD_'..key).Index)
      SPCLv4CopyRead.Half(n);yields[key]=n;total=total+n
     end
     raw[dc:GetID()]=raw[dc:GetID()] or {};raw[dc:GetID()][d:GetID()]={production=yields.PRODUCTION,total=total}
-    if dc:GetID()==m.cityID and row.DistrictType~='DISTRICT_CAMPUS' then
-      sum=sum+total;local values={}
-      for _,key in ipairs({'FOOD','PRODUCTION','GOLD','SCIENCE','CULTURE','FAITH'}) do if yields[key]~=0 then values[#values+1]=key..'='..yields[key] end end
-      lines[#lines+1]=Locale.Lookup(row.Name)..': '..(#values>0 and table.concat(values,' ') or '0')
-    end
    end
-  end
-  if m.kind=='RESEARCH' then
-   lines[#lines+1]='科研：全部非学院区域合计='..sum..'；50%='..SPCLv4CopyRead.Half(sum)..'；ACTIVE生效预期='..(m.active==4 and SPCLv4CopyRead.Half(sum) or 0)
   end
   if m.networkError then lines[#lines+1]=notice(m.networkError)
   elseif #m.sources==0 then

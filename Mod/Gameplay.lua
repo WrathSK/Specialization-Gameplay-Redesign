@@ -30,15 +30,15 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
   end
-  if params.Action=='COMPLETENESS_READ' then
+  if params.Action=='COMPLETENESS_READ' or params.Action=='RESEARCH_INFRA_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     shared.RequestToken=params.Token
     local ok,report=pcall(function()
       local c=Players[playerID]:GetCities():FindID(params.CityID)
       assert(c and c:GetOwner()==playerID,'DC_SELECTED_CITY_UNAVAILABLE')
-      return SPCResearchInfrastructureShadow.Describe(P,shared,playerID,c)..'\n\n'..shared.Lv2Housing.Describe(playerID,c)..'\n\n'..shared.Lv2GPP.Describe(playerID,c)
+      return shared.ResearchInfrastructure.Describe(playerID,c,params.Action=='RESEARCH_INFRA_DETAIL')
     end)
-    shared.Snapshot=ok and report or ('P0-A读取未完成：'..tostring(report))
+    shared.Snapshot=ok and report or ('科研基础设施读取未完成：'..tostring(report))
     shared.LastToken=params.Token;return
   end
   if params.Action=='CITY_PRESENTATION_READ' then
@@ -210,6 +210,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
     if shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
+    if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -231,6 +232,7 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     return
   end
   if params.Action=="NETWORK_PUSH" then
@@ -272,6 +274,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
     if shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
+    if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -481,6 +484,8 @@ SPCCrewPrecision.Start(P,shared)
 
 include("Lv4Percent")
 SPCLv4Percent.Start(P,shared)
+include("ResearchInfrastructure")
+SPCResearchInfrastructure.Start(P,shared)
 
 include("HalfYieldProbe")
 SPCHalfYieldProbe.Start(P,shared)

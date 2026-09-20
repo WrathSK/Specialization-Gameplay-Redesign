@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "c56c6de793ba5bac4d6c5a6de61f360c3490d81a",
-  "runtime": "B080.107 / modinfo107",
+  "runtime_commit": "PENDING_P0_C_IMPLEMENTATION_COMMIT",
+  "runtime": "B081.108 / modinfo108",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -71,9 +71,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CopyYields.lua": {
-      "sha256": "bbb74d05865d217947f84197543024d99d698fbe61f8197a877bd51f544b7c93",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "b7f1abdde43502beb6cbc3b84a29a906a7caa696cf20f1fb7d9ac854961778e2",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/CrewPrecision.lua": {
       "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
@@ -111,9 +111,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/CopyYields.sql": {
-      "sha256": "180ac97afbdb3f68c90fd944632bdc3bcbd9c6b50058143b4b7a11b0636546c6",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "8261e4a4fc4542a53edf8b6577588e8259b6d7b2553d988bdea350a741da88c8",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Data/Crew.sql": {
       "sha256": "998c2e6a95228f967082be4b93c45fbb32223a899b3641977534187cf22fcc2d",
@@ -186,9 +186,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/Data/Lv4Percent.sql": {
-      "sha256": "76daaefdf7c3edffe1839ff1199386b633f041e283beafc51f88877c97c34c29",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "108bf6fddb1efb2fab19a7c07014108c7a134b763bf840cf69c5936572f9665a",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Data/NetworkBoost.sql": {
       "sha256": "548f682535b9044881ec3b612629d765eded660411b9f707f8cc67879ab4307d",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "768fadff1f9026cb2a4bb411137d28d3926843eb5de2b9485035decc1665b83c",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "885cea89917e029ad919f8d16b70e0da381102fdfcabf1ca3ba3832dc7c4aa76",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -326,14 +326,14 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/Lv4CopyRead.lua": {
-      "sha256": "5d58f139be76577107a7dda0f0088ad81cecaed49ca7c52653e40508369c627c",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Lv4Percent.lua": {
-      "sha256": "f6859395cef39a802ee6cbe70f6ead5c81bbf304f9de47d3c2d4cde041ce24a8",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "a4ef8a6a6fbe1efbeba891b21bcfd94f480f0cecb6c64aadae568d1037cad96e",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/NetworkBoost.lua": {
       "sha256": "619ef2f6001bc812011b50a66677b09691b91a90d2efedeb0f5fdc1bac60926b",
@@ -366,9 +366,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Probe.lua": {
-      "sha256": "d1bcc0f18d62790284cfe94fd263f8465c34987073328dbe0fc4adf4f0fdc39b",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "e40ead63c315cc68dbddbf88a6ec090576787ac62ee02c8f43e01a78b8ada742",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "339e3c5467b02c21cd6df8adcea0cdd9cdbfd279d8cce683bd4b1095f55714cf",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "9361a92f02f97138507af68c369ec3c773e7e87fc6db1d0ec9dae7bda53e10db",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "6705f105061e1c0873af7928bfa620239848668a70962555f2bdf1ced22c9312",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "74b101a5b846d606cd97df5281b93147aa0bacdcc19b4a8a0426b4696f237330",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "e03eb1545fc01dec22a4bd2e8b8009d847db469f90933ad20b4941cdf217d62e",
@@ -566,9 +566,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "c0e3662add4df6777515b4ecca4393914e5e0abd62dd736c0d03b8c75e333e18",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "0af57f2a7f16b5d80a88f9e2aa3e02073b1536aadd97c8b4f2eecab56e0a7f1e",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -634,6 +634,16 @@
       "sha256": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f",
       "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+    },
+    "Mod/ResearchInfrastructure.lua": {
+      "sha256": "03bae7fc39398c8c7b21a71b0b3bca307f2a0c55fe5f0e758bc04208c2052a6c",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+    },
+    "Mod/Data/ResearchInfrastructure.sql": {
+      "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     }
   }
 }

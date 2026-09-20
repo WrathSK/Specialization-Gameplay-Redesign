@@ -7,9 +7,11 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-080.107 / modinfo107; live B080.107 / modinfo107; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-081.108 / modinfo108; live deployment state in Status; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-C B081.108 [科研基础设施正式writer/cutover](v2/P0_C_Research_Infrastructure.md)已完成本地验证，待用户原生结算验收。用户明确单学院环境，先前多学院门禁不再阻塞；A0161目标合同未变。四新bit载体、旧48无效tombstone、简明按需诊断，非目标能力保持。以下实施前门禁段落为历史状态。
 
 P0-C已授权，当前[原生专家收益门禁](v2/P0_C_Primitive_Gate.md)待关闭；仅离线计算/SQL候选验证，正式writer和旧48效果尚未切换。A0161目标不变、运行B080不变；以下“P0-C未开始”属于前次状态。
 

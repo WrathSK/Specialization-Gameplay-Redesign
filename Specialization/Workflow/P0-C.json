@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-C",
-  "status": "AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -11,8 +11,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0214",
-    "runtime": "B080.107 / modinfo107",
+    "status": "S0215",
+    "runtime": "B081.108 / modinfo108",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_C_Plan.md",
@@ -244,12 +244,27 @@
       "path": "Specialization/Architecture/v2/P0_C_Primitive_Gate.md",
       "kind": "full",
       "reason": "Current primitive evidence, explicit unresolved gate and diagnostic readability contract"
+    },
+    {
+      "path": "Mod/ResearchInfrastructure.lua",
+      "kind": "full",
+      "reason": "P0-C implemented authority/writer and exact cutover evidence"
+    },
+    {
+      "path": "Mod/Data/ResearchInfrastructure.sql",
+      "kind": "full",
+      "reason": "P0-C implemented authority/writer and exact cutover evidence"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "kind": "full",
+      "reason": "P0-C implemented authority/writer and exact cutover evidence"
     }
   ],
   "dependencies": [
     "P0-A verified D/worker facts (not universal catalog/pillage PASS)",
     "P0-B1/B2 user PASS",
-    "TS02 specialist base Science primitive: local prototype and native evidence still required",
+    "TS02 native citizen-yield table reused; user single-Campus clarification; final Science settlement awaiting game test",
     "A–D2 verified-input/no-op/bounded lifecycle contracts"
   ],
   "old_writers": {
@@ -293,17 +308,16 @@
       "Culture/Industry/B1/B2 unchanged output and full regression",
       "SQL/modinfo/allLua and deployment safety"
     ],
-    "user": "Future single prepared Research IV city: workers,D,ACTIVE,load; not requested now"
+    "user": "One prepared Research IV city: workers,D,ACTIVE,save/load; brief summary first, detail only on mismatch"
   },
   "full_audit_triggers": [
     "P0-C effect cutover requires all-Mod ID/writer/SQL/hidden action search and full regression",
     "new/hash-mismatched dependencies or primitive mismatch require expanded review"
   ],
   "result": {
-    "planning": "User accepted plan and authorized implementation",
-    "implementation": "PRE_CUTOVER_TECHNICAL_GATE_OPEN; no runtime change",
-    "local": "100 actual shared Lua cases + multi-Campus expected output + offline candidate SQL PASS; not full P0-C regression",
-    "game_test": "NOT_REQUESTED: no runnable native probe prepared; coverage UNKNOWN"
+    "implementation": "B081.108 completed; user clarified single Campus per city, no multi-Campus blocker",
+    "local": "LOCAL_SIMULATION_PASS test_p0_c + test_p0_c_regression + deployment safety; actual new writer and precise retired48 absence",
+    "game_test": "USER_GAME_TEST_REQUIRED native specialist Science settlement"
   },
   "implementation_scope": {
     "v0_1": [

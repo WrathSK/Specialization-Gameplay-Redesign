@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="107">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="108">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B080.107 develop: P0-B2 Lv2 Housing and base GPP qualification; verified-input lifecycle. Development test build.</Description>
+    <Description>B081.108 develop: P0-C Research IV infrastructure base Science; retired legacy Research IV percent/copy. Development test build.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -67,6 +67,7 @@
       <File>DistrictCompleteness.lua</File>
       <File>CurrentSpecializationFacts.lua</File>
       <File>ResearchInfrastructureShadow.lua</File>
+      <File>ResearchInfrastructure.lua</File>
       <File>UI/CopyYieldRefresh.lua</File>
       <File>UI/CopyYieldRefresh.xml</File>
       <File>HalfYieldProbe.lua</File>
@@ -262,6 +263,10 @@
         <LuaReplace>UI/CrewProjectOrder.lua</LuaReplace>
       </Properties>
     </ReplaceUIScript>
+    <UpdateDatabase id="SPC_P0C_ResearchInfrastructure">
+      <Properties><LoadOrder>10001020</LoadOrder></Properties>
+      <File>Data/ResearchInfrastructure.sql</File>
+    </UpdateDatabase>
     <UpdateDatabase id="SPC_B048_Lv4Percent">
       <Properties>
         <LoadOrder>10001006</LoadOrder>
@@ -314,6 +319,7 @@
     <File>DistrictCompleteness.lua</File>
     <File>CurrentSpecializationFacts.lua</File>
     <File>ResearchInfrastructureShadow.lua</File>
+    <File>ResearchInfrastructure.lua</File>
     <File>Data/CopyYields.sql</File>
     <File>UI/CopyYieldRefresh.lua</File>
     <File>UI/CopyYieldRefresh.xml</File>
@@ -396,6 +402,7 @@
     <File>UI/CrewProjectOrder.lua</File>
     <File>Lv4Percent.lua</File>
     <File>Data/Lv4Percent.sql</File>
+    <File>Data/ResearchInfrastructure.sql</File>
     <File>BoostConfig.lua</File>
     <File>NetworkBoost.lua</File>
     <File>GreatWorkProbe.lua</File>

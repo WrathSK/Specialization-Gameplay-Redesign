@@ -3,7 +3,11 @@
 
 开发导航：[Workflow W0001](../../Workflow/README.md) → [Authority](../../Workflow/Authority.json) → batch manifest。只改变context加载，不改变Architecture合同；当前A0161状态优先于后面的历史标题。
 
-## 当前工作：P0-C已授权，原生primitive门禁待关闭
+## 当前工作：P0-C B081.108本地完成，待实机验收
+
+[实施/cutover与本地证据](P0_C_Research_Infrastructure.md)：四bit专家Science、旧48精确退出、摘要/详情按需；用户单学院澄清解除旧门禁。无下一批实施。
+
+### Historical preflight
 
 [门禁记录](P0_C_Primitive_Gate.md)：本地D×专家/SQL候选通过；多学院原生覆盖待确认。未修改Mod、未cutover、未部署；P0-C不标PASS。诊断后续遵守简明结果、按需详情合同。
 

@@ -8,7 +8,7 @@ function SPCLv4Percent.Start(P,shared)
   return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
  end
  local data={ready=false,busy=false,errors={},changes=0};shared.Lv4Percent=data
- local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER'}
+ local districts={CULTURE='DISTRICT_THEATER'}
  local function name(k,i) return 'BUILDING_SPC_LV4_PERCENT_'..k..'_'..i end
  local function facts(pid,c)
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return nil,0,nil end
@@ -37,7 +37,7 @@ function SPCLv4Percent.Start(P,shared)
      if not ok then kind=nil;n=0 end
      local changed,why=pcall(function()
       for _,adding in ipairs({false,true}) do
-       for _,k in ipairs({'RESEARCH','CULTURE'}) do for i=0,7 do
+       for _,k in ipairs({'CULTURE'}) do for i=0,7 do
         local row=P.Info('Buildings',name(k,i));assert(row and row.Index,'B048_DATABASE_MISSING')
         local want=kind==k and math.floor(n/2^i)%2==1
         if want==adding then
@@ -60,7 +60,7 @@ function SPCLv4Percent.Start(P,shared)
  function data.Describe(pid,c)
   local ok,out=pcall(function()
    local kind,n,active,workers=facts(pid,c);shared.Lv4PercentRead={owner=pid,cityID=c:GetID(),kind=kind};local science,culture=0,0
-   for _,k in ipairs({'RESEARCH','CULTURE'}) do for i=0,7 do
+   for _,k in ipairs({'CULTURE'}) do for i=0,7 do
     local row=P.Info('Buildings',name(k,i));assert(row and row.Index,'B048_DATABASE_MISSING')
     if P.HasBuilding(c:GetBuildings(),row.Index) then
      if k=='RESEARCH' then science=science+5*2^i else culture=culture+5*2^i end
