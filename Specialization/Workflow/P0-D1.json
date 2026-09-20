@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0222",
+    "status": "S0223",
     "runtime": "B084.111 / modinfo111",
     "military": "D0034"
   },
@@ -169,7 +169,8 @@
     "authorization": "User authorizes temporary floor and continuing P0-D1; Design unchanged",
     "implementation": "B084.111 formal Research Cross cutover complete",
     "local": "Actual Lua/SQL lifecycle,10k stress,scaling,protected regressions PASS",
-    "game_test": "B083 integer-only primitive user report; formal B084 ability USER_GAME_TEST_REQUIRED",
-    "report": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md"
+    "game_test": "User overall PASS; individual unreported edge cases not inferred",
+    "report": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+    "acceptance_report": "Specialization/Status/Validation/Results/Specialization_B084_P0D1_User_Pass.md"
   }
 }

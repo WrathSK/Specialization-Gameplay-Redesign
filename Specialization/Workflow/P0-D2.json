@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-D2",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0223",
+    "runtime": "B084.111 / modinfo111",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_D2_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_D2_Plan.md",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "AGENTS.md",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Specialization/AGENTS.md",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Specialization/Workflow/Authority.json",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/ResearchInfrastructure.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/ResearchInfrastructureShadow.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/Data/ResearchInfrastructure.sql",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/ResearchCross.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/Lv3Effects.lua",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Mod/Data/Lv3Effects.sql",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "kind": "full",
+      "reason": "D2 direct authority, shared facts, native carrier precedent or protected writer boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/2",
+      "expected_id": "RES_L3_APPLY",
+      "reason": "Stable ability rule identity"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/yield_mapping",
+      "reason": "Nine domains and Gold multiplier"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/district_qualification",
+      "reason": "Eligible district pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "full",
+      "reason": "D absolute semantics and eligibility"
+    },
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "head",
+      "selector": 18,
+      "reason": "Current queue"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "rows",
+      "selector": [
+        "| P0-D2 ",
+        "| P0-D3 "
+      ],
+      "reason": "Batch boundary"
+    }
+  ],
+  "dependencies": [
+    "P0-A shared D/current facts",
+    "P0-B1/B2/C verified specialist infrastructure",
+    "P0-D1 accepted retirement baseline",
+    "Independent half-step specialist primitive verification"
+  ],
+  "old_writers": {
+    "retire": [],
+    "already_retired": [
+      "Research III population8",
+      "Research IV Copy/Percent48"
+    ],
+    "preserve": [
+      "ResearchCross",
+      "ResearchInfrastructure",
+      "basic/Lv2 support",
+      "Culture/Commerce Lv3",
+      "Industry sampling/Copy/Standardization",
+      "Research Network"
+    ]
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/CityInheritance.lua",
+        "Mod/HalfYieldProbe.lua",
+        "Mod/Data/HalfYieldProbe.sql",
+        "Specialization/Architecture/v2/Yield_Precision_Backlog.md"
+      ],
+      "trigger": "Before implementation/primitive: read actual dispatch, experimental and native yield contract; validate file existence by inventory"
+    }
+  ],
+  "non_scope": [
+    "P0-D3",
+    "D1 formula or D replacement",
+    "other professions or Military",
+    "Design changes",
+    "ownership/save migration"
+  ],
+  "validation": {
+    "local": [
+      "formula/eligibility/0.5 steps/Gold3",
+      "actual writer/lifecycle/retired8+48",
+      "1/2/4/8 scaling and10k idle",
+      "protected regressions/SQL/manifest/deployment safety"
+    ],
+    "user": "One III city, odd D,0/1/2 specialists,building growth,ACTIVE and reload; no manual pillage"
+  },
+  "full_audit_triggers": [
+    "Before new writer: exact/dynamic carrier and caller inventory",
+    "Changed shared D/catalog must revalidate all existing consumers",
+    "Half primitive mismatch stops release; no inferred D1 floor permission"
+  ],
+  "result": {
+    "plan": "READY_FOR_AUTHORIZATION",
+    "implementation": "NOT_STARTED",
+    "blocking_design": "None identified",
+    "technical_gate": "Specialist 0.5/1.5 native settlement not confirmed",
+    "report": "Specialization/Architecture/v2/P0_D2_Plan.md"
+  }
+}

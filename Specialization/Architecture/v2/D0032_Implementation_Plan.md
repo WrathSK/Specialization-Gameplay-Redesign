@@ -1,5 +1,7 @@
 # D0032 v0.1 implementation dependency and migration plan
 
+当前进度：P0-D1 B084.111用户整体PASS；[P0-D2学以致用具体计划](P0_D2_Plan.md)为PLANNED_NOT_AUTHORIZED。D2半点专家primitive单独设门禁，不继承D1 floor；仅计划，无runtime变化。
+
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18
 Authority: D0032; no Gameplay implementation authorized by this plan

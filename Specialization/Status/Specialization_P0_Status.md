@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0222
+Status Revision: S0223
 Implementation Build: develop P0-B-084.111 / modinfo111; live B084.111 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_D1_IMPLEMENTATION_COMPLETE_LOCAL_PASS_USER_GAME_TEST_REQUIRED
+Work State: P0_D1_USER_PASS_P0_D2_PLANNED_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[P0-D1用户整体PASS](Validation/Results/Specialization_B084_P0D1_User_Pass.md)已记录；无逐项边界证据，不扩大结论。[P0-D2学以致用计划](../Architecture/v2/P0_D2_Plan.md)已备，等待单独实施授权。专家0.5步长单独验证，不继承D1临时floor。Runtime/live仍B084.111，main/Design不变；本轮无部署。以下待D1验收措辞均为历史。
 
 [B084部署确认](Validation/Results/Specialization_B084_Deployment_20260920.md)：137文件逐项hash一致，B083恢复点已验证。请做一次正式P0-D1最小验收；不再运行三档实验。
 
