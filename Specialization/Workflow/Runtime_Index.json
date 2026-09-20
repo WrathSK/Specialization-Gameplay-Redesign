@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B088.115 coherent implementation commit (see git history; parent 223e8e8)",
+  "runtime_commit": "3136810dd37ea2035b1a8ef1538a38d90e55b733",
   "runtime": "B088.115 / modinfo115",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
