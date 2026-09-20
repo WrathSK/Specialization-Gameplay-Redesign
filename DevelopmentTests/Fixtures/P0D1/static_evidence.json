@@ -1,0 +1,30 @@
+{
+  "evidence_level": "STATIC_CONFIRMED, installed cached database only; not active mod set or engine return type proof",
+  "baseline": "86a67bc",
+  "adjacency_rows": 626,
+  "noninteger_YieldChange_rows": 0,
+  "adjacency_argument_rows": 302,
+  "two_tile_examples": [
+    [
+      "DISTRICT_HOLY_SITE",
+      "District_Faith",
+      1,
+      2
+    ],
+    [
+      "DISTRICT_INDUSTRIAL_ZONE",
+      "District_Production",
+      1,
+      2
+    ],
+    [
+      "DISTRICT_THEATER",
+      "District_Culture",
+      1,
+      2
+    ]
+  ],
+  "query_result_sha256": "43cf12999b8dc295694798998f0695e05db4f0a22bf15e408c1bff273d0e6214",
+  "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
+  "counterexamples_are": "synthetic exact-Design inputs, NOT claimed in-game observations"
+}

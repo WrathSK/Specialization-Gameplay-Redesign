@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0218
+Status Revision: S0219
 Implementation Build: develop P0-B-081.108 / modinfo108; live B081.108 / modinfo108; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_D1_PLANNED_NOT_AUTHORIZED
+Work State: P0_D1_AUTHORIZED_PRE_CUTOVER_GATE_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-D1已获实施授权；[原生精度门禁](../Architecture/v2/P0_D1_Primitive_Gate.md)尚未关闭。离线纯模型与1785组既有primitive数学验证通过；0.25/0.65为本地反例，不是当前游戏BASE实测。未退出旧8效果、未新增运行writer/采样/载体、未部署；B081/P0-C验收保持。既有实施授权继续有效，下一步仅D1技术门禁，不进入D2。以下计划未授权文字为历史。
 
 [P0-D1具体计划](../Architecture/v2/P0_D1_Plan.md)已备：仅科研III跨学科研究BASE×0.5，精确退出8旧人口载体；学以致用留D2。BASE口径与小数原生结算为实施技术门禁，无新增Design决定。等待用户授权实施；本轮仅文档，无runtime/部署变化。下文等待计划措辞为此前状态。
 

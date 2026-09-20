@@ -3,7 +3,9 @@
 Owner: Codex. Scope: development navigation/context only; user authorization 2026-09-18.
 Design / Architecture always override Workflow. No Gameplay rule, implementation authorization or new Architecture revision is created here.
 
-## Current entry — D0035 / P0-D1 plan
+## Current entry — D0035 / P0-D1 authorized native gate
+
+P0-D1现为AUTHORIZED / PRE_CUTOVER_GATE_OPEN；[门禁报告](../Architecture/v2/P0_D1_Primitive_Gate.md)。Mod/Design未改；既有实施授权保持，原生数值证据不足前不cutover。下段未授权措辞为此前规划状态。
 
 [P0-D1 manifest](P0-D1.json) / [具体计划](../Architecture/v2/P0_D1_Plan.md)：PLANNED_NOT_AUTHORIZED。使用 `python3 Specialization/Workflow/context.py check P0-D1`。仅跨学科研究，不是学以致用；技术门禁见计划。以下P0-C为已完成的历史manifest，不再匹配当前Status版本。
 

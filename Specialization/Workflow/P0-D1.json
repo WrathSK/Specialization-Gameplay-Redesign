@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0218",
+    "status": "S0219",
     "runtime": "B081.108 / modinfo108",
     "military": "D0034"
   },
@@ -101,6 +101,11 @@
       "selector": "/abilities/1",
       "expected_id": "RES_L3_CROSS",
       "reason": "Stable rule identity for manifest integrity"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md",
+      "kind": "full",
+      "reason": "Current native gate and evidence boundaries before continuing implementation"
     }
   ],
   "dependencies": [
@@ -151,8 +156,11 @@
     "Changed sample contract requires all C2 consumers regression"
   ],
   "result": {
-    "planning": "STATIC_CONFIRMED source-led scope; not implementation",
-    "technical_gates": "BASE across nine domains and fractional native city Science not yet proved",
-    "game_test": "No new test requested in planning"
+    "authorization": "User explicitly authorized implementation after86a67bc plan",
+    "implementation": "PRE_CUTOVER_GATE_OPEN; offline pure model only, no runtime changes",
+    "local": "test_p0_d1_gate PASS; exact formula/eligibility and1785 decompositions; not native or lifecycle PASS",
+    "technical_gates": "Native finer-fraction settlement or supported BASE return domain requires evidence; synthetic counterexamples not runtime observations",
+    "game_test": "No new test package deployed; do not ask user to operate nonexistent entry",
+    "report": "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md"
   }
 }

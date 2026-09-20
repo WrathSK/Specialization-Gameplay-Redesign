@@ -1,6 +1,6 @@
 # P0-D1 — 科研三级「跨学科研究」具体计划
 
-Status: PLANNED_NOT_AUTHORIZED. 本轮只规划，不实施、不部署。
+Status: AUTHORIZED / PRE_CUTOVER_GATE_OPEN. 用户已授权实施；见[P0-D1门禁结果](P0_D1_Primitive_Gate.md)。以下为获准原计划；原生精度门禁未关闭，尚未正式cutover。
 Authority: Design D0035 / Research D0031 RES_L3_CROSS及district_qualification；Shared D0035；Architecture A0161 / D0032_Implementation_Plan P0-D1。
 Baseline: B081.108/modinfo108，runtime6736fc5；P0-C用户Pass见89020ae。v0.1仍仅科研/文化/工业/商业；Military不加入。
 

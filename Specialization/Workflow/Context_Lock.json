@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "P0-D1 planning only on89020ae; reviewed direct BASE/actual sample distinction and exact Research population writer. Unchanged runtime/Design evidence reused; implementation full caller/primitive gates remain.",
+  "review_basis": "P0-D1 authorized pre-cutover gate on86a67bc; pure candidate tests only; native precision remains unverified; Mod/Design unchanged.",
   "files": {
     "AGENTS.md": "18a30c39c68eb868b139dffab9e661de6efd661687190a05b913e32890293f0f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "466f7cae0199a23025d8c4153d4e2f2b3513b1cae9799f1bda46a2bda0241366",
+    "Specialization/Status/Specialization_P0_Status.md": "6df4b7c83ae0517d348d3187a949956d8cef0efb9a6b04559906f57e25a6e598",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -75,7 +75,7 @@
     "Mod/UI/GPPRefresh.lua": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
     "Mod/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
     "Specialization/Workflow/context.py": "14bd6444df52683b561b774faf4902f86dbcb80da84d8bdea549227b074568d3",
-    "Specialization/Workflow/README.md": "d4e5072e882a4a67cf5c2c1c25bddbaf78d47f1097edb00cfe0fc4bf99e87547",
+    "Specialization/Workflow/README.md": "b3bb52868f21d323e7a51da74eaca0c2a360dc82cf16a682a7ef94af89c77073",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md": "f657b5b836e5b898f2d3f26fedaf77e63eeb3336f5a0334ab708fd81a798fdc0",
     "DevelopmentTests/test_p0_b2.py": "d767741f9968759bcb733f6295cc08750d2fa8c3111a5cca42adbc8e8c424acf",
@@ -101,8 +101,12 @@
     "DevelopmentTests/test_p0_c.py": "a96bb8fb3ad3433b20861f4e0ec88455e6e980eba01a3c503d0153ef98016ced",
     "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025",
     "Specialization/Status/Validation/Results/Specialization_B081_P0C_Deployment_20260920.md": "44f6bf5ff8abc3d881ee4364d8036b83c4a8876bae1fa41e1dd0e9ba3a99b728",
-    "Specialization/Architecture/v2/P0_D1_Plan.md": "634df494c09c051c433b7672dff938d2bd02d0a2bf449b49a7094807755d2d99",
-    "Specialization/Architecture/v2/README.md": "f342c714c254f80b3f0ef4f52a1e6fbe595564ff916abab7f663b793ecf1228c",
-    "Mod/Data/Lv3Effects.sql": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975"
+    "Specialization/Architecture/v2/P0_D1_Plan.md": "d85c15b503432b03e99c19850cf8de981542a09f2534340c4d563234b6581455",
+    "Specialization/Architecture/v2/README.md": "a4129a22488dfc90e66076ad908550e41d888adc61118f026c0d7fc3e46176f7",
+    "Mod/Data/Lv3Effects.sql": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975",
+    "DevelopmentTests/test_p0_d1_gate.py": "b0ac8baedfaef8bac50d63fec4d3851c2b7e8780cf05e2d60d2b15996373197b",
+    "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "e99959f88435f6f9cde75a287d9a7710a2f78eab624ccb2970fd95d46e656951",
+    "DevelopmentTests/Fixtures/P0D1/ResearchCrossModel.lua": "2e58009303ad9ab6ec47e66e23fd9b614a74e6eb77ba47de83538a315d6a3351",
+    "DevelopmentTests/Fixtures/P0D1/static_evidence.json": "3d2e5ca25018c4c7dccb43976281ec304da07db3e605ab014c25b3e32325a1dd"
   }
 }

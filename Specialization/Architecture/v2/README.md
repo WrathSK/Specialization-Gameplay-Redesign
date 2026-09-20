@@ -3,7 +3,9 @@
 
 开发导航：[Workflow W0001](../../Workflow/README.md) → [Authority](../../Workflow/Authority.json) → batch manifest。只改变context加载，不改变Architecture合同；当前A0161状态优先于后面的历史标题。
 
-## 当前工作：P0-D1具体计划待实施授权
+## 当前工作：P0-D1已授权，原生精度门禁未关闭
+
+[门禁证据](P0_D1_Primitive_Gate.md)：离线候选通过不等于引擎/正式实现通过；旧writer完整保留，B081不变。下段是计划阶段历史。
 
 [计划](P0_D1_Plan.md)：跨学科研究BASE×0.5及旧科研人口效果精确退出。无源码修改/部署，无当前用户测试。
 
