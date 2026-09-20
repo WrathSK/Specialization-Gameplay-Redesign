@@ -1,0 +1,50 @@
+{
+  "status": "STATIC_CONFIRMED definition only; native scope UNKNOWN",
+  "captured": "2026-09-20",
+  "source": "Local DebugGameplay.sqlite opened mode=ro; not proof live B080 is loaded",
+  "queries": [
+    {
+      "sql": "select * from DynamicModifiers where EffectType like '%CITIZEN%YIELD%' or EffectType like '%SPECIALIST%'",
+      "rows": []
+    },
+    {
+      "sql": "select DistrictType,OnePerCity from Districts where DistrictType='DISTRICT_CAMPUS' or DistrictType in (select CivUniqueDistrictType from DistrictReplaces where ReplacesDistrictType='DISTRICT_CAMPUS')",
+      "rows": [
+        [
+          "DISTRICT_CAMPUS",
+          1
+        ],
+        [
+          "DISTRICT_OBSERVATORY",
+          1
+        ],
+        [
+          "DISTRICT_SEOWON",
+          1
+        ]
+      ]
+    },
+    {
+      "sql": "select sql from sqlite_master where name in ('Types','Buildings','Yields','Building_CitizenYieldChanges') order by name",
+      "rows": [
+        [
+          "CREATE TABLE \"Building_CitizenYieldChanges\" (\n\t\t\"BuildingType\" TEXT NOT NULL,\n\t\t\"YieldType\" TEXT NOT NULL,\n\t\t\"YieldChange\" INTEGER NOT NULL,\n\t\tPRIMARY KEY(BuildingType, YieldType),\n\t\tFOREIGN KEY (BuildingType) REFERENCES Buildings(BuildingType) ON DELETE CASCADE ON UPDATE CASCADE,\n\t\tFOREIGN KEY (YieldType) REFERENCES Yields(YieldType) ON DELETE CASCADE ON UPDATE CASCADE)"
+        ],
+        [
+          "CREATE TABLE \"Buildings\" (\n\t\t\"BuildingType\" TEXT NOT NULL,\n\t\t\"Name\" TEXT NOT NULL,\n\t\t\"PrereqTech\" TEXT,\n\t\t\"PrereqCivic\" TEXT,\n\t\t\"Cost\" INTEGER NOT NULL,\n\t\t\"MaxPlayerInstances\" INTEGER NOT NULL DEFAULT -1,\n\t\t\"MaxWorldInstances\" INTEGER NOT NULL DEFAULT -1,\n\t\t\"Capital\" BOOLEAN NOT NULL CHECK (Capital IN (0,1)) DEFAULT 0,\n\t\t\"PrereqDistrict\" TEXT,\n\t\t\"AdjacentDistrict\" TEXT,\n\t\t\"Description\" TEXT,\n\t\t\"RequiresPlacement\" BOOLEAN NOT NULL CHECK (RequiresPlacement IN (0,1)) DEFAULT 0,\n\t\t\"RequiresRiver\" BOOLEAN NOT NULL CHECK (RequiresRiver IN (0,1)) DEFAULT 0,\n\t\t\"OuterDefenseHitPoints\" INTEGER,\n\t\t\"Housing\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"Entertainment\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"AdjacentResource\" TEXT,\n\t\t\"Coast\" BOOLEAN CHECK (Coast IN (0,1)),\n\t\t\"EnabledByReligion\" BOOLEAN NOT NULL CHECK (EnabledByReligion IN (0,1)) DEFAULT 0,\n\t\t\"AllowsHolyCity\" BOOLEAN NOT NULL CHECK (AllowsHolyCity IN (0,1)) DEFAULT 0,\n\t\t\"PurchaseYield\" TEXT,\n\t\t\"MustPurchase\" BOOLEAN NOT NULL CHECK (MustPurchase IN (0,1)) DEFAULT 0,\n\t\t\"Maintenance\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"IsWonder\" BOOLEAN NOT NULL CHECK (IsWonder IN (0,1)) DEFAULT 0,\n\t\t\"TraitType\" TEXT,\n\t\t\"OuterDefenseStrength\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"CitizenSlots\" INTEGER,\n\t\t\"MustBeLake\" BOOLEAN NOT NULL CHECK (MustBeLake IN (0,1)) DEFAULT 0,\n\t\t\"MustNotBeLake\" BOOLEAN NOT NULL CHECK (MustNotBeLake IN (0,1)) DEFAULT 0,\n\t\t\"RegionalRange\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"AdjacentToMountain\" BOOLEAN NOT NULL CHECK (AdjacentToMountain IN (0,1)) DEFAULT 0,\n\t\t\"ObsoleteEra\" TEXT NOT NULL DEFAULT \"NO_ERA\",\n\t\t\"RequiresReligion\" BOOLEAN NOT NULL CHECK (RequiresReligion IN (0,1)) DEFAULT 0,\n\t\t\"GrantFortification\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"DefenseModifier\" INTEGER NOT NULL DEFAULT 0,\n\t\t\"InternalOnly\" BOOLEAN NOT NULL CHECK (InternalOnly IN (0,1)) DEFAULT 0,\n\t\t\"RequiresAdjacentRiver\" BOOLEAN NOT NULL CHECK (RequiresAdjacentRiver IN (0,1)) DEFAULT 0,\n\t\t\"Quote\" TEXT,\n\t\t\"QuoteAudio\" TEXT,\n\t\t\"MustBeAdjacentLand\" BOOLEAN NOT NULL CHECK (MustBeAdjacentLand IN (0,1)) DEFAULT 0,\n\t\t\"AdvisorType\" TEXT,\n\t\t\"AdjacentCapital\" BOOLEAN NOT NULL CHECK (AdjacentCapital IN (0,1)) DEFAULT 0,\n\t\t\"AdjacentImprovement\" TEXT,\n\t\t\"CityAdjacentTerrain\" TEXT,\n\t\t\"UnlocksGovernmentPolicy\" BOOLEAN CHECK (UnlocksGovernmentPolicy IN (0,1)) DEFAULT 0,\n\t\t\"GovernmentTierRequirement\" TEXT,\n\t\tPRIMARY KEY(BuildingType),\n\t\tFOREIGN KEY (AdjacentDistrict) REFERENCES Districts(DistrictType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (PrereqDistrict) REFERENCES Districts(DistrictType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (PrereqTech) REFERENCES Technologies(TechnologyType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (AdjacentResource) REFERENCES Resources(ResourceType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (PrereqCivic) REFERENCES Civics(CivicType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (PurchaseYield) REFERENCES Yields(YieldType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (TraitType) REFERENCES Traits(TraitType) ON DELETE SET DEFAULT ON UPDATE SET DEFAULT,\n\t\tFOREIGN KEY (BuildingType) REFERENCES Types(Type) ON DELETE CASCADE ON UPDATE CASCADE,\n\t\tFOREIGN KEY (AdjacentImprovement) REFERENCES Improvements(ImprovementType) ON DELETE CASCADE ON UPDATE CASCADE,\n\t\tFOREIGN KEY (CityAdjacentTerrain) REFERENCES Terrains(TerrainType) ON DELETE CASCADE ON UPDATE CASCADE)"
+        ],
+        [
+          "CREATE TABLE \"Types\" (\n\t\t\"Type\" TEXT NOT NULL,\n\t\t\"Hash\" INTEGER NOT NULL UNIQUE DEFAULT 0,\n\t\t\"Kind\" TEXT NOT NULL,\n\t\tPRIMARY KEY(Type),\n\t\tFOREIGN KEY (Kind) REFERENCES Kinds(Kind) ON DELETE CASCADE ON UPDATE CASCADE)"
+        ],
+        [
+          "CREATE TABLE \"Yields\" (\n\t\t\"YieldType\" TEXT NOT NULL,\n\t\t\"Name\" TEXT NOT NULL,\n\t\t\"IconString\" TEXT NOT NULL,\n\t\t\"OccupiedCityChange\" REAL NOT NULL DEFAULT 0,\n\t\t\"DefaultValue\" REAL NOT NULL DEFAULT 1,\n\t\tPRIMARY KEY(YieldType))"
+        ]
+      ]
+    }
+  ],
+  "limitations": [
+    "LIKE search is not exhaustive proof no alternate native API exists.",
+    "OnePerCity per type does not prove one normalized Campus per city.",
+    "P.CreateBuilding(object,id) supplies no district instance; native behavior is not simulated evidence."
+  ]
+}

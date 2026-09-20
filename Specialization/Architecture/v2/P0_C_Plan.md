@@ -1,6 +1,6 @@
 # P0-C — Research IV 科研基础设施：具体实施计划
 
-Status: PLAN_READY / PLANNED_NOT_AUTHORIZED. User explicitly requests plan first.
+Status: AUTHORIZED (2026-09-20). Implementation preflight started; native specialist scope gate remains open. See [gate evidence](P0_C_Primitive_Gate.md). Original plan below preserved; no formal cutover yet.
 Authority: D0035 / Shared D0035; Research D0031 RES_L4_INFRA; A0161 and D0032_Implementation_Plan P0-C. Four-profession v0.1 scope unchanged; Military future only.
 Baseline: B080.107/modinfo107, implementation c56c6de, repository39d5b09. P0-A facts and B1/B2 user acceptance inherited; new C effect not implemented/tested. STATIC_CONFIRMED below means source evidence, not engine acceptance.
 
@@ -66,4 +66,4 @@ Baseline: B080.107/modinfo107, implementation c56c6de, repository39d5b09. P0-A f
 
 回滚B080完整包 + 切换前独立存档；不保证新版已保存载体能安全降级。无本轮部署/源码改动/版本提升。
 
-GATE: PLAN_READY，待P0-C明确实施授权。无新的Blocking Design Decision；TS02专家Science/multi-Campus是实施内必须通过的technical gate，不是已通过。若发现能力语义冲突，停并报告，不修改Design。之后只建议按此计划实施P0-C。
+GATE: 用户已明确授权实施；当前TS02原生覆盖门禁未关闭。无新的Blocking Design Decision；TS02专家Science/multi-Campus是实施内必须通过的technical gate，不是已通过。若发现能力语义冲突，停并报告，不修改Design。之后只建议按此计划实施P0-C。

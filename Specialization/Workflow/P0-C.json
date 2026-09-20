@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-C",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0213",
+    "status": "S0214",
     "runtime": "B080.107 / modinfo107",
     "military": "D0034"
   },
@@ -239,6 +239,11 @@
       "path": "Mod/SpecializationP0.modinfo",
       "kind": "full",
       "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_C_Primitive_Gate.md",
+      "kind": "full",
+      "reason": "Current primitive evidence, explicit unresolved gate and diagnostic readability contract"
     }
   ],
   "dependencies": [
@@ -277,8 +282,7 @@
     "Military/Future",
     "Research III/Chair/Tradition/Network redesign",
     "Industry/Culture/Commerce abilities",
-    "Design/balance/precision/ownership migration",
-    "implementation/deployment in this plan-only task"
+    "Design/balance/precision/ownership migration"
   ],
   "validation": {
     "local": [
@@ -296,9 +300,10 @@
     "new/hash-mismatched dependencies or primitive mismatch require expanded review"
   ],
   "result": {
-    "planning": "STATIC_CONFIRMED existing source responsibilities and exact48 ID set; PLAN_READY",
-    "implementation": "NOT_AUTHORIZED",
-    "game_test": "NOT_REQUESTED; TS02 pending"
+    "planning": "User accepted plan and authorized implementation",
+    "implementation": "PRE_CUTOVER_TECHNICAL_GATE_OPEN; no runtime change",
+    "local": "100 actual shared Lua cases + multi-Campus expected output + offline candidate SQL PASS; not full P0-C regression",
+    "game_test": "NOT_REQUESTED: no runnable native probe prepared; coverage UNKNOWN"
   },
   "implementation_scope": {
     "v0_1": [

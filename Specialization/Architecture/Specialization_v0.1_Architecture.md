@@ -11,6 +11,8 @@ Implementation Build: develop P0-B-080.107 / modinfo107; live B080.107 / modinfo
 
 ## CURRENT AUTHORITATIVE STATE
 
+P0-C已授权，当前[原生专家收益门禁](v2/P0_C_Primitive_Gate.md)待关闭；仅离线计算/SQL候选验证，正式writer和旧48效果尚未切换。A0161目标不变、运行B080不变；以下“P0-C未开始”属于前次状态。
+
 Current implementation delta: [P0-B2 Lv2 qualification](v2/P0_B2_Lv2_Qualification.md), B080.107 LOCAL_SIMULATION_PASS / native pending. D0035 Shared/Lv2 scoped review supersedes older header navigation without claiming full Military adaptation. A0161 target contract unchanged; P0-B1 user PASS, P0-C not started. Following B079 paragraphs are inherited pre-B2 history; actual live state is Status-owned.
 
 

@@ -3,9 +3,13 @@
 
 开发导航：[Workflow W0001](../../Workflow/README.md) → [Authority](../../Workflow/Authority.json) → batch manifest。只改变context加载，不改变Architecture合同；当前A0161状态优先于后面的历史标题。
 
-## 当前实现：P0-B2 / A0161
+## 当前工作：P0-C已授权，原生primitive门禁待关闭
 
-[P0-B2 Lv2资格](P0_B2_Lv2_Qualification.md)：B080.107/modinfo107，LOCAL_SIMULATION_PASS + 用户报告实机PASS；住房按不同Tier存在性、原生2 base GPP路径保留，UNKNOWN不再清空。P0-B1用户PASS含工业；P0-A D/专家读取PASS，掠夺未测。当前Design D0035仅四专业范围，Military未来；A0161合同未改变。[P0-C具体计划](P0_C_Plan.md)已备，未授权实施；E未开始，部署以Status为准。
+[门禁记录](P0_C_Primitive_Gate.md)：本地D×专家/SQL候选通过；多学院原生覆盖待确认。未修改Mod、未cutover、未部署；P0-C不标PASS。诊断后续遵守简明结果、按需详情合同。
+
+## 当前已完成实现：P0-B2 / A0161
+
+[P0-B2 Lv2资格](P0_B2_Lv2_Qualification.md)：B080.107/modinfo107，LOCAL_SIMULATION_PASS + 用户报告实机PASS；住房按不同Tier存在性、原生2 base GPP路径保留，UNKNOWN不再清空。P0-B1用户PASS含工业；P0-A D/专家读取PASS，掠夺未测。当前Design D0035仅四专业范围，Military未来；A0161合同未改变。[P0-C具体计划](P0_C_Plan.md)已备并获实施授权，见上方门禁；E未开始，部署以Status为准。
 
 ## 目标架构入口：A0160 / D0032
 

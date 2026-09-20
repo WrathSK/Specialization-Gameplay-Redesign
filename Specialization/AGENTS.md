@@ -74,3 +74,7 @@ Governance Revision: G0009
 ## G0009：稳定游玩与开发隔离
 
 根AGENTS的stable/develop、自动coherent commit/push与部署门禁为当前持久规则，取代旧迁移阶段停止/Git禁令。main只接获准最小修复；普通工作去develop。用户当前长局无需暂停；不将baseline建立当作性能实机PASS。详见Architecture/Playtest_Workflow.md。
+
+## 诊断易读性（2026-09-20 用户确认）
+
+后续新增/修改诊断默认只给当前对象/能力的结果、关键依据和需处理异常；成功路径不堆完整内部ID、无关模块或重复日志。详细组成按需查看。保留UNKNOWN/旧效果残留/实验污染等影响结论的信息，并明确区分预期值、载体配置、原生实测。此规则不授权额外UI重构。

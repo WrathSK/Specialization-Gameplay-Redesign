@@ -1,15 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0213
+Status Revision: S0214
 Implementation Build: develop P0-B-080.107 / modinfo107; live B080.107 / modinfo107; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_B2_USER_PASS_P0_C_PLAN_READY
+Work State: P0_C_AUTHORIZED_PRIMITIVE_GATE_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-C已明确授权，完成实施前本地计算/SQL候选验证，**尚未完成正式收益切换**：[TS02门禁证据](../Architecture/v2/P0_C_Primitive_Gate.md)。100组实际shared Lua计算通过，多学院最高D/全部专家和掠夺排除的计算通过；原生载体是否覆盖多个学院实例仍UNKNOWN，不能据mock宣布支持或不支持。已找到带plot参数的外部调用线索，待独立原生验证。旧Research IV两个writer和48载体未关闭，无半迁移。Mod/Design未改，B080.107运行包不变，无部署。诊断易读性要求已持久化。下一步仍是P0-C primitive验证；不重问整个实施授权，不进入下一批。
+
+以下P0-C未授权措辞属于此前计划阶段，由本段取代。
 
 历史D0035 / W0001导航增量：[P0-B2 manifest复核](../Workflow/P0-B2_Revalidation.md)完成，PLANNED_NOT_AUTHORIZED；Shared语义不改II住房/GPP，四专业v0.1范围不扩展至Military。A0161原合同复用，不表示已适配未来军事设计。Runtime/已验收结果不变。
 
