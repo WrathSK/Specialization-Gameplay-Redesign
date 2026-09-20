@@ -150,3 +150,7 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 报告逐项列出启用的规则版本及未完成能力；混合开发态不是“v0.1 complete”。未来破坏性功能的ownership/Legacy缺口须在对应正式发布前审查，不自行选择取消/延续。B076已接受的自建城测试范围不因新文档自动扩大。参数待定、新Research Network deferred不阻塞A。
 
 **Recommended next action: authorize P0-A implementation.** 本轮commit/push后停止，不自动写代码、执行历史Batch E、部署、tag或promotion。
+
+## P0-D3验收后的顺序调整
+
+用户要求提前规划U1，详见[P0-U1具体计划](P0_U1_Plan.md)。当前机构/阶段说明/技术carrier隐藏可复用已有事实先行；历史机构仍需Historical State，不随本次提前实施。U2/U3及其它Gameplay批次未获授权，原依赖与Design不变。

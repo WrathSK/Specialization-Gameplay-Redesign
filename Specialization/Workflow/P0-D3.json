@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D3",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -181,9 +181,10 @@
   ],
   "result": {
     "implementation": "LOCAL_SIMULATION_PASS",
-    "user": "USER_GAME_TEST_REQUIRED",
-    "technical_gate": "OWNER building-specific static precedent and actual SQL projection confirmed; native settlement pending",
+    "user": "USER_GAME_TEST_PASS — overall user acceptance only",
+    "technical_gate": "OWNER static/local evidence retained; overall native user acceptance reported, unreported edge cases not upgraded",
     "report": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-    "blocking_design": "None; no Design changes"
+    "blocking_design": "None; no Design changes",
+    "user_report": "Specialization/Status/Validation/Results/Specialization_B086_P0D3_User_Pass.md"
   }
 }

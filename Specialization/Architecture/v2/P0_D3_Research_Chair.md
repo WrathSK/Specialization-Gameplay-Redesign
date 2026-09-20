@@ -1,5 +1,7 @@
 # P0-D3 学术主持 — B086.113 / modinfo113
 
+最新：用户已报告P0-D3整体PASS；见[验收记录](../../Status/Validation/Results/Specialization_B086_P0D3_User_Pass.md)。下方等待实机措辞保留为实施时证据边界。
+
 Status: IMPLEMENTATION_COMPLETE_AWAITING_USER / LOCAL_SIMULATION_PASS。不是Civ VI实机PASS。
 Authority: Research D0031 RES_L4_CHAIR、Shared D0035 ordinary/current eligibility；A0161。Baseline19bbc9c / B085.112（D2用户整体PASS）。本批已获用户“授权实施”，不进入下一批。
 

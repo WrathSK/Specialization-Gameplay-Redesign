@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-U1",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0227",
+    "runtime": "B086.113 / modinfo113",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_U1_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_U1_Plan.md",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Presentation_Institution_Carrier_Model.md",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Mod/UI/CityPotential.lua",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0032.json",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Commerce_D0032.json",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "full",
+      "reason": "Presentation authority, current read contract or protected runtime boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/4",
+      "expected_id": "RES_L4_CHAIR",
+      "reason": "Implemented stage-owned ability tooltip identity"
+    }
+  ],
+  "dependencies": [
+    "P0-A/B/C/D3 confirmed current facts",
+    "PAC cumulative presentation-only contract",
+    "native/HD UI hook prototype gate"
+  ],
+  "old_writers": {
+    "retire": [],
+    "preserve": [
+      "all Gameplay effect writers and carriers"
+    ],
+    "adapt": [
+      "CityPotential presentation-only polling/read bridge"
+    ]
+  },
+  "non_scope": [
+    "historical-state persistence",
+    "U2/U3",
+    "new Gameplay",
+    "Design",
+    "Military",
+    "deployment in planning"
+  ],
+  "validation": {
+    "local": [
+      "cumulative Potential/ACTIVE/UNKNOWN",
+      "precise hiding no effects changed",
+      "10k idle/hover zero requests",
+      "bounded controls/cache",
+      "protected regressions"
+    ],
+    "user": "One existing Research IV city, ACTIVE change, another profession, relevant UI surfaces"
+  },
+  "full_audit_triggers": [
+    "UI override/hook conflict",
+    "unclassified carrier",
+    "shared fact or gameplay writer change"
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/SpecializationP0.modinfo"
+      ],
+      "trigger": "Before modifying UI dispatch or registration; inspect actual native/HD hook owners read-only"
+    }
+  ],
+  "result": {
+    "planning": "Complete; implementation not authorized",
+    "blocking_design": "None for current institutions; UI hook remains prototype gate"
+  }
+}

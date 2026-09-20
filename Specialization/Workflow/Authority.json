@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0226",
+    "status": "S0227",
     "runtime": "B086.113 / modinfo113",
     "military": "D0034"
   },
@@ -31,10 +31,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "84a6f12ce2c7dc8bf727892cd2d2d5b2a88bf50e",
-  "current_batch": "P0-D3 IMPLEMENTATION_COMPLETE_AWAITING_USER",
-  "next_batch": "Await P0-D3 user validation; no next batch",
-  "manifest": "Specialization/Workflow/P0-D3.json",
-  "live": "B086.113 / modinfo113 deployed W0003;143 exact file hashes; B085 recovery retained; P0-D3 native validation pending",
+  "current_batch": "P0-U1 PLANNED_NOT_AUTHORIZED",
+  "next_batch": "Await authorization for P0-U1 current institutions/carrier presentation; historical institutions deferred",
+  "manifest": "Specialization/Workflow/P0-U1.json",
+  "live": "B086.113 / modinfo113; P0-D3 user overall PASS; no deployment in U1 planning",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "D3 actual owner-scoped per-building projection and changed files reviewed; unchanged Design/shared facts reused",
+  "context_review_status": "D3 user overall acceptance; U1 current presentation scoped plan; unchanged runtime/Design hashes reused",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,5 +59,5 @@
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_D3_Research_Chair.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_U1_Plan.md"
 }

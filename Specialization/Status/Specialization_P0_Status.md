@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0226
+Status Revision: S0227
 Implementation Build: develop P0-B-086.113 / modinfo113; live B086.113 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_D3_LOCAL_PASS_AWAITING_USER
+Work State: P0_U1_PLAN_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+P0-D3用户整体验收PASS：[记录](Validation/Results/Specialization_B086_P0D3_User_Pass.md)。现提前提出[P0-U1计划](../Architecture/v2/P0_U1_Plan.md)：四专业当前累计机构、阶段Tooltip、本Mod技术carrier显示过滤；历史机构等待Historical State，不增加玩法/保存依赖。仅计划，等待实施授权。B086.113/runtime/Design/main不改，无部署。下方等待D3验收措辞为历史。
 
 P0-D3已获授权实施，B086.113：[学术主持合同/证据](../Architecture/v2/P0_D3_Research_Chair.md)。每座合格普通学院建筑+工作科研专家数Science；OWNER scope、非平铺/非专家收益，D不反馈。210配置、实际SQL/Lua生命周期、三consumer共享capture、10k idle和完整前序回归LOCAL_SIMULATION_PASS；不是实机PASS。Design、非目标writer不变。已commit/push并通过W0003退出/恢复/hash门禁部署，143文件一致，B085完整恢复点保留：[部署记录](Validation/Results/Specialization_B086_P0D3_Deployment_20260920.md)；等待用户测试；不进入下一批。下方旧计划状态为历史。
 

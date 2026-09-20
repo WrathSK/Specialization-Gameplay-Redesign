@@ -1,5 +1,7 @@
 # P0-D3 — Research IV「学术主持」具体计划
 
+最新：用户已报告P0-D3整体PASS；见[验收记录](../../Status/Validation/Results/Specialization_B086_P0D3_User_Pass.md)。下方等待实机措辞保留为实施时证据边界。
+
 Status: IMPLEMENTATION_COMPLETE_AWAITING_USER。用户已授权实施；B086.113静态/本地完成，见[实施合同](P0_D3_Research_Chair.md)。下方未授权措辞为原计划历史，不派发下一批。
 Authority: Design D0035 / Research D0031 RES_L4_CHAIR / Shared D0035 ordinary/current eligibility / A0161。
 Baseline: B085.112/modinfo112，实现f149f8434a48419b11f618fe4cff857c274e2d8d，部署记录5021309。用户接受P0-D2；W0001旧上下文/140个Mod文件hash匹配复用。
