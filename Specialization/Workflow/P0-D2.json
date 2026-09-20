@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D2",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,11 +24,11 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0223",
-    "runtime": "B084.111 / modinfo111",
+    "status": "S0224",
+    "runtime": "B085.112 / modinfo112",
     "military": "D0034"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_D2_Plan.md",
+  "goal_reference": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
   "context": [
     {
       "path": "Specialization/Architecture/v2/P0_D2_Plan.md",
@@ -143,13 +143,33 @@
         "| P0-D3 "
       ],
       "reason": "Batch boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "kind": "full",
+      "reason": "Actual P0-D2 contract / writer / native integer specialist projection"
+    },
+    {
+      "path": "Mod/ResearchApply.lua",
+      "kind": "full",
+      "reason": "Actual P0-D2 contract / writer / native integer specialist projection"
+    },
+    {
+      "path": "Mod/ResearchApplyModel.lua",
+      "kind": "full",
+      "reason": "Actual P0-D2 contract / writer / native integer specialist projection"
+    },
+    {
+      "path": "Mod/Data/ResearchApply.sql",
+      "kind": "full",
+      "reason": "Actual P0-D2 contract / writer / native integer specialist projection"
     }
   ],
   "dependencies": [
     "P0-A shared D/current facts",
     "P0-B1/B2/C verified specialist infrastructure",
     "P0-D1 accepted retirement baseline",
-    "Independent half-step specialist primitive verification"
+    "User-authorized per-specialist floor; P0-C native integer specialist precedent"
   ],
   "old_writers": {
     "retire": [],
@@ -189,23 +209,23 @@
   ],
   "validation": {
     "local": [
-      "formula/eligibility/0.5 steps/Gold3",
+      "formula/eligibility/group by yield then floor per specialist/Gold3",
       "actual writer/lifecycle/retired8+48",
       "1/2/4/8 scaling and10k idle",
       "protected regressions/SQL/manifest/deployment safety"
     ],
-    "user": "One III city, odd D,0/1/2 specialists,building growth,ACTIVE and reload; no manual pillage"
+    "user": "One III city,0/1/2 specialists,integer per-specialist native increment,D growth,ACTIVE and reload; no manual pillage"
   },
   "full_audit_triggers": [
     "Before new writer: exact/dynamic carrier and caller inventory",
     "Changed shared D/catalog must revalidate all existing consumers",
-    "Half primitive mismatch stops release; no inferred D1 floor permission"
+    "User-authorized integer specialist projection; native settlement remains required, no half-point gate"
   ],
   "result": {
-    "plan": "READY_FOR_AUTHORIZATION",
-    "implementation": "NOT_STARTED",
-    "blocking_design": "None identified",
-    "technical_gate": "Specialist 0.5/1.5 native settlement not confirmed",
-    "report": "Specialization/Architecture/v2/P0_D2_Plan.md"
+    "implementation": "LOCAL_SIMULATION_PASS",
+    "user": "USER_GAME_TEST_REQUIRED",
+    "report": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+    "technical_gate": "Integer specialist-only native projection; no half-point probe",
+    "blocking_design": "None; Design unchanged; temporary per-specialist floor explicitly authorized"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "33dc5cd05fa5abb589059e769a167727a89a91a2",
-  "runtime": "B084.111 / modinfo111",
+  "runtime_commit": "B085.112 implementation commit recorded after commit",
+  "runtime": "B085.112 / modinfo112",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -236,9 +236,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "fbfd67d9de0f749a4bcfa56c47b5e3e30aff1d2ba1b532fe8f78d30b3751ef47",
-      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
-      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
+      "sha256": "b2701e8a058effcd42a1cb52ef761ecbf9789b7f7cdfce688b9773f3e40ba12a",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/EffectiveFacts.lua": {
       "sha256": "eef44026a81b5c6ba31187a0c52eedc47f41190e46cf1483d25086f935bcbdf8",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "3bb97c917ed15673fdc0a117c2ca62f0da9b53b31e76814dd78f0d89dcd1c6b2",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "8698c1ea1c682daf05ceb17e291376ba9da71c60aef567a544c3aab918fa683e",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "024bf850a45c75bcecbebb5cc64421a8f67b42fcb5baf97f760a4e786ab12f18",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "9035d7817104f40d312c7e8249f91a4f7be5bf1ed5a118ac361e9857778acaa1",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9fa16409906704dd5475398262c59819f235978c018ad66cfeb130ec8c21aca6",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "d0061c2d37cc033b3838973ee6a3ed542933eaf1d6407aa0dbf5f9be7dbecd6c",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,19 +556,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "505d20f47d156ab11d70b98304f9751f08a7be2647baa352d5843fa8ae924061",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "07ae776a9fbf3629660499a14ceb1f2a84b73b9ac5e0a9a1d2484ee5e8ba74cf",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "b830f215e9257b4494866c7a0e71b873b73bbfc81962d5e463e53bc6c34aebb5",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "829612e3a71aaa36c8cfe5f28374efc976781021242eb21fe7aca2f14c860f56",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "370bc101ac1e97adcc5ca1bd03bedb08ec013fd5e2446e4f7b20e2c87c43bb54",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "85338f42bcb1b57fa4ab6cb64f13b2490b958f2c6ae72086a9f99a6bc19fed68",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -689,6 +689,21 @@
       "sha256": "58d437e730c83c129909b7bf4ed4824519abfa07c0de6c81ec96a07c407cc932",
       "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
       "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/ResearchApply.lua": {
+      "sha256": "52f84760ea41c7e1d3b8554c57fe6e527f6535a52541a4a7c33fa62ddf8afc05",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
+    },
+    "Mod/ResearchApplyModel.lua": {
+      "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
+    },
+    "Mod/Data/ResearchApply.sql": {
+      "sha256": "6fe79eb49be9282c2507d616d1c975b1a84ee5bf3847e341a9c06f5fe68fc0e3",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     }
   }
 }

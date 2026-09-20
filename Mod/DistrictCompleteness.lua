@@ -145,13 +145,20 @@ function M.Start(P,shared)
  end
  -- Generic Publish/Playback/UI ticks and unit movement are deliberately absent.
  for _,name in ipairs({'CityBuildingsChanged'}) do hook(Events,name,function(pid,cid) data.MarkDirty(pid,cid) end) end
- for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','BuildingPillaged','CityTransfered','CityRemovedFromMap'}) do
+ for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','BuildingPillaged','CityTransfered','CityRemovedFromMap'}) do
   hook(Events,name,function() data.MarkDirty() end) -- signatures vary; bounded dirty marks only
  end
  for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'}) do
   hook(GameEvents,name,function() data.MarkDirty() end)
  end
  hook(Events,'LoadScreenClose',function() cache={};catalog=nil;epoch=epoch+1 end)
+ for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'}) do
+  hook(Events,name,function(x,y,id)
+   local row=P.Info('Buildings',id)
+   if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
+   data.MarkDirty()
+  end)
+ end
  -- Missed native events: next explicit read in a new turn reconciles once.
 end
 M.Clone=clone

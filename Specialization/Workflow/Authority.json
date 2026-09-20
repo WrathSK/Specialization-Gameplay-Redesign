@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0223",
-    "runtime": "B084.111 / modinfo111",
+    "status": "S0224",
+    "runtime": "B085.112 / modinfo112",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "33dc5cd05fa5abb589059e769a167727a89a91a2",
-  "current_batch": "P0-D2 PLANNED_NOT_AUTHORIZED",
-  "next_batch": "Await explicit P0-D2 implementation authorization",
+  "runtime_commit": "B085.112 implementation commit recorded after commit",
+  "current_batch": "P0-D2 IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "next_batch": "Await P0-D2 user validation; do not start P0-D3",
   "manifest": "Specialization/Workflow/P0-D2.json",
   "live": "B084.111 / modinfo111 deployed W0003;137 exact file hashes; B083/B082/B081 recovery retained; P0-D1 user overall PASS",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "D1 user PASS; D2 scoped facts/writer/precision review; unchanged Design/runtime hashes reused",
+  "context_review_status": "P0-D2 user-authorized per-specialist floor; changed runtime/contract reviewed; unchanged Design inherited",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,5 +59,5 @@
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_D2_Plan.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_D2_Research_Apply.md"
 }

@@ -1,6 +1,8 @@
 # P0-D2 — Research III「学以致用」实施计划
 
-Status: PLANNED_NOT_AUTHORIZED. 本轮只记录P0-D1用户PASS并制定计划；不改Mod、Design、运行包，不部署。
+Status: IMPLEMENTATION_COMPLETE_AWAITING_USER。B085.112本地通过；[实施报告](P0_D2_Research_Apply.md)。
+
+**实施授权增量（优先于下文原始计划）：** 用户独立授权D2整数floor，并明确每名专家先floor再按人数结算。各领域按yield合并后每名floor，原生专家载体，无城市平铺。取消半点probe门禁；保留原计划为可追溯背景。Design系数/文件不改。下文“未授权/半点必须实测/不继承floor”均属于授权前计划，不再派发测试。正式最小测试改为0/1/2专家整数增量、D变化和撤销/读档。
 Authority: Design D0035 / Research D0031 RES_L3_APPLY、yield_mapping、district_qualification / Shared D0035 DISTRICT_DEVELOPMENT / Architecture A0161。Baseline: B084.111/modinfo111，runtime33dc5cd；P0-D1用户整体验收通过。现有W0001 hashes复用，非目标模块不做无必要全量重审。四专业scope不扩到Military。
 
 ## 1. 唯一Gameplay目标

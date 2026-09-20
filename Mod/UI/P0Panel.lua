@@ -449,6 +449,10 @@ end
 local oldInitialize=initialize
 initialize=function()
  oldInitialize()
+ Controls.DP03ButtonCaption:SetText('学以致用')
+ Controls.DP03Button:RegisterCallback(Mouse.eLClick,function() request('RESEARCH_APPLY_READ') end)
+ Controls.DP03Button:RegisterCallback(Mouse.eRClick,function() request('RESEARCH_APPLY_DETAIL') end)
+ Controls.DP03Button:SetToolTipString('左键：每名专家floor及全城预期；右键：领域D与建筑组成。只读。')
  Controls.DPReadButtonCaption:SetText('跨学科研究')
  Controls.DPReadButton:RegisterCallback(Mouse.eLClick,function() request('RESEARCH_CROSS_READ') end)
  Controls.DPReadButton:RegisterCallback(Mouse.eRClick,function() request('RESEARCH_CROSS_DETAIL') end)

@@ -1,6 +1,6 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前进度：P0-D1 B084.111用户整体PASS；[P0-D2学以致用具体计划](P0_D2_Plan.md)为PLANNED_NOT_AUTHORIZED。D2半点专家primitive单独设门禁，不继承D1 floor；仅计划，无runtime变化。
+当前进度：P0-D1用户PASS；P0-D2 B085.112按用户明确授权的每名专家floor完成，[实际合同/本地证据](P0_D2_Research_Apply.md)，LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED。不自动进入P0-D3。以下旧状态保留为历史。
 
 Current P0-D1: [B084.111 formal cross-disciplinary implementation](P0_D1_Research_Cross_Cutover.md), user-authorized temporary floor, LOCAL_SIMULATION_PASS / formal USER_GAME_TEST_REQUIRED. This supersedes earlier primitive gate status; Design D0035 unchanged; P0-D2 not started.
 
