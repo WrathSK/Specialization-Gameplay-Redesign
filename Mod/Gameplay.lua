@@ -36,7 +36,8 @@ local function request(playerID,params)
       return shared.DistrictPrecisionProbe.Run(playerID,c,params.Action)
     end)
     if ok then shared.DistrictPrecisionProbe.view.token=params.Token end
-    shared.Snapshot=ok and out or ('区域实验未完成：'..tostring(out))
+    if not ok then print('[SPC][B083][DISTRICT_PRECISION] '..tostring(out)) end
+    shared.Snapshot=ok and out or ('区域实验未完成：'..SPCDistrictPrecisionProbe.Error(out)..'\n尚不能判断小数支持；详细错误仅写入日志。')
     shared.LastToken=params.Token;return
   end
   if params.Action=='COMPLETENESS_READ' or params.Action=='RESEARCH_INFRA_DETAIL' then

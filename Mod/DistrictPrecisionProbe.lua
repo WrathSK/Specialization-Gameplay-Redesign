@@ -1,8 +1,17 @@
--- B082 on-demand native district precision experiment; not a P0-D1 writer.
+-- B083 fixes Gameplay indexed enumeration and absent city containers; B082 on-demand native district precision experiment; not a P0-D1 writer.
 SPCDistrictPrecisionProbe={}
 local M=SPCDistrictPrecisionProbe
 M.Stages={'03','05','1'}
 M.Amounts={['03']=0.3,['05']=0.5,['1']=1}
+function M.Error(err)
+ local code=tostring(err):match('DP_[A-Z_]+') or 'DP_API_UNAVAILABLE'
+ local text={DP_API_UNAVAILABLE='游戏接口不可用',DP_ONE_COMPLETED_CAMPUS_REQUIRED='需要一座已完成的学院',
+  DP_CAMPUS_NOT_READY='学院未完成或被掠夺',DP_DISABLE_OLD_HALF_EXPERIMENT='请先关闭旧半点实验',
+  DP_REMOVE_UNCONFIRMED='旧实验撤销未确认，未继续添加',DP_CREATE_UNCONFIRMED='实验载体创建未确认',
+  DP_DISTRICT_COUNT_UNKNOWN='区域数量暂不可读',DP_DISTRICT_ENTRY_UNKNOWN='区域对象暂不可读',
+  DP_OWN_TEST_CITY_REQUIRED='请选中己方测试城市'}
+ return (text[code] or '实验状态未确认')..'（'..code..'）'
+end
 function M.Start(P,shared)
  local data={cleanupError=nil};shared.DistrictPrecisionProbe=data
  local function rows(c)
@@ -22,7 +31,11 @@ function M.Start(P,shared)
  end
  local function campus(c)
   local n,found=0,nil
-  for _,d in c:GetDistricts():Members() do
+  local districts=assert(c:GetDistricts(),'DP_DISTRICT_COLLECTION_UNKNOWN')
+  local count=districts:GetNumDistricts()
+  assert(type(count)=='number' and count>=0 and count%1==0 and count<=512,'DP_DISTRICT_COUNT_UNKNOWN')
+  for i=0,count-1 do
+   local d=assert(districts:GetDistrictByIndex(i),'DP_DISTRICT_ENTRY_UNKNOWN')
    local r=assert(P.Info('Districts',d:GetType()),'DP_DISTRICT_UNKNOWN')
    local match=r.DistrictType=='DISTRICT_CAMPUS'
    if not match then for _,v in ipairs(P.Rows('DistrictReplaces') or {}) do
@@ -62,8 +75,12 @@ function M.Start(P,shared)
  local function clean()
   data.view=nil;data.cleanupError=nil
   for _,p in pairs(Players) do
-   local ok,err=pcall(function() for _,c in p:GetCities():Members() do clear(c,rows(c)) end end)
-   if not ok then data.cleanupError=tostring(err) end
+   local ok,err=pcall(function()
+    local cities=p:GetCities()
+    -- Unused/non-city player slots legitimately expose no city collection.
+    if cities then for _,c in cities:Members() do clear(c,rows(c)) end end
+   end)
+   if not ok then data.cleanupError=M.Error(err) end
   end
  end
  local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(clean) end

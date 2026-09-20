@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0220",
-    "runtime": "B082.109 / modinfo109",
+    "status": "S0221",
+    "runtime": "B083.110 / modinfo110",
     "military": "D0034"
   },
   "paths": {
@@ -30,7 +30,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "9e6a1061c97578b4a05b0e917985714d559218a0",
+  "runtime_commit": "B083 fix commit containing this index",
   "current_batch": "P0-D1 AUTHORIZED / DISTRICT_PRIMITIVE_USER_TEST_REQUIRED",
   "next_batch": "User native district precision result, then continue P0-D1; no P0-D2",
   "manifest": "Specialization/Workflow/P0-D1.json",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B082 isolated on-demand district probe, all old formal writers retained; native float evidence pending",
+  "context_review_status": "B082 native probe blocked by harness API/captions; B083 local repair PASS, native precision UNKNOWN",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

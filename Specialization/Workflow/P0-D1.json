@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0220",
-    "runtime": "B082.109 / modinfo109",
+    "status": "S0221",
+    "runtime": "B083.110 / modinfo110",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_D1_Plan.md",
@@ -162,10 +162,10 @@
   ],
   "result": {
     "authorization": "User explicitly authorized implementation after86a67bc plan",
-    "implementation": "PRE_CUTOVER_GATE_OPEN; B082 opt-in district precision probe only; exact8 old writer retained",
-    "local": "Probe lifecycle/idle/SQL/scope and protected regressions PASS; not engine precision PASS",
+    "implementation": "B083 probe repair only; formal P0-D1 cutover incomplete",
+    "local": "Reproduce actual B082 API faults, separate UI/Gameplay fixtures; B083 probe and protected regressions PASS",
     "technical_gates": "Native finer-fraction settlement or supported BASE return domain requires evidence; synthetic counterexamples not runtime observations",
-    "game_test": "B082 explicit OFF/read/0.3/read/0.5/read/1/read/OFF/read; final compact report",
+    "game_test": "B082 harness FAIL; B083 same short test required, precision UNKNOWN",
     "report": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md"
   }
 }

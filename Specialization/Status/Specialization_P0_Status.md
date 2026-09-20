@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0220
-Implementation Build: develop P0-B-082.109 / modinfo109 (district precision experiment); live B082.109 / modinfo109; stable B069.96 / modinfo96
+Status Revision: S0221
+Implementation Build: develop P0-B-083.110 / modinfo110 (district probe API/caption repair); live B082.109 / modinfo109; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,9 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_D1_DISTRICT_PRIMITIVE_USER_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+最新B082用户测试未完成：[两图归档/原因/B083修复](Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md)。Gameplay Members不可用、无城市容器和按钮缺字；尚未施加三档实验收益，不能判定小数接口失败。B083完成局部修复/明确context mock/简明错误，LOCAL_SIMULATION_PASS，原生结果待同一短测。旧正式writer/SQL不改。以下B082部署及本地记录保留历史证据；最新部署记录优先。
+
 
 B082已按W0003临时部署，131文件逐项hash一致，完整B081恢复包保留：[部署记录](Validation/Results/Specialization_B082_District_Precision_Deployment_20260920.md)。当前仅等待一次原生区域精度测试。
 

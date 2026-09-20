@@ -1,6 +1,10 @@
 # P0-D1 区域原生小数实验 — B082.109
 
-Status: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. P0-D1正式切换未完成。
+Status: B082 USER_GAME_TEST_FAIL (harness/API/captions); B083 LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. P0-D1正式切换未完成。
+
+## B083修正优先
+
+[截图与修复](../../Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md)：B082实际Gameplay没有Members、无城市槽位清理nil、四按钮缺字；精度未测得。B083改用P0-A已验证索引API、跳过nil城市集合、具名Caption+SetText；错误简明，变化后的OFF重置基线。以下B082本地证据不能升级成实机PASS；SQL/测试数值及正式writer不变。
 
 ## 用户授权增量
 
@@ -21,7 +25,7 @@ Status: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. P0-D1正式切换未完
 
 `DistrictPrecisionRead.lua`：仅显式读数时从UI读取学院GetYield、GetAdjacencyYield、Plot BASE及城市Science；一份城市baseline+最多4个阶段结果，换城市丢弃旧表，无逐事件字符串/文件日志。每个ACK最多一次原生读取；UI等待只看回复，不反复扫描。配置与原生测量分列；失败/stale为UNKNOWN，不伪造0。原生结果可能异步，写入后需另点读数。区域getter和城市总量交叉对照；若两个口径矛盾，先UNKNOWN而非按城市总量宣布成功。
 
-四个实验按钮暂占原尤里卡/商业四/折扣/模板的四个位置；原处理入口保持，实验结束撤回临时展示，不扩张面板。旧半点实验ON时禁止叠加。已修正先前按钮空白风险：显式子Label。
+四个实验按钮暂占原尤里卡/商业四/折扣/模板的四个位置；原处理入口保持，实验结束撤回临时展示，不扩张面板。旧半点实验ON时禁止叠加。B082显式子Label仍未显示；B083补齐具名Caption及Lua SetText，实机可见性仍待确认。
 
 ## 本地验证（非引擎验证）
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "9e6a1061c97578b4a05b0e917985714d559218a0",
-  "runtime": "B082.109 / modinfo109",
+  "runtime_commit": "B083 fix commit containing this index",
+  "runtime": "B083.110 / modinfo110",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "1e1b961cb74532c0a077ef059d8442d173a1623e18d5e07edba705448edc3a32",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "ef5f8e6065beaedb0169e605fc1097a84f5aec3c71f6e92e255b2b266a46305b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -366,9 +366,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Probe.lua": {
-      "sha256": "903a1934a56ff1982fcd2829e6c81d5175345c25f41ca71ac4c6b9485e92869a",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "ca158feac3924e7fae03360f0c8800913326791f0791088b31e9dd7840ad5a22",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a074ced6bb30ffa5eb82f321b694520ab8bb26d1ca26268b88dea2b86aa62782",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "8b692eacefa521f9001bc44148107bca6639a41dd3c83f22254edfa16f5bc736",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,19 +556,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "c70152ff994b78789981c89ee55d6453c1d9be543b4cc6e9dca3f1dc976f92cb",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "76737dde639d6dd09bcd0ce37676e2616505710d0671a1db9fee863502efdfe4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "c12b182c5903124a0d96fba0b22b52f699cfd3b376b34acb1a7f8a56d98e3dd3",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "d71b007bfe7c3bc5f61a9e50a73a93b723a745ae27de04b7bbe17d9afae52e65",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "6b50f69668cdc3aef9e9cbfcbe40eafa1dd2a39afabcac6a6eb07f88079adabc",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "9785d96ed75547b1be4c59ee3bac91749aa8c6912d4d106ae1efe46fa768ffbc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -646,14 +646,14 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/DistrictPrecisionRead.lua": {
-      "sha256": "180e8ecc6e783550c7c6fbe090968491a30cff809bd4cff0b58ae8d498162a6c",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "d020abb8278d944b3c46ae63cc78baaa465fcd6fd77b0418e7ce6f45250ce590",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/DistrictPrecisionProbe.lua": {
-      "sha256": "f415f0a25261540069d4fe1be54cc098842a9fbfd3285a330e524619adca01c6",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/Data/DistrictPrecisionProbe.sql": {
       "sha256": "8c5927957342032f6f3ccaeb009d4295eb8aed2cb90a52f754e2e9a7161b74d2",

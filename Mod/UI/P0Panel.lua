@@ -450,11 +450,17 @@ local function initialize()
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
   Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)
-  status('B082区域精度实验默认OFF。[NEWLINE]选中有学院的城市：先右键OFF，再左键读数；逐项开启0.3/0.5/1并读数，最后OFF读数。[NEWLINE]实验按钮会临时添加收益；不要在实验ON时推进长局。')
+  status('B083区域精度实验默认OFF。[NEWLINE]选中有学院的城市：先右键OFF，再左键读数；逐项开启0.3/0.5/1并读数，最后OFF读数。[NEWLINE]实验按钮会临时添加收益；不要在实验ON时推进长局。')
 end
 local oldInitialize=initialize
 initialize=function()
  oldInitialize()
+ Controls.DPReadButtonCaption:SetText('区域读数 / 右键OFF')
+ for _,s in ipairs({'03','05','1'}) do
+  local caption=({['03']='实验：区域科技 +0.3',['05']='实验：区域科技 +0.5',['1']='实验：区域科技 +1'})[s]
+  Controls['DP'..s..'ButtonCaption']:SetText(caption)
+  Controls['DP'..s..'Button']:SetToolTipString(caption..'；应用后另点区域读数。')
+ end
  Controls.DPReadButton:RegisterCallback(Mouse.eLClick,function() request('DP_READ') end)
  Controls.DPReadButton:RegisterCallback(Mouse.eRClick,function() request('DP_OFF') end)
  Controls.DPReadButton:SetToolTipString('左键读数；右键关闭实验。先OFF读基线，再依次测试0.3、0.5、1，每次另点读数；最后OFF读数。')

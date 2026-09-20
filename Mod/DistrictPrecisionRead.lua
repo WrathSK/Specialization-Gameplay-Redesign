@@ -20,9 +20,12 @@ function SPCDistrictPrecisionRead.Render(P,v,token)
    base=number(Map.GetPlot(d:GetX(),d:GetY()):GetAdjacencyYield(v.owner,v.city,d:GetType(),y)),
    city=number(c:GetYield(y)),pop=c:GetPopulation(),turn=Game.GetCurrentGameTurn()}
   if baseline and baseline.key~=key then baseline=nil;results={} end
+  local restarted=baseline and v.amount==0 and (baseline.pop~=n.pop or baseline.turn~=n.turn)
+  if restarted then baseline=nil;results={} end
   if not baseline and v.amount==0 then baseline=n end
   local out={'原生读数：学院科技 '..string.format('%.6f',n.district)..'；学院相邻 '..string.format('%.6f',n.adjacency),
    'Plot BASE '..string.format('%.6f',n.base)..'；城市科技 '..string.format('%.6f',n.city)}
+  if restarted then out[#out+1]='回合/人口已变化：已用当前OFF读数重新建立基线。' end
   if baseline then
    assert(v.amount==0 or v.amount==0.3 or v.amount==0.5 or v.amount==1,'DP_STAGE_UNKNOWN')
    results[v.amount]=string.format('配置 %s → 区域 Δ%+.6f / 城市 Δ%+.6f',tostring(v.amount),n.district-baseline.district,n.city-baseline.city)
@@ -32,5 +35,5 @@ function SPCDistrictPrecisionRead.Render(P,v,token)
   else out[#out+1]='缺少OFF基线：先右键关闭，再读数；不要据城市总量单独判PASS。' end
   return table.concat(out,'\n')
  end)
- return ok and text or ('原生读数 UNKNOWN：'..tostring(text))
+ return ok and text or ('原生读数 UNKNOWN：'..(tostring(text):match('DP_[A-Z_]+') or '接口暂不可用')..'；不作精度结论。')
 end
