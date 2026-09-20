@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0033",
+  "specialization": "MILITARY",
+  "document_state": "ACCEPTED",
+  "freeze_status": "DESIGN_FROZEN",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "balance_validation": "PENDING",
+  "authority": "2026-09-20 Military redesign brief and five explicit follow-up decisions. Historical D0008 applies only where expressly re-adopted.",
+  "shared_contract_ref": "Shared_D0028.json",
+  "philosophy": "城市社会资源、组织能力、经验与人才转化为军事力量；防御、战前准备、扩张及紧急军事化均有价值，不要求和平经济产出来回本。",
+  "ability_structure": {
+    "counts": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "shared_boundary": "Design arrangement, not mandatory runtime schema."
+  },
+  "institutions": [
+    {
+      "institution_id": "MIL_INST_1",
+      "level": 1,
+      "name": {
+        "zh_CN": "武备社"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 1,
+      "ability_ids": [],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "MIL_INST_2",
+      "level": 2,
+      "name": {
+        "zh_CN": "武官所"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 2,
+      "ability_ids": [
+        "MIL_L2_INSTITUTION"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "MIL_INST_3",
+      "level": 3,
+      "name": {
+        "zh_CN": "演武场"
+      },
+      "name_status": "LOCKED",
+      "potential_requirement": 3,
+      "ability_ids": [
+        "MIL_L3_TRAINING",
+        "MIL_L3_LOGISTICS"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "MIL_INST_4",
+      "level": 4,
+      "name": {
+        "zh_CN": "讲武堂"
+      },
+      "name_status": "LOCKED",
+      "potential_requirement": 4,
+      "ability_ids": [
+        "MIL_L4_MENTORSHIP",
+        "MIL_L4_INSIGHT",
+        "MIL_L4_TRADITION"
+      ],
+      "presentation_only": true
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "MIL_L2_INSTITUTION",
+      "institution_id": "MIL_INST_2",
+      "name": {
+        "zh_CN": "行伍制度"
+      },
+      "name_status": "LOCKED",
+      "active_requirement": 2,
+      "mechanical_contract": "ACTIVE>=2: eligible Encampment district+1 Housing and each eligible actually present ordinary Tier+1 Housing (Tier existence, not weighted D); each actual working military specialist+2 base General GPP, normal multipliers apply. No +15% Combat XP."
+    },
+    {
+      "ability_id": "MIL_L3_TRAINING",
+      "institution_id": "MIL_INST_3",
+      "name": {
+        "zh_CN": "综合训练"
+      },
+      "name_status": "LOCKED",
+      "active_requirement": 3,
+      "contract_ref": "contracts.comprehensive_training"
+    },
+    {
+      "ability_id": "MIL_L3_LOGISTICS",
+      "institution_id": "MIL_INST_3",
+      "name": {
+        "zh_CN": "后勤编制"
+      },
+      "name_status": "LOCKED",
+      "active_requirement": 3,
+      "contract_ref": "contracts.logistics"
+    },
+    {
+      "ability_id": "MIL_L4_MENTORSHIP",
+      "institution_id": "MIL_INST_4",
+      "name": {
+        "zh_CN": "战阵传授"
+      },
+      "name_status": "LOCKED",
+      "active_requirement": 4,
+      "contract_ref": "contracts.mentorship"
+    },
+    {
+      "ability_id": "MIL_L4_INSIGHT",
+      "institution_id": "MIL_INST_4",
+      "name": {
+        "zh_CN": "沙场领悟"
+      },
+      "name_status": "LOCKED",
+      "active_requirement": 4,
+      "contract_ref": "contracts.insight"
+    },
+    {
+      "ability_id": "MIL_L4_TRADITION",
+      "institution_id": "MIL_INST_4",
+      "name": {
+        "zh_CN": "军略传承"
+      },
+      "name_status": "LOCKED",
+      "active_requirement": 4,
+      "contract_ref": "contracts.military_tradition"
+    }
+  ],
+  "base_effects": {
+    "specialist_support": {
+      "scope": "实际工作Encampment specialists",
+      "food": 3,
+      "production": 3,
+      "levels": "all",
+      "old_lv3_upgrade": "SUPERSEDED"
+    },
+    "institution_presentation": "Cumulative presentation-only institutions follow Current Identity/Potential; abilities use ACTIVE. Historical entries follow separate Legacy review, never ordinary engine buildings."
+  },
+  "contracts": {
+    "unit_eligibility": {
+      "scope": "LAND_COMBAT_UNITS_ONLY; no naval/air expansion; military unit scope does not make civilian units combat units.",
+      "production": "INCLUDED",
+      "gold_purchase": "INCLUDED",
+      "faith_purchase": "INCLUDED",
+      "free_levied_duplicated_captured": "INCLUDED only if origin can be confirmed and belongs to this training city; otherwise EXCLUDED. Do not infer provenance merely from current tile or nearest city.",
+      "technical_boundary": "Reliable acquisition attribution remains a technical investigation; no silent eligibility expansion."
+    },
+    "unit_training_snapshot": {
+      "authority": "Unit-held permanent per-ability training buff acquired at eligible production/acquisition; not ongoing city linkage.",
+      "qualification": "Snapshot current city ACTIVE ability entitlement and applicable ability parameters at grant.",
+      "insight_E": "E_birth = actual working Encampment specialist count at grant; fixed in unit buff. Later city specialist changes never recalculate it.",
+      "tradition": "Snapshot applicable local Tradition birth-CS and Mentorship/Insight enhancements at grant. Later city Tradition changes do not retroactively upgrade existing units.",
+      "dynamic_inputs": "P remains unit actual current promotions at each combat; mentor promotions and current adjacency remain combat facts. Permanent buff does not mean fixed XP award at birth.",
+      "city_independence": "Later city ACTIVE loss, building loss, respecialization or city state change does not withdraw/revalue the unit buff; no ongoing source-city lookup.",
+      "formation": "For the same Military ability effect retain the maximum among constituent units; never sum/average. Distinct abilities still contribute separately. No single source city is selected as merged-unit XP authority.",
+      "technical_boundary": "Upgrade persistence and compound per-ability parameter encoding/merge are to be verified; source city is provenance, not ongoing authority. No unit-owner/conquest Legacy policy inferred."
+    },
+    "comprehensive_training": {
+      "domains": [
+        "DISTRICT_CAMPUS",
+        "DISTRICT_THEATER",
+        "DISTRICT_INDUSTRIAL_ZONE",
+        "DISTRICT_COMMERCIAL_HUB",
+        "DISTRICT_HOLY_SITE"
+      ],
+      "predicate": "At least one actually present completed, unpillaged eligible ordinary Tier1 building in the domain. Shared ontology/unique normalization/free ordinary building rules apply. Bare district, D>0 or Tier2 alone do not substitute.",
+      "per_domain_cs": 1,
+      "max_cs": 5,
+      "timing": "Grant permanent unit buff at eligible acquisition under Military ACTIVE>=3.",
+      "tradeoff": "Population/district slots/production invested in broader infrastructure versus producing more troops. +5 is theoretical, not activation minimum.",
+      "population_example": "Encampment plus five domains means six ordinary population-limited districts (16 population under standard slot rules); not a new hard population requirement overriding exemptions.",
+      "restructuring": "Existing T1 infrastructure may qualify immediately after completed respecialization; intended synergy, not an exploit."
+    },
+    "logistics": {
+      "unlock_active": 3,
+      "preferred_presentation": "Dedicated physical support unit line; Production cost and visible1:1 escort/formation relationship.",
+      "effect": "For linked combat unit replace covered ongoing strategic-resource maintenance with additional Gold maintenance on logistics unit.",
+      "unchanged": [
+        "Upfront training resources",
+        "Upfront purchase resources",
+        "Upfront upgrade resources"
+      ],
+      "progression": "Versions unlock with new maintenance-resource units and cover own/prior supported resources; exact HD line/unlocks/coverage pending.",
+      "uranium": "DESIGN_BALANCE_REVIEW_REQUIRED explicitly deferred",
+      "costs": "UNSET; early10/laterhundreds-or1000 was discussion expectation, not configured values.",
+      "fallback": "UI/UnitAbility logistics contract only for future review if physical escort spike demonstrates material limitations; not adopted.",
+      "spike": [
+        "Link/unlink",
+        "create/destroy/death",
+        "upgrade",
+        "embark",
+        "formation",
+        "resource tick ordering",
+        "Gold maintenance",
+        "save/load",
+        "AI",
+        "event-driven performance"
+      ]
+    },
+    "mentorship": {
+      "active_at_grant": 4,
+      "historical_basis": "D0008 MIL-010–012 with new same PromotionClass restriction and permanent birth-buff qualification.",
+      "fighter": "Own eligible land combat unit carrying Mentorship entitlement; intermediate units may benefit, not P=0-only.",
+      "mentor": "Adjacent one-hex own eligible land combat unit, same PromotionClass, higher actual promotions; choose maximum P, never sum mentors.",
+      "formula": "max(0, floor((P_mentor - P_fighter)/2))",
+      "tradition": "Unit-held enhancement fixed at grant; exact increment pending Balance.",
+      "xp": "Separate bonus XP, not multiplied by normal combat-XP modifiers, not limited by E, no extra artificial cap.",
+      "scope": "Real combat only, local one-hex evaluation, no garrison requirement or empire-wide mentor scan.",
+      "timing_review": "Precise engine combat event/position/promotion snapshot and exceptional combat classification require later technical boundary review; no new garrison ability."
+    },
+    "insight": {
+      "active_at_grant": 4,
+      "formula": "min(E_birth, floor(P_current/2))",
+      "P": "Actual promotions at combat, including lawful Corps/Army inheritance; not XP level.",
+      "E": "Actual working Encampment specialists frozen at grant, not current source-city specialists.",
+      "tradition": "Unit-held enhancement fixed at grant; exact increment pending Balance.",
+      "xp": "Independent extra XP; do not override ordinary combat-XP cap. No artificial +3/+4 cap.",
+      "evidence": "User historical proof reported usually one fewer combat, never two/no faster veteran progression. Historical E<=4 and cap8 were model inputs, not universal new constraints. Current installed HD/cached DB cap32 requires BALANCE_REVALIDATION_REQUIRED; no generic snowball redesign."
+    },
+    "military_tradition": {
+      "active": 4,
+      "action": "Great General third action: consume permanently in Military city, no native retire effect; aura/retire remain separate choices.",
+      "ownership": "Local city historical asset, not national.",
+      "tiers": "Finite discrete tiers; approximately6 target, not locked count. Each tier strengthens exactly one of birthCS/MentorshipXP/InsightXP; thresholds/order/increments unset.",
+      "application": "Enhancements assigned to subsequently acquired eligible units as permanent training snapshots; not dynamic city aura or retroactive improvement.",
+      "era_requirement": "NONE; different-era General requirement not adopted.",
+      "network": "No automatic Tradition Network bonus.",
+      "legacy": "City Tradition respecialization/conquest remains separately deferred; existing awarded unit buffs remain independent."
+    },
+    "unified_mobilization": {
+      "name": "统一动员",
+      "unit_scope": "Eligible land combat production only",
+      "command_scope": "One commander per disconnected eligible domestic Military network, not one global commander. A participant responds only to its own network commander.",
+      "topology": "Use common route/direct/center/distribution qualification; do not flatten domestic roads or arbitrary trade connectivity into membership or allow recursive relay. Precise component representation/split-merge reconciliation is future Architecture review, not permission to reverse route direction.",
+      "target": "Entire normalized upgrade unit line; unique replacements normalize to the corresponding line. Single/Corps/Army are the same target. Not entire PromotionClass. Unmapped/modded line classification requires technical review, never guess from class alone.",
+      "command_qualification": "Current Military identity/eligible effective ACTIVE>=1 and current active production of eligible military unit. Later queue entries do not count.",
+      "authority": "Current ACTIVE IV>III>II>I, not Potential.",
+      "initial": "Without commander, first city entering eligible active production becomes commander.",
+      "takeover": "Strictly higher authority takes over; equal authority retains incumbent. Production changes AND relevant ACTIVE changes trigger this check. Newly promoted higher candidate takes over without needing production change.",
+      "downgrade": "Commander downgrade with higher eligible candidate causes takeover/reelection; equal authority alone does not steal.",
+      "target_change": "Incumbent changes between eligible units: retain command, update target.",
+      "invalidation": "Stops eligible production, loses Military qualification/city, respecializes or target invalidates: one bounded election among current network candidates, highest ACTIVE then earliest current continuous eligibility sequence.",
+      "participant": "Any otherwise eligible connected own city regardless of specialization, including ordinary cities; current active unit production must match target line. Source/center self-reception follows common network qualification, no invented free self-reception.",
+      "effect": "Military unit Production efficiency only; no local CS/XP/Tradition/logistics transfer.",
+      "bonus": "UNRESOLVED_BALANCE_PARAMETER: fixed/level/count/diminishing/speed choices; no default.",
+      "event_intent": "Relevant production/ACTIVE/topology changes update affected state; bounded election on invalidation; no per-frame/per-turn empire reelection.",
+      "not_adopted": [
+        "Queue-contains eligibility",
+        "Cooldown",
+        "Completion deadline",
+        "Cancellation penalty",
+        "National all-unit generic bonus",
+        "Old progress pool/free-unit spawn"
+      ]
+    }
+  },
+  "parameters": {
+    "training_cs_per_domain": 1,
+    "training_cs_cap": 5,
+    "support_food": 3,
+    "support_production": 3,
+    "base_general_gpp": 2,
+    "unresolved": [
+      "Tradition exact tier count/order/General thresholds/CS and XP increments",
+      "Logistics Production/Gold costs/resource versions/unlocks/coverage",
+      "Uranium/endgame inclusion (explicit deferred design detail)",
+      "Mobilization Production bonus/scaling",
+      "Applicable game-speed treatment"
+    ]
+  },
+  "legacy_review_required": [
+    "City Tradition outside Military Identity/conquest",
+    "Historical Military institution presentation",
+    "Existing logistics units after source respecialization",
+    "Unit ownership/capture policy beyond confirmed acquisition attribution",
+    "Future Harbor/Aerodrome interpretation; do not automatically transplant new Military"
+  ],
+  "supersession": {
+    "retained": [
+      "Shared3F3P all levels",
+      "II Tier-existence housing",
+      "II+2baseGeneralGPP"
+    ],
+    "re_adopted": [
+      "D0008 Mentorship formula at IV with same PromotionClass",
+      "D0008 Insight arithmetic at IV with E now frozen at birth"
+    ],
+    "retired": [
+      "II+15% CombatXP",
+      "III5F5P",
+      "Garrison+1TrainingXP",
+      "Old Military LsqrtN national pool/threshold100/free-unit spawn"
+    ]
+  },
+  "review_markers": {
+    "MIL-BLOCK-01": "RESOLVED: land only; purchases included; other acquisition only confirmed local provenance",
+    "MIL-BLOCK-02": "RESOLVED: permanent birth per-ability buffs; no ongoing city qualification; max same ability on merge",
+    "MIL-BLOCK-03": "RESOLVED: entire normalized upgrade line, formations same target",
+    "MIL-BLOCK-04": "RESOLVED: each disconnected network own commander/response",
+    "MIL-BLOCK-05": "RESOLVED: ACTIVE changes trigger takeover/update",
+    "SHARED-D-REVIEW": "Separate absolute weighted depth versus relative completion issue; no Shared changes; actual T1 existence is independent"
+  },
+  "blocking_design_decisions": [],
+  "closed_red_team": [
+    "Multi-domain Military city is allowed",
+    "Existing infrastructure after restructuring is intended",
+    "Mentorship and Insight remain separate",
+    "Do not reopen generic XP snowball claim",
+    "Weak-retire General legacy choice is allowed",
+    "Local military capital is intended",
+    "Elite cadre formation max is allowed",
+    "Replacing ongoing resources is intended",
+    "Escort does not automatically double occupied tiles",
+    "Only active production broadcasts target"
+  ],
+  "implementation_gate": "Design freeze only. No Military implementation, Architecture adaptation, P0 scope expansion or deployment authorized."
+}

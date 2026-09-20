@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0032
+Latest Accepted Design Revision: D0033
 Document State: ACCEPTED
+
+## Accepted D0033 — 2026-09-20
+
+Acceptance: ACCEPTED / Military DESIGN_FROZEN; Balance/Technical/Legacy pending
+Acceptance Evidence: Military redesign brief and five user replies: land/provenance eligibility; permanent birth buffs and same-ability max; whole upgrade line; per-disconnected-network command; ACTIVE takeover events.
+Accepted Spec SHA256: 5ea3f31eeaddbfdb9d14f1c063b6ed44362ad34eecf661182230b7d62aeeeb8f
+Canonical Military Content SHA256: 8956f9230f20610cb7cc5953fbb90fefad132cb659e8f84437dbabc6105aff3d
+Previous Accepted Revision: D0032
+Frozen D0032: [原文](Revisions/Specialization_Design_Spec_D0032.md)
+Review: [Military freeze](Military_D0033_Review.md)
+
+旧II15%XP、III5F5P、驻扎训练与全国自动送兵pool退出当前Military；Insight旧算式保留但E改出生锁定，不再持续读取来源城。其它四专业、Shared与历史内容不改；不实现、不部署、不扩展P0。A0161尚未适配Military新设计；旧P0上下文显式标记待复核，不伪刷新hash。
 
 ## Accepted D0032 — 2026-09-18
 

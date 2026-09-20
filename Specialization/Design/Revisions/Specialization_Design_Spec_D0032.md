@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0033
+Design Revision: D0032
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-09-20
-Acceptance Evidence: 用户Military redesign正文及五项边界确认；单位出生锁定、兵种线归一化、分网络司令与ACTIVE事件。
-Previous Accepted Revision: [D0032冻结原文](Revisions/Specialization_Design_Spec_D0032.md)
-Latest Accepted Design Revision: D0033
+Acceptance Date: 2026-09-18
+Acceptance Evidence: 用户Commerce冻结正文及本轮明确回复；Industry来源容量2、Culture Hybrid D方向确认。外部Review不作为权威。
+Previous Accepted Revision: [D0031冻结原文](Revisions/Specialization_Design_Spec_D0031.md)
+Latest Accepted Design Revision: D0032
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** D0033冻结Military候选，见Military_D0033及review；不扩大当前四专业v0.1 implementation范围。其它专业与Shared正文不变。以下为历史修订背景：D0032冻结Commerce主体及0/1/2/3能力结构，明确旧规则取代关系；确认Industry每来源容量2和Culture Hybrid D展示方向。公式/mapping/Balance/Legacy及技术原型未决见Commerce content与Review，不等于已实现。Research_D0031、Culture_D0029、Shared_D0028正文不改。以下为历史修订背景：D0031只新增Industry有限施工队库存（范围/数值待决）、Research学术传统身份暂停合同及Culture展示需求。Culture Gameplay与其它机制不改；UI调查建议不是已批准架构。以下为历史修订背景：D0030仅将Research III学以致用输入替换为各领域区域完善度、K暂定0.5；其它机制不改。以下为历史修订背景：D0029仅补充Culture永久记录归属、多源Network并集与外交资格，见CUL节；Shared、Research、Industry不变。以下为历史修订背景，不覆盖当前CUL：D0028冻结Culture本体、Shared区域完善度/产出份额/建筑当前资格，并按用户明确要求将Research基础设施输入改为区域完善度；Culture旧Eureka网络退出，新网络多源合并后置，Research网络标记需要重设计但本轮不修改。以下为历史背景：D0027仅冻结Industry新机构/能力合同及关联标准化/施工队规则，见IND节；数值BALANCE_REQUIRED、候选命名和暂沿用复审标记不升级为最终定值。以下为历史修订背景：D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001** D0032冻结Commerce主体及0/1/2/3能力结构，明确旧规则取代关系；确认Industry每来源容量2和Culture Hybrid D展示方向。公式/mapping/Balance/Legacy及技术原型未决见Commerce content与Review，不等于已实现。Research_D0031、Culture_D0029、Shared_D0028正文不改。以下为历史修订背景：D0031只新增Industry有限施工队库存（范围/数值待决）、Research学术传统身份暂停合同及Culture展示需求。Culture Gameplay与其它机制不改；UI调查建议不是已批准架构。以下为历史修订背景：D0030仅将Research III学以致用输入替换为各领域区域完善度、K暂定0.5；其它机制不改。以下为历史修订背景：D0029仅补充Culture永久记录归属、多源Network并集与外交资格，见CUL节；Shared、Research、Industry不变。以下为历史修订背景，不覆盖当前CUL：D0028冻结Culture本体、Shared区域完善度/产出份额/建筑当前资格，并按用户明确要求将Research基础设施输入改为区域完善度；Culture旧Eureka网络退出，新网络多源合并后置，Research网络标记需要重设计但本轮不修改。以下为历史背景：D0027仅冻结Industry新机构/能力合同及关联标准化/施工队规则，见IND节；数值BALANCE_REQUIRED、候选命名和暂沿用复审标记不升级为最终定值。以下为历史修订背景：D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -218,7 +218,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **NET-RC-003** 多个当前有效接入的同类型来源，`L = max(all valid source ACTIVE specialization levels)`；使用ACTIVE而非Potential。来源数量本身不增加N。统一选L后只计算一次强度，禁止分别按来源求强度后相加，禁止`Σ(k × L_i × sqrt(N))`或逐中心求和。
 
-**NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military统一动员按Military_D0033分网络司令与当前生产兵种线规则；Industry按D0027标准模板并集及有效来源效率最大值；Community国内网络只分发人口。
+**NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military共享pool另按MIL-004的PROVISIONAL模型；Industry按D0027标准模板并集及有效来源效率最大值；Community国内网络只分发人口。
 
 **NET-RC-005** Research/Culture内部保持完整浮点：RawStrength=k_R或k_C×L×sqrt(N)，所有合法Network modifiers与未来Entertainment效率修正均在浮点上执行。仅在最终整数Boost接口边界量化一次：`AppliedBoost = floor(FinalRawBoost + 0.5)`（Boost非负）；显式使用此式，不使用默认round/banker's rounding，不提前量化、不重复量化。1.49→1、1.50→2、3.50→4；L4/N2原值约5.657→6个百分点。不同Raw值映射同整数时仅保持该AppliedBoost，不重复叠加；网络失效回零。正式权重1/2/3/4、独立k_R/k_C=1、L为有效来源最高ACTIVE、N为recipient UID去重不变。此规则取代D0017“浮点原样交引擎并接受截断不修复”。正式集成前以Raw1.5→接口2、Raw3.8→接口4最小原生测试确认；不再尝试让引擎保留fractional percentage points。不改变原生基础Boost规则，不假定固定40%；已触发Boost不补发、额外进度不得溢入下一科技/市政；最终封顶仍待确认。Entertainment具体效率参数未由本决定设定。
 
@@ -256,17 +256,95 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 ### Military / Encampment — MIL
 
-**MIL-D0033 — DESIGN_FROZEN** 唯一当前内容正文：[Military D0033](Content/Military_D0033.json)；[冻结审阅](Military_D0033_Review.md)。旧MIL-001至013原文保留于D0032及更早snapshot，不与新能力叠加。
+**MIL-001** Lv1每名working Encampment specialist获得+3F/+3P基础支持。Lv2军营及对应建筑继承SHARED-001住房；每名working Encampment specialist提供**+2 base Great General GPP**，之后正常接受GPP百分比加成；每名实际工作专家另外提供正式接受的**+15% Combat XP**，完整定义见MIL-005。
 
-| Historical rule | Current authority |
-|---|---|
-| MIL-001/005 | 全级3F3P、II住房和+2baseGeneralGPP保留；+15%CombatXP退出 |
-| MIL-002/007 | III5F5P退出；Insight公式移至IV，E改为出生时锁定，P仍读取当前实际晋升 |
-| MIL-003/009 | 旧驻扎训练退出，IV仅战阵传授/沙场领悟/军略传承 |
-| MIL-010–013 | 旧Mentorship公式重用并限同PromotionClass；单位永久出生buff/合并同能力max取代动态来源城依赖 |
-| MIL-004 | 旧全国pool/自动送兵退出；统一动员按每个不相连网络选司令，匹配整个归一化升级兵种线 |
+**MIL-002 — Military III / Advanced Experience / Insight XP — ACCEPTED** Lv3专家支持提升至5F5P；不继续增加统一Combat XP百分比。高级单位根据已经掌握的Promotions，从每次符合条件的战斗中获得少量独立Bonus XP。
 
-Military设计冻结不等于implemented/balance complete/实机通过；当前P0计划未授权实现Military。命名占位、后勤资源覆盖、Balance、Technical与Legacy见content登记。Harbor/Aerodrome历史镜像仍是独立Future设计，不自动继承本次替换。
+用户确认公式：`Insight XP = min(E, floor(P / 2))`。
+
+- `E` = 本城当前实际工作的Encampment specialist数量；只计算真实工作专家，空槽不计算。Military Academy不增加E。
+- `P` = 单位在战斗发生时实际拥有的Promotion数量；不使用XP level、总累计XP或由XP反推的理论晋升等级。
+- Corps/Army合并继承的实际Promotions合法计入P。XP与实际Promotions可能脱钩；合并获得的真实战术知识属于预期互动，不是需要阻止的技巧。
+
+用户确认的晋升档位表：
+
+| 实际拥有Promotions（P） | 理论Insight上限（实际仍受E限制） |
+|---:|---:|
+| 0–1 | +0 |
+| 2–3 | +1 |
+| 4–5 | +2 |
+| 6–7 | +3 |
+| 8–9 | +4 |
+| 更高P | 按floor(P / 2)继续增加，实际仍受E限制 |
+
+**D0002边界澄清 — ACCEPTED** 保持原公式，不增加额外+3或其它人工硬上限。当前Encampment实际工作专家槽最多4个，即`E <= 4`，因此当前设计结构下Insight XP实际最高天然为+4；这是实际专家数量的约束，不是独立固定奖励上限。
+
+P为6–7时，E为1/2/3/4分别奖励+1/+2/+3/+3；P至少8且E为4时奖励+4。第四名实际工作专家在极端高级单位上仍有Military III价值。普通6–7 Promotion老兵仍最多+3，此前正常晋升树的平衡结论不变。P仍计战斗时实际拥有的Promotions，包括合法军团/军队合并继承；E仍只计真实工作军营专家，Military Academy不提供额外虚拟专家。
+
+**MIL-003 — Military IV / Professional Standing Army / 职业常备军体系 — ACCEPTED** 包含两个相互独立的能力：后方和平Garrison Training与前线实战Frontline Mentorship。Mentorship不绑定后方训练，不要求返回Military IV城市或驻扎城市中心／军营。Military II负责正常Combat XP效率；Military III按单位自身Promotions提供Insight XP；Military IV负责正规训练与老兵传帮带。详细规则见MIL-009至MIL-013。
+
+**MIL-004 — Military Network Mobilization / PROVISIONAL BALANCE MODEL** 每个参与玩家全国共享一个Military Mobilization Progress pool，多Military sources不各自建立独立免费单位生产线。
+
+- 第一版每回合进度：`Mobilization Progress per turn = L * sqrt(N)`。L为当前所有有效Military sources的最高ACTIVE；N为实际接收Military Network的己方城市UID去重数。全国计算一次，不逐source求和。
+- 第一版阈值：`Mobilization Threshold = 100`，为PROVISIONAL BALANCE VALUE。达到阈值生成一个合格动员单位、Progress减100并保留overflow；不是最终locked参数。目标为成熟Military IV网络约6–10个recipient时，大约8–10回合一单位。
+- 单位为当前玩家可以合法动员的最高级Melee Land Combat Unit，不随机军种。编制同时受所选Military source城军营建筑tier与当前正常游戏合法解锁限制：tier1最多single、tier2最多Corps、tier3最多Army；`Formation = min(building-supported formation, currently legally unlocked formation)`，不提前解锁编制。Military Academy与Military Political Department只按building tier判断。
+- 生成于最高ACTIVE的有效Military source city，优先Encampment，必要时City Center；多个同级最高source的稳定tie-break仍TBD。无合法放置位置不得丢失已完成进度，具体处理为IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT。无对应建筑层级等未明确资格边界仍TBD，不自行补规则。
+- 平衡时间轴仅为建模假设：Lv4理论上较早可达、约T70；军营/港口tier1/2/3约T50/T80/T110，不是硬性解锁回合。
+
+本模型替代此前Military多源归属、阈值和生成位置整体未定的骨架，保持PROVISIONAL；不自动决定Naval Mobilization。
+
+**MIL-005 — Military II / Combat XP — ACCEPTED** 每名实际工作的Encampment specialist提供**+15% Combat XP**，适用于本Military专业城市训练出的对应陆地军事单位。空专家槽不计算。这是正常Combat XP modifier，与HD现有Barracks/Stable、Military Academy及其它正常经验modifier正常叠加，与经验政策卡按游戏正常规则互动。不修改单次8 XP Combat XP cap，不通过额外奖励绕过该cap。
+
+设计目标是允许玩家以人口/专家投入购买训练质量。Military Academy、更多working specialists、XP policy分别代表建筑选择、人口投入和政策槽投入。主要按不装备额外XP政策卡的环境平衡；允许玩家付出军事政策槽机会成本，将正常Combat XP更快推向8 XP cap，不为政策卡环境反向削弱Military II。
+
+**MIL-006 — 三级建筑与平衡原则** 已确认槽位设计背景：军营区域基础1槽，tier3建筑后合计最多4槽。Barracks/Stable、Military Academy及XP政策仍按HD/游戏原有规则提供收益。本系统不重新平衡Military Academy与Military Political Department本身的生产、编制、战斗力、经验差异，不要求两条路线严格数学等价或50/50选率。
+
+Military Academy已有经验训练、直接训练更高级编制及其它质量路线价值；Military Political Department具有数量路线价值。明确不采用“Military Academy额外virtual instructors / virtual specialists”方案。玩家可以选择Military Academy+较少专家、Political Department+更多专家、Military Academy+大量专家、使用XP policy，或Political Department配合单位合并培养部队。Specialization提供相对中立的专家体系，目标是有意义的资源配置选择。
+
+**MIL-007 — Insight XP与正常Combat XP的边界 — ACCEPTED** 正常Combat XP完全遵守游戏正常计算与单次8 XP cap。Military III的Insight XP在正常Combat XP结算之外独立追加；例如8 normal Combat XP + 3 Insight XP = 11 total XP gained，不是把Combat XP cap改为11，不修改或移除8 XP cap。当前极端情况P≥8且E=4时，可获得8 normal Combat XP + 4 Insight XP = 12 total XP gained，这是已接受的高级军事教育收益，正常Combat XP cap仍为8。普通新兵P=0或1时Insight为0；真正拥有高级战术知识的单位可从同一场实战额外获得少量经验理解。实现可行性状态：`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`；本设计修订不进行技术调查或实现承诺。
+
+**MIL-008 — 有效专家范围与修订边界** 当前Military II/III仅计实际工作军营专家；Entertainment Local Support未来形成的Effective/Virtual Specialists是否参与两者，仍属于ENT有效专家适用范围的独立Design Decision，本轮不决定。Military IV按D0006的MIL-003/009至013更新；Military I、Military II/III及5F5P、Mobilization、Harbor naval mirror和Aerodrome扩展保持既有设计状态，不因本次接受而补全其它未来模块的未定参数。Military继续属于OUT_OF_V0.1。
+
+**MIL-009 — Military IV-A / Garrison Training — ACCEPTED** Military IV城市提供City Center与Encampment两个正规训练位置。符合条件的己方陆地战斗单位连续驻扎满一个完整回合后，每个有效训练回合获得`+1 Training XP`。
+
+完整驻扎周期定义：单位在一个回合结束时已位于合格训练位置，下一次训练结算时仍连续位于同一合格位置，才获得经验。刚移动进入、移动力耗尽停留或仅于回合结束时路过均不立即奖励；离开训练位置即清除连续状态，返回后重新完成完整周期。不能只凭两次结算位置相同而忽略中途离开，也不能在City Center与Encampment之间移动却沿用原连续状态。
+
+Training XP是直接增加单位经验的独立训练奖励，不属于Combat XP，不受Military II、Barracks/Stable/Military Academy等建筑Combat XP modifiers或XP policy放大，不修改正常8 XP Combat cap。单靠训练，第一次15 XP晋升约需15个有效训练回合，后续晋升越来越慢，不能替代实战。不自行添加用户未指定的训练晋升等级上限。
+
+**MIL-010 — Military IV-B / Frontline Mentorship — ACCEPTED** 属于该Military IV体系的己方陆地战斗单位完成一次符合条件的实际战斗时，只检查fighter周围1格的相邻己方合格陆地战斗单位，选择实际Promotion数量最高者作为潜在mentor。多mentor不叠加、不求和；无合格mentor时无Mentorship XP。fighter与mentor无需驻扎训练位置，mentor无需回到Military IV城市。
+
+`P_fighter`为本次战斗单位当前实际Promotion数量；`P_mentor`为相邻合格己方单位中的最高实际Promotion数量。
+
+`DeltaP = P_mentor - P_fighter`
+
+`Mentorship XP = max(0, floor(DeltaP / 2))`
+
+| Promotion差值DeltaP | Mentorship XP |
+|---:|---:|
+| 负数或0–1 | 0 |
+| 2–3 | +1 |
+| 4–5 | +2 |
+| 6–7 | +3 |
+| 8–9 | +4 |
+| 更高差值 | 继续按公式，自然受实际Promotion数量限制 |
+
+不增加额外hard cap；不以专家数E限制Mentorship。Mentorship XP是正常Combat XP之外独立追加的Bonus XP，不提高正常8 XP cap，不受Military II、建筑Combat XP modifiers或XP policy放大。
+
+P始终是战斗时单位实际拥有的Promotions，不是XP Level、accumulated XP或据经验值推算的理论等级。合法Corps/Army合并、成员Promotion继承及其它实际授予Promotion的机制均参与比较，延续Military III定义。
+
+**MIL-011 — Insight与Mentorship互补 / ACCEPTED** 新兵自身Insight少或为0，但可从相邻高级mentor获得较强Mentorship；中级单位同时获得自身Insight及与更高级mentor之间的部分Mentorship；高级老兵Insight较强、难以找到晋升差足够大的mentor，Mentorship自然趋近0。正式成长意图：`新兵主要靠老兵教 → 中级单位两者兼有 → 高级老兵主要靠自己的Insight`。
+
+- 0 Promotion新兵相邻6 Promotion老兵：DeltaP=6，Mentorship=3；若normal Combat XP=6、Insight=0，总经验为9，但normal Combat XP仍为6，正常cap仍为8。
+- 4 Promotion单位相邻6 Promotion老兵：Mentorship=1，同时可按军营真实专家数获得自己的Military III Insight。
+- 6 Promotion老兵没有更高级邻近单位：Mentorship=0，主要依靠自身Insight继续成长。
+
+**MIL-012 — 触发作用域与建筑中立 / ACCEPTED** Mentorship只在符合条件的实际战斗发生／结算时进行一次局部判定：当前fighter、周围1格、相邻己方合格陆军及最高实际Promotion count。Design不要求每回合扫描全国单位或所有单位周围六格，不要求持续维护全国mentor关系或所有单位间晋升差。这是玩法作用域要求，不规定具体代码或事件实现。
+
+Military IV不给Military Academy额外virtual mentor、virtual specialist、bonus Mentorship或bonus Training XP，也不额外修改Military Political Department。HD两栋建筑已有的数量、直接训练Corps/Army、战斗力、XP、Production等差异继续由HD负责，Specialization不重新平衡两栋建筑选率。
+
+**MIL-013 — Future镜像与剩余边界** Harbor Naval Military branch的默认平移已由D0008登记为ACCEPTED DIRECTION，位置与规则见HARB-005至009；具体Naval eligibility、特殊建筑额外互动与Naval Mobilization仍独立细化。Aerodrome既有扩展不变。
+
+Military IV尚未明确的细节继续TBD：单位“属于该Military IV体系”的取得与保持资格（如来源城ACTIVE变化后如何处理）、fighter/mentor及训练单位的精确合格陆军分类、合格实际战斗范围，以及战斗发生／结算之间位置和Promotion快照的精确玩法口径。训练+1/有效回合、完整连续驻扎规则、Mentorship公式与无额外hard cap均已确定，不再列为待定。技术问题仅标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`；本轮不调查Combat event、Promotion读取、邻近判定性能或实现方式，不写代码、不修改Architecture/Status/Source/Tests、不启动游戏或P0工作。
 
 ### Harbor：完整双线 — HARB
 
@@ -496,7 +574,7 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 | OPEN-06 | TBD / DESIGN_DECISION_REQUIRED | Boost最终封顶等细节；最终一次floor(x+0.5)量化契约已按D0018确认；整数写入的实机验证属于Implementation，不是未决设计；不更改已定max规则 |
 | OPEN-08 | SUPERSEDED_BY_D0028 / HISTORICAL | GW-001百分比公式/创作者时代及文物历史时代例外已由D0022确定；固定yield与旧逐件补差路线均退出。百分比Modifier与theming结算待实机验证；异常创作者关联、未知自定义类别独立保留；GW002范围已由D0023确认 |
 | OPEN-09 | CURRENT AUTHORITY: D0032 | 旧Lv1全档开放已由D0027替换；当前解锁/目标/速度见Industry content。D0032每来源容量2已定，易主/捕获边界仍待决。 |
-| OPEN-10 | DESIGN_FROZEN / BALANCE_TECHNICAL_LEGACY_PENDING | Military_D0033五项阻塞已关闭；单位出生锁定buff、同能力合并max、分网络司令、升级兵种线、ACTIVE更新已定。后勤资源覆盖/数值/技术/Legacy后置；不实现Military。 |
+| OPEN-10 | PROVISIONAL BALANCE MODEL / TBD | Military IV归属/持续资格、合格陆军/战斗及快照口径见MIL-013；Mobilization已形成共享pool、L最高ACTIVE、N接收城去重、L√N/回合与阈值100的暂定模型，tier/合法编制双限制及最高ACTIVE源生成方向已记录；最终平衡、同级source tie-break、未明示资格及无位置处理待定；ENT适用范围仍独立；MIL-004 |
 | OPEN-11 | ACCEPTED DIRECTION / TBD | Harbor商业等级/GPP与收益系数、Export接入/收益；Naval II–IV默认平移已登记（Harbor/合法City Center训练，排除Canal），具体Naval eligibility、特殊建筑额外互动和Naval Mobilization独立细化；HARB-005至009 |
 | OPEN-12 | DESIGN_DECISION_REQUIRED / TBD | 永久保护国额度作用域/降级、多个外交来源、Spy经验/周转/死亡减幅；DIP |
 | OPEN-13 | MIXED: PROVISIONAL / PREFERRED DESIGN CANDIDATE / THEME CANDIDATE ONLY / TBD | 外交/联盟等级解锁、任务周期/奖励/晋升适用；交流概率与未来fallback、Import Fair duration/selection/repeat、Migration Agreement duration/multiplier、军演函数/k、Pilgrimage资格/X等见DIP-MISSION-003至014；Infrastructure Coordination仅首选候选，Civilian Conversion仅主题候选，公共外交奖励暂定，外交区/市政广场仍Future骨架；不统一升级 |
@@ -526,6 +604,6 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 
 本文保留当前可获得的v0.1等级规则及Future具体机制。Landscape、Religion、Government既有设计已按用户本次补充恢复；OPEN-01至03只记录剩余参数和规则边界，不再表示缺少整套专业设计。Future的TBD和PROVISIONAL不因整份文档将来被接受而自动成为确定数值。
 
-Research/Culture共享强度、Military_D0033分网络统一动员、Industry实际输出max和Community人口分发各按自身规则处理，不能互相覆盖。永久保护国与ACTIVE下降、Community资格与首次完成锁定、Virtual Specialists与实际工作专家等相互作用已列为显式审阅问题，不为实现便利默选答案。
+Research/Culture共享强度、MIL-004暂定全国动员pool、Industry实际输出max和Community人口分发各按自身规则处理，不能互相覆盖。永久保护国与ACTIVE下降、Community资格与首次完成锁定、Virtual Specialists与实际工作专家等相互作用已列为显式审阅问题，不为实现便利默选答案。
 
 本文件为D0032当前Design入口；各专业content revision见对应章节。历史修订不覆盖新canonical规则。Design接受不等于Architecture已sync或Mod已实现；本轮仅文档与只读技术审阅，不实施、部署或promotion。

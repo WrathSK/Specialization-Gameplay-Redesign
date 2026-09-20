@@ -455,5 +455,7 @@
     "computer_use": "UNRESOLVED / DEFERRED",
     "report": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
     "user_validation": "USER_GAME_TEST_PASS including Industry; Specialization/Status/Validation/Results/Specialization_B079_P0B1_User_Pass.md"
-  }
+  },
+  "context_status": "STALE_PENDING_REVIEW",
+  "context_stale_reason": "D0033 Military Design accepted; existing COMPLETE result retains D0032 evidence. Review authority and affected references before any reuse; no automatic hash refresh."
 }

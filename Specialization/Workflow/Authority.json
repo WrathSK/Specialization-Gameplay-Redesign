@@ -2,7 +2,7 @@
   "workflow": "W0001",
   "role": "Navigation only. Referenced Design/Architecture override workflow. Hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0032",
+    "design": "D0033",
     "research": "D0031",
     "industry": "D0032",
     "culture": "D0029",
@@ -11,7 +11,8 @@
     "presentation": "D0032",
     "architecture": "A0161",
     "status": "S0210",
-    "runtime": "B079.106 / modinfo106"
+    "runtime": "B079.106 / modinfo106",
+    "military": "D0033"
   },
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -23,7 +24,8 @@
     "presentation": "Specialization/Design/Culture_Era_Presentation_D0032.md",
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
     "status": "Specialization/Status/Specialization_P0_Status.md",
-    "runtime": "Mod/SpecializationP0.modinfo"
+    "runtime": "Mod/SpecializationP0.modinfo",
+    "military": "Specialization/Design/Content/Military_D0033.json"
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
@@ -42,5 +44,6 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
-  "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain"
+  "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
+  "context_review_status": "STALE_PENDING_REVIEW: Design D0033 Military freeze. A0161 remains adapted through D0032; P0-B1 completed evidence preserved at its baseline, not reusable as current authority without review. No new implementation authorized."
 }
