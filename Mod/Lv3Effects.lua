@@ -10,12 +10,13 @@ function SPCLv3Effects.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0,observed={}};shared.Lv3Effects=data
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',COMMERCE='DISTRICT_COMMERCIAL_HUB',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE'}
  local names={}
- for _,k in ipairs({'RESEARCH','CULTURE'}) do for i=0,7 do names[#names+1]='BUILDING_SPC_DEV_LV3_POP_'..k..'_'..i end end
+ for _,k in ipairs({'CULTURE'}) do for i=0,7 do names[#names+1]='BUILDING_SPC_DEV_LV3_POP_'..k..'_'..i end end
  for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do names[#names+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
  local function desired(pid,c)
   local wanted={}
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
   local f=readFacts(pid,c)
+  if f.specialization=='RESEARCH' then return wanted end -- P0-D1 owns Research III
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
   local found=false
@@ -26,7 +27,7 @@ function SPCLv3Effects.Start(P,shared)
    end
   end
   assert(found,'LV3_DISTRICT_MISSING')
-  if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
+  if f.specialization=='CULTURE' then
    local target
    for _,d in districtsFor(pid,c) do
     local city=d:GetCity()
@@ -87,8 +88,9 @@ function SPCLv3Effects.Start(P,shared)
   local ok,out=pcall(function()
    local coef,flags=read(c);local pop=c:GetPopulation()
    local f=readFacts(pid,c)
+   if f.specialization=='RESEARCH' then return shared.ResearchCross and shared.ResearchCross.Describe(pid,c) or '跨学科研究尚未初始化' end
    local lines={}
-   if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
+   if f.specialization=='CULTURE' then
     local workers
     for _,d in districtsFor(pid,c) do
      local city=d:GetCity()

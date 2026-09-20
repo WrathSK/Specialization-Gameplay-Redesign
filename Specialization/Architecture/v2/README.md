@@ -1,5 +1,8 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
+Current P0-D1: [B084.111 formal cross-disciplinary implementation](P0_D1_Research_Cross_Cutover.md), user-authorized temporary floor, LOCAL_SIMULATION_PASS / formal USER_GAME_TEST_REQUIRED. This supersedes earlier primitive gate status; Design D0035 unchanged; P0-D2 not started.
+
+
 
 开发导航：[Workflow W0001](../../Workflow/README.md) → [Authority](../../Workflow/Authority.json) → batch manifest。只改变context加载，不改变Architecture合同；当前A0161状态优先于后面的历史标题。
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "8a163f2045c432f9c15877656187ba9a5eaeacea",
-  "runtime": "B083.110 / modinfo110",
+  "runtime_commit": "B084 implementation commit containing this document (resolve Git history)",
+  "runtime": "B084.111 / modinfo111",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -176,9 +176,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Lv3Effects.sql": {
-      "sha256": "8a867efc87806efb5cd17238b010041e4f3bf5ae8d68e23db7c26e9f919ad975",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "6b202d054f7911dfe909185498744db6211c49fb6d1f31bdc5d89be73761f8d0",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Data/Lv3Support.sql": {
       "sha256": "688298fec1e2e9637e277d32c6bc8dc39643ce6101e8185a848764f158153c7b",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "ef5f8e6065beaedb0169e605fc1097a84f5aec3c71f6e92e255b2b266a46305b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+      "sha256": "3bb97c917ed15673fdc0a117c2ca62f0da9b53b31e76814dd78f0d89dcd1c6b2",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -316,9 +316,9 @@
       "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "b85d70976a2fa62a3608c7021b517afcc61a04d1f9935cd96d0785cdb1878d65",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "3b739d53204b76317a2d3e4cbe68d2bb8a8ecd1e05db9a453d1ab8e0a7100151",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Lv3Support.lua": {
       "sha256": "f58cf09bda2b1e3bc4532b95bc4db6e0814ef879ef413414b039c53bab8900d7",
@@ -361,14 +361,14 @@
       "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "4913e7a76d4f2f8cd00ed94748eaf1acd19cad0ab8eb2cbc275ec7bba321fa97",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "0c9d8c2bdb45a2dcedc9e46ae052c56f2302799532aad4dcc588ec0b958abcbd",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "ca158feac3924e7fae03360f0c8800913326791f0791088b31e9dd7840ad5a22",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+      "sha256": "024bf850a45c75bcecbebb5cc64421a8f67b42fcb5baf97f760a4e786ab12f18",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8b692eacefa521f9001bc44148107bca6639a41dd3c83f22254edfa16f5bc736",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+      "sha256": "9fa16409906704dd5475398262c59819f235978c018ad66cfeb130ec8c21aca6",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,19 +556,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "76737dde639d6dd09bcd0ce37676e2616505710d0671a1db9fee863502efdfe4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+      "sha256": "505d20f47d156ab11d70b98304f9751f08a7be2647baa352d5843fa8ae924061",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "d71b007bfe7c3bc5f61a9e50a73a93b723a745ae27de04b7bbe17d9afae52e65",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+      "sha256": "b830f215e9257b4494866c7a0e71b873b73bbfc81962d5e463e53bc6c34aebb5",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "9785d96ed75547b1be4c59ee3bac91749aa8c6912d4d106ae1efe46fa768ffbc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+      "sha256": "370bc101ac1e97adcc5ca1bd03bedb08ec013fd5e2446e4f7b20e2c87c43bb54",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -656,9 +656,39 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/Data/DistrictPrecisionProbe.sql": {
-      "sha256": "8c5927957342032f6f3ccaeb009d4295eb8aed2cb90a52f754e2e9a7161b74d2",
-      "review_source": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
-      "provenance": "B082 isolated precision probe, formal writers unchanged"
+      "sha256": "f32b2d1e845a208e4a9a025d9b3ce01995389ac72572c0d3372886e19b0a0bf4",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/ResearchCrossModel.lua": {
+      "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/ResearchCrossSample.lua": {
+      "sha256": "8a99338b17a45895a04f4a839f01d081651a3418639258c8f9658293219c6c15",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/ResearchCross.lua": {
+      "sha256": "cde5d076d1b1abd2c27b3adccb37f0d0625b2a3c31f4f5654bf4f4ff09e79d41",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/UI/ResearchCrossRefresh.xml": {
+      "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/UI/ResearchCrossRefresh.lua": {
+      "sha256": "2dc2f58df5320e374bdf4af79493062dda5ba74615f57431a5ca6269ca12f2f4",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/Data/ResearchCross.sql": {
+      "sha256": "58d437e730c83c129909b7bf4ed4824519abfa07c0de6c81ec96a07c407cc932",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
     }
   }
 }

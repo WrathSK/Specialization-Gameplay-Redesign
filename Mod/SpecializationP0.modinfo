@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="110">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="111">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B083.110 develop: district precision probe Gameplay API and captions repaired; P0-D1 cutover not active.</Description>
+    <Description>B084.111 develop: P0-D1 Research III district Science, temporary final floor; old population effect retired.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_ResearchCross"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchCross.sql</File></UpdateDatabase>
+    <AddUserInterfaces id="SPC_ResearchCrossRefresh"><Properties><Context>InGame</Context></Properties><File>UI/ResearchCrossRefresh.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B082_DistrictPrecision"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/DistrictPrecisionProbe.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_RuntimeAudit">
       <Properties><Context>InGame</Context></Properties>
@@ -69,6 +71,12 @@
       <File>CurrentSpecializationFacts.lua</File>
       <File>ResearchInfrastructureShadow.lua</File>
       <File>ResearchInfrastructure.lua</File>
+      <File>ResearchCrossModel.lua</File>
+      <File>ResearchCrossSample.lua</File>
+      <File>ResearchCross.lua</File>
+      <File>UI/ResearchCrossRefresh.lua</File>
+      <File>UI/ResearchCrossRefresh.xml</File>
+
       <File>UI/CopyYieldRefresh.lua</File>
       <File>UI/CopyYieldRefresh.xml</File>
       <File>HalfYieldProbe.lua</File>
@@ -323,6 +331,12 @@
     <File>CurrentSpecializationFacts.lua</File>
     <File>ResearchInfrastructureShadow.lua</File>
     <File>ResearchInfrastructure.lua</File>
+      <File>ResearchCrossModel.lua</File>
+      <File>ResearchCrossSample.lua</File>
+      <File>ResearchCross.lua</File>
+      <File>UI/ResearchCrossRefresh.lua</File>
+      <File>UI/ResearchCrossRefresh.xml</File>
+
     <File>Data/CopyYields.sql</File>
     <File>UI/CopyYieldRefresh.lua</File>
     <File>UI/CopyYieldRefresh.xml</File>
@@ -409,6 +423,7 @@
     <File>Lv4Percent.lua</File>
     <File>Data/Lv4Percent.sql</File>
     <File>Data/ResearchInfrastructure.sql</File>
+    <File>Data/ResearchCross.sql</File>
     <File>BoostConfig.lua</File>
     <File>NetworkBoost.lua</File>
     <File>GreatWorkProbe.lua</File>

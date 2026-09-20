@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D1",
-  "status": "AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0221",
-    "runtime": "B083.110 / modinfo110",
+    "status": "S0222",
+    "runtime": "B084.111 / modinfo111",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_D1_Plan.md",
@@ -111,12 +111,17 @@
       "path": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md",
       "kind": "full",
       "reason": "Latest user district attribution constraint, authorized fallback steps, isolated native probe evidence"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "kind": "full",
+      "reason": "Latest authorized floor exception and formal cutover"
     }
   ],
   "dependencies": [
     "P0-A/B1/B2/C existing accepted facts/effects",
     "C2 lifecycle and D2 bounded work",
-    "BASE multi-yield semantics and native fractional Science primitive gate"
+    "BASE multi-yield semantics; integer district primitive user-reported; temporary aggregate floor authorized"
   ],
   "old_writers": {
     "retire": [
@@ -161,11 +166,10 @@
     "Changed sample contract requires all C2 consumers regression"
   ],
   "result": {
-    "authorization": "User explicitly authorized implementation after86a67bc plan",
-    "implementation": "B083 probe repair only; formal P0-D1 cutover incomplete",
-    "local": "Reproduce actual B082 API faults, separate UI/Gameplay fixtures; B083 probe and protected regressions PASS",
-    "technical_gates": "Native finer-fraction settlement or supported BASE return domain requires evidence; synthetic counterexamples not runtime observations",
-    "game_test": "B082 harness FAIL; B083 same short test required, precision UNKNOWN",
-    "report": "Specialization/Architecture/v2/P0_D1_District_Precision_Probe.md"
+    "authorization": "User authorizes temporary floor and continuing P0-D1; Design unchanged",
+    "implementation": "B084.111 formal Research Cross cutover complete",
+    "local": "Actual Lua/SQL lifecycle,10k stress,scaling,protected regressions PASS",
+    "game_test": "B083 integer-only primitive user report; formal B084 ability USER_GAME_TEST_REQUIRED",
+    "report": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md"
   }
 }

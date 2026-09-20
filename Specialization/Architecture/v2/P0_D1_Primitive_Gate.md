@@ -1,5 +1,10 @@
 # P0-D1 — BASE与原生小数门禁 / 实施进度
 
+## Gate update — user result and temporary exception
+
+User reports only integer worked in B083 tested district path; authorizes floor. Formal cutover proceeds with floor after50% aggregate, Campus placement. No general float conclusion, no Design edit. See [P0_D1_Research_Cross_Cutover](P0_D1_Research_Cross_Cutover.md). Earlier UNKNOWN/blocking statements are historical.
+
+
 Status: AUTHORIZED / PRE_CUTOVER_GATE_OPEN. P0-D1未完成，不标PASS。
 Baseline: 86a67bc；runtime仍B081.108/modinfo108，P0-C用户Pass有效。Design D0035/Research D0031不改。
 

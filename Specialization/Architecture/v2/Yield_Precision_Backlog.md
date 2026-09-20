@@ -1,5 +1,10 @@
 # Yield Precision Contract — deferred backlog
 
+## P0-D1 user result / future Design suggestion
+
+User reports B083 tested district primitive only settles integer additions. B084 temporarily uses floor(50% × aggregate BASE), retaining district attribution. Do not generalize to per-population or other interfaces. User suggests considering Absolute Infrastructure Depth D for this ability in a future Design review; RECORDED_ONLY / NOT_ADOPTED. Research D0031 remains unchanged; no D formula, mapping or coefficient inferred.
+
+
 Document Owner: Codex
 State: RECORDED_ONLY — no implementation or new investigation in B072
 
