@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "batch": "P0-C",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0213",
+    "runtime": "B080.107 / modinfo107",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_C_Plan.md",
+  "context": [
+    {
+      "path": "AGENTS.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/AGENTS.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/README.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Workflow/README.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Workflow/Authority.json",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Workflow/P0-C.json",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_C_Plan.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "head",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": 28
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "head",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": 20
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "head",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": 13
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": "/abilities/3",
+      "expected_id": "RES_L4_INFRA"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": "/consumer_confirmation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "rows",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": [
+        "| P0-C ",
+        "**所有批次共同的完成定义**",
+        "**每批回滚边界**"
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "section",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": "## Migration / cutover合同"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Technical_Spikes.md",
+      "kind": "rows",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully",
+      "selector": [
+        "| TS02 "
+      ]
+    },
+    {
+      "path": "Specialization/Architecture/Playtest_Workflow.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/ResearchInfrastructureShadow.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/SpecialistSupport.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Lv4Percent.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/CopyYields.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Data/Lv4Percent.sql",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Data/CopyYields.sql",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Data/ResearchSupport.sql",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/HalfYieldProbe.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Data/HalfYieldProbe.sql",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/Lv4CopyRead.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/UI/CopyYieldRefresh.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/SampleLifecycle.lua",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "P0-C direct authority/producer/writer/retirement contract; implementation must read scope fully"
+    }
+  ],
+  "dependencies": [
+    "P0-A verified D/worker facts (not universal catalog/pillage PASS)",
+    "P0-B1/B2 user PASS",
+    "TS02 specialist base Science primitive: local prototype and native evidence still required",
+    "A–D2 verified-input/no-op/bounded lifecycle contracts"
+  ],
+  "old_writers": {
+    "adapt": [
+      "Lv4Percent RESEARCH only",
+      "CopyYields SCIENCE only",
+      "Research-related diagnostic/dispatch"
+    ],
+    "retire": [
+      "BUILDING_SPC_LV4_PERCENT_RESEARCH_0..7",
+      "BUILDING_SPC_B051_SCIENCE_POS_0..15",
+      "BUILDING_SPC_B051_SCIENCE_NEG_0..15",
+      "BUILDING_SPC_B051_SCIENCE_POP_0..7"
+    ],
+    "guard": "48 formal IDs + SQL attachments; audit B050 explicit experiment separately; preserve Industry/Culture and Research III/Network"
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/PerformanceCounters.lua",
+        "Mod/NetworkBridge.lua",
+        "Mod/Lv3Effects.lua",
+        "DevelopmentTests/test_p0_b2_regression.py"
+      ],
+      "trigger": "diagnostic integration, counters or impacted caller/consumer; inspect before changes"
+    }
+  ],
+  "non_scope": [
+    "Military/Future",
+    "Research III/Chair/Tradition/Network redesign",
+    "Industry/Culture/Commerce abilities",
+    "Design/balance/precision/ownership migration",
+    "implementation/deployment in this plan-only task"
+  ],
+  "validation": {
+    "local": [
+      "D/worker/ACTIVE/reference matrix",
+      "48 old effects disabled/cleanup before new apply",
+      "UNKNOWN hold/confirmed withdraw/load/late response",
+      "10k idle zero costly work,1/2/4/8 linear",
+      "Culture/Industry/B1/B2 unchanged output and full regression",
+      "SQL/modinfo/allLua and deployment safety"
+    ],
+    "user": "Future single prepared Research IV city: workers,D,ACTIVE,load; not requested now"
+  },
+  "full_audit_triggers": [
+    "P0-C effect cutover requires all-Mod ID/writer/SQL/hidden action search and full regression",
+    "new/hash-mismatched dependencies or primitive mismatch require expanded review"
+  ],
+  "result": {
+    "planning": "STATIC_CONFIRMED existing source responsibilities and exact48 ID set; PLAN_READY",
+    "implementation": "NOT_AUTHORIZED",
+    "game_test": "NOT_REQUESTED; TS02 pending"
+  },
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  }
+}

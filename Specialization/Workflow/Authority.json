@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0212",
+    "status": "S0213",
     "runtime": "B080.107 / modinfo107",
     "military": "D0034"
   },
@@ -31,10 +31,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "c56c6de793ba5bac4d6c5a6de61f360c3490d81a",
-  "current_batch": "P0-B2 LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
-  "next_batch": "P0-C planning after B2 review; not authorized",
-  "manifest": "Specialization/Workflow/P0-B2.json",
-  "live": "B080.107 / modinfo107 deployed under W0003; 126 per-file hashes verified; P0-B2 native test pending; B079 recovery retained",
+  "current_batch": "P0-C PLAN_READY / PLANNED_NOT_AUTHORIZED",
+  "next_batch": "P0-C implementation only after explicit authorization",
+  "manifest": "Specialization/Workflow/P0-C.json",
+  "live": "B080.107 / modinfo107 deployed under W0003; 126 per-file hashes verified; P0-B2 user-reported PASS; B079 recovery retained",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "P0-B2 authorized implementation completed; D0035 scoped four-profession Lv2. Full writer/dependency regression complete; native validation pending.",
+  "context_review_status": "P0-B2 user PASS recorded; P0-C scoped source/authority plan ready, primitive/cutover gates explicit; implementation NOT authorized",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -57,7 +57,7 @@
       "MILITARY",
       "other future specializations"
     ],
-    "boundary": "Design presence is not implementation authorization or dependency expansion. Military metadata remains discoverable but no Military content is a P0-B2 required context."
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Workflow/P0-B2_Revalidation.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_C_Plan.md"
 }

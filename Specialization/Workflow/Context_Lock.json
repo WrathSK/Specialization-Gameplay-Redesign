@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "P0-B2 authorized implementation review: eight runtime deltas + catalog50 + full protected regression. D0035 unchanged. See P0_B2_Lv2_Qualification.md; native pending.",
+  "review_basis": "P0-C plan-only scoped source/authority review on unchanged B080 runtime; B2 user report accepted. TS02/native and full implementation cutover remain future gates.",
   "files": {
     "AGENTS.md": "18a30c39c68eb868b139dffab9e661de6efd661687190a05b913e32890293f0f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -44,7 +44,7 @@
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "9b54c8562a38bf0494bc36733f509b140aff57c7f0ee1792601d919d2e2cb32b",
-    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "c7e238183c9f1edd56f34ea105f9aeecb7951dc1a33238ec6f8cf1dee625589e",
+    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "30d904eb632590315554a3f0576c5fecf3a9601b728ae5754e90b7e9c84c819e",
     "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md": "d45b89723ee95880e8eeda34c35962eee3a7d1971997bdd5dc0a810d9232c680",
     "Specialization/Architecture/v2/D0032_Runtime_Inventory.json": "03ad69688b0bdd807964f77c0920cb562a8e5079c2584bc05bab1f409f63d6ce",
     "Specialization/Architecture/v2/D0032_Technical_Spikes.md": "024d006c5ca2ef798a59a959105ced84bb4bca50f5f91f88c181426b7a546e75",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "3b9b602d884696933e2eb163f1eb903527d613c0032ff6069779bcb70184ed84",
+    "Specialization/Status/Specialization_P0_Status.md": "ca9f846e35307912d2e4933a224f2138f0ddb37e1bb9eeeade00031dfce3f53c",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -74,12 +74,22 @@
     "Mod/Data/Lv2GPP.sql": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d",
     "Mod/UI/GPPRefresh.lua": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
     "Mod/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
-    "Specialization/Workflow/context.py": "3557b580569f151e768919978ae403d69c35b9035bb6ae187406a0130e6797f0",
-    "Specialization/Workflow/README.md": "d3f8968c822987b947047654e41567d357efe5680f7fed4bd9cd09b213f62bf2",
+    "Specialization/Workflow/context.py": "c1f5fdf32a26ad36556b8b00c388b27145aff576f394e33a07548e374699f12a",
+    "Specialization/Workflow/README.md": "099ffcb8ccc73f126836f353020903b2a62bd43a21001982587da537ec675edb",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md": "f657b5b836e5b898f2d3f26fedaf77e63eeb3336f5a0334ab708fd81a798fdc0",
     "DevelopmentTests/test_p0_b2.py": "d767741f9968759bcb733f6295cc08750d2fa8c3111a5cca42adbc8e8c424acf",
     "DevelopmentTests/test_p0_b2_regression.py": "62c7fc4096b04bc8890ce53dad7b7620894338d2cc8588b1a09ffc7a020b80f6",
-    "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc"
+    "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
+    "Specialization/Architecture/v2/P0_C_Plan.md": "29ca03d69ee3f86dfb5f14332e311ea71bd4989dec86d3ebfea6fe3a8a00dcbc",
+    "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
+    "Mod/ResearchInfrastructureShadow.lua": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
+    "Mod/Lv4Percent.lua": "f6859395cef39a802ee6cbe70f6ead5c81bbf304f9de47d3c2d4cde041ce24a8",
+    "Mod/Data/Lv4Percent.sql": "76daaefdf7c3edffe1839ff1199386b633f041e283beafc51f88877c97c34c29",
+    "Mod/Data/CopyYields.sql": "180ac97afbdb3f68c90fd944632bdc3bcbd9c6b50058143b4b7a11b0636546c6",
+    "Mod/HalfYieldProbe.lua": "aef824eb6fc83cc064d42908dbbefa91ba96099408ee09324f42cb0c6e25f499",
+    "Mod/Data/HalfYieldProbe.sql": "923db9239ae09d9d3a76f8d66d247cf31019b2cd632123490c33f277b8733669",
+    "Mod/Lv4CopyRead.lua": "5d58f139be76577107a7dda0f0088ad81cecaed49ca7c52653e40508369c627c",
+    "Mod/UI/CopyYieldRefresh.lua": "c1ea4f3d76042ecfdd7ece121fc2136f16da56de7cff46156ea1e49c4920ac30"
   }
 }

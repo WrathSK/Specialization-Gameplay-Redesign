@@ -1,25 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0212
+Status Revision: S0213
 Implementation Build: develop P0-B-080.107 / modinfo107; live B080.107 / modinfo107; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_B2_LOCAL_PASS_AWAITING_NATIVE_VALIDATION
+Work State: P0_B2_USER_PASS_P0_C_PLAN_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0035 / W0001导航增量：[P0-B2 manifest复核](../Workflow/P0-B2_Revalidation.md)完成，PLANNED_NOT_AUTHORIZED；Shared语义不改II住房/GPP，四专业v0.1范围不扩展至Military。A0161原合同复用，不表示已适配未来军事设计。Runtime/已验收结果不变。
+历史D0035 / W0001导航增量：[P0-B2 manifest复核](../Workflow/P0-B2_Revalidation.md)完成，PLANNED_NOT_AUTHORIZED；Shared语义不改II住房/GPP，四专业v0.1范围不扩展至Military。A0161原合同复用，不表示已适配未来军事设计。Runtime/已验收结果不变。
 
-P0-B2已获用户明确授权并完成：B080.107/modinfo107，[实施与本地证据](../Architecture/v2/P0_B2_Lv2_Qualification.md)。仅四专业Lv2住房/GPP资格、UNKNOWN保留与有界刷新；住房仍按Tier存在性，不是D。复用41旧载体，无新收益定义/Property/Design变更；补齐五个旧住房候选目录，Data Center动态Tier差异有明确证据与不可用保留。LOCAL_SIMULATION_PASS（实际Lua/SQL及完整前序回归，不等于引擎PASS）。待最小单城住房+0→1→2工作专家验收。P0-C未授权；Military/Future不纳入实施。已按W0003部署B080.107，126文件逐项hash一致；B079完整恢复点已保留：[部署结果](Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md)。
+P0-B2已获用户明确授权并完成：B080.107/modinfo107，[实施与本地证据](../Architecture/v2/P0_B2_Lv2_Qualification.md)。仅四专业Lv2住房/GPP资格、UNKNOWN保留与有界刷新；住房仍按Tier存在性，不是D。复用41旧载体，无新收益定义/Property/Design变更；补齐五个旧住房候选目录，Data Center动态Tier差异有明确证据与不可用保留。LOCAL_SIMULATION_PASS（实际Lua/SQL及完整前序回归，不等于引擎PASS）。用户明确报告P0-B2 PASS，无截图亦可登记USER_GAME_TEST_PASS（用户实机验收）；不推断具体未报告边界：[验收记录](Validation/Results/Specialization_B080_P0B2_User_Pass.md)。P0-C本轮明确仅给[具体计划](../Architecture/v2/P0_C_Plan.md)，未授权实施；Military/Future不纳入实施。已按W0003部署B080.107，126文件逐项hash一致；B079完整恢复点已保留：[部署结果](Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md)。
 
 P0-B1已获用户授权并完成本地实现：B079.106/modinfo106，[报告及测试](../Architecture/v2/P0_B1_Specialist_Support.md)。科研/文化/商业全等级基础3F3P，工业3F+BASE P；只退出旧III额外支持及工业Gold，其他旧能力留各自cutover。LOCAL_SIMULATION_PASS（实际Lua+mock/SQL，不等于实机PASS）。完整前序回归、10k idle、线性批次读取与精确12载体清理通过。已按W0003安全部署；用户明确确认P0-B1及工业城验收PASS，登记为USER_GAME_TEST_PASS：[用户验收](Validation/Results/Specialization_B079_P0B1_User_Pass.md)。不自动推进B2/C/E。
 
 [B078用户证据](Validation/Results/Specialization_B078_P0A_20260918.md)：D3→D10、工作专家读取通过；刷新声已消失。掠夺未测是缺少玩家可控操作，不是游戏卡死。原图已hash归档。按钮文字修正在B079，仅本地确认，等待实际显示反馈。P0-A仍不施加shadow收益。
 
-W0003临时默认部署授权有效，需退出/恢复点/hash/clean commit门禁。历史B079部署：126文件逐项hash一致，B078完整恢复点已核验：[部署记录](Validation/Results/Specialization_B079_Deployment_20260918.md)。main B069.96不改。Architecture A0161目标合同与Design D0032未改；P0-B1是已批准目标的实现。Workflow W0001导航更新为本批完成；P0-B2本地完成，等待原生验证；P0-C须另行计划/授权。
+W0003临时默认部署授权有效，需退出/恢复点/hash/clean commit门禁。历史B079部署：126文件逐项hash一致，B078完整恢复点已核验：[部署记录](Validation/Results/Specialization_B079_Deployment_20260918.md)。main B069.96不改。Architecture A0161目标合同与Design D0032未改；P0-B1是已批准目标的实现。Workflow W0001导航更新为本批完成；P0-B2用户PASS；P0-C具体计划/manifest已备，等待实施授权。
 
 ### Historical B077 implementation
 

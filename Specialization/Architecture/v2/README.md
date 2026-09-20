@@ -5,7 +5,7 @@
 
 ## 当前实现：P0-B2 / A0161
 
-[P0-B2 Lv2资格](P0_B2_Lv2_Qualification.md)：B080.107/modinfo107，LOCAL_SIMULATION_PASS，待用户原生验证；住房按不同Tier存在性、原生2 base GPP路径保留，UNKNOWN不再清空。P0-B1用户PASS含工业；P0-A D/专家读取PASS，掠夺未测。当前Design D0035仅四专业范围，Military未来；A0161合同未改变。P0-C/E未开始，部署以Status为准。
+[P0-B2 Lv2资格](P0_B2_Lv2_Qualification.md)：B080.107/modinfo107，LOCAL_SIMULATION_PASS + 用户报告实机PASS；住房按不同Tier存在性、原生2 base GPP路径保留，UNKNOWN不再清空。P0-B1用户PASS含工业；P0-A D/专家读取PASS，掠夺未测。当前Design D0035仅四专业范围，Military未来；A0161合同未改变。[P0-C具体计划](P0_C_Plan.md)已备，未授权实施；E未开始，部署以Status为准。
 
 ## 目标架构入口：A0160 / D0032
 

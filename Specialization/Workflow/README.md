@@ -3,11 +3,11 @@
 Owner: Codex. Scope: development navigation/context only; user authorization 2026-09-18.
 Design / Architecture always override Workflow. No Gameplay rule, implementation authorization or new Architecture revision is created here.
 
-## Current entry — D0035 / P0-B2 local implementation
+## Current entry — D0035 / P0-C plan
 
-Use `python3 Specialization/Workflow/context.py check P0-B2` (also plan/read/self-test). [P0-B2.json](P0-B2.json) is COMPLETE / LOCAL_SIMULATION_PASS (native pending); [revalidation](P0-B2_Revalidation.md) explains pre-implementation reviewed versus inherited evidence; current implementation is in the manifest result report. P0-B1 is completed historical D0032 evidence; its old authority map is intentionally not rewritten to pretend a new implementation acceptance. Historical B1 commands/example below remain examples, not current task routing.
+Use `python3 Specialization/Workflow/context.py check P0-C` (also plan/read/self-test). [P0-C.json](P0-C.json) is PLANNED_NOT_AUTHORIZED; user explicitly chose plan first. [Concrete plan](../Architecture/v2/P0_C_Plan.md) records48 old Research IV carrier IDs, shared fact inputs, specialist Science primitive gate and protected Industry/Culture boundaries. P0-B2 user PASS recorded without invented screenshots or per-edge claims; completed B1/B2 manifests retain historical authority maps.
 
-v0.1 implementation contains Research/Culture/Commerce/Industry only. Military and other future Design content in Authority is navigation metadata, not a mandatory B2 content read, runtime dependency or implementation gate. Shared D0035 supersedes current interpretation of old Shared imports without altering Lv2 numerics. Current context check never authorizes implementation/deployment.
+v0.1 scope remains Research/Culture/Commerce/Industry only. Military authority metadata creates no new runtime dependency. D0035 absolute-depth semantics remain; no Design/runtime/deployment changes in this planning batch. W0001 integrity checks are never implementation permission.
 
 Entry: [Authority](Authority.json) → requested [batch manifest](P0-B1.json) → relevant rules/contracts → direct source → conditional dependencies → triggered full audit.
 
