@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0229
-Implementation Build: develop P0-B-087.114 / modinfo114; live deployment pending verification; stable B069.96
+Implementation Build: develop P0-B-087.114 / modinfo114; live B087.114 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -11,7 +11,7 @@ Work State: U1_PROTOTYPE_LOCAL_PASS_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-[U1展示原型B087.114](../Architecture/v2/U1_Presentation_Prototype.md)获授权并本地完成：科研累计机构、阶段文字、城市详情carrier显示过滤，完整U1未实施。147文件，前序收益回归/新显示生命周期/10k重复通知/部署保护通过LOCAL_SIMULATION_PASS；实际HD加载与显示待用户短测。Design、收益writer/SQL、main不变。W0003部署待最后事务核验，不启动游戏。以下旧计划状态为历史。
+[U1展示原型B087.114](../Architecture/v2/U1_Presentation_Prototype.md)获授权并本地完成：科研累计机构、阶段文字、城市详情carrier显示过滤，完整U1未实施。147文件，前序收益回归/新显示生命周期/10k重复通知/部署保护通过LOCAL_SIMULATION_PASS；实际HD加载与显示待用户短测。Design、收益writer/SQL、main不变。W0003部署已完成：[147文件/恢复点核验](Validation/Results/Specialization_B087_U1_Deployment.md)，不启动游戏。以下旧计划状态为历史。
 
 用户澄清U1提前目标仅为institution/ability说明/carrier隐藏的技术与显示验证，非完整U1实施。以[前置原型计划](../Architecture/v2/P0_U1_Plan.md)顶部范围为准：一个Research IV城市、一个主要城市详情surface；四专业铺开与历史机构等留后续。当前仍只计划，无runtime/Design/部署变化。下方较宽U1范围已被本条收窄。
 

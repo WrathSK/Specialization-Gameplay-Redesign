@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "061eac53da8d61076f6e062b184aa96adffb8aee23db3bbdcd2fb57ec929a65a",
+    "Specialization/Status/Specialization_P0_Status.md": "f35004ce1c50e1c5a805a6c54d3d545d7c66e13afef3d36bd680a9449d4e459f",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -148,6 +148,7 @@
     "Mod/UI/InstitutionOverview.lua": "ecd7daa7b5450c72efecb40054f1a9c59c3e085314f675a9e297d97578bcc578",
     "Mod/UI/Institutions.xml": "8527a5fd082b89c5ab938644fc8cc06b8a77a91c7422d301999f72b96df64863",
     "Mod/InstitutionPresentation.lua": "abdc795324a97daa67b35ed67d591d0317d28272dc325db2cb8fa54e16bce63a",
-    "Mod/UI/Institutions.lua": "c185cfd65b3461e6454dac13721919051fdb8bf3c4d5ebd198283aa64904dd60"
+    "Mod/UI/Institutions.lua": "c185cfd65b3461e6454dac13721919051fdb8bf3c4d5ebd198283aa64904dd60",
+    "Specialization/Status/Validation/Results/Specialization_B087_U1_Deployment.md": "5d7b96e19c635579e1110d3b2d29233f4bfb3aff94246ebb94b9da7cd6dc6c36"
   }
 }

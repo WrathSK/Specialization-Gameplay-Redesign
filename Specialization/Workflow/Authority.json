@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "B087.114 coherent implementation commit (see git history)",
+  "runtime_commit": "8dc611879d7e8c101dcca95a7f183df9674e3a8f",
   "current_batch": "U1 prototype IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "next_batch": "Await one Research city display check; no full U1 expansion",
   "manifest": "Specialization/Workflow/P0-U1.json",
-  "live": "B086.113 retained pending B087.114 W0003 hash transaction",
+  "live": "B087.114 / modinfo114 deployed W0003; 147 exact hashes; B086 and stable recovery verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
