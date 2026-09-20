@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B084 implementation commit containing this document (resolve Git history)",
+  "runtime_commit": "33dc5cd05fa5abb589059e769a167727a89a91a2",
   "runtime": "B084.111 / modinfo111",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

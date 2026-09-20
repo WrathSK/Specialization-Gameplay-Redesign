@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0222
-Implementation Build: develop P0-B-084.111 / modinfo111; live B083.110 pending W0003 deployment; stable B069.96
+Implementation Build: develop P0-B-084.111 / modinfo111; live B084.111 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_D1_IMPLEMENTATION_COMPLETE_LOCAL_PASS_USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B084部署确认](Validation/Results/Specialization_B084_Deployment_20260920.md)：137文件逐项hash一致，B083恢复点已验证。请做一次正式P0-D1最小验收；不再运行三档实验。
 
 [本轮正式实现](../Architecture/v2/P0_D1_Research_Cross_Cutover.md)：用户报告所测区域接口仅整数生效，授权临时汇总后floor；B084.111完成跨学科研究正式写入及8旧科研III/3实验效果退出。本地生命周期、1/2/4/8城、10k空闲、SQL与受保护回归通过；正式能力仍需最小实机验收。Design未改；未来D替代仅登记。不进入P0-D2。以下B083等待精度实验的正文为历史记录。
 
