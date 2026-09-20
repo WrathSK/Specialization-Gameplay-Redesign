@@ -1,101 +1,101 @@
--- B034: disposable native housing carriers, rebuilt from effective city facts.
+include('RuntimeWork')
+include('SpecialistSupport')
+-- P0-B2: shared ordinary eligibility, distinct Tier presence in the actual anchor.
+-- D's weighted sum/highest-domain choice is deliberately not a housing input.
 SPCLv2Housing={}
 function SPCLv2Housing.Start(P,shared)
- local data={ready=false,busy=false,changes=0,errors={},events=0}
- shared.Lv2Housing=data
- local families={RESEARCH="DISTRICT_CAMPUS",CULTURE="DISTRICT_THEATER",COMMERCE="DISTRICT_COMMERCIAL_HUB",INDUSTRY="DISTRICT_INDUSTRIAL_ZONE"}
+ local data={ready=false,busy=false,changes=0,errors={},events=0};shared.Lv2Housing=data
+ local kinds={RESEARCH=true,CULTURE=true,COMMERCE=true,INDUSTRY=true}
  local function carrier(i)
-  local row=P.Info("Buildings","BUILDING_SPC_DEV_LV2_HOUSING_"..i)
-  assert(row and type(row.Index)=="number","B034_DATABASE_MISSING: reload updated mod database")
+  local row=P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_'..i)
+  assert(row and type(row.Index)=='number' and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
   return row.Index
  end
- local function expected(pid,city)
+ local function expected(pid,city,batch)
   local wanted={}
-  if not P.IsTestPlayer(pid) then return wanted,"OUTSIDE_TEST_OWNER" end
-  assert(city:GetOwner()==pid,"OWNER_CHANGED")
-  local f=shared.EffectiveFacts.Read(pid,city)
-  local districtType=families[f.specialization]
-  if not districtType then return wanted,"NO_SUPPORTED_SPECIALIZATION" end
-  if type(f.active)~="number" then return wanted,"ACTIVE_UNKNOWN" end
-  if f.active<2 then return wanted,"ACTIVE="..f.active end
-  local found=false
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-   local ownerCity=d:GetCity()
-   if ownerCity and ownerCity:GetID()==city:GetID() and ownerCity:GetOwner()==pid and f.first and d:GetID()==f.first.districtID then
-    local row=P.Info("Districts",d:GetType())
-    assert(row and row.DistrictType==districtType and f.first.type==districtType and d:IsComplete()==true,"SPECIALTY_DISTRICT_CHANGED")
-    found=true
-   end
-  end
-  assert(found,"SPECIALTY_DISTRICT_MISSING")
+  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch)
+  if not kinds[kind] then return wanted,'CONFIRMED_INELIGIBLE',{} end
+  if f.active<2 then return wanted,'ACTIVE='..f.active,{} end
+  local svc=assert(shared.DistrictCompleteness,'B2_ORDINARY_FACTS_UNAVAILABLE')
+  -- Called only for direct changes/reconciliation/manual reads, never a UI pulse.
+  svc.MarkDirty(pid,city:GetID())
+  local sample=svc.Read(pid,city)
+  assert(sample.validity=='VERIFIED' and sample.availability=='READY',sample.error or 'B2_BUILDINGS_UNAVAILABLE')
+  local anchor
+  for _,r in ipairs(sample.value.districts) do if r.id==d:GetID() then anchor=r;break end end
+  assert(anchor and anchor.type==f.first.type,'B2_ANCHOR_SAMPLE_MISMATCH')
+  assert(anchor.complete and not anchor.pillaged,'B2_ANCHOR_CHANGED_DURING_READ')
   wanted[0]=true
-  local map=P.Field(GameInfo,"SPC_Lv2HousingTiers")
-  assert(map,"B034_TIER_DATABASE_MISSING")
-  for row in map() do
-   if row.DistrictType==districtType then
-    assert(type(row.Tier)=="number" and row.Tier>=1 and row.Tier<=8 and row.Tier%1==0,"UNSUPPORTED_BUILDING_TIER")
-    local b=P.Info("Buildings",row.BuildingType)
-    if b and P.HasBuilding(city:GetBuildings(),b.Index) then wanted[row.Tier]=true end
+  for _,b in ipairs(anchor.buildings) do
+   if b.ordinary and b.complete and not b.pillaged then
+    assert(b.tier~=nil,'B2_ORDINARY_TIER_UNKNOWN '..b.type)
+    assert(b.reason=='INCLUDED' or b.reason=='ORDINARY_TIER_ZERO','B2_ORDINARY_CLASSIFICATION_UNKNOWN '..b.type)
+    if b.tier>0 then wanted[b.tier]=true end
    end
   end
-  return wanted,f.specialization.." ACTIVE="..f.active
+  return wanted,kind..' ACTIVE='..f.active..' anchor='..d:GetID(),anchor.buildings
  end
- local function set(city,id,wanted)
-  local buildings=city:GetBuildings();local present=P.HasBuilding(buildings,id)
-  assert(type(present)=="boolean","HOUSING_CARRIER_READ_UNKNOWN")
-  if present==wanted then return end
-  if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(buildings,id) end
-  assert(P.HasBuilding(buildings,id)==wanted,"HOUSING_CHANGE_UNCONFIRMED")
-  data.changes=data.changes+1
- end
- local function process(pid,city)
-  local k=pid..":"..city:GetID()
-  local ok,wanted,reason=pcall(expected,pid,city)
-  -- Invalid facts cannot retain advanced housing. Retry on the next real event.
-  if not ok then reason=tostring(wanted);wanted={} end
-  local applied,err=pcall(function()
-   local ids={};for i=0,8 do ids[i]=carrier(i) end
-   for i=0,8 do if not wanted[i] then set(city,ids[i],false) end end
-   for i=0,8 do if wanted[i] then set(city,ids[i],true) end end
-  end)
-  data.errors[k]=(not applied and tostring(err)) or (not ok and reason) or nil
-  if data.errors[k] then print("[SPC][B034][HOUSING_ERROR] "..k.." "..data.errors[k]) end
- end
- function data.Audit()
-  if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;data.events=data.events+1
-  for pid,player in pairs(Players) do
-   local ok,err=pcall(function()
-    local cities=player:GetCities()
-    if cities then for _,city in cities:Members() do P.Count('city_scan'); process(pid,city) end end
-   end)
-   if not ok then print("[SPC][B034][SCAN_ERROR] "..tostring(pid).." "..tostring(err)) end
+ local function plan(city,wanted)
+  local result={}
+  for i=0,8 do
+   local id=carrier(i);local present=P.HasBuilding(city:GetBuildings(),id)
+   assert(type(present)=='boolean','B2_HOUSING_CARRIER_UNKNOWN')
+   result[#result+1]={id=id,present=present,wanted=wanted[i]==true}
   end
+  return result -- all inputs and carrier reads verified before the first write
+ end
+ local function process(pid,city,batch)
+  local wanted=expected(pid,city,batch);local changes=plan(city,wanted)
+  for _,adding in ipairs({false,true}) do for _,v in ipairs(changes) do
+   if v.wanted==adding and v.present~=v.wanted then
+    if adding then P.CreateBuilding(city:GetBuildQueue(),v.id) else P.RemoveBuilding(city:GetBuildings(),v.id) end
+    assert(P.HasBuilding(city:GetBuildings(),v.id)==v.wanted,'B2_HOUSING_WRITE_UNCONFIRMED')
+    data.changes=data.changes+1
+   end
+  end end
+ end
+ function data.Audit(scope)
+  if not data.ready or data.busy then P.Count('busy_skip');return end
+  data.busy=true;data.events=data.events+1;local batch=SPCRuntimeWork.New(P,shared)
+  if type(scope)~='table' or scope.player==nil then data.errors={} end
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
+   local ok,err=pcall(function()
+    for _,city in player:GetCities():Members() do
+     P.Count('city_scan');local k=pid..':'..city:GetID()
+     local good,why=pcall(process,pid,city,batch)
+     data.errors[k]=not good and tostring(why) or nil
+    end
+   end)
+   data.errors['player:'..pid]=not ok and tostring(err) or nil
+  end end
   data.busy=false
  end
  function data.Describe(pid,city)
-  -- Read is intentionally not a reconciliation trigger.
   local ok,out=pcall(function()
-   assert(data.ready,"HOUSING_NOT_READY")
-   local wanted,reason=expected(pid,city);local n,actual,tiers=0,0,{}
+   assert(data.ready,'B2_HOUSING_NOT_READY')
+   local wanted,reason,buildings=expected(pid,city,SPCRuntimeWork.New(P,shared))
+   local n,actual,tiers=0,0,{}
    for i=0,8 do
     if wanted[i] then n=n+1;if i>0 then tiers[#tiers+1]=i end end
     if P.HasBuilding(city:GetBuildings(),carrier(i)) then actual=actual+1 end
    end
-   local err=data.errors[pid..":"..city:GetID()]
-   return "city="..city:GetID().." "..reason
-    .."\nHousing expected=+"..n.." carrier=+"..actual.." tiers="..(#tiers>0 and table.concat(tiers,",") or "NONE")
-    .."\nchanges="..data.changes.." refreshes="..data.events..(err and " ERROR="..err or "")
-    .."\nRead only; compare actual housing in city UI."
-    .."\nLv2 GPP is separate; other advanced yields not enabled."
+   local lines={'city='..city:GetID()..' '..reason,
+    '住房 expected=+'..n..' carrier=+'..actual..' tiers='..table.concat(tiers,','),
+    '本专业区域1住房 + 每种合格普通建筑Tier各1；不读取D加权值。'}
+   for _,b in ipairs(buildings) do lines[#lines+1]=b.type..' Tier='..tostring(b.tier)..' pillaged='..tostring(b.pillaged)..' '..tostring(b.reason) end
+   lines[#lines+1]='changes='..data.changes..' refreshes='..data.events..' error='..tostring(data.errors[pid..':'..city:GetID()] or 'NONE')
+   return table.concat(lines,'\n')
   end)
-  local out="B034 Lv2 Housing | "..(ok and out or "ERROR "..tostring(out))
-  print("[SPC][B034] "..out);return out
+  return 'P0-B2 Lv2 Housing | '..(ok and out or ('UNKNOWN / installed housing retained: '..tostring(out)))
  end
- local function bind(events,name,fn)
-  local e=P.Field(events,name);if e and e.Add then e.Add(fn) end
+ local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
+ bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit() end)
+ for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted',
+  'CityTransfered','CityRemovedFromMap','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
+  'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'}) do
+  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
  end
- bind(Events,"LoadScreenClose",function() data.ready=true;data.Audit() end)
- for _,name in ipairs({"GovernorAssigned","GovernorEstablished","GovernorChanged","PlayerTurnActivated","CityTransfered","CityBuildingsChanged"}) do bind(Events,name,data.Audit) end
- for _,name in ipairs({"BuildingConstructed","OnDistrictConstructed","CityBuilt"}) do bind(GameEvents,name,data.Audit) end
+ -- CityBuildingsChanged can be raised by our own carriers. Structural events
+ -- above + once/player/turn reconciliation cover it without a feedback loop.
+ for _,n in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
 end

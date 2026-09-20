@@ -1,13 +1,13 @@
 # P0-B2 — Lv2 Housing / base GPP qualification plan
 
-Status: PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED
+Status: IMPLEMENTED_LOCAL_PASS — B080.107; [implementation/evidence](P0_B2_Lv2_Qualification.md). Plan below records pre-implementation gates.
 Authority: D0035, Research D0031, Culture D0029, Industry/Commerce D0032, Shared D0035; A0160 plan / A0161 runtime contracts.
 Baseline: B079.106 / modinfo106; implementation b420a96; P0-B1 user PASS (including Industry), recorded fe07b5b.
 Evidence here: STATIC_CONFIRMED source observations only. No new implementation, prototype, deployment or game test.
 
 ## D0035 revalidation — 2026-09-20
 
-[Executable context manifest](../../Workflow/P0-B2.json) and [review evidence](../../Workflow/P0-B2_Revalidation.md). This remains a plan, not implementation authorization. v0.1 scope is exactly Research/Culture/Industry/Commerce. Military D0034 and other future Designs add no required consumers, dependencies, carriers or tests to B2.
+[Executable context manifest](../../Workflow/P0-B2.json) and [review evidence](../../Workflow/P0-B2_Revalidation.md). Historical revalidation did not authorize implementation; user subsequently explicitly authorized P0-B2. v0.1 scope is exactly Research/Culture/Industry/Commerce. Military D0034 and other future Designs add no required consumers, dependencies, carriers or tests to B2.
 
 Shared D0035 changes semantic/display interpretation of D, not ordinary eligibility or Lv2 rules. Housing uses distinct Tier existence, never weighted D/relative completion, and GPP uses actual workers. Do not import Military depth-efficiency or birth-buff rules. Existing scope, rollback B079.106 and exit gates stand.
 

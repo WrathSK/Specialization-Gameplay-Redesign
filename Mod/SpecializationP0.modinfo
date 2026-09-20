@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="106">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="107">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B079.106 develop: P0-B1 all-level specialist support; retired old III upgrades. Development test build.</Description>
+    <Description>B080.107 develop: P0-B2 Lv2 Housing and base GPP qualification; verified-input lifecycle. Development test build.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

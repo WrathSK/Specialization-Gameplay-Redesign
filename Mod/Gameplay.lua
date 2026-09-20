@@ -36,7 +36,7 @@ local function request(playerID,params)
     local ok,report=pcall(function()
       local c=Players[playerID]:GetCities():FindID(params.CityID)
       assert(c and c:GetOwner()==playerID,'DC_SELECTED_CITY_UNAVAILABLE')
-      return SPCResearchInfrastructureShadow.Describe(P,shared,playerID,c)
+      return SPCResearchInfrastructureShadow.Describe(P,shared,playerID,c)..'\n\n'..shared.Lv2Housing.Describe(playerID,c)..'\n\n'..shared.Lv2GPP.Describe(playerID,c)
     end)
     shared.Snapshot=ok and report or ('P0-A读取未完成：'..tostring(report))
     shared.LastToken=params.Token;return
@@ -208,8 +208,8 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if shared.Lv2Housing then shared.Lv2Housing.Audit() end
-    if shared.Lv2GPP then shared.Lv2GPP.Audit() end
+    if shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
+    if shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -227,6 +227,7 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
+    if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
@@ -269,8 +270,8 @@ local function request(playerID,params)
       shared.Snapshot=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
     else shared.Snapshot="B033 REJECTED: PREPARE_FIRST" end
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if shared.Lv2Housing then shared.Lv2Housing.Audit() end
-    if shared.Lv2GPP then shared.Lv2GPP.Audit() end
+    if shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
+    if shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end

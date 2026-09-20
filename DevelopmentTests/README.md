@@ -46,3 +46,7 @@ Requires Lupa lua55. Actual Discount UI/Gameplay mocked transport/native permiss
 ## Current Architecture v2 D2 — B076.103
 
 Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with Lupa lua55 (local validated environment: `PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14`). Actual current Lua, 1728 B075 carrier maps, nonzero Commerce source changes, Great Work scenarios,10k idle/UI stress,1/2/4/8 scaling,30k published-view queries. Includes C2/C1/D1/A/B/B069; in-memory historical build/scheduling adaptations are explicit, frozen test files unchanged. Git baseline5dc6221 and older regression commits must remain available locally. No DB/game/network/deployment needed. LOCAL_SIMULATION_PASS only. See Architecture/v2/Batch_D2_Runtime_Propagation.md.
+
+## P0-B2 Lv2 qualification
+
+`test_p0_b2.py` actual Lua housing/GPP + P0-A capture/ontology, SQL41/48, four professions × ACTIVE/workers, catalog50, unknown/withdraw/load,10k idle/turn guards,1/2/4/8 scaling, combined read-only diagnostic. `test_p0_b2_regression.py` runs frozen B1/P0-A/A–D2 with explicit B2 version/byte/diagnostic-fixture adaptations; no historical assertions silently removed. Use the documented Lua55/Lupa environment. Native Housing/GPP/pillage timing remains user-game validation, not local PASS.

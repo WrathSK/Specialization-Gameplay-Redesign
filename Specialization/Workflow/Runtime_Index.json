@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "b420a967f9b9ae468c5829a8de192dd443e9c6ea",
-  "runtime": "B079.106 / modinfo106",
+  "runtime_commit": "P0-B2 implementation commit (resolve by Runtime_Index hashes / git history)",
+  "runtime": "B080.107 / modinfo107",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "6c897fe30e2864fcedfa09946aaab905af8fce22c637646a3e3c55328aebed9f",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "768fadff1f9026cb2a4bb411137d28d3926843eb5de2b9485035decc1665b83c",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -306,14 +306,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "c70780c85d34d0d0185c7d98adede074c0b3b5c683074e635a73972d7f427535",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "8edb899c79a702efb610c75dd182d484ed3046cfa3e1b11fdc1b3c9d4c6d77df",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "f7ba314a03f16d8afbf5c7b638037c50299050fa9d1308795a40a3f8b3188b50",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "b79d1d793a22ad701b1b8e466c0b584987373f57b70946f40acc661390067347",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "b85d70976a2fa62a3608c7021b517afcc61a04d1f9935cd96d0785cdb1878d65",
@@ -356,9 +356,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
-      "sha256": "c209d44ef4666ce740b3cbecdedbfb827a74889e2e332fe9de433fff2ad1d7d0",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "398205d0e063ae5d092947dbd3d54443c5778001fbe0f03d29c360c24e7379e9",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PerformanceCounters.lua": {
       "sha256": "4913e7a76d4f2f8cd00ed94748eaf1acd19cad0ab8eb2cbc275ec7bba321fa97",
@@ -366,9 +366,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Probe.lua": {
-      "sha256": "ff0ccb67c6a7f1d03ee5fad23c5929b82c340e8d754717edba25c9041f44cd72",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "d1bcc0f18d62790284cfe94fd263f8465c34987073328dbe0fc4adf4f0fdc39b",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3a00935036f014435c06ed8ddf03820ca632cc46cd8dbd8669a1bbfabe28b57a",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "339e3c5467b02c21cd6df8adcea0cdd9cdbfd279d8cce683bd4b1095f55714cf",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "d317ecee83ef917918c91e43d33a81dda1b1b89bbc222724c5174649acb9a927",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "6705f105061e1c0873af7928bfa620239848668a70962555f2bdf1ced22c9312",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "e03eb1545fc01dec22a4bd2e8b8009d847db469f90933ad20b4941cdf217d62e",
@@ -566,9 +566,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "ada33f5b3aa69bd473a3e876eba67c3842ec1f66df7bc22fc43c85850d56d7b2",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "c0e3662add4df6777515b4ecca4393914e5e0abd62dd736c0d03b8c75e333e18",
+      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",

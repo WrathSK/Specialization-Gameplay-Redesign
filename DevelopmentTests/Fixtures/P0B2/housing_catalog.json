@@ -1,0 +1,508 @@
+{
+  "scope": "50 old housing rows only; no all-Mod coverage claim",
+  "evidence": "Read-only installed DB + HD tier source; not proven enabled-set/session provenance, not engine acceptance. Runtime reads its own GameInfo; no hardcoded Data Center clamp. Unsupported/conflicting ordinary tier holds previous housing.",
+  "source": "Workshop/2465378070/UpdateDataBase/HD_BuildingTiers.sql",
+  "sourceSHA256": "c3d56a4cccb2145fa46864683f34eafae33e254051c476b8bc908205296cb25f",
+  "rows": [
+    {
+      "BuildingType": "BUILDING_AMPHITHEATER",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 110,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_BANK",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 250,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_BROADCAST_CENTER",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 700,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_COAL_POWER_PLANT",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 500,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_FACTORY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 400,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_FAIR",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 65,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_FILM_STUDIO",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 700,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_FOSSIL_FUEL_POWER_PLANT",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 550,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_GRAND_BAZAAR",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 225,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_HD_ART_PUBLISHING_HOUSE",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 450,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_HD_DATA_CENTER",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 1200,
+      "Tier": 4,
+      "oldTier": 5,
+      "classification": "RECLASSIFY_DYNAMIC_HD_TIER"
+    },
+    {
+      "BuildingType": "BUILDING_HD_ELECTRONICS_FACTORY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 400,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_HD_INTERNET_COMPANY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 600,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_IZ_WATER_MILL",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 100,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ACADEMY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 95,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ARCHITECTURE",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 500,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_ASSEMBLY",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 110,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CABINET",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 240,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_CHEMICAL",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 400,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_COMMODITY_EXCHANGE",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 450,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_EDUCATION",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 900,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_FREIGHT_YARD",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 600,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_GRAND_HOTEL",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 450,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_GUILDHALL",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 250,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_LABORATORY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 450,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_LIBERAL_ARTS",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 500,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MANSION",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 240,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MANUFACTURY",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 200,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MARKETING_AGENCY",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 400,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MEDIA_CENTER",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 700,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MERCHANT_QUARTER",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 225,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_MINT",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 110,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_OPERA",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 450,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_REAL_ACADEMY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 500,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_SCHOOL",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 275,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_WAYSTATION",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 65,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_JNR_WIND_MILL",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 100,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_LIBRARY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 95,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_MADRASA",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 420,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_MARAE",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 135,
+      "Tier": 1,
+      "oldTier": 1,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_MARKET",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 110,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_MUSEUM_ART",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 220,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_MUSEUM_ARTIFACT",
+      "PrereqDistrict": "DISTRICT_THEATER",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 180,
+      "Tier": 3,
+      "oldTier": 3,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_NAVIGATION_SCHOOL",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 275,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_POWER_PLANT",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 600,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_RESEARCH_LAB",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 900,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_STOCK_EXCHANGE",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 450,
+      "Tier": 4,
+      "oldTier": 4,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_SUKIENNICE",
+      "PrereqDistrict": "DISTRICT_COMMERCIAL_HUB",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 420,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_UNIVERSITY",
+      "PrereqDistrict": "DISTRICT_CAMPUS",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 275,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    },
+    {
+      "BuildingType": "BUILDING_WORKSHOP",
+      "PrereqDistrict": "DISTRICT_INDUSTRIAL_ZONE",
+      "InternalOnly": 0,
+      "IsWonder": 0,
+      "Cost": 200,
+      "Tier": 2,
+      "oldTier": 2,
+      "classification": "RETAIN"
+    }
+  ]
+}

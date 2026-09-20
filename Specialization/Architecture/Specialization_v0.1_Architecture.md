@@ -7,9 +7,12 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-079.106 / modinfo106; live B079.106 / modinfo106; stable B069.96 / modinfo96
+Implementation Build: develop P0-B-080.107 / modinfo107; live B079.106 / modinfo106; stable B069.96 / modinfo96
 
 ## CURRENT AUTHORITATIVE STATE
+
+Current implementation delta: [P0-B2 Lv2 qualification](v2/P0_B2_Lv2_Qualification.md), B080.107 LOCAL_SIMULATION_PASS / native pending. D0035 Shared/Lv2 scoped review supersedes older header navigation without claiming full Military adaptation. A0161 target contract unchanged; P0-B1 user PASS, P0-C not started. Following B079 paragraphs are inherited pre-B2 history; actual live state is Status-owned.
+
 
 P0-B1 B079.106已完成本地实现：[基础专家支持及精确retirement合同](v2/P0_B1_Specialist_Support.md)。现有A0160/A0161目标不改，Design D0032不改；本批将基础支持接入当前事实/BASE样本，旧III支持writer只保留清理门面，12旧ID成为无收益tombstone。其他旧能力不随本批退役。无新carrier/Property/存档schema。
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-B2",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -11,8 +11,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0210",
-    "runtime": "B079.106 / modinfo106",
+    "status": "S0211",
+    "runtime": "B080.107 / modinfo107",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_B2_Plan.md",
@@ -304,6 +304,21 @@
       "path": "DevelopmentTests/test_arch_v2_d2.py",
       "kind": "full",
       "reason": "Protected consumer/full-regression evidence; unchanged hashes reused for planning, inspect for implementation assertions"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+      "kind": "full",
+      "reason": "Actual B2 implementation/evidence and native limits"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_b2.py",
+      "kind": "full",
+      "reason": "Actual producer/writer cutover validation"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_b2_regression.py",
+      "kind": "full",
+      "reason": "Explicit protected dependency regression deltas"
     }
   ],
   "implementation_scope": {
@@ -392,10 +407,10 @@
     "Global catalog completion beyond required four-profession housing closure",
     "UI polish/API rename/relative D/new formula",
     "Save/ownership/History/inheritance/BatchE",
-    "Implementation/deployment/game launch in this synchronization task"
+    "P0-C implementation or game launch"
   ],
   "validation": {
-    "level": "Future writer cutover: focused tests plus dependency/full-runtime regression; this task context/static only",
+    "level": "Full writer cutover local/dependency regression complete; native pending",
     "local": [
       "ACTIVE1..4, four professions, worker0/1/multiple",
       "Housing empty/T1/T1T2/T1T2T3/T1..T4/onlyT3 =>1/2/3/4/5/2; duplicates one perTier",
@@ -415,7 +430,7 @@
       "deployment safety/temp tests without apply",
       "no Design change; no new Property/save schema"
     ],
-    "user": "After separately authorized implementation: one prepared ACTIVE2 city, housing read +workers0→1→2/GPP; optional existing Culture and governor check; no forced disasters. No current game test."
+    "user": "One ACTIVE>=II city: housing and workers0/1/2, optional existing Culture/governor; no forced pillage."
   },
   "full_audit_triggers": [
     "Authorized Lv2 writer cutover requires full-Mod writer search/full regression",
@@ -424,10 +439,10 @@
     "Unexplained output or hidden writer; no blindly refreshed hash"
   ],
   "result": {
-    "revalidation": "STATIC_CONFIRMED plan/current-rule/source boundary review; context tests recorded in P0-B2_Revalidation.md",
-    "implementation": "NOT_STARTED / NOT_AUTHORIZED",
-    "game_test": "NOT_REQUESTED",
-    "exit": "Plan remains ready subject to mandatory catalog preflight before code cutover; B079.106 rollback; no automatic P0-C"
+    "implementation": "COMPLETE / LOCAL_SIMULATION_PASS; user explicitly authorized P0-B2",
+    "report": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
+    "game_test": "USER_GAME_TEST_REQUIRED",
+    "exit": "No automatic P0-C; W0003 deployment gates unchanged"
   },
-  "context_status": "REVALIDATED_D0035"
+  "context_status": "IMPLEMENTATION_REVIEWED_D0035"
 }

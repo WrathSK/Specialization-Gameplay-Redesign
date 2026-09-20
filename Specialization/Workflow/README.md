@@ -3,9 +3,9 @@
 Owner: Codex. Scope: development navigation/context only; user authorization 2026-09-18.
 Design / Architecture always override Workflow. No Gameplay rule, implementation authorization or new Architecture revision is created here.
 
-## Current entry — D0035 / P0-B2 revalidated
+## Current entry — D0035 / P0-B2 local implementation
 
-Use `python3 Specialization/Workflow/context.py check P0-B2` (also plan/read/self-test). [P0-B2.json](P0-B2.json) is PLANNED_NOT_AUTHORIZED; [revalidation](P0-B2_Revalidation.md) explains reviewed versus inherited evidence. P0-B1 is completed historical D0032 evidence; its old authority map is intentionally not rewritten to pretend a new implementation acceptance. Historical B1 commands/example below remain examples, not current task routing.
+Use `python3 Specialization/Workflow/context.py check P0-B2` (also plan/read/self-test). [P0-B2.json](P0-B2.json) is COMPLETE / LOCAL_SIMULATION_PASS (native pending); [revalidation](P0-B2_Revalidation.md) explains pre-implementation reviewed versus inherited evidence; current implementation is in the manifest result report. P0-B1 is completed historical D0032 evidence; its old authority map is intentionally not rewritten to pretend a new implementation acceptance. Historical B1 commands/example below remain examples, not current task routing.
 
 v0.1 implementation contains Research/Culture/Commerce/Industry only. Military and other future Design content in Authority is navigation metadata, not a mandatory B2 content read, runtime dependency or implementation gate. Shared D0035 supersedes current interpretation of old Shared imports without altering Lv2 numerics. Current context check never authorizes implementation/deployment.
 

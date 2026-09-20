@@ -1,12 +1,9 @@
 include('RuntimeWork')
+include('SpecialistSupport')
 -- B035: working-specialist count -> native building base GPP. No ChangePointsTotal.
 SPCLv2GPP={}
 function SPCLv2GPP.Start(P,shared)
  local batch
- local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
- local function districtsFor(pid,c)
-  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
- end
  local data={ready=false,busy=false,changes=0,refreshes=0,errors={}};shared.Lv2GPP=data
  local kinds={"RESEARCH","CULTURE","INDUSTRY","COMMERCE"}
  local districts={RESEARCH="DISTRICT_CAMPUS",CULTURE="DISTRICT_THEATER",INDUSTRY="DISTRICT_INDUSTRIAL_ZONE",COMMERCE="DISTRICT_COMMERCIAL_HUB"}
@@ -31,24 +28,14 @@ function SPCLv2GPP.Start(P,shared)
   definitions=true
  end
  local function inspect(pid,city)
-  assert(city:GetOwner()==pid,"CITY_OWNER_CHANGED")
-  if not P.IsTestPlayer(pid) then return {workers=0,enabled=false,reason="OUTSIDE_TEST_PLAYER"} end
-  local f=readFacts(pid,city);local districtType=districts[f.specialization]
-  if not districtType then return {workers=0,enabled=false,reason="NO_SUPPORTED_SPECIALIZATION"} end
-  assert(f.first,"SPECIALTY_ANCHOR_MISSING")
-  for _,d in districtsFor(pid,city) do
-   local c=d:GetCity()
-   if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
-    local row=P.Info("Districts",d:GetType())
-    assert(row and row.DistrictType==districtType and f.first.type==districtType and d:IsComplete()==true,"SPECIALTY_DISTRICT_CHANGED")
-    local plot=Map.GetPlot(d:GetX(),d:GetY());assert(plot,"DISTRICT_PLOT_MISSING")
-    local n=plot:GetWorkerCount();assert(int(n) and n<=255,"WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED")
-    return {kind=f.specialization,workers=n,active=f.active,enabled=type(f.active)=="number" and f.active>=2,
-     reason=type(f.active)=="number" and "KNOWN" or "ACTIVE_UNKNOWN"}
-   end
-  end
-  error("SPECIALTY_DISTRICT_MISSING")
+  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch or SPCRuntimeWork.New(P,shared))
+  if not classes[kind] then return {workers=0,enabled=false,reason='CONFIRMED_INELIGIBLE'} end
+  if f.active<2 then return {kind=kind,active=f.active,workers=0,enabled=false,reason='ACTIVE_BELOW_II'} end
+  local plot=assert(Map.GetPlot(d:GetX(),d:GetY()),'B2_GPP_PLOT_UNAVAILABLE')
+  local n=plot:GetWorkerCount();assert(int(n) and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED')
+  return {kind=kind,workers=n,active=f.active,enabled=true,reason='VERIFIED anchor='..d:GetID()}
  end
+
  local function set(city,id,wanted)
   local b=city:GetBuildings();local present=P.HasBuilding(b,id);assert(type(present)=="boolean","GPP_CARRIER_READ_UNKNOWN")
   if present==wanted then return end
@@ -56,36 +43,41 @@ function SPCLv2GPP.Start(P,shared)
   assert(P.HasBuilding(b,id)==wanted,"GPP_CARRIER_CHANGE_UNCONFIRMED");data.changes=data.changes+1
  end
  local function reconcile(pid,city)
-  local ok,f=pcall(function() validateDefinitions();return inspect(pid,city) end)
-  local n=ok and f.enabled and f.workers or 0
-  local kind=ok and f.kind or nil
+  validateDefinitions();local f=inspect(pid,city)
+  local n=f.enabled and f.workers or 0
+  local kind=f.kind
   local wanted={}
   for _,k in ipairs(kinds) do for bit=0,7 do
    wanted[name(k,bit)]=k==kind and math.floor(n/2^bit)%2==1
+  end end
+  -- Verify every installed carrier before any write; UNKNOWN holds projection.
+  for _,k in ipairs(kinds) do for bit=0,7 do
+   local b=P.Info('Buildings',name(k,bit))
+   assert(type(P.HasBuilding(city:GetBuildings(),b.Index))=='boolean','GPP_CARRIER_READ_UNKNOWN')
   end end
   -- Remove all stale classes/bits before adding the new count. No cumulative reward.
   for _,k in ipairs(kinds) do for bit=0,7 do
    local key=name(k,bit);local b=P.Info("Buildings",key)
    if b and not wanted[key] then set(city,b.Index,false) end
   end end
-  if ok then for _,k in ipairs(kinds) do for bit=0,7 do
+  for _,k in ipairs(kinds) do for bit=0,7 do
    local key=name(k,bit);if wanted[key] then set(city,P.Info("Buildings",key).Index,true) end
-  end end end
-  if not ok then error(f) end
+  end end
  end
  function data.Audit(scope)
   if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
+  if type(scope)~='table' or scope.player==nil then data.errors={} end
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local good,err=pcall(function()
     local cities=player:GetCities()
     if cities then for _,city in cities:Members() do P.Count('city_scan');
      local key=pid..":"..city:GetID();local ok,e=pcall(reconcile,pid,city)
      data.errors[key]=not ok and tostring(e) or nil
-     if not ok then print("[SPC][B035][GPP_ERROR] "..key.." "..tostring(e)) end
+
     end end
    end)
-   if not good then print("[SPC][B035][SCAN_ERROR] "..tostring(pid).." "..tostring(err)) end
+   data.errors['player:'..pid]=not good and tostring(err) or nil
   end end
   data.busy=false;batch=nil
  end
@@ -113,10 +105,10 @@ function SPCLv2GPP.Start(P,shared)
     .."\nchanges="..data.changes.." refreshes="..data.refreshes.." "..f.reason..(err and " ERROR="..err or "")
     .."\nRead only. Carrier is base, not measured final GPP. UNKNOWN: use Great People UI."
   end)
-  local out="B035 Lv2 GPP | "..(ok and result or "ERROR "..tostring(result));print("[SPC][B035] "..out);return out
+  local out="P0-B2 Lv2 GPP | "..(ok and result or "ERROR "..tostring(result));print("[SPC][B035] "..out);return out
  end
  local function bind(events,event,fn) local e=P.Field(events,event);if e and e.Add then e.Add(fn) end end
- bind(Events,"LoadScreenClose",function() data.ready=true;data.Audit() end)
- for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","PlayerTurnActivated","CityTransfered"}) do SPCRuntimeWork.Hook(P,Events,event,data.Audit) end
- for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt"}) do bind(GameEvents,event,data.Audit) end
+ bind(Events,"LoadScreenClose",function() data.ready=true;data.errors={};data.Audit() end)
+ for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","GovernorPromoted","PlayerTurnActivated","CityTransfered","CityRemovedFromMap","DistrictRemovedFromMap","DistrictBuildProgressChanged","DistrictPillaged","DistrictRepaired","BuildingAddedToMap","BuildingRemovedFromMap","BuildingPillaged","BuildingRepaired"}) do SPCRuntimeWork.Hook(P,Events,event,data.Audit) end
+ for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt","OnPillage"}) do bind(GameEvents,event,data.Audit) end
 end

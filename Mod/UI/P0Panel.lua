@@ -28,7 +28,7 @@ local function displayResponse()
   local data=ExposedMembers.SPC_P0 or {}
   if pendingToken and data.Version==P.VERSION and data.LastToken==pendingToken then
     local report=tostring(data.Snapshot)
-    if pendingAction=="LV2_GPP_READ" then report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report) end
+    if pendingAction=="LV2_GPP_READ" or pendingAction=="COMPLETENESS_READ" then report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report) end
     if pendingAction=="LV4_PERCENT_READ" then
       local f=data.Lv4PercentRead
       local ok,native=pcall(function()
@@ -255,8 +255,8 @@ local function showRoot()
 end
 local function initialize()
   -- Explicit labels bypass GridButton style-owned text rendering.
-  Controls.CompletenessButtonCaption:SetText('区域完善度 / 科研影子')
-  Controls.CompletenessButton:SetToolTipString('区域完善度 / 科研影子')
+  Controls.CompletenessButtonCaption:SetText('基础设施 / Lv2住房与专家')
+  Controls.CompletenessButton:SetToolTipString('基础设施 / Lv2住房与专家')
   Controls.OpenButtonCaption:SetText('专业化诊断')
   Controls.OpenButton:SetToolTipString('专业化诊断')
   Controls.CloseButtonCaption:SetText('关闭')
