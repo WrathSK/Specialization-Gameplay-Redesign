@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "P0-D3 user overall acceptance; P0-U1 scoped presentation planning; unchanged Design and runtime retained",
+  "review_basis": "U1 user scope correction: feasibility/display prototype only; unchanged Design/runtime reused",
   "files": {
     "AGENTS.md": "18a30c39c68eb868b139dffab9e661de6efd661687190a05b913e32890293f0f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -44,7 +44,7 @@
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "9b54c8562a38bf0494bc36733f509b140aff57c7f0ee1792601d919d2e2cb32b",
-    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "0435db7f03d6cd7fed88ff173be065803b80e19d9afb0c1faa05d81347d5b02a",
+    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "6c02d82b225dac0fa2c0b03cd47d7f01127f209af9c5793df4cdb1a335c89265",
     "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md": "d45b89723ee95880e8eeda34c35962eee3a7d1971997bdd5dc0a810d9232c680",
     "Specialization/Architecture/v2/D0032_Runtime_Inventory.json": "03ad69688b0bdd807964f77c0920cb562a8e5079c2584bc05bab1f409f63d6ce",
     "Specialization/Architecture/v2/D0032_Technical_Spikes.md": "024d006c5ca2ef798a59a959105ced84bb4bca50f5f91f88c181426b7a546e75",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "ab90259604675ad0e8f398b5cdddcad710510b2d63acf0432aa8f0477c30077e",
+    "Specialization/Status/Specialization_P0_Status.md": "032608a217bd65bd0324ac5b207ece53b21c275332f69e36da40f1446196d170",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -102,7 +102,7 @@
     "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025",
     "Specialization/Status/Validation/Results/Specialization_B081_P0C_Deployment_20260920.md": "44f6bf5ff8abc3d881ee4364d8036b83c4a8876bae1fa41e1dd0e9ba3a99b728",
     "Specialization/Architecture/v2/P0_D1_Plan.md": "8e0eade15be491a2c157b4e4f43e493bc2559e4039e31a0709120753da95d324",
-    "Specialization/Architecture/v2/README.md": "6112a5a2af9e8d3bb6d7f6151a3b4d6331a7f9f06e3867402b05e7b5bfcb35ed",
+    "Specialization/Architecture/v2/README.md": "3f551221d33846fad1297d0e0bf1a4cac0c8136ccd6287b9809f8e96156415c8",
     "Mod/Data/Lv3Effects.sql": "6b202d054f7911dfe909185498744db6211c49fb6d1f31bdc5d89be73761f8d0",
     "DevelopmentTests/test_p0_d1_gate.py": "b0ac8baedfaef8bac50d63fec4d3851c2b7e8780cf05e2d60d2b15996373197b",
     "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "c997fab84525ae74051b9c0b56b39c8414b28685fd0415b7cb790488a301c3a5",
@@ -139,7 +139,7 @@
     "DevelopmentTests/test_research_chair_regression.py": "59dd7239f0aeebe863c8502162f11dc47d8897d454d899c6dc2409129271722e",
     "Specialization/Status/Validation/Results/Specialization_B086_P0D3_Deployment_20260920.md": "646c77d7badecfa529e355b8552afe76f9d2a2b39e8c92375e07191f73bb7cef",
     "Mod/UI/CityPotential.lua": "396066723ea51e58f6a09f88305a8f2b2464e3b73619b1cd161436bf3dbc2e1d",
-    "Specialization/Architecture/v2/P0_U1_Plan.md": "29251b51492561e81710058fbb2be454f7013638fba7c5c0f627b40b745e362e",
+    "Specialization/Architecture/v2/P0_U1_Plan.md": "62ebbb07dc14345e7cfd057121313125ad40b8ba6b11b4400804118169dcad03",
     "Specialization/Status/Validation/Results/Specialization_B086_P0D3_User_Pass.md": "5ddc6b3f1de4adbdb43a6ac73c81a027b42418ca152b6da238f2832d3e934ba8",
     "Specialization/Architecture/v2/Presentation_Institution_Carrier_Model.md": "74f613d8f134721c9d1f964282937afd48080da86fab880dfee80f234ef67f07"
   }

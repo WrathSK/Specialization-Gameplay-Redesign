@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0227",
+    "status": "S0228",
     "runtime": "B086.113 / modinfo113",
     "military": "D0034"
   },
@@ -109,7 +109,7 @@
       "all Gameplay effect writers and carriers"
     ],
     "adapt": [
-      "CityPotential presentation-only polling/read bridge"
+      "Only minimal read-only bridge and one presentation surface if prototype authorized; no full badge/service rewrite required"
     ]
   },
   "non_scope": [
@@ -118,7 +118,10 @@
     "new Gameplay",
     "Design",
     "Military",
-    "deployment in planning"
+    "deployment in planning",
+    "complete four-profession presentation",
+    "all-surface hiding",
+    "full presentation scheduler refactor"
   ],
   "validation": {
     "local": [
@@ -128,7 +131,7 @@
       "bounded controls/cache",
       "protected regressions"
     ],
-    "user": "One existing Research IV city, ACTIVE change, another profession, relevant UI surfaces"
+    "user": "One existing Research IV city: institution layout, stage text, visible carrier filtering, existing effects retained"
   },
   "full_audit_triggers": [
     "UI override/hook conflict",
@@ -145,7 +148,8 @@
     }
   ],
   "result": {
-    "planning": "Complete; implementation not authorized",
+    "planning": "Scope narrowed by user; implementation remains unauthorized",
     "blocking_design": "None for current institutions; UI hook remains prototype gate"
-  }
+  },
+  "goal": "Bounded feasibility/display prototype, not full U1"
 }

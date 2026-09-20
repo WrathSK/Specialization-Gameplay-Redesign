@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0227
+Status Revision: S0228
 Implementation Build: develop P0-B-086.113 / modinfo113; live B086.113 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_U1_PLAN_AWAITING_AUTHORIZATION
+Work State: U1_PRESENTATION_PROTOTYPE_PLAN_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户澄清U1提前目标仅为institution/ability说明/carrier隐藏的技术与显示验证，非完整U1实施。以[前置原型计划](../Architecture/v2/P0_U1_Plan.md)顶部范围为准：一个Research IV城市、一个主要城市详情surface；四专业铺开与历史机构等留后续。当前仍只计划，无runtime/Design/部署变化。下方较宽U1范围已被本条收窄。
 
 P0-D3用户整体验收PASS：[记录](Validation/Results/Specialization_B086_P0D3_User_Pass.md)。现提前提出[P0-U1计划](../Architecture/v2/P0_U1_Plan.md)：四专业当前累计机构、阶段Tooltip、本Mod技术carrier显示过滤；历史机构等待Historical State，不增加玩法/保存依赖。仅计划，等待实施授权。B086.113/runtime/Design/main不改，无部署。下方等待D3验收措辞为历史。
 

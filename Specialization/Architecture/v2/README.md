@@ -1,6 +1,8 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前进度：P0-D3用户整体PASS；[P0-U1提前计划](P0_U1_Plan.md)已备，当前机构/技术carrier隐藏先行，历史机构保留依赖。未授权实施，无部署。
+当前进度：U1已收窄为[前置展示原型计划](P0_U1_Plan.md)，仅验证机构/能力文字/carrier隐藏的技术与显示；非完整实施，等待授权。
+
+此前计划：P0-D3用户整体PASS；[P0-U1提前计划](P0_U1_Plan.md)已备，当前机构/技术carrier隐藏先行，历史机构保留依赖。未授权实施，无部署。
 
 历史进度：P0-D3 B086.113 [学术主持实现](P0_D3_Research_Chair.md)完成静态/本地验证，真实逐建筑收益待用户验收；D2用户PASS。Design不改，不启动下一批。下方旧进度为历史。
 

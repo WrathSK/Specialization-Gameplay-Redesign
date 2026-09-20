@@ -154,3 +154,5 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 ## P0-D3验收后的顺序调整
 
 用户要求提前规划U1，详见[P0-U1具体计划](P0_U1_Plan.md)。当前机构/阶段说明/技术carrier隐藏可复用已有事实先行；历史机构仍需Historical State，不随本次提前实施。U2/U3及其它Gameplay批次未获授权，原依赖与Design不变。
+
+用户后续澄清：提前U1仅做技术可行性与显示效果原型计划，不要求提前完整交付当前机构。具体以P0_U1_Plan顶部为准；一个Research城/一个主要surface，完整U1依赖不变。
