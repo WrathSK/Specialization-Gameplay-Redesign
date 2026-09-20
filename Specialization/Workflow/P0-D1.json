@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-D1",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0218",
+    "runtime": "B081.108 / modinfo108",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_D1_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_D1_Plan.md",
+      "kind": "full",
+      "reason": "P0-D1 implementation scope and cutover gate"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "full",
+      "reason": "Ability and district qualifications; not D2"
+    },
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "head",
+      "selector": 20,
+      "reason": "Current queue"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "rows",
+      "selector": [
+        "| P0-D1 ",
+        "| P0-D2 "
+      ],
+      "reason": "Batch boundary"
+    },
+    {
+      "path": "AGENTS.md",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Specialization/AGENTS.md",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Specialization/Workflow/Authority.json",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Mod/Lv3Effects.lua",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Mod/Data/Lv3Effects.sql",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Mod/UI/IndustryRefresh.lua",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Mod/UI/CopyYieldRefresh.lua",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Mod/SampleLifecycle.lua",
+      "kind": "full",
+      "reason": "Must read direct authority/retirement/sample contract before implementation"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/1",
+      "expected_id": "RES_L3_CROSS",
+      "reason": "Stable rule identity for manifest integrity"
+    }
+  ],
+  "dependencies": [
+    "P0-A/B1/B2/C existing accepted facts/effects",
+    "C2 lifecycle and D2 bounded work",
+    "BASE multi-yield semantics and native fractional Science primitive gate"
+  ],
+  "old_writers": {
+    "retire": [
+      "BUILDING_SPC_DEV_LV3_POP_RESEARCH_0..7 + SPC_LV3_POP_RESEARCH_0..7 attachments"
+    ],
+    "preserve": [
+      "Culture/Commerce Lv3Effects",
+      "P0-C ResearchInfrastructure",
+      "Industry BASE/Copy",
+      "Research Network"
+    ]
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/NetworkBridge.lua",
+        "Mod/CityInheritance.lua",
+        "Mod/RuntimeWork.lua",
+        "Mod/HalfYieldProbe.lua",
+        "Mod/UI/P0Panel.lua"
+      ],
+      "trigger": "Before implementation read all affected startup/action/load/diagnostic and indirect callers; detect experimental pollution"
+    }
+  ],
+  "non_scope": [
+    "P0-D2 Apply Learning",
+    "Chair/Tradition/Network redesign",
+    "Military",
+    "Design/ownership/save migration",
+    "other professions"
+  ],
+  "validation": {
+    "local": [
+      "exact8 retirement, lifecycle, 10k idle, scaling, full non-target regression",
+      "BASE vs actual and fractional primitive"
+    ],
+    "user": "One Research III city, two domains, policy/ACTIVE and reload; no manual pillage requirement"
+  },
+  "full_audit_triggers": [
+    "Cutover requires all-Mod exact and dynamically assembled ID/writer/SQL search",
+    "Changed sample contract requires all C2 consumers regression"
+  ],
+  "result": {
+    "planning": "STATIC_CONFIRMED source-led scope; not implementation",
+    "technical_gates": "BASE across nine domains and fractional native city Science not yet proved",
+    "game_test": "No new test requested in planning"
+  }
+}

@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0217
+Status Revision: S0218
 Implementation Build: develop P0-B-081.108 / modinfo108; live B081.108 / modinfo108; stable B069.96 / modinfo96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_C_USER_GAME_TEST_PASS_WAITING_NEXT_PLAN
+Work State: P0_D1_PLANNED_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[P0-D1具体计划](../Architecture/v2/P0_D1_Plan.md)已备：仅科研III跨学科研究BASE×0.5，精确退出8旧人口载体；学以致用留D2。BASE口径与小数原生结算为实施技术门禁，无新增Design决定。等待用户授权实施；本轮仅文档，无runtime/部署变化。下文等待计划措辞为此前状态。
 
 P0-C完成B081.108/modinfo108：[科研基础设施实施](../Architecture/v2/P0_C_Research_Infrastructure.md)。用户明确单学院环境，多学院顾虑不再阻塞；四原生专家Science bit承载D，精确退出48旧Research IV百分比/复制effect。Culture/Industry等保持；无Design改动。100配置、真实生命周期/清理/诊断、线性读取/10k idle及完整前序回归LOCAL_SIMULATION_PASS；不是引擎PASS。诊断左键简明摘要、右键学院组成；用户随后回复“Pass”，登记P0-C整体USER_GAME_TEST_PASS（用户实际游戏验收通过）：[验收记录](Validation/Results/Specialization_B081_P0C_User_Pass.md)。未单独报告的边界不升级，等待P0-D1具体计划授权。已按W0003部署，128文件逐项hash一致、B080完整恢复点保留：[部署记录](Validation/Results/Specialization_B081_P0C_Deployment_20260920.md)。main B069.96保持。下一批不启动。
 

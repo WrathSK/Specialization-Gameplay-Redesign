@@ -3,7 +3,11 @@
 Owner: Codex. Scope: development navigation/context only; user authorization 2026-09-18.
 Design / Architecture always override Workflow. No Gameplay rule, implementation authorization or new Architecture revision is created here.
 
-## Current entry — D0035 / P0-C user acceptance
+## Current entry — D0035 / P0-D1 plan
+
+[P0-D1 manifest](P0-D1.json) / [具体计划](../Architecture/v2/P0_D1_Plan.md)：PLANNED_NOT_AUTHORIZED。使用 `python3 Specialization/Workflow/context.py check P0-D1`。仅跨学科研究，不是学以致用；技术门禁见计划。以下P0-C为已完成的历史manifest，不再匹配当前Status版本。
+
+### Completed P0-C
 
 Use `python3 Specialization/Workflow/context.py check P0-C` (also plan/read/self-test). [P0-C.json](P0-C.json) is COMPLETE / USER_GAME_TEST_PASS; see [implementation](../Architecture/v2/P0_C_Research_Infrastructure.md). Single-Campus environment clarified by user; old Research IV cutover complete, user has reported overall PASS; unreported edge cases retain prior evidence levels. Next: wait for P0-D1 plan authorization. [Concrete plan](../Architecture/v2/P0_C_Plan.md) records48 old Research IV carrier IDs, shared fact inputs, specialist Science primitive gate and protected Industry/Culture boundaries. P0-B2 user PASS recorded without invented screenshots or per-edge claims; completed B1/B2 manifests retain historical authority maps.
 
