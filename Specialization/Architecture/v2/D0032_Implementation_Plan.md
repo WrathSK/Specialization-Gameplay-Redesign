@@ -1,6 +1,6 @@
 # D0032 v0.1 implementation dependency and migration plan
 
-当前进度：P0-D1用户PASS；P0-D2 B085.112按用户明确授权的每名专家floor完成，[实际合同/本地证据](P0_D2_Research_Apply.md)，LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED。不自动进入P0-D3。以下旧状态保留为历史。
+当前进度：P0-D2 B085.112用户整体验收PASS；[P0-D3学术主持计划](P0_D3_Plan.md)为PLANNED_NOT_AUTHORIZED。逐建筑原生收益路径需独立技术门禁，当前仅计划，无runtime/Design/部署变化。以下旧状态为历史。
 
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18

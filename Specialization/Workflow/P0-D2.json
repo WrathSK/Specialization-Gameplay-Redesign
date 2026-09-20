@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-D2",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -223,7 +223,7 @@
   ],
   "result": {
     "implementation": "LOCAL_SIMULATION_PASS",
-    "user": "USER_GAME_TEST_REQUIRED",
+    "user": "USER_GAME_TEST_PASS overall only; see Specialization_B085_P0D2_User_Pass.md",
     "report": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
     "technical_gate": "Integer specialist-only native projection; no half-point probe",
     "blocking_design": "None; Design unchanged; temporary per-specialist floor explicitly authorized"

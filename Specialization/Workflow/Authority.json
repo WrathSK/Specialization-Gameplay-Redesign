@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0224",
+    "status": "S0225",
     "runtime": "B085.112 / modinfo112",
     "military": "D0034"
   },
@@ -31,10 +31,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "f149f8434a48419b11f618fe4cff857c274e2d8d",
-  "current_batch": "P0-D2 IMPLEMENTATION_COMPLETE_AWAITING_USER",
-  "next_batch": "Await P0-D2 user validation; do not start P0-D3",
-  "manifest": "Specialization/Workflow/P0-D2.json",
-  "live": "B085.112 / modinfo112 deployed W0003;140 exact file hashes; B084 recovery retained; P0-D2 user validation pending",
+  "current_batch": "P0-D3 PLANNED_NOT_AUTHORIZED",
+  "next_batch": "Await explicit P0-D3 implementation authorization",
+  "manifest": "Specialization/Workflow/P0-D3.json",
+  "live": "B085.112 / modinfo112 deployed W0003;140 exact file hashes; B084 recovery retained; P0-D2 user overall PASS",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "P0-D2 user-authorized per-specialist floor; changed runtime/contract reviewed; unchanged Design inherited",
+  "context_review_status": "D2 user acceptance; scoped D3 rule/recipient/primitive planning, unchanged runtime and Design hashes reused",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,5 +59,5 @@
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_D2_Research_Apply.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_D3_Plan.md"
 }

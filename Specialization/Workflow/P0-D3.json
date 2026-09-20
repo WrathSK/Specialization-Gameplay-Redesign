@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-D3",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0225",
+    "runtime": "B085.112 / modinfo112",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_D3_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_D3_Plan.md",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "AGENTS.md",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Specialization/AGENTS.md",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Specialization/Workflow/Authority.json",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Mod/ResearchInfrastructure.lua",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Mod/ResearchApply.lua",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "full",
+      "reason": "D3 direct authority, shared facts or protected writer boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/4",
+      "expected_id": "RES_L4_CHAIR",
+      "reason": "Frozen per-building rule"
+    },
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "head",
+      "selector": 18,
+      "reason": "Current queue"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "rows",
+      "selector": [
+        "| P0-D3 "
+      ],
+      "reason": "Batch boundary"
+    }
+  ],
+  "dependencies": [
+    "P0-A current facts/ordinary catalog",
+    "P0-C and D1/D2 accepted protected baseline",
+    "Building-specific native Science primitive gate"
+  ],
+  "old_writers": {
+    "retire": [],
+    "already_retired": [
+      "Research III population8",
+      "Research IV Copy/Percent48"
+    ],
+    "preserve": [
+      "ResearchInfrastructure",
+      "ResearchCross",
+      "ResearchApply",
+      "base support/Lv2",
+      "other professions and Network"
+    ]
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/Data/ResearchInfrastructure.sql",
+        "Specialization/Architecture/v2/D0032_Technical_Spikes.md"
+      ],
+      "trigger": "Before actual projection/dispatch changes read complete owner/recipient and source; inspect native DB attachments"
+    }
+  ],
+  "non_scope": [
+    "Academic Tradition",
+    "other professions",
+    "Design/floor changes",
+    "save migration",
+    "full catalog overhaul"
+  ],
+  "validation": {
+    "local": [
+      "Per-building W, no D cap/weight",
+      "eligibility/UNKNOWN/withdraw/load/no cross-city effects",
+      "1/2/4/8 scaling and10k idle",
+      "protected regressions/native SQL owner/manifest/deployment safety"
+    ],
+    "user": "One IV city, two ordinary Campus buildings,0/1/2 specialists; building-specific base Science, downgrade/restore and reload, no manual pillage"
+  },
+  "full_audit_triggers": [
+    "Before writer exact/dynamic ID and attachment inventory",
+    "Changed shared facts/catalog revalidate protected consumers",
+    "Native building attribution must not be replaced by flat city/district/specialist equivalent"
+  ],
+  "result": {
+    "plan": "READY_FOR_AUTHORIZATION",
+    "implementation": "NOT_STARTED",
+    "blocking_design": "None identified",
+    "technical_gate": "Building-specific city-local Science projection/owner/recipient/unique/pillage not yet game confirmed",
+    "report": "Specialization/Architecture/v2/P0_D3_Plan.md"
+  }
+}
