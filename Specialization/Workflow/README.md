@@ -29,7 +29,7 @@ Entry: [Authority](Authority.json) → requested [batch manifest](P0-B1.json) �
 
 ## End protocol
 
-Review changed modules, effect IDs, callers and dependency changes. Run selected validation level; distinguish STATIC_CONFIRMED, LOCAL_SIMULATION_PASS and USER_GAME_TEST_PASS. Update Status, batch result, changed-module inventory/provenance, hashes and technical gates. Architecture revision changes only when its contract changes, not every batch. No full Architecture regeneration.
+Review changed modules, effect IDs, callers and dependency changes. Run the W0004 v1 risk-selected validation depth below; distinguish STATIC_CONFIRMED, LOCAL_SIMULATION_PASS and USER_GAME_TEST_PASS. Update Status, batch result, changed-module inventory/provenance, hashes and technical gates. Architecture revision changes only when its contract changes, not every batch. No full Architecture regeneration.
 
 Refresh hashes ONLY after source/references are re-read and reviewed. Carry unchanged evidence from named baseline; never auto-accept mismatches. Authority changes invalidate all referencing manifests, including unchanged filenames. Mark dependent manifests STALE until refreshed. Keep historical inventories frozen; current Runtime_Index holds inherited references plus explicit deltas. Checksum is not semantic review.
 
@@ -64,18 +64,30 @@ Runtime hash change invalidates that inherited summary and affected consumers. N
 ## Full audit triggers and scope
 
 - Design revision / major Architecture change: complete current-authority impact review plus affected runtime; not every unrelated historical revision.
-- Old writer cutover (B1 included), unknown carrier/writer, unexplained effect: search ALL Mod for exact identifiers/callers, inspect startup/load/manual/bridge/SQL attachment paths, full runtime regression. This is not necessarily full text of all unrelated assets.
-- Network foundation / save schema / cross-profession shared semantic change: all consumers, state/load/epoch and full regression.
+- Old writer cutover (B1 included), unknown carrier/writer, unexplained effect: search ALL Mod for exact identifiers/callers, inspect startup/load/manual/bridge/SQL attachment paths. Preserve this cutover review; select affected regression under W0004 rather than automatically running full runtime regression. This is not necessarily full text of all unrelated assets.
+- Network foundation / save schema / cross-profession shared semantic change: review all affected consumers and state/load/epoch; use L3 relevant broad regression for foundation/state risk, not unrelated historical suites.
 - Integration/release: full runtime, carrier/modinfo, save/deployment integrity audit.
 - New/missing file, hash mismatch, incomplete dependency graph: stop summary reuse, inspect diff and connections; full runtime audit if closure cannot be bounded. Never simply rehash until green.
 
 Historical entry allowed only for explicit current citation, Legacy review, regression explanation, unclear Design intent or user request. Historical rules never overwrite current canonical content.
 
-## Validation levels
+## W0004 v1 — Quota-Efficient Validation Policy
 
-Local: isolated pure module. Dependency: direct producers/consumers + lifecycle. Shared: every impacted profession. Full: writer retirement/cutover, Network/save foundation, integration/release.
+**W0004_V1_ACTIVE** — user-approved validation-depth clarification; W0001 progressive/task-scoped context loading remains unchanged. Normal Medium/Fast development mode remains. This replaces generic automatic-full-regression defaults above and in older workflow examples; historical batch evidence and explicit user-required acceptance tests remain intact.
 
-**P0-B1 requires full runtime regression because it retires Lv3Support**, despite narrow scope. Use a new wrapper recording intended B1 output deltas; keep unrelated maps, no-hidden-module-error assertions and historical files. Do not run every old standalone suite against incompatible version stamps or weaken tests until green.
+Choose L1/L2/L3 from the actual changed path and failure cost before implementation. Use the default minimum sufficient checks, expanding only for a concrete risk, failed check or anomaly. A UI touching persisted state is not L1 merely because it has a UI. Validation should catch likely implementation errors before user testing, not attempt to replace Civilization VI itself.
+
+| Depth | Actual risk / examples | Default sufficient validation |
+|---|---|---|
+| **L1 — Local / observable / low-state-risk** | UI, tooltip, presentation, wording; isolated well-defined effects that are quickly observable, do not pollute lasting state and are cheap to roll back | Syntax/static, task-targeted tests, a few directly related regressions, necessary deployment integrity. No default full historical regression, 10,000/30,000-notification stress or unrelated large combinations. Remaining native correctness uses a minimal USER_GAME_TEST. |
+| **L2 — Cross-module gameplay behavior** | Yield calculation, specialist/building/district interaction, multiple modules or existing abilities in the same subsystem | Syntax/static, targeted tests, affected-subsystem regression, representative edges, deployment integrity. Full regression or large stress only for a concrete identified risk. |
+| **L3 — Persistent state / infrastructure / hard-to-observe risk** | Save/load, identity, ownership transfer, persistence/migration, Network/state foundation, event ordering or concurrency-like behavior; high-cost failures difficult to observe briefly | Usually broad relevant regression, risk-relevant stress, integrity, save/load/state-transition simulation and representative failure/recovery. L3 is not permission to mechanically run every historical test. |
+
+- Prefer lightweight local checks + a short USER_GAME_TEST for observable, reversible, low-state-risk errors. Preserve heavy validation for hidden state corruption, ordering and costly failure risks. Do not downgrade explicit safety or user acceptance requirements.
+- If validation expands to full regression or large stress, give the concrete risk reason in one sentence in the existing final report. No separate mandatory report, tier manifest, persistent tier state, telemetry, quota CSV/JSON/dashboard or historical snapshot mechanism. Account usage is recorded externally by the user, not maintained by Codex.
+- Keep mechanical source/runtime hashes, file manifests, deployment equality, Git clean/sync and schema/reference consistency checks. Reliable scripts perform them; consume their summary (e.g. `143/143 files match`), not manual per-file re-analysis. Investigate mismatches; never silently refresh hashes to hide them. Hash equality is not gameplay proof.
+- Docs-only work uses document/reference/schema checks and diff review, not gameplay regression. Once sufficient checks pass, do not broaden/repeat without new changes, failure or an unresolved concrete concern.
+- Design Authority and DESIGN_DECISION_REQUIRED, plan → user review → explicit implementation authorization, W0001 loading, main/develop and canonical/deployed separation, commit/push, USER_GAME_TEST gates, LOCAL_SIMULATION_PASS ≠ USER_GAME_TEST_PASS, stable/temporary deployment, deterministic safety/rollback/backup and stop-at-batch boundaries remain unchanged.
 
 `GAME_TEST_LOCAL` = static/mock, never engine PASS. `GAME_TEST_COMPUTER_USE` = UNRESOLVED / DEFERRED; requires reliable capability and explicit game/test authorization, does not override prohibition. `GAME_TEST_USER` covers remaining native behavior only; compress assertions into one minimal test after local verification. No game test for W0001.
 
@@ -88,7 +100,7 @@ Local: isolated pure module. Dependency: direct producers/consumers + lifecycle.
 | hidden transitive dependency | direct import/shared-call inspection, writer search, regression | expand closure; full audit if unbounded |
 | omitted old writer | full Mod ID/caller/SQL/load/control search at cutover | no cutover until exact allowlist complete |
 | incorrect summary | contradiction with source/test/behavior | discard summary, read source, correct provenance |
-| Shared change only local-tested | changed path/exported-contract review | Shared/full regression before commit |
+| Shared change only local-tested | changed path/exported-contract review | affected-consumer regression at W0004 depth; broaden for identified state/foundation risk |
 | context too narrow | unresolved reference/gate or conflicting rule | enclosing section, then whole canonical file |
 | external DB changed, source unchanged | evidence/config/catalog provenance mismatch | revalidate external evidence, no compatibility inference |
 | compaction lost scope | Authority+manifest+git diff/current result | continue existing work, never restart/reset |

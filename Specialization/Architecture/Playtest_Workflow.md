@@ -11,6 +11,10 @@ These are machine-local locations, not hardcoded tooling dependencies. Git workt
 
 The original unchanged source/document checkpoint is `ca54045`. A following infrastructure-only commit adds this contract and deployment gates; the annotated baseline tag and both initial branches point to that final infrastructure commit, with identical Mod/ contents. This is a playtest milestone, not a final release or balance/performance certification.
 
+## Validation depth — W0004 v1
+
+[W0004 v1 validation policy](../Workflow/README.md#w0004-v1--quota-efficient-validation-policy) defines risk-matched L1/L2/L3 local checks; “passes local checks” below means that minimum sufficient scope, not automatic full historical regression. W0003 deployment authorization and every exit/hash/manifest/backup/rollback/clean-source safeguard remain unchanged. Tools perform deterministic verification; consume their summary unless a mismatch needs investigation. Local PASS never substitutes for USER_GAME_TEST_PASS.
+
 ## Current temporary development-test mode — W0003
 
 2026-09-18 user explicitly authorizes B078.105 deployment and standing deployment of completed develop testing batches until the user declares a node ready for long-play testing. This section overrides older per-switch authorization prose below for this phase only; historical W0002 receipts remain valid.
