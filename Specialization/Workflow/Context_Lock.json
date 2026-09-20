@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "39fc64b96c6f4ae8e7cb93f327959b7d305f92f0fb1840553a406e674ca588bd",
+    "Specialization/Status/Specialization_P0_Status.md": "0be9472f492dfb6fa6de131dc1577a96da55c92f22dd20a6062e8ba47ede43df",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -136,6 +136,7 @@
     "Mod/ResearchChairModel.lua": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
     "Mod/Data/ResearchChair.sql": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",
     "DevelopmentTests/test_research_chair.py": "f70503b2ecbd6b9858ab5ddfa2a845ffb3a751d777426a3c6082ed8744da587e",
-    "DevelopmentTests/test_research_chair_regression.py": "59dd7239f0aeebe863c8502162f11dc47d8897d454d899c6dc2409129271722e"
+    "DevelopmentTests/test_research_chair_regression.py": "59dd7239f0aeebe863c8502162f11dc47d8897d454d899c6dc2409129271722e",
+    "Specialization/Status/Validation/Results/Specialization_B086_P0D3_Deployment_20260920.md": "646c77d7badecfa529e355b8552afe76f9d2a2b39e8c92375e07191f73bb7cef"
   }
 }
