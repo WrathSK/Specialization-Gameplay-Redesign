@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0238
+Status Revision: S0239
 Implementation Build: develop P0-B-091.118 / modinfo118; live B091.118 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_UI_GETTERS_NATIVE_PASS_EVENT_SEQUENCE_PENDING
+Work State: P0_E1_FREE_CITY_UI_EVENT_CHAIN_CONFIRMED_SHADOW_PLAN
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B091补充前后证据](Validation/Results/Specialization_B091_P0E1_Transfer_Chain_Review.md)：0/131073→62/65536，捕获CulturalIdentityCityConverted(62,65536,0,24576)及CityTransfered(62,65536,0,-738490196)。结合原版fromPlayer用法，该路径UI旧Owner佐证已确认；不再要求重复同一UI测试。研究建议按明确转移事件+保存旧引用建立shadow候选，先确认Gameplay同事件证据；未实施resolver更改，不迁移账本，E1整体仍HELD、不进入E2/F。runtime/main未改、无部署。
 
 [B091两图UI复核](Validation/Results/Specialization_B091_P0E1_UI_Getters_Review.md)：四个UI接口均返回number（0/62/-1/-738490196），本场景读取USER_GAME_TEST_PASS。OwnerBeforeOccupation=62不是旧Owner0；不能据此映射。两图均为当前62/65536、UI事件0，未证明转移前监听已启用，不判断事件不存在。身份门禁仍HELD，无迁移/E2/F。截图已hash归档，runtime/main不改，无部署。
 

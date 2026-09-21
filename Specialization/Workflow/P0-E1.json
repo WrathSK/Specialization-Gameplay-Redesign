@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0238",
+    "status": "S0239",
     "runtime": "B091.118 / modinfo118",
     "military": "D0034"
   },
@@ -152,8 +152,8 @@
     "local": "LOCAL_SIMULATION_PASS",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Need actual pre/post event sequence if pursuing pairing; no E2/F",
-    "native_observation": "B091 UI getter values0/62/-1/-738490196; both post-transfer and UI events0; getter scope PASS, identity HELD"
+    "next": "Event-first shadow proposal; Gameplay delivery unconfirmed; no E2/F",
+    "native_observation": "B091 watched0/131073→62/65536 UI CulturalIdentityCityConverted supplies fromPlayer0; typed event scope confirmed, no formal migration"
   },
   "authorized_supplement": "One explicitly enabled Game experiment key, not formal identity/ledger migration"
 }

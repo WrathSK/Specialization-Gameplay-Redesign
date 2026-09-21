@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B091 native UI getter evidence only; no runtime change",
+  "review_basis": "B091 supplemental event evidence and scoped shadow research; no runtime change",
   "files": {
     "AGENTS.md": "03c9af87dccaefcf20814cb533a0316d85c8aa415a1a009b21850aaf6e62769f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "c42c4a5661ce5f528e329c5cba457ae5efb3b171873452b6021166134ce2b4ea",
+    "Specialization/Status/Specialization_P0_Status.md": "112f6aadb767ef72c0b1cc62c2f7e9f25a70020b18b95d16a20aa40222ebd838",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "953e9b2e1e04a7741ead86292da4c5002d34fc25593956efba266e59f8c7caef",
-    "Specialization/Workflow/Authority.json": "1cc3c50823d69ca6dbff884c5a6b8afd9785835c66a202ec65f7afa93da0538d",
+    "Specialization/Workflow/Authority.json": "fa87780f4b3a3c5377f742b9ba8af39f08581322137660c2806867f405e3ba8b",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -166,10 +166,11 @@
     "Mod/UI/RuntimeAudit.lua": "b7737898bd921ac7d4d89b161c6de1368f403f0d2f9ec987edbebcba841decfb",
     "Mod/CityIdentityExperiment.lua": "aaf6029256afeb164fe1293cd061bb72c320f8434cd1f3290008ce78721e18fa",
     "DevelopmentTests/test_p0_e1_experiment.py": "aaca1ae6deafa4a44efb50b70dd990623d74256a621a459c0940717848c7628b",
-    "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md": "355892bf30e08c2f90f500ce4dc1e979424777d82ebbb5dbb7a33b7b113e214c",
+    "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md": "2a5efc9755d785add0867676a60971f69221008c0a33700a29e591645ca44ada",
     "Specialization/Status/Validation/Results/Specialization_B089_P0E1_Start_Blocked.md": "87a7cb04152d0ea752c820fcc1ebdd48e19cdd295e568b2b13725e9c453b96c4",
     "Specialization/Status/Validation/Results/Specialization_B090_P0E1_Game_Record_Review.md": "b37dc24a2ecdc8d035998823e015a4a32a98f2b3348b3ce5f1b5861ef290ad7a",
     "Mod/UI/CityIdentityEvidence.lua": "87bb4d9ef4c7d03959b448320e3c7bdef6e2d52d7968faf47b2f09923df335c6",
-    "Specialization/Status/Validation/Results/Specialization_B091_P0E1_UI_Getters_Review.md": "00156b6c02232e623de9a9bb1da9fe2e2ceefda2c26f4c50b92ca6b796567552"
+    "Specialization/Status/Validation/Results/Specialization_B091_P0E1_UI_Getters_Review.md": "00156b6c02232e623de9a9bb1da9fe2e2ceefda2c26f4c50b92ca6b796567552",
+    "Specialization/Status/Validation/Results/Specialization_B091_P0E1_Transfer_Chain_Review.md": "eb9958cae88083e4e652b85601a62099ea524c53313d476ed321d9844d05ed22"
   }
 }

@@ -53,3 +53,17 @@ LOCAL_SIMULATION_PASS: existing risk-scoped experiment checks plus actual right-
 Minimal test (no reconquest or repeat save/load required): load pre-transfer independent save on B091.118; right-click 记录城市身份 to establish if needed, then **right-click 实验对照 before transfer** and screenshot. Transfer same branch city to Free Cities; same turn right-click 实验对照 and screenshot. Optional left-click keeps the existing Gameplay checkpoint, not needed for this UI evidence comparison. Two screenshots suffice; do not weaken identity requirements based only on an original-owner match. No E2/F.
 
 B091 W0003 deployment: source `42b7625fedbe888dd8c590f6cba6e0eccb91a4e3`, game exited (OS verified),150/150 MATCH;B090/stable recovery retained. Receipt `SpecializationDeploymentBackups/B091.118-42b7625-playtest.json`. Main unchanged; no game launched.
+
+## Event-first research conclusion after B091 supplemented evidence
+
+See [paired native evidence](../../Status/Validation/Results/Specialization_B091_P0E1_Transfer_Chain_Review.md). The Free City UI event now supplies oldOwner directly. Do not keep requiring a UI-only previous-owner getter in every Gameplay path. Storage and identity evidence remain separate: B090 tested the independent Game record; B091 now demonstrates a usable typed transfer signal in UI.
+
+Recommended next bounded **shadow resolver** (planning only, not implemented):
+
+1. Start from saved validated experiment origin/current reference and one known location; no city-name key.
+2. For a loyalty transfer, correlate CulturalIdentityCityConverted(newOwner,newID,fromOwner) with exact watched prior-owner, current new reference at watched plot and prior-reference removal evidence in the same live transition. Use prior snapshot to supply oldCityID; event does not supply it. For conquest, CityConquered(newOwner,oldOwner,newID,x,y) is a separate candidate path; do not label it native-tested yet.
+3. First verify whether the already registered Gameplay callback supplies these values. Prefer direct Gameplay evidence. If only UI has them, a later narrow UI sample bridge needs explicit epoch/ref/request validation and corroboration; never turn a screenshot or arbitrary UI payload into authority. No per-frame fallback or world scan.
+4. Reject conflicts/multiple candidate transitions, missing baseline/removal, stale saved events, buffer overflow or intervening destruction/refoundation. Coordinates locate; they do not establish generation. CityBuilt/Added/Initialized alone cannot mean a new physical city because transfers also emit these.
+5. Output would be an experimental shadow candidate with concrete reasons; no binding/Journal/Flow/Investment/template rewriting. Idempotent duplicate events, A→B→C chain scope, same-turn refound ambiguity and load interruption require targeted model cases before any resolver implementation. Ambiguous histories remain HELD; do not solve them by name or founder equality.
+
+No need to repeat the identical Free City UI test. Next implementation proposal should expose recorded Gameplay event names/arguments and an event-based shadow conclusion together, reusing the existing fixed buffer. Full E1/P0-E2 gate remains closed until its intended support scope and rollback/ambiguity limits are reviewed. This research does not authorize cutover, automatic migration, new ledger schema or E2/F.

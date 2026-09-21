@@ -1,0 +1,54 @@
+{
+  "build": "B091.118",
+  "files": [
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B091_P0E1_Transfer_Chain_20260920/Screenshot 2026-09-20 at 10.52.04 PM.png",
+      "sha256": "bc8fc38da84cd0200babc0e449e25384bfd71d2c66d24c7786957893dcc195fc",
+      "stage": "before",
+      "original": "0/131073",
+      "current": "0/131073",
+      "UI_events": [],
+      "getters": {
+        "OriginalOwner": 0,
+        "OwnerBeforeOccupation": 0,
+        "JustConqueredFrom": -1,
+        "LastTransferType": 1634873444
+      }
+    },
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B091_P0E1_Transfer_Chain_20260920/Screenshot 2026-09-20 at 10.52.19 PM.png",
+      "sha256": "dd2a27756d64acdacda246c6feb303ba7a0e1d5952b9249d27e531109128d0a8",
+      "stage": "after",
+      "original": "0/131073",
+      "current": "62/65536",
+      "UI_events": [
+        {
+          "name": "CulturalIdentityCityConverted",
+          "turn": 8,
+          "args": [
+            62,
+            65536,
+            0,
+            24576
+          ]
+        },
+        {
+          "name": "CityTransfered",
+          "turn": 8,
+          "args": [
+            62,
+            65536,
+            0,
+            -738490196
+          ]
+        }
+      ],
+      "getters": {
+        "OriginalOwner": 0,
+        "OwnerBeforeOccupation": 62,
+        "JustConqueredFrom": -1,
+        "LastTransferType": -738490196
+      }
+    }
+  ]
+}
