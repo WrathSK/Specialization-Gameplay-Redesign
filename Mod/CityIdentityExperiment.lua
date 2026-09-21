@@ -13,12 +13,20 @@ function SPCCityIdentityExperiment.Start(P,shared)
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
  local function integer(v)return type(v)=='number' and v>=0 and v%1==0 end
  local function validRef(v)return type(v)=='table' and integer(v.owner) and integer(v.cityID) and integer(v.x) and integer(v.y)end
- local function read()
-  local v=cp(Game:GetProperty(M.KEY));if v==nil then return nil end
+ local function validate(raw)
+  local v=cp(raw);if v==nil then return nil end
   assert(type(v)=='table' and v.schema==1 and v.experiment=='ONE_CITY_ONLY' and integer(v.requester) and validRef(v.origin) and type(v.token)=='string' and type(v.events)=='table' and #v.events<=16 and integer(v.revision),'实验记录格式冲突，未覆盖')
   assert(v.current==nil or validRef(v.current),'实验当前引用损坏')
   assert(type(v.state)=='string' and type(v.native)=='table','实验状态损坏')
   return v
+ end
+ local function read()return validate(Game:GetProperty(M.KEY))end
+ local function initialize()
+  if ready then return nil end
+  local ok,v=pcall(function()return Game:GetProperty(M.KEY)end)
+  if not ok then return "实验尚未初始化：Game记录暂不可读；请稍后手动重试。" end
+  record=validate(v);ready=true
+  return nil
  end
  local function save(v)
   assert(not d.error,'实验已暂停，保留现有记录')
@@ -31,7 +39,7 @@ function SPCCityIdentityExperiment.Start(P,shared)
  local function guarded(fn)
   if d.error then return "城市身份实验暂停："..d.error end
   local ok,value=pcall(fn)
-  if not ok then d.error=tostring(value):sub(1,160);return '城市身份实验暂停：'..d.error end
+  if not ok then d.error=(tostring(value):match('^[^\r\n]*') or '读取失败'):gsub('^.-:%d+: ',''):sub(1,120);return '城市身份实验暂停：'..d.error end
   return value
  end
  local function getters(c)
@@ -44,22 +52,26 @@ function SPCCityIdentityExperiment.Start(P,shared)
  end
  function d.Begin(pid,c)
   return guarded(function()
-   assert(ready and P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'请在加载完成后选择己方分城')
+   if not P.IsTestPlayer(pid) then return '无法建立实验：当前玩家不在测试范围。' end
+   if not c then return '无法建立实验：未取得选中城市，请重新选择己方分城。' end
+   if c:GetOwner()~=pid then return '无法建立实验：该城市当前不属于你。' end
+   local pending=initialize();if pending then return pending end
    if record then return '本存档已有单城实验，不覆盖。请点“实验对照”；新实验请使用实验前存档。' end
    local values={};for k,key in pairs(SPCCityIdentityRead.Keys)do values[k]=c:GetProperty(key)end
-   local token=values.TOKEN;assert(type(token)=='string','缺少原绑定凭据')
-   local owner=tonumber(token:match('^DEV%-B013%-P(%d+)%-[1-9]%d*$'));assert(owner==pid,'原Owner凭据不符')
+   local token=values.TOKEN;if type(token)~='string' then return '无法建立实验：该城缺少原绑定凭据；未写入。' end
+   local owner=tonumber(token:match('^DEV%-B013%-P(%d+)%-[1-9]%d*$'));if owner~=pid then return '无法建立实验：原Owner凭据不符；未写入。' end
    local s={ref=ref(c),values=values,ledger=Game:GetProperty('SPC_DEV_BINDING_B013_P'..pid)}
-   assert(SPCCityIdentityRead.Preview(s).state=='LOCAL_CANDIDATE','原账本尚未通过结构核对')
+   if SPCCityIdentityRead.Preview(s).state~='LOCAL_CANDIDATE' then return '无法建立实验：原账本未通过结构核对；未写入。' end
    events={};overflow=false;save({schema=1,experiment='ONE_CITY_ONLY',requester=pid,origin=ref(c),token=token,revision=0,startedTurn=Game.GetCurrentGameTurn(),state='ORIGIN_RECORDED',events={},native=getters(c)})
    return '单城实验已建立并保存到Game记录。转自由城后点“实验对照”，再另存/读档。未修改专业记录或收益。'
   end)
  end
  function d.Describe(pid)
   return guarded(function()
-   assert(ready and P.IsTestPlayer(pid),'加载未完成')
+   if not P.IsTestPlayer(pid) then return '无法读取实验：当前玩家不在测试范围。' end
+   local pending=initialize();if pending then return pending end
    if not record then return '尚未建立实验；请选择己方分城，右键“记录城市身份”。' end
-   assert(record.requester==pid,'实验属于另一玩家，未写入')
+   if record.requester~=pid then return '实验属于另一玩家，未写入。' end
    local c=CityManager.GetCityAt(record.origin.x,record.origin.y)
    local now=c and ref(c);local native=c and getters(c) or {}
    local state='HELD';local reason='当前对象缺失或证据不足'
@@ -111,5 +123,7 @@ function SPCCityIdentityExperiment.Start(P,shared)
  end
  for _,name in ipairs({'CityTransfered','CityRemovedFromMap','CityAddedToMap','CityInitialized'})do local n=name;hook(Events,n,function(...)local ok=pcall(observe,n,...);if not ok then d.error='事件观察失败，未写入'end end)end
  for _,name in ipairs({'CityBuilt','CityConquered'})do local n=name;hook(GameEvents,n,function(...)local ok=pcall(observe,n,...);if not ok then d.error='事件观察失败，未写入'end end)end
- hook(Events,'LoadScreenClose',function()events={};overflow=false;d.error=nil;ready=false;local ok,v=pcall(read);if ok then record=v;ready=true else d.error=tostring(v)end end)
+ -- A fresh Gameplay context owns each load. A late/duplicate UI load event must not
+ -- reset an already initialized watch or clear a latched storage failure.
+ hook(Events,'LoadScreenClose',function()guarded(initialize)end)
 end

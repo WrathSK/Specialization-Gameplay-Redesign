@@ -16,7 +16,7 @@ Events only observe the watched origin/ref/plot; no periodic scanner, UI hover r
 
 MAPPING_CANDIDATE requires this-load, current-turn removal of the origin and transfer/conquest matching the new reference plus native prior-owner corroboration. It remains experimental, never authorizes migration. Missing/ambiguous/late/overflow evidence = HELD. Same reference alone does not prove permanent generation identity; raze/refound and multi-hop transitions are outside this spike's proof. Coordinates locate an object, never establish identity alone.
 
-On LoadScreenClose transient observations reset, saved experiment is read once; old saved events cannot authorize a new mapping. Saved state and current observation are shown separately. On-demand checkpoint is idempotent; comparison against stored revision/content rejects unexpected concurrent changes. Malformed record, read/write failure stop the experiment without repairing any old ledger or repeated write attempts. No gameplay output depends on this record.
+B090: each fresh Gameplay context starts with empty transient observations. LoadScreenClose or the first explicit request initializes saved state once; a late/duplicate callback cannot reset evidence or clear a storage failure. Old saved events cannot authorize a new mapping. Saved state and current observation are shown separately. On-demand checkpoint is idempotent; comparison against stored revision/content rejects unexpected concurrent changes. Malformed record, read/write failure stop the experiment without repairing any old ledger or repeated write attempts. No gameplay output depends on this record.
 
 ## Local evidence
 
@@ -33,3 +33,9 @@ This tests Game record persistence and native evidence only. It does not restore
 ## W0003 deployment
 
 B089.116 / modinfo116, source `1c8b92e3f23773973c440bb8c8f6054a66ee4870`. Game process exited (OS checked); existing transaction tool preserved B088 and stable recovery, staged replacement completed, **149/149 source/runtime files MATCH**. Receipt: external `SpecializationDeploymentBackups/B089.116-1c8b92e-playtest.json`; no abnormal recovery. Main unchanged, no game launched.
+
+## B090.117 authorized startup fix
+
+B089 native start failure is recorded in Status. Exact failed combined operand was not exposed; the load-only initialization dependency is now removed. First valid explicit Begin/Describe can initialize the Game experiment record. No auto polling, no background retry or old-ledger writes. Missing/foreign city, non-test player, missing baseline and temporarily unavailable Game read return separate concise messages without poisoning the session; a later manual action can retry. Corrupt saved experiment, concurrent change or failed write/readback still latch failure. Report shows first error line, not stack/path noise. Late LoadScreenClose cannot clear the latch or discard watched events. Schema/key unchanged.
+
+LOCAL_SIMULATION_PASS: original targeted experiment suite plus absent load callback (Begin and saved-record Describe), duplicate/late callback, invalid selection→valid retry, temporary read failure→manual retry, missing baseline→valid retry, and write failure latch surviving load notification. Full Lua syntax/XML/manifest117; unchanged old writers and Design. No full gameplay/stress suite. USER_GAME_TEST_REQUIRED: repeat the same short one-city experiment after loading B090; B089 failure occurred before its first write, so no manual cleanup is needed. E1 remains HELD, no E2/F.

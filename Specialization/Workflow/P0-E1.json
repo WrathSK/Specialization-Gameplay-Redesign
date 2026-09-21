@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0234",
-    "runtime": "B089.116 / modinfo116",
+    "status": "S0235",
+    "runtime": "B090.117 / modinfo117",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
@@ -147,7 +147,7 @@
     "local": "LOCAL_SIMULATION_PASS",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Fix startup gate/report before repeat; no E2/F",
+    "next": "B090 startup fix local PASS; user repeat short experiment; no E2/F",
     "native_observation": "B089 owned branch-city readonly check succeeds; experiment combined Begin precondition fails; persistence not exercised"
   },
   "authorized_supplement": "One explicitly enabled Game experiment key, not formal identity/ledger migration"

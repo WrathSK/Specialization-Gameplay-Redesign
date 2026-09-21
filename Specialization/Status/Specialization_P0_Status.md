@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0234
-Implementation Build: develop P0-B-089.116 / modinfo116; live B089.116 deployed W0003; stable B069.96
+Status Revision: S0235
+Implementation Build: develop P0-B-090.117 / modinfo117; live B089.116 pending deployment gates; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_EXPERIMENT_START_BLOCKED
+Work State: P0_E1_STARTUP_FIX_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+B090.117：已授权修复[实验初始化/错误提示](../Architecture/v2/P0_E1_Game_Record_Experiment.md#b090117-authorized-startup-fix)。按需一次初始化，不依赖加载事件必达；可恢复入口拒绝不锁死，损坏记录/写入失败继续停止。定向LOCAL_SIMULATION_PASS，原生USER_GAME_TEST_REQUIRED；不改旧账本/收益/Design，不进入E2/F。下方B089入口失败为历史实机证据。
 
 [B089两图复核](Validation/Results/Specialization_B089_P0E1_Start_Blocked.md)：己方分城选择与旧只读核对成功，新实验在入口组合断言处暂停，USER_GAME_TEST_FAIL（启动入口）。尚未测试新Game记录保存/易主/读档；最可疑为加载ready门禁但单项原因未被诊断暴露。截图已hash归档；本轮不改runtime/不部署，不要求重复原测试。E1仍HELD，不进入E2/F。
 
