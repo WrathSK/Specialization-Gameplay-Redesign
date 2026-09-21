@@ -1,0 +1,37 @@
+{
+  "scope": "UI getter readability only; event sequence not captured",
+  "files": [
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B091_P0E1_UI_Getters_20260920/Screenshot 2026-09-20 at 10.47.17 PM.png",
+      "sha256": "e5016fa2044f7fa88e70b27889865f4d2a7e7c075ee53b3a83c1ec484679a612",
+      "visible": {
+        "build": "B091.118",
+        "turn": 8,
+        "experiment": "DEV-B013-P0-2",
+        "origin": "0/131073",
+        "current": "62/65536",
+        "GetOriginalOwner": 0,
+        "GetOwnerBeforeOccupation": 62,
+        "GetJustConqueredFrom": -1,
+        "GetLastTransferType": -738490196,
+        "UI_events": 0
+      }
+    },
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B091_P0E1_UI_Getters_20260920/Screenshot 2026-09-20 at 10.48.32 PM.png",
+      "sha256": "d3bafa3c9f6de07a1f7a69efccec057c5cfe0f7085a4cc7b920bddbef7579d01",
+      "visible": {
+        "build": "B091.118",
+        "turn": 8,
+        "experiment": "DEV-B013-P0-2",
+        "origin": "0/131073",
+        "current": "62/65536",
+        "GetOriginalOwner": 0,
+        "GetOwnerBeforeOccupation": 62,
+        "GetJustConqueredFrom": -1,
+        "GetLastTransferType": -738490196,
+        "UI_events": 0
+      }
+    }
+  ]
+}

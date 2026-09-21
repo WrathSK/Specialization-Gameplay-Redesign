@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0237
+Status Revision: S0238
 Implementation Build: develop P0-B-091.118 / modinfo118; live B091.118 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_UI_TRANSFER_EVIDENCE_AWAITING_USER
+Work State: P0_E1_UI_GETTERS_NATIVE_PASS_EVENT_SEQUENCE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B091两图UI复核](Validation/Results/Specialization_B091_P0E1_UI_Getters_Review.md)：四个UI接口均返回number（0/62/-1/-738490196），本场景读取USER_GAME_TEST_PASS。OwnerBeforeOccupation=62不是旧Owner0；不能据此映射。两图均为当前62/65536、UI事件0，未证明转移前监听已启用，不判断事件不存在。身份门禁仍HELD，无迁移/E2/F。截图已hash归档，runtime/main不改，无部署。
 
 B091.118：获授权补充[按需UI易主证据](../Architecture/v2/P0_E1_Game_Record_Experiment.md#b091118--authorized-ui-transfer-evidence-supplement)，实验对照右键读取UI接口并观察固定8条相关事件；左键原保存核对保留。定向LOCAL_SIMULATION_PASS，等待转移前后两张UI截图；不修改认领规则/旧账本/收益，E1身份门禁仍HELD，不进入E2/F。
 
