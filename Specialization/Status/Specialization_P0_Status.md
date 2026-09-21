@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0233
+Status Revision: S0234
 Implementation Build: develop P0-B-089.116 / modinfo116; live B089.116 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_GAME_RECORD_EXPERIMENT_AWAITING_USER
+Work State: P0_E1_EXPERIMENT_START_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B089两图复核](Validation/Results/Specialization_B089_P0E1_Start_Blocked.md)：己方分城选择与旧只读核对成功，新实验在入口组合断言处暂停，USER_GAME_TEST_FAIL（启动入口）。尚未测试新Game记录保存/易主/读档；最可疑为加载ready门禁但单项原因未被诊断暴露。截图已hash归档；本轮不改runtime/不部署，不要求重复原测试。E1仍HELD，不进入E2/F。
 
 B089.116：用户明确授权的[单城Game记录补充实验](../Architecture/v2/P0_E1_Game_Record_Experiment.md)已完成LOCAL_SIMULATION_PASS（定向Lua模拟，不是原生PASS）。只写新的独立测试key；旧专业账本、收益、Design及隔离继承模块不改。加载恢复/易主getter仍USER_GAME_TEST_REQUIRED；E1整体门禁仍HELD，停止等待该页三步最小测试，不进入E2/F。下方B088“持久实验另审”等为前一阶段记录，已被本次窄授权补充。
 

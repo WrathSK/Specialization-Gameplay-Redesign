@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0233",
+    "status": "S0234",
     "runtime": "B089.116 / modinfo116",
     "military": "D0034"
   },
@@ -147,8 +147,8 @@
     "local": "LOCAL_SIMULATION_PASS",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "User minimal transfer/checkpoint/reload; no E2/F",
-    "native_observation": "Capital original-anchor reload readable; branch-city Free City transfer loses five City properties; UNKNOWN protection passed"
+    "next": "Fix startup gate/report before repeat; no E2/F",
+    "native_observation": "B089 owned branch-city readonly check succeeds; experiment combined Begin precondition fails; persistence not exercised"
   },
   "authorized_supplement": "One explicitly enabled Game experiment key, not formal identity/ledger migration"
 }

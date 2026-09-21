@@ -1,0 +1,16 @@
+{
+  "build": "B089.116",
+  "result": "USER_GAME_TEST_FAIL_START_BLOCKED",
+  "files": [
+    {
+      "file": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B089_P0E1_Start_Blocked_20260920/Screenshot 2026-09-20 at 10.26.47 PM.png",
+      "sha256": "2e079c6dc9d71dc1085a44537e7e09e0d053ae648691cc093559523e0b40203f",
+      "observation": "owned Edinburgh readonly preview LOCAL_CANDIDATE ref0/131073 @28,29"
+    },
+    {
+      "file": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B089_P0E1_Start_Blocked_20260920/Screenshot 2026-09-20 at 10.26.49 PM.png",
+      "sha256": "b5fb83111de6d9bfc58559aad7ab706fcb42bc7e0b338e493cc4e3a1cf027bfa",
+      "observation": "experiment Begin combined precondition assertion failed before Game property write"
+    }
+  ]
+}
