@@ -91,6 +91,23 @@ Choose L1/L2/L3 from the actual changed path and failure cost before implementat
 
 `GAME_TEST_LOCAL` = static/mock, never engine PASS. `GAME_TEST_COMPUTER_USE` = UNRESOLVED / DEFERRED; requires reliable capability and explicit game/test authorization, does not override prohibition. `GAME_TEST_USER` covers remaining native behavior only; compress assertions into one minimal test after local verification. No game test for W0001.
 
+## W0004 v2 — Git-era responsibility boundaries
+
+**W0004_V2_GIT_ERA_SIMPLIFICATION_ACTIVE.** Git/GitHub provide canonical source history/recovery/provenance; deployment tools protect the external runtime transaction; automated tests follow W0004 v1; USER_GAME_TEST establishes native behavior. Keep Design, approval, isolation and batch-stop gates unchanged.
+
+Stop routine full source backup trees, ordinary pre-edit “before” snapshots, extra source-history hash inventories and manual per-file hash narration. Known-good commits/main provide source recovery; Git push provides remote source backup. This does not authorize reset/clean/history rewrite or deletion of existing DevelopmentBackups/Historical. Accepted Design revision artifacts and frozen evidence retain independent semantic/provenance value; user saves are not source history.
+
+Existing files retained after narrow inspection:
+
+- Authority: accepted pointers/current task/live-vs-source distinction; not replaced by HEAD alone.
+- Context_Lock: reviewed-context freshness, not source recovery.
+- Runtime_Index: per-file review_source/provenance and new/deleted-file detection; a clean Git tree alone does not prove reviewed summary freshness. Keep its current hash check, do not add another inventory.
+- Batch JSON: scoped rules, authorization boundary, old-writer and validation gates; not commit history.
+- Status: actual user acceptance and unresolved technical gates; not inferred from commit existence.
+- Deployment receipt: external state and recovery paths, which Git cannot observe. Existing reports remain frozen; future routine records are concise: build, source commit, result/equality, receipt reference and abnormal events only. Use existing Status/record locations; do not require a new separate report or copy receipt mechanics into multiple files.
+
+No tooling/state architecture change: retained indexes still require reviewed hash updates under W0001. Runtime backup retention is **not** claimed simplified: current restore checks require the recorded stable backup; transaction failure recovery may require the outgoing complete runtime, including non-Git evidence. Preserve these until a separately verified bounded-retention change can keep those guarantees. Do not delete historical backups or introduce cleanup in this policy update.
+
 ## Failure-mode review
 
 | Failure | Detection | Fallback / escalation |

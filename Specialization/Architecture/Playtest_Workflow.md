@@ -29,6 +29,14 @@ The original unchanged source/document checkpoint is `ca54045`. A following infr
 
 Current authorization is ACTIVE. This changes deployment permission only, not Gameplay, Design or A0161 state contracts.
 
+## Git-era source recovery / records — W0004 v2
+
+Main is the last explicitly promoted trusted source, currently B069.96; develop holds current work including implementations awaiting USER_GAME_TEST. Existing promotion approval remains; no merge/promotion is implied. Recover source from main/known-good Git commits using non-destructive Git operations; ordinary source history no longer requires permanent batch copies or “before” snapshots. GitHub push supplies off-machine source backup. Preserve existing historical backups, accepted Design artifacts, frozen evidence and user saves.
+
+Deployment staging/backup/receipt protects an external directory, not canonical source history. Do not create additional manual source/runtime copies for ordinary batches beyond the existing tool-required recovery package. Current tools still retain complete packages and restore depends on receipt-bound paths; **bounded/previous-runtime-only retention is not implemented by W0004 v2**. No backup is pruned here, and no recovery guarantee is replaced by assuming Git owns unexpected runtime files.
+
+Future routine deployment records: build/modinfo, source commit, deployment result, automated equality summary and receipt reference; add details only for abnormal recovery/events. Do not duplicate complete file hashes, backup paths or reconstructible mechanics in long reports. Existing receipts keep all transaction details; existing reports stay untouched. This does not remove any target/UUID/path/unrelated-Mod/staging/hash/exit/rollback checks.
+
 ## Deployment
 
 Runtime is external `Sid Meier's Civilization VI/Mods/SpecializationP0` under the legacy workspace. Exact machine path stays in ignored main `local/config.json`. Runtime hash at baseline: `7f75a44e4bfaad461570600219f9b4d6b7f5388aefaeb4a2114c3f9ab15159df` (115 files). UUID unchanged. Neither branch creation nor push deploys anything.
