@@ -3,6 +3,10 @@
 Status: 用户已授权实施；B088.115只读交付LOCAL_SIMULATION_PASS，原生连续性门禁待核验，见[实施合同](P0_E1_Identity_Evidence.md)。以下保留原计划范围。原计划状态：PLANNED_NOT_AUTHORIZED。P0-D3与U1前置原型用户验收已完成；U1布局/文字及完整Presentation后置。当前B087.114/modinfo114，源码8dc6118。只规划，不实施/部署。
 Authority: A0161与D0032目标架构、当前Design D0035及四专业authority。Shared D的语义/Lv2更新不改变本批身份保存门禁；Military不纳入v0.1。
 
+## 最新收尾计划
+
+B092单次自由城shadow已实机通过。后续以[单城持久映射具体计划](P0_E1_Persistent_Mapping_Plan.md)为当前提案：只闭合事件映射→保存→冷恢复，不正式迁移。该提案尚待implementation授权；下方保留原E1历史计划。
+
 ## 1. 为什么下一步是E1
 
 总计划D1→D2→D3后为E1城市身份门禁→E2进度保存适配→F学术传统，不存在已定义的D4。学术传统需要“同一座城”、持久年龄和暂停/续算；Culture Dialogue/见闻及未来合同还有不同ownership政策。先证明城市连续性，不通过UI/carrier/当前位置猜历史。

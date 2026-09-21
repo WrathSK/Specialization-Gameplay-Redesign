@@ -1,6 +1,6 @@
 # D0032 v0.1 implementation dependency and migration plan
 
-当前进度：D3与U1前置原型用户PASS；[P0-E1只读交付](P0_E1_Identity_Evidence.md)B088.115本地通过，城市跨Owner/冷读档连续性仍待原生证据。E2/F门禁保持关闭，不改变下表依赖。
+当前进度：D3与U1前置原型用户PASS；B092单次自由城事件shadow用户实机PASS，持久映射冷恢复尚未验证。当前[单城持久映射收尾计划](P0_E1_Persistent_Mapping_Plan.md)待实施授权；不等于完整E1身份/迁移通过，E2/F仍需独立审阅与授权。
 
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18
