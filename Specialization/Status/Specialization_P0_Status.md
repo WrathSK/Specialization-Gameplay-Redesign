@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0237
-Implementation Build: develop P0-B-091.118 / modinfo118; live B090.117 pending deployment gates; stable B069.96
+Implementation Build: develop P0-B-091.118 / modinfo118; live B091.118 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035

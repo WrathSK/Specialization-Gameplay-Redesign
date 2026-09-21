@@ -51,3 +51,5 @@ New `UI/CityIdentityEvidence.lua`: right-click 实验对照 reads the existing e
 LOCAL_SIMULATION_PASS: existing risk-scoped experiment checks plus actual right-click zero requests, absent/error/nil/numeric differentiation, buffer8, cold context reset, loyalty event observation. Lua/XML/manifest118 and old writer/Design equality. USER_GAME_TEST_REQUIRED remains for UI getter values and event availability.
 
 Minimal test (no reconquest or repeat save/load required): load pre-transfer independent save on B091.118; right-click 记录城市身份 to establish if needed, then **right-click 实验对照 before transfer** and screenshot. Transfer same branch city to Free Cities; same turn right-click 实验对照 and screenshot. Optional left-click keeps the existing Gameplay checkpoint, not needed for this UI evidence comparison. Two screenshots suffice; do not weaken identity requirements based only on an original-owner match. No E2/F.
+
+B091 W0003 deployment: source `42b7625fedbe888dd8c590f6cba6e0eccb91a4e3`, game exited (OS verified),150/150 MATCH;B090/stable recovery retained. Receipt `SpecializationDeploymentBackups/B091.118-42b7625-playtest.json`. Main unchanged; no game launched.
