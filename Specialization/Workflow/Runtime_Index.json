@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "SELF: B089.116 implementation commit",
+  "runtime_commit": "1c8b92e3f23773973c440bb8c8f6054a66ee4870",
   "runtime": "B089.116 / modinfo116",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

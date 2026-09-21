@@ -29,3 +29,7 @@ On LoadScreenClose transient observations reset, saved experiment is read once; 
 3. After that checkpoint, save to a new slot and load it. Do not establish another experiment. Left-click 实验对照 and screenshot. Expect saved revision/events preserved and current-load events0; same current reference if still present. Report UNKNOWN getter values rather than guessing.
 
 This tests Game record persistence and native evidence only. It does not restore specialization effects lost on conquest or complete E1's full identity gate. Stop pending user evidence.
+
+## W0003 deployment
+
+B089.116 / modinfo116, source `1c8b92e3f23773973c440bb8c8f6054a66ee4870`. Game process exited (OS checked); existing transaction tool preserved B088 and stable recovery, staged replacement completed, **149/149 source/runtime files MATCH**. Receipt: external `SpecializationDeploymentBackups/B089.116-1c8b92e-playtest.json`; no abnormal recovery. Main unchanged, no game launched.
