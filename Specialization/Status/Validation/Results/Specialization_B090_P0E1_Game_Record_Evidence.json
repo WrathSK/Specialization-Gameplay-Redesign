@@ -1,0 +1,21 @@
+{
+  "build": "B090.117",
+  "scope": "startup and independent Game experiment persistence only; identity gate HELD",
+  "files": [
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B090_P0E1_Game_Record_20260920/Screenshot 2026-09-20 at 10.33.57 PM.png",
+      "sha256": "ffb6d57374c89d01fc1683ecdfffda3034edf243300dfff653db139235d3d977",
+      "observation": "Experiment established successfully; B090.117; owned Edinburgh;T8"
+    },
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B090_P0E1_Game_Record_20260920/Screenshot 2026-09-20 at 10.34.12 PM.png",
+      "sha256": "882826461fb269c29565db5f63d994cbfe96eab195e7bd1565c7a270f6ffcb75",
+      "observation": "After Free City transfer: origin0/131073 current62/65536;DEV-B013-P0-2;HELD revision2;current events5 saved5;OriginalOwner0;other three getters UNKNOWN"
+    },
+    {
+      "path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B090_P0E1_Game_Record_20260920/Screenshot 2026-09-20 at 10.35.34 PM.png",
+      "sha256": "527e0a5a64f2e5317cc7c30e65f3c573b4761620b8649bd3caafe91890458e7b",
+      "observation": "Reload-stage screenshot: same token/refs/HELD revision2;saved events5 current0;saved/current reference match;OriginalOwner0;other three getters UNKNOWN"
+    }
+  ]
+}

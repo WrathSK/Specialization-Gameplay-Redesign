@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0235
+Status Revision: S0236
 Implementation Build: develop P0-B-090.117 / modinfo117; live B090.117 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_STARTUP_FIX_AWAITING_USER
+Work State: P0_E1_GAME_RECORD_NATIVE_PASS_IDENTITY_HELD
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B090三图实机复核](Validation/Results/Specialization_B090_P0E1_Game_Record_Review.md)：启动修复与独立Game实验记录在分城转自由城/读档场景USER_GAME_TEST_PASS；修订2及保存事件5保留，本次事件归零。OriginalOwner=0，其余三getter UNKNOWN，故身份配对仍HELD（不是实验暂停）。不扩大为正式继承/账本迁移PASS，不重复本次测试；下一步仅建议调查缺失的转移佐证，不进入E2/F。截图已hash归档，runtime/main不改，无部署。
 
 B090.117：已授权修复[实验初始化/错误提示](../Architecture/v2/P0_E1_Game_Record_Experiment.md#b090117-authorized-startup-fix)。按需一次初始化，不依赖加载事件必达；可恢复入口拒绝不锁死，损坏记录/写入失败继续停止。定向LOCAL_SIMULATION_PASS，原生USER_GAME_TEST_REQUIRED；不改旧账本/收益/Design，不进入E2/F。下方B089入口失败为历史实机证据。
 
