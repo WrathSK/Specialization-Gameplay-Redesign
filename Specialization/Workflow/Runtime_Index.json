@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "42b7625fedbe888dd8c590f6cba6e0eccb91a4e3",
-  "runtime": "B091.118 / modinfo118",
+  "runtime": "B092.119 / modinfo119",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "b0e5ecfc17f3961e84e2d5ac9e8ab24d75cd735b0015ccf401cabb138a700bfb",
+      "sha256": "dd6a3978d5919638f16012080fc4f480460a6ecf6cb44c2c511b6033a6a17f22",
       "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B091 UI evidence supplement; no identity authority changes"
+      "provenance": "B092 pure shadow; no authority/migration change"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a85fc5259fdb736539e29d9c6f0bf651b43ef9baa68055b1e490ceb1130b78b4",
+      "sha256": "3503b142cb90543e297d4d62699d2c398e4de1d29fac1f3f837bd6df4c24d471",
       "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B091 UI evidence supplement; no identity authority changes"
+      "provenance": "B092 pure shadow; no authority/migration change"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -566,9 +566,9 @@
       "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "b7737898bd921ac7d4d89b161c6de1368f403f0d2f9ec987edbebcba841decfb",
+      "sha256": "7a274855360aed7c07439a23fcad7541b12f9a6ee297a38acc13b66940b4ae41",
       "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B091 UI evidence supplement; no identity authority changes"
+      "provenance": "B092 pure shadow; no authority/migration change"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -746,9 +746,9 @@
       "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
     },
     "Mod/CityIdentityExperiment.lua": {
-      "sha256": "aaf6029256afeb164fe1293cd061bb72c320f8434cd1f3290008ce78721e18fa",
+      "sha256": "844c16c777649e2ee7126dcb9084cd4e3620e63a1f841493174edcfdced3bb31",
       "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B091 UI evidence supplement; no identity authority changes"
+      "provenance": "B092 pure shadow; no authority/migration change"
     },
     "Mod/UI/CityIdentityEvidence.lua": {
       "sha256": "87bb4d9ef4c7d03959b448320e3c7bdef6e2d52d7968faf47b2f09923df335c6",

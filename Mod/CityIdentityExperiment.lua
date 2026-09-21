@@ -1,5 +1,37 @@
 -- Explicit one-city experiment. Only this Game property is writable; never a gameplay authority.
 SPCCityIdentityExperiment={KEY='SPC_E1_IDENTITY_EXPERIMENT_V1'}
+-- Pure, non-authoritative preview. Only live observations supplied by the caller.
+function SPCCityIdentityExperiment.Shadow(origin,now,events,overflow,turn)
+ local function held(why)return 'HELD',why end
+ if overflow then return held('事件缓冲不完整')end
+ if not now then return held('当前位置无城市')end
+ if now.x~=origin.x or now.y~=origin.y then return held('位置不符')end
+ local removed,typed,added=false,false,false
+ for _,e in ipairs(events)do
+  local a=e.args
+  if e.turn~=turn then return held('包含跨回合旧事件；仅预演单次转移')end
+  if e.name=='CityRemovedFromMap' then
+   if a[1]~=origin.owner or a[2]~=origin.cityID then return held('发现额外移除；可能再次易主或重建')end
+   removed=true
+  elseif e.name=='CityAddedToMap' or e.name=='CityInitialized' or e.name=='CityBuilt' then
+   if a[1]~=now.owner or a[2]~=now.cityID or a[3]~=now.x or a[4]~=now.y then return held('出现多个新引用或位置冲突')end
+   added=true
+  elseif e.name=='CulturalIdentityCityConverted' then
+   if a[1]~=now.owner or a[2]~=now.cityID or a[3]~=origin.owner then return held('转移事件Owner/城市冲突')end
+   typed=true
+  elseif e.name=='CityConquered' then
+   if a[1]~=now.owner or a[2]~=origin.owner or a[3]~=now.cityID or a[4]~=now.x or a[5]~=now.y then return held('征服事件引用冲突')end
+   typed=true
+  elseif e.name=='CityTransfered' then
+   if a[1]~=now.owner or a[2]~=now.cityID then return held('转移通知引用冲突')end
+  elseif e.name=='CityLiberated' then return held('解放路径不在本次预演范围')end
+ end
+ if now.owner==origin.owner and now.cityID==origin.cityID then return held('原引用未变；不证明永久身份')end
+ if not removed then return held('缺少原引用移除证据')end
+ if not added then return held('缺少新引用加入证据')end
+ if not typed then return held('缺少含旧Owner的Gameplay转移事件')end
+ return 'SHADOW_CANDIDATE','旧引用移除、新引用加入、事件旧Owner三者相符；仅单次转移候选'
+end
 function SPCCityIdentityExperiment.Start(P,shared)
  local M=SPCCityIdentityExperiment;local cp=SPCCityIdentityRead.Copy
  local d={error=nil};shared.CityIdentityExperiment=d
@@ -102,7 +134,13 @@ function SPCCityIdentityExperiment.Start(P,shared)
     '只保存实验；未认领身份、迁移账本或发放收益。',
     overflow and '事件缓冲已满：证据不完整，保持待确认。' or '事件缓冲：正常'}
    if #events==0 and record.current then lines[#lines+1]='保存时引用与当前：'..(same(now,record.current) and '一致（非永久身份认证）' or '不同/不可读；不自动重配')end
-   for _,name in ipairs({'GetOriginalOwner','GetOwnerBeforeOccupation','GetJustConqueredFrom','GetLastTransferType'})do lines[#lines+1]=name..'='..tostring(native[name] or 'UNKNOWN')end
+   local shadow,why=M.Shadow(record.origin,now,events,overflow,Game.GetCurrentGameTurn())
+   lines[#lines+1]='事件配对预演：'..shadow..'；'..why
+   lines[#lines+1]='Gameplay本次事件（不使用UI回包或存档旧事件）：'
+   for _,e in ipairs(events)do
+    local a={};for _,v in ipairs(e.args)do a[#a+1]=tostring(v)end
+    lines[#lines+1]=e.name..' T'..e.turn..' ('..table.concat(a,',')..')'
+   end
    return table.concat(lines,'\n')
   end)
  end
@@ -111,6 +149,13 @@ function SPCCityIdentityExperiment.Start(P,shared)
   if not ready or not record or d.error then return end
   local a={...};local o=record.origin
   local endpoint=a[1]==o.owner and a[2]==o.cityID
+  if name=='CityRemovedFromMap' then
+   for _,e in ipairs(events)do
+    if e.name=='CityAddedToMap' or e.name=='CityInitialized' or e.name=='CityBuilt' then
+     endpoint=endpoint or (a[1]==e.args[1] and a[2]==e.args[2])
+    end
+   end
+  end
   local coords=(a[3]==o.x and a[4]==o.y) or (a[4]==o.x and a[5]==o.y)
   -- Transfer lacks coordinates: at most one watched-plot lookup, only on a transfer callback.
   if name=='CityTransfered' or name=='CulturalIdentityCityConverted' or name=='CityLiberated' then local c=CityManager.GetCityAt(o.x,o.y);endpoint=endpoint or (c and a[1]==c:GetOwner() and a[2]==c:GetID())end

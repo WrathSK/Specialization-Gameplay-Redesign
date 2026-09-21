@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0239
-Implementation Build: develop P0-B-091.118 / modinfo118; live B091.118 deployed W0003; stable B069.96
+Status Revision: S0240
+Implementation Build: develop P0-B-092.119 / modinfo119; live B091.118 pending deployment gates; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_FREE_CITY_UI_EVENT_CHAIN_CONFIRMED_SHADOW_PLAN
+Work State: P0_E1_EVENT_SHADOW_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+B092.119：获授权实现[事件配对shadow及Gameplay事件诊断](../Architecture/v2/P0_E1_Game_Record_Experiment.md#b092119--authorized-event-shadow-implementation)。定向LOCAL_SIMULATION_PASS，等待一次原路径Gameplay左键截图；shadow不写入、不认领、不迁移，旧保存状态与预演分离。旧账本/Design/收益/UI未改，不进入E2/F。
 
 [B091补充前后证据](Validation/Results/Specialization_B091_P0E1_Transfer_Chain_Review.md)：0/131073→62/65536，捕获CulturalIdentityCityConverted(62,65536,0,24576)及CityTransfered(62,65536,0,-738490196)。结合原版fromPlayer用法，该路径UI旧Owner佐证已确认；不再要求重复同一UI测试。研究建议按明确转移事件+保存旧引用建立shadow候选，先确认Gameplay同事件证据；未实施resolver更改，不迁移账本，E1整体仍HELD、不进入E2/F。runtime/main未改、无部署。
 

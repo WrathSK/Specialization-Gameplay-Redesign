@@ -19,7 +19,7 @@ function setup()
  Game={GetProperty=function(self,k)if k==key then return M.Copy(store[k])end;assert(k=='SPC_DEV_BINDING_B013_P0');return s.ledger end,
  SetProperty=function(self,k,v)assert(k==key,'OLD_GAME_WRITE');writes=writes+1;if not badwrite then store[k]=M.Copy(v)end end,GetCurrentGameTurn=function()return turn end}
  CityManager={GetCityAt=function(x,y)assert(x==4 and y==5);return exists and city or nil end}
- P={VERSION='P0-B-091.118',Field=function(t,k)return t[k]end,IsTestPlayer=function(pid)return pid==0 end}
+ P={VERSION='P0-B-092.119',Field=function(t,k)return t[k]end,IsTestPlayer=function(pid)return pid==0 end}
  shared={};SPCCityIdentityExperiment.Start(P,shared);d=shared.CityIdentityExperiment
 end
 setup();assert(writes==0);Events.CityRemovedFromMap.fn(0,7);assert(writes==0)
@@ -79,21 +79,21 @@ u.execute((M/'UI/CityIdentityEvidence.lua').read_text())
 u.execute((M/'UI/P0Panel.lua').read_text())
 u.execute("init();record[2]();assert(sends==1 and lastAction=='IDENTITY_EXPERIMENT_BEGIN');UI.GetHeadSelectedCity=function()return nil end;compare[1]();assert(sends==2 and lastAction=='IDENTITY_EXPERIMENT_READ');for i=1,128 do fire('SystemUpdateUI')end;assert(sends==2)")
 for p in M.rglob('*.lua'):l.execute('assert(load(...))',p.read_text())
-x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='118'
+x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='119'
 assert sorted(f.text for f in x.findall('./Files/File'))==sorted(str(p.relative_to(M)) for p in M.rglob('*') if p.is_file() and p.suffix!='.modinfo')
 assert 'CityIdentityExperiment.lua' in [f.text for f in x.findall('./InGameActions/ImportFiles/File')]
-ET.parse(M/'UI/P0Panel.xml');assert 'P0-B-091.118' in (M/'Probe.lua').read_text()
-allowed={'Mod/'+p for p in ['CityIdentityExperiment.lua','Gameplay.lua','Probe.lua','SpecializationP0.modinfo','UI/P0Panel.lua','UI/P0Panel.xml','UI/RuntimeAudit.lua']}
+ET.parse(M/'UI/P0Panel.xml');assert 'P0-B-092.119' in (M/'Probe.lua').read_text()
+allowed={'Mod/'+p for p in ['CityIdentityExperiment.lua','Probe.lua','SpecializationP0.modinfo','UI/RuntimeAudit.lua']}
 for p in subprocess.check_output(['git','ls-files','Mod','Specialization/Design'],cwd=R,text=True).splitlines():
- if p not in allowed:assert (R/p).read_bytes()==subprocess.check_output(['git','show','277b3b6:'+p],cwd=R),p
+ if p not in allowed:assert (R/p).read_bytes()==subprocess.check_output(['git','show','45900c9:'+p],cwd=R),p
 assert 'shared.InheritanceIsolation=true' in g
-print('E1 experiment LOCAL_SIMULATION_PASS: opt-in/new-key-only; event zero writes; dedupe/bounds; transfer HELD/candidate; reload; failure/concurrent/corrupt guards; actual dispatcher/UI; idle zero requests; old writers/Design unchanged; Lua/XML/manifest118.')
+print('E1 experiment LOCAL_SIMULATION_PASS: opt-in/new-key-only; event zero writes; dedupe/bounds; transfer HELD/candidate; reload; failure/concurrent/corrupt guards; actual dispatcher/UI; idle zero requests; old writers/Design unchanged; Lua/XML/manifest119.')
 
 # Actual UI evidence: absent/error/nil/numeric values, fixed bound, no writes or requests.
 v=LuaRuntime();v.execute((M/'UI/CityIdentityEvidence.lua').read_text())
 v.execute(r"""
 Events=setmetatable({}, {__index=function(t,k)local e={};function e.Add(f)e.fn=f end;rawset(t,k,e);return e end})
-P={VERSION='B091.118',Field=function(t,k)return t[k]end,IsTestPlayer=function(p)return p==0 end}
+P={VERSION='B092.119',Field=function(t,k)return t[k]end,IsTestPlayer=function(p)return p==0 end}
 local row={schema=1,requester=0,token='one',origin={owner=0,cityID=7,x=4,y=5}}
 Game={GetProperty=function()return row end,GetCurrentGameTurn=function()return 8 end,SetProperty=function()error('WRITE')end}
 local c={GetOwner=function()return 62 end,GetID=function()return 40 end,GetOriginalOwner=function()return 0 end,GetJustConqueredFrom=function()error('unavailable')end,GetLastTransferType=function()return nil end}
@@ -109,3 +109,27 @@ assert(not cold.Read(1):find('GetOriginalOwner'))
 """)
 u.execute("local before=sends;compare[2]();assert(sends==before)")
 print('UI evidence PASS: actual right-click zero requests; numeric/nil/absent/error distinguished; bound8; fresh-context reset; no writer.')
+
+l.execute(r"""
+local o={owner=0,cityID=7,x=4,y=5};local n={owner=62,cityID=40,x=4,y=5}
+local function e(name,args)return {name=name,args=args,turn=8}end
+local events={e('CityBuilt',{62,40,4,5}),e('CityRemovedFromMap',{0,7}),e('CityAddedToMap',{62,40,4,5}),e('CulturalIdentityCityConverted',{62,40,0,24576}),e('CityTransfered',{62,40,0,-738490196})}
+local S=SPCCityIdentityExperiment.Shadow
+assert(S(o,n,events,false,8)=='SHADOW_CANDIDATE')
+local duplicate=M.Copy(events);duplicate[#duplicate+1]=M.Copy(events[4]);assert(S(o,n,duplicate,false,8)=='SHADOW_CANDIDATE')
+local reverse={};for i=#events,1,-1 do reverse[#reverse+1]=events[i]end;assert(S(o,n,reverse,false,8)=='SHADOW_CANDIDATE')
+assert(S(o,n,events,true,8)=='HELD');assert(S(o,n,events,false,9)=='HELD');assert(S(o,n,{},false,8)=='HELD')
+local bad=M.Copy(events);bad[4].args[3]=1;assert(S(o,n,bad,false,8)=='HELD')
+bad=M.Copy(events);table.remove(bad,2);assert(S(o,n,bad,false,8)=='HELD')
+bad=M.Copy(events);table.remove(bad,4);assert(S(o,n,bad,false,8)=='HELD') -- raze/refound-like add/remove alone
+bad=M.Copy(events);bad[#bad+1]=e('CityRemovedFromMap',{62,40});assert(S(o,n,bad,false,8)=='HELD')
+bad=M.Copy(events);bad[#bad+1]=e('CityAddedToMap',{1,99,4,5});assert(S(o,n,bad,false,8)=='HELD')
+bad=M.Copy(events);bad[4]=e('CityConquered',{62,0,40,4,5});assert(S(o,n,bad,false,8)=='SHADOW_CANDIDATE')
+assert(S(o,o,events,false,8)=='HELD')
+-- Actual collector retains removal of newly added city, blocking A→B→C/refound preview.
+store={};setup();d.Begin(0,city);s.ref.owner=62;s.ref.cityID=40
+Events.CityRemovedFromMap.fn(0,7);Events.CityAddedToMap.fn(62,40,4,5);Events.CulturalIdentityCityConverted.fn(62,40,0,24576)
+assert(d.Describe(0):find('SHADOW_CANDIDATE'))
+Events.CityRemovedFromMap.fn(62,40);assert(d.Describe(0):find('发现额外移除'))
+""")
+print('Shadow PASS: typed-event candidate; duplicates/order; stale/overflow/conflict/refound/multihop held; actual collector; no migration.')
