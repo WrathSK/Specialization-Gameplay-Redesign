@@ -592,4 +592,5 @@ include("CityIdentityRead")
 SPCCityIdentityRead.Start(P,shared)
 
 include("CityIdentityExperiment")
-SPCCityIdentityExperiment.Start(P,shared)
+include("CityIdentityMapping")
+SPCCityIdentityMapping.Start(P,shared)

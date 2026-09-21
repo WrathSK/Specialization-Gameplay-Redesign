@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "cbf99b38894621fa345d68bb2ae4ba7df2b409be",
-  "runtime": "B092.119 / modinfo119",
+  "runtime_commit": "B093 implementation commit pending",
+  "runtime": "B093.120 / modinfo120",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "88e977775d3828f3126561155b82e20585bdd400c7a3ca8fe6b3bc331336cf91",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
+      "sha256": "0f477427c534117b4ee27a555c9a23477a8bc578cb7a577b89b8c270a737ece6",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "dd6a3978d5919638f16012080fc4f480460a6ecf6cb44c2c511b6033a6a17f22",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B092 pure shadow; no authority/migration change"
+      "sha256": "35ab2fa656b40add805eef4bd4e8d208311ecff983d674339019d18c1321382e",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3503b142cb90543e297d4d62699d2c398e4de1d29fac1f3f837bd6df4c24d471",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B092 pure shadow; no authority/migration change"
+      "sha256": "a5b257bfe298714e6c5d166ddefcf44162a4df4fa8f55b38d0d48b69aaee023c",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -566,9 +566,9 @@
       "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "7a274855360aed7c07439a23fcad7541b12f9a6ee297a38acc13b66940b4ae41",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B092 pure shadow; no authority/migration change"
+      "sha256": "9e9bac22183fb2dc8fd5cc02312887171c2f6c8bb3f766b898165d6ba2798b24",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -754,6 +754,11 @@
       "sha256": "87bb4d9ef4c7d03959b448320e3c7bdef6e2d52d7968faf47b2f09923df335c6",
       "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
       "provenance": "B091 UI evidence supplement; no identity authority changes"
+    },
+    "Mod/CityIdentityMapping.lua": {
+      "sha256": "5f2186092ae789f99b295bd5a38bb4b9321c8570628bc0e1b9fd0eeb10a8d284",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
     }
   }
 }

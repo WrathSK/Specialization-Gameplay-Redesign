@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-E1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0242",
-    "runtime": "B092.119 / modinfo119",
+    "status": "S0243",
+    "runtime": "B093.120 / modinfo120",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
@@ -101,6 +101,11 @@
       "path": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
       "kind": "full",
       "reason": "Next scoped persistent-mapping experiment, implementation requires authorization"
+    },
+    {
+      "path": "Mod/CityIdentityMapping.lua",
+      "kind": "full",
+      "reason": "Authorized V2 experimental mapping authority only"
     }
   ],
   "dependencies": [
@@ -142,9 +147,9 @@
   ],
   "validation": {
     "local": [
-      "Targeted L3 mapping persistence/event lifecycle tests specified in current plan",
-      "Current Lua/XML/modinfo consistency and protected writer equality",
-      "W0001 context/static checks"
+      "test_p0_e1_mapping.py actual Lua targeted L3",
+      "Legacy experiment/UI/shared shadow functional cases; current syntax/modinfo120",
+      "temporary_playtest safety fixtures; W0001 context"
     ],
     "user": "After separately authorized implementation: enable one branch city, Free City transfer, save/load BEFORE diagnostic, one result screenshot"
   },
@@ -154,11 +159,11 @@
     "old writer activation/change"
   ],
   "result": {
-    "local": "B092 LOCAL_SIMULATION_PASS retained; planned mapping V2 NOT_IMPLEMENTED",
+    "local": "B093 LOCAL_SIMULATION_PASS: actual Lua auto-save/cold-load and targeted L3 protection",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Await implementation authorization for mapping/save/load closure; existing shadow PASS retained",
+    "next": "Await B093 native no-diagnostic-before-save/load closure; no E2/F",
     "native_observation": "B092 T8 0/131073→62/65536: Gameplay6 events, SHADOW_CANDIDATE; UI2 matching events. Single Free City shadow USER_GAME_TEST_PASS only; full identity/migration remains unaccepted."
   },
-  "authorized_supplement": "B089–B092 experiment implementation completed; proposed mapping V2 is not yet authorized"
+  "authorized_supplement": "User authorized single-city persistent mapping V2; no profession migration"
 }

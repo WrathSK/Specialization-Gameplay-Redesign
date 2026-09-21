@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0242
-Implementation Build: develop P0-B-092.119 / modinfo119; live B092.119 deployed W0003; stable B069.96
+Status Revision: S0243
+Implementation Build: develop P0-B-093.120 / modinfo120; live B092.119 pending deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_PERSISTENT_MAPPING_PLAN_AWAITING_AUTHORIZATION
+Work State: P0_E1_PERSISTENT_MAPPING_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B093.120单城持久映射](../Architecture/v2/P0_E1_Persistent_Mapping_Plan.md#b093120-实施记录)已授权实现，定向L3 LOCAL_SIMULATION_PASS：事件自动保存、冷加载恢复监听、10k重复零重复写、冲突/失败暂停。仅新实验key；不迁移专业、不改收益/Design，不进入E2/F。等待一次“转移后先保存读档、再左键对照”的原生验证；不沿用B092作为新闭环PASS。部署另经W0003门禁。以下计划等待授权文字为历史。
 
 [E1单城持久映射计划](../Architecture/v2/P0_E1_Persistent_Mapping_Plan.md)已完成：独立Game实验key、事件驱动保存、冷加载核对，保留单次自由城范围，旧账本/writer不切换。仅计划，待单独实施授权；无runtime/Design/部署变化。当前无需用户测试，不自动进入E2/F。
 

@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0242",
-    "runtime": "B092.119 / modinfo119",
+    "status": "S0243",
+    "runtime": "B093.120 / modinfo120",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "cbf99b38894621fa345d68bb2ae4ba7df2b409be",
-  "current_batch": "P0-E1 PERSISTENT_MAPPING_PLAN_AWAITING_AUTHORIZATION",
-  "next_batch": "Await explicit implementation authorization for one-city persistent mapping experiment; no E2/F",
+  "runtime_commit": "B093 implementation commit pending",
+  "current_batch": "P0-E1 PERSISTENT_MAPPING_AWAITING_USER",
+  "next_batch": "One transfer→save/load without diagnostic→left-click snapshot; no E2/F",
   "manifest": "Specialization/Workflow/P0-E1.json",
   "live": "B092.119 / modinfo119 deployed W0003;150/150 MATCH;B091/stable recovery retained",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B092 native evidence + scoped mapping lifecycle planning; unchanged Design/runtime reused",
+  "context_review_status": "Authorized B093 mapping code and targeted tests reviewed; old writers/Design unchanged",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
