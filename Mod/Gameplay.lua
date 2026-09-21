@@ -26,6 +26,14 @@ local function request(playerID,params)
   end
   if type(params)~="table" or type(params.Token)~="string" or #params.Token>100 then return end
   -- B068 presentation is a disposable mirror, never a source of city state.
+  if params.Action=='IDENTITY_EXPERIMENT_BEGIN' or params.Action=='IDENTITY_EXPERIMENT_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,out=pcall(function()
+      if params.Action=='IDENTITY_EXPERIMENT_BEGIN' then return shared.CityIdentityExperiment.Begin(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
+      return shared.CityIdentityExperiment.Describe(playerID)
+    end)
+    shared.Snapshot=ok and out or '实验读取失败；未迁移任何专业记录。';shared.LastToken=params.Token;return
+  end
   if params.Action=='IDENTITY_RECORD' or params.Action=='IDENTITY_COMPARE' or params.Action=='IDENTITY_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,out=pcall(function()
@@ -582,3 +590,6 @@ shared.InheritanceIsolation=true
 -- Independent read-only evidence; never start the isolated inheritance writers.
 include("CityIdentityRead")
 SPCCityIdentityRead.Start(P,shared)
+
+include("CityIdentityExperiment")
+SPCCityIdentityExperiment.Start(P,shared)

@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0232",
-    "runtime": "B088.115 / modinfo115",
+    "status": "S0233",
+    "runtime": "B089.116 / modinfo116",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "3136810dd37ea2035b1a8ef1538a38d90e55b733",
-  "current_batch": "P0-E1 IMPLEMENTATION_COMPLETE_AWAITING_USER",
-  "next_batch": "E1 native property-loss evidence held; investigate transfer mapping before any persistence spike; no E2/F",
+  "runtime_commit": "SELF: B089.116 implementation commit (resolve via git log Mod/CityIdentityExperiment.lua)",
+  "current_batch": "P0-E1 GAME_RECORD_EXPERIMENT_AWAITING_USER",
+  "next_batch": "Wait one-city experiment evidence; E1 gate HELD, no E2/F",
   "manifest": "Specialization/Workflow/P0-E1.json",
   "live": "B088.115 / modinfo115 deployed W0003;148 exact hashes;B087 and stable recovery verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Three B088 screenshots reviewed and archived; capital reload and branch-city transfer separated; no runtime change",
+  "context_review_status": "Authorized opt-in Game experiment; L3 targeted local validation, native persistence pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,5 +59,5 @@
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md"
 }

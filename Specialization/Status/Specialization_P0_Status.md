@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0232
-Implementation Build: develop P0-B-088.115 / modinfo115; live B088.115 deployed W0003; stable B069.96
+Status Revision: S0233
+Implementation Build: develop P0-B-089.116 / modinfo116; live B088.115 pending W0003 gates; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_NATIVE_PROPERTY_LOSS_OBSERVED_GATE_HELD
+Work State: P0_E1_GAME_RECORD_EXPERIMENT_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+B089.116：用户明确授权的[单城Game记录补充实验](../Architecture/v2/P0_E1_Game_Record_Experiment.md)已完成LOCAL_SIMULATION_PASS（定向Lua模拟，不是原生PASS）。只写新的独立测试key；旧专业账本、收益、Design及隔离继承模块不改。加载恢复/易主getter仍USER_GAME_TEST_REQUIRED；E1整体门禁仍HELD，停止等待该页三步最小测试，不进入E2/F。下方B088“持久实验另审”等为前一阶段记录，已被本次窄授权补充。
 
 [B088 E1三图实机复核](Validation/Results/Specialization_B088_P0E1_Native_Review.md)：首都测试1/2支持原范围读档后记录可核对；分城测试3转自由城市0/131073→62/65536时五项旧City记录均原有现无，正确UNKNOWN并停止认领。诊断保护行为USER_GAME_TEST_PASS（本例），永久城市连续性门禁仍TECHNICAL_INVESTIGATION_REQUIRED；不拼接两城证据，不进入E2/F。三原图已hash归档；无需用户立即补测。下一步仅建议调查原Game账本/转移事件可靠映射，任何持久实验另审。本轮仅证据/Status更新，runtime/main/部署不变。
 

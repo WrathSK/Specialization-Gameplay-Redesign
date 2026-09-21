@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3136810dd37ea2035b1a8ef1538a38d90e55b733",
-  "runtime": "B088.115 / modinfo115",
+  "runtime_commit": "SELF: B089.116 implementation commit",
+  "runtime": "B089.116 / modinfo116",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "0e8d0fc99d1ff4b3ffda2f796ae9d31f349ca69098269f33e378dca9f0d28a07",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "88e977775d3828f3126561155b82e20585bdd400c7a3ca8fe6b3bc331336cf91",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "36776ab6afca5c3695e87d8aa7c779c581e5b002704d4def31d63f3d61400070",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "10d346ef3eba2aca4b05c48113865b4bbd7aa4ddc0272f3281e134a28c9194fc",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a3bf777743cceefe40a832f3445eeb4851fa0a6987de40d14da3b4c5638d646b",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "a8ee23e8dd50d5df2be4edeb81b0dd765d867f4e35c29b88fbabfad01cd22152",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -556,19 +556,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "54fbcec2a28302f1cb8555a5d7d75dcba49e692ef07a6fc82a2934d16139b1e9",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "46beba051988c2b87fb37c5ff8148cccdfd3b26dbc072b281da1a4a5f26b2ad6",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "40553584db54aecc3002a1659c4aabde4bd100cec59829e3eeb05b1211561d7b",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "76002d3043f9607f9750625ec31459f46110c16e74d8a0dcdf119a987707652e",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "2b549a373c6c84ae0e6f07fde6f4f6213cb1f453401c5d73f1038732877308a1",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "557d6e6ff1589cbea837893a58fb1a34c198c3e7534732a1b19adc606f258fee",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -744,6 +744,11 @@
       "sha256": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
       "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
       "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+    },
+    "Mod/CityIdentityExperiment.lua": {
+      "sha256": "ec4fee984af2038d1735401d6fa8578515d8c8cae39618ac7baa686f47e5acf5",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     }
   }
 }

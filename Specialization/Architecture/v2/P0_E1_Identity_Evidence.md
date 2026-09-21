@@ -6,6 +6,10 @@ Status: **LOCAL_SIMULATION_PASS；首都原范围读档/分城UNKNOWN保护已�
 最新[三图实机复核](../../Status/Validation/Results/Specialization_B088_P0E1_Native_Review.md)：分城转自由城市后五项City记录原有现无；不能依赖这些City Properties自动跨Owner保留。两张首都读档图与分城易主图分开记证据。以下实现范围/原测试计划保留，不要求用户立即重复。
 本批可交付观察工具，但不是E1全部门禁PASS；E2/F不开放。没有正式迁移、持久marker、旧继承writer启动或新收益。
 
+## B089授权补充
+
+已获用户明确授权的[独立Game实验](P0_E1_Game_Record_Experiment.md)新增一个显式启用的测试key；下面B088只读合同继续适用于CityIdentityRead，不能解释成新实验也零写入。原生门禁未通过，未迁移任何专业记录。
+
 ## 1. 实际实现
 
 `Mod/CityIdentityRead.lua`为独立纯预演＋只读采集器，Gameplay只新增三种手动诊断分发。复用面板两项隐藏入口“记录城市身份”“身份对照”，显式Label防止文字缺失；右键对照才展示凭据、旧新引用、各记录有无/是否一致及最后8条城市事件。暂隐藏巨作相邻/旧四级区域收益按钮，原逻辑保留，不增加面板总密度。U1机构原型不改。

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="115">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="116">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B088.115 develop: P0-E1 read-only city identity evidence and migration preview; no save migration.</Description>
+    <Description>B089.116 develop: opt-in one-city Game-property identity experiment; no gameplay migration.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -56,6 +56,7 @@
       <File>Data/HalfYieldProbe.sql</File>
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
+      <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityRead.lua</File>
       <File>InstitutionPresentation.lua</File>
       <File>UI/InstitutionOverview.lua</File>
@@ -323,6 +324,7 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>CityIdentityExperiment.lua</File>
     <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>
     <File>UI/InstitutionOverview.lua</File>

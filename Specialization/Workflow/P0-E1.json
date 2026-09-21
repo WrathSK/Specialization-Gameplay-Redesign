@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0232",
-    "runtime": "B088.115 / modinfo115",
+    "status": "S0233",
+    "runtime": "B089.116 / modinfo116",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
@@ -81,6 +81,16 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Native_Review.md",
       "kind": "full",
       "reason": "Native negative persistence evidence and exact two-city test boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "kind": "full",
+      "reason": "Authorized isolated persistence spike contract"
+    },
+    {
+      "path": "Mod/CityIdentityExperiment.lua",
+      "kind": "full",
+      "reason": "Only new test-key writer"
     }
   ],
   "dependencies": [
@@ -122,11 +132,11 @@
   ],
   "validation": {
     "local": [
-      "read-only preview/property equality",
-      "duplicate/transfer/raze/refound/ID reuse/unknown conflicts",
-      "bounded idle/old writer regression"
+      "test_p0_e1_experiment.py targeted L3",
+      "Lua/XML/manifest116 and old writer/Design equality",
+      "W0001 context/static checks"
     ],
-    "user": "Only native gap: one controlled transfer/regain/reload on independent save"
+    "user": "Independent branch-city save: explicit begin, Free City transfer/checkpoint, save/load/read"
   },
   "full_audit_triggers": [
     "new persistent writes",
@@ -136,8 +146,9 @@
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
-    "migration": "No writes; every preview migrationAllowed=false",
-    "next": "E1 gate held; investigate before requesting more native tests; no E2/F",
+    "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
+    "next": "User minimal transfer/checkpoint/reload; no E2/F",
     "native_observation": "Capital original-anchor reload readable; branch-city Free City transfer loses five City properties; UNKNOWN protection passed"
-  }
+  },
+  "authorized_supplement": "One explicitly enabled Game experiment key, not formal identity/ledger migration"
 }
