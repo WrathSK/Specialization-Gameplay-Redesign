@@ -113,7 +113,7 @@ function SPCCityIdentityExperiment.Start(P,shared)
   local endpoint=a[1]==o.owner and a[2]==o.cityID
   local coords=(a[3]==o.x and a[4]==o.y) or (a[4]==o.x and a[5]==o.y)
   -- Transfer lacks coordinates: at most one watched-plot lookup, only on a transfer callback.
-  if name=='CityTransfered' then local c=CityManager.GetCityAt(o.x,o.y);endpoint=endpoint or (c and a[1]==c:GetOwner() and a[2]==c:GetID())end
+  if name=='CityTransfered' or name=='CulturalIdentityCityConverted' or name=='CityLiberated' then local c=CityManager.GetCityAt(o.x,o.y);endpoint=endpoint or (c and a[1]==c:GetOwner() and a[2]==c:GetID())end
   if not endpoint and not coords then return end
   local args={};for i=1,math.min(select('#',...),8)do local v=select(i,...);args[i]=(type(v)=='number' or type(v)=='boolean') and v or (type(v)=='string' and v:sub(1,64) or 'UNKNOWN')end
   local e={name=name,args=args,turn=Game.GetCurrentGameTurn()}
@@ -121,7 +121,7 @@ function SPCCityIdentityExperiment.Start(P,shared)
   if #events>=16 then overflow=true;return end
   events[#events+1]=e
  end
- for _,name in ipairs({'CityTransfered','CityRemovedFromMap','CityAddedToMap','CityInitialized'})do local n=name;hook(Events,n,function(...)local ok=pcall(observe,n,...);if not ok then d.error='事件观察失败，未写入'end end)end
+ for _,name in ipairs({'CityTransfered','CityRemovedFromMap','CityAddedToMap','CityInitialized','CulturalIdentityCityConverted','CityLiberated'})do local n=name;hook(Events,n,function(...)local ok=pcall(observe,n,...);if not ok then d.error='事件观察失败，未写入'end end)end
  for _,name in ipairs({'CityBuilt','CityConquered'})do local n=name;hook(GameEvents,n,function(...)local ok=pcall(observe,n,...);if not ok then d.error='事件观察失败，未写入'end end)end
  -- A fresh Gameplay context owns each load. A late/duplicate UI load event must not
  -- reset an already initialized watch or clear a latched storage failure.

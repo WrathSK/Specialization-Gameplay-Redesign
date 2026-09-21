@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0236
-Implementation Build: develop P0-B-090.117 / modinfo117; live B090.117 deployed W0003; stable B069.96
+Status Revision: S0237
+Implementation Build: develop P0-B-091.118 / modinfo118; live B090.117 pending deployment gates; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_GAME_RECORD_NATIVE_PASS_IDENTITY_HELD
+Work State: P0_E1_UI_TRANSFER_EVIDENCE_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+B091.118：获授权补充[按需UI易主证据](../Architecture/v2/P0_E1_Game_Record_Experiment.md#b091118--authorized-ui-transfer-evidence-supplement)，实验对照右键读取UI接口并观察固定8条相关事件；左键原保存核对保留。定向LOCAL_SIMULATION_PASS，等待转移前后两张UI截图；不修改认领规则/旧账本/收益，E1身份门禁仍HELD，不进入E2/F。
 
 [B090三图实机复核](Validation/Results/Specialization_B090_P0E1_Game_Record_Review.md)：启动修复与独立Game实验记录在分城转自由城/读档场景USER_GAME_TEST_PASS；修订2及保存事件5保留，本次事件归零。OriginalOwner=0，其余三getter UNKNOWN，故身份配对仍HELD（不是实验暂停）。不扩大为正式继承/账本迁移PASS，不重复本次测试；下一步仅建议调查缺失的转移佐证，不进入E2/F。截图已hash归档，runtime/main不改，无部署。
 

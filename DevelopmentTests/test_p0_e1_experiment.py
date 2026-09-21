@@ -19,7 +19,7 @@ function setup()
  Game={GetProperty=function(self,k)if k==key then return M.Copy(store[k])end;assert(k=='SPC_DEV_BINDING_B013_P0');return s.ledger end,
  SetProperty=function(self,k,v)assert(k==key,'OLD_GAME_WRITE');writes=writes+1;if not badwrite then store[k]=M.Copy(v)end end,GetCurrentGameTurn=function()return turn end}
  CityManager={GetCityAt=function(x,y)assert(x==4 and y==5);return exists and city or nil end}
- P={VERSION='P0-B-090.117',Field=function(t,k)return t[k]end,IsTestPlayer=function(pid)return pid==0 end}
+ P={VERSION='P0-B-091.118',Field=function(t,k)return t[k]end,IsTestPlayer=function(pid)return pid==0 end}
  shared={};SPCCityIdentityExperiment.Start(P,shared);d=shared.CityIdentityExperiment
 end
 setup();assert(writes==0);Events.CityRemovedFromMap.fn(0,7);assert(writes==0)
@@ -75,15 +75,37 @@ l.execute("runRequest(0,{Action='IDENTITY_EXPERIMENT_BEGIN',Token='a',CityID=7})
 t=ast.parse((R/'DevelopmentTests/test_arch_v2_d2.py').read_text());fix=next(ast.literal_eval(x.value) for x in t.body if isinstance(x,ast.Assign) and any(isinstance(k,ast.Name) and k.id=='UI_FIX' for k in x.targets))
 u=LuaRuntime();u.execute(fix)
 u.execute("Mouse.eRClick=2;P.Scalar=tostring;print=function()end;record={};compare={};Controls.InheritRecordButton.RegisterCallback=function(c,e,f)record[e]=f end;Controls.InheritReadButton.RegisterCallback=function(c,e,f)compare[e]=f end;UI.RequestPlayerOperation=function(pid,op,p)sends=sends+1;lastAction=p.Action;shared.LastToken=p.Token;shared.Snapshot='ok';end")
+u.execute((M/'UI/CityIdentityEvidence.lua').read_text())
 u.execute((M/'UI/P0Panel.lua').read_text())
 u.execute("init();record[2]();assert(sends==1 and lastAction=='IDENTITY_EXPERIMENT_BEGIN');UI.GetHeadSelectedCity=function()return nil end;compare[1]();assert(sends==2 and lastAction=='IDENTITY_EXPERIMENT_READ');for i=1,128 do fire('SystemUpdateUI')end;assert(sends==2)")
 for p in M.rglob('*.lua'):l.execute('assert(load(...))',p.read_text())
-x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='117'
+x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='118'
 assert sorted(f.text for f in x.findall('./Files/File'))==sorted(str(p.relative_to(M)) for p in M.rglob('*') if p.is_file() and p.suffix!='.modinfo')
 assert 'CityIdentityExperiment.lua' in [f.text for f in x.findall('./InGameActions/ImportFiles/File')]
-ET.parse(M/'UI/P0Panel.xml');assert 'P0-B-090.117' in (M/'Probe.lua').read_text()
+ET.parse(M/'UI/P0Panel.xml');assert 'P0-B-091.118' in (M/'Probe.lua').read_text()
 allowed={'Mod/'+p for p in ['CityIdentityExperiment.lua','Gameplay.lua','Probe.lua','SpecializationP0.modinfo','UI/P0Panel.lua','UI/P0Panel.xml','UI/RuntimeAudit.lua']}
 for p in subprocess.check_output(['git','ls-files','Mod','Specialization/Design'],cwd=R,text=True).splitlines():
  if p not in allowed:assert (R/p).read_bytes()==subprocess.check_output(['git','show','277b3b6:'+p],cwd=R),p
 assert 'shared.InheritanceIsolation=true' in g
-print('E1 experiment LOCAL_SIMULATION_PASS: opt-in/new-key-only; event zero writes; dedupe/bounds; transfer HELD/candidate; reload; failure/concurrent/corrupt guards; actual dispatcher/UI; idle zero requests; old writers/Design unchanged; Lua/XML/manifest117.')
+print('E1 experiment LOCAL_SIMULATION_PASS: opt-in/new-key-only; event zero writes; dedupe/bounds; transfer HELD/candidate; reload; failure/concurrent/corrupt guards; actual dispatcher/UI; idle zero requests; old writers/Design unchanged; Lua/XML/manifest118.')
+
+# Actual UI evidence: absent/error/nil/numeric values, fixed bound, no writes or requests.
+v=LuaRuntime();v.execute((M/'UI/CityIdentityEvidence.lua').read_text())
+v.execute(r"""
+Events=setmetatable({}, {__index=function(t,k)local e={};function e.Add(f)e.fn=f end;rawset(t,k,e);return e end})
+P={VERSION='B091.118',Field=function(t,k)return t[k]end,IsTestPlayer=function(p)return p==0 end}
+local row={schema=1,requester=0,token='one',origin={owner=0,cityID=7,x=4,y=5}}
+Game={GetProperty=function()return row end,GetCurrentGameTurn=function()return 8 end,SetProperty=function()error('WRITE')end}
+local c={GetOwner=function()return 62 end,GetID=function()return 40 end,GetOriginalOwner=function()return 0 end,GetJustConqueredFrom=function()error('unavailable')end,GetLastTransferType=function()return nil end}
+CityManager={GetCityAt=function()return c end};UI={RequestPlayerOperation=function()error('REQUEST')end}
+local d=SPCCityIdentityEvidence.New(P)
+local t=d.Read(0);assert(t:find('GetOriginalOwner: 0') and t:find('ABSENT') and t:find('CALL_ERROR') and t:find('nil'))
+for i=1,20 do Events.CityTransfered.fn(62,40,i)end
+assert(d.Read(0):find('观察事件：8'))
+assert(Events.SystemUpdateUI.fn==nil)
+local cold=SPCCityIdentityEvidence.New(P);assert(cold.Read(0):find('观察事件：0'))
+Events.CulturalIdentityCityConverted.fn(62,40,0);assert(cold.Read(0):find('CulturalIdentityCityConverted'))
+assert(not cold.Read(1):find('GetOriginalOwner'))
+""")
+u.execute("local before=sends;compare[2]();assert(sends==before)")
+print('UI evidence PASS: actual right-click zero requests; numeric/nil/absent/error distinguished; bound8; fresh-context reset; no writer.')

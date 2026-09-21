@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0236",
-    "runtime": "B090.117 / modinfo117",
+    "status": "S0237",
+    "runtime": "B091.118 / modinfo118",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
@@ -91,6 +91,11 @@
       "path": "Mod/CityIdentityExperiment.lua",
       "kind": "full",
       "reason": "Only new test-key writer"
+    },
+    {
+      "path": "Mod/UI/CityIdentityEvidence.lua",
+      "kind": "full",
+      "reason": "Authorized on-demand UI-only transfer evidence"
     }
   ],
   "dependencies": [
@@ -147,7 +152,7 @@
     "local": "LOCAL_SIMULATION_PASS",
     "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Investigate transfer corroboration, no E2/F",
+    "next": "Two UI evidence screenshots before/after transfer, no E2/F",
     "native_observation": "B090 begin and Game experiment persistence after Free City transfer/reload PASS in supplied scene;OriginalOwner0,three getters UNKNOWN;identity HELD"
   },
   "authorized_supplement": "One explicitly enabled Game experiment key, not formal identity/ledger migration"
