@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0240
+Status Revision: S0241
 Implementation Build: develop P0-B-092.119 / modinfo119; live B092.119 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_EVENT_SHADOW_AWAITING_USER
+Work State: P0_E1_FREE_CITY_SHADOW_NATIVE_PASS_SCOPE_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B092四图配对验收](Validation/Results/Specialization_B092_P0E1_Shadow_Review.md)：T8 0/131073→62/65536，Gameplay直接收到6条事件并给出SHADOW_CANDIDATE，UI两条转移事件独立吻合。单次自由城转移shadow USER_GAME_TEST_PASS；旧保存HELD是独立getter结论，不是实验暂停。不需要为本路径新建UI桥；不扩大为完整E1/永久身份/正式迁移通过。截图4/4 hash归档，无需重复。下一步建议审阅E1支持边界与持久映射计划；本轮不实施、不部署、不进入E2/F。以下等待截图文字为历史。
 
 B092.119：获授权实现[事件配对shadow及Gameplay事件诊断](../Architecture/v2/P0_E1_Game_Record_Experiment.md#b092119--authorized-event-shadow-implementation)。定向LOCAL_SIMULATION_PASS，等待一次原路径Gameplay左键截图；shadow不写入、不认领、不迁移，旧保存状态与预演分离。旧账本/Design/收益/UI未改，不进入E2/F。
 

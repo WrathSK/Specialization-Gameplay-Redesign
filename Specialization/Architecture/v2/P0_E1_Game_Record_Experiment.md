@@ -79,3 +79,7 @@ LOCAL_SIMULATION_PASS: original E1/UI targeted suite, new pure candidate/duplica
 Minimal user test: independent pre-transfer save, select owned branch city, right-click 记录城市身份 (existing saved experiment may be reused), then left-click 实验对照 once before transfer to initialize Gameplay watch even on a loaded experiment. Transfer to Free City in the same turn; left-click 实验对照 and provide one screenshot showing event shadow and Gameplay events. UI right-click and save/load repeats not required. If shadow is a candidate, that confirms only this one-step experimental path, not full E1 or E2/F.
 
 B092 W0003 deployment: source `cbf99b38894621fa345d68bb2ae4ba7df2b409be`, game exited (OS verified),150/150 MATCH;B091/stable recovery retained. Receipt `SpecializationDeploymentBackups/B092.119-cbf99b3-playtest.json`. Main unchanged; no game launched.
+
+## B092 native result — single Free City shadow PASS
+
+[Four paired screenshots](../../Status/Validation/Results/Specialization_B092_P0E1_Shadow_Review.md) confirm Gameplay six-event evidence and SHADOW_CANDIDATE for T8 0/131073→62/65536; UI independently agrees. Stored HELD is the separate old getter result. No UI sample bridge needed for this observed path. USER_GAME_TEST_PASS is scoped to the single-transfer shadow, not formal identity/migration or untested transfer types. No repeat requested; next is support-boundary/persistent mapping planning, not automatic E2/F.

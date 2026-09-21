@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0240",
+    "status": "S0241",
     "runtime": "B092.119 / modinfo119",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "cbf99b38894621fa345d68bb2ae4ba7df2b409be",
-  "current_batch": "P0-E1 EVENT_SHADOW_AWAITING_USER",
-  "next_batch": "Wait one-step Gameplay event shadow native evidence; no E2/F",
+  "current_batch": "P0-E1 FREE_CITY_SHADOW_NATIVE_PASS_SCOPE_REVIEW",
+  "next_batch": "Review E1 support boundary and persistent mapping plan; no automatic implementation/E2/F",
   "manifest": "Specialization/Workflow/P0-E1.json",
   "live": "B092.119 / modinfo119 deployed W0003;150/150 MATCH;B091/stable recovery retained",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B092 pure shadow local PASS; unaffected paths reused",
+  "context_review_status": "B092 four native screenshots reviewed; scoped shadow PASS; unchanged runtime context reused",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,0 +1,29 @@
+{
+  "build": "B092.119 / modinfo119",
+  "source_commit": "cbf99b38894621fa345d68bb2ae4ba7df2b409be",
+  "archive": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B092_P0E1_Shadow_20260920",
+  "files": [
+    {
+      "file": "Screenshot 2026-09-20 at 11.00.10 PM.png",
+      "stage": "before Gameplay",
+      "sha256": "8c73d88c8e131697da9f1cf78786c3cd34cb1c9750ea0654e63171877e87e9c2"
+    },
+    {
+      "file": "Screenshot 2026-09-20 at 11.00.13 PM.png",
+      "stage": "before UI",
+      "sha256": "3055e2df66903073c994125ca3032ab90c9ca8d1907ecc383bcc7efe8285ef56"
+    },
+    {
+      "file": "Screenshot 2026-09-20 at 11.00.32 PM.png",
+      "stage": "after Gameplay",
+      "sha256": "2aa1bbedd660c64b40a042d7ccb4593a6fd8039542997dc514328d356fdfef74"
+    },
+    {
+      "file": "Screenshot 2026-09-20 at 11.00.41 PM.png",
+      "stage": "after UI",
+      "sha256": "e531aa988865cf954643c05f53833e681061b1005b9a14521fe41986427b55f4"
+    }
+  ],
+  "integrity": "4/4 before/after SHA256 match",
+  "scope": "One watched branch-city transfer to Free Cities at T8; no formal migration"
+}
