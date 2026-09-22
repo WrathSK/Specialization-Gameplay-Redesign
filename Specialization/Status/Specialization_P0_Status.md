@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0243
+Status Revision: S0244
 Implementation Build: develop P0-B-093.120 / modinfo120; live B093.120 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_PERSISTENT_MAPPING_AWAITING_USER
+Work State: P0_E1_B093_RUNTIME_ERROR_FIX_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B093实机暂停](Validation/Results/Specialization_B093_P0E1_Paused_Review.md)：function expected instead of nil，USER_GAME_TEST_FAIL（本次闭环阻断）。新事件入口table.unpack缺失的故障注入可复现未启用即锁存错误；原生具体调用点尚未确认，不归因为未选城。截图hash归档，建议移除该依赖并加简短阶段诊断，尚未修复/部署，不要求重复测试，不进入E2/F。旧B090/B092局部证据保留。
 
 [B093.120单城持久映射](../Architecture/v2/P0_E1_Persistent_Mapping_Plan.md#b093120-实施记录)已授权实现，定向L3 LOCAL_SIMULATION_PASS：事件自动保存、冷加载恢复监听、10k重复零重复写、冲突/失败暂停。仅新实验key；不迁移专业、不改收益/Design，不进入E2/F。等待一次“转移后先保存读档、再左键对照”的原生验证；不沿用B092作为新闭环PASS。W0003已部署，151/151一致，B092/stable恢复点核验；未启动游戏。以下计划等待授权文字为历史。
 

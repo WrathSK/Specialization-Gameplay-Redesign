@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0243",
+    "status": "S0244",
     "runtime": "B093.120 / modinfo120",
     "military": "D0034"
   },
@@ -160,10 +160,10 @@
   ],
   "result": {
     "local": "B093 LOCAL_SIMULATION_PASS: actual Lua auto-save/cold-load and targeted L3 protection",
-    "native_gate": "TECHNICAL_INVESTIGATION_REQUIRED",
+    "native_gate": "USER_GAME_TEST_FAIL / CALL_SITE_UNCONFIRMED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Await B093 native no-diagnostic-before-save/load closure; no E2/F",
-    "native_observation": "B092 T8 0/131073→62/65536: Gameplay6 events, SHADOW_CANDIDATE; UI2 matching events. Single Free City shadow USER_GAME_TEST_PASS only; full identity/migration remains unaccepted."
+    "next": "Review/authorize narrow event-wrapper fix and phase diagnostic; no repeat yet",
+    "native_observation": "B093 screenshot function expected instead of nil: experiment blocked, automatic persistence not confirmed. B092 scoped PASS retained."
   },
   "authorized_supplement": "User authorized single-city persistent mapping V2; no profession migration"
 }
