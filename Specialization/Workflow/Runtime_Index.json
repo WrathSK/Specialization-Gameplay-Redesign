@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "pending checkpoint commit; see Git history for B096.123",
+  "runtime_commit": "735ff7b3ebf788e1427143a1b80a38a9e77e8a20",
   "runtime": "B096.123 / modinfo123",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
