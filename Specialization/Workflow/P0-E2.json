@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0248",
-    "runtime": "B094.121 / modinfo121",
+    "status": "S0249",
+    "runtime": "B095.122 / modinfo122",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -85,6 +85,31 @@
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
       "kind": "full",
       "reason": "Task-scoped ELIG-001..006 and PROG-004..010 ownership/claim rules; unchanged whole-file provenance"
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "E2 partial implementation/entrypoint/eligibility/targeted test review"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "E2 partial implementation/entrypoint/eligibility/targeted test review"
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "E2 partial implementation/entrypoint/eligibility/targeted test review"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "E2 partial implementation/entrypoint/eligibility/targeted test review"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_e2.py",
+      "kind": "full",
+      "reason": "E2 partial implementation/entrypoint/eligibility/targeted test review"
     }
   ],
   "dependencies": [
@@ -141,10 +166,10 @@
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "READY_FOR_SCOPE_REVIEW",
-    "implementation": "NOT_AUTHORIZED",
-    "native": "NOT_IMPLEMENTED",
-    "next": "Wait user approval of E2 first slice",
-    "scope_review": "Ownership semantics already defined; first slice unchanged, loss/return then AI-conquest Claim planned separately; no AI/MP implementation"
+    "plan": "AUTHORIZED_FIRST_SLICE",
+    "implementation": "PARTIAL_SAME_OWNER_LOCAL_PASS_EXIT_GATE_BLOCKED",
+    "native": "NOT_TESTED_NOT_DEPLOYED",
+    "next": "Resolve exact module-owned exit cleanup approval boundary; finish consumer/exit validation before deployment",
+    "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

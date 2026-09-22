@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0248
-Implementation Build: develop P0-B-094.121 / modinfo121; live B094.121 deployed W0003; stable B069.96
+Status Revision: S0249
+Implementation Build: develop P0-B-095.122 / modinfo122 PARTIAL_NOT_DEPLOYABLE; live B094.121 unchanged; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_PLAN_AWAITING_AUTHORIZATION
+Work State: P0_E2_PARTIAL_SAME_OWNER_VALIDATED_EXIT_GATE_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[P0-E2 B095.122 partial检查点](../Architecture/v2/P0_E2_Plan.md#b095122--首段实施检查点未完成不部署)：用户已授权四专业单城同Owner保存首段；新Game进度路由、旧writer隔离、投资/读档与诊断已实现并通过定向LOCAL_SIMULATION_PASS，非实机PASS。四专业开放范围不变，未来领域仅保留扩展能力。确认退出的carrier覆盖未完成：自动审批拒绝前缀批量删除；只读确认ResearchApply/Cross/Chair的AI-owner过滤会跳过旧载体处理。未采用被拒绝方案，不部署，不进入F/Claim/夺回实施；须完成逐模块、单城明确退出及相应回归后再交付测试。运行包保持B094.121；main/Design不变。以下“待授权”记录属于此前历史。
 
 E2范围已按用户澄清收窄：[单人/仅玩家与所有权路径](../Architecture/v2/P0_E2_Plan.md#当前单人范围澄清用户确认2026-09-21)。AI/自由城持有时全部效果休眠、不投资；原城夺回沿用PROG-004恢复，首次征服无历史AI城沿用PROG-006～009 snapshot/Claim分流，二者不是未决Design。首段同Owner保存切换范围不变；后续处理失城/夺回及独立征服初始化，无AI/多人实施依赖。当前IsTestPlayer未检查Human门槛及旧carrier退出需实现时核对，不能仅靠不跑AI Audit保证无效果。本轮仅计划/索引，无runtime/Design/部署变化。
 

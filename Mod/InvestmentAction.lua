@@ -9,6 +9,10 @@ function SPCInvestmentAction.Start(P,shared)
   for k,v in pairs(a) do if not same(v,b[k]) then return false end end
   for k in pairs(b) do if a[k]==nil then return false end end;return true
  end
+ local function hk(pid,c)
+  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(c) then return tostring(pid)..':'..tostring(c:GetID()) end
+  return pid -- unmigrated cities retain the legacy player bucket
+ end
  local function anchor(f) return {owner=f.owner,cityID=f.cityID,token=f.token,first=cp(f.first),specialization=f.specialization} end
  local function facts(pid,c)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'OWNER_CHANGED')
@@ -31,12 +35,18 @@ function SPCInvestmentAction.Start(P,shared)
   else assert(u:GetX()==c:GetX() and u:GetY()==c:GetY(),'MOVE_SETTLER_TO_CITY_CENTER') end
   return u
  end
+ local function ledgerRead(pid,c)
+  local store=shared.CityProgressionStore
+  if store and store.Owns(c) then return store.Investment(pid,c) end
+  return c:GetProperty(KEY)
+ end
  local function write(pid,c,old,nextValue)
-  assert(not halted[pid],'REENTRANT_HELD');facts(pid,c)
-  assert(same(c:GetProperty(KEY),old),'STALE_LEDGER')
-  P.SetProperty(c,KEY,cp(nextValue))
-  assert(not halted[pid] and same(c:GetProperty(KEY),nextValue),'LEDGER_WRITE_UNCONFIRMED')
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'InvestmentAction.lua') end
+  assert(not halted[hk(pid,c)],'REENTRANT_HELD');facts(pid,c)
+  assert(same(ledgerRead(pid,c),old),'STALE_LEDGER')
+  local store=shared.CityProgressionStore
+  if store and store.Owns(c) then store.WriteInvestment(pid,c,old,nextValue) else P.SetProperty(c,KEY,cp(nextValue)) end
+  assert(not halted[hk(pid,c)] and same(ledgerRead(pid,c),nextValue),'LEDGER_WRITE_UNCONFIRMED')
+  if not (store and store.Owns(c)) and shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'InvestmentAction.lua') end
   facts(pid,c) -- same native reader used by Lv1/network validates each state
  end
  local function finish(pid,c,ledger)
@@ -53,7 +63,7 @@ function SPCInvestmentAction.Start(P,shared)
  function data.ReadView(pid,c,id)
   local v={legal=false,prepared=false}
   local ok,err=pcall(function()
-   assert(not busy[pid] and not halted[pid],'INVESTMENT_HELD')
+   assert(not busy[pid] and not halted[hk(pid,c)],'INVESTMENT_HELD')
    local f=facts(pid,c);assert(f.specialization~='NONE','SPECIALIZATION_REQUIRED')
    settler(pid,c,id,true)
    v.specialization=f.specialization;v.potential=f.potential;v.nextPotential=f.potential+1
@@ -63,7 +73,7 @@ function SPCInvestmentAction.Start(P,shared)
    local p=plans[pid]
    v.prepared=p~=nil and p.site and p.owner==pid and p.cityID==c:GetID() and p.unitID==id
     and p.turn==Game.GetCurrentGameTurn() and same(anchor(f),p.anchor)
-    and same(c:GetProperty(KEY),p.ledger) and f.potential==p.potential
+    and same(ledgerRead(pid,c),p.ledger) and f.potential==p.potential
    if v.prepared then v.planToken=p.token end
   end)
   if not ok then v.reason=tostring(err);v.legal=false;v.prepared=false end
@@ -78,12 +88,12 @@ function SPCInvestmentAction.Start(P,shared)
  function data.Prepare(pid,c,unitID,requestToken,site)
   shared.InvestmentPreview=nil;plans[pid]=nil
   local ok,out=pcall(function()
-   assert(not busy[pid] and not halted[pid],'INVESTMENT_HELD')
+   assert(not busy[pid] and not halted[hk(pid,c)],'INVESTMENT_HELD')
    local f=facts(pid,c);assert(f.specialization~='NONE','SPECIALIZATION_REQUIRED')
    assert(not f.investmentPending,'PENDING_REQUIRES_REVIEW');assert(f.potential<4,'POTENTIAL_CAP_4')
    settler(pid,c,unitID,site)
    local plan={site=site==true,owner=pid,cityID=c:GetID(),unitID=unitID,token=f.token..':R'..(f.investmentCount+1)..':'..requestToken,
-    turn=Game.GetCurrentGameTurn(),anchor=anchor(f),potential=f.potential,ledger=cp(c:GetProperty(KEY))}
+    turn=Game.GetCurrentGameTurn(),anchor=anchor(f),potential=f.potential,ledger=cp(ledgerRead(pid,c))}
    plans[pid]=plan
    shared.InvestmentPreview={owner=pid,cityID=plan.cityID,unitID=unitID,token=plan.token}
    return 'B033 PREPARED city='..c:GetID()..' '..f.specialization
@@ -94,11 +104,11 @@ function SPCInvestmentAction.Start(P,shared)
   return ok and out or ('B033 REJECTED: '..tostring(out))
  end
  function data.Confirm(pid,c,token)
-  if busy[pid] then halted[pid]=true;return 'B033 HELD: REENTRANT' end
+  if busy[pid] then halted[hk(pid,c)]=true;return 'B033 HELD: REENTRANT' end
   busy[pid]=true;local destructive=false
   local ok,out=pcall(function()
-   assert(not halted[pid],'INVESTMENT_HELD')
-   local f=facts(pid,c);local old=c:GetProperty(KEY)
+   assert(not halted[hk(pid,c)],'INVESTMENT_HELD')
+   local f=facts(pid,c);local old=ledgerRead(pid,c)
    if old and old.investments[token] then return 'B033 ALREADY_COMMITTED\n'..shared.EffectiveFacts.Describe(pid,c) end
    local p=plans[pid]
    assert(p and p.token==token and p.owner==pid and p.cityID==c:GetID(),'PREPARE_FIRST')
@@ -113,7 +123,7 @@ function SPCInvestmentAction.Start(P,shared)
     cityUID=f.token,expectedRevision=intent.revision}
    destructive=true;write(pid,c,old,intent)
    u=settler(pid,c,p.unitID,p.site);P.SetProperty(u,UNIT_KEY,uid)
-   assert(u:GetProperty(UNIT_KEY)==uid and not halted[pid],'UNIT_RESERVATION_UNCONFIRMED')
+   assert(u:GetProperty(UNIT_KEY)==uid and not halted[hk(pid,c)],'UNIT_RESERVATION_UNCONFIRMED')
    Players[pid]:GetUnits():Destroy(u)
    assert(not Players[pid]:GetUnits():FindID(p.unitID),'UNIT_DEBIT_UNCONFIRMED')
    local confirmed=cp(intent);confirmed.pending.stage='CONSUMED_CONFIRMED';write(pid,c,intent,confirmed)
@@ -123,7 +133,7 @@ function SPCInvestmentAction.Start(P,shared)
    return 'B033 INVESTED: consumed 1 Settler\n'..shared.EffectiveFacts.Describe(pid,c)
   end)
   busy[pid]=false
-  if not ok and destructive then halted[pid]=true end
+  if not ok and destructive then halted[hk(pid,c)]=true end
   return ok and out or ('B033 '..(destructive and 'HELD' or 'REJECTED')..': '..tostring(out))
  end
  -- Invalidate a prepared unit if it is removed, even if its numeric ID is reused.
@@ -137,10 +147,13 @@ function SPCInvestmentAction.Start(P,shared)
   for pid,player in pairs(Players) do
    if P.IsTestPlayer(pid) then
     for _,c in player:GetCities():Members() do P.Count('city_scan');
-     local ledger=c:GetProperty(KEY)
-     if type(ledger)=='table' and ledger.pending then
-      local ok,err=pcall(function() facts(pid,c);finish(pid,c,ledger) end)
-      if not ok then halted[pid]=true;print('[SPC][B033][RECOVERY_HELD] '..tostring(err)) end
+     local ok,err=pcall(function()
+      local ledger=ledgerRead(pid,c)
+      if type(ledger)=='table' and ledger.pending then facts(pid,c);finish(pid,c,ledger) end
+     end)
+     if not ok then
+      if not (shared.CityProgressionStore and shared.CityProgressionStore.Owns(c)) then halted[hk(pid,c)]=true end
+      print('[SPC][B033][RECOVERY_HELD] '..tostring(err))
      end
     end
    end

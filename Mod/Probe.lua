@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-094.121"
+P.VERSION = "P0-B-095.122"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -35,7 +35,9 @@ function P.IsTestPlayer(playerID)
   local config=PlayerConfigurations and PlayerConfigurations[playerID]
   local ok,civ=P.Call(config,"GetCivilizationTypeName")
   local leaderOK,leader=P.Call(config,"GetLeaderTypeName")
-  return ok and leaderOK and civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST"
+  local humanOK,human=P.Call(config,"IsHuman")
+  local modeOK,multi=pcall(function() return GameConfiguration.IsAnyMultiplayer() end)
+  return humanOK and human==true and modeOK and multi==false and ok and leaderOK and civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST"
 end
 
 function P.Summary(playerID,cityID)

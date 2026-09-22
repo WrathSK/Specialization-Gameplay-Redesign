@@ -51,6 +51,7 @@ function SPCCityJournalProbe.Start(P,shared)
   return clone(v),token
  end
  local function write(pid,city,b,old,nextValue)
+  assert(not (shared.CityProgressionStore and shared.CityProgressionStore.Owns(city)),"GAME_STORE_OWNS_CITY")
   assert(equal(read(pid,city),old,0),"STALE_JOURNAL")
   b.writes=b.writes+1
   pcall(function() P.SetProperty(city,KEY,nextValue) end)
@@ -60,6 +61,7 @@ function SPCCityJournalProbe.Start(P,shared)
  -- A failure stops ALL further submissions for this player in this session.
  -- Preserve a GAP if storage remains usable. Never overwrite identity conflicts.
  local function run(pid,city,fn)
+  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return end
   local b=bucket(pid)
   if b.halted then return end
   if b.busy then b.halted=true;b.last="REENTRANCY_STOP";return end
@@ -131,6 +133,7 @@ function SPCCityJournalProbe.Start(P,shared)
  end
  function j.Read(pid,city)
   if not P.IsTestPlayer(pid) then return "OUTSIDE_TEST_CIV" end
+  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return "Game进度记录；旧Journal冻结" end
   local b=bucket(pid)
   local ok,line=pcall(function()
    local raw=city:GetProperty(KEY)

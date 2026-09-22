@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PLANNED_NOT_AUTHORIZED。用户本轮授权推进计划，不授权runtime实施。
+Status: AUTHORIZED / PARTIAL_IMPLEMENTATION_NOT_DEPLOYABLE。2026-09-21用户授权首段实施；当前同Owner保存链本地通过，确认退出的效果清理未完成。
 Baseline: B094.121 / modinfo121，runtime source a113a6096e141112a5a7ef67453afd8cdc00ac3c。D0035 / A0161；四专业v0.1范围不变。
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
@@ -148,3 +148,36 @@ Prepare读取路由提供的同Owner事实、record revision、receipt集合；�
 本轮只计划，runtime/Design/main/运行包均不改，无部署或Gameplay regression。
 
 计划检查：现有context.py CLI的batch枚举尚未包含E2；本轮直接调用同一工具的check(manifest)完成全部schema/hash/authority检查，PASS（151 runtime files）。未修改工具逻辑；实施时只需将E2加入既有CLI枚举，不建立新验证器。git diff --check通过；本轮无Gameplay测试。
+
+
+## B095.122 — 首段实施检查点（未完成，不部署）
+
+用户补充：v0.1只开放Research/Culture/Industry/Commerce四专业区域；领域词汇/分派结构允许未来扩展，但本批不启用其它专业、不实施其玩法。`P.Families`四项不变；新保存导入明确只接受这四种Identity。Design/A0161不变。
+
+### 已完成部分 / STATIC_CONFIRMED
+
+- 新`CityProgressionStore.lua`单城、版本化Game Property `SPC_CITY_PROGRESSION_E2_V1`：原Owner/reference、基础Identity/P1、投资ledger/receipts、导入绑定证明；PREPARED→ACTIVE读回确认。不是外部文件，不以城市名作key，不是全局永久cityKey。
+- 最多一个目标；初始化先于旧Binding/Journal/Flow；手动导入检查完整旧凭据且无pending。重复导入no-op，未知schema/来源变更/写入失败暂停；不补历史、不回退旧writer。PREPARED可在同Owner完整来源不变时读档完成。
+- 已导入目标的Binding/Journal/FreshHook/Flow写入、GAP和load resume全部旁路；Flow.SupportFacts转读新base（SourceYieldProbe也经此路由）；EffectiveFacts从新ledger求Potential，并沿用当前总督求ACTIVE。其它城继续旧后端。
+- InvestmentAction保留INTENT→单位标记/销毁→CONSUMED_CONFIRMED→receipt；目标仅写Game记录。目标故障不污染其它城市，未迁移城保留原player错误桶。Network禁止将受新路由管理的缺失旧Flow当作NONE。
+- 复用两按钮：迁移进度左键旧记录只读、右键导入；进度保存左键读取新摘要。旧E1请求仍保留为独立证据入口，不作迁移凭据。
+- `IsTestPlayer`加单人/人类门槛；原版UI的PlayerConfigurations:IsHuman、GameConfiguration.IsAnyMultiplayer提供静态API依据；原生Gameplay-context可用性仍需实机。未知接口fail closed，不退回AI启用。
+- 无SQL/carrier定义/收益公式修改；无新周期扫描/hover request；新保存模块只在明确操作、load及城市生命周期事件访问单条记录。
+
+### 本地证据 / LOCAL_SIMULATION_PASS（不等于Civ VI实机）
+
+`DevelopmentTests/test_p0_e2.py`运行真实Lua保存/旧writer/EffectiveFacts/投资执行器：四专业×P1–P4共16种导入；重复/冷load；总督重算；真实旧回调目标零写；一新后端城+一旧后端城；移除旧账本仍读新记录；投资只消耗一次及幂等；单位ID复用；各写入失败窗口；PREPARED恢复/来源变更拒绝；未知schema；不接受MILITARY/REALLOCATING/GAP；迁移前后完整Network输入签名相同；无关通知不新增写；实际诊断dispatch。全Lua compile、modinfo inclusion与人类/单人门槛模拟通过。
+
+模拟城市移除/引用变化仅证明保存为HELD_TRANSFER、保留账本和阻止旧城重新登记；**没有证明其所有实际收益退出**。HELD原Owner再出现时的Network旧view排除也仍须随退出合同收束，不等同于已经实现夺回。
+
+### 阻塞 / 未完成项
+
+按前缀批量移除`BUILDING_SPC_*`的尝试被自动审批拒绝（没有执行），原因：批量删除可能超出同Owner首段并破坏游戏状态。没有绕过审批、没有采用该清理路径。
+
+随后只读确认：`ResearchApply.Audit`、`ResearchCross.Audit`、`ResearchChair.Audit`当前以`P.IsTestPlayer`过滤整个player，在AI接城后跳过；不能仅靠资格收紧宣称旧载体已退出。部分其它模块已有自己的清理逻辑，但尚未完成四专业全部效果的逐项退出覆盖证明。
+
+本段计划§6要求确认失去owner/reference时不得残留正式效果，因此不能把同Owner模拟通过当作整个E2 PASS。当前为**可恢复的partial implementation checkpoint**，不是可部署候选。
+
+下一最小修补：逐模块明确其拥有的实际carrier/退出入口，对受本批记录管理、确认退出的单城执行模块自身退出；不按全库前缀批量删除、不清普通建筑、不清永久账本、不恢复新Owner资格、不实现夺回/Claim。补齐相关退出/重复/UNKNOWN保持/Network失效的定向模拟，再复核已有收益消费者。需先解决上述审批边界。新cityKey/全城迁移/夺回/Claim/F仍不在本轮已完成范围。
+
+尚未运行完整affected-consumer/部署安全验收，因为退出实现尚未完成；没有USER_GAME_TEST，没有部署。B095.122/modinfo122仅为develop未完成候选编号，外部运行包保持B094.121。

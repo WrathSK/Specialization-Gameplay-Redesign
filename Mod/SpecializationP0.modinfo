@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="121">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="122">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B094.121 develop: opt-in one-city Game-property identity experiment; no gameplay migration.</Description>
+    <Description>B095.122 develop: opt-in same-owner single-city progression save cutover; four professions only.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -59,6 +59,7 @@
       <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
+      <File>CityProgressionStore.lua</File>
       <File>CityIdentityRead.lua</File>
       <File>InstitutionPresentation.lua</File>
       <File>UI/InstitutionOverview.lua</File>
@@ -329,7 +330,8 @@
     <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
-    <File>CityIdentityRead.lua</File>
+    <File>CityProgressionStore.lua</File>
+      <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>
     <File>UI/InstitutionOverview.lua</File>
     <File>UI/Institutions.lua</File>

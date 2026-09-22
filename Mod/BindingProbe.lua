@@ -85,6 +85,7 @@ function SPCBindingProbe.Start(P,shared)
    assert(integer(cid) and integer(x) and integer(y),"BAD_EVENT")
    local city=CityManager.GetCity(pid,cid)
    assert(city and city:GetID()==cid and city:GetOwner()==pid and city:GetX()==x and city:GetY()==y,"EVENT_OBJECT_MISMATCH")
+   if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then b.last="GAME_STORE_OWNS_CITY";return end
    local state,old=inspect(pid,city)
    if state=="BOUND_MATCH" then b.last="DUPLICATE_NO_WRITE";return end
    assert(state=="UNTRACKED_NO_WRITE","EXISTING_BINDING_NO_REPAIR")

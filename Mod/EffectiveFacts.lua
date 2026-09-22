@@ -14,7 +14,9 @@ function SPCEffectiveFacts.Start(P,shared)
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local f=shared.CityFlowProbe.SupportFacts(pid,city)
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
-  local ledger=city:GetProperty(KEY)
+  local store=shared.CityProgressionStore
+  local ledger
+  if store and store.Owns(city) then ledger=store.Investment(pid,city) else ledger=city:GetProperty(KEY) end
   local n=0
   if f.specialization=='NONE' then
    assert(f.potential==0 and ledger==nil,'UNASSIGNED_INVESTMENT_CONFLICT')

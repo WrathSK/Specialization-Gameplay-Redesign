@@ -26,6 +26,15 @@ local function request(playerID,params)
   end
   if type(params)~="table" or type(params.Token)~="string" or #params.Token>100 then return end
   -- B068 presentation is a disposable mirror, never a source of city state.
+  if params.Action=='PROGRESSION_IMPORT' or params.Action=='PROGRESSION_STORE_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,out=pcall(function()
+      local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
+      if params.Action=='PROGRESSION_IMPORT' then return shared.CityProgressionStore.Import(playerID,c) end
+      return shared.CityProgressionStore.Describe(playerID,c)
+    end)
+    shared.Snapshot=ok and out or ('进度保存暂停：'..tostring(out));shared.LastToken=params.Token;return
+  end
   if params.Action=='IDENTITY_EXPERIMENT_BEGIN' or params.Action=='IDENTITY_EXPERIMENT_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,out=pcall(function()
@@ -464,6 +473,10 @@ SPCCompletionProbe.Start(P,shared)
 include("StorageProbe")
 SPCStorageProbe.Start(P,shared)
 
+include("CityIdentityRead")
+include("CityProgressionStore")
+SPCCityProgressionStore.Start(P,shared)
+
 include("BindingProbe")
 SPCBindingProbe.Start(P,shared)
 
@@ -588,7 +601,6 @@ shared.OnPermanentCityWrite=nil
 shared.InheritanceIsolation=true
 
 -- Independent read-only evidence; never start the isolated inheritance writers.
-include("CityIdentityRead")
 SPCCityIdentityRead.Start(P,shared)
 
 include("CityIdentityExperiment")
