@@ -1,0 +1,13 @@
+{
+  "build": "B094.121 / modinfo121",
+  "source_commit": "a113a6096e141112a5a7ef67453afd8cdc00ac3c",
+  "file": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B094_P0E1_Mapping_Pass_20260921/Screenshot 2026-09-21 at 8.12.37 PM.png",
+  "sha256": "137b9b9e82e57c7046e1a5243e34321571d29784973c46687a452bf5a2091640",
+  "integrity": "before/after MATCH",
+  "turn": 8,
+  "candidateKey": "E1V2:DEV-B013-P0-2",
+  "originOwner": 0,
+  "savedOwner": 62,
+  "revision": 3,
+  "currentObject": "MATCH"
+}

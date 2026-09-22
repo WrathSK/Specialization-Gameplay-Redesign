@@ -1,6 +1,6 @@
 # D0032 v0.1 implementation dependency and migration plan
 
-当前进度：D3与U1前置原型用户PASS；B092单次自由城事件shadow用户实机PASS，持久映射冷恢复尚未验证。当前[单城持久映射收尾计划](P0_E1_Persistent_Mapping_Plan.md)待实施授权；不等于完整E1身份/迁移通过，E2/F仍需独立审阅与授权。
+当前进度：D3与U1前置原型用户PASS；B094单城自由城市持久映射恢复USER_GAME_TEST_PASS，见[E1验收范围](../../Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)。不等于全路径身份/正式迁移通过；下一步收束支持范围并审阅E2具体计划，E2/F实施仍需授权。
 
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18

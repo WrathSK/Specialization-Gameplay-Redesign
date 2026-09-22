@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-E1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0245",
+    "status": "S0246",
     "runtime": "B094.121 / modinfo121",
     "military": "D0034"
   },
@@ -160,10 +160,11 @@
   ],
   "result": {
     "local": "B094 targeted actual Lua regression PASS including missing unpack",
-    "native_gate": "USER_GAME_TEST_REQUIRED",
+    "native_gate": "USER_GAME_TEST_PASS_SINGLE_FREE_CITY_MAPPING_ONLY",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Repeat minimal transfer/save/load closure on B094; no E2/F",
-    "native_observation": "B093 screenshot function expected instead of nil: experiment blocked, automatic persistence not confirmed. B092 scoped PASS retained."
+    "next": "E1 support boundary and E2 plan review; implementation separately authorized",
+    "native_observation": "B094 restored E1V2:DEV-B013-P0-2, owner0→62, revision3, current object matches; no formal ledger migration",
+    "completion_scope": "Single-city persistent mapping experiment complete; universal city continuity and profession migration are not certified"
   },
   "authorized_supplement": "User authorized single-city persistent mapping V2; no profession migration"
 }

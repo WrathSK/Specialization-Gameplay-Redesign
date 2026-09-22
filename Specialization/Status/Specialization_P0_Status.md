@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0245
+Status Revision: S0246
 Implementation Build: develop P0-B-094.121 / modinfo121; live B094.121 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_B094_FIX_AWAITING_USER
+Work State: P0_E1_SINGLE_TRANSFER_MAPPING_NATIVE_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B094单城持久映射验收](Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)：读档后已保存映射恢复、Owner0→62、修订3、对象一致，USER_GAME_TEST_PASS（单城自由城市实验范围）。B093暂停本次未复现；不扩大为全路径永久身份或正式迁移。截图hash归档，无需重测。下一步建议收束E1支持范围并提出E2具体计划，未授权E2/F实施。旧Tooltip文案遗留登记；本轮runtime/Design/main不变，无部署。以下等待本次测试内容为历史。
 
 [B094.121修复](../Architecture/v2/P0_E1_Persistent_Mapping_Plan.md#b094121--授权事件入口修复)已授权完成：直接varargs传参，未启用提前跳过，错误显示阶段。缺失unpack环境及原映射回归LOCAL_SIMULATION_PASS，原生闭环待验收。schema/判断/专业账本不改，不进入E2/F；已按W0003部署，151/151一致，B093/stable恢复点核验。
 

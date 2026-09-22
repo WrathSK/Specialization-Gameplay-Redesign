@@ -1,6 +1,6 @@
 # P0-E1 收尾计划：单城持久身份映射
 
-Status: IMPLEMENTATION_COMPLETE_AWAITING_USER — 用户已授权，B093.120单城实验LOCAL_SIMULATION_PASS；原生自动保存/冷恢复待验证。下方为获准计划。
+Status: USER_GAME_TEST_PASS_SINGLE_TRANSFER_SCOPE — 用户已授权，B093.120单城实验LOCAL_SIMULATION_PASS；单城自动保存/冷恢复已有B094用户实机证据。下方为获准计划及历史实施记录。
 Baseline: B092.119 / modinfo119，源码cbf99b38894621fa345d68bb2ae4ba7df2b409be；Design D0035 / Architecture A0161。四专业范围不变。
 
 ## 1. 证据与剩余问题
@@ -107,3 +107,7 @@ LOCAL_SIMULATION_PASS：现有实际Lua映射/保存/冷加载/冲突回归，�
 最小用户测试不变：转移前独立档，右键记录城市身份→转自由城→不点诊断先另存读档→左键实验对照一张截图。若再次暂停，阶段名用于定位，不要求继续操作。等待USER_GAME_TEST，E2/F不开放。
 
 B094 W0003部署：源码`a113a6096e141112a5a7ef67453afd8cdc00ac3c`，OS确认退出，151/151文件hash一致；B093/stable完整恢复点核验。Receipt `SpecializationDeploymentBackups/B094.121-a113a60-playtest.json`。main未改，无游戏启动。
+
+## B094原生验收
+
+[截图复核](../../Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)：已保存映射恢复、E1V2:DEV-B013-P0-2、Owner0→62、修订3、对象一致。单城持久映射原型USER_GAME_TEST_PASS；非正式身份/账本迁移PASS。无需重复，下一步只建议E1支持范围收束与E2具体计划，不自动实施。旧V1 Tooltip遗留已登记。
