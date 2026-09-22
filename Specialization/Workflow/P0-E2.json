@@ -315,7 +315,7 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
-    "native": "PENDING_USER_GAME_TEST",
+    "native": "DEPLOYED_PENDING_USER_GAME_TEST",
     "next": "User executes one-city round-trip; review evidence, no Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }

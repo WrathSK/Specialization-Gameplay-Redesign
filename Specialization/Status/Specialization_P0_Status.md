@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0252
-Implementation Build: develop P0-B-098.125 / modinfo125 NATIVE_VALIDATION_CANDIDATE; live B094.121 unchanged; stable B069.96
+Implementation Build: develop P0-B-098.125 / modinfo125 NATIVE_VALIDATION_CANDIDATE; live B098.125 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_NATIVE_ROUND_TRIP_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+B098.125 已按授权临时部署：source `0927183`，152/152 MATCH；既有B094.121完整恢复包151/151核验保留，stable/main不变。receipt `B098.125-0927183-playtest.json`（既有外部SpecializationDeploymentBackups目录）。未启动游戏，native各项仍待用户回传。
 
 B098.125：用户接受B097并授权最小native round-trip验证与必要测试部署；新增“E2往返”按需报告，不改B096/B097恢复规则。真实报告零写及相关生命周期回归LOCAL_SIMULATION_PASS；实机withdrawal/recapture/ACTIVE/Network/save-load均PENDING_USER_GAME_TEST。按[单城流程](../Architecture/v2/P0_E2_Plan.md#b098125--单城-native-ownership-round-trip-validation)由用户测试；不进入Claim/全城迁移/F。部署事务完成情况另记，下方旧“不部署”为历史批次约束。
 

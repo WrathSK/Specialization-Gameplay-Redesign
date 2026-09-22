@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "pending B098 validation checkpoint",
+  "runtime_commit": "0927183bf00c679e4d21e27dfc0813afc9d92e76",
   "runtime": "B098.125 / modinfo125",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
