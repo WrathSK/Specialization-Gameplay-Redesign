@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B094 single-city native recovery evidence; scoped docs only",
+  "review_basis": "E2 planning: exact legacy writer and direct-reader scoped audit; no runtime changes",
   "files": {
     "AGENTS.md": "03c9af87dccaefcf20814cb533a0316d85c8aa415a1a009b21850aaf6e62769f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -44,7 +44,7 @@
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "9b54c8562a38bf0494bc36733f509b140aff57c7f0ee1792601d919d2e2cb32b",
-    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "941306c3fcb530aed296754a740e5d7b0a6c693387cb468ef2533c8e92d593a8",
+    "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "079abdda7398f57bd96990158d18ee1c0561abe80676a8e6cadde673b297eacf",
     "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md": "d45b89723ee95880e8eeda34c35962eee3a7d1971997bdd5dc0a810d9232c680",
     "Specialization/Architecture/v2/D0032_Runtime_Inventory.json": "03ad69688b0bdd807964f77c0920cb562a8e5079c2584bc05bab1f409f63d6ce",
     "Specialization/Architecture/v2/D0032_Technical_Spikes.md": "024d006c5ca2ef798a59a959105ced84bb4bca50f5f91f88c181426b7a546e75",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "aa7cd10940fa14a1ce5f0fff79df211a3d7d9a4eec4affbaeeeba31cc5c94046",
+    "Specialization/Status/Specialization_P0_Status.md": "5ed5408b21985fa71a6b6c977c64a4f7ace843d321ea14777fee9b7991fdb1f9",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "b0eb2f1d5fc47cbaa66109e688291c484956c786865f43e1164d3b07d132f328",
+    "Specialization/Workflow/Authority.json": "baa0c00652674ca1dc59f76abd21eeb7349e3cb72ab1174280fa66e61cef3bea",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -177,6 +177,8 @@
     "Mod/CityIdentityMapping.lua": "767ef64bbc71fa9434a4abe93c768253ec8b1a80c1448f1bc7a93437df008b6f",
     "DevelopmentTests/test_p0_e1_mapping.py": "ea37ad80c8bc9e2b73e90ba59c3416ae94e13d71922f67aab136f7c1ee6e8135",
     "Specialization/Status/Validation/Results/Specialization_B093_P0E1_Paused_Review.md": "3abd2dcc66958dad5714f8ca63c1a8c7fb83b0de700a5c84f0808437378fa395",
-    "Specialization/Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md": "3046bb853bf940e3141101a43f89f58359490bb0a6be26e5385b6c7083cec214"
+    "Specialization/Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md": "3046bb853bf940e3141101a43f89f58359490bb0a6be26e5385b6c7083cec214",
+    "Specialization/Architecture/v2/P0_E2_Plan.md": "de9298ee4194dffea225057014a5fd19467fc5ad06dcbac7442701d206c583a3",
+    "Mod/FreshBindingHook.lua": "c7bdef1fe0612731a95cadf4227df25281c45c9d23ff0a7347be6a19aecb60bd"
   }
 }

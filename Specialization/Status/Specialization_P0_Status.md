@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0246
+Status Revision: S0247
 Implementation Build: develop P0-B-094.121 / modinfo121; live B094.121 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_SINGLE_TRANSFER_MAPPING_NATIVE_PASS
+Work State: P0_E2_PLAN_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+[E2具体计划](../Architecture/v2/P0_E2_Plan.md)已完成：建议先对一座原Owner/旧凭据完整的已专业化城市切换Game进度保存与既有移民投资；逐入口关闭目标旧writer，保留其它城旧路径。新城/跨Owner/专业Legacy/全量兼容不纳入首段，不自动进入F。E1只认定单次自由城持久映射原型PASS。当前仅计划，等待scope审阅与实施授权；无runtime/Design/部署变化，无用户测试。
 
 [B094单城持久映射验收](Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)：读档后已保存映射恢复、Owner0→62、修订3、对象一致，USER_GAME_TEST_PASS（单城自由城市实验范围）。B093暂停本次未复现；不扩大为全路径永久身份或正式迁移。截图hash归档，无需重测。下一步建议收束E1支持范围并提出E2具体计划，未授权E2/F实施。旧Tooltip文案遗留登记；本轮runtime/Design/main不变，无部署。以下等待本次测试内容为历史。
 

@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0246",
+    "status": "S0247",
     "runtime": "B094.121 / modinfo121",
     "military": "D0034"
   },
@@ -31,9 +31,9 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "a113a6096e141112a5a7ef67453afd8cdc00ac3c",
-  "current_batch": "P0-E1 SINGLE_TRANSFER_MAPPING_NATIVE_PASS",
-  "next_batch": "Scope E1 acceptance and prepare E2 plan after authorization; no automatic implementation",
-  "manifest": "Specialization/Workflow/P0-E1.json",
+  "current_batch": "P0-E2 PLAN_AWAITING_AUTHORIZATION",
+  "next_batch": "Review and authorize E2 same-owner single-city progression/investment cutover only",
+  "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B094.121 / modinfo121 deployed W0003;151/151 MATCH;B093/stable recovery retained",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B094 native recovery screenshot reviewed; runtime unchanged",
+  "context_review_status": "E2 scoped writer/read-chain audit; E1 native scope preserved",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,5 +59,5 @@
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_E2_Plan.md"
 }

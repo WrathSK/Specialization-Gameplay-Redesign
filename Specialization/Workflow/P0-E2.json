@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-E2",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0247",
+    "runtime": "B094.121 / modinfo121",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/BindingProbe.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/CityJournalProbe.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/CityFlowProbe.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/FreshBindingHook.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/InvestmentAction.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "E2 scoped persistence/read/write/cutover contract"
+    }
+  ],
+  "dependencies": [
+    "E1 single-city mapping native evidence (limited scope)",
+    "Current four-profession authority and B094 baseline"
+  ],
+  "old_writers": {
+    "preserve": [
+      "Unmigrated city legacy writers",
+      "All existing ability formulas/carriers",
+      "Isolated inheritance modules remain isolated"
+    ],
+    "adapt": [
+      "Migrated-city Binding/Journal/Flow guards and load recovery",
+      "Investment storage backend",
+      "EffectiveFacts/Network direct storage reads"
+    ]
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/SourceYieldProbe.lua",
+        "Mod/SampleLifecycle.lua",
+        "Mod/Gameplay.lua",
+        "Mod/Standardization.lua"
+      ],
+      "trigger": "Read exact affected consumers and event ordering before authorized implementation"
+    }
+  ],
+  "non_scope": [
+    "new-city/global cutover",
+    "cross-owner benefit inheritance",
+    "profession-specific historical ledger migration",
+    "F Academic Tradition",
+    "Design changes"
+  ],
+  "validation": {
+    "local": [
+      "Targeted L3 migration/investment/recovery/consumer regression in plan",
+      "Lua/manifest/context/deployment integrity"
+    ],
+    "user": "After implementation: one migrated P2/P3 city, one investment, save/load; one legacy city control"
+  },
+  "full_audit_triggers": [
+    "Writer bypass or cross-city halting",
+    "Unresolved native debit or ownership semantics"
+  ],
+  "result": {
+    "plan": "READY_FOR_SCOPE_REVIEW",
+    "implementation": "NOT_AUTHORIZED",
+    "native": "NOT_IMPLEMENTED",
+    "next": "Wait user approval of E2 first slice"
+  }
+}
