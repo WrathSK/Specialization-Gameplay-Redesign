@@ -30,7 +30,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "pending B097 checkpoint",
+  "runtime_commit": "81db996984043c663482e6df0ca67c9bcc8c88ad",
   "current_batch": "P0-E2 PARTIAL_ORIGINAL_OWNER_RETURN_LOCAL_PASS_NOT_DEPLOYED",
   "next_batch": "Checkpoint review; native identity/return evidence remains, no deployment/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
