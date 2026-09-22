@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "6be38b9ebfbc1ccc52af8dab94d33a89f161943e58ccf502820e046c1902bcfc",
+    "Specialization/Workflow/Authority.json": "0d7ac8b98e15d71cc1f9073395480c485f39fc0c301479bc974d68cc8d9c117f",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -181,6 +181,6 @@
     "Specialization/Architecture/v2/P0_E2_Plan.md": "9678521fd486e8197f19117cc17ee0401f3593afe869b04380f6c9538e143a00",
     "Mod/FreshBindingHook.lua": "e5a0c80b2d7139f47a9701636dbca1dee058513f7a88c23d01a56da7013c6195",
     "Mod/CityProgressionStore.lua": "ddf398fca3f1368fdbfc53465f8f5235bc7a94e84e2e8df3dd18f22a311ec5fa",
-    "DevelopmentTests/test_p0_e2.py": "f45e750e257ade01dbd58c817ca98720bec5188d350ce0944cb926b498a5ab79"
+    "DevelopmentTests/test_p0_e2.py": "349c1aaeae6ca122b91cf0d96e4341d03c9a86dcc76b298846cf3928b3e3ee05"
   }
 }

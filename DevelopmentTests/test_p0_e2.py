@@ -9,7 +9,7 @@ for n in ['CityIdentityRead','CityProgressionStore','BindingProbe','CityJournalP
  l.execute((M/(n+'.lua')).read_text())
 s=(R/'DevelopmentTests/test_p0_e1.py').read_text()
 l.execute('M=SPCCityIdentityRead\n'+s[s.index('function fixture()'):s.index('function expect(')])
-l.execute(r''' 
+l.execute(r'''
 local function event()local e={list={}};function e.Add(f)e.list[#e.list+1]=f end;function e.Fire(...)for _,f in ipairs(e.list)do f(...)end end;return e end
 local function events()return setmetatable({},{__index=function(t,k)local e=event();rawset(t,k,e);return e end})end
 local K=SPCCityProgressionStore.KEY
