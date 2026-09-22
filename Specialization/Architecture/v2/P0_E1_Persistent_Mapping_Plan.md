@@ -105,3 +105,5 @@ B093 W0003部署：源码`fc43df158ace9be4e5d7cc674210d96ee79f186b`；OS确认�
 LOCAL_SIMULATION_PASS：现有实际Lua映射/保存/冷加载/冲突回归，外加table.unpack及全局unpack均缺失时的未启用无关事件、登记→转移→冷恢复；四种故障阶段提示。旧writer/Design字节保护、全部Lua语法、modinfo121及清单通过。未跑无关历史全回归。
 
 最小用户测试不变：转移前独立档，右键记录城市身份→转自由城→不点诊断先另存读档→左键实验对照一张截图。若再次暂停，阶段名用于定位，不要求继续操作。等待USER_GAME_TEST，E2/F不开放。
+
+B094 W0003部署：源码`a113a6096e141112a5a7ef67453afd8cdc00ac3c`，OS确认退出，151/151文件hash一致；B093/stable完整恢复点核验。Receipt `SpecializationDeploymentBackups/B094.121-a113a60-playtest.json`。main未改，无游戏启动。
