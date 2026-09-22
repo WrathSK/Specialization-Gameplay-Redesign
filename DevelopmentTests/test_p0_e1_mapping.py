@@ -71,8 +71,21 @@ fresh();transfer();setup(62,41);assert(store[key].mappingState=='HELD')
 -- Missing selection/record read availability is retryable; no old records touched.
 store={};setup();assert(d.Begin(0,nil):find('请选择'));assert(not d.error);assert(d.Begin(0,city):find('已建立'))
 ''')
+l.execute(r"""
+-- Civ-like missing unpack support: no dependency, including pre-enable callbacks.
+table.unpack=nil;unpack=nil;store={};setup()
+local w=writes;Events.CityAddedToMap.fn(99,99,20,20);Events.CityTransfered.fn(99,99)
+assert(not d.error and writes==w)
+assert(d.Begin(0,city):find('已建立'));transfer();assert(store[key].mappingState=='MAPPED_EXPERIMENT')
+setup(62,40);assert(d.Describe(0):find('已保存映射恢复'))
+fresh();badwrite=true;Events.CityRemovedFromMap.fn(0,7);assert(d.error:find('事件/CityRemovedFromMap'))
+store={};setup();badwrite=true;d.Begin(0,city);assert(d.error:find('登记'))
+fresh();store[key].schema=99;setup();assert(d.error:find('加载'))
+fresh();local get=CityManager.GetCityAt;CityManager.GetCityAt=function()error('injected')end;d.Describe(0);assert(d.error:find('核对'));CityManager.GetCityAt=get
+""")
 for p in M.rglob('*.lua'):l.execute('assert(load(...))',p.read_text())
-x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='120'
+assert 'P0-B-094.121' in (M/'Probe.lua').read_text()
+x=ET.parse(M/'SpecializationP0.modinfo').getroot();assert x.get('version')=='121'
 assert sorted(f.text for f in x.findall('./Files/File'))==sorted(str(p.relative_to(M)) for p in M.rglob('*') if p.is_file() and p.suffix!='.modinfo')
 assert 'CityIdentityMapping.lua' in [f.text for f in x.findall('./InGameActions/ImportFiles/File')]
 g=(M/'Gameplay.lua').read_text();assert 'SPCCityIdentityMapping.Start(P,shared)' in g and 'SPCCityIdentityExperiment.Start(P,shared)' not in g
@@ -80,4 +93,4 @@ assert 'shared.InheritanceIsolation=true' in g
 allowed={'Mod/'+p for p in ['CityIdentityMapping.lua','Gameplay.lua','Probe.lua','SpecializationP0.modinfo','UI/RuntimeAudit.lua']}
 for p in subprocess.check_output(['git','ls-tree','-r','--name-only','d81623f','Mod','Specialization/Design'],cwd=R,text=True).splitlines():
  if p not in allowed:assert (R/p).read_bytes()==subprocess.check_output(['git','show','d81623f:'+p],cwd=R),p
-print('LOCAL_SIMULATION_PASS: real Lua automatic mapping/save/cold-load; 10000 duplicates bounded; pending/conflict/failure guards; protected Design and legacy writers unchanged; all Lua syntax/modinfo120.')
+print('LOCAL_SIMULATION_PASS: real Lua automatic mapping/save/cold-load; 10000 duplicates bounded; pending/conflict/failure guards; protected Design and legacy writers unchanged; all Lua syntax/modinfo121.')

@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0244
-Implementation Build: develop P0-B-093.120 / modinfo120; live B093.120 deployed W0003; stable B069.96
+Status Revision: S0245
+Implementation Build: develop P0-B-094.121 / modinfo121; live B093.120 pending deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E1_B093_RUNTIME_ERROR_FIX_REVIEW
+Work State: P0_E1_B094_FIX_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B094.121修复](../Architecture/v2/P0_E1_Persistent_Mapping_Plan.md#b094121--授权事件入口修复)已授权完成：直接varargs传参，未启用提前跳过，错误显示阶段。缺失unpack环境及原映射回归LOCAL_SIMULATION_PASS，原生闭环待验收。schema/判断/专业账本不改，不进入E2/F；部署待W0003安全核对。
 
 [B093实机暂停](Validation/Results/Specialization_B093_P0E1_Paused_Review.md)：function expected instead of nil，USER_GAME_TEST_FAIL（本次闭环阻断）。新事件入口table.unpack缺失的故障注入可复现未启用即锁存错误；原生具体调用点尚未确认，不归因为未选城。截图hash归档，建议移除该依赖并加简短阶段诊断，尚未修复/部署，不要求重复测试，不进入E2/F。旧B090/B092局部证据保留。
 

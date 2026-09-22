@@ -56,10 +56,10 @@ function SPCCityIdentityMapping.Start(P,shared)
   end
   return true
  end
- local function guard(fn)
+ local function guard(phase,fn,...)
   if d.error then return '身份映射实验暂停：'..d.error end
-  local ok,result=pcall(fn)
-  if not ok then d.error=(tostring(result):match('^[^\r\n]*') or '读取失败'):gsub('^.-:%d+: ',''):sub(1,120);return '身份映射实验暂停：'..d.error end
+  local ok,result=pcall(fn,...)
+  if not ok then d.error=phase..'：'..(tostring(result):match('^[^\r\n]*') or '读取失败'):gsub('^.-:%d+: ',''):sub(1,120);return '身份映射实验暂停：'..d.error end
   return result
  end
  local function evaluate()
@@ -78,7 +78,7 @@ function SPCCityIdentityMapping.Start(P,shared)
   end
  end
  function d.Begin(pid,c)
-  return guard(function()
+  return guard('登记',function()
    if not P.IsTestPlayer(pid)then return '当前玩家不在测试范围。'end
    if not c or c:GetOwner()~=pid then return '请选择己方分城。'end
    if not initialize()then return 'Game记录暂不可读，请稍后手动重试。'end
@@ -94,7 +94,7 @@ function SPCCityIdentityMapping.Start(P,shared)
   end)
  end
  function d.Describe(pid)
-  return guard(function()
+  return guard('核对',function()
    if not P.IsTestPlayer(pid)then return '当前玩家不在测试范围。'end
    if not initialize()then return 'Game记录暂不可读，请稍后手动重试。'end
    if not record then return '未启用新映射实验；选择己方分城，右键“记录城市身份”。旧实验记录保持不变。'end
@@ -144,8 +144,8 @@ function SPCCityIdentityMapping.Start(P,shared)
   evaluate()
  end
  local function hook(ns,name,fn)local e=P.Field(ns,name);if e and type(e.Add)=='function'then e.Add(fn)end end
- for _,name in ipairs({'CityTransfered','CityRemovedFromMap','CityAddedToMap','CityInitialized','CulturalIdentityCityConverted','CityLiberated'})do local n=name;hook(Events,n,function(...)local a={...};guard(function()observe(n,table.unpack(a))end)end)end
- for _,name in ipairs({'CityBuilt','CityConquered'})do local n=name;hook(GameEvents,n,function(...)local a={...};guard(function()observe(n,table.unpack(a))end)end)end
- hook(Events,'LoadScreenClose',function()guard(initialize)end)
- guard(initialize) -- cold load watch does not depend on opening diagnostics
+ for _,name in ipairs({'CityTransfered','CityRemovedFromMap','CityAddedToMap','CityInitialized','CulturalIdentityCityConverted','CityLiberated'})do local n=name;hook(Events,n,function(...)if not ready or not record or d.error or record.mappingState=='HELD'then return end;guard('事件/'..n,observe,n,...)end)end
+ for _,name in ipairs({'CityBuilt','CityConquered'})do local n=name;hook(GameEvents,n,function(...)if not ready or not record or d.error or record.mappingState=='HELD'then return end;guard('事件/'..n,observe,n,...)end)end
+ hook(Events,'LoadScreenClose',function()guard('加载',initialize)end)
+ guard('加载',initialize) -- cold load watch does not depend on opening diagnostics
 end

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "fc43df158ace9be4e5d7cc674210d96ee79f186b",
-  "runtime": "B093.120 / modinfo120",
+  "runtime_commit": "B094 implementation pending commit",
+  "runtime": "B094.121 / modinfo121",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "35ab2fa656b40add805eef4bd4e8d208311ecff983d674339019d18c1321382e",
+      "sha256": "ddbdd440e085e4bef53101027e5723800b7701fbdae8c53fd5e3914df89955d9",
       "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
-      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
+      "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a5b257bfe298714e6c5d166ddefcf44162a4df4fa8f55b38d0d48b69aaee023c",
+      "sha256": "599c374cd38cb2c45251b4b748fab92a568ac244e13ecd8cb52b8c503a9a65c4",
       "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
-      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
+      "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -566,9 +566,9 @@
       "provenance": "B089 E1 isolated experiment; unchanged files inherit prior review"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "9e9bac22183fb2dc8fd5cc02312887171c2f6c8bb3f766b898165d6ba2798b24",
+      "sha256": "bb39fd4dcc9ce71861f54dfaab0d7b19dd62c60d45cebae5d08cda70aef16b95",
       "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
-      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
+      "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -756,9 +756,9 @@
       "provenance": "B091 UI evidence supplement; no identity authority changes"
     },
     "Mod/CityIdentityMapping.lua": {
-      "sha256": "5f2186092ae789f99b295bd5a38bb4b9321c8570628bc0e1b9fd0eeb10a8d284",
+      "sha256": "767ef64bbc71fa9434a4abe93c768253ec8b1a80c1448f1bc7a93437df008b6f",
       "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
-      "provenance": "B093 authorized single-city persistent mapping; no profession cutover"
+      "provenance": "B094 narrow authorized event wrapper compatibility fix"
     }
   }
 }

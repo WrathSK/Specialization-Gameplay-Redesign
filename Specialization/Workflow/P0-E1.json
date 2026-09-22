@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0244",
-    "runtime": "B093.120 / modinfo120",
+    "status": "S0245",
+    "runtime": "B094.121 / modinfo121",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
@@ -159,10 +159,10 @@
     "old writer activation/change"
   ],
   "result": {
-    "local": "B093 LOCAL_SIMULATION_PASS: actual Lua auto-save/cold-load and targeted L3 protection",
-    "native_gate": "USER_GAME_TEST_FAIL / CALL_SITE_UNCONFIRMED",
+    "local": "B094 targeted actual Lua regression PASS including missing unpack",
+    "native_gate": "USER_GAME_TEST_REQUIRED",
     "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
-    "next": "Review/authorize narrow event-wrapper fix and phase diagnostic; no repeat yet",
+    "next": "Repeat minimal transfer/save/load closure on B094; no E2/F",
     "native_observation": "B093 screenshot function expected instead of nil: experiment blocked, automatic persistence not confirmed. B092 scoped PASS retained."
   },
   "authorized_supplement": "User authorized single-city persistent mapping V2; no profession migration"
