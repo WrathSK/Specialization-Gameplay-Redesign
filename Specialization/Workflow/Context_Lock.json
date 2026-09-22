@@ -178,7 +178,7 @@
     "DevelopmentTests/test_p0_e1_mapping.py": "ea37ad80c8bc9e2b73e90ba59c3416ae94e13d71922f67aab136f7c1ee6e8135",
     "Specialization/Status/Validation/Results/Specialization_B093_P0E1_Paused_Review.md": "3abd2dcc66958dad5714f8ca63c1a8c7fb83b0de700a5c84f0808437378fa395",
     "Specialization/Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md": "3046bb853bf940e3141101a43f89f58359490bb0a6be26e5385b6c7083cec214",
-    "Specialization/Architecture/v2/P0_E2_Plan.md": "bdf1559779a455466ce99085f757a927744d9df0ca96ed1a7472e0d99c13767e",
+    "Specialization/Architecture/v2/P0_E2_Plan.md": "289c598bf308ea5db82c6eaefb4d9cea18d83615af71bc0ae0bddb5cd58734cc",
     "Mod/FreshBindingHook.lua": "e5a0c80b2d7139f47a9701636dbca1dee058513f7a88c23d01a56da7013c6195",
     "Mod/CityProgressionStore.lua": "f235bdd54b8ac8f32129acb48481172cf0405be557948776faa86c24d240fe0b",
     "DevelopmentTests/test_p0_e2.py": "df35aa5248c5c4785d0cbf0225af3ff6cfa48c9a4f749e160ca36cbe2f371542",

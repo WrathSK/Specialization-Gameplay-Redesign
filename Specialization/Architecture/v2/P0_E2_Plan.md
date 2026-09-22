@@ -288,3 +288,29 @@ token不连续或无法证明同城→TECHNICAL_IDENTITY_BOUNDARY；事件到达
 本地：真实报告在foreign HELD读取两次，永久Game记录/载体写入计数不变；沿用B096/B097定向L3回归与全Lua编译、modinfo/dispatch/W0001检查通过。未跑全历史压力测试。新增诊断不改变验证Authority。
 
 当前native observed facts、withdrawal、recapture identity、ACTIVE重算、Network重建、save/load：**全部PENDING_USER_GAME_TEST，既非PASS也非FAIL**。不得将本地模拟复制到native结果栏。尚不能据此批准首次AI城snapshot/Claim implementation。本批只准备/部署测试包，由用户执行原生游戏步骤，回传后逐项判断。
+
+## 2026-09-22 — native test deferred / future enabled AI space review
+
+用户将B098 native验证留待回家，见[PT009](../../Status/Playtest_Backlog.md)。本节是现有Authority/源码的静态审查与未来边界登记，不修改Design，不授权AI运行、多人、Claim或新的保存实现。当前四专业/仅本地人类玩家E2 checkpoint保持不变。
+
+### Architecture intent versus current code
+
+Spec ELIG-001–005已经区分Specialization-enabled资格与Human身份；未来明确启用AI不要求AI planner或行为重写。当前单人范围不是永久AI禁令；本轮也不开放多人。PROG-004/ELIG-005支持城市Identity/Potential/明确永久投资成果随城市保留。因此未来enabled AI若通过合法投资入口完成投资，原玩家夺回不应倒退为自己失城前的Potential快照。只有真实提交的投资才是成果；AI普通移动/生产不会因此自动调用自定义投资Action。
+
+当前实现并未完成这一多Owner写入能力：`Probe.IsTestPlayer`要求Human/测试文明/非多人；`CityProgressionStore.active()`要求`pid == root.origin.owner`，`current.owner`同样限定origin；投资投影写回原始anchor，单城单账本没有支持多个enabled Owner依次写入的完整协议。外方持有统一HELD_TRANSFER，不为AI运行投资。`UI/BackgroundRoutes.lua`样本来自本地玩家，不能将现有按player分桶视作AI路线采样已支持。故不能只放开Human过滤便宣称AI可用。
+
+### Permanent achievement scopes remain specific
+
+| State | Existing authority / future boundary |
+|---|---|
+| Identity / Potential / valid permanent investment | City development; enabled-owner转移保留，当前ACTIVE/Network重算。未来需保留投资行为的owner/action provenance并允许合法现Owner提交，不能用原Owner旧副本覆盖后续投资 |
+| Industry own learned templates | PROG-004城市永久成果；当前E2保存原模板，外方不学习。不等于接收方临时Network模板union可继承 |
+| Culture observations / mission completion | D0029明确original-owner + source-city分账；A/B记录不混合，夺回恢复自己符合条件的账本。正式系统尚未实施 |
+| Culture Dialogue | D0029明确city-scoped累计倍率与START-era quota随城；不能把所有Culture资产统一改成按Owner独立 |
+| Research Academic Tradition | D0031明确Identity-loss暂停/保留/恢复年龄；多Owner征服时独立分账未冻结，A0160也明确不补造Conquest Legacy。用户提出的分别积累记为未来Design审查方向，当前没有实现该计时ledger |
+| Industry Wonder credit | 实际完成文明归属，不因现Owner变化重写完成者；不能类推为普通城市投资 |
+| Commerce contracts/reputation/pity | 既有ownership/Legacy deferred仍保留，不借此次讨论统一继承或分账 |
+
+Architecture的city progression、per-domain achievement records及current derived state分离，为此保留空间；它不是已实现的通用多Owner系统。未来最小适配点是：enabled-player资格与human UI权限分离、合法现Owner的城市投资提交与provenance、各成果明确key/scope、enabled→enabled与enabled→disabled转移分流、AI可用事实来源。无需AI决策优化或通用Legacy框架。Research分账等未定Gameplay须另行确认；城市身份跨ownership原生证据仍受本次待测门禁约束。
+
+证据：STATIC_CONFIRMED（上述代码门槛/权威定义）；没有新增LOCAL_SIMULATION或USER_GAME_TEST结论。本轮只记待办和调查，不改runtime/Design、不部署。
