@@ -2,6 +2,8 @@
 
 当前进度：D3与U1前置原型用户PASS；B094单城自由城市持久映射恢复USER_GAME_TEST_PASS，见[E1验收范围](../../Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)。不等于全路径身份/正式迁移通过；下一步收束支持范围并审阅E2具体计划，E2/F实施仍需授权。当前[E2具体计划](P0_E2_Plan.md)推荐先完成单城同Owner进度/投资保存切换；完整新城/跨Owner范围仍后置，不把首段等同完整E2。
 
+当前用户范围：单人且仅本地人类玩家启用；外方持城全部专业休眠。后续只处理玩家失城/夺回与首次征服AI城，见E2计划的ELIG/PROG核对；不增加AI/多人依赖，保留Design未来通用资格。
+
 Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18
 Authority: D0032; no Gameplay implementation authorized by this plan

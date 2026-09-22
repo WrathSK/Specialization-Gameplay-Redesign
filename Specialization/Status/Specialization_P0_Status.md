@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0247
+Status Revision: S0248
 Implementation Build: develop P0-B-094.121 / modinfo121; live B094.121 deployed W0003; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_PLAN_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+E2范围已按用户澄清收窄：[单人/仅玩家与所有权路径](../Architecture/v2/P0_E2_Plan.md#当前单人范围澄清用户确认2026-09-21)。AI/自由城持有时全部效果休眠、不投资；原城夺回沿用PROG-004恢复，首次征服无历史AI城沿用PROG-006～009 snapshot/Claim分流，二者不是未决Design。首段同Owner保存切换范围不变；后续处理失城/夺回及独立征服初始化，无AI/多人实施依赖。当前IsTestPlayer未检查Human门槛及旧carrier退出需实现时核对，不能仅靠不跑AI Audit保证无效果。本轮仅计划/索引，无runtime/Design/部署变化。
 
 [E2具体计划](../Architecture/v2/P0_E2_Plan.md)已完成：建议先对一座原Owner/旧凭据完整的已专业化城市切换Game进度保存与既有移民投资；逐入口关闭目标旧writer，保留其它城旧路径。新城/跨Owner/专业Legacy/全量兼容不纳入首段，不自动进入F。E1只认定单次自由城持久映射原型PASS。当前仅计划，等待scope审阅与实施授权；无runtime/Design/部署变化，无用户测试。
 

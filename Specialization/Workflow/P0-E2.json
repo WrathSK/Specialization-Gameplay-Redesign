@@ -11,7 +11,8 @@
       "MILITARY",
       "other future specializations"
     ],
-    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
   "status": "PLANNED_NOT_AUTHORIZED",
@@ -24,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0247",
+    "status": "S0248",
     "runtime": "B094.121 / modinfo121",
     "military": "D0034"
   },
@@ -79,6 +80,11 @@
       "path": "Mod/NetworkInput.lua",
       "kind": "full",
       "reason": "E2 scoped persistence/read/write/cutover contract"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "full",
+      "reason": "Task-scoped ELIG-001..006 and PROG-004..010 ownership/claim rules; unchanged whole-file provenance"
     }
   ],
   "dependencies": [
@@ -106,6 +112,12 @@
         "Mod/Standardization.lua"
       ],
       "trigger": "Read exact affected consumers and event ordering before authorized implementation"
+    },
+    {
+      "paths": [
+        "Mod/Probe.lua"
+      ],
+      "trigger": "Current IsTestPlayer lacks explicit human/local gate; review targeted eligibility before implementation"
     }
   ],
   "non_scope": [
@@ -113,7 +125,9 @@
     "cross-owner benefit inheritance",
     "profession-specific historical ledger migration",
     "F Academic Tradition",
-    "Design changes"
+    "Design changes",
+    "AI specialization activation/planner",
+    "multiplayer support"
   ],
   "validation": {
     "local": [
@@ -130,6 +144,7 @@
     "plan": "READY_FOR_SCOPE_REVIEW",
     "implementation": "NOT_AUTHORIZED",
     "native": "NOT_IMPLEMENTED",
-    "next": "Wait user approval of E2 first slice"
+    "next": "Wait user approval of E2 first slice",
+    "scope_review": "Ownership semantics already defined; first slice unchanged, loss/return then AI-conquest Claim planned separately; no AI/MP implementation"
   }
 }

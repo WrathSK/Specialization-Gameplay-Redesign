@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0247",
+    "status": "S0248",
     "runtime": "B094.121 / modinfo121",
     "military": "D0034"
   },
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "E2 scoped writer/read-chain audit; E1 native scope preserved",
+  "context_review_status": "E2 single-human scope confirmed against ELIG-001..006 and PROG-004..010; no Design change",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -57,7 +57,8 @@
       "MILITARY",
       "other future specializations"
     ],
-    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
   },
   "context_revalidation_report": "Specialization/Architecture/v2/P0_E2_Plan.md"
 }
