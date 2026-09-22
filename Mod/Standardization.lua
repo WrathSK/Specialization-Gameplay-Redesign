@@ -27,10 +27,17 @@ function SPCStandardization.Start(P,shared)
   end
   assert(v.revision==count+1,'STD_REVISION_CONFLICT');return v
  end
+ data.ValidateRetained=validate
+ local function read(c)
+  local store=shared.CityProgressionStore
+  if store and store.Owns(c)then return store.ReadTemplates(c)end
+  return c:GetProperty(KEY)
+ end
  local function write(c,old,nextValue)
-  assert(same(c:GetProperty(KEY),old),'STD_CONCURRENT_CHANGE')
-  P.SetProperty(c,KEY,nextValue)
-  assert(same(c:GetProperty(KEY),nextValue),'STD_WRITE_UNCONFIRMED')
+  assert(same(read(c),old),'STD_CONCURRENT_CHANGE')
+  local store=shared.CityProgressionStore
+  if store and store.Owns(c)then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
+  assert(same(read(c),nextValue),'STD_WRITE_UNCONFIRMED')
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1
   if shared.StandardizationDiscount then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
@@ -50,7 +57,7 @@ function SPCStandardization.Start(P,shared)
   v.revision=v.revision+1;return true
  end
  local function initialize(pid,c)
-  local old=c:GetProperty(KEY)
+  local old=read(c)
   if old~=nil then validate(c,old);return false end
   local f=facts(pid,c);if f.specialization~='INDUSTRY' then return false end
   assert(type(f.token)=='string','STD_FOUNDATION_MISSING')
@@ -81,6 +88,8 @@ function SPCStandardization.Start(P,shared)
   local ok,cat=pcall(catalog);if not ok then print('[SPC][B052] '..tostring(cat));return end
   if not cat.buildings[b.BuildingType] then return end
   if type(cid)~='number' then return end
+  local store=shared.CityProgressionStore;local city=Players[pid]:GetCities():FindID(cid)
+  if event=='BUILDING_ADDED_RECHECK' and store and city and store.IsRecaptured(city)then return end -- cannot credit foreign-era construction from mere presence
   local k=key(pid,cid);data.pending[k]=data.pending[k] or {pid=pid,cid=cid,buildings={}}
   data.pending[k].buildings[b.BuildingType]=data.pending[k].buildings[b.BuildingType] or {evidence=event,turn=Game.GetCurrentGameTurn()}
  end
@@ -103,7 +112,7 @@ function SPCStandardization.Start(P,shared)
      local f=facts(q.pid,c)
      if f.specialization~='INDUSTRY' then return end
      initialize(q.pid,c)
-     local old=validate(c,c:GetProperty(KEY));assert(old.foundation==f.token,'STD_FOUNDATION_CHANGED')
+     local old=validate(c,read(c));assert(old.foundation==f.token,'STD_FOUNDATION_CHANGED')
      local nextValue=clone(old);local changed=false
      for id,e in pairs(q.buildings) do
       local row=catalog().buildings[id]
@@ -122,13 +131,13 @@ function SPCStandardization.Start(P,shared)
  end
  function data.ReadLedger(pid,c)
   local f=facts(pid,c);assert(f.specialization=='INDUSTRY','STD_SOURCE_CHANGED')
-  local v=validate(c,c:GetProperty(KEY));assert(v.foundation==f.token,'STD_FOUNDATION_CHANGED')
+  local v=validate(c,read(c));assert(v.foundation==f.token,'STD_FOUNDATION_CHANGED')
   return clone(v)
  end
  function data.Describe(pid,c,page)
   local ok,text=pcall(function()
    assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'STD_OWNER_CHANGED')
-   local v=c:GetProperty(KEY);local cat=catalog();local lines={'B052 标准化模板 | '..tostring(c:GetName())..' | city='..c:GetID()}
+   local v=read(c);local cat=catalog();local lines={'B052 标准化模板 | '..tostring(c:GetName())..' | city='..c:GetID()}
    if v==nil then lines[#lines+1]='尚无账本：非工业专业或后台初始化尚未完成。'
    else
     validate(c,v);local ids={};local enabled=0
@@ -150,6 +159,7 @@ function SPCStandardization.Start(P,shared)
   end)
   return ok and text or ('B052 读取未完成：'..(tostring(text):match('STD_[A-Z_]+') or 'STD_READ_FAILED'))
  end
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Standardization',function(pid,c)data.pending[key(pid,c:GetID())]=nil end)end
  local function hook(src,n,fn)
   local ev=P.Field(src,n);if ev and ev.Add then ev.Add(fn);data.hooks[n]=true end
  end

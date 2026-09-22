@@ -267,4 +267,6 @@ function SPCStandardizationDiscount.Start(P,shared)
    d.applied[loss.origin.owner..':'..loss.origin.cityID]=nil;d.applied[c:GetOwner()..':'..c:GetID()]=nil
  end)end
 
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('StandardizationDiscount',function(pid)d.generation=d.generation+1;d.samples={};d.seq={};d.responses={};d.plans={};d.applied={};d.MarkDirty(pid,'recapture') end)end
+
 end

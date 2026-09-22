@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0250
-Implementation Build: develop P0-B-096.123 / modinfo123 PARTIAL_NOT_DEPLOYED; live B094.121 unchanged; stable B069.96
+Status Revision: S0251
+Implementation Build: develop P0-B-097.124 / modinfo124 PARTIAL_NOT_DEPLOYED; live B094.121 unchanged; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_PARTIAL_CONFIRMED_EXIT_LOCAL_PASS
+Work State: P0_E2_PARTIAL_ORIGINAL_OWNER_RETURN_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+B097.124：授权的原玩家单城夺回路径已实现，原token+已保存loss+匹配事件确认，永久进度引用适配、工业模板Game保存、当前ACTIVE/Network重新派生；缺失工业历史只hold模板。定向L3 LOCAL_SIMULATION_PASS；原生token/事件/实际carrier闭环尚未验证。详见[P0-E2最新检查点](../Architecture/v2/P0_E2_Plan.md#b097124--原玩家同城夺回-partial-checkpoint)。仍partial、不部署；无snapshot/Claim/全城迁移/F；live B094.121/main/Design保持不变。以下为历史checkpoint。
 
 B096.123：已授权补齐单城confirmed ownership-loss模块自有退出，21组明确载体+Network旧view+两plot flags；UNKNOWN不清、重复幂等、永久记录保留。定向L3及同Owner回归LOCAL_SIMULATION_PASS，原生效果撤销尚未实机验证。详见[P0-E2最新检查点](../Architecture/v2/P0_E2_Plan.md#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)。仍E2 partial，不部署、不实现夺回/Claim/F；以下B095退出阻塞为历史状态。
 

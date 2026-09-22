@@ -87,4 +87,6 @@ function SPCGWAdjacency.Start(P,shared)
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end
 
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('GreatWorkAdjacency',function(pid)d.samples={};d.last={} end)end
+
 end

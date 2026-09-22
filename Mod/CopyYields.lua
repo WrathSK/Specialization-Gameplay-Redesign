@@ -144,4 +144,6 @@ function SPCCopyYields.Start(P,shared)
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end
 
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('CopyYields',function(pid)SPCSampleLifecycle.Reset(data,'copy');data.last={} end)end
+
 end

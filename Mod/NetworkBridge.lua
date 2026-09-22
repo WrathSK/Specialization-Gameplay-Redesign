@@ -410,4 +410,8 @@ function SPCNetworkBridge.Start(P,shared)
   end
  end)end
 
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('NetworkBridge',function(pid)
+  local b=d.players[pid];if b then withdraw(pid,b,'E2_RECAPTURE_REQUIRES_CURRENT_ROUTES')end
+ end)end
+
 end

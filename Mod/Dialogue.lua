@@ -115,4 +115,6 @@ function SPCDialogue.Start(P,shared)
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end
 
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Dialogue',function(pid)d.generation=d.generation+1;d.samples={};d.seq={};d.last={};d.test={} end)end
+
 end

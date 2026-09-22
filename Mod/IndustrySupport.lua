@@ -83,4 +83,6 @@ function SPCIndustrySupport.Start(P,shared)
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end
 
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('IndustrySupport',function(pid)SPCSampleLifecycle.Reset(data,'industry');data.last={} end)end
+
 end

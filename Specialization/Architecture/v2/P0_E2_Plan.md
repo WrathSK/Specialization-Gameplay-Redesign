@@ -220,3 +220,49 @@ L3定向 `test_p0_e2_exit.py --db <readonly DebugGameplay.sqlite>`：真实模�
 未扩展：没有已保存确认且原生转移事件到达时对象尚不可读时仍UNKNOWN，不通过位置猜测身份；事件排序完整性待后续确认。确认后的目标不可读会暂停，后续生命周期事件/读档可重试。无城市毁坏重建匹配、新cityKey、夺回恢复、首次AI城Claim、全城迁移或F。重启可重新尝试幂等退出，不在save中持久化“已删载体”以免绕过实际对象核验。现有held城不因重新归原Owner自动恢复。
 
 没有发现需破坏永久账本才能退出的模块；原生RemoveBuilding失败会暂停该模块并明确报告，绝不扩大删除范围。当前checkpoint不部署；外部B094.121与main保持不变。
+
+
+## B097.124 — 原玩家同城夺回 partial checkpoint
+
+用户接受B096后授权的下一最小段；未部署，不含首次AI城snapshot/Claim、全城迁移、新cityKey或F。D0035与各专业Design Authority未修改。
+
+### 身份与状态
+
+仍只接受显式迁移的一城：已有HELD_TRANSFER/loss记录 + CityTransfered的旧Owner等于保存foreign owner、新Owner等于origin local human、新ID等于当前实际对象 + 原位置 + **当前City旧绑定token等于保存原token**。不以城市名、坐标、区域反推历史。token缺失、事件不匹配、区域引用不明/多个匹配、未结束投资、前次模块退出未全部确认均HELD。返回采用一条`current`与`currentFirst`引用投影；origin/base/investment anchor与receipt保持原始历史，新投资写回时仅转换当前引用到原锚点，不改receipt。`lastLoss`和returnEvidence保存一次最近证据，不建立无限历史。
+
+原cityID可被别城复用，因此旧writer排他范围只覆盖登记位置；其它位置不会因复用旧ID被认领。登记位置无凭据的新城仍不能恢复。第一次取得无记录AI城不会进入本路径。外方→另一外方链、丢失token、销毁重建不猜测匹配。
+
+ACTIVE继续由EffectiveFacts读取当前Governor事实，无旧ACTIVE存储/恢复。原专业区域的当前ID通过当前完整同type区域确认，保留历史first.turn；引用不明确暂停，不选一个猜测。正常consumer沿既有CityTransfered/后续相关事件重算收益，保存模块不创建carrier。
+
+### 永久state逐项
+
+| State | 本段处理 | 边界 |
+|---|---|---|
+| 四专业Identity/Potential/投资receipts | 原Game记录保留；按新current引用读回；后续投资使用同一历史账本 | pending debit不猜测完成 |
+| Industry自身Standardization模板 | 显式导入复制现有模板，之后由Standardization自己的验证/写入路径路由至Game记录；旧City账本冻结 | 已在B096失城且未保存模板的历史不补造；只暂停模板读，不阻断基础身份恢复 |
+| 模板后续学习 | 正常本城completion事件仍可增加；夺回城不使用BUILDING_ADDED_RECHECK按现存建筑补录，避免AI期间施工信用 | 原生completion事件覆盖需实机；非迁移城保持旧路径 |
+| Industry工程传统/Wonder实际完成、source Team容量 | 当前对应D0032永久系统未实施；不从现存Wonder或单位创造历史 | 后续专业实现按实际完工归属，Team易主仍独立边界 |
+| Research Academic Tradition | 当前F未实施，无可恢复时钟/age，不补算失城时长 | 以后遵循保留age/离开Identity暂停，不从征服时差推公式 |
+| Culture Dialogue / 文化见闻 | 当前Dialogue.lua是旧瞬态馆藏倍率，不是D0029累计ledger；见闻系统未实施，本轮不伪造永久记录 | 未来Dialogue累计/era quota跟城；见闻original-owner/source-city，不能统一继承 |
+| Commerce合同/信誉/pity | D0032长期系统尚未实施，保留明确deferred Legacy边界，不创建/激活 | owner/conquest/Identity-loss合同与信誉仍待对应专业审查 |
+| Crew永久settlement receipts | 原模块保存，不删、不重发既有settlement | 不是恢复当前buff；无新单位 |
+
+### 临时state与Network
+
+模块自有RegisterReturn只使当前输入失效，不施加收益：Copy/Industry generation reset；Discount样本、报价、ACK等重置并dirty；Dialogue generation/test sample与GreatWorkAdjacency sample清空；投资preview取消；D缓存dirty；Standardization仅目标新引用pending清除，其它城pending保留。都是单次已确认事件，无新timer/hover/polling。
+
+TradeRouteProbe既有dirty signal加入CityTransfered（保持该模块拥有信号）。NetworkBridge撤销旧view，等待带当前signal的完整路线样本；迟到旧signal响应被拒绝。没有把保存的旧routes/ACTIVE/收益作为恢复权威。新Network仍由既有Capture/derive产生；不建AI bucket。按现有player-wide sample合同清缓存，不永久删除其它城市账本或收益。
+
+### 本地验证
+
+L3相关范围，`test_p0_e2_recapture.py`：真实保存/EffectiveFacts/InvestmentAction，P3→失城→新CityID88/区域ID99夺回→当前总督ACTIVE1/3→冷load→继续投资P4→再次loss/return；原base/receipts/binding逐值保留；100重复夺回不增revision；错误Owner/ID/token/首次取得/未完成退出/未完成debit拒绝；旧ID被他城复用不认领。真实NetworkBridge新signal接受空当前路线、拒绝旧响应，旧城市引用不进入新view，无AI网络。真实Standardization读取保存模板、旧City Property消失不丢已存知识、不补录AI建筑、后续模板更新可保存；缺失历史只hold模板。
+
+`test_p0_e2_exit.py`复测21组2322明确ID撤销、普通建筑/其它城/永久账本、UNKNOWN、失败隔离/3次上限；增加真实模块return hooks旧samples清空、无carrier重放；继承已有16导入、同Owner投资/保存/失败恢复回归。全Lua编译、modinfo/W0001引用检查通过。**LOCAL_SIMULATION_PASS / STATIC_CONFIRMED，不是USER_GAME_TEST_PASS。** 没有运行全部历史压力测试，没有部署。
+
+### 未解决技术边界 / 下一门禁
+
+- 当前绑定token在原生跨Owner/夺回时是否保留未验证；缺失则技术HELD，绝不复制token到新城强行通过。不承诺已覆盖全部征服/自由城/交易路径。
+- 需在foreign持有阶段完成B096模块退出（同session或foreign存档load重验）；如果直接加载已夺回而未确认事件/退出完成，保持HELD，不重放猜测事件。正常已确认ACTIVE夺回存档可冷load。
+- 原生RemoveBuilding撤销与正常consumer再施加、事件排序、工业completion路径需后续最小实机验证；本轮无部署，暂不要求用户测试。
+- 缺少工业pre-loss snapshot只暂停模板；不统一迁移其它专业未实施/deferred成果。
+- **尚不建议直接实施首次AI城snapshot/Claim。** 可另行准备独立manifest，但当前夺回闭环仍有原生身份/事件证据门禁；Claim不能作为解决这些问题的替代。本轮STOP，等checkpoint审阅。

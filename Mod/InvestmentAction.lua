@@ -159,4 +159,6 @@ function SPCInvestmentAction.Start(P,shared)
    end
   end
  end) end
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('InvestmentAction',function(pid)plans[pid]=nil;shared.InvestmentPreview=nil end)end
+
 end

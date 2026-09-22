@@ -160,5 +160,7 @@ function M.Start(P,shared)
   end)
  end
  -- Missed native events: next explicit read in a new turn reconciles once.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('DistrictCompleteness',function(pid)data.MarkDirty() end)end
+
 end
 M.Clone=clone

@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0250",
-    "runtime": "B096.123 / modinfo123",
+    "status": "S0251",
+    "runtime": "B097.124 / modinfo124",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -235,6 +235,26 @@
       "path": "DevelopmentTests/test_p0_e2_exit.py",
       "kind": "full",
       "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Authorized scoped recapture and targeted L3 coverage"
+    },
+    {
+      "path": "Mod/Standardization.lua",
+      "kind": "full",
+      "reason": "Authorized scoped recapture and targeted L3 coverage"
+    },
+    {
+      "path": "Mod/TradeRouteProbe.lua",
+      "kind": "full",
+      "reason": "Authorized scoped recapture and targeted L3 coverage"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_e2_recapture.py",
+      "kind": "full",
+      "reason": "Authorized scoped recapture and targeted L3 coverage"
     }
   ],
   "dependencies": [
@@ -251,7 +271,8 @@
       "Migrated-city Binding/Journal/Flow guards and load recovery",
       "Investment storage backend",
       "EffectiveFacts/Network direct storage reads",
-      "Explicit module-owned exit on confirmed loss; permanent ledgers preserved"
+      "Explicit module-owned exit on confirmed loss; permanent ledgers preserved",
+      "Original-owner confirmed recapture reference projection; module-owned current input reset; Standardization game storage for migrated city only"
     ]
   },
   "conditional_context": [
@@ -293,9 +314,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "PARTIAL_CONFIRMED_EXIT_LOCAL_PASS",
+    "implementation": "PARTIAL_ORIGINAL_OWNER_RETURN_LOCAL_PASS",
     "native": "NOT_TESTED_NOT_DEPLOYED",
-    "next": "User checkpoint review; no deployment/return/Claim/F",
+    "next": "Checkpoint review; native closed-loop evidence required before broader claim scope",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

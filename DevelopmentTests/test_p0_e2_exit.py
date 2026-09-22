@@ -101,7 +101,21 @@ assert(not pcall(d.RemoveOwned,other,after.loss,{'BUILDING_SPC_DEV_RESEARCH_SUPP
 -- Reacquisition is deliberately not activation/restoration.
 s.ref.owner=0;s.ref.cityID=7;nativeEvents.CityTransfered.Fire(0,7,62,40)
 assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='HELD_TRANSFER' and not pcall(shared.EffectiveFacts.Read,0,c))
-print('Exit integration LOCAL_SIMULATION_PASS: confirmed/unknown, all owned IDs, duplicate, ordinary/control/permanent preservation, network source/receiver invalidation, no AI state, no recapture activation')
+-- With real module return hooks, no old sample survives even a same-turn return.
+local infoBefore=P.Info;P.Info=function(t,k)if t=='Districts'then return {DistrictType=k}end;return infoBefore(t,k)end
+Players[0].GetDistricts=function()return {Members=function()return ipairs({{GetCity=function()return c end,GetType=function()return s.values.JOURNAL.first.type end,GetID=function()return 99 end,IsComplete=function()return true end}})end}end
+shared.CopyYields.samples[0]={old=true};shared.IndustrySupport.samples[0]={old=true};shared.StandardizationDiscount.samples[0]={old=true}
+shared.Dialogue.samples[0]={old=true};shared.GreatWorkAdjacency.samples[0]={old=true}
+local generation=shared.CopyYields.generation
+nativeEvents.CityTransfered.Fire(0,7,62,40)
+assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='ACTIVE',d.observation)
+assert(shared.CopyYields.samples[0]==nil and shared.CopyYields.generation>generation)
+assert(shared.IndustrySupport.samples[0]==nil and shared.StandardizationDiscount.samples[0]==nil and shared.Dialogue.samples[0]==nil and shared.GreatWorkAdjacency.samples[0]==nil)
+assert(removed==n and plotWrites==2,'RETURN_MUST_NOT_REPLAY_CARRIERS')
+s.ref.owner=62;s.ref.cityID=40;nativeEvents.CityTransfered.Fire(62,40,0,7)
+assert(d.exitStatus=='WITHDRAWN')
+P.Info=infoBefore
+print('Exit integration LOCAL_SIMULATION_PASS: confirmed/unknown, all owned IDs, duplicate, ordinary/control/permanent preservation, network source/receiver invalidation, no AI state, unproven recapture held; confirmed return resets actual module samples without writes')
 """)
 # Reload persisted confirmed loss: repeat only exact target; bounded isolated failures.
 l.execute(r"""
