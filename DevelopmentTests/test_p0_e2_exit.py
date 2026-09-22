@@ -134,8 +134,19 @@ assert(cold.Describe(0,c):find('Broken',1,true))
 assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='HELD_TRANSFER')
 print('Coldload LOCAL_SIMULATION_PASS: saved confirmation, UNKNOWN hold, isolated failure, bounded 3 attempts, successful module once')
 """)
+# Actual on-demand report is read-only even under held foreign ownership.
+l.execute(r"""
+local before=encode(Game:GetProperty(SPCCityProgressionStore.KEY));local n=removed;local w=plotWrites
+local report=shared.CityProgressionStore.NativeDescribe(0)
+assert(report:find('E2往返',1,true) and report:find('HELD_TRANSFER',1,true) and report:find('Network',1,true),report)
+shared.CityProgressionStore.NativeDescribe(0)
+assert(before==encode(Game:GetProperty(SPCCityProgressionStore.KEY)) and removed==n and plotWrites==w)
+print('Native diagnostic LOCAL_SIMULATION_PASS: actual report, foreign reference, repeated read zero persistent/carrier writes')
+""")
 # Source check: exit is explicit registration only, never full Buildings enumeration.
 store=(M/'CityProgressionStore.lua').read_text()
-assert "P.Rows('Buildings')" not in store and 'BUILDING_SPC_' not in store
+assert "P.Rows('Buildings')" not in store
+withdraw=store.split('function d.RemoveOwned',1)[1].split('function d.ExitConfirmed',1)[0]
+assert 'BUILDING_SPC_' not in withdraw # named read-only diagnostic fixtures are separate
 for p in M.rglob('*.lua'):l.execute('assert(load(...))',p.read_text())
 print('Exit Lua compile PASS')

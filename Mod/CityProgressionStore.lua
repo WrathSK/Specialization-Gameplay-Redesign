@@ -3,7 +3,7 @@ SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1'}
 function SPCCityProgressionStore.Start(P,shared)
  local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}};shared.CityProgressionStore=d
- local exits,finished,attempts={},{},{};local exitBusy=false
+ local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
  local root,fault,busy;local ready=false
  local kinds={RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}
@@ -127,6 +127,57 @@ function SPCCityProgressionStore.Start(P,shared)
    ..'\n已完成投资：'..f.investmentCount..' | 待完成事务：'..tostring(f.investmentPending)
    ..'\n来源：独立Game记录；旧City账本冻结。\nACTIVE依当前事实；Network等待当前路线；回滚使用迁移前存档。'
  end
+ -- On-demand evidence only. No state writes, refresh, requests or effect application.
+ function d.NativeDescribe(pid)
+  local ok,out=pcall(function()
+   if not root or not ready or fault then return d.Describe(pid)end
+   assert(pid==root.origin.owner and P.IsTestPlayer(pid),'E2_WRONG_PLAYER')
+   local function label(r)return r and (tostring(r.owner)..'/'..tostring(r.cityID)..' @'..tostring(r.x)..','..tostring(r.y)) or 'NONE'end
+   local city=CityManager.GetCityAt(root.origin.x,root.origin.y)
+   local readable,live=pcall(ref,city)
+   local tokenOK,token=pcall(function()return city:GetProperty(M.Keys.TOKEN)end)
+   local receipts=0;for _ in pairs(root.investment and root.investment.investments or {})do receipts=receipts+1 end
+   local done,total,checked,removed=0,0,0,0
+   for name in pairs(exits)do total=total+1;if finished[name]then done=done+1 end end
+   for _,v in pairs(exitReads)do checked=checked+v.checked;removed=removed+v.removed end
+   local fOK,f=pcall(shared.EffectiveFacts.Read,pid,city)
+   local net=shared.NetworkBridge;local b=net and net.players[pid];local ids={root.origin.cityID}
+   if root.current then ids[#ids+1]=root.current.cityID end
+   local source,receiver=false,false
+   if b then for _,id in ipairs(ids)do
+    source=source or (b.sources and b.sources[id]~=nil) or false
+    for _,set in pairs(b.recipients or {})do receiver=receiver or set[id]~=nil end
+   end end
+   local cid=readable and live.cityID;local input=b and b.input and b.input.cities[cid]
+   local function carrierCount(names)
+    if not city then return 'UNKNOWN'end
+    local good,n=pcall(function()local count=0;for _,name in ipairs(names)do
+     local row=assert(P.Info('Buildings',name));local has=P.HasBuilding(city:GetBuildings(),row.Index)
+     assert(type(has)=='boolean');if has then count=count+1 end
+    end;return count end);return good and tostring(n) or 'UNKNOWN'
+   end
+   local housing,gpp={},{};for i=0,8 do housing[#housing+1]='BUILDING_SPC_DEV_LV2_HOUSING_'..i end
+   for i=0,7 do gpp[#gpp+1]='BUILDING_SPC_DEV_GPP_RESEARCH_'..i end
+   local result=table.concat({P.VERSION..' | E2往返 | T'..Game.GetCurrentGameTurn()..' | '..root.stage,
+    '原引用 '..label(root.origin)..' | record rev '..root.revision,
+    '原凭据 '..root.base.token,
+    '当前 '..(readable and label(live) or 'UNKNOWN')..' | token '..(tokenOK and tostring(token) or 'UNKNOWN'),
+    '永久 '..root.base.specialization..' | Potential '..(1+receipts)..' | 投资 '..receipts,
+    '当前ACTIVE '..(fOK and tostring(f.active)..' / '..tostring(f.activeStatus) or '未激活/UNKNOWN'),
+    '失城确认 '..(root.loss and label(root.loss.target) or root.lastLoss and ('历史 '..label(root.lastLoss.target)) or 'NONE'),
+    '退出 '..d.exitStatus..' | 完成 '..done..'/'..total..' | 核验ID '..checked..' / 移除 '..removed,
+    '最近转移 '..(d.lastTransfer or '本次加载未收到'),
+    '夺回 '..(root.current and root.stage=='ACTIVE' and 'ACCEPTED' or d.returnRejection or '尚未确认')..' | 候选 '..(d.returnCandidate or 'NONE'),
+    '科研实存carrier：支持 '..carrierCount({'BUILDING_SPC_DEV_RESEARCH_SUPPORT'})..' / 住房 '..carrierCount(housing)..' / GPP '..carrierCount(gpp),
+    'Network '..(b and b.validity or 'UNKNOWN')..' | epoch '..tostring(net and net.epoch)..' / input '..tostring(b and b.inputRevision)..' / derive '..tostring(b and b.derivedRevision),
+    '旧/现本城 source '..tostring(source)..' / receiver '..tostring(receiver)..' | routes '..tostring(b and b.routes and #b.routes or 'UNKNOWN'),
+    'Network当前引用 '..tostring(input and input.reference or 'NONE')..' | ACTIVE '..tostring(input and input.active or 'NONE'),
+    '载体读数≠引擎收益验证；请配合城市收益截图。'},'\n')
+   return result
+  end)
+  local report=ok and out or ('E2诊断 UNKNOWN：'..tostring(out))
+  print('[SPC][E2_NATIVE] '..report);return report
+ end
  local function restore()
   local ok,err=pcall(function()
    root=cp(Game:GetProperty(KEY));if root then validate(root)end;ready=true
@@ -154,11 +205,13 @@ function SPCCityProgressionStore.Start(P,shared)
    local has=P.HasBuilding(buildings,row.Index);assert(type(has)=='boolean','EXIT_CARRIER_UNKNOWN')
    rows[#rows+1]={id=row.Index,has=has}
   end
+  local found=0;for _,r in ipairs(rows)do if r.has then found=found+1 end end
   for _,r in ipairs(rows) do if r.has then
    assert(d.IsExitTarget(c,loss),'EXIT_REFERENCE_CHANGED')
    P.RemoveBuilding(buildings,r.id)
    assert(P.HasBuilding(buildings,r.id)==false,'EXIT_REMOVE_UNCONFIRMED')
   end end
+  if runningExit then exitReads[runningExit]={checked=#rows,removed=found}end
  end
  function d.ExitConfirmed()
   if exitBusy or not ready or fault or not root or not root.loss then return end
@@ -168,7 +221,7 @@ function SPCCityProgressionStore.Start(P,shared)
   table.sort(names,function(a,b)if a=='NetworkBridge' then return b~='NetworkBridge' end;if b=='NetworkBridge' then return false end;return a<b end)
   for _,name in ipairs(names)do if not finished[name] and (attempts[name] or 0)<3 then
    attempts[name]=(attempts[name] or 0)+1
-   local good,err=pcall(exits[name],c,cp(root.loss))
+   runningExit=name;local good,err=pcall(exits[name],c,cp(root.loss));runningExit=nil
    if good then finished[name]=true;d.exitErrors[name]=nil else d.exitErrors[name]=tostring(err)end
   end end
   d.exitStatus=#names>0 and 'WITHDRAWN' or 'NO_EXIT_MODULES'
@@ -178,6 +231,7 @@ function SPCCityProgressionStore.Start(P,shared)
  local function recapture(c,current,newOwner,newID,oldOwner)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
+  d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
   assert(P.IsTestPlayer(newOwner) and c:GetProperty(M.Keys.TOKEN)==root.base.token,'RETURN_IDENTITY_UNCONFIRMED')
   local count=0;for name in pairs(exits)do count=count+1;assert(finished[name],'RETURN_WITHDRAWAL_UNCONFIRMED')end
   assert(count>0,'RETURN_WITHDRAWAL_UNCONFIRMED')
@@ -209,6 +263,7 @@ function SPCCityProgressionStore.Start(P,shared)
  end
  local function reconcile(newOwner,newID,oldOwner)
   if not ready or fault or not root then return end
+  if newOwner~=nil then d.lastTransfer=tostring(oldOwner)..' → '..tostring(newOwner)..'/'..tostring(newID)end
   local ok,err=pcall(function()
    local c=CityManager.GetCityAt(root.origin.x,root.origin.y)
    if not c then d.observation='UNKNOWN_CITY';return end
@@ -224,7 +279,7 @@ function SPCCityProgressionStore.Start(P,shared)
    end
    d.observation='READABLE'
   end)
-  if not ok then d.observation='UNKNOWN: '..tostring(err)end
+  if not ok then d.observation='UNKNOWN: '..tostring(err);d.returnRejection=tostring(err):match('RETURN_[A-Z_]+') or d.returnRejection end
   d.ExitConfirmed()
  end
  local function listen(ns,name,fn)local e=P.Field(ns,name);if e and e.Add then e.Add(fn)end end

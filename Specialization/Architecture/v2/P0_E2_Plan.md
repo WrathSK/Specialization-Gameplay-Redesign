@@ -266,3 +266,25 @@ L3相关范围，`test_p0_e2_recapture.py`：真实保存/EffectiveFacts/Investm
 - 原生RemoveBuilding撤销与正常consumer再施加、事件排序、工业completion路径需后续最小实机验证；本轮无部署，暂不要求用户测试。
 - 缺少工业pre-loss snapshot只暂停模板；不统一迁移其它专业未实施/deferred成果。
 - **尚不建议直接实施首次AI城snapshot/Claim。** 可另行准备独立manifest，但当前夺回闭环仍有原生身份/事件证据门禁；Claim不能作为解决这些问题的替代。本轮STOP，等checkpoint审阅。
+
+
+## B098.125 — 单城 native ownership round-trip validation
+
+仅最小按需诊断，B096/B097认领/退出/恢复规则不改。复用“E2往返”（原进度保存）左键请求，无需选城，读取登记位置；右键原UI证据保留。报告原/现引用和token、保存stage/revision、最近转移事件/候选/拒绝原因、永久Potential/receipts、当前ACTIVE、模块退出计数与移除读回、科研支持/住房/GPP实存载体、Network epoch/input/derived/current reference。按需输出相同文本到Lua.log `[SPC][E2_NATIVE]`。无新持久debug结构；每模块固定一份最近退出核验、一个最近转移/候选，冷load清空，保存的既有loss/current仍读取。报告的退出计数是本次加载内观察，不是完整历史；carrier presence/readback不是原生yield settlement证明。
+
+### 最小用户流程（独立测试存档；不启动游戏代测）
+
+1. 用一座**非首都科研城**，Potential≥2（建议3）、当前ACTIVE≥2，至少图书馆/大学及一名工作专家。可行时保留一条已知国内商路以观察Network变化。先另存`E2-before`；选城，右键“迁移进度”一次，再左键“E2往返”。记录报告+城市收益/专家读数。以后不再右键迁移。
+2. 优先将该城交易给AI，再左键“E2往返”（不需选外方城）：必须HELD_TRANSFER，退出完成，目标科研载体0，旧Network不含已失城的source/receiver。另存`E2-foreign`，读档后再读同一报告，检查永久Potential/receipt数与token/实际owner；不迁移AI、不对外方投资。
+3. 原玩家通过交易取得同城；不安排合格已就职总督。读取“E2往返”+城市收益：ACCEPTED、Identity/Potential/receipt原值，ACTIVE应1；Lv2住房/GPP载体应0（Lv1支持可正常回来）。确认当前Network样本/引用，不能恢复旧路由；如路线未发生可验证变化，Network新路线重建仍NOT_TESTED，不硬判PASS。
+4. 若前三步通过，恢复合格总督并等正常就职一次：ACTIVE和对应现行收益应恢复，仍不得重新投资达到旧Potential。最后保留测试存档与报告/Lua.log即可。失城→外方save/load是本轮必需边界；可选夺回后再另存读档，不代替外方边界。
+
+交易若无法取回，不要求耗大量回合或战争；暂停并报告，再决定替代路径。交易成功只覆盖实测交易事件链，不自动覆盖征服、解放、自由城。无路线fixture时明确Network仅观察失效/当前input，不能声称完整route-change PASS。已装Cheat只可用户操作准备fixture，不改Mods、不绕过身份token，不用Claim。
+
+### Stop / 证据分级
+
+token不连续或无法证明同城→TECHNICAL_IDENTITY_BOUNDARY；事件到达对象不可读/缺少匹配事件→EVENT_ORDER_BOUNDARY；退出报失败或外方仍有载体/本Mod收益→NATIVE_WITHDRAWAL_BOUNDARY；save/load证据缺失→SAVE_IDENTITY_BOUNDARY。看到UNKNOWN/拒绝立即保留报告与当次Lua.log，不自动复制token、改CityID、按名字/坐标认领，也不修Gameplay绕过。
+
+本地：真实报告在foreign HELD读取两次，永久Game记录/载体写入计数不变；沿用B096/B097定向L3回归与全Lua编译、modinfo/dispatch/W0001检查通过。未跑全历史压力测试。新增诊断不改变验证Authority。
+
+当前native observed facts、withdrawal、recapture identity、ACTIVE重算、Network重建、save/load：**全部PENDING_USER_GAME_TEST，既非PASS也非FAIL**。不得将本地模拟复制到native结果栏。尚不能据此批准首次AI城snapshot/Claim implementation。本批只准备/部署测试包，由用户执行原生游戏步骤，回传后逐项判断。

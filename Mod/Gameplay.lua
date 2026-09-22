@@ -31,7 +31,7 @@ local function request(playerID,params)
     local ok,out=pcall(function()
       local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
       if params.Action=='PROGRESSION_IMPORT' then return shared.CityProgressionStore.Import(playerID,c) end
-      return shared.CityProgressionStore.Describe(playerID,c)
+      return (shared.CityProgressionStore.NativeDescribe or shared.CityProgressionStore.Describe)(playerID,c)
     end)
     shared.Snapshot=ok and out or ('进度保存暂停：'..tostring(out));shared.LastToken=params.Token;return
   end

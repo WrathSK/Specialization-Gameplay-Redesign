@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "81db996984043c663482e6df0ca67c9bcc8c88ad",
-  "runtime": "B097.124 / modinfo124",
+  "runtime_commit": "pending B098 validation checkpoint",
+  "runtime": "B098.125 / modinfo125",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "804daa7b06b61652ae886c20882950ab98bf428d0fb2e92c1090984508932917",
+      "sha256": "929f9825bcbd6b767c0027159096a391db2e6193b42d7c4f7ca1f8aec007e58d",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "e35be38693c11c54cc0ec0f6490768898b77275dd127266f48868d1f64f98acf",
+      "sha256": "5de771ed75ba8678673318602a029a6359cbeeb84b297ee38437b25139c1fdce",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "db3a49b55a834b1adf13fc5081564e9aa991f57214b3e409c436a9d1393b1922",
+      "sha256": "358c7da089a3c901ab48449ef5d98a5bc8dec9b9e386f6ddc5276dc244b9de11",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
     },
     "Mod/Standardization.lua": {
       "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "14b0a40b47e98a277059b9a666aa9d7d07ea6f6199d3a6c156f8fe9c788f9bf5",
+      "sha256": "0ae526739d9328981dc3e37ebe63a47dc0fd3af736d17bf421222fd1af178b6f",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "76002d3043f9607f9750625ec31459f46110c16e74d8a0dcdf119a987707652e",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "bbc5b6cda99cb2a3a3e55b43a2fe7370595a5bf0c1aa65c9683cefd8ba69a503",
+      "sha256": "f235bdd54b8ac8f32129acb48481172cf0405be557948776faa86c24d240fe0b",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
     }
   }
 }

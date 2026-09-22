@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0251
-Implementation Build: develop P0-B-097.124 / modinfo124 PARTIAL_NOT_DEPLOYED; live B094.121 unchanged; stable B069.96
+Status Revision: S0252
+Implementation Build: develop P0-B-098.125 / modinfo125 NATIVE_VALIDATION_CANDIDATE; live B094.121 unchanged; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_PARTIAL_ORIGINAL_OWNER_RETURN_LOCAL_PASS
+Work State: P0_E2_NATIVE_ROUND_TRIP_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
+
+B098.125：用户接受B097并授权最小native round-trip验证与必要测试部署；新增“E2往返”按需报告，不改B096/B097恢复规则。真实报告零写及相关生命周期回归LOCAL_SIMULATION_PASS；实机withdrawal/recapture/ACTIVE/Network/save-load均PENDING_USER_GAME_TEST。按[单城流程](../Architecture/v2/P0_E2_Plan.md#b098125--单城-native-ownership-round-trip-validation)由用户测试；不进入Claim/全城迁移/F。部署事务完成情况另记，下方旧“不部署”为历史批次约束。
 
 B097.124：授权的原玩家单城夺回路径已实现，原token+已保存loss+匹配事件确认，永久进度引用适配、工业模板Game保存、当前ACTIVE/Network重新派生；缺失工业历史只hold模板。定向L3 LOCAL_SIMULATION_PASS；原生token/事件/实际carrier闭环尚未验证。详见[P0-E2最新检查点](../Architecture/v2/P0_E2_Plan.md#b097124--原玩家同城夺回-partial-checkpoint)。仍partial、不部署；无snapshot/Claim/全城迁移/F；live B094.121/main/Design保持不变。以下为历史checkpoint。
 

@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0251",
-    "runtime": "B097.124 / modinfo124",
+    "status": "S0252",
+    "runtime": "B098.125 / modinfo125",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "81db996984043c663482e6df0ca67c9bcc8c88ad",
-  "current_batch": "P0-E2 PARTIAL_ORIGINAL_OWNER_RETURN_LOCAL_PASS_NOT_DEPLOYED",
-  "next_batch": "Checkpoint review; native identity/return evidence remains, no deployment/Claim/F",
+  "runtime_commit": "pending B098 validation checkpoint",
+  "current_batch": "P0-E2 NATIVE_VALIDATION_AWAITING_USER",
+  "next_batch": "Native round-trip evidence review only; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B094.121 / modinfo121 deployed W0003;151/151 MATCH;B093/stable recovery retained",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Scoped recapture references/templates/current-sample invalidation reviewed; targeted L3 pass",
+  "context_review_status": "On-demand diagnostic read-only checks and E2 targeted regression PASS; native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0251",
-    "runtime": "B097.124 / modinfo124",
+    "status": "S0252",
+    "runtime": "B098.125 / modinfo125",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -314,9 +314,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "PARTIAL_ORIGINAL_OWNER_RETURN_LOCAL_PASS",
-    "native": "NOT_TESTED_NOT_DEPLOYED",
-    "next": "Checkpoint review; native closed-loop evidence required before broader claim scope",
+    "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
+    "native": "PENDING_USER_GAME_TEST",
+    "next": "User executes one-city round-trip; review evidence, no Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

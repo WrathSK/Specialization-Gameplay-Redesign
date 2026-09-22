@@ -22,7 +22,7 @@ local function mkcity(s)
  function c:SetProperty(k,v)cityWrites=cityWrites+1;for n,key in pairs(M.Keys)do if key==k then self.s.values[n]=M.Copy(v);return end end;error('unexpected city key')end
  return c
 end
-P={VERSION='B097.124',Count=function()end,Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid==0 end,
+P={VERSION='B098.125',Count=function()end,Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid==0 end,
  Families={DISTRICT_CAMPUS='RESEARCH',DISTRICT_THEATER='CULTURE',DISTRICT_INDUSTRIAL_ZONE='INDUSTRY',DISTRICT_COMMERCIAL_HUB='COMMERCE'},
  Rows=function(t)assert(t=='DistrictReplaces');return {}end,
  Info=function(t,k)if t=='Districts' then return {DistrictType=k}end end,
@@ -120,7 +120,7 @@ print('E2 LOCAL_SIMULATION_PASS: 16 imports; actual investment/legacy-load hooks
 for p in M.rglob('*.lua'):
  l.execute('assert(load(...))',p.read_text())
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='124'
+assert root.attrib['version']=='125'
 assert 'CityProgressionStore.lua' in [e.text for e in root.find('Files')]
 # Real eligibility function with native-shaped API mocks, no silent fallback to AI.
 probe=(M/'Probe.lua').read_text();fn=probe[probe.index('function P.IsTestPlayer'):probe.index('function P.Summary')]
