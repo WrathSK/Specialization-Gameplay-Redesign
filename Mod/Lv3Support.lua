@@ -116,4 +116,10 @@ function SPCLv3Support.Start(P,shared)
  end
  local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function() data.ready=true;data.Audit() end) end
  SPCRuntimeWork.Hook(P,Events,'CityTransfered',data.Audit)
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Support',function(c,loss)
+   local ids={};for _,id in ipairs(SPCSpecialistSupport.Retired)do ids[#ids+1]=id end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

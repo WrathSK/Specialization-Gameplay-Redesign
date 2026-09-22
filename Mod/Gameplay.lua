@@ -476,6 +476,7 @@ SPCStorageProbe.Start(P,shared)
 include("CityIdentityRead")
 include("CityProgressionStore")
 SPCCityProgressionStore.Start(P,shared)
+SPCYieldCarrierProbe.RegisterExit(shared)
 
 include("BindingProbe")
 SPCBindingProbe.Start(P,shared)

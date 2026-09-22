@@ -181,3 +181,42 @@ Prepare读取路由提供的同Owner事实、record revision、receipt集合；�
 下一最小修补：逐模块明确其拥有的实际carrier/退出入口，对受本批记录管理、确认退出的单城执行模块自身退出；不按全库前缀批量删除、不清普通建筑、不清永久账本、不恢复新Owner资格、不实现夺回/Claim。补齐相关退出/重复/UNKNOWN保持/Network失效的定向模拟，再复核已有收益消费者。需先解决上述审批边界。新cityKey/全城迁移/夺回/Claim/F仍不在本轮已完成范围。
 
 尚未运行完整affected-consumer/部署安全验收，因为退出实现尚未完成；没有USER_GAME_TEST，没有部署。B095.122/modinfo122仅为develop未完成候选编号，外部运行包保持B094.121。
+
+
+## B096.123 — confirmed ownership-loss scoped exit checkpoint
+
+本节取代上节“退出未实现”的当前状态；旧检查点保留为历史。用户已明确授权定域退出，仍为 E2 PARTIAL / NOT_DEPLOYED，不是整体E2验收。
+
+### 合同
+
+仅一座显式迁移城市；CityTransfered 的旧Owner、新Owner/CityID与保存原引用、当前实际对象同时匹配，才保存 `loss` 与 HELD_TRANSFER。UNKNOWN/缺失getter/无匹配事件不确认，不清空永久进度。按模块注册的明确载体清单退出，清单全部预检为InternalOnly再移除当前存在项，不枚举全城建筑或按前缀删除。每模块成功后不重复运行；失败隔离、每session最多3次事件驱动尝试，无timer/polling；诊断列暂停模块。保存的确认在读档后仍需匹配同一目标引用，才重新执行幂等退出。
+
+NetworkBridge先使用原confirmed-invalid发布合同撤销原Owner的完整verified snapshot（不可分割），清除source/receiver projection并通知既有consumer；不是创建AI网络，也不是局部拼造有效view。原Owner剩余网络等待正常完整verified输入重新建立，其他玩家bucket不变。
+
+### Module-owned coverage（精确InternalOnly ID，含旧载体tombstone）
+
+| Module | IDs | 退出对象 |
+|---|---:|---|
+| ResearchSupport / IndustrySupport | 3 / 9 | 专家支持 |
+| Lv2Housing / Lv2GPP / Lv3Support | 9 / 32 / 12 | 住房、GPP、旧支持载体 |
+| Lv3Effects / Lv4Percent | 11 / 8 | 旧文化/商业本地效果 |
+| ResearchInfrastructure / ResearchCross / ResearchApply / ResearchChair | 52 / 43 / 25 / 104 | 科研当前收益及各自退休载体 |
+| CrewProjects | 1 | 施工项目临时准入；不删除已有队伍 |
+| HalfYieldProbe / PurchaseProbe | 32 / 2 | 手动探针的已有收益载体 |
+| CopyYields | 40 | 工业copy当前载体 |
+| StandardizationDiscount | 596 | 折扣目录；只清目标 applied cache，不清模板 |
+| NetworkBoost | 1126 | 既有正式/整数/测试Network载体 |
+| GreatWorkProbe / Dialogue / GreatWorkAdjacency | 2 / 11 / 156 | 巨作探针、对话效果、旧邻接；不清历史记录 |
+| CommerceConvergence | 48 | 旧商业汇聚效果 |
+| NetworkBridge | — | 原Owner snapshot confirmed invalid |
+| YieldCarrierProbe | — | 两个明确临时plot flags归零 |
+
+21组共2322个唯一ID。只读当前DB核验ID存在、InternalOnly、无重复ownership；这是目录静态覆盖，不是实际游戏安装2322座建筑。ConstructionProbe的已结算Production不是持续buff，不能倒扣；UnitActions/InvestmentAction receipts、Standardization模板、Binding/Journal/Flow永久记录保留。DistrictPrecisionProbe未自动启用，其退休载体归ResearchCross；SpecialistSupport退休载体归Lv3Support。UI/diagnostics/只读facts不施加效果，无额外删除入口；单位、城市历史与其它专业永久ledger不迁移。
+
+### 验证与边界
+
+L3定向 `test_p0_e2_exit.py --db <readonly DebugGameplay.sqlite>`：真实模块退出闭包+实际保存协调器；全部2322个载体模拟撤销，普通Library/其他城/永久Game与City账本不变；UNKNOWN、错误事件、重复100次零额外副作用；真实Network失效发布（下游Audit在该集成模型中为通知断言替身）、其他玩家不变、无AI bucket；冷load确认/UNKNOWN保持、单模块故障隔离和3次上限通过。继承test_p0_e2.py的四专业×P1–P4导入、同Owner投资/读档/失败恢复/旧writer隔离；全Lua编译与modinfo通过。STATIC_CONFIRMED + LOCAL_SIMULATION_PASS；没有原生移除/引擎modifier撤销USER_GAME_TEST。
+
+未扩展：没有已保存确认且原生转移事件到达时对象尚不可读时仍UNKNOWN，不通过位置猜测身份；事件排序完整性待后续确认。确认后的目标不可读会暂停，后续生命周期事件/读档可重试。无城市毁坏重建匹配、新cityKey、夺回恢复、首次AI城Claim、全城迁移或F。重启可重新尝试幂等退出，不在save中持久化“已删载体”以免绕过实际对象核验。现有held城不因重新归原Owner自动恢复。
+
+没有发现需破坏永久账本才能退出的模块；原生RemoveBuilding失败会暂停该模块并明确报告，绝不扩大删除范围。当前checkpoint不部署；外部B094.121与main保持不变。

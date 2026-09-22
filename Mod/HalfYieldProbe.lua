@@ -73,4 +73,10 @@ function SPCHalfYieldProbe.Start(P,shared)
  local function hook(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f) end end
  hook('LoadScreenClose',function() data.ready=true;data.Audit() end)
  for _,n in ipairs({'CityPopulationChanged','PlayerTurnActivated','CityTransfered'}) do hook(n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('HalfYieldProbe',function(c,loss)
+   local ids={};for _,y in ipairs({'SCIENCE','PRODUCTION'})do for _,mode in ipairs({'POP','SUB'})do for bit=0,7 do ids[#ids+1]=name(y,mode,bit)end end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

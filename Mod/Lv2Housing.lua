@@ -98,4 +98,10 @@ function SPCLv2Housing.Start(P,shared)
  -- CityBuildingsChanged can be raised by our own carriers. Structural events
  -- above + once/player/turn reconciliation cover it without a feedback loop.
  for _,n in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',function(c,loss)
+   local ids={};for bit=0,8 do ids[#ids+1]='BUILDING_SPC_DEV_LV2_HOUSING_'..bit end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

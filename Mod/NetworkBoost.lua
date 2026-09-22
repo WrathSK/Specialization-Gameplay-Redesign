@@ -127,4 +127,10 @@ function SPCNetworkBoost.Start(P,shared)
   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
   if not ok then print('[SPC][B055][CLEAN] '..tostring(err));d.ready=false;return end;d.Audit()
  end end)
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('NetworkBoost',function(c,loss)
+   local ids={};for _,r in pairs(SPCBoostConfig.rows)do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows)do if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,id in ipairs(testRows)do if P.Info('Buildings',id)then ids[#ids+1]=id end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

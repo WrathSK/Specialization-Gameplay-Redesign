@@ -397,4 +397,17 @@ function SPCNetworkBridge.Start(P,shared)
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
  local e=P.Field(Events,"LoadScreenClose");if e and e.Add then e.Add(function() d.ready=true;d.Rebuild() end) end
+ -- The shared view is an indivisible verified snapshot. Known ownership loss
+ -- invalidates the former participant's snapshot via its existing publication contract.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('NetworkBridge',function(c,loss)
+  assert(shared.CityProgressionStore.IsExitTarget(c,loss),'EXIT_NOT_CONFIRMED')
+  local pid=loss.origin.owner;local b=d.players[pid]
+  if b then
+   assert(not b.refreshing,'EXIT_NETWORK_BUSY')
+   b.refreshing=true
+   local ok,err=pcall(withdraw,pid,b,'E2_CONFIRMED_OWNER_LOSS')
+   b.refreshing=false;assert(ok,err)
+  end
+ end)end
+
 end

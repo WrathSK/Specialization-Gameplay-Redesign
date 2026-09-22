@@ -81,4 +81,10 @@ function SPCGWAdjacency.Start(P,shared)
   rows[#rows+1]='配置不是实测；半点/作品倍率按下方原生读数验证。'
   return table.concat(rows,'\n')
  end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('GreatWorkAdjacency',function(c,loss)
+   local ids={};for _,y in ipairs(M.Yields)do for _,sign in ipairs({'P','N'})do for bit=0,12 do ids[#ids+1]=key(y,sign..bit)end end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

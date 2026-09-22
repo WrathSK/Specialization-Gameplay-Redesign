@@ -32,4 +32,10 @@ function SPCPurchaseProbe.Start(P,shared)
    if not ok then print('[SPC][B053][CLEANUP] '..tostring(err)) end
   end end
  end) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('PurchaseProbe',function(c,loss)
+   local ids={};ids={'BUILDING_SPC_B053_FIXTURE','BUILDING_SPC_B053_DISCOUNT'}
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0249
-Implementation Build: develop P0-B-095.122 / modinfo122 PARTIAL_NOT_DEPLOYABLE; live B094.121 unchanged; stable B069.96
+Status Revision: S0250
+Implementation Build: develop P0-B-096.123 / modinfo123 PARTIAL_NOT_DEPLOYED; live B094.121 unchanged; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_PARTIAL_SAME_OWNER_VALIDATED_EXIT_GATE_BLOCKED
+Work State: P0_E2_PARTIAL_CONFIRMED_EXIT_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+B096.123：已授权补齐单城confirmed ownership-loss模块自有退出，21组明确载体+Network旧view+两plot flags；UNKNOWN不清、重复幂等、永久记录保留。定向L3及同Owner回归LOCAL_SIMULATION_PASS，原生效果撤销尚未实机验证。详见[P0-E2最新检查点](../Architecture/v2/P0_E2_Plan.md#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)。仍E2 partial，不部署、不实现夺回/Claim/F；以下B095退出阻塞为历史状态。
 
 [P0-E2 B095.122 partial检查点](../Architecture/v2/P0_E2_Plan.md#b095122--首段实施检查点未完成不部署)：用户已授权四专业单城同Owner保存首段；新Game进度路由、旧writer隔离、投资/读档与诊断已实现并通过定向LOCAL_SIMULATION_PASS，非实机PASS。四专业开放范围不变，未来领域仅保留扩展能力。确认退出的carrier覆盖未完成：自动审批拒绝前缀批量删除；只读确认ResearchApply/Cross/Chair的AI-owner过滤会跳过旧载体处理。未采用被拒绝方案，不部署，不进入F/Claim/夺回实施；须完成逐模块、单城明确退出及相应回归后再交付测试。运行包保持B094.121；main/Design不变。以下“待授权”记录属于此前历史。
 

@@ -77,4 +77,10 @@ function SPCIndustrySupport.Start(P,shared)
  hook(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit() end)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt','OnPillage'}) do hook(GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('IndustrySupport',function(c,loss)
+   local ids={};for bit=-1,7 do ids[#ids+1]=name(bit)end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

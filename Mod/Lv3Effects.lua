@@ -120,4 +120,10 @@ function SPCLv3Effects.Start(P,shared)
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
  for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',function(c,loss)
+   local ids={};for _,id in ipairs(names)do ids[#ids+1]=id end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

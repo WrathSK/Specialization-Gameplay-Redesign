@@ -133,4 +133,10 @@ function M.Start(P,shared)
   SPCRuntimeWork.Hook(P,Events,n,data.Audit)
  end
  for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchApply',function(c,loss)
+   local ids={};for _,y in ipairs(SPCResearchApplyModel.Yields)do for bit=0,M.Bits-1 do ids[#ids+1]=name(y,bit)end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

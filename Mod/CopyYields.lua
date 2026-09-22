@@ -138,4 +138,10 @@ function SPCCopyYields.Start(P,shared)
  hook(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'copy');data.receiveErrors={};cleanupDormant();data.Audit() end)
  hook(Events,'CityTransfered',cleanupDormant)
  for _,n in ipairs({'PlayerTurnActivated','CityPopulationChanged','GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','CityTransfered','DistrictRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CopyYields',function(c,loss)
+   local ids={};for _,mode in ipairs({'POS','NEG','POP'})do for bit=0,(mode=='POP' and 7 or 15)do ids[#ids+1]='BUILDING_SPC_B051_PRODUCTION_'..mode..'_'..bit end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

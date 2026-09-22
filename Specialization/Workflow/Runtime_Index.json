@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "6bd903e0dc0da5ecd365af4c3f00a2bf6e81d479",
-  "runtime": "B095.122 / modinfo122",
+  "runtime_commit": "pending checkpoint commit; see Git history for B096.123",
+  "runtime": "B096.123 / modinfo123",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -46,9 +46,9 @@
       "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
     },
     "Mod/CommerceConvergence.lua": {
-      "sha256": "62159672ae47e1e0b6e3ad80e1179db44e0f6c498065b9e8b035e1ff3f4b4483",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "76582d148f9c76a81a3a4ce48d5948345a1eb2526de0eb565b45ba3babb40980",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -71,9 +71,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CopyYields.lua": {
-      "sha256": "b7f1abdde43502beb6cbc3b84a29a906a7caa696cf20f1fb7d9ac854961778e2",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "ad415de942bffb85b2f694d9bde6c7342855766d1e54221ee82690e97803937a",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/CrewPrecision.lua": {
       "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
@@ -81,9 +81,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "cb0592a4f15cbaf5fc8caa3801906f4e499a5022390dcd62a20658b1dada57f0",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "faafa2d6ea97d8c2396f3be5d3ed5ea956d154dd9837ad71ad5007ba3bda9661",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -226,9 +226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "f6a5d077c47afcc29058ddfee5e09a8e6ab4c351cf819b4fd07b3e11406d8d6f",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "e66a89fc4690071ab375a88a067165475eb0843469faffd513397d18a6bd193f",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -266,14 +266,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "53e132be57fd455b4b9622d8a4eb06d591360e1d02e7f9c8615b4320518ab34d",
+      "sha256": "804daa7b06b61652ae886c20882950ab98bf428d0fb2e92c1090984508932917",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/GreatWorkAdjacency.lua": {
-      "sha256": "eb28a465da4a218dc34a2b8ced785ea2f904c5b2b3546edda25e295dfc2c4a4b",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "b47593189341a393aedd4fac268dab15cc3532cc5181f9a1a15e37feb9379a49",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/GreatWorkAdjacencyModel.lua": {
       "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
@@ -281,19 +281,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/GreatWorkProbe.lua": {
-      "sha256": "8c8b7e1d85190d0ffd60c7922aafd5cacc0e968823c85b057a8cfed9e43721db",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "525f1658a6e37dd28c2a0512d147ffca5f0d48548b79e4082da3c4e9bd7e7607",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/HalfYieldProbe.lua": {
-      "sha256": "aef824eb6fc83cc064d42908dbbefa91ba96099408ee09324f42cb0c6e25f499",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "e97bda093ba66a9ef96b628eee29abcc4045caccb535abff9c25010c2c3a7d57",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "edb373cfe3619d90ceb203c50b6b52d31eadd49d0f1e5742f6f2baa591354b4f",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "33d95102e922ae079d16bc9ae92d6c41a1fb6ba125f52570926d364c04172266",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/InheritanceShadow.lua": {
       "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
@@ -306,24 +306,24 @@
       "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "8edb899c79a702efb610c75dd182d484ed3046cfa3e1b11fdc1b3c9d4c6d77df",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "ebea7838707ac51016cd53f34700f6e70782567a9de054b50a2b71b5335c8037",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "b79d1d793a22ad701b1b8e466c0b584987373f57b70946f40acc661390067347",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "3c7b4ab4177cca18522bb8a5e3ac969f1600fbdd745ab349668c6dca1f6d47c7",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "3b739d53204b76317a2d3e4cbe68d2bb8a8ecd1e05db9a453d1ab8e0a7100151",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "c5aec235c11d7ca0c0989fe6a0391bea1517431ead99e222e99542988f7217fe",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Lv3Support.lua": {
-      "sha256": "f58cf09bda2b1e3bc4532b95bc4db6e0814ef879ef413414b039c53bab8900d7",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Lv4CopyRead.lua": {
       "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
@@ -331,19 +331,19 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Lv4Percent.lua": {
-      "sha256": "a4ef8a6a6fbe1efbeba891b21bcfd94f480f0cecb6c64aadae568d1037cad96e",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "c2ff5ec94196d59c1963b29d13745d364a799296654edbda8e2b1037d54e4064",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/NetworkBoost.lua": {
-      "sha256": "619ef2f6001bc812011b50a66677b09691b91a90d2efedeb0f5fdc1bac60926b",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "bc82aa17a465e5a13d101fafe16f5d9ed693282945bdd0f956f411f898f14d5a",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "3c29503b8dd728e06a2c4ecae7888de08e016207210c7c1adf5b7c1b887ed745",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "f172049019ef4daebfee5046efc6715114d229e969486a4c9d3c78db7a7c2aea",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/NetworkInput.lua": {
       "sha256": "747b02b277122b6c5daf3207e9374dbad73a3964e266fab861469eb0f9b3c44c",
@@ -366,14 +366,14 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "ed1ad338341ac9cd5ebeece06857095512595e5775611c36380dfcff4062a694",
+      "sha256": "7380e0abcd3fa5ed30bf327056a3c815d5a74d66fe1338ca635ed0f4ae3ee4e3",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/PurchaseProbe.lua": {
-      "sha256": "6cc99d4d0c86a3c27139c375212fec90f6c061ba21ab7e15ed05d28dec80e5f3",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/PurchaseProbeRead.lua": {
       "sha256": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24",
@@ -391,9 +391,9 @@
       "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "80fa642830ef5e6c31ebadc57adbaa76b3722a376b1d6367195fc167b040940f",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "109b7a960c9b5e81ff9120cee13e041459aa7951a62ae50a52d47f2dc340d5bf",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/RuntimeAuditCore.lua": {
       "sha256": "4d48025888451ef30e89473cdb5f3179b17646511bd4067f4dfad3da09833b1b",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "eebcc655400ff3799b6149ed4bf7a1ac59771979f5917e0f2e602efa0cd85bf3",
+      "sha256": "a0f7197f493d1b71ca710ab6aa2544705a501ab41c9a095218456857c6029700",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Standardization.lua": {
       "sha256": "5463bc6132be6e8fb937c4a20e4b3feffbbf3ead7d07c367eb4e03c0f659a732",
@@ -441,9 +441,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/StandardizationDiscount.lua": {
-      "sha256": "a2fedf96482913159c46372a1e5fb69e429121058ca9b9bc89d0f01a66be5954",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "4f0a348c3024e2b5fc1b6672230556978e81476408977a271b715023d6cf320d",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -626,9 +626,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/YieldCarrierProbe.lua": {
-      "sha256": "6f91b0f71c9811034da652c18bcb1a2e643a6b15fce41e963bdd36f44be3f22e",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/SpecialistSupport.lua": {
       "sha256": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f",
@@ -636,9 +636,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "03bae7fc39398c8c7b21a71b0b3bca307f2a0c55fe5f0e758bc04208c2052a6c",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "5f7d1644fc4597ddc7e8decdc5c6e2ce3928a2c9432eb77e51b340c443fa5974",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Data/ResearchInfrastructure.sql": {
       "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
@@ -671,9 +671,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "cde5d076d1b1abd2c27b3adccb37f0d0625b2a3c31f4f5654bf4f4ff09e79d41",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "ee71d18f1d47449f3e5595227e4c45ecf3b69a6d5b18cc9ba1204f7443427613",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/UI/ResearchCrossRefresh.xml": {
       "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",
@@ -691,9 +691,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "52f84760ea41c7e1d3b8554c57fe6e527f6535a52541a4a7c33fa62ddf8afc05",
-      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
-      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
+      "sha256": "ad667dc8f2ee76eb6dbc62cd7601dc321c90feea8b20afaff23ce011c9e00a0a",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -711,9 +711,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "8d5c68208cf85702b45979a052d9637a0b29bb6591157bab96d6be500c701074",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "sha256": "c1b9bc516d4567a64cd80d4b583fcd8a31e8c3c485665e30987b9cce38ec095f",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/Data/ResearchChair.sql": {
       "sha256": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "ddf398fca3f1368fdbfc53465f8f5235bc7a94e84e2e8df3dd18f22a311ec5fa",
+      "sha256": "bc6900bd06ba6732250398888088bcbf6e2ebee312c9dcba8b0537973068cc05",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     }
   }
 }

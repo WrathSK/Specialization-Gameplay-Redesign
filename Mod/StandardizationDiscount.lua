@@ -260,4 +260,11 @@ function SPCStandardizationDiscount.Start(P,shared)
  hook('BuildingAddedToMap',building);hook('BuildingRemovedFromMap',building)
  -- Other purchase prerequisites (tech/civic/policies etc.) are UI permission facts.
  -- No Gameplay-wide audit is needed until the accepted permission sample changes.
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('StandardizationDiscount',function(c,loss)
+   local ids={};init();for _,levels in pairs(carriers)do for _,index in pairs(levels)do local r=assert(P.Info('Buildings',index),'EXIT_DISCOUNT_ROW');ids[#ids+1]=r.BuildingType end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   d.applied[loss.origin.owner..':'..loss.origin.cityID]=nil;d.applied[c:GetOwner()..':'..c:GetID()]=nil
+ end)end
+
 end

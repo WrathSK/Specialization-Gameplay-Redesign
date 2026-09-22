@@ -133,4 +133,10 @@ function SPCCommerceConvergence.Start(P,shared)
  local function hook(t,name) local e=P.Field(t,name);if e and e.Add then SPCRuntimeWork.Hook(P,t,name,d.Audit) end end
  for _,name in ipairs({'LoadScreenClose','PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityTransfered','BuildingAddedToMap','BuildingRemovedFromMap','CityProductionCompleted','CityTileOwnershipChanged','GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'}) do hook(Events,name) end
  for _,name in ipairs({'CityBuilt','OnBuildingConstructed','OnDistrictConstructed'}) do hook(GameEvents,name) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)
+   local ids={};for _,y in ipairs(ys)do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

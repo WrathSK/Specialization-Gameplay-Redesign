@@ -109,4 +109,10 @@ function SPCDialogue.Start(P,shared)
   local e=P.Field(Events,name);if e and e.Add then e.Add(auditAll) end
  end
  local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() d.ready=false;d.samples={};d.last={};d.Init();auditAll() end) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
+   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

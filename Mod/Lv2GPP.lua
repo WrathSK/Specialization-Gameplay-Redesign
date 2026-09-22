@@ -111,4 +111,10 @@ function SPCLv2GPP.Start(P,shared)
  bind(Events,"LoadScreenClose",function() data.ready=true;data.errors={};data.Audit() end)
  for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","GovernorPromoted","PlayerTurnActivated","CityTransfered","CityRemovedFromMap","DistrictRemovedFromMap","DistrictBuildProgressChanged","DistrictPillaged","DistrictRepaired","BuildingAddedToMap","BuildingRemovedFromMap","BuildingPillaged","BuildingRepaired"}) do SPCRuntimeWork.Hook(P,Events,event,data.Audit) end
  for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt","OnPillage"}) do bind(GameEvents,event,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2GPP',function(c,loss)
+   local ids={};for _,k in ipairs(kinds)do for bit=0,7 do ids[#ids+1]=name(k,bit)end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

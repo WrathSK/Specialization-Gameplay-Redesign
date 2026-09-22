@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="122">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="123">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B095.122 develop: opt-in same-owner single-city progression save cutover; four professions only.</Description>
+    <Description>B096.123 develop: E2 confirmed ownership-loss module-owned effect exit; partial checkpoint, not deployed.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0249",
-    "runtime": "B095.122 / modinfo122",
+    "status": "S0250",
+    "runtime": "B096.123 / modinfo123",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "6bd903e0dc0da5ecd365af4c3f00a2bf6e81d479",
-  "current_batch": "P0-E2 AUTHORIZED_PARTIAL_NOT_DEPLOYABLE",
-  "next_batch": "Finish E2 exact module-owned confirmed-exit safety and targeted regressions; no F/Claim/return",
+  "runtime_commit": "pending checkpoint commit; see Git history for B096.123",
+  "current_batch": "P0-E2 PARTIAL_CONFIRMED_EXIT_LOCAL_PASS_NOT_DEPLOYED",
+  "next_batch": "Stop for checkpoint review; no deployment/return/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B094.121 / modinfo121 deployed W0003;151/151 MATCH;B093/stable recovery retained",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "E2 same-owner implementation reviewed; exit gate blocked, no deployment; four professions only",
+  "context_review_status": "Module-owned confirmed exit reviewed and targeted L3 local pass; native untested",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

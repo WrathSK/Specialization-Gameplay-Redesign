@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0249",
-    "runtime": "B095.122 / modinfo122",
+    "status": "S0250",
+    "runtime": "B096.123 / modinfo123",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -110,6 +110,131 @@
       "path": "DevelopmentTests/test_p0_e2.py",
       "kind": "full",
       "reason": "E2 partial implementation/entrypoint/eligibility/targeted test review"
+    },
+    {
+      "path": "Mod/CommerceConvergence.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/CopyYields.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/CrewProjects.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/Dialogue.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacency.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/GreatWorkProbe.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/HalfYieldProbe.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/IndustrySupport.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/Lv2GPP.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/Lv2Housing.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/Lv3Effects.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/Lv3Support.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/Lv4Percent.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/NetworkBoost.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/NetworkBridge.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/PurchaseProbe.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/ResearchApply.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/ResearchChair.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/ResearchCross.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/ResearchInfrastructure.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/ResearchSupport.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/StandardizationDiscount.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "Mod/YieldCarrierProbe.lua",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_e2_exit.py",
+      "kind": "full",
+      "reason": "E2 exact owned exit and targeted validation"
     }
   ],
   "dependencies": [
@@ -125,7 +250,8 @@
     "adapt": [
       "Migrated-city Binding/Journal/Flow guards and load recovery",
       "Investment storage backend",
-      "EffectiveFacts/Network direct storage reads"
+      "EffectiveFacts/Network direct storage reads",
+      "Explicit module-owned exit on confirmed loss; permanent ledgers preserved"
     ]
   },
   "conditional_context": [
@@ -167,9 +293,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "PARTIAL_SAME_OWNER_LOCAL_PASS_EXIT_GATE_BLOCKED",
+    "implementation": "PARTIAL_CONFIRMED_EXIT_LOCAL_PASS",
     "native": "NOT_TESTED_NOT_DEPLOYED",
-    "next": "Resolve exact module-owned exit cleanup approval boundary; finish consumer/exit validation before deployment",
+    "next": "User checkpoint review; no deployment/return/Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

@@ -47,3 +47,15 @@ function SPCYieldCarrierProbe.Describe(pid,c)
  end)
  return ok and out or ('B030 CARRIER UNKNOWN: '..tostring(out):sub(1,200))
 end
+
+-- These exact two plot flags belong only to the optional B029/B030 yield experiment.
+function SPCYieldCarrierProbe.RegisterExit(shared)
+ shared.CityProgressionStore.RegisterExit('YieldCarrierProbe',function(c,loss)
+  assert(shared.CityProgressionStore.IsExitTarget(c,loss),'EXIT_NOT_CONFIRMED')
+  local plot=assert(Map.GetPlot(c:GetX(),c:GetY()),'EXIT_PLOT_UNKNOWN')
+  for _,k in ipairs({'SPC_B029_ONE','SPC_B029_HALF'})do
+   local v=plot:GetProperty(k)
+   if v~=nil and v~=0 then P.SetProperty(plot,k,0);assert(plot:GetProperty(k)==0,'EXIT_PLOT_WRITE_UNCONFIRMED')end
+  end
+ end)
+end
