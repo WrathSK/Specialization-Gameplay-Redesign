@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B099 coherent commit (resolved in subsequent checkpoint record)",
+  "runtime_commit": "1dc2ca47fac8d5b114f2d2c4339d5ee938c9fa82",
   "runtime": "B099.126 / modinfo126",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

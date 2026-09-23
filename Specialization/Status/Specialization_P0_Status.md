@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0253
-Implementation Build: develop P0-B-099.126 / modinfo126 ELIGIBILITY_FIX_CANDIDATE; live B098.125 pending safe deployment; stable B069.96
+Implementation Build: develop P0-B-099.126 / modinfo126 ELIGIBILITY_FIX_CANDIDATE; live B099.126 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -11,7 +11,7 @@ Work State: P0_E2_NATIVE_ROUND_TRIP_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-B099.126 已按授权修复人类资格读取及静默诊断拒绝；使用Player.IsHuman，不假定player0。定向资格/实际诊断入口与E2保存、退出、夺回回归LOCAL_SIMULATION_PASS，非实机PASS。永久状态/Design不改；用户已确认退出，待安全部署。先验收基本读数/收益，再恢复E2往返，不重复迁移。见[E2修复记录](../Architecture/v2/P0_E2_Plan.md#b099126--authorized-eligibility-regression-repair)。
+B099.126 已按授权修复人类资格读取及静默诊断拒绝；使用Player.IsHuman，不假定player0。定向资格/实际诊断入口与E2保存、退出、夺回回归LOCAL_SIMULATION_PASS，非实机PASS。永久状态/Design不改；用户已确认退出，已通过既有transaction工具部署，152/152 MATCH；source `1dc2ca4`，receipt `B099.126-1dc2ca4-playtest.json`；B098完整恢复包及stable恢复桥保留，main未改。先验收基本读数/收益，再恢复E2往返，不重复迁移。见[E2修复记录](../Architecture/v2/P0_E2_Plan.md#b099126--authorized-eligibility-regression-repair)。
 
 B098.125 实机诊断入口失败：[三图调查](Validation/Results/Specialization_B098_E2_Read_Failure.md)。专业/潜力、总督、专家报告停在READING；用户报告能力失效。152/152部署一致。B095新增全局人类资格检查是主要回归候选，尚无native API返回值确认。先暂停ownership往返测试，修复基本入口后再恢复；永久记录未证明丢失。本轮仅调查归档，无源码/部署变化。
 

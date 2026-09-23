@@ -320,8 +320,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
-    "native": "B098_DIAGNOSTIC_FAIL_B099_REPAIR_PENDING_NATIVE",
-    "next": "Deploy B099 safely; confirm basic reads/effects before resuming round-trip; no Claim/F",
+    "native": "B099_DEPLOYED_PENDING_BASIC_READ_RETEST",
+    "next": "User checks basic reads/effects, then resumes native round-trip if pass; no Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }
