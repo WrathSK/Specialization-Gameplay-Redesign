@@ -120,7 +120,7 @@ print('E2 LOCAL_SIMULATION_PASS: 16 imports; actual investment/legacy-load hooks
 for p in M.rglob('*.lua'):
  l.execute('assert(load(...))',p.read_text())
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='125'
+assert root.attrib['version']=='126'
 assert 'CityProgressionStore.lua' in [e.text for e in root.find('Files')]
 # Real eligibility function with native-shaped API mocks, no silent fallback to AI.
 probe=(M/'Probe.lua').read_text();fn=probe[probe.index('function P.IsTestPlayer'):probe.index('function P.Summary')]
@@ -128,10 +128,12 @@ l.execute(fn)
 l.execute("""
 P.Call=function(o,k,...)if not o or not o[k]then return false end;return pcall(o[k],o,...)end
 local human,multi=true,false
-PlayerConfigurations={[0]={GetCivilizationTypeName=function()return 'CIVILIZATION_SPC_TEST'end,GetLeaderTypeName=function()return 'LEADER_SPC_TEST'end,IsHuman=function()return human end}}
+PlayerConfigurations={[0]={GetCivilizationTypeName=function()return 'CIVILIZATION_SPC_TEST'end,GetLeaderTypeName=function()return 'LEADER_SPC_TEST'end,IsHuman=function()error('UI-only config method must not be called')end}}
+Players={[0]={IsHuman=function()return human end}}
 GameConfiguration={IsAnyMultiplayer=function()return multi end}
 assert(P.IsTestPlayer(0));human=false;assert(not P.IsTestPlayer(0));human=true;multi=true;assert(not P.IsTestPlayer(0));multi=false
-PlayerConfigurations[0].IsHuman=nil;assert(not P.IsTestPlayer(0))
+PlayerConfigurations[0].IsHuman=nil;assert(P.IsTestPlayer(0))
+Players[0].IsHuman=nil;assert(not P.IsTestPlayer(0))
 """)
 print('Lua compile + modinfo + human/singleplayer gate PASS')
 

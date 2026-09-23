@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0252",
-    "runtime": "B098.125 / modinfo125",
+    "status": "S0253",
+    "runtime": "B099.126 / modinfo126",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -255,6 +255,11 @@
       "path": "DevelopmentTests/test_p0_e2_recapture.py",
       "kind": "full",
       "reason": "Authorized scoped recapture and targeted L3 coverage"
+    },
+    {
+      "path": "DevelopmentTests/test_b099_eligibility.py",
+      "kind": "full",
+      "reason": "Authorized context API and actual diagnostic rejection regression"
     }
   ],
   "dependencies": [
@@ -315,8 +320,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
-    "native": "DEPLOYED_PENDING_USER_GAME_TEST",
-    "next": "User executes one-city round-trip; review evidence, no Claim/F",
+    "native": "B098_DIAGNOSTIC_FAIL_B099_REPAIR_PENDING_NATIVE",
+    "next": "Deploy B099 safely; confirm basic reads/effects before resuming round-trip; no Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

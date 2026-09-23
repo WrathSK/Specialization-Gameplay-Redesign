@@ -25,6 +25,14 @@ local function request(playerID,params)
     shared.DialogueIngress={player=playerID,token=P.Scalar(params.Token),seq=P.Scalar(params.Seq),dataBytes=type(params.Data)=='string' and #params.Data or -1}
   end
   if type(params)~="table" or type(params.Token)~="string" or #params.Token>100 then return end
+  -- Return a bounded diagnostic failure instead of silently dropping an eligible UI's request.
+  local eligible,eligibilityReason=P.IsTestPlayer(playerID)
+  if not eligible then
+    shared.RequestToken=params.Token
+    shared.FailureAt="PLAYER_ELIGIBILITY"
+    shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
+    return
+  end
   -- B068 presentation is a disposable mirror, never a source of city state.
   if params.Action=='PROGRESSION_IMPORT' or params.Action=='PROGRESSION_STORE_READ' then
     if not P.IsTestPlayer(playerID) then return end

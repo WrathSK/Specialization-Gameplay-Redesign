@@ -119,7 +119,8 @@ request=function(action,advance)
   ContextPtr:ClearUpdate()
   gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
-  if not P.IsTestPlayer(playerID) then trace("OUTSIDE_TEST_CIV");return end
+  local eligible,reason=P.IsTestPlayer(playerID)
+  if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
   local storageAction=action=="PROGRESSION_STORE_READ" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken

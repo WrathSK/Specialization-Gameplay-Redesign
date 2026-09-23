@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "0927183bf00c679e4d21e27dfc0813afc9d92e76",
-  "runtime": "B098.125 / modinfo125",
+  "runtime_commit": "B099 coherent commit (resolved in subsequent checkpoint record)",
+  "runtime": "B099.126 / modinfo126",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "929f9825bcbd6b767c0027159096a391db2e6193b42d7c4f7ca1f8aec007e58d",
+      "sha256": "f691641599c2bbc74dabf9a49d9f11b4392f22a2a1f2376b683dbddb95ae6b99",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
+      "provenance": "B099 human eligibility API and bounded diagnostic rejection repair"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "5de771ed75ba8678673318602a029a6359cbeeb84b297ee38437b25139c1fdce",
+      "sha256": "30a64ec09eff3244656a70860c27c7eaba2f24d44bcc4b63c032ebceb00398f0",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
+      "provenance": "B099 human eligibility API and bounded diagnostic rejection repair"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "358c7da089a3c901ab48449ef5d98a5bc8dec9b9e386f6ddc5276dc244b9de11",
+      "sha256": "8ca1575179859ecc1286f1e7cde70d3ef0da2a9de803901f4e6bc16804d22495",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
+      "provenance": "B099 human eligibility API and bounded diagnostic rejection repair"
     },
     "Mod/Standardization.lua": {
       "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "0ae526739d9328981dc3e37ebe63a47dc0fd3af736d17bf421222fd1af178b6f",
+      "sha256": "edbed7458bbb14f7e56659f2b51f561dfcba1eaca254f162269e1392d5fe952a",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B098 minimal native validation diagnostics; no recognition/effect changes"
+      "provenance": "B099 human eligibility API and bounded diagnostic rejection repair"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "76002d3043f9607f9750625ec31459f46110c16e74d8a0dcdf119a987707652e",

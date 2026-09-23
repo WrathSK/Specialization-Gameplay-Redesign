@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-098.125"
+P.VERSION = "P0-B-099.126"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -31,13 +31,21 @@ function P.Scalar(value)
   return "<"..kind..":not-inspected>"
 end
 
+-- Player.IsHuman is available in Gameplay and UI; configuration methods differ by context.
+-- IDs identify players, not human status: never infer eligibility from playerID == 0.
 function P.IsTestPlayer(playerID)
   local config=PlayerConfigurations and PlayerConfigurations[playerID]
   local ok,civ=P.Call(config,"GetCivilizationTypeName")
   local leaderOK,leader=P.Call(config,"GetLeaderTypeName")
-  local humanOK,human=P.Call(config,"IsHuman")
+  if not ok or not leaderOK then return false,"玩家配置暂不可读" end
+  if civ~="CIVILIZATION_SPC_TEST" or leader~="LEADER_SPC_TEST" then return false,"非测试文明或领袖" end
+  local humanOK,human=P.Call(Players and Players[playerID],"IsHuman")
+  if not humanOK or type(human)~="boolean" then return false,"玩家人类身份暂不可读（Player.IsHuman）" end
+  if not human then return false,"AI玩家未启用" end
   local modeOK,multi=pcall(function() return GameConfiguration.IsAnyMultiplayer() end)
-  return humanOK and human==true and modeOK and multi==false and ok and leaderOK and civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST"
+  if not modeOK or type(multi)~="boolean" then return false,"单人模式暂不可读（IsAnyMultiplayer）" end
+  if multi then return false,"多人模式未支持" end
+  return true
 end
 
 function P.Summary(playerID,cityID)
