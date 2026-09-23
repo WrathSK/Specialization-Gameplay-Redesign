@@ -11,6 +11,8 @@ Work State: P0_E2_NATIVE_ROUND_TRIP_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
+B098.125 实机诊断入口失败：[三图调查](Validation/Results/Specialization_B098_E2_Read_Failure.md)。专业/潜力、总督、专家报告停在READING；用户报告能力失效。152/152部署一致。B095新增全局人类资格检查是主要回归候选，尚无native API返回值确认。先暂停ownership往返测试，修复基本入口后再恢复；永久记录未证明丢失。本轮仅调查归档，无源码/部署变化。
+
 B098.125 已按授权临时部署：source `0927183`，152/152 MATCH；既有B094.121完整恢复包151/151核验保留，stable/main不变。receipt `B098.125-0927183-playtest.json`（既有外部SpecializationDeploymentBackups目录）。未启动游戏，native各项仍待用户回传。
 
 B098.125：用户接受B097并授权最小native round-trip验证与必要测试部署；新增“E2往返”按需报告，不改B096/B097恢复规则。真实报告零写及相关生命周期回归LOCAL_SIMULATION_PASS；实机withdrawal/recapture/ACTIVE/Network/save-load均PENDING_USER_GAME_TEST。按[单城流程](../Architecture/v2/P0_E2_Plan.md#b098125--单城-native-ownership-round-trip-validation)由用户测试；不进入Claim/全城迁移/F。部署事务完成情况另记，下方旧“不部署”为历史批次约束。
