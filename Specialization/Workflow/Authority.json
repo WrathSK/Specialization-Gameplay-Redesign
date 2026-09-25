@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0256",
-    "runtime": "B102.129 / modinfo129",
+    "status": "S0257",
+    "runtime": "B103.130 / modinfo130",
     "military": "D0034"
   },
   "paths": {
@@ -30,8 +30,8 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "39fa0a996d9cb21572c92c85d6d48d181a26d26d",
-  "current_batch": "P0-E2 B102 CONQUEST_CLASSIFICATION_LOCAL_PASS",
+  "runtime_commit": "Resolve B103 implementation commit in Git (this batch)",
+  "current_batch": "P0-E2 B103 HYDRATION_REPAIR_LOCAL_PASS",
   "next_batch": "Native original-owner return/accepted coldload validation only; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B102.129 / modinfo129 deployed;152/152 MATCH;B101 recovery verified; receipt B102.129-39fa0a9-playtest.json",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B102 typed conquest disambiguation with exact foundation endpoint; targeted L3 PASS; native pending",
+  "context_review_status": "B103 exact foreign load hydration exception; bounded first-fault diagnostic; targeted L3 PASS, native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

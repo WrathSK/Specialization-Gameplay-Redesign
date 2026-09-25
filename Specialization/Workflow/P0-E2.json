@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0256",
-    "runtime": "B102.129 / modinfo129",
+    "status": "S0257",
+    "runtime": "B103.130 / modinfo130",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -275,6 +275,11 @@
       "path": "DevelopmentTests/test_b102_e2_foundation.py",
       "kind": "full",
       "reason": "Authorized CityBuilt/conquest classification and persistence boundary validation"
+    },
+    {
+      "path": "DevelopmentTests/test_b103_e2_hydration.py",
+      "kind": "full",
+      "reason": "Authorized load hydration versus native transition regression"
     }
   ],
   "dependencies": [
@@ -334,9 +339,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "B102_CONQUEST_CLASSIFICATION_LOCAL_PASS",
-    "native": "B102_CHAIN_ORDER_REJECTION_WITH_VALID_LATEST_SEQUENCE_EXIT23",
-    "next": "Await bounded hydration-versus-transition fix; local reproduction confirmed; no repeat native test before repair; no Claim/F",
+    "implementation": "B103_HYDRATION_REPAIR_LOCAL_PASS",
+    "native": "B103_PENDING_USER_GAME_TEST",
+    "next": "Safe test deployment and minimal existing foreign-held save recapture/coldload; no Claim/F",
     "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
   }
 }

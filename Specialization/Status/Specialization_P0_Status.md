@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0256
-Implementation Build: develop P0-B-102.129 / modinfo129 E2_CONQUEST_CLASSIFICATION_CANDIDATE; live B102.129 validation; stable B069.96
+Status Revision: S0257
+Implementation Build: develop P0-B-103.130 / modinfo130 E2_HYDRATION_REPAIR_CANDIDATE; live B102.129 pending switch; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_LOAD_HYDRATION_ORDER_DEFECT_REPRODUCED
+Work State: P0_E2_HYDRATION_REPAIR_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+B103.130：[读档初始化修复](../Architecture/v2/P0_E2_Plan.md#b103130--authorized-foreign-load-hydration-repair)已获授权。仅忽略转移开始前精确匹配已保存外方引用的加入/初始化；不清除既有错误，真实乱序/冲突继续拒绝。新增固定单条首次拒绝证据。四专业、读档/重复初始化/截图征服顺序、接受后冷加载及既有E2退出/投资/恢复定向L3 LOCAL_SIMULATION_PASS，非实机PASS。无Claim/F/Design变化；待安全部署及最小原生复核。以下B102为历史失败证据。
 
 2026-09-25 [B102两图与本地复现](Validation/Results/Specialization_B102_E2_Chain_Order.md)：本次最新CityBuilt/征服/移除/加入/初始化/转移顺序正确，仍RETURN_CHAIN_ORDER、退出23/23。实际代码可复现“读档外方CityAdded先到→错误锁存→之后合法链被拒绝”；原生最早触发通知未保留，不把推断当完整trace。缺少加载对象与转移阶段区分，待窄修复；永久P2/投资1保留，ACTIVE/Network/接受后保存仍未验证。无需再重复当前测试，本轮只调查/归档/文档，无源码或部署变化。
 

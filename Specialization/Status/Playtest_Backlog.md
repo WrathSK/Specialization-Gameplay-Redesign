@@ -45,3 +45,7 @@ PT009 B100 follow-up: [conquest evidence](Validation/Results/Specialization_B100
 PT009 B101: [foundation-guard evidence](Validation/Results/Specialization_B101_E2_Foundation_Guard.md) shows23/23 completed, RETURN_NEW_FOUNDATION before withdrawal gate, typed GameEvents.CityConquered plus exact transition chain. CityBuilt semantic classification needs narrowly authorized correction; no need to rerun pre-trade exit. No implementation/deployment in evidence review.
 
 PT009 B102: [chain-order evidence](Validation/Results/Specialization_B102_E2_Chain_Order.md) latest native chain is valid, exits23/23; a pre-transition foreign-object add deterministically latches RETURN_CHAIN_ORDER in actual-store simulation. Fix hydration/transition phase separation before another native test; earliest native fault event not retained. No repair/deployment in this evidence review.
+
+
+### B103.130 E2 hydration repair — native pending
+Exact saved foreign load notifications no longer poison later transfer order. Targeted L3 PASS; first-fault diagnostic retained. After verified deployment use the existing foreign-held save → recapture → E2/city report → accepted-only separate save/coldload. No repeat migration/Claim/F; earlier B102 evidence remains historical.
