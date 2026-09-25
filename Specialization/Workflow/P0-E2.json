@@ -325,8 +325,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "B100_DIAGNOSTIC_LOCAL_PASS",
-    "native": "B099_COLDLOAD_RETAINED_PROGRESS_PASS_EXIT23_RECAPTURE_HELD_FAIL",
-    "next": "Minimal post-conquest E2 native diagnostic; recovery rules unchanged; no Claim/F",
+    "native": "B100_MATCHING_TRANSFER_OBSERVED_RETURN_REJECTED_LIVE_TOKEN_MISSING",
+    "next": "Review minimal persisted-reference/native-transition identity adaptation; no token copying, new cityKey, Claim/F; no repeat native test before repair",
     "scope_review": "Four professions; authorized diagnostic supplement only; no new recapture authority/Claim/F"
   }
 }

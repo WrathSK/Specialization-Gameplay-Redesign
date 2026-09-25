@@ -7,9 +7,11 @@ Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_DIAGNOSTIC_SUPPLEMENT_LOCAL_PASS_NATIVE_PENDING
+Work State: P0_E2_NATIVE_TOKEN_CONTINUITY_BOUNDARY_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-25 [B100夺回阻断确认](Validation/Results/Specialization_B100_E2_Recapture_Token.md)：旧3/131073移除→新0/327682加入/初始化→CityTransfered匹配；候选已到达，token nil导致RETURN_IDENTITY_UNCONFIRMED。永久RESEARCH/P2/投资1及rev3保留；非事件未达。TARGET_UNAVAILABLE指旧外方退出对象已变化，23/23仍完成。B097原生夺回本次FAIL，ACTIVE/Network重建未验；建议另审基于已保存引用+严格转移链的最小适配，不复制token、不进入Claim/F。发现B100征服观察namespace与E1不同，缺行不代表GameEvents未触发。本轮只证据记录，游戏运行中、不改代码/部署；无需重复当前测试。
 
 2026-09-25 [B100首图](Validation/Results/Specialization_B100_E2_Foreign_Baseline.md)：当前仍3/131073外方持有，STILL_FOREIGN、token MISSING、退出23/23、永久P2/投资1保留；Network跨Owner引用已正确排除。仅诊断可见字段实机通过，未观察夺回事件；待征服后重新点击E2往返。游戏运行中，本轮只归档/记录，无部署。
 
