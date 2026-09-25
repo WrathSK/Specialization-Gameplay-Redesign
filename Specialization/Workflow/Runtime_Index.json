@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B100.127 containing commit (resolve with git log -- Mod/Probe.lua)",
+  "runtime_commit": "8417ee11e6e3aba9be4f6235d4f13e632c214bec",
   "runtime": "B100.127 / modinfo127",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
