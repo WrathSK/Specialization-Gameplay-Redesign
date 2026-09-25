@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0254
-Implementation Build: develop P0-B-100.127 / modinfo127 E2_DIAGNOSTIC_CANDIDATE; live B100.127 validation; stable B069.96
+Status Revision: S0255
+Implementation Build: develop P0-B-101.128 / modinfo128 E2_TRANSITION_CANDIDATE; live B100.127 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_NATIVE_TOKEN_CONTINUITY_BOUNDARY_CONFIRMED
+Work State: P0_E2_NATIVE_TRANSITION_LOCAL_PASS_USER_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+B101.128：获授权[单城原Owner转移链适配](../Architecture/v2/P0_E2_Plan.md#b101128--authorized-original-owner-native-transition-adaptation)，使用已保存外方引用+本次实际移除/加入/初始化/转移链，允许token缺失但拒绝冲突；确认结果保存在原Game记录，无token补写/Claim/new cityKey。ACTIVE/Network仍按当前事实重算。定向L3 LOCAL_SIMULATION_PASS，native待验；旧B100回滚必须搭配接受新证明之前的存档。部署另记，用户已确认退出。
 
 2026-09-25 [B100夺回阻断确认](Validation/Results/Specialization_B100_E2_Recapture_Token.md)：旧3/131073移除→新0/327682加入/初始化→CityTransfered匹配；候选已到达，token nil导致RETURN_IDENTITY_UNCONFIRMED。永久RESEARCH/P2/投资1及rev3保留；非事件未达。TARGET_UNAVAILABLE指旧外方退出对象已变化，23/23仍完成。B097原生夺回本次FAIL，ACTIVE/Network重建未验；建议另审基于已保存引用+严格转移链的最小适配，不复制token、不进入Claim/F。发现B100征服观察namespace与E1不同，缺行不代表GameEvents未触发。本轮只证据记录，游戏运行中、不改代码/部署；无需重复当前测试。
 

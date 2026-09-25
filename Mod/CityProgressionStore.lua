@@ -9,6 +9,7 @@ function SPCCityProgressionStore.Start(P,shared)
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized'}
  local nativeEvents={};local eventSequence=0
  local root,fault,busy;local ready=false
+ local foreignSeen=false;local transition;local transitionFault
  local function observe(name,...)
   if not root then return end
   eventSequence=eventSequence+1
@@ -26,6 +27,13 @@ function SPCCityProgressionStore.Start(P,shared)
   for k in pairs(b) do if a[k]==nil then return false end end;return true
  end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
+ local function validTransition(proof,loss,current)
+  if type(proof)~='table' or proof.version~=1 or not loss or not same(proof.from,loss.target)
+   or not same(proof.to,current) or type(proof.turn)~='number' or proof.turn<0 or proof.turn%1~=0 then return false end
+  local r,a,i,t=proof.removed,proof.added,proof.initialized,proof.transferred
+  return type(r)=='number' and type(a)=='number' and type(i)=='number' and type(t)=='number'
+   and r>=1 and r%1==0 and a%1==0 and i%1==0 and t%1==0 and r<a and a<i and i<t
+ end
  local function source(c)
   local s={ref=ref(c),values={}}
   for _,n in ipairs({'TOKEN','JOURNAL','FLOW','INVEST','TEMPLATES'}) do s.values[n]=c:GetProperty(M.Keys[n])end
@@ -43,7 +51,7 @@ function SPCCityProgressionStore.Start(P,shared)
    x=r.base.x,y=r.base.y,token=r.base.token,revision=1,stage='DONE',facts=r.base,target=r.base},INVEST=inv,TEMPLATES=r.templates}
   assert(M.Preview({ref=r.origin,values=v,ledger=r.binding}).state=='LOCAL_CANDIDATE','STORE_RECORD_INVALID')
   if r.current then
-   assert(r.returnEvidence=='CityTransfered+original_binding' and r.lastLoss and same(r.lastLoss.origin,r.origin)
+   assert((r.returnEvidence=='CityTransfered+original_binding' or (r.returnEvidence=='NATIVE_TRANSITION_V1' and validTransition(r.returnProof,r.lastLoss,r.current))) and r.lastLoss and same(r.lastLoss.origin,r.origin)
     and r.lastLoss.target.owner~=r.origin.owner and type(r.currentFirst)=='table' and r.currentFirst.turn==r.base.first.turn
     and r.current.owner==r.origin.owner and type(r.current.cityID)=='number' and r.current.cityID>=0 and r.current.cityID%1==0
     and r.current.x==r.origin.x and r.current.y==r.origin.y and type(r.currentFirst)=='table'
@@ -55,6 +63,7 @@ function SPCCityProgressionStore.Start(P,shared)
     and r.loss.target.owner~=r.origin.owner and type(r.loss.target.cityID)=='number'
     and r.loss.target.x==r.origin.x and r.loss.target.y==r.origin.y,'STORE_LOSS_EVIDENCE')
   end
+  assert(r.referenceInvalidated==nil or r.referenceInvalidated==true,'STORE_REFERENCE_INVALIDATION')
   assert(r.stage~='PREPARED' or type(r.source)=='table','STORE_PREPARED_SOURCE')
  end
  -- Called by every old writer before entering player-wide error/repair handling.
@@ -69,7 +78,13 @@ function SPCCityProgressionStore.Start(P,shared)
  local function active(pid,c)
   assert(ready and not fault and root and root.stage=='ACTIVE','PROGRESSION_HELD')
   assert(P.IsTestPlayer(pid) and pid==root.origin.owner and same(ref(c),root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
-  if root.current then assert(c:GetProperty(M.Keys.TOKEN)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
+  assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
+  if root.current then
+   local token=c:GetProperty(M.Keys.TOKEN)
+   if root.returnEvidence=='NATIVE_TRANSITION_V1' then
+    assert(validTransition(root.returnProof,root.lastLoss,root.current) and (token==nil or token==root.base.token),'PROGRESSION_BINDING_CONFLICT')
+   else assert(token==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
+  end
   return root
  end
  local function projected(r,v,investment)
@@ -88,6 +103,42 @@ function SPCCityProgressionStore.Start(P,shared)
    assert(same(Game:GetProperty(KEY),nextValue),'STORE_WRITE_UNCONFIRMED')
   end)
   if not ok then fault=tostring(err);error(fault)end
+ end
+ -- Session-only transition assembly. Never reconstruct an incomplete chain at load.
+ local function track(name,owner,id,x,y)
+  if not ready or fault or not root then return end
+  local current=root.current or root.origin
+  if name=='CityRemovedFromMap' and root.stage=='ACTIVE' and owner==current.owner and id==current.cityID then
+   if not root.referenceInvalidated then local n=cp(root);n.referenceInvalidated=true;n.revision=n.revision+1;save(n)end
+  end
+  if not root.loss or root.stage~='HELD_TRANSFER' then return end
+  local old=root.loss.target;local turn=Game.GetCurrentGameTurn()
+  if name=='CityRemovedFromMap' and owner==old.owner and id==old.cityID then
+   if not foreignSeen then transitionFault='RETURN_FOREIGN_REFERENCE_UNOBSERVED';return end
+   if transition then
+    if transition.turn~=turn then transitionFault='RETURN_CHAIN_CONFLICT'end
+    return -- identical repeated removal is not another generation
+   end
+   transition={version=1,from=cp(old),turn=turn,removed=eventSequence}
+  elseif (name=='CityAddedToMap' or name=='CityInitialized') and x==old.x and y==old.y then
+   if not transition then transitionFault='RETURN_CHAIN_ORDER';return end
+   if transition.turn~=turn or owner~=root.origin.owner or type(id)~='number' or id<0 or id%1~=0 then
+    transitionFault='RETURN_CHAIN_CONFLICT';return
+   end
+   local endpoint={owner=owner,cityID=id,x=x,y=y}
+   if transition.to and not same(transition.to,endpoint) then transitionFault='RETURN_CHAIN_CONFLICT';return end
+   transition.to=endpoint
+   if name=='CityAddedToMap' then
+    if not transition.added then transition.added=eventSequence end
+   elseif not transition.added then transitionFault='RETURN_CHAIN_ORDER'
+   elseif not transition.initialized then transition.initialized=eventSequence end
+  elseif name=='CityRemovedFromMap' and transition and transition.to
+   and owner==transition.to.owner and id==transition.to.cityID then transitionFault='RETURN_CHAIN_TARGET_REMOVED'
+  elseif name=='CityBuilt' and x==old.x and y==old.y then transitionFault='RETURN_NEW_FOUNDATION' end
+ end
+ local function trackSafely(name,...)
+  local ok=pcall(track,name,...)
+  if not ok then transitionFault='RETURN_CHAIN_READ_FAILED' end
  end
  function d.WriteInvestment(pid,c,old,nextValue)
   local r=active(pid,c);assert(same(projected(r,r.investment,true),old),'STALE_LEDGER')
@@ -185,7 +236,7 @@ function SPCCityProgressionStore.Start(P,shared)
    end
    if eventSequence==0 then detail[#detail+1]='本次加载未收到上述事件'end
    local binding=not tokenOK and 'UNREADABLE' or token==nil and 'MISSING' or token==root.base.token and 'MATCH' or 'MISMATCH'
-   local gate=root.stage~='HELD_TRANSFER' and 'NOT_HELD' or not readable and 'CURRENT_REFERENCE_UNREADABLE'
+   local gate=root.referenceInvalidated and root.stage=='ACTIVE' and 'REFERENCE_REMOVED' or root.stage~='HELD_TRANSFER' and 'NOT_HELD' or not readable and 'CURRENT_REFERENCE_UNREADABLE'
     or live.owner~=root.origin.owner and 'STILL_FOREIGN' or d.returnRejection or 'WAIT_MATCHING_TRANSFER_EVENT'
    local function carrierCount(names)
     if not city then return 'UNKNOWN'end
@@ -198,14 +249,15 @@ function SPCCityProgressionStore.Start(P,shared)
    for i=0,7 do gpp[#gpp+1]='BUILDING_SPC_DEV_GPP_RESEARCH_'..i end
    local result=table.concat({P.VERSION..' | E2往返 | T'..Game.GetCurrentGameTurn()..' | '..root.stage,
     '原引用 '..label(root.origin)..' | record rev '..root.revision,
-    '原凭据 '..root.base.token..' | 当前匹配 '..binding,
+    '原凭据 '..root.base.token..' | 当前匹配 '..binding..' | 恢复依据 '..tostring(root.returnEvidence or '尚未确认'),
     '当前 '..(readable and label(live) or 'UNKNOWN')..' | token '..(tokenOK and tostring(token) or 'UNKNOWN'),
     '永久 '..root.base.specialization..' | Potential '..(1+receipts)..' | 投资 '..receipts,
     '当前ACTIVE '..(fOK and tostring(f.active)..' / '..tostring(f.activeStatus) or '未激活/UNKNOWN'),
     '失城确认 '..(root.loss and label(root.loss.target) or root.lastLoss and ('历史 '..label(root.lastLoss.target)) or 'NONE'),
     '退出 '..d.exitStatus..' | 完成 '..done..'/'..total..' | 核验ID '..checked..' / 移除 '..removed,
     '最近转移 '..(d.lastTransfer or '本次加载未收到'),
-    '夺回 '..(root.current and root.stage=='ACTIVE' and 'ACCEPTED' or gate)..' | 最近候选 '..(d.returnCandidate or 'NONE'),
+    '夺回 '..(root.current and root.stage=='ACTIVE' and not root.referenceInvalidated and 'ACCEPTED' or gate)..' | 最近候选 '..(d.returnCandidate or 'NONE'),
+    '转移链 '..(transitionFault or (transition and (transition.initialized and 'READY' or 'INCOMPLETE') or 'NONE')),
     '科研实存carrier：支持 '..carrierCount({'BUILDING_SPC_DEV_RESEARCH_SUPPORT'})..' / 住房 '..carrierCount(housing)..' / GPP '..carrierCount(gpp),
     'Network '..(b and b.validity or 'UNKNOWN')..' | epoch '..tostring(net and net.epoch)..' / input '..tostring(b and b.inputRevision)..' / derive '..tostring(b and b.derivedRevision),
     '旧/现本城 source '..tostring(source)..' / receiver '..tostring(receiver)..' | routes '..tostring(b and b.routes and #b.routes or 'UNKNOWN'),
@@ -256,6 +308,7 @@ function SPCCityProgressionStore.Start(P,shared)
   if exitBusy or not ready or fault or not root or not root.loss then return end
   local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
   if not ok or not c or not d.IsExitTarget(c,root.loss) then d.exitStatus='TARGET_UNAVAILABLE';return end
+  foreignSeen=true
   exitBusy=true;local names={};for name in pairs(exits)do names[#names+1]=name end
   table.sort(names,function(a,b)if a=='NetworkBridge' then return b~='NetworkBridge' end;if b=='NetworkBridge' then return false end;return a<b end)
   for _,name in ipairs(names)do if not finished[name] and (attempts[name] or 0)<3 then
@@ -272,7 +325,15 @@ function SPCCityProgressionStore.Start(P,shared)
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
   d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
   d.returnRejection=nil -- latest matched attempt; diagnostics only
-  assert(P.IsTestPlayer(newOwner) and c:GetProperty(M.Keys.TOKEN)==root.base.token,'RETURN_IDENTITY_UNCONFIRMED')
+  assert(P.IsTestPlayer(newOwner),'RETURN_PLAYER_UNCONFIRMED')
+  local token=c:GetProperty(M.Keys.TOKEN);local proof
+  if token~=root.base.token then
+   assert(token==nil,'RETURN_BINDING_CONFLICT')
+   assert(not transitionFault,transitionFault)
+   assert(foreignSeen and transition,'RETURN_CHAIN_MISSING')
+   proof=cp(transition);proof.transferred=eventSequence
+   assert(proof.turn==Game.GetCurrentGameTurn() and validTransition(proof,root.loss,current),'RETURN_CHAIN_INCOMPLETE')
+  end
   local count=0;for name in pairs(exits)do count=count+1;assert(finished[name],'RETURN_WITHDRAWAL_UNCONFIRMED')end
   assert(count>0,'RETURN_WITHDRAWAL_UNCONFIRMED')
   assert(not root.investment or root.investment.pending==nil,'RETURN_PENDING_INVESTMENT')
@@ -296,9 +357,9 @@ function SPCCityProgressionStore.Start(P,shared)
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
   for _,fn in pairs(returns)do fn(root.origin.owner,c)end
-  n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence='CityTransfered+original_binding'
+  n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
   n.revision=n.revision+1;save(n)
-  finished={};attempts={};d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
+  finished={};attempts={};transition=nil;transitionFault=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
   return true
  end
  local function reconcile(newOwner,newID,oldOwner)
@@ -315,7 +376,7 @@ function SPCCityProgressionStore.Start(P,shared)
     and newOwner==current.owner and newID==current.cityID then
     local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.revision=n.revision+1
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
-    finished={};attempts={};d.exitErrors={}
+    finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;foreignSeen=false
    end
    d.observation='READABLE'
   end)
@@ -327,9 +388,9 @@ function SPCCityProgressionStore.Start(P,shared)
  -- Bounded single-location observation; no generic publish/playback/hover work.
  listen(Events,'CityTransfered',function(...)pcall(observe,'CityTransfered',...);reconcile(...)end)
  -- Conquest observation deliberately does NOT call reconcile or restore state.
- listen(Events,'CityConquered',function(...)pcall(observe,'CityConquered',...)end)
+ listen(GameEvents,'CityConquered',function(...)pcall(observe,'CityConquered',...)end)
  for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap','CityInitialized'})do
-  listen(Events,name,function(...)pcall(observe,name,...);reconcile()end)
+  listen(Events,name,function(...)pcall(observe,name,...);trackSafely(name,...);reconcile()end)
  end
- listen(GameEvents,'CityBuilt',function()reconcile()end)
+ listen(GameEvents,'CityBuilt',function(...)trackSafely('CityBuilt',...);reconcile()end)
 end

@@ -21,13 +21,13 @@ assert(report:find('BrokenModule',1,true) and report:find('EXACT_EXIT_FAILURE',1
 assert(report:find('STILL_FOREIGN',1,true) and report:find('当前匹配 MISSING',1,true),report)
 -- Conquered evidence observes only, cannot enter recapture even when live owner changed.
 s.ref.owner=0;s.ref.cityID=88
-Events.CityConquered.Fire(0,3,88,4,5)
+GameEvents.CityConquered.Fire(0,3,88,4,5)
 report=d.NativeDescribe(0)
 assert(report:find('WAIT_MATCHING_TRANSFER_EVENT',1,true) and report:find('CityConquered(0,3,88,4,5)',1,true),report)
 assert(encode(Game:GetProperty(KEY))==frozen)
 Events.CityTransfered.Fire(0,88,3,0)
 report=d.NativeDescribe(0)
-assert(report:find('RETURN_IDENTITY_UNCONFIRMED',1,true),report)
+assert(report:find('RETURN_CHAIN_MISSING',1,true),report)
 assert(encode(Game:GetProperty(KEY))==frozen)
 -- Same owner/ID with stale reference must also be rejected by diagnostic lookup.
 shared.NetworkBridge.players[0].input.cities[88]={reference='OLD_SAME_OWNER_REFERENCE',active=4}
@@ -35,17 +35,17 @@ report=d.NativeDescribe(0);assert(report:find('REFERENCE_MISMATCH',1,true) and n
 shared.NetworkBridge.players[0].input.cities[88]={reference=SPCNetworkInput.Reference(c),active=0}
 report=d.NativeDescribe(0);assert(report:find('Network当前引用 MATCHED',1,true),report)
 -- Only latest scalar slots, not event history or incoming table payloads.
-for i=1,32 do Events.CityConquered.Fire(0,3,88,4,5,{secret='PAYLOAD_SHOULD_NOT_APPEAR'},'extra')end
+for i=1,32 do GameEvents.CityConquered.Fire(0,3,88,4,5,{secret='PAYLOAD_SHOULD_NOT_APPEAR'},'extra')end
 report=d.NativeDescribe(0)
 local _,count=report:gsub('CityConquered%(', '')
 assert(count==1 and report:find('<table>',1,true) and report:find('argc=7',1,true) and not report:find('PAYLOAD_SHOULD_NOT_APPEAR',1,true),report)
 assert(encode(Game:GetProperty(KEY))==frozen)
 -- Observation errors cannot prevent the unchanged authoritative transfer callback.
-Events.CityConquered.Fire(false,nil,88,4,5)
+GameEvents.CityConquered.Fire(false,nil,88,4,5)
 report=d.NativeDescribe(0);assert(report:find('CityConquered(false,nil,88,4,5)',1,true),report)
 local oldTurn=Game.GetCurrentGameTurn;Game.GetCurrentGameTurn=function()error('UNAVAILABLE')end
 d.returnRejection=nil;Events.CityTransfered.Fire(0,88,3,0)
-assert(d.returnRejection=='RETURN_IDENTITY_UNCONFIRMED')
+assert(d.returnRejection=='RETURN_CHAIN_MISSING')
 Game.GetCurrentGameTurn=oldTurn
 boot();report=d.NativeDescribe(0)
 assert(report:find('本次加载未收到上述事件',1,true) and not report:find('CityConquered(',1,true),report)

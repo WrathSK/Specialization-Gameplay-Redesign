@@ -120,7 +120,7 @@ print('E2 LOCAL_SIMULATION_PASS: 16 imports; actual investment/legacy-load hooks
 for p in M.rglob('*.lua'):
  l.execute('assert(load(...))',p.read_text())
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='127'
+assert root.attrib['version']=='128'
 assert 'CityProgressionStore.lua' in [e.text for e in root.find('Files')]
 # Real eligibility function with native-shaped API mocks, no silent fallback to AI.
 probe=(M/'Probe.lua').read_text();fn=probe[probe.index('function P.IsTestPlayer'):probe.index('function P.Summary')]

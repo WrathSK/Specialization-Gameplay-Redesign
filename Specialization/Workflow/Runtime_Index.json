@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "8417ee11e6e3aba9be4f6235d4f13e632c214bec",
-  "runtime": "B100.127 / modinfo127",
+  "runtime_commit": "B101.128 containing commit (git log -- Mod/Probe.lua)",
+  "runtime": "B101.128 / modinfo128",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "6bf1e3f2d98db4e06fd0e9b2f58d8054696fb7129cf8b73b587a08faa25f204b",
+      "sha256": "c588b06d04c59535928d62a94314067caf70520b9e404cb02ed5c8b01f0b2906",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B100 diagnostic-only ownership evidence / exact-reference Network report; restoration semantics unchanged"
+      "provenance": "B101 authorized scoped transition evidence; original-owner return with missing token, no token copy"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "eda3090dffaef35f41ea1187f45025ec75dbf782462a78708ad83e8f714ad093",
+      "sha256": "3c3478cb0b324ee780b14eb3254e57692d4ab10e50e77d2fd97bc63e5c03e1a7",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B100 diagnostic-only ownership evidence / exact-reference Network report; restoration semantics unchanged"
+      "provenance": "B101 authorized scoped transition evidence; original-owner return with missing token, no token copy"
     },
     "Mod/Standardization.lua": {
       "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "356fe0e961ada64cb6620eb20550cda39d5852645e5d7c08e68c9e4f336ae541",
+      "sha256": "95a5ad8112d9aeacd2b4ae288d3c1d7e3b29baf9fa14210cb59a237f84cacc2e",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B100 diagnostic-only ownership evidence / exact-reference Network report; restoration semantics unchanged"
+      "provenance": "B101 authorized scoped transition evidence; original-owner return with missing token, no token copy"
     }
   }
 }
