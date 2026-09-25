@@ -11,6 +11,8 @@ Work State: P0_E2_DIAGNOSTIC_SUPPLEMENT_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
+2026-09-25 [B100首图](Validation/Results/Specialization_B100_E2_Foreign_Baseline.md)：当前仍3/131073外方持有，STILL_FOREIGN、token MISSING、退出23/23、永久P2/投资1保留；Network跨Owner引用已正确排除。仅诊断可见字段实机通过，未观察夺回事件；待征服后重新点击E2往返。游戏运行中，本轮只归档/记录，无部署。
+
 B100.127：获授权补齐[定域诊断](../Architecture/v2/P0_E2_Plan.md#b100127--authorized-bounded-ownership-diagnostics)。五类事件各保留最后一次标量参数；显示binding匹配、恢复拒绝及退出失败模块；Network当前引用严格核对Owner/完整reference。无新恢复权限、无token补写/Claim/Design变化。定向诊断与既有E2投资/退出/夺回回归LOCAL_SIMULATION_PASS；native事件仍待验证。已按W0003部署：source8417ee1、152/152 MATCH、receipt B100.127-8417ee1-playtest.json；B099完整恢复点与stable桥保留，游戏未启动。最小测试：冷启动现有外方持城存档，夺回后立即读E2往返；无需重做迁移/交易。不把本批当作夺回修复完成。
 
 2026-09-25 [B099冷启动与征服取回](Validation/Results/Specialization_B099_E2_Coldload_Recapture.md)：用户确认首图在征服前、次图在征服后。冷启动成功载入、RESEARCH/P2/投资1及HELD记录保留；退出检查23/23，旧Network成员false。征服后专业读取PROGRESSION_HELD，夺回恢复本次FAIL；未取得夺回后的token/事件拒绝详情，不把token缺失候选当已证实原因。ACTIVE/Network重建仍未验证，Claim/F保持关闭。此前游戏内读档崩溃独立保留。仅证据/状态更新，无runtime/Design/部署变化。
