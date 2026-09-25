@@ -7,9 +7,11 @@ Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_NATIVE_TRANSITION_LOCAL_PASS_USER_PENDING
+Work State: P0_E2_NATIVE_FOUNDATION_GUARD_FALSE_REJECTION
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-25 [B101两图失败定位](Validation/Results/Specialization_B101_E2_Foundation_Guard.md)：退出23/23，实际阻断RETURN_NEW_FOUNDATION；新观察到GameEvents.CityConquered(0,3,327682,28,34)后接移除/加入/初始化/转移。B101把同坐标CityBuilt无条件视为新建的保护过粗，导致该征服场景拒绝；并非此前22/23阻断。CityBuilt精确时序/来源未直接记录，不归因HD。永久记录保留，ACTIVE/Network/接受后读档未验；不必重测交易前退出。建议另授权最小事件分类修复，保留真实新建拒绝，不进入Claim/F。本轮仅证据/文档，无runtime/部署变化。
 
 B101.128：获授权[单城原Owner转移链适配](../Architecture/v2/P0_E2_Plan.md#b101128--authorized-original-owner-native-transition-adaptation)，使用已保存外方引用+本次实际移除/加入/初始化/转移链，允许token缺失但拒绝冲突；确认结果保存在原Game记录，无token补写/Claim/new cityKey。ACTIVE/Network仍按当前事实重算。定向L3 LOCAL_SIMULATION_PASS，native待验；旧B100回滚必须搭配接受新证明之前的存档。用户已确认退出且只读进程复核通过；已按W0003部署source5699c84，152/152 MATCH，receipt B101.128-5699c84-playtest.json；B100完整恢复点及stable桥保留，main未改。最小验证：原外方持城档冷启动→夺回→E2往返/专业报告→另存后冷启动复核；不重迁移、不进入Claim/F。
 
