@@ -320,8 +320,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
-    "native": "B099_DEPLOYED_PENDING_BASIC_READ_RETEST",
-    "next": "User checks basic reads/effects, then resumes native round-trip if pass; no Claim/F",
+    "native": "B099_BASIC_READ_PASS_TRANSFER_PARTIAL_IN_SESSION_LOAD_CRASH",
+    "next": "Investigate token loss/unfinished exit/diagnostic reference and native hot-load crash; no Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

@@ -7,9 +7,11 @@ Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_NATIVE_ROUND_TRIP_AWAITING_USER
+Work State: P0_E2_PARTIAL_NATIVE_EVIDENCE_LOAD_CRASH_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-25 [B099六图与读档崩溃](Validation/Results/Specialization_B099_E2_Transfer_Crash.md)：基本诊断回复实机PASS，交易后永久RESEARCH/P2/投资1保留、HELD_TRANSFER；当前token=nil，退出22/23 PARTIAL_HELD，科研carrier0/旧Network成员false。游戏内载入时SIGSEGV，save/load本次FAIL，原因未知；非冷启动，夺回未测。发现Network诊断跨Owner同ID错误引用，不代表旧snapshot重放。停止当前往返，保留证据，不进入Claim/F；本轮无源码/部署变化。
 
 B099.126 已按授权修复人类资格读取及静默诊断拒绝；使用Player.IsHuman，不假定player0。定向资格/实际诊断入口与E2保存、退出、夺回回归LOCAL_SIMULATION_PASS，非实机PASS。永久状态/Design不改；用户已确认退出，已通过既有transaction工具部署，152/152 MATCH；source `1dc2ca4`，receipt `B099.126-1dc2ca4-playtest.json`；B098完整恢复包及stable恢复桥保留，main未改。先验收基本读数/收益，再恢复E2往返，不重复迁移。见[E2修复记录](../Architecture/v2/P0_E2_Plan.md#b099126--authorized-eligibility-regression-repair)。
 
