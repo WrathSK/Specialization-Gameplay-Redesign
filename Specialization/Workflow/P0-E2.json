@@ -320,8 +320,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
-    "native": "B099_BASIC_READ_PASS_TRANSFER_PARTIAL_IN_SESSION_LOAD_CRASH",
-    "next": "Investigate token loss/unfinished exit/diagnostic reference and native hot-load crash; no Claim/F",
+    "native": "B099_COLDLOAD_RETAINED_PROGRESS_PASS_EXIT23_RECAPTURE_HELD_FAIL",
+    "next": "Authorized-scope review needed: post-conquest event/token rejection diagnostics and owner-safe Network lookup; no Claim/F",
     "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
   }
 }

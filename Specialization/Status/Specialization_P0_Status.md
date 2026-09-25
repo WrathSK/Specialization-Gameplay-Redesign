@@ -7,9 +7,11 @@ Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_PARTIAL_NATIVE_EVIDENCE_LOAD_CRASH_BLOCKED
+Work State: P0_E2_COLDLOAD_PASS_RECAPTURE_HELD_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-25 [B099冷启动与征服取回](Validation/Results/Specialization_B099_E2_Coldload_Recapture.md)：用户确认首图在征服前、次图在征服后。冷启动成功载入、RESEARCH/P2/投资1及HELD记录保留；退出检查23/23，旧Network成员false。征服后专业读取PROGRESSION_HELD，夺回恢复本次FAIL；未取得夺回后的token/事件拒绝详情，不把token缺失候选当已证实原因。ACTIVE/Network重建仍未验证，Claim/F保持关闭。此前游戏内读档崩溃独立保留。仅证据/状态更新，无runtime/Design/部署变化。
 
 2026-09-25 [B099六图与读档崩溃](Validation/Results/Specialization_B099_E2_Transfer_Crash.md)：基本诊断回复实机PASS，交易后永久RESEARCH/P2/投资1保留、HELD_TRANSFER；当前token=nil，退出22/23 PARTIAL_HELD，科研carrier0/旧Network成员false。游戏内载入时SIGSEGV，save/load本次FAIL，原因未知；非冷启动，夺回未测。发现Network诊断跨Owner同ID错误引用，不代表旧snapshot重放。停止当前往返，保留证据，不进入Claim/F；本轮无源码/部署变化。
 
