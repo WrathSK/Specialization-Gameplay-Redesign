@@ -7,9 +7,11 @@ Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_CONQUEST_CLASSIFICATION_LOCAL_PASS_NATIVE_PENDING
+Work State: P0_E2_LOAD_HYDRATION_ORDER_DEFECT_REPRODUCED
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-25 [B102两图与本地复现](Validation/Results/Specialization_B102_E2_Chain_Order.md)：本次最新CityBuilt/征服/移除/加入/初始化/转移顺序正确，仍RETURN_CHAIN_ORDER、退出23/23。实际代码可复现“读档外方CityAdded先到→错误锁存→之后合法链被拒绝”；原生最早触发通知未保留，不把推断当完整trace。缺少加载对象与转移阶段区分，待窄修复；永久P2/投资1保留，ACTIVE/Network/接受后保存仍未验证。无需再重复当前测试，本轮只调查/归档/文档，无源码或部署变化。
 
 B102.129：获授权[CityBuilt/征服判定修复](../Architecture/v2/P0_E2_Plan.md#b102129--authorized-conquest--citybuilt-classification-repair)。CityBuilt不再独自决定新建；须严格匹配同回合征服旧/新Owner、新ID/位置及完整转移链才可接受。缺佐证/冲突/真正新建仍暂停；version2证明持久化，原记录及当前ACTIVE/Network规则不变。定向L3 LOCAL_SIMULATION_PASS、原生待验；无Claim/Design改动。只读进程复核游戏退出后按W0003部署source39fa0a9，152/152 MATCH，receipt B102.129-39fa0a9-playtest.json；B101完整恢复点及stable桥保留，main未改。最小测试仍为原外方持城档冷启动→夺回→E2/专业报告，接受后另存并冷启动复核；不重做交易/迁移。
 
