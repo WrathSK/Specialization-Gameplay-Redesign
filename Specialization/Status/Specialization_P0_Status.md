@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0256
-Implementation Build: develop P0-B-102.129 / modinfo129 E2_CONQUEST_CLASSIFICATION_CANDIDATE; live B101.128 validation; stable B069.96
+Implementation Build: develop P0-B-102.129 / modinfo129 E2_CONQUEST_CLASSIFICATION_CANDIDATE; live B102.129 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -11,7 +11,7 @@ Work State: P0_E2_CONQUEST_CLASSIFICATION_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-B102.129：获授权[CityBuilt/征服判定修复](../Architecture/v2/P0_E2_Plan.md#b102129--authorized-conquest--citybuilt-classification-repair)。CityBuilt不再独自决定新建；须严格匹配同回合征服旧/新Owner、新ID/位置及完整转移链才可接受。缺佐证/冲突/真正新建仍暂停；version2证明持久化，原记录及当前ACTIVE/Network规则不变。定向L3 LOCAL_SIMULATION_PASS、原生待验；无Claim/Design改动。部署另记。
+B102.129：获授权[CityBuilt/征服判定修复](../Architecture/v2/P0_E2_Plan.md#b102129--authorized-conquest--citybuilt-classification-repair)。CityBuilt不再独自决定新建；须严格匹配同回合征服旧/新Owner、新ID/位置及完整转移链才可接受。缺佐证/冲突/真正新建仍暂停；version2证明持久化，原记录及当前ACTIVE/Network规则不变。定向L3 LOCAL_SIMULATION_PASS、原生待验；无Claim/Design改动。只读进程复核游戏退出后按W0003部署source39fa0a9，152/152 MATCH，receipt B102.129-39fa0a9-playtest.json；B101完整恢复点及stable桥保留，main未改。最小测试仍为原外方持城档冷启动→夺回→E2/专业报告，接受后另存并冷启动复核；不重做交易/迁移。
 
 2026-09-25 [B101两图失败定位](Validation/Results/Specialization_B101_E2_Foundation_Guard.md)：退出23/23，实际阻断RETURN_NEW_FOUNDATION；新观察到GameEvents.CityConquered(0,3,327682,28,34)后接移除/加入/初始化/转移。B101把同坐标CityBuilt无条件视为新建的保护过粗，导致该征服场景拒绝；并非此前22/23阻断。CityBuilt精确时序/来源未直接记录，不归因HD。永久记录保留，ACTIVE/Network/接受后读档未验；不必重测交易前退出。建议另授权最小事件分类修复，保留真实新建拒绝，不进入Claim/F。本轮仅证据/文档，无runtime/部署变化。
 
