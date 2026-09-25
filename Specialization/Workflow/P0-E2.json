@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0255",
-    "runtime": "B101.128 / modinfo128",
+    "status": "S0256",
+    "runtime": "B102.129 / modinfo129",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -270,6 +270,11 @@
       "path": "DevelopmentTests/test_b101_e2_transition.py",
       "kind": "full",
       "reason": "Authorized single-city transition proof and saved-reference acceptance"
+    },
+    {
+      "path": "DevelopmentTests/test_b102_e2_foundation.py",
+      "kind": "full",
+      "reason": "Authorized CityBuilt/conquest classification and persistence boundary validation"
     }
   ],
   "dependencies": [
@@ -329,9 +334,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "B101_NATIVE_TRANSITION_LOCAL_PASS",
+    "implementation": "B102_CONQUEST_CLASSIFICATION_LOCAL_PASS",
     "native": "B101_RETURN_NEW_FOUNDATION_REJECTION_WITH_TYPED_CONQUEST_EXIT23",
-    "next": "Await narrow CityBuilt/conquest evidence classification repair; no repeat pre-trade exit; no Claim/F",
+    "next": "Native original-owner conquest and accepted-state coldload verification; no Claim/F",
     "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
   }
 }

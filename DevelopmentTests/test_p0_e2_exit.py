@@ -70,6 +70,9 @@ local live=CityManager.GetCityAt
 -- Unknown object, throwing owner getter, absent owner, and unmatched transfer all preserve effects.
 CityManager.GetCityAt=function()return nil end;nativeEvents.CityRemovedFromMap.Fire(0,7)
 CityManager.GetCityAt=live
+-- B101 persists one reference invalidation on the exact ACTIVE removal.
+local invalidated=Game:GetProperty(SPCCityProgressionStore.KEY)
+assert(invalidated.referenceInvalidated==true and invalidated.revision==before.revision+1)
 local owner=c.GetOwner;c.GetOwner=function()error('TEMPORARY')end;nativeEvents.CityTransfered.Fire(62,40,0,7)
 c.GetOwner=function()return nil end;nativeEvents.CityTransfered.Fire(62,40,0,7);c.GetOwner=owner
 s.ref.owner=62;s.ref.cityID=40
@@ -86,7 +89,7 @@ local after=Game:GetProperty(SPCCityProgressionStore.KEY)
 function encode(v)if type(v)~='table'then return tostring(v)end;local t={};for k,x in pairs(v)do t[#t+1]=tostring(k)..'='..encode(x)end;table.sort(t);return '{'..table.concat(t,';')..'}'end
 assert(encode(before.base)==encode(after.base) and encode(before.investment)==encode(after.investment) and encode(before.binding)==encode(after.binding))
 assert(encode(s.values)==encode(savedValues),'CITY_PROPERTIES_CHANGED')
-assert(after.loss and after.stage=='HELD_TRANSFER' and after.revision==before.revision+1)
+assert(after.loss and after.stage=='HELD_TRANSFER' and after.revision==invalidated.revision+1)
 assert(net.players[0].validity=='CONFIRMED_INVALID' and net.players[0].sources==nil and net.players[0].recipients==nil and net.players[0].routes==nil)
 assert(net.players[9].sentinel=='other player' and net.players[62]==nil and notifications==5)
 local n=removed

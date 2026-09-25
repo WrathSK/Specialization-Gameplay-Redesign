@@ -45,7 +45,8 @@ GameEvents.CityConquered.Fire(false,nil,88,4,5)
 report=d.NativeDescribe(0);assert(report:find('CityConquered(false,nil,88,4,5)',1,true),report)
 local oldTurn=Game.GetCurrentGameTurn;Game.GetCurrentGameTurn=function()error('UNAVAILABLE')end
 d.returnRejection=nil;Events.CityTransfered.Fire(0,88,3,0)
-assert(d.returnRejection=='RETURN_CHAIN_MISSING')
+-- B102 treats the preceding invalid conquest tuple as conflicting evidence.
+assert(d.returnRejection=='RETURN_CONQUEST_CONFLICT')
 Game.GetCurrentGameTurn=oldTurn
 boot();report=d.NativeDescribe(0)
 assert(report:find('本次加载未收到上述事件',1,true) and not report:find('CityConquered(',1,true),report)
