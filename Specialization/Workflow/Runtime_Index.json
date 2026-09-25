@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "Resolve B103 implementation commit in Git (this batch)",
+  "runtime_commit": "e238584668dddb1d1f4fe8866b5e56e02f579cef",
   "runtime": "B103.130 / modinfo130",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
