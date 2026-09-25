@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B099 scoped human API/diagnostic repair; E2 relevant local regression pass; native pending",
+  "review_basis": "B100 scoped diagnostic supplement; targeted E2 regression; native pending",
   "files": {
     "AGENTS.md": "03c9af87dccaefcf20814cb533a0316d85c8aa415a1a009b21850aaf6e62769f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -30,11 +30,11 @@
     "Mod/NetworkInput.lua": "747b02b277122b6c5daf3207e9374dbad73a3964e266fab861469eb0f9b3c44c",
     "Mod/OrdinaryBuildingCatalog.lua": "398205d0e063ae5d092947dbd3d54443c5778001fbe0f03d29c360c24e7379e9",
     "Mod/PerformanceCounters.lua": "0c9d8c2bdb45a2dcedc9e46ae052c56f2302799532aad4dcc588ec0b958abcbd",
-    "Mod/Probe.lua": "30a64ec09eff3244656a70860c27c7eaba2f24d44bcc4b63c032ebceb00398f0",
+    "Mod/Probe.lua": "6bf1e3f2d98db4e06fd0e9b2f58d8054696fb7129cf8b73b587a08faa25f204b",
     "Mod/ResearchSupport.lua": "109b7a960c9b5e81ff9120cee13e041459aa7951a62ae50a52d47f2dc340d5bf",
     "Mod/RuntimeWork.lua": "25ad4f655c3991bf17eb27fa5c0ef73c7da71aa0948d64db5d37d14f8991e541",
     "Mod/SampleLifecycle.lua": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
-    "Mod/SpecializationP0.modinfo": "8ca1575179859ecc1286f1e7cde70d3ef0da2a9de803901f4e6bc16804d22495",
+    "Mod/SpecializationP0.modinfo": "eda3090dffaef35f41ea1187f45025ec75dbf782462a78708ad83e8f714ad093",
     "Mod/UI/IndustryRefresh.lua": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
     "Mod/UI/P0Panel.lua": "edbed7458bbb14f7e56659f2b51f561dfcba1eaca254f162269e1392d5fe952a",
     "Mod/UI/P0Panel.xml": "76002d3043f9607f9750625ec31459f46110c16e74d8a0dcdf119a987707652e",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "116ad483c621e7afe2d26371156b1f36605695ef6d0c84140cda1e18ef55e91d",
+    "Specialization/Status/Specialization_P0_Status.md": "3a89281075629238c48fd3cfbbcf917e84eae9385a5eccd9c5c5f04a1c432a0b",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "c7c1ae61b872b9afe2e430fa892e31dfb26d525ed1adc2d06f6aa16b2fed03cc",
+    "Specialization/Workflow/Authority.json": "72bf0d4d9823bed985d3963192507b73ad9c7c0c2299cbad8ed62c7124fb8e74",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -178,10 +178,10 @@
     "DevelopmentTests/test_p0_e1_mapping.py": "ea37ad80c8bc9e2b73e90ba59c3416ae94e13d71922f67aab136f7c1ee6e8135",
     "Specialization/Status/Validation/Results/Specialization_B093_P0E1_Paused_Review.md": "3abd2dcc66958dad5714f8ca63c1a8c7fb83b0de700a5c84f0808437378fa395",
     "Specialization/Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md": "3046bb853bf940e3141101a43f89f58359490bb0a6be26e5385b6c7083cec214",
-    "Specialization/Architecture/v2/P0_E2_Plan.md": "f5fff3c41fc516ae97908d14d1bbdb2ab8dfc603dee0f9e64b3806d205cd72cb",
+    "Specialization/Architecture/v2/P0_E2_Plan.md": "d1513267ebaca5751c931cc800f1ceca105ce1b4551bb99f1432532ba42b98ca",
     "Mod/FreshBindingHook.lua": "e5a0c80b2d7139f47a9701636dbca1dee058513f7a88c23d01a56da7013c6195",
-    "Mod/CityProgressionStore.lua": "f235bdd54b8ac8f32129acb48481172cf0405be557948776faa86c24d240fe0b",
-    "DevelopmentTests/test_p0_e2.py": "4c15b56210173851fbd3b498ece03090b2a8f986b258da23ee40f5bd579fc3e9",
+    "Mod/CityProgressionStore.lua": "356fe0e961ada64cb6620eb20550cda39d5852645e5d7c08e68c9e4f336ae541",
+    "DevelopmentTests/test_p0_e2.py": "4cae694c9e37a9c9fba0790cbde4a0db908f7b887f18a12472605b6400c6b472",
     "Mod/CommerceConvergence.lua": "76582d148f9c76a81a3a4ce48d5948345a1eb2526de0eb565b45ba3babb40980",
     "Mod/CrewProjects.lua": "faafa2d6ea97d8c2396f3be5d3ed5ea956d154dd9837ad71ad5007ba3bda9661",
     "Mod/Dialogue.lua": "69ca122a667907614425938cdbb7448de07ef1c27364f8c3147e6e4181b7d1bb",
@@ -195,6 +195,7 @@
     "Mod/Standardization.lua": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
     "Mod/TradeRouteProbe.lua": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
     "DevelopmentTests/test_p0_e2_recapture.py": "9567ee3d53b3a64e51f8df679fa4937b6a1582e39005284b413dc0e4fd378818",
-    "DevelopmentTests/test_b099_eligibility.py": "c4bb477cd534670cbe7e7b9343303e3b84bc66093710e04c2e7944e29d995a2b"
+    "DevelopmentTests/test_b099_eligibility.py": "c4bb477cd534670cbe7e7b9343303e3b84bc66093710e04c2e7944e29d995a2b",
+    "DevelopmentTests/test_b100_e2_diagnostics.py": "942f4d74dc5bc8c65c42bbb8f70c67eb94ec832e46a563a540f77f33d8b54af4"
   }
 }

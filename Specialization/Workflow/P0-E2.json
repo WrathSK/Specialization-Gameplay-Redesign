@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0253",
-    "runtime": "B099.126 / modinfo126",
+    "status": "S0254",
+    "runtime": "B100.127 / modinfo127",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -260,6 +260,11 @@
       "path": "DevelopmentTests/test_b099_eligibility.py",
       "kind": "full",
       "reason": "Authorized context API and actual diagnostic rejection regression"
+    },
+    {
+      "path": "DevelopmentTests/test_b100_e2_diagnostics.py",
+      "kind": "full",
+      "reason": "Authorized B100 diagnostic evidence and unchanged-state regression"
     }
   ],
   "dependencies": [
@@ -319,9 +324,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "PARTIAL_NATIVE_VALIDATION_PREPARED",
+    "implementation": "B100_DIAGNOSTIC_LOCAL_PASS",
     "native": "B099_COLDLOAD_RETAINED_PROGRESS_PASS_EXIT23_RECAPTURE_HELD_FAIL",
-    "next": "Authorized-scope review needed: post-conquest event/token rejection diagnostics and owner-safe Network lookup; no Claim/F",
-    "scope_review": "Four professions only; no future profession enablement, no recapture/Claim/F"
+    "next": "Minimal post-conquest E2 native diagnostic; recovery rules unchanged; no Claim/F",
+    "scope_review": "Four professions; authorized diagnostic supplement only; no new recapture authority/Claim/F"
   }
 }

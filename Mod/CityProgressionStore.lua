@@ -5,7 +5,20 @@ function SPCCityProgressionStore.Start(P,shared)
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}};shared.CityProgressionStore=d
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
+ -- Fixed latest slot per native event; session-only evidence, never identity authority.
+ local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized'}
+ local nativeEvents={};local eventSequence=0
  local root,fault,busy;local ready=false
+ local function observe(name,...)
+  if not root then return end
+  eventSequence=eventSequence+1
+  local row={sequence=eventSequence,turn=Game.GetCurrentGameTurn(),argc=select('#',...)}
+  for i=1,math.min(6,row.argc)do
+   local v=select(i,...);local t=type(v)
+   if t=='number' or t=='boolean' then row[i]=v else row[i]=t=='nil' and 'nil' or '<'..t..'>' end
+  end
+  nativeEvents[name]=row
+ end
  local kinds={RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}
  local function same(a,b)
   if type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end
@@ -148,7 +161,32 @@ function SPCCityProgressionStore.Start(P,shared)
     source=source or (b.sources and b.sources[id]~=nil) or false
     for _,set in pairs(b.recipients or {})do receiver=receiver or set[id]~=nil end
    end end
-   local cid=readable and live.cityID;local input=b and b.input and b.input.cities[cid]
+   local input;local inputState='NO_CURRENT_INPUT'
+   if readable and live.owner~=pid then inputState='FOREIGN_OWNER_NOT_QUERIED'
+   elseif readable then
+    local candidate=b and b.input and b.input.cities and b.input.cities[live.cityID]
+    local good,reference=pcall(function()return SPCNetworkInput.Reference(city)end)
+    if candidate and good and candidate.reference==reference then input=candidate;inputState='MATCHED'
+    elseif candidate then inputState='REFERENCE_MISMATCH' end
+   end
+   local detail={}
+   local errors={};for name in pairs(d.exitErrors)do errors[#errors+1]=name end;table.sort(errors)
+   for _,name in ipairs(errors)do
+    local reason=tostring(d.exitErrors[name]):gsub('[\r\n]+',' '):sub(1,160)
+    detail[#detail+1]='退出失败 '..name..' ['..tostring(attempts[name])..'/3] '..reason
+   end
+   detail[#detail+1]='事件为本次加载后各类最后一次；原始参数，不自动认领：'
+   for _,name in ipairs(eventNames)do
+    local row=nativeEvents[name]
+    if row then
+     local args={};for i=1,math.min(6,row.argc)do args[i]=tostring(row[i])end
+     detail[#detail+1]='#'..row.sequence..' T'..row.turn..' '..name..'('..table.concat(args,',')..') argc='..row.argc
+    end
+   end
+   if eventSequence==0 then detail[#detail+1]='本次加载未收到上述事件'end
+   local binding=not tokenOK and 'UNREADABLE' or token==nil and 'MISSING' or token==root.base.token and 'MATCH' or 'MISMATCH'
+   local gate=root.stage~='HELD_TRANSFER' and 'NOT_HELD' or not readable and 'CURRENT_REFERENCE_UNREADABLE'
+    or live.owner~=root.origin.owner and 'STILL_FOREIGN' or d.returnRejection or 'WAIT_MATCHING_TRANSFER_EVENT'
    local function carrierCount(names)
     if not city then return 'UNKNOWN'end
     local good,n=pcall(function()local count=0;for _,name in ipairs(names)do
@@ -160,18 +198,19 @@ function SPCCityProgressionStore.Start(P,shared)
    for i=0,7 do gpp[#gpp+1]='BUILDING_SPC_DEV_GPP_RESEARCH_'..i end
    local result=table.concat({P.VERSION..' | E2往返 | T'..Game.GetCurrentGameTurn()..' | '..root.stage,
     '原引用 '..label(root.origin)..' | record rev '..root.revision,
-    '原凭据 '..root.base.token,
+    '原凭据 '..root.base.token..' | 当前匹配 '..binding,
     '当前 '..(readable and label(live) or 'UNKNOWN')..' | token '..(tokenOK and tostring(token) or 'UNKNOWN'),
     '永久 '..root.base.specialization..' | Potential '..(1+receipts)..' | 投资 '..receipts,
     '当前ACTIVE '..(fOK and tostring(f.active)..' / '..tostring(f.activeStatus) or '未激活/UNKNOWN'),
     '失城确认 '..(root.loss and label(root.loss.target) or root.lastLoss and ('历史 '..label(root.lastLoss.target)) or 'NONE'),
     '退出 '..d.exitStatus..' | 完成 '..done..'/'..total..' | 核验ID '..checked..' / 移除 '..removed,
     '最近转移 '..(d.lastTransfer or '本次加载未收到'),
-    '夺回 '..(root.current and root.stage=='ACTIVE' and 'ACCEPTED' or d.returnRejection or '尚未确认')..' | 候选 '..(d.returnCandidate or 'NONE'),
+    '夺回 '..(root.current and root.stage=='ACTIVE' and 'ACCEPTED' or gate)..' | 最近候选 '..(d.returnCandidate or 'NONE'),
     '科研实存carrier：支持 '..carrierCount({'BUILDING_SPC_DEV_RESEARCH_SUPPORT'})..' / 住房 '..carrierCount(housing)..' / GPP '..carrierCount(gpp),
     'Network '..(b and b.validity or 'UNKNOWN')..' | epoch '..tostring(net and net.epoch)..' / input '..tostring(b and b.inputRevision)..' / derive '..tostring(b and b.derivedRevision),
     '旧/现本城 source '..tostring(source)..' / receiver '..tostring(receiver)..' | routes '..tostring(b and b.routes and #b.routes or 'UNKNOWN'),
-    'Network当前引用 '..tostring(input and input.reference or 'NONE')..' | ACTIVE '..tostring(input and input.active or 'NONE'),
+    'Network当前引用 '..inputState..' | '..tostring(input and input.reference or 'NONE')..' | ACTIVE '..tostring(input and input.active or 'NONE'),
+    table.concat(detail,'\n'),
     '载体读数≠引擎收益验证；请配合城市收益截图。'},'\n')
    return result
   end)
@@ -232,6 +271,7 @@ function SPCCityProgressionStore.Start(P,shared)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
   d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
+  d.returnRejection=nil -- latest matched attempt; diagnostics only
   assert(P.IsTestPlayer(newOwner) and c:GetProperty(M.Keys.TOKEN)==root.base.token,'RETURN_IDENTITY_UNCONFIRMED')
   local count=0;for name in pairs(exits)do count=count+1;assert(finished[name],'RETURN_WITHDRAWAL_UNCONFIRMED')end
   assert(count>0,'RETURN_WITHDRAWAL_UNCONFIRMED')
@@ -285,7 +325,11 @@ function SPCCityProgressionStore.Start(P,shared)
  local function listen(ns,name,fn)local e=P.Field(ns,name);if e and e.Add then e.Add(fn)end end
  listen(Events,'LoadScreenClose',reconcile)
  -- Bounded single-location observation; no generic publish/playback/hover work.
- listen(Events,'CityTransfered',reconcile)
- for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap','CityInitialized'})do listen(Events,name,function()reconcile()end)end
+ listen(Events,'CityTransfered',function(...)pcall(observe,'CityTransfered',...);reconcile(...)end)
+ -- Conquest observation deliberately does NOT call reconcile or restore state.
+ listen(Events,'CityConquered',function(...)pcall(observe,'CityConquered',...)end)
+ for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap','CityInitialized'})do
+  listen(Events,name,function(...)pcall(observe,name,...);reconcile()end)
+ end
  listen(GameEvents,'CityBuilt',function()reconcile()end)
 end

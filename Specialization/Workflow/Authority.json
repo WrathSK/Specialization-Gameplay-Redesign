@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0253",
-    "runtime": "B099.126 / modinfo126",
+    "status": "S0254",
+    "runtime": "B100.127 / modinfo127",
     "military": "D0034"
   },
   "paths": {
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "0927183bf00c679e4d21e27dfc0813afc9d92e76",
-  "current_batch": "P0-E2 NATIVE_VALIDATION_AWAITING_USER",
-  "next_batch": "Native round-trip evidence review only; no Claim/F",
+  "runtime_commit": "B100.127 containing commit (resolve with git log -- Mod/Probe.lua)",
+  "current_batch": "P0-E2 B100 DIAGNOSTIC_LOCAL_PASS",
+  "next_batch": "Native diagnostic evidence only; no recapture-rule change or Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B098.125 / modinfo125 validation deployed;152/152 MATCH;B094 recovery 151/151 verified; receipt B098.125-0927183-playtest.json",
+  "live": "B099.126 / modinfo126; receipt B099.126-1dc2ca4-playtest.json; B100 deployment pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "On-demand diagnostic read-only checks and E2 targeted regression PASS; native pending",
+  "context_review_status": "B100 bounded evidence and owner-safe diagnostic; targeted E2 local regression PASS; native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
