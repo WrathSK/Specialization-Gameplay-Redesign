@@ -1,16 +1,31 @@
 # Specialization Gameplay Redesign
 
-Document Owner: Codex
+Civilization VI / Harmony in Diversity 的城市专业化与国内商路网络 Mod。v0.1 围绕科研、文化、商业、工业四个专业开发；设计接受、代码实现、稳定推广和实机验证是不同阶段。
 
-This independent directory is the project boundary. `Mod/` is the sole canonical editable gameplay source; the external Civ VI `Mods/SpecializationP0` directory is a deployed copy. Workspace access does not imply ownership. Phase 1 creates files only: no Git initialization, remote, authentication, commit or push is authorized.
+## main：稳定源码与配套资料
 
-Start with [AGENTS](AGENTS.md), [project entry](Specialization/README.md), [accepted Design](Specialization/Design/Specialization_v0.1_Design_Spec.md), [Status](Specialization/Status/Specialization_P0_Status.md), and [Architecture](Specialization/Architecture/Specialization_v0.1_Architecture.md).
+本分支保存用户指定的 **B069.96 / modinfo96 Playtest Baseline**，配套设计为 D0025。这是开发中的稳定游玩基线，不是完整 v0.1 发布或全部机制/性能已经验证的承诺。基线依据见本分支 [Status](Specialization/Status/Specialization_P0_Status.md)、[Playtest 合同](Specialization/Architecture/Playtest_Workflow.md)和 [modinfo](Mod/SpecializationP0.modinfo)。
 
-- Runtime source: **P0-B-051.67 / modinfo 67**, UUID unchanged.
-- Accepted design: **D0014**, exact bytes preserved.
-- [Tests](DevelopmentTests/README.md): current regression uses seven included fixtures; SQL checks still require a read-only external game database.
-- [Deployment](tools/README.md): check first; apply only with explicit authorization and reviewed source/runtime hashes. Phase 1 does not redeploy the live runtime.
-- [Local evidence and historical paths](Specialization/Reports/Proposals/Phase1_External_Materials.md): screenshots, backups, logs and machine inventories remain outside the repository. Historical links are not silently rewritten.
-- Machine configuration: copy `local.config.example.json` to ignored `local/config.json` and fill your paths. No credentials belong in either file.
+- [本分支知识导航](Specialization/README.md)：与 main 源码配套的设计、架构和证据。
+- [源码](Mod/)、[测试说明](DevelopmentTests/README.md)、[部署工具说明](tools/README.md)。旧测试与报告保留各自版本范围，不作为 develop 的当前测试队列。
+- 工程维护从[根 AGENTS](AGENTS.md)及[项目约定](Specialization/AGENTS.md)开始。main 保持稳定保护，普通开发在独立 develop worktree；修改、合并与部署分别遵守既有授权边界。
 
-No game launch is permitted. B051.67's existing game-test status remains pending; migration does not validate gameplay.
+## 最新设计与开发资料：develop
+
+下面链接明确指向 **develop**，其设计和技术资料可能超前于本分支实现，不应视为 main 已具备的功能。
+
+| 想阅读的内容 | develop 入口 |
+|---|---|
+| 开发分支 | [develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop) |
+| 中文设计阅读版 | [Design 导航](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Design/README.md) |
+| 技术组成与合同 | [Architecture 导航](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Architecture/README.md) |
+| 当前进度、验证与下一授权边界 | [Status](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Status/Specialization_P0_Status.md) |
+| 技术依据与重要反证 | [技术索引](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Reports/Technical/README.md) |
+
+## 源码与游戏运行包
+
+仓库 `Mod/` 是对应分支的源码；外部 Civilization VI `Mods/SpecializationP0` 是部署副本。**main HEAD 不代表游戏当前正在使用的包**：获授权的临时 develop 测试可能使运行包与 main 不同。实际包状态须核对既有部署记录、receipt及必要的文件一致性，不能从分支或 push 推断。
+
+提交、push、README维护均不部署、不自动promotion。稳定更新及临时测试切换各自需要适用的授权与恢复保护；不得绕过现有部署工具，不由代理启动游戏。
+
+玩法决定由用户最终确认；Codex承担获授权的工程和文件维护。机器路径通过[配置示例](local.config.example.json)写入忽略的 `local/config.json`；凭据不入库。[截图、存档、备份等外部材料](Specialization/Reports/Proposals/Phase1_External_Materials.md)不因Git存在而被替代。
