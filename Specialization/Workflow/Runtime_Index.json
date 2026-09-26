@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "PENDING_B105_CHECKPOINT_COMMIT",
+  "runtime_commit": "29508c74a055d90326a4ae91ce72d046a09a4da7",
   "runtime": "B105.132 / modinfo132",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
