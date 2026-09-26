@@ -34,7 +34,7 @@
   "current_batch": "P0-E2 FRESH_REGISTRATION_LOCAL_PASS_NATIVE_REQUIRED",
   "next_batch": "Await B107 native fresh-city NONE/P0, first completion/investment and coldload validation; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B106.133 / modinfo133 deployed;153/153 MATCH;B105 recovery verified; receipt B106.133-14b0681-playtest.json",
+  "live": "B107.134 / modinfo134 deployed;153/153 MATCH;implementation c5bb3d9/deployed HEAD d6e5ed0;B106 full recovery verified; receipt B107.134-d6e5ed0-playtest.json",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
