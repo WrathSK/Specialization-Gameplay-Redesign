@@ -167,6 +167,8 @@ Tier权重只描述实际基础设施投入，不自动决定每D应给多少收
 
 ## 来源与维护
 
+[返回Design阅读导航](README.md)。
+
 本页是共同规则阅读入口，不是新的独立玩法权威。正式来源更新后同步受影响正文，不凭阅读叙事补规则。
 
 - [Design Spec](Specialization_v0.1_Design_Spec.md)：SCOPE、ELIG、TERMS、PROG与SHARED共同规则及明确例外。
