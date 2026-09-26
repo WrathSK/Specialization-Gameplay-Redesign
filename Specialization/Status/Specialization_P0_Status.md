@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0262
+Status Revision: S0263
 Implementation Build: develop P0-B-104.131 / modinfo131 E2_TWO_CITY_CANDIDATE; live B104.131 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_TWO_CITY_SCOPED_USER_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+新自建城登记计划已按用户要求修订为“关联事件收集→明确转移完成／已验证批次收尾→局部分类”，仍PLAN_ONLY，未授权实施。PublishComplete为有原版依据的候选收尾点，尚非Gameplay转移原子边界实机保证；跨批次/未知不误判新建或摧毁。保留B103/B104夺回路径，补旧writer提前写入防护及早到区域完成通知处理，零pending立即返回。仅计划/导航更新；D0035、B104源码/运行包/main不变。等待修订计划实施授权；以下为此前记录。
 
 [下一最小段：新自建城登记计划](../Architecture/v2/P0_E2_Plan.md#next-slice--new-self-founded-city-registration-plan-only)已提出，待用户明确实施授权。保留两记录测试上限，用独立测试档一座旧城+一座新城；先验证真正自建来源（CityBuilt不能单独作证），再接管NONE/P0→首次有效区域完成P1→投资→保存。来源不足则技术暂停，不猜测征服/Claim。W0004 L3仅相关持久化/完成顺序回归；无runtime/Design/部署变化，B104验收仍有效。
 
