@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0263",
-    "runtime": "B104.131 / modinfo131",
+    "status": "S0264",
+    "runtime": "B105.132 / modinfo132",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "bfe70032f518e55858debd9625a9cab1db880fb9",
-  "current_batch": "P0-E2 B104 TWO_CITY_SCOPED_USER_PASS",
-  "next_batch": "Review revised event-sequence/batch-boundary fresh-city plan; explicit implementation approval required",
+  "runtime_commit": "PENDING_B105_CHECKPOINT_COMMIT",
+  "current_batch": "P0-E2 B105 EVENT_BATCH_EVIDENCE_LOCAL_PASS",
+  "next_batch": "Native sequence evidence gate before authorized fresh enrollment; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B104.131 / modinfo131 deployed;152/152 MATCH;B103 recovery verified; receipt B104.131-bfe7003-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Read-only native batch/HD/GCO sequence evidence incorporated in plan; Gameplay boundary unverified; no runtime changes",
+  "context_review_status": "Authorized next slice stopped at explicit EVENT_BATCH_BOUNDARY; bounded passive checkpoint locally verified",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

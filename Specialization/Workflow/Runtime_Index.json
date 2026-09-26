@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "bfe70032f518e55858debd9625a9cab1db880fb9",
-  "runtime": "B104.131 / modinfo131",
+  "runtime_commit": "PENDING_B105_CHECKPOINT_COMMIT",
+  "runtime": "B105.132 / modinfo132",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "f691641599c2bbc74dabf9a49d9f11b4392f22a2a1f2376b683dbddb95ae6b99",
+      "sha256": "730fb6d0af146da427cf4c3f2b4c5e14f07958f70b3d611ef91a4560a4e6e7d7",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B099 human eligibility API and bounded diagnostic rejection repair"
+      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "041bf10365dcb5838a5517e1eb23c95872028673fe029238235ab16d0e88598c",
+      "sha256": "5488d832dc57adb490616f4b71fbd91a7b3c54f96eaeff202a9af2ceaf8d6483",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B104 authorized two-record isolation/selected diagnostics; targeted L3 PASS"
+      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6271177374a2c0efc72d18d37489c28f5fab144ff7acc4e80b98e67345db447c",
+      "sha256": "95072b782918bb7087296c4ee40500d5ab6c7aaf9416d8eaa47fd070d53ef8b7",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B104 authorized two-record isolation/selected diagnostics; targeted L3 PASS"
+      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
     },
     "Mod/Standardization.lua": {
       "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "6d151df71ce5cce979b9f90b027396dbd35d7027a2cd65b75a624d1ac838b1c7",
+      "sha256": "9555c08f359dd97a91b8e8167d49d4d92a8eee1c22e613659f7c8d718a3e7e21",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B104 authorized two-record isolation/selected diagnostics; targeted L3 PASS"
+      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "76002d3043f9607f9750625ec31459f46110c16e74d8a0dcdf119a987707652e",
@@ -764,6 +764,11 @@
       "sha256": "7f9fee2ce964bd44deb46cec37b43967accbd845f6036f3c1aec03ae0b1a0a89",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
       "provenance": "B104 authorized two-record isolation/selected diagnostics; targeted L3 PASS"
+    },
+    "Mod/CitySequenceProbe.lua": {
+      "sha256": "82d2109c4a2495104ab3df575e1fcd97dd416418b4e860753943ee1db257ae06",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
     }
   }
 }

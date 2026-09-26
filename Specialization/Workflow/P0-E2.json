@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0263",
-    "runtime": "B104.131 / modinfo131",
+    "status": "S0264",
+    "runtime": "B105.132 / modinfo132",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -285,6 +285,16 @@
       "path": "DevelopmentTests/test_b104_e2_two_cities.py",
       "kind": "full",
       "reason": "Authorized two-record storage/routing/selected UI and B103 compatibility validation"
+    },
+    {
+      "path": "Mod/CitySequenceProbe.lua",
+      "kind": "full",
+      "reason": "Authorized bounded native batch observation checkpoint"
+    },
+    {
+      "path": "DevelopmentTests/test_b105_city_sequence.py",
+      "kind": "full",
+      "reason": "Authorized bounded native batch observation checkpoint"
     }
   ],
   "dependencies": [
@@ -323,7 +333,7 @@
     }
   ],
   "non_scope": [
-    "new-city/global cutover",
+    "global cutover; fresh enrollment gated pending native boundary evidence",
     "cross-owner benefit inheritance",
     "profession-specific historical ledger migration",
     "F Academic Tradition",
@@ -336,17 +346,17 @@
       "Targeted L3 migration/investment/recovery/consumer regression in plan",
       "Lua/manifest/context/deployment integrity"
     ],
-    "user": "After implementation: one migrated P2/P3 city, one investment, save/load; one legacy city control"
+    "user": "B105 one founded-city trace and one gift-transfer trace; right-click arm/read; no investment/reload repetition"
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "B104_TWO_CITY_LOCAL_PASS",
+    "plan": "AUTHORIZED_REVISED_FRESH_CITY_SLICE_WITH_NATIVE_GATE",
+    "implementation": "B105_EVENT_BATCH_EVIDENCE_LOCAL_PASS; fresh record/cutover NOT_IMPLEMENTED",
     "native": "B104_SCOPED_USER_GAME_TEST_PASS: tested Research/Industry investment isolation and restart/load; B103 recapture evidence retained",
-    "next": "PLAN_ONLY revised event-sequence classification; preserve recapture; verify batch boundary before fresh enrollment; await implementation approval",
-    "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
+    "next": "Collect native founding/gift batch evidence; stop before automatic enrollment/Claim/F",
+    "scope_review": "Passive one-location observer checkpoint under approved EVENT_BATCH_BOUNDARY; existing progression unchanged"
   }
 }

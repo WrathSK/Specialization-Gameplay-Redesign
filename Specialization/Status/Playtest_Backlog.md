@@ -60,3 +60,6 @@ Authorized implementation locally verified; [contract and minimal test](../Archi
 
 ### B104 two-city native gate closed within tested scope
 [Five-image review](Validation/Results/Specialization_B104_E2_Two_City_Pass.md): Industry P3→P4/receipt2→3; Research P2/receipt1 unchanged; user confirms restart/load retention. USER_GAME_TEST_PASS for this pair, not full E2. No repeat B104 test. Next: new self-founded-city registration plan only after user request/approval; no automatic Claim/F.
+
+### B105.132 — EVENT_BATCH_BOUNDARY / minimal native evidence required
+See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batch-evidence-checkpoint). On a test copy, right-click 移民/施工队 to arm one location, perform founding, then right-click E2往返 to capture pages. Separately arm an own noncapital city before a convenient gift to AI and capture after. No migration/investment/reload loop. Evidence-only; fresh enrollment NOT_IMPLEMENTED. No random raze test requested. B104 existing two-city acceptance unaffected.

@@ -33,6 +33,18 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='CITY_SEQUENCE_BEGIN' or params.Action=='CITY_SEQUENCE_READ' then
+    local ok,out=pcall(function()
+      if params.Action=='CITY_SEQUENCE_READ' then return shared.CitySequenceProbe.Read(playerID,params.Page)end
+      local player=Players[playerID]
+      local c=params.CityID and player:GetCities():FindID(params.CityID)
+      local u=params.UnitID and player:GetUnits():FindID(params.UnitID)
+      assert(not params.UnitID or u,'SELECTED_UNIT_UNAVAILABLE')
+      return shared.CitySequenceProbe.Begin(playerID,c,u,params.Token)
+    end)
+    shared.Snapshot=ok and out or '事件观察读取失败；没有修改专业记录。'
+    shared.LastToken=params.Token;return
+  end
   -- B068 presentation is a disposable mirror, never a source of city state.
   if params.Action=='PROGRESSION_IMPORT' or params.Action=='PROGRESSION_STORE_READ' then
     if not P.IsTestPlayer(playerID) then return end
@@ -482,6 +494,9 @@ include("StorageProbe")
 SPCStorageProbe.Start(P,shared)
 
 include("CityIdentityRead")
+include("CitySequenceProbe")
+SPCCitySequenceProbe.Start(P,shared)
+
 include("CityProgressionStore")
 SPCCityProgressionStore.Start(P,shared)
 SPCYieldCarrierProbe.RegisterExit(shared)

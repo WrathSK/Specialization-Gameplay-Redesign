@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B104_TWO_CITY_SCOPED_USER_PASS。B103单城夺回、B104双城投资/保存已在各自实机场景通过；新自建城登记仅计划待审，Claim/F仍未授权。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
+Status: PARTIAL_IMPLEMENTED / B105_EVENT_BATCH_EVIDENCE_CHECKPOINT。修订的新自建城计划已获用户实施授权，先执行EVENT_BATCH_BOUNDARY证据门禁；自动接管尚未开启。B103/B104既有实机验收保持，Claim/F未授权。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
 Baseline: B094.121 / modinfo121，runtime source a113a6096e141112a5a7ef67453afd8cdc00ac3c。D0035 / A0161；四专业v0.1范围不变。
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
@@ -536,3 +536,34 @@ Rollback: committed B104 runtime plus untouched pre-slice save; no promise that 
 ### Exclusions / next dependency
 
 No first AI conquest snapshot/Claim, current two-city save record deletion, all-city migration, AI/MP, new cityKey, profession Legacy invention, Research Tradition/F or new gameplay effects. After scoped acceptance, separately plan remaining E2 enrollment/generalization and conquest snapshot/Claim gates. This plan is awaiting explicit implementation authorization.
+
+
+## B105.132 — authorized event-batch evidence checkpoint
+
+User authorized the revised next slice. Its explicit EVENT_BATCH_BOUNDARY stop condition applies: source establishes that PublishComplete is used after event series, but does not establish Gameplay delivery relative to the entire transfer chain. A mock cannot prove that a pending transfer will not arrive after a flush. **Do not enable automatic new-city enrollment on this assumption.** This checkpoint implements the smallest native evidence capture; the unassigned record/cutover/first-completion portion remains NOT_IMPLEMENTED, not a claimed successful registration slice.
+
+### Implemented and excluded
+
+- New `CitySequenceProbe.lua`, started before CityProgressionStore/Binding: opt-in single plot,48 primitive event/boundary rows,12 bounded owner/ID references. No event payload/object retention, persistent state, file logging, effect/write/scan/request API. Read/overflow errors stop only the observer; no mutation of E2 records. No new-city classification or destroyed-record retirement.
+- Captures GameEvents CityBuilt/CityConquered plus Events removal/addition/initialization/transfer at the selected location/references. Captures only the first subsequent Gameplay PublishComplete and PlaybackComplete after relevant events, with a single targeted current-city lookup. Empty pending boundary flags return immediately, without strings or city queries. Marker rows can reveal interleaving; no claim that either marker closes an engine transaction.
+- Arm before action: selected own Settler location or selected own city. Start records existing occupant (or EMPTY/UNKNOWN); exact references allow subsequent foreign-held removal to be observed without enabling AI specialization. Observation is session-only; re-arm replaces it, load resets it. Request token duplicate does not erase trace.
+- Existing panel, no extra button: right-click 移民/施工队 starts observation; right-click E2往返 reads/pages it even without selected own city. Left-click functions remain. Prior UI-identity helper stays in source but this temporary right-click entry is repurposed.48 rows,10/page; original hook names/arguments in concise report. Missing hooks/errors/limit appear explicitly.
+- Manual read is marked ReadRequest while boundaries are pending, because the diagnostic player operation itself could provoke a publish. A publish after that marker is not independent proof of an operation-only boundary. Describe formatting itself performs no engine lookups.
+- B104 CityProgressionStore, Binding/Journal/Flow, all consumer writers, Game save schema and Design bytes unchanged. New cities still follow the existing legacy runtime path, **not** the planned Game-backend registration. Do not treat their old visible effects as proof of new enrollment. No Claim/F/AI/multiplayer/new cityKey/general migration or destructive history cleanup.
+
+### Verification
+
+W0004 risk: event-order/identity work is L3, narrowed here to passive observation plus touched request dispatch. `test_b105_city_sequence.py` executes actual collector and UI/Gameplay request functions: unarmed and idle zero lookups/writes; normal founding sequence; Build-before-conquest; flushes between transfer stages; removal without successor and later build; UNKNOWN never EMPTY; unrelated references ignored; duplicate begin; invalid targets; missing hooks; finite trace/stop; read-operation marker; no-selection reads/pagination; observer failure isolation. All Lua compile and modinfo132 inclusion checked.
+
+Existing B104 actual two-city test imports E2/B097/B101/B102/B103 regression chain: investment/receipt isolation, old schema adapter, load recovery, held/return lifecycle, duplicate handling and UI selection all PASS. B099 actual eligibility/dispatcher regression PASS. Only E2 test's exact manifest version assertion changed131→132; no outcome assertions weakened. No large stress or whole historical regression. Evidence level STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native event batch boundary remains USER_GAME_TEST_REQUIRED.
+
+### Minimal native evidence, before registration work resumes
+
+Use a disposable copy of a B104-compatible test save. No migration or investment required; the existing two-record cap does not restrict this passive observer.
+
+1. Select an own Settler at the intended founding tile; right-click 移民/施工队 and confirm Start/position. Found there; right-click E2往返 and screenshot every indicated page. Do not reload before reading.
+2. Before a convenient ownership transfer, select an own noncapital city (deselect any unit), right-click 移民/施工队 to replace the observation, then trade it to AI. Right-click E2往返 again without needing to select the now-foreign city; screenshot all pages. This tests gift transfer, not conquest/raze. Existing B103 conquest order remains prior evidence but lacks publish markers; if gift shows a split/missing boundary, stop rather than demand speculative additional cases.
+
+No repeat investment, governor or full coldload validation at this evidence gate. A destruction/rebuild capture is conditional only if needed to enable that path later; do not ask for random disasters/AI razing now. Founding plus gift traces are scoped samples, not universal guarantees. If relevant publish hook is absent or occurs only after ReadRequest, report this and choose a supported boundary/evidence approach before authority cutover; do not add polling.
+
+Rollback for this observer-only checkpoint: B104 runtime; it introduces no save schema change. Preserve normal separate test saves and existing receipt-bound B104 recovery. The future full registration slice may require pre-slice saves as already specified. Complete this checkpoint, commit/push and authorized test deployment, then stop for native evidence; do not enter Claim/F or certify the full next slice.

@@ -121,9 +121,14 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
+  if action=='CITY_SEQUENCE_BEGIN' then
+    local u=UI.GetHeadSelectedUnit()
+    if u and u:GetOwner()==playerID then investmentUnitID=u:GetID()
+    else city=UI.GetHeadSelectedCity();if not city or city:GetOwner()~=playerID then status('先选中己方移民或城市。');return end end
+  end
   if action=="UNIT_SITE_READ" then
     local u=UI.GetHeadSelectedUnit()
     if not u or u:GetOwner()~=playerID then status('请先选中己方移民或施工队。');return end
@@ -139,7 +144,7 @@ request=function(action,advance)
     city=Players[playerID]:GetCities():FindID(preview.cityID);investmentPlanToken=preview.token
   end
   if not storageAction and (not city or city:GetOwner()~=playerID) then trace("Select an owned test city.");return end
-  if advance and pageAction==action and city and pageCity==city:GetID() then page=page%512+1 else page=1 end
+  if advance and pageAction==action and ((action=="CITY_SEQUENCE_READ") or (city and pageCity==city:GetID())) then page=page%512+1 else page=1 end
   pageAction=action;pageCity=city and city:GetID();localReport=nil
   if action=="ADJACENCY" or action=="TRADE" then
     pendingToken=nil
@@ -369,14 +374,11 @@ local function initialize()
   Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_RECORD") end)
   Controls.InheritRecordButton:RegisterCallback(Mouse.eRClick,function() request("PROGRESSION_IMPORT") end)
   Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_STORE_READ") end)
-  Controls.InheritReadButton:RegisterCallback(Mouse.eRClick,function()
-    pendingToken=nil;ContextPtr:ClearUpdate()
-    localReport=identityEvidence.Read(Game.GetLocalPlayer());status(localReport:gsub("\n","[NEWLINE]"))
-  end)
+  Controls.InheritReadButton:RegisterCallback(Mouse.eRClick,function() request('CITY_SEQUENCE_READ',true) end)
   Controls.InheritRecordButtonCaption:SetText('迁移进度')
   Controls.InheritReadButtonCaption:SetText('E2往返')
   Controls.InheritRecordButton:SetToolTipString('左键：只读核对旧记录。右键：迁移选中己方四专业城的进度。本批最多两城；先另存转换前测试档。')
-  Controls.InheritReadButton:SetToolTipString('左键：读取当前选中己方城市的E2进度/往返证据，不默认读取另一城；读档后不要重复迁移。右键：UI身份只读证据。')
+  Controls.InheritReadButton:SetToolTipString('左键：读取当前选中己方城市的E2进度/往返证据，不默认读取另一城；读档后不要重复迁移。右键：事件顺序，只读/翻页；无需选中城市。')
   Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_READ") end)
   Controls.ConstructionPreviewButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_PREVIEW") end)
   Controls.ConstructionApplyButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_APPLY") end)
@@ -456,6 +458,8 @@ local function initialize()
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
   Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)
+  Controls.UnitReadButton:RegisterCallback(Mouse.eRClick,function() request('CITY_SEQUENCE_BEGIN') end)
+  Controls.UnitReadButton:SetToolTipString('左键：移民/施工队读取。右键：在选中己方移民或城市位置开始本次事件观察（替换上次观察）；不建专业记录。之后右键E2往返读取。')
   status('P0-D1：跨学科研究已自动运行。[NEWLINE]选中科研城市，左键看摘要、右键看区域组成。诊断只读。')
 end
 local oldInitialize=initialize
