@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0267
+Status Revision: S0268
 Implementation Build: develop P0-B-106.133 / modinfo133 E2_FOUND_CITY_EVIDENCE; live B106.133 verified 153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_EVENT_BATCH_NATIVE_GATE
+Work State: P0_E2_FOUND_CITY_NATIVE_PASS_REGISTRATION_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+B106两图：[FOUND_CITY原生验证](Validation/Results/Specialization_B106_E2_Found_City_Pass.md) USER_GAME_TEST_PASS（限定本次自建＋转移对照）。Gameplay枚举可用；自建Initialized后收到FoundCity，Owner0/单位1114117匹配起始移民，随后Publish/Playback；转移Owner0→2收到Transfer、未见FoundCity。最小采集门禁关闭，无需重复；不是自动登记已实现或所有城市生命周期PASS。下一步收窄新城登记计划，去除手动arm依赖，处理正面建城证据/当前城匹配及早到区域完成；不复用首个Publish假设。B103/B104范围内验收保持，无runtime/Design/main/部署变化。以下历史。
 
 B106.133：[获授权FOUND_CITY采集检查点](../Architecture/v2/P0_E2_Plan.md#b106133--authorized-found_city-evidence-checkpoint)本地完成。仅现有有界观察器新增Gameplay UnitActivate原因/起始移民ID，明确枚举或监听缺失，不依赖回调时移民仍存在。针对性模拟/实际请求入口/Lua语法及既有B104/E2回归PASS；非原生建城证据PASS。待一例普通建城＋一例交易负对照；入口不变，缺监听/枚举则截图暂停。新城登记/Claim/F仍未开启，无永久状态/收益写入或Design变化。已按W0003部署source14b0681，153/153 MATCH，receipt B106.133-14b0681-playtest.json；B105恢复点/stable桥/游戏退出核验通过，main未改。以下历史。
 

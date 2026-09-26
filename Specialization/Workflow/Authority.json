@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0267",
+    "status": "S0268",
     "runtime": "B106.133 / modinfo133",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "14b06811a03b5365ef040054aa7a23124bb7f1dc",
-  "current_batch": "P0-E2 B106 FOUND_CITY_EVIDENCE_LOCAL_PASS",
-  "next_batch": "Native FOUND_CITY availability/order/transfer-negative observation; no automatic enrollment/Claim/F",
+  "current_batch": "P0-E2 B106 FOUND_CITY_NATIVE_SCOPED_PASS",
+  "next_batch": "Narrow fresh-registration plan using positive founding evidence; no automatic implementation/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B106.133 / modinfo133 deployed;153/153 MATCH;B105 recovery verified; receipt B106.133-14b0681-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized bounded observer extension; targeted local PASS; native FOUND_CITY unverified",
+  "context_review_status": "Two native screenshots confirm Gameplay founding reason and transfer negative control; B106 evidence gate closed within tested scope",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

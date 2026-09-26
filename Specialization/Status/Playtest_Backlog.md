@@ -69,3 +69,6 @@ See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batc
 
 ### B106.133 — FOUND_CITY native delivery pending
 [Minimal test](../Architecture/v2/P0_E2_Plan.md#b106133--authorized-found_city-evidence-checkpoint): same arm/read controls, one ordinary Settler founding plus one transfer negative control. Capture all pages. Missing hook/enum at arm: screenshot and stop. This adds founding-reason evidence absent in B105, not a repetition of full E2 acceptance. No registration/Claim/F.
+
+### B106 minimal native gate closed — 2026-09-26
+[Two-image result](Validation/Results/Specialization_B106_E2_Found_City_Pass.md): actual Gameplay FOUND_CITY delivered with selected Settler identity after Initialized; transfer control has Transfer without FoundCity. Scoped USER_GAME_TEST_PASS; no repeat requested. Registration remains unimplemented; revise the narrow registration plan, not universal Publish boundary or Claim/F.
