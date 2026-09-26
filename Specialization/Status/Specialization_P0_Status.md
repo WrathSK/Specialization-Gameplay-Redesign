@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0266
-Implementation Build: develop P0-B-105.132 / modinfo132 E2_EVENT_BATCH_EVIDENCE; live B105.132 verified 153/153 MATCH; stable B069.96
+Status Revision: S0267
+Implementation Build: develop P0-B-106.133 / modinfo133 E2_FOUND_CITY_EVIDENCE; live B105.132 pending safe switch; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_EVENT_BATCH_NATIVE_GATE
 
 ## CURRENT AUTHORITATIVE STATE
+
+B106.133：[获授权FOUND_CITY采集检查点](../Architecture/v2/P0_E2_Plan.md#b106133--authorized-found_city-evidence-checkpoint)本地完成。仅现有有界观察器新增Gameplay UnitActivate原因/起始移民ID，明确枚举或监听缺失，不依赖回调时移民仍存在。针对性模拟/实际请求入口/Lua语法及既有B104/E2回归PASS；非原生建城证据PASS。待一例普通建城＋一例交易负对照；入口不变，缺监听/枚举则截图暂停。新城登记/Claim/F仍未开启，无永久状态/收益写入或Design变化。以下历史。
 
 [其它Mod事件处理调查](../Reports/Technical/Specialization_E2_Other_Mod_City_Lifecycle_References.md)：找到AutoPlay及原版UI采用UnitActivate/FOUND_CITY作为正面建城信号；GCO采用关联事件，HD采用征服缓存，Captive Leaders对已知pending操作回合核对。均STATIC_CONFIRMED，非本项目原生账本PASS。下一建议最小采集该建城信号及转移负对照，先确认Gameplay送达；不再依赖首个Publish，没有实施或新测试要求。B105新城自动登记门禁保持；以下为此前结果。
 

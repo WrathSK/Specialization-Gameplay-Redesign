@@ -1,4 +1,4 @@
-"""B105 actual passive observer and UI/Gameplay ingress; no native ordering claim."""
+"""B105/B106 actual passive observer and UI/Gameplay ingress; no native ordering claim."""
 from pathlib import Path
 from lupa.lua55 import LuaRuntime
 import xml.etree.ElementTree as ET
@@ -8,8 +8,8 @@ l.execute(r"""
 local function event()local e={list={}};function e.Add(fn)e.list[#e.list+1]=fn end
  function e.Fire(...)for _,fn in ipairs(e.list)do fn(...)end end;return e end
 function setup(missing)
- Events={};GameEvents={};shared={};reads=0;writes=0;lookups=0;native=nil;unknown=false
- for _,n in ipairs({'LoadScreenClose','CityAddedToMap','CityInitialized','CityRemovedFromMap','CityTransfered','GameCoreEventPublishComplete','GameCoreEventPlaybackComplete'})do
+ Events={};GameEvents={};EventSubTypes={FOUND_CITY=-77};shared={};reads=0;writes=0;lookups=0;native=nil;unknown=false
+ for _,n in ipairs({'LoadScreenClose','CityAddedToMap','CityInitialized','CityRemovedFromMap','CityTransfered','UnitActivate','GameCoreEventPublishComplete','GameCoreEventPlaybackComplete'})do
   if n~=missing then Events[n]=event()end
  end
  GameEvents.CityBuilt=event();GameEvents.CityConquered=event()
@@ -26,7 +26,7 @@ function load()Events.LoadScreenClose.Fire()end
 function report()local t={};for i=1,5 do t[#t+1]=d.Describe(0,i)end;return table.concat(t,'\n')end
 setup()
 assert(d.Begin(0,nil,unit(),'early'):find('未开始'))
-for i=1,100 do Events.GameCoreEventPublishComplete.Fire();GameEvents.CityBuilt.Fire(0,1,4,5)end
+for i=1,100 do Events.GameCoreEventPublishComplete.Fire();GameEvents.CityBuilt.Fire(0,1,4,5);Events.UnitActivate.Fire(0,7,4,5,-77,true)end
 assert(reads==0 and writes==0 and lookups==0)
 load();local msg=d.Begin(0,nil,unit(),'found');assert(msg:find('Start EMPTY',1,true),msg)
 local idle=reads
@@ -39,6 +39,19 @@ msg=report();assert(msg:find('Built 0 / 9',1,true) and msg:find('Publish CITY / 
 assert(not msg:find('payload'));idle=reads;local old=msg
 for i=1,100 do Events.GameCoreEventPublishComplete.Fire();Events.GameCoreEventPlaybackComplete.Fire();d.Describe(0,1)end
 assert(reads==idle and report()==old and writes==0)
+-- B106 founding signal: before/after city notifications, no unit/city lookup,
+-- no visibility gate, signed enum, actual ordering retained, wrong plot ignored.
+assert(msg:find('FOUND_CITY=-77',1,true) and msg:find('起始移民=7',1,true))
+local beforeReads=reads;local beforeLookups=lookups
+Events.UnitActivate.Fire(0,7,4,5,-77,false)
+msg=report();assert(msg:find('FoundCity 0 / 7 / -77 / false',1,true),msg)
+assert(reads==beforeReads and lookups==beforeLookups and writes==0)
+old=report();Events.UnitActivate.Fire(0,7,8,5,-77,true);assert(report()==old)
+Events.UnitActivate.Fire(0,7,4,5,123,true)
+assert(report():find('UnitActivate 0 / 7 / 123 / true',1,true))
+Events.UnitActivate.Fire(0,7,4,5,nil)
+assert(report():find('UnitActivate 0 / 7 / UNAVAILABLE / UNKNOWN',1,true))
+old=report()
 -- Duplicate request token must not reset the trace; invalid arm preserves it.
 d.Begin(0,nil,unit(),'found');assert(report()==old)
 d.Begin(0,nil,unit(2),'bad');assert(report()==old)
@@ -78,6 +91,27 @@ assert(not d.Describe(8,1):find('位置',1,true))
 setup();assert(d.Describe(0,1):find('尚未开始')) -- reload clears only diagnostic state
 load();d.Begin(0,nil,unit(),'error');Game.GetCurrentGameTurn=function()error('failure')end
 GameEvents.CityBuilt.Fire(0,9,4,5);assert(d.Describe(0,1):find('OBSERVER_READ_ERROR',1,true))
+
+setup();load();native=city(0,40);d.Begin(0,native,nil,'transfer-negative')
+GameEvents.CityBuilt.Fire(4,40,4,5);Events.CityRemovedFromMap.Fire(0,40)
+native=city(4,40);Events.CityAddedToMap.Fire(4,40,4,5);Events.CityTransfered.Fire(4,40,0,-100)
+assert(not report():find('FoundCity 4',1,true) and writes==0)
+-- Unit events share the existing48-row budget; no new history or lookup.
+for i=1,60 do Events.UnitActivate.Fire(4,7,4,5,-77,true)end
+assert(report():find('TRACE_LIMIT',1,true));local count=reads;local frozen=report()
+for i=1,100 do Events.UnitActivate.Fire(4,7,4,5,-77,true)end
+assert(reads==count and report()==frozen)
+setup('UnitActivate');load();d.Begin(0,nil,unit(),'nohook')
+assert(report():find('UnitActivate=false',1,true))
+setup();EventSubTypes=nil;shared={};SPCCitySequenceProbe.Start(P,shared);d=shared.CitySequenceProbe;load()
+d.Begin(0,nil,unit(),'noenum');Events.UnitActivate.Fire(0,7,4,5,-77,true)
+assert(report():find('FOUND_CITY=不可用',1,true) and not report():find('FoundCity 0',1,true))
+assert(report():find('UnitActivate 0 / 7 / -77 / true',1,true))
+setup();load();d.Begin(0,nil,unit(),'earlyfound')
+Events.UnitActivate.Fire(0,7,4,5,-77,true)
+native=city(0,9);GameEvents.CityBuilt.Fire(0,9,4,5);Events.CityInitialized.Fire(0,9,4,5)
+msg=report();assert(msg:find('FoundCity 0',1,true)<msg:find('Built 0',1,true))
+assert(writes==0)
 """)
 # Actual Gameplay branch: eligibility, unit existence, no consumer/action fallthrough.
 g=(M/'Gameplay.lua').read_text();prefix=g[g.index('local function request('):g.index('  -- B068 presentation')]
@@ -112,8 +146,8 @@ probe=(M/'CitySequenceProbe.lua').read_text()
 for forbidden in ['SetProperty','RequestPlayerOperation','RemoveBuilding','CreateBuilding','SetUpdate','print(']:
  assert forbidden not in probe, forbidden
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='132'
+assert root.attrib['version']=='133'
 assert len(root.findall(".//File[.='CitySequenceProbe.lua']"))==2
 compile_lua=LuaRuntime().eval('function(s,n) local f,e=load(s,n);assert(f,e)end')
 for p in M.rglob('*.lua'): compile_lua(p.read_text(),str(p))
-print('B105 LOCAL_SIMULATION_PASS: bounded passive trace, split-batch visibility, idle/read zero work, failure/missing hooks, actual UI/Gameplay dispatch, Lua/manifest; native boundary UNVERIFIED')
+print('B105/B106 LOCAL_SIMULATION_PASS: FOUND_CITY raw/missing/signed/visibility/ordering/negative-control,  bounded passive trace, split-batch visibility, idle/read zero work, failure/missing hooks, actual UI/Gameplay dispatch, Lua/manifest; native boundary UNVERIFIED')

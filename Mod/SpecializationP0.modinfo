@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="132">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="133">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B105.132 develop: bounded opt-in city event sequence evidence; fresh enrollment remains gated.</Description>
+    <Description>B106.133 develop: bounded Gameplay FOUND_CITY observation; fresh enrollment remains gated.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

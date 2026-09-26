@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "29508c74a055d90326a4ae91ce72d046a09a4da7",
-  "runtime": "B105.132 / modinfo132",
+  "runtime_commit": "PENDING_B106_CHECKPOINT_COMMIT",
+  "runtime": "B106.133 / modinfo133",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "5488d832dc57adb490616f4b71fbd91a7b3c54f96eaeff202a9af2ceaf8d6483",
+      "sha256": "7478598f363bebc1f809a74cc5bf02169ae4c5d46e8cae83f708b0685e4ccc6d",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
+      "provenance": "B106 authorized FOUND_CITY passive observation checkpoint; targeted local PASS; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "95072b782918bb7087296c4ee40500d5ab6c7aaf9416d8eaa47fd070d53ef8b7",
+      "sha256": "525ddc5948638fc3613810c8f65acc402ed72be08dae05dfedbbab62ab25315a",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
+      "provenance": "B106 authorized FOUND_CITY passive observation checkpoint; targeted local PASS; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
@@ -766,9 +766,9 @@
       "provenance": "B104 authorized two-record isolation/selected diagnostics; targeted L3 PASS"
     },
     "Mod/CitySequenceProbe.lua": {
-      "sha256": "82d2109c4a2495104ab3df575e1fcd97dd416418b4e860753943ee1db257ae06",
+      "sha256": "572c74dfe93ad29b233ef3c5e05a18e9e60e4147af71ab94a33c22313170aa2d",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
+      "provenance": "B106 authorized FOUND_CITY passive observation checkpoint; targeted local PASS; native pending"
     }
   }
 }

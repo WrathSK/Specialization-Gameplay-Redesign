@@ -66,3 +66,6 @@ See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batc
 
 ### B105 native evidence received — no repeat test
 [Four-image result](Validation/Results/Specialization_B105_E2_Event_Boundary.md): observer paths PASS; first Publish demonstrably splits both founding and transfer notification chains. EVENT_BATCH_BOUNDARY remains for automatic enrollment; next scoped boundary proposal must use positive evidence, not timeout/Publish-count inference. Playback is candidate only. No immediate user test; existing B103/B104 results unchanged.
+
+### B106.133 — FOUND_CITY native delivery pending
+[Minimal test](../Architecture/v2/P0_E2_Plan.md#b106133--authorized-found_city-evidence-checkpoint): same arm/read controls, one ordinary Settler founding plus one transfer negative control. Capture all pages. Missing hook/enum at arm: screenshot and stop. This adds founding-reason evidence absent in B105, not a repetition of full E2 acceptance. No registration/Claim/F.

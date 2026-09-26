@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0266",
-    "runtime": "B105.132 / modinfo132",
+    "status": "S0267",
+    "runtime": "B106.133 / modinfo133",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "29508c74a055d90326a4ae91ce72d046a09a4da7",
-  "current_batch": "P0-E2 B105 NATIVE_SEQUENCE_OBSERVED / EVENT_BATCH_BOUNDARY",
-  "next_batch": "Propose bounded FOUND_CITY event observation; positive founding evidence candidate only, no automatic implementation/Claim/F",
+  "runtime_commit": "PENDING_B106_CHECKPOINT_COMMIT",
+  "current_batch": "P0-E2 B106 FOUND_CITY_EVIDENCE_LOCAL_PASS",
+  "next_batch": "Native FOUND_CITY availability/order/transfer-negative observation; no automatic enrollment/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B105.132 / modinfo132 deployed;153/153 MATCH;B104 recovery verified; receipt B105.132-29508c7-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Four native images reviewed: Publish interleaves; observer scoped PASS; fresh enrollment gate remains",
+  "context_review_status": "Authorized bounded observer extension; targeted local PASS; native FOUND_CITY unverified",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
