@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0270
+Status Revision: S0271
 Implementation Build: develop P0-B-107.134 / modinfo134 E2_FRESH_REGISTRATION; live B107.134 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_FRESH_REGISTRATION_LOCAL_PASS_NATIVE_REQUIRED
+Work State: P0_E2_FRESH_REGISTRATION_SCOPED_USER_GAME_TEST_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-26 B107.134 [新城登记实机证据](Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md)：3图确认同一城0/65536正常建城自动登记1/2、NONE/P0/ACTIVE0/KNOWN、随后RESEARCH/P1/ACTIVE1；用户明确确认重启后P2保留。简化新局单城路径 USER_GAME_TEST_PASS；P2读档为用户陈述，不伪称截图显示投资1/ACTIVE2。旧迁移城＋新城混合对照按对话暂列待办；P0独立冷加载未单独确认，不能仅凭两图时间判断。相关失败/重复保护仍为本地证据。原图3/3 hash一致归档；无runtime/Design/main/部署变化，无需立即重复测试，E2仍partial，不自动进入Claim/F。以下历史。
 
 B107.134：[获授权新城登记实现](../Architecture/v2/P0_E2_Plan.md#b107134--authorized-positive-founding-registration-implementation)完成定向L3 LOCAL_SIMULATION_PASS，等待USER_GAME_TEST。自动FOUND_CITY＋Initialized证据→独立Game NONE/P0→首个合格完成P1→现有投资P2；目标旧writer受guard，既有B103/B104回归通过。内层schema2与旧schema1混合；两记录上限保持，未定义的未专业化夺回仍暂停。无新收益公式/carrier/Design/Claim/F；不扩大native PASS。最小测试为一个控制城＋新自建城，P0和P2各一次冷启动读档。回滚B106必须配建城前旧存档。已按W0003部署：实现commit c5bb3d9，部署HEAD d6e5ed0，153/153 MATCH，receipt B107.134-d6e5ed0-playtest.json；B106完整恢复点/stable桥已核验，游戏退出，main未改。以下历史。
 

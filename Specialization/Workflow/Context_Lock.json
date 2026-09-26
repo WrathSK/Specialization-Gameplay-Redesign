@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B107 positive-founding/first-completion scoped L3 implementation; unchanged authority inherited; native pending",
+  "review_basis": "B107 native evidence review: three screenshots plus user-reported restarted P2; unchanged runtime/Design authority reused",
   "files": {
     "AGENTS.md": "03c9af87dccaefcf20814cb533a0316d85c8aa415a1a009b21850aaf6e62769f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "c7e2939ce69bf884676c383b4aef0f90943e2c427199313c8565f690ac6cb359",
+    "Specialization/Status/Specialization_P0_Status.md": "e0e0ebaf67250df3a10451b0cac1dfe3babcce92b726e6e71f39834f279c6ea1",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -102,7 +102,7 @@
     "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025",
     "Specialization/Status/Validation/Results/Specialization_B081_P0C_Deployment_20260920.md": "44f6bf5ff8abc3d881ee4364d8036b83c4a8876bae1fa41e1dd0e9ba3a99b728",
     "Specialization/Architecture/v2/P0_D1_Plan.md": "8e0eade15be491a2c157b4e4f43e493bc2559e4039e31a0709120753da95d324",
-    "Specialization/Architecture/v2/README.md": "21550dc478e6ca5ef6eb0d5c350bde8726ab74756671f82daecee6a46a670f6d",
+    "Specialization/Architecture/v2/README.md": "b404d1a9ccbcf63677944c4af1ab6cc9d8f9eedc62720a57f8157af219383f23",
     "Mod/Data/Lv3Effects.sql": "6b202d054f7911dfe909185498744db6211c49fb6d1f31bdc5d89be73761f8d0",
     "DevelopmentTests/test_p0_d1_gate.py": "b0ac8baedfaef8bac50d63fec4d3851c2b7e8780cf05e2d60d2b15996373197b",
     "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "c997fab84525ae74051b9c0b56b39c8414b28685fd0415b7cb790488a301c3a5",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "0bb1a1e9f048f22f300cc5fcb56b87f3f859436848f65efe85ed1b42a14d7ec9",
+    "Specialization/Workflow/Authority.json": "0f75a2fd76d325134e150e33d9a7301dcd8795062289ad1ad183b3f36775f151",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -201,7 +201,7 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "125cd303028682c2bc5eadacb284d85073d823c57977fed0bd4a8d55ef1a1f47",
+    "Specialization/Workflow/P0-E2.json": "d62e6f288ab6e38e7d7fe69d1f50f7b28941920a642ad63afb1753157f9fd259",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Mod/CitySequenceProbe.lua": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
     "DevelopmentTests/test_b105_city_sequence.py": "4c55116fb999d8f49f4110794ab07ccfd9b26f7c9ba294f5eeef03cceee75bd0",
@@ -209,6 +209,7 @@
     "Specialization/Reports/Technical/Specialization_E2_Other_Mod_City_Lifecycle_References.md": "aaa3a308a943e4766df7ab0a9e5d8c792bb4f5a1589eadc75c99e4a6b742c93e",
     "Specialization/Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md": "75aa21cca9f2373450746d63fa1a1728c05f72e7ad6ac1c43867705bbba7e7d0",
     "Mod/CompletionRecordProbe.lua": "565ff5597867b1ecb0efad73462f02588faea7185b318f57f6b10f0f56af0b11",
-    "DevelopmentTests/test_b107_e2_founding.py": "95ffd0fb9fd8c959d022e7da2e144db7161dd54f4d07f08fbcc1ceecc70b6ce9"
+    "DevelopmentTests/test_b107_e2_founding.py": "95ffd0fb9fd8c959d022e7da2e144db7161dd54f4d07f08fbcc1ceecc70b6ce9",
+    "Specialization/Status/Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md": "9a68864cbb3f97a69bd33cca993d2d4418b66b855a3aa4fdd723401fab77cb8c"
   }
 }

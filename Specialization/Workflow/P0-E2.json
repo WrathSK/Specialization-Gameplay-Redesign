@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0270",
+    "status": "S0271",
     "runtime": "B107.134 / modinfo134",
     "military": "D0034"
   },
@@ -358,7 +358,7 @@
       "Lua/manifest/context/deployment integrity",
       "B107 actual founding/first-completion/binding/legacy-guard mixed-schema and failure tests"
     ],
-    "user": "B107: one control + automatically founded city; NONE/P0 coldload, first completion/P1, investment/P2 and second coldload; no arm or migration of new city"
+    "user": "Completed simplified new-game single-city flow in reported scope; mixed migrated/fresh control deferred, P0-only coldload unconfirmed; see B107 result report"
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
@@ -366,9 +366,9 @@
   ],
   "result": {
     "plan": "POST_B106_PLAN_IMPLEMENTED_UNDER_EXPLICIT_USER_AUTHORIZATION",
-    "implementation": "B107.134_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
-    "native": "B106_FOUND_CITY_SCOPED_USER_GAME_TEST_PASS; B105 first-Publish assumption remains rejected; B103/B104 scoped acceptance retained",
-    "next": "Native fresh registration validation only; stop before Claim/F",
+    "implementation": "B107.134_LOCAL_SIMULATION_PASS; simplified native fresh-city path scoped PASS; E2 partial",
+    "native": "B107 scoped USER_GAME_TEST_PASS: screenshots normal-founding NONE/P0 and Research P1; user confirms restarted-game P2 persistence. Old/new coexistence deferred; P0-only coldload not independently confirmed.",
+    "next": "No immediate repeat test; await remaining E2 plan authorization, no Claim/F",
     "scope_review": "Game-backed NONE/P0 and first completion with fixed evidence buffers; no new carriers/formulas; existing ownership regressions preserved"
   }
 }

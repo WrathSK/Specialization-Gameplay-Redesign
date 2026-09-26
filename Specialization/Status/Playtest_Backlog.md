@@ -72,3 +72,8 @@ See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batc
 
 ### B106 minimal native gate closed — 2026-09-26
 [Two-image result](Validation/Results/Specialization_B106_E2_Found_City_Pass.md): actual Gameplay FOUND_CITY delivered with selected Settler identity after Initialized; transfer control has Transfer without FoundCity. Scoped USER_GAME_TEST_PASS; no repeat requested. Registration remains unimplemented; revise the narrow registration plan, not universal Publish boundary or Claim/F.
+
+
+## B107 fresh-city native follow-up — scoped acceptance (2026-09-26)
+
+[Evidence](Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md): automatic normal-founding NONE/P0 and Research P1 pictured; P2 retained after restart explicitly user-confirmed. Old migrated control + fresh inner-schema2 coexistence remains deferred at the user's simplified-new-game test boundary; local regression is retained. P0-only coldload has no separate confirmation (two P0 images alone do not prove restart). Neither item requests immediate retesting or searching old saves. No cap expansion/Claim/F authorization is implied.
