@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0273
-Implementation Build: develop P0-B-108.135 / modinfo135 E2_NEW_GAME_MULTI_CITY; live B107.134 until verified deployment; stable B069.96
+Implementation Build: develop P0-B-108.135 / modinfo135 E2_NEW_GAME_MULTI_CITY; live B108.135 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_NEW_GAME_MULTI_CITY_LOCAL_PASS_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-26 B108.135 已按W0003安全部署，源码commit c056eae，153/153 MATCH；B107完整恢复点校验通过，receipt `B108.135-c056eae-playtest.json`。main不变，未启动游戏。
 
 2026-09-26 B108.135 [新局多城切换](../Architecture/v2/P0_E2_Plan.md#b108135-implementation-result--evidence-boundary)按授权完成本地L3验证。正常自建城统一Game索引＋独立记录；取消正式路径2/32实验限制，旧写入/迁移入口退出；真实收益规则不改。1/2/4/8/33城独立、冷加载/无关通知0写入、单城写入不重写其它记录/索引；投资失败窗口、既有退出/夺回回归通过。STATIC/LOCAL不等于实机PASS。仅支持新测试局；未知/旧档不自动转换。最小三城A=P0、B=科研P2、C=文化P1＋一次冷启动读档；等待用户确认新局接口和原生保存。不重复旧新混合兼容测试；Claim/F未实施。以下历史。
 

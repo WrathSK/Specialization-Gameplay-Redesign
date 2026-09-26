@@ -760,3 +760,5 @@ Minimal user test — **new test game required**, use current build visible in r
 3. Save separately, fully exit/restart/load once, select each city and left-click **E2往返**. Verify A=P0, B=Research/P2/one investment, C=Culture/P1/no investment. Send these three short reports; stop on any hold. No trade/conquest/old migration save requested.
 
 Rollback: exact B107 runtime recovery plus a pre-B108 save/new game; do not promise B108 saves load under B107. No Design/main/Claim/F changes. Next authorization only after native checkpoint review; no automatic next slice.
+
+Deployment: B108.135 source `c056eae`, W0003 authorized temporary develop deployment,153/153 MATCH; B107 full outgoing recovery verified through the existing restore/switch transaction. Receipt `B108.135-c056eae-playtest.json`. Main unchanged; game verified exited, never launched. Native gate remains pending.

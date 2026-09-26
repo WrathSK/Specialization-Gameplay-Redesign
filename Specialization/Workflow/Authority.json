@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "PENDING_B108_IMPLEMENTATION_COMMIT",
+  "runtime_commit": "c056eaeb0ec50b1a06cbb7826b32650b550e9481",
   "current_batch": "P0-E2 B108_NEW_GAME_MULTI_CITY_LOCAL_PASS_NATIVE_REQUIRED",
   "next_batch": "Await B108 three-city new-game native checkpoint; no snapshot/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B107.134 / modinfo134 deployed;153/153 MATCH;implementation c5bb3d9/deployed HEAD d6e5ed0;B106 full recovery verified; receipt B107.134-d6e5ed0-playtest.json",
+  "live": "B108.135 / modinfo135 deployed;153/153 MATCH;source c056eae;B107 complete recovery verified;receipt B108.135-c056eae-playtest.json",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
