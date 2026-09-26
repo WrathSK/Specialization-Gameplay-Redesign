@@ -7,9 +7,21 @@ Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b982
 Latest Accepted Design Revision: D0032
 Latest Accepted Design SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Implementation Build: develop P0-B-086.113 / modinfo113; live deployment state in Status; stable B069.96 / modinfo96
+Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
+
+A0161保留D0032目标架构；D0035 Shared/Lv2澄清按当前Authority和已完成定域审阅适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+
+- [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
+- [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
+- 实施/验证/下一授权边界只在[Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state)维护；部署另需receipt，源码存在不证明已部署。
+- [A–D2事件驱动传播合同](v2/README.md)及[机构/能力/carrier分层](v2/Presentation_Institution_Carrier_Model.md)继续适用；下面旧阶段状态不重启旧任务。
+- 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2当前路由查阅。
+
+## 历史实施记录
+
+保留原阶段合同与证据链接；下文“当前/未实现/下一轮”是当时状态。与新目标或后续切片相冲突的实现描述只作历史，不取代当前源码与Status。
 
 P0-D3 B086.113：[学术主持逐建筑writer](v2/P0_D3_Research_Chair.md)已实现并本地验证；原生建筑归属/收益仍待实机。共享事实/Design不改，不进入下一批。以下旧进度为历史。
 
@@ -310,6 +322,8 @@ B056.73恢复NET-RC-005正式权重1/2/3/4，保留独立k_R/k_C、浮点L√N�
 
 ## 运行结构
 
+> 历史baseline描述，非当前实现矩阵；仍适用的合同须结合上方CURRENT链接的后续切片读取。
+
 模块路径相对于仓库Mod/源码根；加载关系以SpecializationP0.modinfo及Gameplay.lua实际include/Start为准。
 
 | 层 | 实际入口 | 职责与当前边界 |
@@ -328,11 +342,15 @@ B056.73恢复NET-RC-005正式权重1/2/3/4，保留独立k_R/k_C、浮点L√N�
 
 ## 持久事实与派生状态
 
+> 历史baseline描述，非当前实现矩阵；仍适用的合同须结合上方CURRENT链接的后续切片读取。
+
 CityFlow使用SPC_DEV_CITY_FLOW_B020；EffectiveFacts/投资使用SPC_DEV_INVESTMENT_LEDGER_V1。底层仍依赖BindingProbe与B015 journal，不重命名Property或把旧DEV表无条件迁移成可信历史。阶段读回/停止模型可在DevelopmentTests找到，但不等于崩溃恢复、跨OwnerUID和全部历史连续性已解决。
 
 专业/潜力/投资是持久事实；当前总督、来源/中心/接收集合、输出及载体是派生状态。B052标准化ledger保存城市永久掌握记录，当前网络模板并集留待独立计算。不得以旧内部建筑或过去商路事件补造当前连接。
 
 ## 后台商路与网络
+
+> 历史baseline描述，非当前实现矩阵；仍适用的合同须结合上方CURRENT链接的后续切片读取。
 
 用户已接受后台UI/BTS同源读取；禁止的是需要手动打开UI。正式运行来源是UI中的CityTrade当前列表，Gameplay可确认数量/任务但未找到完整可靠端点枚举；不要重新强求纯Gameplay作为开发前置。
 
@@ -342,6 +360,8 @@ NetworkBridge派生direct中心来源与distribution recipient；D0009 direct即
 
 ## 收益与精度
 
+> 历史baseline描述，非当前实现矩阵；仍适用的合同须结合上方CURRENT链接的后续切片读取。
+
 Base用于Industry I/III；Actual复制采用district:GetYield六yield口径，不是仅政策后相邻，不是city:GetYield。B051.67按D0015枚举所有已完成区域，科研排除Campus，不再按四专业或RequiresPopulation过滤；市中心也在枚举。Industry IV仍只从有效IV源锚定IZ取实际生产力，按输出金额max。未完成不计、无产出贡献0，缺失数据明确拒绝。
 
 CopyYields.Plan支持0..65535.5范围内整数/半点，半点人口1..255。整数正负二进制位+per-population系数补偿，80个独立InternalOnly建筑；先撤旧再加新、重复不写相同状态。更细小数明确技术限制，不套Crew取整。消费者使用当前ACTIVE及真实网络；后台事件发布/播放/加载/回合入口和初始化fallback，计时器仅补充。读报告不写入收益。
@@ -349,6 +369,8 @@ CopyYields.Plan支持0..65535.5范围内整数/半点，半点人口1..255。整
 城市百分比由引擎作用。B051.67扩展范围及固定条件下无持续增长的最小测试已获用户口头PASS，见Status结果；无逐区域数据，不视为市中心/所有Mod组合输入隔离的普遍证明。不静默排除类型，也不假定绝对覆盖足以防止所有反馈。详细证据见[技术索引](../Reports/Technical/README.md)。
 
 ## 下一实现策略与边界
+
+> 历史baseline描述，非当前实现矩阵；仍适用的合同须结合上方CURRENT链接的后续切片读取。
 
 标准化：Accepted IND-NET-004/005已经确认范围，不再把区域允许目录列为未决。实现应分为全量合格建筑目录（用于永久记录）、可版本化的折扣启用策略（用于当前资格）以及独立模板匹配组。保留BuildingType和HD分类证据；市中心三个组仅作为本项目映射，不修改HD表。当前禁用模板同样保存，后续打开策略时可重用记录。金币当前合法购买资格必须独立复核，不能把PurchaseYield字段或已记录模板等同已解锁购买；Faith隔离仍待原生调查。先实现账本、首次初始化及事件增量，不先接折扣。现有Owner/UID、旧已Industry城市初始化与征服支持边界须明确。
 

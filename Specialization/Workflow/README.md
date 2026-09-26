@@ -35,16 +35,38 @@ Fresh threads and post-compaction recovery follow these pointers with task-scope
 1. Read repository AGENTS, Specialization AGENTS/README. Read Authority.json, current Spec/Architecture metadata and Status CURRENT block. Applicable nested instructions still apply. Historical introductory versions in test/report documents do not override current Authority/Status.
 2. Confirm authorized Batch ID, branch, HEAD/upstream, staged/unstaged/untracked changes; preserve existing work. `PLANNED_NOT_AUTHORIZED` is not permission to implement.
 3. Run `python3 Specialization/Workflow/context.py check <batch-id>`. It reads hashes/file sets/Git; never rewrites hashes, stages, deploys, launches game or runs runtime tests. Failure blocks trusting the index, never authorizes reset.
-4. `python3 Specialization/Workflow/context.py plan <batch-id>` lists ordered context and reproducible byte counts. `read <batch-id> N` emits one reference (zero-based N); use `all` only with adequate output budget. Do not treat truncated tool output as a completed read.
+4. Choose the action-scoped reading path below first; a manifest context list is the implementation dependency envelope, not mandatory full ingestion for every action. `python3 Specialization/Workflow/context.py plan <batch-id>` lists ordered context and reproducible byte counts. `read <batch-id> N` emits one reference (zero-based N); use `all` only with adequate output budget. Do not treat truncated tool output as a completed read.
 5. Read whole selected JSON objects with revision/state metadata, gates/notes and stable IDs. Follow normative references to enclosing qualification/ownership sections. Ambiguity expands to whole canonical section/file; no historical same-ID fallback. A formula alone is insufficient.
 6. Read direct runtime source even if unchanged when adapting it. Unchanged indexed transitive modules may use reviewed summary pointers. Changed exported input, DB/config, dependency or behavior forces consumer review even if consumer hash matches.
 7. Apply conditional/full-audit triggers; record expansion and reason in result. Only then implement separately authorized scope. Never skip writer/save/Shared boundaries to save tokens.
+
+## Action-scoped reading and interruption recovery
+
+| Action | Minimum sufficient reading | Expand when |
+|---|---|---|
+| Read-only question | Authority pointers, actual CURRENT, question-specific full section/object | Qualification, exception or source conflict needs enclosing/direct contract |
+| User acceptance archive | CURRENT, current slice's full test/stop contract, submitted evidence and affected result/Status | A discrepancy requires the exact implementation or prior counterexample; archiving does not authorize a fix |
+| Investigation | Relevant contract, direct implementation, existing negative evidence | Uncertain call path or evidence scope |
+| Authorized implementation | Current slice, complete direct rules/source/test closure in manifest and conditional consumers | Writer switch, save/ownership or exported changes require exact caller/old-writer audit; never remove dependencies just because hashes match |
+| Interruption/fresh-thread recovery | Git state, CURRENT, current slice, dirty diff and direct results | Deployment action requires actual receipt/runtime; unfinished transaction requires its own recovery contract |
+
+`context.py plan` reports the dependency envelope without emitting source text. Read selected items, not `read all` by default. Hash integrity still reads all guarded bytes automatically; successful file lists need not become model context. Human Design reading pages are not added to mandatory agent reading.
+
+Recovery procedure:
+
+1. Confirm worktree, branch, HEAD/upstream and staged/unstaged/untracked changes. Preserve partial work; never reset to manufacture a clean tree.
+2. Read CURRENT and its current-slice links, then direct results. Distinguish recommendation, explicit authorization, work in progress, local completion, recorded deployment and pending native validation.
+3. Compare diff/commits with those records; consult the actual receipt only if deployment matters. A missing final message is not evidence that work or deployment failed; do not repeat completed actions blindly.
+4. If authorization, provenance, an incomplete transaction or dirty edit is unclear, investigate read-only and ask only for genuinely missing information. A lock mismatch can be legitimate unfinished work or unexpected change; neither auto-accept nor discard it.
+5. Review/validate the affected edits before updating only their review hashes. Record a short boundary/decision/negative finding in existing Status/plan only when needed for safe continuation. No per-tool journal, Memory.md or new hook.
+
+Cross-machine handoff: clone complete Git history when selected regression uses `git show` baselines (a shallow clone may be insufficient); install the interpreter/Lupa versions required by selected tests. Real local config and external read-only Civ VI/HD databases must be supplied separately only for paths requiring them. Screenshots/native evidence, deployment receipts and recovery packages remain external; retrieve them when native evidence or deployment recovery is in scope. No screenshots means no claim of reinspection; no receipt means HEAD cannot identify the deployed package. Do not copy game files, saves or backups into Git. See [test dependencies](../../DevelopmentTests/README.md) and [deployment contract](../Architecture/Playtest_Workflow.md).
 
 ## End protocol
 
 Review changed modules, effect IDs, callers and dependency changes. Run the W0004 v1 risk-selected validation depth below; distinguish STATIC_CONFIRMED, LOCAL_SIMULATION_PASS and USER_GAME_TEST_PASS. Update Status, batch result, changed-module inventory/provenance, hashes and technical gates. Architecture revision changes only when its contract changes, not every batch. No full Architecture regeneration.
 
-Refresh hashes ONLY after source/references are re-read and reviewed. Carry unchanged evidence from named baseline; never auto-accept mismatches. Authority changes invalidate all referencing manifests, including unchanged filenames. Mark dependent manifests STALE until refreshed. Keep historical inventories frozen; current Runtime_Index holds inherited references plus explicit deltas. Checksum is not semantic review.
+Refresh hashes ONLY after source/references are re-read and reviewed. Carry unchanged evidence from named baseline; never auto-accept mismatches. Authority changes require review of the active/requested manifest before use, including unchanged filenames. Completed historical manifests retain their reviewed version pins; do not rehash or update all history to match today. A historical manifest cannot be reused as a current implementation gate without revalidation. Keep historical inventories frozen; current Runtime_Index holds inherited references plus explicit deltas. Checksum is not semantic review.
 
 Before commit inspect diff/branch/untracked/secret/temp boundaries. Coherent completed batch → commit develop → push origin/develop → verify matching HEAD/clean tree. Awaiting engine validation is committed separately from later validation. Deployment, main, promotion, tag and published-history rewrite require their existing explicit authorization. Stop at batch boundary.
 
@@ -140,7 +162,7 @@ No tooling/state architecture change: retained indexes still require reviewed ha
 
 [Batch.schema.json](Batch.schema.json) defines structure; [P0-B1.json](P0-B1.json) is the worked template. Replace all batch-specific references/gates; never inherit approval. Supported references: full file, metadata head, exact unique Markdown heading, exact unique row prefix, JSON Pointer + stable expected ID. No new Design DSL or copied formulas.
 
-`context.py` uses only Python standard library. It validates supported schema fields, selectors, hash/file-set and version pins; cannot prove dependency completeness or Gameplay truth. `self-test` injects faults in memory, never modifies repo. Hash indexes are data, not executable update scripts; no write/refresh mode exists.
+`context.py` uses only Python standard library. It validates supported schema fields, selectors, hash/file-set and version pins; cannot prove dependency completeness or Gameplay truth. `self-test` checks generic selectors using independent in-memory fixtures even when a task has only full references, then validates the real manifest/integrity. Targeted helper tests use temporary fixture files for missing-file and hash failure checks; neither edits Design/runtime. Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_context_helper.py` (stdlib only). No selector is added to a real manifest merely to exercise a test. Hash indexes are data, not executable update scripts; no write/refresh mode exists.
 
 Contract routing reuses D0032_Adaptation: Canonical state / Permanent achievements / Shared facts / Network / Presentation / Performance; Implementation_Plan: Migration; P0_A report: actual implementation caveats. Do not duplicate these contracts here.
 

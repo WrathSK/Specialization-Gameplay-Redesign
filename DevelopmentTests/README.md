@@ -2,20 +2,24 @@
 
 Document Owner: Codex
 
-Run from repository root with Python 3 and Lupa exposing `lupa.lua55.LuaRuntime`:
+## Select tests by task
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_b051_all_districts.py
-PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_deployment.py
-```
+1. Read [Authority](../Specialization/Workflow/Authority.json) → its current manifest → current slice's validation/exit contract. This is the maintained task-specific test entry; this README does not duplicate a changing build/test queue.
+2. Prepare Python 3 and only the dependencies required by those tests. Use `PYTHONDONTWRITEBYTECODE=1`. Lua simulations require `lupa.lua55.LuaRuntime`; workflow helper checks use standard library only.
+3. Run targeted tests and relevant subsystem regressions at [W0004 risk depth](../Specialization/Workflow/README.md#w0004-v1--quota-efficient-validation-policy). Old broad wrappers are optional scoped regression, not the default suite.
+4. [Test_Catalog.json](Test_Catalog.json) classifies retained legacy entry/support roles; it is not an exhaustive dynamic inventory. Current task manifests remain the test selection authority.
 
-The first entry wraps `test_b051_background_fix.py` and `test_b051_copy_yields.py` in memory to retain their behavior assertions while selecting version 67. Do not run those older wrappers alone against version 67. Source is `Mod/`; the seven byte-comparison baselines are repository-contained `Fixtures/B051-before-copy/`, with provenance/hash. No DevelopmentBackups dependency remains in this current entry.
+For context-helper maintenance: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_context_helper.py`, then `context.py check/self-test <active batch>` as relevant. These checks do not run gameplay tests.
+
+For deployment-tool changes only, `test_deployment.py` exercises temporary directories, never live runtime. Deployment itself follows the separate authorized workflow.
+
+## Environment and dependencies
 
 Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB` or ignored `local/config.json` (see root template). It is opened mode=ro and backed up into memory; never edited or copied into this repository. SQL integration checks require this external database; Lua-only model tests and deployment tests do not. Install Lupa into a local environment as needed; no game assets or Python environment is vendored. `requirements-test.txt` records the expected distribution (2.8 from the existing installation directory); existing package metadata is incomplete, so fresh installation is not claimed validated. The tested backend is lua55.
 
 ## Historical tests and models
 
-Other retained Python scripts are historical, version-specific regression evidence unless listed in the migration validation report. Their original paths/assertions are preserved; some require external historical snapshots and old manifests and are not portable current entry points. Do not batch-run and rewrite them until green. Their presence is not a promise that all historical suites pass against B051.67. Offline Lua models describe preparation, not implemented gameplay. `test_gpp.py`, `test_discovery.py`, `collect_gpp_log.py` belong to CityGPPProbe and are deliberately excluded.
+Other retained Python scripts are historical, version-specific regression evidence unless selected by the current task contract for a specific regression. Their original paths/assertions are preserved; some require external historical snapshots and old manifests and are not portable current entry points. Do not batch-run and rewrite them until green. Their presence is not a promise that all historical suites pass against B051.67. Offline Lua models describe preparation, not implemented gameplay. `test_gpp.py`, `test_discovery.py`, `collect_gpp_log.py` belong to CityGPPProbe and are deliberately excluded.
 
 Results mean LOCAL_SIMULATION_PASS (local simulation), never USER_GAME_TEST_PASS. No game launch or GUI automation. Use no-bytecode mode. Deployment tests operate only in temporary directories and never touch the game runtime.
 
@@ -23,7 +27,7 @@ Results mean LOCAL_SIMULATION_PASS (local simulation), never USER_GAME_TEST_PASS
 
 `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_batch_b.py`
 
-Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory manifest-stamp adaptation, runs actual Discount/Bridge/Counters, and compares 168 full output cases against both Git baselines (79281ff, d1ac666). Keep that history available; no network/game access or deployment. Covers cold/warm derives, unknown/withdrawal, reentry, mutation and player/epoch isolation. Standalone A test retains its historical modinfo97 assertion; use this B entry for current develop.
+Requires Lupa lua55; this runner preserves A/B069 assertions with an in-memory manifest-stamp adaptation, runs actual Discount/Bridge/Counters, and compares 168 full output cases against both Git baselines (79281ff, d1ac666). Keep that history available; no network/game access or deployment. Covers cold/warm derives, unknown/withdrawal, reentry, mutation and player/epoch isolation. Standalone A test retains its historical modinfo97 assertion; use this B entry for that historical batch.
 
 ## Historical B072.99 instrumentation (develop, no deployment)
 
@@ -43,9 +47,9 @@ Run `python3 DevelopmentTests/test_runtime_audit.py` and `python3 DevelopmentTes
 
 Requires Lupa lua55. Actual Discount UI/Gameplay mocked transport/native permissions,200k pending notifications,bounded retry/epoch/withdrawal and12 normal B071 comparisons. Runs A/B/B069 and runtime-audit equivalence via in-memory stamp-only adaptation to100; preserves historical tests. No DB/game/deployment. The local installed Lupa2.8 currently resides outside the repository; use an interpreter compatible with that installation. C1 does not optimize generic Audit/C² scans.
 
-## Current Architecture v2 D2 — B076.103
+## Historical Architecture v2 D2 — B076.103
 
-Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with Lupa lua55 (local validated environment: `PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14`). Actual current Lua, 1728 B075 carrier maps, nonzero Commerce source changes, Great Work scenarios,10k idle/UI stress,1/2/4/8 scaling,30k published-view queries. Includes C2/C1/D1/A/B/B069; in-memory historical build/scheduling adaptations are explicit, frozen test files unchanged. Git baseline5dc6221 and older regression commits must remain available locally. No DB/game/network/deployment needed. LOCAL_SIMULATION_PASS only. See Architecture/v2/Batch_D2_Runtime_Propagation.md.
+Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with Lupa lua55 (local validated environment: `PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14`). At that checkpoint: actual Lua, 1728 B075 carrier maps, nonzero Commerce source changes, Great Work scenarios,10k idle/UI stress,1/2/4/8 scaling,30k published-view queries. Includes C2/C1/D1/A/B/B069; in-memory historical build/scheduling adaptations are explicit, frozen test files unchanged. Git baseline5dc6221 and older regression commits must remain available locally. No DB/game/network/deployment needed. LOCAL_SIMULATION_PASS only. See Architecture/v2/Batch_D2_Runtime_Propagation.md.
 
 ## P0-B2 Lv2 qualification
 
@@ -54,3 +58,9 @@ Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with
 ## B082 district precision native probe
 
 `test_district_precision_probe.py` verifies isolated explicit control/cleanup, UI idle, SQL in read-only external DB's memory copy and exact runtime scope. `test_district_precision_regression.py` runs P0-C and earlier protected suites with explicit probe-file/version adaptations; historical tests remain unchanged. Native district decimal retention remains USER_GAME_TEST_REQUIRED, not inferred from SQLite or mock floats. Use the Lua55/Lupa environment above.
+
+## Historical B051 wrapper / repository fixtures
+
+`test_b051_all_districts.py` wraps `test_b051_background_fix.py` and `test_b051_copy_yields.py` with the historical version67 stamp. It is not today's default test entry; do not invoke old wrappers against a new version assuming compatibility. Seven byte-comparison baselines remain in `Fixtures/B051-before-copy/`, with provenance/hash; no DevelopmentBackups dependency for that historical wrapper. Historical tests and assertions are retained, not rewritten to make an all-history run green.
+
+Missing dependencies are reported as NOT_RUN with the reason, never as PASS. External DB-dependent paths require the configured database; Git-baseline tests require their exact commits locally; Lupa-dependent tests require lua55. Do not weaken assertions or fetch/copy game assets to hide an unavailable prerequisite. Local simulation never certifies native engine behavior.

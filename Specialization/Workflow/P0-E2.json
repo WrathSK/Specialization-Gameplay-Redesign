@@ -33,13 +33,21 @@
   "context": [
     {
       "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "kind": "full",
-      "reason": "E2 scoped persistence/read/write/cutover contract"
+      "kind": "section",
+      "selector": "## Current slice — recovery and action routing",
+      "reason": "Current slice / complete supported-save, writer, failure, validation and rollback contract. Historical evidence expands by trigger in current slice."
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B108 authorized new-game multi-city cutover — contract before implementation",
+      "reason": "Current slice / complete supported-save, writer, failure, validation and rollback contract. Historical evidence expands by trigger in current slice."
     },
     {
       "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-      "kind": "full",
-      "reason": "E2 scoped persistence/read/write/cutover contract"
+      "kind": "section",
+      "selector": "## Migration / cutover合同",
+      "reason": "Full shared save/cutover/rollback contract; other profession batch plans only when that scope is authorized."
     },
     {
       "path": "Mod/BindingProbe.lua",
@@ -83,8 +91,15 @@
     },
     {
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
-      "kind": "full",
-      "reason": "Task-scoped ELIG-001..006 and PROG-004..010 ownership/claim rules; unchanged whole-file provenance"
+      "kind": "section",
+      "selector": "## 1. 文档范围与确认边界 — SCOPE",
+      "reason": "Complete eligibility and progression rules including exceptions, ownership, first completion, Claim exclusions and REALLOCATING boundary."
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "selector": "## 3. 共同成长与永久投资 — PROG",
+      "reason": "Complete eligibility and progression rules including exceptions, ownership, first completion, Claim exclusions and REALLOCATING boundary."
     },
     {
       "path": "Mod/CityProgressionStore.lua",
@@ -342,7 +357,20 @@
       "paths": [
         "Mod/Probe.lua"
       ],
-      "trigger": "Current IsTestPlayer lacks explicit human/local gate; review targeted eligibility before implementation"
+      "trigger": "Eligibility changes or unresolved owner/human/multiplayer read: inspect Probe.IsTestPlayer and B099 regression. B099 already gates test civ/leader + Player.IsHuman + single-player; never assume player 0."
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/v2/P0_E2_Plan.md"
+      ],
+      "trigger": "Historical E2 evidence and superseded experiments are selected by Current slice routing; not default whole-plan reads. Ownership changes require B096/B097 and subsequent B101–B103 corrections, founding anomalies require B105/B106/B107 evidence."
+    },
+    {
+      "paths": [
+        "Mod/CityIdentityRead.lua",
+        "DevelopmentTests/test_p0_e1.py"
+      ],
+      "trigger": "B108 test imports CityIdentityRead and the E1 fixture directly. Include these when investigating/implementing saved identity or changing/running that harness; follow further exact test imports as needed, not an all-history test run."
     }
   ],
   "non_scope": [

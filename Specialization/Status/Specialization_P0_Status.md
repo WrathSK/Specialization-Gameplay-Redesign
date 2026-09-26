@@ -15,6 +15,14 @@ Work State: P0_E2_NEW_GAME_MULTI_CITY_LOCAL_PASS_NATIVE_REQUIRED
 
 2026-09-26 B108.135 [新局多城切换](../Architecture/v2/P0_E2_Plan.md#b108135-implementation-result--evidence-boundary)按授权完成本地L3验证。正常自建城统一Game索引＋独立记录；取消正式路径2/32实验限制，旧写入/迁移入口退出；真实收益规则不改。1/2/4/8/33城独立、冷加载/无关通知0写入、单城写入不重写其它记录/索引；投资失败窗口、既有退出/夺回回归通过。STATIC/LOCAL不等于实机PASS。仅支持新测试局；未知/旧档不自动转换。最小三城A=P0、B=科研P2、C=文化P1＋一次冷启动读档；等待用户确认新局接口和原生保存。不重复旧新混合兼容测试；Claim/F未实施。以下历史。
 
+当前允许动作：接收/核对本次三城验收证据，按实际范围归档；未收到结果不能提升为USER_GAME_TEST_PASS。后续Gameplay修复/切片须另行明确授权。本次知识结构整理不推进E2，不部署。
+
+直接合同、测试与停止条件：[E2当前切片](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)。既有B103/B104/B107证据只覆盖各自场景；当前切片不能继承为整批实机PASS。当前源码和记录的运行包版本见[Authority](../Workflow/Authority.json)；上述部署是已记录事实，恢复任务涉及外部运行包时须另核receipt/实际包，不能从HEAD推断。
+
+## 历史阶段记录
+
+以下保留原阶段用语与证据；其中“当前／下一步／待测”仅描述当时。有效技术限制通过当前E2切片的合同/证据路由继续可达，不因进度过时而作废。
+
 2026-09-26 [B107后剩余E2计划](../Architecture/v2/P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)已整理，仅计划、未实施。旧迁移＋新城混合实机检查退出必做队列，本地兼容回归保留；最终验收改为新体系多城隔离＋一次冷加载（含P0对照）。下一建议：新测试局全城进度authority/旧writer cutover，处理2城/32城实验限制和重复绑定快照/整集合复制边界；之后首次AI征服snapshot、Claim、剩余生命周期、E2结项/F门禁。新档优先为下一批推荐支持合同，未改当前B107旧档行为。无新Design/源码/部署，无立即测试；等待下一段明确实施授权。
 
 2026-09-26 B107.134 [新城登记实机证据](Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md)：3图确认同一城0/65536正常建城自动登记1/2、NONE/P0/ACTIVE0/KNOWN、随后RESEARCH/P1/ACTIVE1；用户明确确认重启后P2保留。简化新局单城路径 USER_GAME_TEST_PASS；P2读档为用户陈述，不伪称截图显示投资1/ACTIVE2。旧迁移城＋新城混合对照按对话暂列待办；P0独立冷加载未单独确认，不能仅凭两图时间判断。相关失败/重复保护仍为本地证据。原图3/3 hash一致归档；无runtime/Design/main/部署变化，无需立即重复测试，E2仍partial，不自动进入Claim/F。以下历史。
@@ -579,6 +587,10 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 
 ## 当前实现与验证矩阵
 
+当前进度由上方CURRENT及[E2当前切片](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)管理。B108新保存authority为STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，原生三城检查仍待验收；其它能力进度沿用各自批次证据，不以早期矩阵重置。
+
+## 历史实现与验证矩阵（早期baseline，非当前派工）
+
 | 模块 | 当前实现 | 已有证据及局限 |
 |---|---|---|
 | 独立文明、City Property、总督/专家基础接口 | 运行 | A1/A2及新局总督present/established/2–4门槛、实际工作专家按用户确认通过；旧证据见历史快照 |
@@ -600,12 +612,18 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 
 ## 下一任务（只有此队列有效）
 
+等待CURRENT所列B108三城新局结果；按[E2当前切片](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)核对、归档。下一玩法实施需单独授权，不自动进入snapshot/Claim/F。
+
+## 历史下一任务（已被CURRENT取代）
+
 1. 等待用户提供界面整理要求；保留可访问诊断入口，先不改布局。
 2. 按UI要求完成玩家信息/诊断分层与日志策略，整理当前版本说明、已知限制、默认自动模式及实验开关可见性。
 3. 用户在游玩中验收并回报具体问题；不追加大批整体验收。checkpoint/commit/push须单独授权。
 4. FUTURE / DEFERRED：累计32次建城绑定限制、通用ELIG、所有权继承/Conquest Claim。B067已隔离所有权模块，不继续B066测试。所有Future专业不进入本轮。
 
-## BLOCKED / DESIGN DECISION REQUIRED / DEFERRED
+## 历史 BLOCKED / DESIGN DECISION REQUIRED / DEFERRED
+
+以下是早期baseline登记，当前未决及支持范围以CURRENT链接的切片和正式Design为准。
 
 - DESIGN_DECISION_REQUIRED：Spec OPEN-06 Boost最终封顶、OPEN-04 Claim精确成本仍保留，不阻塞本次只读调查。Boost最终量化已由D0018解决，GW规则由D0022–24解决，不再列旧时代保值/范围待决。
 - IMPLEMENTATION_LIMITATION：跨Owner稳定身份锚点/完整Conquest、旧档缺史初始化、通用资格与多人一致性未完成。固定复制整数/半点支持边界不变。
@@ -618,6 +636,6 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 
 [此前S0115全文](../Historical/DocumentSnapshots/Specialization_P0_Status_before_fresh_agent_handoff.md)保存早期A001–B051矩阵、每批历史及完整证据索引；该文件所有“下一项/待测”均为历史，不与本队列并存。
 
-## Phase 1停止点
+## Phase 1停止点（历史）
 
 Phase 1/2已由用户审核完成并建立GitHub initial baseline；以上迁移阶段文字为历史。当前B051.67最小补测已口头通过，下一任务以本页当前队列为准；B054当前批次已通过；新增实机要求仅见当前队列B063。旧Evidence、ScreenShots、DevelopmentBackups均为外部只读审计材料；路径映射见../Reports/Proposals/Phase1_External_Materials.md。

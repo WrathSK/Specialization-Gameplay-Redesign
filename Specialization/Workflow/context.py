@@ -23,7 +23,10 @@ def path(rel):
 
 def project(ref):
     p = path(ref['path'])
-    text = p.read_text()
+    return project_text(ref, p.read_text())
+
+def project_text(ref, text):
+    """Pure selector projection; shared by repository reads and deterministic fixtures."""
     kind, selector = ref['kind'], ref.get('selector')
     lines = text.splitlines(keepends=True)
     if kind == 'full': return text
@@ -32,6 +35,8 @@ def project(ref):
             raise ValueError('invalid head selector')
         return ''.join(lines[:selector])
     if kind == 'section':
+        if not isinstance(selector, str) or not re.match(r'^#{1,6} .+', selector):
+            raise ValueError('invalid heading selector')
         hits = [i for i, line in enumerate(lines) if line.rstrip() == selector]
         if len(hits) != 1: raise ValueError('missing/duplicate heading: ' + selector)
         start = hits[0]
@@ -42,6 +47,8 @@ def project(ref):
             if m and len(m[1]) <= depth: end = i; break
         return ''.join(lines[start:end])
     if kind == 'rows':
+        if not isinstance(selector, list) or not selector or any(not isinstance(p, str) or not p for p in selector):
+            raise ValueError('invalid rows selector')
         result = []
         for prefix in selector:
             hits = [line for line in lines if line.startswith(prefix)]
@@ -51,13 +58,13 @@ def project(ref):
     if kind == 'json':
         data = json.loads(text)
         value = data
-        if not selector.startswith('/'): raise ValueError('expected JSON Pointer')
+        if not isinstance(selector, str) or not selector.startswith('/'): raise ValueError('expected JSON Pointer')
         for token in selector.split('/')[1:]:
             token = token.replace('~1', '/').replace('~0', '~')
             value = value[int(token)] if isinstance(value, list) else value[token]
         if 'expected_id' in ref:
             objects = value if isinstance(value, list) else [value]
-            hits = [v for v in objects if ref['expected_id'] in
+            hits = [v for v in objects if isinstance(v, dict) and ref['expected_id'] in
                     [v.get('effect_id'), v.get('ability_id'), v.get('rule_id')]]
             if len(hits) != 1: raise ValueError('stable ID mismatch')
         meta = {k:data[k] for k in ('design_revision','document_state','freeze_status',
@@ -149,10 +156,27 @@ def self_test(m):
     reject('stale manifest',lambda:validate_manifest(bad,a))
     bad=copy.deepcopy(m);del bad['old_writers']
     reject('missing writer gate',lambda:validate_manifest(bad,a))
-    reject('invalid heading',lambda:project(dict(path=a['paths']['design'],kind='section',selector='## missing')))
-    reject('invalid pointer',lambda:project(dict(path=a['paths']['shared'],kind='json',selector='/missing')))
-    r=next(copy.deepcopy(r) for r in m['context'] if 'expected_id' in r);r['expected_id']='WRONG'
-    reject('stable ID mismatch',lambda:project(r))
+    # Generic selectors must not depend on the active task using any particular kind.
+    doc = '# Fixture\n## Current\nbody\n### Child\nkept\n## History\nold\n'
+    payload = json.dumps({'design_revision':'FIXTURE','rules':[{'rule_id':'R-1','value':3}]})
+    def select(kind, selector=None, **extra):
+        return project_text(dict(kind=kind, selector=selector, **extra),
+                            payload if kind == 'json' else doc)
+    assert select('full') == doc
+    assert select('head', 1) == '# Fixture\n'
+    assert select('section', '## Current') == '## Current\nbody\n### Child\nkept\n'
+    assert select('rows', ['body']) == 'body\n'
+    value = json.loads(select('json', '/rules/0', expected_id='R-1'))
+    assert value['value']['value'] == 3 and value['authority_metadata']['design_revision'] == 'FIXTURE'
+    passed.append('independent full/head/section/rows/JSON stable-ID fixtures')
+    reject('invalid heading',lambda:select('section','## Missing'))
+    reject('duplicate heading',lambda:project_text(dict(kind='section',selector='## Current'),doc+doc))
+    reject('invalid head',lambda:select('head',0))
+    reject('invalid rows',lambda:select('rows',[]))
+    reject('missing row',lambda:select('rows',['absent']))
+    reject('invalid pointer',lambda:select('json','/missing'))
+    reject('stable ID mismatch',lambda:select('json','/rules',expected_id='WRONG'))
+    reject('unsupported selector kind',lambda:select('unknown'))
     reject('path traversal',lambda:path('../outside'))
     reject('absolute path',lambda:path('/tmp/outside'))
     assert len(compare({'a':'old','b':'same'},{'a':'new','c':'new'},'test'))==3

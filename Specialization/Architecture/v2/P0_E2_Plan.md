@@ -3,6 +3,36 @@
 Status: PARTIAL_IMPLEMENTED / B108_NEW_GAME_MULTI_CITY_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
+## Current slice — recovery and action routing
+
+**B108新测试局多城authority切片已实施、LOCAL_SIMULATION_PASS、等待USER_GAME_TEST。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+
+### 默认恢复 / 验收
+
+先看Status CURRENT与Authority，再读本节及下列完整B108合同/结果：
+
+- [B108保存、旧writer切换、失败/回滚合同及三城测试](#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)。包含新档资格、UNKNOWN/旧档不写、部分写入保持HELD、原生初始化未证实、最小三城一次冷加载流程。
+- 当前验收只需要该流程、用户本次材料及相关Status；缺截图不能说已重看，用户陈述与图像证据分开。归档不自动授权修复。
+- 已记录部署引用在Status/Authority；普通问答不读取外部包，涉及部署恢复才核receipt与实际包。
+
+### 实施依赖与按问题展开
+
+[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前无新的Gameplay实施授权。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+
+| 触发 / 直接合同 | 阅读范围与用途 |
+|---|---|
+| 修改当前保存/投资/注册 | 完整B108合同＋正式Spec SCOPE/ELIG、PROG＋总计划Migration/cutover合同；manifest保留的完整直接源码/测试；精确核对writer入口及消费者，不以hash替代cutover审阅 |
+| ownership退出/夺回或Native顺序异常 | [B096模块自有退出清单](#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)、[B097逐类永久/派生state](#b097124--原玩家同城夺回-partial-checkpoint)，再读B101/B102/B103后续修正；这些阶段上限/待测状态可能已过时，不能反向覆盖B108 |
+| founding或事件收尾问题 | [B105原生反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md)、[B107实现](#b107134--authorized-positive-founding-registration-implementation)及其原生结果；不得恢复“首个Publish即事务结束”假设 |
+| 既有测试fixture/兼容断言失败 | 对应历史阶段＋直接test依赖；历史adapter不是生产旧档支持承诺 |
+| 讨论后续工作 | [剩余切片](#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)；其中slice1已由B108完成本地实施，其余只是建议，不派工 |
+
+跨Owner永久成果仍逐专业定义；未实现的学术传统、文化永久ledger、商业合同不补造。名字/单独坐标/猜CityID不能证明同城；失效与临时UNKNOWN分离。旧实验代码可保留作反证/fixture，正式入口是否启用以当前切片与源码为准。
+
+## Historical plans and scoped evidence
+
+以下按形成顺序保留；不是整体默认读取集合。旧实施状态与测试任务由上方当前切片覆盖，仍适用合同经上表可达。
+
 ## 当前单人范围澄清（用户确认，2026-09-21）
 
 当前实施只有本地人类玩家参与；AI、自由城市不启用Specialization，也不支持多人。AI/多人不增加当前依赖、测试或计划工作。此为当前配置/scope，不改写ELIG-001～006保留的未来通用资格，不把系统永久设计成Human-only；本轮Design字节保持不变。
@@ -681,7 +711,7 @@ Minimal user test: keep a separate pre-B107 save with ≤1 registered control �
 
 New report example: `新城进度 / 来源：正常建城 / 等待首个合格区域完成 / Potential0 / ACTIVE0 / 投资0`; after completion/investment: `专业已锁定：RESEARCH / Potential2 / ACTIVE[当前事实] / 投资1`. Old observer remains opt-in, not authority. Native gate covers automatic event/write timing, engine save persistence and real consumer activation. Stop for review; no Claim/F.
 
-Validation tooling note: W0001 `check P0-E2` PASS. Its generic `self-test` is not applicable to this manifest: existing helper requires an `expected_id` context entry and exits StopIteration when absent; no workflow code was changed and no self-test PASS is claimed. Runtime targeted tests above are independent.
+Historical validation tooling note (limitation repaired in current [Workflow helper](../../Workflow/README.md#schema-template-and-maintenance); original result below retained): W0001 `check P0-E2` PASS. Its generic `self-test` is not applicable to this manifest: existing helper requires an `expected_id` context entry and exits StopIteration when absent; no workflow code was changed and no self-test PASS is claimed. Runtime targeted tests above are independent.
 
 
 ## Post-B107 — remaining E2 plan / new-path isolation over migration compatibility
