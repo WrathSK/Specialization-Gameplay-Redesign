@@ -1,6 +1,8 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前计划：[B107后E2收束](P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)。优先新局多城统一保存/旧writer退出；旧新混合实机兼容不再为必做门禁。待授权，runtime仍B107。
+当前实施：[B108新局多城authority](P0_E2_Plan.md#b108135-implementation-result--evidence-boundary)本地通过、实机待验；新测试局，三城＋一次冷加载。旧writer/迁移退出，无Claim/F。
+
+历史计划：[B107后E2收束](P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)。优先新局多城统一保存/旧writer退出；旧新混合实机兼容不再为必做门禁。待授权，runtime仍B107。
 
 已验证进度：[P0-E2 B107.134正面建城登记](P0_E2_Plan.md#b107134--authorized-positive-founding-registration-implementation)简化新局单城路径实机通过：P0自动登记、科研P1及用户确认重启后P2保留；旧新混合对照延后，P0单独冷加载未确认。E2仍partial，无Claim/F。
 

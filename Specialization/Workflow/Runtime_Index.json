@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "c5bb3d9915d4f35f66526f7118f3cf62b434938c",
-  "runtime": "B107.134 / modinfo134",
+  "runtime_commit": "PENDING_B108_IMPLEMENTATION_COMMIT",
+  "runtime": "B108.135 / modinfo135",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -11,9 +11,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/BindingProbe.lua": {
-      "sha256": "46fe6c4d23dd44ddc9f2c9a2e39e3b93d60842c9192c494e7feac90535799c5b",
+      "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/BoostConfig.lua": {
       "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
@@ -26,9 +26,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CityFlowProbe.lua": {
-      "sha256": "d695aeb5121ba65ddce7218926b70ac7c17a46aae44d4d0586db60aeaac65026",
+      "sha256": "fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityInheritance.lua": {
       "sha256": "98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618",
@@ -41,9 +41,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CityJournalProbe.lua": {
-      "sha256": "2387f79075abce234e727cc8d5bdcbdc30d9e087e9584e4e1cef36208bd27550",
+      "sha256": "0f2dff3b0a8a3fcf8919f4c663b64d77a1e891b2eeadfdf837391e3e27085e68",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CommerceConvergence.lua": {
       "sha256": "76582d148f9c76a81a3a4ce48d5948345a1eb2526de0eb565b45ba3babb40980",
@@ -56,9 +56,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CompletionRecordProbe.lua": {
-      "sha256": "565ff5597867b1ecb0efad73462f02588faea7185b318f57f6b10f0f56af0b11",
+      "sha256": "3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/Config/Players.sql": {
       "sha256": "ca577b88faa4fa150bd786031f7f23754331b3fb9ceafac0d175b0c578de7ada",
@@ -346,9 +346,9 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "747b02b277122b6c5daf3207e9374dbad73a3964e266fab861469eb0f9b3c44c",
+      "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/NetworkSender.lua": {
       "sha256": "d7edcb8cf3f2dc5989861747661ecb8e0f40c93129cfd887c021718113924257",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "45ad17166481acda3f419e5a6adccc2bc9ae552b9a41d9a9f98c76eb36b0c2e3",
+      "sha256": "ae56d756f6ef20a0de01b6b95dab18a5e56b2eb58d3f204ed198e13a222b4a01",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,14 +426,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "16d2231c071565806ceaeb9b037e137a0a2a3a0cd7088681e130c9fbec9a8f10",
+      "sha256": "68a0231289600573970b19252df7c729d232a27021facee9b95e12161af8ff10",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/Standardization.lua": {
-      "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
+      "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/StandardizationCatalog.lua": {
       "sha256": "df4f28def5d5bca9ed1bc947b89a46149dc6b19d475a34122063b51974c80bfa",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "9555c08f359dd97a91b8e8167d49d4d92a8eee1c22e613659f7c8d718a3e7e21",
+      "sha256": "c092d20dcbfc16fdcf9c1bf6447d54825f8c18f2af0e07b9b01ea2d31f93ba0f",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B105 opt-in passive event evidence; local PASS; native boundary unverified; no progression writer change"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "76002d3043f9607f9750625ec31459f46110c16e74d8a0dcdf119a987707652e",
@@ -741,9 +741,9 @@
       "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
     },
     "Mod/CityIdentityRead.lua": {
-      "sha256": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
-      "provenance": "P0-E1 readonly observer/dispatch and build metadata; no yield or saved-state writer changes"
+      "sha256": "93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityIdentityExperiment.lua": {
       "sha256": "844c16c777649e2ee7126dcb9084cd4e3620e63a1f841493174edcfdced3bb31",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "08b290ae47f5d25dfc1d1f0d9e1ec22bfc99a6a08fe62859297c11b9848a26bb",
+      "sha256": "573c7a1e550e1efe9d021eb7780772415198f4d7d19ab904c25c2b06c8d4f24e",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",

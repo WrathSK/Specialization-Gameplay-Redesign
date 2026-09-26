@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B107_FRESH_REGISTRATION_SCOPED_USER_GAME_TEST_PASS. Remaining work is PLAN_ONLY; see the current Post-B107 section below. No automatic implementation/Claim/F authorization.
+Status: PARTIAL_IMPLEMENTED / B108_NEW_GAME_MULTI_CITY_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
@@ -725,3 +725,38 @@ If code review finds an unavoidable new identity assumption or unsupported old-s
 ### Updated test economy / next action
 
 Cancel the standalone old-import/new-fresh native compatibility task as a required product gate. Keep local compatibility assertions while that adapter exists. P0-only coldload is not retroactively marked PASS; combine it with the3-city new-path test above. Existing B103/B104/B107 scoped native results remain valid, not universal coverage. No user testing now, no request to locate old saves. Wait for authorization of slice1; then stop at its acceptance boundary.
+
+
+## B108 authorized new-game multi-city cutover — contract before implementation
+
+User authorized slice1 on 2026-09-26. L3 scoped persistence validation. Production Start uses a new versioned Game index plus one Game property per city record; index stores only immutable origin/allocated token, record owns progression/receipts/templates/current ownership. Reuse DEV-B013 token format as opaque compatibility identity, with monotonically allocated serial and compact one-city binding evidence (no player-wide ledger embedded). No new universal cityKey. Allocation reserves the index before token/record writes; incomplete reservation holds that city across load, never retries or falls back. Existing-record writes touch only that record, with stale/readback checks. Index changes only on registration; size bounded by native map plots, per-record existing evidence budgets retained. Historical destruction/reuse remains held.
+
+New-save contract: existing new index loads read-only; absent index initializes only after LoadScreenClose when native IsSavedGame is explicitly false, local enabled human has zero cities, current turn equals configured start turn, and no old progression/binding authority exists. Missing primitive/old/unknown save holds without changing it. No old-save migration. Native initialization primitive remains USER_GAME_TEST_REQUIRED. Production BlocksLegacy covers every city; no old Journal/Flow/Completion/Binding allocation, import or fallback, including unregistered/unsupported cities. Historical adapter remains a test-only explicit entry, never dispatched by Gameplay/UI. Existing facts/investment/withdrawal/recapture workers reused. No new Gameplay effects/Claim/F.
+
+
+### B108.135 implementation result / evidence boundary
+
+**STATIC_CONFIRMED / LOCAL_SIMULATION_PASS**, not native PASS. New-game production Start now exclusively uses `SPC_PROGRESSION_INDEX_V3` and `SPC_PROGRESSION_CITY_V3_<existing token>`; index contains immutable origin + serial, each record stores only its own compact binding, first completion, investment receipts, template history and current ownership evidence. No new universal cityKey or profession Legacy policy. Existing history/tokenless-return validator and module-owned exits remain. Two-city/32-city experiment caps do not apply to this mode. Index and pending positions are bounded by native map plot count (historical location reuse remains deferred); each record retains existing8,192-node/65,536-byte copy limits, not a whole-empire budget. Per-record writes do not copy/write the other records/index; origin/reference conflict check is O(C) on meaningful writes only. Registry copy/write is O(C) only when allocating a new city; per-city binding size constant. Native lifecycle dispatch still visits registered workers on existing city events; no per-frame or hover work added.
+
+Old path cutover: production disables Binding CityBuilt, CompletionRecord/Journal/Flow completion listeners and old Binding/Journal/Flow load scans. All legacy writer guards also reject the new mode's unregistered cities. CityFlow/EffFacts, investment and Standardization resolve through the new store; Network may not reinterpret missing old Flow as known NONE in new mode. Migration UI hidden; stale/manual import action returns a clear refusal. Source, test adapter and historical saves remain preserved; `StartLegacyTest` is used only by historical fixtures, never by Gameplay/UI dispatch. Other gameplay formulas/carriers are unchanged.
+
+Allocation transaction: reserve compact index → write/readback city token → write/readback own record. Partial reservation is retained across save/load and held, not retried/reset. Existing-record failure holds that worker, leaving unrelated records untouched. Corrupt shared index / ambiguous references still stop the shared authority, intentionally. Existing conservative un-attributable first-completion failure may hold unassigned records rather than invent order; not advertised as independent fault recovery for every engine failure. UNASSIGNED recapture and destroyed-location reuse remain later lifecycle scope.
+
+Native primitive evidence: installed vanilla `Base/Assets/UI/FrontEnd/LoadScreen.lua` uses `GameConfiguration.IsSavedGame`; installed Gameplay `DLC/PiratesScenario/Scripts/PiratesScenario_StartScript.lua` compares current turn with `GameConfiguration.GetStartTurn`. This is STATIC evidence of APIs, not confirmation of IsSavedGame in this Gameplay context/timing. Missing/unknown API is a no-write hold with a diagnostic. User test must confirm fresh-game initialization and persisted Game properties; if it fails, stop and capture the short report, do not use old migration.
+
+| New-path cities | Aggregate test encoding chars (not native save size/RAM) | Index writes incl. initial empty index | Coldload writes | Idle writes |
+|---:|---:|---:|---:|---:|
+|1|526|2|0|0|
+|2|1108|3|0|0|
+|4|2216|5|0|0|
+|8|4504|9|0|0|
+|33|18802|34|0|0|
+
+Actual production Start test: normal founded P0; distinct first completions; investment only one city; duplicate requests; stale cross-city preview;1/2/4/8/33 scaling; one-cell binding; no old City records/Game binding ledger; coldload P0/P1/P2; only target record writes; actual Industry template consumer and reentrant first completion; readback/corrupt-record isolation; index/old-save/missing API rejection; reservation/token/record failure; investment INTENT/CONSUMED/receipt failure windows; foreign identical numeric CityID; HELD coldload and retained-token/tokenless strict-chain recapture; current Governor ACTIVE and current Network capture. Actual21 module-owned exit lists /2,302 unique internal IDs and Network invalidation regression pass. Historical B103/B104/B107 adapter regression preserved; this does not grant old saves production support. All Lua compile and modinfo135 static checks pass. No broad unrelated gameplay/stress suite.
+
+Minimal user test — **new test game required**, use current build visible in report:
+1. Normally found3 cities. Leave A without a four-profession district (NONE/P0). Complete Campus in B and Theater in C; expect each own P1. No manual registration.
+2. Invest only B once with the normal existing investment action. B=P2; C=P1; A=P0. ACTIVE follows actual Governor and need not equal Potential.
+3. Save separately, fully exit/restart/load once, select each city and left-click **E2往返**. Verify A=P0, B=Research/P2/one investment, C=Culture/P1/no investment. Send these three short reports; stop on any hold. No trade/conquest/old migration save requested.
+
+Rollback: exact B107 runtime recovery plus a pre-B108 save/new game; do not promise B108 saves load under B107. No Design/main/Claim/F changes. Next authorization only after native checkpoint review; no automatic next slice.

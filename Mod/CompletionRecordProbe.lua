@@ -89,6 +89,6 @@ function SPCCompletionRecordProbe.Start(P,shared)
   if e and type(e.Add)=="function" then local ok=pcall(e.Add,fn);d.hooks[name]=ok and "REGISTERED" or "REGISTER_ERROR"
   else d.hooks[name]="ABSENT" end
  end
- listen(GameEvents,"OnDistrictConstructed",onComplete)
+ if not (shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority) then listen(GameEvents,"OnDistrictConstructed",onComplete) end
  listen(Events,"LoadScreenClose",function() d.phase="AFTER_LOAD_CLOSE" end)
 end

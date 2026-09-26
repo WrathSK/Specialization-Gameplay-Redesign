@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0272
-Implementation Build: develop P0-B-107.134 / modinfo134 E2_FRESH_REGISTRATION; live B107.134 verified153/153 MATCH; stable B069.96
+Status Revision: S0273
+Implementation Build: develop P0-B-108.135 / modinfo135 E2_NEW_GAME_MULTI_CITY; live B107.134 until verified deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_REMAINING_PLAN_READY_AWAITING_AUTHORIZATION
+Work State: P0_E2_NEW_GAME_MULTI_CITY_LOCAL_PASS_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-26 B108.135 [新局多城切换](../Architecture/v2/P0_E2_Plan.md#b108135-implementation-result--evidence-boundary)按授权完成本地L3验证。正常自建城统一Game索引＋独立记录；取消正式路径2/32实验限制，旧写入/迁移入口退出；真实收益规则不改。1/2/4/8/33城独立、冷加载/无关通知0写入、单城写入不重写其它记录/索引；投资失败窗口、既有退出/夺回回归通过。STATIC/LOCAL不等于实机PASS。仅支持新测试局；未知/旧档不自动转换。最小三城A=P0、B=科研P2、C=文化P1＋一次冷启动读档；等待用户确认新局接口和原生保存。不重复旧新混合兼容测试；Claim/F未实施。以下历史。
 
 2026-09-26 [B107后剩余E2计划](../Architecture/v2/P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)已整理，仅计划、未实施。旧迁移＋新城混合实机检查退出必做队列，本地兼容回归保留；最终验收改为新体系多城隔离＋一次冷加载（含P0对照）。下一建议：新测试局全城进度authority/旧writer cutover，处理2城/32城实验限制和重复绑定快照/整集合复制边界；之后首次AI征服snapshot、Claim、剩余生命周期、E2结项/F门禁。新档优先为下一批推荐支持合同，未改当前B107旧档行为。无新Design/源码/部署，无立即测试；等待下一段明确实施授权。
 

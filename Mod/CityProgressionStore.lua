@@ -1,5 +1,5 @@
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
-SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1'}
+SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
@@ -496,18 +496,21 @@ local function CreateProgressionRecord(P,shared,storage)
  return d
 end
 
--- Two-record checkpoint: existing imports plus positively confirmed self-foundation; no Claim/global migration.
-function SPCCityProgressionStore.Start(P,shared)
+-- Production new-game authority. Historical adapter is explicit and test-only; no Claim.
+function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
- local store={};shared.CityProgressionStore=store
+ local store={UsesNewAuthority=not legacyTest};shared.CityProgressionStore=store
  local envelope,raw,fault,writing;local workers={};local exits,returns={},{}
+ local modern=not legacyTest;local index,positions,capacity;local initialized=false
+ local INDEX=SPCCityProgressionStore.INDEX;local PREFIX=SPCCityProgressionStore.RECORD
+ local initializeNew
  local function same(a,b)
   if type(a)~=type(b)then return false end;if type(a)~='table'then return a==b end
   for k,v in pairs(a)do if not same(v,b[k])then return false end end
   for k in pairs(b)do if a[k]==nil then return false end end;return true
  end
  local function check()assert(not fault,fault or 'STORE_COLLECTION_HELD')end
- local function count()local n=0;for _ in pairs(envelope.records)do n=n+1 end;return n end
+ local function count()if modern and index then return index.counter end;local n=0;for _ in pairs(envelope.records)do n=n+1 end;return n end
  local function validateCollection(v)
   assert(type(v)=='table' and v.schema==2 and type(v.records)=='table' and type(v.revision)=='number'
    and v.revision>=0 and v.revision%1==0,'STORE_COLLECTION_SCHEMA')
@@ -524,13 +527,34 @@ function SPCCityProgressionStore.Start(P,shared)
    assert(not references[reference],'STORE_REFERENCE_COLLISION');references[reference]=true
   end
  end
- local function make(token)
+ local function make(token,admitting)
   local storage={}
   storage.Check=check
-  function storage.Read()check();return cp(envelope.records[token])end
+  function storage.Read()
+   check()
+   if modern and not admitting then assert(envelope.records[token],'REGISTRATION_INCOMPLETE')end
+   return cp(envelope.records[token])
+  end
   function storage.Write(old,value)
    check();assert(not writing,'STORE_COLLECTION_BUSY');assert(same(envelope.records[token],old),'STORE_STALE')
    assert(value.base.token==token,'STORE_TOKEN_CHANGED')
+   if modern then
+    local key=PREFIX..token;local before=envelope.records[token]
+    assert(same(Game:GetProperty(key),before),'STORE_RECORD_STALE')
+    -- Exact current-reference uniqueness; no collection clone/property rewrite.
+    local current=value.loss and value.loss.target or value.current or value.origin
+    for other,r in pairs(envelope.records)do if other~=token then
+     local v=r.loss and r.loss.target or r.current or r.origin
+     assert(current.owner~=v.owner or current.cityID~=v.cityID,'STORE_REFERENCE_COLLISION')
+    end end
+    writing=true
+    local ok,err=pcall(function()
+     P.SetProperty(Game,key,cp(value));assert(same(Game:GetProperty(key),value),'STORE_WRITE_UNCONFIRMED')
+    end)
+    writing=false
+    -- Worker holds its own failed write; unrelated records remain usable.
+    assert(ok,err);envelope.records[token]=cp(value);return
+   end
    local nextValue=cp(envelope);nextValue.records[token]=cp(value);nextValue.revision=nextValue.revision+1
    validateCollection(nextValue)
    assert(same(Game:GetProperty(KEY),raw),'STORE_COLLECTION_STALE')
@@ -549,6 +573,72 @@ function SPCCityProgressionStore.Start(P,shared)
   for name,fn in pairs(returns)do w.RegisterReturn(name,fn)end
   return w
  end
+ local function int(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
+ local function copyIndex(v)
+  assert(type(v)=='table' and v.schema==3 and int(v.counter) and v.counter<=capacity and type(v.entries)=='table','UNSUPPORTED_SAVE_SCHEMA')
+  local out={schema=3,counter=v.counter,entries={}};local seen={};local n=0
+  for token,a in pairs(v.entries)do
+   n=n+1;assert(n<=capacity,'INDEX_LIMIT')
+   assert(type(token)=='string' and type(a)=='table' and int(a.owner) and int(a.cityID) and int(a.x) and int(a.y)
+    and int(a.serial) and a.serial>0 and a.serial<=v.counter and token=='DEV-B013-P'..a.owner..'-'..a.serial
+    and not seen[a.serial],'INDEX_ENTRY')
+   seen[a.serial]=true;out.entries[token]=cp(a)
+  end
+  assert(n==v.counter,'INDEX_INCOMPLETE');return out
+ end
+ local function loadIndex(v)
+  index=copyIndex(v);positions={};envelope={records={}}
+  for token,a in pairs(index.entries)do
+   local pos=a.x..':'..a.y;assert(not positions[pos],'STORE_LOCATION_COLLISION');positions[pos]=token
+   local good,row=pcall(function()
+    local value=cp(Game:GetProperty(PREFIX..token))
+    if value then assert(value.schema==2 and type(value.binding)=='table' and value.binding.schema==2 and same(value.origin,{owner=a.owner,cityID=a.cityID,x=a.x,y=a.y}) and type(value.base)=='table' and value.base.token==token,'INDEX_RECORD_CONFLICT')end
+    return value
+   end)
+   if good then envelope.records[token]=row end
+   -- Bad/missing city record gets a held worker, never legacy or a reset.
+   local w=make(token)
+   if not good then envelope.records[token]=nil end
+  end
+  local refs={}
+  for _,row in pairs(envelope.records)do
+   local a=row.loss and row.loss.target or row.current or row.origin
+   local key=a.owner..':'..a.cityID;assert(not refs[key],'STORE_REFERENCE_COLLISION');refs[key]=true
+  end
+  initialized=true
+ end
+ if modern then
+  local ok,err=pcall(function()
+   local width,height=Map.GetGridSize();assert(int(width) and width>0 and int(height) and height>0,'MAP_SIZE_UNAVAILABLE')
+   capacity=width*height;assert(capacity<1000000000,'MAP_SIZE_INVALID')
+   envelope={records={}};positions={}
+   local v=Game:GetProperty(INDEX)
+   if v~=nil then loadIndex(v)
+   elseif Game:GetProperty(KEY)~=nil then error('OLD_SAVE_UNSUPPORTED_START_NEW_GAME')end
+  end)
+  if not ok then fault=tostring(err)end
+  initializeNew=function()
+   if fault or initialized then return end
+   local ok,err=pcall(function()
+    assert(GameConfiguration.IsSavedGame()==false,'OLD_OR_UNKNOWN_SAVE_START_NEW_GAME')
+    assert(Game.GetCurrentGameTurn()==GameConfiguration.GetStartTurn(),'NOT_NEW_GAME_START')
+    local humans=0
+    for pid,player in pairs(Players)do
+     assert(Game:GetProperty('SPC_DEV_BINDING_B013_P'..pid)==nil,'OLD_BINDING_SAVE_UNSUPPORTED')
+     if P.IsTestPlayer(pid)then
+      humans=humans+1
+      for _ in player:GetCities():Members()do error('EXISTING_CITY_SAVE_UNSUPPORTED')end
+     end
+    end
+    assert(humans==1,'LOCAL_HUMAN_UNCONFIRMED')
+    assert(Game:GetProperty(INDEX)==nil and Game:GetProperty(KEY)==nil,'SAVE_AUTHORITY_CHANGED')
+    local value={schema=3,counter=0,entries={}}
+    P.SetProperty(Game,INDEX,value);assert(same(Game:GetProperty(INDEX),value),'INDEX_WRITE_UNCONFIRMED')
+    loadIndex(value)
+   end)
+   if not ok then fault=tostring(err)end
+  end
+ else
  local ok,err=pcall(function()
   raw=cp(Game:GetProperty(KEY))
   if raw==nil then envelope={schema=2,revision=0,records={}}
@@ -561,8 +651,10 @@ function SPCCityProgressionStore.Start(P,shared)
   for token in pairs(envelope.records)do local w=make(token);assert(w.Ready(),'STORE_RECORD_INVALID')end
  end)
  if not ok then fault=tostring(err)end
+ end
  local function find(c)
   check();if not c then return nil end
+  if modern then local token=positions[c:GetX()..':'..c:GetY()];return token and workers[token]end
   local found
   for _,w in pairs(workers)do if w.Owns(c)then assert(not found,'STORE_ROUTE_AMBIGUOUS');found=w end end
   return found
@@ -599,18 +691,20 @@ function SPCCityProgressionStore.Start(P,shared)
   return w and w.Status() or {unregistered=true}
  end
  function store.Describe(pid,c)
-  if fault then return '进度保存暂停：'..fault..'；不回退旧账本。'end
+  if fault then return P.VERSION..' | 进度保存暂停\n本批需要新测试局；旧档/未知保存状态不会转换或回退。\n原因：'..fault end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
+  if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服初始化尚未开放。'end
   if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
-  return w.Describe(pid,c)..'\n已登记：'..count()..'/2 | 所选城 '..c:GetOwner()..'/'..c:GetID()
+  return w.Describe(pid,c)..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
  end
  function store.NativeDescribe(pid,c)
   if fault or not c then return store.Describe(pid,c)end
   local w=find(c);if not w then return store.Describe(pid,c)end
-  return w.NativeDescribe(pid)..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..'/2'
+  return w.NativeDescribe(pid)..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
  end
  function store.Import(pid,c)
+  if modern then return '本版本只支持新测试局；旧进度迁移入口已关闭。请左键查看当前进度。'end
   local ok,out=pcall(function()
    check();assert(not writing and c and P.IsTestPlayer(pid) and c:GetOwner()==pid,'SELECT_OWN_CITY')
    local w=find(c)
@@ -631,7 +725,7 @@ function SPCCityProgressionStore.Start(P,shared)
  -- At most four scalar candidates and eight ordered completion notifications each.
  -- No Publish/Playback/timer gate, no unit lookup, no load-time district inference.
  local pending={};local freshReady=false;local freshOverflow=false;local hooks={}
- local LIMIT,COMPLETIONS=4,8
+ local LIMIT,COMPLETIONS=modern and (capacity or 0) or 4,8
  local function integer(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
  local foundReason=P.Field(EventSubTypes,'FOUND_CITY')
  if type(foundReason)~='number' or foundReason~=foundReason or math.abs(foundReason)==math.huge then foundReason=nil end
@@ -642,6 +736,7 @@ function SPCCityProgressionStore.Start(P,shared)
   return false
  end
  function store.BlocksLegacy(c)
+  if modern then return true end -- no legacy writer, even for unsupported/unregistered cities
   if store.Owns(c)then return true end
   if not c then return false end
   return at(c:GetX(),c:GetY())~=nil or (freshOverflow and P.IsTestPlayer(c:GetOwner()) and not legacyPresent(c))
@@ -663,7 +758,7 @@ function SPCCityProgressionStore.Start(P,shared)
   -- Retained historical locations, including HELD records, never enroll again.
   if c and (store.Owns(c) or legacyPresent(c)) then return end
   for _,r in pairs(envelope.records)do if r.origin.x==x and r.origin.y==y then return end end
-  if count()>=2 then return end -- not participating; keep the existing legacy path
+  if not modern and count()>=2 then return end -- historical test adapter only
   if #pending>=LIMIT then freshOverflow=true;return end
   q={reference={owner=owner,cityID=id,x=x,y=y},turn=Game.GetCurrentGameTurn(),completions={}}
   pending[#pending+1]=q
@@ -698,17 +793,38 @@ function SPCCityProgressionStore.Start(P,shared)
   if not q or q.error or q.committing or not q.initialized or not q.found then return end
   q.committing=true
   local ok,err=pcall(function()
-   check();assert(count()<2,'TWO_CITY_TEST_LIMIT')
+   check();assert(modern or count()<2,'TWO_CITY_TEST_LIMIT')
    assert(foundReason~=nil and hooks.UnitActivate and hooks.CityInitialized and hooks.OnDistrictConstructed and hooks.LoadScreenClose,'FOUNDATION_HOOK_UNAVAILABLE')
    assert(q.turn==Game.GetCurrentGameTurn(),'FOUNDATION_CROSS_TURN')
    local c=assert(CityManager.GetCityAt(q.reference.x,q.reference.y),'FOUNDATION_CITY_UNAVAILABLE')
    assert(P.IsTestPlayer(q.reference.owner) and same(reference(c),q.reference),'FOUNDATION_REFERENCE_CHANGED')
    assert(not store.Owns(c) and not legacyPresent(c),'FOUNDATION_EXISTING_HISTORY')
-   local binding=assert(shared.BindingProbe,'FOUNDATION_BINDING_NOT_READY')
-   local token,ledger=binding.AllocateFoundation(c)
+   local token,ledger
+   if modern then
+    assert(initialized and not writing,'NEW_SAVE_NOT_READY')
+    local a=q.reference;local nextIndex=copyIndex(index);local serial=nextIndex.counter+1
+    assert(serial<=capacity,'MAP_REGISTRATION_LIMIT')
+    token='DEV-B013-P'..a.owner..'-'..serial
+    assert(Game:GetProperty(PREFIX..token)==nil,'FOUNDATION_ORPHAN_RECORD')
+    nextIndex.counter=serial;nextIndex.entries[token]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial}
+    assert(same(Game:GetProperty(INDEX),index),'INDEX_STALE')
+    writing=true
+    local good,err=pcall(function()
+     P.SetProperty(Game,INDEX,nextIndex);assert(same(Game:GetProperty(INDEX),nextIndex),'INDEX_WRITE_UNCONFIRMED')
+    end)
+    writing=false
+    if not good then fault=tostring(err);error(fault)end
+    index=nextIndex;positions[a.x..':'..a.y]=token
+    assert(same(reference(c),a) and c:GetProperty(M.Keys.TOKEN)==nil,'FOUNDATION_REFERENCE_CHANGED')
+    P.SetProperty(c,M.Keys.TOKEN,token);assert(c:GetProperty(M.Keys.TOKEN)==token,'CITY_WRITE_UNCONFIRMED')
+    ledger={schema=2,owner=a.owner,counter=serial,records={[tostring(a.cityID)]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial,uid=token,state='CONFIRMED'}}}
+   else
+    local binding=assert(shared.BindingProbe,'FOUNDATION_BINDING_NOT_READY')
+    token,ledger=binding.AllocateFoundation(c)
+   end
    assert(not workers[token] and not envelope.records[token],'FOUNDATION_TOKEN_COLLISION')
    assert(not q.error,q.error)
-   local w=make(token)
+   local w=make(token,true)
    local proof={evidence='FOUND_CITY+Initialized',reference=cp(q.reference),turn=q.turn,unitID=q.found,reason=foundReason}
    w.Found(c,proof,ledger)
    -- Replay only delivered completion events, in delivery order, with live revalidation.
@@ -783,7 +899,7 @@ function SPCCityProgressionStore.Start(P,shared)
    end
   end)
  end
- freshHook(Events,'LoadScreenClose',function()freshReady=true end)
+ freshHook(Events,'LoadScreenClose',function()if modern then initializeNew()end;freshReady=not fault and (not modern or initialized)end)
  freshHook(GameEvents,'CityBuilt',function(...)spatial('CityBuilt',...)end)
  freshHook(Events,'CityInitialized',function(...)spatial('CityInitialized',...)end)
  freshHook(Events,'UnitActivate',founded)
@@ -808,7 +924,7 @@ function SPCCityProgressionStore.Start(P,shared)
    local q=at(c:GetX(),c:GetY())
    if q then return P.VERSION..' | 新城登记'..'\n等待确认，旧流程未写入：'..tostring(q.error or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or 'FOUND_CITY / 城市初始化')
     ..'\n请保留当前存档和报告；不要再次迁移或投资。'end
-   if freshOverflow and not store.Owns(c) and not legacyPresent(c) then return '新城登记暂停：本次加载候选数量超过4；未猜测城市历史。'end
+   if freshOverflow and not store.Owns(c) and not legacyPresent(c) then return '新城登记暂停：候选数量超过安全界限；未猜测城市历史。'end
   end
   if c and not store.Owns(c) and c:GetProperty(M.Keys.TOKEN)~=nil and c:GetProperty(M.Keys.JOURNAL)==nil and c:GetProperty(M.Keys.FLOW)==nil then
    return '新城记录未完成：绑定已存在，但缺少已确认的进度记录。\n请保留报告，回到建城前存档；不会自动认领或补造历史。'
@@ -825,3 +941,6 @@ function SPCCityProgressionStore.Start(P,shared)
  for _,name in ipairs({'LoadScreenClose','CityTransfered','CityAddedToMap','CityRemovedFromMap','CityInitialized'})do listen(Events,name)end
  listen(GameEvents,'CityConquered');listen(GameEvents,'CityBuilt')
 end
+
+-- Explicit historical test adapter, never selected by Gameplay or a UI action.
+function SPCCityProgressionStore.StartLegacyTest(P,shared)return SPCCityProgressionStore.Start(P,shared,true)end

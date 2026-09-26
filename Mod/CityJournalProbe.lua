@@ -157,9 +157,10 @@ function SPCCityJournalProbe.Start(P,shared)
   if e and type(e.Add)=="function" then local ok=pcall(e.Add,fn);j.hooks[name]=ok and "REGISTERED" or "REGISTER_ERROR"
   else j.hooks[name]="ABSENT" end
  end
- listen(GameEvents,"OnDistrictConstructed",completed)
+ if not (shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority) then listen(GameEvents,"OnDistrictConstructed",completed) end
  listen(Events,"LoadScreenClose",function()
   j.phase="AFTER_LOAD_CLOSE"
+  if shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority then return end
   for pid,player in pairs(Players) do if P.IsTestPlayer(pid) then
    local ok,err=pcall(function() for _,city in player:GetCities():Members() do P.Count('city_scan'); j.Read(pid,city) end end)
    if not ok then bucket(pid).halted=true;bucket(pid).last="LOAD_AUDIT_ERROR "..tostring(err) end

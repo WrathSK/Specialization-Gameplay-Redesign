@@ -30,7 +30,7 @@ P={VERSION='B098.125',Count=function()end,Field=function(t,k)return t and t[k]en
  SetProperty=function(o,k,v)return o:SetProperty(k,v)end}
 function boot()
  Events=events();GameEvents=events();shared={}
- SPCity=nil;SPCCityProgressionStore.Start(P,shared);SPCBindingProbe.Start(P,shared);SPCCityJournalProbe.Start(P,shared)
+ SPCity=nil;SPCCityProgressionStore.StartLegacyTest(P,shared);SPCBindingProbe.Start(P,shared);SPCCityJournalProbe.Start(P,shared)
  SPCCityFlowProbe.Start(P,shared);SPCEffectiveFacts.Start(P,shared);SPCInvestmentAction.Start(P,shared)
  Events.LoadScreenClose.Fire()
  d=shared.CityProgressionStore;a=shared.InvestmentAction
@@ -144,7 +144,7 @@ print('E2 LOCAL_SIMULATION_PASS: 16 imports; actual investment/legacy-load hooks
 for p in M.rglob('*.lua'):
  l.execute('assert(load(...))',p.read_text())
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='134'
+assert root.attrib['version']=='135'
 assert 'CityProgressionStore.lua' in [e.text for e in root.find('Files')]
 # Real eligibility function with native-shaped API mocks, no silent fallback to AI.
 probe=(M/'Probe.lua').read_text();fn=probe[probe.index('function P.IsTestPlayer'):probe.index('function P.Summary')]

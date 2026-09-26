@@ -124,7 +124,7 @@ print('Exit integration LOCAL_SIMULATION_PASS: confirmed/unknown, all owned IDs,
 l.execute(r"""
 s.ref.owner=62;s.ref.cityID=40
 Events=nativeEvents;GameEvents=nativeGameEvents
-SPCCityProgressionStore.Start(P,shared)
+SPCCityProgressionStore.StartLegacyTest(P,shared)
 local cold=shared.CityProgressionStore;local fails,success=0,0
 cold.RegisterExit('Broken',function()fails=fails+1;error('INJECTED_REMOVE_FAILURE')end)
 cold.RegisterExit('Good',function(city,loss)assert(cold.IsExitTarget(city,loss));success=success+1 end)

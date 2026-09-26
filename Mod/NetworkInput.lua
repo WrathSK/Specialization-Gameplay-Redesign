@@ -35,7 +35,7 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous)
   elseif not ok then
    -- Never adopt old/untracked cities. A known absent flow is the existing exclusion rule,
    -- not a guessed specialization. Broken/non-ready existing records remain UNKNOWN.
-   if not (shared.CityProgressionStore and shared.CityProgressionStore.Owns(c))
+   if not (shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(c))
     and shared.CityFlowProbe and shared.CityFlowProbe.ready and c:GetProperty('SPC_DEV_CITY_FLOW_B020')==nil then
     f={specialization='NONE',potential=0,active=0}
    else error('NETWORK_FACTS_UNAVAILABLE') end

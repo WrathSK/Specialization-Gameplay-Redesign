@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0272",
-    "runtime": "B107.134 / modinfo134",
+    "status": "S0273",
+    "runtime": "B108.135 / modinfo135",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -305,25 +305,27 @@
       "path": "DevelopmentTests/test_b107_e2_founding.py",
       "kind": "full",
       "reason": "Actual handlers and failure/coldload/first-completion acceptance"
+    },
+    {
+      "path": "DevelopmentTests/test_b108_e2_multicity.py",
+      "kind": "full",
+      "reason": "Production new-game path scaling, failure and lifecycle acceptance"
     }
   ],
   "dependencies": [
-    "E1 single-city mapping native evidence (limited scope)",
-    "Current four-profession authority and B094 baseline"
+    "B103/B104/B107 scoped native founding/loss/return evidence",
+    "D0035/A0161 progression and new-save cutover contract; explicit user slice1 authorization"
   ],
   "old_writers": {
     "preserve": [
-      "Unrelated/nonparticipating legacy-city writers; pending fresh candidates are guarded",
       "All existing ability formulas/carriers",
-      "Isolated inheritance modules remain isolated"
+      "Isolated inheritance modules remain isolated",
+      "Explicit historical test adapter only; no production fallback"
     ],
     "adapt": [
-      "Migrated-city Binding/Journal/Flow guards and load recovery",
-      "Investment storage backend",
-      "EffectiveFacts/Network direct storage reads",
-      "Explicit module-owned exit on confirmed loss; permanent ledgers preserved",
-      "Original-owner confirmed recapture reference projection; module-owned current input reset; Standardization game storage for migrated city only",
-      "B107 confirmed self-foundation allocation; pending/owned guards for Binding/Journal/Flow/FreshHook/CompletionRecordProbe; new first-completion Game write"
+      "Production old Binding/Completion/Journal/Flow listeners/load writers disabled; guards also block unsupported cities",
+      "Compact new-game registry and independent city Game records; current facts/investment/templates use that authority",
+      "Existing module-owned exit and proven original-owner recapture worker; current ACTIVE/Network only"
     ]
   },
   "conditional_context": [
@@ -344,7 +346,7 @@
     }
   ],
   "non_scope": [
-    "global cutover, first AI-city Claim, full-city migration, destruction retirement; fresh enrollment limited to confirmed self-foundation/two records",
+    "old-save conversion, first AI-city snapshot/Claim, destruction retirement, F; new self-founded cities only",
     "cross-owner benefit inheritance",
     "profession-specific historical ledger migration",
     "F Academic Tradition",
@@ -354,21 +356,21 @@
   ],
   "validation": {
     "local": [
-      "Targeted L3 migration/investment/recovery/consumer regression in plan",
-      "Lua/manifest/context/deployment integrity",
-      "B107 actual founding/first-completion/binding/legacy-guard mixed-schema and failure tests"
+      "B108 production Start 1/2/4/8/33 city isolation, copy/write bounds, P0/P1/P2 coldload, failure/debit/identity/lifecycle cases",
+      "B103/B104/B107 historical adapter and actual module-owned withdrawal/Network invalidation regressions",
+      "All Lua compile / modinfo135 / W0001 / deployment integrity"
     ],
-    "user": "No test now. Future authorized multi-city slice:3 new-path cities, one P0, distinct specialties in other2, invest only one and coldload/check all; replaces migrated/fresh native compatibility task."
+    "user": "New game:3 normal founded cities; A P0, B Research P1→P2 one investment, C Culture P1; one coldload and selected E2 reports. No old migration control."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "POST_B107_REMAINING_PLAN_READY; NEXT_SLICE_NEW_GAME_MULTI_CITY_AUTHORITY",
-    "implementation": "B107.134_LOCAL_SIMULATION_PASS; simplified native fresh-city path scoped PASS; E2 partial",
-    "native": "B107 scoped USER_GAME_TEST_PASS: screenshots normal-founding NONE/P0 and Research P1; user confirms restarted-game P2 persistence. Old/new coexistence deferred; P0-only coldload not independently confirmed.",
-    "next": "Await next-slice explicit implementation authorization; old/new native compatibility removed as required gate, retain local adapter regression",
-    "scope_review": "Game-backed NONE/P0 and first completion with fixed evidence buffers; no new carriers/formulas; existing ownership regressions preserved"
+    "plan": "AUTHORIZED_POST_B107_SLICE1_IMPLEMENTED",
+    "implementation": "B108.135_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
+    "native": "B108 untested; prior B103/B104/B107 acceptance remains scoped history, not new-backend native PASS",
+    "next": "Await B108 native checkpoint review; snapshot/Claim/F not authorized",
+    "scope_review": "New-game multi-city authority and old-writer cutoff only; no new formula/carrier/Design; old saves explicitly unsupported"
   }
 }

@@ -30,13 +30,13 @@ function SPCStandardization.Start(P,shared)
  data.ValidateRetained=validate
  local function read(c)
   local store=shared.CityProgressionStore
-  if store and store.Owns(c)then return store.ReadTemplates(c)end
+  if store and (store.UsesNewAuthority or store.Owns(c))then return store.ReadTemplates(c)end
   return c:GetProperty(KEY)
  end
  local function write(c,old,nextValue)
   assert(same(read(c),old),'STD_CONCURRENT_CHANGE')
   local store=shared.CityProgressionStore
-  if store and store.Owns(c)then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
+  if store and (store.UsesNewAuthority or store.Owns(c))then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
   assert(same(read(c),nextValue),'STD_WRITE_UNCONFIRMED')
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1

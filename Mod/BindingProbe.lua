@@ -53,12 +53,19 @@ function SPCBindingProbe.Start(P,shared)
  function data.Resolve(pid,city)
   if not P.IsTestPlayer(pid) then return nil,"OUTSIDE_TEST_CIV" end
   if shared.CityInheritance then local uid,status=shared.CityInheritance.Resolve(pid,city);if uid then return uid,status end end
+  local store=shared.CityProgressionStore
+  if store and store.UsesNewAuthority then
+   local ok,f=pcall(store.Base,pid,city)
+   return ok and f.token or nil,ok and 'BOUND_MATCH' or 'PROGRESSION_HELD'
+  end
   local state,_,token=inspect(pid,city)
   if state~="BOUND_MATCH" then return nil,state end
   return token,state
  end
  function data.Read(pid,city)
   if not P.IsTestPlayer(pid) then return "OUTSIDE_TEST_CIV" end
+  local store=shared.CityProgressionStore
+  if store and store.UsesNewAuthority then return store.Describe(pid,city)end
   local b=bucket(pid)
   local ok,state,v,token,r=pcall(inspect,pid,city)
   local line=ok and ("城市="..city:GetID().." | "..state.."\ncity token="..tostring(token)
@@ -131,9 +138,10 @@ function SPCBindingProbe.Start(P,shared)
    local ok=pcall(e.Add,fn);data.hooks[name]=ok and "REGISTERED" or "REGISTER_ERROR"
   else data.hooks[name]="ABSENT" end
  end
- listen(GameEvents,"CityBuilt",function(pid,cid,x,y)foundation(pid,cid,x,y,false)end)
+ if not (shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority) then listen(GameEvents,"CityBuilt",function(pid,cid,x,y)foundation(pid,cid,x,y,false)end) end
  listen(Events,"LoadScreenClose",function()
   data.phase="AFTER_LOAD_CLOSE"
+  if shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority then return end
   -- Automatic read-only audit; no repair, allocation or confirmation during load.
   for pid,player in pairs(Players) do
    if P.IsTestPlayer(pid) then

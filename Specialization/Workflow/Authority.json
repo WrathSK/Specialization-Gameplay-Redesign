@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0272",
-    "runtime": "B107.134 / modinfo134",
+    "status": "S0273",
+    "runtime": "B108.135 / modinfo135",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "c5bb3d9915d4f35f66526f7118f3cf62b434938c",
-  "current_batch": "P0-E2 REMAINING_PLAN_READY",
-  "next_batch": "Await authorization for new-game multi-city authority / legacy-writer cutover; no immediate test, Claim or F",
+  "runtime_commit": "PENDING_B108_IMPLEMENTATION_COMMIT",
+  "current_batch": "P0-E2 B108_NEW_GAME_MULTI_CITY_LOCAL_PASS_NATIVE_REQUIRED",
+  "next_batch": "Await B108 three-city new-game native checkpoint; no snapshot/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B107.134 / modinfo134 deployed;153/153 MATCH;implementation c5bb3d9/deployed HEAD d6e5ed0;B106 full recovery verified; receipt B107.134-d6e5ed0-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Post-B107 scoped remaining-plan review: actual collection/allocator/copy constraints and canonical PROG/save policy; no runtime edits",
+  "context_review_status": "Authorized slice1 writer/consumer/persistence closure reviewed; production Start local scale/failure/lifecycle tests; existing exit/recapture regression retained",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

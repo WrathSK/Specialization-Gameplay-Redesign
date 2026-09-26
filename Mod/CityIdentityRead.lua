@@ -44,14 +44,15 @@ function M.Preview(input)
  local owner=tonumber(token:match('^DEV%-B013%-P(%d+)%-[1-9]%d*$'))
  if not owner then return stop('BAD_LEDGER') end
  local l=s.ledger;if l==nil then return stop('NO_LEDGER') end
- if type(l)~='table' or l.schema~=1 or l.owner~=owner or not int(l.counter) or l.counter>32 or type(l.records)~='table' then return stop('BAD_LEDGER') end
+ local compact=type(l)=='table' and l.schema==2
+ if type(l)~='table' or (l.schema~=1 and not compact) or l.owner~=owner or not int(l.counter) or (not compact and l.counter>32) or type(l.records)~='table' then return stop('BAD_LEDGER') end
  local n,matches,record,seen=0,0,nil,{}
  for k,r in pairs(l.records) do
   if type(r)~='table' or not int(r.cityID) or k~=tostring(r.cityID) or r.owner~=owner or not int(r.x) or not int(r.y) or not int(r.serial) or r.serial<1 or r.serial>l.counter or seen[r.serial] or r.uid~='DEV-B013-P'..owner..'-'..r.serial or (r.state~='RESERVED' and r.state~='CONFIRMED') then return stop('BAD_LEDGER') end
   seen[r.serial]=true;n=n+1
   if r.uid==token then matches=matches+1;record=r end
  end
- if n~=l.counter then return stop('BAD_LEDGER') end
+ if (compact and (n~=1 or not record or record.serial~=l.counter)) or (not compact and n~=l.counter) then return stop('BAD_LEDGER') end
  if matches~=1 then return stop('DUPLICATE_TOKEN') end
  out.origin={owner=record.owner,cityID=record.cityID,x=record.x,y=record.y};out.candidateToken=token
  if record.state~='CONFIRMED' then return stop('PARTIAL_BINDING') end

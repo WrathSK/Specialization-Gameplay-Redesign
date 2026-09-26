@@ -82,3 +82,8 @@ See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batc
 ## Post-B107 test-priority update — 2026-09-26
 
 The standalone migrated-old + fresh-new native compatibility test is removed from the required user-test queue, following the user's question and the [remaining-E2 plan](../Architecture/v2/P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility). It was a transitional adapter check, not the final product invariant; existing local compatibility regression remains while the adapter exists. This is cancellation/deprioritization, not native PASS. Future mandatory isolation test uses3 new-path cities and one coldload, including one NONE/P0 control; this also covers the currently unconfirmed P0-only load assertion without a separate repeat. No user test or search for old saves requested now. Runtime remains B107 with existing test limits until separately authorized implementation.
+
+
+## B108 new-game multi-city gate — USER_GAME_TEST_REQUIRED
+
+New game only. [Current exact test](../Architecture/v2/P0_E2_Plan.md#b108135-implementation-result--evidence-boundary):3 normally founded cities, A remains NONE/P0; B Campus→P1→one investment P2; C Theater→P1; one separate save + full restart/load; read3 selected-city E2 reports. ACTIVE follows current Governor. No manual migration, old-save search, conquest or Claim. Native initialization/API and persisted independent record behavior remain unconfirmed; local tests do not certify them. Preserve B107 saves for rollback; no downgrade guarantee for B108 saves.

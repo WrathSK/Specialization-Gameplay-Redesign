@@ -170,10 +170,11 @@ function SPCCityFlowProbe.Start(P,shared)
   resume(pid,city)
  end
  local event=P.Field(GameEvents,"OnDistrictConstructed")
- if event and event.Add then local ok=pcall(event.Add,complete);data.hooks.complete=ok and "REGISTERED" or "ERROR" end
+ if not (shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority) and event and event.Add then local ok=pcall(event.Add,complete);data.hooks.complete=ok and "REGISTERED" or "ERROR" end
  local load=P.Field(Events,"LoadScreenClose")
  if load and load.Add then load.Add(function()
   data.ready=true
+  if shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority then return end
   for pid,player in pairs(Players) do if P.IsTestPlayer(pid) then
    local b=bucket(pid)
    if not b.halted then
