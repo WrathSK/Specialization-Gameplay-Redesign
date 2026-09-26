@@ -583,3 +583,68 @@ Validation: targeted event-order L3 scope, no full historical/stress suite. Actu
 Minimal native test after safe deployment: (1) select an own Settler already on the intended tile; right-click 移民/施工队, found normally, right-click E2往返 and capture all pages; (2) save those images, deselect unit/select own noncapital city, re-arm and trade it to AI, then capture all pages as negative control. If first arm reports missing UnitActivate or FOUND_CITY不可用, capture that report and stop; no need to perform both actions. Do not reload between arm/action/read; no repeated migration/investment/governor/save test. This validates only the new event, not permanent registration or all engine paths. B105 results need not be re-proved; the two actions add the missing founding-specific evidence.
 
 Rollback: tool-retained B105 runtime, no new save schema. Standing W0003 deployment only after clean committed source and confirmed game exit. Stop after evidence checkpoint; no automatic fresh enrollment or Claim/F.
+
+
+## Post-B106 plan — positive founding evidence / fresh registration
+
+Current proposal, prepared under the user's latest authorization to proceed with the registration plan. **PLAN_ONLY / implementation awaits review.** Baseline B106.133 source14b0681; native evidence commit9a55d05. D0035/A0161 unchanged. This section supersedes the earlier new-self-founded-city plan's foundation classifier, Publish boundary gate and baseline/rollback references; it does not replace B103/B104 ownership logic. B105/B106 remain historical evidence checkpoints.
+
+### Evidence and goal
+
+B106 natively delivered Gameplay Events.UnitActivate with reason equal to EventSubTypes.FOUND_CITY after Initialized, matching the preselected Settler in the observed founding; transfer control had Transfer without FoundCity. Use this **positive engine reason**, not an inferred absence of transfer. No fixed Publish count/delay/Playback-as-universal-boundary. Neither the observed numeric reason nor the observed callback order is hardcoded.
+
+Goal: one ordinary self-founded local-human city automatically enters Game storage as NONE/P0, survives coldload, locks its first valid completed four-profession district at P1, then accepts one normal investment to P2; an existing registered control stays unchanged. No new yields/carriers, no need to press a migration/arm button for this path.
+
+### Automatic evidence and ownership handoff
+
+1. Add a small foundation coordinator within the existing progression responsibility, initialized before legacy Binding/Journal/Flow callbacks. The manual CitySequenceProbe remains diagnostic only and cannot authorize registration. Do not reuse its capture toggle as the gameplay switch.
+2. After normal load readiness, correlate only local-human city Built/Initialized and UnitActivate/FOUND_CITY scalar events. The founding notification provides owner/unitID/location/reason; resolve the current city at that location and match its owner/ID to the city-initialization evidence. Require genuine positive founding evidence and no conflicting current recorded reference/history. Unit and city IDs are distinct. Do not require a surviving Settler object or preselect/scan all Settlers. Earlier manual Settler matching supports the native event's interpretation; automatic provenance relies on the engine's typed notification, not UI assertion.
+3. Both delivery orders are supported: a matching Initialized can complete an earlier founding candidate, or FOUND_CITY can complete an earlier initialized candidate. Do not assume the B106 order is universal. Match current-session/turn and explicit references; duplicates cannot allocate a second token/record. Load hydration never fabricates a founding signal. Missing/conflicting/cross-turn/incomplete evidence holds that candidate without guessing; later save/load does not reconstruct missing session evidence.
+4. Before old CityBuilt binding allocates a token or calls FreshBindingHook, consult an explicit fresh-candidate pre-write guard. Keep this separate from “durable store owns this city”: pending candidates do not yet have a readable authoritative record. Existing registered/held/recaptured records continue through their current workers. Unrelated legacy cities and old save restoration keep their existing paths. Unrecorded acquisition does not become a fresh candidate merely through Built; no Claim is added.
+5. For admitted fresh targets, reuse the existing token allocator/binding ledger with a narrow verified-foundation entry. Do not invoke the old FreshBindingHook→Journal→Flow chain to establish new authority. Their guards must exclude this target before any permanent write. Token/binding allocation retains existing write/readback discipline and32-token limit; partial allocation/record failure becomes a diagnosed recoverable hold, not an invitation to retry blindly or fall back to old writers. It is not one engine-atomic transaction across Game/City properties.
+6. Once the new Game record is committed/read back, the existing store read routes become authoritative and the candidate clears. Confirmed ownership loss before admission cancels admission and cannot create local specialization for a foreign city. An unassigned record transferred after admission remains held; full unassigned recapture is not silently inherited from specialized recapture code.
+
+### State, schema and first completion
+
+Current worker validate requires recognized specialization/baseP1; current Import requires existing specialized history. Neither is sufficient for new NONE/P0, and Import is not the new-city entry point.
+
+Proposed compatibility contract: retain the outer schema2 collection/key/two-record limit and existing inner schema1 records unchanged. Use an explicitly versioned inner schema2 for newly admitted foundation records, including a compact founding provenance, origin/token, revision, and an explicit UNASSIGNED or SPECIALIZED progression phase. Lifecycle stage is separate: ACTIVE here means record service state, not specialization ACTIVE level. Missing fields on an old record never imply UNASSIGNED. Mixed old/new inner records are validated explicitly; no general migration or full archive rewrite. After first completion, the new record keeps its version/provenance and supplies the existing specialized fact shape.
+
+- UNASSIGNED: specialization NONE, Potential0, no first completion, no investment receipts/pending debit; no abilities, investment eligibility or Network source. Confirm consumer behavior rather than representing this known state as read failure.
+- First completion: existing GameEvents.OnDistrictConstructed path, current district complete/owner/reference checks and the four authorized replacement families. Placement does not lock. Persist specialization, baseP1 and first event together with readback; next/duplicate completions cannot replace the first.
+- If a completion arrives during foundation admission, preserve its bounded scalar order/reference evidence for that target; validate/replay after admission in original delivery order. Do not discard then scan districts to choose identity. Reload cannot turn existing districts into new completion events. Missing evidence/overflow holds rather than selecting a convenient identity.
+- Ordinary investment then reuses existing authoritative receipt/debit route; current Governor and Network remain derived. No old ACTIVE/route/sample restoration. Explicitly keep original-owner recapture and module-owned withdrawal for existing specialized records unchanged.
+- Existing record at the location/reference, ambiguous token, full store, invalid binding or prior history prevents new admission. Do not delete/reuse former history or treat a razed-and-rebuilt location as the old city. This slice does not implement multiple historical generations per plot or destruction retirement.
+
+### Bounds / participation
+
+Keep the two-record test cap. Use at most one registered control before founding the new city; do not delete records from the accepted two-city save to make room. Capacity is checked before reserving a new writable registration, and rechecked before commit. Outside-cap cities are explicitly not part of this storage test; do not report them as registered or half-switch their writers.
+
+Pending evidence/early-completion buffers have fixed small caps and no engine-object retention. Freeze exact caps in implementation constants and test overflow; they are diagnostic safety limits, not Gameplay restrictions. No per-frame/timer/hover/request-driven scans, no full-player city or unit scan to identify the new city. Generic Publish is not an admission trigger. With no candidates, related reconciliation does no work. Isolate candidate failure from already accepted records; do not invent a universal transaction engine or rewrite all existing collection-fault handling.
+
+### Likely touched modules / retirement
+
+| Module | Narrow responsibility |
+|---|---|
+| CityProgressionStore | Positive evidence coordinator, fresh entry/versioned validator, NONE/P0 read, first completion, persistence and per-target holds |
+| BindingProbe | Reuse allocation after verified founding; prevent ambiguous CityBuilt pre-write for participating targets |
+| FreshBindingHook / CityJournalProbe / CityFlowProbe | Pending/admitted target exclusion before old write/whole-player failure logic; keep unrelated legacy path |
+| CityIdentityRead / EffectiveFacts / CurrentSpecializationFacts | Only if needed for explicit known-unassigned validation/read compatibility; no new rule/formula |
+| Gameplay initialization / InvestmentAction | Verify listener ordering and existing routed eligibility; adjust only proven integration gaps |
+| Existing diagnostics / P0Panel | Concise registration and first-completion result; no extra active request/polling/UI system |
+
+Retire old Journal/Flow as writers **only for an admitted new Game-backed target**. Preserve their data and existing migrated-city rules; no global old-writer shutdown. B106 observer is not converted into permanent authority. No technical carrier added or removed by this registration batch.
+
+### Validation and exit
+
+W0004 L3, targeted affected persistence/event-order/first-completion routes only. Run actual Lua handlers with fixtures: both founding/init orders; missing enum/event; duplicate/invisible/foreign/unrelated reason; Built-before-transfer and split Publish; load hydration; full cap/reference/history conflict; pending failure and coldload; no legacy writes during admission; NONE/P0 save/load; early district completion; placement/incomplete/wrong-owner/non-v0.1; first valid notification wins; one investment/receipt only; existing B104 pair and B103 withdrawal/recapture regressions when touched. All syntax/manifest/integrity. No full historical regression or10k stress by default.
+
+Minimal native scenario after implementation: separate test save with one registered control → found new city **without arming/migrating it** → report NONE/P0 → separate save/cold restart/load → complete one eligible district (Cheat allowed) → report P1 → invest once/report P2 → verify control unchanged → separate save/cold restart/load and verify. Two reload points cover distinct new states. No repeat trade/conquest unless implementation evidence justifies it. Diagnostic should show selected city, origin=normal founding, waiting/locked identity, Potential, receipts, and actionable reason; detailed event IDs remain optional.
+
+Local completion requires exact mixed-schema/failure behavior documented and all relevant assertions passing. USER_GAME_TEST_PASS only after the above native flow. A missing or contradictory source event pauses the affected path, not silent fallback. This does not certify full E2 or all raze/rebuild/AI-city cases.
+
+Rollback: B106 exact runtime plus untouched pre-implementation save. B106 is not promised to read inner schema2 records. No automatic reverse conversion. Future test deployment follows standing W0003 clean/exit/transaction/hash/recovery gates; **no deployment in this planning turn**.
+
+### Authorization and exclusions
+
+Plan ready for user review. No new Gameplay decision is required for this narrow slice. Runtime remains B106.133. Implementation is not started by the current planning authorization. No first AI-city snapshot/Claim, new cityKey, general migration, cap removal, AI/MP, Legacy invention, destruction-record cleanup, F or Design changes. After acceptance, propose remaining E2 work separately.

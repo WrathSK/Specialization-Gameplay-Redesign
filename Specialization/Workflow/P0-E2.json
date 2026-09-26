@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "AUTHORIZED",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0268",
+    "status": "S0269",
     "runtime": "B106.133 / modinfo133",
     "military": "D0034"
   },
@@ -346,17 +346,17 @@
       "Targeted L3 migration/investment/recovery/consumer regression in plan",
       "Lua/manifest/context/deployment integrity"
     ],
-    "user": "B106 two native traces accepted within scope; no immediate repeat test"
+    "user": "Future authorized implementation: one control + automatically founded new city, NONE/P0 coldload, first completion/P1, investment/P2 and second coldload; no test now"
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "AUTHORIZED_REVISED_FRESH_CITY_SLICE_WITH_NATIVE_GATE",
+    "plan": "POST_B106_POSITIVE_FOUNDING_REGISTRATION_PLAN_READY",
     "implementation": "B106_FOUND_CITY_EVIDENCE_LOCAL_PASS; fresh record/cutover NOT_IMPLEMENTED",
     "native": "B106_FOUND_CITY_SCOPED_USER_GAME_TEST_PASS; B105 first-Publish assumption remains rejected; B103/B104 scoped acceptance retained",
-    "next": "Revise fresh-registration plan around positive founding evidence; automatic registration/Claim/F NOT_IMPLEMENTED",
+    "next": "Await implementation authorization; automatic evidence + NONE/P0/first completion; preserve B103/B104; no Claim/F",
     "scope_review": "Passive one-location observer checkpoint under approved EVENT_BATCH_BOUNDARY; existing progression unchanged"
   }
 }

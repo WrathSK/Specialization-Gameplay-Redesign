@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0268
+Status Revision: S0269
 Implementation Build: develop P0-B-106.133 / modinfo133 E2_FOUND_CITY_EVIDENCE; live B106.133 verified 153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_FOUND_CITY_NATIVE_PASS_REGISTRATION_PLAN_PENDING
+Work State: P0_E2_POSITIVE_FOUNDING_REGISTRATION_PLAN_READY
 
 ## CURRENT AUTHORITATIVE STATE
+
+[Post-B106新城登记计划](../Architecture/v2/P0_E2_Plan.md#post-b106-plan--positive-founding-evidence--fresh-registration)已完成，待实施授权。以已验证Gameplay FOUND_CITY＋当前城/Initialized匹配替代旧Publish收尾假设；自动采集不需手动arm，绑定前阻止目标旧writer，显式NONE/P0及首次完成Game权威；保留两记录测试上限与B103/B104路径。计划提出内层schema2新城记录、旧内层schema1原样兼容，不承诺旧包读取新档。最小一次流程含未专业化/已投资两处冷加载。无新Design问题；仅文档，B106运行包/main未改、未部署。以下历史。
 
 B106两图：[FOUND_CITY原生验证](Validation/Results/Specialization_B106_E2_Found_City_Pass.md) USER_GAME_TEST_PASS（限定本次自建＋转移对照）。Gameplay枚举可用；自建Initialized后收到FoundCity，Owner0/单位1114117匹配起始移民，随后Publish/Playback；转移Owner0→2收到Transfer、未见FoundCity。最小采集门禁关闭，无需重复；不是自动登记已实现或所有城市生命周期PASS。下一步收窄新城登记计划，去除手动arm依赖，处理正面建城证据/当前城匹配及早到区域完成；不复用首个Publish假设。B103/B104范围内验收保持，无runtime/Design/main/部署变化。以下历史。
 
