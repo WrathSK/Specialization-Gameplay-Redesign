@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0269",
-    "runtime": "B106.133 / modinfo133",
+    "status": "S0270",
+    "runtime": "B107.134 / modinfo134",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "14b06811a03b5365ef040054aa7a23124bb7f1dc",
-  "current_batch": "P0-E2 POSITIVE_FOUNDING_REGISTRATION_PLAN_READY",
-  "next_batch": "Await explicit implementation approval for Post-B106 registration plan; no Claim/F",
+  "runtime_commit": "PENDING_B107_IMPLEMENTATION_COMMIT",
+  "current_batch": "P0-E2 FRESH_REGISTRATION_LOCAL_PASS_NATIVE_REQUIRED",
+  "next_batch": "Await B107 native fresh-city NONE/P0, first completion/investment and coldload validation; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B106.133 / modinfo133 deployed;153/153 MATCH;B105 recovery verified; receipt B106.133-14b0681-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Scoped current-store/legacy writer review; B106 native evidence reused; plan only",
+  "context_review_status": "B107 scoped founding/store/binding/legacy writer review and targeted L3 regressions; B106 native event evidence reused",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

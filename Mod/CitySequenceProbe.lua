@@ -137,7 +137,7 @@ function SPCCitySequenceProbe.Start(P,shared)
   if page~=page or page==math.huge or page==-math.huge then page=1 end
   page=(math.max(1,math.floor(page))-1)%pages+1
   local lines={'事件顺序（Gameplay，只读） | 位置 '..capture.x..','..capture.y..' | 页 '..page..'/'..pages,
-   '新城接管未开启；以下不是身份判定。'..(capture.error and (' 暂停：'..capture.error)or ''),
+   '以下仅为手动事件观察，不参与新城登记判定。'..(capture.error and (' 暂停：'..capture.error)or ''),
    '监听 Publish='..tostring(hooks.GameCoreEventPublishComplete)..' / Playback='..tostring(hooks.GameCoreEventPlaybackComplete)..' / Transfer='..tostring(hooks.CityTransfered),
    '建城观察：UnitActivate='..tostring(hooks.UnitActivate)..' / FOUND_CITY='..(foundReason~=nil and tostring(foundReason) or '不可用')..' / 起始移民='..(capture.settlerID and tostring(capture.settlerID) or '未选')}
   local missing={};for name,ok in pairs(hooks)do if not ok then missing[#missing+1]=name end end

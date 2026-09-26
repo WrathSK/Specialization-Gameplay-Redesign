@@ -67,7 +67,7 @@ native=nil;Events.GameCoreEventPublishComplete.Fire()
 native=city(0,88);Events.CityAddedToMap.Fire(0,88,4,5);Events.CityInitialized.Fire(0,88,4,5)
 Events.CityTransfered.Fire(0,88,3,-100);Events.GameCoreEventPublishComplete.Fire()
 msg=report();assert(msg:find('Publish EMPTY',1,true) and msg:find('Transfer 0 / 88 / 3 / -100',1,true),msg)
-assert(msg:find('新城接管未开启',1,true) and writes==0)
+assert(msg:find('不参与新城登记判定',1,true) and writes==0)
 -- Manual read markers distinguish a publish caused by the read operation itself.
 GameEvents.CityBuilt.Fire(0,88,4,5);d.Read(0,1);Events.GameCoreEventPublishComplete.Fire()
 msg=report();assert(msg:find('ReadRequest',1,true) and writes==0)
@@ -146,7 +146,7 @@ probe=(M/'CitySequenceProbe.lua').read_text()
 for forbidden in ['SetProperty','RequestPlayerOperation','RemoveBuilding','CreateBuilding','SetUpdate','print(']:
  assert forbidden not in probe, forbidden
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='133'
+assert root.attrib['version']=='134'
 assert len(root.findall(".//File[.='CitySequenceProbe.lua']"))==2
 compile_lua=LuaRuntime().eval('function(s,n) local f,e=load(s,n);assert(f,e)end')
 for p in M.rglob('*.lua'): compile_lua(p.read_text(),str(p))

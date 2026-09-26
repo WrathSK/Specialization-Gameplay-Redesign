@@ -9,7 +9,7 @@ function M.Install(shared,P,observer,context)
  local state={players={}};shared.FreshHookCandidate=state
  local wrapper
  wrapper=function(pid,city)
-  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return end
+  if shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then return end
   local b=state.players[pid] or {count=0};state.players[pid]=b
   if b.busy then b.halted=true;b.reason="REENTRANT_FRESH";return end
   b.busy=true

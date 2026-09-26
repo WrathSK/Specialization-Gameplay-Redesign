@@ -32,7 +32,7 @@ function SPCCityFlowProbe.Start(P,shared)
   return clone(v)
  end
  local function write(pid,city,b,old,nextValue)
-  assert(not (shared.CityProgressionStore and shared.CityProgressionStore.Owns(city)),"GAME_STORE_OWNS_CITY")
+  assert(not (shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city)),"GAME_STORE_OWNS_CITY")
   assert(not b.halted and P.IsTestPlayer(pid) and data.ready,"WRITE_NOT_AUTHORIZED")
   assert(same(read(pid,city),old),"STALE_FLOW")
   assert(identity(pid,city)==nextValue.token,"WRITE_IDENTITY_CHANGED")
@@ -82,12 +82,15 @@ function SPCCityFlowProbe.Start(P,shared)
  end
  local function complete(pid,index,x,y)
   if not data.ready or not P.IsTestPlayer(pid) then return end
+  local found,dc=pcall(CityManager.GetDistrictAt,x,y)
+  local readable,city=pcall(function()return found and dc and dc:GetCity()end)
+  if readable and city and shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then return end
   guarded(pid,function()
    local info=P.Info("Districts",index);assert(info,"TYPE_UNAVAILABLE")
    local f=family(info.DistrictType);if f=="NON_V01" then return end
    local d=CityManager.GetDistrictAt(x,y);assert(d,"DISTRICT_UNAVAILABLE")
    local city=d:GetCity();assert(city and city:GetOwner()==pid and d:GetOwner()==pid and d:GetType()==index,"EVENT_IDENTITY")
-   if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return end
+   if shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then return end
    local raw=city:GetProperty(KEY)
    if raw==nil then bucket(pid).last="UNTRACKED_NO_WRITE";return end
    local token=identity(pid,city)
@@ -104,7 +107,7 @@ function SPCCityFlowProbe.Start(P,shared)
   end)
  end
  function data.Read(pid,city)
-  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return "Game进度记录；旧Flow冻结" end
+  if shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then return "Game进度记录；旧Flow冻结" end
   if not P.IsTestPlayer(pid) then return "OUTSIDE_TEST_CIV" end
   local b=bucket(pid)
   local ok,line=pcall(function()
@@ -121,7 +124,10 @@ function SPCCityFlowProbe.Start(P,shared)
  end
  -- Read-only permission for the bounded B022 carrier experiment; no DEV adoption.
  function data.SupportFacts(pid,city)
-  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return shared.CityProgressionStore.Base(pid,city) end
+  if shared.CityProgressionStore then
+   if shared.CityProgressionStore.Owns(city) then return shared.CityProgressionStore.Base(pid,city) end
+   assert(not shared.CityProgressionStore.BlocksLegacy(city),"FOUNDATION_EVIDENCE_PENDING")
+  end
   assert(P.IsTestPlayer(pid) and data.ready and not bucket(pid).halted,"SUPPORT_FLOW_HELD")
   local v=read(pid,city)
   assert(v and v.stage=="DONE" and data.active[v.token],"SUPPORT_RECORD_NOT_ACTIVE")
@@ -129,7 +135,7 @@ function SPCCityFlowProbe.Start(P,shared)
   return clone(v.facts)
  end
  local function resume(pid,city)
-  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then return end
+  if shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then return end
   local v=read(pid,city)
   if not v then return end -- old/untracked cities are never adopted
   assert(v.stage=="DONE","LOAD_PENDING_HELD")

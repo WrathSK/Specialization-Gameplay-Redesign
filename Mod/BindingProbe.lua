@@ -75,24 +75,29 @@ function SPCBindingProbe.Start(P,shared)
   pcall(function() P.SetProperty(Game,key(pid),next) end)
   assert(same(ledger(pid),next,0),"GAME_WRITE_UNCONFIRMED")
  end
- local function foundation(pid,cid,x,y)
+ local function foundation(pid,cid,x,y,verified)
   if not P.IsTestPlayer(pid) then return end
   local b=bucket(pid)
   if data.phase~="AFTER_LOAD_CLOSE" then b.last="LOAD_EVENT_IGNORED";return end
   if b.busy then b.last="REENTRANT_IGNORED";return end
   b.busy=true
-  local ok,err=pcall(function()
+  local ok,err,confirmed=pcall(function()
    assert(integer(cid) and integer(x) and integer(y),"BAD_EVENT")
    local city=CityManager.GetCity(pid,cid)
    assert(city and city:GetID()==cid and city:GetOwner()==pid and city:GetX()==x and city:GetY()==y,"EVENT_OBJECT_MISMATCH")
-   if shared.CityProgressionStore and shared.CityProgressionStore.Owns(city) then b.last="GAME_STORE_OWNS_CITY";return end
+   local store=shared.CityProgressionStore
+   if verified then assert(store and store.CanAllocateFoundation(city),"FOUNDATION_NOT_CONFIRMED")
+   elseif store and store.BlocksLegacy(city) then b.last="GAME_STORE_OR_PENDING";return end
    local state,old=inspect(pid,city)
-   if state=="BOUND_MATCH" then b.last="DUPLICATE_NO_WRITE";return end
+   if state=="BOUND_MATCH" and not verified then b.last="DUPLICATE_NO_WRITE";return end
    assert(state=="UNTRACKED_NO_WRITE","EXISTING_BINDING_NO_REPAIR")
    if old==nil then
     -- DEV bootstrap only: a missing ledger must not strand extant city tokens.
     for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan'); assert(c:GetProperty(TOKEN)==nil,"TOKEN_WITHOUT_LEDGER") end
    end
+   if verified and old then for _,r in pairs(old.records)do
+    assert(r.x~=x or r.y~=y,"FOUNDATION_LOCATION_HISTORY")
+   end end
    local next=clone(old or {schema=1,owner=pid,counter=0,records={}})
    assert(next.counter<32,"DEV_CITY_LIMIT_32")
    next.counter=next.counter+1
@@ -109,11 +114,16 @@ function SPCBindingProbe.Start(P,shared)
    assert(inspect(pid,city)=="BOUND_MATCH","FINAL_BINDING_MISMATCH")
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(city,'BindingProbe.lua') end
    b.last="NEW_CITY_BOUND"
-   if shared.OnFreshCityBinding then shared.OnFreshCityBinding(pid,city) end
+   if not verified and shared.OnFreshCityBinding then shared.OnFreshCityBinding(pid,city) end
+   return uid,confirmed
   end)
   b.busy=false
   if not ok then b.last="ERROR "..tostring(err) end
   print("[SPC][B013][BINDING] city="..tostring(cid).." "..b.last)
+  if verified then assert(ok,err);assert(type(err)=="string" and confirmed,"FOUNDATION_ALLOCATION_HELD");return err,confirmed end
+ end
+ function data.AllocateFoundation(city)
+  return foundation(city:GetOwner(),city:GetID(),city:GetX(),city:GetY(),true)
  end
  local function listen(ns,name,fn)
   local e=P.Field(ns,name)
@@ -121,7 +131,7 @@ function SPCBindingProbe.Start(P,shared)
    local ok=pcall(e.Add,fn);data.hooks[name]=ok and "REGISTERED" or "REGISTER_ERROR"
   else data.hooks[name]="ABSENT" end
  end
- listen(GameEvents,"CityBuilt",foundation)
+ listen(GameEvents,"CityBuilt",function(pid,cid,x,y)foundation(pid,cid,x,y,false)end)
  listen(Events,"LoadScreenClose",function()
   data.phase="AFTER_LOAD_CLOSE"
   -- Automatic read-only audit; no repair, allocation or confirmation during load.

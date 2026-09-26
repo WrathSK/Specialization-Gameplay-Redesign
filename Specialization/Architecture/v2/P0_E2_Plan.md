@@ -648,3 +648,37 @@ Rollback: B106 exact runtime plus untouched pre-implementation save. B106 is not
 ### Authorization and exclusions
 
 Plan ready for user review. No new Gameplay decision is required for this narrow slice. Runtime remains B106.133. Implementation is not started by the current planning authorization. No first AI-city snapshot/Claim, new cityKey, general migration, cap removal, AI/MP, Legacy invention, destruction-record cleanup, F or Design changes. After acceptance, propose remaining E2 work separately.
+
+
+## B107.134 — authorized positive-founding registration implementation
+
+User explicitly authorized implementation of Post-B106. This completes the narrow local implementation, **LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED**, not all E2. D0035/A0161 and four-profession/local-human scope remain. B106 positive-event evidence is reused, not upgraded to native registration PASS.
+
+### Implemented authority and boundaries
+
+- CityProgressionStore automatically correlates Gameplay FOUND_CITY enum with current-session/turn Initialized/current city reference. Either delivery order works, including consumed/missing Settler objects and invisible notifications. No observer arm, Publish cutoff, timer, negative-event inference or UI claim. Built establishes an early pending guard before Binding; pending is separate from durable Owns.
+- Existing BindingProbe allocation is reused after that proof;32-token limit and reserve→City token→confirm readbacks remain. No fresh-hook invocation. Coordinator does no player/unit scan. The allocator's pre-existing first-ever-ledger orphan-token safety scan remains only when the ledger is absent; it is not city identification or recurring reconciliation.
+- Same Game property/outer schema2/two-record cap; existing inner schema1 is unchanged. Fresh inner schema2 stores founding provenance and UNASSIGNED/SPECIALIZED independently of ACTIVE/HELD lifecycle. NONE/P0/no first/no investment is readable known state, not unknown; no abilities or investment eligibility. Existing EffectiveFacts, CurrentSpecializationFacts and NetworkInput already accept this shape and need no formula changes.
+- First valid completed four-profession/replacement district persists identity/baseP1/first event in one collection write/readback. Subsequent completions cannot change it. Pending early completions store primitive references in delivery order, then revalidate the first qualified event at admission. No load-time district scan or selection from present districts. First-completion read failure persists a hold, preventing a later district from silently winning after reload.
+- Binding, Journal, Flow, FreshBindingHook and the old CompletionRecordProbe observation writer exclude pending/owned targets. The last is diagnostic rather than Gameplay authority, but must not keep writing an extra City record for the new path. Existing unrelated legacy writers remain. No new carrier/yield formula, Claim, cityKey, general migration, cap extension, AI/MP or F.
+- Existing InvestmentAction operates on the Game-backed receipt ledger after P1; debit/duplicate protection is unchanged. Ordinary reads/diagnostics do not write. Specialized B103/B104 ownership workers are preserved. UNASSIGNED transfer becomes retained HELD and recapture is explicitly RETURN_UNASSIGNED_DEFERRED; no unapproved generalized recovery.
+
+### Limits, failures and compatibility
+
+Four pending candidates per session, eight distinct early completions per candidate, two durable records. Duplicates do not grow the buffers. Overflow holds fresh enrollment; existing accepted records continue. A full durable collection declines participation before allocating; outside-cap cities retain the pre-existing legacy path. Use a save with at most one registered control, never delete two-city evidence to make room.
+
+Missing enum/hook, foreign/wrong/cross-turn/contradictory evidence, prior location/binding history, token conflict and partial allocation never trigger blind retry or legacy repair. Pending state is session-only; a save/load cannot reconstruct missing evidence. A confirmed token without an admitted record is diagnosed and requires the pre-foundation save/review, not automatic adoption. Errors with a known completion target hold that target; an unavailable district/city reference cannot safely identify a target, so it conservatively holds pending/fresh UNASSIGNED records only, not specialized/legacy records. A partial Game collection write keeps the inherited collection-wide fail-stop; this batch does not pretend an uncertain shared-property write can be isolated safely. Completed source and test saves remain available for recovery.
+
+Readiness still requires normal LoadScreenClose; founding before that gate (including map/load hydration) is not retrospectively enrolled. This checkpoint's native fixture is a new city founded after entering the playable session. Exact event behavior outside the observed native path remains unproven.
+
+Rollback: B106 runtime **plus a pre-B107 save**. Inner schema2 is forward-only in this checkpoint; no promise that B106 understands a B107 save. Binding/Game writes are verified sequential operations, not one native engine transaction.
+
+### Local validation and native gate
+
+Targeted L3 actual Lua handlers (`test_b107_e2_founding.py`): both orders, founding before city object, completion before Initialized/during binding callback, duplicate/invisible/foreign/wrong/missing event, split generic notifications, cross-turn, transfer negative control, prior history, cap/buffer limits, reserve/token/confirm/Game write failures, corrupt inner schema, failed completion retained across load, mixed schemas, known NONE Network facts, P0 and P2 coldload simulation, first completion/replacement/placement exclusion, actual investment debit/receipt/idempotence, unchanged control and no target legacy writes. B104 actual two-city test imports B103/B102/B101/B097/E2 regression: existing investment, loss/withdrawal, recapture, per-city isolation and load contracts pass. B105/B106 observer/actual request ingress plus all Lua compile/manifest checks pass. No full historical or 10,000-event stress suite; no new engine PASS is claimed.
+
+Minimal user test: keep a separate pre-B107 save with ≤1 registered control → found normally without arming/migrating → select new city and left-click **E2往返**, expect normal-founding/NONE/P0 → separate save, fully exit/relaunch/load and recheck → complete one eligible district, expect chosen identity/P1 → invest once via the existing action, expect P2/one receipt and unchanged control → separate save, fully exit/relaunch/load and recheck. Do not use in-session reload for this test given the independently recorded crash. If held, capture the short report and stop; do not repeat migration. No repeat trade/conquest required here.
+
+New report example: `新城进度 / 来源：正常建城 / 等待首个合格区域完成 / Potential0 / ACTIVE0 / 投资0`; after completion/investment: `专业已锁定：RESEARCH / Potential2 / ACTIVE[当前事实] / 投资1`. Old observer remains opt-in, not authority. Native gate covers automatic event/write timing, engine save persistence and real consumer activation. Stop for review; no Claim/F.
+
+Validation tooling note: W0001 `check P0-E2` PASS. Its generic `self-test` is not applicable to this manifest: existing helper requires an `expected_id` context entry and exits StopIteration when absent; no workflow code was changed and no self-test PASS is claimed. Runtime targeted tests above are independent.

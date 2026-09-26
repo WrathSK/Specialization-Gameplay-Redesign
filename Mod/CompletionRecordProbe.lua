@@ -65,6 +65,7 @@ function SPCCompletionRecordProbe.Start(P,shared)
    local district=CityManager.GetDistrictAt(x,y);assert(district,"DISTRICT_UNAVAILABLE")
    local city=district:GetCity()
    assert(city and city:GetOwner()==pid and district:GetOwner()==pid and district:GetType()==index,"OBJECT_MISMATCH")
+   if shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then b.last="GAME_STORE_OR_PENDING";return end
    assert(district:IsComplete()==true,"NOT_COMPLETE")
    local token,state=shared.BindingProbe.Resolve(pid,city)
    if not token then b.last="BINDING_NOT_READY "..tostring(state);return end

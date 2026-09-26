@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0269
-Implementation Build: develop P0-B-106.133 / modinfo133 E2_FOUND_CITY_EVIDENCE; live B106.133 verified 153/153 MATCH; stable B069.96
+Status Revision: S0270
+Implementation Build: develop P0-B-107.134 / modinfo134 E2_FRESH_REGISTRATION; live B106.133 pending safe test switch; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_POSITIVE_FOUNDING_REGISTRATION_PLAN_READY
+Work State: P0_E2_FRESH_REGISTRATION_LOCAL_PASS_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B107.134：[获授权新城登记实现](../Architecture/v2/P0_E2_Plan.md#b107134--authorized-positive-founding-registration-implementation)完成定向L3 LOCAL_SIMULATION_PASS，等待USER_GAME_TEST。自动FOUND_CITY＋Initialized证据→独立Game NONE/P0→首个合格完成P1→现有投资P2；目标旧writer受guard，既有B103/B104回归通过。内层schema2与旧schema1混合；两记录上限保持，未定义的未专业化夺回仍暂停。无新收益公式/carrier/Design/Claim/F；不扩大native PASS。最小测试为一个控制城＋新自建城，P0和P2各一次冷启动读档。回滚B106必须配建城前旧存档。部署完成后记录source/receipt；以下历史。
 
 [Post-B106新城登记计划](../Architecture/v2/P0_E2_Plan.md#post-b106-plan--positive-founding-evidence--fresh-registration)已完成，待实施授权。以已验证Gameplay FOUND_CITY＋当前城/Initialized匹配替代旧Publish收尾假设；自动采集不需手动arm，绑定前阻止目标旧writer，显式NONE/P0及首次完成Game权威；保留两记录测试上限与B103/B104路径。计划提出内层schema2新城记录、旧内层schema1原样兼容，不承诺旧包读取新档。最小一次流程含未专业化/已投资两处冷加载。无新Design问题；仅文档，B106运行包/main未改、未部署。以下历史。
 

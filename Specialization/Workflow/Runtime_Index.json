@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "14b06811a03b5365ef040054aa7a23124bb7f1dc",
-  "runtime": "B106.133 / modinfo133",
+  "runtime_commit": "PENDING_B107_IMPLEMENTATION_COMMIT",
+  "runtime": "B107.134 / modinfo134",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -11,9 +11,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/BindingProbe.lua": {
-      "sha256": "eaede839b08683e345a403e87571615159da9f549ddecdec69e7e3e0004fc1fa",
+      "sha256": "46fe6c4d23dd44ddc9f2c9a2e39e3b93d60842c9192c494e7feac90535799c5b",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/BoostConfig.lua": {
       "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
@@ -26,9 +26,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CityFlowProbe.lua": {
-      "sha256": "cc051069b1f7c60e9fa9dd2a5c3fdcc68e33543ccbcd5992f24ae008058f30c4",
+      "sha256": "d695aeb5121ba65ddce7218926b70ac7c17a46aae44d4d0586db60aeaac65026",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/CityInheritance.lua": {
       "sha256": "98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618",
@@ -41,9 +41,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CityJournalProbe.lua": {
-      "sha256": "965fc049d7729cd36c4f1d5827c656a0bdabb428bcb11875d741cd37c586b44f",
+      "sha256": "2387f79075abce234e727cc8d5bdcbdc30d9e087e9584e4e1cef36208bd27550",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/CommerceConvergence.lua": {
       "sha256": "76582d148f9c76a81a3a4ce48d5948345a1eb2526de0eb565b45ba3babb40980",
@@ -56,9 +56,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CompletionRecordProbe.lua": {
-      "sha256": "4c1d6cc4cdd1555cd04fce2a6c7240ef0c1f38d212bee61bf6252e78fa0028cd",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "565ff5597867b1ecb0efad73462f02588faea7185b318f57f6b10f0f56af0b11",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/Config/Players.sql": {
       "sha256": "ca577b88faa4fa150bd786031f7f23754331b3fb9ceafac0d175b0c578de7ada",
@@ -256,9 +256,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/FreshBindingHook.lua": {
-      "sha256": "e5a0c80b2d7139f47a9701636dbca1dee058513f7a88c23d01a56da7013c6195",
+      "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/GPPReadout.lua": {
       "sha256": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "7478598f363bebc1f809a74cc5bf02169ae4c5d46e8cae83f708b0685e4ccc6d",
+      "sha256": "45ad17166481acda3f419e5a6adccc2bc9ae552b9a41d9a9f98c76eb36b0c2e3",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B106 authorized FOUND_CITY passive observation checkpoint; targeted local PASS; native pending"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "525ddc5948638fc3613810c8f65acc402ed72be08dae05dfedbbab62ab25315a",
+      "sha256": "16d2231c071565806ceaeb9b037e137a0a2a3a0cd7088681e130c9fbec9a8f10",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B106 authorized FOUND_CITY passive observation checkpoint; targeted local PASS; native pending"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "7ca79d111766a142d7d141fbe9385202265ff9221ffd0d90519876f063ef8de6",
@@ -761,14 +761,14 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "7f9fee2ce964bd44deb46cec37b43967accbd845f6036f3c1aec03ae0b1a0a89",
+      "sha256": "08b290ae47f5d25dfc1d1f0d9e1ec22bfc99a6a08fe62859297c11b9848a26bb",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B104 authorized two-record isolation/selected diagnostics; targeted L3 PASS"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/CitySequenceProbe.lua": {
-      "sha256": "572c74dfe93ad29b233ef3c5e05a18e9e60e4147af71ab94a33c22313170aa2d",
+      "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B106 authorized FOUND_CITY passive observation checkpoint; targeted local PASS; native pending"
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     }
   }
 }

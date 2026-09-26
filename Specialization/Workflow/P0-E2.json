@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0269",
-    "runtime": "B106.133 / modinfo133",
+    "status": "S0270",
+    "runtime": "B107.134 / modinfo134",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -295,6 +295,16 @@
       "path": "DevelopmentTests/test_b105_city_sequence.py",
       "kind": "full",
       "reason": "Authorized bounded native batch observation checkpoint"
+    },
+    {
+      "path": "Mod/CompletionRecordProbe.lua",
+      "kind": "full",
+      "reason": "Exclude redundant legacy observation write for pending/owned targets"
+    },
+    {
+      "path": "DevelopmentTests/test_b107_e2_founding.py",
+      "kind": "full",
+      "reason": "Actual handlers and failure/coldload/first-completion acceptance"
     }
   ],
   "dependencies": [
@@ -303,7 +313,7 @@
   ],
   "old_writers": {
     "preserve": [
-      "Unmigrated city legacy writers",
+      "Unrelated/nonparticipating legacy-city writers; pending fresh candidates are guarded",
       "All existing ability formulas/carriers",
       "Isolated inheritance modules remain isolated"
     ],
@@ -312,7 +322,8 @@
       "Investment storage backend",
       "EffectiveFacts/Network direct storage reads",
       "Explicit module-owned exit on confirmed loss; permanent ledgers preserved",
-      "Original-owner confirmed recapture reference projection; module-owned current input reset; Standardization game storage for migrated city only"
+      "Original-owner confirmed recapture reference projection; module-owned current input reset; Standardization game storage for migrated city only",
+      "B107 confirmed self-foundation allocation; pending/owned guards for Binding/Journal/Flow/FreshHook/CompletionRecordProbe; new first-completion Game write"
     ]
   },
   "conditional_context": [
@@ -333,7 +344,7 @@
     }
   ],
   "non_scope": [
-    "global cutover; fresh enrollment gated pending native boundary evidence",
+    "global cutover, first AI-city Claim, full-city migration, destruction retirement; fresh enrollment limited to confirmed self-foundation/two records",
     "cross-owner benefit inheritance",
     "profession-specific historical ledger migration",
     "F Academic Tradition",
@@ -344,19 +355,20 @@
   "validation": {
     "local": [
       "Targeted L3 migration/investment/recovery/consumer regression in plan",
-      "Lua/manifest/context/deployment integrity"
+      "Lua/manifest/context/deployment integrity",
+      "B107 actual founding/first-completion/binding/legacy-guard mixed-schema and failure tests"
     ],
-    "user": "Future authorized implementation: one control + automatically founded new city, NONE/P0 coldload, first completion/P1, investment/P2 and second coldload; no test now"
+    "user": "B107: one control + automatically founded city; NONE/P0 coldload, first completion/P1, investment/P2 and second coldload; no arm or migration of new city"
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "POST_B106_POSITIVE_FOUNDING_REGISTRATION_PLAN_READY",
-    "implementation": "B106_FOUND_CITY_EVIDENCE_LOCAL_PASS; fresh record/cutover NOT_IMPLEMENTED",
+    "plan": "POST_B106_PLAN_IMPLEMENTED_UNDER_EXPLICIT_USER_AUTHORIZATION",
+    "implementation": "B107.134_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
     "native": "B106_FOUND_CITY_SCOPED_USER_GAME_TEST_PASS; B105 first-Publish assumption remains rejected; B103/B104 scoped acceptance retained",
-    "next": "Await implementation authorization; automatic evidence + NONE/P0/first completion; preserve B103/B104; no Claim/F",
-    "scope_review": "Passive one-location observer checkpoint under approved EVENT_BATCH_BOUNDARY; existing progression unchanged"
+    "next": "Native fresh registration validation only; stop before Claim/F",
+    "scope_review": "Game-backed NONE/P0 and first completion with fixed evidence buffers; no new carriers/formulas; existing ownership regressions preserved"
   }
 }
