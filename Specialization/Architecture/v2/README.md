@@ -1,5 +1,7 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
+入口职责：Architecture记录技术合同；Gameplay意义由用户接受的Design决定，见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。当前进度与授权边界以[Status CURRENT块](../../Status/Specialization_P0_Status.md)及[Authority](../../Workflow/Authority.json)为准。下方按时间累积的旧“当前/待授权”标题只保留当时证据，不覆盖最新状态。A0161目标合同及后续批次变更按任务读取，不要求重读全部历史。
+
 当前实施：[B108新局多城authority](P0_E2_Plan.md#b108135-implementation-result--evidence-boundary)本地通过、实机待验；新测试局，三城＋一次冷加载。旧writer/迁移退出，无Claim/F。
 
 历史计划：[B107后E2收束](P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)。优先新局多城统一保存/旧writer退出；旧新混合实机兼容不再为必做门禁。待授权，runtime仍B107。

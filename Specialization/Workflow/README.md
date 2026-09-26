@@ -1,28 +1,41 @@
 # Codex Workflow v1 — W0001
 
-Owner: Codex. Scope: development navigation/context only; user authorization 2026-09-18.
-Design / Architecture always override Workflow. No Gameplay rule, implementation authorization or new Architecture revision is created here.
+Maintainer: Codex. Scope: engineering operation and context navigation. Gameplay rules remain in user-accepted Design; technical contracts remain in Architecture.
 
-## Current entry — D0035 / P0-D1 authorized native gate
+## W0005 — Authority and repository knowledge
 
-P0-D1现为AUTHORIZED / PRE_CUTOVER_GATE_OPEN；[门禁报告](../Architecture/v2/P0_D1_Primitive_Gate.md)。Mod/Design未改；既有实施授权保持，原生数值证据不足前不cutover。下段未授权措辞为此前规划状态。
+**W0005_AUTHORITY_SIMPLIFICATION_ACTIVE.** The user is the final semantic authority: accepted gameplay, scope, interpretation and ambiguity resolution, implementation approval, user-game acceptance, priorities/defer decisions and acceptance of major architecture tradeoffs.
 
-[P0-D1 manifest](P0-D1.json) / [具体计划](../Architecture/v2/P0_D1_Plan.md)：PLANNED_NOT_AUTHORIZED。使用 `python3 Specialization/Workflow/context.py check P0-D1`。仅跨学科研究，不是学以致用；技术门禁见计划。以下P0-C为已完成的历史manifest，不再匹配当前Status版本。
+Codex is the repository engineering, investigation, implementation, validation automation, documentation and Git operator. Codex may write Design only to record explicit user decisions, user-approved Design Talk/handoffs, or non-semantic formatting/link maintenance. Write permission does not imply semantic ownership. Proposals remain proposals until the user accepts them; forwarding advice is not by itself acceptance.
 
-### Completed P0-C
+External discussion/advisory tools can explore alternatives, review plans and prepare handoffs, but have no independent repository authority. External discussion → user approval → repository record; no particular product, direct-write integration or conversation access is required. Existing `Document Owner: Codex` metadata means document maintenance responsibility, never ownership of gameplay meaning.
 
-Use `python3 Specialization/Workflow/context.py check P0-C` (also plan/read/self-test). [P0-C.json](P0-C.json) is COMPLETE / USER_GAME_TEST_PASS; see [implementation](../Architecture/v2/P0_C_Research_Infrastructure.md). Single-Campus environment clarified by user; old Research IV cutover complete, user has reported overall PASS; unreported edge cases retain prior evidence levels. Next: wait for P0-D1 plan authorization. [Concrete plan](../Architecture/v2/P0_C_Plan.md) records48 old Research IV carrier IDs, shared fact inputs, specialist Science primitive gate and protected Industry/Culture boundaries. P0-B2 user PASS recorded without invented screenshots or per-edge claims; completed B1/B2 manifests retain historical authority maps.
+Do not invent missing gameplay, choose between genuine design alternatives, or silently change accepted rules to accommodate implementation/API limits. Report `DESIGN_DECISION_REQUIRED` and obtain the user's decision. Record technical limitations honestly; neither an Architecture recommendation nor a passing test grants semantic approval. Plan → user review → explicit implementation authorization remains unchanged.
 
-v0.1 scope remains Research/Culture/Commerce/Industry only. Military authority metadata creates no new runtime dependency. D0035 absolute-depth semantics remain; Design remains unchanged; current implementation/deployment status follows Authority/Status. W0001 integrity checks are never implementation permission.
+### Durable recovery through existing sources
 
-Entry: [Authority](Authority.json) → requested [batch manifest](P0-B1.json) → relevant rules/contracts → direct source → conditional dependencies → triggered full audit.
+| Responsibility | Existing source / recovery entry |
+|---|---|
+| Accepted gameplay and unresolved design boundaries | [Spec](../Design/Specialization_v0.1_Design_Spec.md), [content map](../Design/Content/README.md), [acceptance ChangeLog](../Design/Design_ChangeLog.md) |
+| Technical structure and durable constraints | [Architecture v2](../Architecture/v2/README.md), task contracts and cited [technical findings](../Reports/Technical/README.md); retain rejected/constrained approaches when forgetting them risks costly rediscovery |
+| Current stage, implementation, unresolved work and next authorized boundary | [Status CURRENT block](../Status/Specialization_P0_Status.md), [Authority](Authority.json) and its current batch manifest; do not treat old plans as new permission |
+| What has actually been demonstrated | Status-linked [Validation Results](../Status/Validation/Results/), with STATIC / LOCAL / USER_GAME_TEST scope intact |
+| Exact source history | Git/GitHub; main = last promoted trusted source, develop = current development (including pending user validation) |
+| Canonical source versus deployed runtime | Authority/Status live references plus deployment receipts and [Playtest Workflow](../Architecture/Playtest_Workflow.md); a commit does not prove deployment |
+| Engineering operation / context freshness | Root/local AGENTS, W0001/W0004 here, Context_Lock and Runtime_Index review provenance |
+
+Fresh threads and post-compaction recovery follow these pointers with task-scoped reading. Preserve unique durable information in the appropriate existing source; no conversation transcript, new memory system or mandatory handoff document. Frozen history stays unchanged. Historical tool restrictions do not override this active authority model; History is evidence, not the next-task queue.
+
+## Current entry
+
+[Authority](Authority.json) identifies current revisions, source/live status and requested batch manifest; [Status](../Status/Specialization_P0_Status.md) provides current progress/evidence/next boundary. Do not duplicate a current task or version ledger here. v0.1 implementation remains Research/Culture/Commerce/Industry only; Military/future Design does not expand runtime dependencies. Integrity PASS never authorizes implementation.
 
 ## Start protocol
 
-1. Read repository AGENTS, Specialization AGENTS/README. Read Authority.json, current Spec/Architecture metadata and Status CURRENT block. Applicable nested instructions still apply. Old README D0025 and test README B051 introductory text are stale pointers, not current authority.
-2. Confirm authorized Batch ID, branch, HEAD/upstream, staged/unstaged/untracked changes; preserve existing work. `PLANNED_NOT_AUTHORIZED` is not permission to implement. P0-B1 has only a context dry-run in this batch.
-3. Run `python3 Specialization/Workflow/context.py check P0-B1`. It reads hashes/file sets/Git; never rewrites hashes, stages, deploys, launches game or runs runtime tests. Failure blocks trusting the index, never authorizes reset.
-4. `python3 Specialization/Workflow/context.py plan P0-B1` lists ordered context and reproducible byte counts. `read P0-B1 N` emits one reference (zero-based N); use `all` only with adequate output budget. Do not treat truncated tool output as a completed read.
+1. Read repository AGENTS, Specialization AGENTS/README. Read Authority.json, current Spec/Architecture metadata and Status CURRENT block. Applicable nested instructions still apply. Historical introductory versions in test/report documents do not override current Authority/Status.
+2. Confirm authorized Batch ID, branch, HEAD/upstream, staged/unstaged/untracked changes; preserve existing work. `PLANNED_NOT_AUTHORIZED` is not permission to implement.
+3. Run `python3 Specialization/Workflow/context.py check <batch-id>`. It reads hashes/file sets/Git; never rewrites hashes, stages, deploys, launches game or runs runtime tests. Failure blocks trusting the index, never authorizes reset.
+4. `python3 Specialization/Workflow/context.py plan <batch-id>` lists ordered context and reproducible byte counts. `read <batch-id> N` emits one reference (zero-based N); use `all` only with adequate output budget. Do not treat truncated tool output as a completed read.
 5. Read whole selected JSON objects with revision/state metadata, gates/notes and stable IDs. Follow normative references to enclosing qualification/ownership sections. Ambiguity expands to whole canonical section/file; no historical same-ID fallback. A formula alone is insufficient.
 6. Read direct runtime source even if unchanged when adapting it. Unchanged indexed transitive modules may use reviewed summary pointers. Changed exported input, DB/config, dependency or behavior forces consumer review even if consumer hash matches.
 7. Apply conditional/full-audit triggers; record expansion and reason in result. Only then implement separately authorized scope. Never skip writer/save/Shared boundaries to save tokens.
@@ -50,13 +63,13 @@ Before commit inspect diff/branch/untracked/secret/temp boundaries. Coherent com
 | Civ VI / HD evidence | CONDITIONAL | unresolved primitive/catalog/event; read-only, explicit version/context |
 | Whole runtime/integration | AUDIT_ONLY or safety trigger | hash/file-set verification is byte I/O, not text context ingestion |
 
-Old entry routing repeatedly exposes stale D0025/B051 and large Status history. Existing inventory is B076 (121 files); B077 adds4 and changes7 existing files. Runtime_Index preserves both provenance layers; this is not a claim all B077 source was freshly audited for W0001.
+Runtime_Index retains named review baselines and deltas. Read current provenance; an unchanged file is not a claim of a fresh full-runtime audit.
 
 ## Hash and summary trust hierarchy
 
 1. Current accepted Design object + metadata and current Architecture contract are authority; actual source establishes implementation, tests establish only recorded scope.
 2. Reviewed inventory/contract summary with matching hash/provenance navigates unchanged dependencies. Read referenced summary as needed; hash alone is not summary or correctness proof.
-3. Completion/spike reports retain build/context/evidence limits. P0-A native events remain untested; unchanged source plus changed external DB/config still needs revalidation.
+3. Completion/spike reports retain build/context/evidence limits. Native event coverage follows the current scoped evidence; unchanged source plus changed external DB/config still needs revalidation.
 4. Pointers have no mechanical authority. Generated/unverified summaries, conversations/compaction and historical Status cannot supply current rules. Conflict → canonical sources, never guessed implementation.
 
 Runtime hash change invalidates that inherited summary and affected consumers. New/deleted file blocks file-set validation. Dynamic/unknown dependencies require targeted full-runtime search and graph correction. Matching hashes never waive mandatory cutover writer audit. Lock files are maintained in reviewed Git diffs, not self-refreshing caches.
@@ -131,4 +144,4 @@ No tooling/state architecture change: retained indexes still require reviewed ha
 
 Contract routing reuses D0032_Adaptation: Canonical state / Permanent achievements / Shared facts / Network / Presentation / Performance; Implementation_Plan: Migration; P0_A report: actual implementation caveats. Do not duplicate these contracts here.
 
-Official reference: [OpenAI AGENTS.md documentation](https://developers.openai.com/zh-Hans/docs/agent-configuration/agents-md). Existing required Status/Architecture entry now links W0001, so no governance rewrite or Codex configuration change is needed.
+W0005 changes active guidance only; W0001 selectors/hash checks, W0004 validation and deployment safety retain their existing responsibilities. No new persistent state is introduced.

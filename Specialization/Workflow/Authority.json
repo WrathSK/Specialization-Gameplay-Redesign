@@ -1,6 +1,6 @@
 {
   "workflow": "W0001",
-  "role": "Navigation only. Referenced Design/Architecture override workflow. Hash match proves unchanged, not correct.",
+  "role": "Navigation/review basis only. User is final semantic authority; Codex is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
     "design": "D0035",
     "research": "D0031",
@@ -43,7 +43,7 @@
     "Specialization/Architecture/v2/Source_Index.md",
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
-  "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
+  "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
   "context_review_status": "Authorized slice1 writer/consumer/persistence closure reviewed; production Start local scale/failure/lifecycle tests; existing exit/recapture regression retained",
   "implementation_scope": {
