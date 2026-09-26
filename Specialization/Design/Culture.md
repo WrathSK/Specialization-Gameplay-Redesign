@@ -187,4 +187,4 @@ ACTIVE四级可以训练人文考察团，成本初版参照当前间谍生产�
 
 - [文化正式内容](Content/Culture_D0029.json)：全部能力、作品池、领域、任务、两类历史归属与网络并集。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0035.json)解释D和产出份额。
-- [原冻结审阅](Culture_D0028_Review.md)（只引用未被取代部分）、[边界接受审阅](Culture_D0029_Review.md)、[Hybrid D正式方向](Culture_Era_Presentation_D0032.md)、[接受记录](Design_ChangeLog.md)。
+- [原冻结审阅](../Historical/Design/Reviews/Culture_D0028_Review.md)（只引用未被取代部分）、[边界接受审阅](../Historical/Design/Reviews/Culture_D0029_Review.md)、[Hybrid D正式方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[接受记录](Design_ChangeLog.md)。

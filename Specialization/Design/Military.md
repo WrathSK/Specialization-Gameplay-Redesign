@@ -133,4 +133,4 @@ P是实际拥有的晋升，包括合法合编继承，不是经验等级。E是
 
 - [军事正式内容](Content/Military_D0034.json)：全部当前能力、单位授予、后勤、传统和统一动员。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：MIL取代关系、Shared／Network边界。
-- [冻结审阅](Military_D0033_Review.md)、[训练深度增量](Military_D0034_Review.md)、[Shared当前澄清](Shared_D0035_Review.md)、[接受记录](Design_ChangeLog.md)。旧军制只在明确重新采用的部分有效。
+- [冻结审阅](../Historical/Design/Reviews/Military_D0033_Review.md)、[训练深度增量](../Historical/Design/Reviews/Military_D0034_Review.md)、[Shared当前澄清](../Historical/Design/Reviews/Shared_D0035_Review.md)、[接受记录](Design_ChangeLog.md)。旧军制只在明确重新采用的部分有效。

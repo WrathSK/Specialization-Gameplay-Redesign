@@ -119,7 +119,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 唯一当前共享定义：[Shared_D0035](Content/Shared_D0035.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
-**D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](Shared_D0035_Review.md)。
+**D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
 被掠夺建筑默认不贡献也不接受收益；这是当前效果资格，不删除明确永久的模板/历史记录。免费取得不改变普通建筑性质。区域基础设施深度有硬上限10，同领域多区域取最高单区域；不追补缺失Tier。Network独立于Ability slots，不统一专业公式或强制0/1/2/3结构。
 
@@ -127,7 +127,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **D0031 Research增量：DESIGN_FROZEN — implementation / balance validation pending.**
 
-唯一新规则与文案正文：[Research当前Content](Content/Research_D0031.json)。[Schema](Content/README.md)；[当前边界审阅](Boundary_D0031_Review.md)；[D0030历史审查](Research_D0030_Review.md)。机构永久随Potential累积，ACTIVE仅控制对应阶段能力；机构为presentation-only，不进入普通建筑体系。
+唯一新规则与文案正文：[Research当前Content](Content/Research_D0031.json)。[Schema](Content/README.md)；[当前边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)；[D0030历史审查](../Historical/Design/Reviews/Research_D0030_Review.md)。机构永久随Potential累积，ACTIVE仅控制对应阶段能力；机构为presentation-only，不进入普通建筑体系。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -144,7 +144,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **D0029: DESIGN_FROZEN；本轮三组边界已解决，implementation / balance validation pending.**
 
-唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0029](Content/Culture_D0029.json)。[Amendment Review](Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0029](Content/Culture_D0029.json)。[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|
@@ -159,13 +159,13 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 中文机构、能力、Mission名称CONFIRMED。时期次数、记录归属、源城绑定、目标合法性、战争及成功后保留单位详见content。CUL-REVIEW-01至04已正式确认：见闻按原Owner/来源城保存，Dialogue倍率及启动时代额度跟城，多源完整考察文明集合并集，外国已遇见存活Major允许且战争本身不中断。城邦排除并列Future Candidate，自由城市排除；不新增外交许可或商路要求。未知Mod作品默认排除。原生收益倍率不放大意义延展追加值。所有BALANCE_REQUIRED与TECHNICAL flags保留，不把冻结当实现。
 
-D0032批准[Culture时代馆藏Hybrid D方向](Culture_Era_Presentation_D0032.md)；Culture_D0029玩法正文不变。布局/HD hook/缓存事件仍需原型，UI实施未授权；D0031调查保留历史。
+D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；Culture_D0029玩法正文不变。布局/HD hook/缓存事件仍需原型，UI实施未授权；D0031调查保留历史。
 
 ## 7. Industry / Industrial Zone — IND
 
 **D0032: DESIGN_FROZEN — implementation / balance validation pending.**
 
-唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0032.json)。[冻结审阅](Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
+唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0032.json)。[冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -186,7 +186,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **D0032: DESIGN_FROZEN — balance / architecture / implementation pending.**
 
-唯一新机械合同：[Commerce content](Content/Commerce_D0032.json)；[冻结/一致性/技术审阅](Commerce_D0032_Review.md)。机构与能力名全部LOCKED；四机构presentation-only累计展示，不创建真实Building。Named ability数量0/1/2/3仅为本专业确认结构，不强制其它专业。
+唯一新机械合同：[Commerce content](Content/Commerce_D0032.json)；[冻结/一致性/技术审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED；四机构presentation-only累计展示，不创建真实Building。Named ability数量0/1/2/3仅为本专业确认结构，不强制其它专业。
 
 | Rule ID | 当前权威content |
 |---|---|
@@ -258,7 +258,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 ### Military / Encampment — MIL
 
-**MIL-D0034 — DESIGN_FROZEN** 唯一当前内容正文：[Military D0034](Content/Military_D0034.json)；[冻结审阅](Military_D0034_Review.md)。旧MIL-001至013原文保留于D0032及更早snapshot，不与新能力叠加。
+**MIL-D0034 — DESIGN_FROZEN** 唯一当前内容正文：[Military D0034](Content/Military_D0034.json)；[冻结审阅](../Historical/Design/Reviews/Military_D0034_Review.md)。旧MIL-001至013原文保留于D0032及更早snapshot，不与新能力叠加。
 
 | Historical rule | Current authority |
 |---|---|

@@ -8,7 +8,7 @@ Implementation / Balance Validation: PENDING
 
 ## 版本与权威
 
-沿现有Dxxxx新修订惯例，不覆写D0028：[当前Culture](Content/Culture_D0029.json)，[旧Culture](Content/Culture_D0028.json)，[旧Review](Culture_D0028_Review.md)，[冻结D0028 Spec](Revisions/Specialization_Design_Spec_D0028.md)。本轮仅ownership/network merge/diplomatic eligibility；机构、能力、Mission、数值、duration及其它合同原样保留。
+沿现有Dxxxx新修订惯例，不覆写D0028：[当前Culture](../../../Design/Content/Culture_D0029.json)，[旧Culture](../../../Design/Content/Culture_D0028.json)，[旧Review](Culture_D0028_Review.md)，[冻结D0028 Spec](../../../Design/Revisions/Specialization_Design_Spec_D0028.md)。本轮仅ownership/network merge/diplomatic eligibility；机构、能力、Mission、数值、duration及其它合同原样保留。
 
 ## 正式决定与marker
 

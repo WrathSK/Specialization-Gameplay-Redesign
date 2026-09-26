@@ -9,7 +9,7 @@ Implementation / Balance Validation: PENDING
 
 ## 当前结论
 
-[canonical content](Content/Research_D0026.json)为唯一新Research规则与首版Tooltip正文；[schema](Content/README.md)定义机构/能力/基础支持/映射的规范化结构。四机构永久累计、命名能力0→1→2→3。用户明确关闭本轮五组问题，Research没有剩余冻结阻塞。
+[canonical content](../../../Design/Content/Research_D0026.json)为唯一新Research规则与首版Tooltip正文；[schema](../../../Design/Content/README.md)定义机构/能力/基础支持/映射的规范化结构。四机构永久累计、命名能力0→1→2→3。用户明确关闭本轮五组问题，Research没有剩余冻结阻塞。
 
 ## 已确认边界（原RES-OPEN-01至05关闭）
 

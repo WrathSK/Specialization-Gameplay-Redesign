@@ -7,7 +7,7 @@ Baseline: D0034; Military_D0034 unchanged
 
 ## Authority and terminology
 
-[Shared_D0035](Content/Shared_D0035.json) is current Shared authority. D = Absolute Infrastructure Depth; formal Chinese display name **区域基础设施深度**. “区域” fixes the calculation scope, “基础设施” excludes a city's general development or unrelated district assets, “深度” avoids implying percentage completion. Historical “区域完善度” remains an alias, not a second fact. No global Lua/API rename or UI change.
+[Shared_D0035](../../../Design/Content/Shared_D0035.json) is current Shared authority. D = Absolute Infrastructure Depth; formal Chinese display name **区域基础设施深度**. “区域” fixes the calculation scope, “基础设施” excludes a city's general development or unrelated district assets, “深度” avoids implying percentage completion. Historical “区域完善度” remains an alias, not a second fact. No global Lua/API rename or UI change.
 
 Formula remains min(10,sum eligible ordinary building tier weights1/2/3/4). Cap10 is not a guaranteed fully-built value. Three-tier chainD6 and four-tier chainD10 intentionally differ; additional investment can yield more depth and corresponding ability value. No environment denominator or normalized percentage. Same-tier counts, missing-tier handling, pillage/free/unique/ordinary exclusions and highest-single-district aggregation are unchanged.
 

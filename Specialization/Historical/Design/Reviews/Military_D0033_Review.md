@@ -7,7 +7,7 @@ Accepted: 2026-09-20
 
 ## Authority
 
-[Military_D0033](Content/Military_D0033.json) is the single mechanical content authority. [Original brief](Military_Freeze_Candidate_User_Record.md) and [candidate review](Military_Freeze_Candidate_Review.md) remain unchanged historical evidence. Five subsequent user answers close MIL-BLOCK-01–05. D0032 Spec is preserved byte-for-byte in Revisions; other profession/Shared JSON unchanged. New Design revision does not authorize Military implementation or expand the current four-profession P0 plan.
+[Military_D0033](../../../Design/Content/Military_D0033.json) is the single mechanical content authority. [Original brief](../../../Design/Military_Freeze_Candidate_User_Record.md) and [candidate review](../../../Design/Military_Freeze_Candidate_Review.md) remain unchanged historical evidence. Five subsequent user answers close MIL-BLOCK-01–05. D0032 Spec is preserved byte-for-byte in Revisions; other profession/Shared JSON unchanged. New Design revision does not authorize Military implementation or expand the current four-profession P0 plan.
 
 ## Five decisions resolved
 

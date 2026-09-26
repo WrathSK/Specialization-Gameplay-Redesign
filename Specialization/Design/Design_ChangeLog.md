@@ -14,7 +14,7 @@ Accepted Spec SHA256: be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45b
 Canonical Shared Content SHA256: f690053a45d54f702468180d0d957444b411c5f7ab7bd3656800e875c91b19a1
 Previous Accepted Revision: D0034
 Frozen D0034: [原文](Revisions/Specialization_Design_Spec_D0034.md)
-Review: [Shared语义与consumer审阅](Shared_D0035_Review.md)
+Review: [Shared语义与consumer审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)
 
 正式中文“区域基础设施深度”；公式min(10,ΣTier1/2/3/4)不变，三层D6与四层D10均为有意允许的结果。旧profession Shared_D0028引用按当前Spec语义覆盖，原文件及Military_D0034不改。Catalog缺口独立登记，既有P0-A PASS不扩展。未实现、未改runtime/main、未部署；不进入P0-B2。
 
@@ -26,7 +26,7 @@ Accepted Spec SHA256: 3554bb9b6ad956580db01e399f34bc9eb8992b754ad1dd5be2e58f1ee9
 Canonical Military Content SHA256: 0c5ea293621f8cd22f6b3e14969801a65a65548bae49bd073a2d747bb0a845ad
 Previous Accepted Revision: D0033
 Frozen D0033: [原文](Revisions/Specialization_Design_Spec_D0033.md)
-Review: [综合训练双层结构](Military_D0034_Review.md)
+Review: [综合训练双层结构](../Historical/Design/Reviews/Military_D0034_Review.md)
 
 T1永久+1CS/领域且最多5不变；相同五领域的基础设施深度增加本城训练效率，T1-only无深度收益、T2阶段开始，三层D6和四层D10差异为预期。不新建Ability或Shared指标，不自动推导D>=3精确门槛/线性公式/购买折扣。其它Military规则、Shared、四专业及runtime不改。历史D0033保留。
 
@@ -38,7 +38,7 @@ Accepted Spec SHA256: 5ea3f31eeaddbfdb9d14f1c063b6ed44362ad34eecf661182230b7d62a
 Canonical Military Content SHA256: 8956f9230f20610cb7cc5953fbb90fefad132cb659e8f84437dbabc6105aff3d
 Previous Accepted Revision: D0032
 Frozen D0032: [原文](Revisions/Specialization_Design_Spec_D0032.md)
-Review: [Military freeze](Military_D0033_Review.md)
+Review: [Military freeze](../Historical/Design/Reviews/Military_D0033_Review.md)
 
 旧II15%XP、III5F5P、驻扎训练与全国自动送兵pool退出当前Military；Insight旧算式保留但E改出生锁定，不再持续读取来源城。其它四专业、Shared与历史内容不改；不实现、不部署、不扩展P0。A0161尚未适配Military新设计；旧P0上下文显式标记待复核，不伪刷新hash。
 
@@ -52,8 +52,8 @@ Canonical Industry Content SHA256: 89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4
 Confirmed closures: 隐藏失败保护按Commerce来源城独立、同城所有风险领域共享；发展投资仅签约检查出发路线，之后断路不改变原期限/效果，无合格路线不能新签；易主/征服/Identity丧失仍后置。
 Previous Accepted Revision: D0031
 Frozen D0031: [原文](Revisions/Specialization_Design_Spec_D0031.md)
-Review: [Commerce freeze / cross-design review](Commerce_D0032_Review.md)
-Presentation: [Hybrid D approved](Culture_Era_Presentation_D0032.md)
+Review: [Commerce freeze / cross-design review](../Historical/Design/Reviews/Commerce_D0032_Review.md)
+Presentation: [Hybrid D approved](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)
 
 旧Commerce20%汇聚及III网络支持/5F5P退出，Trade Center及Lv1/Lv2基础保留。新能力合同、两种路线方向、锁定结果/pity、Production-only重组及REALLOCATING明确；未定数值/mapping/信誉细项/Legacy不擅填。Research_D0031、Culture_D0029、Shared_D0028、旧Industry_D0031及既有历史文件不改。Industry capacity open关闭但易主边界保留；Culture展示方向确认不改变Gameplay。源码、运行包、main、Architecture/Status均未修改；不tag、不部署。
 
@@ -66,8 +66,8 @@ Canonical Research Content SHA256: 6253c4eff548394fd3ee351e6f02abd2665b468e6c46f
 Canonical Industry Content SHA256: 4660d2146caff847979281f094c51a01175758a9b55dd65e41ff37555bb9a11a
 Previous Accepted Revision: D0030
 Frozen D0030: [原文](Revisions/Specialization_Design_Spec_D0030.md)
-Review: [边界审阅](Boundary_D0031_Review.md)
-Presentation: [需求及UI调查](Culture_Era_Presentation_D0031.md)
+Review: [边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)
+Presentation: [需求及UI调查](../Historical/Design/Records/Culture_Era_Presentation_D0031.md)
 
 Culture_D0029与Shared_D0028不变。容量具体规则仍待决；其它外部Reviewer意见不导入。UI建议非已批准Architecture；源码/运行包不变。
 
@@ -79,7 +79,7 @@ Accepted Spec SHA256: 85ed1e4b8cf4a148dd06abbe69f6a358a0db5e966a59820b6ec17168c9
 Canonical Research Content SHA256: 646abdbb4dcdc16a5f4a061ba6ac58184f0c663428dee157db7aa9f2c05e9e3e
 Previous Accepted Revision: D0029
 Frozen D0029: [原文](Revisions/Specialization_Design_Spec_D0029.md)
-Content: [Research D0030](Content/Research_D0030.json) / [三专业审查](Research_D0030_Review.md)
+Content: [Research D0030](Content/Research_D0030.json) / [三专业审查](../Historical/Design/Reviews/Research_D0030_Review.md)
 
 仅RES_L3_APPLY从不同类型数X改各领域D，沿用既有领域/yield与Shared份额，K显式0.5；其余能力只审查不修改。Shared、Culture D0029、Industry D0027、源码/运行包不变；历史Research保留，不自行改精度。
 
@@ -91,7 +91,7 @@ Accepted Spec SHA256: 89c3f72484555610512a932d7006cb6cf53946b5bf0a4d344aa9831509
 Canonical Culture Content SHA256: 00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b
 Previous Accepted Revision: D0028
 Frozen D0028: [原文](Revisions/Specialization_Design_Spec_D0028.md)
-Content: [Culture D0029](Content/Culture_D0029.json) / [Review](Culture_D0029_Review.md)
+Content: [Culture D0029](Content/Culture_D0029.json) / [Review](../Historical/Design/Reviews/Culture_D0029_Review.md)
 
 见闻original-owner/source-city scope正式确认且收回城市可恢复；Dialogue city scope保留倍率/启动时代额度；来源独立3/3集合先成立再并集；Major资格与战争不中断正式明确，City-State独立Future Candidate。旧D0028条文冻结，Shared/Research/Industry不改；没有数值、能力、Mission或实现变更。
 
@@ -105,7 +105,7 @@ Canonical Shared Content SHA256: 9ce20c5047d525321d5efc025f0578afac25a63f91b75ac
 Canonical Research Content SHA256: 372fdd5f6d6687935f8ddf906b6dd365ac7b1f79c72ebee21ba3e04401f4f2e4
 Previous Accepted Revision: D0027
 Frozen D0027: [原文](Revisions/Specialization_Design_Spec_D0027.md)
-Review: [Culture D0028](Culture_D0028_Review.md)
+Review: [Culture D0028](../Historical/Design/Reviews/Culture_D0028_Review.md)
 
 Culture项目累积/建筑审美/完善度巨作产出与GPP/非敌对考察及国内见闻网络；原Owner记录等暂定标记保留。旧Culture Eureka退出，Research网络待重设计。Shared建筑掠夺默认排除、区域完善度cap10、产出份额独立权威；Research基础设施输入按用户新指令迁入cap10，历史D0026与Industry D0027内容不改。Architecture尚未sync、Mod不变，不将技术接口或多源合并宣称完成。
 
@@ -117,7 +117,7 @@ Accepted Spec SHA256: 8dc189f80c33c4edbf946869b7835c6473ff6a0be67ee6a01be620fa47
 Canonical Industry Content SHA256: 762648eb6e21edffb179b700451a15bbf25e6e7712d83ab1c616196c509387d0
 Previous Accepted Revision: D0026
 Frozen D0026: [原文](Revisions/Specialization_Design_Spec_D0026.md)
-Content: [Industry](Content/Industry_D0027.json) / [review](Industry_D0027_Review.md)
+Content: [Industry](Content/Industry_D0027.json) / [review](../Historical/Design/Reviews/Industry_D0027_Review.md)
 
 Industry机构累计、Lv3标准化/工程动员、Lv4巨构工程学/实践/传统；旧低级网络折扣和IV直接产出、旧施工队范围/解锁被替代。两种效率与曲线/cap/传统门槛BALANCE_REQUIRED，未擅定数值；命名候选不升级。Research D0026原content保持不变，Architecture尚未sync，源码/运行包未改。
 
@@ -129,7 +129,7 @@ Accepted Spec SHA256: 1265719810ce087cca1c6ceb28cf7ad4bf2a5ae153c0c358b86af5a90c
 Canonical Research Content SHA256: 14cad8a62621baea8bcf6b5813f83d683aba2d4d18503606196cda2a99a952ff
 Previous Accepted Revision: D0025
 Frozen D0025: [原文](Revisions/Specialization_Design_Spec_D0025.md)
-Content: [Research](Content/Research_D0026.json) / [schema](Content/README.md) / [review](Research_D0026_Review.md)
+Content: [Research](Content/Research_D0026.json) / [schema](Content/README.md) / [review](../Historical/Design/Reviews/Research_D0026_Review.md)
 
 仅Research本地等级更新；Network及其它专业不变。机构累计、6个阶段能力与统一领域映射；旧三级人口Science/5F5P与四级旧效果被替换。五组待决已关闭；英文TBD和社区Food候选不阻塞。Architecture仍synced D0025，需后续设计适配审查；本轮未实现、未部署，不升级任何游戏验证状态。
 

@@ -8,7 +8,7 @@ Implementation / Balance Validation: PENDING
 
 ## 权威与结果
 
-[Industry content](Content/Industry_D0027.json)独立保存机构、六能力、基础效果、参数、范围、历史归属与旧规则替代清单；不复制第二套公式。沿用Research schema思想，增加parameters/contracts/review_markers，Research内容不改。0→1→2→3仅本专业组织选择，不是所有专业强制模板。
+[Industry content](../../../Design/Content/Industry_D0027.json)独立保存机构、六能力、基础效果、参数、范围、历史归属与旧规则替代清单；不复制第二套公式。沿用Research schema思想，增加parameters/contracts/review_markers，Research内容不改。0→1→2→3仅本专业组织选择，不是所有专业强制模板。
 
 用户七项回复关闭本轮Freeze Review：基础3Food；模板机制暂沿用；原目录/同范围加速/区域完成获模板/Faith条件授权沿用；实践提高输出效率并取最高；历史追溯且归实际完成文明；当前只Wonder；已成队伍降级仍可用且巨构工程学适用；1360纠正1350。
 

@@ -143,5 +143,5 @@ ACTIVE至少二级时，工业区本体**+1住房**，每个实际存在合格�
 
 - [工业当前内容](Content/Industry_D0032.json)：全部本地效果、目录、历史、网络、队伍与容量。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0035.json)。
-- [冻结审阅](Industry_D0027_Review.md)、[容量接受记录](Design_ChangeLog.md)：D0032关闭容量2，旧D0031未决描述不覆盖它。
+- [冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)、[容量接受记录](Design_ChangeLog.md)：D0032关闭容量2，旧D0031未决描述不覆盖它。
 - [旧施工合同](Revisions/Specialization_Design_Spec_D0026.md)：只用当前内容明确保留的成本／速度／劳动力／拒绝与溢出规则，不恢复旧解锁和目标。

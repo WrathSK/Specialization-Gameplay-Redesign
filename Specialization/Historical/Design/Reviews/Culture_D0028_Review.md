@@ -8,7 +8,7 @@ Implementation / Balance Validation: PENDING
 
 ## 权威入口与范围
 
-[Culture](Content/Culture_D0028.json)、[Shared](Content/Shared_D0028.json)、[Research D0028增量](Content/Research_D0028.json)为各自canonical内容。[D0027冻结Spec](Revisions/Specialization_Design_Spec_D0027.md)保留旧设计；Research_D0026、Industry_D0027字节不改。用户此次明确授权Research输入改动，不能用原“不得修改Research”的阶段要求否定新指令。
+[Culture](../../../Design/Content/Culture_D0028.json)、[Shared](../../../Design/Content/Shared_D0028.json)、[Research D0028增量](../../../Design/Content/Research_D0028.json)为各自canonical内容。[D0027冻结Spec](../../../Design/Revisions/Specialization_Design_Spec_D0027.md)保留旧设计；Research_D0026、Industry_D0027字节不改。用户此次明确授权Research输入改动，不能用原“不得修改Research”的阶段要求否定新指令。
 
 ## 已确认边界
 

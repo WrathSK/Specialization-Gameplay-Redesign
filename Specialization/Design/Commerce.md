@@ -284,8 +284,8 @@
 
 - [商业正式内容](Content/Commerce_D0032.json)：4个机构、1组基础支持、6项具名能力、各合同、界面方向、参数、取代与后置事项。
 - [当前Design Spec](Specialization_v0.1_Design_Spec.md)：ELIG参与资格，TERMS术语，PROG共同成长／征服／重组例外，SHARED二级规则，COM商业入口，NET-001至004共同网络。
-- [当前Shared内容](Content/Shared_D0035.json)与[Shared澄清](Shared_D0035_Review.md)：普通建筑、当前资格、绝对D、产出份额及引用覆盖。商业旧文件引用Shared_D0028时，当前解释按此澄清；不倒改历史文件。
-- [商业冻结审阅](Commerce_D0032_Review.md)：基础规则保留、旧方案退出、来源城隐藏保护与签约后断路决定，以及明确延期和技术证据边界；Review不另设一套公式。
+- [当前Shared内容](Content/Shared_D0035.json)与[Shared澄清](../Historical/Design/Reviews/Shared_D0035_Review.md)：普通建筑、当前资格、绝对D、产出份额及引用覆盖。商业旧文件引用Shared_D0028时，当前解释按此澄清；不倒改历史文件。
+- [商业冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)：基础规则保留、旧方案退出、来源城隐藏保护与签约后断路决定，以及明确延期和技术证据边界；Review不另设一套公式。
 - [Design接受记录](Design_ChangeLog.md)：商业D0032接受及Shared D0035语义澄清；候选稿或文件更新时间不覆盖当前已接受内容。
 - [工业正式内容](Content/Industry_D0032.json)：仅用于确认标准化独立的模板／资格与网络规则，不在本文重述整套工业设计。
 

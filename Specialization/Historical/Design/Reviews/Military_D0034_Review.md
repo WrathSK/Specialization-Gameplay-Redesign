@@ -5,7 +5,7 @@ Design Authority: User
 State: DESIGN_FROZEN core structure / explicit BALANCE_DESIGN_DETAIL_REQUIRED
 Date: 2026-09-20
 
-[Military_D0034](Content/Military_D0034.json) replaces Military_D0033 as current content. D0033 JSON/review and the exact previous Spec snapshot remain historical. Only 综合训练 is expanded; six named abilities, all names, other Military contracts and other professions retain their rules. No implementation, Architecture adaptation, deployment or P0 scope expansion.
+[Military_D0034](../../../Design/Content/Military_D0034.json) replaces Military_D0033 as current content. D0033 JSON/review and the exact previous Spec snapshot remain historical. Only 综合训练 is expanded; six named abilities, all names, other Military contracts and other professions retain their rules. No implementation, Architecture adaptation, deployment or P0 scope expansion.
 
 ## Accepted structure
 

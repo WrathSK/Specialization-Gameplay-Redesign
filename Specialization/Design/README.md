@@ -55,8 +55,16 @@ Shared负责共同概念，Network负责共同连接，专业正文直接写全�
 
 - **想看做到哪里、哪些通过、哪些待测：** [Status](../Status/Specialization_P0_Status.md)。本目录阅读页不另存运行版本或PASS清单。
 - **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Shared语义D0035；科研D0031、工业D0032、文化D0029、商业D0032、军事D0034；未来其它条款由当前Spec保留。
-- **想查展示接受来源：** [文化馆藏时代方向](Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
+- **想查展示接受来源：** [文化馆藏时代方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
 - **想查为什么改过：** [接受与取代记录](Design_ChangeLog.md)、各篇页尾来源及[冻结历史](Revisions/)。较新的文件或更大的编号不自动覆盖未被取代的规则。
 - **Codex／开发者起点：** [项目导航](../README.md)和[AGENTS](../AGENTS.md)，继续按任务读取正式来源，不要求每轮加载全部阅读页。阅读版维护约定集中在[Content导航](Content/README.md#人类阅读入口)。
 
 Markdown是正式来源的完整阅读呈现，不是独立玩法权威；用户仍以Design Talk提出决定和修改，由Codex维护来源及受影响阅读页。
+
+## 普通阅读无需打开的内部来源
+
+日常从本页、Shared、Network及各专业阅读版进入即可。[Spec](Specialization_v0.1_Design_Spec.md)和[Content](Content/README.md)是正式规则来源，[ChangeLog](Design_ChangeLog.md)维护接受与取代追溯；本次没有改变其权威范围或建立新Design修订。
+
+已完成审阅及展示来源集中在[设计历史导航](../Historical/Design/README.md)。归档位置不取消其中仍被当前正式来源明确引用的接受决定；文化Hybrid D批准记录仍是现行展示依据，旧推荐不与之并列为当前方向。
+
+顶层暂留的Commerce/Military Freeze Candidate文件与Military原始用户记录，以及Revisions目录，仅用于冻结追溯，不是当前候选审批队列。它们的原文和相对链接互有依赖，本轮不改写冻结原件，也不建立跳转空壳；具体保留原因见历史导航。

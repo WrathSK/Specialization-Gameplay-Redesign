@@ -8,7 +8,7 @@ Implementation / Balance Validation: PENDING
 
 ## 本轮变化
 
-[当前Research content](Content/Research_D0030.json)中RES_L3_APPLY改用各领域区域完善度，显式K暂定0.5。Shared_D0028仍是唯一尺度定义；原九类领域与对应yield不变，排除学院，同yield相加，同领域取最高单区域。每个科研工作专家独立获得这些收益。不再按不同区域数量X放大，也不把所有完善度先相加后重复发给每种领域。
+[当前Research content](../../../Design/Content/Research_D0030.json)中RES_L3_APPLY改用各领域区域完善度，显式K暂定0.5。Shared_D0028仍是唯一尺度定义；原九类领域与对应yield不变，排除学院，同yield相加，同领域取最高单区域。每个科研工作专家独立获得这些收益。不再按不同区域数量X放大，也不把所有完善度先相加后重复发给每种领域。
 
 例子：工业D6→每专家3P；商业D3→1.5份→4.5G；军营D4另给2P，与工业相加为5P。该三领域组合每专家5P+4.5G。D0领域给0；单域D10→5份，Gold15。不因接口精度自行floor，技术承载待后续研究。
 

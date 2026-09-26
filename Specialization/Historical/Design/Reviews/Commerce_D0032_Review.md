@@ -7,7 +7,7 @@ Scope: Design documents only. Not Architecture adaptation, UI implementation or 
 
 ## Authority and freeze gate
 
-Canonical mechanics: [Commerce content](Content/Commerce_D0032.json). Prior complete Spec D0031 is frozen unchanged. Existing Research_D0031, Culture_D0029, Shared_D0028 and older content retain bytes. Industry_D0032 changes only capacity closure and directly related references/tooltips; Culture_Era_Presentation_D0032 approves the selected presentation direction without changing Culture gameplay.
+Canonical mechanics: [Commerce content](../../../Design/Content/Commerce_D0032.json). Prior complete Spec D0031 is frozen unchanged. Existing Research_D0031, Culture_D0029, Shared_D0028 and older content retain bytes. Industry_D0032 changes only capacity closure and directly related references/tooltips; Culture_Era_Presentation_D0032 approves the selected presentation direction without changing Culture gameplay.
 
 Freeze means accepted core design, not BALANCE_COMPLETE, TECHNICALLY_CONFIRMED, IMPLEMENTED or USER_GAME_TESTED. User expressly permits deferral of domain source-value mapping, quote fundamentals/formulas, reputation targets, stacking, speed scaling and future Legacy. These items must remain visible and be decided before their dependent implementation; no default20%, share conversion, floor, source-Identity filter or contract behavior may be inferred from old Convergence.
 
