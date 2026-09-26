@@ -63,3 +63,6 @@ Authorized implementation locally verified; [contract and minimal test](../Archi
 
 ### B105.132 — EVENT_BATCH_BOUNDARY / minimal native evidence required
 See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batch-evidence-checkpoint). On a test copy, right-click 移民/施工队 to arm one location, perform founding, then right-click E2往返 to capture pages. Separately arm an own noncapital city before a convenient gift to AI and capture after. No migration/investment/reload loop. Evidence-only; fresh enrollment NOT_IMPLEMENTED. No random raze test requested. B104 existing two-city acceptance unaffected.
+
+### B105 native evidence received — no repeat test
+[Four-image result](Validation/Results/Specialization_B105_E2_Event_Boundary.md): observer paths PASS; first Publish demonstrably splits both founding and transfer notification chains. EVENT_BATCH_BOUNDARY remains for automatic enrollment; next scoped boundary proposal must use positive evidence, not timeout/Publish-count inference. Playback is candidate only. No immediate user test; existing B103/B104 results unchanged.

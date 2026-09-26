@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0264
+Status Revision: S0265
 Implementation Build: develop P0-B-105.132 / modinfo132 E2_EVENT_BATCH_EVIDENCE; live B105.132 verified 153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_EVENT_BATCH_NATIVE_GATE
 
 ## CURRENT AUTHORITATIVE STATE
+
+B105四图已归档：[原生事件顺序结果](Validation/Results/Specialization_B105_E2_Event_Boundary.md)。自建与转移均出现 Built→Publish→后续Added/Initialized；转移更明确为早到Publish→Removed/Added/Initialized→Transfer→Publish→Playback，早到快照已是新Owner。事件采集所测路径 USER_GAME_TEST_PASS；“首个Publish就是完整事务结束”被实机反证，EVENT_BATCH_BOUNDARY仍阻止新城自动登记。无ReadRequest干扰标记、无缺页/采集错误；不要求重复这两组。下一步仅收窄边界方案：正面转移完成证据＋新建来源/更强收尾依据；不以等待时长/Publish次数猜测。B103/B104验收保留，无runtime/Design/main/部署变化。以下为历史记录。
 
 B105.132：[已授权事件批次证据检查点](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batch-evidence-checkpoint)完成。按计划EVENT_BATCH_BOUNDARY门禁，先用手动单位置/48条上限记录Gameplay事件与首个Publish/Playback；不假定批次原子性，不接管新城/写新保存schema。右键移民/施工队开始，右键E2往返读取翻页；旧左键保留。定向模拟、实际UI/Gameplay请求及B104→B103/E2相关回归PASS；非原生边界PASS。最小待测：一例自建＋一例交易事件序列，无需迁移/投资/读档重测。B103/B104已验收保持；新城NONE/P0接管与首次完成部分尚未实现，等待该门禁证据；不进入Claim/F。已按W0003部署source 29508c7；153/153 MATCH；receipt B105.132-29508c7-playtest.json；B104恢复点与stable桥核验保留，退出进程检查通过。Design/main未改。以下为历史计划/验收。
 

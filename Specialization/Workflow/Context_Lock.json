@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "d55ce986bec17f706922016ee8b8adce8dce5c6f3cab895d64bbb5878c41ebf2",
+    "Specialization/Status/Specialization_P0_Status.md": "c32d75c8550a984c4c015a0e5411174d0700be69e0271fbc5b3a8a0747e65f43",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "238e5464099d83d024e9e9b6613dc020be6b6e1c95a4689ccde2c282916de587",
+    "Specialization/Workflow/Authority.json": "ee3e1675013596566ef395ee9a2626c3f2073009f626f6fa48f637f82dc451f4",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -201,9 +201,10 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "e6197af7434ee3ccd389b7f90e9c2009bafe1dca16e77d9ac51c6b6fba178297",
+    "Specialization/Workflow/P0-E2.json": "6adf0f0161b6644f721db4d235004bfe23d591f223bace4eb81e23afbb193e53",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Mod/CitySequenceProbe.lua": "82d2109c4a2495104ab3df575e1fcd97dd416418b4e860753943ee1db257ae06",
-    "DevelopmentTests/test_b105_city_sequence.py": "c6ed29cdaf29f3730f9c76e28767098ffd93dc3eddf44c146512d7c4b4c5a72b"
+    "DevelopmentTests/test_b105_city_sequence.py": "c6ed29cdaf29f3730f9c76e28767098ffd93dc3eddf44c146512d7c4b4c5a72b",
+    "Specialization/Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md": "57f99ed55556c1fb02964aed93e4112243f12e0f12e628da13eadb4887cd9d8b"
   }
 }
