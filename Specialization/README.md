@@ -11,7 +11,7 @@ Civ VI / Harmony in Diversity城市专业化与国内商路网络Mod。当前v0.
 | 要回答的问题 | 权威入口 |
 |---|---|
 | 游戏应当怎样运行？ | [Design Spec](Design/Specialization_v0.1_Design_Spec.md) → [各专业/Shared内容索引](Design/Content/README.md)；接受与修订见[ChangeLog](Design/Design_ChangeLog.md) |
-| 技术上如何实现？ | [Architecture v2](Architecture/v2/README.md)，按当前任务读取合同与已实施变更 |
+| 技术上如何实现？ | [技术阅读入口](Architecture/README.md) → 系统说明、合同与相关证据；Codex仍按当前任务读取 |
 | 当前做到哪里、还缺什么、下一步允许什么？ | [Status CURRENT块](Status/Specialization_P0_Status.md)与[Authority所指manifest](Workflow/Authority.json)；计划建议不等于授权 |
 | 哪些结论已被证明？ | Status引用的[Validation Results](Status/Validation/Results/)；STATIC / LOCAL / USER_GAME_TEST分别保留范围 |
 | 哪些调查不应重复？ | [技术索引](Reports/Technical/README.md)及当前计划引用的技术约束；只读与本任务有关的报告 |

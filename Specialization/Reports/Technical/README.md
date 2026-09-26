@@ -1,14 +1,43 @@
-# 技术研究索引
+# 按问题查找技术证据
 
-Document Owner: Codex
+从[架构系统说明](../../Architecture/Specialization_v0.1_Architecture.md#系统如何组成)了解结构；这里回答“依据在哪里、结论能用到哪一步”。当前任务/授权/待测只看[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。文件较旧不代表结论无效，较新也不自动覆盖不同接口的证据。
 
-这是按问题检索的HOW索引，不维护第二份验证矩阵；当前状态只看[Status](../../Status/Specialization_P0_Status.md)。旧报告标题/版本/当时待测文字是历史，先读最新结果和下列取代关系。
+## 城市身份、保存与事件顺序
+
+| 问题 | 优先资料 | 仍须保留的边界 |
+|---|---|---|
+| 当前进度怎样保存、哪些档受支持 | [E2当前切片及完整合同](../../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 当前实现与历史adapter分开；不能用旧City Property说明覆盖Game侧新记录 |
+| 为何不能仅看事件“看起来连续” | [B105原生事件反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md) | 首个Publish不保证事务已结束；后续FoundCity证据只限所测路径 |
+| 其它Mod怎样处理生命周期 | [其它Mod参考](Specialization_E2_Other_Mod_City_Lifecycle_References.md) | STATIC证据，不是本项目所有原生事件路径PASS |
+| 已证明的夺回、双城和新城范围 | [夺回结果](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md)、[双城结果](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)、[新城结果](../../Status/Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md) | 各检查点限定场景，不能合并宣称B108新局三城已验收 |
+| 为什么缺失记录不能由区域补造 | [丢史反例](Specialization_Load_History_Ambiguity.md) | 缺失历史不等于确定无专业，不能猜旧首次完成 |
+
+## 商路、传播与性能
+
+- [后台UI来源用户决定](Specialization_Network_Background_Source_Decision.md)：允许不开贸易窗口取当前路线；[纯Gameplay第二轮审计](Specialization_Trade_Authority_Second_Audit.md)未找到可靠全集，不等于证明绝对不存在。
+- [传播合同导航](../../Architecture/v2/README.md#事件传播与网络基础合同)：A–D2共享事实、样本/ACK、撤销和dirty传播；不同专业收益仍各自解释。
+- [短时idle milestone](../../Status/Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)：不等于55GB长局问题根因已解决；[观测工具调查](Specialization_B072_Runtime_Audit.md)亦不证明所有原生文件能力可用。
+
+## 收益精度与原生效果
+
+- [已知限制/反证索引](Specialization_Implementation_Caveats.md)：住房/GPP延迟、旧档挂载、总督事实时序等均保留测试场景；其中旧任务状态不能派工。
+- [每人口小数](Specialization_Fractional_PerPopulation_Evidence.md)、[HD政策0.3/0.2/0.7调查](HD_Policy_Fractional_PerPopulation_P0D1.md)：每人口路径不能推广为区域平坦收益或每专家任意小数。
+- [区域精度实验](../../Architecture/v2/P0_D1_District_Precision_Probe.md) → [正式科研floor路径](../../Architecture/v2/P0_D1_Research_Cross_Cutover.md)及[用户结果](../../Status/Validation/Results/Specialization_B084_P0D1_User_Pass.md)；[每专家floor](../../Architecture/v2/P0_D2_Research_Apply.md)是另一计算层级。不能把一个接口的成功/失败变成全引擎精度定理。
+- [标准化账本](Specialization_B052_Standardization_Ledger.md)、[原生购买实验](Specialization_B053_Purchase_Currency.md)、[自动折扣](Specialization_B054_Network_Discounts.md)：保留旧实际技术路径；新Industry生产加速目标不能由旧购买折扣证明完成。
+
+## 呈现与候选接口
+
+[机构/能力/carrier调查](../../Architecture/v2/Presentation_Institution_Carrier_Model.md)定义分层；[科研展示原型](../../Architecture/v2/U1_Presentation_Prototype.md)限定HD hook、surface、缓存和隐藏范围。[目标技术spike](../../Architecture/v2/D0032_Technical_Spikes.md)是未来依赖接口，不是已实现清单，也不自动成为当前任务。
+
+## 早期报告与取代关系（历史导航）
+
+下方保留既有专项链接。表格和报告中的版本、待测、下一步只描述原时点；其中算法/API反证仍可按问题查阅。尤其旧科研复制、旧Culture对话、旧Commerce汇聚不代表当前冻结设计。接受规则看Design，当前实现看架构当前切片，验收看Status关联结果。
 
 | 问题 | 优先资料 | 已知结论/不要重复 |
 |---|---|---|
-| 最新科研复制范围 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](../../Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](../../Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
+| 旧科研复制范围调查 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](../../Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](../../Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
 | B051自动刷新 | [实现](Specialization_B051_Automatic_Copy_Yields.md)、[事件修正](Specialization_B051_Background_Fix.md) | 65失败、66收益用户通过；不能只凭只读计算值认定载体已挂 |
-| 标准化下一工程任务 | [目录快照：范围见D0015](Specialization_Standardization_Catalog_Candidate.md)、 [记录研究](Specialization_Standardization_Storage_Research.md)、[剩余研究](Specialization_v01_Remaining_Work_Review.md) | D0015记录/启用范围已定；账本接入和Gold-only仍待实现/验证 |
+| 早期标准化目录/账本研究 | [目录快照：范围见D0015](Specialization_Standardization_Catalog_Candidate.md)、 [记录研究](Specialization_Standardization_Storage_Research.md)、[剩余研究](Specialization_v01_Remaining_Work_Review.md) | 该行描述早期研究时点；后续账本/折扣见下方B052–B054报告，当前任务不由此派发 |
 | 商路来源与桥接 | [用户来源决定](Specialization_Network_Background_Source_Decision.md)、[B025](Specialization_B025_Background_Network.md)、[计数修正](Specialization_B026_Trade_Count_Fix.md)、[D0009](Specialization_D0009_Architecture_Sync.md) | 后台UI已接受；B026旧接收语义被D0009取代 |
 | 纯Gameplay调查 | [第二轮审计](Specialization_Trade_Authority_Second_Audit.md) | 未发现可靠全集，不能推断绝对不存在；不再阻塞后台UI主线 |
 | 永久存储与城市身份 | [Property/建筑](Specialization_P0_Marker_Storage.md)、[正常恢复](Specialization_B021_Normal_Load_Resume.md)、[丢史反例](Specialization_Load_History_Ambiguity.md) | 不用历史事件/当前建筑猜旧专业；极端丢写延后 |
@@ -39,7 +68,7 @@ Document Owner: Codex
 
 - [B059时代对话实现](Specialization_B059_Dialogue_Implementation.md)：自动创作者时代百分比；原生Culture/Tourism/theming待用户实测。
 
-- [B059.78事件刷新修复](Specialization_B059_Event_Refresh_Fix.md)：取消周期扫描，延迟ACK防重发；用户先复验性能。
+- [B059.78事件刷新修复](Specialization_B059_Event_Refresh_Fix.md)：取消周期扫描，延迟ACK防重发；当时复验要求仅为历史。
 
 - [B059.79初始化恢复](Specialization_B059_Initialization_Recovery.md)：无城市玩家guard、失败ACK与可见诊断；78性能已用户确认。
 

@@ -19,6 +19,65 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清按当前Authority和已完
 - [A–D2事件驱动传播合同](v2/README.md)及[机构/能力/carrier分层](v2/Presentation_Institution_Carrier_Model.md)继续适用；下面旧阶段状态不重启旧任务。
 - 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2当前路由查阅。
 
+## 系统如何组成
+
+这是一套同时使用Gameplay Lua、UI Lua和原生数据库效果的系统。Gameplay维护可信城市进度、验证行动并协调收益；UI读取引擎在该context公开的当前事实、呈现结果；SQL定义原生Modifier与内部载体。UI、单位和载体都不能单独充当永久专业历史。
+
+下述为当前develop源码的定域结构核对（STATIC_CONFIRMED：代码证据，不等于实机通过），依据入口、保存/事实路由及对应实施合同。没有重新逐个审计所有能力。实际完成与验证范围由[Status](../Status/Specialization_P0_Status.md#current-authoritative-state)维护；外部运行包必须由部署记录确认。
+
+### 运行入口与职责
+
+[modinfo](../../Mod/SpecializationP0.modinfo)通过AddGameplayScripts启动[Gameplay.lua](../../Mod/Gameplay.lua)，通过AddUserInterfaces启动各UI context，并对城市详情等原UI作特定替换。ImportFiles只表示可载入文件，不证明模块已启动。Gameplay的include/Start建立共享模块引用；模块自己的Start/guard决定实际订阅与写入，不能用文件名中的Probe/DEV判断“只读”或“未启用”。
+
+| 职责 | 当前直接入口/模块 | 实际边界 |
+|---|---|---|
+| 参与资格和引擎读数 | Probe | 测试文明/领袖、人类身份、单人模式核验；不假定人类一定是player0 |
+| 持久进度与行动 | CityProgressionStore、InvestmentAction | Game侧逐城记录与投资收据；保存失败保持可诊断状态，不补造成功 |
+| 当前专业事实 | CityFlowProbe.SupportFacts → EffectiveFacts → CurrentSpecializationFacts | 从保存authority取得基础与投资，结合当前总督派生ACTIVE；旧Flow写入路径在新模式受阻 |
+| 普通建筑与深度 | OrdinaryBuildingCatalog、DistrictCompleteness | 单一目录/深度计算、缓存与按需明细；目录覆盖和D语义是两个问题 |
+| 网络输入与共享结果 | BackgroundRoutes/NetworkSender → NetworkBridge、NetworkInput | 当前路线快照、版本/引用验证、共享派生视图；专业consumer各自解释收益 |
+| 原生收益 | ResearchSupport/IndustrySupport、Lv2Housing/GPP及各能力consumer | 模块拥有各自carrier和退出路径；保存记录不是收益快照 |
+| 玩家呈现与诊断 | CityPotential、P0Panel、InstitutionOverview/Institutions | 读取已确认结果；机构显示目前有科研原型，不能当成四专业完整UI |
+
+### 事实、保存与当前资格
+
+[当前E2合同](v2/P0_E2_Plan.md#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)落地为一个紧凑Game索引和逐城Game记录。索引保存分配序号/原始身份依据；每城保存自身绑定证据、首次完成、投资收据、模板历史和所有权证据。既有记录更新只写该城；它不是把所有未来专业资产塞入一个通用数据库。
+
+[CityProgressionStore](../../Mod/CityProgressionStore.lua)正式Start使用新authority；历史StartLegacyTest只供显式测试adapter。旧Binding/Completion/Journal/Flow仍有文件和调用外壳，但正常新模式的写入、加载扫描及迁移入口受guard隔离。未知/旧档不因“没有记录”就从现存区域反推专业；新档初始化资格、部分保留写入、HELD及回滚支持范围以完整E2合同为准。
+
+[EffectiveFacts](../../Mod/EffectiveFacts.lua)从基础进度与已确认投资得到Potential，再从当前总督门槛求ACTIVE；读取失败保留UNKNOWN语义。[Standardization](../../Mod/Standardization.lua)在新模式将自身模板读写路由至进度store，仍由该模块验证模板目录和学习证据。Identity/Potential/明确永久收据与当前总督、路线、收益载体分开。
+
+失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
+
+### 网络与跨context数据
+
+已接受的[后台UI来源合同](../Reports/Technical/Specialization_Network_Background_Source_Decision.md)允许不开贸易窗口读取当前路线。Gameplay计数核对不是完整端点枚举的替代。路线事件使输入失效/重采，事件历史本身不是现在的网络。
+
+[NetworkInput](../../Mod/NetworkInput.lua)结合当前城市引用与EffectiveFacts形成逻辑输入；NetworkBridge发布共享视图。版本、epoch、引用、dirty signal和样本生命周期用于拒绝旧响应，重复读取不重新捕获整城事实。UNKNOWN、暂时等待、确认失效分别处理；source/recipient资格不是永久保存成果。
+
+[版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。当前仍保留部分旧专业consumer；未来Culture集合并集、Commerce不同方向资格不能仅凭这些基础设施存在就宣称已接入。
+
+### 收益应用与玩家呈现
+
+科研基础设施、跨学科研究、学以致用、学术主持已有正式consumer和各自cutover合同，见[v2收益应用导航](v2/README.md#收益应用与精度)。原生效果通过精确SQL定义和模块自有写入/撤销落地；旧效果按所属切片退出，不按BUILDING前缀全城删除。当前尚启动的CopyYields、Dialogue、GreatWorkAdjacency、CommerceConvergence等旧consumer不能被误称为新冻结设计的全部实现，其退出责任见[迁移矩阵](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+
+“每人口可产生小数”不证明“区域/每专家平坦收益可任意小数”；科研两条floor实现分别是汇总后取整、每专家取整，不能推广成全系统精度规则。具体原生路径与用户接受范围见[技术精度证据](../Reports/Technical/README.md#收益精度与原生效果)。
+
+Institution/Ability/Carrier的[分层目标](v2/Presentation_Institution_Carrier_Model.md)与[科研显示原型](v2/U1_Presentation_Prototype.md)分开：原型挂接HD城市详情、追加累计机构展示、过滤该surface已确认科研城的技术载体显示；不删除实际Building，也未完成所有专业、历史机构或所有Tooltip界面。hover使用展示内容，不建立新的Gameplay扫描请求。已有其他UI路径的轮询不能据此宣称全部消除。
+
+### 目标合同与尚未落地部分
+
+[目标状态模型](v2/D0032_Adaptation.md#canonical-state-model--target-contracts-not-implemented-schemas)包含Historical State、REALLOCATING、专业永久成果与长期合同；这是依赖这些能力时必须满足的职责，不是当前已存在的全部保存schema。新通用cityKey、资产重组、Culture永久对话/考察记录、Commerce长期合同和Research学术传统，不能从旧模块同名或Game存储存在推断完成。各专业Legacy保持独立，未决项不由架构类推。
+
+[总实施计划](v2/D0032_Implementation_Plan.md)解释依赖与切换策略；[当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)限制现在做什么；[技术spike](v2/D0032_Technical_Spikes.md)记录未来必须验证的接口。目标文件中的旧“推荐下一批”是当时规划，授权只从Status及用户明确决定取得。
+
+## 仍适用的限制与重要反证
+
+- [事件批次反证](../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)：首个Publish不能代表完整建城/转移事务结束；[FOUND_CITY证据](../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md)只覆盖所测路径。
+- [身份/丢史限制](../Reports/Technical/Specialization_Load_History_Ambiguity.md)：现有区域、名字或单独坐标不是旧专业历史；当前严格身份策略见E2合同。
+- [精度、UI延迟与接口限制](../Reports/Technical/Specialization_Implementation_Caveats.md)保留原场景；科研后续精度结果沿技术索引读取，不用旧局部成功覆盖新路径失败。
+- [性能milestone证据](../Status/Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)支持所测短时idle改善，不证明55GB长局问题根因已解决。事件驱动、重复事实不重复发布、按需诊断继续适用。
+
 ## 历史实施记录
 
 保留原阶段合同与证据链接；下文“当前/未实现/下一轮”是当时状态。与新目标或后续切片相冲突的实现描述只作历史，不取代当前源码与Status。
