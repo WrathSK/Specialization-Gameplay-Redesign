@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0261",
+    "status": "S0262",
     "runtime": "B104.131 / modinfo131",
     "military": "D0034"
   },
@@ -346,7 +346,7 @@
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "B104_TWO_CITY_LOCAL_PASS",
     "native": "B104_SCOPED_USER_GAME_TEST_PASS: tested Research/Industry investment isolation and restart/load; B103 recapture evidence retained",
-    "next": "Await next narrow plan review; no automatic new-city/Claim/F implementation",
+    "next": "New self-founded-city registration PLAN_ONLY; await explicit implementation approval; provenance gate before enablement",
     "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
   }
 }

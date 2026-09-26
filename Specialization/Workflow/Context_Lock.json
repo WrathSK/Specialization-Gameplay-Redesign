@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B104 scoped native two-city evidence accepted; no runtime/Design changes",
+  "review_basis": "B104 scoped PASS retained; next fresh-city plan reviewed against current targeted runtime and PROG authority; no implementation",
   "files": {
     "AGENTS.md": "03c9af87dccaefcf20814cb533a0316d85c8aa415a1a009b21850aaf6e62769f",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "0c8f26f3ad23a3684f606c03686029bb63d27cd8ba9d518c8c2234f0a2a7a0bb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5",
     "Specialization/README.md": "6fac60749809637b41bc5252da7d227bbf2fc653c8479fb2718b92e0e22c87cc",
-    "Specialization/Status/Specialization_P0_Status.md": "dcb76cf434f01b370b3667ca439e12c8b0ef74e70a2272fbe50512dd0148833a",
+    "Specialization/Status/Specialization_P0_Status.md": "cf99afd4fcab5e33441d096789e665b9963ca06ef642c5d41bbe0437e699b613",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "7ea9ca82d437baaabc83bb2c11c6c1f6f89d907f2c880c39a2cca479b0fe89f1",
+    "Specialization/Workflow/Authority.json": "d4e7e76a9a9fefbf6a485848d0d2d7a35fd5cdb7951c1d5a0f70563da2c06465",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "ac778e0d653c9e7c708a71d508f7d3ce7585a04a617811d54061ec58880ce1aa",
@@ -178,7 +178,7 @@
     "DevelopmentTests/test_p0_e1_mapping.py": "ea37ad80c8bc9e2b73e90ba59c3416ae94e13d71922f67aab136f7c1ee6e8135",
     "Specialization/Status/Validation/Results/Specialization_B093_P0E1_Paused_Review.md": "3abd2dcc66958dad5714f8ca63c1a8c7fb83b0de700a5c84f0808437378fa395",
     "Specialization/Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md": "3046bb853bf940e3141101a43f89f58359490bb0a6be26e5385b6c7083cec214",
-    "Specialization/Architecture/v2/P0_E2_Plan.md": "41ba46ddf76d41b5db75aaa2599c475a8caf4b11e94d51e2b716cff882b0b378",
+    "Specialization/Architecture/v2/P0_E2_Plan.md": "08a2fe8d94f1e808fd6faf04d89bdc56bc1e3d558f8819cd7ec68d86fb15c1f1",
     "Mod/FreshBindingHook.lua": "e5a0c80b2d7139f47a9701636dbca1dee058513f7a88c23d01a56da7013c6195",
     "Mod/CityProgressionStore.lua": "7f9fee2ce964bd44deb46cec37b43967accbd845f6036f3c1aec03ae0b1a0a89",
     "DevelopmentTests/test_p0_e2.py": "a759a0531c7a42cda4b18781d96a3dd519cd8bed093a090d8e0f5122b1d3ab17",
@@ -201,7 +201,7 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "aa370d6689fedcae668bac5f5bc7321794c611b8c31f4e35bb47f2146f63df2b",
+    "Specialization/Workflow/P0-E2.json": "05f84656fab6567adde97e8daba9578c1d716da2020bca1b2c03c7be2437fc05",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08"
   }
 }

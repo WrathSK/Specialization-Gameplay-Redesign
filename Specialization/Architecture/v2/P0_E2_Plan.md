@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B104_TWO_CITY_LOCAL_PASS。用户已授权双城隔离切片并完成本地验证；B103单城夺回实机证据保留，B104双城待验；新城/Claim/F仍未授权。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
+Status: PARTIAL_IMPLEMENTED / B104_TWO_CITY_SCOPED_USER_PASS。B103单城夺回、B104双城投资/保存已在各自实机场景通过；新自建城登记仅计划待审，Claim/F仍未授权。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
 Baseline: B094.121 / modinfo121，runtime source a113a6096e141112a5a7ef67453afd8cdc00ac3c。D0035 / A0161；四专业v0.1范围不变。
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
@@ -460,3 +460,56 @@ E2往返 now reads the selected own city and UI actually sends its CityID. No se
 3. Save separately, exit/restart and reload. Read each selected city's report: two states retained. No repeat conquest required for this slice unless new native evidence contradicts the routing.
 
 Rollback is B103 complete runtime plus **pre-schema2 save**. No reverse migration; do not promise B103 can read a save changed by B104. Still E2 partial, next proposal after acceptance is new self-founded-city registration, not automatic Claim/F.
+
+
+## Next slice — new self-founded city registration (PLAN ONLY)
+
+User requested continuation after B104 acceptance; this authorizes this plan, not implementation. Runtime baseline B104.131 / source bfe7003; D0035/A0161 unchanged. PROG-001/002/003/005 govern normal first completion and investment. PROG-006..009 conquest initialization is explicitly excluded. Four professions/local human only.
+
+### Goal and narrow boundary
+
+Prove one newly founded own city can enter the Game progression backend while genuinely unassigned, survive a reload before its first qualifying district, lock the first valid completed four-profession district at Potential1, then accept one ordinary Settler investment with an existing registered city unchanged. No new yield formula/carrier. This is not merely an automatic import after old writers have already established a specialization.
+
+Keep the existing **two-record test cap** in this slice. Use a separate test save containing at most one registered existing control city before founding the new city. Do not delete either record from the accepted two-city save to make room. Full-cap attempts explicitly report outside this test slice and do not partially take ownership or silently claim registration; previously untouched legacy cities remain legacy. Removal of the test cap/general rollout is separate E2 closure work, not a permanent Gameplay city limit.
+
+### Current code findings and intended cutover
+
+| Path | Current B104 | Proposed work |
+|---|---|---|
+| BindingProbe / FreshBindingHook | CityBuilt → validated binding → foundation journal → Flow; finite original token allocation | Reuse existing binding identity, inspect exact source evidence and callback ordering; do not create universal cityKey or widen32-token limit |
+| CityProgressionStore | Inner validation requires four-profession identity/baseP1; Import requires full old specialized history | Add explicitly discriminated fresh-unassigned record with foundation provenance, NONE/P0/no receipts; preserve B103/B104 specialized record acceptance without guessing history |
+| CityJournalProbe / CityFlowProbe | Owns guard freezes registered-city writers; old normal completion writes City properties | Hand off only confirmed fresh target after foundation evidence; registered target's first-completion transition belongs to Game store, legacy completion/resume must skip it |
+| EffectiveFacts / current facts / Network | Existing migrated specialized Base contract | Validate explicit known-unassigned output: no abilities/investment/source; distinguish unknown/held from NONE; specialized result uses unchanged current facts |
+| InvestmentAction / consumers | Shared routed investment and current derivation | Reuse after first identity established; no second receipt backend, no temporary ACTIVE/Network snapshot restoration |
+| P0Panel / diagnostics | Selected-city progress and native report | Show city, registration origin, unassigned/locked state, first completion, Potential/receipts and actionable failure only |
+
+### First implementation gate: prove genuine foundation
+
+**CityBuilt alone, current empty districts, city name or coordinates are not sufficient.** B102/B103 native evidence already shows CityBuilt during conquest. Before enabling automatic enrollment, inspect existing binding/foundation callbacks and available authoritative founding/settler evidence. Require positively supported genuine foundation and exact current owner/reference, load-ready phase, no previous records/transfer evidence; reuse validated original binding token. Do not infer new foundation merely from absence of a conquest event yet.
+
+If existing/native source evidence cannot safely distinguish self-founding from acquisition, stop the enrollment path as TECHNICAL_FOUNDATION_BOUNDARY and propose the smallest isolated evidence probe. Do not enable a guessed path or quietly broaden Claim. This is an implementation technical gate, not a new Gameplay decision or a claim that current FreshBindingHook already proves every acquisition case.
+
+### State and write ordering
+
+1. Confirm fresh provenance and empty ordinary first-completion state; atomically persist full target record and its takeover status before consumers can use it. Existing validated foundation bootstrap may supply binding/Journal evidence, but must not remain a parallel writable progression authority after takeover.
+2. Record distinguishes normal first-completion eligibility from unknown old city, conquest candidate and REALLOCATING. NONE/P0 carries no specialization effects or investment eligibility.
+3. Persist registration/eligibility before reload; load is restoration, never a fabricated district-completion event. No scanning existing districts on load to choose Identity.
+4. First live valid completion checks current city/reference, completed status and approved replacement family; lock identity/P1 and completion evidence in one confirmed Game mutation. Later/duplicate notifications cannot overwrite it. Preserve delivered event order, no end-turn aggregation or domain priority.
+5. After lock, use existing investment backend and current Governor/Network derivation. Unknown/write failure holds this target rather than falling back to frozen City records. Document exact schema compatibility before coding; no implicit in-place reinterpretation of missing fields.
+6. New unassigned city's ownership loss, destruction/re-foundation or ambiguous transfer must remain held/non-active, never enter Claim or be reconstructed from current districts. Do not claim full pre-specialization transfer support; recoverable diagnosed stop is an explicit slice boundary.
+
+### Validation and acceptance
+
+W0004 L3 because persistent authority and completion ordering change. Target only affected foundation/first-completion/store/investment lifecycle, plus B104 two-city and B103 recapture/withdrawal regressions where touched. No automatic full historical or10k stress suite.
+
+Local cases: genuine fresh enrollment; duplicate founding; conquest/load/rebuilt/unknown/AI/foreign rejection; NONE/P0 save/load; placement versus completed district; four approved families/replacements; first of competing notifications wins; duplicate completion; investment blocked before identity and once afterward; existing record unchanged; full-cap refusal; failed write/readback and reload; old schema preservation; idle notifications cause no repeated scan/write. Confirm no old/new concurrent writer and no new carrier/Design changes. Preserve module-owned confirmed-loss semantics for existing specialized records.
+
+Minimal native flow (after a separately authorized implementation/deployment): use a separate save with one registered control, found one new city, read brief unassigned report; save and restart/load **before** first district completion; finish one four-profession district, check P1, invest once for P2; compare unchanged control; separately save/restart/load and confirm. Cheat-assisted completion may be used as current workflow permits; do not claim natural-production timing beyond observed evidence. Two reload points test different states and cannot substitute for one another. No repeat conquest required for this slice.
+
+Exit: fresh provenance gate justified; local checks pass; minimum native flow passes; no legacy double-write or cross-city mutation. If native foundation evidence contradicts assumptions, stop and preserve evidence. Local PASS alone is not E2/native completion.
+
+Rollback: committed B104 runtime plus untouched pre-slice save; no promise that B104 reads saves containing a new unassigned schema. No automatic reverse conversion. No deployment during planning.
+
+### Exclusions / next dependency
+
+No first AI conquest snapshot/Claim, current two-city save record deletion, all-city migration, AI/MP, new cityKey, profession Legacy invention, Research Tradition/F or new gameplay effects. After scoped acceptance, separately plan remaining E2 enrollment/generalization and conquest snapshot/Claim gates. This plan is awaiting explicit implementation authorization.
