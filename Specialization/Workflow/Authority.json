@@ -30,7 +30,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "PENDING_B107_IMPLEMENTATION_COMMIT",
+  "runtime_commit": "c5bb3d9915d4f35f66526f7118f3cf62b434938c",
   "current_batch": "P0-E2 FRESH_REGISTRATION_LOCAL_PASS_NATIVE_REQUIRED",
   "next_batch": "Await B107 native fresh-city NONE/P0, first completion/investment and coldload validation; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
