@@ -1,6 +1,8 @@
 # Architecture v2 — current D0032 adaptation / historical AV2-I001
 
-当前进度：[P0-E2 B107.134正面建城登记](P0_E2_Plan.md#b107134--authorized-positive-founding-registration-implementation)简化新局单城路径实机通过：P0自动登记、科研P1及用户确认重启后P2保留；旧新混合对照延后，P0单独冷加载未确认。E2仍partial，无Claim/F。
+当前计划：[B107后E2收束](P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)。优先新局多城统一保存/旧writer退出；旧新混合实机兼容不再为必做门禁。待授权，runtime仍B107。
+
+已验证进度：[P0-E2 B107.134正面建城登记](P0_E2_Plan.md#b107134--authorized-positive-founding-registration-implementation)简化新局单城路径实机通过：P0自动登记、科研P1及用户确认重启后P2保留；旧新混合对照延后，P0单独冷加载未确认。E2仍partial，无Claim/F。
 
 历史进度：[P0-E1只读身份核对B088.115](P0_E1_Identity_Evidence.md)本地完成；原生观察发现分城转自由城后City记录缺失，正确UNKNOWN；永久连续性门禁保留，不进入E2/F。U1技术用户PASS，最终排版后置。
 

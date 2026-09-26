@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0035",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0271",
+    "status": "S0272",
     "runtime": "B107.134 / modinfo134",
     "military": "D0034"
   },
@@ -358,17 +358,17 @@
       "Lua/manifest/context/deployment integrity",
       "B107 actual founding/first-completion/binding/legacy-guard mixed-schema and failure tests"
     ],
-    "user": "Completed simplified new-game single-city flow in reported scope; mixed migrated/fresh control deferred, P0-only coldload unconfirmed; see B107 result report"
+    "user": "No test now. Future authorized multi-city slice:3 new-path cities, one P0, distinct specialties in other2, invest only one and coldload/check all; replaces migrated/fresh native compatibility task."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "POST_B106_PLAN_IMPLEMENTED_UNDER_EXPLICIT_USER_AUTHORIZATION",
+    "plan": "POST_B107_REMAINING_PLAN_READY; NEXT_SLICE_NEW_GAME_MULTI_CITY_AUTHORITY",
     "implementation": "B107.134_LOCAL_SIMULATION_PASS; simplified native fresh-city path scoped PASS; E2 partial",
     "native": "B107 scoped USER_GAME_TEST_PASS: screenshots normal-founding NONE/P0 and Research P1; user confirms restarted-game P2 persistence. Old/new coexistence deferred; P0-only coldload not independently confirmed.",
-    "next": "No immediate repeat test; await remaining E2 plan authorization, no Claim/F",
+    "next": "Await next-slice explicit implementation authorization; old/new native compatibility removed as required gate, retain local adapter regression",
     "scope_review": "Game-backed NONE/P0 and first completion with fixed evidence buffers; no new carriers/formulas; existing ownership regressions preserved"
   }
 }

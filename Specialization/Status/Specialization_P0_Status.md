@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0271
+Status Revision: S0272
 Implementation Build: develop P0-B-107.134 / modinfo134 E2_FRESH_REGISTRATION; live B107.134 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_FRESH_REGISTRATION_SCOPED_USER_GAME_TEST_PASS
+Work State: P0_E2_REMAINING_PLAN_READY_AWAITING_AUTHORIZATION
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-26 [B107后剩余E2计划](../Architecture/v2/P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility)已整理，仅计划、未实施。旧迁移＋新城混合实机检查退出必做队列，本地兼容回归保留；最终验收改为新体系多城隔离＋一次冷加载（含P0对照）。下一建议：新测试局全城进度authority/旧writer cutover，处理2城/32城实验限制和重复绑定快照/整集合复制边界；之后首次AI征服snapshot、Claim、剩余生命周期、E2结项/F门禁。新档优先为下一批推荐支持合同，未改当前B107旧档行为。无新Design/源码/部署，无立即测试；等待下一段明确实施授权。
 
 2026-09-26 B107.134 [新城登记实机证据](Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md)：3图确认同一城0/65536正常建城自动登记1/2、NONE/P0/ACTIVE0/KNOWN、随后RESEARCH/P1/ACTIVE1；用户明确确认重启后P2保留。简化新局单城路径 USER_GAME_TEST_PASS；P2读档为用户陈述，不伪称截图显示投资1/ACTIVE2。旧迁移城＋新城混合对照按对话暂列待办；P0独立冷加载未单独确认，不能仅凭两图时间判断。相关失败/重复保护仍为本地证据。原图3/3 hash一致归档；无runtime/Design/main/部署变化，无需立即重复测试，E2仍partial，不自动进入Claim/F。以下历史。
 

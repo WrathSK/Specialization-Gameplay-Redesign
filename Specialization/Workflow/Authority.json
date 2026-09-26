@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0271",
+    "status": "S0272",
     "runtime": "B107.134 / modinfo134",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "c5bb3d9915d4f35f66526f7118f3cf62b434938c",
-  "current_batch": "P0-E2 B107_FRESH_REGISTRATION_SCOPED_USER_GAME_TEST_PASS",
-  "next_batch": "Await user direction for remaining E2 plan; mixed old/new native check deferred, P0-only coldload unconfirmed; no immediate repeat test, no Claim/F",
+  "current_batch": "P0-E2 REMAINING_PLAN_READY",
+  "next_batch": "Await authorization for new-game multi-city authority / legacy-writer cutover; no immediate test, Claim or F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B107.134 / modinfo134 deployed;153/153 MATCH;implementation c5bb3d9/deployed HEAD d6e5ed0;B106 full recovery verified; receipt B107.134-d6e5ed0-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B107 scoped founding/store/binding/legacy writer review and targeted L3 regressions; B106 native event evidence reused",
+  "context_review_status": "Post-B107 scoped remaining-plan review: actual collection/allocator/copy constraints and canonical PROG/save policy; no runtime edits",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

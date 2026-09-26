@@ -77,3 +77,8 @@ See [checkpoint](../Architecture/v2/P0_E2_Plan.md#b105132--authorized-event-batc
 ## B107 fresh-city native follow-up — scoped acceptance (2026-09-26)
 
 [Evidence](Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md): automatic normal-founding NONE/P0 and Research P1 pictured; P2 retained after restart explicitly user-confirmed. Old migrated control + fresh inner-schema2 coexistence remains deferred at the user's simplified-new-game test boundary; local regression is retained. P0-only coldload has no separate confirmation (two P0 images alone do not prove restart). Neither item requests immediate retesting or searching old saves. No cap expansion/Claim/F authorization is implied.
+
+
+## Post-B107 test-priority update — 2026-09-26
+
+The standalone migrated-old + fresh-new native compatibility test is removed from the required user-test queue, following the user's question and the [remaining-E2 plan](../Architecture/v2/P0_E2_Plan.md#post-b107--remaining-e2-plan--new-path-isolation-over-migration-compatibility). It was a transitional adapter check, not the final product invariant; existing local compatibility regression remains while the adapter exists. This is cancellation/deprioritization, not native PASS. Future mandatory isolation test uses3 new-path cities and one coldload, including one NONE/P0 control; this also covers the currently unconfirmed P0-only load assertion without a separate repeat. No user test or search for old saves requested now. Runtime remains B107 with existing test limits until separately authorized implementation.
