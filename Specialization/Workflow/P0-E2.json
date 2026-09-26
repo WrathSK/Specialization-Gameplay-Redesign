@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0265",
+    "status": "S0266",
     "runtime": "B105.132 / modinfo132",
     "military": "D0034"
   },
@@ -356,7 +356,7 @@
     "plan": "AUTHORIZED_REVISED_FRESH_CITY_SLICE_WITH_NATIVE_GATE",
     "implementation": "B105_EVENT_BATCH_EVIDENCE_LOCAL_PASS; fresh record/cutover NOT_IMPLEMENTED",
     "native": "B105 observer scoped PASS; native Publish interleaving confirmed; B104 two-city and B103 recapture scoped PASS retained",
-    "next": "Revise boundary proposal with positive evidence; automatic fresh enrollment remains gated; no Claim/F",
+    "next": "Other-Mod static review found UnitActivate/FOUND_CITY candidate; propose scoped native observation; gate remains",
     "scope_review": "Passive one-location observer checkpoint under approved EVENT_BATCH_BOUNDARY; existing progression unchanged"
   }
 }

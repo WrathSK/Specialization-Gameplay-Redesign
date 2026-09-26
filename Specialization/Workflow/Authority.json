@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0265",
+    "status": "S0266",
     "runtime": "B105.132 / modinfo132",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "29508c74a055d90326a4ae91ce72d046a09a4da7",
   "current_batch": "P0-E2 B105 NATIVE_SEQUENCE_OBSERVED / EVENT_BATCH_BOUNDARY",
-  "next_batch": "Scoped boundary plan revision: first Publish completion disproven; no repeat test or automatic enrollment/Claim/F",
+  "next_batch": "Propose bounded FOUND_CITY event observation; positive founding evidence candidate only, no automatic implementation/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B105.132 / modinfo132 deployed;153/153 MATCH;B104 recovery verified; receipt B105.132-29508c7-playtest.json",
   "stable": "main B069.96 / modinfo96",

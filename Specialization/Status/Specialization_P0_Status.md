@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0265
+Status Revision: S0266
 Implementation Build: develop P0-B-105.132 / modinfo132 E2_EVENT_BATCH_EVIDENCE; live B105.132 verified 153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_EVENT_BATCH_NATIVE_GATE
 
 ## CURRENT AUTHORITATIVE STATE
+
+[其它Mod事件处理调查](../Reports/Technical/Specialization_E2_Other_Mod_City_Lifecycle_References.md)：找到AutoPlay及原版UI采用UnitActivate/FOUND_CITY作为正面建城信号；GCO采用关联事件，HD采用征服缓存，Captive Leaders对已知pending操作回合核对。均STATIC_CONFIRMED，非本项目原生账本PASS。下一建议最小采集该建城信号及转移负对照，先确认Gameplay送达；不再依赖首个Publish，没有实施或新测试要求。B105新城自动登记门禁保持；以下为此前结果。
 
 B105四图已归档：[原生事件顺序结果](Validation/Results/Specialization_B105_E2_Event_Boundary.md)。自建与转移均出现 Built→Publish→后续Added/Initialized；转移更明确为早到Publish→Removed/Added/Initialized→Transfer→Publish→Playback，早到快照已是新Owner。事件采集所测路径 USER_GAME_TEST_PASS；“首个Publish就是完整事务结束”被实机反证，EVENT_BATCH_BOUNDARY仍阻止新城自动登记。无ReadRequest干扰标记、无缺页/采集错误；不要求重复这两组。下一步仅收窄边界方案：正面转移完成证据＋新建来源/更强收尾依据；不以等待时长/Publish次数猜测。B103/B104验收保留，无runtime/Design/main/部署变化。以下为历史记录。
 

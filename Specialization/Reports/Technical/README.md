@@ -42,3 +42,5 @@ Document Owner: Codex
 - [B059.78事件刷新修复](Specialization_B059_Event_Refresh_Fix.md)：取消周期扫描，延迟ACK防重发；用户先复验性能。
 
 - [B059.79初始化恢复](Specialization_B059_Initialization_Recovery.md)：无城市玩家guard、失败ACK与可见诊断；78性能已用户确认。
+
+- [E2其它Mod城市事件处理参考](Specialization_E2_Other_Mod_City_Lifecycle_References.md)：GCO关联事件、AutoPlay/原版FOUND_CITY正面证据、HD定域缓存、Captive Leaders回合核对；仅静态调查，不关闭B105门禁。
