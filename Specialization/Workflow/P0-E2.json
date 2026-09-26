@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0258",
+    "status": "S0259",
     "runtime": "B103.130 / modinfo130",
     "military": "D0034"
   },
@@ -341,7 +341,7 @@
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "B103_HYDRATION_REPAIR_LOCAL_PASS",
     "native": "B103_RESEARCH_RECAPTURE_COLDLOAD_GOVERNOR_LV1_LV2_USER_GAME_TEST_PASS_SCOPED",
-    "next": "Minimal native test complete; await next E2 plan authorization; nonzero-route native effects unproven; no Claim/F",
+    "next": "PLANNED_NOT_AUTHORIZED: two existing-city records and lossless singleton adaptation; no automatic whole-city migration/new cityKey/Claim/F",
     "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
   }
 }

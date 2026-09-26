@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0258",
+    "status": "S0259",
     "runtime": "B103.130 / modinfo130",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "e238584668dddb1d1f4fe8866b5e56e02f579cef",
   "current_batch": "P0-E2 B103 RECAPTURE_SCOPED_USER_GAME_TEST_PASS",
-  "next_batch": "Await next minimal E2 plan authorization; no Claim/F implementation",
+  "next_batch": "Proposed E2 two-existing-city record isolation; PLANNED_NOT_AUTHORIZED; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B103.130 / modinfo130 deployed;152/152 MATCH;B102 recovery verified; receipt B103.130-e238584-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Specialization README D0025 and test README B051 introductory text are stale; current Spec/Status/A0161 win. Runtime inventory B076 remains historical, use Runtime_Index overlay.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B103 exact foreign load hydration exception; bounded first-fault diagnostic; targeted L3 PASS, native pending",
+  "context_review_status": "B103 scoped native recapture/coldload PASS; E2 inventory and two-record next-slice proposal only",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

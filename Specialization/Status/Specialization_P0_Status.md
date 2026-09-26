@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0258
+Status Revision: S0259
 Implementation Build: develop P0-B-103.130 / modinfo130 E2_HYDRATION_REPAIR_CANDIDATE; live B103.130 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_E2_RECAPTURE_SCOPED_USER_GAME_TEST_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+[E2当前盘点及后续切片计划](../Architecture/v2/P0_E2_Plan.md#2026-09-25--e2-inventory-and-next-slice-proposal-not-authorized)已整理，仅计划。B103单城夺回/冷加载PASS保持；新后端仍singleton，其它城旧路径。建议下一最小批：两座完整已有专业城显式登记与保存隔离（含B103旧记录无损适配），不自动全城迁移/新cityKey，不混入首次AI城snapshot/Claim/F。之后另审新自建城、征服snapshot、Claim入口及E2支持范围收束。无新Gameplay决策阻塞两城切片，等待用户实施授权；本轮runtime/Design/部署不变。
 
 2026-09-25 [B103三图验收](Validation/Results/Specialization_B103_E2_Recapture_Pass.md)：原Owner科研城夺回ACCEPTED；原0/262146→外方3/131073→当前0/327682，同记录rev4，token缺失仍由转移证明确认；RESEARCH/P2/投资1保留，ACTIVE1/KNOWN。用户确认第三图为保存冷启动读档后，且派遣总督后1/2级能力正常。单城夺回/永久进度/读档及所述能力恢复USER_GAME_TEST_PASS。Network当前引用MATCHED、routes0，仅确认无路线视图，不扩大到有路线收益或四专业全覆盖。成功后的退出0/23是会话计数重置，不是失败；旧23/23证据保留。截图3/3 hash归档。E2仍partial，Claim/F未授权，旧游戏内载入崩溃独立保留；本轮仅文档，无runtime/部署变化。无需重复本次测试，等待下一最小段计划授权。下方为历史实现/待验记录。
 

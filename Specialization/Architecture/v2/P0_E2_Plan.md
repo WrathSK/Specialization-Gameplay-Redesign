@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: AUTHORIZED / PARTIAL_IMPLEMENTATION_NOT_DEPLOYABLE。2026-09-21用户授权首段实施；当前同Owner保存链本地通过，确认退出的效果清理未完成。
+Status: PARTIAL_IMPLEMENTED / B103_SCOPED_NATIVE_PASS。当前单城夺回及冷加载已通过所测科研城实机验证；新增后续切片均PLANNED_NOT_AUTHORIZED。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
 Baseline: B094.121 / modinfo121，runtime source a113a6096e141112a5a7ef67453afd8cdc00ac3c。D0035 / A0161；四专业v0.1范围不变。
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
@@ -378,3 +378,54 @@ One session-only first-fault scalar event slot supplements the existing latest-e
 L3 targeted LOCAL_SIMULATION_PASS (not engine PASS): four identities; both foreign load notification orders and repeated initialization; HELD coldload then screenshot-order conquest; accepted proof coldload; immutable base/investment; no token rewrite; duplicate return; wrong owner/ID, premature new owner, old endpoint after transfer begins, initialization-before-add and incomplete-chain reload reject. Existing B101/B102 proof, B097 recapture/current-fact, E2 investment, B100 diagnostics and owned-exit regressions pass; Lua compile/modinfo pass. Exact exit catalog remains 21 modules/2322 IDs plus existing non-carrier exits. No Claim/F/Design changes.
 
 Native gate remains USER_GAME_TEST_REQUIRED. Minimal test after deployment: cold-start the existing foreign-held save, conquer back, read E2 return + city specialization; only if accepted, save separately and cold-start to check retained progress/current ACTIVE/Network. No re-import/investment/trade repetition. Pre-return save remains the rollback boundary.
+
+
+## 2026-09-25 — E2 inventory and next-slice proposal (not authorized)
+
+Baseline B103.130, source e238584, acceptance96a7d05, D0035/A0161. This is planning only, not authorization for multi-city cutover, Claim or F. Current native evidence: [B103 scoped acceptance](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md).
+
+### Implemented versus verified
+
+| Capability | Actual runtime | Evidence / limit |
+|---|---|---|
+| Explicit existing-city import | One Game record, PREPARED/ACTIVE, original reference/base/receipts, no old-writer fallback | Actual Lua local regression; tested Research record persisted through ownership cycle |
+| Settler investment | Migrated target uses Game ledger, existing debit/receipt lifecycle; others old backend | Local duplicate/recovery/new-investment tests; native one retained receipt, not a new post-return investment test |
+| Ownership loss | HELD_TRANSFER, permanent record retained;21 owned carrier groups plus Network/probe exits, no ordinary-building deletion | Local full allowlist/UNKNOWN/idempotence; native23/23 and Research observations; not four-profession full yield certification |
+| Original-owner recapture | Valid original token or strict saved foreign reference + native transition proof; new current reference persisted | Research conquest ACCEPTED with nil token, P2/receipt1, coldload PASS |
+| Current ACTIVE | Derived from current Governor/eligibility, not old snapshot | Native ACTIVE1 before governor; user confirms Lv1/Lv2 after governor; local other states |
+| Current Network | Invalidation/current facts and reset sample paths implemented | Native new reference MATCHED, source true/receiver false/routes0; nonzero-route effects only locally covered |
+| Own Industry templates | Migrated-city Game-backed own ledger retained, missing history held | Local only for cross-owner template retention; no inference about unimplemented Wonder credit |
+| Human eligibility / diagnostics | Actual Player.IsHuman, no player0 assumption; fixed latest events/first fault; on-demand reports | Basic reports/native and scoped acceptance; no AI/MP enablement |
+| Multi-city new backend | NOT IMPLEMENTED: root is one record; import cannot add a second | Other cities still old storage; one city's PASS does not certify global save safety |
+| New-city direct new-backend registration | NOT IMPLEMENTED | Existing new-city legacy flow remains; not a new Game-ledger registration system |
+| First no-history AI conquest | Snapshot/LegacySet/Claim modes NOT IMPLEMENTED | Never infer known-empty history from UNKNOWN; no Claim projects/cost selected |
+| General History / REALLOCATING | Architecture contract, NOT a completed runtime state machine | No restructuring actions or general historical maximum ledger |
+| Profession future permanent systems | Academic Tradition, new Culture observations/Dialogue ownership, Commerce contracts/reputation not supplied by E2 | Existing legacy abilities are not evidence of frozen-design implementation |
+
+### Recommended order within E2
+
+1. **Two-record isolation slice (recommended next)**: explicit registration of two already-specialized, fully evidenced own cities; no automatic all-city migration.
+2. **New self-founded city slice**: event-proven foundation/first completion into new storage, no load-time reconstruction; requires record routing first.
+3. **First AI conquest snapshot slice**: prove no prior specialization history, one-time completed four-domain set, persist mutually exclusive modes; no Claim action yet. Pending Claim cities remain unassigned as Design allows. Empty-set future-completion path needs its own targeted acceptance.
+4. **Claim action slice**: UI/project entry, authoritative one-choice completion, old first-completion exclusion; precise low-cost versus one-turn primitive/cost gate reviewed before implementation, no invented numeric balance.
+5. **E2 support-boundary closure**: confirm supported new/test saves and explicit old-save migration/rollback policy, remaining relevant native gates; only then review P0-F eligible-age scope.
+
+These are implementation slices of existing E2, not a new architecture program. Snapshot could be explored in isolation, but a usable implementation needs more than the existing occupied singleton root; solving routing first avoids disposable storage paths. No universal city identity or automatic whole-save migration is proposed.
+
+### Next slice: two existing cities, independent saved progress
+
+**Goal:** remove the singleton bottleneck with the smallest verifiable two-city experiment. Reuse current binding provenance and per-record recapture proof; never match by name, coordinates alone or guessed CityID. Existing validated token supplies identity for explicitly imported records; collision/ambiguous provenance holds. No new universal cityKey scheme.
+
+**Scope:** within the existing Game storage responsibility, add a versioned record collection and current-reference routing; preserve B103 singleton as a lossless first record on supported load, validate before committing any conversion, no duplicate writable authority. Keep each record's lifecycle, exit/retry state, transition proof and sample invalidation isolated. Explicitly import a second intact own specialized city. Unimported cities retain legacy backend. No source formula/new carrier/Legacy rewrite. Unknown or corrupt record must not select another city's record or silently fall back.
+
+**Likely modules:** CityProgressionStore; its startup/read/write routing in Gameplay, EffectiveFacts, InvestmentAction, NetworkInput, Standardization and existing Binding/Journal/Flow guards only where singleton assumptions require adjustment. On-demand diagnostic reports selected city's record, not the previous singleton regardless of selection. Exact file closure reviewed at implementation under W0001, not a full unrelated audit.
+
+**W0004 L3 local acceptance:** lossless schema conversion and repeated load; two imports with distinct tokens/references; investment affects only target; one lost/returned city while the other continues current abilities and ledger; separate event/exit/retry states; duplicate/UNKNOWN/collision and same-ID-different-owner rejection; accepted return coldload; no old/new double writes; untouched third legacy city; existing B103 ordering/hydration protections; current Network input invalidation only where appropriate. No broad historical/stress run by default.
+
+**Minimal future native test:** use a copy of the accepted B103 save, import one other intact own specialized city; invest once in that second city and verify first unchanged; separate save/coldload, read each city's concise state. Local tests cover transfer isolation; do not demand repeat conquest unless implementation introduces an unproven native event dependency. Missing intact second fixture is a test preparation boundary, not authority to reconstruct lost history.
+
+**Exit:** two records coexist, selected-city diagnostics and investment route correctly, saved progress survives reload, singleton compatibility proven locally and native two-city check reported. The test support remains explicit migrated cities, not all legacy saves/cities. Rollback uses B103 package plus pre-conversion save; no automatic reverse migration.
+
+**Explicit exclusions:** automatic full-city migration, new-city initialization, first AI snapshot/Claim, history/REALLOCATING actions, AI/MP, F/new abilities, Design and balance edits.
+
+No new Gameplay decision blocks this proposed slice. User scope approval is required before implementation. Nonzero-route native reapplication and old in-session reload crash stay separate evidence gaps; they do not justify claiming E2 fully complete or running unrelated regressions now.
