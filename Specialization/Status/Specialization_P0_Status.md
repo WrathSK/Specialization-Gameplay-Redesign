@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0257
+Status Revision: S0258
 Implementation Build: develop P0-B-103.130 / modinfo130 E2_HYDRATION_REPAIR_CANDIDATE; live B103.130 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_HYDRATION_REPAIR_LOCAL_PASS
+Work State: P0_E2_RECAPTURE_SCOPED_USER_GAME_TEST_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+2026-09-25 [B103三图验收](Validation/Results/Specialization_B103_E2_Recapture_Pass.md)：原Owner科研城夺回ACCEPTED；原0/262146→外方3/131073→当前0/327682，同记录rev4，token缺失仍由转移证明确认；RESEARCH/P2/投资1保留，ACTIVE1/KNOWN。用户确认第三图为保存冷启动读档后，且派遣总督后1/2级能力正常。单城夺回/永久进度/读档及所述能力恢复USER_GAME_TEST_PASS。Network当前引用MATCHED、routes0，仅确认无路线视图，不扩大到有路线收益或四专业全覆盖。成功后的退出0/23是会话计数重置，不是失败；旧23/23证据保留。截图3/3 hash归档。E2仍partial，Claim/F未授权，旧游戏内载入崩溃独立保留；本轮仅文档，无runtime/部署变化。无需重复本次测试，等待下一最小段计划授权。下方为历史实现/待验记录。
 
 B103.130：[读档初始化修复](../Architecture/v2/P0_E2_Plan.md#b103130--authorized-foreign-load-hydration-repair)已获授权。仅忽略转移开始前精确匹配已保存外方引用的加入/初始化；不清除既有错误，真实乱序/冲突继续拒绝。新增固定单条首次拒绝证据。四专业、读档/重复初始化/截图征服顺序、接受后冷加载及既有E2退出/投资/恢复定向L3 LOCAL_SIMULATION_PASS，非实机PASS。无Claim/F/Design变化；已按W0003部署source e238584，152/152 MATCH；receipt B103.130-e238584-playtest.json，B102完整恢复点及stable桥保留。只读进程确认退出，未启动游戏/main未改。等待最小原生复核：现有外方持城档冷启动→夺回→E2/专业报告，接受后另存冷加载；无需重做交易/迁移。以下B102为历史失败证据。
 
