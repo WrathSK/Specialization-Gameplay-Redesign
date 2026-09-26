@@ -57,3 +57,6 @@ See [three-image acceptance](Validation/Results/Specialization_B103_E2_Recapture
 
 ### B104.131 — two explicit city records / USER_GAME_TEST_REQUIRED
 Authorized implementation locally verified; [contract and minimal test](../Architecture/v2/P0_E2_Plan.md#b104131--authorized-two-existing-city-persistence-slice). Preserve B103 save; select second intact own city and import once, invest there only, verify first unchanged, save separately/coldload and read both selected cities. No re-import of first city, no repeat conquest. Runtime switch subject to existing W0003 gates. New self-founded-city/Claim/F remain separate unauthorized slices.
+
+### B104 two-city native gate closed within tested scope
+[Five-image review](Validation/Results/Specialization_B104_E2_Two_City_Pass.md): Industry P3→P4/receipt2→3; Research P2/receipt1 unchanged; user confirms restart/load retention. USER_GAME_TEST_PASS for this pair, not full E2. No repeat B104 test. Next: new self-founded-city registration plan only after user request/approval; no automatic Claim/F.

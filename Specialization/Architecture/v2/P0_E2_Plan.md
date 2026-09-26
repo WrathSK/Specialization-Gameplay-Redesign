@@ -433,7 +433,7 @@ No new Gameplay decision blocks this proposed slice. User scope approval is requ
 
 ## B104.131 — authorized two-existing-city persistence slice
 
-**Implemented, LOCAL_SIMULATION_PASS; native two-city validation pending.** User authorized the immediately preceding proposal. No new Gameplay/Design rule, new carrier, new-city registration, Claim, AI/MP, general cityKey, full-save migration or F. Canonical changes are CityProgressionStore, selected-city P0Panel request/tooltip, Probe/modinfo build identity and targeted tests. Existing consumers retain their method contracts.
+**Implemented, LOCAL_SIMULATION_PASS; scoped two-city USER_GAME_TEST_PASS ([evidence](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)).** User authorized the immediately preceding proposal. No new Gameplay/Design rule, new carrier, new-city registration, Claim, AI/MP, general cityKey, full-save migration or F. Canonical changes are CityProgressionStore, selected-city P0Panel request/tooltip, Probe/modinfo build identity and targeted tests. Existing consumers retain their method contracts.
 
 ### Storage and routing
 

@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0260",
+    "status": "S0261",
     "runtime": "B104.131 / modinfo131",
     "military": "D0034"
   },
@@ -345,8 +345,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
     "implementation": "B104_TWO_CITY_LOCAL_PASS",
-    "native": "B104_PENDING_USER_GAME_TEST; B103 scoped recapture PASS retained",
-    "next": "Safe deployment then two-city import/investment/coldload native check; no automatic next slice",
+    "native": "B104_SCOPED_USER_GAME_TEST_PASS: tested Research/Industry investment isolation and restart/load; B103 recapture evidence retained",
+    "next": "Await next narrow plan review; no automatic new-city/Claim/F implementation",
     "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
   }
 }

@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0260
+Status Revision: S0261
 Implementation Build: develop P0-B-104.131 / modinfo131 E2_TWO_CITY_CANDIDATE; live B104.131 validation; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_TWO_CITY_LOCAL_PASS
+Work State: P0_E2_TWO_CITY_SCOPED_USER_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B104双城验收](Validation/Results/Specialization_B104_E2_Two_City_Pass.md)：五图确认工业城131073由P3/ACTIVE3/投资2→P4/ACTIVE4/投资3，科研城327682仍P2/ACTIVE1/投资1；第二城迁移为独立Game记录。用户另确认重新启动读档后记录保持。本次双城登记/投资隔离/读取及保存恢复 USER_GAME_TEST_PASS（仅所测科研+工业场景），原图5/5 hash核验归档。B104最小实机门禁关闭，无需重复；E2仍partial，非所有权双城/非零路线/全专业完整验收。下一建议先审新自建城登记计划，未授权实施；不进入Claim/F。本轮仅证据/导航，无runtime/Design/部署变化。以下实现与待验文字均为历史记录。
 
 B104.131：[获授权双城隔离实现](../Architecture/v2/P0_E2_Plan.md#b104131--authorized-two-existing-city-persistence-slice)本地完成。相同Game key的schema2集合，最多两城显式登记；B103单城无写读取适配、首次真实写入升级，旧内容保留。每城投资/退出重试/转移证据独立，诊断实际跟随所选己方城；第三城仍旧路径。定向L3 LOCAL_SIMULATION_PASS（非实机PASS），无新能力/Claim/F/Design变化。已按W0003部署source bfe7003，152/152 MATCH；receipt B104.131-bfe7003-playtest.json；B103完整恢复点及stable桥核验保留，游戏进程退出确认，main未改。等待一次两城投资+冷加载验证。回滚须B103包及转换前存档，不直接降级继续读schema2存档。以下为历史计划/验收。
 
