@@ -53,11 +53,35 @@ function reset(potential,kind)
  GameInfo={Units={[1]={UnitType='UNIT_SETTLER'}}}
  boot()
 end
-function addunit(id)
- local up={};units[id]={id=id,GetOwner=function()return 0 end,GetType=function()return 1 end,GetX=function()return 4 end,GetY=function()return 5 end,
+function addFixtureCity(id,x,serial,kind)
+ local t=fixture();t.ref.cityID=id;t.ref.x=x;t.values.TOKEN='DEV-B013-P0-'..serial
+ local j=t.values.JOURNAL;j.cityID=id;j.x=x;j.token=t.values.TOKEN;j.specialization=kind or 'RESEARCH'
+ j.first.type=({RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE',COMMERCE='DISTRICT_COMMERCIAL_HUB'})[j.specialization]
+ local f=t.values.FLOW;f.cityID=id;f.x=x;f.token=t.values.TOKEN;f.facts=M.Copy(j);f.target=M.Copy(j);t.values.INVEST=nil
+ local other=mkcity(t);cities[#cities+1]=other
+ local ledger=props.SPC_DEV_BINDING_B013_P0;ledger.counter=math.max(ledger.counter,serial)
+ ledger.records[tostring(id)]={owner=0,cityID=id,x=x,y=5,serial=serial,uid=t.values.TOKEN,state='CONFIRMED'}
+ return other,t
+end
+function failFixtureWrite(offset)fail=offset and (writeN+offset) or nil end
+function fixtureStats()return {writes=writes,cityWrites=cityWrites,kills=kills}end
+function addunit(id,city)
+ local site=city or c;local up={};units[id]={id=id,GetOwner=function()return 0 end,GetType=function()return 1 end,GetX=function()return site:GetX() end,GetY=function()return site:GetY() end,
  GetProperty=function(_,k)return up[k]end,SetProperty=function(_,k,v)up[k]=v end}
 end
-function import()local out=d.Import(0,c);assert(out:find('旧City账本冻结'),out);assert(props[K].stage=='ACTIVE')end
+-- Tests address record state explicitly; raw collection/schema tests use Game directly.
+function e2Record()
+ local v=Game:GetProperty(K);if not v or v.schema==1 then return v end
+ assert(v.schema==2);local first
+ for _,r in pairs(v.records)do assert(not first,'single-record helper only');first=r end
+ return first
+end
+function setE2Record(r)
+ local v=Game:GetProperty(K)
+ if v and v.schema==2 then local token=next(v.records);v.records[token]=r else v=r end
+ Game:SetProperty(K,v)
+end
+function import()local out=d.Import(0,c);assert(out:find('旧City账本冻结'),out);assert(e2Record().stage=='ACTIVE')end
 function prepare(id)
  addunit(id);local out=a.Prepare(0,c,id,'REQ'..id,false);assert(out:find('PREPARED'),out);return shared.InvestmentPreview.token
 end
@@ -96,9 +120,9 @@ assert(netBefore.signature==netAfter.signature and writes==2)
 s.values.FLOW=nil;assert(SPCNetworkInput.Capture(P,shared,0,{},'route0',nil).signature==netAfter.signature)
 reset(2);fail=1;assert(d.Import(0,c):find('暂停') and d.Owns(c));assert(props[K]==nil and cityWrites==0)
 reset(2);fail=2;assert(d.Import(0,c):find('暂停'));s.values.INVEST.revision=99;fail=nil;boot()
-assert(props[K].stage=='PREPARED' and not pcall(shared.EffectiveFacts.Read,0,c) and cityWrites==0)
+assert(e2Record().stage=='PREPARED' and not pcall(shared.EffectiveFacts.Read,0,c) and cityWrites==0)
 -- Import and debit failure windows: no duplicate consumption or guessed receipt.
-reset(2);fail=2;assert(d.Import(0,c):find('暂停'));assert(props[K].stage=='PREPARED' and d.Owns(c));fail=nil;boot();assert(props[K].stage=='ACTIVE')
+reset(2);fail=2;assert(d.Import(0,c):find('暂停'));assert(e2Record().stage=='PREPARED' and d.Owns(c));fail=nil;boot();assert(e2Record().stage=='ACTIVE')
 for _,n in ipairs({3,4,5})do
  reset(1);import();token=prepare(12);fail=n;assert(a.Confirm(0,c,token):find('HELD'))
  local k=kills;fail=nil;boot();assert(kills==k)
@@ -112,7 +136,7 @@ reset(1);s.values.JOURNAL.health='GAP';assert(d.Import(0,c):find('暂停') and w
 reset(1);import();props[K].schema=99;boot();assert(d.Owns(c) and not pcall(shared.EffectiveFacts.Read,0,c));assert(writes==2)
 -- Preserve record and block legacy adoption on confirmed reference departure.
 reset(2);import();s.ref.owner=62;s.ref.cityID=40;Events.CityTransfered.Fire(62,40,0,7)
-assert(props[K].stage=='HELD_TRANSFER' and props[K].investment.revision==2 and d.Owns(c))
+assert(e2Record().stage=='HELD_TRANSFER' and e2Record().investment.revision==2 and d.Owns(c))
 assert(not pcall(shared.EffectiveFacts.Read,0,c) and cityWrites==0)
 print('E2 LOCAL_SIMULATION_PASS: 16 imports; actual investment/legacy-load hooks; duplicate, failure recovery, old-key independence, four-kind gate. Transfer carrier cleanup NOT certified.')
 ''')
@@ -120,7 +144,7 @@ print('E2 LOCAL_SIMULATION_PASS: 16 imports; actual investment/legacy-load hooks
 for p in M.rglob('*.lua'):
  l.execute('assert(load(...))',p.read_text())
 root=ET.parse(M/'SpecializationP0.modinfo').getroot()
-assert root.attrib['version']=='130'
+assert root.attrib['version']=='131'
 assert 'CityProgressionStore.lua' in [e.text for e in root.find('Files')]
 # Real eligibility function with native-shaped API mocks, no silent fallback to AI.
 probe=(M/'Probe.lua').read_text();fn=probe[probe.index('function P.IsTestPlayer'):probe.index('function P.Summary')]

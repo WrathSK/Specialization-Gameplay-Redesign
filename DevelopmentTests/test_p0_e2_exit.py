@@ -64,28 +64,28 @@ notifications=0
 for _,n in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence','CopyYields'})do
  shared[n].Audit=function(publication)assert(publication.player==0 and publication.validity=='CONFIRMED_INVALID');notifications=notifications+1 end
 end
-local before=M.Copy(Game:GetProperty(SPCCityProgressionStore.KEY))
+local before=M.Copy(e2Record())
 local savedValues=M.Copy(s.values)
 local live=CityManager.GetCityAt
 -- Unknown object, throwing owner getter, absent owner, and unmatched transfer all preserve effects.
 CityManager.GetCityAt=function()return nil end;nativeEvents.CityRemovedFromMap.Fire(0,7)
 CityManager.GetCityAt=live
 -- B101 persists one reference invalidation on the exact ACTIVE removal.
-local invalidated=Game:GetProperty(SPCCityProgressionStore.KEY)
+local invalidated=e2Record()
 assert(invalidated.referenceInvalidated==true and invalidated.revision==before.revision+1)
 local owner=c.GetOwner;c.GetOwner=function()error('TEMPORARY')end;nativeEvents.CityTransfered.Fire(62,40,0,7)
 c.GetOwner=function()return nil end;nativeEvents.CityTransfered.Fire(62,40,0,7);c.GetOwner=owner
 s.ref.owner=62;s.ref.cityID=40
 nativeEvents.CityAddedToMap.Fire(62,40,4,5);nativeEvents.CityTransfered.Fire(62,999,0,7);nativeEvents.CityTransfered.Fire(62,40,9,7)
-assert(removed==0 and plotWrites==0 and Game:GetProperty(SPCCityProgressionStore.KEY).stage=='ACTIVE')
+assert(removed==0 and plotWrites==0 and e2Record().stage=='ACTIVE')
 -- Correct native event + matching live target is the sole exit authorization.
 nativeEvents.CityTransfered.Fire(62,40,0,7)
-assert(d.exitStatus=='WITHDRAWN',d.exitStatus)
-for n,err in pairs(d.exitErrors)do error(n..':'..err)end
+assert(d.Status(c).exitStatus=='WITHDRAWN',d.Status(c).exitStatus)
+for n,err in pairs(d.Status(c).exitErrors)do error(n..':'..err)end
 assert(removed==#allids and plotWrites==2)
 assert(present[ordinary] and control[ordinary] and plotState.PERMANENT_OTHER=='keep')
 for _,id in ipairs(allids)do local index=P.Info('Buildings',id).Index;assert(not present[index] and control[index])end
-local after=Game:GetProperty(SPCCityProgressionStore.KEY)
+local after=e2Record()
 function encode(v)if type(v)~='table'then return tostring(v)end;local t={};for k,x in pairs(v)do t[#t+1]=tostring(k)..'='..encode(x)end;table.sort(t);return '{'..table.concat(t,';')..'}'end
 assert(encode(before.base)==encode(after.base) and encode(before.investment)==encode(after.investment) and encode(before.binding)==encode(after.binding))
 assert(encode(s.values)==encode(savedValues),'CITY_PROPERTIES_CHANGED')
@@ -103,7 +103,7 @@ local other={GetOwner=function()return 62 end,GetID=function()return 41 end,GetX
 assert(not pcall(d.RemoveOwned,other,after.loss,{'BUILDING_SPC_DEV_RESEARCH_SUPPORT'}))
 -- Reacquisition is deliberately not activation/restoration.
 s.ref.owner=0;s.ref.cityID=7;nativeEvents.CityTransfered.Fire(0,7,62,40)
-assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='HELD_TRANSFER' and not pcall(shared.EffectiveFacts.Read,0,c))
+assert(e2Record().stage=='HELD_TRANSFER' and not pcall(shared.EffectiveFacts.Read,0,c))
 -- With real module return hooks, no old sample survives even a same-turn return.
 local infoBefore=P.Info;P.Info=function(t,k)if t=='Districts'then return {DistrictType=k}end;return infoBefore(t,k)end
 Players[0].GetDistricts=function()return {Members=function()return ipairs({{GetCity=function()return c end,GetType=function()return s.values.JOURNAL.first.type end,GetID=function()return 99 end,IsComplete=function()return true end}})end}end
@@ -111,12 +111,12 @@ shared.CopyYields.samples[0]={old=true};shared.IndustrySupport.samples[0]={old=t
 shared.Dialogue.samples[0]={old=true};shared.GreatWorkAdjacency.samples[0]={old=true}
 local generation=shared.CopyYields.generation
 nativeEvents.CityTransfered.Fire(0,7,62,40)
-assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='ACTIVE',d.observation)
+assert(e2Record().stage=='ACTIVE',d.Status(c).observation)
 assert(shared.CopyYields.samples[0]==nil and shared.CopyYields.generation>generation)
 assert(shared.IndustrySupport.samples[0]==nil and shared.StandardizationDiscount.samples[0]==nil and shared.Dialogue.samples[0]==nil and shared.GreatWorkAdjacency.samples[0]==nil)
 assert(removed==n and plotWrites==2,'RETURN_MUST_NOT_REPLAY_CARRIERS')
 s.ref.owner=62;s.ref.cityID=40;nativeEvents.CityTransfered.Fire(62,40,0,7)
-assert(d.exitStatus=='WITHDRAWN')
+assert(d.Status(c).exitStatus=='WITHDRAWN')
 P.Info=infoBefore
 print('Exit integration LOCAL_SIMULATION_PASS: confirmed/unknown, all owned IDs, duplicate, ordinary/control/permanent preservation, network source/receiver invalidation, no AI state, unproven recapture held; confirmed return resets actual module samples without writes')
 """)
@@ -132,18 +132,18 @@ local get=CityManager.GetCityAt;CityManager.GetCityAt=function()return nil end
 cold.ExitConfirmed();assert(fails==0 and success==0)
 CityManager.GetCityAt=get
 for i=1,10 do cold.ExitConfirmed()end
-assert(fails==3 and success==1 and cold.exitStatus=='PARTIAL_HELD')
+assert(fails==3 and success==1 and cold.Status(c).exitStatus=='PARTIAL_HELD')
 assert(cold.Describe(0,c):find('Broken',1,true))
-assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='HELD_TRANSFER')
+assert(e2Record().stage=='HELD_TRANSFER')
 print('Coldload LOCAL_SIMULATION_PASS: saved confirmation, UNKNOWN hold, isolated failure, bounded 3 attempts, successful module once')
 """)
 # Actual on-demand report is read-only even under held foreign ownership.
 l.execute(r"""
-local before=encode(Game:GetProperty(SPCCityProgressionStore.KEY));local n=removed;local w=plotWrites
-local report=shared.CityProgressionStore.NativeDescribe(0)
+local before=encode(e2Record());local n=removed;local w=plotWrites
+local report=shared.CityProgressionStore.NativeDescribe(0,c)
 assert(report:find('E2往返',1,true) and report:find('HELD_TRANSFER',1,true) and report:find('Network',1,true),report)
-shared.CityProgressionStore.NativeDescribe(0)
-assert(before==encode(Game:GetProperty(SPCCityProgressionStore.KEY)) and removed==n and plotWrites==w)
+shared.CityProgressionStore.NativeDescribe(0,c)
+assert(before==encode(e2Record()) and removed==n and plotWrites==w)
 print('Native diagnostic LOCAL_SIMULATION_PASS: actual report, foreign reference, repeated read zero persistent/carrier writes')
 """)
 # Source check: exit is explicit registration only, never full Buildings enumeration.

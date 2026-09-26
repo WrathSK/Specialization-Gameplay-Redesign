@@ -121,7 +121,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=="PROGRESSION_STORE_READ" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=="UNIT_SITE_READ" then
@@ -375,8 +375,8 @@ local function initialize()
   end)
   Controls.InheritRecordButtonCaption:SetText('迁移进度')
   Controls.InheritReadButtonCaption:SetText('E2往返')
-  Controls.InheritRecordButton:SetToolTipString('左键：只读核对旧记录。右键：迁移选中己方四专业城的进度。仅一城；先另存迁移前测试档。')
-  Controls.InheritReadButton:SetToolTipString('左键：读取已登记城市的E2往返证据，无需选城；读档后不要再次迁移。右键：UI身份只读证据。')
+  Controls.InheritRecordButton:SetToolTipString('左键：只读核对旧记录。右键：迁移选中己方四专业城的进度。本批最多两城；先另存转换前测试档。')
+  Controls.InheritReadButton:SetToolTipString('左键：读取当前选中己方城市的E2进度/往返证据，不默认读取另一城；读档后不要重复迁移。右键：UI身份只读证据。')
   Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_READ") end)
   Controls.ConstructionPreviewButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_PREVIEW") end)
   Controls.ConstructionApplyButton:RegisterCallback(Mouse.eLClick,function() request("CONSTRUCTION_APPLY") end)

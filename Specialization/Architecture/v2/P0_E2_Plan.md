@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B103_SCOPED_NATIVE_PASS。当前单城夺回及冷加载已通过所测科研城实机验证；新增后续切片均PLANNED_NOT_AUTHORIZED。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
+Status: PARTIAL_IMPLEMENTED / B104_TWO_CITY_LOCAL_PASS。用户已授权双城隔离切片并完成本地验证；B103单城夺回实机证据保留，B104双城待验；新城/Claim/F仍未授权。下方B094及首段措辞为历史计划，不能覆盖本节当前盘点。
 Baseline: B094.121 / modinfo121，runtime source a113a6096e141112a5a7ef67453afd8cdc00ac3c。D0035 / A0161；四专业v0.1范围不变。
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
@@ -429,3 +429,34 @@ These are implementation slices of existing E2, not a new architecture program. 
 **Explicit exclusions:** automatic full-city migration, new-city initialization, first AI snapshot/Claim, history/REALLOCATING actions, AI/MP, F/new abilities, Design and balance edits.
 
 No new Gameplay decision blocks this proposed slice. User scope approval is required before implementation. Nonzero-route native reapplication and old in-session reload crash stay separate evidence gaps; they do not justify claiming E2 fully complete or running unrelated regressions now.
+
+
+## B104.131 — authorized two-existing-city persistence slice
+
+**Implemented, LOCAL_SIMULATION_PASS; native two-city validation pending.** User authorized the immediately preceding proposal. No new Gameplay/Design rule, new carrier, new-city registration, Claim, AI/MP, general cityKey, full-save migration or F. Canonical changes are CityProgressionStore, selected-city P0Panel request/tooltip, Probe/modinfo build identity and targeted tests. Existing consumers retain their method contracts.
+
+### Storage and routing
+
+Same Game Property `SPC_CITY_PROGRESSION_E2_V1`; new outer schema2 `{revision, records[existing validated token]}` holds at most two explicit registrations. Inner records retain schema1 and their original base/binding/investment/templates/return proof. This is not an external file or newly minted universal city ID. Unknown schema, duplicate token/location/current owner+ID, malformed records and unreadable collection fail closed, never route to another city/old writer. Collection corruption/readback uncertainty can hold the collection until reload; do not claim per-record recovery from corrupt shared storage.
+
+B103 schema1 is validated and projected as one record **in memory without a load/diagnostic write**. The next real mutation atomically writes the whole schema2 value with that retained entry; adding the second city leaves the first inner record unchanged. Existing source-comparison, readback confirmation and PREPARED→ACTIVE import remain. A rejected pre-write import does not retain a phantom record/consume a slot. Collection write reentrancy/staleness is refused. Existing bounded Copy limits remain; oversized values hold, not truncate.
+
+Each record reuses the B103 lifecycle with separate root, finished exits, bounded retry counts, foreign witness, transition/conquest/foundation, latest events and first fault. Manager forwards only reference/location-relevant events; a city location is an exclusion/routing guard, never enough to authorize restoration. Reads still require full current reference and proof. No new polling/full-city scans/hover requests. Explicitly unregistered cities retain legacy backend. The player-wide Network snapshot and sample protocols remain existing shared dependency domains: ownership changes can invalidate the entire verified player snapshot; this is not a promise that another city's transient Network view never changes. No sample protocol rewrite.
+
+### Diagnostics
+
+E2往返 now reads the selected own city and UI actually sends its CityID. No selection/foreign selection does not dispatch; an unregistered own city is labelled unregistered rather than showing the former singleton. Existing verbose native evidence stays available for the selected record, normal progress summary stays brief. Tooltip states the two-city test limit. This batch does not add a foreign-city selection/browser UI.
+
+### Validation (W0004 L3, affected storage/lifecycle only)
+
+`test_b104_e2_two_cities.py` includes existing E2/B097/B101/B102/B103 suites, then actual two-city store/investment routing: accepted tokenless B103 singleton load without writes; second Commerce registration; unchanged first Research inner record; second-only actual Settler debit/receipt and duplicate confirmation; third legacy city unaffected; two records coldload; selected/unregistered/no-selection diagnostic behavior; independent loss/return and one failing exit's3-attempt limit; repeated events; exact token/location/schema/record corruption rejection; failed second PREPARED/activation writes and recovery; sameID/foreignOwner read rejection; generic idle zero persistent writes. Actual P0Panel request function executed for two selections/no selection/foreign selection. Existing tests now explicitly unwrap one record and query copied per-city Status instead of reading singleton storage/session fields; original numerical/withdrawal/proof assertions remain.
+
+`test_b100_e2_diagnostics.py` and `test_p0_e2_exit.py` with read-only native DB retain actual module exit/UNKNOWN/ordinary-building/permanent preservation and Network invalidation coverage (21 carrier groups/2322 exact internal IDs plus existing Network/probe exits). All Lua compiles, modinfo/context/diff checks pass. No whole historical regression or large stress run. These are STATIC_CONFIRMED / LOCAL_SIMULATION_PASS, not native certification.
+
+### Minimal user acceptance / rollback
+
+1. Preserve the accepted B103 save untouched; use a test copy in B104. Confirm header B104.131. Select first migrated Research city and read E2/专业: existing Identity/P/receipt intact. Do not re-import it.
+2. Select another intact own four-profession city with Potential<4, right-click“迁移进度” once. Read its E2/专业; invest one Settler through the existing action. It alone gains one Potential/receipt; first city unchanged. If missing old history, stop and report; do not reconstruct it from buildings.
+3. Save separately, exit/restart and reload. Read each selected city's report: two states retained. No repeat conquest required for this slice unless new native evidence contradicts the routing.
+
+Rollback is B103 complete runtime plus **pre-schema2 save**. No reverse migration; do not promise B103 can read a save changed by B104. Still E2 partial, next proposal after acceptance is new self-founded-city registration, not automatic Claim/F.

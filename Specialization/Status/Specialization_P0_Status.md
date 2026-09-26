@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0259
-Implementation Build: develop P0-B-103.130 / modinfo130 E2_HYDRATION_REPAIR_CANDIDATE; live B103.130 validation; stable B069.96
+Status Revision: S0260
+Implementation Build: develop P0-B-104.131 / modinfo131 E2_TWO_CITY_CANDIDATE; live B103.130 pending switch; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_RECAPTURE_SCOPED_USER_GAME_TEST_PASS
+Work State: P0_E2_TWO_CITY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+B104.131：[获授权双城隔离实现](../Architecture/v2/P0_E2_Plan.md#b104131--authorized-two-existing-city-persistence-slice)本地完成。相同Game key的schema2集合，最多两城显式登记；B103单城无写读取适配、首次真实写入升级，旧内容保留。每城投资/退出重试/转移证据独立，诊断实际跟随所选己方城；第三城仍旧路径。定向L3 LOCAL_SIMULATION_PASS（非实机PASS），无新能力/Claim/F/Design变化。待安全部署和一次两城投资+冷加载验证。回滚须B103包及转换前存档，不直接降级继续读schema2存档。以下为历史计划/验收。
 
 [E2当前盘点及后续切片计划](../Architecture/v2/P0_E2_Plan.md#2026-09-25--e2-inventory-and-next-slice-proposal-not-authorized)已整理，仅计划。B103单城夺回/冷加载PASS保持；新后端仍singleton，其它城旧路径。建议下一最小批：两座完整已有专业城显式登记与保存隔离（含B103旧记录无损适配），不自动全城迁移/新cityKey，不混入首次AI城snapshot/Claim/F。之后另审新自建城、征服snapshot、Claim入口及E2支持范围收束。无新Gameplay决策阻塞两城切片，等待用户实施授权；本轮runtime/Design/部署不变。
 

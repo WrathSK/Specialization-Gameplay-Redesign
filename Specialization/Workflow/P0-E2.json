@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0259",
-    "runtime": "B103.130 / modinfo130",
+    "status": "S0260",
+    "runtime": "B104.131 / modinfo131",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -280,6 +280,11 @@
       "path": "DevelopmentTests/test_b103_e2_hydration.py",
       "kind": "full",
       "reason": "Authorized load hydration versus native transition regression"
+    },
+    {
+      "path": "DevelopmentTests/test_b104_e2_two_cities.py",
+      "kind": "full",
+      "reason": "Authorized two-record storage/routing/selected UI and B103 compatibility validation"
     }
   ],
   "dependencies": [
@@ -339,9 +344,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_SLICE",
-    "implementation": "B103_HYDRATION_REPAIR_LOCAL_PASS",
-    "native": "B103_RESEARCH_RECAPTURE_COLDLOAD_GOVERNOR_LV1_LV2_USER_GAME_TEST_PASS_SCOPED",
-    "next": "PLANNED_NOT_AUTHORIZED: two existing-city records and lossless singleton adaptation; no automatic whole-city migration/new cityKey/Claim/F",
+    "implementation": "B104_TWO_CITY_LOCAL_PASS",
+    "native": "B104_PENDING_USER_GAME_TEST; B103 scoped recapture PASS retained",
+    "next": "Safe deployment then two-city import/investment/coldload native check; no automatic next slice",
     "scope_review": "Authorized original-owner one-city native transition adaptation; no new cityKey/global migration/Claim/F"
   }
 }

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="130">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="131">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B103.130 develop: distinguish exact foreign load hydration from return transition; preserve strict identity gates.</Description>
+    <Description>B104.131 develop: two explicit city records, isolated progression and ownership state; no Claim.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

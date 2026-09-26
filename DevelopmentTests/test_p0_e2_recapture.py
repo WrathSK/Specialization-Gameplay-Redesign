@@ -12,42 +12,42 @@ function districts()
  if not d.testExit then d.RegisterExit("TestNoCarriers",function()end);d.testExit=true end
  Players[0].GetDistricts=function()return {Members=function()return ipairs({{GetCity=function()return c end,GetType=function()return s.values.JOURNAL.first.type end,GetID=function()return 99 end,IsComplete=function()return true end}})end}end
 end
-function lose()s.ref.owner=62;s.ref.cityID=40;Events.CityTransfered.Fire(62,40,0,7);assert(Game:GetProperty(KEY).stage=='HELD_TRANSFER')end
+function lose()s.ref.owner=62;s.ref.cityID=40;Events.CityTransfered.Fire(62,40,0,7);assert(e2Record().stage=='HELD_TRANSFER')end
 function regain()s.ref.owner=0;s.ref.cityID=88;Events.CityTransfered.Fire(0,88,62,0)end
 for _,kind in ipairs({'RESEARCH','CULTURE','COMMERCE'})do
- reset(3,kind);import();districts();local before=Game:GetProperty(KEY)
+ reset(3,kind);import();districts();local before=e2Record()
  local old=P.CityRoleFacts;P.CityRoleFacts=function(city)return {owner=0,cityID=city:GetID(),governorGateStatus='KNOWN',governorLevelCeiling=1}end
  lose();assert(not pcall(shared.EffectiveFacts.Read,0,c));regain()
- local after=Game:GetProperty(KEY);assert(after.stage=='ACTIVE',d.observation)
+ local after=e2Record();assert(after.stage=='ACTIVE',d.Status(c).observation)
  assert(encode(before.base)==encode(after.base) and encode(before.investment)==encode(after.investment) and encode(before.binding)==encode(after.binding))
  local f=shared.EffectiveFacts.Read(0,c);assert(f.specialization==kind and f.potential==3 and f.active==1 and f.cityID==88 and f.first.districtID==99)
- local rev=after.revision;for i=1,100 do Events.CityTransfered.Fire(0,88,62,0)end;assert(Game:GetProperty(KEY).revision==rev)
+ local rev=after.revision;for i=1,100 do Events.CityTransfered.Fire(0,88,62,0)end;assert(e2Record().revision==rev)
  boot();districts();assert(shared.EffectiveFacts.Read(0,c).active==1)
  P.CityRoleFacts=function(city)return {owner=0,cityID=city:GetID(),governorGateStatus='KNOWN',governorLevelCeiling=4}end
  assert(shared.EffectiveFacts.Read(0,c).active==3)
  local token=prepare(15);assert(a.Confirm(0,c,token):find('INVESTED'))
  assert(shared.EffectiveFacts.Read(0,c).potential==4)
- assert(Game:GetProperty(KEY).investment.anchor.cityID==7 and Game:GetProperty(KEY).investment.anchor.first.districtID==3)
+ assert(e2Record().investment.anchor.cityID==7 and e2Record().investment.anchor.first.districtID==3)
  lose();regain();assert(shared.EffectiveFacts.Read(0,c).potential==4)
  P.CityRoleFacts=old
 end
 local unrelated={GetOwner=function()return 0 end,GetID=function()return 7 end,GetX=function()return 10 end,GetY=function()return 10 end}
 assert(not d.Owns(unrelated),'OLD_ID_REUSE_MUST_NOT_CLAIM_OTHER_CITY')
 -- Ambiguity, unrelated/first acquisition, no token, no event, pending debit remain held.
-reset(2);districts();s.ref.cityID=88;Events.CityTransfered.Fire(0,88,62,0);assert(Game:GetProperty(KEY)==nil)
+reset(2);districts();s.ref.cityID=88;Events.CityTransfered.Fire(0,88,62,0);assert(e2Record()==nil)
 reset(2);import();districts();lose();local token=s.values.TOKEN
-s.ref.owner=0;s.ref.cityID=88;s.values.TOKEN=nil;Events.CityTransfered.Fire(0,88,62,0);assert(Game:GetProperty(KEY).stage=='HELD_TRANSFER')
-s.values.TOKEN='another-city';Events.CityTransfered.Fire(0,88,62,0);assert(Game:GetProperty(KEY).stage=='HELD_TRANSFER')
+s.ref.owner=0;s.ref.cityID=88;s.values.TOKEN=nil;Events.CityTransfered.Fire(0,88,62,0);assert(e2Record().stage=='HELD_TRANSFER')
+s.values.TOKEN='another-city';Events.CityTransfered.Fire(0,88,62,0);assert(e2Record().stage=='HELD_TRANSFER')
 s.values.TOKEN=token;Events.CityTransfered.Fire(0,89,62,0);Events.CityTransfered.Fire(0,88,9,0);Events.CityAddedToMap.Fire(0,88,4,5)
-assert(Game:GetProperty(KEY).stage=='HELD_TRANSFER')
-regain();assert(Game:GetProperty(KEY).stage=='ACTIVE')
+assert(e2Record().stage=='HELD_TRANSFER')
+regain();assert(e2Record().stage=='ACTIVE')
 -- Incomplete exit and incomplete debit cannot be bypassed by recapture.
 reset(2);import();districts();d.RegisterExit('InjectedFailure',function()error('FAIL')end);lose();regain()
-assert(Game:GetProperty(KEY).stage=='HELD_TRANSFER' and d.observation:find('RETURN_WITHDRAWAL_UNCONFIRMED'))
+assert(e2Record().stage=='HELD_TRANSFER' and d.Status(c).observation:find('RETURN_WITHDRAWAL_UNCONFIRMED'))
 reset(2);import();districts();local ledger=d.Investment(0,c);local pending=M.Copy(ledger)
 pending.pending={stage='INTENT',unitID=10,owner=0,cityUID=s.values.TOKEN,expectedRevision=2,receipt='pending',unitUID='unit'}
 d.WriteInvestment(0,c,ledger,pending);lose();regain()
-assert(Game:GetProperty(KEY).stage=='HELD_TRANSFER' and d.observation:find('RETURN_PENDING_INVESTMENT'))
+assert(e2Record().stage=='HELD_TRANSFER' and d.Status(c).observation:find('RETURN_PENDING_INVESTMENT'))
 reset(2);import();districts()
 -- Real bridge drops old topology and derives only accepted current route sample.
 include('NetworkBridge');ExposedMembers={};SPCNetworkBridge.Start(P,shared);local net=shared.NetworkBridge;net.ready=true
@@ -73,7 +73,7 @@ SPCStandardizationCatalog={Build=function()return {buildings={OLD={district='DIS
 SPCStandardization.Start(P,shared);shared.Standardization.ready=true
 import();districts();lose();s.values.TEMPLATES=nil
 c.GetBuildings=function()return {}end;P.HasBuilding=function()return true end
-regain();assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='ACTIVE',d.observation)
+regain();assert(e2Record().stage=='ACTIVE',d.Status(c).observation)
 shared.Standardization.Discover(0)
 local ledger=shared.Standardization.ReadLedger(0,c)
 assert(ledger.learned.OLD and not ledger.learned.NEW and ledger.revision==2)
@@ -87,7 +87,7 @@ P.Info=previousInfo
 local nextValue=M.Copy(ledger);nextValue.learned.NEW={district='DISTRICT_CAMPUS',tier=2,turn=8,evidence='NEW_LOCAL_COMPLETION'};nextValue.revision=3
 d.WriteTemplates(c,ledger,nextValue);lose();regain();assert(shared.Standardization.ReadLedger(0,c).revision==3)
 reset(2,'INDUSTRY');import();districts();lose();regain()
-assert(Game:GetProperty(SPCCityProgressionStore.KEY).stage=='ACTIVE')
+assert(e2Record().stage=='ACTIVE')
 assert(shared.EffectiveFacts.Read(0,c).potential==2 and not pcall(d.ReadTemplates,c))
 print('Industry LOCAL_SIMULATION_PASS: saved own templates retained with absent old City property; no foreign-period backfill; separate ongoing ledger updates')
 """)

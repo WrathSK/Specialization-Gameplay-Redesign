@@ -1,8 +1,8 @@
--- E2 first slice: one explicit same-owner progression cutover. Not a global city registry.
+-- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1'}
-function SPCCityProgressionStore.Start(P,shared)
- local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
- local d={exitStatus="NOT_CONFIRMED",exitErrors={}};shared.CityProgressionStore=d
+local function CreateProgressionRecord(P,shared,storage)
+ local M=SPCCityIdentityRead;local cp=M.Copy
+ local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
@@ -84,6 +84,7 @@ function SPCCityProgressionStore.Start(P,shared)
  end
  function d.IsRecaptured(c)return root and root.current~=nil and d.Owns(c) or false end
  local function active(pid,c)
+  storage.Check()
   assert(ready and not fault and root and root.stage=='ACTIVE','PROGRESSION_HELD')
   assert(P.IsTestPlayer(pid) and pid==root.origin.owner and same(ref(c),root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
@@ -104,12 +105,8 @@ function SPCCityProgressionStore.Start(P,shared)
  function d.Investment(pid,c)local r=active(pid,c);return projected(r,r.investment,true)end
  local function save(nextValue)
   assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
-  assert(same(Game:GetProperty(KEY),root),'STORE_STALE')
-  root=cp(nextValue) -- suppress reentrant legacy writers before engine write
-  local ok,err=pcall(function()
-   P.SetProperty(Game,KEY,cp(nextValue))
-   assert(same(Game:GetProperty(KEY),nextValue),'STORE_WRITE_UNCONFIRMED')
-  end)
+  local previous=root;root=cp(nextValue) -- protect target before engine callbacks
+  local ok,err=pcall(storage.Write,previous,nextValue)
   if not ok then fault=tostring(err);error(fault)end
  end
  -- Session-only transition assembly. Never reconstruct an incomplete chain at load.
@@ -309,10 +306,13 @@ function SPCCityProgressionStore.Start(P,shared)
  end
  local function restore()
   local ok,err=pcall(function()
-   root=cp(Game:GetProperty(KEY));if root then validate(root)end;ready=true
+   root=storage.Read();if root then validate(root)end;ready=true
   end)
   if not ok then fault=tostring(err);ready=false end
  end
+ function d.Ready()return ready and not fault end
+ function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,lastTransfer=d.lastTransfer})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)
@@ -429,18 +429,171 @@ function SPCCityProgressionStore.Start(P,shared)
   if not ok then d.observation='UNKNOWN: '..tostring(err);d.returnRejection=tostring(err):match('RETURN_[A-Z_]+') or d.returnRejection end
   d.ExitConfirmed()
  end
- local function listen(ns,name,fn)local e=P.Field(ns,name);if e and e.Add then e.Add(fn)end end
- listen(Events,'LoadScreenClose',reconcile)
- -- Bounded single-location observation; no generic publish/playback/hover work.
- listen(Events,'CityTransfered',function(...)pcall(observe,'CityTransfered',...);reconcile(...)end)
- -- Conquest is supporting evidence only; never accepts without the full transfer chain.
- listen(GameEvents,'CityConquered',function(...)
-  pcall(observe,'CityConquered',...)
-  if not pcall(trackConquest,...) then transitionFault='RETURN_CHAIN_READ_FAILED'end
-  rememberFault('CityConquered')
- end)
- for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap','CityInitialized'})do
-  listen(Events,name,function(...)pcall(observe,name,...);trackSafely(name,...);reconcile()end)
+ -- Manager forwards bounded native events; each record retains its own state.
+ function d.Handle(name,...)
+  if name=='LoadScreenClose' then reconcile();return end
+  if not ready or fault or not root then return end
+  local owner,id,x,y=...
+  local relevant=false
+  if name=='CityConquered' then local _,_,_,cx,cy=...;relevant=cx==root.origin.x and cy==root.origin.y
+  elseif name=='CityTransfered' then
+   local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
+   if ok and c then local good,r=pcall(ref,c);relevant=good and r.owner==owner and r.cityID==id end
+  elseif name=='CityRemovedFromMap' then
+   for _,r in ipairs({root.current or root.origin,root.loss and root.loss.target or {},transition and transition.to or {}})do
+    if r.owner==owner and r.cityID==id then relevant=true end
+   end
+  else relevant=x==root.origin.x and y==root.origin.y end
+  if not relevant then return end
+  pcall(observe,name,...)
+  if name=='CityTransfered' then reconcile(...)
+  elseif name=='CityConquered' then
+   if not pcall(trackConquest,...) then transitionFault='RETURN_CHAIN_READ_FAILED'end
+   rememberFault(name)
+  else trackSafely(name,...);reconcile()end
  end
- listen(GameEvents,'CityBuilt',function(...)pcall(observe,'CityBuilt',...);trackSafely('CityBuilt',...);reconcile()end)
+ return d
+end
+
+-- Two explicit existing-city registrations only. No new-city/Claim/global migration.
+function SPCCityProgressionStore.Start(P,shared)
+ local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
+ local store={};shared.CityProgressionStore=store
+ local envelope,raw,fault,writing;local workers={};local exits,returns={},{}
+ local function same(a,b)
+  if type(a)~=type(b)then return false end;if type(a)~='table'then return a==b end
+  for k,v in pairs(a)do if not same(v,b[k])then return false end end
+  for k in pairs(b)do if a[k]==nil then return false end end;return true
+ end
+ local function check()assert(not fault,fault or 'STORE_COLLECTION_HELD')end
+ local function count()local n=0;for _ in pairs(envelope.records)do n=n+1 end;return n end
+ local function validateCollection(v)
+  assert(type(v)=='table' and v.schema==2 and type(v.records)=='table' and type(v.revision)=='number'
+   and v.revision>=0 and v.revision%1==0,'STORE_COLLECTION_SCHEMA')
+  local positions,references={},{};local n=0
+  for token,r in pairs(v.records)do
+   n=n+1;assert(n<=2,'TWO_CITY_TEST_LIMIT')
+   assert(type(token)=='string' and type(r)=='table' and type(r.base)=='table' and token==r.base.token
+    and type(r.origin)=='table' and type(r.origin.x)=='number' and type(r.origin.y)=='number','STORE_RECORD_KEY')
+   local position=r.origin.x..':'..r.origin.y
+   assert(not positions[position],'STORE_LOCATION_COLLISION');positions[position]=true
+   local current=r.loss and r.loss.target or r.current or r.origin
+   assert(type(current)=='table' and type(current.owner)=='number' and type(current.cityID)=='number','STORE_CURRENT_REFERENCE')
+   local reference=current.owner..':'..current.cityID
+   assert(not references[reference],'STORE_REFERENCE_COLLISION');references[reference]=true
+  end
+ end
+ local function make(token)
+  local storage={}
+  storage.Check=check
+  function storage.Read()check();return cp(envelope.records[token])end
+  function storage.Write(old,value)
+   check();assert(not writing,'STORE_COLLECTION_BUSY');assert(same(envelope.records[token],old),'STORE_STALE')
+   assert(value.base.token==token,'STORE_TOKEN_CHANGED')
+   local nextValue=cp(envelope);nextValue.records[token]=cp(value);nextValue.revision=nextValue.revision+1
+   validateCollection(nextValue)
+   assert(same(Game:GetProperty(KEY),raw),'STORE_COLLECTION_STALE')
+   writing=true;envelope=nextValue -- old-writer guards see the new record before engine callbacks
+   local ok,err=pcall(function()
+    P.SetProperty(Game,KEY,cp(nextValue))
+    assert(same(Game:GetProperty(KEY),nextValue),'STORE_WRITE_UNCONFIRMED')
+   end)
+   writing=false
+   if not ok then fault=tostring(err);error(fault)end
+   raw=cp(nextValue)
+  end
+  local w=CreateProgressionRecord(P,shared,storage)
+  workers[token]=w
+  for name,fn in pairs(exits)do w.RegisterExit(name,fn)end
+  for name,fn in pairs(returns)do w.RegisterReturn(name,fn)end
+  return w
+ end
+ local ok,err=pcall(function()
+  raw=cp(Game:GetProperty(KEY))
+  if raw==nil then envelope={schema=2,revision=0,records={}}
+  elseif type(raw)=='table' and raw.schema==1 then
+   assert(raw.base and type(raw.base.token)=='string','STORE_LEGACY_KEY')
+   -- Lossless read adapter; promote the whole value at the next actual write.
+   envelope={schema=2,revision=0,records={[raw.base.token]=cp(raw)}}
+  else envelope=cp(raw)end
+  validateCollection(envelope)
+  for token in pairs(envelope.records)do local w=make(token);assert(w.Ready(),'STORE_RECORD_INVALID')end
+ end)
+ if not ok then fault=tostring(err)end
+ local function find(c)
+  check();if not c then return nil end
+  local found
+  for _,w in pairs(workers)do if w.Owns(c)then assert(not found,'STORE_ROUTE_AMBIGUOUS');found=w end end
+  return found
+ end
+ local function requireCity(c)return assert(find(c),'CITY_NOT_REGISTERED')end
+ function store.Owns(c)
+  if fault then return true end -- unreadable collection cannot safely authorize any legacy fallback
+  return find(c)~=nil
+ end
+ function store.IsRecaptured(c)local w=find(c);return w and w.IsRecaptured(c) or false end
+ function store.Base(pid,c)return requireCity(c).Base(pid,c)end
+ function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
+ function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
+ function store.ReadTemplates(c)return requireCity(c).ReadTemplates(c)end
+ function store.WriteTemplates(c,old,value)return requireCity(c).WriteTemplates(c,old,value)end
+ function store.IsExitTarget(c,loss)
+  if fault then return false end;local w=find(c);return w and w.IsExitTarget(c,loss) or false
+ end
+ function store.RemoveOwned(c,loss,names)return requireCity(c).RemoveOwned(c,loss,names)end
+ function store.RegisterExit(name,fn)
+  assert(type(fn)=='function' and not exits[name],'EXIT_REGISTRATION_CONFLICT');exits[name]=fn
+  for _,w in pairs(workers)do w.RegisterExit(name,fn)end
+ end
+ function store.RegisterReturn(name,fn)
+  assert(type(fn)=='function' and not returns[name],'RETURN_REGISTRATION_CONFLICT');returns[name]=fn
+  for _,w in pairs(workers)do w.RegisterReturn(name,fn)end
+ end
+ function store.ExitConfirmed()
+  if fault then return end;for _,w in pairs(workers)do w.ExitConfirmed()end
+ end
+ -- Read-only, copied per-city diagnostic status; never expose mutable worker authority.
+ function store.Status(c)
+  local ok,w=pcall(find,c);if not ok then return {fault=tostring(w)}end
+  return w and w.Status() or {unregistered=true}
+ end
+ function store.Describe(pid,c)
+  if fault then return '进度保存暂停：'..fault..'；不回退旧账本。'end
+  if not c then return '请选择一座城市；不会默认读取另一城。'end
+  local w=find(c)
+  if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
+  return w.Describe(pid,c)..'\n已登记：'..count()..'/2 | 所选城 '..c:GetOwner()..'/'..c:GetID()
+ end
+ function store.NativeDescribe(pid,c)
+  if fault or not c then return store.Describe(pid,c)end
+  local w=find(c);if not w then return store.Describe(pid,c)end
+  return w.NativeDescribe(pid)..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..'/2'
+ end
+ function store.Import(pid,c)
+  local ok,out=pcall(function()
+   check();assert(not writing and c and P.IsTestPlayer(pid) and c:GetOwner()==pid,'SELECT_OWN_CITY')
+   local w=find(c)
+   if not w then
+    assert(count()<2,'TWO_CITY_TEST_LIMIT')
+    local token=c:GetProperty(M.Keys.TOKEN)
+    assert(type(token)=='string' and not workers[token] and not envelope.records[token],'IMPORT_TOKEN_COLLISION')
+    w=make(token)
+   end
+   local result=w.Import(pid,c)
+   -- A rejected pre-write import must not consume a slot or retain a phantom worker.
+   for token,v in pairs(workers)do if v==w and not envelope.records[token] and not fault then workers[token]=nil end end
+   return result
+  end)
+  if not ok then return '进度迁移暂停：'..tostring(out)..'；保留测试档。'end
+  return out
+ end
+ local function listen(ns,name)
+  local e=P.Field(ns,name);if not e or not e.Add then return end
+  e.Add(function(...)
+   if fault then return end
+   for _,w in pairs(workers)do w.Handle(name,...)end
+  end)
+ end
+ for _,name in ipairs({'LoadScreenClose','CityTransfered','CityAddedToMap','CityRemovedFromMap','CityInitialized'})do listen(Events,name)end
+ listen(GameEvents,'CityConquered');listen(GameEvents,'CityBuilt')
 end

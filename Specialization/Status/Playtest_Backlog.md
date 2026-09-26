@@ -53,3 +53,7 @@ Exact saved foreign load notifications no longer poison later transfer order. Ta
 
 ### B103 native gate closed within observed scope — 2026-09-25
 See [three-image acceptance](Validation/Results/Specialization_B103_E2_Recapture_Pass.md). Original-owner Research-city recapture, P2/receipt retention, coldload and user-confirmed governor-enabled Lv1/Lv2 PASS. Prior B103 pending test is fulfilled; do not repeat. Nonzero-route rebuild and wider native module/Legacy cases remain unproven; in-session load crash remains independent. E2 partial; wait for next-slice planning authorization, no Claim/F implementation.
+
+
+### B104.131 — two explicit city records / USER_GAME_TEST_REQUIRED
+Authorized implementation locally verified; [contract and minimal test](../Architecture/v2/P0_E2_Plan.md#b104131--authorized-two-existing-city-persistence-slice). Preserve B103 save; select second intact own city and import once, invest there only, verify first unchanged, save separately/coldload and read both selected cities. No re-import of first city, no repeat conquest. Runtime switch subject to existing W0003 gates. New self-founded-city/Claim/F remain separate unauthorized slices.
