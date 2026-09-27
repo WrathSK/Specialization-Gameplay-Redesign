@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0276
+Status Revision: S0277
 Implementation Build: develop P0-B-109.136 / modinfo136 E2_INITIALIZATION_REPAIR; live B109.136 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B109_THREE_CITY_NATIVE_PARTIAL_COLDLOAD_CONFIRMATION_PENDING
+Work State: P0_E2_B109_NATIVE_PASS_NEXT_SNAPSHOT_PLAN_ONLY
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-27 [B109三城截图](Validation/Results/Specialization_B109_E2_Three_City_Result.md)确认正常读取独立记录：A无专业/P0/ACTIVE0/投资0，B科研/P2/ACTIVE1/投资1，C文化/P1/ACTIVE1/投资0；已登记3城。本次可见状态 USER_GAME_TEST_PASS（限定截图场景），B108初始化报错未出现。E2报告使用左键，右键仅历史事件证据；无需右键重测。
+2026-09-27 用户明确确认三城截图拍于完整重启游戏/读档之后，[补充确认](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)关闭B109本次新局多城检查点：A NONE/P0/投资0、B科研P2/投资1、C文化P1/投资0，独立读取与保存恢复 USER_GAME_TEST_PASS（限定本次场景）。原图与此前记录保留；无需重复或右键重测。ACTIVE与Potential区分保持，不扩大到所有E2生命周期/收益实测。
 
-完整退出/重启读档是否已在截图前完成，等待用户确认，不能仅凭图片判定；完整三城保存验收尚未关闭。原图3/3 hash一致归档。[B109修复](../Architecture/v2/P0_E2_Plan.md#b109136--start-enabled-initialization-repair)本地证据保持；[B108失败](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)仍为历史反证。只支持开局启用Mod及正常存档，不做中途加入或旧开发存档迁移。
+按用户要求整理[下一最小段：首次AI征服候选快照](../Architecture/v2/P0_E2_Plan.md#next-slice--first-ai-conquest-snapshot-plan-only)，仅PLAN_ONLY，等待实施授权。范围为已确认无专业历史AI城征服后一次冻结四专业候选：非空等Claim，空集监听后续首次完成；不实现Claim项目/成本，不扩大交易/自由城/旧档支持，不进入F。Claim具体成本/确认方式留后续批次，不阻塞本次快照计划。
 
-运行包仍B109.136，已记录部署153/153 MATCH，source 2da80ce，receipt `B109.136-2da80ce-playtest.json`；B108恢复点保留。本轮仅验收归档，未重新部署/核验外部运行包。当前等待读档步骤确认；E2仍partial，后续修复/实施须另行授权，不自动进入snapshot/Claim、其它生命周期或F。
+源码/已记录运行包仍B109.136，source 2da80ce，部署receipt `B109.136-2da80ce-playtest.json`、153/153 MATCH为既有部署证据，本轮未重新核验外部包或部署。只做验收及计划；Design/main不变，E2仍partial。下一允许动作是审阅计划，不能从计划存在推导实施授权。
 
 ## 历史阶段记录
 
