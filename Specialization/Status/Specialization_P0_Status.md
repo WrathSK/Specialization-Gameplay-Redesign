@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0274
-Implementation Build: develop P0-B-108.135 / modinfo135 E2_NEW_GAME_MULTI_CITY; live B108.135 verified153/153 MATCH; stable B069.96
+Status Revision: S0275
+Implementation Build: develop P0-B-109.136 / modinfo136 E2_INITIALIZATION_REPAIR; live last recorded B108.135; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B108_NATIVE_INITIALIZATION_FAIL_REPAIR_PENDING
+Work State: P0_E2_B109_LOCAL_PASS_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-27 B108.135 [新局初始化实机失败](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)：两城专业读取同报CityProgressionStore.lua:623“function expected instead of nil”，对应GameConfiguration.IsSavedGame调用。USER_GAME_TEST_FAIL限定新局初始化／专业可读性；投资、多城隔离及冷启动保存验收未完成。两图已原字节归档。精确原生binding/context原因待调查，不推断存档损坏或区域识别本身错误。
+2026-09-27 [B109初始化修复](../Architecture/v2/P0_E2_Plan.md#b109136--start-enabled-initialization-repair)按授权完成，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，等待实机。移除Gameplay中失败的IsSavedGame调用；保留起始回合、零城市、无旧账本和读回校验；已有当前索引只读恢复。用户确认只支持从开局启用Mod及其正常存档，不做中途加入或旧开发存档兼容。无UI跨context适配、额外事件/扫描、新收益或保存schema。
 
-当前切片仍是[E2新局多城](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)。B108的STATIC/LOCAL证据保留原范围，不能覆盖此原生失败。暂停原三城测试，等待窄范围初始化修复授权；不得默认无index即新局，不恢复旧迁移，不进入Claim/F。
+[B108失败两图](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留USER_GAME_TEST_FAIL；B109不继承实机PASS。新测试局三城A=P0、B=科研P1投资一次至P2、C=文化P1，再一次完整退出/重启读档及三份E2报告。ACTIVE按当前总督；异常即停止。旧失败档不作修复/迁移对象。
 
-最近记录部署仍为B108.135、source c056eae、153/153 MATCH，receipt `B108.135-c056eae-playtest.json`，B107恢复点已核验；本次没有重新核对外部运行包，也没有修改源码／部署／启动游戏。main不变。
-
-当前允许动作：归档本次失败与只读定位；修复或后续切片须另行授权。下一建议为确认实际context可用的新局信号并改善短诊断，不等于已授权实施。
+用户已确认游戏完全退出，可按W0003部署；当前待安全事务，最近已记录运行包仍B108.135/source c056eae。main与Design不变。当前允许完成此修复的提交/部署及验收归档；不自动Claim/F或其它切片。部署完成状态以receipt和后续记录为准，不从源码HEAD推断。
 
 ## 历史阶段记录
 

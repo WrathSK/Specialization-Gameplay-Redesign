@@ -620,7 +620,8 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   initializeNew=function()
    if fault or initialized then return end
    local ok,err=pcall(function()
-    assert(GameConfiguration.IsSavedGame()==false,'OLD_OR_UNKNOWN_SAVE_START_NEW_GAME')
+    -- Supported games enable the Mod from creation. No mid-game/old-save adoption.
+    -- Existing index loads above; absent index requires the pristine start state below.
     assert(Game.GetCurrentGameTurn()==GameConfiguration.GetStartTurn(),'NOT_NEW_GAME_START')
     local humans=0
     for pid,player in pairs(Players)do
@@ -690,8 +691,17 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   local ok,w=pcall(find,c);if not ok then return {fault=tostring(w)}end
   return w and w.Status() or {unregistered=true}
  end
+ function store.FailureReport()
+  if not fault then return nil end
+  local first=tostring(fault):match('^[^\r\n]+') or ''
+  local message=first:match('.*:%d+: (.*)') or first
+  local code=message:match('^([A-Z][A-Z_]+)') or 'INITIALIZATION_FAILED'
+  local reason='初始化或保存校验未通过；只支持从开局启用本Mod的测试局。'
+  return P.VERSION..' | 专业进度暂停\n'..reason..'\n原因：'..code
+   ..'\n请停止投资并保留此报告；不会回退旧账本。'
+ end
  function store.Describe(pid,c)
-  if fault then return P.VERSION..' | 进度保存暂停\n本批需要新测试局；旧档/未知保存状态不会转换或回退。\n原因：'..fault end
+  if fault then return store.FailureReport() end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
   if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服初始化尚未开放。'end

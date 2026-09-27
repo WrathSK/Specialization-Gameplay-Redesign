@@ -57,6 +57,9 @@ function SPCEffectiveFacts.Start(P,shared)
   return out
  end
  function data.Describe(pid,city)
+  local store=shared.CityProgressionStore
+  local failure=store and store.FailureReport and store.FailureReport()
+  if failure then return failure end
   local ok,result=pcall(function()
    local f=data.Read(pid,city)
    return 'B033 city='..f.cityID..' | '..f.specialization

@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0274",
-    "runtime": "B108.135 / modinfo135",
+    "status": "S0275",
+    "runtime": "B109.136 / modinfo136",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "c056eaeb0ec50b1a06cbb7826b32650b550e9481",
-  "current_batch": "P0-E2 B108_NATIVE_INITIALIZATION_FAIL_REPAIR_PENDING",
-  "next_batch": "Await scoped native initialization repair authorization; three-city test paused; no Claim/F",
+  "runtime_commit": "B109 reviewed working tree; commit to be recorded after checkpoint",
+  "current_batch": "P0-E2 B109_INITIALIZATION_REPAIR_LOCAL_PASS_NATIVE_REQUIRED",
+  "next_batch": "Deploy authorized B109 checkpoint after exit/hash gates, then new-game three-city native test; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B108.135 / modinfo135 deployed;153/153 MATCH;source c056eae;B107 complete recovery verified;receipt B108.135-c056eae-playtest.json",
   "stable": "main B069.96 / modinfo96",

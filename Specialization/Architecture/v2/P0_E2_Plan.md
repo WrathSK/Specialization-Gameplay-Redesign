@@ -1,13 +1,13 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B108_LOCAL_SIMULATION_PASS / NATIVE_INITIALIZATION_FAIL_REPAIR_PENDING. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B109_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-**B108新测试局多城切片LOCAL_SIMULATION_PASS；2026-09-27原生初始化USER_GAME_TEST_FAIL，暂停测试、待修复授权。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109已按2026-09-27授权修复B108初始化失败；LOCAL_SIMULATION_PASS，等待部署后USER_GAME_TEST。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
-本次[两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)：初始化IsSavedGame调用报错，专业读取UNKNOWN；以下原三城流程暂停，投资及冷加载尚未验收。没有授权绕过旧档保护或实施修复。
+本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。原三城投资／冷加载仍未验收。
 
 ### 默认恢复 / 验收
 
@@ -794,3 +794,17 @@ Minimal user test — **new test game required**, use current build visible in r
 Rollback: exact B107 runtime recovery plus a pre-B108 save/new game; do not promise B108 saves load under B107. No Design/main/Claim/F changes. Next authorization only after native checkpoint review; no automatic next slice.
 
 Deployment: B108.135 source `c056eae`, W0003 authorized temporary develop deployment,153/153 MATCH; B107 full outgoing recovery verified through the existing restore/switch transaction. Receipt `B108.135-c056eae-playtest.json`. Main unchanged; game verified exited, never launched. Native gate remains pending.
+
+## B109.136 — start-enabled initialization repair
+
+Authorized 2026-09-27 after B108 native failure. User explicitly clarifies: supported games enable this Mod from game creation; no compatibility/migration for saves started without it, and no old development-save compatibility project. This is save-support scope, not changed Gameplay Design. Normal saves produced by the supported new-game path must still load correctly.
+
+B108 line623 called UI-side `GameConfiguration.IsSavedGame()` in Gameplay and failed natively. B109 removes that call. No UI bridge/provider, heuristic migration, or new state schema is added. The briefly explored UI reader was uncommitted and not retained. Existing valid index loads read-only. When absent, LoadScreenClose may initialize only at configured start turn, with exactly one enabled local human and zero cities, no old progression/binding ledger, confirmed absent index, and write/readback verification. Unsupported mid-game saves with cities/advanced turn are rejected; no claim to distinguish an unsupported empty start-turn save from a genuine new game. Corrupt index/partial reservations still hold. There is no unconditional absent-index initialization or legacy fallback. All remaining B108 independent-record, investment, ownership and event contracts remain.
+
+Changed runtime: CityProgressionStore initialization plus shared short FailureReport; EffectiveFacts diagnostic uses that report before read; Probe/modinfo stamps109.136. No yield/carrier/AI/Claim/F/Design changes. No repeated UI requests, extra event hooks, polling or scans. Failure display is four concise lines with version/reason/action rather than nested stack traces.
+
+W0004 L3 targeted evidence: `DevelopmentTests/test_b109_session_origin.py` executes actual B108 production cases with only build-stamp and two explicit origin-gate assertion adaptations. The removed IsSavedGame gate is no longer expected to reject nil; missing-index existing-city rejection is now tested instead of promising unsupported empty-start-save discrimination. Original B108 test remains byte-identical. Additional cases: missing/throwing IsSavedGame not called; Research/Culture first completion; one-city investment and coldload isolation; duplicate LoadScreenClose no writes; supported empty-index reload at later turn no writes; missing start API, advanced turn, existing city and old binding no adoption; concise failure from both E2 and specialization reports. All Lua compiles; modinfo136 parses. STATIC_CONFIRMED / LOCAL_SIMULATION_PASS only. No unrelated full historical regression/stress.
+
+Native gate: new test game underB109, three normally founded cities A=NONE/P0, B=Campus ResearchP1, C=Theater CultureP1; invest only B once→P2; save separately, fully exit/restart/load and read three E2 reports. ACTIVE follows actual Governor. Stop on any hold; do not reuse the failed B108 city's uninitialized save. Initialization with current native GetStartTurn/timing and native persistence remain unverified until user test. No trade/conquest/Claim test added.
+
+Rollback through existing exact runtime transaction; returning to B108 returns its known initialization defect, not a claim it is a working new-game baseline. Earlier B107 recovery remains preserved. No new save schema or promised old-save compatibility. Next work waits for native result; no automatic next slice.

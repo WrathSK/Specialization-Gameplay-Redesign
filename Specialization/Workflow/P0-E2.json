@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0274",
-    "runtime": "B108.135 / modinfo135",
+    "status": "S0275",
+    "runtime": "B109.136 / modinfo136",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -42,6 +42,12 @@
       "kind": "section",
       "selector": "## B108 authorized new-game multi-city cutover — contract before implementation",
       "reason": "Current slice / complete supported-save, writer, failure, validation and rollback contract. Historical evidence expands by trigger in current slice."
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B109.136 — start-enabled initialization repair",
+      "reason": "Current save-support clarification, repair, targeted evidence and native gate; supersedes B108 IsSavedGame requirement only"
     },
     {
       "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
@@ -325,6 +331,11 @@
       "path": "DevelopmentTests/test_b108_e2_multicity.py",
       "kind": "full",
       "reason": "Production new-game path scaling, failure and lifecycle acceptance"
+    },
+    {
+      "path": "DevelopmentTests/test_b109_session_origin.py",
+      "kind": "full",
+      "reason": "B109 authorized start-only initialization repair and bounded diagnostic verification"
     }
   ],
   "dependencies": [
@@ -384,9 +395,8 @@
   ],
   "validation": {
     "local": [
-      "B108 production Start 1/2/4/8/33 city isolation, copy/write bounds, P0/P1/P2 coldload, failure/debit/identity/lifecycle cases",
-      "B103/B104/B107 historical adapter and actual module-owned withdrawal/Network invalidation regressions",
-      "All Lua compile / modinfo135 / W0001 / deployment integrity"
+      "test_b109_session_origin.py: B108 actual production cases plus B109 initialization/diagnostic cases; two obsolete save-origin gate assertions explicitly adapted; historical tests unchanged",
+      "All Lua compile / modinfo136 / W0001 / deployment integrity; no unrelated full regression or stress"
     ],
     "user": "New game:3 normal founded cities; A P0, B Research P1→P2 one investment, C Culture P1; one coldload and selected E2 reports. No old migration control."
   },
@@ -395,10 +405,10 @@
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "AUTHORIZED_POST_B107_SLICE1_IMPLEMENTED",
-    "implementation": "B108.135_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
-    "native": "B108 untested; prior B103/B104/B107 acceptance remains scoped history, not new-backend native PASS",
-    "next": "Await B108 native checkpoint review; snapshot/Claim/F not authorized",
-    "scope_review": "New-game multi-city authority and old-writer cutoff only; no new formula/carrier/Design; old saves explicitly unsupported"
+    "plan": "AUTHORIZED_B109_INITIALIZATION_REPAIR",
+    "implementation": "B109.136_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
+    "native": "B108 initialization USER_GAME_TEST_FAIL; B109 untested; prior scoped evidence unchanged",
+    "next": "Authorized checkpoint deployment after safety gates, then native result; no Claim/F",
+    "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }

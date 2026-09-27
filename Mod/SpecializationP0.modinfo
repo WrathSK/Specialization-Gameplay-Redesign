@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="135">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="136">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B108.135 develop: new-game multi-city progression authority; independent records and retired legacy writers. New test game required.</Description>
+    <Description>B109.136 develop: start-enabled new-game initialization without UI-only IsSavedGame; retained start guards and concise failure reports.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "c056eaeb0ec50b1a06cbb7826b32650b550e9481",
-  "runtime": "B108.135 / modinfo135",
+  "runtime_commit": "B109 reviewed working tree; commit to be recorded after checkpoint",
+  "runtime": "B109.136 / modinfo136",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -241,9 +241,9 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "6c50fee2740d8f714003c843602a85ddfbaca4d366e05dfff5b30f6c7151f212",
+      "sha256": "354ba43af238e814fa29e579289d8d2ac85c00cb459ea00403662eef557c7bf2",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B095 E2 partial same-owner implementation; not deployable, exit gate unfinished"
+      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "ae56d756f6ef20a0de01b6b95dab18a5e56b2eb58d3f204ed198e13a222b4a01",
+      "sha256": "ef5a65a2c382219394e84e51dd54f9a060c5ada3b81f8f4a4f9cee200007e1d1",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "68a0231289600573970b19252df7c729d232a27021facee9b95e12161af8ff10",
+      "sha256": "714f76ad924134173a0a4121e827f365a5503d27d098d144dfcb34038d1ab3c3",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "573c7a1e550e1efe9d021eb7780772415198f4d7d19ab904c25c2b06c8d4f24e",
+      "sha256": "77e07c5c94c8fb50b16c1e0ae7866f18228663c1dc547489cfc50ba136885102",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
