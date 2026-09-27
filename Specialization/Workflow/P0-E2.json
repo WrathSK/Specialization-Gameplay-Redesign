@@ -408,7 +408,7 @@
     "plan": "AUTHORIZED_B109_INITIALIZATION_REPAIR",
     "implementation": "B109.136_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
     "native": "B108 initialization USER_GAME_TEST_FAIL; B109 untested; prior scoped evidence unchanged",
-    "next": "Authorized checkpoint deployment after safety gates, then native result; no Claim/F",
+    "next": "B109 deployed; await native new-game three-city checkpoint; no Claim/F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }

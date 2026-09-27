@@ -5,7 +5,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ## Current slice — recovery and action routing
 
-**B109已按2026-09-27授权修复B108初始化失败；LOCAL_SIMULATION_PASS，等待部署后USER_GAME_TEST。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109已按2026-09-27授权修复B108初始化失败；LOCAL_SIMULATION_PASS，等待USER_GAME_TEST。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。原三城投资／冷加载仍未验收。
 
@@ -808,3 +808,5 @@ W0004 L3 targeted evidence: `DevelopmentTests/test_b109_session_origin.py` execu
 Native gate: new test game underB109, three normally founded cities A=NONE/P0, B=Campus ResearchP1, C=Theater CultureP1; invest only B once→P2; save separately, fully exit/restart/load and read three E2 reports. ACTIVE follows actual Governor. Stop on any hold; do not reuse the failed B108 city's uninitialized save. Initialization with current native GetStartTurn/timing and native persistence remain unverified until user test. No trade/conquest/Claim test added.
 
 Rollback through existing exact runtime transaction; returning to B108 returns its known initialization defect, not a claim it is a working new-game baseline. Earlier B107 recovery remains preserved. No new save schema or promised old-save compatibility. Next work waits for native result; no automatic next slice.
+
+Deployment: B109.136 source `2da80ce`, user confirmed game exited, W0003 exact B108 restore/stable bridge then activation;153/153 MATCH, receipt `B109.136-2da80ce-playtest.json`. B108 complete outgoing recovery hash verified. No game launch/main change; native gate pending.

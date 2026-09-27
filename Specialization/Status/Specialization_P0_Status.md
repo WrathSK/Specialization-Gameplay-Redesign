@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0275
-Implementation Build: develop P0-B-109.136 / modinfo136 E2_INITIALIZATION_REPAIR; live last recorded B108.135; stable B069.96
+Implementation Build: develop P0-B-109.136 / modinfo136 E2_INITIALIZATION_REPAIR; live B109.136 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: P0_E2_B109_LOCAL_PASS_NATIVE_REQUIRED
 
 [B108失败两图](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留USER_GAME_TEST_FAIL；B109不继承实机PASS。新测试局三城A=P0、B=科研P1投资一次至P2、C=文化P1，再一次完整退出/重启读档及三份E2报告。ACTIVE按当前总督；异常即停止。旧失败档不作修复/迁移对象。
 
-用户已确认游戏完全退出，可按W0003部署；当前待安全事务，最近已记录运行包仍B108.135/source c056eae。main与Design不变。当前允许完成此修复的提交/部署及验收归档；不自动Claim/F或其它切片。部署完成状态以receipt和后续记录为准，不从源码HEAD推断。
+用户确认游戏完全退出后，已按W0003完成B108恢复stable→B109激活；运行包153/153 MATCH，source 2da80ce，receipt `B109.136-2da80ce-playtest.json`，B108完整恢复包hash一致。未启动游戏，main与Design不变。当前允许验收归档；后续修复须另行授权，不自动Claim/F或其它切片。
 
 ## 历史阶段记录
 
