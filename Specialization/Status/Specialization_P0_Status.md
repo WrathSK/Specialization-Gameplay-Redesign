@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0273
+Status Revision: S0274
 Implementation Build: develop P0-B-108.135 / modinfo135 E2_NEW_GAME_MULTI_CITY; live B108.135 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_NEW_GAME_MULTI_CITY_LOCAL_PASS_NATIVE_REQUIRED
+Work State: P0_E2_B108_NATIVE_INITIALIZATION_FAIL_REPAIR_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-26 B108.135 已按W0003安全部署，源码commit c056eae，153/153 MATCH；B107完整恢复点校验通过，receipt `B108.135-c056eae-playtest.json`。main不变，未启动游戏。
+2026-09-27 B108.135 [新局初始化实机失败](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)：两城专业读取同报CityProgressionStore.lua:623“function expected instead of nil”，对应GameConfiguration.IsSavedGame调用。USER_GAME_TEST_FAIL限定新局初始化／专业可读性；投资、多城隔离及冷启动保存验收未完成。两图已原字节归档。精确原生binding/context原因待调查，不推断存档损坏或区域识别本身错误。
 
-2026-09-26 B108.135 [新局多城切换](../Architecture/v2/P0_E2_Plan.md#b108135-implementation-result--evidence-boundary)按授权完成本地L3验证。正常自建城统一Game索引＋独立记录；取消正式路径2/32实验限制，旧写入/迁移入口退出；真实收益规则不改。1/2/4/8/33城独立、冷加载/无关通知0写入、单城写入不重写其它记录/索引；投资失败窗口、既有退出/夺回回归通过。STATIC/LOCAL不等于实机PASS。仅支持新测试局；未知/旧档不自动转换。最小三城A=P0、B=科研P2、C=文化P1＋一次冷启动读档；等待用户确认新局接口和原生保存。不重复旧新混合兼容测试；Claim/F未实施。以下历史。
+当前切片仍是[E2新局多城](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)。B108的STATIC/LOCAL证据保留原范围，不能覆盖此原生失败。暂停原三城测试，等待窄范围初始化修复授权；不得默认无index即新局，不恢复旧迁移，不进入Claim/F。
 
-当前允许动作：接收/核对本次三城验收证据，按实际范围归档；未收到结果不能提升为USER_GAME_TEST_PASS。后续Gameplay修复/切片须另行明确授权。本次知识结构整理不推进E2，不部署。
+最近记录部署仍为B108.135、source c056eae、153/153 MATCH，receipt `B108.135-c056eae-playtest.json`，B107恢复点已核验；本次没有重新核对外部运行包，也没有修改源码／部署／启动游戏。main不变。
 
-直接合同、测试与停止条件：[E2当前切片](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)。既有B103/B104/B107证据只覆盖各自场景；当前切片不能继承为整批实机PASS。当前源码和记录的运行包版本见[Authority](../Workflow/Authority.json)；上述部署是已记录事实，恢复任务涉及外部运行包时须另核receipt/实际包，不能从HEAD推断。
+当前允许动作：归档本次失败与只读定位；修复或后续切片须另行授权。下一建议为确认实际context可用的新局信号并改善短诊断，不等于已授权实施。
 
 ## 历史阶段记录
 

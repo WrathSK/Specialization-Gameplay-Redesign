@@ -1,11 +1,13 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B108_NEW_GAME_MULTI_CITY_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B108_LOCAL_SIMULATION_PASS / NATIVE_INITIALIZATION_FAIL_REPAIR_PENDING. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-**B108新测试局多城authority切片已实施、LOCAL_SIMULATION_PASS、等待USER_GAME_TEST。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B108新测试局多城切片LOCAL_SIMULATION_PASS；2026-09-27原生初始化USER_GAME_TEST_FAIL，暂停测试、待修复授权。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+
+本次[两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)：初始化IsSavedGame调用报错，专业读取UNKNOWN；以下原三城流程暂停，投资及冷加载尚未验收。没有授权绕过旧档保护或实施修复。
 
 ### 默认恢复 / 验收
 
