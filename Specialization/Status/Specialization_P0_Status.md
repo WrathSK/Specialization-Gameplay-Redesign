@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0275
+Status Revision: S0276
 Implementation Build: develop P0-B-109.136 / modinfo136 E2_INITIALIZATION_REPAIR; live B109.136 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B109_LOCAL_PASS_NATIVE_REQUIRED
+Work State: P0_E2_B109_THREE_CITY_NATIVE_PARTIAL_COLDLOAD_CONFIRMATION_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-27 [B109初始化修复](../Architecture/v2/P0_E2_Plan.md#b109136--start-enabled-initialization-repair)按授权完成，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，等待实机。移除Gameplay中失败的IsSavedGame调用；保留起始回合、零城市、无旧账本和读回校验；已有当前索引只读恢复。用户确认只支持从开局启用Mod及其正常存档，不做中途加入或旧开发存档兼容。无UI跨context适配、额外事件/扫描、新收益或保存schema。
+2026-09-27 [B109三城截图](Validation/Results/Specialization_B109_E2_Three_City_Result.md)确认正常读取独立记录：A无专业/P0/ACTIVE0/投资0，B科研/P2/ACTIVE1/投资1，C文化/P1/ACTIVE1/投资0；已登记3城。本次可见状态 USER_GAME_TEST_PASS（限定截图场景），B108初始化报错未出现。E2报告使用左键，右键仅历史事件证据；无需右键重测。
 
-[B108失败两图](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留USER_GAME_TEST_FAIL；B109不继承实机PASS。新测试局三城A=P0、B=科研P1投资一次至P2、C=文化P1，再一次完整退出/重启读档及三份E2报告。ACTIVE按当前总督；异常即停止。旧失败档不作修复/迁移对象。
+完整退出/重启读档是否已在截图前完成，等待用户确认，不能仅凭图片判定；完整三城保存验收尚未关闭。原图3/3 hash一致归档。[B109修复](../Architecture/v2/P0_E2_Plan.md#b109136--start-enabled-initialization-repair)本地证据保持；[B108失败](Validation/Results/Specialization_B108_E2_Initialization_Failure.md)仍为历史反证。只支持开局启用Mod及正常存档，不做中途加入或旧开发存档迁移。
 
-用户确认游戏完全退出后，已按W0003完成B108恢复stable→B109激活；运行包153/153 MATCH，source 2da80ce，receipt `B109.136-2da80ce-playtest.json`，B108完整恢复包hash一致。未启动游戏，main与Design不变。当前允许验收归档；后续修复须另行授权，不自动Claim/F或其它切片。
+运行包仍B109.136，已记录部署153/153 MATCH，source 2da80ce，receipt `B109.136-2da80ce-playtest.json`；B108恢复点保留。本轮仅验收归档，未重新部署/核验外部运行包。当前等待读档步骤确认；E2仍partial，后续修复/实施须另行授权，不自动进入snapshot/Claim、其它生命周期或F。
 
 ## 历史阶段记录
 

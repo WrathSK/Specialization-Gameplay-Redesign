@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0275",
+    "status": "S0276",
     "runtime": "B109.136 / modinfo136",
     "military": "D0034"
   },
@@ -407,8 +407,8 @@
   "result": {
     "plan": "AUTHORIZED_B109_INITIALIZATION_REPAIR",
     "implementation": "B109.136_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED",
-    "native": "B108 initialization USER_GAME_TEST_FAIL; B109 untested; prior scoped evidence unchanged",
-    "next": "B109 deployed; await native new-game three-city checkpoint; no Claim/F",
+    "native": "B109 three-city visible P0/Research P2/Culture P1 and investment counts USER_GAME_TEST_PASS scoped; coldload step confirmation pending; B108 historical FAIL retained",
+    "next": "Await user confirmation of full restart/load before the submitted reports; no right-click retest, no Claim/F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }
