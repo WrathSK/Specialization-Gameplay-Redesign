@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0281",
+    "status": "S0282",
     "runtime": "B111.138 / modinfo138",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "0ffbfdb6092d2e8bacaaed73691ffab39f84c773",
-  "current_batch": "P0-E2 B111_SCOPED_NATIVE_PASS",
-  "next_batch": "Recommended: prepare minimal Claim project plan for review; no implementation authorization, no F",
+  "current_batch": "P0-E2 CLAIM_PLAN_AWAITING_APPROVAL",
+  "next_batch": "User review Cost=1 real-project Claim plan and separate implementation authorization; no runtime work yet",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B111.138 / modinfo138 deployed;153/153 MATCH;source/deployment 0ffbfdb;B110 complete recovery verified;receipt B111.138-0ffbfdb-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B111 six screenshots visually reviewed: frozen single candidate, empty first completion, user-confirmed full restart; investment availability user statement; no runtime changes",
+  "context_review_status": "Claim plan scoped review: PROG006-009, Store validation/first anchor, existing Crew project gate, HD completion event precedent; native feasibility still pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

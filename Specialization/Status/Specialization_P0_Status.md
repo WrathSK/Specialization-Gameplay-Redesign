@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0281
+Status Revision: S0282
 Implementation Build: develop P0-B-111.138 / modinfo138 E2_INDEXED_SNAPSHOT_REPAIR; live B111.138 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B111_SCOPED_NATIVE_PASS
+Work State: P0_E2_CLAIM_PLAN_AWAITING_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,7 @@ Work State: P0_E2_B111_SCOPED_NATIVE_PASS
 
 当前source/live B111.138，source/deployment `0ffbfdb`，153/153 MATCH及receipt `B111.138-0ffbfdb-playtest.json`沿用已核验部署记录；本次未重新核验外部包、未部署或启动游戏。[B110失败证据](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)保留，B109先前验收保持。Design/main/runtime未变。
 
-E2仍partial。下一建议：准备候选非空城市通过对应项目认定专业（Claim）的最小计划，再单独授权实施；不是本轮已授权动作。销毁/位置复用、未专业城夺回及其它未关闭边界不自动纳入；不推进F。[项目拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC。
+E2仍partial。[Claim最小计划](../Architecture/v2/P0_E2_Plan.md#next-slice--claim-project-plan-after-b111-acceptance)已按用户授权准备，未实施。建议Cost=1真实生产项目、完成后才认定；需用户审核该参数/路径并单独授权实施。保留冻结候选、幂等保存与真实区域引用，项目资格/退出仍需原型验收。销毁/位置复用、未专业城夺回及其它未关闭边界不自动纳入；不推进F。[项目拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC。
 
 ## 历史阶段记录
 

@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0281",
+    "status": "S0282",
     "runtime": "B111.138 / modinfo138",
     "military": "D0034"
   },
@@ -353,6 +353,12 @@
       "kind": "section",
       "selector": "## B111.138 — indexed district snapshot repair",
       "reason": "Authorized minimal native enumeration repair, accurate fixture and pre-conquest retry boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## Next slice — Claim project plan after B111 acceptance",
+      "reason": "Current proposed Claim scope, cost proposal, state transaction, direct dependency closure and native gates; not implementation authorization"
     }
   ],
   "dependencies": [
@@ -425,7 +431,7 @@
     "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
     "implementation": "B111.138 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; indexed read and diagnostic repair, no save schema or gameplay changes",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "Scoped native gate closed; recommend minimal Claim project plan then separate implementation approval; E2 partial, no F",
+    "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }

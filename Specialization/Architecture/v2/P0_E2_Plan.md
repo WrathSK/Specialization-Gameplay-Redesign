@@ -895,3 +895,67 @@ B111部署结果：用户确认游戏已退出；从clean source `0ffbfdb`完成
 [六图验收](../../Status/Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)：城市1商业单候选→后建工业区仍待Claim/P0；城市2空候选→剧院完成文化P1；用户确认完整重启后两城保持。USER_GAME_TEST_PASS仅上述范围，城市2投资可用另有用户陈述，图中仍投资0。当前最小门禁关闭，无需重复。原生未覆盖的多候选/异常/其它生命周期不扩大PASS。
 
 下一建议仅为Claim项目认定最小计划；用户审核后另行授权实施。现有候选资格不变，单候选也必须完成项目。E2仍partial，不自动Claim实施/销毁/未专业城夺回/F。本次只有证据归档与状态维护，没有runtime/Design/部署修改。
+
+## Next slice — Claim project plan after B111 acceptance
+
+Status: PLAN_ONLY / AWAITING_USER_REVIEW_AND_IMPLEMENTATION_AUTHORIZATION. 用户本轮授权准备计划，不是实施。基线B111.138，双城快照/后续完成/完整重启限定PASS；不重复该批测试。正式规则为当前Spec PROG-006～009，用户再次确认候选即使只有一个也须完成对应城市项目。
+
+### 目标与已接受合同
+
+仅对本地人类玩家的已确认ACTIVE记录、schema3 acquisition.mode=LEGACY_CLAIM、progression=UNASSIGNED、Identity NONE/P0且无保存/完成错误的城市开放。四专业候选只取保存的LegacySet；不按当前新建筑追加，不自动选单候选。玩家可以一直不选。空集城市、已有专业、自建城、UNKNOWN/HELD、AI/自由城均不能走Claim。
+
+每个候选对应一个真实生产项目。**完成**任意一项才建立对应Identity与Potential1；其余项目撤下。之后重新派生ACTIVE/当前网络，走既有local consumer，不直接写收益快照、不发额外投资成果。不恢复旧时代/历史成果或为AI补造专业。
+
+### 建议参数与操作呈现（待本计划批准）
+
+建议首轮采用四项目各 **基础Cost=1 Production / NO_PROGRESSION_MODEL**；名称使用功能性“认定科研／文化／工业／商业专业”作为开发测试文案，不升级成新正式能力名。PROG-008允许极低成本或1-turn确认，本方案选择前者；不是固定完整回合方案。原生游戏速度及项目完成行为需验证，不承诺任意环境下精确一回合。
+
+保留普通生产、既有溢出/收获等原生项目完成途径，不新增生产来源限制。若生产使项目同回合完成，仍以真实完成事件认定；点击/入队本身不写Identity。**Cost=1是待用户审核的实施/平衡建议，不修改当前Design TBD，不在本轮实施。** 不复用商业Project-as-trigger绕过生产，也不把时代对话完整回合门槛转嫁给Claim。
+
+### 最小技术路径与直接依赖
+
+| 模块 | 计划改动 / 必须核对的调用关系 |
+|---|---|
+| CityProgressionStore | 新增专用Claim提交入口，复用当前record-local保存/readback/revision及身份核验；保留旧acquisition与冻结set，不调用普通Complete冒充区域刚建成 |
+| 新ClaimProjects小模块 + SQL/Text | 四项目定义与准确的项目ID→专业映射，原生项目完成事件入口；无generic project engine、无新收益modifier |
+| Gameplay / modinfo | 接入单一完成监听及当前有界dirty audit；不增加轮询、hover请求或第二套保存authority |
+| EffectiveFacts / InvestmentAction / CrewProjects / Standardization | 核对base.first、专业区域引用和永久写后重算的真实依赖；相同数据合同可复用，不能只设置Identity字符串就宣布兼容 |
+| 精确退出 / 隐藏规则 | 若采用下述access marker，纳入module-owned撤销、呈现隐藏与ordinary-building排除，不能按前缀批量删建筑 |
+| 定向测试 | 新Claim实际handler模拟，复用B111已冻结候选/空集分流及既有投资/保存相关回归；只改版本断言，不削弱旧断言 |
+
+入口可见性的最小候选：复用CrewProjects已有 **Projects.RequiredBuilding + 无收益技术access marker** 路径，按四种冻结候选分别维护访问标记，避免单一总标记错误开放全部专业。标记只表达派生资格，不保存Identity/选择；不提供住房、岗位、普通建筑层级或其它收益。新建/加载/已确认ownership loss/Claim成功按scope核对并撤销；UNKNOWN停止允许操作，不能误删永久记录。实现前核对隐藏和ontology的精确名单及退出注册点。
+
+原生队列对资格撤销/已排入其它Claim如何处理需要最小prototype；Gameplay完成端必须再次拒绝所有过期/已专业化/非候选事件，即使UI仍暂存一行也不能重写Identity。若不能可靠阻止无资格项目继续供玩家建造/清除其它Claim，不以“收益端拒绝了”冒充完整UI验收；暂停具体路径报告。不得修改普通项目队列或清空整城生产来绕过。
+
+### 保存事务与区域引用
+
+完成事件只接受精确四项目ID，读取当前city/token/record，不信任UI选择缓存。对当前owner、正常参与资格、ACTIVE record stage（不是专业ACTIVE等级）、UNASSIGNED/NONE/P0、无pending错误及冻结候选逐项验证。重复完成、另一Claim晚到、已专业化读档重放必须无收益、无第二次revision写入。
+
+现有validate明确以CLAIM_NOT_IMPLEMENTED拒绝LEGACY_CLAIM下SPECIALIZED，必须改为验证明确Claim完成依据（project type、selected kind、completion turn、当前record/reference关联等最小字段），而不是删除保护。acquisition.mode仍记录征服时分流，progression转SPECIALIZED；冻结LegacySet保留。结构扩展使用明确可区分的record version或等价严格判别，实施时选最小方案并记录旧包不能读取新Claim成果的回退边界；不构造全城迁移。既有B111未认定记录和已通过的FIRST_COMPLETION记录继续可读。
+
+现有InvestmentAction/CrewProjects依赖base.first的districtID/type。Claim须从当前城市找到与所选冻结领域一致的完整区域，用已验证indexed Gameplay API形成技术锚点；完成时间记录为Claim时间，不伪称其为原Owner的首次建设历史。当前四专业没有社区式多同类区域。若正常Claim候选找不到可靠对应区域/替换类型，保留候选及记录并暂停，不擅自删除候选、选别的领域或补造districtID；若需改变玩家资格则报告DESIGN_DECISION_REQUIRED。不重置建筑完成/模板/Wonder等专业历史。
+
+一次record-local提交同时写Identity/P1及Claim依据，readback成功才发布OnPermanentCityWrite触发正常事实与收益重算。access markers及UI是可重建派生物；不能先发收益再写账本。失败保留已有保存的故障处理，禁止fallback到City旧journal。投资由既有入口执行，Claim不赠送投资receipt。
+
+### 证据与技术门禁
+
+STATIC_CONFIRMED：PROG-006～009上述规则；当前Store的阻断点与base.first依赖；CrewProjects.sql已有RequiredBuilding项目资格模式；本机HD Gameplay/Projects.lua的CityProjectCompleted(playerID, cityID, projectID)监听提供Gameplay先例。
+
+PROTOTYPE / USER_GAME_TEST_REQUIRED：本Mod四Claim项目在实际HD项目列表的资格过滤、完成事件、一次性退出、队列残留处理、项目完成后正常收益进入。原生先例不是本项目实机PASS。无须为Claim实现商业面板拦截或时代对话生产隔离。
+
+### W0004验证与最小用户测试
+
+L3（持久Identity写入），仅相关范围：
+
+- 本地：单候选/多候选/空集/已有专业/外方owner/UNKNOWN；点击入队无写入，只有合法完成P1；后建区域不扩候选；重复与乱序完成幂等；错误ID/非候选/失败保存不认定；两城隔离、冷加载、既有投资与loss/return路径；Claim区域锚点和no-replay；标记零收益、ordinary排除、owner loss退出。
+- 静态：Lua/XML/SQL、四项目映射与本地化、精确事件/退出调用点、manifest/context；无全历史stress。
+- 原生最小一次流程：复用城市1已有商业单候选存档。确认只有商业Claim（后建工业不出现）、点击/入队尚未完成时仍NONE、实际完成后Commerce/P1及项目退出；城市2文化不变；城市1正常投资可用。另用一个征服时已含两个候选的fixture验证“选一后另一个退出/不能重选”（不能由单候选截图替代）。在认定后保存并完整重启一次，复查专业/潜力/投资及不再出现Claim。可用Cheat准备第二fixture，但标明操作路径；真实项目完成必须由原生事件触发。
+- 任何重复认定/身份串城/保存异常/无资格项目仍可反复操作，停止，不推进F。没有实现前当前无需用户测试。
+
+### 完成条件、回滚与范围
+
+只有本地直接回归＋上述原生关键行为均通过，才关闭Claim切片；不等于E2所有生命周期完成。实现完成先commit/push，再遵守游戏退出/receipt/恢复点部署门禁；用户执行游戏，不由Codex启动。
+
+回滚代码来自B111已知commit，运行包由部署receipt恢复；使用Claim前独立存档，不承诺旧B111能读取新Claim完成记录。保留现有证据与备份，不为本计划制作新源码副本。
+
+不含：商业操作UI、时代对话、销毁/重建/位置复用、未专业化城市丢失再夺回、AI启用、多人、其它专业Legacy、F、新Design revision。当前用户需要审核Cost=1的真实项目方案并另行授权实施；其余技术门禁在授权实现时按最小prototype核验，不能先写成原生PASS。
