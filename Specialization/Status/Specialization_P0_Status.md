@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0285
-Implementation Build: develop P0-B-113.140 / modinfo140 GUARDED_TURN_BUTTON_PROTOTYPE; live B112.139 until deployment verified; stable B069.96
+Implementation Build: develop P0-B-113.140 / modinfo140 GUARDED_TURN_BUTTON_PROTOTYPE; live B113.140 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ B113.140：[获授权的单城下一回合按钮原型](../Reports/Technical/Spe
 
 [B112三图观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定USER_GAME_TEST_PASS保持；新通知位置/按钮渲染/真实过回合未验证。本次最小流程：A/B空负例→仅A空显示下一回合→普通点击跨回合，原型关闭；不要Shift+Enter，不测试砍树/溢出/保存。
 
-当前live B112.139，source/deployment `d7318f2`，receipt `B112.139-d7318f2-playtest.json`沿用已核验记录。用户已确认游戏退出、允许部署B113，待事务验证另记。main稳定B069.96不变。
+B113.140已按W0003部署，source/deployment `217fe27`，154/154 MATCH，receipt `B113.140-217fe27-playtest.json`。用户确认游戏退出；B112完整恢复点/stable桥均已核验，未启动游戏。main稳定B069.96不变。
 
 E2仍partial，Claim计划未实施，不推进F。收到本包证据后再决定连续完整生产回合原型；当前通过不等于固定一回合/砍树溢出隔离已实现。
 

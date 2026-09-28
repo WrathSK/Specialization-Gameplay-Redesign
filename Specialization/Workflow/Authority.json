@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "d7318f213628ef0ef70ff433cf8e8699b692d512",
+  "runtime_commit": "217fe27982d04cee12de192cb3ef56a00cc1823f",
   "current_batch": "GUARDED_TURN_BUTTON_PROTOTYPE_AWAITING_USER; P0-E2 CLAIM_PLAN_ONLY",
   "next_batch": "User validates B113 button/guarded one-shot turn; no formal fixed-turn project, Claim or F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B112.139 / modinfo139 deployed;154/154 MATCH;source/deployment d7318f2;B111 full recovery verified;receipt B112.139-d7318f2-playtest.json;native observation scoped PASS; no force/timing evidence",
+  "live": "B113.140 / modinfo140 deployed;154/154 MATCH;source/deployment 217fe27;B112 recovery verified;receipt B113.140-217fe27-playtest.json;native UI/force pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
