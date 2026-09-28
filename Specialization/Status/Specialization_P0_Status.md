@@ -13,7 +13,7 @@ Work State: B116_START_SCOPED_PASS_PRODUCTION_COST_UNRESOLVED; E2 Claim plan-onl
 
 [B116三图基线](Validation/Results/Specialization_B116_Production_Baseline.md)：NONE开始/空队列诊断/观察跨玩家回合结束限定USER_GAME_TEST_PASS。21 BEGIN→21 PlayerTurnDeactivated→22 PlayerTurnStarted，均NONE；22回合选择粮仓后读到进度8。3图已读，3/3 hash一致归档。
 
-完整生产结算与机会成本仍未证实。原型在PlayerTurnStarted处停止采集，不能由缺少Updated断言整个结算周期无事件。粮仓8点来源未确定；用户确认期间无收获/砍树/Cheat，按回忆此前未生产粮仓但表示不记得，不当作起始进度0的测量。先调查来源与事件窗口，再提出必要最小对照；不直接推进收获/正式项目/Claim/F。选择目标发生在ENDED后，活动中断实机仍未覆盖。
+完整生产结算与机会成本仍未证实。原型在PlayerTurnStarted处停止采集，不能由缺少Updated断言整个结算周期无事件。粮仓8点来源未确定；用户明确确认选择前面板没有粮仓已有进度，选择后才出现8点，期间无收获/砍树/Cheat。排除粮仓旧投入；剩余城市级生产存储/应用来源待查。先调查来源与事件窗口，再提出必要最小对照；不直接推进收获/正式项目/Claim/F。选择目标发生在ENDED后，活动中断实机仍未覆盖。
 
 [B115开始失败](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留历史，[B114按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持。B11653项LOCAL证据不扩展为原生固定时长PASS。测试城市只用自然空队列，不要求手动清空当前生产。
 
