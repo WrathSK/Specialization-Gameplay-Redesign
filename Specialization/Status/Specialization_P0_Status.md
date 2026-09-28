@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0277
-Implementation Build: develop P0-B-109.136 / modinfo136 E2_INITIALIZATION_REPAIR; live B109.136 verified153/153 MATCH; stable B069.96
+Status Revision: S0278
+Implementation Build: develop P0-B-110.137 / modinfo137 E2_CONQUEST_SNAPSHOT; live B109.136 last verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B109_NATIVE_PASS_NEXT_SNAPSHOT_PLAN_ONLY
+Work State: P0_E2_B110_LOCAL_PASS_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-27 用户明确确认三城截图拍于完整重启游戏/读档之后，[补充确认](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)关闭B109本次新局多城检查点：A NONE/P0/投资0、B科研P2/投资1、C文化P1/投资0，独立读取与保存恢复 USER_GAME_TEST_PASS（限定本次场景）。原图与此前记录保留；无需重复或右键重测。ACTIVE与Potential区分保持，不扩大到所有E2生命周期/收益实测。
+2026-09-27 按用户授权完成[B110首次AI征服快照与分流](../Architecture/v2/P0_E2_Plan.md#b110137--authorized-conquest-snapshot-checkpoint)，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，原生待验。一次冻结已完成四专业候选：非空保持NONE/P0，空集才监听后续首次完成；单候选也不自动认定。Claim须完成对应城市项目，操作/UI/成本仍留下一批，本轮未实施。已有专业夺回不走新初始化；未知/冲突不猜测。
 
-按用户要求整理[下一最小段：首次AI征服候选快照](../Architecture/v2/P0_E2_Plan.md#next-slice--first-ai-conquest-snapshot-plan-only)，仅PLAN_ONLY，等待实施授权。范围为已确认无专业历史AI城征服后一次冻结四专业候选：非空等Claim，空集监听后续首次完成；不实现Claim项目/成本，不扩大交易/自由城/旧档支持，不进入F。Claim具体成本/确认方式留后续批次，不阻塞本次快照计划。
+[B109三城完整重启验收](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)保持限定USER_GAME_TEST_PASS。B110最小待测为两种真实AI征服目标＋一次完整重启；左键E2读取冻结候选/空集后首次完成结果。保留升级前存档；B109不保证读取B110新增记录模式。待确认游戏退出后按现有授权部署，当前live仍按既有receipt为B109，尚未替换。
 
-源码/已记录运行包仍B109.136，source 2da80ce，部署receipt `B109.136-2da80ce-playtest.json`、153/153 MATCH为既有部署证据，本轮未重新核验外部包或部署。只做验收及计划；Design/main不变，E2仍partial。下一允许动作是审阅计划，不能从计划存在推导实施授权。
+[城市项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)已保存；仅STATIC证据，未实施。Cost=1不保证完整生产回合，商业操作入口与生产占用是不同问题。Design/main未改；E2仍partial，不自动Claim/F、其它生命周期或UI原型。下一步仅部署门禁及本次原生验收。
 
 ## 历史阶段记录
 

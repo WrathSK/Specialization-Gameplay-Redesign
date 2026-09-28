@@ -49,16 +49,29 @@ local function CreateProgressionRecord(P,shared,storage)
   return cp(s)
  end
  local function validate(r)
-  assert(type(r)=='table' and (r.schema==1 or r.schema==2) and (r.stage=='PREPARED' or r.stage=='ACTIVE' or r.stage=='HELD_TRANSFER')
+  assert(type(r)=='table' and (r.schema==1 or r.schema==2 or r.schema==3) and (r.stage=='PREPARED' or r.stage=='ACTIVE' or r.stage=='HELD_TRANSFER')
    and type(r.revision)=='number' and r.revision>=1 and r.revision%1==0,'STORE_SCHEMA')
   assert(type(r.origin)=='table' and type(r.base)=='table','STORE_SCOPE')
   if r.schema==1 then
    assert(kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')
   else
+   if r.schema==2 then
    local f=r.founding
    assert(type(f)=='table' and f.evidence=='FOUND_CITY+Initialized' and same(f.reference,r.origin)
     and type(f.unitID)=='number' and f.unitID>=0 and f.unitID%1==0 and type(f.reason)=='number'
     and f.reason==f.reason and math.abs(f.reason)<math.huge and f.turn==r.base.foundationTurn,'STORE_FOUNDATION')
+   else
+    local f=r.acquisition
+    assert(type(f)=='table' and f.evidence=='CONQUEST+Initialized+Transfer' and same(f.reference,r.origin)
+     and type(f.oldOwner)=='number' and f.oldOwner>=0 and f.oldOwner%1==0 and f.oldOwner~=r.origin.owner
+     and f.turn==r.base.foundationTurn and type(f.legacySet)=='table','STORE_ACQUISITION')
+    local c,a,i,t=f.conquered,f.added,f.initialized,f.transferred
+    assert(type(c)=='number' and type(a)=='number' and type(i)=='number' and type(t)=='number'
+     and c>=1 and c%1==0 and a%1==0 and i%1==0 and t%1==0 and c<a and a<i and i<t,'STORE_ACQUISITION_ORDER')
+    local n=0;for k,v in pairs(f.legacySet)do assert(kinds[k] and v==true,'STORE_LEGACY_SET');n=n+1 end
+    assert(f.mode==(n>0 and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'),'STORE_ACQUISITION_MODE')
+    assert(f.mode~='LEGACY_CLAIM' or r.progression=='UNASSIGNED','CLAIM_NOT_IMPLEMENTED')
+   end
    assert(r.stage~='PREPARED' and (r.completionError==nil or type(r.completionError)=='string'),'STORE_FRESH_STAGE')
    if r.progression=='UNASSIGNED' then
     assert(r.base.specialization=='NONE' and r.base.potential==0 and r.base.first==nil
@@ -102,7 +115,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(P.IsTestPlayer(pid) and pid==root.origin.owner and same(ref(c),root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
   assert(not root.completionError,root.completionError)
-  if root.schema==2 and not root.current then assert(c:GetProperty(M.Keys.TOKEN)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
+  if root.schema>=2 and not root.current then assert(c:GetProperty(M.Keys.TOKEN)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
   if root.current then
    local token=c:GetProperty(M.Keys.TOKEN)
    if root.returnEvidence=='NATIVE_TRANSITION_V1' then
@@ -211,12 +224,20 @@ local function CreateProgressionRecord(P,shared,storage)
    base={schema=1,kind='DEV_FOUNDATION_JOURNAL',owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=token,
     foundationTurn=proof.turn,revision=0,health='TRACKING',specialization='NONE',potential=0},templatesCaptured=true})
  end
+ function d.Acquire(c,proof,binding)
+  assert(ready and not fault and root==nil and same(ref(c),proof.reference),'ACQUISITION_REFERENCE_CHANGED')
+  local a=ref(c)
+  save({schema=3,stage='ACTIVE',progression='UNASSIGNED',revision=1,origin=a,acquisition=cp(proof),binding=cp(binding),
+   base={schema=1,kind='DEV_FOUNDATION_JOURNAL',owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=c:GetProperty(M.Keys.TOKEN),
+    foundationTurn=proof.turn,revision=0,health='TRACKING',specialization='NONE',potential=0},templatesCaptured=true})
+ end
  function d.HoldCompletion(reason)
-  if not ready or fault or not root or root.schema~=2 or root.progression~='UNASSIGNED' or root.completionError then return end
+  if not ready or fault or not root or root.schema<2 or root.progression~='UNASSIGNED' or root.completionError then return end
   local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n)
  end
  function d.Complete(pid,c,e)
-  if not root or root.schema~=2 or root.progression~='UNASSIGNED' then return end
+  if not root or root.schema<2 or root.progression~='UNASSIGNED' then return end
+  if root.acquisition and root.acquisition.mode=='LEGACY_CLAIM' then return end
   local r=active(pid,c);assert(same(e.reference,r.origin),'COMPLETION_REFERENCE_CHANGED')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.specialization;n.base.potential=1
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
@@ -252,6 +273,14 @@ local function CreateProgressionRecord(P,shared,storage)
   c=c or CityManager.GetCityAt(root.origin.x,root.origin.y)
   local ok,f=pcall(shared.EffectiveFacts.Read,pid,c)
   if not ok then return '进度记录已保存；当前事实未确认：'..tostring(f)end
+  if root.schema==3 then
+   local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业'};local list={}
+   for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do if root.acquisition.legacySet[k]then list[#list+1]=names[k]end end
+   local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目（本批尚未开放）' or '等待征服后的首个合格区域完成'
+   if root.progression=='SPECIALIZED' then mode='专业已锁定：'..names[f.specialization]end
+   return P.VERSION..' | 征服城市进度\n取得已确认 | '..mode..'\n冻结候选：'..(#list>0 and table.concat(list,'、') or '无')
+    ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..'\n独立记录已保存；候选不会随之后建设增加。'
+  end
   if root.schema==2 then
    return P.VERSION..' | 新城进度\n来源：正常建城 | '..(root.progression=='UNASSIGNED' and '等待首个合格区域完成' or ('专业已锁定：'..f.specialization))
     ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 已完成投资 '..f.investmentCount
@@ -264,7 +293,7 @@ local function CreateProgressionRecord(P,shared,storage)
  -- On-demand evidence only. No state writes, refresh, requests or effect application.
  function d.NativeDescribe(pid)
   local ok,out=pcall(function()
-   if not root or not ready or fault or root.schema==2 then return d.Describe(pid)end
+   if not root or not ready or fault or root.schema>=2 then return d.Describe(pid)end
    assert(pid==root.origin.owner and P.IsTestPlayer(pid),'E2_WRONG_PLAYER')
    local function label(r)return r and (tostring(r.owner)..'/'..tostring(r.cityID)..' @'..tostring(r.x)..','..tostring(r.y)) or 'NONE'end
    local city=CityManager.GetCityAt(root.origin.x,root.origin.y)
@@ -592,7 +621,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    local pos=a.x..':'..a.y;assert(not positions[pos],'STORE_LOCATION_COLLISION');positions[pos]=token
    local good,row=pcall(function()
     local value=cp(Game:GetProperty(PREFIX..token))
-    if value then assert(value.schema==2 and type(value.binding)=='table' and value.binding.schema==2 and same(value.origin,{owner=a.owner,cityID=a.cityID,x=a.x,y=a.y}) and type(value.base)=='table' and value.base.token==token,'INDEX_RECORD_CONFLICT')end
+    if value then assert((value.schema==2 or value.schema==3) and type(value.binding)=='table' and value.binding.schema==2 and same(value.origin,{owner=a.owner,cityID=a.cityID,x=a.x,y=a.y}) and type(value.base)=='table' and value.base.token==token,'INDEX_RECORD_CONFLICT')end
     return value
    end)
    if good then envelope.records[token]=row end
@@ -704,7 +733,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   if fault then return store.FailureReport() end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
-  if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服初始化尚未开放。'end
+  if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服须确认完整事件与无专业历史，不能自动认领。'end
   if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
   return w.Describe(pid,c)..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
  end
@@ -734,7 +763,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  -- At most four scalar candidates and eight ordered completion notifications each.
  -- No Publish/Playback/timer gate, no unit lookup, no load-time district inference.
- local pending={};local freshReady=false;local freshOverflow=false;local hooks={}
+ local pending={};local eventSerial=0;local freshReady=false;local freshOverflow=false;local hooks={}
  local LIMIT,COMPLETIONS=modern and (capacity or 0) or 4,8
  local function integer(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
  local foundReason=P.Field(EventSubTypes,'FOUND_CITY')
@@ -800,15 +829,37 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   return c,{reference=reference(c),specialization=kind,type=info.DistrictType,districtID=id,turn=Game.GetCurrentGameTurn()}
  end
  local function admit(q)
-  if not q or q.error or q.committing or not q.initialized or not q.found then return end
+  if not q or q.error or q.committing then return end
+  if q.conquest then if not q.transferred then return end
+  elseif not q.initialized or not q.found then return end
   q.committing=true
   local ok,err=pcall(function()
    check();assert(modern or count()<2,'TWO_CITY_TEST_LIMIT')
-   assert(foundReason~=nil and hooks.UnitActivate and hooks.CityInitialized and hooks.OnDistrictConstructed and hooks.LoadScreenClose,'FOUNDATION_HOOK_UNAVAILABLE')
+   assert(hooks.CityInitialized and hooks.OnDistrictConstructed and hooks.LoadScreenClose,'FOUNDATION_HOOK_UNAVAILABLE')
+   if not q.conquest then assert(foundReason~=nil and hooks.UnitActivate,'FOUNDATION_HOOK_UNAVAILABLE')end
    assert(q.turn==Game.GetCurrentGameTurn(),'FOUNDATION_CROSS_TURN')
    local c=assert(CityManager.GetCityAt(q.reference.x,q.reference.y),'FOUNDATION_CITY_UNAVAILABLE')
    assert(P.IsTestPlayer(q.reference.owner) and same(reference(c),q.reference),'FOUNDATION_REFERENCE_CHANGED')
    assert(not store.Owns(c) and not legacyPresent(c),'FOUNDATION_EXISTING_HISTORY')
+   local acquisition
+   if q.conquest then
+    assert(modern and hooks.CityConquered and hooks.CityAddedToMap and hooks.CityTransfered,'ACQUISITION_HOOK_UNAVAILABLE')
+    assert(not q.found and q.added and q.initSequence and q.conquest.sequence<q.added and q.added<q.initSequence and q.initSequence<q.transferred,'ACQUISITION_ORDER')
+    local old=assert(Players[q.conquest.oldOwner],'ACQUISITION_OLD_OWNER_UNAVAILABLE')
+    assert(old:IsMajor()==true and old:IsHuman()==false and not P.IsTestPlayer(q.conquest.oldOwner),'ACQUISITION_AI_MAJOR_REQUIRED')
+    local set={};local seen={}
+    local districts=assert(c:GetDistricts(),'ACQUISITION_DISTRICTS_UNAVAILABLE')
+    for _,district in districts:Members()do
+     assert(same(reference(district:GetCity()),q.reference) and district:GetOwner()==q.reference.owner,'ACQUISITION_DISTRICT_REFERENCE')
+     local id=district:GetID();assert(integer(id) and not seen[id],'ACQUISITION_DISTRICT_ID');seen[id]=true
+     local complete=district:IsComplete();assert(type(complete)=='boolean','ACQUISITION_COMPLETENESS_UNKNOWN')
+     local row=assert(P.Info('Districts',district:GetType()),'ACQUISITION_DISTRICT_TYPE')
+     local kind=family(row.DistrictType);if complete and kind then set[kind]=true end
+    end
+    acquisition={evidence='CONQUEST+Initialized+Transfer',reference=cp(q.reference),oldOwner=q.conquest.oldOwner,
+     turn=q.turn,conquered=q.conquest.sequence,added=q.added,initialized=q.initSequence,transferred=q.transferred,
+     legacySet=set,mode=next(set) and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'}
+   end
    local token,ledger
    if modern then
     assert(initialized and not writing,'NEW_SAVE_NOT_READY')
@@ -836,7 +887,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    assert(not q.error,q.error)
    local w=make(token,true)
    local proof={evidence='FOUND_CITY+Initialized',reference=cp(q.reference),turn=q.turn,unitID=q.found,reason=foundReason}
-   w.Found(c,proof,ledger)
+   if acquisition then w.Acquire(c,acquisition,ledger) else w.Found(c,proof,ledger)end
    -- Replay only delivered completion events, in delivery order, with live revalidation.
    for _,e in ipairs(q.completions)do
     local city,now=completion(e.owner,e.index,e.x,e.y)
@@ -860,7 +911,8 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local function spatial(name,owner,id,x,y)
   if not integer(id) then return end
   local q=candidate(owner,id,x,y);if not q then return end
-  if name=='CityInitialized' then q.initialized=true end
+  if name=='CityInitialized' then q.initialized=true;q.initSequence=q.initSequence or eventSerial end
+  if name=='CityAddedToMap' then q.added=q.added or eventSerial end
   admit(q)
  end
  local function founded(owner,unitID,x,y,reason)
@@ -902,6 +954,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   local ev=P.Field(ns,name);if not ev or type(ev.Add)~='function' then hooks[name]=false;return end
   hooks[name]=pcall(ev.Add,function(...)
    if fault then return end
+   eventSerial=eventSerial+1
    local ok,err=pcall(fn,...)
    if not ok then
     -- Hold pending candidates only; never poison an unrelated existing-city writer.
@@ -911,10 +964,29 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  freshHook(Events,'LoadScreenClose',function()if modern then initializeNew()end;freshReady=not fault and (not modern or initialized)end)
  freshHook(GameEvents,'CityBuilt',function(...)spatial('CityBuilt',...)end)
+ freshHook(Events,'CityAddedToMap',function(...)spatial('CityAddedToMap',...)end)
+ freshHook(GameEvents,'CityConquered',function(owner,oldOwner,id,x,y)
+  if not modern then return end
+  local q=candidate(owner,id,x,y);if not q then return end
+  if not integer(oldOwner) or oldOwner==owner then q.error='ACQUISITION_OWNER_INVALID';return end
+  if q.conquest then
+   if q.conquest.oldOwner~=oldOwner then q.error='ACQUISITION_CONFLICT'end
+  else q.conquest={oldOwner=oldOwner,sequence=eventSerial}end
+ end)
  freshHook(Events,'CityInitialized',function(...)spatial('CityInitialized',...)end)
  freshHook(Events,'UnitActivate',founded)
  freshHook(GameEvents,'OnDistrictConstructed',constructed)
  freshHook(Events,'CityTransfered',function(owner,id,oldOwner)
+  if modern and freshReady and P.IsTestPlayer(owner) then
+   local c=CityManager.GetCity(owner,id)
+   local q=c and at(c:GetX(),c:GetY())
+   if q and q.conquest then
+    if oldOwner~=q.conquest.oldOwner then q.error='ACQUISITION_OWNER_CONFLICT';return end
+    q.transferred=q.transferred or eventSerial
+    -- Pre-transfer delivery is not a subsequent completion. Snapshot current facts once.
+    q.completions={};admit(q);return
+   end
+  end
   for _,q in ipairs(pending)do
    local c=CityManager.GetCityAt(q.reference.x,q.reference.y)
    if c and c:GetOwner()==owner and c:GetID()==id and (oldOwner==q.reference.owner or owner~=q.reference.owner)then q.error='FOUNDATION_TRANSFER_BEFORE_ADMISSION'end
@@ -932,7 +1004,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.Describe(pid,c)
   if c then
    local q=at(c:GetX(),c:GetY())
-   if q then return P.VERSION..' | 新城登记'..'\n等待确认，旧流程未写入：'..tostring(q.error or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or 'FOUND_CITY / 城市初始化')
+   if q then return P.VERSION..' | 城市取得待确认'..'\n等待确认，旧流程未写入：'..tostring(q.error or (q.conquest and '等待征服完成/城市转移确认') or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or 'FOUND_CITY / 城市初始化')
     ..'\n请保留当前存档和报告；不要再次迁移或投资。'end
    if freshOverflow and not store.Owns(c) and not legacyPresent(c) then return '新城登记暂停：候选数量超过安全界限；未猜测城市历史。'end
   end

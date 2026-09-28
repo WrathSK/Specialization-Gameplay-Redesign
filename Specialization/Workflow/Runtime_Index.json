@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "2da80ce7f85f924b1c827b7c2b99268f6ee0753f",
-  "runtime": "B109.136 / modinfo136",
+  "runtime_commit": "PENDING_B110_IMPLEMENTATION_COMMIT",
+  "runtime": "B110.137 / modinfo137",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "ef5a65a2c382219394e84e51dd54f9a060c5ada3b81f8f4a4f9cee200007e1d1",
+      "sha256": "8c8682f4535d418aecf7a5074e1182745e93f7d049e8e1b7290e4fb904cdf626",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
+      "provenance": "B110 authorized no-history AI conquest snapshot; actual-handler local regression passed; native gate pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "714f76ad924134173a0a4121e827f365a5503d27d098d144dfcb34038d1ab3c3",
+      "sha256": "5195865be65ff3b59d257ad9afe8e1b480f5e06cdd56694fbb848c501295bcbd",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
+      "provenance": "B110 authorized no-history AI conquest snapshot; actual-handler local regression passed; native gate pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "77e07c5c94c8fb50b16c1e0ae7866f18228663c1dc547489cfc50ba136885102",
+      "sha256": "948977a70ee5b53ddbf10c21039f838cd47c6a32cb27d4a1748f289b853c8a62",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
+      "provenance": "B110 authorized no-history AI conquest snapshot; actual-handler local regression passed; native gate pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",

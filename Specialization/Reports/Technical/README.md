@@ -73,3 +73,5 @@
 - [B059.79初始化恢复](Specialization_B059_Initialization_Recovery.md)：无城市玩家guard、失败ACK与可见诊断；78性能已用户确认。
 
 - [E2其它Mod城市事件处理参考](Specialization_E2_Other_Mod_City_Lifecycle_References.md)：GCO关联事件、AutoPlay/原版FOUND_CITY正面证据、HD定域缓存、Captive Leaders回合核对；仅静态调查，不关闭B105门禁。
+
+- [项目点击拦截与完整生产回合](Specialization_Project_Action_Interception_and_Full_Turn.md)：原版/HD点击链、溢出修复Mod与AddProgress边界；商业入口可原型验证，时代对话占用合同仍待技术验证，未实施。

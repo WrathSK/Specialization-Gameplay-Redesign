@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="136">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="137">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B109.136 develop: start-enabled new-game initialization without UI-only IsSavedGame; retained start guards and concise failure reports.</Description>
+    <Description>B110.137 develop: confirmed first AI conquest snapshot and exclusive first-completion / pending-Claim modes; Claim actions not yet implemented.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

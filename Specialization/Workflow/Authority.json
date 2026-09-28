@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0277",
-    "runtime": "B109.136 / modinfo136",
+    "status": "S0278",
+    "runtime": "B110.137 / modinfo137",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "2da80ce7f85f924b1c827b7c2b99268f6ee0753f",
-  "current_batch": "P0-E2 B109_THREE_CITY_COLDLOAD_NATIVE_PASS_NEXT_SNAPSHOT_PLAN_ONLY",
-  "next_batch": "Await explicit authorization of first no-history AI conquest snapshot slice; no Claim/F",
+  "runtime_commit": "PENDING_B110_IMPLEMENTATION_COMMIT",
+  "current_batch": "P0-E2 B110_CONQUEST_SNAPSHOT_LOCAL_PASS_NATIVE_REQUIRED",
+  "next_batch": "B110 deployment after verified game exit, then scoped conquest snapshot native test; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B109.136 / modinfo136 deployed;153/153 MATCH;source 2da80ce;B108 complete recovery verified;receipt B109.136-2da80ce-playtest.json",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized slice1 writer/consumer/persistence closure reviewed; production Start local scale/failure/lifecycle tests; existing exit/recapture regression retained",
+  "context_review_status": "B110 direct store/caller/consumer and save-mode closure reviewed; B109 source/withdrawal regression reused; new actual-handler tests passed; native snapshot timing pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

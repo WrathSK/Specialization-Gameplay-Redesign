@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0277",
-    "runtime": "B109.136 / modinfo136",
+    "status": "S0278",
+    "runtime": "B110.137 / modinfo137",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -336,6 +336,17 @@
       "path": "DevelopmentTests/test_b109_session_origin.py",
       "kind": "full",
       "reason": "B109 authorized start-only initialization repair and bounded diagnostic verification"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B110.137 — authorized conquest snapshot checkpoint",
+      "reason": "Authorized acquisition mode and record contract, evidence and native gate"
+    },
+    {
+      "path": "DevelopmentTests/test_b110_conquest_snapshot.py",
+      "kind": "full",
+      "reason": "Direct new acquisition/mode actual-handler tests and inherited persistence regression"
     }
   ],
   "dependencies": [
@@ -385,7 +396,7 @@
     }
   ],
   "non_scope": [
-    "old-save conversion, first AI-city snapshot/Claim, destruction retirement, F; new self-founded cities only",
+    "old-save conversion, Claim projects/actions/cost, destruction retirement, unassigned recapture, F; supported no-history AI conquest snapshot only added",
     "cross-owner benefit inheritance",
     "profession-specific historical ledger migration",
     "F Academic Tradition",
@@ -395,20 +406,20 @@
   ],
   "validation": {
     "local": [
-      "test_b109_session_origin.py: B108 actual production cases plus B109 initialization/diagnostic cases; two obsolete save-origin gate assertions explicitly adapted; historical tests unchanged",
-      "All Lua compile / modinfo136 / W0001 / deployment integrity; no unrelated full regression or stress"
+      "test_b110_conquest_snapshot.py: direct conquest modes and inherited B109/B108 production tests, version assertion adapted only",
+      "All Lua syntax/modinfo137/context; no unrelated full regression/stress"
     ],
-    "user": "New game:3 normal founded cities; A P0, B Research P1→P2 one investment, C Culture P1; one coldload and selected E2 reports. No old migration control."
+    "user": "Two actual AI conquest cities: nonempty frozen set stays NONE even singleton/later construction; empty set subsequent completion P1; one full restart/load, left-click E2 reports."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "AUTHORIZED_B109_INITIALIZATION_REPAIR",
-    "implementation": "B109.136_LOCAL_SIMULATION_PASS / scoped three-city USER_GAME_TEST_PASS; E2 partial",
+    "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
+    "implementation": "B110.137 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native pending",
     "native": "B109 three-city founding/specialization/investment and full restart/load USER_GAME_TEST_PASS scoped; user confirmed restart boundary; B108 historical failure preserved",
-    "next": "First no-history AI conquest snapshot plan only; revalidate direct dependency manifest before authorized implementation; no Claim/F",
+    "next": "Deploy after verified exit, then two-mode conquest native test; no Claim actions or F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }

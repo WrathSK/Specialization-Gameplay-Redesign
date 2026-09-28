@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B109_THREE_CITY_COLDLOAD_USER_GAME_TEST_PASS / NEXT_SLICE_PLAN_ONLY. Authorized slice1 complete locally; subsequent snapshot/Claim/lifecycle/F slices remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B110_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-**B109三城及完整重启读档已获用户确认，当前检查点 USER_GAME_TEST_PASS。下一段仅计划，未授权实施。** 原授权slice1已本地完成，后续snapshot/Claim、销毁/位置复用、未专业城夺回、F均未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，等待原生验证。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -19,7 +19,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 实施依赖与按问题展开
 
-[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前无新的Gameplay实施授权。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前授权范围及完成结果见[B110检查点](#b110137--authorized-conquest-snapshot-checkpoint)；不自动进入后续Claim。下一授权若改变切片，先更新适用集合，不能永远追加历史。
 
 | 触发 / 直接合同 | 阅读范围与用途 |
 |---|---|
@@ -27,7 +27,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 | ownership退出/夺回或Native顺序异常 | [B096模块自有退出清单](#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)、[B097逐类永久/派生state](#b097124--原玩家同城夺回-partial-checkpoint)，再读B101/B102/B103后续修正；这些阶段上限/待测状态可能已过时，不能反向覆盖B108 |
 | founding或事件收尾问题 | [B105原生反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md)、[B107实现](#b107134--authorized-positive-founding-registration-implementation)及其原生结果；不得恢复“首个Publish即事务结束”假设 |
 | 既有测试fixture/兼容断言失败 | 对应历史阶段＋直接test依赖；历史adapter不是生产旧档支持承诺 |
-| 讨论后续工作 | [当前下一最小段](#next-slice--first-ai-conquest-snapshot-plan-only)；slice1已由B109完成限定实机验收，其余只是建议，不派工 |
+| 讨论后续工作 | [B110当前检查点](#b110137--authorized-conquest-snapshot-checkpoint)；原快照计划已授权并完成本地实施，Claim及其它后续仅建议，不派工 |
 
 跨Owner永久成果仍逐专业定义；未实现的学术传统、文化永久ledger、商业合同不补造。名字/单独坐标/猜CityID不能证明同城；失效与临时UNKNOWN分离。旧实验代码可保留作反证/fixture，正式入口是否启用以当前切片与源码为准。
 
@@ -849,3 +849,21 @@ Rollback: existing deployment recovery transaction; preserve pre-slice save and 
 ### Following slices and decision boundary
 
 After this checkpoint, separately plan Claim selection/completion (PROG-007/008), then remaining lifecycle gaps and E2 closure/F readiness. Claim's exact low-cost versus one-full-turn realization remains TBD and must be made concrete before that implementation, not invented here. No new Gameplay decision blocks this snapshot-only plan; any evidence ambiguity is a technical gate. Waiting for explicit user implementation authorization.
+
+## B110.137 — authorized conquest snapshot checkpoint
+
+2026-09-27 user authorized the previous snapshot-only plan and reaffirmed PROG-007/008: **only completion of the corresponding city Claim Project establishes specialization, even with exactly one candidate; never auto-select**. This is existing-rule confirmation, not a new Design revision. Claim actions/cost/UI remain outside B110. Project-click/overflow investigation is [read-only and separate](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md).
+
+Runtime changes only CityProgressionStore plus Probe/modinfo stamps. New inner record schema3 carries acquisition evidence, frozen four-family LegacySet and FIRST_COMPLETION / LEGACY_CLAIM mode; existing schema2 founding records/index3 remain unchanged and readable. Existing record storage/reservation/readback and exact retained-location checks reused. No new cityKey, carrier, yield, AI activation, generic inheritance or City-property fallback. Existing consumers read NONE/P0 as before; InvestmentAction rejects NONE and Network gets ACTIVE0. No new benefits for pending Claim.
+
+Admission requires a supported initialized index, current local-human target, original AI-major/nonhuman player, positive CityConquered → CityAdded → CityInitialized → CityTransfered ordered same-turn evidence, matching current reference, no existing/reserved/HELD position and no old Mod properties. CityBuilt alone never qualifies. Snapshot city districts once at confirmed transfer; only complete recognized families/replacements enter the set. Unreadable/incomplete/conflicting evidence holds without guessing. Trade/free-city/general acquisitions remain excluded. Timing reuses the observed conquest chain but first-no-history-city native timing is still unverified.
+
+Nonempty set stays NONE/P0 with Chinese candidate names and “待完成对应认定项目（本批尚未开放）”; later completions cannot append or specialize. Empty set accepts only subsequent valid completion, with same delivered-order/P1/investment contract. Pre-transfer buffered completions are discarded in favor of the acquisition snapshot; valid reentrant post-boundary completions replay in order. Saved mode validated on load; no re-scan. Duplicate acquisition cannot reserve another identity; interrupted reservations remain held across reload. Unassigned recapture remains deferred.
+
+W0004 L3: actual Lua-module `test_b110_conquest_snapshot.py`, inherited B109/B108 production tests with version-only adaptation, plus single/multi/empty/replacement snapshots, incomplete/unknown exclusion, no later append, investment rejection, subsequent P1/P2 persistence, unrelated-city isolation, duplicates, trade/human/nonmajor refusal, existing-history bypass, missing/cross-turn ordering, read failures, partial write/corrupt mode, reentrant post-boundary completion. All Lua syntax/modinfo137 checked. **STATIC_CONFIRMED / LOCAL_SIMULATION_PASS**, not native PASS. Expected negative-case held logs are test fixtures, not observed native failures.
+
+Current direct caller closure: Gameplay Start/left-click routing, CityFlow/Binding modern guards, EffectiveFacts/CurrentSpecializationFacts, InvestmentAction, NetworkInput, Standardization. Their formulas/ownership routes unchanged; schema3 supplies the same base/receipt shape. The reviewed prior module-owned withdrawal/recapture regression remains relevant. No unrelated full regression/stress.
+
+Minimal native test after deployment: separate supported test save, two actual AI conquest targets, one with completed eligible district and another with none completed. Report left-click E2 immediately; nonempty remains NONE with fixed candidates even if singleton; later different district cannot enlarge it. Empty target later completes a legitimate district→P1. Save, fully restart/load once, two reports. No Claim project expected yet. Stop on a hold and retain the report; do not trade as substitute or manually register. Keep pre-B110 save: B109 is not promised to read new inner schema3. Deployment pending game-exit confirmation at implementation commit; follow Status/receipt for actual live state.
+
+After scoped native acceptance: separate Claim plan and its exact cost/one-turn realization; no automatic implementation. No new Gameplay decision needed for this checkpoint.
