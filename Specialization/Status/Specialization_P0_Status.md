@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0303
-Implementation Build: develop P0-B-119.146 / modinfo146 NATIVE_FINISH_PRIMITIVE; live B118.145 pending switch; stable B069.96
+Implementation Build: develop P0-B-119.146 / modinfo146 NATIVE_FINISH_PRIMITIVE; live B119.146 verified158/158 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -17,7 +17,7 @@ Work State: B119_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 最小测试：实验前档→项目唯一目标且最好有正进度→准备/完成一次→右键确认队列空→同回合选原0进度正常目标应0→正常一回合增长。未知/异常即停，禁止重复左键，不用Cheat。详细步骤见合同。
 
-live尚B118.145 source582a1e7；部署须本批干净提交及退出/恢复点门禁。本轮不推进正式定时项目、Claim/F；main/stable不变。
+已部署B119.146 source b3667b2，158/158 MATCH；receipt B119.146-b3667b2-playtest.json。进程确认退出，B118恢复点保留，未启动游戏。本轮不推进正式定时项目、Claim/F；main/stable不变。
 
 ## 历史阶段记录
 
