@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="144">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="145">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B117.144 develop: explicit empty-queue negative-production primitive experiment; disposable test save only, no automatic clearing or formal timed project.</Description>
+    <Description>B118.145: dedicated no-reward project exact-progress subtraction experiment. Disposable test save only; no formal timed project.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
     <ReplaceUIScript id="SPC_TimedTurnProbe"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_InstitutionOverview"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/InstitutionOverview.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_Institutions"><Properties><Context>InGame</Context></Properties><File>UI/Institutions.xml</File></AddUserInterfaces>
@@ -333,6 +334,7 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>Data/OverflowSinkTest.sql</File>
     <File>OverflowStorageProbe.lua</File>
     <File>UI/OverflowStorageRead.lua</File>
     <File>TimedProductionProbe.lua</File>

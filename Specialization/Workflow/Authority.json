@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0300",
-    "runtime": "B117.144 / modinfo144",
+    "status": "S0301",
+    "runtime": "B118.145 / modinfo145",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "c4889422abcd8c9d0c55cc23ee562451a4bc20ee",
-  "current_batch": "B117_NATIVE_CLEAR_FAIL_NEGATIVE_DEBT; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Proposed dedicated-target exact-progress subtraction primitive, pending implementation authorization; no reliable full-clear path confirmed",
+  "runtime_commit": "B118 reviewed working tree; commit pending",
+  "current_batch": "B118_EXACT_PROJECT_LOCAL_PASS_NATIVE_REQUIRED; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Native one-city exact-project subtraction then new-target/next-turn residual gate; stop on failure; no chop/harvest or formal project/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B117.144 / modinfo144 deployed;157/157 MATCH;source c488942;B116 recovery and stable bridge verified;receipt B117.144-c488942-playtest.json;native clear candidate FAIL: negative debt",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Post-B117 scoped native UI/installed overflow sources and API references reviewed; investigation only, no runtime changes",
+  "context_review_status": "Authorized B118 exact-project code/UI/SQL/tests reviewed; 74 targeted local tests; native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "c4889422abcd8c9d0c55cc23ee562451a4bc20ee",
-  "runtime": "B117.144 / modinfo144",
+  "runtime_commit": "B118 reviewed working tree; commit pending",
+  "runtime": "B118.145 / modinfo145",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "60cda3eb417849b36f2d833b3e33c350c11027f99bc2804230dbfffb5ad350e6",
+      "sha256": "e3818656534776fe73f5377297c3559d4c2dc0429fac3dc23847be187ab89648",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "436b93e56c295b93afefc2be66dcb69c7e663b818c40f79424b1f7e0b0a53792",
+      "sha256": "3d53e0ac1540440d3f2cc68fc683b73c96483876f495c252bc70b6ed09c1c00d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "30c441085ef3977057079e091611b1c2f16173bfde28f5c72e61e9352a59465d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "03556bb3a6554340f7befd1f3011d7ddf92a829e8880520c98f34c609142408e",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "21aa64a80f338f0aa28b5698b1cbbe2ad3b5caa0f3611ac754b2d328648810a2",
+      "sha256": "bd587b14fb6a0329432ec7dc6c7d4e96a11e6c04eb71eea9da6d264a2a18d794",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -781,14 +781,19 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/OverflowStorageProbe.lua": {
-      "sha256": "cdf264e7180513f67395a4ade542a4ee7798f53d2020bf2e49899016800905c2",
+      "sha256": "6f59f81d68e82ee59ba5415f070dbf0fbc767963902bda013b783b4ac0cc9f28",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
     },
     "Mod/UI/OverflowStorageRead.lua": {
-      "sha256": "9979d69e01406d2a68fbfb86992e8c2e38305f83e405fa35cecdd5fca07e09b3",
+      "sha256": "d668937bd69215fe3b40ad8fbbeb1806f8f1749ca86c21eea603cc1f5f5e67d5",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+    },
+    "Mod/Data/OverflowSinkTest.sql": {
+      "sha256": "3cda727d346275d56b24a7d7030d7ac189aa60c31cf7570bcb320d47fa38528d",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
     }
   }
 }

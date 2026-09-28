@@ -486,7 +486,7 @@ initialize=function()
  if Mouse.eRClick then Controls.CompletenessButton:RegisterCallback(Mouse.eRClick,function() request("RESEARCH_INFRA_DETAIL") end) end
  Controls.CompletenessButton:SetToolTipString("左键：科研基础设施摘要；右键：学院建筑组成")
  Controls.GWAReadButton:SetHide(false)
- Controls.GWAReadButtonCaption:SetText("溢出清除试验")
+ Controls.GWAReadButtonCaption:SetText("精确扣除试验")
  Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function()
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;overflowRead.Click()
  end)

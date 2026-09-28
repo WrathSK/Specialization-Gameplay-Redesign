@@ -1,25 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0300
-Implementation Build: develop P0-B-117.144 / modinfo144 OVERFLOW_PRIMITIVE; live B117.144 verified157/157 MATCH; stable B069.96
+Status Revision: S0301
+Implementation Build: develop P0-B-118.145 / modinfo145 EXACT_PROJECT_PRIMITIVE; live B117.144 until receipt-confirmed switch; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B117_NATIVE_CLEAR_FAIL_NEGATIVE_DEBT; E2 Claim plan-only
+Work State: B118_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B117四图实机结果](Validation/Results/Specialization_B117_Negative_Production_Boundary.md)：空队列单次−1000之后，磨坊−992→下一回合−984，原生面板−984/60。清零候选 **USER_GAME_TEST_FAIL / NATIVE_NEGATIVE_STORAGE_BOUNDARY**；负数没有自动截断为零。停止重复/更大负数，不继续该候选chop/harvest测试。即时目标快照未变不能证明没有延后损害；已有非零progress保护未完整覆盖。
+[B118已授权精确扣除实验](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#22-b118145--authorized-exact-project-subtraction-primitive)完成本地74项定向验证；专用无收益项目手动选入，0<p≤10000，两次确认后按即时读数单次AddProgress(-p)。旧固定−1000路径已替换；只清实验项目，未正式接入固定回合能力、未自动改队列/发收益。真实归零/无残留仍USER_GAME_TEST_REQUIRED。
 
-[本片合同与技术依据](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#20-b117144--authorized-forfeiture-contract-and-minimal-storage-primitive-test)：用户接受进入时放弃全部未分配旧/新生产，占用期产能及chop/harvest不能转给后续目标；普通目标已拥有progress仍须保留。此玩法不因候选失败改变；正式接入前仍需同步Design正式来源。下一建议仅调查直接重置、可靠存储读取后精确扣除或承接清理候选，未证明可行，不自动实施。
+最小流程：B117扣除前档→选“溢出承接实验（无收益）”为唯一目标→有正进度后准备/确认→项目应0且其它目标不变→同回合切0进度正常目标应0→下一回合正常增长。项目0时可正常生产一回合再试，不能把这个分支当旧overflow捕获证明。任何负数、拒绝、未知、缺项目、早完成立即停止；不重复扣除、不砍树/Cheat。具体截图/边界见上方合同。
 
-本次仅证据归档，无新runtime/部署。live仍B117.144，source c488942，原部署157/157 MATCH，receipt B117.144-c488942-playtest.json；B116恢复点保留。按钮仍在包中，停止使用；回实验前存档，不能靠Mod回滚或猜测补锤修复已保存负进度。当前无需继续用户测试。
+[B117原生反证](Validation/Results/Specialization_B117_Negative_Production_Boundary.md)保持FAIL；用户全清未分配存储合同不变。高成本不是无限容量，chop/harvest/中断/存读收尾尚未验证；项目仅实验载体，非正式Design。恢复必须配测试前存档。
 
-77项LOCAL_SIMULATION_PASS与STATIC仅限保护/调用/报告；不能替代native语义。[B116模式证据](Validation/Results/Specialization_B116_Overflow_Mode.md)、B114按钮/B116开始限定PASS保持；固定完整生产占用仍未PASS。E2 Claim plan-only，Claim/F未推进，main未推广。
-
-[后续只读调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#21-post-b117--reset-exact-subtraction-and-disposable-sink-investigation)完成：未找到可核对的直接生产存储reset；科文虚拟目标方案依赖专用setter，不能照搬。下一建议为专用目标“承接→读取p→单次精确扣除→后续目标/回合无残留”最小原型，尚未实施、等待授权；大额注入提前完成和跨context精度仍是门禁，不承诺任意全清。无本轮用户测试。
+部署待本批提交、退出与完整性门禁；live尚B117.144 source c488942 / receipt B117.144-c488942-playtest.json。E2 Claim plan-only、F未推进；main/stable B069.96未改变。
 
 ## 历史阶段记录
 

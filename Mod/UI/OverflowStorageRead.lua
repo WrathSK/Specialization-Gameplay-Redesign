@@ -1,7 +1,8 @@
--- B117: explicit clicks only; one-city progress inventory is read on prepare/ack/report.
+-- B118: explicit clicks only; one-city progress inventory is read on prepare/ack/report.
 SPCOverflowStorageRead={}
 function SPCOverflowStorageRead.New(P,show,send)
- local api={};local prepared=nil;local active=nil;local requestPending=false;local report="尚未开启清除试验。"
+ local api={};local prepared=nil;local active=nil;local requestPending=false;local report="尚未开启精确扣除试验。先从生产列表选择“溢出承接实验（无收益）”。"
+ local project="PROJECT_SPC_OVERFLOW_SINK_TEST"
  local function shortError(err)
   local raw=tostring(err);print("[SPC][OverflowStorageUI] "..raw)
   return (raw:match("^[^\r\n]+") or "接口错误"):gsub("^.-:%d+: ?","")
@@ -28,12 +29,21 @@ function SPCOverflowStorageRead.New(P,show,send)
   return c,pid
  end
  local function packet(action,f)
-  return {OnStart="SPC_P0_Request",Action=action,Token=f.token,CityID=f.id,StartTurn=f.turn}
+  return {OnStart="SPC_P0_Request",Action=action,Token=f.token,CityID=f.id,StartTurn=f.turn,Progress=f.value}
  end
  local function same(a,b)
   for k,v in pairs(a) do if not b[k] or b[k].value~=v.value then return false end end
   for k in pairs(b) do if not a[k] then return false end end
   return true
+ end
+ -- Called synchronously by Gameplay only on explicit prepare/apply; no hover/poll scan.
+ ExposedMembers.SPC_P0=ExposedMembers.SPC_P0 or {}
+ ExposedMembers.SPC_P0.OverflowExactRead=function(pid,id)
+  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
+  assert(c and c:GetOwner()==pid,"即时读数城市不可确认")
+  local row=GameInfo.Projects[project];assert(row,"专用实验项目未加载；需要正确数据库")
+  local q=c:GetBuildQueue();assert(q:GetCurrentProductionTypeHash()==row.Hash,"即时目标不是实验项目")
+  return {owner=pid,id=id,turn=Game.GetCurrentGameTurn(),project=project,size=q:GetSize(),value=q:GetProjectProgress(row.Index)}
  end
  function api.Pulse()
   if not active or not requestPending then return end
@@ -42,7 +52,7 @@ function SPCOverflowStorageRead.New(P,show,send)
   if active.sent=="OVERFLOW_APPLY" and g.status=="PREPARED" then return end
   requestPending=false
   if g.status=="PREPARED" then prepared=active
-   output("清除试验：尚未执行｜城"..active.id.."[NEWLINE]准备读取"..active.total.."类目标进度。仅在独立测试档操作。[NEWLINE]再次左键调用一次−1000。它可能无效或留下负进度；尚非可靠全清。[NEWLINE]右键只读；不会写入。")
+   output("精确扣除：尚未执行｜项目进度="..active.value.."[NEWLINE]再次左键只扣"..active.value.."；不会改队列或自动完成。[NEWLINE]右键只读。仅实验前存档可恢复。")
   else
    prepared=nil
    local ok,detail=pcall(function()
@@ -50,20 +60,25 @@ function SPCOverflowStorageRead.New(P,show,send)
     assert(c and c:GetOwner()==active.owner and c:GetX()==active.x and c:GetY()==active.y,"城市已变化，无法核对")
     local after=snapshot(c);local changed={};local count=0
     for k,v in pairs(after) do
-     if not active.before[k] or active.before[k].value~=v.value then
+     if k~=active.projectKey and (not active.before[k] or active.before[k].value~=v.value) then
       count=count+1;if #changed<5 then changed[#changed+1]=v.name..":"..tostring(active.before[k] and active.before[k].value).."→"..v.value end
      end
     end
-    return count==0 and "即时核对：已读取目标进度未变化（不代表存储已清空）。" or ("即时核对："..count.."项变化，停止实验！"..table.concat(changed,"；"))
+    local p=after[active.projectKey];assert(p,"专用项目读数缺失")
+    return "项目："..active.value.."→"..p.value.."；其它目标变化"..count.."项。"..
+     ((p.value~=0 or count~=0) and ("未达归零判据，停止！"..table.concat(changed,"；")) or "即时归零仅是读数，后续残留仍待检验。")
    end)
-   output("清除试验｜"..g.status.."[NEWLINE]"..g.reason.."[NEWLINE]"..(ok and detail or ("即时核对未完成："..shortError(detail))).."[NEWLINE]未自动过回合、未改队列；用下一目标与下一正常生产回合判断残留/负债。")
+   output("精确扣除｜"..g.status.."[NEWLINE]"..g.reason.."[NEWLINE]"..(ok and detail or ("即时核对未完成："..shortError(detail))).."[NEWLINE]未自动过回合、未改队列；用下一目标与下一正常生产回合判断残留/负债。")
   end
  end
  function api.Click()
   if requestPending then output("清除请求等待回复；不自动重发。右键可读迟到结果。");return end
   local ok,err=pcall(function()
    local c,pid=selected();local before,n,total=snapshot(c)
-   assert(n==0,"需要自然空队列；本试验不会清除玩家生产目标")
+   local row=GameInfo.Projects[project];assert(row,"专用项目未加载；勿继续旧实验")
+   assert(n==1 and c:GetBuildQueue():GetCurrentProductionTypeHash()==row.Hash,"请在城市生产列表选择唯一目标：溢出承接实验（无收益）")
+   local projectKey="Projects:"..row.Index;local value=before[projectKey].value
+   assert(value>0 and value<=10000,"项目进度需为正且不超过10000；为0时可正常生产一回合后再试，负值请回测试前档")
    local turn=Game.GetCurrentGameTurn();local action="OVERFLOW_PREPARE"
    if prepared then
     assert(prepared.owner==pid and prepared.id==c:GetID() and prepared.x==c:GetX() and prepared.y==c:GetY() and prepared.turn==turn,"选城/回合已变化；重新准备")
@@ -71,16 +86,16 @@ function SPCOverflowStorageRead.New(P,show,send)
     active=prepared;action="OVERFLOW_APPLY"
    else
     ExposedMembers.SPC_OverflowSerial=(ExposedMembers.SPC_OverflowSerial or 0)+1
-    active={owner=pid,id=c:GetID(),x=c:GetX(),y=c:GetY(),turn=turn,before=before,total=total,token="B117O:"..turn..":"..ExposedMembers.SPC_OverflowSerial}
+    active={owner=pid,id=c:GetID(),x=c:GetX(),y=c:GetY(),turn=turn,before=before,total=total,value=value,projectKey=projectKey,token="B118O:"..turn..":"..ExposedMembers.SPC_OverflowSerial}
    end
    active.sent=action;requestPending=true
-   output(action=="OVERFLOW_PREPARE" and "正在准备；尚未写入。" or "已发清除候选请求；请勿重复点击。")
+   output(action=="OVERFLOW_PREPARE" and "正在准备；尚未写入。" or "已发精确扣除请求；请勿重复点击。")
    send(pid,PlayerOperations.EXECUTE_SCRIPT,packet(action,active))
    api.Pulse()
   end)
   if not ok then
    prepared=nil
-   output("清除试验暂停："..shortError(err).."[NEWLINE]已发请求如结果不明不得重试；仅测试前存档可恢复。")
+   output("精确扣除暂停："..shortError(err).."[NEWLINE]已发请求如结果不明不得重试；仅测试前存档可恢复。")
   end
  end
  function api.Read()
