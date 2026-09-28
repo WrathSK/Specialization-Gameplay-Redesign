@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0282
-Implementation Build: develop P0-B-111.138 / modinfo138 E2_INDEXED_SNAPSHOT_REPAIR; live B111.138 verified153/153 MATCH; stable B069.96
+Status Revision: S0283
+Implementation Build: develop P0-B-112.139 / modinfo139 TURN_BLOCKER_OBSERVATION; live B111.138 until verified deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_CLAIM_PLAN_AWAITING_APPROVAL
+Work State: NATIVE_TURN_PROBE_AWAITING_USER; E2 Claim remains plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-27 [B111双城征服快照＋完整重启验收](Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md) USER_GAME_TEST_PASS（限定所测场景）。城市1原商业单候选保持NONE/P0，之后完成工业区不追加候选、不自动认定；城市2原空集，完成剧院后文化P1/ACTIVE1；图5/6在用户确认完整重启后保持。城市2可接受投资另记用户实机确认，不推断截图未显示的投资后等级/冷加载。六张原图已读取并hash一致归档，无需重复本流程。
+B112.139：用户授权的[原生结束阻塞观测原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#11-b112139--native-blocker-observation-prototype)已完成本地定向验证，待USER_GAME_TEST。接入HD真实ActionPanel，单城手动arm后仅在正常结束请求采样；只观察并始终调用原路径，不强制结束、不写项目/队列/保存/收益。无活动零扫描，跨回合/重载关闭；13项实际Lua模拟及13项旧门控模型PASS，不是原生接口PASS。最小测试、stop条件和回滚见链接。
 
-当前source/live B111.138，source/deployment `0ffbfdb`，153/153 MATCH及receipt `B111.138-0ffbfdb-playtest.json`沿用已核验部署记录；本次未重新核验外部包、未部署或启动游戏。[B110失败证据](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)保留，B109先前验收保持。Design/main/runtime未变。
+当前live仍为B111.138，source/deployment `0ffbfdb`及receipt `B111.138-0ffbfdb-playtest.json`，待本次game-exit/事务核验后另记B112部署。用户本轮已确认游戏完全退出并允许部署；main稳定源码B069.96不变。
 
-E2仍partial。[Claim最小计划](../Architecture/v2/P0_E2_Plan.md#next-slice--claim-project-plan-after-b111-acceptance)已按用户授权准备，未实施。建议Cost=1真实生产项目、完成后才认定；需用户审核该参数/路径并单独授权实施。保留冻结候选、幂等保存与真实区域引用，项目资格/退出仍需原型验收。销毁/位置复用、未专业城夺回及其它未关闭边界不自动纳入；不推进F。[项目拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC。
+[B111双城＋完整重启验收](Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)范围内PASS保持，不重开。E2仍partial；[Claim计划](../Architecture/v2/P0_E2_Plan.md#next-slice--claim-project-plan-after-b111-acceptance)未实施。当前授权仅旁路原型；本包不证明固定一回合、收获/溢出隔离、项目保存或UserForced安全性。下一步等待本包截图，再决定下一原型；不自动进入Claim/F。
 
 ## 历史阶段记录
 

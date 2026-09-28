@@ -481,13 +481,17 @@ initialize=function()
  Controls.CompletenessButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETENESS_READ") end)
  if Mouse.eRClick then Controls.CompletenessButton:RegisterCallback(Mouse.eRClick,function() request("RESEARCH_INFRA_DETAIL") end) end
  Controls.CompletenessButton:SetToolTipString("左键：科研基础设施摘要；右键：学院建筑组成")
- Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()
-  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;localReport=SPCPerformance.Describe(false);status(localReport:gsub('\n','[NEWLINE]'))
- end)
- Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()
-  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;P.Count('manual_snapshot');localReport=SPCPerformance.Describe(true)
-  status(localReport:gsub('\n','[NEWLINE]'));print('[SPC_PERF_SNAPSHOT] '..localReport)
- end)
+ local function turnProbe(action)
+  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil
+  LuaEvents.SPC_TimedTurnProbe(action)
+  localReport=ExposedMembers.SPC_TimedTurnProbeReport or '原型未载入：停止测试，请回报此提示。'
+  status(localReport)
+ end
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function() turnProbe('READ') end)
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function() turnProbe('CLEAR') end)
+ Controls.PerformanceReadButton:SetToolTipString('左键读取最近一次真实结束请求的缓存报告；右键取消观察。不会强制结束回合。')
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function() turnProbe('ARM') end)
+ Controls.PerformanceSnapshotButton:SetToolTipString('选中一座己方空队列城市后开始单城观察；不清空队列、不创建项目、不提供收益。')
 end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)

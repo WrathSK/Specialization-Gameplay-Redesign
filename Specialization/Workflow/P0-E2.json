@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0282",
-    "runtime": "B111.138 / modinfo138",
+    "status": "S0283",
+    "runtime": "B112.139 / modinfo139",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -359,6 +359,22 @@
       "kind": "section",
       "selector": "## Next slice — Claim project plan after B111 acceptance",
       "reason": "Current proposed Claim scope, cost proposal, state transaction, direct dependency closure and native gates; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "reason": "Authorized side prototype only: complete observation, no-force contract and native tests",
+      "selector": "## 11. B112.139 — native blocker observation prototype"
+    },
+    {
+      "path": "Mod/UI/TimedTurnProbe.lua",
+      "kind": "full",
+      "reason": "Actual ActionPanel wrapper and opt-in native read boundary"
+    },
+    {
+      "path": "DevelopmentTests/test_b112_turn_probe.py",
+      "kind": "full",
+      "reason": "Only this prototype targeted tests; E2 regression not re-run for unchanged Gameplay"
     }
   ],
   "dependencies": [
@@ -432,6 +448,7 @@
     "implementation": "B111.138 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; indexed read and diagnostic repair, no save schema or gameplay changes",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
-    "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
+    "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
+    "side_prototype": "B112.139 native observation authorized/completed locally; no Claim/progression changes; native pending"
   }
 }
