@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0293
-Implementation Build: develop P0-B-116.143 / modinfo143 EMPTY_TARGET_REPAIR; live B115.142; stable B069.96
+Implementation Build: develop P0-B-116.143 / modinfo143 EMPTY_TARGET_REPAIR; live B116.143 verified155/155 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B116_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 [B115失败证据](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留，未采集生产事件，不是完整方案反证。[B114限定按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持。用户测试仅自然空队列A开启→ACTIVE报告→正常过回合→报告→选择新目标Q→立即报告；不要求先选Q再清空。异常停止，暂不收获/溢出，不进入正式项目/Claim/F。
 
-用户授权部署，自动只读进程检查确认游戏退出。待提交后按W0003部署；live记录仍B115.142，receipt `B115.142-96bf8ea-playtest.json`，main稳定B069.96不变。无新的Design或永久状态改变。
+用户授权部署，替换前自动只读进程检查确认游戏退出；已按W0003部署B116.143，源码/部署`b7ee8f9`，155/155 MATCH，receipt `B116.143-b7ee8f9-playtest.json`。B115恢复点与stable桥核验保留，main稳定B069.96不变，未启动游戏。无新的Design或永久状态改变。
 
 ## 历史阶段记录
 
