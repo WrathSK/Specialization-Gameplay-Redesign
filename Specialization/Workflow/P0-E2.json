@@ -419,7 +419,7 @@
     "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
     "implementation": "B110.137 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native pending",
     "native": "B109 three-city founding/specialization/investment and full restart/load USER_GAME_TEST_PASS scoped; user confirmed restart boundary; B108 historical failure preserved",
-    "next": "Deploy after verified exit, then two-mode conquest native test; no Claim actions or F",
+    "next": "B110 deployed with verified B109 recovery; await two-mode conquest native test; no Claim actions or F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }

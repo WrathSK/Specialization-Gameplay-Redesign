@@ -32,9 +32,9 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "8bebf5a16b051b858bfa02ecdb32568c56d77946",
   "current_batch": "P0-E2 B110_CONQUEST_SNAPSHOT_LOCAL_PASS_NATIVE_REQUIRED",
-  "next_batch": "B110 deployment after verified game exit, then scoped conquest snapshot native test; no Claim/F",
+  "next_batch": "Await scoped B110 two-mode AI conquest snapshot native test; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B109.136 / modinfo136 deployed;153/153 MATCH;source 2da80ce;B108 complete recovery verified;receipt B109.136-2da80ce-playtest.json",
+  "live": "B110.137 / modinfo137 deployed;153/153 MATCH;source 8bebf5a, deployment HEAD 621d69c;B109 complete recovery verified;receipt B110.137-621d69c-playtest.json",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

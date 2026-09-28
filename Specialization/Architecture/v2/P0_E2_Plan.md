@@ -869,3 +869,5 @@ Minimal native test after deployment: separate supported test save, two actual A
 After scoped native acceptance: separate Claim plan and its exact cost/one-turn realization; no automatic implementation. No new Gameplay decision needed for this checkpoint.
 
 B110 source commit `8bebf5a` pushed. Process inspection unavailable (sysmon/pgrep cannot list processes); awaiting user exit confirmation. No deployment occurred in this implementation turn; recorded live remains B109.136.
+
+Deployment update: user explicitly confirmed game exited. B110.137 activated from clean HEAD `621d69c` (implementation `8bebf5a`) through exact B109 restore/stable bridge;153/153 source/runtime MATCH and retained B109 recovery hash MATCH. Receipt `B110.137-621d69c-playtest.json`. No game launch/main change; only scoped native test remains.

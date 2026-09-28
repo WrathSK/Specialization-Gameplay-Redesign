@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0278
-Implementation Build: develop P0-B-110.137 / modinfo137 E2_CONQUEST_SNAPSHOT; live B109.136 last verified153/153 MATCH; stable B069.96
+Implementation Build: develop P0-B-110.137 / modinfo137 E2_CONQUEST_SNAPSHOT; live B110.137 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -13,9 +13,9 @@ Work State: P0_E2_B110_LOCAL_PASS_NATIVE_REQUIRED
 
 2026-09-27 按用户授权完成[B110首次AI征服快照与分流](../Architecture/v2/P0_E2_Plan.md#b110137--authorized-conquest-snapshot-checkpoint)，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，原生待验。一次冻结已完成四专业候选：非空保持NONE/P0，空集才监听后续首次完成；单候选也不自动认定。Claim须完成对应城市项目，操作/UI/成本仍留下一批，本轮未实施。已有专业夺回不走新初始化；未知/冲突不猜测。
 
-[B109三城完整重启验收](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)保持限定USER_GAME_TEST_PASS。B110最小待测为两种真实AI征服目标＋一次完整重启；左键E2读取冻结候选/空集后首次完成结果。保留升级前存档；B109不保证读取B110新增记录模式。B110实现commit `8bebf5a`已推送；本环境进程查询失败，待用户确认游戏退出后按现有授权部署，当前live仍按既有receipt为B109，尚未替换。
+[B109三城完整重启验收](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)保持限定USER_GAME_TEST_PASS。B110最小待测为两种真实AI征服目标＋一次完整重启；左键E2读取冻结候选/空集后首次完成结果。保留升级前存档；B109不保证读取B110新增记录模式。B110实现commit `8bebf5a`，部署HEAD `621d69c`；用户确认游戏退出后完成安全切换，153/153 MATCH，receipt `B110.137-621d69c-playtest.json`，B109完整恢复点hash一致。未启动游戏，等待本次原生报告。
 
-[城市项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)已保存；仅STATIC证据，未实施。Cost=1不保证完整生产回合，商业操作入口与生产占用是不同问题。Design/main未改；E2仍partial，不自动Claim/F、其它生命周期或UI原型。下一步仅部署门禁及本次原生验收。
+[城市项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)已保存；仅STATIC证据，未实施。Cost=1不保证完整生产回合，商业操作入口与生产占用是不同问题。Design/main未改；E2仍partial，不自动Claim/F、其它生命周期或UI原型。下一步仅本次原生验收。
 
 ## 历史阶段记录
 
