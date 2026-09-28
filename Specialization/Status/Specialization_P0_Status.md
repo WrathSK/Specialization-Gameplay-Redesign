@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0298
-Implementation Build: develop P0-B-117.144 / modinfo144 OVERFLOW_PRIMITIVE; live B116.143; stable B069.96
+Implementation Build: develop P0-B-117.144 / modinfo144 OVERFLOW_PRIMITIVE; live B117.144 verified157/157 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,9 +15,9 @@ Work State: B117_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 用户本轮明确接受：进入特殊项目放弃全部未分配旧/新生产存储；占用期产能和chop/harvest等注入不得转给后续目标。不再要求保留旧溢出账本；普通目标已有progress仍须保留。决定记录于本片合同，正式接入前需同步Design正式来源；未擅改其它设计。§19保留旧存量限制已被本轮取代。
 
-最小实机：测试前档→空队列新回合未选Q→候选清除→选Q应0→正常生产一回合应增长；任何未知/误扣/残留/负债停止。第一门禁通过后才另分支chop/harvest，不能本地宣称这些已隔离。仅独立测试存档，实验后不覆盖基线。当前待部署核验；main与稳定包不推广，Claim/F未推进。
+最小实机：测试前档→空队列新回合未选Q→候选清除→选Q应0→正常生产一回合应增长；任何未知/误扣/残留/负债停止。第一门禁通过后才另分支chop/harvest，不能本地宣称这些已隔离。仅独立测试存档，实验后不覆盖基线。已按持续授权部署：source c488942，157/157 MATCH，receipt B117.144-c488942-playtest.json；进程检查确认退出，B116恢复点与稳定桥核验保留，main未推广。等待第一门禁实机，Claim/F未推进。
 
-[B116 M/A四图](Validation/Results/Specialization_B116_Overflow_Mode.md)与[无Cheat的A粮仓8](Validation/Results/Specialization_B116_Production_Baseline.md)支持自动应用路径，不再重复验证原因。B114按钮/B116开始限定PASS保持，固定完整生产占用仍未PASS。live此前B116.143，source b7ee8f9，receipt B116.143-b7ee8f9-playtest.json；运行包实际更新须新的部署记录。
+[B116 M/A四图](Validation/Results/Specialization_B116_Overflow_Mode.md)与[无Cheat的A粮仓8](Validation/Results/Specialization_B116_Production_Baseline.md)支持自动应用路径，不再重复验证原因。B114按钮/B116开始限定PASS保持，固定完整生产占用仍未PASS。此前B116运行包已保留为恢复点；Mod回滚不修复测试后保存的生产状态，需搭配实验前存档。
 
 ## 历史阶段记录
 

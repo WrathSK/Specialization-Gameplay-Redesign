@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "WORKTREE_B117_PENDING_COMMIT",
+  "runtime_commit": "c4889422abcd8c9d0c55cc23ee562451a4bc20ee",
   "current_batch": "B117_OVERFLOW_PRIMITIVE_LOCAL_PASS_NATIVE_REQUIRED; P0-E2 CLAIM_PLAN_ONLY",
   "next_batch": "Native single-city negative-progress primitive gate; stop on damage/debt/no effect, then scoped chop/harvest; no formal project/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B116.143 / modinfo143 deployed;155/155 MATCH;source b7ee8f9;B115 recovery verified;receipt B116.143-b7ee8f9-playtest.json;native observer pending",
+  "live": "B117.144 / modinfo144 deployed;157/157 MATCH;source c488942;B116 recovery and stable bridge verified;receipt B117.144-c488942-playtest.json;native primitive pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
