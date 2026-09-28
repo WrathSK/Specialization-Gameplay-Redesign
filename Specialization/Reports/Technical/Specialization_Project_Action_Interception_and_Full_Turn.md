@@ -452,3 +452,8 @@ W0004 L2：`DevelopmentTests/test_b115_production_observer.py` **45项LOCAL_SIMU
 测试只用自然生产完成后未选目标的A城：开启→报告应ACTIVE→正常过回合→报告截图→选择此前未投入的普通目标Q→立即报告截图。任何开始错误立即暂停，不要求手动清空生产；中断测试另一次自然空队列开始后选择Q即可。收获/溢出/正式固定回合项目未推进。
 
 部署安全：本次普通sandbox的ps被拒绝，获准只读进程检查后确认无Civ6/Civilization/Aspyr进程。应先自动尝试可用进程检查，仅不可确认时询问退出状态，不将过去一次权限失败永久当作环境限制；不改部署机制/Workflow。
+
+
+### B116 native baseline — 2026-09-27
+
+[三图证据](../../Status/Validation/Results/Specialization_B116_Production_Baseline.md)：NONE开始修复及空队列诊断限定PASS；BEGIN→Deactivated→Started后ENDED，随后选择粮仓进度8。完整生产结算与机会成本未定。观察在Started自动停止，不可把采集窗口内无Updated外推成整个周期不发事件；粮仓8点不能未经起始/输入核对就归因正常产能。先查来源/事件窗口，不进入正式计时或收获验证。活动中断未由“结束后选择目标”证明。

@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0293",
+    "status": "S0294",
     "runtime": "B116.143 / modinfo143",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "b7ee8f992d3b4bdcacf4d2b867e5601fcb8f73b2",
-  "current_batch": "B116_EMPTY_TARGET_REPAIR_NATIVE_PENDING; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Await B116 native natural-empty-city baseline; no formal timed project/Claim/F",
+  "current_batch": "B116_START_SCOPED_PASS_PRODUCTION_OPPORTUNITY_COST_UNRESOLVED; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Clarify granary progress8 provenance and observer cutoff ordering before further native tests or timed-project implementation",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B116.143 / modinfo143 deployed;155/155 MATCH;source b7ee8f9;B115 recovery verified;receipt B116.143-b7ee8f9-playtest.json;native observer pending",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized NONE/diagnostic repair reviewed; 53 targeted tests, native pending",
+  "context_review_status": "Three native screenshots and direct observer cutoff/diagnostic path reviewed; scoped PASS only, docs unchanged runtime",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

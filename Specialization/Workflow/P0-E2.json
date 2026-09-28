@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0293",
+    "status": "S0294",
     "runtime": "B116.143 / modinfo143",
     "military": "D0034"
   },
@@ -504,7 +504,7 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B116 NONE and diagnostic repair LOCAL_SIMULATION_PASS 53; native pending; B115 failure and corrected natural-empty-city procedure retained",
+    "side_prototype": "B116 scoped USER_GAME_TEST_PASS: NONE start/empty report/turn-boundary ending. Granary progress8 after selection; production opportunity cost and event ordering unresolved; interruption still untested.",
     "side_investigation": "Section13 native target contract applied by Section14; alternatives remain investigation only",
     "side_next_plan": "Section15 minimum session observer authorized and implemented B115; remaining production isolation/save/project gates pending"
   }
