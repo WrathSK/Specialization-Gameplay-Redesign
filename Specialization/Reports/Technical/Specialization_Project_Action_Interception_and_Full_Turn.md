@@ -579,3 +579,42 @@ W0004按有限生产写入风险采用定向验证：77项LOCAL_SIMULATION_PASS�
 2026-09-27 [四图原生结果](../../Status/Validation/Results/Specialization_B117_Negative_Production_Boundary.md)：空队列单次AddProgress(-1000)之后选磨坊为−992，下一正常回合−984，原生面板亦为−984/60。清零候选USER_GAME_TEST_FAIL / NATIVE_NEGATIVE_STORAGE_BOUNDARY。上方“待验”表和步骤保留原测试计划身份，现由此结果关闭第一门禁：不自动clamp到零，有延后负进度；即时目标快照未变不能证明安全。停止这条盲目负数清零候选，不继续chop/harvest，不猜测补回生产。
 
 全清Gameplay合同保持；这不证明所有清除方式不可行，也不证明内部存储布局。后续仅调查明确重置接口、可靠读取实际存储后精确扣除或独立承接清理；均未获原生确认。本次只归档证据，无代码、部署、正式项目或Claim/F推进。测试后应回实验前存档，Mod回滚不能撤销已保存负进度。
+
+## 21. Post-B117 — reset, exact subtraction and disposable sink investigation
+
+2026-09-27；用户授权只读调查。依据B117已归档的−992→−984反证，本节不调用任何游戏API，不修改Mod/第三方Mod/存档，不部署。原“全清未分配存储＋占用期生产不得转移”合同保持。
+
+### 直接重置与可读取事实
+
+复核[Sukritact CityBuildQueue方法目录](https://sukritact.github.io/Civilization-VI-Modding-Knowledge-Base/CityBuildQueue)及本机原版Base/DLC Lua、已安装Workshop Lua的定向符号搜索：未找到有可核对调用先例的生产overflow getter/setter/reset，也未找到通用SetProjectProgress。这是搜索边界，不是引擎API不存在的证明。未来只读枚举实际Gameplay/UI对象可访问方法仍有价值；不得猜写入方法/参数。
+
+原版`Base/Assets/UI/CitySupport.lua:274`及`Panels/ProductionPanel.lua:2222`确实读取GetProjectProgress(project.Index)：它是指定项目的进度，不是城市全部未分配存储。目录里的GetProductionYield没有本轮本机Base/DLC Lua调用先例，参数及是否涉及存量不能凭名字断定。CitySupport:237将GetCurrentProductionTypeModifier用作MilitaryFormationType；它不是可用来消除生产倍率的通用百分比getter。
+
+原版`ProductionHelper.lua:196–201`移除队列项仅发送BUILD/VALUE_REMOVE_AT，没有清除进度调用；不能用这个UI动作证明项目进度或overflow被删除。TunerCityPanel:103的CreateIncompleteBuilding是建筑放置/进度接口，不能推定能重置城市池。删除建筑的接口也不等价于清未分配生产，更不应借删除普通建筑解决。
+
+### 其它溢出Mod提供什么、不能提供什么
+
+本机Workshop `2772516161/Gameplay/OverflowBugFixGameplay.lua:1–23`把科技溢出存在虚拟科技，使用SetResearchProgress读写并清零；UI又有对应虚拟市政路径。`2604740398/CheckOverflow.lua:8–35`通过临时修改科技/市政进度、读取剩余回合来逐步夹逼溢出（终止精度0.05），不是纯只读getter，也不是精确城市生产存储接口。两者均依赖科技/市政专用setter，不能移植函数名到CityBuildQueue，也不能宣称它们证明城市存储可安全清零。未修改这些Mod。
+
+### 三条路径的结论
+
+| 路径 | 已知依据 | 当前缺口/处理 |
+|---|---|---|
+| 直接reset | 当前搜索无确认先例 | 保留TECHNICAL_INVESTIGATION_REQUIRED；先只读方法枚举，不伪造API |
+| 空队列按精确存量扣除 | B117证明负调用能随后影响目标；并未证明精确抵消安全 | 没有可靠存量getter；不从8.3城市产能、剩余回合或截图整数反推全池。盲目−1000退出 |
+| 独立目标承接→读取其进度→精确扣除 | 原生项目进度可读，AddProgress可写；把隐藏存量显现到专用目标有可测试依据 | 组合尚未实测：扣除对象、倍率/精度、延迟存量、切换回返、大额注入先完成、取消/重载均待证实。优先缩成单次primitive实验 |
+
+第三条不是“堆一个极高Cost就解决”。有限Cost始终可能被大额注入跨过；生产完成事件可能晚于原生成果/溢出的发生。取消队列项不代表删除其已投入进度；换一批新项目ID躲残留也不是可维护清理方案。-100%产能不能自动推出stored/chop/harvest/AddProgress全部被屏蔽。让项目自然完成或FinishProgress也不能无证据当作销毁全部余量。
+
+### 推荐下一最小原型（计划，未实施）
+
+不重复B117大负数实验。先验证“已知目标进度的精确扣除”是否成立，再决定是否值得开发承接项目：
+
+1. 独立实验前档，一座城、一个无收益的专用测试项目；读取实际可见方法，不调用陌生writer。项目Cost只是实验防提前完成条件，不是最终无限容量承诺。
+2. 当前目标与owner/回合固定，确认项目尚未完成。通过一次有界应用使存量进入此项目，读到确认进度p；无法读到可靠数值、出现完成/切换/额外事件即停止，不能把UNKNOWN当0。
+3. 仅对当前专用目标一次AddProgress(-p)。观测本目标是否真为0、其它已有目标是否不变、是否产生未分配负债；不得在UI读取后跨任意操作仍使用陈旧p，也不得失败循环回扣。
+4. 切到对照目标并正常生产一回合，验证没有正/负残留。这个组合native通过以后，才安排chop/harvest、同回合中断、重载与大额完成窗口。
+
+UI getter→Gameplay writer不是自动原子事务；确认快照、事件失效、跨context读数精度都是原型门禁。测试通过也只能证明该受控数值/目标组合，不能升级为任意注入全清或固定一回合项目可交付。若精确扣除仍只制造隐藏债务，则停止该组合，回到直接接口调查，不继续依赖补偿抵消。
+
+本轮结论：没有已证实可直接替换B117的可靠全清实现；有一个比盲扣更可证伪、范围更小的下一验证方向。STATIC_CONFIRMED仅限上述本机源码调用；新方案保持TECHNICAL_INVESTIGATION_REQUIRED / PROTOTYPE_REQUIRED，没有新LOCAL或USER_GAME_TEST PASS。无需用户本轮重新测试。

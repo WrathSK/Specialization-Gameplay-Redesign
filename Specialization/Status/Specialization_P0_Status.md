@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0299
+Status Revision: S0300
 Implementation Build: develop P0-B-117.144 / modinfo144 OVERFLOW_PRIMITIVE; live B117.144 verified157/157 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -18,6 +18,8 @@ Work State: B117_NATIVE_CLEAR_FAIL_NEGATIVE_DEBT; E2 Claim plan-only
 本次仅证据归档，无新runtime/部署。live仍B117.144，source c488942，原部署157/157 MATCH，receipt B117.144-c488942-playtest.json；B116恢复点保留。按钮仍在包中，停止使用；回实验前存档，不能靠Mod回滚或猜测补锤修复已保存负进度。当前无需继续用户测试。
 
 77项LOCAL_SIMULATION_PASS与STATIC仅限保护/调用/报告；不能替代native语义。[B116模式证据](Validation/Results/Specialization_B116_Overflow_Mode.md)、B114按钮/B116开始限定PASS保持；固定完整生产占用仍未PASS。E2 Claim plan-only，Claim/F未推进，main未推广。
+
+[后续只读调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#21-post-b117--reset-exact-subtraction-and-disposable-sink-investigation)完成：未找到可核对的直接生产存储reset；科文虚拟目标方案依赖专用setter，不能照搬。下一建议为专用目标“承接→读取p→单次精确扣除→后续目标/回合无残留”最小原型，尚未实施、等待授权；大额注入提前完成和跨context精度仍是门禁，不承诺任意全清。无本轮用户测试。
 
 ## 历史阶段记录
 
