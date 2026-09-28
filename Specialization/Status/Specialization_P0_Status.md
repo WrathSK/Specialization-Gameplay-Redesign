@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0285
+Status Revision: S0286
 Implementation Build: develop P0-B-113.140 / modinfo140 GUARDED_TURN_BUTTON_PROTOTYPE; live B113.140 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: GUARDED_TURN_BUTTON_PROTOTYPE_AWAITING_USER; E2 Claim plan-only
+Work State: B113_NATIVE_NOTIFICATION_LOCATION_BOUNDARY; repair pending; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-B113.140：[获授权的单城下一回合按钮原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#12-b113140--guarded-next-turn-button-prototype)本地21项定向模拟PASS。测试城是唯一生产阻塞且其它条件通过时显示下一回合，显式点击重读后仅发一次UserForced；其它真实待办/普通空城/HD政策选择保留，未知暂停，原DoEndTurn/自动结束不扩展。两个空标题已显式SetText修复，待实机。没有正式项目、保存字段、生产结算或收益。
+B113.140：[单城通知位置核对失败](Validation/Results/Specialization_B113_Notification_Location_Failure.md) USER_GAME_TEST_FAIL：仅A空，生产阻塞1、其它空城0/其它待办无，但通知对应测试城=false，右下角仍选择生产。已定位阻止放行的通知位置检查；真实坐标/通知ID未显示，尚不能断言根因或其余隐藏门禁全过。新增按钮标题在本图正常。原图已读并hash一致归档，不需重复或Shift+Enter绕过。
 
-[B112三图观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定USER_GAME_TEST_PASS保持；新通知位置/按钮渲染/真实过回合未验证。本次最小流程：A/B空负例→仅A空显示下一回合→普通点击跨回合，原型关闭；不要Shift+Enter，不测试砍树/溢出/保存。
+[B112三图观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留；B113本地21项模拟不能证明通知位置原生语义。下一步建议定域调查通知属性/位置和城市对应，再修复；本轮仅证据归档，未改源码/部署，不进入固定回合/Claim/F。
 
 B113.140已按W0003部署，source/deployment `217fe27`，154/154 MATCH，receipt `B113.140-217fe27-playtest.json`。用户确认游戏退出；B112完整恢复点/stable桥均已核验，未启动游戏。main稳定B069.96不变。
 
-E2仍partial，Claim计划未实施，不推进F。收到本包证据后再决定连续完整生产回合原型；当前通过不等于固定一回合/砍树溢出隔离已实现。
+E2仍partial，Claim计划未实施，不推进F。当前先解决B113通知归属边界；固定一回合/砍树溢出隔离仍未实现。
 
 ## 历史阶段记录
 

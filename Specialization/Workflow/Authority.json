@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0285",
+    "status": "S0286",
     "runtime": "B113.140 / modinfo140",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "217fe27982d04cee12de192cb3ef56a00cc1823f",
-  "current_batch": "GUARDED_TURN_BUTTON_PROTOTYPE_AWAITING_USER; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "User validates B113 button/guarded one-shot turn; no formal fixed-turn project, Claim or F",
+  "current_batch": "B113_NATIVE_NOTIFICATION_LOCATION_BOUNDARY; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Investigate B113 notification location/city attribution and prepare authorized repair; no repeat test or Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B113.140 / modinfo140 deployed;154/154 MATCH;source/deployment 217fe27;B112 recovery verified;receipt B113.140-217fe27-playtest.json;native UI/force pending",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized B113 display/click prototype: direct native HD ActionPanel and notification lookup, actual Lua 21 scoped simulations; fresh UI/engine facts pending",
+  "context_review_status": "B113 screenshot failure reviewed: location match false; raw coordinates unobserved; captions native PASS; docs-only evidence update",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
