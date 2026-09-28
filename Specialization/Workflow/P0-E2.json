@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0304",
+    "status": "S0305",
     "runtime": "B119.146 / modinfo146",
     "military": "D0034"
   },
@@ -507,6 +507,12 @@
       "path": "DevelopmentTests/test_b119_finish_sink.py",
       "kind": "full",
       "reason": "Direct native-call guards and fresh current diagnostics"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 25. Post-B119 plan — full-turn lifecycle and truthful one-turn presentation",
+      "reason": "Current plan/technical gates only; not implementation authority"
     }
   ],
   "dependencies": [
@@ -583,6 +589,6 @@
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B119 scoped USER_GAME_TEST_PASS: four screenshots; next-turn normal user-confirmed without screenshot; no timed/chop/harvest/reload coverage",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
-    "side_next_plan": "Prepare bounded full-turn timing and dedicated 1T presentation plan; no automatic implementation"
+    "side_next_plan": "Section25 P-B120A observation, then separately approved P-B120B automatic finish/1T; no implementation authorized"
   }
 }

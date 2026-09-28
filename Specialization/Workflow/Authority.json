@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0304",
+    "status": "S0305",
     "runtime": "B119.146 / modinfo146",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "b3667b20b0fab2c9361a347701785ad330ec34ed",
   "current_batch": "B119_SCOPED_USER_GAME_TEST_PASS; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Propose bounded full-turn completion/event-order and dedicated 1T presentation plan; no automatic implementation",
+  "next_batch": "P-B120A single-city dummy settlement observation plan ready; awaiting implementation authorization; B automatic/1T depends on native A",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B119.146 / modinfo146 deployed;158/158 MATCH;source b3667b2;B118 recovery retained;receipt B119.146-b3667b2-playtest.json;scoped manual native completion PASS",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Four B119 screenshots reviewed; next-turn normal accepted as user statement without screenshot; scoped PASS only",
+  "context_review_status": "Scoped B119 evidence/current observer/UI contracts reviewed; Section25 plan only, no runtime change",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0304
+Status Revision: S0305
 Implementation Build: develop P0-B-119.146 / modinfo146 NATIVE_FINISH_PRIMITIVE; live B119.146 verified158/158 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -16,6 +16,8 @@ Work State: B119_SCOPED_USER_GAME_TEST_PASS; E2 Claim plan-only
 高成本dummy仍显示很高预计回合数：B119未实现定时或1T显示，非本次回归。下一建议是完整回合占用/结算事件＋专项目1T呈现的最小计划；chop/harvest、超额提前完成、中断/存读与奖励均未验证，需分步处理，当前不自动实施。B118扣除仍INCONCLUSIVE，B117盲扣FAIL保持；本地79项PASS及原生PASS范围分开。
 
 [当前原型合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#24-b119146--standalone-native-finishprogress-experiment)。live仍B119.146 source b3667b2，原部署158/158 MATCH；receipt B119.146-b3667b2-playtest.json。本轮仅验收归档，无代码/部署。Claim/F未推进；main/stable B069.96不变。
+
+[完整回合与1T呈现计划](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#25-post-b119-plan--full-turn-lifecycle-and-truthful-one-turn-presentation)已完成，仅计划：P-B120A先补单城生产事件顺序（无写入），P-B120B在A确认后接一次自动完成及专项目1T显示；随后分支验证chop/harvest。各段独立门禁，尚未授权实施；不新增奖励、正式能力或存读合同。
 
 ## 历史阶段记录
 
