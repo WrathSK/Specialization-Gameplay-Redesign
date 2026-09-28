@@ -291,3 +291,49 @@ STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；USER_GAME_TEST_REQUIRED：真实生�
 3. 点击右下角下一回合（不要Shift+Enter），等待进入下一回合，读取报告截图：应只发一次请求并显示测试关闭。A仍无生产目标，下一回合恢复普通“需要生产”；没有项目奖励，这是预期。
 
 无需砍树/溢出/保存测试；本包没有该机制。无需把B112所有其它待办重跑一遍。原型回滚恢复B112已保留包，不增加存档schema。当前仅部署此测试包，不自动推进正式能力。
+
+
+## 13. B113 boundary investigation and alternative routes
+
+2026-09-27用户要求先调查当前失败及其它方案；本轮仅只读本机原版/HD代码、已存报告与公开作者资料，没有修复/制作原型、测试、部署或Design变化。B113原生FAIL保持。
+
+### 找到的具体读取遗漏（STATIC_CONFIRMED）
+
+本机原版 `Base/Assets/UI/Panels/NotificationPanel.lua`，`LookAtNotification`（约642–685行）明确分开两个合同：
+
+- `IsLocationValid()`为真才读取`GetLocation()`，用于镜头移动。
+- `IsTargetValid()`为真时读取`GetTarget()`，返回`targetPlayerID, targetID, targetType`。
+- 当`targetType == PlayerComponentTypes.CITY`，按Players[targetPlayerID]:GetCities():FindID(targetID)取得城市。即使没有有效Location，仍可从这个城市取得位置并选择该城。
+- `OnChooseCityProductionActivate`（同文件约1090附近，按函数名定位）调用`LookAtNotification`，然后发送`LuaEvents.NotificationPanel_ChooseProduction()`。生产通知的正常操作本来就使用这套对象目标路径。
+
+B113代码直接调用GetLocation并检查是否是number，然后要求与测试城坐标一致；没有先读IsLocationValid，也未读GetTarget。**数字类型并不证明位置有效；位置不是通知目标城市的唯一原生表达。** 将其作为必须满足的硬门槛缺少依据，是本原型的具体实现遗漏，而非Design矛盾。应优先验证原生target tuple，不是删掉归属保护。
+
+实际19:30:37截图只能证明匹配false，未记录原始位置、LocationValid、TargetValid、target tuple。因此“该通知位置无效而目标城市有效”是得到原版代码支持的优先假说，不是已观察事实；也不能断言只改GetTarget就必然通过。未知/冲突应停，不从单独坐标、城名或阻塞数量猜城市。
+
+### 下一最小修复/观测建议（未实施）
+
+沿原生合同只采集：通知ID/type/owner、LocationValid及有效时的位置、TargetValid与target owner/ID/type、测试城owner/ID；同时显示未通过的operable子条件，避免“其它条件未知”的模糊诊断。当前单城门禁可要求有效CITY target精确匹配测试城，再核本次session/owner/队列和全部其它阻塞。无有效target或冲突保留原按钮并报告，不用旧坐标硬门槛代替。今后多城不能只依赖FindEndTurnBlocking返回的一条对象，需另验完整通知对应集合；本轮不扩展。
+
+该方案不创建persistent cityKey，不涉及E2跨所有者识别；只是当前UI对象归属。通过后仍要测试按钮刷新/点击和一次实际跨回合，不能借STATIC提前登记PASS。
+
+### 替代路线比较：分开按钮问题与完整生产占用问题
+
+| 路线 | 按钮/原生生产提示 | 固定一回合与额外生产 | 判断 |
+|---|---|---|---|
+| A. 空队列＋真实通知target过滤＋Gameplay独立占用 | 需要定域适配ActionPanel；已具备采样与显式请求路径，target读取有原版依据 | 项目不作为原生进度目标，锤不能直接完成它；但实际连续生产结算、其它生产不得并行、保存/中断及机会成本仍需证据 | 当前优先；这次失败不足以否定整条路线。先解决target，不增加更宽强制逻辑 |
+| B. 原生无收益高成本占位项目＋Gameplay计时＋主动结束 | 队列非空，通常无需处理缺生产按钮；原生UI整合更自然 | 有限大成本不是无限，额外输入可能提前完成；FinishProgress/移出占位项的残余进度、溢出、队列顺序与中断仍有风险 | 可作备用受限原型，不满足严格保证之前不能当最终方案 |
+| C. 原生项目＋专属生产抑制＋计时完成 | 队列占用与按钮可走正常路径 | 未找到能覆盖原生收获、旧溢出、HD脚本AddProgress等所有输入的项目开关；-100%修正不自动等于全部输入归零 | 不优于A，仍需独立接口调查，不将普通乘数当全来源过滤器 |
+| D. Cost=1或成本跟随当回合产能，完成后延迟奖励 | 原生生产路径简单 | 可被即时生产提前退出；延迟奖励不会让已经空闲的城市继续付出生产机会成本；产能变化/0产能也破坏固定时长 | 不是现行严格语义的等价实现 |
+| E. 项目行只开自定义定时行动面板 | 不进入队列则不新增缺生产问题，已有生产可继续 | 只实现等待，不占用生产；除非另有可靠独占机制 | 商业菜单适用；直接用于时代对话会改Gameplay，不自动采用 |
+| F. 直接dismiss生产通知或常开强制结束 | 可能暂时隐藏提示/跳过检查 | 通知可能再生成，且不等于停止原生阻塞；可能越过其它待办，仍没解决生产占用 | 不推荐，不作为降低复杂度的捷径 |
+
+空队列路线仍有两个不同难度层：①通知/UI识别与安全显式结束；②真正连续占用一次城市生产结算、切换中断、0产能也只一回合、额外输入不提前完成、读档不多算。①现已找到局部可验证修正方向；②仍是主要未知。没有依据现在承诺②一定容易，也不能由①的一次错误断言②不可能。
+
+### 外部参考及限定
+
+- [Store Production作者页面](https://steamcommunity.com/sharedfiles/filedetails/?id=3676624054)：明确写项目Cost=999999，并提供把储存生产用于完成当前生产的UI。说明高成本占位是Mod作者使用的实际方向；并非不可完成/固定一回合方案。该Mod本机未安装，本轮未取得源码，不声称其内部储存/事件处理已审阅，也不采用其额外储存玩法。
+- [Repeat Project作者页面](https://steamcommunity.com/workshop/filedetails/?id=1505351262)：重复运行项目解决排队操作，不提供严格计时或禁止即时生产证明。本轮不将其它Mod的重复项目宣称为时间锁。
+- [Sukritact CityBuildQueue接口记录](https://sukritact.github.io/Civilization-VI-Modding-Knowledge-Base/CityBuildQueue)：列AddProgress、FinishProgress及项目进度/队列getter；没有由该页面证实的通用“暂停生产且仍占队列”或全来源项目锁。页面非完整引擎规范；缺项不证明接口绝不存在。
+- 本机Base `Gameplay/Data/Schema/01_GameplaySchema.sql` Projects表重核仍是Cost/成长模型/资格/次数等，没有在该表找到FixedTurns/IgnoreOverflow/IgnoreHarvest。OuterDefenseRepair是特定修防语义，不能当通用计时字段挪用。未重新运行DB或游戏。
+
+公开检索没有找到可直接复用且已证明满足本项目全部约束的现成方案。无新实机/模拟PASS。建议先以原生target合同修正A的最小门禁，若target也无法可靠归属，再停止该路径比较B的受限原型；不边失败边扩大强制范围。本次只保存调查，下一实施需授权，用户当前无需测试。

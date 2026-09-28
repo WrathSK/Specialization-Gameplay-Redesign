@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0286
+Status Revision: S0287
 Implementation Build: develop P0-B-113.140 / modinfo140 GUARDED_TURN_BUTTON_PROTOTYPE; live B113.140 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -10,6 +10,8 @@ Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: B113_NATIVE_NOTIFICATION_LOCATION_BOUNDARY; repair pending; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
+
+[通知归属与替代路线调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#13-b113-boundary-investigation-and-alternative-routes)：原版使用IsLocationValid与IsTargetValid/GetTarget两套信息，CITY target可直接定位owner/CityID；B113仅比较未验证有效性的坐标，遗漏了这一路径。STATIC证据支持最小修正方向，尚未读到该存档真实target，不宣称修复成功。比较空队列、占位项目、生产抑制、低成本/延迟收益及纯定时入口；当前仍优先小范围验证target，完整生产占用/计时仍未知。本轮无源码/部署，等待实施授权。
 
 B113.140：[单城通知位置核对失败](Validation/Results/Specialization_B113_Notification_Location_Failure.md) USER_GAME_TEST_FAIL：仅A空，生产阻塞1、其它空城0/其它待办无，但通知对应测试城=false，右下角仍选择生产。已定位阻止放行的通知位置检查；真实坐标/通知ID未显示，尚不能断言根因或其余隐藏门禁全过。新增按钮标题在本图正常。原图已读并hash一致归档，不需重复或Shift+Enter绕过。
 

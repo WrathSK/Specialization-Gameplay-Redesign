@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0286",
+    "status": "S0287",
     "runtime": "B113.140 / modinfo140",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "217fe27982d04cee12de192cb3ef56a00cc1823f",
   "current_batch": "B113_NATIVE_NOTIFICATION_LOCATION_BOUNDARY; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Investigate B113 notification location/city attribution and prepare authorized repair; no repeat test or Claim/F",
+  "next_batch": "User authorization for minimal B113 native notification target matching repair/probe; alternatives recorded; no formal timed project/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B113.140 / modinfo140 deployed;154/154 MATCH;source/deployment 217fe27;B112 recovery verified;receipt B113.140-217fe27-playtest.json;native UI/force pending",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B113 screenshot failure reviewed: location match false; raw coordinates unobserved; captions native PASS; docs-only evidence update",
+  "context_review_status": "Read-only native LookAtNotification target/location contract and alternative routes reviewed; B113 runtime unchanged and native failure retained",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
