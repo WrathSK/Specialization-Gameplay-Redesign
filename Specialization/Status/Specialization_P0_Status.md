@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0283
+Status Revision: S0284
 Implementation Build: develop P0-B-112.139 / modinfo139 TURN_BLOCKER_OBSERVATION; live B112.139 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: NATIVE_TURN_PROBE_AWAITING_USER; E2 Claim remains plan-only
+Work State: NATIVE_TURN_OBSERVATION_SCOPED_PASS; next prototype not implemented; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-B112.139：用户授权的[原生结束阻塞观测原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#11-b112139--native-blocker-observation-prototype)已完成本地定向验证，待USER_GAME_TEST。接入HD真实ActionPanel，单城手动arm后仅在正常结束请求采样；只观察并始终调用原路径，不强制结束、不写项目/队列/保存/收益。无活动零扫描，跨回合/重载关闭；13项实际Lua模拟及13项旧门控模型PASS，不是原生接口PASS。最小测试、stop条件和回滚见链接。
+B112.139：[三图原生阻塞观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md) USER_GAME_TEST_PASS（仅所测路径）：同回合其它待办＋A/B空→仅A/B空→仅A空，候选未满足→未满足→满足；生产阻塞重复条目2→1，HD提醒条件是→否，观察A不随选中B改变。三图hash一致归档，不需重复此组。新增两个按钮标题空白另记显示缺陷。未验证实际强制结束、固定一回合、砍树/溢出、保存恢复或通用完整阻塞覆盖。
 
 已按W0003部署B112.139，source/deployment `d7318f2`，154/154 MATCH，receipt `B112.139-d7318f2-playtest.json`。用户已确认完全退出；B111完整恢复点及stable桥均核验通过。main稳定源码B069.96不变，未启动游戏。
 
-[B111双城＋完整重启验收](Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)范围内PASS保持，不重开。E2仍partial；[Claim计划](../Architecture/v2/P0_E2_Plan.md#next-slice--claim-project-plan-after-b111-acceptance)未实施。当前授权仅旁路原型；本包不证明固定一回合、收获/溢出隔离、项目保存或UserForced安全性。下一步等待本包截图，再决定下一原型；不自动进入Claim/F。
+[B111双城＋完整重启验收](Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)范围内PASS保持，不重开。E2仍partial；[Claim计划](../Architecture/v2/P0_E2_Plan.md#next-slice--claim-project-plan-after-b111-acceptance)未实施。当前授权仅旁路原型；本包不证明固定一回合、收获/溢出隔离、项目保存或UserForced安全性。下一建议为有明确玩家触发来源与完整其它阻塞保护的条件豁免原型，并修复按钮标题；尚未实施，不自动进入Claim/F。
 
 ## 历史阶段记录
 

@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0283",
+    "status": "S0284",
     "runtime": "B112.139 / modinfo139",
     "military": "D0034"
   },
@@ -449,6 +449,6 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B112.139 native observation authorized/completed locally; no Claim/progression changes; native pending"
+    "side_prototype": "B112 three screenshots scoped USER_GAME_TEST_PASS for native blocker observation/candidate selection; button captions blank; no force/timing/save proof"
   }
 }
