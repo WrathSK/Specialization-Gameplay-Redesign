@@ -42,7 +42,7 @@ function SPCOverflowStorageProbe.Start(P,shared)
    local k=key(pid,params.CityID)
    assert(not used[k],"本城本次加载已调用或结果不明；禁止重复扣除，重载测试前存档")
    local c,q=city(pid,params.CityID)
-   local reader=shared.OverflowExactRead
+   local reader=ExposedMembers.SPC_OverflowExactRead
    assert(type(reader)=="function","UI即时项目读数桥不可用；不写入")
    local facts=reader(pid,params.CityID)
    assert(type(facts)=="table" and facts.owner==pid and facts.id==params.CityID and facts.turn==params.StartTurn

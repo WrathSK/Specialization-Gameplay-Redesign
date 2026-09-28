@@ -624,11 +624,11 @@ UI getter→Gameplay writer不是自动原子事务；确认快照、事件失�
 
 用户授权§21最小实验。B118替换B117固定−1000入口，不保留可执行盲扣；仍是实验而非正式固定一回合能力。新增PROJECT_SPC_OVERFLOW_SINK_TEST，中文“溢出承接实验（无收益）”，City Center资格、Cost1000000/无成长，只为受控实验避免早完成；无GPP、转换、completion modifier或任何奖励。不是无限sink承诺。玩家手动选择项目，本Mod不改队列、不FinishProgress、不自动AddProgress(0)、不调用其它Mod。
 
-现有“精确扣除试验”左键准备、再次左键单次扣除；右键只读。要求该项目是唯一队列目标、0<p≤10000；0/负数/超界/未知拒绝。UI准备保存同城全部可读进度，确认再比；Gameplay准备与写入前通过即时UI读数桥重读项目、队列、回合和进度，并与本次请求及prepared p匹配。期间相关生产事件、owner/位置/回合变化拒绝。写入前锁存每城每次加载一次，即使原生异常也不能重试；最大16城只为会话边界，实测只一城。AddProgress(-p)不自行floor。跨context路径、原生数值精度仍待实机确认；不声称事务原子性。
+现有“精确扣除试验”左键准备、再次左键单次扣除；右键只读。要求该项目是唯一队列目标、0<p≤10000；0/负数/超界/未知拒绝。即时UI读数桥独立挂在ExposedMembers，避免Gameplay初始化替换状态表导致入口丢失。UI准备保存同城全部可读进度，确认再比；Gameplay准备与写入前通过即时UI读数桥重读项目、队列、回合和进度，并与本次请求及prepared p匹配。期间相关生产事件、owner/位置/回合变化拒绝。写入前锁存每城每次加载一次，即使原生异常也不能重试；最大16城只为会话边界，实测只一城。AddProgress(-p)不自行floor。跨context路径、原生数值精度仍待实机确认；不声称事务原子性。
 
 UI把专用项目变化与其它目标变化分开：期望项目p→0、其它0项变化。任何非零/负数/其它目标受损即停止；即时0也只报读数，不报全清PASS。无hover/per-frame扫描，只有显式准备/确认/报告扫描一城目标（最多4096）；ack只在请求等待时读取缓存。B116计时/按钮原型保持原字节。未添加保存属性，未进入Claim/F，未改变正式Design。
 
-本地证据：74项定向LOCAL_SIMULATION_PASS（直接B116回归53＋精确primitive21），含实际P0Panel初始化、Gameplay dispatch、正数/小数、未知/负数/超限、时序/事件/对象变更、重复与异常不重发、延后请求重读、错误扣到隐藏池/其它目标时报告失败。Lua语法、modinfo145的158文件与SQL fixture STATIC_CONFIRMED。实际DebugGameplay数据库只读复制至内存验证新增项目schema/FK；其Make_Hash原生函数本地不可用，明确使用本地stand-in，仅确认SQL结构，未证明native hash或数据库载入。没有无关全回归/stress。
+本地证据：75项定向LOCAL_SIMULATION_PASS（直接B116回归53＋精确primitive22），含实际P0Panel初始化、Gameplay dispatch、正数/小数、未知/负数/超限、时序/事件/对象变更、重复与异常不重发、延后请求重读、错误扣到隐藏池/其它目标时报告失败。Lua语法、modinfo145的158文件与SQL fixture STATIC_CONFIRMED。实际DebugGameplay数据库只读复制至内存验证新增项目schema/FK；其Make_Hash原生函数本地不可用，明确使用本地stand-in，仅确认SQL结构，未证明native hash或数据库载入。没有无关全回归/stress。
 
 ### 本次最小实机步骤与停止条件
 

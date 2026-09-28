@@ -37,8 +37,7 @@ function SPCOverflowStorageRead.New(P,show,send)
   return true
  end
  -- Called synchronously by Gameplay only on explicit prepare/apply; no hover/poll scan.
- ExposedMembers.SPC_P0=ExposedMembers.SPC_P0 or {}
- ExposedMembers.SPC_P0.OverflowExactRead=function(pid,id)
+ ExposedMembers.SPC_OverflowExactRead=function(pid,id)
   local c=Players[pid] and Players[pid]:GetCities():FindID(id)
   assert(c and c:GetOwner()==pid,"即时读数城市不可确认")
   local row=GameInfo.Projects[project];assert(row,"专用实验项目未加载；需要正确数据库")

@@ -11,7 +11,7 @@ Work State: B118_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B118已授权精确扣除实验](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#22-b118145--authorized-exact-project-subtraction-primitive)完成本地74项定向验证；专用无收益项目手动选入，0<p≤10000，两次确认后按即时读数单次AddProgress(-p)。旧固定−1000路径已替换；只清实验项目，未正式接入固定回合能力、未自动改队列/发收益。真实归零/无残留仍USER_GAME_TEST_REQUIRED。
+[B118已授权精确扣除实验](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#22-b118145--authorized-exact-project-subtraction-primitive)完成本地75项定向验证；专用无收益项目手动选入，0<p≤10000，两次确认后按即时读数单次AddProgress(-p)。旧固定−1000路径已替换；只清实验项目，未正式接入固定回合能力、未自动改队列/发收益。真实归零/无残留仍USER_GAME_TEST_REQUIRED。
 
 最小流程：B117扣除前档→选“溢出承接实验（无收益）”为唯一目标→有正进度后准备/确认→项目应0且其它目标不变→同回合切0进度正常目标应0→下一回合正常增长。项目0时可正常生产一回合再试，不能把这个分支当旧overflow捕获证明。任何负数、拒绝、未知、缺项目、早完成立即停止；不重复扣除、不砍树/Cheat。具体截图/边界见上方合同。
 

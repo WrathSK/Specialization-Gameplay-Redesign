@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized B118 exact-project code/UI/SQL/tests reviewed; 74 targeted local tests; native pending",
+  "context_review_status": "Authorized B118 exact-project code/UI/SQL/tests reviewed; 75 targeted local tests; native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

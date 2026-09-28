@@ -368,7 +368,7 @@
     "Mod/Probe.lua": {
       "sha256": "e3818656534776fe73f5377297c3559d4c2dc0429fac3dc23847be187ab89648",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -428,7 +428,7 @@
     "Mod/SpecializationP0.modinfo": {
       "sha256": "3d53e0ac1540440d3f2cc68fc683b73c96483876f495c252bc70b6ed09c1c00d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -453,7 +453,7 @@
     "Mod/Text/TestText.sql": {
       "sha256": "03556bb3a6554340f7befd1f3011d7ddf92a829e8880520c98f34c609142408e",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -558,7 +558,7 @@
     "Mod/UI/P0Panel.lua": {
       "sha256": "bd587b14fb6a0329432ec7dc6c7d4e96a11e6c04eb71eea9da6d264a2a18d794",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -781,19 +781,19 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/OverflowStorageProbe.lua": {
-      "sha256": "6f59f81d68e82ee59ba5415f070dbf0fbc767963902bda013b783b4ac0cc9f28",
+      "sha256": "a1c6e0525f311f64369727cfeb1be6a4d0315fb409d0b950ecb2993c3b17aca2",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     },
     "Mod/UI/OverflowStorageRead.lua": {
-      "sha256": "d668937bd69215fe3b40ad8fbbeb1806f8f1749ca86c21eea603cc1f5f5e67d5",
+      "sha256": "36a23203967099b8cdea62ab2db7ea996ec392639d47a6754cffc7a6c40db63b",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     },
     "Mod/Data/OverflowSinkTest.sql": {
       "sha256": "3cda727d346275d56b24a7d7030d7ac189aa60c31cf7570bcb320d47fa38528d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 74 PASS, native pending; no automatic storage service"
+      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
     }
   }
 }

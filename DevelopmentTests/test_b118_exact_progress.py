@@ -46,7 +46,7 @@ class ExactTests(unittest.TestCase):
  def test_no_prepare_or_bad_token(self):
   self.runlua('apply();prep();apply("wrong")');self.assertEqual(self.get('writes'),0)
  def test_missing_reader(self):
-  self.runlua('prep();shared.OverflowExactRead=nil;apply()');self.assertEqual(self.get('writes'),0)
+  self.runlua('prep();ExposedMembers.SPC_OverflowExactRead=nil;apply()');self.assertEqual(self.get('writes'),0)
  def test_delayed_request_rechecks_progress(self):
   self.runlua('ui.Click();defer=true;ui.Click();pp=9;shared.OverflowStorageProbe.Request(0,packets[2]);ui.Pulse()');self.assertEqual(self.get('writes'),0)
  def test_native_error_no_retry(self):
@@ -59,6 +59,8 @@ class ExactTests(unittest.TestCase):
   self.runlua('ui.Click();ui.Click();pp=-3;ui.Read()');self.assertIn('=-3',self.get('shown'))
  def test_ui_wait_no_retry(self):
   self.runlua('defer=true;ui.Click();ui.Click();ui.Read()');self.assertEqual(self.get('#packets'),1)
+ def test_reader_survives_gameplay_shared_replacement(self):
+  self.runlua("shared={};ExposedMembers.SPC_P0=shared;SPCOverflowStorageProbe.Start(P,shared);ui.Click();ui.Click()");self.assertEqual(self.get("writes"),1)
  def test_missing_project(self):
   self.runlua('GameInfo.Projects[project]=nil;ui.Click()');self.assertEqual(self.get('writes'),0)
  def test_actual_panel(self):

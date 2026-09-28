@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B118 direct code/UI/SQL/test review, 74 targeted tests; native semantics unresolved.",
+  "review_basis": "B118 direct code/UI/SQL/test review, 75 targeted tests; native semantics unresolved.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "310a4e361cab344ce29044994fc7f79d4299a46bd0f91ca1b6a14ecbe5fedb66",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "90c08989401328ba501fa8e818486aadeed971999890fa78d1e3f59fa0e4d6bf",
     "Specialization/README.md": "c7d6d0c6e128cbf5ee612b62dc49e63737a7f34f10e767a17f78603f78cc1e62",
-    "Specialization/Status/Specialization_P0_Status.md": "a3fa53907c8c0d4176b55b7956cfa87cb0a08a845b4fbcdef0b7319657858bfc",
+    "Specialization/Status/Specialization_P0_Status.md": "3b9a34d999b8dde785df8389d7ecdfba54236ed8932dac66bafcddf73072c5a4",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "5fe82c29505198aa7fed02b591efcc53781051b90f82b188bdba2eb193b4095b",
+    "Specialization/Workflow/Authority.json": "ccfa4fe2c12f3fe75edcd0fc5af0a499683a47d822775512c5c1da56b0d77c12",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c",
@@ -201,7 +201,7 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "bc47bbb56582a663858a63191c3981d4c5cae88fdcf69d5ee666be0f8cd70786",
+    "Specialization/Workflow/P0-E2.json": "d6c1d5ee73c6ba6667c03acf24fa5d37b63b3e43c27505df0d7c3bc17862d3dd",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Mod/CitySequenceProbe.lua": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
     "DevelopmentTests/test_b105_city_sequence.py": "4c55116fb999d8f49f4110794ab07ccfd9b26f7c9ba294f5eeef03cceee75bd0",
@@ -217,7 +217,7 @@
     "Specialization/Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md": "add95820ab3cfbefda6076dbb76b299a5130b5987f76c2759cec6367dfbe4ebc",
     "Specialization/Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md": "15789e0d10691c59131dc7d810acae950b7d61a44b2f1388177cd8e9e595d303",
     "DevelopmentTests/test_b110_conquest_snapshot.py": "2906339754a9192c7ad49bb37ac1a7d59d9aafa07b5e95981f47005504e9706b",
-    "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "25544cdb3f68cafc6fed23da4504c7f6fb7f05bf005423fd11e1c42c5e908766",
+    "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "6efdd74c44098164fbbc52bafdea4f3f7dd623c478f5b4ba61efdbfa4f4d06e6",
     "Specialization/Status/Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md": "203286e2de6087737c70eff6cd03dc4a13628bf59ea6fa8b7b566fca3ba0f968",
     "DevelopmentTests/test_b111_district_snapshot.py": "62f452002b7ca89cf34c34f4b9bfbca2461ee02f41da94eb22fb9076e9b84017",
     "Specialization/Status/Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md": "46f5747032b6d2c01006cabedddf3d7b283f685bbc81ab45d052f8d3089d4987",
@@ -227,7 +227,7 @@
     "Specialization/Status/Validation/Results/Specialization_B112_Turn_Blocker_Observation.md": "998fc813b5920c8d644af8710985eab31d6fdc03ddfad939600ee633b0135aa1",
     "DevelopmentTests/test_b113_turn_gate.py": "c0dab68164db29ee3ba22e29c9441e9663baeab1cf321a06013a5ad377576a67",
     "Specialization/Status/Validation/Results/Specialization_B113_Notification_Location_Failure.md": "af3bd021662ef073c3ece72f1071d35526ff70505ecd7350d52666072bbeb208",
-    "Specialization/Workflow/Runtime_Index.json": "50844f66132fce74f6f81ef6b875602c27200c1b6dc84c4fb7f64cb2f69a678a",
+    "Specialization/Workflow/Runtime_Index.json": "444621885ec68c1809f0f1f4c3c715dcc50dad48dcd01be7200eb4d9b70fecef",
     "DevelopmentTests/test_b114_notification_target.py": "4aaae3255004ec1f4e540656dea0912484f2084147e73c5c591a2a0d6d91971d",
     "Specialization/Status/Validation/Results/Specialization_B114_Target_Turn_Pass.md": "91680073d60dac476d62c20ef2cbe2f33520bbe9b85ff32555e7f822f8d95040",
     "Mod/TimedProductionProbe.lua": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
@@ -237,11 +237,11 @@
     "Specialization/Status/Validation/Results/Specialization_B116_Production_Baseline.md": "d1ca428dfb72881b64127cf118901b946a7a17feafeea3bee94f569a5c15157c",
     "Specialization/Status/Validation/Results/Specialization_B116_Overflow_Mode.md": "562f4845afecea6bfb3af4d20a8c31567aab29648beb4e47ad0a9f62eaf46a42",
     "DevelopmentTests/test_b117_overflow_storage.py": "6f7638c4b201cdeabf676f9f1d736d9e8ebeb9a9603c68f41b16fc356a575915",
-    "Mod/OverflowStorageProbe.lua": "6f59f81d68e82ee59ba5415f070dbf0fbc767963902bda013b783b4ac0cc9f28",
-    "Mod/UI/OverflowStorageRead.lua": "d668937bd69215fe3b40ad8fbbeb1806f8f1749ca86c21eea603cc1f5f5e67d5",
+    "Mod/OverflowStorageProbe.lua": "a1c6e0525f311f64369727cfeb1be6a4d0315fb409d0b950ecb2993c3b17aca2",
+    "Mod/UI/OverflowStorageRead.lua": "36a23203967099b8cdea62ab2db7ea996ec392639d47a6754cffc7a6c40db63b",
     "Specialization/Status/Validation/Results/Specialization_B117_Negative_Production_Boundary.md": "d7fc42cd541cbde01aa6a4e06e5b26d3cc1116f50be110d734f3f136b022d6c3",
     "Mod/Text/TestText.sql": "03556bb3a6554340f7befd1f3011d7ddf92a829e8880520c98f34c609142408e",
     "Mod/Data/OverflowSinkTest.sql": "3cda727d346275d56b24a7d7030d7ac189aa60c31cf7570bcb320d47fa38528d",
-    "DevelopmentTests/test_b118_exact_progress.py": "61613a73d16ce2b05fd3309aa697a349a7e4ba307d18e3c77d5dbdd11ebd8a4c"
+    "DevelopmentTests/test_b118_exact_progress.py": "09e2ff2042c39d44ee2264eb01c89251297d5e4112b8c7ce49cec904a0843c53"
   }
 }
