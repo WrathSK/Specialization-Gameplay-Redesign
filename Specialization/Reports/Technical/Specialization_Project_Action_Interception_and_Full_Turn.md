@@ -350,3 +350,8 @@ B113代码直接调用GetLocation并检查是否是number，然后要求与测�
 W0004 L2：`DevelopmentTests/test_b114_notification_target.py` 28项LOCAL_SIMULATION_PASS；继承B113保护测试，仅明确取代2项旧坐标判据及版本断言，旧文件不改。增加错误owner/ID/type、无效/缺失字段、点击及政策确认时目标变化、城市消失、诊断原因；相机位置调用直接报错的fixture仍可通过有效目标路径。Lua语法与modinfo文件检查STATIC_CONFIRMED。模拟不证明原生通知在该存档提供有效目标。
 
 最小USER_GAME_TEST_REQUIRED：只让测试A城队列为空，其他城市指定生产并处理其他真实待办；选A点击“开启单城测试”，看右下角是否显示“下一回合”；先读一次“回合原型报告”，再正常点击右下角，确认只前进一回合且测试关闭。不要Shift+Enter。失败则保留报告截图，尤其目标有效/玩家/对象/类型和未放行原因，不反复强制请求。不是固定完整生产回合、砍树/溢出隔离或Claim验收。
+
+
+### B114 native acceptance — 2026-09-27
+
+[两图与用户人工确认](../../Status/Validation/Results/Specialization_B114_Target_Turn_Pass.md)：本场景CITY目标有效且匹配、正常按钮回合21→22、临时测试关闭、原生生产待办恢复；用户确认后续点击只开A队列。USER_GAME_TEST_PASS限此路径，§14待测项在此范围关闭。正式计时/生产占用、砍树/溢出隔离、保存恢复仍未验证，不自动进入实施。

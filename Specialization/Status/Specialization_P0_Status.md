@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0288
+Status Revision: S0289
 Implementation Build: develop P0-B-114.141 / modinfo141 TARGET_OBJECT_REPAIR; live B114.141 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B114_TARGET_REPAIR_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
+Work State: B114_NATIVE_TARGET_TURN_SCOPED_PASS; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B114目标对象修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)已获授权实施：原生有效CITY目标owner/ID匹配替代通知镜头坐标匹配，其它B113保护保留。28项定向LOCAL_SIMULATION_PASS及Lua/modinfo静态检查；真实目标信息与普通按钮过回合USER_GAME_TEST_REQUIRED。用户确认游戏退出后已按W0003部署B114.141；154/154 MATCH，尚不宣称原生测试通过。
+[B114单城按钮实机验收](Validation/Results/Specialization_B114_Target_Turn_Pass.md) **USER_GAME_TEST_PASS（所测范围）**：回合21原生CITY目标0/131073/type2匹配，唯一空城可显示下一回合；回合22报告关闭，恢复选择生产。用户另确认点击仅打开A队列、不继续过回合。两图已读并2/2 hash一致归档，无需重复该测试。
 
-[B113失败证据](Validation/Results/Specialization_B113_Notification_Location_Failure.md)保留：唯一空城仍卡生产，旧位置匹配=false；按钮文字已通过。[B112观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留。通知目标路径有原版STATIC依据，尚非原生PASS。
+[B114修复合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)及28项LOCAL_SIMULATION_PASS保留；[B113失败](Validation/Results/Specialization_B113_Notification_Location_Failure.md)历史证据不改。[B112观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留。不得扩大为所有阻塞组合、正式固定一回合项目、砍树/溢出隔离或保存恢复已验证。
 
-本轮仅通知归属修复/必要诊断。最小待测：处理其它待办，仅A空队列，开启单城测试→读报告→正常点击下一回合，确认一次过回合及关闭；失败截图暂停，不Shift+Enter。无正式固定时长/生产隔离/Claim/F。E2既有partial状态不变。
+下一建议：另拟最小生产占用/计时与生产力隔离验证计划；只是建议，未授权实施。本轮仅验收归档，无runtime/Design/部署变化，不进入Claim/F，E2仍partial。
 
-源码/部署commit `a281590`；live B114.141，receipt `B114.141-a281590-playtest.json`。经原receipt恢复stable再切换，B113恢复包核验保留；154/154 MATCH。main稳定B069.96未改，未启动游戏。
+源码/部署commit `a281590`；live记录B114.141，receipt `B114.141-a281590-playtest.json`，既有154/154 MATCH，B113恢复点保留。本轮未重新核验外部运行包；main稳定B069.96未改，未启动游戏。
 
 ## 历史阶段记录
 
