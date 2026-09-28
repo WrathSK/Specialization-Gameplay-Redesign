@@ -5,7 +5,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ## Current slice — recovery and action routing
 
-旁路验证：B112原生结束阻塞观测已获用户授权；[范围、实现、证据与最小测试](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#11-b112139--native-blocker-observation-prototype)。只观察、不强制、不建项目；不扩大本E2保存/Claim切片授权。
+旁路验证：B112观测已限定验收；B113按钮/条件过回合已获用户授权，见[当前原型合同](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#12-b113140--guarded-next-turn-button-prototype)，不授权正式项目/Claim。此前B112[范围、实现、证据与最小测试](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#11-b112139--native-blocker-observation-prototype)。只观察、不强制、不建项目；不扩大本E2保存/Claim切片授权。
 
 **B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="139">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="140">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B112.139 develop: opt-in read-only native end-turn blocker prototype; no forced turn, timed project, Claim or reward implementation.</Description>
+    <Description>B113.140 develop: opt-in single-city next-turn UI and guarded explicit end-turn prototype; no saved timed project, Claim or rewards.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

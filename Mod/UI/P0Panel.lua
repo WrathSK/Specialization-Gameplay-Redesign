@@ -481,6 +481,8 @@ initialize=function()
  Controls.CompletenessButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETENESS_READ") end)
  if Mouse.eRClick then Controls.CompletenessButton:RegisterCallback(Mouse.eRClick,function() request("RESEARCH_INFRA_DETAIL") end) end
  Controls.CompletenessButton:SetToolTipString("左键：科研基础设施摘要；右键：学院建筑组成")
+ Controls.TurnProbeReadCaption:SetText("回合原型报告")
+ Controls.TurnProbeArmCaption:SetText("开启单城测试")
  local function turnProbe(action)
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil
   LuaEvents.SPC_TimedTurnProbe(action)
@@ -489,9 +491,9 @@ initialize=function()
  end
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function() turnProbe('READ') end)
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function() turnProbe('CLEAR') end)
- Controls.PerformanceReadButton:SetToolTipString('左键读取最近一次真实结束请求的缓存报告；右键取消观察。不会强制结束回合。')
+ Controls.PerformanceReadButton:SetToolTipString('左键读取回合测试缓存报告；右键取消。仅测试城缺生产时显示下一回合，点击可过回合。')
  Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function() turnProbe('ARM') end)
- Controls.PerformanceSnapshotButton:SetToolTipString('选中一座己方空队列城市后开始单城观察；不清空队列、不创建项目、不提供收益。')
+ Controls.PerformanceSnapshotButton:SetToolTipString('选中己方空队列城后开启单城测试；仅该城缺生产时可过回合，不创建正式项目或收益。')
 end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)

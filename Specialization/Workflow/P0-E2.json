@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0284",
-    "runtime": "B112.139 / modinfo139",
+    "status": "S0285",
+    "runtime": "B113.140 / modinfo140",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -375,6 +375,17 @@
       "path": "DevelopmentTests/test_b112_turn_probe.py",
       "kind": "full",
       "reason": "Only this prototype targeted tests; E2 regression not re-run for unchanged Gameplay"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 12. B113.140 — guarded next-turn button prototype",
+      "reason": "Authorized side prototype scope/stop/HD reminders/native tests; not Claim implementation"
+    },
+    {
+      "path": "DevelopmentTests/test_b113_turn_gate.py",
+      "kind": "full",
+      "reason": "Actual current UI prototype targeted local coverage, B112 fixture reused; no E2 writer changes"
     }
   ],
   "dependencies": [
@@ -449,6 +460,6 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B112 three screenshots scoped USER_GAME_TEST_PASS for native blocker observation/candidate selection; button captions blank; no force/timing/save proof"
+    "side_prototype": "B113 guarded button prototype authorized, local21 PASS; B112 native observation scope retained; engine button/force pending"
   }
 }

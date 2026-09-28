@@ -1,21 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0284
-Implementation Build: develop P0-B-112.139 / modinfo139 TURN_BLOCKER_OBSERVATION; live B112.139 verified154/154 MATCH; stable B069.96
+Status Revision: S0285
+Implementation Build: develop P0-B-113.140 / modinfo140 GUARDED_TURN_BUTTON_PROTOTYPE; live B112.139 until deployment verified; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: NATIVE_TURN_OBSERVATION_SCOPED_PASS; next prototype not implemented; E2 Claim plan-only
+Work State: GUARDED_TURN_BUTTON_PROTOTYPE_AWAITING_USER; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-B112.139：[三图原生阻塞观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md) USER_GAME_TEST_PASS（仅所测路径）：同回合其它待办＋A/B空→仅A/B空→仅A空，候选未满足→未满足→满足；生产阻塞重复条目2→1，HD提醒条件是→否，观察A不随选中B改变。三图hash一致归档，不需重复此组。新增两个按钮标题空白另记显示缺陷。未验证实际强制结束、固定一回合、砍树/溢出、保存恢复或通用完整阻塞覆盖。
+B113.140：[获授权的单城下一回合按钮原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#12-b113140--guarded-next-turn-button-prototype)本地21项定向模拟PASS。测试城是唯一生产阻塞且其它条件通过时显示下一回合，显式点击重读后仅发一次UserForced；其它真实待办/普通空城/HD政策选择保留，未知暂停，原DoEndTurn/自动结束不扩展。两个空标题已显式SetText修复，待实机。没有正式项目、保存字段、生产结算或收益。
 
-已按W0003部署B112.139，source/deployment `d7318f2`，154/154 MATCH，receipt `B112.139-d7318f2-playtest.json`。用户已确认完全退出；B111完整恢复点及stable桥均核验通过。main稳定源码B069.96不变，未启动游戏。
+[B112三图观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定USER_GAME_TEST_PASS保持；新通知位置/按钮渲染/真实过回合未验证。本次最小流程：A/B空负例→仅A空显示下一回合→普通点击跨回合，原型关闭；不要Shift+Enter，不测试砍树/溢出/保存。
 
-[B111双城＋完整重启验收](Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)范围内PASS保持，不重开。E2仍partial；[Claim计划](../Architecture/v2/P0_E2_Plan.md#next-slice--claim-project-plan-after-b111-acceptance)未实施。当前授权仅旁路原型；本包不证明固定一回合、收获/溢出隔离、项目保存或UserForced安全性。下一建议为有明确玩家触发来源与完整其它阻塞保护的条件豁免原型，并修复按钮标题；尚未实施，不自动进入Claim/F。
+当前live B112.139，source/deployment `d7318f2`，receipt `B112.139-d7318f2-playtest.json`沿用已核验记录。用户已确认游戏退出、允许部署B113，待事务验证另记。main稳定B069.96不变。
+
+E2仍partial，Claim计划未实施，不推进F。收到本包证据后再决定连续完整生产回合原型；当前通过不等于固定一回合/砍树溢出隔离已实现。
 
 ## 历史阶段记录
 
