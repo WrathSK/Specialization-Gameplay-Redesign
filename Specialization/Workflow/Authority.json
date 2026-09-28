@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "PENDING_B120_COMMIT",
+  "runtime_commit": "5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac",
   "current_batch": "B120_LOCAL_SIMULATION_PASS_AWAITING_USER; P0-E2 CLAIM_PLAN_ONLY",
   "next_batch": "Native P-B120A observation; P-B120B automatic completion/1T requires evidence and separate authorization",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B119.146 / modinfo146 deployed;158/158 MATCH;source b3667b2;B118 recovery retained;receipt B119.146-b3667b2-playtest.json;scoped manual native completion PASS",
+  "live": "B120.147 / modinfo147 deployed;160/160 MATCH;source 5f8f02f;B119 recovery retained;receipt B120.147-5f8f02f-playtest.json;native observation pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

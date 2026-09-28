@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0306
-Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B119.146 (deployment pending); stable B069.96
+Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B120.147 verified160/160 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -17,7 +17,7 @@ Work State: B120_LOCAL_SIMULATION_PASS_AWAITING_USER; E2 Claim plan-only
 
 [B119限定原生PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)保持，手动FinishProgress及后续正常生产无需重复。B117盲扣FAIL、B118扣除INCONCLUSIVE保持。B120未证明正常结算时点/自动完成/chop/harvest/存读；本次session观察重载终止。
 
-源码B120.147本地完成；live仍B119.146 source b3667b2（原158/158 MATCH），部署前另查进程/receipt。main/stable B069.96不变。最小测试见§26：唯一承接项目→开始项目观察→正常过一回合→结束观察/报告。不要点旧手动完成按钮；高工期仍为预期。
+源码及live B120.147 source 5f8f02f，160/160 MATCH；receipt B120.147-5f8f02f-playtest.json。游戏退出已核验，B119恢复点保留。main/stable B069.96不变。最小测试见§26：唯一承接项目→开始项目观察→正常过一回合→结束观察/报告。不要点旧手动完成按钮；高工期仍为预期。
 
 ## 历史阶段记录
 

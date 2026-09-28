@@ -760,3 +760,5 @@ W0004定向L3（事件顺序风险），仅直接模块模拟与旧观察/手动
 3. 项目本批不会自动完成，仍显示高估算工期，这是范围内预期。本次不要求再过第二回合或重做B119无溢出验收。
 
 USER_GAME_TEST_REQUIRED：判断候选结算时点前后是否仍有变化。证据不足→EVENT_ORDER_BOUNDARY，收窄后续方案；不自动进入B/Claim/F。回滚只涉及会话诊断，无新持久schema。游戏由用户操作。
+
+B120部署完成：source 5f8f02f，游戏进程退出检查通过；原事务工具保留B119恢复点、经stable桥部署，160/160 MATCH；receipt `B120.147-5f8f02f-playtest.json`，DEVELOP_ACTIVE。main/游戏启动未触碰。
