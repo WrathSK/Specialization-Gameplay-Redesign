@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0295
+Status Revision: S0297
 Implementation Build: develop P0-B-116.143 / modinfo143 EMPTY_TARGET_REPAIR; live B116.143 verified155/155 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -11,15 +11,13 @@ Work State: B116_START_SCOPED_PASS_PRODUCTION_COST_UNRESOLVED; E2 Claim plan-onl
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B116三图基线](Validation/Results/Specialization_B116_Production_Baseline.md)：NONE开始/空队列诊断/观察跨玩家回合结束限定USER_GAME_TEST_PASS。21 BEGIN→21 PlayerTurnDeactivated→22 PlayerTurnStarted，均NONE；22回合选择粮仓后读到进度8。3图已读，3/3 hash一致归档。
+[B116四图溢出模式对照](Validation/Results/Specialization_B116_Overflow_Mode.md)：M模式空队列21→22后粮仓0；用户Cheat完成粮仓、切A，再观察22→23后磨坊8；城市显示生产力8.3。4图已读，4/4 hash一致归档。所测读数USER_GAME_TEST_CONFIRMED；结合[已调查源码](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#18-b116-follow-up--overflow-application-versus-production-origin)与[前轮A模式粮仓8](Validation/Results/Specialization_B116_Production_Baseline.md)，自动溢出参与即时应用有充分依据，不再要求重复相同现象。
 
-完整生产结算与机会成本仍未证实。原型在PlayerTurnStarted处停止采集，不能由缺少Updated断言整个结算周期无事件。粮仓8点来源未确定；用户明确确认选择前面板没有粮仓已有进度，选择后才出现8点，期间无收获/砍树/Cheat。排除粮仓旧投入；剩余城市级生产存储/应用来源待查。先调查来源与事件窗口，再提出必要最小对照；不直接推进收获/正式项目/Claim/F。选择目标发生在ENDED后，活动中断实机仍未覆盖。
+8点精确来源仍未确认：第二段包含Cheat完成，不能仅由8.3→8推断floor或全部来自该空队列回合；前轮无Cheat证据保持。M只关闭自动应用，不证明存储清除。当前不能保证空队列会使产能作废；固定完整生产回合/机会成本与额外输入隔离未PASS。观察在PlayerTurnStarted结束，后续结算未覆盖。[后续调查§19](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#19-production-isolation-follow-up--negative-progress-precedent-and-remaining-primitive-gate)找到GCO负数AddProgress先例，但仅有目标单位/建筑路径，空队列存储与负债仍未知。下一建议为单城受控primitive原型、先证实负数作用对象和结算窗口；无新实现授权，不修改第三方Mod、不擅自扣生产，不进入正式项目/Claim/F。
 
-[溢出应用调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#18-b116-follow-up--overflow-application-versus-production-origin)：独立Mod在切换目标时AddProgress(0)，自身无生产存储/积累公式。应用路径STATIC_CONFIRMED，8点来源仍未知；建议既有M手动模式做选择前后/手动应用对照，无新包。该对照尚未执行，不证明空队列生产机会成本，未授权新实现。
+B116 NONE开始/空队列诊断/跨玩家回合结束限定PASS及[B114按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持；[B115失败](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留。B11653项LOCAL不扩展为生产隔离PASS。活动中断仍未实测；只用自然空队列，不要求手动清空当前生产。用户当前无需重复测试。
 
-[B115开始失败](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留历史，[B114按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持。B11653项LOCAL证据不扩展为原生固定时长PASS。测试城市只用自然空队列，不要求手动清空当前生产。
-
-本轮仅只读调查与文档记录；源码/部署记录`b7ee8f9`，live B116.143，receipt `B116.143-b7ee8f9-playtest.json`，此前155/155 MATCH；本轮未核验外部包。main稳定B069.96不变，无runtime/Design/部署变化。
+本轮仅证据归档/文档。源码/部署记录`b7ee8f9`，live B116.143，receipt `B116.143-b7ee8f9-playtest.json`，此前155/155 MATCH；本轮未核验外部包。main稳定B069.96不变，无runtime/Design/部署变化。
 
 ## 历史阶段记录
 

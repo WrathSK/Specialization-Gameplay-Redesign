@@ -484,3 +484,50 @@ B116观察在首个新回合PlayerTurnStarted处ENDED；其后生产通知不再
 此对照仅查应用机制。查来源需要更早的同一基线分支，比较空队列过回合前/后的可应用存储；清除和重新积累可能同时发生，差值不能未经事件证据直接等同正常产能。若现有存档不适用，不要求伪造基线或重跑整套流程。后续若改观察器，应将“过回合豁免结束”与“有限只读结算证据采集结束”分开，另获实施授权；不延长项目、补扣生产或包装第三方函数绕过未知。
 
 结论：应用路径STATIC_CONFIRMED、与截图一致的因果解释仍待原生对照；8点来源与完整生产机会成本仍TECHNICAL_INVESTIGATION_REQUIRED。没有新增LOCAL模拟或USER_GAME_TEST结论；正式固定回合项目、收获隔离、Claim/F均未推进。
+
+
+### B116 native M/A comparison — 2026-09-27
+
+[四图对照](../../Status/Validation/Results/Specialization_B116_Overflow_Mode.md)：M模式21→22回合空队列后粮仓0；用户Cheat完成粮仓、切A后再观察22→23，磨坊8，城市显示8.3/回合。与前次无Cheat的A模式粮仓8及AddProgress(0)静态路径共同支持自动溢出参与即时应用。不是同一目标同基线单变量实验，也未执行M下手动按钮0→8，不扩大为唯一因果或精确来源证明。Cheat是第二段来源的局限，不否定模式差异与上一轮证据。
+
+不再要求重复相同模式现象；本项目不能把“空队列”等同“生产存储已清除”。尚需解决的是固定回合占用的生产隔离合同，不是修改第三方Mod。8与8.3接近不足证明floor或精确回合来源；关闭自动也不代表库存消失。下一建议为原生存储/结算与本项目定域隔离的只读调查，任何新写入/原型需另授权。无新实施、测试包或Design变更。
+
+
+## 19. Production isolation follow-up — negative progress precedent and remaining primitive gate
+
+2026-09-27，用户授权继续研究；只读本机相关API调用、Projects schema和外部作者源码，无原型写入/部署/游戏操作。承接§18及四图结果，前轮无Cheat的A模式粮仓8与本轮M模式粮仓0是主要对照，后段A模式磨坊8仅补充；不再将Cheat局限扩展到全部证据或要求重复证明自动应用影响。
+
+### 搜索范围与直接结果
+
+定向搜索本机原版/DLC Assets及已安装Workshop Lua中的Set/Change/Get/Clear Overflow、ProductionOverflow、ProjectProgress、ProductionProgress与负数AddProgress调用。命中主要为项目进度读取和科文溢出辅助；未找到城市生产overflow直接读写/清除先例，也未找到已安装Lua中的字面负数AddProgress调用。这是限定符号搜索，不是全API穷尽或所有Mod语义审计。没有把Civ V的City:SetOverflowProduction一类文档套用到Civ VI。
+
+[Sukritact CityBuildQueue](https://sukritact.github.io/Civilization-VI-Modding-Knowledge-Base/CityBuildQueue)列Gameplay AddProgress/FinishProgress，项目进度getter列在UI；未提供经该页面确认的overflow setter。不能据此声称不存在未收录接口。下一次如做原型，可只读枚举实际Gameplay/UI对象可访问方法，分开两context，不通过猜参数调用陌生写入API。
+
+### 新发现：GCO确有负数AddProgress用法，但不能直接移植
+
+读取作者[Gedemon/Civ6-GCO 的 GCO_CityScript.lua](https://github.com/Gedemon/Civ6-GCO/blob/master/Scripts/GCO_CityScript.lua)（读取日期如上；master不是冻结版本）。DoConstruction约5841–6006行仅在当前目标有Units/Buildings row且production>0时进入；效率不足时约5995行调用AddProgress(-production)，把actualProd缓存，在CityProductionUpdated约7527–7535再AddProgress补入并清缓存。作者意图是先抵消正常结算，避免提前生成目标，然后应用实际效率。源码存在是STATIC_CONFIRMED，不等于本项目或该Mod当前原生验收。
+
+关键限制：约5992–5993行作者仍将“能否保存负进度，尤其目标成本小于单回合产能”列为TODO。空队列不满足该row分支，项目也不在该分支；没有展示空队列负数会扣overflow。GetProductionYield/GetProductionProgress约7742–7747是作者自建GCO包装，不是新增原生City方法。不能复制一个看似简单的负数调用，就宣布能清除8点或保证一回合。
+
+本机Cheat Panel `1528155583/Base/UI/Script/Cheat_Menu_Panel_Script.lua` CompleteProduction约68–73调用FinishProgress，不是显式AddProgress(大量数值)。这减少了“Cheat显式灌巨额锤”的依据，但FinishProgress对内部存储的影响仍未观察，不能由调用名宣布无副作用。此调查不要求用户重新证明前两段A/M结果。
+
+### 三条候选路线的取舍
+
+| 路线 | 可复用的依据 | 必须先证明的边界 | 当前判断 |
+|---|---|---|---|
+| 空队列＋精确定域生产抵消 | B114按钮与B116空目标已验；GCO负数调用提供新先例 | 空队列负数究竟扣目标/存储/被clamp/形成负债；结算时序；只抵消占用回合，不误删此前合法溢出；收获仍需单独确认 | 优先研究primitive，不直接投入正式能力 |
+| 真实无收益占位项目＋时间门槛 | 原生队列可占生产；AddProgress/FinishProgress可操作 | 高成本仍有限，收获/自动应用可提前完成；提前完成后排队目标可能获益；没有确认的“不可自然完成”字段；主动完成余量去向 | 保留备选，不能把无限大成本当严格保证 |
+| 占用期间压低城市/项目生产 | 现有modifier系统可表达部分产能调整 | 不证明旧存储/收获/直接AddProgress被过滤；百分比叠加和撤销时序；其它生产转换能力交互 | 未优于精确定域方案，不能仅挂-100%就宣布解决 |
+
+Base Projects表复核仍未发现固定时长/IgnoreOverflow/IgnoreHarvest字段。Cost为INTEGER并不证明-1有“无限”语义；不得借数据库允许负数推断引擎合同。UI入口拦截只能控制进入动作，不能控制之后的所有生产来源。拦截/替换第三方AddZeroProduction也只挡一个触发者，不处理原生存储；不是推荐兼容方案。
+
+### 推荐下一最小技术原型（仅建议，未实施授权）
+
+先验证负数primitive能否触及空队列存储，而不是马上做时代对话。限定一座独立测试城、单次手动触发、没有正式奖励/保存字段/全城扫描；同一基线分支对照，新增的必须是真正的原生证据，不能以Lua模拟证明C++行为。
+
+- 第一门禁：可访问方法只读枚举；负数写入仅用已确认AddProgress，先在专用测试目标确认精确下降/clamp行为，不能对玩家有价值建筑作未经核对的回扣。
+- 第二门禁：空队列中单次负数调用后选择测试目标，比较无调用分支，再观察下一回合是否有延后负债。已知存储量不能凭8.3面板直接假定；若无法构造/读取受控基线，先停，不以大负数清零冒充精确抵消。
+- 同时修正证据窗口：回合按钮豁免按时关闭，但有限只读采集继续覆盖后续本玩家激活/相关生产事件；这些事件先作为观测，不预设任一事件就是完整结算结束。
+- 若空队列负数无效或只改其它目标/出现不可解释负债，停止该路线；若有效，再研究实际结算输入和旧溢出保留，随后才安排收获/中断/冷加载。不得自动把整个存储删除定义成项目成本。
+
+这比再切一次A/M有信息增量，但含实验性生产写入，必须另行授权。仍没有STATIC可以证明的完整一回合实现，亦没有证据证明绝无实现办法。本轮不提出Design修改、不把等待替代生产占用、不要求新增用户实机流程。当前建议明确收敛到primitive验证，避免重复整套按钮/溢出模式验收。

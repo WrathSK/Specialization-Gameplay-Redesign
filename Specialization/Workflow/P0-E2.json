@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0295",
+    "status": "S0297",
     "runtime": "B116.143 / modinfo143",
     "military": "D0034"
   },
@@ -436,6 +436,17 @@
       "kind": "section",
       "selector": "## 18. B116 follow-up — overflow application versus production origin",
       "reason": "Current read-only production-origin investigation, evidence limits and smallest proposed comparison; no implementation authorization"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B116_Overflow_Mode.md",
+      "kind": "full",
+      "reason": "Current native M/A production evidence and precise remaining isolation boundary"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 19. Production isolation follow-up — negative progress precedent and remaining primitive gate",
+      "reason": "Current production-isolation primitive findings, limits and proposed next probe; not implementation authorization"
     }
   ],
   "dependencies": [
@@ -510,8 +521,8 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B116 scoped USER_GAME_TEST_PASS: NONE start/empty report/turn-boundary ending. Granary progress8 after selection; production opportunity cost and event ordering unresolved; interruption still untested.",
-    "side_investigation": "Section18: installed overflow mod applies native stored production through AddProgress(0) on target change; source of8 unresolved; manual-mode comparison proposed, not executed",
+    "side_prototype": "B116 start scoped PASS retained; native M mode granary0 versus A mode mill8 observed, city8.3/turn. Second sequence Cheat completion noted; exact origin/production isolation unresolved, no repeated mode test needed.",
+    "side_investigation": "Section19: GCO negative AddProgress precedent scoped to unit/building; empty-queue storage/clamp/debt unresolved; proposed primitive probe requires separate authorization",
     "side_next_plan": "Section15 minimum session observer authorized and implemented B115; remaining production isolation/save/project gates pending"
   }
 }
