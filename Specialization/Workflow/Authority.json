@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "B118 reviewed working tree; commit pending",
+  "runtime_commit": "582a1e7b2b43f189f1789f69aef9951b65e7c6e2",
   "current_batch": "B118_EXACT_PROJECT_LOCAL_PASS_NATIVE_REQUIRED; P0-E2 CLAIM_PLAN_ONLY",
   "next_batch": "Native one-city exact-project subtraction then new-target/next-turn residual gate; stop on failure; no chop/harvest or formal project/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B117.144 / modinfo144 deployed;157/157 MATCH;source c488942;B116 recovery and stable bridge verified;receipt B117.144-c488942-playtest.json;native clear candidate FAIL: negative debt",
+  "live": "B118.145 / modinfo145 deployed;158/158 MATCH;source 582a1e7;B117 recovery retained;receipt B118.145-582a1e7-playtest.json;native pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

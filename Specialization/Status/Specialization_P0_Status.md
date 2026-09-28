@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0301
-Implementation Build: develop P0-B-118.145 / modinfo145 EXACT_PROJECT_PRIMITIVE; live B117.144 until receipt-confirmed switch; stable B069.96
+Implementation Build: develop P0-B-118.145 / modinfo145 EXACT_PROJECT_PRIMITIVE; live B118.145 verified158/158 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -17,7 +17,7 @@ Work State: B118_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 [B117原生反证](Validation/Results/Specialization_B117_Negative_Production_Boundary.md)保持FAIL；用户全清未分配存储合同不变。高成本不是无限容量，chop/harvest/中断/存读收尾尚未验证；项目仅实验载体，非正式Design。恢复必须配测试前存档。
 
-部署待本批提交、退出与完整性门禁；live尚B117.144 source c488942 / receipt B117.144-c488942-playtest.json。E2 Claim plan-only、F未推进；main/stable B069.96未改变。
+已确认游戏退出并部署B118.145 source582a1e7，158/158 MATCH；receipt B118.145-582a1e7-playtest.json。B117恢复点与稳定桥保留，未启动游戏。E2 Claim plan-only、F未推进；main/stable B069.96未改变。
 
 ## 历史阶段记录
 

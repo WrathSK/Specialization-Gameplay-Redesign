@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B118 reviewed working tree; commit pending",
+  "runtime_commit": "582a1e7b2b43f189f1789f69aef9951b65e7c6e2",
   "runtime": "B118.145 / modinfo145",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
