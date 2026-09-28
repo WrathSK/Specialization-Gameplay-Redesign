@@ -30,7 +30,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "PENDING_B110_IMPLEMENTATION_COMMIT",
+  "runtime_commit": "8bebf5a16b051b858bfa02ecdb32568c56d77946",
   "current_batch": "P0-E2 B110_CONQUEST_SNAPSHOT_LOCAL_PASS_NATIVE_REQUIRED",
   "next_batch": "B110 deployment after verified game exit, then scoped conquest snapshot native test; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
