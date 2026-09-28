@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0294",
+    "status": "S0295",
     "runtime": "B116.143 / modinfo143",
     "military": "D0034"
   },
@@ -430,6 +430,12 @@
       "path": "DevelopmentTests/test_b116_empty_target.py",
       "kind": "full",
       "reason": "Current native sentinel regression and inherited observer protections"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 18. B116 follow-up — overflow application versus production origin",
+      "reason": "Current read-only production-origin investigation, evidence limits and smallest proposed comparison; no implementation authorization"
     }
   ],
   "dependencies": [
@@ -505,7 +511,7 @@
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B116 scoped USER_GAME_TEST_PASS: NONE start/empty report/turn-boundary ending. Granary progress8 after selection; production opportunity cost and event ordering unresolved; interruption still untested.",
-    "side_investigation": "Section13 native target contract applied by Section14; alternatives remain investigation only",
+    "side_investigation": "Section18: installed overflow mod applies native stored production through AddProgress(0) on target change; source of8 unresolved; manual-mode comparison proposed, not executed",
     "side_next_plan": "Section15 minimum session observer authorized and implemented B115; remaining production isolation/save/project gates pending"
   }
 }

@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0294
+Status Revision: S0295
 Implementation Build: develop P0-B-116.143 / modinfo143 EMPTY_TARGET_REPAIR; live B116.143 verified155/155 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -15,9 +15,11 @@ Work State: B116_START_SCOPED_PASS_PRODUCTION_COST_UNRESOLVED; E2 Claim plan-onl
 
 完整生产结算与机会成本仍未证实。原型在PlayerTurnStarted处停止采集，不能由缺少Updated断言整个结算周期无事件。粮仓8点来源未确定；用户明确确认选择前面板没有粮仓已有进度，选择后才出现8点，期间无收获/砍树/Cheat。排除粮仓旧投入；剩余城市级生产存储/应用来源待查。先调查来源与事件窗口，再提出必要最小对照；不直接推进收获/正式项目/Claim/F。选择目标发生在ENDED后，活动中断实机仍未覆盖。
 
+[溢出应用调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#18-b116-follow-up--overflow-application-versus-production-origin)：独立Mod在切换目标时AddProgress(0)，自身无生产存储/积累公式。应用路径STATIC_CONFIRMED，8点来源仍未知；建议既有M手动模式做选择前后/手动应用对照，无新包。该对照尚未执行，不证明空队列生产机会成本，未授权新实现。
+
 [B115开始失败](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留历史，[B114按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持。B11653项LOCAL证据不扩展为原生固定时长PASS。测试城市只用自然空队列，不要求手动清空当前生产。
 
-本轮仅归档；源码/部署记录`b7ee8f9`，live B116.143，receipt `B116.143-b7ee8f9-playtest.json`，此前155/155 MATCH；本轮未核验外部包。main稳定B069.96不变，无runtime/Design/部署变化。
+本轮仅只读调查与文档记录；源码/部署记录`b7ee8f9`，live B116.143，receipt `B116.143-b7ee8f9-playtest.json`，此前155/155 MATCH；本轮未核验外部包。main稳定B069.96不变，无runtime/Design/部署变化。
 
 ## 历史阶段记录
 

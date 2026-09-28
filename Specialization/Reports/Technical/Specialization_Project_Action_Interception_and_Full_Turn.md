@@ -457,3 +457,30 @@ W0004 L2：`DevelopmentTests/test_b115_production_observer.py` **45项LOCAL_SIMU
 ### B116 native baseline — 2026-09-27
 
 [三图证据](../../Status/Validation/Results/Specialization_B116_Production_Baseline.md)：NONE开始修复及空队列诊断限定PASS；BEGIN→Deactivated→Started后ENDED，随后选择粮仓进度8。完整生产结算与机会成本未定。观察在Started自动停止，不可把采集窗口内无Updated外推成整个周期不发事件；粮仓8点不能未经起始/输入核对就归因正常产能。先查来源/事件窗口，不进入正式计时或收获验证。活动中断未由“结束后选择目标”证明。
+
+
+## 18. B116 follow-up — overflow application versus production origin
+
+2026-09-27，用户授权继续只读调查。用户已明确：选择粮仓前面板无该建筑已有进度，选择后才出现8点；期间无砍树/收获/Cheat。不能再将其表述成仅“不记得旧投入”。本节不修改B116冻结截图证据，不实施、不部署。
+
+### STATIC_CONFIRMED：独立溢出Mod的应用入口
+
+完整读取本机Workshop `289070/2589004769` 的 `OverflowBugFix.modinfo`、`OverflowBugFix_Switchable.lua`、`OverflowBugFix_helper.lua`。Switchable第27–39行监听CityProductionChanged：人类在自动模式调用AddZeroProduction，AI不受开关影响；不筛选目标类型或取消参数。helper第5–9行仅调用 `city:GetBuildQueue():AddProgress(0)`。该Mod没有自己的生产力账本、跨回合积累公式或8点计算，也没有改写回合末清零的代码。
+
+因此存在与截图吻合的链：选择粮仓→生产目标变化→AddProgress(0)→由引擎应用已有生产存储。[作者说明](https://steamcommunity.com/sharedfiles/filedetails/?id=2589004769)同样说明其功能是把已有溢出立即应用于新目标。静态链并非本次实机调用trace，尚不能证明它是唯一触发者；更不能把“它负责应用”写成“它产生了这8点”。
+
+Switchable第9、41–61行已有A/M开关：M模式停止人类自动应用，另一个手动按钮对选中城市调用同一AddZeroProduction。开关是局部内存变量，初始化默认A；冷加载后需重新确认M。M→A切换本身不调用AddProgress。无需卸载Mod或更改本项目代码即可进行应用时机对照。
+
+### 引擎清理与来源仍未确认
+
+[Firaxis September 2019 patch notes](https://support.civilization.com/hc/en-us/articles/39409989034643-Patch-Notes-September-2019-Update)记录回合末强制清除overflow、防止空队列强制过回合囤积，并记录部分奇观返还到turn-active再应用。它不证明当前Mac/HD组合的具体结算顺序，也不等于所有场景的生产都被立即删除。不能据此判定这8点必然是旧溢出或必然是空队列回合产能。
+
+B116观察在首个新回合PlayerTurnStarted处ENDED；其后生产通知不再采集。三条记录未出现Updated不能证明之后没有结算。Base/Expansion2 UI的定向搜索未发现现成overflow读取getter；这不是“引擎不存在该接口”的证明。HD CivilizationTraits中的对应生产变化hook有特定领袖/区域完成路径，未在这些直接hook中发现通用“选粮仓赠8点”；未排除全部HD/其它Mod行为。
+
+### 下一最小验证建议（尚未执行）
+
+优先复用如有的“新回合、尚未选粮仓”存档，冷加载后先切M，再选择粮仓记进度，随后按该Mod手动应用按钮再记进度。若0→8，则直接支持已有生产存储经AddProgress(0)兑现；若选目标时已为8，则不能归因这个自动入口，需保留其它路径调查。不要把切M当作清除存储，也不要卸载Mod或修改存档。
+
+此对照仅查应用机制。查来源需要更早的同一基线分支，比较空队列过回合前/后的可应用存储；清除和重新积累可能同时发生，差值不能未经事件证据直接等同正常产能。若现有存档不适用，不要求伪造基线或重跑整套流程。后续若改观察器，应将“过回合豁免结束”与“有限只读结算证据采集结束”分开，另获实施授权；不延长项目、补扣生产或包装第三方函数绕过未知。
+
+结论：应用路径STATIC_CONFIRMED、与截图一致的因果解释仍待原生对照；8点来源与完整生产机会成本仍TECHNICAL_INVESTIGATION_REQUIRED。没有新增LOCAL模拟或USER_GAME_TEST结论；正式固定回合项目、收获隔离、Claim/F均未推进。
