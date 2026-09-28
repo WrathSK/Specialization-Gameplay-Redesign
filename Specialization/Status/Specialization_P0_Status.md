@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0306
+Status Revision: S0307
 Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B120.147 verified160/160 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B120_LOCAL_SIMULATION_PASS_AWAITING_USER; E2 Claim plan-only
+Work State: B120_USER_TEST_DEFERRED; Landscape candidate intake only; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
+
+B120测试按用户要求移入[PT010待办](Playtest_Backlog.md#b120-project-observation-deferred)，回家后再测，保持PENDING。本轮接收[Landscape强冻结候选](../Design/Candidates/Landscape_Freeze_Candidate.md)并同步阅读版，不升级正式冻结，不纳入当前四专业v0.1范围；无runtime/部署变化。
 
 [B120单城项目观察](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#26-b120147--authorized-project-turn-observation-and-completion-decision)已获授权实施：真实高Cost项目作为生产目标，只读记录至下一回合恢复操作后的手动报告终点。104项定向LOCAL_SIMULATION_PASS；未自动完成、未发奖、未改1T显示。等待一次正常回合的事件证据，不自动进入B/Claim/F。
 

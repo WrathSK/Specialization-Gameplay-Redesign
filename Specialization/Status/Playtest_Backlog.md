@@ -87,3 +87,8 @@ The standalone migrated-old + fresh-new native compatibility test is removed fro
 ## B108 new-game multi-city gate — USER_GAME_TEST_REQUIRED
 
 New game only. [Current exact test](../Architecture/v2/P0_E2_Plan.md#b108135-implementation-result--evidence-boundary):3 normally founded cities, A remains NONE/P0; B Campus→P1→one investment P2; C Theater→P1; one separate save + full restart/load; read3 selected-city E2 reports. ACTIVE follows current Governor. No manual migration, old-save search, conquest or Claim. Native initialization/API and persisted independent record behavior remain unconfirmed; local tests do not certify them. Preserve B107 saves for rollback; no downgrade guarantee for B108 saves.
+
+
+## B120 project observation deferred
+
+PT010 — 2026-09-28 USER_GAME_TEST TODO：用户回家后再测B120.147；目前LOCAL_SIMULATION_PASS，原生事件顺序PENDING，非FAIL或PASS。[最小流程](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#26-b120147--authorized-project-turn-observation-and-completion-decision)：唯一承接项目→开始项目观察→正常过一回合→结束观察/报告。无即时测试要求，不重新部署，不自动进入B/Claim/F，不设置定时提醒。
