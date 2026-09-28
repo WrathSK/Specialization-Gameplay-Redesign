@@ -1,21 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0278
+Status Revision: S0279
 Implementation Build: develop P0-B-110.137 / modinfo137 E2_CONQUEST_SNAPSHOT; live B110.137 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B110_LOCAL_PASS_NATIVE_REQUIRED
+Work State: P0_E2_B110_NATIVE_FAIL_REPAIR_AUTHORIZATION_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
+2026-09-27 [B110两城征服快照实机失败](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)：两图均在CityProgressionStore.lua:852区域遍历报错，USER_GAME_TEST_FAIL。直接原因为新路径使用不兼容的Members遍历，本地fixture错误提供该接口。候选/首次完成/冷加载未完成验收。用户保留征服前存档供修复后复测；当前暂停，不要求继续测试。最小修复为indexed区域读取、真实API fixture和简短失败诊断，等待明确修复授权；本轮无runtime/部署变化。
+
 2026-09-27 按用户授权完成[B110首次AI征服快照与分流](../Architecture/v2/P0_E2_Plan.md#b110137--authorized-conquest-snapshot-checkpoint)，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，原生待验。一次冻结已完成四专业候选：非空保持NONE/P0，空集才监听后续首次完成；单候选也不自动认定。Claim须完成对应城市项目，操作/UI/成本仍留下一批，本轮未实施。已有专业夺回不走新初始化；未知/冲突不猜测。
 
-[B109三城完整重启验收](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)保持限定USER_GAME_TEST_PASS。B110最小待测为两种真实AI征服目标＋一次完整重启；左键E2读取冻结候选/空集后首次完成结果。保留升级前存档；B109不保证读取B110新增记录模式。B110实现commit `8bebf5a`，部署HEAD `621d69c`；用户确认游戏退出后完成安全切换，153/153 MATCH，receipt `B110.137-621d69c-playtest.json`，B109完整恢复点hash一致。未启动游戏，等待本次原生报告。
+[B109三城完整重启验收](Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)保持限定USER_GAME_TEST_PASS。B110最小待测为两种真实AI征服目标＋一次完整重启；左键E2读取冻结候选/空集后首次完成结果。保留升级前存档；B109不保证读取B110新增记录模式。B110实现commit `8bebf5a`，部署HEAD `621d69c`；用户确认游戏退出后完成安全切换，153/153 MATCH，receipt `B110.137-621d69c-playtest.json`，B109完整恢复点hash一致。未启动游戏；本次原生失败与待修复边界见上。
 
-[城市项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)已保存；仅STATIC证据，未实施。Cost=1不保证完整生产回合，商业操作入口与生产占用是不同问题。Design/main未改；E2仍partial，不自动Claim/F、其它生命周期或UI原型。下一步仅本次原生验收。
+[城市项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)已保存；仅STATIC证据，未实施。Cost=1不保证完整生产回合，商业操作入口与生产占用是不同问题。Design/main未改；E2仍partial，不自动Claim/F、其它生命周期或UI原型。下一步等待最小修复授权，不继续失败包验收。
 
 ## 历史阶段记录
 

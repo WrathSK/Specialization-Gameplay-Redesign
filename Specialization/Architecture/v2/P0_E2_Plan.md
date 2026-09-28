@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B110_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B110_USER_GAME_TEST_FAIL / REPAIR_AUTHORIZATION_REQUIRED. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，等待原生验证。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，原生快照读取失败，等待最小修复授权。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -871,3 +871,9 @@ After scoped native acceptance: separate Claim plan and its exact cost/one-turn 
 B110 source commit `8bebf5a` pushed. Process inspection unavailable (sysmon/pgrep cannot list processes); awaiting user exit confirmation. No deployment occurred in this implementation turn; recorded live remains B109.136.
 
 Deployment update: user explicitly confirmed game exited. B110.137 activated from clean HEAD `621d69c` (implementation `8bebf5a`) through exact B109 restore/stable bridge;153/153 source/runtime MATCH and retained B109 recovery hash MATCH. Receipt `B110.137-621d69c-playtest.json`. No game launch/main change; only scoped native test remains.
+
+## B110 native failure — district enumeration repair proposal
+
+[两图失败证据与原始hash](../../Status/Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)：2026-09-27两城均在admit区域枚举Members调用失败。原本LOCAL_SIMULATION_PASS保留其历史范围，但fixture不符合原生CityDistricts接口，不能作为该接口有效证据。当前USER_GAME_TEST_FAIL。
+
+待授权的最小修复：采用现有DistrictCompleteness indexed API，保留征服证据/一次快照/owner与完成性保护；fixture去掉Members并提供零起始indexed接口，定向覆盖候选与失败关闭并复用B109直接回归；报告仅显示相关阶段及原因。无identity/Design变更，无Claim/F或失败后补扫。用户已有征服两城前存档；未来修复/部署后从该存档重复两种分流及完整重启，当前不再测试。本次只归档证据，未实施修复或部署。

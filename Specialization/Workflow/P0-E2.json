@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0278",
+    "status": "S0279",
     "runtime": "B110.137 / modinfo137",
     "military": "D0034"
   },
@@ -417,9 +417,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
-    "implementation": "B110.137 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native pending",
-    "native": "B109 three-city founding/specialization/investment and full restart/load USER_GAME_TEST_PASS scoped; user confirmed restart boundary; B108 historical failure preserved",
-    "next": "B110 deployed with verified B109 recovery; await two-mode conquest native test; no Claim actions or F",
+    "implementation": "B110.137 prior STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native disproved district iterator assumption; repair not implemented",
+    "native": "B110 two-city conquest snapshot USER_GAME_TEST_FAIL: district Members enumeration at line852; B109 prior scoped PASS retained; snapshot/save branches not verified",
+    "next": "Await minimal indexed-enumeration/fixture/diagnostic repair authorization; user retains pre-conquest save; no deployment/Claim/F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }
