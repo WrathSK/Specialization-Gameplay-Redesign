@@ -655,3 +655,24 @@ UI把专用项目变化与其它目标变化分开：期望项目p→0、其它0
 显示1回合：本机Base CitySupport.lua:269–304对项目读取GetTurnsLeft/进度/成本并返回Turns、百分比；HD DL_ProductionPanel.lua:600同样为项目读取GetTurnsLeft。因此可以在UI仅对本项目覆盖预计时间文本为“1回合／本回合结束时完成”，而不修改真实Cost或全局GetTurnsLeft。但这是UI prototype方向，不是已验证hook；生产列表、当前城市面板、队列/Tooltip和HD替换页须一致，进度条应表达计时而非百万成本。显示修改不能使引擎本身按1回合结算。中断或尚未进入计时状态时，不能无条件显示即将完成。
 
 当前建议由“继续扣锤”转向上述无奖励FinishProgress最小可行性门禁，等待用户明确实施授权；不擅自将讨论变为新Design或强制完成实现。旧全清与占用期隔离合同保持，无需本轮重复游戏测试。
+
+
+## 24. B119.146 — standalone native FinishProgress experiment
+
+2026-09-28，用户明确提供Cheat Panel完成项目不产生溢出的既有观察，并要求确认独立实现后授权原型。只读核对Workshop1528155583的CheatMenuPanel.modinfo把Base/UI/Script/Cheat_Menu_Panel_Script.lua注册为Gameplay script；该脚本68–74行CompleteProduction仅获取player/city/buildQueue、确认player、调用原生FinishProgress()，没有额外清池、进度补偿或自建overflow账本。B119在自己的Gameplay中直接调用q:FinishProgress()，不调用Cheat函数、UI、ExposedMembers或依赖该Mod。用户观察是有价值的先例，不扩展成任意项目/所有注入场景的原生保证。
+
+### 已实施范围
+
+保留B118无收益高Cost项目和两次确认/单城定域保护；允许已读进度0至10000（0可测试完成路径，但不证明正存量被吸收）。Gameplay当前目标、唯一队列、即时UI读数、owner/位置/回合、准备后生产事件和进度必须一致。锁存后一次FinishProgress，异常不重试，每城每次加载最多一次。没有AddProgress、奖励、计时完成或自动排队；不会完成普通建筑/单位/其它项目。本批仍不改显示1回合，因为计时规则尚未实施。
+
+诊断改为“完成承接试验”：左键准备，再左键原生完成；右键每次重读当前回合/城市/队列、目标名称及进度（包括0/负值）、实验项目保留进度；另列相对准备时其它目标变化。调用记录与当前读数分栏，不缓存即时读数作为当前结论，不把0或未变化项隐藏。未知目标/缺接口明确报不可确认。旧−1000 tooltip与扣除文案已移除。仍是显式操作的一城有界读取，无hover/每帧扫描。
+
+### 本地证据及最小用户测试
+
+79项定向LOCAL_SIMULATION_PASS（53项直接旧计时观察器回归＋26项完成/保护/显示检查）；Lua/modinfo146的158文件STATIC_CONFIRMED。涵盖实际P0Panel/Gameplay入口、没有Cheat符号仍可调用、仅FinishProgress无AddProgress、0值和负值显示、延迟引擎更新后重新读取、未变正数不省略、完成返回但模拟残留仍不报nativePASS、重复/异常/错误目标/延后请求/事件变化保护。没有运行无关全回归或stress。原生完成及无残留仍USER_GAME_TEST_REQUIRED；不要求玩家卸载其它Mod破坏存档，仅本Mod不引用它们。
+
+1. 使用实验前正常存档（避开B117负进度档）；保持自动溢出A。选择“溢出承接实验（无收益）”为唯一队列目标。不要使用Cheat完成。右键“完成承接试验”截图；最好已有正进度，否则正常生产一回合再准备。
+2. 左键准备，再左键原生完成一次。稍候右键刷新截图：当前应无生产目标/队列0；实验项目保留进度读数如实记录，不以该值单独决定是否存在城市存量。若仍显示实验项目，可再右键读取（不重复左键）；未知/错误/意外完成其它目标立即停止。
+3. 同回合选择此前0进度的普通目标Q，右键截图：当前目标Q、进度应0。正常生产一回合后再右键截图，Q应正常增长，无额外正溢出或负债。若进度异常，停止，不自行补生产。
+
+这是手动FinishProgress primitive；不要求自动按一回合完成或显示1T。门禁通过后才考虑chop/harvest、结算事件、提前完成、一次性奖励、中断/存读和专项目计时UI。无新正式Design，Claim/F未推进。

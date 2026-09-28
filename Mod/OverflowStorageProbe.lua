@@ -1,4 +1,4 @@
--- B118: exact known-project subtraction experiment; not a storage clearing service.
+-- B119: native FinishProgress on a dedicated no-reward project; not a storage clearing service.
 SPCOverflowStorageProbe={}
 function SPCOverflowStorageProbe.Start(P,shared)
  local api={};shared.OverflowStorageProbe=api
@@ -16,7 +16,7 @@ function SPCOverflowStorageProbe.Start(P,shared)
   if type(P.Field(q,"GetSize"))=="function" then
    local good,n=P.Call(q,"GetSize");assert(good and n==1,"Gameplay队列必须只有专用实验项目")
   end
-  assert(type(P.Field(q,"AddProgress"))=="function","AddProgress不可用")
+  assert(type(P.Field(q,"FinishProgress"))=="function","FinishProgress不可用")
   return c,q
  end
  local attemptAmount=nil
@@ -40,7 +40,7 @@ function SPCOverflowStorageProbe.Start(P,shared)
    assert(type(params.CityID)=="number" and params.StartTurn==Game.GetCurrentGameTurn(),"请求过期/城市无效")
    assert(not missingHook,"生产/城市事件接口缺失；不能保护准备后的状态变化")
    local k=key(pid,params.CityID)
-   assert(not used[k],"本城本次加载已调用或结果不明；禁止重复扣除，重载测试前存档")
+   assert(not used[k],"本城本次加载已调用或结果不明；禁止重复完成，重载测试前存档")
    local c,q=city(pid,params.CityID)
    local reader=ExposedMembers.SPC_OverflowExactRead
    assert(type(reader)=="function","UI即时项目读数桥不可用；不写入")
@@ -48,15 +48,15 @@ function SPCOverflowStorageProbe.Start(P,shared)
    assert(type(facts)=="table" and facts.owner==pid and facts.id==params.CityID and facts.turn==params.StartTurn
     and facts.project==project and facts.size==1,"UI即时目标/队列无法确认")
    local value=facts.value
-   assert(finite(value) and value>0 and value<=10000,"实验要求0<项目进度≤10000；零、负数或超界均不写入")
+   assert(finite(value) and value>=0 and value<=10000,"实验要求0≤项目进度≤10000；负数或超界均不写入")
    assert(value==params.Progress,"即时项目进度与本次请求不同；重新准备")
    if params.Action=="OVERFLOW_PREPARE" then
     assert(count<16,"本次加载实验上限已到")
     if pending and pending.token==params.Token then return end
     epochs={};epochs[k]=0
     pending={owner=pid,id=params.CityID,x=c:GetX(),y=c:GetY(),turn=params.StartTurn,token=params.Token,epoch=0,progress=value}
-    attemptAmount=-value
-    publish(params,pid,"PREPARED","尚未写入；再次左键仅扣除专用项目已确认进度。")
+    attemptAmount=value
+    publish(params,pid,"PREPARED","尚未写入；再次左键仅原生完成专用无收益项目。")
     return
    end
    assert(pending and pending.token==params.Token and pending.owner==pid and pending.id==params.CityID
@@ -64,9 +64,9 @@ function SPCOverflowStorageProbe.Start(P,shared)
     and pending.progress==value and pending.epoch==(epochs[k] or 0),"准备后城市/生产状态变化；必须重新准备，不写入")
    -- Latch BEFORE the native call; even an exception cannot justify retry.
    used[k]=true;count=count+1;pending=nil;attempted=true
-   attemptAmount=-value
-   q:AddProgress(-value)
-   publish(params,pid,"CALLED_NOT_PROVEN","已按即时读数精确扣除一次；不代表存储已清空。请核对项目及后续目标，勿重试。")
+   attemptAmount=value
+   q:FinishProgress()
+   publish(params,pid,"CALLED_NOT_PROVEN","已调用一次原生FinishProgress；不代表无溢出。右键刷新当前状态，再检查后续目标，勿重试。")
   end)
   if not ok then
    local raw=tostring(err);print("[SPC][OverflowStorage] "..raw)

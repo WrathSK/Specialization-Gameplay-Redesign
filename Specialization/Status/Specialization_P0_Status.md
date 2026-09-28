@@ -1,21 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0302
-Implementation Build: develop P0-B-118.145 / modinfo145 EXACT_PROJECT_PRIMITIVE; live B118.145 verified158/158 MATCH; stable B069.96
+Status Revision: S0303
+Implementation Build: develop P0-B-119.146 / modinfo146 NATIVE_FINISH_PRIMITIVE; live B118.145 pending switch; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B118_NATIVE_INCONCLUSIVE_DIAGNOSTIC_TIMING; E2 Claim plan-only
+Work State: B119_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B118五图](Validation/Results/Specialization_B118_Exact_Progress_Inconclusive.md)已归档：项目7，即时7→7；后续报告省略零/未变化值且重放旧样本，工期119180→119181，最后改磨坊8回合。**NATIVE_RESULT_INCONCLUSIVE / DIAGNOSTIC_TIMING_BOUNDARY**，不能判最终扣除失败或全清PASS。hover残留B117−1000说明，实际B118为−p；下次原型需修可读性，不要求用户重复当前模糊测试。
+[B119独立原生完成实验](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#24-b119146--standalone-native-finishprogress-experiment)获授权实施，本地79项定向PASS。确认Cheat实现只调用原生FinishProgress；本Mod独立调用，不依赖Cheat Panel，不扣生产力，不发奖、不计时、不改显示1T。仅专用无收益项目、唯一队列、双确认与即时读数/事件保护。
 
-[高成本dummy按时强制完成方案讨论](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#23-b118-screenshot-ambiguity-and-timed-dummy-completion-proposal)已保存。推荐下一最小门禁：无收益测试项目单次FinishProgress→下一目标/正常回合检查余量，并明确刷新诊断；尚未实施、等待授权。显示1回合可做专项目UI覆盖候选，但不是原生计时保证。高额注入提前完成、完整结算时序、中断/重载和一次性奖励均未解决。
+按钮“完成承接试验”右键现明确刷新当前目标/进度0或负数/队列，与调用记录分开。B118缓存7→7和过滤读数造成的歧义已修显示，旧native结论仍INCONCLUSIVE，不追认PASS。用户提供Cheat完成无溢出观察，当前组合独立调用仍待实机。
 
-live仍B118.145 source582a1e7，原部署158/158 MATCH；receipt B118.145-582a1e7-playtest.json。本轮仅证据/调查记录，无代码/部署。B117盲扣FAIL及用户全清合同保持；75项本地PASS仅限定代码保护，非native全清。E2 Claim plan-only、F未推进；main/stable B069.96未改变。
+最小测试：实验前档→项目唯一目标且最好有正进度→准备/完成一次→右键确认队列空→同回合选原0进度正常目标应0→正常一回合增长。未知/异常即停，禁止重复左键，不用Cheat。详细步骤见合同。
+
+live尚B118.145 source582a1e7；部署须本批干净提交及退出/恢复点门禁。本轮不推进正式定时项目、Claim/F；main/stable不变。
 
 ## 历史阶段记录
 

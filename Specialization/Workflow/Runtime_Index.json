@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "582a1e7b2b43f189f1789f69aef9951b65e7c6e2",
-  "runtime": "B118.145 / modinfo145",
+  "runtime_commit": "B119 reviewed working tree; commit pending",
+  "runtime": "B119.146 / modinfo146",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "e3818656534776fe73f5377297c3559d4c2dc0429fac3dc23847be187ab89648",
+      "sha256": "633ea80cd420ed3b47555567b8265eb6458714aa1996a501766021f14eee16f1",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3d53e0ac1540440d3f2cc68fc683b73c96483876f495c252bc70b6ed09c1c00d",
+      "sha256": "e8b6d88343c8fcdea365bde0e19ddbde08b402a4a4b20904039af0118e6d87d7",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "03556bb3a6554340f7befd1f3011d7ddf92a829e8880520c98f34c609142408e",
+      "sha256": "621ef486c379288d3085521a86a69772254073c2ee10e4de4e9c081cce9415df",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "bd587b14fb6a0329432ec7dc6c7d4e96a11e6c04eb71eea9da6d264a2a18d794",
+      "sha256": "bf2e111498cf03286bb696ce453be94b0316d5723b076deb0919dffe8760bbb2",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -781,14 +781,14 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/OverflowStorageProbe.lua": {
-      "sha256": "a1c6e0525f311f64369727cfeb1be6a4d0315fb409d0b950ecb2993c3b17aca2",
+      "sha256": "a60af9a79c8f4b267511564a7aa9c5f7d59eee66ab0b970c85869e791c9cc149",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/OverflowStorageRead.lua": {
-      "sha256": "36a23203967099b8cdea62ab2db7ea996ec392639d47a6754cffc7a6c40db63b",
+      "sha256": "832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/Data/OverflowSinkTest.sql": {
       "sha256": "3cda727d346275d56b24a7d7030d7ac189aa60c31cf7570bcb320d47fa38528d",
