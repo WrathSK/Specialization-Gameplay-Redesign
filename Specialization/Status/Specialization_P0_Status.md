@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0291
-Implementation Build: develop P0-B-115.142 / modinfo142 SESSION_PRODUCTION_OBSERVER; live B114.141; stable B069.96
+Implementation Build: develop P0-B-115.142 / modinfo142 SESSION_PRODUCTION_OBSERVER; live B115.142 verified155/155 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B115_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 [B114实机PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持限定按钮/关闭/原生待办恢复范围。B115新增异步确认/Gameplay空目标读取与事件送达待USER_GAME_TEST；只测基线跨回合+选择再清空中断，异常立即暂停，收获/溢出后续追加。无正式项目、奖励或永久状态；保存恢复尚未实施，不进入Claim/F，E2仍partial。
 
-用户已确认游戏退出，待commit后按W0003部署。源码B115；live记录仍B114.141，receipt `B114.141-a281590-playtest.json`；main稳定B069.96未改。下一动作仅部署已验原型和等待用户证据，不自动扩大实施范围。
+用户确认游戏退出后已按W0003部署B115.142，源码/部署commit `96bf8ea`；155/155 MATCH，receipt `B115.142-96bf8ea-playtest.json`。B114恢复点及stable桥核验保留；main稳定B069.96未改，未启动游戏。下一动作仅等待最小原生基线/中断证据，不自动扩大实施范围。
 
 ## 历史阶段记录
 
