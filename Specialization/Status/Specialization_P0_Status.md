@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0288
-Implementation Build: develop P0-B-114.141 / modinfo141 TARGET_OBJECT_REPAIR; live B113.140; stable B069.96
+Implementation Build: develop P0-B-114.141 / modinfo141 TARGET_OBJECT_REPAIR; live B114.141 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -11,13 +11,13 @@ Work State: B114_TARGET_REPAIR_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B114目标对象修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)已获授权实施：原生有效CITY目标owner/ID匹配替代通知镜头坐标匹配，其它B113保护保留。28项定向LOCAL_SIMULATION_PASS及Lua/modinfo静态检查；真实目标信息与普通按钮过回合USER_GAME_TEST_REQUIRED。用户已确认游戏退出，待提交后按W0003部署；尚不宣称新包在运行。
+[B114目标对象修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)已获授权实施：原生有效CITY目标owner/ID匹配替代通知镜头坐标匹配，其它B113保护保留。28项定向LOCAL_SIMULATION_PASS及Lua/modinfo静态检查；真实目标信息与普通按钮过回合USER_GAME_TEST_REQUIRED。用户确认游戏退出后已按W0003部署B114.141；154/154 MATCH，尚不宣称原生测试通过。
 
 [B113失败证据](Validation/Results/Specialization_B113_Notification_Location_Failure.md)保留：唯一空城仍卡生产，旧位置匹配=false；按钮文字已通过。[B112观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留。通知目标路径有原版STATIC依据，尚非原生PASS。
 
 本轮仅通知归属修复/必要诊断。最小待测：处理其它待办，仅A空队列，开启单城测试→读报告→正常点击下一回合，确认一次过回合及关闭；失败截图暂停，不Shift+Enter。无正式固定时长/生产隔离/Claim/F。E2既有partial状态不变。
 
-源码B114；live仍B113.140（receipt B113.140-217fe27-playtest.json）；main稳定B069.96。部署必须经既有receipt恢复stable再切换，保留B113恢复点，不启动游戏。
+源码/部署commit `a281590`；live B114.141，receipt `B114.141-a281590-playtest.json`。经原receipt恢复stable再切换，B113恢复包核验保留；154/154 MATCH。main稳定B069.96未改，未启动游戏。
 
 ## 历史阶段记录
 
