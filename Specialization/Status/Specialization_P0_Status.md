@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0280
+Status Revision: S0281
 Implementation Build: develop P0-B-111.138 / modinfo138 E2_INDEXED_SNAPSHOT_REPAIR; live B111.138 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_E2_B111_LOCAL_PASS_NATIVE_REQUIRED
+Work State: P0_E2_B111_SCOPED_NATIVE_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-2026-09-27 [B111区域枚举最小修复](../Architecture/v2/P0_E2_Plan.md#b111138--indexed-district-snapshot-repair)已按用户授权完成：采用Gameplay indexed区域读取，测试不再伪造Members，错误提示收窄为阶段与单行原因。STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；USER_GAME_TEST_REQUIRED。原有保存schema/一次候选快照/单候选不自动认定保持，无Claim/F或新Design/收益。
+2026-09-27 [B111双城征服快照＋完整重启验收](Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md) USER_GAME_TEST_PASS（限定所测场景）。城市1原商业单候选保持NONE/P0，之后完成工业区不追加候选、不自动认定；城市2原空集，完成剧院后文化P1/ACTIVE1；图5/6在用户确认完整重启后保持。城市2可接受投资另记用户实机确认，不推断截图未显示的投资后等级/冷加载。六张原图已读取并hash一致归档，无需重复本流程。
 
-[B110两图失败](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)原件保留，B109已验收范围不变。用户有征服两城前存档：修复包部署后从该处重复两城分流＋一次完整退出重启读档，左键E2报告；不在失败后存档补扫候选。用户确认退出后已安全部署B111.138，153/153 MATCH；source/deployment HEAD `0ffbfdb`，receipt `B111.138-0ffbfdb-playtest.json`，B110完整恢复点hash已核验。未启动游戏，等待本次原生复测。
+当前source/live B111.138，source/deployment `0ffbfdb`，153/153 MATCH及receipt `B111.138-0ffbfdb-playtest.json`沿用已核验部署记录；本次未重新核验外部包、未部署或启动游戏。[B110失败证据](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)保留，B109先前验收保持。Design/main/runtime未变。
 
-[项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC，无实现。下一步仅最小原生验证，不自动Claim/F。
+E2仍partial。下一建议：准备候选非空城市通过对应项目认定专业（Claim）的最小计划，再单独授权实施；不是本轮已授权动作。销毁/位置复用、未专业城夺回及其它未关闭边界不自动纳入；不推进F。[项目拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC。
 
 ## 历史阶段记录
 

@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0280",
+    "status": "S0281",
     "runtime": "B111.138 / modinfo138",
     "military": "D0034"
   },
@@ -424,8 +424,8 @@
   "result": {
     "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
     "implementation": "B111.138 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; indexed read and diagnostic repair, no save schema or gameplay changes",
-    "native": "B110 two-city conquest snapshot USER_GAME_TEST_FAIL: district Members enumeration at line852; B109 prior scoped PASS retained; snapshot/save branches not verified",
-    "next": "B111 deployed 153/153 MATCH with B110 recovery verified; await pre-conquest-save native retry; no Claim/F",
+    "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
+    "next": "Scoped native gate closed; recommend minimal Claim project plan then separate implementation approval; E2 partial, no F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }

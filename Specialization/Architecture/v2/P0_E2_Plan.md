@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B111_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B111_SCOPED_USER_GAME_TEST_PASS. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，原生快照读取失败；用户已授权B111最小修复，本地通过，等待复测。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -889,3 +889,9 @@ STATIC_CONFIRMED：与现有DistrictCompleteness Gameplay读取API一致，Lua�
 W0004：L3但仅直接保存/分流回归。无新Design/收益/carrier/Claim/F。用户已确认游戏退出并允许部署，需提交后完成安全部署与receipt核验；当前源包与live状态以Status/Authority为准。
 
 B111部署结果：用户确认游戏已退出；从clean source `0ffbfdb`完成安全切换，153/153 MATCH，receipt `B111.138-0ffbfdb-playtest.json`；B110完整恢复点hash一致，main未变，未启动游戏。仅等待上述原生复测。
+
+## B111 native acceptance — frozen candidates and empty-set completion
+
+[六图验收](../../Status/Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)：城市1商业单候选→后建工业区仍待Claim/P0；城市2空候选→剧院完成文化P1；用户确认完整重启后两城保持。USER_GAME_TEST_PASS仅上述范围，城市2投资可用另有用户陈述，图中仍投资0。当前最小门禁关闭，无需重复。原生未覆盖的多候选/异常/其它生命周期不扩大PASS。
+
+下一建议仅为Claim项目认定最小计划；用户审核后另行授权实施。现有候选资格不变，单候选也必须完成项目。E2仍partial，不自动Claim实施/销毁/未专业城夺回/F。本次只有证据归档与状态维护，没有runtime/Design/部署修改。
