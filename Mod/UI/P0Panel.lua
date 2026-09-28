@@ -7,6 +7,7 @@ include("Lv4CopyRead")
 include("CityIdentityEvidence")
 local P=SPCP0
 local identityEvidence=SPCCityIdentityEvidence.New(P)
+local projectReadPulse
 local pendingToken,baseline
 local readings={}
 local localReport
@@ -494,22 +495,24 @@ initialize=function()
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;overflowRead.Read()
  end)
  Controls.GWAReadButton:SetToolTipString("仅独立测试档：选择溢出承接实验为唯一目标，左键准备、再次左键原生完成；右键刷新当前目标和进度（包括0）。无奖励，每城每次加载最多调用一次。")
- Controls.TurnProbeReadCaption:SetText("回合原型报告")
- Controls.TurnProbeArmCaption:SetText("开启单城测试")
- local function turnProbe(action)
-  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil
-  LuaEvents.SPC_TimedTurnProbe(action)
-  localReport=ExposedMembers.SPC_TimedTurnProbeReport or '原型未载入：停止测试，请回报此提示。'
-  status(localReport)
+ include("ProjectTurnRead")
+ local projectRead=SPCProjectTurnRead.New(P,function(s) localReport=s;status(s) end,function(...) return UI.RequestPlayerOperation(...) end)
+ projectReadPulse=projectRead.Pulse
+ Events.GameCoreEventPublishComplete.Add(projectReadPulse)
+ Controls.TurnProbeReadCaption:SetText("结束观察/报告")
+ Controls.TurnProbeArmCaption:SetText("开始项目观察")
+ local function projectAction(fn)
+  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;fn()
  end
- Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function() turnProbe('READ') end)
- Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function() turnProbe('CLEAR') end)
- Controls.PerformanceReadButton:SetToolTipString('左键读取回合测试缓存报告；右键取消。仅测试城缺生产时显示下一回合，点击可过回合。')
- Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function() turnProbe('ARM') end)
- Controls.PerformanceSnapshotButton:SetToolTipString('选中己方空队列城后开启单城测试；仅该城缺生产时可过回合，不创建正式项目或收益。')
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function() projectAction(projectRead.End) end)
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function() projectAction(projectRead.Read) end)
+ Controls.PerformanceReadButton:SetToolTipString('正常过一回合并恢复操作后左键结束观察、显示报告；右键只读不结束。不会完成项目。')
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function() projectAction(projectRead.Begin) end)
+ Controls.PerformanceSnapshotButton:SetToolTipString('选择溢出承接实验为唯一生产目标，再开启单城观察。正常过回合；不使用空队列或强制过回合。')
+
 end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(gwaPulse)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

@@ -33,6 +33,9 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='PROJECT_TURN_BEGIN' or params.Action=='PROJECT_TURN_END' then
+    shared.ProjectTurnObservation.Request(playerID,params);return
+  end
   if params.Action=='OVERFLOW_PREPARE' or params.Action=='OVERFLOW_APPLY' then
     shared.OverflowStorageProbe.Request(playerID,params);return
   end
@@ -642,3 +645,6 @@ SPCTimedProductionProbe.Start(P,shared)
 
 include("OverflowStorageProbe")
 SPCOverflowStorageProbe.Start(P,shared)
+
+include("ProjectTurnObservation")
+SPCProjectTurnObservation.Start(P,shared)

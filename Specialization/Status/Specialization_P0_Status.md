@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0305
-Implementation Build: develop P0-B-119.146 / modinfo146 NATIVE_FINISH_PRIMITIVE; live B119.146 verified158/158 MATCH; stable B069.96
+Status Revision: S0306
+Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B119.146 (deployment pending); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B119_SCOPED_USER_GAME_TEST_PASS; E2 Claim plan-only
+Work State: B120_LOCAL_SIMULATION_PASS_AWAITING_USER; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B119实机限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)：四图确认项目进度7、独立原生完成后队列空/项目保留0/其它目标未变、同回合纪念碑0/50。用户确认下一回合正常（无截图，按陈述记录）。本次手动完成/后续正常生产门禁通过，无需重复。
+[B120单城项目观察](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#26-b120147--authorized-project-turn-observation-and-completion-decision)已获授权实施：真实高Cost项目作为生产目标，只读记录至下一回合恢复操作后的手动报告终点。104项定向LOCAL_SIMULATION_PASS；未自动完成、未发奖、未改1T显示。等待一次正常回合的事件证据，不自动进入B/Claim/F。
 
-高成本dummy仍显示很高预计回合数：B119未实现定时或1T显示，非本次回归。下一建议是完整回合占用/结算事件＋专项目1T呈现的最小计划；chop/harvest、超额提前完成、中断/存读与奖励均未验证，需分步处理，当前不自动实施。B118扣除仍INCONCLUSIVE，B117盲扣FAIL保持；本地79项PASS及原生PASS范围分开。
+用户补充已记录：极高Production需求足够；异常/Cheat同回合完成可正常发奖，不加防提前完成保护；最终正式项目不必独立dummy。原型仍无收益，正式能力集成未开始。§26取代旧早完成拒奖建议，不取消具体能力自己的资格/次数或重复发奖保护。
 
-[当前原型合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#24-b119146--standalone-native-finishprogress-experiment)。live仍B119.146 source b3667b2，原部署158/158 MATCH；receipt B119.146-b3667b2-playtest.json。本轮仅验收归档，无代码/部署。Claim/F未推进；main/stable B069.96不变。
+[B119限定原生PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)保持，手动FinishProgress及后续正常生产无需重复。B117盲扣FAIL、B118扣除INCONCLUSIVE保持。B120未证明正常结算时点/自动完成/chop/harvest/存读；本次session观察重载终止。
 
-[完整回合与1T呈现计划](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#25-post-b119-plan--full-turn-lifecycle-and-truthful-one-turn-presentation)已完成，仅计划：P-B120A先补单城生产事件顺序（无写入），P-B120B在A确认后接一次自动完成及专项目1T显示；随后分支验证chop/harvest。各段独立门禁，尚未授权实施；不新增奖励、正式能力或存读合同。
+源码B120.147本地完成；live仍B119.146 source b3667b2（原158/158 MATCH），部署前另查进程/receipt。main/stable B069.96不变。最小测试见§26：唯一承接项目→开始项目观察→正常过一回合→结束观察/报告。不要点旧手动完成按钮；高工期仍为预期。
 
 ## 历史阶段记录
 
