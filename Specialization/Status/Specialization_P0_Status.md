@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0289
+Status Revision: S0290
 Implementation Build: develop P0-B-114.141 / modinfo141 TARGET_OBJECT_REPAIR; live B114.141 verified154/154 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -15,7 +15,7 @@ Work State: B114_NATIVE_TARGET_TURN_SCOPED_PASS; E2 Claim plan-only
 
 [B114修复合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)及28项LOCAL_SIMULATION_PASS保留；[B113失败](Validation/Results/Specialization_B113_Notification_Location_Failure.md)历史证据不改。[B112观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留。不得扩大为所有阻塞组合、正式固定一回合项目、砍树/溢出隔离或保存恢复已验证。
 
-下一建议：另拟最小生产占用/计时与生产力隔离验证计划；只是建议，未授权实施。本轮仅验收归档，无runtime/Design/部署变化，不进入Claim/F，E2仍partial。
+[下一最小原型计划](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#15-next-prototype-plan--production-settlement-and-interruption)已整理，PLAN_ONLY：单城无收益session生产结算/中断观察，基线与切换负例先验，再做一次收获输入；不以turn+1冒充完整生产结算。保存恢复/正式项目后置但不豁免。等待用户实施授权，无runtime/Design/部署变化，不进入Claim/F，E2仍partial。
 
 源码/部署commit `a281590`；live记录B114.141，receipt `B114.141-a281590-playtest.json`，既有154/154 MATCH，B113恢复点保留。本轮未重新核验外部运行包；main稳定B069.96未改，未启动游戏。
 

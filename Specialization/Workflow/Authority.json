@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0289",
+    "status": "S0290",
     "runtime": "B114.141 / modinfo141",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "a28159059ef4ddbd5546e608dfb467165127bb61",
   "current_batch": "B114_NATIVE_TARGET_TURN_SCOPED_PASS; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Recommend scoped production occupancy/timing and isolation validation plan; not authorized implementation; no Claim/F",
+  "next_batch": "Await authorization for section15 single-city session production-settlement/interruption observation prototype; no saved project/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B114.141 / modinfo141 deployed;154/154 MATCH;source a281590;B113 recovery verified;receipt B114.141-a281590-playtest.json;scoped native target/button/closure PASS; external package not rechecked this docs turn",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B114 two screenshots reviewed, user click/recovery confirmation recorded; docs only",
+  "context_review_status": "Post-B114 plan reviewed against prior production isolation limits and current UI session lifecycle; no runtime change",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
