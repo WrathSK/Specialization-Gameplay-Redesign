@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "b7ee8f992d3b4bdcacf4d2b867e5601fcb8f73b2",
-  "runtime": "B116.143 / modinfo143",
+  "runtime_commit": "WORKTREE_B117_PENDING_COMMIT",
+  "runtime": "B117.144 / modinfo144",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "f412be2809d35225f14706f60c15c15fe0bf01c71ada87d2ab427fc4e438fdb2",
+      "sha256": "ad94d0a82053ed7f4854e4059fb6362d41bb0a636f09f4445307a24e50ff42e3",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B115 authorized session production observer; 45 targeted tests, native pending"
+      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "538a7ed7742dfffed5fad2fed3a178e345f40609152e2caa6f014d74ecd06f6a",
+      "sha256": "60cda3eb417849b36f2d833b3e33c350c11027f99bc2804230dbfffb5ad350e6",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
+      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3a1592d44d25e8a11e00c0a8a9c7b4823f2ad5e864c8e237be17fce7c27a343d",
+      "sha256": "436b93e56c295b93afefc2be66dcb69c7e663b818c40f79424b1f7e0b0a53792",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
+      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "4d1ee5bbf6e5796e070312ea783b4bedd03c36d5e18ce6b8eae3cb577d016681",
+      "sha256": "21aa64a80f338f0aa28b5698b1cbbe2ad3b5caa0f3611ac754b2d328648810a2",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B113 authorized guarded native next-turn prototype; local21 PASS, engine pending; Probe version-only"
+      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -779,6 +779,16 @@
       "sha256": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
+    },
+    "Mod/OverflowStorageProbe.lua": {
+      "sha256": "cdf264e7180513f67395a4ade542a4ee7798f53d2020bf2e49899016800905c2",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
+    },
+    "Mod/UI/OverflowStorageRead.lua": {
+      "sha256": "9979d69e01406d2a68fbfb86992e8c2e38305f83e405fa35cecdd5fca07e09b3",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B117 explicit negative-production primitive; native semantics pending; no automatic clear or formal project"
     }
   }
 }

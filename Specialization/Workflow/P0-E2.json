@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0297",
-    "runtime": "B116.143 / modinfo143",
+    "status": "S0298",
+    "runtime": "B117.144 / modinfo144",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -447,6 +447,27 @@
       "kind": "section",
       "selector": "## 19. Production isolation follow-up — negative progress precedent and remaining primitive gate",
       "reason": "Current production-isolation primitive findings, limits and proposed next probe; not implementation authorization"
+    },
+    {
+      "path": "Mod/OverflowStorageProbe.lua",
+      "kind": "full",
+      "reason": "Explicit native single-call guard and no-retry boundary"
+    },
+    {
+      "path": "Mod/UI/OverflowStorageRead.lua",
+      "kind": "full",
+      "reason": "Double-click confirmation, progress inventory and cached ack"
+    },
+    {
+      "path": "DevelopmentTests/test_b117_overflow_storage.py",
+      "kind": "full",
+      "reason": "Current primitive tests and inherited observer protection"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 20. B117.144 — authorized forfeiture contract and minimal storage primitive test",
+      "reason": "User accepted forfeiture rule and authorized B117 primitive scope/native stops"
     }
   ],
   "dependencies": [
@@ -521,8 +542,8 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B116 start scoped PASS retained; native M mode granary0 versus A mode mill8 observed, city8.3/turn. Second sequence Cheat completion noted; exact origin/production isolation unresolved, no repeated mode test needed.",
-    "side_investigation": "Section19: GCO negative AddProgress precedent scoped to unit/building; empty-queue storage/clamp/debt unresolved; proposed primitive probe requires separate authorization",
-    "side_next_plan": "Section15 minimum session observer authorized and implemented B115; remaining production isolation/save/project gates pending"
+    "side_prototype": "B117 authorized explicit single-city -1000 primitive; 77 targeted local tests PASS, native pending; not a full-clear guarantee or automatic timed project",
+    "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes preservation-of-old-overflow restriction; negative storage semantics still native-required",
+    "side_next_plan": "Run smallest native clear/progress/debt gate, only then chop/harvest branches; no formal project/Claim"
   }
 }

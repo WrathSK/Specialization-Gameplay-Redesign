@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0297
-Implementation Build: develop P0-B-116.143 / modinfo143 EMPTY_TARGET_REPAIR; live B116.143 verified155/155 MATCH; stable B069.96
+Status Revision: S0298
+Implementation Build: develop P0-B-117.144 / modinfo144 OVERFLOW_PRIMITIVE; live B116.143; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B116_START_SCOPED_PASS_PRODUCTION_COST_UNRESOLVED; E2 Claim plan-only
+Work State: B117_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B116四图溢出模式对照](Validation/Results/Specialization_B116_Overflow_Mode.md)：M模式空队列21→22后粮仓0；用户Cheat完成粮仓、切A，再观察22→23后磨坊8；城市显示生产力8.3。4图已读，4/4 hash一致归档。所测读数USER_GAME_TEST_CONFIRMED；结合[已调查源码](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#18-b116-follow-up--overflow-application-versus-production-origin)与[前轮A模式粮仓8](Validation/Results/Specialization_B116_Production_Baseline.md)，自动溢出参与即时应用有充分依据，不再要求重复相同现象。
+[B117最小清除原型及测试](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#20-b117144--authorized-forfeiture-contract-and-minimal-storage-primitive-test)已获授权实施，本地77项定向LOCAL_SIMULATION_PASS、Lua/modinfo STATIC_CONFIRMED；原生负数是否清空/无效/留下负债仍USER_GAME_TEST_REQUIRED。新增“溢出清除试验”：自然空队列，左键准备→再左键只调用一次−1000，右键读数。诊断量不是任意存储全清保证；普通目标进度前后核对，状态变化/未知拒绝，结果不明不重试。未自动接入项目、无正式项目/收益/保存字段，B116观察器不变。
 
-8点精确来源仍未确认：第二段包含Cheat完成，不能仅由8.3→8推断floor或全部来自该空队列回合；前轮无Cheat证据保持。M只关闭自动应用，不证明存储清除。当前不能保证空队列会使产能作废；固定完整生产回合/机会成本与额外输入隔离未PASS。观察在PlayerTurnStarted结束，后续结算未覆盖。[后续调查§19](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#19-production-isolation-follow-up--negative-progress-precedent-and-remaining-primitive-gate)找到GCO负数AddProgress先例，但仅有目标单位/建筑路径，空队列存储与负债仍未知。下一建议为单城受控primitive原型、先证实负数作用对象和结算窗口；无新实现授权，不修改第三方Mod、不擅自扣生产，不进入正式项目/Claim/F。
+用户本轮明确接受：进入特殊项目放弃全部未分配旧/新生产存储；占用期产能和chop/harvest等注入不得转给后续目标。不再要求保留旧溢出账本；普通目标已有progress仍须保留。决定记录于本片合同，正式接入前需同步Design正式来源；未擅改其它设计。§19保留旧存量限制已被本轮取代。
 
-B116 NONE开始/空队列诊断/跨玩家回合结束限定PASS及[B114按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持；[B115失败](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留。B11653项LOCAL不扩展为生产隔离PASS。活动中断仍未实测；只用自然空队列，不要求手动清空当前生产。用户当前无需重复测试。
+最小实机：测试前档→空队列新回合未选Q→候选清除→选Q应0→正常生产一回合应增长；任何未知/误扣/残留/负债停止。第一门禁通过后才另分支chop/harvest，不能本地宣称这些已隔离。仅独立测试存档，实验后不覆盖基线。当前待部署核验；main与稳定包不推广，Claim/F未推进。
 
-本轮仅证据归档/文档。源码/部署记录`b7ee8f9`，live B116.143，receipt `B116.143-b7ee8f9-playtest.json`，此前155/155 MATCH；本轮未核验外部包。main稳定B069.96不变，无runtime/Design/部署变化。
+[B116 M/A四图](Validation/Results/Specialization_B116_Overflow_Mode.md)与[无Cheat的A粮仓8](Validation/Results/Specialization_B116_Production_Baseline.md)支持自动应用路径，不再重复验证原因。B114按钮/B116开始限定PASS保持，固定完整生产占用仍未PASS。live此前B116.143，source b7ee8f9，receipt B116.143-b7ee8f9-playtest.json；运行包实际更新须新的部署记录。
 
 ## 历史阶段记录
 

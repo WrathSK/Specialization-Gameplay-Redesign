@@ -33,6 +33,9 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='OVERFLOW_PREPARE' or params.Action=='OVERFLOW_APPLY' then
+    shared.OverflowStorageProbe.Request(playerID,params);return
+  end
   if params.Action=='TIMED_PRODUCTION_BEGIN' or params.Action=='TIMED_PRODUCTION_CANCEL' then
     shared.TimedProductionProbe.Request(playerID,params);return
   end
@@ -636,3 +639,6 @@ SPCCityIdentityMapping.Start(P,shared)
 
 include("TimedProductionProbe")
 SPCTimedProductionProbe.Start(P,shared)
+
+include("OverflowStorageProbe")
+SPCOverflowStorageProbe.Start(P,shared)

@@ -1,3 +1,4 @@
+include("OverflowStorageRead")
 include("BoostGreatWorkRead")
 include("PurchaseProbeRead")
 include("Probe")
@@ -14,6 +15,9 @@ local pageAction,pageCity
 local request
 local uiStage="READY"
 local function status(s) Controls.Status:SetText(s);if Controls.ReportScroll then Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring() end end
+local overflowRead=SPCOverflowStorageRead.New(P,function(s) localReport=s;status(s) end,function(...) return UI.RequestPlayerOperation(...) end)
+local function overflowPulse() overflowRead.Pulse() end
+Events.GameCoreEventPublishComplete.Add(overflowPulse)
 local function trace(s)
   uiStage=s
   print("[SPC]["..P.VERSION.."][UI] "..s)
@@ -481,6 +485,15 @@ initialize=function()
  Controls.CompletenessButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETENESS_READ") end)
  if Mouse.eRClick then Controls.CompletenessButton:RegisterCallback(Mouse.eRClick,function() request("RESEARCH_INFRA_DETAIL") end) end
  Controls.CompletenessButton:SetToolTipString("左键：科研基础设施摘要；右键：学院建筑组成")
+ Controls.GWAReadButton:SetHide(false)
+ Controls.GWAReadButtonCaption:SetText("溢出清除试验")
+ Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function()
+  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;overflowRead.Click()
+ end)
+ Controls.GWAReadButton:RegisterCallback(Mouse.eRClick,function()
+  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;overflowRead.Read()
+ end)
+ Controls.GWAReadButton:SetToolTipString("仅独立测试档：空队列左键准备、再次左键调用−1000；右键只读结果。不是已确认的全清服务。每城每次加载最多调用一次。")
  Controls.TurnProbeReadCaption:SetText("回合原型报告")
  Controls.TurnProbeArmCaption:SetText("开启单城测试")
  local function turnProbe(action)
@@ -499,4 +512,4 @@ ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(gwaPulse)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

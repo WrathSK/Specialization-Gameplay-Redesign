@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0297",
-    "runtime": "B116.143 / modinfo143",
+    "status": "S0298",
+    "runtime": "B117.144 / modinfo144",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "b7ee8f992d3b4bdcacf4d2b867e5601fcb8f73b2",
-  "current_batch": "B116_START_SCOPED_PASS_PRODUCTION_OPPORTUNITY_COST_UNRESOLVED; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Proposed bounded native negative-AddProgress primitive and settlement-window probe; GCO precedent does not establish empty-queue overflow semantics; await implementation authorization",
+  "runtime_commit": "WORKTREE_B117_PENDING_COMMIT",
+  "current_batch": "B117_OVERFLOW_PRIMITIVE_LOCAL_PASS_NATIVE_REQUIRED; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Native single-city negative-progress primitive gate; stop on damage/debt/no effect, then scoped chop/harvest; no formal project/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B116.143 / modinfo143 deployed;155/155 MATCH;source b7ee8f9;B115 recovery verified;receipt B116.143-b7ee8f9-playtest.json;native observer pending",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B116 M/A evidence and scoped local/API/GCO research reviewed; no runtime changes; complete-turn production isolation remains unproven",
+  "context_review_status": "Authorized B117 primitive direct code/UI/dispatch/test reviewed; user accepts forfeiture of all unallocated production; native semantics pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
