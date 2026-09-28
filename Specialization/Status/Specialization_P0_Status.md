@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0280
-Implementation Build: develop P0-B-111.138 / modinfo138 E2_INDEXED_SNAPSHOT_REPAIR; live B110.137 until verified switch; stable B069.96
+Implementation Build: develop P0-B-111.138 / modinfo138 E2_INDEXED_SNAPSHOT_REPAIR; live B111.138 verified153/153 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -13,9 +13,9 @@ Work State: P0_E2_B111_LOCAL_PASS_NATIVE_REQUIRED
 
 2026-09-27 [B111区域枚举最小修复](../Architecture/v2/P0_E2_Plan.md#b111138--indexed-district-snapshot-repair)已按用户授权完成：采用Gameplay indexed区域读取，测试不再伪造Members，错误提示收窄为阶段与单行原因。STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；USER_GAME_TEST_REQUIRED。原有保存schema/一次候选快照/单候选不自动认定保持，无Claim/F或新Design/收益。
 
-[B110两图失败](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)原件保留，B109已验收范围不变。用户有征服两城前存档：修复包部署后从该处重复两城分流＋一次完整退出重启读档，左键E2报告；不在失败后存档补扫候选。用户已确认游戏退出并授权部署；当前live仍B110.137，部署完成后另记receipt，不从源码HEAD推断运行包。
+[B110两图失败](Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)原件保留，B109已验收范围不变。用户有征服两城前存档：修复包部署后从该处重复两城分流＋一次完整退出重启读档，左键E2报告；不在失败后存档补扫候选。用户确认退出后已安全部署B111.138，153/153 MATCH；source/deployment HEAD `0ffbfdb`，receipt `B111.138-0ffbfdb-playtest.json`，B110完整恢复点hash已核验。未启动游戏，等待本次原生复测。
 
-[项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC，无实现。下一步仅本次部署与最小原生验证，不自动Claim/F。
+[项目点击拦截/溢出调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)仍仅STATIC，无实现。下一步仅最小原生验证，不自动Claim/F。
 
 ## 历史阶段记录
 

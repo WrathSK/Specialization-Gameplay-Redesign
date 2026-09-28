@@ -887,3 +887,5 @@ STATIC_CONFIRMED：与现有DistrictCompleteness Gameplay读取API一致，Lua�
 最小原生复测：从用户保留的征服两城之前存档开始，征服后分别左键E2，记录候选集/分流；非空（含单个）保持NONE/P0，不操作尚未实现的Claim；空集在后续完成首个合格区域时P1。保存到新槽，完整退出再启动读档，复查两城。原测试城市若不能覆盖某一分流，只报告未覆盖，不冒称PASS。任一错误立即暂停并截图。不可从失败后状态补扫历史，不要求重建局。
 
 W0004：L3但仅直接保存/分流回归。无新Design/收益/carrier/Claim/F。用户已确认游戏退出并允许部署，需提交后完成安全部署与receipt核验；当前源包与live状态以Status/Authority为准。
+
+B111部署结果：用户确认游戏已退出；从clean source `0ffbfdb`完成安全切换，153/153 MATCH，receipt `B111.138-0ffbfdb-playtest.json`；B110完整恢复点hash一致，main未变，未启动游戏。仅等待上述原生复测。
