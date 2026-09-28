@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "217fe27982d04cee12de192cb3ef56a00cc1823f",
-  "runtime": "B113.140 / modinfo140",
+  "runtime": "B114.141 / modinfo141",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "d48d82bec53ed566f6fed953bb2b9beac795f4fbf6f40920669ddac501c2ca1c",
+      "sha256": "fdd38d983e336e751bc14007b05cee283a5fdacfbe249a6101e8c91c77065bc4",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B113 authorized guarded native next-turn prototype; local21 PASS, engine pending; Probe version-only"
+      "provenance": "B114 authorized notification target repair; 28 targeted local tests; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ea378f50d9e7d9ebec0fea85fd7588fd372dd646e71010926ec0edc809e23a80",
+      "sha256": "658c06cb1e08d431c1570b3ec80a25378a1dd801a0130e0f486937c967fc00fc",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B113 authorized guarded native next-turn prototype; local21 PASS, engine pending; Probe version-only"
+      "provenance": "B114 authorized notification target repair; 28 targeted local tests; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -771,9 +771,9 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/UI/TimedTurnProbe.lua": {
-      "sha256": "c7a1850e81af6dd3d7bc8b15f37fd78d13544cbd747f16f7d5e3226e6350d913",
+      "sha256": "3b1dc3a467b5db668d4a533269c916a7dd358d8b70c80b50ccc43347b461bec5",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B113 authorized guarded native next-turn prototype; local21 PASS, engine pending; Probe version-only"
+      "provenance": "B114 authorized notification target repair; 28 targeted local tests; native pending"
     }
   }
 }

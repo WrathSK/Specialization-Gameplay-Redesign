@@ -1,25 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0287
-Implementation Build: develop P0-B-113.140 / modinfo140 GUARDED_TURN_BUTTON_PROTOTYPE; live B113.140 verified154/154 MATCH; stable B069.96
+Status Revision: S0288
+Implementation Build: develop P0-B-114.141 / modinfo141 TARGET_OBJECT_REPAIR; live B113.140; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B113_NATIVE_NOTIFICATION_LOCATION_BOUNDARY; repair pending; E2 Claim plan-only
+Work State: B114_TARGET_REPAIR_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[通知归属与替代路线调查](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#13-b113-boundary-investigation-and-alternative-routes)：原版使用IsLocationValid与IsTargetValid/GetTarget两套信息，CITY target可直接定位owner/CityID；B113仅比较未验证有效性的坐标，遗漏了这一路径。STATIC证据支持最小修正方向，尚未读到该存档真实target，不宣称修复成功。比较空队列、占位项目、生产抑制、低成本/延迟收益及纯定时入口；当前仍优先小范围验证target，完整生产占用/计时仍未知。本轮无源码/部署，等待实施授权。
+[B114目标对象修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)已获授权实施：原生有效CITY目标owner/ID匹配替代通知镜头坐标匹配，其它B113保护保留。28项定向LOCAL_SIMULATION_PASS及Lua/modinfo静态检查；真实目标信息与普通按钮过回合USER_GAME_TEST_REQUIRED。用户已确认游戏退出，待提交后按W0003部署；尚不宣称新包在运行。
 
-B113.140：[单城通知位置核对失败](Validation/Results/Specialization_B113_Notification_Location_Failure.md) USER_GAME_TEST_FAIL：仅A空，生产阻塞1、其它空城0/其它待办无，但通知对应测试城=false，右下角仍选择生产。已定位阻止放行的通知位置检查；真实坐标/通知ID未显示，尚不能断言根因或其余隐藏门禁全过。新增按钮标题在本图正常。原图已读并hash一致归档，不需重复或Shift+Enter绕过。
+[B113失败证据](Validation/Results/Specialization_B113_Notification_Location_Failure.md)保留：唯一空城仍卡生产，旧位置匹配=false；按钮文字已通过。[B112观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留。通知目标路径有原版STATIC依据，尚非原生PASS。
 
-[B112三图观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留；B113本地21项模拟不能证明通知位置原生语义。下一步建议定域调查通知属性/位置和城市对应，再修复；本轮仅证据归档，未改源码/部署，不进入固定回合/Claim/F。
+本轮仅通知归属修复/必要诊断。最小待测：处理其它待办，仅A空队列，开启单城测试→读报告→正常点击下一回合，确认一次过回合及关闭；失败截图暂停，不Shift+Enter。无正式固定时长/生产隔离/Claim/F。E2既有partial状态不变。
 
-B113.140已按W0003部署，source/deployment `217fe27`，154/154 MATCH，receipt `B113.140-217fe27-playtest.json`。用户确认游戏退出；B112完整恢复点/stable桥均已核验，未启动游戏。main稳定B069.96不变。
-
-E2仍partial，Claim计划未实施，不推进F。当前先解决B113通知归属边界；固定一回合/砍树溢出隔离仍未实现。
+源码B114；live仍B113.140（receipt B113.140-217fe27-playtest.json）；main稳定B069.96。部署必须经既有receipt恢复stable再切换，保留B113恢复点，不启动游戏。
 
 ## 历史阶段记录
 

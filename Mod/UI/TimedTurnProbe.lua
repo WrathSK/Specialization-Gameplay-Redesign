@@ -1,11 +1,11 @@
--- B113: opt-in single-city UI prototype, not a saved Gameplay project.
+-- B114: opt-in single-city UI prototype, not a saved Gameplay project.
 include("HD_ActionPanel")
 include("Probe")
 local baseRefresh, baseInput, baseAction = OnRefresh, OnInputHandler, OnInputActionTriggered
 local baseClick, baseEnd = OnEndTurnClicked, DoEndTurn
 local armed, cache, dirty, submitted, popup = nil, nil, true, false, false
 local serial, scans = 0, 0
-local report = "B113：未开启。选中己方空队列城市后，点击开启单城测试。"
+local report = "B114：未开启。选中己方空队列城市后，点击开启单城测试。"
 local function publish(s) report=s;ExposedMembers.SPC_TimedTurnProbeReport=s end
 local function boolean(v) if type(v)~="boolean" then error("布尔状态未知") end;return v end
 local function queue(c)
@@ -54,14 +54,19 @@ local function readFacts()
   if city:GetOwner()~=pid then error("城市所有者不一致") end
   if queue(city)==0 then f.empty=f.empty+1;if city:GetID()~=armed.id then f.unrelated=f.unrelated+1 end end
  end
- -- Native notification location corroborates the selected test city; never a persistent city key.
- f.location=false
+ -- Native target object identifies the city; camera location is not identity evidence.
+ f.target=false;f.targetInfo="未读取（生产阻塞不是1）"
  if f.production==1 then
   local notification=NotificationManager.FindEndTurnBlocking(prod,pid)
-  if not notification or notification:GetPlayerID()~=pid or notification:IsDismissed() then error("生产通知归属不可确认") end
-  local x,y=notification:GetLocation()
-  if type(x)~="number" or type(y)~="number" then error("生产通知位置未知") end
-  f.location=x==armed.x and y==armed.y
+  if not notification or notification:GetPlayerID()~=pid or boolean(notification:IsDismissed()) then error("生产通知归属不可确认") end
+  local valid=boolean(notification:IsTargetValid())
+  f.targetInfo="目标有效="..tostring(valid)
+  if valid then
+   local owner,id,kind=notification:GetTarget()
+   if type(owner)~="number" or type(id)~="number" or kind==nil or not PlayerComponentTypes or PlayerComponentTypes.CITY==nil then error("生产通知目标字段未知") end
+   f.targetInfo=f.targetInfo.."；玩家="..tostring(owner).."；对象="..tostring(id).."；类型="..tostring(kind).."（城市="..tostring(PlayerComponentTypes.CITY).."）"
+   f.target=owner==pid and id==armed.id and kind==PlayerComponentTypes.CITY
+  end
  end
  f.units=boolean(CheckUnitsHaveMovesState());f.ranged=boolean(CheckCityRangeAttackState())
  f.policy=false
@@ -70,20 +75,28 @@ local function readFacts()
   local changed=boolean(culture:PolicyChangeMade());local civic=GameInfo.Civics[culture:GetCivicCompletedThisTurn()]
   f.policy=completed and not changed and f.turn~=1 and (not civic or civic.CivicType~="CIVIC_FUTURE_CIVIC")
  end
- f.filter=f.production==1 and f.empty==1 and f.unrelated==0 and f.location
+ f.filter=f.production==1 and f.empty==1 and f.unrelated==0 and f.target
  f.operable=f.ready and not f.busy and not f.sent and not f.unready and not f.tutorial and not f.automation
  f.allow=f.filter and f.operable and #f.other==0 and not f.units and not f.ranged
  return f
 end
 local function summary(f)
+ local reasons={}
+ if not f.target then reasons[#reasons+1]="通知目标未匹配测试城" end
+ if not f.ready then reasons[#reasons+1]="玩家未就绪" end
+ for _,item in ipairs({{"busy","引擎处理消息中"},{"sent","已提交回合"},{"unready","回合已就绪可撤回"},{"tutorial","教程中"},{"automation","自动模式"}}) do
+  if f[item[1]] then reasons[#reasons+1]=item[2] end
+ end
  local names={};for _,id in ipairs(f.other) do
   local info=g_kMessageInfo[id];names[#names+1]=info and info.Message or ("未知阻塞:"..tostring(id))
  end
- return "B113 单城按钮原型｜"..f.city.."｜回合"..f.turn
-  .."[NEWLINE]生产阻塞="..f.production.."；其它空城="..f.unrelated.."；通知对应测试城="..tostring(f.location)
+ return "B114 单城按钮原型｜"..f.city.."｜回合"..f.turn
+  .."[NEWLINE]生产阻塞="..f.production.."；其它空城="..f.unrelated.."；通知对应测试城="..tostring(f.target)
+  .."[NEWLINE]"..f.targetInfo
   .."[NEWLINE]其它阻塞："..(#names>0 and table.concat(names,"、") or "无")
   .."[NEWLINE]单位="..tostring(f.units).."；城攻击="..tostring(f.ranged).."；政策提醒="..tostring(f.policy)
   .."[NEWLINE]"..(f.allow and (f.policy and "需先确认HD政策提醒。" or "允许显示下一回合；点击时重新核对。") or "仍有真实待办或未知状态，不强制结束。")
+  ..(#reasons>0 and ("[NEWLINE]未放行："..table.concat(reasons,"；")) or "")
   .."[NEWLINE]扫描次数="..scans.."；仅测试按钮/过回合，未建立固定时长项目。"
 end
 local function evaluate()
@@ -187,7 +200,7 @@ local function command(action)
  end)
  if not ok then stop("无法开启："..tostring(f));return end
  serial=serial+1;f.token=serial;armed=f;scans=0;mark()
- publish("B113：已开启单城测试。仅此城缺生产时，右下角将显示下一回合。右键报告取消。")
+ publish("B114：已开启单城测试。仅此城缺生产时，右下角将显示下一回合。右键报告取消。")
 end
 local function turn(pid)
  if armed and (pid~=armed.owner or Game.GetCurrentGameTurn()~=armed.turn) then

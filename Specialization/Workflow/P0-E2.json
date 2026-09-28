@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0287",
-    "runtime": "B113.140 / modinfo140",
+    "status": "S0288",
+    "runtime": "B114.141 / modinfo141",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -386,6 +386,17 @@
       "path": "DevelopmentTests/test_b113_turn_gate.py",
       "kind": "full",
       "reason": "Actual current UI prototype targeted local coverage, B112 fixture reused; no E2 writer changes"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 14. B114.141 — native notification target repair",
+      "reason": "Authorized minimal target repair, retained protections and native stop/test boundary"
+    },
+    {
+      "path": "DevelopmentTests/test_b114_notification_target.py",
+      "kind": "full",
+      "reason": "Current target repair suite; B113 protections inherited with explicit superseded location assertions"
     }
   ],
   "dependencies": [
@@ -460,7 +471,7 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B113 USER_GAME_TEST_FAIL: sole empty A, notification location match false; captions PASS; root attribution unresolved, no force/timing evidence",
-    "side_investigation": "Native IsTargetValid/GetTarget CITY path omitted by B113; alternative routes documented, no repair or new runtime validation"
+    "side_prototype": "B114 target-object repair: STATIC_CONFIRMED / LOCAL_SIMULATION_PASS 28; native pending; B113 failure retained",
+    "side_investigation": "Section13 native target contract applied by Section14; alternatives remain investigation only"
   }
 }

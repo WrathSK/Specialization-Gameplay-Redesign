@@ -337,3 +337,16 @@ B113代码直接调用GetLocation并检查是否是number，然后要求与测�
 - 本机Base `Gameplay/Data/Schema/01_GameplaySchema.sql` Projects表重核仍是Cost/成长模型/资格/次数等，没有在该表找到FixedTurns/IgnoreOverflow/IgnoreHarvest。OuterDefenseRepair是特定修防语义，不能当通用计时字段挪用。未重新运行DB或游戏。
 
 公开检索没有找到可直接复用且已证明满足本项目全部约束的现成方案。无新实机/模拟PASS。建议先以原生target合同修正A的最小门禁，若target也无法可靠归属，再停止该路径比较B的受限原型；不边失败边扩大强制范围。本次只保存调查，下一实施需授权，用户当前无需测试。
+
+
+## 14. B114.141 — native notification target repair
+
+用户授权最小修复。B113实机失败与§13调查保留；本轮不扩大为正式固定回合项目。
+
+归属改用原版NotificationPanel的`IsTargetValid()` → `GetTarget()`：通知属于当前玩家、未dismiss、有效目标的owner/ID/type同时匹配当前测试城市与CITY枚举。现有城市对象/所有者/本回合/空队列核对仍保留。`GetLocation`是镜头位置，不再作为城市归属条件；不从名称、坐标或通知数量猜测目标。目标无效/不匹配不放行，接口/字段未知暂停。诊断显示有效性、目标玩家/对象/类型及失败的操作状态。
+
+其它B113保护不变：实际其它阻塞、其它空城、独立单位/城市攻击、HD政策确认及确认后重读、显式点击/普通Enter、请求前重复提交锁、同会话一次性状态、事件合并刷新、无hover扫描。原生DoEndTurn与Shift+Enter路径不改。无Property/队列/收益写入。
+
+W0004 L2：`DevelopmentTests/test_b114_notification_target.py` 28项LOCAL_SIMULATION_PASS；继承B113保护测试，仅明确取代2项旧坐标判据及版本断言，旧文件不改。增加错误owner/ID/type、无效/缺失字段、点击及政策确认时目标变化、城市消失、诊断原因；相机位置调用直接报错的fixture仍可通过有效目标路径。Lua语法与modinfo文件检查STATIC_CONFIRMED。模拟不证明原生通知在该存档提供有效目标。
+
+最小USER_GAME_TEST_REQUIRED：只让测试A城队列为空，其他城市指定生产并处理其他真实待办；选A点击“开启单城测试”，看右下角是否显示“下一回合”；先读一次“回合原型报告”，再正常点击右下角，确认只前进一回合且测试关闭。不要Shift+Enter。失败则保留报告截图，尤其目标有效/玩家/对象/类型和未放行原因，不反复强制请求。不是固定完整生产回合、砍树/溢出隔离或Claim验收。
