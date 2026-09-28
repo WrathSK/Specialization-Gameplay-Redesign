@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0303",
+    "status": "S0304",
     "runtime": "B119.146 / modinfo146",
     "military": "D0034"
   },
@@ -31,10 +31,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "b3667b20b0fab2c9361a347701785ad330ec34ed",
-  "current_batch": "B119_NATIVE_FINISH_LOCAL_PASS_NATIVE_REQUIRED; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Native FinishProgress dedicated-project then next-target/turn residual test; no automatic timer/reward/Claim",
+  "current_batch": "B119_SCOPED_USER_GAME_TEST_PASS; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Propose bounded full-turn completion/event-order and dedicated 1T presentation plan; no automatic implementation",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B119.146 / modinfo146 deployed;158/158 MATCH;source b3667b2;B118 recovery retained;receipt B119.146-b3667b2-playtest.json;native pending",
+  "live": "B119.146 / modinfo146 deployed;158/158 MATCH;source b3667b2;B118 recovery retained;receipt B119.146-b3667b2-playtest.json;scoped manual native completion PASS",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized independent native FinishProgress and fresh diagnostics reviewed,79 local tests; native pending",
+  "context_review_status": "Four B119 screenshots reviewed; next-turn normal accepted as user statement without screenshot; scoped PASS only",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

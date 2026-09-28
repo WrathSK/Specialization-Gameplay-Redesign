@@ -678,3 +678,7 @@ UI把专用项目变化与其它目标变化分开：期望项目p→0、其它0
 这是手动FinishProgress primitive；不要求自动按一回合完成或显示1T。门禁通过后才考虑chop/harvest、结算事件、提前完成、一次性奖励、中断/存读和专项目计时UI。无新正式Design，Claim/F未推进。
 
 B119部署：source b3667b2，进程确认游戏退出，B118恢复点与稳定桥保留；158/158 MATCH，receipt B119.146-b3667b2-playtest.json，DEVELOP_ACTIVE。未启动游戏或修改main。
+
+### B119 native acceptance — scoped manual completion PASS
+
+2026-09-28 [四图及用户陈述](../../Status/Validation/Results/Specialization_B119_Native_Finish_Pass.md)：项目7→原生完成→队列空/保留进度0/其它目标未变→同回合纪念碑0/50；下一回合正常由用户明确确认，无截图。此最小路径USER_GAME_TEST_PASS；不追认B118扣除，不扩大chop/harvest、任意存量、自动时序或重载。高回合显示尚未改，仍由高成本估算，符合B119范围。下一建议为完整回合定时＋专项目显示1T的窄计划；先明确结算顺序与提前完成/注入门禁，不自动实现。

@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0303
+Status Revision: S0304
 Implementation Build: develop P0-B-119.146 / modinfo146 NATIVE_FINISH_PRIMITIVE; live B119.146 verified158/158 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B119_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
+Work State: B119_SCOPED_USER_GAME_TEST_PASS; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B119独立原生完成实验](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#24-b119146--standalone-native-finishprogress-experiment)获授权实施，本地79项定向PASS。确认Cheat实现只调用原生FinishProgress；本Mod独立调用，不依赖Cheat Panel，不扣生产力，不发奖、不计时、不改显示1T。仅专用无收益项目、唯一队列、双确认与即时读数/事件保护。
+[B119实机限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)：四图确认项目进度7、独立原生完成后队列空/项目保留0/其它目标未变、同回合纪念碑0/50。用户确认下一回合正常（无截图，按陈述记录）。本次手动完成/后续正常生产门禁通过，无需重复。
 
-按钮“完成承接试验”右键现明确刷新当前目标/进度0或负数/队列，与调用记录分开。B118缓存7→7和过滤读数造成的歧义已修显示，旧native结论仍INCONCLUSIVE，不追认PASS。用户提供Cheat完成无溢出观察，当前组合独立调用仍待实机。
+高成本dummy仍显示很高预计回合数：B119未实现定时或1T显示，非本次回归。下一建议是完整回合占用/结算事件＋专项目1T呈现的最小计划；chop/harvest、超额提前完成、中断/存读与奖励均未验证，需分步处理，当前不自动实施。B118扣除仍INCONCLUSIVE，B117盲扣FAIL保持；本地79项PASS及原生PASS范围分开。
 
-最小测试：实验前档→项目唯一目标且最好有正进度→准备/完成一次→右键确认队列空→同回合选原0进度正常目标应0→正常一回合增长。未知/异常即停，禁止重复左键，不用Cheat。详细步骤见合同。
-
-已部署B119.146 source b3667b2，158/158 MATCH；receipt B119.146-b3667b2-playtest.json。进程确认退出，B118恢复点保留，未启动游戏。本轮不推进正式定时项目、Claim/F；main/stable不变。
+[当前原型合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#24-b119146--standalone-native-finishprogress-experiment)。live仍B119.146 source b3667b2，原部署158/158 MATCH；receipt B119.146-b3667b2-playtest.json。本轮仅验收归档，无代码/部署。Claim/F未推进；main/stable B069.96不变。
 
 ## 历史阶段记录
 
