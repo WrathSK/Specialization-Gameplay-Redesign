@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0298",
+    "status": "S0299",
     "runtime": "B117.144 / modinfo144",
     "military": "D0034"
   },
@@ -31,10 +31,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "c4889422abcd8c9d0c55cc23ee562451a4bc20ee",
-  "current_batch": "B117_OVERFLOW_PRIMITIVE_LOCAL_PASS_NATIVE_REQUIRED; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Native single-city negative-progress primitive gate; stop on damage/debt/no effect, then scoped chop/harvest; no formal project/Claim/F",
+  "current_batch": "B117_NATIVE_CLEAR_FAIL_NEGATIVE_DEBT; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Read-only alternative storage-clear investigation; stop blind negative calls; no further candidate chop/harvest tests or automatic implementation/Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B117.144 / modinfo144 deployed;157/157 MATCH;source c488942;B116 recovery and stable bridge verified;receipt B117.144-c488942-playtest.json;native primitive pending",
+  "live": "B117.144 / modinfo144 deployed;157/157 MATCH;source c488942;B116 recovery and stable bridge verified;receipt B117.144-c488942-playtest.json;native clear candidate FAIL: negative debt",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized B117 primitive direct code/UI/dispatch/test reviewed; user accepts forfeiture of all unallocated production; native semantics pending",
+  "context_review_status": "Four B117 screenshots reviewed and archived: -992 to -984 native progress; no clamp; scoped docs/evidence only",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

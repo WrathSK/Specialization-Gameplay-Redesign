@@ -573,3 +573,9 @@ W0004按有限生产写入风险采用定向验证：77项LOCAL_SIMULATION_PASS�
 原型不会在项目开始/结束自动清理；因此第一门禁PASS也不是完整最终项目PASS。之后还需决定可靠清除primitive的全范围和执行时机、项目占用期注入、取消/中断与保存重载收尾；不借本包进入Claim/F。
 
 部署记录：B117.144 source `c488942`，已只读确认无游戏进程；按既有工具B116→稳定桥→B117，157/157源/运行文件MATCH，receipt `B117.144-c488942-playtest.json`。B116运行恢复包保留，main未修改/推广，未启动游戏。实际native验证仍待用户。
+
+### B117 native result — negative production debt
+
+2026-09-27 [四图原生结果](../../Status/Validation/Results/Specialization_B117_Negative_Production_Boundary.md)：空队列单次AddProgress(-1000)之后选磨坊为−992，下一正常回合−984，原生面板亦为−984/60。清零候选USER_GAME_TEST_FAIL / NATIVE_NEGATIVE_STORAGE_BOUNDARY。上方“待验”表和步骤保留原测试计划身份，现由此结果关闭第一门禁：不自动clamp到零，有延后负进度；即时目标快照未变不能证明安全。停止这条盲目负数清零候选，不继续chop/harvest，不猜测补回生产。
+
+全清Gameplay合同保持；这不证明所有清除方式不可行，也不证明内部存储布局。后续仅调查明确重置接口、可靠读取实际存储后精确扣除或独立承接清理；均未获原生确认。本次只归档证据，无代码、部署、正式项目或Claim/F推进。测试后应回实验前存档，Mod回滚不能撤销已保存负进度。

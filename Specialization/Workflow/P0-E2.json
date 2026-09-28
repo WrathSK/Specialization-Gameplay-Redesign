@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0298",
+    "status": "S0299",
     "runtime": "B117.144 / modinfo144",
     "military": "D0034"
   },
@@ -542,8 +542,8 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B117 authorized explicit single-city -1000 primitive; 77 targeted local tests PASS, native pending; not a full-clear guarantee or automatic timed project; deployed source c488942,157/157 MATCH,receipt B117.144-c488942-playtest.json",
-    "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes preservation-of-old-overflow restriction; negative storage semantics still native-required",
-    "side_next_plan": "Run smallest native clear/progress/debt gate, only then chop/harvest branches; no formal project/Claim"
+    "side_prototype": "B117 native clear candidate FAIL: -1000 on empty queue leads to mill -992 then -984 next turn; local 77 PASS remains scoped; runtime unchanged",
+    "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
+    "side_next_plan": "Stop blind-negative candidate and chop/harvest branch; read-only alternative clearing investigation; return pre-test save; no automatic implementation"
   }
 }

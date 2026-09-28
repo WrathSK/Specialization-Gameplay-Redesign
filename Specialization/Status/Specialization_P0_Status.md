@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0298
+Status Revision: S0299
 Implementation Build: develop P0-B-117.144 / modinfo144 OVERFLOW_PRIMITIVE; live B117.144 verified157/157 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B117_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
+Work State: B117_NATIVE_CLEAR_FAIL_NEGATIVE_DEBT; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B117最小清除原型及测试](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#20-b117144--authorized-forfeiture-contract-and-minimal-storage-primitive-test)已获授权实施，本地77项定向LOCAL_SIMULATION_PASS、Lua/modinfo STATIC_CONFIRMED；原生负数是否清空/无效/留下负债仍USER_GAME_TEST_REQUIRED。新增“溢出清除试验”：自然空队列，左键准备→再左键只调用一次−1000，右键读数。诊断量不是任意存储全清保证；普通目标进度前后核对，状态变化/未知拒绝，结果不明不重试。未自动接入项目、无正式项目/收益/保存字段，B116观察器不变。
+[B117四图实机结果](Validation/Results/Specialization_B117_Negative_Production_Boundary.md)：空队列单次−1000之后，磨坊−992→下一回合−984，原生面板−984/60。清零候选 **USER_GAME_TEST_FAIL / NATIVE_NEGATIVE_STORAGE_BOUNDARY**；负数没有自动截断为零。停止重复/更大负数，不继续该候选chop/harvest测试。即时目标快照未变不能证明没有延后损害；已有非零progress保护未完整覆盖。
 
-用户本轮明确接受：进入特殊项目放弃全部未分配旧/新生产存储；占用期产能和chop/harvest等注入不得转给后续目标。不再要求保留旧溢出账本；普通目标已有progress仍须保留。决定记录于本片合同，正式接入前需同步Design正式来源；未擅改其它设计。§19保留旧存量限制已被本轮取代。
+[本片合同与技术依据](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#20-b117144--authorized-forfeiture-contract-and-minimal-storage-primitive-test)：用户接受进入时放弃全部未分配旧/新生产，占用期产能及chop/harvest不能转给后续目标；普通目标已拥有progress仍须保留。此玩法不因候选失败改变；正式接入前仍需同步Design正式来源。下一建议仅调查直接重置、可靠存储读取后精确扣除或承接清理候选，未证明可行，不自动实施。
 
-最小实机：测试前档→空队列新回合未选Q→候选清除→选Q应0→正常生产一回合应增长；任何未知/误扣/残留/负债停止。第一门禁通过后才另分支chop/harvest，不能本地宣称这些已隔离。仅独立测试存档，实验后不覆盖基线。已按持续授权部署：source c488942，157/157 MATCH，receipt B117.144-c488942-playtest.json；进程检查确认退出，B116恢复点与稳定桥核验保留，main未推广。等待第一门禁实机，Claim/F未推进。
+本次仅证据归档，无新runtime/部署。live仍B117.144，source c488942，原部署157/157 MATCH，receipt B117.144-c488942-playtest.json；B116恢复点保留。按钮仍在包中，停止使用；回实验前存档，不能靠Mod回滚或猜测补锤修复已保存负进度。当前无需继续用户测试。
 
-[B116 M/A四图](Validation/Results/Specialization_B116_Overflow_Mode.md)与[无Cheat的A粮仓8](Validation/Results/Specialization_B116_Production_Baseline.md)支持自动应用路径，不再重复验证原因。B114按钮/B116开始限定PASS保持，固定完整生产占用仍未PASS。此前B116运行包已保留为恢复点；Mod回滚不修复测试后保存的生产状态，需搭配实验前存档。
+77项LOCAL_SIMULATION_PASS与STATIC仅限保护/调用/报告；不能替代native语义。[B116模式证据](Validation/Results/Specialization_B116_Overflow_Mode.md)、B114按钮/B116开始限定PASS保持；固定完整生产占用仍未PASS。E2 Claim plan-only，Claim/F未推进，main未推广。
 
 ## 历史阶段记录
 
