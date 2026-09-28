@@ -1,11 +1,20 @@
--- B115 session-only evidence. No production, persistent state or rewards are written.
+-- B116 session-only evidence. No production, persistent state or rewards are written.
 SPCTimedProductionProbe={}
 function SPCTimedProductionProbe.Start(P,shared)
  local state=nil;local hooks={};local api={};shared.TimedProductionProbe=api
+ local function empty(value) return value==nil or value=="" or value=="NONE" end
+ local function failure(err)
+  state.errorDetail=tostring(err)
+  print("[SPC][TimedProduction] "..state.errorDetail)
+  local short=state.errorDetail:match("^(.-)stack traceback:") or state.errorDetail
+  short=short:match("^[^\r\n]+") or "未知错误"
+  short=short:gsub("^.-:%d+: ?","")
+  state.status="STOPPED";state.reason=short
+ end
  local function publish()
   if not state then shared.TimedProduction=nil;return end
   local rows={};for i,v in ipairs(state.rows) do rows[i]=v end
-  shared.TimedProduction={token=state.token,owner=state.owner,id=state.id,turn=state.turn,status=state.status,reason=state.reason,rows=rows,hooks=table.concat(hooks,", ")}
+  shared.TimedProduction={token=state.token,owner=state.owner,id=state.id,turn=state.turn,status=state.status,reason=state.reason,errorDetail=state.errorDetail,rows=rows,hooks=table.concat(hooks,", ")}
  end
  local function current()
   assert(P.IsTestPlayer(state.owner),"玩家资格失效")
@@ -23,10 +32,10 @@ function SPCTimedProductionProbe.Start(P,shared)
  local function sample(name,changed)
   if not state or state.status~="ACTIVE" then return end
   local ok,value=pcall(current)
-  if not ok then state.status="STOPPED";state.reason=tostring(value);publish();return end
+  if not ok then failure(value);publish();return end
   if not add(name,value) then return end
   -- A target-change notification invalidates continuity even if cancellation already emptied it.
-  if changed or (value~=nil and value~="") then
+  if changed or not empty(value) then
    state.status="INTERRUPTED";state.reason="生产目标/队列发生变化；清空后也不能续算"
   end
   publish()
@@ -76,10 +85,10 @@ function SPCTimedProductionProbe.Start(P,shared)
    assert(not table.concat(hooks,","):find("MISSING:",1,true),"必要事件接口缺失："..table.concat(hooks,", "))
    local c=assert(Players[pid]:GetCities():FindID(params.CityID),"城市不存在")
    state.x=c:GetX();state.y=c:GetY()
-   local v=current();assert(v==nil or v=="","Gameplay目标非空："..tostring(v))
+   local v=current();assert(empty(v),"Gameplay目标非空："..tostring(v))
    state.status="ACTIVE";state.reason="等待原生事件；不自动证明生产结算";add("BEGIN",v)
   end)
-  if not ok then state.status="STOPPED";state.reason=tostring(err) end
+  if not ok then failure(err) end
   publish()
  end
  publish()

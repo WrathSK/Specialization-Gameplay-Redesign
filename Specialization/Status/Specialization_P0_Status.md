@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0292
-Implementation Build: develop P0-B-115.142 / modinfo142 SESSION_PRODUCTION_OBSERVER; live B115.142 verified155/155 MATCH; stable B069.96
+Status Revision: S0293
+Implementation Build: develop P0-B-116.143 / modinfo143 EMPTY_TARGET_REPAIR; live B115.142; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B115_NATIVE_EMPTY_TARGET_BOUNDARY; E2 Claim plan-only
+Work State: B116_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B115第一步失败](Validation/Results/Specialization_B115_Empty_Target_Boundary.md) USER_GAME_TEST_FAIL：城131073/回合21，队列0，Gameplay返回NONE，被仅接受nil/空字符串的开始断言错误拒绝，事件0条。截图已读且hash一致归档。另有空队列误展示纪念碑进度、错误堆栈过长两项诊断缺陷。无需继续测试；不是生产结算方案反证，也不是请求未送达。
+[B116最小修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#17-b116143--none-sentinel-and-concise-diagnostics-repair)获授权实施：开始/采样统一识别NONE，空队列不再解析目标进度，短错误简报+完整日志。53项LOCAL_SIMULATION_PASS与Lua/modinfo静态检查；本包原生开始/结算仍待验。
 
-下一建议：最小修复开始/采样的NONE判据、空队列诊断与短错误信息，补定向测试；等待实施授权，不自动改包。[B114限定按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持；B11545项LOCAL证据未覆盖本次原生NONE，不能替代实机。
+[B115失败证据](Validation/Results/Specialization_B115_Empty_Target_Boundary.md)保留，未采集生产事件，不是完整方案反证。[B114限定按钮PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持。用户测试仅自然空队列A开启→ACTIVE报告→正常过回合→报告→选择新目标Q→立即报告；不要求先选Q再清空。异常停止，暂不收获/溢出，不进入正式项目/Claim/F。
 
-用户测试说明已纠正：只能使用生产完成后尚未选新目标的自然空队列；不要求选Q再清空。中断负例为另一次自然空队列开始后选择Q。详见结果记录。无正式项目/奖励/保存实现，不进入Claim/F，E2仍partial。
-
-源码/部署`96bf8ea`，live记录B115.142，receipt `B115.142-96bf8ea-playtest.json`；原155/155 MATCH保留，本轮未重新核验运行包。仅证据与文档，无runtime/Design/部署/main变化。
+用户授权部署，自动只读进程检查确认游戏退出。待提交后按W0003部署；live记录仍B115.142，receipt `B115.142-96bf8ea-playtest.json`，main稳定B069.96不变。无新的Design或永久状态改变。
 
 ## 历史阶段记录
 

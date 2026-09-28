@@ -439,3 +439,16 @@ W0004 L2：`DevelopmentTests/test_b115_production_observer.py` **45项LOCAL_SIMU
 [第一步截图](../../Status/Validation/Results/Specialization_B115_Empty_Target_Boundary.md)确认空队列时Gameplay返回NONE；仅nil/空字符串判据错误拒绝，观察未开始。下一修复必须统一开始/采样判据并补测试；UI空队列不能解析hash为正在生产纪念碑，错误堆栈应退出简报。保留旧本地证据局限，不将开始失败解释为结算方案已失败。
 
 §15/§16中要求玩家“选Q再清空”“中断后再清空”的原生操作步骤由用户纠正：仅使用自然完成后的空队列；基线先空队列跨回合再选此前未投入Q，中断为另一次自然空队列开始后选择Q。不能把原生队列编辑接口推断为玩家可清空当前生产。切换再清空仅本地防御性模拟，不要求用户做或通过强制清队列实现。此前测试说明保留为已被本段取代的过程记录。
+
+
+## 17. B116.143 — NONE sentinel and concise diagnostics repair
+
+用户授权修复B115开始失败。统一empty判据用于开始与后续采样，明确接受原生截图确认的字符串NONE以及原有nil/空字符串；不接受其他近似字符串、false或数值0，不改变接口失败停止、真正目标变化中断、异步确认和B114按钮保护。
+
+空UI队列先返回“无生产目标”，不读取hash、不查GameInfo或目标进度；非空队列要求有效非零hash、唯一类型与合法数值进度。不能把空队列时纪念碑=0当作真实目标。Gameplay错误完整内容写日志并保留errorDetail供已有诊断导出；屏幕只显示去掉路径/堆栈的短原因，开始与后续读取共用处理。无生产/奖励/永久状态写入。
+
+`DevelopmentTests/test_b116_empty_target.py`：53项LOCAL_SIMULATION_PASS，继承B115实际Lua/UI/请求保护并以NONE为默认fixture；补开始/Updated/回合边界、合法空值、非精确NONE拒绝、空队列不读取残留hash、非空真实进度/零hash拒绝、行内/多行堆栈缩短及全文留存。Lua/modinfo检查STATIC_CONFIRMED，原生开始和生产结算仍USER_GAME_TEST_REQUIRED；没有无关全回归/stress。
+
+测试只用自然生产完成后未选目标的A城：开启→报告应ACTIVE→正常过回合→报告截图→选择此前未投入的普通目标Q→立即报告截图。任何开始错误立即暂停，不要求手动清空生产；中断测试另一次自然空队列开始后选择Q即可。收获/溢出/正式固定回合项目未推进。
+
+部署安全：本次普通sandbox的ps被拒绝，获准只读进程检查后确认无Civ6/Civilization/Aspyr进程。应先自动尝试可用进程检查，仅不可确认时询问退出状态，不将过去一次权限失败永久当作环境限制；不改部署机制/Workflow。

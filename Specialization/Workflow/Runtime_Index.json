@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "96bf8ea6ebcb5a2196de32978e523dd22af26ef0",
-  "runtime": "B115.142 / modinfo142",
+  "runtime": "B116.143 / modinfo143",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "752f3f5fdc517c1b20761c2f4bc98495526b40d353a1ab5c36bfa57a9b86a1c3",
+      "sha256": "538a7ed7742dfffed5fad2fed3a178e345f40609152e2caa6f014d74ecd06f6a",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B115 authorized session production observer; 45 targeted tests, native pending"
+      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6c7e0671cc30dea7354ca0881d8ba5bbdbf482cb8e1c5ef708a109fe14c826ed",
+      "sha256": "3a1592d44d25e8a11e00c0a8a9c7b4823f2ad5e864c8e237be17fce7c27a343d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B115 authorized session production observer; 45 targeted tests, native pending"
+      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -771,14 +771,14 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/UI/TimedTurnProbe.lua": {
-      "sha256": "4fddfb1aa6a74d0366d2cafd9222c258dfe0f3533a7a5a9bafb6a75726ea9de2",
+      "sha256": "c95456d666bf3636494d2f99460121cb19193d97f271d1292ac170ce62ef8245",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B115 authorized session production observer; 45 targeted tests, native pending"
+      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/TimedProductionProbe.lua": {
-      "sha256": "00012480ead113ccf8ce80dcde7e08b262bac519e55026a35f890c6b511205a3",
+      "sha256": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B115 authorized session production observer; 45 targeted tests, native pending"
+      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     }
   }
 }

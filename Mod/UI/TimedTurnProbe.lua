@@ -1,4 +1,4 @@
--- B115: opt-in single-city UI prototype, not a saved Gameplay project.
+-- B116: opt-in single-city UI prototype, not a saved Gameplay project.
 include("HD_ActionPanel")
 include("Probe")
 local baseRefresh, baseInput, baseAction = OnRefresh, OnInputHandler, OnInputActionTriggered
@@ -10,8 +10,13 @@ local function gameplay() return (ExposedMembers.SPC_P0 or {}).TimedProduction e
 local function request(action,f)
  UI.RequestPlayerOperation(f.owner,PlayerOperations.EXECUTE_SCRIPT,{OnStart="SPC_P0_Request",Action=action,Token=f.token,CityID=f.id,StartTurn=f.turn})
 end
-local report = "B115：未开启。选中己方空队列城市后，点击开启单城测试。"
+local report = "B116：未开启。选中己方空队列城市后，点击开启单城测试。"
 local function publish(s) report=s;ExposedMembers.SPC_TimedTurnProbeReport=s end
+local function shortError(err)
+ local raw=tostring(err);print("[SPC][TimedTurn] "..raw)
+ local short=raw:match("^(.-)stack traceback:") or raw
+ return (short:match("^[^\r\n]+") or "未知错误"):gsub("^.-:%d+: ?","")
+end
 local function boolean(v) if type(v)~="boolean" then error("布尔状态未知") end;return v end
 local function queue(c)
  local n=c:GetBuildQueue():GetSize()
@@ -99,7 +104,7 @@ local function summary(f)
  local names={};for _,id in ipairs(f.other) do
   local info=g_kMessageInfo[id];names[#names+1]=info and info.Message or ("未知阻塞:"..tostring(id))
  end
- return "B115 单城按钮原型｜"..f.city.."｜回合"..f.turn
+ return "B116 单城按钮原型｜"..f.city.."｜回合"..f.turn
   .."[NEWLINE]生产阻塞="..f.production.."；其它空城="..f.unrelated.."；通知对应测试城="..tostring(f.target)
   .."[NEWLINE]"..f.targetInfo
   .."[NEWLINE]其它阻塞："..(#names>0 and table.concat(names,"、") or "无")
@@ -111,7 +116,7 @@ end
 local function evaluate()
  local ok,f=pcall(readFacts)
  dirty=false
- if not ok then stop("原型暂停："..tostring(f));return nil end
+ if not ok then stop("原型暂停："..shortError(f));return nil end
  cache=f;publish(summary(f));return f
 end
 local function paint(f)
@@ -142,7 +147,7 @@ local function sync()
  local g=gameplay()
  if pending and g and g.token==pending.token then
   if g.status=="ACTIVE" and g.owner==pending.owner and g.id==pending.id and g.turn==Game.GetCurrentGameTurn() then
-   armed=pending;pending=nil;dirty=true;publish("B115：Gameplay已确认，单城观察开启。")
+   armed=pending;pending=nil;dirty=true;publish("B116：Gameplay已确认，单城观察开启。")
   else stop("Gameplay观察未开启："..tostring(g.reason)) end
  end
  if armed and g and g.token==armed.token and g.status~="ACTIVE" then stop("Gameplay："..tostring(g.reason)) end
@@ -157,7 +162,7 @@ local function send(f)
  submitted=true -- before native request; uncertain result stays latched, no blind retry
  publish(summary(f).."[NEWLINE]已发送一次测试结束请求；等待引擎回合变化。")
  local ok,err=pcall(function() UI.RequestAction(ActionTypes.ACTION_ENDTURN,{REASON="UserForced"}) end)
- if not ok then publish(report.."[NEWLINE]请求结果未知："..tostring(err).."；禁止重试，请截图。") end
+ if not ok then publish(report.."[NEWLINE]请求结果未知："..shortError(err).."；禁止重试，请截图。") end
  ContextPtr:RequestRefresh()
 end
 local function explicit()
@@ -189,7 +194,7 @@ local function explicit()
    end)
    popup=true;dialog:Open()
   end)
-  if not ok then popup=false;stop("政策确认不可用："..tostring(err)) end
+  if not ok then popup=false;stop("政策确认不可用："..shortError(err)) end
   return
  end
  if f.allow then send(f) end
@@ -210,7 +215,7 @@ local function command(action)
  if action=="READ" then
   local g=gameplay();local text=report
   if g and observed and g.token==observed.token then
-   text="B115 生产观察｜城"..tostring(g.id).."｜开始回合"..tostring(g.turn).."｜"..g.status.."[NEWLINE]"..g.reason
+   text="B116 生产观察｜城"..tostring(g.id).."｜开始回合"..tostring(g.turn).."｜"..g.status.."[NEWLINE]"..g.reason
    local visible={}
    for i,v in ipairs(g.rows) do
     if #g.rows<=8 or i<=3 or i>#g.rows-5 then visible[#visible+1]=v
@@ -220,14 +225,25 @@ local function command(action)
    local c=Players[g.owner] and Players[g.owner]:GetCities():FindID(g.id)
    local ok,detail=pcall(function()
     assert(c and c:GetOwner()==Game.GetLocalPlayer(),"城市不可读")
-    local q=c:GetBuildQueue();local hash=q:GetCurrentProductionTypeHash();local progress="无目标"
+    local q=c:GetBuildQueue();local size=queue(c)
+    if size==0 then return "当前队列=0；无生产目标（不读取目标进度）" end
+    local hash=q:GetCurrentProductionTypeHash()
+    assert(type(hash)=="number" and hash~=0,"非空队列的目标hash不可确认")
+    local progress=nil
     for _,pair in ipairs({{"Buildings","GetBuildingProgress"},{"Districts","GetDistrictProgress"},{"Units","GetUnitProgress"},{"Projects","GetProjectProgress"}}) do
-     local row=GameInfo[pair[1]][hash];if row then progress=Locale.Lookup(row.Name).."="..tostring(q[pair[2]](q,row.Index));break end
+     local row=GameInfo[pair[1]][hash]
+     if row then
+      assert(not progress,"生产目标类型不唯一")
+      local value=q[pair[2]](q,row.Index)
+      assert(type(value)=="number" and value>=0 and value<math.huge,"生产进度不可确认")
+      progress=Locale.Lookup(row.Name).."="..tostring(value)
+     end
     end
-    return "当前队列="..tostring(q:GetSize()).."；当前目标进度："..progress
+    assert(progress,"非空队列目标无法识别")
+    return "当前队列="..tostring(size).."；当前目标进度："..progress
    end)
    if g.status=="ACTIVE" then text=text.."[NEWLINE]按钮门禁："..(cache and cache.allow and "当前可请求（点击重新核对）" or report) end
-   text=text.."[NEWLINE]UI按需读数："..(ok and detail or ("不可读："..tostring(detail)))
+   text=text.."[NEWLINE]UI按需读数："..(ok and detail or ("不可读："..shortError(detail)))
    text=text.."[NEWLINE]未建立正式项目、未发收益；生产结算仍需证据判断。"
   end
   ExposedMembers.SPC_TimedTurnProbeReport=text;return
@@ -243,11 +259,11 @@ local function command(action)
   if queue(c)~=0 then error("请先使该城没有生产目标；原型不清队列") end
   return {owner=pid,id=c:GetID(),x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn()}
  end)
- if not ok then stop("无法开启："..tostring(f));return end
- ExposedMembers.SPC_TimedSequence=(ExposedMembers.SPC_TimedSequence or 0)+1;serial=ExposedMembers.SPC_TimedSequence;f.token="B115:"..tostring(f.turn)..":"..tostring(serial);pending=f;observed=f;scans=0
+ if not ok then stop("无法开启："..shortError(f));return end
+ ExposedMembers.SPC_TimedSequence=(ExposedMembers.SPC_TimedSequence or 0)+1;serial=ExposedMembers.SPC_TimedSequence;f.token="B116:"..tostring(f.turn)..":"..tostring(serial);pending=f;observed=f;scans=0
  local sent,err=pcall(request,"TIMED_PRODUCTION_BEGIN",f)
- if not sent then stop("开始请求失败："..tostring(err));return end
- publish("B115：等待Gameplay确认；未确认时不豁免生产待办。右键报告取消。")
+ if not sent then stop("开始请求失败："..shortError(err));return end
+ publish("B116：等待Gameplay确认；未确认时不豁免生产待办。右键报告取消。")
 end
 local function turn(pid)
  if observed and (pid~=observed.owner or Game.GetCurrentGameTurn()~=observed.turn) then
