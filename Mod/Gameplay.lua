@@ -33,6 +33,9 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='TIMED_PRODUCTION_BEGIN' or params.Action=='TIMED_PRODUCTION_CANCEL' then
+    shared.TimedProductionProbe.Request(playerID,params);return
+  end
   if params.Action=='CITY_SEQUENCE_BEGIN' or params.Action=='CITY_SEQUENCE_READ' then
     local ok,out=pcall(function()
       if params.Action=='CITY_SEQUENCE_READ' then return shared.CitySequenceProbe.Read(playerID,params.Page)end
@@ -630,3 +633,6 @@ SPCCityIdentityRead.Start(P,shared)
 include("CityIdentityExperiment")
 include("CityIdentityMapping")
 SPCCityIdentityMapping.Start(P,shared)
+
+include("TimedProductionProbe")
+SPCTimedProductionProbe.Start(P,shared)

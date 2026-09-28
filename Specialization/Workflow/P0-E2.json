@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0290",
-    "runtime": "B114.141 / modinfo141",
+    "status": "S0291",
+    "runtime": "B115.142 / modinfo142",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -403,6 +403,22 @@
       "kind": "section",
       "selector": "## 15. Next prototype plan — production settlement and interruption",
       "reason": "Next side prototype scoped plan only; production evidence, interruption and stop boundaries; not Claim authorization"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "reason": "Current authorized observer scope, precise native boundaries and minimal tests",
+      "selector": "## 16. B115.142 — session production observation implementation"
+    },
+    {
+      "path": "Mod/TimedProductionProbe.lua",
+      "kind": "full",
+      "reason": "Direct Gameplay observer and event ownership, no persistence"
+    },
+    {
+      "path": "DevelopmentTests/test_b115_production_observer.py",
+      "kind": "full",
+      "reason": "Direct actual Lua/UI/request tests; inherits unchanged B114 protections"
     }
   ],
   "dependencies": [
@@ -477,8 +493,8 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B114 scoped USER_GAME_TEST_PASS: CITY target matched, turn21->22, test closes, native production blocker restored; user confirms click opens A queue without ending turn; fixed timing/production isolation untested",
+    "side_prototype": "B115 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS 45; native pending. B114 scoped native button PASS retained.",
     "side_investigation": "Section13 native target contract applied by Section14; alternatives remain investigation only",
-    "side_next_plan": "Section15 PLAN_ONLY: session single-city production settlement/interruption observer; no implementation authorization or native production timing claims"
+    "side_next_plan": "Section15 minimum session observer authorized and implemented B115; remaining production isolation/save/project gates pending"
   }
 }

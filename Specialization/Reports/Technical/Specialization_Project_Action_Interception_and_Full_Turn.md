@@ -399,3 +399,36 @@ W0004 L2，只有接入持久化时才另定L3切片。针对实际Lua测试：�
 通过本片只允许提出下一计划：Gameplay权威的连续占用与完成条件、save/load恢复/去重，再接正式项目入口。Claim须真实满足已接受的“完成城市项目”，不能借自定义timer自动建立Identity；Dialogue的启动时代/完成时X及一次额度也不在本片。正式多城并行、全部政策/阻塞组合及产品UI另行验证。
 
 当前没有新增Design决定要求，没有新用户测试包。审批对象是上述最小session观察切片；当前不部署、不启动游戏、不实施Claim/F。
+
+
+## 16. B115.142 — session production observation implementation
+
+§15已获用户“首选实施”授权，按最小原型实施；无正式Gameplay项目、收益或持久化。B114按钮验收保持其原范围，新异步Gameplay确认和中断链仍待原生验证。
+
+### 已核对接口与接线
+
+原版Base UI `CityPanel.lua` 的CityProductionChanged/Completed/Updated以owner、cityID开头；TutorialUIRoot.lua记录Changed的orderType/unitType/canceled/typeModifier。CityBannerManager.lua监听CityProductionQueueChanged。HD Gameplay使用GameEvents.PlayerTurnStarted及Events.PlayerTurnActivated。这些是监听候选的STATIC依据，不证明所有事件在Gameplay到达、回调发生于结算之后、空队列仍发Updated或原生队列字段的全部空值形态。
+
+沿用Gameplay.lua的SPC_P0_Request入口，添加两个提前返回的定域动作TIMED_PRODUCTION_BEGIN/CANCEL，原eligibility/token检查保留；TimedProductionProbe.lua只维护单次内存状态和不超过24条事件，ExposedMembers发布副本。UI通过已有EXECUTE_SCRIPT通道请求，匹配本次token/owner/city/turn且Gameplay ACTIVE确认后才启用B114豁免。未知/拒绝不放行。token使用session序号，取消只接受原token；UI重新加载不凭旧结果自行arm。
+
+Gameplay当前目标用已在ConstructionProbe使用的CurrentlyBuilding读取；成功读取nil/空字符串作为无目标候选，其他返回值停止并显示原值，不假定UI的hash=0能跨context套用。完整队列为空由已验证UI GetSize再次核对；不把该实验当作已完成Gameplay队列authority。开始或关键接口缺失显示具体原因，不改为空默认值。
+
+观察CityProductionChanged/QueueChanged/Updated/Completed、PlayerTurnDeactivated、GameEvents.PlayerTurnStarted、PlayerTurnActivated、CityRemovedFromMap；仅匹配观察对象读取。目标改变/队列改变/完成通知保守中断，即使读取时已经再次为空；UI也在变化事件立即撤销豁免，防止等待合并刷新期间切换再清空。若原生同名事件实际上仅为无目标刷新导致误中断，应记录EVENT_SEMANTICS_BOUNDARY，不能未经证据放宽。Updated只记有限参数和当前目标，不当作一次完整结算。
+
+到本玩家新回合观察结束，明确“完整生产结算未证实”，不发完成奖励。UI回合关闭不提前取消Gameplay待收集证据；Gameplay先关闭时UI仍在回合变化后释放提交锁。报告最多显示首3/尾5条，其余保留缓存供现有写日志按钮导出。按需报告另读取当前UI队列及原生目标进度getter（CitySupport.lua已有对应Buildings/Districts/Units/Projects路径）；不在hover请求、不写进度。
+
+### 验证与风险边界
+
+W0004 L2：`DevelopmentTests/test_b115_production_observer.py` **45项LOCAL_SIMULATION_PASS**：继承B114按钮保护、实际Gameplay请求函数分发/非法token、异步确认、目标切换再清空、缺hook、额外Updated不完成、其它城/玩家不扫描、边界结束不冒充结算、24条上限、迟到取消/重复开始、重开session为空、Gameplay/UI先后顺序与提交锁。Lua语法/modinfo155文件存在检查STATIC_CONFIRMED。测试fixture不证明原生事件顺序；没有玩法全回归或stress。未新增存档字段、carrier、生产操作或第三方改动。
+
+原生仍需确认Gameplay空值、监听送达、异步确认与中断；若只观察到turn变化而无城市生产证据，结果仍是TECHNICAL_PRODUCTION_BOUNDARY。原型不会自动判完整生产回合PASS。正常产能是否被以后兑现、额外输入是否破坏占用仍需下面原生读数，不能提前宣布隔离已完成。
+
+### 最小用户流程：先基线，再中断
+
+使用独立测试存档。选此前未投入生产的普通目标Q，先指定Q并截图当前生产进度，然后手动清空A队列；其它城市安排好生产。
+
+1. A空队列点“开启单城测试”，再点“回合原型报告”。必须显示Gameplay ACTIVE；若STOPPED/一直等待/未知则截图暂停。关闭面板，处理其它待办，正常点击下一回合，不Shift+Enter。
+2. 新回合先左键报告截图；再给A选择同一Q，立即左键报告截图（不要再过回合）。这提供事件序列及即时目标进度；不得把进度来源直接归于正常产能，需结合开始基线。
+3. 基线未报异常时，手动清空A，重新开启观察，然后选择Q再清空；左键报告应显示中断/关闭，原生生产待办恢复。不得自动清队列或沿用旧观察完成。
+
+本包先只请求这一个基线+中断流程。收获/已有溢出实验待上述接口事实确认后用相同fixture定向追加；不让用户在开始失败时继续一整套测试。完整重启恢复、低/零产能和正式计时/入口尚未实施，不随本包验收关闭。游戏已退出获用户确认，验证后按W0003部署，保留B114恢复点；回滚无需清除存档字段。

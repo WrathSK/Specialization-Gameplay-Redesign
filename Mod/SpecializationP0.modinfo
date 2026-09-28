@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="141">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="142">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B114.141 develop: opt-in single-city next-turn UI and guarded explicit end-turn prototype; no saved timed project, Claim or rewards.</Description>
+    <Description>B115.142 develop: session production event observation; opt-in single-city next-turn UI and guarded explicit end-turn prototype; no saved timed project, Claim or rewards.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -57,6 +57,7 @@
       <File>Data/HalfYieldProbe.sql</File>
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
+      <File>TimedProductionProbe.lua</File>
       <File>UI/TimedTurnProbe.lua</File>
       <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
@@ -330,6 +331,7 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>TimedProductionProbe.lua</File>
     <File>UI/TimedTurnProbe.lua</File>
     <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>

@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0290
-Implementation Build: develop P0-B-114.141 / modinfo141 TARGET_OBJECT_REPAIR; live B114.141 verified154/154 MATCH; stable B069.96
+Status Revision: S0291
+Implementation Build: develop P0-B-115.142 / modinfo142 SESSION_PRODUCTION_OBSERVER; live B114.141; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B114_NATIVE_TARGET_TURN_SCOPED_PASS; E2 Claim plan-only
+Work State: B115_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B114单城按钮实机验收](Validation/Results/Specialization_B114_Target_Turn_Pass.md) **USER_GAME_TEST_PASS（所测范围）**：回合21原生CITY目标0/131073/type2匹配，唯一空城可显示下一回合；回合22报告关闭，恢复选择生产。用户另确认点击仅打开A队列、不继续过回合。两图已读并2/2 hash一致归档，无需重复该测试。
+[B115生产结算观察原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#16-b115142--session-production-observation-implementation)已授权实施：单城session Gameplay确认、有限事件记录、选择生产即中断、UI按需读取目标进度。45项LOCAL_SIMULATION_PASS及Lua/modinfo静态检查；尚无本包原生证据，不把turn变化或Updated直接当完整生产结算。
 
-[B114修复合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#14-b114141--native-notification-target-repair)及28项LOCAL_SIMULATION_PASS保留；[B113失败](Validation/Results/Specialization_B113_Notification_Location_Failure.md)历史证据不改。[B112观测](Validation/Results/Specialization_B112_Turn_Blocker_Observation.md)限定PASS保留。不得扩大为所有阻塞组合、正式固定一回合项目、砍树/溢出隔离或保存恢复已验证。
+[B114实机PASS](Validation/Results/Specialization_B114_Target_Turn_Pass.md)保持限定按钮/关闭/原生待办恢复范围。B115新增异步确认/Gameplay空目标读取与事件送达待USER_GAME_TEST；只测基线跨回合+选择再清空中断，异常立即暂停，收获/溢出后续追加。无正式项目、奖励或永久状态；保存恢复尚未实施，不进入Claim/F，E2仍partial。
 
-[下一最小原型计划](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#15-next-prototype-plan--production-settlement-and-interruption)已整理，PLAN_ONLY：单城无收益session生产结算/中断观察，基线与切换负例先验，再做一次收获输入；不以turn+1冒充完整生产结算。保存恢复/正式项目后置但不豁免。等待用户实施授权，无runtime/Design/部署变化，不进入Claim/F，E2仍partial。
-
-源码/部署commit `a281590`；live记录B114.141，receipt `B114.141-a281590-playtest.json`，既有154/154 MATCH，B113恢复点保留。本轮未重新核验外部运行包；main稳定B069.96未改，未启动游戏。
+用户已确认游戏退出，待commit后按W0003部署。源码B115；live记录仍B114.141，receipt `B114.141-a281590-playtest.json`；main稳定B069.96未改。下一动作仅部署已验原型和等待用户证据，不自动扩大实施范围。
 
 ## 历史阶段记录
 
