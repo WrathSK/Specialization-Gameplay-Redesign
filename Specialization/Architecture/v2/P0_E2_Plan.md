@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B110_USER_GAME_TEST_FAIL / REPAIR_AUTHORIZATION_REQUIRED. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B111_LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，原生快照读取失败，等待最小修复授权。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，原生快照读取失败；用户已授权B111最小修复，本地通过，等待复测。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -877,3 +877,13 @@ Deployment update: user explicitly confirmed game exited. B110.137 activated fro
 [两图失败证据与原始hash](../../Status/Validation/Results/Specialization_B110_E2_District_Enumeration_Failure.md)：2026-09-27两城均在admit区域枚举Members调用失败。原本LOCAL_SIMULATION_PASS保留其历史范围，但fixture不符合原生CityDistricts接口，不能作为该接口有效证据。当前USER_GAME_TEST_FAIL。
 
 待授权的最小修复：采用现有DistrictCompleteness indexed API，保留征服证据/一次快照/owner与完成性保护；fixture去掉Members并提供零起始indexed接口，定向覆盖候选与失败关闭并复用B109直接回归；报告仅显示相关阶段及原因。无identity/Design变更，无Claim/F或失败后补扫。用户已有征服两城前存档；未来修复/部署后从该存档重复两种分流及完整重启，当前不再测试。本次只归档证据，未实施修复或部署。
+
+## B111.138 — indexed district snapshot repair
+
+用户授权修复B110原生区域遍历失败。只改CityProgressionStore的征服候选读取与失败报告：Gameplay CityDistricts.GetNumDistricts/GetDistrictByIndex（零起始），保留数量合法性、条目、owner/reference、去重与完成性检查；错误仍暂停且不猜测空集。一次快照/保存schema/候选分流/单候选不自动确认等合同不变。阶段标记仅session诊断，无新永久state。失败报告保留阶段与单行原因，内部原始错误保留，不再把堆栈搬上面板。
+
+STATIC_CONFIRMED：与现有DistrictCompleteness Gameplay读取API一致，Lua语法/modinfo138通过。LOCAL_SIMULATION_PASS：test_b111_district_snapshot.py使用无Members的indexed fixture，覆盖零/单/多/未完成/特色替换、非法数量/缺条目/读取异常/错误owner/重复ID、无写入fail-closed及简短错误报告；继承B110分流/保存/幂等/写失败用例和直接B109/B108生产回归（含现有loss/return）。未跑无关全历史或stress。本地不替代原生验证。B110失败原图/报告保留。
+
+最小原生复测：从用户保留的征服两城之前存档开始，征服后分别左键E2，记录候选集/分流；非空（含单个）保持NONE/P0，不操作尚未实现的Claim；空集在后续完成首个合格区域时P1。保存到新槽，完整退出再启动读档，复查两城。原测试城市若不能覆盖某一分流，只报告未覆盖，不冒称PASS。任一错误立即暂停并截图。不可从失败后状态补扫历史，不要求重建局。
+
+W0004：L3但仅直接保存/分流回归。无新Design/收益/carrier/Claim/F。用户已确认游戏退出并允许部署，需提交后完成安全部署与receipt核验；当前源包与live状态以Status/Authority为准。

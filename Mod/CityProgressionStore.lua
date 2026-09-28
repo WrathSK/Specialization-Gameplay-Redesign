@@ -848,8 +848,12 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     local old=assert(Players[q.conquest.oldOwner],'ACQUISITION_OLD_OWNER_UNAVAILABLE')
     assert(old:IsMajor()==true and old:IsHuman()==false and not P.IsTestPlayer(q.conquest.oldOwner),'ACQUISITION_AI_MAJOR_REQUIRED')
     local set={};local seen={}
+    q.stage='区域快照读取'
     local districts=assert(c:GetDistricts(),'ACQUISITION_DISTRICTS_UNAVAILABLE')
-    for _,district in districts:Members()do
+    local n=districts:GetNumDistricts()
+    assert(integer(n) and n>=0,'ACQUISITION_DISTRICT_COUNT_UNAVAILABLE')
+    for i=0,n-1 do
+     local district=assert(districts:GetDistrictByIndex(i),'ACQUISITION_DISTRICT_ENTRY_UNAVAILABLE')
      assert(same(reference(district:GetCity()),q.reference) and district:GetOwner()==q.reference.owner,'ACQUISITION_DISTRICT_REFERENCE')
      local id=district:GetID();assert(integer(id) and not seen[id],'ACQUISITION_DISTRICT_ID');seen[id]=true
      local complete=district:IsComplete();assert(type(complete)=='boolean','ACQUISITION_COMPLETENESS_UNKNOWN')
@@ -860,6 +864,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
      turn=q.turn,conquered=q.conquest.sequence,added=q.added,initialized=q.initSequence,transferred=q.transferred,
      legacySet=set,mode=next(set) and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'}
    end
+   q.stage='城市登记写入'
    local token,ledger
    if modern then
     assert(initialized and not writing,'NEW_SAVE_NOT_READY')
@@ -1004,8 +1009,14 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.Describe(pid,c)
   if c then
    local q=at(c:GetX(),c:GetY())
-   if q then return P.VERSION..' | 城市取得待确认'..'\n等待确认，旧流程未写入：'..tostring(q.error or (q.conquest and '等待征服完成/城市转移确认') or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or 'FOUND_CITY / 城市初始化')
-    ..'\n请保留当前存档和报告；不要再次迁移或投资。'end
+   if q then
+    -- Keep raw error internally; the player report needs one actionable reason, not a traceback.
+    local reason=tostring(q.error or (q.conquest and '等待征服完成/城市转移确认') or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or 'FOUND_CITY / 城市初始化')
+    reason=reason:match('[^\r\n]+') or 'UNKNOWN'
+    reason=reason:gsub('^.-:%d+: ','')
+    return P.VERSION..' | 城市取得待确认'..'\n阶段：'..(q.stage or '事件确认')..'\n原因：'..reason
+     ..'\n登记尚未确认；不会自动认领或推断历史。\n请保留当前存档和报告；不要再次迁移或投资。'
+   end
    if freshOverflow and not store.Owns(c) and not legacyPresent(c) then return '新城登记暂停：候选数量超过安全界限；未猜测城市历史。'end
   end
   if c and not store.Owns(c) and c:GetProperty(M.Keys.TOKEN)~=nil and c:GetProperty(M.Keys.JOURNAL)==nil and c:GetProperty(M.Keys.FLOW)==nil then

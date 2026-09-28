@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "8bebf5a16b051b858bfa02ecdb32568c56d77946",
-  "runtime": "B110.137 / modinfo137",
+  "runtime": "B111.138 / modinfo138",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "8c8682f4535d418aecf7a5074e1182745e93f7d049e8e1b7290e4fb904cdf626",
+      "sha256": "6924e87d8a4a8e849f67cea8bb607dec4dfd676a34542504898854039744d4d4",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B110 authorized no-history AI conquest snapshot; actual-handler local regression passed; native gate pending"
+      "provenance": "B111 indexed conquest snapshot and concise diagnostic repair; STATIC/LOCAL pass, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5195865be65ff3b59d257ad9afe8e1b480f5e06cdd56694fbb848c501295bcbd",
+      "sha256": "963965f7787b636af943e88aca7a68958f19b39f8babd15a785091d806ed467a",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B110 authorized no-history AI conquest snapshot; actual-handler local regression passed; native gate pending"
+      "provenance": "B111 indexed conquest snapshot and concise diagnostic repair; STATIC/LOCAL pass, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "948977a70ee5b53ddbf10c21039f838cd47c6a32cb27d4a1748f289b853c8a62",
+      "sha256": "06f51c90ebca745273a6e903731d72999305617996789502650b43b95dcb02fa",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B110 authorized no-history AI conquest snapshot; actual-handler local regression passed; native gate pending"
+      "provenance": "B111 indexed conquest snapshot and concise diagnostic repair; STATIC/LOCAL pass, native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",

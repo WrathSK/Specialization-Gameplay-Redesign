@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0279",
-    "runtime": "B110.137 / modinfo137",
+    "status": "S0280",
+    "runtime": "B111.138 / modinfo138",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -344,9 +344,15 @@
       "reason": "Authorized acquisition mode and record contract, evidence and native gate"
     },
     {
-      "path": "DevelopmentTests/test_b110_conquest_snapshot.py",
+      "path": "DevelopmentTests/test_b111_district_snapshot.py",
       "kind": "full",
       "reason": "Direct new acquisition/mode actual-handler tests and inherited persistence regression"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B111.138 — indexed district snapshot repair",
+      "reason": "Authorized minimal native enumeration repair, accurate fixture and pre-conquest retry boundary"
     }
   ],
   "dependencies": [
@@ -406,8 +412,8 @@
   ],
   "validation": {
     "local": [
-      "test_b110_conquest_snapshot.py: direct conquest modes and inherited B109/B108 production tests, version assertion adapted only",
-      "All Lua syntax/modinfo137/context; no unrelated full regression/stress"
+      "test_b111_district_snapshot.py: indexed fixture without Members, bad reads/no-write/short diagnostic and inherited snapshot + B109/B108 direct regression",
+      "All Lua syntax/modinfo138/context; no unrelated full regression/stress"
     ],
     "user": "Two actual AI conquest cities: nonempty frozen set stays NONE even singleton/later construction; empty set subsequent completion P1; one full restart/load, left-click E2 reports."
   },
@@ -417,9 +423,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
-    "implementation": "B110.137 prior STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native disproved district iterator assumption; repair not implemented",
+    "implementation": "B111.138 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; indexed read and diagnostic repair, no save schema or gameplay changes",
     "native": "B110 two-city conquest snapshot USER_GAME_TEST_FAIL: district Members enumeration at line852; B109 prior scoped PASS retained; snapshot/save branches not verified",
-    "next": "Await minimal indexed-enumeration/fixture/diagnostic repair authorization; user retains pre-conquest save; no deployment/Claim/F",
+    "next": "User confirmed game exited; commit/push then safe deployment and pre-conquest-save native retry; no Claim/F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes"
   }
 }
