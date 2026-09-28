@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0301
+Status Revision: S0302
 Implementation Build: develop P0-B-118.145 / modinfo145 EXACT_PROJECT_PRIMITIVE; live B118.145 verified158/158 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B118_LOCAL_PASS_NATIVE_REQUIRED; E2 Claim plan-only
+Work State: B118_NATIVE_INCONCLUSIVE_DIAGNOSTIC_TIMING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B118已授权精确扣除实验](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#22-b118145--authorized-exact-project-subtraction-primitive)完成本地75项定向验证；专用无收益项目手动选入，0<p≤10000，两次确认后按即时读数单次AddProgress(-p)。旧固定−1000路径已替换；只清实验项目，未正式接入固定回合能力、未自动改队列/发收益。真实归零/无残留仍USER_GAME_TEST_REQUIRED。
+[B118五图](Validation/Results/Specialization_B118_Exact_Progress_Inconclusive.md)已归档：项目7，即时7→7；后续报告省略零/未变化值且重放旧样本，工期119180→119181，最后改磨坊8回合。**NATIVE_RESULT_INCONCLUSIVE / DIAGNOSTIC_TIMING_BOUNDARY**，不能判最终扣除失败或全清PASS。hover残留B117−1000说明，实际B118为−p；下次原型需修可读性，不要求用户重复当前模糊测试。
 
-最小流程：B117扣除前档→选“溢出承接实验（无收益）”为唯一目标→有正进度后准备/确认→项目应0且其它目标不变→同回合切0进度正常目标应0→下一回合正常增长。项目0时可正常生产一回合再试，不能把这个分支当旧overflow捕获证明。任何负数、拒绝、未知、缺项目、早完成立即停止；不重复扣除、不砍树/Cheat。具体截图/边界见上方合同。
+[高成本dummy按时强制完成方案讨论](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#23-b118-screenshot-ambiguity-and-timed-dummy-completion-proposal)已保存。推荐下一最小门禁：无收益测试项目单次FinishProgress→下一目标/正常回合检查余量，并明确刷新诊断；尚未实施、等待授权。显示1回合可做专项目UI覆盖候选，但不是原生计时保证。高额注入提前完成、完整结算时序、中断/重载和一次性奖励均未解决。
 
-[B117原生反证](Validation/Results/Specialization_B117_Negative_Production_Boundary.md)保持FAIL；用户全清未分配存储合同不变。高成本不是无限容量，chop/harvest/中断/存读收尾尚未验证；项目仅实验载体，非正式Design。恢复必须配测试前存档。
-
-已确认游戏退出并部署B118.145 source582a1e7，158/158 MATCH；receipt B118.145-582a1e7-playtest.json。B117恢复点与稳定桥保留，未启动游戏。E2 Claim plan-only、F未推进；main/stable B069.96未改变。
+live仍B118.145 source582a1e7，原部署158/158 MATCH；receipt B118.145-582a1e7-playtest.json。本轮仅证据/调查记录，无代码/部署。B117盲扣FAIL及用户全清合同保持；75项本地PASS仅限定代码保护，非native全清。E2 Claim plan-only、F未推进；main/stable B069.96未改变。
 
 ## 历史阶段记录
 

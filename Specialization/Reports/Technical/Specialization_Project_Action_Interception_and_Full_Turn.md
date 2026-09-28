@@ -640,3 +640,18 @@ UI把专用项目变化与其它目标变化分开：期望项目p→0、其它0
 当前只验证一次受控项目清理和后续残留。chop/harvest、超大注入提前完成、中断/存读收尾均后置；任何失败回测试前档。新数据库项目若旧开发档没有载入，不修改存档硬塞对象，先报告具体数据库边界。源码回滚不修复已保存生产状态。实机全部USER_GAME_TEST_REQUIRED。
 
 部署：source `582a1e7`；只读进程确认游戏退出，既有工具完成B117恢复点→稳定桥→B118，158/158 MATCH；receipt `B118.145-582a1e7-playtest.json`，DEVELOP_ACTIVE。未启动游戏，main未改。
+
+
+## 23. B118 screenshot ambiguity and timed dummy completion proposal
+
+2026-09-28 [五图结果](../../Status/Validation/Results/Specialization_B118_Exact_Progress_Inconclusive.md)：即时7→7是缓存，后续Read过滤零和未变化项，无法区分最终归零与未变；工期119180→119181只是更新线索。NATIVE_RESULT_INCONCLUSIVE，不宣布FAIL/PASS。hover仍提−1000是旧说明，实际B118为−p，须在下一获授权修复中一并处理。本轮无代码/部署。
+
+用户方案：高成本无收益dummy承接旧overflow、正常产能和chop/harvest，满足完整生产回合后强制完成，独立发奖。此方向技术上有候选组成，并不因负数实验问题被否决：B118已有无收益高成本项目；本机Cheat_Menu_Panel_Script.lua:68–74存在BuildQueue:FinishProgress()调用。该先例只确认可调用的完成路径，未证明其如何处理投入、隐藏存储、完成余量、自动下一队列或事件顺序。不能先拿到奖励再补生产漏洞。
+
+建议验证顺序：先专用无收益项目有进度→单次FinishProgress→确认完成、切0进度目标、下一正常回合检查余量/负债；同时修报告为“即时样本/当前读数”分开，明确显示当前目标、进度0或负数。先不发奖。通过后才验证正常回合结束时机、chop/harvest及重复/中断/存读。正式奖励需独立记录启动时点与连续占用，并在合格结束时恰好一次；不能任意原生CityProjectCompleted都给奖，否则Cheat或极大注入可能提前触发。
+
+有限高Cost不等于不能提前完成。须检测意外原生完成，并拒绝把它当合格计时完成；但是这只能保护奖励，不能自动保护溢出。没有确认完整生产结算事件之前，不把PlayerTurnDeactivated/首个PlayerTurnStarted直接当安全结束点；B116观察窗口局限继续适用。
+
+显示1回合：本机Base CitySupport.lua:269–304对项目读取GetTurnsLeft/进度/成本并返回Turns、百分比；HD DL_ProductionPanel.lua:600同样为项目读取GetTurnsLeft。因此可以在UI仅对本项目覆盖预计时间文本为“1回合／本回合结束时完成”，而不修改真实Cost或全局GetTurnsLeft。但这是UI prototype方向，不是已验证hook；生产列表、当前城市面板、队列/Tooltip和HD替换页须一致，进度条应表达计时而非百万成本。显示修改不能使引擎本身按1回合结算。中断或尚未进入计时状态时，不能无条件显示即将完成。
+
+当前建议由“继续扣锤”转向上述无奖励FinishProgress最小可行性门禁，等待用户明确实施授权；不擅自将讨论变为新Design或强制完成实现。旧全清与占用期隔离合同保持，无需本轮重复游戏测试。
