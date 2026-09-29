@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0334",
+    "status": "S0335",
     "runtime": "B133.160 / modinfo160",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "d50029a3d90ee11f288c89f6aa636e1b80a7bb87",
-  "current_batch": "B133_REDUNDANT_READ_OPTIMIZATION_NATIVE_PENDING",
-  "next_batch": "B133 targeted native comparison pending; no further implementation/GC/F",
+  "current_batch": "B133_NATIVE_COMPARISON_COMPLETE_MEMORY_GROWTH_OPEN",
+  "next_batch": "Scoped investigation of repeated city traversal/fact reconciliation; no repeat native test now, no new implementation/GC/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B133.160 deployed;170/170 MATCH;source d50029a;receipt B133.160-d50029a-playtest.json DEVELOP_ACTIVE;stable/B132 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B133 four source optimizations authorized; targeted L2 PASS; deployed170/170 MATCH; native pending",
+  "context_review_status": "B133 20 screenshots reviewed/archived; checks reduced, turn memory slope unchanged; no source/deployment changes",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
