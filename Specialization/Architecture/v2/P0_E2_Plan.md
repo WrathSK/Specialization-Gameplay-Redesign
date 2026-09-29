@@ -5,7 +5,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ## Current slice — recovery and action routing
 
-旁路验证：B112观测已限定验收；B113按钮/条件过回合已获用户授权，见[当前原型合同](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#12-b113140--guarded-next-turn-button-prototype)，不授权正式项目/Claim。此前B112[范围、实现、证据与最小测试](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#11-b112139--native-blocker-observation-prototype)。只观察、不强制、不建项目；不扩大本E2保存/Claim切片授权。
+当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户授权准备[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，尚未授权实施。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到这些未实现部分。
 
 **B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
@@ -13,15 +13,15 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 默认恢复 / 验收
 
-先看Status CURRENT与Authority，再读本节及下列完整B108合同/结果：
+先看Status CURRENT与Authority，再按当前动作读取新Claim计划/本次证据；触及保存时才展开以下B108合同：
 
 - [B108保存、旧writer切换、失败/回滚合同及三城测试](#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)。包含新档资格、UNKNOWN/旧档不写、部分写入保持HELD、原生初始化未证实、最小三城一次冷加载流程。
-- 当前验收只需要该流程、用户本次材料及相关Status；缺截图不能说已重看，用户陈述与图像证据分开。归档不自动授权修复。
+- 当前项目验收以B123结果和新Claim计划为准，B108三城流程不重复列为必测；缺截图不能说已重看，用户陈述与图像证据分开。归档不自动授权修复。
 - 已记录部署引用在Status/Authority；普通问答不读取外部包，涉及部署恢复才核receipt与实际包。
 
 ### 实施依赖与按问题展开
 
-[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前授权范围及完成结果见[B110检查点](#b110137--authorized-conquest-snapshot-checkpoint)；不自动进入后续Claim。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[一回合Claim计划](#next-slice--one-turn-claim-plan-after-b123)；快照结果见B111，Claim仍未授权实施。下一授权若改变切片，先更新适用集合，不能永远追加历史。
 
 | 触发 / 直接合同 | 阅读范围与用途 |
 |---|---|
@@ -900,7 +900,7 @@ B111部署结果：用户确认游戏已退出；从clean source `0ffbfdb`完成
 
 ## Next slice — Claim project plan after B111 acceptance
 
-Status: PLAN_ONLY / AWAITING_USER_REVIEW_AND_IMPLEMENTATION_AUTHORIZATION. 用户本轮授权准备计划，不是实施。基线B111.138，双城快照/后续完成/完整重启限定PASS；不重复该批测试。正式规则为当前Spec PROG-006～009，用户再次确认候选即使只有一个也须完成对应城市项目。
+Status: HISTORICAL_PROPOSAL / SUPERSEDED_BY_ONE_TURN_CLAIM_PLAN_AFTER_B123。以下Cost=1提案未实施；当前方案见文末一回合Claim计划。保留原提案用于追溯，不作为活动实施指令。基线B111.138，双城快照/后续完成/完整重启限定PASS；不重复该批测试。正式规则为当前Spec PROG-006～009，用户再次确认候选即使只有一个也须完成对应城市项目。
 
 ### 目标与已接受合同
 
@@ -961,3 +961,74 @@ L3（持久Identity写入），仅相关范围：
 回滚代码来自B111已知commit，运行包由部署receipt恢复；使用Claim前独立存档，不承诺旧B111能读取新Claim完成记录。保留现有证据与备份，不为本计划制作新源码副本。
 
 不含：商业操作UI、时代对话、销毁/重建/位置复用、未专业化城市丢失再夺回、AI启用、多人、其它专业Legacy、F、新Design revision。当前用户需要审核Cost=1的真实项目方案并另行授权实施；其余技术门禁在授权实现时按最小prototype核验，不能先写成原生PASS。
+
+
+## Next slice — one-turn Claim plan after B123
+
+Status: PLAN_ONLY / USER_REVIEW_REQUIRED / IMPLEMENTATION_NOT_AUTHORIZED。
+基线：develop B123.150 / source 5868061，原生限定PASS记录08dc8f4；当前文档状态以Status为准。Design D0035 PROG-006～009、ELIG及现行E2保存合同不变。本节替代上文未实施的Cost=1建议，不新建Design revision；本次授权只准备计划。
+
+### 玩家操作与范围
+
+1. 征服时已有非空冻结LegacySet、仍未认定专业的己方城市，生产列表提供其中各专业对应的认领项目。仅科研/文化/工业/商业；单候选也不自动选择。后建区域不增加候选，空集继续原有first-completion流程。
+2. 玩家直接选一个项目作为当前唯一生产目标；三处显示1回合，不打开P0、不扫描其它待办、不强制结束回合。候选名称沿用功能性“认定科研／文化／工业／商业专业”，不冒充新正式能力名。
+3. 沿用已验收真实高成本项目路线：建议复用原型Cost=1,000,000作为技术容器，由正常完整回合后的原生FinishProgress完成；这是实现参数，不是玩家实际等待成本。进入项目接受既有未分配生产被放弃，期间生产/砍树进入项目，不应转给后续目标；不使用负AddProgress账本。不要声称B123已经证明任意资源收获/外部mod组合。
+4. 正常项目完成事件才建立选中Identity与Potential1，收回该城其它Claim入口；点击/启动只保存计时意图，不写专业、不发投资成果。极端生产或Cheat提前完成仍走合法完成事件，不另加阻止Cheat的门槛；正常用途须一回合完成。
+5. 成功保存后按当前事实派生ACTIVE与Network；没有额外奖励。已有身份、非本地人类、UNKNOWN/HELD、空候选/自建城不得误认领。允许一直不选择。
+
+### 正式计时：供本计划审核的明确行为
+
+- 多城彼此独立；每城最多一个当前Claim。只维护活动记录集合，不轮询所有城市。普通生产与其它专业不进入此集合。
+- 保存启动回合、项目/专业、现行persistent record/token/reference、结束回合确认及完成阶段。使用现有Game级record-local持久化入口，不新增cityKey、文件数据库或通用合同框架；UI与单位都不是authority。
+- 同一城同一项目启动后正常存档/读档保留已确认计时，不因读档重开、缩短或重复结算。加载时重新核对owner、记录资格、当前目标和回合阶段，不能凭“当前在造Claim”补造已占用回合。已有原型实验计时不迁入正式Claim。
+- 改选其它目标取消该次连续占用；重新选择Claim须重新开始一个完整回合。项目排在队列后面不开始计时；最小实现入口只允许唯一当前项目，不支持为Claim预排其它目标，提示须明确且不得清掉普通生产队列。
+- confirmed ownership loss撤销访问和未完成计时；UNKNOWN暂停动作，不删除永久历史或凭猜测恢复。未专业化城市再次夺回的未定生命周期仍不在本切片解决。
+- 持久阶段区分等待结算、准备原生完成、完成依据已确认/专业已提交。原生完成前先持久锁存；同步/延后完成回调均需幂等。读档遇到“曾准备调用但完成证据未知”须暂停并报告，不重复调用、不凭项目消失推断成功。正常保存/读档必须连续工作，异常中断不是补发理由。
+
+以上续算/中断细节是本次待审核实施合同，不把原型的session-only限制当正式玩法，也不自行写入Design。若底层不能可靠达成，停在具体技术边界，不更改玩法绕过。
+
+### Claim完成事务与访问资格
+
+沿用原计划的完整资格：当前本地人类，已确认ACTIVE record（不是专业ACTIVE等级），acquisition.mode=LEGACY_CLAIM、UNASSIGNED、NONE/P0、无保存错误；只认冻结set中精确项目ID→专业映射。读取现行同城依据和对应完整区域，不能根据名字/坐标单独认城，不以区域新建事件冒充认领。
+
+在CityProgressionStore内增加专用Claim提交方法：同一次record-local保存写Identity/P1、完成项目/回合依据及base.first技术区域锚点，保留acquisition/LegacySet和已有永久资料；readback成功才OnPermanentCityWrite。现有CLAIM_NOT_IMPLEMENTED校验改成明确的Claim记录结构校验，不直接删保护。保持尚未Claim的schema3和既有FIRST_COMPLETION正常可读；使用版本化扩展，不全城迁移。投资receipt不赠送、不覆盖。
+
+完成事件必须独立验资格并幂等：重复、迟到、其它Claim、旧owner或保存失败均不能第二次写身份。即使Cheat走同回合完成，也必须有真实合法完成事件；单凭UI或FinishProgress返回不能发放身份。保存失败保留故障证据，不回退City旧journal。找不到可信对应区域时停该城，不猜选另一个专业。
+
+建议沿用Projects.RequiredBuilding精确访问标记：四候选各自零收益marker，仅表示可派生入口，纳入ordinary排除、隐藏和module-owned退出；不是新的普通建筑/机构。认领完成后撤其它Claim并结束计时。需核验原生列表/队列刷新；不能只依赖“完成端拒绝重复”而放任失效项目可反复生产。无安全定域退出接口时停止，不清空普通队列或按前缀删建筑。
+
+### 实施顺序与直接模块
+
+同一授权切片内依次完成，本地逐段检查，不为每段另开用户验收：
+
+| 顺序 | 修改边界 | 完成标准 |
+|---|---|---|
+| 1. 身份事务 | CityProgressionStore及其直接validator/reader消费者 | 版本化Claim依据、record-local readback、重复拒绝、旧非Claim路径回归 |
+| 2. 项目与资格 | ClaimProjects、精确SQL/Text、Gameplay/modinfo、普通建筑/隐藏/退出名单 | 冻结候选生成入口，完成事件唯一提交，失效精确撤销 |
+| 3. 正式一回合路径 | 基于TimedProject与选择/显示薄包装，按精确四项目适配；Prototype保留但不同时拥有正式项目 | 多城独立、持久计时、连续回合、一次完成；不建generic ability/project engine |
+| 4. 派生与诊断 | EffectiveFacts、InvestmentAction、CrewProjects、Standardization/Network的base.first及OnPermanentCityWrite调用点 | 提交后当前事实重算；简短显示候选、计时/阻断、认领结果，按需查看 |
+
+正式writer与旧实验writer用精确项目ID隔离，旧P0按钮不成为生产入口。不改B123实验项目已通过行为；如正式适配必须共用函数，保留其直接回归。实施前对上表实际调用点扩展W0001 manifest闭包，只加入真实受影响依赖；本次未进行完整源码cutover审查，不以计划hash代替实施审阅。
+
+### 验证、用户流程与退出条件
+
+风险L3，仅保存/身份/计时及精确消费者相关验证；无无关历史全量/stress。
+
+本地：候选单/多/空、后建不扩候选、无权限不启动；队列更新顺序、重复事件、两城不同阶段互不串；启动前/启动后/结束确认后/认领后保存重载；改选重开、owner loss、UNKNOWN、错误reference；锁存及保存失败、回调乱序、Cheat合法完成与迟到事件；永久提交后P1/投资/ACTIVE重算；B111分流和B123计时相关回归。静态检查精确ID注册、SQL、Lua、UI、退出隐藏、schema和context。
+
+最小原生一次联合流程：
+
+1. 一个单商业候选城A、一个有两个冻结候选城B；确认A后建工业不新增入口，B可选择其一，点击尚未认领。
+2. 两城同回合各选Claim，检查1T；过回合前保存并完全退出重载，仍等待正常结算，不能仅加载即认领。
+3. 正常过回合，两城分别成为所选Identity/P1，其它Claim退出；后续普通目标无带入生产、投资可用且无串城。无需再测旧空队列/其它待办绕过。
+4. 认领后再保存冷加载，检查两城身份保持且不能重选。用此前Claim前存档单城检查一次“改选普通目标→重新开始Claim”的完整回合要求；不以正常路径PASS冒充中断路径已测。
+
+已通过的砍树无溢出作为可复用primitive证据；无需重复一整套溢出调查。若正式适配改变生产结算时点/调用，才补直接受影响生产隔离验证。save/load异常、身份串城、重复认领、入口撤销失效立即停止。
+
+本地与上述原生关键流程都通过后仅关闭Claim切片，不表示E2所有生命周期/F通过。实现commit/push后按W0003游戏退出、receipt与恢复点安全部署。回滚基线B123.150配Claim前独立存档；新完成/计时schema不承诺旧包可读取，不造兼容迁移。保留全部既有证据。
+
+### 用户审批与停止点
+
+本计划待用户审核及单独实施授权。建议采用高成本原生项目的一回合确认，不再采用旧Cost=1建议；同城读档续算、改选重开、多城独立、Cheat真实完成有效按上述合同一起审阅。没有另需补齐的Gameplay阻塞；不可靠的原生完成/资格退出归技术门禁，不能预写PASS。
+
+不包含时代对话或商业能力正式接入、收益新公式、AI/多人、其它专业Legacy、城市销毁/重建、未专业化失城夺回、F。当前无用户游戏测试，本轮无runtime/部署/Design变更；等待授权。

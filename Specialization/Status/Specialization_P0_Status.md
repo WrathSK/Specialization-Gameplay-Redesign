@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0316
+Status Revision: S0317
 Implementation Build: develop P0-B-123.150 / modinfo150 SELECTION_CONFIRMATION; live B123.150 verified166/166 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -15,7 +15,7 @@ Work State: B123_SCOPED_NATIVE_PASS; E2 Claim plan-only
 
 “处理其它待办”属于旧空队列过回合实验，不是当前真实项目方案的前置要求。可以用本原型继续规划真实1-turn项目；当前仍单活动城/会话级，无正式奖励，读档不续算。Claim专属资格、Identity/P1永久提交、重复/失效退出、多城与保存边界仍需实施和验证。
 
-Spec PROG-008允许极低成本或1-turn确认；现有Claim计划仍是Cost=1普通项目建议，不能静默视作已经授权改用本计时方案。下一建议为更新最小Claim计划，等待用户确认/实施授权；不进入Claim/F实现。
+[一回合Claim计划](../Architecture/v2/P0_E2_Plan.md#next-slice--one-turn-claim-plan-after-b123)已按用户授权准备，替代未实施的Cost=1提案。包含冻结候选、真实完成才写Identity/P1、多城独立、持久计时/读档续算、改选重开、精确入口退出与一次联合实机验证。仅计划待审核，尚未授权Claim实施；不进入F。
 
 源码/live仍B123.150，source 5868061；此前receipt B123.150-5868061-playtest.json记录166/166 MATCH，本轮无重新部署/运行包核验。main/stable B069.96与Design不变。
 

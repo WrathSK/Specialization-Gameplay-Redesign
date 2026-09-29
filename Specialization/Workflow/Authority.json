@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0316",
+    "status": "S0317",
     "runtime": "B123.150 / modinfo150",
     "military": "D0034"
   },
@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "58680610cadda159e515e296e6245eb2bdcaf29d",
   "current_batch": "B123_SCOPED_NATIVE_PASS; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Recommend minimal Claim plan update for validated one-turn project; no implementation authorization",
+  "next_batch": "Review one-turn Claim plan after B123; await explicit implementation authorization",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B123.150 / modinfo150 deployed;166/166 MATCH;source 5868061;receipt B123.150-5868061-playtest.json DEVELOP_ACTIVE;B122/stable recovery retained;PT012 scoped user PASS incl reported chop; no new deployment",
   "stable": "main B069.96 / modinfo96",
