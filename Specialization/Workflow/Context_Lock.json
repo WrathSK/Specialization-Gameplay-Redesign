@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "310a4e361cab344ce29044994fc7f79d4299a46bd0f91ca1b6a14ecbe5fedb66",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "90c08989401328ba501fa8e818486aadeed971999890fa78d1e3f59fa0e4d6bf",
     "Specialization/README.md": "c7d6d0c6e128cbf5ee612b62dc49e63737a7f34f10e767a17f78603f78cc1e62",
-    "Specialization/Status/Specialization_P0_Status.md": "7bf408d72d1baae7d9aab3614f28d3e9075cf3f72b7d6c48cb9a4b62367d0e78",
+    "Specialization/Status/Specialization_P0_Status.md": "c012edf37fd55427e41a754de0f7d8328c5b7a35301016fc258cc5c15de67d5d",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "4fdd44ad26f5033cacd2c517d98926f912ea01773de339221896a156497786f4",
+    "Specialization/Workflow/Authority.json": "15249dfcbd1a6005920c6033f4d3d8b421def90f3516adb093652280f32caeba",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c",
@@ -280,7 +280,7 @@
     "DevelopmentTests/test_b128_progression_regression.py": "08d6677b4354c1663e1b3451daec6157ff8000dc7346548f05347d72df7c600f",
     "DevelopmentTests/test_b129_claim_sync.py": "9a86532a2ba553575a7bcbdfb0bec40a8d97a66f7b49d23966cf2491341b31e4",
     "DevelopmentTests/test_b129_claim_resume.py": "4f8ed9d5df9c24ffbca307d71e99d06543811eb2f400dc9d8c2e0924d44cb6da",
-    "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md": "7449d145a473df0495d7fbc20363ecaf4a3684e272e192fe1133b969d29f9805",
+    "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md": "313064808ca088f7825f8079bc397ecd78c6cf32b46dc5bdc214a9fb4512103b",
     "DevelopmentTests/test_b130_memory_observation.py": "f39de8ae2e0f4ff7daa8d45274a682dab015357e67043c35b8b3d81072fdb1df"
   }
 }

@@ -32,7 +32,7 @@
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "0d547eeed2037236b4b772f140656910d02c578a",
   "current_batch": "B130_MEMORY_OBSERVATION_NATIVE_PENDING",
-  "next_batch": "Await two-turn bounded memory observation; no cleanup/gameplay/F",
+  "next_batch": "B130 native observation received; bounded event/module attribution proposed, awaiting implementation authorization; no cleanup/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B130.157 deployed;170/170 MATCH;source 0d547ee;receipt B130.157-0d547ee-playtest.json DEVELOP_ACTIVE;stable/B129 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",

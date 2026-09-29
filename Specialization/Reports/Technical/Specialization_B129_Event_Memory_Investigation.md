@@ -78,3 +78,39 @@ LOCAL_SIMULATION_PASS：test_b130_memory_observation.py小规模确定性fixture
 最小实机：选己方城，左键内存观测并截图作为开始；正常过1回合进入玩家操作，右键报告并与活动监视器同时间截图；静置约20秒后右键再读（不点左键）；再过1回合重复。若方便，在同一次窗口内征服一城后右键报告即可，不要求重新造局。最多2回合+可选征服，六回合自动停止只是上限。collectgarbage不可用也保留调用量/缓存数据，不为此反复测试。不要切换Mod、不清内存、不要求额外自动存档操作。定位结果出来前不宣称性能修复或泄漏已解决。
 
 Deployment: B130.157 / modinfo157, source 0d547eeed2037236b4b772f140656910d02c578a; receipt B130.157-0d547ee-playtest.json DEVELOP_ACTIVE. OS process check confirmed game exited; official restore/activate transaction retained stable and B129 recovery; source/runtime 170/170 MATCH, digest 89593f6d60998056862febd14df2dfac6f4ef5eae923c4fea40cb29bd1d3adc7. Native observation remains USER_GAME_TEST_REQUIRED.
+
+## B130 native observation and scoped event follow-up
+
+2026-09-29用户投递6图（三组同时间进程/诊断画面），已逐张查看并归档外部 Evidence/B130_Memory_Observation，6/6 SHA256一致；旧1/2组38图再次核对无损。原图、manifest与Observation.md保留在外部，不复制进Git。
+
+| 回合/时间 | 进程Memory GB | Gameplay调用处count MiB | 累计城市扫描 | 累计建筑检查 |
+|---|---:|---:|---:|---:|
+|T39 10:22:02|10.28|277.90|0|0|
+|T40 10:22:58|10.51|420.86|7773|811797|
+|T41 10:23:53|10.53|486.77|11726|1435815|
+
+T39离开/发布279.01/279.10，T40进入/发布417.71/418.00；T40离开/发布421.34/421.39，T41进入/发布482.02/482.29。所显示缓存条目始终D1/网络玩家1/认领视图3/确认10/城市记录10；建拆载体、受计数包装器覆盖的属性写入、网络派生计数均0。计数不是所有原生/其它Mod活动，零值不能排除未覆盖路径。没有单独同回合静置采样，不从这些图片推断静置完全不回收。
+
+证据等级：USER_GAME_TEST观察确认count接口可用、这些边界读数上涨及固定条目数；不是内存修复PASS，也不是已证泄漏。count包含尚未回收对象，不等于仍被引用的存量，且并非本Mod独占用量。Gameplay/UI调用处读数几乎相同，当前“独立context”文案不能证明它们统计独立Lua堆；下一诊断应改为调用位置标签，继续禁止相加。此前报告的context归属说法在这一点上需要收窄。
+
+### 已确认的调用放大路径（不是内存根因定论）
+
+- RuntimeWork.Hook将CityWorkerChanged/Focus只缩到player，不保留city；各模块Audit随后遍历该玩家城市。DistrictBuildProgressChanged等未识别布局保留全范围安全核对。不能直接猜参数缩城；需先核对事件合同。
+- ResearchInfrastructure/Apply/Chair、Lv2GPP、Lv3Effects等分别注册事件，分别建临时facts/plan/installed行；ResearchChair.installed即使能力未生效仍检查其全部定义载体（为了撤销旧效果）。不能简单跳过非科研城而破坏withdrawal。
+- Lv2Housing.expected对符合资格城市每次MarkDirty再Read；DistrictCompleteness.Capture每次读取遍历GameInfo.Buildings整个目录。缓存只有1条仍可不断重建；条目数稳定不是分配量稳定。当前截图未报告dc_capture，不能量化它对81万/143万检查的实际份额。
+- UI/GPPRefresh未过滤worker/focus事件的玩家，任何此类事件均可mark，再由publish/playback/UI pulse发送本地玩家LV2_GPP_DIRTY。Gameplay该请求会核对GPP、Lv3Effects、Lv4Percent、Infrastructure、Cross、Apply、Chair七模块，即使FactsChanged=false也运行这七项。一个窗口内dirty可合并，但不同publish间再次mark可再次发送。
+- CommerceConvergence等旧writer仍核对AI城以撤销其owned效果；不把不参与专业解释成可以无条件删除其安全退出路径。no-write截图也不能证明没执行大量检查。
+- P.Field每次新建pcall闭包，P.Info调用两次P.Field；大量carrier查表、installed临时行与facts克隆提供分配热点候选。尚未取得分模块字节/时间归因，不宣称其中任何一项已证为主要内存来源。
+
+LOCAL_SIMULATION_PASS（小型只读探针，实际RuntimeWork.lua与UI/GPPRefresh.lua，临时Python/Lupa Lua55环境，无runtime修改、无玩法回归/stress）：
+1. 同城3次worker事件 -> 3次player范围Audit，scope不含city。
+2. 一次district progress事件 -> 无scope Audit。
+3. 同玩家同回合2次turn事件 -> 1次Audit，原有去重有效。
+4. 外国玩家worker事件 -> 一次本地玩家GPP dirty request。
+这些证明回调代码行为，不证明真实游戏事件频率或具体MiB贡献。
+
+### 下一最小建议（待授权实施）
+
+先增加有界、按需的事件来源/模块工作量归因：本次窗口内各Audit调用数、D capture/hit/dirty、GPP dirty请求数与事件来源玩家；只保留固定计数及最重几项，不保存逐事件历史。复用B130窗口和入口，修正堆归属标签。局部前后count仅作分配线索（可能受GC影响，不能直接相加视为独占内存）。
+
+拿到归因后优先评估城市级dirty合并、重复facts/目录capture复用；逐个保留当前所有权退出、UNKNOWN保留、保存重载与收益失效重算语义，不在本次调查中改writer。固定时点释放确定无用的引用仍可作为方案，但没有证据支持清理永久账本或每回合强制全GC。无需用户现在重测；不推进F、不部署。
