@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0326
-Implementation Build: develop P0-B-128.155 / modinfo155 UNASSIGNED_RETURN_LOCAL_COMPLETE; live B128.155 verified170/170 MATCH; stable B069.96
+Status Revision: S0327
+Implementation Build: develop P0-B-129.156 / modinfo156 CLAIM_RELOAD_LOCAL_COMPLETE; live B128.155 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B128_CLAIM_RELOAD_USER_FAIL_REPAIR_PLAN_PENDING
+Work State: B129_CLAIM_RELOAD_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 [B128实机结果](Validation/Results/Specialization_B128_Claim_Reload_Failure.md)：商业候选城交出/夺回后P0与候选保留；不重启可认领和投资（用户陈述）。保存重启后项目持续“确认中”、数回合不完成，PT014部分通过、续接USER_GAME_TEST_FAIL，项目隐藏仍待验。
 
-下一窄批为Claim冷加载确认/有限重试与保存计时恢复修复，待用户授权；不凭队列补造timer，不进入F或工业模板初始化。用户暂无需重测，保留现有失败档及夺回前存档。
+[B129窄修复](../Architecture/v2/P0_E2_Plan.md#b129156--claim-cold-load-acknowledgement-repair)已获授权、本地通过；请求有确认及最多3次有限发送，不凭队列补造timer或重置回合。待失败档冷加载复核；过期timer明确暂停后重新选择，不补发过去奖励。不进入F/工业模板。
 
-源码/运行包B128.155 / modinfo155，source ad87811，既有部署170/170 MATCH，receipt B128.155-ad87811-playtest.json；本轮未重新核验运行包、未部署。工业缺历史模板暂停边界保留，main不变。
+源码B129.156 / modinfo156；运行包仍B128.155 / modinfo155，source ad87811，既有部署170/170 MATCH，receipt B128.155-ad87811-playtest.json；本轮未重新核验运行包、未部署。工业缺历史模板暂停边界保留，main不变。
 
 ## 历史阶段记录
 

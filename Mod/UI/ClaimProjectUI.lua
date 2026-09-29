@@ -18,23 +18,44 @@ function M.Text(pid,id,project)
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
  if M.Current(c)==project then
   local v=ExposedMembers.SPC_ClaimSelection and ExposedMembers.SPC_ClaimSelection[tostring(pid)..':'..tostring(id)]
-  return '确认中',v or '等待Gameplay确认；若持续如此请查看当前项目提示'
+  local sync=ExposedMembers.SPC_ClaimSync and ExposedMembers.SPC_ClaimSync[tostring(pid)..':'..tostring(id)]
+  return '确认中',v or sync or '等待Gameplay确认；若持续如此请查看当前项目提示'
  end
  return '1','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'
 end
 function M.New(P,send,notify)
- local api={};local pending={};local seen={};local pendingText={};local synced={};local warmed=false
+ local api={};local pending={};local seen={};local pendingText={};local synced={};local warmed=false;local pulse=0
  ExposedMembers.SPC_ClaimSelection={}
+ ExposedMembers.SPC_ClaimSync={}
  ExposedMembers.SPC_ClaimQueueRead=function(pid,id)
   local c=assert(Players[pid] and Players[pid]:GetCities():FindID(id));assert(c:GetOwner()==pid)
   return {owner=pid,id=id,turn=Game.GetCurrentGameTurn(),project=M.Current(c),size=c:GetBuildQueue():GetSize()}
  end
+ -- At most three sends per city/UI lifetime, on bounded publish opportunities.
+ -- Sending is not acknowledgement. Sync never creates or restarts a saved timer.
  function api.Sync(c)
   if not c or not P.IsTestPlayer(c:GetOwner())then return end
   local k=tostring(c:GetOwner())..':'..c:GetID()
-  if synced[k]then return end
-  synced[k]=true
-  send(c:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_SYNC',Token='CLAIM_SYNC:'..k,CityID=c:GetID()})
+  local s=synced[k]
+  if not s then s={owner=c:GetOwner(),id=c:GetID(),tries=0,nextPulse=pulse};synced[k]=s end
+  local backend=(ExposedMembers.SPC_P0 or {}).ClaimProjects
+  if backend and backend.syncAck and s.token and backend.syncAck[k]==s.token then
+   s.done=true;ExposedMembers.SPC_ClaimSync[k]=nil;return
+  end
+  if s.done or pulse<s.nextPulse then return end
+  if backend and backend.startupError then
+   ExposedMembers.SPC_ClaimSync[k]='认领模块未就绪：'..backend.startupError;return
+  end
+  if s.tries>=3 then
+   ExposedMembers.SPC_ClaimSync[k]='读档同步未获确认；请保留存档和E2报告，暂停测试';return
+  end
+  -- Wait for the actual module; early UI construction must not consume retries.
+  if not backend then ExposedMembers.SPC_ClaimSync[k]='等待认领模块加载';return end
+  s.tries=s.tries+1;s.token='CLAIM_SYNC:'..k..':'..s.tries
+  s.nextPulse=pulse+(s.tries==1 and 4 or 12)
+  ExposedMembers.SPC_ClaimSync[k]='读档同步等待确认（'..s.tries..'/3）'
+  local ok,err=pcall(send,c:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_SYNC',Token=s.token,CityID=c:GetID()})
+  if not ok then ExposedMembers.SPC_ClaimSync[k]='读档同步发送失败：'..tostring(err)end
  end
  -- One bounded local-city reconciliation per UI lifetime, independent of opening a panel.
  function api.WarmStart()
@@ -54,8 +75,13 @@ function M.New(P,send,notify)
   ExposedMembers.SPC_ClaimSelection[k]='等待原生选择确认';return true
  end
  function api.Pulse()
+  pulse=pulse+1
   api.WarmStart() -- fallback when this context missed LoadScreenClose; no repeated city scan
   local shared=(ExposedMembers.SPC_P0 or {}).ClaimProjects
+  for _,s in pairs(synced)do if not s.done then
+   local c=Players[s.owner] and Players[s.owner]:GetCities():FindID(s.id)
+   if c then api.Sync(c)end
+  end end
   for k,p in pairs(pending)do
    local view=shared and shared.views[k]
    if view and view.project==p.project and view.stage=='ACTIVE' then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=nil

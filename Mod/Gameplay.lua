@@ -36,7 +36,7 @@ local function request(playerID,params)
   if params.Action=='CLAIM_BEGIN' or params.Action=='CLAIM_SYNC' then
     local claim=shared.ClaimProjects
     if claim and not claim.startupError then
-      if params.Action=='CLAIM_SYNC' then claim.Sync(playerID,params.CityID) else claim.Request(playerID,params) end
+      if params.Action=='CLAIM_SYNC' then claim.Sync(playerID,params.CityID,params.Token) else claim.Request(playerID,params) end
     end
     return
   end

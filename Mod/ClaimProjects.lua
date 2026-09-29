@@ -2,7 +2,7 @@
 SPCClaimProjects={}
 function SPCClaimProjects.Start(P,shared)
  local store=assert(shared.CityProgressionStore);local cp=SPCCityIdentityRead.Copy
- local d={views={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
+ local d={views={},syncAck={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
  local turn
  local ready=false;local busy=false;local dirty={};local active={};local derived={};local errors={}
  local kinds={'RESEARCH','CULTURE','INDUSTRY','COMMERCE'};local projects={};local markers={}
@@ -89,11 +89,12 @@ function SPCClaimProjects.Start(P,shared)
   busy=false
  end
  -- One city sync: rehydrate access/timer; settle only a previously saved due timer. Never begin a timer.
- function d.Sync(pid,id)
-  if d.startupError or not P.IsTestPlayer(pid) or type(id)~='number' then return end
+ function d.Sync(pid,id,token)
+  if d.startupError or busy or not P.IsTestPlayer(pid) or type(id)~='number' then return end
   local c=city(pid,id);if not c or c:GetOwner()~=pid then return end
   ready=true;d.status='已就绪';mark(pid,id);d.Flush()
   turn(pid,false,id)
+  if type(token)=='string' then d.syncAck[key(pid,id)]=token end
  end
  function d.Request(pid,p)
   if d.startupError or not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' or not projects[p.Project] then return end

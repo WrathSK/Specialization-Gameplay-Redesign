@@ -128,3 +128,5 @@ PT013 B127：冷加载同步与Claim/Crew列表修复STATIC/LOCAL通过；用户
 PT014 — B128未专业城原Owner夺回原生待验；优先科研候选单城交出→foreign冷加载→征服取回→原候选认领→投资/冷加载，合并B127显示与项目隐藏。工业模板缺历史暂停单列，不扩成收益PASS。[完整流程](../Architecture/v2/P0_E2_Plan.md#最小用户测试--pt014)。
 
 PT014更新：商业候选替代科研fixture；夺回/同session认领投资所测通过，重启续接FAIL，暂缓重测，等待窄修复授权。[结果与计划](Validation/Results/Specialization_B128_Claim_Reload_Failure.md)。
+
+PT014 B129：同步确认/有限重试本地通过，待失败档冷加载；过期计时应暂停并明确重新选择，不能补发。见E2计划B129最小复核，不重做征服，不另测UI。
