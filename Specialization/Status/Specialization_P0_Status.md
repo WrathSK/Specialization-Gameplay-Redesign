@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0313
+Status Revision: S0314
 Implementation Build: develop P0-B-122.149 / modinfo149 PROJECT_SELECTION_UI; live B122.149 verified166/166 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B122_IMPLEMENTED_NATIVE_PENDING; E2 Claim plan-only
+Work State: B122_NATIVE_ENTRY_FAIL_REPAIR_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户授权[B122正常生产入口＋城市显示](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#29-b122149--native-production-entry-and-remaining-city-time-displays)本地完成：选项目→原生队列确认唯一当前目标→自动请求计时，P0开启按钮隐藏。Gameplay仍重查资格并按已测正常一周期完成，无正式奖励。保持单活动城/会话级，读档不续算；未实现多城/Claim/F。
+[B122自动入口实机失败](Validation/Results/Specialization_B122_Selection_Failure.md)：三张截图显示列表1*只是预告；选择后生产栏/旗帜/底部均未启动，第三图明确命中队列资格拒绝。用户报告过回合不完成。PT012暂停，不能作为自动入口PASS。
 
-103项定向LOCAL_SIMULATION_PASS与语法/注册/context检查；新入口及城市旗帜/Tooltip/底部CityPanel显示为USER_GAME_TEST_REQUIRED。PT012：不打开P0直接选项目，查看三处1回合，正常过回合自动退出，普通生产工期/0起始进度正常即可。异常才打开报告；不要求重复B121后续增长整套流程。
+本地定向复现：项目hash先更新、队列size=0后变1时，入口提前ERROR且不再请求计时；实机实际size/事件顺序尚未记录，不能将该候选原因写为已测事实。UI旧错误在控制器重建后未清也已本地复现；真实读档保留行为未独立证明。下一步建议最小入口确认/诊断修复，等待授权，不要求用户重测当前失败包。
 
-[B121正常周期限定PASS](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)保留：T21→T22一次完成、随后纪念碑0；后续增长是用户陈述。新显示采用原生Expansion2旗帜扩展与HD CityPanel薄包装，不改成本或原生工期API。B117盲扣FAIL等反证不变；chop/harvest、保存、多城、正式奖励未由本次验证放行。
+[B121正常周期限定PASS](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)保留。B122城市显示适配已观察到未启动文案，但活动1T/普通生产恢复尚未验收。单城、会话级、无正式奖励、读档不续算；不进入Claim/F。
 
-源码/live B122.149 source a42048c；receipt B122.149-a42048c-playtest.json为DEVELOP_ACTIVE，166/166 MATCH。游戏退出进程复核、稳定桥与B121完整恢复点均保留；main/stable B069.96、D0035及四专业范围不变。下一动作仅本批用户测试，不自动推进。
+源码/live仍B122.149，source a42048c；此前receipt B122.149-a42048c-playtest.json记录166/166 MATCH。本轮未重新部署或核验外部运行包；main/stable B069.96、Design与玩法进度不变。
 
 ## 历史阶段记录
 

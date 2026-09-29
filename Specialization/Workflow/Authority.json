@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0313",
+    "status": "S0314",
     "runtime": "B122.149 / modinfo149",
     "military": "D0034"
   },
@@ -31,10 +31,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "a42048c162f671e7864eeec0982f660acb72f17b",
-  "current_batch": "B122_IMPLEMENTED_NATIVE_PENDING; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "PT012 direct project selection + banner/CityPanel native test; no next implementation authorization",
+  "current_batch": "B122_NATIVE_ENTRY_FAIL_REPAIR_PENDING; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "PT012 paused after native entry failure; await minimal selection-confirmation repair authorization; no Claim/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B122.149 / modinfo149 deployed;166/166 MATCH;source a42048c;B121 recovery retained;receipt B122.149-a42048c-playtest.json;PT012 native pending",
+  "live": "B122.149 / modinfo149 deployed;166/166 MATCH;source a42048c;B121 recovery retained;receipt B122.149-a42048c-playtest.json;PT012 native entry FAIL; no new deployment",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
