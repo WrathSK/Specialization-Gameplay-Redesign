@@ -1,13 +1,13 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B124_CLAIM_LOCAL_PASS_NATIVE_PENDING. B109/B111 scoped acceptance retained; one-turn Claim implementation authorized and locally complete; later lifecycle/F not authorized.
+Status: PARTIAL_IMPLEMENTED / B127_UI_LOCAL_COMPLETE. B126 Claim core accepted; UI validation merged into future testing by user; later lifecycle/F not authorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，现已完成[B124本地检查点](#b124151--authorized-one-turn-claim-checkpoint)，等待正式Claim实机验证。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到这些未实现部分。
+当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
 
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot已验收，Claim本地实现待验；销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot与Claim主流程已限定验收；销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -21,7 +21,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 实施依赖与按问题展开
 
-[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[一回合Claim计划](#next-slice--one-turn-claim-plan-after-b123)；快照结果见B111，Claim当前结果见B124；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[一回合Claim计划](#next-slice--one-turn-claim-plan-after-b123)；快照结果见B111，Claim当前结果见B126与B127；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
 
 | 触发 / 直接合同 | 阅读范围与用途 |
 |---|---|
@@ -1104,3 +1104,25 @@ LOCAL_SIMULATION_PASS：`DevelopmentTests/test_b126_source_kind.py`复用全部B
 USER_GAME_TEST_REQUIRED：从日内瓦征服前存档重做征服，E2左键应显示实际冻结科研候选（以其当时已完成区域为准），再与商业候选城一起继续PT013。加载已经拒绝登记后的城不会事后按当前区域补snapshot；无需重测商业入口修复或旧溢出实验。若配置仍不可读，新原因明确为SOURCE_CIV_UNAVAILABLE或SOURCE_LEVEL_UNAVAILABLE，停下提供报告。
 
 部署记录以Status/receipt为准；不改Design/main、不进入下一切片。
+
+## B127.154 — Claim load and project visibility
+
+用户授权优先修复，并要求UI验收合并后续测试。范围：冷加载读模型初始化、精确Claim/Crew无资格入口隐藏；不修改Design、费用、候选或保存schema。L2定向验证，另因触及保存计时续接，运行相关L3幂等/完整回合证据用例；不跑全历史/stress。
+
+- UI LoadScreenClose及首次GameCore发布触发一次本地城市同步；每UI生命周期、每城市一次。已有加载事件缺失时不依赖打开生产列表。后续发布不重复遍历城市，无hover/per-frame请求。
+- Sync重新读取已有权威记录；当前城已有到期且deactivated的计时走原完成路径。不会创建/重启计时或复制旧收益。缺完整回合证据仍STOPPED，重复事件由receipt/计时状态阻止重复完成。
+- HD ProjectItems.Disabled直接来自native CanProduce。仅四个Claim及五个已知Crew项目在Disabled=true时隐藏；正在生产的目标保留供观察/处理，合法项目与普通游戏灰色项目不变。施工队排序保留。
+- STATIC_CONFIRMED：HD字段来源、Lua语法、modinfo154及完整性。LOCAL_SIMULATION_PASS：test_b127_claim_ui.py六项；test_b127_claim_resume.py真实handler继承B124双城/保存/退出并补缺加载事件续接、重复、同回合不写、缺完整回合停止；test_b126_source_kind.py保留城邦/来源回归。
+- USER_GAME_TEST_REQUIRED：上述UI路径，按用户决定留到下一实际测试顺手检查，不安排独立验收。B126核心PASS不撤销、不扩成B127实机PASS。
+- 回滚：既有部署receipt完整保留B126运行包；本批无schema变更，仍不承诺其它旧开发存档兼容。
+
+## Next plan — E2 closure and F readiness
+
+PLAN_ONLY，未授权执行。下一步不是立即实施学术传统：
+
+1. 只核对E2当前直接入口/消费者：新建、投资、失城休眠/退出、原专业城夺回、首次征服快照/认领的持久与派生分工；复用B109/B111/B126与先前原生证据，不重复全套历史调查。
+2. 明列尚未实现/未证实边界：未专业历史城夺回、真实销毁及同址重建引用隔离、未知外交取得。保留UNKNOWN/HELD保护，不将Removal自动视为销毁、不用名字/单独坐标补证，不因认领PASS宣称E2全完成。
+3. 检查正常入口是否仍依赖旧City Property或临时迁移操作；只读定位，若需修复再给最小切片范围供授权。不做全城迁移、统一Legacy或旧档兼容。
+4. 输出支持矩阵及P0-F readiness：能安全独立推进则准备学术传统eligible age、暂停/续算和ACTIVE门槛的具体manifest；否则指出直接阻塞及最小处理计划。不自行决定跨owner传统归属，不自动实施F。
+
+退出条件：已有证据、未实现边界与未来所需状态清晰，给出一个可授权的最小下一批。当前UI验收合并到下一实际实机流程：加载正在认领城，不先打开生产列表，观察1T和正常完成；顺手确认已认领城/无资格城不列无效Claim/Crew、合法入口仍在。没有新增独立用户测试轮次。

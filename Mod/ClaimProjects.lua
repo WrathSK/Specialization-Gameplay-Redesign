@@ -3,6 +3,7 @@ SPCClaimProjects={}
 function SPCClaimProjects.Start(P,shared)
  local store=assert(shared.CityProgressionStore);local cp=SPCCityIdentityRead.Copy
  local d={views={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
+ local turn
  local ready=false;local busy=false;local dirty={};local active={};local derived={};local errors={}
  local kinds={'RESEARCH','CULTURE','INDUSTRY','COMMERCE'};local projects={};local markers={}
  for _,k in ipairs(kinds)do projects['PROJECT_SPC_CLAIM_'..k]=k;markers[#markers+1]='BUILDING_SPC_CLAIM_'..k end
@@ -80,11 +81,12 @@ function SPCClaimProjects.Start(P,shared)
   end
   busy=false
  end
- -- One city, once per production-panel context. Access reconciliation only: no timer/receipt write.
+ -- One city sync: rehydrate access/timer; settle only a previously saved due timer. Never begin a timer.
  function d.Sync(pid,id)
   if d.startupError or not P.IsTestPlayer(pid) or type(id)~='number' then return end
   local c=city(pid,id);if not c or c:GetOwner()~=pid then return end
   ready=true;d.status='已就绪';mark(pid,id);d.Flush()
+  turn(pid,false,id)
  end
  function d.Request(pid,p)
   if d.startupError or not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' or not projects[p.Project] then return end
@@ -138,10 +140,10 @@ function SPCClaimProjects.Start(P,shared)
   end)
   -- This can reenter from FinishProgress; Flush is deliberately deferred.
  end
- local function turn(pid,ending)
+ turn=function(pid,ending,onlyID)
   if d.startupError or not ready or not P.IsTestPlayer(pid)then return end
   local work=cp(active)
-  for _,v in pairs(work)do if v[1]==pid then safe(pid,v[2],function()
+  for _,v in pairs(work)do if v[1]==pid and (not onlyID or v[2]==onlyID) then safe(pid,v[2],function()
    local c=assert(city(pid,v[2]));local s=state(c);local t=s and s.timer
    if not t or t.stage~='ACTIVE' then return end
    local q,match=queue(c,t.project)

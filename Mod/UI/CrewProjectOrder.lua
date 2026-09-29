@@ -15,7 +15,14 @@ function GetDataHelper(...)
  if not data or not data.ProjectItems then return data end
  if claimSelection then claimSelection.Sync(data.City)end
  SPCTimedProjectDisplay.Items(data)
- local items=data.ProjectItems;local crew,others={},{};local insertion
+ -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
+ local items={}
+ for _,item in ipairs(data.ProjectItems)do
+  local owned=ranks[item.Type] or SPCClaimProjectUI.IsProject(item.Type)
+  if not owned or item.Disabled~=true or item.IsCurrentProduction==true then items[#items+1]=item end
+ end
+ data.ProjectItems=items
+ local crew,others={},{};local insertion
  for _,item in ipairs(items) do
   if ranks[item.Type] then
    insertion=insertion or (#others+1);crew[#crew+1]=item
@@ -50,6 +57,7 @@ function AdvanceProject(c,item)
 end
 Events.GameCoreEventPublishComplete.Add(projectSelection.Pulse)
 Events.GameCoreEventPublishComplete.Add(claimSelection.Pulse)
+Events.LoadScreenClose.Add(claimSelection.WarmStart)
 LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
  local c=UI.GetHeadSelectedCity()
  if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden() then Refresh()end

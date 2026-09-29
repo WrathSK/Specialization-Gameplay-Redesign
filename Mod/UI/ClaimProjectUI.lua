@@ -23,7 +23,7 @@ function M.Text(pid,id,project)
  return '1','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'
 end
 function M.New(P,send,notify)
- local api={};local pending={};local seen={};local pendingText={};local synced={}
+ local api={};local pending={};local seen={};local pendingText={};local synced={};local warmed=false
  ExposedMembers.SPC_ClaimSelection={}
  ExposedMembers.SPC_ClaimQueueRead=function(pid,id)
   local c=assert(Players[pid] and Players[pid]:GetCities():FindID(id));assert(c:GetOwner()==pid)
@@ -36,6 +36,14 @@ function M.New(P,send,notify)
   synced[k]=true
   send(c:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_SYNC',Token='CLAIM_SYNC:'..k,CityID=c:GetID()})
  end
+ -- One bounded local-city reconciliation per UI lifetime, independent of opening a panel.
+ function api.WarmStart()
+  if warmed then return end
+  local pid=Game.GetLocalPlayer();local player=Players[pid]
+  if not player or not P.IsTestPlayer(pid)then return end
+  warmed=true
+  for _,c in player:GetCities():Members()do api.Sync(c)end
+ end
  function api.Before(c,item,queueMode)
   local name=item and item.Type;local k=c and tostring(c:GetOwner())..':'..c:GetID()
   if not M.IsProject(name)then if k then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=nil end;return true end
@@ -46,6 +54,7 @@ function M.New(P,send,notify)
   ExposedMembers.SPC_ClaimSelection[k]='等待原生选择确认';return true
  end
  function api.Pulse()
+  api.WarmStart() -- fallback when this context missed LoadScreenClose; no repeated city scan
   local shared=(ExposedMembers.SPC_P0 or {}).ClaimProjects
   for k,p in pairs(pending)do
    local view=shared and shared.views[k]

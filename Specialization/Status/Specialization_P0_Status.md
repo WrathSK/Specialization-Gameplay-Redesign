@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0323
-Implementation Build: develop P0-B-126.153 / modinfo153 CLAIM_CORE_USER_PASS_UI_OPEN; live B126.153 verified170/170 MATCH; stable B069.96
+Status Revision: S0324
+Implementation Build: develop P0-B-127.154 / modinfo154 UI_LOCAL_COMPLETE; live B126.153 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B126_CLAIM_CORE_USER_PASS_UI_OPEN
+Work State: B127_UI_LOCAL_PASS_COMBINED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B126认领主流程用户验收](Validation/Results/Specialization_B126_Claim_Core_Pass.md)：原B124/PT013任务在实际B126.153包上通过。日内瓦科研候选锁定、新建工业区不干扰、完成认领建立科研身份；详细截图与用户陈述范围见结果。旧B124/B125失败记录保留。
+[B127窄修复](../Architecture/v2/P0_E2_Plan.md#b127154--claim-load-and-project-visibility)本地完成：加载一次性认领同步；已有合法计时恢复；精确隐藏无资格Claim/Crew项目。六项UI模拟、真实Claim续接/幂等/完整回合保护及城邦回归PASS，STATIC与LOCAL不等于实机。
 
-UI收尾仍OPEN：冷加载显示“确认中”，打开生产列表才刷新1T；完成后认领项目及无资格施工队仍灰色可见。不打开列表时的冷加载自动完成尚无独立证据。建议下一窄批修复初始化与精确项目可见性，尚未授权实施；不进入F。
+[B126认领核心用户PASS](Validation/Results/Specialization_B126_Claim_Core_Pass.md)保留。用户明确UI不单独验收，合并后续测试。下步[仅建议E2收尾及F readiness核对](../Architecture/v2/P0_E2_Plan.md#next-plan--e2-closure-and-f-readiness)，未授权推进销毁/未专业城夺回/F。
 
-源码仍4dfa12b / B126.153 / modinfo153。上次部署receipt B126.153-4dfa12b-playtest.json DEVELOP_ACTIVE、170/170 MATCH；本轮没有重新核验或替换运行包。stable B069.96与main不变。本轮仅归档验收，STATIC/LOCAL证据沿用原结果，不扩大实机PASS。
+源码B127.154 / modinfo154；外部运行包仍为上次部署B126.153，receipt B126.153-4dfa12b-playtest.json。部署结果待本轮安全门禁后记录；stable/main不变。
 
 ## 历史阶段记录
 

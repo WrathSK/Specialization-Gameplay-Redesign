@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "4dfa12b63322c074d00be34202b7e7d65878cc38",
-  "runtime": "B126.153 / modinfo153",
+  "runtime": "B127.154 / modinfo154",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "bc3766d4a99391bcb5a352f61fa6cd4c93e735c153153279b328e80842253b5e",
+      "sha256": "cfa31c904f623b2f5b218fe7758b7349b69a794f0d4e5d382371745fcec9d01f",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B126 source-kind interface replacement reviewed; scoped local pass, native pending"
+      "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5351899b4b45dc96aa38a13fa2829a739220dcc59908220b803358b74df36d3d",
+      "sha256": "caf080c999ae677db091b964f077474c816e3420e300fb1cc841b1e61484e55b",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B126 source-kind interface replacement reviewed; scoped local pass, native pending"
+      "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "a8be87e1cd8a93f18562dfcffe810a8838a5d7883fa2e44d40fb78f837f47ef4",
+      "sha256": "bc8ca50fb5ce200fb691e58c8fdebbc10e6b0619ee5ff047768eaedc25325309",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
@@ -836,9 +836,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "8b62164618c2ecfbdda586b50eaab1cc1163dd6bf3c24eba99a6631b04a7f523",
+      "sha256": "2967e39281a8a49b5866d464b781658f2900bf6bd96b352c25db642a83e99343",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     },
     "Mod/Data/ClaimProjects.sql": {
       "sha256": "5d704c476ddb10b853d855dee8c751734bda1976251ca4bc55012e386f4f216d",
@@ -851,9 +851,9 @@
       "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
     },
     "Mod/UI/ClaimProjectUI.lua": {
-      "sha256": "eebeddbada3c56ce38135048fc6d2b96da62ec69fbf7992b92bbaf0b6cd180a8",
+      "sha256": "1e69464ff254d54665249fa2b964ac70d3819fa7a240efde3b8b6d772e584092",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     }
   }
 }

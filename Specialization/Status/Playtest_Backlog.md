@@ -122,3 +122,5 @@ PT013 B125复测：商业入口用户确认PASS；城邦ACQUISITION_SOURCE_KIND_
 PT013 B126：城邦类型改为原Owner配置＋Gameplay文明类别，缺IsMinor用例本地通过；从日内瓦征服前档复测，再双城一起续测。商业入口无需重复专项验收。
 
 PT013 B126主流程USER_GAME_TEST_PASS（用户称B124任务，实际截图B126）。[验收与UI待办](Validation/Results/Specialization_B126_Claim_Core_Pass.md)：冷加载1T刷新、认领/施工队无资格项目隐藏仍OPEN；下一窄修复待授权，不进入F。
+
+PT013 B127：冷加载同步与Claim/Crew列表修复STATIC/LOCAL通过；用户要求不独立UI验收，合并下次实际测试，重点不先打开生产列表的加载计时与精确可见性。[实现与下一步计划](../Architecture/v2/P0_E2_Plan.md#b127154--claim-load-and-project-visibility)。
