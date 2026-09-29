@@ -1,19 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0309
+Status Revision: S0310
 Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B120.147 verified160/160 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B120_SCOPED_NATIVE_OBSERVATION_PASS; E2 Claim plan-only
+Work State: P-B120B_PLAN_READY_NOT_IMPLEMENTATION_AUTHORIZED; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
 [B120单城正常回合观察](Validation/Results/Specialization_B120_Project_Turn_Observation.md)限定USER_GAME_TEST_PASS：城131073，T21→T22；Started/StartComplete时UI缓存7，随后生产更新15，Activated及手动终点仍15。全部GP目标为承接项目、队列1。PT010本次采集待办关闭，无需重复同流程。
 
-这些是通知/缓存顺序，不能证明底层生产写入精确时刻。Activated为后续自动完成的候选时点，尚未证明在回调中FinishProgress安全。下一建议收窄P-B120B自动完成与1T显示方案，须另行授权，不自动实施或发奖；Claim/F不推进。
+这些是通知/缓存顺序，不能证明底层生产写入精确时刻。Activated为后续自动完成的候选时点，尚未证明在回调中FinishProgress安全。[P-B120B具体计划](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#27-post-b120-native-plan--automatic-completion-and-scoped-one-turn-display)已完成：显式单城启动→Deactivated→下一回合Activated候选调用一次FinishProgress；精确项目1T显示，实际显示面分开验收。等待实施授权，不自动发奖；Claim/F不推进。
 
 [B119限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)、B117盲扣FAIL、B118扣除INCONCLUSIVE保持；B120原104项本地模拟与本次原生采集证据分开。正常chop/harvest、自动完成、取消/存读、正式奖励仍未验证。用户接受强制同回合完成，不恢复旧防提前完成限制。
 

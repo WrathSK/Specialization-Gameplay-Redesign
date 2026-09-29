@@ -766,3 +766,66 @@ B120部署完成：source 5f8f02f，游戏进程退出检查通过；原事务�
 ### B120 native observation acceptance
 
 [单图顺序证据](../../Status/Validation/Results/Specialization_B120_Project_Turn_Observation.md)：T21进度7，T22 Started及StartComplete缓存仍7，生产更新后15，Activated/手动终点15；GP目标始终为承接项目。采集限定USER_GAME_TEST_PASS。不能把缓存顺序升级为GP写入同步证明；不能仅凭StartComplete名字自动完成。Activated为本次较晚候选，回调内FinishProgress及各组合仍待原型，不自动进入B。PT010采集待办关闭；现有强制提前完成接受决定不变。
+
+
+## 27. Post-B120 native plan — automatic completion and scoped one-turn display
+
+2026-09-28，用户在B120采集PASS后要求继续。按现有plan→review→explicit implementation门禁，本节完成下一最小段具体计划，尚不写runtime或部署。逻辑批次P-B120B；实际新build/modinfo在实施时核对分配。本节收窄§25的B计划，用户§26允许异常同回合完成的决定优先，旧早完成拒奖条款不恢复。
+
+### 目标与依据
+
+一座本地人类测试城，唯一当前高Cost无收益项目，显式开启计时；正常结束一次回合后自动原生完成并释放生产位，随后零进度普通目标不收到本周期残余生产。仅此项目显示计时语义，普通生产不改。当前Cost1,000,000不降低。
+
+B119证明本项目手动FinishProgress路径；B120证明所测序列为Started→StartComplete→生产更新→Activated→手动终点，UI7→15。计划选Gameplay监听的Events.PlayerTurnActivated作为**原型候选触发点**，不是已证明的通用生产完成API；不在Started/StartComplete完成，也不用UI缓存增长来证明底层结算。把调用放进该回调的结果正是本批原生验证内容。
+
+### 自动完成的窄合同
+
+1. 延续显式按钮启动，不同时实现所有Project点击拦截。要求己方城、唯一当前实验项目；保存owner/id/位置与开始回合的会话记录，仅一个活动城。队列后排不是启动；不自动排队、强制过回合或清空普通目标。
+2. 记录该玩家本回合Deactivated；到紧接的下一回合Activated，重新查当前玩家资格、同城、owner与当前目标。不得依靠GameTurn变化 alone，也不要求正产能/进度增长/ProductionUpdated必定发生。零产能属于同一计时合同；native是否可靠仍待证据。
+3. 目标离开或目标/队列改变通知使本次中断；切回必须重新明确开始。生产进度Updated本身不算中断。对不能区分的队列通知保守停止并报告，不能猜连续性。城市移除/易主停止。未收到所需事件、跨过额外回合或读取未知停止，不以再等一回合冒充成功。
+4. 合格时先锁存本次attempt，再直接调用一次q:FinishProgress()；重复Activated/完成通知不得再调。自己调用引起的完成事件不能又当玩家取消。调用异常或结果未知不自动重试；后续事件只确认目标退出。返回正常不等于无溢出PASS。
+5. B119手动工具为同回合准备/确认协议，不能把旧StartTurn/epoch不变及10000进度上限直接当跨回合完成API。优先保留旧工具不变，新定域计时模块直接复用原生primitive和必要owner/target检查，不建立通用任务引擎。本城计时活动时手动完成入口应明确提示避免两个实验writer混用；用户Cheat早完成不阻拦。
+6. 自然/异常/Cheat提前完成后退出这次计时，不补调、不重建项目、不惩罚。最终正式能力将按自己完成合同发奖，不能额外检查“先等满一回合才配发奖”。本原型没有正式奖励可发，不擅自选择测试奖励。
+7. session-only：重新载入不续算，显示“计时未开启”，不会在读档首个Activated擅自完成旧项目。正式持久化、取消后已投入进度处理、多城与正式能力quota另列后续；本批不添加存档schema。
+
+### 一回合显示：实际接点与边界
+
+只读核对：本Mod `UI/CrewProjectOrder.lua`已include HD `DL_ProductionPanel`并包装GetDataHelper；HD项目行提供Type、TurnsLeft、Cost、Progress、ToolTip、IsCurrentProduction。可以沿该现有链对精确ProjectType调整显示数据，保留施工队排序和其他条目。不得修改HD原件或以巨型面板副本替换它。
+
+原版CitySupport.GetProductionInfoOfCity项目分支独立读取GetTurnsLeft/GetProjectProgress/GetProjectCost，返回Turns及百分比；城市当前生产面板不能仅凭生产列表改动就声称覆盖。实施前定域检查实际调用context/HD覆盖链，使用薄适配；不能安全挂接的显示位置列UI_PROTOTYPE_BOUNDARY，不顺带重写HUD。
+
+- 未开启：明确“需开启计时实验”，不伪装已保证1T；列表可说明“开启后1回合”。
+- 已确认活动：本项目显示“1回合／下一次正常生产结算后完成”，不拿百万成本百分比作计时进度。实际成本/队列/生产不改。
+- 已调用等待确认：显示“正在确认完成”，不继续保证1T；中断/UNKNOWN显示原因。
+- 已完成：恢复正常选择生产，普通目标继续原生工期与进度。
+
+最小UI验收范围：诊断计时状态＋生产列表/其当前项目行；城市HUD、队列、Tooltip逐位置记录是否接入。目标是覆盖用户看到的主要时间文本；若还有高工期残留，报告具体位置，不能宣称全部1T呈现PASS。跨context只读已确认状态，hover不请求Gameplay，无每帧扫描。正式点击即启动留后续。
+
+### 预计改动与验证
+
+| 范围 | 计划 |
+|---|---|
+| Gameplay | 窄单城计时模块及Gameplay接线；保留B120采集器作时序参考，不改其证据含义 |
+| UI | P0Panel启动/报告与手动实验互斥；独立读模型；现有CrewProjectOrder精确项目显示适配；必要时薄城市显示适配 |
+| 数据 | 现有无收益项目/Cost不改；modinfo注册新模块并按流程增build |
+| 文档 | 实施结果、待验范围、Status/Workflow定域索引；Design正式能力不修改 |
+
+W0004 L3定向验证，不全仓回归/stress：重放B120顺序、重复Activated/同步重入、零生产、缺Deactivated、晚到/错误回合、目标切换再切回、普通目标不完成、其它城/owner不影响、调用异常不重试、提前完成、重载不续算；旧手动完成和观察器直接回归。UI验证只改精确项目、各状态文本、施工队顺序保持、无hover请求；相关Lua/XML与context检查。所有结果分别标STATIC/LOCAL/NATIVE，不以模拟代替引擎。
+
+### 一次最小用户测试
+
+实施并安全部署后提供最终按钮名，计划流程：
+
+1. 从正常实验前档选择一座城，实验项目为唯一当前目标，开启自动计时。看报告为已开启，以及生产列表/城市当前生产的时间文本，各留必要截图。
+2. 正常过一回合，不点手动完成、不Cheat、不砍树收获。恢复操作后项目应自动退出，报告为一次调用及实际完成确认。若仍占生产位、报错或完成了其它对象，截图停止。
+3. 同回合选择原本0进度的普通目标Q，应为0；正常再过一回合，Q只正常增长，无额外正余量或负债。若初始非0或异常，不手动补进度，截图停止。
+
+本轮复测后续Q的理由：此前B119证明的是手动时点，新自动调用位置可能早于其它产能处理，不能沿用手动无溢出结论替代。不要求本批同时做所有中断/零产能/存读实机组合，本地先覆盖，必要的引擎缺口明确列出。
+
+### 退出、失败与后续
+
+成功只放行本次正常自动周期及实际已覆盖显示位置；不扩大到chop/harvest、存读持久化、多城和正式奖励。若Activated完成后Q收到余量、项目未安全退出或仍有迟到生产，记EVENT_ORDER_BOUNDARY/NATIVE_COMPLETION_BOUNDARY，停止该路径，不回到盲扣生产力。后续再选最小晚时点候选，不靠定时sleep或无限轮询。
+
+回滚回B120已知观察包，保留部署恢复点；用实验前存档，不宣称已写入项目进度可由代码回滚。用户接受异常早完成，无需新增反作弊验收。正常注入隔离后续单独分支；正式能力、持久化与全城启用仍须授权。
+
+本计划无新增Gameplay决定请求；下一步等待P-B120B实施授权。本轮无Mod改动、部署或游戏测试。
