@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0311
+Status Revision: S0312
 Implementation Build: develop P0-B-121.148 / modinfo148 TIMED_PROJECT_PROTOTYPE; live B121.148 verified163/163 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P-B120B_IMPLEMENTED_NATIVE_PENDING; E2 Claim plan-only
+Work State: B121_NORMAL_CYCLE_NATIVE_PASS_UI_GAP; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户授权§27 P-B120B已实施为[B121单城计时原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)：显式开启→Deactivated→紧接下一回合Activated→一次FinishProgress。独立实验项目无正式奖励；目标/队列改变、owner未知或错误时点停止，异常不重试。读档不续算，不多城、不Claim/F。
+[B121三图验收](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)：城131073，T21开启→T22自动退出，结束回合确认是/调用1次；随后纪念碑0/50，实验项目保留进度0。正常周期USER_GAME_TEST_PASS；后续正常增长依据用户“其他一切正常”的陈述，未伪称有T23截图。PT011正常周期门禁关闭，无需重复。
 
-85项定向LOCAL_SIMULATION_PASS＋Lua/注册/context检查；不是原生自动完成或无溢出PASS。生产列表/生产面板当前栏接入计时显示，城市独立HUD未覆盖（可能高工期）；开启后重开面板。PT011最小待验：开启1回合→正常过回合自动退出→同回合新Q进度0→下回合正常增长，报告/测试细节见上链。暂不要求chop/harvest/存读组合。
+生产面板当前项目1回合实测通过。城市旗帜数字/Tooltip及底部城市面板仍119180回合，属于未接入的独立UI显示路径，不是自动完成失败。下一建议仅定域补齐这两处显示，复用现有计时缓存，普通目标不变；尚未实施授权。实际UI继承链与最小检查边界见验收记录。
 
-[B120观察限定PASS](Validation/Results/Specialization_B120_Project_Turn_Observation.md)、[B119手动限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)保持；B117盲扣FAIL、B118扣除INCONCLUSIVE不变。Activated只是候选自动调用时点，本轮必须实测，不能从7→15缓存序列推导底层保证。用户允许异常早完成，不增加拒奖保护。
+[B121实现及原合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)的85项本地测试仍有效；本次原生PASS不扩大到chop/harvest、零产能、取消/存读、多城、正式奖励。B119手动/B120采集限定PASS、B117盲扣FAIL及B118 INCONCLUSIVE保留；不恢复防异常提前完成规则。
 
-源码/live B121.148 source b46cd02，163/163 MATCH；receipt B121.148-b46cd02-playtest.json为DEVELOP_ACTIVE。只读确认游戏退出，按W0003稳定桥安全切换，B120完整恢复点保留。main/stable B069.96不变。D0035及四专业v0.1范围不变；Landscape/Community只保留候选。下一动作仅用户验收本批，不自动推进正式项目、Claim或F。
+源码/live记录仍B121.148 source b46cd02，既有receipt B121.148-b46cd02-playtest.json／163/163 MATCH；本轮未重新检查外部运行包，也未部署。3/3已看原图hash核验归档。main/stable B069.96、D0035及四专业v0.1范围不变。Claim/F与其它实施保持停止。
 
 ## 历史阶段记录
 

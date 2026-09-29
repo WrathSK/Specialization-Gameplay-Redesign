@@ -98,3 +98,5 @@ PT010 update 2026-09-28 evening：[B120截图](Validation/Results/Specialization
 ## B121 automatic project cycle — pending native test
 
 PT011 — B121.148 USER_GAME_TEST_REQUIRED：单城开启1回合→正常过回合自动退出→同回合新Q为0→再过回合正常增长。85项本地测试不是原生无溢出证明。仅本次自动时点及实际显示位置；[完整流程与停止条件](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)。B120采集PT010保持关闭，不重复纯观察。
+
+PT011 update 2026-09-28：[B121三图](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)与用户反馈确认正常周期限定PASS，机制测试待办关闭。城市旗帜/Tooltip及底部CityPanel高工期残留继续作为UI待办，建议下一最小L1显示修补，未授权实施；不重测已通过正常周期。
