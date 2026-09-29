@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "c225aa000c323a03c837019156654f474bca00c9",
-  "runtime": "B132.159 / modinfo159",
+  "runtime_commit": "d50029a3d90ee11f288c89f6aa636e1b80a7bb87",
+  "runtime": "B133.160 / modinfo160",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -238,7 +238,7 @@
     "Mod/DistrictCompleteness.lua": {
       "sha256": "35fe380710e7e58a2dd6fcffbaf1477ed74d869d8313fa8abd1726045ee07fd5",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 source optimization reviewed, targeted L2 PASS; NOT YET DEPLOYED"
+      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
     },
     "Mod/EffectiveFacts.lua": {
       "sha256": "ebf8eaa6a60dc6c5c13211553bbacafbe969d939fff2784923c92a675e086faf",
@@ -308,7 +308,7 @@
     "Mod/Lv2GPP.lua": {
       "sha256": "672d8259f382876cd4f9586b15060805ce8dab9e62f40b7b778e08b9345495e0",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 source optimization reviewed, targeted L2 PASS; NOT YET DEPLOYED"
+      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
     },
     "Mod/Lv2Housing.lua": {
       "sha256": "3921e3e7b27ec0434fe6a0689982423aed97e8bae20e9ba3fc7e2c88f9522148",
@@ -368,7 +368,7 @@
     "Mod/Probe.lua": {
       "sha256": "06f3fe161873108886e7b055a1e7f9495d0051f0ce77a8c7adf1300a0aa344f9",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 source optimization reviewed, targeted L2 PASS; NOT YET DEPLOYED"
+      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -428,7 +428,7 @@
     "Mod/SpecializationP0.modinfo": {
       "sha256": "4fd15a5da1f69325391d622d26a4857d3f49ecb88ed7ac6e60db7a2fdfffc872",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 source optimization reviewed, targeted L2 PASS; NOT YET DEPLOYED"
+      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",

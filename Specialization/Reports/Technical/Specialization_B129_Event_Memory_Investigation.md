@@ -238,3 +238,5 @@ LOCAL_SIMULATION_PASS / STATIC_CONFIRMED：`DevelopmentTests/test_b133_redundant
 这证明重复工作减少，不是Civ VI总内存修复PASS。其余carrier核对仍有退出/验证职责，未盲目跳过；易主/不确定结构事件仍可广域扫描。无强制GC、永久记录清空、新收益或全系统重构。
 
 最小实机对照（部署后）：沿用同一存档，左键开始观测，重复三次征服后读取，再过1～2回合读取，配活动监视器截图；可顺手调一次专家/建筑确认收益响应，不要求新局/全专业验收。先看此批改善，再决定其它路径；Native待测。
+
+部署：B133.160 / modinfo160，source `d50029a`；OS确认游戏退出后按W0003既有工具完成稳定包中转与临时激活，170/170 MATCH，receipt `B133.160-d50029a-playtest.json`（DEVELOP_ACTIVE）。稳定/B132恢复点保留；未启动游戏，Native待测。
