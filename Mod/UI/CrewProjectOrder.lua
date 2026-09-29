@@ -28,3 +28,22 @@ function GetDataHelper(...)
  end
  data.ProjectItems=result;return data
 end
+
+-- Normal native project operation is retained; start only after the selected target is readable.
+include('Probe')
+include('ProjectTurnRead')
+include('TimedProjectSelection')
+SPCProjectTurnRead.New(SPCP0,function()end,function()end)
+local projectSelection=SPCTimedProjectSelection.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+local baseAdvance=AdvanceProject
+function AdvanceProject(c,item)
+ if item.Type=="PROJECT_SPC_OVERFLOW_SINK_TEST" and CheckQueueItemSelected() then return end
+ if not projectSelection.Before(c,item) then return end
+ return baseAdvance(c,item)
+end
+Events.GameCoreEventPublishComplete.Add(projectSelection.Pulse)
+LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
+ local c=UI.GetHeadSelectedCity()
+ if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden() then Refresh()end
+end)

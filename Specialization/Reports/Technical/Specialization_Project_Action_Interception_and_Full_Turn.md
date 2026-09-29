@@ -866,3 +866,31 @@ W0004 L3定域验证：`DevelopmentTests/test_b121_timed_project.py`，85项LOCA
 这次只验自动时点下的正常一周期/后续目标；chop/harvest、正式持久化、多城、正式奖励及HUD另行处理。失败按EVENT_ORDER_BOUNDARY/NATIVE_COMPLETION_BOUNDARY记录，不恢复负AddProgress路线。回滚B120包并配实验前存档；代码回退不能撤销存档已经完成的项目。
 
 源码完成后通过现有W0003部署门禁；实际运行包/receipt与提交由Status/Authority记录。不自动推进下一切片。
+
+## 29. B122.149 — native production entry and remaining city time displays
+
+2026-09-28用户授权修复城市旗帜/底部显示，并要求推进为直接选择项目、不需P0启动。本段将当前单城原型接入普通生产入口，未替用户补正式奖励、保存续算、多城或Claim。B121正常周期限定PASS保持，新增入口与显示仍待本次native验证。
+
+### 当前操作与启动权威
+
+生产列表正常点击专用项目→沿用HD/原版AdvanceProject及其原生BUILD请求→发布事件后只读确认该城项目已经是唯一当前目标→发送一次TIMED_PROJECT_BEGIN→Gameplay重查owner/turn/当前目标/队列资格，进入既有Deactivated→下一Activated的一次FinishProgress路径。不是点击即完成，不吞原生产请求，也不是Commerce“不入队action”的实现。UI仅提交启动意图，Gameplay仍拥有计时/完成权限。
+
+`UI/TimedProjectSelection.lua`仅在明确项目点击时建立会话pending；普通生产无启动请求。请求发出前锁存，确认前再点击不替换pending；原生拒绝/读取未知不冒充成功，跨启动回合后报告未启动。队列后排不计时；本批仍只支持一个活动城、唯一当前项目。启动读数桥在ProductionPanel独立载入，不再依赖P0面板打开或点击；不扫描所有城市、不hover请求、不每帧处理。状态改变才向受影响城市的显示发出一次LuaEvents通知。
+
+成功确认前一次已退出后，明确重新选择新的项目可开始下一次实验；调用异常/结果不明仍不自动重试。此处只取消旧实验“每城每加载仅一次”的成功路径限制，不新增正式Ability quota或奖励规则。读档不会自动重启旧项目，必须重新选择；没有持久化schema。P0手动启动按钮隐藏，报告/取消与旧原生实验读数入口仅供按需诊断。
+
+### 独立显示入口
+
+- 生产面板保留既有CrewProjectOrder薄包装和施工队排序；精确项目读取共同计时文案。
+- `UI/CityBannerManager_SPC_TimedProject.lua`通过Expansion2原生`include("CityBannerManager_", true)`扩展点接入，包装CityBanner.UpdateProduction，再取得本次已分配的production instance覆写工期/Tooltip、隐藏百万成本比例条。不复制整份城市旗帜，不修改游戏/HD文件。
+- `UI/TimedProjectCityPanel.lua`以高于HD的CityPanel替换入口include DL_CityPanel，原ViewMain之后只改精确当前项目数字/说明/进度条；原有数值型CurrentTurnsLeft不改成字符串，普通生产沿原生绘制。
+- 启动确认/暂停/完成时通知只刷新对应旗帜生产部分及匹配所选城市的面板。未选项可显示1*（条件见Tooltip）；当前项目无计时显示“未启动”，请求待确认显示“确认中”，ACTIVE显示1，异常保留原因。原生/其它UI mod后续覆盖可能影响挂接，须实机确认三处均无高工期残留。
+- TestText删掉过期“使用诊断面板／不要完成”说明，说明正常一回合无奖励、单城/重载限制。实际cost仍1,000,000，没有改收益或原生GetTurnsLeft。
+
+### 验证与最小实机检查（PT012）
+
+`DevelopmentTests/test_b122_project_selection_display.py`：103项LOCAL_SIMULATION_PASS，包含直接B121计时/旧手动与观察器相关回归、真实AdvanceProject包装、无P0启动、原生目标未就绪不发送、重复点击/发布/等待确认、队列不合法、请求异常、同城正常重复选择、异常不得重试、旗帜数字/Tooltip和底部面板、普通对象与外方不覆盖、施工队排序及注册语法。属于入口/事件跨模块风险的定向验证，不运行无关全量或stress。静态核对本机Expansion2 wildcard、InstanceManager.GetAllocatedInstance及HD CityPanel链；不等于实机界面兼容PASS。
+
+最小测试：从实验前正常档，在生产列表把溢出承接实验选为唯一当前目标，**不打开P0面板、不点任何开启按钮**。确认右侧生产栏、地图城市旗帜及其Tooltip、底部城市面板均为1回合；正常过一回合应自动退出。随后选择普通目标，工期恢复正常，原本0进度仍为0。异常时再打开自动项目报告截图，无需先做诊断才能使用。无需重做B121完整T23增长验收。读档续算、多城、正式奖励、chop/harvest专项验证不由本次PASS覆盖。
+
+W0003部署仍需clean source、退出进程及receipt恢复点；实际部署见Status/Authority。回滚B121包搭配实验前存档。本段结束等待新入口/UI实机结果，不自动进入正式项目或其它批次。

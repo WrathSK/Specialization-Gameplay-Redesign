@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0312
-Implementation Build: develop P0-B-121.148 / modinfo148 TIMED_PROJECT_PROTOTYPE; live B121.148 verified163/163 MATCH; stable B069.96
+Status Revision: S0313
+Implementation Build: develop P0-B-122.149 / modinfo149 PROJECT_SELECTION_UI; live B121.148 until deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B121_NORMAL_CYCLE_NATIVE_PASS_UI_GAP; E2 Claim plan-only
+Work State: B122_IMPLEMENTED_NATIVE_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B121三图验收](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)：城131073，T21开启→T22自动退出，结束回合确认是/调用1次；随后纪念碑0/50，实验项目保留进度0。正常周期USER_GAME_TEST_PASS；后续正常增长依据用户“其他一切正常”的陈述，未伪称有T23截图。PT011正常周期门禁关闭，无需重复。
+用户授权[B122正常生产入口＋城市显示](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#29-b122149--native-production-entry-and-remaining-city-time-displays)本地完成：选项目→原生队列确认唯一当前目标→自动请求计时，P0开启按钮隐藏。Gameplay仍重查资格并按已测正常一周期完成，无正式奖励。保持单活动城/会话级，读档不续算；未实现多城/Claim/F。
 
-生产面板当前项目1回合实测通过。城市旗帜数字/Tooltip及底部城市面板仍119180回合，属于未接入的独立UI显示路径，不是自动完成失败。下一建议仅定域补齐这两处显示，复用现有计时缓存，普通目标不变；尚未实施授权。实际UI继承链与最小检查边界见验收记录。
+103项定向LOCAL_SIMULATION_PASS与语法/注册/context检查；新入口及城市旗帜/Tooltip/底部CityPanel显示为USER_GAME_TEST_REQUIRED。PT012：不打开P0直接选项目，查看三处1回合，正常过回合自动退出，普通生产工期/0起始进度正常即可。异常才打开报告；不要求重复B121后续增长整套流程。
 
-[B121实现及原合同](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)的85项本地测试仍有效；本次原生PASS不扩大到chop/harvest、零产能、取消/存读、多城、正式奖励。B119手动/B120采集限定PASS、B117盲扣FAIL及B118 INCONCLUSIVE保留；不恢复防异常提前完成规则。
+[B121正常周期限定PASS](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)保留：T21→T22一次完成、随后纪念碑0；后续增长是用户陈述。新显示采用原生Expansion2旗帜扩展与HD CityPanel薄包装，不改成本或原生工期API。B117盲扣FAIL等反证不变；chop/harvest、保存、多城、正式奖励未由本次验证放行。
 
-源码/live记录仍B121.148 source b46cd02，既有receipt B121.148-b46cd02-playtest.json／163/163 MATCH；本轮未重新检查外部运行包，也未部署。3/3已看原图hash核验归档。main/stable B069.96、D0035及四专业v0.1范围不变。Claim/F与其它实施保持停止。
+源码B122.149；部署前live记录仍B121.148 source b46cd02、receipt B121.148-b46cd02-playtest.json。完成W0003安全切换后另同步结果；main/stable B069.96、D0035及四专业范围不变。下一动作仅本批安全部署与用户测试，不自动推进。
 
 ## 历史阶段记录
 

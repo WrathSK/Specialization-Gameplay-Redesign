@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "b46cd02857ea3d5c3d30700f4fd36a8ae8d0c9d8",
-  "runtime": "B121.148 / modinfo148",
+  "runtime_commit": "B122 commit pending; previous B121 source b46cd02857ea3d5c3d30700f4fd36a8ae8d0c9d8",
+  "runtime": "B122.149 / modinfo149",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "a1c4591c0e82edd4e95eae9ab2cce92fc648c71e07c4c9b193187ac8a8e201db",
+      "sha256": "0a830666162f7c4e19d3f3065c82e612c887d9905423501d1bba99efc81f4166",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8d1d8ec727cd6f67f7a642c232e1c5c14ee639d7f39043932a6ee3752360bd23",
+      "sha256": "93473218c50b8d8ad1ac40f45d7b966af8e1c91707d9c1f406a0451b887204d2",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "621ef486c379288d3085521a86a69772254073c2ee10e4de4e9c081cce9415df",
+      "sha256": "e6702be21d8507263c0e6536f0c580756910dda9d22f5b5a1c41f51979736c3c",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "071e25218f09584493baa3700420e018c215cb0dfbab5d164300dc802360eb66",
+      "sha256": "90d974ccd7e0012031f1e955386fe27e520a4ef1bf544fc76086eb9b78710a33",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "3b7e6f5ab25af1b8695614aad920097bc77aac3bfd669b488c42a538903b2434",
+      "sha256": "3409cbf388a5d09460d02a792cc3300afc99e7b1714de329d3a80f1ee09c11ac",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -806,19 +806,34 @@
       "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
     },
     "Mod/TimedProject.lua": {
-      "sha256": "14a41e0e3e01f616a6dd9d8c38862926906e0c469faa94a5678cdd473fdfd331",
+      "sha256": "8d1ecae78b921516fa42a9c601839c8dcae9e6f536b8e2746658d47e6eebb019",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/UI/TimedProjectDisplay.lua": {
-      "sha256": "df0c697ce87c78aa97e5f18732f21f25cec51b6e6c803711b76b840ddebc3ddb",
+      "sha256": "e6cb96538199f45de657bc377613984bac326f40d162b362ebb331af71153a0a",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/UI/TimedProjectRead.lua": {
-      "sha256": "e88f41b7479754d3313bd590ebfa5e035f84120a0208fd7adacf4d97df7622b5",
+      "sha256": "d9aefc868dbbc70a32e983c215e177a44ad3b4cb1bb672e7fb54eeab8dd63355",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+    },
+    "Mod/UI/CityBannerManager_SPC_TimedProject.lua": {
+      "sha256": "eb03c7fd68e4575bb5c35871aaa8e844ba458c0bab2a31c0df61218406687239",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+    },
+    "Mod/UI/TimedProjectCityPanel.lua": {
+      "sha256": "532eef96ec3a0a5c5474d321d55bae07781bcd634db6e54f6714d7a669cd501a",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+    },
+    "Mod/UI/TimedProjectSelection.lua": {
+      "sha256": "66e33aed1c55073332ac912711ef58a9ef323e727e6ab298acd4c6a4618f0c3d",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     }
   }
 }

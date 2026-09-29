@@ -503,15 +503,13 @@ initialize=function()
  projectReadPulse=timer.Pulse
  Events.GameCoreEventPublishComplete.Add(projectReadPulse)
  Controls.TurnProbeReadCaption:SetText("自动项目报告")
- Controls.TurnProbeArmCaption:SetText("开启1回合")
+ Controls.PerformanceSnapshotButton:SetHide(true) -- production selection owns activation now
  local function projectAction(fn)
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;fn()
  end
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()projectAction(timer.Read)end)
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function()projectAction(timer.Cancel)end)
  Controls.PerformanceReadButton:SetToolTipString('左键只读计时报告；右键取消计时，不清空生产。已调用完成后不重试。')
- Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()projectAction(timer.Begin)end)
- Controls.PerformanceSnapshotButton:SetToolTipString('选择溢出承接实验为唯一目标，点击后正常过一回合；自动完成，无正式奖励。读档不续算。开启后重开生产面板查看1回合显示。')
 
 end
 ContextPtr:SetInitHandler(initialize)

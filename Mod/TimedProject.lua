@@ -1,8 +1,8 @@
--- B121: single-city/session-only native timing prototype, no reward or persisted state.
+-- B122: single-city/session-only native timing prototype, no reward or persisted state.
 SPCTimedProject={}
 function SPCTimedProject.Start(P,shared)
  local api={};shared.TimedProject=api
- local s=nil;local used={};local missing={};local project="PROJECT_SPC_OVERFLOW_SINK_TEST"
+ local s=nil;local used={};local completed={};local missing={};local project="PROJECT_SPC_OVERFLOW_SINK_TEST"
  local function key(pid,id)return tostring(pid)..":"..tostring(id)end
  local function live()return s and (s.status=="ACTIVE" or s.status=="CONFIRMING")end
  local function publish()
@@ -24,6 +24,7 @@ function SPCTimedProject.Start(P,shared)
   local ok,q,target=pcall(facts)
   if not ok then stop("完成结果未知；不重试："..tostring(q));return end
   if target~=project then
+   completed[key(s.owner,s.id)]=true
    s.status="COMPLETED";s.reason="一次原生调用后目标已退出；请检查后续普通目标是否仍为0进度"
   elseif Game.GetCurrentGameTurn()>s.start+1 then
    s.status="STOPPED";s.reason="调用后仍未确认退出；不重试"
@@ -95,7 +96,7 @@ function SPCTimedProject.Start(P,shared)
   local ok,err=pcall(function()
    assert(type(p.CityID)=="number" and p.StartTurn==Game.GetCurrentGameTurn(),"请求过期/城市无效")
    assert(P.IsTestPlayer(pid),"不是当前本地人类玩家")
-   assert(not used[key(pid,p.CityID)],"本城本次加载已尝试完成；不重复实验")
+   assert(not used[key(pid,p.CityID)] or completed[key(pid,p.CityID)],"上次完成结果不明；不自动重试")
    assert(#missing==0,"必要事件缺失："..table.concat(missing,", "))
    local c=assert(Players[pid] and Players[pid]:GetCities():FindID(p.CityID),"城市不存在")
    s.x=c:GetX();s.y=c:GetY()
@@ -104,6 +105,7 @@ function SPCTimedProject.Start(P,shared)
    local reader=assert(ExposedMembers.SPC_ProjectTurnRead,"UI队列接口未就绪")
    local v=reader(pid,p.CityID)
    assert(v.owner==pid and v.id==p.CityID and v.turn==s.start and v.isProject and v.size==1,"必须为唯一当前项目")
+   used[key(pid,p.CityID)]=nil;completed[key(pid,p.CityID)]=nil
    s.status="ACTIVE";s.reason="1回合：正常过回合，下一次恢复操作时尝试自动完成"
   end)
   if not ok then stop(tostring(err)) else publish() end

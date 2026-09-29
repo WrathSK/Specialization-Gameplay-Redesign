@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0312",
-    "runtime": "B121.148 / modinfo148",
+    "status": "S0313",
+    "runtime": "B122.149 / modinfo149",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "b46cd02857ea3d5c3d30700f4fd36a8ae8d0c9d8",
-  "current_batch": "B121_NORMAL_CYCLE_NATIVE_PASS_UI_GAP; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Proposed L1 city-banner/CityPanel display adaptation; await implementation authorization",
+  "runtime_commit": "B122 commit pending; previous B121 source b46cd02857ea3d5c3d30700f4fd36a8ae8d0c9d8",
+  "current_batch": "B122_IMPLEMENTED_NATIVE_PENDING; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "PT012 direct project selection + banner/CityPanel native test; no next implementation authorization",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B121.148 / modinfo148 deployed;163/163 MATCH;source b46cd02;B120 recovery retained;receipt B121.148-b46cd02-playtest.json;PT011 normal cycle scoped native PASS; independent HUD display gap",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B121 three screenshots reviewed; local source identifies independent city-banner/CityPanel time display paths; no runtime edits",
+  "context_review_status": "Authorized automatic selection and independent time displays implemented; 103 targeted simulations, UI/native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

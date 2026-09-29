@@ -1,12 +1,24 @@
--- ProductionPanel-context-only view; real queue/cost/progress remain untouched.
+-- Shared cached timing text for independent UI contexts; never changes actual production.
 SPCTimedProjectDisplay={}
+function SPCTimedProjectDisplay.IsCurrent(c)
+ local row=GameInfo.Projects.PROJECT_SPC_OVERFLOW_SINK_TEST
+ return c and c:GetOwner()==Game.GetLocalPlayer() and row and c:GetBuildQueue():GetCurrentProductionTypeHash()==row.Hash
+end
 function SPCTimedProjectDisplay.Text(pid,id)
+ local selection=ExposedMembers.SPC_TimedProjectSelection
  local s=(ExposedMembers.SPC_P0 or {}).TimedProjectState
- if not s or s.owner~=pid or s.id~=id then return "开启后1","需在诊断面板点击“开启1回合”；尚未开启计时" end
- if s.status=="ACTIVE" then return "1","下一次正常生产结算后完成（原型待实测）" end
+ if selection and selection.owner==pid and selection.id==id and selection.status~="ACK" and (not s or s.token~=selection.token) then
+  return selection.status=="ERROR" and "未启动" or "确认中",selection.reason
+ end
+ if not s or s.owner~=pid or s.id~=id then
+  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
+  if SPCTimedProjectDisplay.IsCurrent(c) then return "未启动","当前项目尚无计时；读档不续算，请在生产列表重新选择" end
+  return "1*","选为唯一当前目标后自动计时1回合；本批只支持单城，不跨读档续算"
+ end
+ if s.status=="ACTIVE" then return "1","下一次正常生产结算后自动完成" end
  if s.status=="CONFIRMING" then return "待确认","正在确认完成；不会重复调用" end
  if s.status=="STOPPED" then return "已暂停",s.reason end
- return "需重开","本次计时已结束；不会自动续算" end
+ return "需重开","本次计时已结束；重新选择项目才会请求新的计时" end
 function SPCTimedProjectDisplay.Items(data)
  for _,item in ipairs(data.ProjectItems or {})do
   if item.Type=="PROJECT_SPC_OVERFLOW_SINK_TEST" then

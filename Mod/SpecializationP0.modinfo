@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="148">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="149">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B121.148: session-only single-city automatic project finish and scoped one-turn display; no reward.</Description>
+    <Description>B122.149: production selection starts timed project; city banner and city panel timing display; no reward.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <ReplaceUIScript id="SPC_TimedProjectCityPanel"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
     <ReplaceUIScript id="SPC_TimedTurnProbe"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_InstitutionOverview"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/InstitutionOverview.lua</LuaReplace></Properties></ReplaceUIScript>
@@ -65,6 +66,9 @@
       <File>TimedProject.lua</File>
       <File>UI/TimedProjectRead.lua</File>
       <File>UI/TimedProjectDisplay.lua</File>
+      <File>UI/TimedProjectSelection.lua</File>
+      <File>UI/CityBannerManager_SPC_TimedProject.lua</File>
+      <File>UI/TimedProjectCityPanel.lua</File>
       <File>UI/ProjectTurnRead.lua</File>
       <File>UI/TimedTurnProbe.lua</File>
       <File>CityIdentityExperiment.lua</File>
@@ -347,6 +351,9 @@
     <File>TimedProject.lua</File>
     <File>UI/TimedProjectRead.lua</File>
     <File>UI/TimedProjectDisplay.lua</File>
+    <File>UI/TimedProjectSelection.lua</File>
+    <File>UI/CityBannerManager_SPC_TimedProject.lua</File>
+    <File>UI/TimedProjectCityPanel.lua</File>
     <File>UI/ProjectTurnRead.lua</File>
     <File>UI/TimedTurnProbe.lua</File>
     <File>CityIdentityExperiment.lua</File>

@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0312",
-    "runtime": "B121.148 / modinfo148",
+    "status": "S0313",
+    "runtime": "B122.149 / modinfo149",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -576,6 +576,37 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B121_Automatic_Project_Pass.md",
       "kind": "full",
       "reason": "Current B121 native acceptance, screenshot provenance and remaining independent display gap"
+    },
+    {
+      "path": "Mod/UI/TimedProjectSelection.lua",
+      "kind": "full",
+      "reason": "B122 direct entry/display/registration and targeted test dependency"
+    },
+    {
+      "path": "Mod/UI/CityBannerManager_SPC_TimedProject.lua",
+      "kind": "full",
+      "reason": "B122 direct entry/display/registration and targeted test dependency"
+    },
+    {
+      "path": "Mod/UI/TimedProjectCityPanel.lua",
+      "kind": "full",
+      "reason": "B122 direct entry/display/registration and targeted test dependency"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "B122 direct entry/display/registration and targeted test dependency"
+    },
+    {
+      "path": "DevelopmentTests/test_b122_project_selection_display.py",
+      "kind": "full",
+      "reason": "B122 direct entry/display/registration and targeted test dependency"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "kind": "section",
+      "selector": "## 29. B122.149 — native production entry and remaining city time displays",
+      "reason": "Current authorized scope, actual implementation and minimal native test"
     }
   ],
   "dependencies": [
@@ -650,8 +681,8 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B121 normal automatic cycle scoped USER_GAME_TEST_PASS: T21->T22 once, next Monument0; subsequent growth user-reported; banner/CityPanel time not adapted",
+    "side_prototype": "B122 direct production selection and independent timing UI STATIC/LOCAL103; PT012 native pending; B121 cycle scoped PASS retained",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
-    "side_next_plan": "UI-only banner/CityPanel exact-project cached timing adaptation proposed, not implementation authorized; no Claim/F"
+    "side_next_plan": "Await PT012 native entry/display results; no rewards/persistent timer/multicity/Claim/F"
   }
 }

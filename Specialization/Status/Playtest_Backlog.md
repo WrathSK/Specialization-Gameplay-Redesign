@@ -100,3 +100,7 @@ PT010 update 2026-09-28 evening：[B120截图](Validation/Results/Specialization
 PT011 — B121.148 USER_GAME_TEST_REQUIRED：单城开启1回合→正常过回合自动退出→同回合新Q为0→再过回合正常增长。85项本地测试不是原生无溢出证明。仅本次自动时点及实际显示位置；[完整流程与停止条件](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)。B120采集PT010保持关闭，不重复纯观察。
 
 PT011 update 2026-09-28：[B121三图](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)与用户反馈确认正常周期限定PASS，机制测试待办关闭。城市旗帜/Tooltip及底部CityPanel高工期残留继续作为UI待办，建议下一最小L1显示修补，未授权实施；不重测已通过正常周期。
+
+## B122 direct selection and HUD timing — pending
+
+PT012 — B122.149新入口/城市显示待实机：不打开P0，直接选择唯一当前实验项目，检查生产栏/旗帜及Tooltip/底部面板1T→正常一回合退出→普通目标显示与初始0正常。[完整范围](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#29-b122149--native-production-entry-and-remaining-city-time-displays)。B121/PT011正常周期保持通过，不扩大chop/harvest等范围。
