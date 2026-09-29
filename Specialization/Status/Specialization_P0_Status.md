@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0307
+Status Revision: S0308
 Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B120.147 verified160/160 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B120_USER_TEST_DEFERRED; Landscape candidate intake only; E2 Claim plan-only
+Work State: B120_USER_TEST_DEFERRED; Community/Landscape candidate records only; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
+
+本轮已接收[Community／Metropolis强冻结候选](../Design/Candidates/Community_Freeze_Candidate.md)，同步中文阅读版并明确与旧COMM规则的差异；候选不升级正式冻结，D0035与四专业v0.1范围不变。无代码、部署或新增实机测试。
 
 B120测试按用户要求移入[PT010待办](Playtest_Backlog.md#b120-project-observation-deferred)，回家后再测，保持PENDING。本轮接收[Landscape强冻结候选](../Design/Candidates/Landscape_Freeze_Candidate.md)并同步阅读版，不升级正式冻结，不纳入当前四专业v0.1范围；无runtime/部署变化。
 
