@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0311
-Implementation Build: develop P0-B-121.148 / modinfo148 TIMED_PROJECT_PROTOTYPE; live B120.147 until deployment receipt; stable B069.96
+Implementation Build: develop P0-B-121.148 / modinfo148 TIMED_PROJECT_PROTOTYPE; live B121.148 verified163/163 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -17,7 +17,7 @@ Work State: P-B120B_IMPLEMENTED_NATIVE_PENDING; E2 Claim plan-only
 
 [B120观察限定PASS](Validation/Results/Specialization_B120_Project_Turn_Observation.md)、[B119手动限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)保持；B117盲扣FAIL、B118扣除INCONCLUSIVE不变。Activated只是候选自动调用时点，本轮必须实测，不能从7→15缓存序列推导底层保证。用户允许异常早完成，不增加拒奖保护。
 
-源码B121.148，部署前live仍为B120.147（source5f8f02f，旧receipt B120.147-5f8f02f-playtest.json）；本次部署结果后续同步本段。main/stable B069.96不变。D0035及四专业v0.1范围不变；Landscape/Community只保留候选。下一动作仅安全部署/用户验收本批，不自动推进正式项目、Claim或F。
+源码/live B121.148 source b46cd02，163/163 MATCH；receipt B121.148-b46cd02-playtest.json为DEVELOP_ACTIVE。只读确认游戏退出，按W0003稳定桥安全切换，B120完整恢复点保留。main/stable B069.96不变。D0035及四专业v0.1范围不变；Landscape/Community只保留候选。下一动作仅用户验收本批，不自动推进正式项目、Claim或F。
 
 ## 历史阶段记录
 
