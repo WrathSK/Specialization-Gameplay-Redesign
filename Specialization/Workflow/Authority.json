@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "4dfa12b63322c074d00be34202b7e7d65878cc38",
+  "runtime_commit": "ef481c65f3af48d65aad60c8992cad57d1e2481a",
   "current_batch": "B127_UI_LOCAL_PASS_COMBINED_NATIVE_PENDING",
   "next_batch": "Plan only: E2 closure/readiness review, then scoped F plan if safe; UI validation merged into next user test",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B126.153 deployed;170/170 MATCH;source4dfa12b;receipt B126.153-4dfa12b-playtest.json DEVELOP_ACTIVE;B125 recovery retained;OS verified game exit",
+  "live": "B127.154 deployed;170/170 MATCH;source ef481c6;receipt B127.154-ef481c6-playtest.json DEVELOP_ACTIVE;B126 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

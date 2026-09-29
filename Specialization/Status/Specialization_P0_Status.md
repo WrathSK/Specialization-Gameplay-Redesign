@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0324
-Implementation Build: develop P0-B-127.154 / modinfo154 UI_LOCAL_COMPLETE; live B126.153 verified170/170 MATCH; stable B069.96
+Implementation Build: develop P0-B-127.154 / modinfo154 UI_LOCAL_COMPLETE; live B127.154 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B127_UI_LOCAL_PASS_COMBINED_NATIVE_PENDING
 
 [B126认领核心用户PASS](Validation/Results/Specialization_B126_Claim_Core_Pass.md)保留。用户明确UI不单独验收，合并后续测试。下步[仅建议E2收尾及F readiness核对](../Architecture/v2/P0_E2_Plan.md#next-plan--e2-closure-and-f-readiness)，未授权推进销毁/未专业城夺回/F。
 
-源码B127.154 / modinfo154；外部运行包仍为上次部署B126.153，receipt B126.153-4dfa12b-playtest.json。部署结果待本轮安全门禁后记录；stable/main不变。
+源码/live B127.154 / modinfo154，source ef481c6；OS确认游戏退出后正式工具部署，170/170 MATCH。receipt B127.154-ef481c6-playtest.json DEVELOP_ACTIVE，B126恢复包与stable桥保留。未启动游戏，stable/main不变。
 
 ## 历史阶段记录
 
