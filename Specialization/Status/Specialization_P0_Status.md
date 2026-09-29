@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0322
-Implementation Build: develop P0-B-126.153 / modinfo153 SOURCE_KIND_REPAIR_LOCAL_COMPLETE; live B126.153 verified170/170 MATCH; stable B069.96
+Status Revision: S0323
+Implementation Build: develop P0-B-126.153 / modinfo153 CLAIM_CORE_USER_PASS_UI_OPEN; live B126.153 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B126_SOURCE_KIND_LOCAL_PASS_NATIVE_PENDING
+Work State: B126_CLAIM_CORE_USER_PASS_UI_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B126城邦类型接口修复](../Architecture/v2/P0_E2_Plan.md#b126153--authorized-gameplay-city-state-type-repair)按用户授权本地完成。不再直接调用Gameplay IsMinor；原Owner文明配置→Gameplay文明类别，仅明确CITY_STATE允许，Free/未知继续拒绝。商业入口、项目计时/UI和保存schema未改变。
+[B126认领主流程用户验收](Validation/Results/Specialization_B126_Claim_Core_Pass.md)：原B124/PT013任务在实际B126.153包上通过。日内瓦科研候选锁定、新建工业区不干扰、完成认领建立科研身份；详细截图与用户陈述范围见结果。旧B124/B125失败记录保留。
 
-STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际DB类型、缺IsMinor的真实handler测试、B124及B111相关保存/分流回归通过。原生城邦路径仍待验；商业入口B125限定用户PASS保留。用征服日内瓦前档复测后双城一起继续PT013，不按征服后现状补snapshot。
+UI收尾仍OPEN：冷加载显示“确认中”，打开生产列表才刷新1T；完成后认领项目及无资格施工队仍灰色可见。不打开列表时的冷加载自动完成尚无独立证据。建议下一窄批修复初始化与精确项目可见性，尚未授权实施；不进入F。
 
-源码/live B126.153 / modinfo153，source4dfa12b。OS进程检查确认退出后按W0003部署，170/170 MATCH，receipt B126.153-4dfa12b-playtest.json DEVELOP_ACTIVE；保留B125完整恢复点及stable桥。未启动游戏，Design/main不变，下一步仅用户复测，不进入F。
+源码仍4dfa12b / B126.153 / modinfo153。上次部署receipt B126.153-4dfa12b-playtest.json DEVELOP_ACTIVE、170/170 MATCH；本轮没有重新核验或替换运行包。stable B069.96与main不变。本轮仅归档验收，STATIC/LOCAL证据沿用原结果，不扩大实机PASS。
 
 ## 历史阶段记录
 
