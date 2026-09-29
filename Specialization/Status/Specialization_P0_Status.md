@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0322
-Implementation Build: develop P0-B-126.153 / modinfo153 SOURCE_KIND_REPAIR_LOCAL_COMPLETE; live B125.152 verified170/170 MATCH; stable B069.96
+Implementation Build: develop P0-B-126.153 / modinfo153 SOURCE_KIND_REPAIR_LOCAL_COMPLETE; live B126.153 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B126_SOURCE_KIND_LOCAL_PASS_NATIVE_PENDING
 
 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际DB类型、缺IsMinor的真实handler测试、B124及B111相关保存/分流回归通过。原生城邦路径仍待验；商业入口B125限定用户PASS保留。用征服日内瓦前档复测后双城一起继续PT013，不按征服后现状补snapshot。
 
-源码B126.153，待按W0003提交后部署；live此前B125.152/source76c0c6c，receipt B125.152-76c0c6c-playtest.json。Design/main不变，下一步仅本次安全部署及用户复测，不进入F。
+源码/live B126.153 / modinfo153，source4dfa12b。OS进程检查确认退出后按W0003部署，170/170 MATCH，receipt B126.153-4dfa12b-playtest.json DEVELOP_ACTIVE；保留B125完整恢复点及stable桥。未启动游戏，Design/main不变，下一步仅用户复测，不进入F。
 
 ## 历史阶段记录
 
