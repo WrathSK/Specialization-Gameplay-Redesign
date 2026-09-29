@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B123 changed entry/diagnostic and direct regression reviewed;112 local tests; native pending; unchanged hashes retained",
+  "review_basis": "B123 explicit user native acceptance scoped and recorded; unchanged runtime/history retained",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "310a4e361cab344ce29044994fc7f79d4299a46bd0f91ca1b6a14ecbe5fedb66",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "90c08989401328ba501fa8e818486aadeed971999890fa78d1e3f59fa0e4d6bf",
     "Specialization/README.md": "c7d6d0c6e128cbf5ee612b62dc49e63737a7f34f10e767a17f78603f78cc1e62",
-    "Specialization/Status/Specialization_P0_Status.md": "8fb8c1c4fe66afd9f3ed167b9c7751060225ab9febc0aeefb721a788986b32b4",
+    "Specialization/Status/Specialization_P0_Status.md": "2b393fc53454eb523f2b4afb884e737cd02fce680ba0994bcbc5703e05aefd3d",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "2e860fd73ed52eb2c3749bed3e7ba156d5e843b26741bacbc80040c93f7920a8",
+    "Specialization/Workflow/Authority.json": "ffac90085d01507888ba3d5298cee9d98bf9adc6acb013137553abfc2d479601",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c",
@@ -201,7 +201,7 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "998152f37e391c08f1b0379f8680b8b85ace669e822ae767b72919202b9217fa",
+    "Specialization/Workflow/P0-E2.json": "65e4b810ae411c2ca47dbc2692747034941c616debf10eb6872213cdd3729b76",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Mod/CitySequenceProbe.lua": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
     "DevelopmentTests/test_b105_city_sequence.py": "4c55116fb999d8f49f4110794ab07ccfd9b26f7c9ba294f5eeef03cceee75bd0",
@@ -260,6 +260,7 @@
     "DevelopmentTests/test_b122_project_selection_display.py": "e478117df54473fbe6c45c4a6bd0c3657b17f0eea32d2f420f5144d3f9406c3a",
     "Mod/UI/CityBannerManager_SPC_TimedProject.lua": "eb03c7fd68e4575bb5c35871aaa8e844ba458c0bab2a31c0df61218406687239",
     "Specialization/Status/Validation/Results/Specialization_B122_Selection_Failure.md": "2a7581d51fe020f8437cc3c3c0b511ad0a140791c7d3b86bc7b29504ad9f3cf1",
-    "DevelopmentTests/test_b123_selection_confirmation.py": "c7fde74773f6fad2388bca82e1e1575d536b54bcbad3478cf911166d5ec0265a"
+    "DevelopmentTests/test_b123_selection_confirmation.py": "c7fde74773f6fad2388bca82e1e1575d536b54bcbad3478cf911166d5ec0265a",
+    "Specialization/Status/Validation/Results/Specialization_B123_Project_Pass.md": "95f7549ccad6b6b4effdc720617991e82331a923aee2a464999ad07891028296"
   }
 }

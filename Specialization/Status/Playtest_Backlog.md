@@ -108,3 +108,5 @@ PT012 — B122.149新入口/城市显示待实机：不打开P0，直接选择�
 PT012 update 2026-09-28：[自动入口失败](Validation/Results/Specialization_B122_Selection_Failure.md)，队列检查拒绝启动。暂停测试，等待入口修复授权；B121限定PASS保留，不要求重复失败流程。
 
 PT012 B123 update：[启动确认修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#30-b123150--bounded-selection-confirmation-repair)112项LOCAL通过，已部署替代失败包，待实机重测。直接选择→1T→一次退出→普通目标0；失败截队列数量/原因。无P0启动操作，未验收前不关闭待办。
+
+PT012 closure：[B123用户文字验收](Validation/Results/Specialization_B123_Project_Pass.md)确认三处1T、正常完成、后续无溢出；附加砍树场景通过。关闭本条，无需重测其它待办/旧空队列实验；不扩大到收获、多城、保存及正式奖励。

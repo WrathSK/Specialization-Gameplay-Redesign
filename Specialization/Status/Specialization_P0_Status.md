@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0315
+Status Revision: S0316
 Implementation Build: develop P0-B-123.150 / modinfo150 SELECTION_CONFIRMATION; live B123.150 verified166/166 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B123_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
+Work State: B123_SCOPED_NATIVE_PASS; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户授权[B123启动确认修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#30-b123150--bounded-selection-confirmation-repair)已完成：等待本回合内队列事实一致，严格size=1才发送一次；size>1拒绝，超时停止。UI初始化清旧提示；异常报告显示实际队列数量。项目结算、收益和保存不改。
+[B123原生项目限定验收通过](Validation/Results/Specialization_B123_Project_Pass.md)：用户明确确认三处1T、正常过回合完成、后续无溢出，并补测砍树不提前完成、不流入后续目标。本次是用户文字证据，无新截图；PT012关闭。112项LOCAL测试与原生证据分开，未扩大到所有收获/注入/强制完成组合。
 
-112项定向LOCAL_SIMULATION_PASS；语法/注册/context检查通过，已按W0003部署。原生修复为USER_GAME_TEST_REQUIRED，未声称截图已证明队列0过渡。PT012仅重测直接选择→三处1T→一回合退出→普通目标0；失败时截带数量/原因的Tooltip或左键自动项目报告，不重复旧完整流程。
+“处理其它待办”属于旧空队列过回合实验，不是当前真实项目方案的前置要求。可以用本原型继续规划真实1-turn项目；当前仍单活动城/会话级，无正式奖励，读档不续算。Claim专属资格、Identity/P1永久提交、重复/失效退出、多城与保存边界仍需实施和验证。
 
-[B122入口失败](Validation/Results/Specialization_B122_Selection_Failure.md)与[B121正常周期限定PASS](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)均保留。单城/会话级，无正式奖励，读档不续算；不进入Claim/F。
+Spec PROG-008允许极低成本或1-turn确认；现有Claim计划仍是Cost=1普通项目建议，不能静默视作已经授权改用本计时方案。下一建议为更新最小Claim计划，等待用户确认/实施授权；不进入Claim/F实现。
 
-源码/live B123.150，source 5868061；receipt B123.150-5868061-playtest.json为DEVELOP_ACTIVE，166/166 MATCH。进程检查确认游戏退出后安全切换，B122及stable恢复点保留；未启动游戏。main/stable B069.96与Design不变；下一步仅本批用户测试。
+源码/live仍B123.150，source 5868061；此前receipt B123.150-5868061-playtest.json记录166/166 MATCH，本轮无重新部署/运行包核验。main/stable B069.96与Design不变。
 
 ## 历史阶段记录
 
