@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0327
-Implementation Build: develop P0-B-129.156 / modinfo156 CLAIM_RELOAD_LOCAL_COMPLETE; live B128.155 verified170/170 MATCH; stable B069.96
+Implementation Build: develop P0-B-129.156 / modinfo156 CLAIM_RELOAD_LOCAL_COMPLETE; live B129.156 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B129_CLAIM_RELOAD_LOCAL_PASS_NATIVE_PENDING
 
 [B129窄修复](../Architecture/v2/P0_E2_Plan.md#b129156--claim-cold-load-acknowledgement-repair)已获授权、本地通过；请求有确认及最多3次有限发送，不凭队列补造timer或重置回合。待失败档冷加载复核；过期timer明确暂停后重新选择，不补发过去奖励。不进入F/工业模板。
 
-源码B129.156 / modinfo156；运行包仍B128.155 / modinfo155，source ad87811，既有部署170/170 MATCH，receipt B128.155-ad87811-playtest.json；本轮未重新核验运行包、未部署。工业缺历史模板暂停边界保留，main不变。
+源码/运行包B129.156 / modinfo156，source146a579；本轮部署后170/170 MATCH，receipt B129.156-146a579-playtest.json为DEVELOP_ACTIVE。OS核验游戏退出，B128恢复点保留；无游戏启动/main变更，原生待验。
 
 ## 历史阶段记录
 
