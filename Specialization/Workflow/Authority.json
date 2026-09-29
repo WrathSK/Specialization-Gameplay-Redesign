@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "0d547eeed2037236b4b772f140656910d02c578a",
+  "runtime_commit": "ae8acf6f0db845adf4c219c0e3b03b6dfbca87b7",
   "current_batch": "B131_MEMORY_ATTRIBUTION_NATIVE_PENDING",
   "next_batch": "Await bounded B131 native attribution; no cleanup or F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B130.157 deployed;170/170 MATCH;source 0d547ee;receipt B130.157-0d547ee-playtest.json DEVELOP_ACTIVE;stable/B129 recovery retained;OS verified game exit",
+  "live": "B131.158 deployed;170/170 MATCH;source ae8acf6;receipt B131.158-ae8acf6-playtest.json DEVELOP_ACTIVE;stable/B130 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
