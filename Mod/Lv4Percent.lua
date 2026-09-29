@@ -28,6 +28,7 @@ function SPCLv4Percent.Start(P,shared)
   error('LV4_DISTRICT_MISSING')
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','Lv4Percent') end
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local scanned,err=pcall(function()

@@ -100,6 +100,7 @@ function M.Start(P,shared)
   end
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','ResearchInfrastructure') end
   if not data.ready or data.busy then return end
   data.busy=true
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then

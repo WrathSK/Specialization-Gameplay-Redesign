@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "0d547eeed2037236b4b772f140656910d02c578a",
-  "runtime": "B130.157 / modinfo157",
+  "runtime": "B131.158 / modinfo158",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -46,9 +46,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CommerceConvergence.lua": {
-      "sha256": "76582d148f9c76a81a3a4ce48d5948345a1eb2526de0eb565b45ba3babb40980",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "a1aad6e7d6e95ffc9bed53a9b10bf52297469c4100ab653379663d21c88eb0d3",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -71,9 +71,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CopyYields.lua": {
-      "sha256": "89b83697439ae7fed42737b212b152ed6646f6c95420a9cb6be8857e26142101",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "6baeed1ace4af70713c52b799ad483340b91728e301f8c48bb6581ebcd7d79d3",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/CrewPrecision.lua": {
       "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
@@ -226,9 +226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "69ca122a667907614425938cdbb7448de07ef1c27364f8c3147e6e4181b7d1bb",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "6b12da372fba046b73e695511a00d8b1047a71d958adf49d06be38bd51b8f77c",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "c41e9614ca0065ef7914ef0aa1156c9c1d5319092486b08bc2cb995f0b505cbd",
+      "sha256": "1ee46c5fda2498c7f5f0be6f1b25ef2afdd7289af83f532071a0c949bd8ad55e",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -291,9 +291,9 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "6521a06b93397c374a333db5cfd72b73f11e205a5f6b4ab8da6f09117d07a529",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "f143254284d61923fe1a5f10c6991c68aa47656d5ba2129f7c9796ae149ad37f",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/InheritanceShadow.lua": {
       "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
@@ -306,19 +306,19 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "ebea7838707ac51016cd53f34700f6e70782567a9de054b50a2b71b5335c8037",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "ac67295570176c8415fa1b1235b1949ffb9aa1a68c208ec2f0b59844b035c246",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "3c7b4ab4177cca18522bb8a5e3ac969f1600fbdd745ab349668c6dca1f6d47c7",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "6a2281946e08855ac45f8554dddfc3bcb5834e98ff17f6a56c49c1f65b77ea91",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "c5aec235c11d7ca0c0989fe6a0391bea1517431ead99e222e99542988f7217fe",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "4cca66077c6e0854c2adad5e60a58674f53241086f245f4f00a7a4eebf1279fb",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Lv3Support.lua": {
       "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
@@ -331,14 +331,14 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Lv4Percent.lua": {
-      "sha256": "c2ff5ec94196d59c1963b29d13745d364a799296654edbda8e2b1037d54e4064",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "8b43ead18cd169fce1462ede4bddfc28ba97cdd08933335b0f78b283cf76cd60",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/NetworkBoost.lua": {
-      "sha256": "bc82aa17a465e5a13d101fafe16f5d9ed693282945bdd0f956f411f898f14d5a",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "de8a59fe355f9cc57ae447c475891c344de12493b87bc463a65ba497d0f7a0c9",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/NetworkBridge.lua": {
       "sha256": "7c34753175b250b5f14e9b5da945b544b7a736b005f1635dfee26b938671c44f",
@@ -361,14 +361,14 @@
       "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "0cdfe90e4db1e93cf5361b6e418dae5f4ab58d875843c965d8e26e3e9310891c",
+      "sha256": "5aa62e7cd187f097025355ecbd0562187510c93c6435eb8e57ed67153d959b4d",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Probe.lua": {
-      "sha256": "3a9bb104e6d80ba39018fb6e68ed6c00b4a9981dd9b565bb60c34f1e798d63dd",
+      "sha256": "aba1f30c0f36d8af2f1576e9ef4a6ff374ca1fbcc8442d10f81258e30b3a8955",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -391,9 +391,9 @@
       "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "109b7a960c9b5e81ff9120cee13e041459aa7951a62ae50a52d47f2dc340d5bf",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "3f82c7e60465ffc601328d551182d4116611d39fcc2ab3dc46341f0dd6efe724",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/RuntimeAuditCore.lua": {
       "sha256": "25aefb1036b4dd9aaedf6c5bc00a6b6c26823953ef4bae00a62a90f901e9f4ff",
@@ -401,9 +401,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "25ad4f655c3991bf17eb27fa5c0ef73c7da71aa0948d64db5d37d14f8991e541",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "77658c47a3d168420309903f3fec9b0a76e69b03fc99a4f5820c748ef004f8a2",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "487098323af1f9789be5d1dc32ffb413f1cc3a457f4283241aa772a29e82ba6d",
+      "sha256": "9b34db284552660647dcde4af2a30874e8fe0ebb95e44e8c14cbd05c20d08ddc",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -441,9 +441,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/StandardizationDiscount.lua": {
-      "sha256": "0238f7d8da39cd72161cbc2969afa6407f3550781470107cb3c0259418869459",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "02cf5da49719d90740087e995fec07508f2c41378daf7f341d4718685383499a",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -531,9 +531,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/GPPRefresh.lua": {
-      "sha256": "5e38c79b4f023f97cca09f43c90ec3d94e942f70e0eabf2846700e22d229813d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "8d1b26946deb2d8a86d6a6cee263f6e0e6b717672c7962deebd53e2cab750f9d",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/UI/GPPRefresh.xml": {
       "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "67dca830c793b5df72c080ed44a02876166cf62385074dfc3b22500da54af97e",
+      "sha256": "d6ea3737b54dd0578493f9aa1e118e8fc14b0830f79b48f782f674fff3dd4a8b",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -636,9 +636,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "5f7d1644fc4597ddc7e8decdc5c6e2ce3928a2c9432eb77e51b340c443fa5974",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "3faac3bb15fe19035e444d5f4e88b16ca80a48125bebb1a68d36d5c695b766cb",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Data/ResearchInfrastructure.sql": {
       "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
@@ -671,9 +671,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "ee71d18f1d47449f3e5595227e4c45ecf3b69a6d5b18cc9ba1204f7443427613",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "fd823d7657eb72d8816478829e4b9e8e738d6009d86d0457ecd408c6eabb0cef",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/UI/ResearchCrossRefresh.xml": {
       "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",
@@ -691,9 +691,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "ad667dc8f2ee76eb6dbc62cd7601dc321c90feea8b20afaff23ce011c9e00a0a",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "b828ebad1263bbb2395af1f0c009720a405f2e1ba646257166d732054fe1845f",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -711,9 +711,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "c1b9bc516d4567a64cd80d4b583fcd8a31e8c3c485665e30987b9cce38ec095f",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "ea2ffce12e1f8cc788b3e12889ff7623fd8b27365389320511bcada6c3c640e5",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/Data/ResearchChair.sql": {
       "sha256": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",

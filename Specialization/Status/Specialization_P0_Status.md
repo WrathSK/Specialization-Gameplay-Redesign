@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0329
-Implementation Build: develop P0-B-130.157 / modinfo157 MEMORY_OBSERVATION_LOCAL_COMPLETE; live B130.157 verified170/170 MATCH; stable B069.96
+Status Revision: S0330
+Implementation Build: develop P0-B-131.158 / modinfo158 MEMORY_ATTRIBUTION_LOCAL_COMPLETE; live B130.157 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B130_MEMORY_OBSERVATION_NATIVE_PENDING
+Work State: B131_MEMORY_ATTRIBUTION_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,7 @@ Work State: B130_MEMORY_OBSERVATION_NATIVE_PENDING
 
 源码/最近已核实运行包B130.157 / modinfo157，source0d547ee，receipt B130.157-0d547ee-playtest.json；本轮仅增加短时内存诊断，运行包170/170 MATCH，已保留稳定/B129恢复点。工业模板初始化、销毁同址新代、未知取得等仍保持原边界。下一工程切片待另行计划/授权，不自动进入F。
 
-性能OPEN：[B130获授权最小观测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b130157--authorized-minimal-observation-checkpoint)本地通过：6回合/6条、按需只读heap与计数，未实施清理。已收6图：count接口可用，T39–41 Lua读数277.90→486.77 MiB、所列缓存条目不变；观察已完成，根因仍OPEN。回调模拟确认player/full范围重复Audit及外国worker触发本地GPP请求；下一建议有界模块归因，待授权实施。B129功能验收保持，非性能PASS，不进入F。
+性能OPEN：[B130获授权最小观测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b130157--authorized-minimal-observation-checkpoint)本地通过：6回合/6条、按需只读heap与计数，未实施清理。已收6图：count接口可用，T39–41 Lua读数277.90→486.77 MiB、所列缓存条目不变；观察已完成，根因仍OPEN。回调模拟确认player/full范围重复Audit及外国worker触发本地GPP请求；[B131有界归因](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b131158--authorized-bounded-event-and-module-attribution)已获授权并通过本地定向验证，待短实机观察。B129功能验收保持，非性能PASS，不进入F。
 
 ## 历史阶段记录
 

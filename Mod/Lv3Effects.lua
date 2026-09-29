@@ -56,6 +56,7 @@ function SPCLv3Effects.Start(P,shared)
   return coefficients,flags
  end
  function data.Audit(scope) P.Count('audit_lv3');
+  if P.Observe then P.Observe('audit','Lv3Effects') end
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local ok,err=pcall(function()

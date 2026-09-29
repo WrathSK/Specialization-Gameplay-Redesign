@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-130.157"
+P.VERSION = "P0-B-131.158"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -531,6 +531,7 @@ end
 -- Instrument only owned call sites; do not monkey-patch engine objects.
 include('PerformanceCounters')
 P.Count=SPCPerformance.Count
+P.Observe=SPCPerformance.Observe
 function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end
 function P.CreateBuilding(object,id) P.Count('building_create');local r=object:CreateBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
 function P.RemoveBuilding(object,id) P.Count('building_remove');local r=object:RemoveBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end

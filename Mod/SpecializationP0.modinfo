@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="157">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="158">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B130.157: bounded opt-in event memory observation; no gameplay changes.</Description>
+    <Description>B131.158: bounded opt-in event/module memory attribution; no gameplay changes.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

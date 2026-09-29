@@ -65,6 +65,7 @@ function SPCLv2GPP.Start(P,shared)
   end end
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','Lv2GPP') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
   if type(scope)~='table' or scope.player==nil then data.errors={} end

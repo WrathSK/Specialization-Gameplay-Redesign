@@ -60,6 +60,7 @@ function SPCNetworkBoost.Start(P,shared)
   return result
  end
  function d.Audit(scope) P.Count('audit_boost');
+  if P.Observe then P.Observe('audit','NetworkBoost') end
   if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   for pid,player in pairs(Players) do
    if SPCRuntimeWork.Player(scope,pid) and (P.IsTestPlayer(pid) or d.applied[pid]) then

@@ -31,6 +31,7 @@ function SPCResearchSupport.Start(P,shared)
   return table.concat(have,',')
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','ResearchSupport') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;local batch=SPCRuntimeWork.New(P,shared)
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then

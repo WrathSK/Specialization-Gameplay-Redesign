@@ -78,6 +78,7 @@ function SPCCopyYields.Start(P,shared)
   if removed and plan.amount==0 and confirmed then P.Count('copy_withdraw') end
  end
  function data.Audit(scope) P.Count('audit_copy');
+  if P.Observe then P.Observe('audit','CopyYields') end
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   for pid,p in pairs(Players) do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid) then
    local ok,why=pcall(function()

@@ -114,3 +114,15 @@ LOCAL_SIMULATION_PASS（小型只读探针，实际RuntimeWork.lua与UI/GPPRefre
 先增加有界、按需的事件来源/模块工作量归因：本次窗口内各Audit调用数、D capture/hit/dirty、GPP dirty请求数与事件来源玩家；只保留固定计数及最重几项，不保存逐事件历史。复用B130窗口和入口，修正堆归属标签。局部前后count仅作分配线索（可能受GC影响，不能直接相加视为独占内存）。
 
 拿到归因后优先评估城市级dirty合并、重复facts/目录capture复用；逐个保留当前所有权退出、UNKNOWN保留、保存重载与收益失效重算语义，不在本次调查中改writer。固定时点释放确定无用的引用仍可作为方案，但没有证据支持清理永久账本或每回合强制全GC。无需用户现在重测；不推进F、不部署。
+
+## B131.158 — authorized bounded event and module attribution
+
+用户“继续”授权上一节提出的最小诊断；W0004 L1，诊断不修改收益/资格/保存/事件派发。沿用B130左开始、右读取与6回合/6条边界，归因状态只在ExposedMembers会话内，重新开始重置、重新加载不恢复；固定白名单，不接收动态模块/城市key、不累积逐事件日志。未开启立即退出，超过6回合拒绝继续归因计数。
+
+15个收益模块Audit入口各一条可选P.Observe调用，统计调用次数（包括busy/not-ready/无效资格早退，不冒充实际执行次数）。RuntimeWork在原过滤与回合去重之后统计派发，含义为每注册回调派发次数，不是去重原生事件数。UI GPPRefresh记录worker/focus/governor/turn/load的local/foreign/unknown固定桶，以及请求尝试、提交未抛异常、异常和Gameplay接收；完全不改变mark/flush/request资格和次数。提交成功不等于消费完成。
+
+D读取/重建/命中/标脏复用原固定计数器相对开始时差分，不额外读取目录。报告按需只显示Audit前6、派发前3与有限UI分类；排序只在手动读报告时发生。Lua标签改为调用位置，独立堆未经证实，不相加、不归为本Mod独占。未采集耗时或每模块字节；本轮不尝试通过非独占Lua读数推导精确allocation attribution。
+
+STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：test_b131_memory_attribution.py延续B130的有界采样、94项日志/129项拒绝/IO失败保护；固定key拒绝未知、新窗口清零/六回合失效/加载重置；实际RuntimeWork的原scope/回合去重/载体过滤不变；实际UI回调local/foreign/unknown、多个dirty合并、无dirty不发送、governor FactsChanged、请求异常可见；15个consumer与B130源逐字比较，除唯一诊断调用外完全相同；改动Lua编译及modinfo158。测试需要Lupa Lua55及Git历史0d547ee；没有实机PASS、玩法全回归或stress。
+
+最小用户验证：选己方城左键内存观测开始；正常过一回合，右键读取并截图（同时保留活动监视器）；静置约20秒右键再读。若方便再过一回合，不要求造城/征服/新局。不要重复左键重置基线。若报告被裁切请投递当前画面，不要求多轮盲测。当前尚不实施dirty合并、缓存清理、GC或F。

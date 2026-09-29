@@ -38,6 +38,7 @@ function SPCIndustrySupport.Start(P,shared)
   return total,food
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','IndustrySupport') end
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local scanOK,scanError=pcall(function()

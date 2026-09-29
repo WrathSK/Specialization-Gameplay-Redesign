@@ -38,15 +38,17 @@ function SPCRuntimeWork.Hook(P,source,name,fn)
    local y,building,owner=...
    local row=P.Info('Buildings',building)
    if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
+   if P.Observe then P.Observe('dispatch',name) end
    fn({player=type(owner)=='number' and owner or nil});return
   end
   if name=='PlayerTurnActivated' then
    if type(pid)~='number' then return end
    local turn=Game.GetCurrentGameTurn();if lastTurn[pid]==turn then return end
-   lastTurn[pid]=turn;fn({player=pid});return
+   lastTurn[pid]=turn;if P.Observe then P.Observe('dispatch',name) end;fn({player=pid});return
   end
   -- Civ VI native city/worker/governor events start with player ID. Events with
   -- plot-first or transfer signatures intentionally retain a full safety scope.
+  if P.Observe then P.Observe('dispatch',name) end
   if name:match('^Governor') or name=='CityWorkerChanged' or name=='CityFocusChanged'
    or name=='CityPopulationChanged' then fn({player=pid});return end
   fn()

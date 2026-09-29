@@ -55,6 +55,7 @@ function SPCLv2Housing.Start(P,shared)
   end end
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','Lv2Housing') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;data.events=data.events+1;local batch=SPCRuntimeWork.New(P,shared)
   if type(scope)~='table' or scope.player==nil then data.errors={} end

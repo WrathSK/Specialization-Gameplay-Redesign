@@ -99,6 +99,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   d.MarkDirty(pid,'initialize');d.Audit()
  end
  function d.Audit(publication)
+  if P.Observe then P.Observe('audit','StandardizationDiscount') end
   if type(publication)=='table' and publication.player~=nil then
    local old=lastNetwork[publication.player]
    if not old or old.epoch~=publication.epoch or old.inputVersion~=publication.inputVersion or old.validity~=publication.validity then

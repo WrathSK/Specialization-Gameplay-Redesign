@@ -329,6 +329,7 @@ local function request(playerID,params)
     return
   end
   if params.Action=="LV2_GPP_DIRTY" then
+    P.Observe('ui','received')
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end

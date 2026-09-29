@@ -20,6 +20,7 @@ function SPCDialogue.Start(P,shared)
   d.ready=true
  end
  function d.Audit(pid)
+  if P.Observe then P.Observe('audit','Dialogue') end
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
   local s=d.samples[pid];local output={};d.last[pid]=output
   for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');

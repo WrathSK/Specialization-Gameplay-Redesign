@@ -75,6 +75,7 @@ function M.Start(P,shared)
   end end
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','ResearchApply') end
   if not data.ready or data.busy then return end
   data.busy=true
   local ok,err=pcall(function()

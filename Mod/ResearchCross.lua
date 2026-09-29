@@ -78,6 +78,7 @@ function M.Start(P,shared)
   return plan
  end
  function data.Audit(scope)
+  if P.Observe then P.Observe('audit','ResearchCross') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) and P.IsTestPlayer(pid) then

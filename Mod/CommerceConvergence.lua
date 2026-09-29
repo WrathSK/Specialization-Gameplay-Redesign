@@ -74,6 +74,7 @@ function SPCCommerceConvergence.Start(P,shared)
   for _,y in ipairs(ys) do assert(observed(c,y)==(amount[y] or 0),'CARRIER_VERIFY_FAILED') end
  end
  function d.Audit(scope) P.Count('audit_commerce');
+  if P.Observe then P.Observe('audit','CommerceConvergence') end
   if d.busy then P.Count('busy_skip');return end;d.busy=true;batch={facts=SPCRuntimeWork.New(P,shared),yields={},routes={}}
   local ok,err=pcall(function()
    if not d.ready then

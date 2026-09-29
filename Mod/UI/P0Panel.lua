@@ -37,7 +37,7 @@ local function displayResponse()
     local report=tostring(data.Snapshot)
     if pendingAction=='MEMORY_BEGIN' or pendingAction=='MEMORY_READ' then
      local heap=SPCPerformance.Heap and SPCPerformance.Heap()
-     report=report..'\n诊断UI Lua（独立context，勿与Gameplay相加）：'..(heap and string.format('%.2f MiB',heap) or '不可用')
+     report=report..'\nUI调用处 Lua（堆是否独立未证，勿相加）：'..(heap and string.format('%.2f MiB',heap) or '不可用')
     end
     if pendingAction=="LV2_GPP_READ" then report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report) end
     if pendingAction=="LV4_PERCENT_READ" then

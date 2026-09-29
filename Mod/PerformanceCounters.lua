@@ -54,16 +54,64 @@ function M.Describe(detailed)
  return table.concat(lines,'\n')
 end
 
+-- Fixed-schema attribution, shared across invocation sites; only armed by the reader.
+local auditLabels={
+ Lv2Housing='住房',Lv2GPP='GPP',ResearchInfrastructure='科研基建',ResearchCross='跨学科',
+ ResearchApply='学以致用',ResearchChair='学术主持',ResearchSupport='专家支持',
+ IndustrySupport='工业支持',Lv3Effects='旧三级',Lv4Percent='旧四级',
+ CommerceConvergence='旧商业汇聚',CopyYields='复制收益',StandardizationDiscount='工业折扣',
+ NetworkBoost='旧网络',Dialogue='对话'}
+local dispatchLabels={
+ PlayerTurnActivated='回合',CityWorkerChanged='工人',CityFocusChanged='焦点',
+ GovernorAssigned='总督指派',GovernorEstablished='总督就位',GovernorChanged='总督变化',GovernorPromoted='总督晋升',
+ BuildingAddedToMap='建筑加入',BuildingRemovedFromMap='建筑移除',BuildingPillaged='建筑掠夺',BuildingRepaired='建筑修复',
+ DistrictRemovedFromMap='区域移除',DistrictBuildProgressChanged='区域进度',DistrictPillaged='区域掠夺',DistrictRepaired='区域修复',
+ CityTransfered='易主',CityRemovedFromMap='城市移除',CityPopulationChanged='人口',
+ CityProductionCompleted='生产完成',CityTileOwnershipChanged='地块归属',GovernmentPolicyChanged='政策',
+ GovernmentChanged='政体',ResearchCompleted='科技',CivicCompleted='市政',LoadScreenClose='加载',
+ CityBuilt='建城',OnBuildingConstructed='建筑建成',OnDistrictConstructed='区域建成'}
+local uiLabels={}
+for _,name in ipairs({'worker','focus','governor','turn','load'}) do
+ for _,owner in ipairs({'local','foreign','unknown'}) do uiLabels[name..'_'..owner]=true end
+end
+for _,k in ipairs({'send','sent','failed','received'}) do uiLabels[k]=true end
+local schemas={audit=auditLabels,dispatch=dispatchLabels,ui=uiLabels}
+local function attribution()
+ local a=ExposedMembers and ExposedMembers.SPC_MemoryAttribution
+ if not a or not a.active then return nil end
+ if Game.GetCurrentGameTurn()>=a.startTurn+6 then a.active=false;return nil end
+ return a
+end
+function M.Observe(group,key)
+ local a=attribution()
+ if not a or not schemas[group] or not schemas[group][key] then return end
+ local counts=a[group];counts[key]=counts[key]+1
+end
+local function armAttribution()
+ local a={active=true,startTurn=Game.GetCurrentGameTurn()}
+ for group,keys in pairs(schemas) do a[group]={};for key in pairs(keys) do a[group][key]=0 end end
+ ExposedMembers.SPC_MemoryAttribution=a
+end
+local function top(counts,labels,limit)
+ local rows={}
+ for k,n in pairs(counts) do if n>0 then rows[#rows+1]={key=k,n=n} end end
+ table.sort(rows,function(a,b)return a.n>b.n or a.n==b.n and a.key<b.key end)
+ local out={}
+ for i=1,math.min(limit,#rows) do local row=rows[i];out[#out+1]=labels[row.key]..' '..row.n end
+ return #out>0 and table.concat(out,' / ') or '无'
+end
+
 -- Opt-in, six-turn observation. Fixed six-row ring; no saves, GC control or effects.
  function M.Heap()
   if type(collectgarbage)~='function' then return nil end
   local ok,n=pcall(collectgarbage,'count')
-  if ok and type(n)=='number' then return n/1024 end -- MiB, only this Lua state
+  if ok and type(n)=='number' then return n/1024 end -- MiB reported at this call site; engine heap sharing is unproven
  end
 function M.StartMemory(P,shared)
  local d={};shared.MemoryObservation=d
+ ExposedMembers.SPC_MemoryAttribution=nil -- new observer/session; never restore old samples
  local armed=false;local player;local startTurn;local baseline;local rows={};local pending;local seen={}
- local keys={'city_scan','district_scan','facts','building_check','building_create','building_remove','property_write','derive_executed'}
+ local keys={'city_scan','district_scan','facts','building_check','building_create','building_remove','property_write','derive_executed','dc_read','dc_capture','dc_hit','dc_dirty'}
  local function size(t)local n=0;for _ in pairs(t or {})do n=n+1 end;return n end
  local function snapshot(label)
   local heap=M.Heap();local c=ExposedMembers.SPC_Performance;local totals={}
@@ -75,18 +123,31 @@ function M.StartMemory(P,shared)
  local labels={city_scan='城市扫描',district_scan='区域扫描',facts='事实读取',building_check='建筑检查',building_create='建载体',building_remove='拆载体',property_write='属性写入',derive_executed='网络派生'}
  function d.Read(pid,begin)
   if not P.IsTestPlayer(pid)then return '仅本地人类玩家可观测' end
-  if begin then armed=true;player=pid;startTurn=Game.GetCurrentGameTurn();baseline=nil;rows={};seen={};pending=nil;snapshot('开始')
+  if begin then armAttribution();armed=true;player=pid;startTurn=Game.GetCurrentGameTurn();baseline=nil;rows={};seen={};pending=nil;snapshot('开始')
   elseif not baseline then return '左键开始一次观测；右键读取。不修改游戏状态。'
   else snapshot('手动读取')end
+  attribution();local attr=ExposedMembers.SPC_MemoryAttribution
+  if attr and not attr.active then armed=false;pending=nil end
   local lines={'内存观测 | '..(armed and '运行中（最多6回合）' or '已停止')..' | 仅本次加载',
-   'Gameplay Lua MiB；不是文明6进程总内存。不可用表示接口不开放。'}
+   'Gameplay调用处 Lua MiB；非本Mod独占，不等于进程内存。'}
   for _,v in ipairs(rows)do lines[#lines+1]='T'..v.turn..' '..v.label..'：'..(v.heap and string.format('%.2f MiB',v.heap) or '不可用')end
   local last=rows[#rows];local values={}
-  for _,k in ipairs(keys)do values[#values+1]=labels[k]..' '..(last.totals[k]-baseline[k])end
+  for _,k in ipairs(keys)do if labels[k] then values[#values+1]=labels[k]..' '..(last.totals[k]-baseline[k]) end end
   lines[#lines+1]='开始以来：'..table.concat(values,' / ')
   local dc=shared.DistrictCompleteness;local net=shared.NetworkBridge;local claim=shared.ClaimProjects;local store=shared.CityProgressionStore
   lines[#lines+1]='当前缓存条目：D '..(dc and dc.CacheSize() or 0)..' / 网络玩家 '..size(net and net.players)..' / 认领视图 '..size(claim and claim.views)..' / 确认 '..size(claim and claim.syncAck)..' / 城市记录 '..(store and store.RecordCount() or 0)
-  lines[#lines+1]='没有强制GC或清理；回合进入采样不代表引擎已完成回收。'
+  local function delta(k)return last.totals[k]-baseline[k]end
+  lines[#lines+1]='D缓存：读取 '..delta('dc_read')..' / 重建 '..delta('dc_capture')..' / 命中 '..delta('dc_hit')..' / 标脏 '..delta('dc_dirty')
+  if attr then
+   lines[#lines+1]='核对调用最多6项（含早退；非耗时/字节）：'
+   lines[#lines+1]=top(attr.audit,auditLabels,6)
+   lines[#lines+1]='事件派发最多3项（逐回调计数）：'..top(attr.dispatch,dispatchLabels,3)
+   local u=attr.ui
+   lines[#lines+1]='UI事件 本人/其它/未知：工人 '..u.worker_local..'/'..u.worker_foreign..'/'..u.worker_unknown..'；焦点 '..u.focus_local..'/'..u.focus_foreign..'/'..u.focus_unknown
+   lines[#lines+1]='UI总督 '..u.governor_local..'/'..u.governor_foreign..'/'..u.governor_unknown..'；回合 '..u.turn_local..'/'..u.turn_foreign..'/'..u.turn_unknown..'；加载 '..u.load_unknown
+   lines[#lines+1]='GPP刷新：请求 '..u.send..' / 已提交 '..u.sent..' / 异常 '..u.failed..' / 已接收 '..u.received
+  end
+  lines[#lines+1]='未清理/强制GC；调用量不等于内存归因。'
   return table.concat(lines,'\n')
  end
  local function event(label,pid)
