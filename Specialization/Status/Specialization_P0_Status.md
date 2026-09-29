@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0317
-Implementation Build: develop P0-B-123.150 / modinfo150 SELECTION_CONFIRMATION; live B123.150 verified166/166 MATCH; stable B069.96
+Status Revision: S0318
+Implementation Build: develop P0-B-124.151 / modinfo151 CLAIM_LOCAL_COMPLETE; live B123.150; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B123_SCOPED_NATIVE_PASS; E2 Claim plan-only
+Work State: B124_CLAIM_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B123原生项目限定验收通过](Validation/Results/Specialization_B123_Project_Pass.md)：用户明确确认三处1T、正常过回合完成、后续无溢出，并补测砍树不提前完成、不流入后续目标。本次是用户文字证据，无新截图；PT012关闭。112项LOCAL测试与原生证据分开，未扩大到所有收获/注入/强制完成组合。
+[B124.151一回合Claim实现](../Architecture/v2/P0_E2_Plan.md#b124151--authorized-one-turn-claim-checkpoint)已按用户授权完成本地检查点。四专业冻结候选项目、独立城市持久计时、真实完成事件一次写Identity/P1、访问marker退出与三处1T显示已接入；单候选仍须玩家选择，后建区域不扩候选。不存在额外奖励，不进入F。
 
-“处理其它待办”属于旧空队列过回合实验，不是当前真实项目方案的前置要求。可以用本原型继续规划真实1-turn项目；当前仍单活动城/会话级，无正式奖励，读档不续算。Claim专属资格、Identity/P1永久提交、重复/失效退出、多城与保存边界仍需实施和验证。
+STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际Store/Claim事务模拟、116项项目/UI定向测试、既有B111分流及保存回归通过。正式Claim的原生完成通知、列表撤销、多城存档续算仍USER_GAME_TEST_REQUIRED，见[PT013流程](../Architecture/v2/P0_E2_Plan.md#最小用户验收-pt013)。B123限定用户PASS保留，不扩为Claim验收。
 
-[一回合Claim计划](../Architecture/v2/P0_E2_Plan.md#next-slice--one-turn-claim-plan-after-b123)已按用户授权准备，替代未实施的Cost=1提案。包含冻结候选、真实完成才写Identity/P1、多城独立、持久计时/读档续算、改选重开、精确入口退出与一次联合实机验证。仅计划待审核，尚未授权Claim实施；不进入F。
-
-源码/live仍B123.150，source 5868061；此前receipt B123.150-5868061-playtest.json记录166/166 MATCH，本轮无重新部署/运行包核验。main/stable B069.96与Design不变。
+源码B124.151 / modinfo151，尚未部署；live仍B123.150（此前166/166 MATCH，receipt B123.150-5868061-playtest.json）。按W0003须提交后核游戏退出与receipt再部署，不能从HEAD推断运行包。main/stable B069.96及Design不变。下一步仅本次部署/用户验证；其它生命周期、F、时代对话及商业能力接入未授权。
 
 ## 历史阶段记录
 

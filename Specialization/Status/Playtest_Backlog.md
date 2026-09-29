@@ -110,3 +110,5 @@ PT012 update 2026-09-28：[自动入口失败](Validation/Results/Specialization
 PT012 B123 update：[启动确认修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#30-b123150--bounded-selection-confirmation-repair)112项LOCAL通过，已部署替代失败包，待实机重测。直接选择→1T→一次退出→普通目标0；失败截队列数量/原因。无P0启动操作，未验收前不关闭待办。
 
 PT012 closure：[B123用户文字验收](Validation/Results/Specialization_B123_Project_Pass.md)确认三处1T、正常完成、后续无溢出；附加砍树场景通过。关闭本条，无需重测其它待办/旧空队列实验；不扩大到收获、多城、保存及正式奖励。
+
+PT013 — B124.151正式一回合认领待实机：冻结候选→两城独立启动→计时中冷加载→正常完成Identity/P1→入口退出/普通目标无带入→认领后冷加载；另一次单城改选重开。无需重测旧空队列或其它待办绕过。[完整最小流程](../Architecture/v2/P0_E2_Plan.md#最小用户验收-pt013)。本地PASS不等于原生PASS。

@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0317",
-    "runtime": "B123.150 / modinfo150",
+    "status": "S0318",
+    "runtime": "B124.151 / modinfo151",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -622,11 +622,53 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B123_Project_Pass.md",
       "kind": "full",
       "reason": "Current native scoped acceptance and reuse limits"
+    },
+    {
+      "path": "Mod/ClaimProjects.lua",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "Mod/UI/ClaimProjectUI.lua",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "Mod/Data/ClaimProjects.sql",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "Mod/Text/ClaimProjects.sql",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "Mod/UI/InstitutionOverview.lua",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "DevelopmentTests/test_b124_claim.py",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "DevelopmentTests/test_b124_project_ui.py",
+      "kind": "full",
+      "reason": "B124 direct Claim writer, exact access/UI or targeted test dependency"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B124.151 — authorized one-turn Claim checkpoint",
+      "reason": "Current implementation, native limits and exact PT013"
     }
   ],
   "dependencies": [
     "B103/B104/B107 scoped native founding/loss/return evidence",
-    "D0035/A0161 progression and new-save cutover contract; explicit user slice1 authorization"
+    "D0035/A0161 progression and new-save cutover contract; explicit user slice1 authorization",
+    "User-approved one-turn Claim plan after B123 and explicit implementation authorization"
   ],
   "old_writers": {
     "preserve": [
@@ -637,7 +679,8 @@
     "adapt": [
       "Production old Binding/Completion/Journal/Flow listeners/load writers disabled; guards also block unsupported cities",
       "Compact new-game registry and independent city Game records; current facts/investment/templates use that authority",
-      "Existing module-owned exit and proven original-owner recapture worker; current ACTIVE/Network only"
+      "Existing module-owned exit and proven original-owner recapture worker; current ACTIVE/Network only",
+      "Exact Claim project completion writer; versioned record-local timer/receipt; native prototype uses disjoint project ID"
     ]
   },
   "conditional_context": [
@@ -671,7 +714,7 @@
     }
   ],
   "non_scope": [
-    "old-save conversion, Claim projects/actions/cost, destruction retirement, unassigned recapture, F; supported no-history AI conquest snapshot only added",
+    "old-save conversion, destruction retirement, unassigned recapture, F; no further abilities",
     "cross-owner benefit inheritance",
     "profession-specific historical ledger migration",
     "F Academic Tradition",
@@ -681,23 +724,25 @@
   ],
   "validation": {
     "local": [
-      "test_b111_district_snapshot.py: indexed fixture without Members, bad reads/no-write/short diagnostic and inherited snapshot + B109/B108 direct regression",
-      "All Lua syntax/modinfo138/context; no unrelated full regression/stress"
+      "test_b124_claim.py actual persistence/Claim handlers",
+      "test_b124_project_ui.py 116 related project/UI tests",
+      "B111/B109/B108 scoped regression with release stamp adaptation only",
+      "Lua/modinfo151, in-memory DB SQL, context/index checks"
     ],
-    "user": "Two actual AI conquest cities: nonempty frozen set stays NONE even singleton/later construction; empty set subsequent completion P1; one full restart/load, left-click E2 reports."
+    "user": "PT013 in P0_E2_Plan: dual candidate cities, start/load/full turn/Identity1/entry withdrawal/post-claim load and one interruption; native pending"
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "AUTHORIZED_FIRST_AI_CONQUEST_SNAPSHOT_ONLY",
-    "implementation": "B111.138 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; indexed read and diagnostic repair, no save schema or gameplay changes",
+    "plan": "AUTHORIZED_ONE_TURN_CLAIM",
+    "implementation": "B124.151 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; formal Claim native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "One-turn Claim plan prepared after B123; old Cost=1 proposal superseded; awaiting explicit implementation authorization and direct dependency revalidation",
+    "next": "PT013 validation only after safe deployment; no next implementation authorization",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
-    "side_next_plan": "B123 prototype accepted; no further empty-queue test; review one-turn Claim plan"
+    "side_next_plan": "B123 prototype accepted and reused; no empty-queue task"
   }
 }

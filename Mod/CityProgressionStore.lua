@@ -70,13 +70,27 @@ local function CreateProgressionRecord(P,shared,storage)
      and c>=1 and c%1==0 and a%1==0 and i%1==0 and t%1==0 and c<a and a<i and i<t,'STORE_ACQUISITION_ORDER')
     local n=0;for k,v in pairs(f.legacySet)do assert(kinds[k] and v==true,'STORE_LEGACY_SET');n=n+1 end
     assert(f.mode==(n>0 and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'),'STORE_ACQUISITION_MODE')
-    assert(f.mode~='LEGACY_CLAIM' or r.progression=='UNASSIGNED','CLAIM_NOT_IMPLEMENTED')
+    if f.mode=='LEGACY_CLAIM' and r.progression=='SPECIALIZED' then
+     local a=r.claim
+     assert(type(a)=='table' and a.version==1 and a.kind==r.base.specialization and f.legacySet[a.kind]
+      and a.project=='PROJECT_SPC_CLAIM_'..a.kind and a.token==r.base.token and same(a.reference,r.origin)
+      and a.turn==r.base.first.turn and a.turn>=f.turn,'CLAIM_RECEIPT_INVALID')
+    else assert(r.claim==nil,'CLAIM_UNEXPECTED_RECEIPT')end
    end
    assert(r.stage~='PREPARED' and (r.completionError==nil or type(r.completionError)=='string'),'STORE_FRESH_STAGE')
    if r.progression=='UNASSIGNED' then
     assert(r.base.specialization=='NONE' and r.base.potential==0 and r.base.first==nil
      and r.investment==nil and r.templates==nil and r.current==nil,'STORE_UNASSIGNED')
    else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
+  end
+  if r.claimTimer then
+   local t=r.claimTimer
+   assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'
+    and t.version==1 and t.token==r.base.token and same(t.reference,r.origin)
+    and r.acquisition.legacySet[t.kind] and t.project=='PROJECT_SPC_CLAIM_'..t.kind
+    and type(t.start)=='number' and t.start%1==0 and t.start>=r.acquisition.turn
+    and type(t.deactivated)=='boolean' and (t.stage=='ACTIVE' or t.stage=='CALLING' or t.stage=='STOPPED')
+    and type(t.reason)=='string','CLAIM_TIMER_INVALID')
   end
   -- Reuse the established bounded structural validator; live pending debit is checked
   -- by EffectiveFacts and InvestmentAction, not interpreted as a fresh import.
@@ -244,6 +258,34 @@ local function CreateProgressionRecord(P,shared,storage)
   n.revision=n.revision+1;save(n)
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'CityProgressionStore.lua')end
  end
+ -- Claim state belongs to the existing city record, not UI or a second property.
+ function d.ClaimState(pid,c)
+  local r=active(pid,c)
+  if r.schema~=3 or r.acquisition.mode~='LEGACY_CLAIM' then return nil end
+  return cp({token=r.base.token,reference=r.origin,set=r.acquisition.legacySet,
+   eligible=r.progression=='UNASSIGNED',timer=r.claimTimer,receipt=r.claim,revision=r.revision})
+ end
+ function d.WriteClaimTimer(pid,c,old,value)
+  local r=active(pid,c)
+  assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED','CLAIM_INELIGIBLE')
+  assert(same(r.claimTimer,old),'CLAIM_TIMER_STALE')
+  if same(old,value) then return end
+  local n=cp(r);n.claimTimer=cp(value);n.revision=n.revision+1;save(n)
+ end
+ function d.ClaimComplete(pid,c,e)
+  local r=active(pid,c)
+  if r.claim then return false end -- duplicate native completion/readback
+  assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED','CLAIM_INELIGIBLE')
+  assert(same(e.reference,r.origin) and e.token==r.base.token and r.acquisition.legacySet[e.kind]
+   and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'CLAIM_PROOF_INVALID')
+  assert(type(e.districtID)=='number' and type(e.type)=='string','CLAIM_DISTRICT_INVALID')
+  local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.kind;n.base.potential=1
+  n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
+  n.claim={version=1,token=e.token,reference=cp(e.reference),kind=e.kind,project=e.project,turn=e.turn}
+  n.claimTimer=nil;n.revision=n.revision+1;save(n)
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'ClaimProjects.lua')end
+  return true
+ end
  local function activate(c)
   assert(root.stage=='PREPARED' and same(source(c),root.source),'IMPORT_SOURCE_CHANGED')
   assert(P.IsTestPlayer(root.origin.owner),'IMPORT_PLAYER_CHANGED')
@@ -276,10 +318,11 @@ local function CreateProgressionRecord(P,shared,storage)
   if root.schema==3 then
    local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业'};local list={}
    for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do if root.acquisition.legacySet[k]then list[#list+1]=names[k]end end
-   local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目（本批尚未开放）' or '等待征服后的首个合格区域完成'
+   local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目' or '等待征服后的首个合格区域完成'
    if root.progression=='SPECIALIZED' then mode='专业已锁定：'..names[f.specialization]end
    return P.VERSION..' | 征服城市进度\n取得已确认 | '..mode..'\n冻结候选：'..(#list>0 and table.concat(list,'、') or '无')
-    ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..'\n独立记录已保存；候选不会随之后建设增加。'
+    ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..(shared.ClaimProjects and shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()] and ('\n认领：'..shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()].reason) or '')
+    ..'\n独立记录已保存；候选不会随之后建设增加。'
   end
   if root.schema==2 then
    return P.VERSION..' | 新城进度\n来源：正常建城 | '..(root.progression=='UNASSIGNED' and '等待首个合格区域完成' or ('专业已锁定：'..f.specialization))
@@ -490,7 +533,7 @@ local function CreateProgressionRecord(P,shared,storage)
    elseif same(current,root.origin) and root.stage=='PREPARED' then activate(c)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
-    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.revision=n.revision+1
+    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end
@@ -695,6 +738,9 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   return find(c)~=nil
  end
  function store.IsRecaptured(c)local w=find(c);return w and w.IsRecaptured(c) or false end
+ function store.ClaimState(pid,c)return requireCity(c).ClaimState(pid,c)end
+ function store.WriteClaimTimer(pid,c,old,value)return requireCity(c).WriteClaimTimer(pid,c,old,value)end
+ function store.ClaimComplete(pid,c,e)return requireCity(c).ClaimComplete(pid,c,e)end
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end

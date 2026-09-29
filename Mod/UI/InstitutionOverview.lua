@@ -11,6 +11,7 @@ local owned={}
 for b in GameInfo.Buildings() do
  if b.BuildingType:match('^BUILDING_SPC_') and (b.InternalOnly==true or b.InternalOnly==1) then owned[b.BuildingType]=true end
 end
+local claimOwned={BUILDING_SPC_CLAIM_RESEARCH=true,BUILDING_SPC_CLAIM_CULTURE=true,BUILDING_SPC_CLAIM_INDUSTRY=true,BUILDING_SPC_CLAIM_COMMERCE=true}
 local lastData,verified,verifiedKey,lastSignature
 local function eligible(data)
  local c=data and data.City
@@ -32,7 +33,7 @@ function ViewPanelBreakdown(data)
  lastData=data
  local ok,v=eligible(data)
  lastSignature=signature(ok,v)
- original(ok and M.Filter(data,owned) or data)
+ original(M.Filter(data,ok and owned or claimOwned))
  LuaEvents.SPC_InstitutionOverview(data,ok and v or nil)
 end
 local function changed()

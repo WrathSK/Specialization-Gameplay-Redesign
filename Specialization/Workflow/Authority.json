@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0317",
-    "runtime": "B123.150 / modinfo150",
+    "status": "S0318",
+    "runtime": "B124.151 / modinfo151",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "58680610cadda159e515e296e6245eb2bdcaf29d",
-  "current_batch": "B123_SCOPED_NATIVE_PASS; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Review one-turn Claim plan after B123; await explicit implementation authorization",
+  "runtime_commit": "B124 implementation commit pending",
+  "current_batch": "B124_CLAIM_LOCAL_PASS_NATIVE_PENDING",
+  "next_batch": "Deploy verified B124 checkpoint under W0003, then PT013 user validation; no F",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B123.150 / modinfo150 deployed;166/166 MATCH;source 5868061;receipt B123.150-5868061-playtest.json DEVELOP_ACTIVE;B122/stable recovery retained;PT012 scoped user PASS incl reported chop; no new deployment",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Authorized automatic selection and independent time displays implemented; 103 targeted simulations, UI/native pending",
+  "context_review_status": "Authorized one-turn Claim direct store/UI/native-project closure reviewed; L3 targeted local PASS, native PT013 pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,13 +1,13 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B111_SCOPED_USER_GAME_TEST_PASS. B109 slice1 accepted; authorized B110 snapshot implemented locally; Claim/lifecycle/F remain unauthorized.
+Status: PARTIAL_IMPLEMENTED / B124_CLAIM_LOCAL_PASS_NATIVE_PENDING. B109/B111 scoped acceptance retained; one-turn Claim implementation authorized and locally complete; later lifecycle/F not authorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户授权准备[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，尚未授权实施。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到这些未实现部分。
+当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，现已完成[B124本地检查点](#b124151--authorized-one-turn-claim-checkpoint)，等待正式Claim实机验证。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到这些未实现部分。
 
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot分流已授权；Claim操作、销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot已验收，Claim本地实现待验；销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -21,7 +21,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 实施依赖与按问题展开
 
-[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[一回合Claim计划](#next-slice--one-turn-claim-plan-after-b123)；快照结果见B111，Claim仍未授权实施。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[一回合Claim计划](#next-slice--one-turn-claim-plan-after-b123)；快照结果见B111，Claim当前结果见B124；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
 
 | 触发 / 直接合同 | 阅读范围与用途 |
 |---|---|
@@ -29,7 +29,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 | ownership退出/夺回或Native顺序异常 | [B096模块自有退出清单](#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)、[B097逐类永久/派生state](#b097124--原玩家同城夺回-partial-checkpoint)，再读B101/B102/B103后续修正；这些阶段上限/待测状态可能已过时，不能反向覆盖B108 |
 | founding或事件收尾问题 | [B105原生反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md)、[B107实现](#b107134--authorized-positive-founding-registration-implementation)及其原生结果；不得恢复“首个Publish即事务结束”假设 |
 | 既有测试fixture/兼容断言失败 | 对应历史阶段＋直接test依赖；历史adapter不是生产旧档支持承诺 |
-| 讨论后续工作 | [B110当前检查点](#b110137--authorized-conquest-snapshot-checkpoint)；原快照计划已授权并完成本地实施，Claim及其它后续仅建议，不派工 |
+| 讨论后续工作 | [B110当前检查点](#b110137--authorized-conquest-snapshot-checkpoint)；原快照计划已授权并完成本地实施，Claim已获本轮授权；其它后续仅建议，不派工 |
 
 跨Owner永久成果仍逐专业定义；未实现的学术传统、文化永久ledger、商业合同不补造。名字/单独坐标/猜CityID不能证明同城；失效与临时UNKNOWN分离。旧实验代码可保留作反证/fixture，正式入口是否启用以当前切片与源码为准。
 
@@ -965,8 +965,8 @@ L3（持久Identity写入），仅相关范围：
 
 ## Next slice — one-turn Claim plan after B123
 
-Status: PLAN_ONLY / USER_REVIEW_REQUIRED / IMPLEMENTATION_NOT_AUTHORIZED。
-基线：develop B123.150 / source 5868061，原生限定PASS记录08dc8f4；当前文档状态以Status为准。Design D0035 PROG-006～009、ELIG及现行E2保存合同不变。本节替代上文未实施的Cost=1建议，不新建Design revision；本次授权只准备计划。
+Status: USER_APPROVED / IMPLEMENTED_B124 / USER_GAME_TEST_REQUIRED。
+基线：develop B123.150 / source 5868061，原生限定PASS记录08dc8f4；当前文档状态以Status为准。Design D0035 PROG-006～009、ELIG及现行E2保存合同不变。本节替代上文未实施的Cost=1建议，不新建Design revision；下文保留当时计划措辞，随后用户“授权实施”已接受此范围，实际结果见B124。
 
 ### 玩家操作与范围
 
@@ -1032,3 +1032,37 @@ Status: PLAN_ONLY / USER_REVIEW_REQUIRED / IMPLEMENTATION_NOT_AUTHORIZED。
 本计划待用户审核及单独实施授权。建议采用高成本原生项目的一回合确认，不再采用旧Cost=1建议；同城读档续算、改选重开、多城独立、Cheat真实完成有效按上述合同一起审阅。没有另需补齐的Gameplay阻塞；不可靠的原生完成/资格退出归技术门禁，不能预写PASS。
 
 不包含时代对话或商业能力正式接入、收益新公式、AI/多人、其它专业Legacy、城市销毁/重建、未专业化失城夺回、F。当前无用户游戏测试，本轮无runtime/部署/Design变更；等待授权。
+
+## B124.151 — authorized one-turn Claim checkpoint
+
+用户在计划后明确“授权实施”。STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；正式Claim USER_GAME_TEST_REQUIRED。不是E2整体完成，不进入F。B123原型限定实机证据继续保留，不冒充本次保存/身份事务已实机通过。
+
+### 实际实现与review closure
+
+- `Mod/ClaimProjects.lua`只拥有四个精确Claim项目和四个零收益访问marker；冻结LegacySet决定列表，单候选不自动确认，后建区域不扩候选。普通建筑目录已按InternalOnly排除；City Overview在非科研城也只新增隐藏这四个marker。confirmed loss采用module-owned RemoveOwned，永久记录不清零。
+- `CityProgressionStore`在既有schema3城市记录内增加version1的`claimTimer`及`claim`凭据。点击仅保存ACTIVE计时；原生完成事件验证本地Owner、记录、候选、当前完整对应区域后，同一次readback保存Identity/P1、base.first及receipt；不赠送投资。重复/其它项目迟到事件不再写入。旧非Claim及FIRST_COMPLETION继续原路径。
+- 每城计时独立：启动回合→结束确认→下一回合先保存CALLING再FinishProgress。正常load续算；改选立即中断，重选重新计时；CALLING结果未知不重试、不凭项目消失补身份。保存失败、引用冲突、UNKNOWN暂停。未专业化失城后恢复仍deferred。
+- `ClaimProjectUI`确认实际唯一当前队列后只发一次请求；无P0启动、无每帧/hover请求。既有生产列表/城市面板/旗帜薄包装显示1T及短原因。Load不从UI补造计时。
+- 完成后由既有consumer Audit与Network Refresh重读当前事实，不重放收益或路线快照。审阅EffectiveFacts、InvestmentAction、CrewProjects、Standardization的base.first/永久写入口；Industry模板继续现有模块自己的初始化/回合生命周期。本轮**没有**新增跨城市Standardization.Discover补录调用。
+- 原型writer只识别OVERFLOW_SINK_TEST，正式writer只识别四个Claim；不互相完成。高成本1,000,000是技术容器，无项目原生收益/GPP，Cheat真实完成事件可正常认领。当前原生项目资格刷新、保存计时、FinishProgress→完成通知的联合路径仍待引擎验证。
+
+### 本地验证与证据限制
+
+风险L3，仅直接保存、身份与项目路径；未运行无关全量回归或stress。
+
+- `DevelopmentTests/test_b124_claim.py`：实际Store/Claim handler模拟通过；双城、冻结候选、保存/冷加载、结束确认后加载、原生完成回调、重复/晚到、改选、investment P2、marker退出、loss/UNKNOWN、冲突、持久CALLING不重试、保存失败无身份补发。
+- `DevelopmentTests/test_b124_project_ui.py`：116项通过（112项相关原型回归＋4项Claim UI测试）。覆盖队列0→1确认、唯一目标限制、load无自动请求、只修改精确项目显示。
+- B111/B109/B108既有生产分流/保存定向回归通过，历史wrapper仅将release断言138适配151，未移除断言。全Lua编译、modinfo文件唯一性/存在性通过。
+- 外部DebugGameplay数据库只读复制到内存后应用新SQL：4项目、4零收益InternalOnly marker、16本地化条目；无ProjectCompletionModifiers/Project_YieldConversions/Project_GreatPersonPoints。Make_Hash仅测试stub，不宣称原生hash证明。
+- Native完成、列表刷新、两城存档计时及溢出隔离：待PT013。B123实测砍树证据仅是复用primitive，不能外推所有harvest/mod组合。
+
+### 最小用户验收 PT013
+
+使用从开局启用本Mod、已有征服冻结候选的独立测试存档；保留Claim前档。
+
+1. A为单候选（如商业；后来工业不应新增入口），B为多候选。两城各选择一个“认定…专业”为唯一当前生产，三处显示1回合；启动时仍未认领。无需打开P0启动工具。
+2. 过回合前保存，完全退出再加载：计时保留，不得仅因加载就给身份。正常过回合后两城各自Identity/P1，所有其它认领入口撤下；查看专业/E2左键报告，确认没有串城。
+3. 选择此前从未生产的普通目标，初始不带入Claim生产；确认可投资。认领后另存并冷启动加载，身份保持、不能再次选择Claim。
+4. 从Claim前档单城补一次中断：选择Claim→普通目标→重新选Claim，须重新完整一回合。无需重复旧空队列/其它待办实验。
+
+异常时停止并投递当前项目提示与E2左键报告。回滚B123.150必须搭配Claim前档；不承诺旧包读取新增Claim状态。当前本地完成，部署结果以Status/receipt为准；不自动继续下一批。

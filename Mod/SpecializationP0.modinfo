@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="150">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="151">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B123.150: wait for project queue confirmation and clear stale selection UI; no reward.</Description>
+    <Description>B124.151: persistent one-turn specialization Claim projects; four professions only.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_ClaimProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/ClaimProjects.sql</File></UpdateDatabase>
+    <UpdateText id="SPC_ClaimText"><File>Text/ClaimProjects.sql</File></UpdateText>
     <ReplaceUIScript id="SPC_TimedProjectCityPanel"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
     <ReplaceUIScript id="SPC_TimedTurnProbe"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
@@ -63,6 +65,8 @@
       <File>UI/OverflowStorageRead.lua</File>
       <File>TimedProductionProbe.lua</File>
       <File>ProjectTurnObservation.lua</File>
+      <File>ClaimProjects.lua</File>
+      <File>UI/ClaimProjectUI.lua</File>
       <File>TimedProject.lua</File>
       <File>UI/TimedProjectRead.lua</File>
       <File>UI/TimedProjectDisplay.lua</File>
@@ -348,6 +352,10 @@
     <File>UI/OverflowStorageRead.lua</File>
     <File>TimedProductionProbe.lua</File>
     <File>ProjectTurnObservation.lua</File>
+    <File>ClaimProjects.lua</File>
+    <File>UI/ClaimProjectUI.lua</File>
+    <File>Data/ClaimProjects.sql</File>
+    <File>Text/ClaimProjects.sql</File>
     <File>TimedProject.lua</File>
     <File>UI/TimedProjectRead.lua</File>
     <File>UI/TimedProjectDisplay.lua</File>
