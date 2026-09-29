@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "ae8acf6f0db845adf4c219c0e3b03b6dfbca87b7",
+  "runtime_commit": "c225aa000c323a03c837019156654f474bca00c9",
   "current_batch": "B132_EVENT_CACHE_OPTIMIZATION_NATIVE_PENDING",
   "next_batch": "Await B132 short native comparison; no further optimization/GC/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B131.158 deployed;170/170 MATCH;source ae8acf6;receipt B131.158-ae8acf6-playtest.json DEVELOP_ACTIVE;stable/B130 recovery retained;OS verified game exit",
+  "live": "B132.159 deployed;170/170 MATCH;source c225aa0;receipt B132.159-c225aa0-playtest.json DEVELOP_ACTIVE;stable/B131 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
