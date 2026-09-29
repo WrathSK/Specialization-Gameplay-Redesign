@@ -591,6 +591,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  local function check()assert(not fault,fault or 'STORE_COLLECTION_HELD')end
  local function count()if modern and index then return index.counter end;local n=0;for _ in pairs(envelope.records)do n=n+1 end;return n end
+ function store.RecordCount()return count()end
  local function validateCollection(v)
   assert(type(v)=='table' and v.schema==2 and type(v.records)=='table' and type(v.revision)=='number'
    and v.revision>=0 and v.revision%1==0,'STORE_COLLECTION_SCHEMA')

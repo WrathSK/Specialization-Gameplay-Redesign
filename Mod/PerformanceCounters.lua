@@ -53,3 +53,56 @@ function M.Describe(detailed)
  end
  return table.concat(lines,'\n')
 end
+
+-- Opt-in, six-turn observation. Fixed six-row ring; no saves, GC control or effects.
+ function M.Heap()
+  if type(collectgarbage)~='function' then return nil end
+  local ok,n=pcall(collectgarbage,'count')
+  if ok and type(n)=='number' then return n/1024 end -- MiB, only this Lua state
+ end
+function M.StartMemory(P,shared)
+ local d={};shared.MemoryObservation=d
+ local armed=false;local player;local startTurn;local baseline;local rows={};local pending;local seen={}
+ local keys={'city_scan','district_scan','facts','building_check','building_create','building_remove','property_write','derive_executed'}
+ local function size(t)local n=0;for _ in pairs(t or {})do n=n+1 end;return n end
+ local function snapshot(label)
+  local heap=M.Heap();local c=ExposedMembers.SPC_Performance;local totals={}
+  for _,k in ipairs(keys)do totals[k]=c and c.entries[k] and c.entries[k].total or 0 end
+  baseline=baseline or totals
+  local row={label=label,turn=Game.GetCurrentGameTurn(),heap=heap,totals=totals}
+  rows[#rows+1]=row;if #rows>6 then table.remove(rows,1)end
+ end
+ local labels={city_scan='城市扫描',district_scan='区域扫描',facts='事实读取',building_check='建筑检查',building_create='建载体',building_remove='拆载体',property_write='属性写入',derive_executed='网络派生'}
+ function d.Read(pid,begin)
+  if not P.IsTestPlayer(pid)then return '仅本地人类玩家可观测' end
+  if begin then armed=true;player=pid;startTurn=Game.GetCurrentGameTurn();baseline=nil;rows={};seen={};pending=nil;snapshot('开始')
+  elseif not baseline then return '左键开始一次观测；右键读取。不修改游戏状态。'
+  else snapshot('手动读取')end
+  local lines={'内存观测 | '..(armed and '运行中（最多6回合）' or '已停止')..' | 仅本次加载',
+   'Gameplay Lua MiB；不是文明6进程总内存。不可用表示接口不开放。'}
+  for _,v in ipairs(rows)do lines[#lines+1]='T'..v.turn..' '..v.label..'：'..(v.heap and string.format('%.2f MiB',v.heap) or '不可用')end
+  local last=rows[#rows];local values={}
+  for _,k in ipairs(keys)do values[#values+1]=labels[k]..' '..(last.totals[k]-baseline[k])end
+  lines[#lines+1]='开始以来：'..table.concat(values,' / ')
+  local dc=shared.DistrictCompleteness;local net=shared.NetworkBridge;local claim=shared.ClaimProjects;local store=shared.CityProgressionStore
+  lines[#lines+1]='当前缓存条目：D '..(dc and dc.CacheSize() or 0)..' / 网络玩家 '..size(net and net.players)..' / 认领视图 '..size(claim and claim.views)..' / 确认 '..size(claim and claim.syncAck)..' / 城市记录 '..(store and store.RecordCount() or 0)
+  lines[#lines+1]='没有强制GC或清理；回合进入采样不代表引擎已完成回收。'
+  return table.concat(lines,'\n')
+ end
+ local function event(label,pid)
+  if not armed or pid~=player then return end
+  local t=Game.GetCurrentGameTurn()
+  if t>=startTurn+6 then armed=false;pending=nil;return end
+  if label~='转移' and seen[label]==t then return end
+  seen[label]=t;snapshot(label);pending='发布后'
+ end
+ for _,v in ipairs({{'PlayerTurnDeactivated','回合离开'},{'PlayerTurnActivated','回合进入'}})do
+  local label=v[2];local e=P.Field(Events,v[1]);if e and e.Add then e.Add(function(pid)event(label,pid)end)end
+ end
+ local transfer=P.Field(Events,'CityTransfered');if transfer and transfer.Add then transfer.Add(function(newOwner,id,oldOwner)
+  if armed and (newOwner==player or oldOwner==player)then event('转移',player)end
+ end)end
+ local publish=P.Field(Events,'GameCoreEventPublishComplete');if publish and publish.Add then publish.Add(function()
+  if armed and pending then local label=pending;pending=nil;snapshot(label)end
+ end)end
+end

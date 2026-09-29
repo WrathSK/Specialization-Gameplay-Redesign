@@ -33,6 +33,10 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
+    local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
+    shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
+  end
   if params.Action=='CLAIM_BEGIN' or params.Action=='CLAIM_SYNC' then
     local claim=shared.ClaimProjects
     if claim and not claim.startupError then
@@ -668,3 +672,5 @@ include("ProjectTurnObservation")
 SPCProjectTurnObservation.Start(P,shared)
 include("TimedProject")
 SPCTimedProject.Start(P,shared)
+
+SPCPerformance.StartMemory(P,shared)

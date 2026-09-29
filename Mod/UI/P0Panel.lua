@@ -35,6 +35,10 @@ local function displayResponse()
   local data=ExposedMembers.SPC_P0 or {}
   if pendingToken and data.Version==P.VERSION and data.LastToken==pendingToken then
     local report=tostring(data.Snapshot)
+    if pendingAction=='MEMORY_BEGIN' or pendingAction=='MEMORY_READ' then
+     local heap=SPCPerformance.Heap and SPCPerformance.Heap()
+     report=report..'\n诊断UI Lua（独立context，勿与Gameplay相加）：'..(heap and string.format('%.2f MiB',heap) or '不可用')
+    end
     if pendingAction=="LV2_GPP_READ" then report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report) end
     if pendingAction=="LV4_PERCENT_READ" then
       local f=data.Lv4PercentRead
@@ -487,14 +491,10 @@ initialize=function()
  if Mouse.eRClick then Controls.CompletenessButton:RegisterCallback(Mouse.eRClick,function() request("RESEARCH_INFRA_DETAIL") end) end
  Controls.CompletenessButton:SetToolTipString("左键：科研基础设施摘要；右键：学院建筑组成")
  Controls.GWAReadButton:SetHide(false)
- Controls.GWAReadButtonCaption:SetText("完成承接试验")
- Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function()
-  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;overflowRead.Click()
- end)
- Controls.GWAReadButton:RegisterCallback(Mouse.eRClick,function()
-  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;overflowRead.Read()
- end)
- Controls.GWAReadButton:SetToolTipString("仅独立测试档：选择溢出承接实验为唯一目标，左键准备、再次左键原生完成；右键刷新当前目标和进度（包括0）。无奖励，每城每次加载最多调用一次。")
+ Controls.GWAReadButtonCaption:SetText("内存观测")
+ Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function()request('MEMORY_BEGIN')end)
+ Controls.GWAReadButton:RegisterCallback(Mouse.eRClick,function()request('MEMORY_READ')end)
+ Controls.GWAReadButton:SetToolTipString('左键开始一次短观测；右键读取事件用量。最多6回合，不清内存、不改存档。')
  include("ProjectTurnRead")
  -- Retain its independent UI queue reader; B120 observer still exists for reference.
  SPCProjectTurnRead.New(P,function()end,function(...)return UI.RequestPlayerOperation(...)end)

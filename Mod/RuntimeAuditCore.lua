@@ -39,7 +39,7 @@ local meta={'session','build','modinfo','turn','interval_from_turn','partial','e
 function M.New(counters,sink,options)
  local s={state='STARTING',reason='',previous={},names={},lastTurn=nil,startTurn=options.turn,session=nil,rows=0,anomalies=0,peak={},sink=sink}
  for k,e in pairs(counters.entries) do
-  assert(#s.names<64 and type(e.total)=='number','COUNTER_SCHEMA_UNSUPPORTED')
+  assert(#s.names<128 and type(e.total)=='number','COUNTER_SCHEMA_UNSUPPORTED')
   s.names[#s.names+1]=k;s.previous[k]=0;s.peak[k]=0
  end
  table.sort(s.names)

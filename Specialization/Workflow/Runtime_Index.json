@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "146a579e13fc78d8f25869f837c6382e8a0a91bf",
-  "runtime": "B129.156 / modinfo156",
+  "runtime": "B130.157 / modinfo157",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "3b734002d152d0137ecddea22c8d8079c57aa33f2f169f445d7b388fa37fdcd4",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
+      "sha256": "c41e9614ca0065ef7914ef0aa1156c9c1d5319092486b08bc2cb995f0b505cbd",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -361,14 +361,14 @@
       "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "0c9d8c2bdb45a2dcedc9e46ae052c56f2302799532aad4dcc588ec0b958abcbd",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "0cdfe90e4db1e93cf5361b6e418dae5f4ab58d875843c965d8e26e3e9310891c",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/Probe.lua": {
-      "sha256": "e136cda63c3f1dc89683784ac1031e3ae4a8bc760cb556f7954251b5dabcede0",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
+      "sha256": "3a9bb104e6d80ba39018fb6e68ed6c00b4a9981dd9b565bb60c34f1e798d63dd",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -396,9 +396,9 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/RuntimeAuditCore.lua": {
-      "sha256": "4d48025888451ef30e89473cdb5f3179b17646511bd4067f4dfad3da09833b1b",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "25aefb1036b4dd9aaedf6c5bc00a6b6c26823953ef4bae00a62a90f901e9f4ff",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
       "sha256": "25ad4f655c3991bf17eb27fa5c0ef73c7da71aa0948d64db5d37d14f8991e541",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0a594a7722b2a668c0fe773f4753d070605b9f5d2427a804d59c5600b69c0b10",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
+      "sha256": "487098323af1f9789be5d1dc32ffb413f1cc3a457f4283241aa772a29e82ba6d",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "3409cbf388a5d09460d02a792cc3300afc99e7b1714de329d3a80f1ee09c11ac",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+      "sha256": "67dca830c793b5df72c080ed44a02876166cf62385074dfc3b22500da54af97e",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -566,9 +566,9 @@
       "provenance": "B113 authorized guarded native next-turn prototype; local21 PASS, engine pending; Probe version-only"
     },
     "Mod/UI/RuntimeAudit.lua": {
-      "sha256": "bb39fd4dcc9ce71861f54dfaab0d7b19dd62c60d45cebae5d08cda70aef16b95",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
-      "provenance": "B094 narrow authorized event wrapper compatibility fix"
+      "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/UI/RuntimeAudit.xml": {
       "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "ad213e1ca129efde6390aa57c2b4604bba88052b2b5353731a4a818823aca181",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B128 authorized unassigned return reference/Claim adaptation; targeted local pass, native pending"
+      "sha256": "573298ba2824cea1d785c2375b1965d374e5f657b336f9d09fa7b63d7d87bd0a",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
