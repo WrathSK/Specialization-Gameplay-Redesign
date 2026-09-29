@@ -128,3 +128,29 @@ STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：test_b131_memory_attribution.py延续
 最小用户验证：选己方城左键内存观测开始；正常过一回合，右键读取并截图（同时保留活动监视器）；静置约20秒右键再读。若方便再过一回合，不要求造城/征服/新局。不要重复左键重置基线。若报告被裁切请投递当前画面，不要求多轮盲测。当前尚不实施dirty合并、缓存清理、GC或F。
 
 B131 deployment: source ae8acf6f0db845adf4c219c0e3b03b6dfbca87b7; receipt B131.158-ae8acf6-playtest.json DEVELOP_ACTIVE; OS-confirmed game exit, official restore/activate, stable/B130 recovery retained; 170/170 MATCH, digest a71e93d2637b3a49e2564745837d7f028df592ee0f59f5c3775cd5019be9e8d5. Native attribution USER_GAME_TEST_REQUIRED.
+
+## B131 native results
+
+2026-09-29六张截图逐张读取（含原分辨率诊断细节）；外部Evidence/B131_Memory_Attribution已归档6/6 SHA256一致。未部署/改源码。
+
+|时间|回合|进程Memory GB|Lua调用处 MiB|
+|---|---|---:|---:|
+|10:36:16|T39 开始|10.27|274.55|
+|10:36:43|T40 手动读取|10.50|418.64|
+|10:37:10|T40 再次读取|10.49|419.42|
+
+T39离开275.98、发布276.11；T40进入416.41、发布416.61。后两组相隔27秒、同一回合：城市扫描7773、区域扫描3101、facts4342、建筑检查811797保持完全相同；建拆载体/包装器属性写入/网络派生0。所列缓存D1/网络玩家1/认领视图3/确认10/城市记录10不变。D读取29/重建29/命中0/标脏29也不变。
+
+Audit入口计数：工业折扣579→1352（+773）；对话577、旧商业汇聚78、GPP58、学以致用58、学术主持58不变。派发前3：回合196/总督变化96/区域移除44，均为逐监听回调计数，不能当作196次游戏回合或44座区域实际被拆。
+UI本人/其它/未知：工人0/0/0、焦点0/3/0、总督2/6/0、回合1/13/0、加载0。GPP请求6/提交6/异常0/已接收1，两次T40报告均如此。提交没有抛异常不等于收到或执行；缺少链路证据，不能宣称5次请求丢失、已排队或造成重复执行。
+
+USER_GAME_TEST观察：报告入口/固定归因可读；重复手动读取没有增加已列扫描/建筑检查。性能原因未定，非修复PASS。
+静置窗口进程略降而Lua略升，二者不能等同；不能证明完全无GC，也不能据0.78MiB变化归为本Mod。回合窗口Lua+144.09MiB，仍非模块独占分配。
+
+直接源码复核：
+- StandardizationDiscount.Audit入口后先检查dirty；为空只计discount_skipped_clean并返回。publish每次调用它，足以解释入口计数持续增长而城市/建筑计数不变的候选路径；本图未显示skipped_clean，不能将773次全部严格判为clean。绝不能据排名第一认定它为最大分配源。
+- Dialogue.auditAll在总督事件遍历Players，但Audit内部先检查本地玩家；577也不是577次完整城市扫描。
+- D 29次读取全部重建，提供重复capture线索；没有当时建筑目录规模和各capture范围证据，不能把811797次全归D。
+- 本批真正的UI来源热点是其它玩家焦点/总督与回合通知，工人事件本次为0；此前worker模拟是潜在路径，不冒充本次实测原因。
+
+下一建议：只读收敛到实际执行路径（已有discount_skipped_clean/audit_standard等计数、总督事件scope、D invalidation责任和GPP提交/接收边界），形成一个保留ownership withdrawal/UNKNOWN/重载合同的窄优化计划，再获授权实施。不再按Audit入口次数盲目清缓存或强制GC；无需用户当前重复测试。不推进F。
