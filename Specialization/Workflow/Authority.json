@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "d50029a3d90ee11f288c89f6aa636e1b80a7bb87",
+  "runtime_commit": "d9e69bada0ae1123aa0716ff9e5961cdc647e8a8",
   "current_batch": "B134_LOCAL_COMPLETE_NATIVE_GC_REQUIRED",
   "next_batch": "After verified test deployment: cold-start existing save copy, manual GC at stable initial point and next two player turns; stop on unavailable interface; no repeat long test/F",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B133.160 deployed;170/170 MATCH;source d50029a;receipt B133.160-d50029a-playtest.json DEVELOP_ACTIVE;stable/B132 recovery retained;OS verified game exit",
+  "live": "B134.161 deployed;170/170 MATCH;source d9e69ba;receipt B134.161-d9e69ba-playtest.json DEVELOP_ACTIVE;stable/B133 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

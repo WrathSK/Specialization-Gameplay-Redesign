@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0336
-Implementation Build: develop P0-B-134.161 / modinfo161 MANUAL_GC_AND_NETWORK_SCOPE_LOCAL_COMPLETE; live B133.160 until verified deployment; stable B069.96
+Implementation Build: develop P0-B-134.161 / modinfo161 MANUAL_GC_AND_NETWORK_SCOPE_LOCAL_COMPLETE; live B134.161 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B134_LOCAL_COMPLETE_NATIVE_GC_REQUIRED
 
 当前源码B134.161 / modinfo161：[手动GC与三事件网络范围修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134161--manual-full-gc-diagnostic-and-scoped-network-capture)已获用户授权，定向LOCAL_SIMULATION_PASS。GC默认关闭，仅“手动GC诊断”右键执行一次，左键读取；不自动每回合/每帧收集、不调GC参数、不清永久记录。网络仅排除三类已知无关外国事件，保留本玩家同回合变化、全国依赖、UNKNOWN、退出/返回/Claim/load路径。
 
-最近已核实运行包仍B133.160，source d50029a，receipt B133.160-d50029a-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；B134须完成commit和既有W0003安全事务后才算部署。main稳定B069.96，恢复包保留。
+最近已核实运行包B134.161，source d9e69ba，receipt B134.161-d9e69ba-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；OS确认游戏退出后通过既有W0003事务部署。main稳定B069.96，stable/B133恢复包保留；未启动游戏。
 
 [B133实机对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b133-native-comparison)已证实检查略减、扫描相同、T40→45内存斜率未改善；修复保留，不重复长测。B132所测专家/建筑收益响应PASS保留。下一步仅现有存档副本冷启动：初始稳定点及随后两个玩家回合各一次手动GC，比较回收后基线。count已实测可用，collect/实际Lua环境及耗时仍USER_GAME_TEST_REQUIRED；接口失败立即停止再试，之后才考虑定域停用对照。旧Batch A入口在B133/B134均因早期夹具初始化不匹配失败，未报PASS；本轮独立定向测试覆盖直接边界。无内存根因关闭或GC正式修复声明。
 

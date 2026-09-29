@@ -326,3 +326,5 @@ Lua标准手册定义`collect`为完整循环、`count`为KB、`isrunning`为运
 若回收前增长明显而回收后趋稳，支持临时对象积压；若回收后基线持续上升，记录为**该Lua范围回收后保留增长**，还需排除初始化、合理新增状态及finalizer延迟，不能直接判本Mod泄漏。Lua回收后RSS未下降也可能是宿主分配器保留内存，不等于对象仍可达。不以三个点宣布长期稳定/根因关闭，也不把同时存在的三事件修复归因给GC。
 
 若接口不可用或后基线继续增长且现有证据仍不能定位，下一步才提出同存档单一路径停用对照；DB/存档记录保留，并明确哪些正常consumer、UI request、ACK/重试和撤销仍运行。不得只切掉receiver导致积压；本轮不提前实现开关或要求另一轮长测。
+
+部署记录：B134.161 / modinfo161，source `d9e69ba`；OS再次确认游戏退出，通过既有stable恢复中转/临时激活完成，170/170 MATCH，receipt `B134.161-d9e69ba-playtest.json`（DEVELOP_ACTIVE）。stable/B133恢复包保留，main/Design未改；未启动游戏，native GC与内存结果仍待测。
