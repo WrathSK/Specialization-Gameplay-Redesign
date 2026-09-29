@@ -50,7 +50,7 @@ function M.Calculate(catalog,raw)
  return out
 end
 function M.Start(P,shared)
- local cache,catalog={},nil
+ local cache,catalog,buildingOrder={},nil,nil
  local clock,revision,epoch=0,0,1
  local data={};shared.DistrictCompleteness=data
  local function count(n) P.Count('dc_'..n) end
@@ -61,7 +61,16 @@ function M.Start(P,shared)
  end
  local function capture(pid,c)
   count('capture')
-  catalog=catalog or SPCOrdinaryBuildingCatalog.Build(P)
+  if not catalog then
+   -- Reuse the already-reviewed static definitions; native city presence is
+   -- still read each capture. Never omit non-ordinary diagnostic exclusions.
+   local nextCatalog=SPCOrdinaryBuildingCatalog.Build(P);local order={}
+   for index,entry in pairs(nextCatalog.buildings) do
+    if type(index)=='number' then order[#order+1]=entry end
+   end
+   table.sort(order,function(a,b)return a.index<b.index end)
+   catalog=nextCatalog;buildingOrder=order
+  end
   local buildings=c:GetBuildings();local districts=c:GetDistricts()
   local raw={districts={},unplaced={}};local seen={};local byPlot={}
   -- Use indexed Gameplay CityDistricts and Gameplay building locations, not UI enumeration.
@@ -77,15 +86,14 @@ function M.Start(P,shared)
    assert(not byPlot[rec.plot],'DC_DUPLICATE_DISTRICT_LOCATION')
    byPlot[rec.plot]=rec;raw.districts[#raw.districts+1]=rec
   end
-  -- One DB catalog pass for this selected city, not one pass per district/player.
+  -- One cached definition pass for this selected city, not one pass per district/player.
   -- Includes non-ordinary entries so exclusions remain visible in diagnostics.
-  for row in GameInfo.Buildings() do
-   local index=row.Index;P.Count('building_check')
+  for _,entry in ipairs(buildingOrder) do
+   local index=entry.index;P.Count('building_check')
    if bool(buildings:HasBuilding(index),'DC_BUILDING_COMPLETION_UNKNOWN') then
     seen[index]=true
     local location=buildings:GetBuildingLocation(index)
     local located=type(location)=='number' and location>=0
-    local entry=catalog.buildings[index]
     assert(located or not (entry and entry.ordinary),'DC_BUILDING_LOCATION_UNAVAILABLE')
     local pillaged=bool(buildings:IsPillaged(index),'DC_BUILDING_PILLAGE_UNKNOWN')
     local rec=located and byPlot[location]
@@ -95,7 +103,7 @@ function M.Start(P,shared)
      -- Wonders/internal objects can live off district plots. Never drop a known
      -- ordinary building silently: that would publish an incomplete D as zero.
      assert(not (entry and entry.ordinary),'DC_ORDINARY_LOCATION_UNRESOLVED')
-     raw.unplaced[#raw.unplaced+1]={type=row.BuildingType,reason=entry and entry.reason or 'UNREVIEWED_BUILDING',
+     raw.unplaced[#raw.unplaced+1]={type=entry.type,reason=entry and entry.reason or 'UNREVIEWED_BUILDING',
       contribution=0,pillaged=pillaged,plot=location}
     end
    end
@@ -151,12 +159,17 @@ function M.Start(P,shared)
  for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'}) do
   hook(GameEvents,name,function() data.MarkDirty() end)
  end
- hook(Events,'LoadScreenClose',function() cache={};catalog=nil;epoch=epoch+1 end)
+ hook(Events,'LoadScreenClose',function() cache={};catalog=nil;buildingOrder=nil;epoch=epoch+1 end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'}) do
-  hook(Events,name,function(x,y,id)
+  hook(Events,name,function(x,y,id,owner)
    local row=P.Info('Buildings',id)
    if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
-   data.MarkDirty()
+   -- Same native owner argument already used by RuntimeWork/Standardization.
+   -- Unknown metadata retains the full bounded fallback; transfer handling is
+   -- independently unchanged and always invalidates all cached references.
+   if type(owner)=='number' and owner>=0 and owner<math.huge and owner%1==0 then
+    data.MarkDirty(owner)
+   else data.MarkDirty() end
   end)
  end
  -- Missed native events: next explicit read in a new turn reconciles once.

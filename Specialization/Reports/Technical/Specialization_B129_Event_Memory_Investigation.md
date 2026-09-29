@@ -222,3 +222,19 @@ T40首读：城市扫描7653、区域3095、facts4242、建筑检查793896；D�
 证据判断：USER_GAME_TEST_OBSERVED多回合增长及静置进程回落；沿用此前所测收益响应PASS。性能问题仍MEMORY_CAUSE_OPEN，未证明模块独占内存、永久泄漏、GC关闭或周期存档可回收内存。没有提出强制GC或清永久数据的修复。本次多回合测试完成，暂不要求重复长测。
 
 下一建议（未授权新实现）：定域只读定位 `building_check/city_scan` 的实际增加点及触发链，对征服的结构事件串与每回合重复事实读取分别建立调用范围；区分需要重新采集的城、其它城及共享目录重复构造，保留ownership退出/恢复/UNKNOWN门禁。先利用现有计数与本地可复现路径，再提出最小修改或必要的分配测量，不再仅按Audit入口排名优化。持有引用/临时分配/引擎其它工作仍是待区分假说。
+
+## B133.160 — authorized removal of confirmed redundant work
+
+用户授权先修已确认的浪费，再观察剩余性能问题；不以“尚未证明全部内存归因”阻止安全优化。W0004 L2；本段为当前源码的实施/验证记录，部署状态单独以Status/receipt为准。无Gameplay/保存schema/Design/F变更。
+
+本批四项：
+1. Lv2GPP完整预读32项后，不再无条件再次读取全部carrier；已一致的项直接跳过。需要改变的项仍读取最新状态、先移除后添加、写后核实；UNKNOWN先停写。没有跨事件carrier缓存。
+2. DistrictCompleteness重用已经建立的完整ordinary目录数值索引，按Index排序一次，避免每capture再次枚举GameInfo.Buildings构造DB行。城市HasBuilding/location/pillage仍实时读取；非ordinary/unknown/Wonder/internal排除项、未完成对象、D计算及八城缓存不变。加载清掉索引，不缓存动态建筑状态。
+3. BuildingAddedToMap/BuildingRemovedFromMap用现行RuntimeWork与Standardization已采用的第四参数owner，仅使已知合法owner缓存失效；非法/未知回退全范围。不猜CityID。其它结构事件、CityTransfered、Return、跨回合漏事件核对不变。
+4. Probe.Family先返回直接命中的基础区域类型；原本也优先该结果，现在不必先构造seen/完整DistrictReplaces。特色/替换链/循环/重复记录优先级/缺表行为不变，无新持久缓存。
+
+LOCAL_SIMULATION_PASS / STATIC_CONFIRMED：`DevelopmentTests/test_b133_redundant_reads.py`使用Lupa Lua55、Git c225aa0及P0A/B2/C fixture setup，不执行历史stress或版本整树断言。32组非零player7的四专业/ACTIVE/专家连续变化，carrier图、写入量及顺序与旧版一致；稳定检查64→32；完整预读、最后一项未知、facts/worker未知保留、失城退出与恢复通过。Family22组结果一致，基础区域替换表枚举1→0。D八组完整输出相同（深度、Tier、特色、掠夺、unfinished、Wonder/internal/unknown、最高单区域），建筑定义枚举9→1；owner隔离、未知回退、易主全失效、token/加载/跨回合/失败保持通过。实际Housing/GPP/Infrastructure的建筑修复/移除、ACTIVE变化、UNKNOWN、旧carrier清退通过。修改Lua语法、modinfo160及module-owned ownership callbacks逐字不变。
+
+这证明重复工作减少，不是Civ VI总内存修复PASS。其余carrier核对仍有退出/验证职责，未盲目跳过；易主/不确定结构事件仍可广域扫描。无强制GC、永久记录清空、新收益或全系统重构。
+
+最小实机对照（部署后）：沿用同一存档，左键开始观测，重复三次征服后读取，再过1～2回合读取，配活动监视器截图；可顺手调一次专家/建筑确认收益响应，不要求新局/全专业验收。先看此批改善，再决定其它路径；Native待测。

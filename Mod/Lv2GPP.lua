@@ -51,17 +51,21 @@ function SPCLv2GPP.Start(P,shared)
    wanted[name(k,bit)]=k==kind and math.floor(n/2^bit)%2==1
   end end
   -- Verify every installed carrier before any write; UNKNOWN holds projection.
+  local present={}
   for _,k in ipairs(kinds) do for bit=0,7 do
    local b=P.Info('Buildings',name(k,bit))
-   assert(type(P.HasBuilding(city:GetBuildings(),b.Index))=='boolean','GPP_CARRIER_READ_UNKNOWN')
+   local value=P.HasBuilding(city:GetBuildings(),b.Index)
+   assert(type(value)=='boolean','GPP_CARRIER_READ_UNKNOWN');present[name(k,bit)]=value
   end end
+  -- Skip confirmed unchanged bits. Changed bits still get the fresh pre-write
+  -- read and post-write verification in set(); no state survives this reconcile.
   -- Remove all stale classes/bits before adding the new count. No cumulative reward.
   for _,k in ipairs(kinds) do for bit=0,7 do
    local key=name(k,bit);local b=P.Info("Buildings",key)
-   if b and not wanted[key] then set(city,b.Index,false) end
+   if b and not wanted[key] and present[key] then set(city,b.Index,false) end
   end end
   for _,k in ipairs(kinds) do for bit=0,7 do
-   local key=name(k,bit);if wanted[key] then set(city,P.Info("Buildings",key).Index,true) end
+   local key=name(k,bit);if wanted[key] and not present[key] then set(city,P.Info("Buildings",key).Index,true) end
   end end
  end
  function data.Audit(scope)
