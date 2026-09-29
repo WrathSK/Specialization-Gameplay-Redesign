@@ -80,13 +80,13 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(r.stage~='PREPARED' and (r.completionError==nil or type(r.completionError)=='string'),'STORE_FRESH_STAGE')
    if r.progression=='UNASSIGNED' then
     assert(r.base.specialization=='NONE' and r.base.potential==0 and r.base.first==nil
-     and r.investment==nil and r.templates==nil and r.current==nil,'STORE_UNASSIGNED')
+     and r.investment==nil and r.templates==nil and r.currentFirst==nil,'STORE_UNASSIGNED')
    else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
   end
   if r.claimTimer then
    local t=r.claimTimer
    assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'
-    and t.version==1 and t.token==r.base.token and same(t.reference,r.origin)
+    and t.version==1 and t.token==r.base.token and same(t.reference,r.current or r.origin)
     and r.acquisition.legacySet[t.kind] and t.project=='PROJECT_SPC_CLAIM_'..t.kind
     and type(t.start)=='number' and t.start%1==0 and t.start>=r.acquisition.turn
     and type(t.deactivated)=='boolean' and (t.stage=='ACTIVE' or t.stage=='CALLING' or t.stage=='STOPPED')
@@ -100,10 +100,12 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(M.Preview({ref=r.origin,values=v,ledger=r.binding}).state=='LOCAL_CANDIDATE','STORE_RECORD_INVALID')
   if r.current then
    assert((r.returnEvidence=='CityTransfered+original_binding' or (r.returnEvidence=='NATIVE_TRANSITION_V1' and validTransition(r.returnProof,r.lastLoss,r.current))) and r.lastLoss and same(r.lastLoss.origin,r.origin)
-    and r.lastLoss.target.owner~=r.origin.owner and type(r.currentFirst)=='table' and r.currentFirst.turn==r.base.first.turn
+    and r.lastLoss.target.owner~=r.origin.owner
     and r.current.owner==r.origin.owner and type(r.current.cityID)=='number' and r.current.cityID>=0 and r.current.cityID%1==0
-    and r.current.x==r.origin.x and r.current.y==r.origin.y and type(r.currentFirst)=='table'
-    and r.currentFirst.type==r.base.first.type and type(r.currentFirst.districtID)=='number','STORE_CURRENT_REFERENCE')
+    and r.current.x==r.origin.x and r.current.y==r.origin.y,'STORE_CURRENT_REFERENCE')
+   if r.progression=='UNASSIGNED' then assert(r.currentFirst==nil,'STORE_UNASSIGNED_ANCHOR')
+   else assert(type(r.currentFirst)=='table' and r.currentFirst.turn==r.base.first.turn
+    and r.currentFirst.type==r.base.first.type and type(r.currentFirst.districtID)=='number','STORE_CURRENT_FIRST')end
   end
   if r.loss then
    assert(r.stage=='HELD_TRANSFER' and same(r.loss.origin,r.origin) and r.loss.evidence=='CityTransfered+live_reference'
@@ -246,15 +248,18 @@ local function CreateProgressionRecord(P,shared,storage)
     foundationTurn=proof.turn,revision=0,health='TRACKING',specialization='NONE',potential=0},templatesCaptured=true})
  end
  function d.HoldCompletion(reason)
-  if not ready or fault or not root or root.schema<2 or root.progression~='UNASSIGNED' or root.completionError then return end
+  if not ready or fault or not root or root.schema<2 or root.progression~='UNASSIGNED' or root.completionError or root.stage~='ACTIVE' or root.referenceInvalidated then return end
   local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n)
  end
  function d.Complete(pid,c,e)
   if not root or root.schema<2 or root.progression~='UNASSIGNED' then return end
   if root.acquisition and root.acquisition.mode=='LEGACY_CLAIM' then return end
-  local r=active(pid,c);assert(same(e.reference,r.origin),'COMPLETION_REFERENCE_CHANGED')
+  -- Transfer reconstruction is not a new local completion. Await confirmed return.
+  if root.stage~='ACTIVE' or root.referenceInvalidated then return end
+  local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.specialization;n.base.potential=1
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
+  if n.current then n.currentFirst=cp(n.base.first)end
   n.revision=n.revision+1;save(n)
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'CityProgressionStore.lua')end
  end
@@ -262,7 +267,7 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.ClaimState(pid,c)
   local r=active(pid,c)
   if r.schema~=3 or r.acquisition.mode~='LEGACY_CLAIM' then return nil end
-  return cp({token=r.base.token,reference=r.origin,set=r.acquisition.legacySet,
+  return cp({token=r.base.token,reference=r.current or r.origin,set=r.acquisition.legacySet,
    eligible=r.progression=='UNASSIGNED',timer=r.claimTimer,receipt=r.claim,revision=r.revision})
  end
  function d.WriteClaimTimer(pid,c,old,value)
@@ -276,12 +281,14 @@ local function CreateProgressionRecord(P,shared,storage)
   local r=active(pid,c)
   if r.claim then return false end -- duplicate native completion/readback
   assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED','CLAIM_INELIGIBLE')
-  assert(same(e.reference,r.origin) and e.token==r.base.token and r.acquisition.legacySet[e.kind]
+  assert(same(e.reference,r.current or r.origin) and e.token==r.base.token and r.acquisition.legacySet[e.kind]
    and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'CLAIM_PROOF_INVALID')
   assert(type(e.districtID)=='number' and type(e.type)=='string','CLAIM_DISTRICT_INVALID')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.kind;n.base.potential=1
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
-  n.claim={version=1,token=e.token,reference=cp(e.reference),kind=e.kind,project=e.project,turn=e.turn}
+  if n.current then n.currentFirst=cp(n.base.first)end
+  -- Receipt retains the historical record anchor; active requests use current reference.
+  n.claim={version=1,token=e.token,reference=cp(r.origin),kind=e.kind,project=e.project,turn=e.turn}
   n.claimTimer=nil;n.revision=n.revision+1;save(n)
   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'ClaimProjects.lua')end
   return true
@@ -473,7 +480,6 @@ local function CreateProgressionRecord(P,shared,storage)
  local function recapture(c,current,newOwner,newID,oldOwner)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
-  assert(root.progression~='UNASSIGNED','RETURN_UNASSIGNED_DEFERRED')
   d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
   d.returnRejection=nil -- latest matched attempt; diagnostics only
   assert(P.IsTestPlayer(newOwner),'RETURN_PLAYER_UNCONFIRMED')
@@ -498,6 +504,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not root.investment or root.investment.pending==nil,'RETURN_PENDING_INVESTMENT')
   -- Rebind the current district reference, never invent new historical completion.
   local first
+  if root.progression~='UNASSIGNED' then
   for _,district in Players[newOwner]:GetDistricts():Members()do
    local city=district:GetCity();local row=P.Info('Districts',district:GetType())
    if city and same(ref(city),current) and row and row.DistrictType==root.base.first.type and district:IsComplete() then
@@ -505,6 +512,7 @@ local function CreateProgressionRecord(P,shared,storage)
    end
   end
   assert(first,'RETURN_DISTRICT_UNAVAILABLE')
+  end -- P0 has no historical professional district to rebind.
   local n=cp(root)
   if n.base.specialization=='INDUSTRY' then
    -- Never backfill AI-era buildings as player history. B096 saves without a

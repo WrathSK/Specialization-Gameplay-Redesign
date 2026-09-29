@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / E2_CLOSURE_REVIEW_COMPLETE. B126 Claim core accepted; UI validation merged into future testing by user; later lifecycle/F not authorized.
+Status: PARTIAL_IMPLEMENTED / B128_UNASSIGNED_RETURN_LOCAL_PASS. B126 Claim core accepted; UI validation merged into future testing by user; later lifecycle/F not authorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
@@ -1164,7 +1164,7 @@ F将需要新的、专业专属的持久年龄读写接口及module-owned退出�
 
 ## Next minimal slice — unassigned original-owner return
 
-**PLAN_ONLY / IMPLEMENTATION_NOT_AUTHORIZED**。承接已有同城事件证据及冻结模式合同，不新增取得种类或Design规则。
+**用户已授权实施；B128本地完成，原生待验。** 承接已有同城事件证据及冻结模式合同，不新增取得种类或Design规则。
 
 目标：原本地人类玩家重新取得自己已有记录、但尚无Identity的同一城，恢复该记录的UNASSIGNED模式，不重新取AI snapshot，不自动选择专业。覆盖：自建P0、征服空集FIRST_COMPLETION、非空LEGACY_CLAIM。
 
@@ -1183,3 +1183,39 @@ F将需要新的、专业专属的持久年龄读写接口及module-owned退出�
 未来最小实机：优先一座已有非空候选但尚未认领城，失去→foreign存档冷加载→取回→原候选→认领；同一流程顺手检查B127加载显示与灰项目隐藏。另两种模式先本地验证，不机械要求三轮实机；出现独有native风险才追加。不得为了造fixture默认实现交易取得/销毁。
 
 退出：三种模式本地隔离/幂等成立，最小原生已测范围明确；保持其它未实现生命周期清单，再单独审阅E2剩余限制与F。回滚使用前批源码/正式部署恢复点和修复前独立存档；记录结构若改变，不承诺向下兼容。仅本计划授权后才实施/部署，本轮无用户测试。
+
+## B128.155 — unassigned return checkpoint
+
+用户授权执行上述最小段。只改CityProgressionStore、ClaimProjects与版本戳；无新SQL/carrier/identity体系、无迁移或Design修改。E2仍partial，不进入销毁/未知取得/F。
+
+### 实际状态与边界
+
+- UNASSIGNED可保存经同城证据核验的current reference，但仍禁止first/currentFirst、投资和模板凭空出现。恢复沿用同一token或已有完整事件链、原Owner、退出完成门禁；不靠坐标/名字认领。
+- 原始origin/founding/acquisition/binding/LegacySet保持不变；Base派生投影到current，Complete与Claim请求校验current。首次专业确立后同时建立历史first和当前currentFirst；Claim永久receipt仍锚定原始记录，活动timer锚定当前城市。此字段职责区别是技术适配，不是重新建立历史。
+- 失城清除原timer的既有行为保留；夺回队列若仍有项目但无timer，显示“请先改选普通目标，再重选认领项目”。不自动BEGIN，不重放已中断计时。保存中已有合法新timer仍按原规则续算。
+- 转移中的区域重建/缺失对象通知不记为首次完成，也不把HELD/失效引用的P0记录永久标错；同Owner正常缺失证据保护仍保留。
+- 已专业城仍核对first区域；未专业城没有这个锚点，因此只跳过该专属要求，所有同城/退出/未知保护保留。其它城市记录不改。候选入口经既有CityTransfered＋bounded flush恢复，不加轮询。
+
+### 已发现的保留边界
+
+**工业模板初始化：**夺回后才首次认定Industry，Identity/Potential及投资可运行，但ReadTemplates现有TEMPLATES_HISTORY_UNAVAILABLE门禁仍会暂停标准化。UNASSIGNED没有过去的模板账本；不能直接去掉门禁，因为旧Standardization.initialize会INITIAL_BACKFILL当前所有建筑，可能把外国期间建设记为玩家知识。本轮停止该模板子路径、不回填、不新造空模板策略；需后续单独核对模板初建合同及最小适配。既有工业模板保留/恢复合同未改。不是四专业身份认领失败，也不能写成所有工业效果已通过。
+
+销毁/同址新代、未知外交取得、跨Owner学术传统等仍未扩展。修改前保存的数据无需批量重写；新写入的UNASSIGNED+current组合不承诺旧包可读，回滚必须用修复前独立存档。
+
+### 验证证据
+
+- STATIC_CONFIRMED：直接Base/Investment/Complete/Claim投影与保存校验、模板与Network直接消费者审阅；Lua编译、modinfo155、context、diff。
+- LOCAL_SIMULATION_PASS：test_b128_unassigned_return.py复用B124真实Store/Claim处理器，并覆盖自建P0/征服空集/非空Claim × token保留/丢失；外国held冷加载、外国完成不回填、P0夺回保存、冻结候选、旧引用拒绝、新timer冷加载及完成、四专业Claim、投资、第二次已专业夺回、控制城隔离、未知/缺事件/错token拒绝、保存写失败隔离。工业缺模板保持门禁有显式断言。
+- test_b128_progression_regression.py复用B109已经接受的初始化合同和B108真实多城/投资失败/退出/Network当前引用测试，只适配版本155；旧B108脚本直接运行因其已取代的IsSavedGame断言失败，未改历史断言、不把它当当前回归通过。B127续接与六项UI、B126城邦回归通过。无全历史/stress。
+- USER_GAME_TEST_REQUIRED：本次未专业城原生夺回尚未确认；B126原生PASS保持自己的范围。B127 UI按用户决定合并下面流程。
+
+### 最小用户测试 — PT014
+
+优先用已有**科研候选、尚未认领**的非首都城，不要求寻找旧迁移存档，也不要用工业模板作为本批收益验收。
+
+1. 单独保存测试槽。左键E2确认冻结科研、P0。将城交给AI；保存，完全退出游戏，再启动载入。未实现首次外交取得不影响这里“已登记本玩家城市交出”的既有失城路径。
+2. 征服取回同一城。左键E2应仍科研候选/P0，不能新增工业等候选，也不能自动成为科研。若显示未知/HELD/引用错误，立即停下保留报告。
+3. 选择认定科研项目；若队列残留无计时旧项目，按提示先改选普通目标再重选。保存并完整重启；先不打开生产列表，顺手查看旗帜/面板应为1回合。正常过回合应完成科研P1。
+4. 查看项目列表，已完成Claim和无资格施工队应隐藏；投资一次，再保存完整重启，P2应保留。无需另测三种模式或旧溢出实验；若当前存档不便提供此fixture，可暂缓，不靠猜测扩大PASS。
+
+确认UI与主流程截图可以合并，用户实际操作/陈述和截图可见范围分开记录。本批停止在这一验收，后续工业模板子路径、销毁支持范围或F计划均待单独审阅/授权。

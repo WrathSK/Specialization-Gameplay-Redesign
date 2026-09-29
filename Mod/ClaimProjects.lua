@@ -56,6 +56,13 @@ function SPCClaimProjects.Start(P,shared)
    elseif Game.GetCurrentGameTurn()>t.start+1 then stop(c,s,'错过完整回合窗口；请重新选择');t=state(c).timer
    else active[k]={pid,id}end
   end
+  if not t and s.eligible then
+   local ok,target=P.Call(c:GetBuildQueue(),'CurrentlyBuilding')
+   if ok and projects[target] then
+    publish(pid,id,{stage='STOPPED',project=target,reason='当前项目没有计时；请先改选普通目标，再重选认领项目，重新占用完整一回合'})
+    return
+   end
+  end
   publish(pid,id,t and {stage=t.stage,project=t.project,start=t.start,reason=t.reason} or {stage='AVAILABLE',reason='选择一个候选项目，完成后认领专业'})
  end
  local function safe(pid,id,fn)
