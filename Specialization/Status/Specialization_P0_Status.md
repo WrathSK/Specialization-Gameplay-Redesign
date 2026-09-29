@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0319
-Implementation Build: develop P0-B-124.151 / modinfo151 CLAIM_LOCAL_COMPLETE; live B124.151 verified170/170 MATCH; stable B069.96
+Status Revision: S0320
+Implementation Build: develop P0-B-125.152 / modinfo152 CLAIM_REPAIR_LOCAL_COMPLETE; live B124.151 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B124_CLAIM_ENTRY_NATIVE_FAIL_REPAIR_NOT_AUTHORIZED
+Work State: B125_CLAIM_REPAIR_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B124三图原生失败](Validation/Results/Specialization_B124_Claim_Entry_Failure.md)：商业候选仍正确保留，但认领入口全部置灰；PT013暂停，启动/完成/保存未验收。Claim状态行缺失，首个初始化/访问故障尚待定位。日内瓦城邦征服被现有AI-major门槛拒绝，随后专业报告输出未登记堆栈；这是实现范围缺口，PROG-006没有正式城邦排除。
+[B125入口/城邦窄修复](../Architecture/v2/P0_E2_Plan.md#b125152--authorized-claim-entry-and-city-state-repair)已按用户授权本地完成：Claim启动独立于旧实验；生产面板每城一次资格同步，不启动/写身份；明确接纳城邦来源、继续拒绝Free/未知来源；未登记报告简短显示原因。冻结候选、完整一回合及现有保存规则不改。
 
-B124本地模拟及B123限定原型PASS保持各自证据范围。三张原图已读取、外部归档并hash核验。下一建议仅修Claim入口、城邦取得来源范围及简明错误报告；尚未获修复实施授权，不继续Claim测试/F。
+STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：B124实际事务回归＋B125城邦/同步/诊断用例、121项UI/相关原型测试、B111保存/分流回归通过。B124原生失败保留；首个初始化异常未从日志确认，修复是否解决原生入口仍待测。先测已有商业城入口，再从日内瓦征服前存档重做取得，成功后续PT013；不在征服后补造旧snapshot。
 
-源码/live B124.151 / modinfo151，source 0ed02ad；此前receipt B124.151-0ed02ad-playtest.json记录170/170 MATCH。本轮未重新核验或部署外部包，main/stable B069.96及Design不变。无需用户重复失败测试，保留测试存档。
+源码B125.152，部署待提交后按W0003执行；live此前B124.151/source0ed02ad，receipt B124.151-0ed02ad-playtest.json。下一步仅本次安全部署/原生复测，不进入F或其它生命周期。Design/main不变。
 
 ## 历史阶段记录
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="151">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="152">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B124.151: persistent one-turn specialization Claim projects; four professions only.</Description>
+    <Description>B125.152: scoped Claim entry synchronization and city-state conquest admission.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

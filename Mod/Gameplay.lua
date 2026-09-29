@@ -33,7 +33,13 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
-  if params.Action=='CLAIM_BEGIN' then shared.ClaimProjects.Request(playerID,params);return end
+  if params.Action=='CLAIM_BEGIN' or params.Action=='CLAIM_SYNC' then
+    local claim=shared.ClaimProjects
+    if claim and not claim.startupError then
+      if params.Action=='CLAIM_SYNC' then claim.Sync(playerID,params.CityID) else claim.Request(playerID,params) end
+    end
+    return
+  end
   if params.Action=='TIMED_PROJECT_BEGIN' or params.Action=='TIMED_PROJECT_CANCEL' then
     shared.TimedProject.Request(playerID,params);return
   end
@@ -637,6 +643,14 @@ shared.CityInheritance=nil
 shared.OnPermanentCityWrite=nil
 shared.InheritanceIsolation=true
 
+-- Formal Claim must not depend on initialization of optional historical experiments.
+local claimOK,claimError=pcall(function()include("ClaimProjects");SPCClaimProjects.Start(P,shared)end)
+if not claimOK then
+ shared.ClaimProjects=shared.ClaimProjects or {views={},revision=0}
+ shared.ClaimProjects.startupError=tostring(claimError):gsub('^.-:%d+: ',''):match('[^\r\n]+')
+ print('[SPC][Claim startup] '..tostring(claimError))
+end
+
 -- Independent read-only evidence; never start the isolated inheritance writers.
 SPCCityIdentityRead.Start(P,shared)
 
@@ -654,6 +668,3 @@ include("ProjectTurnObservation")
 SPCProjectTurnObservation.Start(P,shared)
 include("TimedProject")
 SPCTimedProject.Start(P,shared)
-
-include("ClaimProjects")
-SPCClaimProjects.Start(P,shared)

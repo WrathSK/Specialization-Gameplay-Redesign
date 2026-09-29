@@ -114,3 +114,5 @@ PT012 closure：[B123用户文字验收](Validation/Results/Specialization_B123_
 PT013 — B124.151正式一回合认领待实机：冻结候选→两城独立启动→计时中冷加载→正常完成Identity/P1→入口退出/普通目标无带入→认领后冷加载；另一次单城改选重开。无需重测旧空队列或其它待办绕过。[完整最小流程](../Architecture/v2/P0_E2_Plan.md#最小用户验收-pt013)。本地PASS不等于原生PASS。
 
 PT013暂停：[B124入口失败](Validation/Results/Specialization_B124_Claim_Entry_Failure.md)，商业候选项目灰；城邦来源被major-only拒绝。等待窄修复授权，不重测失败步骤。
+
+PT013 B125：入口/城邦修复本地通过，待原生复测。[最小步骤与边界](../Architecture/v2/P0_E2_Plan.md#b125152--authorized-claim-entry-and-city-state-repair)。日内瓦从征服前档开始，不事后重建snapshot。

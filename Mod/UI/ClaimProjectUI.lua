@@ -23,11 +23,18 @@ function M.Text(pid,id,project)
  return '1','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'
 end
 function M.New(P,send,notify)
- local api={};local pending={};local seen={};local pendingText={}
+ local api={};local pending={};local seen={};local pendingText={};local synced={}
  ExposedMembers.SPC_ClaimSelection={}
  ExposedMembers.SPC_ClaimQueueRead=function(pid,id)
   local c=assert(Players[pid] and Players[pid]:GetCities():FindID(id));assert(c:GetOwner()==pid)
   return {owner=pid,id=id,turn=Game.GetCurrentGameTurn(),project=M.Current(c),size=c:GetBuildQueue():GetSize()}
+ end
+ function api.Sync(c)
+  if not c or not P.IsTestPlayer(c:GetOwner())then return end
+  local k=tostring(c:GetOwner())..':'..c:GetID()
+  if synced[k]then return end
+  synced[k]=true
+  send(c:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_SYNC',Token='CLAIM_SYNC:'..k,CityID=c:GetID()})
  end
  function api.Before(c,item,queueMode)
   local name=item and item.Type;local k=c and tostring(c:GetOwner())..':'..c:GetID()

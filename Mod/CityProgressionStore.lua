@@ -321,7 +321,7 @@ local function CreateProgressionRecord(P,shared,storage)
    local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目' or '等待征服后的首个合格区域完成'
    if root.progression=='SPECIALIZED' then mode='专业已锁定：'..names[f.specialization]end
    return P.VERSION..' | 征服城市进度\n取得已确认 | '..mode..'\n冻结候选：'..(#list>0 and table.concat(list,'、') or '无')
-    ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..(shared.ClaimProjects and shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()] and ('\n认领：'..shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()].reason) or '')
+    ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..('\n认领：'..(shared.ClaimProjects and (shared.ClaimProjects.startupError or (shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()] or {}).reason or shared.ClaimProjects.status) or '模块未初始化；请保留报告'))
     ..'\n独立记录已保存；候选不会随之后建设增加。'
   end
   if root.schema==2 then
@@ -892,7 +892,9 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     assert(modern and hooks.CityConquered and hooks.CityAddedToMap and hooks.CityTransfered,'ACQUISITION_HOOK_UNAVAILABLE')
     assert(not q.found and q.added and q.initSequence and q.conquest.sequence<q.added and q.added<q.initSequence and q.initSequence<q.transferred,'ACQUISITION_ORDER')
     local old=assert(Players[q.conquest.oldOwner],'ACQUISITION_OLD_OWNER_UNAVAILABLE')
-    assert(old:IsMajor()==true and old:IsHuman()==false and not P.IsTestPlayer(q.conquest.oldOwner),'ACQUISITION_AI_MAJOR_REQUIRED')
+    local major=old:IsMajor();local minor=false
+    if major~=true then local ok,value=P.Call(old,'IsMinor');assert(ok and type(value)=='boolean','ACQUISITION_SOURCE_KIND_UNKNOWN');minor=value end
+    assert((major==true or minor==true) and old:IsHuman()==false and not P.IsTestPlayer(q.conquest.oldOwner),'ACQUISITION_AI_MAJOR_OR_CITY_STATE_REQUIRED')
     local set={};local seen={}
     q.stage='区域快照读取'
     local districts=assert(c:GetDistricts(),'ACQUISITION_DISTRICTS_UNAVAILABLE')

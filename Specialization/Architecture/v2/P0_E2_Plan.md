@@ -1066,3 +1066,29 @@ Status: USER_APPROVED / IMPLEMENTED_B124 / USER_GAME_TEST_REQUIRED。
 4. 从Claim前档单城补一次中断：选择Claim→普通目标→重新选Claim，须重新完整一回合。无需重复旧空队列/其它待办实验。
 
 异常时停止并投递当前项目提示与E2左键报告。回滚B123.150必须搭配Claim前档；不承诺旧包读取新增Claim状态。当前本地完成，部署结果以Status/receipt为准；不自动继续下一批。
+
+## B125.152 — authorized Claim entry and city-state repair
+
+用户在B124三图失败报告后明确“授权修复”。本地完成，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；USER_GAME_TEST_REQUIRED。B124失败事实与原型B123通过范围均保留，不将本地测试冒充修复原生成功。
+
+### 入口与初始化
+
+正式Claim的启动移到旧identity/overflow等实验初始化之前；启动异常捕获为独立短状态，不能再只显示空白。可选CityProductionQueueChanged不作为启动硬依赖，实际当前目标检查及必要事件保留。生产面板第一次取得某己方城市数据时发送一次CLAIM_SYNC，Gameplay仅对该城按现有record权威重建四个精确资格marker/读模型；不启动计时、不写Identity/Potential/receipt。该同步在本UI context按city去重，无hover/per-frame请求、无全城轮询、无普通队列清除。LoadScreenClose自动路径保留；未知记录仍不授予入口。
+
+**证据限制：**截图缺少Claim状态能证明该城读模型未形成，不能单独证明首个初始化异常在哪里。当前没有本次Lua异常日志。B125处理前置实验阻断和加载就绪依赖，并暴露剩余启动/挂载错误；是否修复本次原生入口须短复测，不能将推断写成已确认根因。
+
+### 城邦征服与报告
+
+原Major-only gate扩为原AI Major或明确`Player:IsMinor()==true`的城邦；IsMinor原生用法有HD Utils.PlayerIsMinor直接先例。依然要求非人类、未启用专业、可靠征服/初始化/转移链及无历史，保留一次冻结快照。Free City/非Major非Minor、未知Minor读数继续拒绝，不给原城邦Owner运行专业系统。PROG-006无Major-only限制，本次是已授权实现覆盖补齐，不改Design。
+
+专业报告若城市尚未登记，复用现有取得报告说明原因，不继续触发旧facts堆栈；其它读取错误只保留首行短原因。E2始终显示Claim模块未初始化/就绪/具体状态，不再静默省略。
+
+### 本地验证与最小重测
+
+- `test_b125_claim_repair.py`保留B124实际Store/Claim所有断言，追加城邦候选/完成/冷加载、Free/未知/human拒绝、未登记报告无堆栈、缺Claim加载通知时单城Sync恢复marker且零永久写入；静态确认正式启动在实验前、请求正确接线。
+- `test_b125_claim_ui.py`121项相关UI/原型测试通过，含同城重复刷新只有一次SYNC且没有BEGIN。B111/B109/B108定向回归通过（仅版本断言适配152）；Lua、modinfo及context检查，不做无关全量/stress。
+- 没有新增SQL/carrier/保存schema，原四marker与四Claim完整回合规则不变。没有自动清除失败登记或按当前区域补历史。
+
+最小原生先验入口：加载已有商业候选城，打开正常生产面板，应能选择“认定商业专业”；后建工业不得成为候选。再从**征服日内瓦前**的存档征服，E2应显示实际完整区域候选或合法空集，不再AI_MAJOR_REQUIRED。成功后继续PT013的正常一回合认领与两次保存边界；入口仍失败则只提供E2左键短报告和项目禁用Tooltip，不重复后续步骤。无需启动P0实验、强制过回合或重做溢出调查。
+
+未专业化失城/夺回、Free City取得、销毁、F均未扩展。本次部署以Status/receipt为准，停在实机验证。

@@ -2,7 +2,7 @@
 SPCClaimProjects={}
 function SPCClaimProjects.Start(P,shared)
  local store=assert(shared.CityProgressionStore);local cp=SPCCityIdentityRead.Copy
- local d={views={},revision=0};shared.ClaimProjects=d
+ local d={views={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
  local ready=false;local busy=false;local dirty={};local active={};local derived={};local errors={}
  local kinds={'RESEARCH','CULTURE','INDUSTRY','COMMERCE'};local projects={};local markers={}
  for _,k in ipairs(kinds)do projects['PROJECT_SPC_CLAIM_'..k]=k;markers[#markers+1]='BUILDING_SPC_CLAIM_'..k end
@@ -63,7 +63,7 @@ function SPCClaimProjects.Start(P,shared)
   return ok
  end
  function d.Flush()
-  if not ready or busy then return end;busy=true
+  if d.startupError or not ready or busy then return end;busy=true
   local work=dirty;dirty={}
   for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
   local players=derived;derived={}
@@ -80,8 +80,14 @@ function SPCClaimProjects.Start(P,shared)
   end
   busy=false
  end
+ -- One city, once per production-panel context. Access reconciliation only: no timer/receipt write.
+ function d.Sync(pid,id)
+  if d.startupError or not P.IsTestPlayer(pid) or type(id)~='number' then return end
+  local c=city(pid,id);if not c or c:GetOwner()~=pid then return end
+  ready=true;d.status='已就绪';mark(pid,id);d.Flush()
+ end
  function d.Request(pid,p)
-  if not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' or not projects[p.Project] then return end
+  if d.startupError or not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' or not projects[p.Project] then return end
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'城市不可读');local s=assert(state(c),'不是候选城市')
    assert(s.eligible and s.set[projects[p.Project]],'不在冻结候选内')
@@ -120,7 +126,7 @@ function SPCClaimProjects.Start(P,shared)
   return assert(found,'找不到对应已完成区域；暂停认领')
  end
  local function completed(pid,id,index)
-  if not ready or not P.IsTestPlayer(pid)then return end
+  if d.startupError or not ready or not P.IsTestPlayer(pid)then return end
   local row=P.Info('Projects',index);local kind=row and projects[row.ProjectType];if not kind then return end
   safe(pid,id,function()
    local c=assert(city(pid,id));local s=assert(state(c),'无认领记录')
@@ -133,7 +139,7 @@ function SPCClaimProjects.Start(P,shared)
   -- This can reenter from FinishProgress; Flush is deliberately deferred.
  end
  local function turn(pid,ending)
-  if not ready or not P.IsTestPlayer(pid)then return end
+  if d.startupError or not ready or not P.IsTestPlayer(pid)then return end
   local work=cp(active)
   for _,v in pairs(work)do if v[1]==pid then safe(pid,v[2],function()
    local c=assert(city(pid,v[2]));local s=state(c);local t=s and s.timer
@@ -155,9 +161,14 @@ function SPCClaimProjects.Start(P,shared)
   end)end end
   d.Flush()
  end
- local function hook(name,fn)local e=assert(P.Field(Events,name),'Claim必要事件缺失 '..name);e.Add(fn)end
+ local function hook(name,fn)
+  local e=P.Field(Events,name)
+  if name=='CityProductionQueueChanged' and not e then return end -- optional native notification; current-target checks remain mandatory
+  assert(e and type(e.Add)=='function','Claim必要事件缺失 '..name);e.Add(fn)
+ end
  hook('LoadScreenClose',function()
-  ready=true
+  if d.startupError then return end
+  ready=true;d.status="已就绪"
   for pid,player in pairs(Players)do if P.IsTestPlayer(pid)then for _,c in player:GetCities():Members()do mark(pid,c:GetID())end end end
   d.Flush()
   -- A load after the saved end-turn boundary may not emit another activation.

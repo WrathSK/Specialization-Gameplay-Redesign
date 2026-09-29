@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "0ed02ad40ea0059db49db0b13933f4ed21bbf6fa",
-  "runtime": "B124.151 / modinfo151",
+  "runtime_commit": "B125 implementation commit pending",
+  "runtime": "B125.152 / modinfo152",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -241,9 +241,9 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "354ba43af238e814fa29e579289d8d2ac85c00cb459ea00403662eef557c7bf2",
+      "sha256": "ebf8eaa6a60dc6c5c13211553bbacafbe969d939fff2784923c92a675e086faf",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B109 start-enabled initialization repair; scoped source review and local simulation; native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "028f2ecb64c5e1cc2ac5562286f044463c84a783b04cc141c91657fb8bbb54e5",
+      "sha256": "916002d67e8ac6be879f8abb956dd8ed4b65b7365c1ff67db5cd25f4dd53c862",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "54de0a3090256ce5fd8a0856894d0638f0a6682b9923c117cc2fbcfed2ecafc5",
+      "sha256": "717aa47f84932fb8361f6c6650752c12a8e8695d6a8398472af5a0a9e7f3abe1",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "64c473b4a3ed131e969e755ddb4b46a2a2afdaeddf9dcde3af03be49028c509b",
+      "sha256": "a65f26ecf1439a0b8aef8758bf6e1648d0c3426098da3fb54c1e42baf6621da5",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "34ffbb733dde0dd7167f67a252ddb9decb9ea76f20f6af25b4575a6360023fba",
+      "sha256": "a8be87e1cd8a93f18562dfcffe810a8838a5d7883fa2e44d40fb78f837f47ef4",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "43a9d447a400c96599835420109f3dd3f5ed0ead4c0bc42be70b493905f442ca",
+      "sha256": "81fe2c6cff2623b424ccdd65496f51821697d616634397c53503c5b54e2e1f74",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -836,9 +836,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "3000f6d14f6795eb14e20eb668bec5a5a95507a661ffbc03e21bef0469a9e445",
+      "sha256": "8b62164618c2ecfbdda586b50eaab1cc1163dd6bf3c24eba99a6631b04a7f523",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     },
     "Mod/Data/ClaimProjects.sql": {
       "sha256": "5d704c476ddb10b853d855dee8c751734bda1976251ca4bc55012e386f4f216d",
@@ -851,9 +851,9 @@
       "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
     },
     "Mod/UI/ClaimProjectUI.lua": {
-      "sha256": "d6feb8b6d7c450f00ac1eae5309ad328ab0ee71d2dc733fc239c3fe26d84b8a4",
+      "sha256": "eebeddbada3c56ce38135048fc6d2b96da62ec69fbf7992b92bbaf0b6cd180a8",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
     }
   }
 }

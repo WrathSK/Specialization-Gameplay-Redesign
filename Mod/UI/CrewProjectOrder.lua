@@ -1,6 +1,7 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
+local claimSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
@@ -12,6 +13,7 @@ local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
+ if claimSelection then claimSelection.Sync(data.City)end
  SPCTimedProjectDisplay.Items(data)
  local items=data.ProjectItems;local crew,others={},{};local insertion
  for _,item in ipairs(items) do
@@ -37,7 +39,7 @@ include('ClaimProjectUI')
 SPCProjectTurnRead.New(SPCP0,function()end,function()end)
 local projectSelection=SPCTimedProjectSelection.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
  function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-local claimSelection=SPCClaimProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+claimSelection=SPCClaimProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
  function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
 local baseAdvance=AdvanceProject
 function AdvanceProject(c,item)

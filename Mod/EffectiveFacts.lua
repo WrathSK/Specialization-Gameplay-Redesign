@@ -60,6 +60,7 @@ function SPCEffectiveFacts.Start(P,shared)
   local store=shared.CityProgressionStore
   local failure=store and store.FailureReport and store.FailureReport()
   if failure then return failure end
+  if store and city and store.Owns and not store.Owns(city) then return store.Describe(pid,city) end
   local ok,result=pcall(function()
    local f=data.Read(pid,city)
    return 'B033 city='..f.cityID..' | '..f.specialization
@@ -68,6 +69,8 @@ function SPCEffectiveFacts.Start(P,shared)
     ..'\nLedger='..f.ledgerStatus
     ..'\nRead only. Lv2 housing/GPP automatic; inspect native city and Great People UI.'
   end)
-  return ok and result or ('B033 progression UNKNOWN: '..tostring(result))
+  if ok then return result end
+  local reason=tostring(result):match('[^\r\n]+') or 'UNKNOWN';reason=reason:gsub('^.-:%d+: ','')
+  return '城市专业暂不可读\n原因：'..reason..'\n未推断或重建专业历史；请保留报告。'
  end
 end
