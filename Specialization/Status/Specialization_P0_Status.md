@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0320
-Implementation Build: develop P0-B-125.152 / modinfo152 CLAIM_REPAIR_LOCAL_COMPLETE; live B124.151 verified170/170 MATCH; stable B069.96
+Implementation Build: develop P0-B-125.152 / modinfo152 CLAIM_REPAIR_LOCAL_COMPLETE; live B125.152 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B125_CLAIM_REPAIR_LOCAL_PASS_NATIVE_PENDING
 
 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：B124实际事务回归＋B125城邦/同步/诊断用例、121项UI/相关原型测试、B111保存/分流回归通过。B124原生失败保留；首个初始化异常未从日志确认，修复是否解决原生入口仍待测。先测已有商业城入口，再从日内瓦征服前存档重做取得，成功后续PT013；不在征服后补造旧snapshot。
 
-源码B125.152，部署待提交后按W0003执行；live此前B124.151/source0ed02ad，receipt B124.151-0ed02ad-playtest.json。下一步仅本次安全部署/原生复测，不进入F或其它生命周期。Design/main不变。
+源码/live B125.152 / modinfo152，source76c0c6c；OS进程核对退出后按W0003部署，170/170 MATCH，receipt B125.152-76c0c6c-playtest.json DEVELOP_ACTIVE。B124完整恢复点与stable桥保留，未启动游戏。下一步仅原生复测，不进入F或其它生命周期。Design/main不变。
 
 ## 历史阶段记录
 
