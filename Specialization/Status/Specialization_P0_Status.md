@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0313
-Implementation Build: develop P0-B-122.149 / modinfo149 PROJECT_SELECTION_UI; live B121.148 until deployment; stable B069.96
+Implementation Build: develop P0-B-122.149 / modinfo149 PROJECT_SELECTION_UI; live B122.149 verified166/166 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -17,7 +17,7 @@ Work State: B122_IMPLEMENTED_NATIVE_PENDING; E2 Claim plan-only
 
 [B121正常周期限定PASS](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)保留：T21→T22一次完成、随后纪念碑0；后续增长是用户陈述。新显示采用原生Expansion2旗帜扩展与HD CityPanel薄包装，不改成本或原生工期API。B117盲扣FAIL等反证不变；chop/harvest、保存、多城、正式奖励未由本次验证放行。
 
-源码B122.149；部署前live记录仍B121.148 source b46cd02、receipt B121.148-b46cd02-playtest.json。完成W0003安全切换后另同步结果；main/stable B069.96、D0035及四专业范围不变。下一动作仅本批安全部署与用户测试，不自动推进。
+源码/live B122.149 source a42048c；receipt B122.149-a42048c-playtest.json为DEVELOP_ACTIVE，166/166 MATCH。游戏退出进程复核、稳定桥与B121完整恢复点均保留；main/stable B069.96、D0035及四专业范围不变。下一动作仅本批用户测试，不自动推进。
 
 ## 历史阶段记录
 
