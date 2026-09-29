@@ -130,3 +130,5 @@ PT014 — B128未专业城原Owner夺回原生待验；优先科研候选单城�
 PT014更新：商业候选替代科研fixture；夺回/同session认领投资所测通过，重启续接FAIL，暂缓重测，等待窄修复授权。[结果与计划](Validation/Results/Specialization_B128_Claim_Reload_Failure.md)。
 
 PT014 B129：同步确认/有限重试本地通过，待失败档冷加载；过期计时应暂停并明确重新选择，不能补发。见E2计划B129最小复核，不重做征服，不另测UI。
+
+PT014 B129所测商业夺回/认领读档修复USER_GAME_TEST_PASS，用户明确验收，1图归档；本轮门禁关闭，不扩大E2范围。[结果](Validation/Results/Specialization_B129_Claim_Reload_Pass.md)。
