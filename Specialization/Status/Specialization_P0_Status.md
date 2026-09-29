@@ -1,19 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0324
+Status Revision: S0325
 Implementation Build: develop P0-B-127.154 / modinfo154 UI_LOCAL_COMPLETE; live B127.154 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B127_UI_LOCAL_PASS_COMBINED_NATIVE_PENDING
+Work State: E2_CLOSURE_REVIEW_COMPLETE_NEXT_PLAN_ONLY
 
 ## CURRENT AUTHORITATIVE STATE
 
 [B127窄修复](../Architecture/v2/P0_E2_Plan.md#b127154--claim-load-and-project-visibility)本地完成：加载一次性认领同步；已有合法计时恢复；精确隐藏无资格Claim/Crew项目。六项UI模拟、真实Claim续接/幂等/完整回合保护及城邦回归PASS，STATIC与LOCAL不等于实机。
 
-[B126认领核心用户PASS](Validation/Results/Specialization_B126_Claim_Core_Pass.md)保留。用户明确UI不单独验收，合并后续测试。下步[仅建议E2收尾及F readiness核对](../Architecture/v2/P0_E2_Plan.md#next-plan--e2-closure-and-f-readiness)，未授权推进销毁/未专业城夺回/F。
+[B126认领核心用户PASS](Validation/Results/Specialization_B126_Claim_Core_Pass.md)保留。用户明确UI不单独验收，合并后续测试。本轮[E2收尾核对已完成](../Architecture/v2/P0_E2_Plan.md#e2-closure-review--b127-baseline)：正常V3路径不依赖旧迁移，City TOKEN仍参与核验。E2仍partial，未专业城夺回明确拒绝，同址新代与未知外交取得仍保守暂停。下一[未专业城原Owner夺回最小计划](../Architecture/v2/P0_E2_Plan.md#next-minimal-slice--unassigned-original-owner-return)待授权；不进入销毁或F。本轮仅静态审阅与文档，没有新增模拟/实机或部署。
 
 源码/live B127.154 / modinfo154，source ef481c6；OS确认游戏退出后正式工具部署，170/170 MATCH。receipt B127.154-ef481c6-playtest.json DEVELOP_ACTIVE，B126恢复包与stable桥保留。未启动游戏，stable/main不变。
 

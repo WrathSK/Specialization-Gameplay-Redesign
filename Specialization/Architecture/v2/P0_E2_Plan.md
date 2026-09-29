@@ -1,6 +1,6 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B127_UI_LOCAL_COMPLETE. B126 Claim core accepted; UI validation merged into future testing by user; later lifecycle/F not authorized.
+Status: PARTIAL_IMPLEMENTED / E2_CLOSURE_REVIEW_COMPLETE. B126 Claim core accepted; UI validation merged into future testing by user; later lifecycle/F not authorized.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
@@ -1118,7 +1118,7 @@ USER_GAME_TEST_REQUIRED：从日内瓦征服前存档重做征服，E2左键应�
 
 ## Next plan — E2 closure and F readiness
 
-PLAN_ONLY，未授权执行。下一步不是立即实施学术传统：
+2026-09-29用户授权本节只读收尾核对；核对已完成，结果及下一最小计划见下文。此授权不包含新玩法实施。下一步不是立即实施学术传统：
 
 1. 只核对E2当前直接入口/消费者：新建、投资、失城休眠/退出、原专业城夺回、首次征服快照/认领的持久与派生分工；复用B109/B111/B126与先前原生证据，不重复全套历史调查。
 2. 明列尚未实现/未证实边界：未专业历史城夺回、真实销毁及同址重建引用隔离、未知外交取得。保留UNKNOWN/HELD保护，不将Removal自动视为销毁、不用名字/单独坐标补证，不因认领PASS宣称E2全完成。
@@ -1126,3 +1126,60 @@ PLAN_ONLY，未授权执行。下一步不是立即实施学术传统：
 4. 输出支持矩阵及P0-F readiness：能安全独立推进则准备学术传统eligible age、暂停/续算和ACTIVE门槛的具体manifest；否则指出直接阻塞及最小处理计划。不自行决定跨owner传统归属，不自动实施F。
 
 退出条件：已有证据、未实现边界与未来所需状态清晰，给出一个可授权的最小下一批。当前UI验收合并到下一实际实机流程：加载正在认领城，不先打开生产列表，观察1T和正常完成；顺手确认已认领城/无资格城不列无效Claim/Crew、合法入口仍在。没有新增独立用户测试轮次。
+
+## E2 closure review — B127 baseline
+
+2026-09-29，基于develop 3e107db / runtime source ef481c6。本次仅直接源码/合同/既有结果核对，STATIC_CONFIRMED；没有重跑玩法模拟、没有重新查看历史原图或检查外部运行包，没有新的USER_GAME_TEST_PASS。B127 UI按用户要求并入后续测试。
+
+### 已有支持及证据
+
+| 路径 | 实际状态 / 证据 | 尚不能扩大的结论 |
+|---|---|---|
+| 正常新局自动登记，首个合法完成，独立投资，保存 | [B109三城冷加载PASS](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，含P0对照、科研P2/文化P1 | 不代表所有生命周期/专业成果 |
+| 无专业历史AI城首次征服，空/非空候选分流 | [B111双城PASS](../../Status/Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)，冻结商业不受工业干扰；空集后续剧院成为文化P1 | 交易/自由城市取得不是该征服路径的自动推广 |
+| 城邦及Claim | [B126核心PASS](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)；B127修复只有STATIC/LOCAL | 冷加载不用生产列表、精确项目隐藏仍待合并实机确认 |
+| 已专业城失去/原Owner夺回 | [B103限定PASS](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md)：Research/P2/receipt、冷加载、用户确认总督后Lv1/2；B108真实worker模拟保留token与无token事件链 | B103是当时单城路径；当前V3由B108相关模拟覆盖，不冒称V3所有多城/四专业/带商路退出实机PASS |
+| ACTIVE/Network | EffectiveFacts每次从当前Governor推导；NetworkBridge失城withdraw、return回调先撤旧samples再允许当前facts/routes重建 | B103原生routes=0；非零商路收益重建未被该截图证明 |
+| 无专业身份城夺回 | **未实现**：recapture明确RETURN_UNASSIGNED_DEFERRED | 不能把等待Claim城市当成新AI城重新snapshot |
+| 销毁/同址重建 | **未实现正常新代接纳**：Removal使referenceInvalidated；已有位置记录阻止再次登记 | 安全暂停不等于支持；坐标仅路由到worker，active/return仍核对引用/token/事件证据，不作为同城证明 |
+| 未知外交取得/不完整链 | 拒绝或HELD，保留记录 | 不猜新Identity、不后台修复、不把absence当销毁 |
+
+### 旧状态与入口核对
+
+- `Gameplay.lua`调用正式`CityProgressionStore.Start`，历史`StartLegacyTest`不是生产启动。正式INDEX V3＋每城Game property保存base/investment/templates/Claim；不能说“已完全不使用City property”：当前City TOKEN仍是身份核验证据，且新建时写入。
+- `CityFlowProbe.SupportFacts`先走Store.Base；未登记城因BlocksLegacy=true停止。`EffectiveFacts`与`InvestmentAction`对已登记城使用Store.Investment/WriteInvestment；未登记城不能通过前置foundation资格去旧账本正常投资。
+- Binding/Completion/Journal/Flow/FreshBinding旧writer仍在文件中，但入口被BlocksLegacy阻断；保留用于历史测试不等于继续写生产进度。不能只按文件名删除。
+- `Standardization`显式UsesNewAuthority分支走Store模板读写；Found/Acquire设templatesCaptured=true，因此普通新局不触发ReadTemplates内旧模板首次捕获兼容分支。已夺回缺历史时不补造AI时期模板。
+- `PROGRESSION_IMPORT`及面板右键仍有入口，但正式store.Import立即返回“旧迁移入口已关闭”，不是正常流程依赖。可后续UI清理，不为美观扩大本轮修改。
+- module-owned退出保留；ResearchInfrastructure/Apply/Chair/StandardizationDiscount注册各自退出；NetworkBridge撤全局派生样本是失城/夺回时的重算准备，绝非永久账本删除。无前缀全库清理。
+- `Lv4Percent.lua`当前仅CULTURE分支；Research旧百分比carrier SQL保留类型但不再挂旧Research收益Modifier。学术传统未实现，不能把旧Research per-specialist加成当成传统。
+
+### P0-F readiness判断
+
+事实、投资回执、每城保存及明确退出接口可作为F基础，不需要新cityKey、通用Legacy框架或重新实现E2。Research_D0031的RES_L4_TRADITION已明确：首次科研Potential4后起始5%；标准10/20/30/40回合到10/15/20/25%；各速度阈值独立floor；保有Research Identity则ACTIVE跌落不停止计龄，收益只在ACTIVE4；转出身份暂停并保留年限，不补算离开期间。
+
+**E2不能整体关闭；本轮不把F标为可直接实施。** 下一优先补当前已明确的UNASSIGNED夺回缺口，再评估其它生命周期支持限制。该缺口不是学术传统同Owner计算公式的技术阻塞，但按现有E2收尾→F顺序不应静默跳过。
+
+F将需要新的、专业专属的持久年龄读写接口及module-owned退出，现有Store尚无该字段/API。首次Potential4的准确时间不能从旧投资receipt（receipt→unit标识，无投资turn）可靠补出；未来F计划应限定从首次P4之前启用记录的测试路径，不自动给已有P4补年龄。跨Owner传统归属仍未定义，不能照搬城市Potential或Culture；届时单列待决/保护边界，不在本轮作决定。
+
+## Next minimal slice — unassigned original-owner return
+
+**PLAN_ONLY / IMPLEMENTATION_NOT_AUTHORIZED**。承接已有同城事件证据及冻结模式合同，不新增取得种类或Design规则。
+
+目标：原本地人类玩家重新取得自己已有记录、但尚无Identity的同一城，恢复该记录的UNASSIGNED模式，不重新取AI snapshot，不自动选择专业。覆盖：自建P0、征服空集FIRST_COMPLETION、非空LEGACY_CLAIM。
+
+范围及依赖：
+
+1. 沿用现有retained-token或完整conquest/removed/added/initialized/transferred同城证据、退出完成门禁和原Owner资格；不复制token、不用城市名/单独坐标补证。
+2. `CityProgressionStore`当前validate要求UNASSIGNED没有current，return又要求base.first，Complete/Claim也引用origin；必须一起适配current reference与历史origin分工，**不能只删除RETURN_UNASSIGNED_DEFERRED断言**。无Identity不要求不存在的专业区域first锚点。
+3. 原有P0、acquisition mode、冻结LegacySet保持；外国期间建筑不能回填first-completion或增加候选。First-completion模式等待夺回后有效完成通知；Claim模式仍由原冻结集合选择。若发现正式规则无法支持某个新增边界，停止该子路径并提DESIGN_DECISION_REQUIRED。
+4. 失城时现有reconcile已清claimTimer；夺回不能重放已中断计时。由现行完整一回合项目规则重新开始；不得仅因队列仍有项目就伪造已完成回合。具体重新选择可用性须在实际项目入口检查。
+5. Effects仍由当前facts与资格重算；P0无基础收益/Network资格。其它已专业城路径不重写。候选carrier由Claim模块按当前记录重建。
+
+预计文件：CityProgressionStore.lua；必要时ClaimProjects.lua及窄诊断/现有UI选择入口；新增定向测试，状态/索引正常维护。无新carrier、无schema全城迁移、无破坏性旧档清理。不包含销毁世代、任意外交取得、AI/多人、跨Owner传统/F。
+
+验证（L3，但仅相关范围）：三种UNASSIGNED模式loss→foreign-held save/load→证据确认return；NONE/P0与模式保持、候选不追加、国外完成不回填、夺回后合法首次完成/Claim一次生效；重复/未知/不同城不误恢复；失城计时不重放；对照已专业城receipt/ACTIVE/Network重算不回归。静态检查所有受current-reference变化影响的直接消费者，不跑无关全历史stress。
+
+未来最小实机：优先一座已有非空候选但尚未认领城，失去→foreign存档冷加载→取回→原候选→认领；同一流程顺手检查B127加载显示与灰项目隐藏。另两种模式先本地验证，不机械要求三轮实机；出现独有native风险才追加。不得为了造fixture默认实现交易取得/销毁。
+
+退出：三种模式本地隔离/幂等成立，最小原生已测范围明确；保持其它未实现生命周期清单，再单独审阅E2剩余限制与F。回滚使用前批源码/正式部署恢复点和修复前独立存档；记录结构若改变，不承诺向下兼容。仅本计划授权后才实施/部署，本轮无用户测试。
