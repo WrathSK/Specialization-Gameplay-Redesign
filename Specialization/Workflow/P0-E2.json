@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0321",
-    "runtime": "B125.152 / modinfo152",
+    "status": "S0322",
+    "runtime": "B126.153 / modinfo153",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -689,6 +689,17 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B125_City_State_Type_Failure.md",
       "kind": "full",
       "reason": "Latest scoped native result and UI/Gameplay API boundary; repair not yet authorized"
+    },
+    {
+      "path": "DevelopmentTests/test_b126_source_kind.py",
+      "kind": "full",
+      "reason": "Current exact source-kind boundary regression"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B126.153 — authorized Gameplay city-state type repair",
+      "reason": "Current authorized repair and minimal native gate"
     }
   ],
   "dependencies": [
@@ -750,10 +761,9 @@
   ],
   "validation": {
     "local": [
-      "test_b125_claim_repair.py inherited B124 and scoped repair assertions",
-      "test_b125_claim_ui.py 121 related checks",
-      "B111/B109/B108 regression with version-only adaptation",
-      "Lua/modinfo152/context/diff checks"
+      "test_b126_source_kind.py: inherited B124 + no IsMinor, exact config/DB classes and rejection cases",
+      "B111/B109/B108 targeted regression with release-only adaptation",
+      "actual read-only DB, Lua/modinfo153/context/diff"
     ],
     "user": "Existing Commerce candidate entry; pre-Geneva-conquest save city-state admission; then PT013 completion/load. Native pending."
   },
@@ -763,9 +773,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
-    "implementation": "B125.152 authorized entry/city-state/diagnostic repair STATIC_CONFIRMED / LOCAL_SIMULATION_PASS",
+    "implementation": "B126.153 source-kind replacement STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "Await authorization for city-state type interface repair; PT013 dual-city validation paused",
+    "next": "Safe B126 deployment then PT013 Geneva and dual-city validation; no further implementation",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",

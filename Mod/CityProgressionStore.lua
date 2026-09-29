@@ -893,7 +893,17 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     assert(not q.found and q.added and q.initSequence and q.conquest.sequence<q.added and q.added<q.initSequence and q.initSequence<q.transferred,'ACQUISITION_ORDER')
     local old=assert(Players[q.conquest.oldOwner],'ACQUISITION_OLD_OWNER_UNAVAILABLE')
     local major=old:IsMajor();local minor=false
-    if major~=true then local ok,value=P.Call(old,'IsMinor');assert(ok and type(value)=='boolean','ACQUISITION_SOURCE_KIND_UNKNOWN');minor=value end
+    assert(type(major)=='boolean','ACQUISITION_SOURCE_KIND_UNKNOWN')
+    if not major then
+     -- IsMinor is not a proven Gameplay interface. Resolve the original owner's
+     -- configured civilization against the authoritative gameplay database instead.
+     local config=PlayerConfigurations and PlayerConfigurations[q.conquest.oldOwner]
+     local ok,civ=P.Call(config,'GetCivilizationTypeName')
+     assert(ok and type(civ)=='string' and civ~='','ACQUISITION_SOURCE_CIV_UNAVAILABLE')
+     local row=P.Info('Civilizations',civ)
+     assert(row and type(row.StartingCivilizationLevelType)=='string','ACQUISITION_SOURCE_LEVEL_UNAVAILABLE')
+     minor=row.StartingCivilizationLevelType=='CIVILIZATION_LEVEL_CITY_STATE'
+    end
     assert((major==true or minor==true) and old:IsHuman()==false and not P.IsTestPlayer(q.conquest.oldOwner),'ACQUISITION_AI_MAJOR_OR_CITY_STATE_REQUIRED')
     local set={};local seen={}
     q.stage='区域快照读取'

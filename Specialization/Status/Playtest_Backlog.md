@@ -118,3 +118,5 @@ PT013暂停：[B124入口失败](Validation/Results/Specialization_B124_Claim_En
 PT013 B125：入口/城邦修复本地通过，待原生复测。[最小步骤与边界](../Architecture/v2/P0_E2_Plan.md#b125152--authorized-claim-entry-and-city-state-repair)。日内瓦从征服前档开始，不事后重建snapshot。
 
 PT013 B125复测：商业入口用户确认PASS；城邦ACQUISITION_SOURCE_KIND_UNKNOWN，双城流程暂停。[接口证据与下一窄修复](Validation/Results/Specialization_B125_City_State_Type_Failure.md)。
+
+PT013 B126：城邦类型改为原Owner配置＋Gameplay文明类别，缺IsMinor用例本地通过；从日内瓦征服前档复测，再双城一起续测。商业入口无需重复专项验收。

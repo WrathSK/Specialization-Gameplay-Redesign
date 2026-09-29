@@ -1092,3 +1092,15 @@ Status: USER_APPROVED / IMPLEMENTED_B124 / USER_GAME_TEST_REQUIRED。
 最小原生先验入口：加载已有商业候选城，打开正常生产面板，应能选择“认定商业专业”；后建工业不得成为候选。再从**征服日内瓦前**的存档征服，E2应显示实际完整区域候选或合法空集，不再AI_MAJOR_REQUIRED。成功后继续PT013的正常一回合认领与两次保存边界；入口仍失败则只提供E2左键短报告和项目禁用Tooltip，不重复后续步骤。无需启动P0实验、强制过回合或重做溢出调查。
 
 未专业化失城/夺回、Free City取得、销毁、F均未扩展。本次部署以Status/receipt为准，停在实机验证。
+
+## B126.153 — authorized Gameplay city-state type repair
+
+用户明确“修复”。仅替换B125非Major来源类型读取，不触及已通过商业入口、计时、UI或保存schema。Gameplay直接调用IsMinor已移除：读取原Owner PlayerConfigurations.GetCivilizationTypeName，再用GameInfo.Civilizations[类型].StartingCivilizationLevelType精确匹配CIVILIZATION_LEVEL_CITY_STATE。主文明分支保持原样；非Major未知、配置缺失/异常、库项缺失、Free Cities/Tribe/其它级别均不被当作城邦，非人类与征服事件链检查保留。不能凭名称、ID范围或非Major推断。
+
+接口依据：GetCivilizationTypeName已经由本Mod Gameplay的玩家资格路径使用；只读实际Gameplay数据库确认日内瓦CITY_STATE、自由城市FREE_CITIES、蛮族TRIBE。数据库静态证据不等于征服结束时配置可读的原生PASS。B125错误码不能区分IsMinor缺失/抛错/非布尔，B126明确不再依赖该接口，亦不依赖HD的UI Utils桥。
+
+LOCAL_SIMULATION_PASS：`DevelopmentTests/test_b126_source_kind.py`复用全部B124真实handler断言，新增**不提供IsMinor**的城邦/Mod城邦取得→候选冻结→认领→保存、自由/蛮族/其它级别、缺配置/抛错/非字符串/无数据库项/人类拒绝，以及Major路径无需新增配置依赖。B111/B109/B108定向保存分流回归通过（仅release断言适配153）；全Lua编译/modinfo/索引检查。UI与计时字节不变，复用B125已审阅证据，不重跑无关121项UI套件或stress。
+
+USER_GAME_TEST_REQUIRED：从日内瓦征服前存档重做征服，E2左键应显示实际冻结科研候选（以其当时已完成区域为准），再与商业候选城一起继续PT013。加载已经拒绝登记后的城不会事后按当前区域补snapshot；无需重测商业入口修复或旧溢出实验。若配置仍不可读，新原因明确为SOURCE_CIV_UNAVAILABLE或SOURCE_LEVEL_UNAVAILABLE，停下提供报告。
+
+部署记录以Status/receipt为准；不改Design/main、不进入下一切片。

@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0321
-Implementation Build: develop P0-B-125.152 / modinfo152 CLAIM_REPAIR_LOCAL_COMPLETE; live B125.152 verified170/170 MATCH; stable B069.96
+Status Revision: S0322
+Implementation Build: develop P0-B-126.153 / modinfo153 SOURCE_KIND_REPAIR_LOCAL_COMPLETE; live B125.152 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B125_COMMERCE_ENTRY_PASS_CITY_STATE_TYPE_FAIL
+Work State: B126_SOURCE_KIND_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B125复测结果](Validation/Results/Specialization_B125_City_State_Type_Failure.md)：用户确认商业候选对应项目可选，入口限定PASS；日内瓦截图仍ACQUISITION_SOURCE_KIND_UNKNOWN，城邦取得FAIL。双城完成/保存未进行，PT013继续暂停，不要求重复商业入口测试。
+[B126城邦类型接口修复](../Architecture/v2/P0_E2_Plan.md#b126153--authorized-gameplay-city-state-type-repair)按用户授权本地完成。不再直接调用Gameplay IsMinor；原Owner文明配置→Gameplay文明类别，仅明确CITY_STATE允许，Free/未知继续拒绝。商业入口、项目计时/UI和保存schema未改变。
 
-静态定位：B125直接在Gameplay调用IsMinor，而HD先例实际由UI函数经ExposedMembers桥接；本地fixture掩盖接口差异。截图仅证明调用未得到有效布尔，不声称已观察具体Lua异常。下一建议修正城邦类型读取，使用可验证的原Owner配置/文明类别或受控桥接，保留非Major不等于城邦与失败停止。尚未授权该修复，不推进其它切片。
+STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际DB类型、缺IsMinor的真实handler测试、B124及B111相关保存/分流回归通过。原生城邦路径仍待验；商业入口B125限定用户PASS保留。用征服日内瓦前档复测后双城一起继续PT013，不按征服后现状补snapshot。
 
-源码/live此前B125.152/source76c0c6c，receipt B125.152-76c0c6c-playtest.json记录170/170 MATCH。本轮仅截图归档与证据/状态，未重新核验运行包或部署；Design/main不变。等待修复授权，之后用日内瓦征服前档补齐双城测试。
+源码B126.153，待按W0003提交后部署；live此前B125.152/source76c0c6c，receipt B125.152-76c0c6c-playtest.json。Design/main不变，下一步仅本次安全部署及用户复测，不进入F。
 
 ## 历史阶段记录
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "76c0c6cd1c93dc3da4b3e1c888e6d05c41ea84f7",
-  "runtime": "B125.152 / modinfo152",
+  "runtime_commit": "B126 implementation commit pending",
+  "runtime": "B126.153 / modinfo153",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "717aa47f84932fb8361f6c6650752c12a8e8695d6a8398472af5a0a9e7f3abe1",
+      "sha256": "bc3766d4a99391bcb5a352f61fa6cd4c93e735c153153279b328e80842253b5e",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "provenance": "B126 source-kind interface replacement reviewed; scoped local pass, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a65f26ecf1439a0b8aef8758bf6e1648d0c3426098da3fb54c1e42baf6621da5",
+      "sha256": "5351899b4b45dc96aa38a13fa2829a739220dcc59908220b803358b74df36d3d",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "provenance": "B126 source-kind interface replacement reviewed; scoped local pass, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "81fe2c6cff2623b424ccdd65496f51821697d616634397c53503c5b54e2e1f74",
+      "sha256": "3f03f5228b8d2947e1b59d6f8dc3a9fe7898d6a441a26a5f4ffbeb5e42807daf",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "provenance": "B126 source-kind interface replacement reviewed; scoped local pass, native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
