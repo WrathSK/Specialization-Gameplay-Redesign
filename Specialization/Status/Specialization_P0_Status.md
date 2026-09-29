@@ -7,15 +7,15 @@ Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B128_UNASSIGNED_RETURN_LOCAL_PASS_NATIVE_PENDING
+Work State: B128_CLAIM_RELOAD_USER_FAIL_REPAIR_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B128未专业城夺回](../Architecture/v2/P0_E2_Plan.md#b128155--unassigned-return-checkpoint)本地完成：自建P0、征服空集、等待Claim三模式按同城证据恢复原记录；current引用适配，原模式/冻结候选不变。新完成/认领/投资与保存、重复/未知/失败隔离定向LOCAL通过。未通过新的原生验收。
+[B128实机结果](Validation/Results/Specialization_B128_Claim_Reload_Failure.md)：商业候选城交出/夺回后P0与候选保留；不重启可认领和投资（用户陈述）。保存重启后项目持续“确认中”、数回合不完成，PT014部分通过、续接USER_GAME_TEST_FAIL，项目隐藏仍待验。
 
-保留限制：夺回后首次认定工业的身份/投资可用，但缺历史模板时标准化仍暂停，未从AI时期建筑补模板；后续需独立合同/适配。销毁同址新代、未知取得/F未推进。下一步仅[PT014最小用户测试](../Architecture/v2/P0_E2_Plan.md#最小用户测试--pt014)，顺手覆盖B127 UI，无独立UI轮次。
+下一窄批为Claim冷加载确认/有限重试与保存计时恢复修复，待用户授权；不凭队列补造timer，不进入F或工业模板初始化。用户暂无需重测，保留现有失败档及夺回前存档。
 
-源码与运行包均B128.155 / modinfo155，source ad87811；部署后170/170 MATCH，receipt B128.155-ad87811-playtest.json为DEVELOP_ACTIVE。操作系统确认游戏退出；B127完整恢复点与stable桥保留。stable/main不变，未启动游戏。
+源码/运行包B128.155 / modinfo155，source ad87811，既有部署170/170 MATCH，receipt B128.155-ad87811-playtest.json；本轮未重新核验运行包、未部署。工业缺历史模板暂停边界保留，main不变。
 
 ## 历史阶段记录
 

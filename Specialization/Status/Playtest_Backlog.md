@@ -126,3 +126,5 @@ PT013 B126主流程USER_GAME_TEST_PASS（用户称B124任务，实际截图B126�
 PT013 B127：冷加载同步与Claim/Crew列表修复STATIC/LOCAL通过；用户要求不独立UI验收，合并下次实际测试，重点不先打开生产列表的加载计时与精确可见性。[实现与下一步计划](../Architecture/v2/P0_E2_Plan.md#b127154--claim-load-and-project-visibility)。
 
 PT014 — B128未专业城原Owner夺回原生待验；优先科研候选单城交出→foreign冷加载→征服取回→原候选认领→投资/冷加载，合并B127显示与项目隐藏。工业模板缺历史暂停单列，不扩成收益PASS。[完整流程](../Architecture/v2/P0_E2_Plan.md#最小用户测试--pt014)。
+
+PT014更新：商业候选替代科研fixture；夺回/同session认领投资所测通过，重启续接FAIL，暂缓重测，等待窄修复授权。[结果与计划](Validation/Results/Specialization_B128_Claim_Reload_Failure.md)。
