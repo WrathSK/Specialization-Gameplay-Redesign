@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0308",
+    "status": "S0309",
     "runtime": "B120.147 / modinfo147",
     "military": "D0034"
   },
@@ -608,8 +608,8 @@
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
     "next": "Claim plan prepared only; user review low-cost project proposal before separate implementation authorization; direct manifest dependencies must be expanded for authorized Claim changes",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
-    "side_prototype": "B120 LOCAL_SIMULATION_PASS; user deferred native test until home (PT010); no automatic finish/reward",
+    "side_prototype": "B120 one-city normal-turn observation USER_GAME_TEST_PASS; PT010 closed; automatic completion/1T not tested",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
-    "side_next_plan": "Section26: native A first; B automatic/1T separately authorized; user accepts forced early completion, no protective reward gate"
+    "side_next_plan": "Refine Section26/25 B from native ordering; Activated candidate, not certified GP settlement; no implementation authorization"
   }
 }

@@ -762,3 +762,7 @@ W0004定向L3（事件顺序风险），仅直接模块模拟与旧观察/手动
 USER_GAME_TEST_REQUIRED：判断候选结算时点前后是否仍有变化。证据不足→EVENT_ORDER_BOUNDARY，收窄后续方案；不自动进入B/Claim/F。回滚只涉及会话诊断，无新持久schema。游戏由用户操作。
 
 B120部署完成：source 5f8f02f，游戏进程退出检查通过；原事务工具保留B119恢复点、经stable桥部署，160/160 MATCH；receipt `B120.147-5f8f02f-playtest.json`，DEVELOP_ACTIVE。main/游戏启动未触碰。
+
+### B120 native observation acceptance
+
+[单图顺序证据](../../Status/Validation/Results/Specialization_B120_Project_Turn_Observation.md)：T21进度7，T22 Started及StartComplete缓存仍7，生产更新后15，Activated/手动终点15；GP目标始终为承接项目。采集限定USER_GAME_TEST_PASS。不能把缓存顺序升级为GP写入同步证明；不能仅凭StartComplete名字自动完成。Activated为本次较晚候选，回调内FinishProgress及各组合仍待原型，不自动进入B。PT010采集待办关闭；现有强制提前完成接受决定不变。

@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0308",
+    "status": "S0309",
     "runtime": "B120.147 / modinfo147",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac",
-  "current_batch": "B120_USER_TEST_DEFERRED; COMMUNITY_CANDIDATE_INTAKE; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "B120 native test deferred until user available; no further implementation authorized",
+  "current_batch": "B120_SCOPED_NATIVE_OBSERVATION_PASS; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "Refine P-B120B automatic completion/1T plan from observed ordering; separate authorization required",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B120.147 / modinfo147 deployed;160/160 MATCH;source 5f8f02f;B119 recovery retained;receipt B120.147-5f8f02f-playtest.json;native observation pending",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "Community candidate/read-page reviewed against COMM-001..011 and DIP-MISSION-008; accepted Design/runtime unchanged",
+  "context_review_status": "B120 screenshot visually read; observer event labels checked; one-city scoped PASS only",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
