@@ -1,21 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0335
-Implementation Build: develop P0-B-133.160 / modinfo160 REDUNDANT_READ_OPTIMIZATION_LOCAL_COMPLETE; live B133.160 verified170/170 MATCH; stable B069.96
+Status Revision: S0336
+Implementation Build: develop P0-B-134.161 / modinfo161 MANUAL_GC_AND_NETWORK_SCOPE_LOCAL_COMPLETE; live B133.160 until verified deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B133_NATIVE_COMPARISON_COMPLETE_MEMORY_GROWTH_OPEN
+Work State: B134_LOCAL_COMPLETE_NATIVE_GC_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B129读档续接验收](Validation/Results/Specialization_B129_Claim_Reload_Pass.md)：用户明确PASS；截图显示伯明翰商业认领在未打开生产列表时为1回合。PT014本轮所测商业候选夺回/认领续接门禁关闭，B128失败证据保留；不扩大为四专业或E2所有边界PASS。项目隐藏缺少直接画面，不追加测试轮次。
+[B129认领读档续接](Validation/Results/Specialization_B129_Claim_Reload_Pass.md)所测商业场景USER_GAME_TEST_PASS保留；E2仍partial，工业模板初始化/销毁同址新代/未知取得边界不扩大，不进入F。
 
-源码/最近已核实运行包B133.160 / modinfo160，source d50029a，receipt B133.160-d50029a-playtest.json（DEVELOP_ACTIVE）；本批四处重复工作优化已部署，170/170 MATCH，已保留稳定/B132恢复点。B133已完成20图实机对照：检查减少，逐回合内存增长基本不变；B132所测收益响应PASS保留。工业模板初始化、销毁同址新代、未知取得等仍保持原边界。下一工程切片待另行计划/授权，不自动进入F。
+当前源码B134.161 / modinfo161：[手动GC与三事件网络范围修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134161--manual-full-gc-diagnostic-and-scoped-network-capture)已获用户授权，定向LOCAL_SIMULATION_PASS。GC默认关闭，仅“手动GC诊断”右键执行一次，左键读取；不自动每回合/每帧收集、不调GC参数、不清永久记录。网络仅排除三类已知无关外国事件，保留本玩家同回合变化、全国依赖、UNKNOWN、退出/返回/Claim/load路径。
 
-性能OPEN：[B130获授权最小观测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b130157--authorized-minimal-observation-checkpoint)本地通过：6回合/6条、按需只读heap与计数，未实施清理。已收6图：count接口可用，T39–41 Lua读数277.90→486.77 MiB、所列缓存条目不变；观察已完成，根因仍OPEN。回调模拟确认player/full范围重复Audit及外国worker触发本地GPP请求；[B131有界归因](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b131158--authorized-bounded-event-and-module-attribution)已收6图，归因报告可读；静置27秒扫描不增、进程10.50→10.49GB、Lua418.64→419.42MiB。工业折扣入口计数含clean早退，不等于完整重算；[B132窄优化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132159--authorized-narrow-event-and-cache-optimization)已授权且定向L2本地通过：foreign通知过滤、总督范围及D复用，[六图实机结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132-native-results)：用户确认专家/建筑收益正常；GPP请求6→1、对话入口577→67、D命中0→3，但本回合进程仍约+0.23GB，非内存修复PASS。[新增11组多回合结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132-multiturn-conquest-results)：三次征服后静置进程10.72→10.62GB而Lua略升、扫描不增；T40–45 Lua650.36→885.73MiB、所列记录/缓存不增，每回合仍大量建筑检查。用户已授权先修已确认浪费，[B133四处优化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b133160--authorized-removal-of-confirmed-redundant-work)本地通过：GPP重复读、静态目录重复枚举、已知Owner失效范围及基础区域分类。[本次10组20图对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b133-native-comparison)确认T45建筑检查减少2.17%，城市扫描相同；T40–45 Lua平均47.07→47.17MiB/回合，进程两轮均+0.41GB。主要增长仍OPEN，修复保留；无需重复长测，下一建议定位事件串的重复城市遍历/事实核对，未授权新实现。B129功能验收保持，不进入F。
+最近已核实运行包仍B133.160，source d50029a，receipt B133.160-d50029a-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；B134须完成commit和既有W0003安全事务后才算部署。main稳定B069.96，恢复包保留。
+
+[B133实机对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b133-native-comparison)已证实检查略减、扫描相同、T40→45内存斜率未改善；修复保留，不重复长测。B132所测专家/建筑收益响应PASS保留。下一步仅现有存档副本冷启动：初始稳定点及随后两个玩家回合各一次手动GC，比较回收后基线。count已实测可用，collect/实际Lua环境及耗时仍USER_GAME_TEST_REQUIRED；接口失败立即停止再试，之后才考虑定域停用对照。旧Batch A入口在B133/B134均因早期夹具初始化不匹配失败，未报PASS；本轮独立定向测试覆盖直接边界。无内存根因关闭或GC正式修复声明。
 
 ## 历史阶段记录
 

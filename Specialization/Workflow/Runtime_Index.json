@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "1ee46c5fda2498c7f5f0be6f1b25ef2afdd7289af83f532071a0c949bd8ad55e",
+      "sha256": "214b21409079a978afb28aa78f97c6faebda46f5f8a1635f3f3e97bf8e1ef380",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -341,9 +341,9 @@
       "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "7c34753175b250b5f14e9b5da945b544b7a736b005f1635dfee26b938671c44f",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "1b1f3aa8dcb5321c13892cff0e3f5ed9a864736a4e2ba09ae4c90aa2ba8fd94c",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -361,14 +361,14 @@
       "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "5aa62e7cd187f097025355ecbd0562187510c93c6435eb8e57ed67153d959b4d",
+      "sha256": "c6b15a1faebf0242996f41f161e777c49e4e3323ba6c0b30072f4841aa839df2",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/Probe.lua": {
-      "sha256": "06f3fe161873108886e7b055a1e7f9495d0051f0ce77a8c7adf1300a0aa344f9",
+      "sha256": "4bb3595d1d6f0d9b598a70fb1b7e33d36db84b5ccf7ddb6a6f530059d430aecd",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
+      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4fd15a5da1f69325391d622d26a4857d3f49ecb88ed7ac6e60db7a2fdfffc872",
+      "sha256": "6a230c2b1661423662e08c09d6211a0771f0f937e464d3cc385eaf42055e5e4e",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
+      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "d6ea3737b54dd0578493f9aa1e118e8fc14b0830f79b48f782f674fff3dd4a8b",
+      "sha256": "e530f1bc67a42618a802b61721405e80112a175aed3cce1eb73ec9afcca36d0c",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",

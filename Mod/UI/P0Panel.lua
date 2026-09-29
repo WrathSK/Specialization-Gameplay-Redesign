@@ -80,7 +80,7 @@ local function displayResponse()
       if c then report=report..'\n'..SPCBoostGreatWorkRead.Works(P,c,pendingAction=='GW_BASELINE') end
       localReport=report
     end
-    readings[(pendingAction or "READ")..":"..tostring(pageCity)..":"..tostring(page)]=report
+    readings[(pendingAction and pendingAction:find('^MEMORY_GC_')) and 'MEMORY_GC' or ((pendingAction or "READ")..":"..tostring(pageCity)..":"..tostring(page))]=report
     status(P.VERSION.." | ACK | "..report:gsub("\n","[NEWLINE]"))
     return true
   end
@@ -130,7 +130,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=='CITY_SEQUENCE_BEGIN' then
@@ -503,7 +503,11 @@ initialize=function()
  projectReadPulse=timer.Pulse
  Events.GameCoreEventPublishComplete.Add(projectReadPulse)
  Controls.TurnProbeReadCaption:SetText("自动项目报告")
- Controls.PerformanceSnapshotButton:SetHide(true) -- production selection owns activation now
+ Controls.PerformanceSnapshotButton:SetHide(false)
+ Controls.TurnProbeArmCaption:SetText('手动GC诊断')
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()request('MEMORY_GC_READ')end)
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eRClick,function()request('MEMORY_GC_COLLECT')end)
+ Controls.PerformanceSnapshotButton:SetToolTipString('默认不执行。左键看说明/结果；右键明确执行一次完整GC，可能短暂停顿。只作诊断，不改回收策略或专业数据。')
  local function projectAction(fn)
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;fn()
  end

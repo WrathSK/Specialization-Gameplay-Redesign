@@ -393,7 +393,17 @@ function SPCNetworkBridge.Start(P,shared)
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function() d.CheckEvidence(false) end) end
  end
  -- Current facts, not the event name/turn, determine whether a version is published.
- for _,name in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CapitalCityChanged','CityAddedToMap'}) do
+ -- These events identify the affected player in their first native argument.
+ -- Keep every local notification, including repeated ones within the same turn.
+ local function rebuildPlayer(pid)
+  if integer(pid) then d.Refresh(pid) else d.Rebuild() end
+ end
+ for _,name in ipairs({'PlayerTurnActivated','GovernorChanged','GovernorPromoted'}) do
+  local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(rebuildPlayer) end
+ end
+ -- Assignment/establishment carry both city owner and governor owner; retain the
+ -- existing full safety scope, including cross-owner governor assignments.
+ for _,name in ipairs({'GovernorAssigned','GovernorEstablished','CapitalCityChanged','CityAddedToMap'}) do
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
  local e=P.Field(Events,"LoadScreenClose");if e and e.Add then e.Add(function() d.ready=true;d.Rebuild() end) end

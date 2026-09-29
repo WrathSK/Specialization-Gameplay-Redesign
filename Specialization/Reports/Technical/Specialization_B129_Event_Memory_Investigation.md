@@ -267,3 +267,62 @@ LOCAL_SIMULATION_PASS / STATIC_CONFIRMED：`DevelopmentTests/test_b133_redundant
 - GPP请求/提交/接收：征服期0；T40–44各累计1→5、异常0。T45六回合观测已自动停止，事件/请求桶不能当完整T45；手动Lua和累计扫描仍可用。图中UI调用处Lua与Gameplay处非常接近，不相加或假设独立堆。未收到本批独立收益操作验收，不扩大为全功能PASS。
 
 结论：USER_GAME_TEST_OBSERVED（本次实机观测）确认减少检查，但B133没有解决主要逐回合内存增长。修复应保留，不回滚已消除的浪费。无需再重复此轮长测。下一建议转向仍原样发生的城市遍历与事件串重复核对，按直接调用点找出同一事实/同一城市被重复处理的可合并工作；保留UNKNOWN、ownership withdrawal/recapture、当前事实失效与有界补查。先在本地形成明确窄范围修复与验证依据，不继续只盯Audit入口总数或向用户重复索取相同截图。不是所有扫描均可删除；没有授权本轮新增实现、强制GC、永久记录清理或F。
+
+
+## B134.161 — manual full-GC diagnostic and scoped network capture
+
+2026-09-29：用户以B133.160为基线明确授权两条独立工作线：手动完整GC用于区分未回收临时对象与回收后基线增长；以及已证实、不改语义的窄事件范围修复。保留B132/B133修复，不重新长测、不新增泛化计数体系，不调整引擎GC策略，不清Property/永久账本，不进入F。此授权替代上一节当时的“未授权新实现/GC”。
+
+### 1. GC环境、范围和安全合同
+
+STATIC_CONFIRMED：当前`PerformanceCounters.Heap`只执行`collectgarbage('count')`并除1024显示MiB。B130–B133截图证实该count入口可返回数值；它属于Gameplay调用所在Lua堆，不是本Mod独占、不等于进程RSS。UI另一次count是否共享同一堆未证，不能相加。没有按Mod归属分配的现成计数器。
+
+本次对canonical Mod、现有观测/外部monitor工具，以及本机安装的原版/DLC、HD/Workshop和本地Mods可读Lua脚本定域搜索`collectgarbage/gcinfo/setpause/setstepmul/lua_gc`：除本Mod已有count外未找到GC控制调用；没有发现本Modstop、调参或未配对restart。该结论不覆盖引擎二进制内部策略、未加载可读脚本以外的代码或宿主注入。只读原生UI发现`GetTickCount`/`Automation.GetTime`用例，但不据此猜Gameplay可用性或计量单位。二进制strings没有给出可据以确认的Lua版本；测试Lupa lua55不是Civ VI环境证明。
+
+Lua标准手册定义`collect`为完整循环、`count`为KB、`isrunning`为运行状态，`os.clock`为近似进程CPU秒而非墙钟；终结器可复活对象、增加分配或使释放延至后续循环。参照[Lua手册](https://www.lua.org/manual/5.3/manual.html#pdf-collectgarbage)、[clock](https://www.lua.org/manual/5.3/manual.html#pdf-os.clock)、[finalizers](https://www.lua.org/manual/5.3/manual.html#2.5.1)，不将其当作此游戏完整GC已实测。原生实际`_VERSION`和可用方法由本次诊断报告；若缺失/拒绝就停止本次尝试，不要求反复重启碰运气。
+
+新增入口复用P0已有隐藏按钮：**手动GC诊断**。左键说明/读已有结果，右键明确执行一次。无需选城、无需启动旧6回合内存观测；默认零完整GC。调用经过现有本地人类资格校验和一次Gameplay request，先读count/可选isrunning，执行一次受pcall保护的collect，立即读后值。若`os.clock`可读则显示CPU耗时，缺失/错误/无效数值则明确“不可用”；不伪称墙钟耗时。记录最多3次标量结果，UI仅一个结果槽，本次加载有效、不保存；同请求重复不重复执行，接口失败后本次加载停止再试，无自动重试。
+
+没有新回合/每帧GC、stop/restart、step、模式切换或参数修改；不主动清任何缓存、Property、账本或游戏记录。完整GC本身会运行宿主/其它Lua对象的终结处理，不能承诺只触及本Mod对象，因此用测试存档副本，调用可能短暂停顿。报告“调用成功”只证明调用返回，无引擎内部全堆释放保证。运行状态前后若变化则标异常并停止，不擅自恢复策略。
+
+### 2. 城市访问口径及本轮修复
+
+`city_scan`是不同消费者对城市条目的累计访问数：不是唯一城市数、不是全城遍历批次数，更不是分配字节数。`RuntimeWork.New`只在单次Audit内复用事实/区域；各模块的独立native listener及`LV2_GPP_DIRTY`直接调用仍可能重复读取。同一输入签名防止**发布/derive**，但NetworkBridge在判断同签名前仍先调用NetworkInput.Capture遍历城市、构造事实/签名表。
+
+本轮仅修`NetworkBridge`三条已确认第一参数是玩家ID的事件：`PlayerTurnActivated / GovernorChanged / GovernorPromoted`。有效玩家参数只Refresh该玩家；非参与玩家早退；缺失/负/非整数/字符串等未知参数保留全Rebuild。本玩家仍扫描其全部城市，且同回合每次真实变化和重复通知都处理，不引入每城市每回合一次。`GovernorAssigned/Established`有城市Owner和总督Owner双参数，连同首都、建城、失城、移除、路线、战争、load、module-owned exit/return保持原范围。
+
+签名证据：原版`Civ6.app/Contents/Assets/DLC/Expansion2/UI/Additions/GovernorPanel.lua`695/711与Base `Assets/UI/UnitFlagManager.lua`1469；HD Workshop `289070/2465378070/Gameplay/RegionalYields.lua`274–279。网络输入只含本玩家Identity/Potential/ACTIVE/anchor/capital及路线端点，不读取跨境总督光环产出；ACTIVE仍按本城正常总督门槛。Assigned/Established保留全范围，不由第一参错误排除跨Owner调任。
+
+实际Bridge/Input Lua的五城定向模拟（相同输入、B133对照）：
+
+| 输入 | B133城市条目访问 | B134 | 保留结果 |
+|---|---:|---:|---|
+| 12外方玩家×三类事件 |180|0|本玩家输入版本不变 |
+| 同回合六次本玩家事实变化 |30|30|每次新的全国源等级可见 |
+| 相同状态本玩家回合通知两次 |10|10|保持原重读机会 |
+| 15次未知/无效参数 |75|75|保守完整重读 |
+| 四次Assigned/Established（含跨Owner） |20|20|完整重读 |
+
+预期减少的是这三类无关事件引发的**本玩家城市访问、事实读取及该Capture的临时表/签名构造**。原生事件投递数不变，未测对象字节/耗时；同输入原本就不写新结果，因此不宣称减少实际Property/carrier写入。不能外推总扫描降幅，也不能据此解释B133内存增长。
+
+第二条已定位但未修改：`LV2_GPP_DIRTY`在纯worker/focus刷新时仍调用无worker输入的ResearchCross。应另核FactsChanged与独立UI样本接收边界再切换。自身写入方面，RuntimeWork已过滤可识别carrier事件，但`CityBuildingsChanged`仍可使D标脏；成功writer还会提升输出版本供跨城收益依赖读取。暂不能把这些一概去掉或跨回调缓存EffectiveFacts，不对UNKNOWN、Claim、失城和全国依赖作粗节流。
+
+### 3. 本地证据与测试限制
+
+定向L2诊断 + L3网络失效/加载边界；不是全玩法回归/stress。`test_b134_gc.py`验证真实诊断和早期request路径：默认关闭、只读零collect、foreign/非法/重复请求、无事件GC、三条上限、count/collect失败与停止重试、状态/计时不可用、停止状态不restart、回收后数值增加也如实报告、状态异常不修策略。修改Lua语法及modinfo161检查通过。
+
+`test_b134_network_scope.py`用既有最小fixture和实际Bridge/Input比较B133：上表、全国多源、首都改变、UNKNOWN保留、失城撤销/有效新包恢复、商人移除，以及load新epoch拒绝旧包均LOCAL_SIMULATION_PASS。永久写入0；未改保存/Claim/能力writer。不新增泛化计数器。
+
+尝试旧`test_arch_v2_batch_a.py`时，其先执行B069完整wrapper并在初始UI路由取`n.players[0]`阶段报nil，未进入该文件后半网络合同断言。对B133六个改动文件作只读Git源码替换后同样失败，属于既有历史夹具/当前初始化不匹配；**该旧入口未通过**，不改历史断言、不称其回归PASS，也未跑到旧stress循环。本轮采用独立定向fixture补齐直接边界；不是全E2验收。Civ VI实际collect、Lua版本、计时能力、UI显示、修复后的总扫描/内存效果均USER_GAME_TEST_REQUIRED。
+
+### 4. 最小实机测试与判读
+
+仅使用现有可复现存档的副本，完全冷启动；不重新征服三城，不关闭整个Mod读档，不进行30多回合长测。
+
+1. 进入玩家回合并等加载/画面稳定，打开专业化诊断；左键“手动GC诊断”看说明，再右键一次，截图初始前→后、环境/状态/耗时。
+2. 正常过一个玩家回合，稳定后右键一次；再过一个玩家回合，稳定后再右键一次。三个时间点均不连点、不开始旧内存观测。最后报告保留三次前后值；截图三次即可。若自然出现同回合真实变化仍正常操作，不用另加功能清单。
+3. count/collect不可用、报错、状态异常或严重卡住：截图并停止；不反复尝试。无需为这次诊断覆盖保存/重载或重新长测。
+
+若回收前增长明显而回收后趋稳，支持临时对象积压；若回收后基线持续上升，记录为**该Lua范围回收后保留增长**，还需排除初始化、合理新增状态及finalizer延迟，不能直接判本Mod泄漏。Lua回收后RSS未下降也可能是宿主分配器保留内存，不等于对象仍可达。不以三个点宣布长期稳定/根因关闭，也不把同时存在的三事件修复归因给GC。
+
+若接口不可用或后基线继续增长且现有证据仍不能定位，下一步才提出同存档单一路径停用对照；DB/存档记录保留，并明确哪些正常consumer、UI request、ACK/重试和撤销仍运行。不得只切掉receiver导致积压；本轮不提前实现开关或要求另一轮长测。

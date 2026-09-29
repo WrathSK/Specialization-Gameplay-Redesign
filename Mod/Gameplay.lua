@@ -33,6 +33,14 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='MEMORY_GC_READ' or params.Action=='MEMORY_GC_COLLECT' then
+    local ok,out=pcall(function()
+      local d=shared.MemoryObservation;assert(d,'GC diagnostic not initialized')
+      if params.Action=='MEMORY_GC_COLLECT' then return d.CollectGC(playerID,params.Token) end
+      return d.ReadGC(playerID)
+    end)
+    shared.Snapshot=ok and out or ('GC诊断不可用；停止本次测试：'..P.Scalar(out));shared.LastToken=params.Token;return
+  end
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return

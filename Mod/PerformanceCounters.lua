@@ -101,15 +101,69 @@ local function top(counts,labels,limit)
  return #out>0 and table.concat(out,' / ') or '无'
 end
 
--- Opt-in, six-turn observation. Fixed six-row ring; no saves, GC control or effects.
+-- Opt-in six-turn count-only observation. Manual full-GC below has no event hook or save state.
  function M.Heap()
   if type(collectgarbage)~='function' then return nil end
   local ok,n=pcall(collectgarbage,'count')
-  if ok and type(n)=='number' then return n/1024 end -- MiB reported at this call site; engine heap sharing is unproven
+  if ok and type(n)=='number' and n==n and n>=0 and n<math.huge then return n/1024 end -- MiB reported at this call site; engine heap sharing is unproven
  end
 function M.StartMemory(P,shared)
  local d={};shared.MemoryObservation=d
  ExposedMembers.SPC_MemoryAttribution=nil -- new observer/session; never restore old samples
+
+ -- B134 diagnostic only: one explicit UI request, one protected full-cycle call.
+ -- Do not stop/restart GC, tune its parameters, clear caches or write any Property.
+ local gcRows={};local gcFailure;local lastGCToken;local lastGCReport;local gcBusy=false
+ local function running()
+  if type(collectgarbage)~='function' then return nil end
+  local ok,v=pcall(collectgarbage,'isrunning');if ok and type(v)=='boolean' then return v end
+ end
+ local function cpuTime()
+  if not os or type(os.clock)~='function' then return nil end
+  local ok,v=pcall(os.clock);if ok and type(v)=='number' and v==v and v>=0 and v<math.huge then return v end
+ end
+ local function state(v)if v==nil then return '未知' end;return v and '运行' or '停止' end
+ function d.ReadGC(pid)
+  if not P.IsTestPlayer(pid)then return '仅本地人类玩家可诊断' end
+  local lines={'手动GC诊断 | Lua环境 '..tostring(_VERSION)..' | 本次加载最近3次',
+   'Gameplay调用处整个Lua堆；非本Mod独占，不等于进程内存。'}
+  if #gcRows==0 then lines[#lines+1]='默认关闭。右键此按钮明确执行一次完整GC；左键仅看结果。' end
+  for _,v in ipairs(gcRows)do
+   lines[#lines+1]='T'..v.turn..' '..v.status..'：'..(v.before and string.format('%.2f',v.before) or '?')..' → '..(v.after and string.format('%.2f',v.after) or '?')..' MiB'
+   lines[#lines+1]='GC状态 '..state(v.runningBefore)..' → '..state(v.runningAfter)..'；CPU耗时 '..(v.cpu and string.format('%.3f秒',v.cpu) or '不可用')
+  end
+  if gcFailure then lines[#lines+1]='本次加载停止再次尝试：'..gcFailure end
+  lines[#lines+1]='无回合/每帧自动GC；不清属性/账本/缓存。可能短暂停顿。'
+  lines[#lines+1]='比较初始稳定点及随后2回合的回收后基线；首次初始化/终结处理可能影响读数。'
+  return table.concat(lines,'\n')
+ end
+ function d.CollectGC(pid,token)
+  if not P.IsTestPlayer(pid)then return '仅本地人类玩家可诊断' end
+  if type(token)~='string' or #token==0 or #token>100 then return 'GC请求标识无效；未执行' end
+  if token==lastGCToken then return lastGCReport or 'GC请求处理中；不会重复执行' end
+  if gcBusy then return 'GC请求处理中；不会重复执行' end
+  if gcFailure then return d.ReadGC(pid) end
+  local v={turn=Game.GetCurrentGameTurn(),status='未执行'} -- allocate report row before sample
+  v.runningBefore=running();v.before=M.Heap()
+  if v.before==nil then
+   gcFailure='count接口不可用，无法建立前后比较；转入定域对照调查。'
+  else
+   gcBusy=true;lastGCToken=token
+   local started=cpuTime()
+   local ok,err=pcall(collectgarbage,'collect')
+   local finished=cpuTime()
+   v.after=M.Heap();v.runningAfter=running();gcBusy=false
+   v.status=ok and '完整GC调用成功' or '完整GC调用失败'
+   if started and finished and finished>=started then v.cpu=finished-started end
+   if not ok then gcFailure='collect不可用/失败：'..(type(err)=='string' and err:sub(1,160) or type(err))
+   elseif v.after==nil then gcFailure='回收后count不可用。'
+   elseif v.runningBefore~=nil and v.runningAfter~=nil and v.runningBefore~=v.runningAfter then
+    gcFailure='GC运行状态改变；停止诊断并调查，不自动恢复或调参。'
+   end
+  end
+  gcRows[#gcRows+1]=v;if #gcRows>3 then table.remove(gcRows,1)end
+  lastGCReport=d.ReadGC(pid);return lastGCReport
+ end
  local armed=false;local player;local startTurn;local baseline;local rows={};local pending;local seen={}
  local keys={'city_scan','district_scan','facts','building_check','building_create','building_remove','property_write','derive_executed','dc_read','dc_capture','dc_hit','dc_dirty'}
  local function size(t)local n=0;for _ in pairs(t or {})do n=n+1 end;return n end
@@ -147,7 +201,7 @@ function M.StartMemory(P,shared)
    lines[#lines+1]='UI总督 '..u.governor_local..'/'..u.governor_foreign..'/'..u.governor_unknown..'；回合 '..u.turn_local..'/'..u.turn_foreign..'/'..u.turn_unknown..'；加载 '..u.load_unknown
    lines[#lines+1]='GPP刷新：请求 '..u.send..' / 已提交 '..u.sent..' / 异常 '..u.failed..' / 已接收 '..u.received
   end
-  lines[#lines+1]='未清理/强制GC；调用量不等于内存归因。'
+  lines[#lines+1]='此观测不执行GC；手动GC另看专用报告。调用量不等于内存归因。'
   return table.concat(lines,'\n')
  end
  local function event(label,pid)
