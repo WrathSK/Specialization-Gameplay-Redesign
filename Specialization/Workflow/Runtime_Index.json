@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "a42048c162f671e7864eeec0982f660acb72f17b",
-  "runtime": "B122.149 / modinfo149",
+  "runtime_commit": "pending B123 implementation commit",
+  "runtime": "B123.150 / modinfo150",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "0a830666162f7c4e19d3f3065c82e612c887d9905423501d1bba99efc81f4166",
+      "sha256": "f972d9e1c255675b3d118229344fd1c5302c235e40597e09b73054239a0eb310",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "93473218c50b8d8ad1ac40f45d7b966af8e1c91707d9c1f406a0451b887204d2",
+      "sha256": "911dce889ce28ac684a5326151a8965a2e00b9ab2e5bb7fcac071bad5b1a1f5d",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -806,9 +806,9 @@
       "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
     },
     "Mod/TimedProject.lua": {
-      "sha256": "8d1ecae78b921516fa42a9c601839c8dcae9e6f536b8e2746658d47e6eebb019",
+      "sha256": "5fd1eda331046746024664c65030114505988ef9b305884b3373f90ef17f5779",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/UI/TimedProjectDisplay.lua": {
       "sha256": "e6cb96538199f45de657bc377613984bac326f40d162b362ebb331af71153a0a",
@@ -816,9 +816,9 @@
       "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/UI/TimedProjectRead.lua": {
-      "sha256": "d9aefc868dbbc70a32e983c215e177a44ad3b4cb1bb672e7fb54eeab8dd63355",
+      "sha256": "4fdd50853302ca414249532becbdd17f052b31ebaa5860438a888f80d5e83214",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/UI/CityBannerManager_SPC_TimedProject.lua": {
       "sha256": "eb03c7fd68e4575bb5c35871aaa8e844ba458c0bab2a31c0df61218406687239",
@@ -831,9 +831,9 @@
       "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
     },
     "Mod/UI/TimedProjectSelection.lua": {
-      "sha256": "66e33aed1c55073332ac912711ef58a9ef323e727e6ab298acd4c6a4618f0c3d",
+      "sha256": "cad579bd9b2b6f7459edd32378e22c52ac974a04af754887cd8b43812fdb4a09",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B122 user-authorized direct project selection + independent city time displays; local103, native pending"
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     }
   }
 }

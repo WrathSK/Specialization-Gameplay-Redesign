@@ -5,6 +5,13 @@ function SPCTimedProjectRead.New(P,show,send)
  local function state()return (ExposedMembers.SPC_P0 or {}).TimedProjectState end
  function api.Read()
   local s=state()
+  local selection=ExposedMembers.SPC_TimedProjectSelection
+  local c=UI.GetHeadSelectedCity()
+  if selection and c and selection.owner==c:GetOwner() and selection.id==c:GetID()
+   and selection.status~="ACK" and (not s or s.token~=selection.token) then
+   show("自动项目｜"..(selection.status=="ERROR" and "未启动" or "确认中")..
+    "｜城"..selection.id.."[NEWLINE]"..selection.reason);return
+  end
   if not s then show("项目计时未开启。请在生产列表选择溢出承接实验为唯一目标，自动开启。读档不续算。");return end
   local labels={ACTIVE="计时已开启",CONFIRMING="正在确认完成",COMPLETED="项目已退出",STOPPED="已暂停",EARLY_END="提前结束"}
   show("自动项目｜"..(labels[s.status] or s.status).."｜城"..tostring(s.id).."[NEWLINE]启动T"..tostring(s.start)..

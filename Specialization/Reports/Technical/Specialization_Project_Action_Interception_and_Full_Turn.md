@@ -894,3 +894,24 @@ W0004 L3定域验证：`DevelopmentTests/test_b121_timed_project.py`，85项LOCA
 最小测试：从实验前正常档，在生产列表把溢出承接实验选为唯一当前目标，**不打开P0面板、不点任何开启按钮**。确认右侧生产栏、地图城市旗帜及其Tooltip、底部城市面板均为1回合；正常过一回合应自动退出。随后选择普通目标，工期恢复正常，原本0进度仍为0。异常时再打开自动项目报告截图，无需先做诊断才能使用。无需重做B121完整T23增长验收。读档续算、多城、正式奖励、chop/harvest专项验证不由本次PASS覆盖。
 
 W0003部署仍需clean source、退出进程及receipt恢复点；实际部署见Status/Authority。回滚B121包搭配实验前存档。本段结束等待新入口/UI实机结果，不自动进入正式项目或其它批次。
+
+
+## 30. B123.150 — bounded selection confirmation repair
+
+用户在B122自动入口失败后明确授权修复。范围为启动确认、旧UI提示和简短诊断；不改一回合结算、奖励、保存、多城或Claim。B122反证见[失败记录](../../Status/Validation/Results/Specialization_B122_Selection_Failure.md)。
+
+### 实际修复与证据边界
+
+`TimedProjectSelection`在明确点击后，仅通过既有GameCoreEventPublishComplete读取该城。本回合内项目hash已更新但队列size为0/未知时保持等待，不把0解释为合法队列；size=1且owner/city/turn/项目一致才发送一次请求。size>1明确拒绝并显示实际数量；跨回合未确认结束等待，无补发。改选普通对象撤销尚未发送的启动意图。没有per-frame、hover请求或全城扫描。
+
+UI控制器初始化清除旧选择提示，不修改Gameplay已有timer，也不自动恢复读档前项目。等待文案改变时才通知对应城市显示；按需报告显示当前选中城的入口失败/等待原因和已观察队列数量。Gameplay启动复核保留原条件，仅补充拒绝数量。FinishProgress时点、去重、当前目标/城市校验与收益均不改。
+
+STATIC_CONFIRMED：原版ProductionPanel.UpdateQueue以GetSize()-1排除当前目标，支持唯一当前生产应为size=1的口径；不据此声称引擎在本次失败时实际返回了0。B122截图只能证明size!=1，具体数值/顺序仍未测。
+
+`DevelopmentTests/test_b123_selection_confirmation.py`：112项LOCAL_SIMULATION_PASS（含直接计时、手动完成互斥、读数观察器和显示相关回归）。覆盖0→1只发送一次且可完整结算、0持续到下一回合不启动、0→2拒绝、读取失败后恢复、改选普通对象、UI重建清旧错误但不恢复/破坏GP计时、owner不符、不变提示不重复通知，以及原有重复请求/异常不重试边界。W0004按事件入口与结算直接依赖验证；无无关全量/stress。语法/注册/context另检。LOCAL不证明本次实机根因或修复PASS。
+
+### PT012最小重测
+
+完全退出后使用B123包，从实验前存档进入。同一城市直接在生产列表选专用项目，不点P0开启：三处应显示1回合；正常过一回合应退出；选一个此前0进度的普通目标确认仍0且工期正常。若仍为确认中/未启动/已暂停，不继续过回合测试：截当前项目Tooltip，或左键自动项目报告，必须带新的队列数量/原因。不重复B121后续增长整套测试。读档续算、chop/harvest、多城、奖励仍不属于本次验收。
+
+部署按W0003、游戏退出与receipt校验执行，实际状态只见Status/Authority。停止等待本批实机结果。

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="149">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="150">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B122.149: production selection starts timed project; city banner and city panel timing display; no reward.</Description>
+    <Description>B123.150: wait for project queue confirmation and clear stale selection UI; no reward.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

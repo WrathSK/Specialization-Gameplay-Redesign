@@ -104,7 +104,7 @@ function SPCTimedProject.Start(P,shared)
    assert(type(P.Field(q,"FinishProgress"))=="function","原生完成接口不可用")
    local reader=assert(ExposedMembers.SPC_ProjectTurnRead,"UI队列接口未就绪")
    local v=reader(pid,p.CityID)
-   assert(v.owner==pid and v.id==p.CityID and v.turn==s.start and v.isProject and v.size==1,"必须为唯一当前项目")
+   assert(v.owner==pid and v.id==p.CityID and v.turn==s.start and v.isProject and v.size==1,"启动复核失败：队列数量="..tostring(v.size).."；必须为唯一当前项目")
    used[key(pid,p.CityID)]=nil;completed[key(pid,p.CityID)]=nil
    s.status="ACTIVE";s.reason="1回合：正常过回合，下一次恢复操作时尝试自动完成"
   end)

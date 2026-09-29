@@ -106,3 +106,5 @@ PT011 update 2026-09-28：[B121三图](Validation/Results/Specialization_B121_Au
 PT012 — B122.149新入口/城市显示待实机：不打开P0，直接选择唯一当前实验项目，检查生产栏/旗帜及Tooltip/底部面板1T→正常一回合退出→普通目标显示与初始0正常。[完整范围](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#29-b122149--native-production-entry-and-remaining-city-time-displays)。B121/PT011正常周期保持通过，不扩大chop/harvest等范围。
 
 PT012 update 2026-09-28：[自动入口失败](Validation/Results/Specialization_B122_Selection_Failure.md)，队列检查拒绝启动。暂停测试，等待入口修复授权；B121限定PASS保留，不要求重复失败流程。
+
+PT012 B123 update：[启动确认修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#30-b123150--bounded-selection-confirmation-repair)112项LOCAL通过，替代失败包待部署/实机重测。直接选择→1T→一次退出→普通目标0；失败截队列数量/原因。无P0启动操作，未验收前不关闭待办。
