@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0320
+Status Revision: S0321
 Implementation Build: develop P0-B-125.152 / modinfo152 CLAIM_REPAIR_LOCAL_COMPLETE; live B125.152 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B125_CLAIM_REPAIR_LOCAL_PASS_NATIVE_PENDING
+Work State: B125_COMMERCE_ENTRY_PASS_CITY_STATE_TYPE_FAIL
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B125入口/城邦窄修复](../Architecture/v2/P0_E2_Plan.md#b125152--authorized-claim-entry-and-city-state-repair)已按用户授权本地完成：Claim启动独立于旧实验；生产面板每城一次资格同步，不启动/写身份；明确接纳城邦来源、继续拒绝Free/未知来源；未登记报告简短显示原因。冻结候选、完整一回合及现有保存规则不改。
+[B125复测结果](Validation/Results/Specialization_B125_City_State_Type_Failure.md)：用户确认商业候选对应项目可选，入口限定PASS；日内瓦截图仍ACQUISITION_SOURCE_KIND_UNKNOWN，城邦取得FAIL。双城完成/保存未进行，PT013继续暂停，不要求重复商业入口测试。
 
-STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：B124实际事务回归＋B125城邦/同步/诊断用例、121项UI/相关原型测试、B111保存/分流回归通过。B124原生失败保留；首个初始化异常未从日志确认，修复是否解决原生入口仍待测。先测已有商业城入口，再从日内瓦征服前存档重做取得，成功后续PT013；不在征服后补造旧snapshot。
+静态定位：B125直接在Gameplay调用IsMinor，而HD先例实际由UI函数经ExposedMembers桥接；本地fixture掩盖接口差异。截图仅证明调用未得到有效布尔，不声称已观察具体Lua异常。下一建议修正城邦类型读取，使用可验证的原Owner配置/文明类别或受控桥接，保留非Major不等于城邦与失败停止。尚未授权该修复，不推进其它切片。
 
-源码/live B125.152 / modinfo152，source76c0c6c；OS进程核对退出后按W0003部署，170/170 MATCH，receipt B125.152-76c0c6c-playtest.json DEVELOP_ACTIVE。B124完整恢复点与stable桥保留，未启动游戏。下一步仅原生复测，不进入F或其它生命周期。Design/main不变。
+源码/live此前B125.152/source76c0c6c，receipt B125.152-76c0c6c-playtest.json记录170/170 MATCH。本轮仅截图归档与证据/状态，未重新核验运行包或部署；Design/main不变。等待修复授权，之后用日内瓦征服前档补齐双城测试。
 
 ## 历史阶段记录
 

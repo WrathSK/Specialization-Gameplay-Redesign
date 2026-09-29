@@ -116,3 +116,5 @@ PT013 — B124.151正式一回合认领待实机：冻结候选→两城独立�
 PT013暂停：[B124入口失败](Validation/Results/Specialization_B124_Claim_Entry_Failure.md)，商业候选项目灰；城邦来源被major-only拒绝。等待窄修复授权，不重测失败步骤。
 
 PT013 B125：入口/城邦修复本地通过，待原生复测。[最小步骤与边界](../Architecture/v2/P0_E2_Plan.md#b125152--authorized-claim-entry-and-city-state-repair)。日内瓦从征服前档开始，不事后重建snapshot。
+
+PT013 B125复测：商业入口用户确认PASS；城邦ACQUISITION_SOURCE_KIND_UNKNOWN，双城流程暂停。[接口证据与下一窄修复](Validation/Results/Specialization_B125_City_State_Type_Failure.md)。
