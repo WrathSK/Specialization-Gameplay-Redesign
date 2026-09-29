@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0318
+Status Revision: S0319
 Implementation Build: develop P0-B-124.151 / modinfo151 CLAIM_LOCAL_COMPLETE; live B124.151 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B124_CLAIM_LOCAL_PASS_NATIVE_PENDING
+Work State: B124_CLAIM_ENTRY_NATIVE_FAIL_REPAIR_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B124.151一回合Claim实现](../Architecture/v2/P0_E2_Plan.md#b124151--authorized-one-turn-claim-checkpoint)已按用户授权完成本地检查点。四专业冻结候选项目、独立城市持久计时、真实完成事件一次写Identity/P1、访问marker退出与三处1T显示已接入；单候选仍须玩家选择，后建区域不扩候选。不存在额外奖励，不进入F。
+[B124三图原生失败](Validation/Results/Specialization_B124_Claim_Entry_Failure.md)：商业候选仍正确保留，但认领入口全部置灰；PT013暂停，启动/完成/保存未验收。Claim状态行缺失，首个初始化/访问故障尚待定位。日内瓦城邦征服被现有AI-major门槛拒绝，随后专业报告输出未登记堆栈；这是实现范围缺口，PROG-006没有正式城邦排除。
 
-STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际Store/Claim事务模拟、116项项目/UI定向测试、既有B111分流及保存回归通过。正式Claim的原生完成通知、列表撤销、多城存档续算仍USER_GAME_TEST_REQUIRED，见[PT013流程](../Architecture/v2/P0_E2_Plan.md#最小用户验收-pt013)。B123限定用户PASS保留，不扩为Claim验收。
+B124本地模拟及B123限定原型PASS保持各自证据范围。三张原图已读取、外部归档并hash核验。下一建议仅修Claim入口、城邦取得来源范围及简明错误报告；尚未获修复实施授权，不继续Claim测试/F。
 
-源码及live B124.151 / modinfo151，source 0ed02ad；按W0003系统进程检查确认游戏退出后安全部署，170/170 MATCH，receipt B124.151-0ed02ad-playtest.json DEVELOP_ACTIVE。B123完整恢复点和稳定桥均保留；未启动游戏。main/stable B069.96及Design不变。下一步仅PT013用户验证；其它生命周期、F、时代对话及商业能力接入未授权。
+源码/live B124.151 / modinfo151，source 0ed02ad；此前receipt B124.151-0ed02ad-playtest.json记录170/170 MATCH。本轮未重新核验或部署外部包，main/stable B069.96及Design不变。无需用户重复失败测试，保留测试存档。
 
 ## 历史阶段记录
 
