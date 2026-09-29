@@ -14,6 +14,8 @@
 
 ## 商路、传播与性能
 
+- [B129征服/过回合内存调查](Specialization_B129_Event_Memory_Investigation.md)：开关Mod截图对比、自动存档与GC区别、94/64诊断兼容缺口；根因尚未确认，未实施修复。
+
 - [后台UI来源用户决定](Specialization_Network_Background_Source_Decision.md)：允许不开贸易窗口取当前路线；[纯Gameplay第二轮审计](Specialization_Trade_Authority_Second_Audit.md)未找到可靠全集，不等于证明绝对不存在。
 - [传播合同导航](../../Architecture/v2/README.md#事件传播与网络基础合同)：A–D2共享事实、样本/ACK、撤销和dirty传播；不同专业收益仍各自解释。
 - [短时idle milestone](../../Status/Validation/Results/Specialization_B076_Runtime_Milestone_20260915.md)：不等于55GB长局问题根因已解决；[观测工具调查](Specialization_B072_Runtime_Audit.md)亦不证明所有原生文件能力可用。

@@ -15,6 +15,8 @@ Work State: B129_CLAIM_RELOAD_USER_PASS_WAIT_NEXT_PLAN
 
 源码/最近已核实运行包B129.156 / modinfo156，source146a579，receipt B129.156-146a579-playtest.json；本轮只归档验收，未重新部署或核验运行包。工业模板初始化、销毁同址新代、未知取得等仍保持原边界。下一工程切片待另行计划/授权，不自动进入F。
 
+性能新增OPEN：[征服/回合内存增长调查](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md)，38图归档；B129功能PASS不等于性能PASS。发现日志94项/64上限本地可复现缺口，内存根因未定。下一建议最小观测批待授权，不推进玩法。
+
 ## 历史阶段记录
 
 以下保留原阶段用语与证据；其中“当前／下一步／待测”仅描述当时。有效技术限制通过当前E2切片的合同/证据路由继续可达，不因进度过时而作废。
