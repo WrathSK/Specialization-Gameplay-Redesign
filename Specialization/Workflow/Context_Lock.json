@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "B132 scoped native evidence reviewed; user-confirmed yield response, memory cause still OPEN; evidence/status-only update",
+  "review_basis": "B132 multiturn evidence-only review: 22 images archived, memory cause OPEN; no runtime changes",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "310a4e361cab344ce29044994fc7f79d4299a46bd0f91ca1b6a14ecbe5fedb66",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "90c08989401328ba501fa8e818486aadeed971999890fa78d1e3f59fa0e4d6bf",
     "Specialization/README.md": "c7d6d0c6e128cbf5ee612b62dc49e63737a7f34f10e767a17f78603f78cc1e62",
-    "Specialization/Status/Specialization_P0_Status.md": "e8951acf524c6a47963899c2b0d617032211a7438352f7addcb729d9a8a6cd7d",
+    "Specialization/Status/Specialization_P0_Status.md": "98b687e5ab58d0ba2e73c900a43c73079d3a8e4098f84ee325762385e139cc1b",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "30837c658f0c6ea13a76699d3d6284c336d19ac022f71daef9ab9dc29123303f",
+    "Specialization/Workflow/Authority.json": "e17f5b3cb308b1289f26672ec47c13b028f7c4a18ef2b96dfd11d2442927d9f5",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c",
@@ -201,7 +201,7 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "f18e34a8d55dff0742ecb935c49006c701a48ec26ef3bbadd9716b83526d3469",
+    "Specialization/Workflow/P0-E2.json": "da260b5f4fab47e057e82a9f247ebd8bb80bcc282de927d613bce4c0246ecd2a",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Mod/CitySequenceProbe.lua": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
     "DevelopmentTests/test_b105_city_sequence.py": "4c55116fb999d8f49f4110794ab07ccfd9b26f7c9ba294f5eeef03cceee75bd0",
@@ -280,7 +280,7 @@
     "DevelopmentTests/test_b128_progression_regression.py": "08d6677b4354c1663e1b3451daec6157ff8000dc7346548f05347d72df7c600f",
     "DevelopmentTests/test_b129_claim_sync.py": "9a86532a2ba553575a7bcbdfb0bec40a8d97a66f7b49d23966cf2491341b31e4",
     "DevelopmentTests/test_b129_claim_resume.py": "4f8ed9d5df9c24ffbca307d71e99d06543811eb2f400dc9d8c2e0924d44cb6da",
-    "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md": "f11cec359463dfb42c7c461872cde25d51d70fb8d4acbed67f58f51e9a426ea6",
+    "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md": "d6f28c59aecd08f1211fe557610d6b8f3fb33727873726cd8930e811c910f694",
     "DevelopmentTests/test_b130_memory_observation.py": "f39de8ae2e0f4ff7daa8d45274a682dab015357e67043c35b8b3d81072fdb1df",
     "DevelopmentTests/test_b131_memory_attribution.py": "9fa1c31844df0695b627a42b01af98739c2386869a0bc3a9bf0f4033cbc3338d",
     "DevelopmentTests/test_b132_event_cache.py": "e0fa009f30509ab9c5b68a5dc3268941d6fc69381f127b8da4fd9440539b3bb7"

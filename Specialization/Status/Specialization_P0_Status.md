@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0332
+Status Revision: S0333
 Implementation Build: develop P0-B-132.159 / modinfo159 EVENT_CACHE_OPTIMIZATION_LOCAL_COMPLETE; live B132.159 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -15,7 +15,7 @@ Work State: B132_SCOPED_NATIVE_PASS_MEMORY_CAUSE_OPEN
 
 源码/最近已核实运行包B132.159 / modinfo159，source c225aa0，receipt B132.159-c225aa0-playtest.json（DEVELOP_ACTIVE）；本轮定域事件过滤与D缓存复用已部署，运行包170/170 MATCH，已保留稳定/B131恢复点；B132所测收益响应/窄优化实机已核对，主要内存增长未解决。工业模板初始化、销毁同址新代、未知取得等仍保持原边界。下一工程切片待另行计划/授权，不自动进入F。
 
-性能OPEN：[B130获授权最小观测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b130157--authorized-minimal-observation-checkpoint)本地通过：6回合/6条、按需只读heap与计数，未实施清理。已收6图：count接口可用，T39–41 Lua读数277.90→486.77 MiB、所列缓存条目不变；观察已完成，根因仍OPEN。回调模拟确认player/full范围重复Audit及外国worker触发本地GPP请求；[B131有界归因](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b131158--authorized-bounded-event-and-module-attribution)已收6图，归因报告可读；静置27秒扫描不增、进程10.50→10.49GB、Lua418.64→419.42MiB。工业折扣入口计数含clean早退，不等于完整重算；[B132窄优化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132159--authorized-narrow-event-and-cache-optimization)已授权且定向L2本地通过：foreign通知过滤、总督范围及D复用，[六图实机结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132-native-results)：用户确认专家/建筑收益正常；GPP请求6→1、对话入口577→67、D命中0→3，但本回合进程仍约+0.23GB，非内存修复PASS。短测试完成，无需立即重测；下一建议定域调查剩余真实扫描/重复读取，未授权进一步实现。B129功能验收保持，不进入F。
+性能OPEN：[B130获授权最小观测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b130157--authorized-minimal-observation-checkpoint)本地通过：6回合/6条、按需只读heap与计数，未实施清理。已收6图：count接口可用，T39–41 Lua读数277.90→486.77 MiB、所列缓存条目不变；观察已完成，根因仍OPEN。回调模拟确认player/full范围重复Audit及外国worker触发本地GPP请求；[B131有界归因](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b131158--authorized-bounded-event-and-module-attribution)已收6图，归因报告可读；静置27秒扫描不增、进程10.50→10.49GB、Lua418.64→419.42MiB。工业折扣入口计数含clean早退，不等于完整重算；[B132窄优化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132159--authorized-narrow-event-and-cache-optimization)已授权且定向L2本地通过：foreign通知过滤、总督范围及D复用，[六图实机结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132-native-results)：用户确认专家/建筑收益正常；GPP请求6→1、对话入口577→67、D命中0→3，但本回合进程仍约+0.23GB，非内存修复PASS。[新增11组多回合结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b132-multiturn-conquest-results)：三次征服后静置进程10.72→10.62GB而Lua略升、扫描不增；T40–45 Lua650.36→885.73MiB、所列记录/缓存不增，每回合仍大量建筑检查。测试完成，无需立即重测；下一建议定域调查剩余真实扫描/重复读取与分配来源，未授权进一步实现。B129功能验收保持，不进入F。
 
 ## 历史阶段记录
 

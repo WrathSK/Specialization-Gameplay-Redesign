@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0332",
+    "status": "S0333",
     "runtime": "B132.159 / modinfo159",
     "military": "D0034"
   },
@@ -876,7 +876,7 @@
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
     "implementation": "B129.156 acknowledged bounded cold-load sync LOCAL_SIMULATION_PASS; native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "B132 scoped native observation complete; specialist/building response user-confirmed; memory cause OPEN. Plan remaining scan/read attribution before further implementation; no F",
+    "next": "B132 multiturn 22-image evidence archived; memory cause OPEN, no repeat long test now. Scope actual scan/allocation attribution before any new implementation; no F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
