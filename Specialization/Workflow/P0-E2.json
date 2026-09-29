@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0330",
-    "runtime": "B131.158 / modinfo158",
+    "status": "S0331",
+    "runtime": "B132.159 / modinfo159",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -791,6 +791,17 @@
       "path": "Mod/UI/GPPRefresh.lua",
       "kind": "full",
       "reason": "B131 directly instrumented diagnostic call site; writer semantics unchanged"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "kind": "section",
+      "selector": "## B132.159 — authorized narrow event and cache optimization",
+      "reason": "Authorized current optimization contract and native boundary"
+    },
+    {
+      "path": "DevelopmentTests/test_b132_event_cache.py",
+      "kind": "full",
+      "reason": "Targeted cache/lifecycle/event regression; fixture setup only, no stress"
     }
   ],
   "dependencies": [
@@ -852,8 +863,8 @@
   ],
   "validation": {
     "local": [
-      "test_b131_memory_attribution.py",
-      "changed Lua syntax / modinfo158 / context / diff"
+      "test_b132_event_cache.py",
+      "changed Lua syntax / modinfo159 / context / diff"
     ],
     "user": "B129 scoped Commerce Claim reload USER_GAME_TEST_PASS by explicit acceptance; one screenshot shows1T without production list; not all E2"
   },
@@ -865,7 +876,7 @@
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
     "implementation": "B129.156 acknowledged bounded cold-load sync LOCAL_SIMULATION_PASS; native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "B131 native attribution received; root cause OPEN; narrow optimization plan next, no implementation authorization",
+    "next": "B132 scoped event/cache optimization LOCAL_SIMULATION_PASS, native pending; no F",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",

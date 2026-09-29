@@ -145,7 +145,7 @@ function M.Start(P,shared)
  end
  -- Generic Publish/Playback/UI ticks and unit movement are deliberately absent.
  for _,name in ipairs({'CityBuildingsChanged'}) do hook(Events,name,function(pid,cid) data.MarkDirty(pid,cid) end) end
- for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','BuildingPillaged','CityTransfered','CityRemovedFromMap'}) do
+ for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','BuildingPillaged','BuildingRepaired','CityTransfered','CityRemovedFromMap'}) do
   hook(Events,name,function() data.MarkDirty() end) -- signatures vary; bounded dirty marks only
  end
  for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'}) do

@@ -154,3 +154,19 @@ USER_GAME_TEST观察：报告入口/固定归因可读；重复手动读取没�
 - 本批真正的UI来源热点是其它玩家焦点/总督与回合通知，工人事件本次为0；此前worker模拟是潜在路径，不冒充本次实测原因。
 
 下一建议：只读收敛到实际执行路径（已有discount_skipped_clean/audit_standard等计数、总督事件scope、D invalidation责任和GPP提交/接收边界），形成一个保留ownership withdrawal/UNKNOWN/重载合同的窄优化计划，再获授权实施。不再按Audit入口次数盲目清缓存或强制GC；无需用户当前重复测试。不推进F。
+
+## B132.159 — authorized narrow event and cache optimization
+
+用户授权实施，并确认预期为事件驱动定域更新+必要周期核对。当前runtime是混合实现：有事件标脏/差分/缓存/每玩家每回合核对，但部分native事件仍player/full范围扫描。静置publish调用可以是O(1)clean早退，不等于每帧扫城；本次B131同回合27秒扫描无增长就是该边界证据。没有宣称全系统已达单城精准派发。
+
+本批W0004 L2，实际改动：
+- UI GPPRefresh对已知其它玩家worker/focus/governor/turn事件保留观测计数，但不mark/send本玩家请求；未知参数保持原保守路径。foreign turn不再抢占本玩家lastTurn标记；LoadScreenClose/init发送与本玩家回合核对保留，不假定player0。
+- Dialogue总督事件已知本玩家只核对该玩家及其GreatWorkAdjacency；已知foreign返回，UNKNOWN回退原auditAll。CityTransfered及永久/退出/恢复合同完全不动。
+- Lv2Housing不再每次读取前MarkDirty；向D传入事实中的同一persistent token，避免nil/token交替使缓存失效。
+- ResearchInfrastructure不再重复执行D生产者已做的invalidations。D服务早于消费者注册，补齐BuildingRepaired/DistrictRepaired；其余结构/掠夺/易主/加载失效及新回合第一次读取重新capture均保留。没有扩大缓存上限8，没有跨所有权沿用旧快照。
+- 工业折扣publish clean早退不改；没有删除监听器、关闭writer、改变公式、清理永久记录、GC、F或Design变更。
+
+LOCAL_SIMULATION_PASS：test_b132_event_cache.py使用已有P0-A/B2/C真实fixture构造（不运行其历史stress或旧版本整树断言），实际SQL+Lua验证四专业代表ACTIVE结果与B131相同；同token重复核对/cross-reader命中且不重capture；普通建筑加入、掠夺/修复、区域掠夺/修复、UNKNOWN保持、漏事件次回合核对、身份token改变、加载、确认owner失效退出；科研旧carrier退役、真实D变化与ACTIVE撤销仍正确。实际UI回调用本地player4证明foreign忽略/local合并/unknown保守/提交异常重试/foreign turn不吞local turn；Dialogue实际注册回调作用域；四模块ownership退出/恢复代码逐字对照B131未变；修改Lua语法/modinfo159。
+不运行全历史回归、stress或自动游戏。不把本地分配/调用减少当作native内存修复PASS。原历史测试文件/断言未改，新测试只加载其fixture setup，新增当前合同断言。
+
+最小实机：沿用同一测试存档，左键内存观测，正常过一回合后右键并与活动监视器截图。看D是否出现命中、请求及扫描变化；可顺手切换一次本城专家/焦点确认收益仍响应，不要求造局/掠夺。静置读数可作为补充，不重复要求多轮测试。诊断中的外国事件收到数可能仍非零（在过滤前统计），不应误读为已请求更新。需与相同存档/动作B131对照，实际总内存改善仍待观察。

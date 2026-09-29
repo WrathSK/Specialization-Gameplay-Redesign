@@ -154,12 +154,12 @@ function M.Start(P,shared)
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
  bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};definitions=nil;data.Audit() end)
- -- Depth-changing events invalidate the bounded shared cache before reading it.
+ -- Shared producer registers first and owns depth invalidation; consumers only read.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'}) do
-  SPCRuntimeWork.Hook(P,Events,n,function(scope) shared.DistrictCompleteness.MarkDirty(scope and scope.player);data.Audit(scope) end)
+  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
  end
  for _,n in ipairs({'CityWorkerChanged','CityFocusChanged','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,function() shared.DistrictCompleteness.MarkDirty();data.Audit() end) end
+ for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,function() data.Audit() end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchInfrastructure',function(c,loss)
    local ids={};for bit=0,3 do ids[#ids+1]=name(bit)end;for _,id in ipairs(M.Retired)do ids[#ids+1]=id end

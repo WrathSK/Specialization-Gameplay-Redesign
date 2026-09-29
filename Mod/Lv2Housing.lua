@@ -17,9 +17,9 @@ function SPCLv2Housing.Start(P,shared)
   if not kinds[kind] then return wanted,'CONFIRMED_INELIGIBLE',{} end
   if f.active<2 then return wanted,'ACTIVE='..f.active,{} end
   local svc=assert(shared.DistrictCompleteness,'B2_ORDINARY_FACTS_UNAVAILABLE')
-  -- Called only for direct changes/reconciliation/manual reads, never a UI pulse.
-  svc.MarkDirty(pid,city:GetID())
-  local sample=svc.Read(pid,city)
+  -- The shared producer owns invalidation and per-turn reconciliation.
+  -- Same persistent token as Research consumers: do not replace its cache reference.
+  local sample=svc.Read(pid,city,f.token)
   assert(sample.validity=='VERIFIED' and sample.availability=='READY',sample.error or 'B2_BUILDINGS_UNAVAILABLE')
   local anchor
   for _,r in ipairs(sample.value.districts) do if r.id==d:GetID() then anchor=r;break end end

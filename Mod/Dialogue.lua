@@ -107,7 +107,12 @@ function SPCDialogue.Start(P,shared)
   d.Audit(pid);if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
  end end
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'}) do
-  local e=P.Field(Events,name);if e and e.Add then e.Add(auditAll) end
+  local e=P.Field(Events,name);if e and e.Add then e.Add(function(pid)
+   if type(pid)=='number' and pid>=0 then
+    if not P.IsTestPlayer(pid) then return end
+    d.Audit(pid);if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
+   else auditAll() end -- unknown signature retains prior conservative scope
+  end) end
  end
  local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() d.ready=false;d.samples={};d.last={};d.Init();auditAll() end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
