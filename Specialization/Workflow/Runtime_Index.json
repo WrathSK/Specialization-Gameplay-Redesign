@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "B124 implementation commit pending",
+  "runtime_commit": "0ed02ad40ea0059db49db0b13933f4ed21bbf6fa",
   "runtime": "B124.151 / modinfo151",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",

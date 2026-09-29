@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0318
-Implementation Build: develop P0-B-124.151 / modinfo151 CLAIM_LOCAL_COMPLETE; live B123.150; stable B069.96
+Implementation Build: develop P0-B-124.151 / modinfo151 CLAIM_LOCAL_COMPLETE; live B124.151 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B124_CLAIM_LOCAL_PASS_NATIVE_PENDING
 
 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际Store/Claim事务模拟、116项项目/UI定向测试、既有B111分流及保存回归通过。正式Claim的原生完成通知、列表撤销、多城存档续算仍USER_GAME_TEST_REQUIRED，见[PT013流程](../Architecture/v2/P0_E2_Plan.md#最小用户验收-pt013)。B123限定用户PASS保留，不扩为Claim验收。
 
-源码B124.151 / modinfo151，尚未部署；live仍B123.150（此前166/166 MATCH，receipt B123.150-5868061-playtest.json）。按W0003须提交后核游戏退出与receipt再部署，不能从HEAD推断运行包。main/stable B069.96及Design不变。下一步仅本次部署/用户验证；其它生命周期、F、时代对话及商业能力接入未授权。
+源码及live B124.151 / modinfo151，source 0ed02ad；按W0003系统进程检查确认游戏退出后安全部署，170/170 MATCH，receipt B124.151-0ed02ad-playtest.json DEVELOP_ACTIVE。B123完整恢复点和稳定桥均保留；未启动游戏。main/stable B069.96及Design不变。下一步仅PT013用户验证；其它生命周期、F、时代对话及商业能力接入未授权。
 
 ## 历史阶段记录
 
