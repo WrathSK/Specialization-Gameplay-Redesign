@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0310
-Implementation Build: develop P0-B-120.147 / modinfo147 PROJECT_TURN_OBSERVATION; live B120.147 verified160/160 MATCH; stable B069.96
+Status Revision: S0311
+Implementation Build: develop P0-B-121.148 / modinfo148 TIMED_PROJECT_PROTOTYPE; live B120.147 until deployment receipt; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P-B120B_PLAN_READY_NOT_IMPLEMENTATION_AUTHORIZED; E2 Claim plan-only
+Work State: P-B120B_IMPLEMENTED_NATIVE_PENDING; E2 Claim plan-only
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B120单城正常回合观察](Validation/Results/Specialization_B120_Project_Turn_Observation.md)限定USER_GAME_TEST_PASS：城131073，T21→T22；Started/StartComplete时UI缓存7，随后生产更新15，Activated及手动终点仍15。全部GP目标为承接项目、队列1。PT010本次采集待办关闭，无需重复同流程。
+用户授权§27 P-B120B已实施为[B121单城计时原型](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)：显式开启→Deactivated→紧接下一回合Activated→一次FinishProgress。独立实验项目无正式奖励；目标/队列改变、owner未知或错误时点停止，异常不重试。读档不续算，不多城、不Claim/F。
 
-这些是通知/缓存顺序，不能证明底层生产写入精确时刻。Activated为后续自动完成的候选时点，尚未证明在回调中FinishProgress安全。[P-B120B具体计划](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#27-post-b120-native-plan--automatic-completion-and-scoped-one-turn-display)已完成：显式单城启动→Deactivated→下一回合Activated候选调用一次FinishProgress；精确项目1T显示，实际显示面分开验收。等待实施授权，不自动发奖；Claim/F不推进。
+85项定向LOCAL_SIMULATION_PASS＋Lua/注册/context检查；不是原生自动完成或无溢出PASS。生产列表/生产面板当前栏接入计时显示，城市独立HUD未覆盖（可能高工期）；开启后重开面板。PT011最小待验：开启1回合→正常过回合自动退出→同回合新Q进度0→下回合正常增长，报告/测试细节见上链。暂不要求chop/harvest/存读组合。
 
-[B119限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)、B117盲扣FAIL、B118扣除INCONCLUSIVE保持；B120原104项本地模拟与本次原生采集证据分开。正常chop/harvest、自动完成、取消/存读、正式奖励仍未验证。用户接受强制同回合完成，不恢复旧防提前完成限制。
+[B120观察限定PASS](Validation/Results/Specialization_B120_Project_Turn_Observation.md)、[B119手动限定PASS](Validation/Results/Specialization_B119_Native_Finish_Pass.md)保持；B117盲扣FAIL、B118扣除INCONCLUSIVE不变。Activated只是候选自动调用时点，本轮必须实测，不能从7→15缓存序列推导底层保证。用户允许异常早完成，不增加拒奖保护。
 
-源码/live仍B120.147 source 5f8f02f；此前部署160/160 MATCH，receipt B120.147-5f8f02f-playtest.json。本轮仅归档一张已查看截图并更新状态，未重新核验或修改外部运行包、未部署。main/stable B069.96不变。Landscape与Community强冻结候选已记录，D0035和四专业v0.1实施范围不变。
+源码B121.148，部署前live仍为B120.147（source5f8f02f，旧receipt B120.147-5f8f02f-playtest.json）；本次部署结果后续同步本段。main/stable B069.96不变。D0035及四专业v0.1范围不变；Landscape/Community只保留候选。下一动作仅安全部署/用户验收本批，不自动推进正式项目、Claim或F。
 
 ## 历史阶段记录
 

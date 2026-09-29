@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0310",
-    "runtime": "B120.147 / modinfo147",
+    "status": "S0311",
+    "runtime": "B121.148 / modinfo148",
     "military": "D0034"
   },
   "paths": {
@@ -30,9 +30,9 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac",
-  "current_batch": "P-B120B_PLAN_READY_NOT_IMPLEMENTATION_AUTHORIZED; P0-E2 CLAIM_PLAN_ONLY",
-  "next_batch": "Await explicit P-B120B implementation authorization; Section27 narrow automatic completion/1T plan",
+  "runtime_commit": "B121 source commit pending; prior B120 source 5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac",
+  "current_batch": "P-B120B_IMPLEMENTED_NATIVE_PENDING; P0-E2 CLAIM_PLAN_ONLY",
+  "next_batch": "PT011 native single-city automatic cycle; no Claim/F or next implementation authorization",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B120.147 / modinfo147 deployed;160/160 MATCH;source 5f8f02f;B119 recovery retained;receipt B120.147-5f8f02f-playtest.json;native observation pending",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B120 native evidence, B119 writer and direct UI adaptation entry reviewed for Section27 plan only",
+  "context_review_status": "B121 approved Section27 scope implemented; direct timer/manual/UI consumers and targeted tests reviewed; native pending",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac",
-  "runtime": "B120.147 / modinfo147",
+  "runtime_commit": "B121 source commit pending; prior B120 source 5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac",
+  "runtime": "B121.148 / modinfo148",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "provenance overlay; not a new full audit",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "70c3ed00d6bd469a3f13580ed5dd60a19c654fb274bba717ebcf43fa718b31c7",
+      "sha256": "50f2dcf3d63caa6aebfd6cb2c6df9d79c4260d452b1a78f310dc5812c3e31f33",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Probe.lua": {
-      "sha256": "c4d09e35e553570b6ac6a998239e7d797504b3e8c0ab9c2e7621b289a5e7eedf",
+      "sha256": "a1c4591c0e82edd4e95eae9ab2cce92fc648c71e07c4c9b193187ac8a8e201db",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3857a96dbebc4ca4e278516f5d118653df53be8b3b2ed33520fc207c09010b13",
+      "sha256": "8d1d8ec727cd6f67f7a642c232e1c5c14ee639d7f39043932a6ee3752360bd23",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "8b902c93e450e5ffcf6620bd5154382c36f38b34418cd1aa0856da661cf45522",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "071e25218f09584493baa3700420e018c215cb0dfbab5d164300dc802360eb66",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "08b3d221c93349953dc8f55dcf20079dc1ec99250237e8a9aab4abb46fcb0328",
+      "sha256": "3b7e6f5ab25af1b8695614aad920097bc77aac3bfd669b488c42a538903b2434",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -781,9 +781,9 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/OverflowStorageProbe.lua": {
-      "sha256": "a60af9a79c8f4b267511564a7aa9c5f7d59eee66ab0b970c85869e791c9cc149",
+      "sha256": "90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/UI/OverflowStorageRead.lua": {
       "sha256": "832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c",
@@ -804,6 +804,21 @@
       "sha256": "ee9a0714f727f49821ef17998960e4577fbcdb34e5980420f35ccced594df3ad",
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
       "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+    },
+    "Mod/TimedProject.lua": {
+      "sha256": "14a41e0e3e01f616a6dd9d8c38862926906e0c469faa94a5678cdd473fdfd331",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+    },
+    "Mod/UI/TimedProjectDisplay.lua": {
+      "sha256": "df0c697ce87c78aa97e5f18732f21f25cec51b6e6c803711b76b840ddebc3ddb",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+    },
+    "Mod/UI/TimedProjectRead.lua": {
+      "sha256": "e88f41b7479754d3313bd590ebfa5e035f84120a0208fd7adacf4d97df7622b5",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     }
   }
 }

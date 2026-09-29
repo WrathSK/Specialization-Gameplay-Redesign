@@ -33,6 +33,9 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='TIMED_PROJECT_BEGIN' or params.Action=='TIMED_PROJECT_CANCEL' then
+    shared.TimedProject.Request(playerID,params);return
+  end
   if params.Action=='PROJECT_TURN_BEGIN' or params.Action=='PROJECT_TURN_END' then
     shared.ProjectTurnObservation.Request(playerID,params);return
   end
@@ -648,3 +651,5 @@ SPCOverflowStorageProbe.Start(P,shared)
 
 include("ProjectTurnObservation")
 SPCProjectTurnObservation.Start(P,shared)
+include("TimedProject")
+SPCTimedProject.Start(P,shared)

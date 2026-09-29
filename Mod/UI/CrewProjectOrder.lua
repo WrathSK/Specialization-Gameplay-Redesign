@@ -1,10 +1,18 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
+include('TimedProjectDisplay')
+local baseCurrent=RefreshCurrentProduction
+function RefreshCurrentProduction(parent,pid,id)
+ local result=baseCurrent(parent,pid,id)
+ SPCTimedProjectDisplay.Current(parent,pid,id)
+ return result
+end
 local ranks={PROJECT_SPC_CREW_250=1,PROJECT_SPC_CREW_420=2,PROJECT_SPC_CREW_750=3,PROJECT_SPC_CREW_1000=4,PROJECT_SPC_CREW_1360=5}
 local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
+ SPCTimedProjectDisplay.Items(data)
  local items=data.ProjectItems;local crew,others={},{};local insertion
  for _,item in ipairs(items) do
   if ranks[item.Type] then

@@ -496,19 +496,22 @@ initialize=function()
  end)
  Controls.GWAReadButton:SetToolTipString("仅独立测试档：选择溢出承接实验为唯一目标，左键准备、再次左键原生完成；右键刷新当前目标和进度（包括0）。无奖励，每城每次加载最多调用一次。")
  include("ProjectTurnRead")
- local projectRead=SPCProjectTurnRead.New(P,function(s) localReport=s;status(s) end,function(...) return UI.RequestPlayerOperation(...) end)
- projectReadPulse=projectRead.Pulse
+ -- Retain its independent UI queue reader; B120 observer still exists for reference.
+ SPCProjectTurnRead.New(P,function()end,function(...)return UI.RequestPlayerOperation(...)end)
+ include("TimedProjectRead")
+ local timer=SPCTimedProjectRead.New(P,function(s) localReport=s;status(s) end,function(...)return UI.RequestPlayerOperation(...)end)
+ projectReadPulse=timer.Pulse
  Events.GameCoreEventPublishComplete.Add(projectReadPulse)
- Controls.TurnProbeReadCaption:SetText("结束观察/报告")
- Controls.TurnProbeArmCaption:SetText("开始项目观察")
+ Controls.TurnProbeReadCaption:SetText("自动项目报告")
+ Controls.TurnProbeArmCaption:SetText("开启1回合")
  local function projectAction(fn)
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;fn()
  end
- Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function() projectAction(projectRead.End) end)
- Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function() projectAction(projectRead.Read) end)
- Controls.PerformanceReadButton:SetToolTipString('正常过一回合并恢复操作后左键结束观察、显示报告；右键只读不结束。不会完成项目。')
- Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function() projectAction(projectRead.Begin) end)
- Controls.PerformanceSnapshotButton:SetToolTipString('选择溢出承接实验为唯一生产目标，再开启单城观察。正常过回合；不使用空队列或强制过回合。')
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()projectAction(timer.Read)end)
+ Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function()projectAction(timer.Cancel)end)
+ Controls.PerformanceReadButton:SetToolTipString('左键只读计时报告；右键取消计时，不清空生产。已调用完成后不重试。')
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()projectAction(timer.Begin)end)
+ Controls.PerformanceSnapshotButton:SetToolTipString('选择溢出承接实验为唯一目标，点击后正常过一回合；自动完成，无正式奖励。读档不续算。开启后重开生产面板查看1回合显示。')
 
 end
 ContextPtr:SetInitHandler(initialize)

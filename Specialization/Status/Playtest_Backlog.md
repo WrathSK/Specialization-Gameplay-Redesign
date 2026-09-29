@@ -94,3 +94,7 @@ New game only. [Current exact test](../Architecture/v2/P0_E2_Plan.md#b108135-imp
 PT010 — 2026-09-28 USER_GAME_TEST TODO：用户回家后再测B120.147；目前LOCAL_SIMULATION_PASS，原生事件顺序PENDING，非FAIL或PASS。[最小流程](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#26-b120147--authorized-project-turn-observation-and-completion-decision)：唯一承接项目→开始项目观察→正常过一回合→结束观察/报告。无即时测试要求，不重新部署，不自动进入B/Claim/F，不设置定时提醒。
 
 PT010 update 2026-09-28 evening：[B120截图](Validation/Results/Specialization_B120_Project_Turn_Observation.md)确认正常回合采集限定PASS，待办关闭，无需重复；Started/StartComplete缓存7→生产更新15→Activated/终点15。自动完成、1T、注入/存读仍未测，不由本次放行实施。
+
+## B121 automatic project cycle — pending native test
+
+PT011 — B121.148 USER_GAME_TEST_REQUIRED：单城开启1回合→正常过回合自动退出→同回合新Q为0→再过回合正常增长。85项本地测试不是原生无溢出证明。仅本次自动时点及实际显示位置；[完整流程与停止条件](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#28-b121148--authorized-single-city-automatic-completion-prototype)。B120采集PT010保持关闭，不重复纯观察。

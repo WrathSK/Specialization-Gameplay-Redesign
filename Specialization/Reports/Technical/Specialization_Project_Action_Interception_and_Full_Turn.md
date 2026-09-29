@@ -829,3 +829,40 @@ W0004 L3定向验证，不全仓回归/stress：重放B120顺序、重复Activat
 回滚回B120已知观察包，保留部署恢复点；用实验前存档，不宣称已写入项目进度可由代码回滚。用户接受异常早完成，无需新增反作弊验收。正常注入隔离后续单独分支；正式能力、持久化与全城启用仍须授权。
 
 本计划无新增Gameplay决定请求；下一步等待P-B120B实施授权。本轮无Mod改动、部署或游戏测试。
+
+## 28. B121.148 — authorized single-city automatic completion prototype
+
+2026-09-28用户明确“实施”授权§27 P-B120B。B121.148/modinfo148仅为会话级单城原型，不新增正式奖励、保存schema、多城调度、Claim或F；百万Cost不改，用户允许异常同回合完成的决定保留。
+
+### 实际结构与边界
+
+- `Mod/TimedProject.lua`：显式启动唯一当前实验项目，记录本地人类owner/id/位置/启动turn。必须见启动回合Deactivated，紧接下一回合Activated才尝试一次原生FinishProgress；不依赖UI增长/正产能/ProductionUpdated。候选时点来自B120，不把该回调顺序升级为通用生产结算保证。
+- 目标/队列变化保守中断（Updated不算）；移除/owner未知停止；异常和重复通知不重试。调用前锁存，屏蔽自己调用中的同步通知；目标实际退出才报告“项目已退出”，但仍不表示无溢出。延迟退出仅在相关事件/发布时核对一城，超过窗口停止，无轮询计时器或世界扫描。
+- `UI/TimedProjectRead.lua`：**开启1回合**发送一次显式请求；**自动项目报告**左键读缓存，右键取消计时但不清空项目。会话读档后不续算。原**完成承接试验**右键仍读后续目标真实进度；自动计时活动/已尝试时其手动writer拒绝混用。B119/B120旧模块保留，未重写旧实机结论。
+- `UI/TimedProjectDisplay.lua`由既有`CrewProjectOrder`薄适配加载，继续include HD ProductionPanel及原施工队排序。只精确实验项目：未开启“开启后1”、活动“1”、等待“待确认”、中断“已暂停”。只改一次性视图数据/控件；实际cost/queue/progress不改，不用百万成本百分比冒充计时进度。普通项目保持原样。
+
+| 显示位置 | 本批范围／证据 |
+|---|---|
+| 诊断按钮与报告 | 已接线；LOCAL_SIMULATION_PASS；native待验 |
+| 生产列表项目行及Tooltip | 精确Type覆写工期文案/附加规则，隐藏本项目成本比例条；STATIC/LOCAL，native待验 |
+| 生产面板当前项目栏/图标Tooltip | 包装实际RefreshCurrentProduction，原生绘制后只覆盖精确当前项目时间与计时说明；STATIC/LOCAL，native待验 |
+| 后排队列 | 不支持排队计时；启动必须唯一目标。不宣称后排1T显示 |
+| 城市HUD／其它独立context | UI_PROTOTYPE_BOUNDARY，本批未替换；可能仍显示高原生工期，不据此判断计时未运行 |
+
+状态来自已发布Gameplay缓存；hover不发请求。开启后重新打开生产面板刷新显示，无新增每帧处理。已只读核对本机HD GetDataHelper项目项、原版PopulateProjects字符串工期及ProductionHelper.RefreshCurrentProduction控件路径；不是引擎实机显示PASS。
+
+### 本地验证
+
+W0004 L3定域验证：`DevelopmentTests/test_b121_timed_project.py`，85项LOCAL_SIMULATION_PASS。涵盖B120回调序列、零生产/无Updated、较大项目进度、UI读数桥在启动后缺失、重复/同步重入、缺Deactivated/晚回合、目标切回/队列通知、移除/易主/引用变化、普通对象不误完成、提前完成、原生异常/延迟确认不重试、读档不续算、手动准备后的互斥、跨城隔离、缓存报告/请求入口、实际按钮/面板适配及旧手动/只读观察器直接回归。旧空队列全套压力/玩法回归未运行。Lua语法、注册文件和当前context另检查。
+
+85项证明原型代码在模拟前提下的行为；FinishProgress在Activated内执行的结算/溢出语义与UI实际布局仍为USER_GAME_TEST_REQUIRED。不通过本地构造的“pool=0”宣称生产隔离已获原生证明。
+
+### 本次最小测试（PT011）
+
+1. 单独实验档，一城选择**溢出承接实验**为唯一当前目标；点**开启1回合**，报告应“计时已开启”。重新打开生产面板，当前项目栏应显示1回合，截图报告/显示。不要点击手动完成，不Cheat、不砍树收获。
+2. 正常结束一次回合并恢复操作；项目应自动退出。左键**自动项目报告**，应显示结束回合已确认、调用1次、项目已退出。若暂停/仍在生产/其它对象被完成，截图停止。
+3. 同回合选择一个从未投入过生产力的普通目标Q，右键**完成承接试验**读Q进度，应为0；正常再过一回合，应正常增长。若刚选中就非0或出现负值，截图停止，不补进度。
+
+这次只验自动时点下的正常一周期/后续目标；chop/harvest、正式持久化、多城、正式奖励及HUD另行处理。失败按EVENT_ORDER_BOUNDARY/NATIVE_COMPLETION_BOUNDARY记录，不恢复负AddProgress路线。回滚B120包并配实验前存档；代码回退不能撤销存档已经完成的项目。
+
+源码完成后通过现有W0003部署门禁；实际运行包/receipt与提交由Status/Authority记录。不自动推进下一切片。
