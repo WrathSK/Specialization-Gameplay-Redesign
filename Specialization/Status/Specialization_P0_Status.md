@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0326
-Implementation Build: develop P0-B-128.155 / modinfo155 UNASSIGNED_RETURN_LOCAL_COMPLETE; live B127.154 verified170/170 MATCH; stable B069.96
+Implementation Build: develop P0-B-128.155 / modinfo155 UNASSIGNED_RETURN_LOCAL_COMPLETE; live B128.155 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B128_UNASSIGNED_RETURN_LOCAL_PASS_NATIVE_PENDING
 
 保留限制：夺回后首次认定工业的身份/投资可用，但缺历史模板时标准化仍暂停，未从AI时期建筑补模板；后续需独立合同/适配。销毁同址新代、未知取得/F未推进。下一步仅[PT014最小用户测试](../Architecture/v2/P0_E2_Plan.md#最小用户测试--pt014)，顺手覆盖B127 UI，无独立UI轮次。
 
-源码B128.155 / modinfo155；live仍为上次B127.154，receipt B127.154-ef481c6-playtest.json，后续本轮安全部署结果另记。stable/main不变，未启动游戏。
+源码与运行包均B128.155 / modinfo155，source ad87811；部署后170/170 MATCH，receipt B128.155-ad87811-playtest.json为DEVELOP_ACTIVE。操作系统确认游戏退出；B127完整恢复点与stable桥保留。stable/main不变，未启动游戏。
 
 ## 历史阶段记录
 
