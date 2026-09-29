@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0315
-Implementation Build: develop P0-B-123.150 / modinfo150 SELECTION_CONFIRMATION; live B122.149; stable B069.96
+Implementation Build: develop P0-B-123.150 / modinfo150 SELECTION_CONFIRMATION; live B123.150 verified166/166 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -13,11 +13,11 @@ Work State: B123_LOCAL_PASS_NATIVE_PENDING; E2 Claim plan-only
 
 用户授权[B123启动确认修复](../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md#30-b123150--bounded-selection-confirmation-repair)已完成：等待本回合内队列事实一致，严格size=1才发送一次；size>1拒绝，超时停止。UI初始化清旧提示；异常报告显示实际队列数量。项目结算、收益和保存不改。
 
-112项定向LOCAL_SIMULATION_PASS；语法/注册/context检查通过后按W0003部署。原生修复为USER_GAME_TEST_REQUIRED，未声称截图已证明队列0过渡。PT012仅重测直接选择→三处1T→一回合退出→普通目标0；失败时截带数量/原因的Tooltip或左键自动项目报告，不重复旧完整流程。
+112项定向LOCAL_SIMULATION_PASS；语法/注册/context检查通过，已按W0003部署。原生修复为USER_GAME_TEST_REQUIRED，未声称截图已证明队列0过渡。PT012仅重测直接选择→三处1T→一回合退出→普通目标0；失败时截带数量/原因的Tooltip或左键自动项目报告，不重复旧完整流程。
 
 [B122入口失败](Validation/Results/Specialization_B122_Selection_Failure.md)与[B121正常周期限定PASS](Validation/Results/Specialization_B121_Automatic_Project_Pass.md)均保留。单城/会话级，无正式奖励，读档不续算；不进入Claim/F。
 
-源码B123.150本地完成，live仍为此前部署B122.149（receipt B122.149-a42048c-playtest.json），待本批安全切换。main/stable B069.96与Design不变；下一步仅部署及本批用户测试。
+源码/live B123.150，source 5868061；receipt B123.150-5868061-playtest.json为DEVELOP_ACTIVE，166/166 MATCH。进程检查确认游戏退出后安全切换，B122及stable恢复点保留；未启动游戏。main/stable B069.96与Design不变；下一步仅本批用户测试。
 
 ## 历史阶段记录
 
