@@ -8,6 +8,7 @@ function SPCLv3Effects.Start(P,shared)
   return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
  end
  local data={ready=false,busy=false,errors={},changes=0,observed={}};shared.Lv3Effects=data
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',COMMERCE='DISTRICT_COMMERCIAL_HUB',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE'}
  local names={}
  for _,k in ipairs({'CULTURE'}) do for i=0,7 do names[#names+1]='BUILDING_SPC_DEV_LV3_POP_'..k..'_'..i end end
@@ -16,6 +17,7 @@ function SPCLv3Effects.Start(P,shared)
   local wanted={}
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
   local f=readFacts(pid,c)
+  if f.specialization=='COMMERCE' and isolated(pid) then return wanted end
   if f.specialization=='RESEARCH' then return wanted end -- P0-D1 owns Research III
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
@@ -69,7 +71,8 @@ function SPCLv3Effects.Start(P,shared)
       for _,adding in ipairs({false,true}) do for _,name in ipairs(names) do
        local row=P.Info('Buildings',name);assert(row and row.Index,'B038_DATABASE_MISSING')
        local want=wanted[name]==true
-       if want==adding then
+       local experimentOwned=isolated(pid) and (name=='BUILDING_SPC_DEV_LV3_COM_RESEARCH' or name=='BUILDING_SPC_DEV_LV3_COM_CULTURE' or name=='BUILDING_SPC_DEV_LV3_COM_INDUSTRY')
+       if want==adding and not experimentOwned then
         local b=c:GetBuildings();local present=P.HasBuilding(b,row.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
         if present~=want then
          if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
@@ -84,6 +87,34 @@ function SPCLv3Effects.Start(P,shared)
    if not ok then print('[SPC][B038][SCAN_ERROR] '..tostring(err)) end
   end end
   data.busy=false;batch=nil
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function data.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not data.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  data.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do ids[#ids+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);data.changes=data.changes+1 end
+    end
+   end
+
+  end)
+  data.busy=false;data.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function data.Describe(pid,c)
   local ok,out=pcall(function()

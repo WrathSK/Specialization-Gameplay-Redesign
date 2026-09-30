@@ -699,3 +699,44 @@ W0004 L3仅针对共享资格与保存消费者，未跑全历史/泛化stress/D
 5. 未来测试从同一未改写的存档副本冷启动，只取初始和随后少数回合；不保存实验后的撤销状态。恢复正常包后重新读取原存档，并按新epoch拒绝旧包。具体进入/退出/恢复的定向模拟须先通过，才提出一次最小用户测试；本轮不要求测试。
 
 这是一组下一对照的必要门槛，**尚非READY implementation方案**；需要先收窄完整退出与请求边界，不扩展成通用停用框架。当前结论：保留B135/B136修复，MEMORY_CAUSE_OPEN；不自动GC、不清永久账本、不部署、不进入F。
+
+
+## B137.164 — authorized session Network isolation control
+
+2026-09-29用户授权实施。基线bb1bab3 / B136.163；B135/B136已验收的响应与优化保留。本批不是内存修复，而是同一原存档的最小Network分支停用对照。按W0004 L3验证相关退出/桥接/加载边界，不跑玩法全回归、规模stress或重做用户长测。Design、保存schema与永久writer不变，不进入F。
+
+### 模式、退出范围与恢复
+
+默认NORMAL。现有诊断面板“Network 隔离对照”：左键只读，右键明确进入一次、不可在同会话重开的实验。UI先停止三个独立后台（商路、工业复制样本、折扣购买资格），清除flight/pending/retry和它们的临时快照；各自返回匹配本次Gameplay epoch的退出确认。Gameplay只在三份确认、模块就绪/非busy后开启会话标记。随后Bridge清除本玩家私有view/兼容投影/routes/candidate，不伪造UNKNOWN或ownership loss，也不发布假Network收益。
+
+| 自有writer | 本次撤销的精确对象 | 明确保留 |
+|---|---|---|
+| Lv3Effects | 三个商业连接类型carrier | 同模块Culture本地人口/专家效果，及其它本地能力 |
+| NetworkBoost | 自有旧Boost catalog、整数catalog、B057临时测试carrier | 科技/市政当前进度；没有逆改历史已触发boost |
+| CopyYields | 工业PRODUCTION的POS/NEG/POP 40个定义 | 已退出的Research tombstone不作为新收益；Industry本地支持 |
+| CommerceConvergence | SCIENCE/CULTURE/PRODUCTION各16bit carrier | Commerce支持、住房/GPP，永久Identity/Potential/investment |
+| StandardizationDiscount | 自有有效目标catalog×4级discount carrier | Standardization永久模板、学习和保存路径 |
+
+各模块只枚举明确拥有的ID，逐本玩家城市核对原生存在性，移除后要求`HasBuilding==false`。包括尚未进入内存applied表的存档载体；不用前缀批量清除，不删除普通建筑或Property。五项均成功才报READY；任一未知/移除失败则FAILED并保持停用，**不自动重试，不将部分退出当可测状态**。重复右键只读已有结果。暂停期间其他本地能力/进度/模板/Claim/总督事实与其它UI采样照常；它们的成本与原生引擎分配仍在。本批不证明整个Mod无网络以外成本。
+
+Bridge的Refresh/Verified/Receive、旧fresh/Current查询、Rebuild/CheckEvidence及E2失效调用均受会话门控；晚到包不能恢复旧view。四个纯Network consumer在batch构造/扫描之前停用，混合Lv3模块只阻止Commerce分支。UI context单独重建时读取当前Gameplay会话标记并再次停止；原存档冷启动重建Gameplay则默认NORMAL、新epoch、正常重采集。没有新每帧请求/扫描；现有UI脉冲停用后早退。
+
+恢复只使用**原始未覆盖的存档副本冷启动**，不在同会话重新启用。本模式不写保存Property，但撤销的原生carrier和正常过回合仍会被游戏自动存档：实验存档/自动存档不能当正常恢复点，不承诺重载实验档等价于原档。不要覆盖原档；不要把实验局作为正式进度继续。原包回滚也使用原存档。
+
+### 诊断和归因限制
+
+报告仅显示NORMAL/READY/FAILED、UI退出3/3、模块撤销5/5、退出后已有计数器的route_scan/net_send/derive_executed/input_publication/copy_send/discount_send是否新增、Lua调用处用量与恢复提示。复用固定计数，不新增泛化计数器或历史样本。Lua用量不是本Mod独占；没有执行GC、调GC参数或清永久成果。UI退出不完整/计数不可读/出现新工作则停止对照。
+
+开始退出时会有一次catalog核对、native撤销及引用释放；这个瞬时下降或初始化成本不能解释持续增长。比较初始稳定点后两个玩家回合的增量，不把停用改善单独归因Capture/某张表，也不把无改善解释成所有Network路径零分配。
+
+### 本地验证与原生待办
+
+本地定向runner：`DevelopmentTests/test_b137_network_isolation.py`；使用Lupa lua55及Git基线bb1bab3，只抽取旧fixture声明，不运行旧wrapper/stress。LOCAL_SIMULATION_PASS：五模块冷加载exact carrier集合（3/1126/40/48个；折扣fixture一个目标×4级）、重复撤销、未知存在性/移除未确认/缺城市拒绝、普通建筑/不相关carrier/永久写保护；24项正常模式对比基线bb1bab3一致。真实Bridge所有入口/晚到包/事件/exit/return停用后Capture、derive、publish、notify均0；三UI pending清除、context重建、默认新会话、七类前置拒绝、五模块逐项失败无重试、五真实consumer联合退出均通过。实际Gameplay dispatch与P0Panel请求握手也覆盖；未用测试stub代替被测withdraw逻辑。发现并修复Lv3混合Audit在退出失败后再次清COM的路径，Culture本地重算保留。折扣真实环境catalog存在性/原生效果释放仍须实机。更改Lua编译、modinfo164精确171文件及文档/context检查通过。原生Modifier释放、跨UI context回调/真实事件顺序、引擎和进程内存趋势均仍USER_GAME_TEST_REQUIRED。
+
+最小测试（同一个现有可复现原存档，**不开启内存观测或手动GC，不征服/建城/调专家，不继续长测**）：
+
+1. 冷启动原档，等载入稳定，左键“Network 隔离对照”，记录NORMAL报告及活动监视器进程内存。正常过两个玩家回合，各读一次同报告并记录进程内存。
+2. 完全退出游戏，再冷启动同一个原档（不要选刚生成的自动存档）。右键一次“Network 隔离对照”；必须看到READY、UI3/3、撤销5/5、可观察/无新增，否则截图停止。等退出引起的一次性更新稳定后记初始报告与内存，再过两个玩家回合，各左键读报告并记录内存。
+3. 不必截图所有其它诊断；两组各初始/+1T/+2T即可。任何错误/停用后出现网络工作即停止；不反复右键、手动GC或自行延长。测试后完全退出，重载原始存档即可恢复NORMAL；不保存实验进度。
+
+等待本次短对照，不发放memory-fix PASS。若仍无法缩小来源，先分析此同档分支对照，再另提最小下一路径；不自动开始下一实验。

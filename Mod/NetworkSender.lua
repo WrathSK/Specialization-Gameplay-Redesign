@@ -1,8 +1,16 @@
 -- B069: complete content publication, one in-flight request, bounded turn retry.
 SPCNetworkSender={}
 function SPCNetworkSender.New(P)
- local seq=0;local flight;local lastEpoch;local failedTurn
- return function(public)
+ local seq=0;local flight;local lastEpoch;local failedTurn;local stopped=false
+ local function stop(public)
+  stopped=true;flight=nil;failedTurn=nil;lastEpoch=nil
+  public.awaitingNetwork=false;SPCPerformance.Flight(0)
+ end
+ local function send(public)
+  if stopped then public.awaitingNetwork=false;return end
+  local isolation=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.NetworkIsolation
+  if isolation and isolation.active==true and isolation.player==Game.GetLocalPlayer() then stop(public) end
+  if stopped then public.awaitingNetwork=false;return end
   local g=ExposedMembers.SPC_P0;local bridge=g and g.NetworkBridge
   if not bridge or not bridge.ready or g.Version~=P.VERSION then public.awaitingNetwork=true;return end
   local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then return end
@@ -32,6 +40,8 @@ function SPCNetworkSender.New(P)
    {OnStart='SPC_P0_Request',Action='NETWORK_PUSH',Token=P.VERSION..':net:'..seq,
     Epoch=bridge.epoch,Seq=seq,Turn=s.turn,Signal=s.signal,Valid=1,
     Count=s.count,WireCount=s.count+1,Data=payload~='' and payload or 'EMPTY'})
+  if stopped then public.awaitingNetwork=false;return end
   if not ok then public.awaitingNetwork=false;failedTurn=s.turn;flight=nil;SPCPerformance.Flight(0);P.Count('send_timeout') end
  end
+ return send,stop
 end

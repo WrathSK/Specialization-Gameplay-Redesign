@@ -167,3 +167,7 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 
 ### PT001 B135 native response recorded — memory remains open
 [6组12图与本地引用定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：用户确认建筑/专家收益正常，所述响应USER_GAME_TEST_PASS；不扩展Cross III独立BASE覆盖。T39→42进程10.38→10.69GB，末尾GC618.63→298.57MiB、进程10.38GB。大量可回收分配仍在，非全局性能PASS；无需补起点/长测/GC。下一步在本地追踪重复Network事实构造，具体修复另审，不自动GC或清账本。
+
+
+### PT001 B137 — same-save Network isolation
+[会话级隔离对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137164--authorized-session-network-isolation-control)获授权实施；等待部署后NORMAL/隔离各初始与两个玩家回合报告＋进程内存，复用原存档冷启动，不GC/征服/长测。仅READY/UI3/3/模块5/5/无新网络工作才开始观察；失败截图停止。保留原档、不使用实验自动存档恢复。根因OPEN，非memory-fix PASS。

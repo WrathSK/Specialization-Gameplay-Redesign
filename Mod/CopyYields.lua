@@ -16,6 +16,7 @@ function SPCCopyYields.Start(P,shared)
  local batch
  local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local data={ready=false,busy=false,generation=0,samples={},seq={},receiveErrors={},errors={},last={},changes=0};shared.CopyYields=data
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  SPCSampleLifecycle.Reset(data,'copy')
  local function currentDistricts(pid) return batch and batch.Live(pid,false) or SPCSampleLifecycle.Live(P,pid,false) end
  local function sample(pid)
@@ -33,6 +34,7 @@ function SPCCopyYields.Start(P,shared)
   return rows
  end
  local function target(pid,c,y)
+  if isolated(pid) then return 0 end
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return 0 end
   local f=readFacts(pid,c)
   assert(type(f.specialization)=='string' and type(f.active)=='number','COPY_FACTS_UNAVAILABLE')
@@ -77,7 +79,9 @@ function SPCCopyYields.Start(P,shared)
   end end
   if removed and plan.amount==0 and confirmed then P.Count('copy_withdraw') end
  end
- function data.Audit(scope) P.Count('audit_copy');
+ function data.Audit(scope)
+  if isolated() then return end
+  P.Count('audit_copy');
   if P.Observe then P.Observe('audit','CopyYields') end
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   for pid,p in pairs(Players) do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid) then
@@ -99,7 +103,37 @@ function SPCCopyYields.Start(P,shared)
   data.busy=false;batch=nil
  end
  function data.Receive(pid,p)
+  if isolated(pid) then return end
   if SPCSampleLifecycle.Receive(P,data,'copy',pid,p,false) then data.Audit({player=pid}) end
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function data.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not data.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  data.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,mode in ipairs({'POS','NEG','POP'}) do for bit=0,(mode=='POP' and 7 or 15) do ids[#ids+1]='BUILDING_SPC_B051_PRODUCTION_'..mode..'_'..bit end end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);data.changes=data.changes+1 end
+    end
+   end
+   data.samples[pid]=nil;data.seq[pid]=nil;data.responses[pid]=nil;data.receiveErrors[pid]=nil
+   for _,c in cities:Members() do local key=pid..':'..c:GetID()..':PRODUCTION';data.last[key]=nil;data.errors[key]=nil end
+  end)
+  data.busy=false;data.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function data.Describe(pid,c)
   local lines={'B051.67自动复制 | city='..c:GetID()..' | 人口='..c:GetPopulation()}
@@ -129,6 +163,7 @@ function SPCCopyYields.Start(P,shared)
  local function hook(source,n,f) local e=P.Field(source,n);if e and e.Add then e.Add(f) end end
  -- Only lifecycle cleanup visits ineligible owners; no periodic specialization work for them.
  local function cleanupDormant()
+  if isolated() then return end
   for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then
    local ok,err=pcall(function() for _,c in p:GetCities():Members() do P.Count('city_scan');
     for _,y in ipairs({'PRODUCTION'}) do reconcile(c,y,SPCCopyYields.Plan(0,1),true) end

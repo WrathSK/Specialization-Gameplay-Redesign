@@ -14,6 +14,7 @@ for _,kind in ipairs({'RESEARCH','CULTURE'}) do for _,amount in ipairs({2,4}) do
 end end
 function SPCNetworkBoost.Start(P,shared)
  local d={ready=false,busy=false,applied={},plans={},errors={},changes=0,testRaw={}};shared.NetworkBoost=d
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local kinds={'RESEARCH','CULTURE'}
  local function row(id) return assert(P.Info('Buildings',id),'B055_DATABASE_MISSING') end
  local function set(c,id,want)
@@ -34,6 +35,7 @@ function SPCNetworkBoost.Start(P,shared)
   d.applied={}
  end
  function d.Plan(pid)
+  if isolated(pid) then return {} end
   local result={}
   if d.testRaw[pid]~=nil then
    local raw=d.testRaw[pid];local applied=SPCNetworkBoost.Quantize(raw)
@@ -59,7 +61,9 @@ function SPCNetworkBoost.Start(P,shared)
   end
   return result
  end
- function d.Audit(scope) P.Count('audit_boost');
+ function d.Audit(scope)
+  if isolated() then return end
+  P.Count('audit_boost');
   if P.Observe then P.Observe('audit','NetworkBoost') end
   if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   for pid,player in pairs(Players) do
@@ -90,6 +94,7 @@ function SPCNetworkBoost.Start(P,shared)
   d.busy=false
  end
  function d.EnsureReady(pid)
+  if isolated(pid) then return end
   if not P.IsTestPlayer(pid) or d.busy then P.Count('busy_skip');return end
   if not d.ready then
    d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
@@ -99,6 +104,7 @@ function SPCNetworkBoost.Start(P,shared)
   d.Audit()
  end
  function d.Test(pid,raw)
+  assert(not isolated(pid),'NETWORK_ISOLATION_ACTIVE')
   assert(P.IsTestPlayer(pid),'B057_TEST_PLAYER_REQUIRED')
   if raw~=nil then
    local applied=SPCNetworkBoost.Quantize(raw)
@@ -108,6 +114,34 @@ function SPCNetworkBoost.Start(P,shared)
   d.EnsureReady(pid);assert(d.ready,'B057_INIT_PENDING')
   d.testRaw[pid]=raw;d.Audit()
   return d.Describe(pid)
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function d.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  d.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,r in pairs(SPCBoostConfig.rows) do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows) do ids[#ids+1]=id end;for _,id in ipairs(testRows) do ids[#ids+1]=id end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.changes=d.changes+1 end
+    end
+   end
+   d.applied[pid]=nil;d.plans[pid]=nil;d.testRaw[pid]=nil;d.errors[pid]=nil
+  end)
+  d.busy=false;d.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function d.Describe(pid)
   local out={d.testRaw[pid]~=nil and 'B057 整数接口实验：替换本Mod网络Boost（两种类型）' or 'B058 自动网络：全部浮点计算后一次四舍五入'}
@@ -124,7 +158,7 @@ function SPCNetworkBoost.Start(P,shared)
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
  for _,n in ipairs({'PlayerTurnActivated'}) do SPCRuntimeWork.Hook(P,Events,n,d.Audit) end
- hook(Events,'CityTransfered',function() if d.ready and not d.busy then
+ hook(Events,'CityTransfered',function() if isolated() then return end;if d.ready and not d.busy then
   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
   if not ok then print('[SPC][B055][CLEAN] '..tostring(err));d.ready=false;return end;d.Audit()
  end end)

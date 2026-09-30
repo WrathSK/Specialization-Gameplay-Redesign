@@ -33,6 +33,13 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if params.Action=='NETWORK_ISOLATE' or params.Action=='NETWORK_ISOLATION_READ' then
+    local ok,out=pcall(function()
+      if params.Action=='NETWORK_ISOLATE' then return shared.NetworkIsolation.Begin(playerID,params.Epoch) end
+      return shared.NetworkIsolation.Read(playerID)
+    end)
+    shared.Snapshot=ok and out or ('Network隔离未就绪；停止对照并冷启动原存档：'..P.Scalar(out));shared.LastToken=params.Token;return
+  end
   if params.Action=='MEMORY_GC_READ' or params.Action=='MEMORY_GC_COLLECT' then
     local ok,out=pcall(function()
       local d=shared.MemoryObservation;assert(d,'GC diagnostic not initialized')
@@ -683,4 +690,6 @@ SPCProjectTurnObservation.Start(P,shared)
 include("TimedProject")
 SPCTimedProject.Start(P,shared)
 
+include("NetworkIsolation")
+SPCNetworkIsolation.Start(P,shared)
 SPCPerformance.StartMemory(P,shared)

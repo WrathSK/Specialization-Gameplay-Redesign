@@ -130,7 +130,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=='CITY_SEQUENCE_BEGIN' then
@@ -169,6 +169,19 @@ request=function(action,advance)
   local envelope=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.EnvelopeProbe
   local expectedStage=envelope and envelope.players[playerID] and envelope.players[playerID].step
   local packet={OnStart="SPC_P0_Request",Action=action,Token=pendingToken,ExpectedStage=action=="ENVELOPE_NEXT" and expectedStage or nil,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken}
+  if action=='NETWORK_ISOLATE' then
+    local g=ExposedMembers.SPC_P0;local bridge=g and g.NetworkBridge
+    local epoch=bridge and bridge.epoch
+    local ok,err=pcall(function()
+      assert(g and g.Version==P.VERSION and bridge.ready,'Gameplay尚未就绪')
+      for _,key in ipairs({'SPC_P0_BackgroundRoutes','SPC_CopyBackground','SPC_DiscountEligibility'}) do
+        local u=ExposedMembers[key];assert(u and type(u.StopNetwork)=='function','UI未就绪：'..key)
+        assert(u.StopNetwork(epoch)==true,'UI退出未确认：'..key)
+      end
+    end)
+    if not ok then pendingToken=nil;status('Network隔离未启动；停止本次对照，冷启动原存档。\n'..tostring(err));return end
+    packet.Epoch=epoch
+  end
   if action:find('^GWA_') then gwaFlight={pid=playerID,packet=packet,pulses=0,retries=0,busy=true} end
   local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
   if gwaFlight then gwaFlight.busy=false end
@@ -396,7 +409,10 @@ local function initialize()
   Controls.Lv2HousingButton:RegisterCallback(Mouse.eLClick,function() request("LV2_HOUSING_READ") end)
   Controls.InvestPrepareButton:RegisterCallback(Mouse.eLClick,function() request("INVEST_PREPARE") end)
   Controls.InvestConfirmButton:RegisterCallback(Mouse.eLClick,function() request("INVEST_CONFIRM") end)
-  Controls.NetworkButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_READ") end)
+  Controls.NetworkButtonCaption:SetText('Network 隔离对照')
+  Controls.NetworkButton:RegisterCallback(Mouse.eLClick,function() request('NETWORK_ISOLATION_READ') end)
+  Controls.NetworkButton:RegisterCallback(Mouse.eRClick,function() request('NETWORK_ISOLATE') end)
+  Controls.NetworkButton:SetToolTipString('左键查看模式/退出结果；右键明确停用本次会话的网络分支。不要保存实验结果；冷启动原存档恢复。')
   Controls.Lv4PercentButton:RegisterCallback(Mouse.eLClick,function() request("LV4_PERCENT_READ") end)
   Controls.ResearchReadButton:RegisterCallback(Mouse.eLClick,function() request("RESEARCH_READ") end)
   Controls.CityFlowButton:RegisterCallback(Mouse.eLClick,function() request("CITY_FLOW_READ") end)

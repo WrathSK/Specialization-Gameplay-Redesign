@@ -46,9 +46,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CommerceConvergence.lua": {
-      "sha256": "a1aad6e7d6e95ffc9bed53a9b10bf52297469c4100ab653379663d21c88eb0d3",
+      "sha256": "fee527e9932b3c255d8d29b16a17e4f4487fb75dfb447462c7d5a27d528844a2",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -71,9 +71,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CopyYields.lua": {
-      "sha256": "6baeed1ace4af70713c52b799ad483340b91728e301f8c48bb6581ebcd7d79d3",
+      "sha256": "81cb6927f4dabf87cdbc98e487d501e38f1c99e331ef33f1a502a3e7ae7e79d6",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/CrewPrecision.lua": {
       "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "cd6ca0d975c53e70591d542292f21e8aa88f6d31dced489367422e66b7738a66",
+      "sha256": "21235dc542f60563566424e78b94e91c69da3aa2d75bcdefea4adfaa8c9b77b5",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -316,9 +316,9 @@
       "provenance": "B132 authorized narrow event/cache optimization; targeted L2 PASS, native pending"
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "4cca66077c6e0854c2adad5e60a58674f53241086f245f4f00a7a4eebf1279fb",
+      "sha256": "25c89bc8a81eb65c6ce44d856bce4b6fdc1941af517e3d1b6cb542d547c47158",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/Lv3Support.lua": {
       "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
@@ -336,14 +336,14 @@
       "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
     },
     "Mod/NetworkBoost.lua": {
-      "sha256": "de8a59fe355f9cc57ae447c475891c344de12493b87bc463a65ba497d0f7a0c9",
+      "sha256": "920d8a7bf8f5820d53de3f29395b96163348606aca47c75787b1c59bea8a3d0b",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "1b1f3aa8dcb5321c13892cff0e3f5ed9a864736a4e2ba09ae4c90aa2ba8fd94c",
+      "sha256": "1a610337ac1dfef030d1f58c8e1f87f19913d48c51b02bf9f5caf14ed54dd271",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -351,9 +351,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "d7edcb8cf3f2dc5989861747661ecb8e0f40c93129cfd887c021718113924257",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "153389e46600e65251fc398158659c261336580e7b21d44af808d16d4488c999",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "398205d0e063ae5d092947dbd3d54443c5778001fbe0f03d29c360c24e7379e9",
@@ -366,9 +366,9 @@
       "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/Probe.lua": {
-      "sha256": "488f53d3655b67809dfaadeaa6ef5211c351229efd80d7631edc0ec954bcce73",
+      "sha256": "423089d235e1d87b1c7316661551563245e74a2749d76985ed24bf35b9f6ed91",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B136 user-authorized fresh governor scalar gate/read-only anchor comparison; direct caller review, 847 differential/Network checks and scoped E2/V3 LOCAL_SIMULATION_PASS; native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9e582b8e5f6e79a802b903c4076b29ac9883f65aa3efe4fd76b400202005f678",
+      "sha256": "caa65b30b549d1a8f3dc2bd216c33a8549ca8f441e8d8255b4a6c828d925ed5e",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B136 user-authorized fresh governor scalar gate/read-only anchor comparison; direct caller review, 847 differential/Network checks and scoped E2/V3 LOCAL_SIMULATION_PASS; native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -441,9 +441,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/StandardizationDiscount.lua": {
-      "sha256": "02cf5da49719d90740087e995fec07508f2c41378daf7f341d4718685383499a",
+      "sha256": "b68e00369689d97163843a2daaa45374f17d30f519afc2d1016d3effb480401f",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -461,9 +461,9 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "847add4e3fc5f862249d2d502adc80b1d3619a1f1537103edca4ccd1e22a7887",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "2795eae71356e775d2c62f6c7464f1cea6b39fba5bf7abc7852506967c920b82",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
@@ -496,9 +496,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CopyYieldRefresh.lua": {
-      "sha256": "c1ea4f3d76042ecfdd7ece121fc2136f16da56de7cff46156ea1e49c4920ac30",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "b2d133cd6860fb60e0f3398032d77575b4332cfe6ff7834d1079327b8a4c1032",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/UI/CopyYieldRefresh.xml": {
       "sha256": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9",
@@ -521,9 +521,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/DiscountEligibility.lua": {
-      "sha256": "3e50f8ddef2a676673c83d98167dd8ff12a4fa8493e0118e43229eb115248d7f",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "574e4ccc92c09b27ce57dcc9fa7bdd1aa99bea7e559eba1feb3829e3ace0a81b",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/UI/DiscountEligibility.xml": {
       "sha256": "83f53d04f035643a3b31783ac2a49c94d34d530d3dbbe69105dac7fd403b67e2",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "e530f1bc67a42618a802b61721405e80112a175aed3cce1eb73ec9afcca36d0c",
+      "sha256": "1d39199dfce11840694fbca6460189bfd71b4e35b9504391c755a719f44aab2c",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -854,6 +854,11 @@
       "sha256": "7339d909e206a181c06564ac0b1031278ff1bafe5216262bae45864a1e2b29d8",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
       "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
+    },
+    "Mod/NetworkIsolation.lua": {
+      "sha256": "2ec3c021dddd056a90f897b557d159846edcb61a01d7204c84b914b84bcba748",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     }
   }
 }

@@ -1,27 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0344
-Implementation Build: develop P0-B-136.163 / modinfo163 GOVERNOR_RESPONSE_USER_PASS_MEMORY_OPEN; live B136.163 verified170/170 MATCH; stable B069.96
+Status Revision: S0345
+Implementation Build: develop P0-B-137.164 / modinfo164 NETWORK_ISOLATION_NATIVE_PENDING; live B136.163 verified170/170 MATCH until deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B136_COPY_INVESTIGATION_COMPLETE_MEMORY_OPEN
+Work State: B137_NETWORK_ISOLATION_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B129认领读档续接](Validation/Results/Specialization_B129_Claim_Reload_Pass.md)所测商业场景USER_GAME_TEST_PASS保留；E2仍partial，工业模板初始化/销毁同址新代/未知取得边界不扩大，不进入F。B132所测专家/建筑收益响应PASS保留。
+B129认领读档、B132专家/建筑响应、B136总督调离ACTIVE1及新总督恢复能力的所测USER_GAME_TEST_PASS保留。E2仍partial，不进入F；内存增长未解决。
 
-当前源码B136.163 / modinfo163：[获授权fresh总督事实优化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b136163--authorized-fresh-governor-facts-optimization)已完成，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS。仅Probe窄总督读取、EffectiveFacts只读anchor借用及版本标记；最终输出隔离、同回合fresh资格、UNKNOWN、Network生命周期及保存writer保留。847新旧差分/真实Network检查，E2旧adapter投资/返回定向回归＋单城正式V3读取/boot通过；不冒充原生内存收益或全V3验收。B135纯worker通知修复保留。
+当前源码B137.164 / modinfo164：用户已授权[会话级Network隔离对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137164--authorized-session-network-isolation-control)。默认NORMAL；仅显式右键停止本次会话的商路/复制/折扣UI发送与五类自有Network收益，精确撤销确认后READY。失败停止，不重试、不伪造失城、不清永久Property、不自动GC。不改Design或保存schema；原始存档冷启动恢复。
 
-已按W0003部署B136.163，source 3b31173，receipt B136.163-3b31173-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；两次切换前OS只读确认游戏退出，无pending transaction。B135及stable恢复包保留；main仍B069.96，未启动游戏、无promotion。
+B137定向STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：24项正常行为对照、五模块精确退出/失败、Bridge及UI停用/晚到/重建、实际请求握手通过；原生退出与内存对照尚未实机验证。收益退出会有一次性核对/更新/引用释放，其瞬时内存变化不代表根因。Lua count非本Mod独占；不把分支停用结果单独归因某函数。B135/B136优化保留。
 
-[B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)所测诊断调用/读数PASS：回收后趋稳及同回合再次回收说明可回收分配重要，Lua不是本Mod独占。最小GC采样已完成，无需重复长测；没有授权自动GC/调参/周期清理。B135只证实消除一条冗余扫描/构造路径，未量化实机内存收益，MEMORY_CAUSE_OPEN保留。
+运行包暂仍B136.163（source3b31173、receipt B136.163-3b31173-playtest.json、170/170 MATCH），B137部署须完成本地验证、commit/push、退出检查及既有事务。main/stable B069.96不变。
 
-[B135原生反馈及后续定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：6组12图已hash归档；用户确认建筑/专家收益正常及正常过回合，所述响应USER_GAME_TEST_PASS。T39填满专家后10.38GB→T42 10.69GB；T42手动GC618.63→298.57MiB，进程回落10.38GB。持续增长未解决，但大量可回收分配再次确认；缺起始/逐操作/逐回合Lua计数，不能归因每建筑/专家或扩展为Cross III全覆盖。无需补图/重复长测/GC。
+用户下一步仅按同节短流程：同一原档NORMAL/隔离各初始及两个玩家回合，记录报告和进程内存；不额外GC、不做征服/建造或重复长测。隔离不是正式游玩模式，不覆盖原档，不用实验自动存档恢复。若READY/UI3/3/撤销5/5/静默不全则截图停止。
 
-[B136原生反馈](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b136-native-governor-response-and-memory-results)：用户确认调离总督ACTIVE回1、新总督建立后能力恢复，所述响应USER_GAME_TEST_PASS（用户实机），关闭该最小待办；四组八图hash归档，T39→42进程10.21→10.79GB，增长未解决。图中无完整诊断/Lua/GC读数，不扩展Potential/收据、Network或保存验收。[剩余副本调查](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b136-follow-up--remaining-copies-and-retained-generations)完成：真实V3定向读取及旧记录/Network视图弱引用实验未见所测旧代残留，仅LOCAL_SIMULATION_PASS，不覆盖原生资源。MEMORY_CAUSE_OPEN；无需补图/长测。下一建议准备同档Network分支对照，但当前无安全OFF，退出/发送/恢复边界未齐，尚非可实施方案；不自动GC、不进入F。
+授权边界：本批本地实现已完成；仅既有W0003测试包部署和等待原生反馈。无下一修复/实验/F授权；不启动游戏，不声称MEMORY修复PASS。
 
 
 ## 历史阶段记录

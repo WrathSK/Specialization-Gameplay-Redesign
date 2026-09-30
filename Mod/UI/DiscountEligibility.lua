@@ -1,8 +1,8 @@
 include('DiagnosticLog')
 local print=SPCDiagnosticLog and SPCDiagnosticLog.For('DiscountEligibility') or print
 include('Probe')
-local P=SPCP0;local busy=false;local seq=0;local hooks={};local generation;local initialized=false
-local public={state='LOADED'};ExposedMembers.SPC_DiscountEligibility=public
+local P=SPCP0;local active=false;local networkStopped=false;local busy=false;local seq=0;local hooks={};local generation;local initialized=false
+local public={version=P.VERSION,state='LOADED'};ExposedMembers.SPC_DiscountEligibility=public
 local pending;local clock=0;local epoch;local last;local retries=0;local retryKey
 local sampledKey;local permissionRevision=0
 local MAX_SENDS=3;local TIMEOUT=5
@@ -15,7 +15,28 @@ local function reset()
  sampledKey=nil;permissionRevision=0
  public.pending=0;public.state='RESET'
 end
+local function stopNetwork(networkEpoch)
+ if networkStopped then return public.networkStopEpoch==networkEpoch end
+ networkStopped=true;pending=nil;last=nil;retryKey=nil;sampledKey=nil;generation=nil
+ if ExposedMembers.SPC_DiscountClientEpoch==epoch then ExposedMembers.SPC_DiscountIssued=nil end
+ public.pending=0;public.networkStopped=true;public.networkStopEpoch=networkEpoch
+ public.state='ISOLATED_SESSION';public.error=nil;return true
+end
+local function networkBlocked()
+ if networkStopped then return true end
+ local shared=ExposedMembers.SPC_P0;local isolation=shared and shared.NetworkIsolation
+ if isolation and isolation.active==true and isolation.player==Game.GetLocalPlayer() then
+  stopNetwork(isolation.epoch);return true
+ end
+ return false
+end
+public.StopNetwork=function(networkEpoch)
+ local shared=ExposedMembers.SPC_P0;local bridge=shared and shared.NetworkBridge
+ if type(networkEpoch)~='number' or not active or not shared or shared.Version~=P.VERSION or not bridge or networkEpoch~=bridge.epoch then return false end
+ return stopNetwork(networkEpoch)
+end
 local function transmit(pid,packet,key)
+ if networkBlocked() then return end
  if retryKey~=key then retryKey=key;retries=0 end
  if retries>=MAX_SENDS then public.state='RETRY_EXHAUSTED';return end
  retries=retries+1;seq=seq+1
@@ -26,9 +47,11 @@ local function transmit(pid,packet,key)
  pending={packet=packet,key=key,time=clock,turn=Game.GetCurrentGameTurn()};public.pending=1
  count('discount_send');if retries>1 then count('discount_retry') end
  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,packet)
+ if networkStopped then return end
  if not ok then public.error=tostring(err);public.state='SEND_ERROR' end
 end
 local function refresh()
+ if networkBlocked() then return end
  count('discount_attempt')
  local shared=ExposedMembers.SPC_P0;local d=shared and shared.StandardizationDiscount
  if busy or not shared or shared.Version~=P.VERSION or not d then return end
@@ -82,6 +105,7 @@ local function refresh()
   table.sort(rows)
  end)
 
+ if networkBlocked() then busy=false;return end
  local turn=Game.GetCurrentGameTurn();local payload=ok and table.concat(rows,';') or ''
  local signature=generation..':'..revision..':'..turn..':'..tostring(ok)..':'..payload
  -- Unchanged native permission remains a C1 sample no-op.
@@ -94,14 +118,17 @@ local function refresh()
 end
 local function safe()
  local ok,err=pcall(refresh)
+ if networkStopped then busy=false;public.state='ISOLATED_SESSION';public.error=nil;return end
  if not ok then busy=false;public.state='ERROR';public.error=tostring(err) end
 end
 local function bind(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f);hooks[#hooks+1]={e,f} end end
 ContextPtr:SetInitHandler(function()
+ active=true
  reset()
  for _,n in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete','PlayerTurnActivated'}) do bind(n,safe) end
- bind('LoadScreenClose',function() reset();safe() end)
+ bind('LoadScreenClose',function() if networkBlocked() then return end;reset();safe() end)
  local function permissionChanged(pid)
+  if networkBlocked() then return end
   if pid~=Game.GetLocalPlayer() then return end
   permissionRevision=permissionRevision+1;safe()
  end
@@ -109,6 +136,7 @@ ContextPtr:SetInitHandler(function()
   bind(n,permissionChanged)
  end
  local function buildingChanged(x,y,bid,pid)
+  if networkBlocked() then return end
   local b=P.Info('Buildings',bid)
   if b and b.BuildingType and not b.BuildingType:match('^BUILDING_SPC_') then permissionChanged(pid) end
  end
@@ -116,15 +144,16 @@ ContextPtr:SetInitHandler(function()
  -- Unknown/mod-specific prerequisites are reconciled once on the next turn key.
 
  bind('SystemUpdateUI',function()
+  if networkBlocked() then return end
   local shared=ExposedMembers.SPC_P0;local d=shared and shared.StandardizationDiscount
   if pending or not initialized or (d and d.generation~=generation) then safe() end
  end)
  -- Clock only: no scans, requests or logging from the timer. Turn change is fallback.
- ContextPtr:SetUpdate(function(dt) if type(dt)=='number' and dt>=0 then clock=clock+math.min(dt,10) end end)
+ ContextPtr:SetUpdate(function(dt) if not networkStopped and type(dt)=='number' and dt>=0 then clock=clock+math.min(dt,10) end end)
  safe()
 end)
 ContextPtr:SetShutdown(function()
- ContextPtr:ClearUpdate();pending=nil;public.pending=0
+ active=false;ContextPtr:ClearUpdate();pending=nil;public.pending=0
  if ExposedMembers.SPC_DiscountClientEpoch==epoch then ExposedMembers.SPC_DiscountIssued=nil end
  for _,h in ipairs(hooks) do if h[1].Remove then h[1].Remove(h[2]) end end
  if ExposedMembers.SPC_DiscountEligibility==public then ExposedMembers.SPC_DiscountEligibility=nil end

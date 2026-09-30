@@ -4,7 +4,8 @@ include("ShadowRouteState")
 local normalized=SPCShadowRouteState.New()
 local P=SPCP0
 include("NetworkSender")
-local sendNetwork=SPCNetworkSender.New(P)
+local sendNetwork,stopSender=SPCNetworkSender.New(P)
+local networkStopped=false
 local active=false
 local public
 local lastGood,firstComplete,lastChange
@@ -97,18 +98,41 @@ local function render()
   ..' reason='..pendingReason..' attempts='..attempts..'/3'
   ..'\n'..normalized:Summary()..(public.error and ('\n'..public.error) or '')
 end
+-- B137 one-way UI session closure. No Gameplay function is invoked here.
+local function stopNetwork(epoch)
+ if networkStopped then return public.networkStopEpoch==epoch end
+ networkStopped=true;stopSender(public)
+ dirty=false;retryPending=false;attempts=0;lastGood=nil;public.snapshot=nil;normalized:Reset()
+ public.networkStopped=true;public.networkStopEpoch=epoch;public.status='ISOLATED_SESSION'
+ public.revalidation='STOPPED';public.error=nil;render();return true
+end
+local function networkBlocked()
+ if networkStopped then return true end
+ local shared=ExposedMembers.SPC_P0;local isolation=shared and shared.NetworkIsolation
+ if isolation and isolation.active==true and isolation.player==Game.GetLocalPlayer() then
+  stopNetwork(isolation.epoch);return true
+ end
+ return false
+end
+local function requestStop(epoch)
+ local shared=ExposedMembers.SPC_P0;local bridge=shared and shared.NetworkBridge
+ if type(epoch)~='number' or not active or not shared or shared.Version~=P.VERSION or not bridge or epoch~=bridge.epoch then return false end
+ return stopNetwork(epoch)
+end
 local function mark(reason)
- if not active then return end
+ if not active or networkBlocked() then return end
  P.Count('revalidate')
  if not dirty then attempts=0 end
  dirty=true;pendingReason=reason;public.revalidation='NEEDS_REVALIDATION'
  -- The verified snapshot and formal consumer state remain intact.
 end
 local function refresh()
+ if networkBlocked() then return end
  P.Count('route_scan');generation=generation+1
  local pid=Game.GetLocalPlayer()
  if not P.IsTestPlayer(pid) then dirty=false;return end
  local ok,s=pcall(collect,pid)
+ if networkBlocked() then return end
  if ok then
   local accepted,err=normalized:Replace(s);if not accepted then ok=false;s=err end
  end
@@ -141,7 +165,7 @@ local function observeGame()
  end
 end
 local function flush()
- if not active then return end
+ if not active or networkBlocked() then return end
  if dispatching then P.Count('busy_skip');return end
  observeGame()
  if not dirty and not retryPending then
@@ -152,6 +176,7 @@ local function flush()
  dispatching=true;attempts=attempts+1
  local ok=pcall(refresh)
  dispatching=false
+ if networkStopped then return end
  if not ok then P.Count('route_failure');dirty=false;retryPending=false;public.revalidation='RETRY_STOPPED' end
 end
 local function bind(name,fn)
@@ -162,6 +187,7 @@ local function initialize()
  if active then return end;active=true
  public={version=P.VERSION,status='UNKNOWN',sourceContext='UI',authority='UI_SHADOW_ONLY'}
  public.ReadNormalizedRoutes=function() return normalized:Read() end
+ public.StopNetwork=requestStop
  ExposedMembers.SPC_P0_BackgroundRoutes=public
  lastGame=ExposedMembers.SPC_P0;lastSignal=lastGame and lastGame.RouteSignalRevision
  for _,name in ipairs({'LoadScreenClose','TradeRouteActivityChanged','TradeRouteAddedToMap','TradeRouteRemovedFromMap',
@@ -169,6 +195,7 @@ local function initialize()
   'CityAddedToMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar','PlayerTurnActivated','PlayerTurnDeactivated'}) do
   local eventName=name
   bind(name,function(pid,id)
+   if networkBlocked() then return end
    if eventName:find('^Unit') then
     P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
    end
@@ -183,7 +210,7 @@ local function initialize()
 end
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
- active=false;normalized:Reset();ContextPtr:ClearUpdate()
+ active=false;if public then stopSender(public) end;normalized:Reset();ContextPtr:ClearUpdate()
  for _,h in ipairs(hooks) do if h.event.Remove then h.event.Remove(h.callback) end end
  if ExposedMembers.SPC_P0_BackgroundRoutes==public then ExposedMembers.SPC_P0_BackgroundRoutes=nil end
 end)

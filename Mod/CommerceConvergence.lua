@@ -3,6 +3,7 @@ include('RuntimeWork')
 SPCCommerceConvergence={}
 function SPCCommerceConvergence.Start(P,shared)
  local d={busy=false,ready=false,last={},errors={},mode={},testCity={},baseline={},writes=0};shared.CommerceConvergence=d
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local batch
  local ys={'SCIENCE','CULTURE','PRODUCTION'};local map={RESEARCH='SCIENCE',CULTURE='CULTURE',INDUSTRY='PRODUCTION'}
  local function yield(c,y)
@@ -12,7 +13,7 @@ function SPCCommerceConvergence.Start(P,shared)
  local function facts(pid,c) assert(c and c:GetOwner()==pid,'CITY_OWNER');return batch and batch.facts.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local function eligible(pid,c) local f=facts(pid,c);return P.IsTestPlayer(pid) and f.specialization=='COMMERCE' and f.active==4 end
  function d.Plan(pid,c)
-  local out={amount={},raw={},source={},basis={},eligible=eligible(pid,c)}
+  local out={amount={},raw={},source={},basis={},eligible=not isolated(pid) and eligible(pid,c)}
   for _,y in ipairs(ys) do out.amount[y]=0;out.raw[y]=0;out.basis[y]=0 end
   if not out.eligible or d.mode[pid]=='OFF' then return out end
   if d.mode[pid]=='TEST5' then
@@ -73,7 +74,9 @@ function SPCCommerceConvergence.Start(P,shared)
   end end
   for _,y in ipairs(ys) do assert(observed(c,y)==(amount[y] or 0),'CARRIER_VERIFY_FAILED') end
  end
- function d.Audit(scope) P.Count('audit_commerce');
+ function d.Audit(scope)
+  if isolated() then return end
+  P.Count('audit_commerce');
   if P.Observe then P.Observe('audit','CommerceConvergence') end
   if d.busy then P.Count('busy_skip');return end;d.busy=true;batch={facts=SPCRuntimeWork.New(P,shared),yields={},routes={}}
   local ok,err=pcall(function()
@@ -98,10 +101,40 @@ function SPCCommerceConvergence.Start(P,shared)
  function d.Control(pid,c,action)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'CONTROL_OWNER')
   if action=='READ' then return end
+  assert(not isolated(pid),'NETWORK_ISOLATION_ACTIVE')
   assert(action=='OFF' or action=='AUTO' or action=='TEST5','CONTROL_ACTION')
   d.mode[pid]=action;d.testCity[pid]=action=='TEST5' and c:GetID() or nil
   d.Audit()
   if action=='OFF' then local base={};for _,y in ipairs(ys) do base[y]=yield(c,y) end;d.baseline[pid..':'..c:GetID()]=base end
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function d.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  d.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,y in ipairs(ys) do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.writes=d.writes+1 end
+    end
+   end
+   for _,c in cities:Members() do local key=pid..':'..c:GetID();d.last[key]=nil;d.errors[key]=nil;d.baseline[key]=nil end
+   d.mode[pid]=nil;d.testCity[pid]=nil
+  end)
+  d.busy=false;d.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function d.Describe(pid,c)
   local key=pid..':'..c:GetID();local old=d.last[key];local good,current=pcall(d.Plan,pid,c)

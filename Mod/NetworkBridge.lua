@@ -14,6 +14,7 @@ function SPCNetworkBridge.Start(P,shared)
   local first=tostring(err):match("[^\r\n]+") or "UNKNOWN"
   return (first:match(":%d+: (.+)$") or first):sub(1,180)
  end
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid) end
  local derive
  local views={} -- private, at most one view per player; never keyed by historical versions
  local function copy(v)
@@ -81,6 +82,7 @@ function SPCNetworkBridge.Start(P,shared)
   notify(pid);return true
  end
  local function withdraw(pid,b,reason)
+  if isolated(pid) then return false end
   if b.validity=='CONFIRMED_INVALID' and not b.routes then return false end
   b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.reason='CONFIRMED_INVALID';b.error=reason
   b.revalidation='CONFIRMED_INVALID';b.availability='UNAVAILABLE';b.revision=b.revision+1
@@ -92,6 +94,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  -- Concrete native evidence only. Unknown getters preserve the accepted snapshot.
  function d.Verified(pid,failedFullRead)
+  if isolated(pid) then return false end
   local b=d.players[pid];if not b or not b.routes then return false end
   if b.refreshing then return true end
   local ok,invalid=pcall(function()
@@ -120,6 +123,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  -- Capture a coherent complete input before changing any officially published input.
  function d.Refresh(pid)
+  if isolated(pid) then return false end
   if not P.IsTestPlayer(pid) or not d.ready then return false end
   local b=bucket(pid)
   if b.refreshing then P.Count('busy_skip');return false end
@@ -188,6 +192,7 @@ function SPCNetworkBridge.Start(P,shared)
   b.refreshing=false;return changed
  end
  function d.Receive(pid,p)
+  if isolated(pid) then return end -- includes delayed pre-experiment packets
   P.Count('net_receive')
   if not P.IsTestPlayer(pid) or p.Epoch~=d.epoch or not integer(p.Seq) then P.Count('stale_input');return end
   local b=bucket(pid)
@@ -268,6 +273,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  -- Refresh remains the Batch A fact boundary (its scans are not cached in Batch B).
  local function currentView(pid,confirmedOnly)
+  assert(not isolated(pid),'NETWORK_EXPERIMENT_ISOLATED')
   P.Count('derive_requested')
   if not confirmedOnly then d.Refresh(pid) end
   local b=d.players[pid]
@@ -325,6 +331,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local detailPage={}
  function d.Read(pid,selected,details)
+  if isolated(pid) then return shared.NetworkIsolation.Read(pid) end
   d.Refresh(pid)
   local b=d.players[pid]
   if not b or not b.routes then return "B031 网络待刷新: "..(b and b.reason or "NO_BACKGROUND_BATCH") end
@@ -377,13 +384,28 @@ function SPCNetworkBridge.Start(P,shared)
   end)
   return ok and out or ("B031 网络待刷新: "..short(out))
  end
+ -- Clear only this session's derived topology. Explicit experiment != UNKNOWN/loss.
+ function d.ExperimentalStop(pid)
+  assert(isolated(pid),'NETWORK_EXPERIMENT_NOT_ARMED')
+  local b=bucket(pid);assert(not b.refreshing,'NETWORK_EXPERIMENT_BUSY')
+  views[pid]=nil
+  b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.input=nil;b.inputSignature=nil
+  b.sources=nil;b.centers=nil;b.recipients=nil;b.derivedFor=nil
+  b.validity='EXPERIMENT_ISOLATED';b.availability='EXPERIMENT_ISOLATED';b.reason='EXPERIMENT_ISOLATED'
+  b.revalidation='EXPERIMENT_ISOLATED';b.error=nil
+  detailPage={}
+  local perf=ExposedMembers.SPC_Performance;if perf then perf.routes=0 end
+  return true -- no Capture/derive/publication/consumer dispatch
+ end
  function d.Rebuild()
+  if isolated() then return end
   for pid in pairs(d.players) do d.Refresh(pid) end
  end
  for _,name in ipairs({"OnDistrictConstructed","CityBuilt"}) do
   local ev=P.Field(GameEvents,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
  function d.CheckEvidence(failedFullRead)
+  if isolated() then return end
   for pid,b in pairs(d.players) do
    if b.routes then b.revalidation='NEEDS_REVALIDATION';d.Verified(pid,failedFullRead) end
    d.Refresh(pid)

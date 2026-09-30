@@ -2,6 +2,7 @@
 SPCStandardizationDiscount={}
 function SPCStandardizationDiscount.Start(P,shared)
  local d={ready=false,busy=false,generation=0,plans={},samples={},seq={},applied={},errors={},changes=0,responses={},appliedSamples=0,holdLoaded=true};shared.StandardizationDiscount=d
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local dirty,lastTurn,lastNetwork={},{},{} -- bounded by player count; no event history
  local catalog,carriers,cleanupOtherOwners
  local function init()
@@ -16,6 +17,7 @@ function SPCStandardizationDiscount.Start(P,shared)
  -- Only actual upstream publications, permanent writes, native building changes,
  -- accepted samples, initialization and once-per-turn reconciliation create work.
  function d.MarkDirty(pid,reason)
+  if isolated(pid) then return end
   if not P.IsTestPlayer(pid) then return end
   local q=dirty[pid] or {};dirty[pid]=q
   if not q[reason] then count('discount_dirty_mark');q[reason]=true end
@@ -84,6 +86,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   d.responses[pid]={ClientEpoch=p.ClientEpoch,Seq=p.Seq,Generation=p.Generation,Status=status}
  end
  function d.Initialize(pid,p)
+  if isolated(pid) then return end
   count('discount_receive')
   if not P.IsTestPlayer(pid) or not clientValid(p) or p.Generation~=d.generation then count('discount_stale');return end
   local old=d.responses[pid]
@@ -91,6 +94,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   d.EnsureReady(pid);respond(pid,p,'INITIALIZED')
  end
  function d.EnsureReady(pid)
+  if isolated(pid) then return end
   if not P.IsTestPlayer(pid) then return end
   if not d.ready then
    d.ready=true;d.generation=d.generation+1;d.samples={};d.seq={};d.applied={}
@@ -99,6 +103,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   d.MarkDirty(pid,'initialize');d.Audit()
  end
  function d.Audit(publication)
+  if isolated() then return end
   if P.Observe then P.Observe('audit','StandardizationDiscount') end
   if type(publication)=='table' and publication.player~=nil then
    local old=lastNetwork[publication.player]
@@ -184,6 +189,7 @@ function SPCStandardizationDiscount.Start(P,shared)
   d.busy=false
  end
  function d.Receive(pid,p)
+  if isolated(pid) then return end
   count('discount_receive')
   if not d.ready or not P.IsTestPlayer(pid) or not clientValid(p) or p.Generation~=d.generation then count('discount_stale');return end
   local ack=d.responses[pid]
@@ -221,6 +227,35 @@ function SPCStandardizationDiscount.Start(P,shared)
   d.samples[pid]={revision=p.Revision,turn=p.Turn,rows=rows,refs=refs,signature=signature}
   d.appliedSamples=d.appliedSamples+1;count('discount_apply');respond(pid,p,'ACCEPTED');d.MarkDirty(pid,'sample');d.Audit()
  end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function d.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  d.busy=true
+  local ok,why=pcall(function()
+   init();local ids={};for _,levels in pairs(carriers) do for _,index in pairs(levels) do ids[#ids+1]=assert(P.Info('Buildings',index),'NETWORK_ISOLATION_DATABASE').BuildingType end end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.changes=d.changes+1 end
+    end
+   end
+   d.samples[pid]=nil;d.seq[pid]=nil;d.responses[pid]=nil;d.plans[pid]=nil;dirty[pid]=nil;lastTurn[pid]=nil;lastNetwork[pid]=nil
+   for _,c in cities:Members() do local key=pid..':'..c:GetID();d.applied[key]=nil;d.errors[key]=nil end
+  end)
+  d.busy=false;d.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
+ end
  function d.Describe(pid,c,page)
   local plan=d.plans[pid];if not plan then return 'B054.71：后台折扣尚未初始化。ready='..tostring(d.ready)..' busy='..tostring(d.busy)..' generation='..d.generation..(d.globalError and (' 状态='..(d.globalError:match('DISCOUNT_[A-Z_]+') or 'ERROR')) or '') end
   local info=plan.info[c:GetID()];local targets=plan.targets[c:GetID()] or {};local ids={};for id in pairs(targets) do ids[#ids+1]=id end;table.sort(ids)
@@ -238,6 +273,7 @@ function SPCStandardizationDiscount.Start(P,shared)
  end
  local function hook(n,f) local e=P.Field(Events,n);if e and e.Add then e.Add(f) end end
  cleanupOtherOwners=function()
+  if isolated() then return end
   local ok,err=pcall(function() init();for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then for _,c in p:GetCities():Members() do P.Count('city_scan'); reconcile(pid,c,{}) end end end end)
   if not ok then print('[SPC][B054][CLEANUP] '..tostring(err)) end
  end
