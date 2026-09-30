@@ -7,7 +7,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Research D0031](Research_D0031.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
-[Industry D0032](Industry_D0032.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
+[Industry D0036](Industry_D0036.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 
 ## D0028共享入口
 
@@ -60,3 +60,7 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 ## D0035 Shared clarification — current authority
 
 [Shared D0035](Shared_D0035.json)明确D为Absolute Infrastructure Depth，正式中文“区域基础设施深度”，无Relative Completeness。公式与各consumer玩法不变。[引用覆盖、consumer矩阵、独立catalog待办](../../Historical/Design/Reviews/Shared_D0035_Review.md)。既有profession文件引用Shared_D0028时，当前解释按Spec的D0035覆盖声明；历史文件不倒改。Military仍D0034，其双层能力不重复修订。
+
+## D0036 Industry template reconciliation — current authority
+
+[Industry D0036](Industry_D0036.json)在D0032基础上只加入IND-TEMPLATE-006：模板为城市经验；首次合法工业身份及确认夺回时可靠历史∪当前合格建筑；显式区分初始化、恢复、同步与缺史保护。原D0032冻结保留；Shared与其它专业不变。不扩大目录、折扣或AI范围。

@@ -83,6 +83,14 @@ local function CreateProgressionRecord(P,shared,storage)
      and r.investment==nil and r.templates==nil and r.currentFirst==nil,'STORE_UNASSIGNED')
    else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
   end
+  -- B140: missing history is not proof of first initialization. The optional
+  -- extension adopts only validated existing ledgers; old ambiguous nil stays held.
+  if r.templateLifecycle then
+   local t=r.templateLifecycle
+   assert(r.base.specialization=='INDUSTRY' and type(t)=='table' and t.version==1
+    and (t.state=='UNINITIALIZED' or t.state=='INITIALIZED') and type(t.reconcilePending)=='boolean','TEMPLATES_LIFECYCLE_INVALID')
+   assert(t.state~='UNINITIALIZED' or (r.templates==nil and t.reconcilePending),'TEMPLATES_LIFECYCLE_CONFLICT')
+  end
   if r.claimTimer then
    local t=r.claimTimer
    assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'
@@ -225,12 +233,23 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(not r.current,'TEMPLATES_HISTORY_UNAVAILABLE')
    local n=cp(r);n.templates=c:GetProperty(M.Keys.TEMPLATES);n.templatesCaptured=true;n.revision=n.revision+1;save(n)
   end
-  assert(not root.current or root.base.specialization~='INDUSTRY' or root.templates~=nil,'TEMPLATES_HISTORY_UNAVAILABLE')
-  return cp(root.templates)
+  local t=root.templateLifecycle
+  if root.base.specialization=='INDUSTRY' then
+   assert(root.templates~=nil or (t and t.state=='UNINITIALIZED'),'TEMPLATES_HISTORY_UNAVAILABLE')
+   return cp(root.templates),t==nil or t.reconcilePending
+  end
+  return cp(root.templates),false
  end
  function d.WriteTemplates(c,old,value)
-  local r=active(c:GetOwner(),c);assert(r.templatesCaptured and same(r.templates,old),'TEMPLATES_STALE')
-  local n=cp(r);n.templates=cp(value);n.revision=n.revision+1;save(n)
+  local r=active(c:GetOwner(),c)
+  local current=d.ReadTemplates(c) -- same missing-history guard for every writer
+  r=active(c:GetOwner(),c) -- a legacy capture may have replaced the record
+  assert(r.base.specialization=='INDUSTRY' and r.templatesCaptured and same(current,old),'TEMPLATES_STALE')
+  assert(type(value)=='table' and value.initialized==true,'TEMPLATES_VALUE_INVALID')
+  if same(old,value) and r.templateLifecycle and not r.templateLifecycle.reconcilePending then return end
+  local n=cp(root);n.templates=cp(value)
+  n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=false}
+  n.revision=n.revision+1;save(n) -- ledger and initialization acknowledgement share one city-record write
  end
  -- Fresh records use the same fact shape but never create legacy City journals.
  function d.Found(c,proof,binding)
@@ -258,6 +277,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if root.stage~='ACTIVE' or root.referenceInvalidated then return end
   local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.specialization;n.base.potential=1
+  if e.specialization=='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   n.revision=n.revision+1;save(n)
@@ -285,6 +305,7 @@ local function CreateProgressionRecord(P,shared,storage)
    and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'CLAIM_PROOF_INVALID')
   assert(type(e.districtID)=='number' and type(e.type)=='string','CLAIM_DISTRICT_INVALID')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.kind;n.base.potential=1
+  if e.kind=='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   -- Receipt retains the historical record anchor; active requests use current reference.
@@ -515,12 +536,13 @@ local function CreateProgressionRecord(P,shared,storage)
   end -- P0 has no historical professional district to rebind.
   local n=cp(root)
   if n.base.specialization=='INDUSTRY' then
-   -- Never backfill AI-era buildings as player history. B096 saves without a
-   -- pre-loss template snapshot remain held rather than guessing an empty ledger.
+   -- Preserve reliable city experience; current eligible buildings are unioned
+   -- by Standardization only after the authoritative return is committed.
    if n.templatesCaptured and n.templates then
     assert(shared.Standardization and shared.Standardization.ValidateRetained,'RETURN_TEMPLATE_VALIDATOR_UNAVAILABLE')
     shared.Standardization.ValidateRetained(c,n.templates)
    end -- missing pre-loss history holds Standardization reads, not Identity/Potential
+   if n.templateLifecycle then n.templateLifecycle.reconcilePending=true end
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
   for _,fn in pairs(returns)do fn(root.origin.owner,c)end

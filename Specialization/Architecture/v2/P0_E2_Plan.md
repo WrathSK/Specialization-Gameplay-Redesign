@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: E2_PARTIAL / TEMPLATE_LIFECYCLE_MODEL_BOUNDARY. B129 Claim reload scoped user PASS retained; B139 performance stabilization closed. Latest authorized template slice stopped before runtime implementation by explicit user stop condition; see current slice.
+Status: E2_PARTIAL / B140_TEMPLATE_RECONCILIATION_LOCAL_PASS_NATIVE_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-当前为[工业模板同步的持久状态区分门禁](#industry-template-reconciliation--authorized-rule-and-model-stop)：用户已确认城市经验与可靠历史∪当前建筑规则，并授权最小实现；只读核对发现B139缺少独立的“曾初始化成功”持久标记，按用户明确停止条件停在实现前。B139性能专项已结项，不重新打开；B129认领读档限定PASS保留。当前没有新build、部署或实机测试。此处的模板局部阻断不自动阻塞独立P0-F计划。
+当前切片为[B140模板生命周期补齐](#b140167--industry-template-lifecycle-and-reconciliation)：用户明确授权最小持久标记与当前建筑并集同步，D0036已记录接受规则。B140.167已完成本地L3定向验证，等待一个工业初始化/冷加载原生验收；部署事实单独见Status/receipt。B139性能结项、B129认领限定PASS保留。E2仍partial，P0-F可独立计划但未授权实施。
 
 当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
 
@@ -15,7 +15,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 默认恢复 / 验收
 
-先看Status CURRENT与Authority，再按当前动作读取新Claim计划/本次证据；触及保存时才展开以下B108合同：
+先看Status CURRENT与Authority，再按当前动作读取B140模板合同/本次证据；触及保存时才展开以下B108合同：
 
 - [B108保存、旧writer切换、失败/回滚合同及三城测试](#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)。包含新档资格、UNKNOWN/旧档不写、部分写入保持HELD、原生初始化未证实、最小三城一次冷加载流程。
 - 当前项目验收以B123结果和新Claim计划为准，B108三城流程不重复列为必测；缺截图不能说已重看，用户陈述与图像证据分开。归档不自动授权修复。
@@ -23,7 +23,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 实施依赖与按问题展开
 
-[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[一回合Claim计划](#next-slice--one-turn-claim-plan-after-b123)；快照结果见B111，Claim当前结果见B126与B127；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[B140模板切片](#b140167--industry-template-lifecycle-and-reconciliation)；快照结果见B111，Claim当前结果见B126与B127；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
 
 | 触发 / 直接合同 | 阅读范围与用途 |
 |---|---|
@@ -1282,3 +1282,52 @@ B129部署：source146a579；170/170 MATCH；receipt B129.156-146a579-playtest.j
 P0-F科研学术传统不消费工业模板账本，**此局部缺口不构成F整体技术阻塞**；可独立准备F具体计划，不必等工业模板或所有E2尾项完成。F仍须定义自身专属持久年龄/首次P4记录、保存幂等、Identity暂停及ACTIVE收益门槛；不能从旧receipt猜首次P4时间，跨Owner传统归属仍未定义，须在F计划中明确所支持路径和停止边界。当前不是F实施授权，也不是E2全生命周期PASS。
 
 当前用户无需实机测试：没有新包。A–G用例作为后续局部L3回归需求保留，未运行/不报PASS；待最小状态模型解决后，再给一个合并的工业首次认领＋保存冷加载验收，不重复旧长测。下一步只需审阅是否授权上述最小持久状态补充及正式来源同步；没有新增Gameplay选择。
+
+## B140.167 — Industry template lifecycle and reconciliation
+
+用户接受B139只读模型边界后明确授权实施“模板生命周期补齐”。D0036 / Industry_D0036记录已确认玩法；本节为实现合同及证据，替代上节“待授权/停止实现”阶段状态，不改其历史检查事实。四专业、人类单人范围不变。
+
+### Authority、生命周期与更新范围
+
+`CityProgressionStore`仍拥有逐城Game Property；只在该记录增加可选version1 `templateLifecycle`，不新建cityKey/全球账本/AI监听。
+
+- 合法`Complete`/`ClaimComplete`第一次建立INDUSTRY时，身份与`UNINITIALIZED + reconcilePending=true`同一记录保存。只有该明确凭据允许nil账本初始扫描。
+- `WriteTemplates`把完整账本与`INITIALIZED + reconcilePending=false`同一次记录提交/readback。`initialized=true, learned={}`是可靠空历史，不是缺失。
+- 经既有身份链确认同城返回后，保留原账本并持久标记pending；return回调只入目标城队列，不能在ACTIVE/current保存前扫描或写入。首次Industry Claim完成也入该队列。
+- `Standardization`只对pending/首次目标扫描现有目录一次，结果为旧集合∪当前存在合格建筑；包括外方期间新增现存建筑；不删缺失历史、不追溯未观察且已消失对象。当前目录及折扣公式未扩展，未来区域模板/Production路径不在此批实现。
+- 可靠旧非空或空账本通过现有结构/目录校验后一次接入标记，并同步当前事实。旧Industry+nil无标记仍`TEMPLATES_HISTORY_UNAVAILABLE`；已标记INITIALIZED却nil同样暂停模板，不凭当前建筑补史。既有损坏结构保护不放松；严重记录损坏仍可hold整城，缺失模板本身不删Identity/Potential。
+- `ReadLedger`同步未完成不发布旧模板快照；既有折扣return回调清样本/计划并标dirty，后续只读新账本与当前network/购买资格。未变模板集合的生命周期ack不另标折扣dirty；变化只通知既有consumer。
+- 普通同回合建筑事件仍增量处理；去掉旧的“所有夺回城BUILDING_ADDED_RECHECK排除”，不会给外国城启用系统。队列按目标城、事件2T重试上界及既有owner/read guard退出；持久pending通过既有load/turn Discover补核对。未pending且有效账本不会再遍历建筑目录；没有新per-frame、hover或全AI扫描。
+
+### 验证与范围
+
+`STATIC_CONFIRMED`：精确ReadTemplates/WriteTemplates/ValidateRetained调用点，StandardizationDiscount唯一现行账本consumer与既有退出/return样本失效路径已复核；修改仅Store、Standardization及版本标识，没有新carrier、目录、效率或GC参数。
+
+`LOCAL_SIMULATION_PASS`：[test_b140_templates.py](../../../DevelopmentTests/test_b140_templates.py)运行当前真实Store/Standardization/Claim/Discount Lua：A首次Claim及普通首完成（含未专业城外方停留后返回）、B可靠A∪外方现存B、C缺失A不删除、D空/缺失/旧nil/结构损坏隔离、E重复返回/项目/建筑通知不重扫/重复写、F pending及已完成同步冷加载/投资保持、G错误绑定/外国事件/UNKNOWN/其它城隔离、账本写失败不能伪确认；既有Discount实际计划→新资格样本→carrier与重复包无叠加。模拟native对象，不证明Civ VI数据库/引擎效果。
+
+[test_b136_progression.py](../../../DevelopmentTests/test_b136_progression.py)既有12种导入/read/load、四专业退出/外方休眠/返回/当前Governor/继续投资、生产V3城市保存回归通过。没有运行历史全套或stress。历史B128测试中的“合法首次工业夺回仍必须缺史”预期已被D0036明确取代，历史原件/断言保持不改，本批新测试覆盖新合同。
+
+旧B052数据库runner未运行完成：未配置DB后改为明确只读现有DebugGameplay.sqlite，发现其缺少旧runner要求的HD_DUMMY_BUILDINGS表。没有添加假表/改断言或将其写成PASS；本轮不改目录，采用当前实际消费者＋受控目录fixture验证生命周期，原生目录/资格仍留给最小验收。
+
+### E2支持矩阵
+
+| 边界 | B140支持/证据 |
+|---|---|
+| 合法首次Industry，含未专业城失而复得 | 明确待初始化凭据→现存合格建筑初始化；LOCAL_SIMULATION_PASS，native待验 |
+| 可靠已有Industry夺回 | 原模板∪当前建筑；pending冷加载续接；LOCAL_SIMULATION_PASS |
+| AI/非支持Owner期间新增现存建筑 | 同一局部同步吸收，外方期间不运行能力/监听；LOCAL_SIMULATION_PASS |
+| 已初始化空模板 | 合法历史，保留/正常补录；LOCAL_SIMULATION_PASS |
+| 曾有模板但缺失/损坏或旧nil歧义 | 保留保护，不当前扫描冒充完整历史；LOCAL_SIMULATION_PASS |
+| 已记录建筑异常移除 | 保留经验，不反向删除；LOCAL_SIMULATION_PASS |
+| 未观察的外方建造后消失 | 不追溯、不猜测（明确设计边界） |
+| 既有认领/投资/易主/读档 | 保留原限定实机证据；本批没有扩大为全部E2 PASS |
+| 销毁后同址新代/未知外交取得 | 原保护/未扩展；不因模板补齐自动开放 |
+| 未实现专业Legacy与跨Owner学术传统 | 按自身合同后续处理，不借模板类推 |
+
+### 一个最小原生验收与停止点
+
+用独立存档分支，一座从未进入工业专业的城市（已有合格工业区候选，且AI控制期间已存在一个可识别的目录建筑，例如工作坊；可复用已有夺回候选城）完成工业认领。查看模板报告应包含该建筑、无历史不可用；按已有标准化连接/购买资格，用一座缺少同模板建筑的接收城检查既有折扣。保存、完全退出、冷加载后再确认模板及折扣。可以用Cheat准备AI城建筑/完成认领，但不将Cheat结果当所有自然建造路径证明；无需重做全部E2或内存长测。异常停在同一存档并提交相关报告，native未通过前不写PASS。
+
+P0-F不读取工业模板，**没有由本批引入的F直接依赖阻塞**，可独立准备计划；科研自身年龄起点/首次P4证据/Identity暂停、跨Owner未决仍须在F计划明确，不自动实施。E2仍partial。
+
+回滚代码使用已知B139 Git commit；B140新增字段为可选扩展但不承诺旧代码对B140新写存档的语义，回滚测试用B140写入前的独立存档。当前不清永久记录，不强制迁移旧歧义记录。

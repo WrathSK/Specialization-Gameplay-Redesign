@@ -3,8 +3,19 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0035
+Latest Accepted Design Revision: D0036
 Document State: ACCEPTED
+
+## Accepted D0036 — 2026-09-30
+
+Acceptance: ACCEPTED / Industry template city-experience reconciliation
+Acceptance Evidence: 用户明确“可靠保存模板历史∪当前存在的合格建筑”，随后授权模板生命周期补齐；Codex记录，无自主Gameplay补全。
+Accepted Spec SHA256: 8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c
+Canonical Industry Content SHA256: a9b95d484528136bea8673d5ebc1236ab04634547b6521c61d5774f871d4bdac
+Previous Accepted Revision: D0035
+Frozen D0035: [原文](Revisions/Specialization_Design_Spec_D0035.md)
+
+新增IND-TEMPLATE-006：合法首次工业身份、确认同城夺回时局部同步；外方新增现存建筑可补录；可靠历史不反向删除；空账本≠缺失账本，缺失/损坏历史不得伪装首次初始化。不追溯未观察且已消失的外方建筑，不扩大AI职责、目录或效率参数。其它专业与Shared不变；D0032工业原件保留。实现/实机状态另见Status，Design接受不等于游戏验收。
 
 ## Accepted D0035 — 2026-09-20
 

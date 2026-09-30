@@ -38,9 +38,9 @@ function SPCStandardization.Start(P,shared)
   local store=shared.CityProgressionStore
   if store and (store.UsesNewAuthority or store.Owns(c))then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
   assert(same(read(c),nextValue),'STD_WRITE_UNCONFIRMED')
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
+  if not same(old,nextValue) and shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1
-  if shared.StandardizationDiscount then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
+  if not same(old,nextValue) and shared.StandardizationDiscount then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
  end
  local function facts(pid,c)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'STD_OWNER_CHANGED')
@@ -57,19 +57,20 @@ function SPCStandardization.Start(P,shared)
   v.revision=v.revision+1;return true
  end
  local function initialize(pid,c)
-  local old=read(c)
-  if old~=nil then validate(c,old);return false end
+  local old,pending=read(c)
+  if old~=nil then validate(c,old);if not pending then return false end end
   local f=facts(pid,c);if f.specialization~='INDUSTRY' then return false end
   assert(type(f.token)=='string','STD_FOUNDATION_MISSING')
-  local nextValue={schema=1,uid='STD:'..f.token,foundation=f.token,x=c:GetX(),y=c:GetY(),initialized=true,revision=1,learned={}}
+  if old then assert(old.foundation==f.token,'STD_FOUNDATION_CHANGED')end
+  local nextValue=old and clone(old) or {schema=1,uid='STD:'..f.token,foundation=f.token,x=c:GetX(),y=c:GetY(),initialized=true,revision=1,learned={}}
   data.scans=data.scans+1
-  for id in pairs(catalog().buildings) do learn(c,nextValue,id,'INITIAL_BACKFILL') end
-  write(c,nil,nextValue);data.last[key(pid,c:GetID())]='首次补录完成';return true
+  for id in pairs(catalog().buildings) do learn(c,nextValue,id,old and 'REENTRY_PRESENT' or 'INITIAL_BACKFILL') end
+  write(c,old,nextValue);data.last[key(pid,c:GetID())]=old and '当前建筑同步完成；保留历史模板' or '首次模板初始化完成';return true
  end
  local function guard(pid,c,fn)
   local k=key(pid,c:GetID());local ok,err=pcall(fn)
   if not ok then
-   local code=tostring(err):match('STD_[A-Z_]+') or 'STD_FACTS_NOT_READY'
+   local code=tostring(err):match('STD_[A-Z_]+') or tostring(err):match('TEMPLATES_[A-Z_]+') or 'STD_FACTS_NOT_READY'
    if data.errors[k]~=code then print('[SPC][B052] '..k..' '..tostring(err)) end
    data.errors[k]=code
   else data.errors[k]=nil end
@@ -88,10 +89,13 @@ function SPCStandardization.Start(P,shared)
   local ok,cat=pcall(catalog);if not ok then print('[SPC][B052] '..tostring(cat));return end
   if not cat.buildings[b.BuildingType] then return end
   if type(cid)~='number' then return end
-  local store=shared.CityProgressionStore;local city=Players[pid]:GetCities():FindID(cid)
-  if event=='BUILDING_ADDED_RECHECK' and store and city and store.IsRecaptured(city)then return end -- cannot credit foreign-era construction from mere presence
   local k=key(pid,cid);data.pending[k]=data.pending[k] or {pid=pid,cid=cid,buildings={}}
   data.pending[k].buildings[b.BuildingType]=data.pending[k].buildings[b.BuildingType] or {evidence=event,turn=Game.GetCurrentGameTurn()}
+ end
+ local function queueReconcile(pid,cid)
+  if type(pid)~='number' or not P.IsTestPlayer(pid) or type(cid)~='number' then return end
+  local k=key(pid,cid);local q=data.pending[k] or {pid=pid,cid=cid,buildings={}}
+  q.reconcile=true;q.turn=Game.GetCurrentGameTurn();data.pending[k]=q
  end
  function data.Flush()
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
@@ -124,20 +128,22 @@ function SPCStandardization.Start(P,shared)
     end)
     -- Unknown facts are retained for bounded retries; never guess or erase old knowledge.
     if not ok then for id,e in pairs(q.buildings) do retry(id,e) end end
-    q.buildings=keep;if next(keep)==nil then data.pending[k]=nil end
+    q.reconcile=q.reconcile and not ok and Game.GetCurrentGameTurn()<=q.turn+2
+    q.buildings=keep;if not q.reconcile and next(keep)==nil then data.pending[k]=nil end
    end
   end
   data.busy=false
  end
  function data.ReadLedger(pid,c)
   local f=facts(pid,c);assert(f.specialization=='INDUSTRY','STD_SOURCE_CHANGED')
-  local v=validate(c,read(c));assert(v.foundation==f.token,'STD_FOUNDATION_CHANGED')
+  local value,pending=read(c);assert(not pending,'STD_RECONCILIATION_PENDING')
+  local v=validate(c,value);assert(v.foundation==f.token,'STD_FOUNDATION_CHANGED')
   return clone(v)
  end
  function data.Describe(pid,c,page)
   local ok,text=pcall(function()
    assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'STD_OWNER_CHANGED')
-   local v=read(c);local cat=catalog();local lines={'B052 标准化模板 | '..tostring(c:GetName())..' | city='..c:GetID()}
+   local v,pending=read(c);local cat=catalog();local lines={'B052 标准化模板 | '..tostring(c:GetName())..' | city='..c:GetID()}
    if v==nil then lines[#lines+1]='尚无账本：非工业专业或后台初始化尚未完成。'
    else
     validate(c,v);local ids={};local enabled=0
@@ -151,15 +157,18 @@ function SPCStandardization.Start(P,shared)
      lines[#lines+1]=label..' | T'..receipt.tier..' | '..(row and row.group or '需分类迁移')
     end
    end
-   lines[#lines+1]='本次加载：首次扫描='..data.scans..' / 写入='..data.writes
+   if pending then lines[#lines+1]='当前建筑同步待完成；历史模板保留。'end
+   lines[#lines+1]='本次加载：模板同步扫描='..data.scans..' / 写入='..data.writes
    lines[#lines+1]='最近记录='..tostring(data.last[key(pid,c:GetID())] or '无新增')
    lines[#lines+1]='状态='..tostring(data.errors[key(pid,c:GetID())] or data.warnings[key(pid,c:GetID())] or '正常')
    lines[#lines+1]='只读永久模板；当前折扣另见Read discounts。'
    return table.concat(lines,'\n')
   end)
-  return ok and text or ('B052 读取未完成：'..(tostring(text):match('STD_[A-Z_]+') or 'STD_READ_FAILED'))
+  return ok and text or ('B052 读取未完成：'..(tostring(text):match('STD_[A-Z_]+') or tostring(text):match('TEMPLATES_[A-Z_]+') or 'STD_READ_FAILED'))
  end
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Standardization',function(pid,c)data.pending[key(pid,c:GetID())]=nil end)end
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Standardization',function(pid,c)
+  data.pending[key(pid,c:GetID())]=nil;queueReconcile(pid,c:GetID()) -- callback precedes return commit; no reads/writes here
+ end)end
  local function hook(src,n,fn)
   local ev=P.Field(src,n);if ev and ev.Add then ev.Add(fn);data.hooks[n]=true end
  end
@@ -177,6 +186,10 @@ function SPCStandardization.Start(P,shared)
   local player=Players[pid];if not player then return end
   for _,c in player:GetCities():Members() do P.Count('city_scan'); data.Queue(pid,c:GetID(),bid,'BUILDING_ADDED_RECHECK') end
   data.Flush()
+ end)
+ hook(Events,'CityProjectCompleted',function(pid,cid,bid)
+  local row=P.Info('Projects',bid)
+  if row and row.ProjectType=='PROJECT_SPC_CLAIM_INDUSTRY' then queueReconcile(pid,cid)end
  end)
  hook(Events,'GameCoreEventPublishComplete',data.Flush)
 end

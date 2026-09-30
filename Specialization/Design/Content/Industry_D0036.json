@@ -1,0 +1,522 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0036",
+  "specialization": "INDUSTRY",
+  "document_state": "ACCEPTED",
+  "freeze_status": "DESIGN_FROZEN",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "balance_validation": "PENDING",
+  "supported_locales": [
+    "zh_CN"
+  ],
+  "reference_locales": [
+    "en_US"
+  ],
+  "authority": "User Industry Design Talk and seven explicit freeze-review responses. Mechanical design frozen; marked provisional carryovers, balance parameters and presentation candidates retain their own maturity.",
+  "institutions": [
+    {
+      "institution_id": "IND_INST_1",
+      "specialization": "INDUSTRY",
+      "level": 1,
+      "name": {
+        "zh_CN": "匠作坊",
+        "en_US_reference": null
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "description": {
+        "zh_CN": "工匠与生产人口在此聚集，将区域的生产条件转化为熟练劳动。",
+        "en_US": null
+      },
+      "philosophy": "Craft / Production",
+      "potential_requirement": 1,
+      "existence_active_requirement": null,
+      "ability_ids": [],
+      "status": "MECHANICAL_CONTRACT_CONFIRMED_PRESENTATION_CANDIDATE",
+      "notes": "机构名非锁死名称，不阻塞冻结。"
+    },
+    {
+      "institution_id": "IND_INST_2",
+      "specialization": "INDUSTRY",
+      "level": 2,
+      "name": {
+        "zh_CN": "百工会馆",
+        "en_US_reference": null
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "description": {
+        "zh_CN": "不同工种与技术职业形成稳定分工，共同培养城市的工程人才。",
+        "en_US": null
+      },
+      "philosophy": "Division of Labor",
+      "potential_requirement": 2,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "IND_L2_DIVISION"
+      ],
+      "status": "MECHANICAL_CONTRACT_CONFIRMED_PRESENTATION_CANDIDATE",
+      "notes": "机构名非锁死名称，不阻塞冻结。"
+    },
+    {
+      "institution_id": "IND_INST_3",
+      "specialization": "INDUSTRY",
+      "level": 3,
+      "name": {
+        "zh_CN": "工程局",
+        "en_US_reference": null
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "description": {
+        "zh_CN": "工程规范、资源统筹与施工组织，使生产经验能够重复，施工力量能够部署。",
+        "en_US": null
+      },
+      "philosophy": "Industrialization",
+      "potential_requirement": 3,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "IND_L3_STANDARD",
+        "IND_L3_MOBILIZE"
+      ],
+      "status": "MECHANICAL_CONTRACT_CONFIRMED_PRESENTATION_CANDIDATE",
+      "notes": "机构名非锁死名称，不阻塞冻结。"
+    },
+    {
+      "institution_id": "IND_INST_4",
+      "specialization": "INDUSTRY",
+      "level": 4,
+      "name": {
+        "zh_CN": "土木工程总局",
+        "en_US_reference": null
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "description": {
+        "zh_CN": "成熟的工程体系组织大型建设，并将实践经验与历史积累转化为更深厚的工程能力。",
+        "en_US": null
+      },
+      "philosophy": "Monumental Engineering + Engineering Knowledge",
+      "potential_requirement": 4,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "IND_L4_MACRO",
+        "IND_L4_PRACTICE",
+        "IND_L4_TRADITION"
+      ],
+      "status": "MECHANICAL_CONTRACT_CONFIRMED_PRESENTATION_CANDIDATE",
+      "notes": "名称可单独修改，不改变机械合同。土木工程对某些未来奇观语义较窄，不阻塞冻结。"
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "IND_L2_DIVISION",
+      "institution_id": "IND_INST_2",
+      "specialization": "INDUSTRY",
+      "level": 2,
+      "name": {
+        "zh_CN": "专业分工",
+        "en_US_reference": "Division of Labor"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "tooltip": {
+        "zh_CN": "每名正在工作的工业专家额外提供2点基础大工程师点数，并受到其它伟人点数百分比加成。本城工业区及其每一级建筑各提供1点住房。",
+        "en_US": null
+      },
+      "mechanical_contract": "Retain SHARED-001 Industry housing and SHARED-002 Engineer base GPP; one ability package.",
+      "input_facts": [
+        "working specialists",
+        "Industrial Zone/building tiers per SHARED",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "Housing",
+        "base Great Engineer Points"
+      ],
+      "active_requirement": 2,
+      "potential_requirement": 2,
+      "status": "USER_CONFIRMED",
+      "notes_compatibility": ""
+    },
+    {
+      "ability_id": "IND_L3_STANDARD",
+      "institution_id": "IND_INST_3",
+      "specialization": "INDUSTRY",
+      "level": 3,
+      "name": {
+        "zh_CN": "标准化",
+        "en_US_reference": "Standardization"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "tooltip": {
+        "zh_CN": "本城将掌握的区域与建筑建设经验形成永久标准。启用三级工业能力后，本城及通过工业网络获得这些标准的城市，建设对应项目时获得生产力加成，以金币合法购买时享受折扣。标准不会因原建筑被拆除或掠夺而遗忘；网络中断或来源不再符合条件时，不再提供该来源的当前标准与效率。具体加速与折扣幅度待定。",
+        "en_US": null
+      },
+      "mechanical_contract": "Use contracts.template_knowledge and contracts.standardization_scope; usable templates=union(valid active>=3 sources learned templates). For eligible target in union: construction bonus=max(valid source construction efficiencies); purchase discount=max(valid source purchase efficiencies). Parameters independent; no per-source sum; template and highest efficiency need not share source.",
+      "input_facts": [
+        "learned templates",
+        "valid connected Industry sources ACTIVE>=3",
+        "target eligibility",
+        "source engineering practice",
+        "balance parameters"
+      ],
+      "output_effects": [
+        "ordinary construction Production bonus",
+        "legal purchase discount"
+      ],
+      "active_requirement": 3,
+      "potential_requirement": 3,
+      "status": "DESIGN_FROZEN_BALANCE_PENDING",
+      "notes_compatibility": "Provisional carryovers explicitly marked IND-REVIEW-01/02/03; conditional Faith allowance retained, must disclose if adopted. No new purchase permission."
+    },
+    {
+      "ability_id": "IND_L3_MOBILIZE",
+      "institution_id": "IND_INST_3",
+      "specialization": "INDUSTRY",
+      "level": 3,
+      "name": {
+        "zh_CN": "工程动员",
+        "en_US_reference": "Engineering Mobilization"
+      },
+      "name_status": "USER_SELECTED",
+      "tooltip": {
+        "zh_CN": "启用三级工业能力后，可通过城市项目组建前三档施工队，将生产力组织为可部署的施工力量，用于奇观建设。普通区域与建筑不再是施工目标。已组建的施工队不因来源城市专业等级下降而失去施工能力。 每座具备工程动员资格的来源城市可保有2支已完成施工队，各档均占1个名额；四级不增加名额。施工队绑定训练来源城市，转出工业专业后已有队伍仍保留，但该城不能继续补充。",
+        "en_US": null
+      },
+      "mechanical_contract": "City ACTIVE>=3 permits Team tiers1–3. Tiers4–5 additionally require ACTIVE>=4 and respective civilization engineering-tradition thresholds. contracts.teams governs creation/use; existing teams remain usable after source downgrade. Simultaneous Team inventory must satisfy contracts.team_inventory_capacity; per-source capacity2, all completed tiers cost1slot; no extra slot at IV. Ownership transitions remain separately unresolved.",
+      "input_facts": [
+        "producer ACTIVE",
+        "civilization tradition era count",
+        "project Production",
+        "tier parameters",
+        "legal Wonder target"
+      ],
+      "output_effects": [
+        "Construction Teams"
+      ],
+      "active_requirement": 3,
+      "potential_requirement": 3,
+      "status": "DESIGN_FROZEN_BALANCE_PENDING",
+      "notes_compatibility": "Five tiers are capacity tiers, not specialization levels. Megaproject is future extension only."
+    },
+    {
+      "ability_id": "IND_L4_MACRO",
+      "institution_id": "IND_INST_4",
+      "specialization": "INDUSTRY",
+      "level": 4,
+      "name": {
+        "zh_CN": "巨构工程学",
+        "en_US_reference": "Macro-Engineering"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "tooltip": {
+        "zh_CN": "本城启用四级工业能力时，建设所属时代早于本文明当前时代的奇观，获得随时代差提高的施工效率。这项加速也适用于向该奇观投入的施工队生产力。具体加成曲线与上限待定。",
+        "en_US": null
+      },
+      "mechanical_contract": "Wonder construction efficiency depends on civilization current era versus Wonder own era, not world era/start/completion era. Older relative Wonder era yields greater era-advantage; formula/curve/cap BALANCE_REQUIRED. Applies to ordinary Wonder construction and Construction Team injection into eligible target city; target city ACTIVE>=4.",
+      "input_facts": [
+        "target city ACTIVE",
+        "civilization current era",
+        "Wonder own era",
+        "construction or Team injection",
+        "balance curve"
+      ],
+      "output_effects": [
+        "Wonder construction efficiency including Team contribution"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "DESIGN_FROZEN_BALANCE_PENDING",
+      "notes_compatibility": "Do not implement a generic integer-era formula or choose modifier stacking/precision fallback in Design Talk."
+    },
+    {
+      "ability_id": "IND_L4_PRACTICE",
+      "institution_id": "IND_INST_4",
+      "specialization": "INDUSTRY",
+      "level": 4,
+      "name": {
+        "zh_CN": "工程实践",
+        "en_US_reference": null
+      },
+      "name_status": "USER_SELECTED",
+      "tooltip": {
+        "zh_CN": "本城亲自完成奇观的经验，提高本城输出标准的建设加速与购买折扣；接收这些标准的城市也能受益。计入成为工业专业或达到四级以前的建设经历，征服获得的奇观不计入。具体每座奇观的增幅与上限待定。",
+        "en_US": null
+      },
+      "mechanical_contract": "When ACTIVE>=4, source standardization construction/purchase efficiencies enhanced by count of Wonders personally completed by this city for current owning civilization; historical completion attribution retained. Output enhancement, not direct Wonder Production. Receiver uses maxima under IND_L3_STANDARD.",
+      "input_facts": [
+        "city completion history with completing civilization",
+        "current city owner",
+        "ACTIVE",
+        "independent practice balance functions"
+      ],
+      "output_effects": [
+        "source standardization construction efficiency",
+        "source standardization purchase efficiency"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "DESIGN_FROZEN_BALANCE_PENDING",
+      "notes_compatibility": "IND-REVIEW-03: strongest efficiency may come from different source than template; provisional retained decision. No direct Wonder→Wonder bonus loop."
+    },
+    {
+      "ability_id": "IND_L4_TRADITION",
+      "institution_id": "IND_INST_4",
+      "specialization": "INDUSTRY",
+      "level": 4,
+      "name": {
+        "zh_CN": "工程传统",
+        "en_US_reference": null
+      },
+      "name_status": "USER_SELECTED",
+      "tooltip": {
+        "zh_CN": "本文明亲自完成的奇观所覆盖的不同时代，构成全国的工程传统。同一时代的多座奇观只计一次，征服所得不计入。启用四级工业能力的城市，在全国工程传统达到对应门槛后，可组建第四、第五档施工队。具体门槛待定。",
+        "en_US": null
+      },
+      "mechanical_contract": "E=cardinality(distinct Wonder own eras of Wonders completed by this civilization throughout game). No completion-era substitution, no conquered Wonders, no resource/XP bar. ACTIVE>=4 producer plus E>=threshold4/5 unlocks respective teams. Historical facts persist; no ACTIVE-gated history loss.",
+      "input_facts": [
+        "civilization attributed completion history",
+        "Wonder own eras",
+        "producer ACTIVE",
+        "threshold4/5"
+      ],
+      "output_effects": [
+        "tier4/tier5 Team project unlocks"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "DESIGN_FROZEN_BALANCE_PENDING",
+      "notes_compatibility": "Local practice counts Wonders; civilization tradition counts distinct Wonder era categories. Historical achievements remain with actual completing civilization."
+    }
+  ],
+  "base_effects": [
+    {
+      "effect_id": "IND_BASE_SUPPORT",
+      "institution_id": "IND_INST_1",
+      "specialization": "INDUSTRY",
+      "level": 1,
+      "name": null,
+      "tooltip": {
+        "zh_CN": "每名正在工作的工业专家额外获得3点食物，以及相当于本城工业区基础相邻生产力的生产力。该生产力加成当前系数为1，不计政策等相邻倍率；各专业等级均保持同一公式。",
+        "en_US": null
+      },
+      "mechanical_contract": "Per working Industry specialist: additional Food=3; additional Production=K*A, A=city Industrial Zone BASE Production adjacency. K is explicit balance parameter, current1, unchanged across Lv1–4. Native specialist yields remain separate.",
+      "input_facts": [
+        "working Industry specialists",
+        "Industrial Zone BASE Production adjacency",
+        "ACTIVE",
+        "K"
+      ],
+      "output_effects": [
+        "specialist additional Food",
+        "specialist additional Production"
+      ],
+      "active_requirement": 1,
+      "potential_requirement": 1,
+      "status": "USER_CONFIRMED",
+      "notes_compatibility": "No named ability; remove old Lv3 Food upgrade and base-adjacency Gold. Never substitute Research 3F3P."
+    }
+  ],
+  "parameters": {
+    "specialist_production_K": {
+      "value": 1,
+      "status": "CURRENT_BALANCE_VALUE",
+      "scope": "all levels"
+    },
+    "specialist_food": {
+      "value": 3,
+      "status": "USER_CONFIRMED",
+      "scope": "all levels"
+    },
+    "standard_construction_bonus": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "standard_purchase_discount": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "practice_construction_increment_and_cap": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "practice_purchase_increment_and_cap": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "macro_formula_curve_cap": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "tradition_threshold_t4": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "tradition_threshold_t5": {
+      "value": null,
+      "status": "BALANCE_REQUIRED"
+    },
+    "team_capacity_reference": {
+      "value": [
+        250,
+        420,
+        750,
+        1000,
+        1360
+      ],
+      "status": "CURRENT_REFERENCE_VALUES_BALANCE_PENDING",
+      "notes": "User corrected1350 typo to1360."
+    },
+    "team_project_cost_reference": {
+      "value": [
+        280,
+        460,
+        820,
+        1100,
+        1500
+      ],
+      "status": "UNCHANGED_PREVIOUS_REFERENCE_NO_REBALANCE"
+    },
+    "team_tier_names": {
+      "value": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "status": "PRESENTATION_TBD_NONBLOCKING",
+      "notes": "Execution organizations, not era/size labels; tier5 not administrative authority."
+    }
+  },
+  "contracts": {
+    "template_knowledge": {
+      "review_marker": "IND-REVIEW-01",
+      "status": "PROVISIONAL_RETAINED_USER_CONFIRMED",
+      "learned": "Per Industry city permanent ledger, not permanent empire-wide acquisition by recipients. Any legal acquisition/completion of eligible ordinary buildings recorded; initial catch-up at first Industry Identity; completed eligible District templates added. Record before ACTIVE3; no forgetting on demolition/pillage/temporary loss. Preserve old event-incremental/no continuous full-city-scan direction.",
+      "available": "Local learned knowledge retained independently of current ability activation.",
+      "propagated": "Only currently valid ACTIVE>=3 Industry sources contribute through unchanged common topology; source loss/disconnection withdraws contribution, not learned ledger.",
+      "currently_usable": "Local ability at ACTIVE>=3 or valid reception; target eligible and template in current union. Source ledger ownership follows retained city progression contract; this is not Wonder historical credit ownership.",
+      "normalization": "Unique replacements normalize to base district/building tier or explicitly retained matching group; no duplicate unique standards.",
+      "reentry_reconciliation": {
+        "rule_id": "IND-TEMPLATE-006",
+        "status": "USER_CONFIRMED",
+        "meaning": "City construction experience that can be reliably confirmed, not personal construction by the current player.",
+        "trigger": "Lawful first Industry Identity, or confirmed return of the same former Industry city to supported-player control and restored Industry Identity.",
+        "result": "Reliable saved template history UNION currently existing eligible buildings. Eligible buildings constructed under an AI/unsupported owner count when still present at reconciliation.",
+        "initialize": "Only when reliably established that no Industry template ledger has previously initialized; existing eligible buildings form the initial ledger.",
+        "restore": "Preserve reliable saved templates, including an initialized empty ledger; do not delete knowledge when a building is currently absent, pillaged or removed.",
+        "reconcile": "Add only currently reliably confirmed eligible buildings not yet recorded. Repeated sync is idempotent; no reverse deletion.",
+        "unavailable_history": "If past template history should exist but is missing, corrupt or unreadable, keep protection. Do not disguise current-building scan as first initialization or complete historical restoration.",
+        "unobserved_foreign_history": "Do not reconstruct buildings created and removed outside supported ownership before reentry and never reliably recorded. No new AI listener or global construction ledger.",
+        "unchanged": "Catalog, Standardization efficiencies, AI scope, Wonder completion attribution and other profession Legacy policies unchanged."
+      }
+    },
+    "standardization_scope": {
+      "review_marker": "IND-REVIEW-02",
+      "status": "PROVISIONAL_RETAINED_USER_CONFIRMED",
+      "adopted_legacy_building_scope_verbatim": "**IND-NET-005 — v0.1 Discount Activation / ACCEPTED D0015** 模板记录范围与当前折扣启用范围独立维护。v0.1开启学院、剧院广场、工业区、商业中心、军营、港口、圣地、航空港、水渠、堤坝、社区、娱乐中心、水上乐园、保护区、外交区的建筑，包含特色建筑；只有目标建筑在当前游戏状态下本来就可合法使用Gold购买时，才可在满足有效工业网络与模板条件后使用Gold折扣。仍按相同区域+HD Tier匹配，除下述明确市中心分组。记录模板或开启折扣都不会新增Gold购买资格、解锁特色/宗教建筑、改变科技/市政/互斥条件；Faith价格适用IND-NET-002的条件授权。当前不能合法Gold购买的建筑仍可记录，当前不获得金币折扣；不以Faith字段推导放宽购买权限。\n\n市中心不直接按整个HD Tier0共享。v0.1只开放以下三个模板匹配组：\n\n| 组 | 具体建筑 | 共享规则 |\n|---|---|---|\n| 市中心基础组 | 纪念碑 BUILDING_MONUMENT、粮仓 BUILDING_GRANARY、磨坊 BUILDING_WATER_MILL、测量仪 BUILDING_NILOMETER_HD、法表 BUILDING_HD_TABLES_OF_LAW | 五者视为同一标准化Tier，相互匹配 |\n| 会展中心独立组 | BUILDING_EXHIBITION | 仅自身匹配 |\n| 警署独立组 | BUILDING_HD_POLICE_STATION | 仅自身匹配 |\n\n这些是本项目标准化分组，不改写HD原始Tier表。市政广场与上述七栋以外的市中心建筑，当前仅记录而不开放标准化折扣；明确列名的市中心组不自动扩充未列出的特色替代建筑。以后可以由用户批准增加开放范围或组成员，不删除既有模板、不自动将未来范围提前启用。",
+      "priority": "Legacy text defines directory/groups/eligibility, NOT old10/20/30/40 rates or low-level rewards. Both new efficiency paths use same target directory. Production building targets use that directory under legal construction eligibility; purchase effect additionally requires existing legal Gold purchase. No new purchasing permission.",
+      "districts": "Districts corresponding to retained enabled district directory gain templates on completion and are construction targets; unique replacements normalize. City Center group buildings remain buildings, not a new City Center district template or construction permission. Wonders excluded from ordinary standardization.",
+      "faith": "Retain conditional user permission if Gold-only isolation is difficult; report adoption. Only existing legal Faith purchase for same eligible target; no scope or purchase unlock expansion."
+    },
+    "network": "Connectivity only; retain common NET topology. No independent base Industrial Network reward. Template union and max efficiencies from currently valid ACTIVE>=3 sources; no fabricated low-level payload.",
+    "historical_credit": {
+      "collection": "From game start, retroactive to events before specialization or required level; preserve actual city/civilization completion attribution.",
+      "practice": "Local personally completed Wonders; conquered former-owner Wonders unavailable to new owner for practice.",
+      "tradition": "Civilization-wide distinct Wonder eras from that civilization actual completions; stays attributed to completing civilization, not acquiring owner.",
+      "era": "Wonder own era; not player era at completion, world era, or construction start era.",
+      "implementation_boundary": "History recovery/migration feasibility is future Architecture work; never invent missing history from current Wonder ownership."
+    },
+    "teams": {
+      "targets": "Only Wonders now; Megaproject future extension not currently eligible. No ordinary District/Building target.",
+      "production_gate": "ACTIVE3 tiers1–3; ACTIVE4 plus tradition thresholds tiers4–5. Existing teams remain usable after downgrade.",
+      "mechanics_retained": "Fixed-city-project creation;1 labor, consume team on confirmed legal construction, target tile requirement, preview/confirm, reject invalid without consumption, surplus wasted not transferred to next queue. No current UX implementation.",
+      "speed": "Retain prior cost scaling; capacity=floor(reference capacity * speed CostMultiplier/100); same integer display/settlement base capacity. Macro engineering is additional qualifying target effect, not a change to stored capacity.",
+      "macro_application": "Applicable target city Macro Engineering accelerates Team contribution as well as normal construction; exact curve/cap remains BALANCE_REQUIRED; no source-city downgrade cancellation.",
+      "names": "Five names TBD; keep execution-organization identity."
+    },
+    "team_inventory_capacity": {
+      "status": "USER_CONFIRMED_INITIAL_CAPACITY",
+      "scope": "per eligible Engineering Mobilization Industry source city",
+      "value": 2,
+      "slot_weight_by_tier": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "level4_extra_slots": 0,
+      "rule": "Each completed Team consumes one slot at its training Industry source until consumed or legally removed. At full capacity no additional completed Team may be created. Tier does not alter slot cost.",
+      "binding": "Completed Team permanently identifies training source for capacity accounting; source ACTIVE downgrade does not delete existing Teams. Current Engineering Mobilization qualification controls creation of new Teams.",
+      "respecialization": "Existing Teams survive leaving Industry. Source cannot replenish while not qualified as Industry; later consumption does not grant generic unit capacity to new specialization.",
+      "remaining_open": [
+        "capture",
+        "city ownership change",
+        "Team owner change",
+        "original owner disappearance"
+      ],
+      "open_status": [
+        "DESIGN_DECISION_REQUIRED_OWNERSHIP",
+        "TECHNICAL_REVIEW_REQUIRED_SOURCE_BINDING_SAVE"
+      ],
+      "intended_play": "Production banking and advance deployment to time Wonder unlocks are intended; filling old-era Wonders for engineering tradition is intended emergent gameplay.",
+      "excluded_changes": [
+        "production decay",
+        "maintenance",
+        "expiry",
+        "Wonder-era restriction",
+        "Team-production-era restriction",
+        "one-Team-per-turn",
+        "future-Wonder prohibition"
+      ]
+    }
+  },
+  "review_markers": [
+    {
+      "id": "IND-REVIEW-01",
+      "status": "PROVISIONAL_RETAINED_USER_CONFIRMED",
+      "topic": "City template ledger, learning/availability/propagation/use separation; retain prior mechanism for now, revisit later."
+    },
+    {
+      "id": "IND-REVIEW-02",
+      "status": "PROVISIONAL_RETAINED_USER_CONFIRMED",
+      "topic": "Prior activation directory and conditional Faith allowance retained; districts added; review scope later."
+    },
+    {
+      "id": "IND-REVIEW-03",
+      "status": "PROVISIONAL_RETAINED_USER_CONFIRMED",
+      "topic": "Practice strengthens output standards; independent highest construction/purchase efficiency over valid sources, template/efficiency may differ; review later."
+    }
+  ],
+  "superseded_old_rules": [
+    "Old Industry Lv3 +5Food and extra BASE-adjacency Gold removed; all levels3Food+K*A Production.",
+    "Old Industry I–IV10/20/30/40 purchase rates removed, replaced by BALANCE_REQUIRED standardization efficiencies unlocked at III.",
+    "Old Industry IV50%actual Production network output removed; Network connectivity does not promise independent payload.",
+    "Old Crew fromLv1/all five tiers immediately available removed; III tiers1–3, IV+tradition tiers4–5.",
+    "Ordinary District/Building Crew construction removed; only Wonders currently.",
+    "1350 reference is user-confirmed typo;1360 retained."
+  ],
+  "presentation_contract": {
+    "existence": "Cumulative permanent Potential>=level; ACTIVE decline does not remove institutions.",
+    "representation": "Presentation-only institution entries in Industrial Zone, not engine Buildings; excluded from ordinary building count, HD tiers, ordinary templates and other ordinary building enumerations unless expressly named.",
+    "tooltips": "Each institution describes own stage additions; technical carriers remain hidden.",
+    "performance": "Event-driven cached state + on-demand rendering; preserve av2-runtime-b076.103, no periodic scans/UI polling."
+  },
+  "freeze_review": {
+    "blocking_decisions": [],
+    "nonblocking": [
+      "balance values/curves/caps/thresholds",
+      "institution and team names",
+      "English reference/TBD",
+      "three explicitly marked provisional carryovers",
+      "future Megaproject expansion"
+    ],
+    "unchanged": [
+      "Research D0026",
+      "Culture/Commerce abilities, including their own reception/convergence rules",
+      "common Network topology",
+      "shared progression"
+    ],
+    "compatibility": "This content is not executable. Native era/history/modifier precision and Team bonus settlement are future feasibility contracts, no silent substitute design."
+  },
+  "previous_content_revision": "D0031",
+  "revision_note": "D0032 closes capacity scope/value/tier/source-respecialization only; remaining Industry rules and review markers unchanged."
+}

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="166">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="167">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B139.166: automatic GC load-gate fallback; gameplay rules unchanged.</Description>
+    <Description>B140.167: Industry template lifecycle and reliable-history/current-building reconciliation.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

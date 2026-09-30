@@ -15,18 +15,18 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0035",
+    "design": "D0036",
     "research": "D0031",
-    "industry": "D0032",
+    "industry": "D0036",
     "culture": "D0029",
     "commerce": "D0032",
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0355",
-    "runtime": "B139.166 / modinfo166",
+    "status": "S0356",
+    "runtime": "B140.167 / modinfo167",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -921,12 +921,36 @@
       "kind": "section",
       "selector": "### 公共更新与临时状态接入约束",
       "reason": "Shared update/lifetime contract and accepted post-stabilization GC change, risk-matched regression, comparison and bounded re-investigation constraints; reuse only for affected paths, no new investigation authorization."
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B140.167 — Industry template lifecycle and reconciliation",
+      "reason": "Current complete scoped state/failure/update/validation/rollback contract"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "selector": "## 7. Industry / Industrial Zone — IND",
+      "reason": "Current Industry authority and IND-TEMPLATE-006 accepted qualification/exceptions"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0036.json",
+      "kind": "json",
+      "selector": "/contracts/template_knowledge",
+      "reason": "Complete city-experience initialization/restoration/reconciliation/corruption contract; directory unchanged"
+    },
+    {
+      "path": "DevelopmentTests/test_b140_templates.py",
+      "kind": "full",
+      "reason": "Scoped actual Store/Claim/Standardization/Discount A-G tests, fixture dependencies retained explicitly"
     }
   ],
   "dependencies": [
     "B103/B104/B107 scoped native founding/loss/return evidence",
     "D0035/A0161 progression and new-save cutover contract; explicit user slice1 authorization",
-    "User-approved one-turn Claim plan after B123 and explicit implementation authorization"
+    "User-approved one-turn Claim plan after B123 and explicit implementation authorization",
+    "D0036 IND-TEMPLATE-006; user authorized minimal persistent template lifecycle; B140 current slice"
   ],
   "old_writers": {
     "preserve": [
@@ -938,7 +962,8 @@
       "Production old Binding/Completion/Journal/Flow listeners/load writers disabled; guards also block unsupported cities",
       "Compact new-game registry and independent city Game records; current facts/investment/templates use that authority",
       "Existing module-owned exit and proven original-owner recapture worker; current ACTIVE/Network only",
-      "Exact Claim project completion writer; versioned record-local timer/receipt; native prototype uses disjoint project ID"
+      "Exact Claim project completion writer; versioned record-local timer/receipt; native prototype uses disjoint project ID",
+      "B140 Store owns initialization marker+ledger atomic ack; Standardization owns local union scan; existing Discount source consumer/owned exit unchanged"
     ]
   },
   "conditional_context": [
@@ -981,21 +1006,20 @@
     }
   ],
   "non_scope": [
-    "old-save conversion, destruction retirement, unassigned recapture, F; no further abilities",
-    "cross-owner benefit inheritance",
-    "profession-specific historical ledger migration",
-    "F Academic Tradition",
-    "Design changes",
-    "AI specialization activation/planner",
-    "multiplayer support"
+    "Unobserved foreign construction history, AI specialization or new global building history",
+    "Template catalog, discount or construction efficiency changes",
+    "Unknown acquisition or raze/new generation, old-save conversion",
+    "Other profession Legacy or cross-owner Academic Tradition",
+    "F implementation, multiplayer"
   ],
   "validation": {
     "local": [
-      "test_b138_gc.py: actual coordinator/Gameplay/UI, localplayer4,128MiB/2T,17gates,18failure cases,reentry,ring8/log24,syntax/modinfo165 exact files",
-      "test_b138_update_contract.py: six actual RuntimeWork/GPP/UI contract groups; no externalDB/historical-wrapper/stress",
-      "context/selectors/hash/link/diff; no full gameplay regression"
+      "test_b140_templates.py: actual A-G, atomic failure, actual discount sample/carrier/owned withdrawal; LOCAL_SIMULATION_PASS",
+      "test_b136_progression.py: existing scoped four-profession E2 save/return/investment/governor/isolation; LOCAL_SIMULATION_PASS",
+      "All Lua syntax/modinfo version + D0036 narrow semantic diff/frozen bytes + current context/hash/links; STATIC_CONFIRMED",
+      "test_b052_standardization.py not completed: external DB lacks required HD_DUMMY_BUILDINGS; no weakened assertion or native claim"
     ],
-    "user": "B139 scoped automatic collection/early function evidence retained. New16 no-Specialization old-save images show T148-152 process+1.53GB (different world, no causal subtraction). User accepts mitigation; bounded engineering work closed, original criteria not all PASS, residual attribution non-blocking; no new test requested."
+    "user": "One current-slice Industry first identity/reentry current building -> template -> existing network discount -> save/full restart. USER_GAME_TEST_REQUIRED; no performance long test."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
@@ -1003,15 +1027,15 @@
   ],
   "result": {
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
-    "implementation": "B129.156 acknowledged bounded cold-load sync LOCAL_SIMULATION_PASS; native pending",
+    "implementation": "B140.167 scoped template lifecycle/union implemented and locally tested; native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "Template-only model boundary per explicit user stop condition; review minimal durable initialization marker, preserve missing-history protection. F plan may proceed independently; no implementation/deployment.",
-    "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
+    "next": "B140 single Industry initialization/reconciliation + existing discount + cold-load user test after safe deployment; E2 partial. F planning independent, not authorized implementation.",
+    "scope_review": "D0036 user-approved template city experience recorded; no catalog/formula/AI/GC or other Legacy scope changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
     "side_next_plan": "B123 prototype accepted and reused; no empty-queue task",
     "claim_native": "B126 core and B129 scoped reload USER_GAME_TEST_PASS; exact hidden-list visual evidence not expanded",
-    "closure_review": "STATIC_CONFIRMED direct V3 routing; E2 remains partial; UNASSIGNED return deferred, new generation and unknown acquisition held. Next plan only.",
+    "closure_review": "E2 partial; unassigned return/Claim prior scoped PASS retained. New template path local PASS only; unknown acquisition and new generation unchanged; F plan independent.",
     "memory_investigation": "B134 18 images: eight native manual collect calls succeeded and reduced count; T45 second post-GC251.51 vs T39 post250.98 MiB with nonuniform sampling. Reclaimable allocation evidenced, no global memory-fix PASS; differences in conquest and manual-GC conditions prevent native attribution to network filter. isrunning unknown, timing limited. Scoped follow-up: Cross notification cost confirmed, but false includes turn/load late-check risk; restrict next proposal to explicitly pure-local-worker/focus. Network temporary capture construction separately confirmed and deferred; actual-branch Lua55 probe confirms targeted dispatch/sample behavior, not native bytes or whole-memory fix.",
     "memory_fix": "B135.162 pure worker/focus provenance and exact Cross dispatch guard LOCAL_SIMULATION_PASS; turn/load/mixed/unknown and reentrant causes preserved. Only targeted path cost reduction established; no native allocation/memory improvement PASS. B135 scoped user response PASS; memory remains open. T42 native GC618.63->298.57MiB; process10.69->10.38GB. Local weak-reference probe: duplicate Capture outputs do not accumulate in tested stable-input scenarios; actual EffectiveFacts allocations remain unmeasured.",
     "facts_allocation_proposal": "Proposal only: scalar fresh governor gate + no clone for read-only anchor.first; final output clone retained. 774 in-memory differential checkpoints LOCAL_SIMULATION_PASS; real Probe/EffectiveFacts with native/foundation fixtures. No runtime edits/native byte claim; selected old mocks need explicit test adaptation, no runtime fallback.",

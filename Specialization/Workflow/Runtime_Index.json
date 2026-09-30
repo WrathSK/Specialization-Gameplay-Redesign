@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "3273075ceda1ca66c43287206db52635c326a5322ad364de9145da4cda27274f",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
+      "sha256": "2fb141e4a36f755387ce7d66d0ce8446c3fbbb12f3455e5ed27617642b4703c0",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,14 +426,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "09815a7bf529f36713f3bf8b76ac0745e34c43dfc87250697b30399c63a369c2",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
+      "sha256": "90e54a1112a4277955bd7dbf1af5e2e4c3f6c6ec58aa3d33237416f7dce8519e",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
     },
     "Mod/Standardization.lua": {
-      "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
+      "sha256": "ae19a55baebd50e883c47f779f475d4322ae46b136565dfc94b743aeac3e7a3b",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
     },
     "Mod/StandardizationCatalog.lua": {
       "sha256": "df4f28def5d5bca9ed1bc947b89a46149dc6b19d475a34122063b51974c80bfa",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "573298ba2824cea1d785c2375b1965d374e5f657b336f9d09fa7b63d7d87bd0a",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+      "sha256": "2e545a0f4a5a61dddba6ccb34bd82074cf12a8ab4b77434abc8ba3e1ac69d3a6",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
