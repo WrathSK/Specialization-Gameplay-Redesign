@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0358",
+    "status": "S0359",
     "runtime": "B141.168 / modinfo168",
     "military": "D0034"
   },
@@ -1041,7 +1041,7 @@
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
     "implementation": "B140 scoped lifecycle LOCAL_SIMULATION_PASS retained; B141 UI report entry L1 static/local PASS, native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "After safe B141 UI deployment, resume existing B140 template/discount/cold-load test from already-claimed save; no reconquest/reclaim or separate UI test, no F implementation.",
+    "next": "Resume existing template/discount/cold-load user test from already-claimed save via B141 visible Templates button; no reconquest/reclaim, no F implementation.",
     "scope_review": "D0036 user-approved template city experience recorded; no catalog/formula/AI/GC or other Legacy scope changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",

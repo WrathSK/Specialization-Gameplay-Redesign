@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0358",
+    "status": "S0359",
     "runtime": "B141.168 / modinfo168",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55",
+  "runtime_commit": "d69c823eb778f117c7481287d53fdc5c1bf2c293",
   "current_batch": "E2_TEMPLATE_REPORT_ENTRY_REPAIR_NATIVE_PENDING",
-  "next_batch": "After safe B141 UI deployment, resume existing B140 template/discount/cold-load test from already-claimed save; no reconquest/reclaim or separate UI test, no F implementation.",
+  "next_batch": "Resume existing template/discount/cold-load user test from already-claimed save via B141 visible Templates button; no reconquest/reclaim, no F implementation.",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B140.167 deployed;171/171 MATCH;source58dd0cd;receipt B140.167-58dd0cd-playtest.json DEVELOP_ACTIVE;B139/stable recovery retained;OS game exit verified",
+  "live": "B141.168 deployed;171/171 MATCH;source d69c823;receipt B141.168-d69c823-playtest.json DEVELOP_ACTIVE;B140/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0358: user-authorized hidden Standardization report button repair, exact UI callback/request/read route and free slot reviewed; L1 static/local simulation PASS. B140 gameplay/save modules unchanged; native template acceptance pending.",
+  "context_review_status": "S0359: user-authorized hidden Standardization report button repair, exact UI callback/request/read route and free slot reviewed; L1 static/local simulation PASS. B140 gameplay/save modules unchanged; native template acceptance pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

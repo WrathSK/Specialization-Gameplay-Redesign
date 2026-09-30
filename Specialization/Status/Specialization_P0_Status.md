@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0358
-Implementation Build: develop P0-B-141.168 / modinfo168 TEMPLATE_REPORT_ENTRY_LOCAL_PASS_NATIVE_PENDING; live B140.167 last verified171/171 MATCH; stable B069.96
+Status Revision: S0359
+Implementation Build: develop P0-B-141.168 / modinfo168 TEMPLATE_REPORT_ENTRY_LOCAL_PASS_NATIVE_PENDING; live B141.168 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
@@ -15,7 +15,7 @@ Work State: E2_TEMPLATE_RECONCILIATION_NATIVE_PENDING
 
 从当前已认领存档继续，选中工业城→专业化诊断→“标准化模板”，确认合格建筑与历史保护状态，随后按[B140单一验收流程](../Architecture/v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)检查既有折扣及冷加载。不需重新征服/认领，不增加独立UI或内存长测。
 
-B141.168 / modinfo168本地完成，尚未部署；live上一记录B140.167/source58dd0cd，171/171 MATCH，receipt B140.167-58dd0cd-playtest.json DEVELOP_ACTIVE。提交后按W0003游戏退出/hash/恢复门禁部署，实际receipt另记。main B069.96不变。
+B141.168 / modinfo168已按W0003部署，source d69c823，171/171 MATCH，receipt B141.168-d69c823-playtest.json DEVELOP_ACTIVE。OS确认游戏退出，B140恢复包与稳定桥保留。main B069.96不变；原生按钮/模板验收仍待用户续测。
 
 D0036接受规则与[B140支持矩阵/本地A–G证据](../Architecture/v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)保留；旧B052外部DB缺表的未完成结论不改。E2仍partial。P0-F不依赖工业模板可独立准备计划，但未授权实施；[性能专项结项及约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。
 

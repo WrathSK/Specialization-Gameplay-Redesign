@@ -1343,3 +1343,5 @@ B140部署记录：source `58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55`；receipt `
 W0004 L1：XML可见/中文caption/退役空位、修改Lua语法及modinfo168 STATIC_CONFIRMED；临时原生形状fixture执行实际callback、request closure和Gameplay只读route，验证首次Page1、重复Page2、换城Page1、无城/外国城不发请求及无永久写入，LOCAL_SIMULATION_PASS。没有运行玩法全回归/stress；Store、Standardization、Discount、Gameplay字节与B140提交相同，继承B140已记录的定向证据。模拟不是真实UI布局PASS。
 
 用户从当前已认领存档继续，不需重做征服/认领：选中该工业城，打开专业化诊断，点击“标准化模板”（E2往返左侧），必要时重复点击翻页；确认AI期间已有合格建筑在模板中且无历史不可用，再检查既有工业网络折扣，保存、完整退出和冷加载后复核。仅恢复读入口，没有改变保存格式、永久记录、Design、GC或推进F。实际部署状态见Status/receipt。
+
+B141部署记录：source `d69c823eb778f117c7481287d53fdc5c1bf2c293`，receipt `B141.168-d69c823-playtest.json` DEVELOP_ACTIVE，171/171 MATCH；OS游戏退出确认，B140恢复点保留，main未改。等待用户从已认领存档续测，不扩大PASS。
