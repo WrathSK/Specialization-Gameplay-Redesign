@@ -2,12 +2,12 @@
 
 Document Owner: Codex
 Status Revision: S0339
-Implementation Build: develop P0-B-135.162 / modinfo162 PURE_WORKER_CROSS_SCOPE_LOCAL_PASS; live last verified B134.161; stable B069.96
+Implementation Build: develop P0-B-135.162 / modinfo162 PURE_WORKER_CROSS_SCOPE_LOCAL_PASS; live B135.162 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B135_LOCAL_PASS_PENDING_DEPLOYMENT
+Work State: B135_DEPLOYED_AWAITING_MINIMAL_USER_CHECK
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,11 +15,11 @@ Work State: B135_LOCAL_PASS_PENDING_DEPLOYMENT
 
 当前源码B135.162 / modinfo162：[纯worker/focus通知定域修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135162--authorized-pure-worker-notification-scope)已获用户授权并完成，STATIC/LOCAL_SIMULATION_PASS。只有明确纯本玩家worker/focus且FactsChanged=false跳过GPP触发的Cross Audit；混合/未知/初始化/总督/turn/load保留。发送中新原因及失败合并不丢失；独立样本同回合5→7、当前资格/晚到事实补核对通过。其它consumer、永久状态、退出/返回/Claim及GC路径未修改，不冒充整套E2重新验收。
 
-最近已核实运行包仍B134.161，source d9e69ba，receipt B134.161-d9e69ba-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；main稳定B069.96，恢复包保留。本批待完成commit/push及安全部署，不从源码版本推断外部运行包。
+已按W0003部署B135.162，source db2fc2a，receipt B135.162-db2fc2a-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；每次切换前OS只读确认游戏退出。B134及stable恢复包保留；main仍B069.96，未启动游戏、无promotion。
 
 [B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)所测诊断调用/读数PASS：回收后趋稳及同回合再次回收说明可回收分配重要，Lua不是本Mod独占。最小GC采样已完成，无需重复长测；没有授权自动GC/调参/周期清理。B135只证实消除一条冗余扫描/构造路径，未量化实机内存收益，MEMORY_CAUSE_OPEN保留。
 
-下一边界：部署后一次最小同回合专家/焦点收益响应＋正常过1回合；若方便再顺手观察真实BASE变化，不要求造局/征服/长测/点击GC。无新Gameplay决定；等待本批原生反馈，不继续其它优化或F。
+下一边界：一次最小同回合专家/焦点收益响应＋正常过1回合；若方便再顺手观察真实BASE变化，不要求造局/征服/长测/点击GC。无新Gameplay决定；等待本批原生反馈，不继续其它优化或F。
 
 
 ## 历史阶段记录

@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "d9e69bada0ae1123aa0716ff9e5961cdc647e8a8",
-  "current_batch": "B135_LOCAL_PASS_PENDING_DEPLOYMENT",
-  "next_batch": "Deploy authorized B135 after commit/push and verified game exit; await minimal worker/focus yield-response observation. No long memory retest, automatic GC, other optimization or F.",
+  "runtime_commit": "db2fc2ac7f21b4e294c831bc52dcb0ebd247593b",
+  "current_batch": "B135_DEPLOYED_AWAITING_MINIMAL_USER_CHECK",
+  "next_batch": "Await minimal B135 worker/focus yield-response observation. No long memory retest, automatic GC, other optimization or F.",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B134.161 deployed;170/170 MATCH;source d9e69ba;receipt B134.161-d9e69ba-playtest.json DEVELOP_ACTIVE;stable/B133 recovery retained;OS verified game exit",
+  "live": "B135.162 deployed;170/170 MATCH;source db2fc2a;receipt B135.162-db2fc2a-playtest.json DEVELOP_ACTIVE;stable/B134 recovery retained;OS verified game exit",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B135 authorized pure-local-worker/focus provenance plus exact Cross guard; coalescing/retry/reentry/turn-load/unknown and real Cross sample/late-facts targeted LOCAL_SIMULATION_PASS. Runtime deployment pending; no native memory attribution.",
+  "context_review_status": "B135 authorized pure-local-worker/focus provenance plus exact Cross guard; coalescing/retry/reentry/turn-load/unknown and real Cross sample/late-facts targeted LOCAL_SIMULATION_PASS. B135 deployment verified170/170 MATCH; no native memory attribution.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
