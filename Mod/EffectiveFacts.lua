@@ -23,7 +23,8 @@ function SPCEffectiveFacts.Start(P,shared)
   else
    assert(kinds[f.specialization] and f.potential==1 and type(f.first)=='table','EFFECTIVE_FOUNDATION_INVALID')
    if ledger~=nil then
-    local anchor={owner=pid,cityID=f.cityID,token=f.token,first=clone(f.first),specialization=f.specialization}
+    -- Comparison only: borrow first here; the returned facts below still deep-copy it.
+    local anchor={owner=pid,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization}
     assert(type(ledger)=='table' and ledger.schema==1 and same(ledger.anchor,anchor),'INVESTMENT_ANCHOR_CHANGED')
     assert(type(ledger.investments)=='table','INVESTMENT_LEDGER_INVALID')
     local units={}
@@ -47,11 +48,10 @@ function SPCEffectiveFacts.Start(P,shared)
   out.ledgerStatus=ledger and 'PRESENT' or 'ABSENT_NO_WRITES'
   out.active=out.potential;out.activeStatus='KNOWN'
   if out.potential>1 then
-   local gate=P.CityRoleFacts(city)
-   if gate.owner==pid and gate.cityID==f.cityID and gate.governorGateStatus=='KNOWN'
-    and type(gate.governorLevelCeiling)=='number' and gate.governorLevelCeiling%1==0
-    and gate.governorLevelCeiling>=1 and gate.governorLevelCeiling<=4 then
-    out.active=math.min(out.potential,gate.governorLevelCeiling)
+   local gateOwner,gateCityID,gateStatus,ceiling=P.GovernorGate(city)
+   if gateOwner==pid and gateCityID==f.cityID and gateStatus=='KNOWN'
+    and type(ceiling)=='number' and ceiling%1==0 and ceiling>=1 and ceiling<=4 then
+    out.active=math.min(out.potential,ceiling)
    else out.active=nil;out.activeStatus='UNKNOWN_GOVERNOR' end
   end
   return out

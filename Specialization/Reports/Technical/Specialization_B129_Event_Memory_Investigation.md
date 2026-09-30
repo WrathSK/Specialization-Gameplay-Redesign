@@ -583,3 +583,40 @@ Network Capture每次需要当前资格；相同路线也可能对应同回合�
 - 本轮用户测试：无。正式实施后若需要原生复核，限制为一座已有Potential>1城的当前总督门槛/收益响应，合并正常验证；不要求重复内存长测。原生性能仍以实际后续证据判断，不用模拟宣告内存已修复。
 
 本轮停止点：提案与本地候选证据已准备，等待该窄实现授权。B135既有验收有效；MEMORY_CAUSE_OPEN保留，不自动进入其它P0/F。
+
+
+## B136.163 — authorized fresh governor facts optimization
+
+2026-09-29：用户明确授权实施上一节两项窄优化。正式源码B136.163/modinfo163；本地验证完成，原生收益/内存影响未据此升级为PASS。Design D0035/A0161及玩法/保存合同不变。
+
+### 实际修改与兼容边界
+
+- [Probe](../../../Mod/Probe.lua)：共用六属性判定器；新的GovernorGate返回owner/cityID/status/ceiling四标量。每次仍fresh读取六属性，保留nil/0/1、getter失败、control缺失及不一致状态；没有跨调用缓存。CityRoleFacts/FocusProbe仍提供原有完整诊断。
+- [EffectiveFacts](../../../Mod/EffectiveFacts.lua)：Potential>1走窄总督入口；投资anchor.first仅在只读精确比较中借用。最终facts深拷贝、receipt去重、pending/revision/身份验证均保留。
+- modinfo只升163及说明文字，Probe标记B136.163；UUID/文件集合不变。没有UI/Data/Network/GC/退出writer/永久保存格式改动。
+
+STATIC_CONFIRMED（代码证据）：合格Potential>1事实读取不再构造role/keys/values三表、cityKey字符串及局部prop闭包；正常首都可读路径少5次无关诊断getter。存在ledger时省anchor.first深拷贝。六属性仍每次读取，城市扫描、事件、发布与写入次数没有因此被限制；没有每城每回合一次或同路线跳检查。
+
+精确调用审阅覆盖EffectiveFacts.Read的26处源码调用点/21文件（包含薄封装及历史入口，不等于26个当前活动consumer）：投资/进度/继承、普通收益consumer、Gameplay诊断、RuntimeWork、CurrentSpecializationFacts、NetworkInput和Dialogue UI。没有调用方依赖旧gate表；UNKNOWN与throw仍分别处理。RuntimeWork批内共享最终facts、CurrentSpecializationFacts再clone first、InvestmentAction复制自身anchor、NetworkInput仅相同reference暂时hold均不变。Store返回历史投资anchor与当前城市first的投影也经测试核对，不把省拷贝扩展到Store或最终输出。
+
+### 定向验证与证据范围
+
+W0004 L3仅针对共享资格与保存消费者，未跑全历史/泛化stress/DB或启动游戏。当前执行环境：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14`；需Lupa lua55及本仓库Git34b92cc。无需外部游戏数据库。
+
+| 检查 | 结果与边界 |
+|---|---|
+| [test_b136_facts.py](../../../DevelopmentTests/test_b136_facts.py) | **847检查点LOCAL_SIMULATION_PASS**（本地模拟，不是实机）：真实新旧Probe/EffectiveFacts、完整Role/Focus诊断、六属性729组合及24异常、P0–P4/pending/坏ledger/输入隔离；含15个真实NetworkInput/Bridge同回合、UNKNOWN、owner、reference、load/旧epoch对照。原生getter、Flow/ledger/Store读取为fixture |
+| 六属性与getter口径 | 729+24案每次六属性各读一次；正常首都路径仅少约定5getter，其余getter计数相同。三表/闭包减少由代码结构确认，不换算字节或耗时 |
+| [test_b136_progression.py](../../../DevelopmentTests/test_b136_progression.py)旧adapter集成 | 只借旧fixture声明，实际当前模块：四专业P1/P2/P4共12组import/read/boot；投资P2→3、重复确认、三处写失败恢复；四专业退出/foreign hydration/缺token严序返回、当前总督/继续投资/boot；错误hydration、中途读档、退出失败仍HELD。此部分明确使用StartLegacyTest，不冒充新V3全生命周期 |
+| 同一runner正式V3 | 另一个Lua实例运行正式Start：单城P2，当前总督1→UNKNOWN→4、输出修改不影响authority、boot不增写且记录逐值保留。不是所有V3生命周期或原生冷加载认证 |
+| 语法/包/定域 | 两模块Lua语法、modinfo163精确170文件集合通过；Mod差异只Probe/EffectiveFacts/modinfo。其它源码字节与34b92cc一致 |
+
+9份旧测试的CityRoleFacts引用已分类：两份真实诊断测试无需更改；其余被选用的mock在新runner中明确接真实六属性/GovernorGate，原断言不因优化被弱化。旧测试文件没有修改，runtime没有测试兼容fallback。未重跑的精确carrier清单/DB、Claim全套、B135通知响应等继承各自既有证据，不报告本轮全量重新PASS。
+
+独立只读复核未发现语义/副本/调用方不兼容。GC诊断默认关闭且仍只有手动请求；本批没有collect、回收调参、清账本或新增计数器。内存根因继续MEMORY_CAUSE_OPEN：确认减少了所述构造，尚无原生MiB/回合收益量化。
+
+### 最小原生确认与停止点
+
+不派发重复长测。下次正常验证顺带用一座已有Potential>1城：确认包标记B136.163；调离总督时ACTIVE回到1而Potential/收据保留；总督重新建立且满足门槛后，ACTIVE和已有收益按当前资格恢复。无需再次征服、投资、手动GC或重复专门内存长测。若异常则保留报告停止，不猜测补历史。
+
+代码回滚可从B135 Git提交/运行包恢复本批读取路径，未新增保存格式；实际运行包切换仍使用既有receipt与安全恢复流程。部署状态以Status/Authority及外部receipt为准，源码提交不等于已部署。完成本批后停止，不进入F或其它玩法。

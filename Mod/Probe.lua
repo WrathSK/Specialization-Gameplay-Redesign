@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-135.162"
+P.VERSION = "P0-B-136.163"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -311,6 +311,36 @@ function P.Snapshot(context, playerID, reason, cityID)
   return table.concat(lines,"\n"),complete
 end
 
+-- B136: fresh scalar gate shared by normal facts and on-demand role diagnostics.
+-- No cache: all six properties must retain their nil/invalid/inconsistent semantics.
+local function governorProperty(city,key)
+  local ok,value=P.Call(city,"GetProperty",key)
+  return ok and (value==nil or value==0 or value==1),value
+end
+local function governorGate(city)
+  local a,control=governorProperty(city,"SPC_P0_GOV_CONTROL_A007")
+  local b,present=governorProperty(city,"SPC_P0_GOV_PRESENT")
+  local c,established=governorProperty(city,"SPC_P0_GOV_ESTABLISHED")
+  local d,two=governorProperty(city,"SPC_P0_GOV_REQ_2")
+  local e,three=governorProperty(city,"SPC_P0_GOV_REQ_3")
+  local f,four=governorProperty(city,"SPC_P0_GOV_REQ_4")
+  if not (a and b and c and d and e and f) or control~=1 then return "UNKNOWN",nil end
+  present,established,two,three,four=present==1,established==1,two==1,three==1,four==1
+  if (established and not present) or ((two or three or four) and not established)
+    or (four and not three) or (three and not two) then
+    return "UNKNOWN_INCONSISTENT_PROPERTIES",nil
+  end
+  return "KNOWN",four and 4 or three and 3 or two and 2 or 1
+end
+function P.GovernorGate(city)
+  local ok,owner=P.Call(city,"GetOwner")
+  if not ok or not P.IsTestPlayer(owner) then return nil,nil,"UNKNOWN",nil end
+  local idOK,id=P.Call(city,"GetID")
+  if not idOK or type(id)~="number" then return nil,nil,"UNKNOWN",nil end
+  local status,ceiling=governorGate(city)
+  return owner,id,status,ceiling
+end
+
 -- Selected-city role facts only. No history reconstruction, defaults or writes.
 function P.CityRoleFacts(city)
   local facts={status="PARTIAL_ROLE_FACTS",sourceContext="GAMEPLAY_PROBE",
@@ -342,24 +372,7 @@ function P.CityRoleFacts(city)
       -- A noncapital may be Commerce; unknown specialization must not become NO.
     end
   end
-  local keys={"SPC_P0_GOV_CONTROL_A007","SPC_P0_GOV_PRESENT","SPC_P0_GOV_ESTABLISHED",
-    "SPC_P0_GOV_REQ_2","SPC_P0_GOV_REQ_3","SPC_P0_GOV_REQ_4"}
-  local values={};local valid=true
-  for i,key in ipairs(keys) do
-    local success,value=prop(key);values[i]=value
-    if not success or (value~=nil and value~=0 and value~=1) then valid=false end
-  end
-  if valid and values[1]==1 then
-    local present,established=values[2]==1,values[3]==1
-    local two,three,four=values[4]==1,values[5]==1,values[6]==1
-    if (established and not present) or ((two or three or four) and not established)
-      or (four and not three) or (three and not two) then
-      facts.governorGateStatus="UNKNOWN_INCONSISTENT_PROPERTIES"
-    else
-      facts.governorGateStatus="KNOWN"
-      facts.governorLevelCeiling=four and 4 or three and 3 or two and 2 or 1
-    end
-  end
+  facts.governorGateStatus,facts.governorLevelCeiling=governorGate(city)
   return facts
 end
 

@@ -241,9 +241,9 @@
       "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "ebf8eaa6a60dc6c5c13211553bbacafbe969d939fff2784923c92a675e086faf",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B125 authorized entry/city-state/diagnostic repair; static/local only, native pending"
+      "sha256": "969b4ab656c6cb59de0d343438d3d0c42eb9a563f6ed96353ebbe9b81ef4283d",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B136 user-authorized fresh governor scalar gate/read-only anchor comparison; direct caller review, 847 differential/Network checks and scoped E2/V3 LOCAL_SIMULATION_PASS; native pending"
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -366,9 +366,9 @@
       "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/Probe.lua": {
-      "sha256": "586ecccca14aa9346dcdc50b8ffc6ece0bb80856a5d90d9847d37982b7032c38",
+      "sha256": "488f53d3655b67809dfaadeaa6ef5211c351229efd80d7631edc0ec954bcce73",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
+      "provenance": "B136 user-authorized fresh governor scalar gate/read-only anchor comparison; direct caller review, 847 differential/Network checks and scoped E2/V3 LOCAL_SIMULATION_PASS; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "39452191317f2d0ed18104149a084057e89738ec26978c8056909a6021d0615b",
+      "sha256": "9e582b8e5f6e79a802b903c4076b29ac9883f65aa3efe4fd76b400202005f678",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
+      "provenance": "B136 user-authorized fresh governor scalar gate/read-only anchor comparison; direct caller review, 847 differential/Network checks and scoped E2/V3 LOCAL_SIMULATION_PASS; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
