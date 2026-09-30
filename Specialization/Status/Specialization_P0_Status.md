@@ -1,25 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0338
-Implementation Build: develop P0-B-134.161 / modinfo161 MANUAL_GC_NATIVE_OBSERVED_NETWORK_SCOPE_LOCAL_COMPLETE; live B134.161 verified170/170 MATCH; stable B069.96
+Status Revision: S0339
+Implementation Build: develop P0-B-135.162 / modinfo162 PURE_WORKER_CROSS_SCOPE_LOCAL_PASS; live last verified B134.161; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B134_ALLOCATION_REVIEW_COMPLETE_AWAITING_SCOPE_APPROVAL
+Work State: B135_LOCAL_PASS_PENDING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 [B129认领读档续接](Validation/Results/Specialization_B129_Claim_Reload_Pass.md)所测商业场景USER_GAME_TEST_PASS保留；E2仍partial，工业模板初始化/销毁同址新代/未知取得边界不扩大，不进入F。B132所测专家/建筑收益响应PASS保留。
 
-当前源码B134.161 / modinfo161：[手动GC与三事件网络范围修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134161--manual-full-gc-diagnostic-and-scoped-network-capture)定向LOCAL_SIMULATION_PASS。仅右键明确执行GC，左键读取；不自动GC/调参、不清永久记录。网络保留本玩家同回合变化、全国依赖、UNKNOWN、退出/返回/Claim/load路径。旧Batch A夹具失败未记PASS。
+当前源码B135.162 / modinfo162：[纯worker/focus通知定域修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135162--authorized-pure-worker-notification-scope)已获用户授权并完成，STATIC/LOCAL_SIMULATION_PASS。只有明确纯本玩家worker/focus且FactsChanged=false跳过GPP触发的Cross Audit；混合/未知/初始化/总督/turn/load保留。发送中新原因及失败合并不丢失；独立样本同回合5→7、当前资格/晚到事实补核对通过。其它consumer、永久状态、退出/返回/Claim及GC路径未修改，不冒充整套E2重新验收。
 
-最近已核实运行包B134.161，source d9e69ba，receipt B134.161-d9e69ba-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；main稳定B069.96，stable/B133恢复包保留。本次只调查及维护文档，未重新核验/部署运行包、未启动游戏。
+最近已核实运行包仍B134.161，source d9e69ba，receipt B134.161-d9e69ba-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；main稳定B069.96，恢复包保留。本批待完成commit/push及安全部署，不从源码版本推断外部运行包。
 
-[B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)：9组18图、T39–45、8次手动调用成功且Lua读数下降，诊断所测范围USER_GAME_TEST_PASS。T41–44回收后约317–320MiB；T45第二次251.51，接近T39的250.98。支持可回收分配积累；不能将不同采样条件的+0.53MiB当精确保留斜率。环境2013.2.0 r13768、运行状态未知、计时精度未证；Lua不是本Mod独占。无征服＋多次GC使本次不能单独归因网络修复，内存根因仍OPEN。最小采样任务完成，无需重复长测或立即补测。
+[B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)所测诊断调用/读数PASS：回收后趋稳及同回合再次回收说明可回收分配重要，Lua不是本Mod独占。最小GC采样已完成，无需重复长测；没有授权自动GC/调参/周期清理。B135只证实消除一条冗余扫描/构造路径，未量化实机内存收益，MEMORY_CAUSE_OPEN保留。
 
-[定域分配调查与最小下一方案](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-allocation-follow-up--scoped-investigation-and-next-proposal)完成：GPP通知仍触发全国ResearchCross检查，真实分派/样本小探针确认其局部成本（LOCAL_SIMULATION，非原生内存收益）。false也含turn/load，不能直接跳过以免丢晚到资格复核；下一方案只标记纯本玩家worker/focus并过滤该Cross调用，混合/未知/turn/load保留，等待两处入口实施授权。独立样本与退出不动；网络重复Capture主要形成临时对象，未见该链追加完整历史。无需新用户测试；无自动GC、清理或F。
+下一边界：部署后一次最小同回合专家/焦点收益响应＋正常过1回合；若方便再顺手观察真实BASE变化，不要求造局/征服/长测/点击GC。无新Gameplay决定；等待本批原生反馈，不继续其它优化或F。
+
 
 ## 历史阶段记录
 

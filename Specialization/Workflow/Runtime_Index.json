@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "214b21409079a978afb28aa78f97c6faebda46f5f8a1635f3f3e97bf8e1ef380",
+      "sha256": "cd6ca0d975c53e70591d542292f21e8aa88f6d31dced489367422e66b7738a66",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
+      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
     },
     "Mod/Probe.lua": {
-      "sha256": "4bb3595d1d6f0d9b598a70fb1b7e33d36db84b5ccf7ddb6a6f530059d430aecd",
+      "sha256": "586ecccca14aa9346dcdc50b8ffc6ece0bb80856a5d90d9847d37982b7032c38",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
+      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6a230c2b1661423662e08c09d6211a0771f0f937e464d3cc385eaf42055e5e4e",
+      "sha256": "39452191317f2d0ed18104149a084057e89738ec26978c8056909a6021d0615b",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
+      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -531,9 +531,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/GPPRefresh.lua": {
-      "sha256": "fec3ee5b0c8ecfdeb3b707011fcd06a2040916b9868b4be00b83c9febf761888",
+      "sha256": "914e53cc361199500b7bdc6d7e723d98fd9605d5046ed401f15cb8115e9ea58b",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B132 authorized narrow event/cache optimization; targeted L2 PASS, native pending"
+      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
     },
     "Mod/UI/GPPRefresh.xml": {
       "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",

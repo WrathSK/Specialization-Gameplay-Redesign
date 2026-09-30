@@ -442,3 +442,40 @@ Lua数值是当前Gameplay调用范围的MiB，进程列是Activity Monitor显�
 [Lua5.1官方接口](https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage)未定义isrunning，[Lua5.2](https://www.lua.org/manual/5.2/manual.html#pdf-collectgarbage)才列出该选项。因此“未知”可以是接口差异，不能据此认定自动GC停止；本机`2013.2.0 r13768`仍不映射为这些标准版本。公开Civ VI社区扩展的[HavokScript源码](https://github.com/Wild-W/CivilizationVI_CommunityExtension/blob/master/HavokScript.cpp)从Windows DLL导入接口，只是该项目的实现证据，未给出本机macOS构建的GC策略/第二次额外释放语义。没有据外部资料确认引擎具体回收预算。setpause/setstepmul是修改操作，不能当无副作用查询来探测默认值；本次未调用。
 
 调查结论：已经有足够依据提出上述**纯worker/focus通知定域消除**，不用等所有内存来源完全归因。与此同时，回收后的微小保留增长及宿主GC行为仍未关闭。当前仅调查/方案记录完成，等待该最小段实施授权；无新用户测试、无自动GC/缓存清理/永久账本删除，也不进入其它玩法批次。
+
+
+## B135.162 — authorized pure worker notification scope
+
+2026-09-29用户明确“授权修复”，实施上节两入口保守方案。不是扩大单行FactsChanged门控，也不修改GC策略、Gameplay/Design或推进其它P0。W0004按L2定向验证，并覆盖直接相关的通知顺序/失败边界；不运行全历史或大规模stress。
+
+### 实现与保留边界
+
+- `UI/GPPRefresh.lua`在原待处理批次上增加一个瞬时`WorkerOnly`原因位。仅全部原因均为已知本玩家worker/focus时为true；初始化、总督、turn/load、UNKNOWN或混合均false。本地/外方判断要求非负整数；不猜player0。现有source观测标签没有改写，非法正小数等仍可能被旧标签记成foreign，但实际路由保守处理，不以该标签作为过滤权威。
+- 发送前摘出FactsChanged/WorkerOnly快照，清空待处理原因以接纳同步回入；成功不清新批次，失败将旧原因OR FactsChanged / AND WorkerOnly合回。无新事件连续失败仍最多3次；真实新事件沿用原重试恢复。修复原成功发送后可能吞掉回入总督FactsChanged的窗口。
+- 同回合turn/load去重仍保留；已有pending时降为保守，发送中到达时保留下一批。没有把所有turn/load的FactsChanged强制true，没有新增轮询、每帧事实扫描或hover请求。
+- `Gameplay.lua`只在`WorkerOnly == true AND FactsChanged == false`时跳过这一条`ResearchCross.Audit`。缺失/错误类型/矛盾标记继续检查，其它六consumer及Network/Housing条件不变。Cross独立采样、当前资格、原生事件、投资/Claim刷新和精确退出均不动。
+- 版本标记升B135.162/modinfo162。无新增carrier、Property、保存schema、计数器、账本清理或Network Capture优化。GC手动诊断仍仅明确右键触发，不转为自动回收。
+
+### 验证（STATIC_CONFIRMED / LOCAL_SIMULATION_PASS）
+
+新增`DevelopmentTests/test_b135_gpp_scope.py`；命令：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python python3 DevelopmentTests/test_b135_gpp_scope.py`。需要Lupa lua55及Git基线d26f3f9；只复用旧Cross fixture声明，不执行旧压力/DB/版本wrapper。
+
+| 定向场景 | 结果 |
+|---|---|
+| 非零本玩家ID、纯worker/focus合并、外方、nil/字符串/负数/小数/NaN/∞ | 已知纯本地才skip，未知保守；空闲/关闭无发送 |
+| worker与总督/未知/turn/load双向合并、同回合重复通知 | 保守原因不被覆盖，turn/load不额外唤醒Network/Housing |
+| 发送中同步回入，两方向成功/失败、三次失败后真实事件恢复 | 新原因保留，失败批次合回，不递归发送 |
+| 真实Gameplay分支与B134的10种请求形状对照 | 只有精确true/false组合少一次Cross；其它consumer调用相同 |
+| 两城真实Cross writer fixture | 纯worker批次0次Audit/城市访问/载体预检/facts读；保守批次仍1 Audit、2城市、86载体预检、2facts读；同值无写入 |
+| 同回合独立BASE10→14；UNKNOWN；总督退出/恢复 | Science5→7仍及时更新；UNKNOWN不误清；资格按当前事实重算 |
+| 原生回调先到、BASE样本UNCHANGED、资格后到的模拟 | 较晚保守GPP通知仍重新核对，未丢失fallback |
+| load generation / 当前reference变更 | 旧样本拒绝；不靠旧snapshot重放 |
+| 精确文件diff、Lua编译、modinfo文件集 | 只有两入口+版本标记变化；其它action分支字节一致 |
+
+E2退出/返回/Claim、Network、GC及永久writer未变，继承既有具名证据；**未重新执行整套E2或宣称其全部实机PASS**。静态diff与模拟不证明Civ VI宿主事件顺序和内存下降幅度。预期减少的是纯worker/focus路径的完整Cross Audit及对应城市访问/短命对象构造，保留turn/load检查，不把每回合总扫描下降作为已证明结果。
+
+### 最小用户验证与停止点
+
+待部署后，可在已有科研III/IV城同一回合增减工作专家、切换焦点，确认专家相关收益正常响应、跨学科研究效果没有丢失；正常过1回合确认仍正常。若当前局面方便改变一个合格区域的BASE邻接，可顺手确认学院跨学科收益更新；不要求另造测试城市或为此解锁政策。GC不需要点击，无需征服、再做长测或重复已完成的GC基线测试。异常时停止并提交该城收益/跨学科报告即可。
+
+原生响应与实际分配/进程改善仍USER_GAME_TEST_REQUIRED；PT001 MEMORY_CAUSE_OPEN保留。Network重复Capture和其它构造候选仍后置，不自动继续下一优化或F。部署结果只按实际receipt记录于Status/Authority。

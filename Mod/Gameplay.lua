@@ -344,7 +344,8 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
+    -- Cross has no worker/focus input. Missing/mixed/contradictory provenance retains the fallback.
+    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     return

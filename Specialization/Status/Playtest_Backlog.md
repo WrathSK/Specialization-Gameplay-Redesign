@@ -159,3 +159,7 @@ B133对照完成：10组20图已归档。T45累计建筑检查−2.17%，城市�
 
 
 PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-allocation-follow-up--scoped-investigation-and-next-proposal)为明确标记纯本玩家worker/focus，再只跳过该Cross检查；false本身包含turn/load，晚到资格复核不得误删。两城单行候选探针3→2 Audit、258→172预检、独立同回合样本仍5→7，只证明局部路径成本；最终保守方案未实施/验证，不报原生内存比例。等待实施授权，当前不新增用户测试/长测，不修改GC策略。
+
+
+### PT001 B135 — pure worker notification scope
+[授权实施与定向验证](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135162--authorized-pure-worker-notification-scope)已完成，B135.162本地PASS；只跳过纯本地worker/focus的Cross检查，turn/load等保守fallback及重入/失败合并保持。部署后一次现有科研城同回合增减专家/切换焦点→确认收益→正常过1T即可；若方便顺手改变合格区域BASE看跨学科更新，不为此造局。无需GC/征服/长测；原生响应和内存改善未宣称PASS。B134诊断采样待办不重开。
