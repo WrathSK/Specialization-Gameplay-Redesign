@@ -622,3 +622,21 @@ W0004 L3仅针对共享资格与保存消费者，未跑全历史/泛化stress/D
 代码回滚可从B135 Git提交/运行包恢复本批读取路径，未新增保存格式；实际运行包切换仍使用既有receipt与安全恢复流程。部署状态以Status/Authority及外部receipt为准，源码提交不等于已部署。完成本批后停止，不进入F或其它玩法。
 
 部署记录：B136.163已按W0003完成安全切换，source `3b31173`，receipt `B136.163-3b31173-playtest.json` 为DEVELOP_ACTIVE；运行包与源码170/170 MATCH，digest `1a33f0fc4c3f46895de938084130600e6e520dfc51f90673000f8078e5906dbf`。两次切换前均由OS只读进程检查确认游戏退出，未启动游戏。B135完整包及stable恢复点保留，无pending transaction；main保持B069.96。原生确认仍待用户正常验证。
+
+
+### B136 native governor response and memory results
+
+2026-09-29：用户反馈“内存依旧增长，总督调离后报告可以确认ACTIVE回到1，新总督建立后能力恢复”。逐张查看四组八张原图，并按持续授权移动到外部`Specialization/Status/Validation/Evidence/B136_Governor_Response_Memory/`，保留原名；`manifest.json`记录组别、角色、bytes及SHA256，移动前后8/8一致。截图原件不进入Git。
+
+| 组 / 截图时间 | 游戏回合 | Civilization VI进程内存（Activity Monitor） |
+|---|---:|---:|
+| 1 / 19:52:04 | 39 | 10.21 GB |
+| 2 / 19:53:53 | 40 | 10.60 GB |
+| 3 / 19:54:36 | 41 | 10.66 GB |
+| 4 / 19:55:59 | 42 | 10.79 GB |
+
+四张进程图PID均为46101；T39→42观察值增加0.58 GB。游戏图未展示完整专业诊断、build标记或Lua/GC读数；本次包关联依据上一节已验证部署及用户在B136测试后的反馈，不能称为截图独立确认版本。组3可见选中ABERDEEN (TEST)、科研2级入口和“没有生产任何东西”，不据此推断全过程操作、所有城市队列或具体总督切换时刻。
+
+- **USER_GAME_TEST_PASS**（用户实机所述场景）：总督调离后ACTIVE回1，新总督建立后能力恢复；关闭B136最小总督响应待办。此结果依据用户明确确认，不冒充截图中已逐字段读取；Potential/收据逐值、Network、四专业全覆盖、ownership及save/load未由本次重新验收。
+- **MEMORY_CAUSE_OPEN**：持续增长仍在，B136不能记为内存修复PASS。已有代码证据中的无用构造减少仍有效，但本批既不能证明实机增长率改善，也不能由进程曲线断言优化没有任何作用。无本次Lua回收前后数据，不能区分新增临时对象与持续保留，不能把0.58 GB归给本Mod或特定consumer；不要求补图或重复长测。
+- 下一建议（未授权实施）：沿已确认的Network Capture→EffectiveFacts→CityFlow/Store路径，定域检查剩余副本的必要隔离与重复构造，先形成可证实的窄调查/对照方案。相同路线不能跳过当前资格采集；同回合ACTIVE变化反证保留。不得为降低计数牺牲UNKNOWN/owner/load语义，或将手动GC转为周期策略。当前只归档结果，不修改源码、不部署、不进入F。

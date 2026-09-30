@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0342
-Implementation Build: develop P0-B-136.163 / modinfo163 FACTS_OPTIMIZATION_LOCAL_PASS_NATIVE_PENDING; live B136.163 verified170/170 MATCH; stable B069.96
+Status Revision: S0343
+Implementation Build: develop P0-B-136.163 / modinfo163 GOVERNOR_RESPONSE_USER_PASS_MEMORY_OPEN; live B136.163 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B136_DEPLOYED_NATIVE_PENDING_MEMORY_OPEN
+Work State: B136_GOVERNOR_RESPONSE_USER_PASS_MEMORY_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -21,7 +21,7 @@ Work State: B136_DEPLOYED_NATIVE_PENDING_MEMORY_OPEN
 
 [B135原生反馈及后续定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：6组12图已hash归档；用户确认建筑/专家收益正常及正常过回合，所述响应USER_GAME_TEST_PASS。T39填满专家后10.38GB→T42 10.69GB；T42手动GC618.63→298.57MiB，进程回落10.38GB。持续增长未解决，但大量可回收分配再次确认；缺起始/逐操作/逐回合Lua计数，不能归因每建筑/专家或扩展为Cross III全覆盖。无需补图/重复长测/GC。
 
-最小原生确认并入下次正常验证：一座已有Potential>1城调离/重新建立总督，检查ACTIVE按当前门槛变化、Potential保留及收益恢复。无需重复内存长测、GC或征服。MEMORY_CAUSE_OPEN仍保留。本批实施及W0003部署完成；等待上述原生确认，不进入F。
+[B136原生反馈](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b136-native-governor-response-and-memory-results)：用户确认调离总督ACTIVE回1、新总督建立后能力恢复，所述响应USER_GAME_TEST_PASS（用户实机），关闭该最小待办；四组八图hash归档，T39→42进程10.21→10.79GB，增长未解决。图中无完整诊断/Lua/GC读数，不扩展Potential/收据、Network或保存验收。MEMORY_CAUSE_OPEN；无需补图/重复长测。下一建议仅为剩余事实副本定域调查，未授权新实施/自动GC，不进入F。
 
 
 ## 历史阶段记录
