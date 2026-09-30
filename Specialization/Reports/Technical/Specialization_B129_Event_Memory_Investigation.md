@@ -529,3 +529,57 @@ E2退出/返回/Claim、Network、GC及永久writer未变，继承既有具名�
 限制：EffectiveFacts和原生getter是mock，40次调用不是其实际分配量；弱引用未覆盖内部临时字符串/数组、私有派生view或原生内存。两次显式GC仅在进程外Lua55运行，未改变Civ VI。没有原生调用频率、MiB/回合、总内存归因或整体无泄漏结论。Bridge/Input源码SHA256分别为`1b1f3aa8dcb5321c13892cff0e3f5ed9a864736a4e2ba09ae4c90aa2ba8fd94c`、`e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a`。
 
 下一建议：沿Network Capture→实际EffectiveFacts/总督事实链确认哪些临时副本可避免，同时保留同回合真实变化、UNKNOWN、ownership及load。**不能直接因路线相同就跳过Capture**，上表最后一案已显示该路径仍负责发现资格变化。当前只完成证据/只读定位，未授权或实施新优化；不把手动GC转为自动补丁，不进入其它P0或F。
+
+
+## B135 follow-up — fresh governor facts with less temporary construction
+
+2026-09-29：用户授权推进上节的定向调查/窄方案，并询问GC为何不依赖分配来源定位也能回收。本轮仅在进程外Lua中比较候选，正式源码仍B135.162；以下为下一实施提案，不是已上线修复。未改Design、永久记录、运行包或GC策略，不派发重复长测。
+
+### GC解释与证据边界
+
+GC判断对象是否仍可通过程序引用访问；归因调查要判断哪个调用分配了它，两者所需信息不同。中间表/字符串失去引用后，即使诊断没有记录创建者，收集器仍可回收；被缓存/账本持续引用的对象不会因此消失。普通Lua采用自动回收，完整collect请求完成一个回收周期；增量回收则分摊工作。依据：[Lua 5.1内存管理](https://www.lua.org/manual/5.1/manual.html#2.10)、[collectgarbage接口](https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage)。这说明通用原理，不证明Civ VI内嵌`2013.2.0 r13768`的具体自动调度、参数或Lua版本等同该手册。
+
+当前[诊断实现](../../../Mod/PerformanceCounters.lua)只在明确手动请求时保护调用collect；不停止/重启GC、不调参数、不清Property/永久账本/缓存。B135的618.63→298.57MiB显示当时至少有显著可回收分配；不是本Mod独占计量，不能证明全部增长来自本Mod、不存在仍被引用的增长，或自动GC没有运行。进程内存另含引擎/原生资源；Lua回收与OS显示下降不要求一一对应。手动完整回收可能集中造成停顿，因此保留诊断用途，不据有效就自动每回合执行。
+
+### 已核对的实际链路与候选
+
+Network Capture每次需要当前资格；相同路线也可能对应同回合不同ACTIVE，上节反例仍有效。[NetworkInput](../../../Mod/NetworkInput.lua)→[EffectiveFacts](../../../Mod/EffectiveFacts.lua)在Potential>1时调用[Probe.CityRoleFacts](../../../Mod/Probe.lua)，目前同时构造完整角色诊断。EffectiveFacts实际上只消费owner、cityID、governorGateStatus、governorLevelCeiling。
+
+建议下一批只做：
+
+1. Probe抽出一份共用的六属性总督判定逻辑，增加返回上述四项标量的窄读取入口。EffectiveFacts走该入口；CityRoleFacts/FocusProbe继续保留完整诊断及现有输出，二者共用判定逻辑，不复制两套规则。
+2. EffectiveFacts的投资anchor只读比较借用`f.first`，省去该处深拷贝；保留anchor容器、精确键集递归比较和全部验证。最终输出`out=clone(f)`及嵌套隔离继续保留，不能把借入foundation直接返回或修改。
+
+| 口径 | 预期变化 | 明确保留 |
+|---|---|---|
+| 身份校验通过、进入六属性判定的Potential>1读取 | 少role/keys/values三张临时表及cityKey拼接；六属性判定不建临时数组 | 六个总督Property每次fresh读取，P.Call错误保护、玩家资格/城市身份及UNKNOWN一致性判定 |
+| 首都可正常读取的该路径 | 少5次无关诊断getter：旧legacy字段、GetCities、GetCapitalCity、capital GetID/GetOwner | 各种失败/缺失场景按实际路径计数，不能统一宣称每次都少5次 |
+| 存在投资ledger时 | 少anchor.first深拷贝（若有嵌套则包含其副本） | receipt去重表、pending/revision检查、Store副本及最终facts深拷贝 |
+| 事件、扫描、发布、写入 | 不以减少这些次数作为本批收益 | 同回合真实变化、Network freshness/UNKNOWN/owner/load、退出/返回/Claim不改 |
+
+这是已识别的无用构造，值得按窄范围实施；尚不能量化MiB/回合，也不能宣称它是截图中全部增长的来源。CityFlow/Store内部其它复制未由本轮探针量化。Signature临时数组微优化、跨调用事实缓存、一次/城/回合限流、相同路线直接跳Capture、周期GC均不纳入此提案。
+
+### 最小进程外候选验证
+
+`/tmp/spc_b135_facts_candidate_probe.py`，SHA256 `bf94988ed01bc6c27a7e2a3e8c58402bf69d0738423b246419b9bc4b98e4780c`；命令：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python python3 /tmp/spc_b135_facts_candidate_probe.py`。脚本读取真实Probe/EffectiveFacts，在内存文本中替换候选后分别载入Lua55；不修改仓库模块。临时脚本不是未来恢复必需材料；本节保留结果、候选边界与复现条件。
+
+**LOCAL_SIMULATION_PASS：774个对照检查点**，不是stress或实机性能测试：
+
+- 729种六属性nil/0/1组合：旧/候选CityRoleFacts完整诊断、EffectiveFacts结果或错误一致。
+- 24种非法类型/值或getter失败；9种owner/id/ledger错误；输入foundation/ledger不被修改、返回嵌套副本隔离。
+- 同一实例连续KNOWN4→KNOWN1→UNKNOWN→KNOWN3→foreign拒绝→original立即ACTIVE3，共6点，无跨次缓存。
+- first额外键/缺失/改值/嵌套缺失，以及foundation first异常，共6种一致拒绝；不弱化投资身份比较。
+- fixture正常首都路径验证上述5个getter省去；六个总督Property各仍读取1次。
+
+源码基线SHA256：Probe `586ecccca14aa9346dcdc50b8ffc6ece0bb80856a5d90d9847d37982b7032c38`；EffectiveFacts `ebf8eaa6a60dc6c5c13211553bbacafbe969d939fff2784923c92a675e086faf`。原生getter、foundation/ledger由fixture提供；未集成全Store/Network/真实事件顺序，未测原生分配字节、耗时或进程内存收益。所述三表减少另有代码结构依据，不把getter次数换算为字节。
+
+### 下一实施范围与验收门槛（待授权）
+
+- 正式行为修改限Probe/EffectiveFacts；必要版本标记、定向测试及现有文档/index同步随批次进行。不改Network生命周期或任何writer/保存schema。
+- EffectiveFacts扇出涉及普通收益consumer、投资/进度读取、NetworkInput、CurrentSpecializationFacts及诊断。输出字段/错误/副本合同必须不变；正式实施再核对实际直接调用点并做相应定向回归，不把本轮fixture称为全部consumer已验收。
+- 已发现9份测试引用CityRoleFacts，包括E2/recapture/transition的总督mock。实际选用fixture须改接新窄入口或真实六属性，保留原断言；不要在runtime加静默旧mock fallback，也不为本批全改历史wrapper。
+- 按W0004针对共享资格读取选择L3相关验证：新增入口差分、P0/P1/P2–P4、正常/损坏投资记录、输入非修改及输出隔离；实际Network同路线同回合ACTIVE改变、临时UNKNOWN、ownership/reload引用边界；选定E2投资/退出/返回回归。只运行相关路径，不做全历史或泛化stress。
+- 完成定义：行为/拒绝条件不变、上述临时构造和无关读取确实移除；没有新跨事件缓存、持久写入或自动GC。回滚只还原本批读取路径，无保存格式迁移。若无法保持未知/损坏记录语义则停止该优化，不降低保护。
+- 本轮用户测试：无。正式实施后若需要原生复核，限制为一座已有Potential>1城的当前总督门槛/收益响应，合并正常验证；不要求重复内存长测。原生性能仍以实际后续证据判断，不用模拟宣告内存已修复。
+
+本轮停止点：提案与本地候选证据已准备，等待该窄实现授权。B135既有验收有效；MEMORY_CAUSE_OPEN保留，不自动进入其它P0/F。

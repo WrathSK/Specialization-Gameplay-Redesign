@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0340
+Status Revision: S0341
 Implementation Build: develop P0-B-135.162 / modinfo162 WORKER_RESPONSE_NATIVE_PASS_MEMORY_OPEN; live B135.162 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B135_NATIVE_RESPONSE_RECORDED_MEMORY_CAUSE_OPEN
+Work State: B135_FACTS_ALLOCATION_PROPOSAL_READY_MEMORY_CAUSE_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -21,7 +21,7 @@ Work State: B135_NATIVE_RESPONSE_RECORDED_MEMORY_CAUSE_OPEN
 
 [B135原生反馈及后续定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：6组12图已hash归档；用户确认建筑/专家收益正常及正常过回合，所述响应USER_GAME_TEST_PASS。T39填满专家后10.38GB→T42 10.69GB；T42手动GC618.63→298.57MiB，进程回落10.38GB。持续增长未解决，但大量可回收分配再次确认；缺起始/逐操作/逐回合Lua计数，不能归因每建筑/专家或扩展为Cross III全覆盖。无需补图/重复长测/GC。
 
-仅/tmp本地小探针确认：2城20次相同路线Receive仍20次Capture/40次facts mock读取、0次derive；旧20个Capture输出回收，只留当前结果。60次Current查询不Capture；同回合ACTIVE变化仍需同路线Refresh发现。下一建议是沿实际事实链减少重复构造的窄方案，保留当前资格/UNKNOWN/ownership/load，不以路线未变直接省检查；暂无新实施授权，不改GC或推进F。本轮仅归档/调查/文档，未重新核验或部署运行包。
+[获授权定向调查及下一窄提案](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-follow-up--fresh-governor-facts-with-less-temporary-construction)完成。提案为将Probe总督资格改为fresh标量读取、anchor.first仅只读借用；保留最终facts副本、所有验证和当前Network采集。/tmp候选774检查点输出/错误一致，LOCAL_SIMULATION_PASS；可省合格Potential>1事实读取中的三张诊断临时表及正常路径5个无关getter，不是原生内存收益证明。暂无正式实现授权；不改GC、不派发重复长测、不进入F。本轮仅调查/提案/文档，源码和运行包仍B135，未重新核验或部署外部包。
 
 
 ## 历史阶段记录
