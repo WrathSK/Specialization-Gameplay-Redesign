@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0347",
+    "status": "S0348",
     "runtime": "B138.165 / modinfo165",
     "military": "D0034"
   },
@@ -1020,6 +1020,6 @@
     "facts_copy_investigation": "S0344 LOCAL_SIMULATION_PASS: actual production V3 P0/P1/P2/P4 x20 reads, tracked return tables40/80/160/160 all0 after collect; one held final output2 then0. Real investment old worker/envelope generations0/0, current13/13. Actual Network private/compat old generations0/0, current19/8 with fixture facts. No memory-byte claim. Static Network OFF review requires explicit experiment, owned withdrawal, sender closure and restore; not ready implementation.",
     "network_isolation": "B137.164 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS: 24 normal-mode baseline comparisons, exact five-owner withdrawal/failures, Bridge all-ingress silence, three UI pending/late/recreate closure, real dispatch/panel handshake. Mixed Lv3 failed-exit auto-retry found/fixed. No permanent writes/GC; native update is in network_isolation_native; per-family Modifier proof remains limited. Deployed source7b11908,171/171 MATCH;receipt B137.164-7b11908-playtest.json;priorB136/stable recovery retained.",
     "network_isolation_native": "B137 14 images reviewed: READY/UI3/3/withdraw5/5 and T39-41 counted Network silence scoped PASS; no per-family effect verification. NORMAL/isolated Lua net +195.66/+121.42MiB, process both +0.22GB. No new user test required now; memory cause open. Mod/HD Lua audit found no direct stop/tune GC path; engine scheduling remains unknown. No runtime change.",
-    "bounded_stabilization": "B138 GC trial STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; 128MiB/2T/>2s latch; bounded logs/results. Separate update-path constraints+six regressions; no business algorithm change. Native acceptance/deployment pending; no root-cause closure."
+    "bounded_stabilization": "B138 GC trial STATIC_CONFIRMED / LOCAL_SIMULATION_PASS; 128MiB/2T/>2s latch; bounded logs/results. Separate update-path constraints+six regressions; no business algorithm change. Deployed sourceec1c69d,171/171 MATCH,receipt B138.165-ec1c69d-playtest.json; B137/stable rollback retained. Native acceptance pending; no root-cause closure."
   }
 }

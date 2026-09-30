@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0347",
+    "status": "S0348",
     "runtime": "B138.165 / modinfo165",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "7b1190857e5db923533539f09fbbfb5809cb47bc",
+  "runtime_commit": "ec1c69d48aac67844a51d67903661642834be5e2",
   "current_batch": "B138_STABILIZATION_NATIVE_REQUIRED",
   "next_batch": "One integrated B138 stabilization acceptance: fixed save normal Network, at most10T/4 automatic collections. User authorized trial/local validation/deployment; no further gameplay/F. Unblock feature planning only on fixed mitigation/correctness criteria; remaining allocation efficiency stays open.",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B137.164 deployed;171/171 MATCH;source7b11908;receipt B137.164-7b11908-playtest.json DEVELOP_ACTIVE;B136/stable recovery retained;OS game exit verified",
+  "live": "B138.165 deployed;171/171 MATCH;sourceec1c69d;receipt B138.165-ec1c69d-playtest.json DEVELOP_ACTIVE;B137/stable recovery verified;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0347: authorized bounded GC trial code and targeted simulation reviewed; public-update UNKNOWN withdrawal counterexample retained, no business algorithm changes. Source95c0893, native/deployment pending; Design unchanged.",
+  "context_review_status": "S0348: B138 GC implementation95c0893 and independent public-update constraints/ec1c69d targeted tests reviewed. Deployment171/171 MATCH, rollback retained. Native integrated acceptance required; mitigation/root cause not marked PASS. Design/main unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

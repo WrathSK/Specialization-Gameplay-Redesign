@@ -844,3 +844,7 @@ Bridge的Refresh/Verified/Receive、旧fresh/Current查询、Rebuild/CheckEviden
 | GC阶段、计时能力与暂停 | native full collect有证据，但自动phase新；isrunning未知、0/1秒计时 | 持续SKIP、缺clock、错误/超时、用户可感暂停 | 失败只阻塞本缓解；下一动作定域，不改Gameplay |
 
 回滚：面板右键先关闭本加载自动调用；需要恢复包时由既有deployment receipt恢复B137（不手改运行目录）。无新永久数据格式，不删除旧恢复点。
+
+### B138 deployment checkpoint
+
+GC实现独立提交`95c0893`；公共更新约束/定向回归/固定验收合同提交`ec1c69d`（没有业务更新算法改动）。OS进程检查确认游戏/启动器退出后，经既有工具恢复stable桥再激活B138；source `ec1c69d48aac67844a51d67903661642834be5e2`，receipt `B138.165-ec1c69d-playtest.json`，DEVELOP_ACTIVE，**171/171 MATCH**。B137完整恢复包与stable恢复点核验保留，无pending事务，无main/Design变化。当前仍USER_GAME_TEST_REQUIRED；没有运行游戏或宣称原生稳定化通过。

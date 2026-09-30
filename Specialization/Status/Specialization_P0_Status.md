@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0347
-Implementation Build: develop P0-B-138.165 / modinfo165 STABILIZATION_LOCAL_PASS; live B137.164 last verified171/171 MATCH, B138 deployment pending; stable B069.96
+Status Revision: S0348
+Implementation Build: develop P0-B-138.165 / modinfo165 STABILIZATION_LOCAL_PASS; live B138.165 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -15,7 +15,7 @@ Work State: B138_STABILIZATION_NATIVE_REQUIRED
 
 [公共更新接入约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)及6组定向回归独立于GC。没有安全的公共业务删减：foreign回合仍承担UNKNOWN失城补撤销；本轮不改业务更新算法，不把缓解归因为结构提速。B129/B132/B136既有功能实机范围与[B137隔离证据](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137-native-isolation-results-and-gc-hypothesis)保留。
 
-源码B138待部署；当前运行包仍为最近核验B137/source7b11908，receipt B137.164-7b11908-playtest.json（DEVELOP_ACTIVE），171/171 MATCH。本条不声称本轮已重新核包。部署必须确认游戏退出，保留B137/stable恢复点；main/stable B069.96不变。
+B138已部署：source ec1c69d，receipt B138.165-ec1c69d-playtest.json（DEVELOP_ACTIVE），171/171 MATCH；OS确认游戏退出，B137完整恢复包/stable恢复点核验保留。GC实现95c0893、更新约束/验收合同ec1c69d分开提交；main/stable B069.96不变。
 
 唯一待验：同存档正常Network最多10T/4次自动触发；起末稳定进程读数＋最后报告，末尾一次专家移出/移回。具体固定通过/失败标准在B138合同，出现锁停/持续SKIP提前停止；不要求几十图或重跑旧长测。
 
