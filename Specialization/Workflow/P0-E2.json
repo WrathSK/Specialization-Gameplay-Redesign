@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0353",
+    "status": "S0354",
     "runtime": "B139.166 / modinfo166",
     "military": "D0034"
   },
@@ -920,7 +920,7 @@
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### 公共更新与临时状态接入约束",
-      "reason": "Current public update/fact/lifecycle constraints; scoped non-gameplay architecture supplement."
+      "reason": "Shared update/lifetime contract and accepted post-stabilization GC change, risk-matched regression, comparison and bounded re-investigation constraints; reuse only for affected paths, no new investigation authorization."
     }
   ],
   "dependencies": [

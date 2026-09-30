@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0353
+Status Revision: S0354
 Implementation Build: develop P0-B-139.166 / modinfo166 AUTO_GC_NATIVE_OBSERVED; live B139.166 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
@@ -15,9 +15,9 @@ Work State: B139_STABILIZATION_ACCEPTED_RESIDUAL_EFFICIENCY_OPEN
 
 用户接受现有优化，**有界性能稳定化工程阶段完成；剩余分配效率/进程归因开放，不再阻塞功能规划**。B139自动触发/释放有效、较静态后段平台和操作场景无明显卡顿的既有证据保留。不是原固定判据全PASS：64.79>64MiB的原窗口、操作负载残余增长、未完整覆盖的严格功能/关闭会话检查不改写。用户早期专家/总督/投资收益正常只作限定证据，后续收益未仔细观察；E2仍partial。
 
-不再要求重复长测；上一轮原生内存分类建议暂缓，不新增监控/GC调参。仅在明显卡顿、崩溃/影响游玩的内存压力、GC失败或功能回归时重新定域调查；[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)与已有修复继续有效。下一允许动作是按既有边界准备功能计划；新功能实施/F须单独授权，本轮不推进。
+不再要求重复长测；上一轮原生内存分类建议暂缓，不新增监控/GC调参。后续重开只按[定域触发与退出规则](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)，不将未归因增长挂回专项验收门禁；[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)与已有修复继续有效。已恢复功能开发节奏，本轮已补齐后续接入/验证约束，无新增性能专项阻塞。下一允许动作是按既有边界准备功能计划；新功能实施/F须单独授权，本轮不推进。
 
-B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮仅文档，未重新核验外部运行包/部署。B138/stable恢复点及main B069.96不变。
+B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮只读核对该receipt仍为DEVELOP_ACTIVE/source1104bde/modinfo166，未重新做外部包逐文件核验或部署。B138/stable恢复点及main B069.96不变。
 
 ## 历史阶段记录
 
