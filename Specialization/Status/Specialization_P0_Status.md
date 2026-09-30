@@ -2,12 +2,12 @@
 
 Document Owner: Codex
 Status Revision: S0342
-Implementation Build: develop P0-B-136.163 / modinfo163 FACTS_OPTIMIZATION_LOCAL_PASS_NATIVE_PENDING; live B135.162 verified170/170 MATCH; stable B069.96
+Implementation Build: develop P0-B-136.163 / modinfo163 FACTS_OPTIMIZATION_LOCAL_PASS_NATIVE_PENDING; live B136.163 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B136_FACTS_OPTIMIZATION_LOCAL_PASS_NATIVE_PENDING
+Work State: B136_DEPLOYED_NATIVE_PENDING_MEMORY_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,13 +15,13 @@ Work State: B136_FACTS_OPTIMIZATION_LOCAL_PASS_NATIVE_PENDING
 
 当前源码B136.163 / modinfo163：[获授权fresh总督事实优化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b136163--authorized-fresh-governor-facts-optimization)已完成，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS。仅Probe窄总督读取、EffectiveFacts只读anchor借用及版本标记；最终输出隔离、同回合fresh资格、UNKNOWN、Network生命周期及保存writer保留。847新旧差分/真实Network检查，E2旧adapter投资/返回定向回归＋单城正式V3读取/boot通过；不冒充原生内存收益或全V3验收。B135纯worker通知修复保留。
 
-已按W0003部署B135.162，source db2fc2a，receipt B135.162-db2fc2a-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；每次切换前OS只读确认游戏退出。B134及stable恢复包保留；main仍B069.96，未启动游戏、无promotion。
+已按W0003部署B136.163，source 3b31173，receipt B136.163-3b31173-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；两次切换前OS只读确认游戏退出，无pending transaction。B135及stable恢复包保留；main仍B069.96，未启动游戏、无promotion。
 
 [B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)所测诊断调用/读数PASS：回收后趋稳及同回合再次回收说明可回收分配重要，Lua不是本Mod独占。最小GC采样已完成，无需重复长测；没有授权自动GC/调参/周期清理。B135只证实消除一条冗余扫描/构造路径，未量化实机内存收益，MEMORY_CAUSE_OPEN保留。
 
 [B135原生反馈及后续定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：6组12图已hash归档；用户确认建筑/专家收益正常及正常过回合，所述响应USER_GAME_TEST_PASS。T39填满专家后10.38GB→T42 10.69GB；T42手动GC618.63→298.57MiB，进程回落10.38GB。持续增长未解决，但大量可回收分配再次确认；缺起始/逐操作/逐回合Lua计数，不能归因每建筑/专家或扩展为Cross III全覆盖。无需补图/重复长测/GC。
 
-最小原生确认并入下次正常验证：一座已有Potential>1城调离/重新建立总督，检查ACTIVE按当前门槛变化、Potential保留及收益恢复。无需重复内存长测、GC或征服。MEMORY_CAUSE_OPEN仍保留。本批实现已授权；本地完成后按W0003及退出/receipt门禁部署，完成后停止，不进入F。
+最小原生确认并入下次正常验证：一座已有Potential>1城调离/重新建立总督，检查ACTIVE按当前门槛变化、Potential保留及收益恢复。无需重复内存长测、GC或征服。MEMORY_CAUSE_OPEN仍保留。本批实施及W0003部署完成；等待上述原生确认，不进入F。
 
 
 ## 历史阶段记录
