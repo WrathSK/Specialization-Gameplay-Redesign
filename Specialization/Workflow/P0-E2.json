@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0357",
-    "runtime": "B140.167 / modinfo167",
+    "status": "S0358",
+    "runtime": "B141.168 / modinfo168",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -944,6 +944,17 @@
       "path": "DevelopmentTests/test_b140_templates.py",
       "kind": "full",
       "reason": "Scoped actual Store/Claim/Standardization/Discount A-G tests, fixture dependencies retained explicitly"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "B141 restored current template report control and placement; exact UI context"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B141.168 — Read-only template report entry repair",
+      "reason": "User-authorized L1 diagnostic entry scope, evidence and resumed test boundary"
     }
   ],
   "dependencies": [
@@ -1017,9 +1028,10 @@
       "test_b140_templates.py: actual A-G, atomic failure, actual discount sample/carrier/owned withdrawal; LOCAL_SIMULATION_PASS",
       "test_b136_progression.py: existing scoped four-profession E2 save/return/investment/governor/isolation; LOCAL_SIMULATION_PASS",
       "All Lua syntax/modinfo version + D0036 narrow semantic diff/frozen bytes + current context/hash/links; STATIC_CONFIRMED",
-      "test_b052_standardization.py not completed: external DB lacks required HD_DUMMY_BUILDINGS; no weakened assertion or native claim"
+      "test_b052_standardization.py not completed: external DB lacks required HD_DUMMY_BUILDINGS; no weakened assertion or native claim",
+      "B141 L1 temporary fixture: XML visible/caption/retired slot; actual UI callback/request/read dispatcher pages1/2/city reset/missing-foreign rejection/no permanent writes; syntax/modinfo168. No full gameplay regression."
     ],
-    "user": "One current-slice Industry first identity/reentry current building -> template -> existing network discount -> save/full restart. USER_GAME_TEST_REQUIRED; no performance long test."
+    "user": "Resume already-claimed save after B141 deployment: Templates button -> eligible template -> existing discount -> full cold-load. Prior reconquest/Claim not repeated; native remains required."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
@@ -1027,9 +1039,9 @@
   ],
   "result": {
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
-    "implementation": "B140.167 scoped template lifecycle/union implemented and locally tested; native pending",
+    "implementation": "B140 scoped lifecycle LOCAL_SIMULATION_PASS retained; B141 UI report entry L1 static/local PASS, native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "One minimal B140 Industry first identity/reentry current-building template/discount/cold-load user test; E2 partial. F plan independent, not authorized implementation.",
+    "next": "After safe B141 UI deployment, resume existing B140 template/discount/cold-load test from already-claimed save; no reconquest/reclaim or separate UI test, no F implementation.",
     "scope_review": "D0036 user-approved template city experience recorded; no catalog/formula/AI/GC or other Legacy scope changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",

@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "2fb141e4a36f755387ce7d66d0ce8446c3fbbb12f3455e5ed27617642b4703c0",
+      "sha256": "e2d8d5fa6b847bb4cf7396f8d65d318be7607b6c4f84bdbeaedb4e6d0b26fae6",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
+      "provenance": "B141 user-authorized report visibility/free-slot/tooltip repair; actual callback/request/read-route local simulation PASS. No Gameplay changes; Probe/modinfo identity only."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "90e54a1112a4277955bd7dbf1af5e2e4c3f6c6ec58aa3d33237416f7dce8519e",
+      "sha256": "e460ab721ebc9ddea67123aa22795cacded24a6bf143a237712a8d8d00057fc8",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
+      "provenance": "B141 user-authorized report visibility/free-slot/tooltip repair; actual callback/request/read-route local simulation PASS. No Gameplay changes; Probe/modinfo identity only."
     },
     "Mod/Standardization.lua": {
       "sha256": "ae19a55baebd50e883c47f779f475d4322ae46b136565dfc94b743aeac3e7a3b",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "1340033be3a23d132b10209aa73b05aeb342172ed718a53329f2864917d9a185",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
+      "sha256": "4ac82aea3cd8d894d92ef5f49474daf18c63525f8ed16d3b37279d858da47e03",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B141 user-authorized report visibility/free-slot/tooltip repair; actual callback/request/read-route local simulation PASS. No Gameplay changes; Probe/modinfo identity only."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B113 authorized guarded native next-turn prototype; local21 PASS, engine pending; Probe version-only"
+      "sha256": "e893bfb5834474e7615ed850886ed4d5a186f3fcf8ad812803f93e798ced628a",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B141 user-authorized report visibility/free-slot/tooltip repair; actual callback/request/read-route local simulation PASS. No Gameplay changes; Probe/modinfo identity only."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",

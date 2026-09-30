@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: E2_PARTIAL / B140_TEMPLATE_RECONCILIATION_LOCAL_PASS_NATIVE_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
+Status: E2_PARTIAL / B141_TEMPLATE_REPORT_ENTRY_LOCAL_PASS_NATIVE_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-当前切片为[B140模板生命周期补齐](#b140167--industry-template-lifecycle-and-reconciliation)：用户明确授权最小持久标记与当前建筑并集同步，D0036已记录接受规则。B140.167已完成本地L3定向验证，等待一个工业初始化/冷加载原生验收；部署事实单独见Status/receipt。B139性能结项、B129认领限定PASS保留。E2仍partial，P0-F可独立计划但未授权实施。
+当前切片为[B140模板生命周期补齐](#b140167--industry-template-lifecycle-and-reconciliation)：用户明确授权最小持久标记与当前建筑并集同步，D0036已记录接受规则。B140.167已完成本地L3定向验证；[B141只读报告入口修复](#b141168--read-only-template-report-entry-repair)补齐隐藏按钮后，从当前已认领存档继续原生模板/折扣/冷加载验收；部署事实单独见Status/receipt。B139性能结项、B129认领限定PASS保留。E2仍partial，P0-F可独立计划但未授权实施。
 
 当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
 
@@ -1333,3 +1333,13 @@ P0-F不读取工业模板，**没有由本批引入的F直接依赖阻塞**，�
 回滚代码使用已知B139 Git commit；B140新增字段为可选扩展但不承诺旧代码对B140新写存档的语义，回滚测试用B140写入前的独立存档。当前不清永久记录，不强制迁移旧歧义记录。
 
 B140部署记录：source `58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55`；receipt `B140.167-58dd0cd-playtest.json` DEVELOP_ACTIVE；171/171 MATCH。游戏退出已只读确认，B139完整恢复点保留，main未改。验收使用首次工业认领前的存档；旧已Industry而nil无初始化凭据仍保护，不是本批应自动修复的对象。
+
+## B141.168 — Read-only template report entry repair
+
+用户测试已完成征服与工业认领，报告找不到标准化按钮；这是入口遗漏，不是模板机制验收FAIL。用户明确授权最小入口修复。
+
+`P0Panel.xml`的TemplatesButton仍Hidden=1，旧位置18,18被跨学科研究占用。恢复可见并移到280,138（E2往返左侧），该位置的旧InheritRecordButton继续由Lua隐藏，不启用旧迁移。`P0Panel.lua`仅补只读/重复点击翻页tooltip，保留既有STANDARDIZATION_READ callback/request/Gameplay Describe。Probe/modinfo仅B141.168版本更新。
+
+W0004 L1：XML可见/中文caption/退役空位、修改Lua语法及modinfo168 STATIC_CONFIRMED；临时原生形状fixture执行实际callback、request closure和Gameplay只读route，验证首次Page1、重复Page2、换城Page1、无城/外国城不发请求及无永久写入，LOCAL_SIMULATION_PASS。没有运行玩法全回归/stress；Store、Standardization、Discount、Gameplay字节与B140提交相同，继承B140已记录的定向证据。模拟不是真实UI布局PASS。
+
+用户从当前已认领存档继续，不需重做征服/认领：选中该工业城，打开专业化诊断，点击“标准化模板”（E2往返左侧），必要时重复点击翻页；确认AI期间已有合格建筑在模板中且无历史不可用，再检查既有工业网络折扣，保存、完整退出和冷加载后复核。仅恢复读入口，没有改变保存格式、永久记录、Design、GC或推进F。实际部署状态见Status/receipt。
