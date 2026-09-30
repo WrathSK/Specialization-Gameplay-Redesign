@@ -640,3 +640,62 @@ W0004 L3仅针对共享资格与保存消费者，未跑全历史/泛化stress/D
 - **USER_GAME_TEST_PASS**（用户实机所述场景）：总督调离后ACTIVE回1，新总督建立后能力恢复；关闭B136最小总督响应待办。此结果依据用户明确确认，不冒充截图中已逐字段读取；Potential/收据逐值、Network、四专业全覆盖、ownership及save/load未由本次重新验收。
 - **MEMORY_CAUSE_OPEN**：持续增长仍在，B136不能记为内存修复PASS。已有代码证据中的无用构造减少仍有效，但本批既不能证明实机增长率改善，也不能由进程曲线断言优化没有任何作用。无本次Lua回收前后数据，不能区分新增临时对象与持续保留，不能把0.58 GB归给本Mod或特定consumer；不要求补图或重复长测。
 - 下一建议（未授权实施）：沿已确认的Network Capture→EffectiveFacts→CityFlow/Store路径，定域检查剩余副本的必要隔离与重复构造，先形成可证实的窄调查/对照方案。相同路线不能跳过当前资格采集；同回合ACTIVE变化反证保留。不得为降低计数牺牲UNKNOWN/owner/load语义，或将手动GC转为周期策略。当前只归档结果，不修改源码、不部署、不进入F。
+
+
+## B136 follow-up — remaining copies and retained generations
+
+2026-09-29：用户授权继续调查。基线Git `685ab30` / B136.163；本轮只读直接实现、运行进程外定向实验并记录发现。没有改Mod、Design、引擎GC策略或部署，没有重新派发用户长测。B136总督响应PASS及MEMORY_CAUSE_OPEN均保留。
+
+### 实际读取与保留边界
+
+1. [CityFlowProbe.SupportFacts](../../../Mod/CityFlowProbe.lua)正式V3路径直接进入[CityProgressionStore.Base/Investment](../../../Mod/CityProgressionStore.lua)。每次按positions索引定位，不重新load或深拷贝全国账本。普通成功的[EffectiveFacts.Read](../../../Mod/EffectiveFacts.lua)共4次索引查找，Base/Investment分别执行当前身份检查（两张临时reference表），分别复制base/ledger，再复制最终facts。两次TOKEN读取及每次fresh总督门槛保留；不能把这些检查简单压为每城每回合一次。
+2. Store每城稳定保有envelope中的已确认记录和worker私有root。两份承担不同职责：root在可能发生引擎回调前推进，envelope在写入/readback成功后推进；普通Read不追加记录版本。实际新增城市或合法永久成果增长是保存合同，不因内存调查删除。合并双副本、借出永久记录、直接把输入作为输出均不列为安全小修。
+3. [NetworkInput.Capture](../../../Mod/NetworkInput.lua)对各城读取facts，随后只保留8项标量的网络投影，不保存完整first/投资账本。[NetworkBridge](../../../Mod/NetworkBridge.lua)每玩家只有当前input、private view和当前兼容投影；相同signature不重建view。Current查询不Capture；Refresh及旧fresh查询仍会采集。相同路线也必须发现同回合ACTIVE变化，不能用路线相同跳过事实采集。
+
+以上为STATIC_CONFIRMED（直接代码证据），不等于已找到真实增长来源。
+
+### 实际V3副本的定向回收实验
+
+临时脚本`/tmp/spc_b136_store_allocation_probe.py`，SHA256 `42d4833a90e62295f1590936e9a27f18ace3ca78d4b368ff5043fd0c0394509d`。读取实际Probe/CityIdentityRead/CityProgressionStore/CityFlowProbe/EffectiveFacts/InvestmentAction模块；从现有E1/E2/B108测试仅提取fixture声明，使用正式Store.Start，未执行旧wrapper或规模测试。环境命令：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14 /tmp/spc_b136_store_allocation_probe.py`。脚本为临时调查材料；本节保留复现来源、方法、结果和边界，不成为新增runtime诊断体系。
+
+方法：在worker捕获Copy函数前包装M.Copy，仅弱引用追踪返回表和嵌套表；也追踪最终facts。每档20次读取，释放返回值后只在独立Lua55进程做两次完整GC；游戏未运行这些操作、未停GC或修改参数。原生对象/GetProperty为fixture，并非Civ VI实现。
+
+| Potential | 20次读取中的Store表复制调用 | 空ledger Copy(nil) | 追踪到的复制/最终输出表总数 | 完整回收后追踪表存活 |
+|---|---:|---:|---:|---:|
+| 0 | 20 | 20 | 40 | 0 |
+| 1 | 20 | 20 | 80 | 0 |
+| 2 | 40 | 0 | 160 | 0 |
+| 4 | 40 | 0 | 160 | 0 |
+
+这是所测普通自建城、无额外嵌套first的输出表口径，**不是总分配量**；不含Copy内部seen、临时reference/anchor/去重表、字符串、闭包和原生内存。fixture的TOKEN getter另有每档40次标量Copy，单独计数，不能冒充原生Property开销。输出丢弃后全释放；有意只保留最后一份facts时只留其root+first两表，释放后为0。记录逐值及写入计数保持不变；同一实例总督1→UNKNOWN→4即时响应，未产生额外永久写入。
+
+另以真实两次投资替换记录，通过debug仅取得弱引用观察三代worker root/envelope：前两代均0/0存活，最新一代13/13表存活。说明本fixture中旧版本没有持续挂住；不等于所有ownership/失败/存档或原生Property资源均已验证。
+
+源码SHA256：CityIdentityRead `93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c`；CityProgressionStore `573298ba2824cea1d785c2375b1965d374e5f657b336f9d09fa7b63d7d87bd0a`；CityFlowProbe `fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99`；EffectiveFacts `969b4ab656c6cb59de0d343438d3d0c42eb9a563f6ed96353ebbe9b81ef4283d`。
+
+### Network private view补充实验
+
+临时脚本`/tmp/spc_b136_network_view_audit.py`，SHA256 `c471eabfc7422948247000c872820d7a3fc3c9b828b56b73f0c6ee92f5b166fa`；同一Python/Lupa环境执行。实际Bridge/Input，两城一条路线，facts和native getter为fixture。只做ACTIVE3→4→2三次发布，补B135尚未追踪的private view/兼容投影；没有重复大规模Capture实验。
+
+两次进程外GC后前两代view/兼容投影均0/0，最新代19/8；修改公开兼容投影不改变private Current结果。源码hash仍为B135已登记值。一次手动Network.Read则确认Capture2次、city_scan4次，源于先Refresh，再经currentView再次Refresh；这属于点击诊断的重复工作，不能解释无人点击时持续增长。
+
+两项实验均为**LOCAL_SIMULATION_PASS**（本地模拟）。未发现所测副本/旧代持续保留；仍未测原生分配字节、真实调用频率、其它consumer持有关系或引擎资源，不能由0残留宣称整个Mod没有泄漏，也不能把表数量换算成截图中的GB。
+
+### 候选处理与下一调查门槛
+
+已确认的小冗余继续登记，但不建议仅为这些小项另发一次长测包：
+
+- Copy(nil)目前仍创建seen表和递归闭包；nil早退可省普通P0/P1每次读取的一组分配，已有ledger的P2–P4无此收益。非nil类型/预算校验不应顺手重写。
+- Network.Signature每城建立八字段临时数组，可考虑仅在同次调用中复用一张完整覆盖的数组；不是跨事件事实缓存。
+- 手动Network.Read重复Refresh可以单独整理；detailPage按点过的城市保留分页签名，但它依赖人工点击，不作为静置/纯回合增长解释。
+- active的reference表若改为标量比较，仍须保留额外键拒绝、全部getter读取顺序及异常边界，不能直接以四字段短路判断替换same。公共Base/Investment输出隔离和最终facts隔离保留。
+
+鉴于上述路径未找到持续挂住的旧代，**下一推荐是准备同一存档的窄Network分支停用对照，而非宣称继续省几张表即可解决增长**。当前尚无安全Network OFF，不能直接部署一处return：
+
+1. `ready=false`只挡Refresh，Verified、退出/返回仍可withdraw→publish，LoadScreenClose会重新开启。Current查询及商业汇聚直接routes读取还可能使用旧结果。
+2. 故意制造UNKNOWN不是效果退出：CopyYields/StandardizationDiscount保留旧载体/计划，其他consumer部分会清除，形成不一致对照。必须保持DB、永久进度/投资/模板/Claim不变，以明确实验状态和各模块自有退出路径撤销此次涉及的派生效果；撤销未确认则不开始测量，不能伪造失城。
+3. UI NetworkSender只有一个flight，并非无限排队；但只停接收端会留下等待/超时/重新发送。须同时收口BackgroundRoutes的Network发送及failure-proof请求，处理既有flight/awaiting及晚到包；保留的其它UI采集范围要明示。Claim、Gameplay直接入口和旧fresh查询也不能绕过。
+4. 稳定观察窗应确认Capture/derive/publish不再执行，无新的retry积压；仍运行的城市进度、总督事实、本地能力、其它采样必须列清，不能说“整个Mod关闭”。预期改变的是Network分支及其下游活动，不能单独归因一张表或Capture。
+5. 未来测试从同一未改写的存档副本冷启动，只取初始和随后少数回合；不保存实验后的撤销状态。恢复正常包后重新读取原存档，并按新epoch拒绝旧包。具体进入/退出/恢复的定向模拟须先通过，才提出一次最小用户测试；本轮不要求测试。
+
+这是一组下一对照的必要门槛，**尚非READY implementation方案**；需要先收窄完整退出与请求边界，不扩展成通用停用框架。当前结论：保留B135/B136修复，MEMORY_CAUSE_OPEN；不自动GC、不清永久账本、不部署、不进入F。
