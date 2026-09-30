@@ -152,3 +152,7 @@ B133对照完成：10组20图已归档。T45累计建筑检查−2.17%，城市�
 
 ### PT001 B134 — manual GC baseline test only
 用户授权最小手动完整GC与已证实网络范围修复，见[合同/三点测试](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134161--manual-full-gc-diagnostic-and-scoped-network-capture)。定向本地通过，实际GC仍未测；先现有存档副本冷启动初始＋两个玩家回合，比较回收后Lua基线。失败停止再试，不要求重打长测，不把Lua算作本Mod独占。B133修复保留；没有GC调参、定期清理或定域停用开关。
+
+
+### PT001 B134 native GC evidence received — no repeat test
+[9组18图结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)：T39–45共8次手动GC均成功并降低count；T41–44回收后约317–320MiB，T45第二次降至251.51，初始250.98。诊断调用/读数所测范围USER_GAME_TEST_PASS，可回收分配已获直接证据；非全局内存修复PASS。无征服、同回合额外GC与B133条件不同，不归因三事件优化。环境串/状态未知/计时边界见报告。三点采样待办已满足，无需再长测或现在补测；PT001根因继续OPEN。只建议定域追踪分配与引用，不授权自动GC或清账本。
