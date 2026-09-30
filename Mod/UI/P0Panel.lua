@@ -130,7 +130,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=='CITY_SEQUENCE_BEGIN' then
@@ -520,10 +520,13 @@ initialize=function()
  Events.GameCoreEventPublishComplete.Add(projectReadPulse)
  Controls.TurnProbeReadCaption:SetText("自动项目报告")
  Controls.PerformanceSnapshotButton:SetHide(false)
- Controls.TurnProbeArmCaption:SetText('手动GC诊断')
+ Controls.TurnProbeArmCaption:SetText('GC试运行')
  Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eLClick,function()request('MEMORY_GC_READ')end)
- Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eRClick,function()request('MEMORY_GC_COLLECT')end)
- Controls.PerformanceSnapshotButton:SetToolTipString('默认不执行。左键看说明/结果；右键明确执行一次完整GC，可能短暂停顿。只作诊断，不改回收策略或专业数据。')
+ Controls.PerformanceSnapshotButton:RegisterCallback(Mouse.eRClick,function()
+  local g=ExposedMembers.SPC_P0;local d=g and g.MemoryObservation;local a=d and d.AutoGC
+  request(a and a.enabled==false and 'MEMORY_GC_AUTO_ON' or 'MEMORY_GC_AUTO_OFF')
+ end)
+ Controls.PerformanceSnapshotButton:SetToolTipString('受控自动GC试运行。左键只读结果；右键开启/关闭本次加载的自动调用，不会立即回收。不修改专业数据；失败后保持停用。')
  local function projectAction(fn)
   ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;fn()
  end

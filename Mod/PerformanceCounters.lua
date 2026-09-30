@@ -101,7 +101,7 @@ local function top(counts,labels,limit)
  return #out>0 and table.concat(out,' / ') or '无'
 end
 
--- Opt-in six-turn count-only observation. Manual full-GC below has no event hook or save state.
+-- Opt-in count observation and B138 session-only controlled GC trial; no save state.
  function M.Heap()
   if type(collectgarbage)~='function' then return nil end
   local ok,n=pcall(collectgarbage,'count')
@@ -111,59 +111,161 @@ function M.StartMemory(P,shared)
  local d={};shared.MemoryObservation=d
  ExposedMembers.SPC_MemoryAttribution=nil -- new observer/session; never restore old samples
 
- -- B134 diagnostic only: one explicit UI request, one protected full-cycle call.
- -- Do not stop/restart GC, tune its parameters, clear caches or write any Property.
- local gcRows={};local gcFailure;local lastGCToken;local lastGCReport;local gcBusy=false
+ -- B138 reversible trial: one session-owned coordinator, never a save authority.
+ local policy={growthMiB=128,minTurns=2,maxSeconds=2,rows=8,logRows=24}
+ local a={enabled=true,collections=0,reason='WAIT_LOAD',rows={}}
+ d.AutoGC=a -- scalar/read-only UI status plus a bounded result ring
+ local loaded=false;local anchor;local lastTurn;local pendingTurn;local assessedTurn
+ local gcBusy=false;local lastToken;local switchToken;local logRows=0
+ local function current()return shared.MemoryObservation==d end
+ local function localHuman(pid)
+  local ok,id=pcall(Game.GetLocalPlayer)
+  return current() and ok and id==pid and P.IsTestPlayer(pid)
+ end
+ local function finite(v)return type(v)=='number' and v==v and v>=0 and v<math.huge end
+ local function clock(key)
+  if not os or type(os[key])~='function' then return nil end
+  local ok,v=pcall(os[key]);if ok and finite(v)then return v end
+ end
  local function running()
   if type(collectgarbage)~='function' then return nil end
   local ok,v=pcall(collectgarbage,'isrunning');if ok and type(v)=='boolean' then return v end
  end
- local function cpuTime()
-  if not os or type(os.clock)~='function' then return nil end
-  local ok,v=pcall(os.clock);if ok and type(v)=='number' and v==v and v>=0 and v<math.huge then return v end
+ local function number(v)return v and string.format('%.2f',v) or '?' end
+ local function log(reason,row)
+  a.reason=reason
+  if logRows>=policy.logRows then return end
+  logRows=logRows+1
+  local line='[SPC][GC_TRIAL] T'..Game.GetCurrentGameTurn()..' '..reason
+  if row then line=line..' beforeMiB='..number(row.before)..' afterMiB='..number(row.after)..' cpuSec='..number(row.cpu)..' wallSec='..number(row.wall) end
+  if logRows==policy.logRows then line=line..' LOG_LIMIT; panel retains last8; no more session log rows' end
+  print(line)
  end
- local function state(v)if v==nil then return '未知' end;return v and '运行' or '停止' end
- function d.ReadGC(pid)
-  if not P.IsTestPlayer(pid)then return '仅本地人类玩家可诊断' end
-  local lines={'手动GC诊断 | Lua环境 '..tostring(_VERSION)..' | 本次加载最近3次',
-   'Gameplay调用处整个Lua堆；非本Mod独占，不等于进程内存。'}
-  if #gcRows==0 then lines[#lines+1]='默认关闭。右键此按钮明确执行一次完整GC；左键仅看结果。' end
-  for _,v in ipairs(gcRows)do
-   lines[#lines+1]='T'..v.turn..' '..v.status..'：'..(v.before and string.format('%.2f',v.before) or '?')..' → '..(v.after and string.format('%.2f',v.after) or '?')..' MiB'
-   lines[#lines+1]='GC状态 '..state(v.runningBefore)..' → '..state(v.runningAfter)..'；CPU耗时 '..(v.cpu and string.format('%.3f秒',v.cpu) or '不可用')
+ local function fail(reason)
+  a.failure=reason;a.enabled=false;pendingTurn=nil;log('STOP:'..reason)
+ end
+ local function idle(pid)
+  if (shared.RequestDepth or 0)>0 then return false,'REQUEST_INFLIGHT' end
+  if shared.NetworkIsolation and shared.NetworkIsolation.active then return false,'NETWORK_ISOLATED' end
+  local claim=shared.ClaimProjects
+  if claim and claim.IsBusy and claim.IsBusy()then return false,'CLAIM_BUSY' end
+  local net=shared.NetworkBridge
+  if not net or not net.ready then return false,'NETWORK_NOT_READY' end
+  local b=net.players and net.players[pid]
+  if b and b.refreshing then return false,'NETWORK_REFRESHING' end
+  local p=ExposedMembers.SPC_Performance
+  if p and (p.inflight or 0)>0 then return false,'NETWORK_INFLIGHT' end
+  -- Module public busy flags only; this is not proof that every native transaction ended.
+  for key,m in pairs(shared)do if type(m)=='table' and m.busy then return false,'MODULE_BUSY:'..key end end
+  local routes=ExposedMembers.SPC_P0_BackgroundRoutes
+  if routes and routes.awaitingNetwork then return false,'ROUTES_PENDING' end
+  for _,key in ipairs({'SPC_CopyBackground','SPC_IndustryBackground','SPC_ResearchCrossBackground','SPC_DiscountEligibility'})do
+   local u=ExposedMembers[key]
+   if u and u.pending and u.pending~=0 then return false,'UI_PENDING:'..key end
   end
-  if gcFailure then lines[#lines+1]='本次加载停止再次尝试：'..gcFailure end
-  lines[#lines+1]='无回合/每帧自动GC；不清属性/账本/缓存。可能短暂停顿。'
-  lines[#lines+1]='比较初始稳定点及随后2回合的回收后基线；首次初始化/终结处理可能影响读数。'
+  return true
+ end
+ local function collect(reason)
+  if gcBusy or a.failure then return end
+  gcBusy=true;pendingTurn=nil
+  local v={turn=Game.GetCurrentGameTurn(),reason=reason}
+  v.before=M.Heap();v.runningBefore=running()
+  local started=clock('clock');local wallStarted=clock('time')
+  if v.before==nil then fail('COUNT_UNAVAILABLE')
+  elseif v.runningBefore==false then fail('ENGINE_GC_STOPPED')
+  elseif not started then fail('CPU_CLOCK_UNAVAILABLE')
+  else
+   lastTurn=v.turn -- consume attempt before a potentially reentrant native call
+   local ok,err=pcall(collectgarbage,'collect') -- the only full-collection primitive
+   local finished=clock('clock');local wallFinished=clock('time')
+   v.after=M.Heap();v.runningAfter=running()
+   if finished and finished>=started then v.cpu=finished-started end
+   if wallStarted and wallFinished and wallFinished>=wallStarted then v.wall=wallFinished-wallStarted end
+   v.status=ok and 'COLLECTED' or 'FAILED'
+   a.collections=a.collections+1
+   a.rows[#a.rows+1]=v;if #a.rows>policy.rows then table.remove(a.rows,1)end
+   anchor=v.after
+   log(reason,v)
+   if not ok then fail('COLLECT_FAILED:'..tostring(err):sub(1,120):gsub('[\r\n]',' '))
+   elseif not v.after then fail('POST_COUNT_UNAVAILABLE')
+   elseif v.runningAfter==false or (v.runningBefore~=nil and v.runningAfter~=nil and v.runningBefore~=v.runningAfter)then fail('ENGINE_GC_STATE_CHANGED')
+   elseif not v.cpu or (wallStarted and not v.wall)then fail('CLOCK_INVALID')
+   elseif v.cpu>policy.maxSeconds or (v.wall and v.wall>policy.maxSeconds)then fail('OVER_2_SECONDS') end
+  end
+  gcBusy=false
+ end
+ function d.ReadGC(pid)
+  if not localHuman(pid)then return '仅本地人类玩家可诊断' end
+  local lines={'GC试运行｜'..(a.failure and '已停用：'..a.failure or a.enabled and '自动开启' or '手动关闭'),
+   '增长128 MiB + 间隔2回合；本地回合进入后发布边界评估。',
+   '最近状态 '..a.reason..'｜本次加载调用 '..a.collections..' 次｜Lua '..tostring(_VERSION)}
+  for _,v in ipairs(a.rows)do
+   lines[#lines+1]='T'..v.turn..' '..v.reason..' '..v.status..'：'..number(v.before)..' → '..number(v.after)..' MiB；CPU '..number(v.cpu)..'s / 时钟 '..number(v.wall)..'s'
+  end
+  lines[#lines+1]='左键只读；右键开关（仅本次加载）。失败/耗时>2秒锁定停用；不能中断已开始的调用。'
+  lines[#lines+1]='Gameplay调用处整个Lua堆，非本Mod独占/进程内存；时钟可能粗粒度。无属性/账本清理或GC调参。'
   return table.concat(lines,'\n')
  end
- function d.CollectGC(pid,token)
-  if not P.IsTestPlayer(pid)then return '仅本地人类玩家可诊断' end
-  if type(token)~='string' or #token==0 or #token>100 then return 'GC请求标识无效；未执行' end
-  if token==lastGCToken then return lastGCReport or 'GC请求处理中；不会重复执行' end
-  if gcBusy then return 'GC请求处理中；不会重复执行' end
-  if gcFailure then return d.ReadGC(pid) end
-  local v={turn=Game.GetCurrentGameTurn(),status='未执行'} -- allocate report row before sample
-  v.runningBefore=running();v.before=M.Heap()
-  if v.before==nil then
-   gcFailure='count接口不可用，无法建立前后比较；转入定域对照调查。'
-  else
-   gcBusy=true;lastGCToken=token
-   local started=cpuTime()
-   local ok,err=pcall(collectgarbage,'collect')
-   local finished=cpuTime()
-   v.after=M.Heap();v.runningAfter=running();gcBusy=false
-   v.status=ok and '完整GC调用成功' or '完整GC调用失败'
-   if started and finished and finished>=started then v.cpu=finished-started end
-   if not ok then gcFailure='collect不可用/失败：'..(type(err)=='string' and err:sub(1,160) or type(err))
-   elseif v.after==nil then gcFailure='回收后count不可用。'
-   elseif v.runningBefore~=nil and v.runningAfter~=nil and v.runningBefore~=v.runningAfter then
-    gcFailure='GC运行状态改变；停止诊断并调查，不自动恢复或调参。'
-   end
-  end
-  gcRows[#gcRows+1]=v;if #gcRows>3 then table.remove(gcRows,1)end
-  lastGCReport=d.ReadGC(pid);return lastGCReport
+ function d.SetAutoGC(pid,enabled,token)
+  if not localHuman(pid)then return '仅本地人类玩家可诊断' end
+  if type(enabled)~='boolean' or type(token)~='string' or #token==0 or #token>100 then return 'GC开关请求无效' end
+  if switchToken==token then return d.ReadGC(pid) end
+  switchToken=token;pendingTurn=nil
+  if not a.failure then a.enabled=enabled;log(enabled and 'ENABLED_WAIT_NEXT_TURN' or 'DISABLED_BY_USER') end
+  return d.ReadGC(pid)
  end
+ function d.CollectGC(pid,token)
+  if not localHuman(pid)then return '仅本地人类玩家可诊断' end
+  if type(token)~='string' or #token==0 or #token>100 then return 'GC请求标识无效；未执行' end
+  if token==lastToken or gcBusy or a.failure then return d.ReadGC(pid) end
+  lastToken=token
+  -- Retained explicit diagnostic API shares the coordinator/cooldown; not the trial UI button.
+  if loaded and Game.GetCurrentGameTurn()-lastTurn>=policy.minTurns then collect('MANUAL') end
+  return d.ReadGC(pid)
+ end
+ local hooks={'LoadScreenClose','PlayerTurnActivated','PlayerTurnDeactivated','GameCoreEventPublishComplete'}
+ local callbacks={
+  function()
+   if not current() or loaded then return end
+   loaded=true;lastTurn=Game.GetCurrentGameTurn();anchor=M.Heap()
+   if not anchor then fail('LOAD_COUNT_UNAVAILABLE')
+   elseif not a.failure then log('LOAD_BASELINE_128MiB_2T_2s',{before=anchor}) end
+  end,
+  function(pid)
+   if not current()then return end
+   pendingTurn=nil
+   if loaded and a.enabled and not a.failure and localHuman(pid)then pendingTurn=Game.GetCurrentGameTurn() end
+  end,
+  function()if current()then pendingTurn=nil end end,
+  function()
+   if not current() or not pendingTurn or gcBusy then return end
+   local t=pendingTurn;pendingTurn=nil -- no retry loop / reentrant publish / repeated sampling
+   if t~=Game.GetCurrentGameTurn() or assessedTurn==t or not a.enabled or a.failure then return end
+   assessedTurn=t
+   local ok,pid=pcall(Game.GetLocalPlayer)
+   if not ok or not localHuman(pid)then return end
+   local safe,why=idle(pid)
+   if not safe then log('SKIP:'..why);return end
+   if t-lastTurn<policy.minTurns then log('INTERVAL');return end
+   local now=M.Heap()
+   if not now then fail('COUNT_UNAVAILABLE');return end
+   if now-anchor<policy.growthMiB then log('BELOW_THRESHOLD',{before=now});return end
+   collect('AUTO_GROWTH')
+  end}
+ local function installGC()
+ for _,name in ipairs(hooks)do local e=P.Field(Events,name)
+  if not e or type(e.Add)~='function' then fail('HOOK_UNAVAILABLE:'..name);return end
+ end
+ for i,name in ipairs(hooks)do
+  local ok=pcall(Events[name].Add,function(...)
+   if not current() or a.failure then return end
+   local success,err=pcall(callbacks[i],...)
+   if not success then gcBusy=false;fail('CALLBACK_FAILED:'..tostring(err):sub(1,120):gsub('[\r\n]',' ')) end
+  end)
+  if not ok then fail('HOOK_REGISTRATION_FAILED:'..name);return end
+ end
+ end
+ installGC() -- missing GC capability must not remove the existing count-only observer
  local armed=false;local player;local startTurn;local baseline;local rows={};local pending;local seen={}
  local keys={'city_scan','district_scan','facts','building_check','building_create','building_remove','property_write','derive_executed','dc_read','dc_capture','dc_hit','dc_dirty'}
  local function size(t)local n=0;for _ in pairs(t or {})do n=n+1 end;return n end
@@ -201,7 +303,7 @@ function M.StartMemory(P,shared)
    lines[#lines+1]='UI总督 '..u.governor_local..'/'..u.governor_foreign..'/'..u.governor_unknown..'；回合 '..u.turn_local..'/'..u.turn_foreign..'/'..u.turn_unknown..'；加载 '..u.load_unknown
    lines[#lines+1]='GPP刷新：请求 '..u.send..' / 已提交 '..u.sent..' / 异常 '..u.failed..' / 已接收 '..u.received
   end
-  lines[#lines+1]='此观测不执行GC；手动GC另看专用报告。调用量不等于内存归因。'
+  lines[#lines+1]='此计数观测不触发GC；自动试运行另看GC报告。调用量不等于内存归因。'
   return table.concat(lines,'\n')
  end
  local function event(label,pid)
@@ -212,12 +314,12 @@ function M.StartMemory(P,shared)
   seen[label]=t;snapshot(label);pending='发布后'
  end
  for _,v in ipairs({{'PlayerTurnDeactivated','回合离开'},{'PlayerTurnActivated','回合进入'}})do
-  local label=v[2];local e=P.Field(Events,v[1]);if e and e.Add then e.Add(function(pid)event(label,pid)end)end
+  local label=v[2];local e=P.Field(Events,v[1]);if e and type(e.Add)=='function' then pcall(e.Add,function(pid)event(label,pid)end)end
  end
- local transfer=P.Field(Events,'CityTransfered');if transfer and transfer.Add then transfer.Add(function(newOwner,id,oldOwner)
+ local transfer=P.Field(Events,'CityTransfered');if transfer and type(transfer.Add)=='function' then pcall(transfer.Add,function(newOwner,id,oldOwner)
   if armed and (newOwner==player or oldOwner==player)then event('转移',player)end
  end)end
- local publish=P.Field(Events,'GameCoreEventPublishComplete');if publish and publish.Add then publish.Add(function()
+ local publish=P.Field(Events,'GameCoreEventPublishComplete');if publish and type(publish.Add)=='function' then pcall(publish.Add,function()
   if armed and pending then local label=pending;pending=nil;snapshot(label)end
  end)end
 end

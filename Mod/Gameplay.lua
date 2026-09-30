@@ -40,10 +40,11 @@ local function request(playerID,params)
     end)
     shared.Snapshot=ok and out or ('Network隔离未就绪；停止对照并冷启动原存档：'..P.Scalar(out));shared.LastToken=params.Token;return
   end
-  if params.Action=='MEMORY_GC_READ' or params.Action=='MEMORY_GC_COLLECT' then
+  if params.Action=='MEMORY_GC_READ' or params.Action=='MEMORY_GC_COLLECT' or params.Action=='MEMORY_GC_AUTO_ON' or params.Action=='MEMORY_GC_AUTO_OFF' then
     local ok,out=pcall(function()
       local d=shared.MemoryObservation;assert(d,'GC diagnostic not initialized')
       if params.Action=='MEMORY_GC_COLLECT' then return d.CollectGC(playerID,params.Token) end
+      if params.Action=='MEMORY_GC_AUTO_ON' or params.Action=='MEMORY_GC_AUTO_OFF' then return d.SetAutoGC(playerID,params.Action=='MEMORY_GC_AUTO_ON',params.Token) end
       return d.ReadGC(playerID)
     end)
     shared.Snapshot=ok and out or ('GC诊断不可用；停止本次测试：'..P.Scalar(out));shared.LastToken=params.Token;return
@@ -496,7 +497,9 @@ local function request(playerID,params)
   stage("ACK "..shared.Snapshot)
 end
 GameEvents.SPC_P0_Request.Add(function(...)
+  shared.RequestDepth=(shared.RequestDepth or 0)+1 -- GC scheduling guard only; not transaction authority
   local ok,err=pcall(request,...)
+  shared.RequestDepth=shared.RequestDepth-1
   if not ok then shared.FailureAt=shared.Stage;stage("ERROR "..P.Scalar(err)) end
 end)
 stage("INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED")

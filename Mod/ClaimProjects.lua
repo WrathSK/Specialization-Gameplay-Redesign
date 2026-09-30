@@ -5,6 +5,7 @@ function SPCClaimProjects.Start(P,shared)
  local d={views={},syncAck={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
  local turn
  local ready=false;local busy=false;local dirty={};local active={};local derived={};local errors={}
+ function d.IsBusy()return busy end -- read-only GC scheduling guard; no transaction authority
  local kinds={'RESEARCH','CULTURE','INDUSTRY','COMMERCE'};local projects={};local markers={}
  for _,k in ipairs(kinds)do projects['PROJECT_SPC_CLAIM_'..k]=k;markers[#markers+1]='BUILDING_SPC_CLAIM_'..k end
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
