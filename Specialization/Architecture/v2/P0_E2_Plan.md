@@ -1,15 +1,15 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: PARTIAL_IMPLEMENTED / B128_UNASSIGNED_RETURN_LOCAL_PASS. B126 Claim core accepted; UI validation merged into future testing by user; later lifecycle/F not authorized.
+Status: E2_PARTIAL / TEMPLATE_LIFECYCLE_MODEL_BOUNDARY. B129 Claim reload scoped user PASS retained; B139 performance stabilization closed. Latest authorized template slice stopped before runtime implementation by explicit user stop condition; see current slice.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-当前授权旁路是[B138有界性能稳定化](../../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)：受控GC＋公共更新接入约束＋一次整合验收；不扩展E2/F玩法。恢复先看Status CURRENT和该合同；以下E2能力/保存依赖只在本次变更实际触及它们时展开，不因性能任务重复全量读取。
+当前为[工业模板同步的持久状态区分门禁](#industry-template-reconciliation--authorized-rule-and-model-stop)：用户已确认城市经验与可靠历史∪当前建筑规则，并授权最小实现；只读核对发现B139缺少独立的“曾初始化成功”持久标记，按用户明确停止条件停在实现前。B139性能专项已结项，不重新打开；B129认领读档限定PASS保留。当前没有新build、部署或实机测试。此处的模板局部阻断不自动阻塞独立P0-F计划。
 
 当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
 
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot与Claim主流程已限定验收；销毁/位置复用、未专业城夺回、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
+**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot与Claim主流程已限定验收；未专业城夺回由B128实现、B129读档修复限定验收。销毁/位置复用、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
 
 本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
 
@@ -1235,3 +1235,50 @@ STATIC_CONFIRMED：UI一次发送锁死缺口与修复调用链核对；不是�
 最小复核：优先冷启动载入已有失败档，先查看旗帜/面板与左键E2。若已错过原完整回合窗口，正确行为是明确暂停，不能补完成；改选普通目标后重选商业认领，保存并完全重启，再正常过一回合确认完成及可投资。若原存档没有有效timer，同样须明确提示重选，禁止从队列恢复出不存在的开始记录。未过期有效timer应直接恢复1T。无需重做夺回；如报告仍未知/同步未确认，截图停止。顺手看项目隐藏，不另开UI轮次。不进入F/工业模板。
 
 B129部署：source146a579；170/170 MATCH；receipt B129.156-146a579-playtest.json，DEVELOP_ACTIVE。OS已确认退出；B128恢复点保留，main不变。
+
+## Industry template reconciliation — authorized rule and model stop
+
+2026-09-30，基于B139.166/source1104bde；本轮用户明确授权先查状态能否可靠区分，若不能则停止实现。已触发该条件；以下为STATIC_CONFIRMED（实际代码检查），不是LOCAL_SIMULATION_PASS或新USER_GAME_TEST。运行代码未改，A–G实现回归未运行，没有新build/部署。
+
+### 用户已确认的规则与正式来源同步边界
+
+模板表示城市可可靠确认的工业建设经验，不是当前玩家个人建造记录。合法首次工业身份初始化、已有工业城回到受支持玩家并恢复工业身份时，应局部同步：可靠保存模板历史∪当前存在的合格建筑。外方时期建成且返回时仍存在的合格建筑可补入；当前缺失不能反向删除可靠历史。外方建成又消失且从未可靠观察的建筑不猜测、不追溯；不为AI加长期监听或全局建筑历史。历史缺失/损坏不得伪装首次初始化或以当前扫描冒充完整恢复。initialize、restore、reconcile、corrupt/unavailable必须区分。
+
+这是本轮明确接受的用户决定，取代本计划B128阶段“外国期间建筑不得补录”的保守限制；不是候选Gameplay。由于执行了模型停止条件，本轮尚未创建Design revision或改写Content/阅读版；Industry_D0032仍是上一发布内容，恢复工作时须先按现有revision流程同步本决定与Industry阅读版，不能把本段当长期平行Content。目录、折扣/建设数值、AI范围、其它专业Legacy不变。
+
+### 五项现有事实及根因
+
+| 核对项 | B139实际事实 |
+|---|---|
+| 从未初始化 | Found/Acquire保存templatesCaptured=true、templates=nil；Complete/ClaimComplete建立工业Identity时不另写模板生命周期标记 |
+| 初始化空账本/已有账本 | Standardization.initialize写initialized=true、learned={}、revision=1；非空按条目计revision。两者可区分，不能把空表当缺失 |
+| 缺失/损坏 | CityIdentityRead仅当模板非nil时验证结构；nil为ABSENT_NOT_SYNTHESIZED。Standardization.ValidateRetained校验现有表/目录。模板整字段丢失后，没有独立曾初始化标记可证它原来存在 |
+| 保护层 | Store.ReadTemplates拒绝current存在且Industry且templates=nil；未捕获且current存在也拒绝。它保护了缺史，但同样挡住合法未专业城夺回后的首次工业初始化；非夺回nil分支也没有持久“从未初始化”证明 |
+| 首次/恢复/同步顺序 | initialize已有账本即验证返回，无当前建筑并集扫描；nil才INITIAL_BACKFILL。recapture先验证保留工业账本、调用return回调清临时请求，再保存ACTIVE/current。Standardization的return回调仅清pending，后续Discover读取/验证；没有专用重新进入并集同步。BUILDING_ADDED_RECHECK对IsRecaptured直接排除，体现旧保守限制 |
+
+直接依据：[Store](../../../Mod/CityProgressionStore.lua)的validate、ReadTemplates、Found/Acquire、Complete/ClaimComplete、recapture；[Standardization](../../../Mod/Standardization.lua)的validate/initialize/Queue/RegisterReturn；[CityIdentityRead](../../../Mod/CityIdentityRead.lua)的Preview。全局INDEX只存城市身份与序号，不存模板初始化历史；现有revision混合多种写入次数，不能拿次数/时间猜模板曾存在。没有发现可免费恢复这项缺失信息的独立持久证据。
+
+因此，同样的templatesCaptured=true + templates=nil + 已取得INDUSTRY，可能来自“身份刚取得、模板还没写入”或“模板曾写入、后来缺失”；不能靠空值、当前建筑或UI/会话日志证明前者。current只说明曾返回，不说明模板生命周期。直接删保护将使Case D漏过；保留现状则Case A仍被挡住。本轮不通过启发式绕过。
+
+### 最小后续技术方案（待授权，未实现）
+
+在现有逐城记录中增加最小、独立、可验证的模板初始化状态，不建立新全局账本。合法首次身份转换保留明确的待初始化凭据；首次模板写入与“已初始化”状态同一次保存提交。可靠现有账本可按其完整校验证据接入；旧数据已经Industry但账本缺失且无凭据时继续HELD/历史不可用，不根据当前建筑猜测。该标记表示技术生命周期，不改变用户已确认的城市经验语义；不承诺从旧不明确数据恢复不存在的信息。
+
+之后仅为首次工业进入/确认夺回安排一次本城reconcile，已有账本取并集、重复无变化不写；保存确认后才发布模板变化。恢复/冷加载需能判断未完成同步，保留失败重试有界、UNKNOWN/Owner/同城保护。不加AI常驻扫描或每回合建筑全表回填。具体字段/调用顺序及状态版本在后续最小模型方案中审阅，不在本轮先行实现。
+
+### E2支持矩阵与F依赖
+
+| 路径 | 当前支持/证据 | 本轮后状态 |
+|---|---|---|
+| B129商业候选夺回、认领读档 | 既定范围用户PASS | 保留，不要求重测 |
+| 从未易主的正常工业首次补录 | 代码已有现存建筑初始化入口 | 未在本轮扩大原生证据；缺失字段的通用区分仍不足 |
+| 未专业城夺回后首次工业初始化 | Store缺史保护会阻挡 | 未修复；模型区分门禁阻断该局部实现 |
+| 已有可靠工业模板夺回 | 原账本验证/保留 | 恢复不等于并集同步；外方新增现存建筑尚无专项reconcile支持 |
+| 当前建筑缺失但可靠模板存在 | 不自动删除历史 | 保留，不加拆除追踪 |
+| 损坏/不可用模板 | 表结构/目录错误保护；夺回nil保护 | 保留；不能宣称已完整区分从未初始化与整账本缺失 |
+| 外方不可观察的已消失建筑 | 无可靠记录 | 明确不追溯；不新增AI监听 |
+| 销毁后同址新代、未知外交取得 | 原保护/未扩展范围 | 不实现，不隐式放宽 |
+
+P0-F科研学术传统不消费工业模板账本，**此局部缺口不构成F整体技术阻塞**；可独立准备F具体计划，不必等工业模板或所有E2尾项完成。F仍须定义自身专属持久年龄/首次P4记录、保存幂等、Identity暂停及ACTIVE收益门槛；不能从旧receipt猜首次P4时间，跨Owner传统归属仍未定义，须在F计划中明确所支持路径和停止边界。当前不是F实施授权，也不是E2全生命周期PASS。
+
+当前用户无需实机测试：没有新包。A–G用例作为后续局部L3回归需求保留，未运行/不报PASS；待最小状态模型解决后，再给一个合并的工业首次认领＋保存冷加载验收，不重复旧长测。下一步只需审阅是否授权上述最小持久状态补充及正式来源同步；没有新增Gameplay选择。

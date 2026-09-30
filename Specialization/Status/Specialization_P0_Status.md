@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0354
+Status Revision: S0355
 Implementation Build: develop P0-B-139.166 / modinfo166 AUTO_GC_NATIVE_OBSERVED; live B139.166 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B139_STABILIZATION_ACCEPTED_RESIDUAL_EFFICIENCY_OPEN
+Work State: E2_TEMPLATE_LIFECYCLE_MODEL_BOUNDARY
 
 ## CURRENT AUTHORITATIVE STATE
 
-[无Specialization旧档对照及结项](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#non-specialization-late-save-control-and-stabilization-closure)：16图hash归档，用户确认旧档从未启用本Mod；同PID92167、T148→152进程11.30→12.83GB（+1.53），其中12.00→11.93曾回落。不同后期存档不能计算Mod净增量，但证明进程增长并非只在本Mod运行时出现；HD/其它Mod/引擎具体归因仍未知。
+[工业模板同步授权核对](../Architecture/v2/P0_E2_Plan.md#industry-template-reconciliation--authorized-rule-and-model-stop)：用户确认模板为城市建设经验，重新进入时可靠历史∪当前合格建筑；外方新增现存建筑可补录，缺失/损坏历史不能扫描伪造。B139只读检查发现templatesCaptured并非曾初始化标记，Industry+nil无法可靠区分首次待建账本与原账本缺失；按用户明确停止条件，**停止运行实现，不删除保护、不部署**。无新build/本地玩法回归/实机请求。
 
-用户接受现有优化，**有界性能稳定化工程阶段完成；剩余分配效率/进程归因开放，不再阻塞功能规划**。B139自动触发/释放有效、较静态后段平台和操作场景无明显卡顿的既有证据保留。不是原固定判据全PASS：64.79>64MiB的原窗口、操作负载残余增长、未完整覆盖的严格功能/关闭会话检查不改写。用户早期专家/总督/投资收益正常只作限定证据，后续收益未仔细观察；E2仍partial。
+下一技术建议：在现有逐城记录补最小独立模板初始化状态，原子保存初始账本；不明确旧数据继续保护，不建立全局历史。已确认Gameplay决定保存在上述当前切片，正式Content/revision及阅读版尚待同步，不能丢弃该决定或将其改称候选。本轮只保存核对结论和支持矩阵；模型补充待授权。
 
-不再要求重复长测；上一轮原生内存分类建议暂缓，不新增监控/GC调参。后续重开只按[定域触发与退出规则](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)，不将未归因增长挂回专项验收门禁；[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)与已有修复继续有效。已恢复功能开发节奏，本轮已补齐后续接入/验证约束，无新增性能专项阻塞。下一允许动作是按既有边界准备功能计划；新功能实施/F须单独授权，本轮不推进。
+该局部缺口不阻塞独立P0-F计划：科研年龄不读取工业模板。但F专属持久年龄/首次P4证据与跨Owner未决边界须在F计划处理，不能直接开始F实现；E2仍partial，B129已验范围保留。
 
-B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮只读核对该receipt仍为DEVELOP_ACTIVE/source1104bde/modinfo166，未重新做外部包逐文件核验或部署。B138/stable恢复点及main B069.96不变。
+[d147faf性能专项结项](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#non-specialization-late-save-control-and-stabilization-closure)及[后续约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不变，未重开性能调查。运行仍B139.166/source1104bde，既有receipt为DEVELOP_ACTIVE、部署时171/171 MATCH；本轮未重新核包或部署，main B069.96不变。
 
 ## 历史阶段记录
 
