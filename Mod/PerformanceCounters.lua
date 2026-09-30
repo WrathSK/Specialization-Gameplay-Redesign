@@ -199,6 +199,7 @@ function M.StartMemory(P,shared)
   local lines={'GC试运行｜'..(a.failure and '已停用：'..a.failure or a.enabled and '自动开启' or '手动关闭'),
    '增长128 MiB + 间隔2回合；本地回合进入后发布边界评估。',
    '最近状态 '..a.reason..'｜本次加载调用 '..a.collections..' 次｜Lua '..tostring(_VERSION)}
+  lines[#lines+1]='起点 '..tostring(a.baselineSource or '尚未取得')..' / T'..tostring(a.baselineTurn or '?')
   for _,v in ipairs(a.rows)do
    lines[#lines+1]='T'..v.turn..' '..v.reason..' '..v.status..'：'..number(v.before)..' → '..number(v.after)..' MiB；CPU '..number(v.cpu)..'s / 时钟 '..number(v.wall)..'s'
   end
@@ -223,18 +224,28 @@ function M.StartMemory(P,shared)
   if loaded and Game.GetCurrentGameTurn()-lastTurn>=policy.minTurns then collect('MANUAL') end
   return d.ReadGC(pid)
  end
+ -- B139: LoadScreenClose may not reach this late-installed Gameplay observer.
+ -- First eligible local activation is a count-only fallback, never a collection.
+ -- A delayed/repeated load notification cannot reset the baseline or cooldown.
+ local function baseline(source)
+  if not current() or loaded or a.failure then return end
+  loaded=true;lastTurn=Game.GetCurrentGameTurn();anchor=M.Heap()
+  a.baselineSource=source;a.baselineTurn=lastTurn
+  if not anchor then fail('LOAD_COUNT_UNAVAILABLE')
+  else log(source..'_BASELINE_128MiB_2T_2s',{before=anchor}) end
+ end
  local hooks={'LoadScreenClose','PlayerTurnActivated','PlayerTurnDeactivated','GameCoreEventPublishComplete'}
  local callbacks={
   function()
-   if not current() or loaded then return end
-   loaded=true;lastTurn=Game.GetCurrentGameTurn();anchor=M.Heap()
-   if not anchor then fail('LOAD_COUNT_UNAVAILABLE')
-   elseif not a.failure then log('LOAD_BASELINE_128MiB_2T_2s',{before=anchor}) end
+   baseline('LOAD')
   end,
   function(pid)
    if not current()then return end
    pendingTurn=nil
-   if loaded and a.enabled and not a.failure and localHuman(pid)then pendingTurn=Game.GetCurrentGameTurn() end
+   if a.enabled and not a.failure and localHuman(pid)then
+    if not loaded then baseline('LOCAL_TURN');return end
+    pendingTurn=Game.GetCurrentGameTurn()
+   end
   end,
   function()if current()then pendingTurn=nil end end,
   function()

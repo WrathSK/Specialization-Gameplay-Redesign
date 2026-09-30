@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0348",
-    "runtime": "B138.165 / modinfo165",
+    "status": "S0349",
+    "runtime": "B139.166 / modinfo166",
     "military": "D0034"
   },
   "paths": {
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "ec1c69d48aac67844a51d67903661642834be5e2",
-  "current_batch": "B138_STABILIZATION_NATIVE_REQUIRED",
-  "next_batch": "One integrated B138 stabilization acceptance: fixed save normal Network, at most10T/4 automatic collections. User authorized trial/local validation/deployment; no further gameplay/F. Unblock feature planning only on fixed mitigation/correctness criteria; remaining allocation efficiency stays open.",
+  "current_batch": "B139_GC_LOAD_FALLBACK_LOCAL_PASS",
+  "next_batch": "B139 authorized WAIT_LOAD fallback locally verified; commit/deploy under W0003 then one <=3T GC report; retain B138 fixed acceptance criteria, no gameplay/F.",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B138.165 deployed;171/171 MATCH;sourceec1c69d;receipt B138.165-ec1c69d-playtest.json DEVELOP_ACTIVE;B137/stable recovery verified;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0348: B138 GC implementation95c0893 and independent public-update constraints/ec1c69d targeted tests reviewed. Deployment171/171 MATCH, rollback retained. Native integrated acceptance required; mitigation/root cause not marked PASS. Design/main unchanged.",
+  "context_review_status": "S0349: 24 native images reviewed/hash archived, B138 WAIT_LOAD calls0 confirmed. B139 count-only local-turn baseline fallback and targeted regressions reviewed; live remains B138 until receipt.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

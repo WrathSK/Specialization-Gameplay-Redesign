@@ -135,6 +135,42 @@ def behavior(repo):
     print('PASS GC lifecycle: load/read/count-observer zero full GC; local player4, 128MiB/2T, AI/duplicate/stale/reentry/switch/cooldown')
 
 
+def missed_load(repo):
+    """B139 native regression: WAIT_LOAD after ten turns must not be permanent."""
+    lua=runtime(repo)
+    lua.execute("""
+      -- LoadScreenClose is registered but never delivered, as in native evidence.
+      activate(7);publish();assert(countCalls==0 and a.reason=='WAIT_LOAD')
+      human=false;activate(4);publish();human=true;assert(countCalls==0)
+      Game.GetLocalPlayer=nil;activate(4);publish();assert(countCalls==0)
+      Game.GetLocalPlayer=function()return localID end
+      cycle(41,300);assert(gcCalls==0 and countCalls==1 and a.baselineSource=='LOCAL_TURN' and a.baselineTurn==41)
+      local n=countCalls;loadGame();loadGame();activate(4);publish()
+      assert(gcCalls==0 and countCalls==n and a.baselineTurn==41)
+      cycle(42,800);assert(gcCalls==0 and a.reason=='INTERVAL')
+      cycle(43,428);assert(gcCalls==1 and a.rows[1].before==428)
+      loadGame();assert(a.baselineTurn==41)
+      cycle(44,800);assert(gcCalls==1 and a.reason=='INTERVAL')
+      cycle(45,228);assert(gcCalls==2)
+      intact()
+    """)
+    lua=runtime(repo)
+    lua.execute("""
+      d.SetAutoGC(4,false,'off');cycle(41,500);assert(countCalls==0 and gcCalls==0)
+      d.SetAutoGC(4,true,'on');assert(countCalls==0)
+      cycle(42,500);assert(countCalls==1 and gcCalls==0)
+      shared.NetworkBridge.ready=false;cycle(44,900)
+      assert(gcCalls==0 and a.reason=='SKIP:NETWORK_NOT_READY')
+      shared.NetworkBridge.ready=true;cycle(45,900);assert(gcCalls==1);intact()
+    """)
+    lua=runtime(repo,'countUnavailable=true')
+    lua.execute("""
+      cycle(41,500);assert(a.failure=='LOAD_COUNT_UNAVAILABLE' and not a.enabled and gcCalls==0)
+      countUnavailable=false;loadGame();cycle(45,900);assert(gcCalls==0);intact()
+    """)
+    print('PASS B139 absent/delayed load, local-only count baseline, unchanged cooldown/threshold, OFF/failure and Network-not-ready guards')
+
+
 def safety_gates(repo):
     cases=[
       ('shared.RequestDepth=1', 'shared.RequestDepth=0', 'REQUEST_INFLIGHT'),
@@ -298,7 +334,7 @@ def static(repo):
     for name in ['PerformanceCounters.lua','Gameplay.lua','UI/P0Panel.lua','Probe.lua','ClaimProjects.lua']:
         lua.execute('assert(load(...))',(repo/'Mod'/name).read_text())
     manifest=ET.parse(repo/'Mod/SpecializationP0.modinfo').getroot()
-    assert manifest.get('version')=='165'
+    assert manifest.get('version')=='166'
     listed=[f.text for f in manifest.findall('./Files/File')]
     actual={str(p.relative_to(repo/'Mod')) for p in (repo/'Mod').rglob('*') if p.is_file() and p.name not in ('.DS_Store','SpecializationP0.modinfo')}
     assert len(listed)==len(set(listed)) and set(listed)==actual
@@ -310,7 +346,7 @@ def main():
     parser.add_argument('--repo',type=Path,default=Path(__file__).resolve().parents[1])
     repo=parser.parse_args().repo.resolve()
     assert (repo/'Mod/PerformanceCounters.lua').is_file(),repo
-    behavior(repo);safety_gates(repo);failure_latches(repo);bounded_state(repo);gameplay_and_ui(repo);static(repo)
+    behavior(repo);missed_load(repo);safety_gates(repo);failure_latches(repo);bounded_state(repo);gameplay_and_ui(repo);static(repo)
     print('LOCAL_SIMULATION_PASS: bounded B138 GC contracts; native collector semantics/stall timing/heap or process benefit remain unverified')
 
 

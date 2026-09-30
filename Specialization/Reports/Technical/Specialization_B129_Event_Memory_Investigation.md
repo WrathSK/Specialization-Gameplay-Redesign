@@ -848,3 +848,15 @@ Bridge的Refresh/Verified/Receive、旧fresh/Current查询、Rebuild/CheckEviden
 ### B138 deployment checkpoint
 
 GC实现独立提交`95c0893`；公共更新约束/定向回归/固定验收合同提交`ec1c69d`（没有业务更新算法改动）。OS进程检查确认游戏/启动器退出后，经既有工具恢复stable桥再激活B138；source `ec1c69d48aac67844a51d67903661642834be5e2`，receipt `B138.165-ec1c69d-playtest.json`，DEVELOP_ACTIVE，**171/171 MATCH**。B137完整恢复包与stable恢复点核验保留，无pending事务，无main/Design变化。当前仍USER_GAME_TEST_REQUIRED；没有运行游戏或宣称原生稳定化通过。
+
+### B139.166 — WAIT_LOAD native failure and bounded fallback
+
+本次24张截图逐张审阅并原名归档至外部`Specialization/Status/Validation/Evidence/B138_AutoGC_WAIT_LOAD/`，manifest记录24/24 SHA256一致。22:52:50 / T48报告明确显示B138.165、自动开启、`WAIT_LOAD`、本次加载调用0次、Lua2013.2.0r13768。用户报告没有卡顿；**这次自动GC触发 USER_GAME_TEST_FAIL（加载就绪门槛），不是已执行GC但无释放收益**。同一PID61565，T39→49进程10.17→11.23GB；T48两个读数11.11→11.10GB。进程读数不属于本Mod独占，不能由此量化Lua分配/泄漏。现有Logs没有Lua.log，不能伪称已从日志取得GC记录。
+
+代码中只有LoadScreenClose建立loaded/anchor，故WAIT_LOAD直接阻断之后所有评估；截图证明该observer没有取得这个起点，尚不能区分事件未向此context送达或安装时已错过。B138模拟始终主动发送load事件，未覆盖这个原生失败序列。
+
+用户已授权稳定化中的窄修复，不另开Gameplay决策。B139保留LoadScreenClose计数起点，同时在**首次合格本地人类PlayerTurnActivated**补建一次起点（仅count，不collect、不城市扫描）；晚到/重复load不能重置起点或冷却。后续仍经原发布阶段、全部busy/Network/请求护栏、128MiB/2T/2秒锁停。OFF、未知local player、外国回合不触发补建。面板增加起点来源/回合；无UI轮询、永久属性/缓存清理、业务更新算法改变。不修改Network.ready或猜测后续SKIP原因。
+
+STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：复用`test_b138_gc.py`实际模块/Gameplay/UI fixture，补未送达与晚到load、local player4/foreign/unknown、OFF/ON、基线失败锁停、Network未就绪护栏；原17组busy、18组失败、边界/重复/重入/上限均通过。版本B139.166/modinfo166，唯一行为变更在PerformanceCounters；Probe/modinfo仅版本。B138公共业务约束未改，不重跑无关玩法套件。native fallback及内存缓解仍待验，阈值/接受标准没有放宽。
+
+最小下一检查：冷启动原固定存档副本；进入后最多推进3个玩家回合，左键“GC试运行”交一张报告。应有LOAD或LOCAL_TURN起点，不能仍是WAIT_LOAD；若SKIP/STOP/等待持续，立即停在该报告，不跑长测。若已AUTO_GROWTH，则复用B138最多10T/4次及固定整合标准，不追加独立长测。没有证明全部事件/安全阶段的native表现，出现下一级具体失败仅处理该原因。

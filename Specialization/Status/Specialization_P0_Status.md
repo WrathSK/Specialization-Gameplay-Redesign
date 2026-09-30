@@ -1,25 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0348
-Implementation Build: develop P0-B-138.165 / modinfo165 STABILIZATION_LOCAL_PASS; live B138.165 verified171/171 MATCH; stable B069.96
+Status Revision: S0349
+Implementation Build: develop P0-B-139.166 / modinfo166 GC_LOAD_FALLBACK_LOCAL_PASS; live B138.165; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B138_STABILIZATION_NATIVE_REQUIRED
+Work State: B139_GC_LOAD_FALLBACK_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前[B138有界稳定化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)获授权实施、本地验证和部署；GC试运行source95c0893，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，native未验收。阈值128MiB、间隔2T、>2秒锁停；session开关、ring8/log24；不清Property/账本/不调全局GC策略。
+[B138截图/B139修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b139166--wait_load-native-failure-and-bounded-fallback)：T48原生报告WAIT_LOAD、自动开启、调用0次，自动触发USER_GAME_TEST_FAIL；T39→49进程10.17→11.23GB，不是Mod独占归因。24图hash核验归档，无需重复本次长测。
 
-[公共更新接入约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)及6组定向回归独立于GC。没有安全的公共业务删减：foreign回合仍承担UNKNOWN失城补撤销；本轮不改业务更新算法，不把缓解归因为结构提速。B129/B132/B136既有功能实机范围与[B137隔离证据](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137-native-isolation-results-and-gc-hypothesis)保留。
+B139.166/modinfo166已按持续稳定化授权修复：首次合格本地回合补建count-only起点，晚到load不重置；128MiB/2T/2秒与全部安全护栏不变。定向实际模块/分发/UI模拟STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；native待验，无Gameplay/保存/Design变化。
 
-B138已部署：source ec1c69d，receipt B138.165-ec1c69d-playtest.json（DEVELOP_ACTIVE），171/171 MATCH；OS确认游戏退出，B137完整恢复包/stable恢复点核验保留。GC实现95c0893、更新约束/验收合同ec1c69d分开提交；main/stable B069.96不变。
+运行包仍B138.165（source ec1c69d，receipt B138.165-ec1c69d-playtest.json，171/171 MATCH）；B139尚待提交后按W0003部署，不能从源码推断live。main/stable B069.96及恢复点保留。
 
-唯一待验：同存档正常Network最多10T/4次自动触发；起末稳定进程读数＋最后报告，末尾一次专家移出/移回。具体固定通过/失败标准在B138合同，出现锁停/持续SKIP提前停止；不要求几十图或重跑旧长测。
+下一最小验证：固定存档冷启动，最多3个玩家回合左键GC试运行报告；不应再WAIT_LOAD。若SKIP/STOP则停在具体原因；若AUTO发生再按原[B138固定验收](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#一次整合验收与预先退出标准)完成，最多10T/4次，不放宽阈值。
 
-退出：缓解、相关正确性和接入约束均通过后记“稳定化完成，剩余分配效率问题开放”，解除性能阻塞；当前仍USER_GAME_TEST_REQUIRED。下一功能计划待用户授权，不自动推进E2/F；不以尚未找到全部分配来源无限阻塞。
+[公共更新接入约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)和既有B129/B132/B136/B137证据保留，无业务路径删减。稳定化尚未完成；功能/F不自动推进，不以未定位全部分配来源无限延伸。
 
 ## 历史阶段记录
 
