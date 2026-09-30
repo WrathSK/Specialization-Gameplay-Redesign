@@ -5,25 +5,26 @@ Scope: optional macOS developer tooling, not Mod content. Never deploy or add to
 
 ## Start / stop
 
-Python3 standard library only. Start Civ VI yourself, then in Terminal:
+Python3 standard library only. Start Civ VI yourself, then open a terminal **at your repository root** (`R` in the [external-materials convention](../../Specialization/Reports/Proposals/Phase1_External_Materials.md)). No machine-specific checkout path is required.
+
+The commands below are templates: replace `YOUR_VERIFIED_BUILD` with the deployed package label from your deployment record, and `/PATH/TO/SESSION` with the session path printed by the monitor. Do not infer the live package from the branch or HEAD.
 
 ```sh
-cd /Users/xutingzheng/Projects/Specialization-Gameplay-Redesign-develop
-python3 tools/external_monitor/monitor.py start --build B072.99
+python3 tools/external_monitor/monitor.py start --build YOUR_VERIFIED_BUILD
 ```
 
-`--build` is a USER-SUPPLIED label, not a game query. Use B071.98 if that is actually your package. At the time this tool was made, live was B072.99; this tool did not switch it. It selects exactly one Civ6_Exe_Child at startup or refuses. `--pid NUMBER` is optional, still checks the native process name. It neither launches nor waits for a future game. No other process is silently chosen. Keep this terminal running; Ctrl+C stops only the monitor (after any in-progress bounded diagnostic finishes). It exits when target exits/identity changes or ordinary access is lost; restarting Civ VI requires a NEW monitor session.
+`--build` is a USER-SUPPLIED label, not a game query. Supply the verified label for your own session; the monitor does not deploy or switch packages. It selects exactly one Civ6_Exe_Child at startup or refuses. `--pid NUMBER` is optional, still checks the native process name. It neither launches nor waits for a future game. No other process is silently chosen. Keep this terminal running; Ctrl+C stops only the monitor (after any in-progress bounded diagnostic finishes). It exits when target exits/identity changes or ordinary access is lost; restarting Civ VI requires a NEW monitor session.
 
 Default interval30 seconds (`--interval`10–3600). Default automatic snapshots OFF. No debugger, hook, injection, game API, configuration/save reads, RSS shell polling loop, or OCR. Regular statistics use libproc (plus one targeted ps CPU read), not vmmap/footprint commands. Only process identity and OS accounting are read, no game virtual memory is read by our code.
 
 The printed session path is used for optional commands in another terminal:
 
 ```sh
-python3 tools/external_monitor/monitor.py mark --session /PATH/TO/SESSION "noticed slowdown"
-python3 tools/external_monitor/monitor.py capture --session /PATH/TO/SESSION vmmap
-python3 tools/external_monitor/monitor.py capture --session /PATH/TO/SESSION footprint
-python3 tools/external_monitor/monitor.py capture --session /PATH/TO/SESSION sample
-python3 tools/external_monitor/monitor.py stop --session /PATH/TO/SESSION
+python3 tools/external_monitor/monitor.py mark --session "/PATH/TO/SESSION" "noticed slowdown"
+python3 tools/external_monitor/monitor.py capture --session "/PATH/TO/SESSION" vmmap
+python3 tools/external_monitor/monitor.py capture --session "/PATH/TO/SESSION" footprint
+python3 tools/external_monitor/monitor.py capture --session "/PATH/TO/SESSION" sample
+python3 tools/external_monitor/monitor.py stop --session "/PATH/TO/SESSION"
 ```
 
 Markers write UTC immediately. Other commands queue ONE tiny request, processed at the next sample boundary (normally30s, longer during a bounded capture). Duplicate pending request is refused; Ctrl+C remains available. Nothing is sent to Civ VI. No monitor daemon/startup item is installed. Do not launch multiple monitor instances against the same root; an exclusive lock prevents it.
@@ -59,7 +60,7 @@ Timestamps are UTC ISO8601; align screenshots' local time using timezone. No kno
 
 ## Optional snapshots / cost controls
 
-Enable only deliberately: `start --build B072.99 --auto-snapshots vmmap` (or footprint). First baseline after60seconds. Later first unrecorded absolute threshold10/15/20/30/40 decimal GB, or at least256MiB/min growth in each of3 consecutive windows. Uses physical footprint if available, otherwise RSS with metric explicitly recorded; switching metric resets comparison history. Thresholds are evidence triggers, NOT leak verdicts.
+Enable only deliberately: `start --build YOUR_VERIFIED_BUILD --auto-snapshots vmmap` (or footprint). First baseline after60seconds. Later first unrecorded absolute threshold10/15/20/30/40 decimal GB, or at least256MiB/min growth in each of3 consecutive windows. Uses physical footprint if available, otherwise RSS with metric explicitly recorded; switching metric resets comparison history. Thresholds are evidence triggers, NOT leak verdicts.
 
 Cooldown600seconds across ALL captures, including manual; limits above. Deferred threshold crossings coalesce at next eligible checkpoint. Snapshot timeout5seconds; max2MiB output; too slow (>3s), timeout, permission/error exit disables that tool for session. `sample` is NEVER automatic: manual5seconds,10ms sampling interval, timeout15seconds; duration>10s disables it. Timeout/output limit terminates ONLY the child diagnostic utility. No forkCorpse, heap dump, allocations tracing, automatic sudo or security-policy changes. Failed privilege check is evidence, not a request to disable platform protections.
 
