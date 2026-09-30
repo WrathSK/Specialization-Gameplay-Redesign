@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0351
+Status Revision: S0352
 Implementation Build: develop P0-B-139.166 / modinfo166 AUTO_GC_NATIVE_OBSERVED; live B139.166 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B139_MITIGATION_OBSERVED_CORRECTNESS_PENDING
+Work State: B139_GC_EFFECTIVE_OPERATION_MEMORY_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B139原生长测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b139-native-automatic-collection-observations)：28图hash核验归档，T39→54同PID。LOCAL_TURN/T40补建起点；6次自动回收，间隔≥2T，无锁停，用户确认没有卡顿。加载补建/自动触发所测路径USER_GAME_TEST_PASS；不是Mod独占内存或根因关闭证明。
+[B139征服/操作长测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b139-operations-long-test--gc-release-and-process-growth)：26图hash归档，独立PID89277、T39→62。10次AUTO均成功释放≥64MiB，间隔≥2T，无锁停；首次墙钟2秒、未超过>2秒锁停阈值，用户无明显卡顿。T39未过回合时WAIT_LOAD→T40正常補建→T42首次收，不是原B138跨回合加载门禁失败。
 
-后段T50/T52/T54进程均10.82GB，后三次回收后Lua432.51/435.53/407.40MiB（范围28.13）。原前4次窗口范围64.79MiB略超原64门槛，该项不改写PASS；额外后段证据支持缓解/收敛。严格同世界/每点空闲30秒未独立确认，不伪造控制条件。
+残余进程增长仍OPEN：T44→62回收后Lua461.28→484.07MiB（+22.79），进程10.87→11.21GB（+0.34）；Lua中途波动、末三点范围130.30MiB。持续建造、后期4商路，非固定世界；不把增长直接归为Mod泄漏/正常成本或全部原生。上一组较静态后段平台结论保留但不扩大；本次不宣称稳定化全部结项。
 
-用户未操作/未观察收益，完整稳定化尚未结项。无需再重复长测或泛化调查；待认可上述窗口例外并补唯一既定正确性检查：同回合学院专家移出/移回收益减少/恢复，可顺带下次游戏完成。会话OFF原生未验、本地通过，不另开一轮；不自动进入F/新功能实施。
+用户确认开始调整专家/总督、约五六回合投资时收益正常，无明显卡顿；后续收益未仔细观察。保留此限定功能证据，不扩大为全程PASS。无需重复长测；下一定域建议是复用现有外部monitor做原生内存分类的权限/成本核对，再考虑同PID两点短窗口采集；本轮未采集、不改GC频率、不清账本、不新增泛化计数器。
 
-B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮未重新核验外部运行包/部署。B138/stable恢复点保留，main/stable B069.96不变。[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)及已有功能证据保留；剩余分配效率开放，后续回收后持续抬升/卡顿/功能异常才定域重开。可准备功能计划，不自动实施。
+B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮未重新核验外部运行包/部署，B138/stable恢复点及main B069.96不变。[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)与已有修复保留。可准备功能计划，未自动授权实施/F；不以定位全部分配来源无限阻塞项目。
 
 ## 历史阶段记录
 
