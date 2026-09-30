@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0345
-Implementation Build: develop P0-B-137.164 / modinfo164 NETWORK_ISOLATION_NATIVE_PENDING; live B136.163 verified170/170 MATCH until deployment; stable B069.96
+Implementation Build: develop P0-B-137.164 / modinfo164 NETWORK_ISOLATION_NATIVE_PENDING; live B137.164 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
@@ -17,11 +17,11 @@ B129认领读档、B132专家/建筑响应、B136总督调离ACTIVE1及新总督
 
 B137定向STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：24项正常行为对照、五模块精确退出/失败、Bridge及UI停用/晚到/重建、实际请求握手通过；原生退出与内存对照尚未实机验证。收益退出会有一次性核对/更新/引用释放，其瞬时内存变化不代表根因。Lua count非本Mod独占；不把分支停用结果单独归因某函数。B135/B136优化保留。
 
-运行包暂仍B136.163（source3b31173、receipt B136.163-3b31173-playtest.json、170/170 MATCH），B137部署须完成本地验证、commit/push、退出检查及既有事务。main/stable B069.96不变。
+已按W0003部署B137.164，source7b11908，receipt B137.164-7b11908-playtest.json（DEVELOP_ACTIVE）；171/171 MATCH。两次OS退出检查通过，无pending事务，B136完整恢复点与stable保留。main/stable B069.96不变，未启动游戏。
 
 用户下一步仅按同节短流程：同一原档NORMAL/隔离各初始及两个玩家回合，记录报告和进程内存；不额外GC、不做征服/建造或重复长测。隔离不是正式游玩模式，不覆盖原档，不用实验自动存档恢复。若READY/UI3/3/撤销5/5/静默不全则截图停止。
 
-授权边界：本批本地实现已完成；仅既有W0003测试包部署和等待原生反馈。无下一修复/实验/F授权；不启动游戏，不声称MEMORY修复PASS。
+授权边界：本批本地实现和测试包部署已完成，等待原生反馈。无下一修复/实验/F授权；不启动游戏，不声称MEMORY修复PASS。
 
 
 ## 历史阶段记录

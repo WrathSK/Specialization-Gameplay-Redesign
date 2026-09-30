@@ -740,3 +740,5 @@ Bridge的Refresh/Verified/Receive、旧fresh/Current查询、Rebuild/CheckEviden
 3. 不必截图所有其它诊断；两组各初始/+1T/+2T即可。任何错误/停用后出现网络工作即停止；不反复右键、手动GC或自行延长。测试后完全退出，重载原始存档即可恢复NORMAL；不保存实验进度。
 
 等待本次短对照，不发放memory-fix PASS。若仍无法缩小来源，先分析此同档分支对照，再另提最小下一路径；不自动开始下一实验。
+
+部署：source `7b11908` → B137.164 / modinfo164，receipt `B137.164-7b11908-playtest.json`（DEVELOP_ACTIVE）；独立比对171/171 MATCH。两次切换前OS检查均确认Civ VI退出；B136完整恢复包及stable桥hash保持，无pending事务。没有启动游戏、没有main/promotion。静态/本地PASS不升级为原生退出或内存改善PASS。
