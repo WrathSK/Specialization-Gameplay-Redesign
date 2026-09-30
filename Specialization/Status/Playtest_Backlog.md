@@ -170,4 +170,4 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 
 
 ### PT001 B137 — same-save Network isolation
-[会话级隔离对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137164--authorized-session-network-isolation-control)获授权实施；等待部署后NORMAL/隔离各初始与两个玩家回合报告＋进程内存，复用原存档冷启动，不GC/征服/长测。仅READY/UI3/3/模块5/5/无新网络工作才开始观察；失败截图停止。保留原档、不使用实验自动存档恢复。根因OPEN，非memory-fix PASS。
+[14图原生对照及GC猜想核对](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137-native-isolation-results-and-gc-hypothesis)已收齐。READY/UI3/3/退出5/5及T39→41计数静默为所测范围USER_GAME_TEST_PASS；并非逐类Modifier收益验收。NORMAL/隔离Lua净增195.66/121.42MiB，进程均+0.22GB，MEMORY_CAUSE_OPEN。无需立即补测/长测/GC；下一建议为隔离后余下回合路径的定域只读调查，新实验另授权。正常恢复使用未覆盖原档冷启动，不保存实验结果。

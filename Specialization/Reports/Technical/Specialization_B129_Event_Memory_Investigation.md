@@ -742,3 +742,45 @@ Bridge的Refresh/Verified/Receive、旧fresh/Current查询、Rebuild/CheckEviden
 等待本次短对照，不发放memory-fix PASS。若仍无法缩小来源，先分析此同档分支对照，再另提最小下一路径；不自动开始下一实验。
 
 部署：source `7b11908` → B137.164 / modinfo164，receipt `B137.164-7b11908-playtest.json`（DEVELOP_ACTIVE）；独立比对171/171 MATCH。两次切换前OS检查均确认Civ VI退出；B136完整恢复包及stable桥hash保持，无pending事务。没有启动游戏、没有main/promotion。静态/本地PASS不升级为原生退出或内存改善PASS。
+
+
+## B137 native isolation results and GC hypothesis
+
+2026-09-29：用户投递本次对照截图，并提出“AI/城邦回合增长、进入玩家回合没有明显回收，是否本Mod影响原版/HD GC”的观察猜想，明确尚非确凿证据。本轮只做逐图审核、归档、定域源码核对和状态记录；没有修改Mod、GC策略、Design或运行包，没有启动游戏、执行玩法测试或追加长测。
+
+### 原生观察与比较口径
+
+14张原图（7组游戏/进程配对）已逐张阅读，保留原名移入外部`Specialization/Status/Validation/Evidence/B137_Network_Isolation_Comparison/`；manifest记录原路径、时间、bytes、SHA256与本节关联，14/14移动前后相同，收件箱目录保留且无重复图。游戏图均明确B137.164。两组PID不同，证明不同进程；相同T39城市/资源起点与规定的同原档对照相符，但截图本身不是存档文件身份或全部操作历史证明。
+
+| 组 / 时间 | 模式 / 回合 | Gameplay调用处Lua MiB | Activity Monitor进程GB | PID |
+|---|---|---:|---:|---:|
+| 1 / 20:45:33 | NORMAL / T39 | 279.26 | 10.28 | 52726 |
+| 2 / 20:46:06 | NORMAL / T40 | 417.25 | 10.41 | 52726 |
+| 3 / 20:46:36 | NORMAL / T41 | 474.92 | 10.50 | 52726 |
+| 4 / 20:48:54 | READY / T39，首次退出读数 | 275.57 | 10.18 | 53066 |
+| 5 / 20:48:59 | READY / T39，第二起点 | 276.08 | 10.18 | 53066 |
+| 6 / 20:49:23 | READY / T40 | 351.31 | 10.33 | 53066 |
+| 7 / 20:49:49 | READY / T41 | 397.50 | 10.40 | 53066 |
+
+四张隔离图均为READY、UI退出3/3、收益撤销5/5、“可观察：退出后网络采集/发送/派生/发布无新增”。核对`Mod/NetworkIsolation.lua`：这要求三个UI当前epoch退出确认、五个module-owned退出返回成功、inflight=0及六项已有Network累计计数相对退出基线不增加。报告只读`count`，不会调用完整GC。
+
+- **USER_GAME_TEST_PASS（本次隔离握手/模块退出报告/两回合计数静默范围）**：原生UI→Gameplay实验可进入READY并保持到T41。5/5是模块对自有carrier枚举/原生存在性核对的成功，不等于截图已分别证明五类效果原先全部存在、每一种原生Modifier都独立撤销；没有各类收益前后面板，因此不扩大PASS。
+- NORMAL T39→41：Lua **+195.66 MiB**，进程 **+0.22 GB**。隔离采用第二T39起点：Lua **+121.42 MiB**，进程 **+0.22 GB**；若用首次退出点则Lua+121.93 MiB，结论不变。
+- 两回合Lua净增量相差**74.24 MiB**，这是所测调用范围的净变化，包含期间分配和回收，不是累计分配量或本Mod独占量。隔离组基线进程已经低0.10GB，终点仍低0.10GB，不能把这个终点差额当两回合改善。两组进程增长在显示精度下相同；**Network隔离没有消除进程增长**，MEMORY_CAUSE_OPEN。
+- 隔离同时停用路线采集、桥接、五类consumer并撤销载体，不能将Lua差额单独归给Capture/某张表，也不能从短对照断言Network没有成本或排除其它路径。没有完整回收后的点，本轮不能判定剩余增长是可回收积压还是持续保留。没有逐AI/城邦/人类回调时间线，用户关于回收时机的印象仍单独标记为待证线索。
+
+### “是否打断GC”的定域核对
+
+**STATIC_CONFIRMED**：当前`Mod/`的117个Lua中，直接GC接口只在[PerformanceCounters](../../../Mod/PerformanceCounters.lua)的`count`、可选`isrunning`、明确手动`collect`。完整回收只由[P0Panel](../../../Mod/UI/P0Panel.lua)右键`MEMORY_GC_COLLECT`经[Gameplay](../../../Mod/Gameplay.lua)早期诊断分支调用；有token去重/busy/失败阻断。未发现stop/restart/step/setpause/setstepmul、collector别名重绑定、相关全局环境替换、`__gc`或不配对恢复。六回合观测器只读count。事件移除未见RemoveAll/改写Events或GameEvents；所见为自己的UI shutdown/已保存hook。没有建立“本Mod移除了HD回收事件”的调用链。
+
+本机HD Workshop `2465378070` 的180个Lua作GC关键词定域搜索：未命中`collectgarbage/gcinfo/lua_gc/setpause/setstepmul/garbage/独立gc`。直接核对`Gameplay/RegionalYields.lua:239–254`：玩家开始/结束回合根据pending重算区域收益后置0；`Gameplay/BinaryCompress.lua:133–148`：每整回合更新城市宜居度/政策Property。它们不是Lua GC或内存压缩。此结论只覆盖所查可读Lua，未覆盖引擎二进制内部、所有其它Mod或宿主注入。
+
+[Lua官方内存管理说明](https://www.lua.org/manual/5.1/manual.html#2.10)区分对象可达性、增量回收与回收参数；仍被引用的对象会保留，失去引用的对象可以在后续回收中释放。普通表/Property数据的存在本身不等于停止GC；新增分配、仍保留的引用、宿主调度或原生分配器行为，都可能改变可见曲线。回合结束/存档写盘不是“把内存倒空”的合同，自动存档也不能替代内存管理。
+
+本机此前原生环境串为`2013.2.0 r13768`、`isrunning=未知`，不能视为标准Lua55，也不能写成已停止GC。[Lua5.1接口](https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage)未列isrunning，[Lua5.2](https://www.lua.org/manual/5.2/manual.html#pdf-collectgarbage)才列此选项；这些手册解释通用机制，不确定本机宿主预算或参数。既有B134/B135手动回收确实降低Lua读数，说明当时有可回收对象，不证明自动GC关闭。本次进程和Lua净增量也不直接揭示回收发生时点。**暂不支持“本Mod直接打断GC”的具体说法；Mod增加分配、改变引用寿命或间接影响回收表现的可能仍保留。**
+
+### 下一调查边界
+
+[B137实验范围/恢复合同](#b137164--authorized-session-network-isolation-control)继续适用。最小对照已经收齐，不再要求重复长测/手动GC，不把诊断改成每回合清理。保留B135/B136优化；隔离仅实验，不覆盖原存档，正常使用需完全退出并重载原档。
+
+下一建议仅为定域只读调查：先沿隔离后仍运行的`PlayerTurnActivated`统一分发、非Network本地consumer与事实采样路径，核对local/foreign归属门控和实际分配/保留来源；区分AI期间收到事件与给AI施加能力，不能仅凭发生时机认定AI专业化。复用既有计数/证据，不重新增加泛化计数器。仍无法归因时再提出单一路径的最小对照及安全退出条件，**另行授权实施**；本轮不直接停用余下整个Mod、不添加周期GC、不进入F。

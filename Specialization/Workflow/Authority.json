@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0345",
+    "status": "S0346",
     "runtime": "B137.164 / modinfo164",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "7b1190857e5db923533539f09fbbfb5809cb47bc",
-  "current_batch": "B137_NETWORK_ISOLATION_NATIVE_PENDING",
-  "next_batch": "B137 deployed; STATIC_CONFIRMED / LOCAL_SIMULATION_PASS. Wait for same-original-save NORMAL vs isolated initial +2 turns native evidence. No GC/conquest/long test or subsequent implementation; no F.",
+  "current_batch": "B137_NETWORK_ISOLATION_OBSERVED_MEMORY_OPEN",
+  "next_batch": "B137 short native comparison complete; no immediate retest. Recommend scoped read-only audit of remaining turn/local consumer paths. No new experiment/fix/automatic GC/F authorization.",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B137.164 deployed;171/171 MATCH;source7b11908;receipt B137.164-7b11908-playtest.json DEVELOP_ACTIVE;B136/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0345 authorized B137 scope: all five Network effect owners, Bridge direct entrypoints, three UI producers/senders, coordinator/read entrypoint and exact catalog withdrawal reviewed. Design/permanent state unchanged; local validation only.",
+  "context_review_status": "S0346: 14 B137 originals reviewed/hash-archived; READY/UI3/3/withdraw5/5 and +2T counter silence observed. Lua growth lower, process +0.22GB in both groups; memory cause open. Scoped Mod/HD Lua GC control audit only; runtime source unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
