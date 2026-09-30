@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0352
+Status Revision: S0353
 Implementation Build: develop P0-B-139.166 / modinfo166 AUTO_GC_NATIVE_OBSERVED; live B139.166 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B139_GC_EFFECTIVE_OPERATION_MEMORY_OPEN
+Work State: B139_STABILIZATION_ACCEPTED_RESIDUAL_EFFICIENCY_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B139征服/操作长测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b139-operations-long-test--gc-release-and-process-growth)：26图hash归档，独立PID89277、T39→62。10次AUTO均成功释放≥64MiB，间隔≥2T，无锁停；首次墙钟2秒、未超过>2秒锁停阈值，用户无明显卡顿。T39未过回合时WAIT_LOAD→T40正常補建→T42首次收，不是原B138跨回合加载门禁失败。
+[无Specialization旧档对照及结项](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#non-specialization-late-save-control-and-stabilization-closure)：16图hash归档，用户确认旧档从未启用本Mod；同PID92167、T148→152进程11.30→12.83GB（+1.53），其中12.00→11.93曾回落。不同后期存档不能计算Mod净增量，但证明进程增长并非只在本Mod运行时出现；HD/其它Mod/引擎具体归因仍未知。
 
-残余进程增长仍OPEN：T44→62回收后Lua461.28→484.07MiB（+22.79），进程10.87→11.21GB（+0.34）；Lua中途波动、末三点范围130.30MiB。持续建造、后期4商路，非固定世界；不把增长直接归为Mod泄漏/正常成本或全部原生。上一组较静态后段平台结论保留但不扩大；本次不宣称稳定化全部结项。
+用户接受现有优化，**有界性能稳定化工程阶段完成；剩余分配效率/进程归因开放，不再阻塞功能规划**。B139自动触发/释放有效、较静态后段平台和操作场景无明显卡顿的既有证据保留。不是原固定判据全PASS：64.79>64MiB的原窗口、操作负载残余增长、未完整覆盖的严格功能/关闭会话检查不改写。用户早期专家/总督/投资收益正常只作限定证据，后续收益未仔细观察；E2仍partial。
 
-用户确认开始调整专家/总督、约五六回合投资时收益正常，无明显卡顿；后续收益未仔细观察。保留此限定功能证据，不扩大为全程PASS。无需重复长测；下一定域建议是复用现有外部monitor做原生内存分类的权限/成本核对，再考虑同PID两点短窗口采集；本轮未采集、不改GC频率、不清账本、不新增泛化计数器。
+不再要求重复长测；上一轮原生内存分类建议暂缓，不新增监控/GC调参。仅在明显卡顿、崩溃/影响游玩的内存压力、GC失败或功能回归时重新定域调查；[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)与已有修复继续有效。下一允许动作是按既有边界准备功能计划；新功能实施/F须单独授权，本轮不推进。
 
-B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮未重新核验外部运行包/部署，B138/stable恢复点及main B069.96不变。[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)与已有修复保留。可准备功能计划，未自动授权实施/F；不以定位全部分配来源无限阻塞项目。
+B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮仅文档，未重新核验外部运行包/部署。B138/stable恢复点及main B069.96不变。
 
 ## 历史阶段记录
 
