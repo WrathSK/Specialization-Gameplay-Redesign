@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "21235dc542f60563566424e78b94e91c69da3aa2d75bcdefea4adfaa8c9b77b5",
+      "sha256": "135d3f9431ac123adf2c6a51c4e4a497fb2d8376edf5e301d679d956b4d058d1",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -361,14 +361,14 @@
       "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "c6b15a1faebf0242996f41f161e777c49e4e3323ba6c0b30072f4841aa839df2",
+      "sha256": "88204d547ac57c5893e462d0c2d303a5ffa4d18b01be88ad263011ca875fa7ab",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B134 manual-only diagnostic / three known-player NetworkBridge event scopes; targeted LOCAL_SIMULATION_PASS, native GC pending"
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/Probe.lua": {
-      "sha256": "423089d235e1d87b1c7316661551563245e74a2749d76985ed24bf35b9f6ed91",
+      "sha256": "531d1425429604418f1ded601f2cd31fbad1c882db16b3da996bb93c5b4d28b7",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "caa65b30b549d1a8f3dc2bd216c33a8549ca8f441e8d8255b4a6c828d925ed5e",
+      "sha256": "68b91a601827c80410676a646037065419f3a0608dab684ef8c815e5395292a1",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1a019052e2c14f37804c444f826de6f6eaecc9bf08cf258309b0e122851cf41",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "1d39199dfce11840694fbca6460189bfd71b4e35b9504391c755a719f44aab2c",
+      "sha256": "1340033be3a23d132b10209aa73b05aeb342172ed718a53329f2864917d9a185",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "7ff57adb0848e68ede6a632376781a682fca86e8d0c7bff14c34b3c86abbcde5",
@@ -836,9 +836,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "c3ae613100b65456bb16df8ca35f04ff6e99cfa416ddc13caeac42d38eebb706",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
+      "sha256": "91e1f241e10a80ebe05483c0ad023d44c2d61647c8107b934e8511517d2fccee",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/Data/ClaimProjects.sql": {
       "sha256": "5d704c476ddb10b853d855dee8c751734bda1976251ca4bc55012e386f4f216d",

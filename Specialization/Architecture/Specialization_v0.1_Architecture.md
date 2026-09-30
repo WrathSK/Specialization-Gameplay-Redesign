@@ -65,6 +65,22 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清按当前Authority和已完
 
 Institution/Ability/Carrier的[分层目标](v2/Presentation_Institution_Carrier_Model.md)与[科研显示原型](v2/U1_Presentation_Prototype.md)分开：原型挂接HD城市详情、追加累计机构展示、过滤该surface已确认科研城的技术载体显示；不删除实际Building，也未完成所有专业、历史机构或所有Tooltip界面。hover使用展示内容，不建立新的Gameplay扫描请求。已有其他UI路径的轮询不能据此宣称全部消除。
 
+### 公共更新与临时状态接入约束
+
+B138稳定化补充既有事件驱动合同，不重建事件总线。新/修改模块必须在所属计划/代码中说明以下三类信息；不新建每模块manifest或长期记忆系统。
+
+| 职责 | 接入要求 |
+|---|---|
+| 变化原因、范围与依赖 | 区分worker/focus、普通建筑、总督、路线、ownership、load/回合核对；仅使用已核实原生参数缩小player/city范围。全国/跨城输入必须显式传播；UNKNOWN不能当空值、无变化或确认foreign。来自内部carrier的通知只按模块已确认的定域过滤。保留同回合真实变化，禁止每城市每回合一次粗限流 |
+| 计算事实与展示 | 正常计算只取能力所需的权威事实；完整建筑明细/文本按需生成。RuntimeWork的事实/区域索引仅在同一同步Audit内复用；不能跨收益写入、ownership通知、下一事件/batch复用。失败不缓存部分枚举或UNKNOWN为成功；重读资格不得复用过期ACTIVE |
+| 临时状态生命周期 | 每个cache/pending/session由创建模块拥有；明确key、上限或当前世界基数、覆盖/失效、完成/失败、load/退出条件。成功ACK、失败、超时和隔离/退出释放本模块待处理引用。旧epoch拒收；派生快照、UI或carrier不是永久authority。没有明确失效和退出合同，不跨事件增加缓存 |
+
+现有`RuntimeWork`保留保守foreign回合核对：GPP易主时原生carrier读取UNKNOWN会保留待撤销配置，之后foreign回合读数恢复才能补撤销。把所有foreign事件丢弃会破坏此路径。B135只对明确pure-worker/focus原因跳过无关Cross通知，mixed/UNKNOWN/turn/load及发送失败保留；不能将false泛化成所有consumer均不需更新。
+
+[六组定向测试](../../DevelopmentTests/test_b138_update_contract.py)覆盖实际RuntimeWork范围、同步batch隔离/失败重试、实际GPP失城UNKNOWN→外国回合撤销、同回合变化及UI原因重入/失败重试。证据为LOCAL_SIMULATION_PASS，不是引擎分配量测量。本轮未改这些业务算法；后续接入若涉及相同路径，应复用相关断言，而非默认全历史stress。
+
+[GC试运行](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)是独立可撤销缓解：`PerformanceCounters`单协调器拥有session开关、pending、阈值和有界结果。请求深度与Claim只读busy仅阻止已知重入；Publish不是全引擎事务完成证明。没有永久Property清理/全局GC参数改动，也不能用GC代替上述生命周期职责。原生结果、部署及恢复开发门禁只由Status/该验收记录管理。
+
 ### 目标合同与尚未落地部分
 
 [目标状态模型](v2/D0032_Adaptation.md#canonical-state-model--target-contracts-not-implemented-schemas)包含Historical State、REALLOCATING、专业永久成果与长期合同；这是依赖这些能力时必须满足的职责，不是当前已存在的全部保存schema。新通用cityKey、资产重组、Culture永久对话/考察记录、Commerce长期合同和Research学术传统，不能从旧模块同名或Game存储存在推断完成。各专业Legacy保持独立，未决项不由架构类推。

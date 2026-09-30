@@ -14,7 +14,7 @@
 
 ## 商路、传播与性能
 
-- [B129征服/过回合内存调查](Specialization_B129_Event_Memory_Investigation.md)：当前内存调查入口：已确认的局部冗余修复、原生手动GC与副本生命周期证据、B137原生Network隔离结果与GC猜想核对（Lua净增长减小、进程增长未消除）；根因仍OPEN，未宣称内存修复PASS。
+- [B129征服/过回合内存调查](Specialization_B129_Event_Memory_Investigation.md)：当前内存调查入口：已确认的局部冗余修复、原生手动GC与副本生命周期证据、B137原生Network隔离结果与GC猜想核对（Lua净增长减小、进程增长未消除）；[B138有界稳定化试运行](Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)增加单入口自动GC、更新接入约束与一次验收退出标准；根因仍OPEN，未宣称内存修复PASS。
 
 - [后台UI来源用户决定](Specialization_Network_Background_Source_Decision.md)：允许不开贸易窗口取当前路线；[纯Gameplay第二轮审计](Specialization_Trade_Authority_Second_Audit.md)未找到可靠全集，不等于证明绝对不存在。
 - [传播合同导航](../../Architecture/v2/README.md#事件传播与网络基础合同)：A–D2共享事实、样本/ACK、撤销和dirty传播；不同专业收益仍各自解释。

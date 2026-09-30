@@ -171,3 +171,8 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 
 ### PT001 B137 — same-save Network isolation
 [14图原生对照及GC猜想核对](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137-native-isolation-results-and-gc-hypothesis)已收齐。READY/UI3/3/退出5/5及T39→41计数静默为所测范围USER_GAME_TEST_PASS；并非逐类Modifier收益验收。NORMAL/隔离Lua净增195.66/121.42MiB，进程均+0.22GB，MEMORY_CAUSE_OPEN。无需立即补测/长测/GC；下一建议为隔离后余下回合路径的定域只读调查，新实验另授权。正常恢复使用未覆盖原档冷启动，不保存实验结果。
+
+
+### PT001 B138 — bounded stabilization / one integrated acceptance
+
+[B138参数、一次测试与固定退出标准](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)。GC运行缓解本地通过，native阶段/暂停/回收基线/进程改善待验。正常Network同存档最多10T或4次自动回收，起末进程读数＋最终GC报告；不要求重复旧长测/征服。公共业务路径未改，UNKNOWN失城补撤销反例已有定向回归。通过后“稳定化完成，剩余分配效率问题开放”，恢复功能计划；不等待定位所有分配来源、不自动实施F。剩余事项及重开条件集中在该合同末表；不得事后放宽阈值。

@@ -1,28 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0346
-Implementation Build: develop P0-B-137.164 / modinfo164 NETWORK_ISOLATION_OBSERVED_MEMORY_OPEN; live B137.164 verified171/171 MATCH; stable B069.96
+Status Revision: S0347
+Implementation Build: develop P0-B-138.165 / modinfo165 STABILIZATION_LOCAL_PASS; live B137.164 last verified171/171 MATCH, B138 deployment pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B137_NETWORK_ISOLATION_OBSERVED_MEMORY_OPEN
+Work State: B138_STABILIZATION_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B129认领读档、B132专家/建筑响应、B136总督调离ACTIVE1及新总督恢复能力的所测USER_GAME_TEST_PASS保留。E2仍partial，不进入F；内存增长未解决。
+当前[B138有界稳定化](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)获授权实施、本地验证和部署；GC试运行source95c0893，STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，native未验收。阈值128MiB、间隔2T、>2秒锁停；session开关、ring8/log24；不清Property/账本/不调全局GC策略。
 
-当前B137.164 / modinfo164：[Network隔离合同](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137164--authorized-session-network-isolation-control)的本地STATIC/LOCAL_SIMULATION证据保留。[本次14图对照](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137-native-isolation-results-and-gc-hypothesis)确认READY/UI3/3/退出5/5及两回合Network计数静默，限此范围USER_GAME_TEST_PASS；不扩大为各类原生Modifier独立收益验收。
+[公共更新接入约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)及6组定向回归独立于GC。没有安全的公共业务删减：foreign回合仍承担UNKNOWN失城补撤销；本轮不改业务更新算法，不把缓解归因为结构提速。B129/B132/B136既有功能实机范围与[B137隔离证据](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b137-native-isolation-results-and-gc-hypothesis)保留。
 
-NORMAL与隔离T39→41的Lua净增量分别195.66/121.42MiB；进程均+0.22GB。隔离未消除增长，MEMORY_CAUSE_OPEN；Lua非本Mod独占，未测本轮回收后基线。用户“AI阶段增长/玩家阶段缺少回收”仍为线索。定域源码未见本Mod停止/调参GC，HD可读Lua也未见手动GC；引擎调度未知，不改自动回收策略。
+源码B138待部署；当前运行包仍为最近核验B137/source7b11908，receipt B137.164-7b11908-playtest.json（DEVELOP_ACTIVE），171/171 MATCH。本条不声称本轮已重新核包。部署必须确认游戏退出，保留B137/stable恢复点；main/stable B069.96不变。
 
-部署沿用已验证source7b11908，receipt B137.164-7b11908-playtest.json（DEVELOP_ACTIVE），171/171 MATCH；本轮没有重新部署或核验外部运行包。B136/stable恢复点保留，main/stable B069.96未改。隔离结果不保存，正常恢复须冷启动原始未覆盖存档。
+唯一待验：同存档正常Network最多10T/4次自动触发；起末稳定进程读数＋最后报告，末尾一次专家移出/移回。具体固定通过/失败标准在B138合同，出现锁停/持续SKIP提前停止；不要求几十图或重跑旧长测。
 
-本次短对照已收齐，无立即补测/重复长测。下一建议：定域只读检查隔离后仍运行的玩家回合分发/本地consumer和事实采样；计划建议不等于新实施授权。源码、Design、保存schema与GC策略不变。
-
-授权边界：本轮仅证据归档与GC猜想调查记录完成；无下一修复/实验/F授权，不启动游戏。
-
+退出：缓解、相关正确性和接入约束均通过后记“稳定化完成，剩余分配效率问题开放”，解除性能阻塞；当前仍USER_GAME_TEST_REQUIRED。下一功能计划待用户授权，不自动推进E2/F；不以尚未找到全部分配来源无限阻塞。
 
 ## 历史阶段记录
 
