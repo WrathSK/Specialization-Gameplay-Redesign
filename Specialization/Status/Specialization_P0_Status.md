@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0349
-Implementation Build: develop P0-B-139.166 / modinfo166 GC_LOAD_FALLBACK_LOCAL_PASS; live B138.165; stable B069.96
+Status Revision: S0350
+Implementation Build: develop P0-B-139.166 / modinfo166 GC_LOAD_FALLBACK_LOCAL_PASS; live B139.166 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B139_GC_LOAD_FALLBACK_LOCAL_PASS
+Work State: B139_GC_LOAD_FALLBACK_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,7 @@ Work State: B139_GC_LOAD_FALLBACK_LOCAL_PASS
 
 B139.166/modinfo166已按持续稳定化授权修复：首次合格本地回合补建count-only起点，晚到load不重置；128MiB/2T/2秒与全部安全护栏不变。定向实际模块/分发/UI模拟STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；native待验，无Gameplay/保存/Design变化。
 
-运行包仍B138.165（source ec1c69d，receipt B138.165-ec1c69d-playtest.json，171/171 MATCH）；B139尚待提交后按W0003部署，不能从源码推断live。main/stable B069.96及恢复点保留。
+B139已部署：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，171/171 MATCH；OS确认游戏退出，经stable桥安全替换，B138完整恢复包及stable恢复点保留，无pending。main/stable B069.96不变。
 
 下一最小验证：固定存档冷启动，最多3个玩家回合左键GC试运行报告；不应再WAIT_LOAD。若SKIP/STOP则停在具体原因；若AUTO发生再按原[B138固定验收](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#一次整合验收与预先退出标准)完成，最多10T/4次，不放宽阈值。
 

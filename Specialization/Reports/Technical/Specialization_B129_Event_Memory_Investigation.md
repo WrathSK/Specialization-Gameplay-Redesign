@@ -860,3 +860,5 @@ GC实现独立提交`95c0893`；公共更新约束/定向回归/固定验收合�
 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：复用`test_b138_gc.py`实际模块/Gameplay/UI fixture，补未送达与晚到load、local player4/foreign/unknown、OFF/ON、基线失败锁停、Network未就绪护栏；原17组busy、18组失败、边界/重复/重入/上限均通过。版本B139.166/modinfo166，唯一行为变更在PerformanceCounters；Probe/modinfo仅版本。B138公共业务约束未改，不重跑无关玩法套件。native fallback及内存缓解仍待验，阈值/接受标准没有放宽。
 
 最小下一检查：冷启动原固定存档副本；进入后最多推进3个玩家回合，左键“GC试运行”交一张报告。应有LOAD或LOCAL_TURN起点，不能仍是WAIT_LOAD；若SKIP/STOP/等待持续，立即停在该报告，不跑长测。若已AUTO_GROWTH，则复用B138最多10T/4次及固定整合标准，不追加独立长测。没有证明全部事件/安全阶段的native表现，出现下一级具体失败仅处理该原因。
+
+B139部署核验：实现提交`1104bde`，receipt `B139.166-1104bde-playtest.json` DEVELOP_ACTIVE，171/171 MATCH；OS两次只读确认无游戏/启动器进程，先用B138 receipt恢复stable再激活B139，完整B138/stable恢复点保留，无pending事务。main/Design不变，native修复与缓解尚待用户验证。
