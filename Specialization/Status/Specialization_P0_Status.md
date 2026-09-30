@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0356
-Implementation Build: develop P0-B-140.167 / modinfo167 TEMPLATE_RECONCILIATION_LOCAL_PASS_NATIVE_PENDING; live B139.166 last recorded; stable B069.96
+Status Revision: S0357
+Implementation Build: develop P0-B-140.167 / modinfo167 TEMPLATE_RECONCILIATION_LOCAL_PASS_NATIVE_PENDING; live B140.167 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
@@ -15,7 +15,7 @@ Work State: E2_TEMPLATE_RECONCILIATION_NATIVE_PENDING
 
 B140.167 / modinfo167：逐城模板标记与账本原子提交，确认夺回/首次认领定域同步，pending冷加载续接；不改目录、折扣数值、AI范围或GC。A–G、写失败、实际折扣consumer与既有B136 E2定向回归为LOCAL_SIMULATION_PASS；不是原生PASS。旧B052 DB runner因当前外部DB缺HD_DUMMY_BUILDINGS未完成，不改断言绕过。支持矩阵/一个最小工业认领→模板→既有折扣→冷加载流程见当前切片，无需重做长测。
 
-运行包仍以实际receipt为准：本批尚未部署，上一记录B139.166/source1104bde；main B069.96不变。先完成提交与安全部署，再按该单一流程用户验收。当前不进入F实现、未知取得或同址新代。
+已按既有W0003授权部署：B140.167/source58dd0cd，171/171 MATCH，receipt B140.167-58dd0cd-playtest.json为DEVELOP_ACTIVE。OS确认游戏退出，旧B139恢复点与稳定桥保留；main B069.96不变。等待上述单一流程用户验收。当前不进入F实现、未知取得或同址新代。
 
 P0-F科研学术传统不消费模板账本，可独立准备计划；其专属持久年龄/首次P4证据、Identity暂停与跨Owner未决须单独明确。E2仍partial，既有B129限定PASS保留。[性能结项及后续约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)保持，不重新打开专项。
 

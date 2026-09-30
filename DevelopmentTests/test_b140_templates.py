@@ -21,7 +21,7 @@ return_setup=(R/'DevelopmentTests/test_b128_unassigned_return.py').read_text().s
 return_setup=return_setup.replace('not next(c.q.buildings)', 'not c.q.buildings[201] and not c.q.buildings[202] and not c.q.buildings[203] and not c.q.buildings[204]')
 # Observe the persistent pending flag before publish/cold load where requested.
 return_setup=return_setup.replace('Events.CityTransfered.Fire(0,id,3);flush()', 'Events.CityTransfered.Fire(0,id,3)')
-extra=r''' 
+extra=r'''
 local catalogRows={
  BUILDING_A={index=11,district='DISTRICT_INDUSTRIAL_ZONE',tier=1},
  BUILDING_B={index=12,district='DISTRICT_INDUSTRIAL_ZONE',tier=2},

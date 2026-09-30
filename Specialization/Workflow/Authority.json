@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0356",
+    "status": "S0357",
     "runtime": "B140.167 / modinfo167",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "1104bde66008a00d075dec955714c9c9751fdbc2",
+  "runtime_commit": "58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55",
   "current_batch": "E2_TEMPLATE_RECONCILIATION_NATIVE_PENDING",
-  "next_batch": "B140 single Industry initialization/reconciliation + existing discount + cold-load user test after safe deployment; E2 partial. F planning independent, not authorized implementation.",
+  "next_batch": "One minimal B140 Industry first identity/reentry current-building template/discount/cold-load user test; E2 partial. F plan independent, not authorized implementation.",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B139.166 deployed;171/171 MATCH;source1104bde;receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE;B138/stable recovery retained;OS game exit verified",
+  "live": "B140.167 deployed;171/171 MATCH;source58dd0cd;receipt B140.167-58dd0cd-playtest.json DEVELOP_ACTIVE;B139/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0356: authorized per-city template lifecycle and D0036 union contract; scoped Store/Standardization/callers and native-shaped A-G/discount/exit tests LOCAL_SIMULATION_PASS; native pending. No catalog/GC/AI/F expansion.",
+  "context_review_status": "S0357: authorized per-city template lifecycle and D0036 union contract; scoped Store/Standardization/callers and native-shaped A-G/discount/exit tests LOCAL_SIMULATION_PASS; native pending. No catalog/GC/AI/F expansion.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

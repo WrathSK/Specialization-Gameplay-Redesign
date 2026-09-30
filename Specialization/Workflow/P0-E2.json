@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0356",
+    "status": "S0357",
     "runtime": "B140.167 / modinfo167",
     "military": "D0034"
   },
@@ -1029,7 +1029,7 @@
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
     "implementation": "B140.167 scoped template lifecycle/union implemented and locally tested; native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "B140 single Industry initialization/reconciliation + existing discount + cold-load user test after safe deployment; E2 partial. F planning independent, not authorized implementation.",
+    "next": "One minimal B140 Industry first identity/reentry current-building template/discount/cold-load user test; E2 partial. F plan independent, not authorized implementation.",
     "scope_review": "D0036 user-approved template city experience recorded; no catalog/formula/AI/GC or other Legacy scope changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",

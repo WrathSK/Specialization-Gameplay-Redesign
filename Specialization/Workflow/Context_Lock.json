@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0356/B140: explicit authorized template lifecycle implementation, D0036 semantic delta reviewed against user decision, direct Store/Standardization/Discount callers and A-G/failure/exit tests; native pending. Only changed reviewed entries refreshed.",
+  "review_basis": "S0357/B140: explicit authorized template lifecycle implementation, D0036 semantic delta reviewed against user decision, direct Store/Standardization/Discount callers and A-G/failure/exit tests; native pending. Only changed reviewed entries refreshed. B140 deployed171/171 MATCH; receipt recorded, native remains pending.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "71b219f97366a86820282ec08720ccf8ec3696f09fa49c82d7be65f29c941765",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
     "Specialization/README.md": "c7d6d0c6e128cbf5ee612b62dc49e63737a7f34f10e767a17f78603f78cc1e62",
-    "Specialization/Status/Specialization_P0_Status.md": "434d131e41114761ada7abec86a27915fdf0ce847d00336891594ef7eb0a7e50",
+    "Specialization/Status/Specialization_P0_Status.md": "a7e11268837939a57c533a3e1dcb62ac754dd375af5285d3340ad36fae846e09",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "ea548f8c0d7e4929024210a0b8b0a0dc47f02c7dd6857df6f5e0723830f24b15",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "b4fc24680ee6d825220ded3b822472b62784396eba6d7a30235c3d0728751490",
+    "Specialization/Workflow/Authority.json": "d8e5dd85974ed2f52e40775266ecad52d2a0724acfc74398b85b94ff69699783",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "93f34ee2da9f16c0455ac6a4b9e9c5ab750ed06673e8b924f6f3d202cb601e7c",
@@ -178,7 +178,7 @@
     "DevelopmentTests/test_p0_e1_mapping.py": "ea37ad80c8bc9e2b73e90ba59c3416ae94e13d71922f67aab136f7c1ee6e8135",
     "Specialization/Status/Validation/Results/Specialization_B093_P0E1_Paused_Review.md": "3abd2dcc66958dad5714f8ca63c1a8c7fb83b0de700a5c84f0808437378fa395",
     "Specialization/Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md": "3046bb853bf940e3141101a43f89f58359490bb0a6be26e5385b6c7083cec214",
-    "Specialization/Architecture/v2/P0_E2_Plan.md": "25d5a72668877ae1b3cbf61d764d603a3524f3c80fdc75953fc8afd4774d8ee6",
+    "Specialization/Architecture/v2/P0_E2_Plan.md": "3d8881a143be59db7eac1c5dc3dff1f34068d20995460baaaa94a73e0cad9e30",
     "Mod/FreshBindingHook.lua": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
     "Mod/CityProgressionStore.lua": "2e545a0f4a5a61dddba6ccb34bd82074cf12a8ab4b77434abc8ba3e1ac69d3a6",
     "DevelopmentTests/test_p0_e2.py": "17434ac28743492833dbe610ba787fa2d5b8d9d543256dd6ff79e7597c28877b",
@@ -201,7 +201,7 @@
     "DevelopmentTests/test_b102_e2_foundation.py": "c99e610049c4de19156d17384ef66e52b24e136998cb56522445d0e0f9799f76",
     "DevelopmentTests/test_b103_e2_hydration.py": "b0924a52766ae90d66f3b13ccba1227778d19984e5ee7479125004a8a38a0b5c",
     "DevelopmentTests/test_b104_e2_two_cities.py": "d193b3363ef1f4b3dd44abb80e8add733f6f3755cead542a15bc77988e04b8d8",
-    "Specialization/Workflow/P0-E2.json": "2141ab056ba97df053f9be75baf1b9f60fb0e54b94f5f87a136fd6e9e17cdfb7",
+    "Specialization/Workflow/P0-E2.json": "94f12e84a49648a57641bfe1ae880bfde22ea30b9accb4d7e0ba9b7c35cbd96f",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Mod/CitySequenceProbe.lua": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
     "DevelopmentTests/test_b105_city_sequence.py": "4c55116fb999d8f49f4110794ab07ccfd9b26f7c9ba294f5eeef03cceee75bd0",
@@ -227,7 +227,7 @@
     "Specialization/Status/Validation/Results/Specialization_B112_Turn_Blocker_Observation.md": "998fc813b5920c8d644af8710985eab31d6fdc03ddfad939600ee633b0135aa1",
     "DevelopmentTests/test_b113_turn_gate.py": "c0dab68164db29ee3ba22e29c9441e9663baeab1cf321a06013a5ad377576a67",
     "Specialization/Status/Validation/Results/Specialization_B113_Notification_Location_Failure.md": "af3bd021662ef073c3ece72f1071d35526ff70505ecd7350d52666072bbeb208",
-    "Specialization/Workflow/Runtime_Index.json": "70d13ff24b8f1c9cf6bf65bd15a8fdddbe66a70da64b5a31b5a6b2c8d7a71d5b",
+    "Specialization/Workflow/Runtime_Index.json": "4af3f4a4746e4e2789088c37b26886629b4ac9dd2fc4207f82482dbdcff37a0c",
     "DevelopmentTests/test_b114_notification_target.py": "4aaae3255004ec1f4e540656dea0912484f2084147e73c5c591a2a0d6d91971d",
     "Specialization/Status/Validation/Results/Specialization_B114_Target_Turn_Pass.md": "91680073d60dac476d62c20ef2cbe2f33520bbe9b85ff32555e7f822f8d95040",
     "Mod/TimedProductionProbe.lua": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
@@ -301,7 +301,7 @@
     "DevelopmentTests/test_background_routes.py": "258642220305c098c53dab306617f7def424c0edf592325fa738d5671a115fd7",
     "DevelopmentTests/test_b138_gc.py": "92c2e85e589c8459a5558160fe148f36f3f2479fcf392afb539c9c69621cfb88",
     "DevelopmentTests/test_b138_update_contract.py": "bb5fee155dfe5b97248b58cbc7a689bf505219b552825c6ff14d82751b449bbc",
-    "DevelopmentTests/test_b140_templates.py": "d2e6cea48832d4452921ac33c86c63f180b18b420ec87b33acac1e4b9f64104b",
+    "DevelopmentTests/test_b140_templates.py": "1af02883340fc394f7c194a5de68f0bd5b66ba5642d3bb7c238eb6c65e76b9ef",
     "Specialization/Design/Content/Industry_D0036.json": "a9b95d484528136bea8673d5ebc1236ab04634547b6521c61d5774f871d4bdac"
   }
 }
