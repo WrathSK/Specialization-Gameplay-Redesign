@@ -479,3 +479,53 @@ E2退出/返回/Claim、Network、GC及永久writer未变，继承既有具名�
 待部署后，可在已有科研III/IV城同一回合增减工作专家、切换焦点，确认专家相关收益正常响应、跨学科研究效果没有丢失；正常过1回合确认仍正常。若当前局面方便改变一个合格区域的BASE邻接，可顺手确认学院跨学科收益更新；不要求另造测试城市或为此解锁政策。GC不需要点击，无需征服、再做长测或重复已完成的GC基线测试。异常时停止并提交该城收益/跨学科报告即可。
 
 原生响应与实际分配/进程改善仍USER_GAME_TEST_REQUIRED；PT001 MEMORY_CAUSE_OPEN保留。Network重复Capture和其它构造候选仍后置，不自动继续下一优化或F。部署结果只按实际receipt记录于Status/Authority。
+
+
+## B135 native worker and GC results
+
+2026-09-29：用户反馈“收益正常”，学院增加建筑/槽位并派专家后进程增长，随后无新操作/在建目标地过数回合仍增长，最后手动GC明显回落。已逐张查看6组12张原图。按持续授权归档至外部`Specialization/Status/Validation/Evidence/B135_Worker_Response_Memory/`，保留原文件名；`manifest.json`登记对应组/类型/bytes/SHA256，移动前后12/12一致，收件箱目录保留。原图不进入Git。
+
+### 本次实际观察
+
+所有进程图均为Civilization VI PID40775，保留活动监视器原始GB单位；Lua诊断用MiB，两者不是同一统计口径。
+
+| 组 / 图片时间 | 游戏回合与可见状态 | Civilization VI进程 | Lua手动GC |
+|---|---|---:|---|
+| 1 / 19:07:50 | T39；按用户说明已完成图书馆，并非测试前起点；所选Aberdeen无生产目标 |10.28 GB|未显示 |
+| 2 / 19:08:34 | T39；学院tooltip列图书馆/大学/实验室，4公民工作；专家20科技/12生产/12食物，所选城无生产目标 |10.38 GB|未显示 |
+| 3 / 19:09:07 | T40；用户说明后续只过回合，无新建造/操作 |10.58 GB|未显示 |
+| 4 / 19:09:28 | T41 |10.67 GB|未显示 |
+| 5 / 19:09:53 | T42，GC前 |10.69 GB|未显示 |
+| 6 / 19:10:06 | 仍T42；报告明确P0-B-135.162，一条完整GC调用成功记录 |10.38 GB|618.63 → 298.57 MiB |
+
+最后GC释放读数差320.06MiB（回收前读数约51.74%）；两张T42进程截图相隔13秒，读数减少0.31GB，回到组2所见10.38GB。本机Lua环境仍`2013.2.0 r13768`，GC状态未知→未知，显示CPU耗时1.000秒；不将此计时当精确耗时或将未知当GC停止。
+
+### 接受范围与判断
+
+- **USER_GAME_TEST_PASS（用户实机所述范围）**：学院建筑/槽位增加后专家收益正常，随后能正常过回合。本次收益响应待办关闭。组2直接显示4专家的20S/12P/12F。没有跨学科研究明细或明确科研III资格/独立BASE变化对照，不能扩大成所有Cross分支/公式/资格切换原生PASS；也没有证明这批原生通知的WorkerOnly实际比例。
+- **MEMORY_CAUSE_OPEN**：组2→5三回合进程10.38→10.69GB，持续增长仍在。B135只减少已确认纯worker/focus的Cross冗余入口，并未消除其它consumer、回合/加载/资格检查、独立样本或Network Capture。本轮不记“内存修复PASS”，也不由进程曲线认定这一路优化无效。
+- GC前后Lua读数下降及同期进程回落，再次直接支持大量可回收分配积累。所测进程增长可以明显回落，优先继续调查重复构造/短命对象，而非删除永久账本。它不证明全部增长来自本Mod、所有旧对象都已清空、自动GC未运行或长期无泄漏；单次collect后298.57MiB也不是已证的不可回收底线。
+- 组1→2只能记同回合+0.10GB，不能细分图书馆/大学/实验室/每专家各自的开销。起始和各操作间截图缺失，操作方法未独立确认；没有各回合Lua或扫描统计，不能分配到某consumer。最终进程比组1仍高0.10GB不是永久泄漏量。本轮与B134的建筑/专家/采样状态不同，不把298.57与先前250.98等值直接相减当保留增长。
+
+本次不要求补起始截图、重做长测或再点击GC。未修改Mod、Design、GC策略，没有部署/启动游戏；收益已接受不等于性能问题关闭。
+
+### 有界本地后续定位（LOCAL_SIMULATION_PASS）
+
+复核当前`NetworkBridge.Refresh`先完整`NetworkInput.Capture`后比较signature。同路线`Receive`在内部pcall函数提前return后，外层仍调用Refresh。这条路径已在前次调查指出，本次用实际Bridge/Input验证调用与引用生命周期，不以扫描数猜分配字节。
+
+仅在/tmp建立`spc_b135_network_allocation_probe.py`（SHA256 `98a51f3a791938c1b4992c071fa42b5b0a0385617e7bbde4f3ff63b991a0cbee`）。命令：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python python3 /tmp/spc_b135_network_allocation_probe.py`。复用`test_arch_v2_batch_a.py`的FIXTURE字面量，不执行历史suite；每案独立Lua55解释器、2城市，零路线/一条路线各一组，无DB或运行包操作。临时文件不是未来任务的永久依赖，结果及限制在本节保留。
+
+| 操作（零/一条路线结果相同） | Capture | facts fixture调用 | city_scan | derive / 新发布 |
+|---|---:|---:|---:|---:|
+| 重复Refresh 20次 |20|40|40|0 / 0 |
+| 同路线新序号Receive 20次 |20|40|40|0 / 0 |
+| 20组三种Current查询（共60次） |0|0|0|0 / 0 |
+| 同回合ACTIVE3→4，再同路线Receive一次 |1|2|2|1 / 1 |
+
+重复Refresh/Receive各产生20次input_duplicate；同路线Receive另有20次same_snapshot。三种查询为CurrentNational/CurrentConnectedKinds/CurrentRecipientSources，60次cache hit；不把它们等同会调用Refresh的旧National等入口。各案Property写入0。
+
+弱引用跟踪：重复采集案含初始化共21个Capture输出根；本地显式回收后仅当前1根及它包含的4张表存活（根/cities/两城记录），旧20根消失；Current查询返回副本的被追踪表全部回收；无candidate残留。ACTIVE变化案也只留新当前根。这只证明所测输出未逐次留历史，同时确有重复事实采集/临时构造。
+
+限制：EffectiveFacts和原生getter是mock，40次调用不是其实际分配量；弱引用未覆盖内部临时字符串/数组、私有派生view或原生内存。两次显式GC仅在进程外Lua55运行，未改变Civ VI。没有原生调用频率、MiB/回合、总内存归因或整体无泄漏结论。Bridge/Input源码SHA256分别为`1b1f3aa8dcb5321c13892cff0e3f5ed9a864736a4e2ba09ae4c90aa2ba8fd94c`、`e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a`。
+
+下一建议：沿Network Capture→实际EffectiveFacts/总督事实链确认哪些临时副本可避免，同时保留同回合真实变化、UNKNOWN、ownership及load。**不能直接因路线相同就跳过Capture**，上表最后一案已显示该路径仍负责发现资格变化。当前只完成证据/只读定位，未授权或实施新优化；不把手动GC转为自动补丁，不进入其它P0或F。

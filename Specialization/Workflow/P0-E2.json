@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0339",
+    "status": "S0340",
     "runtime": "B135.162 / modinfo162",
     "military": "D0034"
   },
@@ -847,6 +847,12 @@
       "kind": "section",
       "selector": "## B135.162 — authorized pure worker notification scope",
       "reason": "Current authorized two-entrypoint implementation, evidence and minimal user-test boundary"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "kind": "section",
+      "selector": "## B135 native worker and GC results",
+      "reason": "Current native evidence/acceptance scope and bounded local allocation follow-up; no new implementation authorization"
     }
   ],
   "dependencies": [
@@ -911,7 +917,7 @@
       "test_b135_gpp_scope.py (Lupa lua55; Git d26f3f9; reuses only Cross fixture definitions)",
       "changed Lua syntax / modinfo162 exact files / context / diff; unchanged GC/Network/E2 inherit prior evidence, not rerun"
     ],
-    "user": "B135 pending minimal same-turn worker/focus yield response and normal turn; optional existing BASE change, no new long test/GC/conquest. B129/B132 scoped native PASS retained."
+    "user": "B135 user-confirmed building/specialist yield response and normal turns PASS; 12 screenshots archived. No independent Cross III BASE-change or global memory-fix PASS. No repeat user test."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
@@ -921,7 +927,7 @@
     "plan": "AUTHORIZED_ONE_TURN_CLAIM",
     "implementation": "B129.156 acknowledged bounded cold-load sync LOCAL_SIMULATION_PASS; native pending",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "Await minimal B135 worker/focus yield-response observation. No long memory retest, automatic GC, other optimization or F.",
+    "next": "No repeat user test. Propose narrow Network Capture/facts allocation reduction after read-only validation; preserve same-turn qualification, UNKNOWN/ownership/load. No new implementation or automatic GC/F.",
     "scope_review": "Mod enabled from game creation only; supported own-save reload retained, no late-enable/old-development migration; no Gameplay Design changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
@@ -929,6 +935,6 @@
     "claim_native": "B126 core and B129 scoped reload USER_GAME_TEST_PASS; exact hidden-list visual evidence not expanded",
     "closure_review": "STATIC_CONFIRMED direct V3 routing; E2 remains partial; UNASSIGNED return deferred, new generation and unknown acquisition held. Next plan only.",
     "memory_investigation": "B134 18 images: eight native manual collect calls succeeded and reduced count; T45 second post-GC251.51 vs T39 post250.98 MiB with nonuniform sampling. Reclaimable allocation evidenced, no global memory-fix PASS; differences in conquest and manual-GC conditions prevent native attribution to network filter. isrunning unknown, timing limited. Scoped follow-up: Cross notification cost confirmed, but false includes turn/load late-check risk; restrict next proposal to explicitly pure-local-worker/focus. Network temporary capture construction separately confirmed and deferred; actual-branch Lua55 probe confirms targeted dispatch/sample behavior, not native bytes or whole-memory fix.",
-    "memory_fix": "B135.162 pure worker/focus provenance and exact Cross dispatch guard LOCAL_SIMULATION_PASS; turn/load/mixed/unknown and reentrant causes preserved. Only targeted path cost reduction established; no native allocation/memory improvement PASS."
+    "memory_fix": "B135.162 pure worker/focus provenance and exact Cross dispatch guard LOCAL_SIMULATION_PASS; turn/load/mixed/unknown and reentrant causes preserved. Only targeted path cost reduction established; no native allocation/memory improvement PASS. B135 scoped user response PASS; memory remains open. T42 native GC618.63->298.57MiB; process10.69->10.38GB. Local weak-reference probe: duplicate Capture outputs do not accumulate in tested stable-input scenarios; actual EffectiveFacts allocations remain unmeasured."
   }
 }

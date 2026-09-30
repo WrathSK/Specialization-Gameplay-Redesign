@@ -163,3 +163,7 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 
 ### PT001 B135 — pure worker notification scope
 [授权实施与定向验证](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135162--authorized-pure-worker-notification-scope)已完成，B135.162本地PASS；只跳过纯本地worker/focus的Cross检查，turn/load等保守fallback及重入/失败合并保持。部署后一次现有科研城同回合增减专家/切换焦点→确认收益→正常过1T即可；若方便顺手改变合格区域BASE看跨学科更新，不为此造局。无需GC/征服/长测；原生响应和内存改善未宣称PASS。B134诊断采样待办不重开。
+
+
+### PT001 B135 native response recorded — memory remains open
+[6组12图与本地引用定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：用户确认建筑/专家收益正常，所述响应USER_GAME_TEST_PASS；不扩展Cross III独立BASE覆盖。T39→42进程10.38→10.69GB，末尾GC618.63→298.57MiB、进程10.38GB。大量可回收分配仍在，非全局性能PASS；无需补起点/长测/GC。下一步在本地追踪重复Network事实构造，具体修复另审，不自动GC或清账本。

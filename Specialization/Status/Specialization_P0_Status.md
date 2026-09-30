@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0339
-Implementation Build: develop P0-B-135.162 / modinfo162 PURE_WORKER_CROSS_SCOPE_LOCAL_PASS; live B135.162 verified170/170 MATCH; stable B069.96
+Status Revision: S0340
+Implementation Build: develop P0-B-135.162 / modinfo162 WORKER_RESPONSE_NATIVE_PASS_MEMORY_OPEN; live B135.162 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B135_DEPLOYED_AWAITING_MINIMAL_USER_CHECK
+Work State: B135_NATIVE_RESPONSE_RECORDED_MEMORY_CAUSE_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -19,7 +19,9 @@ Work State: B135_DEPLOYED_AWAITING_MINIMAL_USER_CHECK
 
 [B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)所测诊断调用/读数PASS：回收后趋稳及同回合再次回收说明可回收分配重要，Lua不是本Mod独占。最小GC采样已完成，无需重复长测；没有授权自动GC/调参/周期清理。B135只证实消除一条冗余扫描/构造路径，未量化实机内存收益，MEMORY_CAUSE_OPEN保留。
 
-下一边界：一次最小同回合专家/焦点收益响应＋正常过1回合；若方便再顺手观察真实BASE变化，不要求造局/征服/长测/点击GC。无新Gameplay决定；等待本批原生反馈，不继续其它优化或F。
+[B135原生反馈及后续定位](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b135-native-worker-and-gc-results)：6组12图已hash归档；用户确认建筑/专家收益正常及正常过回合，所述响应USER_GAME_TEST_PASS。T39填满专家后10.38GB→T42 10.69GB；T42手动GC618.63→298.57MiB，进程回落10.38GB。持续增长未解决，但大量可回收分配再次确认；缺起始/逐操作/逐回合Lua计数，不能归因每建筑/专家或扩展为Cross III全覆盖。无需补图/重复长测/GC。
+
+仅/tmp本地小探针确认：2城20次相同路线Receive仍20次Capture/40次facts mock读取、0次derive；旧20个Capture输出回收，只留当前结果。60次Current查询不Capture；同回合ACTIVE变化仍需同路线Refresh发现。下一建议是沿实际事实链减少重复构造的窄方案，保留当前资格/UNKNOWN/ownership/load，不以路线未变直接省检查；暂无新实施授权，不改GC或推进F。本轮仅归档/调查/文档，未重新核验或部署运行包。
 
 
 ## 历史阶段记录
