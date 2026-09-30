@@ -1,25 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0350
-Implementation Build: develop P0-B-139.166 / modinfo166 GC_LOAD_FALLBACK_LOCAL_PASS; live B139.166 verified171/171 MATCH; stable B069.96
+Status Revision: S0351
+Implementation Build: develop P0-B-139.166 / modinfo166 AUTO_GC_NATIVE_OBSERVED; live B139.166 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B139_GC_LOAD_FALLBACK_NATIVE_REQUIRED
+Work State: B139_MITIGATION_OBSERVED_CORRECTNESS_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B138截图/B139修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b139166--wait_load-native-failure-and-bounded-fallback)：T48原生报告WAIT_LOAD、自动开启、调用0次，自动触发USER_GAME_TEST_FAIL；T39→49进程10.17→11.23GB，不是Mod独占归因。24图hash核验归档，无需重复本次长测。
+[B139原生长测](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b139-native-automatic-collection-observations)：28图hash核验归档，T39→54同PID。LOCAL_TURN/T40补建起点；6次自动回收，间隔≥2T，无锁停，用户确认没有卡顿。加载补建/自动触发所测路径USER_GAME_TEST_PASS；不是Mod独占内存或根因关闭证明。
 
-B139.166/modinfo166已按持续稳定化授权修复：首次合格本地回合补建count-only起点，晚到load不重置；128MiB/2T/2秒与全部安全护栏不变。定向实际模块/分发/UI模拟STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；native待验，无Gameplay/保存/Design变化。
+后段T50/T52/T54进程均10.82GB，后三次回收后Lua432.51/435.53/407.40MiB（范围28.13）。原前4次窗口范围64.79MiB略超原64门槛，该项不改写PASS；额外后段证据支持缓解/收敛。严格同世界/每点空闲30秒未独立确认，不伪造控制条件。
 
-B139已部署：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，171/171 MATCH；OS确认游戏退出，经stable桥安全替换，B138完整恢复包及stable恢复点保留，无pending。main/stable B069.96不变。
+用户未操作/未观察收益，完整稳定化尚未结项。无需再重复长测或泛化调查；待认可上述窗口例外并补唯一既定正确性检查：同回合学院专家移出/移回收益减少/恢复，可顺带下次游戏完成。会话OFF原生未验、本地通过，不另开一轮；不自动进入F/新功能实施。
 
-下一最小验证：固定存档冷启动，最多3个玩家回合左键GC试运行报告；不应再WAIT_LOAD。若SKIP/STOP则停在具体原因；若AUTO发生再按原[B138固定验收](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#一次整合验收与预先退出标准)完成，最多10T/4次，不放宽阈值。
-
-[公共更新接入约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)和既有B129/B132/B136/B137证据保留，无业务路径删减。稳定化尚未完成；功能/F不自动推进，不以未定位全部分配来源无限延伸。
+B139运行包不变：source1104bde，receipt B139.166-1104bde-playtest.json DEVELOP_ACTIVE，部署时171/171 MATCH；本轮未重新核验外部运行包/部署。B138/stable恢复点保留，main/stable B069.96不变。[公共更新约束](../Architecture/Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)及已有功能证据保留；剩余分配效率开放，后续回收后持续抬升/卡顿/功能异常才定域重开。可准备功能计划，不自动实施。
 
 ## 历史阶段记录
 
