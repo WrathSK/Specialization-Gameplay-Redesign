@@ -371,3 +371,74 @@ Lua数值是当前Gameplay调用范围的MiB，进程列是Activity Monitor显�
 最小GC采样任务已有足够材料，**不再要求重复本次长测或立即追加征服测试**。PT001/MEMORY_CAUSE_OPEN保留，但调查方向收敛到“可回收分配的产生量/生命周期，以及回收后是否另有保留增长”，不再仅凭回收前曲线判泄漏。本轮未授权常规每回合GC、GC调参、周期清缓存或账本清理；诊断不能直接升级为正式修复。
 
 下一建议：沿已定位NetworkInput.Capture与LV2_GPP_DIRTY→ResearchCross直接路径，只读区分临时构造/重复事实读取与持久引用，连同原生GC接口证据判断最小下一方案；这是建议，未实施新优化。若以后确需对照，只设计保留DB/账本和完整请求生命周期的单一路径同档对照，另给窄计划，不立即要求用户补测。B132收益响应及B129认领验收保持，E2不结项、不进入F。
+
+
+## B134 allocation follow-up — scoped investigation and next proposal
+
+2026-09-29：用户授权按当前进度继续调查。本节为B134.161源码的只读定域审阅及进程外小探针；没有修改Mod/测试源码/Design，没有部署、启动游戏、增加runtime计数器或改变GC策略。B134截图的回收后趋稳仍是原生证据；以下调用/分配结构结论不冒充原生分配量归因。
+
+### 1. 重复工作已落实到一个可隔离的入口
+
+`Gameplay.lua:339–350`的`LV2_GPP_DIRTY`仅用`FactsChanged`门控Network/Housing，却无条件调用`ResearchCross.Audit`。`UI/GPPRefresh.lua:9,31–45`初始置true、成功提交后置false；worker/focus只标待处理，总督事件置true。**false并不只表示工人/焦点**，之后的普通回合/Load通知也可能为false；这条通道目前会重复Cross自己的回合/加载核对。
+
+`ResearchCross.lua:33–60`及`ResearchCrossModel.lua:11–37`的实际输入是Identity/Potential/ACTIVE、学院锚点、区域完成/掠夺/引用及UI送来的六种BASE邻接值，不直接读worker/focus/population/Network/D。因此纯worker/focus通知具有优化依据，但**仅判断false仍不够安全**，见下文晚到资格核对边界；不能关闭整个GPP通知，也不能顺带删除其它consumer。
+
+一次冗余Cross Audit会遍历本玩家所有城市；每城先读取11个退休载体和32个现行载体（43次存在性读取），创建43个逐载体记录表，再读fresh facts；合格科研城还枚举区域、建立替换映射/引用/区域行、匹配独立样本、生成Plan与yield明细副本，最后核对载体并替换plans/errors。见`ResearchCross.lua:14–26,64–95`。这些表是真实构造路径，不是由扫描计数猜出的分配字节；43是成功完成该检查时的记录行数，不能外推引擎内存大小或每回合执行频率。
+
+必须保留的独立入口：
+
+- `ResearchCross.lua:98–99`：新有效UI样本Receive→Audit；`UI/ResearchCrossRefresh.lua:44–58`覆盖区域/建筑/地块/资源/政策/研究/市政与turn/load。样本可在同回合多次真实改变，不因worker通知被过滤而停止。
+- `ResearchCross.lua:123–134`：原生governor/district/turn/load/transfer/remove/建城，以及E2精确owned-carrier退出；正常投资/Claim显式刷新照旧。
+- `ResearchCrossSample.lua:9–47`：owner/reference、generation/epoch/seq/turn及完整集合验证仍在signature比较之前；不能以“数值没变”跳过资格校验。UNKNOWN不能变0，确认失效仍撤销。
+- `FactsChanged=true`保留用于总督及事实变化，`nil`/未知标记保留安全回退。不以只接受true取代“不等于false”。原生总督属性较晚更新的时序未在本探针证明。Cross直接回调若早于属性稳定，而后续BASE样本签名未变，Receive返回UNCHANGED不会再次Audit；现有较晚GPP回合/加载通知可能承担补核对。不能因独立入口存在就证明这一路回退可删。
+
+### 2. 极小本地探针（LOCAL_SIMULATION_PASS）
+
+使用现有Lupa Lua55，提取真实Gameplay GPP分派分支，并运行真实Cross producer/receiver/writer；只在内存给候选Cross条件增加`params.FactsChanged~=false`。两城fixture依次提交false→true→nil，不改仓库源码或历史测试断言。
+
+| 项目 | B134当前代码 | 内存中的候选条件 |
+|---|---:|---:|
+| 第一次false的Cross调用 |1|0|
+| 三请求Cross调用合计 |3|2|
+| 载体存在性读取合计 |258|172|
+| facts读取合计 |6|4|
+| carrier写入 |0|0|
+
+其余六consumer各3次、Network/Housing各1次保持不变。实际GPP UI入口确认初始true、worker/focus合并false、总督+worker合并true；独立样本在同回合BASE10→14，真实Receive→Audit分别得Science5→7。直接总督撤销/恢复、load generation及旧样本拒绝通过。此处只证明分派、读取及局部计算的本地行为，不是完整Civ VI请求/事件时序、内存字节、所有权全部回归或实机性能PASS。**单行guard不是建议直接实施的最终方案**：fixture先更新facts再触发事件，未覆盖上述原生晚到窗口。
+
+探针保存在临时目录（非长期项目依赖），从本轮已执行脚本忠实恢复后复跑输出一致。在develop仓库根目录执行：`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python python3 /tmp/spc_b134_cross_current_probe.py`及`/tmp/spc_b134_cross_guard_probe.py`。SHA256分别为`d8ce2aca7c8aba624b531c049d3bb5587b6a131bf2ed10f1f0d004d539ae62ff`、`6852998b191fd16dd3186e4506a251b00cec610bc53b574363e6bd1815aa59d9`。正式实施需把相关定向验证放入现有测试体系；不依赖/tmp永久存在。
+
+### 3. 网络与事实链：临时构造和长期持有分开
+
+| 路径 | 已确认的构造与持有 | 判断 |
+|---|---|---|
+| NetworkBridge Refresh | `:135–143`先Capture，再判signature；同值新input不发布；`:65–78,190–232`只留当前input/view及至多一个candidate | 重复临时构造成立，未见此链逐事件追加完整历史 |
+| NetworkInput Capture/Signature | `:11–18,23–66`每城事实/引用、每路线端点引用、排序数组、格式化和串接；同值仍发生 | 可优化构造；签名一样不代表事前可以跳过事实读取 |
+| EffectiveFacts | `:26–45`校验anchor/first副本、投资去重表、最终facts副本；`Probe.CityRoleFacts:315–363`额外role表/keys/values，仅取总督资格 | 多份短命对象；需保留输入非修改/当前资格合同 |
+| 现代Game进度 | `CityProgressionStore:143–149,614–637,670–677`按城市持有记录，Base/Investment读返回副本；`:592,736–754`定位/Check不重新读取整份Game账本 | 普通facts读不是每次重载/克隆全城永久账本；不建议为此清保存记录 |
+| Cross results/samples | plans/errors每玩家替换；samples保留最新完整批，最多512行；同signature更新turn | 当前快照有必要保留；未见此链逐回合保留所有旧批 |
+| 手动GC诊断 | `PerformanceCounters:116–165`最多3个标量结果、一个报告；`P0Panel:83,165–173`GC共用一个阅读槽、单个pending token；请求直接早退Gameplay | 不按点击次数积累GC历史；报告字符串有临时构造，不是已证的大型历史堆积 |
+
+仍有一项小的独立保留边界：`NetworkBridge:326,355–365`明细翻页按`player:cityID`保存一条签名，普通摘要清该城条目，未见独立失城清理。它由实际点击明细的不同城市数增长，不是无人操作每回合增长的解释；记录为后续局部诊断生命周期维护，不混入本次主要修复。
+
+不能直接用“本回合已看过”或路线revision不变来跳过Network Capture：同回合总督/投资/Claim/首都/多城源资格可变。现有UNKNOWN同reference暂保留、确认失城/路线失效独立撤销和load epoch必须继续有效。也不把私有网络view直接借给会修改结果的consumer。
+
+### 4. 哪些优化现在值得做，哪些保留
+
+**首选下一最小段：在现有GPP通知内明确纯worker/focus来源，再定域跳过Cross**，预计只涉及`UI/GPPRefresh.lua`与`Gameplay.lua`两处运行入口。沿用现有请求、合并和有限重试，不建立新调度器：
+
+1. 使用一个明确来源标记，仅在全部待处理原因都是已知本玩家worker/focus时允许跳过Cross；初始化、turn/load、governor、缺失/非法owner、混合原因全部保持完整核对。合并原因只可变得更保守，不能被后来的worker事件覆盖；失败重试与发送中到达的新原因同样保留。
+2. Gameplay仅在该标记明确成立、且FactsChanged明确false时跳过；旧调用者无标记、矛盾标记、nil/未知仍执行。其它六consumer、Network/Housing条件不动。不以把所有turn/load的FactsChanged改true来规避问题，否则会额外唤醒Network/Housing。
+3. 保留Cross独立sample/真实事实变化/turn/load/退出及投资/Claim刷新。没有跨回合缓存、每城市每回合一次门槛、GC变化或永久状态变化。新增标记只是现有通知的定域原因，不是新的玩法合同。
+
+预期减少的是**纯worker/focus这一路**的多余Audit、城市访问、43项载体预检及事实/区域/Plan构造，回合兜底明确不计入预计降幅。上述258→172来自更宽的单行实验，只证明路径成本，不能冒充最终两处方案已通过。实施时验证纯worker/focus、混合/Gov/turn/load、未知owner/旧请求、重试及发送中合并、其它consumer不变、同回合两次新样本、UNKNOWN/退出/返回/Claim/load；不扩大到全玩法历史回归。若实施后需原生确认，合并一次最小同回合收益响应，不重新长测。
+
+低优先级、可另做：NetworkInput.Signature在单次调用内复用一个八字段数组（每城覆盖全部字段），保持排序、atom及最终字节完全相同；以及只读比较用的`anchor.first`不做额外clone。这些只减构造，保留全部事实检查，收益尚未量化，不应包装成主要内存修复。
+
+不纳入首选段：把`EffectiveFacts out=clone(f)`直接改`out=f`。当前生产SupportFacts返回独立副本，但旧`test_effective_facts.py:12–18`明确检查借入foundation不被修改，mock也返回固定f。直接改会改变非修改边界；应先明确值所有权并验证真实Flow/Store隔离，不能为了少分配悄悄改合同或放宽断言。
+
+### 5. GC接口证据与停止点
+
+[Lua5.1官方接口](https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage)未定义isrunning，[Lua5.2](https://www.lua.org/manual/5.2/manual.html#pdf-collectgarbage)才列出该选项。因此“未知”可以是接口差异，不能据此认定自动GC停止；本机`2013.2.0 r13768`仍不映射为这些标准版本。公开Civ VI社区扩展的[HavokScript源码](https://github.com/Wild-W/CivilizationVI_CommunityExtension/blob/master/HavokScript.cpp)从Windows DLL导入接口，只是该项目的实现证据，未给出本机macOS构建的GC策略/第二次额外释放语义。没有据外部资料确认引擎具体回收预算。setpause/setstepmul是修改操作，不能当无副作用查询来探测默认值；本次未调用。
+
+调查结论：已经有足够依据提出上述**纯worker/focus通知定域消除**，不用等所有内存来源完全归因。与此同时，回收后的微小保留增长及宿主GC行为仍未关闭。当前仅调查/方案记录完成，等待该最小段实施授权；无新用户测试、无自动GC/缓存清理/永久账本删除，也不进入其它玩法批次。

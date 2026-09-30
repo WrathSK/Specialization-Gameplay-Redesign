@@ -156,3 +156,6 @@ B133对照完成：10组20图已归档。T45累计建筑检查−2.17%，城市�
 
 ### PT001 B134 native GC evidence received — no repeat test
 [9组18图结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)：T39–45共8次手动GC均成功并降低count；T41–44回收后约317–320MiB，T45第二次降至251.51，初始250.98。诊断调用/读数所测范围USER_GAME_TEST_PASS，可回收分配已获直接证据；非全局内存修复PASS。无征服、同回合额外GC与B133条件不同，不归因三事件优化。环境串/状态未知/计时边界见报告。三点采样待办已满足，无需再长测或现在补测；PT001根因继续OPEN。只建议定域追踪分配与引用，不授权自动GC或清账本。
+
+
+PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-allocation-follow-up--scoped-investigation-and-next-proposal)为明确标记纯本玩家worker/focus，再只跳过该Cross检查；false本身包含turn/load，晚到资格复核不得误删。两城单行候选探针3→2 Audit、258→172预检、独立同回合样本仍5→7，只证明局部路径成本；最终保守方案未实施/验证，不报原生内存比例。等待实施授权，当前不新增用户测试/长测，不修改GC策略。

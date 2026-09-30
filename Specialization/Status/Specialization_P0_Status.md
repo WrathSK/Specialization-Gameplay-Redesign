@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0337
+Status Revision: S0338
 Implementation Build: develop P0-B-134.161 / modinfo161 MANUAL_GC_NATIVE_OBSERVED_NETWORK_SCOPE_LOCAL_COMPLETE; live B134.161 verified170/170 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0035 (scoped Shared/Lv2; A0161 target remains D0032)
 Latest Accepted Design Revision: D0035
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: B134_NATIVE_GC_OBSERVED_MEMORY_CAUSE_OPEN
+Work State: B134_ALLOCATION_REVIEW_COMPLETE_AWAITING_SCOPE_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,11 @@ Work State: B134_NATIVE_GC_OBSERVED_MEMORY_CAUSE_OPEN
 
 当前源码B134.161 / modinfo161：[手动GC与三事件网络范围修复](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134161--manual-full-gc-diagnostic-and-scoped-network-capture)定向LOCAL_SIMULATION_PASS。仅右键明确执行GC，左键读取；不自动GC/调参、不清永久记录。网络保留本玩家同回合变化、全国依赖、UNKNOWN、退出/返回/Claim/load路径。旧Batch A夹具失败未记PASS。
 
-最近已核实运行包B134.161，source d9e69ba，receipt B134.161-d9e69ba-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；main稳定B069.96，stable/B133恢复包保留。本次只归档证据，未重新核验/部署运行包、未启动游戏。
+最近已核实运行包B134.161，source d9e69ba，receipt B134.161-d9e69ba-playtest.json（DEVELOP_ACTIVE，170/170 MATCH）；main稳定B069.96，stable/B133恢复包保留。本次只调查及维护文档，未重新核验/部署运行包、未启动游戏。
 
-[B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)：9组18图、T39–45、8次手动调用成功且Lua读数下降，诊断所测范围USER_GAME_TEST_PASS。T41–44回收后约317–320MiB；T45第二次251.51，接近T39的250.98。支持可回收分配积累；不能将不同采样条件的+0.53MiB当精确保留斜率。环境2013.2.0 r13768、运行状态未知、计时精度未证；Lua不是本Mod独占。无征服＋多次GC使本次不能单独归因网络修复，内存根因仍OPEN。最小采样任务完成，无需重复长测或立即补测；下一建议仅定域定位分配/引用生命周期，未授权新的自动GC、清理、修复或F。
+[B134原生GC结果](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-native-gc-results)：9组18图、T39–45、8次手动调用成功且Lua读数下降，诊断所测范围USER_GAME_TEST_PASS。T41–44回收后约317–320MiB；T45第二次251.51，接近T39的250.98。支持可回收分配积累；不能将不同采样条件的+0.53MiB当精确保留斜率。环境2013.2.0 r13768、运行状态未知、计时精度未证；Lua不是本Mod独占。无征服＋多次GC使本次不能单独归因网络修复，内存根因仍OPEN。最小采样任务完成，无需重复长测或立即补测。
+
+[定域分配调查与最小下一方案](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b134-allocation-follow-up--scoped-investigation-and-next-proposal)完成：GPP通知仍触发全国ResearchCross检查，真实分派/样本小探针确认其局部成本（LOCAL_SIMULATION，非原生内存收益）。false也含turn/load，不能直接跳过以免丢晚到资格复核；下一方案只标记纯本玩家worker/focus并过滤该Cross调用，混合/未知/turn/load保留，等待两处入口实施授权。独立样本与退出不动；网络重复Capture主要形成临时对象，未见该链追加完整历史。无需新用户测试；无自动GC、清理或F。
 
 ## 历史阶段记录
 
