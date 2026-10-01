@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "135d3f9431ac123adf2c6a51c4e4a497fb2d8376edf5e301d679d956b4d058d1",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
+      "sha256": "0d183540873b9c65ea86bab587acc2e286e269316a3da90201416cbcbbd0c4f0",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "47e92f6cebc39f6b89e13ece23a4f69d906727d4719bd495fb364b4899ba9c64",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B142 user-authorized legal Tier0 template validation and precise Store error code repair; exact affected callers/current HD ontology and B142/B140/B136 local regressions reviewed. Probe/modinfo identity only. Native pending."
+      "sha256": "3f4cc08a86319834599e620d1a01a289bab52275bbc8dd24ed4ec21a386a1abb",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "585fd5a247575d257092c0c4c7a1aa555b9a34c42805fe928f16d91b6728f94b",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B142 user-authorized legal Tier0 template validation and precise Store error code repair; exact affected callers/current HD ontology and B142/B140/B136 local regressions reviewed. Probe/modinfo identity only. Native pending."
+      "sha256": "067c8df98dcc6ffa58e7b593ffd4ec97d51e3658e2e0e75217d57b4a7d07d00b",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "4ac82aea3cd8d894d92ef5f49474daf18c63525f8ed16d3b37279d858da47e03",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B141 user-authorized report visibility/free-slot/tooltip repair; actual callback/request/read-route local simulation PASS. No Gameplay changes; Probe/modinfo identity only."
+      "sha256": "23eab42d7bfd4a6fac9bf3f8cca6ac4b18a4f66e88f2a47d5568f5ca6b69fcb5",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "e893bfb5834474e7615ed850886ed4d5a186f3fcf8ad812803f93e798ced628a",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "2e545a0f4a5a61dddba6ccb34bd82074cf12a8ab4b77434abc8ba3e1ac69d3a6",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B140 scoped lifecycle and reliable-history/current-building union; LOCAL_SIMULATION_PASS; native pending. Probe/modinfo identity only."
+      "sha256": "4938027e773aba8b415235129d8dd0823f15da772b6c302458723c9f24bd7549",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -859,6 +859,11 @@
       "sha256": "2ec3c021dddd056a90f897b557d159846edcb61a01d7204c84b914b84bcba748",
       "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
       "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+    },
+    "Mod/ResearchTradition.lua": {
+      "sha256": "e0d2c0d2b4d239fa6471618d1fad425710c09296229181d4d933e905d8bfd990",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
     }
   }
 }

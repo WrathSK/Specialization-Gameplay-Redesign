@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="169">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="170">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B142.169: accept legal Tier 0 templates and retain precise store failure codes.</Description>
+    <Description>B143.170: Research Academic Tradition persistent age and read-only shadow; no new yield effects.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -79,6 +79,7 @@
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
       <File>CityProgressionStore.lua</File>
+      <File>ResearchTradition.lua</File>
       <File>CitySequenceProbe.lua</File>
       <File>CityIdentityRead.lua</File>
       <File>InstitutionPresentation.lua</File>
@@ -369,6 +370,7 @@
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
     <File>CityProgressionStore.lua</File>
+      <File>ResearchTradition.lua</File>
       <File>CitySequenceProbe.lua</File>
       <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>

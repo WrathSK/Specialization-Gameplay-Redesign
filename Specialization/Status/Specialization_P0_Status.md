@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0363
+Status Revision: S0364
 Implementation Build: develop/live P0-B-142.169 / modinfo169 TEMPLATE_TIER0_SCOPED_PASS;171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: E2_TEMPLATE_SCOPED_PASS_F1_PLAN_PENDING
+Work State: P0_F1_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B142模板修复验收](Validation/Results/Specialization_B142_Template_Pass.md) **USER_GAME_TEST_PASS（限定用户实机已测范围）**：截图显示city131073已初始化，模板2/revision3，集市T1、粮仓T0，扫描1/写入1、状态正常；用户另确认重启保持。1/1原图已读取并hash归档。关闭本修复的最小门禁，不从单图推断重启顺序或零写入；B141失败原件保留。
+P0-F1获用户授权，B143.170 / modinfo170已实现科研学术传统首次P4原子起点、年龄持久化与只读影子；**STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，USER_GAME_TEST_REQUIRED**。[精确合同、验证、三步最小测试](../Architecture/v2/P0_F_Research_Tradition.md#b143170--f1-implementation-and-validation)。无实际科技加成或新carrier；F2未授权。
 
-[B142本地合同/回归](../Architecture/v2/P0_E2_Plan.md#b142169--tier-zero-template-validation-repair)及B140 A–G/B136证据保持。实际金币折扣、其它既有模板城夺回并集、完整目录与未测E2边界不据本次扩大为实机PASS。无需重复已通过的模板测试；折扣未补测项不阻塞独立的科研传统计划。
+本地：B143原子性/计龄/速度/ACTIVE下降/读档/UNKNOWN/跨Owner保护定向通过；B136投资/逐城、B140模板A–G、B142真实HD目录/T0相关回归通过。仅同Owner；旧P4缺起点、未知计龄间隔、跨Owner归属不猜测补录；转专业暂停/恢复仅模型合同，未增UI。既有[B142模板及重启保持验收](Validation/Results/Specialization_B142_Template_Pass.md)不变。
 
-运行基线仍B142.169 / modinfo169；已记录source `b77d5c9`、receipt `B142.169-b77d5c9-playtest.json`、171/171 MATCH；本轮只更新证据/计划，没有重新核验运行包或部署。B141/stable恢复点及main B069.96保持。
+源码B143.170尚未部署；最近已记录外部运行包B142.169，source b77d5c9、receipt B142.169-b77d5c9-playtest.json。待完成当前commit/push及部署工具校验后按W0003替换；不凭HEAD声称部署。main B069.96与恢复点保留。
 
-下一建议：[P0-F1科研学术传统年龄与影子计算](../Architecture/v2/P0_F_Research_Tradition.md)，**PLAN_ONLY / 待用户授权**。先可靠记录首次P4、累计合格年限与读档，再单独F2接实际收益；不会自行补造旧P4起点或跨Owner传统归属。E2仍partial，有明确支持范围；非依赖性尾项不阻塞F1同Owner路径。[性能结项及约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。当前无需用户测试，不自动实施下一批。
+当前允许：完成F1安全部署并等待用户一次最小验收；不进入F2或其它E2边界。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不变，不重启性能专项。无新增Design决定；用户测试流程见F1合同。
 
 ## 历史阶段记录
 

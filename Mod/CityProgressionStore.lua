@@ -1,3 +1,4 @@
+if not SPCResearchTradition then include('ResearchTradition') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
@@ -91,6 +92,7 @@ local function CreateProgressionRecord(P,shared,storage)
     and (t.state=='UNINITIALIZED' or t.state=='INITIALIZED') and type(t.reconcilePending)=='boolean','TEMPLATES_LIFECYCLE_INVALID')
    assert(t.state~='UNINITIALIZED' or (r.templates==nil and t.reconcilePending),'TEMPLATES_LIFECYCLE_CONFLICT')
   end
+  if r.researchTradition then SPCResearchTradition.Validate(r.researchTradition,r) end
   if r.claimTimer then
    local t=r.claimTimer
    assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'
@@ -161,6 +163,22 @@ local function CreateProgressionRecord(P,shared,storage)
   local ok,err=pcall(storage.Write,previous,nextValue)
   if not ok then fault=tostring(err);error(fault)end
  end
+ function d.ReadTradition(pid,c)return cp(active(pid,c).researchTradition)end
+ -- Only this record owns age writes. No diagnostics/effect writers participate.
+ function d.TickTradition(pid,turn)
+  if not ready or fault or not root or root.origin.owner~=pid or not root.researchTradition
+   or root.stage~='ACTIVE' then return end
+  local ok,err=pcall(function()
+   local a=root.current or root.origin
+   local c=assert(CityManager.GetCityAt(a.x,a.y),'TRADITION_CITY_UNKNOWN')
+   local r=active(pid,c)
+   local value=SPCResearchTradition.Advance(r.researchTradition,turn,r.base.specialization)
+   if not same(value,r.researchTradition) then
+    local n=cp(r);n.researchTradition=value;n.revision=n.revision+1;save(n)
+   end
+  end)
+  d.traditionError=not ok and tostring(err) or nil
+ end
  -- Session-only transition assembly. Never reconstruct an incomplete chain at load.
  local function track(name,owner,id,x,y)
   if not ready or fault or not root then return end
@@ -224,7 +242,16 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.WriteInvestment(pid,c,old,nextValue)
   local r=active(pid,c);assert(same(projected(r,r.investment,true),old),'STALE_LEDGER')
-  local n=cp(r);n.investment=cp(nextValue);if n.investment then n.investment.anchor.cityID=r.origin.cityID;n.investment.anchor.first=cp(r.base.first)end;n.revision=n.revision+1;save(n)
+  local n=cp(r);n.investment=cp(nextValue)
+  if n.investment then n.investment.anchor.cityID=r.origin.cityID;n.investment.anchor.first=cp(r.base.first)end
+  local function receipts(v)local count=0;for _ in pairs(v and v.investments or {})do count=count+1 end;return count end
+  if r.base.specialization=='RESEARCH' and not r.researchTradition and receipts(old)==2 and receipts(nextValue)==3 then
+   local op=old and old.pending
+   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
+    and nextValue.investments[op.receipt]==op.unitUID,'TRADITION_FIRST_P4_UNCONFIRMED')
+   n.researchTradition=SPCResearchTradition.Begin(Game.GetCurrentGameTurn(),op.receipt)
+  end
+  n.revision=n.revision+1;save(n)
  end
  -- Only the existing Standardization module owns interpretation of this ledger.
  function d.ReadTemplates(c)
@@ -564,6 +591,7 @@ local function CreateProgressionRecord(P,shared,storage)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
     local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
+    if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end
@@ -775,6 +803,19 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
+ function store.ReadTradition(pid,c)return requireCity(c).ReadTradition(pid,c)end
+ local function traditionTick(pid)
+  if fault or not P.IsTestPlayer(pid)then return end
+  local turn=Game.GetCurrentGameTurn()
+  -- Existing registered records only: no world/city/building scan or fact packet.
+  for _,w in pairs(workers)do w.TickTradition(pid,turn)end
+ end
+ local turnEvent=P.Field(Events,'PlayerTurnActivated')
+ if turnEvent and turnEvent.Add then turnEvent.Add(traditionTick)end
+ local loadEvent=P.Field(Events,'LoadScreenClose')
+ if loadEvent and loadEvent.Add then loadEvent.Add(function()
+  for pid in pairs(Players)do if P.IsTestPlayer(pid)then traditionTick(pid)end end
+ end)end
  function store.ReadTemplates(c)return requireCity(c).ReadTemplates(c)end
  function store.WriteTemplates(c,old,value)return requireCity(c).WriteTemplates(c,old,value)end
  function store.IsExitTarget(c,loss)

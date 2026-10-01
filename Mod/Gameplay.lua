@@ -118,6 +118,14 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
   end
+  if params.Action=='RESEARCH_TRADITION_READ' then
+    if not P.IsTestPlayer(playerID) then return end
+    local ok,text=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'TRADITION_CITY_UNKNOWN')
+      return shared.ResearchTradition.Describe(playerID,c)
+    end)
+    shared.Snapshot=ok and text or '学术传统：城市暂不可读';shared.LastToken=params.Token;return
+  end
   if params.Action=='RESEARCH_CHAIR_READ' or params.Action=='RESEARCH_CHAIR_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,text=pcall(function()
@@ -569,6 +577,7 @@ SPCCityFlowProbe.Start(P,shared)
 
 include("EffectiveFacts")
 SPCEffectiveFacts.Start(P,shared)
+SPCResearchTradition.Start(P,shared)
 
 -- P0-A shared facts and pure shadow consumer; no old writer is replaced.
 include("OrdinaryBuildingCatalog")

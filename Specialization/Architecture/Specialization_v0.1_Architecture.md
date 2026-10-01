@@ -19,6 +19,8 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 - [A–D2事件驱动传播合同](v2/README.md)及[机构/能力/carrier分层](v2/Presentation_Institution_Carrier_Model.md)继续适用；下面旧阶段状态不重启旧任务。
 - 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2当前路由查阅。
 
+F1新增科研专属计龄字段与影子读模型的实际合同见[P0-F科研传统](v2/P0_F_Research_Tradition.md#b143170--f1-implementation-and-validation)；仅本地通过，不含实际科技收益。当前部署/授权仍以Status为准。
+
 ## 系统如何组成
 
 这是一套同时使用Gameplay Lua、UI Lua和原生数据库效果的系统。Gameplay维护可信城市进度、验证行动并协调收益；UI读取引擎在该context公开的当前事实、呈现结果；SQL定义原生Modifier与内部载体。UI、单位和载体都不能单独充当永久专业历史。

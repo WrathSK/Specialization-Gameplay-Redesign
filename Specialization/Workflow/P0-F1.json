@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
+  },
+  "batch": "P0-F1",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0036",
+    "research": "D0031",
+    "industry": "D0036",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0364",
+    "runtime": "B143.170 / modinfo170",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/5",
+      "expected_id": "RES_L4_TRADITION",
+      "reason": "Complete accepted ability including qualifiers and open decisions."
+    },
+    {
+      "path": "Mod/ResearchTradition.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/InvestmentAction.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    },
+    {
+      "path": "DevelopmentTests/test_b143_tradition.py",
+      "kind": "full",
+      "reason": "F1 direct implementation/validation contract; action-scoped loading remains in force."
+    }
+  ],
+  "dependencies": [
+    "E2 same persistent city / atomic investment receipts / reliable current reference",
+    "Research D0031 age; existing speed convention; W0004 L3 and performance closure"
+  ],
+  "old_writers": [
+    "Existing InvestmentAction remains debit owner; Store writes receipt+tradition atomically",
+    "No old effect cutover/new carrier; retired Research IV percent remains retired",
+    "E2 withdrawal/recapture unchanged except retained tradition ownership-policy hold"
+  ],
+  "conditional_context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "trigger": "identity/save/Claim boundary or regression failure",
+      "reason": "Existing supported-save and native identity contract, not all historical investigation by default."
+    },
+    {
+      "path": "DevelopmentTests/test_b140_templates.py",
+      "trigger": "fixture/Store regression",
+      "reason": "Current real Store fixture and A-G regression"
+    }
+  ],
+  "non_scope": [
+    "F2 Science bonus",
+    "Cross-owner tradition policy",
+    "Respecialization UI",
+    "Other E2 boundaries",
+    "GC changes / performance long tests"
+  ],
+  "validation": {
+    "local": [
+      "test_b143_tradition.py",
+      "test_b136_progression.py",
+      "test_b140_templates.py",
+      "test_b142_templates.py (read-only configured HD DB)",
+      "Lua syntax, XML/modinfo, exact UI action wiring, context check/self-test"
+    ],
+    "user": "One P3 -> P4 city, age0; ACTIVE decrease +2 turns; cold load same age. No actual percentage effect."
+  },
+  "full_audit_triggers": [
+    "Unexpected persistent identity/receipt inconsistency",
+    "Change to shared save schema or effect writer outside approved F1"
+  ],
+  "result": {
+    "local": "LOCAL_SIMULATION_PASS",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "F1 acceptance; do not start F2"
+  }
+}

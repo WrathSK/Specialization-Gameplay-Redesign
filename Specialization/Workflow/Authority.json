@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0363",
-    "runtime": "B142.169 / modinfo169",
+    "status": "S0364",
+    "runtime": "B143.170 / modinfo170",
     "military": "D0034"
   },
   "paths": {
@@ -31,9 +31,9 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "b77d5c9e9fbb358686107b09134ff2f13100cdc6",
-  "current_batch": "E2_TEMPLATE_SCOPED_PASS_F1_PLAN_PENDING",
-  "next_batch": "Review P0-F1 Research tradition age/shadow plan; explicit implementation authorization required. No repeated B142 template test; no F2 or ownership-policy inference.",
-  "manifest": "Specialization/Workflow/P0-E2.json",
+  "current_batch": "P0_F1_LOCAL_PASS_NATIVE_PENDING",
+  "next_batch": "F1 minimal native validation after authorized deployment; F2 requires separate authorization.",
+  "manifest": "Specialization/Workflow/P0-F1.json",
   "live": "B142.169 deployed;171/171 MATCH;source b77d5c9;receipt B142.169-b77d5c9-playtest.json DEVELOP_ACTIVE;B141/B140/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0363: B142 one screenshot inspected/hash archived; initialized MarketT1/GranaryT0 normal, restart retention explicitly user-confirmed. Scoped native PASS only; F1 plan read Research authority/direct architecture, not implemented. No runtime/deployment/Design changes.",
+  "context_review_status": "S0364: F1 direct Research contract, Store/Investment/diagnostic changes reviewed; L3 targeted simulations and related B136/B140/B142 passed. No Science effect, Design/GC/network changes; native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -60,5 +60,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Architecture/v2/P0_E2_Plan.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/P0_F_Research_Tradition.md"
 }
