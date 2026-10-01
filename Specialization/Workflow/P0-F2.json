@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0367",
+    "status": "S0368",
     "runtime": "B144.171 / modinfo171",
     "military": "D0034"
   },
@@ -163,6 +163,6 @@
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
     "stop": "Wait scoped native validation, no later ability",
-    "deployment": "Pending; live B143 retained"
+    "deployment": "B144.171 deployed;174/174 MATCH;source 5364c0e;receipt B144.171-5364c0e-playtest.json DEVELOP_ACTIVE;B143/stable recovery verified;OS game exit verified"
   }
 }

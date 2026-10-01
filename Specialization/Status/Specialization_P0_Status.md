@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0367
-Implementation Build: develop B144.171 / modinfo171 LOCAL_PASS; live B143.170; stable B069.96
+Status Revision: S0368
+Implementation Build: develop/live B144.171 / modinfo171 LOCAL_PASS_NATIVE_PENDING;174/174 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
@@ -13,9 +13,9 @@ Work State: P0_F2_LOCAL_PASS_NATIVE_PENDING
 
 [F2 B144实施合同](../Architecture/v2/P0_F_Research_Tradition.md#b144171--f2-implementation-and-validation)已获授权并完成STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：独立5/10/15/20/25%科技carrier、ACTIVE门槛、同回合退出恢复、确认失城精确撤销、冷加载重建；年龄与投资账本不改，旧科研writer不复活。B144、B143、B136定向回归通过；实际收益仍USER_GAME_TEST_REQUIRED。
 
-[F1限定实机验收](Validation/Results/Specialization_B143_F1_Pass.md)保持，无需重复。下一允许动作：安全部署本次测试包后完成一座科研城的实际百分比、总督退出恢复及冷加载验收，流程见F2合同。停止在本批门禁，不进入其它能力或跨Owner政策。
+[F1限定实机验收](Validation/Results/Specialization_B143_F1_Pass.md)保持，无需重复。下一允许动作：完成一座科研城的实际百分比、总督退出恢复及冷加载验收，流程见F2合同。停止在本批门禁，不进入其它能力或跨Owner政策。
 
-已记录运行包仍B143.170，source `fa9fcd4`、receipt `B143.170-fa9fcd4-playtest.json`，172/172 MATCH；B144尚未部署。main B069.96及既有恢复点保留。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开，GC未改。
+运行包已切换B144.171，source `5364c0e`、receipt `B144.171-5364c0e-playtest.json`，174/174 MATCH；游戏退出已核验，无未完成事务。main B069.96不变，B143及stable恢复包已核验保留。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开，GC未改。
 
 ## 历史阶段记录
 
