@@ -354,6 +354,7 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
+    if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
@@ -578,6 +579,8 @@ SPCCityFlowProbe.Start(P,shared)
 include("EffectiveFacts")
 SPCEffectiveFacts.Start(P,shared)
 SPCResearchTradition.Start(P,shared)
+include('ResearchTraditionEffects')
+SPCResearchTraditionEffects.Start(P,shared)
 
 -- P0-A shared facts and pure shadow consumer; no old writer is replaced.
 include("OrdinaryBuildingCatalog")

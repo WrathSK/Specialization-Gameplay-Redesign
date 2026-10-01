@@ -1,4 +1,4 @@
--- P0-F1: Research-only age model/readout. No yield, carrier or global GC writer.
+-- Research-only age model/readout. Effects are owned by ResearchTraditionEffects.
 SPCResearchTradition={}
 local M=SPCResearchTradition
 local function integer(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
@@ -46,20 +46,27 @@ function M.Start(P,shared)
   local ok,text=pcall(function()
    local t=store.ReadTradition(pid,c)
    local f=shared.EffectiveFacts.Read(pid,c)
-   if not t then return '学术传统｜影子计算（未施加科技收益）\n'..
+   if not t then return '学术传统｜未启用\n'..
     (f.specialization=='RESEARCH' and f.potential==4 and '首次P4起点不可确认；不猜测补龄。测试需从P3投资开始。' or '尚未在本版本首次达到科研潜力4。') end
    local speed=GameInfo.GameSpeeds[GameConfiguration.GetGameSpeedType()]
    local bonus,nextAge=M.Shadow(t.age,assert(speed and speed.CostMultiplier,'TRADITION_SPEED_UNKNOWN')/100)
    local reason={COUNTING='累计中',PAUSED_IDENTITY='转出科研，暂停',OWNER_POLICY_UNRESOLVED='跨Owner归属待定，保留但暂停',UNKNOWN_INTERVAL='计龄区间不可确认，保留但暂停'}
    local gate=f.activeStatus=='KNOWN' and f.specialization=='RESEARCH' and f.active>=4
-   return table.concat({'学术传统｜影子计算（未施加科技收益）',
+   local effect='影子计算；未接入收益writer。'
+   if shared.ResearchTraditionEffects then
+    local good,want,have=pcall(shared.ResearchTraditionEffects.Read,pid,c)
+    effect=good and ('本项应有 +'..want..'%｜载体配置 +'..have..'%'..(want~=have and '（待同步/异常）' or '')) or '本项配置暂不可确认；未据此授予新收益。'
+    local err=shared.ResearchTraditionEffects.lastError
+    if err and (err.city==pid..':'..c:GetID() or err.city=='STORE') then effect=effect..'；最近同步错误：'..(err.reason:match('TRADITION_[A-Z_]+') or 'STORE_UNKNOWN')end
+   end
+   return table.concat({'学术传统',
     '首次P4：T'..t.start..'｜已累计 '..t.age..' 回合｜'..reason[t.state],
     '当前潜力 '..f.potential..' / ACTIVE '..tostring(f.active),
     '按年龄预期：+'..bonus..'% 科技｜'..(gate and '当前满足四级门槛' or '当前未满足四级门槛或资格未知'),
     nextAge and ('下一阶段：累计 '..nextAge..' 回合（还需 '..(nextAge-t.age)..'）') or '已达25%上限',
-    '仅报告；实际收益尚未接入。'..(t.cursor~=Game.GetCurrentGameTurn() and ' 最近可靠结算T'..t.cursor..'。' or '')},'\n')
+    effect..' 配置不等于原生实测。'..(t.cursor~=Game.GetCurrentGameTurn() and ' 最近可靠结算T'..t.cursor..'。' or '')},'\n')
   end)
   if ok then return text end
-  return '学术传统：当前事实暂不可确认；未补算、未发放收益。\n'..(tostring(text):match('[A-Z][A-Z_]+') or 'UNKNOWN')
+  return '学术传统：当前事实暂不可确认；未补算或据此新增收益。\n'..(tostring(text):match('[A-Z][A-Z_]+') or 'UNKNOWN')
  end
 end

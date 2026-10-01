@@ -1,6 +1,6 @@
 # P0-F 科研学术传统 — 分段实施计划
 
-状态：P0-F1 B143.170限定 USER_GAME_TEST_PASS；F2 PLAN_ONLY / 未授权。验收见[B143证据](../../Status/Validation/Results/Specialization_B143_F1_Pass.md)。基线为B142.169、D0036总Spec中的Research_D0031；本计划不改变Design。用户已验收模板记录与重启保持，见[B142证据](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)。本页维护F1定域合同与结果；部署事实以Status及receipt为准。
+状态：P0-F1 B143.170限定 USER_GAME_TEST_PASS；F2已获授权，本地通过，待原生验收。验收见[B143证据](../../Status/Validation/Results/Specialization_B143_F1_Pass.md)。基线为B142.169、D0036总Spec中的Research_D0031；本计划不改变Design。用户已验收模板记录与重启保持，见[B142证据](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)。本页维护F1定域合同与结果；部署事实以Status及receipt为准。
 
 ## 玩法合同与依赖
 
@@ -68,7 +68,7 @@ Game speed静态证据：复用Probe.CrewAmount既有`GameConfiguration.GetGameS
 
 部署记录：B143.170，source `fa9fcd4`，receipt `B143.170-fa9fcd4-playtest.json` DEVELOP_ACTIVE；172/172一致，B142/stable恢复点保留。游戏退出核验后用既有事务工具切换，未启动游戏；原生F1限定验收已关闭，见本页顶部证据；不扩大未测范围。
 
-## P0-F2 具体实施计划 — 待用户授权
+## P0-F2 具体实施计划 — 已授权
 
 目标：在F1可靠年龄之上，接入本城实际科技百分比。Design不变：age0=5%，标准10/20/30/40分别10/15/20/25%，仅当前Research Identity且ACTIVE≥4有效；年龄仍由Store维护，carrier只是可重建的瞬时效果。
 
@@ -98,3 +98,19 @@ W0004 L2业务集成＋涉及保存/失城调用点的L3定域回归，不跑历
 未来最小实机验收：可复用本次F1存档的同一城，年龄2仍处5%档。先看ACTIVE1无本项；建立合格总督至ACTIVE4，原生城市科技明细出现+5%且报告配置匹配；再次调离应退出，恢复后保存冷启动应正确恢复且不重复。其它城市因素/百分比可能同时变化，应核对本项明细与同一快照下原生计算，不要求全城总科技简单乘1.05。不要求重测40回合；若原生界面无法区分本项，实施后提供一个针对该歧义的最小对照，不虚报效果PASS。
 
 完成本地验证后按现有授权/退出核验部署独立测试build，保留B143包及测试前存档；失败退回B143与配套存档，F1年龄不由回滚工具清零。退出条件：本地通过＋限定实际百分比/资格退出恢复/冷加载验收通过。当前无阻塞F2的Design决策；技术primitive接线验证仍属于F2任务。完成后停止，不自动进入后续能力。
+
+
+## B144.171 — F2 implementation and validation
+
+用户已明确授权F2。`ResearchTraditionEffects`拥有五个互斥5/10/15/20/25科技百分比carrier，SQL使用既有城市科技百分比primitive；Store继续唯一拥有年龄/receipt。无新增永久字段、旧科研效果复活、其它专业或GC改动。旧Research八档附件保持停用；新定义InternalOnly且零住房/槽位，沿既有机构隐藏路径处理。
+
+首次P4提交只标记；Store先结算年龄，效果模块在加载就绪或publish收尾读取已登记传统城市。待处理按本地玩家合并，只遍历Store登记记录，不扫描世界/建筑目录；总督事件与既有FactsChanged桥保留同回合资格响应。只有五个自有carrier读取/差异写入，不构造D/专家诊断明细。空pending立即返回；缓存加载清空，pending处理完释放，错误只留最后一条。单城未知不阻塞其它record；UNKNOWN不授予新资格，确认失城走精确module-owned退出。跨Owner、UNKNOWN_INTERVAL、无可靠起点不激活，永久记录不由效果consumer清除。
+
+本地证据：`test_b144_tradition_effects.py`实际Store/效果模块模拟五档、同回合ACTIVE4→1→4、重复零写、冷加载、确认失城/跨Owner暂停、普通建筑与年龄/receipt保留、其它城隔离、native写入失败后明确报错与相关事件重试；当前只读HD数据库的内存副本核对五组SQL绑定、隐藏、零槽位/住房及旧Research附件缺席。B143计龄与B136进度定向回归通过。STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，不等于原生百分比或隐藏实测；无全历史/stress/内存长测。
+
+最小用户验收（一次、复用F1科研城）：
+1. P4、ACTIVE1时，P0“主持 / 学术传统”右键应有/配置均0；年龄继续保留。
+2. 合格总督建立至ACTIVE4，报告应有/配置匹配年龄档（age<10标准速度为5%），核对原生城市科技百分比明细；调离后本项退出。其它科研能力/百分比同时变化，不能简单用城市总科技乘1.05作断言。
+3. 恢复ACTIVE4后保存、完全退出、冷启动读档；本项按当前年龄/ACTIVE重建，重复报告不叠加。截图最终报告与科技明细，说明退出/恢复观察即可；不要求40回合测试。
+
+回滚使用保留的B143包及本次测试前存档。B144新增SQL定义，不能以旧包继续新测试存档作为兼容承诺。本批退出点为原生验收；没有授权自动进入其它能力。

@@ -491,10 +491,10 @@ end
 local oldInitialize=initialize
 initialize=function()
  oldInitialize()
- Controls.DP05ButtonCaption:SetText('主持 / 传统影子')
+ Controls.DP05ButtonCaption:SetText('主持 / 学术传统')
  Controls.DP05Button:RegisterCallback(Mouse.eLClick,function() request('RESEARCH_CHAIR_DETAIL') end)
  Controls.DP05Button:RegisterCallback(Mouse.eRClick,function() request('RESEARCH_TRADITION_READ') end)
- Controls.DP05Button:SetToolTipString('左键：学术主持及逐建筑明细；右键：学术传统年龄、阶段与门槛（只读影子，未施加科技收益）。')
+ Controls.DP05Button:SetToolTipString('左键：学术主持及逐建筑明细；右键：学术传统年龄、门槛与本项收益配置（只读）。')
  Controls.DP03ButtonCaption:SetText('学以致用')
  Controls.DP03Button:RegisterCallback(Mouse.eLClick,function() request('RESEARCH_APPLY_READ') end)
  Controls.DP03Button:RegisterCallback(Mouse.eRClick,function() request('RESEARCH_APPLY_DETAIL') end)

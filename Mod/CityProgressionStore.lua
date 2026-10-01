@@ -164,6 +164,12 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ok then fault=tostring(err);error(fault)end
  end
  function d.ReadTradition(pid,c)return cp(active(pid,c).researchTradition)end
+ function d.VisitTradition(pid,fn)
+  if not ready or fault or not root or root.stage~='ACTIVE' or root.origin.owner~=pid or not root.researchTradition then return end
+  local a=root.current or root.origin
+  local c=CityManager.GetCityAt(a.x,a.y)
+  if c and c:GetOwner()==pid then fn(c)end -- consumer revalidates exact persistent reference
+ end
  -- Only this record owns age writes. No diagnostics/effect writers participate.
  function d.TickTradition(pid,turn)
   if not ready or fault or not root or root.origin.owner~=pid or not root.researchTradition
@@ -252,6 +258,7 @@ local function CreateProgressionRecord(P,shared,storage)
    n.researchTradition=SPCResearchTradition.Begin(Game.GetCurrentGameTurn(),op.receipt)
   end
   n.revision=n.revision+1;save(n)
+  if n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
  end
  -- Only the existing Standardization module owns interpretation of this ledger.
  function d.ReadTemplates(c)
@@ -804,6 +811,12 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
  function store.ReadTradition(pid,c)return requireCity(c).ReadTradition(pid,c)end
+ function store.VisitTradition(pid,fn)
+  check();if not P.IsTestPlayer(pid)then return end
+  local firstError
+  for _,w in pairs(workers)do local ok,err=pcall(w.VisitTradition,pid,fn);if not ok then firstError=firstError or err end end
+  assert(not firstError,firstError) -- an unreadable city must not prevent other records from updating
+ end
  local function traditionTick(pid)
   if fault or not P.IsTestPlayer(pid)then return end
   local turn=Game.GetCurrentGameTurn()

@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0366
-Implementation Build: develop/live P0-B-143.170 / modinfo170 F1_SCOPED_PASS;172/172 recorded MATCH; stable B069.96
+Status Revision: S0367
+Implementation Build: develop B144.171 / modinfo171 LOCAL_PASS; live B143.170; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_F1_SCOPED_PASS_F2_PLAN_PENDING
+Work State: P0_F2_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B143 F1限定实机验收](Validation/Results/Specialization_B143_F1_Pass.md) **USER_GAME_TEST_PASS（用户已测场景）**：两截图显示T47首次P4/age0→T49/age2，Potential4、ACTIVE1、预期5%；用户另确认冷重启保持。2/2原图已读取并hash归档。F1门禁关闭，无需重复；实际科技收益仍未实现，其它速度/高龄阶段保留本地证据等级。
+[F2 B144实施合同](../Architecture/v2/P0_F_Research_Tradition.md#b144171--f2-implementation-and-validation)已获授权并完成STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：独立5/10/15/20/25%科技carrier、ACTIVE门槛、同回合退出恢复、确认失城精确撤销、冷加载重建；年龄与投资账本不改，旧科研writer不复活。B144、B143、B136定向回归通过；实际收益仍USER_GAME_TEST_REQUIRED。
 
-下一建议：[P0-F2具体计划](../Architecture/v2/P0_F_Research_Tradition.md#p0-f2-具体实施计划--待用户授权)，只接入可靠传统年龄对应的本城科技百分比及module-owned退出/恢复，**PLAN_ONLY / 未授权**。保留旧P4缺起点、跨Owner归属及UNKNOWN保护，不扩大其它专业/E2尾项。当前无阻塞该窄批次的Design决定，等待用户审核并明确授权实施。
+[F1限定实机验收](Validation/Results/Specialization_B143_F1_Pass.md)保持，无需重复。下一允许动作：安全部署本次测试包后完成一座科研城的实际百分比、总督退出恢复及冷加载验收，流程见F2合同。停止在本批门禁，不进入其它能力或跨Owner政策。
 
-运行基线保持B143.170：source `fa9fcd4`、receipt `B143.170-fa9fcd4-playtest.json`，既有记录172/172 MATCH，main B069.96及B142/stable恢复点保留。本轮只归档/计划，没有重新核验运行包或部署。F1相关本地回归及[B142模板验收](Validation/Results/Specialization_B142_Template_Pass.md)保持；[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。
+已记录运行包仍B143.170，source `fa9fcd4`、receipt `B143.170-fa9fcd4-playtest.json`，172/172 MATCH；B144尚未部署。main B069.96及既有恢复点保留。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开，GC未改。
 
 ## 历史阶段记录
 

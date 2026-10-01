@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0366",
-    "runtime": "B143.170 / modinfo170",
+    "status": "S0367",
+    "runtime": "B144.171 / modinfo171",
     "military": "D0034"
   },
   "paths": {
@@ -31,9 +31,9 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "fa9fcd4a46ed79992a046bdc3a3f780330916c02",
-  "current_batch": "P0_F1_SCOPED_PASS_F2_PLAN_PENDING",
-  "next_batch": "Review concrete P0-F2 Science percentage consumer plan; explicit implementation authorization required. No new user test now.",
-  "manifest": "Specialization/Workflow/P0-F1.json",
+  "current_batch": "P0_F2_LOCAL_PASS_NATIVE_PENDING",
+  "next_batch": "One scoped F2 native Science/gating/cold-load validation; stop, no later ability authorized.",
+  "manifest": "Specialization/Workflow/P0-F2.json",
   "live": "B143.170 deployed;172/172 MATCH;source fa9fcd4;receipt B143.170-fa9fcd4-playtest.json DEVELOP_ACTIVE;B142/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0366: two B143 screenshots inspected/archived; T47 age0 -> T49 age2 ACTIVE1; cold restart retained by user statement. Scoped F1 native PASS; F2 plan only. Runtime/Design unchanged; stale Status build header corrected.",
+  "context_review_status": "S0367: authorized F2 effect owner, five exact carriers, bounded Store visitation and targeted B144/F1/E2 simulations reviewed; native pending. Design/GC/permanent schema unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

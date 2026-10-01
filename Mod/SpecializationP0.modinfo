@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="170">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="171">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B143.170: Research Academic Tradition persistent age and read-only shadow; no new yield effects.</Description>
+    <Description>B144.171: Academic Tradition gated city Science percentage and scoped effect withdrawal.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_ResearchTradition"><Properties><LoadOrder>2000007</LoadOrder></Properties><File>Data/ResearchTradition.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ClaimProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/ClaimProjects.sql</File></UpdateDatabase>
     <UpdateText id="SPC_ClaimText"><File>Text/ClaimProjects.sql</File></UpdateText>
     <ReplaceUIScript id="SPC_TimedProjectCityPanel"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
@@ -80,6 +81,7 @@
       <File>UI/CityIdentityEvidence.lua</File>
       <File>CityProgressionStore.lua</File>
       <File>ResearchTradition.lua</File>
+      <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>
       <File>CityIdentityRead.lua</File>
       <File>InstitutionPresentation.lua</File>
@@ -349,6 +351,7 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>Data/ResearchTradition.sql</File>
     <File>Data/OverflowSinkTest.sql</File>
     <File>OverflowStorageProbe.lua</File>
     <File>UI/OverflowStorageRead.lua</File>
@@ -371,6 +374,7 @@
       <File>UI/CityIdentityEvidence.lua</File>
     <File>CityProgressionStore.lua</File>
       <File>ResearchTradition.lua</File>
+      <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>
       <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>

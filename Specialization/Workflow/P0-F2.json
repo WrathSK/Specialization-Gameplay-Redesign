@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
+  },
+  "batch": "P0-F2",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0036",
+    "research": "D0031",
+    "industry": "D0036",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0367",
+    "runtime": "B144.171 / modinfo171",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/5",
+      "expected_id": "RES_L4_TRADITION",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/ResearchTradition.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/InvestmentAction.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "DevelopmentTests/test_b143_tradition.py",
+      "kind": "full",
+      "reason": "F2 direct effect/age/eligibility/write boundary; load by current action, not all history."
+    },
+    {
+      "path": "Mod/ResearchTraditionEffects.lua",
+      "kind": "full",
+      "reason": "F2 direct implementation or exact retired-writer exclusion and targeted verification."
+    },
+    {
+      "path": "Mod/Data/ResearchTradition.sql",
+      "kind": "full",
+      "reason": "F2 direct implementation or exact retired-writer exclusion and targeted verification."
+    },
+    {
+      "path": "Mod/Lv4Percent.lua",
+      "kind": "full",
+      "reason": "F2 direct implementation or exact retired-writer exclusion and targeted verification."
+    },
+    {
+      "path": "Mod/Data/Lv4Percent.sql",
+      "kind": "full",
+      "reason": "F2 direct implementation or exact retired-writer exclusion and targeted verification."
+    },
+    {
+      "path": "Mod/ResearchInfrastructure.lua",
+      "kind": "full",
+      "reason": "F2 direct implementation or exact retired-writer exclusion and targeted verification."
+    },
+    {
+      "path": "DevelopmentTests/test_b144_tradition_effects.py",
+      "kind": "full",
+      "reason": "F2 direct implementation or exact retired-writer exclusion and targeted verification."
+    }
+  ],
+  "dependencies": [
+    "E2 same persistent city / atomic investment receipts / reliable current reference",
+    "Research D0031 age; existing speed convention; W0004 L3 and performance closure"
+  ],
+  "old_writers": [
+    "Old Research IV remains retired; Culture Lv4 unchanged",
+    "Store remains sole age/receipt owner; F2 owns only five new exact transient carriers",
+    "Confirmed loss uses existing RegisterExit; no cross-owner policy activation"
+  ],
+  "conditional_context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "trigger": "identity/save/Claim boundary or regression failure",
+      "reason": "Existing supported-save and native identity contract, not all historical investigation by default."
+    },
+    {
+      "path": "DevelopmentTests/test_b140_templates.py",
+      "trigger": "fixture/Store regression",
+      "reason": "Current real Store fixture and A-G regression"
+    }
+  ],
+  "non_scope": [
+    "Cross-owner tradition policy",
+    "Respecialization UI",
+    "Other E2 boundaries/abilities",
+    "GC changes/performance long tests"
+  ],
+  "validation": {
+    "local": [
+      "test_b144_tradition_effects.py (Lupa + read-only HD DB memory copy)",
+      "test_b143_tradition.py",
+      "test_b136_progression.py",
+      "Lua/XML/SQL wiring; context check/self-test"
+    ],
+    "user": "One city percentage/gating/restore/cold-load flow; not yet tested."
+  },
+  "full_audit_triggers": [
+    "Unexpected permanent state inconsistency",
+    "Effect writer outside five owned carriers or changed save policy"
+  ],
+  "result": {
+    "local": "LOCAL_SIMULATION_PASS",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Wait scoped native validation, no later ability",
+    "deployment": "Pending; live B143 retained"
+  }
+}

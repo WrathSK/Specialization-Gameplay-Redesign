@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "0d183540873b9c65ea86bab587acc2e286e269316a3da90201416cbcbbd0c4f0",
+      "sha256": "a1308b4fa574cbc845684dd97bb5660b8cca0f3854adb55815ea2e01dc0e46db",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "3f4cc08a86319834599e620d1a01a289bab52275bbc8dd24ed4ec21a386a1abb",
+      "sha256": "a5cbcf93423af1e342476844e6ab4a46dbb8156f5a27680b5ab746004bfe19da",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "067c8df98dcc6ffa58e7b593ffd4ec97d51e3658e2e0e75217d57b4a7d07d00b",
+      "sha256": "d9903af3762fdb3c71f2b7facbaa8329461e5e9917119f83aec164e04bc4a2c5",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "23eab42d7bfd4a6fac9bf3f8cca6ac4b18a4f66e88f2a47d5568f5ca6b69fcb5",
+      "sha256": "2bafbfe9530c380bba5903eed5f1a9e709aebc53a69de034b40a65ac12c336ec",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "e893bfb5834474e7615ed850886ed4d5a186f3fcf8ad812803f93e798ced628a",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "4938027e773aba8b415235129d8dd0823f15da772b6c302458723c9f24bd7549",
+      "sha256": "d629655cd709d351e4544e721d9bf6b27256120ec4a5a64a4c9866a9c9ed4e6f",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -861,9 +861,19 @@
       "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/ResearchTradition.lua": {
-      "sha256": "e0d2c0d2b4d239fa6471618d1fad425710c09296229181d4d933e905d8bfd990",
+      "sha256": "548bcc7f14c411c63b6b27267d944267aa72bffb74d6a89849c17794643b0d2a",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B143 F1 scoped source review and L3 local validation; shadow only; native pending"
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+    },
+    "Mod/Data/ResearchTradition.sql": {
+      "sha256": "7259c9cf380803b2d4035a6d30183f21db304089b85509eed153ae57d9ae480b",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+    },
+    "Mod/ResearchTraditionEffects.lua": {
+      "sha256": "55aa2d441a565fe73f2029dd795273833e58b1d333d392436742aac99feb7447",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
     }
   }
 }
