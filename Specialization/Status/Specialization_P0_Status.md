@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0364
+Status Revision: S0365
 Implementation Build: develop/live P0-B-142.169 / modinfo169 TEMPLATE_TIER0_SCOPED_PASS;171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
@@ -15,9 +15,9 @@ P0-F1获用户授权，B143.170 / modinfo170已实现科研学术传统首次P4�
 
 本地：B143原子性/计龄/速度/ACTIVE下降/读档/UNKNOWN/跨Owner保护定向通过；B136投资/逐城、B140模板A–G、B142真实HD目录/T0相关回归通过。仅同Owner；旧P4缺起点、未知计龄间隔、跨Owner归属不猜测补录；转专业暂停/恢复仅模型合同，未增UI。既有[B142模板及重启保持验收](Validation/Results/Specialization_B142_Template_Pass.md)不变。
 
-源码B143.170尚未部署；最近已记录外部运行包B142.169，source b77d5c9、receipt B142.169-b77d5c9-playtest.json。待完成当前commit/push及部署工具校验后按W0003替换；不凭HEAD声称部署。main B069.96与恢复点保留。
+B143.170已按W0003部署：source `fa9fcd4`，receipt `B143.170-fa9fcd4-playtest.json` DEVELOP_ACTIVE，172/172 MATCH；OS进程核验游戏已退出。B142原包与stable恢复点均保留，main B069.96未改，未启动游戏。部署完成不等于实机验收。
 
-当前允许：完成F1安全部署并等待用户一次最小验收；不进入F2或其它E2边界。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不变，不重启性能专项。无新增Design决定；用户测试流程见F1合同。
+当前停止点：F1已部署，等待用户一次最小验收；不进入F2或其它E2边界。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不变，不重启性能专项。无新增Design决定；用户测试流程见F1合同。
 
 ## 历史阶段记录
 

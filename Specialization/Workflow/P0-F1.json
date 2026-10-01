@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0364",
+    "status": "S0365",
     "runtime": "B143.170 / modinfo170",
     "military": "D0034"
   },
@@ -139,6 +139,7 @@
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "F1 acceptance; do not start F2"
+    "stop": "F1 acceptance; do not start F2",
+    "deployment": "B143.170 deployed;172/172 MATCH;source fa9fcd4;receipt B143.170-fa9fcd4-playtest.json DEVELOP_ACTIVE;B142/stable recovery retained;OS game exit verified"
   }
 }

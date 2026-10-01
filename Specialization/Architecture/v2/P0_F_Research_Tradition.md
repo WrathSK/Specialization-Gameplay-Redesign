@@ -65,3 +65,5 @@ Game speed静态证据：复用Probe.CrewAmount既有`GameConfiguration.GetGameS
 3. 保存并完全退出、冷启动读档；同回合重复读取，age保持2、不重置不增加。提交一次报告/确认即可，勿重做40回合或内存长测。
 
 回滚保留B142运行包与F1写入前存档；未承诺旧包理解新增字段。F1本地完成不等于native PASS，不允许由此开始F2。
+
+部署记录：B143.170，source `fa9fcd4`，receipt `B143.170-fa9fcd4-playtest.json` DEVELOP_ACTIVE；172/172一致，B142/stable恢复点保留。游戏退出核验后用既有事务工具切换，未启动游戏；原生F1验收待用户执行。

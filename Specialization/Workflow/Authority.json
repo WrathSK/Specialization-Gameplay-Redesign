@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0364",
+    "status": "S0365",
     "runtime": "B143.170 / modinfo170",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "b77d5c9e9fbb358686107b09134ff2f13100cdc6",
+  "runtime_commit": "fa9fcd4a46ed79992a046bdc3a3f780330916c02",
   "current_batch": "P0_F1_LOCAL_PASS_NATIVE_PENDING",
   "next_batch": "F1 minimal native validation after authorized deployment; F2 requires separate authorization.",
   "manifest": "Specialization/Workflow/P0-F1.json",
-  "live": "B142.169 deployed;171/171 MATCH;source b77d5c9;receipt B142.169-b77d5c9-playtest.json DEVELOP_ACTIVE;B141/B140/stable recovery retained;OS game exit verified",
+  "live": "B143.170 deployed;172/172 MATCH;source fa9fcd4;receipt B143.170-fa9fcd4-playtest.json DEVELOP_ACTIVE;B142/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0364: F1 direct Research contract, Store/Investment/diagnostic changes reviewed; L3 targeted simulations and related B136/B140/B142 passed. No Science effect, Design/GC/network changes; native pending.",
+  "context_review_status": "S0365: F1 local evidence preserved; W0003 deployment verified 172/172, B142/stable recovery retained. Native age/ACTIVE/cold-load pending; no F2 authorization.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
