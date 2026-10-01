@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-F1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0036",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0365",
+    "status": "S0366",
     "runtime": "B143.170 / modinfo170",
     "military": "D0034"
   },
@@ -130,7 +130,7 @@
       "test_b142_templates.py (read-only configured HD DB)",
       "Lua syntax, XML/modinfo, exact UI action wiring, context check/self-test"
     ],
-    "user": "One P3 -> P4 city, age0; ACTIVE decrease +2 turns; cold load same age. No actual percentage effect."
+    "user": "Completed scoped B143 two-image + user-confirmed cold restart evidence; no repeat testing."
   },
   "full_audit_triggers": [
     "Unexpected persistent identity/receipt inconsistency",
@@ -138,8 +138,8 @@
   ],
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "F1 acceptance; do not start F2",
+    "native": "USER_GAME_TEST_PASS scoped T47->49 age0->2 ACTIVE1; cold restart retained explicitly user-confirmed; no actual yield claim",
+    "stop": "F1 accepted; F2 concrete plan only, await authorization",
     "deployment": "B143.170 deployed;172/172 MATCH;source fa9fcd4;receipt B143.170-fa9fcd4-playtest.json DEVELOP_ACTIVE;B142/stable recovery retained;OS game exit verified"
   }
 }

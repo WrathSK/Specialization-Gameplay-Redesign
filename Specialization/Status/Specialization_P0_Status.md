@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0365
-Implementation Build: develop/live P0-B-142.169 / modinfo169 TEMPLATE_TIER0_SCOPED_PASS;171/171 MATCH; stable B069.96
+Status Revision: S0366
+Implementation Build: develop/live P0-B-143.170 / modinfo170 F1_SCOPED_PASS;172/172 recorded MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_F1_LOCAL_PASS_NATIVE_PENDING
+Work State: P0_F1_SCOPED_PASS_F2_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-P0-F1获用户授权，B143.170 / modinfo170已实现科研学术传统首次P4原子起点、年龄持久化与只读影子；**STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，USER_GAME_TEST_REQUIRED**。[精确合同、验证、三步最小测试](../Architecture/v2/P0_F_Research_Tradition.md#b143170--f1-implementation-and-validation)。无实际科技加成或新carrier；F2未授权。
+[B143 F1限定实机验收](Validation/Results/Specialization_B143_F1_Pass.md) **USER_GAME_TEST_PASS（用户已测场景）**：两截图显示T47首次P4/age0→T49/age2，Potential4、ACTIVE1、预期5%；用户另确认冷重启保持。2/2原图已读取并hash归档。F1门禁关闭，无需重复；实际科技收益仍未实现，其它速度/高龄阶段保留本地证据等级。
 
-本地：B143原子性/计龄/速度/ACTIVE下降/读档/UNKNOWN/跨Owner保护定向通过；B136投资/逐城、B140模板A–G、B142真实HD目录/T0相关回归通过。仅同Owner；旧P4缺起点、未知计龄间隔、跨Owner归属不猜测补录；转专业暂停/恢复仅模型合同，未增UI。既有[B142模板及重启保持验收](Validation/Results/Specialization_B142_Template_Pass.md)不变。
+下一建议：[P0-F2具体计划](../Architecture/v2/P0_F_Research_Tradition.md#p0-f2-具体实施计划--待用户授权)，只接入可靠传统年龄对应的本城科技百分比及module-owned退出/恢复，**PLAN_ONLY / 未授权**。保留旧P4缺起点、跨Owner归属及UNKNOWN保护，不扩大其它专业/E2尾项。当前无阻塞该窄批次的Design决定，等待用户审核并明确授权实施。
 
-B143.170已按W0003部署：source `fa9fcd4`，receipt `B143.170-fa9fcd4-playtest.json` DEVELOP_ACTIVE，172/172 MATCH；OS进程核验游戏已退出。B142原包与stable恢复点均保留，main B069.96未改，未启动游戏。部署完成不等于实机验收。
-
-当前停止点：F1已部署，等待用户一次最小验收；不进入F2或其它E2边界。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不变，不重启性能专项。无新增Design决定；用户测试流程见F1合同。
+运行基线保持B143.170：source `fa9fcd4`、receipt `B143.170-fa9fcd4-playtest.json`，既有记录172/172 MATCH，main B069.96及B142/stable恢复点保留。本轮只归档/计划，没有重新核验运行包或部署。F1相关本地回归及[B142模板验收](Validation/Results/Specialization_B142_Template_Pass.md)保持；[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。
 
 ## 历史阶段记录
 

@@ -1,6 +1,6 @@
 # P0-F 科研学术传统 — 分段实施计划
 
-状态：P0-F1用户已授权实施，B143.170本地完成 / USER_GAME_TEST_REQUIRED；F2未授权。基线为B142.169、D0036总Spec中的Research_D0031；本计划不改变Design。用户已验收模板记录与重启保持，见[B142证据](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)。本页维护F1定域合同与结果；部署事实以Status及receipt为准。
+状态：P0-F1 B143.170限定 USER_GAME_TEST_PASS；F2 PLAN_ONLY / 未授权。验收见[B143证据](../../Status/Validation/Results/Specialization_B143_F1_Pass.md)。基线为B142.169、D0036总Spec中的Research_D0031；本计划不改变Design。用户已验收模板记录与重启保持，见[B142证据](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)。本页维护F1定域合同与结果；部署事实以Status及receipt为准。
 
 ## 玩法合同与依赖
 
@@ -41,11 +41,11 @@ F1退出：本地定域通过，原生首次起点/计龄/重启保持得到限�
 
 复用F1已确认的年龄/阶段，只在ACTIVE4时施加本城Science百分比；实现module-owned进入/更新/退出/读档重建。先精确核查旧Research百分比writer/载体已经停用，防止old+new叠加；不复制Culture/Commerce公式。按需报告同时显示预期与实际配置。最小一城检查初始5%、总督门槛退出/恢复和冷加载；原生百分比路径若出现技术问题，报告具体边界，不修改Research Design。
 
-F1本地完成，等待下述最小实机验收；F2未实施且未授权。不自动进入F2、未知Legacy或其它专业。
+F1最小实机验收已关闭；下述三步保留为原验收流程，不再派发。F2未实施且未授权。不自动进入F2、未知Legacy或其它专业。
 
 ## B143.170 — F1 implementation and validation
 
-**STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；USER_GAME_TEST_REQUIRED。** 用户“授权实施计划”只授权F1。没有Science写入、SQL收益或新carrier，GC/Network/模板目录与折扣均未变。
+**原实施记录：STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；当时USER_GAME_TEST_REQUIRED，现由B143限定验收关闭。** 用户“授权实施计划”只授权F1。没有Science写入、SQL收益或新carrier，GC/Network/模板目录与折扣均未变。
 
 持久字段为既有逐城Game record内`researchTradition={version=1,start,age,cursor,state,receipt}`；父record提供城市/owner authority。最后一笔P3→P4投资的CONSUMED_CONFIRMED→committed写入同时建立age0与receipt起点，失败不单独提交其中一半；投资确认本身的完整事务与失败恢复不变。已有P4而无起点不补造。未定义的跨Owner在已确认失城写入中标为OWNER_POLICY_UNRESOLVED，保留age；夺回不自动续算。
 
@@ -66,4 +66,35 @@ Game speed静态证据：复用Probe.CrewAmount既有`GameConfiguration.GetGameS
 
 回滚保留B142运行包与F1写入前存档；未承诺旧包理解新增字段。F1本地完成不等于native PASS，不允许由此开始F2。
 
-部署记录：B143.170，source `fa9fcd4`，receipt `B143.170-fa9fcd4-playtest.json` DEVELOP_ACTIVE；172/172一致，B142/stable恢复点保留。游戏退出核验后用既有事务工具切换，未启动游戏；原生F1验收待用户执行。
+部署记录：B143.170，source `fa9fcd4`，receipt `B143.170-fa9fcd4-playtest.json` DEVELOP_ACTIVE；172/172一致，B142/stable恢复点保留。游戏退出核验后用既有事务工具切换，未启动游戏；原生F1限定验收已关闭，见本页顶部证据；不扩大未测范围。
+
+## P0-F2 具体实施计划 — 待用户授权
+
+目标：在F1可靠年龄之上，接入本城实际科技百分比。Design不变：age0=5%，标准10/20/30/40分别10/15/20/25%，仅当前Research Identity且ACTIVE≥4有效；年龄仍由Store维护，carrier只是可重建的瞬时效果。
+
+### 实现范围与旧writer边界
+
+1. 复用`ResearchTradition.Shadow`与`CityProgressionStore.ReadTradition`，增加本专业效果consumer；不建立第二份年龄、不补旧P4起点。不接入跨Owner归属、转专业UI或其它E2尾项。
+2. 优先复用已有城市百分比primitive `MODIFIER_SINGLE_CITY_ADJUST_CITY_YIELD_MODIFIER`，新建学术传统专用、精确命名的隐藏carrier定义，采用互斥的5/10/15/20/25档或等价可验证编码，最终编码在实施时确认；不复活旧科研carrier。
+3. 已静态核对：当前`Lv4Percent.lua`仅遍历CULTURE；`ResearchInfrastructure.Retired`仍精确清除旧`BUILDING_SPC_LV4_PERCENT_RESEARCH_0..7`。F2保持两者职责，新命名不得与该退休清单重叠，数据库最终附件与旧Research modifier停用状态在实施前定向核对。不要把旧文件名/历史注释当成现行Research writer。
+4. 模块拥有自己的添加、更新和撤销，只处理精确IDs；ACTIVE下降/可靠非科研/确认失城时撤销。向既有E2 RegisterExit注册该模块退出，保存年龄不清零。OWNER_POLICY_UNRESOLVED、UNKNOWN_INTERVAL、缺起点均不激活。临时UNKNOWN保留错误与现有一致性保护，不把未知解释成新资格，也不能绕过已确认失城退出。
+5. 重用现有按钮，显示年龄、当前门槛、应有百分比与已配置百分比；配置不是原生收益实测。原生城市产出明细用于验收；继续隐藏技术carrier，不增加机构或专业能力。
+
+可能文件：ResearchTradition（或一个科研专用效果模块）、Gameplay初始化/请求、最小专用SQL和modinfo、P0Panel必要文案/已有carrier隐藏目录、相关定向测试。Store只在确有年龄变化通知接口依赖时作最小扩展；不改永久数据语义、GC、模板/Network或其它收益公式。
+
+### 事件、事实与生命周期
+
+只在首次P4提交、年龄跨档、可靠资格变化、load与确认owner变化时更新相关城市。通过现有通知/有界回合核对接入，保留同回合总督变化；不新增每帧/hover请求或每个事件全城事实扫描。普通计算只取传统、当前身份/ACTIVE、当前专用carrier，避免构造D/建筑/专家明细。瞬时待处理集合以现有持久引用定域，处理完成即释放；缓存加载清空、失城撤销，诊断仅当前值和最近异常。重复通知在状态不变时零carrier写入；年龄每回合增长不意味着每回合重建同档收益。
+
+### 验证与退出
+
+W0004 L2业务集成＋涉及保存/失城调用点的L3定域回归，不跑历史全套/内存长测：
+- 5档数值/速度阈值与ACTIVE进入、下降、恢复；同回合变化不丢。
+- 相同状态、重复通知零写入；按档替换无累加；旧Research效果不叠加；Culture writer不变。
+- 真实模块的确认失城撤销、UNKNOWN保护、缺起点/跨Owner暂不生效；年龄/receipt不被carrier操作修改。
+- 冷加载仅重建当前合法效果，失败明确报告；沿用相关F1/E2测试，不扩大PASS。
+- SQL在当前只读外部DB的内存副本检查Modifier绑定、隐藏和互斥定义；Lua/XML/context检查。
+
+未来最小实机验收：可复用本次F1存档的同一城，年龄2仍处5%档。先看ACTIVE1无本项；建立合格总督至ACTIVE4，原生城市科技明细出现+5%且报告配置匹配；再次调离应退出，恢复后保存冷启动应正确恢复且不重复。其它城市因素/百分比可能同时变化，应核对本项明细与同一快照下原生计算，不要求全城总科技简单乘1.05。不要求重测40回合；若原生界面无法区分本项，实施后提供一个针对该歧义的最小对照，不虚报效果PASS。
+
+完成本地验证后按现有授权/退出核验部署独立测试build，保留B143包及测试前存档；失败退回B143与配套存档，F1年龄不由回滚工具清零。退出条件：本地通过＋限定实际百分比/资格退出恢复/冷加载验收通过。当前无阻塞F2的Design决策；技术primitive接线验证仍属于F2任务。完成后停止，不自动进入后续能力。
