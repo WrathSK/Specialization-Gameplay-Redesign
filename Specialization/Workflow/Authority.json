@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0360",
-    "runtime": "B141.168 / modinfo168",
+    "status": "S0361",
+    "runtime": "B142.169 / modinfo169",
     "military": "D0034"
   },
   "paths": {
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "d69c823eb778f117c7481287d53fdc5c1bf2c293",
-  "current_batch": "E2_TEMPLATE_TIER0_NATIVE_FAIL_REPAIR_PENDING",
-  "next_batch": "Await narrow Tier0 template-validator/error-report/regression repair authorization; do not repeat failed test or implement F.",
+  "current_batch": "E2_TEMPLATE_TIER0_LOCAL_PASS_DEPLOY_PENDING",
+  "next_batch": "Finish authorized B142 W0003 test-package switch after verified game exit, then await one pending Industry save cold-load continuation. No F implementation.",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B141.168 deployed;171/171 MATCH;source d69c823;receipt B141.168-d69c823-playtest.json DEVELOP_ACTIVE;B140/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0360/B141: three screenshots inspected/archived; template initialization native FAIL, entry visibility scoped PASS. Actual configured HD catalog and current Store/Standardization/CityIdentityRead reproduce legal Tier0 rejection. Runtime unchanged; next repair not authorized.",
+  "context_review_status": "S0361/B142: user authorized narrow legal Tier0 validator/error repair; exact Preview/Store/Standardization callers and actual HD catalog reviewed; B142/B140/B136 targeted LOCAL_SIMULATION_PASS. Source B142 pending commit/deployment, live B141 remains separate; no Design/catalog/schema/GC changes.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

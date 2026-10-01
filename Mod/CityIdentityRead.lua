@@ -83,8 +83,9 @@ function M.Preview(input)
  if t~=nil then
   if type(t)~='table' or t.schema~=1 or t.initialized~=true or t.uid~='STD:'..token or t.foundation~=token or t.x~=record.x or t.y~=record.y or type(t.learned)~='table' then return stop('TEMPLATES') end
   local count=0
+  -- Template tiers follow the HD catalog, including city-center Tier 0; not Shared D.
   for id,row in pairs(t.learned) do
-   if type(id)~='string' or type(row)~='table' or type(row.district)~='string' or not int(row.tier) or row.tier<1 or not int(row.turn) or type(row.evidence)~='string' then return stop('TEMPLATES') end
+   if type(id)~='string' or type(row)~='table' or type(row.district)~='string' or not int(row.tier) or not int(row.turn) or type(row.evidence)~='string' then return stop('TEMPLATES') end
    count=count+1
   end
   if t.revision~=count+1 then return stop('TEMPLATES') end

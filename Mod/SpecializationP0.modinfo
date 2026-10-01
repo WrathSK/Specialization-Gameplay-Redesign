@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="168">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="169">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B141.168: restore the read-only Standardization template report entry.</Description>
+    <Description>B142.169: accept legal Tier 0 templates and retain precise store failure codes.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -70,7 +70,7 @@ function SPCStandardization.Start(P,shared)
  local function guard(pid,c,fn)
   local k=key(pid,c:GetID());local ok,err=pcall(fn)
   if not ok then
-   local code=tostring(err):match('STD_[A-Z_]+') or tostring(err):match('TEMPLATES_[A-Z_]+') or 'STD_FACTS_NOT_READY'
+   local code=tostring(err):match('STD_[A-Z_]+') or tostring(err):match('TEMPLATES_[A-Z_]+') or tostring(err):match('STORE_[A-Z_]+') or 'STD_FACTS_NOT_READY'
    if data.errors[k]~=code then print('[SPC][B052] '..k..' '..tostring(err)) end
    data.errors[k]=code
   else data.errors[k]=nil end
@@ -164,7 +164,7 @@ function SPCStandardization.Start(P,shared)
    lines[#lines+1]='只读永久模板；当前折扣另见Read discounts。'
    return table.concat(lines,'\n')
   end)
-  return ok and text or ('B052 读取未完成：'..(tostring(text):match('STD_[A-Z_]+') or tostring(text):match('TEMPLATES_[A-Z_]+') or 'STD_READ_FAILED'))
+  return ok and text or ('B052 读取未完成：'..(tostring(text):match('STD_[A-Z_]+') or tostring(text):match('TEMPLATES_[A-Z_]+') or tostring(text):match('STORE_[A-Z_]+') or 'STD_READ_FAILED'))
  end
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Standardization',function(pid,c)
   data.pending[key(pid,c:GetID())]=nil;queueReconcile(pid,c:GetID()) -- callback precedes return commit; no reads/writes here
