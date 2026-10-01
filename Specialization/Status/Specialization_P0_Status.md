@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0361
-Implementation Build: develop P0-B-142.169 / modinfo169 TEMPLATE_TIER0_LOCAL_PASS_DEPLOY_PENDING; live B141.168 verified171/171 MATCH; stable B069.96
+Status Revision: S0362
+Implementation Build: develop/live P0-B-142.169 / modinfo169 TEMPLATE_TIER0_NATIVE_PENDING;171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: E2_TEMPLATE_TIER0_LOCAL_PASS_DEPLOY_PENDING
+Work State: E2_TEMPLATE_TIER0_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,7 @@ Work State: E2_TEMPLATE_TIER0_LOCAL_PASS_DEPLOY_PENDING
 
 `STATIC_CONFIRMED / LOCAL_SIMULATION_PASS`：真实运行HD目录＋实际Store/Standardization/Claim/IdentityRead/Discount，验证pending工业城冷加载直接续接、合法首次/并集、缺失旧建筑历史保持、保存/重复无写、错误及损坏负对照、T0折扣plan/sample；既有B140 A–G与B136四专业E2回归通过。数据库rowid只是fixture index，非native索引/收益证明。[B141三图失败](Validation/Results/Specialization_B141_Template_Tier0_Failure.md)保留，修复尚未USER_GAME_TEST_PASS。
 
-源码B142.169 / modinfo169待完成提交及W0003切换；live仍B141.168，source d69c823、receipt B141.168-d69c823-playtest.json及既有171/171 MATCH保持。不能从新源码推断运行包已更新；部署须当前游戏退出、source/stable clean、精确hash/receipt核验。B140/stable恢复点和main B069.96不变。
+B142.169 / modinfo169已按W0003部署；source `b77d5c9e9fbb358686107b09134ff2f13100cdc6`，receipt `B142.169-b77d5c9-playtest.json` DEVELOP_ACTIVE，171/171 MATCH，digest `c493adfe596ef1c0eff828cba3c6c325e813501a1848682ec0f89090b371d011`。部署前后source/stable clean、游戏退出/精确hash/UUID/目标与transaction恢复核验通过；B141精确receipt先恢复stable并保留其完整develop恢复包，再激活B142。B140及stable恢复点/main B069.96不变，没有启动游戏。实际部署不等于模板原生验收通过。
 
 一个最小续测：已认领工业城的pending存档可直接冷加载→“标准化模板”确认已初始化、粮仓T0及当前合格商业建筑、状态正常→保存/完全退出/冷加载复核；不用重做征服/认领/旧长测。正常折扣仍依既有来源ACTIVE/当前路线/购买资格，不从模板PASS自动扩大为折扣原生PASS。
 

@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0361",
+    "status": "S0362",
     "runtime": "B142.169 / modinfo169",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "d69c823eb778f117c7481287d53fdc5c1bf2c293",
-  "current_batch": "E2_TEMPLATE_TIER0_LOCAL_PASS_DEPLOY_PENDING",
-  "next_batch": "Finish authorized B142 W0003 test-package switch after verified game exit, then await one pending Industry save cold-load continuation. No F implementation.",
+  "runtime_commit": "b77d5c9e9fbb358686107b09134ff2f13100cdc6",
+  "current_batch": "E2_TEMPLATE_TIER0_NATIVE_PENDING",
+  "next_batch": "Await one B142 pending Industry save cold-load template continuation and subsequent save/quit/coldload. E2 partial; no F implementation.",
   "manifest": "Specialization/Workflow/P0-E2.json",
-  "live": "B141.168 deployed;171/171 MATCH;source d69c823;receipt B141.168-d69c823-playtest.json DEVELOP_ACTIVE;B140/stable recovery retained;OS game exit verified",
+  "live": "B142.169 deployed;171/171 MATCH;source b77d5c9;receipt B142.169-b77d5c9-playtest.json DEVELOP_ACTIVE;B141/B140/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0361/B142: user authorized narrow legal Tier0 validator/error repair; exact Preview/Store/Standardization callers and actual HD catalog reviewed; B142/B140/B136 targeted LOCAL_SIMULATION_PASS. Source B142 pending commit/deployment, live B141 remains separate; no Design/catalog/schema/GC changes.",
+  "context_review_status": "S0362/B142: authorized narrow legal Tier0/error repair, exact affected callers/current HD ontology reviewed, B142/B140/B136 targeted LOCAL_SIMULATION_PASS; 117 Lua syntax/modinfo169/context/links PASS. W0003 deployed171/171 MATCH with receipt and B141/stable recovery. Native pending; no Design/catalog/schema/GC changes.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

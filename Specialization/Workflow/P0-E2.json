@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0361",
+    "status": "S0362",
     "runtime": "B142.169 / modinfo169",
     "military": "D0034"
   },
@@ -1097,6 +1097,6 @@
     "bounded_stabilization": "S0353: user accepts B139 mitigation and closes bounded stabilization engineering work after no-Specialization late-save comparison. Prior fixed-window64.79>64MiB and unobserved strict native checks retained, not all-criteria PASS; allocation efficiency/native attribution remain open non-blocking. Runtime source1104bde unchanged; no deployment.",
     "template_reconciliation": "D0036 accepted reliable city construction experience union current eligible buildings; B140 explicit lifecycle marker initialization/restoration/corruption branches implemented and A-G locally verified. B142 corrects the native legal Tier0 validator conflict; native template continuation pending. Earlier model-stop evidence remains in its historical plan section.",
     "template_native": "Historical B141 native FAIL: three screenshots no ledger/pending/scans1/writes0/STD_FACTS_NOT_READY; Tier0 conflict isolated locally with real HD catalog. Entry visibility/report response scoped PASS. Current B142 authorized repair local PASS; no B142 native result yet.",
-    "template_repair": "B142 user explicitly authorized: fixed old tier>=1 structural conflict, current real HD Granary0/Fair1 + Store/Claim/Standardization/Discount test PASS; existing lawful pending record resumes on cold load; missing/corrupt initialized history and owner/UNKNOWN guards unchanged. Live not inferred from source."
+    "template_repair": "B142 user explicitly authorized: fixed old tier>=1 structural conflict, current real HD Granary0/Fair1 + Store/Claim/Standardization/Discount test PASS; existing lawful pending record resumes on cold load; missing/corrupt initialized history and owner/UNKNOWN guards unchanged. Live not inferred from source. W0003 deployed source b77d5c9,171/171 MATCH,receipt B142.169-b77d5c9-playtest.json; B141/stable recovery retained; native pending."
   }
 }
