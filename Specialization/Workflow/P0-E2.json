@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-E2",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0036",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0359",
+    "status": "S0360",
     "runtime": "B141.168 / modinfo168",
     "military": "D0034"
   },
@@ -955,6 +955,17 @@
       "kind": "section",
       "selector": "## B141.168 — Read-only template report entry repair",
       "reason": "User-authorized L1 diagnostic entry scope, evidence and resumed test boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "selector": "## B141 native failure — Tier zero template validation",
+      "reason": "Current native failure and proposed repair boundary, not implementation permission"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B141_Template_Tier0_Failure.md",
+      "kind": "full",
+      "reason": "Current inspected screenshot scope, exact Tier0 validator counterexample and correct runtime DB evidence"
     }
   ],
   "dependencies": [
@@ -1028,26 +1039,26 @@
       "test_b140_templates.py: actual A-G, atomic failure, actual discount sample/carrier/owned withdrawal; LOCAL_SIMULATION_PASS",
       "test_b136_progression.py: existing scoped four-profession E2 save/return/investment/governor/isolation; LOCAL_SIMULATION_PASS",
       "All Lua syntax/modinfo version + D0036 narrow semantic diff/frozen bytes + current context/hash/links; STATIC_CONFIRMED",
-      "test_b052_standardization.py not completed: external DB lacks required HD_DUMMY_BUILDINGS; no weakened assertion or native claim",
+      "Previous B052 runner attempt incomplete on stale outer cache DB; current configured runtime DB has both required HD tables. Real Catalog + Store/Standardization/CityIdentityRead Tier0 failure reproduced; no full historical runner PASS.",
       "B141 L1 temporary fixture: XML visible/caption/retired slot; actual UI callback/request/read dispatcher pages1/2/city reset/missing-foreign rejection/no permanent writes; syntax/modinfo168. No full gameplay regression."
     ],
-    "user": "Resume already-claimed save after B141 deployment: Templates button -> eligible template -> existing discount -> full cold-load. Prior reconquest/Claim not repeated; native remains required."
+    "user": "B141 template initialization native FAIL; pause repeat tests pending narrow validator repair authorization. Only entry visibility/report response scoped PASS; discount/cold-load incomplete."
   },
   "full_audit_triggers": [
     "Writer bypass or cross-city halting",
     "Unresolved native debit or ownership semantics"
   ],
   "result": {
-    "plan": "AUTHORIZED_ONE_TURN_CLAIM",
-    "implementation": "B140 scoped lifecycle LOCAL_SIMULATION_PASS retained; B141 UI report entry L1 static/local PASS, native pending",
+    "plan": "PROPOSED_TIER0_VALIDATOR_REPAIR_NOT_AUTHORIZED",
+    "implementation": "B140 controlled Tier1/2 lifecycle LOCAL_SIMULATION_PASS retained; B141 entry visibility/report response scoped native PASS, real Tier0 template initialization native FAIL. Repair not authorized.",
     "native": "B111 scoped USER_GAME_TEST_PASS: six screenshots, Commerce singleton remains pending after Industry completion, empty city Theatre -> Culture P1, full restart confirmed by user; investment availability user-confirmed separately",
-    "next": "Resume existing template/discount/cold-load user test from already-claimed save via B141 visible Templates button; no reconquest/reclaim, no F implementation.",
+    "next": "B141 template initialization native FAIL; pause repeat tests pending narrow validator repair authorization. Only entry visibility/report response scoped PASS; discount/cold-load incomplete.",
     "scope_review": "D0036 user-approved template city experience recorded; no catalog/formula/AI/GC or other Legacy scope changes",
     "side_prototype": "B123 scoped USER_GAME_TEST_PASS by explicit user report: three time displays, normal completion, no overflow, observed chop does not complete/spill; no new screenshot",
     "side_investigation": "User accepts forfeiture of ALL unallocated production; Section20 supersedes old-overflow preservation; native evidence now rejects blind negative clamp-to-zero, other clearing primitives unresolved",
     "side_next_plan": "B123 prototype accepted and reused; no empty-queue task",
     "claim_native": "B126 core and B129 scoped reload USER_GAME_TEST_PASS; exact hidden-list visual evidence not expanded",
-    "closure_review": "E2 partial; unassigned return/Claim prior scoped PASS retained. New template path local PASS only; unknown acquisition and new generation unchanged; F plan independent.",
+    "closure_review": "E2 partial; B129 scoped Claim PASS retained. B140 lifecycle evidence is controlled Tier1/2 fixture scope, real Tier0 first initialization native FAIL; no automatic F dependency or implementation.",
     "memory_investigation": "B134 18 images: eight native manual collect calls succeeded and reduced count; T45 second post-GC251.51 vs T39 post250.98 MiB with nonuniform sampling. Reclaimable allocation evidenced, no global memory-fix PASS; differences in conquest and manual-GC conditions prevent native attribution to network filter. isrunning unknown, timing limited. Scoped follow-up: Cross notification cost confirmed, but false includes turn/load late-check risk; restrict next proposal to explicitly pure-local-worker/focus. Network temporary capture construction separately confirmed and deferred; actual-branch Lua55 probe confirms targeted dispatch/sample behavior, not native bytes or whole-memory fix.",
     "memory_fix": "B135.162 pure worker/focus provenance and exact Cross dispatch guard LOCAL_SIMULATION_PASS; turn/load/mixed/unknown and reentrant causes preserved. Only targeted path cost reduction established; no native allocation/memory improvement PASS. B135 scoped user response PASS; memory remains open. T42 native GC618.63->298.57MiB; process10.69->10.38GB. Local weak-reference probe: duplicate Capture outputs do not accumulate in tested stable-input scenarios; actual EffectiveFacts allocations remain unmeasured.",
     "facts_allocation_proposal": "Proposal only: scalar fresh governor gate + no clone for read-only anchor.first; final output clone retained. 774 in-memory differential checkpoints LOCAL_SIMULATION_PASS; real Probe/EffectiveFacts with native/foundation fixtures. No runtime edits/native byte claim; selected old mocks need explicit test adaptation, no runtime fallback.",
@@ -1057,6 +1068,7 @@
     "network_isolation": "B137.164 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS: 24 normal-mode baseline comparisons, exact five-owner withdrawal/failures, Bridge all-ingress silence, three UI pending/late/recreate closure, real dispatch/panel handshake. Mixed Lv3 failed-exit auto-retry found/fixed. No permanent writes/GC; native update is in network_isolation_native; per-family Modifier proof remains limited. Deployed source7b11908,171/171 MATCH;receipt B137.164-7b11908-playtest.json;priorB136/stable recovery retained.",
     "network_isolation_native": "B137 14 images reviewed: READY/UI3/3/withdraw5/5 and T39-41 counted Network silence scoped PASS; no per-family effect verification. NORMAL/isolated Lua net +195.66/+121.42MiB, process both +0.22GB. No new user test required now; memory cause open. Mod/HD Lua audit found no direct stop/tune GC path; engine scheduling remains unknown. No runtime change.",
     "bounded_stabilization": "S0353: user accepts B139 mitigation and closes bounded stabilization engineering work after no-Specialization late-save comparison. Prior fixed-window64.79>64MiB and unobserved strict native checks retained, not all-criteria PASS; allocation efficiency/native attribution remain open non-blocking. Runtime source1104bde unchanged; no deployment.",
-    "template_reconciliation": "STATIC_CONFIRMED: templatesCaptured true is set before Industry; no independent initialized marker survives missing ledger. Accepted reliable history union current eligible buildings recorded in E2 current slice; no code/schema edits, Cases A-G not run, new build none. Original implementation authorization reached its explicit model stop; proposed lifecycle-marker extension remains planned, not authorized."
+    "template_reconciliation": "STATIC_CONFIRMED: templatesCaptured true is set before Industry; no independent initialized marker survives missing ledger. Accepted reliable history union current eligible buildings recorded in E2 current slice; no code/schema edits, Cases A-G not run, new build none. Original implementation authorization reached its explicit model stop; proposed lifecycle-marker extension remains planned, not authorized.",
+    "template_native": "B141 three screenshots: legal granary present, no ledger/pending/scans1/writes0/STD_FACTS_NOT_READY. Real configured HD catalog + actual Store/Standardization/CityIdentityRead local reproduction isolates Tier0 rejected by old >=1 validator; controlled Tier1-only success. Runtime unchanged; repair not authorized."
   }
 }

@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0359
-Implementation Build: develop P0-B-141.168 / modinfo168 TEMPLATE_REPORT_ENTRY_LOCAL_PASS_NATIVE_PENDING; live B141.168 verified171/171 MATCH; stable B069.96
+Status Revision: S0360
+Implementation Build: develop P0-B-141.168 / modinfo168 TEMPLATE_TIER0_NATIVE_FAIL_REPAIR_PENDING; live B141.168 verified171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: E2_TEMPLATE_RECONCILIATION_NATIVE_PENDING
+Work State: E2_TEMPLATE_TIER0_NATIVE_FAIL_REPAIR_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B141标准化模板报告入口修复](../Architecture/v2/P0_E2_Plan.md#b141168--read-only-template-report-entry-repair)已获用户授权并完成：按钮恢复可见，移到E2往返左侧；保留左键只读、重复翻页、换城从第一页开始。L1静态与实际callback/request/read route模拟通过，不改B140工业账本或Gameplay。用户已口述确认完成征服/工业认领；模板/折扣/冷加载验收因隐藏入口中止，尚未PASS，也不记为模板机制失败。
+[B141三图模板失败](Validation/Results/Specialization_B141_Template_Tier0_Failure.md)已逐张读取并hash归档。只读模板按钮可见/返回报告限定USER_GAME_TEST_PASS；city131073尚无账本、同步pending、扫描1/写入0、STD_FACTS_NOT_READY，模板初始化USER_GAME_TEST_FAIL。用户另读认领前存档重新认领仍失败，当前可见集市和粮仓。折扣/冷加载未完成，不要求重复此失败流程。
 
-从当前已认领存档继续，选中工业城→专业化诊断→“标准化模板”，确认合格建筑与历史保护状态，随后按[B140单一验收流程](../Architecture/v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)检查既有折扣及冷加载。不需重新征服/认领，不增加独立UI或内存长测。
+只读调查已以真实运行HD目录＋当前实际Lua最小复现：粮仓合法模板Tier0被CityIdentityRead的Tier≥1旧结构校验拒绝，Store提交失败再被归为STD_FACTS_NOT_READY。B140受控Tier1/2目录模拟遗漏该交互。下一最小建议：仅对齐非负整数模板Tier校验、准确报错与对应回归；**尚未授权/实施修复**。保留初始化intent、身份和历史保护，不重做征服/认领，不扩目录或改D0036。
 
-B141.168 / modinfo168已按W0003部署，source d69c823，171/171 MATCH，receipt B141.168-d69c823-playtest.json DEVELOP_ACTIVE。OS确认游戏退出，B140恢复包与稳定桥保留。main B069.96不变；原生按钮/模板验收仍待用户续测。
+源码/live仍B141.168 / modinfo168，source d69c823；既有171/171部署MATCH/receipt B141.168-d69c823-playtest.json保留，本轮另核相关四模块source/live hash一致，没有新部署。B140/stable恢复点及main B069.96不变。前轮DB缺表来自外层旧缓存；本次实际配置的运行DB两表均存在，完整旧B052 runner不据此升级PASS。
 
-D0036接受规则与[B140支持矩阵/本地A–G证据](../Architecture/v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)保留；旧B052外部DB缺表的未完成结论不改。E2仍partial。P0-F不依赖工业模板可独立准备计划，但未授权实施；[性能专项结项及约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。
+D0036规则、[B140本地支持矩阵](../Architecture/v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)、B129 Claim限定PASS保留其范围；E2仍partial。P0-F不读取工业模板，可独立计划但未授权实施。[性能结项及约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)保持，不重新调查GC。
 
 ## 历史阶段记录
 

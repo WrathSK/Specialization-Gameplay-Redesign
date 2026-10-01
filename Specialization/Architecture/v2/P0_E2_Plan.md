@@ -1,11 +1,11 @@
 # P0-E2 — 进度保存适配：具体计划
 
-Status: E2_PARTIAL / B141_TEMPLATE_REPORT_ENTRY_LOCAL_PASS_NATIVE_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
+Status: E2_PARTIAL / B141_TEMPLATE_TIER0_NATIVE_FAIL_REPAIR_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 
 ## Current slice — recovery and action routing
 
-当前切片为[B140模板生命周期补齐](#b140167--industry-template-lifecycle-and-reconciliation)：用户明确授权最小持久标记与当前建筑并集同步，D0036已记录接受规则。B140.167已完成本地L3定向验证；[B141只读报告入口修复](#b141168--read-only-template-report-entry-repair)补齐隐藏按钮后，从当前已认领存档继续原生模板/折扣/冷加载验收；部署事实单独见Status/receipt。B139性能结项、B129认领限定PASS保留。E2仍partial，P0-F可独立计划但未授权实施。
+当前切片为[B140模板生命周期补齐](#b140167--industry-template-lifecycle-and-reconciliation)的原生失败调查：[B141按钮修复](#b141168--read-only-template-report-entry-repair)所测入口可见/返回报告已确认，但[合法Tier0模板持久校验冲突](#b141-native-failure--tier-zero-template-validation)使首次初始化失败。真实HD目录＋实际Store/Standardization/CityIdentityRead本地复现；下一建议仅校验对齐、准确报错和对应回归，未授权修复。暂停重复模板/折扣/冷加载测试。D0036、B139性能结项、B129 Claim限定PASS保留；E2仍partial，P0-F可独立计划但未授权实施。部署事实单独见Status/receipt。
 
 当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
 
@@ -1345,3 +1345,9 @@ W0004 L1：XML可见/中文caption/退役空位、修改Lua语法及modinfo168 S
 用户从当前已认领存档继续，不需重做征服/认领：选中该工业城，打开专业化诊断，点击“标准化模板”（E2往返左侧），必要时重复点击翻页；确认AI期间已有合格建筑在模板中且无历史不可用，再检查既有工业网络折扣，保存、完整退出和冷加载后复核。仅恢复读入口，没有改变保存格式、永久记录、Design、GC或推进F。实际部署状态见Status/receipt。
 
 B141部署记录：source `d69c823eb778f117c7481287d53fdc5c1bf2c293`，receipt `B141.168-d69c823-playtest.json` DEVELOP_ACTIVE，171/171 MATCH；OS游戏退出确认，B140恢复点保留，main未改。等待用户从已认领存档续测，不扩大PASS。
+
+## B141 native failure — Tier zero template validation
+
+[B141三图结果与最小复现](../../Status/Validation/Results/Specialization_B141_Template_Tier0_Failure.md)：按钮可见/返回报告限定PASS；模板初始化FAIL，折扣/冷加载中止。当前城市实际有粮仓和集市，用户重新认领仍失败。真实配置HD目录中的粮仓Tier0合法，但CityIdentityRead.Preview要求模板Tier≥1；Store写入前拒绝，Standardization报告将STORE_RECORD_INVALID归为STD_FACTS_NOT_READY。本地实际模块/真实目录复现扫描1/写入0，Tier1-only对照正常。B140受控目录测试未覆盖Tier0，不能视为完整目录PASS；前轮外层DB缺表与当前实际运行DB两表存在分开记录。
+
+下一建议（未授权）：对齐非负整数模板Tier结构校验、保留准确拒绝原因、补Tier0首次Claim/并集/保存/幂等与损坏负对照。不新增目录/折扣、清记录或修改Gameplay；不把损坏历史伪装成首次。已保留pending的已认领存档可供修复后续测，当前无需再征服/认领。仅调查/证据文档，无runtime修改/部署/F。
