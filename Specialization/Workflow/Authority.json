@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0362",
+    "status": "S0363",
     "runtime": "B142.169 / modinfo169",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "b77d5c9e9fbb358686107b09134ff2f13100cdc6",
-  "current_batch": "E2_TEMPLATE_TIER0_NATIVE_PENDING",
-  "next_batch": "Await one B142 pending Industry save cold-load template continuation and subsequent save/quit/coldload. E2 partial; no F implementation.",
+  "current_batch": "E2_TEMPLATE_SCOPED_PASS_F1_PLAN_PENDING",
+  "next_batch": "Review P0-F1 Research tradition age/shadow plan; explicit implementation authorization required. No repeated B142 template test; no F2 or ownership-policy inference.",
   "manifest": "Specialization/Workflow/P0-E2.json",
   "live": "B142.169 deployed;171/171 MATCH;source b77d5c9;receipt B142.169-b77d5c9-playtest.json DEVELOP_ACTIVE;B141/B140/stable recovery retained;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0362/B142: authorized narrow legal Tier0/error repair, exact affected callers/current HD ontology reviewed, B142/B140/B136 targeted LOCAL_SIMULATION_PASS; 117 Lua syntax/modinfo169/context/links PASS. W0003 deployed171/171 MATCH with receipt and B141/stable recovery. Native pending; no Design/catalog/schema/GC changes.",
+  "context_review_status": "S0363: B142 one screenshot inspected/hash archived; initialized MarketT1/GranaryT0 normal, restart retention explicitly user-confirmed. Scoped native PASS only; F1 plan read Research authority/direct architecture, not implemented. No runtime/deployment/Design changes.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

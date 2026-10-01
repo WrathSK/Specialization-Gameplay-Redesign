@@ -5,7 +5,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ## Current slice — recovery and action routing
 
-当前切片为获用户明确授权的[B142合法Tier0模板校验修复](#b142169--tier-zero-template-validation-repair)。它修复[B141原生失败及最小复现](#b141-native-failure--tier-zero-template-validation)，沿用[B140模板生命周期合同](#b140167--industry-template-lifecycle-and-reconciliation)与[B141只读入口](#b141168--read-only-template-report-entry-repair)。当前本地定向验证通过，尚非模板原生PASS；一个已认领工业城的pending存档可直接冷加载续测，无需重做征服/认领。D0036、B139性能结项、B129 Claim限定PASS保留；E2仍partial，P0-F可独立计划但未授权实施。源码、部署和验收状态分别见Status/receipt。
+[B142模板修复限定验收](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)完成：截图确认集市T1/粮仓T0正确初始化，用户确认重启保持。关闭本修复的最小USER_GAME_TEST门禁，不扩大到原生折扣、全部目录或所有E2边界。当前下一建议是[P0-F1年龄与影子计划](P0_F_Research_Tradition.md)，未授权实施；工业折扣补测与未定义E2边界不阻塞同Owner科研传统的独立计划。D0036、B129 Claim限定PASS与性能结项保持，实际运行仍B142.169。
 
 当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
 
@@ -1383,3 +1383,7 @@ B141部署记录：source `d69c823eb778f117c7481287d53fdc5c1bf2c293`，receipt `
 E2仍partial，模板本批尚待USER_GAME_TEST；P0-F无工业模板直接依赖，可独立准备计划但不实施。本轮停止在修复包部署/用户续测门禁，不扩目录/未知取得/销毁新代/跨Owner Legacy。实际部署引用见Status，不用计划推断已部署。
 
 B142部署记录：source `b77d5c9e9fbb358686107b09134ff2f13100cdc6`；receipt `B142.169-b77d5c9-playtest.json` DEVELOP_ACTIVE；171/171 MATCH，digest `c493adfe596ef1c0eff828cba3c6c325e813501a1848682ec0f89090b371d011`。OS退出检查与stable/source clean确认，B141完整恢复包及此前恢复点保留，main未改。修复仍待上述一个原生续测，不改写B141 FAIL。
+
+## B142 acceptance — templates and restart retention
+
+[B142结果](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)：单图显示city131073已初始化2条模板（集市T1、粮仓T0），revision3，扫描1/写入1、状态正常；用户明确确认重启保持。两类证据分开记录，原图1/1 hash归档。首次模板读取/保存续接限定USER_GAME_TEST_PASS；其它A–G边界仍按已有本地证据，不提升原生折扣/完整目录/所有ownership为PASS。E2 partial保留，下一建议为[P0-F1](P0_F_Research_Tradition.md)，待授权；无需重复模板验收。没有运行源码或部署变化。

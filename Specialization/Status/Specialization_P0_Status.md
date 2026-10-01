@@ -1,25 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0362
-Implementation Build: develop/live P0-B-142.169 / modinfo169 TEMPLATE_TIER0_NATIVE_PENDING;171/171 MATCH; stable B069.96
+Status Revision: S0363
+Implementation Build: develop/live P0-B-142.169 / modinfo169 TEMPLATE_TIER0_SCOPED_PASS;171/171 MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: E2_TEMPLATE_TIER0_NATIVE_PENDING
+Work State: E2_TEMPLATE_SCOPED_PASS_F1_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户明确授权的[B142 Tier0模板校验修复](../Architecture/v2/P0_E2_Plan.md#b142169--tier-zero-template-validation-repair)已本地完成。永久模板receipt接受目录合法的非负整数Tier（粮仓T0），Store仍先验证整城记录；Standardization保留准确STORE_*拒绝原因。目录、折扣公式、schema、Identity/历史损坏保护、D0036与GC均未改。
+[B142模板修复验收](Validation/Results/Specialization_B142_Template_Pass.md) **USER_GAME_TEST_PASS（限定用户实机已测范围）**：截图显示city131073已初始化，模板2/revision3，集市T1、粮仓T0，扫描1/写入1、状态正常；用户另确认重启保持。1/1原图已读取并hash归档。关闭本修复的最小门禁，不从单图推断重启顺序或零写入；B141失败原件保留。
 
-`STATIC_CONFIRMED / LOCAL_SIMULATION_PASS`：真实运行HD目录＋实际Store/Standardization/Claim/IdentityRead/Discount，验证pending工业城冷加载直接续接、合法首次/并集、缺失旧建筑历史保持、保存/重复无写、错误及损坏负对照、T0折扣plan/sample；既有B140 A–G与B136四专业E2回归通过。数据库rowid只是fixture index，非native索引/收益证明。[B141三图失败](Validation/Results/Specialization_B141_Template_Tier0_Failure.md)保留，修复尚未USER_GAME_TEST_PASS。
+[B142本地合同/回归](../Architecture/v2/P0_E2_Plan.md#b142169--tier-zero-template-validation-repair)及B140 A–G/B136证据保持。实际金币折扣、其它既有模板城夺回并集、完整目录与未测E2边界不据本次扩大为实机PASS。无需重复已通过的模板测试；折扣未补测项不阻塞独立的科研传统计划。
 
-B142.169 / modinfo169已按W0003部署；source `b77d5c9e9fbb358686107b09134ff2f13100cdc6`，receipt `B142.169-b77d5c9-playtest.json` DEVELOP_ACTIVE，171/171 MATCH，digest `c493adfe596ef1c0eff828cba3c6c325e813501a1848682ec0f89090b371d011`。部署前后source/stable clean、游戏退出/精确hash/UUID/目标与transaction恢复核验通过；B141精确receipt先恢复stable并保留其完整develop恢复包，再激活B142。B140及stable恢复点/main B069.96不变，没有启动游戏。实际部署不等于模板原生验收通过。
+运行基线仍B142.169 / modinfo169；已记录source `b77d5c9`、receipt `B142.169-b77d5c9-playtest.json`、171/171 MATCH；本轮只更新证据/计划，没有重新核验运行包或部署。B141/stable恢复点及main B069.96保持。
 
-一个最小续测：已认领工业城的pending存档可直接冷加载→“标准化模板”确认已初始化、粮仓T0及当前合格商业建筑、状态正常→保存/完全退出/冷加载复核；不用重做征服/认领/旧长测。正常折扣仍依既有来源ACTIVE/当前路线/购买资格，不从模板PASS自动扩大为折扣原生PASS。
-
-E2仍partial，B129 Claim限定PASS保留；P0-F不读工业模板，可独立计划但未授权实施。[性能结项及约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。下一步等待本批原生续测，不自动推进F。
+下一建议：[P0-F1科研学术传统年龄与影子计算](../Architecture/v2/P0_F_Research_Tradition.md)，**PLAN_ONLY / 待用户授权**。先可靠记录首次P4、累计合格年限与读档，再单独F2接实际收益；不会自行补造旧P4起点或跨Owner传统归属。E2仍partial，有明确支持范围；非依赖性尾项不阻塞F1同Owner路径。[性能结项及约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开。当前无需用户测试，不自动实施下一批。
 
 ## 历史阶段记录
 

@@ -9,6 +9,7 @@
 | 问题 | 资料 | 角色与边界 |
 |---|---|---|
 | 当前保存切片、授权、最小验收 | [E2当前路由](P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 当前实施合同与结果；建议不等于新授权 |
+| 科研传统如何开始保存与计龄 | [P0-F计划](P0_F_Research_Tradition.md) | F1年龄/影子、F2实际收益；计划待授权，跨Owner与旧P4起点不猜测 |
 | Identity/Potential/ACTIVE、永久成果及Shared服务应如何分层 | [状态/服务目标](D0032_Adaptation.md) | 目标合同，结合后续切片；其中规划时版本/下一步不是今天的任务 |
 | 依赖顺序、单writer切换、存档支持 | [实施计划](D0032_Implementation_Plan.md) | 批次依赖和迁移合同，完成状态查Status |
 | 哪些接口还需要原型/实机 | [技术spike登记](D0032_Technical_Spikes.md) | 技术未知不授权简化Design；具体已关闭项查后续切片 |
