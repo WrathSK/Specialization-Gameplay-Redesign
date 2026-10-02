@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0379
-Implementation Build: develop B148.175 / modinfo175 P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; recorded live B147.174 until deployment receipt; stable B069.96
+Implementation Build: develop/live B148.175 / modinfo175 P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
@@ -17,7 +17,7 @@ Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
 
 [P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。Design D0036/A0161、永久成果、GC与main保持不变。
 
-部署待执行：已记录live仍B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json`；新包须提交/推送、游戏退出及现有W0003事务校验后部署。当前已授权边界为完成L1最小检查点与验收包；下一允许动作为最小原生验收，建议后续批次不等于授权。
+已按W0003部署B148.175：source `f85a0a0`、receipt `B148.175-f85a0a0-playtest.json` DEVELOP_ACTIVE，179/179 MATCH；OS确认游戏退出，B147及stable完整恢复点核验保留，无待处理事务。main仍B069.96，未启动游戏。当前停止在L1最小原生验收；后续批次尚未授权。
 
 ## 历史阶段记录
 

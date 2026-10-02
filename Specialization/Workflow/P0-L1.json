@@ -280,6 +280,6 @@
     "implementation": "B148.175 LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; not complete L1",
     "native": "USER_GAME_TEST_REQUIRED; city district/plot-property Tourism projection has no native PASS",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md",
-    "stop": "Finish committed safe test package, then wait L1 native acceptance. Do not start L2/M/N/U2."
+    "stop": "B148.175 committed/pushed and safely deployed,179/179 MATCH. Await L1 native acceptance; do not start L2/M/N/U2."
   }
 }

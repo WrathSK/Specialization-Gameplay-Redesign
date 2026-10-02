@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "87655e595d3c4089d2c075a7ddd7228cf0ad2272",
+  "runtime_commit": "f85a0a0516cce9a378c19cf6e9e479411df6bbdc",
   "current_batch": "P0_L1_PARTIAL_NATIVE_GATE_REQUIRED",
   "next_batch": "Await minimal P0-L1 native Tourism/withdrawal/cold-load gate; no L2/M/N/U2 authorization.",
   "manifest": "Specialization/Workflow/P0-L1.json",
-  "live": "B147.174 deployed;176/176 MATCH;source87655e5;receipt B147.174-87655e5-playtest.json DEVELOP_ACTIVE;B146/stable recovery verified;OS game exit verified",
+  "live": "B148.175 deployed;179/179 MATCH;source f85a0a0;receipt B148.175-f85a0a0-playtest.json DEVELOP_ACTIVE;B147/stable recovery verified;OS game exit verified;native Tourism pending",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0379 authorized L1 local checkpoint: precise per-building plan/actual-district projection, ordinary-versus-depth separation and necessary ResearchApply consumer guard; exact Culture16 retirement;13 targeted +26 K local tests; native Tourism pending.",
+  "context_review_status": "S0379 authorized L1 local checkpoint: precise per-building plan/actual-district projection, ordinary-versus-depth separation and necessary ResearchApply consumer guard; exact Culture16 retirement;13 targeted +26 K local tests; native Tourism pending. Deployment transaction verified separately; no native game evidence.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
