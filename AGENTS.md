@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 
-Read Specialization/README.md and Specialization/AGENTS.md, then accepted Design, current Architecture and Status. Their applicable governance rules are binding. This directory alone is the project boundary; Mod/ is the sole canonical editable source. External game runtime is a deployment copy, not another editing location. Old workspace guidance remains unchanged, but its old source routing is superseded for this project by this approved migration.
+Read Specialization/README.md and Specialization/AGENTS.md, then accepted Design, current Architecture and Status. Their applicable governance rules are binding. This directory alone is the project boundary; Mod/ is the sole canonical editable source. External game runtime is a deployment copy, not another editing location. The game workspace routing now points directly to the canonical develop worktree. Archived old guidance is historical only; original evidence paths resolve through the relocation mapping linked in Specialization/README.md.
 
 Never treat filesystem access as project ownership. Do not change other Mods, HD, Workshop, game assets/config, or launch Civilization VI. User performs game tests. Accepted Design intent is authoritative; technical limitations that change it require DESIGN_DECISION_REQUIRED and user decision, never silent fallback. Preserve accepted hashes and frozen evidence.
 

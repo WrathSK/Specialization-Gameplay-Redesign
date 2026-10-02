@@ -11,7 +11,7 @@ Governance Revision: G0009
 5. 当前Accepted Spec版本/hash见Design/ChangeLog；运行版本、实机状态、暂停及下一任务只以Status当前正文为准。不要把源码旧DEV注释或历史报告当作当前完成度。
 6. Dxxxx/Axxxx仍分别表示Design/Architecture版本，均由Codex按用户授权维护；正式sync记录accepted Spec SHA256及Sync Status。已同步仅表示评估与架构反映，不升级验证状态。
 7. Historical及既有Backups冻结，不就地修改；结果原件纠正写新记录，由Status引用。新的必要备份允许另建快照，不覆盖旧备份。README/本AGENTS/路径规则变更须用户确认。
-8. 工程边界：本仓库Mod/是唯一可编辑源码，外部游戏SpecializationP0为部署副本。Tests使用仓库内当前入口；旧Backups/Evidence/截图投递原位保留且冻结。禁止编辑其它Mod、HD、Workshop、原版资产或配置；禁止启动游戏；B010仍暂停。用户本轮批准copy迁移，取代此前不建新Source目录的迁移限制。
+8. 工程边界：本仓库Mod/是唯一可编辑源码，外部游戏SpecializationP0为部署副本。Tests使用仓库内当前入口；旧Backups原位保留且冻结；截图与Evidence按用户授权的迁移位置保留。禁止编辑其它Mod、HD、Workshop、原版资产或配置；禁止启动游戏；B010仍暂停。用户本轮批准copy迁移，取代此前不建新Source目录的迁移限制。
 9. Status是唯一当前验证/任务入口。旧Batch不自行重发，PASS必须有用户证据；外部AI建议不得冒充用户结果。
 10. 一个活动Codex写入任务；任务开始读取README、本约定及当前Design/Architecture/Status。源码位于仓库Mod/，从任何入口执行都须遵守仓库根AGENTS。不要依赖Work with自动文件映射。
 
@@ -43,9 +43,9 @@ Governance Revision: G0009
 - **用户需要测试：** 无则明确“无”。
 - **Codex下一步：** 明确下一项或等待事项，不未经授权继续扩大工作。
 
-## 截图归档（G0004，用户明确批准）
+## 截图归档（G0004；当前路径由用户授权迁移）
 
-用户只向Specialization/ScreenShots投递，保持默认文件名。Codex逐张读取并登记结果后，将该批原图移动到Status/Validation/Evidence/<Batch>/，核对移动前后SHA256，写manifest与结果关联，不留重复副本；收件箱目录本身不移动。仅归档已读且批次明确的文件，目标同名冲突不覆盖。归档后原件冻结，不擅自删除或压缩；未读/不明文件留在收件箱。后续同样按批次办理；无需逐次申请。规则取代先前“归档仅建议”的状态，其它工程路径约束不变。
+当前截图投递入口为独立develop worktree根目录`ScreenShots/`，保持默认文件名，整目录不进Git。Codex逐张读取并登记结果后，将该批原图移动到develop根目录`local/legacy-workspace/Specialization/Status/Validation/Evidence/<Batch>/`，核对移动前后SHA256，写manifest与结果关联，不留重复副本；收件箱目录本身不移动。仅归档已读且批次明确的文件，目标同名冲突不覆盖。归档后原件冻结，不擅自删除或压缩；未读/不明文件留在收件箱。后续同样按批次办理；无需逐次申请。规则取代先前“归档仅建议”的状态，其它工程路径约束不变。
 
 ## G0005：Cheat机制测试优先（用户明确）
 
@@ -69,7 +69,7 @@ Governance Revision: G0009
 - Preserve user changes; never overwrite unreviewed source/runtime edits. Deployment requires reviewed hashes, exact UUID/target name, no symlinks, and explicit apply. Use tools/deploy.py; inspect pending transaction before retrying. No automatic deletion of backups.
 - External Civ VI/HD/Workshop/DB are dependencies or read-only research references, never project-owned files. Do not initialize Git in the game workspace or import it wholesale.
 - Root AGENTS.md and this document apply together. Phase 1 stops after migration validation. Git/GitHub and new gameplay require subsequent user authorization.
-- Current screenshot inbox and bulk evidence remain in external legacy workspace. Resolve historical W paths with ignored local/config.json; do not pretend evidence is bundled.
+- Phase 1位置为当时记录；当前收件箱/证据位置采用上面的已授权迁移约定。历史W/Specialization路径按[relocation mapping](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md)定位，不声称Git包含原图。
 
 ## G0009：稳定游玩与开发隔离
 

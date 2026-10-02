@@ -11,7 +11,7 @@
 | 本基线有哪些验证与未解决问题？ | [Status](Status/Specialization_P0_Status.md)、[长局问题清单](Status/Playtest_Backlog.md)、[验证结果](Status/Validation/Results/) |
 | 调查依据在哪里？ | [技术索引](Reports/Technical/README.md)；报告中的“当前/下一步”须按其版本语境阅读 |
 | 如何维护、测试和部署？ | [根AGENTS](../AGENTS.md)、[项目约定](AGENTS.md)、[测试说明](../DevelopmentTests/README.md)、[部署与Git合同](Architecture/Playtest_Workflow.md)、[部署工具](../tools/README.md) |
-| 源码与外部证据在哪里？ | [Mod](../Mod/)是本分支源码；[外部材料说明](Reports/Proposals/Phase1_External_Materials.md)记录截图、备份、DB和日志的保留边界 |
+| 源码与外部证据在哪里？ | [Mod](../Mod/)是本分支源码；[当前原图归档与历史路径映射](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md)定位已迁出的证据；[Phase 1记录](Reports/Proposals/Phase1_External_Materials.md)保留当时的材料边界 |
 
 本分支内的架构调查、旧交接与Historical用于追溯，不派发develop下一任务，不把局部本地/实机证据扩大为整个系统通过。用户是最终设计权威；Codex按授权维护文件，技术限制不能成为自行改玩法的理由。
 
