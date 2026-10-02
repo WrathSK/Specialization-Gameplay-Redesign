@@ -62,3 +62,5 @@ coherent develop implementation；main/Design/收益SQL不变。W0003仍授权�
 L1 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：原生/HD标题定义及排序用例；临时Lua mock执行实际Institutions.lua验证置顶、其它分类顺序、重复不排序、P4→P2换城、ACTIVE状态、隐藏/恢复、shutdown；XML及modinfo引用检查通过。未跑历史全套、stress或玩法回归。原生排序视觉/滚动仍USER_GAME_TEST_REQUIRED。
 
 最小一次验收：打开科研城详情，专业机构在城市概况之前且标题与奇观同级；切换另一城后条目/阶段不串；向下滚动仍可正常访问建筑、奇观、城市政策。无需重复收益或年龄测试。B144/F2验收保持，下一Gameplay批次未授权。
+
+部署：source77f9561，B145.172 / modinfo172，receipt B145.172-77f9561-playtest.json DEVELOP_ACTIVE；174/174 MATCH，游戏退出、B144/stable恢复点及无pending事务已核验。用户红框参考图已读取并归档外部Evidence/B145_UI_Layout_Reference_20261001，1/1 hash一致；这是布局需求证据，不是B145实机验收。

@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0370",
+    "status": "S0371",
     "runtime": "B145.172 / modinfo172",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "5364c0ed8cbf40b4a35e1364923473ef6ea8a36a",
+  "runtime_commit": "77f9561814ea156da3ce171fda6bf81d62fc4226",
   "current_batch": "U1_TOP_CATEGORY_LOCAL_PASS_NATIVE_PENDING",
-  "next_batch": "Deploy authorized B145 UI slice safely; one layout/city-switch check, no gameplay batch authorized.",
+  "next_batch": "Await one top-category layout/city-switch/scroll check; no gameplay batch authorized.",
   "manifest": "Specialization/Workflow/P0-U1.json",
-  "live": "B144.171 deployed;174/174 MATCH;source 5364c0e;receipt B144.171-5364c0e-playtest.json DEVELOP_ACTIVE;B143/stable recovery verified;OS game exit verified",
+  "live": "B145.172 deployed;174/174 MATCH;source77f9561;receipt B145.172-77f9561-playtest.json DEVELOP_ACTIVE;B144/stable recovery verified;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0370 reviewed UI-only top category/native title style and scoped mock; no Gameplay/Design/GC changes. Live stays B144 until deployment.",
+  "context_review_status": "S0371 reviewed B145 deployment receipt/equality/recovery; UI local pass/native pending; no gameplay change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

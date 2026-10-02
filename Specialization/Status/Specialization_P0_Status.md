@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0370
-Implementation Build: develop B145.172 / modinfo172 UI_LOCAL_PASS; live B144.171; stable B069.96
+Status Revision: S0371
+Implementation Build: develop/live B145.172 / modinfo172 UI_LOCAL_PASS_NATIVE_PENDING; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
@@ -13,9 +13,9 @@ Work State: U1_TOP_CATEGORY_LOCAL_PASS_NATIVE_PENDING
 
 [B145机构大类置顶](../Architecture/v2/U1_Presentation_Prototype.md#b145172--专业机构大类置顶)已获授权并本地完成：使用原生大类标题、机构排在城市概况之前，其它分类顺序保持；原四机构/状态/Tooltip和carrier隐藏保留。仅清除“学术传统尚未实现”旧标记。L1静态与定向UI模拟通过，实际布局/切城/滚动待用户一次验收。没有Gameplay、GC、保存或Design变化。
 
-下一动作仅安全部署B145并等待上述显示验收；不进入文化或其它玩法。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持，无需重测。
+下一动作仅等待上述显示验收；不进入文化或其它玩法。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持，无需重测。
 
-已记录运行包仍B144.171，source `5364c0e`、receipt `B144.171-5364c0e-playtest.json`，174/174 MATCH；B145尚未部署。main B069.96不变，既有恢复点保留。
+B145已部署，source `77f9561`、receipt `B145.172-77f9561-playtest.json`，174/174 MATCH；游戏退出及无pending事务已核验。main B069.96不变，B144及stable恢复包核验保留。
 
 ## 历史阶段记录
 
