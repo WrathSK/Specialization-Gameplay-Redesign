@@ -21,8 +21,8 @@
 
 原则上替代HD原相邻改良+6金币，不叠加；原运河贸易／产品机制保留。
 
-多个运河重复邻接、跨城市地块归属以及社区身份对应什么产出尚未说明，保持待定。港口驻扎训练不因运河能通航就增加训练位置。没有新的机构／界面合同，不自行补齐。
+多个运河重复邻接、跨城市地块归属以及社区身份对应什么产出尚未说明，保持待定。港口旧驻扎训练已由D0037退出；Canal对新海上连通拓扑的作用见[港口](Harbor.md)，尚待调查。没有新的机构／界面合同，不自行补齐。
 
 ## 来源与阅读边界
 
-[返回Design导航](README.md)。本文完整整理当前已有的相关记录，不声称已经补齐一套冻结专业；没有正文的机构名、能力名、参数和界面不自行创造。正式依据为[当前Design Spec](Specialization_v0.1_Design_Spec.md)的CAN-001/002、HARB-008与OPEN-17及[接受记录](Design_ChangeLog.md)。共同定义见[Shared](Shared.md)，通用连接见[Network](Network.md)；实际实现与验证只见[Status](../Status/Specialization_P0_Status.md)。阅读版不改变正式来源权威，也不把未来记录变成当前实施授权。
+[返回Design导航](README.md)。本文完整整理当前已有的相关记录，不声称已经补齐一套冻结专业；没有正文的机构名、能力名、参数和界面不自行创造。正式依据为[当前Design Spec](Specialization_v0.1_Design_Spec.md)的CAN-001/002与OPEN-17（旧HARB-008已退出）及[接受记录](Design_ChangeLog.md)。共同定义见[Shared](Shared.md)，通用连接见[Network](Network.md)；实际实现与验证只见[Status](../Status/Specialization_P0_Status.md)。阅读版不改变正式来源权威，也不把未来记录变成当前实施授权。

@@ -17,7 +17,7 @@
   "batch": "P0-L1",
   "status": "AUTHORIZED",
   "authority_versions": {
-    "design": "D0036",
+    "design": "D0037",
     "research": "D0031",
     "industry": "D0036",
     "culture": "D0029",
@@ -25,9 +25,10 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0380",
+    "status": "S0381",
     "runtime": "B148.175 / modinfo175",
-    "military": "D0034"
+    "military": "D0037",
+    "harbor": "D0037"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
   "goal": "Culture III 风雅熏陶: current local work-era diversity gives per-ordinary-building Tourism; exact old Culture population/worker-percent cutover only after native primitive gate",

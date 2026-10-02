@@ -25,7 +25,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 中文是正式语言目标，英文名仅reference；`null`表示TBD，不是空白发布文本。未来增加en_US Tooltip或语言键，不改变Mechanical Contract。内容ID不依赖显示名称，也不是游戏数据库Building Type。
 
-本表目前仅设计数据，不加入modinfo、不作为运行输入。机构与能力一对多，命名能力数量0/1/2/3。每个Tooltip解释本阶段新增能力，永久机构存在与当前能力启用分开。技术载体不出现在玩家文案里。
+本表目前仅设计数据，不加入modinfo、不作为运行输入。机构与能力一对多；既有0/1/2/3是专业安排而非通用硬上限。Harbor III/IV各有商业与海军两个同时成立的机构。每个Tooltip解释本阶段新增能力，永久机构存在与当前能力启用分开。技术载体不出现在玩家文案里。
 
 ## 人类阅读入口
 
@@ -53,14 +53,20 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 
 [Military_D0033](Military_D0033.json) is DESIGN_FROZEN with [review](../../Historical/Design/Reviews/Military_D0033_Review.md). Five candidate blockers resolved; units keep permanent birth ability snapshots, formation max per ability, full upgrade-line mobilization and separate commanders for disconnected networks. Naming placeholders/Balance/Technical/Legacy remain explicit. Other profession and Shared authority unchanged. Military implementation is not authorized; old candidate/source records remain historical.
 
-## D0034 Military amendment — current authority
+## D0034 Military amendment — historical mechanism provenance
 
 [Military_D0034](Military_D0034.json) replaces D0033 for Military only: 综合训练 now combines breadth→permanent unit quality and absolute Shared D→local training efficiency, within the same named ability. [Review and explicit deferred conversion details](../../Historical/Design/Reviews/Military_D0034_Review.md). No relative normalization, no invented Production coefficients; Shared and other professions unchanged. D0033 links above are historical freeze provenance.
 
 ## D0035 Shared clarification — current authority
 
-[Shared D0035](Shared_D0035.json)明确D为Absolute Infrastructure Depth，正式中文“区域基础设施深度”，无Relative Completeness。公式与各consumer玩法不变。[引用覆盖、consumer矩阵、独立catalog待办](../../Historical/Design/Reviews/Shared_D0035_Review.md)。既有profession文件引用Shared_D0028时，当前解释按Spec的D0035覆盖声明；历史文件不倒改。Military仍D0034，其双层能力不重复修订。
+[Shared D0035](Shared_D0035.json)明确D为Absolute Infrastructure Depth，正式中文“区域基础设施深度”，无Relative Completeness。公式与各consumer玩法不变。[引用覆盖、consumer矩阵、独立catalog待办](../../Historical/Design/Reviews/Shared_D0035_Review.md)。既有profession文件引用Shared_D0028时，当前解释按Spec的D0035覆盖声明；历史文件不倒改。当次Military保持D0034；当前D0037只更新两处名称，其双层机制不重复修订。
 
 ## D0036 Industry template reconciliation — current authority
 
 [Industry D0036](Industry_D0036.json)在D0032基础上只加入IND-TEMPLATE-006：模板为城市经验；首次合法工业身份及确认夺回时可靠历史∪当前合格建筑；显式区分初始化、恢复、同步与缺史保护。原D0032冻结保留；Shared与其它专业不变。不扩大目录、折扣或AI范围。
+
+## D0037 Harbor baseline / Military naming — current authority
+
+[Harbor D0037](Harbor_D0037.json)是港口当前结构化正文：完整双线、III/IV同级双机构、商业海运/出口/进口/经营积累，以及当前Military海军镜像；无独立Harbor Network或司令城。accepted机制与可冻结/强候选/暂定名字、占位机构、Balance/Technical/Legacy各自标示，不称全部细节冻结。未来范围，不扩大v0.1。
+
+[Military D0037](Military_D0037.json)取代D0034作为当前文件，仅正式名称行伍编制/战地勤务及Harbor明确镜像引用更新；其它Military机制逐对象保持。D0034及更早原件不改。[接受与旧条款冲突映射](../../Historical/Design/Reviews/Harbor_D0037_Review.md)；[港口阅读版](../Harbor.md)、[军事阅读版](../Military.md)。新内容不加入runtime或文化任务必读集合。

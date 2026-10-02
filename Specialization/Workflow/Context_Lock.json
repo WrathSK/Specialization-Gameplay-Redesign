@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0380 planning-only Culture preparation at 9d75ff8: reviewed current Culture/Shared contracts, directly relevant source and scoped prior evidence; read-only configured DB queries. Six L2/L3/M/N/U2 plans and changed navigation/Status/Authority reviewed for rules, links, open gates and no implementation authorization. Only these nine document hashes updated/added. All unchanged hashes/review provenance inherited from 9d75ff8; runtime inventory/live receipt and active L1 context remain unchanged. B148 native gate pending; no gameplay tests/prototype/deployment.",
+  "review_basis": "S0381 D0037 Design-only review at 01ffe91: Harbor user handoff recorded with provisional names/open parameters and explicit old-rule supersession; Military D0037 differs only in two names/metadata/explicit Harbor reference. D0036 snapshot exact prior Spec bytes; existing frozen files unchanged. Reviewed affected reading/navigation/Status/Authority links and semantics; updated only 15 affected document hashes. All L1 selected projections and context list unchanged; unchanged hashes/provenance inherited. No runtime/Architecture/test/deployment changes; B148 native gate pending, Culture preparation planning-only; v0.1 four-profession scope unchanged.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -52,14 +52,14 @@
     "Specialization/Design/Content/Commerce_D0032.json": "deef125d3c12b25830fb6b1e9ce9c0a6ae510b7e5c143f03cf8b8c70c4d1ba75",
     "Specialization/Design/Content/Culture_D0029.json": "00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b",
     "Specialization/Design/Content/Industry_D0032.json": "89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4ab3f404c63e19ae8510",
-    "Specialization/Design/Content/README.md": "483da82ff73b0ce9edcea592a4abde49962e67a027291e81170b1529655a85b7",
+    "Specialization/Design/Content/README.md": "835e7d033c798cc5e3127286261407bf5106a69bf5067933fb0f73622f10f5cf",
     "Specialization/Design/Content/Research_D0031.json": "6253c4eff548394fd3ee351e6f02abd2665b468e6c46f30865352351177b6dc1",
     "Specialization/Design/Content/Shared_D0028.json": "9ce20c5047d525321d5efc025f0578afac25a63f91b75acddefd631cc1f5d05a",
     "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md": "e1a3e21e24fcca6d078299059a6b1299588c9148921784db8befd232ca8b1fb9",
-    "Specialization/Design/Design_ChangeLog.md": "71b219f97366a86820282ec08720ccf8ec3696f09fa49c82d7be65f29c941765",
-    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
+    "Specialization/Design/Design_ChangeLog.md": "2aac3e016db99b27c00ce30c76c7c9dff85024d74176e232d91da4cc63135c92",
+    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "0ce1ccce5b08bb33093568e9d0e9c2a9add42619f33295060ad3b53b149dbc2d",
+    "Specialization/Status/Specialization_P0_Status.md": "aaa21c2b873c544749d4af4935704a0cea64138bfc7a824329acb42e9a9a13b0",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "65e784d7f33427177b43d34ab2ff5b6df13deb7a1fec0d885199a44d9a33eccc",
+    "Specialization/Workflow/Authority.json": "a92430d9409e435d97120067d7755c66a93da09691f3487d1c7cc898344a9947",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -339,6 +339,16 @@
     "Specialization/Architecture/v2/P0_L3_Inspiration.md": "3c31aa7cdb8603306848487146b880b853b88aebbff1a427fb63bbb9ba13db27",
     "Specialization/Architecture/v2/P0_M_Dialogue.md": "e8ca691dafd714ea911ac29d2f0b9dcc57bff6b2c376a4025f3d243795e26621",
     "Specialization/Architecture/v2/P0_N_Expedition.md": "52179c4a61ea6644076ef9b3ba6b05d6b26b4220c077bd4257129283a8679917",
-    "Specialization/Architecture/v2/P0_U2_Culture_Era.md": "6de67ae7e7039af4c4596fd29b3e73e95fa1bed311f37d92caf8b9ce6301fa65"
+    "Specialization/Architecture/v2/P0_U2_Culture_Era.md": "6de67ae7e7039af4c4596fd29b3e73e95fa1bed311f37d92caf8b9ce6301fa65",
+    "Specialization/Design/Aerodrome.md": "e5e531c8d48f516a768e4992049fd133a4045f12d2fc16164884874948e34f3f",
+    "Specialization/Design/Canal.md": "fe9df7903d7b6ff9fbefcc7a99811c0240758a6fd6ac69fcbbfe37a4ee8243b9",
+    "Specialization/Design/Harbor.md": "d3970ebd146dfe1d1a231c40f3d340b49e21cba621fd6b694931edf315d31cc0",
+    "Specialization/Design/Military.md": "15aa728c44237e5980c69e440b249db563174e8054e858d78043c80b5526139e",
+    "Specialization/Design/README.md": "9f4a1d1b9dd5b2833a7d764f399c285a5c083c0a216d74ec482d121de01bee70",
+    "Specialization/Historical/Design/README.md": "3f995cd65fa61024c09fbe01d5c065ffc70f7290ade84afd96a44a679c3cc7b1",
+    "Specialization/Design/Content/Harbor_D0037.json": "bb7e02bf42efd156a8f8f214e73f593ff72fe1a1ae09fbfed59fcdf750bab7d0",
+    "Specialization/Design/Content/Military_D0037.json": "760c3a1cabd7d333a7a3d3c445695c8843eb175fcca01a7031736368eb2f98a7",
+    "Specialization/Design/Revisions/Specialization_Design_Spec_D0036.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
+    "Specialization/Historical/Design/Reviews/Harbor_D0037_Review.md": "e8e5a22e639ec2d03ee646f58600bda678c9eab08307ef02efc2e9994fdfbe7d"
   }
 }

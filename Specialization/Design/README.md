@@ -24,7 +24,7 @@
 | 军事 | [Military](Military.md) | 训练质量与效率、后勤、老兵经验、军事传统与分网络动员 | 核心已冻结；一级／二级机构占位，多项参数与历史待审 |
 | 景观／保护区 | [Landscape](Landscape.md) | 景观经营、生态维护、公园与生境衍播 | 已接受未来基础＋强冻结候选；命名／边界／参数待定 |
 | 宗教／圣地 | [Religion](Religion.md) | 教育、宗教稳定、神学战斗与信条吸收 | 已接受未来方向；信条与压力边界待决 |
-| 港口 | [Harbor](Harbor.md) | 完整海洋商业与海军军事双线 | 已接受方向；旧海军镜像独立保留，新军事适配未定 |
+| 港口 | [Harbor](Harbor.md) | 完整海洋商业与海军军事双线 | 双线新基线已接受；镜像当前军事，名称／数值／技术／Legacy分别待定 |
 | 政府广场 | [Government](Government.md) | 完整制度建筑、永久总督头衔与当前政策容量 | 已接受具体机制；非完整四机构表 |
 | 外交区 | [Diplomatic](Diplomatic.md) | 保护国、使者、可见度与间谍 | 已接受未来方向；保护国与多来源有待决 |
 | 联盟外交任务 | [DiplomaticMissions](DiplomaticMissions.md) | 按领域开展不同形式的盟友交流 | 框架已接受；已定方向、暂定奖励与纯候选分别标示 |
@@ -49,12 +49,12 @@
 
 Shared负责共同概念，Network负责共同连接，专业正文直接写全自己的等级效果、独有合同、收益公式和例外。读专业时可以回查共同定义，但不需要去JSON或Review补齐本专业已经明确的规则。
 
-未解决的源材料边界如实保留：社区吸引力的建筑项D尚未改成Shared单区域深度；娱乐区域旧文化强度描述没有定义新见闻网络适配；港口／航空港旧军事扩展没有自动继承新军事。它们不阻塞其它无争议内容，也不由阅读整理补出新玩法。
+未解决的源材料边界如实保留：社区吸引力的建筑项D尚未改成Shared单区域深度；娱乐区域旧文化强度描述没有定义新见闻网络适配；航空港旧军事扩展没有自动继承新军事；港口已按用户D0037决定明确适配。它们不阻塞其它无争议内容，也不由阅读整理补出新玩法。
 
 ## 实现、正式来源与历史
 
 - **想看做到哪里、哪些通过、哪些待测：** [Status](../Status/Specialization_P0_Status.md)。本目录阅读页不另存运行版本或PASS清单。
-- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Shared语义D0035；科研D0031、工业D0036、文化D0029、商业D0032、军事D0034；未来其它条款由当前Spec保留。
+- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Shared语义D0035；科研D0031、工业D0036、文化D0029、商业D0032、军事D0037（机制沿D0034）、港口D0037；未来其它条款由当前Spec保留。
 - **想查展示接受来源：** [文化馆藏时代方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
 - **想查为什么改过：** [接受与取代记录](Design_ChangeLog.md)、各篇页尾来源及[冻结历史](Revisions/)。较新的文件或更大的编号不自动覆盖未被取代的规则。
 - **Codex／开发者起点：** [项目导航](../README.md)和[AGENTS](../AGENTS.md)，继续按任务读取正式来源，不要求每轮加载全部阅读页。阅读版维护约定集中在[Content导航](Content/README.md#人类阅读入口)。
@@ -63,7 +63,7 @@ Markdown是正式来源的完整阅读呈现，不是独立玩法权威；用户
 
 ## 普通阅读无需打开的内部来源
 
-日常从本页、Shared、Network及各专业阅读版进入即可。[Spec](Specialization_v0.1_Design_Spec.md)和[Content](Content/README.md)是正式规则来源，[ChangeLog](Design_ChangeLog.md)维护接受与取代追溯；本次没有改变其权威范围或建立新Design修订。
+日常从本页、Shared、Network及各专业阅读版进入即可。[Spec](Specialization_v0.1_Design_Spec.md)和[Content](Content/README.md)是正式规则来源，[ChangeLog](Design_ChangeLog.md)维护接受与取代追溯；阅读版不改变其权威范围；正式修订及接受关系以ChangeLog为准。
 
 已完成审阅及展示来源集中在[设计历史导航](../Historical/Design/README.md)。归档位置不取消其中仍被当前正式来源明确引用的接受决定；文化Hybrid D批准记录仍是现行展示依据，旧推荐不与之并列为当前方向。
 

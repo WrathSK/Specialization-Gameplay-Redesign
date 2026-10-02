@@ -1,21 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0380
+Status Revision: S0381
 Implementation Build: develop/live B148.175 / modinfo175 P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
-Latest Accepted Design Revision: D0036
+Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
+Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
+[D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)已记录用户接受双线新基线及Military两处改名；候选名称/Balance/技术/Legacy保留。仅未来Design，不扩大四专业v0.1，不改变B148运行/测试状态。当前Culture合同/selector与后续准备计划适用范围不变；等待B148验收后逐批授权，未实施Harbor/Military。
+
 用户已明确授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#b148175--implementation-checkpoint)。B148.175已完成逐普通建筑K×本城时代数的计划、实际区域旅游加值投影、按需诊断，以及旧Culture人口/worker%精确退出；[manifest](../Workflow/P0-L1.json)仍为AUTHORIZED，原生接口门禁待验，不能宣布L1完成；后续L2/M/N/U2实施未授权。
 
 [本地结果与最小测试](Validation/Results/Specialization_B148_P0L1_Local.md)：13项真实Lua/SQL定向测试、26项K事实/采集回归通过；STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，非USER_GAME_TEST_PASS。新增ordinary身份不新增D覆盖、Tier或深度值；ResearchApply仅区分非深度目录对象，已有深度未知保护保留。原生城市限定、plot要求对district subject的解释、旅游加值/撤销仍为USER_GAME_TEST_REQUIRED。
 
-[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。Design D0036/A0161、永久成果、GC与main保持不变。
+[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161、永久成果、GC与main保持不变；当前Design更新见上述未来专业记录。
 
 已按W0003部署B148.175：source `f85a0a0`、receipt `B148.175-f85a0a0-playtest.json` DEVELOP_ACTIVE，179/179 MATCH；OS确认游戏退出，B147及stable完整恢复点核验保留，无待处理事务。main仍B069.96，未启动游戏。当前停止在L1最小原生验收；后续批次尚未授权。
 

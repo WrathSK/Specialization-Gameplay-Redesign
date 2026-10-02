@@ -4,7 +4,7 @@
 
 ## 机库与空军训练
 
-机库使军事训练／经验体系扩展到空军，但这是历史扩展方向，具体数值未定。新军事内容明确限陆地并要求港口／航空港独立审阅，因此**不能自动把新出生buff、后勤、带教或统一动员整套移植给空军**。
+机库使军事训练／经验体系扩展到空军，但这是历史扩展方向，具体数值未定。新军事自身范围限陆地；港口现已获得独立镜像授权，但航空港仍待独立审阅，因此**不能自动把新出生buff、后勤、带教或统一动员整套移植给空军**。
 
 扩展对象与新旧体系如何衔接仍需明确；本文不把旧交叉引用伪装成完整可实施合同。
 
@@ -18,4 +18,4 @@
 
 ## 来源与阅读边界
 
-[返回Design导航](README.md)。本文完整整理当前已有的相关记录，不声称已经补齐一套冻结专业；没有正文的机构名、能力名、参数和界面不自行创造。正式依据为[当前Design Spec](Specialization_v0.1_Design_Spec.md)的AIR-001/002、MIL-D0034范围声明与OPEN-18及[接受记录](Design_ChangeLog.md)。共同定义见[Shared](Shared.md)，通用连接见[Network](Network.md)；实际实现与验证只见[Status](../Status/Specialization_P0_Status.md)。阅读版不改变正式来源权威，也不把未来记录变成当前实施授权。
+[返回Design导航](README.md)。本文完整整理当前已有的相关记录，不声称已经补齐一套冻结专业；没有正文的机构名、能力名、参数和界面不自行创造。正式依据为[当前Design Spec](Specialization_v0.1_Design_Spec.md)的AIR-001/002、MIL-D0037范围声明（军事机制沿D0034）与OPEN-18及[接受记录](Design_ChangeLog.md)。共同定义见[Shared](Shared.md)，通用连接见[Network](Network.md)；实际实现与验证只见[Status](../Status/Specialization_P0_Status.md)。阅读版不改变正式来源权威，也不把未来记录变成当前实施授权。

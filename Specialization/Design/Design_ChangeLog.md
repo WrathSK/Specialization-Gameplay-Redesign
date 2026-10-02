@@ -3,8 +3,21 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0036
+Latest Accepted Design Revision: D0037
 Document State: ACCEPTED
+
+## Accepted D0037 — 2026-10-02
+
+Acceptance: ACCEPTED / Harbor future baseline and Military naming-only amendment
+Acceptance Evidence: 用户明确将完整Harbor Design Talk作为当前基线，要求替换旧条款并同步行伍编制/战地勤务；候选命名、Balance与Technical不擅自冻结。
+Accepted Spec SHA256: 2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9
+Canonical Harbor Content SHA256: bb7e02bf42efd156a8f8f214e73f593ff72fe1a1ae09fbfed59fcdf750bab7d0
+Canonical Military Content SHA256: 760c3a1cabd7d333a7a3d3c445695c8843eb175fcca01a7031736368eb2f98a7
+Previous Accepted Revision: D0036
+Frozen D0036: [原文](Revisions/Specialization_Design_Spec_D0036.md)
+Review: [接受、取代与未决边界](../Historical/Design/Reviews/Harbor_D0037_Review.md)
+
+接受完整海运商业/海军双线及同级双机构、当前Military镜像；旧Actual出口、+15%XP、III领悟、驻扎和海军动员退出。不额外设Network；经营进度暂停而已得容量不因Governor/暂失ACTIVE撤回，其它Legacy不推断。Military仅两处正式改名，原D0034机制保持。当前v0.1仍仅四专业，B148文化待验及计划权限不变；未实现Harbor、未改运行包、未部署，未改写旧冻结原件。
 
 ## Accepted D0036 — 2026-09-30
 

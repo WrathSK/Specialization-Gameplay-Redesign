@@ -20,6 +20,7 @@
 | [Military_D0033_Review.md](Reviews/Military_D0033_Review.md) | 军事主体冻结与训练快照等边界；综合训练深度后由D0034恢复 |
 | [Military_D0034_Review.md](Reviews/Military_D0034_Review.md) | 综合训练广度／深度的接受与未决转换公式 |
 | [Shared_D0035_Review.md](Reviews/Shared_D0035_Review.md) | Absolute D语义、consumer确认与独立Catalog待办 |
+| [Harbor_D0037_Review.md](Reviews/Harbor_D0037_Review.md) | 港口双线新基线、旧规则取代与军事两处改名；机制与候选命名/未决分开 |
 
 ## 文化展示记录
 

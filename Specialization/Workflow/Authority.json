@@ -2,7 +2,7 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Codex is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0036",
+    "design": "D0037",
     "research": "D0031",
     "industry": "D0036",
     "culture": "D0029",
@@ -10,9 +10,10 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0380",
+    "status": "S0381",
     "runtime": "B148.175 / modinfo175",
-    "military": "D0034"
+    "military": "D0037",
+    "harbor": "D0037"
   },
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -25,7 +26,8 @@
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
     "status": "Specialization/Status/Specialization_P0_Status.md",
     "runtime": "Mod/SpecializationP0.modinfo",
-    "military": "Specialization/Design/Content/Military_D0034.json"
+    "military": "Specialization/Design/Content/Military_D0037.json",
+    "harbor": "Specialization/Design/Content/Harbor_D0037.json"
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
@@ -45,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0380 Culture preparation only: current rules/direct source/read-only configured DB and scoped prior evidence reviewed; L2/L3/M/N/U2 plans saved, implementation not authorized. B148 native gate, runtime/Design/GC and L1 context scope unchanged.",
+  "context_review_status": "S0381 D0037 Harbor future baseline and Military naming-only amendment reviewed against user handoff/current sources. Culture Spec section/Shared/Culture contracts and L1 selectors unchanged; preparation plans remain planning-only, B148 native gate pending. No runtime/Architecture/deployment or v0.1 scope expansion.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
