@@ -21,7 +21,9 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 科研传统：Store拥有可靠年龄，F2独立consumer仅从当前身份/ACTIVE与年龄重建五档瞬时科技百分比；module-owned退出不清年龄。实际合同及证据见[P0-F科研传统](v2/P0_F_Research_Tradition.md#b144171--f2-implementation-and-validation)。本地模拟不是原生验收；当前部署/授权仍以Status为准。
 
-巨作事实：[P0-K会话事实合同](v2/P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)复用旧UI采集/transport，Gameplay校验当前引用并发布目录资格、历史时代/馆藏与国内索引；旧文化writer保留，事实层不施收益。实机/部署门禁仍只从Status取得。
+巨作事实：[P0-K会话事实合同](v2/P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)复用旧UI采集/transport，Gameplay校验当前引用并发布目录资格、历史时代/馆藏与国内索引；事实层不施收益，具体新旧consumer切换见各批次合同。实机/部署门禁仍只从Status取得。
+
+风雅熏陶：[L1投影合同](v2/P0_L1_Aesthetic.md#b148175--implementation-checkpoint)分离逐栋普通建筑贡献与实际区域原生旅游投影；ordinary身份和D/Tier资格分离。master/plot flags仅为当前效应配置，Gameplay事实是权威；原生门禁仍以Status为准。
 
 ## 系统如何组成
 

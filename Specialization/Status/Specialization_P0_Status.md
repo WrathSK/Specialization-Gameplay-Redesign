@@ -1,23 +1,30 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0378
-Implementation Build: develop/live B147.174 / modinfo174 P0_K_USER_GAME_TEST_PASS_SCOPED; stable B069.96
+Status Revision: S0379
+Implementation Build: develop B148.175 / modinfo175 P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; recorded live B147.174 until deployment receipt; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L1_PLANNED_NOT_AUTHORIZED
+Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[P0-K限定实机验收](Validation/Results/Specialization_B147_P0K_Pass.md)已完成；26定向Lua/311目录来源及著作/雕塑、单时代、移动/冷加载的证据范围保持，不外推为全部馆藏或新文化收益PASS。当前切片为[P0-L1风雅熏陶具体计划](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)，[manifest](../Workflow/P0-L1.json)为PLANNED_NOT_AUTHORIZED；仅计划获授权，等待明确实施授权，不自动进入L2/M/N/U2。
+用户已明确授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#b148175--implementation-checkpoint)。B148.175已完成逐普通建筑K×本城时代数的计划、实际区域旅游加值投影、按需诊断，以及旧Culture人口/worker%精确退出；[manifest](../Workflow/P0-L1.json)仍为AUTHORIZED，原生接口门禁待验，不能宣布L1完成。不进入L2/M/N/U2。
 
-L1目标为当前本城时代数X×初版K1，逐合格普通建筑旅游业绩；计划包含精确退出旧Culture人口/worker%。全城ordinary覆盖与原生旅游加值仍是实施技术门禁，尚无L1运行收益或原生PASS。本轮只完成文档/导航及helper批次登记。Design D0036/A0161、永久成果、GC、main不变；机构[UI视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞，科研[F2验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
+[本地结果与最小测试](Validation/Results/Specialization_B148_P0L1_Local.md)：13项真实Lua/SQL定向测试、26项K事实/采集回归通过；STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，非USER_GAME_TEST_PASS。新增ordinary身份不新增D覆盖、Tier或深度值；ResearchApply仅区分非深度目录对象，已有深度未知保护保留。原生城市限定、plot要求对district subject的解释、旅游加值/撤销仍为USER_GAME_TEST_REQUIRED。
 
-已记录live仍B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json`；此前176/176 MATCH、B146/stable恢复点保留。本轮未重新核验外部运行包、未部署，main仍B069.96。待用户审阅L1计划；当前无需新实机测试。
+[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。Design D0036/A0161、永久成果、GC与main保持不变。
+
+部署待执行：已记录live仍B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json`；新包须提交/推送、游戏退出及现有W0003事务校验后部署。当前已授权边界为完成L1最小检查点与验收包；下一允许动作为最小原生验收，建议后续批次不等于授权。
 
 ## 历史阶段记录
+
+### S0379 — B148.175 P0-L1实施检查点，原生门禁待验
+
+用户接受具体计划并授权实施。新consumer只使用当前本城馆藏X、当前资格和普通建筑事实；区域投影是可撤销配置，不是永久旅游历史。13项定向测试及26项K回归通过；本地模拟未证明引擎对District subject的Plot Property解释或实际旅游增量。低ACTIVE城市也精确退出旧16项Culture载体；Commerce分支、B1/B2、科研深度/既有能力、旧Dialogue/GWA/Eureka和GC保持。到本批停止，不进入L2。
+
 
 ### S0378 — P0-L1具体计划，未授权实施
 

@@ -176,9 +176,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Lv3Effects.sql": {
-      "sha256": "6b202d054f7911dfe909185498744db6211c49fb6d1f31bdc5d89be73761f8d0",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "5a19a7008b0b21d5f7b81471f1c0c08e7925ada55fe36983f7c92302802e59f3",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/Data/Lv3Support.sql": {
       "sha256": "688298fec1e2e9637e277d32c6bc8dc39643ce6101e8185a848764f158153c7b",
@@ -186,9 +186,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/Data/Lv4Percent.sql": {
-      "sha256": "108bf6fddb1efb2fab19a7c07014108c7a134b763bf840cf69c5936572f9665a",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "sha256": "0fa05ff3f0113d5635a136552fbcbec89b63a435c99521eec5c712f9a0a8fa38",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/Data/NetworkBoost.sql": {
       "sha256": "548f682535b9044881ec3b612629d765eded660411b9f707f8cc67879ab4307d",
@@ -236,9 +236,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "35fe380710e7e58a2dd6fcffbaf1477ed74d869d8313fa8abd1726045ee07fd5",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
+      "sha256": "cdbf2c9be2213b01f7483df4d149ff9c598671ab66a8b45178d25f5654e2e03c",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/EffectiveFacts.lua": {
       "sha256": "969b4ab656c6cb59de0d343438d3d0c42eb9a563f6ed96353ebbe9b81ef4283d",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "4ce831a2c4b1e932224b8c3387ebb6a8407f5ea9e0c2f4f9f46eb9390730f4cf",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "cf8cbb5e45c9fbfac794e59d106cfcff8cfd8f45f11bf4dd62dd1ced80ce0ef0",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -316,9 +316,9 @@
       "provenance": "B132 authorized narrow event/cache optimization; targeted L2 PASS, native pending"
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "25c89bc8a81eb65c6ce44d856bce4b6fdc1941af517e3d1b6cb542d547c47158",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "45e39d15e1b18613198a0b6ae6a9c8725f3ce334666c4598b440638208cc9aa2",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/Lv3Support.lua": {
       "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
@@ -331,9 +331,9 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Lv4Percent.lua": {
-      "sha256": "8b43ead18cd169fce1462ede4bddfc28ba97cdd08933335b0f78b283cf76cd60",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "sha256": "f7c323188cd4f6f6f6dc3f8eec2ceb37b1a8522fe527e211bb35b7801ac65438",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/NetworkBoost.lua": {
       "sha256": "920d8a7bf8f5820d53de3f29395b96163348606aca47c75787b1c59bea8a3d0b",
@@ -356,9 +356,9 @@
       "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
-      "sha256": "398205d0e063ae5d092947dbd3d54443c5778001fbe0f03d29c360c24e7379e9",
-      "review_source": "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md",
-      "provenance": "B080 P0-B2 reviewed implementation delta; local regression PASS, native pending"
+      "sha256": "68395e041876adc9072eb2d54da92f3104b840c7d18704ca306a83053e67ab53",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/PerformanceCounters.lua": {
       "sha256": "2047dea377cd9a9929bc969dee5a91c37a1ee2eb3baac2d82666eb09849d5313",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "89036b2a99ddc659179eb68e4633f6a96c9d31399109a15199c54e1aafa8fbbf",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "1c71b049cfd756d2c64b8480066e433a4ca74452a9bac90b2b872f6398b7a602",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3923932b0163cb07ce573462f4db6cf11fcf290e5c09f07a0675f19e933d29df",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "55b83ba843d3c4d1a12173dbb6dbf61094206e0cbb0d5ed12fef12bcec66916e",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "d5a216b29b2e966b9bf71216980ead7b845112113d33f6b3dbe5f67433240902",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "61ec71ddbf7ffdc8541f38e8cf8aab74134f1b63485e828c675a0325884b02c2",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "e4677877631cc47af46f1a16857e81055af8636892ac3b196d6ca25243f41269",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "3fa1fd42c30f37597c5c016e3867dc1b574beecea28853df1fdce5e02e93b910",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "ac85f74e089739cd7a8abd309dd37994ec1f4c03d6aca8a587c5212dd10aa153",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "ac09590a361e8f1affb14aafe890d9c78f2438d7275fa525f247c1513735f273",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -691,9 +691,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "b828ebad1263bbb2395af1f0c009720a405f2e1ba646257166d732054fe1845f",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "sha256": "ae19effeb1dd68603fa2d03ba8028532033f907f73c6d4f1ef336b90463a26cb",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -881,9 +881,24 @@
       "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/GreatWorkFacts.lua": {
-      "sha256": "4b86a73aceaaf6f70f03c5aeae85d327c7e2a061cf9422abc2bab6d3cb851a22",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "bd170dcb1c0fc445aee6c64538b7ecabe5f06203fc5c392e43f5b3c2511457fb",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/CultureAesthetic.lua": {
+      "sha256": "8f94bd74eebc172039ab7ba0e2463609a8c7ea39c160b8d614efc9ed47f6f340",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/CultureAestheticModel.lua": {
+      "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/Data/CultureAesthetic.sql": {
+      "sha256": "c11ac2ce49551d086dc28a12bcd3c88560d2f180c36ce386c7082ea3e6004d51",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     }
   }
 }

@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
   },
   "batch": "P0-L1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED",
   "authority_versions": {
     "design": "D0036",
     "research": "D0031",
@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0378",
-    "runtime": "B147.174 / modinfo174",
+    "status": "S0379",
+    "runtime": "B148.175 / modinfo175",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
@@ -170,11 +170,36 @@
       "path": "Mod/SpecializationP0.modinfo",
       "kind": "full",
       "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/CultureAestheticModel.lua",
+      "kind": "full",
+      "reason": "Current complete per-building eligibility/formula/actual-plot plan"
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Sole new transient writer, exact cutover/scope/UNKNOWN/exit/return and no-op paths"
+    },
+    {
+      "path": "Mod/Data/CultureAesthetic.sql",
+      "kind": "full",
+      "reason": "Exact native modifier/requirement/master ownership and encoding"
+    },
+    {
+      "path": "Mod/ResearchApply.lua",
+      "kind": "full",
+      "reason": "Necessary direct consumer adaptation for ordinary identity versus D coverage; original unknown-depth guard retained"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_aesthetic.py",
+      "kind": "full",
+      "reason": "Actual targeted Lua/SQL/recipient/legacy/ownership/load/consumer tests; explicit external DB and Git baseline"
     }
   ],
   "dependencies": [
     "P0-K confirmed facts/scoped native gate; P0-A ordinary ontology and current reference/ACTIVE",
-    "Static flat district Tourism candidate; native faithful per-building contribution/withdrawal gate pending",
+    "STATIC flat district Tourism candidate implemented as explained building contribution/plot projection; native city/property/Tourism gate pending",
     "Existing local-human E2 module-owned exit/return; no new persistent ledger or AI/MP"
   ],
   "old_writers": [
@@ -234,16 +259,16 @@
     "L2 Meaning/L3 GPP/M Dialogue project/N Expedition or Culture network/U2 layout",
     "Industry/Commerce gameplay or future professions",
     "New gameplay parameters, generic ability/event framework, AI/MP, cityKey/save schema",
-    "GC changes, broad memory investigation, old long-test repetition",
-    "Implementation or deployment during this planning turn"
+    "GC changes, broad memory investigation, old long-test repetition"
   ],
   "validation": {
-    "depth": "Docs-only now; authorized implementation L2 with relevant ownership/load L3 edges",
+    "depth": "W0004 L2 cross-module Tourism/cutover, relevant L3 UNKNOWN/ownership/load edges; no full/stress",
     "local": [
-      "Current document/link/selector/context checks and helper targeted tests only now",
-      "Future targeted real-Lua model/recipient/scope/UNKNOWN/cutover/load tests; read-only SQL primitive review; risk-scoped previous consumer regressions"
+      "13 targeted real-Lua/SQL tests PASS; old depth catalog/values and actual ResearchApply guard regression",
+      "26 K facts/producer/bridge/legacy consumer tests PASS",
+      "Changed Lua syntax, XML/exact Mod file set, document/selector/context/helper checks"
     ],
-    "user": "Not requested in planning turn. Future one collection-city flow: two eras/ordinary building categories, movement, governor gate, cold reload, native Tourism and exact old effect exit; prototype partial if primitive not yet proven"
+    "user": "One local collection-city native Tourism gate/movement/governor/cold-load flow; stop immediately if positive configuration has no faithful native effect; no old long test"
   },
   "full_audit_triggers": [
     "Native primitive cannot preserve per-building contribution/recipient/pillage/withdrawal semantics",
@@ -251,9 +276,10 @@
     "Unexpected permanent-state write, ambiguous ownership or inability to remove an exact owned old effect"
   ],
   "result": {
-    "plan": "Concrete scope and pending primitive gate reviewed; not implementation authorization",
-    "implementation": "NOT_STARTED",
-    "native": "NOT_TESTED; B147 K native PASS does not prove L1 Tourism",
-    "stop": "Await explicit P0-L1 implementation authorization; do not start L2/M/N/U2 or deploy"
+    "plan": "User accepted concrete plan and explicitly authorized implementation",
+    "implementation": "B148.175 LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; not complete L1",
+    "native": "USER_GAME_TEST_REQUIRED; city district/plot-property Tourism projection has no native PASS",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md",
+    "stop": "Finish committed safe test package, then wait L1 native acceptance. Do not start L2/M/N/U2."
   }
 }

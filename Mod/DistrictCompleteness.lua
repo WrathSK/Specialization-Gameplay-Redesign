@@ -21,12 +21,13 @@ function M.Calculate(catalog,raw)
  for _,d in ipairs(raw.districts) do
   assert(not seen[d.id],'DC_DUPLICATE_DISTRICT');seen[d.id]=true
   local domain=catalog.Domain(d.type)
-  local r={id=d.id,type=d.type,plot=d.plot,domain=domain,complete=d.complete,pillaged=d.pillaged,buildings={},uncapped=0,value=0}
+  local r={id=d.id,type=d.type,plot=d.plot,domain=domain,baseDistrict=catalog.District and catalog.District(d.type) or domain,complete=d.complete,pillaged=d.pillaged,buildings={},uncapped=0,value=0}
   bool(d.complete,'DC_COMPLETION_UNKNOWN');bool(d.pillaged,'DC_DISTRICT_PILLAGE_UNKNOWN')
   for _,b in ipairs(d.buildings) do
    local c=catalog.buildings[b.index] or {type=tostring(b.index),reason='UNREVIEWED_BUILDING'}
    local v={type=c.type,name=c.name,tier=c.tier,tierSource=c.tierSource,ordinary=c.ordinary==true,
-    complete=b.complete,pillaged=b.pillaged,contribution=0,reason=c.reason}
+    complete=b.complete,pillaged=b.pillaged,contribution=0,reason=c.reason,
+    ordinaryReason=c.ordinaryReason,ordinaryDistrict=c.ordinaryDistrict,depthEligible=c.depthEligible~=false}
    bool(b.complete,'DC_BUILDING_COMPLETION_UNKNOWN');bool(b.pillaged,'DC_BUILDING_PILLAGE_UNKNOWN')
    if not b.complete then v.reason='UNDER_CONSTRUCTION'
    elseif not c.ordinary or c.tier==nil then -- preserve ontology reason

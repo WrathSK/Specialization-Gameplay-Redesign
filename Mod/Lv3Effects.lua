@@ -18,7 +18,7 @@ function SPCLv3Effects.Start(P,shared)
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
   local f=readFacts(pid,c)
   if f.specialization=='COMMERCE' and isolated(pid) then return wanted end
-  if f.specialization=='RESEARCH' then return wanted end -- P0-D1 owns Research III
+  if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then return wanted end -- P0-D1/P0-L1 own these abilities
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
   local found=false
@@ -29,17 +29,7 @@ function SPCLv3Effects.Start(P,shared)
    end
   end
   assert(found,'LV3_DISTRICT_MISSING')
-  if f.specialization=='CULTURE' then
-   local target
-   for _,d in districtsFor(pid,c) do
-    local city=d:GetCity()
-    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then target=d;break end
-   end
-   local n=Map.GetPlot(target:GetX(),target:GetY()):GetWorkerCount()
-   data.observed[pid..':'..c:GetID()]={workers=n,pop=c:GetPopulation(),active=f.active}
-   assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'WORKERS_UNKNOWN_OR_OUT_OF_RANGE')
-   for i=0,7 do if math.floor(n/2^i)%2==1 then wanted['BUILDING_SPC_DEV_LV3_POP_'..f.specialization..'_'..i]=true end end
-  elseif f.specialization=='COMMERCE' then
+  if f.specialization=='COMMERCE' then
    local kinds=(shared.NetworkBridge.CurrentConnectedKinds or shared.NetworkBridge.ConnectedKinds)(pid,c)
    for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do if kinds[k] then wanted['BUILDING_SPC_DEV_LV3_COM_'..k]=true end end
   end
@@ -56,6 +46,14 @@ function SPCLv3Effects.Start(P,shared)
    end
   end
   return coefficients,flags
+ end
+ function data.WithdrawCulture(c)
+  for bit=0,7 do
+   local r=assert(P.Info('Buildings','BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit),'B038_DATABASE_MISSING')
+   local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
+   if present then P.RemoveBuilding(b,r.Index);assert(P.HasBuilding(b,r.Index)==false,'LV3_REMOVE_UNCONFIRMED');data.changes=data.changes+1 end
+  end
+  return true
  end
  function data.Audit(scope) P.Count('audit_lv3');
   if P.Observe then P.Observe('audit','Lv3Effects') end
@@ -123,23 +121,7 @@ function SPCLv3Effects.Start(P,shared)
    if f.specialization=='RESEARCH' then return shared.ResearchCross and shared.ResearchCross.Describe(pid,c) or '跨学科研究尚未初始化' end
    local lines={}
    if f.specialization=='CULTURE' then
-    local workers
-    for _,d in districtsFor(pid,c) do
-     local city=d:GetCity()
-     if f.first and city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
-      workers=Map.GetPlot(d:GetX(),d:GetY()):GetWorkerCount();break
-     end
-    end
-    local valid=type(workers)=='number' and workers>=0 and workers%1==0
-    local enabled=type(f.active)=='number' and f.active>=3
-    local expected=valid and (enabled and 0.5*pop*workers or 0) or 'UNKNOWN'
-    local last=data.observed[pid..':'..c:GetID()]
-    local row=P.Info('Yields',f.specialization=='RESEARCH' and 'YIELD_SCIENCE' or 'YIELD_CULTURE')
-    local got,total=pcall(function() return c:GetYield(row.Index) end)
-    if not got or type(total)~='number' then total='UNKNOWN' end
-    lines[#lines+1]='Population support: ACTIVE='..tostring(f.active)..' pop='..pop..' live workers='..tostring(workers or 'UNKNOWN')
-    lines[#lines+1]='Base bonus expected='..expected..' carrier='..coef[f.specialization]*pop..' (not measured effect)'
-    lines[#lines+1]='Last audit workers='..tostring(last and last.workers or 'NONE')..' native city total='..tostring(total)
+    return '\n'..(shared.CultureAesthetic and shared.CultureAesthetic.Describe(pid,c) or '风雅熏陶等待确认；旧人口文化已退休。')
    else
     lines[#lines+1]='Commerce specialist +2 per type: '..(#flags>0 and table.concat(flags,',') or 'NONE')
    end

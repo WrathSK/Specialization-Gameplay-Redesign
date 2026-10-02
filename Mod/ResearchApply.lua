@@ -29,7 +29,7 @@ function M.Start(P,shared)
   for _,d in ipairs(v.value.districts) do
    if d.domain=='DISTRICT_CAMPUS' then campus=d;n=n+1 end
    for _,b in ipairs(d.buildings) do
-    assert(not (b.ordinary and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'AP_BUILDING_FACT_UNKNOWN')
+    assert(not (b.ordinary and b.depthEligible~=false and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'AP_BUILDING_FACT_UNKNOWN')
     if b.reason=='UNREVIEWED_BUILDING' then warnings[#warnings+1]=b.name or b.type end
    end
   end

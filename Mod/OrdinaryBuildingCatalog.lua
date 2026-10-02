@@ -3,7 +3,7 @@
 -- Native/HD tier data is adapter evidence. No database writes or yield carriers.
 SPCOrdinaryBuildingCatalog={}
 local M=SPCOrdinaryBuildingCatalog
-M.REVISION='D0035-P0B2-1'
+M.REVISION='D0035-P0L1-1'
 local known={
  ['BUILDING_FAIR']='DISTRICT_COMMERCIAL_HUB',
  ['BUILDING_HD_ART_PUBLISHING_HOUSE']='DISTRICT_THEATER',
@@ -127,6 +127,65 @@ local known={
  ['BUILDING_WAT']='DISTRICT_HOLY_SITE',
  ['BUILDING_WORKSHOP']='DISTRICT_INDUSTRIAL_ZONE',
 }
+-- P0-L1 ordinary identity extension; NOT newly approved D/Tier coverage.
+-- Named native/HD/JNR construction definitions reviewed; one-per-player alone
+-- is not a Wonder predicate (e.g. ordinary government buildings/Data Center).
+local ordinaryOnly={
+ ['BUILDING_MONUMENT']='DISTRICT_CITY_CENTER',
+ ['BUILDING_GRANARY']='DISTRICT_CITY_CENTER',
+ ['BUILDING_WATER_MILL']='DISTRICT_CITY_CENTER',
+ ['BUILDING_NILOMETER_HD']='DISTRICT_CITY_CENTER',
+ ['BUILDING_PALGUM']='DISTRICT_CITY_CENTER',
+ ['BUILDING_WALLS']='DISTRICT_CITY_CENTER',
+ ['BUILDING_CASTLE']='DISTRICT_CITY_CENTER',
+ ['BUILDING_STAR_FORT']='DISTRICT_CITY_CENTER',
+ ['BUILDING_TSIKHE']='DISTRICT_CITY_CENTER',
+ ['BUILDING_EXHIBITION']='DISTRICT_CITY_CENTER',
+ ['BUILDING_FLOOD_BARRIER']='DISTRICT_CITY_CENTER',
+ ['BUILDING_HD_POLICE_STATION']='DISTRICT_CITY_CENTER',
+ ['BUILDING_HD_TABLES_OF_LAW']='DISTRICT_CITY_CENTER',
+ ['BUILDING_HANGAR']='DISTRICT_AERODROME',
+ ['BUILDING_AIRPORT']='DISTRICT_AERODROME',
+ ['BUILDING_SEWER']='DISTRICT_AQUEDUCT',
+ ['BUILDING_HD_HYDRAULIC_SPINNING_WHEEL']='DISTRICT_AQUEDUCT',
+ ['BUILDING_JNR_BATHHOUSE']='DISTRICT_AQUEDUCT',
+ ['BUILDING_JNR_HAMMER_WORKS']='DISTRICT_AQUEDUCT',
+ ['BUILDING_JNR_ORCHARD']='DISTRICT_AQUEDUCT',
+ ['BUILDING_HYDROELECTRIC_DAM']='DISTRICT_DAM',
+ ['BUILDING_ARENA']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_ZOO']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_STADIUM']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_THERMAL_BATH']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_TLACHTLI']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_HD_SALON']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_JNR_BOTANICAL_GARDEN']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_JNR_THEME_PARK']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_JNR_TOURNEY']='DISTRICT_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_FERRIS_WHEEL']='DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_AQUARIUM']='DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_AQUATICS_CENTER']='DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_JNR_CASINO']='DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_JNR_FOOD_COURT']='DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_JNR_MARINA']='DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+ ['BUILDING_GROVE']='DISTRICT_PRESERVE',
+ ['BUILDING_SANCTUARY']='DISTRICT_PRESERVE',
+ ['BUILDING_HD_CULTURE_HERITAGE_PRESERVE']='DISTRICT_PRESERVE',
+ ['BUILDING_HD_LANDFORM_EPO']='DISTRICT_PRESERVE',
+ ['BUILDING_HD_RESOURCE_EPO']='DISTRICT_PRESERVE',
+ ['BUILDING_HD_SCENIC_EPO']='DISTRICT_PRESERVE',
+ ['BUILDING_HD_SPECIES_EPO']='DISTRICT_PRESERVE',
+ ['BUILDING_FISH_MARKET']='DISTRICT_HARBOR',
+ ['BUILDING_LIGHTHOUSE_FISHING']='DISTRICT_HARBOR',
+ ['BUILDING_OFFSHORE_TERMINAL']='DISTRICT_HARBOR',
+ ['BUILDING_JNR_ENTREPOT']='DISTRICT_HARBOR',
+ ['BUILDING_HD_ALCHEMY_ROOM']='DISTRICT_HOLY_SITE',
+ ['BUILDING_HD_BUS_STOP']='DISTRICT_NEIGHBORHOOD',
+ ['BUILDING_HD_MANSION']='DISTRICT_NEIGHBORHOOD',
+ ['BUILDING_HD_VILLA']='DISTRICT_NEIGHBORHOOD',
+ ['BUILDING_EL_ESCORIAL_PALACE']='DISTRICT_GOVERNMENT',
+ ['BUILDING_HD_HUMAN_RIGHTS_COUNCIL']='DISTRICT_DIPLOMATIC_QUARTER',
+ ['BUILDING_HD_MINISTRY_OF_NATIONAL_DEFENSE']='DISTRICT_DIPLOMATIC_QUARTER',
+}
 local domains={
  ['DISTRICT_CAMPUS']=true,
  ['DISTRICT_INDUSTRIAL_ZONE']=true,
@@ -152,10 +211,13 @@ function M.Build(P)
   table.insert(replaces[r.CivUniqueBuildingType],r.ReplacesBuildingType)
  end
  local out={revision=M.REVISION,buildings={}}
- function out.Domain(kind)
+ function out.District(kind)
   local seen={}
   while dr[kind] do if seen[kind] then return nil end;seen[kind]=true;kind=dr[kind] end
-  return domains[kind] and kind or nil
+  return kind
+ end
+ function out.Domain(kind)
+  local base=out.District(kind);return domains[base] and base or nil
  end
  local function tier(kind,seen)
   if seen[kind] then return nil,'REPLACEMENT_CYCLE' end;seen[kind]=true
@@ -174,10 +236,13 @@ function M.Build(P)
   return normalized or raw,(normalized~=nil and 'REPLACEMENT_TIER' or 'HD_TIER')
  end
  for b in GameInfo.Buildings() do
-  local r={type=b.BuildingType,index=b.Index,name=b.Name,domain=out.Domain(b.PrereqDistrict),ordinary=false}
+  local r={type=b.BuildingType,index=b.Index,name=b.Name,domain=out.Domain(b.PrereqDistrict),ordinaryDistrict=out.District(b.PrereqDistrict),ordinary=false}
   if b.BuildingType=='BUILDING_PALACE' then r.reason='PALACE'
   elseif flag(b.IsWonder) then r.reason='WONDER'
   elseif flag(b.InternalOnly) or dummy[b.BuildingType] or b.BuildingType:match('^BUILDING_SPC_') then r.reason='INTERNAL_OR_TECHNICAL'
+  elseif ordinaryOnly[b.BuildingType] then
+   if r.ordinaryDistrict~=ordinaryOnly[b.BuildingType] then r.reason='DISTRICT_CLASSIFICATION_CONFLICT'
+   else r.ordinary=true;r.depthEligible=false;r.reason='ORDINARY_DEPTH_NOT_REVIEWED' end
   elseif not known[b.BuildingType] then r.reason='UNREVIEWED_BUILDING'
   elseif r.domain~=known[b.BuildingType] then r.reason='DISTRICT_CLASSIFICATION_CONFLICT'
   else
@@ -185,6 +250,7 @@ function M.Build(P)
    if r.tier==nil then r.reason=r.tierSource=='HD_TIER' and 'TIER_UNKNOWN' or r.tierSource
    else r.reason=r.tier==0 and 'ORDINARY_TIER_ZERO' or 'ELIGIBLE' end
   end
+  r.ordinaryReason=r.ordinary and 'ELIGIBLE' or r.reason
   out.buildings[b.Index]=r;out.buildings[b.BuildingType]=r
  end
  return out

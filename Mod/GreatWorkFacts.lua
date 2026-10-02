@@ -134,14 +134,31 @@ function F.Start(P,shared)
   end
   cities=candidate;signature=key;d.revision=d.revision+1;d.lastError=nil;d.dirtyScope={all=false,cities={}};rebuild();return true
  end
+ local function consumerInputs()
+  local out={};for cid,r in pairs(cities)do out[cid]={reference=r.reference,eraCount=r.eraCount,availability=r.availability,hasConfirmed=r.hasConfirmed}end;return out
+ end
+ local function sameInput(a,b)
+  return a and b and a.reference==b.reference and a.eraCount==b.eraCount and a.availability==b.availability and a.hasConfirmed==b.hasConfirmed
+ end
  function d.Receive(pid,p)
   if not P.IsTestPlayer(pid) then return false,'GW_UNSUPPORTED_OWNER' end
+  local before=d.OnConfirmed and consumerInputs()
   local ok,result=pcall(receive,pid,p)
   if not ok then
    d.lastError=tostring(result):match('GW_[A-Z_]+') or 'GW_RECEIVE_ERROR'
    -- Wrong epoch/duplicate packets cannot poison newer confirmed state.
    if p.FactsEpoch==d.epoch and p.Seq==d.ack then d.state='UNKNOWN';for _,r in pairs(cities)do r.availability='UNKNOWN' end;signature=nil end
    return false,d.lastError
+  end
+  if result and d.OnConfirmed then
+   local changed={};local after=consumerInputs()
+   for cid,r in pairs(after)do if not sameInput(before[cid],r)then changed[#changed+1]=cid end end
+   for cid in pairs(before)do if not after[cid]then changed[#changed+1]=cid end end
+   table.sort(changed)
+   if #changed>0 then
+    local notified=pcall(d.OnConfirmed,pid,changed)
+    if not notified then d.consumerError='GW_CONSUMER_UPDATE_FAILED' else d.consumerError=nil end
+   end
   end
   return result
  end
@@ -162,6 +179,10 @@ function F.Start(P,shared)
   local out={};for k,x in pairs(v)do out[k]=copy(x)end;return out
  end
  function d.Read(pid,cid)return copy(current(pid,cid)) end
+ function d.Summary(pid,cid)
+  local r=current(pid,cid)
+  return r and {reference=r.reference,hasConfirmed=r.hasConfirmed,availability=r.availability,eraCount=r.eraCount,count=r.count} or nil
+ end
  function d.Domestic(pid,era)
   if not P.IsTestPlayer(pid)then return nil end
   local out={revision=d.revision,availability=d.state,universeComplete=catalog.complete,eras={}}
@@ -249,7 +270,7 @@ function F.Start(P,shared)
  end)
  function d.Shutdown()
   for _,h in ipairs(hooks)do if h.event.Remove then h.event.Remove(h.fn)end end
-  hooks={};cities={};index={}
+  hooks={};cities={};index={};d.OnConfirmed=nil
   if shared.GreatWorkFacts==d then shared.GreatWorkFacts=nil end
  end
  return d

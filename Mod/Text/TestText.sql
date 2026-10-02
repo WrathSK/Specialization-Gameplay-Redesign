@@ -89,3 +89,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_GREAT_WORK_FACTS','巨作事实'),
 ('en_US','LOC_SPC_GREAT_WORK_FACTS','Great Work facts');
+
+-- P0-L1 ability/diagnostic label.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CULTURE_AESTHETIC','风雅熏陶'),
+('en_US','LOC_SPC_CULTURE_AESTHETIC','Aesthetic influence');

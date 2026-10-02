@@ -176,6 +176,13 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
+  if params.Action=='CULTURE_AESTHETIC_READ' or params.Action=='CULTURE_AESTHETIC_DETAIL' then
+    local ok,out=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'AE_CITY_UNKNOWN')
+      return shared.CultureAesthetic.Describe(playerID,c,params.Action=='CULTURE_AESTHETIC_DETAIL',params.Page)
+    end)
+    shared.Snapshot=ok and out or '风雅熏陶：城市暂不可读';shared.LastToken=params.Token;return
+  end
   if params.Action=='GREAT_WORK_FACTS_READ' or params.Action=='GREAT_WORK_FACTS_DETAIL' then
     local ok,out=pcall(shared.GreatWorkFacts.Describe,playerID,params.CityID,params.Action=='GREAT_WORK_FACTS_DETAIL',params.Page)
     shared.Snapshot=ok and out or '巨作事实：暂不可读，未改变收益。';shared.LastToken=params.Token;return
@@ -346,6 +353,7 @@ local function request(playerID,params)
     if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
     if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
+    if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -370,6 +378,7 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
+    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     -- Cross has no worker/focus input. Missing/mixed/contradictory provenance retains the fallback.
     if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
@@ -419,6 +428,7 @@ local function request(playerID,params)
     if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
     if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
+    if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -673,6 +683,8 @@ SPCGreatWorkProbe.Start(P,shared)
 
 include("GreatWorkFacts")
 SPCGreatWorkFacts.Start(P,shared)
+include('CultureAesthetic')
+SPCCultureAesthetic.Start(P,shared)
 
 include("Dialogue")
 SPCDialogue.Start(P,shared)
