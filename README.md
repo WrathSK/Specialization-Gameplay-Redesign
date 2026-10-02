@@ -58,7 +58,7 @@ Detailed design and engineering records are mainly in Chinese. This overview is 
 <details>
 <summary>Local setup and project notes</summary>
 
-Machine-specific configuration belongs in ignored `local/config.json`; see the [example](local.config.example.json). Original screenshots, saves and bulk logs remain outside Git under the [external-materials convention](Specialization/Reports/Proposals/Phase1_External_Materials.md). The installed game package is a deployment copy: identify it from deployment records, not branch HEAD. See the [Playtest Workflow](Specialization/Architecture/Playtest_Workflow.md).
+Machine-specific configuration belongs in ignored `local/config.json`; see the [example](local.config.example.json). Original screenshots, saves and bulk logs remain outside Git under the [external-materials convention](Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md). The installed game package is a deployment copy: identify it from deployment records, not branch HEAD. See the [Playtest Workflow](Specialization/Architecture/Playtest_Workflow.md).
 
 This project is unofficial and does not imply affiliation with Civilization VI or HD.
 
@@ -120,7 +120,7 @@ v0.1 的设计围绕四个专业展开：
 <details>
 <summary>本地配置与项目说明</summary>
 
-本机配置放在忽略的 `local/config.json`，参见[配置示例](local.config.example.json)。截图原件、存档及大体积日志依照[外部材料约定](Specialization/Reports/Proposals/Phase1_External_Materials.md)保留在 Git 之外。游戏内安装的运行包是部署副本，应根据部署记录而不是分支 HEAD 确认其版本，具体见 [Playtest Workflow](Specialization/Architecture/Playtest_Workflow.md)。
+本机配置放在忽略的 `local/config.json`，参见[配置示例](local.config.example.json)。截图原件、存档及大体积日志依照[外部材料约定](Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md)保留在 Git 之外。游戏内安装的运行包是部署副本，应根据部署记录而不是分支 HEAD 确认其版本，具体见 [Playtest Workflow](Specialization/Architecture/Playtest_Workflow.md)。
 
 本项目为非官方项目，不表示与《文明 VI》或 HD 存在官方关联。
 

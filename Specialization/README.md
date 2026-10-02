@@ -19,6 +19,6 @@ Civ VI / Harmony in Diversity城市专业化与国内商路网络Mod。当前v0.
 
 main为最后明确promote的可信源码；develop为独立worktree中的当前开发源码。外部SpecializationP0是部署副本。当前build、live/stable关系、待验状态只查Status/Authority，本文不复制版本账本。
 
-新截图请投递到develop根目录`ScreenShots/`（整个目录不进Git）。原图阅读后仍按既有规则归档到外部工作区；Phase 1说明中的旧收件箱位置是迁移时的历史记录，当前入口以此处与AGENTS为准。
+新截图请投递到develop根目录`ScreenShots/`（整个目录不进Git）。阅读后归档到`local/legacy-workspace/Specialization/Status/Validation/Evidence/<Batch>/`；旧游戏目录Specialization已完整迁出，旧文档不再作为当前入口。
 
-旧截图、日志、备份和大体积证据继续保存在外部工作区，路径见[外部材料说明](Reports/Proposals/Phase1_External_Materials.md)与忽略的`local/config.json`。历史报告用于追溯，不重新派发任务。新任务/压缩后恢复也使用以上入口，不要求读取某个聊天记录或旧交接全文。
+[当前归档位置与历史路径映射](Reports/Proposals/Legacy_Workspace_Relocation.md)说明旧路径如何定位原件。[Phase 1外部材料记录](Reports/Proposals/Phase1_External_Materials.md)保留迁移时的历史事实；其旧收件箱/证据位置不再是活动路径。其它日志、备份、DB仍在原位置。历史报告用于追溯，不重新派发任务。新任务/压缩后恢复使用以上入口，不要求读取旧交接全文。

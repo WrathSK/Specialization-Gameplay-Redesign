@@ -20,10 +20,10 @@
 
 ## 截图归档（持续授权）
 
-当前develop根目录`ScreenShots/`为截图投递入口，整目录由Git忽略，保持默认文件名；旧外部工作区收件箱已迁出。逐张读取、批次明确后移动原图至`local/config.json`所配置外部工作区的`Specialization/Status/Validation/Evidence/<Batch>/`，核对移动前后SHA256并记录manifest/结果关联。收件箱目录不移动，不留重复副本；同名冲突不覆盖，未读/不明文件留下。归档原件冻结，不擅自删除或压缩；无需逐次请求归档授权。
+当前develop根目录`ScreenShots/`为截图投递入口，整目录由Git忽略，保持默认文件名；旧外部工作区收件箱已迁出。逐张读取、批次明确后移动原图至develop根目录`local/legacy-workspace/Specialization/Status/Validation/Evidence/<Batch>/`，核对移动前后SHA256并记录manifest/结果关联。收件箱目录不移动，不留重复副本；同名冲突不覆盖，未读/不明文件留下。归档原件冻结，不擅自删除或压缩；无需逐次请求归档授权。
 
 ## 保留的技术与测试约束
 
 - 开发机制可以Cheat Panel验证；正常操作、保存读档与真实收益优先。身份冲突停止、重复不发放、不覆盖成果、不凭空补历史仍是必要保护。自然/Cheat、同回合/跨回合证据分开；极端组合可登记支持边界，不强迫每次先解决全部组合，也不扩大PASS或改变Design。
 - [后台商路来源决定](Reports/Technical/Specialization_Network_Background_Source_Decision.md)已接受无需玩家打开窗口的BTS/原版UI当前路线读取；不要重新以“必须纯Gameplay全集”阻塞。仍需验证本Mod桥接的初始化、重载、撤销与重建；来源许可不是实机PASS。
-- 截图、DB、日志及旧证据原位保留，外部路径由本地配置解析；不假定它们已打包进仓库。
+- 截图与旧证据按[历史路径映射](Reports/Proposals/Legacy_Workspace_Relocation.md)定位；DB、日志及备份保持原位，外部路径按实际配置解析，不假定它们已打包进仓库。

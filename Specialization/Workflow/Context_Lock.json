@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0379 authorized B148 L1: reviewed only this changed source/consumer/cutover/test/plan/navigation/Status and new scoped evidence. New ordinary identity does not change old depth; exact legacy exits reviewed.13 targeted +26 K local PASS; native gate pending. Unchanged Design/history/transitive hashes inherited; no blind rehash. Separately verified B148 safe deployment179/179; only actual-live references refreshed after receipt review; native gate remains pending. Screenshot inbox relocation only: reviewed develop-root ignored ScreenShots and current guidance; historical external evidence unchanged. Only the two changed guidance hashes refreshed; B148 native gate unchanged.",
+  "review_basis": "S0379 authorized B148 L1: reviewed only this changed source/consumer/cutover/test/plan/navigation/Status and new scoped evidence. New ordinary identity does not change old depth; exact legacy exits reviewed.13 targeted +26 K local PASS; native gate pending. Unchanged Design/history/transitive hashes inherited; no blind rehash. Separately verified B148 safe deployment179/179; only actual-live references refreshed after receipt review; native gate remains pending. Screenshot inbox relocation only: reviewed develop-root ignored ScreenShots and current guidance; historical external evidence unchanged. Only the two changed guidance hashes refreshed; B148 native gate unchanged. User-authorized complete old workspace relocation: reviewed current navigation, archive rules, legacy mapping, global classified path audit and file SHA256 equality; no active removed-directory dependency. Only changed guarded docs/new mapping reviewed; runtime/Design/Status unchanged.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -38,7 +38,7 @@
     "Mod/UI/IndustryRefresh.lua": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
     "Mod/UI/P0Panel.lua": "3fa1fd42c30f37597c5c016e3867dc1b574beecea28853df1fdce5e02e93b910",
     "Mod/UI/P0Panel.xml": "ac09590a361e8f1affb14aafe890d9c78f2438d7275fa525f247c1513735f273",
-    "Specialization/AGENTS.md": "973ebfb57580d380448ec31397721f0aafbcb3ddfa3116a448ddb4701526d99b",
+    "Specialization/AGENTS.md": "bb9ed24c299d391e4a57b0d15be2c68b09fa7d0cc75247121efbc521896b1e6e",
     "Specialization/Architecture/Playtest_Workflow.md": "e0377a62343c61d6ddd77ed12b725def0e724fbb3ada7f4ae9eb4c84dc52a6e1",
     "Specialization/Architecture/Specialization_v0.1_Architecture.md": "73aded0331c4dfbc1e7bf7f6372a78a64f4551bdaa9359b8e2533d0d4b490b18",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
@@ -58,7 +58,7 @@
     "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md": "e1a3e21e24fcca6d078299059a6b1299588c9148921784db8befd232ca8b1fb9",
     "Specialization/Design/Design_ChangeLog.md": "71b219f97366a86820282ec08720ccf8ec3696f09fa49c82d7be65f29c941765",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
-    "Specialization/README.md": "f1d7816997a19c5dea017fe189c8403432b8c7a36bba2638e5e1c00200b5b47a",
+    "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
     "Specialization/Status/Specialization_P0_Status.md": "cb9217e3c76cb803650589579967c9f1eb9a1d443a2570e7ee1f3117909e8e70",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
@@ -332,6 +332,7 @@
     "Mod/CultureAesthetic.lua": "8f94bd74eebc172039ab7ba0e2463609a8c7ea39c160b8d614efc9ed47f6f340",
     "Mod/CultureAestheticModel.lua": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
     "Mod/Data/CultureAesthetic.sql": "c11ac2ce49551d086dc28a12bcd3c88560d2f180c36ce386c7082ea3e6004d51",
-    "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md": "d92b89ffb9691977f0a29b96bdb9fe4bcc45d9a69e853e5605fa713d76b8f91f"
+    "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md": "d92b89ffb9691977f0a29b96bdb9fe4bcc45d9a69e853e5605fa713d76b8f91f",
+    "Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md": "e2dfa11bcf5cf5ff1e076b659e4f2e4115e041cbf66da14ec07cea2790d749c6"
   }
 }
