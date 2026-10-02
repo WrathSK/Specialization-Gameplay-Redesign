@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0372
-Implementation Build: develop B146.173 / modinfo173 UI_LOCAL_PASS_NATIVE_PENDING; live B145.172; stable B069.96
+Status Revision: S0373
+Implementation Build: develop/live B146.173 / modinfo173 UI_LOCAL_PASS_NATIVE_PENDING; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
@@ -13,9 +13,9 @@ Work State: U1_COMPACT_ROWS_LOCAL_PASS_NATIVE_PENDING
 
 [B146单行机构与阶段层级](../Architecture/v2/U1_Presentation_Prototype.md#b146173--单行机构与阶段层级)已获授权并本地完成：32高实例行、Ⅰ–Ⅳ、右侧状态、最高ACTIVE强调、长名称独立截断/Tooltip，Potential机构保持。L1静态/实际Lua定向模拟通过；真实字体、缩放、切城和ACTIVE刷新待一次用户验收。B145置顶在本次截图可见；不扩展完整U1、Harbor或其它专业。
 
-下一动作仅安全部署并验收显示；不进入文化/新玩法。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持，无需重测。Gameplay、Design、永久状态、GC未改。
+下一动作仅等待用户验收显示；不进入文化/新玩法。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持，无需重测。Gameplay、Design、永久状态、GC未改。
 
-已记录运行包B145.172，source `77f9561`、receipt `B145.172-77f9561-playtest.json`，174/174 MATCH；B146尚未部署。main B069.96及既有恢复点不变。
+B146已部署，source `652c0fc`、receipt `B146.173-652c0fc-playtest.json`，174/174 MATCH；游戏退出、B145/stable恢复点、无pending事务已核验。main B069.96不变。
 
 ## 历史阶段记录
 

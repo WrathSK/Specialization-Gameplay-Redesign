@@ -81,3 +81,5 @@ L1 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际Lua临时mock覆盖P1/P2/P4�
 最小一次验收：现有科研P4城查看四个单行、罗马对齐、状态右对齐与最高ACTIVE突出；切换P1/P2城；调离总督后检查保留机构/未激活并切回；用一个可用的另一UI缩放或分辨率检查名称不覆盖状态及滚动，悬停读完整名称。若字体不支持罗马数字，报告后处理，不自行改图标。无需重做收益、投资或年龄测试。本批完成后停止，未授权文化/完整U1。
 
 参考截图已逐张读取，外部Evidence/B146_UI_Row_Reference_20261001归档1/1 SHA256一致；仅证明旧双行显示与本轮修改需求，不作为B146验收。
+
+部署：source652c0fc，B146.173 / modinfo173，receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE；174/174 MATCH，游戏退出、B145/stable恢复点及无pending事务核验通过。一次错误receipt路径在读取阶段失败、未发生替换；修正路径后正常事务完成。main未改。

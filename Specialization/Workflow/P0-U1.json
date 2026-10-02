@@ -24,7 +24,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0372",
+    "status": "S0373",
     "runtime": "B146.173 / modinfo173",
     "military": "D0034"
   },
@@ -107,7 +107,7 @@
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "Pending B146; live B145 recorded unchanged",
+    "deployment": "B146.173 deployed;174/174 MATCH;source652c0fc;receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE;B145/stable recovery verified;OS game exit verified",
     "stop": "Await UI acceptance; no new gameplay authorization"
   },
   "goal": "Bounded feasibility/display prototype, not full U1"

@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0372",
+    "status": "S0373",
     "runtime": "B146.173 / modinfo173",
     "military": "D0034"
   },
@@ -30,11 +30,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "77f9561814ea156da3ce171fda6bf81d62fc4226",
+  "runtime_commit": "652c0fcc305ca638d27409bf79adf612dd153314",
   "current_batch": "U1_COMPACT_ROWS_LOCAL_PASS_NATIVE_PENDING",
-  "next_batch": "Safely deploy B146 if game exited, then await one institution-row native acceptance; no gameplay batch authorized.",
+  "next_batch": "Await one institution-row native acceptance; no gameplay batch authorized.",
   "manifest": "Specialization/Workflow/P0-U1.json",
-  "live": "B145.172 deployed;174/174 MATCH;source77f9561;receipt B145.172-77f9561-playtest.json DEVELOP_ACTIVE;B144/stable recovery verified;OS game exit verified",
+  "live": "B146.173 deployed;174/174 MATCH;source652c0fc;receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE;B145/stable recovery verified;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0372 reviewed UI-only row layout/localization/data-level metadata; scoped mock pass. Live B145 pending safe deployment.",
+  "context_review_status": "S0373 reviewed B146 deployment/equality/recovery; UI local pass/native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
