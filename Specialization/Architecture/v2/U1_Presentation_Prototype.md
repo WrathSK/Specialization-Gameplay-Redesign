@@ -64,3 +64,20 @@ L1 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：原生/HD标题定义及排序用�
 最小一次验收：打开科研城详情，专业机构在城市概况之前且标题与奇观同级；切换另一城后条目/阶段不串；向下滚动仍可正常访问建筑、奇观、城市政策。无需重复收益或年龄测试。B144/F2验收保持，下一Gameplay批次未授权。
 
 部署：source77f9561，B145.172 / modinfo172，receipt B145.172-77f9561-playtest.json DEVELOP_ACTIVE；174/174 MATCH，游戏退出、B144/stable恢复点及无pending事务已核验。用户红框参考图已读取并归档外部Evidence/B145_UI_Layout_Reference_20261001，1/1 hash一致；这是布局需求证据，不是B145实机验收。
+
+
+## B146.173 — 单行机构与阶段层级
+
+用户授权仅UI表现：B145置顶/同级标题已在本轮截图显示，用户确认机构正常出现；这不是完整U1或其它专业验收。B146替代旧四个48高双行控件，使用原生InstanceManager管理32高单行实例；数据新增presentation-only level，行数按机构记录枚举，不按1–4索引写死。同阶段多个sibling可分别成行，当前仍只填既有科研机构；未实施Harbor。
+
+左24宽罗马数字Ⅰ–Ⅳ；名称从38开始，随父宽缩放，右侧独立64宽状态栏，边缘8、名称与状态之间6间距。名称/状态使用原生TruncateWidth，名称完整内容保留在整行Tooltip。复用CityPanelText/Small，不新增图标。最高已知且有效阶段显示“当前”并保持完整alpha；此前已启用行名称alpha .9、阶段 .8、状态 .65（仍可读、不禁用）。Potential已建立而ACTIVE不足的行显示“未激活”并保留名称；UNKNOWN显示“待确认”，不猜阶段。例P4/ACTIVE1：Ⅰ当前，Ⅱ–Ⅳ未激活；同一最高阶段的siblings均可强调。
+
+本地化新增现有TestText.sql中zh_Hans_CN/en_US五key：LOC_SPC_INSTITUTIONS_HEADER（专业机构/Institutions）、LOC_SPC_INSTITUTION_CURRENT（当前/Current）、ENABLED（启用/Active）、INACTIVE（未激活/Inactive）、UNKNOWN（待确认/Pending）；后四key共享LOC_SPC_INSTITUTION_前缀。机构名称与能力文字来源不变。
+
+依赖仍是InstitutionOverview现有confirmed city view→本地render。相同显示signature不重建；变化时ResetInstances复用池，隐藏清活动实例，shutdown销毁池并解除订阅。只重新计算本地stack，不增加Gameplay请求、hover请求、轮询、保存字段或收益writer。无新专业/ACTIVE逻辑；B145分类置顶与精确carrier显示过滤不变。
+
+L1 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际Lua临时mock覆盖P1/P2/P4、ACTIVE4→1、UNKNOWN、重复通知不重绘、隐藏/恢复/卸载、模拟同阶段sibling和对应Tooltip；Lua编译、XML模板、现有SQL本地化执行/10行校验通过。未跑玩法回归或stress。原生InstanceManager与父宽truncation有静态用例依据；真实罗马字体、缩放/滚动及截断仍USER_GAME_TEST_REQUIRED，不以mock代替视觉验收。
+
+最小一次验收：现有科研P4城查看四个单行、罗马对齐、状态右对齐与最高ACTIVE突出；切换P1/P2城；调离总督后检查保留机构/未激活并切回；用一个可用的另一UI缩放或分辨率检查名称不覆盖状态及滚动，悬停读完整名称。若字体不支持罗马数字，报告后处理，不自行改图标。无需重做收益、投资或年龄测试。本批完成后停止，未授权文化/完整U1。
+
+参考截图已逐张读取，外部Evidence/B146_UI_Row_Reference_20261001归档1/1 SHA256一致；仅证明旧双行显示与本轮修改需求，不作为B146验收。

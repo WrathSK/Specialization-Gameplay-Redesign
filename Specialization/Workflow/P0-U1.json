@@ -24,8 +24,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0371",
-    "runtime": "B145.172 / modinfo172",
+    "status": "S0372",
+    "runtime": "B146.173 / modinfo173",
     "military": "D0034"
   },
   "goal_reference": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
@@ -33,7 +33,7 @@
     {
       "path": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
       "kind": "section",
-      "selector": "## B145.172 — 专业机构大类置顶",
+      "selector": "## B146.173 — 单行机构与阶段层级",
       "reason": "Current authorized UI slice, native evidence boundary and minimal acceptance"
     },
     {
@@ -65,6 +65,11 @@
       "path": "Mod/SpecializationP0.modinfo",
       "kind": "full",
       "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Five new localized UI status/header keys in existing text source"
     }
   ],
   "dependencies": [
@@ -81,10 +86,10 @@
   ],
   "validation": {
     "local": [
-      "Temporary actual Lua UI mock: order/siblings/repeat/city-state/hide/shutdown",
-      "XML/native-style/modinfo links, context integrity, diff review"
+      "Actual Lua UI mock: levels/ACTIVE/UNKNOWN/sibling rows/repeat/hide/shutdown",
+      "Lua compile, XML/native style/truncation, localization SQL, context integrity and diff review"
     ],
-    "user": "One top header/city switch/scroll check; pending"
+    "user": "One P4/low-level/ACTIVE/scale/scroll institution-row check; pending"
   },
   "full_audit_triggers": [
     "Conflict with HD/current panel structure",
@@ -102,7 +107,7 @@
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B145.172 deployed;174/174 MATCH;source77f9561;receipt B145.172-77f9561-playtest.json DEVELOP_ACTIVE;B144/stable recovery verified;OS game exit verified",
+    "deployment": "Pending B146; live B145 recorded unchanged",
     "stop": "Await UI acceptance; no new gameplay authorization"
   },
   "goal": "Bounded feasibility/display prototype, not full U1"

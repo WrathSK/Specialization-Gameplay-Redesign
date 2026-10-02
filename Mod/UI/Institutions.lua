@@ -1,7 +1,10 @@
 -- Fixed institution category at the top of city details. UI-only, no requests or polling.
+include('InstanceManager')
 include('InstitutionPresentation')
 local M=SPCInstitutionPresentation
 local parent,last
+local rows=InstanceManager:new('InstitutionRowInstance','Top',Controls.InstitutionRows)
+local roman={'Ⅰ','Ⅱ','Ⅲ','Ⅳ'}
 local function top()
  local children=parent:GetChildren()
  local own=tostring(Controls.InstitutionContainer)
@@ -27,18 +30,31 @@ local function render(data,v)
   Controls.InstitutionContainer:ChangeParent(parent)
  end
  top()
- if not v then Controls.InstitutionContainer:SetHide(true);last=nil;size();return end
+ if not v then Controls.InstitutionContainer:SetHide(true);rows:ResetInstances();last=nil;size();return end
  local signature=tostring(v.owner)..':'..v.cityID..':'..v.potential..':'..tostring(v.active)..':'..tostring(v.activeStatus)
  if signature==last then return end;last=signature
  Controls.InstitutionContainer:SetHide(false)
- Controls.InstitutionHeader:SetText('专业机构')
- for i=1,4 do
-  local row=Controls['Institution'..i];row:SetHide(i>v.potential)
-  Controls['InstitutionName'..i]:SetText(M.Rows[i].name)
-  Controls['InstitutionState'..i]:SetText(type(v.active)~='number' and '状态待确认' or (v.active>=i and '阶段已启用' or '能力未激活'))
-  row:SetToolTipString(M.Tooltip(i,v))
+ Controls.InstitutionHeader:SetText(Locale.Lookup('LOC_SPC_INSTITUTIONS_HEADER'))
+ rows:ResetInstances()
+ local known=type(v.active)=='number' and v.activeStatus~='UNKNOWN'
+ local highest=0
+ for _,entry in ipairs(M.Rows) do
+  if entry.level<=v.potential and known and entry.level<=v.active then highest=math.max(highest,entry.level) end
  end
+ for index,entry in ipairs(M.Rows) do if entry.level<=v.potential then
+  local row=rows:GetInstance()
+  local enabled=known and entry.level<=v.active
+  local current=enabled and entry.level==highest
+  local state=not known and 'UNKNOWN' or (not enabled and 'INACTIVE' or (current and 'CURRENT' or 'ENABLED'))
+  row.Stage:SetText(roman[entry.level] or tostring(entry.level))
+  row.Name:SetText(entry.name)
+  row.State:SetText(Locale.Lookup('LOC_SPC_INSTITUTION_'..state))
+  row.Name:SetAlpha(current and 1 or .9)
+  row.Stage:SetAlpha(current and 1 or .8)
+  row.State:SetAlpha(state=='ENABLED' and .65 or 1)
+  row.Top:SetToolTipString(M.Tooltip(index,v))
+ end end
  size()
 end
 ContextPtr:SetInitHandler(function() ContextPtr:SetHide(false);Controls.InstitutionContainer:SetHide(true);LuaEvents.SPC_InstitutionOverview.Add(render) end)
-ContextPtr:SetShutdown(function() LuaEvents.SPC_InstitutionOverview.Remove(render);last=nil;if parent then parent:DestroyChild(Controls.InstitutionContainer);parent=nil end end)
+ContextPtr:SetShutdown(function() LuaEvents.SPC_InstitutionOverview.Remove(render);last=nil;rows:DestroyInstances();if parent then parent:DestroyChild(Controls.InstitutionContainer);parent=nil end end)

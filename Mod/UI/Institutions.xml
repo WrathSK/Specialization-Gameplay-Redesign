@@ -5,9 +5,13 @@
 <Container Size="parent,24"><Image Texture="Controls_Gradient_HalfRadial" Size="parent,120" FlipY="1" Anchor="C,T" Color="72,103,130,255"/></Container>
 <Label ID="InstitutionHeader" Anchor="C,C" Style="CityPanelSubPanelTitle" Align="Center" WrapWidth="parent" String="" />
 </Grid>
-<Stack ID="InstitutionRows" Size="parent,auto" StackGrowth="Bottom">
-<Grid ID="Institution1" Size="parent,48" Style="CityPanelSubPanelContainer"><Label ID="InstitutionName1" Anchor="L,T" Offset="12,4" Style="CityPanelText" String=""/><Label ID="InstitutionState1" Anchor="L,T" Offset="12,27" Style="CityPanelTextSmall" String=""/></Grid>
-<Grid ID="Institution2" Size="parent,48" Style="CityPanelSubPanelContainer"><Label ID="InstitutionName2" Anchor="L,T" Offset="12,4" Style="CityPanelText" String=""/><Label ID="InstitutionState2" Anchor="L,T" Offset="12,27" Style="CityPanelTextSmall" String=""/></Grid>
-<Grid ID="Institution3" Size="parent,48" Style="CityPanelSubPanelContainer"><Label ID="InstitutionName3" Anchor="L,T" Offset="12,4" Style="CityPanelText" String=""/><Label ID="InstitutionState3" Anchor="L,T" Offset="12,27" Style="CityPanelTextSmall" String=""/></Grid>
-<Grid ID="Institution4" Size="parent,48" Style="CityPanelSubPanelContainer"><Label ID="InstitutionName4" Anchor="L,T" Offset="12,4" Style="CityPanelText" String=""/><Label ID="InstitutionState4" Anchor="L,T" Offset="12,27" Style="CityPanelTextSmall" String=""/></Grid>
-</Stack></Stack></Context>
+<Stack ID="InstitutionRows" Size="parent,auto" StackGrowth="Bottom" />
+</Stack>
+<Instance Name="InstitutionRowInstance">
+<Grid ID="Top" Size="parent,32" Style="CityPanelSubPanelContainer">
+<Container Anchor="L,C" Offset="8,0" Size="24,32"><Label ID="Stage" Anchor="C,C" Style="CityPanelTextSmall" String=""/></Container>
+<Container Anchor="L,C" Offset="38,0" Size="parent-116,32"><Label ID="Name" Anchor="L,C" Style="CityPanelText" TruncateWidth="parent" String=""/></Container>
+<Container Anchor="R,C" Offset="8,0" Size="64,32"><Label ID="State" Anchor="R,C" Style="CityPanelTextSmall" TruncateWidth="parent" String=""/></Container>
+</Grid>
+</Instance>
+</Context>
