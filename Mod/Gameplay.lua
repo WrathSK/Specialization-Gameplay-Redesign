@@ -176,7 +176,16 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
+  if params.Action=='GREAT_WORK_FACTS_READ' or params.Action=='GREAT_WORK_FACTS_DETAIL' then
+    local ok,out=pcall(shared.GreatWorkFacts.Describe,playerID,params.CityID,params.Action=='GREAT_WORK_FACTS_DETAIL',params.Page)
+    shared.Snapshot=ok and out or '巨作事实：暂不可读，未改变收益。';shared.LastToken=params.Token;return
+  end
   if params.Action=='DIALOGUE_SAMPLE' then
+    -- Independent facts validation cannot block or substitute for the legacy writer.
+    if shared.GreatWorkFacts then
+      local factsOK=pcall(shared.GreatWorkFacts.Receive,playerID,params)
+      if not factsOK then shared.GreatWorkFacts.lastError='GW_RECEIVE_EXCEPTION' end
+    end
     local ok,err=pcall(shared.Dialogue.Receive,playerID,params)
     if not ok then
       if shared.Dialogue and P.IsTestPlayer(playerID) then shared.Dialogue.errors[playerID]='DIALOGUE_RECEIVE_EXCEPTION: '..tostring(err) end
@@ -661,6 +670,9 @@ include("NetworkBoost")
 SPCNetworkBoost.Start(P,shared)
 include("GreatWorkProbe")
 SPCGreatWorkProbe.Start(P,shared)
+
+include("GreatWorkFacts")
+SPCGreatWorkFacts.Start(P,shared)
 
 include("Dialogue")
 SPCDialogue.Start(P,shared)

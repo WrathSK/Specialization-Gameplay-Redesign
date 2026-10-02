@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="173">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="174">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B146.173: Compact institution rows with stage labels and current active-stage emphasis; UI only.</Description>
+    <Description>B147.174: Shared Great Work eligibility, historical era, location and domestic index; facts-only shadow, legacy Culture effects unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -173,6 +173,8 @@
       <File>UI/BoostRefresh.xml</File>
       <File>BoostIntegerConfig.lua</File>
       <File>UI/GreatWorkBasis.lua</File>
+      <File>GreatWorkCatalog.lua</File>
+      <File>GreatWorkFacts.lua</File>
       <File>DialogueModel.lua</File>
       <File>GreatWorkAdjacencyModel.lua</File>
       <File>GreatWorkAdjacency.lua</File>
@@ -514,6 +516,8 @@
     <File>Data/GreatWorkProbe.sql</File>
     <File>BoostIntegerConfig.lua</File>
     <File>UI/GreatWorkBasis.lua</File>
+    <File>GreatWorkCatalog.lua</File>
+    <File>GreatWorkFacts.lua</File>
     <File>DialogueModel.lua</File>
       <File>GreatWorkAdjacencyModel.lua</File>
       <File>GreatWorkAdjacency.lua</File>

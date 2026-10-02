@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0374
-Implementation Build: develop/live B146.173 / modinfo173 UI_VISUAL_POLISH_DEFERRED; stable B069.96
+Status Revision: S0375
+Implementation Build: develop B147.174 / modinfo174 P0_K_LOCAL_COMPLETE; recorded live B146.173; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_K_PLANNED_NOT_AUTHORIZED
+Work State: P0_K_IMPLEMENTATION_COMPLETE_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B146机构显示回传](Validation/Results/Specialization_B146_UI_Scoped_Review.md)：单图可见四级单行/阶段/右侧状态，用户对视觉不完全满意但允许继续开发。UI_VISUAL_POLISH_REQUIRED，非阻塞；不宣称全部字体/低等级/ACTIVE/缩放实机PASS，不要求现在重复补测。
+[P0-K B147.174事实层](../Architecture/v2/P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)已按用户明确授权实施：311种显式支持作品目录、历史时代/城市馆藏、国内时代索引与简明“巨作事实”诊断。复用旧采集/传输，Gameplay独立确认；没有新收益、永久schema或旧文化writer退出。
 
-[P0-K巨作事实层计划](../Architecture/v2/P0_K_Great_Work_Facts.md)已准备，PLANNED_NOT_AUTHORIZED：已支持作品目录、历史时代/城市馆藏、国内时代索引及按需诊断；复用现有采集/传输，独立shadow事实，不增加收益、不退出旧文化writer。下一动作等待明确实施授权，不进入L/M/U2。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
+26定向真实Lua测试 LOCAL_SIMULATION_PASS；只读DB/来源目录、Lua/XML/modinfo检查 STATIC_CONFIRMED。原生移动/冷加载 USER_GAME_TEST_REQUIRED，不把模拟作为文化Gameplay或全环境目录PASS。最小测试只需A/B移动一件（B可非文化）及一次另存冷加载，见本批合同。下一动作完成W0003安全测试部署后等待验收；不自动进入L/M/N/U2。
 
-已记录运行包B146.173，source `652c0fc`、receipt `B146.173-652c0fc-playtest.json`，174/174 MATCH；本轮未重新核验外部运行包、未部署。main B069.96与恢复点不变。Design、Gameplay、永久状态、GC及功能进度未改。
+已记录运行包仍B146.173，source `652c0fc`、receipt `B146.173-652c0fc-playtest.json`；B147部署完成前不从源码推断live。main B069.96与Design/GC/永久成果不变。机构[UI视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞待办；科研[F2验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
 
 ## 历史阶段记录
 

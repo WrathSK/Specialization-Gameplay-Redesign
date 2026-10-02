@@ -21,6 +21,8 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 科研传统：Store拥有可靠年龄，F2独立consumer仅从当前身份/ACTIVE与年龄重建五档瞬时科技百分比；module-owned退出不清年龄。实际合同及证据见[P0-F科研传统](v2/P0_F_Research_Tradition.md#b144171--f2-implementation-and-validation)。本地模拟不是原生验收；当前部署/授权仍以Status为准。
 
+巨作事实：[P0-K会话事实合同](v2/P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)复用旧UI采集/transport，Gameplay校验当前引用并发布目录资格、历史时代/馆藏与国内索引；旧文化writer保留，事实层不施收益。实机/部署门禁仍只从Status取得。
+
 ## 系统如何组成
 
 这是一套同时使用Gameplay Lua、UI Lua和原生数据库效果的系统。Gameplay维护可信城市进度、验证行动并协调收益；UI读取引擎在该context公开的当前事实、呈现结果；SQL定义原生Modifier与内部载体。UI、单位和载体都不能单独充当永久专业历史。
@@ -38,6 +40,7 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 | 当前专业事实 | CityFlowProbe.SupportFacts → EffectiveFacts → CurrentSpecializationFacts | 从保存authority取得基础与投资，结合当前总督派生ACTIVE；旧Flow写入路径在新模式受阻 |
 | 普通建筑与深度 | OrdinaryBuildingCatalog、DistrictCompleteness | 单一目录/深度计算、缓存与按需明细；目录覆盖和D语义是两个问题 |
 | 网络输入与共享结果 | BackgroundRoutes/NetworkSender → NetworkBridge、NetworkInput | 当前路线快照、版本/引用验证、共享派生视图；专业consumer各自解释收益 |
+| 巨作事实 | DialogueRefresh → GreatWorkFacts / GreatWorkCatalog | 会话资格、时代、位置和国内索引；旧Dialogue/GWA为独立投影，不是新事实收益consumer |
 | 原生收益 | ResearchSupport/IndustrySupport、Lv2Housing/GPP及各能力consumer | 模块拥有各自carrier和退出路径；保存记录不是收益快照 |
 | 玩家呈现与诊断 | CityPotential、P0Panel、InstitutionOverview/Institutions | 读取已确认结果；机构显示目前有科研原型，不能当成四专业完整UI |
 

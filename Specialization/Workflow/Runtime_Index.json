@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "a1308b4fa574cbc845684dd97bb5660b8cca0f3854adb55815ea2e01dc0e46db",
-      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+      "sha256": "4ce831a2c4b1e932224b8c3387ebb6a8407f5ea9e0c2f4f9f46eb9390730f4cf",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "a404a9e6f5e5d1a0a14a834e5a626d44cfb80c7924104c85e608442090d260f4",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "0bd2300ae83a48d5190a6f94d217ec7d5975d2985236a94cdc760d82df4c9804",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
+      "sha256": "89036b2a99ddc659179eb68e4633f6a96c9d31399109a15199c54e1aafa8fbbf",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "99fab64c4f2799456a39d050264377cac781fd3686cb7a997afc18f661cfe920",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
+      "sha256": "3923932b0163cb07ce573462f4db6cf11fcf290e5c09f07a0675f19e933d29df",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "ed126b1f4085a0e87138796de4beb76f8be92c7ba4bfc834b0d684db472b64fc",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
+      "sha256": "d5a216b29b2e966b9bf71216980ead7b845112113d33f6b3dbe5f67433240902",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -511,9 +511,9 @@
       "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "6effcde38e15b3b2d8877a60b616120cf4f2d76f02f40205b7d208d299c00aa5",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "47f9399d5ed0d5939cd254a87e487e6855dc08de0e4295889fcffc476771311d",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "2bafbfe9530c380bba5903eed5f1a9e709aebc53a69de034b40a65ac12c336ec",
-      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+      "sha256": "e4677877631cc47af46f1a16857e81055af8636892ac3b196d6ca25243f41269",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "e893bfb5834474e7615ed850886ed4d5a186f3fcf8ad812803f93e798ced628a",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B141 user-authorized report visibility/free-slot/tooltip repair; actual callback/request/read-route local simulation PASS. No Gameplay changes; Probe/modinfo identity only."
+      "sha256": "ac85f74e089739cd7a8abd309dd37994ec1f4c03d6aca8a587c5212dd10aa153",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -874,6 +874,16 @@
       "sha256": "55aa2d441a565fe73f2029dd795273833e58b1d333d392436742aac99feb7447",
       "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
       "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+    },
+    "Mod/GreatWorkCatalog.lua": {
+      "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+    },
+    "Mod/GreatWorkFacts.lua": {
+      "sha256": "4b86a73aceaaf6f70f03c5aeae85d327c7e2a061cf9422abc2bab6d3cb851a22",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     }
   }
 }

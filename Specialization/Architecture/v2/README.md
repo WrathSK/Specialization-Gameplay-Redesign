@@ -30,7 +30,7 @@
 
 ## 共享事实与收益应用
 
-- [巨作事实层P0-K计划](P0_K_Great_Work_Facts.md)：已支持作品/历史时代/城市馆藏与国内索引；计划待授权，不包含新文化收益。
+- [巨作事实层P0-K计划](P0_K_Great_Work_Facts.md)：已支持作品/历史时代/城市馆藏与国内索引；事实层已获授权实施，不包含新文化收益；实际证据/待验范围看Status。
 
 - [P0-A实际事实与shadow](P0_A_District_Completeness.md)：普通建筑目录、深度、只读专业事实；[读取修复](P0_A_Native_Read_Fix_B078.md)。目录覆盖不能由部分对象PASS外推。
 - [基础专家支持](P0_B1_Specialist_Support.md)、[二级资格/住房/GPP](P0_B2_Lv2_Qualification.md)：各自consumer和精确旧writer退出边界。
