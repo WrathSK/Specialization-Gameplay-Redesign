@@ -37,6 +37,8 @@
 
 ## 收益应用与精度
 
+- [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。当前仅准备获授权，实施等B148验收后逐批审核；按模块读，不加入日常全量context。
+
 - [文化风雅熏陶L1合同与检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)：已授权的逐栋贡献/所属区域投影和旧人口/worker%退出；本地完成，原生门禁待验，当前验收/下一授权仍看Status。
 - [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[此前计划](P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
 - [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[原计划](P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。

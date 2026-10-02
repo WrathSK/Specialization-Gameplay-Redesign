@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0379 authorized B148 L1: reviewed only this changed source/consumer/cutover/test/plan/navigation/Status and new scoped evidence. New ordinary identity does not change old depth; exact legacy exits reviewed.13 targeted +26 K local PASS; native gate pending. Unchanged Design/history/transitive hashes inherited; no blind rehash. Separately verified B148 safe deployment179/179; only actual-live references refreshed after receipt review; native gate remains pending. Screenshot inbox relocation only: reviewed develop-root ignored ScreenShots and current guidance; historical external evidence unchanged. Only the two changed guidance hashes refreshed; B148 native gate unchanged. User-authorized complete old workspace relocation: reviewed current navigation, archive rules, legacy mapping, global classified path audit and file SHA256 equality; no active removed-directory dependency. Only changed guarded docs/new mapping reviewed; runtime/Design/Status unchanged.",
+  "review_basis": "S0380 planning-only Culture preparation at 9d75ff8: reviewed current Culture/Shared contracts, directly relevant source and scoped prior evidence; read-only configured DB queries. Six L2/L3/M/N/U2 plans and changed navigation/Status/Authority reviewed for rules, links, open gates and no implementation authorization. Only these nine document hashes updated/added. All unchanged hashes/review provenance inherited from 9d75ff8; runtime inventory/live receipt and active L1 context remain unchanged. B148 native gate pending; no gameplay tests/prototype/deployment.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "71b219f97366a86820282ec08720ccf8ec3696f09fa49c82d7be65f29c941765",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "cb9217e3c76cb803650589579967c9f1eb9a1d443a2570e7ee1f3117909e8e70",
+    "Specialization/Status/Specialization_P0_Status.md": "0ce1ccce5b08bb33093568e9d0e9c2a9add42619f33295060ad3b53b149dbc2d",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -102,7 +102,7 @@
     "DevelopmentTests/test_p0_c_regression.py": "e7e38476232f5769fea1eb75de2bb5cd49d3289d427e78b5ea4ff7eb249de025",
     "Specialization/Status/Validation/Results/Specialization_B081_P0C_Deployment_20260920.md": "44f6bf5ff8abc3d881ee4364d8036b83c4a8876bae1fa41e1dd0e9ba3a99b728",
     "Specialization/Architecture/v2/P0_D1_Plan.md": "8e0eade15be491a2c157b4e4f43e493bc2559e4039e31a0709120753da95d324",
-    "Specialization/Architecture/v2/README.md": "2a591c1da2e2ce87669f67a44f6536dd6e8e374991265d3e8eb06ded5dab48f7",
+    "Specialization/Architecture/v2/README.md": "63cd219b4ceb702a4e1cdb3c360495cd96adaed17c79acfe7352c1ddfad30201",
     "Mod/Data/Lv3Effects.sql": "5a19a7008b0b21d5f7b81471f1c0c08e7925ada55fe36983f7c92302802e59f3",
     "DevelopmentTests/test_p0_d1_gate.py": "b0ac8baedfaef8bac50d63fec4d3851c2b7e8780cf05e2d60d2b15996373197b",
     "Specialization/Architecture/v2/P0_D1_Primitive_Gate.md": "c997fab84525ae74051b9c0b56b39c8414b28685fd0415b7cb790488a301c3a5",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "3e17ddd87703e6129410e6500708925583fa2f46acd631a43f8c152557c1b3d2",
+    "Specialization/Workflow/Authority.json": "65e784d7f33427177b43d34ab2ff5b6df13deb7a1fec0d885199a44d9a33eccc",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -333,6 +333,12 @@
     "Mod/CultureAestheticModel.lua": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
     "Mod/Data/CultureAesthetic.sql": "c11ac2ce49551d086dc28a12bcd3c88560d2f180c36ce386c7082ea3e6004d51",
     "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md": "d92b89ffb9691977f0a29b96bdb9fe4bcc45d9a69e853e5605fa713d76b8f91f",
-    "Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md": "e2dfa11bcf5cf5ff1e076b659e4f2e4115e041cbf66da14ec07cea2790d749c6"
+    "Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md": "e2dfa11bcf5cf5ff1e076b659e4f2e4115e041cbf66da14ec07cea2790d749c6",
+    "Specialization/Architecture/v2/Culture_Preparation.md": "7e9fa274851d05765c2d043d2bdcc54a4e068ef5c81b6cdb11430e19eb956857",
+    "Specialization/Architecture/v2/P0_L2_Meaning.md": "ff7cde63f6e3e0368e8e19fd3d8ded354bcf4c5ed10a75791121665a9481215b",
+    "Specialization/Architecture/v2/P0_L3_Inspiration.md": "3c31aa7cdb8603306848487146b880b853b88aebbff1a427fb63bbb9ba13db27",
+    "Specialization/Architecture/v2/P0_M_Dialogue.md": "e8ca691dafd714ea911ac29d2f0b9dcc57bff6b2c376a4025f3d243795e26621",
+    "Specialization/Architecture/v2/P0_N_Expedition.md": "52179c4a61ea6644076ef9b3ba6b05d6b26b4220c077bd4257129283a8679917",
+    "Specialization/Architecture/v2/P0_U2_Culture_Era.md": "6de67ae7e7039af4c4596fd29b3e73e95fa1bed311f37d92caf8b9ce6301fa65"
   }
 }
