@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; foreign holdings dormant; return/first AI conquest have existing ELIG/PROG authority"
   },
   "batch": "P0-F2",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0036",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0368",
+    "status": "S0369",
     "runtime": "B144.171 / modinfo171",
     "military": "D0034"
   },
@@ -153,7 +153,7 @@
       "test_b136_progression.py",
       "Lua/XML/SQL wiring; context check/self-test"
     ],
-    "user": "One city percentage/gating/restore/cold-load flow; not yet tested."
+    "user": "Completed scoped B144 six-image plus explicit user report; no repeat required."
   },
   "full_audit_triggers": [
     "Unexpected permanent state inconsistency",
@@ -161,8 +161,8 @@
   ],
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Wait scoped native validation, no later ability",
+    "native": "USER_GAME_TEST_PASS scoped: initial5% and restart user-confirmed; six images verify age10/10%, total30% with base20%, governor withdrawal20%.",
+    "stop": "F2 native gate closed; next plan/implementation requires authorization",
     "deployment": "B144.171 deployed;174/174 MATCH;source 5364c0e;receipt B144.171-5364c0e-playtest.json DEVELOP_ACTIVE;B143/stable recovery verified;OS game exit verified"
   }
 }

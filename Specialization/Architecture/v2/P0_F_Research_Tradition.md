@@ -1,6 +1,6 @@
 # P0-F 科研学术传统 — 分段实施计划
 
-状态：P0-F1 B143.170限定 USER_GAME_TEST_PASS；F2已获授权，本地通过，待原生验收。验收见[B143证据](../../Status/Validation/Results/Specialization_B143_F1_Pass.md)。基线为B142.169、D0036总Spec中的Research_D0031；本计划不改变Design。用户已验收模板记录与重启保持，见[B142证据](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)。本页维护F1定域合同与结果；部署事实以Status及receipt为准。
+状态：P0-F1 B143.170限定 USER_GAME_TEST_PASS；F2 B144.171限定 USER_GAME_TEST_PASS。验收见[B143证据](../../Status/Validation/Results/Specialization_B143_F1_Pass.md)。基线为B142.169、D0036总Spec中的Research_D0031；本计划不改变Design。用户已验收模板记录与重启保持，见[B142证据](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)。本页维护F1定域合同与结果；部署事实以Status及receipt为准。
 
 ## 玩法合同与依赖
 
@@ -116,3 +116,8 @@ W0004 L2业务集成＋涉及保存/失城调用点的L3定域回归，不跑历
 回滚使用保留的B143包及本次测试前存档。B144新增SQL定义，不能以旧包继续新测试存档作为兼容承诺。本批退出点为原生验收；没有授权自动进入其它能力。
 
 部署：B144.171 / modinfo171，source `5364c0e`，receipt `B144.171-5364c0e-playtest.json` DEVELOP_ACTIVE；174/174 MATCH，游戏退出/无pending事务/B143与stable恢复包已核验。未启动游戏；实际科技收益仍待上述一次用户验收。
+
+
+## B144 F2 native acceptance
+
+[六图与用户陈述](../../Status/Validation/Results/Specialization_B144_F2_Pass.md)完成F2限定USER_GAME_TEST_PASS：起始5%及冷重启为用户确认；T57-age10配置10%，科技总修正30%（基础综合大学20%），总督调离后回落20%为图示证据。基础与加成验算见结果；有限显示精度不用于证明UI延迟。F2门禁关闭，不要求重复；后续能力仍需新计划/授权。上方实施阶段“待测”保留为当时记录，不再派发该测试。

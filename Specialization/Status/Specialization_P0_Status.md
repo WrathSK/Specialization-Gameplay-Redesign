@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0368
-Implementation Build: develop/live B144.171 / modinfo171 LOCAL_PASS_NATIVE_PENDING;174/174 MATCH; stable B069.96
+Status Revision: S0369
+Implementation Build: develop/live B144.171 / modinfo171 F2_SCOPED_USER_PASS;174/174 recorded MATCH; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_F2_LOCAL_PASS_NATIVE_PENDING
+Work State: P0_F2_SCOPED_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-[F2 B144实施合同](../Architecture/v2/P0_F_Research_Tradition.md#b144171--f2-implementation-and-validation)已获授权并完成STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：独立5/10/15/20/25%科技carrier、ACTIVE门槛、同回合退出恢复、确认失城精确撤销、冷加载重建；年龄与投资账本不改，旧科研writer不复活。B144、B143、B136定向回归通过；实际收益仍USER_GAME_TEST_REQUIRED。
+[B144 F2限定实机验收](Validation/Results/Specialization_B144_F2_Pass.md) **USER_GAME_TEST_PASS（用户已测场景）**：用户确认起始5%→累计10回合10%、重启保持；六图直接确认T57/age10/P4/ACTIVE4/配置10%，城市科技修正30%=综合大学20%+传统10%，总督调离后回落20%。基础收益亦变化，验算及显示精度边界见结果。六张原图已读取并hash归档。
 
-[F1限定实机验收](Validation/Results/Specialization_B143_F1_Pass.md)保持，无需重复。下一允许动作：完成一座科研城的实际百分比、总督退出恢复及冷加载验收，流程见F2合同。停止在本批门禁，不进入其它能力或跨Owner政策。
+F1/F2本批门禁关闭，无需重复测试。更高档、其它速度及异常保存仍保持原本地证据范围；跨Owner传统归属未定义，不因验收开启。下一建议仅为盘点下一功能批次并提出具体计划，未授权新实现。
 
-运行包已切换B144.171，source `5364c0e`、receipt `B144.171-5364c0e-playtest.json`，174/174 MATCH；游戏退出已核验，无未完成事务。main B069.96不变，B143及stable恢复包已核验保留。[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)不重新打开，GC未改。
+运行基线仍B144.171，source `5364c0e`、receipt `B144.171-5364c0e-playtest.json`，既有174/174 MATCH；本轮未重新核验外部运行包、未部署。main B069.96、恢复点及[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)保持。无Design、runtime或GC变更。
 
 ## 历史阶段记录
 
