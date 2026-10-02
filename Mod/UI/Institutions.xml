@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context ColorSet="BodyTextCool" FontStyle="Shadow">
 <Stack ID="InstitutionContainer" Size="parent,auto" StackGrowth="Bottom" Hidden="1">
-<Grid Size="parent,28" Style="DivHeader"><Label ID="InstitutionHeader" Anchor="C,C" Style="CityPanelTextSmall" String="" /></Grid>
+<Grid Anchor="L,T" Size="parent,24" Style="DivHeader">
+<Container Size="parent,24"><Image Texture="Controls_Gradient_HalfRadial" Size="parent,120" FlipY="1" Anchor="C,T" Color="72,103,130,255"/></Container>
+<Label ID="InstitutionHeader" Anchor="C,C" Style="CityPanelSubPanelTitle" Align="Center" WrapWidth="parent" String="" />
+</Grid>
 <Stack ID="InstitutionRows" Size="parent,auto" StackGrowth="Bottom">
 <Grid ID="Institution1" Size="parent,48" Style="CityPanelSubPanelContainer"><Label ID="InstitutionName1" Anchor="L,T" Offset="12,4" Style="CityPanelText" String=""/><Label ID="InstitutionState1" Anchor="L,T" Offset="12,27" Style="CityPanelTextSmall" String=""/></Grid>
 <Grid ID="Institution2" Size="parent,48" Style="CityPanelSubPanelContainer"><Label ID="InstitutionName2" Anchor="L,T" Offset="12,4" Style="CityPanelText" String=""/><Label ID="InstitutionState2" Anchor="L,T" Offset="12,27" Style="CityPanelTextSmall" String=""/></Grid>

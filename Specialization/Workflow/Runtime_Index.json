@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "a5cbcf93423af1e342476844e6ab4a46dbb8156f5a27680b5ab746004bfe19da",
-      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+      "sha256": "7c046e49381aecb7df19b7b6556748663e72e322acdb4bc70bf5d2ec76586aaf",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "B145 authorized top-category UI-only change; static and scoped UI mock pass, native pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d9903af3762fdb3c71f2b7facbaa8329461e5e9917119f83aec164e04bc4a2c5",
-      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+      "sha256": "b5b407032b734c8576442f5cf9968e24c79e9ccf392dd39703964a66bf086b05",
+      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "provenance": "B145 authorized top-category UI-only change; static and scoped UI mock pass, native pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -721,9 +721,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "abdc795324a97daa67b35ed67d591d0317d28272dc325db2cb8fa54e16bce63a",
+      "sha256": "73f05da16e9ccb1a59fcfd4373598c8b0d52fad404bb89aa1ddf730c19b4ccad",
       "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+      "provenance": "B145 authorized top-category UI-only change; static and scoped UI mock pass, native pending"
     },
     "Mod/UI/InstitutionOverview.lua": {
       "sha256": "5767e891988dedb2d543025c58753aa088360e50e8797480dfeaad93dca0a765",
@@ -731,14 +731,14 @@
       "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "c185cfd65b3461e6454dac13721919051fdb8bf3c4d5ebd198283aa64904dd60",
+      "sha256": "3fe4964bb8784024360d5a90ef6d3c91ae6ed96a6a0d7ef6450f3586ed6b8fb7",
       "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+      "provenance": "B145 authorized top-category UI-only change; static and scoped UI mock pass, native pending"
     },
     "Mod/UI/Institutions.xml": {
-      "sha256": "8527a5fd082b89c5ab938644fc8cc06b8a77a91c7422d301999f72b96df64863",
+      "sha256": "96c46589fc253ef33cfbe32dbdae19adc63ce765cd1622d050bfb380957481cd",
       "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+      "provenance": "B145 authorized top-category UI-only change; static and scoped UI mock pass, native pending"
     },
     "Mod/CityIdentityRead.lua": {
       "sha256": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",

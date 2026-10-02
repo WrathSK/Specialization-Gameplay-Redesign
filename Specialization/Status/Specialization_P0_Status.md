@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0369
-Implementation Build: develop/live B144.171 / modinfo171 F2_SCOPED_USER_PASS;174/174 recorded MATCH; stable B069.96
+Status Revision: S0370
+Implementation Build: develop B145.172 / modinfo172 UI_LOCAL_PASS; live B144.171; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_F2_SCOPED_PASS
+Work State: U1_TOP_CATEGORY_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B144 F2限定实机验收](Validation/Results/Specialization_B144_F2_Pass.md) **USER_GAME_TEST_PASS（用户已测场景）**：用户确认起始5%→累计10回合10%、重启保持；六图直接确认T57/age10/P4/ACTIVE4/配置10%，城市科技修正30%=综合大学20%+传统10%，总督调离后回落20%。基础收益亦变化，验算及显示精度边界见结果。六张原图已读取并hash归档。
+[B145机构大类置顶](../Architecture/v2/U1_Presentation_Prototype.md#b145172--专业机构大类置顶)已获授权并本地完成：使用原生大类标题、机构排在城市概况之前，其它分类顺序保持；原四机构/状态/Tooltip和carrier隐藏保留。仅清除“学术传统尚未实现”旧标记。L1静态与定向UI模拟通过，实际布局/切城/滚动待用户一次验收。没有Gameplay、GC、保存或Design变化。
 
-F1/F2本批门禁关闭，无需重复测试。更高档、其它速度及异常保存仍保持原本地证据范围；跨Owner传统归属未定义，不因验收开启。下一建议仅为盘点下一功能批次并提出具体计划，未授权新实现。
+下一动作仅安全部署B145并等待上述显示验收；不进入文化或其它玩法。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持，无需重测。
 
-运行基线仍B144.171，source `5364c0e`、receipt `B144.171-5364c0e-playtest.json`，既有174/174 MATCH；本轮未重新核验外部运行包、未部署。main B069.96、恢复点及[性能结项约束](../Architecture/Specialization_v0.1_Architecture.md#结项后的实现与回归边界)保持。无Design、runtime或GC变更。
+已记录运行包仍B144.171，source `5364c0e`、receipt `B144.171-5364c0e-playtest.json`，174/174 MATCH；B145尚未部署。main B069.96不变，既有恢复点保留。
 
 ## 历史阶段记录
 

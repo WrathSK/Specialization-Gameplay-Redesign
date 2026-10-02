@@ -49,3 +49,16 @@ LOCAL_SIMULATION_PASS（Lua/UI mock与静态检查，不是Civ VI实机）：
 ## 发布
 
 coherent develop implementation；main/Design/收益SQL不变。W0003仍授权退出/备份/hash事务部署；最终部署状态见Status。保留完整B086运行包，不启动游戏。完成后停止等显示验收。
+
+
+## B145.172 — 专业机构大类置顶
+
+2026-10-01用户已授权显示修订；本地完成，原生布局待验。本节更新B087末尾小分类的位置/标题，不扩展完整U1或其它专业。
+
+机构容器仍在城市详情BreakdownStack，置于城市概况之前；使用与原版奇观及HD城市政策一致的24高DivHeader、渐变与CityPanelSubPanelTitle，标题“专业机构”。固定四机构、Potential/ACTIVE、Tooltip及隐藏carrier语义保持；仅去掉已过时“学术传统尚未实现”标记，不改能力文字含义。
+
+原生CityStates等使用GetChildren/SortChildren；此处建立一次局部顺序表，机构排0，其余兄弟保持原相对顺序。已置顶时不重复排序；不复制/替换HD完整面板，不移动其它节点到新容器。大小变化只重算当前显示stack及PanelStack。沿已有事件/单城展示缓存，无新Gameplay请求、轮询或永久字段；关闭卸载移除自身控件和订阅。
+
+L1 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：原生/HD标题定义及排序用例；临时Lua mock执行实际Institutions.lua验证置顶、其它分类顺序、重复不排序、P4→P2换城、ACTIVE状态、隐藏/恢复、shutdown；XML及modinfo引用检查通过。未跑历史全套、stress或玩法回归。原生排序视觉/滚动仍USER_GAME_TEST_REQUIRED。
+
+最小一次验收：打开科研城详情，专业机构在城市概况之前且标题与奇观同级；切换另一城后条目/阶段不串；向下滚动仍可正常访问建筑、奇观、城市政策。无需重复收益或年龄测试。B144/F2验收保持，下一Gameplay批次未授权。
