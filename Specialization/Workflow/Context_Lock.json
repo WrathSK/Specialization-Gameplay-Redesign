@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0379 authorized B148 L1: reviewed only this changed source/consumer/cutover/test/plan/navigation/Status and new scoped evidence. New ordinary identity does not change old depth; exact legacy exits reviewed.13 targeted +26 K local PASS; native gate pending. Unchanged Design/history/transitive hashes inherited; no blind rehash. Separately verified B148 safe deployment179/179; only actual-live references refreshed after receipt review; native gate remains pending.",
+  "review_basis": "S0379 authorized B148 L1: reviewed only this changed source/consumer/cutover/test/plan/navigation/Status and new scoped evidence. New ordinary identity does not change old depth; exact legacy exits reviewed.13 targeted +26 K local PASS; native gate pending. Unchanged Design/history/transitive hashes inherited; no blind rehash. Separately verified B148 safe deployment179/179; only actual-live references refreshed after receipt review; native gate remains pending. Screenshot inbox relocation only: reviewed develop-root ignored ScreenShots and current guidance; historical external evidence unchanged. Only the two changed guidance hashes refreshed; B148 native gate unchanged.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -38,7 +38,7 @@
     "Mod/UI/IndustryRefresh.lua": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
     "Mod/UI/P0Panel.lua": "3fa1fd42c30f37597c5c016e3867dc1b574beecea28853df1fdce5e02e93b910",
     "Mod/UI/P0Panel.xml": "ac09590a361e8f1affb14aafe890d9c78f2438d7275fa525f247c1513735f273",
-    "Specialization/AGENTS.md": "0c619b22b8419ef0d40b33f9c7b3084e9c3b5271c22a1e5d3185be91411a579f",
+    "Specialization/AGENTS.md": "973ebfb57580d380448ec31397721f0aafbcb3ddfa3116a448ddb4701526d99b",
     "Specialization/Architecture/Playtest_Workflow.md": "e0377a62343c61d6ddd77ed12b725def0e724fbb3ada7f4ae9eb4c84dc52a6e1",
     "Specialization/Architecture/Specialization_v0.1_Architecture.md": "73aded0331c4dfbc1e7bf7f6372a78a64f4551bdaa9359b8e2533d0d4b490b18",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
@@ -58,7 +58,7 @@
     "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md": "e1a3e21e24fcca6d078299059a6b1299588c9148921784db8befd232ca8b1fb9",
     "Specialization/Design/Design_ChangeLog.md": "71b219f97366a86820282ec08720ccf8ec3696f09fa49c82d7be65f29c941765",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
-    "Specialization/README.md": "c7d6d0c6e128cbf5ee612b62dc49e63737a7f34f10e767a17f78603f78cc1e62",
+    "Specialization/README.md": "f1d7816997a19c5dea017fe189c8403432b8c7a36bba2638e5e1c00200b5b47a",
     "Specialization/Status/Specialization_P0_Status.md": "cb9217e3c76cb803650589579967c9f1eb9a1d443a2570e7ee1f3117909e8e70",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",

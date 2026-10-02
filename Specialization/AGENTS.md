@@ -20,7 +20,7 @@
 
 ## 截图归档（持续授权）
 
-外部工作区`Specialization/ScreenShots`为投递入口，保持默认文件名。逐张读取、批次明确后移动原图至外部`Status/Validation/Evidence/<Batch>/`，核对移动前后SHA256并记录manifest/结果关联。收件箱目录不移动，不留重复副本；同名冲突不覆盖，未读/不明文件留下。归档原件冻结，不擅自删除或压缩；无需逐次请求归档授权。
+当前develop根目录`ScreenShots/`为截图投递入口，整目录由Git忽略，保持默认文件名；旧外部工作区收件箱已迁出。逐张读取、批次明确后移动原图至`local/config.json`所配置外部工作区的`Specialization/Status/Validation/Evidence/<Batch>/`，核对移动前后SHA256并记录manifest/结果关联。收件箱目录不移动，不留重复副本；同名冲突不覆盖，未读/不明文件留下。归档原件冻结，不擅自删除或压缩；无需逐次请求归档授权。
 
 ## 保留的技术与测试约束
 
