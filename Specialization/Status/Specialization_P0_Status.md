@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0373
-Implementation Build: develop/live B146.173 / modinfo173 UI_LOCAL_PASS_NATIVE_PENDING; stable B069.96
+Status Revision: S0374
+Implementation Build: develop/live B146.173 / modinfo173 UI_VISUAL_POLISH_DEFERRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: U1_COMPACT_ROWS_LOCAL_PASS_NATIVE_PENDING
+Work State: P0_K_PLANNED_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[B146单行机构与阶段层级](../Architecture/v2/U1_Presentation_Prototype.md#b146173--单行机构与阶段层级)已获授权并本地完成：32高实例行、Ⅰ–Ⅳ、右侧状态、最高ACTIVE强调、长名称独立截断/Tooltip，Potential机构保持。L1静态/实际Lua定向模拟通过；真实字体、缩放、切城和ACTIVE刷新待一次用户验收。B145置顶在本次截图可见；不扩展完整U1、Harbor或其它专业。
+[B146机构显示回传](Validation/Results/Specialization_B146_UI_Scoped_Review.md)：单图可见四级单行/阶段/右侧状态，用户对视觉不完全满意但允许继续开发。UI_VISUAL_POLISH_REQUIRED，非阻塞；不宣称全部字体/低等级/ACTIVE/缩放实机PASS，不要求现在重复补测。
 
-下一动作仅等待用户验收显示；不进入文化/新玩法。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持，无需重测。Gameplay、Design、永久状态、GC未改。
+[P0-K巨作事实层计划](../Architecture/v2/P0_K_Great_Work_Facts.md)已准备，PLANNED_NOT_AUTHORIZED：已支持作品目录、历史时代/城市馆藏、国内时代索引及按需诊断；复用现有采集/传输，独立shadow事实，不增加收益、不退出旧文化writer。下一动作等待明确实施授权，不进入L/M/U2。科研[F2限定验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
 
-B146已部署，source `652c0fc`、receipt `B146.173-652c0fc-playtest.json`，174/174 MATCH；游戏退出、B145/stable恢复点、无pending事务已核验。main B069.96不变。
+已记录运行包B146.173，source `652c0fc`、receipt `B146.173-652c0fc-playtest.json`，174/174 MATCH；本轮未重新核验外部运行包、未部署。main B069.96与恢复点不变。Design、Gameplay、永久状态、GC及功能进度未改。
 
 ## 历史阶段记录
 

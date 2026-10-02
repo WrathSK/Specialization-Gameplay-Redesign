@@ -83,3 +83,8 @@ L1 STATIC_CONFIRMED / LOCAL_SIMULATION_PASS：实际Lua临时mock覆盖P1/P2/P4�
 参考截图已逐张读取，外部Evidence/B146_UI_Row_Reference_20261001归档1/1 SHA256一致；仅证明旧双行显示与本轮修改需求，不作为B146验收。
 
 部署：source652c0fc，B146.173 / modinfo173，receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE；174/174 MATCH，游戏退出、B145/stable恢复点及无pending事务核验通过。一次错误receipt路径在读取阶段失败、未发生替换；修正路径后正常事务完成。main未改。
+
+
+## B146用户反馈 — 视觉优化后置
+
+2026-10-01用户不完全满意当前视觉，但明确不阻碍继续开发。[单图定域观察/原件归档](../../Status/Validation/Results/Specialization_B146_UI_Scoped_Review.md)证明截图中的四级单行、阶段标识和状态显示；不能扩大到低等级/ACTIVE刷新/所有缩放PASS。UI_VISUAL_POLISH_REQUIRED，非阻塞；最高阶段视觉区分仍需润色。现状保留，本轮不做UI修复。下一动作仅准备P0-K事实层计划；完整U1、Harbor和机构润色均未获新实施授权。

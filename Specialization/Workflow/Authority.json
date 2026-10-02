@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0373",
+    "status": "S0374",
     "runtime": "B146.173 / modinfo173",
     "military": "D0034"
   },
@@ -31,9 +31,9 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "652c0fcc305ca638d27409bf79adf612dd153314",
-  "current_batch": "U1_COMPACT_ROWS_LOCAL_PASS_NATIVE_PENDING",
-  "next_batch": "Await one institution-row native acceptance; no gameplay batch authorized.",
-  "manifest": "Specialization/Workflow/P0-U1.json",
+  "current_batch": "P0_K_PLANNED_NOT_AUTHORIZED",
+  "next_batch": "Await explicit P0-K Great Work facts implementation authorization; institution visual polish deferred and nonblocking.",
+  "manifest": "Specialization/Workflow/P0-K.json",
   "live": "B146.173 deployed;174/174 MATCH;source652c0fc;receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE;B145/stable recovery verified;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0373 reviewed B146 deployment/equality/recovery; UI local pass/native pending.",
+  "context_review_status": "S0374 scoped B146 screenshot/user defer decision archived; P0-K facts-only plan reviewed against Culture D0029/current source; no runtime/deployment change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -14,7 +14,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
   },
   "batch": "P0-U1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0036",
     "research": "D0031",
@@ -106,9 +106,9 @@
   ],
   "result": {
     "local": "LOCAL_SIMULATION_PASS",
-    "native": "USER_GAME_TEST_REQUIRED",
+    "native": "Scoped screenshot confirms shown P4 rows/stages/status only; user not fully satisfied; visual polish deferred nonblocking, no full native UI PASS",
     "deployment": "B146.173 deployed;174/174 MATCH;source652c0fc;receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE;B145/stable recovery verified;OS game exit verified",
-    "stop": "Await UI acceptance; no new gameplay authorization"
+    "stop": "User permits development to proceed; visual polish remains U1 backlog; P0-K plan only"
   },
   "goal": "Bounded feasibility/display prototype, not full U1"
 }
