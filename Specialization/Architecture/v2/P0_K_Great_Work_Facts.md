@@ -1,7 +1,7 @@
 # P0-K — 巨作事实层实施计划
 
 Document Owner: Codex
-State: IMPLEMENTATION_COMPLETE_AWAITING_USER
+State: COMPLETE — USER_GAME_TEST_PASS_SCOPED
 Planning baseline: develop 9aaa831；源码/已记录运行包B146.173，部署source652c0fc。2026-10-01。
 Authority: Spec D0036 Culture节 → Culture_D0029.contracts.work_pool；A0161/D0032事实层合同；Hybrid D展示方向D0032。Design未变；用户在计划审核后明确授权本批实施。
 
@@ -122,3 +122,10 @@ Lua语法、modinfo174全部文件/ImportFiles与XML、双语诊断key检查 STA
 ### B147.174 deployment record
 
 已按W0003部署已提交/推送source `87655e595d3c4089d2c075a7ddd7228cf0ad2272`；receipt `B147.174-87655e5-playtest.json` DEVELOP_ACTIVE，modinfo174，176/176 source/runtime MATCH，digest `f8b51a6bee4d1a99ae8ac62114a70130d346802bbf5dd6143012205a07fef649`。OS确认游戏退出；先按B146 receipt恢复stable再切B147，B146完整运行恢复点与stable恢复点均核验保留，无pending transaction。main/source Design/GC未变；用户尚未进行本批原生验收。此记录不代替USER_GAME_TEST。
+
+
+## B147.174 — scoped native acceptance
+
+2026-10-02，用户提供10张图，1–5移动前、6–8移动后、9–10冷重启后。两城各2件古典作品→Edinburgh4件（3著作+1雕塑）；作品位置及国内来源在冷重启后重建一致，Stirling旧国内来源退出。USER_GAME_TEST_PASS限于此次馆藏/移动/冷加载；311全目录、文物、跨时代/owner/UNKNOWN异常边界仍保留本地或静态证据。截图及用户操作陈述的区别见[限定验收结果](../../Status/Validation/Results/Specialization_B147_P0K_Pass.md)。原图10/10 hash一致移至外部证据目录，不入Git。
+
+P0-K最小实机门禁关闭，无需重测；先前“待验”是实现checkpoint当时状态。下一建议仅P0-L1风雅熏陶计划，尚未授权实施。本次仅验收文档，Mod/Design/GC/main/部署未变；机构视觉优化仍非阻塞。

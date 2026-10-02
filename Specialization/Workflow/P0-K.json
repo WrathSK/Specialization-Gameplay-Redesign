@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
   },
   "batch": "P0-K",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0036",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0376",
+    "status": "S0377",
     "runtime": "B147.174 / modinfo174",
     "military": "D0034"
   },
@@ -201,7 +201,7 @@
       "DevelopmentTests/test_p0_k.py: 26 targeted real-Lua tests; no historical broad wrappers",
       "Read-only configured DB / explicit source registry311; Lua/XML/modinfo/localization/context checks"
     ],
-    "user": "One supported Work A->B, city count/era/domestic reports then save, fully exit and cold load; native pending"
+    "user": "USER_GAME_TEST_PASS scoped: 10 B147 screenshots/user cold-restart statement; writing/sculpture, two cities, classical era; other boundaries not expanded."
   },
   "full_audit_triggers": [
     "Unbounded dependency or unexpected old effect/state write",
@@ -211,7 +211,7 @@
   "result": {
     "implementation": "B147.174 facts-only; authorized after reviewed plan; legacy writers unchanged; no persistent schema",
     "local": "26 targeted tests LOCAL_SIMULATION_PASS; source/DB/syntax/modinfo STATIC_CONFIRMED",
-    "native": "USER_GAME_TEST_REQUIRED; not run",
-    "stop": "Await smallest native acceptance; do not implement L/M/N/U2 or UI polish"
+    "native": "USER_GAME_TEST_PASS scoped; Specialization/Status/Validation/Results/Specialization_B147_P0K_Pass.md",
+    "stop": "K minimal gate closed; next P0-L1 plan only, no implementation authorization; institution visual polish remains deferred."
   }
 }

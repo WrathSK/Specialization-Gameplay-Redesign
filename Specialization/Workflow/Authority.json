@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0376",
+    "status": "S0377",
     "runtime": "B147.174 / modinfo174",
     "military": "D0034"
   },
@@ -31,8 +31,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "87655e595d3c4089d2c075a7ddd7228cf0ad2272",
-  "current_batch": "P0_K_IMPLEMENTATION_COMPLETE_AWAITING_USER",
-  "next_batch": "Await P0-K native move/cold-load acceptance; only then propose P0-L1, not authorized.",
+  "current_batch": "P0_K_COMPLETE_AWAITING_NEXT_PLAN",
+  "next_batch": "Prepare P0-L1 Elegant Influence plan after scoped P0-K native PASS; implementation not authorized.",
   "manifest": "Specialization/Workflow/P0-K.json",
   "live": "B147.174 deployed;176/176 MATCH;source87655e5;receipt B147.174-87655e5-playtest.json DEVELOP_ACTIVE;B146/stable recovery verified;OS game exit verified",
   "stable": "main B069.96 / modinfo96",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0376 reviewed authorized P0-K facts-only code, explicit registry/DB provenance, 26 targeted Lua tests and unchanged legacy writers; native pending. Verified B147 deployment/equality and retained recovery; not native gameplay PASS.",
+  "context_review_status": "S0377 reviewed 10 B147 images plus user before/move/cold-restart grouping; scoped native K PASS, source/catalog/local evidence unchanged; no runtime/deployment change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

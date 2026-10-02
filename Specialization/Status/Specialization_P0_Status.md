@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0376
-Implementation Build: develop/live B147.174 / modinfo174 P0_K_LOCAL_COMPLETE_AWAITING_USER; stable B069.96
+Status Revision: S0377
+Implementation Build: develop/live B147.174 / modinfo174 P0_K_USER_GAME_TEST_PASS_SCOPED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_K_IMPLEMENTATION_COMPLETE_AWAITING_USER
+Work State: P0_K_COMPLETE_AWAITING_NEXT_PLAN
 
 ## CURRENT AUTHORITATIVE STATE
 
-[P0-K B147.174事实层](../Architecture/v2/P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)已按用户明确授权实施：311种显式支持作品目录、历史时代/城市馆藏、国内时代索引与简明“巨作事实”诊断。复用旧采集/传输，Gameplay独立确认；没有新收益、永久schema或旧文化writer退出。
+[P0-K B147.174限定实机验收](Validation/Results/Specialization_B147_P0K_Pass.md)完成：用户10图确认移动前两城各2件古典作品，移动后Edinburgh4件；冷重启后四件/位置与国内来源保持正确，Stirling旧来源退出。USER_GAME_TEST_PASS仅此著作/雕塑、单时代、移动/冷加载场景；最小K门禁关闭，无需重测。
 
-26定向真实Lua测试 LOCAL_SIMULATION_PASS；只读DB/来源目录、Lua/XML/modinfo检查 STATIC_CONFIRMED。原生移动/冷加载 USER_GAME_TEST_REQUIRED，不把模拟作为文化Gameplay或全环境目录PASS。最小测试只需A/B移动一件（B可非文化）及一次另存冷加载，见本批合同。已安全部署，下一动作等待这次最小验收；不自动进入L/M/N/U2。
+26定向Lua测试 LOCAL_SIMULATION_PASS、311目录/来源与语法 STATIC_CONFIRMED保持；不扩成全目录、文物、跨时代或全部owner/UNKNOWN实机PASS，也不升级为新文化收益/性能验收。[事实层合同](../Architecture/v2/P0_K_Great_Work_Facts.md#b147174--scoped-native-acceptance)及原始证据可达。下一建议准备P0-L1风雅熏陶具体计划，尚未授权实施；本次只归档和同步验收，不自动进入L/M/N/U2。
 
-已按W0003部署B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json` DEVELOP_ACTIVE；176/176 MATCH。游戏退出、stable桥与B146/stable恢复点已核验保留，非原生验收。main B069.96与Design/GC/永久成果不变。机构[UI视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞待办；科研[F2验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
+已记录live仍B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json`；此前部署176/176 MATCH/B146与stable恢复点保留。本轮未重新核验外部运行包、未部署。main B069.96/Design/GC/永久成果未改。机构[UI视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞待办；科研[F2验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
 
 ## 历史阶段记录
 
