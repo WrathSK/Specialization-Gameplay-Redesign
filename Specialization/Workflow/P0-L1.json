@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
+  },
+  "batch": "P0-L1",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "authority_versions": {
+    "design": "D0036",
+    "research": "D0031",
+    "industry": "D0036",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0378",
+    "runtime": "B147.174 / modinfo174",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+  "goal": "Culture III 风雅熏陶: current local work-era diversity gives per-ordinary-building Tourism; exact old Culture population/worker-percent cutover only after native primitive gate",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "kind": "full",
+      "reason": "Current complete L1 scope/primitive gate/cutover/acceptance/stop; recovery and planning entry"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Current Culture authority/override and supersession scope",
+      "selector": "## 6. Culture / Theater Square — CUL"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Complete L1 accepted gameplay qualification, exclusions and current-state semantics",
+      "selector": "/abilities/2",
+      "expected_id": "CUL_L3_AESTHETIC"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Initial K1, not final balance",
+      "selector": "/parameters/aesthetic_K"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Complete supported work eligibility and historical-era source",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Exact old effect supersession boundaries, not authorization to retire future batches",
+      "selector": "/superseded_old_rules"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Ordinary/current eligibility and Tier0-versus-D separation; no D formula change",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Ordinary/current eligibility and Tier0-versus-D separation; no D formula change",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Ordinary/current eligibility and Tier0-versus-D separation; no D formula change",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "kind": "section",
+      "reason": "Current implemented facts/API/events and scoped native acceptance prerequisite",
+      "selector": "## B147.174 — facts-only implementation checkpoint"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "kind": "section",
+      "reason": "Scoped native gate, not all works/eras tested",
+      "selector": "## B147.174 — scoped native acceptance"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "section",
+      "reason": "Exact L1 old writer/cutover responsibilities",
+      "selector": "## 明确的旧效果切换责任"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Event/facts/cache/lifecycle and accepted GC/performance constraints",
+      "selector": "### 公共更新与临时状态接入约束"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md",
+      "kind": "section",
+      "reason": "Synchronous reuse/changed publication/owner boundaries",
+      "selector": "## Shared work and publication"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/Lv3Effects.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/Lv4Percent.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/Data/Lv3Effects.sql",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/Data/Lv4Percent.sql",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Mandatory direct implementation review of fact/recipient/old writer/exact attachment/call sites; not default full read for question/archive actions"
+    }
+  ],
+  "dependencies": [
+    "P0-K confirmed facts/scoped native gate; P0-A ordinary ontology and current reference/ACTIVE",
+    "Static flat district Tourism candidate; native faithful per-building contribution/withdrawal gate pending",
+    "Existing local-human E2 module-owned exit/return; no new persistent ledger or AI/MP"
+  ],
+  "old_writers": [
+    "Lv3Effects Culture population branch: BUILDING_SPC_DEV_LV3_POP_CULTURE_0..7; preserve Commerce branch",
+    "Lv4Percent Culture worker percentage: BUILDING_SPC_LV4_PERCENT_CULTURE_0..7; retire via exact owned cleanup",
+    "Lv3Support +2 upgrade already retired; B1/B2 retained; legacy Dialogue/GWA/Eureka retained for later batches"
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/EffectiveFacts.lua",
+        "Specialization/Architecture/v2/P0_E2_Plan.md"
+      ],
+      "trigger": "Mandatory before implementing exit/return/current qualification wiring: exact IsExitTarget/RemoveOwned/RegisterExit/RegisterReturn and current E2 slice; no all-history default"
+    },
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/Text/TestText.sql",
+        "Mod/Probe.lua"
+      ],
+      "trigger": "Mandatory before adding on-demand diagnostic/localization/build metadata; no hover producer"
+    },
+    {
+      "paths": [
+        "Mod/UI/DialogueRefresh.lua",
+        "Mod/Dialogue.lua",
+        "Mod/DialogueModel.lua",
+        "Mod/GreatWorkAdjacency.lua",
+        "Mod/GreatWorkAdjacencyModel.lua",
+        "Mod/NetworkInput.lua"
+      ],
+      "trigger": "Mandatory before changing shared sample/consumer callers; preserve legacy semantics and reference/epoch validation"
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_p0_k.py",
+        "DevelopmentTests/test_p0_a.py",
+        "DevelopmentTests/test_p0_b1.py",
+        "DevelopmentTests/test_p0_b2.py",
+        "DevelopmentTests/test_research_chair.py",
+        "DevelopmentTests/test_b138_update_contract.py"
+      ],
+      "trigger": "Select affected-subsystem assertions before implementation; inspect exact harness/dependencies, not automatic full historical suite"
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_lv3_effects.py",
+        "DevelopmentTests/test_lv4_percent.py"
+      ],
+      "trigger": "Historical effect fixtures/call assumptions when adding current cutover tests; do not weaken old accepted assertions for green"
+    }
+  ],
+  "non_scope": [
+    "L2 Meaning/L3 GPP/M Dialogue project/N Expedition or Culture network/U2 layout",
+    "Industry/Commerce gameplay or future professions",
+    "New gameplay parameters, generic ability/event framework, AI/MP, cityKey/save schema",
+    "GC changes, broad memory investigation, old long-test repetition",
+    "Implementation or deployment during this planning turn"
+  ],
+  "validation": {
+    "depth": "Docs-only now; authorized implementation L2 with relevant ownership/load L3 edges",
+    "local": [
+      "Current document/link/selector/context checks and helper targeted tests only now",
+      "Future targeted real-Lua model/recipient/scope/UNKNOWN/cutover/load tests; read-only SQL primitive review; risk-scoped previous consumer regressions"
+    ],
+    "user": "Not requested in planning turn. Future one collection-city flow: two eras/ordinary building categories, movement, governor gate, cold reload, native Tourism and exact old effect exit; prototype partial if primitive not yet proven"
+  },
+  "full_audit_triggers": [
+    "Native primitive cannot preserve per-building contribution/recipient/pillage/withdrawal semantics",
+    "Direct shared dependency requires broader change than declared; stop that path and report",
+    "Unexpected permanent-state write, ambiguous ownership or inability to remove an exact owned old effect"
+  ],
+  "result": {
+    "plan": "Concrete scope and pending primitive gate reviewed; not implementation authorization",
+    "implementation": "NOT_STARTED",
+    "native": "NOT_TESTED; B147 K native PASS does not prove L1 Tourism",
+    "stop": "Await explicit P0-L1 implementation authorization; do not start L2/M/N/U2 or deploy"
+  }
+}

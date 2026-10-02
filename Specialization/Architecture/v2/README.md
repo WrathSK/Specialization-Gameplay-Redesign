@@ -37,6 +37,7 @@
 
 ## 收益应用与精度
 
+- [文化风雅熏陶L1具体计划](P0_L1_Aesthetic.md)：本城巨作时代数→逐普通建筑旅游；含原生门禁和旧人口/worker%精确退出，计划不等于实施授权。
 - [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[此前计划](P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
 - [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[原计划](P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
 - [学以致用](P0_D2_Research_Apply.md)：每专家floor；[学术主持](P0_D3_Research_Chair.md)：逐普通建筑consumer。

@@ -1,23 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0377
+Status Revision: S0378
 Implementation Build: develop/live B147.174 / modinfo174 P0_K_USER_GAME_TEST_PASS_SCOPED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0036 (scoped Industry template; A0161 target remains D0032)
 Latest Accepted Design Revision: D0036
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_K_COMPLETE_AWAITING_NEXT_PLAN
+Work State: P0_L1_PLANNED_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[P0-K B147.174限定实机验收](Validation/Results/Specialization_B147_P0K_Pass.md)完成：用户10图确认移动前两城各2件古典作品，移动后Edinburgh4件；冷重启后四件/位置与国内来源保持正确，Stirling旧来源退出。USER_GAME_TEST_PASS仅此著作/雕塑、单时代、移动/冷加载场景；最小K门禁关闭，无需重测。
+[P0-K限定实机验收](Validation/Results/Specialization_B147_P0K_Pass.md)已完成；26定向Lua/311目录来源及著作/雕塑、单时代、移动/冷加载的证据范围保持，不外推为全部馆藏或新文化收益PASS。当前切片为[P0-L1风雅熏陶具体计划](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)，[manifest](../Workflow/P0-L1.json)为PLANNED_NOT_AUTHORIZED；仅计划获授权，等待明确实施授权，不自动进入L2/M/N/U2。
 
-26定向Lua测试 LOCAL_SIMULATION_PASS、311目录/来源与语法 STATIC_CONFIRMED保持；不扩成全目录、文物、跨时代或全部owner/UNKNOWN实机PASS，也不升级为新文化收益/性能验收。[事实层合同](../Architecture/v2/P0_K_Great_Work_Facts.md#b147174--scoped-native-acceptance)及原始证据可达。下一建议准备P0-L1风雅熏陶具体计划，尚未授权实施；本次只归档和同步验收，不自动进入L/M/N/U2。
+L1目标为当前本城时代数X×初版K1，逐合格普通建筑旅游业绩；计划包含精确退出旧Culture人口/worker%。全城ordinary覆盖与原生旅游加值仍是实施技术门禁，尚无L1运行收益或原生PASS。本轮只完成文档/导航及helper批次登记。Design D0036/A0161、永久成果、GC、main不变；机构[UI视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞，科研[F2验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
 
-已记录live仍B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json`；此前部署176/176 MATCH/B146与stable恢复点保留。本轮未重新核验外部运行包、未部署。main B069.96/Design/GC/永久成果未改。机构[UI视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞待办；科研[F2验收](Validation/Results/Specialization_B144_F2_Pass.md)保持。
+已记录live仍B147.174，source `87655e5`、receipt `B147.174-87655e5-playtest.json`；此前176/176 MATCH、B146/stable恢复点保留。本轮未重新核验外部运行包、未部署，main仍B069.96。待用户审阅L1计划；当前无需新实机测试。
 
 ## 历史阶段记录
+
+### S0378 — P0-L1具体计划，未授权实施
+
+以e475f91/P0-K限定PASS为输入，复核Culture D0029风雅熏陶、Shared ordinary/Tier0及当前旧人口/worker%精确carrier；只读DebugGameplay确认区域Tourism加值/Conservation城墙先例，原生城市限定、逐建筑承载和退出尚待原型。未改变Design、Mod、运行包、GC或main；计划/manifest和相关hash已审阅。本轮不施加收益、不部署，不自动开始L1或后续批次。
+
 
 以下保留原阶段用语与证据；其中“当前／下一步／待测”仅描述当时。有效技术限制通过当前E2切片的合同/证据路由继续可达，不因进度过时而作废。
 
