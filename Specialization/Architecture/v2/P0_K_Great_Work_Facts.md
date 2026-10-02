@@ -117,3 +117,8 @@ Lua语法、modinfo174全部文件/ImportFiles与XML、双语诊断key检查 STA
 唯一最小用户流程：复制既有支持存档，准备A/B两城的合格可移动作品（B可非文化）；读取A/B摘要与右键来源 → 移动一件 → 重读两城和来源（件数改变，时代按作品metadata） → 另存、完全退出、冷加载后重读。无需征服或完整文化收益/长测；若停在UNKNOWN，回传一份报告/截图后停止。文物原生类型返回尚未单独验证，若 fixture已有文物可顺手读，不另要求准备整套文物。
 
 停止点：本地事实层完成，等待该最小实机验收；通过后仅提出P0-L1风雅熏陶计划。机构视觉优化仍非阻塞待办。不自动进入L/M/N/U2。
+
+
+### B147.174 deployment record
+
+已按W0003部署已提交/推送source `87655e595d3c4089d2c075a7ddd7228cf0ad2272`；receipt `B147.174-87655e5-playtest.json` DEVELOP_ACTIVE，modinfo174，176/176 source/runtime MATCH，digest `f8b51a6bee4d1a99ae8ac62114a70130d346802bbf5dd6143012205a07fef649`。OS确认游戏退出；先按B146 receipt恢复stable再切B147，B146完整运行恢复点与stable恢复点均核验保留，无pending transaction。main/source Design/GC未变；用户尚未进行本批原生验收。此记录不代替USER_GAME_TEST。
