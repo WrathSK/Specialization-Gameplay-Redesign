@@ -10,7 +10,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0393",
+    "status": "S0394",
     "runtime": "B153.180 / modinfo180",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "16b036dd3369c5023c7c8dd730ee4ac98944c0e5",
-  "current_batch": "P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE",
-  "next_batch": "Await B153 single-city native C00/C10/C11/C01/OFF gate; full L2/cutover and L3/M/N/U2 not authorized.",
+  "current_batch": "P0_L2B_NATIVE_STOPPED_C11",
+  "next_batch": "Await scoped Meaning/Dialogue transition repair authorization and Culture integer application/readout investigation; no native retry now, full L2/cutover or L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2B.json",
-  "live": "B153.180 / modinfo180 verified W0003 receipt B153.180-16b036d-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; B152 and stable recovery retained. Native Culture gate pending.",
+  "live": "B153.180 / modinfo180; prior verified W0003 receipt B153.180-16b036d-playtest.json DEVELOP_ACTIVE,182/182 MATCH and B152/stable recovery retained; not reverified this documentation turn. Native gate stopped at C10/C11 transition.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0393 authorized B153 scoped repair: actual request, Dialogue/GWA locks/iterator, accepted-pair receipt, strict projection confirmation and targeted tests reviewed. LOCAL only; current native gate still untested. Unrelated/frozen hash reviews reused. W0003 committed source/OS exit/exact receipt/equality and retained recovery verified; no game launch or native PASS.",
+  "context_review_status": "S0394 B153 three native screenshots individually reviewed/ignored archive3 of3 SHA256 MATCH. C00 accepted; C10 immediate work S/G deltas2/8, Culture delta0 expected6; C11 configuration blocked. Scoped STATIC qualification/transition reentry and Culture SQL/UI/roDB reviewed, not unique native root cause. Only reviewed documents/new evidence hashes updated; existing53 Meaning/26 K LOCAL and unrelated/frozen sources reused. No runtime/Design/test/deploy/main change; awaiting repair authorization.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

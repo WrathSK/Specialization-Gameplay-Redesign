@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0393
-Implementation Build: source/live B153.180 / modinfo180; P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE; stable B069.96
+Status Revision: S0394
+Implementation Build: source/live B153.180 / modinfo180; P0_L2B_NATIVE_STOPPED_C11; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
 Latest Accepted Design Revision: D0039
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE
+Work State: P0_L2B_NATIVE_STOPPED_C11
 
 ## CURRENT AUTHORITATIVE STATE
+
+B153.180原生续测已暂停：[三图、两个独立停止点与定域建议](Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md)。C00基线可确认；C10作品科研／金币即时增量匹配2/8，但作品Culture读数Δ0（预期6）。尝试100%旧Dialogue时仍停C10，出现QUALIFICATION_CHANGED；C11/C01/OFF与完整native门禁未确认。53 Meaning＋26 K原LOCAL范围保留。
+
+STATIC确认阶段切换可被CityBuildingsChanged重入并改变holder的风险，尚未证明本次原生时序；Culture追加应用／API口径／刷新须独立区分。逐领域Floor、资格、D0039/Culture D0038及默认OFF单fixture不变；精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED。完整六yield/cutover与L3/M/N/U2未授权。
+
+source/live仍B153.180/source16b036d；前次W0003 receipt `B153.180-16b036d-playtest.json` DEVELOP_ACTIVE、182/182 MATCH与B152/stable恢复点保持，本轮仅引用、未重核外部包。main稳定B069.96无promotion。三图ignored归档3/3 SHA256一致；本轮未改Mod/Design/GC/永久记录、未测试/部署/启动游戏。
+
+下一建议是组合切换定域修复及Culture整数应用／读数核对，**等待修复授权**；不要求用户现在续测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留合同与停止点。
+
+## 历史阶段记录
+
+### S0393 — B153入口修复LOCAL与部署（当时）
 
 用户授权B152定域修复后，source B153.180 / modinfo180 LOCAL完成：[入口、成对确认与一个最小续测](Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md)。53 Meaning＋26 K定向PASS；原B152 C00中止和四态NOT_TESTED保留。修复迭代器三值/异常锁、实际请求两端accepted-pair及当前投影确认；本地重现不等于截图原生唯一根因已证实。
 
@@ -19,7 +31,6 @@ source/live B153.180/source16b036d；W0003 receipt `B153.180-16b036d-playtest.js
 
 本批实施与安全部署已完成，下一步仅等待同城C00→C10→C11→C01→OFF最小续测；不要求旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留精确合同与停止点。
 
-## 历史阶段记录
 
 ### S0392 — B152 C00入口中止，修复尚未授权（当时）
 
