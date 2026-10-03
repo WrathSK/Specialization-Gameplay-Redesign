@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "85c77b4bcd815231a82ecf1610f9ebd305ad1c4c",
+  "runtime_commit": "16b036dd3369c5023c7c8dd730ee4ac98944c0e5",
   "current_batch": "P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE",
   "next_batch": "Await B153 single-city native C00/C10/C11/C01/OFF gate; full L2/cutover and L3/M/N/U2 not authorized.",
   "manifest": "Specialization/Workflow/P0-L2B.json",
-  "live": "B152.179 / modinfo179 verified W0003 receipt B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; B151 and stable recovery retained. Native Culture gate pending.",
+  "live": "B153.180 / modinfo180 verified W0003 receipt B153.180-16b036d-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; B152 and stable recovery retained. Native Culture gate pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0393 authorized B153 scoped repair: actual request, Dialogue/GWA locks/iterator, accepted-pair receipt, strict projection confirmation and targeted tests reviewed. LOCAL only; current native gate still untested. Unrelated/frozen hash reviews reused.",
+  "context_review_status": "S0393 authorized B153 scoped repair: actual request, Dialogue/GWA locks/iterator, accepted-pair receipt, strict projection confirmation and targeted tests reviewed. LOCAL only; current native gate still untested. Unrelated/frozen hash reviews reused. W0003 committed source/OS exit/exact receipt/equality and retained recovery verified; no game launch or native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

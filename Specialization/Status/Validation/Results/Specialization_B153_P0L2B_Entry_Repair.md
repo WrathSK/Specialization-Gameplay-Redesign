@@ -39,6 +39,6 @@ LOCAL不能证明原生迭代器形状、真实UI时序或Culture倍率正确。
 
 ## 部署与停止点
 
-B153.180 / modinfo180 canonical source完成；实际部署需本轮clean commit/push、可靠退出核对及W0003精确receipt/staging/equality。部署前live仍按既有B152 receipt，不从HEAD推断。部署结果在成功事务后补充。
+B153.180 / modinfo180已按W0003部署。source `16b036dd3369c5023c7c8dd730ee4ac98944c0e5`已普通commit/push并确认干净；OS核对游戏退出，精确B152 receipt恢复stable过桥，再staging激活B153。receipt `B153.180-16b036d-playtest.json` DEVELOP_ACTIVE；**182/182 MATCH**。B152 outgoing与stable恢复点已核对并保留，无pending marker、游戏启动或main变更；包一致性不等于实机门禁PASS。
 
 精确recipient原语仍TECHNICAL_INVESTIGATION_REQUIRED；本批只修可逆验证入口，不宣布完整意义延展实施或实机PASS。用户需要新Design决定：无。Codex到此停止，等待上述最小续测。

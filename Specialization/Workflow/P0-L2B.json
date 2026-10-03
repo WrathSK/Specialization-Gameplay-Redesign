@@ -295,9 +295,9 @@
     "plan": "User authorized concrete single-city L2B gate with explicit per-domain Floor",
     "implementation": "B153.180 / modinfo180 LOCAL_COMPLETE_AWAITING_USER",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md",
-    "native": "USER_GAME_TEST_BLOCKED_ENTRY at C00; Culture interaction NOT_TESTED. Recipient primitive remains TECHNICAL_INVESTIGATION_REQUIRED.",
+    "native": "B153 USER_GAME_TEST_REQUIRED; prior B152 C00 USER_GAME_TEST_BLOCKED_ENTRY retained; Culture interaction NOT_TESTED. Recipient primitive remains TECHNICAL_INVESTIGATION_REQUIRED.",
     "stop": "Await B153 minimum single-city native gate; no full ability/cutover or L3/M/N/U2.",
-    "deployment": "W0003 B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; source 85c77b4bcd815231a82ecf1610f9ebd305ad1c4c;182/182 MATCH; B151 and stable recovery retained. No game launch/native result.",
+    "deployment": "W0003 B153.180-16b036d-playtest.json DEVELOP_ACTIVE; source 16b036dd3369c5023c7c8dd730ee4ac98944c0e5;182/182 MATCH; B152 and stable recovery retained. No game launch/native result.",
     "authority_revalidation": "S0393 B153 user-authorized scoped repair only; D0039/Culture D0038 unchanged, targeted actual chain and error/reentry/load boundaries reviewed.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md"
   }

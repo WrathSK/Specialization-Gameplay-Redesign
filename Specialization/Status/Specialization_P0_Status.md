@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0393
-Implementation Build: source B153.180 / modinfo180; live B152.179; P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE; stable B069.96
+Implementation Build: source/live B153.180 / modinfo180; P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
 Latest Accepted Design Revision: D0039
@@ -15,9 +15,9 @@ Work State: P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE
 
 原型仍默认OFF、仅一个fixture；逐领域Floor/收益定义/资格不变，无永久或GC改动。精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED。完整六yield/all-city/global旧GWA cutover与L3/M/N/U2未授权。
 
-live暂仍B152.179/source85c77b4及既有receipt；B153部署待本轮commit/push、退出和W0003事务核验，不从HEAD猜运行包。main稳定B069.96，无promotion。
+source/live B153.180/source16b036d；W0003 receipt `B153.180-16b036d-playtest.json` DEVELOP_ACTIVE、182/182 MATCH已确认。OS核对游戏退出，精确B152 receipt恢复stable过桥后staging激活；B152与stable恢复点保留，无pending marker或游戏启动。main稳定B069.96，无promotion。
 
-下一允许动作仅安全部署本已授权修复，并等待同城C00→C10→C11→C01→OFF最小续测；不要求旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留精确合同与停止点。
+本批实施与安全部署已完成，下一步仅等待同城C00→C10→C11→C01→OFF最小续测；不要求旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留精确合同与停止点。
 
 ## 历史阶段记录
 
