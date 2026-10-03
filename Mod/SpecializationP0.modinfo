@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="181">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="182">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B154.181: guard one-city Meaning/Dialogue transitions and show current qualification and auxiliary Culture readout; native gates pending.</Description>
+    <Description>B155.182: reversible flat-yield configuration candidates and known-themed readout; additions must remain independent of Dialogue and theming; native gates pending.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

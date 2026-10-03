@@ -176,7 +176,7 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
-  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' then
+  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' then
     -- One request-local read model; a failed request must not reuse a prior UI view.
     shared.CultureMeaningView=nil
     local at='CITY';local actionError
@@ -192,6 +192,10 @@ local function request(playerID,params)
       if params.Action=='CULTURE_MEANING_ADVANCE' then
         at='ADVANCE';assert(type(probe.Advance)=='function','ME_ACTION_NOT_READY')
         local changed,why=pcall(probe.Advance,playerID,c,params.Token)
+        if not changed then actionError=detail(why)end
+      elseif params.Action=='CULTURE_MEANING_CONFIG' then
+        at='CONFIG';assert(type(probe.CycleVariant)=='function','ME_ACTION_NOT_READY')
+        local changed,why=pcall(probe.CycleVariant,playerID,c,params.Token)
         if not changed then actionError=detail(why)end
       end
       at='VIEW';assert(type(probe.View)=='function','ME_VIEW_NOT_READY')

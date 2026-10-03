@@ -48,9 +48,10 @@ def database():
   d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
  d.execute('DROP TABLE IF EXISTS SPC_CultureAestheticBits')
  d.executescript((M/'Data/CultureAesthetic.sql').read_text())
- # B150 may now be present in the read-only DB too. Rebuild only its exact
- # ten test-owned carriers and 70 attachments in this disposable copy.
+ # Earlier probe definitions may be present in the read-only DB too. Rebuild
+ # only the exact 16 owned carriers / 112 attachments in this memory copy.
  carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6),('CULTURE',4)]for bit in range(bits)]
+ carriers += ['BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3','BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3_SCALE100']
  modifiers=[b.removeprefix('BUILDING_')+'_'+cat for b in carriers for cat in ['WRITING','MUSIC','SCULPTURE','PORTRAIT','LANDSCAPE','RELIGIOUS','ARTIFACT']]
  for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:
   d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
@@ -119,7 +120,10 @@ class MeaningProbeTests(unittest.TestCase):
    function configured(c,y)
     local n=0;for bit=0,SPCCultureMeaningModel.ProbeBits[y]-1 do
      if c.present[GameInfo.Buildings['BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit].Index]then n=n+2^bit/SPCCultureMeaningModel.ProbeScale[y] end
-    end;return n
+    end
+    if y=='CULTURE' then for _,part in pairs(SPCCultureMeaningModel.VariantParts)do
+     if c.present[GameInfo.Buildings[part.name].Index]then n=n+part.amount end
+    end end;return n
    end
    function old(c,y)return c.present[GameInfo.Buildings['BUILDING_SPC_B060_'..y..'_P1'].Index]==true end
    function begin()probe.Advance(0,a);assert(probe.mode=='BASELINE');probe.Advance(0,a);assert(probe.mode=='ACTIVE')end
@@ -305,16 +309,21 @@ class MeaningProbeTests(unittest.TestCase):
    probe.End(0,a);local n=counts.dc_read or 0;probe.Audit();assert((counts.dc_read or 0)==n)
   """)
  def test_sql_exact_single_city_native_yield_definitions(self):
-  rows=self.sql.execute("select BuildingType,InternalOnly,CitizenSlots,Housing,PrereqDistrict from Buildings where BuildingType like 'BUILDING_SPC_MEANING_PROBE_%'").fetchall();self.assertEqual(len(rows),14)
+  rows=self.sql.execute("select BuildingType,InternalOnly,CitizenSlots,Housing,PrereqDistrict from Buildings where BuildingType like 'BUILDING_SPC_MEANING_PROBE_%'").fetchall();self.assertEqual(len(rows),16)
   for b,internal,slots,housing,district in rows:
    self.assertEqual((internal,slots,housing,district),(1,0,0,'DISTRICT_CITY_CENTER'))
-   y,bit=b.removeprefix('BUILDING_SPC_MEANING_PROBE_').split('_');self.assertIn(y,{'SCIENCE','GOLD','CULTURE'})
+   suffix=b.removeprefix('BUILDING_SPC_MEANING_PROBE_')
+   y,part=suffix.split('_',1);self.assertIn(y,{'SCIENCE','GOLD','CULTURE'})
+   single=part in {'SINGLE3','SINGLE3_SCALE100'}
+   amount=3 if single else 2**int(part)/(1 if y=='CULTURE' else 2)
    modifiers=self.sql.execute('select ModifierId from BuildingModifiers where BuildingType=?',(b,)).fetchall();self.assertEqual(len(modifiers),7)
    categories=set()
    for(mid,)in modifiers:
     self.assertEqual(self.sql.execute('select ModifierType from Modifiers where ModifierId=?',(mid,)).fetchone()[0],'MODIFIER_SINGLE_CITY_ADJUST_GREATWORK_YIELD')
     args=dict(self.sql.execute('select Name,Value from ModifierArguments where ModifierId=?',(mid,)))
-    self.assertEqual(args['YieldType'],'YIELD_'+y);self.assertEqual(float(args['YieldChange']),2**int(bit)/(1 if y=='CULTURE' else 2));categories.add(args['GreatWorkObjectType'])
+    self.assertEqual(args['YieldType'],'YIELD_'+y);self.assertEqual(float(args['YieldChange']),amount);categories.add(args['GreatWorkObjectType'])
+    self.assertEqual(set(args),{'GreatWorkObjectType','YieldType','YieldChange'}|({'ScalingFactor'} if part=='SINGLE3_SCALE100' else set()))
+    if part=='SINGLE3_SCALE100':self.assertEqual(float(args['ScalingFactor']),100)
    self.assertEqual(categories,{'GREATWORKOBJECT_'+c for c in ['WRITING','MUSIC','SCULPTURE','PORTRAIT','LANDSCAPE','RELIGIOUS','ARTIFACT']})
  def test_native_read_baseline_guard_no_gameplay_writes(self):
   l=self.runtime();l.globals().include('UI/BoostGreatWorkRead')
@@ -330,7 +339,7 @@ class MeaningProbeTests(unittest.TestCase):
    end
    probe.Advance(0,a);local w=writes;assert(SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true):find('已记录'));assert(writes==w)
    probe.Advance(0,a);local w=writes;local t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('原生作品收益：科研 0.00 / 金币 1.00 / 文化 3.00'));assert(writes==w)
-   a.workCount=2;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('四态对照无效'))
+   a.workCount=2;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('ME_UI_WORK_COUNT_MISMATCH') and t:find('不记录成功基线'))
    probe.End(0,a);assert(SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false):find('测试已关闭'))
   """)
  def test_import_registry_rejects_each_missing_action_import(self):
@@ -410,7 +419,7 @@ class MeaningProbeTests(unittest.TestCase):
    assert(writes==w and (counts.dc_read or 0)==n and probe.mode=='OFF' and shared.LastToken==nil)
   """)
  def test_registration_localization_exact_scope(self):
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'181');require_meaning_imports(root)
+  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'182');require_meaning_imports(root)
   files=[e.text for e in root.find('Files')];self.assertEqual(len(files),len(set(files)))
   self.assertEqual(set(files),{str(p.relative_to(M))for p in M.rglob('*')if p.is_file() and p.name not in {'.DS_Store','SpecializationP0.modinfo'}})
   self.assertTrue({'CultureMeaningModel.lua','CultureMeaningProbe.lua','Data/CultureMeaningProbe.sql'}<=set(files))
@@ -914,6 +923,288 @@ class MeaningProbeTests(unittest.TestCase):
      else turn=turn+1;collection();probe.Audit()end
      local w=writes;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
      assert(t:find('四态对照无效') and not t:find('作品文化 Δ') and writes==w)
+    """)
+
+ # Candidate definitions and UI readings are evidence for the technical probe;
+ # mocked native getters never establish engine stacking or settlement PASS.
+ def culture3_runtime(self):
+  l=self.runtime();l.execute("""
+   local gov=district(a,8,'DISTRICT_GOVERNMENT')
+   for _,name in ipairs({'BUILDING_GOV_TALL','BUILDING_GOV_CITYSTATES','BUILDING_GOV_MILITARY'})do building(a,name,gov)end
+   a.ds[7].pillaged=true -- D6 government contributes3; no second Culture domain.
+   building(a,'BUILDING_UNIVERSITY',a.ds[6]);building(a,'BUILDING_MARKET',a.ds[3]);svc.MarkDirty()
+   function exactMeaning(c)
+    local out={};for _,name in ipairs(SPCCultureMeaningModel.Owned)do if c.present[GameInfo.Buildings[name].Index]then out[name]=true end end;return out
+   end
+  """)
+  return l
+ def test_candidate_model_has_exact_owned_parts_and_strict_culture3_bound(self):
+  l=self.runtime();l.execute("""
+   local m=SPCCultureMeaningModel;local seen={}
+   assert(#m.Owned==16 and table.concat(m.Variants,',')=='SPLIT,SINGLE3,SINGLE3_SCALE100')
+   for _,name in ipairs(m.Owned)do assert(not seen[name]);seen[name]=true;assert(probe.IsOwnedCarrier(name))end
+   assert(not probe.IsOwnedCarrier('BUILDING_LIBRARY') and not probe.IsOwnedCarrier('BUILDING_SPC_MEANING_PROBE_CULTURE_4'))
+   assert(table.concat(m.Parts('CULTURE',3),',')=='BUILDING_SPC_MEANING_PROBE_CULTURE_0,BUILDING_SPC_MEANING_PROBE_CULTURE_1')
+   assert(table.concat(m.Parts('SCIENCE',1,'SPLIT'),',')==table.concat(m.Parts('SCIENCE',1),','))
+   for _,variant in ipairs({'SINGLE3','SINGLE3_SCALE100'})do
+    local part=m.VariantParts[variant];assert(m.Parts('CULTURE',3,variant)[1]==part.name and #m.Parts('CULTURE',3,variant)==1)
+    assert(part.amount==3 and (variant~='SINGLE3_SCALE100' or part.scalingFactor==100))
+    for _,amount in ipairs({0,1,2,3.5,4})do local ok,why=pcall(m.Parts,'CULTURE',amount,variant);assert(not ok and tostring(why):find('ME_ENCODING_'))end
+    local ok,why=pcall(m.Parts,'SCIENCE',3,variant);assert(not ok and tostring(why):find('ME_ENCODING_'))
+   end
+   local ok,why=pcall(m.Parts,'CULTURE',3,'UNKNOWN');assert(not ok and tostring(why):find('ME_ENCODING_'))
+  """)
+ def test_candidate_config_cycles_only_off_duplicate_token_and_two_city_isolation(self):
+  l=self.culture3_runtime();l.execute("""
+   assert(probe.View(0,a).variant=='SPLIT');local w=writes
+   probe.CycleVariant(0,a,'config:one');assert(probe.View(0,a).variant=='SINGLE3' and writes==w)
+   probe.CycleVariant(0,a,'config:one');assert(probe.View(0,a).variant=='SINGLE3' and writes==w)
+   assert(not pcall(probe.Advance,0,a,'config:one'));assert(probe.mode=='OFF' and writes==w)
+   assert(not pcall(probe.CycleVariant,0,b,'config:one'));assert(probe.View(0,a).variant=='SINGLE3')
+   probe.CycleVariant(0,a,'config:two');assert(probe.View(0,a).variant=='SINGLE3_SCALE100' and writes==w)
+   probe.CycleVariant(0,a,'config:three');assert(probe.View(0,a).variant=='SPLIT' and writes==w)
+  """)
+  for phase,mode in enumerate(('BASELINE','ACTIVE','SCALED','SCALED_BASELINE'),1):
+   with self.subTest(phase=mode):
+    l=self.culture3_runtime();l.globals().phaseCount=phase;l.globals().expectedMode=mode;l.execute("""
+     probe.CycleVariant(0,a,'single');for i=1,phaseCount do probe.Advance(0,a,'phase:'..i)end
+     assert(probe.mode==expectedMode);local before=writes;local n=configured(a,'CULTURE')
+     local ok,why=pcall(probe.CycleVariant,0,a,'blocked')
+     assert(not ok and tostring(why):find('ME_VARIANT_REQUIRES_OFF') and probe.error and writes==before)
+     assert(probe.View(0,a).variant=='SINGLE3' and probe.mode==expectedMode and configured(a,'CULTURE')==n)
+     assert(old(b,'SCIENCE') and configured(b,'CULTURE')==0)
+     probe.End(0,a);assert(probe.mode=='OFF' and configured(a,'CULTURE')==0 and old(a,'SCIENCE'))
+    """)
+ def test_all_candidate_four_phases_are_mutually_exclusive_same_input_zero_write(self):
+  for variant in ('SPLIT','SINGLE3','SINGLE3_SCALE100'):
+   with self.subTest(variant=variant):
+    l=self.culture3_runtime();l.globals().wantedVariant=variant;l.execute("""
+     for i=1,2 do if probe.View(0,a).variant~=wantedVariant then probe.CycleVariant(0,a,'pick:'..i)end end
+     assert(probe.View(0,a).variant==wantedVariant)
+     probe.Advance(0,a,'c00');assert(probe.mode=='BASELINE' and configured(a,'CULTURE')==0)
+     probe.Advance(0,a,'c10');local v=probe.View(0,a)
+     assert(v.culture==3 and v.totalCulture==3 and v.configuredCulture==3 and configured(a,'CULTURE')==3)
+     assert(v.science==1 and v.gold==4 and configured(a,'SCIENCE')==1 and configured(a,'GOLD')==4)
+     local selected={};for _,name in ipairs(SPCCultureMeaningModel.Parts('CULTURE',3,wantedVariant))do selected[name]=true end
+     for _,name in ipairs(SPCCultureMeaningModel.Owned)do if name:find('_CULTURE_')then assert((exactMeaning(a)[name]==true)==(selected[name]==true))end end
+     local w=writes;probe.Audit();probe.Audit();probe.Advance(0,a,'c10');assert(writes==w)
+     probe.Advance(0,a,'c11');assert(probe.mode=='SCALED' and configured(a,'CULTURE')==3 and probe.View(0,a).dialoguePercent==100)
+     assert(old(b,'SCIENCE') and configured(b,'CULTURE')==0 and probe.View(0,b).mode=='OFF')
+     probe.Advance(0,a,'c01');assert(probe.mode=='SCALED_BASELINE' and configured(a,'CULTURE')==0 and next(exactMeaning(a))==nil)
+     probe.Advance(0,a,'off');assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and old(a,'SCIENCE') and old(b,'SCIENCE'))
+    """)
+ def test_candidate_amount_guard_rejects_before_holding_any_old_writer(self):
+  l=self.runtime();l.execute("""
+   probe.CycleVariant(0,a,'single');local w=writes
+   local ok,why=pcall(probe.Advance,0,a,'invalid-amount')
+   assert(not ok and tostring(why):find('ME_ENCODING_') and probe.mode=='OFF')
+   assert(configured(a,'CULTURE')==0 and configured(a,'GOLD')==0 and not gwa.IsMeaningHeld(0,a) and dialogue.meaningOverride==nil)
+   assert(writes==w and old(a,'SCIENCE') and old(b,'SCIENCE'))
+   probe.CycleVariant(0,a,'next');assert(probe.View(0,a).variant=='SINGLE3_SCALE100' and not probe.error)
+  """)
+ def test_candidate_create_and_remove_failure_never_releases_old_writers_early(self):
+  for operation in ('create','remove'):
+   with self.subTest(operation=operation):
+    l=self.culture3_runtime();l.globals().failureOperation=operation;l.execute("""
+     probe.CycleVariant(0,a,'single');probe.Advance(0,a,'baseline')
+     local part=SPCCultureMeaningModel.VariantParts.SINGLE3.name;local id=GameInfo.Buildings[part].Index
+     if failureOperation=='create' then
+      failCreate=true;assert(not pcall(probe.Advance,0,a,'enable'));assert(probe.mode=='BASELINE' and configured(a,'CULTURE')==0)
+      failCreate=false
+     else
+      probe.Advance(0,a,'enable');failRemove=id;assert(not pcall(probe.End,0,a))
+      assert(probe.stopping and configured(a,'CULTURE')==3 and not old(a,'SCIENCE'));failRemove=nil
+     end
+     assert(gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0) and old(b,'SCIENCE'))
+     probe.End(0,a);assert(probe.mode=='OFF' and configured(a,'CULTURE')==0 and next(exactMeaning(a))==nil and old(a,'SCIENCE'))
+    """)
+ def test_load_removes_all_16_owned_parts_even_foreign_and_resets_split(self):
+  l=self.culture3_runtime();l.execute("""
+   probe.CycleVariant(0,a,'single');probe.CycleVariant(0,a,'scale100')
+   for _,name in ipairs(SPCCultureMeaningModel.Owned)do building(a,name,a.ds[1]);building(b,name,b.ds[1])end
+   a.owner=3;fire('LoadScreenClose')
+   assert(probe.mode=='OFF' and probe.View(0,b).variant=='SPLIT' and next(exactMeaning(a))==nil and next(exactMeaning(b))==nil)
+   assert(a.present[GameInfo.Buildings.BUILDING_LIBRARY.Index] and b.present[GameInfo.Buildings.BUILDING_LIBRARY.Index])
+   assert(a.token=='persistent:1' and b.token=='persistent:2');a.owner=0;fire('PlayerTurnActivated',0)
+   assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and probe.View(0,a).variant=='SPLIT')
+  """)
+ def test_actual_request_candidate_config_is_read_once_and_error_preserves_active(self):
+  l=self.culture3_runtime();bind_actual_request(l);l.execute("""
+   local raw=probe.View;local reads=0;probe.View=function(...)reads=reads+1;return raw(...)end
+   local w=writes;meaningRequest(0,{Action='CULTURE_MEANING_CONFIG',CityID=1,Token='config'})
+   assert(shared.LastToken=='config' and shared.CultureMeaningView.token=='config' and shared.CultureMeaningView.variant=='SINGLE3' and writes==w and reads==1)
+   meaningRequest(0,{Action='CULTURE_MEANING_CONFIG',CityID=1,Token='config'})
+   assert(shared.CultureMeaningView.variant=='SINGLE3' and writes==w and reads==2)
+   probe.Advance(0,a,'baseline');probe.Advance(0,a,'enable');local before=writes
+   meaningRequest(0,{Action='CULTURE_MEANING_CONFIG',CityID=1,Token='blocked-config'})
+   assert(shared.LastToken=='blocked-config' and shared.CultureMeaningView.token=='blocked-config' and shared.CultureMeaningView.error)
+   assert(probe.mode=='ACTIVE' and shared.CultureMeaningView.variant=='SINGLE3' and configured(a,'CULTURE')==3 and writes==before)
+  """)
+ def candidate_ui_runtime(self,themed=True,count=2):
+  l=self.culture3_runtime();l.globals().mockThemed=themed;l.globals().mockCount=count;l.globals().include('UI/BoostGreatWorkRead');l.execute("""
+   a.workCount=mockCount;probe.CycleVariant(0,a,'single')
+   local get=a.GetBuildings
+   a.GetBuildings=function(c)local b=get(c)
+    b.GetNumGreatWorkSlots=function(_,id)return id==GameInfo.Buildings.BUILDING_AMPHITHEATER.Index and mockCount or 0 end
+    b.GetGreatWorkInSlot=function(_,id,s)return 100+s end
+    b.GetGreatWorkTypeFromIndex=function()return 'GREATWORK_BHASA_1'end
+    b.IsBuildingThemedCorrectly=function()if mockThemeThrow then error('THEME_GETTER_FAILED')end;return mockThemed end
+    b.GetBuildingYieldFromGreatWorks=function(_,y,id)
+     local typ=GameInfo.Yields[y].YieldType:gsub('YIELD_','');local amount=configured(c,typ)
+     if typ=='CULTURE' then
+      local dialogueFactor=probe.View(0,c).dialoguePercent==100 and 2 or 1
+      local themeFactor=mockThemed==true and 2 or 1
+      return (2*dialogueFactor*themeFactor+amount*(mockAmplify and themeFactor or 1))*mockCount
+     end
+     return amount*mockCount
+    end
+    return b
+   end
+  """)
+  return l
+ def test_known_themed_reader_reports_flat_three_yield_deltas_and_building_counts(self):
+  l=self.candidate_ui_runtime();l.execute("""
+   for i=1,4 do probe.Advance(0,a,'phase:'..i);text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)
+    assert(not text:find('未确认：') and text:find('主题化1座／2件') and text:find('2件／已主题化'))
+   end
+   assert(text:find('追加预期保持固定，不乘主题倍率'))
+   assert(text:find('关闭旧对话：作品文化 Δ%+6.00；预期 %+6'))
+   assert(text:find('旧对话100%%：作品文化 Δ%+6.00'))
+   assert(text:find('关闭旧对话：作品科研 Δ%+2.00；预期 %+2') and text:find('旧对话100%%：作品科研 Δ%+2.00；预期 %+2'))
+   assert(text:find('关闭旧对话：作品金币 Δ%+8.00；预期 %+8') and text:find('旧对话100%%：作品金币 Δ%+8.00；预期 %+8'))
+   local w=writes;SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(writes==w)
+   assert(not text:find('USER_GAME_TEST_PASS') and not text:find('LOCAL_SIMULATION_PASS'))
+  """)
+ def test_mock_theme_amplification_is_visible_while_flat_expectation_stays_unchanged(self):
+  l=self.candidate_ui_runtime();l.execute("""
+   mockAmplify=true
+   for i=1,4 do probe.Advance(0,a,'phase:'..i);text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)end
+   assert(text:find('关闭旧对话：作品文化 Δ%+12.00；预期 %+6'))
+   assert(text:find('旧对话100%%：作品文化 Δ%+12.00'))
+   assert(probe.View(0,a).totalCulture==6 and probe.View(0,a).culture==3)
+   assert(not text:find('USER_GAME_TEST_PASS') and text:find('不自动判定结算PASS'))
+  """)
+ def test_unknown_theme_cannot_record_or_recreate_successful_baseline(self):
+  for invalid in ('nil','1',"'UNKNOWN'",'throw'):
+   with self.subTest(theme=invalid):
+    l=self.candidate_ui_runtime();l.globals().invalidTheme=invalid;l.execute("""
+     probe.Advance(0,a,'baseline')
+     if invalidTheme=='throw' then
+      mockThemeThrow=true
+     elseif invalidTheme=='nil' then mockThemed=nil
+     elseif invalidTheme=='1' then mockThemed=1 else mockThemed='UNKNOWN'end
+     local w=writes;local text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)
+     assert(text:find('ME_UI_THEME_UNKNOWN') and text:find('不记录成功基线') and not text:find('本阶段已记录') and writes==w)
+     mockThemeThrow=false;mockThemed=true;text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(text:find('四态对照无效') and not text:find('本阶段已记录') and writes==w)
+    """)
+ def test_current_theme_and_variant_change_invalidate_prior_four_phase_readings(self):
+  for change in ('theme','variant'):
+   with self.subTest(change=change):
+    l=self.candidate_ui_runtime();l.globals().readerChange=change;l.execute("""
+     probe.Advance(0,a,'baseline');local text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true);assert(text:find('已记录'))
+     probe.Advance(0,a,'active');local v=probe.View(0,a);local w=writes
+     if readerChange=='theme' then mockThemed=false else v.variant='SINGLE3_SCALE100'end
+     text=SPCBoostGreatWorkRead.Meaning(P,a,v,false)
+     assert(text:find('四态对照无效') and not text:find('作品文化 Δ') and writes==w)
+     mockThemed=true;text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(text:find('四态对照无效') and not text:find('作品文化 Δ') and writes==w)
+    """)
+ def test_reader_current_count_mismatch_and_nonfinite_native_yield_are_unknown(self):
+  for change in ('count','yield'):
+   with self.subTest(change=change):
+    l=self.candidate_ui_runtime();l.globals().readerChange=change;l.execute("""
+     probe.Advance(0,a,'baseline');SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)
+     local get=a.GetBuildings
+     a.GetBuildings=function(c)local b=get(c)
+      if readerChange=='count' then b.GetNumGreatWorkSlots=function(_,id)return id==GameInfo.Buildings.BUILDING_AMPHITHEATER.Index and 1 or 0 end
+      else b.GetBuildingYieldFromGreatWorks=function()return math.huge end end
+      return b
+     end
+     local w=writes;local text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(text:find(readerChange=='count' and 'ME_UI_WORK_COUNT_MISMATCH' or 'ME_UI_NATIVE_YIELD_UNKNOWN'))
+     assert(text:find('不记录成功基线') and not text:find('本阶段已记录') and writes==w)
+    """)
+ def test_per_building_diagnostic_is_bounded_but_keeps_all_five_native_rows(self):
+  l=self.culture3_runtime();l.globals().include('UI/BoostGreatWorkRead');l.execute("""
+   a.workCount=5;local supported={};local count=0
+   for _,name in ipairs({'BUILDING_AMPHITHEATER','BUILDING_MUSEUM_ART','BUILDING_MUSEUM_ARTIFACT','BUILDING_BROADCAST_CENTER','BUILDING_PALACE'})do
+    building(a,name,a.ds[2]);supported[GameInfo.Buildings[name].Index]=true;count=count+1
+   end
+   local get=a.GetBuildings
+   a.GetBuildings=function(c)local b=get(c)
+    b.GetNumGreatWorkSlots=function(_,id)return supported[id] and 1 or 0 end
+    b.GetGreatWorkInSlot=function(_,id)return id+100 end
+    b.GetGreatWorkTypeFromIndex=function()return 'GREATWORK_BHASA_1'end
+    b.IsBuildingThemedCorrectly=function()return true end
+    b.GetBuildingYieldFromGreatWorks=function(_,y,id)return GameInfo.Yields[y].YieldType=='YIELD_CULTURE' and 2 or 0 end
+    return b
+   end
+   probe.Advance(0,a,'baseline');local w=writes;local text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)
+   assert(text:find('主题化5座／5件') and text:find('文化 10.00'))
+   assert(text:find('另有1座馆藏建筑；合计已包含，明细仅显示前4座'))
+   local rows=0;for _ in text:gmatch('1件／已主题化')do rows=rows+1 end;assert(rows==4 and writes==w)
+  """)
+
+ def test_candidate_read_rejects_mixed_or_wrong_carriers_and_reports_damaged_candidate(self):
+  for kind in ('split','wrong','overlap','damaged','unknown'):
+   with self.subTest(kind=kind):
+    l=self.culture3_runtime();l.globals().readKind=kind;l.execute("""
+     probe.CycleVariant(0,a,'single');probe.Advance(0,a,'baseline');probe.Advance(0,a,'active')
+     local m=SPCCultureMeaningModel;local single=GameInfo.Buildings[m.VariantParts.SINGLE3.name].Index
+     if readKind=='split' then building(a,'BUILDING_SPC_MEANING_PROBE_CULTURE_0',a.ds[1])
+     elseif readKind=='wrong' then a.present[single]=nil;building(a,m.VariantParts.SINGLE3_SCALE100.name,a.ds[1])
+     elseif readKind=='overlap' then building(a,m.VariantParts.SINGLE3_SCALE100.name,a.ds[1])
+     elseif readKind=='damaged' then a.pillaged[single]=true
+     else failHas=single end
+     local w=writes;local v=probe.View(0,a);assert(writes==w)
+     if readKind=='damaged' then
+      assert(v.configuredCulture==0 and v.culture==3 and not v.configurationError)
+     else
+      assert(v.configuredCulture==nil and v.configuredScience==nil and v.configurationError)
+      assert(v.configurationError:find(readKind=='unknown' and 'ME_CARRIER_UNKNOWN' or 'ME_CONFIG_VARIANT_'))
+     end
+     failHas=nil;probe.Audit();v=probe.View(0,a)
+     assert(v.configuredCulture==3 and not v.configurationError and configured(a,'CULTURE')==3)
+     assert(not a.present[GameInfo.Buildings[m.VariantParts.SINGLE3_SCALE100.name].Index] and not a.present[GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_CULTURE_0.Index])
+    """)
+
+ def test_recorded_baseline_is_released_on_unknown_theme_before_same_value_recovers(self):
+  for invalid in ('nil','throw'):
+   with self.subTest(theme=invalid):
+    l=self.candidate_ui_runtime();l.globals().invalidTheme=invalid;l.execute("""
+     probe.Advance(0,a,'baseline');local text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)
+     assert(text:find('本阶段已记录') and text:find('主题化1座／2件'))
+     local w=writes
+     if invalidTheme=='throw' then mockThemeThrow=true else mockThemed=nil end
+     text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(text:find('ME_UI_THEME_UNKNOWN') and text:find('不记录成功基线') and writes==w)
+     mockThemeThrow=false;mockThemed=true
+     text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(text:find('四态对照无效') and not text:find('本阶段已记录') and not text:find('作品文化 Δ') and writes==w)
+     probe.Advance(0,a,'active');text=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(text:find('四态对照无效') and not text:find('作品文化 Δ'))
+    """)
+ def test_installed_single3_candidates_hold_on_unknown_and_exit_on_confirmed_loss_only(self):
+  for variant in ('SINGLE3','SINGLE3_SCALE100'):
+   with self.subTest(variant=variant):
+    l=self.culture3_runtime();l.globals().wantedVariant=variant;l.execute("""
+     for i=1,2 do if probe.View(0,a).variant~=wantedVariant then probe.CycleVariant(0,a,'pick:'..i)end end
+     probe.Advance(0,a,'baseline');probe.Advance(0,a,'active')
+     local candidate=SPCCultureMeaningModel.VariantParts[wantedVariant].name
+     assert(a.present[GameInfo.Buildings[candidate].Index] and configured(a,'CULTURE')==3)
+     local w=writes;a.worksUnknown=true;probe.Audit()
+     assert(probe.error:find('ME_WORKS_UNKNOWN') and configured(a,'CULTURE')==3 and writes==w)
+     assert(gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0))
+     a.owner=3;local loss={confirmed=false,targetID=a.id,origin={owner=0}}
+     assert(not pcall(exits.CultureMeaningProbe,a,loss) and configured(a,'CULTURE')==3 and writes==w)
+     loss.confirmed=true;exits.CultureMeaningProbe(a,loss)
+     assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and configured(a,'CULTURE')==0)
+     assert(dialogue.meaningOverride==nil and old(b,'SCIENCE') and next(exactMeaning(b))==nil)
+     assert(a.present[GameInfo.Buildings.BUILDING_LIBRARY.Index] and a.token=='persistent:1')
+     local after=writes;exits.CultureMeaningProbe(a,loss);assert(writes==after)
+     a.owner=0;a.worksUnknown=false;fire('GovernorChanged',0)
+     assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and probe.View(0,a).variant==wantedVariant)
     """)
 
 if __name__=='__main__':unittest.main()

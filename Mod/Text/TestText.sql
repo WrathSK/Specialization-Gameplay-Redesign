@@ -97,6 +97,10 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 -- L2A single-city reversible experiment; native precision is pending.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG','切换验证配置'),
+('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','Switch probe configuration'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','仅测试关闭时左键切换：拆分片段 → 单一+3 → 单一+3／显式倍率100%。后两项需要每件理论追加3文化。实验中不能切换；右键只读。候选不是已确认修复。'),
+('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','While OFF, left click cycles split pieces, one flat +3, then flat +3 with explicit ScalingFactor 100. Single candidates require 3 Culture per work. No switching during a test; right click reads only. Candidates are not confirmed fixes.'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展验证'),
 ('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning yield gate'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：基线 → 整数追加 → 旧对话100% → 倍率基线 → 结束恢复；右键只读。仅本城可逆文化倍率门禁。'),
