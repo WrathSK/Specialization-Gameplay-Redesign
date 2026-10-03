@@ -1,7 +1,7 @@
 # P0-L2 —「意义延展」计划与接口调查
 
 State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE；B155候选／theme读取本地完成，原生待验。B154失败保留，精确recipient未解决，正式cutover未授权。
-Authority: Culture D0041 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0040 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
@@ -10,6 +10,8 @@ Authority: Culture D0041 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 [B155单城技术原型](../../Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)增加single3与single3显式100候选、仅OFF配置切换和可靠theme读取；按固定A×W比较，真实失配不补差。原14＋新2均module-owned，旧GWA／Dialogue只hold本城；默认OFF，加载清实验。不改变原Floor／K／资格／Shared／生命周期／GC；原生算法未证实。
 
 [技术依据和可改空间](#平加共存与主题化技术原型)保存关键反证，现有B055 flat／B059 Oxford theme仅具体场景。当前原8对象中Meaning增加倍率说明，其余7项逐对象不变；完整Dialogue／meaning_multipliers合同纳入当前读取，不全量重审其它专业。
+
+D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155测试继续，不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
 下一允许动作仅B155最小原生验收：先单flat，再Dialogue，最后用户准备的固定已主题馆藏；失败停对应路径，不重复B154长测。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 

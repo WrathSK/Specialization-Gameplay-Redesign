@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0398
+Status Revision: S0399
 Implementation Build: source/live B155.182 / modinfo182; native prototype pending; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0041 (Meaning fixed additions; other D0040 lifecycle runtime adaptation not assessed)
-Latest Accepted Design Revision: D0041
-Design Sync State: D0041_FIXED_ADDITIONS_NATIVE_GATES_PENDING
+Design Revision Reviewed: D0042 (A–G Design sync; B155 direct contracts revalidated, lifecycle runtime adaptation not assessed)
+Latest Accepted Design Revision: D0042
+Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
 Work State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
+
+[D0042](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)已同步具名A–G生命周期与投资原子确认；Research D0040不变。9/10当前JSON对象完全复用，Dialogue仅新增未提交取消边界，倍率／累计／额度语义未改。用户正在进行B155测试，本轮没有新实机结果、Mod修改或部署；下列source/live沿已记录receipt引用，未重核外部包。新生命周期尚未作为运行实现／验收，后续依赖批次须复审。
 
 用户最新[D0041](../Design/Content/Culture_D0041.json)要求意义延展追加独立，Dialogue／theming均不放大；市政／外交Culture追加不因同yield成为原生。Floor／K／资格／D0040生命周期保留，较早主题包含追加仅作未来选项。[B154](Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)配置3但Δ1/2的组合FAIL不改判，完整L2 NOT_PASSED。
 

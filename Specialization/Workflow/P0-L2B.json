@@ -3,15 +3,15 @@
   "batch": "P0-L2B",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0041",
+    "design": "D0042",
     "research": "D0040",
-    "industry": "D0040",
-    "culture": "D0041",
-    "commerce": "D0040",
-    "shared": "D0040",
+    "industry": "D0042",
+    "culture": "D0042",
+    "commerce": "D0042",
+    "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0398",
+    "status": "S0399",
     "runtime": "B155.182 / modinfo182",
     "military": "D0037",
     "harbor": "D0037"
@@ -52,62 +52,62 @@
       "selector": "## 6. Culture / Theater Square — CUL"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "path": "Specialization/Design/Content/Culture_D0042.json",
       "kind": "json",
       "reason": "Complete Meaning qualifications/formula/exceptions",
       "selector": "/abilities/3",
       "expected_id": "CUL_L4_MEANING"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "path": "Specialization/Design/Content/Culture_D0042.json",
       "kind": "json",
       "reason": "Initial0.5 parameter, not final balance",
       "selector": "/parameters/meaning_K"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "path": "Specialization/Design/Content/Culture_D0042.json",
       "kind": "json",
       "reason": "Explicit eligible work pool/era/exclusions",
       "selector": "/contracts/work_pool"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "path": "Specialization/Design/Content/Culture_D0042.json",
       "kind": "json",
       "reason": "Complete nine-domain/share mapping, no Theater",
       "selector": "/contracts/domains"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "path": "Specialization/Design/Content/Culture_D0042.json",
       "kind": "json",
       "selector": "/contracts/dialogue",
       "reason": "Complete native-only target/fallback and lifecycle; shared YieldType not eligibility"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "path": "Specialization/Design/Content/Culture_D0042.json",
       "kind": "json",
       "selector": "/contracts/meaning_multipliers",
       "reason": "D0041 fixed Dialogue/theming-independent additions and deferred future option"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0040.json",
+      "path": "Specialization/Design/Content/Shared_D0042.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0040.json",
+      "path": "Specialization/Design/Content/Shared_D0042.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0040.json",
+      "path": "Specialization/Design/Content/Shared_D0042.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/DISTRICT_DEVELOPMENT"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0040.json",
+      "path": "Specialization/Design/Content/Shared_D0042.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/YIELD_SHARE"
@@ -336,7 +336,7 @@
     "native": "B154 USER_GAME_TEST_PARTIAL: four phases/OFF visible in one W1 fixture. Culture addition/native-only USER_GAME_TEST_FAIL:2/3/6/4,delta1/2 vs3. No settlement/theming/cold-load PASS; precise recipient still TECHNICAL_INVESTIGATION_REQUIRED.",
     "stop": "Await B155 minimum native acceptance; native failures stop corresponding primitive, no compensation or automatic next batch",
     "deployment": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0398/D0041 latest user fixed Meaning additions; B155 scoped flat candidates/theme reader locally validated. B154 native failure retained; candidate100 unproven. Meaning multiplier explanation changed, seven original direct objects unchanged. No permanent/GC/main change; formal cutover not authorized.",
+    "authority_revalidation": "S0399/D0042 Design-only named A–G lifecycle and Settler atomic confirmation; B155 native testing continues, no new result. 9/10 direct JSON objects unchanged; Dialogue pending cancellation/active wording only, native target/fallback/precision and completed history unchanged. No Mod/runtime/GC/main/deployment change or new implementation authorization.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md"
   }
 }

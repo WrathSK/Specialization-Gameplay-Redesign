@@ -131,7 +131,7 @@ D10、5名专家，额外50基础科技；三层完整链D6、5名专家则为30
 [返回Design导航](README.md)。本页呈现正式规则及明确标出的临时例外，不是独立Design权威。
 
 - [科研正式内容](Content/Research_D0040.json)：全部机构、能力、九领域与传统合同。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：RES及仍有效的NET-RC-001至005、OPEN-06；[Shared](Content/Shared_D0040.json)统一解释旧D用语。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：RES及仍有效的NET-RC-001至005、OPEN-06；[Shared](Content/Shared_D0042.json)统一解释旧D用语。
 - [A–D生命周期接受](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：学术传统跨Owner随城，身份暂停和数值保持。
 - [学以致用修订](../Historical/Design/Reviews/Research_D0030_Review.md)、[传统身份暂停](../Historical/Design/Reviews/Boundary_D0031_Review.md)、[接受记录](Design_ChangeLog.md)。旧Review的无上限V或领域数量算法不覆盖当前内容。
 - [跨学科研究临时精度决定](../Architecture/v2/P0_D1_Research_Cross_Cutover.md)、[学以致用临时精度决定](../Architecture/v2/P0_D2_Research_Apply.md)：只引用明确用户决定，不把其中旧进度当当前状态。

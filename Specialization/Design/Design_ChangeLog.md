@@ -3,8 +3,26 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0041
+Latest Accepted Design Revision: D0042
 Document State: ACCEPTED
+
+## Accepted D0042 — 2026-10-03
+
+Acceptance: ACCEPTED / Named A–G lifecycle closure; Design sync only
+Acceptance Evidence: 用户本轮E/F/G及A–D补充handoff，要求同步正式来源，不实现；用户继续B155实机测试。
+Accepted Spec SHA256: 1bcb4310381236055a465b79d1344616c1306cebf53899694a12c396f8527311
+Canonical Shared Content SHA256: f5250c5d160e992ec8049d99b70f67ed1e9e1cc09f04512ad086da3b6fc66ee1
+Canonical Industry Content SHA256: 9548e7c079704f8f749f6f02863f074a1955befc217fb75a95e5e327e8f41845
+Canonical Culture Content SHA256: 62351cb7ec167ff5b70ab6c1a637d616a41e58a267648320243c5bc3d3f3278f
+Canonical Commerce Content SHA256: 8af0f3f8f774b6ba1aee3d270938bfe12b1f4c0d0bc8b51525cfe57cce664e1a
+Previous Accepted Revision: D0041
+Frozen D0041: [原文](Revisions/Specialization_Design_Spec_D0041.md)
+Content: [Shared](Content/Shared_D0042.json) / [Culture](Content/Culture_D0042.json) / [Industry](Content/Industry_D0042.json) / [Commerce](Content/Commerce_D0042.json)；Research D0040不变
+Review: [接受、替代、T1–T11及真实剩余](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)
+
+未提交Dialogue取消无历史／成功额度／半进度；考察团来源易主中止任务、原Owner保留并免费重挂靠。商业化选择栈容量不足暂停不删、恢复按顺序，身份退出或易主清空；纯派生当前重算。工业队来源易主存续、当前Owner容量2与夺回复计明确；重组队生命周期随目标事务，训练来源易主不终止。Settler确认视为原子完成，中间窗口是技术而非Gameplay TBD。
+
+A–D重申、D0041固定追加与现有参数／名称成熟度保留。hidden protection本身跨Owner与基本面组合等真实剩余不类推。旧Content及D0041 Spec冻结原样；无Mod／runtime／GC／main／部署变化，不授予新实施，B155测试不扩成生命周期验收。
 
 ## Accepted D0041 — 2026-10-03
 

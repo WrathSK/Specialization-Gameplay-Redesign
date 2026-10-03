@@ -7,11 +7,11 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Research D0040](Research_D0040.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
-[Industry D0040](Industry_D0040.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
+[Industry D0042](Industry_D0042.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 
 ## D0028共享入口
 
-[Shared_D0040](Shared_D0040.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0041.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0042](Shared_D0042.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0042.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 
@@ -39,15 +39,19 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 本轮的公式、文案、映射以JSON为唯一编辑位置；[审阅记录](../../Historical/Design/Reviews/Research_D0026_Review.md)引用ID，不复制第二套权威公式。Accepted Spec的RES条目已指向content；D0025历史原文冻结不倒改。Industry及Culture已加入；其余专业后续沿同schema分别维护，不强制命名能力数量。各专业JSON是自身内容权威，Spec引用，Review只作审阅记录。
 
+## D0042 long-term lifecycle A–G — current lifecycle authority
+
+[Shared D0042](Shared_D0042.json)、[Culture D0042](Culture_D0042.json)、[Industry D0042](Industry_D0042.json)、[Commerce D0042](Commerce_D0042.json)为各自当前内容；[Research D0040](Research_D0040.json)已符合本轮重申、保持原件。E未提交对话／任务、F选择栈与派生、G单位来源及Settler确认原子性按具名合同关闭；A–D及D0041固定追加保留。LIFO暂停不删除，来源易主不等于单位转交，训练source不等于重组target。精确未决与[T1–T11对照](../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)独立记录；[接受记录](../Design_ChangeLog.md#accepted-d0042--2026-10-03)。本次只有Design同步，B155测试继续，无运行适配或部署。
+
 ## D0031 boundary amendment
 
 Research学术传统身份暂停与Industry有限施工队库存要求见新content；旧D0030/D0027冻结。Culture Gameplay仍D0029；[时代馆藏展示需求与未批准UI建议](../../Historical/Design/Records/Culture_Era_Presentation_D0031.md)独立记录，不修改Shared。
 
-## D0041 Culture fixed additions — current Culture authority
+## D0041 Culture fixed additions — retained multiplier decision
 
-[Culture D0041](Culture_D0041.json)保留D0038逐领域Floor与D0040生命周期，按用户最新决定明确Meaning追加不受Dialogue／theming放大；市政／外交追加文化不因同yield成为native。较早主题化包含追加的设想只留未来选项与技术档案；不承诺primitive已能隔离，不改K／资格或补差。其它四份D0040正文保持，Culture D0040冻结；[接受记录](../Design_ChangeLog.md#accepted-d0041--2026-10-03)。
+[Culture D0041](Culture_D0041.json)保留D0038逐领域Floor与D0040生命周期，按用户最新决定明确Meaning追加不受Dialogue／theming放大；市政／外交追加文化不因同yield成为native。较早主题化包含追加的设想只留未来选项与技术档案；不承诺primitive已能隔离，不改K／资格或补差。当次其它四份D0040正文保持；现行D0042只增量更新生命周期，Culture D0040/D0041冻结；[接受记录](../Design_ChangeLog.md#accepted-d0041--2026-10-03)。
 
-## D0040 long-term lifecycle A–D — retained lifecycle authority
+## D0040 long-term lifecycle A–D — retained decisions, E/F/G updated by D0042
 
 [Shared](Shared_D0040.json)新增具名A城市历史／B文明历史／C机构关系／D成立合同语法；[Research](Research_D0040.json)、[Industry](Industry_D0040.json)、[Culture](Culture_D0040.json)、[Commerce](Commerce_D0040.json)分别维护精确生命周期。数字、名称与无关能力对象保留；不是统一Legacy engine或新存档schema。文化见闻Owner键和本城工程实践Owner限制被明确取代，商业合同关键城易主及信誉Owner规则关闭。E/F/G未讨论边界保持，当前B154 Meaning direct contracts不变；不实现、不部署。[接受／替代及真正未决](../../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)。此前D0031／35／36／38／39原件冻结保留；下列修订段落是来源历史；D0040生命周期继续有效，Culture追加倍率边界见D0041。
 
