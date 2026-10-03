@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_SINGLE3_NATIVE_STOPPED；B155同回合single3文化Δ0 vs3，原生平加FAIL；显式100／Dialogue／theme待验。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_FLAT_CANDIDATES_NATIVE_FAILED；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -11,15 +11,15 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 [技术依据和可改空间](#平加共存与主题化技术原型)保存关键反证，现有B055 flat／B059 Oxford theme仅具体场景。当前原8对象中Meaning增加倍率说明，其余7项逐对象不变；完整Dialogue／meaning_multipliers合同纳入当前读取，不全量重审其它专业。
 
-D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155测试继续，不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
+D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155候选原生结果不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
-[B155本次同回合T62结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)：W1、非主题、旧Dialogue0%，single3原生Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；本候选平加FAIL，不推断HD被撤销。先直接End确认OFF／基线恢复，仅继续已授权显式100候选的①→②；成功才补Dialogue／固定主题，两个flat均失败停止primitive。退出／结算／冷加载本次无证据，不重复B154长测。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。下一建议仅定域只读核对Culture实际Modifier／附着／资格、hold／Dialogue0%与成功flat路径差异，未授权新增实现或猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 
 ## 平加共存与主题化技术原型
 
 ### 定域静态证据
 
-只读当前含14 Meaning载体的DebugGameplay：`EFFECT_ADJUST_CITY_GREATWORK_YIELD`共1378 Modifier，1258仅YieldChange、120仅ScalingFactor，同时声明0；GameEffects相关字段NULL、GameEffectArguments0行。HD+2、Meaning1+2、Dialogue TEST100=200共用effect，静态不解释共存算法。当前数据源为配置实际指向的内层Firaxis Cache；外层旧Cache无Meaning，不作为当前依据。
+B155原型实施前只读含14 Meaning载体的DebugGameplay：`EFFECT_ADJUST_CITY_GREATWORK_YIELD`共1378 Modifier，1258仅YieldChange、120仅ScalingFactor，同时声明0；GameEffects相关字段NULL、GameEffectArguments0行。HD+2、Meaning1+2、Dialogue TEST100=200共用effect，静态不解释共存算法。当时数据源为配置实际指向的内层Firaxis Cache；外层旧Cache无Meaning，不作为当时依据。本次[显式100结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)另只读核对当前内层DB两个候选／14精确附件与参数完整；本轮测试helper未配置DB且未运行。新增mixed参数定义是我们自己的待验证候选，不把原型前“无同族先例”误写成当前DB仍零行或原生算法已确认。
 
 未主动清HD不证明无间接干扰；[B055 flat2→4→2](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)也否定“所有flat必覆盖”的泛化结论。[作者SQL](https://github.com/Feofilakt/YAGM/blob/main/Moksha.sql)仅有单独YieldChange3，不能证明mixed参数。显式100没有同effect双参数先例，作为候选不得提前宣称可隔离。
 
