@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0388 authorized B151 entry-only repair: four exact runtime files, targeted test and current result/plan/status/authority/manifest/runtime review pointers read/reviewed.25 local tests and syntax/registration; unchanged direct modules retain named B150 local basis; no Design/GC/permanent/effect changes. Original native evidence/frozen results retained.",
+  "review_basis": "S0388 authorized B151 entry-only repair: four exact runtime files, targeted test and current result/plan/status/authority/manifest/runtime review pointers read/reviewed.25 local tests and syntax/registration; unchanged direct modules retain named B150 local basis; no Design/GC/permanent/effect changes. Original native evidence/frozen results retained. W0003 exact receipt/runtime verification complete: source438ca9d,182/182 MATCH; only reviewed deployment pointers below refreshed, no source changes after commit.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "2aac3e016db99b27c00ce30c76c7c9dff85024d74176e232d91da4cc63135c92",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "e72fe039640d344570f18732ba8e9e4c11c7a82fea59d076989186d46eeb322a",
+    "Specialization/Status/Specialization_P0_Status.md": "4ba07fb68bf6016b4a1dcca1f53425d6bc38c931772e72276047b21ca2f24355",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "4ef7f5d7263194e918797d4dd3f04ba18f113b8020a25dedf25e59b2c9ac6975",
+    "Specialization/Workflow/Authority.json": "54db8b4dd720397102a1f43f237d50afb81c6c9e52cc3fcad463eb5c0fced4fc",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -227,7 +227,7 @@
     "Specialization/Status/Validation/Results/Specialization_B112_Turn_Blocker_Observation.md": "998fc813b5920c8d644af8710985eab31d6fdc03ddfad939600ee633b0135aa1",
     "DevelopmentTests/test_b113_turn_gate.py": "c0dab68164db29ee3ba22e29c9441e9663baeab1cf321a06013a5ad377576a67",
     "Specialization/Status/Validation/Results/Specialization_B113_Notification_Location_Failure.md": "af3bd021662ef073c3ece72f1071d35526ff70505ecd7350d52666072bbeb208",
-    "Specialization/Workflow/Runtime_Index.json": "219fd1d5e5f7650eaa72b22875007841a3c1aa139ff67d0c89c267407e28f2cf",
+    "Specialization/Workflow/Runtime_Index.json": "3fa8b56b3b05f5a8c27e498d00e16ad16a1b1c21cb4c5cb400f628c9f36d9172",
     "DevelopmentTests/test_b114_notification_target.py": "4aaae3255004ec1f4e540656dea0912484f2084147e73c5c591a2a0d6d91971d",
     "Specialization/Status/Validation/Results/Specialization_B114_Target_Turn_Pass.md": "91680073d60dac476d62c20ef2cbe2f33520bbe9b85ff32555e7f822f8d95040",
     "Mod/TimedProductionProbe.lua": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
@@ -359,7 +359,7 @@
     "Mod/CultureMeaningProbe.lua": "998d5a841d2373f10f753bd91e301b80e5bf30ccf99b3f37a33a8936a40afd93",
     "Mod/Data/CultureMeaningProbe.sql": "62c2174915bc3e725aff7074ad336e388a9fa8f18e14bdb8b958aa02d40a5a86",
     "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md": "a0d87bd492ec9e0675a6696c1cd135b46c46a0bb79b653d78eb667c2307a0722",
-    "Specialization/Workflow/P0-L2A.json": "7ab79a613d23a74edbded4ff351d379a969770d4b2817263e42b3e74cc08b0af",
+    "Specialization/Workflow/P0-L2A.json": "78cd5b5d9feea42ffccb1e2f39772f812d842da7d8ab0983d8d25b4a982684d1",
     "Mod/Data/GreatWorkAdjacency.sql": "e14afd55f26d2e0727cb481d8fae9e875b8bc7f89173621c7e1657571c3b516d",
     "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md": "9967b95a4d1a5971bda6e949dbba8537104f0961bd74f227fcdf740cd9feb11f",
     "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md": "671ce284e720882b28da5c20182123ca5c01e314966c3d8d3cb30eba438f1d96"

@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "c66b0530c7320014b5c8b5f41e6c402838e24198",
+  "runtime_commit": "438ca9d0b5b400b8e1501b1a3087925ad85fcc91",
   "current_batch": "P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED",
   "next_batch": "Native same-city baseline entry then existing Science/Gold precision flow; user controls game. L2B not authorized.",
   "manifest": "Specialization/Workflow/P0-L2A.json",
-  "live": "B150.177 / modinfo177 deployed via W0003; source c66b053; receipt B150.177-c66b053-playtest.json DEVELOP_ACTIVE;182/182 MATCH. B149 retained and stable recovery verified. No game launch; native L2A pending.",
+  "live": "B151.178 / modinfo178 deployed via W0003; source438ca9d; receipt B151.178-438ca9d-playtest.json DEVELOP_ACTIVE;182/182 MATCH. B150 retained and stable recovery MATCH; no pending marker/game launch. Native entry/precision pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0388 user-authorized scoped B151 entry repair. Two action imports, bounded phase/error and fresh single-read request view;25 targeted SQL/Lua checks. Original B150/native evidence retained; precision pending. Source B151; live B150 until verified W0003 transaction.",
+  "context_review_status": "S0388 user-authorized B151 entry-only repair;25 targeted SQL/Lua checks, syntax/registration and reviewed references. Safe W0003 transaction complete with OS-confirmed exit, exact receipts and182/182 MATCH. Source/live B151, original evidence retained, native precision still pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

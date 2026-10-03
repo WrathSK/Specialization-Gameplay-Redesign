@@ -271,8 +271,8 @@
     "implementation": "B151.178 / modinfo178 scoped entry repair LOCAL_COMPLETE; original default-off single-city precision scope retained",
     "native": "USER_GAME_TEST_REQUIRED / PRECISION_NOT_TESTED. B150 entry block preserved; import omission fixed statically, no native startup/precision PASS inferred.",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
-    "stop": "Authorized entry repair complete locally. Safe W0003 deployment then same-city baseline/native precision validation only; no L2B.",
-    "deployment": "W0003 complete: B150.177-c66b053-playtest.json DEVELOP_ACTIVE,182/182 MATCH; B149 retained/stable recovery verified. Runtime source commit c66b053; native pending.",
+    "stop": "Authorized entry repair/source/local checks and safe W0003 deployment complete. Await same-city baseline/native precision validation only; no L2B.",
+    "deployment": "W0003 B151 complete: B151.178-438ca9d-playtest.json DEVELOP_ACTIVE,182/182 MATCH; source 438ca9d0b5b400b8e1501b1a3087925ad85fcc91; B150 retained/stable recovery MATCH; no pending marker. Native still pending.",
     "native_evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md"
   }
 }

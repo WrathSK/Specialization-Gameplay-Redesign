@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0388
-Implementation Build: develop B151.178 / modinfo178; live B150.177 / modinfo177; P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
+Implementation Build: develop/live B151.178 / modinfo178; P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
@@ -15,7 +15,7 @@ Work State: P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
 
 25项定向真实Lua/SQL PASS，含原18及7项新导入/实际请求覆盖；语法/XML检查通过。原L1/K直接证据按未变模块复用，B150原生失败原件保留。模型K0.5、SQL/载体规则、GC及永久账本未改。
 
-源码B151.178 / modinfo178；live暂仍B150.177，source c66b053与receipt B150.177-c66b053-playtest.json。修复提交/push且退出/精确receipt/hash门禁满足后，按W0003替换；没有根据HEAD猜部署。
+源码/live B151.178 / modinfo178；source 438ca9d，receipt B151.178-438ca9d-playtest.json DEVELOP_ACTIVE，182/182 MATCH。OS确认退出，B150精确receipt恢复stable过桥后staging激活；B150保留包与stable恢复点均MATCH，无pending marker。没有启动游戏、删除备份或修改main。
 
 当前授权只到入口修复/安全测试包。下一允许动作：同城冷启动左键准备基线；成功后续既定单城精度流程，首次异常按具体阶段停止。用户实机Science/Gold小数归属/结算仍待验；不要求重复旧长测，不自动进入L2B/L3/M/N/U2。
 
