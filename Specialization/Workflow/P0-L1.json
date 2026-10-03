@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0383",
+    "status": "S0384",
     "runtime": "B149.176 / modinfo176",
     "military": "D0037",
     "harbor": "D0037"
@@ -200,7 +200,7 @@
   ],
   "dependencies": [
     "P0-K confirmed facts/scoped native gate; P0-A ordinary ontology and current reference/ACTIVE",
-    "STATIC flat district Tourism candidate implemented as explained building contribution/plot projection; native city/property/Tourism gate pending",
+    "Flat district Tourism projection implemented; tested visible rate+4/+6/+3 matches. Actual per-turn cumulative settlement and untested native scope remain required.",
     "Existing local-human E2 module-owned exit/return; no new persistent ledger or AI/MP"
   ],
   "old_writers": [
@@ -254,6 +254,12 @@
         "DevelopmentTests/test_lv4_percent.py"
       ],
       "trigger": "Historical effect fixtures/call assumptions when adding current cutover tests; do not weaken old accepted assertions for green"
+    },
+    {
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md"
+      ],
+      "trigger": "Current acceptance/timing questions and recovery: scoped screenshots, unchanged writer/UNKNOWN comparison, native cumulative tooltip availability and minimal next validation. Not an additional default full-source requirement."
     }
   ],
   "non_scope": [
@@ -267,9 +273,10 @@
     "local": [
       "17 targeted real-Lua/SQL tests PASS: existing 13 plus missed-load/confirmed readiness, local-turn/UNKNOWN/same-turn Governor, stale/foreign sample and read-only diagnostic cases",
       "Prior 26 K facts/producer/bridge/legacy consumer tests retained as B148 evidence, not rerun this repair",
-      "Changed Lua syntax, XML/exact 179 Mod files, reviewed document/selector/context checks"
+      "Changed Lua syntax, XML/exact 179 Mod files, reviewed document/selector/context checks",
+      "Two read-only fixture checks PASS: stable local-turn/duplicate/UNKNOWN zero additional writes/create/remove; explicit ACTIVE3->2->3 withdrawal/reapply isolated. Native timing not simulated; no full-suite rerun."
     ],
-    "user": "Fixed collection/buildings; Governor ACTIVE3 exit/return Tourism delta, then save/full exit/cold-load. Stop on zero/mismatched configuration or positive configuration with no native effect; no work movement or old long test."
+    "user": "Five native images verify rate/configuration+4/+6/+3; cold restart normal USER_REPORTED. Next: same stable recipient raw cumulative Tourism C0/C1/C2 and per-turn E via existing native tooltip. Missing tooltip/changed modifiers/ambiguous increment stops; no long test. New passive single-city timing diagnostic is a proposal only, needs implementation authorization."
   },
   "full_audit_triggers": [
     "Native primitive cannot preserve per-building contribution/recipient/pillage/withdrawal semantics",
@@ -278,9 +285,9 @@
   ],
   "result": {
     "plan": "User accepted concrete plan and explicitly authorized implementation",
-    "implementation": "B149.176 readiness/read-only configuration diagnostics LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; no formula/SQL/permanent-state/GC change.",
-    "native": "B148 USER_GAME_TEST_FAIL preserved: ACTIVE3 expected+2/+4 but configuration0. User accepted Printing explanation for writing Tourism; B149 native fixed-collection Governor delta and cold-load USER_GAME_TEST_REQUIRED.",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md",
-    "stop": "B149 user-authorized readiness repair locally complete and source637f97b deployed via W0003;179/179 MATCH and recovery verified. Await only L1 fixed-collection Governor/cold-load native gate; no L2/L3/M/N/U2 or performance investigation."
+    "implementation": "B149.176 readiness/read-only diagnostics implementation remains unchanged;17 prior local tests inherited. This turn documents scoped native rate PASS plus two smallest read-only fixture checks; PARTIAL_NATIVE_GATE_REQUIRED for actual cumulative settlement.",
+    "native": "B148 failure preserved. B149 USER_GAME_TEST_PASS for displayed Tourism/configuration+4/+6/+3 at118 baseline; cold-load normal USER_REPORTED. Interturn drop/recovery reported; actual per-turn cumulative settlement USER_GAME_TEST_REQUIRED, no confirmed cause.",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md",
+    "stop": "Evidence archive/read-only timing investigation complete; runtime/source637f97b unchanged. Next only existing native-tooltip two-turn cumulative check; no new instrumentation without authorization, no later L2/L3/M/N/U2."
   }
 }

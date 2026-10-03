@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0383
+Status Revision: S0384
 Implementation Build: develop/live B149.176 / modinfo176; P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
@@ -13,18 +13,21 @@ Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
 
 [D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)只属未来Design；四专业v0.1范围不变，Harbor/Military未实施。
 
-用户授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)及此次最小修复。B148[正预期/零配置失败](Validation/Results/Specialization_B148_P0L1_Native_Fail.md)保留；用户确认印刷术解释原馆藏倍率，改用固定馆藏、调总督比较差值。B149.176就绪/只读诊断修复[17项定向测试PASS](Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)，当前`P0_L1_PARTIAL_NATIVE_GATE_REQUIRED`，不是完整L1 PASS。
+[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)实施/就绪修复已获授权并完成；[B148正预期/零配置失败](Validation/Results/Specialization_B148_P0L1_Native_Fail.md)保留。B149[17项本地验证](Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)及[五图验收/时序调查](Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md)确认可见+4/+6/+3与公式一致；用户报告冷重启正常。当前`P0_L1_PARTIAL_NATIVE_GATE_REQUIRED`，实际累计结算仍待确认，不是完整L1 PASS。
 
-保留LoadScreenClose，由已确认当前馆藏或本地玩家回合补一次就绪；后续按已有事件/变化城市更新。UNKNOWN/foreign/旧引用不能冒充可靠样本；同回合资格变化继续响应。诊断区分预期、逐区域配置、master健康与未就绪，点击不施加效果。本地复现缺加载通知的旧风险，尚不证明B148真实因果；正配置下的原生旅游城市/区域限定、加值/撤销仍待验。SQL/公式/K1/旧writer退出/永久状态/GC未改。
+用户观察回合间顶部先回落118再恢复；稳定输入不每回合拆建carrier已获STATIC及两个最小LOCAL检查支持，真实原生撤销/重评估/结算顺序尚未观察。UNKNOWN保护与原有总督退出保持；不据显示变化猜根因。125→118来源保留未归因，本轮不扩大调查。
 
-[B148原本地13项/26项K](Validation/Results/Specialization_B148_P0L1_Local.md)及[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)按原范围保留；K26本次未重跑。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161/Design/main不变。
+实际live保持B149.176 / modinfo176，source `637f97b`、receipt `B149.176-637f97b-playtest.json` DEVELOP_ACTIVE；先前179/179 MATCH与恢复点按原部署证据保留。本轮仅截图归档/只读调查/状态文档，未重新部署或核验运行包；没有启动游戏、改Mod/Design/永久状态/GC/main。
 
-W0003部署完成：B149.176，source `637f97b`、receipt `B149.176-637f97b-playtest.json` DEVELOP_ACTIVE，179/179 MATCH。OS确认游戏退出；先按原B148 receipt恢复stable，再staging切入本包，旧B148与stable恢复点保留并验证。没有启动游戏或promotion；main未改。截图原件保持既有忽略目录。
+[B148原本地13项/26项K](Validation/Results/Specialization_B148_P0L1_Local.md)、[P0-K限定实机](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)按原范围保留；未重跑旧套件。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。
 
-下一动作仅为[固定馆藏→总督退出/建立→保存冷加载的短验收](Validation/Results/Specialization_B149_P0L1_Readiness_Local.md#一个最小原生验收流程)；配置失败或正配置下无原生差值即停止该路径，不改玩法。[文化后续准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)保持计划/只读授权；不自动实施L2/L3/M/N/U2，不要求旧长测。
-
+下一步为[现有文化胜利提示的两回合累计核对](Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md#一个最小结算核对)。若现有UI不能区分，再另获授权做单城被动时序诊断；本次提交不授权新源码修改。[文化后续准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)仍只计划/只读，不自动实施L2/L3/M/N/U2，不要求旧长测。
 
 ## 历史阶段记录
+
+### S0383 — B149.176就绪修复与部署检查点
+
+保留加载完成入口，可靠当前馆藏确认/本地玩家回合补首次就绪；诊断区分资格、预期、逐区域配置、master健康与未就绪，点击不施加效果。17项定向真实Lua/SQL PASS；旧writer漏通知模拟只证明风险，不证明B148原生根因。源码637f97b按W0003恢复stable后staging部署B149，179/179 MATCH、receipt/recovery/OS退出已确认；当时原生门禁待验。当前新增原生证据和结算边界由CURRENT管理。
 
 ### S0380 — 文化后续准备，实施仍等待B148
 

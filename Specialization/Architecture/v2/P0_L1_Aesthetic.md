@@ -1,6 +1,6 @@
 # P0-L1 — Culture III「风雅熏陶」具体实施计划
 
-Status: AUTHORIZED / P0_L1_PARTIAL_NATIVE_GATE_REQUIRED。B149.176就绪/只读诊断修复本地通过；等待固定馆藏、切换总督的原生短验收。
+Status: AUTHORIZED / P0_L1_PARTIAL_NATIVE_GATE_REQUIRED。B149.176已测可见旅游加值正确、用户报告冷加载保持；实际回合累计结算时序仍待最小核对。
 Authority: Design D0037（Harbor未来基线不扩本批）/ Culture D0029 `CUL_L3_AESTHETIC` / Shared D0035 / A0161。正式Design不变。
 Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，源码 `87655e5`。B148为初版检查点，当前修复源码B149.176；实际部署以Status/receipt为准。
 
@@ -8,7 +8,7 @@ Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，
 
 [P0-K限定实机验收](../../Status/Validation/Results/Specialization_B147_P0K_Pass.md)已关闭最小事实门禁。本批只接入风雅熏陶，以及[总计划明确分配给L1的旧文化人口/专家百分比退出](D0032_Implementation_Plan.md#明确的旧效果切换责任)。不要求先完成工业G–J或商业能力。
 
-本批已获用户明确授权。B148首次原生验收[正预期但配置为0](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)按失败范围保留；用户随后授权修复，并确认印刷术解释原馆藏倍率。B149最小就绪/诊断修复已完成本地验证，仍partial；[当前检查点](#b149176--readiness-repair-checkpoint)与[新结果/一个最小流程](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)是当前恢复入口。等待固定馆藏、调总督使ACTIVE跨三级门槛，再保存冷加载的原生验收；不要求移动巨作或旧长测。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
+本批已获用户明确授权。B148首次原生验收[正预期但配置为0](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)按失败范围保留；用户随后授权修复，并确认印刷术解释原馆藏倍率。B149最小就绪/诊断修复及17项本地验证保留；[最新五图/结算边界](../../Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md)确认已测可见加值+4/+6/+3，冷加载正常按用户报告记录。用户观察回合间先回落、再恢复；源码与两个定向模拟不支持“稳定输入每回合拆建载体”的解释，实际累计结算尚未确认。下一步只读现有文化胜利提示中的累计旅游，做两回合最小核对；必要的新单城时序诊断须另获授权。本轮没有运行代码修改或部署，不要求旧长测。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
 
 ## 唯一玩法合同
 
@@ -145,3 +145,12 @@ P0-K STATIC/LOCAL及限定USER_GAME_TEST证据按原范围复用。B148.175的ST
 - **夹具修正。** 普通测试改走实际LoadScreenClose，不再手动ready；ResearchApply用例在人工加图书馆后通知共享缓存失效，保留原Gold/missing-Tier/HOLD断言。实际ResearchApply代码未改。
 
 [本次结果](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)记录STATIC/LOCAL和固定馆藏的短验收。当前原生城市限定、District subject Property解释、旅游加值/撤销仍USER_GAME_TEST_REQUIRED。配置正确但原生无对应差值则停止该路径，不改公式或扩大L2；完成本批验收前不能宣布L1完成。
+
+
+## B149.176 — rate acceptance and settlement boundary
+
+[最新结果](../../Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md)记录5张原图与当前唯一新增时序门禁。2时代×2栋、2时代×3栋、1时代×3栋的全国旅游分别122/124/121，相对118为+4/+6/+3；已测可见加值PASS，用户报告冷加载保持，不能扩展为每回合累计结算PASS。
+
+静态writer与两个小型fixture检查确认：稳定计划/健康master跨本地回合、重复确认和同引用UNKNOWN不额外写入/拆建；KNOWN低ACTIVE才合法退出。真实回合间六个总督Property、Modifier重评估或UI缓存变化未观测，不能将顶部回落自动归为carrier正常刷新，也不能确认能力永远不计收益。
+
+下一只读验证复用原版文化胜利页的`GetTouristsFromTooltip`累计提示，同一外国主要文明在稳定输入下采C0/E0、C1/E1、C2/E2。累计是否获得增强贡献是判定对象，整数游客或顶部当前率不足以证明。外部旅游概览解析只作为入口证据，文字格式不明不得补0。如果现有入口不可用/结果歧义，再准备单城、两回合被动时序诊断，另等用户授权；不主动重算或延迟真实退出、不改变玩法。L1仍partial，不自动实施后续模块。
