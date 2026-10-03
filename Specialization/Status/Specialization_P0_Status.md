@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0406
-Implementation Build: source/live B157.184 / modinfo184; mapping native pending; stable B069.96
+Status Revision: S0407
+Implementation Build: source/live B157.184 / modinfo184; observed District mapping native PASS; Meaning comparison pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PENDING
+Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PASS
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B157两图](Validation/Results/Specialization_B157_Modifier_Mapping_Native.md)已通过本次原生District映射/subject门禁：所选City393220的HD文化/旅游业和旧GWA文化+1，owner与唯一subject均“本城已核验”；City65536正确为其它城。均Active=true，但HD与旧GWA属于不同District，作品基础2/实际4；不据此推断覆盖算法或跨区域限制。
+
+本次OFF/SPLIT/配置0，没有Meaning实例，不能验收其收益。当前包足够做[基线→追加→直接退出三组诊断](Validation/Results/Specialization_B157_Modifier_Mapping_Native.md#当前包下一最小对照)，保持同回合同馆藏，SINGLE3；先看实例挂载/退出与差值，不进入Dialogue100%或主题化。D0042九域、旧候选FAIL、条件后备及其它门禁保持；不授权新writer/设计变更/下一能力。
+
+source/live仍B157.184/source f75494b，沿既有receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。两图ignored归档2/2 SHA256 MATCH；无Mod/Design/GC/永久数据/main变化，无部署/游戏启动/新模拟。停止等待当前包短对照。
+
+## 历史阶段记录
+
+### S0406 — B157映射LOCAL与部署（当时）
 
 用户授权的B157.184只读补齐已LOCAL完成：[23项诊断＋3项原reader回归与一次原生读取](Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)。严格解析B156实际District owner格式，与当前城市/区域/父城/full reference交叉核对；subject最多3项，未知格式不猜。保留原按需一次token/有界报告，没有新Gameplay请求或常驻扫描。
 
@@ -17,7 +27,6 @@ Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PENDING
 
 source/live B157.184，source f75494b，receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE，182/182 MATCH；OS确认退出，精确B156 receipt恢复stable过桥后staging激活，B156/stable恢复点MATCH，无pending marker、未启动游戏。main稳定B069.96不动。停止等一份映射/subject报告，不自动启用对照、续四态、新writer或下一能力。
 
-## 历史阶段记录
 
 ### S0405 — B156原生schema观察（当时）
 

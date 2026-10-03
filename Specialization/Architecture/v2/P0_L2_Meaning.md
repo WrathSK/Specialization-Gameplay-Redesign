@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_MODIFIER_MAPPING_NATIVE_PENDING；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_MODIFIER_MAPPING_NATIVE_PASS；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 **条件后备／未来处理。** 用户接受无可靠Culture路径时暂排Government Plaza／Diplomatic Quarter；两者是Meaning唯一Culture来源，采用后将九域六yield缩为七域五yield，其它Shared映射／能力／K／Floor／W／资格不动。当前只登记CONDITIONALLY_AUTHORIZED，正式Design仍D0042九域、B155也未适配；采用前必须同步正式来源与阅读版，不能仅从读入端偷偷删域。未来恢复需可靠文化共存与倍率边界证据。旧SINGLE3／四态要求Culture3／正Culture，不能直接当七域验收流程。
 
-[最小按需native Modifier实例只读诊断](#modifier实例诊断)已获授权并完成B156本地实施。古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture，建筑自身Culture1另算。先确认API实际schema及严格城市匹配依据；当前没有可靠实例城市映射，不能用同玩家／城市名称替代同城。只授权本次按需只读诊断；[29项LOCAL结果与一次读取流程](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)已记录，[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)已确认OFF入口/API所见字段，District owner raw含Owner/City；B157已按授权补齐严格District/当前对象核对及有限subject明细，[26项LOCAL与最小读取](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)通过；新增映射与共存仍待原生。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
+[最小按需native Modifier实例只读诊断](#modifier实例诊断)已获授权并完成B156本地实施。古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture，建筑自身Culture1另算。先确认API实际schema及严格城市匹配依据；当前没有可靠实例城市映射，不能用同玩家／城市名称替代同城。只授权本次按需只读诊断；[29项LOCAL结果与一次读取流程](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)已记录，[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)已确认OFF入口/API所见字段，District owner raw含Owner/City；B157已按授权补齐严格District/当前对象核对及有限subject明细，[26项LOCAL与最小读取](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)通过；[B157两图](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md)已通过所见District owner/唯一subject的本城/其它城核验；Meaning启用及共存仍待短对照。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
 
 [B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
 
@@ -35,7 +35,7 @@ D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9�
 
 1. `GameEffects.GetModifiers()`目前只有**全局**枚举先例；每个请求至多调用一次，再按`GetModifierDefinition(id).Id`匹配精确allowlist，命中才取owner／Active／Subjects。不能声称原生只扫描一城，也不能声称外层处理cap能限制原生返回全局列表的初始物化成本。
 2. 首轮Writing限定：`HD_AMPHITHEATER_WRITING_CULTURE_BOOST`／Tourism同伴；`SPC_MEANING_PROBE_SCIENCE_1_WRITING`（Science1）、`SPC_MEANING_PROBE_GOLD_3_WRITING`（Gold4）；两个`SPC_MEANING_PROBE_CULTURE_SINGLE3[_SCALE100]_WRITING`。为配置异常／SPLIT残留核对，从Meaning精确16 owned building对应的Writing附件形成有限集合；不使用名称prefix筛全库。0%／hold残留只加Dialogue与GWA精确owned目录中Writing／Culture的附件，不把其余object／yield未扫描说成完整退出已证实。附件选择同时检查`BuildingModifiers`与参数，不复制另一套公式或猜字段。
-3. UI先例证实Definition表中的`Id`／`Arguments`，`GetModifierActive`真实API按boolean使用；owner需`GetModifierOwner`＋`GetObjectsPlayerId`＋`GetObjectType`＋限长`GetObjectString`。**B156首版实例城市归属UNKNOWN**：与所选城市header分开，foreign过滤只靠确认玩家ID，不靠名称。HD City字符串仅注释先例，本次未观测；禁止宽松抓数字、以内部objectID代替CityID。B156实测owner为District，B157按用户授权只解析该完整格式，交叉核对当前CityManager/该城FindID区域/区域父城/full reference；本城、其它城、UNKNOWN分别报告。新映射仍待native，不能据raw或名字单独归组，不引入新cityKey。
+3. UI先例证实Definition表中的`Id`／`Arguments`，`GetModifierActive`真实API按boolean使用；owner需`GetModifierOwner`＋`GetObjectsPlayerId`＋`GetObjectType`＋限长`GetObjectString`。**B156首版实例城市归属UNKNOWN**：与所选城市header分开，foreign过滤只靠确认玩家ID，不靠名称。HD City字符串仅注释先例，本次未观测；禁止宽松抓数字、以内部objectID代替CityID。B156实测owner为District，B157按用户授权只解析该完整格式，交叉核对当前CityManager/该城FindID区域/区域父城/full reference；本城、其它城、UNKNOWN分别报告。新映射在B157所见三个District对象已native确认；其它格式仍UNKNOWN，不能据raw或名字单独归组，不引入新cityKey。
 4. `GetModifierSubjects`按实证区分nil、空数组、有限对象数组和错误；只有实际数组才计数／取有限类型描述，不递归探测。B157每实例最多3个subject的玩家/类型/raw与同样District核对；非已观测格式保持UNKNOWN，余项标未展开，请求内标量缓存复用对象读取。不调用仅有注释的TrackedObjects。Active true只是该API结果，不自动等于owner／subject requirement满足、精准recipient、叠加或收益结算PASS；如诊断确需requirement层，先核对现源码的具体接口，再定域扩展，不能猜方法。
 5. 成功S/G是正控制：与Culture用同一reader／归属规则；HD是同yield背景，不能诊断时关闭它。记录具体GreatWorkType／基础Culture、实际building type／Name tag／Locale结果、配置量、HasBuilding／pillaged与作品小计；复用本次已取得的UI事实。若当前OFF不能复用完整四态快照，只读本fixture实际槽位，不新增第二套跨城市采集。
 
@@ -53,7 +53,7 @@ D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9�
 
 仅当实际schema与严格同城映射通过审阅后，才值得用同城C00→C10→END／READ三态配对：HD应持续存在；Meaning所选候选／S/G进入与退出；旧Writing Culture残留按所扫范围报告。它仍不验收Dialogue100%、主题化、最终结算／冷加载、全部作品或完整L2。附件／活动不符则定位确切挂载；两项均可靠活动但CultureΔ0，只收窄到组合／读取／结算问题，不能宣称覆盖算法已确认或去改系数。所有门禁、条件后备与现B155保留。
 
-B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS；首次原生OFF读取见[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)，入口及所见schema通过，严格映射/Meaning共存未过；[证据与一次读取](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。当前source/live以Status/receipt为准。schema报告已收到；B157定域映射已授权LOCAL完成，停止等待一次新增映射/subject报告，不自动重开四态、正式同步后备或进入下一能力。
+B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS；首次原生OFF读取见[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)，入口及所见schema通过，严格映射/Meaning共存未过；[证据与一次读取](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。当前source/live以Status/receipt为准。schema报告已收到；B157定域映射已授权LOCAL完成，B157映射/subject报告已通过所测范围，下一仅当前包基线→追加→直接退出三组诊断，见最新原生记录；不自动重开四态、正式同步后备或进入下一能力。
 
 ## 平加共存与主题化技术原型
 

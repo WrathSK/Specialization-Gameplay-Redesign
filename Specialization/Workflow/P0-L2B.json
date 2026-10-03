@@ -11,7 +11,7 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0406",
+    "status": "S0407",
     "runtime": "B157.184 / modinfo184",
     "military": "D0037",
     "harbor": "D0037"
@@ -281,6 +281,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
       "kind": "full",
       "reason": "Current B157 mapping scope, local evidence and one native read boundary"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md",
+      "kind": "full",
+      "reason": "Latest mapping/subject native evidence and current-package short comparison"
     }
   ],
   "dependencies": [
@@ -362,7 +367,7 @@
     "local": [
       "B157:23 diagnostic tests and3 direct existing reader regressions PASS; L1 bounded UI read only, no gameplay/full/stress"
     ],
-    "user": "B156 OFF UI read/schema observed in two screenshots; strict city/subject mapping and Meaning activation untested. B155 candidate Culture failures retained; no stacking algorithm conclusion."
+    "user": "B157 observed OFF District owner/subject mapping PASS, same/other city distinguished; Meaning activation and yield comparison not yet observed, B155 failures retained."
   },
   "full_audit_triggers": [
     "Cannot confirm exact old/new withdrawal; do not mix writers",
@@ -373,11 +378,11 @@
     "plan": "Latest user directs minimal technical prototype first, fixed additions under Dialogue/theming; earlier theme amplification deferred",
     "implementation": "B157.184 readonly District mapping/subject diagnostics LOCAL_COMPLETE; gameplay unchanged",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
-    "native": "B156 OFF UI read/schema observed in two screenshots; strict city/subject mapping and Meaning activation untested. B155 candidate Culture failures retained; no stacking algorithm conclusion.",
-    "stop": "Wait for one native District mapping/subject READ report; no automatic activation comparison, four-state continuation, new writer/fallback/cutover or next ability.",
+    "native": "B157 observed OFF District owner/subject mapping PASS, same/other city distinguished; Meaning activation and yield comparison not yet observed, B155 failures retained.",
+    "stop": "Current B157 package: one same-turn SINGLE3 baseline/addition/direct-END native diagnostic comparison. No new implementation/deployment, 100% Dialogue/theming, cutover or next ability.",
     "deployment": "B157.184 / modinfo184; source f75494b16e023224dec6e852ff65afb13f438963; W0003 B157.184-f75494b-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; OS exit verified, exact B156 receipt restore then staging; B156/stable recovery MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0406 B157 user-authorized readonly District owner/current objects/reference verification and bounded subjects; 23 diagnostic +3 direct reader tests LOCAL PASS. Native mapping pending; B156 schema observations and B155 Culture failure retained; Design/gameplay/GC/persistent data unchanged.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md",
+    "authority_revalidation": "S0407 two B157 native screenshots: observed District owner/subject mapping PASS for selected and other city. OFF only; HD and GWA on different Districts, Culture4 does not prove stacking. Meaning activation/comparison pending. No code/Design/GC changes; originals archived 2/2 MATCH.",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md",
     "investigation": "Specialization/Reports/Technical/Specialization_B155_Meaning_Culture_Path.md",
     "conditional_fallback": "User accepted temporary exclusion of Government Plaza/Diplomatic Quarter from Meaning if no reliable Culture path; not formally adopted or implemented. D0042 remains nine-domain. Future restoration needs reliable coexistence and multiplier boundary; Shared mapping/other abilities unchanged.",
     "diagnostic_plan": "Specialization/Architecture/v2/P0_L2_Meaning.md#modifier实例诊断; authorized readonly implementation complete, native pending"
