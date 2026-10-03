@@ -281,6 +281,6 @@
     "implementation": "B149.176 readiness/read-only configuration diagnostics LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; no formula/SQL/permanent-state/GC change.",
     "native": "B148 USER_GAME_TEST_FAIL preserved: ACTIVE3 expected+2/+4 but configuration0. User accepted Printing explanation for writing Tourism; B149 native fixed-collection Governor delta and cold-load USER_GAME_TEST_REQUIRED.",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md",
-    "stop": "User explicitly authorized repair; B149 local complete, source awaits safe committed W0003 deployment. Then only L1 native gate; no L2/L3/M/N/U2 or performance investigation."
+    "stop": "B149 user-authorized readiness repair locally complete and source637f97b deployed via W0003;179/179 MATCH and recovery verified. Await only L1 fixed-collection Governor/cold-load native gate; no L2/L3/M/N/U2 or performance investigation."
   }
 }

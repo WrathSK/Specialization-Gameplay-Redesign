@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0383
-Implementation Build: develop B149.176 / modinfo176; live B148.175 pending repaired-package deployment; P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
+Implementation Build: develop/live B149.176 / modinfo176; P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
@@ -19,7 +19,7 @@ Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
 
 [B148原本地13项/26项K](Validation/Results/Specialization_B148_P0L1_Local.md)及[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)按原范围保留；K26本次未重跑。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161/Design/main不变。
 
-部署待执行：只读核对当前live B148.175与原receipt一致，stable恢复点有效，OS未发现Civ VI进程。修复源码B149尚未部署；实际source commit/包状态将在W0003安全事务完成后记录。截图原件保持既有忽略目录。
+W0003部署完成：B149.176，source `637f97b`、receipt `B149.176-637f97b-playtest.json` DEVELOP_ACTIVE，179/179 MATCH。OS确认游戏退出；先按原B148 receipt恢复stable，再staging切入本包，旧B148与stable恢复点保留并验证。没有启动游戏或promotion；main未改。截图原件保持既有忽略目录。
 
 下一动作仅为[固定馆藏→总督退出/建立→保存冷加载的短验收](Validation/Results/Specialization_B149_P0L1_Readiness_Local.md#一个最小原生验收流程)；配置失败或正配置下无原生差值即停止该路径，不改玩法。[文化后续准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)保持计划/只读授权；不自动实施L2/L3/M/N/U2，不要求旧长测。
 
