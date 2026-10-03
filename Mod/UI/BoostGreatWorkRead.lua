@@ -1,4 +1,5 @@
 -- Native UI-only observations. Baselines never affect research, civics or works.
+include('NetworkInput')
 SPCBoostGreatWorkRead={}
 local baseline
 local function snapshot(P)
@@ -90,4 +91,49 @@ function SPCBoostGreatWorkRead.Adjacency(P,c)
   return table.concat(rows,'\n')
  end)
  return ok and result or ('原生六收益读取未完成：'..tostring(result))
+end
+
+-- One on-demand UI baseline, never a Gameplay source or a persistent snapshot.
+local meaningBaseline
+function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
+ local ok,text=pcall(function()
+  assert(v.owner==Game.GetLocalPlayer() and v.cityID==c:GetID() and v.reference==SPCNetworkInput.Reference(c),'ME_UI_REFERENCE_CHANGED')
+  if v.mode=='OFF' then meaningBaseline=nil;return '测试已关闭；未保留原生收益基线。'end
+  local b=c:GetBuildings();local totals={SCIENCE=0,GOLD=0};local signature={}
+  for r in GameInfo.Buildings()do if P.HasBuilding(b,r.Index) then
+   local n=b:GetNumGreatWorkSlots(r.Index);assert(type(n)=='number' and n>=0,'ME_UI_SLOTS_UNKNOWN')
+   if n>0 then
+    local known,themed=pcall(b.IsBuildingThemedCorrectly,b,r.Index)
+    signature[#signature+1]='B'..r.Index..':'..(known and tostring(themed) or 'UNKNOWN')
+    for slot=0,n-1 do local id=b:GetGreatWorkInSlot(r.Index,slot)
+     if id~=nil and id~=-1 then signature[#signature+1]='W'..id..'@'..r.Index..':'..slot..':'..tostring(b:GetGreatWorkTypeFromIndex(id))end
+    end
+    for _,y in ipairs({'SCIENCE','GOLD'})do
+     local value=b:GetBuildingYieldFromGreatWorks(P.Info('Yields','YIELD_'..y).Index,r.Index)
+     assert(type(value)=='number' and value==value,'ME_UI_NATIVE_YIELD_UNKNOWN');totals[y]=totals[y]+value
+    end
+   end
+  end end
+  table.sort(signature);local sig=table.concat(signature,';');local turn=Game.GetCurrentGameTurn()
+  local rates={};local ratesOK=pcall(function()
+   for _,y in ipairs({'SCIENCE','GOLD'})do local n=c:GetYield(P.Info('Yields','YIELD_'..y).Index);assert(type(n)=='number' and n==n,'ME_UI_CITY_YIELD_UNKNOWN');rates[y]=n end
+  end)
+  if mark and v.mode=='BASELINE' and not v.error and v.oldHeld then
+   meaningBaseline={reference=v.reference,signature=sig,turn=turn,totals=totals,rates=ratesOK and rates or nil}
+  end
+  local lines={string.format('原生巨作收益：科研 %.4f / 金币 %.4f',totals.SCIENCE,totals.GOLD)}
+  if v.mode=='BASELINE' then lines[#lines+1]=meaningBaseline and '已记录关闭测试收益时的本城基线。' or '基线未确认，先处理上方异常。'
+  elseif meaningBaseline and meaningBaseline.reference==v.reference and meaningBaseline.signature==sig then
+   lines[#lines+1]=string.format('相同馆藏基线 → 当前：科研 Δ%+.4f / 金币 Δ%+.4f',totals.SCIENCE-meaningBaseline.totals.SCIENCE,totals.GOLD-meaningBaseline.totals.GOLD)
+  else lines[#lines+1]='馆藏/所在建筑/主题或会话已变；差值基线不可用。可结束→准备→启用重新对照。'end
+  if ratesOK then
+   lines[#lines+1]=string.format('整城原生率：科研 %.4f / 金币 %.4f（含其它来源与倍率）',rates.SCIENCE,rates.GOLD)
+   if v.mode=='ACTIVE' and meaningBaseline and meaningBaseline.reference==v.reference and meaningBaseline.signature==sig and meaningBaseline.rates then
+    lines[#lines+1]=string.format('整城率对照 Δ%+.4f 科研 / Δ%+.4f 金币；仅在其它事实不变时比较。',rates.SCIENCE-meaningBaseline.rates.SCIENCE,rates.GOLD-meaningBaseline.rates.GOLD)
+   end
+  else lines[#lines+1]='整城原生率不可读；未将未知记为0。'end
+  lines[#lines+1]='作品分项和整城率是原生读取；正常过回合核对持续生效，未自动判定实机PASS。'
+  return table.concat(lines,'\n')
+ end)
+ return ok and text or ('原生作品科研/金币暂不可读：'..(tostring(text):match('ME_[A-Z_]+') or '原生接口未知')..'；不将未知记为0。')
 end

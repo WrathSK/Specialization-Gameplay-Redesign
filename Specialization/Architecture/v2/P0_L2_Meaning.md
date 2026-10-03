@@ -1,22 +1,32 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED。下一建议仅P0-L2A单城接口验证；L2B正式能力后置，NATIVE_PRECISION_GATE_OPEN。
+State: P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED。用户已授权L2A；B150.177单城接口验证包就绪，L2B正式能力仍未授权，NATIVE_PRECISION_GATE_OPEN。
 Authority: Culture D0029 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-计划核对基线：develop `f02e4e8`，现有B149.176运行源码`637f97b`；本轮只读核对/计划，不重新验证部署。Spec D0037的Culture覆盖范围、完整`CUL_L4_MEANING`、作品池/九领域及Shared D0035份额/深度/ordinary合同已核对；没有采用旧GWA公式或旧Floor许可。L1已按已测范围PASS，不要求再拍旧截图。
+计划核对基线：develop `f02e4e8`，现有B149.176运行源码`637f97b`；原计划为只读核对。当前L2A实施基线2f1304f；实际source/live以Status及receipt为准。Spec D0037的Culture覆盖范围、完整`CUL_L4_MEANING`、作品池/九领域及Shared D0035份额/深度/ordinary合同已核对；没有采用旧GWA公式或旧Floor许可。L1已按已测范围PASS，不要求再拍旧截图。
 
-推荐分两段，**本次只请求审核下一P0-L2A**；不是自动授权整个L2。
+分两段；**用户本轮只授权P0-L2A**。L2B完整能力不因此获授权。
 
 | 切片 | 目标 | 停止点 |
 |---|---|---|
 | P0-L2A — 单城接口验证 | 真实Shared D→逐件理论值；用已审阅GreatWork加值原语验证0.5/1.5/4.5与原生收益归属 | 一个最小实机接口验收后提交结果；不正式启用全城L2，不全局退休旧GWA |
 | P0-L2B — 完整意义延展 | 解决已支持作品限定及native-only隔离，接全九领域/六产出、事件/退出/加载、精确旧GWA cutover | L2A结果后更新最终方案、另审阅/授权；不进入L3/M/N |
 
-L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；失败时保留原规则并停止对应效果路径，不能自行floor/补贴。现有W0001 envelope在切片获授权时再登记最小必需manifest，不为此次计划新建调度或状态系统。
+L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；失败时保留原规则并停止对应效果路径，不能自行floor/补贴。L2A现有W0001 manifest已登记，见[本批读取/验证范围](../../Workflow/P0-L2A.json)；没有新调度或状态系统。
 
-### P0-L2A — 具体下一批
+### B150.177 — L2A实施检查点
+
+新`CultureMeaningModel/Probe`及Science/Gold十片段SQL已完成；[本地证据与最小流程](../../Status/Validation/Results/Specialization_B150_P0L2A_Local.md)。左键基线→启用→结束，右键只读；默认关闭、一个fixture。exact旧GWA撤销未确认不进入probe，probe退出未确认不恢复旧writer；同token重复不切换阶段。
+
+新fact摘要比较W及同类排除/类别未知数量，同一时代增减也通知；L1相同投影零写，且只额外忽略十个明确的非ordinary测试载体。未知作品整城拒绝只限受控probe，不是L2B资格解决方案。OFF常规事件不读D/馆藏；ACTIVE仅本城事实读取，无新GC。冷加载一次精确十载体清理含foreign，不重放测试模式。
+
+18项新定向、15项直接L1、26项K与分发检查LOCAL PASS；native精度未确认。实机以报告D为准：本机HD集市T1、市场T2，不把“有市场”写成D1。不改Tier/目录、K0.5或舍入；两个旧L1版本/通知assertions未改，当前对应合同另有新覆盖。
+
+完整L2仍需原生精度/归属、六产出、未知作品限定及native-only组合门禁；本批结束等待用户，不自动进入L2B。后续原有目标合同与计划保留如下。
+
+### P0-L2A — 已授权具体范围
 
 **Goal。** 用一个受控Culture ACTIVE4城市，证明每件合格巨作的半点加值是否实际结算，并区分逐件截断与多件汇总。不是把Lua配置能够表示0.5写成原生支持0.5。
 
@@ -28,7 +38,7 @@ L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；
 
 **依赖/可能文件。** `GreatWorkAdjacency.lua/Model`及原SQL定义家族（owned退出/原语）；`CurrentSpecializationFacts`、`DistrictCompleteness`、`GreatWorkFacts`及其当前接口；最小`CultureMeaningModel/Effects`或现有模块适配、必要Data、Gameplay/modinfo、P0Panel/Text和定向测试。实施前读精确attachment/控制/调用点及实用E2入口；不是现在全仓重审。若不触及producer，`DialogueRefresh`仅为已有事实桥依赖，不顺便重写。
 
-**更新/性能。** 主动probe操作与本城已确认馆藏/D/ACTIVE/引用变化才重算；复用当前确认入口和有界load/本地回合兜底。同一时代增减作品也要正确观测：当前Summary有count，但OnConfirmed比较尚未包含count/资格组成，按实际consumer只补必要摘要失效。L1收到额外相关确认仍应相同投影零写；不复制全城槽位/领域采集、不加per-frame/hover请求、每城每回合限流或独立GC。
+**更新/性能。** 主动probe操作与本城已确认馆藏/D/ACTIVE/引用变化才重算；复用当前确认入口和有界load/本地回合兜底。同一时代增减作品也要正确观测：B150已在OnConfirmed比较中补count及同类排除/类别未知数量；没有增加第二套槽位扫描。L1收到额外相关确认仍应相同投影零写；不复制全城槽位/领域采集、不加per-frame/hover请求、每城每回合限流或独立GC。
 
 **临时状态。** 模块只拥有一个当前fixture引用、probe模式/最近计划及有界错误；同Owner当前事实校验，UNKNOWN不当0，foreign/loss明确退出，重复幂等；结束/更换fixture/加载处理撤销自己的测试效果，不能残留或扩散。永久专业/投资/作品不写；不记录收益补偿/跨回合小数账本。
 
@@ -77,7 +87,7 @@ Meaning是追加产出，未来Dialogue只放大作品原生产出，**不得放
 3. **隔离：** 同城同时配置作品native倍率与本项附加值，验证Dialogue百分比不放大追加。先静态/模拟划清attachment与origin，再给一次最小原生对照。所测Culture一类不扩大为六yield/所有theming。
 4. 原生路径不满足时登记TECHNICAL_INVESTIGATION_REQUIRED；备选不同primitive可以调查，**不能自行floor、改系数、造补偿永久账本或采用整城补贴**。真正需要改Gameplay才交用户决定。
 
-在全部门禁可表达前只做后续获授权的可逆接口probe，不宣称L2完成。此文档轮没有执行probe或本地收益测试。
+在全部门禁可表达前只做后续获授权的可逆接口probe，不宣称L2完成。此前计划轮没有运行原型；当前B150 L2A仅完成受控实现及LOCAL验证，native待验。
 
 ## 实施切片与旧writer退出
 
@@ -85,7 +95,7 @@ Meaning是追加产出，未来Dialogue只放大作品原生产出，**不得放
 - 第二步原生门禁：隔离旧Adjacency，仅该probe范围由旧模块自己撤销；未通过不进行正式新旧切换。不能把探针收益与正式L2叠加。
 - 第三步明确cutover：读全Mod内上述精确carrier、SQL附件、旧READ/OFF/AUTO、load/Start/Audit及AdjData消费者调用点；旧模块撤销成功后新writer施加。旧退出不确认则本城不启用新效果。carrier定义可留惰性清理ID，生成/恢复入口必须退出。
 - **只退出旧GreatWorkAdjacency。** 保留旧Dialogue到M，Culture Eureka到N3，保留L1、Lv1支持/Lv2住房/GPP、科研和商业。`DialogueRefresh`是K/旧Dialogue共用producer：只在最后AdjData消费者退出后停止该投影，不能关整条巨作采集/ACK路径。
-- 最后按需诊断→相关本地回归→提交；部署/测试仍等待新授权，不自动启动L3。
+- 最后按需诊断→相关本地回归→提交；L2B实施/部署须其单独授权；L2A按W0003现有安全门禁部署，实际receipt见Status，不自动启动L3。
 
 候选责任落在`CultureMeaningModel/Effects`或有明确职责的原模块适配，不强制新文件数量。真实影响范围：旧GWA Lua/SQL、Shared轻量读取、K通知/输出、Gameplay/modinfo、P0Panel/Text及定向测试；M仅作收益隔离接口约束，不在L2建立其永久账本。
 

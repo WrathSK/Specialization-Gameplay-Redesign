@@ -66,6 +66,11 @@ local function displayResponse()
     end
     if pendingAction=='BOOST_READ' or pendingAction=='BOOST_BASELINE' then
       report=report..'\n'..SPCBoostGreatWorkRead.Boost(P,pendingAction=='BOOST_BASELINE');localReport=report
+    elseif pendingAction and pendingAction:find('^CULTURE_MEANING_') then
+      local v=data.CultureMeaningView
+      local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
+      if c and v and v.token==pendingToken then report=report..'\n'..SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')end
+      localReport=report
     elseif pendingAction and pendingAction:find('^GWA_') then
       gwaFlight=nil
       local ok,native=pcall(function()
@@ -80,7 +85,7 @@ local function displayResponse()
       if c then report=report..'\n'..SPCBoostGreatWorkRead.Works(P,c,pendingAction=='GW_BASELINE') end
       localReport=report
     end
-    readings[(pendingAction and pendingAction:find('^MEMORY_GC_')) and 'MEMORY_GC' or ((pendingAction or "READ")..":"..tostring(pageCity)..":"..tostring(page))]=report
+    readings[(pendingAction and pendingAction:find('^CULTURE_MEANING_')) and 'CULTURE_MEANING' or (pendingAction and pendingAction:find('^MEMORY_GC_')) and 'MEMORY_GC' or ((pendingAction or "READ")..":"..tostring(pageCity)..":"..tostring(page))]=report
     status(P.VERSION.." | ACK | "..report:gsub("\n","[NEWLINE]"))
     return true
   end
@@ -297,6 +302,8 @@ local function initialize()
   Controls.GovernorButton:SetToolTipString('总督条件')
   Controls.SpecialistsButtonCaption:SetText('专家与岗位')
   Controls.SpecialistsButton:SetToolTipString('专家与岗位')
+  Controls.MeaningProbeButtonCaption:SetText(Locale.Lookup('LOC_SPC_CULTURE_MEANING_PROBE'))
+  Controls.MeaningProbeButton:SetToolTipString(Locale.Lookup('LOC_SPC_CULTURE_MEANING_PROBE_HINT'))
   Controls.AestheticButtonCaption:SetText(Locale.Lookup('LOC_SPC_CULTURE_AESTHETIC'))
   Controls.AestheticButton:SetToolTipString('左键：本城时代数、普通建筑与旅游配置；右键：时代和建筑组成，继续右键翻页。配置不是原生实测。')
   Controls.GWReadButtonCaption:SetText(Locale.Lookup('LOC_SPC_GREAT_WORK_FACTS'))
@@ -441,6 +448,8 @@ local function initialize()
   Controls.GWAOffButton:RegisterCallback(Mouse.eLClick,function() request('GWA_OFF') end)
   Controls.GWAAutoButton:RegisterCallback(Mouse.eLClick,function() request('GWA_AUTO') end)
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_ADVANCE') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_AESTHETIC_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_AESTHETIC_DETAIL',true) end)
   Controls.GWReadButton:RegisterCallback(Mouse.eLClick,function() request('GREAT_WORK_FACTS_READ') end)

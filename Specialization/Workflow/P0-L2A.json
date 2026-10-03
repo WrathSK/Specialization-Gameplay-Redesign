@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "batch": "P0-L2A",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0037",
+    "research": "D0031",
+    "industry": "D0036",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0386",
+    "runtime": "B150.177 / modinfo177",
+    "military": "D0037",
+    "harbor": "D0037"
+  },
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+  "goal": "Reversible opt-in single-city native GreatWork Science/Gold precision/attribution gate; no full Meaning cutover",
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Recover current authorization/source-live/native gate only",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
+      "reason": "Complete current L2A authorized scope, conditions, exclusions and stop",
+      "selector": "## 当前切片与停止点"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Current Culture accepted scope/supersession",
+      "selector": "## 6. Culture / Theater Square — CUL"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Complete Meaning qualifications/formula/exceptions",
+      "selector": "/abilities/3",
+      "expected_id": "CUL_L4_MEANING"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Initial0.5 parameter, not final balance",
+      "selector": "/parameters/meaning_K"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Explicit eligible work pool/era/exclusions",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Complete nine-domain/share mapping, no Theater",
+      "selector": "/contracts/domains"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/YIELD_SHARE"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Existing scoped updates/facts/lifecycle/accepted GC constraints",
+      "selector": "### 公共更新与临时状态接入约束"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
+      "kind": "full",
+      "reason": "This local checkpoint, native minimum flow and limits"
+    },
+    {
+      "path": "Mod/CultureMeaningModel.lua",
+      "kind": "full",
+      "reason": "Complete pure per-work model and exact two-yield encoding"
+    },
+    {
+      "path": "Mod/CultureMeaningProbe.lua",
+      "kind": "full",
+      "reason": "Complete one-fixture lifecycle/owned withdrawal/failure/notifications; no permanent state"
+    },
+    {
+      "path": "Mod/Data/CultureMeaningProbe.sql",
+      "kind": "full",
+      "reason": "Exact ten native carriers/70 attachments"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Count/eligibility confirmation, UNKNOWN/current-reference and original bridge preservation"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacency.lua",
+      "kind": "full",
+      "reason": "Exact156 owned hold/release and normal scoped restore; no player-wide off"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacencyModel.lua",
+      "kind": "full",
+      "reason": "Original six signed directory/BASE contract retained"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Current fact facade, not new identity authority"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Authoritative D/current availability/max-single/Tier projection consumed unchanged"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Current reference semantics reused; no cityKey"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Exact request/facts/consumer initialization/call sites"
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Only exact probe-carrier self-event exclusion; existing semantics/notification preserved"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_meaning_probe.py",
+      "kind": "full",
+      "reason": "Actual current targeted SQL/model/scoped exit/load/failure tests and explicit DB fixture"
+    },
+    {
+      "path": "Mod/Data/GreatWorkAdjacency.sql",
+      "kind": "head",
+      "reason": "Unchanged inherited full-family review hash; first exact attachment schema representative,156/1092 family mechanically checked; expand only on mismatch",
+      "selector": 24
+    }
+  ],
+  "dependencies": [
+    "L1 tested native gate retained; K confirmed count/era/location facts and current Shared D/qualification",
+    "Existing E2 module-owned exact withdrawal, no persistent schema/AI/MP",
+    "Native Science/Gold half-values still USER_GAME_TEST_REQUIRED"
+  ],
+  "old_writers": [
+    "GreatWorkAdjacency exact BUILDING_SPC_B060_{six-yields}_{P/N}{0..12} only target fixture held; release uses current normal samples",
+    "Legacy Dialogue/K producer/ACK and other city old writers remain; no global retire"
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/EffectiveFacts.lua"
+      ],
+      "trigger": "Before modifying exit/qualification: inspect complete exact IsExitTarget/RemoveOwned/RegisterExit/current reference API and callers; unchanged prior review hashes reusable, no all E2 history default"
+    },
+    {
+      "paths": [
+        "Mod/GreatWorkCatalog.lua",
+        "Mod/OrdinaryBuildingCatalog.lua"
+      ],
+      "trigger": "Catalog/ontology questions or changed/missing Tier evidence; immutable current registry is reused, not reinterpreted"
+    },
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/UI/BoostGreatWorkRead.lua",
+        "Mod/Text/TestText.sql",
+        "Mod/Probe.lua",
+        "Mod/SpecializationP0.modinfo"
+      ],
+      "trigger": "Mandatory for probe action/ACK/native observation/localization/registration changes"
+    },
+    {
+      "paths": [
+        "Mod/UI/DialogueRefresh.lua",
+        "Mod/Dialogue.lua",
+        "Mod/DialogueModel.lua",
+        "DevelopmentTests/test_p0_k.py",
+        "DevelopmentTests/test_culture_aesthetic.py",
+        "DevelopmentTests/test_b138_update_contract.py"
+      ],
+      "trigger": "Bridge/callback or dirty-dispatch changes: affected assertions/producer and exact sample paths; no full historical regression"
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md",
+        "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md",
+        "Mod/Data/GreatWorkAdjacency.sql"
+      ],
+      "trigger": "Synchronous/no-recursion/native evidence or exact legacy attachment mismatch; expand direct relevant section/definitions only"
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md",
+        "tools/temporary_playtest.py"
+      ],
+      "trigger": "Actual deployment/recovery action only: verify clean committed source, game exit and exact prior receipt/package; no guessed runtime from HEAD"
+    }
+  ],
+  "non_scope": [
+    "L2B all cities/six yield formal ability/global old GWA retire/native-only solution",
+    "L3/M/N/U2, other profession gameplay, future professions",
+    "Design/Floor/GC/global event framework/permanent schema or ledgers/AI/MP"
+  ],
+  "validation": {
+    "depth": "W0004 L2; relevant scoped L3 ownership/load/failure assertions only",
+    "local": [
+      "18 current real-Lua/SQL probe tests PASS",
+      "26 K facts/producer/legacy PASS,15 affected L1 assertions PASS; two pinned/superseded legacy assertions not run, replaced in new tests",
+      "Affected existing dirty-dispatch/reentry/UNKNOWN/late/load/failed-send check PASS; nine changed Lua syntax/XML/exact Mod file registration/localization",
+      "Context/selector/hash/link/diff checks; no full/stress or unrelated regression"
+    ],
+    "user": "One controlled CultureACTIVE4 city: baseline->enable->end; W1->W2 same era, D1->D3, native per-workScience/Gold0.5/1.5/4.5 and normal turn persistence. Stop first confirmed failure, no floor. Flow in result."
+  },
+  "full_audit_triggers": [
+    "Cannot confirm exact old/new withdrawal; do not mix writers",
+    "Unexpected permanent-state write/reference ambiguity; stop scoped path",
+    "Native precision cannot implement current contract; no gameplay workaround without user decision"
+  ],
+  "result": {
+    "plan": "User explicitly authorized L2A after concrete plan; L2B excluded",
+    "implementation": "B150.177 / modinfo177 LOCAL_COMPLETE; reversible single-city opt-in native S/G only",
+    "native": "USER_GAME_TEST_REQUIRED; no engine launch or native precision claim",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
+    "stop": "Finish source/document review/commit/push and W0003 deployment safely, then stop for user native evidence; no L2B implementation."
+  }
+}

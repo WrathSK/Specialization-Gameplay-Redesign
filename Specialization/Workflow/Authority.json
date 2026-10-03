@@ -10,8 +10,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0385",
-    "runtime": "B149.176 / modinfo176",
+    "status": "S0386",
+    "runtime": "B150.177 / modinfo177",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "637f97b6aec14449c743dcd2f0d895e4049adaad",
-  "current_batch": "P0_L1_USER_GAME_TEST_PASS / P0_L2A_PLAN_READY_NOT_AUTHORIZED",
-  "next_batch": "Recommend P0-L2A: single-city Meaning GreatWork precision/attribution probe under current0.5D shares, Science/Gold representative cases and exact scoped old GWA isolation. Plan only; implementation needs user authorization, L2B full cutover separately reviewed.",
-  "manifest": "Specialization/Workflow/P0-L1.json",
-  "live": "B149.176 deployed source637f97b;receipt B149.176-637f97b-playtest.json DEVELOP_ACTIVE;prior179/179 MATCH/recovery retained, no redeployment/reverification this turn. L1 scoped native PASS: cumulative1316-1194=122; changed-input settlement/cold restart USER_REPORTED.",
+  "current_batch": "P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED",
+  "next_batch": "User native one-city L2A precision/attribution probe. Stop at result; L2B full Meaning requires reviewed plan and separate authorization.",
+  "manifest": "Specialization/Workflow/P0-L2A.json",
+  "live": "Verified current B149.176 source637f97b receipt DEVELOP_ACTIVE,179/179 MATCH and stable recovery hash. B150.177 source locally complete, not yet deployed; next authorized boundary: coherent commit/push then W0003 verified-exit transaction.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0385 three native images reviewed/hashed/archived; stable actual accumulation+122 matches enhanced rate, changed-input accumulation and cold restart accepted from user report. L1 gate closed in tested scope; no new timing fix/probe or universal C++ order claim. Reviewed current complete Meaning/work/domain/Shared contracts, existing L2 plan and direct GWA/fact notification/native attachment evidence; prepared bounded L2A plan, L2B remains later. Mod/tests/Design/GC/main/deployment unchanged; only explicitly reviewed document hashes updated.",
+  "context_review_status": "User explicitly authorized L2A. Reviewed complete Meaning/work/domain/Shared contracts plus exact fact/old attachment/consumer/request/owned exit paths; single-city opt-in S/G probe and necessary notifications/UI wired.18 targeted,15 affected L1,26 K local tests and one dispatch check PASS; native precision/attribution pending. No L2B/Design/GC/permanent-state/main change. Only reviewed changed/new source/document hashes updated; unchanged reviews inherited.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

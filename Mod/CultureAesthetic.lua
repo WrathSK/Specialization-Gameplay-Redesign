@@ -206,7 +206,9 @@ function M.Start(P,shared)
  bind(Events,'CityBuildingsChanged',function(pid,cid)d.Audit({player=pid,city=cid})end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do
   bind(Events,name,function(x,y,id,owner)
-   if P.Info('Buildings',id) and P.Info('Buildings',id).BuildingType==M.Carrier then return end
+   local row=P.Info('Buildings',id)
+   if row and (row.BuildingType==M.Carrier or shared.CultureMeaningProbe and shared.CultureMeaningProbe.IsOwnedCarrier(row.BuildingType))then return end
+   -- L2A's exact ten transient test carriers cannot change ordinary buildings/X.
    local ok,c=pcall(function()
     local district=CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
     return district and district:GetCity() or CityManager.GetCityAt(x,y)

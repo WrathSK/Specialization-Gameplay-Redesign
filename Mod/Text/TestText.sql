@@ -94,3 +94,12 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CULTURE_AESTHETIC','风雅熏陶'),
 ('en_US','LOC_SPC_CULTURE_AESTHETIC','Aesthetic influence');
+
+-- L2A single-city reversible experiment; native precision is pending.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展验证'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning precision probe'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：准备基线 → 启用单城测试 → 结束恢复；右键只读。科研/金币逐件半点精度待实机确认。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Left click: prepare baseline, enable one-city test, then end and restore. Right click reads only. Native Science/Gold per-work precision remains unverified.'),
+('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
+('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');

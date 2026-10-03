@@ -176,6 +176,17 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
+  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' then
+    local ok,out=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
+      local probe=assert(shared.CultureMeaningProbe,'ME_MODULE_NOT_READY')
+      local changed,why=true,nil
+      if params.Action=='CULTURE_MEANING_ADVANCE' then changed,why=pcall(probe.Advance,playerID,c,params.Token)end
+      shared.CultureMeaningView=probe.View(playerID,c);shared.CultureMeaningView.token=params.Token
+      return probe.Describe(playerID,c)..(not changed and ('\n操作未完成：'..(tostring(why):match('[A-Z_]+') or '接口未确认')) or '')
+    end)
+    shared.Snapshot=ok and out or '意义延展验证：城市或接口暂不可读。';shared.LastToken=params.Token;return
+  end
   if params.Action=='CULTURE_AESTHETIC_READ' or params.Action=='CULTURE_AESTHETIC_DETAIL' then
     local ok,out=pcall(function()
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'AE_CITY_UNKNOWN')
@@ -379,6 +390,7 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
+    if not (params.WorkerOnly==true and params.FactsChanged==false) and shared.CultureMeaningProbe then shared.CultureMeaningProbe.Audit({player=playerID})end
     -- Cross has no worker/focus input. Missing/mixed/contradictory provenance retains the fallback.
     if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
@@ -691,6 +703,8 @@ SPCDialogue.Start(P,shared)
 
 include("GreatWorkAdjacency")
 SPCGWAdjacency.Start(P,shared)
+include('CultureMeaningProbe')
+SPCCultureMeaningProbe.Start(P,shared)
 
 include("CommerceConvergence")
 SPCCommerceConvergence.Start(P,shared)

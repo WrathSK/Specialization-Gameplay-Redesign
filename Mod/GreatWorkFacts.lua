@@ -8,8 +8,9 @@ function F.Unhex(s)
  assert(#s%2==0 and not s:find('[^0-9a-f]'),'GW_REFERENCE_ENCODING')
  return (s:gsub('..',function(c)return string.char(tonumber(c,16))end))
 end
-function F.Plan(catalog,works)
- local out={count=0,eraCount=0,eras={},works={},excluded={}}
+function F.Plan(catalog,works,categoryOf)
+ local native={GREATWORKOBJECT_WRITING=true,GREATWORKOBJECT_MUSIC=true,GREATWORKOBJECT_SCULPTURE=true,GREATWORKOBJECT_PORTRAIT=true,GREATWORKOBJECT_LANDSCAPE=true,GREATWORKOBJECT_RELIGIOUS=true,GREATWORKOBJECT_ARTIFACT=true}
+ local out={count=0,eraCount=0,eras={},works={},excluded={},modifierExcludedCount=0,unknownCategoryCount=0}
  for _,w in ipairs(works) do
   local meta=catalog.works[w.type]
   if meta then
@@ -17,7 +18,12 @@ function F.Plan(catalog,works)
    if not out.eras[meta.era] then out.eras[meta.era]=0;out.eraCount=out.eraCount+1 end
    out.eras[meta.era]=out.eras[meta.era]+1
    out.works[#out.works+1]={id=w.id,type=w.type,building=w.building,slot=w.slot,era=meta.era,category=meta.category,name=meta.name,eraSource=meta.eraSource}
-  else out.excluded[#out.excluded+1]={id=w.id,type=w.type,building=w.building,slot=w.slot,reason=catalog.excluded[w.type] or 'UNSUPPORTED_TYPE'} end
+  else
+   local category=categoryOf and categoryOf(w.type)
+   if category==nil then out.unknownCategoryCount=out.unknownCategoryCount+1
+   elseif native[category] then out.modifierExcludedCount=out.modifierExcludedCount+1 end
+   out.excluded[#out.excluded+1]={id=w.id,type=w.type,building=w.building,slot=w.slot,category=category,reason=catalog.excluded[w.type] or 'UNSUPPORTED_TYPE'}
+  end
  end
  return out
 end
@@ -128,17 +134,17 @@ function F.Start(P,shared)
    elseif r.availability=='UNKNOWN' then
     r.raw=nil;r.hasConfirmed=false
    else
-    local plan=F.Plan(catalog,r.raw);r.raw=nil;r.hasConfirmed=true
+    local plan=F.Plan(catalog,r.raw,function(kind)local row=P.Info('GreatWorks',kind);return row and row.GreatWorkObjectType end);r.raw=nil;r.hasConfirmed=true
     for k,v in pairs(plan)do r[k]=v end
    end
   end
   cities=candidate;signature=key;d.revision=d.revision+1;d.lastError=nil;d.dirtyScope={all=false,cities={}};rebuild();return true
  end
  local function consumerInputs()
-  local out={};for cid,r in pairs(cities)do out[cid]={reference=r.reference,eraCount=r.eraCount,availability=r.availability,hasConfirmed=r.hasConfirmed}end;return out
+  local out={};for cid,r in pairs(cities)do out[cid]={reference=r.reference,eraCount=r.eraCount,count=r.count,modifierExcludedCount=r.modifierExcludedCount,unknownCategoryCount=r.unknownCategoryCount,availability=r.availability,hasConfirmed=r.hasConfirmed}end;return out
  end
  local function sameInput(a,b)
-  return a and b and a.reference==b.reference and a.eraCount==b.eraCount and a.availability==b.availability and a.hasConfirmed==b.hasConfirmed
+  return a and b and a.reference==b.reference and a.eraCount==b.eraCount and a.count==b.count and a.modifierExcludedCount==b.modifierExcludedCount and a.unknownCategoryCount==b.unknownCategoryCount and a.availability==b.availability and a.hasConfirmed==b.hasConfirmed
  end
  function d.Receive(pid,p)
   if not P.IsTestPlayer(pid) then return false,'GW_UNSUPPORTED_OWNER' end
@@ -181,7 +187,7 @@ function F.Start(P,shared)
  function d.Read(pid,cid)return copy(current(pid,cid)) end
  function d.Summary(pid,cid)
   local r=current(pid,cid)
-  return r and {reference=r.reference,hasConfirmed=r.hasConfirmed,availability=r.availability,eraCount=r.eraCount,count=r.count} or nil
+  return r and {reference=r.reference,hasConfirmed=r.hasConfirmed,availability=r.availability,eraCount=r.eraCount,count=r.count,modifierExcludedCount=r.modifierExcludedCount,unknownCategoryCount=r.unknownCategoryCount} or nil
  end
  function d.Domestic(pid,era)
   if not P.IsTestPlayer(pid)then return nil end

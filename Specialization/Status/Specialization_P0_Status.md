@@ -1,29 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0385
-Implementation Build: develop/live B149.176 / modinfo176; P0_L1_USER_GAME_TEST_PASS / P0_L2A_PLAN_READY_NOT_AUTHORIZED; stable B069.96
+Status Revision: S0386
+Implementation Build: develop B150.177 / modinfo177; live B149.176 / modinfo176; P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L1_USER_GAME_TEST_PASS / P0_L2A_PLAN_READY_NOT_AUTHORIZED
+Work State: P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)只属未来Design；四专业v0.1不变，Harbor/Military未实施。
+用户明确授权[P0-L2A单城意义延展验证](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。develop源码B150.177 / modinfo177已LOCAL完成；[本批范围、证据与一个测试流程](Validation/Results/Specialization_B150_P0L2A_Local.md)。纯模型九领域，native仅选定Culture ACTIVE4城的Science/Gold；默认OFF，不是完整L2。
 
-[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)本批已按[最新结算验收](Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)USER_GAME_TEST_PASS：图1/2同一外国文明累计1194→1316，增加122，包含已测加值；变化后累计/冷重启正常按用户实测报告接受。前次+4/+6/+3及17项LOCAL证据保留，未测组合不升级；B148早期配置失败原件不改。用户明确暂不修复，不再以精确C++时序未知阻塞。
+18项定向、15项相关L1、26项K及分发检查PASS；STATIC/LOCAL不证明原生0.5/1.5/4.5。旧GWA仅目标城由自己精确暂停/恢复；当前馆藏件数/资格摘要补通知。无新永久数据/Design/GC/AI/MP/main变化。L1[已测结算PASS](Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保持。
 
-下一建议为[P0-L2A单城意义延展接口验证](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)，PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED。核对0.5×D逐件份额、Science/Gold半点实际结算与单城旧GWA互斥；L2B全能力/精确旧writer退休另审阅授权。科研Floor许可不迁入Culture，未知作品/native-only门禁保留。
+当前live只读核验仍B149.176：source637f97b、receipt B149.176-637f97b-playtest.json DEVELOP_ACTIVE，179/179 MATCH及stable恢复点核验。游戏退出已由OS只读确认。尚未替换运行包；允许下一动作仅review→commit/push→W0003安全交易部署B150→记录receipt/clean，不启动游戏。
 
-实际live继续B149.176 / modinfo176，source `637f97b`、receipt `B149.176-637f97b-playtest.json` DEVELOP_ACTIVE；先前179/179 MATCH与恢复点沿原证据。本轮仅3图归档、接受记录与计划/状态更新，未重新核验部署、改Mod/Design/测试/永久数据/GC/main或启动游戏。
+用户下一动作：部署完成后按本批单城流程核对原生精度/归属；只需最小测试，不重做旧旅游长测。Codex到L2A包/证据边界停止；不得自动实施L2B/L3/M/N/U2。科研Floor不迁入Culture；未知作品/native-only门禁留L2B。
 
-巨作变化但时代数量不变尚未原生测试；不追加旧L1测试，在L2实际件数用例核对并保持L1零写。125→118其它瞬态来源非阻塞，不重开调查。[K](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)按原范围保留；[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。
-
-本轮无需用户测试；等待L2A计划审核/实施授权。[其它文化模块准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)仍只计划，不自动实施L2B/L3/M/N/U2，不要求旧长测。
+当前Design Spec D0037 / Culture D0029 / Shared D0035，四专业v0.1不变；Harbor/Military未来设计未实施。其它[文化准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)仍仅计划；机构视觉优化及剩余非阻塞性能事项保留，不重新开专项。
 
 ## 历史阶段记录
+
+### S0385 — L1结算验收与L2A计划
+
+三图+用户报告按已测范围确认L1结算/冷加载PASS；提出L2A单城精度/旧GWA互斥计划，当时未获实施授权。原source/live637f97b保持。最新授权/实施见CURRENT，原证据不改。
 
 ### S0384 — B149可见加值通过，累计时序待验
 

@@ -5,6 +5,32 @@ function SPCGWAdjacency.Start(P,shared)
  local d={ready=false,busy=false,samples={},last={},off={},errors={}};shared.GreatWorkAdjacency=d
  local allowed={WRITING=true,MUSIC=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true}
  local function key(y,part) return 'BUILDING_SPC_B060_'..y..'_'..part end
+ local owned={};for _,y in ipairs(M.Yields)do for _,sign in ipairs({'P','N'})do for bit=0,12 do owned[key(y,sign..bit)]=true end end end
+ function d.IsOwnedCarrier(name)return owned[name]==true end
+ function d.IsMeaningHeld(pid,c)
+  local h=d.meaningHold;return h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c) or false
+ end
+ function d.HoldMeaningProbe(pid,c)
+  assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'GWA_MEANING_OWNER')
+  local ref=SPCNetworkInput.Reference(c);local h=d.meaningHold
+  assert(not h or h.owner==pid and h.city==c:GetID() and h.reference==ref,'GWA_MEANING_OTHER_FIXTURE')
+  d.meaningHold={owner=pid,city=c:GetID(),reference=ref}
+  local b=c:GetBuildings()
+  for name in pairs(owned)do
+   local r=assert(P.Info('Buildings',name),'GWA_DATABASE_MISSING')
+   assert(r.InternalOnly==1 or r.InternalOnly==true,'GWA_MEANING_NON_INTERNAL')
+   local has=P.HasBuilding(b,r.Index);assert(type(has)=='boolean','GWA_MEANING_CARRIER_UNKNOWN')
+   if has then P.RemoveBuilding(b,r.Index);assert(P.HasBuilding(b,r.Index)==false,'GWA_MEANING_REMOVE_UNCONFIRMED')end
+  end
+  return true
+ end
+ function d.ForgetMeaningProbe(pid,cid,reference)
+  local h=d.meaningHold;if h and h.owner==pid and h.city==cid and h.reference==reference then d.meaningHold=nil end
+ end
+ function d.ReleaseMeaningProbe(pid,c)
+  assert(d.IsMeaningHeld(pid,c),'GWA_MEANING_REFERENCE_CHANGED')
+  d.meaningHold=nil;d.Audit(pid,c:GetID()) -- Normal current samples only, never restore a saved effect.
+ end
  local function carriers(c,want)
   local b=c:GetBuildings()
   -- Clear obsolete pieces before adding new pieces; each piece is a per-work amount.
@@ -23,15 +49,18 @@ function SPCGWAdjacency.Start(P,shared)
   for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan'); carriers(c,{}) end end end
   d.ready=true
  end
- function d.Audit(pid)
+ function d.Audit(pid,cid)
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
-  d.last[pid]={}
+  if cid==nil then d.last[pid]={} else d.last[pid]=d.last[pid] or {} end
   local rowsByCity={}
   for _,r in pairs(d.samples[pid] and d.samples[pid].rows or {}) do
    rowsByCity[r.city]=rowsByCity[r.city] or {};table.insert(rowsByCity[r.city],r)
   end
-  for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
+  local collection=Players[pid]:GetCities();local visit=collection:Members()
+  if cid~=nil then local selected=collection:FindID(cid);local done=false;visit=function()if not done and selected then done=true;return cid,selected end end end
+  for _,c in visit do P.Count('city_scan');
    local ok,plan=pcall(function()
+    if d.IsMeaningHeld(pid,c)then return {base={},count=0,active=false,want={},meaningHeld=true}end
     local sample=d.samples[pid];local collection=shared.Dialogue.samples[pid]
     assert(sample and collection and sample.turn==Game.GetCurrentGameTurn() and collection.turn==sample.turn,'GWA_SAMPLE_PENDING')
     local f=shared.EffectiveFacts.Read(pid,c);local base={};for _,y in ipairs(M.Yields) do base[y]=0 end
@@ -76,6 +105,7 @@ function SPCGWAdjacency.Start(P,shared)
  function d.Describe(pid,c)
   local p=d.last[pid] and d.last[pid][c:GetID()]
   if not p or p.error then return '巨作基础相邻未就绪：'..tostring(d.errors[pid] or (p and p.error) or '等待后台样本') end
+  if p.meaningHeld then return '旧巨作相邻：本城因意义延展验证暂停；其它城市仍走正常路径。'end
   local rows={'B060 巨作BASE相邻 | '..(d.off[pid] and 'TEST OFF' or 'AUTO')..' | 合格作品='..p.count..' | 生效资格='..tostring(p.active)}
   for _,y in ipairs(M.Yields) do rows[#rows+1]=string.format('%s BASE=%g | 每件=%g | 配置合计(倍率前)=%g',y,p.base[y],p.base[y]/2,p.active and p.base[y]/2*p.count or 0) end
   rows[#rows+1]='配置不是实测；半点/作品倍率按下方原生读数验证。'
