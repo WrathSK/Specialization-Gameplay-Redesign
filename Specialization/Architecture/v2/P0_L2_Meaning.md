@@ -1,31 +1,55 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_NATIVE_COMBINATION_BLOCKED；B154四态／OFF可见完成，Culture追加差值与native-only组合失败（本场景）；精确recipient未解决，定域修复／正式cutover未授权。
-Authority: Culture D0040 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0040 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE；B155候选／theme读取本地完成，原生待验。B154失败保留，精确recipient未解决，正式cutover未授权。
+Authority: Culture D0041 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0040 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-[B154六图结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)：同城同回合W1／ACTIVE4、每件配置3Culture，C00/C10/C11/C01作品Culture2/3/6/4；追加差值1与2，均非3，且不满足native-only。四态切换无旧资格错误，结束可见恢复旧值，非正式能力／结算／冷加载PASS。
+[B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
 
-未主动撤销HD古罗马+2；同族YieldChange共存／多片段／ScalingFactor是待区分的技术因素，不宣布通用覆盖算法。印刷术只作用Tourism；Meaning无Tourism输出。主题化等其它倍率未测，D0040时代对话排除Meaning追加的既定合同不改；用户基础值／普通倍率期望保留为核对事项，不自行重写Design。
+[B155单城技术原型](../../Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)增加single3与single3显式100候选、仅OFF配置切换和可靠theme读取；按固定A×W比较，真实失配不补差。原14＋新2均module-owned，旧GWA／Dialogue只hold本城；默认OFF，加载清实验。不改变原Floor／K／资格／Shared／生命周期／GC；原生算法未证实。
 
-源码／运行包沿Status既有B154记录，本轮没有Mod／测试／GC／永久数据／部署变化。61 Meaning＋26 K LOCAL范围保留，[切换修复证据](../../Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)不升级为收益原生正确；B055单件平加成功与B153失败原件均保留其具体场景。
+[技术依据和可改空间](#平加共存与主题化技术原型)保存关键反证，现有B055 flat／B059 Oxford theme仅具体场景。当前原8对象中Meaning增加倍率说明，其余7项逐对象不变；完整Dialogue／meaning_multipliers合同纳入当前读取，不全量重审其它专业。
 
-下一建议仅定域区分上述组合；需改SQL／新原型时另行取得授权，不要求用户重复同一矩阵，不改Floor、K、HD或采用整城补贴。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；正式六yield／all-city／全局旧GWA cutover和L3/M/N/U2未授权。
+下一允许动作仅B155最小原生验收：先单flat，再Dialogue，最后用户准备的固定已主题馆藏；失败停对应路径，不重复B154长测。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 
-D0040 Meaning、meaning_K、work_pool／domains及Shared四事实与前版逐对象相同，8项选择继续复用；本次改变的是native结果和停止点，不是Design。用户已确认逐领域Floor后相加再乘W；资格、份额、系数不变。当前仅证据记录／只读核对，等待下一定域授权。
+## 平加共存与主题化技术原型
+
+### 定域静态证据
+
+只读当前含14 Meaning载体的DebugGameplay：`EFFECT_ADJUST_CITY_GREATWORK_YIELD`共1378 Modifier，1258仅YieldChange、120仅ScalingFactor，同时声明0；GameEffects相关字段NULL、GameEffectArguments0行。HD+2、Meaning1+2、Dialogue TEST100=200共用effect，静态不解释共存算法。当前数据源为配置实际指向的内层Firaxis Cache；外层旧Cache无Meaning，不作为当前依据。
+
+未主动清HD不证明无间接干扰；[B055 flat2→4→2](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)也否定“所有flat必覆盖”的泛化结论。[作者SQL](https://github.com/Feofilakt/YAGM/blob/main/Moksha.sql)仅有单独YieldChange3，不能证明mixed参数。显式100没有同effect双参数先例，作为候选不得提前宣称可隔离。
+
+普通艺术／考古馆当前yield/Tourism主题倍率各100，但资格分别不同artist／同art类型、不同civ／同era。Oxford两Writing、HD广播／电影／云韶条件不同，不能类推。[B059 Oxford主题实测](../../Status/Validation/Results/Specialization_B059_Theming_User_Result.md)仅当时C/T读数，不是Meaning。原B154 reader明确拒绝themed=true，不得将该入口限制写成native不支持。
+
+### 最小原型与门禁
+
+保留现有SPLIT1+2控制，新增单一Culture3省略ScalingFactor及单一Culture3显式100两候选；其它字段／七objects同范围，S/G编码不变，不造完整新目录。候选仅每件Culture3，非3提前拒绝且不hold旧收益。单一3若成功先测Dialogue，仅失败时用显式100排因；基线必须恢复，显式100压掉Dialogue不能native-only PASS。
+
+fixed追加合同要求：Meaning在0%／100% Dialogue下均ΔA×W；Dialogue在有／无追加下原生增量相同且本身有响应。主题fixture同样ΔA×W，不乘theme；若读到2倍只登记该场景失配／未来可用事实，不推断唯一原因或正式改Design。不同配置、主题／作品／位置／D／回合等不能共享旧配对。
+
+UI按需可靠theme boolean、分建筑小计与S/G/C实际差值；缓存最多4组，结束释放，错误／未知不记成功。普通计算不构造UI明细，不增加hover／per-frame Gameplay请求。单selectedvariant为session状态，OFF切换无收益写入、重复token幂等；配置按钮右键直接复用End撤销，不推进100%实验，原验证按钮右键仍只读；load默认SPLIT/OFF并清16精确项，confirmed loss由已有module-owned路径退出，UNKNOWN不扩大清除。永久Property／账本、其它城市／HD和现GC不动。
+
+当前原型改Model/Probe/SQL及已有Gameplay请求、UI读取与一配置按钮、本地化、build标识；测试是对应直接L2与loss/load L3，不做全历史／stress。[B155结果／短测](../../Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)记录本地数量及真实原生结论；模型或carrier配置不是native证据。
+
+### 停止与未来方向
+
+用户较早提出theming放大全部作品追加，最新决定暂不采用；技术原型保留响应／参数／失败／退出档案，未来用户更改Design时再利用，不丢掉反证也不提前接受旧候选。当前候选失败先退出；两个获授权flat候选均失败时停止该primitive；Dialogue/theming无法隔离则只过确实成立的门禁，报告限制，不补差／减K／改Floor或以整城发放代替。
+
+没有可靠source-origin过滤参数；同类型作品定义基值异质，不能正式把Dialogue统一改成同类+2。未知recipient、其它三yield及正常结算仍独立；单城受控拒绝未知作品不是正式精准排除方案。技术原型完成后停止等待用户验收；不自动接正式能力／其它批次。
 
 ## 已授权切片 — P0-L2B门禁原型
 
-**Scope。** 逐领域整数模型及单城原生文化追加/倍率四态；默认OFF，仅一个fixture。已有Science/Gold整数复用；Culture新增整数1/2/4/8四片段，不创建其它三yield writer。当前规范九领域计算，Shared/K接口不改。未知对象保护不升级为正式规则。
+**Scope。** 逐领域整数模型及单城原生文化追加/倍率四态；默认OFF，仅一个fixture。已有Science/Gold整数复用；Culture原1/2/4/8片段保留，B155追加两个single3对照；不创建其它三yield writer。当前规范九领域计算，Shared/K接口不改。未知对象保护不升级为正式规则。
 
-**精确旧效果。** GWA自身156项只暂停本城；Dialogue自身0/TEST100替换只绑定owner/city/full reference，不使用off[player]。四态C00(0/0%)→C10(追加/0%)→C11(追加/100%)→C01(0/100%)→OFF。结束先确认Meaning14项清除，再Dialogue自身实验退出及正常当前AUTO，最后GWA正常当前样本恢复；失败保持stopping/hold，禁止早恢复。没有全局关旧Dialogue或退休K producer/ACK。
+**精确旧效果。** GWA自身156项只暂停本城；Dialogue自身0/TEST100替换只绑定owner/city/full reference，不使用off[player]。四态C00(0/0%)→C10(追加/0%)→C11(追加/100%)→C01(0/100%)→OFF。结束先确认Meaning16项清除，再Dialogue自身实验退出及正常当前AUTO，最后GWA正常当前样本恢复；失败保持stopping/hold，禁止早恢复。没有全局关旧Dialogue或退休K producer/ACK。
 
-**有效比较。** 本城ACTIVE4、已确认支持/非主题馆藏、正整数Culture追加，领域D/作品/位置/其它修正固定；比较两次追加差值是否都为A×W。原生Culture定义读取与HD当前平加区别保留；不假定该primitive天然隔离。右键只读更新本阶段UI记录，旧阶段不回填；四态记录最多4组，随结束/引用/回合/人口/当前资格/集合/D变化释放或失效，不写Gameplay权威。
+**有效比较。** 本城ACTIVE4、已确认支持／主题状态可靠的馆藏、正整数Culture追加，领域D/作品/位置/其它修正固定；比较两次追加差值是否都为A×W。原生Culture定义读取与HD当前平加区别保留；不假定该primitive天然隔离。右键只读更新本阶段UI记录，旧阶段不回填；四态记录最多4组，随结束/引用/回合/人口/当前资格/集合/D变化释放或失效，不写Gameplay权威。
 
 **更新、资源与边界。** 本城明确动作、当前馆藏/D/ACTIVE/ref变化；同输入零写、同回合变化响应。复用现有Shared/K输入，Dialogue scoped Audit只读本城。普通计算不扫描巨作槽位/构造诊断副本；UI原生扫描只在按需request，没有per-frame/hover请求或GC改动。明确动作期间重入只标记一个定域deferred，成功后一次核对；失败恢复意图，不重放native快照。UNKNOWN保存holder，配置/健康未确认不采成功读数。无关transfer/return可失效样本但不解除本城override；confirmed loss先owned退出，加载默认OFF、不重放永久/临时快照。非加载兜底不得清其它已ready城市。
 
-**本地验收。** W0004 L2 +直接触及loss/load的L3定域断言；B154 61实际Lua/SQL及26K通过，逐领域Floor反例和撤销失败/幂等/两城隔离/UNKNOWN/冷加载/延迟UI/native配置健康覆盖。只读DB副本，未跑历史full/stress；现有版本/外部事实不由模拟升级native PASS。
+**本地验收。** W0004 L2 +直接触及loss/load的L3定域断言；既有B154 61实际Lua/SQL及26K范围保留；B155新覆盖见结果，逐领域Floor反例和撤销失败/幂等/两城隔离/UNKNOWN/冷加载/延迟UI/native配置健康覆盖。只读DB副本，未跑历史full/stress；现有版本/外部事实不由模拟升级native PASS。
 
 **退出与后续。** 本单城native对照完成后记录结果，或第一个失败停止对应路径。精确recipient未解决不伪造资格PASS；Culture若被放大不减系数/补差/整城补贴/全局关旧对话。只有可靠接口及另行完整计划授权后，才正式六yield/all-city cutover。当前检查点不授权L3/M/N/U2、AI/MP、永久schema、目录扩展或GC调参。用户此时无需新设计决定；native一次短流程见证据页。
 
@@ -101,7 +125,7 @@ meaning_K=0.5为初版参数；金币一份=3，其它普通产出一份=1。每
 
 不包括Theater自身。完整作品资格只复用K的已支持七类/历史时代目录；Relic、Product、Wonder及未知定义排除。普通建筑完工/未掠夺、免费/特色及缺Tier规则按Shared；不使用旧BASE相邻、旧Actual复制或额外填值。例：Campus D10→每件5Science，Industry D6→3Production，Commercial D3→floor(4.5)=4Gold；不先按份额Floor，也不先合并Harbor。
 
-Meaning是追加产出，未来Dialogue只放大作品原生产出，**不得放大本项**。未知原生theming/其它倍率不能被假定为已接受叠加规则；需要对实际路径做组合核对，不能借配置读数替代回合入账。
+Meaning是追加产出，未来Dialogue只放大作品原生产出，**不得放大本项**。D0041要求Dialogue／theming均不放大追加；其它倍率不类推，实际路径仍须组合核对，不能借配置读数替代回合入账。
 
 ## 已有实现与可复用部分
 
@@ -154,6 +178,6 @@ W0004 L2；实际触及E2/引用时补相关L3状态断言，不默认历史full
 
 诊断先显示`合格W件｜每件Science/Gold…｜D来源｜预期/实际配置｜已确认/待核对`，组成分页；不以“已挂carrier”宣称原生收益通过。
 
-Exit：精度/recipient/native-only门禁、精确cutover和本地范围通过，再由用户确认原生对应场景。当前用户已接受意义延展Floor方向，精确口径待确认并同步正式来源；资格/native-only技术门禁仍开放，不因此获得完整L2实施授权。
+Exit：精度/recipient/native-only门禁、精确cutover和本地范围通过，再由用户确认原生对应场景。逐领域Floor精确口径已由D0038正式同步并在D0041保持；资格/native-only/theming技术门禁仍开放，不因此获得完整L2实施授权。
 
 来源：[Culture正式Content](../../Design/Content/Culture_D0029.json)、[Shared](../../Design/Content/Shared_D0035.json)、[总cutover合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)、[旧加值实现/限制](../../Reports/Technical/Specialization_B060_GW_Adjacency_Implementation.md)、[B055整数实机范围](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)、[精度待办](Yield_Precision_Backlog.md)。

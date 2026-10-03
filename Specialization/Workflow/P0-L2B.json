@@ -3,16 +3,16 @@
   "batch": "P0-L2B",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0040",
+    "design": "D0041",
     "research": "D0040",
     "industry": "D0040",
-    "culture": "D0040",
+    "culture": "D0041",
     "commerce": "D0040",
     "shared": "D0040",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0397",
-    "runtime": "B154.181 / modinfo181",
+    "status": "S0398",
+    "runtime": "B155.182 / modinfo182",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -31,7 +31,7 @@
     "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
   },
   "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md",
-  "goal": "Per-domain Floor model and reversible one-city Culture native-only interaction gate; precise recipient primitive unresolved, no formal cutover",
+  "goal": "Fixed per-domain Floor additions independent of Dialogue/theming; reversible one-city candidate gate, precise recipient unresolved; no formal cutover",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -52,29 +52,41 @@
       "selector": "## 6. Culture / Theater Square — CUL"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0040.json",
+      "path": "Specialization/Design/Content/Culture_D0041.json",
       "kind": "json",
       "reason": "Complete Meaning qualifications/formula/exceptions",
       "selector": "/abilities/3",
       "expected_id": "CUL_L4_MEANING"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0040.json",
+      "path": "Specialization/Design/Content/Culture_D0041.json",
       "kind": "json",
       "reason": "Initial0.5 parameter, not final balance",
       "selector": "/parameters/meaning_K"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0040.json",
+      "path": "Specialization/Design/Content/Culture_D0041.json",
       "kind": "json",
       "reason": "Explicit eligible work pool/era/exclusions",
       "selector": "/contracts/work_pool"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0040.json",
+      "path": "Specialization/Design/Content/Culture_D0041.json",
       "kind": "json",
       "reason": "Complete nine-domain/share mapping, no Theater",
       "selector": "/contracts/domains"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "kind": "json",
+      "selector": "/contracts/dialogue",
+      "reason": "Complete native-only target/fallback and lifecycle; shared YieldType not eligibility"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0041.json",
+      "kind": "json",
+      "selector": "/contracts/meaning_multipliers",
+      "reason": "D0041 fixed Dialogue/theming-independent additions and deferred future option"
     },
     {
       "path": "Specialization/Design/Content/Shared_D0040.json",
@@ -109,7 +121,7 @@
     {
       "path": "Mod/CultureMeaningModel.lua",
       "kind": "full",
-      "reason": "Complete per-domain Floor model, three-probe-yield encoding, not full six-yield writer"
+      "reason": "Unchanged Floor model plus explicit Culture3-only candidates and exact owned list"
     },
     {
       "path": "Mod/CultureMeaningProbe.lua",
@@ -119,7 +131,7 @@
     {
       "path": "Mod/Data/CultureMeaningProbe.sql",
       "kind": "full",
-      "reason": "Exact14 scoped carriers/98 attachments; four Culture pieces integer-only"
+      "reason": "Exact16 owned carriers/112 attachments: original14 plus two single3 candidates, no general directory"
     },
     {
       "path": "Mod/GreatWorkFacts.lua",
@@ -222,6 +234,17 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md",
       "kind": "full",
       "reason": "Current four-state native mismatch, exact HD withdrawal/Printing boundary and authorization stop; no all-history default"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
+      "selector": "## 平加共存与主题化技术原型",
+      "reason": "Current prototype scope/findings/current and future multiplier boundaries/stops"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "kind": "full",
+      "reason": "B155 targeted local result and one minimal native acceptance flow"
     }
   ],
   "dependencies": [
@@ -295,11 +318,11 @@
   "validation": {
     "depth": "W0004 L2 plus relevant scoped L3 load/loss/failure; no full historical/stress",
     "local": [
-      "61 actual Lua/SQL Meaning tests PASS (53 direct existing +8 targeted reentry/failure/current facts/UI methods)",
-      "26 K catalog/facts/producer/legacy tests PASS",
-      "Lua/XML/import/file-set/localization/context/links/diff checked"
+      "79 actual Lua/SQL Meaning targeted tests PASS (21.412s), including original coverage, candidate/theme/UNKNOWN/loss and direct END/cleanup-failure paths",
+      "26 K catalog/facts/producer/legacy targeted tests PASS (0.092s)",
+      "6 changed Lua syntax, XML/control IDs/import/localization/context/links/diff checked; no full historical/stress"
     ],
-    "user": "B153 C00 valid; C10 immediate work S/G deltas2/8 match but Culture delta0 expected6; C11 config blocked. C11/C01/OFF/settlement not confirmed; overall gate NOT_PASSED. Prior B152 entry result retained."
+    "user": "B154 prior four phases/OFF observed; work Culture2/3/6/4,addition delta1/2 vs expected3: native combination FAIL retained. B155 flat/Dialogue/theming candidates USER_GAME_TEST_REQUIRED, no native or settlement PASS from local tests."
   },
   "full_audit_triggers": [
     "Cannot confirm exact old/new withdrawal; do not mix writers",
@@ -307,13 +330,13 @@
     "Native precision cannot implement current contract; no gameplay workaround without user decision"
   ],
   "result": {
-    "plan": "User authorized concrete single-city L2B gate with explicit per-domain Floor",
-    "implementation": "B154.181 / modinfo181 LOCAL_COMPLETE; native Culture combination blocked, awaiting user review/next scoped authorization",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md",
+    "plan": "Latest user directs minimal technical prototype first, fixed additions under Dialogue/theming; earlier theme amplification deferred",
+    "implementation": "B155.182 / modinfo182 LOCAL_COMPLETE; candidate/configuration/themed-reader only, no formal cutover",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
     "native": "B154 USER_GAME_TEST_PARTIAL: four phases/OFF visible in one W1 fixture. Culture addition/native-only USER_GAME_TEST_FAIL:2/3/6/4,delta1/2 vs3. No settlement/theming/cold-load PASS; precise recipient still TECHNICAL_INVESTIGATION_REQUIRED.",
-    "stop": "Native result recorded; next scoped fix/new prototype needs separate explicit authorization. No unchanged matrix retest, full cutover/L3/M/N/U2.",
+    "stop": "Await B155 minimum native acceptance; native failures stop corresponding primitive, no compensation or automatic next batch",
     "deployment": "B154.181 / modinfo181; W0003 B154.181-fb3ee7f-playtest.json DEVELOP_ACTIVE; source fb3ee7f90b39148b56226d83accd49b1d6a20b73;182/182 MATCH. OS exit verified, exact B153 restore/stable staging bridge; B153/stable recovery retained MATCH, no pending marker.",
-    "authority_revalidation": "S0397 B154 six screenshots reviewed and archived6/6 SHA256 MATCH; four phases/OFF visible, workCulture2/3/6/4, delta1/2 vs expected3. Scoped source/readonlyDB excludes direct HD withdrawal; YieldChange/ScalingFactor interaction unresolved. Design/runtime/tests/GC/permanent/main/deployment unchanged; no new implementation authorization.",
+    "authority_revalidation": "S0398/D0041 latest user fixed Meaning additions; B155 scoped flat candidates/theme reader locally validated. B154 native failure retained; candidate100 unproven. Meaning multiplier explanation changed, seven original direct objects unchanged. No permanent/GC/main change; formal cutover not authorized.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md"
   }
 }

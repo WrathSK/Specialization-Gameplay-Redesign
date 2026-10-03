@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "fb3ee7f90b39148b56226d83accd49b1d6a20b73",
-  "runtime": "B154.181 / modinfo181",
+  "runtime": "B155.182 / modinfo182",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "583ca99a5a48a67a626be5484680536d6bc6a85bbaa4ce0453c7a927628a71f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md",
-      "provenance": "B153 authorized scoped Dialogue/Meaning entry repair; direct GWA synchronous iterator/lock dependency, accepted-pair receipt, 53 Meaning +26 K targeted LOCAL. No formula/permanent/GC change; native pending."
+      "sha256": "872d9faee0d552dde34d5b2c67b08d63c276e785848096b6c11a3b91ebe512cc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "40e66671958521f70e95a546b4a8aa8bf2fd4d5b09037e749427e104794a39aa",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "0b0064c6c9a11538e499fa6917fcb805f1d29df4db7e909bcff437783831070d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
-      "provenance": "B154 authorized one-city transition/reentry/failure-intent/current qualification and on-demand Culture auxiliary readout;61 Meaning/26 K LOCAL. SQL/Design/GC/permanent semantics unchanged;native pending."
+      "sha256": "c8beaf3e427dca07bd0cb7e936a5ee22683e5df122f4fcfefe644a329fa9dd3a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7203b86dff12ba7f8987aff878a5ecfd1a508d5c719749fe9314847953576a6b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
-      "provenance": "B154 authorized one-city transition/reentry/failure-intent/current qualification and on-demand Culture auxiliary readout;61 Meaning/26 K LOCAL. SQL/Design/GC/permanent semantics unchanged;native pending."
+      "sha256": "3cc411b8ba5083a3a8fa3069f47f0840b801f9f21da4c0ed425f836d43ddfa04",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "db029e98bfe154f9bb288f48b4cfd1c26fa10d8629401d92b4ca3f9258c0ac52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
-      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
+      "sha256": "7d02f6dc45a639f14d5ee56712e0d50c37cc05bbabd6cd287e5cf5103de88108",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "850201b8b9e73880aa34d5ea9910e251855c83fa68ef774542afb466496a1b0d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
-      "provenance": "B154 authorized one-city transition/reentry/failure-intent/current qualification and on-demand Culture auxiliary readout;61 Meaning/26 K LOCAL. SQL/Design/GC/permanent semantics unchanged;native pending."
+      "sha256": "b7bef21a2daee739fd8b3e374e51f8028eaa7ce40badcc1a1263f1f0d739f7b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "68e13f4a1211cfd8328e561080a69797a3bc1d55223ce0441d1c524ced9d9f4b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "b4a2f97658e2914761d2b0d938a0c56cac5ac0f13f3d706a2ae0bd88a2a89dd4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "6a0c68b24eae475b8191c24f1ba6f8525e918d6c09308b2377cf23746b8258fb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -901,19 +901,19 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "b53d51230209001f82df349d0cc07a1f782316912d69eceb84f720f47bfb0041",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
-      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
+      "sha256": "d7b33411283784f5d9a036246befa327b40deb8a9d8d1522e7562ad4f3a4f6de",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "b45e634dbfb03db348a3795f1e1f3fb325771e587ecf31aa8dc404c5fdd60202",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
-      "provenance": "B154 authorized one-city transition/reentry/failure-intent/current qualification and on-demand Culture auxiliary readout;61 Meaning/26 K LOCAL. SQL/Design/GC/permanent semantics unchanged;native pending."
+      "sha256": "c940d2f1757c8bfec023b3df6d188ccba566125939de3f56aca1fe8f272670f5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
-      "sha256": "ec42da18b138232136a9d869266986a16fb3aa5ab5d7a899914aaa6c9eafcff5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
-      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
+      "sha256": "301b67d8b18091c0964c10656e833a60e1a85c9f55e2885dd5da9bfdeca27406",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
     }
   }
 }

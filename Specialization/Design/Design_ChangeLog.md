@@ -3,8 +3,22 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0040
+Latest Accepted Design Revision: D0041
 Document State: ACCEPTED
+
+## Accepted D0041 — 2026-10-03
+
+Acceptance: ACCEPTED / fixed Meaning additions; minimal technical prototype first
+Acceptance Evidence: 用户最新明确“先测出技术原型，然后先按照都不放大来实施，但是保留技术档案供未来如果设计变化更改”；覆盖本轮较早主题化包含追加的建议。
+Accepted Spec SHA256: c0f65456ccee1ed36f0f42a031652fbb6d931e2fdf0fd0df2a80a718a5492838
+Canonical Culture Content SHA256: 6f93bce9213f854f89d234ae936c1e8809b167a62c1a72f9ebcf567d636ced64
+Previous Accepted Revision: D0040
+Frozen D0040: [原文](Revisions/Specialization_Design_Spec_D0040.md)
+Content: [Culture D0041](Content/Culture_D0041.json) / [文化阅读版](Culture.md)
+
+意义延展追加按既有逐领域Floor／同yield相加／乘W固定计算，Dialogue与theming均不放大；市政／外交追加Culture也不是native来源。作品原生产出照常使用自身倍率。用户较早主题化包含追加的设想保留为未来选项，不与当前规则并存。其它公共倍率的豁免不自行推断。
+
+不改系数／份额／领域／作品资格、D0040生命周期或其它专业。D0040原文与Culture原件冻结；授权先完成可撤销单城技术原型，native门禁仍独立，正式六yield／all-city／global旧GWA cutover未授权。[调查、原型及未来参考](../Architecture/v2/P0_L2_Meaning.md#平加共存与主题化技术原型)记录静态与实机边界，不以Design接受替代接口证据。
 
 ## Accepted D0040 — 2026-10-03
 

@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0397
-Implementation Build: source/live B154.181 / modinfo181; P0_L2B_NATIVE_COMBINATION_BLOCKED; stable B069.96
+Status Revision: S0398
+Implementation Build: source B155.182 / modinfo182; live last recorded B154.181; native prototype pending; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0040 (A–D Design-only sync; B154 Meaning direct contracts unchanged; other lifecycle Architecture/runtime adaptation not assessed)
-Latest Accepted Design Revision: D0040
-Design Sync State: D0040_LIFECYCLE_ACCEPTED_ADAPTATION_PENDING_RUNTIME_PARTIAL
-Work State: P0_L2B_NATIVE_COMBINATION_BLOCKED
+Design Revision Reviewed: D0041 (Meaning fixed additions; other D0040 lifecycle runtime adaptation not assessed)
+Latest Accepted Design Revision: D0041
+Design Sync State: D0041_FIXED_ADDITIONS_NATIVE_GATES_PENDING
+Work State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户最新[D0041](../Design/Content/Culture_D0041.json)要求意义延展追加独立，Dialogue／theming均不放大；市政／外交Culture追加不因同yield成为原生。Floor／K／资格／D0040生命周期保留，较早主题包含追加仅作未来选项。[B154](Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)配置3但Δ1/2的组合FAIL不改判，完整L2 NOT_PASSED。
+
+获授权先做[B155.182单城技术原型](Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)：保留拆分控制，新增single3／single3显式100候选，仅OFF切换；主题boolean可靠才采按需读数，逐yield固定期望A×W，不补差。数据库没有同effect双参数实例，100不是已确认修复。精确recipient／正式六yield门禁仍未解决，不扩大其它能力。
+
+source B155.182 / modinfo182，commit 441b85f609e5e9c70e5cb5eb58ba34a88870bd52；live沿既有B154.181／W0003 receipt `B154.181-fb3ee7f-playtest.json`记录，当前等待安全部署核对，不从HEAD猜运行包。main稳定B069.96未promotion。新本地定向结果见报告，不是引擎倍率PASS；原8对象只Meaning倍率说明变更，另7项逐对象复用。
+
+下一允许动作仅安全部署／B155最小实机原型：先single3非主题配对，成功补Dialogue；失败才显式100候选。用户准备好的主题馆藏重新建立固定基线，追加仍按A×W；错误停对应路径，不重复旧长测。源码／UI原型已改，永久Property／账本／GC与其它Gameplay不改。**正式六yield／all-city／global旧GWA cutover和L3/M/N/U2未授权。**[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留条件／退出。
+
+## 历史阶段记录
+
+### S0397 — B154组合失败与下一调查待授权（当时）
 
 B154六图已核对：[四态、HD平加／倍率边界与停止点](Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)。同城W1／Culture ACTIVE4，作品Culture C00/C10/C11/C01=2/3/6/4，配置追加3但差值分别1/2；追加量与native-only组合USER_GAME_TEST_FAIL（本场景），完整L2 NOT_PASSED。切换无旧资格报错、结束可见恢复，不能外推冷加载或结算。
 
@@ -19,7 +31,6 @@ source/live仍B154.181 / modinfo181，source fb3ee7f；既有W0003 receipt `B154
 
 下一建议：定域区分文化平加共存、多片段与倍率相互作用；新SQL／原型／修复需另行授权，不重复本次长测／四态，不以补差或改Floor绕过。当前允许记录与只读核对，停止正式cutover及L3/M/N/U2。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保存直接合同与证据。
 
-## 历史阶段记录
 
 ### S0396 — D0040同步后B154待验（当时）
 
@@ -741,7 +752,7 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 
 ## 下一任务（只有此队列有效）
 
-当前仅按CURRENT与[P0-L2当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)记录／只读核对B154原生组合失败；下一定域修复或原型须用户另行授权，不继续旧测试或其它玩法。
+当前仅B155单城候选／主题化读取原型，见CURRENT与[P0-L2当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)；等待原生短验收，不接正式能力或其它玩法。
 
 ## 历史下一任务（已被CURRENT取代）
 
