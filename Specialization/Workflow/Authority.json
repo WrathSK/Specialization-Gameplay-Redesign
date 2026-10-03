@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": null,
+  "runtime_commit": "daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe",
   "current_batch": "P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE",
   "next_batch": "Await minimal P0-L2C five-yield native gate; no formal all-city cutover or L3/M/N/U2 authorization.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "Verified pre-deployment B157.184 / modinfo184; source f75494b16e023224dec6e852ff65afb13f438963; B157.184-f75494b-playtest.json DEVELOP_ACTIVE; 182 files and stable recovery MATCH; no pending marker. New B158 source not yet deployed.",
+  "live": "B158.185 / modinfo185; source daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe; B158.185-daaef4b-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; stable/B157 recovery MATCH; no pending marker. OS game exit verified; game not launched; five-yield native gate pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

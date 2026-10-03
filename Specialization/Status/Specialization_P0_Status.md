@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0410
-Implementation Build: source B158.185 / modinfo185 LOCAL; live B157.184 receipt unchanged until deployment; stable B069.96
+Implementation Build: source/live B158.185 / modinfo185 LOCAL / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
 Latest Accepted Design Revision: D0043
@@ -15,7 +15,7 @@ Work State: P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE
 
 五yield native／本次变化／退出／启用存档冷加载仍USER_GAME_TEST_REQUIRED；**完整L2 NOT_PASSED，正式全城接入／cutover／下一能力未授权**。UNKNOWN／失城／reference／失败／load保护本地已测；精确recipient、倍率独立及正常结算未覆盖部分仍独立门禁。当前停止等待单城测试，不重做旧Culture四态／性能长测。
 
-source为B158本地检查点，待本轮普通commit/push与W0003安全部署；此时已只读核对外部B157.184／source f75494b／receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE，182/182匹配，stable恢复点匹配且无pending marker。尚未替换运行包；实际部署完成另更新receipt引用。main B069.96、永久Property／E2历史／Shared目录／GC未改。下一推荐只完成当前原生门禁，再提出正式接入计划，不自动实施。
+source/live B158.185，source `daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe`，W0003 receipt `B158.185-daaef4b-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS确认游戏退出，精确B157 receipt恢复stable过桥后staging激活；B157／stable恢复点MATCH，无pending marker，未启动游戏。main B069.96、永久Property／E2历史／Shared目录／GC未改。当前等待一个最小原生门禁，再提出正式接入计划，不自动实施。
 
 ## 历史阶段记录
 
