@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "637f97b6aec14449c743dcd2f0d895e4049adaad",
+  "runtime_commit": "c66b0530c7320014b5c8b5f41e6c402838e24198",
   "current_batch": "P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED",
   "next_batch": "User native one-city L2A precision/attribution probe. Stop at result; L2B full Meaning requires reviewed plan and separate authorization.",
   "manifest": "Specialization/Workflow/P0-L2A.json",
-  "live": "Verified current B149.176 source637f97b receipt DEVELOP_ACTIVE,179/179 MATCH and stable recovery hash. B150.177 source locally complete, not yet deployed; next authorized boundary: coherent commit/push then W0003 verified-exit transaction.",
+  "live": "B150.177 / modinfo177 deployed via W0003; source c66b053; receipt B150.177-c66b053-playtest.json DEVELOP_ACTIVE;182/182 MATCH. B149 retained and stable recovery verified. No game launch; native L2A pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",

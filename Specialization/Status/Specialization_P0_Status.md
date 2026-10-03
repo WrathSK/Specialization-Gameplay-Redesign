@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0386
-Implementation Build: develop B150.177 / modinfo177; live B149.176 / modinfo176; P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
+Implementation Build: develop/live B150.177 / modinfo177; P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
@@ -15,9 +15,9 @@ Work State: P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
 
 18项定向、15项相关L1、26项K及分发检查PASS；STATIC/LOCAL不证明原生0.5/1.5/4.5。旧GWA仅目标城由自己精确暂停/恢复；当前馆藏件数/资格摘要补通知。无新永久数据/Design/GC/AI/MP/main变化。L1[已测结算PASS](Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保持。
 
-当前live只读核验仍B149.176：source637f97b、receipt B149.176-637f97b-playtest.json DEVELOP_ACTIVE，179/179 MATCH及stable恢复点核验。游戏退出已由OS只读确认。尚未替换运行包；允许下一动作仅review→commit/push→W0003安全交易部署B150→记录receipt/clean，不启动游戏。
+当前live已按W0003部署B150.177：source c66b053、receipt B150.177-c66b053-playtest.json DEVELOP_ACTIVE，182/182 MATCH。OS只读确认退出后，按B149精确receipt恢复stable桥，再staging切换B150；B149完整运行包及stable恢复点均保留/核验，无pending事务。未启动游戏，未改main。当前允许动作是用户执行下面的单城流程、回传证据；Codex只记录/审阅L2A结果，不自动实施下一批。
 
-用户下一动作：部署完成后按本批单城流程核对原生精度/归属；只需最小测试，不重做旧旅游长测。Codex到L2A包/证据边界停止；不得自动实施L2B/L3/M/N/U2。科研Floor不迁入Culture；未知作品/native-only门禁留L2B。
+用户下一动作：按本批单城流程核对原生精度/归属；只需最小测试，不重做旧旅游长测。Codex到L2A包/证据边界停止；不得自动实施L2B/L3/M/N/U2。科研Floor不迁入Culture；未知作品/native-only门禁留L2B。
 
 当前Design Spec D0037 / Culture D0029 / Shared D0035，四专业v0.1不变；Harbor/Military未来设计未实施。其它[文化准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)仍仅计划；机构视觉优化及剩余非阻塞性能事项保留，不重新开专项。
 

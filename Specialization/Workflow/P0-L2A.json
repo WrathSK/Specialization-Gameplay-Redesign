@@ -266,6 +266,7 @@
     "implementation": "B150.177 / modinfo177 LOCAL_COMPLETE; reversible single-city opt-in native S/G only",
     "native": "USER_GAME_TEST_REQUIRED; no engine launch or native precision claim",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-    "stop": "Finish source/document review/commit/push and W0003 deployment safely, then stop for user native evidence; no L2B implementation."
+    "stop": "Stop for one-city L2A user native evidence; no L2B implementation. Completed source commit/push and W0003 deployment must not be repeated during recovery.",
+    "deployment": "W0003 complete: B150.177-c66b053-playtest.json DEVELOP_ACTIVE,182/182 MATCH; B149 retained/stable recovery verified. Runtime source commit c66b053; native pending."
   }
 }
