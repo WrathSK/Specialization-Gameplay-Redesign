@@ -1,27 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0381
-Implementation Build: develop/live B148.175 / modinfo175 P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
+Status Revision: S0382
+Implementation Build: develop/live B148.175 / modinfo175 P0_L1_NATIVE_CONFIGURATION_BLOCKED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
+Work State: P0_L1_NATIVE_CONFIGURATION_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)已记录用户接受双线新基线及Military两处改名；候选名称/Balance/技术/Legacy保留。仅未来Design，不扩大四专业v0.1，不改变B148运行/测试状态。当前Culture合同/selector与后续准备计划适用范围不变；等待B148验收后逐批授权，未实施Harbor/Military。
+[D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)只属未来Design；不扩大四专业v0.1，Harbor/Military未实施。Culture合同/selector及后续准备计划适用范围保持。
 
-用户已明确授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#b148175--implementation-checkpoint)。B148.175已完成逐普通建筑K×本城时代数的计划、实际区域旅游加值投影、按需诊断，以及旧Culture人口/worker%精确退出；[manifest](../Workflow/P0-L1.json)仍为AUTHORIZED，原生接口门禁待验，不能宣布L1完成；后续L2/M/N/U2实施未授权。
+用户已授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)。B148.175本地实施后，首次原生验收[未通过](Validation/Results/Specialization_B148_P0L1_Native_Fail.md)：ACTIVE3、1/2时代、2栋建筑正确，预期+2/+4，投影配置均+0。当前`P0_L1_NATIVE_CONFIGURATION_BLOCKED`；不是L1完成。故障先收敛至更新就绪/配置进入或识别，不能据零配置判定原生旅游primitive不可用。
 
-[本地结果与最小测试](Validation/Results/Specialization_B148_P0L1_Local.md)：13项真实Lua/SQL定向测试、26项K事实/采集回归通过；STATIC_CONFIRMED / LOCAL_SIMULATION_PASS，非USER_GAME_TEST_PASS。新增ordinary身份不新增D覆盖、Tier或深度值；ResearchApply仅区分非深度目录对象，已有深度未知保护保留。原生城市限定、plot要求对district subject的解释、旅游加值/撤销仍为USER_GAME_TEST_REQUIRED。
+[本地结果](Validation/Results/Specialization_B148_P0L1_Local.md)13项真实Lua/SQL与26项K回归PASS按原范围保留；本次为USER_GAME_TEST_FAIL（正计划/零配置），城市限定、plot要求和旅游加值/撤销仍未获得有效正配置原生验收。当前“已启用”只表示计划资格，诊断需修正；单一加载通知就绪风险与测试手动ready已静态记录，真实因果尚未确认。本轮没有改源码/运行包或重跑Gameplay模拟。
 
-[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161、永久成果、GC与main保持不变；当前Design更新见上述未来专业记录。
+[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围；[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161、Design、永久成果、GC与main不变。
 
-已按W0003部署B148.175：source `f85a0a0`、receipt `B148.175-f85a0a0-playtest.json` DEVELOP_ACTIVE，179/179 MATCH；OS确认游戏退出，B147及stable完整恢复点核验保留，无待处理事务。main仍B069.96，未启动游戏。当前停止在L1最小原生验收；后续批次尚未授权。
+当前运行仍是已记录W0003部署的B148.175：source `f85a0a0`、receipt `B148.175-f85a0a0-playtest.json` DEVELOP_ACTIVE，179/179 MATCH；B147/stable恢复点保留。本轮未重新部署或核验外部包，不启动游戏。10张已读截图按standing授权移动原图并核对SHA256，位置见失败结果。下一建议是L1最小定域修复，当前停在调查/归档；不自动实施或继续L2。
 
-用户已授权[文化后续模块计划/只读调查](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)，具体实施等待B148验收后逐批审核/授权。本轮保存L2/L3/M/N1–3/U2准备资料，记录小数接口、native-only隔离、件数通知、项目/见闻ownership及外国目标事实门禁；没有新增收益、原型、运行改动或用户测试。未来M的cap及执行中生命周期、N2的K_T/原生交互仍按对应切片处理，不自行填设计。
+用户已授权[文化后续模块计划/只读调查](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)，L2/L3/M/N1–3/U2资料保留；具体实施仍等待B148相关门禁关闭后逐批审核/授权。失败未扩大到其它能力或未来专业，也不要求重复旧长测。
 
 ## 历史阶段记录
 

@@ -1,6 +1,6 @@
 # P0-L1 — Culture III「风雅熏陶」具体实施计划
 
-Status: AUTHORIZED / P0_L1_PARTIAL_NATIVE_GATE_REQUIRED。用户接受具体计划并明确授权实施；B148.175本地完成，原生旅游门禁待验。
+Status: AUTHORIZED / P0_L1_NATIVE_CONFIGURATION_BLOCKED。B148.175首次原生验收未通过；本地检查点保留，当前停在配置失败调查/归档。
 Authority: Design D0036 / Culture D0029 `CUL_L3_AESTHETIC` / Shared D0035 / A0161。正式Design不变。
 Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，源码 `87655e5`。本批源码B148.175；实际部署以Status/receipt为准。
 
@@ -8,7 +8,7 @@ Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，
 
 [P0-K限定实机验收](../../Status/Validation/Results/Specialization_B147_P0K_Pass.md)已关闭最小事实门禁。本批只接入风雅熏陶，以及[总计划明确分配给L1的旧文化人口/专家百分比退出](D0032_Implementation_Plan.md#明确的旧效果切换责任)。不要求先完成工业G–J或商业能力。
 
-本批已获用户明确授权并完成下述B148.175可逆实施检查点；下一允许动作是最小原生旅游门禁验收，验收前仍partial。建议不等于后续批次授权。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
+本批已获用户明确授权并完成下述B148.175可逆实施检查点；首次原生验收发现正预期但配置报告为0，当前仍partial，调查结果与后续修复边界见[本次失败记录](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)。当前只记录失败，不自动实施修复；下一建议不等于授权。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
 
 ## 唯一玩法合同
 
@@ -124,3 +124,12 @@ P0-K STATIC/LOCAL及限定USER_GAME_TEST证据按原范围复用。B148.175的ST
 13项本批测试覆盖公式/实际SQL配置、跨城/多社区、ordinary/D分离、ResearchApply保护、旧16项退出/Commerce不变、UNKNOWN/失城/回归/load/重复/失败及临时记录清理；26项K采集/事实/旧consumer隔离回归通过。编译、XML/file set、文档/selector/context检查单独记录。未运行历史full/stress或新长测。
 
 **停止点：** 等待一次最小原生旅游验收；首次正预期却无原生增量/错误城市或区域归属时，停止该原生路径并记录TECHNICAL_PRIMITIVE_BOUNDARY，不自动改玩法或扩展L2。通过完整本批流程后再收束L1，不把本地配置一致写成原生收益PASS。
+
+
+## B148.175 — native configuration failure review
+
+[10张图与只读调查](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)记录了ACTIVE3、X1/2、2栋、预期+2/+4但配置+0；本批首项USER_GAME_TEST_FAIL。K/recipient计划能读，不等于writer已就绪、master健康或原生Modifier生效。“已启用”当前只依赖纯计划，诊断语义需要修正。
+
+源码只由`LoadScreenClose`开启writer；现有测试默认手动置ready并另测显式load通知，未证明本局就绪过程。它是静态风险，不是已证实的引擎因果；0配置也不能区分master/bit/健康检测。加载DB定义存在，尚无正配置下的原生加值失败对照，因此primitive保持待验，未登记不可用或TECHNICAL_LIMITATION。
+
+当前停止在调查/证据归档。建议定域修复可靠就绪与按需状态分层、补未手动ready的相关本地用例，再做一次同城配置/原生区域增量短验收；不改K1、普通建筑或时代合同，不复活旧writer，不进入后续批次。先前本地结果按原范围保留；本轮未运行新Gameplay模拟、改源码或部署。

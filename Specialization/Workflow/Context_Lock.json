@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0381 D0037 Design-only review at 01ffe91: Harbor user handoff recorded with provisional names/open parameters and explicit old-rule supersession; Military D0037 differs only in two names/metadata/explicit Harbor reference. D0036 snapshot exact prior Spec bytes; existing frozen files unchanged. Reviewed affected reading/navigation/Status/Authority links and semantics; updated only 15 affected document hashes. All L1 selected projections and context list unchanged; unchanged hashes/provenance inherited. No runtime/Architecture/test/deployment changes; B148 native gate pending, Culture preparation planning-only; v0.1 four-profession scope unchanged.",
+  "review_basis": "S0382 B148 native failure review at develop302d41d: ten inspected images, direct Aesthetic contract/writer/model/SQL/callers and initialization fixture reviewed; loaded DB definitions inspected read-only. Changed Status/plan/Authority/manifest/result only; hashes refreshed only for these reviewed edits and new scoped result. Prior LOCAL/frozen results and all unchanged runtime/Design review provenance retained. No new gameplay test, runtime edit, deployment or later implementation.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "2aac3e016db99b27c00ce30c76c7c9dff85024d74176e232d91da4cc63135c92",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "aaa21c2b873c544749d4af4935704a0cea64138bfc7a824329acb42e9a9a13b0",
+    "Specialization/Status/Specialization_P0_Status.md": "e4cfa549cd85b6abc5e2d1cd675876440561b6e2267230165e8f7bae2e8a7046",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "a92430d9409e435d97120067d7755c66a93da09691f3487d1c7cc898344a9947",
+    "Specialization/Workflow/Authority.json": "bf268520e8d9652c13dd1cbd1b4e3008e7392ade34b4fce15aef0ec851158a9f",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -327,7 +327,7 @@
     "Mod/GreatWorkFacts.lua": "bd170dcb1c0fc445aee6c64538b7ecabe5f06203fc5c392e43f5b3c2511457fb",
     "DevelopmentTests/test_p0_k.py": "d11026b7d5e44653df4af9f123b3baa4fe2938452c6e04e4924bd25ae2712aa8",
     "Specialization/Status/Validation/Results/Specialization_B147_P0K_Pass.md": "6c25290726426ced5687882f0ad58cc63b6e45f9e53dee48321ab5fc338e043e",
-    "Specialization/Architecture/v2/P0_L1_Aesthetic.md": "2ca587e389edd0c4194c51f9f4da04432b5f3a0ca9fee21eebd5d1cd9bc7469f",
+    "Specialization/Architecture/v2/P0_L1_Aesthetic.md": "e2947acc979f21c6bb2a492f78c36be02f0aff4fb9bf7c4ac9e84075a8c2b548",
     "DevelopmentTests/test_culture_aesthetic.py": "0db98d3268e1c6ac5f97b918a00a5285a59f9a42aedf7c9c89f8520ee8d1b646",
     "Mod/CultureAesthetic.lua": "8f94bd74eebc172039ab7ba0e2463609a8c7ea39c160b8d614efc9ed47f6f340",
     "Mod/CultureAestheticModel.lua": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -349,6 +349,7 @@
     "Specialization/Design/Content/Harbor_D0037.json": "bb7e02bf42efd156a8f8f214e73f593ff72fe1a1ae09fbfed59fcdf750bab7d0",
     "Specialization/Design/Content/Military_D0037.json": "760c3a1cabd7d333a7a3d3c445695c8843eb175fcca01a7031736368eb2f98a7",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0036.md": "8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c",
-    "Specialization/Historical/Design/Reviews/Harbor_D0037_Review.md": "e8e5a22e639ec2d03ee646f58600bda678c9eab08307ef02efc2e9994fdfbe7d"
+    "Specialization/Historical/Design/Reviews/Harbor_D0037_Review.md": "e8e5a22e639ec2d03ee646f58600bda678c9eab08307ef02efc2e9994fdfbe7d",
+    "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md": "a7745a01559986881958dbc79f93ec376ff92240f81f97a031df14da9a4bcf56"
   }
 }

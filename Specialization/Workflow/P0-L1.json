@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0381",
+    "status": "S0382",
     "runtime": "B148.175 / modinfo175",
     "military": "D0037",
     "harbor": "D0037"
@@ -279,8 +279,8 @@
   "result": {
     "plan": "User accepted concrete plan and explicitly authorized implementation",
     "implementation": "B148.175 LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; not complete L1",
-    "native": "USER_GAME_TEST_REQUIRED; city district/plot-property Tourism projection has no native PASS",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md",
-    "stop": "B148.175 deployed179/179 MATCH; await L1 native acceptance. Subsequent Culture planning/investigation authorized only; no L2/L3/M/N/U2 implementation/deployment before new approval."
+    "native": "USER_GAME_TEST_FAIL: ACTIVE3, X1/2, two ordinary buildings, expected+2/+4 but reported configuration+0. Native flat Tourism primitive still USER_GAME_TEST_REQUIRED; no positive-configuration counterpart yet.",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md",
+    "stop": "B148.175 runtime unchanged; ten images archived. Investigation/archive only: readiness/configuration/diagnostic repair proposed, not executed this turn. No L2/L3/M/N/U2 implementation/deployment; earlier LOCAL result scope retained."
   }
 }
