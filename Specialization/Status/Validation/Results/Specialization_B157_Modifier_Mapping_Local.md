@@ -28,4 +28,4 @@
 
 ## 当前停止点与部署
 
-实现完成，source B157.184；live部署身份见Status/Authority中的receipt，不能从源码推断已部署。只等待新增归属/subject报告；不实施新writer、正式fallback/cutover或下一能力。[前次原生schema证据](Specialization_B156_Modifier_Native_Read.md)保持原样。
+实现并部署B157.184 / modinfo184；source `f75494b16e023224dec6e852ff65afb13f438963`，receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS确认退出，精确B156恢复stable过桥后staging激活，B156/stable恢复点MATCH，无pending marker或游戏启动；部署一致性不是原生验收。32个相关链接/锚点、XML打包、diff与当前context/selector/hash检查PASS（182 runtime /404 guarded）。只等待新增归属/subject报告；不实施新writer、正式fallback/cutover或下一能力。[前次原生schema证据](Specialization_B156_Modifier_Native_Read.md)保持原样。

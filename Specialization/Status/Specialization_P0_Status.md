@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0406
-Implementation Build: source B157.184 / modinfo184; live B156.183 pending deployment; mapping native pending; stable B069.96
+Implementation Build: source/live B157.184 / modinfo184; mapping native pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
@@ -15,7 +15,7 @@ Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PENDING
 
 [B156 schema实机](Validation/Results/Specialization_B156_Modifier_Native_Read.md)已过所见入口/API范围；B157新增映射尚待实机，Active不等于收益到账。D0042九域、B155候选FAIL、市政/外交条件后备及精准recipient/倍率/结算门禁不变，无Gameplay/永久数据/GC/Design变化。
 
-source B157.184；live沿B156.183代码cd901fa、receipt `B156.183-cd901fa-playtest.json` DEVELOP_ACTIVE登记，待安全部署更新。main稳定B069.96不动。完成本次诊断部署后停止等一份映射/subject报告，不自动续四态、新writer或下一能力。
+source/live B157.184，source f75494b，receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE，182/182 MATCH；OS确认退出，精确B156 receipt恢复stable过桥后staging激活，B156/stable恢复点MATCH，无pending marker、未启动游戏。main稳定B069.96不动。停止等一份映射/subject报告，不自动启用对照、续四态、新writer或下一能力。
 
 ## 历史阶段记录
 
