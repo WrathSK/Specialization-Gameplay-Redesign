@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0410
+Status Revision: S0411
 Implementation Build: source/live B158.185 / modinfo185 LOCAL / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
-Latest Accepted Design Revision: D0043
+Latest Accepted Design Revision: D0044
 Design Sync State: D0043_MEANING_SCOPE_PROBE_LOCAL_NATIVE_PENDING
 Work State: P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
+
+最新[Design D0044](../Design/Design_ChangeLog.md#accepted-d0044--2026-10-03)已同步工业职责／首测值及Shared具名研习L；**只更新设计，没有工业运行适配**。Culture D0043及P0-L2C直接Shared事实对象均不变，以下B158原生待验、授权与停止点保持，不进入工业实施。
 
 用户已明确授权P0-L2C，B158.185／modinfo185七域五产出默认OFF单城门禁已LOCAL完成。[实际模块、47项定向PASS及一个最小实机流程](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md)：复用S/G，补P/F/Faith整数承载；每域Floor后按yield合并再乘W；旧GWA只hold本城、旧Dialogue0%，新owned退出后按当前事实恢复。D0043不改，市政／外交Culture仅本能力暂排，旧失败／技术档案保持未来参考。
 

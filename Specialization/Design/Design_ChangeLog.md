@@ -3,8 +3,24 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0043
+Latest Accepted Design Revision: D0044
 Document State: ACCEPTED
+
+## Accepted D0044 — 2026-10-03
+
+Acceptance: ACCEPTED / Industry v0.1 responsibilities and initial test values; Design sync only
+Acceptance Evidence: 用户Industry Design Talk及明确确认“保留四级门槛：三级150%，四级按奇观数折减”；要求同步当前Authority／阅读版，不实现。
+Accepted Spec SHA256: c5e44a10015af9d0f390953479d376b1ffd5d9bcd01ed3821ccb83d6bd439010
+Canonical Industry Content SHA256: 4381a35bc545d316a83fc62145d68c0e9d4859442e1da55a7cb4a6d7e9c15557
+Canonical Shared Content SHA256: a39e938d128d6ef3531487902bdf213fd38696a52a3431f33218a3524a9089f7
+Previous Accepted Revision: D0043
+Frozen D0043: [原文](Revisions/Specialization_Design_Spec_D0043.md)
+Content: [Industry D0044](Content/Industry_D0044.json) / [Shared D0044](Content/Shared_D0044.json) / [工业阅读版](Industry.md)
+Review: [覆盖、取代、保留与真实剩余](../Historical/Design/Reviews/Industry_D0044_Review.md)
+
+三级标准化基础建造10%／Gold0%；四级文明工程传统E供本城完整1 Production Turn研习L，成功每层两项输出各增2个百分点。L属A城市历史，III保留但只输出基础，IV恢复全L，跨Owner E<L不回退，E只限制新增。工程实践仍IV，以N1／3／6降低组建成本倍率150／140／130／120%，不强化标准化；III I–III、IV额外IV–V，无E门槛。巨构只加速自行生产旧时代奇观，时代差1／2／3+首测10／20／30%封顶；施工队固定min(锁定施工力,剩余Production)，不受任何普通生产buff放大，余量不溢出。全部新数值为v0.1首测，名称候选／未提交研习／技术边界分开保留。
+
+模板、网络并集与最高来源、容量2及来源易主／夺回、原速度／基础施工力Floor、商业发展投资百分比加算不变。Culture D0043／Commerce D0042／Research D0040／Military与Harbor D0037原件不变；当前B158.185及P0-L2C原生待验不变。本轮不Implementation、无Mod／GC／main／部署或玩法测试，不授予下一能力。
 
 ## Accepted D0043 — 2026-10-03
 

@@ -54,7 +54,7 @@ Shared负责共同概念，Network负责共同连接，专业正文直接写全�
 ## 实现、正式来源与历史
 
 - **想看做到哪里、哪些通过、哪些待测：** [Status](../Status/Specialization_P0_Status.md)。本目录阅读页不另存运行版本或PASS清单。
-- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec／文化D0043（意义延展本版暂排市政／外交）；Shared／工业／商业D0042（具名长期状态A–G收口，保留D0041追加收益不放大）；科研D0040（已确认的城市历史年龄合同），D0038意义延展逐领域Floor保留、军事D0037（机制沿D0034）、港口D0037；未来其它条款由当前Spec保留。
+- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec／工业D0044（标准化、研习、实践、巨构与施工队v0.1首测职责）；Shared D0044（保留A–G，新增已完成工业研习L）；文化D0043（意义延展本版暂排市政／外交）；商业D0042（具名长期状态A–G及已定投资加算）；科研D0040（已确认的城市历史年龄合同），D0038意义延展逐领域Floor保留、军事D0037（机制沿D0034）、港口D0037；未来其它条款由当前Spec保留。
 - **想查展示接受来源：** [文化馆藏时代方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
 - **想查为什么改过：** [接受与取代记录](Design_ChangeLog.md)、各篇页尾来源及[冻结历史](Revisions/)。较新的文件或更大的编号不自动覆盖未被取代的规则。
 - **Codex／开发者起点：** [项目导航](../README.md)和[AGENTS](../AGENTS.md)，继续按任务读取正式来源，不要求每轮加载全部阅读页。阅读版维护约定集中在[Content导航](Content/README.md#人类阅读入口)。

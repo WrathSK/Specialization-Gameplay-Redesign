@@ -89,15 +89,15 @@
   "batch": "P0-L2C",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0043",
+    "design": "D0044",
     "research": "D0040",
-    "industry": "D0042",
+    "industry": "D0044",
     "culture": "D0043",
     "commerce": "D0042",
-    "shared": "D0042",
+    "shared": "D0044",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0410",
+    "status": "S0411",
     "runtime": "B158.185 / modinfo185",
     "military": "D0037",
     "harbor": "D0037"
@@ -173,25 +173,25 @@
       "reason": "D0041 fixed Dialogue/theming-independent additions and deferred future option"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0042.json",
+      "path": "Specialization/Design/Content/Shared_D0044.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0042.json",
+      "path": "Specialization/Design/Content/Shared_D0044.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0042.json",
+      "path": "Specialization/Design/Content/Shared_D0044.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/DISTRICT_DEVELOPMENT"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0042.json",
+      "path": "Specialization/Design/Content/Shared_D0044.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/YIELD_SHARE"
@@ -341,7 +341,7 @@
     "native": "USER_GAME_TEST_REQUIRED for current five-yield/lifecycle range; B157 prior evidence not extended; full L2 NOT_PASSED.",
     "stop": "Await minimal P0-L2C five-yield native gate; no formal all-city cutover or L3/M/N/U2 authorization.",
     "deployment": "B158.185 / modinfo185; source daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe; B158.185-daaef4b-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; stable/B157 recovery MATCH; no pending marker. OS game exit verified; game not launched; five-yield native gate pending.",
-    "authority_revalidation": "S0410 user explicitly authorized P0-L2C; B158.185 seven-domain/five-yield reversible gate LOCAL_COMPLETE, 47 targeted checks PASS. New P/F/Faith native required; old Culture deferred. Permanent/Shared/K/GC untouched, full L2 NOT_PASSED.",
+    "authority_revalidation": "S0411 D0044 Industry-only responsibility/initial-value update and Shared completed-study L; exact ORDINARY_INFRASTRUCTURE, BUILDING_CURRENT_ELIGIBILITY, DISTRICT_DEVELOPMENT, YIELD_SHARE objects equal D0042. Culture D0043 and B158 direct contracts/evidence/deployment/native stop unchanged; no extra mandatory context or implementation.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",

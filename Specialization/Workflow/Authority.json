@@ -2,15 +2,15 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Codex is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0043",
+    "design": "D0044",
     "research": "D0040",
-    "industry": "D0042",
+    "industry": "D0044",
     "culture": "D0043",
     "commerce": "D0042",
-    "shared": "D0042",
+    "shared": "D0044",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0410",
+    "status": "S0411",
     "runtime": "B158.185 / modinfo185",
     "military": "D0037",
     "harbor": "D0037"
@@ -18,10 +18,10 @@
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
     "research": "Specialization/Design/Content/Research_D0040.json",
-    "industry": "Specialization/Design/Content/Industry_D0042.json",
+    "industry": "Specialization/Design/Content/Industry_D0044.json",
     "culture": "Specialization/Design/Content/Culture_D0043.json",
     "commerce": "Specialization/Design/Content/Commerce_D0042.json",
-    "shared": "Specialization/Design/Content/Shared_D0042.json",
+    "shared": "Specialization/Design/Content/Shared_D0044.json",
     "presentation": "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md",
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
     "status": "Specialization/Status/Specialization_P0_Status.md",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0410 user explicitly authorized P0-L2C; B158.185 seven-domain/five-yield reversible gate LOCAL_COMPLETE, 47 targeted checks PASS. New P/F/Faith native required; old Culture deferred. Permanent/Shared/K/GC untouched, full L2 NOT_PASSED.",
+  "context_review_status": "S0411 D0044 Industry responsibilities/initial values and named Shared city-study L Design sync only; unchanged four direct P0-L2C Shared objects and Culture D0043 reviewed. B158 five-yield native still pending, full L2 NOT_PASSED; no implementation/deployment/next batch.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
