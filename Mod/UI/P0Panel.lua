@@ -25,6 +25,7 @@ local function trace(s)
   status(P.VERSION.." | "..s)
 end
 local pendingAction
+local meaningReadReference
 local gwaFlight
 local function gwaDiagnostics()
   local d=ExposedMembers.SPC_P0 or {};local i=d.RequestIngress or {}
@@ -69,7 +70,11 @@ local function displayResponse()
     elseif pendingAction and pendingAction:find('^CULTURE_MEANING_') then
       local v=data.CultureMeaningView
       local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
-      if c and v and v.token==pendingToken then report=report..'\n'..SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')end
+      if c and v and v.token==pendingToken then
+        if pendingAction=='CULTURE_MEANING_READ' then
+          report=SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
+        else report=report..'\n'..SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')end
+      end
       localReport=report
     elseif pendingAction and pendingAction:find('^GWA_') then
       gwaFlight=nil
@@ -130,6 +135,9 @@ local function waitForResponse()
   end)
 end
 request=function(action,advance)
+  SPCBoostGreatWorkRead.ClearModifierRead()
+  meaningReadReference=nil
+  if pendingAction=='CULTURE_MEANING_READ' then readings.CULTURE_MEANING=nil;localReport=nil end
   ContextPtr:ClearUpdate()
   gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
@@ -170,6 +178,7 @@ request=function(action,advance)
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
   pendingToken=P.VERSION..":"..tostring(Game.GetCurrentGameTurn())..":"..tostring(ExposedMembers.SPC_P0_UISequence)
   pendingAction=action
+  if action=='CULTURE_MEANING_READ' then meaningReadReference=SPCNetworkInput.Reference(city)end
   trace("BEFORE_DISPATCH "..action.." city="..tostring(city and city:GetID()))
   local envelope=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.EnvelopeProbe
   local expectedStage=envelope and envelope.players[playerID] and envelope.players[playerID].step
@@ -222,6 +231,13 @@ local function legacyCopy(asBaseline)
 
 end
 local function copy()
+  if pendingAction=='CULTURE_MEANING_READ' then
+    if displayResponse() and localReport then
+      print('[SPC][MODIFIER_READ] '..P.VERSION..'\n'..localReport)
+      status('本次Modifier诊断已写入Lua.log；也可直接截图。')
+    else status('尚无本次Modifier回复；请稍后重新右键读取。')end
+    return
+  end
   local lines={'SPC_DIAGNOSTIC_REPORT_BEGIN',P.VERSION,'turn='..Game.GetCurrentGameTurn()}
   local c=UI.GetHeadSelectedCity();local u=UI.GetHeadSelectedUnit()
   lines[#lines+1]='city='..tostring(c and c:GetID())..' unit='..tostring(u and u:GetID())
@@ -335,7 +351,10 @@ local function initialize()
   showRoot();Controls.Window:SetHide(true)
   Controls.Title:SetText("SPC "..P.VERSION.." | Specialization diagnostics")
   Controls.OpenButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(false) end)
-  Controls.CloseButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(true) end)
+  Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()
+    Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead()
+    if pendingAction=='CULTURE_MEANING_READ' then ContextPtr:ClearUpdate();pendingToken=nil;pendingAction=nil;localReport=nil;readings.CULTURE_MEANING=nil;meaningReadReference=nil end
+  end)
   Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()
     ContextPtr:ClearUpdate();pendingToken=nil
     local shared=ExposedMembers.SPC_P0 or {}
@@ -557,4 +576,4 @@ ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(gwaPulse)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

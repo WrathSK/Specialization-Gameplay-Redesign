@@ -179,3 +179,158 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
  if not ok then meaningReadings=nil end -- Unknown/error invalidates previously accepted comparisons too.
  return ok and text or ('四态原生读数未确认：'..(tostring(text):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end
+
+-- B156: explicit UI read only. Never retain native handles/tables between reads.
+include('CultureMeaningModel')
+do
+ local lastToken,cached,stamp
+ local LIMIT,HITS,SUBJECTS=32768,64,64
+ local function text(v)
+  if v==nil then return 'nil' end
+  if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return '<'..type(v)..'>' end
+  -- Explicit ASCII controls: locale-dependent %c can corrupt UTF-8 city names.
+  local s=tostring(v):gsub('[%z\1-\31\127]',' '):gsub('%[','('):gsub('%]',')')
+  if #s>240 then local n=240;while n>0 and s:byte(n+1)>=128 and s:byte(n+1)<=191 do n=n-1 end;s=s:sub(1,n)..'…' end
+  return s
+ end
+ local function integer(n)return type(n)=='number' and n==n and n>=0 and n%1==0 and n<math.huge end
+ local function array(t,limit)
+  if type(t)~='table' then return nil,'ARRAY_'..type(t) end
+  local n,seen=0,{}
+  for k,v in pairs(t)do
+   n=n+1;if n>limit then return nil,'LIMIT' end
+   if not integer(k) or k<1 or k>limit then return nil,'ARRAY_KEY' end
+   if not integer(v) and type(v)~='string' then return nil,'ID_TYPE' end
+   local key=type(v)..':'..tostring(v);if seen[key] then return nil,'DUPLICATE_ID' end;seen[key]=true
+  end
+  for i=1,n do if t[i]==nil then return nil,'SPARSE_ARRAY' end end
+  return n
+ end
+ local function call(name,...)
+  local f=GameEffects and GameEffects[name]
+  if type(f)~='function' then return false,'API_MISSING:'..name end
+  return pcall(f,...)
+ end
+ local function signature(c,v)
+  local selected=UI.GetHeadSelectedCity()
+  assert(selected and selected:GetOwner()==Game.GetLocalPlayer() and c:GetOwner()==Game.GetLocalPlayer(),'STALE_CITY')
+  local ref=SPCNetworkInput.Reference(c)
+  assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
+  local parts={ref,tostring(Game.GetCurrentGameTurn())}
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','dialoguePercent','count','error','configurationError'})do parts[#parts+1]=text(v[k])end
+  return table.concat(parts,'|')
+ end
+ function SPCBoostGreatWorkRead.ClearModifierRead()
+  cached=nil;stamp=nil -- Keep consumed token: redisplaying a released reply must not rescan.
+ end
+ local function allowlist()
+  local allow={}
+  local function add(id,building,label,priority)
+   if GameInfo.Buildings[building] then allow[id]={building=building,label=label,priority=priority,attached=false}end
+  end
+  add('HD_AMPHITHEATER_WRITING_CULTURE_BOOST','BUILDING_AMPHITHEATER','剧场著作文化',1)
+  add('HD_AMPHITHEATER_WRITING_TOURISM_BOOST','BUILDING_AMPHITHEATER','剧场著作旅游业',5)
+  for _,b in ipairs(SPCCultureMeaningModel.Owned)do add(b:sub(10)..'_WRITING',b,'意义延展',2)end
+  local eras=0;for _ in GameInfo.Eras()do eras=eras+1;assert(eras<=64,'ERA_LIMIT')end
+  for n=2,eras do add('SPC_B059_WRITING_CULTURE_D'..n,'BUILDING_SPC_B059_D'..n,'旧对话文化',6)end
+  for _,n in ipairs({25,50,100})do add('SPC_B059_WRITING_CULTURE_TEST'..n,'BUILDING_SPC_B059_TEST'..n,'旧对话测试',6)end
+  for _,sign in ipairs({'P','N'})do for bit=0,12 do
+   local b='BUILDING_SPC_B060_CULTURE_'..sign..bit;add(b:sub(10)..'_WRITING',b,'旧相邻文化',6)
+  end end
+  for row in GameInfo.BuildingModifiers()do local a=allow[row.ModifierId];if a and row.BuildingType==a.building then a.attached=true end end
+  return allow
+ end
+ local function fixture(P,c,v)
+  local lines={'所选城 '..text(c:GetName())..'｜玩家'..c:GetOwner()..' / 城市'..c:GetID(),
+   '原型状态 '..text(v.mode)..' / '..text(v.variant)..'｜配置 S/G/C='..text(v.configuredScience)..'/'..text(v.configuredGold)..'/'..text(v.configuredCulture),
+   '城市引用 '..text(v.reference)}
+  local ok,why=pcall(function()
+   local r=assert(GameInfo.Buildings.BUILDING_AMPHITHEATER,'AMPHITHEATER_DEFINITION_MISSING');local b=c:GetBuildings()
+   local has=P.HasBuilding(b,r.Index);lines[#lines+1]='古罗马剧场：存在='..text(has)..'｜掠夺='..(has and text(b:IsPillaged(r.Index)) or '不适用')
+   lines[#lines+1]='建筑ID '..r.BuildingType..'｜名称 '..text(Locale.Lookup(r.Name))..' / '..text(r.Name)
+   if not has then return end
+   local y=assert(GameInfo.Yields.YIELD_CULTURE,'CULTURE_DEFINITION_MISSING')
+   local actual=b:GetBuildingYieldFromGreatWorks(y.Index,r.Index)
+   assert(type(actual)=='number' and actual==actual and math.abs(actual)<math.huge,'WORK_YIELD_UNKNOWN')
+   lines[#lines+1]='剧场内作品实际文化 '..text(actual)..'（不含建筑本体）'
+   local slots=b:GetNumGreatWorkSlots(r.Index);assert(integer(slots) and slots<=16,'SLOTS_UNKNOWN')
+   local wanted,works={},{}
+   for slot=0,slots-1 do local id=b:GetGreatWorkInSlot(r.Index,slot)
+    if id~=nil and id~=-1 then local w=assert(GameInfo.GreatWorks[b:GetGreatWorkTypeFromIndex(id)],'WORK_UNKNOWN');wanted[w.GreatWorkType]=0;works[#works+1]=w end
+   end
+   for row in GameInfo.GreatWork_YieldChanges()do if wanted[row.GreatWorkType]~=nil and row.YieldType=='YIELD_CULTURE' then wanted[row.GreatWorkType]=wanted[row.GreatWorkType]+row.YieldChange end end
+   for i=1,math.min(4,#works)do local w=works[i];lines[#lines+1]=text(w.GreatWorkType)..'｜定义基础文化 '..text(wanted[w.GreatWorkType])end
+   if #works>4 then lines[#lines+1]='另'..(#works-4)..'件未展开。'end
+  end)
+  if not ok then lines[#lines+1]='建筑/作品读取未完整：'..text(why)end
+  return lines
+ end
+ local function collect(P,c,v)
+  local allow=allowlist();local rows,errors={},{};local complete=true;local foreign,unknown,defs=0,0,0
+  local function fail(reason)complete=false;if #errors<3 then errors[#errors+1]=text(reason)end end
+  for id,a in pairs(allow)do if not a.attached then fail('ATTACHMENT_MISSING:'..id)end end
+  local ok,ids=call('GetModifiers');local n,why
+  if ok then n,why=array(ids,LIMIT)end
+  if not n then fail(why or ids) else
+   for i=1,n do
+    local id=ids[i];local good,def=call('GetModifierDefinition',id);defs=defs+1
+    if not good or type(def)~='table' or type(def.Id)~='string' then fail('DEFINITION_UNKNOWN')
+    elseif allow[def.Id] then
+     local ownOK,owner=call('GetModifierOwner',id);local playerOK,player=false,nil
+     if ownOK and integer(owner) then playerOK,player=call('GetObjectsPlayerId',owner)end
+     if playerOK and integer(player) and player~=c:GetOwner() then foreign=foreign+1
+     else
+      if #rows>=HITS then fail('MATCH_LIMIT');break end
+      local row={id=def.Id,label=allow[def.Id].label,priority=allow[def.Id].priority,player='UNKNOWN',active='UNKNOWN',ownerType='UNKNOWN',raw='UNKNOWN',subjects='UNKNOWN'}
+      if playerOK and integer(player) then row.player=player else unknown=unknown+1;fail('OWNER_PLAYER_UNKNOWN')end
+      if ownOK and integer(owner) then
+       local tk,t=call('GetObjectType',owner);if tk and type(t)=='string' then row.ownerType=text(t)else fail('OWNER_TYPE_UNKNOWN')end
+       local sk,s=call('GetObjectString',owner);if sk and type(s)=='string' then row.raw=text(s)else fail('OWNER_STRING_UNKNOWN')end
+      else fail('OWNER_UNKNOWN')end
+      local ak,a=call('GetModifierActive',id);if ak and type(a)=='boolean' then row.active=tostring(a)else fail('ACTIVE_UNKNOWN')end
+      local args=def.Arguments
+      if type(args)=='table' then
+       if type(args.GreatWorkObjectType)~='string' or (args.YieldChange==nil and args.ScalingFactor==nil) then fail('ARGUMENTS_UNKNOWN')end
+       for _,key in ipairs({'YieldType','YieldChange','ScalingFactor'})do local value=args[key];if value~=nil and type(value)~='string' and type(value)~='number' then fail('ARGUMENTS_UNKNOWN:'..key)end end
+       row.args='对象='..text(args.GreatWorkObjectType)..' yield='..text(args.YieldType)..' flat='..text(args.YieldChange)..' scale='..text(args.ScalingFactor)
+      else row.args='Arguments UNKNOWN';fail('ARGUMENTS_UNKNOWN')end
+      local sk,subjects=call('GetModifierSubjects',id)
+      if not sk then fail('SUBJECTS_API_UNKNOWN')
+      elseif subjects==nil then row.subjects='nil'
+      else local count,err=array(subjects,SUBJECTS);if count then row.subjects=count==0 and 'empty' or tostring(count)..'对象'else fail('SUBJECTS_'..err)end end
+      rows[#rows+1]=row
+     end
+    end
+   end
+  end
+  ids=nil
+  table.sort(rows,function(a,b)if a.priority~=b.priority then return a.priority<b.priority end;if a.id~=b.id then return a.id<b.id end;return a.raw<b.raw end)
+  local lines={'Modifier诊断｜'..(complete and '读取完整' or '读取不完整')..'｜实例城市归属 UNKNOWN',
+   '只观察实例；Active=true不代表收益已入账。无需过回合，截图本报告即可。'}
+  for _,s in ipairs(fixture(P,c,v))do lines[#lines+1]=s end
+  lines[#lines+1]='本玩家匹配实例 '..(#rows-unknown)..'｜玩家未知 '..unknown..'｜其它玩家跳过 '..foreign..'｜已检查定义 '..defs
+  if #rows==0 then lines[#lines+1]=complete and '本次未观察到匹配实例；不等于本城没有效果。' or '读取不完整，不能解释为零实例。'end
+  local owners={};local ownerCount=0
+  for i=1,math.min(12,#rows)do local row=rows[i];local key=tostring(row.player)..'|'..row.ownerType..'|'..row.raw
+   if not owners[key] then ownerCount=ownerCount+1;owners[key]=ownerCount;lines[#lines+1]='归属对象'..ownerCount..'｜玩家 '..text(row.player)..'｜'..row.ownerType..'｜'..row.raw end
+   lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜subjects='..row.subjects
+   lines[#lines+1]=row.id..'｜'..row.args
+  end
+  if #rows>12 then lines[#lines+1]='另'..(#rows-12)..'个匹配实例未展开；本报告不声称完成全部效果核对。'end
+  for _,e in ipairs(errors)do lines[#lines+1]='未确认：'..e end
+  return table.concat(lines,'\n')
+ end
+ function SPCBoostGreatWorkRead.Modifiers(P,c,v,token,requestedReference)
+  local ok,key=pcall(signature,c,v)
+  if not ok or type(token)~='string' or v.token~=token or requestedReference~=v.reference then
+   SPCBoostGreatWorkRead.ClearModifierRead();lastToken=token;return 'Modifier诊断已过期（STALE）；请重新选城并右键读取。'
+  end
+  if token==lastToken then return cached and stamp==key and cached or 'Modifier诊断已释放或过期；请右键重新读取。'end
+  lastToken=token;cached=nil;stamp=nil
+  local good,report=pcall(collect,P,c,v)
+  local fresh,after=pcall(signature,c,v)
+  if not fresh or key~=after then report='Modifier诊断已过期（STALE）；不采用本次实例。'
+  elseif not good then report='Modifier诊断未完整（API_READ_BOUNDARY）：'..text(report)..'；未改变任何收益，请截图。'end
+  cached=report;stamp=key;return report
+ end
+end

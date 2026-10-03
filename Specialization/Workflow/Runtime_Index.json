@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "fb3ee7f90b39148b56226d83accd49b1d6a20b73",
+  "runtime_commit": "441b85f609e5e9c70e5cb5eb58ba34a88870bd52",
   "runtime": "B155.182 / modinfo182",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "c8beaf3e427dca07bd0cb7e936a5ee22683e5df122f4fcfefe644a329fa9dd3a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "0df08bff463f14688ceb81cd30fdfebee541d71cbde1b0778f3b51efbd86647f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3cc411b8ba5083a3a8fa3069f47f0840b801f9f21da4c0ed425f836d43ddfa04",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "410b1423d5ec170ee7f97327ecbcd11b2b9539380cf31d82206c58510334d5ed",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "7d02f6dc45a639f14d5ee56712e0d50c37cc05bbabd6cd287e5cf5103de88108",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "435811a5f89d61947561d239aabd5503fe2074067be0c4b9021555fb6ac02b09",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "b7bef21a2daee739fd8b3e374e51f8028eaa7ce40badcc1a1263f1f0d739f7b3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "734c658e248c8445ddc3a1732dfca566c5a971ec4337c4999ac07d708b5bb9d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "b4a2f97658e2914761d2b0d938a0c56cac5ac0f13f3d706a2ae0bd88a2a89dd4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "e6f6ce91dbd5da8cd8f6efac193254a73962c5b6e0093c20512297ffd8b8555e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",

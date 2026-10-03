@@ -96,4 +96,4 @@ Culture＋2与Meaning候选使用相同`MODIFIER_SINGLE_CITY_ADJUST_GREATWORK_YI
 
 **TECHNICAL_IDENTITY_BOUNDARY。** HD注释示例为`City (65536), Owner: 0, Name: ...`，实现宽松抓前两个数字；BRS城市归组按名称。两者均不能直接作为本诊断的可靠同城证明。首版分开记录“所选城市的owner／CityID／完整reference”与“实例owner对象的玩家／类型／限长raw描述”，实例城市归属先标UNKNOWN。城市名称仅展示，不匹配；不凭单坐标、内部对象ID或首两个数字猜城市。真实格式确认后，严格字段解析仍须与所选城市当前owner／ID、可取得的CityManager对象及完整reference交叉核对；任何不符停止该归属结论，不修改身份架构。
 
-[具体诊断计划与最小原生流程](../../Architecture/v2/P0_L2_Meaning.md#modifier实例诊断计划未实施)已准备，**尚未实施／部署**。首轮仅一次当前状态读取，确认schema与城市匹配证据；不重复已失败四态、猜系数、暂停HD或创建新Modifier。Active=true且城市明确，仍不能证明flat累加／正常结算。条件后备保持未采用；本轮没有新实机、LOCAL模拟或Design变化。
+[具体诊断计划与最小原生流程](../../Architecture/v2/P0_L2_Meaning.md#modifier实例诊断)已准备，**尚未实施／部署**。首轮仅一次当前状态读取，确认schema与城市匹配证据；不重复已失败四态、猜系数、暂停HD或创建新Modifier。Active=true且城市明确，仍不能证明flat累加／正常结算。条件后备保持未采用；本轮没有新实机、LOCAL模拟或Design变化。

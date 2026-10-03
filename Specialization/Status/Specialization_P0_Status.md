@@ -1,25 +1,34 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0403
-Implementation Build: source/live B155.182 / modinfo182; flat candidates native FAIL; Amphitheater source checked; Modifier diagnostic planned only; stable B069.96
+Status Revision: S0404
+Implementation Build: source B156.183 / modinfo183; live B155.182 pending diagnostic deployment; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_MODIFIER_DIAGNOSTIC_PLAN_READY
+Work State: P0_L2B_MODIFIER_DIAGNOSTIC_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户授权的最小只读Modifier诊断已完成B156.183 / modinfo183：右键“意义延展验证”只读，不必启用实验或过回合。[18项诊断＋11项原reader定向LOCAL PASS及最小流程](Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。一次显式token至多一次全局枚举，精确ID、有界输出，复用Show/Copy；native API/schema与实例城市归属仍UNKNOWN，不把同玩家/Active=true当本城收益PASS。
+
+D0042九域／逐领域Floor／独立追加与原B155收益实现不变；两个Culture候选FAIL没有被此次诊断修复。市政／外交暂排仍仅条件后备，精准recipient／倍率／结算门禁保留。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)与[建筑来源](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md#古罗马剧场建筑与著作收益来源复核)可追溯。无Gameplay writer／永久Property／GC／Design变更。
+
+source B156.183本地完成；live仍沿B155.182、代码441b85f、部署来源7c4b72f和receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE登记，待安全部署更新。main B069.96未promotion。当前仅完成本次诊断部署并等待一份实机报告；不自动续四态、正式cutover、L3/M/N/U2或其它能力。
+
+## 历史阶段记录
+
+### S0403 — Modifier诊断计划（当时）
 
 现行正式Design仍D0042九域／六yield，Meaning独立追加／逐领域Floor与生命周期不变。市政／外交暂排仅CONDITIONALLY_AUTHORIZED，尚未正式采用；完整L2及精确recipient／倍率隔离／结算等仍未通过，正式cutover与L3/M/N/U2未授权。
 
 [建筑来源调查](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md#古罗马剧场建筑与著作收益来源复核)确认古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture／＋50%Tourism，建筑自身Culture1另算。主HD与DB差异由该扩展后加载覆盖解释，均为STATIC；不证明两项Culture Modifier运行活动或组合算法。[B155两个候选FAIL](Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)、B055单flat成功／HD共存未证、S/G所测范围和其它writer门禁保持。
 
-[按需Modifier实例诊断计划](../Architecture/v2/P0_L2_Meaning.md#modifier实例诊断计划未实施)已准备，**没有新实现授权**。UI一次显式READ token最多一次全局枚举、精确ID筛选／有界输出；先一次读取schema，实例城市归属尚UNKNOWN，不用名称归组／猜CityID。同玩家或Active=true不作本城效果／收益PASS；未过映射门禁不重做三态。
+[按需Modifier实例诊断计划](../Architecture/v2/P0_L2_Meaning.md#modifier实例诊断)已准备，**没有新实现授权**。UI一次显式READ token最多一次全局枚举、精确ID筛选／有界输出；先一次读取schema，实例城市归属尚UNKNOWN，不用名称归组／猜CityID。同玩家或Active=true不作本城效果／收益PASS；未过映射门禁不重做三态。
 
 source/live仍B155.182／modinfo182，代码441b85f；沿既有部署来源7c4b72f、receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE／182 MATCH引用，本轮未重核外部包。main稳定B069.96未promotion。本轮仅调查与计划，Design／Mod／GC／永久账本未改、无新用户测试／模拟／部署。下一建议：授权该最小只读诊断实施；到此停止。
 
-## 历史阶段记录
 
 ### S0402 — 定域调查与条件后备登记（当时）
 

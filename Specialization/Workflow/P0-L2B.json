@@ -11,8 +11,8 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0403",
-    "runtime": "B155.182 / modinfo182",
+    "status": "S0404",
+    "runtime": "B156.183 / modinfo183",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -255,6 +255,22 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md",
       "kind": "full",
       "reason": "Latest explicit100 same-turn failure/actual DB definition check/both candidates stopped; no further test or fix authorization"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
+      "selector": "## Modifier实例诊断",
+      "reason": "Current read-only diagnostic contract and stop, not all old prototype history"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+      "kind": "full",
+      "reason": "Current local evidence and single native READ test"
+    },
+    {
+      "path": "DevelopmentTests/test_modifier_read.py",
+      "kind": "full",
+      "reason": "Direct readonly UI/API/token/lifecycle tests for B156"
     }
   ],
   "dependencies": [
@@ -332,11 +348,10 @@
     "L3/M/N/U2, GPP rounding, catalog expansion, AI/MP, permanent schema, city-flat workaround, GC strategy change"
   ],
   "validation": {
-    "depth": "W0004 L2 plus relevant scoped L3 load/loss/failure; no full historical/stress",
+    "depth": "Current B156: W0004 L1 plus directly affected UI lifecycle; historical L2/L3 results retained in linked evidence, no full/stress",
     "local": [
-      "79 actual Lua/SQL Meaning targeted tests PASS (21.412s), including original coverage, candidate/theme/UNKNOWN/loss and direct END/cleanup-failure paths",
-      "26 K catalog/facts/producer/legacy targeted tests PASS (0.092s)",
-      "6 changed Lua syntax, XML/control IDs/import/localization/context/links/diff checked; no full historical/stress"
+      "B156: 18 diagnostic fixtures PASS; 11 direct existing reader regressions PASS; Lua/XML/import/localization/context/diff checks",
+      "Historical B155 gameplay local coverage remains in original evidence; not rerun or upgraded to native."
     ],
     "user": "B155 same-turn T62 W1 SINGLE3 and SINGLE3_SCALE100 Culture4->4 vs required4->7 USER_GAME_TEST_FAIL; both show Science/Gold deltas1/4. Current inner DB candidate definitions MATCH (STATIC only). Stop remaining Dialogue/theming; OFF/settlement/load untested. B154 failure retained; local checks do not prove native."
   },
@@ -347,15 +362,15 @@
   ],
   "result": {
     "plan": "Latest user directs minimal technical prototype first, fixed additions under Dialogue/theming; earlier theme amplification deferred",
-    "implementation": "B155.182 / modinfo182 LOCAL_COMPLETE; candidate/configuration/themed-reader only, no formal cutover",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+    "implementation": "B156.183 readonly UI Modifier diagnostic LOCAL_COMPLETE; underlying B155 gameplay unchanged",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
     "native": "B155 same-turn T62 W1 SINGLE3 and SINGLE3_SCALE100 Culture4->4 vs required4->7 USER_GAME_TEST_FAIL; both show Science/Gold deltas1/4. Current inner DB candidate definitions MATCH (STATIC only). Stop remaining Dialogue/theming; OFF/settlement/load untested. B154 failure retained; local checks do not prove native.",
-    "stop": "Minimal on-demand exact native Modifier-instance diagnostic plan ready for review/authorization; UI once per explicit READ token, first read schema/owner evidence only, instance city UNKNOWN until strict mapping demonstrated. No new implementation/deployment, formal fallback adoption, cutover or L3/M/N/U2.",
+    "stop": "Complete authorized diagnostic deployment, then one explicit native READ schema/owner report; no new gameplay, fallback adoption, four-state continuation or L3/M/N/U2.",
     "deployment": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0403 Amphitheater STATIC source traced to loaded HD district expansion: native building Culture1 distinct from Writing+2. Exact Modifier-instance UI diagnostic plan ready only; first native read establishes schema and city identity evidence, no name-based mapping. Active/player match is not selected-city or yield PASS. D0042/B155 nine-domain, conditional fallback, Mod/runtime/GC/main unchanged; no new implementation authorization.",
+    "authority_revalidation": "S0404 user-authorized B156 read-only Modifier diagnostic LOCAL_COMPLETE: 18 independent diagnostic tests and 11 direct reader regressions PASS. Exact allowlist, bounded per-token UI read, city UNKNOWN. Gameplay/Design/GC/persistence unchanged; native pending; previous Culture candidate FAIL retained.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md",
     "investigation": "Specialization/Reports/Technical/Specialization_B155_Meaning_Culture_Path.md",
     "conditional_fallback": "User accepted temporary exclusion of Government Plaza/Diplomatic Quarter from Meaning if no reliable Culture path; not formally adopted or implemented. D0042 remains nine-domain. Future restoration needs reliable coexistence and multiplier boundary; Shared mapping/other abilities unchanged.",
-    "diagnostic_plan": "Specialization/Architecture/v2/P0_L2_Meaning.md#modifier实例诊断计划未实施; plan only, not runtime implementation authorization"
+    "diagnostic_plan": "Specialization/Architecture/v2/P0_L2_Meaning.md#modifier实例诊断; authorized readonly implementation complete, native pending"
   }
 }
