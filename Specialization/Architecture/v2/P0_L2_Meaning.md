@@ -1,23 +1,19 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE；B154定域切换修复LOCAL完成，Culture应用/读数与四态原生仍待验；精确recipient未解决，正式cutover未授权。
+State: P0_L2B_NATIVE_COMBINATION_BLOCKED；B154四态／OFF可见完成，Culture追加差值与native-only组合失败（本场景）；精确recipient未解决，定域修复／正式cutover未授权。
 Authority: Culture D0040 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0040 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-D0040 A–D Design同步后，当前Meaning能力、meaning_K、work_pool／domains及Shared四项直接事实与D0038／D0035逐对象完全相同，8项选择复用。Spec Culture章节及authority pin更新；原生测试、资格、Floor、收件人技术边界和停止点不改。其它生命周期变更不授权当前运行适配；下一相关批次另行复审。
+[B154六图结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)：同城同回合W1／ACTIVE4、每件配置3Culture，C00/C10/C11/C01作品Culture2/3/6/4；追加差值1与2，均非3，且不满足native-only。四态切换无旧资格错误，结束可见恢复旧值，非正式能力／结算／冷加载PASS。
 
-用户授权B153定域修复后，B154.181 LOCAL完成：[切换保护、独立Culture证据与一个最小续测](../../Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)。61 Meaning＋26 K PASS；同步CityBuildingsChanged本地反例已复现原QUALIFICATION_CHANGED并在修复后通过。新动作锁＋一个deferred bool仅合并本fixture的重入重算；失败恢复阶段/Dialogue持有意图，不假称部分native写入已撤销。当前资格从EffectiveFacts重读、0%不证明ACTIVE4。
+未主动撤销HD古罗马+2；同族YieldChange共存／多片段／ScalingFactor是待区分的技术因素，不宣布通用覆盖算法。印刷术只作用Tourism；Meaning无Tourism输出。主题化等其它倍率未测，D0040时代对话排除Meaning追加的既定合同不改；用户基础值／普通倍率期望保留为核对事项，不自行重写Design。
 
-Culture SQL与HD/原版平加路径及B055同primitive旧原生证据一致，当前没有依据猜改。保留作品读取，按需增加整城Culture辅助读数；回合/人口/实际资格变更使四态比较失效，旧阶段不回填。B153 C10Δ0与C11停止原件保持；真实Culture应用/显示差异仍待原生区分，不把结构修复写成native根因关闭。源码/live与实际receipt只查Status；提交后按W0003安全测试部署，下一步只等待一个最小同回合续测。
+源码／运行包沿Status既有B154记录，本轮没有Mod／测试／GC／永久数据／部署变化。61 Meaning＋26 K LOCAL范围保留，[切换修复证据](../../Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)不升级为收益原生正确；B055单件平加成功与B153失败原件均保留其具体场景。
 
-[B153入口修复](../../Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md)形成的两receiver accepted-pair、当前stamp与owned退出合同保留，原native停止见[C00/C10与C11](../../Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md)。本轮授权已完成定域修复/本地验证，未授权完整六yield/cutover/L3/M/N/U2。
+下一建议仅定域区分上述组合；需改SQL／新原型时另行取得授权，不要求用户重复同一矩阵，不改Floor、K、HD或采用整城补贴。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；正式六yield／all-city／全局旧GWA cutover和L3/M/N/U2未授权。
 
-用户明确“不同领域不合并同种产出取整，分别Floor”并授权原具体L2B门禁原型。D0038正式记录：`per_work_d = floor(0.5 × D_d × share_y)`，`per_work_y = Σ per_work_d`，`total_y = per_work_y × W`。Commercial D1＋Harbor D1=每件2G；Campus D1/W2=0S。不外推GPP、K0.5/份额/D/资格不变。
-
-B152.179单城原型LOCAL完成：[证据、接口限制与一个最小实机流程](../../Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md)。38 Meaning +26 K定向测试通过；当前native组合仍未确认。源码/运行包与receipt仅查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。B151整数证据保留，不重复旧小数/长测。
-
-两个门禁分别记录：①精确recipient原语未找到，**TECHNICAL_INVESTIGATION_REQUIRED**，停止该正式路径；②文化追加/旧Dialogue组合已有可逆四态原型，**USER_GAME_TEST_REQUIRED**。Lua目录正确和整城拒绝不能替代①；模拟不能替代②。当前不启用正式六yield、全城市能力或全局旧GWA退休，不进入L3/M/N/U2。
+D0040 Meaning、meaning_K、work_pool／domains及Shared四事实与前版逐对象相同，8项选择继续复用；本次改变的是native结果和停止点，不是Design。用户已确认逐领域Floor后相加再乘W；资格、份额、系数不变。当前仅证据记录／只读核对，等待下一定域授权。
 
 ## 已授权切片 — P0-L2B门禁原型
 

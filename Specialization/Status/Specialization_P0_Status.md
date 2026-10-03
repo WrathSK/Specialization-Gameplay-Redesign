@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0396
-Implementation Build: source/live B154.181 / modinfo181; P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE; stable B069.96
+Status Revision: S0397
+Implementation Build: source/live B154.181 / modinfo181; P0_L2B_NATIVE_COMBINATION_BLOCKED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0040 (A–D Design-only sync; B154 Meaning direct contracts unchanged; other lifecycle Architecture/runtime adaptation not assessed)
 Latest Accepted Design Revision: D0040
 Design Sync State: D0040_LIFECYCLE_ACCEPTED_ADAPTATION_PENDING_RUNTIME_PARTIAL
-Work State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE
+Work State: P0_L2B_NATIVE_COMBINATION_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B154六图已核对：[四态、HD平加／倍率边界与停止点](Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)。同城W1／Culture ACTIVE4，作品Culture C00/C10/C11/C01=2/3/6/4，配置追加3但差值分别1/2；追加量与native-only组合USER_GAME_TEST_FAIL（本场景），完整L2 NOT_PASSED。切换无旧资格报错、结束可见恢复，不能外推冷加载或结算。
+
+STATIC只确认未主动撤销HD古罗马+2；同族YieldChange／ScalingFactor的间接干扰仍未知。印刷术只Tourism，不解释Culture异常。主题化等其它倍率未测；D0040仍要求时代对话不放大Meaning追加。用户本次基础值／正常倍率期望保留为核对事项，没有擅自改Design。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED。
+
+source/live仍B154.181 / modinfo181，source fb3ee7f；既有W0003 receipt `B154.181-fb3ee7f-playtest.json` DEVELOP_ACTIVE、182/182 MATCH及B153/stable恢复点沿前次记录引用，本轮未重核外部包。main稳定B069.96无promotion。六图逐张看过并原样归档ignored local Evidence，6/6 SHA256 MATCH；无Mod／测试／Design／GC／永久数据或部署变化。
+
+下一建议：定域区分文化平加共存、多片段与倍率相互作用；新SQL／原型／修复需另行授权，不重复本次长测／四态，不以补差或改Floor绕过。当前允许记录与只读核对，停止正式cutover及L3/M/N/U2。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保存直接合同与证据。
+
+## 历史阶段记录
+
+### S0396 — D0040同步后B154待验（当时）
 
 D0040已记录用户确认的[A–D长期状态规则](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)。五份Content及阅读页同步，旧版冻结；新生命周期未在本轮适配运行代码或宣称通过。B154的8个直接Meaning／Shared对象逐项与前版相同，当前测试与停止点可复用；其它相关生命周期在对应实施前按D0040复审。用户进行原B154测试，本轮不部署、不推进玩法。
 
@@ -21,7 +33,6 @@ source/live B154.181 / modinfo181，source fb3ee7f。W0003 receipt `B154.181-fb3
 
 下一允许动作：等待同城同回合C00/C10最小续测；Culture作品差值仍0先停，用辅助整城读数区分。成功才续C11/C01/OFF，不重复旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保持完整合同。
 
-## 历史阶段记录
 
 ### S0394 — B153 C10/C11中止与修复建议（当时）
 
@@ -730,7 +741,7 @@ STATIC_CONFIRMED=源码/数据库静态证据；LOCAL_SIMULATION_PASS=本地模�
 
 ## 下一任务（只有此队列有效）
 
-等待CURRENT所列B108三城新局结果；按[E2当前切片](../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)核对、归档。下一玩法实施需单独授权，不自动进入snapshot/Claim/F。
+当前仅按CURRENT与[P0-L2当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)记录／只读核对B154原生组合失败；下一定域修复或原型须用户另行授权，不继续旧测试或其它玩法。
 
 ## 历史下一任务（已被CURRENT取代）
 
