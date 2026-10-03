@@ -47,6 +47,6 @@ This is a native **gate**, not a promise the flat Culture path passes. If added 
 
 ## Deployment / stop
 
-B152.179 / modinfo179 canonical source prepared; deployment pending clean commit/push and W0003 exit/integrity transaction. Existing B151 receipt/recovery remains authoritative until a successful new receipt. No game launched or main changed.
+B152.179 / modinfo179 deployed by W0003 after clean source commit/push and OS-confirmed game exit. Source `85c77b4bcd815231a82ecf1610f9ebd305ad1c4c`; receipt `B152.179-85c77b4-playtest.json` DEVELOP_ACTIVE; **182/182 MATCH**. Exact B151 receipt restored stable as the tool-required bridge, then staged B152 activation. Outgoing B151 and stable recovery packages verified and retained; no pending marker, game launch or main change. Deployment equality is not native gate PASS.
 
 Stop after this checkpoint and one native gate. Qualification isolation unresolved; full L2, L3/M/N/U2 remain NOT_AUTHORIZED. User decisions needed now: none. User game test needed: the single flow above once deployed.

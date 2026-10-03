@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "438ca9d0b5b400b8e1501b1a3087925ad85fcc91",
+  "runtime_commit": "85c77b4bcd815231a82ecf1610f9ebd305ad1c4c",
   "current_batch": "P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED",
   "next_batch": "Await single-city Culture native interaction gate; exact eligible-definition recipient boundary unresolved. Full L2/L3/M/N/U2 NOT_AUTHORIZED.",
   "manifest": "Specialization/Workflow/P0-L2B.json",
-  "live": "B151.178 / modinfo178 verified prior receipt remains live until W0003 B152 transaction; B152 source local complete, not yet deployed.",
+  "live": "B152.179 / modinfo179 verified W0003 receipt B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; B151 and stable recovery retained. Native Culture gate pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "D0038 explicit per-domain Floor recorded; source scoped L2B gate38 + K26 LOCAL PASS, no full ability/native gate PASS; unrelated/frozen reviews reused.",
+  "context_review_status": "D0038 explicit per-domain Floor recorded; source scoped L2B gate38 + K26 LOCAL PASS, no full ability/native gate PASS; unrelated/frozen reviews reused. W0003 B152 receipt/equality verified; no native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

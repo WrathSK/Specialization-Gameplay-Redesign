@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0390
-Implementation Build: source B152.179 / modinfo179; live B151.178; P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED; stable B069.96
+Implementation Build: source/live B152.179 / modinfo179; P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0038 (Meaning per-domain Floor only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0038
@@ -15,7 +15,7 @@ B152.179 / modinfo179单城L2B门禁原型LOCAL完成：[范围、原生接口�
 
 用户明确每领域换算实际yield后分别Floor，再同yield相加，最后乘W；D0038已正式同步，旧D0029/D0037原件保留。K0.5/Gold份额3/D/资格与0.1GPP不变。精确recipient原语未找到：TECHNICAL_INVESTIGATION_REQUIRED，probe整城拒绝不是正式资格规则；Culture追加不被旧对话放大需本次native四态对照。
 
-source B152.179，live仍B151.178/source438ca9d；部署待本轮commit/push、退出及W0003 transaction确认，不能从HEAD猜运行包。既有B151 receipt/recovery不变；main稳定B069.96无promotion。当前授权只到本单城原型、本地验证和standing安全测试部署，不自动进入正式L2/L3/M/N/U2。
+source/live B152.179，source85c77b4；W0003 receipt `B152.179-85c77b4-playtest.json` DEVELOP_ACTIVE、182/182 MATCH已确认。OS核对退出，B151精确receipt恢复stable过桥后staging激活；B151保留包及stable恢复点MATCH、无pending marker，未启动游戏。main稳定B069.96无promotion。当前授权只到本单城原型、本地验证和standing安全测试部署，不自动进入正式L2/L3/M/N/U2。
 
 一次最小测试：同城非主题支持馆藏、正整数Culture追加，C00→C10→C11→C01→结束；右键等待UI刷新记录当前阶段，前阶段不回填。异常或两次追加差值不等即停。暂不要求用户寻找本机不存在的未知同类作品、重做小数或旧长测。新实机结果待用户；GC、永久账本、AI/MP、目录及其它能力不改。
 

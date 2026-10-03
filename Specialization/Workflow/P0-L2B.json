@@ -287,6 +287,6 @@
     "evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
     "native": "USER_GAME_TEST_REQUIRED for Culture; recipient primitive TECHNICAL_INVESTIGATION_REQUIRED",
     "stop": "No full ability/cutover; no L3/M/N/U2 without new authorization",
-    "deployment": "Pending commit/push + W0003 verified exit/receipt transaction; B151 active receipt remains live."
+    "deployment": "W0003 B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; source 85c77b4bcd815231a82ecf1610f9ebd305ad1c4c;182/182 MATCH; B151 and stable recovery retained. No game launch/native result."
   }
 }
