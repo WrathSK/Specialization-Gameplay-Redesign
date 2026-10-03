@@ -11,7 +11,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 ## D0028共享入口
 
-[Shared_D0035](Shared_D0035.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0029.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0035](Shared_D0035.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0038.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029已确认Culture完整考察文明集合并集及见闻/Dialogue分离归属；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 
@@ -70,3 +70,7 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 [Harbor D0037](Harbor_D0037.json)是港口当前结构化正文：完整双线、III/IV同级双机构、商业海运/出口/进口/经营积累，以及当前Military海军镜像；无独立Harbor Network或司令城。accepted机制与可冻结/强候选/暂定名字、占位机构、Balance/Technical/Legacy各自标示，不称全部细节冻结。未来范围，不扩大v0.1。
 
 [Military D0037](Military_D0037.json)取代D0034作为当前文件，仅正式名称行伍编制/战地勤务及Harbor明确镜像引用更新；其它Military机制逐对象保持。D0034及更早原件不改。[接受与旧条款冲突映射](../../Historical/Design/Reviews/Harbor_D0037_Review.md)；[港口阅读版](../Harbor.md)、[军事阅读版](../Military.md)。新内容不加入runtime或文化任务必读集合。
+
+## D0038 Culture Meaning Extension Floor — current authority
+
+[Culture D0038](Culture_D0038.json)在D0029基础上仅明确意义延展：每领域先换算为实际产出并分别Floor，之后同yield相加，最后乘合格巨作件数W。系数0.5、金币份额3、领域与作品资格、原生产出倍率隔离保持；不外推GPP。D0029原件与旧Shared引用保留，按当前Spec的D0035覆盖声明解释；其它primitive及完整运行切换未接受。

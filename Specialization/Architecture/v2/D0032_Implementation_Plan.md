@@ -93,7 +93,7 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 | P0-J1 Team来源/容量 | 项目完成绑定训练城，capacity2，各Tier1slot；III/IV分层生产资格 | E1；高Tier还需I3，T1–3可先验证；退出Industry I无容量授予路径 | 同回合多完成、排队/完成门禁、重复事件、读档；ACTIVE下降/转专业不删旧队 | 一城完成两队→第三队受限→合法消耗释放槽位；Exit来源和容量。捕获/易主策略仍须另审 |
 | P0-J2 Wonder施工 | Wonder-only目标、一次消耗、释放source slot、巨构工程学注入 | J1/I2；退出普通建筑/区域施工分支 | 预览/确认重验、溢出浪费、速度floor、不确定AddProgress不重放 | 一个Wonder目标消耗一队并读档；Exit完整新施工链 |
 | P0-K Great Work事实 | 已知作品目录、时代解析、city collection及国内时代索引 | A–D2协议；适配Dialogue producer；不改旧收益 | 未知作品排除、Artifact时代、移动两城、暂不可用/epoch | 一件作品在两城移动后读诊断；Exit事实层 |
-| P0-L1/L2/L3 文化被动能力 | 分别风雅熏陶普通建筑Tourism、意义延展D份产出、巨作启迪0.1D base GPP | A/K及每条primitive；L1退出旧Culture人口及worker%；L2退出旧GW adjacency；L3不另覆盖已完成L1/L2 | native与追加分层、普通建筑掠夺、作品池、领域/GPP映射；不自行floor | 同一馆藏城含两领域，每批只加入一种效应；0.1未证实不得宣布L3完成 |
+| P0-L1/L2/L3 文化被动能力 | 分别风雅熏陶普通建筑Tourism、意义延展D份产出、巨作启迪0.1D base GPP | A/K及每条primitive；L1退出旧Culture人口及worker%；L2退出旧GW adjacency；L3不另覆盖已完成L1/L2 | native与追加分层、普通建筑掠夺、作品池、领域/GPP映射；Meaning仅D0038逐领域Floor，GPP不外推 | 同一馆藏城含两领域，每批只加入一种效应；0.1未证实不得宣布L3完成 |
 | P0-M 时代对话项目 | 连续完整生产回合、START Era quota、完成时X、city ledger及native-only倍率 | E1/K及项目/收益隔离spike、cap参数；替换旧25%(D−1) | 高P/中断/跨时代/X0/重复/读档/易主quota；不放大意义延展 | 高P一城中断后完成、移动作品、读档；转移quota另做最小补测 |
 | P0-N1/N2/N3 人文考察 | N1交互原型；N2来源绑定、原Owner记录及整城Tourism；N3 Culture Network | E1/K、Spy-like与Tourism原型、K参数；仅N3退出旧Culture Eureka | 战争/目标失效、固定成功保留单位、来源降级继续任务、3N唯一性；source各自3/3后union | 外国capital兼有GW/Wonder，单任务+战争/读档；集合并集主要本地验证，三子批独立完成 |
 | P0-O 有向商路读服务 | 同一verified snapshot建立直接incoming/outgoing索引 | 原NetworkInput/Bridge；不加provider、不改旧Commerce收益 | A→B/B→A商业化均合法，发展投资仅outgoing；center distribution不当direct | 若无新原生事件，一般无需额外实机；Exit只读qualification |

@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0389
-Implementation Build: develop/live B151.178 / modinfo178; P0_L2A_NATIVE_PRECISION_RECORDED / FLOOR_DIRECTION_ACCEPTED; stable B069.96
+Status Revision: S0390
+Implementation Build: source B152.179 / modinfo179; live B151.178; P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
-Latest Accepted Design Revision: D0037
+Design Revision Reviewed: D0038 (Meaning per-domain Floor only; A0161 target remains D0032)
+Latest Accepted Design Revision: D0038
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2A_NATIVE_PRECISION_RECORDED / FLOOR_DIRECTION_ACCEPTED
+Work State: P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B152.179 / modinfo179单城L2B门禁原型LOCAL完成：[范围、原生接口边界及最小四态测试](Validation/Results/Specialization_B152_P0L2B_Gates_Local.md)。38 Meaning +26 K定向测试PASS；STATIC/LOCAL不等于USER_GAME_TEST_PASS。默认OFF，仅一个fixture的Science/Gold/Culture；没有完整六yield或全局旧GWA cutover。
+
+用户明确每领域换算实际yield后分别Floor，再同yield相加，最后乘W；D0038已正式同步，旧D0029/D0037原件保留。K0.5/Gold份额3/D/资格与0.1GPP不变。精确recipient原语未找到：TECHNICAL_INVESTIGATION_REQUIRED，probe整城拒绝不是正式资格规则；Culture追加不被旧对话放大需本次native四态对照。
+
+source B152.179，live仍B151.178/source438ca9d；部署待本轮commit/push、退出及W0003 transaction确认，不能从HEAD猜运行包。既有B151 receipt/recovery不变；main稳定B069.96无promotion。当前授权只到本单城原型、本地验证和standing安全测试部署，不自动进入正式L2/L3/M/N/U2。
+
+一次最小测试：同城非主题支持馆藏、正整数Culture追加，C00→C10→C11→C01→结束；右键等待UI刷新记录当前阶段，前阶段不回填。异常或两次追加差值不等即停。暂不要求用户寻找本机不存在的未知同类作品、重做小数或旧长测。新实机结果待用户；GC、永久账本、AI/MP、目录及其它能力不改。
+
+## 历史阶段记录
+
+### S0389 — B151原生精度与待确认Floor历史
 
 B151十图已逐张查看/原图归档：[原生精度与边界](Validation/Results/Specialization_B151_P0L2A_Native_Precision.md)。所测基线/启用入口正常；D1每件理论0.5S/1.5G，W1实测0/1、W2实测0/2且下一正常回合保持；D3/W2实测2S/8G。半点精度FAIL、整数追加可用，不扩大为六yield/完整结算/未知作品/native-only/load PASS。原LOCAL结果与冻结失败记录保持。
 
@@ -21,7 +33,6 @@ source/live仍B151.178 / modinfo178，source438ca9d；既有receipt B151.178-438
 
 Design基线D0037 / Culture D0029 / Shared D0035及四专业v0.1不变；GC、AI/MP、机构优化与其它专业不扩入本轮。Floor为本次新接受方向，精确Design合同尚未同步，不声称已在runtime采用。
 
-## 历史阶段记录
 
 ### S0388 — B151入口修复LOCAL与部署
 

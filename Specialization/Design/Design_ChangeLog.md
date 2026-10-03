@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0037
+Latest Accepted Design Revision: D0038
 Document State: ACCEPTED
+
+## Accepted D0038 — 2026-10-02
+
+Acceptance: ACCEPTED / Culture Meaning Extension per-domain Floor amendment; implementation and balance validation pending
+Acceptance Evidence: 用户明确“每领域分别floor，之后同yield相加，最后W”；仅意义延展采用此取整例外。
+Accepted Spec SHA256: 128af123ee3c1ae0faf9a24d789fd602e886973868605f865afdd13de29bd8ab
+Canonical Culture Content SHA256: 3296ddf8037f250fd46a51e00bf51f8d98e41cb7073db69fb2269e8faac4383e
+Previous Accepted Revision: D0037
+Frozen D0037: [原文](Revisions/Specialization_Design_Spec_D0037.md)
+Content: [Culture D0038](Content/Culture_D0038.json) / [文化阅读版](Culture.md)
+
+每个合格领域先floor(0.5×D×该yield份额)，再合并同yield的每件追加量，最后乘合格巨作件数W。意义延展K0.5、金币份额3、领域/D/作品资格及原生产出倍率不放大追加值的合同保持；GPP与其它能力不继承此例外。D0029与D0037原件冻结保留，旧Shared引用不顺便改。没有接受其它primitive或宣称两个接口门禁通过；本记录不扩大已授权P0-L2B单城门禁原型，正式六yield/全局旧GWA切换仍未授权。
 
 ## Accepted D0037 — 2026-10-02
 

@@ -1,4 +1,5 @@
 include('DialogueModel')
+include('NetworkInput')
 SPCDialogue={}
 function SPCDialogue.Start(P,shared)
  local d={ready=false,busy=false,seq={},samples={},off={},test={},last={},errors={},changes=0,received={},generation=1};shared.Dialogue=d
@@ -19,11 +20,47 @@ function SPCDialogue.Start(P,shared)
   end end end
   d.ready=true
  end
- function d.Audit(pid)
+ local owned={};for n=2,#levels do owned['BUILDING_SPC_B059_D'..n]=true end
+ for _,v in ipairs({25,50,100})do owned['BUILDING_SPC_B059_TEST'..v]=true end
+ function d.IsOwnedCarrier(name)return owned[name]==true end
+ function d.IsMeaningProbeHeld(pid,c,percent)
+  local h=d.meaningOverride
+  return h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c) and h.percent==percent or false
+ end
+ function d.ForgetMeaningProbe(pid,cid,reference)
+  local h=d.meaningOverride;if h and h.owner==pid and h.city==cid and h.reference==reference then d.meaningOverride=nil end
+ end
+ function d.HoldMeaningProbe(pid,c,percent)
+  assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
+  assert(percent==0 or percent==100,'ME_DIALOGUE_PERCENT')
+  assert(not d.off[pid] and not (d.test[pid] and d.test[pid].city==c:GetID()),'ME_DIALOGUE_OTHER_TEST')
+  local ref=SPCNetworkInput.Reference(c);local h=d.meaningOverride
+  assert(not h or h.owner==pid and h.city==c:GetID() and h.reference==ref,'ME_DIALOGUE_OTHER_FIXTURE')
+  d.Init();d.meaningOverride={owner=pid,city=c:GetID(),reference=ref,percent=percent}
+  d.Audit(pid,c:GetID())
+  local p=d.last[pid] and d.last[pid][c:GetID()]
+  assert(p and not p.error and p.meaning and p.applied==percent,'ME_DIALOGUE_UNCONFIRMED: '..tostring(p and p.error or 'missing current projection'):sub(1,180))
+  local actual,why=d.ReadMeaningProbe(pid,c);assert(actual==percent,why or 'ME_DIALOGUE_CARRIER_UNKNOWN')
+  return true
+ end
+ function d.WithdrawMeaningProbe(pid,c)
+  local h=d.meaningOverride
+  assert(h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_REFERENCE_CHANGED')
+  for name in pairs(owned)do if P.Info('Buildings',name)then set(c,name,false)end end
+ end
+ function d.ReleaseMeaningProbe(pid,c)
+  local h=d.meaningOverride
+  assert(h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_REFERENCE_CHANGED')
+  d.WithdrawMeaningProbe(pid,c) -- Failed test withdrawal keeps binding/hold.
+  d.meaningOverride=nil;d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
+ end
+ function d.Audit(pid,cid)
   if P.Observe then P.Observe('audit','Dialogue') end
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
-  local s=d.samples[pid];local output={};d.last[pid]=output
-  for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
+  local s=d.samples[pid];if cid==nil then d.last[pid]={}else d.last[pid]=d.last[pid] or {}end;local output=d.last[pid]
+  local cities=Players[pid]:GetCities();local visit=cities:Members()
+  if cid~=nil then local c=cities:FindID(cid);local done=false;visit=function()if not done and c then done=true;return cid,c end end end
+  for _,c in visit do P.Count('city_scan');
    local id=c:GetID();local ok,p=pcall(function()
     local f=shared.EffectiveFacts.Read(pid,c)
     local works=s and s.turn==Game.GetCurrentGameTurn() and s.cities[id]
@@ -32,6 +69,11 @@ function SPCDialogue.Start(P,shared)
     plan.applied=(not d.off[pid] and f.specialization=='CULTURE' and f.active==4) and plan.percent or 0
     local t=d.test[pid];plan.test=t and t.city==id and t.percent or nil
     if plan.test and not d.off[pid] and f.specialization=='CULTURE' and f.active==4 then plan.applied=plan.test end
+    local h=d.meaningOverride
+    if h and h.owner==pid and h.city==id and h.reference==SPCNetworkInput.Reference(c) then
+     plan.meaning=true;plan.test=h.percent
+     plan.applied=(not d.off[pid] and f.specialization=='CULTURE' and f.active==4) and h.percent or 0
+    end
     plan.carrier=plan.applied>0 and ('BUILDING_SPC_B059_'..(plan.test and 'TEST'..plan.test or 'D'..plan.d)) or nil
     return plan
    end)
@@ -48,6 +90,21 @@ function SPCDialogue.Start(P,shared)
    output[id]=p
   end
   d.busy=false
+ end
+ function d.ReadMeaningProbe(pid,c)
+  local ok,value=pcall(function()
+   local h=d.meaningOverride;assert(h and d.IsMeaningProbeHeld(pid,c,h.percent),'ME_DIALOGUE_REFERENCE_CHANGED')
+   local p=d.last[pid] and d.last[pid][c:GetID()];assert(p and not p.error and p.meaning,'ME_DIALOGUE_SAMPLE_PENDING')
+   assert(p.applied==h.percent,'ME_DIALOGUE_QUALIFICATION_CHANGED')
+   local expected=h.percent==100 and 'BUILDING_SPC_B059_TEST100' or nil;local b=c:GetBuildings()
+   for name in pairs(owned)do local row=P.Info('Buildings',name);if row then
+    local has=P.HasBuilding(b,row.Index);assert(type(has)=='boolean','ME_DIALOGUE_CARRIER_UNKNOWN')
+    assert(has==(name==expected),'ME_DIALOGUE_PROJECTION_CHANGED')
+    if has then assert(b:IsPillaged(row.Index)==false,'ME_DIALOGUE_CARRIER_DAMAGED')end
+   end end
+   return h.percent
+  end)
+  return ok and value or nil,not ok and tostring(value):sub(1,240) or nil
  end
  function d.Receive(pid,a)
   if not P.IsTestPlayer(pid) then return end

@@ -94,46 +94,60 @@ function SPCBoostGreatWorkRead.Adjacency(P,c)
 end
 
 -- One on-demand UI baseline, never a Gameplay source or a persistent snapshot.
-local meaningBaseline
+-- Four UI-only readings for one current fixture. Never persisted or used by Gameplay.
+local meaningReadings
 function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
  local ok,text=pcall(function()
   assert(v.owner==Game.GetLocalPlayer() and v.cityID==c:GetID() and v.reference==SPCNetworkInput.Reference(c),'ME_UI_REFERENCE_CHANGED')
-  if v.mode=='OFF' then meaningBaseline=nil;return '测试已关闭；未保留原生收益基线。'end
-  local b=c:GetBuildings();local totals={SCIENCE=0,GOLD=0};local signature={}
+  if v.mode=='OFF' then meaningReadings=nil;return '测试已关闭；本次四态读数已释放。'end
+  assert(not v.error and not v.configurationError and not v.dialogueError and v.oldHeld and v.planStatus=='READY','ME_UI_CONFIGURATION_PENDING')
+  local percent=(v.mode=='SCALED' or v.mode=='SCALED_BASELINE') and 100 or 0
+  assert(v.dialoguePercent==percent,'ME_UI_DIALOGUE_PENDING')
+  local on=v.mode=='ACTIVE' or v.mode=='SCALED'
+  assert(v.configuredScience==(on and v.science or 0) and v.configuredGold==(on and v.gold or 0) and v.configuredCulture==(on and v.culture or 0),'ME_UI_CONFIGURATION_PENDING')
+  local b=c:GetBuildings();local totals={SCIENCE=0,GOLD=0,CULTURE=0};local signature={};local baseCulture=0;local baseKnown=true
+  local nativeBase={}
+  if GameInfo.GreatWork_YieldChanges then for row in GameInfo.GreatWork_YieldChanges()do if row.YieldType=='YIELD_CULTURE' then nativeBase[row.GreatWorkType]=(nativeBase[row.GreatWorkType] or 0)+row.YieldChange end end else baseKnown=false end
   for r in GameInfo.Buildings()do if P.HasBuilding(b,r.Index) then
    local n=b:GetNumGreatWorkSlots(r.Index);assert(type(n)=='number' and n>=0,'ME_UI_SLOTS_UNKNOWN')
    if n>0 then
     local known,themed=pcall(b.IsBuildingThemedCorrectly,b,r.Index)
-    signature[#signature+1]='B'..r.Index..':'..(known and tostring(themed) or 'UNKNOWN')
+    assert(known and themed==false,'ME_UI_NONTHEMED_FIXTURE_REQUIRED')
+    signature[#signature+1]='B'..r.Index..':false'
     for slot=0,n-1 do local id=b:GetGreatWorkInSlot(r.Index,slot)
-     if id~=nil and id~=-1 then signature[#signature+1]='W'..id..'@'..r.Index..':'..slot..':'..tostring(b:GetGreatWorkTypeFromIndex(id))end
+     if id~=nil and id~=-1 then
+      local typ=b:GetGreatWorkTypeFromIndex(id);local row=GameInfo.GreatWorks[typ]
+      assert(row,'ME_UI_WORK_DEFINITION_UNKNOWN')
+      signature[#signature+1]='W'..id..'@'..r.Index..':'..slot..':'..row.GreatWorkType
+      local cat=(row.GreatWorkObjectType or ''):gsub('GREATWORKOBJECT_','')
+      if ({WRITING=true,MUSIC=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true})[cat] then baseCulture=baseCulture+(nativeBase[row.GreatWorkType] or 0)end
+     end
     end
-    for _,y in ipairs({'SCIENCE','GOLD'})do
+    for _,y in ipairs({'SCIENCE','GOLD','CULTURE'})do
      local value=b:GetBuildingYieldFromGreatWorks(P.Info('Yields','YIELD_'..y).Index,r.Index)
      assert(type(value)=='number' and value==value,'ME_UI_NATIVE_YIELD_UNKNOWN');totals[y]=totals[y]+value
     end
    end
   end end
-  table.sort(signature);local sig=table.concat(signature,';');local turn=Game.GetCurrentGameTurn()
-  local rates={};local ratesOK=pcall(function()
-   for _,y in ipairs({'SCIENCE','GOLD'})do local n=c:GetYield(P.Info('Yields','YIELD_'..y).Index);assert(type(n)=='number' and n==n,'ME_UI_CITY_YIELD_UNKNOWN');rates[y]=n end
-  end)
-  if mark and v.mode=='BASELINE' and not v.error and v.oldHeld then
-   meaningBaseline={reference=v.reference,signature=sig,turn=turn,totals=totals,rates=ratesOK and rates or nil}
-  end
-  local lines={string.format('原生巨作收益：科研 %.4f / 金币 %.4f',totals.SCIENCE,totals.GOLD)}
-  if v.mode=='BASELINE' then lines[#lines+1]=meaningBaseline and '已记录关闭测试收益时的本城基线。' or '基线未确认，先处理上方异常。'
-  elseif meaningBaseline and meaningBaseline.reference==v.reference and meaningBaseline.signature==sig then
-   lines[#lines+1]=string.format('相同馆藏基线 → 当前：科研 Δ%+.4f / 金币 Δ%+.4f',totals.SCIENCE-meaningBaseline.totals.SCIENCE,totals.GOLD-meaningBaseline.totals.GOLD)
-  else lines[#lines+1]='馆藏/所在建筑/主题或会话已变；差值基线不可用。可结束→准备→启用重新对照。'end
-  if ratesOK then
-   lines[#lines+1]=string.format('整城原生率：科研 %.4f / 金币 %.4f（含其它来源与倍率）',rates.SCIENCE,rates.GOLD)
-   if v.mode=='ACTIVE' and meaningBaseline and meaningBaseline.reference==v.reference and meaningBaseline.signature==sig and meaningBaseline.rates then
-    lines[#lines+1]=string.format('整城率对照 Δ%+.4f 科研 / Δ%+.4f 金币；仅在其它事实不变时比较。',rates.SCIENCE-meaningBaseline.rates.SCIENCE,rates.GOLD-meaningBaseline.rates.GOLD)
+  table.sort(signature);local key=v.reference..'|'..v.stamp..'|'..v.count..'|'..table.concat(signature,';')
+  local lines={string.format('原生作品收益：科研 %.2f / 金币 %.2f / 文化 %.2f',totals.SCIENCE,totals.GOLD,totals.CULTURE)}
+  if mark and v.mode=='BASELINE' then meaningReadings={key=key,rows={}}end
+  local valid=meaningReadings and meaningReadings.key==key
+  if valid then meaningReadings.rows[v.mode]=totals end -- Explicit read can refresh this phase; previous phases remain fixed.
+  if not valid then
+   meaningReadings=nil;lines[#lines+1]='馆藏/位置/主题/领域D/资格已变，四态对照无效；结束后重新准备。'
+  else
+   local q=meaningReadings.rows
+   lines[#lines+1]='本阶段'..(q[v.mode] and '已记录；右键只刷新当前阶段读数，不推进实验。' or '未记录；只读不能补造基线。')
+   if q.BASELINE and q.ACTIVE then lines[#lines+1]=string.format('关闭旧对话：追加文化 Δ%+.2f；预期 +%g。',q.ACTIVE.CULTURE-q.BASELINE.CULTURE,v.totalCulture)end
+   if q.BASELINE and q.ACTIVE and q.SCALED and q.SCALED_BASELINE then
+    lines[#lines+1]=string.format('旧对话100%%：追加文化 Δ%+.2f；应与上行相等。',q.SCALED.CULTURE-q.SCALED_BASELINE.CULTURE)
+    lines[#lines+1]=string.format('旧对话增幅：无追加 Δ%+.2f / 有追加 Δ%+.2f。',q.SCALED_BASELINE.CULTURE-q.BASELINE.CULTURE,q.SCALED.CULTURE-q.ACTIVE.CULTURE)
+    lines[#lines+1]=baseKnown and string.format('定义原生文化合计 %g；用于区分HD平加与原生基值。',baseCulture) or '作品定义基值不可读；不把未知记为0。'
    end
-  else lines[#lines+1]='整城原生率不可读；未将未知记为0。'end
-  lines[#lines+1]='作品分项和整城率是原生读取；正常过回合核对持续生效，未自动判定实机PASS。'
+  end
+  lines[#lines+1]='同一馆藏四态对照；其它修正须保持不变，不自动判定实机PASS。'
   return table.concat(lines,'\n')
  end)
- return ok and text or ('原生作品科研/金币暂不可读：'..(tostring(text):match('ME_[A-Z_]+') or '原生接口未知')..'；不将未知记为0。')
+ return ok and text or ('四态原生读数未确认：'..(tostring(text):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end

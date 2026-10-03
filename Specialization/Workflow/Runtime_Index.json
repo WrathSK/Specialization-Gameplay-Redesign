@@ -226,9 +226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "b7e3054cb25439b9f31342b98872357e31b946fb5c0097783257c926180dac07",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B132 authorized narrow event/cache optimization; targeted L2 PASS, native pending"
+      "sha256": "371ac6dde3442aafa7b02b21e688e6132f10fabb229eb6e027067c3b57d69101",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "b9fdd719984323178200d2ffa1a0b5fa5989e983e969e707b2c962e6f5b7a676",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
-      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
+      "sha256": "e242b786dc7ecb5789efbcceedb7aaf712c37d093b3a7d9a9c60207068c1ad7f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d8ef009f15077cd424f51bba97bdf68f2984541073936f19b9bcc158706885bd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
-      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
+      "sha256": "b811c3e0e4eba5f92aad9db4bfc260599ce736bdaea8b5f9931ab86aad7bcc90",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "e2e16092271268b3eca573ba7ca0dee001761d5237758baa5d22305efd5cf283",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "db029e98bfe154f9bb288f48b4cfd1c26fa10d8629401d92b4ca3f9258c0ac52",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "8e1905b942d097a4f0812115bc3170f9dffe477d94404978ddeaf1dae93f44a7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "3d667206f03270a4e29ca08ce84086746e302b285b93330d3a19dc0baea515c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -901,19 +901,19 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "6925e82bd997f3b074491e1eaa64f52c320055c709ed758832caad8ec2d69533",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "b53d51230209001f82df349d0cc07a1f782316912d69eceb84f720f47bfb0041",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "998d5a841d2373f10f753bd91e301b80e5bf30ccf99b3f37a33a8936a40afd93",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
-      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
+      "sha256": "126ce2c6a1f67b089577d7e98824f48fe7938165dcfd74dee8936de47c722052",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     },
     "Mod/Data/CultureMeaningProbe.sql": {
-      "sha256": "62c2174915bc3e725aff7074ad336e388a9fa8f18e14bdb8b958aa02d40a5a86",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "ec42da18b138232136a9d869266986a16fb3aa5ab5d7a899914aaa6c9eafcff5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+      "provenance": "B152 scoped per-domain Floor/Culture four-phase prototype reviewed and targeted local tested; native gate pending, no global cutover"
     }
   }
 }

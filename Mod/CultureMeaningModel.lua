@@ -1,5 +1,5 @@
--- Culture D0029: per eligible work, initial 0.5 shares of absolute Shared D.
--- This pure model covers the accepted mappings; the L2A writer probes only S/G.
+-- Culture D0038: Floor EACH domain contribution before same-yield sum and W.
+-- Pure model covers nine mappings; the opt-in writer probes S/G/Culture only.
 SPCCultureMeaningModel={K=0.5,Domains={
  {'DISTRICT_CAMPUS','SCIENCE'},{'DISTRICT_INDUSTRIAL_ZONE','PRODUCTION'},
  {'DISTRICT_COMMERCIAL_HUB','GOLD'},{'DISTRICT_HARBOR','GOLD'},{'DISTRICT_ENCAMPMENT','PRODUCTION'},
@@ -27,20 +27,20 @@ function M.Plan(f,w,depth)
  for _,d in ipairs(M.Domains)do
   local raw=depth.value.domains[d[1]];local n=raw and raw.value or 0
   assert(integer(n) and n<=10,'ME_DEPTH_INVALID')
-  local each=M.K*n*(d[2]=='GOLD' and 3 or 1)
-  p.domains[d[1]]={value=n,districtID=raw and raw.districtID,yield=d[2],each=each}
+  local rawEach=M.K*n*(d[2]=='GOLD' and 3 or 1);local each=math.floor(rawEach)
+  p.domains[d[1]]={value=n,districtID=raw and raw.districtID,yield=d[2],rawEach=rawEach,each=each}
   p.each[d[2]]=p.each[d[2]]+each
  end
  for y,n in pairs(p.each)do p.total[y]=n*p.count end
  p.status='READY';return p
 end
 -- Half-unit encoding is an exact technical bound, never a quantization policy.
-M.ProbeBits={SCIENCE=4,GOLD=6};M.Owned={}
-for _,y in ipairs({'SCIENCE','GOLD'})do for bit=0,M.ProbeBits[y]-1 do
+M.ProbeBits={SCIENCE=4,GOLD=6,CULTURE=4};M.ProbeScale={SCIENCE=2,GOLD=2,CULTURE=1};M.Owned={}
+for _,y in ipairs({'SCIENCE','GOLD','CULTURE'})do for bit=0,M.ProbeBits[y]-1 do
  M.Owned[#M.Owned+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit
 end end
 function M.Parts(y,amount)
- local bits=assert(M.ProbeBits[y],'ME_PROBE_YIELD');local n=amount*2
+ local bits=assert(M.ProbeBits[y],'ME_PROBE_YIELD');local n=amount*M.ProbeScale[y]
  assert(integer(n) and n<2^bits,'ME_ENCODING_RANGE')
  local out={};for bit=0,bits-1 do if n%2==1 then out[#out+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit end;n=math.floor(n/2)end
  return out

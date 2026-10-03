@@ -1,27 +1,27 @@
 # 文化后续模块：计划与调查入口
 
-State: L1_NATIVE_SCOPED_PASS / L2A_LOCAL_COMPLETE_NATIVE_REQUIRED。L2B/L3/M/N/U2仍IMPLEMENTATION_NOT_AUTHORIZED。
+State: L1_NATIVE_SCOPED_PASS / L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED；正式L2及L3/M/N/U2未授权。
 Preparation baseline: 原只读准备`9d75ff8`保留；本次定域计划核对`f02e4e8`。实际source/live只查Status，未重新核验外部运行包。
-Authority: Spec D0037 / Culture D0029 / Shared D0035 / Presentation D0032 / Architecture A0161。
+Authority: Spec D0038 / Culture D0038 / Shared D0035 / Presentation D0032 / Architecture A0161。
 
 ## 当前切片与停止点
 
-用户授权逐步准备文化模块计划和只读调查。[L1最新结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)已关闭本批门禁；用户随后授权[L2A单城接口验证](P0_L2_Meaning.md#当前切片与停止点)，B150已LOCAL完成；仅单城可逆Science/Gold probe待原生，不等于完整L2。L2B及其它模块仍待各自审核/授权；实际部署只查Status/receipt，不继续L1时序调查/旧长测。
+用户授权逐步准备文化模块计划和只读调查。[L1最新结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)已关闭本批门禁；用户随后授权[L2A单城接口验证](P0_L2_Meaning.md#当前切片与停止点)，B151已取得S/G精度结论；用户指定逐领域Floor并授权L2B单城文化倍率门禁原型，B152已LOCAL完成。正式L2及其它模块仍待各自审核/授权；实际部署只查Status/receipt，不继续L1时序调查/旧长测。
 
-此入口保存准备结果，不成为第二份Design或状态台账。实际授权、部署与证据等级仍查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。除本次已授权L2A外，其它计划未获实施授权，也不加入所有任务的必读集合；对应切片获批时再建立/收敛其现有W0001 manifest。
+此入口保存准备结果，不成为第二份Design或状态台账。实际授权、部署与证据等级仍查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。除已授权L2A和L2B单城门禁原型外，其它计划未获实施授权，也不加入所有任务的必读集合；对应切片获批时再建立/收敛其现有W0001 manifest。
 
 ## 按模块阅读
 
 | 模块 | 准备资料 | 可复用基础 | 实施前仍需关闭的门禁 |
 |---|---|---|---|
 | 风雅熏陶L1 | [当前完成范围](P0_L1_Aesthetic.md#当前切片与停止点) | 已实现逐栋计划、区域旅游投影、精确旧16项退出 | 已测加值/累计及用户报告的变化后结算/冷加载PASS；未测组合不扩大 |
-| 意义延展L2 | [逐巨作附加产出计划](P0_L2_Meaning.md) | Shared绝对D、产出份额、K作品目录；旧GW加值路径 | 0.5精度、已支持作品限定、未来Dialogue不放大追加值；旧BASE writer精确退出 |
+| 意义延展L2 | [逐巨作附加产出计划](P0_L2_Meaning.md) | Shared绝对D、产出份额、K作品目录；旧GW加值路径 | 逐领域Floor已接受；已支持作品限定未解决、Dialogue不放大追加值待本原型实机；旧BASE writer精确退出 |
 | 巨作启迪L3 | [基础伟人点数计划](P0_L3_Inspiration.md) | Shared D、K件数、既有基础GPP与正常倍率模式 | 0.1基础点数的原生结算；同一时代作品件数变化通知 |
 | 时代对话M | [项目、次数与累计倍率计划](P0_M_Dialogue.md) | 已验一回合项目、Claim的持久计时和E2城市保存 | 新城市账本、START时代/完成时X、native-only隔离；cap仍待平衡，执行中边界另列 |
 | 人文考察N1/N2/N3 | [交互→记录→网络计划](P0_N_Expedition.md) | E2引用、Shared资格、国内路线桥；已有Spy字段静态参照 | 非敌对远程交互/战争、外国目标事实、source绑定、整城旅游接口与K_T；最后才退出旧Eureka |
 | Hybrid D U2 | [馆藏界面计划](P0_U2_Culture_Era.md) | K本城馆藏/国内索引，已批准紧凑摘要+Tooltip | 原版/HD hook、缓存失效、布局/缩放；独立于机构排版优化 |
 
-L1本批门禁已关闭，L2A已实施、单城原生精度/归属仍待验；通过后才更新/授权L2B正式cutover。L3、M、N、U2可以继续准备，但不能因已有计划就连续实施。若L2某接口失败，只暂停依赖该接口的路径；不自动实施别的批次，也不将所有文化模块判为阻塞。
+L1本批门禁已关闭；L2A半点精度结论已记录，L2B单城倍率对照LOCAL完成/待原生。精确作品recipient原语未找到；正式cutover不能以Lua目录或整城拒绝代替。L3、M、N、U2可以继续准备，但不能因已有计划就连续实施。若L2某接口失败，只暂停依赖该接口的路径；不自动实施别的批次，也不将所有文化模块判为阻塞。
 
 ## 共同输入及真实缺口
 
@@ -61,6 +61,6 @@ L1本批门禁已关闭，L2A已实施、单城原生精度/归属仍待验；�
 
 各计划按[公共更新与临时状态合同](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)列原因、范围、必要事实、owner/失效/退出；不添加每帧/hover扫描、每城每回合一次限制或独立GC。验证沿W0004定向选择，不默认旧长测/full stress。
 
-目前用户需要决定：无。未来M的cap、N2的K_T在正式收益实施前需按Balance流程确定；技术失败需要改玩法时才提出具体DESIGN_DECISION_REQUIRED。用户需要测试：已授权L2A包就绪后的一个最小流程见其结果；其它模块仍只准备，不自动实施。
+目前用户需要决定：无。未来M的cap、N2的K_T在正式收益实施前需按Balance流程确定；技术失败需要改玩法时才提出具体DESIGN_DECISION_REQUIRED。用户需要测试：已授权L2B单城四态原型就绪后的一个最小流程见其结果；其它模块仍只准备，不自动实施。
 
-正式规则见[Culture Content](../../Design/Content/Culture_D0029.json)、[Spec Culture节](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[Shared](../../Design/Content/Shared_D0035.json)；人类设计阅读见[文化](../../Design/Culture.md)。切换责任见[总实施合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+正式规则见[Culture Content](../../Design/Content/Culture_D0038.json)、[Spec Culture节](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[Shared](../../Design/Content/Shared_D0035.json)；人类设计阅读见[文化](../../Design/Culture.md)。切换责任见[总实施合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

@@ -56,20 +56,28 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if p.status=='NEEDS_DEPTH' then p=M.Plan(f,w,shared.DistrictCompleteness.Read(target.owner,c,f.token))end
   assert(SPCNetworkInput.Reference(c)==target.reference,'ME_REFERENCE_CHANGED');return p
  end
+ local function dialogueHold(pid,c,percent)
+  local ok,why=pcall(shared.Dialogue.HoldMeaningProbe,pid,c,percent)
+  if not ok then d.error=tostring(why):sub(1,240);error(why)end
+ end
  local function forget()
-  if target then shared.GreatWorkAdjacency.ForgetMeaningProbe(target.owner,target.city,target.reference)end
+  if target then
+   shared.Dialogue.ForgetMeaningProbe(target.owner,target.city,target.reference)
+   shared.GreatWorkAdjacency.ForgetMeaningProbe(target.owner,target.city,target.reference)
+  end
   target=nil;d.mode='OFF';d.lastPlan=nil;d.error=nil;d.stopping=nil
  end
  local function finish()
   d.stopping=true
   local ok,why=pcall(function()
    local c=current();project(c,{}) -- Old writer cannot resume until this confirms.
+   if shared.Dialogue.meaningOverride then shared.Dialogue.ReleaseMeaningProbe(target.owner,c)end
    shared.GreatWorkAdjacency.ReleaseMeaningProbe(target.owner,c);forget()
   end)
   if not ok then d.error=tostring(why);error(why)end
  end
- local function reset()
-  -- One load-only pass over ten exact owned definitions. Not an AI ability audit.
+ local function reset(isLoad)
+  -- One load-only pass over fourteen exact owned definitions. Not an AI ability audit.
   -- Saved transient test carriers must be removed even on a foreign held city.
   d.busy=true
   local ok,why=pcall(function()
@@ -77,6 +85,9 @@ function SPCCultureMeaningProbe.Start(P,shared)
    for _,player in pairs(Players)do local collection=player:GetCities();if collection then
     for _,c in collection:Members()do P.Count('city_scan');count=count+1;assert(count<=2048,'ME_CLEANUP_SCOPE_LIMIT');project(c,{})end
    end end
+   if isLoad then shared.Dialogue.ready=false;shared.Dialogue.Init() -- Cold-load cleanup of saved foreign test pieces.
+   elseif target then shared.Dialogue.WithdrawMeaningProbe(target.owner,current())
+   else shared.Dialogue.Init()end -- Never clear already-ready other cities on first probe fallback.
    forget();d.ready=true
   end)
   d.busy=false;d.error=not ok and tostring(why) or nil
@@ -94,15 +105,18 @@ function SPCCultureMeaningProbe.Start(P,shared)
    end
    c=current();P.Count('city_scan');local p=plan(c);local want={}
    assert(shared.GreatWorkAdjacency.IsMeaningHeld(target.owner,c),'ME_OLD_WRITER_NOT_HELD')
-   if not d.stopping and d.mode=='ACTIVE' and p.status=='READY' and p.count>0 then
-    for _,y in ipairs({'SCIENCE','GOLD'})do for _,name in ipairs(M.Parts(y,p.each[y]))do want[name]=true end end
+   if not d.stopping and p.status=='READY' and p.count>0 then
+    dialogueHold(target.owner,c,(d.mode=='SCALED' or d.mode=='SCALED_BASELINE') and 100 or 0)
+   end
+   if not d.stopping and (d.mode=='ACTIVE' or d.mode=='SCALED') and p.status=='READY' and p.count>0 then
+    for _,y in ipairs({'SCIENCE','GOLD','CULTURE'})do for _,name in ipairs(M.Parts(y,p.each[y]))do want[name]=true end end
    end
    project(c,want);d.lastPlan=p
   end)
   if not ok then
    local code=tostring(why)
    -- Unknown same-reference inputs retain the last confirmed projection. A
-   -- known unsafe collection/configuration removes only these ten test IDs.
+   -- known unsafe collection/configuration removes only these fourteen test IDs.
    if c and (code:find('ME_FIXTURE_UNSUPPORTED_WORK') or code:find('ME_CREATE_') or code:find('ME_ENCODING_') or code:find('ME_OLD_WRITER_'))then
     local cleared,err=pcall(project,c,{});if not cleared then why=err end
    end
@@ -129,52 +143,67 @@ function SPCCultureMeaningProbe.Start(P,shared)
    d.mode='BASELINE'
    local held,why=pcall(shared.GreatWorkAdjacency.HoldMeaningProbe,pid,c)
    if not held then d.error=tostring(why);error(why)end
-   project(c,{});d.lastPlan=p;d.error=nil
+   project(c,{});dialogueHold(pid,c,0);d.lastPlan=p;d.error=nil
   elseif d.stopping or d.error then finish()
   elseif d.mode=='BASELINE' then
    -- Repeat the old module's confirmation before any new native write.
    shared.GreatWorkAdjacency.HoldMeaningProbe(pid,c)
    local p=plan(c);assert(p.status=='READY' and p.count>0,'ME_NEEDS_CULTURE_IV_AND_WORK')
    d.mode='ACTIVE';d.Audit({player=pid,city=c:GetID()})
+  elseif d.mode=='ACTIVE' then
+   local p=plan(c)
+   if not (p.status=='READY' and p.count>0 and p.each.CULTURE>0)then d.error='ME_NEEDS_POSITIVE_CULTURE';return end
+   dialogueHold(pid,c,100);d.mode='SCALED';d.Audit({player=pid,city=c:GetID()})
+  elseif d.mode=='SCALED' then
+   d.mode='SCALED_BASELINE';d.Audit({player=pid,city=c:GetID()})
   else finish()end
  end
  function d.View(pid,c)
   local ref=SPCNetworkInput.Reference(c)
   local match=target and target.owner==pid and target.city==c:GetID() and target.reference==ref
   local p=match and d.lastPlan or nil
-  local configured={SCIENCE=0,GOLD=0}
+  local configured={SCIENCE=0,GOLD=0,CULTURE=0}
+  local stamp={};if p then for _,entry in ipairs(M.Domains)do local v=p.domains[entry[1]];stamp[#stamp+1]=entry[1]..':'..tostring(v and v.value)end end
+  local dialoguePercent,dialogueError
+  if match then dialoguePercent,dialogueError=shared.Dialogue.ReadMeaningProbe(pid,c)end
   local read,why=pcall(function()
-   validate();for _,y in ipairs({'SCIENCE','GOLD'})do for bit=0,M.ProbeBits[y]-1 do
+   validate();for _,y in ipairs({'SCIENCE','GOLD','CULTURE'})do for bit=0,M.ProbeBits[y]-1 do
     local name='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit
     if installed(c,name) then
      local damaged=c:GetBuildings():IsPillaged(indices[name]);assert(type(damaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
-     if not damaged then configured[y]=configured[y]+2^bit/2 end
+     if not damaged then configured[y]=configured[y]+2^bit/M.ProbeScale[y] end
     end
    end end
   end)
-  return {configuredScience=read and configured.SCIENCE or nil,configuredGold=read and configured.GOLD or nil,configurationError=not read and tostring(why) or nil,
+  return {configuredScience=read and configured.SCIENCE or nil,configuredGold=read and configured.GOLD or nil,configuredCulture=read and configured.CULTURE or nil,configurationError=not read and tostring(why) or nil,
    owner=pid,cityID=c:GetID(),reference=ref,mode=match and d.mode or 'OFF',error=d.error,
-   active=p and p.active,count=p and p.count,science=p and p.each.SCIENCE,gold=p and p.each.GOLD,
-   totalScience=p and p.total.SCIENCE,totalGold=p and p.total.GOLD,planStatus=p and p.status,
+   active=p and p.active,count=p and p.count,science=p and p.each.SCIENCE,gold=p and p.each.GOLD,culture=p and p.each.CULTURE,
+   totalScience=p and p.total.SCIENCE,totalGold=p and p.total.GOLD,totalCulture=p and p.total.CULTURE,planStatus=p and p.status,
    campus=p and p.domains.DISTRICT_CAMPUS and p.domains.DISTRICT_CAMPUS.value,
    commerce=p and p.domains.DISTRICT_COMMERCIAL_HUB and p.domains.DISTRICT_COMMERCIAL_HUB.value,
    harbor=p and p.domains.DISTRICT_HARBOR and p.domains.DISTRICT_HARBOR.value,
-   oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false}
+   oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false,
+   dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
+ end
+ function d.End(pid,c)
+  assert(target and target.owner==pid and target.city==c:GetID(),'ME_NO_FIXTURE');finish()
  end
  function d.Describe(pid,c,view)
-  local v=view or d.View(pid,c);local names={OFF='未开启',BASELINE='基线：旧相邻暂停，测试收益关闭',ACTIVE='测试中：仅本城科研 / 金币'}
+  local v=view or d.View(pid,c)
+  local names={OFF='未开启',BASELINE='①基线：追加0／旧对话0%',ACTIVE='②追加：整数收益／旧对话0%',SCALED='③组合：整数收益／旧对话100%',SCALED_BASELINE='④倍率基线：追加0／旧对话100%'}
   local lines={'意义延展验证｜'..names[v.mode]}
   if v.count then
-   lines[#lines+1]=string.format('ACTIVE %s｜合格作品 %d 件｜理论每件 +%g 科研 / +%g 金币',tostring(v.active),v.count,v.science,v.gold)
-   lines[#lines+1]=string.format('理论合计 +%g 科研 / +%g 金币｜学院 D%s / 商业 D%s / 港口 D%s',v.totalScience,v.totalGold,tostring(v.campus or 0),tostring(v.commerce or 0),tostring(v.harbor or 0))
+   lines[#lines+1]=string.format('合格%d件｜每件理论 +%g科研 / +%g金币 / +%g文化',v.count,v.science,v.gold,v.culture)
+   lines[#lines+1]=string.format('逐领域Floor后相加；理论文化合计 +%g。',v.totalCulture)
   end
   if v.mode~='OFF' then
-   lines[#lines+1]=v.configuredScience and string.format('每件载体配置：+%g 科研 / +%g 金币（不是原生实测）',v.configuredScience,v.configuredGold) or '载体配置未确认，不能据此判断原生精度。'
+   lines[#lines+1]=v.configuredScience and string.format('每件配置 +%g科研 / +%g金币 / +%g文化｜旧对话 %s%%（配置≠实测）',v.configuredScience,v.configuredGold,v.configuredCulture,tostring(v.dialoguePercent or '未确认')) or '载体配置未确认。'
   end
-  lines[#lines+1]=v.mode=='OFF' and '左键：准备本城基线；需Culture ACTIVE4和已确认合格馆藏。' or v.mode=='BASELINE' and '左键：启用测试；右键：只读原生值。' or '左键：结束并恢复旧相邻；右键：只读原生值。'
-  if v.error then lines[#lines+1]='若仍处实验中，左键先结束并恢复；再次左键重新准备。' end
-  if v.error then lines[#lines+1]='待核对：'..(v.error:match('ME_[A-Z_]+') or '接口未确认')end
-  if v.mode~='OFF' then lines[#lines+1]='这是可逆单城接口实验；理论与载体配置不代表原生精度通过。'end
+  local nexts={OFF='左键准备基线；需要Culture ACTIVE4和确认馆藏。',BASELINE='左键启用追加；右键只读。',ACTIVE='左键加入本城100%旧对话；需文化追加>0。',SCALED='左键撤回追加，保留本城100%旧对话。',SCALED_BASELINE='左键结束，按当前事实恢复旧系统。'}
+  lines[#lines+1]=nexts[v.mode]
+  if v.dialogueError then lines[#lines+1]='对话配置未确认：'..tostring(v.dialogueError):gsub('%c',' '):sub(1,180)end
+  if v.error then lines[#lines+1]='异常：'..(v.error:match('ME_[A-Z_]+') or '接口未确认')..'；左键先结束。'end
+  if v.mode~='OFF' then lines[#lines+1]='仅本城可逆原型；资格隔离与文化倍率门禁尚未通过。'end
   return table.concat(lines,'\n')
  end
  local store=shared.CityProgressionStore
@@ -184,7 +213,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if target and target.owner==loss.origin.owner and target.x==c:GetX() and target.y==c:GetY() then forget()end
  end)end
  local function bind(source,name,fn)local e=P.Field(source,name);if e and e.Add then e.Add(fn)end end
- bind(Events,'LoadScreenClose',reset)
+ bind(Events,'LoadScreenClose',function()reset(true)end)
  local lastTurn
  bind(Events,'PlayerTurnActivated',function(pid)
   if not P.IsTestPlayer(pid)then return end
@@ -195,7 +224,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do bind(Events,name,function(x,y,id,owner)
   if not target or d.busy then return end
   local row=P.Info('Buildings',id);local typ=row and row.BuildingType
-  if typ and (indices and indices[typ] or shared.GreatWorkAdjacency.IsOwnedCarrier(typ))then return end
+  if typ and (indices and indices[typ] or shared.GreatWorkAdjacency.IsOwnedCarrier(typ) or shared.Dialogue.IsOwnedCarrier(typ))then return end
   if type(owner)=='number' and owner>=0 and owner%1==0 and owner~=target.owner then return end
   local ok,c=pcall(function()local district=CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y);return district and district:GetCity() or CityManager.GetCityAt(x,y)end)
   d.Audit({player=owner,city=ok and c and c:GetID() or nil})

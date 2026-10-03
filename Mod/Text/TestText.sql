@@ -98,8 +98,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 -- L2A single-city reversible experiment; native precision is pending.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展验证'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning precision probe'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：准备基线 → 启用单城测试 → 结束恢复；右键只读。科研/金币逐件半点精度待实机确认。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Left click: prepare baseline, enable one-city test, then end and restore. Right click reads only. Native Science/Gold per-work precision remains unverified.'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning yield gate'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：基线 → 整数追加 → 旧对话100% → 倍率基线 → 结束恢复；右键只读。仅本城可逆文化倍率门禁。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Left click: baseline, integer additions, old Dialogue 100%, percent baseline, then end and restore. Right click reads only. Reversible one-city Culture interaction gate.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');
