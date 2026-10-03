@@ -1,20 +1,46 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED。用户授权B151最小入口修复，注册/请求定向LOCAL通过；原生精度仍待验。L2B未授权，NATIVE_PRECISION_GATE_OPEN。
+State: P0_L2A_NATIVE_PRECISION_RECORDED / FLOOR_DIRECTION_ACCEPTED。B151所测S/G半点不保留，整数追加可用；用户接受Floor方向，取整位置待确认。下一门禁原型仅为计划，L2B未授权。
 Authority: Culture D0029 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-计划核对基线：develop `f02e4e8`，现有B149.176运行源码`637f97b`；原计划为只读核对。当前L2A实施基线2f1304f；实际source/live以Status及receipt为准。Spec D0037的Culture覆盖范围、完整`CUL_L4_MEANING`、作品池/九领域及Shared D0035份额/深度/ordinary合同已核对；没有采用旧GWA公式或旧Floor许可。L1已按已测范围PASS，不要求再拍旧截图。
+B151.178十图原生结果已归档：[所测精度与边界](../../Status/Validation/Results/Specialization_B151_P0L2A_Native_Precision.md)。D1/W1实测0S/1G；D1/W2为0S/2G且下一正常回合保持；D3/W2为2S/8G。所测半点精度FAIL、整数追加可用；不据此宣布六yield、完整结算/native-only/作品排除/加载全部PASS。不再重做S/G小数实验。
 
-分两段；**用户本轮只授权P0-L2A**。L2B完整能力不因此获授权。
+用户明确采用Floor，只针对意义延展；**精确位置待确认**。推荐每件作品先将同yield领域贡献相加，再Floor，最后乘W：`per_work_y = floor(Σd∈y(0.5 × D_d × share_y))`，`total_y = per_work_y × W`。这是待确认提案，尚未写入正式Content/运行模型。
 
-| 切片 | 目标 | 停止点 |
-|---|---|---|
-| P0-L2A — 单城接口验证 | 真实Shared D→逐件理论值；用已审阅GreatWork加值原语验证0.5/1.5/4.5与原生收益归属 | 一个最小实机接口验收后提交结果；不正式启用全城L2，不全局退休旧GWA |
-| P0-L2B — 完整意义延展 | 解决已支持作品限定及native-only隔离，接全九领域/六产出、事件/退出/加载、精确旧GWA cutover | L2A结果后更新最终方案、另审阅/授权；不进入L3/M/N |
+| 可改变结果的边界 | 推荐每件同yield合计后Floor | 每件逐领域Floor | 整城合计后Floor |
+|---|---:|---:|---:|
+| Campus D1，W2的Science | 0 | 0 | 1 |
+| Commercial D1＋Harbor D1，W1的Gold | 3 | 2 | 3 |
 
-L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；失败时保留原规则并停止对应效果路径，不能自行floor/补贴。L2A现有W0001 manifest已登记，见[本批读取/验证范围](../../Workflow/P0-L2A.json)；没有新调度或状态系统。
+确认位置后按既有Design同步流程记录本项例外并同步实际受影响来源/阅读正文；K0.5、Gold份额3、D/资格不改，不外推GPP或其它能力。此前测试授权要求不舍入是当时原规则的门禁，不与本次用户明确新方向混淆。
+
+当前source/live仍B151.178，精确commit/receipt只看[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。本轮只有证据/计划文档及归档，无新Implementation/部署。L2A接口问题已形成清楚结论；接下来先[最小L2B门禁原型](#推荐下一切片--p0-l2b门禁原型)，**等待具体范围及实施授权**。不自动启用六yield、不全局退休旧GWA，不进入L3/M/N/U2。
+
+## 推荐下一切片 — P0-L2B门禁原型
+
+**Goal / scope。** 在确认Floor口径后完成整数模型及两个现有接口门禁的最小原型：①同类别但不在支持目录的作品不获本项收益；②Meaning新增Culture不被旧Dialogue的Culture倍率放大。先只读核对精确primitive/附件/需求及已有反证，再作最小原型，不开展无界API调查。单城可撤销、默认关闭，复用L2A入口/既有事实和读数；已测Science/Gold不再造一批重复精度probe。
+
+**前置。** L1所测PASS及K已确认作品事实、Shared D轻量读取、B151原生S/G整数证据。Floor位置必须用户确认并完成必要Design例外同步；Floor不能当作自动解除资格和native-only门禁。未获本切片实施授权前不写模型/SQL或部署。
+
+**资格门禁。** 明确区分‘Lua合格W正确’与‘native writer命中具体作品正确’。核对能限定已支持定义的原生subject/requirement；同类别已支持与未知定义共存必须分别正确。当前probe整城拒绝只是实验保护，不是完整能力规则；不得自动扩容支持目录、给排除作品发放、改成整城补贴或凭UI过滤宣称通过。
+
+**倍率门禁。** 对同一合格作品建立原生产出→旧Dialogue正常倍率→Meaning整数追加的对照，理论应仅原生产出被Dialogue放大；追加值保持固定。只定域隔离该追加路径，不在L2提前实现新版时代对话/永久modifier，不允许移除全部旧Dialogue规避测试。theming等组合按实际原语保留证据边界，不假定S/G成功就证明Culture。
+
+**可能涉及文件 / 精确旧效果。** `CultureMeaningModel.lua`及必要的Meaning原型writer/Data、`GreatWorkFacts.lua`/Catalog（仅有真实接口需要时）、`Dialogue.lua`/SQL与旧GWA附件的直接调用点、Gameplay/modinfo/P0Panel/Text和对应定向测试。先复用现有模块，不强制新增模块；既有GWA156项只在选定fixture由该模块owned路径暂停，原型退出后按当前事实恢复。正常L1、其它城市、K producer/ACK与旧Dialogue持续；不全局cutover。
+
+**更新 / 生命周期。** 原型操作及本城馆藏资格/位置/D/ACTIVE/当前引用变化；同输入零写、同回合真实变化保留。复用既有confirmed事实、dirty入口和加载兜底，不增加全城采集/per-frame/hover请求/独立GC。只拥有本城临时模式、当前配置及有界错误；UNKNOWN不当0，confirmed loss/加载/结束精确撤销，不写永久账本/补偿数据，不重放旧快照。
+
+**本地验收。** W0004 L2 + 直接触及loss/load的相关L3断言：九领域同yield合计、D0/1/3/6/10、同yield两个领域、W0/1/2、整数编码；支持/同类别排除定义、Culture倍率与追加来源边界；旧新互斥、两城隔离、重复零写/同回合变化、UNKNOWN、退出/加载。继承B151未变S/G证据，采用必要SQL/真实Lua/打包负例；不跑历史full/stress，不以模拟证明原生组合。
+
+**最小实机与退出。** 若本地无法确认组合行为，只交付一个单城、少量对照的门禁流程：支持作品与同类排除对象（真实可构造时）＋固定Culture追加，仅在选定fixture作既有倍率关闭/启用的定域对照，其他城市旧Dialogue不变，再退出检查。具体步骤由真实原型能力固定，不让用户寻找不存在的fixture或重复旧长测。路径能可靠满足→提交最终六yield正式L2B实施范围/manifest供审核；原型需实机确认→提交检查点后停止；无法按作品限定或无法隔离追加→报告具体primitive/Design差异，停止对应路径。不会以整城拒绝/误命中/忽略倍率宣布完整能力通过。
+
+**明确不包含。** 正式全城市/六yield运行、全局旧GWA退休、新M/DialogueGameplay、L3/GPP、人文考察/文化网络、目录扩展、AI/MP、永久schema、GC调参或通用框架。正式cutover只有在两个门禁均有可靠路径之后再单独审阅/授权，不将本计划当作已授权任务。
+
+## L2A既定实施与历史检查点
+
+以下保留原L2A的完整授权范围、失败依据和当时no-rounding要求；进度已由上方原生结果取代，技术合同仍按所涉范围可追溯。
 
 ### B151入口修复 — 已授权LOCAL完成，原生待验
 
@@ -62,6 +88,8 @@ L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；
 
 ## 范围与完整规则
 
+以下为D0029尚未同步Floor的正式规则与原始理论值；新Floor方向/待确认位置见CURRENT，不将旧no-rounding写成新的实施授权。
+
 只接Culture ACTIVE4的意义延展；每件合格巨作，逐领域追加：
 
 `shares_d = meaning_K × D_d`；`yield_per_work_d = shares_d × share_value(yield_d)`。
@@ -97,13 +125,13 @@ Meaning是追加产出，未来Dialogue只放大作品原生产出，**不得放
 1. **精度：** 使用真实GreatWork加值路径分别探0.5、1.5及Gold4.5；一件作品与两件作品区分逐件截断/汇总截断，确认普通城市结算。B055整数文化加值/撤销通过可以复用；B059百分比floor及科研district/per-specialist floor均不授权L2取整。
 2. **资格：** 一件已支持作品与同类别未支持定义作本地/native必要对照；禁止“目录数正确但全类Modifier仍影响排除作品”。路径若无法限定，停止并报告具体primitive边界。
 3. **隔离：** 同城同时配置作品native倍率与本项附加值，验证Dialogue百分比不放大追加。先静态/模拟划清attachment与origin，再给一次最小原生对照。所测Culture一类不扩大为六yield/所有theming。
-4. 原生路径不满足时登记TECHNICAL_INVESTIGATION_REQUIRED；备选不同primitive可以调查，**不能自行floor、改系数、造补偿永久账本或采用整城补贴**。真正需要改Gameplay才交用户决定。
+4. 原生路径不满足时登记TECHNICAL_INVESTIGATION_REQUIRED；备选不同primitive可以调查，**没有本能力明确许可与取整位置确认时不能自行floor；不能改系数、造补偿永久账本或采用整城补贴**。真正需要改Gameplay才交用户决定。
 
-在全部门禁可表达前只做后续获授权的可逆接口probe，不宣称L2完成。此前计划轮没有运行原型；当前B150 L2A仅完成受控实现及LOCAL验证，native待验。
+在全部门禁可表达前只做后续获授权的可逆接口probe，不宣称L2完成。此前计划轮没有运行原型；B150/B151 L2A现已取得上方所列原生精度结果，不把S/G范围扩大为资格/native-only通过。
 
 ## 实施切片与旧writer退出
 
-- 第一步纯模型：同一次Shared快照→每领域D与份额→每件各yield值；记录资格/UNKNOWN，模型不用旧DialogueModel的作品时代判断。测试精度保留，不在模型提前舍入。
+- 第一步纯模型：同一次Shared快照→每领域D与份额→每件各yield值；记录资格/UNKNOWN，模型不用旧DialogueModel的作品时代判断。原L2A测试保留精度；未来正式模型按本次明确确认后的Floor口径处理，不自行选择取整位置。
 - 第二步原生门禁：隔离旧Adjacency，仅该probe范围由旧模块自己撤销；未通过不进行正式新旧切换。不能把探针收益与正式L2叠加。
 - 第三步明确cutover：读全Mod内上述精确carrier、SQL附件、旧READ/OFF/AUTO、load/Start/Audit及AdjData消费者调用点；旧模块撤销成功后新writer施加。旧退出不确认则本城不启用新效果。carrier定义可留惰性清理ID，生成/恢复入口必须退出。
 - **只退出旧GreatWorkAdjacency。** 保留旧Dialogue到M，Culture Eureka到N3，保留L1、Lv1支持/Lv2住房/GPP、科研和商业。`DialogueRefresh`是K/旧Dialogue共用producer：只在最后AdjData消费者退出后停止该投影，不能关整条巨作采集/ACK路径。
@@ -135,6 +163,6 @@ W0004 L2；实际触及E2/引用时补相关L3状态断言，不默认历史full
 
 诊断先显示`合格W件｜每件Science/Gold…｜D来源｜预期/实际配置｜已确认/待核对`，组成分页；不以“已挂carrier”宣称原生收益通过。
 
-Exit：精度/recipient/native-only门禁、精确cutover和本地范围通过，再由用户确认原生对应场景。当前规则已定义，技术门禁开放；未获Culture量化许可，无新决策要求用户现在回答。
+Exit：精度/recipient/native-only门禁、精确cutover和本地范围通过，再由用户确认原生对应场景。当前用户已接受意义延展Floor方向，精确口径待确认并同步正式来源；资格/native-only技术门禁仍开放，不因此获得完整L2实施授权。
 
 来源：[Culture正式Content](../../Design/Content/Culture_D0029.json)、[Shared](../../Design/Content/Shared_D0035.json)、[总cutover合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)、[旧加值实现/限制](../../Reports/Technical/Specialization_B060_GW_Adjacency_Implementation.md)、[B055整数实机范围](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)、[精度待办](Yield_Precision_Backlog.md)。

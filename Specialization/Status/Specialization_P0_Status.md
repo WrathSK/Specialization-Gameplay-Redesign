@@ -1,15 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0388
-Implementation Build: develop/live B151.178 / modinfo178; P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
+Status Revision: S0389
+Implementation Build: develop/live B151.178 / modinfo178; P0_L2A_NATIVE_PRECISION_RECORDED / FLOOR_DIRECTION_ACCEPTED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
+Work State: P0_L2A_NATIVE_PRECISION_RECORDED / FLOOR_DIRECTION_ACCEPTED
 
 ## CURRENT AUTHORITATIVE STATE
+
+B151十图已逐张查看/原图归档：[原生精度与边界](Validation/Results/Specialization_B151_P0L2A_Native_Precision.md)。所测基线/启用入口正常；D1每件理论0.5S/1.5G，W1实测0/1、W2实测0/2且下一正常回合保持；D3/W2实测2S/8G。半点精度FAIL、整数追加可用，不扩大为六yield/完整结算/未知作品/native-only/load PASS。原LOCAL结果与冻结失败记录保持。
+
+用户明确采用意义延展Floor并要求下一计划；位置待确认：推荐每件同yield各领域先相加再Floor，最后乘W，非逐领域或整城先取整。[具体差异与下一门禁原型](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。确认后按现有Design同步流程维护本项例外；本轮正式Content/Spec与模型未改，不能从旧科研许可推导本项口径。
+
+source/live仍B151.178 / modinfo178，source438ca9d；既有receipt B151.178-438ca9d-playtest.json DEVELOP_ACTIVE、182/182 MATCH不变。本轮没有重核外部包、部署、启动游戏、改main或永久记录。十张原图移至ignored local Evidence，10/10 SHA256匹配，不入Git。
+
+下一建议：P0-L2B门禁原型，复用所测S/G整数，先确认同类未知作品的native writer排除与Meaning追加Culture不受旧Dialogue倍率；单城可撤销，路径未通过不正式启用六yield或全局退休旧GWA。**待口径确认与实施授权**；当前允许证据归档/计划，不自动进入L2B/L3/M/N/U2，不要求重做旧长测。
+
+Design基线D0037 / Culture D0029 / Shared D0035及四专业v0.1不变；GC、AI/MP、机构优化与其它专业不扩入本轮。Floor为本次新接受方向，精确Design合同尚未同步，不声称已在runtime采用。
+
+## 历史阶段记录
+
+### S0388 — B151入口修复LOCAL与部署
 
 用户已授权B150最小入口修复；B151.178已LOCAL完成：[修复范围与续测](Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md)。两Lua补现有ImportFiles；实际请求保留具体阶段/有界错误、先清旧View、成功发布本次token、只读一次。未把打包修复写成原生精度PASS。
 
@@ -20,8 +34,6 @@ Work State: P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
 当前授权只到入口修复/安全测试包。下一允许动作：同城冷启动左键准备基线；成功后续既定单城精度流程，首次异常按具体阶段停止。用户实机Science/Gold小数归属/结算仍待验；不要求重复旧长测，不自动进入L2B/L3/M/N/U2。
 
 Design Spec D0037 / Culture D0029 / Shared D0035、四专业v0.1不变；无Floor、AI/MP/main不改。未知作品/native-only留L2B，机构优化/剩余性能事项不扩入本轮。
-
-## 历史阶段记录
 
 ### S0387 — B150原生入口中止与漏注册
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-L2A",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0037",
     "research": "D0031",
@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0388",
+    "status": "S0389",
     "runtime": "B151.178 / modinfo178",
     "military": "D0037",
     "harbor": "D0037"
@@ -112,9 +112,9 @@
       "reason": "This local checkpoint, native minimum flow and limits"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Native_Precision.md",
       "kind": "full",
-      "reason": "Current scoped entry repair results, native boundary and resumption"
+      "reason": "Current ten-image native precision and user Floor direction/decision boundaries; inherited repair LOCAL basis remains linked"
     },
     {
       "path": "Mod/CultureMeaningModel.lua",
@@ -186,7 +186,7 @@
   "dependencies": [
     "L1 tested native gate retained; K confirmed count/era/location facts and current Shared D/qualification",
     "Existing E2 module-owned exact withdrawal, no persistent schema/AI/MP",
-    "Native Science/Gold half-values still USER_GAME_TEST_REQUIRED"
+    "B151 observed native S/G half-values truncate; integer additions reusable; not full six-yield/recipient/native-only gate PASS"
   ],
   "old_writers": [
     "GreatWorkAdjacency exact BUILDING_SPC_B060_{six-yields}_{P/N}{0..12} only target fixture held; release uses current normal samples",
@@ -249,7 +249,7 @@
   "non_scope": [
     "L2B all cities/six yield formal ability/global old GWA retire/native-only solution",
     "L3/M/N/U2, other profession gameplay, future professions",
-    "Design/Floor/GC/global event framework/permanent schema or ledgers/AI/MP"
+    "Runtime Floor implementation pending exact user position and Design sync; no GC/global framework/permanent schema/AI/MP changes; acceptance/plan is not L2B authorization"
   ],
   "validation": {
     "depth": "W0004 L2; relevant scoped L3 ownership/load/failure assertions only",
@@ -259,7 +259,7 @@
       "Unchanged original15 L1/26 K/dispatch results retained by unchanged direct modules; no broad/stress rerun",
       "Only reviewed changed context/runtime hashes and relevant links/diff synchronized"
     ],
-    "user": "One controlled CultureACTIVE4 city: baseline->enable->end; W1->W2 same era, D1->D3, native per-workScience/Gold0.5/1.5/4.5 and normal turn persistence. Stop first confirmed failure, no floor. Flow in result."
+    "user": "Ten reviewed screenshots: W1/2 D1 and W2 D3; baseline/active/off/new baseline; D1 across normal turn; scoped half precision FAIL/integer additions observed. No repeat old small-fraction test required; unresolved cold load/native-only/eligible-definition boundary stays explicit."
   },
   "full_audit_triggers": [
     "Cannot confirm exact old/new withdrawal; do not mix writers",
@@ -269,10 +269,11 @@
   "result": {
     "plan": "User explicitly authorized L2A after concrete plan; L2B excluded",
     "implementation": "B151.178 / modinfo178 scoped entry repair LOCAL_COMPLETE; original default-off single-city precision scope retained",
-    "native": "USER_GAME_TEST_REQUIRED / PRECISION_NOT_TESTED. B150 entry block preserved; import omission fixed statically, no native startup/precision PASS inferred.",
+    "native": "USER_GAME_TEST_PASS scoped tested entry/integer addition; USER_GAME_TEST_FAIL half precision for observed Science/Gold primitive. Not full L2 PASS.",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
-    "stop": "Authorized entry repair/source/local checks and safe W0003 deployment complete. Await same-city baseline/native precision validation only; no L2B.",
-    "deployment": "W0003 B151 complete: B151.178-438ca9d-playtest.json DEVELOP_ACTIVE,182/182 MATCH; source 438ca9d0b5b400b8e1501b1a3087925ad85fcc91; B150 retained/stable recovery MATCH; no pending marker. Native still pending.",
-    "native_evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md"
+    "stop": "L2A native precision investigation complete with scoped limitation; user accepts Floor direction, position pending. Next minimal P0-L2B gate plan NOT_AUTHORIZED; no runtime change/deployment this round.",
+    "deployment": "W0003 B151 complete: B151.178-438ca9d-playtest.json DEVELOP_ACTIVE,182/182 MATCH; source 438ca9d0b5b400b8e1501b1a3087925ad85fcc91; B150 retained/stable recovery MATCH; no pending marker. Source/runtime unchanged this evidence round; no fresh external integrity check.",
+    "native_evidence": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Native_Precision.md",
+    "user_decision": "Floor for Meaning accepted; aggregation position pending explicit user confirmation, recommended per-work same-yield sum then Floor then W."
   }
 }
