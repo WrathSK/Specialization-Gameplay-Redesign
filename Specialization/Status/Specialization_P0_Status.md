@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0404
-Implementation Build: source B156.183 / modinfo183; live B155.182 pending diagnostic deployment; stable B069.96
+Implementation Build: source/live B156.183 / modinfo183; read-only diagnostic native pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
@@ -15,7 +15,7 @@ Work State: P0_L2B_MODIFIER_DIAGNOSTIC_NATIVE_PENDING
 
 D0042九域／逐领域Floor／独立追加与原B155收益实现不变；两个Culture候选FAIL没有被此次诊断修复。市政／外交暂排仍仅条件后备，精准recipient／倍率／结算门禁保留。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)与[建筑来源](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md#古罗马剧场建筑与著作收益来源复核)可追溯。无Gameplay writer／永久Property／GC／Design变更。
 
-source B156.183本地完成；live仍沿B155.182、代码441b85f、部署来源7c4b72f和receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE登记，待安全部署更新。main B069.96未promotion。当前仅完成本次诊断部署并等待一份实机报告；不自动续四态、正式cutover、L3/M/N/U2或其它能力。
+source/live B156.183，source cd901fa；W0003 receipt `B156.183-cd901fa-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS确认游戏退出，经精确B155 receipt恢复stable过桥后staging激活；B155/stable恢复点均MATCH，无pending marker，未启动游戏。main B069.96未promotion。当前停止等待一份实机报告；不自动续四态、正式cutover、L3/M/N/U2或其它能力。
 
 ## 历史阶段记录
 

@@ -33,4 +33,4 @@ Scope: 用户授权的最小诊断，非Meaning收益修复／新primitive／正
 
 ## 部署
 
-本地完成，部署状态以Status/Authority的既有receipt登记为准；本记录不从源码存在推断已部署。
+已部署B156.183 / modinfo183，source `cd901fa34a69db355f1caca50590b9224ae1e584`。W0003 receipt `B156.183-cd901fa-playtest.json` 为DEVELOP_ACTIVE，182/182 MATCH。OS确认退出；精确旧receipt恢复stable过桥后staging激活，B155/stable恢复点MATCH，无pending marker；未启动游戏。部署一致性不是USER_GAME_TEST_PASS。
