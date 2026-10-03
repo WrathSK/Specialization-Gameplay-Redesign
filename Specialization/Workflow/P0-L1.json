@@ -25,8 +25,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0382",
-    "runtime": "B148.175 / modinfo175",
+    "status": "S0383",
+    "runtime": "B149.176 / modinfo176",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -265,11 +265,11 @@
   "validation": {
     "depth": "W0004 L2 cross-module Tourism/cutover, relevant L3 UNKNOWN/ownership/load edges; no full/stress",
     "local": [
-      "13 targeted real-Lua/SQL tests PASS; old depth catalog/values and actual ResearchApply guard regression",
-      "26 K facts/producer/bridge/legacy consumer tests PASS",
-      "Changed Lua syntax, XML/exact Mod file set, document/selector/context/helper checks"
+      "17 targeted real-Lua/SQL tests PASS: existing 13 plus missed-load/confirmed readiness, local-turn/UNKNOWN/same-turn Governor, stale/foreign sample and read-only diagnostic cases",
+      "Prior 26 K facts/producer/bridge/legacy consumer tests retained as B148 evidence, not rerun this repair",
+      "Changed Lua syntax, XML/exact 179 Mod files, reviewed document/selector/context checks"
     ],
-    "user": "One local collection-city native Tourism gate/movement/governor/cold-load flow; stop immediately if positive configuration has no faithful native effect; no old long test"
+    "user": "Fixed collection/buildings; Governor ACTIVE3 exit/return Tourism delta, then save/full exit/cold-load. Stop on zero/mismatched configuration or positive configuration with no native effect; no work movement or old long test."
   },
   "full_audit_triggers": [
     "Native primitive cannot preserve per-building contribution/recipient/pillage/withdrawal semantics",
@@ -278,9 +278,9 @@
   ],
   "result": {
     "plan": "User accepted concrete plan and explicitly authorized implementation",
-    "implementation": "B148.175 LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; not complete L1",
-    "native": "USER_GAME_TEST_FAIL: ACTIVE3, X1/2, two ordinary buildings, expected+2/+4 but reported configuration+0. Native flat Tourism primitive still USER_GAME_TEST_REQUIRED; no positive-configuration counterpart yet.",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md",
-    "stop": "B148.175 runtime unchanged; ten images archived. Investigation/archive only: readiness/configuration/diagnostic repair proposed, not executed this turn. No L2/L3/M/N/U2 implementation/deployment; earlier LOCAL result scope retained."
+    "implementation": "B149.176 readiness/read-only configuration diagnostics LOCAL_SIMULATION_PASS; PARTIAL_NATIVE_GATE_REQUIRED; no formula/SQL/permanent-state/GC change.",
+    "native": "B148 USER_GAME_TEST_FAIL preserved: ACTIVE3 expected+2/+4 but configuration0. User accepted Printing explanation for writing Tourism; B149 native fixed-collection Governor delta and cold-load USER_GAME_TEST_REQUIRED.",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md",
+    "stop": "User explicitly authorized repair; B149 local complete, source awaits safe committed W0003 deployment. Then only L1 native gate; no L2/L3/M/N/U2 or performance investigation."
   }
 }

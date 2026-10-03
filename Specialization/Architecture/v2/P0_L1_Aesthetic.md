@@ -1,14 +1,14 @@
 # P0-L1 — Culture III「风雅熏陶」具体实施计划
 
-Status: AUTHORIZED / P0_L1_NATIVE_CONFIGURATION_BLOCKED。B148.175首次原生验收未通过；本地检查点保留，当前停在配置失败调查/归档。
-Authority: Design D0036 / Culture D0029 `CUL_L3_AESTHETIC` / Shared D0035 / A0161。正式Design不变。
-Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，源码 `87655e5`。本批源码B148.175；实际部署以Status/receipt为准。
+Status: AUTHORIZED / P0_L1_PARTIAL_NATIVE_GATE_REQUIRED。B149.176就绪/只读诊断修复本地通过；等待固定馆藏、切换总督的原生短验收。
+Authority: Design D0037（Harbor未来基线不扩本批）/ Culture D0029 `CUL_L3_AESTHETIC` / Shared D0035 / A0161。正式Design不变。
+Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，源码 `87655e5`。B148为初版检查点，当前修复源码B149.176；实际部署以Status/receipt为准。
 
 ## 当前切片与停止点
 
 [P0-K限定实机验收](../../Status/Validation/Results/Specialization_B147_P0K_Pass.md)已关闭最小事实门禁。本批只接入风雅熏陶，以及[总计划明确分配给L1的旧文化人口/专家百分比退出](D0032_Implementation_Plan.md#明确的旧效果切换责任)。不要求先完成工业G–J或商业能力。
 
-本批已获用户明确授权并完成下述B148.175可逆实施检查点；首次原生验收发现正预期但配置报告为0，当前仍partial，调查结果与后续修复边界见[本次失败记录](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)。当前只记录失败，不自动实施修复；下一建议不等于授权。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
+本批已获用户明确授权。B148首次原生验收[正预期但配置为0](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)按失败范围保留；用户随后授权修复，并确认印刷术解释原馆藏倍率。B149最小就绪/诊断修复已完成本地验证，仍partial；[当前检查点](#b149176--readiness-repair-checkpoint)与[新结果/一个最小流程](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)是当前恢复入口。等待固定馆藏、调总督使ACTIVE跨三级门槛，再保存冷加载的原生验收；不要求移动巨作或旧长测。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
 
 ## 唯一玩法合同
 
@@ -87,7 +87,7 @@ Current Identity=Culture，Potential≥3且当前ACTIVE≥3；单人本地人类
 
 诊断左键：`风雅熏陶｜ACTIVE3｜2个巨作时代｜4座合格建筑｜每栋+2｜预期基础合计+8`；附已确认/待复核/旧残留异常。右键只列时代集合与相关建筑计入/排除、每栋贡献，分页。技术ID只在异常追查需要时出现；原生读数无法取得时明确UNKNOWN。
 
-**一次最小实机验收（由用户执行）：** 复用已有馆藏城，保持Culture ACTIVE≥3，放两种时代作品，保留两类普通建筑（含一个市中心普通建筑），另一城作移动对照。一次流程：查看X/recipient与原生旅游→移动最后一种时代→调离/建立总督验证资格退出/恢复→保存完全退出冷加载确认。用同一流程记录旧人口/worker%退出和其它基础能力；无需重复K旧10图或内存长测。掠夺/修复本地覆盖；若无法本地证明native暂停，才补一个可操作最小案例，不要求等待随机灾害。原生倍率混杂时记录来源拆分，不凭城市总数猜测。
+**当前一次最小实机验收（由用户执行）：** 按用户选择固定馆藏与建筑，以总督调离/建立使同城ACTIVE跨三级门槛，比较配置及原生旅游差值，再保存完全退出冷加载确认。具体流程见[B149结果](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md#一个最小原生验收流程)。原来两城移作方案不再是本次强制测试。用同一流程记录旧人口/worker%退出和其它基础能力；无需重复K旧10图或内存长测。掠夺/修复本地覆盖；若无法本地证明native暂停，才补一个可操作最小案例，不要求等待随机灾害。原生倍率混杂时记录来源拆分，不凭城市总数猜测。
 
 Exit：定向静态/模拟通过，原生旅游门禁及最小实机收益/撤销/冷加载通过，精确旧writer无残留，相关前序回归通过，证据范围明确 → L1完成；停止，不进入L2。若仅prototype通过，仍标partial，不把L1完成。当前无新Gameplay决策；技术门禁未关闭，不能承诺接口已经实机可行。
 
@@ -132,4 +132,16 @@ P0-K STATIC/LOCAL及限定USER_GAME_TEST证据按原范围复用。B148.175的ST
 
 源码只由`LoadScreenClose`开启writer；现有测试默认手动置ready并另测显式load通知，未证明本局就绪过程。它是静态风险，不是已证实的引擎因果；0配置也不能区分master/bit/健康检测。加载DB定义存在，尚无正配置下的原生加值失败对照，因此primitive保持待验，未登记不可用或TECHNICAL_LIMITATION。
 
-当前停止在调查/证据归档。建议定域修复可靠就绪与按需状态分层、补未手动ready的相关本地用例，再做一次同城配置/原生区域增量短验收；不改K1、普通建筑或时代合同，不复活旧writer，不进入后续批次。先前本地结果按原范围保留；本轮未运行新Gameplay模拟、改源码或部署。
+本次B148失败审查当时停止在调查/证据归档；以下是当时建议，B149授权修复已推进，见下一节。建议定域修复可靠就绪与按需状态分层、补未手动ready的相关本地用例，再做一次同城配置/原生区域增量短验收；不改K1、普通建筑或时代合同，不复活旧writer，不进入后续批次。先前本地结果按原范围保留；本轮未运行新Gameplay模拟、改源码或部署。
+
+## B149.176 — readiness repair checkpoint
+
+用户接受印刷术/已有建筑倍率对巨作基础旅游的解释，并明确授权修复。此次没有改变K1、时代/普通建筑资格、SQL原生路径、旧writer退休、永久状态或GC策略。
+
+- **就绪入口。** 保留LoadScreenClose；已有GreatWorkFacts确认通知只有在本地玩家、当前城市引用、KNOWN且hasConfirmed成立时才开启一次本地玩家初始化核对。漏掉加载通知时，已有本地PlayerTurnActivated提供就绪兜底；foreign/UNKNOWN/过期样本不能触发确认入口。就绪原因属于模块会话状态，load重置，不写Property。
+- **更新范围。** 初次就绪按本地玩家有界核对一次；以后确认通知仍只更新变化城市。同回合总督/真实事实变化照常响应，重复相同输入不写。未增加每帧、hover请求、独立巨作扫描或新的全国触发入口。
+- **只读诊断。** 资格/预期、逐plot配置、master是否建立/健康、就绪/错误分别判断；同总量但错误位置不算一致。“配置已进入”只证明当前配置匹配，不能写成原生收益PASS。正常摘要不额外堆技术明细，未就绪/失配/右键才显示更新原因和载体/原始标记。诊断不会启动writer或施加收益。
+- **本地证据。** 真实Lua5.5旧writer在漏LoadScreenClose的fixture里可复现预期正值/配置0；这证明缺通知风险，不证明B148游戏里确实漏了该事件。当前17项真实Lua/SQL定向用例PASS：旧13项保留，加4项缺加载/确认样本、首个本地回合/UNKNOWN/同回合总督、无效通知不启动、诊断分层/零写入。此前26项K结果继承原范围，本次未重跑。
+- **夹具修正。** 普通测试改走实际LoadScreenClose，不再手动ready；ResearchApply用例在人工加图书馆后通知共享缓存失效，保留原Gold/missing-Tier/HOLD断言。实际ResearchApply代码未改。
+
+[本次结果](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)记录STATIC/LOCAL和固定馆藏的短验收。当前原生城市限定、District subject Property解释、旅游加值/撤销仍USER_GAME_TEST_REQUIRED。配置正确但原生无对应差值则停止该路径，不改公式或扩大L2；完成本批验收前不能宣布L1完成。

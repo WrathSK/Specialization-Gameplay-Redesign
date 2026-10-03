@@ -1,27 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0382
-Implementation Build: develop/live B148.175 / modinfo175 P0_L1_NATIVE_CONFIGURATION_BLOCKED; stable B069.96
+Status Revision: S0383
+Implementation Build: develop B149.176 / modinfo176; live B148.175 pending repaired-package deployment; P0_L1_PARTIAL_NATIVE_GATE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L1_NATIVE_CONFIGURATION_BLOCKED
+Work State: P0_L1_PARTIAL_NATIVE_GATE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)只属未来Design；不扩大四专业v0.1，Harbor/Military未实施。Culture合同/selector及后续准备计划适用范围保持。
+[D0037 Harbor设计同步](../Historical/Design/Reviews/Harbor_D0037_Review.md)只属未来Design；四专业v0.1范围不变，Harbor/Military未实施。
 
-用户已授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)。B148.175本地实施后，首次原生验收[未通过](Validation/Results/Specialization_B148_P0L1_Native_Fail.md)：ACTIVE3、1/2时代、2栋建筑正确，预期+2/+4，投影配置均+0。当前`P0_L1_NATIVE_CONFIGURATION_BLOCKED`；不是L1完成。故障先收敛至更新就绪/配置进入或识别，不能据零配置判定原生旅游primitive不可用。
+用户授权[P0-L1风雅熏陶](../Architecture/v2/P0_L1_Aesthetic.md#当前切片与停止点)及此次最小修复。B148[正预期/零配置失败](Validation/Results/Specialization_B148_P0L1_Native_Fail.md)保留；用户确认印刷术解释原馆藏倍率，改用固定馆藏、调总督比较差值。B149.176就绪/只读诊断修复[17项定向测试PASS](Validation/Results/Specialization_B149_P0L1_Readiness_Local.md)，当前`P0_L1_PARTIAL_NATIVE_GATE_REQUIRED`，不是完整L1 PASS。
 
-[本地结果](Validation/Results/Specialization_B148_P0L1_Local.md)13项真实Lua/SQL与26项K回归PASS按原范围保留；本次为USER_GAME_TEST_FAIL（正计划/零配置），城市限定、plot要求和旅游加值/撤销仍未获得有效正配置原生验收。当前“已启用”只表示计划资格，诊断需修正；单一加载通知就绪风险与测试手动ready已静态记录，真实因果尚未确认。本轮没有改源码/运行包或重跑Gameplay模拟。
+保留LoadScreenClose，由已确认当前馆藏或本地玩家回合补一次就绪；后续按已有事件/变化城市更新。UNKNOWN/foreign/旧引用不能冒充可靠样本；同回合资格变化继续响应。诊断区分预期、逐区域配置、master健康与未就绪，点击不施加效果。本地复现缺加载通知的旧风险，尚不证明B148真实因果；正配置下的原生旅游城市/区域限定、加值/撤销仍待验。SQL/公式/K1/旧writer退出/永久状态/GC未改。
 
-[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)及前序验收保持原范围；[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161、Design、永久成果、GC与main不变。
+[B148原本地13项/26项K](Validation/Results/Specialization_B148_P0L1_Local.md)及[P0-K限定实机证据](Validation/Results/Specialization_B147_P0K_Pass.md)、[科研F2](Validation/Results/Specialization_B144_F2_Pass.md)按原范围保留；K26本次未重跑。[机构视觉优化](Validation/Results/Specialization_B146_UI_Scoped_Review.md)非阻塞。A0161/Design/main不变。
 
-当前运行仍是已记录W0003部署的B148.175：source `f85a0a0`、receipt `B148.175-f85a0a0-playtest.json` DEVELOP_ACTIVE，179/179 MATCH；B147/stable恢复点保留。本轮未重新部署或核验外部包，不启动游戏。10张已读截图按standing授权移动原图并核对SHA256，位置见失败结果。下一建议是L1最小定域修复，当前停在调查/归档；不自动实施或继续L2。
+部署待执行：只读核对当前live B148.175与原receipt一致，stable恢复点有效，OS未发现Civ VI进程。修复源码B149尚未部署；实际source commit/包状态将在W0003安全事务完成后记录。截图原件保持既有忽略目录。
 
-用户已授权[文化后续模块计划/只读调查](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)，L2/L3/M/N1–3/U2资料保留；具体实施仍等待B148相关门禁关闭后逐批审核/授权。失败未扩大到其它能力或未来专业，也不要求重复旧长测。
+下一动作仅为[固定馆藏→总督退出/建立→保存冷加载的短验收](Validation/Results/Specialization_B149_P0L1_Readiness_Local.md#一个最小原生验收流程)；配置失败或正配置下无原生差值即停止该路径，不改玩法。[文化后续准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)保持计划/只读授权；不自动实施L2/L3/M/N/U2，不要求旧长测。
+
 
 ## 历史阶段记录
 

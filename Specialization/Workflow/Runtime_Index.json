@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "1c71b049cfd756d2c64b8480066e433a4ca74452a9bac90b2b872f6398b7a602",
+      "sha256": "3d42fc6056835fed3f753049d72fab1a2706ac9fbfaea5dfbe41c8eb14c7cb08",
       "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "provenance": "B149 authorized scoped readiness/diagnostic repair;17 targeted real-Lua/SQL tests PASS; SQL/formula/permanent-state/GC unchanged; native Tourism gate pending"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "55b83ba843d3c4d1a12173dbb6dbf61094206e0cbb0d5ed12fef12bcec66916e",
+      "sha256": "7d15a907f7b285439774dbb3b7e72989c062546d47328178bc2a8407a53e70a3",
       "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "provenance": "B149 authorized scoped readiness/diagnostic repair;17 targeted real-Lua/SQL tests PASS; SQL/formula/permanent-state/GC unchanged; native Tourism gate pending"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -886,9 +886,9 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "8f94bd74eebc172039ab7ba0e2463609a8c7ea39c160b8d614efc9ed47f6f340",
+      "sha256": "63f4e938aa2ce0d2355fa9e36e6a128e817de222b76adeb1cfcb245054e60fcd",
       "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "provenance": "B149 authorized scoped readiness/diagnostic repair;17 targeted real-Lua/SQL tests PASS; SQL/formula/permanent-state/GC unchanged; native Tourism gate pending"
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",

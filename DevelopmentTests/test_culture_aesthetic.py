@@ -69,7 +69,7 @@ end
 function building(c,kind,d,yes)
  local id=GameInfo.Buildings[kind].Index;c.present[id]=yes~=false;c.locations[id]=d.x;c.pillaged[id]=false
 end
-P={VERSION='P0-B-148.175',IsTestPlayer=function(pid)return pid==0 end,Field=function(t,k)return t and t[k]end,
+P={VERSION='P0-B-149.176',IsTestPlayer=function(pid)return pid==0 end,Field=function(t,k)return t and t[k]end,
  Count=function(k)counts[k]=(counts[k] or 0)+1 end}
 function P.Info(name,k)return GameInfo[name] and GameInfo[name][k]end
 function P.Rows(name)local out={};for row in GameInfo[name]()do out[#out+1]=row end;return out end
@@ -111,7 +111,7 @@ end
 class AestheticTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):cls.sql=database()
- def runtime(self):
+ def runtime(self,ready=True):
   l=LuaRuntime(unpack_returned_tuples=True);l.execute(FIX)
   def include(n):l.execute((M/(n+'.lua')).read_text())
   l.globals().include=include
@@ -130,7 +130,7 @@ class AestheticTests(unittest.TestCase):
     building(c,'BUILDING_MONUMENT',c.ds[1]);building(c,'BUILDING_WALLS',c.ds[1]);building(c,'BUILDING_PALACE',c.ds[1]);building(c,'BUILDING_AMPHITHEATER',c.ds[2]);building(c,'BUILDING_MARKET',c.ds[3]);building(c,'BUILDING_HD_VILLA',c.ds[4]);building(c,'BUILDING_HD_BUS_STOP',c.ds[5])
    end
    SPCDistrictCompleteness.Start(P,shared);SPCLv3Effects.Start(P,shared);SPCLv4Percent.Start(P,shared);SPCCultureAesthetic.Start(P,shared)
-   data=shared.CultureAesthetic;svc=shared.DistrictCompleteness;data.ready=true
+   data=shared.CultureAesthetic;svc=shared.DistrictCompleteness
    function audit()data.Audit({player=0})end
    function one()data.Audit({player=0,city=1})end
    function amount(c,plot)
@@ -139,6 +139,7 @@ class AestheticTests(unittest.TestCase):
    end
    function total(c)local n=0;for _,d in ipairs(c.ds)do n=n+amount(c,d.x)end;return n end
   ''')
+  if ready:l.execute("fire('LoadScreenClose')")
   return l
  def test_formula_and_two_cities(self):
   l=self.runtime()
@@ -196,15 +197,28 @@ class AestheticTests(unittest.TestCase):
   l.execute('currentCatalog=SPCOrdinaryBuildingCatalog.Build(P)');l.execute(old);l.execute('oldCatalog=SPCOrdinaryBuildingCatalog.Build(P)')
   l.execute("raw={districts={}};local by={};for index,b in pairs(oldCatalog.buildings)do if type(index)=='number' and b.ordinary then local d=by[b.domain];if not d then d={id=#raw.districts+1,type=b.domain,plot=#raw.districts+1,complete=true,pillaged=false,buildings={}};raw.districts[#raw.districts+1]=d;by[b.domain]=d end;d.buildings[#d.buildings+1]={index=index,complete=true,pillaged=false}end end;local a=SPCDistrictCompleteness.Calculate(currentCatalog,raw);local b=SPCDistrictCompleteness.Calculate(oldCatalog,raw);for domain,v in pairs(a.domains)do assert(v.value==b.domains[domain].value and v.districtID==b.domains[domain].districtID,domain)end;for i,d in ipairs(a.districts)do assert(d.value==b.districts[i].value and d.uncapped==b.districts[i].uncapped);d.pillaged=true end")
  def test_research_apply_new_ordinary_separation(self):
+  # The real load event populated the shared cache; mirror the new building notification.
   l=self.runtime();l.globals().include('ResearchApply')
-  l.execute("a.identity='RESEARCH';a.active=3;local campus=district(a,6,'DISTRICT_CAMPUS');building(a,'BUILDING_LIBRARY',campus);a.first={districtID=6,type='DISTRICT_CAMPUS'};plots[campus.x].GetWorkerCount=function()return 2 end;SPCResearchApply.Start(P,shared);ap=shared.ResearchApply;ap.ready=true;ap.Audit({player=0});assert(not ap.definitionError and not ap.errors[0][1],ap.errors[0][1]);assert(a.present[GameInfo.Buildings.BUILDING_SPC_RESEARCH_APPLY_GOLD_0.Index]);local w=writes;ap.Audit({player=0});assert(writes==w)")
+  l.execute("a.identity='RESEARCH';a.active=3;local campus=district(a,6,'DISTRICT_CAMPUS');building(a,'BUILDING_LIBRARY',campus);svc.MarkDirty(0,1);a.first={districtID=6,type='DISTRICT_CAMPUS'};plots[campus.x].GetWorkerCount=function()return 2 end;SPCResearchApply.Start(P,shared);ap=shared.ResearchApply;ap.ready=true;ap.Audit({player=0});assert(not ap.definitionError and not ap.errors[0][1],ap.errors[0][1]);assert(a.present[GameInfo.Buildings.BUILDING_SPC_RESEARCH_APPLY_GOLD_0.Index]);local w=writes;ap.Audit({player=0});assert(writes==w)")
   # New ordinary identity is not approved depth; real missing depth still HOLDs.
   l.execute("local read=svc.Read;svc.Read=function(...)local v=read(...);for _,d in ipairs(v.value.districts)do for _,b in ipairs(d.buildings)do if b.type=='BUILDING_LIBRARY'then b.tier=nil end end end;return v end;local w=writes;ap.Audit({player=0});assert(ap.errors[0][1]:find('AP_BUILDING_FACT_UNKNOWN') and writes==w);svc.Read=read")
  def test_failed_legacy_withdrawal_and_bounded_errors(self):
   l=self.runtime();l.execute("audit();local legacy=GameInfo.Buildings.BUILDING_SPC_LV4_PERCENT_CULTURE_0.Index;building(a,'BUILDING_SPC_LV4_PERCENT_CULTURE_0',a.ds[1]);failRemove=legacy;one();assert(total(a)==0 and data.errors['0:1']:find('AE_LEGACY_WITHDRAWAL_UNKNOWN'));failRemove=nil;one();assert(total(a)==12)")
   l.execute("data.errors['0:999']='UNKNOWN';audit();assert(data.errors['0:999']==nil);local before=counts.dc_read or 0;one();assert(counts.dc_read==before+1)")
+ def test_missed_load_confirmed_sample_starts_without_panel(self):
+  l=self.runtime(ready=False)
+  l.execute("assert(not data.ready and total(a)==0 and total(b)==0);local w=writes;assert(data.Describe(0,a):find('等待启动'));assert(not data.ready and writes==w);shared.GreatWorkFacts.OnConfirmed(0,{1});assert(data.ready and data.readyReason=='CONFIRMED_WORKS');assert(total(a)==12 and total(b)==12);local w=writes;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(writes==w)")
+ def test_first_local_turn_unknown_and_same_turn_governor(self):
+  l=self.runtime(ready=False)
+  l.execute("a.worksUnknown=true;fire('PlayerTurnActivated',3);assert(not data.ready and writes==0);fire('PlayerTurnActivated',0);assert(data.readyReason=='LOCAL_TURN');assert(total(a)==0 and total(b)==12 and data.errors['0:1']:find('AE_WORKS_UNKNOWN'));local w=writes;local visits=counts.city_scan;fire('PlayerTurnActivated',0);assert(writes==w and counts.city_scan==visits);a.worksUnknown=false;fire('GovernorChanged',0);assert(total(a)==12);a.active=2;fire('GovernorAssigned',0);assert(total(a)==0 and total(b)==12);a.active=3;fire('GovernorEstablished',0);assert(total(a)==12 and total(b)==12);local w=writes;fire('GovernorEstablished',0);assert(writes==w)")
+ def test_unknown_or_stale_notification_does_not_open_ready(self):
+  l=self.runtime(ready=False)
+  l.execute("a.worksUnknown=true;b.worksUnknown=true;shared.GreatWorkFacts.OnConfirmed(0,{1,2});assert(not data.ready and writes==0);a.worksUnknown=false;shared.GreatWorkFacts.OnConfirmed(3,{1});assert(not data.ready and writes==0);local summary=shared.GreatWorkFacts.Summary;shared.GreatWorkFacts.Summary=function(...)local w=summary(...);if w then w.reference='stale' end;return w end;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(not data.ready and writes==0);shared.GreatWorkFacts.Summary=summary;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(total(a)==12 and total(b)==0 and data.errors['0:2'])")
+ def test_diagnostic_separates_raw_master_and_expected_without_writes(self):
+  l=self.runtime()
+  l.execute("local w=writes;assert(data.Describe(0,a):find('配置已进入'));assert(writes==w);local id=GameInfo.Buildings.BUILDING_SPC_CULTURE_AESTHETIC.Index;a.present[id]=nil;local t=data.Describe(0,a);assert(t:find('配置待核对') and t:find('载体：未建立') and t:find('标记 %+ 12'));assert(writes==w);one();assert(total(a)==12);a.pillaged[id]=true;local w=writes;local t=data.Describe(0,a);assert(t:find('配置待核对') and t:find('载体：不可用') and t:find('标记 %+ 12'));assert(writes==w);a.pillaged[id]=false;plots[a.ds[1].x].props.SPC_CULTURE_AESTHETIC_0=1;plots[a.ds[3].x].props.SPC_CULTURE_AESTHETIC_0=1;plots[a.ds[3].x].props.SPC_CULTURE_AESTHETIC_1=0;local t=data.Describe(0,a);assert(t:find('配置待核对') and not t:find('与预期一致'));assert(writes==w)")
  def test_registration_and_ui(self):
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'175')
+  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'176')
   files={e.text for e in root.find('Files')};self.assertTrue({'CultureAestheticModel.lua','CultureAesthetic.lua','Data/CultureAesthetic.sql'}<=files)
   xml=ET.parse(M/'UI/P0Panel.xml').getroot();button=xml.find('.//*[@ID="AestheticButton"]');self.assertIsNotNone(button)
   ui=(M/'UI/P0Panel.lua').read_text();self.assertIn("request('CULTURE_AESTHETIC_DETAIL',true)",ui)

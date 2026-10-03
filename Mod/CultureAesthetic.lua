@@ -12,6 +12,10 @@ local function same(a,b)
 end
 function M.Start(P,shared)
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureAesthetic=d
+ local function ready(reason)
+  if d.ready then return false end
+  d.ready=true;d.readyReason=reason;return true
+ end
  local carrier
  local function validate()
   if carrier then return end
@@ -160,13 +164,27 @@ function M.Start(P,shared)
   UNDER_CONSTRUCTION='未完成',BUILDING_PILLAGED='已掠夺',DISTRICT_PILLAGED='区域已掠夺',DISTRICT_UNFINISHED='区域未完成'}
  function d.Describe(pid,c,detail,page)
   local ok,text=pcall(function()
-   validate();local p=plan(pid,c,detail);local yes,healthy=installed(c);local configured=0
-   local amounts={};for plot,object in pairs(plots(c))do amounts[plot]=readAmount(object);if healthy then configured=configured+amounts[plot]end end
-   local lines={'风雅熏陶｜ACTIVE '..tostring(p.active)..'｜'..(p.status=='READY' and '已启用' or '未启用'),
+   validate();local p=plan(pid,c,detail);local yes,healthy=installed(c);local raw=0;local matched=true
+   local amounts={};for plot,object in pairs(plots(c))do
+    amounts[plot]=readAmount(object);raw=raw+amounts[plot]
+    if amounts[plot]~=(p.amounts[plot] or 0)then matched=false end
+   end
+   for plot,n in pairs(p.amounts)do if amounts[plot]~=n then matched=false end end
+   local configured=healthy and raw or 0
+   matched=matched and configured==p.total and (p.total>0 and healthy or p.total==0 and not yes)
+   local err=d.errors[cityKey(pid,c)] or d.error
+   local status=not d.ready and '等待启动' or (err or not matched) and '配置待核对'
+    or p.status~='READY' and '未启用' or p.total==0 and '当前无旅游贡献' or '配置已进入'
+   local lines={'风雅熏陶｜ACTIVE '..tostring(p.active)..'｜'..status,
     p.eras..' 个巨作时代｜'..p.count..' 座合格普通建筑',
     '每栋 + '..p.each..' 基础旅游业绩｜预期合计 + '..p.total,
-    '区域投影配置 + '..configured..(configured==p.total and '（与预期一致）' or '（待核对）'),
-    '配置不是原生实测；请在旅游业绩视图核对所属区域。'}
+    '区域投影配置 + '..configured..(matched and '（与预期一致）' or '（待核对）'),
+    '配置不是原生实测；固定馆藏，切换总督核对旅游差值。'}
+   if detail or not d.ready or not matched or err then
+    local reasons={LOAD_SCREEN_CLOSE='加载完成',CONFIRMED_WORKS='馆藏确认',LOCAL_TURN='玩家回合'}
+    lines[#lines+1]='更新：'..(d.ready and (reasons[d.readyReason] or '已就绪') or '未就绪')
+     ..'｜载体：'..(not yes and '未建立' or healthy and '已建立' or '不可用')..'｜标记 + '..raw
+   end
    if detail then
     local rows={}
     local gw=shared.GreatWorkFacts.Read(pid,c:GetID());local eras={}
@@ -178,14 +196,13 @@ function M.Start(P,shared)
     local pages=math.max(1,math.ceil(#rows/7));local n=((page or 1)-1)%pages+1;lines[#lines+1]='建筑组成 '..n..'/'..pages..'（右键继续）'
     for i=(n-1)*7+1,math.min(#rows,n*7)do lines[#lines+1]=rows[i]end
    end
-   local err=d.errors[cityKey(pid,c)] or d.error
    if err then lines[#lines+1]='待复核：'..(err:match('AE_[A-Z_]+') or '接口未就绪')end
    return table.concat(lines,'\n')
   end)
   return ok and text or ('风雅熏陶：当前事实待复核；UNKNOWN不当作0。\n'..(tostring(text):match('AE_[A-Z_]+') or '接口未就绪')..'\n保留同一引用的最近确认配置；新引用/冷加载未确认前不施加。')
  end
  local function bind(source,name,fn)local e=P.Field(source,name);if e and e.Add then e.Add(fn)end end
- bind(Events,'LoadScreenClose',function()carrier=nil;d.records={};d.errors={};d.ready=true;d.Audit()end)
+ bind(Events,'LoadScreenClose',function()carrier=nil;d.records={};d.errors={};d.error=nil;d.ready=true;d.readyReason='LOAD_SCREEN_CLOSE';d.Audit()end)
  bind(Events,'CityBuildingsChanged',function(pid,cid)d.Audit({player=pid,city=cid})end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do
   bind(Events,name,function(x,y,id,owner)
@@ -203,11 +220,26 @@ function M.Start(P,shared)
  end
  local lastTurn
  bind(Events,'PlayerTurnActivated',function(pid)
-  if P.IsTestPlayer(pid) and lastTurn~=Game.GetCurrentGameTurn()then lastTurn=Game.GetCurrentGameTurn();d.Audit({player=pid})end
+  if P.IsTestPlayer(pid) and lastTurn~=Game.GetCurrentGameTurn()then
+   lastTurn=Game.GetCurrentGameTurn();ready('LOCAL_TURN');d.Audit({player=pid})
+  end
  end)
  for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'})do bind(GameEvents,name,function()d.Audit()end)end
  -- One explicitly scoped consumer notification, not a new shared event bus.
  shared.GreatWorkFacts.OnConfirmed=function(pid,changed)
+  if not P.IsTestPlayer(pid)then return end
+  -- A confirmed current-city sample is a ready boundary even if the UI load
+  -- notification was missed. UNKNOWN/foreign input cannot open this path.
+  if not d.ready then
+   for _,cid in ipairs(changed)do
+    local c=Players[pid]:GetCities():FindID(cid);local w=shared.GreatWorkFacts.Summary(pid,cid)
+    if c and c:GetOwner()==pid and w and w.hasConfirmed and w.availability=='KNOWN'
+     and w.reference==SPCNetworkInput.Reference(c)then
+     ready('CONFIRMED_WORKS');d.Audit({player=pid});return -- initial local-player reconciliation once
+    end
+   end
+   return
+  end
   for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end
  end
  local store=shared.CityProgressionStore
