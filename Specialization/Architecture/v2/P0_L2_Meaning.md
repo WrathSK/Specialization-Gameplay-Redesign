@@ -1,9 +1,15 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_FLAT_CANDIDATES_NATIVE_FAILED；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_CULTURE_PATH_INVESTIGATED；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
+
+**本轮定域调查完成。** [源码／DB／B055对照](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)未发现Culture专属Lua清除／漏创建；旧Dialogue0%移除自身carrier，不挂0%Modifier，GWA只hold156自有项。两个Culture候选与S/G、HD精确定义完整，但没有native实例活动证据。B055为早期单著作＋2原型，复用同primitive／隐藏建筑方式；2→4→2不能证明HD多flat共存，更不能宣布Culture平加永久不可行。科研／金币仅所测整数读数成立，Production／Food／Faith没有本原型writer。
+
+**条件后备／未来处理。** 用户接受无可靠Culture路径时暂排Government Plaza／Diplomatic Quarter；两者是Meaning唯一Culture来源，采用后将九域六yield缩为七域五yield，其它Shared映射／能力／K／Floor／W／资格不动。当前只登记CONDITIONALLY_AUTHORIZED，正式Design仍D0042九域、B155也未适配；采用前必须同步正式来源与阅读版，不能仅从读入端偷偷删域。未来恢复需可靠文化共存与倍率边界证据。旧SINGLE3／四态要求Culture3／正Culture，不能直接当七域验收流程。
+
+下一建议是最小按需native Modifier实例只读诊断的具体计划，以区别未活动／附着与已活动但不叠加；接口schema先核对，没有新代码授权或本轮用户测试。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
 
 [B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
 
@@ -13,7 +19,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155候选原生结果不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
-[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。下一建议仅定域只读核对Culture实际Modifier／附着／资格、hold／Dialogue0%与成功flat路径差异，未授权新增实现或猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。该定域源码／静态定义核对本轮已完成，结论见上方调查；运行Modifier实例仍无证据。新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 
 ## 平加共存与主题化技术原型
 
@@ -21,7 +27,7 @@ D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9�
 
 B155原型实施前只读含14 Meaning载体的DebugGameplay：`EFFECT_ADJUST_CITY_GREATWORK_YIELD`共1378 Modifier，1258仅YieldChange、120仅ScalingFactor，同时声明0；GameEffects相关字段NULL、GameEffectArguments0行。HD+2、Meaning1+2、Dialogue TEST100=200共用effect，静态不解释共存算法。当时数据源为配置实际指向的内层Firaxis Cache；外层旧Cache无Meaning，不作为当时依据。本次[显式100结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)另只读核对当前内层DB两个候选／14精确附件与参数完整；本轮测试helper未配置DB且未运行。新增mixed参数定义是我们自己的待验证候选，不把原型前“无同族先例”误写成当前DB仍零行或原生算法已确认。
 
-未主动清HD不证明无间接干扰；[B055 flat2→4→2](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)也否定“所有flat必覆盖”的泛化结论。[作者SQL](https://github.com/Feofilakt/YAGM/blob/main/Moksha.sql)仅有单独YieldChange3，不能证明mixed参数。显式100没有同effect双参数先例，作为候选不得提前宣称可隔离。
+未主动清HD不证明无间接干扰；[B055 flat2→4→2](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)仅证明当时单flat成功；没有槽位建筑／HD实例证据，既不能证明多flat累加，也不能推导Culture平加全不可行。[作者SQL](https://github.com/Feofilakt/YAGM/blob/main/Moksha.sql)仅有单独YieldChange3，不能证明mixed参数。显式100没有同effect双参数先例，作为候选不得提前宣称可隔离。
 
 普通艺术／考古馆当前yield/Tourism主题倍率各100，但资格分别不同artist／同art类型、不同civ／同era。Oxford两Writing、HD广播／电影／云韶条件不同，不能类推。[B059 Oxford主题实测](../../Status/Validation/Results/Specialization_B059_Theming_User_Result.md)仅当时C/T读数，不是Meaning。原B154 reader明确拒绝themed=true，不得将该入口限制写成native不支持。
 

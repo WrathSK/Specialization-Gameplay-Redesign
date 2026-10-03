@@ -11,7 +11,7 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0401",
+    "status": "S0402",
     "runtime": "B155.182 / modinfo182",
     "military": "D0037",
     "harbor": "D0037"
@@ -319,6 +319,12 @@
         "tools/temporary_playtest.py"
       ],
       "trigger": "Actual deployment/recovery action only: verify clean committed source, game exit and exact prior receipt/package; no guessed runtime from HEAD"
+    },
+    {
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_B155_Meaning_Culture_Path.md"
+      ],
+      "trigger": "Current Culture flat failure/B055 reuse/fallback question or preparing exact native-instance diagnostic; bounded findings and independent gates, no full historical read"
     }
   ],
   "non_scope": [
@@ -344,9 +350,11 @@
     "implementation": "B155.182 / modinfo182 LOCAL_COMPLETE; candidate/configuration/themed-reader only, no formal cutover",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
     "native": "B155 same-turn T62 W1 SINGLE3 and SINGLE3_SCALE100 Culture4->4 vs required4->7 USER_GAME_TEST_FAIL; both show Science/Gold deltas1/4. Current inner DB candidate definitions MATCH (STATIC only). Stop remaining Dialogue/theming; OFF/settlement/load untested. B154 failure retained; local checks do not prove native.",
-    "stop": "Both B155 flat candidates failed: stop subsequent Dialogue/theming tests, end prototype. Recommend scoped read-only Culture modifier/attachment/qualification/hold comparison; no new fix, formal cutover or L3/M/N/U2.",
+    "stop": "Scoped Culture source/DB/B055 comparison complete; recommend minimal on-demand exact native Modifier-instance diagnostic plan. User-authorized conditional Government/Diplomatic exclusion remains unadopted; sync formal Design before adoption. D0042/B155 nine-domain unchanged; no new implementation, cutover or L3/M/N/U2.",
     "deployment": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0401/B155 native T62 SINGLE3_SCALE100 Culture4->4 vs required4->7 FAIL, same as prior SINGLE3; Science/Gold deltas1/4 visible. Current inner DebugGameplay two buildings/14 exact attachments/arguments MATCH, definition evidence only. Both authorized flat candidates fail in fixture; stop further Dialogue/theming tests, scoped read-only investigation recommended. D0042/Mod/runtime/main/GC unchanged; no new implementation authorization or deployment action.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md"
+    "authority_revalidation": "S0402 bounded Culture investigation: no culture-specific Lua removal found, exact definitions complete but native instance activity/stacking unresolved. B055 same primitive/hidden-building single flat succeeded, HD coexistence not demonstrated. Only tested S/G integers evidenced; P/Food/Faith writer absent. User conditional two-domain fallback recorded, not adopted; D0042/Mod/runtime/GC/main unchanged.",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md",
+    "investigation": "Specialization/Reports/Technical/Specialization_B155_Meaning_Culture_Path.md",
+    "conditional_fallback": "User accepted temporary exclusion of Government Plaza/Diplomatic Quarter from Meaning if no reliable Culture path; not formally adopted or implemented. D0042 remains nine-domain. Future restoration needs reliable coexistence and multiplier boundary; Shared mapping/other abilities unchanged."
   }
 }

@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0401
-Implementation Build: source/live B155.182 / modinfo182; flat candidates native FAIL; scoped investigation next; stable B069.96
+Status Revision: S0402
+Implementation Build: source/live B155.182 / modinfo182; flat candidates native FAIL; scoped investigation recorded; conditional fallback only; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0042 (A–G Design sync; B155 direct contracts revalidated, lifecycle runtime adaptation not assessed)
+Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_FLAT_CANDIDATES_NATIVE_FAILED
+Work State: P0_L2B_CULTURE_PATH_INVESTIGATED
 
 ## CURRENT AUTHORITATIVE STATE
+
+现行正式Design仍D0042九域／六yield，A–G生命周期与Meaning独立追加／逐领域Floor保持。用户已接受“无可靠文化路径则暂排市政／外交、标未来处理”的**条件后备，尚未正式采用／修订或runtime实施**；采用前同步正式来源，七域不能只藏在plan或输入过滤里。Shared两域映射与其它能力不受后备影响。
+
+[定域调查](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)未发现Culture专属Lua清除／漏创建；0%Dialogue移除自身carrier、GWA只hold自有项、精确DB定义完整均为STATIC，不能证明native实例活动。B055单flat2→4→2复用同primitive／隐藏建筑，但没有HD多flat共存证据。B155两个候选Culture4→4 vs7的[实机FAIL](Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)保留；S/G仅所测Δ1/4成立，Production／Food／Faith尚无writer。精确recipient、Dialogue／theming隔离、结算／冷加载／完整退出仍未通过，完整L2 NOT_PASSED。
+
+source/live仍B155.182 / modinfo182，代码441b85f；仅沿既有部署来源7c4b72f、receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE／182/182 MATCH引用，本轮未重核外部运行包。main稳定B069.96未promotion；Design／Mod／GC／永久账本未改变。
+
+本轮调查与条件后备登记完成，无用户新测试。下一建议：**按需精确native Modifier实例只读诊断的具体计划**，或采用后备前正式Design同步；均不等于新运行授权。实例读取先例不保证schema，不能继续猜系数或宣布文化永久不可行。正式cutover及L3/M/N/U2未授权；未来处理与所有停止点见[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。
+
+## 历史阶段记录
+
+### S0401 — B155两个文化候选失败（当时）
 
 [D0042](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)已同步具名A–G生命周期与投资原子确认；Research D0040不变。9/10当前JSON对象复用，Dialogue仅增未提交取消边界，倍率／累计／额度未改；新生命周期未作为运行实现／验收。Meaning追加独立于Dialogue／theming，不因同yield放大市政／外交Culture；Floor／K／资格保留。
 
@@ -19,7 +31,6 @@ source/live B155.182 / modinfo182，代码441b85f；沿已记录部署来源7c4b
 
 两个获授权flat候选已失败，**停止该候选验证，不继续③／④／主题化或重复旧长测**；右键“切换验证配置”直接退出即可，未提供OFF图则不记完整撤销PASS。下一工程建议仅定域只读核对本城Culture实际Modifier／附着／资格、hold／Dialogue0%与成功flat路径差异；当前没有新实现授权，不补差／换系数／改Floor或Design。Mod／永久Property／账本／GC不改。**正式六yield／all-city／global旧GWA cutover及L3/M/N/U2未授权。**[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留完整条件／退出。
 
-## 历史阶段记录
 
 ### S0397 — B154组合失败与下一调查待授权（当时）
 

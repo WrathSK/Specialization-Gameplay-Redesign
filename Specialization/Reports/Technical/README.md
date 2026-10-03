@@ -27,6 +27,8 @@
 - [区域精度实验](../../Architecture/v2/P0_D1_District_Precision_Probe.md) → [正式科研floor路径](../../Architecture/v2/P0_D1_Research_Cross_Cutover.md)及[用户结果](../../Status/Validation/Results/Specialization_B084_P0D1_User_Pass.md)；[每专家floor](../../Architecture/v2/P0_D2_Research_Apply.md)是另一计算层级。不能把一个接口的成功/失败变成全引擎精度定理。
 - [标准化账本](Specialization_B052_Standardization_Ledger.md)、[原生购买实验](Specialization_B053_Purchase_Currency.md)、[自动折扣](Specialization_B054_Network_Discounts.md)：保留旧实际技术路径；新Industry生产加速目标不能由旧购买折扣证明完成。
 
+- [意义延展文化追加定域调查](Specialization_B155_Meaning_Culture_Path.md)：当前S/G整数证据、Culture候选失败与B055单flat证据边界；市政／外交暂排为用户已授权条件后备，尚未改Design或运行包。
+
 ## 呈现与候选接口
 
 [机构/能力/carrier调查](../../Architecture/v2/Presentation_Institution_Carrier_Model.md)定义分层；[科研展示原型](../../Architecture/v2/U1_Presentation_Prototype.md)限定HD hook、surface、缓存和隐藏范围。[目标技术spike](../../Architecture/v2/D0032_Technical_Spikes.md)是未来依赖接口，不是已实现清单，也不自动成为当前任务。
