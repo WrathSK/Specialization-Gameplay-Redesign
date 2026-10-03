@@ -1,9 +1,11 @@
 # P0-L2 —「意义延展」计划与接口调查
 
 State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE；B154定域切换修复LOCAL完成，Culture应用/读数与四态原生仍待验；精确recipient未解决，正式cutover未授权。
-Authority: Culture D0038 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+Authority: Culture D0040 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0040 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
+
+D0040 A–D Design同步后，当前Meaning能力、meaning_K、work_pool／domains及Shared四项直接事实与D0038／D0035逐对象完全相同，8项选择复用。Spec Culture章节及authority pin更新；原生测试、资格、Floor、收件人技术边界和停止点不改。其它生命周期变更不授权当前运行适配；下一相关批次另行复审。
 
 用户授权B153定域修复后，B154.181 LOCAL完成：[切换保护、独立Culture证据与一个最小续测](../../Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)。61 Meaning＋26 K PASS；同步CityBuildingsChanged本地反例已复现原QUALIFICATION_CHANGED并在修复后通过。新动作锁＋一个deferred bool仅合并本fixture的重入重算；失败恢复阶段/Dialogue持有意图，不假称部分native写入已撤销。当前资格从EffectiveFacts重读、0%不证明ACTIVE4。
 

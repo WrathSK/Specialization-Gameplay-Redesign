@@ -3,15 +3,15 @@
   "batch": "P0-L2B",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0039",
-    "research": "D0031",
-    "industry": "D0036",
-    "culture": "D0038",
-    "commerce": "D0039",
-    "shared": "D0035",
+    "design": "D0040",
+    "research": "D0040",
+    "industry": "D0040",
+    "culture": "D0040",
+    "commerce": "D0040",
+    "shared": "D0040",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0395",
+    "status": "S0396",
     "runtime": "B154.181 / modinfo181",
     "military": "D0037",
     "harbor": "D0037"
@@ -52,50 +52,50 @@
       "selector": "## 6. Culture / Theater Square — CUL"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0038.json",
+      "path": "Specialization/Design/Content/Culture_D0040.json",
       "kind": "json",
       "reason": "Complete Meaning qualifications/formula/exceptions",
       "selector": "/abilities/3",
       "expected_id": "CUL_L4_MEANING"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0038.json",
+      "path": "Specialization/Design/Content/Culture_D0040.json",
       "kind": "json",
       "reason": "Initial0.5 parameter, not final balance",
       "selector": "/parameters/meaning_K"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0038.json",
+      "path": "Specialization/Design/Content/Culture_D0040.json",
       "kind": "json",
       "reason": "Explicit eligible work pool/era/exclusions",
       "selector": "/contracts/work_pool"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0038.json",
+      "path": "Specialization/Design/Content/Culture_D0040.json",
       "kind": "json",
       "reason": "Complete nine-domain/share mapping, no Theater",
       "selector": "/contracts/domains"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "path": "Specialization/Design/Content/Shared_D0040.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "path": "Specialization/Design/Content/Shared_D0040.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "path": "Specialization/Design/Content/Shared_D0040.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/DISTRICT_DEVELOPMENT"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0035.json",
+      "path": "Specialization/Design/Content/Shared_D0040.json",
       "kind": "json",
       "reason": "Complete direct shared input/unknown/exclusion contract",
       "selector": "/concepts/YIELD_SHARE"
@@ -308,7 +308,7 @@
     "native": "Prior B153 USER_GAME_TEST_PARTIAL / BLOCKED_C11 preserved. B154 USER_GAME_TEST_REQUIRED: Culture application/readout and full four-state NOT_PASSED; precise recipient still TECHNICAL_INVESTIGATION_REQUIRED.",
     "stop": "Scoped user-authorized repair/local verification and W0003 safe test deployment complete. Wait minimal C00/C10 native result; Culture0/error stops, success continues C11/C01/OFF. No full cutover/L3/M/N/U2.",
     "deployment": "B154.181 / modinfo181; W0003 B154.181-fb3ee7f-playtest.json DEVELOP_ACTIVE; source fb3ee7f90b39148b56226d83accd49b1d6a20b73;182/182 MATCH. OS exit verified, exact B153 restore/stable staging bridge; B153/stable recovery retained MATCH, no pending marker.",
-    "authority_revalidation": "S0395 authorized B153 scoped repair: current Meaning/Dialogue/UI/direct facts and HD/original/roDB + B055 negative-boundary evidence reviewed. 61 Meaning and26 K LOCAL PASS, changed hashes only; no Design/SQL/GC/permanent/main change. Culture application/readout and native gates unresolved. W0003 transaction verified/deployment recorded; no native PASS inferred.",
+    "authority_revalidation": "S0396 D0040 user-confirmed A–D Design-only sync reviewed; five successor Content/Spec/reading/review/acceptance updates. Eight direct B154 Meaning/Shared selected objects exactly equal D0038/D0035; active manifest pins refreshed, native gate/stop/source commit/live receipt unchanged. Other lifecycle Architecture/runtime adaptation requires scoped review before implementation; no Mod/tests/GC/permanent/deployment/main change.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md"
   }
 }

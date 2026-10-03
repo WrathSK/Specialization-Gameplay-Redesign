@@ -10,14 +10,15 @@
 
 | 记录 | 用途与后续解释入口 |
 |---|---|
-| [Research_D0026_Review.md](Reviews/Research_D0026_Review.md) | 科研初次冻结与旧效果取代；当前读Research_D0031及科研阅读版 |
+| [Research_D0026_Review.md](Reviews/Research_D0026_Review.md) | 科研初次冻结与旧效果取代；当前读Research_D0040及科研阅读版 |
 | [Industry_D0027_Review.md](Reviews/Industry_D0027_Review.md) | 工业冻结及仍需保留的暂行合同；后续容量关闭见Industry_D0032 |
 | [Culture_D0028_Review.md](Reviews/Culture_D0028_Review.md) | 文化初次冻结、Shared普通建筑与技术限制；部分边界随后由D0029取代 |
-| [Culture_D0029_Review.md](Reviews/Culture_D0029_Review.md) | 文化归属、完整文明并集与外交资格接受记录 |
+| [Culture_D0029_Review.md](Reviews/Culture_D0029_Review.md) | 文化归属、完整文明并集与外交资格接受记录；原Owner见闻归属由D0040取代 |
 | [Research_D0030_Review.md](Reviews/Research_D0030_Review.md) | 学以致用改用D及不应机械统一其它consumer的理由 |
 | [Boundary_D0031_Review.md](Reviews/Boundary_D0031_Review.md) | 学术传统身份暂停、施工队有限库存与文化展示要求；容量及展示方向后由D0032关闭 |
 | [Commerce_D0032_Review.md](Reviews/Commerce_D0032_Review.md) | 商业冻结、旧规则取代、未决合同及静态技术证据 |
-| [Commerce_D0039_Review.md](Reviews/Commerce_D0039_Review.md) | 用户确认的v0.1公式/首版Balance/指定Legacy收口与精确剩余边界；现行规则见Commerce_D0039 |
+| [Long_Term_State_D0040_Review.md](Reviews/Long_Term_State_D0040_Review.md) | 用户确认的A–D城市／文明历史、信誉与合同生命周期；取代项、未讨论边界及当前测试复用 |
+| [Commerce_D0039_Review.md](Reviews/Commerce_D0039_Review.md) | 用户确认的v0.1公式/首版Balance/指定Legacy收口与精确剩余边界；公式基线保留，生命周期现行增量见Commerce_D0040 |
 | [Military_D0033_Review.md](Reviews/Military_D0033_Review.md) | 军事主体冻结与训练快照等边界；综合训练深度后由D0034恢复 |
 | [Military_D0034_Review.md](Reviews/Military_D0034_Review.md) | 综合训练广度／深度的接受与未决转换公式 |
 | [Shared_D0035_Review.md](Reviews/Shared_D0035_Review.md) | Absolute D语义、consumer确认与独立Catalog待办 |

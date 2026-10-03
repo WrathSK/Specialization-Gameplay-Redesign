@@ -1,21 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0395
+Status Revision: S0396
 Implementation Build: source/live B154.181 / modinfo181; P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
-Latest Accepted Design Revision: D0039
-Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
+Design Revision Reviewed: D0040 (A–D Design-only sync; B154 Meaning direct contracts unchanged; other lifecycle Architecture/runtime adaptation not assessed)
+Latest Accepted Design Revision: D0040
+Design Sync State: D0040_LIFECYCLE_ACCEPTED_ADAPTATION_PENDING_RUNTIME_PARTIAL
 Work State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
+
+D0040已记录用户确认的[A–D长期状态规则](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)。五份Content及阅读页同步，旧版冻结；新生命周期未在本轮适配运行代码或宣称通过。B154的8个直接Meaning／Shared对象逐项与前版相同，当前测试与停止点可复用；其它相关生命周期在对应实施前按D0040复审。用户进行原B154测试，本轮不部署、不推进玩法。
 
 用户授权的B153阶段切换修复已LOCAL完成，source B154.181 / modinfo181：[修复、文化读数依据与一个最小续测](Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)。61 Meaning＋26 K定向PASS；B153 C10 CultureΔ0与C11中止原件保留，当前native四态仍未通过。
 
 修复同步事件重入、busy前置拒绝与跨模块失败意图回退；部分native写入不伪称已撤销，按owned退出。当前资格只读核验与整城Culture辅助读数已补；Culture实际应用/显示差异仍待区分，SQL/逐领域Floor/资格不改。精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED；完整六yield/cutover与L3/M/N/U2未授权。
 
-source/live B154.181 / modinfo181，source fb3ee7f。W0003 receipt `B154.181-fb3ee7f-playtest.json` DEVELOP_ACTIVE、182/182 MATCH；OS核对退出，精确B153 receipt恢复stable过桥后staging激活。B153/stable恢复点保留且MATCH，无pending marker。main稳定B069.96无promotion；Design/GC/永久记录不变，未启动游戏。
+source/live B154.181 / modinfo181，source fb3ee7f。W0003 receipt `B154.181-fb3ee7f-playtest.json` DEVELOP_ACTIVE、182/182 MATCH；OS核对退出，精确B153 receipt恢复stable过桥后staging激活。B153/stable恢复点保留且MATCH，无pending marker。main稳定B069.96无promotion；本轮仅Design同步，运行代码／GC／永久记录不变；运行包信息沿既有receipt引用，本轮未重核或部署，未启动游戏。
 
 下一允许动作：等待同城同回合C00/C10最小续测；Culture作品差值仍0先停，用辅助整城读数区分。成功才续C11/C01/OFF，不重复旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保持完整合同。
 

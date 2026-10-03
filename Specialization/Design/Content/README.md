@@ -5,15 +5,15 @@ Design Authority: User
 
 Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。本索引只导航内容权威，不授予新玩法决定或实施权限。
 
-[Research D0031](Research_D0031.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
+[Research D0040](Research_D0040.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
-[Industry D0036](Industry_D0036.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
+[Industry D0040](Industry_D0040.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 
 ## D0028共享入口
 
-[Shared_D0035](Shared_D0035.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0038.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0040](Shared_D0040.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0040.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
-未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029已确认Culture完整考察文明集合并集及见闻/Dialogue分离归属；D0028内容与Review保留历史，不再代表这些边界的当前状态。
+未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 
 ## 规范化表与本地化
 
@@ -43,9 +43,13 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 Research学术传统身份暂停与Industry有限施工队库存要求见新content；旧D0030/D0027冻结。Culture Gameplay仍D0029；[时代馆藏展示需求与未批准UI建议](../../Historical/Design/Records/Culture_Era_Presentation_D0031.md)独立记录，不修改Shared。
 
-## D0039 Commerce v0.1 closure
+## D0040 long-term lifecycle A–D — current authority
 
-[Commerce D0039](Commerce_D0039.json)为当前商业机械内容权威；五领域商业化、资本/风险/发展主要公式与首版数值、信誉身份清零、已签合同身份变化连续执行及重组征服退出已接受。机构/能力名与D0032结构保持；精确剩余定义与一般Ownership只按新content登记，不把已关闭TBD继续当前化。[收口审阅](../../Historical/Design/Reviews/Commerce_D0039_Review.md)。不是实现或最终Balance通过。
+[Shared](Shared_D0040.json)新增具名A城市历史／B文明历史／C机构关系／D成立合同语法；[Research](Research_D0040.json)、[Industry](Industry_D0040.json)、[Culture](Culture_D0040.json)、[Commerce](Commerce_D0040.json)分别维护精确生命周期。数字、名称与无关能力对象保留；不是统一Legacy engine或新存档schema。文化见闻Owner键和本城工程实践Owner限制被明确取代，商业合同关键城易主及信誉Owner规则关闭。E/F/G未讨论边界保持，当前B154 Meaning direct contracts不变；不实现、不部署。[接受／替代及真正未决](../../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)。此前D0031／35／36／38／39原件冻结保留；下列修订段落是来源历史，不覆盖D0040当前增量。
+
+## D0039 Commerce v0.1 closure — historical base
+
+[Commerce D0039](Commerce_D0039.json)为D0039时商业机械内容权威，现行生命周期由D0040增量替代；五领域商业化、资本/风险/发展主要公式与首版数值、信誉身份清零、已签合同身份变化连续执行及重组征服退出已接受。机构/能力名与D0032结构保持；精确剩余定义与一般Ownership只按新content登记，不把已关闭TBD继续当前化。[收口审阅](../../Historical/Design/Reviews/Commerce_D0039_Review.md)。不是实现或最终Balance通过。
 
 ## D0032 Commerce freeze / historical baseline
 
@@ -61,11 +65,11 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 
 [Military_D0034](Military_D0034.json) replaces D0033 for Military only: 综合训练 now combines breadth→permanent unit quality and absolute Shared D→local training efficiency, within the same named ability. [Review and explicit deferred conversion details](../../Historical/Design/Reviews/Military_D0034_Review.md). No relative normalization, no invented Production coefficients; Shared and other professions unchanged. D0033 links above are historical freeze provenance.
 
-## D0035 Shared clarification — current authority
+## D0035 Shared clarification — retained semantic base
 
 [Shared D0035](Shared_D0035.json)明确D为Absolute Infrastructure Depth，正式中文“区域基础设施深度”，无Relative Completeness。公式与各consumer玩法不变。[引用覆盖、consumer矩阵、独立catalog待办](../../Historical/Design/Reviews/Shared_D0035_Review.md)。既有profession文件引用Shared_D0028时，当前解释按Spec的D0035覆盖声明；历史文件不倒改。当次Military保持D0034；当前D0037只更新两处名称，其双层机制不重复修订。
 
-## D0036 Industry template reconciliation — current authority
+## D0036 Industry template reconciliation — retained base
 
 [Industry D0036](Industry_D0036.json)在D0032基础上只加入IND-TEMPLATE-006：模板为城市经验；首次合法工业身份及确认夺回时可靠历史∪当前合格建筑；显式区分初始化、恢复、同步与缺史保护。原D0032冻结保留；Shared与其它专业不变。不扩大目录、折扣或AI范围。
 
@@ -75,6 +79,6 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 
 [Military D0037](Military_D0037.json)取代D0034作为当前文件，仅正式名称行伍编制/战地勤务及Harbor明确镜像引用更新；其它Military机制逐对象保持。D0034及更早原件不改。[接受与旧条款冲突映射](../../Historical/Design/Reviews/Harbor_D0037_Review.md)；[港口阅读版](../Harbor.md)、[军事阅读版](../Military.md)。新内容不加入runtime或文化任务必读集合。
 
-## D0038 Culture Meaning Extension Floor — current authority
+## D0038 Culture Meaning Extension Floor — retained base
 
 [Culture D0038](Culture_D0038.json)在D0029基础上仅明确意义延展：每领域先换算为实际产出并分别Floor，之后同yield相加，最后乘合格巨作件数W。系数0.5、金币份额3、领域与作品资格、原生产出倍率隔离保持；不外推GPP。D0029原件与旧Shared引用保留，按当前Spec的D0035覆盖声明解释；其它primitive及完整运行切换未接受。

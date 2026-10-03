@@ -3,8 +3,27 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0039
+Latest Accepted Design Revision: D0040
 Document State: ACCEPTED
+
+## Accepted D0040 — 2026-10-03
+
+Acceptance: ACCEPTED / Long-term state lifecycle A–D; Design sync only
+Acceptance Evidence: 用户确认附件Commerce / Long-Term State Lifecycle A–D Design Talk，要求正式同步具名城市／文明历史、信誉及合同主体断裂，不实施，不补E/F/G。
+Accepted Spec SHA256: 596a96ed6d6cd103c68d4216bb4e0c01c0ff41942366bffe8228ea55f7dd066a
+Canonical Shared Content SHA256: cee0bb6d4876ae9ddba5769bf1e23a8b3ef696ab059ff0427887c60d33c7fa4b
+Canonical Research Content SHA256: 8eff5187204612bdc36f0294098bfa12f73b774b2c87e91133342bcd22f0c138
+Canonical Industry Content SHA256: fac58b6ff3d5c6c3354a1345ecffcd7956d014a0583758d59504d192eab47d64
+Canonical Culture Content SHA256: a3f58f2b2ca7e37e030a7cc6d014e15c3b058d4fedab8b010c3e0e08a2eb0b44
+Canonical Commerce Content SHA256: 44f6ee424bb6454cf1fb06a540d6ee4a20067bf01923592138fcfeda71b70f8d
+Previous Accepted Revision: D0039
+Frozen D0039: [原文](Revisions/Specialization_Design_Spec_D0039.md)
+Content: [Shared](Content/Shared_D0040.json) / [Research](Content/Research_D0040.json) / [Industry](Content/Industry_D0040.json) / [Culture](Content/Culture_D0040.json) / [Commerce](Content/Commerce_D0040.json)
+Review: [关闭项、替代与未讨论边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)
+
+明确A城市历史随城、B实际完成文明信用不转移、C信誉依持续Commerce Identity且Owner无关、D合同关键城市易主异常终止。取代文化见闻原Owner分账及工程实践完成Owner限制；资本锁具体S来源、同S最早达级／稳定tie及UI。学术传统跨Owner随城决策关闭，D0036模板四分保护及D0039重组征服例外保留。
+
+现有公式、数值、名称及未变对象保持原成熟度；城市消失／发展目标非法等本轮未讨论情况与E/F/G剩余边界不补。Military／Harbor、三处未衔接设计及当前四专业／单人范围保持。B154直接Meaning／Shared8个选中对象逐对象相同，当前原生待验与停止点不变；不改Mod、部署、GC或永久账本，不授予下一批实施。
 
 ## Accepted D0039 — 2026-10-02
 
