@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0391",
+    "status": "S0392",
     "runtime": "B152.179 / modinfo179",
     "military": "D0037",
     "harbor": "D0037"
@@ -197,6 +197,11 @@
       "path": "Mod/UI/BoostGreatWorkRead.lua",
       "kind": "full",
       "reason": "Complete directly affected native Culture percent/control/observation dependencies"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md",
+      "kind": "full",
+      "reason": "Current native C00 entry failure, bounded direct static findings and stop; not implementation authorization"
     }
   ],
   "dependencies": [
@@ -274,7 +279,7 @@
       "26 K catalog/facts/producer/legacy tests PASS",
       "Lua/XML/import/file-set/localization/context/links/diff checked"
     ],
-    "user": "Single fixture four Culture states; no native result yet. Stop on first gate failure."
+    "user": "B152 user stopped at C00: Dialogue projection unconfirmed and no valid native baseline; four-state interaction NOT_TESTED. Await authorized scoped repair before retry."
   },
   "full_audit_triggers": [
     "Cannot confirm exact old/new withdrawal; do not mix writers",
@@ -285,9 +290,10 @@
     "plan": "User authorized concrete single-city L2B gate with explicit per-domain Floor",
     "implementation": "B152.179 / modinfo179 LOCAL_COMPLETE_AWAITING_USER",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
-    "native": "USER_GAME_TEST_REQUIRED for Culture; recipient primitive TECHNICAL_INVESTIGATION_REQUIRED",
-    "stop": "No full ability/cutover; no L3/M/N/U2 without new authorization",
+    "native": "USER_GAME_TEST_BLOCKED_ENTRY at C00; Culture interaction NOT_TESTED. Recipient primitive remains TECHNICAL_INVESTIGATION_REQUIRED.",
+    "stop": "Await scoped entry/synchronization repair authorization; no current retry, full ability/cutover or L3/M/N/U2.",
     "deployment": "W0003 B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; source 85c77b4bcd815231a82ecf1610f9ebd305ad1c4c;182/182 MATCH; B151 and stable recovery retained. No game launch/native result.",
-    "authority_revalidation": "D0039 Commerce-only Design amendment: L2B Culture section/Shared/runtime/direct tests unchanged; metadata reviewed, authorized scope/native gate/receipt unchanged. No Commerce implementation authorized."
+    "authority_revalidation": "S0392 evidence-only update: direct source/read-only findings reviewed, native stop recorded; D0039/Culture D0038 scope and existing LOCAL/source/live unchanged. No implementation/deployment.",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md"
   }
 }

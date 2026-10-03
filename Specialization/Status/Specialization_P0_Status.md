@@ -1,15 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0391
-Implementation Build: source/live B152.179 / modinfo179; P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED; stable B069.96
+Status Revision: S0392
+Implementation Build: source/live B152.179 / modinfo179; P0_L2B_GATE_PROTOTYPE_NATIVE_BLOCKED_ENTRY; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
 Latest Accepted Design Revision: D0039
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED
+Work State: P0_L2B_GATE_PROTOTYPE_NATIVE_BLOCKED_ENTRY
 
 ## CURRENT AUTHORITATIVE STATE
+
+B152.179 / modinfo179本次用户中止于单城L2B **C00基线入口**：[一图与定域源码核对](Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md)。旧对话投影未确认，ADVANCE报ME_DIALOGUE_UNCONFIRMED，UI正确拒绝基线；没有四态原生差值，不能判Floor/倍率PASS或FAIL。原38 Meaning＋26 K LOCAL证据保留，不扩大覆盖。
+
+STATIC确认Hold未核验Audit本次实际执行，实际DIALOGUE_SAMPLE先事实回调、后Dialogue落地；测试fixture预装样本，未覆盖真实顺序/busy确认。busy或旧投影是候选，不宣布截图根因已定。下一建议为定域入口/同步修复及对应定向测试，**待用户授权**；不要求现在重试，不自动修改代码。
+
+D0039商业仅Design同步；Culture D0038逐领域换算后分别Floor、同yield相加最后乘W保持。精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED；当前原型不是正式资格解法。完整L2/六yield/全局旧GWA cutover、L3/M/N/U2均未授权。
+
+source/live仍B152.179，source85c77b4；既有W0003 receipt `B152.179-85c77b4-playtest.json` DEVELOP_ACTIVE/182 MATCH及B151/stable恢复点保持，本轮只引用、没有重核包或部署。main稳定B069.96，无promotion。GC、永久账本、AI/MP、目录及其它能力未改。
+
+一张原图已逐张读并移至ignored local Evidence，1/1 SHA256一致；本轮未运行玩法测试/模拟。截图仍显示BASELINE/未确认，不声称已退出OFF或恢复AUTO。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保存停止点；等待修复授权。
+
+## 历史阶段记录
+
+### S0391 — D0039 Design同步与B152 LOCAL待原生
 
 D0039商业Design Talk已同步：[Commerce正式内容](../Design/Content/Commerce_D0039.json)与[关闭/剩余边界](../Historical/Design/Reviews/Commerce_D0039_Review.md)。仅Design；当前B152.179文化L2B测试/授权/receipt不变，无新商业实现、native验收或部署。Shared正式Content/科研/文化/工业正文及GC不改。
 
@@ -21,7 +35,6 @@ source/live B152.179，source85c77b4；W0003 receipt `B152.179-85c77b4-playtest.
 
 一次最小测试：同城非主题支持馆藏、正整数Culture追加，C00→C10→C11→C01→结束；右键等待UI刷新记录当前阶段，前阶段不回填。异常或两次追加差值不等即停。暂不要求用户寻找本机不存在的未知同类作品、重做小数或旧长测。新实机结果待用户；GC、永久账本、AI/MP、目录及其它能力不改。
 
-## 历史阶段记录
 
 ### S0389 — B151原生精度与待确认Floor历史
 

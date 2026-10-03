@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0391/D0039 Commerce user-authorized Design-only closure: complete current Commerce/Spec direct Shared/Network refs reviewed; independent coverage/exception checks. Only reviewed changed/new document hashes updated; prior frozen/Mod/Runtime_Index unchanged. Current L2B scope/source/live receipt and Culture/Shared rules revalidated unchanged; no new native PASS or deployment.",
+  "review_basis": "S0392 B152 native entry interruption: single screenshot read/archived unchanged; direct Hold/Audit, real sample callback order and fixture reviewed. Evidence and current stop/manifest changes reviewed; only these five document hashes updated. No source, Design, Runtime_Index, gameplay test or deployment change; exact native cause not claimed resolved.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "2d602f09c930da48b383b0364b6244bd0603602b7a0bec6225a5ecd6c37b17fb",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "edf0d66fd0bb58ea5e6d51c2dc391ae0c5e32367c7795b98706a18dae5a43311",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "51703b45e1b9ad2d6493c31aba75171142c81ad90bc53b2d9d41287abe831253",
+    "Specialization/Status/Specialization_P0_Status.md": "5c755230232b89ea18f4fca1974092861086164475b96c63aa23d05f8c94ea19",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "77080987f244ceccf76e7952879c15736e2f72f6375b68563f55e515dbeb1752",
+    "Specialization/Workflow/Authority.json": "02aa615a857397c51ea501c4f2a2703ccd40e018165512280c8c5e9449896804",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -335,7 +335,7 @@
     "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md": "d92b89ffb9691977f0a29b96bdb9fe4bcc45d9a69e853e5605fa713d76b8f91f",
     "Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md": "e2dfa11bcf5cf5ff1e076b659e4f2e4115e041cbf66da14ec07cea2790d749c6",
     "Specialization/Architecture/v2/Culture_Preparation.md": "b19fe89dbf83aed1674c37c4ebcf58c05bb4b67a54241f10bcf6d21d1ccc91bc",
-    "Specialization/Architecture/v2/P0_L2_Meaning.md": "f3dffd9aa6c75c8b873c2889f394c0cadf21469583ebd4f0b71efea7fbab6fb2",
+    "Specialization/Architecture/v2/P0_L2_Meaning.md": "dd85c4915f5fdaa0b6d69c123cb4b94d566f0e37ec005e2f59d06b5de62600d5",
     "Specialization/Architecture/v2/P0_L3_Inspiration.md": "3c31aa7cdb8603306848487146b880b853b88aebbff1a427fb63bbb9ba13db27",
     "Specialization/Architecture/v2/P0_M_Dialogue.md": "e8ca691dafd714ea911ac29d2f0b9dcc57bff6b2c376a4025f3d243795e26621",
     "Specialization/Architecture/v2/P0_N_Expedition.md": "52179c4a61ea6644076ef9b3ba6b05d6b26b4220c077bd4257129283a8679917",
@@ -367,13 +367,14 @@
     "Specialization/Design/Content/Culture_D0038.json": "3296ddf8037f250fd46a51e00bf51f8d98e41cb7073db69fb2269e8faac4383e",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0037.md": "2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9",
     "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md": "4901a5abb4e801e64014118ab9820802f9afc16cf3d899c95909eab905576314",
-    "Specialization/Workflow/P0-L2B.json": "d566bcb362afa5c11808fe3a11fa6557ede974047afa0f694b42c2a609e54c13",
+    "Specialization/Workflow/P0-L2B.json": "825b22b7ed27eecc968aea36ebf8743a8062cbae6b7c6b9c2ab6a2c09880657f",
     "Mod/UI/BoostGreatWorkRead.lua": "3d667206f03270a4e29ca08ce84086746e302b285b93330d3a19dc0baea515c3",
     "Specialization/Design/Commerce.md": "ef821e16d9641a7364f722bd30d92ea01635828e6c4ae572debb16e2ece91c1e",
     "Specialization/Design/Network.md": "be1de3b4a270d2ada9e31a77a099ff901096c309366bcfbf114aadee9e931f26",
     "Specialization/Design/Shared.md": "9bf0cd64331f41293888e7e38db8a02c1a1ba66c635c61313dda87d8ae610db3",
     "Specialization/Design/Content/Commerce_D0039.json": "77f4206158e07d0c0df0444cc4cdc6f1289bc4ccb9b58207fe34ed580a105f92",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0038.md": "128af123ee3c1ae0faf9a24d789fd602e886973868605f865afdd13de29bd8ab",
-    "Specialization/Historical/Design/Reviews/Commerce_D0039_Review.md": "194a83b2c7c00768ec109ddf9d6a34cdcf7125d71e8f6f587d7f0471dca3f7dd"
+    "Specialization/Historical/Design/Reviews/Commerce_D0039_Review.md": "194a83b2c7c00768ec109ddf9d6a34cdcf7125d71e8f6f587d7f0471dca3f7dd",
+    "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md": "cb9b48527bdb4156cff58c0c7affdc5513f87d1b3de3f090ab1958b06c67e8b4"
   }
 }

@@ -1,9 +1,11 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED；精确recipient门禁未解决，正式cutover未授权。
+State: P0_L2B_GATE_PROTOTYPE_NATIVE_BLOCKED_ENTRY；C00未取得有效基线，原LOCAL证据保留；精确recipient门禁未解决，正式cutover未授权。
 Authority: Culture D0038 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
+
+本次B152用户测试中止于C00：[投影未确认与真实采样路径缺口](../../Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md)。四态比较未测，当前不要求重试。下一建议仅Dialogue Hold/Audit执行确认、成对样本落地后的本城通知及真实入口定向回归，**修复尚未授权**。不得将busy/旧样本候选写成已证实原生根因；不放宽未知保护或改公式。原LOCAL实施/部署与既定四态合同保留如下，不等于现在可继续未修复入口。
 
 用户明确“不同领域不合并同种产出取整，分别Floor”并授权原具体L2B门禁原型。D0038正式记录：`per_work_d = floor(0.5 × D_d × share_y)`，`per_work_y = Σ per_work_d`，`total_y = per_work_y × W`。Commercial D1＋Harbor D1=每件2G；Campus D1/W2=0S。不外推GPP、K0.5/份额/D/资格不变。
 
