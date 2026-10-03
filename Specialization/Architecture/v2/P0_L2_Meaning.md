@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE；B155候选／theme读取本地完成，原生待验。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_SINGLE3_NATIVE_STOPPED；B155同回合single3文化Δ0 vs3，原生平加FAIL；显式100／Dialogue／theme待验。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -13,7 +13,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155测试继续，不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
-下一允许动作仅B155最小原生验收：先单flat，再Dialogue，最后用户准备的固定已主题馆藏；失败停对应路径，不重复B154长测。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+[B155本次同回合T62结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)：W1、非主题、旧Dialogue0%，single3原生Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；本候选平加FAIL，不推断HD被撤销。先直接End确认OFF／基线恢复，仅继续已授权显式100候选的①→②；成功才补Dialogue／固定主题，两个flat均失败停止primitive。退出／结算／冷加载本次无证据，不重复B154长测。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 
 ## 平加共存与主题化技术原型
 

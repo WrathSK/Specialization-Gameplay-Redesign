@@ -11,7 +11,7 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0399",
+    "status": "S0400",
     "runtime": "B155.182 / modinfo182",
     "military": "D0037",
     "harbor": "D0037"
@@ -245,6 +245,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
       "kind": "full",
       "reason": "B155 targeted local result and one minimal native acceptance flow"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md",
+      "kind": "full",
+      "reason": "Latest same-turn SINGLE3 Culture failure, corrected baseline4, untested candidate and exact native stop; no fix authorization"
     }
   ],
   "dependencies": [
@@ -322,7 +327,7 @@
       "26 K catalog/facts/producer/legacy targeted tests PASS (0.092s)",
       "6 changed Lua syntax, XML/control IDs/import/localization/context/links/diff checked; no full historical/stress"
     ],
-    "user": "B154 prior four phases/OFF observed; work Culture2/3/6/4,addition delta1/2 vs expected3: native combination FAIL retained. B155 flat/Dialogue/theming candidates USER_GAME_TEST_REQUIRED, no native or settlement PASS from local tests."
+    "user": "B155 same-turn T62 W1 SINGLE3 Culture4->4 vs required4->7 USER_GAME_TEST_FAIL; Science/Gold deltas1/4 visible. Scale100/Dialogue/theming/OFF restoration/settlement/load untested. B154 prior combination FAIL retained; local checks do not prove native."
   },
   "full_audit_triggers": [
     "Cannot confirm exact old/new withdrawal; do not mix writers",
@@ -333,10 +338,10 @@
     "plan": "Latest user directs minimal technical prototype first, fixed additions under Dialogue/theming; earlier theme amplification deferred",
     "implementation": "B155.182 / modinfo182 LOCAL_COMPLETE; candidate/configuration/themed-reader only, no formal cutover",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-    "native": "B154 USER_GAME_TEST_PARTIAL: four phases/OFF visible in one W1 fixture. Culture addition/native-only USER_GAME_TEST_FAIL:2/3/6/4,delta1/2 vs3. No settlement/theming/cold-load PASS; precise recipient still TECHNICAL_INVESTIGATION_REQUIRED.",
-    "stop": "Await B155 minimum native acceptance; native failures stop corresponding primitive, no compensation or automatic next batch",
+    "native": "B155 same-turn T62 W1 SINGLE3 Culture4->4 vs required4->7 USER_GAME_TEST_FAIL; Science/Gold deltas1/4 visible. Scale100/Dialogue/theming/OFF restoration/settlement/load untested. B154 prior combination FAIL retained; local checks do not prove native.",
+    "stop": "Only end B155 SINGLE3/confirm OFF baseline then already-authorized scale100 flat candidate; Dialogue/theming conditional on flat PASS. No new fix/formal cutover or L3/M/N/U2.",
     "deployment": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0399/D0042 Design-only named A–G lifecycle and Settler atomic confirmation; B155 native testing continues, no new result. 9/10 direct JSON objects unchanged; Dialogue pending cancellation/active wording only, native target/fallback/precision and completed history unchanged. No Mod/runtime/GC/main/deployment change or new implementation authorization.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md"
+    "authority_revalidation": "S0400/B155 native T62 same-turn SINGLE3 Culture4->4 vs required4->7: scoped USER_GAME_TEST_FAIL; Science/Gold deltas1/4 visible. Both game counters62/500, prior72/73 reading corrected (Future Technology remaining turns). Only OFF restoration then already-authorized scale100 candidate remains; Dialogue/theming/settlement/load untested. D0042 contracts unchanged; no Mod/runtime/GC/main/deployment or new implementation authorization.",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md"
   }
 }

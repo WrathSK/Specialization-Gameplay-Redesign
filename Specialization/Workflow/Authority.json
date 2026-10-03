@@ -10,7 +10,7 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0399",
+    "status": "S0400",
     "runtime": "B155.182 / modinfo182",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,8 +33,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "441b85f609e5e9c70e5cb5eb58ba34a88870bd52",
-  "current_batch": "P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE",
-  "next_batch": "Only B155 minimal native flat/Dialogue/theming prototype acceptance; no formal six-yield/all-city/global old GWA cutover or L3/M/N/U2.",
+  "current_batch": "P0_L2B_SINGLE3_NATIVE_STOPPED",
+  "next_batch": "Only end B155 SINGLE3/confirm OFF baseline then already-authorized scale100 flat candidate; Dialogue/theming conditional on flat PASS. No new fix/formal cutover or L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2B.json",
   "live": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
   "stable": "main B069.96 / modinfo96",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0399/D0042 Design-only named A–G lifecycle and Settler atomic confirmation; B155 native testing continues, no new result. 9/10 direct JSON objects unchanged; Dialogue pending cancellation/active wording only, native target/fallback/precision and completed history unchanged. No Mod/runtime/GC/main/deployment change or new implementation authorization.",
+  "context_review_status": "S0400/B155 native T62 same-turn SINGLE3 Culture4->4 vs required4->7: scoped USER_GAME_TEST_FAIL; Science/Gold deltas1/4 visible. Both game counters62/500, prior72/73 reading corrected (Future Technology remaining turns). Only OFF restoration then already-authorized scale100 candidate remains; Dialogue/theming/settlement/load untested. D0042 contracts unchanged; no Mod/runtime/GC/main/deployment or new implementation authorization.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

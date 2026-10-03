@@ -1,25 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0399
-Implementation Build: source/live B155.182 / modinfo182; native prototype pending; stable B069.96
+Status Revision: S0400
+Implementation Build: source/live B155.182 / modinfo182; single3 native FAIL; scale100 pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (A–G Design sync; B155 direct contracts revalidated, lifecycle runtime adaptation not assessed)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE
+Work State: P0_L2B_SINGLE3_NATIVE_STOPPED
 
 ## CURRENT AUTHORITATIVE STATE
 
-[D0042](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)已同步具名A–G生命周期与投资原子确认；Research D0040不变。9/10当前JSON对象完全复用，Dialogue仅新增未提交取消边界，倍率／累计／额度语义未改。用户正在进行B155测试，本轮没有新实机结果、Mod修改或部署；下列source/live沿已记录receipt引用，未重核外部包。新生命周期尚未作为运行实现／验收，后续依赖批次须复审。
+[D0042](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)已同步具名A–G生命周期与投资原子确认；Research D0040不变。9/10当前JSON对象复用，Dialogue仅增未提交取消边界，倍率／累计／额度未改；新生命周期未作为运行实现／验收。当前Meaning追加独立于Dialogue／theming，不因同yield放大市政／外交Culture；Floor／K／资格保留。
 
-用户最新[D0041](../Design/Content/Culture_D0041.json)要求意义延展追加独立，Dialogue／theming均不放大；市政／外交Culture追加不因同yield成为原生。Floor／K／资格／D0040生命周期保留，较早主题包含追加仅作未来选项。[B154](Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)配置3但Δ1/2的组合FAIL不改判，完整L2 NOT_PASSED。
+[B155本次两图](Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)为同回合T62、W1、非主题、旧Dialogue0%：SINGLE3配置＋3Culture，原生4→4，预期4→7，**本候选平加USER_GAME_TEST_FAIL**；科研0→1、金币0→4可见。基线4＝原生2＋古罗马剧场2；不能据接入后总值4断定HD＋2被撤销。显式100／Dialogue／主题化／退出恢复／结算／冷加载本次未测；[B154组合FAIL](Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)保留，完整L2 NOT_PASSED。原图2/2 SHA256 MATCH，已归档至ignored evidence。
 
-获授权先做[B155.182单城技术原型](Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)：保留拆分控制，新增single3／single3显式100候选，仅OFF切换；主题boolean可靠才采按需读数，逐yield固定期望A×W，不补差。数据库没有同effect双参数实例，100不是已确认修复。精确recipient／正式六yield门禁仍未解决，不扩大其它能力。
+source/live B155.182 / modinfo182，代码441b85f；沿已记录部署来源7c4b72f、W0003 receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE、182/182 MATCH引用，本轮未重核外部包／部署／启动游戏。B154/stable恢复点保留，main稳定B069.96未promotion。[本地原型结果](Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)仅LOCAL／STATIC，不是引擎倍率PASS；精确recipient及正式六yield门禁未解决。
 
-source/live B155.182 / modinfo182，代码commit441b85f；部署来源commit7c4b72f，W0003 receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS核对退出，B154精确receipt恢复stable过桥后staging激活；B154/stable恢复点均MATCH、无pending marker，没有启动游戏。main稳定B069.96未promotion。新本地定向结果见报告，不是引擎倍率PASS；原8对象只Meaning倍率说明变更，另7项逐对象复用。
-
-下一允许动作仅B155最小实机原型：先single3非主题配对，成功补Dialogue；失败才显式100候选。用户准备好的主题馆藏重新建立固定基线，追加仍按A×W；错误停对应路径，不重复旧长测。源码／UI原型已改，永久Property／账本／GC与其它Gameplay不改。**正式六yield／all-city／global旧GWA cutover和L3/M/N/U2未授权。**[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留条件／退出。
+当前SINGLE3停在②。下一允许动作仅已授权B155对照：右键“切换验证配置”直接退出并确认OFF／旧基线恢复，再选“单一＋3／倍率100%候选”重做同fixture①→②。平加成功才继续Dialogue／固定主题馆藏；两个flat候选均失败则停止primitive，不补差／降期望，不重复旧长测。本轮只证据／状态文档，Mod／永久Property／账本／GC不改。**新修复、正式六yield／all-city／global旧GWA cutover及L3/M/N/U2未授权。**[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留完整条件／退出。
 
 ## 历史阶段记录
 
