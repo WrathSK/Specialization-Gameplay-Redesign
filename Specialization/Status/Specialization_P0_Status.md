@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0408
+Status Revision: S0409
 Implementation Build: source/live B157.184 / modinfo184; native instance lifecycle PASS, Culture addition FAIL; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
-Latest Accepted Design Revision: D0042
-Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B157_CULTURE_NATIVE_FAIL
-Work State: P0_L2B_CULTURE_INSTANCE_PRESENT_YIELD_FAIL
+Design Revision Reviewed: D0043 (意义延展七域五产出已接受；runtime未适配)
+Latest Accepted Design Revision: D0043
+Design Sync State: D0043_MEANING_SCOPE_DESIGN_SYNC_ONLY
+Work State: P0_L2C_PLANNED_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户已接受[D0043意义延展七域五产出](../Design/Design_ChangeLog.md#accepted-d0043--2026-10-03)：本版暂排市政／外交，不改Shared、其它能力、K／逐域Floor／W／作品资格／独立追加或生命周期。文化追加技术及[B157反证](Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留未来恢复，退出性能专项后的功能开发不等待此调查；不把延期写成已修复或原生永久不可行。
+
+下一[P0-L2C单城五yield门禁计划](../Architecture/v2/P0_L2_Meaning.md#下一批计划--p0-l2c-七域五产出门禁)与manifest已准备，**PLANNED_NOT_AUTHORIZED**。适配七域／零Culture流程，复用S/G并补P/F/Faith精确writer与按需实测；旧GWA只hold单城，保留退出／load／loss、K桥与当前GC。精准recipient／倍率／结算与正式cutover按各自门禁另行处理，不自动进L3/M/N/U2。
+
+source/live沿B157.184/source f75494b与既有receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。当前代码仍九域S/G/C原型，尚未实施D0043；无新build、Mod/GC/永久数据/main/部署变化。Design同步／计划／文档检查完成；用户此时无需实机测试。停止等待P0-L2C实施授权。
+
+## 历史阶段记录
+
+### S0408 — B157实例进入／退出与Culture增量失败（当时）
 
 [B157三阶段十图](Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)已确认同T62／SINGLE3：HD文化＋2持续，Meaning S1/G4/C3实例在追加阶段进入本城，旧GWA Writing Culture实验内退出；直接END后Meaning退出、旧GWA按当前事实恢复。出现实例均Active=true、唯一subject及本城／其它城映射正常，所测生命周期USER_GAME_TEST_PASS。
 
@@ -17,7 +27,6 @@ Work State: P0_L2B_CULTURE_INSTANCE_PRESENT_YIELD_FAIL
 
 source/live仍B157.184/source f75494b，沿既有receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。十图ignored归档10/10 SHA256 MATCH；无Mod/Design/GC/永久数据/main变化，无部署/游戏启动/新模拟。停止等待下一定域动作授权，不自动进入cutover或其它能力。
 
-## 历史阶段记录
 
 ### S0407 — B157映射原生与三阶段待验（当时）
 

@@ -1,29 +1,43 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_CULTURE_INSTANCE_PRESENT_YIELD_FAIL；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
-Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+State: P0_L2C_PLANNED_NOT_AUTHORIZED；D0043已采用意义延展七域五产出，文化追加技术DEFERRED，不再阻塞本版v0.1；source/live B157仍旧九域原型，未适配。正式cutover／下一能力未授权。
+Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`保持。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-**当前原生结果。** [B157三阶段十图](../../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)同T62／SINGLE3，HD文化＋2持续；Meaning S1/G4/C3均进入本城、Active=true且owner／唯一subject核验，旧GWA Writing Culture实验内退出；直接END后Meaning退出、旧GWA恢复。实例生命周期及S/G读数1／4在所测范围PASS，Culture实际4→4→4、Δ0 vs3，完整L2仍未过。Meaning／旧GWA映射District1048589，HD本城1114126；截图未提供类型，不猜名称或原生覆盖算法。源码／DB显示CITY_CENTER隐藏载体与AMPHITHEATER宿主不同，只是下一定域核对线索。不得继续猜系数、重复当前三态或进入③／主题化；下一宿主类型／附件核对仅建议，任何诊断或挂载候选实施需新授权。
+用户已明确采用暂排方案，[D0043接受](../../Design/Design_ChangeLog.md#accepted-d0043--2026-10-03)仅改变意义延展适用域：Campus／Industry／Commercial／Harbor／Encampment／Holy Site／Neighborhood；Science／Production／Gold／Faith／Food。Shared完整映射及其它能力保持。K／逐领域Floor／W／作品资格／ACTIVE与独立追加不变。
 
-**保留反证。** [源码／DB／B055对照](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)及B155失败保持；早期单flat2→4→2不证明HD多flat共存，不宣布Culture平加永久不可行。Production／Food／Faith没有本原型writer。当前已排除本次Culture未创建／误归城／实验内旧GWA残留，组合／宿主域／读数或结算仍未知。
+[B157三阶段](../../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)已确认所扫Writing实例进入／退出及S/G读数1／4，Culture＋3实例虽映射正确却Δ0，失败保留。[文化技术档案](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)、B155两候选及下方诊断／主题化原型章节保留为未来调查；其中旧“尚未采用／待诊断”只描述当时，不是当前指令。本轮不继续该调查，不要求用户重测，不删除实验精确清理依据。
 
-**条件后备／未来处理。** 用户接受无可靠Culture路径时暂排Government Plaza／Diplomatic Quarter；两者是Meaning唯一Culture来源，采用后将九域六yield缩为七域五yield，其它Shared映射／能力／K／Floor／W／资格不动。当前只登记CONDITIONALLY_AUTHORIZED，正式Design仍D0042九域、B155也未适配；采用前必须同步正式来源与阅读版，不能仅从读入端偷偷删域。未来恢复需可靠文化共存与倍率边界证据。旧SINGLE3／四态要求Culture3／正Culture，不能直接当七域验收流程。
+当前runtime未因Design记录改变，Model仍九域，Probe／reader／载体只S/G/C且要求正Culture；P/F/Faith没有Meaning writer。下一[P0-L2C计划](#下一批计划--p0-l2c-七域五产出门禁)必须正确适配零Culture流程，不能删两个输入后沿用旧四态。计划／manifest为PLANNED_NOT_AUTHORIZED；本轮不写Mod、不部署。精准recipient／倍率／正常结算与最终cutover仍按各自真实门禁，不把文化技术延期误当其它问题已解。
 
-[最小按需native Modifier实例只读诊断](#modifier实例诊断)已经完成B156 schema与B157严格District映射／有限subject门禁；[26项LOCAL](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)、[此前OFF映射原生](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md)和本次三态分别保留证据范围。当前包的三态已完成，不再待测试；只读诊断不等于收益组合成功。本次只确认所扫Writing精确项的显式同session进入／退出，精准recipient、Dialogue／theming隔离、正常结算／冷加载仍独立；正式cutover及L3/M/N/U2未授权。
+## 下一批计划 — P0-L2C 七域五产出门禁
 
-[B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
+**Goal／边界。** 一个默认OFF、单城可逆原型，验证七域模型及五产出的整数承载、实际读数和定域退出。先让剩余五yield进入可验证状态；不是全城正式接入，也不是整个L2完成。实施须用户另行授权；不实施Culture新候选或宿主诊断，不进入巨作启迪／时代对话正式改造／考察／Network／UI润色。
 
-[B155单城技术原型](../../Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)增加single3与single3显式100候选、仅OFF配置切换和可靠theme读取；按固定A×W比较，真实失配不补差。原14＋新2均module-owned，旧GWA／Dialogue只hold本城；默认OFF，加载清实验。不改变原Floor／K／资格／Shared／生命周期／GC；原生算法未证实。
+| 工作 | 具体范围与责任 |
+|---|---|
+| 七域输入 | 只在Meaning白名单排除Government／Diplomatic；沿用Shared D与K确认馆藏，不改Shared或其它consumer。每域换算后Floor，同yield再合并，W最后乘 |
+| 五yield writer | 复用S/G已测整数primitive；补Production／Food／Faith的精确module-owned有界载体。合法每件最大S/Food/Faith=5、Production=10、Gold=30；不静默clamp、不补差，不借此判定新primitive已原生PASS |
+| 零Culture流程 | 去掉SINGLE3／正Culture启动与③门槛；流程为基线→五yield追加→直接结束。旧Meaning16项owned（含Culture候选）的清理依据保留，旧候选不启用；旧实验加载／引用退出责任不丢 |
+| 可读诊断 | 一张报告显示合格W、每件／总量五yield预期和原生实测、ACTIVE／配置状态；D组成按需展开。只显式读取，不加hover／per-frame请求、全局常驻扫描或GC入口 |
+| 旧效果与退出 | 原型内只hold目标城GWA，由原模块撤精确156项；维持本城旧Dialogue0%控制。先清新owned，确认退出后释放旧模块按当前事实重算；其它城市不受影响、UNKNOWN不扩大清理 |
 
-[技术依据和可改空间](#平加共存与主题化技术原型)保存关键反证，现有B055 flat／B059 Oxford theme仅具体场景。当前原8对象中Meaning增加倍率说明，其余7项逐对象不变；完整Dialogue／meaning_multipliers合同纳入当前读取，不全量重审其它专业。
+**Likely touched。** `Mod/CultureMeaningModel.lua`、`CultureMeaningProbe.lua`、`Data/CultureMeaningProbe.sql`、`UI/BoostGreatWorkRead.lua`及直接请求／UI／本地化／modinfo、`DevelopmentTests/test_culture_meaning_probe.py`和直接reader回归。旧GWA／Dialogue／K桥只在真实调用依赖要求时作最小适配；所有影响路径实施前仍读精确消费者，不因hash匹配略过writer／load／loss边界。
 
-D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155候选原生结果不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
+**触发／生命周期。** 本城明确验证动作、馆藏位置／资格／件数、七域D、ACTIVE／reference变化；复用当前Shared／K样本，不复制全城采集或构造全套诊断用于普通计算。相同可靠输入零写，同回合真实变化继续响应；同一session只保留单fixture／有界读数，结束、引用退出、失城、load按module-owned路径处理。load默认OFF，永久Property／E2历史／GC策略不改。
 
-[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。上述为B155当时证据；B157现已观察到Meaning本城活动实例，Culture仍Δ0，见上方当前结果。本次只读诊断以外的新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+**Local acceptance。** W0004 L2＋直接触及退出／加载的L3断言，不默认full／stress。七域映射与两个暂排域变化无影响；D0/1/3/6/10、每域Floor后同yield合并反例、W0/1/2；五yield合法编码范围／精确附件／无Culture生成；零Culture可启用／结束、重复零写／同回合变化／两城隔离；UNKNOWN／引用错误不误清；创建或退出失败不混合旧新；load／loss精确撤除、直接请求及读数失效不回归。外部DB仅只读定义证据，不替代原生。
+
+**Minimal game test（包就绪后给精确步骤）。** 复用当前Culture ACTIVE IV存档，一城已支持作品及已登记普通建筑，确保五yield输入有可观察非零值；可用既有Cheat补足已支持建筑，不扩目录。一次基线→启用报告比较五yield→同回合移动一件作品核对件数→保存实验仍启用的副本→直接结束并核对撤销→完全退出→冷加载该启用时副本，检查实验默认OFF、精确载体清理及旧路径按当前事实恢复。用户只需少量报告，不逐回合截图或旧长测；具体正常收益／结算仍按原生能提供的实际观察，不用carrier配置冒充入账。第一项失败停对应路径；没有某yield非零fixture就标未测，不凑PASS。
+
+**Exit／后续。** 五yield各给STATIC／LOCAL／USER证据及原型生命周期范围；所测整数读数／变化／退出可靠后，再提出正式接入与旧GWA cutover计划。精确支持作品recipient、Dialogue／theming独立、正常结算未覆盖部分仍是各自下一门禁：同类未知作品的整城probe拒绝只是临时保护，不可作为正式精准排除方案；当前旧Dialogue只测C/T也不证明未来全native-yield倍率隔离。不得因此宣称完整L2 PASS。文化平加／宿主调查单列未来恢复，不再作为七域五yield前置；只具体未通过的相关路径阻塞其后依赖，不默认阻塞整个v0.1。
+
+**Rollback。** 继续Git已验source＋既有部署receipt；清新owned后才恢复旧package。保持游戏退出、staging／target／recovery／equality门禁；本轮只有计划，无新build／deployment标识。
 
 ## Modifier实例诊断
+
+**历史技术合同／未来恢复参考。** B156/B157已完成所测诊断；D0043已采用两域暂排，以下首次诊断／三态派发不是当前待办。原证据范围、一次token与有界读取限制继续保留，不自动授权新诊断。
 
 **目的／范围。** 在现B155固定Writing fixture，区分HD著作＋2与Meaning Culture3的定义命中、附件／owner、活动API值和作品实际读数。先例与[建筑来源调查](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md#古罗马剧场建筑与著作收益来源复核)已STATIC核对；原生实例schema、城市映射／活动、组合算法仍UNKNOWN。本节计划已由用户明确授权实施，B156完成；只读诊断不等于Meaning新收益路径。
 
@@ -59,6 +73,8 @@ B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS；�
 
 ## 平加共存与主题化技术原型
 
+**历史原型／未来Culture恢复参考。** 两个获授权Culture候选已失败，D0043将两域暂排；以下方案不作为当前五yield的实施或验收要求。
+
 ### 定域静态证据
 
 B155原型实施前只读含14 Meaning载体的DebugGameplay：`EFFECT_ADJUST_CITY_GREATWORK_YIELD`共1378 Modifier，1258仅YieldChange、120仅ScalingFactor，同时声明0；GameEffects相关字段NULL、GameEffectArguments0行。HD+2、Meaning1+2、Dialogue TEST100=200共用effect，静态不解释共存算法。当时数据源为配置实际指向的内层Firaxis Cache；外层旧Cache无Meaning，不作为当时依据。本次[显式100结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)另只读核对当前内层DB两个候选／14精确附件与参数完整；本轮测试helper未配置DB且未运行。新增mixed参数定义是我们自己的待验证候选，不把原型前“无同族先例”误写成当前DB仍零行或原生算法已确认。
@@ -84,6 +100,8 @@ UI按需可靠theme boolean、分建筑小计与S/G/C实际差值；缓存最多
 没有可靠source-origin过滤参数；同类型作品定义基值异质，不能正式把Dialogue统一改成同类+2。未知recipient、其它三yield及正常结算仍独立；单城受控拒绝未知作品不是正式精准排除方案。技术原型完成后停止等待用户验收；不自动接正式能力／其它批次。
 
 ## 已授权切片 — P0-L2B门禁原型
+
+**D0042/B152–B157当时授权记录。** 当前D0043七域计划见上方P0-L2C；本节不授予新实现、不恢复旧Culture候选或全局cutover。
 
 **Scope。** 逐领域整数模型及单城原生文化追加/倍率四态；默认OFF，仅一个fixture。已有Science/Gold整数复用；Culture原1/2/4/8片段保留，B155追加两个single3对照；不创建其它三yield writer。当前规范九领域计算，Shared/K接口不改。未知对象保护不升级为正式规则。
 
@@ -147,7 +165,7 @@ UI按需可靠theme boolean、分建筑小计与S/G/C实际差值；缓存最多
 
 ## 范围与完整规则
 
-当前D0038仅修订意义延展取整位置，其它D0029资格/映射保持；上方L2A no-rounding只是当时历史合同。
+当前D0043仅在D0042上暂排意义延展Government／Diplomatic；逐领域Floor继承D0038，固定追加继承D0041，其它资格／生命周期保持。上方L2A no-rounding与P0-L2B九域为当时历史合同。
 
 只接Culture ACTIVE4的意义延展；每件合格巨作，逐领域追加：
 
@@ -163,8 +181,8 @@ meaning_K=0.5为初版参数；金币一份=3，其它普通产出一份=1。每
 | Harbor | Gold | Admiral |
 | Encampment | Production | General |
 | Holy Site | Faith | Prophet |
-| Government Plaza | Culture | 无 |
-| Diplomatic Quarter | Culture | 无 |
+| Government Plaza | 本版暂不参与Meaning | 无 |
+| Diplomatic Quarter | 本版暂不参与Meaning | 无 |
 | Neighborhood | Food | 无 |
 
 不包括Theater自身。完整作品资格只复用K的已支持七类/历史时代目录；Relic、Product、Wonder及未知定义排除。普通建筑完工/未掠夺、免费/特色及缺Tier规则按Shared；不使用旧BASE相邻、旧Actual复制或额外填值。例：Campus D10→每件5Science，Industry D6→3Production，Commercial D3→floor(4.5)=4Gold；不先按份额Floor，也不先合并Harbor。
@@ -181,9 +199,9 @@ Meaning是追加产出，未来Dialogue只放大作品原生产出，**不得放
 
 ## 最小接口门禁及停止条件
 
-1. **精度：** B151所测S/G半点失败、整数追加可用；D0038明确逐领域Floor，不重复该小数实验，不外推其它能力。Culture组合按本原型继续确认。
+1. **精度：** B151所测S/G半点失败、整数追加可用；D0038明确逐领域Floor，不重复该小数实验，不外推其它能力。Production／Food／Faith须新原生整数证据；Culture组合延期，不再作为当前门禁。
 2. **资格：** 一件已支持作品与同类别未支持定义作本地/native必要对照；禁止“目录数正确但全类Modifier仍影响排除作品”。路径若无法限定，停止并报告具体primitive边界。
-3. **隔离：** 同城同时配置作品native倍率与本项附加值，验证Dialogue百分比不放大追加。先静态/模拟划清attachment与origin，再给一次最小原生对照。所测Culture一类不扩大为六yield/所有theming。
+3. **隔离：** 同城同时配置作品native倍率与本项附加值，验证Dialogue百分比不放大追加。先静态/模拟划清attachment与origin，再给一次最小原生对照。各yield／主题化证据不得互相外推；当前无Culture输出，不要求重复已失败Culture四态。
 4. 原生路径不满足时登记TECHNICAL_INVESTIGATION_REQUIRED；备选不同primitive可以调查，**只有D0038明确的逐领域Floor许可；不得换取整位置或外推其它能力；不能改系数、造补偿永久账本或采用整城补贴**。真正需要改Gameplay才交用户决定。
 
 在全部门禁可表达前只做后续获授权的可逆接口probe，不宣称L2完成。此前计划轮没有运行原型；B150/B151 L2A现已取得上方所列原生精度结果，不把S/G范围扩大为资格/native-only通过。
@@ -218,10 +236,10 @@ W0004 L2；实际触及E2/引用时补相关L3状态断言，不默认历史full
 | native-only组合与精确退休 | 旧BASE作用不残留/重建；K/旧Dialogue及Research、L1直接相关回归不破坏 |
 | load/loss/return、writer错误/技术编码容量 | 按当前事实派生；失败不混合、不静默clamp或floor |
 
-后续一个最小实机流程：同一Culture4馆藏城，选能得到半点的D领域，一件→两件→移走一件，观察原生追加及一次ACTIVE撤销/冷加载；组合隔离仅补同一城必要的native倍率对照。接口失败第一项即停。具体流程在probe包就绪时固定，不现在要求用户另做。
+后续当前实机流程以上方P0-L2C为准：按已确认逐域Floor比较整数五yield，件数变化与退出／冷加载；不再选择半点重复旧精度实验。其余独立门禁仅按真实依赖补测。接口失败第一项即停。具体流程在probe包就绪时固定，不现在要求用户另做。
 
 诊断先显示`合格W件｜每件Science/Gold…｜D来源｜预期/实际配置｜已确认/待核对`，组成分页；不以“已挂carrier”宣称原生收益通过。
 
 Exit：精度/recipient/native-only门禁、精确cutover和本地范围通过，再由用户确认原生对应场景。逐领域Floor精确口径已由D0038正式同步并在D0041保持；资格/native-only/theming技术门禁仍开放，不因此获得完整L2实施授权。
 
-来源：[Culture正式Content](../../Design/Content/Culture_D0029.json)、[Shared](../../Design/Content/Shared_D0035.json)、[总cutover合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)、[旧加值实现/限制](../../Reports/Technical/Specialization_B060_GW_Adjacency_Implementation.md)、[B055整数实机范围](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)、[精度待办](Yield_Precision_Backlog.md)。
+来源：[Culture正式Content](../../Design/Content/Culture_D0043.json)、[Shared](../../Design/Content/Shared_D0035.json)、[总cutover合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)、[旧加值实现/限制](../../Reports/Technical/Specialization_B060_GW_Adjacency_Implementation.md)、[B055整数实机范围](../../Status/Validation/Results/Specialization_B055_GW_Stable_User_Result.md)、[精度待办](Yield_Precision_Backlog.md)。

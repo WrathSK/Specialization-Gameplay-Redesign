@@ -3,8 +3,22 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0042
+Latest Accepted Design Revision: D0043
 Document State: ACCEPTED
+
+## Accepted D0043 — 2026-10-03
+
+Acceptance: ACCEPTED / v0.1 Meaning-only scope deferral; Design sync and next-batch plan, no runtime implementation
+Acceptance Evidence: 用户明确“暂时采用忽略市政/外交的方案，这些技术留着后面再实现，不阻碍v0.1”，要求记录并给下一步计划。
+Accepted Spec SHA256: 46d1e7f17ade47da5f394e1cb0400a87ff22baf8ce225e29616517dddd4705cb
+Canonical Culture Content SHA256: 748c816685e6258e025ea1dd0c31b16cef9eae7a84b37afa3ce52aaa347c1c37
+Previous Accepted Revision: D0042
+Frozen D0042: [原文](Revisions/Specialization_Design_Spec_D0042.md)
+Content: [Culture D0043](Content/Culture_D0043.json) / [文化阅读版](Culture.md)；Shared／Research／Industry／Commerce原件及其当前revision不变
+
+意义延展仅暂排Government Plaza／Diplomatic Quarter，当前七域输出Science／Production／Gold／Faith／Food，无Culture或Tourism追加。Shared完整映射与其它consumer／专业规则不删；K0.5首版值、金币份额3、逐域换算后Floor→同yield相加→乘W、作品资格、ACTIVE IV、独立追加和D0042生命周期保持。
+
+[B154/B155文化技术档案](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)、[B157实例进入／退出PASS与Culture增量FAIL](../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留原件。未来可靠路径再经用户确认恢复，不宣称Culture永久不可行，也不把排除两域当作其它五yield／recipient／倍率／结算已通过。只同步Design与[P0-L2C下一最小计划](../Architecture/v2/P0_L2_Meaning.md#下一批计划--p0-l2c-七域五产出门禁)，该计划仍PLANNED_NOT_AUTHORIZED；source/live B157不变、无Mod/GC/main/部署变化。
 
 ## Accepted D0042 — 2026-10-03
 

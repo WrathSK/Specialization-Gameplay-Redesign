@@ -11,7 +11,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 ## D0028共享入口
 
-[Shared_D0042](Shared_D0042.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0042.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0042](Shared_D0042.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0043.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 
@@ -39,9 +39,13 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 本轮的公式、文案、映射以JSON为唯一编辑位置；[审阅记录](../../Historical/Design/Reviews/Research_D0026_Review.md)引用ID，不复制第二套权威公式。Accepted Spec的RES条目已指向content；D0025历史原文冻结不倒改。Industry及Culture已加入；其余专业后续沿同schema分别维护，不强制命名能力数量。各专业JSON是自身内容权威，Spec引用，Review只作审阅记录。
 
+## D0043 Meaning v0.1 seven-domain scope — current Culture authority
+
+[Culture D0043](Culture_D0043.json)仅将意义延展政府广场／外交区来源暂排，当前为七域五产出；`contracts.meaning_domains`是本能力白名单，`contracts.domains`仍保留其它consumer使用的完整映射。K／份额／逐领域Floor／作品资格／独立追加／A–G生命周期保持。Shared／其它专业原件不变；[接受记录](../Design_ChangeLog.md#accepted-d0043--2026-10-03)。文化追加技术及负面证据保留供未来恢复，不阻碍本版v0.1；剩余yield／recipient／倍率／结算仍需实际实现与证据。此次仅Design同步与计划，不改运行包或部署。
+
 ## D0042 long-term lifecycle A–G — current lifecycle authority
 
-[Shared D0042](Shared_D0042.json)、[Culture D0042](Culture_D0042.json)、[Industry D0042](Industry_D0042.json)、[Commerce D0042](Commerce_D0042.json)为各自当前内容；[Research D0040](Research_D0040.json)已符合本轮重申、保持原件。E未提交对话／任务、F选择栈与派生、G单位来源及Settler确认原子性按具名合同关闭；A–D及D0041固定追加保留。LIFO暂停不删除，来源易主不等于单位转交，训练source不等于重组target。精确未决与[T1–T11对照](../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)独立记录；[接受记录](../Design_ChangeLog.md#accepted-d0042--2026-10-03)。本次只有Design同步，B155测试继续，无运行适配或部署。
+[Shared D0042](Shared_D0042.json)、[Culture D0042](Culture_D0042.json)、[Industry D0042](Industry_D0042.json)、[Commerce D0042](Commerce_D0042.json)为本轮生命周期来源；Shared／Industry／Commerce仍为当前内容，Culture当前D0043保留本段生命周期、只另改Meaning适用域；[Research D0040](Research_D0040.json)已符合本轮重申、保持原件。E未提交对话／任务、F选择栈与派生、G单位来源及Settler确认原子性按具名合同关闭；A–D及D0041固定追加保留。LIFO暂停不删除，来源易主不等于单位转交，训练source不等于重组target。精确未决与[T1–T11对照](../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)独立记录；[接受记录](../Design_ChangeLog.md#accepted-d0042--2026-10-03)。该轮只有Design同步、B155测试继续，无运行适配或部署；这是当时的进度描述，当前任务仅由Status／Authority派发。
 
 ## D0031 boundary amendment
 
