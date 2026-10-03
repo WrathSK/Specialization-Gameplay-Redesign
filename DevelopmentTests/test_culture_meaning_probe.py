@@ -274,7 +274,7 @@ class MeaningProbeTests(unittest.TestCase):
   """)
  def test_new_write_failure_and_no_early_old_resume(self):
   l=self.runtime();l.execute("""
-   probe.Advance(0,a);failCreate=true;probe.Advance(0,a)
+   probe.Advance(0,a);failCreate=true;assert(not pcall(probe.Advance,0,a) and probe.mode=='BASELINE')
    assert(configured(a,'SCIENCE')==0 and configured(a,'GOLD')==0 and gwa.IsMeaningHeld(0,a) and probe.error)
    failCreate=false;probe.End(0,a);assert(probe.mode=='OFF' and old(a,'SCIENCE'))
    building(a,'BUILDING_UNIVERSITY',a.ds[6]);svc.MarkDirty();begin();failRemove=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_SCIENCE_1.Index
@@ -410,7 +410,7 @@ class MeaningProbeTests(unittest.TestCase):
    assert(writes==w and (counts.dc_read or 0)==n and probe.mode=='OFF' and shared.LastToken==nil)
   """)
  def test_registration_localization_exact_scope(self):
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'180');require_meaning_imports(root)
+  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'181');require_meaning_imports(root)
   files=[e.text for e in root.find('Files')];self.assertEqual(len(files),len(set(files)))
   self.assertEqual(set(files),{str(p.relative_to(M))for p in M.rglob('*')if p.is_file() and p.name not in {'.DS_Store','SpecializationP0.modinfo'}})
   self.assertTrue({'CultureMeaningModel.lua','CultureMeaningProbe.lua','Data/CultureMeaningProbe.sql'}<=set(files))
@@ -515,8 +515,8 @@ class MeaningProbeTests(unittest.TestCase):
       end;return b
      end
      for i=1,4 do probe.Advance(0,a);lastText=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true);assert(not lastText:find('未确认：'))end
-     assert(lastText:find('关闭旧对话：追加文化 Δ%+1.00'))
-     assert(lastText:find(mockScale and '旧对话100%%：追加文化 Δ%+2.00' or '旧对话100%%：追加文化 Δ%+1.00'))
+     assert(lastText:find('关闭旧对话：作品文化 Δ%+1.00'))
+     assert(lastText:find(mockScale and '旧对话100%%：作品文化 Δ%+2.00' or '旧对话100%%：作品文化 Δ%+1.00'))
      local w=writes;SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(writes==w)
      probe.Advance(0,a);assert(SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true):find('已关闭'))
     """)
@@ -796,4 +796,124 @@ class MeaningProbeTests(unittest.TestCase):
    for _,long in ipairs({'/Users/','Dialogue.lua','CultureMeaningProbe.lua','stack traceback','AUDIT_FAILED'})do assert(not text:find(long,1,true))end
    assert(writes==w and #text<1500)
   """)
+ def test_synchronous_city_buildings_changed_four_phase_and_exit(self):
+  l=self.runtime();l.execute("""
+   local create=P.CreateBuilding;local remove=P.RemoveBuilding
+   P.CreateBuilding=function(q,id)create(q,id);fire('CityBuildingsChanged',q.city.owner,q.city.id)end
+   P.RemoveBuilding=function(b,id)remove(b,id);fire('CityBuildingsChanged',b.city.owner,b.city.id)end
+   local other={};for id,v in pairs(b.present)do other[id]=v end
+   local stages={'BASELINE','ACTIVE','SCALED','SCALED_BASELINE'}
+   for i,mode in ipairs(stages)do
+    probe.Advance(0,a,'sync:'..i)
+    local v=probe.View(0,a);assert(probe.mode==mode and not probe.error and not v.dialogueError)
+    assert(v.dialoguePercent==(i>=3 and 100 or 0))
+    assert(configured(a,'CULTURE')==((i==2 or i==3) and 1 or 0))
+    assert(not probe.busy and not probe.advancing and not probe.deferred and not dialogue.busy)
+    local w=writes;fire('CityBuildingsChanged',0,1);assert(writes==w)
+   end
+   probe.Advance(0,a,'sync:end');assert(probe.mode=='OFF' and not dialogue.meaningOverride and configured(a,'CULTURE')==0 and old(a,'SCIENCE'))
+   for id,v in pairs(b.present)do assert(other[id]==v)end;for id,v in pairs(other)do assert(b.present[id]==v)end
+   assert(not probe.busy and not probe.advancing and not probe.deferred and not dialogue.busy)
+  """)
+ def test_busy_hold_keeps_established_holder_and_projection(self):
+  l=self.runtime();l.execute("""
+   begin();local h=dialogue.meaningOverride;local p=dialogue.last[0][1];local w=writes
+   dialogue.busy=true;local ok,why=pcall(dialogue.HoldMeaningProbe,0,a,100)
+   assert(not ok and why:find('ME_DIALOGUE_UPDATE_PENDING'))
+   assert(dialogue.busy and dialogue.meaningOverride==h and h.percent==0 and dialogue.last[0][1]==p and writes==w)
+   dialogue.busy=false;assert(probe.View(0,a).dialoguePercent==0 and probe.mode=='ACTIVE')
+  """)
+ def test_transition_failure_keeps_intent_and_reveals_partial_write(self):
+  for after_write in (False,True):
+   with self.subTest(after_write=after_write):
+    l=self.runtime();l.globals().afterWrite=after_write;l.execute("""
+     begin();local h=dialogue.meaningOverride;local id=GameInfo.Buildings.BUILDING_SPC_B059_TEST100.Index
+     local raw=P.CreateBuilding
+     P.CreateBuilding=function(q,i)
+      if i==id then if afterWrite then raw(q,i);error('NATIVE_AFTER_WRITE')else return end end
+      return raw(q,i)
+     end
+     assert(not pcall(probe.Advance,0,a,'failed'))
+     assert(probe.mode=='ACTIVE' and dialogue.meaningOverride==h and h.percent==0 and probe.error)
+     assert(not probe.busy and not probe.advancing and not dialogue.busy)
+     local v=probe.View(0,a);assert(v.dialoguePercent==nil and v.dialogueError and gwa.IsMeaningHeld(0,a))
+     assert((a.present[id]==true)==afterWrite and configured(a,'CULTURE')==1)
+     P.CreateBuilding=raw;probe.Advance(0,a,'finish');assert(probe.mode=='OFF' and not dialogue.meaningOverride and not a.present[id] and old(a,'SCIENCE'))
+    """)
+ def test_meaning_failure_after_successful_dialogue_restores_prior_intent(self):
+  l=self.runtime();l.execute("""
+   begin();local id=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_CULTURE_0.Index
+   a.present[id]=nil -- Native loss, observed by the next exact reconciliation.
+   local raw=P.CreateBuilding
+   P.CreateBuilding=function(q,i)if i~=id then return raw(q,i)end end
+   assert(not pcall(probe.Advance,0,a,'failed-meaning'))
+   assert(probe.mode=='ACTIVE' and dialogue.meaningOverride.percent==0 and probe.error)
+   assert(a.present[GameInfo.Buildings.BUILDING_SPC_B059_TEST100.Index])
+   local v=probe.View(0,a);assert(v.dialoguePercent==nil and v.dialogueError and gwa.IsMeaningHeld(0,a))
+   assert(not probe.busy and not probe.advancing and not dialogue.busy)
+   P.CreateBuilding=raw;probe.Advance(0,a,'finish')
+   assert(probe.mode=='OFF' and not dialogue.meaningOverride and configured(a,'CULTURE')==0 and old(a,'SCIENCE'))
+   assert(not a.present[GameInfo.Buildings.BUILDING_SPC_B059_TEST100.Index])
+  """)
+ def test_real_effective_facts_gate_does_not_replay_cached_active(self):
+  for ceiling in (3,None):
+   with self.subTest(ceiling=ceiling):
+    l=self.runtime();l.globals().governorCeiling=ceiling;l.globals().include('EffectiveFacts');l.execute("""
+     shared.CityFlowProbe={SupportFacts=function(pid,c)return {owner=pid,cityID=c.id,token=c.token,specialization='CULTURE',potential=1,first={districtID=c.ds[2].id,type='DISTRICT_THEATER'}}end}
+     shared.CityProgressionStore.Owns=function()return true end
+     shared.CityProgressionStore.Investment=function(pid,c)return {schema=1,revision=4,
+      anchor={owner=pid,cityID=c.id,token=c.token,first={districtID=c.ds[2].id,type='DISTRICT_THEATER'},specialization='CULTURE'},
+      investments={one='u1',two='u2',three='u3'}}end
+     P.GovernorGate=function(c)return 0,c.id,c.ceiling and 'KNOWN' or 'UNKNOWN',c.ceiling end
+     a.ceiling=4;b.ceiling=4;SPCEffectiveFacts.Start(P,shared)
+     begin();assert(probe.lastPlan.active==4 and probe.View(0,a).currentPotential==4)
+     local h=dialogue.meaningOverride;local w=writes;a.ceiling=governorCeiling
+     local ok=pcall(dialogue.HoldMeaningProbe,0,a,0);assert(not ok and dialogue.meaningOverride==h and writes==w)
+     local v=probe.View(0,a);assert(v.dialoguePercent==nil and v.dialogueError and probe.lastPlan.active==4)
+     if governorCeiling then assert(v.currentActive==3 and v.currentActiveStatus=='KNOWN' and v.dialogueError:find('ME_DIALOGUE_ACTIVE_REQUIRED'))
+     else assert(v.currentActive==nil and v.currentActiveStatus=='UNKNOWN_GOVERNOR' and v.dialogueError:find('ME_DIALOGUE_ACTIVE_UNKNOWN'))end
+     a.ceiling=4;probe.End(0,a);assert(probe.mode=='OFF')
+    """)
+ def ui_aux_runtime(self):
+  l=self.runtime();l.globals().include('UI/BoostGreatWorkRead');l.execute("""
+   local get=a.GetBuildings
+   a.GetBuildings=function(c)local b=get(c)
+    b.GetNumGreatWorkSlots=function(_,id)return id==GameInfo.Buildings.BUILDING_AMPHITHEATER.Index and 1 or 0 end
+    b.GetGreatWorkInSlot=function()return 100 end;b.GetGreatWorkTypeFromIndex=function()return 'GREATWORK_BHASA_1'end
+    b.IsBuildingThemedCorrectly=function()return false end
+    b.GetBuildingYieldFromGreatWorks=function(_,y,id)local typ=GameInfo.Yields[y].YieldType:gsub('YIELD_','');return typ=='CULTURE' and 2 or configured(c,typ)end
+    return b
+   end
+   a.GetYield=function(c)return 40+(cityStale and 0 or configured(c,'CULTURE'))end
+   probe.Advance(0,a);SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),true)
+   probe.Advance(0,a)
+  """)
+  return l
+ def test_city_aux_read_distinguishes_zero_work_delta_and_refresh(self):
+  l=self.ui_aux_runtime();l.execute("""
+   cityStale=true;local w=writes;local t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+   assert(t:find('作品文化 Δ%+0.00') and t:find('对应整城文化 Δ%+0.00'))
+   cityStale=false;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+   assert(t:find('作品文化 Δ%+0.00') and t:find('对应整城文化 Δ%+1.00') and writes==w)
+   assert(t:find('不代替作品／结算门禁') and probe.mode=='ACTIVE')
+  """)
+ def test_unavailable_city_aux_does_not_erase_work_readings(self):
+  l=self.ui_aux_runtime();l.execute("""
+   a.GetYield=nil;local w=writes;local t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+   assert(t:find('整城文化未确认') and t:find('原生作品收益') and t:find('作品文化 Δ%+0.00'))
+   assert(not t:find('对应整城文化 Δ') and writes==w)
+   a.GetYield=function()return 0/0 end;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('整城文化未确认'))
+   a.GetYield=function()return 0 end;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('整城文化 0.00'))
+  """)
+ def test_aux_comparison_invalidates_turn_or_population_change(self):
+  for change in ('population','turn'):
+   with self.subTest(change=change):
+    l=self.ui_aux_runtime();l.globals().changed=change;l.execute("""
+     local t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('作品文化 Δ%+0.00'))
+     if changed=='population' then a.GetPopulation=function()return 8 end
+     else turn=turn+1;collection();probe.Audit()end
+     local w=writes;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false)
+     assert(t:find('四态对照无效') and not t:find('作品文化 Δ') and writes==w)
+    """)
+
 if __name__=='__main__':unittest.main()

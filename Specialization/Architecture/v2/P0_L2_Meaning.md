@@ -1,13 +1,15 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE；B153入口修复LOCAL完成，四态原生仍未测；精确recipient门禁未解决，正式cutover未授权。
+State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE；B154定域切换修复LOCAL完成，Culture应用/读数与四态原生仍待验；精确recipient未解决，正式cutover未授权。
 Authority: Culture D0038 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-最新B153原生测试暂停：[C00/C10观察与C11阻断](../../Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md)。C00可记录、科研/金币即时差值匹配；CultureΔ0对比预期6，100%转换仍C10并报QUALIFICATION_CHANGED，四态未通过。阶段切换/holder重入是STATIC候选；Culture应用与读数口径独立未确认。下一建议仅Meaning/Dialogue切换及Culture整数读数定域修复，**等待用户授权**；本轮不继续测试、实施或部署。不把原LOCAL或配置确认升级native PASS。
+用户授权B153定域修复后，B154.181 LOCAL完成：[切换保护、独立Culture证据与一个最小续测](../../Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)。61 Meaning＋26 K PASS；同步CityBuildingsChanged本地反例已复现原QUALIFICATION_CHANGED并在修复后通过。新动作锁＋一个deferred bool仅合并本fixture的重入重算；失败恢复阶段/Dialogue持有意图，不假称部分native写入已撤销。当前资格从EffectiveFacts重读、0%不证明ACTIVE4。
 
-B152中止的C00入口已由用户授权定域修复：[B153更新确认/成对样本与续测](../../Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md)。53 Meaning＋26 K定向PASS；原生根因/四态差值未确认。Dialogue Init/Audit与直接GWA Audit异常锁/triple修复，两Receiver均接受才记录有界pair凭据并通知当前fixture，Hold/Read核验当前stamp。未配对保留holder、不记成功基线；无变化新Seq零写，不改普通旧AUTO/公式/资格。前次入口修复的实施/部署已完成；最新停止点见上，新修复待授权。完整六yield/cutover/L3/M/N/U2未授权。
+Culture SQL与HD/原版平加路径及B055同primitive旧原生证据一致，当前没有依据猜改。保留作品读取，按需增加整城Culture辅助读数；回合/人口/实际资格变更使四态比较失效，旧阶段不回填。B153 C10Δ0与C11停止原件保持；真实Culture应用/显示差异仍待原生区分，不把结构修复写成native根因关闭。源码/live与实际receipt只查Status；提交后按W0003安全测试部署，下一步只等待一个最小同回合续测。
+
+[B153入口修复](../../Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md)形成的两receiver accepted-pair、当前stamp与owned退出合同保留，原native停止见[C00/C10与C11](../../Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md)。本轮授权已完成定域修复/本地验证，未授权完整六yield/cutover/L3/M/N/U2。
 
 用户明确“不同领域不合并同种产出取整，分别Floor”并授权原具体L2B门禁原型。D0038正式记录：`per_work_d = floor(0.5 × D_d × share_y)`，`per_work_y = Σ per_work_d`，`total_y = per_work_y × W`。Commercial D1＋Harbor D1=每件2G；Campus D1/W2=0S。不外推GPP、K0.5/份额/D/资格不变。
 
@@ -21,11 +23,11 @@ B152.179单城原型LOCAL完成：[证据、接口限制与一个最小实机流
 
 **精确旧效果。** GWA自身156项只暂停本城；Dialogue自身0/TEST100替换只绑定owner/city/full reference，不使用off[player]。四态C00(0/0%)→C10(追加/0%)→C11(追加/100%)→C01(0/100%)→OFF。结束先确认Meaning14项清除，再Dialogue自身实验退出及正常当前AUTO，最后GWA正常当前样本恢复；失败保持stopping/hold，禁止早恢复。没有全局关旧Dialogue或退休K producer/ACK。
 
-**有效比较。** 本城ACTIVE4、已确认支持/非主题馆藏、正整数Culture追加，领域D/作品/位置/其它修正固定；比较两次追加差值是否都为A×W。原生Culture定义读取与HD当前平加区别保留；不假定该primitive天然隔离。右键只读更新本阶段UI记录，旧阶段不回填；四态记录最多4组，随结束/引用/集合/D变化释放或失效，不写Gameplay权威。
+**有效比较。** 本城ACTIVE4、已确认支持/非主题馆藏、正整数Culture追加，领域D/作品/位置/其它修正固定；比较两次追加差值是否都为A×W。原生Culture定义读取与HD当前平加区别保留；不假定该primitive天然隔离。右键只读更新本阶段UI记录，旧阶段不回填；四态记录最多4组，随结束/引用/回合/人口/当前资格/集合/D变化释放或失效，不写Gameplay权威。
 
-**更新、资源与边界。** 本城明确动作、当前馆藏/D/ACTIVE/ref变化；同输入零写、同回合变化响应。复用现有Shared/K输入，Dialogue scoped Audit只读本城。普通计算不扫描巨作槽位/构造诊断副本；UI原生扫描只在按需request，没有per-frame/hover请求或GC改动。UNKNOWN保存holder，配置/健康未确认不采成功读数。无关transfer/return可失效样本但不解除本城override；confirmed loss先owned退出，加载默认OFF、不重放永久/临时快照。非加载兜底不得清其它已ready城市。
+**更新、资源与边界。** 本城明确动作、当前馆藏/D/ACTIVE/ref变化；同输入零写、同回合变化响应。复用现有Shared/K输入，Dialogue scoped Audit只读本城。普通计算不扫描巨作槽位/构造诊断副本；UI原生扫描只在按需request，没有per-frame/hover请求或GC改动。明确动作期间重入只标记一个定域deferred，成功后一次核对；失败恢复意图，不重放native快照。UNKNOWN保存holder，配置/健康未确认不采成功读数。无关transfer/return可失效样本但不解除本城override；confirmed loss先owned退出，加载默认OFF、不重放永久/临时快照。非加载兜底不得清其它已ready城市。
 
-**本地验收。** W0004 L2 +直接触及loss/load的L3定域断言；B153 53实际Lua/SQL及26K通过，逐领域Floor反例和撤销失败/幂等/两城隔离/UNKNOWN/冷加载/延迟UI/native配置健康覆盖。只读DB副本，未跑历史full/stress；现有版本/外部事实不由模拟升级native PASS。
+**本地验收。** W0004 L2 +直接触及loss/load的L3定域断言；B154 61实际Lua/SQL及26K通过，逐领域Floor反例和撤销失败/幂等/两城隔离/UNKNOWN/冷加载/延迟UI/native配置健康覆盖。只读DB副本，未跑历史full/stress；现有版本/外部事实不由模拟升级native PASS。
 
 **退出与后续。** 本单城native对照完成后记录结果，或第一个失败停止对应路径。精确recipient未解决不伪造资格PASS；Culture若被放大不减系数/补差/整城补贴/全局关旧对话。只有可靠接口及另行完整计划授权后，才正式六yield/all-city cutover。当前检查点不授权L3/M/N/U2、AI/MP、永久schema、目录扩展或GC调参。用户此时无需新设计决定；native一次短流程见证据页。
 

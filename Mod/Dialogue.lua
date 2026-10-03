@@ -33,7 +33,7 @@ function SPCDialogue.Start(P,shared)
   return h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c) and h.percent==percent or false
  end
  function d.ForgetMeaningProbe(pid,cid,reference)
-  local h=d.meaningOverride;if h and h.owner==pid and h.city==cid and h.reference==reference then d.meaningOverride=nil end
+  local h=d.meaningOverride;if h and h.owner==pid and h.city==cid and h.reference==reference then d.meaningOverride=nil;d.meaningQualification=nil end
  end
  -- One current accepted-pair receipt per supported player, never a history.
  -- Only the actual request handler calls this after both receivers return true.
@@ -63,19 +63,50 @@ function SPCDialogue.Start(P,shared)
   end)
   return ok,not ok and (tostring(why):match('ME_[A-Z_]+') or 'ME_DIALOGUE_SAMPLE_PAIR_PENDING') or nil
  end
+ -- Current qualification is a single bounded diagnostic projection, not authority.
+ local function meaningQualification(pid,c)
+  local ok,f=pcall(shared.EffectiveFacts.Read,pid,c)
+  d.meaningQualification={owner=pid,city=c:GetID(),reference=SPCNetworkInput.Reference(c),
+   specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
+   active=ok and f.active or nil,activeStatus=ok and f.activeStatus or 'UNKNOWN_FACTS'}
+  assert(ok,'ME_DIALOGUE_FACT_UNKNOWN')
+  assert(f.activeStatus=='KNOWN','ME_DIALOGUE_ACTIVE_UNKNOWN')
+  assert(f.specialization=='CULTURE' and f.active==4,'ME_DIALOGUE_ACTIVE_REQUIRED')
+ end
  function d.HoldMeaningProbe(pid,c,percent)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
   assert(percent==0 or percent==100,'ME_DIALOGUE_PERCENT')
   assert(not d.off[pid] and not (d.test[pid] and d.test[pid].city==c:GetID()),'ME_DIALOGUE_OTHER_TEST')
   local ref=SPCNetworkInput.Reference(c);local h=d.meaningOverride
   assert(not h or h.owner==pid and h.city==c:GetID() and h.reference==ref,'ME_DIALOGUE_OTHER_FIXTURE')
-  d.Init();local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
-  d.meaningOverride={owner=pid,city=c:GetID(),reference=ref,percent=percent}
-  local updated,updateReason=d.Audit(pid,c:GetID());assert(updated,'ME_DIALOGUE_UPDATE_PENDING: '..tostring(updateReason))
-  local p=d.last[pid] and d.last[pid][c:GetID()]
-  assert(p and not p.error and p.meaning and p.applied==percent,'ME_DIALOGUE_UNCONFIRMED: '..tostring(p and p.error or 'missing current projection'):sub(1,180))
-  local actual,why=d.ReadMeaningProbe(pid,c);assert(actual==percent,why or 'ME_DIALOGUE_CARRIER_UNKNOWN')
+  -- Reject before changing the holder: a reentrant request owns no Audit lock.
+  assert(not d.busy and not d.initializing,'ME_DIALOGUE_UPDATE_PENDING: BUSY')
+  d.Init();meaningQualification(pid,c)
+  local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
+  local candidate=h and h.percent==percent and h or {owner=pid,city=c:GetID(),reference=ref,percent=percent}
+  d.meaningOverride=candidate
+  local ok,why=pcall(function()
+   local updated,updateReason=d.Audit(pid,c:GetID());assert(updated,'ME_DIALOGUE_UPDATE_PENDING: '..tostring(updateReason))
+   local p=d.last[pid] and d.last[pid][c:GetID()]
+   assert(p and not p.error and p.meaning and p.applied==percent,'ME_DIALOGUE_UNCONFIRMED: '..tostring(p and p.error or 'missing current projection'):sub(1,180))
+   local actual,reason=d.ReadMeaningProbe(pid,c);assert(actual==percent,reason or 'ME_DIALOGUE_CARRIER_UNKNOWN')
+  end)
+  if not ok then
+   -- Restore intent only. A partial native write remains visibly unconfirmed;
+   -- the exact owned withdrawal path, never a guessed snapshot, handles exit.
+   d.meaningOverride=h;error(why)
+  end
   return true
+ end
+ -- Failed cross-module prototype transitions restore only their prior intent.
+ -- No native snapshot is replayed: Read still exposes a partial projection.
+ function d.RestoreMeaningProbeIntent(pid,c,percent)
+  assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
+  assert(percent==0 or percent==100,'ME_DIALOGUE_PERCENT')
+  assert(not d.busy and not d.initializing,'ME_DIALOGUE_UPDATE_PENDING: BUSY')
+  local h=d.meaningOverride
+  assert(h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_REFERENCE_CHANGED')
+  if h.percent~=percent then d.meaningOverride={owner=h.owner,city=h.city,reference=h.reference,percent=percent}end
  end
  function d.WithdrawMeaningProbe(pid,c)
   local h=d.meaningOverride
@@ -86,7 +117,7 @@ function SPCDialogue.Start(P,shared)
   local h=d.meaningOverride
   assert(h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_REFERENCE_CHANGED')
   d.WithdrawMeaningProbe(pid,c) -- Failed test withdrawal keeps binding/hold.
-  d.meaningOverride=nil;d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
+  d.meaningOverride=nil;d.meaningQualification=nil;d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
  end
  function d.Audit(pid,cid)
   if P.Observe then P.Observe('audit','Dialogue') end
@@ -156,6 +187,7 @@ function SPCDialogue.Start(P,shared)
  function d.ReadMeaningProbe(pid,c)
   local ok,value=pcall(function()
    local h=d.meaningOverride;assert(h and d.IsMeaningProbeHeld(pid,c,h.percent),'ME_DIALOGUE_REFERENCE_CHANGED')
+   meaningQualification(pid,c) -- Zero percent alone cannot prove ACTIVE4.
    local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
    local p=d.last[pid] and d.last[pid][c:GetID()];assert(p and not p.error and p.meaning,'ME_DIALOGUE_SAMPLE_PENDING')
    local s=d.samples[pid];assert(p.sampleSeq==s.seq and p.sampleGeneration==s.generation and p.sampleTurn==s.turn

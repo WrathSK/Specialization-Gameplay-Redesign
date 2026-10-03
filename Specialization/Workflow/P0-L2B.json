@@ -11,8 +11,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0394",
-    "runtime": "B153.180 / modinfo180",
+    "status": "S0395",
+    "runtime": "B154.181 / modinfo181",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -212,6 +212,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md",
       "kind": "full",
       "reason": "Latest C00/C10 observations, C11 native stop and independent bounded repair recommendation; no fix authorization"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
+      "kind": "full",
+      "reason": "Current authorized scoped transition repair, independent Culture readout boundary and minimal native continuation"
     }
   ],
   "dependencies": [
@@ -285,7 +290,7 @@
   "validation": {
     "depth": "W0004 L2 plus relevant scoped L3 load/loss/failure; no full historical/stress",
     "local": [
-      "53 actual Lua/SQL Meaning tests PASS",
+      "61 actual Lua/SQL Meaning tests PASS (53 direct existing +8 targeted reentry/failure/current facts/UI methods)",
       "26 K catalog/facts/producer/legacy tests PASS",
       "Lua/XML/import/file-set/localization/context/links/diff checked"
     ],
@@ -298,12 +303,12 @@
   ],
   "result": {
     "plan": "User authorized concrete single-city L2B gate with explicit per-domain Floor",
-    "implementation": "B153.180 / modinfo180 LOCAL_COMPLETE_AWAITING_USER",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md",
+    "implementation": "B154.181 / modinfo181 LOCAL_COMPLETE_AWAITING_USER",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
     "native": "USER_GAME_TEST_PARTIAL / BLOCKED_C11. Culture raw readout discrepancy; no proof of settled whole-city Culture or engine limitation. Full four-state NOT_PASSED; precise recipient still TECHNICAL_INVESTIGATION_REQUIRED.",
-    "stop": "User paused. Await explicit scoped transition/holder repair authorization plus independent Culture integer application/readout investigation; no immediate retest, full cutover or L3/M/N/U2.",
-    "deployment": "W0003 B153.180-16b036d-playtest.json DEVELOP_ACTIVE; source 16b036dd3369c5023c7c8dd730ee4ac98944c0e5;182/182 MATCH; B152 and stable recovery retained. No game launch/native result.",
-    "authority_revalidation": "S0394 docs/evidence only; D0039/Culture D0038 and source B153 unchanged. Current direct native/static scope reviewed, no new test/deployment.",
+    "stop": "Scoped user-authorized repair/local verification complete. Finish W0003 safe test deployment, then wait minimal C00/C10 native result; Culture0/error stops, success continues C11/C01/OFF. No full cutover/L3/M/N/U2.",
+    "deployment": "B153.180 / modinfo180; exact previous W0003 receipt/stable backup reverified MATCH, no pending marker. Source B154.181 LOCAL; safe deployment pending committed source and exit check.",
+    "authority_revalidation": "S0395 authorized B153 scoped repair: current Meaning/Dialogue/UI/direct facts and HD/original/roDB + B055 negative-boundary evidence reviewed. 61 Meaning and26 K LOCAL PASS, changed hashes only; no Design/SQL/GC/permanent/main change. Culture application/readout and native gates unresolved.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md"
   }
 }

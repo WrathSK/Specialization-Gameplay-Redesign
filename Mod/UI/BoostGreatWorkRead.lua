@@ -129,24 +129,34 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
     end
    end
   end end
-  table.sort(signature);local key=v.reference..'|'..v.stamp..'|'..v.count..'|'..table.concat(signature,';')
-  local lines={string.format('原生作品收益：科研 %.2f / 金币 %.2f / 文化 %.2f',totals.SCIENCE,totals.GOLD,totals.CULTURE)}
+  local turn=Game.GetCurrentGameTurn()
+  local populationOK,population=pcall(c.GetPopulation,c)
+  local qualification=table.concat({tostring(v.currentIdentity),tostring(v.currentPotential),tostring(v.currentActive),tostring(v.currentActiveStatus)},':')
+  table.sort(signature);local key=v.reference..'|'..v.stamp..'|'..v.count..'|'..turn..'|'..qualification..'|'..(populationOK and tostring(population) or 'UNKNOWN')..'|'..table.concat(signature,';')
+  -- Optional second native readout; unavailable is never a successful zero.
+  local cityOK,cityCulture=pcall(c.GetYield,c,P.Info('Yields','YIELD_CULTURE').Index)
+  if cityOK and type(cityCulture)=='number' and cityCulture==cityCulture and math.abs(cityCulture)<math.huge then totals.cityCulture=cityCulture end
+  local lines={string.format('原生作品收益：科研 %.2f / 金币 %.2f / 文化 %.2f',totals.SCIENCE,totals.GOLD,totals.CULTURE),totals.cityCulture and string.format('整城文化 %.2f（辅助读数，含其它修正）',totals.cityCulture) or '整城文化未确认；作品读数仍保留。'}
   if mark and v.mode=='BASELINE' then meaningReadings={key=key,rows={}}end
   local valid=meaningReadings and meaningReadings.key==key
   if valid then meaningReadings.rows[v.mode]=totals end -- Explicit read can refresh this phase; previous phases remain fixed.
   if not valid then
-   meaningReadings=nil;lines[#lines+1]='馆藏/位置/主题/领域D/资格已变，四态对照无效；结束后重新准备。'
+   meaningReadings=nil;lines[#lines+1]='回合/人口/馆藏/位置/主题/领域D/资格已变，四态对照无效；结束后重新准备。'
   else
    local q=meaningReadings.rows
    lines[#lines+1]='本阶段'..(q[v.mode] and '已记录；右键只刷新当前阶段读数，不推进实验。' or '未记录；只读不能补造基线。')
-   if q.BASELINE and q.ACTIVE then lines[#lines+1]=string.format('关闭旧对话：追加文化 Δ%+.2f；预期 +%g。',q.ACTIVE.CULTURE-q.BASELINE.CULTURE,v.totalCulture)end
+   if q.BASELINE and q.ACTIVE then
+    lines[#lines+1]=string.format('关闭旧对话：作品文化 Δ%+.2f；预期 +%g。',q.ACTIVE.CULTURE-q.BASELINE.CULTURE,v.totalCulture)
+    if q.BASELINE.cityCulture~=nil and q.ACTIVE.cityCulture~=nil then lines[#lines+1]=string.format('对应整城文化 Δ%+.2f（含其它修正，不代替作品／结算门禁）。',q.ACTIVE.cityCulture-q.BASELINE.cityCulture)end
+   end
    if q.BASELINE and q.ACTIVE and q.SCALED and q.SCALED_BASELINE then
-    lines[#lines+1]=string.format('旧对话100%%：追加文化 Δ%+.2f；应与上行相等。',q.SCALED.CULTURE-q.SCALED_BASELINE.CULTURE)
+    lines[#lines+1]=string.format('旧对话100%%：作品文化 Δ%+.2f；应与上行相等。',q.SCALED.CULTURE-q.SCALED_BASELINE.CULTURE)
+    if q.SCALED.cityCulture~=nil and q.SCALED_BASELINE.cityCulture~=nil then lines[#lines+1]=string.format('对应整城文化 Δ%+.2f（含其它修正）。',q.SCALED.cityCulture-q.SCALED_BASELINE.cityCulture)end
     lines[#lines+1]=string.format('旧对话增幅：无追加 Δ%+.2f / 有追加 Δ%+.2f。',q.SCALED_BASELINE.CULTURE-q.BASELINE.CULTURE,q.SCALED.CULTURE-q.ACTIVE.CULTURE)
     lines[#lines+1]=baseKnown and string.format('定义原生文化合计 %g；用于区分HD平加与原生基值。',baseCulture) or '作品定义基值不可读；不把未知记为0。'
    end
   end
-  lines[#lines+1]='同一馆藏四态对照；其它修正须保持不变，不自动判定实机PASS。'
+  lines[#lines+1]='同回合同一馆藏对照；右键仅刷新当前阶段。读数可延迟，其它修正须保持不变，不自动判定结算PASS。'
   return table.concat(lines,'\n')
  end)
  return ok and text or ('四态原生读数未确认：'..(tostring(text):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')

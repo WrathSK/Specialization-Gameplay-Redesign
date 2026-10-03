@@ -94,7 +94,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if not ok then d.ready=false;d.resetFailed=true else d.resetFailed=nil end
   return ok
  end
- function d.Audit(scope)
+ local function audit(scope)
   if not d.ready or d.busy or not target then return end
   if scope and ((scope.player~=nil and scope.player~=target.owner) or (scope.city~=nil and scope.city~=target.city))then return end
   d.busy=true;local c
@@ -122,17 +122,38 @@ function SPCCultureMeaningProbe.Start(P,shared)
    end
   end
   d.error=not ok and tostring(why) or nil;d.busy=false
+  return ok
  end
- function d.Advance(pid,c,token)
-  assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
-  if token then
-   assert(type(token)=='string' and #token>0 and #token<=100,'ME_ACTION_TOKEN')
-   local old=d.lastAction
-   if old and old.token==token then
-    assert(old.owner==pid and old.city==c:GetID(),'ME_ACTION_TOKEN_CONFLICT');return
-   end
-   d.lastAction={token=token,owner=pid,city=c:GetID()} -- One bounded receipt, no action history.
+ function d.Audit(scope)
+  if d.advancing then
+   -- Coalesce only reentrant recalculation of this fixture. No event history.
+   if target and (not scope or (scope.player==nil or scope.player==target.owner) and (scope.city==nil or scope.city==target.city))then d.deferred=true end
+   return false,'TRANSITION_BUSY'
   end
+  return audit(scope)
+ end
+ local function transition(mode,c)
+  local previous=d.mode;d.mode=mode
+  if not audit({player=c:GetOwner(),city=c:GetID()})then
+   local why=d.error or 'ME_UPDATE_PENDING'
+   if target then
+    local percent=(previous=='SCALED' or previous=='SCALED_BASELINE') and 100 or 0
+    local restored,err=pcall(shared.Dialogue.RestoreMeaningProbeIntent,c:GetOwner(),c,percent)
+    if restored then d.mode=previous else why=why..'; '..tostring(err)end
+   end -- An exact reference exit may already have forgotten this fixture.
+   error(why)
+  end
+ end
+ local function action(fn,...)
+  assert(not d.advancing and not d.busy,'ME_TRANSITION_BUSY')
+  d.advancing=true;local ok,why=pcall(fn,...);d.advancing=false
+  local deferred=d.deferred;d.deferred=nil
+  if not ok then d.error=tostring(why):sub(1,240);error(why)end
+  -- Re-read current inputs after a successful transition. This is one bounded
+  -- reconciliation, not a retry loop or a once-per-turn suppression.
+  if deferred and target and not d.stopping then audit({player=target.owner,city=target.city})end
+ end
+ local function advance(pid,c)
   if not d.ready then assert(reset(),'ME_LOAD_CLEANUP_FAILED')end
   if target and (target.owner~=pid or target.city~=c:GetID() or target.reference~=SPCNetworkInput.Reference(c))then finish()end
   if not target then
@@ -149,14 +170,28 @@ function SPCCultureMeaningProbe.Start(P,shared)
    -- Repeat the old module's confirmation before any new native write.
    shared.GreatWorkAdjacency.HoldMeaningProbe(pid,c)
    local p=plan(c);assert(p.status=='READY' and p.count>0,'ME_NEEDS_CULTURE_IV_AND_WORK')
-   d.mode='ACTIVE';d.Audit({player=pid,city=c:GetID()})
+   transition('ACTIVE',c)
   elseif d.mode=='ACTIVE' then
    local p=plan(c)
    if not (p.status=='READY' and p.count>0 and p.each.CULTURE>0)then d.error='ME_NEEDS_POSITIVE_CULTURE';return end
-   dialogueHold(pid,c,100);d.mode='SCALED';d.Audit({player=pid,city=c:GetID()})
+   transition('SCALED',c)
   elseif d.mode=='SCALED' then
-   d.mode='SCALED_BASELINE';d.Audit({player=pid,city=c:GetID()})
+   transition('SCALED_BASELINE',c)
   else finish()end
+ end
+ function d.Advance(pid,c,token)
+  assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
+  if token then
+   assert(type(token)=='string' and #token>0 and #token<=100,'ME_ACTION_TOKEN')
+   local old=d.lastAction
+   if old and old.token==token then
+    assert(old.owner==pid and old.city==c:GetID(),'ME_ACTION_TOKEN_CONFLICT');return
+   end
+  end
+  return action(function()
+   if token then d.lastAction={token=token,owner=pid,city=c:GetID()}end -- One bounded receipt.
+   advance(pid,c)
+  end)
  end
  function d.View(pid,c)
   local ref=SPCNetworkInput.Reference(c)
@@ -166,6 +201,8 @@ function SPCCultureMeaningProbe.Start(P,shared)
   local stamp={};if p then for _,entry in ipairs(M.Domains)do local v=p.domains[entry[1]];stamp[#stamp+1]=entry[1]..':'..tostring(v and v.value)end end
   local dialoguePercent,dialogueError
   if match then dialoguePercent,dialogueError=shared.Dialogue.ReadMeaningProbe(pid,c)end
+  local q=match and shared.Dialogue.meaningQualification
+  if q and (q.owner~=pid or q.city~=c:GetID() or q.reference~=ref)then q=nil end
   local read,why=pcall(function()
    validate();for _,y in ipairs({'SCIENCE','GOLD','CULTURE'})do for bit=0,M.ProbeBits[y]-1 do
     local name='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit
@@ -177,6 +214,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end)
   return {configuredScience=read and configured.SCIENCE or nil,configuredGold=read and configured.GOLD or nil,configuredCulture=read and configured.CULTURE or nil,configurationError=not read and tostring(why) or nil,
    owner=pid,cityID=c:GetID(),reference=ref,mode=match and d.mode or 'OFF',error=d.error,
+   currentIdentity=q and q.specialization,currentPotential=q and q.potential,currentActive=q and q.active,currentActiveStatus=q and q.activeStatus,
    active=p and p.active,count=p and p.count,science=p and p.each.SCIENCE,gold=p and p.each.GOLD,culture=p and p.each.CULTURE,
    totalScience=p and p.total.SCIENCE,totalGold=p and p.total.GOLD,totalCulture=p and p.total.CULTURE,planStatus=p and p.status,
    campus=p and p.domains.DISTRICT_CAMPUS and p.domains.DISTRICT_CAMPUS.value,
@@ -186,7 +224,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
  end
  function d.End(pid,c)
-  assert(target and target.owner==pid and target.city==c:GetID(),'ME_NO_FIXTURE');finish()
+  return action(function()assert(target and target.owner==pid and target.city==c:GetID(),'ME_NO_FIXTURE');finish()end)
  end
  function d.Describe(pid,c,view)
   local v=view or d.View(pid,c)
@@ -201,6 +239,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end
   local nexts={OFF='左键准备基线；需要Culture ACTIVE4和确认馆藏。',BASELINE='左键启用追加；右键只读。',ACTIVE='左键加入本城100%旧对话；需文化追加>0。',SCALED='左键撤回追加，保留本城100%旧对话。',SCALED_BASELINE='左键结束，按当前事实恢复旧系统。'}
   lines[#lines+1]=nexts[v.mode]
+  if v.currentActiveStatus then lines[#lines+1]=v.currentActiveStatus=='KNOWN' and ('当前资格：'..tostring(v.currentIdentity)..' ACTIVE '..tostring(v.currentActive)..'（需要文化4级）') or '当前资格：未确认，不将未知记为0。'end
   if v.dialogueError then
    local code=tostring(v.dialogueError):match('ME_[A-Z_]+') or '接口未确认'
    lines[#lines+1]='对话配置未确认：'..code

@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0394
-Implementation Build: source/live B153.180 / modinfo180; P0_L2B_NATIVE_STOPPED_C11; stable B069.96
+Status Revision: S0395
+Implementation Build: source B154.181 / modinfo181; live B153.180; P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
 Latest Accepted Design Revision: D0039
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2B_NATIVE_STOPPED_C11
+Work State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户授权的B153阶段切换修复已LOCAL完成，source B154.181 / modinfo181：[修复、文化读数依据与一个最小续测](Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md)。61 Meaning＋26 K定向PASS；B153 C10 CultureΔ0与C11中止原件保留，当前native四态仍未通过。
+
+修复同步事件重入、busy前置拒绝与跨模块失败意图回退；部分native写入不伪称已撤销，按owned退出。当前资格只读核验与整城Culture辅助读数已补；Culture实际应用/显示差异仍待区分，SQL/逐领域Floor/资格不改。精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED；完整六yield/cutover与L3/M/N/U2未授权。
+
+当前source B154.181；live仍B153.180/source16b036d。原W0003 receipt/旧stable恢复点已只读核对一致，无pending marker；新包待commit/push与游戏退出/安全事务后部署。main稳定B069.96无promotion。Design/GC/永久记录不变，未启动游戏。
+
+下一允许动作：完成安全测试部署后等待同城同回合C00/C10最小续测；Culture作品差值仍0先停，用辅助整城读数区分。成功才续C11/C01/OFF，不重复旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保持完整合同。
+
+## 历史阶段记录
+
+### S0394 — B153 C10/C11中止与修复建议（当时）
 
 B153.180原生续测已暂停：[三图、两个独立停止点与定域建议](Validation/Results/Specialization_B153_P0L2B_Native_Stopped.md)。C00基线可确认；C10作品科研／金币即时增量匹配2/8，但作品Culture读数Δ0（预期6）。尝试100%旧Dialogue时仍停C10，出现QUALIFICATION_CHANGED；C11/C01/OFF与完整native门禁未确认。53 Meaning＋26 K原LOCAL范围保留。
 
@@ -19,7 +31,6 @@ source/live仍B153.180/source16b036d；前次W0003 receipt `B153.180-16b036d-pla
 
 下一建议是组合切换定域修复及Culture整数应用／读数核对，**等待修复授权**；不要求用户现在续测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留合同与停止点。
 
-## 历史阶段记录
 
 ### S0393 — B153入口修复LOCAL与部署（当时）
 
