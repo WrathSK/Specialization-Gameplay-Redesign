@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="179">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="180">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
     <Description>B151.178: repair Meaning probe action imports and bounded request-stage diagnostics; precision remains unverified.</Description>

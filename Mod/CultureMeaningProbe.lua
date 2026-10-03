@@ -201,7 +201,10 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end
   local nexts={OFF='左键准备基线；需要Culture ACTIVE4和确认馆藏。',BASELINE='左键启用追加；右键只读。',ACTIVE='左键加入本城100%旧对话；需文化追加>0。',SCALED='左键撤回追加，保留本城100%旧对话。',SCALED_BASELINE='左键结束，按当前事实恢复旧系统。'}
   lines[#lines+1]=nexts[v.mode]
-  if v.dialogueError then lines[#lines+1]='对话配置未确认：'..tostring(v.dialogueError):gsub('%c',' '):sub(1,180)end
+  if v.dialogueError then
+   local code=tostring(v.dialogueError):match('ME_[A-Z_]+') or '接口未确认'
+   lines[#lines+1]='对话配置未确认：'..code
+  end
   if v.error then lines[#lines+1]='异常：'..(v.error:match('ME_[A-Z_]+') or '接口未确认')..'；左键先结束。'end
   if v.mode~='OFF' then lines[#lines+1]='仅本城可逆原型；资格隔离与文化倍率门禁尚未通过。'end
   return table.concat(lines,'\n')
@@ -234,10 +237,13 @@ function SPCCultureMeaningProbe.Start(P,shared)
   bind(Events,name,function()d.Audit()end)
  end
  for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage'})do bind(GameEvents,name,function()d.Audit()end)end
- local previous=shared.GreatWorkFacts.OnConfirmed
- shared.GreatWorkFacts.OnConfirmed=function(pid,changed)
-  local ok,why=true,nil;if previous then ok,why=pcall(previous,pid,changed)end
-  if target and pid==target.owner then for _,cid in ipairs(changed)do if cid==target.city then d.Audit({player=pid,city=cid});break end end end
-  if not ok then error(why)end
+ -- Called only after both Receive functions accepted this exact request.
+ -- The Facts callback remains owned by the existing independent consumers.
+ function d.CollectionConfirmed(pid,packet)
+  if not target or pid~=target.owner then return false end
+  local c=current();local paired,why=shared.Dialogue.IsMeaningSampleCurrent(pid,c,packet)
+  if not paired then return false,why end
+  d.Audit({player=pid,city=target.city}) -- Also refresh unchanged collections on a new turn.
+  return not d.busy and not d.error
  end
 end

@@ -11,8 +11,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0392",
-    "runtime": "B152.179 / modinfo179",
+    "status": "S0393",
+    "runtime": "B153.180 / modinfo180",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -202,6 +202,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md",
       "kind": "full",
       "reason": "Current native C00 entry failure, bounded direct static findings and stop; not implementation authorization"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md",
+      "kind": "full",
+      "reason": "Latest authorized scoped entry/pair repair, local evidence and one minimum native flow"
     }
   ],
   "dependencies": [
@@ -275,11 +280,11 @@
   "validation": {
     "depth": "W0004 L2 plus relevant scoped L3 load/loss/failure; no full historical/stress",
     "local": [
-      "38 actual Lua/SQL Meaning tests PASS",
+      "53 actual Lua/SQL Meaning tests PASS",
       "26 K catalog/facts/producer/legacy tests PASS",
       "Lua/XML/import/file-set/localization/context/links/diff checked"
     ],
-    "user": "B152 user stopped at C00: Dialogue projection unconfirmed and no valid native baseline; four-state interaction NOT_TESTED. Await authorized scoped repair before retry."
+    "user": "B152 C00 entry blocked, four-state NOT_TESTED; B153 scoped repair LOCAL_COMPLETE, one native retry required."
   },
   "full_audit_triggers": [
     "Cannot confirm exact old/new withdrawal; do not mix writers",
@@ -288,12 +293,12 @@
   ],
   "result": {
     "plan": "User authorized concrete single-city L2B gate with explicit per-domain Floor",
-    "implementation": "B152.179 / modinfo179 LOCAL_COMPLETE_AWAITING_USER",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
+    "implementation": "B153.180 / modinfo180 LOCAL_COMPLETE_AWAITING_USER",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md",
     "native": "USER_GAME_TEST_BLOCKED_ENTRY at C00; Culture interaction NOT_TESTED. Recipient primitive remains TECHNICAL_INVESTIGATION_REQUIRED.",
-    "stop": "Await scoped entry/synchronization repair authorization; no current retry, full ability/cutover or L3/M/N/U2.",
+    "stop": "Await B153 minimum single-city native gate; no full ability/cutover or L3/M/N/U2.",
     "deployment": "W0003 B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; source 85c77b4bcd815231a82ecf1610f9ebd305ad1c4c;182/182 MATCH; B151 and stable recovery retained. No game launch/native result.",
-    "authority_revalidation": "S0392 evidence-only update: direct source/read-only findings reviewed, native stop recorded; D0039/Culture D0038 scope and existing LOCAL/source/live unchanged. No implementation/deployment.",
+    "authority_revalidation": "S0393 B153 user-authorized scoped repair only; D0039/Culture D0038 unchanged, targeted actual chain and error/reentry/load boundaries reviewed.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md"
   }
 }

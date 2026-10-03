@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0392
-Implementation Build: source/live B152.179 / modinfo179; P0_L2B_GATE_PROTOTYPE_NATIVE_BLOCKED_ENTRY; stable B069.96
+Status Revision: S0393
+Implementation Build: source B153.180 / modinfo180; live B152.179; P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
 Latest Accepted Design Revision: D0039
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2B_GATE_PROTOTYPE_NATIVE_BLOCKED_ENTRY
+Work State: P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户授权B152定域修复后，source B153.180 / modinfo180 LOCAL完成：[入口、成对确认与一个最小续测](Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md)。53 Meaning＋26 K定向PASS；原B152 C00中止和四态NOT_TESTED保留。修复迭代器三值/异常锁、实际请求两端accepted-pair及当前投影确认；本地重现不等于截图原生唯一根因已证实。
+
+原型仍默认OFF、仅一个fixture；逐领域Floor/收益定义/资格不变，无永久或GC改动。精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED。完整六yield/all-city/global旧GWA cutover与L3/M/N/U2未授权。
+
+live暂仍B152.179/source85c77b4及既有receipt；B153部署待本轮commit/push、退出和W0003事务核验，不从HEAD猜运行包。main稳定B069.96，无promotion。
+
+下一允许动作仅安全部署本已授权修复，并等待同城C00→C10→C11→C01→OFF最小续测；不要求旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留精确合同与停止点。
+
+## 历史阶段记录
+
+### S0392 — B152 C00入口中止，修复尚未授权（当时）
 
 B152.179 / modinfo179本次用户中止于单城L2B **C00基线入口**：[一图与定域源码核对](Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md)。旧对话投影未确认，ADVANCE报ME_DIALOGUE_UNCONFIRMED，UI正确拒绝基线；没有四态原生差值，不能判Floor/倍率PASS或FAIL。原38 Meaning＋26 K LOCAL证据保留，不扩大覆盖。
 
@@ -21,7 +33,6 @@ source/live仍B152.179，source85c77b4；既有W0003 receipt `B152.179-85c77b4-p
 
 一张原图已逐张读并移至ignored local Evidence，1/1 SHA256一致；本轮未运行玩法测试/模拟。截图仍显示BASELINE/未确认，不声称已退出OFF或恢复AUTO。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保存停止点；等待修复授权。
 
-## 历史阶段记录
 
 ### S0391 — D0039 Design同步与B152 LOCAL待原生
 

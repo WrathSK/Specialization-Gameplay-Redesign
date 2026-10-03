@@ -1,11 +1,11 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_GATE_PROTOTYPE_NATIVE_BLOCKED_ENTRY；C00未取得有效基线，原LOCAL证据保留；精确recipient门禁未解决，正式cutover未授权。
+State: P0_L2B_ENTRY_REPAIRED_AWAITING_NATIVE；B153入口修复LOCAL完成，四态原生仍未测；精确recipient门禁未解决，正式cutover未授权。
 Authority: Culture D0038 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-本次B152用户测试中止于C00：[投影未确认与真实采样路径缺口](../../Status/Validation/Results/Specialization_B152_P0L2B_Entry_Blocked.md)。四态比较未测，当前不要求重试。下一建议仅Dialogue Hold/Audit执行确认、成对样本落地后的本城通知及真实入口定向回归，**修复尚未授权**。不得将busy/旧样本候选写成已证实原生根因；不放宽未知保护或改公式。原LOCAL实施/部署与既定四态合同保留如下，不等于现在可继续未修复入口。
+B152中止的C00入口已由用户授权定域修复：[B153更新确认/成对样本与续测](../../Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md)。53 Meaning＋26 K定向PASS；原生根因/四态差值未确认。Dialogue Init/Audit与直接GWA Audit异常锁/triple修复，两Receiver均接受才记录有界pair凭据并通知当前fixture，Hold/Read核验当前stamp。未配对保留holder、不记成功基线；无变化新Seq零写，不改普通旧AUTO/公式/资格。允许仅本已授权修复的安全部署及既定同城续测；完整六yield/cutover/L3/M/N/U2未授权。
 
 用户明确“不同领域不合并同种产出取整，分别Floor”并授权原具体L2B门禁原型。D0038正式记录：`per_work_d = floor(0.5 × D_d × share_y)`，`per_work_y = Σ per_work_d`，`total_y = per_work_y × W`。Commercial D1＋Harbor D1=每件2G；Campus D1/W2=0S。不外推GPP、K0.5/份额/D/资格不变。
 
@@ -23,7 +23,7 @@ B152.179单城原型LOCAL完成：[证据、接口限制与一个最小实机流
 
 **更新、资源与边界。** 本城明确动作、当前馆藏/D/ACTIVE/ref变化；同输入零写、同回合变化响应。复用现有Shared/K输入，Dialogue scoped Audit只读本城。普通计算不扫描巨作槽位/构造诊断副本；UI原生扫描只在按需request，没有per-frame/hover请求或GC改动。UNKNOWN保存holder，配置/健康未确认不采成功读数。无关transfer/return可失效样本但不解除本城override；confirmed loss先owned退出，加载默认OFF、不重放永久/临时快照。非加载兜底不得清其它已ready城市。
 
-**本地验收。** W0004 L2 +直接触及loss/load的L3定域断言；38实际Lua/SQL及26K通过，逐领域Floor反例和撤销失败/幂等/两城隔离/UNKNOWN/冷加载/延迟UI/native配置健康覆盖。只读DB副本，未跑历史full/stress；现有版本/外部事实不由模拟升级native PASS。
+**本地验收。** W0004 L2 +直接触及loss/load的L3定域断言；B153 53实际Lua/SQL及26K通过，逐领域Floor反例和撤销失败/幂等/两城隔离/UNKNOWN/冷加载/延迟UI/native配置健康覆盖。只读DB副本，未跑历史full/stress；现有版本/外部事实不由模拟升级native PASS。
 
 **退出与后续。** 本单城native对照完成后记录结果，或第一个失败停止对应路径。精确recipient未解决不伪造资格PASS；Culture若被放大不减系数/补差/整城补贴/全局关旧对话。只有可靠接口及另行完整计划授权后，才正式六yield/all-city cutover。当前检查点不授权L3/M/N/U2、AI/MP、永久schema、目录扩展或GC调参。用户此时无需新设计决定；native一次短流程见证据页。
 

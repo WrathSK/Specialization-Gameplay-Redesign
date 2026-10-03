@@ -51,14 +51,15 @@ function SPCGWAdjacency.Start(P,shared)
  end
  function d.Audit(pid,cid)
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
+  local completed,failure=pcall(function()
   if cid==nil then d.last[pid]={} else d.last[pid]=d.last[pid] or {} end
   local rowsByCity={}
   for _,r in pairs(d.samples[pid] and d.samples[pid].rows or {}) do
    rowsByCity[r.city]=rowsByCity[r.city] or {};table.insert(rowsByCity[r.city],r)
   end
-  local collection=Players[pid]:GetCities();local visit=collection:Members()
-  if cid~=nil then local selected=collection:FindID(cid);local done=false;visit=function()if not done and selected then done=true;return cid,selected end end end
-  for _,c in visit do P.Count('city_scan');
+  local collection=Players[pid]:GetCities();local visit,state,initial=collection:Members()
+  if cid~=nil then local selected=collection:FindID(cid);local done=false;visit=function()if not done and selected then done=true;return cid,selected end end;state=nil;initial=nil end
+  for _,c in visit,state,initial do P.Count('city_scan');
    local ok,plan=pcall(function()
     if d.IsMeaningHeld(pid,c)then return {base={},count=0,active=false,want={},meaningHeld=true}end
     local sample=d.samples[pid];local collection=shared.Dialogue.samples[pid]
@@ -77,7 +78,9 @@ function SPCGWAdjacency.Start(P,shared)
    local applied,why=pcall(carriers,c,plan.want);if not applied then plan.error=tostring(why) end
    d.last[pid][c:GetID()]=plan
   end
-  d.busy=false
+  end)
+  d.busy=false -- Release only the audit which acquired the lock.
+  if not completed then d.errors[pid]='GWA_AUDIT_FAILED: '..tostring(failure):sub(1,180)end
  end
  function d.Receive(pid,a)
   if not P.IsTestPlayer(pid) then return end

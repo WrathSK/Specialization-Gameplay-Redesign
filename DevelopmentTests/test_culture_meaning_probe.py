@@ -62,7 +62,7 @@ class MeaningProbeTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.sql=database()
- def runtime(self):
+ def runtime(self,real_samples=False):
   helper=ae.AestheticTests();helper.sql=self.sql;l=helper.runtime()
   for table,key in [('GreatWorks','GreatWorkType'),('Yields','YieldType'),('GreatPersonIndividuals','GreatPersonIndividualType'),('Eras','EraType'),('GreatWork_YieldChanges','GreatWorkType')]:
    cur=self.sql.execute('SELECT * FROM '+table);columns=[a[0]for a in cur.description];rows=[dict(zip(columns,r))for r in cur]
@@ -75,22 +75,47 @@ class MeaningProbeTests(unittest.TestCase):
    l.execute((M/(n+'.lua')).read_text())
   l.globals().include=imported_include
   for n in ['Dialogue','GreatWorkAdjacency','CultureMeaningProbe']:imported_include(n)
+  if real_samples:imported_include('GreatWorkFacts')
+  l.globals().realSamples=real_samples
   l.execute("""
    Game.GetLocalPlayer=function()return 0 end
    for _,c in ipairs(cities)do building(c,'BUILDING_MARKET',c.ds[3],false);building(c,'BUILDING_FAIR',c.ds[3]);c.active=4;c.workCount=1;c.badCount=0;c.categoryUnknown=0;local campus=district(c,6,'DISTRICT_CAMPUS');building(c,'BUILDING_LIBRARY',campus)end
+   if realSamples then
+    local previous=shared.GreatWorkFacts.OnConfirmed
+    for _,c in ipairs(cities)do function c:GetName()return 'Fixture '..self.id end end
+    SPCGreatWorkFacts.Start(P,shared);shared.GreatWorkFacts.OnConfirmed=previous
+   else
+   shared.GreatWorkFacts.ack=1;shared.GreatWorkFacts.epoch=1;shared.GreatWorkFacts.inputRevision=0
    shared.GreatWorkFacts.Summary=function(pid,id)
     local c=Players[pid]:GetCities():FindID(id)
     return c and {count=c.workCount,eraCount=c.eras,availability=c.worksUnknown and 'UNKNOWN' or 'KNOWN',hasConfirmed=not c.neverConfirmed,reference=SPCNetworkInput.Reference(c),modifierExcludedCount=c.badCount,unknownCategoryCount=c.categoryUnknown}
    end
+   end
    for _,c in ipairs(cities)do local dq=district(c,7,'DISTRICT_DIPLOMATIC_QUARTER');building(c,'BUILDING_CONSULATE',dq);building(c,'BUILDING_CHANCERY',dq)end
    SPCDialogue.Start(P,shared);dialogue=shared.Dialogue;dialogue.Init()
-   function collection()dialogue.samples[0]={turn=turn,cities={[1]={{id=1,type='GREATWORK_BHASA_1'}},[2]={{id=2,type='GREATWORK_BHASA_1'}}}}end
-   collection();dialogue.Audit(0)
+   -- These direct mock samples support the original consumer cases only. The
+   -- realSamples path starts empty and accepts samples solely through request.
+   function collection()
+    assert(not realSamples,'REAL_SAMPLE_MUST_USE_REQUEST')
+    dialogue.seq[0]=shared.GreatWorkFacts.ack
+    dialogue.samples[0]={turn=turn,seq=shared.GreatWorkFacts.ack,generation=dialogue.generation,
+     factsEpoch=shared.GreatWorkFacts.epoch,factsInput=shared.GreatWorkFacts.inputRevision,
+     cities={[1]={{id=1,type='GREATWORK_BHASA_1'}},[2]={{id=2,type='GREATWORK_BHASA_1'}}}}
+    assert(dialogue.ConfirmSamplePair(0,{Seq=shared.GreatWorkFacts.ack,Turn=turn,Generation=dialogue.generation,
+     FactsEpoch=shared.GreatWorkFacts.epoch,FactsInput=shared.GreatWorkFacts.inputRevision}))
+   end
+   if not realSamples then collection();dialogue.Audit(0)end
    SPCGWAdjacency.Start(P,shared);gwa=shared.GreatWorkAdjacency;gwa.Init()
    gwa.samples[0]={turn=turn,rows={{city=1,values={0,0,2,2,0,0}},{city=2,values={0,0,2,2,0,0}}}}
    gwa.Audit(0)
    SPCCultureMeaningProbe.Start(P,shared);probe=shared.CultureMeaningProbe
-   fire('LoadScreenClose');collection();svc.MarkDirty();gwa.Audit(0)
+   fire('LoadScreenClose');if not realSamples then collection()end;svc.MarkDirty();gwa.Audit(0)
+   function confirmCollection()
+    assert(not realSamples,'REAL_SAMPLE_MUST_USE_REQUEST')
+    shared.GreatWorkFacts.OnConfirmed(0,{1}) -- Preserve the existing L1 callback.
+    probe.CollectionConfirmed(0,{Seq=shared.GreatWorkFacts.ack,Turn=turn,Generation=dialogue.generation,
+     FactsEpoch=shared.GreatWorkFacts.epoch,FactsInput=shared.GreatWorkFacts.inputRevision})
+   end
    function configured(c,y)
     local n=0;for bit=0,SPCCultureMeaningModel.ProbeBits[y]-1 do
      if c.present[GameInfo.Buildings['BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit].Index]then n=n+2^bit/SPCCultureMeaningModel.ProbeScale[y] end
@@ -98,6 +123,50 @@ class MeaningProbeTests(unittest.TestCase):
    end
    function old(c,y)return c.present[GameInfo.Buildings['BUILDING_SPC_B060_'..y..'_P1'].Index]==true end
    function begin()probe.Advance(0,a);assert(probe.mode=='BASELINE');probe.Advance(0,a);assert(probe.mode=='ACTIVE')end
+  """)
+  return l
+ def real_sample_runtime(self):
+  # Reuse the engine/SQL fixture, but both collection interpreters execute real
+  # source. No Summary override or preinstalled Dialogue sample is permitted.
+  l=self.runtime(real_samples=True);bind_actual_request(l)
+  l.execute("""
+   assert(dialogue.samples[0]==nil and shared.GreatWorkFacts.Summary(0,1)==nil)
+   for _,d in ipairs(b.ds)do d.id=d.id+100 end -- Native district IDs are unique.
+   function samplePacket(seq,rows)
+    local bid=GameInfo.Buildings.BUILDING_AMPHITHEATER.Index
+    rows=rows or {{1,bid,0,100,'GREATWORK_BHASA_1'},{2,bid,0,200,'GREATWORK_BHASA_1'}}
+    local p={Action='DIALOGUE_SAMPLE',Token='sample:'..seq,Seq=seq,Turn=turn,Generation=dialogue.generation,Valid=1,
+     FactsEpoch=shared.GreatWorkFacts.epoch,FactsInput=shared.GreatWorkFacts.inputRevision,
+     FactsRefs='',FactsData='',FactsCount=#rows,FactsCities=#cities,AdjData='',AdjCount=0}
+    local ordered={};for _,c in ipairs(cities)do ordered[#ordered+1]=c end
+    table.sort(ordered,function(x,y)return x.id<y.id end)
+    local legacy={}
+    for _,c in ipairs(ordered)do
+     p.FactsRefs=p.FactsRefs..c.id..','..SPCGreatWorkFacts.Hex(SPCNetworkInput.Reference(c))..',1;'
+     legacy[#legacy+1]=c.id..',-1,EMPTY'
+     for _,w in ipairs(rows)do if w[1]==c.id then legacy[#legacy+1]=c.id..','..w[4]..','..w[5]end end
+    end
+    for _,w in ipairs(rows)do p.FactsData=p.FactsData..table.concat(w,',')..';'end
+    p.Data=table.concat(legacy,';');p.Count=#legacy
+    for _,d in ipairs(ds)do
+     local def=P.Info('Districts',d:GetType())
+     if def.RequiresPopulation and def.RequiresPopulation~=0 and d:IsComplete()then
+      local values=def.DistrictType=='DISTRICT_CAMPUS' and '0,0,2,2,0,0' or '0,0,0,0,0,0'
+      p.AdjData=p.AdjData..d.city.id..','..d.id..','..def.DistrictType..','..values..';';p.AdjCount=p.AdjCount+1
+     end
+    end
+    return p
+   end
+   function sampleRequest(seq,rows)local p=samplePacket(seq,rows);meaningRequest(0,p);return p end
+   function meaningAction(action,token)
+    meaningRequest(0,{Action=action,CityID=1,Token=token})
+    assert(shared.LastToken==token and shared.CultureMeaningView.token==token)
+    return shared.CultureMeaningView
+   end
+   function twoWorks()
+    local bid=GameInfo.Buildings.BUILDING_AMPHITHEATER.Index
+    return {{1,bid,0,100,'GREATWORK_BHASA_1'},{1,bid,1,101,'GREATWORK_BHASA_1'},{2,bid,0,200,'GREATWORK_BHASA_1'}}
+   end
   """)
   return l
  def test_model_matrix_per_work_and_shared_max_cap(self):
@@ -161,11 +230,11 @@ class MeaningProbeTests(unittest.TestCase):
   """)
  def test_same_era_work_change_and_l1_zero_write(self):
   l=self.runtime();l.execute("""
-   begin();local w=writes;local prior=total(a);a.workCount=2;shared.GreatWorkFacts.OnConfirmed(0,{1})
+   begin();local w=writes;local prior=total(a);a.workCount=2;confirmCollection()
    assert(probe.lastPlan.count==2 and probe.lastPlan.total.SCIENCE==0 and probe.lastPlan.total.GOLD==2)
    assert(configured(a,'SCIENCE')==0 and total(a)==prior and writes==w)
-   a.workCount=0;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(configured(a,'SCIENCE')==0 and configured(a,'GOLD')==0)
-   a.workCount=1;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(configured(a,'SCIENCE')==0)
+   a.workCount=0;confirmCollection();assert(configured(a,'SCIENCE')==0 and configured(a,'GOLD')==0)
+   a.workCount=1;confirmCollection();assert(configured(a,'SCIENCE')==0)
   """)
  def test_real_confirmed_count_and_eligibility_notifications(self):
   f=Fixture();f.check("""
@@ -193,7 +262,7 @@ class MeaningProbeTests(unittest.TestCase):
   l=self.runtime();l.execute("""
    a.badCount=1;assert(not pcall(probe.Advance,0,a));assert(probe.mode=='OFF' and old(a,'SCIENCE') and configured(a,'SCIENCE')==0)
    a.badCount=0;a.categoryUnknown=1;assert(not pcall(probe.Advance,0,a));assert(probe.mode=='OFF')
-   a.categoryUnknown=0;begin();a.badCount=1;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(configured(a,'SCIENCE')==0 and probe.error:find('ME_FIXTURE_UNSUPPORTED_WORK'))
+   a.categoryUnknown=0;begin();a.badCount=1;confirmCollection();assert(configured(a,'SCIENCE')==0 and probe.error:find('ME_FIXTURE_UNSUPPORTED_WORK'))
    probe.End(0,a);assert(probe.mode=='OFF' and old(a,'SCIENCE'))
   """)
  def test_old_withdrawal_failure_does_not_enable_new(self):
@@ -341,7 +410,7 @@ class MeaningProbeTests(unittest.TestCase):
    assert(writes==w and (counts.dc_read or 0)==n and probe.mode=='OFF' and shared.LastToken==nil)
   """)
  def test_registration_localization_exact_scope(self):
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'179');require_meaning_imports(root)
+  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'180');require_meaning_imports(root)
   files=[e.text for e in root.find('Files')];self.assertEqual(len(files),len(set(files)))
   self.assertEqual(set(files),{str(p.relative_to(M))for p in M.rglob('*')if p.is_file() and p.name not in {'.DS_Store','SpecializationP0.modinfo'}})
   self.assertTrue({'CultureMeaningModel.lua','CultureMeaningProbe.lua','Data/CultureMeaningProbe.sql'}<=set(files))
@@ -390,7 +459,7 @@ class MeaningProbeTests(unittest.TestCase):
  def test_unknown_dialogue_retains_binding_and_never_records_success(self):
   l=self.runtime();l.execute("""
    begin();probe.Advance(0,a);assert(probe.mode=='SCALED');local n=configured(a,'CULTURE')
-   dialogue.samples[0]=nil;probe.Audit();assert(probe.error:find('ME_DIALOGUE_UNCONFIRMED') and configured(a,'CULTURE')==n)
+   dialogue.samples[0]=nil;probe.Audit();assert(probe.error:find('ME_DIALOGUE_SAMPLE_PAIR_PENDING') and configured(a,'CULTURE')==n)
    assert(dialogue.IsMeaningProbeHeld(0,a,100) and gwa.IsMeaningHeld(0,a) and probe.View(0,a).dialoguePercent==nil)
    collection();probe.Audit();assert(not probe.error and probe.View(0,a).dialoguePercent==100)
    probe.End(0,a);assert(probe.mode=='OFF')
@@ -490,5 +559,241 @@ class MeaningProbeTests(unittest.TestCase):
    begin();failCreate=true;assert(not pcall(probe.Advance,0,a));assert(probe.error and gwa.IsMeaningHeld(0,a))
    assert(probe.Describe(0,a):find('对话配置未确认'))
    failCreate=false;probe.Advance(0,a);assert(probe.mode=='OFF' and dialogue.meaningOverride==nil and configured(a,'CULTURE')==0)
+  """)
+ def test_real_sample_request_cold_c00_uses_both_receivers(self):
+  l=self.real_sample_runtime();l.execute("""
+   local on=shared.GreatWorkFacts.OnConfirmed;local paired=probe.CollectionConfirmed
+   local received=dialogue.Receive;order={}
+   shared.GreatWorkFacts.OnConfirmed=function(pid,ids)
+    order[#order+1]='FACTS';assert(shared.GreatWorkFacts.ack==1 and dialogue.samples[0]==nil)
+    assert(shared.GreatWorkFacts.Summary(0,1).count==1);if on then on(pid,ids)end
+   end
+   dialogue.Receive=function(pid,p)local accepted=received(pid,p);order[#order+1]='DIALOGUE';assert(accepted==true);return accepted end
+   probe.CollectionConfirmed=function(pid,p)
+    order[#order+1]='PAIR';assert(dialogue.samples[0].seq==p.Seq);return paired(pid,p)
+   end
+   sampleRequest(1);assert(table.concat(order,',')=='FACTS,DIALOGUE,PAIR')
+   local v=meaningAction('CULTURE_MEANING_ADVANCE','cold-c00')
+   assert(v.mode=='BASELINE' and v.dialoguePercent==0 and not v.error and v.count==1)
+   assert(gwa.IsMeaningHeld(0,a) and not old(a,'SCIENCE') and old(b,'SCIENCE'))
+   assert(dialogue.samples[0].generation==dialogue.generation and shared.GreatWorkFacts.Summary(0,1).reference==v.reference)
+  """)
+ def test_real_sample_callback_does_not_mix_new_facts_with_old_dialogue(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+   local on=shared.GreatWorkFacts.OnConfirmed;local paired=probe.CollectionConfirmed
+   factCallbacks=0;pairCallbacks=0
+   shared.GreatWorkFacts.OnConfirmed=function(pid,ids)
+    factCallbacks=factCallbacks+1
+    assert(shared.GreatWorkFacts.ack==2 and shared.GreatWorkFacts.Summary(0,1).count==2)
+    assert(dialogue.samples[0].seq==1 and probe.lastPlan.count==1)
+    assert(probe.View(0,a).dialoguePercent==nil)
+    if on then on(pid,ids)end
+    assert(probe.lastPlan.count==1) -- Facts callback cannot confirm the old Dialogue projection.
+   end
+   probe.CollectionConfirmed=function(pid,p)
+    pairCallbacks=pairCallbacks+1;assert(dialogue.samples[0].seq==2 and p.Seq==2)
+    return paired(pid,p)
+   end
+   sampleRequest(2,twoWorks())
+   assert(factCallbacks==1 and pairCallbacks==1 and probe.mode=='ACTIVE' and not probe.error)
+   assert(probe.lastPlan.count==2 and probe.lastPlan.total.GOLD==2 and probe.View(0,a).dialoguePercent==0)
+   assert(configured(a,'GOLD')==1 and old(b,'SCIENCE') and not old(a,'SCIENCE'))
+  """)
+ def test_real_sample_identical_new_sequence_recovers_after_busy_without_fact_change(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+   local on=shared.GreatWorkFacts.OnConfirmed;local paired=probe.CollectionConfirmed;factCallbacks=0;pairCallbacks=0
+   shared.GreatWorkFacts.OnConfirmed=function(...)factCallbacks=factCallbacks+1;if on then return on(...)end end
+   probe.CollectionConfirmed=function(...)pairCallbacks=pairCallbacks+1;return paired(...)end
+   dialogue.busy=true;sampleRequest(2)
+   assert(dialogue.busy and probe.error and probe.View(0,a).dialoguePercent==nil)
+   assert(configured(a,'GOLD')==1 and gwa.IsMeaningHeld(0,a))
+   dialogue.busy=false;sampleRequest(3)
+   assert(factCallbacks==0 and pairCallbacks==2 and not probe.error and not dialogue.busy)
+   assert(probe.View(0,a).dialoguePercent==0 and probe.lastPlan.count==1 and probe.mode=='ACTIVE')
+  """)
+ def test_real_sample_one_receiver_rejection_does_not_confirm_pair(self):
+  for field in ['Generation','FactsEpoch','FactsInput']:
+   with self.subTest(rejected_field=field):
+    l=self.real_sample_runtime();l.globals().badField=field;l.execute("""
+     sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+     local paired=probe.CollectionConfirmed;pairCallbacks=0
+     probe.CollectionConfirmed=function(...)pairCallbacks=pairCallbacks+1;return paired(...)end
+     local p=samplePacket(2,twoWorks());p[badField]=p[badField]+1;meaningRequest(0,p)
+     assert(pairCallbacks==0 and probe.lastPlan.count==1 and probe.mode=='ACTIVE')
+     assert(probe.View(0,a).dialoguePercent==nil and configured(a,'GOLD')==1 and gwa.IsMeaningHeld(0,a))
+     assert(shared.GreatWorkFacts.ack==(badField=='FactsEpoch' and 1 or 2) and (dialogue.seq[0] or 0)>0) -- ACK is not acceptance.
+     sampleRequest(3,twoWorks());assert(pairCallbacks==1 and not probe.error and probe.lastPlan.count==2)
+     assert(probe.View(0,a).dialoguePercent==0)
+    """)
+ def test_real_sample_duplicate_sequence_does_not_reinterpret_changed_payload(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+   local paired=probe.CollectionConfirmed;pairCallbacks=0
+   probe.CollectionConfirmed=function(...)pairCallbacks=pairCallbacks+1;return paired(...)end
+   local w=writes;sampleRequest(1,twoWorks())
+   assert(pairCallbacks==0 and writes==w and probe.lastPlan.count==1)
+   assert(shared.GreatWorkFacts.Summary(0,1).count==1 and dialogue.samples[0].seq==1)
+   assert(probe.View(0,a).dialoguePercent==0 and not probe.error)
+  """)
+ def test_real_sample_dialogue_one_end_behind_cannot_reuse_processed_facts_ack(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+   local paired=probe.CollectionConfirmed;pairCallbacks=0
+   probe.CollectionConfirmed=function(...)pairCallbacks=pairCallbacks+1;return paired(...)end
+   local previousTurn=turn;turn=turn+1;dialogue.seq[0]=0 -- Reproduce one interpreter lagging behind.
+   sampleRequest(1,twoWorks())
+   assert(shared.GreatWorkFacts.ack==1 and shared.GreatWorkFacts.Summary(0,1).availability=='KNOWN')
+   assert(shared.GreatWorkFacts.Summary(0,1).count==1 and dialogue.samples[0].seq==1 and #dialogue.samples[0].cities[1]==2)
+   assert(dialogue.received[0].stage=='ACCEPTED' and dialogue.samples[0].turn==turn)
+   assert(dialogue.paired[0].turn==previousTurn and pairCallbacks==0 and probe.lastPlan.count==1)
+   local v=probe.View(0,a);assert(v.dialoguePercent==nil and v.dialogueError:find('ME_DIALOGUE_SAMPLE_PAIR_PENDING'))
+   local held,why=pcall(dialogue.HoldMeaningProbe,0,a,0)
+   assert(not held and why:find('ME_DIALOGUE_SAMPLE_PAIR_PENDING') and gwa.IsMeaningHeld(0,a) and configured(a,'GOLD')==1)
+   sampleRequest(2,twoWorks())
+   assert(pairCallbacks==1 and dialogue.paired[0].turn==turn and dialogue.paired[0].seq==2)
+   assert(probe.mode=='ACTIVE' and probe.lastPlan.count==2 and not probe.error and probe.View(0,a).dialoguePercent==0)
+  """)
+ def test_real_sample_next_turn_waits_for_current_pair_then_recovers_same_phase(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+   turn=turn+1;fire('PlayerTurnActivated',0)
+   assert(probe.mode=='ACTIVE' and probe.error and probe.View(0,a).dialoguePercent==nil)
+   assert(gwa.IsMeaningHeld(0,a) and configured(a,'GOLD')==1)
+   sampleRequest(2)
+   assert(probe.mode=='ACTIVE' and not probe.error and probe.View(0,a).dialoguePercent==0)
+   assert(dialogue.samples[0].turn==turn and configured(a,'GOLD')==1 and not old(a,'SCIENCE'))
+  """)
+ def test_real_sample_scaled_refresh_has_zero_writes_and_busy_probe_stays_unconfirmed(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1);meaningAction('CULTURE_MEANING_ADVANCE','c00');meaningAction('CULTURE_MEANING_ADVANCE','c10')
+   meaningAction('CULTURE_MEANING_ADVANCE','c11')
+   local id=GameInfo.Buildings.BUILDING_SPC_B059_TEST100.Index
+   assert(probe.mode=='SCALED' and probe.View(0,a).dialoguePercent==100 and a.present[id])
+   local w=writes;local dialogueChanges=dialogue.changes;local meaningChanges=probe.changes
+   sampleRequest(2)
+   assert(writes==w and dialogue.changes==dialogueChanges and probe.changes==meaningChanges)
+   assert(dialogue.paired[0].seq==2 and dialogue.last[0][1].sampleSeq==2 and probe.View(0,a).dialoguePercent==100)
+   assert(a.present[id] and configured(a,'CULTURE')==1 and configured(a,'GOLD')==1)
+   assert(not old(a,'SCIENCE') and old(b,'SCIENCE') and dialogue.last[0][2].sampleSeq==2)
+   local paired=probe.CollectionConfirmed;confirmResults={}
+   probe.CollectionConfirmed=function(...)
+    local accepted=paired(...);confirmResults[#confirmResults+1]=accepted;return accepted
+   end
+   probe.busy=true;sampleRequest(3)
+   assert(probe.busy and confirmResults[1]==false and dialogue.paired[0].seq==3)
+   assert(probe.View(0,a).dialoguePercent==nil and writes==w and a.present[id])
+   assert(configured(a,'CULTURE')==1 and gwa.IsMeaningHeld(0,a) and old(b,'SCIENCE'))
+   probe.busy=false;sampleRequest(4)
+   assert(confirmResults[2]==true and not probe.error and not probe.busy and not dialogue.busy and not gwa.busy)
+   assert(dialogue.last[0][1].sampleSeq==4 and probe.View(0,a).dialoguePercent==100)
+   assert(writes==w and dialogue.changes==dialogueChanges and probe.changes==meaningChanges)
+   assert(probe.mode=='SCALED' and a.present[id] and configured(a,'CULTURE')==1 and old(b,'SCIENCE') and not old(a,'SCIENCE'))
+  """)
+ def test_dialogue_busy_cannot_confirm_cached_projection_or_clear_other_lock(self):
+  for cached_meaning in [False,True]:
+   with self.subTest(cached_meaning=cached_meaning):
+    l=self.runtime();bind_actual_request(l);l.globals().include('UI/BoostGreatWorkRead');l.globals().cachedMeaning=cached_meaning;l.execute("""
+     dialogue.last[0][1].meaning=cachedMeaning;dialogue.busy=true
+     local w=writes;meaningRequest(0,{Action='CULTURE_MEANING_ADVANCE',CityID=1,Token='busy-c00'})
+     assert(dialogue.busy and probe.mode=='BASELINE' and probe.error:find('ME_DIALOGUE_UPDATE_PENDING'))
+     assert(shared.CultureMeaningView.error and configured(a,'GOLD')==0 and gwa.IsMeaningHeld(0,a))
+     assert(shared.Snapshot:find('%[ADVANCE%]') and writes>=w and not old(a,'SCIENCE'))
+     local before=writes;local text=SPCBoostGreatWorkRead.Meaning(P,a,shared.CultureMeaningView,true)
+     assert(text:find('ME_UI_CONFIGURATION_PENDING') and not text:find('已记录') and writes==before)
+     dialogue.busy=false;probe.Audit();assert(not probe.error and probe.View(0,a).dialoguePercent==0)
+     probe.End(0,a);assert(probe.mode=='OFF' and not dialogue.meaningOverride and old(a,'SCIENCE'))
+    """)
+ def test_dialogue_audit_outer_exceptions_release_only_own_lock(self):
+  failures=["local raw=Players[0].GetCities;Players[0].GetCities=function()error('NATIVE_GET_CITIES')end;restore=function()Players[0].GetCities=raw end",
+   "local raw=Players[0].GetCities;Players[0].GetCities=function()return {Members=function()error('NATIVE_MEMBERS')end}end;restore=function()Players[0].GetCities=raw end",
+   "local raw=Players[0].GetCities;Players[0].GetCities=function()local v=raw();v.FindID=function()error('NATIVE_FIND_ID')end;return v end;auditCity=1;restore=function()Players[0].GetCities=raw end",
+   "local raw=P.Count;P.Count=function()error('NATIVE_COUNT')end;restore=function()P.Count=raw end"]
+  for setup in failures:
+   with self.subTest(failure=setup.split("error('")[1].split("'")[0]):
+    l=self.runtime();l.execute(setup);l.execute("""
+     local completed,why=dialogue.Audit(0,auditCity)
+     assert(completed==false and why:find('AUDIT_FAILED') and not dialogue.busy)
+     restore();assert(dialogue.Audit(0)==true and not dialogue.busy and not dialogue.last[0][1].error)
+     dialogue.busy=true;completed,why=dialogue.Audit(0)
+     assert(completed==false and why:find('BUSY') and dialogue.busy)
+    """)
+ def test_dialogue_init_exception_and_reentry_release_only_own_initializing_lock(self):
+  l=self.runtime();l.execute("""
+   dialogue.ready=false
+   local raw=P.Count;P.Count=function()error('NATIVE_INIT_COUNT')end
+   assert(not pcall(dialogue.Init) and not dialogue.initializing and not dialogue.ready)
+   P.Count=raw;dialogue.Init();assert(dialogue.ready and not dialogue.initializing)
+   dialogue.ready=false;P.Count=function()dialogue.Init()end
+   local ok,why=pcall(dialogue.Init)
+   assert(not ok and why:find('INIT_BUSY') and not dialogue.initializing and not dialogue.ready)
+   P.Count=raw;dialogue.Init();assert(dialogue.ready and not dialogue.initializing)
+   dialogue.ready=false;dialogue.initializing=true
+   assert(not pcall(dialogue.Init) and dialogue.initializing and not dialogue.ready)
+   dialogue.initializing=false;dialogue.Init();assert(dialogue.ready)
+  """)
+ def test_dialogue_target_missing_invalidates_cached_meaning_projection(self):
+  l=self.runtime();l.execute("""
+   probe.Advance(0,a);assert(probe.View(0,a).dialoguePercent==0)
+   local raw=Players[0].GetCities
+   Players[0].GetCities=function()local v=raw();v.FindID=function()return nil end;return v end
+   local completed,why=dialogue.Audit(0,1)
+   assert(completed==false and why:find('CITY_UNAVAILABLE') and not dialogue.busy)
+   assert(not (dialogue.last[0] and dialogue.last[0][1]))
+   local percent,err=dialogue.ReadMeaningProbe(0,a);assert(percent==nil and err)
+   Players[0].GetCities=raw;assert(dialogue.Audit(0,1)==true and probe.View(0,a).dialoguePercent==0)
+  """)
+ def test_dialogue_native_member_iterator_preserves_state_and_control(self):
+  l=self.real_sample_runtime();l.execute("""
+   sampleRequest(1)
+   local native={rows=cities}
+   function native:FindID(id)for _,c in ipairs(self.rows)do if c.id==id then return c end end end
+   function native:Members()
+    local rows=self.rows
+    return function(state,control)
+     assert(state==rows and type(control)=='number','NATIVE_ITERATOR_STATE_LOST')
+     local nextIndex=control+1;local c=state[nextIndex];if c then return nextIndex,c end
+    end,rows,0
+   end
+   Players[0].GetCities=function()return native end
+   assert(dialogue.Audit(0)==true and not dialogue.busy)
+   assert(dialogue.last[0][1] and dialogue.last[0][2] and not dialogue.last[0][1].error and not dialogue.last[0][2].error)
+   assert(dialogue.Audit(0,1)==true and not dialogue.busy)
+   -- Continue through the complete actual request, including un-stubbed GWA.
+   sampleRequest(2);local v=meaningAction('CULTURE_MEANING_ADVANCE','native-c00')
+   assert(v.mode=='BASELINE' and v.dialoguePercent==0 and not v.error)
+   sampleRequest(3);assert(not probe.error and probe.View(0,a).dialoguePercent==0)
+   assert(not dialogue.busy and not gwa.busy and gwa.last[0][1].meaningHeld and not gwa.last[0][2].error)
+   assert(gwa.IsMeaningHeld(0,a) and not old(a,'SCIENCE') and old(b,'SCIENCE'))
+  """)
+ def test_real_sample_gwa_outer_failures_release_own_lock_and_allow_recovery(self):
+  failures=[
+   "local raw=Players[0].GetCities;Players[0].GetCities=function()if gwa.busy then error('NATIVE_GWA_GET_CITIES')end;return raw()end;restore=function()Players[0].GetCities=raw end",
+   "local raw=Players[0].GetCities;Players[0].GetCities=function()local c=raw();local members=c.Members;c.Members=function(...)local it,state,control=members(...);return function(s,k)if gwa.busy then error('NATIVE_GWA_ITERATOR')end;return it(s,k)end,state,control end;return c end;restore=function()Players[0].GetCities=raw end",
+   "local raw=a.GetID;a.GetID=function(c)if gwa.busy then error('NATIVE_GWA_GET_ID')end;return raw(c)end;restore=function()a.GetID=raw end"]
+  for setup in failures:
+   with self.subTest(failure=setup.split("error('")[1].split("'")[0]):
+    l=self.real_sample_runtime();l.execute(setup);l.execute("""
+     sampleRequest(1)
+     assert(not gwa.busy and gwa.errors[0]:find('GWA_AUDIT_FAILED') and not dialogue.busy)
+     assert(shared.GreatWorkFacts.ack==1 and dialogue.samples[0].seq==1 and dialogue.received[0].stage=='ACCEPTED')
+     local v=meaningAction('CULTURE_MEANING_ADVANCE','failure-c00')
+     assert(v.mode=='BASELINE' and v.dialoguePercent==0 and not v.error and gwa.IsMeaningHeld(0,a))
+     restore();sampleRequest(2)
+     assert(not gwa.busy and not dialogue.busy and not gwa.errors[0])
+     assert(gwa.last[0][1].meaningHeld and not gwa.last[0][2].error and old(b,'SCIENCE') and not old(a,'SCIENCE'))
+     gwa.busy=true;sampleRequest(3);assert(gwa.busy and not dialogue.busy)
+     gwa.busy=false;gwa.Audit(0);assert(not gwa.busy and not gwa.last[0][2].error)
+    """)
+ def test_meaning_describe_uses_short_error_codes_without_source_path_or_trace(self):
+  l=self.runtime();l.execute("""
+   begin();local v=probe.View(0,a)
+   v.dialogueError='/Users/fixture/Mod/Dialogue.lua:123: ME_DIALOGUE_UPDATE_PENDING: AUDIT_FAILED'..string.char(10)..'stack traceback: details'
+   v.error='/Users/fixture/Mod/CultureMeaningProbe.lua:61: ME_DIALOGUE_SAMPLE_PAIR_PENDING'..string.char(10)..'stack traceback: details'
+   local w=writes;local text=probe.Describe(0,a,v)
+   assert(text:find('ME_DIALOGUE_UPDATE_PENDING') and text:find('ME_DIALOGUE_SAMPLE_PAIR_PENDING'))
+   for _,long in ipairs({'/Users/','Dialogue.lua','CultureMeaningProbe.lua','stack traceback','AUDIT_FAILED'})do assert(not text:find(long,1,true))end
+   assert(writes==w and #text<1500)
   """)
 if __name__=='__main__':unittest.main()

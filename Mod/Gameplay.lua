@@ -180,7 +180,11 @@ local function request(playerID,params)
     -- One request-local read model; a failed request must not reuse a prior UI view.
     shared.CultureMeaningView=nil
     local at='CITY';local actionError
-    local function detail(why)return tostring(why):gsub('[%c]',' '):sub(1,240)end
+    local function detail(why)
+      local text=tostring(why):gsub('[%c]',' ');local code=text:match('(ME_[A-Z_]+)')
+      if not code then return text:sub(1,120)end
+      local reason=text:match(code..': ([A-Z_]+)');return code..(reason and (' / '..reason) or '')
+    end
     local ok,out=pcall(function()
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
       assert(c:GetOwner()==playerID,'ME_OWNER_UNKNOWN')
@@ -218,14 +222,22 @@ local function request(playerID,params)
   end
   if params.Action=='DIALOGUE_SAMPLE' then
     -- Independent facts validation cannot block or substitute for the legacy writer.
+    local factsOK,factsAccepted=false,false
     if shared.GreatWorkFacts then
-      local factsOK=pcall(shared.GreatWorkFacts.Receive,playerID,params)
+      factsOK,factsAccepted=pcall(shared.GreatWorkFacts.Receive,playerID,params)
       if not factsOK then shared.GreatWorkFacts.lastError='GW_RECEIVE_EXCEPTION' end
     end
-    local ok,err=pcall(shared.Dialogue.Receive,playerID,params)
+    local ok,accepted=pcall(shared.Dialogue.Receive,playerID,params)
     if not ok then
-      if shared.Dialogue and P.IsTestPlayer(playerID) then shared.Dialogue.errors[playerID]='DIALOGUE_RECEIVE_EXCEPTION: '..tostring(err) end
-      print('[SPC][B059][SAMPLE] '..tostring(err))
+      if shared.Dialogue and P.IsTestPlayer(playerID) then shared.Dialogue.errors[playerID]='DIALOGUE_RECEIVE_EXCEPTION: '..tostring(accepted) end
+      print('[SPC][B059][SAMPLE] '..tostring(accepted))
+    end
+    if factsOK and factsAccepted==true and ok and accepted==true then
+      local paired,confirmed=pcall(shared.Dialogue.ConfirmSamplePair,playerID,params)
+      if paired and confirmed==true and shared.CultureMeaningProbe then
+        local notified,why=pcall(shared.CultureMeaningProbe.CollectionConfirmed,playerID,params)
+        if not notified then shared.CultureMeaningProbe.error='ME_COLLECTION_UPDATE_FAILED: '..tostring(why):sub(1,180)end
+      end
     end
     return
   end
