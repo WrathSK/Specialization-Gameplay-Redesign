@@ -46,4 +46,4 @@ B153截图只证明C10作品CultureΔ0（预期6）及C11配置未确认；不�
 
 ## 部署与恢复
 
-B154源码本地完成，准备按W0003提交/push后部署；当前live仍B153.180，旧receipt与stable恢复点已只读核对MATCH、无pending marker。实际新source commit、部署结果及receipt在完成事务后补充，不能从源码推断已部署。main保持B069.96，不promotion、不启动游戏。
+B154.181 / modinfo181已按W0003部署。source `fb3ee7f90b39148b56226d83accd49b1d6a20b73` 已普通commit/push并确认干净；OS只读确认游戏退出，精确B153 receipt恢复stable过桥后staging激活B154。receipt `B154.181-fb3ee7f-playtest.json` DEVELOP_ACTIVE，**182/182 MATCH**；B153 outgoing与stable恢复点分别核对一致并保留，无pending marker。main保持B069.96，不promotion、不启动游戏；部署一致性不等于native门禁PASS。

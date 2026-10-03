@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0395
-Implementation Build: source B154.181 / modinfo181; live B153.180; P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE; stable B069.96
+Implementation Build: source/live B154.181 / modinfo181; P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
 Latest Accepted Design Revision: D0039
@@ -15,9 +15,9 @@ Work State: P0_L2B_TRANSITION_REPAIRED_AWAITING_NATIVE
 
 修复同步事件重入、busy前置拒绝与跨模块失败意图回退；部分native写入不伪称已撤销，按owned退出。当前资格只读核验与整城Culture辅助读数已补；Culture实际应用/显示差异仍待区分，SQL/逐领域Floor/资格不改。精确recipient仍TECHNICAL_INVESTIGATION_REQUIRED；完整六yield/cutover与L3/M/N/U2未授权。
 
-当前source B154.181；live仍B153.180/source16b036d。原W0003 receipt/旧stable恢复点已只读核对一致，无pending marker；新包待commit/push与游戏退出/安全事务后部署。main稳定B069.96无promotion。Design/GC/永久记录不变，未启动游戏。
+source/live B154.181 / modinfo181，source fb3ee7f。W0003 receipt `B154.181-fb3ee7f-playtest.json` DEVELOP_ACTIVE、182/182 MATCH；OS核对退出，精确B153 receipt恢复stable过桥后staging激活。B153/stable恢复点保留且MATCH，无pending marker。main稳定B069.96无promotion；Design/GC/永久记录不变，未启动游戏。
 
-下一允许动作：完成安全测试部署后等待同城同回合C00/C10最小续测；Culture作品差值仍0先停，用辅助整城读数区分。成功才续C11/C01/OFF，不重复旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保持完整合同。
+下一允许动作：等待同城同回合C00/C10最小续测；Culture作品差值仍0先停，用辅助整城读数区分。成功才续C11/C01/OFF，不重复旧小数/长测，不自动进入下一能力。[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保持完整合同。
 
 ## 历史阶段记录
 
