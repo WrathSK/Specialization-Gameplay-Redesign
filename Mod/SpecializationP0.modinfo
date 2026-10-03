@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="177">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="178">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B150.177: opt-in single-city Meaning GreatWork Science/Gold precision probe; full Meaning cutover not enabled.</Description>
+    <Description>B151.178: repair Meaning probe action imports and bounded request-stage diagnostics; precision remains unverified.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -177,6 +177,8 @@
       <File>UI/GreatWorkBasis.lua</File>
       <File>GreatWorkCatalog.lua</File>
       <File>GreatWorkFacts.lua</File>
+      <File>CultureMeaningModel.lua</File>
+      <File>CultureMeaningProbe.lua</File>
       <File>CultureAestheticModel.lua</File>
       <File>CultureAesthetic.lua</File>
       <File>DialogueModel.lua</File>

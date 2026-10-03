@@ -11,8 +11,8 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0387",
-    "runtime": "B150.177 / modinfo177",
+    "status": "S0388",
+    "runtime": "B151.178 / modinfo178",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -110,6 +110,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
       "kind": "full",
       "reason": "This local checkpoint, native minimum flow and limits"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+      "kind": "full",
+      "reason": "Current scoped entry repair results, native boundary and resumption"
     },
     {
       "path": "Mod/CultureMeaningModel.lua",
@@ -249,10 +254,10 @@
   "validation": {
     "depth": "W0004 L2; relevant scoped L3 ownership/load/failure assertions only",
     "local": [
-      "18 current real-Lua/SQL probe tests PASS",
-      "26 K facts/producer/legacy PASS,15 affected L1 assertions PASS; two pinned/superseded legacy assertions not run, replaced in new tests",
-      "Affected existing dirty-dispatch/reentry/UNKNOWN/late/load/failed-send check PASS; nine changed Lua syntax/XML/exact Mod file registration/localization",
-      "Context/selector/hash/link/diff checks; no full/stress or unrelated regression"
+      "25 current targeted SQL/Lua tests PASS: inherited18 + seven import/actual full request tests; two final refined methods rechecked",
+      "Three changed Lua syntax, Python/XML/unique imports and Mod file-set PASS",
+      "Unchanged original15 L1/26 K/dispatch results retained by unchanged direct modules; no broad/stress rerun",
+      "Only reviewed changed context/runtime hashes and relevant links/diff synchronized"
     ],
     "user": "One controlled CultureACTIVE4 city: baseline->enable->end; W1->W2 same era, D1->D3, native per-workScience/Gold0.5/1.5/4.5 and normal turn persistence. Stop first confirmed failure, no floor. Flow in result."
   },
@@ -263,10 +268,10 @@
   ],
   "result": {
     "plan": "User explicitly authorized L2A after concrete plan; L2B excluded",
-    "implementation": "B150.177 / modinfo177 LOCAL_COMPLETE; reversible single-city opt-in native S/G only",
-    "native": "USER_GAME_TEST_BLOCKED_ENTRY / PRECISION_NOT_TESTED. One screenshot generic ACK, no stage/W/D/native delta. Two Lua action imports absent; exact native failure line unobserved.",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-    "stop": "Pause user native flow. Minimal two-Lua import/request failure detail/actual-entry coverage repair awaits new user authorization. No deployment or L2B in this evidence batch.",
+    "implementation": "B151.178 / modinfo178 scoped entry repair LOCAL_COMPLETE; original default-off single-city precision scope retained",
+    "native": "USER_GAME_TEST_REQUIRED / PRECISION_NOT_TESTED. B150 entry block preserved; import omission fixed statically, no native startup/precision PASS inferred.",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+    "stop": "Authorized entry repair complete locally. Safe W0003 deployment then same-city baseline/native precision validation only; no L2B.",
     "deployment": "W0003 complete: B150.177-c66b053-playtest.json DEVELOP_ACTIVE,182/182 MATCH; B149 retained/stable recovery verified. Runtime source commit c66b053; native pending.",
     "native_evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md"
   }

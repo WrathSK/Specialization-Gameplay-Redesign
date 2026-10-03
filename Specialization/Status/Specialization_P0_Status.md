@@ -1,15 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0387
-Implementation Build: develop/live B150.177 / modinfo177; P0_L2A_NATIVE_ENTRY_BLOCKED / PRECISION_NOT_TESTED; stable B069.96
+Status Revision: S0388
+Implementation Build: develop B151.178 / modinfo178; live B150.177 / modinfo177; P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2A_NATIVE_ENTRY_BLOCKED / PRECISION_NOT_TESTED
+Work State: P0_L2A_ENTRY_REPAIR_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户已授权B150最小入口修复；B151.178已LOCAL完成：[修复范围与续测](Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md)。两Lua补现有ImportFiles；实际请求保留具体阶段/有界错误、先清旧View、成功发布本次token、只读一次。未把打包修复写成原生精度PASS。
+
+25项定向真实Lua/SQL PASS，含原18及7项新导入/实际请求覆盖；语法/XML检查通过。原L1/K直接证据按未变模块复用，B150原生失败原件保留。模型K0.5、SQL/载体规则、GC及永久账本未改。
+
+源码B151.178 / modinfo178；live暂仍B150.177，source c66b053与receipt B150.177-c66b053-playtest.json。修复提交/push且退出/精确receipt/hash门禁满足后，按W0003替换；没有根据HEAD猜部署。
+
+当前授权只到入口修复/安全测试包。下一允许动作：同城冷启动左键准备基线；成功后续既定单城精度流程，首次异常按具体阶段停止。用户实机Science/Gold小数归属/结算仍待验；不要求重复旧长测，不自动进入L2B/L3/M/N/U2。
+
+Design Spec D0037 / Culture D0029 / Shared D0035、四专业v0.1不变；无Floor、AI/MP/main不改。未知作品/native-only留L2B，机构优化/剩余性能事项不扩入本轮。
+
+## 历史阶段记录
+
+### S0387 — B150原生入口中止与漏注册
 
 B150.177 L2A原生测试已由用户中止：[一图与定域审查](Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md)。收到ACK后显示城市/接口不可读；未取得W/D/阶段/原生差值，不能判小数收益PASS或FAIL。
 
@@ -21,7 +35,6 @@ STATIC已确认两个Meaning Lua漏列现有ImportFiles；原测试只查总File
 
 Design Spec D0037 / Culture D0029 / Shared D0035、四专业v0.1不变；K0.5、无Floor、GC/永久数据/AI/MP/main未改。未知作品/native-only留L2B，机构优化及剩余性能事项仍非本轮范围。
 
-## 历史阶段记录
 
 ### S0386 — B150 L2A LOCAL与部署
 

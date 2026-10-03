@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "6fa7e4085157039555af855cdb520fca63afef8c83751d4ab0286b4412f0eaa5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "8905051fae70f06a1e38ed330f302564013cef21a68d1716f561b953268022f8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "30adc1cac87a40540bb39ab1411ee9e07c87059acb974daf62713d7ae7e2750c",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "929d67123a04180c316adea58e272db4cefd73a25b7b0f958e98419d42dcf851",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "b9fdd719984323178200d2ffa1a0b5fa5989e983e969e707b2c962e6f5b7a676",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "84de0f0018806be5db0c59e2cdc9ff0b684f27d4826bc5a0120526b1b7ac119c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md",
-      "provenance": "B150 unchanged bytes re-reviewed: two Meaning Lua present in Files but missing ImportFiles; native entry blocked. Local test coverage gap recorded, repair not implemented."
+      "sha256": "d8ef009f15077cd424f51bba97bdf68f2984541073936f19b9bcc158706885bd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -906,9 +906,9 @@
       "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "0f7b2e888f4f6186f9d595d4a9bff6d9b24a00949d2d7fa0bec3d428b1863f5d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "998d5a841d2373f10f753bd91e301b80e5bf30ccf99b3f37a33a8936a40afd93",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B151_P0L2A_Entry_Repair.md",
+      "provenance": "B151 authorized entry-only repair; registration/request staging/single read/version reviewed;25 local tests. No model/writer/SQL/permanent/GC change. Native precision remains pending."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "62c2174915bc3e725aff7074ad336e388a9fa8f18e14bdb8b958aa02d40a5a86",

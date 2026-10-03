@@ -177,15 +177,33 @@ local function request(playerID,params)
     return
   end
   if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' then
+    -- One request-local read model; a failed request must not reuse a prior UI view.
+    shared.CultureMeaningView=nil
+    local at='CITY';local actionError
+    local function detail(why)return tostring(why):gsub('[%c]',' '):sub(1,240)end
     local ok,out=pcall(function()
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
-      local probe=assert(shared.CultureMeaningProbe,'ME_MODULE_NOT_READY')
-      local changed,why=true,nil
-      if params.Action=='CULTURE_MEANING_ADVANCE' then changed,why=pcall(probe.Advance,playerID,c,params.Token)end
-      shared.CultureMeaningView=probe.View(playerID,c);shared.CultureMeaningView.token=params.Token
-      return probe.Describe(playerID,c)..(not changed and ('\n操作未完成：'..(tostring(why):match('[A-Z_]+') or '接口未确认')) or '')
+      assert(c:GetOwner()==playerID,'ME_OWNER_UNKNOWN')
+      at='MODULE';local probe=assert(shared.CultureMeaningProbe,'ME_MODULE_NOT_READY')
+      if params.Action=='CULTURE_MEANING_ADVANCE' then
+        at='ADVANCE';assert(type(probe.Advance)=='function','ME_ACTION_NOT_READY')
+        local changed,why=pcall(probe.Advance,playerID,c,params.Token)
+        if not changed then actionError=detail(why)end
+      end
+      at='VIEW';assert(type(probe.View)=='function','ME_VIEW_NOT_READY')
+      local view=probe.View(playerID,c)
+      assert(type(view)=='table' and view.owner==playerID and view.cityID==params.CityID,'ME_VIEW_INVALID')
+      -- These errors belong only to this disposable view, not the probe's state.
+      view.error=view.error or actionError or view.configurationError
+      at='DESCRIBE';assert(type(probe.Describe)=='function','ME_DESCRIBE_NOT_READY')
+      local report=probe.Describe(playerID,c,view);assert(type(report)=='string','ME_REPORT_INVALID')
+      if actionError then report=report..'\n操作未完成 [ADVANCE]：'..actionError end
+      if view.configurationError then report=report..'\n配置读取未完成 [VIEW]：'..detail(view.configurationError)end
+      view.token=params.Token;shared.CultureMeaningView=view
+      return report
     end)
-    shared.Snapshot=ok and out or '意义延展验证：城市或接口暂不可读。';shared.LastToken=params.Token;return
+    shared.Snapshot=ok and out or ('意义延展验证未完成 ['..at..']：'..detail(out)..(actionError and ('\n操作未完成 [ADVANCE]：'..actionError) or ''))
+    shared.LastToken=params.Token;return
   end
   if params.Action=='CULTURE_AESTHETIC_READ' or params.Action=='CULTURE_AESTHETIC_DETAIL' then
     local ok,out=pcall(function()

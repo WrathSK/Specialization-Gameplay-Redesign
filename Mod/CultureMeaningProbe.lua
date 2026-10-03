@@ -161,8 +161,8 @@ function SPCCultureMeaningProbe.Start(P,shared)
    harbor=p and p.domains.DISTRICT_HARBOR and p.domains.DISTRICT_HARBOR.value,
    oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false}
  end
- function d.Describe(pid,c)
-  local v=d.View(pid,c);local names={OFF='未开启',BASELINE='基线：旧相邻暂停，测试收益关闭',ACTIVE='测试中：仅本城科研 / 金币'}
+ function d.Describe(pid,c,view)
+  local v=view or d.View(pid,c);local names={OFF='未开启',BASELINE='基线：旧相邻暂停，测试收益关闭',ACTIVE='测试中：仅本城科研 / 金币'}
   local lines={'意义延展验证｜'..names[v.mode]}
   if v.count then
    lines[#lines+1]=string.format('ACTIVE %s｜合格作品 %d 件｜理论每件 +%g 科研 / +%g 金币',tostring(v.active),v.count,v.science,v.gold)

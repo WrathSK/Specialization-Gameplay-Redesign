@@ -12,6 +12,23 @@ from test_p0_k import Fixture
 
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 
+def require_meaning_imports(root):
+ imports=[e.text for e in root.findall("./InGameActions/ImportFiles[@id='SPCP0_Common']/File")]
+ files=[e.text for e in root.find('Files')]
+ for name in ['CultureMeaningModel.lua','CultureMeaningProbe.lua']:
+  assert imports.count(name)==1 and files.count(name)==1, 'Meaning Lua must be imported exactly once: '+name
+ return set(imports)
+
+
+def bind_actual_request(l):
+ # Execute the unchanged full request function from source, including its ingress
+ # and player eligibility gate; do not mirror the new branch in a mock handler.
+ src=(M/'Gameplay.lua').read_text()
+ start=src.index('local function request(playerID,params)')
+ end=src.index('GameEvents.SPC_P0_Request.Add',start)
+ l.execute('P.Scalar=function(v)return tostring(v)end\n'+src[start:end]+'\nmeaningRequest=request')
+
+
 def database():
  # The external DB may already contain B149 definitions. Reset only the exact
  # test-owned L1 definitions in the disposable memory copy, then apply source.
@@ -31,6 +48,12 @@ def database():
   d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
  d.execute('DROP TABLE IF EXISTS SPC_CultureAestheticBits')
  d.executescript((M/'Data/CultureAesthetic.sql').read_text())
+ # B150 may now be present in the read-only DB too. Rebuild only its exact
+ # ten test-owned carriers and 70 attachments in this disposable copy.
+ carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6)]for bit in range(bits)]
+ modifiers=[b.removeprefix('BUILDING_')+'_'+cat for b in carriers for cat in ['WRITING','MUSIC','SCULPTURE','PORTRAIT','LANDSCAPE','RELIGIOUS','ARTIFACT']]
+ for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:
+  d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
  d.executescript((M/'Data/CultureMeaningProbe.sql').read_text())
  return d
 
@@ -45,7 +68,13 @@ class MeaningProbeTests(unittest.TestCase):
    cur=self.sql.execute('SELECT * FROM '+table);columns=[a[0]for a in cur.description];rows=[dict(zip(columns,r))for r in cur]
    for i,r in enumerate(rows):r['Index']=i+1
    l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
-  for n in ['GreatWorkAdjacency','CultureMeaningProbe']:l.globals().include(n)
+  imports=require_meaning_imports(ET.parse(M/'SpecializationP0.modinfo').getroot())
+  def imported_include(n):
+   # Model action visibility only. This cannot prove native VFS/include behavior.
+   assert n+'.lua' in imports, 'Not visible in ImportFiles: '+n
+   l.execute((M/(n+'.lua')).read_text())
+  l.globals().include=imported_include
+  for n in ['GreatWorkAdjacency','CultureMeaningProbe']:imported_include(n)
   l.execute("""
    Game.GetLocalPlayer=function()return 0 end
    for _,c in ipairs(cities)do building(c,'BUILDING_MARKET',c.ds[3],false);building(c,'BUILDING_FAIR',c.ds[3]);c.active=4;c.workCount=1;c.badCount=0;c.categoryUnknown=0;local campus=district(c,6,'DISTRICT_CAMPUS');building(c,'BUILDING_LIBRARY',campus)end
@@ -232,8 +261,84 @@ class MeaningProbeTests(unittest.TestCase):
    a.workCount=2;t=SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false);assert(t:find('差值基线不可用'))
    probe.Advance(0,a);assert(SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false):find('测试已关闭'))
   """)
+ def test_import_registry_rejects_each_missing_action_import(self):
+  root=ET.parse(M/'SpecializationP0.modinfo').getroot();require_meaning_imports(root)
+  for name in ['CultureMeaningModel.lua','CultureMeaningProbe.lua']:
+   with self.subTest(missing=name):
+    copy=ET.fromstring(ET.tostring(root));imports=copy.find("./InGameActions/ImportFiles[@id='SPCP0_Common']")
+    imports.remove(next(e for e in imports if e.text==name))
+    self.assertIn(name,[e.text for e in copy.find('Files')])
+    with self.assertRaisesRegex(AssertionError,'must be imported'):require_meaning_imports(copy)
+ def test_actual_request_prepare_read_enable_end_one_view(self):
+  l=self.runtime();bind_actual_request(l);l.execute("""
+   local read=probe.View;viewReads=0
+   probe.View=function(...)viewReads=viewReads+1;return read(...)end
+   local function request(action,token)
+    shared.CultureMeaningView={token='stale',mode='ACTIVE'}
+    meaningRequest(0,{Action=action,CityID=1,Token=token})
+    assert(shared.LastToken==token and shared.CultureMeaningView.token==token)
+   end
+   request('CULTURE_MEANING_ADVANCE','prepare');assert(probe.mode=='BASELINE' and viewReads==1 and not old(a,'SCIENCE'))
+   local w=writes;local action=probe.lastAction
+   request('CULTURE_MEANING_READ','read');assert(writes==w and probe.lastAction==action and viewReads==2)
+   request('CULTURE_MEANING_ADVANCE','enable');assert(probe.mode=='ACTIVE' and viewReads==3 and configured(a,'SCIENCE')==0.5)
+   request('CULTURE_MEANING_ADVANCE','end');assert(probe.mode=='OFF' and viewReads==4 and configured(a,'SCIENCE')==0 and old(a,'SCIENCE'))
+   assert(old(b,'SCIENCE') and a.token=='persistent:1')
+  """)
+ def test_actual_request_outer_failure_stages_clear_stale_view(self):
+  failures=[('CITY',"a.owner=3",'ME_CITY_UNKNOWN'),('MODULE',"shared.CultureMeaningProbe=nil",'ME_MODULE_NOT_READY'),
+   ('ADVANCE',"probe.Advance=nil",'ME_ACTION_NOT_READY'),
+   ('VIEW',"probe.View=function()error('ME_READ_FAILED')end",'ME_READ_FAILED'),
+   ('VIEW',"probe.View=nil",'ME_VIEW_NOT_READY'),('VIEW',"probe.View=function()return {owner=0,cityID=2}end",'ME_VIEW_INVALID'),
+   ('DESCRIBE',"probe.Describe=function()error('ME_TEXT_FAILED')end",'ME_TEXT_FAILED'),
+   ('DESCRIBE',"probe.Describe=nil",'ME_DESCRIBE_NOT_READY'),('DESCRIBE',"probe.Describe=function()return nil end",'ME_REPORT_INVALID')]
+  for stage,setup,code in failures:
+   with self.subTest(stage=stage,code=code):
+    l=self.runtime();bind_actual_request(l);l.execute(setup);l.globals().failureAction='CULTURE_MEANING_ADVANCE' if stage=='ADVANCE' else 'CULTURE_MEANING_READ';l.execute("""
+     shared.CultureMeaningView={token='old'};local w=writes
+     meaningRequest(0,{Action=failureAction,CityID=1,Token='failure'})
+     assert(shared.CultureMeaningView==nil and shared.LastToken=='failure' and writes==w)
+    """);self.assertIn('['+stage+']',l.globals().shared.Snapshot);self.assertIn(code,l.globals().shared.Snapshot)
+ def test_actual_request_advance_rejection_preserves_detail_not_baseline(self):
+  l=self.runtime();bind_actual_request(l);l.execute("""
+   probe.Advance(0,a,'before');assert(probe.mode=='BASELINE')
+   probe.Advance=function()error('ME_WORKS_UNKNOWN'..string.char(10)..string.rep('x',1000))end
+   local w=writes
+   meaningRequest(0,{Action='CULTURE_MEANING_ADVANCE',CityID=1,Token='rejected'})
+   assert(shared.CultureMeaningView.token=='rejected' and shared.CultureMeaningView.mode=='BASELINE')
+   assert(shared.CultureMeaningView.error:find('ME_WORKS_UNKNOWN') and #shared.CultureMeaningView.error<=240)
+   assert(shared.Snapshot:find('%[ADVANCE%]') and shared.Snapshot:find('ME_WORKS_UNKNOWN'))
+   assert(not shared.CultureMeaningView.error:find('%c') and writes==w)
+   assert(not probe.error) -- A request-local failure does not rewrite probe authority.
+  """)
+ def test_actual_request_mixed_failure_keeps_both_errors(self):
+  l=self.runtime();bind_actual_request(l);l.execute("""
+   probe.Advance=function()error('ME_ACTION_REJECTED')end
+   probe.View=function()error('ME_VIEW_FAILED')end
+   shared.CultureMeaningView={token='old'}
+   meaningRequest(0,{Action='CULTURE_MEANING_ADVANCE',CityID=1,Token='mixed'})
+   assert(shared.LastToken=='mixed' and shared.CultureMeaningView==nil)
+   assert(shared.Snapshot:find('%[VIEW%]') and shared.Snapshot:find('ME_VIEW_FAILED') and shared.Snapshot:find('ME_ACTION_REJECTED'))
+  """)
+ def test_actual_request_configuration_unknown_is_not_zero_or_success(self):
+  l=self.runtime();bind_actual_request(l);l.execute("""
+   probe.Advance(0,a,'before');local raw=probe.View
+   probe.View=function(...)local v=raw(...);v.configuredScience=nil;v.configurationError='ME_CARRIER_UNKNOWN';return v end
+   local w=writes
+   meaningRequest(0,{Action='CULTURE_MEANING_READ',CityID=1,Token='unknown'})
+   assert(shared.LastToken=='unknown' and shared.CultureMeaningView.token=='unknown')
+   assert(shared.CultureMeaningView.configuredScience==nil and shared.CultureMeaningView.error=='ME_CARRIER_UNKNOWN')
+   assert(shared.Snapshot:find('ME_CARRIER_UNKNOWN') and writes==w and not probe.error)
+  """)
+ def test_actual_request_invalid_or_foreign_ingress_does_not_run_probe(self):
+  l=self.runtime();bind_actual_request(l);l.execute("""
+   local w=writes;local n=counts.dc_read or 0
+   meaningRequest(3,{Action='CULTURE_MEANING_ADVANCE',CityID=1,Token='foreign'})
+   meaningRequest(0,{Action='CULTURE_MEANING_ADVANCE',CityID=1,Token=string.rep('x',101)})
+   assert(writes==w and (counts.dc_read or 0)==n and probe.mode=='OFF' and shared.LastToken==nil)
+  """)
  def test_registration_localization_exact_scope(self):
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'177')
+  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'178');require_meaning_imports(root)
   files=[e.text for e in root.find('Files')];self.assertEqual(len(files),len(set(files)))
   self.assertEqual(set(files),{str(p.relative_to(M))for p in M.rglob('*')if p.is_file() and p.name not in {'.DS_Store','SpecializationP0.modinfo'}})
   self.assertTrue({'CultureMeaningModel.lua','CultureMeaningProbe.lua','Data/CultureMeaningProbe.sql'}<=set(files))
