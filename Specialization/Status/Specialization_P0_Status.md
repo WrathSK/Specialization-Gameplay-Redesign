@@ -1,27 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0386
-Implementation Build: develop/live B150.177 / modinfo177; P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
+Status Revision: S0387
+Implementation Build: develop/live B150.177 / modinfo177; P0_L2A_NATIVE_ENTRY_BLOCKED / PRECISION_NOT_TESTED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0037 (Harbor future baseline / Military naming only; A0161 target remains D0032)
 Latest Accepted Design Revision: D0037
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
-Work State: P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
+Work State: P0_L2A_NATIVE_ENTRY_BLOCKED / PRECISION_NOT_TESTED
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户明确授权[P0-L2A单城意义延展验证](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。develop源码B150.177 / modinfo177已LOCAL完成；[本批范围、证据与一个测试流程](Validation/Results/Specialization_B150_P0L2A_Local.md)。纯模型九领域，native仅选定Culture ACTIVE4城的Science/Gold；默认OFF，不是完整L2。
+B150.177 L2A原生测试已由用户中止：[一图与定域审查](Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md)。收到ACK后显示城市/接口不可读；未取得W/D/阶段/原生差值，不能判小数收益PASS或FAIL。
 
-18项定向、15项相关L1、26项K及分发检查PASS；STATIC/LOCAL不证明原生0.5/1.5/4.5。旧GWA仅目标城由自己精确暂停/恢复；当前馆藏件数/资格摘要补通知。无新永久数据/Design/GC/AI/MP/main变化。L1[已测结算PASS](Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保持。
+STATIC已确认两个Meaning Lua漏列现有ImportFiles；原测试只查总Files/SQL/include，模拟绕过action可见性。外围请求还吞掉实际异常。缺注册是首要修复点；本局具体原生异常行未取得。原18/15/26 LOCAL证据保留，不等于加载或原生精度通过；L1已测结算PASS不改。
 
-当前live已按W0003部署B150.177：source c66b053、receipt B150.177-c66b053-playtest.json DEVELOP_ACTIVE，182/182 MATCH。OS只读确认退出后，按B149精确receipt恢复stable桥，再staging切换B150；B149完整运行包及stable恢复点均保留/核验，无pending事务。未启动游戏，未改main。当前允许动作是用户执行下面的单城流程、回传证据；Codex只记录/审阅L2A结果，不自动实施下一批。
+源码/live仍B150.177 / modinfo177，source c66b053；receipt B150.177-c66b053-playtest.json DEVELOP_ACTIVE、前次182/182 MATCH及B149/stable恢复点保持。本次仅读截图/源码、归档原图与记录；没有替换包、启动游戏或重新核验外部包。
 
-用户下一动作：按本批单城流程核对原生精度/归属；只需最小测试，不重做旧旅游长测。Codex到L2A包/证据边界停止；不得自动实施L2B/L3/M/N/U2。科研Floor不迁入Culture；未知作品/native-only门禁留L2B。
+下一建议：[最小入口修复](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)：补两项ImportFiles、保留错误阶段、action可见性及真实请求入口定向测试。**待用户授权修复**；先暂停原生流程，不要求重复旧长测，不进入L2B/L3/M/N/U2。实验实际模式与旧GWA是否已暂停无法从本图判断。
 
-当前Design Spec D0037 / Culture D0029 / Shared D0035，四专业v0.1不变；Harbor/Military未来设计未实施。其它[文化准备](../Architecture/v2/Culture_Preparation.md#当前切片与停止点)仍仅计划；机构视觉优化及剩余非阻塞性能事项保留，不重新开专项。
+Design Spec D0037 / Culture D0029 / Shared D0035、四专业v0.1不变；K0.5、无Floor、GC/永久数据/AI/MP/main未改。未知作品/native-only留L2B，机构优化及剩余性能事项仍非本轮范围。
 
 ## 历史阶段记录
+
+### S0386 — B150 L2A LOCAL与部署
+
+用户授权单城Science/Gold probe，18定向/15 L1/26 K及分发检查LOCAL通过；source c66b053按W0003部署B150，182/182 MATCH，B149及stable恢复点保留。原生精度当时待验；当前用户入口中止和发现的导入验证缺口见CURRENT，原LOCAL证据不改。
 
 ### S0385 — L1结算验收与L2A计划
 

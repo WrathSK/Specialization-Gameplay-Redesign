@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0386 authorized L2A exact direct contracts/source/owned attachment/exit/caller/UI and targeted tests reviewed. Only changed/new reviewed hashes updated; all Design/unchanged/historical hashes inherited.18 current,15 L1,26 K and dirty-dispatch checks local PASS; native pending. Source/live distinction retained, no automatic L2B. Deployment c66b053 exact receipt/182-file equality and B149/stable recovery checked; only four reviewed deployment-status refs synchronized.",
+  "review_basis": "S0387 native entry evidence scoped review. One original image viewed/archived unchanged; precise two-Lua action-import omission and request/test coverage gap confirmed. No Mod/Design/test/deployment change. Only reviewed current result/plan/status/authority/manifest/runtime review pointers synchronized; original LOCAL/frozen evidence unchanged.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "2aac3e016db99b27c00ce30c76c7c9dff85024d74176e232d91da4cc63135c92",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "99c7439bfabfff9304b5f763234eeeb0a6c9d7097adbf5e454d22d09300dcd1d",
+    "Specialization/Status/Specialization_P0_Status.md": "3f901ad9bf7f04072af1ed4a5f157ca09fa5031c116ae9ebb4b7b12e0e6eabbf",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "5a6923d9b5f8d398631600e80323137f5f4af4bda48e5732791d194be5663aa3",
+    "Specialization/Workflow/Authority.json": "592d5758443cc3e41f591c65a6b478bdfde6671b1c5b09e70beabaec8b39d69c",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -227,7 +227,7 @@
     "Specialization/Status/Validation/Results/Specialization_B112_Turn_Blocker_Observation.md": "998fc813b5920c8d644af8710985eab31d6fdc03ddfad939600ee633b0135aa1",
     "DevelopmentTests/test_b113_turn_gate.py": "c0dab68164db29ee3ba22e29c9441e9663baeab1cf321a06013a5ad377576a67",
     "Specialization/Status/Validation/Results/Specialization_B113_Notification_Location_Failure.md": "af3bd021662ef073c3ece72f1071d35526ff70505ecd7350d52666072bbeb208",
-    "Specialization/Workflow/Runtime_Index.json": "b55e2fffcfac6c5905a7815afffe50907b796c63d08c99d1bcae44111cd09c30",
+    "Specialization/Workflow/Runtime_Index.json": "2090592fe8d87bbf56319331f3e07fc77479c68043316eedcd0212af24526c00",
     "DevelopmentTests/test_b114_notification_target.py": "4aaae3255004ec1f4e540656dea0912484f2084147e73c5c591a2a0d6d91971d",
     "Specialization/Status/Validation/Results/Specialization_B114_Target_Turn_Pass.md": "91680073d60dac476d62c20ef2cbe2f33520bbe9b85ff32555e7f822f8d95040",
     "Mod/TimedProductionProbe.lua": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
@@ -335,7 +335,7 @@
     "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md": "d92b89ffb9691977f0a29b96bdb9fe4bcc45d9a69e853e5605fa713d76b8f91f",
     "Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md": "e2dfa11bcf5cf5ff1e076b659e4f2e4115e041cbf66da14ec07cea2790d749c6",
     "Specialization/Architecture/v2/Culture_Preparation.md": "fca72c32be92b4eb63dd70b20aefee4f3da08c677ceeeb0fece6f71831148c19",
-    "Specialization/Architecture/v2/P0_L2_Meaning.md": "34a23efe104fb3beb0752201b971876ffe636bfe4903320e366581ff634682e2",
+    "Specialization/Architecture/v2/P0_L2_Meaning.md": "0e48fcc608bba7c2a68a9636ad5afffaaa37fc0ec2c843e471c32e3004b1c978",
     "Specialization/Architecture/v2/P0_L3_Inspiration.md": "3c31aa7cdb8603306848487146b880b853b88aebbff1a427fb63bbb9ba13db27",
     "Specialization/Architecture/v2/P0_M_Dialogue.md": "e8ca691dafd714ea911ac29d2f0b9dcc57bff6b2c376a4025f3d243795e26621",
     "Specialization/Architecture/v2/P0_N_Expedition.md": "52179c4a61ea6644076ef9b3ba6b05d6b26b4220c077bd4257129283a8679917",
@@ -359,7 +359,8 @@
     "Mod/CultureMeaningProbe.lua": "0f7b2e888f4f6186f9d595d4a9bff6d9b24a00949d2d7fa0bec3d428b1863f5d",
     "Mod/Data/CultureMeaningProbe.sql": "62c2174915bc3e725aff7074ad336e388a9fa8f18e14bdb8b958aa02d40a5a86",
     "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md": "a0d87bd492ec9e0675a6696c1cd135b46c46a0bb79b653d78eb667c2307a0722",
-    "Specialization/Workflow/P0-L2A.json": "5386ccfc88081e187ac3b980611cd33a7f7a79ca79a6c43e26612f3af6dbb379",
-    "Mod/Data/GreatWorkAdjacency.sql": "e14afd55f26d2e0727cb481d8fae9e875b8bc7f89173621c7e1657571c3b516d"
+    "Specialization/Workflow/P0-L2A.json": "50f7cbdf2b6636a45ded407bb2094d628fa49df2e5fcbc9f8b30ada3ba04a57b",
+    "Mod/Data/GreatWorkAdjacency.sql": "e14afd55f26d2e0727cb481d8fae9e875b8bc7f89173621c7e1657571c3b516d",
+    "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md": "9967b95a4d1a5971bda6e949dbba8537104f0961bd74f227fcdf740cd9feb11f"
   }
 }

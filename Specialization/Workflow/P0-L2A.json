@@ -11,7 +11,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0386",
+    "status": "S0387",
     "runtime": "B150.177 / modinfo177",
     "military": "D0037",
     "harbor": "D0037"
@@ -264,9 +264,10 @@
   "result": {
     "plan": "User explicitly authorized L2A after concrete plan; L2B excluded",
     "implementation": "B150.177 / modinfo177 LOCAL_COMPLETE; reversible single-city opt-in native S/G only",
-    "native": "USER_GAME_TEST_REQUIRED; no engine launch or native precision claim",
+    "native": "USER_GAME_TEST_BLOCKED_ENTRY / PRECISION_NOT_TESTED. One screenshot generic ACK, no stage/W/D/native delta. Two Lua action imports absent; exact native failure line unobserved.",
     "evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-    "stop": "Stop for one-city L2A user native evidence; no L2B implementation. Completed source commit/push and W0003 deployment must not be repeated during recovery.",
-    "deployment": "W0003 complete: B150.177-c66b053-playtest.json DEVELOP_ACTIVE,182/182 MATCH; B149 retained/stable recovery verified. Runtime source commit c66b053; native pending."
+    "stop": "Pause user native flow. Minimal two-Lua import/request failure detail/actual-entry coverage repair awaits new user authorization. No deployment or L2B in this evidence batch.",
+    "deployment": "W0003 complete: B150.177-c66b053-playtest.json DEVELOP_ACTIVE,182/182 MATCH; B149 retained/stable recovery verified. Runtime source commit c66b053; native pending.",
+    "native_evidence": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md"
   }
 }

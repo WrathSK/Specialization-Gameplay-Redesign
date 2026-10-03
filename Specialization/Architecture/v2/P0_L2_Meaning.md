@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2A_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED。用户已授权L2A；B150.177单城接口验证包就绪，L2B正式能力仍未授权，NATIVE_PRECISION_GATE_OPEN。
+State: P0_L2A_NATIVE_ENTRY_BLOCKED / PRECISION_NOT_TESTED。B150已LOCAL完成/部署，但本次诊断入口中止；最小修复待授权。L2B仍未授权，NATIVE_PRECISION_GATE_OPEN。
 Authority: Culture D0029 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -15,6 +15,12 @@ Authority: Culture D0029 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 | P0-L2B — 完整意义延展 | 解决已支持作品限定及native-only隔离，接全九领域/六产出、事件/退出/加载、精确旧GWA cutover | L2A结果后更新最终方案、另审阅/授权；不进入L3/M/N |
 
 L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；失败时保留原规则并停止对应效果路径，不能自行floor/补贴。L2A现有W0001 manifest已登记，见[本批读取/验证范围](../../Workflow/P0-L2A.json)；没有新调度或状态系统。
+
+### B150原生入口中止 — 最小修复待授权
+
+[一图、静态漏项与局部复现](../../Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md)：ACK后外围通用报错，没有精度结果。两个Meaning Lua只有总Files、漏ImportFiles；旧模拟include直接读磁盘，本批验证遗漏action可见性。实际原生异常行仍未确认，不把小数primitive判FAIL。
+
+建议只补既有ImportFiles两项、外围简短阶段/有界错误与本次view成功发布、真实入口及导入定向覆盖。等待用户授权，当前不改包/部署；之后先核对基线入口，再续原单城精度流程。未获授权不进入L2B，当前实际实验模式无法从图确认。下述LOCAL检查点保留原证据范围。
 
 ### B150.177 — L2A实施检查点
 

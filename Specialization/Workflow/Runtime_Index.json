@@ -427,8 +427,8 @@
     },
     "Mod/SpecializationP0.modinfo": {
       "sha256": "84de0f0018806be5db0c59e2cdc9ff0b684f27d4826bc5a0120526b1b7ac119c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Entry_Blocked.md",
+      "provenance": "B150 unchanged bytes re-reviewed: two Meaning Lua present in Files but missing ImportFiles; native entry blocked. Local test coverage gap recorded, repair not implemented."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
