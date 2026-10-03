@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0409
-Implementation Build: source/live B157.184 / modinfo184; native instance lifecycle PASS, Culture addition FAIL; stable B069.96
+Status Revision: S0410
+Implementation Build: source B158.185 / modinfo185 LOCAL; live B157.184 receipt unchanged until deployment; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0043 (意义延展七域五产出已接受；runtime未适配)
+Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
 Latest Accepted Design Revision: D0043
-Design Sync State: D0043_MEANING_SCOPE_DESIGN_SYNC_ONLY
-Work State: P0_L2C_PLANNED_NOT_AUTHORIZED
+Design Sync State: D0043_MEANING_SCOPE_PROBE_LOCAL_NATIVE_PENDING
+Work State: P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户已明确授权P0-L2C，B158.185／modinfo185七域五产出默认OFF单城门禁已LOCAL完成。[实际模块、47项定向PASS及一个最小实机流程](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md)：复用S/G，补P/F/Faith整数承载；每域Floor后按yield合并再乘W；旧GWA只hold本城、旧Dialogue0%，新owned退出后按当前事实恢复。D0043不改，市政／外交Culture仅本能力暂排，旧失败／技术档案保持未来参考。
+
+五yield native／本次变化／退出／启用存档冷加载仍USER_GAME_TEST_REQUIRED；**完整L2 NOT_PASSED，正式全城接入／cutover／下一能力未授权**。UNKNOWN／失城／reference／失败／load保护本地已测；精确recipient、倍率独立及正常结算未覆盖部分仍独立门禁。当前停止等待单城测试，不重做旧Culture四态／性能长测。
+
+source为B158本地检查点，待本轮普通commit/push与W0003安全部署；此时已只读核对外部B157.184／source f75494b／receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE，182/182匹配，stable恢复点匹配且无pending marker。尚未替换运行包；实际部署完成另更新receipt引用。main B069.96、永久Property／E2历史／Shared目录／GC未改。下一推荐只完成当前原生门禁，再提出正式接入计划，不自动实施。
+
+## 历史阶段记录
+
+### S0409 — D0043采用与P0-L2C计划（当时）
 
 用户已接受[D0043意义延展七域五产出](../Design/Design_ChangeLog.md#accepted-d0043--2026-10-03)：本版暂排市政／外交，不改Shared、其它能力、K／逐域Floor／W／作品资格／独立追加或生命周期。文化追加技术及[B157反证](Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留未来恢复，退出性能专项后的功能开发不等待此调查；不把延期写成已修复或原生永久不可行。
 
@@ -17,7 +27,6 @@ Work State: P0_L2C_PLANNED_NOT_AUTHORIZED
 
 source/live沿B157.184/source f75494b与既有receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。当前代码仍九域S/G/C原型，尚未实施D0043；无新build、Mod/GC/永久数据/main/部署变化。Design同步／计划／文档检查完成；用户此时无需实机测试。停止等待P0-L2C实施授权。
 
-## 历史阶段记录
 
 ### S0408 — B157实例进入／退出与Culture增量失败（当时）
 

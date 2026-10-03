@@ -26,6 +26,7 @@ local function trace(s)
 end
 local pendingAction
 local meaningReadReference
+local meaningResponseToken,meaningResponseText,meaningResponseReference,meaningResponseTurn
 local gwaFlight
 local function gwaDiagnostics()
   local d=ExposedMembers.SPC_P0 or {};local i=d.RequestIngress or {}
@@ -71,9 +72,17 @@ local function displayResponse()
       local v=data.CultureMeaningView
       local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
       if c and v and v.token==pendingToken then
-        if pendingAction=='CULTURE_MEANING_READ' then
-          report=SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
-        else report=report..'\n'..SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')end
+        local ref=SPCNetworkInput.Reference(c);local turn=Game.GetCurrentGameTurn()
+        if meaningResponseToken~=pendingToken then
+          meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')
+          meaningResponseToken=pendingToken;meaningResponseReference=ref;meaningResponseTurn=turn
+        end
+        if ref==meaningResponseReference and ref==v.reference and turn==meaningResponseTurn then
+          report=report..'\n'..meaningResponseText
+        else
+          SPCBoostGreatWorkRead.ClearMeaningRead()
+          report=report..'\n本次原生报告已过期；重新右键读取，不复用旧差值。'
+        end
       end
       localReport=report
     elseif pendingAction and pendingAction:find('^GWA_') then
@@ -135,6 +144,7 @@ local function waitForResponse()
   end)
 end
 request=function(action,advance)
+  meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
   SPCBoostGreatWorkRead.ClearModifierRead()
   meaningReadReference=nil
   if pendingAction=='CULTURE_MEANING_READ' then readings.CULTURE_MEANING=nil;localReport=nil end
@@ -233,9 +243,9 @@ end
 local function copy()
   if pendingAction=='CULTURE_MEANING_READ' then
     if displayResponse() and localReport then
-      print('[SPC][MODIFIER_READ] '..P.VERSION..'\n'..localReport)
-      status('本次Modifier诊断已写入Lua.log；也可直接截图。')
-    else status('尚无本次Modifier回复；请稍后重新右键读取。')end
+      print('[SPC][MEANING_READ] '..P.VERSION..'\n'..localReport)
+      status('本次五产出报告已写入Lua.log；也可直接截图。')
+    else status('尚无本次意义延展回复；请稍后重新右键读取。')end
     return
   end
   local lines={'SPC_DIAGNOSTIC_REPORT_BEGIN',P.VERSION,'turn='..Game.GetCurrentGameTurn()}
@@ -301,6 +311,8 @@ local function placeEntry()
   end
 end
 local function showRoot()
+  SPCBoostGreatWorkRead.ClearMeaningRead()
+  meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
   local enabled=P.IsTestPlayer(Game.GetLocalPlayer())
   ContextPtr:SetHide(not enabled);placeEntry();Controls.OpenButton:SetHide(not enabled)
 end
@@ -352,7 +364,8 @@ local function initialize()
   Controls.Title:SetText("SPC "..P.VERSION.." | Specialization diagnostics")
   Controls.OpenButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(false) end)
   Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()
-    Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead()
+    Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
+    meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
     if pendingAction=='CULTURE_MEANING_READ' then ContextPtr:ClearUpdate();pendingToken=nil;pendingAction=nil;localReport=nil;readings.CULTURE_MEANING=nil;meaningReadReference=nil end
   end)
   Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()
@@ -469,7 +482,7 @@ local function initialize()
   Controls.GWAOffButton:RegisterCallback(Mouse.eLClick,function() request('GWA_OFF') end)
   Controls.GWAAutoButton:RegisterCallback(Mouse.eLClick,function() request('GWA_AUTO') end)
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
-  Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_CONFIG') end)
+  Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_END') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_END') end)
   Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_ADVANCE') end)
   Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_READ') end)
@@ -576,4 +589,4 @@ ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(gwaPulse)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead();meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil;if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

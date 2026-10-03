@@ -87,7 +87,7 @@
     "Native precision cannot implement current contract; no gameplay workaround without user decision"
   ],
   "batch": "P0-L2C",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0043",
     "research": "D0040",
@@ -97,8 +97,8 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0409",
-    "runtime": "B157.184 / modinfo184",
+    "status": "S0410",
+    "runtime": "B158.185 / modinfo185",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -114,14 +114,14 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
-      "reason": "Current D0043/L2C scope and stop; proposed plan does not grant implementation authorization",
+      "reason": "Current B158 local-complete/native stop and actual authorized boundary",
       "selector": "## 当前切片与停止点"
     },
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
       "selector": "## 下一批计划 — P0-L2C 七域五产出门禁",
-      "reason": "Complete proposed single-fixture scope, dependencies/local/native exit/rollback; not implementation authorization"
+      "reason": "Full user-authorized single-fixture scope/local/native/exit/rollback; next ability remains unapproved"
     },
     {
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -205,7 +205,7 @@
     {
       "path": "Mod/CultureMeaningModel.lua",
       "kind": "full",
-      "reason": "Current nine-domain model and exact old encodings; adapt only Meaning to D0043 seven domains/five yields, preserve precise cleanup"
+      "reason": "Complete current seven-domain model/five-yield encoding and old Culture exact cleanup metadata"
     },
     {
       "path": "Mod/CultureMeaningProbe.lua",
@@ -215,7 +215,7 @@
     {
       "path": "Mod/Data/CultureMeaningProbe.sql",
       "kind": "full",
-      "reason": "Exact old16 owned/112 attachments to preserve cleanup; add only P/F/Faith finite family after direct review"
+      "reason": "Exact26 owned/182 attachments; old16 unchanged, new P/F/Faith finite integer family"
     },
     {
       "path": "Mod/GreatWorkFacts.lua",
@@ -260,7 +260,7 @@
     {
       "path": "DevelopmentTests/test_culture_meaning_probe.py",
       "kind": "full",
-      "reason": "Actual current targeted SQL/model/scoped exit/load/failure tests and explicit DB fixture"
+      "reason": "Maintained exact26 memory-DB + L1/K fixture; selected valid direct tests only, old four-state assertions preserved"
     },
     {
       "path": "Mod/Data/GreatWorkAdjacency.sql",
@@ -281,7 +281,7 @@
     {
       "path": "Mod/UI/BoostGreatWorkRead.lua",
       "kind": "full",
-      "reason": "Complete directly affected native Culture percent/control/observation dependencies"
+      "reason": "Complete affected five-yield reader/unknown/current-reference and retained bounded Modifier helper"
     },
     {
       "path": "DevelopmentTests/test_modifier_read.py",
@@ -298,6 +298,16 @@
       "kind": "section",
       "selector": "## 范围与完整规则",
       "reason": "Complete current formula/mapping/qualification and exceptions, not old chronological prototype history"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_meaning_l2c.py",
+      "kind": "full",
+      "reason": "Current 27 targeted writer/reader/fixture/lifecycle tests; no historical four-state suite"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
+      "kind": "full",
+      "reason": "Complete actual local evidence, coverage limits, minimal game test and stop"
     }
   ],
   "dependencies": [
@@ -309,7 +319,7 @@
   "old_writers": [
     "Only one selected-city GWA exact156 owned hold; confirm new withdrawal before normal current-sample restore",
     "Existing local-reference Dialogue0% override only during probe; preserve other cities and K producer/ACK",
-    "Old Meaning exact16 Culture/S/G pieces and variant cleanup remain identified; no active Culture candidate generation in new flow"
+    "Exact26 Meaning withdrawal directory retains original16 S/G/Culture/candidate IDs; only five yields generate, no Culture candidate configuration."
   ],
   "non_scope": [
     "Culture flat coexistence/host diagnostic and Government/Diplomatic restoration are deferred",
@@ -317,22 +327,24 @@
     "Probe mixed-unknown-work rejection is not a new Design rule or exact recipient PASS"
   ],
   "validation": {
-    "depth": "Implementation proposal: W0004 L2 plus directly touched loss/load/reference L3; this planning turn document/context/static only",
+    "depth": "W0004 L2 plus touched load/loss/reference L3; targeted only, no full history/stress",
     "local": [
       "Seven-domain scope, per-domain Floor/same-yield/W, legal five-yield encoding and exact attachment checks",
       "Zero-Culture entry/exit, repeated zero writes, same-turn changes/two cities/UNKNOWN/reference rejection",
       "Owned create/withdraw failure and load/loss/ACK/readout invalidation; direct relevant regressions only"
     ],
-    "user": "Not requested in planning turn. After local pass, one bounded fixture workflow: baseline/enable five-yield actual delta, one-work move, save an enabled-probe copy, direct END and verify withdrawal, quit and cold-load the enabled copy to verify default OFF/owned cleanup/current-fact legacy restore. No Culture retry or old long test. Independent untested formal gates remain."
+    "user": "USER_GAME_TEST_REQUIRED: one fixture flow in Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md; no Culture retry or formal L2 PASS."
   },
   "result": {
-    "plan": "Complete proposed scope in Architecture; PLANNED_NOT_AUTHORIZED",
-    "implementation": "NOT_STARTED; source/live B157 unchanged, D0043 runtime not adapted",
-    "native": "B157 prior evidence retained, not five-yield or formal L2 PASS",
-    "stop": "Await explicit P0-L2C implementation authorization: seven-domain/five-yield reversible one-city gate. Culture technology deferred; no global cutover, L3/M/N/U2 or deployment in planning turn.",
-    "deployment": "B157.184 / modinfo184; source f75494b16e023224dec6e852ff65afb13f438963; W0003 B157.184-f75494b-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; OS exit verified, exact B156 receipt restore then staging; B156/stable recovery MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0409 user adopted D0043 Meaning-only Government/Diplomatic exclusion: seven domains/five yields, Shared/other abilities/K/Floor/eligibility/lifecycle unchanged. B154/B155/B157 Culture counterevidence retained as deferred future, no v0.1 prerequisite. P0-L2C plan only, no runtime adaptation/deployment; live B157 remains old prototype.",
+    "plan": "User explicitly authorized the reviewed P0-L2C plan this turn; no further batch/cutover authorization.",
+    "implementation": "B158.185 / modinfo185 LOCAL_COMPLETE, targeted47 PASS; default OFF one-city gate only.",
+    "native": "USER_GAME_TEST_REQUIRED for current five-yield/lifecycle range; B157 prior evidence not extended; full L2 NOT_PASSED.",
+    "stop": "Await minimal P0-L2C five-yield native gate; no formal all-city cutover or L3/M/N/U2 authorization.",
+    "deployment": "Verified pre-deployment B157.184 / modinfo184; source f75494b16e023224dec6e852ff65afb13f438963; B157.184-f75494b-playtest.json DEVELOP_ACTIVE; 182 files and stable recovery MATCH; no pending marker. New B158 source not yet deployed.",
+    "authority_revalidation": "S0410 user explicitly authorized P0-L2C; B158.185 seven-domain/five-yield reversible gate LOCAL_COMPLETE, 47 targeted checks PASS. New P/F/Faith native required; old Culture deferred. Permanent/Shared/K/GC untouched, full L2 NOT_PASSED.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md",
-    "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency."
+    "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
+    "local_test_entry": "DevelopmentTests/test_culture_meaning_l2c.py: 27 tests + selected20 modifier tests (excluded historical Panel route/Copy + version184 assertion; replaced by current checks)."
   }
 }

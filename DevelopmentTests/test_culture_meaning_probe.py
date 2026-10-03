@@ -49,8 +49,8 @@ def database():
  d.execute('DROP TABLE IF EXISTS SPC_CultureAestheticBits')
  d.executescript((M/'Data/CultureAesthetic.sql').read_text())
  # Earlier probe definitions may be present in the read-only DB too. Rebuild
- # only the exact 16 owned carriers / 112 attachments in this memory copy.
- carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6),('CULTURE',4)]for bit in range(bits)]
+ # only the exact 26 owned carriers / 182 attachments in this memory copy.
+ carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6),('CULTURE',4),('PRODUCTION',4),('FOOD',3),('FAITH',3)]for bit in range(bits)]
  carriers += ['BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3','BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3_SCALE100']
  modifiers=[b.removeprefix('BUILDING_')+'_'+cat for b in carriers for cat in ['WRITING','MUSIC','SCULPTURE','PORTRAIT','LANDSCAPE','RELIGIOUS','ARTIFACT']]
  for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:

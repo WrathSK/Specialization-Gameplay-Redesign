@@ -1,19 +1,19 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_PLANNED_NOT_AUTHORIZED；D0043已采用意义延展七域五产出，文化追加技术DEFERRED，不再阻塞本版v0.1；source/live B157仍旧九域原型，未适配。正式cutover／下一能力未授权。
+State: P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE；用户已明确授权，B158.185七域五产出单城原型LOCAL完成；未正式全城cutover／L2 PASS／下一能力授权。
 Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`保持。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户已明确采用暂排方案，[D0043接受](../../Design/Design_ChangeLog.md#accepted-d0043--2026-10-03)仅改变意义延展适用域：Campus／Industry／Commercial／Harbor／Encampment／Holy Site／Neighborhood；Science／Production／Gold／Faith／Food。Shared完整映射及其它能力保持。K／逐领域Floor／W／作品资格／ACTIVE与独立追加不变。
+用户已采用D0043并明确授权P0-L2C。B158.185默认OFF单城门禁已LOCAL完成：[修改／47项验证及一个最小原生流程](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md)。只消费七域五yield，逐领域Floor后同yield合并再乘W；Shared／K／资格／永久状态／GC不改。新P/F/Faith整数片＋S/G复用，旧Culture精确清理保留而不生成；基线→追加→结束，未正式全城接入。
 
-[B157三阶段](../../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)已确认所扫Writing实例进入／退出及S/G读数1／4，Culture＋3实例虽映射正确却Δ0，失败保留。[文化技术档案](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)、B155两候选及下方诊断／主题化原型章节保留为未来调查；其中旧“尚未采用／待诊断”只描述当时，不是当前指令。本轮不继续该调查，不要求用户重测，不删除实验精确清理依据。
+旧GWA只hold目标城精确156项及本城Dialogue0%；确认撤新owned后释放旧模块按当前事实恢复。load默认OFF；UNKNOWN、loss、reference及失败保护保持。按需报告五yield预期／实际差值／native绝对值，同ACK复用，普通右键不继续旧全局实例诊断。实际source/live、Git／receipt见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
-当前runtime未因Design记录改变，Model仍九域，Probe／reader／载体只S/G/C且要求正Culture；P/F/Faith没有Meaning writer。下一[P0-L2C计划](#下一批计划--p0-l2c-七域五产出门禁)必须正确适配零Culture流程，不能删两个输入后沿用旧四态。计划／manifest为PLANNED_NOT_AUTHORIZED；本轮不写Mod、不部署。精准recipient／倍率／正常结算与最终cutover仍按各自真实门禁，不把文化技术延期误当其它问题已解。
+下一仅本单城五yield原生门禁，USER_GAME_TEST_REQUIRED；本地通过不等于完整L2。精确支持recipient、Dialogue／theming独立、正常结算与正式cutover仍按各自门禁。B157 Culture失败及[技术档案](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)保留未来恢复，不再阻塞本版五yield；不重开文化调查，不进L3/M/N/U2。
 
 ## 下一批计划 — P0-L2C 七域五产出门禁
 
-**Goal／边界。** 一个默认OFF、单城可逆原型，验证七域模型及五产出的整数承载、实际读数和定域退出。先让剩余五yield进入可验证状态；不是全城正式接入，也不是整个L2完成。实施须用户另行授权；不实施Culture新候选或宿主诊断，不进入巨作启迪／时代对话正式改造／考察／Network／UI润色。
+**Goal／边界。** 一个默认OFF、单城可逆原型，验证七域模型及五产出的整数承载、实际读数和定域退出。先让剩余五yield进入可验证状态；不是全城正式接入，也不是整个L2完成。用户本轮已授权并LOCAL完成；不实施Culture新候选或宿主诊断，不进入巨作启迪／时代对话正式改造／考察／Network／UI润色。
 
 | 工作 | 具体范围与责任 |
 |---|---|
@@ -23,7 +23,7 @@ Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool
 | 可读诊断 | 一张报告显示合格W、每件／总量五yield预期和原生实测、ACTIVE／配置状态；D组成按需展开。只显式读取，不加hover／per-frame请求、全局常驻扫描或GC入口 |
 | 旧效果与退出 | 原型内只hold目标城GWA，由原模块撤精确156项；维持本城旧Dialogue0%控制。先清新owned，确认退出后释放旧模块按当前事实重算；其它城市不受影响、UNKNOWN不扩大清理 |
 
-**Likely touched。** `Mod/CultureMeaningModel.lua`、`CultureMeaningProbe.lua`、`Data/CultureMeaningProbe.sql`、`UI/BoostGreatWorkRead.lua`及直接请求／UI／本地化／modinfo、`DevelopmentTests/test_culture_meaning_probe.py`和直接reader回归。旧GWA／Dialogue／K桥只在真实调用依赖要求时作最小适配；所有影响路径实施前仍读精确消费者，不因hash匹配略过writer／load／loss边界。
+**直接模块范围。** `Mod/CultureMeaningModel.lua`、`CultureMeaningProbe.lua`、`Data/CultureMeaningProbe.sql`、`UI/BoostGreatWorkRead.lua`及直接请求／UI／本地化／modinfo、`DevelopmentTests/test_culture_meaning_probe.py`和直接reader回归。旧GWA／Dialogue／K桥只在真实调用依赖要求时作最小适配；所有影响路径实施前仍读精确消费者，不因hash匹配略过writer／load／loss边界。
 
 **触发／生命周期。** 本城明确验证动作、馆藏位置／资格／件数、七域D、ACTIVE／reference变化；复用当前Shared／K样本，不复制全城采集或构造全套诊断用于普通计算。相同可靠输入零写，同回合真实变化继续响应；同一session只保留单fixture／有界读数，结束、引用退出、失城、load按module-owned路径处理。load默认OFF，永久Property／E2历史／GC策略不改。
 
@@ -33,7 +33,7 @@ Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool
 
 **Exit／后续。** 五yield各给STATIC／LOCAL／USER证据及原型生命周期范围；所测整数读数／变化／退出可靠后，再提出正式接入与旧GWA cutover计划。精确支持作品recipient、Dialogue／theming独立、正常结算未覆盖部分仍是各自下一门禁：同类未知作品的整城probe拒绝只是临时保护，不可作为正式精准排除方案；当前旧Dialogue只测C/T也不证明未来全native-yield倍率隔离。不得因此宣称完整L2 PASS。文化平加／宿主调查单列未来恢复，不再作为七域五yield前置；只具体未通过的相关路径阻塞其后依赖，不默认阻塞整个v0.1。
 
-**Rollback。** 继续Git已验source＋既有部署receipt；清新owned后才恢复旧package。保持游戏退出、staging／target／recovery／equality门禁；本轮只有计划，无新build／deployment标识。
+**Rollback。** 继续Git已验source＋既有部署receipt；清新owned后才恢复旧package。保持游戏退出、staging／target／recovery／equality门禁；本轮LOCAL完成B158.185，source/live部署标识只见Status／receipt。
 
 ## Modifier实例诊断
 

@@ -10,8 +10,8 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0409",
-    "runtime": "B157.184 / modinfo184",
+    "status": "S0410",
+    "runtime": "B158.185 / modinfo185",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "f75494b16e023224dec6e852ff65afb13f438963",
-  "current_batch": "P0_L2C_PLANNED_NOT_AUTHORIZED",
-  "next_batch": "Await explicit P0-L2C implementation authorization: seven-domain/five-yield reversible one-city gate. Culture technology deferred; no global cutover, L3/M/N/U2 or deployment in planning turn.",
+  "runtime_commit": null,
+  "current_batch": "P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE",
+  "next_batch": "Await minimal P0-L2C five-yield native gate; no formal all-city cutover or L3/M/N/U2 authorization.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B157.184 / modinfo184; source f75494b16e023224dec6e852ff65afb13f438963; W0003 B157.184-f75494b-playtest.json DEVELOP_ACTIVE; 182/182 MATCH; OS exit verified, exact B156 receipt restore then staging; B156/stable recovery MATCH, no pending marker; no game launch.",
+  "live": "Verified pre-deployment B157.184 / modinfo184; source f75494b16e023224dec6e852ff65afb13f438963; B157.184-f75494b-playtest.json DEVELOP_ACTIVE; 182 files and stable recovery MATCH; no pending marker. New B158 source not yet deployed.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0409 user adopted D0043 Meaning-only Government/Diplomatic exclusion: seven domains/five yields, Shared/other abilities/K/Floor/eligibility/lifecycle unchanged. B154/B155/B157 Culture counterevidence retained as deferred future, no v0.1 prerequisite. P0-L2C plan only, no runtime adaptation/deployment; live B157 remains old prototype.",
+  "context_review_status": "S0410 user explicitly authorized P0-L2C; B158.185 seven-domain/five-yield reversible gate LOCAL_COMPLETE, 47 targeted checks PASS. New P/F/Faith native required; old Culture deferred. Permanent/Shared/K/GC untouched, full L2 NOT_PASSED.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

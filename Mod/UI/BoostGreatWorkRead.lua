@@ -93,91 +93,93 @@ function SPCBoostGreatWorkRead.Adjacency(P,c)
  return ok and result or ('原生六收益读取未完成：'..tostring(result))
 end
 
--- One on-demand UI baseline, never a Gameplay source or a persistent snapshot.
--- Four UI-only readings for one current fixture. Never persisted or used by Gameplay.
+-- One on-demand comparison for the current single-city fixture. Never persisted,
+-- never a Gameplay source, and no native handles survive a read.
 local meaningReadings
+function SPCBoostGreatWorkRead.ClearMeaningRead() meaningReadings=nil end
 function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
- local ok,text=pcall(function()
+ local ok,result=pcall(function()
   assert(v.owner==Game.GetLocalPlayer() and v.cityID==c:GetID() and v.reference==SPCNetworkInput.Reference(c),'ME_UI_REFERENCE_CHANGED')
-  if v.mode=='OFF' then meaningReadings=nil;return '测试已关闭；本次四态读数已释放。'end
+  if v.mode=='OFF' then meaningReadings=nil;return '测试已关闭；本次五产出对照已释放。'end
+  assert(v.mode=='BASELINE' or v.mode=='ACTIVE','ME_UI_MODE_UNKNOWN')
   assert(not v.error and not v.configurationError and not v.dialogueError and v.oldHeld and v.planStatus=='READY','ME_UI_CONFIGURATION_PENDING')
-  local percent=(v.mode=='SCALED' or v.mode=='SCALED_BASELINE') and 100 or 0
-  assert(v.dialoguePercent==percent,'ME_UI_DIALOGUE_PENDING')
-  local on=v.mode=='ACTIVE' or v.mode=='SCALED'
-  assert(v.configuredScience==(on and v.science or 0) and v.configuredGold==(on and v.gold or 0) and v.configuredCulture==(on and v.culture or 0),'ME_UI_CONFIGURATION_PENDING')
-  local b=c:GetBuildings();local totals={SCIENCE=0,GOLD=0,CULTURE=0};local signature={};local baseCulture=0;local baseKnown=true;local themeBuildings,themeWorks,workCount=0,0,0;local buildingRows={}
-  local nativeBase={}
-  if GameInfo.GreatWork_YieldChanges then for row in GameInfo.GreatWork_YieldChanges()do if row.YieldType=='YIELD_CULTURE' then nativeBase[row.GreatWorkType]=(nativeBase[row.GreatWorkType] or 0)+row.YieldChange end end else baseKnown=false end
+  assert(v.dialoguePercent==0 and v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')
+  local function finite(n)return type(n)=='number' and n==n and math.abs(n)<math.huge end
+  local function integer(n)return finite(n) and n>=0 and n%1==0 end
+  assert(integer(v.count),'ME_UI_WORK_COUNT_UNKNOWN')
+  local definitions={
+   {'SCIENCE','科研','science','totalScience','configuredScience'},
+   {'PRODUCTION','生产力','production','totalProduction','configuredProduction'},
+   {'GOLD','金币','gold','totalGold','configuredGold'},
+   {'FOOD','食物','food','totalFood','configuredFood'},
+   {'FAITH','信仰','faith','totalFaith','configuredFaith'}
+  }
+  local on=v.mode=='ACTIVE';local totals={};local expected={}
+  for _,entry in ipairs(definitions)do
+   local yield,each,total,configured=entry[1],v[entry[3]],v[entry[4]],v[entry[5]]
+   assert(integer(each) and integer(total) and total==each*v.count and finite(configured) and configured==(on and each or 0),'ME_UI_CONFIGURATION_PENDING')
+   totals[yield]=0;expected[yield]=on and total or 0
+  end
+  local b=c:GetBuildings();local signature={};local seen={};local workCount=0;local buildings,themedBuildings=0,0
+  local categories={WRITING=true,MUSIC=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true}
   for r in GameInfo.Buildings()do if P.HasBuilding(b,r.Index) then
-   local n=b:GetNumGreatWorkSlots(r.Index);assert(type(n)=='number' and n>=0,'ME_UI_SLOTS_UNKNOWN')
+   local n=b:GetNumGreatWorkSlots(r.Index);assert(integer(n),'ME_UI_SLOTS_UNKNOWN')
    if n>0 then
     local known,themed=pcall(b.IsBuildingThemedCorrectly,b,r.Index)
     assert(known and type(themed)=='boolean','ME_UI_THEME_UNKNOWN')
     signature[#signature+1]='B'..r.Index..':'..tostring(themed)
-    local count=0;local rowYields={}
+    local count=0
     for slot=0,n-1 do local id=b:GetGreatWorkInSlot(r.Index,slot)
      if id~=nil and id~=-1 then
+      assert(integer(id) and not seen[id],'ME_UI_DUPLICATE_WORK');seen[id]=true
       local typ=b:GetGreatWorkTypeFromIndex(id);local row=GameInfo.GreatWorks[typ]
-      assert(row,'ME_UI_WORK_DEFINITION_UNKNOWN')
+      assert(row and type(row.GreatWorkType)=='string' and type(row.GreatWorkObjectType)=='string','ME_UI_WORK_DEFINITION_UNKNOWN')
       signature[#signature+1]='W'..id..'@'..r.Index..':'..slot..':'..row.GreatWorkType
-      local cat=(row.GreatWorkObjectType or ''):gsub('GREATWORKOBJECT_','')
-      if ({WRITING=true,MUSIC=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true})[cat] then count=count+1;workCount=workCount+1;baseCulture=baseCulture+(nativeBase[row.GreatWorkType] or 0)end
+      local category=row.GreatWorkObjectType:gsub('GREATWORKOBJECT_','')
+      if categories[category] then count=count+1;workCount=workCount+1 end
      end
     end
-    for _,y in ipairs({'SCIENCE','GOLD','CULTURE'})do
-     local value=b:GetBuildingYieldFromGreatWorks(P.Info('Yields','YIELD_'..y).Index,r.Index)
-     assert(type(value)=='number' and value==value and math.abs(value)<math.huge,'ME_UI_NATIVE_YIELD_UNKNOWN');totals[y]=totals[y]+value;rowYields[y]=value
+    for _,entry in ipairs(definitions)do
+     local y=entry[1];local def=assert(P.Info('Yields','YIELD_'..y),'ME_UI_YIELD_DEFINITION_UNKNOWN')
+     local value=b:GetBuildingYieldFromGreatWorks(def.Index,r.Index)
+     assert(finite(value),'ME_UI_NATIVE_YIELD_UNKNOWN');totals[y]=totals[y]+value
     end
-    if count>0 then
-     if themed then themeBuildings=themeBuildings+1;themeWorks=themeWorks+count end
-     buildingRows[#buildingRows+1]=string.format('%s｜%d件／%s｜科研%.2f 金币%.2f 文化%.2f',Locale.Lookup(r.Name or r.BuildingType),count,themed and '已主题化' or '未主题化',rowYields.SCIENCE,rowYields.GOLD,rowYields.CULTURE)
-    end
+    if count>0 then buildings=buildings+1;if themed then themedBuildings=themedBuildings+1 end end
    end
   end end
   assert(workCount==v.count,'ME_UI_WORK_COUNT_MISMATCH')
-  local turn=Game.GetCurrentGameTurn()
+  for _,entry in ipairs(definitions)do assert(finite(totals[entry[1]]),'ME_UI_NATIVE_YIELD_UNKNOWN')end
+  local turn=Game.GetCurrentGameTurn();assert(integer(turn),'ME_UI_TURN_UNKNOWN')
   local populationOK,population=pcall(c.GetPopulation,c)
+  local populationKnown=populationOK and integer(population)
+  local qualificationKnown=v.currentIdentity=='CULTURE' and integer(v.currentPotential) and v.currentPotential>=4
+    and v.currentActiveStatus=='KNOWN' and integer(v.currentActive) and v.currentActive>=4
+  local depthKnown=type(v.stamp)=='string' and #v.stamp>0
   local qualification=table.concat({tostring(v.currentIdentity),tostring(v.currentPotential),tostring(v.currentActive),tostring(v.currentActiveStatus)},':')
-  table.sort(signature);local key=tostring(v.variant or 'SPLIT')..'|'..v.reference..'|'..v.stamp..'|'..v.count..'|'..turn..'|'..qualification..'|'..(populationOK and tostring(population) or 'UNKNOWN')..'|'..table.concat(signature,';')
-  -- Optional second native readout; unavailable is never a successful zero.
-  local cityOK,cityCulture=pcall(c.GetYield,c,P.Info('Yields','YIELD_CULTURE').Index)
-  if cityOK and type(cityCulture)=='number' and cityCulture==cityCulture and math.abs(cityCulture)<math.huge then totals.cityCulture=cityCulture end
-  local lines={string.format('原生作品收益：科研 %.2f / 金币 %.2f / 文化 %.2f',totals.SCIENCE,totals.GOLD,totals.CULTURE),totals.cityCulture and string.format('整城文化 %.2f（辅助读数，含其它修正）',totals.cityCulture) or '整城文化未确认；作品读数仍保留。'}
-  lines[#lines+1]=string.format('主题化%d座／%d件；追加预期保持固定，不乘主题倍率。',themeBuildings,themeWorks)
-  for i=1,math.min(#buildingRows,4)do lines[#lines+1]=buildingRows[i]end
-  if #buildingRows>4 then lines[#lines+1]='另有'..(#buildingRows-4)..'座馆藏建筑；合计已包含，明细仅显示前4座。'end
-  if mark and v.mode=='BASELINE' then meaningReadings={key=key,rows={}}end
-  local valid=meaningReadings and meaningReadings.key==key
-  if valid then meaningReadings.rows[v.mode]=totals end -- Explicit read can refresh this phase; previous phases remain fixed.
-  if not valid then
-   meaningReadings=nil;lines[#lines+1]='回合/人口/馆藏/位置/主题/领域D/资格已变，四态对照无效；结束后重新准备。'
-  else
-   local q=meaningReadings.rows
-   lines[#lines+1]='本阶段'..(q[v.mode] and '已记录；右键只刷新当前阶段读数，不推进实验。' or '未记录；只读不能补造基线。')
-   if q.BASELINE and q.ACTIVE then
-    lines[#lines+1]=string.format('关闭旧对话：作品文化 Δ%+.2f；预期 +%g。',q.ACTIVE.CULTURE-q.BASELINE.CULTURE,v.totalCulture)
-    for _,y in ipairs({'SCIENCE','GOLD'})do
-     local label=y=='SCIENCE' and '科研' or '金币'
-     lines[#lines+1]=string.format('关闭旧对话：作品%s Δ%+.2f；预期 +%g。',label,q.ACTIVE[y]-q.BASELINE[y],y=='SCIENCE' and v.totalScience or v.totalGold)
-    end
-    if q.BASELINE.cityCulture~=nil and q.ACTIVE.cityCulture~=nil then lines[#lines+1]=string.format('对应整城文化 Δ%+.2f（含其它修正，不代替作品／结算门禁）。',q.ACTIVE.cityCulture-q.BASELINE.cityCulture)end
-   end
-   if q.BASELINE and q.ACTIVE and q.SCALED and q.SCALED_BASELINE then
-    lines[#lines+1]=string.format('旧对话100%%：作品文化 Δ%+.2f；应与上行相等。',q.SCALED.CULTURE-q.SCALED_BASELINE.CULTURE)
-    for _,y in ipairs({'SCIENCE','GOLD'})do
-     local label=y=='SCIENCE' and '科研' or '金币'
-     lines[#lines+1]=string.format('旧对话100%%：作品%s Δ%+.2f；预期 +%g。',label,q.SCALED[y]-q.SCALED_BASELINE[y],y=='SCIENCE' and v.totalScience or v.totalGold)
-    end
-    if q.SCALED.cityCulture~=nil and q.SCALED_BASELINE.cityCulture~=nil then lines[#lines+1]=string.format('对应整城文化 Δ%+.2f（含其它修正）。',q.SCALED.cityCulture-q.SCALED_BASELINE.cityCulture)end
-    lines[#lines+1]=string.format('旧对话增幅：无追加 Δ%+.2f / 有追加 Δ%+.2f。',q.SCALED_BASELINE.CULTURE-q.BASELINE.CULTURE,q.SCALED.CULTURE-q.ACTIVE.CULTURE)
-    lines[#lines+1]=baseKnown and string.format('定义原生文化合计 %g；用于区分HD平加与原生基值。',baseCulture) or '作品定义基值不可读；不把未知记为0。'
-   end
+  table.sort(signature)
+  local key=v.reference..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
+  assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
+  local stable=populationKnown and qualificationKnown and depthKnown
+  if mark and v.mode=='BASELINE' and stable then meaningReadings={key=key,baseline=totals,current=totals}end
+  local valid=stable and meaningReadings and meaningReadings.key==key
+  if valid then meaningReadings.current=totals else meaningReadings=nil end
+  local lines={string.format('原生巨作读数｜%d件／%d座馆藏建筑｜%s',workCount,buildings,on and '追加中' or '基线')}
+  for _,entry in ipairs(definitions)do
+   local y=entry[1];local delta=valid and on and (totals[y]-meaningReadings.baseline[y]) or nil
+   lines[#lines+1]=string.format('%s｜每件 +%g／本城 +%g｜实测差值 %s｜当前原生 %.2f',entry[2],on and v[entry[3]] or 0,expected[y],delta~=nil and string.format('%+.2f',delta) or (on and '未确认' or '待启用追加'),totals[y])
   end
-  lines[#lines+1]='同回合同一馆藏对照；右键仅刷新当前阶段。读数可延迟，其它修正须保持不变，不自动判定结算PASS。'
+  if not valid then
+   local reason=not stable and '人口／资格／领域D未确认' or '回合／人口／馆藏位置／主题／领域D／资格已变，或尚无同回合基线'
+   lines[#lines+1]='差值未确认：'..reason..'；可信原生绝对值仍显示。结束后重新准备基线。'
+  else
+   lines[#lines+1]=on and '右键只刷新当前读数；左键或结束按钮撤回追加。' or '同回合基线已记录；左键启用追加。'
+  end
+  if themedBuildings>0 then lines[#lines+1]='已主题化'..themedBuildings..'座；当前预期追加保持固定，不乘主题倍率。'end
+  lines[#lines+1]='原生读数可能延迟；配置与界面差值不自动证明正常回合结算。'
   return table.concat(lines,'\n')
  end)
- if not ok then meaningReadings=nil end -- Unknown/error invalidates previously accepted comparisons too.
- return ok and text or ('四态原生读数未确认：'..(tostring(text):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
+ if not ok then meaningReadings=nil end -- An unknown/error cannot retain a successful comparison.
+ return ok and result or ('五产出原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end
 
 -- B156: explicit UI read only. Never retain native handles/tables between reads.
@@ -242,7 +244,7 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','dialoguePercent','count','error','configurationError'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()

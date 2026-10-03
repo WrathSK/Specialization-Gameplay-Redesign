@@ -97,13 +97,13 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 -- L2A single-city reversible experiment; native precision is pending.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG','切换验证配置'),
-('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','Switch probe configuration'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','仅测试关闭时左键切换：拆分片段 → 单一+3 → 单一+3／显式倍率100%。后两项需要每件理论追加3文化。实验中不能切换；本按钮右键直接结束验证，原验证按钮右键仍只读。候选不是已确认修复。'),
-('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','While OFF, left click cycles split pieces, one flat +3, then flat +3 with explicit ScalingFactor 100. Single candidates require 3 Culture per work. No switching during a test; right click this button to end the test directly. Right click the original probe button to read only. Candidates are not confirmed fixes.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG','结束验证'),
+('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','End yield gate'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','左／右键均结束本城实验：先撤销追加，再按当前事实恢复旧系统；不再切换文化候选。'),
+('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','Either click ends this city probe: withdraw additions before restoring legacy consumers from current facts. Culture candidates are deferred.'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展验证'),
 ('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning yield gate'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：基线 → 整数追加 → 旧对话100% → 倍率基线 → 结束恢复；右键：读取当前Modifier诊断，不推进实验；无需先开启或过回合。仅本城可逆文化倍率门禁。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Left click: baseline, integer additions, old Dialogue 100%, percent baseline, then end and restore. Right click: read current Modifier diagnostics without advancing the probe; no activation or end turn needed. Reversible one-city Culture interaction gate.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：准备基线 → 五产出整数追加 → 结束恢复；右键只读五产出，不推进实验。不包含市政／外交，仅本城可逆验证；配置不等于原生收益通过。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Left click: prepare baseline, enable five-yield integer additions, then end and restore. Right click reads five yields without advancing. Government Plaza and Diplomatic Quarter are excluded; this reversible one-city probe is not a native yield PASS.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');
