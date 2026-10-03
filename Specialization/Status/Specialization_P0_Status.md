@@ -1,15 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0402
-Implementation Build: source/live B155.182 / modinfo182; flat candidates native FAIL; scoped investigation recorded; conditional fallback only; stable B069.96
+Status Revision: S0403
+Implementation Build: source/live B155.182 / modinfo182; flat candidates native FAIL; Amphitheater source checked; Modifier diagnostic planned only; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_CULTURE_PATH_INVESTIGATED
+Work State: P0_L2B_MODIFIER_DIAGNOSTIC_PLAN_READY
 
 ## CURRENT AUTHORITATIVE STATE
+
+现行正式Design仍D0042九域／六yield，Meaning独立追加／逐领域Floor与生命周期不变。市政／外交暂排仅CONDITIONALLY_AUTHORIZED，尚未正式采用；完整L2及精确recipient／倍率隔离／结算等仍未通过，正式cutover与L3/M/N/U2未授权。
+
+[建筑来源调查](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md#古罗马剧场建筑与著作收益来源复核)确认古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture／＋50%Tourism，建筑自身Culture1另算。主HD与DB差异由该扩展后加载覆盖解释，均为STATIC；不证明两项Culture Modifier运行活动或组合算法。[B155两个候选FAIL](Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)、B055单flat成功／HD共存未证、S/G所测范围和其它writer门禁保持。
+
+[按需Modifier实例诊断计划](../Architecture/v2/P0_L2_Meaning.md#modifier实例诊断计划未实施)已准备，**没有新实现授权**。UI一次显式READ token最多一次全局枚举、精确ID筛选／有界输出；先一次读取schema，实例城市归属尚UNKNOWN，不用名称归组／猜CityID。同玩家或Active=true不作本城效果／收益PASS；未过映射门禁不重做三态。
+
+source/live仍B155.182／modinfo182，代码441b85f；沿既有部署来源7c4b72f、receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE／182 MATCH引用，本轮未重核外部包。main稳定B069.96未promotion。本轮仅调查与计划，Design／Mod／GC／永久账本未改、无新用户测试／模拟／部署。下一建议：授权该最小只读诊断实施；到此停止。
+
+## 历史阶段记录
+
+### S0402 — 定域调查与条件后备登记（当时）
 
 现行正式Design仍D0042九域／六yield，A–G生命周期与Meaning独立追加／逐领域Floor保持。用户已接受“无可靠文化路径则暂排市政／外交、标未来处理”的**条件后备，尚未正式采用／修订或runtime实施**；采用前同步正式来源，七域不能只藏在plan或输入过滤里。Shared两域映射与其它能力不受后备影响。
 
@@ -19,7 +31,6 @@ source/live仍B155.182 / modinfo182，代码441b85f；仅沿既有部署来源7c
 
 本轮调查与条件后备登记完成，无用户新测试。下一建议：**按需精确native Modifier实例只读诊断的具体计划**，或采用后备前正式Design同步；均不等于新运行授权。实例读取先例不保证schema，不能继续猜系数或宣布文化永久不可行。正式cutover及L3/M/N/U2未授权；未来处理与所有停止点见[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。
 
-## 历史阶段记录
 
 ### S0401 — B155两个文化候选失败（当时）
 

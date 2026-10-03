@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_CULTURE_PATH_INVESTIGATED；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_MODIFIER_DIAGNOSTIC_PLAN_READY；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 **条件后备／未来处理。** 用户接受无可靠Culture路径时暂排Government Plaza／Diplomatic Quarter；两者是Meaning唯一Culture来源，采用后将九域六yield缩为七域五yield，其它Shared映射／能力／K／Floor／W／资格不动。当前只登记CONDITIONALLY_AUTHORIZED，正式Design仍D0042九域、B155也未适配；采用前必须同步正式来源与阅读版，不能仅从读入端偷偷删域。未来恢复需可靠文化共存与倍率边界证据。旧SINGLE3／四态要求Culture3／正Culture，不能直接当七域验收流程。
 
-下一建议是最小按需native Modifier实例只读诊断的具体计划，以区别未活动／附着与已活动但不叠加；接口schema先核对，没有新代码授权或本轮用户测试。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
+[最小按需native Modifier实例只读诊断计划](#modifier实例诊断计划未实施)已准备。古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture，建筑自身Culture1另算。先确认API实际schema及严格城市匹配依据；当前没有可靠实例城市映射，不能用同玩家／城市名称替代同城。没有新代码授权或本轮用户测试。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
 
 [B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
 
@@ -20,6 +20,40 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155候选原生结果不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
 [B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。该定域源码／静态定义核对本轮已完成，结论见上方调查；运行Modifier实例仍无证据。新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+
+## Modifier实例诊断计划（未实施）
+
+**目的／范围。** 在现B155固定Writing fixture，区分HD著作＋2与Meaning Culture3的定义命中、附件／owner、活动API值和作品实际读数。先例与[建筑来源调查](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md#古罗马剧场建筑与著作收益来源复核)已STATIC核对；原生实例schema、城市映射／活动、组合算法仍UNKNOWN。本节是供用户审核的实施计划，不授权实现或部署，不将诊断等同Meaning新路径。
+
+### 入口、责任与只读边界
+
+- 优先修改现有`Mod/UI/BoostGreatWorkRead.lua`、`Mod/UI/P0Panel.lua`及直接定向测试；版本登记按实施时实际检查点更新。不新建Gameplay writer、carrier／SQL定义、Property／账本、事件订阅、GC调用或常驻debug服务；不改原型阶段／HD／正式Design。
+- 复用“意义延展验证”右键`CULTURE_MEANING_READ`，matching token／版本／所选local-owner city／当前完整reference后才执行独立UI helper。允许OFF／配置异常时报告可取得的原生实例，不依赖现Meaning四态reader成功；诊断失败不改carrier、hold或原型阶段。`Gameplay.lua`现READ只View／Describe，ADVANCE／CONFIG／END才控制原型；无需新Gameplay请求。
+- **每个显式READ token最多一次枚举**；Show／Copy／迟到ACK只重显该token的字符串，不再扫描。ADVANCE／CONFIG／END回复不自动调用；新右键请求才刷新。只保留最近一份有界报告及token／城市／reference／回合等标量；换城、新请求、关闭／shutdown／load时释放，不跨请求保留native实例句柄、owner对象ID表或全局枚举表。正在等待ACK的现有有界update不变，不新增hover／per-frame／每回合Gameplay请求。
+
+### 精确筛选、归属与证据
+
+1. `GameEffects.GetModifiers()`目前只有**全局**枚举先例；每个请求至多调用一次，再按`GetModifierDefinition(id).Id`匹配精确allowlist，命中才取owner／Active／Subjects。不能声称原生只扫描一城，也不能声称外层处理cap能限制原生返回全局列表的初始物化成本。
+2. 首轮Writing限定：`HD_AMPHITHEATER_WRITING_CULTURE_BOOST`／Tourism同伴；`SPC_MEANING_PROBE_SCIENCE_1_WRITING`（Science1）、`SPC_MEANING_PROBE_GOLD_3_WRITING`（Gold4）；两个`SPC_MEANING_PROBE_CULTURE_SINGLE3[_SCALE100]_WRITING`。为配置异常／SPLIT残留核对，从Meaning精确16 owned building对应的Writing附件形成有限集合；不使用名称prefix筛全库。0%／hold残留只加Dialogue与GWA精确owned目录中Writing／Culture的附件，不把其余object／yield未扫描说成完整退出已证实。附件选择同时检查`BuildingModifiers`与参数，不复制另一套公式或猜字段。
+3. UI先例证实Definition表中的`Id`／`Arguments`，`GetModifierActive`真实API按boolean使用；owner需`GetModifierOwner`＋`GetObjectsPlayerId`＋`GetObjectType`＋限长`GetObjectString`。**首版实例城市归属UNKNOWN**：与所选城市header分开，foreign过滤只靠确认玩家ID，不靠名称。HD City字符串仅注释先例，本次未观测；禁止宽松抓数字、以内部objectID代替CityID。真实schema若支持严格CityID／Owner字段，再另审定域解析及当前CityManager／reference交叉核对，不引入新cityKey。
+4. `GetModifierSubjects`按实证区分nil、空数组、有限对象数组和错误；只有实际数组才计数／取有限类型描述，不递归探测。不调用仅有注释的TrackedObjects。Active true只是该API结果，不自动等于owner／subject requirement满足、精准recipient、叠加或收益结算PASS；如诊断确需requirement层，先核对现源码的具体接口，再定域扩展，不能猜方法。
+5. 成功S/G是正控制：与Culture用同一reader／归属规则；HD是同yield背景，不能诊断时关闭它。记录具体GreatWorkType／基础Culture、实际building type／Name tag／Locale结果、配置量、HasBuilding／pillaged与作品小计；复用本次已取得的UI事实。若当前OFF不能复用完整四态快照，只读本fixture实际槽位，不新增第二套跨城市采集。
+
+### 有界输出与失败
+
+先显示“API读取完整／不完整；实例城市归属已确认／UNKNOWN”，随后HD＋2、Meaning S／G／C及旧Writing Culture残留的摘要。展开记录精确ID、Arguments的GreatWorkObjectType／YieldType／YieldChange／ScalingFactor、Active true／false／UNKNOWN、owner玩家／类型／限长raw描述、Subjects状态。所有无城市映射的数目标“本玩家匹配实例”，不得写“本城已有／没有”。初版示意（**非实际结果**）：`HD著作＋2｜本玩家命中1｜Active=true｜城市UNKNOWN；Meaning文化＋3｜命中1｜Active=true｜城市UNKNOWN；作品实际Culture4`。
+
+拟定后处理上限32768枚举项、64匹配项／每项64 subjects；展示最多12详细行、单raw字段最多240字符，其余给计数及截断标记，不倾倒其它Mods完整列表。上限只是处理／输出保护，不是引擎分配预算；溢出明确INCOMPLETE、停止该次读取，不能提高上限凑PASS。任何Definition未读、pcall失败、nil／非数组／稀疏／重复枚举ID或超限，均不作“0实例”；Active非boolean不转换false，Subjects nil不转换空数组。读取前后selected-city／owner／reference／回合／原型配置变化，报告STALE并不配对；没有自动重试、递归扫描或清理效果。
+
+### 本地验证、最小实机与退出
+
+**W0004 L1只读诊断**，附直接UI生命周期范围：syntax／import／exact附件引用、独立返回fixture（nil／异常／类型／稀疏／重复／cap／unknown owner／subjects）、同token Show/Copy零重复枚举、新READ一次、换城／引用变化拒绝、OFF／配置错误仍可只读报告、两城／foreign不误归属、诊断无Gameplay写入。复用直接相关现有测试，不跑旧full／stress；模拟schema只能检验防护，不证明接口原生可用。
+
+**首次原生仅一次读取。** 用户保持现有固定城／著作／建筑／D／Dialogue0%／非主题状态，无需先重做C00/C10或过回合；右键READ并提供一份报告。首轮只验收实际API返回、精确定义／参数、正控制、raw owner字符串和城市映射证据。不可读或无严格同城证明：停止对应结论，记录API_READ_BOUNDARY／TECHNICAL_IDENTITY_BOUNDARY，不要求反复尝试或自动切换其它primitive。
+
+仅当实际schema与严格同城映射通过审阅后，才值得用同城C00→C10→END／READ三态配对：HD应持续存在；Meaning所选候选／S/G进入与退出；旧Writing Culture残留按所扫范围报告。它仍不验收Dialogue100%、主题化、最终结算／冷加载、全部作品或完整L2。附件／活动不符则定位确切挂载；两项均可靠活动但CultureΔ0，只收窄到组合／读取／结算问题，不能宣称覆盖算法已确认或去改系数。所有门禁、条件后备与现B155保留。
+
+本轮只保存计划与STATIC来源核对；**无本计划LOCAL_SIMULATION／USER_GAME_TEST结果，无实施、部署或新Build**。停止等待诊断实施授权，不自动正式同步后备或进入下一能力。
 
 ## 平加共存与主题化技术原型
 
