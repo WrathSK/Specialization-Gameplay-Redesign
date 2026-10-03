@@ -1,15 +1,17 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_MODIFIER_MAPPING_NATIVE_PASS；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_CULTURE_INSTANCE_PRESENT_YIELD_FAIL；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-**本轮定域调查完成。** [源码／DB／B055对照](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)未发现Culture专属Lua清除／漏创建；旧Dialogue0%移除自身carrier，不挂0%Modifier，GWA只hold156自有项。两个Culture候选与S/G、HD精确定义完整，但没有native实例活动证据。B055为早期单著作＋2原型，复用同primitive／隐藏建筑方式；2→4→2不能证明HD多flat共存，更不能宣布Culture平加永久不可行。科研／金币仅所测整数读数成立，Production／Food／Faith没有本原型writer。
+**当前原生结果。** [B157三阶段十图](../../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)同T62／SINGLE3，HD文化＋2持续；Meaning S1/G4/C3均进入本城、Active=true且owner／唯一subject核验，旧GWA Writing Culture实验内退出；直接END后Meaning退出、旧GWA恢复。实例生命周期及S/G读数1／4在所测范围PASS，Culture实际4→4→4、Δ0 vs3，完整L2仍未过。Meaning／旧GWA映射District1048589，HD本城1114126；截图未提供类型，不猜名称或原生覆盖算法。源码／DB显示CITY_CENTER隐藏载体与AMPHITHEATER宿主不同，只是下一定域核对线索。不得继续猜系数、重复当前三态或进入③／主题化；下一宿主类型／附件核对仅建议，任何诊断或挂载候选实施需新授权。
+
+**保留反证。** [源码／DB／B055对照](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)及B155失败保持；早期单flat2→4→2不证明HD多flat共存，不宣布Culture平加永久不可行。Production／Food／Faith没有本原型writer。当前已排除本次Culture未创建／误归城／实验内旧GWA残留，组合／宿主域／读数或结算仍未知。
 
 **条件后备／未来处理。** 用户接受无可靠Culture路径时暂排Government Plaza／Diplomatic Quarter；两者是Meaning唯一Culture来源，采用后将九域六yield缩为七域五yield，其它Shared映射／能力／K／Floor／W／资格不动。当前只登记CONDITIONALLY_AUTHORIZED，正式Design仍D0042九域、B155也未适配；采用前必须同步正式来源与阅读版，不能仅从读入端偷偷删域。未来恢复需可靠文化共存与倍率边界证据。旧SINGLE3／四态要求Culture3／正Culture，不能直接当七域验收流程。
 
-[最小按需native Modifier实例只读诊断](#modifier实例诊断)已获授权并完成B156本地实施。古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture，建筑自身Culture1另算。先确认API实际schema及严格城市匹配依据；当前没有可靠实例城市映射，不能用同玩家／城市名称替代同城。只授权本次按需只读诊断；[29项LOCAL结果与一次读取流程](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)已记录，[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)已确认OFF入口/API所见字段，District owner raw含Owner/City；B157已按授权补齐严格District/当前对象核对及有限subject明细，[26项LOCAL与最小读取](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)通过；[B157两图](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md)已通过所见District owner/唯一subject的本城/其它城核验；Meaning启用及共存仍待短对照。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
+[最小按需native Modifier实例只读诊断](#modifier实例诊断)已经完成B156 schema与B157严格District映射／有限subject门禁；[26项LOCAL](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)、[此前OFF映射原生](../../Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md)和本次三态分别保留证据范围。当前包的三态已完成，不再待测试；只读诊断不等于收益组合成功。本次只确认所扫Writing精确项的显式同session进入／退出，精准recipient、Dialogue／theming隔离、正常结算／冷加载仍独立；正式cutover及L3/M/N/U2未授权。
 
 [B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
 
@@ -19,7 +21,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155候选原生结果不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
-[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。该定域源码／静态定义核对本轮已完成，结论见上方调查；B156 OFF实例观察见上方新结果，Meaning启用实例仍无证据。本次只读诊断以外的新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。上述为B155当时证据；B157现已观察到Meaning本城活动实例，Culture仍Δ0，见上方当前结果。本次只读诊断以外的新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 
 ## Modifier实例诊断
 
@@ -53,7 +55,7 @@ D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9�
 
 仅当实际schema与严格同城映射通过审阅后，才值得用同城C00→C10→END／READ三态配对：HD应持续存在；Meaning所选候选／S/G进入与退出；旧Writing Culture残留按所扫范围报告。它仍不验收Dialogue100%、主题化、最终结算／冷加载、全部作品或完整L2。附件／活动不符则定位确切挂载；两项均可靠活动但CultureΔ0，只收窄到组合／读取／结算问题，不能宣称覆盖算法已确认或去改系数。所有门禁、条件后备与现B155保留。
 
-B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS；首次原生OFF读取见[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)，入口及所见schema通过，严格映射/Meaning共存未过；[证据与一次读取](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。当前source/live以Status/receipt为准。schema报告已收到；B157定域映射已授权LOCAL完成，B157映射/subject报告已通过所测范围，下一仅当前包基线→追加→直接退出三组诊断，见最新原生记录；不自动重开四态、正式同步后备或进入下一能力。
+B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS；首次原生OFF读取见[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)，入口及所见schema通过，严格映射/Meaning共存未过；[证据与一次读取](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。当前source/live以Status/receipt为准。B157映射及三态已完成所测范围，生命周期PASS但Culture追加FAIL；下一仅最新原生记录中的宿主差异定域核对建议，尚未实施／授权。不自动重开四态、正式同步后备或进入下一能力。
 
 ## 平加共存与主题化技术原型
 

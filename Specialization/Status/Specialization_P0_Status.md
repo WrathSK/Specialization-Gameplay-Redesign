@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0407
-Implementation Build: source/live B157.184 / modinfo184; observed District mapping native PASS; Meaning comparison pending; stable B069.96
+Status Revision: S0408
+Implementation Build: source/live B157.184 / modinfo184; native instance lifecycle PASS, Culture addition FAIL; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
-Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PASS
+Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B157_CULTURE_NATIVE_FAIL
+Work State: P0_L2B_CULTURE_INSTANCE_PRESENT_YIELD_FAIL
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B157三阶段十图](Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)已确认同T62／SINGLE3：HD文化＋2持续，Meaning S1/G4/C3实例在追加阶段进入本城，旧GWA Writing Culture实验内退出；直接END后Meaning退出、旧GWA按当前事实恢复。出现实例均Active=true、唯一subject及本城／其它城映射正常，所测生命周期USER_GAME_TEST_PASS。
+
+作品Culture基线4→追加4→OFF4，追加报告ΔS1／ΔG4／ΔC0，要求Culture＋3未达成，**USER_GAME_TEST_FAIL／完整L2 NOT_PASSED**。已排除本次未创建／误归城／实验内旧GWA残留；宿主区域、同yield组合及读数／结算原因仍未证。不继续重复三态或③／主题化。下一仅[宿主差异定域核对建议](Validation/Results/Specialization_B157_Modifier_Comparison_Native.md#下一最小建议未实施未授权)，需新的实施授权；当前不改writer或采用条件后备。精准recipient／倍率隔离／结算／冷加载／六yield仍独立待解，D0042九域及其它门禁不变。
+
+source/live仍B157.184/source f75494b，沿既有receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。十图ignored归档10/10 SHA256 MATCH；无Mod/Design/GC/永久数据/main变化，无部署/游戏启动/新模拟。停止等待下一定域动作授权，不自动进入cutover或其它能力。
+
+## 历史阶段记录
+
+### S0407 — B157映射原生与三阶段待验（当时）
 
 [B157两图](Validation/Results/Specialization_B157_Modifier_Mapping_Native.md)已通过本次原生District映射/subject门禁：所选City393220的HD文化/旅游业和旧GWA文化+1，owner与唯一subject均“本城已核验”；City65536正确为其它城。均Active=true，但HD与旧GWA属于不同District，作品基础2/实际4；不据此推断覆盖算法或跨区域限制。
 
@@ -17,7 +27,6 @@ Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PASS
 
 source/live仍B157.184/source f75494b，沿既有receipt `B157.184-f75494b-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。两图ignored归档2/2 SHA256 MATCH；无Mod/Design/GC/永久数据/main变化，无部署/游戏启动/新模拟。停止等待当前包短对照。
 
-## 历史阶段记录
 
 ### S0406 — B157映射LOCAL与部署（当时）
 

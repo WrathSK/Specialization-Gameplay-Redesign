@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0407 two B157 native screenshots: observed District owner/subject mapping PASS for selected and other city. OFF only; HD and GWA on different Districts, Culture4 does not prove stacking. Meaning activation/comparison pending. No code/Design/GC changes; originals archived 2/2 MATCH.",
+  "review_basis": "S0408 ten B157 same-turn SINGLE3 screenshots: HD retained, Meaning S/G/C owner/subject present and scoped END exit PASS; GWA withdraw/restore PASS in Writing scope; S/G delta1/4, Culture delta0 vs3 FAIL. Host/combination/readout/settlement unresolved. Originals10/10 MATCH; no code/Design/GC/deploy changes.",
   "files": {
     "AGENTS.md": "df7e9f5684a7644baa7e1eee5191d5e5d5c723122e2bd2309dc4983a6cc8d077",
     "DevelopmentTests/test_arch_v2_batch_b.py": "659962866a3c9625ebc5dd9f1b5bab5628fd18d0cc33c4abc31f049ce7c1ea3a",
@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "f96d389ac18bb158680a60a695c8e20375b77dcec9693e44709fa06394d39f35",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "1bcb4310381236055a465b79d1344616c1306cebf53899694a12c396f8527311",
     "Specialization/README.md": "239205f497030ec0eec758346084a772f305c8ee2cae4046b15931643cdbca7d",
-    "Specialization/Status/Specialization_P0_Status.md": "2ece1aaf32e62ce8ca9b143478ad49070c9f31ba8012a2376b864792a3547059",
+    "Specialization/Status/Specialization_P0_Status.md": "cbeb5d7b8a60b70609180e05b8a9e1b868fff7493d67b76eae145bc0003e88d4",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "fbbbe947c1f3a4e03834ef035a97170d5ae681c5b87c36b7af78eb6512900930",
+    "Specialization/Workflow/Authority.json": "5c83c10f629bcd8a3d43e3dd37269866532cd081d692379020b0a061eb00d76a",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
@@ -335,7 +335,7 @@
     "Specialization/Status/Validation/Results/Specialization_B148_P0L1_Local.md": "d92b89ffb9691977f0a29b96bdb9fe4bcc45d9a69e853e5605fa713d76b8f91f",
     "Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md": "e2dfa11bcf5cf5ff1e076b659e4f2e4115e041cbf66da14ec07cea2790d749c6",
     "Specialization/Architecture/v2/Culture_Preparation.md": "b19fe89dbf83aed1674c37c4ebcf58c05bb4b67a54241f10bcf6d21d1ccc91bc",
-    "Specialization/Architecture/v2/P0_L2_Meaning.md": "58f14c35adf814b3365d08b3e5c9ea83dfb4b06bb66bbea8d30f2c0e1e336828",
+    "Specialization/Architecture/v2/P0_L2_Meaning.md": "4ba3f2e9e07996f9ccc7f5c37a0952c13f68dc539f9e60a8b853be81e3658d8f",
     "Specialization/Architecture/v2/P0_L3_Inspiration.md": "3c31aa7cdb8603306848487146b880b853b88aebbff1a427fb63bbb9ba13db27",
     "Specialization/Architecture/v2/P0_M_Dialogue.md": "e8ca691dafd714ea911ac29d2f0b9dcc57bff6b2c376a4025f3d243795e26621",
     "Specialization/Architecture/v2/P0_N_Expedition.md": "52179c4a61ea6644076ef9b3ba6b05d6b26b4220c077bd4257129283a8679917",
@@ -367,7 +367,7 @@
     "Specialization/Design/Content/Culture_D0038.json": "3296ddf8037f250fd46a51e00bf51f8d98e41cb7073db69fb2269e8faac4383e",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0037.md": "2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9",
     "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md": "4901a5abb4e801e64014118ab9820802f9afc16cf3d899c95909eab905576314",
-    "Specialization/Workflow/P0-L2B.json": "b23423d125f781e5909a57d1ba69c12807fa0770e24f6bf43e0f4ccd1d6f9732",
+    "Specialization/Workflow/P0-L2B.json": "926c796045cd9e6687fff4580b0bdd9796361e609581942c66fed47ed28a7475",
     "Mod/UI/BoostGreatWorkRead.lua": "aff9d3af069beb6440d0e420e5fd63366ef9eb12797cd3768da5cf24aaeb21f8",
     "Specialization/Design/Commerce.md": "405895f8b83b4a81c34ffc9ce422f11e7ca1cf52946dd34c30aba11c4659c7c4",
     "Specialization/Design/Network.md": "d8f1d38e3061e6d228af9d8f8c31a2f1ebcd4e3f53f8d6dc35a840331d504d1c",
@@ -406,6 +406,7 @@
     "DevelopmentTests/test_modifier_read.py": "6a1ace8729cc24b340b860d0fdc06f0616da8fdc42fd9d5b88f1d96027352c6c",
     "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md": "3e2b00a6fe0aea32a8bc915cf9d3027233bdcc00b6112f1db3b6dd6c16c4e44f",
     "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md": "9fe40d5a778522807e0d963b9de535b97f6fe4536657786242d357431ae74398",
-    "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md": "d550703d0032f75f8ef1a4b2962908bda6b3afdc66836c54d1bc3915a5bf9062"
+    "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Native.md": "d550703d0032f75f8ef1a4b2962908bda6b3afdc66836c54d1bc3915a5bf9062",
+    "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md": "977b50680b64dd1ec2150d425591ffb8a5760e6fd72e5918605292c4c3814d86"
   }
 }
