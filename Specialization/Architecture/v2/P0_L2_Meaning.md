@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2B_MODIFIER_DIAGNOSTIC_NATIVE_PENDING；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
+State: P0_L2B_MODIFIER_SCHEMA_OBSERVED；现行D0042／B155九域不变，市政／外交暂排仅条件后备；B155 single3及显式100均文化Δ0 vs3，当前fixture平加FAIL；停止后续Dialogue／theme。B154失败保留，精确recipient未解决，正式cutover未授权。
 Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 **条件后备／未来处理。** 用户接受无可靠Culture路径时暂排Government Plaza／Diplomatic Quarter；两者是Meaning唯一Culture来源，采用后将九域六yield缩为七域五yield，其它Shared映射／能力／K／Floor／W／资格不动。当前只登记CONDITIONALLY_AUTHORIZED，正式Design仍D0042九域、B155也未适配；采用前必须同步正式来源与阅读版，不能仅从读入端偷偷删域。未来恢复需可靠文化共存与倍率边界证据。旧SINGLE3／四态要求Culture3／正Culture，不能直接当七域验收流程。
 
-[最小按需native Modifier实例只读诊断](#modifier实例诊断)已获授权并完成B156本地实施。古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture，建筑自身Culture1另算。先确认API实际schema及严格城市匹配依据；当前没有可靠实例城市映射，不能用同玩家／城市名称替代同城。只授权本次按需只读诊断；[29项LOCAL结果与一次读取流程](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)已记录，native尚未测试。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
+[最小按需native Modifier实例只读诊断](#modifier实例诊断)已获授权并完成B156本地实施。古罗马剧场是通用AMPHITHEATER；已加载HD区域扩展给本城Writing＋2Culture，建筑自身Culture1另算。先确认API实际schema及严格城市匹配依据；当前没有可靠实例城市映射，不能用同玩家／城市名称替代同城。只授权本次按需只读诊断；[29项LOCAL结果与一次读取流程](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)已记录，[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)已确认OFF入口/API所见字段，District owner raw含Owner/City；严格城市/subject映射与共存仍未验证。若决定暂缓该路径，可沿已接受条件后备正式同步并规划其它yield。精确recipient、Dialogue／theming隔离、正常结算／冷加载／退出仍独立，正式cutover及L3/M/N/U2未授权。
 
 [B154结果](../../Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md)仍为单fixture追加／native-only FAIL（配置3、实际Δ1/2），四态／OFF可见不外推冷加载／结算。用户最新[D0041](../../Design/Content/Culture_D0041.json)要求Meaning追加独立，Dialogue／theming均不放大，同yield市政／外交Culture亦排除；较早主题包含追加建议仅留未来技术选项。
 
@@ -19,7 +19,7 @@ Authority: Culture D0042 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shar
 
 D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9个不变；Dialogue只增未提交取消／active说明，原生倍率target／fallback／precision及累计／次数合同不变。B155候选原生结果不涵盖新生命周期；正式Dialogue／考察／商业／工业队实施前另按D0042复审。
 
-[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。该定域源码／静态定义核对本轮已完成，结论见上方调查；运行Modifier实例仍无证据。本次只读诊断以外的新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
+[B155显式100原生结果](../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md)与[此前single3](../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md)均同回合T62、W1、非主题、旧Dialogue0%，Culture4→4（基线2＋HD2；预期7），S/G分别Δ1/4；两个候选均FAIL。当前内层DebugGameplay14附件／参数MATCH，仅STATIC定义；不推断HD被撤销或flat全不可实现。停止该候选路线，不继续③／④／主题化或旧长测；直接End退出，OFF／结算／冷加载本次无证据。该定域源码／静态定义核对本轮已完成，结论见上方调查；B156 OFF实例观察见上方新结果，Meaning启用实例仍无证据。本次只读诊断以外的新诊断或其它writer实施需单独计划／授权，不继续猜系数。精确recipient仍独立TECHNICAL_INVESTIGATION_REQUIRED；六yield/all-city/global旧GWA cutover及L3/M/N/U2未授权。运行包实际状态只见Status/receipt，不从源码HEAD猜测。
 
 ## Modifier实例诊断
 
@@ -53,7 +53,7 @@ D0042 Design-only生命周期同步已核对：当前10个JSON选择对象中9�
 
 仅当实际schema与严格同城映射通过审阅后，才值得用同城C00→C10→END／READ三态配对：HD应持续存在；Meaning所选候选／S/G进入与退出；旧Writing Culture残留按所扫范围报告。它仍不验收Dialogue100%、主题化、最终结算／冷加载、全部作品或完整L2。附件／活动不符则定位确切挂载；两项均可靠活动但CultureΔ0，只收窄到组合／读取／结算问题，不能宣称覆盖算法已确认或去改系数。所有门禁、条件后备与现B155保留。
 
-B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS，原生未验证；[证据与一次读取](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。当前source/live以Status/receipt为准。停止等待这一次schema报告，不自动重开四态、正式同步后备或进入下一能力。
+B156.183已完成只读实现，18项诊断＋11项原reader定向LOCAL PASS；首次原生OFF读取见[B156两图](../../Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md)，入口及所见schema通过，严格映射/Meaning共存未过；[证据与一次读取](../../Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。当前source/live以Status/receipt为准。schema报告已收到；下一仅建议District owner/subject定域映射补齐，需授权，不自动重开四态、正式同步后备或进入下一能力。
 
 ## 平加共存与主题化技术原型
 

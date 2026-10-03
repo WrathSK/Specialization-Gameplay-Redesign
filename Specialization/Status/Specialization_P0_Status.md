@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0404
-Implementation Build: source/live B156.183 / modinfo183; read-only diagnostic native pending; stable B069.96
+Status Revision: S0405
+Implementation Build: source/live B156.183 / modinfo183; OFF diagnostic native read observed; strict mapping pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_MODIFIER_DIAGNOSTIC_NATIVE_PENDING
+Work State: P0_L2B_MODIFIER_SCHEMA_OBSERVED
 
 ## CURRENT AUTHORITATIVE STATE
+
+[B156两图](Validation/Results/Specialization_B156_Modifier_Native_Read.md)：T62、玩家0/City393220、OFF/SPLIT、配置0。首次只读入口与所见API字段USER_GAME_TEST_PASS（限定本次）；检查7083定义，匹配5实例，HD文化/旅游业各2及旧GWA文化+1一项，均Active=true、subjects1。owner实际为District，raw含Owner/City；严格对象交叉验证仍未完成，实例城市归属门禁保持UNKNOWN。
+
+作品基础文化2、实际4；HD与旧GWA实例并存不证明数值全加或唯一覆盖算法。OFF时旧writer恢复正常并非自动构成残留错误；没有Meaning实例与配置0相符，本轮未验证Meaning启用/叠加。D0042九域、两个Culture候选FAIL、条件后备及精准recipient/倍率/结算门禁不变。[下一最小建议](Validation/Results/Specialization_B156_Modifier_Native_Read.md#下一最小建议未实施未授权)：严格District owner/subject定域诊断补齐，需实施授权；无需用户现在重复四态或长测。
+
+source/live仍B156.183、代码cd901fa，沿既有receipt `B156.183-cd901fa-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。两图ignored原样归档2/2 SHA256 MATCH；无Mod/Design/GC/永久数据/main/部署变化，无新玩法测试。停止，不自动进入新writer、cutover或下一能力。
+
+## 历史阶段记录
+
+### S0404 — B156诊断LOCAL与部署（当时）
 
 用户授权的最小只读Modifier诊断已完成B156.183 / modinfo183：右键“意义延展验证”只读，不必启用实验或过回合。[18项诊断＋11项原reader定向LOCAL PASS及最小流程](Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md)。一次显式token至多一次全局枚举，精确ID、有界输出，复用Show/Copy；native API/schema与实例城市归属仍UNKNOWN，不把同玩家/Active=true当本城收益PASS。
 
@@ -17,7 +27,6 @@ D0042九域／逐领域Floor／独立追加与原B155收益实现不变；两个
 
 source/live B156.183，source cd901fa；W0003 receipt `B156.183-cd901fa-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS确认游戏退出，经精确B155 receipt恢复stable过桥后staging激活；B155/stable恢复点均MATCH，无pending marker，未启动游戏。main B069.96未promotion。当前停止等待一份实机报告；不自动续四态、正式cutover、L3/M/N/U2或其它能力。
 
-## 历史阶段记录
 
 ### S0403 — Modifier诊断计划（当时）
 
