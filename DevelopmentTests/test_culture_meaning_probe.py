@@ -1207,4 +1207,57 @@ class MeaningProbeTests(unittest.TestCase):
      assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and probe.View(0,a).variant==wantedVariant)
     """)
 
+ def test_actual_request_ends_c10_directly_without_percent_and_keeps_read_config_keys(self):
+  l=self.culture3_runtime();bind_actual_request(l);l.execute("""
+   local held=dialogue.HoldMeaningProbe;local percent100=0
+   dialogue.HoldMeaningProbe=function(pid,c,percent)if percent==100 then percent100=percent100+1 end;return held(pid,c,percent)end
+   local function request(action,token)
+    meaningRequest(0,{Action=action,CityID=1,Token=token})
+    assert(shared.LastToken==token and shared.CultureMeaningView.token==token)
+    return shared.CultureMeaningView
+   end
+   request('CULTURE_MEANING_CONFIG','single');request('CULTURE_MEANING_ADVANCE','baseline');request('CULTURE_MEANING_ADVANCE','active')
+   assert(probe.mode=='ACTIVE' and configured(a,'CULTURE')==3 and probe.View(0,a).dialoguePercent==0 and percent100==0)
+   local w=writes;local prior=probe.lastAction;request('CULTURE_MEANING_READ','readonly')
+   assert(writes==w and probe.mode=='ACTIVE' and probe.lastAction==prior)
+   local v=request('CULTURE_MEANING_CONFIG','blocked-config')
+   assert(v.error:find('ME_VARIANT_REQUIRES_OFF') and probe.mode=='ACTIVE' and v.variant=='SINGLE3' and writes==w)
+   local remove,create=P.RemoveBuilding,P.CreateBuilding;local otherWrites=0
+   P.RemoveBuilding=function(bld,id)if bld.city==b then otherWrites=otherWrites+1 end;return remove(bld,id)end
+   P.CreateBuilding=function(queue,id)if queue.city==b then otherWrites=otherWrites+1 end;return create(queue,id)end
+   v=request('CULTURE_MEANING_END','direct-end')
+   assert(v.mode=='OFF' and not v.error and configured(a,'CULTURE')==0 and next(exactMeaning(a))==nil)
+   assert(percent100==0 and otherWrites==0 and old(a,'SCIENCE') and old(b,'SCIENCE') and next(exactMeaning(b))==nil)
+   assert(not a.present[GameInfo.Buildings.BUILDING_SPC_B059_TEST100.Index] and dialogue.meaningOverride==nil)
+   w=writes;request('CULTURE_MEANING_END','direct-end');assert(writes==w and probe.mode=='OFF')
+   request('CULTURE_MEANING_END','off-noop');assert(writes==w and probe.lastAction.kind=='END')
+   request('CULTURE_MEANING_END','off-noop');assert(writes==w)
+   assert(not pcall(probe.Advance,0,a,'off-noop') and not pcall(probe.CycleVariant,0,a,'off-noop') and not pcall(probe.End,0,b,'off-noop'))
+   assert(writes==w and probe.mode=='OFF' and probe.View(0,a).variant=='SINGLE3')
+  """)
+  ui=(M/'UI/P0Panel.lua').read_text()
+  for button,mouse,action in [('MeaningConfigButton','eLClick','CULTURE_MEANING_CONFIG'),('MeaningConfigButton','eRClick','CULTURE_MEANING_END'),('MeaningProbeButton','eLClick','CULTURE_MEANING_ADVANCE'),('MeaningProbeButton','eRClick','CULTURE_MEANING_READ')]:
+   self.assertIn("Controls."+button+":RegisterCallback(Mouse."+mouse+",function() request('"+action+"') end)",ui)
+  xml=ET.parse(M/'UI/P0Panel.xml').getroot();self.assertIsNotNone(xml.find('.//*[@ID="MeaningConfigButtonCaption"]'))
+  text=(M/'Text/TestText.sql').read_text()
+  for key in ['LOC_SPC_CULTURE_MEANING_CONFIG','LOC_SPC_CULTURE_MEANING_CONFIG_HINT']:self.assertEqual(text.count("'"+key+"'"),2)
+ def test_actual_request_end_cleanup_failure_retains_holds_and_new_token_recovers(self):
+  l=self.culture3_runtime();bind_actual_request(l);l.execute("""
+   probe.CycleVariant(0,a,'single');probe.Advance(0,a,'baseline');probe.Advance(0,a,'active')
+   local id=GameInfo.Buildings[SPCCultureMeaningModel.VariantParts.SINGLE3.name].Index
+   failRemove=id;meaningRequest(0,{Action='CULTURE_MEANING_END',CityID=1,Token='failed-end'})
+   local v=shared.CultureMeaningView
+   assert(shared.LastToken=='failed-end' and v.token=='failed-end' and v.mode=='ACTIVE' and v.error and probe.stopping)
+   assert(shared.Snapshot:find('%[END%]') and shared.Snapshot:find('ME_REMOVE_UNCONFIRMED'))
+   assert(configured(a,'CULTURE')==3 and gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0) and not old(a,'SCIENCE'))
+   assert(old(b,'SCIENCE') and next(exactMeaning(b))==nil and probe.lastAction.kind=='END')
+   local w=writes;failRemove=nil;meaningRequest(0,{Action='CULTURE_MEANING_END',CityID=1,Token='failed-end'})
+   assert(writes==w and configured(a,'CULTURE')==3 and probe.stopping)
+   meaningRequest(0,{Action='CULTURE_MEANING_END',CityID=1,Token='retry-end'})
+   v=shared.CultureMeaningView
+   assert(shared.LastToken=='retry-end' and v.token=='retry-end' and v.mode=='OFF' and not v.error and not probe.stopping)
+   assert(next(exactMeaning(a))==nil and dialogue.meaningOverride==nil and old(a,'SCIENCE') and old(b,'SCIENCE'))
+   w=writes;meaningRequest(0,{Action='CULTURE_MEANING_END',CityID=1,Token='retry-end'});assert(writes==w and probe.mode=='OFF')
+  """)
+
 if __name__=='__main__':unittest.main()

@@ -255,8 +255,23 @@ function SPCCultureMeaningProbe.Start(P,shared)
    oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false,
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
  end
- function d.End(pid,c)
-  return action(function()assert(target and target.owner==pid and target.city==c:GetID(),'ME_NO_FIXTURE');finish()end)
+ function d.End(pid,c,token)
+  assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
+  if token then
+   assert(type(token)=='string' and #token>0 and #token<=100,'ME_ACTION_TOKEN')
+   local old=d.lastAction
+   if old and old.token==token then
+    assert(old.owner==pid and old.city==c:GetID() and old.kind=='END','ME_ACTION_TOKEN_CONFLICT');return
+   end
+  end
+  return action(function()
+   if not target and d.mode=='OFF' and token then
+    d.lastAction={token=token,owner=pid,city=c:GetID(),kind='END'};return
+   end
+   assert(target and target.owner==pid and target.city==c:GetID(),'ME_NO_FIXTURE')
+   if token then d.lastAction={token=token,owner=pid,city=c:GetID(),kind='END'}end
+   finish()
+  end)
  end
  function d.Describe(pid,c,view)
   local v=view or d.View(pid,c)
@@ -278,7 +293,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    lines[#lines+1]='对话配置未确认：'..code
   end
   if v.error then lines[#lines+1]='异常：'..(v.error:match('ME_[A-Z_]+') or '接口未确认')..'；左键先结束。'end
-  if v.mode~='OFF' then lines[#lines+1]='仅本城可逆原型；追加预期不受对话／主题化放大，原生门禁未通过。'end
+  if v.mode~='OFF' then lines[#lines+1]='仅本城可逆原型；配置按钮右键可直接结束。追加预期不受对话／主题化放大，原生门禁未通过。'end
   return table.concat(lines,'\n')
  end
  local store=shared.CityProgressionStore

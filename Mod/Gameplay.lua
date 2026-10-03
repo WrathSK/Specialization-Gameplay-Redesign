@@ -176,10 +176,10 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
-  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' then
+  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' or params.Action=='CULTURE_MEANING_END' then
     -- One request-local read model; a failed request must not reuse a prior UI view.
     shared.CultureMeaningView=nil
-    local at='CITY';local actionError
+    local at='CITY';local actionError;local actionStage
     local function detail(why)
       local text=tostring(why):gsub('[%c]',' ');local code=text:match('(ME_[A-Z_]+)')
       if not code then return text:sub(1,120)end
@@ -193,11 +193,16 @@ local function request(playerID,params)
         at='ADVANCE';assert(type(probe.Advance)=='function','ME_ACTION_NOT_READY')
         local changed,why=pcall(probe.Advance,playerID,c,params.Token)
         if not changed then actionError=detail(why)end
+      elseif params.Action=='CULTURE_MEANING_END' then
+        at='END';assert(type(probe.End)=='function','ME_ACTION_NOT_READY')
+        local changed,why=pcall(probe.End,playerID,c,params.Token)
+        if not changed then actionError=detail(why)end
       elseif params.Action=='CULTURE_MEANING_CONFIG' then
         at='CONFIG';assert(type(probe.CycleVariant)=='function','ME_ACTION_NOT_READY')
         local changed,why=pcall(probe.CycleVariant,playerID,c,params.Token)
         if not changed then actionError=detail(why)end
       end
+      actionStage=at
       at='VIEW';assert(type(probe.View)=='function','ME_VIEW_NOT_READY')
       local view=probe.View(playerID,c)
       assert(type(view)=='table' and view.owner==playerID and view.cityID==params.CityID,'ME_VIEW_INVALID')
@@ -205,12 +210,12 @@ local function request(playerID,params)
       view.error=view.error or actionError or view.configurationError
       at='DESCRIBE';assert(type(probe.Describe)=='function','ME_DESCRIBE_NOT_READY')
       local report=probe.Describe(playerID,c,view);assert(type(report)=='string','ME_REPORT_INVALID')
-      if actionError then report=report..'\n操作未完成 [ADVANCE]：'..actionError end
+      if actionError then report=report..'\n操作未完成 ['..tostring(actionStage or at)..']：'..actionError end
       if view.configurationError then report=report..'\n配置读取未完成 [VIEW]：'..detail(view.configurationError)end
       view.token=params.Token;shared.CultureMeaningView=view
       return report
     end)
-    shared.Snapshot=ok and out or ('意义延展验证未完成 ['..at..']：'..detail(out)..(actionError and ('\n操作未完成 [ADVANCE]：'..actionError) or ''))
+    shared.Snapshot=ok and out or ('意义延展验证未完成 ['..at..']：'..detail(out)..(actionError and ('\n操作未完成 ['..tostring(actionStage or at)..']：'..actionError) or ''))
     shared.LastToken=params.Token;return
   end
   if params.Action=='CULTURE_AESTHETIC_READ' or params.Action=='CULTURE_AESTHETIC_DETAIL' then
