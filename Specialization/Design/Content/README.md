@@ -43,9 +43,13 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 Research学术传统身份暂停与Industry有限施工队库存要求见新content；旧D0030/D0027冻结。Culture Gameplay仍D0029；[时代馆藏展示需求与未批准UI建议](../../Historical/Design/Records/Culture_Era_Presentation_D0031.md)独立记录，不修改Shared。
 
-## D0032 Commerce freeze / boundary closures
+## D0039 Commerce v0.1 closure
 
-[Commerce_D0032](Commerce_D0032.json)为Commerce唯一新内容权威，DESIGN_FROZEN不等于balance/implementation完成。Lv1/II既有基础规则保留，III5F5P已由用户取消；旧III网络专家与IV20%汇聚退出。合同/mapping/参数/Legacy的待决成熟度显式保留，不能由实现者默认补齐。
+[Commerce D0039](Commerce_D0039.json)为当前商业机械内容权威；五领域商业化、资本/风险/发展主要公式与首版数值、信誉身份清零、已签合同身份变化连续执行及重组征服退出已接受。机构/能力名与D0032结构保持；精确剩余定义与一般Ownership只按新content登记，不把已关闭TBD继续当前化。[收口审阅](../../Historical/Design/Reviews/Commerce_D0039_Review.md)。不是实现或最终Balance通过。
+
+## D0032 Commerce freeze / historical baseline
+
+[Commerce_D0032](Commerce_D0032.json)为当时Commerce冻结内容，现行增量由D0039取代，DESIGN_FROZEN不等于balance/implementation完成。Lv1/II既有基础规则保留，III5F5P已由用户取消；旧III网络专家与IV20%汇聚退出。合同/mapping/参数/Legacy的待决成熟度显式保留，不能由实现者默认补齐。
 
 schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增supersession、legacy_review_required、architecture_requirements作为设计登记，不是运行save schema。Industry_D0032只关闭来源容量2及关联文字；Research_D0031、Culture_D0029、Shared_D0028字节不变。[Hybrid D](../../Historical/Design/Records/Culture_Era_Presentation_D0032.md)为当前批准展示方向，D0031推荐与边界文件保留历史。[Freeze review](../../Historical/Design/Reviews/Commerce_D0032_Review.md)。共同REALLOCATING隔离要求见Spec PROG-011；不机械升级Shared。
 

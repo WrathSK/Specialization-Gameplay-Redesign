@@ -67,5 +67,5 @@
 
 - [Design Spec](Specialization_v0.1_Design_Spec.md)：NET-001至004为本页共同接入、首都自接入、分发、接收去重及失效规则；ELIG／PROG约束参与和易主；NET-RC覆盖声明区分科研待重设计与文化旧规则。
 - [Shared正式内容](Content/Shared_D0035.json)：网络独立层及专业能力与传播的分工。
-- [商业正式内容](Content/Commerce_D0032.json)与[冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)：商业独有路线资格、签约后断路例外及旧效果取代。
+- [商业正式内容](Content/Commerce_D0039.json)与[本轮接受审阅](../Historical/Design/Reviews/Commerce_D0039_Review.md)：商业独有路线资格、签约后断路例外及旧效果取代。
 - [共同规则](Shared.md)、[商业正文](Commerce.md)、[内容导航](Content/README.md)。

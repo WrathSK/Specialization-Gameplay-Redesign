@@ -3,15 +3,15 @@
   "batch": "P0-L2B",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0038",
+    "design": "D0039",
     "research": "D0031",
     "industry": "D0036",
     "culture": "D0038",
-    "commerce": "D0032",
+    "commerce": "D0039",
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0390",
+    "status": "S0391",
     "runtime": "B152.179 / modinfo179",
     "military": "D0037",
     "harbor": "D0037"
@@ -287,6 +287,7 @@
     "evidence": "Specialization/Status/Validation/Results/Specialization_B152_P0L2B_Gates_Local.md",
     "native": "USER_GAME_TEST_REQUIRED for Culture; recipient primitive TECHNICAL_INVESTIGATION_REQUIRED",
     "stop": "No full ability/cutover; no L3/M/N/U2 without new authorization",
-    "deployment": "W0003 B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; source 85c77b4bcd815231a82ecf1610f9ebd305ad1c4c;182/182 MATCH; B151 and stable recovery retained. No game launch/native result."
+    "deployment": "W0003 B152.179-85c77b4-playtest.json DEVELOP_ACTIVE; source 85c77b4bcd815231a82ecf1610f9ebd305ad1c4c;182/182 MATCH; B151 and stable recovery retained. No game launch/native result.",
+    "authority_revalidation": "D0039 Commerce-only Design amendment: L2B Culture section/Shared/runtime/direct tests unchanged; metadata reviewed, authorized scope/native gate/receipt unchanged. No Commerce implementation authorized."
   }
 }

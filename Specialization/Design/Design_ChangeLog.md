@@ -3,8 +3,23 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0038
+Latest Accepted Design Revision: D0039
 Document State: ACCEPTED
+
+## Accepted D0039 — 2026-10-02
+
+Acceptance: ACCEPTED / Commerce v0.1 formula, initial balance and scoped Legacy closure; no implementation
+Acceptance Evidence: 用户明确附件商业Design Talk收口作为新的Design Authority，要求沿用机构/能力与主体，只关闭本轮决定项，不补未定值、不倒改历史。
+Accepted Spec SHA256: edf0d66fd0bb58ea5e6d51c2dc391ae0c5e32367c7795b98706a18dae5a43311
+Canonical Commerce Content SHA256: 77f4206158e07d0c0df0444cc4cdc6f1289bc4ccb9b58207fe34ed580a105f92
+Previous Accepted Revision: D0038
+Frozen D0038: [原文](Revisions/Specialization_Design_Spec_D0038.md)
+Content: [Commerce D0039](Content/Commerce_D0039.json) / [商业阅读版](Commerce.md)
+Review: [关闭与精确剩余边界](../Historical/Design/Reviews/Commerce_D0039_Review.md)
+
+五领域商业化与0.1DX/信誉公式、资本本金25%/标准10T/DSC回报/风险概率及失败递推、信誉R0–40/身份消失清零、发展10T/+50%/地块参考报价/专家容量/目标域唯一/标准化加算、已签合同source资格下降连续执行、500P团队/保护败退/无删除与REALLOCATING征服半成品销毁已接受。首版数值可Balance调整，不等于最终平衡或原生接口通过。
+
+Shared D0035、Research D0031、Culture D0038、Industry D0036、Military/Harbor D0037机制不改；Spec PROG-011只加入用户已确认的商业重组征服例外及正常继承引用。资本/S精确资格、同域并发作用域、变化基本面保护、X聚合、发展参考态与无解、其它速度及一般Ownership仍按content精确登记，不重新打开已定公式。当前B152文化L2B等待native不变；无运行代码、部署、main或后续Gameplay授权变化。
 
 ## Accepted D0038 — 2026-10-02
 

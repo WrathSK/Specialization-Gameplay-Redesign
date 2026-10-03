@@ -2,15 +2,15 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Codex is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0038",
+    "design": "D0039",
     "research": "D0031",
     "industry": "D0036",
     "culture": "D0038",
-    "commerce": "D0032",
+    "commerce": "D0039",
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0390",
+    "status": "S0391",
     "runtime": "B152.179 / modinfo179",
     "military": "D0037",
     "harbor": "D0037"
@@ -20,7 +20,7 @@
     "research": "Specialization/Design/Content/Research_D0031.json",
     "industry": "Specialization/Design/Content/Industry_D0036.json",
     "culture": "Specialization/Design/Content/Culture_D0038.json",
-    "commerce": "Specialization/Design/Content/Commerce_D0032.json",
+    "commerce": "Specialization/Design/Content/Commerce_D0039.json",
     "shared": "Specialization/Design/Content/Shared_D0035.json",
     "presentation": "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md",
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "D0038 explicit per-domain Floor recorded; source scoped L2B gate38 + K26 LOCAL PASS, no full ability/native gate PASS; unrelated/frozen reviews reused. W0003 B152 receipt/equality verified; no native PASS.",
+  "context_review_status": "D0039 Commerce user-confirmed Design-only closure reviewed; named scope/direct Shared/Network/Spec exceptions and true remaining boundaries recorded. Current L2B direct Culture/Shared/runtime tests/receipt unchanged; manifest metadata revalidated, no implementation/deployment/native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

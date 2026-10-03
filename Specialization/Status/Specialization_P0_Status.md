@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0390
+Status Revision: S0391
 Implementation Build: source/live B152.179 / modinfo179; P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0038 (Meaning per-domain Floor only; A0161 target remains D0032)
-Latest Accepted Design Revision: D0038
+Design Revision Reviewed: D0039 (Commerce Design-only closure; Culture D0038 / A0161 target unchanged)
+Latest Accepted Design Revision: D0039
 Design Sync State: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Work State: P0_L2B_GATE_PROTOTYPE_LOCAL_COMPLETE_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+D0039商业Design Talk已同步：[Commerce正式内容](../Design/Content/Commerce_D0039.json)与[关闭/剩余边界](../Historical/Design/Reviews/Commerce_D0039_Review.md)。仅Design；当前B152.179文化L2B测试/授权/receipt不变，无新商业实现、native验收或部署。Shared正式Content/科研/文化/工业正文及GC不改。
 
 B152.179 / modinfo179单城L2B门禁原型LOCAL完成：[范围、原生接口边界及最小四态测试](Validation/Results/Specialization_B152_P0L2B_Gates_Local.md)。38 Meaning +26 K定向测试PASS；STATIC/LOCAL不等于USER_GAME_TEST_PASS。默认OFF，仅一个fixture的Science/Gold/Culture；没有完整六yield或全局旧GWA cutover。
 
