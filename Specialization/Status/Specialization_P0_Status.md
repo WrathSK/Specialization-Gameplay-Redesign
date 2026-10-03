@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0398
-Implementation Build: source B155.182 / modinfo182; live last recorded B154.181; native prototype pending; stable B069.96
+Implementation Build: source/live B155.182 / modinfo182; native prototype pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0041 (Meaning fixed additions; other D0040 lifecycle runtime adaptation not assessed)
 Latest Accepted Design Revision: D0041
@@ -15,9 +15,9 @@ Work State: P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE
 
 获授权先做[B155.182单城技术原型](Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md)：保留拆分控制，新增single3／single3显式100候选，仅OFF切换；主题boolean可靠才采按需读数，逐yield固定期望A×W，不补差。数据库没有同effect双参数实例，100不是已确认修复。精确recipient／正式六yield门禁仍未解决，不扩大其它能力。
 
-source B155.182 / modinfo182，commit 441b85f609e5e9c70e5cb5eb58ba34a88870bd52；live沿既有B154.181／W0003 receipt `B154.181-fb3ee7f-playtest.json`记录，当前等待安全部署核对，不从HEAD猜运行包。main稳定B069.96未promotion。新本地定向结果见报告，不是引擎倍率PASS；原8对象只Meaning倍率说明变更，另7项逐对象复用。
+source/live B155.182 / modinfo182，代码commit441b85f；部署来源commit7c4b72f，W0003 receipt `B155.182-441b85f-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS核对退出，B154精确receipt恢复stable过桥后staging激活；B154/stable恢复点均MATCH、无pending marker，没有启动游戏。main稳定B069.96未promotion。新本地定向结果见报告，不是引擎倍率PASS；原8对象只Meaning倍率说明变更，另7项逐对象复用。
 
-下一允许动作仅安全部署／B155最小实机原型：先single3非主题配对，成功补Dialogue；失败才显式100候选。用户准备好的主题馆藏重新建立固定基线，追加仍按A×W；错误停对应路径，不重复旧长测。源码／UI原型已改，永久Property／账本／GC与其它Gameplay不改。**正式六yield／all-city／global旧GWA cutover和L3/M/N/U2未授权。**[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留条件／退出。
+下一允许动作仅B155最小实机原型：先single3非主题配对，成功补Dialogue；失败才显式100候选。用户准备好的主题馆藏重新建立固定基线，追加仍按A×W；错误停对应路径，不重复旧长测。源码／UI原型已改，永久Property／账本／GC与其它Gameplay不改。**正式六yield／all-city／global旧GWA cutover和L3/M/N/U2未授权。**[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)保留条件／退出。
 
 ## 历史阶段记录
 

@@ -335,7 +335,7 @@
     "evidence": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
     "native": "B154 USER_GAME_TEST_PARTIAL: four phases/OFF visible in one W1 fixture. Culture addition/native-only USER_GAME_TEST_FAIL:2/3/6/4,delta1/2 vs3. No settlement/theming/cold-load PASS; precise recipient still TECHNICAL_INVESTIGATION_REQUIRED.",
     "stop": "Await B155 minimum native acceptance; native failures stop corresponding primitive, no compensation or automatic next batch",
-    "deployment": "B154.181 / modinfo181; W0003 B154.181-fb3ee7f-playtest.json DEVELOP_ACTIVE; source fb3ee7f90b39148b56226d83accd49b1d6a20b73;182/182 MATCH. OS exit verified, exact B153 restore/stable staging bridge; B153/stable recovery retained MATCH, no pending marker.",
+    "deployment": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
     "authority_revalidation": "S0398/D0041 latest user fixed Meaning additions; B155 scoped flat candidates/theme reader locally validated. B154 native failure retained; candidate100 unproven. Meaning multiplier explanation changed, seven original direct objects unchanged. No permanent/GC/main change; formal cutover not authorized.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Native_Combination.md"
   }

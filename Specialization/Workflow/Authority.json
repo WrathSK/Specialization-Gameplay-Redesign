@@ -36,7 +36,7 @@
   "current_batch": "P0_L2B_FLAT_THEMING_PROTOTYPE_LOCAL_COMPLETE",
   "next_batch": "Only B155 minimal native flat/Dialogue/theming prototype acceptance; no formal six-yield/all-city/global old GWA cutover or L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2B.json",
-  "live": "B154.181 / modinfo181; W0003 B154.181-fb3ee7f-playtest.json DEVELOP_ACTIVE; source fb3ee7f90b39148b56226d83accd49b1d6a20b73;182/182 MATCH. OS exit verified, exact B153 restore/stable staging bridge; B153/stable recovery retained MATCH, no pending marker.",
+  "live": "B155.182 / modinfo182; W0003 B155.182-441b85f-playtest.json DEVELOP_ACTIVE; deployment commit7c4b72fa6215289a8753d3035570e0b2090e93a2, runtime code441b85f609e5e9c70e5cb5eb58ba34a88870bd52;182/182 MATCH. OS exit verified, exact B154 restore/stable staging bridge; B154/stable recovery retained MATCH, no pending marker; no game launch.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
