@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "0df08bff463f14688ceb81cd30fdfebee541d71cbde1b0778f3b51efbd86647f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
-      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
+      "sha256": "f3bb32452b19f45d3abc83190a4b81d661ec03aa816a5bd889821a527ffaddcf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
+      "provenance": "B157 authorized readonly District/subject mapping; no gameplay/data change"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "410b1423d5ec170ee7f97327ecbcd11b2b9539380cf31d82206c58510334d5ed",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
-      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
+      "sha256": "8a9d8d4963f1376f09f99218a497bc2c95642ec158a06c62f2d5f8dc0a61e25d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
+      "provenance": "B157 authorized readonly District/subject mapping; no gameplay/data change"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "734c658e248c8445ddc3a1732dfca566c5a971ec4337c4999ac07d708b5bb9d0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
-      "provenance": "B156 user-authorized readonly UI diagnostic; no gameplay writer or permanent state change"
+      "sha256": "aff9d3af069beb6440d0e420e5fd63366ef9eb12797cd3768da5cf24aaeb21f8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
+      "provenance": "B157 authorized readonly District/subject mapping; no gameplay/data change"
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",

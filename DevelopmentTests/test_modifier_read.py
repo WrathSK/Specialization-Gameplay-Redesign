@@ -46,7 +46,7 @@ class ModifierReadTests(unittest.TestCase):
   l.execute("v={owner=0,cityID=42,reference=SPCNetworkInput.Reference(c),mode='OFF',variant='SINGLE3',configuredScience=0,configuredGold=0,configuredCulture=0,stamp=''}; requested=v.reference; function read(token)v.token=token;return SPCBoostGreatWorkRead.Modifiers(P,c,v,token,requested)end")
   return l
  def test_off_reads_exact_instances_and_actual_building_without_writes(self):
-  l=self.runtime();s=l.globals().read('a');self.assertIn('读取完整',s);self.assertIn('所选城 测试城',s);self.assertIn('实例城市归属 UNKNOWN',s);self.assertIn('flat=3',s);self.assertIn('实际文化 4',s);self.assertIn('定义基础文化 2',s);self.assertEqual(l.globals().calls,1)
+  l=self.runtime();s=l.globals().read('a');self.assertIn('读取完整',s);self.assertIn('所选城 测试城',s);self.assertIn('UNKNOWN:FORMAT',s);self.assertIn('flat=3',s);self.assertIn('实际文化 4',s);self.assertIn('定义基础文化 2',s);self.assertEqual(l.globals().calls,1)
  def test_same_token_no_rescan_new_token_fresh(self):
   l=self.runtime();a=l.globals().read('a');self.assertEqual(a,l.globals().read('a'));self.assertEqual(l.globals().calls,1);l.globals().read('b');self.assertEqual(l.globals().calls,2)
  def test_clear_does_not_replay_consumed_token(self):
@@ -95,10 +95,34 @@ class ModifierReadTests(unittest.TestCase):
  def test_missing_argument_values_and_bad_work_yield_not_successful_zero(self):
   l=self.runtime();l.execute('definitions[2].Arguments={}');self.assertIn('ARGUMENTS_UNKNOWN',l.globals().read('a'))
   l=self.runtime();l.execute('b.GetBuildingYieldFromGreatWorks=function()return 0/0 end');s=l.globals().read('a');self.assertIn('WORK_YIELD_UNKNOWN',s);self.assertNotIn('实际文化 0',s)
+ def mapped(self):
+  l=self.runtime();l.execute("""
+  district={GetID=function()return 1114126 end,GetCity=function()return c end}
+  c.GetDistricts=function()return {FindID=function(self,id)if id==1114126 then return district end end}end
+  CityManager={GetCity=function(pid,cid)if pid==0 and cid==42 then return c end end}
+  GameEffects.GetObjectType=function()return 'LOC_MODIFIER_OBJECT_DISTRICT' end
+  GameEffects.GetObjectString=function()return 'District: 1114126, Owner: 0, SubType: 1, SubValue: 762987263, City: 42' end
+  GameEffects.GetModifierSubjects=function()return {10}end
+  """);return l
+ def test_observed_district_format_and_subject_verified_with_objects(self):
+  l=self.mapped();s=l.globals().read('a');self.assertIn('本城已核验',s);self.assertIn('接收对象1｜本城已核验',s)
+ def test_mapping_rejects_partial_malformed_ids_and_owner(self):
+  raw='District: 1114126, Owner: 0, SubType: 1, SubValue: 762987263, City: 42'
+  for value in [raw+' extra','prefix '+raw,raw.replace('City: 42','City: 43'),raw.replace('Owner: 0','Owner: 1'),raw.replace('1114126','9007199254740992')]:
+   l=self.mapped();l.globals().bad=value;l.execute('GameEffects.GetObjectString=function()return bad end');s=l.globals().read('a');self.assertNotIn('本城已核验',s);self.assertIn('UNKNOWN:',s)
+ def test_mapping_requires_current_district_parent_and_binding(self):
+  for mutate in ['CityManager=nil','district.GetID=function()return 99 end',"district.GetCity=function()return {GetOwner=function()return 0 end,GetID=function()return 42 end,GetX=function()return 8 end,GetY=function()return 9 end,GetProperty=function()return 'OTHER' end}end",'c.GetDistricts=function()error("missing")end']:
+   l=self.mapped();l.execute(mutate);s=l.globals().read('a');self.assertNotIn('本城已核验',s);self.assertIn('UNKNOWN:OBJECT_CHECK',s)
+ def test_different_city_is_not_selected_city(self):
+  l=self.mapped();l.execute("other={GetOwner=function()return 0 end,GetID=function()return 65536 end,GetX=function()return 1 end,GetY=function()return 2 end,GetProperty=function()return 'OTHER' end,GetDistricts=c.GetDistricts};district.GetCity=function()return other end;CityManager.GetCity=function()return other end;GameEffects.GetObjectString=function()return 'District: 1114126, Owner: 0, SubType: 1, SubValue: 762987263, City: 65536' end")
+  s=l.globals().read('a');self.assertIn('其它城已核验: 0/65536',s);self.assertNotIn('本城已核验',s)
+ def test_subject_unknown_type_preserved_and_bounded(self):
+  l=self.mapped();l.execute("GameEffects.GetModifierSubjects=function()return {101,102,103,104}end;GameEffects.GetObjectType=function(id)return id>100 and 'UNOBSERVED' or 'LOC_MODIFIER_OBJECT_DISTRICT' end")
+  s=l.globals().read('a');self.assertIn('接收对象1｜UNKNOWN:FORMAT',s);self.assertIn('另1个接收对象未展开',s);self.assertNotIn('接收对象4',s)
  def test_packaging_and_lua_syntax(self):
   l=self.runtime()
   for file in ['UI/BoostGreatWorkRead.lua','UI/P0Panel.lua','Probe.lua']:
    l.execute('assert(load(...))',(M/file).read_text())
-  info=(M/'SpecializationP0.modinfo').read_text();self.assertEqual(info.count('<File>UI/BoostGreatWorkRead.lua</File>'),2);self.assertIn('version="183"',info)
+  info=(M/'SpecializationP0.modinfo').read_text();self.assertEqual(info.count('<File>UI/BoostGreatWorkRead.lua</File>'),2);self.assertIn('version="184"',info)
 
 if __name__=='__main__':unittest.main()

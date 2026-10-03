@@ -11,8 +11,8 @@
     "shared": "D0042",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0405",
-    "runtime": "B156.183 / modinfo183",
+    "status": "S0406",
+    "runtime": "B157.184 / modinfo184",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -276,6 +276,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md",
       "kind": "full",
       "reason": "Latest native OFF API/owner evidence and bounded next proposal; not gameplay acceptance"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
+      "kind": "full",
+      "reason": "Current B157 mapping scope, local evidence and one native read boundary"
     }
   ],
   "dependencies": [
@@ -355,8 +360,7 @@
   "validation": {
     "depth": "Current B156: W0004 L1 plus directly affected UI lifecycle; historical L2/L3 results retained in linked evidence, no full/stress",
     "local": [
-      "B156: 18 diagnostic fixtures PASS; 11 direct existing reader regressions PASS; Lua/XML/import/localization/context/diff checks",
-      "Historical B155 gameplay local coverage remains in original evidence; not rerun or upgraded to native."
+      "B157:23 diagnostic tests and3 direct existing reader regressions PASS; L1 bounded UI read only, no gameplay/full/stress"
     ],
     "user": "B156 OFF UI read/schema observed in two screenshots; strict city/subject mapping and Meaning activation untested. B155 candidate Culture failures retained; no stacking algorithm conclusion."
   },
@@ -367,12 +371,12 @@
   ],
   "result": {
     "plan": "Latest user directs minimal technical prototype first, fixed additions under Dialogue/theming; earlier theme amplification deferred",
-    "implementation": "B156.183 readonly UI Modifier diagnostic LOCAL_COMPLETE; underlying B155 gameplay unchanged",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Diagnostic_Local.md",
+    "implementation": "B157.184 readonly District mapping/subject diagnostics LOCAL_COMPLETE; gameplay unchanged",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md",
     "native": "B156 OFF UI read/schema observed in two screenshots; strict city/subject mapping and Meaning activation untested. B155 candidate Culture failures retained; no stacking algorithm conclusion.",
-    "stop": "Recommend scoped strict District owner/current city/subject mapping diagnostic, implementation authorization required. No new user test now; no automatic four-state continuation, gameplay/fallback adoption or cutover.",
+    "stop": "Complete authorized diagnostic deployment, then one native mapping/subject READ report; no automatic four-state continuation, gameplay/fallback/cutover or next ability.",
     "deployment": "B156.183 / modinfo183; source cd901fa34a69db355f1caca50590b9224ae1e584; W0003 B156.183-cd901fa-playtest.json DEVELOP_ACTIVE; 182/182 MATCH, OS process exit verified; exact B155 receipt restore then staged activation; B155/stable recovery MATCH, no pending marker; no game launch.",
-    "authority_revalidation": "S0405 B156 two native screenshots: OFF reader/API fields observed; five exact matches, District owner raw Owner/City fields; strict mapping pending. HD and legacy GWA Active is not stacking/settlement PASS. No Meaning activation tested. D0042, Mod, GC and prior candidate FAIL unchanged; evidence archived 2/2 MATCH.",
+    "authority_revalidation": "S0406 B157 user-authorized readonly District owner/current objects/reference verification and bounded subjects; 23 diagnostic +3 direct reader tests LOCAL PASS. Native mapping pending; B156 schema observations and B155 Culture failure retained; Design/gameplay/GC/persistent data unchanged.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B156_Modifier_Native_Read.md",
     "investigation": "Specialization/Reports/Technical/Specialization_B155_Meaning_Culture_Path.md",
     "conditional_fallback": "User accepted temporary exclusion of Government Plaza/Diplomatic Quarter from Meaning if no reliable Culture path; not formally adopted or implemented. D0042 remains nine-domain. Future restoration needs reliable coexistence and multiplier boundary; Shared mapping/other abilities unchanged.",

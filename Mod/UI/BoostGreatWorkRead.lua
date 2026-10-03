@@ -211,6 +211,31 @@ do
   if type(f)~='function' then return false,'API_MISSING:'..name end
   return pcall(f,...)
  end
+ -- B157: only the complete District format observed in B156 is interpreted.
+ -- GameEffects object IDs are NOT city/district IDs. SubType/SubValue are opaque.
+ local function mapDistrict(kind,raw,player,c)
+  if kind~='LOC_MODIFIER_OBJECT_DISTRICT' or type(raw)~='string' or #raw>512 then return 'UNKNOWN:FORMAT' end
+  local did,pid,sub,val,cid=raw:match('^District: (%d+), Owner: (%d+), SubType: (%d+), SubValue: (%d+), City: (%d+)$')
+  if not did then return 'UNKNOWN:FORMAT' end
+  did,pid,cid=tonumber(did),tonumber(pid),tonumber(cid)
+  for _,n in ipairs({did,pid,cid})do if not integer(n) or n>9007199254740991 then return 'UNKNOWN:ID' end end
+  if player~=pid then return 'UNKNOWN:OWNER_CONFLICT' end
+  local ok,result=pcall(function()
+   local city=assert(CityManager.GetCity(pid,cid),'CITY_UNAVAILABLE')
+   assert(city:GetOwner()==pid and city:GetID()==cid,'CITY_CONFLICT')
+   local district=assert(city:GetDistricts():FindID(did),'DISTRICT_UNAVAILABLE')
+   assert(district:GetID()==did,'DISTRICT_CONFLICT')
+   local parent=assert(district:GetCity(),'DISTRICT_CITY_UNAVAILABLE')
+   local ref=SPCNetworkInput.Reference(city)
+   assert(SPCNetworkInput.Reference(parent)==ref,'DISTRICT_CITY_CONFLICT')
+   if pid==c:GetOwner() and cid==c:GetID() then
+    assert(ref==SPCNetworkInput.Reference(c),'REFERENCE_CONFLICT')
+    return '本城已核验'
+   end
+   return '其它城已核验: '..pid..'/'..cid
+  end)
+  return ok and result or 'UNKNOWN:OBJECT_CHECK'
+ end
  local function signature(c,v)
   local selected=UI.GetHeadSelectedCity()
   assert(selected and selected:GetOwner()==Game.GetLocalPlayer() and c:GetOwner()==Game.GetLocalPlayer(),'STALE_CITY')
@@ -266,7 +291,14 @@ do
   return lines
  end
  local function collect(P,c,v)
-  local allow=allowlist();local rows,errors={},{};local complete=true;local foreign,unknown,defs=0,0,0
+  local allow=allowlist();local rows,errors={},{};local objectReads={}
+  local function object(id)
+   local key=type(id)..':'..tostring(id);if objectReads[key] then return objectReads[key]end
+   local pk,p=call('GetObjectsPlayerId',id);local tk,t=call('GetObjectType',id);local sk,raw=call('GetObjectString',id)
+   local valid=pk and integer(p) and tk and type(t)=='string' and sk and type(raw)=='string'
+   local o={player=pk and integer(p) and p or 'UNKNOWN',kind=tk and type(t)=='string' and t or 'UNKNOWN',raw=sk and type(raw)=='string' and text(raw) or 'UNKNOWN'}
+   o.mapping=valid and mapDistrict(t,raw,p,c) or 'UNKNOWN:API';objectReads[key]=o;return o
+  end; local complete=true;local foreign,unknown,defs=0,0,0
   local function fail(reason)complete=false;if #errors<3 then errors[#errors+1]=text(reason)end end
   for id,a in pairs(allow)do if not a.attached then fail('ATTACHMENT_MISSING:'..id)end end
   local ok,ids=call('GetModifiers');local n,why
@@ -281,11 +313,13 @@ do
      if playerOK and integer(player) and player~=c:GetOwner() then foreign=foreign+1
      else
       if #rows>=HITS then fail('MATCH_LIMIT');break end
-      local row={id=def.Id,label=allow[def.Id].label,priority=allow[def.Id].priority,player='UNKNOWN',active='UNKNOWN',ownerType='UNKNOWN',raw='UNKNOWN',subjects='UNKNOWN'}
+      local row={mapping='UNKNOWN:OWNER',subjectRows={},id=def.Id,label=allow[def.Id].label,priority=allow[def.Id].priority,player='UNKNOWN',active='UNKNOWN',ownerType='UNKNOWN',raw='UNKNOWN',subjects='UNKNOWN'}
       if playerOK and integer(player) then row.player=player else unknown=unknown+1;fail('OWNER_PLAYER_UNKNOWN')end
       if ownOK and integer(owner) then
-       local tk,t=call('GetObjectType',owner);if tk and type(t)=='string' then row.ownerType=text(t)else fail('OWNER_TYPE_UNKNOWN')end
-       local sk,s=call('GetObjectString',owner);if sk and type(s)=='string' then row.raw=text(s)else fail('OWNER_STRING_UNKNOWN')end
+       local o=object(owner);row.ownerType=text(o.kind);row.raw=o.raw;row.mapping=o.mapping
+       if o.player~=row.player then row.mapping='UNKNOWN:OWNER_CHANGED';fail('OWNER_CHANGED')end
+       if o.kind=='UNKNOWN' then fail('OWNER_TYPE_UNKNOWN')end
+       if o.raw=='UNKNOWN' then fail('OWNER_STRING_UNKNOWN')end
       else fail('OWNER_UNKNOWN')end
       local ak,a=call('GetModifierActive',id);if ak and type(a)=='boolean' then row.active=tostring(a)else fail('ACTIVE_UNKNOWN')end
       local args=def.Arguments
@@ -297,7 +331,13 @@ do
       local sk,subjects=call('GetModifierSubjects',id)
       if not sk then fail('SUBJECTS_API_UNKNOWN')
       elseif subjects==nil then row.subjects='nil'
-      else local count,err=array(subjects,SUBJECTS);if count then row.subjects=count==0 and 'empty' or tostring(count)..'对象'else fail('SUBJECTS_'..err)end end
+      else local count,err=array(subjects,SUBJECTS)
+       if count then
+        row.subjects=count==0 and 'empty' or tostring(count)..'对象'
+        for j=1,math.min(count,3)do local o=object(subjects[j]);row.subjectRows[#row.subjectRows+1]='接收对象'..j..'｜'..o.mapping..'｜玩家'..text(o.player)..'｜'..text(o.kind)..'｜'..o.raw end
+        if count>3 then row.subjectRows[#row.subjectRows+1]='另'..(count-3)..'个接收对象未展开，不声称全部recipient核验。'end
+       else fail('SUBJECTS_'..err)end
+      end
       rows[#rows+1]=row
      end
     end
@@ -305,7 +345,7 @@ do
   end
   ids=nil
   table.sort(rows,function(a,b)if a.priority~=b.priority then return a.priority<b.priority end;if a.id~=b.id then return a.id<b.id end;return a.raw<b.raw end)
-  local lines={'Modifier诊断｜'..(complete and '读取完整' or '读取不完整')..'｜实例城市归属 UNKNOWN',
+  local lines={'Modifier诊断｜'..(complete and '读取完整' or '读取不完整')..'｜实例城市归属见各项（未核验=UNKNOWN）',
    '只观察实例；Active=true不代表收益已入账。无需过回合，截图本报告即可。'}
   for _,s in ipairs(fixture(P,c,v))do lines[#lines+1]=s end
   lines[#lines+1]='本玩家匹配实例 '..(#rows-unknown)..'｜玩家未知 '..unknown..'｜其它玩家跳过 '..foreign..'｜已检查定义 '..defs
@@ -313,8 +353,9 @@ do
   local owners={};local ownerCount=0
   for i=1,math.min(12,#rows)do local row=rows[i];local key=tostring(row.player)..'|'..row.ownerType..'|'..row.raw
    if not owners[key] then ownerCount=ownerCount+1;owners[key]=ownerCount;lines[#lines+1]='归属对象'..ownerCount..'｜玩家 '..text(row.player)..'｜'..row.ownerType..'｜'..row.raw end
-   lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜subjects='..row.subjects
+   lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜'..row.mapping..'｜subjects='..row.subjects
    lines[#lines+1]=row.id..'｜'..row.args
+   for _,subject in ipairs(row.subjectRows)do lines[#lines+1]=subject end
   end
   if #rows>12 then lines[#lines+1]='另'..(#rows-12)..'个匹配实例未展开；本报告不声称完成全部效果核对。'end
   for _,e in ipairs(errors)do lines[#lines+1]='未确认：'..e end

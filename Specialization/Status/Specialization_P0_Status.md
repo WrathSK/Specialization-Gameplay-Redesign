@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0405
-Implementation Build: source/live B156.183 / modinfo183; OFF diagnostic native read observed; strict mapping pending; stable B069.96
+Status Revision: S0406
+Implementation Build: source B157.184 / modinfo184; live B156.183 pending deployment; mapping native pending; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0042 (九域保持；两文化域暂排为条件后备，未正式采用；B155运行未变)
 Latest Accepted Design Revision: D0042
 Design Sync State: D0042_LIFECYCLE_DESIGN_ONLY_B155_NATIVE_PENDING
-Work State: P0_L2B_MODIFIER_SCHEMA_OBSERVED
+Work State: P0_L2B_MODIFIER_MAPPING_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+用户授权的B157.184只读补齐已LOCAL完成：[23项诊断＋3项原reader回归与一次原生读取](Validation/Results/Specialization_B157_Modifier_Mapping_Local.md)。严格解析B156实际District owner格式，与当前城市/区域/父城/full reference交叉核对；subject最多3项，未知格式不猜。保留原按需一次token/有界报告，没有新Gameplay请求或常驻扫描。
+
+[B156 schema实机](Validation/Results/Specialization_B156_Modifier_Native_Read.md)已过所见入口/API范围；B157新增映射尚待实机，Active不等于收益到账。D0042九域、B155候选FAIL、市政/外交条件后备及精准recipient/倍率/结算门禁不变，无Gameplay/永久数据/GC/Design变化。
+
+source B157.184；live沿B156.183代码cd901fa、receipt `B156.183-cd901fa-playtest.json` DEVELOP_ACTIVE登记，待安全部署更新。main稳定B069.96不动。完成本次诊断部署后停止等一份映射/subject报告，不自动续四态、新writer或下一能力。
+
+## 历史阶段记录
+
+### S0405 — B156原生schema观察（当时）
 
 [B156两图](Validation/Results/Specialization_B156_Modifier_Native_Read.md)：T62、玩家0/City393220、OFF/SPLIT、配置0。首次只读入口与所见API字段USER_GAME_TEST_PASS（限定本次）；检查7083定义，匹配5实例，HD文化/旅游业各2及旧GWA文化+1一项，均Active=true、subjects1。owner实际为District，raw含Owner/City；严格对象交叉验证仍未完成，实例城市归属门禁保持UNKNOWN。
 
@@ -17,7 +27,6 @@ Work State: P0_L2B_MODIFIER_SCHEMA_OBSERVED
 
 source/live仍B156.183、代码cd901fa，沿既有receipt `B156.183-cd901fa-playtest.json` DEVELOP_ACTIVE引用，本轮未重核外部包。两图ignored原样归档2/2 SHA256 MATCH；无Mod/Design/GC/永久数据/main/部署变化，无新玩法测试。停止，不自动进入新writer、cutover或下一能力。
 
-## 历史阶段记录
 
 ### S0404 — B156诊断LOCAL与部署（当时）
 
