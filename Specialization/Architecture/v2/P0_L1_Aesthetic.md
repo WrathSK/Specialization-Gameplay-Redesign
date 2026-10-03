@@ -1,6 +1,6 @@
 # P0-L1 — Culture III「风雅熏陶」具体实施计划
 
-Status: AUTHORIZED / P0_L1_PARTIAL_NATIVE_GATE_REQUIRED。B149.176已测可见旅游加值正确、用户报告冷加载保持；实际回合累计结算时序仍待最小核对。
+Status: COMPLETE / P0_L1_USER_GAME_TEST_PASS（已测范围）。累计1316−1194=122，用户报告变化后结算/冷重启正常；暂不修复，后续实施待新授权。
 Authority: Design D0037（Harbor未来基线不扩本批）/ Culture D0029 `CUL_L3_AESTHETIC` / Shared D0035 / A0161。正式Design不变。
 Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，源码 `87655e5`。B148为初版检查点，当前修复源码B149.176；实际部署以Status/receipt为准。
 
@@ -8,7 +8,9 @@ Implementation baseline: develop `caa5ec3`；此前live B147.174 / modinfo174，
 
 [P0-K限定实机验收](../../Status/Validation/Results/Specialization_B147_P0K_Pass.md)已关闭最小事实门禁。本批只接入风雅熏陶，以及[总计划明确分配给L1的旧文化人口/专家百分比退出](D0032_Implementation_Plan.md#明确的旧效果切换责任)。不要求先完成工业G–J或商业能力。
 
-本批已获用户明确授权。B148首次原生验收[正预期但配置为0](../../Status/Validation/Results/Specialization_B148_P0L1_Native_Fail.md)按失败范围保留；用户随后授权修复，并确认印刷术解释原馆藏倍率。B149最小就绪/诊断修复及17项本地验证保留；[最新五图/结算边界](../../Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md)确认已测可见加值+4/+6/+3，冷加载正常按用户报告记录。用户观察回合间先回落、再恢复；源码与两个定向模拟不支持“稳定输入每回合拆建载体”的解释，实际累计结算尚未确认。下一步只读现有文化胜利提示中的累计旅游，做两回合最小核对；必要的新单城时序诊断须另获授权。本轮没有运行代码修改或部署，不要求旧长测。L2意义延展、L3巨作启迪、M时代对话项目、N人文考察/网络、U2/机构排版不在本批。
+本批实施/就绪修复已获授权并完成，B148首次正预期/零配置失败保留。B149[可见加值](../../Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md)及[最新结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)关闭最小原生门禁：稳定输入一个完整回合累计+122，包含前次基线118之外的加值；变化后结算、冷重启正常按用户实测报告记录。精确C++阶段并未证明，但已测收益遗漏风险不再阻塞；用户明确暂不修复，不继续时序探针或长测。巨作变化而时代数相同未测，留后续实际相关范围验证。
+
+下一建议仅为[L2A单城接口验证计划](P0_L2_Meaning.md#当前切片与停止点)，尚未授权实施；不创建新收益或carrier、不部署。L2完整能力、L3、M、N、U2和机构排版不自动启动。
 
 ## 唯一玩法合同
 
@@ -87,9 +89,9 @@ Current Identity=Culture，Potential≥3且当前ACTIVE≥3；单人本地人类
 
 诊断左键：`风雅熏陶｜ACTIVE3｜2个巨作时代｜4座合格建筑｜每栋+2｜预期基础合计+8`；附已确认/待复核/旧残留异常。右键只列时代集合与相关建筑计入/排除、每栋贡献，分页。技术ID只在异常追查需要时出现；原生读数无法取得时明确UNKNOWN。
 
-**当前一次最小实机验收（由用户执行）：** 按用户选择固定馆藏与建筑，以总督调离/建立使同城ACTIVE跨三级门槛，比较配置及原生旅游差值，再保存完全退出冷加载确认。具体流程见[B149结果](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md#一个最小原生验收流程)。原来两城移作方案不再是本次强制测试。用同一流程记录旧人口/worker%退出和其它基础能力；无需重复K旧10图或内存长测。掠夺/修复本地覆盖；若无法本地证明native暂停，才补一个可操作最小案例，不要求等待随机灾害。原生倍率混杂时记录来源拆分，不凭城市总数猜测。
+**本批已完成的最小实机验收流程（后续不重复要求）：** 按用户选择固定馆藏与建筑，以总督调离/建立使同城ACTIVE跨三级门槛，比较配置及原生旅游差值，再保存完全退出冷加载确认。具体流程见[B149结果](../../Status/Validation/Results/Specialization_B149_P0L1_Readiness_Local.md#一个最小原生验收流程)。原来两城移作方案不再是本次强制测试。用同一流程记录旧人口/worker%退出和其它基础能力；无需重复K旧10图或内存长测。掠夺/修复本地覆盖；若无法本地证明native暂停，才补一个可操作最小案例，不要求等待随机灾害。原生倍率混杂时记录来源拆分，不凭城市总数猜测。
 
-Exit：定向静态/模拟通过，原生旅游门禁及最小实机收益/撤销/冷加载通过，精确旧writer无残留，相关前序回归通过，证据范围明确 → L1完成；停止，不进入L2。若仅prototype通过，仍标partial，不把L1完成。当前无新Gameplay决策；技术门禁未关闭，不能承诺接口已经实机可行。
+Exit：定向静态/模拟通过，原生旅游门禁及最小实机收益/撤销/冷加载通过，精确旧writer无残留，相关前序回归通过，证据范围明确 → L1完成；停止，不进入L2。若仅prototype通过，仍标partial，不把L1完成。当前最小原生门禁已按最新结果关闭；PASS仅覆盖已测内容，未测组合和LOCAL边界不自动升级。无新Gameplay决定。
 
 ## 来源与证据边界
 
@@ -97,7 +99,7 @@ Exit：定向静态/模拟通过，原生旅游门禁及最小实机收益/撤�
 - [批次/切换合同](D0032_Implementation_Plan.md#实施批次合同)、[公共更新约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)、[传播合同](Batch_D2_Runtime_Propagation.md#shared-work-and-publication)。
 - [K实际事实API/事件](P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)与限定实机结果；计划阶段的原生Tourism调查仅只读已配置数据库定义/先例，未运行原型或游戏；本批新增本地投影检查点，未启动游戏。
 
-P0-K STATIC/LOCAL及限定USER_GAME_TEST证据按原范围复用。B148.175的STATIC/LOCAL证据见下方；**P0-L1原生旅游接口尚无USER_GAME_TEST_PASS**。Design D0036、A0161、GC、main及永久成果不变。
+P0-K与B148/B149既有STATIC/LOCAL按原范围复用；当前L1限定USER_GAME_TEST_PASS见[最新结算结果](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)，不能按下方历史待验文字重置当前状态。Design/A0161、GC、main与永久成果未改。
 
 ## B148.175 — implementation checkpoint
 
@@ -154,3 +156,8 @@ P0-K STATIC/LOCAL及限定USER_GAME_TEST证据按原范围复用。B148.175的ST
 静态writer与两个小型fixture检查确认：稳定计划/健康master跨本地回合、重复确认和同引用UNKNOWN不额外写入/拆建；KNOWN低ACTIVE才合法退出。真实回合间六个总督Property、Modifier重评估或UI缓存变化未观测，不能将顶部回落自动归为carrier正常刷新，也不能确认能力永远不计收益。
 
 下一只读验证复用原版文化胜利页的`GetTouristsFromTooltip`累计提示，同一外国主要文明在稳定输入下采C0/E0、C1/E1、C2/E2。累计是否获得增强贡献是判定对象，整数游客或顶部当前率不足以证明。外部旅游概览解析只作为入口证据，文字格式不明不得补0。如果现有入口不可用/结果歧义，再准备单城、两回合被动时序诊断，另等用户授权；不主动重算或延迟真实退出、不改变玩法。L1仍partial，不自动实施后续模块。
+
+
+## B149.176 — scoped settlement acceptance
+
+[三图与用户报告](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)补齐实际累计证据：同一外国文明1194→1316，增加122；稳定输入不回落，变化后实际结算正常按用户实测报告接受。当前L1本批PASS；不以没有C++完整轨迹继续阻塞，不将已测顺序泛化为所有事件保证。巨作变化但时代数量不变仍未原生测试；后续L2的件数用例可顺带覆盖，不要求现在补测。暂不修复/不加探针；只准备下一L2A计划，实施仍需授权。

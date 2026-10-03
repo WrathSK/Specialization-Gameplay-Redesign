@@ -1,12 +1,12 @@
 # 文化后续模块：计划与调查入口
 
-State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED。2026-10-02。
-Review baseline: develop `9d75ff8`；记录的运行包B148.175 / modinfo175，源码`f85a0a0`。本轮没有重新核验外部运行包。
-Authority: Spec D0036 / Culture D0029 / Shared D0035 / Presentation D0032 / Architecture A0161。
+State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED。L1已验收，下一建议仅L2A接口验证计划。
+Preparation baseline: 原只读准备`9d75ff8`保留；本次定域计划核对`f02e4e8`。实际source/live只查Status，未重新核验外部运行包。
+Authority: Spec D0037 / Culture D0029 / Shared D0035 / Presentation D0032 / Architecture A0161。
 
 ## 当前切片与停止点
 
-用户授权逐步准备文化各模块的计划和只读调查；实际实施等待B148验收后逐批审核/授权。当前活动玩法批次仍是[L1风雅熏陶](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)，其[最小原生测试](../../Status/Validation/Results/Specialization_B148_P0L1_Local.md#一个最小原生验收流程)不变。没有创建新收益、carrier、项目或单位，没有部署、启动游戏或要求现在测试。
+用户授权逐步准备文化模块计划和只读调查。[L1最新结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)已关闭本批门禁；当前只给出[L2A单城接口验证](P0_L2_Meaning.md#当前切片与停止点)，未授权实施。L2B及其它模块仍待各自审核/授权；没有新收益、carrier、部署或游戏启动，不继续L1时序调查/旧长测。
 
 此入口保存准备结果，不成为第二份Design或状态台账。实际授权、部署与证据等级仍查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。各计划未获实施授权，也不加入所有任务的必读集合；对应切片获批时再建立/收敛其现有W0001 manifest。
 
@@ -14,19 +14,19 @@ Authority: Spec D0036 / Culture D0029 / Shared D0035 / Presentation D0032 / Arch
 
 | 模块 | 准备资料 | 可复用基础 | 实施前仍需关闭的门禁 |
 |---|---|---|---|
-| 风雅熏陶L1 | [已有合同与检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint) | 已实现逐栋计划、所属区域旅游投影、精确旧16项退出 | B148城市限定、原生加值/撤销与冷加载；本轮不改包 |
+| 风雅熏陶L1 | [当前完成范围](P0_L1_Aesthetic.md#当前切片与停止点) | 已实现逐栋计划、区域旅游投影、精确旧16项退出 | 已测加值/累计及用户报告的变化后结算/冷加载PASS；未测组合不扩大 |
 | 意义延展L2 | [逐巨作附加产出计划](P0_L2_Meaning.md) | Shared绝对D、产出份额、K作品目录；旧GW加值路径 | 0.5精度、已支持作品限定、未来Dialogue不放大追加值；旧BASE writer精确退出 |
 | 巨作启迪L3 | [基础伟人点数计划](P0_L3_Inspiration.md) | Shared D、K件数、既有基础GPP与正常倍率模式 | 0.1基础点数的原生结算；同一时代作品件数变化通知 |
 | 时代对话M | [项目、次数与累计倍率计划](P0_M_Dialogue.md) | 已验一回合项目、Claim的持久计时和E2城市保存 | 新城市账本、START时代/完成时X、native-only隔离；cap仍待平衡，执行中边界另列 |
 | 人文考察N1/N2/N3 | [交互→记录→网络计划](P0_N_Expedition.md) | E2引用、Shared资格、国内路线桥；已有Spy字段静态参照 | 非敌对远程交互/战争、外国目标事实、source绑定、整城旅游接口与K_T；最后才退出旧Eureka |
 | Hybrid D U2 | [馆藏界面计划](P0_U2_Culture_Era.md) | K本城馆藏/国内索引，已批准紧凑摘要+Tooltip | 原版/HD hook、缓存失效、布局/缩放；独立于机构排版优化 |
 
-建议先完成B148最小验收，再审核L2的原生接口门禁与实施切片。L3、M、N、U2可以继续准备，但不能因已有计划就连续实施。若L2某接口失败，只暂停依赖该接口的路径；不自动实施别的批次，也不将所有文化模块判为阻塞。
+L1本批门禁已关闭，建议审核L2A原生接口精度与单城作用范围；通过后才更新/授权L2B正式cutover。L3、M、N、U2可以继续准备，但不能因已有计划就连续实施。若L2某接口失败，只暂停依赖该接口的路径；不自动实施别的批次，也不将所有文化模块判为阻塞。
 
 ## 共同输入及真实缺口
 
 - **D**＝Shared绝对区域基础设施深度，不是完成百分比；只用已批准Tier与最高单区域。**X**＝本城合格馆藏时代种类数；**W**＝合格件数。**文化见闻**及**完整考察文明集合**又是独立永久记录，不能互代。
-- B148的`GreatWorkFacts.Summary`可提供X/件数及确认状态；但现有`OnConfirmed`比较的是reference、X、availability、hasConfirmed，**没有比较件数或时代内件数**。增加同一时代作品不会必然触发新GPP consumer。L3/U2接入时只补必要的变化比较/通知，不复制槽位采集，也不让L1因为新字段就重复写收益。
+- B148的`GreatWorkFacts.Summary`可提供X/件数及确认状态；但现有`OnConfirmed`比较的是reference、X、availability、hasConfirmed，**没有比较件数或时代内件数**。增加同一时代作品不会必然触发新GPP consumer。L2/L3/U2接入时只补实际必要的件数/资格变化比较与通知，不复制槽位采集，也不让L1因为新字段就重复写收益。
 - 当前K collector在UI读取本地人类玩家城市，Gameplay重验完整本地城市集合。因此外国艺文采撷目标不能直接冒充现有国内样本。N1/N2需要按部署/当前任务限定目标的只读候选事实及Gameplay复核，不长期监听全部AI城市。
 - `DistrictCompleteness.Read`已有确认快照；普通计算复用所需D/资格，不为小型判断默认构造诊断明细。无法确认的D/馆藏/城市引用是UNKNOWN，不当0、不补Tier、不从名字猜身份。
 - `CityProgressionStore`已保存E2城市、投资、工业模板及科研传统，**尚未保存新Dialogue/文化见闻/考察任务**。它提供的可靠城市映射和定域退出/恢复可以复用，业务字段及验证仍须分别增加；不复制Claim账本或建立通用事务框架。
@@ -61,6 +61,6 @@ Authority: Spec D0036 / Culture D0029 / Shared D0035 / Presentation D0032 / Arch
 
 各计划按[公共更新与临时状态合同](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)列原因、范围、必要事实、owner/失效/退出；不添加每帧/hover扫描、每城每回合一次限制或独立GC。验证沿W0004定向选择，不默认旧长测/full stress。
 
-目前用户需要决定：无。未来M的cap、N2的K_T在正式收益实施前需按Balance流程确定；技术失败需要改玩法时才提出具体DESIGN_DECISION_REQUIRED。用户需要测试：仍仅B148既有流程，时间由用户安排。本轮到计划提交停止。
+目前用户需要决定：无。未来M的cap、N2的K_T在正式收益实施前需按Balance流程确定；技术失败需要改玩法时才提出具体DESIGN_DECISION_REQUIRED。用户需要测试：本轮无；新L2A测试仅在另获实施授权、包就绪后安排。本轮到计划提交停止。
 
 正式规则见[Culture Content](../../Design/Content/Culture_D0029.json)、[Spec Culture节](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[Shared](../../Design/Content/Shared_D0035.json)；人类设计阅读见[文化](../../Design/Culture.md)。切换责任见[总实施合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

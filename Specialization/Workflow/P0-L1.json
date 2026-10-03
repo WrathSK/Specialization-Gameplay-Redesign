@@ -15,7 +15,7 @@
     "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
   },
   "batch": "P0-L1",
-  "status": "AUTHORIZED",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0037",
     "research": "D0031",
@@ -25,7 +25,7 @@
     "shared": "D0035",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0384",
+    "status": "S0385",
     "runtime": "B149.176 / modinfo176",
     "military": "D0037",
     "harbor": "D0037"
@@ -260,6 +260,13 @@
         "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md"
       ],
       "trigger": "Current acceptance/timing questions and recovery: scoped screenshots, unchanged writer/UNKNOWN comparison, native cumulative tooltip availability and minimal next validation. Not an additional default full-source requirement."
+    },
+    {
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md",
+        "Specialization/Architecture/v2/P0_L2_Meaning.md"
+      ],
+      "trigger": "Latest L1 acceptance and requested next-plan review only; retain scope/report-versus-image limits. L2 implementation manifest registered at actual authorization, not automatic approval or default all-Culture read."
     }
   ],
   "non_scope": [
@@ -276,7 +283,7 @@
       "Changed Lua syntax, XML/exact 179 Mod files, reviewed document/selector/context checks",
       "Two read-only fixture checks PASS: stable local-turn/duplicate/UNKNOWN zero additional writes/create/remove; explicit ACTIVE3->2->3 withdrawal/reapply isolated. Native timing not simulated; no full-suite rerun."
     ],
-    "user": "Five native images verify rate/configuration+4/+6/+3; cold restart normal USER_REPORTED. Next: same stable recipient raw cumulative Tourism C0/C1/C2 and per-turn E via existing native tooltip. Missing tooltip/changed modifiers/ambiguous increment stops; no long test. New passive single-city timing diagnostic is a proposal only, needs implementation authorization."
+    "user": "L1 tested scope PASS: stable recipient cumulative1194->1316 (+122) matches enhanced rate; prior+4/+6/+3 rate/configuration; changed-input correct accumulation and cold restart USER_REPORTED. Same-era work change not natively tested; no further old L1 long test requested."
   },
   "full_audit_triggers": [
     "Native primitive cannot preserve per-building contribution/recipient/pillage/withdrawal semantics",
@@ -285,9 +292,9 @@
   ],
   "result": {
     "plan": "User accepted concrete plan and explicitly authorized implementation",
-    "implementation": "B149.176 readiness/read-only diagnostics implementation remains unchanged;17 prior local tests inherited. This turn documents scoped native rate PASS plus two smallest read-only fixture checks; PARTIAL_NATIVE_GATE_REQUIRED for actual cumulative settlement.",
-    "native": "B148 failure preserved. B149 USER_GAME_TEST_PASS for displayed Tourism/configuration+4/+6/+3 at118 baseline; cold-load normal USER_REPORTED. Interturn drop/recovery reported; actual per-turn cumulative settlement USER_GAME_TEST_REQUIRED, no confirmed cause.",
-    "evidence": "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Native_Rate_Review.md",
-    "stop": "Evidence archive/read-only timing investigation complete; runtime/source637f97b unchanged. Next only existing native-tooltip two-turn cumulative check; no new instrumentation without authorization, no later L2/L3/M/N/U2."
+    "implementation": "B149.176 implementation unchanged; prior17 local and two timing-fixture checks inherited. L1 minimum native gate closed within observed/reported scope; no new repair or deployment.",
+    "native": "USER_GAME_TEST_PASS in tested scope: screenshot cumulative1316-1194=122; changed-input settlement/cold restart from user report, no image for changed-input cumulative increment. Exact internal engine order not established; not a continuing gate. B148 failure retained.",
+    "evidence": "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md",
+    "stop": "L1 evidence archive/acceptance complete. User requests next plan only: P0-L2A single-city precision/attribution gate; implementation and L2B cutover need separate authorization. No Mod/Design/GC/main/deployment or new gameplay test."
   }
 }

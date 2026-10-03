@@ -1,7 +1,42 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED / NATIVE_PRECISION_GATE_OPEN。
-Authority: Culture D0029 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。当前运行状态仅见[准备入口](Culture_Preparation.md#当前切片与停止点)。
+State: PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED。下一建议仅P0-L2A单城接口验证；L2B正式能力后置，NATIVE_PRECISION_GATE_OPEN。
+Authority: Culture D0029 `CUL_L4_MEANING`、`contracts.work_pool/domains`；Shared D0035 `DISTRICT_DEVELOPMENT/YIELD_SHARE`。L1前置门禁见[B149结算验收](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)；当前source/live与授权仅见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+
+## 当前切片与停止点
+
+计划核对基线：develop `f02e4e8`，现有B149.176运行源码`637f97b`；本轮只读核对/计划，不重新验证部署。Spec D0037的Culture覆盖范围、完整`CUL_L4_MEANING`、作品池/九领域及Shared D0035份额/深度/ordinary合同已核对；没有采用旧GWA公式或旧Floor许可。L1已按已测范围PASS，不要求再拍旧截图。
+
+推荐分两段，**本次只请求审核下一P0-L2A**；不是自动授权整个L2。
+
+| 切片 | 目标 | 停止点 |
+|---|---|---|
+| P0-L2A — 单城接口验证 | 真实Shared D→逐件理论值；用已审阅GreatWork加值原语验证0.5/1.5/4.5与原生收益归属 | 一个最小实机接口验收后提交结果；不正式启用全城L2，不全局退休旧GWA |
+| P0-L2B — 完整意义延展 | 解决已支持作品限定及native-only隔离，接全九领域/六产出、事件/退出/加载、精确旧GWA cutover | L2A结果后更新最终方案、另审阅/授权；不进入L3/M/N |
+
+L2A是本能力内部的原生门禁，不新增Gameplay规则或永久账本；失败时保留原规则并停止对应效果路径，不能自行floor/补贴。现有W0001 envelope在切片获授权时再登记最小必需manifest，不为此次计划新建调度或状态系统。
+
+### P0-L2A — 具体下一批
+
+**Goal。** 用一个受控Culture ACTIVE4城市，证明每件合格巨作的半点加值是否实际结算，并区分逐件截断与多件汇总。不是把Lua配置能够表示0.5写成原生支持0.5。
+
+**Scope。** 先建立/适配小型纯模型：读取当前专业资格、同次Shared领域D和K已确认合格W/资格摘要，按0.5份额精确计算，不舍入、不提前乘W再配置逐件效果。原生probe只在用户明确选定的单城启动，默认不自动覆盖其它城市；先测Science与Gold这条GreatWork加值接口，覆盖0.5/1.5/4.5。模型可验证全部映射，但不因此创建整套正式收益目录。
+
+**旧效果隔离。** 已存在GWA仍按BASE六向量运行，不能同时作为probe收益。只允许由该模块按自己的精确156个signed pieces提供目标城撤销/有界抑制，probe退出后恢复旧路径；现有`off[pid]`是玩家级，不能冒充单城退出。未确认旧效果撤销，则不施加probe。其它城市旧GWA、L1、旧Dialogue、K采样继续；不退休整个模块或关共享producer。以Science/Gold验证先避免改动旧Dialogue的Culture/Tourism倍率；native-only问题仍留正式L2门禁。
+
+**资格边界。** probe只接受已确认资格、已支持馆藏的受控fixture；若存在会被原生同类别Modifier一并命中的未知作品，拒绝该probe并报告。受控fixture通过不代表未知作品排除已经解决；L2B必须忠实处理已支持与排除作品共存，不把整城拒绝当正式规则。
+
+**依赖/可能文件。** `GreatWorkAdjacency.lua/Model`及原SQL定义家族（owned退出/原语）；`CurrentSpecializationFacts`、`DistrictCompleteness`、`GreatWorkFacts`及其当前接口；最小`CultureMeaningModel/Effects`或现有模块适配、必要Data、Gameplay/modinfo、P0Panel/Text和定向测试。实施前读精确attachment/控制/调用点及实用E2入口；不是现在全仓重审。若不触及producer，`DialogueRefresh`仅为已有事实桥依赖，不顺便重写。
+
+**更新/性能。** 主动probe操作与本城已确认馆藏/D/ACTIVE/引用变化才重算；复用当前确认入口和有界load/本地回合兜底。同一时代增减作品也要正确观测：当前Summary有count，但OnConfirmed比较尚未包含count/资格组成，按实际consumer只补必要摘要失效。L1收到额外相关确认仍应相同投影零写；不复制全城槽位/领域采集、不加per-frame/hover请求、每城每回合限流或独立GC。
+
+**临时状态。** 模块只拥有一个当前fixture引用、probe模式/最近计划及有界错误；同Owner当前事实校验，UNKNOWN不当0，foreign/loss明确退出，重复幂等；结束/更换fixture/加载处理撤销自己的测试效果，不能残留或扩散。永久专业/投资/作品不写；不记录收益补偿/跨回合小数账本。
+
+**本地验收（W0004 L2）。** D0/1/3/6/10/cap与最高单区域、Gold份额3、W0/1/2且理论总量只乘一次；六映射/排除事实；同回合同一时代件数变化、重复零写、ACTIVE/UNKNOWN/两城隔离；精确旧GWA互斥、probe退出/失败/受影响loss/load边界；保留K与L1直接相关断言。只选所涉及的回归，不运行全历史或stress，不以模拟证明native精度。
+
+**一个最小实机流程（待包就绪才执行）。** 用一座Culture4城市放一件合格著作，已存在的T1 Campus/Commercial可形成D1，读取理论每件Science0.5/Gold1.5并核对原生追加。放入第二件同一时代作品，区分逐件floor与汇总floor；必要时将相关领域增到D3，核对每件Science1.5/Gold4.5。结束probe确认加值撤回/旧路径恢复；同一城完成必要正常结算读数，不要求长测。界面显示不充分时优先采原生城市/作品明细和实际结算证据；第一个不可忠实结算的值出现即停，不要求继续凑完整矩阵。精确步骤与按钮以最终测试包为准。
+
+**Exit。** 静态/定向本地通过、该受控原生接口精度/归属/退出结果清楚，交付L2A结果及L2B条件。0.5失败登记具体接口证据，只有需要改玩法时提出DESIGN_DECISION_REQUIRED；不自动沿用科研Floor。即使Science/Gold通过，也不宣布全六yield、theming/未知作品隔离/native-only或完整L2PASS，不自动实施L2B。
 
 ## 范围与完整规则
 
