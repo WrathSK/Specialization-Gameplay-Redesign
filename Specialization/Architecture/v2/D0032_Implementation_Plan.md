@@ -1,6 +1,6 @@
 # D0032 v0.1 implementation dependency and migration plan
 
-当前进度：D3与U1前置原型用户PASS；B094单城自由城市持久映射恢复USER_GAME_TEST_PASS，见[E1验收范围](../../Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)。不等于全路径身份/正式迁移通过；下一步收束支持范围并审阅E2具体计划，E2/F实施仍需授权。当前[E2具体计划](P0_E2_Plan.md)推荐先完成单城同Owner进度/投资保存切换；完整新城/跨Owner范围仍后置，不把首段等同完整E2。
+历史进度（原E1规划时点）：D3与U1前置原型用户PASS；B094单城自由城市持久映射恢复USER_GAME_TEST_PASS，见[E1验收范围](../../Status/Validation/Results/Specialization_B094_P0E1_Mapping_Pass.md)。不等于全路径身份/正式迁移通过；下一步收束支持范围并审阅E2具体计划，E2/F实施仍需授权。当前[E2具体计划](P0_E2_Plan.md)推荐先完成单城同Owner进度/投资保存切换；完整新城/跨Owner范围仍后置，不把首段等同完整E2。
 
 当前用户范围：单人且仅本地人类玩家启用；外方持城全部专业休眠。后续只处理玩家失城/夺回与首次征服AI城，见E2计划的ELIG/PROG核对；不增加AI/多人依赖，保留Design未来通用资格。
 
@@ -8,6 +8,12 @@ Document Owner: Codex
 Revision: A0160 planning gate, 2026-09-18
 Authority: D0032; no Gameplay implementation authorized by this plan
 Gate: GATE B — READY FOR P0-A (only after user authorization)
+
+## 当前后续计划适用范围
+
+本页起源于D0032/A0160门禁，下列早期进度/推荐P0-A属于历史，不能当今天的授权。当前任务仍是[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)指向的B165 native待验。
+
+商业O/P/Q/R/S/T采用[当前商业准备计划](Commerce_Preparation.md)，工业G/H/I/J采用[当前工业准备计划](Industry_Preparation.md)：已按Spec D0047及Commerce/Industry/Shared D0045重核。下表相关行更新为现行合同；旧target/spike里的已取代公式或deferred状态不再适用。共同迁移/单writer/UNKNOWN合同保留，具体实施仍须逐批授权；本次只调查与计划，没有新writer、部署或原生PASS。用户实机流程按现行W0004 native delta原则收敛，不机械重跑旧表全套load/退出步骤。
 
 ## Implementation progress (2026-09-18)
 
@@ -58,7 +64,7 @@ flowchart TD
  ROUTE --> DEV[P0-R Development contracts]
  ID --> DEV
  ID --> REAL[P0-T Restructuring]
- FIN --> REP[P0-S Reputation]
+ ID --> REP[P0-S Reputation]
  A --> UI[P0-U Institutions / Hybrid D]
  GW --> UI
 ```
@@ -85,23 +91,23 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 | P0-E1 城市身份保存门禁 | cityKey/currentRef、History/mode schema与只读迁移预演 | A；Binding/Journal/Flow/投资旧记录保留，不恢复隔离继承代码 | 原记录映射一致；冲突HELD；转移/夷平重建/ID复用 | 独立测试档一城转移/夺回/读档；Exit：证明城市连续性，不决定全部Legacy |
 | P0-E2 进度保存适配 | Current Identity/Potential/History版本化；保留REALLOCATING独立状态位 | E1；迁移城市停止旧first-completion writer；不丢投资凭据 | 中断迁移幂等、REALLOCATING不走NONE、无carrier反推Potential | 独立档投资+读档；Exit：明确支持的旧档范围；尚无资产重组能力 |
 | P0-F 学术传统 | eligible age、暂停/续算、ACTIVE收益门槛 | E2/C；旧专家百分比已退出 | 速度阈值分别floor、同回合读档不重复计龄、离开Research不补算 | 接近阈值的一城调总督+读档；Exit：传统，不擅自决定征服Legacy |
-| P0-G 奇观完成证据 | 从开局记录实际完成城市/文明、Wonder自身时代 | E1；先无新收益 | 重复事件、成为Industry前完成、征服不记新完成、缺史UNKNOWN | 新测试档先完成奇观后升专业；Exit：历史事实，不是工程能力已完成 |
-| P0-H1 标准化知识 | 扩展现有ledger为建筑/区域typed templates，目录策略独立于普通建筑本体 | A/E1；Standardization/Catalog适配，旧知识不凭空重分组 | 合法获取/补录、掠夺后历史保留、特色匹配、目录迁移 | 工业城完成建筑及区域后核对ledger；Exit：知识层 |
-| P0-H2 标准化购买 | III资格、模板并集、独立最高购买效率；保留C1/D1协议 | H1及已定参数；退出旧10–40%selectors及Industry Copy的50%实际Production分支 | 知识来源与最高效率来源不同；不新增Gold/Faith资格 | 两来源与一个购买目标，断路/读档；Exit：购买路径 |
-| P0-H3 标准化建设 | 独立普通建筑/区域建设投影，最高建设效率 | H1及生产primitive/参数；当前runtime没有完整此路径 | 与购买效率独立；匹配范围及原生叠加；无成本/购买副作用 | 两来源一个建设目标；Exit：建设路径，可供发展投资共存测试 |
-| P0-I1/I2/I3 工程能力 | 分别做工程实践效率、巨构工程学正常生产/Team注入、工程传统T4/T5门槛 | G/H及各自曲线/时代/注入spike；三项必须分批 | 完成归属、不同Era语义、max非相加、旧时代Wonder补齐、注入只计算一次 | 每批复用一个Wonder准备档；Exit分别记录，不能一次声称三项完成 |
-| P0-J1 Team来源/容量 | 项目完成绑定训练城，capacity2，各Tier1slot；III/IV分层生产资格 | E1；高Tier还需I3，T1–3可先验证；退出Industry I无容量授予路径 | 同回合多完成、排队/完成门禁、重复事件、读档；ACTIVE下降/转专业不删旧队 | 一城完成两队→第三队受限→合法消耗释放槽位；Exit来源和容量。捕获/易主策略仍须另审 |
-| P0-J2 Wonder施工 | Wonder-only目标、一次消耗、释放source slot、巨构工程学注入 | J1/I2；退出普通建筑/区域施工分支 | 预览/确认重验、溢出浪费、速度floor、不确定AddProgress不重放 | 一个Wonder目标消耗一队并读档；Exit完整新施工链 |
+| P0-G 奇观完成证据 | [G现行计划](Industry_Preparation.md#g本城经验n与文明信用e不是同一账本)：真实城市N与实际完成文明own-era集合E，先无收益 | E2城市引用；从可信起点记录，无现持奇观反推、无缺史填0 | 非工业完成、同Era/重复/Owner分离、空与损坏、保存 | 新collector新增原生完成/保存delta；Exit仅可靠事实，不宣称工程能力 |
+| P0-H1 标准化知识 | [H1知识增量](Industry_Preparation.md#h1知识增量)：建筑ledger可靠并集不变，补typed District模板 | 当前建筑reconcile与Store；不扩目标目录，不更改旧收益 | 首次/可靠空/缺史区别、replacement、区域增量、幂等 | 只补新区域记录/重载差异，继承B142建筑范围；Exit知识层 |
+| P0-H2 标准化购买 | [H2/H3来源合同](Industry_Preparation.md#h2h3来源与目标计划)：self及合法网络ACTIVE>=III实际holder内purchase MAX，III0%/IV2L% | H1、可靠L、逐Gold/Faith合法资格、C1/D1协议；与H3正式基线切换时退出旧折扣/Industry Copy | 非holder不能放大模板、self/断路、逐渠道不新增许可、exact退出 | 新价格/退出delta；不能把旧10–40%或Faith fallback当当前规则 |
+| P0-H3 标准化建设 | 合法普通建筑/区域，每模板actual-holder construction MAX；III10%/IV10+2L% | H1及建设原语；可先独立验证，再与H2一个正式基线cutover | 目录/特色/Wonder排除，与发展+50%加算及各自撤销 | 自身实际progress；R落地再补组合delta，不提前假造合同；Exit建设路径 |
+| P0-I1/I2/I3 工程能力 | [三能力现行计划](Industry_Preparation.md#i三项工程能力分别接入)：Practice改队成本、Macro仅普通旧时代Wonder、Tradition为E→完整1T城市L | G/H/J对应原语，分批授权；不再以传统解锁T4/T5或Practice强化标准化 | N/E/L分权、L中断取消/保留已成、成本150/140/130/120、Macro10/20/30 | 每批只测新增原语；不把三项合成一次完整PASS |
+| P0-J1 Team来源/容量 | [J1计划](Industry_Preparation.md#j1来源2槽与新成本)：III I–III/IV I–V，每source当前Owner存活本城出身队总2槽；成本与capacity分开 | E2/unit绑定/原生grant；不依赖E4/5；精确退出旧Lv1全档/无容量入口 | 同回合grant、满槽旧队列、消耗/撤退、Owner变化/夺回计槽与保存 | 新binding/容量/真实完成；不能静默删旧队列/已完成队；Exit可靠来源和库存 |
+| P0-J2 Wonder施工 | [J2计划](Industry_Preparation.md#j2目标固定注入与保护)：Wonder-only、一次消耗、固定锁定capacity无普通Production buff/overflow、专业单位保护 | J1及固定注入/安全回归；不依赖Macro加成，普通建筑/区域授权退出 | 预览/重验、slot释放一次、未知执行不重放、无Owner转换 | 固定注入+下一目标无overflow、保护回归的新delta；完整正式入口非面板原型 |
 | P0-K Great Work事实 | 已知作品目录、时代解析、city collection及国内时代索引 | A–D2协议；适配Dialogue producer；不改旧收益 | 未知作品排除、Artifact时代、移动两城、暂不可用/epoch | 一件作品在两城移动后读诊断；Exit事实层 |
 | P0-L1/L2/L3 文化被动能力 | 分别风雅熏陶普通建筑Tourism、意义延展D份产出、巨作启迪0.1D base GPP | A/K及每条primitive；L1退出旧Culture人口及worker%；L2退出旧GW adjacency；L3不另覆盖已完成L1/L2 | native与追加分层、普通建筑掠夺、作品池、领域/GPP映射；Meaning仅D0038逐领域Floor，GPP不外推 | 同一馆藏城含两领域，每批只加入一种效应；0.1未证实不得宣布L3完成 |
 | P0-M 时代对话项目 | 连续完整生产回合、START Era quota、完成时X、city ledger及native-only倍率 | E1/K及项目/收益隔离spike、cap参数；替换旧25%(D−1) | 高P/中断/跨时代/X0/重复/读档/易主quota；不放大意义延展 | 高P一城中断后完成、移动作品、读档；转移quota另做最小补测 |
 | P0-N1/N2/N3 人文考察 | N1交互原型；N2来源绑定、原Owner记录及整城Tourism；N3 Culture Network | E1/K、Spy-like与Tourism原型、K参数；仅N3退出旧Culture Eureka | 战争/目标失效、固定成功保留单位、来源降级继续任务、3N唯一性；source各自3/3后union | 外国capital兼有GW/Wonder，单任务+战争/读档；集合并集主要本地验证，三子批独立完成 |
-| P0-O 有向商路读服务 | 同一verified snapshot建立直接incoming/outgoing索引 | 原NetworkInput/Bridge；不加provider、不改旧Commerce收益 | A→B/B→A商业化均合法，发展投资仅outgoing；center distribution不当direct | 若无新原生事件，一般无需额外实机；Exit只读qualification |
-| P0-P 商业化 | 先LIFO/capacity/Toggle事实；source value mapping及K批准后才启用Gold效果 | A/O、Commerce持久order和UI入口；退出COM connected-kind及Convergence | 存读档order、容量下降、最高source、不扣sourceyield、不套20% | 一城两专家两领域、单向路线；Exit须已定义mapping，不使用猜测数值 |
-| P0-Q1/Q2 资本合同 | Q1稳健扣款/到期；Q2锁定风险结果及source-city pity | E1、settlement原型及报价参数、U3入口 | 重复确认/到期、部分写HELD、禁止重roll、跨领域同城pity、UI隐藏结果 | 一笔接近到期合同存读档；Q2另验证locked outcome；分批Exit |
-| P0-R 发展投资 | outgoing只检查签约，持久条款，对目标领域普通建筑加生产 | E1/O、H3 primitive与TS05、参数/叠加、U3入口 | 断路不改变旧合同/期限；无路不能新签；目标专业可不同 | 一合同断路→回合→到期及非普通对象排除；易主/Legacy未定不擅自选择 |
-| P0-S 商业信誉 | 独立age/stage及Design指定效率consumer | E1/P/Q、具体作用/增长/Legacy决定 | 不购买信誉、不反向惩罚好运、不复制科研阈值 | 接近阈值只核对指定报价变化；未定输入使本批效果待授权，不阻塞A |
-| P0-T1/T2 资产重组 | T1生产专属Team与growth原型；T2持久两阶段P→P−1事务 | E2、相关spike、最低期速度规则、单位丢失/ownership边界 | P>=2、完整最低期、非NONE、旧source关闭、history暂停、配置一次消耗、部分写/丢队 | 相邻两个区域证明不能提前完成，转换中读档；不自动发救援Team |
+| P0-O 有向商路读服务 | [O计划](Commerce_Preparation.md#o只读资格三种路线关系分开)：同一verified snapshot direct incoming/outgoing/pair，只读 | 现Input/Bridge及已接受后台来源；不加provider、不改共同topology或旧收益 | 两方向/去重/异Owner/UNKNOWN/epoch/端点改变；distribution不替direct | 未改native来源可继承；Exit只读事实，不算商业落地 |
+| P0-P 商业化 | [P1配置/P2效果](Commerce_Preparation.md#p与s配置当前效果与制度历史分开)：五域0.1DX、容量/order/LIFO暂停恢复，IV有效R | O/D/worker/配置/UI；COM-DETAIL-X与Gold原语后P2精确退3项COM+48Convergence | 最高source/非递归、同回合变化、配置退出、exact单writer；不套旧20%或Floor | 原生Gold真实结算、自动接入和改动的退出路径；P1无收益不能宣布P完成 |
+| P0-Q1/Q2 资本合同 | [Q合同计划](Commerce_Preparation.md#q合同与隐藏保护有各自的持久权威)：Q1稳健25%余额/10T/具体S锁；Q2确认锁结果和更新pity | Q1需S池/level/空池/同域scope；Q2另需pity rebase/Owner；资金/原子恢复/UI原语 | 重复扣款/到期/quote、具体S选择、隐藏字段、合同Owner异常终止与pity分开 | 新Gold与锁定保存/结算delta；不机械让风险TBD阻塞safe技术准备 |
+| P0-R 发展投资 | [R计划](Commerce_Preparation.md#r报价与签约后的合同独立)：IV/outgoing签约、标准15P_ref/10T/普通建筑+50%、专家容量 | O、P_low/无解决策及普通Production/资金原语；只需H3加算证明，不依赖全工业 | 签后断路/资格下降续存、target-domain唯一、关键Owner无退款终止并撤效果 | 新普通progress/合同终止/组合delta；Owner合同已定，特殊删除/非法target仍未决 |
+| P0-S 商业信誉 | [S1记录](Commerce_Preparation.md#p与s配置当前效果与制度历史分开)：首次IV后标准Identity完整T+1/cap40；收益IV、Owner保留、Identity退出0 | E2业务专属保存；记录独立于P/Q，效果分别由P/Q消费；非标准速度未定 | 重复计龄/ACTIVE下降/Owner休眠/清Identity/缺史HELD，不能抄科研policy | 新记录生命周期delta；不再把已定增长/用途/Owner整体标待定 |
+| P0-T1/T2 资产重组 | [T计划](Commerce_Preparation.md#t团队存续与绑定事务分别管理)：IV500P保护Team；P−1/REALLOCATING/5完整T/扰动/配置一次 | E2/Permanent debit及全部直接consumer；无需等待Q/R，但需专业保护/净余粮原语 | source provenance与bound target分离；目标Owner变毁未完成事务/team，历史不全删 | 新单位/扰动/持久事务delta；非标准速度及未涵盖处置不自填 |
 | P0-U1/U2/U3 Presentation | U1当前/历史机构；U2 Hybrid D；U3 Commerce project入口与两个panel | 各自confirmed read model及UI hook；U3先fixture可测，正式confirm需真实owner | institution非Building、分阶段tooltip、hover零请求、队列不动、报价版本校验 | 对应一个城市/巨作/Commerce界面，检查当前及另一UI scale；不引入新玩法 |
 | P0-V 集成门禁 | 四专业所选完整规则集、retirement、保存、性能矩阵 | 所有拟发布能力及参数门禁通过 | 无旧效果复活、normal无error、明确参数profile、回合/load/idle预算 | 一个混合城市准备档合并商路/专家/掠夺/回合/读档断言；长局内存另记趋势 |
 
@@ -135,14 +141,14 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 | Lv3Support四专业额外支持，包括Industry Gold | B1 | 固定支持/Gold bits及所有Audit/控制入口；不删除Lv1基础支持 |
 | Research Lv4Percent / Research Copy | C | 科研worker%和Copy正负/半点pieces；Industry分支不受牵连 |
 | Research population Lv3Effects | D1 | Research人口bits；D2再补新学以致用 |
-| Industry Copy 50%实际Production / 原10–40%折扣 | H2 | Industry Copy pieces与旧折扣selectors；H3尚未完成时明确为部分新Industry，不保留旧Copy补空缺 |
+| Industry Copy 50%实际Production / 原10–40%折扣 | H正式基线cutover（H2/H3门禁后） | Industry Copy pieces与旧折扣selectors；H3尚未完成时明确为部分新Industry，不保留旧Copy补空缺 |
 | Culture人口Lv3Effects / Culture Lv4Percent | L1 | 对应人口/worker% pieces；不会与风雅熏陶叠加 |
 | GreatWorkAdjacency旧BASE逐件收益 | L2 | 全部带符号GW yield pieces、旧AdjData consumer；新Meaning不受旧公式影响 |
 | Dialogue旧25%×(D−1) | M | D selectors与TEST25/50/100、旧控制及自动重建入口；不迁移成永久Dialogue成果 |
 | Culture Eureka Network | N3 | Culture整数/legacy/test载体、HD Property投影及请求入口；保留RES-005当前授权的Research Inspiration |
 | Commerce connected-kind与Convergence20% | P | COM kind pieces、48汇聚bits、incoming-only业务解释；common Trade Center topology保留 |
 | Industry I无限项目Team入口 / 普通区域建筑施工 | J1 / J2 | J1控制native项目授予及旧队列边界；J2移除普通目标授权；历史代码保留 |
-| 旧actual Copy UI producer | 最后一个旧Copy consumer退出后（C与H2均完成） | 关闭其采样/bridge发送，不误关其它BASE或独立诊断producer |
+| 旧actual Copy UI producer | 最后一个旧Copy consumer退出后（Research Copy已退出且H正式基线cutover完成） | 关闭其采样/bridge发送，不误关其它BASE或独立诊断producer |
 | 半点/购买/GW/trait实验效果 | 每个受影响能力cutover前检查 | 按明确flag/ID隔离，手动旧TEST不能越过新ruleset；不能仅凭按钮隐藏判断无效 |
 
 这个表定义计划中的单writer责任，不代表本轮已执行清理。每批切换前仍要从源文件导出精确ID allowlist并按当前加载目录检查，不按前缀误删其它专业。
@@ -151,7 +157,7 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 
 报告逐项列出启用的规则版本及未完成能力；混合开发态不是“v0.1 complete”。未来破坏性功能的ownership/Legacy缺口须在对应正式发布前审查，不自行选择取消/延续。B076已接受的自建城测试范围不因新文档自动扩大。参数待定、新Research Network deferred不阻塞A。
 
-**Recommended next action: authorize P0-A implementation.** 本轮commit/push后停止，不自动写代码、执行历史Batch E、部署、tag或promotion。
+**历史A0160 Gate推荐：authorize P0-A implementation（不是当前授权）。** 本轮commit/push后停止，不自动写代码、执行历史Batch E、部署、tag或promotion。
 
 ## P0-D3验收后的顺序调整
 

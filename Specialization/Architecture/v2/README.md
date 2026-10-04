@@ -37,6 +37,9 @@
 
 ## 收益应用与精度
 
+- [商业模块准备](Commerce_Preparation.md)：O商路只读、P商业化、Q资本、R发展、S信誉、T重组；区分当前D0045合同、旧writer和窄未决项。
+- [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；纠正每模板holder、N/E/L、III/IV成本与固定注入。两份仅调查/计划，不派发实施、不替代B165待验，不加入日常全量context。
+
 - [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。当前仅准备获授权，实施等B148验收后逐批审核；按模块读，不加入日常全量context。
 
 - [文化风雅熏陶L1合同与检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)：已授权的逐栋贡献/所属区域投影和旧人口/worker%退出；本地完成，原生门禁待验，当前验收/下一授权仍看Status。
