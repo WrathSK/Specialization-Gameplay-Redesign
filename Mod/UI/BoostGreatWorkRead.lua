@@ -95,8 +95,8 @@ end
 
 -- One on-demand comparison for the current single-city fixture. Never persisted,
 -- never a Gameplay source, and no native handles survive a read.
-local meaningReadings
-function SPCBoostGreatWorkRead.ClearMeaningRead() meaningReadings=nil end
+local meaningReadings,productionReading
+function SPCBoostGreatWorkRead.ClearMeaningRead() meaningReadings=nil;productionReading=nil end
 function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
  local ok,result=pcall(function()
   assert(v.owner==Game.GetLocalPlayer() and v.cityID==c:GetID() and v.reference==SPCNetworkInput.Reference(c),'ME_UI_REFERENCE_CHANGED')
@@ -182,6 +182,109 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
  return ok and result or ('五产出原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end
 
+-- Fixed technical comparison only; this does not calculate Design D or Floor.
+local function diagnosticFinite(n)return type(n)=='number' and n==n and math.abs(n)<math.huge end
+local function diagnosticInteger(n)return diagnosticFinite(n) and n>=0 and n%1==0 end
+local function diagnosticSnapshot(P,c,v)
+ local selected=UI.GetHeadSelectedCity();local ref=SPCNetworkInput.Reference(c)
+ assert(selected and c:GetOwner()==Game.GetLocalPlayer() and selected:GetOwner()==c:GetOwner()
+  and SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'ME_UI_DIAG_REFERENCE')
+ local turn=Game.GetCurrentGameTurn();assert(diagnosticInteger(turn),'ME_UI_DIAG_REFERENCE')
+ local b=c:GetBuildings();local work,seen,workCount=nil,{},0
+ for r in GameInfo.Buildings()do
+  local has=P.HasBuilding(b,r.Index);assert(type(has)=='boolean','ME_UI_DIAG_WORK_UNKNOWN')
+  if has then
+   local n=b:GetNumGreatWorkSlots(r.Index);assert(diagnosticInteger(n) and n<=16,'ME_UI_DIAG_SLOTS_UNKNOWN')
+   if n>0 then for slot=0,n-1 do
+    local id=b:GetGreatWorkInSlot(r.Index,slot)
+    if id~=nil and id~=-1 then
+     assert(diagnosticInteger(id) and not seen[id],'ME_UI_DIAG_WORK_UNKNOWN');seen[id]=true;workCount=workCount+1
+     assert(workCount<=1,'ME_UI_DIAG_WORK_COUNT')
+     local def=GameInfo.GreatWorks[b:GetGreatWorkTypeFromIndex(id)]
+     assert(def and type(def.GreatWorkType)=='string' and def.GreatWorkObjectType=='GREATWORKOBJECT_WRITING','ME_UI_DIAG_WORK_UNKNOWN')
+     local ok,themed=pcall(b.IsBuildingThemedCorrectly,b,r.Index)
+     assert(ok and type(themed)=='boolean','ME_UI_DIAG_THEME_UNKNOWN')
+     local damaged=b:IsPillaged(r.Index);assert(type(damaged)=='boolean','ME_UI_DIAG_WORK_UNKNOWN')
+     work={id=id,type=def.GreatWorkType,building=r.BuildingType,index=r.Index,slot=slot,themed=themed,pillaged=damaged}
+    end
+   end end
+  end
+ end
+ assert(workCount==1 and work,'ME_UI_DIAG_WORK_COUNT')
+ local expected=v.diagnosticWork
+ local fixtureMatches=v.diagnosticStage=='OFF' or type(expected)=='table' and expected.id==work.id and expected.type==work.type
+  and expected.slot==work.slot and (expected.building==work.building or expected.building==work.index)
+ local y=assert(P.Info('Yields','YIELD_PRODUCTION'),'ME_UI_DIAG_NATIVE_UNKNOWN')
+ local value=b:GetBuildingYieldFromGreatWorks(y.Index,work.index)
+ assert(diagnosticFinite(value),'ME_UI_DIAG_NATIVE_UNKNOWN')
+ selected=UI.GetHeadSelectedCity()
+ assert(selected and SPCNetworkInput.Reference(selected)==ref and ref==SPCNetworkInput.Reference(c)
+  and turn==Game.GetCurrentGameTurn(),'ME_UI_DIAG_REFERENCE')
+ local qKnown=v.currentIdentity=='CULTURE' and diagnosticInteger(v.currentPotential) and v.currentPotential>=4
+  and v.currentActiveStatus=='KNOWN' and diagnosticInteger(v.currentActive) and v.currentActive>=4
+ local q=table.concat({tostring(v.currentIdentity),tostring(v.currentPotential),tostring(v.currentActive),tostring(v.currentActiveStatus)},':')
+ local key=table.concat({ref,turn,work.id,work.type,work.building,work.slot,tostring(work.themed),tostring(work.pillaged),q},'|')
+ return {key=key,value=value,work=work,qualified=qKnown,fixtureMatches=fixtureMatches}
+end
+local function diagnosticConfiguration(v)
+ assert(v.diagnostic==true and (v.diagnosticStage=='BASELINE' or v.diagnosticStage=='SINGLE2' or v.diagnosticStage=='PAIR12' or v.diagnosticStage=='OFF'),'ME_UI_DIAG_CONFIGURATION')
+ local expected=({BASELINE=0,SINGLE2=2,PAIR12=3,OFF=0})[v.diagnosticStage]
+ assert(v.diagnosticExpected==expected and diagnosticInteger(v.remainingOwned)
+  and type(v.diagnosticCarriers)=='table' and #v.diagnosticCarriers<=26,'ME_UI_DIAG_CONFIGURATION')
+ local count,amount,names=0,0,{};local owned={}
+ for _,name in ipairs(SPCCultureMeaningModel.Owned)do owned[name]=true end
+ for k,entry in pairs(v.diagnosticCarriers)do
+  assert(diagnosticInteger(k) and k>=1 and k<=#v.diagnosticCarriers and type(entry)=='table'
+   and type(entry.name)=='string' and owned[entry.name] and not names[entry.name]
+   and type(entry.yield)=='string' and diagnosticFinite(entry.amount) and entry.amount>=0 and type(entry.pillaged)=='boolean','ME_UI_DIAG_CONFIGURATION')
+  names[entry.name]=true;count=count+1
+  if (entry.yield=='PRODUCTION' or entry.yield=='YIELD_PRODUCTION') and not entry.pillaged then amount=amount+entry.amount end
+ end
+ assert(count==#v.diagnosticCarriers and count==v.remainingOwned
+  and (v.configuredProduction==nil or diagnosticInteger(v.configuredProduction) and amount==v.configuredProduction),'ME_UI_DIAG_CONFIGURATION')
+ return expected,amount
+end
+function SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,mark,token,requestedReference,inspect)
+ local lines={};local configuration,expected,amount=pcall(diagnosticConfiguration,v)
+ if configuration then
+  lines[#lines+1]=string.format('生产力诊断｜%s｜预期 +%g｜载体配置 +%g｜精确载体 %d',v.diagnosticStage,expected,amount,v.remainingOwned)
+ else
+  lines[#lines+1]='生产力诊断｜配置未确认：ME_UI_DIAG_CONFIGURATION'
+ end
+ local good,now=pcall(diagnosticSnapshot,P,c,v)
+ if good then
+  local canMark=configuration and v.diagnosticStage=='BASELINE' and mark and amount==0 and v.remainingOwned==0
+   and v.configuredProduction==0 and not v.error and not v.configurationError and not v.dialogueError and v.oldHeld==true and v.dialoguePercent==0
+   and v.planStatus=='READY' and v.count==1 and now.qualified and now.fixtureMatches and not now.work.pillaged
+  if canMark then productionReading={key=now.key,value=now.value}end
+  local valid=now.qualified and now.fixtureMatches and not now.work.pillaged and productionReading and productionReading.key==now.key
+  if not valid then productionReading=nil end
+  local delta=valid and now.value-productionReading.value or nil
+  if not now.fixtureMatches then lines[#lines+1]='当前作品与已确认fixture不同；保留真实绝对读数，不沿用旧差值。'end
+  lines[#lines+1]=string.format('当前原生作品生产力 %.2f｜实测差值 %s',now.value,delta~=nil and string.format('%+.2f',delta) or '未确认')
+  lines[#lines+1]=string.format('Writing %s｜ID %d｜宿主 %s｜槽位 %d｜主题 %s',now.work.type,now.work.id,now.work.building,now.work.slot,tostring(now.work.themed))
+  if v.diagnosticStage=='OFF' then
+   lines[#lines+1]='退出读数仅作对照：旧系统恢复后，不能把此差值直接归因为Meaning残留。'
+  elseif delta~=nil and configuration and v.configuredProduction~=nil and not v.error and not v.configurationError and not v.dialogueError then
+   lines[#lines+1]=math.abs(delta-expected)<0.000001 and '一致（仅即时读数）' or '不一致：实测差值未达到本阶段预期。'
+  elseif not valid then lines[#lines+1]='差值未确认：尚无可靠同回合基线，或引用／作品／位置／主题／当前资格已变化。'end
+  if canMark then lines[#lines+1]='同回合基线已记录。'end
+ else
+  productionReading=nil
+  lines[#lines+1]='原生作品生产力未确认：'..(tostring(now):match('ME_UI_DIAG_[A-Z_]+') or 'ME_UI_DIAG_NATIVE_UNKNOWN')..'；不以0代替未知。'
+ end
+ if configuration then
+  for i=1,math.min(4,#v.diagnosticCarriers)do local e=v.diagnosticCarriers[i]
+   lines[#lines+1]=e.name..'｜'..e.yield..' +'..e.amount..'｜掠夺='..tostring(e.pillaged)
+  end
+  if #v.diagnosticCarriers>4 then lines[#lines+1]='另'..(#v.diagnosticCarriers-4)..'项载体未展开。'end
+ end
+ if v.diagnosticStage=='OFF' then lines[#lines+1]='OFF是控制状态；退出差值含旧系统恢复，载体为0仍需核对原生实例和真实收益。'end
+ if v.configuredProduction==nil or v.error or v.configurationError or v.dialogueError then lines[#lines+1]='当前错误／配置待确认；即时读数不构成验证通过。'end
+ if inspect then lines[#lines+1]=SPCBoostGreatWorkRead.Modifiers(P,c,v,token,requestedReference)end
+ return table.concat(lines,'\n')
+end
+
 -- B156: explicit UI read only. Never retain native handles/tables between reads.
 include('CultureMeaningModel')
 do
@@ -244,17 +347,23 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()
   cached=nil;stamp=nil -- Keep consumed token: redisplaying a released reply must not rescan.
  end
- local function allowlist()
+ local function allowlist(v)
   local allow={}
-  local function add(id,building,label,priority)
-   if GameInfo.Buildings[building] then allow[id]={building=building,label=label,priority=priority,attached=false}end
+  local function add(id,building,label,priority,family)
+   if GameInfo.Buildings[building] then allow[id]={building=building,label=label,priority=priority,family=family,attached=false}end
   end
+  if v.diagnostic then
+   for _,b in ipairs(SPCCultureMeaningModel.Owned)do add(b:sub(10)..'_WRITING',b,'意义延展',2,'MEANING')end
+   for _,sign in ipairs({'P','N'})do for bit=0,12 do
+    local b='BUILDING_SPC_B060_PRODUCTION_'..sign..bit;add(b:sub(10)..'_WRITING',b,'旧相邻生产力',6,'GWA')
+   end end
+  else
   add('HD_AMPHITHEATER_WRITING_CULTURE_BOOST','BUILDING_AMPHITHEATER','剧场著作文化',1)
   add('HD_AMPHITHEATER_WRITING_TOURISM_BOOST','BUILDING_AMPHITHEATER','剧场著作旅游业',5)
   for _,b in ipairs(SPCCultureMeaningModel.Owned)do add(b:sub(10)..'_WRITING',b,'意义延展',2)end
@@ -264,10 +373,20 @@ do
   for _,sign in ipairs({'P','N'})do for bit=0,12 do
    local b='BUILDING_SPC_B060_CULTURE_'..sign..bit;add(b:sub(10)..'_WRITING',b,'旧相邻文化',6)
   end end
+  end
   for row in GameInfo.BuildingModifiers()do local a=allow[row.ModifierId];if a and row.BuildingType==a.building then a.attached=true end end
   return allow
  end
  local function fixture(P,c,v)
+  if v.diagnostic then
+   local lines={'所选城 '..text(c:GetName())..'｜玩家'..c:GetOwner()..' / 城市'..c:GetID(),
+    '控制 '..text(v.diagnosticStage)..'｜预期 '..text(v.diagnosticExpected)..'｜载体Production配置 '..text(v.configuredProduction)..'｜remainingOwned '..text(v.remainingOwned),
+    '城市引用 '..text(v.reference)}
+   local ok,now=pcall(diagnosticSnapshot,P,c,v)
+   lines[#lines+1]=ok and ('当前原生作品生产力 '..text(now.value)..'｜Writing '..text(now.work.type)..'｜宿主 '..text(now.work.building))
+    or ('真实作品读取未确认：'..text(now))
+   return lines
+  end
   local lines={'所选城 '..text(c:GetName())..'｜玩家'..c:GetOwner()..' / 城市'..c:GetID(),
    '原型状态 '..text(v.mode)..' / '..text(v.variant)..'｜配置 S/G/C='..text(v.configuredScience)..'/'..text(v.configuredGold)..'/'..text(v.configuredCulture),
    '城市引用 '..text(v.reference)}
@@ -293,7 +412,7 @@ do
   return lines
  end
  local function collect(P,c,v)
-  local allow=allowlist();local rows,errors={},{};local objectReads={}
+  local allow=allowlist(v);local rows,errors={},{};local objectReads={}
   local function object(id)
    local key=type(id)..':'..tostring(id);if objectReads[key] then return objectReads[key]end
    local pk,p=call('GetObjectsPlayerId',id);local tk,t=call('GetObjectType',id);local sk,raw=call('GetObjectString',id)
@@ -315,7 +434,7 @@ do
      if playerOK and integer(player) and player~=c:GetOwner() then foreign=foreign+1
      else
       if #rows>=HITS then fail('MATCH_LIMIT');break end
-      local row={mapping='UNKNOWN:OWNER',subjectRows={},id=def.Id,label=allow[def.Id].label,priority=allow[def.Id].priority,player='UNKNOWN',active='UNKNOWN',ownerType='UNKNOWN',raw='UNKNOWN',subjects='UNKNOWN'}
+      local row={mapping='UNKNOWN:OWNER',subjectRows={},instanceID=text(id),id=def.Id,family=allow[def.Id].family,label=allow[def.Id].label,priority=allow[def.Id].priority,player='UNKNOWN',active='UNKNOWN',ownerType='UNKNOWN',raw='UNKNOWN',subjects='UNKNOWN'}
       if playerOK and integer(player) then row.player=player else unknown=unknown+1;fail('OWNER_PLAYER_UNKNOWN')end
       if ownOK and integer(owner) then
        local o=object(owner);row.ownerType=text(o.kind);row.raw=o.raw;row.mapping=o.mapping
@@ -328,7 +447,7 @@ do
       if type(args)=='table' then
        if type(args.GreatWorkObjectType)~='string' or (args.YieldChange==nil and args.ScalingFactor==nil) then fail('ARGUMENTS_UNKNOWN')end
        for _,key in ipairs({'YieldType','YieldChange','ScalingFactor'})do local value=args[key];if value~=nil and type(value)~='string' and type(value)~='number' then fail('ARGUMENTS_UNKNOWN:'..key)end end
-       row.args='对象='..text(args.GreatWorkObjectType)..' yield='..text(args.YieldType)..' flat='..text(args.YieldChange)..' scale='..text(args.ScalingFactor)
+       row.yield=text(args.YieldType);row.args='对象='..text(args.GreatWorkObjectType)..' yield='..text(args.YieldType)..' flat='..text(args.YieldChange)..' scale='..text(args.ScalingFactor)
       else row.args='Arguments UNKNOWN';fail('ARGUMENTS_UNKNOWN')end
       local sk,subjects=call('GetModifierSubjects',id)
       if not sk then fail('SUBJECTS_API_UNKNOWN')
@@ -346,17 +465,38 @@ do
    end
   end
   ids=nil
-  table.sort(rows,function(a,b)if a.priority~=b.priority then return a.priority<b.priority end;if a.id~=b.id then return a.id<b.id end;return a.raw<b.raw end)
+  table.sort(rows,function(a,b)
+   if v.diagnostic then
+    local function rank(r)return (r.mapping=='本城已核验' and 0 or 10)+(r.yield=='YIELD_PRODUCTION' and 0 or 5)+(r.family=='MEANING' and 0 or 1)end
+    local ar,br=rank(a),rank(b);if ar~=br then return ar<br end
+   end
+   if a.priority~=b.priority then return a.priority<b.priority end;if a.id~=b.id then return a.id<b.id end
+   if a.raw~=b.raw then return a.raw<b.raw end;return a.instanceID<b.instanceID
+  end)
   local lines={'Modifier诊断｜'..(complete and '读取完整' or '读取不完整')..'｜实例城市归属见各项（未核验=UNKNOWN）',
    '只观察实例；Active=true不代表收益已入账。无需过回合，截图本报告即可。'}
   for _,s in ipairs(fixture(P,c,v))do lines[#lines+1]=s end
   lines[#lines+1]='本玩家匹配实例 '..(#rows-unknown)..'｜玩家未知 '..unknown..'｜其它玩家跳过 '..foreign..'｜已检查定义 '..defs
   if #rows==0 then lines[#lines+1]=complete and '本次未观察到匹配实例；不等于本城没有效果。' or '读取不完整，不能解释为零实例。'end
+  if v.diagnostic then
+   local meaning,active,gwa,unmapped=0,0,0,0
+   for _,r in ipairs(rows)do
+    if r.mapping=='本城已核验' then
+     if r.family=='MEANING' then meaning=meaning+1;if r.active=='true' then active=active+1 end
+     elseif r.family=='GWA' then gwa=gwa+1 end
+    elseif r.mapping:sub(1,8)=='UNKNOWN:' then unmapped=unmapped+1 end
+   end
+   lines[#lines+1]='本城Meaning Writing实例 '..meaning..'（Active=true '..active..'）｜本城旧GWA Production实例 '..gwa..'｜城市UNKNOWN '..unmapped
+   if v.diagnosticStage=='OFF' then
+    lines[#lines+1]=(meaning>0 or v.remainingOwned and v.remainingOwned>0) and '异常：OFF仍观察到本城Meaning实例或精确载体；不能确认撤销。'
+     or ((not complete or unmapped>0 or #rows>12) and '撤销未确认：读取不完整／城市UNKNOWN／报告截断。' or '本次未观察到本城Meaning Writing实例；真实退出收益及旧系统恢复另行核对。')
+   end
+  end
   local owners={};local ownerCount=0
   for i=1,math.min(12,#rows)do local row=rows[i];local key=tostring(row.player)..'|'..row.ownerType..'|'..row.raw
    if not owners[key] then ownerCount=ownerCount+1;owners[key]=ownerCount;lines[#lines+1]='归属对象'..ownerCount..'｜玩家 '..text(row.player)..'｜'..row.ownerType..'｜'..row.raw end
    lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜'..row.mapping..'｜subjects='..row.subjects
-   lines[#lines+1]=row.id..'｜'..row.args
+   lines[#lines+1]=(v.diagnostic and ('实例ID '..row.instanceID..'｜') or '')..row.id..'｜'..row.args
    for _,subject in ipairs(row.subjectRows)do lines[#lines+1]=subject end
   end
   if #rows>12 then lines[#lines+1]='另'..(#rows-12)..'个匹配实例未展开；本报告不声称完成全部效果核对。'end

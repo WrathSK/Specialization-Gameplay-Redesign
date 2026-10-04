@@ -97,13 +97,13 @@
     "shared": "D0044",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0412",
+    "status": "S0413",
     "runtime": "B158.185 / modinfo185",
     "military": "D0037",
     "harbor": "D0037"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#下一批计划--p0-l2c-七域五产出门禁",
-  "goal": "D0043 seven-domain/five-yield reversible one-city integer/native-readout gate, no Culture candidate or global cutover.",
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--production组合与退出诊断",
+  "goal": "User-authorized one-city/one-Writing fixed Production +2 versus +1/+2 native diagnostic and explicit END/cold-load read; existing carriers, no D/Floor/formal cutover change.",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -114,14 +114,14 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
-      "reason": "Current B158 native partial/failure and next diagnostic unapproved boundary; no formal cutover",
+      "reason": "Current authorized diagnostic/native stop and evidence, not historical dispatch",
       "selector": "## 当前切片与停止点"
     },
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
-      "selector": "## 下一批计划 — P0-L2C 七域五产出门禁",
-      "reason": "Full user-authorized single-fixture scope/local/native/exit/rollback; next ability remains unapproved"
+      "selector": "## 已授权切片 — Production组合与退出诊断",
+      "reason": "Complete current diagnostic scope/qualification/lifecycle/observation/exit contract"
     },
     {
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -305,13 +305,18 @@
       "reason": "Current 27 targeted writer/reader/fixture/lifecycle tests; no historical four-state suite"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
       "kind": "full",
-      "reason": "Complete actual local evidence, coverage limits, minimal game test and stop"
+      "reason": "Actual current local evidence, precise minimal user flow and native stop"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_meaning_diagnostic.py",
+      "kind": "full",
+      "reason": "Direct fixed-control writer/request/reader/Panel/lifecycle and retained mapping regression"
     }
   ],
   "dependencies": [
-    "D0043 accepted seven-domain Meaning, unchanged Shared D0042 facts and work pool",
+    "D0043 accepted Meaning scope/qualification with exact Shared D0044 input contracts retained; fixed native diagnostic does not consume D",
     "Existing K confirmed current-reference bridge and local ACTIVE facade",
     "B157 named S/G and owned lifecycle evidence only; P/F/Faith native unresolved",
     "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI"
@@ -329,22 +334,22 @@
   "validation": {
     "depth": "W0004 L2 plus touched load/loss/reference L3; targeted only, no full history/stress",
     "local": [
-      "Seven-domain scope, per-domain Floor/same-yield/W, legal five-yield encoding and exact attachment checks",
-      "Zero-Culture entry/exit, repeated zero writes, same-turn changes/two cities/UNKNOWN/reference rejection",
-      "Owned create/withdraw failure and load/loss/ACK/readout invalidation; direct relevant regressions only"
+      "Fixed four-stage exact existing parts, prior +2 withdrawal then +1/+2 creation; no diagnostic D read",
+      "UNKNOWN/repeated notifications/fixture/current-reference isolation; owned failure/loss/load protects legacy hold and permanent data",
+      "Independent native observations, OFF residue/UNKNOWN/exact instance mapping, current selection/late ACK/cache invalidation; targeted only"
     ],
-    "user": "Current B158 ten-image native result in Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md; growth FAIL, load withdrawal unresolved. Do not repeat old full flow before a separately authorized discriminating prototype; no formal L2 PASS."
+    "user": "One supported Writing/Culture ACTIVE IV city: BASELINE→single+2→pieces+1/+2→END and cold-load enabled copy; at most four reports. Full L2/settlement not proven."
   },
   "result": {
-    "plan": "User explicitly authorized the reviewed P0-L2C plan this turn; no further batch/cutover authorization.",
-    "implementation": "B158.185 / modinfo185 LOCAL_COMPLETE, targeted47 PASS; default OFF one-city gate only.",
-    "native": "USER_GAME_TEST_PARTIAL: initial single-piece five-yield/W readings matched; changed composite S3/P3/G9 versus native1 FAIL. Cold-load OFF observed, native withdrawal/old-writer restoration unresolved; full L2 NOT_PASSED.",
-    "stop": "Await user authorization for minimal one-city/one-yield single-piece versus composite native diagnostic and exact exit check; no formal cutover or L3/M/N/U2.",
+    "plan": "User explicitly authorized minimal Production combination and exit diagnostic; no further cutover/batch authorization.",
+    "implementation": "B159.186 / modinfo186 LOCAL_COMPLETE; 18 test methods / 31 subtests PASS, fixed controls only.",
+    "native": "B159 USER_GAME_TEST_REQUIRED, no native result yet. Prior B158 partial single-piece/W match and composite S3/P3/G9 versus native1 FAIL preserved; cold-load withdrawal/old-writer restoration unresolved. Full L2 NOT_PASSED.",
+    "stop": "Await B159 one-city single-Writing Production +2 / +1+2 native diagnostic and END/cold-load evidence; no formal cutover or L3/M/N/U2.",
     "deployment": "B158.185 / modinfo185; source daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe; B158.185-daaef4b-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; stable/B157 recovery MATCH; no pending marker. OS game exit verified; game not launched; B158 native initial single-piece readings matched; composite growth FAIL, load withdrawal unresolved. Receipt inherited; no deployment/package reinspection in this evidence turn.",
     "authority_revalidation": "S0411 D0044 Industry-only responsibility/initial-value update and Shared completed-study L; exact ORDINARY_INFRASTRUCTURE, BUILDING_CURRENT_ELIGIBILITY, DISTRICT_DEVELOPMENT, YIELD_SHARE objects equal D0042. Culture D0043 and B158 direct contracts/evidence/deployment/native stop unchanged; no extra mandatory context or implementation.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
-    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-    "local_test_entry": "DevelopmentTests/test_culture_meaning_l2c.py: 27 tests + selected20 modifier tests (excluded historical Panel route/Copy + version184 assertion; replaced by current checks)."
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+    "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:18 methods/31 subtests, includes9 retained Modifier assertions; no full historical suite."
   }
 }

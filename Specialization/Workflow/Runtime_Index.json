@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "872d9faee0d552dde34d5b2c67b08d63c276e785848096b6c11a3b91ebe512cc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "49d9d7a8aad021dc8eebd3dd28596da29c6135ca5208eb935a36dd3ae3c3fada",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "40e66671958521f70e95a546b4a8aa8bf2fd4d5b09037e749427e104794a39aa",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "1333761346bbf21cf58c3901644df19c734d7d0f212167bc8df8f6be1b8f0fd0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "513caf84d7eaa821e8384e770f22054486612d5af38f039a94c45c1776d69226",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2ee45c5d3ea6088595767f7fc1bfeedb6d8d53689becfc58f100f472682f8178",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "7b9dfecb3a1984720281be728a94b302ddefbc319b981e03086e647999529f56",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "84108269e2f2d0daa7b808a52b03d3039bc650be859e0493576c9c528d8b0c0a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "74269234ca07536393970f463168d3bdeace925b805606fa0f5b60bfbc268fd3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "061aa60162b2329e14b839c4df190a71312e5b88aad79ef488c0bda04db1dd3d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "e06a0e066923812cb0a3af2d54eeb0c2f968b219c6293cca657b96d8dadf37c9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "996f6cc8394b6cbbf510699557d8a091202996d85c582118dcf0bd5d9f53cdcb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "a6dd17858ee4424a2f9d382a6666f4bf96975ed2d01910a80d8af434ef514583",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
@@ -906,9 +906,9 @@
       "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "db459caf9d9fc290b890f87f73f6cb4d625f14c4c44019211b1774b065c70512",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "90d2f0431a74bafc8a6468ec3ee6cc83696a1d9d0c1071491f97d19835074239",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "8d2331628a164950dbc1d46149d3ba9201f564214bafd2cd7aec3d2b49c865a0",

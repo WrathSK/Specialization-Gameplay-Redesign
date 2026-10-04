@@ -101,9 +101,9 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','End yield gate'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','左／右键均结束本城实验：先撤销追加，再按当前事实恢复旧系统；不再切换文化候选。'),
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','Either click ends this city probe: withdraw additions before restoring legacy consumers from current facts. Culture candidates are deferred.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展验证'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning yield gate'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','左键依次：准备基线 → 五产出整数追加 → 结束恢复；右键只读五产出，不推进实验。不包含市政／外交，仅本城可逆验证；配置不等于原生收益通过。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Left click: prepare baseline, enable five-yield integer additions, then end and restore. Right click reads five yields without advancing. Government Plaza and Diplomatic Quarter are excluded; this reversible one-city probe is not a native yield PASS.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','生产力组合诊断'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Production combination diagnostic'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及仅1件已支持著作。左键：基线 → 单片＋2 → 两片＋1／＋2 → 结束；右键读取当前作品生产力和精确实例，关闭后也可读。不改D公式，配置不等于原生收益。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','One supported Writing work in a Culture ACTIVE4 city. Left click: baseline, single +2, pieces +1/+2, then end. Right click reads native production and exact instances, including OFF. No D formula change; configuration is not native yield evidence.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');

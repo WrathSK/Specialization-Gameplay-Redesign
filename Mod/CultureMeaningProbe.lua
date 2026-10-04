@@ -53,7 +53,20 @@ function SPCCultureMeaningProbe.Start(P,shared)
   local w=shared.GreatWorkFacts.Summary(target.owner,target.city)
   if w then assert(w.reference==target.reference,'ME_WORK_REFERENCE_CHANGED')end
   local p=M.Plan(f,w,nil)
-  if p.status=='NEEDS_DEPTH' then p=M.Plan(f,w,shared.DistrictCompleteness.Read(target.owner,c,f.token))end
+  if p.status=='NEEDS_DEPTH' and target.diagnostic then
+   -- A deliberately fixed native-control fixture, never the D-based ability formula.
+   if p.count~=1 then p.status='DIAGNOSTIC_WORK_CHANGED'
+   else
+    local r=shared.GreatWorkFacts.Read(target.owner,target.city)
+    assert(r and r.hasConfirmed and r.availability=='KNOWN' and r.reference==target.reference,'ME_WORKS_UNKNOWN')
+    if #r.works~=1 or #(r.excluded or {})~=0 or r.works[1].category~='GREATWORKOBJECT_WRITING' then p.status='DIAGNOSTIC_WORK_CHANGED'
+    else
+     local work=r.works[1];p.work={id=work.id,type=work.type,building=work.building,slot=work.slot}
+     p.status='READY';p.each.PRODUCTION=d.diagnosticStage=='SINGLE2' and 2 or d.diagnosticStage=='PAIR12' and 3 or 0
+     p.total.PRODUCTION=p.each.PRODUCTION
+    end
+   end
+  elseif p.status=='NEEDS_DEPTH' then p=M.Plan(f,w,shared.DistrictCompleteness.Read(target.owner,c,f.token))end
   assert(SPCNetworkInput.Reference(c)==target.reference,'ME_REFERENCE_CHANGED');return p
  end
  local function dialogueHold(pid,c,percent)
@@ -65,7 +78,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    shared.Dialogue.ForgetMeaningProbe(target.owner,target.city,target.reference)
    shared.GreatWorkAdjacency.ForgetMeaningProbe(target.owner,target.city,target.reference)
   end
-  target=nil;d.mode='OFF';d.lastPlan=nil;d.error=nil;d.stopping=nil
+  target=nil;d.mode='OFF';d.diagnosticStage=nil;d.lastPlan=nil;d.error=nil;d.stopping=nil
  end
  local function finish()
   d.stopping=true
@@ -132,14 +145,15 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end
   return audit(scope)
  end
- local function transition(mode,c)
-  local previous=d.mode;d.mode=mode
+ local function transition(mode,c,stage)
+  local previous,previousStage=d.mode,d.diagnosticStage;d.mode=mode
+  if target.diagnostic then d.diagnosticStage=stage end
   if not audit({player=c:GetOwner(),city=c:GetID()})then
    local why=d.error or 'ME_UPDATE_PENDING'
    if target then
     local percent=0
     local restored,err=pcall(shared.Dialogue.RestoreMeaningProbeIntent,c:GetOwner(),c,percent)
-    if restored then d.mode=previous else why=why..'; '..tostring(err)end
+    if restored then d.mode=previous;d.diagnosticStage=previousStage else why=why..'; '..tostring(err)end
    end -- An exact reference exit may already have forgotten this fixture.
    error(why)
   end
@@ -153,11 +167,18 @@ function SPCCultureMeaningProbe.Start(P,shared)
   -- reconciliation, not a retry loop or a once-per-turn suppression.
   if deferred and target and not d.stopping then audit({player=target.owner,city=target.city})end
  end
- local function advance(pid,c)
+ local function advance(pid,c,diagnostic)
   if not d.ready then assert(reset(),'ME_LOAD_CLEANUP_FAILED')end
   if target and (target.owner~=pid or target.city~=c:GetID() or target.reference~=SPCNetworkInput.Reference(c))then finish()end
+  assert(not target or target.diagnostic==diagnostic,'ME_DIAGNOSTIC_OTHER_FLOW')
+  if target and diagnostic and d.error and not d.stopping then
+   -- Unknown facts never turn an advance into an implicit END. Reconfirm this
+   -- exact fixture once; on failure retain the stage and confirmed projection.
+   assert(audit({player=pid,city=c:GetID()}),d.error or 'ME_UPDATE_PENDING')
+  end
   if not target then
-   target={owner=pid,city=c:GetID(),reference=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY()}
+   target={owner=pid,city=c:GetID(),reference=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY(),diagnostic=diagnostic}
+   d.diagnosticStage=diagnostic and 'BASELINE' or nil
    local ok,p=pcall(function()
     local value=plan(c)
     if value.status=='READY' and value.count>0 then for _,y in ipairs(M.WriteYields)do M.Parts(y,value.each[y])end end
@@ -174,7 +195,12 @@ function SPCCultureMeaningProbe.Start(P,shared)
    -- Repeat the old module's confirmation before any new native write.
    shared.GreatWorkAdjacency.HoldMeaningProbe(pid,c)
    local p=plan(c);assert(p.status=='READY' and p.count>0,'ME_NEEDS_CULTURE_IV_AND_WORK')
-   transition('ACTIVE',c)
+   transition('ACTIVE',c,diagnostic and 'SINGLE2' or nil)
+  elseif diagnostic and d.diagnosticStage=='SINGLE2' then
+   local p=plan(c);assert(p.status=='READY' and p.count==1,'ME_DIAGNOSTIC_WORK_REQUIRED')
+   -- Clear +2 before creating +1 then +2: no prior instance order contaminates this control.
+   project(c,{})
+   transition('ACTIVE',c,'PAIR12')
   else finish()end
  end
  function d.Advance(pid,c,token)
@@ -188,7 +214,21 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end
   return action(function()
    if token then d.lastAction={token=token,owner=pid,city=c:GetID(),kind='ADVANCE'}end -- One bounded receipt.
-   advance(pid,c)
+   advance(pid,c,false)
+  end)
+ end
+ function d.DiagnosticAdvance(pid,c,token)
+  assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
+  if token then
+   assert(type(token)=='string' and #token>0 and #token<=100,'ME_ACTION_TOKEN')
+   local old=d.lastAction
+   if old and old.token==token then
+    assert(old.owner==pid and old.city==c:GetID() and old.kind=='DIAGNOSTIC_ADVANCE','ME_ACTION_TOKEN_CONFLICT');return
+   end
+  end
+  return action(function()
+   if token then d.lastAction={token=token,owner=pid,city=c:GetID(),kind='DIAGNOSTIC_ADVANCE'}end
+   advance(pid,c,true)
   end)
  end
  -- Reject queued old UI configuration requests; no candidate can be enabled.
@@ -196,7 +236,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
   error('ME_VARIANT_DEFERRED')
  end
- function d.View(pid,c)
+ function d.View(pid,c,diagnostic)
   local ref=SPCNetworkInput.Reference(c)
   local match=target and target.owner==pid and target.city==c:GetID() and target.reference==ref
   local p=match and d.lastPlan or nil
@@ -221,7 +261,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    end
    for _,part in pairs(M.VariantParts)do assert(not installed(c,part.name),'ME_LEGACY_CULTURE_PRESENT')end
   end)
-  return {variant=d.variant,configuredScience=read and configured.SCIENCE or nil,configuredGold=read and configured.GOLD or nil,configuredCulture=read and configured.CULTURE or nil,configuredProduction=read and configured.PRODUCTION or nil,configuredFood=read and configured.FOOD or nil,configuredFaith=read and configured.FAITH or nil,configurationError=not read and tostring(why) or nil,
+  local v={variant=d.variant,configuredScience=read and configured.SCIENCE or nil,configuredGold=read and configured.GOLD or nil,configuredCulture=read and configured.CULTURE or nil,configuredProduction=read and configured.PRODUCTION or nil,configuredFood=read and configured.FOOD or nil,configuredFaith=read and configured.FAITH or nil,configurationError=not read and tostring(why) or nil,
    owner=pid,cityID=c:GetID(),reference=ref,mode=match and d.mode or 'OFF',error=d.error,
    currentIdentity=q and q.specialization,currentPotential=q and q.potential,currentActive=q and q.active,currentActiveStatus=q and q.activeStatus,
    active=p and p.active,count=p and p.count,science=p and p.each.SCIENCE,gold=p and p.each.GOLD,culture=p and p.each.CULTURE,production=p and p.each.PRODUCTION,food=p and p.each.FOOD,faith=p and p.each.FAITH,
@@ -231,6 +271,28 @@ function SPCCultureMeaningProbe.Start(P,shared)
    harbor=p and p.domains.DISTRICT_HARBOR and p.domains.DISTRICT_HARBOR.value,
    oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false,
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
+  if diagnostic or match and target.diagnostic then
+   v.diagnostic=true;v.diagnosticStage=match and target.diagnostic and d.diagnosticStage or 'OFF'
+   v.diagnosticExpected=v.diagnosticStage=='SINGLE2' and 2 or v.diagnosticStage=='PAIR12' and 3 or 0
+   v.diagnosticWork=p and p.work
+   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
+   v.currentIdentity=f.identity;v.currentPotential=f.potential;v.currentActive=f.active
+   v.currentActiveStatus=f.validity=='VERIFIED' and f.activeStatus or 'UNKNOWN_FACTS'
+   local rows={};local known,reason=pcall(function()
+    validate()
+    for _,name in ipairs(M.Owned)do if installed(c,name) then
+     local pillaged=c:GetBuildings():IsPillaged(indices[name]);assert(type(pillaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
+     local y,bit=name:match('^BUILDING_SPC_MEANING_PROBE_([A-Z]+)_(%d+)$');local amount
+     if y then amount=2^tonumber(bit)/M.ProbeScale[y]
+     else for _,part in pairs(M.VariantParts)do if part.name==name then y='CULTURE';amount=part.amount end end end
+     assert(y and amount,'ME_DEFINITION_UNKNOWN');rows[#rows+1]={name=name,yield=y,amount=amount,pillaged=pillaged}
+    end end
+   end)
+   v.diagnosticCarriers=known and rows or nil;v.remainingOwned=known and #rows or nil
+   if not known then v.configurationError=v.configurationError or tostring(reason)end
+   if match and not target.diagnostic then v.error=v.error or 'ME_DIAGNOSTIC_OTHER_FLOW'end
+  end
+  return v
  end
  function d.End(pid,c,token)
   assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
@@ -252,6 +314,19 @@ function SPCCultureMeaningProbe.Start(P,shared)
  end
  function d.Describe(pid,c,view)
   local v=view or d.View(pid,c)
+  if v.diagnostic then
+   local names={OFF='已关闭',BASELINE='①基线',SINGLE2='②单片＋2',PAIR12='③两片＋1／＋2'}
+   local lines={'生产力组合诊断｜'..(names[v.diagnosticStage] or '未确认')}
+   if v.diagnosticStage=='OFF' then lines[#lines+1]='左键开始；右键只读退出状态。'
+   elseif v.diagnosticStage=='BASELINE' then lines[#lines+1]='左键测试单片＋2；右键读取实例。'
+   elseif v.diagnosticStage=='SINGLE2' then lines[#lines+1]='左键测试两片；右键读取实例。'
+   else lines[#lines+1]='左键或结束按钮退出；右键读取实例。'end
+   local err=v.error or v.configurationError or v.dialogueError
+   if err then lines[#lines+1]='待处理：'..(tostring(err):match('ME_[A-Z_]+') or '接口未确认')..'；先结束。'
+   elseif v.planStatus=='DIAGNOSTIC_WORK_CHANGED' then lines[#lines+1]='作品条件已变，新片已撤；需本城仅1件著作。'
+   elseif v.diagnosticStage=='OFF' then lines[#lines+1]='OFF不等于原生撤销通过，请右键核对。'end
+   return table.concat(lines,'\n')
+  end
   local names={OFF='未开启',BASELINE='①基线',ACTIVE='②整数追加'}
   local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜七域五产出'}
   if v.count then lines[#lines+1]=string.format('合格%d件｜当前ACTIVE %s',v.count,tostring(v.currentActiveStatus=='KNOWN' and v.currentActive or '未确认'))end

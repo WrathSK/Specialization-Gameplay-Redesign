@@ -176,7 +176,7 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
-  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' or params.Action=='CULTURE_MEANING_END' then
+  if params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' or params.Action=='CULTURE_MEANING_END' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ' then
     -- One request-local read model; a failed request must not reuse a prior UI view.
     shared.CultureMeaningView=nil
     local at='CITY';local actionError;local actionStage
@@ -189,7 +189,11 @@ local function request(playerID,params)
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
       assert(c:GetOwner()==playerID,'ME_OWNER_UNKNOWN')
       at='MODULE';local probe=assert(shared.CultureMeaningProbe,'ME_MODULE_NOT_READY')
-      if params.Action=='CULTURE_MEANING_ADVANCE' then
+      if params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' then
+        at='DIAGNOSTIC_ADVANCE';assert(type(probe.DiagnosticAdvance)=='function','ME_ACTION_NOT_READY')
+        local changed,why=pcall(probe.DiagnosticAdvance,playerID,c,params.Token)
+        if not changed then actionError=detail(why)end
+      elseif params.Action=='CULTURE_MEANING_ADVANCE' then
         at='ADVANCE';assert(type(probe.Advance)=='function','ME_ACTION_NOT_READY')
         local changed,why=pcall(probe.Advance,playerID,c,params.Token)
         if not changed then actionError=detail(why)end
@@ -204,7 +208,8 @@ local function request(playerID,params)
       end
       actionStage=at
       at='VIEW';assert(type(probe.View)=='function','ME_VIEW_NOT_READY')
-      local view=probe.View(playerID,c)
+      local diagnostic=params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ' or params.Action=='CULTURE_MEANING_END'
+      local view=probe.View(playerID,c,diagnostic)
       assert(type(view)=='table' and view.owner==playerID and view.cityID==params.CityID,'ME_VIEW_INVALID')
       -- These errors belong only to this disposable view, not the probe's state.
       view.error=view.error or actionError or view.configurationError

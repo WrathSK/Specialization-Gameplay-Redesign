@@ -1,17 +1,25 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL；B158.185单城原型LOCAL完成，初始单片原生一致、增长后多片收益FAIL；未获下一定域原型／正式全城cutover／L2 PASS／下一能力授权。
-Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`保持。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+State: P0_L2C_PRODUCTION_DIAGNOSTIC_LOCAL_COMPLETE；B159.186已授权单城著作Production组合／退出诊断LOCAL完成，等待实机；完整L2 NOT_PASSED，无正式全城cutover／下一能力授权。
+Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`；Shared D0044 `DISTRICT_DEVELOPMENT/YIELD_SHARE`精确保留既定合同。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户已采用D0043并明确授权P0-L2C。B158.185默认OFF单城门禁已LOCAL完成：[修改／47项验证及一个最小原生流程](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md)。只消费七域五yield，逐领域Floor后同yield合并再乘W；Shared／K／资格／永久状态／GC不改。新P/F/Faith整数片＋S/G复用，旧Culture精确清理保留而不生成；基线→追加→结束，未正式全城接入。
+用户采用D0043并授权P0-L2C后，B158五yield原型初始单片与W读数一致；建筑增长后预期S3/P3/G9、实际均1，[USER_GAME_TEST_FAIL](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)。结束／cold-load控制OFF不能证明原生撤销；社区目录覆盖独立，D／Floor不改。
 
-旧GWA只hold目标城精确156项及本城Dialogue0%；确认撤新owned后释放旧模块按当前事实恢复。load默认OFF；UNKNOWN、loss、reference及失败保护保持。按需报告五yield预期／实际差值／native绝对值，同ACK复用，普通右键不继续旧全局实例诊断。实际source/live、Git／receipt见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+当前用户明确“授权实施诊断”：B159.186已LOCAL完成一城一Writing／Production现有＋2单片对照＋1/＋2两片、显式native实例／真实读数及END／cold-load核对。完整规则与最小用户流程见[本地结果](../../Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)及下一节。无新SQL、永久状态、Catalog或GC改变；source/live、Git／receipt只见[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
-[本次B158十图](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)：初始单片五yield和W变化读数一致；建筑增长后预期S3/P3/G9、原生均1，USER_GAME_TEST_FAIL。模型已更新，首要区分同yield单片／多片组合及native刷新；社区ordinaryOnly两对象导致D3而非完整三建筑D6，是独立Catalog覆盖问题。结束／冷加载控制OFF但原生读数不同，退出／旧writer恢复不能记PASS。
+只等待本次原生结果，不重复旧五yield／长测，不将STATIC／LOCAL、配置或OFF写成原生PASS。精确recipient、Dialogue／theming独立、正常结算及全城cutover仍独立门禁；完整L2 NOT_PASSED。市政／外交Culture反证与技术档案保持未来参考，不重开该路径或进L3／M／N／U2。
 
-下一最小建议：一城一Writing／Production，对照现有单片＋2与两片＋1/＋2，按需核对精确实例／读数及END／cold-load退出；**未实施／未授权**，不要求用户重复旧长测。不改D／Floor，不混入目录扩展、Culture候选或正式cutover。精确recipient、Dialogue／theming独立及正常结算仍独立门禁。B157 Culture失败及[技术档案](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)保留未来恢复；不重开文化调查，不进L3/M/N/U2。
+## 已授权切片 — Production组合与退出诊断
+
+**范围。** 默认OFF、当前本地Culture ACTIVE IV城恰好一件已确认支持Writing。固定技术对照0→＋2→＋1/＋2→0，不消费D、不改能力公式或Balance；复用两个已有Production carrier，PAIR12先撤上阶段＋2，再按＋1／＋2创建。旧GWA只hold本城精确156项，本城旧Dialogue0%；先确认新26项owned撤除，再由原模块按当前事实恢复，不能混合效果。
+
+**数据与生命周期。** Gameplay复用CurrentSpecializationFacts／GreatWorkFacts当前引用与确认馆藏；同回合已知资格／作品变化定域更新，UNKNOWN保留最近确认且不推进；不复制全城采集。session只保留一个fixture／阶段及单个action receipt，END／loss／reference／load定域退出，load默认OFF不重放。临时状态不写永久Property／E2账本。已有L1 consumer因旧writer撤除而合法核对不被停用。
+
+**观察。** 左键只推进阶段，右键一次显式token收集真实宿主作品Production及精确实例；普通advance／END不全局枚举。只在同回合、同reference、同唯一Writing／宿主／槽位／主题／当前资格可靠baseline计算Δ；配置、预期、真实值独立。OFF仍可读绝对值／owned健康状态／实例；旧路径恢复与Meaning残留分开解释，UNKNOWN／截断不当0。Show／Copy缓存字符串，close／load取消迟到ACK；换城／过期token不回选重放或重扫。
+
+**验证与退出。** W0004 L2＋所触及loss／load／ref相关L3定向18方法／31子测试PASS，详见本地结果；独立模拟getter专门显示多片不符，不能证明原生组合。用户只需同城①基线、②＋2、③＋1/＋2、END及启用副本冷加载的最多四份报告。原生失败记录具体实例／实际读数，停止该路径；不猜引擎公式、调D／Floor或加清理范围。正常结算／精准recipient等不因此自动关闭。回滚沿Git＋既有精确部署receipt，不改安全工具／main或其它mod。
 
 ## 下一批计划 — P0-L2C 七域五产出门禁
 

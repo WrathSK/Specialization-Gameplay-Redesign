@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0412
+Status Revision: S0413
 Implementation Build: source/live B158.185 / modinfo185 LOCAL / NATIVE_PARTIAL_YIELD_FAIL; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
@@ -11,6 +11,18 @@ Work State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL
 
 ## CURRENT AUTHORITATIVE STATE
 
+最新Design仍D0044；本轮不适配工业Design，Culture D0043／Shared D合同、Floor／Catalog／永久状态／GC不变。
+
+用户明确“授权实施诊断”后，B159.186／modinfo186单城单Writing **Production组合／退出诊断LOCAL完成**：[实际范围、18方法／31子测试与一个最小实机流程](Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)。固定BASELINE→＋2单片→＋1/＋2两片→OFF，只复用既有定义；右键显式读取当前作品真实Production与精确实例。UNKNOWN、loss／load、旧writer hold／退出保护保持；close／换城迟到回复不重放基线。STATIC／LOCAL不等于原生PASS。
+
+[B158组合FAIL](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)、冷加载撤销／旧writer恢复未知及独立社区Catalog缺口保持；完整L2 NOT_PASSED。精确recipient／倍率隔离／结算／全城cutover仍独立门禁。不重复五yield或长测，不进L3／M／N／U2。
+
+source当前B159.186；外部暂沿B158.185，source `daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe`／receipt `B158.185-daaef4b-playtest.json` DEVELOP_ACTIVE（既有记录）。本地验证后按W0003授权核对游戏退出／精确receipt并部署；Git提交不作部署证明。main B069.96未promotion；未启动游戏。当前只完成此诊断并等待原生结果，不自动进入正式接入或其它能力。
+
+## 历史阶段记录
+
+### S0412 — B158组合失败与下一诊断待授权（当时）
+
 最新[Design D0044](../Design/Design_ChangeLog.md#accepted-d0044--2026-10-03)已同步工业职责／首测值及Shared具名研习L；只更新设计，没有工业运行适配。Culture D0043及P0-L2C直接Shared合同不变，不进入工业实施。
 
 用户已授权的B158.185／modinfo185单城五yield原型LOCAL完成47项定向PASS；[本次十图原生结果](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)初始单片S/P/G/Food/Faith及W2→1读数一致，但建筑变化后预期S3/P3/G9、实际均1，**USER_GAME_TEST_FAIL／完整L2 NOT_PASSED**。模型已增长，不是D完全未更新；优先区分单片与多片同yield组合／native刷新，不宣布引擎覆盖算法已证实。社区三建筑环境Tier3/1/2，当前ordinaryOnly排除后两者→D3／Food1，独立Catalog覆盖缺口；D公式／Floor不改。
@@ -19,7 +31,6 @@ Work State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL
 
 source/live沿B158.185，source `daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe`，既有W0003 receipt `B158.185-daaef4b-playtest.json` DEVELOP_ACTIVE／182 MATCH引用，本轮未重核外部包。十图ignored原样归档10/10 SHA256 MATCH；只读实际内层DB，外层旧Cache不作证据。Mod／测试／Design／永久Property／Shared目录／GC／main未改，无新模拟、部署或游戏启动。停止等待定域原型授权，不自动正式接入或进L3/M/N/U2。
 
-## 历史阶段记录
 
 ### S0409 — D0043采用与P0-L2C计划（当时）
 

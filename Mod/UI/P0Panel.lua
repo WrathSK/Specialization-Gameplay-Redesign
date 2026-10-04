@@ -73,14 +73,19 @@ local function displayResponse()
       local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
       if c and v and v.token==pendingToken then
         local ref=SPCNetworkInput.Reference(c);local turn=Game.GetCurrentGameTurn()
-        if meaningResponseToken~=pendingToken then
-          meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')
+        local selected=UI.GetHeadSelectedCity()
+        local selectedMatch=not v.diagnostic or selected and selected:GetOwner()==c:GetOwner() and SPCNetworkInput.Reference(selected)==ref
+        if meaningResponseToken~=pendingToken and selectedMatch then
+          if v.diagnostic then
+            meaningResponseText=SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE',pendingToken,meaningReadReference,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ')
+          else meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')end
           meaningResponseToken=pendingToken;meaningResponseReference=ref;meaningResponseTurn=turn
         end
-        if ref==meaningResponseReference and ref==v.reference and turn==meaningResponseTurn then
+        if selectedMatch and ref==meaningResponseReference and ref==v.reference and turn==meaningResponseTurn then
           report=report..'\n'..meaningResponseText
         else
           SPCBoostGreatWorkRead.ClearMeaningRead()
+          meaningResponseToken=pendingToken;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil -- Consume stale token; never replay or rescan it.
           report=report..'\n本次原生报告已过期；重新右键读取，不复用旧差值。'
         end
       end
@@ -147,7 +152,7 @@ request=function(action,advance)
   meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
   SPCBoostGreatWorkRead.ClearModifierRead()
   meaningReadReference=nil
-  if pendingAction=='CULTURE_MEANING_READ' then readings.CULTURE_MEANING=nil;localReport=nil end
+  if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then readings.CULTURE_MEANING=nil;localReport=nil end
   ContextPtr:ClearUpdate()
   gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
@@ -188,7 +193,7 @@ request=function(action,advance)
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
   pendingToken=P.VERSION..":"..tostring(Game.GetCurrentGameTurn())..":"..tostring(ExposedMembers.SPC_P0_UISequence)
   pendingAction=action
-  if action=='CULTURE_MEANING_READ' then meaningReadReference=SPCNetworkInput.Reference(city)end
+  if action=='CULTURE_MEANING_READ' or action=='CULTURE_MEANING_DIAGNOSTIC_READ' then meaningReadReference=SPCNetworkInput.Reference(city)end
   trace("BEFORE_DISPATCH "..action.." city="..tostring(city and city:GetID()))
   local envelope=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.EnvelopeProbe
   local expectedStage=envelope and envelope.players[playerID] and envelope.players[playerID].step
@@ -241,10 +246,10 @@ local function legacyCopy(asBaseline)
 
 end
 local function copy()
-  if pendingAction=='CULTURE_MEANING_READ' then
+  if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then
     if displayResponse() and localReport then
       print('[SPC][MEANING_READ] '..P.VERSION..'\n'..localReport)
-      status('本次五产出报告已写入Lua.log；也可直接截图。')
+      status('本次诊断报告已写入Lua.log；也可直接截图。')
     else status('尚无本次意义延展回复；请稍后重新右键读取。')end
     return
   end
@@ -310,8 +315,15 @@ local function placeEntry()
     if width~=entryWidth then entryWidth=width;Controls.OpenButton:SetOffsetVal(width+8,0) end
   end
 end
+local function cancelMeaningReply()
+  if pendingAction and pendingAction:match('^CULTURE_MEANING_') then
+    ContextPtr:ClearUpdate();pendingToken=nil;pendingAction=nil;localReport=nil
+    readings.CULTURE_MEANING=nil;meaningReadReference=nil
+  end
+end
 local function showRoot()
-  SPCBoostGreatWorkRead.ClearMeaningRead()
+  cancelMeaningReply()
+  SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
   meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
   local enabled=P.IsTestPlayer(Game.GetLocalPlayer())
   ContextPtr:SetHide(not enabled);placeEntry();Controls.OpenButton:SetHide(not enabled)
@@ -366,7 +378,7 @@ local function initialize()
   Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()
     Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
     meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
-    if pendingAction=='CULTURE_MEANING_READ' then ContextPtr:ClearUpdate();pendingToken=nil;pendingAction=nil;localReport=nil;readings.CULTURE_MEANING=nil;meaningReadReference=nil end
+    cancelMeaningReply() -- A late ACK cannot recreate a released diagnostic baseline.
   end)
   Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()
     ContextPtr:ClearUpdate();pendingToken=nil
@@ -484,8 +496,8 @@ local function initialize()
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_END') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_END') end)
-  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_ADVANCE') end)
-  Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_READ') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_DIAGNOSTIC_ADVANCE') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_DIAGNOSTIC_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_AESTHETIC_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_AESTHETIC_DETAIL',true) end)
   Controls.GWReadButton:RegisterCallback(Mouse.eLClick,function() request('GREAT_WORK_FACTS_READ') end)
