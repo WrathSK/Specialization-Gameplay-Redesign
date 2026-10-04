@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0420",
+    "status": "S0421",
     "runtime": "B162.189 / modinfo189",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "84b34061144311b6857418e708836c7ba646bef9",
-  "current_batch": "P0_L2C_LOAD_CLEANUP_LOCAL_COMPLETE",
-  "next_batch": "Await one scoped native cold-load exact-cleanup and direct-END check for B162; inherit B1613→5/W2=10. No repeat yield/save-enabled ritual or automatic other-yield/cutover/L3/M/N/U2.",
+  "current_batch": "P0_L2C_PRODUCTION_SCOPED_NATIVE_PASS",
+  "next_batch": "B162 scoped cold-load cleanup/direct-END native PASS; no further user test for this delta. Prepare next finite plan for user review; other yields/formal cutover/L3/M/N/U2 implementation remains unauthorized.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH. OS exit verified; exact B161 receipt stable bridge, B161/stable recovery MATCH, no pending marker or game launch. Native cleanup/END required; B1613→5/W2=10 yield PASS retained.",
+  "live": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH at recorded deployment. B162 scoped cold-load cleanup/direct-END native PASS; B1613→5/W2=10 retained. This docs-only acceptance did not reverify or change external runtime; full L2 NOT_PASSED.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0420 user-authorized B161 readiness/OFF-residual scoped fix. Direct Meaning/Dialogue/GWA/request/UI/test closure reviewed;108 methods/96subtests PASS. Exact37/259 SQL, Design/permanent/GC unchanged. Normal ready fast path; pending zero-city retry only at existing entry; true failure locks auto retry, per-city legacy projection safety and scoped OFF END. Native cause/withdrawal still require one minimal session; inherit B161 yield PASS, no full history/stress. Only named changed/new files rehashed after review. Source B162 committed/deployed separately; existing live pointer is not inferred from new source. W0003 deployment completed after clean/sync and reliable OS exit: B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH. OS exit verified; exact B161 receipt stable bridge, B161/stable recovery MATCH, no pending marker or game launch. Native cleanup/END required; B1613→5/W2=10 yield PASS retained.",
+  "context_review_status": "S0421 four B162 originals individually read and archived4/4 MATCH: cold-load OFF/CONFIRMED/owned0/Meaning Writing0 and user-described post-END same terminal state; old GWA two city-verified active instances/native host Production2 each group. Scoped native PASS, no new intermediate activation/yield or all-city/lifecycle claim; B161 yield PASS and original FAIL evidence retained. User-authorized report readability principle added only to existing agent guidance. Only named changed/new docs hashes reviewed; Runtime_Index/Mod/Design/tests/GC/main/live package unchanged, no gameplay rerun/deployment. Next implementation requires separate plan/authorization.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

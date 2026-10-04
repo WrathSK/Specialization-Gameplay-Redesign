@@ -97,7 +97,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0420",
+    "status": "S0421",
     "runtime": "B162.189 / modinfo189",
     "military": "D0037",
     "harbor": "D0037"
@@ -317,7 +317,7 @@
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md",
       "kind": "full",
-      "reason": "Latest seven-image native3→5/W2 PASS, OFF residual FAIL, direct END unconfirmed and scoped stop; prior B160/B158/B157 evidence linked, no full history default"
+      "reason": "Inherited native3→5/W2/signed PASS and original OFF residual FAIL provenance; current B162 cleanup/END acceptance is separate, no full history default"
     },
     {
       "path": "DevelopmentTests/test_culture_meaning_cleanup.py",
@@ -327,13 +327,18 @@
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
       "kind": "full",
-      "reason": "Current B162 local facts and one native cleanup/END delta; old yield PASS retained, no repeated full lifecycle recipe"
+      "reason": "Frozen B162 local facts and exact changed cleanup/END contract; recipe completed by current native result, not a new dispatch"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md",
+      "kind": "full",
+      "reason": "Current four-image scoped cold-load/END acceptance, preserved limits and stop; no repeat user test or next implementation authorization"
     }
   ],
   "dependencies": [
     "D0045 current Authority preserves per-domain Floor→same-yield each→W, current D/ordinary/qualification/work contracts. Current gate projects only Production from authoritative shared facts.",
     "Existing K confirmed current-reference bridge and local ACTIVE facade",
-    "B157 named S/G/same-session owned exit evidence only; B161 Writing Production3→5/W2=10 native PASS, post-restart withdrawal FAIL. Food/Faith/other objects and full Meaning remain unresolved.",
+    "B157 named S/G/same-session owned exit evidence only; B161 Writing Production3→5/W2=10 native PASS, original post-restart withdrawal FAIL preserved; B162 scoped cold-load/END cleanup PASS closes that delta. Food/Faith/other objects and full Meaning remain unresolved.",
     "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI"
   ],
   "old_writers": [
@@ -354,19 +359,19 @@
       "Production-only independent getters and signed field exact identity checks; explicit READ only once, repeated/late/cache selection, OFF residual/config metadata",
       "Fresh session without Probe LoadScreenClose, zero-city/eligibility pending, per-city failed withdrawal/no auto retry/foreign cleanup/independent ACK, scoped OFF-END token recovery and global legacy reentry isolation; normal ready gate no scan/write"
     ],
-    "user": "One session: cold load existing B161 save, readonly OFF/cleanup CONFIRMED/exact Meaning0/no active Meaning Writing instance; after PASS prepare/enable once then END/read exact cleanup/current legacy recovery. Do not repeat3→5/W2, enabled-save/restart/re-enable ritual. These two steps test actual changed native cleanup/END paths."
+    "user": "Completed B162 one-session cold-load OFF cleanup + user-described prepare/enable/END read, four screenshots scoped PASS. No repeat3→5/W2 or shared enabled-save/restart/re-enable ritual. Remaining five-yield/full-cutover native gates require a new finite plan; no immediate user test requested."
   },
   "result": {
     "plan": "User explicitly authorized scoped fix after native-delta policy and workflow responsibility clarification; no wider Gameplay or plan authorization.",
-    "implementation": "B162.189 / modinfo189 LOCAL_COMPLETE;108 methods/96subtests PASS,0 failures/errors/skips. Exact37 startup readiness gate and scoped OFF-END repair; native cleanup required.",
-    "native": "B161 USER_GAME_TEST_PASS scoped Writing model/native3→5 replacement, W2 host10, signed identity format; USER_GAME_TEST_FAIL post-restart OFF with VALUE5 Active plus old GWA restored. Direct END NOT_CONFIRMED; saved/END ordering and actual load event cause unknown; full L2 NOT_PASSED. Existing73/78 local results retained, not rerun or upgraded.",
-    "stop": "Await scoped B162 native cleanup/END acceptance; inherit B161 yield evidence. No automatic new yields/formal cutover/next batch.",
-    "deployment": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH. OS exit verified; exact B161 receipt stable bridge, B161/stable recovery MATCH, no pending marker or game launch. Native cleanup/END required; B1613→5/W2=10 yield PASS retained.",
+    "implementation": "B162.189 / modinfo189 LOCAL_COMPLETE;108 methods/96subtests PASS,0 failures/errors/skips. Exact37 startup readiness gate and scoped OFF-END repair; B162 scoped native cleanup/END now PASS.",
+    "native": "B161 scoped Writing model/native3→5 replacement, W2 host10 and signed identity PASS retained; original post-restart OFF+VALUE5 FAIL preserved. B162 four-image USER_GAME_TEST_PASS only for cold-load cleanup and user-described post-END terminal state: OFF/CONFIRMED/owned0/Meaning Writing0, old GWA two city-verified active instances/native Production2. Intermediate ACTIVE not pictured, exact startup event not proved; other yield/object/recipient/multiplier/settlement gates remain unresolved, full L2 NOT_PASSED.",
+    "stop": "B162 scoped cold-load cleanup/direct-END native PASS; no further user test for this delta. Prepare next finite plan for user review; other yields/formal cutover/L3/M/N/U2 implementation remains unauthorized.",
+    "deployment": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH at recorded deployment. B162 scoped cold-load cleanup/direct-END native PASS; B1613→5/W2=10 retained. This docs-only acceptance did not reverify or change external runtime; full L2 NOT_PASSED.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
     "local_test_entry": "test_culture_meaning_cleanup.py + current single_value24/diagnostic18 + selected reader31 + K Facts14/Producer8/LegacyIsolation1;108 methods/96subtests; historical wrappers not selected",
-    "next_proposal": "Await scoped B162 native cleanup/END acceptance; inherit B161 yield evidence. No automatic new yields/formal cutover/next batch."
+    "next_proposal": "B162 scoped cold-load cleanup/direct-END native PASS; no further user test for this delta. Prepare next finite plan for user review; other yields/formal cutover/L3/M/N/U2 implementation remains unauthorized."
   }
 }

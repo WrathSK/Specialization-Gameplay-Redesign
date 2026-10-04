@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0420
-Implementation Build: source/live B162.189 / modinfo189 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
+Status Revision: S0421
+Implementation Build: source/live B162.189 / modinfo189 LOCAL_COMPLETE / SCOPED_USER_GAME_TEST_PASS; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0045（Meaning直接合同不改；B161仅Production单城门禁，正式接入未完成）
 Latest Accepted Design Revision: D0045
-Design Sync State: D0045_AUTHORITY_RETAINED / B162_LOAD_CLEANUP_NATIVE_REQUIRED
-Work State: P0_L2C_LOAD_CLEANUP_LOCAL_COMPLETE
+Design Sync State: D0045_AUTHORITY_RETAINED / B162_LOAD_CLEANUP_SCOPED_NATIVE_PASS
+Work State: P0_L2C_PRODUCTION_SCOPED_NATIVE_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-Design D0045／Architecture A0161不变，**B162.189／modinfo189首次清理与OFF END修复LOCAL完成，108方法／96subTest PASS；原生清理／直接END待验。** [修改、证据及一次最小流程](Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md)。B161每件3→5／W2宿主10／signed映射PASS继续沿用；重启OFF残留FAIL原件保留，完整L2 NOT_PASSED。
+Design D0045／Architecture A0161不变，**B162.189／modinfo189冷加载首次清理与直接END本次实机PASS。** [四图结果](Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md)：两组OFF、清理CONFIRMED、remainingOwned0／所扫Meaning Writing活动实例0，旧GWA Production恢复且原生宿主小计2。B161每件3→5／W2宿主10／signed映射PASS沿用；原OFF残留FAIL原件保留，完整L2 NOT_PASSED。
 
-[当前完整切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--加载清理与off退出)：旧正向投影前就绪门禁，0城／身份暂未知等待，真实撤销失败锁停自动重试且按城市隔离；OFF END真正撤载体，READ仍只读。Shared/K采样／ACK、37／259SQL目录、Production公式、永久Property／账本与GC未改。按[长期native delta政策](../Workflow/README.md#native-delta-and-inherited-evidence)只补本轮新增native风险，不重测已过收益或完整保存重载循环。
+[当前完整切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--加载清理与off退出)与[本地108方法／96subTest](Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md)保留；本次验收关闭该定域清理阻塞，不扩大到其它作品／yield、精准recipient、倍率／正常结算或正式cutover。按[长期native delta政策](../Workflow/README.md#native-delta-and-inherited-evidence)无需再补本批测试；[报告原则](../AGENTS.md#用户交付与诊断)优先简明中文结论，复杂明细用于相关排障，不开启全局UI改造。
 
-source/live B162.189，运行源码`84b3406`，receipt `B162.189-84b3406-playtest.json` DEVELOP_ACTIVE／182 MATCH。OS确认游戏退出后，精确B161 receipt恢复stable过桥再staging激活；B161／stable恢复点MATCH，无pending marker、未启动游戏。main稳定B069.96不动。下一仅用户一次连续session：冷加载已有测试存档→OFF只读精确清理→准备／启用一次→END只读退出，不自动其它yield／formal cutover／L3／M／N／U2。新测试未通过前不宣称修复原生PASS。
+source/live继续沿B162.189，运行源码`84b3406`，receipt `B162.189-84b3406-playtest.json` DEVELOP_ACTIVE／182 MATCH为既有部署记录，本轮未重核外部运行包。四图ignored归档4/4 SHA256 MATCH。仅文档验收／指导更新，Mod／Design／测试／永久数据／GC／main稳定B069.96未改，无部署或游戏启动。下一允许准备有限计划，建议不是实施授权；停止等待后续计划／授权，不自动其它yield／formal cutover／L3／M／N／U2。
 
 ## 历史阶段记录
 

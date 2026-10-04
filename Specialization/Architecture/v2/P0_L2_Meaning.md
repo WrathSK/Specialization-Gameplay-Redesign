@@ -1,15 +1,15 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_LOAD_CLEANUP_LOCAL_COMPLETE；B162.189定域修复LOCAL完成，native清理／直接END待验；B161已过Production3→5／W2=10证据沿用，完整L2未通过。
+State: P0_L2C_PRODUCTION_SCOPED_NATIVE_PASS；B162.189本次冷加载清理／直接END实机PASS；B161已过Production3→5／W2=10证据沿用，完整L2未通过。
 Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-**B162.189／modinfo189首次清理与OFF END定域修复已LOCAL完成：108方法／96subTest PASS，native仍待验。** [修复及一次最小流程](../../Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md)。B161每件3→5、W2宿主10与signed映射PASS沿用；重启OFF残留FAIL原件保留，修复不宣称已获原生PASS。
+**B162.189／modinfo189本次冷加载清理与直接END实机PASS。** [四图结果与范围](../../Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md)；[本地108方法／96subTest](../../Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md)保留。B161每件3→5、W2宿主10与signed映射PASS沿用；重启OFF残留FAIL原件保留，本次仅关闭该定域清理验收阻塞，完整L2未通过。
 
-当前授权仅下方“加载清理与OFF退出”切片；每域Floor→each→W、37／259目录、旧writer当前事实恢复、Shared/K/永久数据/GC不变。按[长期native delta原则](../../Workflow/README.md#native-delta-and-inherited-evidence)只补实际改变的首次清理和END；不重复收益增长或保存启用态／重载／再启用整套仪式。
+下方“加载清理与OFF退出”授权切片已完成本次验收；每域Floor→each→W、37／259目录、旧writer当前事实恢复、Shared/K/永久数据/GC不变。按[长期native delta原则](../../Workflow/README.md#native-delta-and-inherited-evidence)无需追加已过测试；报告遵循[相关结果优先、技术明细按需](../../AGENTS.md#用户交付与诊断)，不在本轮实施UI改造。
 
-source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)分别记录，提交不等于部署。停止等待上述单session验收，不自动其它yield／正式cutover／L3／M／N／U2。
+source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)分别记录，提交不等于部署。当前只完成验收归档和指导补充；下一有限计划待用户审核，未授权其它yield／正式cutover／L3／M／N／U2实施。
 
 ## 已授权切片 — 加载清理与OFF退出
 
@@ -21,7 +21,7 @@ source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status
 
 **OFF END／观察。** OFF不证明物理退出；显式END先撤本城exact37，失败旧模块仍撤自身owned、不放正向。新token才重试，重复token零写；一城成功不伪造全局CONFIRMED。同步recovery只在调用内存在，所有结束／异常释放。View/READ独立显示session、cleanup状态、remainingOwned及native实例；不写Property、不增加原生全局枚举次数。
 
-**本地／实机／停止。** W0004 L2＋直接load/exit L3定向验证，108／96见结果；不跑full/history/stress，不改旧断言。一次冷加载已有测试存档→OFF精确READ；通过后同session准备／启用一次→END精确READ，只验新增清理delta。不重做3→5／W、不再保存启用副本及多轮重启。失败停止对应native边界；其它yield、精准recipient、倍率／结算、formal cutover均不扩大。本批部署按W0003，source与实际receipt分别记Status。
+**本地／实机／停止。** W0004 L2＋直接load/exit L3定向验证，108／96见结果；不跑full/history/stress，不改旧断言。一次冷加载已有测试存档→OFF精确READ；通过后同session准备／启用一次→END精确READ，只验新增清理delta。用户此次四图完成这两项，所测终态USER_GAME_TEST_PASS；中间ACTIVE未拍，不独立新增收益PASS，也不再派发本流程。不重做3→5／W、不再保存启用副本及多轮重启。失败停止对应native边界；其它yield、精准recipient、倍率／结算、formal cutover均不扩大。本批部署按W0003，source与实际receipt分别记Status。
 
 ## 已授权切片 — Production单值承载
 
@@ -40,9 +40,9 @@ source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status
 | W1启用一个最终值3 | 证明真实模型最终值以一个flat carrier产生原生＋3，不是配置自证 | 图1／2 PASS |
 | 改D为另一个已知值，核对旧3被替换 | 区分正常最终值与旧新叠加／旧值残留；不共享失效基线 | 实际3→5、唯一VALUE_5／原生5，图3 PASS；不记成4 |
 | 增加第二件支持著作 | 区分per-work正确应用与W被重复乘入 | 实际每件5、宿主10，图4 PASS；不记成8 |
-| 直接END核对精确Meaning0及旧writer当前事实恢复 | 验证当前新VALUE目录的模块退出与互斥，不把OFF文本当清理 | 当前NOT_CONFIRMED，不要求立即重做前三项 |
+| 直接END核对精确Meaning0及旧writer当前事实恢复 | 验证当前新VALUE目录的模块退出与互斥，不把OFF文本当清理 | B162图3／4及用户步骤归属：Meaning0、旧GWA本城活动／原生小计2，所测END终态PASS；不重测前三项 |
 
-**当前异常独立处理。** 重启后OFF＋VALUE_5活动实例与旧GWA并存为真实FAIL；对应首次清理／OFF退出现已按上方用户授权切片完成LOCAL修复，原生仍待验；[原始建议与反证](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md#下一最小建议未实施待授权)保持。只有修复这项实际边界时才做一次定域冷加载核对，必要时补被改动的END，不复跑已过3→5／W。其它生命周期依[长期原则](../../Workflow/README.md#native-delta-and-inherited-evidence)继承明确匹配证据；B158冷加载仅OFF、原生清理未确认，不伪造PASS。禁止自动正式cutover、其它yield迁移或下一能力。
+**当前异常独立处理。** 重启后OFF＋VALUE_5活动实例与旧GWA并存为真实FAIL；对应首次清理／OFF退出现已按上方用户授权切片完成LOCAL修复，并获[B162本次两项原生PASS](../../Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md)；[原始建议与反证](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md#下一最小建议未实施待授权)保持。只有修复这项实际边界时才做一次定域冷加载核对，必要时补被改动的END，不复跑已过3→5／W。其它生命周期依[长期原则](../../Workflow/README.md#native-delta-and-inherited-evidence)继承明确匹配证据；B158冷加载仅OFF、原生清理未确认，不伪造PASS。禁止自动正式cutover、其它yield迁移或下一能力。
 
 ## 已授权切片 — Production组合与退出诊断
 
