@@ -43,3 +43,7 @@ Evidence: STATIC_CONFIRMED / LOCAL_SIMULATION_PASS；USER_GAME_TEST_REQUIRED。�
 4. “结束验证”后右键，Meaning精确carrier／Writing实例应0，HD正常效果保留，旧writer按当前事实恢复。只看OFF文本不算撤销PASS；有配置不算入账PASS。
 
 每一步只验证本批新增原生不确定性：六项单值共存、替换、W和新精确目录／Culture宿主退出。不默认保存启用态、手动关闭、退出冷加载、再次启用整套harness循环。文化失败先END并停文化路径；记录宿主／实例／实际值，不能改Design、撤HD、补城市收益或强行通过。通过后仍不自动全城cutover／L3／M／N／U2。
+
+## 部署记录
+
+W0003：source `37636776d9ce00cebcbefbf600af24984f2c6451`，B163.190／modinfo190，receipt `B163.190-3763677-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。游戏退出由可靠OS进程检查确认，旧B162精确receipt先恢复stable再激活，B162／stable恢复点保留，无pending marker、无游戏启动；不提升native证据。

@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0423
-Implementation Build: source B163.190 / modinfo190 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; live recorded B162.189; stable B069.96
+Implementation Build: source/live B163.190 / modinfo190 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0046（意义延展九域六产出恢复；原生文化共存未通过）
 Latest Accepted Design Revision: D0046
@@ -15,7 +15,7 @@ Design／Culture D0046恢复市政／外交文化来源（九域六产出）；S
 
 [本地结果](Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md)区分静态／模拟；B161 Production3→5/W2及B162 scoped清理／END PASS继承。Culture单片B155/B157失败保留，本批改剧院宿主，不把Production多片解释推定为Culture根因关闭。六行简报／缓存明细，只测新增原生差异，不重复未改harness冷加载；精准recipient／倍率／结算仍待，完整L2 NOT_PASSED。
 
-source B163.190／modinfo190；live仍为部署记录中的B162.189（源码84b3406，receipt `B162.189-84b3406-playtest.json`、182 MATCH）；本地完成不证明已部署。W0003安全门禁后才换测试包，receipt另记；main稳定B069.96不动。停止等待本切片反馈，不自动进入其它能力或正式cutover。
+source／live B163.190／modinfo190已按W0003部署（源码`3763677`，receipt `B163.190-3763677-playtest.json`、182/182 MATCH）。B162及stable恢复点保留，无pending marker、未启动游戏；main稳定B069.96不动。部署完成不等于原生验收，停止等待本切片反馈，不自动进入其它能力或正式cutover。
 
 ## 历史阶段记录
 

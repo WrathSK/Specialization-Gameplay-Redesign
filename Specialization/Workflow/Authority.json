@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "84b34061144311b6857418e708836c7ba646bef9",
+  "runtime_commit": "37636776d9ce00cebcbefbf600af24984f2c6451",
   "current_batch": "P0_L2C_SIX_YIELD_FINAL_VALUE_LOCAL_COMPLETE_AWAITING_USER",
   "next_batch": "Wait current B163 six-yield native delta; no formal cutover/L3/M/N/U2. User authorized domain restoration and current probe; Culture coexistence remains independently unproved.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH at recorded deployment. B162 scoped cold-load cleanup/direct-END native PASS; B1613→5/W2=10 retained. This docs-only acceptance did not reverify or change external runtime; full L2 NOT_PASSED.",
+  "live": "B163.190 / modinfo190 DEVELOP_ACTIVE; source 37636776d9ce00cebcbefbf600af24984f2c6451; receipt B163.190-3763677-playtest.json;182/182 MATCH at verified deployment. B162 and stable recovery retained, no pending marker/game launch. Six-yield native coexistence/replacement/W/END pending; full L2 NOT_PASSED.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0423 authorized six final yields and D0046 restoration: exact model/Probe/SQL/reader/Panel/Text/package, current tests and old writer/current facts contracts reviewed; new55 exact IDs + prior37=92/644. Culture Theater host is new candidate; B155/B157 single-Culture failure preserved, no asserted root-cause closure. Shared/K/permanent/GC unchanged. Named changed/new hashes only; no all-history rehash. Local evidence and deployed receipt remain separate.",
+  "context_review_status": "S0423 authorized six final yields and D0046 restoration: exact model/Probe/SQL/reader/Panel/Text/package, current tests and old writer/current facts contracts reviewed; new55 exact IDs + prior37=92/644. Culture Theater host is new candidate; B155/B157 single-Culture failure preserved, no asserted root-cause closure. Shared/K/permanent/GC unchanged. Named changed/new hashes only; no all-history rehash. Local evidence and deployed receipt remain separate. W0003 deployment verified: clean/sync source3763677, exact B162 receipt/stable bridge, B163.190 receipt DEVELOP_ACTIVE/182MATCH; native remains pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
