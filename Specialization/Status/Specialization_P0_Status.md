@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0426
+Status Revision: S0427
 Implementation Build: source/live B164.191 / modinfo191 LOCAL_COMPLETE / NATIVE_DEFERRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
@@ -11,11 +11,17 @@ Work State: P0_L2C_B164_SCOPED_REPAIR_LOCAL_COMPLETE_NATIVE_DEFERRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改；v0.1仍四专业。用户授权的B164.191定域修复完成：Meaning七域五项投影，Culture临时隔离；全部92项／644附件精确退出保留，HD原效果不改。社区Villa／Mansion／BusStop进入当前Tier路径（本环境1／1／2），不改D公式或扫描范围；ResearchApply社区Food直接依赖同步验证。[本地结果](Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)与[B163已测五项／Culture失败](Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)分别记录。
+当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改，v0.1仍四专业。source／live按既有记录为B164.191／modinfo191（runtime source `e09ba9b`、receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE／182 MATCH）；本轮未重新核验外部运行包。main稳定B069.96不改。
 
-社区D不安排独立实机，按用户决定并入以后获授权测试；当前STATIC／LOCAL，未标原生PASS。精准recipient、Dialogue／主题化追加独立、正常结算与正式全城cutover仍开放；Culture根因与恢复延期保留。下一建议[L3-A单城单class小数基础GPP门禁](../Architecture/v2/P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，**只计划、未授权实现**；无需新K collector，已存在count通知复用。
+[B164当前落地审查](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)区分自动Gameplay、手动原型及旧writer：科研主要本地收益与文化L1已接入；Meaning仍手动单城七域五产出，Culture暂隔离；M／L3／新文化网络与工业／商业新独有体系尚未完成。学术传统已定Owner恢复规则仍留旧暂停分支，是具体适配缺口。此前原语／所测场景PASS保留，不扩大为完整能力落地。
 
-source／live B164.191／modinfo191（runtime source `e09ba9b`，receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE／182 MATCH）；已确认OS游戏退出、旧B163精确restore／stable bridge及两个恢复点，pending marker无、未启动游戏。main稳定B069.96、永久Property／投资／账本／GC不改。不自动进入L3／M／N／U2或正式cutover。
+下一建议[Meaning正式接入计划](../Architecture/v2/P0_L2_Meaning.md#下一建议--意义延展正式接入)：先关闭精准recipient／正常倍率下追加独立／真实结算门禁，再单独授权自动writer及旧GWA cutover；**本轮仅审查和计划，未授权实施**。L3计划后置；社区D无独立实机，合并后续获授权session。无新测试要求，不自动进L3／M／N／U2、工业／商业或学术传统修复；永久Property、收益writer及GC不改。
+
+## S0427 — 四专业落地审查与下一计划纠正
+
+用户要求盘点之前未真正落地的内容并给报告／计划，先不实施。[审查报告](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)核对当前Authority、实际Gameplay／modinfo注册、四专业直接消费者及已有限定结果；不重读全部历史、不从Content统一NOT_IMPLEMENTED或旧总计划进度推断运行状态。学术传统Owner暂停、工业旧折扣与生产复制、商业旧连接类型／20%汇聚、新M项目缺失分别定位；当前未来专业不加入v0.1。
+
+只新增本次报告、完善L2下一建议并同步当前导航和已审阅hash；旧准备计划需要最新Authority revalidation的差异留在报告。既有验收不撤销、未测门禁不升PASS，B164源码／部署标识保持；不实现、不部署、不跑玩法模拟。当前待用户审核正式接入顺序及后续明确批次授权。
 
 ## S0426 — B164定域修复与合并验收边界
 

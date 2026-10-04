@@ -9,7 +9,19 @@ Authority: Spec D0047、Culture D0046已接受规则及Shared D0045保持；用�
 
 [B163五图](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)通过所测Writing五项即时读数，CultureΔ0失败与目录缺口分别记录；[HD调查](../../Reports/Technical/Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)仍是有效反证。B161/B162范围继承，不重新派发六yield或共享cold-load仪式。社区及本批Culture退出原生核对合并到后续获授权session，当前无新USER_GAME_TEST_PASS。
 
-精准recipient、Dialogue／主题化独立、正常结算和正式全城cutover保持门禁。下一建议[L3-A单class基础小数GPP](P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，只准备计划，未获实施授权；不自动M／N／U2。
+精准recipient、Dialogue／主题化独立、正常结算和正式全城cutover保持门禁。[B164落地审查](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)确认当前仍为手动单城原型；下一建议改为[意义延展正式接入](#下一建议--意义延展正式接入)，先关闭剩余原生门禁再单独授权自动writer／旧GWA cutover。L3计划保留但后置；本轮仅调查／计划，不自动L3／M／N／U2。
+
+## 下一建议 — 意义延展正式接入
+
+**状态。** PLAN_ONLY／IMPLEMENTATION_NOT_AUTHORIZED。B164五产出原型不等于正式自动玩法；本节是待审方案，不扩大已完成B164授权。完整四专业盘点、源码差异和顺序见[B164审查报告](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)。
+
+1. **先补真正剩余的门禁。** 复用既有五项单值原语，只核对已支持作品与同class未知对象的精准recipient、正常Dialogue／主题化下追加独立、普通生产等正常结算。先本地确认；无法模拟的native差异尽量合并一session，社区D6／Food3顺带确认。不能以整城拒绝混合馆藏、扩大未知作品资格或HD接管绕过。Culture保持已授权暂延期，不重做既有五yield与共享harness仪式。
+2. **门禁关闭后单独授权正式接入。** 建立所有合格文化城正常加载／资格自动派生的module-owned writer，复用Shared D、K确认通知与输入版本；移除必须P0启用的target依赖。诊断默认只读，旧probe显式DEV互斥；无新永久收益账本。
+3. **精确cutover。** 新writer资格、D/W替换、UNKNOWN及loss路径可靠后退役旧BASE GWA正向写入／精确旧owned，保留必要清理。去掉实验Dialogue0%／100%hold并验证正常共存；新Dialogue项目留M，不偷做。失败不可混写或凭历史收益快照恢复。
+4. **更新及生命周期约束。** 实际同回合变化仍响应、同一可靠输入零重复写；跨城移动更新实际两端，全国变化才扩大。缓存／pending按模块和当前city/reference/version拥有、失效及退出，不加per-frame／hover Gameplay请求、全局新扫描或GC。
+5. **验证与停止。** 剩余门禁批次用L2＋直接退出L3定向；自动接入批次涉及真实初始化／加载／退出改变，才补一次有信息价值的冷加载native整合。不跑全历史／stress。精准recipient／追加独立不能满足Design则停止对应cutover并报告具体边界；不能直接从即时getter PASS推全城上线。
+
+**完成定义。** 不打开P0也按当前事实自动生效；五产出、真实结算、资格变化与旧GWA正式退出已有对应证据。Culture暂延期及目录／对象支持范围明确，不能记九域完整PASS。随后才推荐L3；所有后续实现仍需用户明确授权。
 
 ## 下一最小修复 — 文化隔离与社区D目录
 
