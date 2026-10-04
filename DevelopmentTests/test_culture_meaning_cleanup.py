@@ -6,7 +6,7 @@ load notification; only these tests omit/delay it and model owner collections.
 import unittest
 import test_culture_meaning_probe as legacy
 import test_culture_meaning_l2c as l2c
-import test_culture_meaning_single_value as single
+import test_culture_meaning_final_yields as final
 
 class StartupCleanupTests(unittest.TestCase):
  @classmethod
@@ -16,7 +16,7 @@ class StartupCleanupTests(unittest.TestCase):
  def runtime(self,real=False):
   helper=legacy.MeaningProbeTests();helper.sql=self.sql
   lua=helper.real_sample_runtime(meaning_ready=False) if real else helper.runtime(meaning_ready=False)
-  lua.execute(l2c.HELPERS+single.HELPERS)
+  lua.execute(l2c.HELPERS+final.HELPERS)
   lua.execute(r"""
    -- Native collections contain their owner's cities, not every fixture city.
    local original=Players[0]

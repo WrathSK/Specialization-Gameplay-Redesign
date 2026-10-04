@@ -1,71 +1,44 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_FIVE_YIELD_FINAL_VALUE_PLANNED_NOT_AUTHORIZED；下一建议为五产出单值承载；B161收益及B162定域清理PASS继承，完整L2未通过。
-Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+State: P0_L2C_SIX_YIELD_FINAL_VALUE_LOCAL_COMPLETE_AWAITING_USER；用户已授权，正式全城L2未通过。
+Authority: Culture／Spec D0046恢复两域；Shared D0045不变，用户授权本批单城技术验证。source／live与停止点见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-**下一建议：下方“五产出单值承载”，PLANNED_NOT_AUTHORIZED。** 复用已验Production路径，补Science／Gold／Food／Faith各一个最终值，并验证五项并存；仍是默认OFF、单城可逆probe，不作全城正式cutover。
+用户已授权原五产出单值计划，并明确恢复市政／外交Culture；D0046接受恢复，B163.190六产出单城原型LOCAL完成后待实机。不作全城正式cutover。[本地结果](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md)记录实际测试；运行包与部署receipt独立查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
-[B161](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md)的Writing每件3→5／W2宿主10及signed映射PASS、[B162](../../Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md)本次冷加载／END清理PASS继承；原组合及OFF残留FAIL证据不改，完整L2未通过。报告按[简明结果与按需明细](../../AGENTS.md#用户交付与诊断)；不重复已过冷加载或收益仪式。
+B161 Production3→5／W2=10及B162定域清理／END PASS继承。B155／B157单一Culture3曾失败，不能用Production多片反证宣布文化根因关闭；本批Culture改剧院宿主，是新的技术候选，不移除HD＋2、不补差。精准recipient、倍率隔离、正常结算与正式接入仍有独立门禁。
 
-source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)分别记录。当前仅计划文档，Mod／Design／测试／GC／部署不改；停止等待本切片实施授权，不自动其它能力或正式cutover。
+一次连续session只验六yield最终值、重配、W与END；未改变的共享load算法继承证据，不重复harness冷加载仪式。失败停对应路径；不自动L3／M／N／U2或正式GWA退休，等待本切片用户原生反馈。
 
-## 下一批计划 — 五产出单值承载
+## 已授权切片 — 六产出单值承载
 
-**目标／授权。** 本计划承接B162清理门禁PASS；用户本轮只要求下一步计划，没有实施授权。建议继续P0-L2C，不新建并行batch或永久状态体系。将B161已验的“一个最终值”承载方式扩至其余四yield，取得一次五项并存、重配、W变化与新增目录退出的原生证据。不是完整Meaning、精准recipient或正常结算PASS。
+**授权／Design。** 用户授权前轮五产出计划并追加“把文化再加回来”。D0046仅恢复Government Plaza／Diplomatic Quarter→Culture，取代D0043暂排；K0.5首测、Gold份额3、逐领域Floor→同yield合计→W、作品资格、ACTIVE IV与Dialogue／主题化独立保持，Shared及其它能力不变。设计恢复与原生收益通过分开。
 
-### 当前依据与计算
-
-现source仍只有 `ActiveWriteYields={'PRODUCTION'}`：五yield模型已在 `CultureMeaningModel.Plan` 中，Production用1..10单值，其它分支仍为旧bits；`Probe.View/Describe`、UI `Meaning`、P0Panel及Writing实例名单有Production-only分支，不能只改SQL或开关。旧多片反证见[B158](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md#本次观察)及[B160](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)，不重新测同yield多片方案。
-
-D0045直接条款保持：Culture Identity／Potential≥IV／ACTIVE IV，七领域及K确认作品；每域 `floor(0.5×D×份额)` → 同yield相加 → 总量乘W。Gold份额3，其它1；Theater不贡献，Government／Diplomatic继续暂排，没有Culture／Tourism追加。Shared D／Ordinary／UNKNOWN和作品资格不改。
-
-| 产出 | 领域 | 每件合法范围 | 本批delta |
+| 产出 | 当前领域 | 每件范围 | 技术变化 |
 |---|---|---:|---|
-| 科技 | 学院 | 0..5 | 新单值替代正常bits投影 |
-| 生产力 | 工业区＋军营分别Floor后合计 | 0..10 | 保留B161单值，验证与其它四项并存 |
-| 金币 | 商业中心＋港口分别Floor后合计 | 0..30 | 新单值；不先合并两域D再Floor |
-| 食物 | 社区 | 0..5 | 新单值；只消费当前已确认目录中的D |
-| 信仰 | 圣地 | 0..5 | 新单值 |
+| 科技 | 学院 | 0..5 | 最终值单载体 |
+| 生产力 | 工业区＋军营，各自Floor | 0..10 | B161目录与SQL保持 |
+| 金币 | 商业中心＋港口，各自Floor | 0..30 | 最终值单载体 |
+| 食物 | 社区 | 0..5 | 最终值单载体；不扩Catalog |
+| 信仰 | 圣地 | 0..5 | 最终值单载体 |
+| 文化 | 政府广场＋外交区，各自Floor | 0..10 | 新剧院宿主候选，HD文化共存待验 |
 
-### 最小实施与依赖
+**最小实现。** 保留旧37个精确owned及259附件字节，追加55个final，合计92／644；正常0不建、每yield最多一个、最多6个，不按W选载体、不生成旧bits。S5/G30/Food5/Faith5附市中心；Culture10附剧院（与B155市中心SINGLE3有真实宿主差异），同flat primitive、七原有object附件、无ScalingFactor。P原10个字节保持；固定八阶段Production反证不变。validate仅接受每个精确ID声明的宿主，不接受宽泛任意区域。
 
-1. 复用现单值模式，0不建、正值每yield至多一个；不按W选择载体。仅追加Science5／Gold30／Food5／Faith5，共45个定义，七既有object附件各一个flat整数，无ScalingFactor。现37个精确owned保留供退出／反证，目标82个／574附件；正常最多5个final。Production原10个定义字节保留，旧bits不再进入正常五yield投影，私有固定Production反证入口不变。
-2. `CultureMeaningModel.lua`、`CultureMeaningProbe.lua`、`Data/CultureMeaningProbe.sql`为直接writer范围；逐yield检查唯一最终值／配置等于模型，先确认撤销废弃项再添新，失败不混写。B162首次清理／就绪、逐城失败保护／OFF END算法沿用，精确目录统一扩至新45项。GWA本城hold和Dialogue0%由原模块维护；其正向恢复仍根据当前事实，不重放快照。
-3. `UI/BoostGreatWorkRead.lua`、`UI/P0Panel.lua`、`Text/TestText.sql`（如需caption/key）、`Probe.lua`／modinfo作直接必要适配：普通ADVANCE／READ展示五yield，按需Writing实例名单补齐五yield及旧GWA精确附件，不能掉回旧Culture调查名单。精确当前请求／token／ACK调用点实施前仍须核对；不改公共采样、永久Property、认领、存档格式或AI责任。
-4. 保留原Production单值／B162 cleanup测试与历史断言；新增或扩展当前专用五yield final-value定向测试。旧five-yield bits测试为历史反证，不能改断言让它伪装当前通过。直接依赖已在现manifest中；不新增不存在的测试路径到读取集合，文件实际建立后才登记。
+**生命周期／退出。** 原B162算法沿用：一次startup/load对全部可读城市清92个本模块精确ID，≥1受支持可读城市才CONFIRMED；UNKNOWN/PENDING/FAILED、错误锁停、逐城保护和action-token幂等不降级。正常one-fixture更新先确认旧值撤除再建新值，已损坏wanted先撤再建，失败不混写；92中任何残留阻止旧writer正向恢复。GWA本城exact156 hold、Dialogue当前full-reference 0%，END确认本模块清除才释放，由旧模块按当前事实重算。普通建筑、永久Property／身份／账本／其它城市不清，不回放缓存。
 
-### 可读报告与更新路径
+**事件／分配。** 唯一session、lastPlan／action receipt和标量缓存有明确替换／END／close／load退出；复用Shared D、K与current-facts接口，同回合真实变化响应、重复相同值零写。不加订阅、全城采集、每帧／hover、AI处理、GC或参数改动。新增成本仅one-fixture精确目录37→92与六项按需原生getter；默认ready仍常数gate。原测试的未知作品整城拒绝只是probe保护，不是新Gameplay规则。
 
-默认一张中文简报：测试城／阶段、合格件数；科技、生产力、金币、食物、信仰各行列出每件预期／总量与原生读数或有效差值；异常及下一动作。配置与原生分开，未知写“待确认”，不输出nil／完整reference／无关HD文化明细；不以配置相等自动宣称实机PASS。正常原生基准不是0时，应显示有依据的差值；D／馆藏／回合等使配对基线失效时明确说明，不拿旧基线硬算通过。
+**诊断。** 默认中文六行：每件预期、本城预期、原生差值／绝对值；有效配对不符明确异常。D／W／回合／主题／资格／位置变化使旧baseline失效，不拼造差值或以配置自证。右键每token最多一次完整GetModifiers枚举，仅exact Writing附件与旧GWA六yield、HD著作文化；已核验对象读取实际DistrictType对照载体PrereqDistrict，UNKNOWN／宿主不符／不完整明确保留。主体显示有界实例摘要；完整明细在同token缓存，经既有“写入诊断日志”导出，Show／Copy／END不新增枚举，不保留native句柄。明细12行展开不等于完整集合，撤销判断不因隐藏展开行数误失败。
 
-完整有界实例明细保留在当前请求的技术报告／既有“写入诊断日志”入口；必要时查看同份缓存明细，不重新请求Gameplay或枚举。日志／显示共享同token的一次结果；每显式READ最多一次全局枚举，正常计算／Show／Copy／END不增扫。保留真实读取不完整、归属UNKNOWN、残留／多final等异常；摘要来自已读完整集合，不将隐藏展开行数误当零或完整性失败。范围外实例不误称已检查。
+**本地验证。** W0004 L2＋直接owned/load L3定向：九域Floor反例、六yield各0..max／非法不clamp、92／644／旧prefix、W、同回合只换受影响项、UNKNOWN／reference／confirmed loss／两城、失败恢复／重复token、实际request／K ACK、全部新目录load清理、现存固定Production控制、独立原生fixture及Panel/缓存。外部DB只读→内存，不跑旧full/stress；旧Production-only与bits语义断言保留，只维护精确重建／seed。具体数量以结果为准，LOCAL不证明Civ VI收益或宿主实际落位。
 
-触发仍是单个fixture的显式动作、已确认馆藏／D／ACTIVE／引用变化；复用Shared／K，不新建五套采集。重复可靠输入零写，同回合真实变化响应；新增工作是本次精确目录校验37→82和按需五项读数，不新增城市遍历、per-frame／hover、AI事件GC或参数变更。唯一session／action receipt／有界文本由现模块拥有，换请求／失效／END／close／load按现路径释放；不保留native句柄或无界报告历史。
+**一次最小实机。** 使用已有Culture ACTIVE IV城，最好保留古罗马剧场＋一件支持著作且政府／外交有可读D。用“意义延展·六产出”：左键准备→右键记录基线→左键启用→右键六项差值。Science／Gold／Food／Faith单值与Production并存；Culture必须在HD原值上追加（例如基线4、each2则总6），不能把新配置或Active实例当PASS。文化失败先END，停止该项，不要求四态／倍率／重启或关闭HD复测。
 
-### 本地验证与继承
+初始通过后，同session改一个合格建筑使D跨值，右键确认旧final被新final替换；加第二件支持作品确认each不变且总量翻倍。D／W变化后旧差值配对自然失效，此时比较预期、原生绝对值与唯一实例，不复用旧Δ；需要新差值时才重新准备基线。END→右键确认本模块exact载体／Writing实例无残留，旧writer依当前事实恢复。新目录/剧院宿主的物理退出由本次END覆盖；不改持久化／加载算法，现有原生城市区域载体和B162清理证据只继承对应范围。若原生宿主或退出异常才单独调查受影响路径，不机械加save/load。
 
-W0004 L2＋直接owned/load退出的L3定向断言，不跑历史full／大stress。核对0..5／10／30合法整数及非法值不clamp；82／574精确定义、每yield≤1、非目标yield不生成、旧定义保留。反例工业D1＋军营D1→0而非1；商业D3＋港口D3→8而非9。W0／1／2只乘一次；真实Shared D变化、同回合重复零写、五项联合投影、旧值替换／零值撤除、失败与UNKNOWN／两城隔离、旧writer hold／当前恢复。
-
-补新目录全范围的startup/load残留与END/失败模拟，沿实际Meaning请求／K ACK／reader/current reference；不重写B162算法。复用现Lupa lua55、只读内层DB内存副本及相关reader回归；缺外部依赖如实报告。检查读数过期、迟到回复、简报与明细同token、展开／日志不重扫。STATIC／LOCAL不升级为USER或原生性能PASS。
-
-### 一次最小实机与退出
-
-沿用现有Culture ACTIVE IV测试城和已支持著作；优先一件，五yield各有可读非零来源，使用当前Catalog确认普通建筑，不为fixture扩目录。当前已见该城五yield非零配置，包就绪后按实际D固定预期；无法覆盖某yield就标未测，不凑PASS。一个连续session：
-
-| 步骤 | 用户操作 | 本批新增信息价值 |
-|---|---|---|
-| 1 | 准备基线→启用五项，读简报／巨作收益 | 新Science／Gold／Food／Faith最终值能原生兑现且五项并存；优先含科技3、金币9等非单bit金额，Production为已过路径对照 |
-| 2 | 改一个已支持普通建筑使D跨到另一值，再读 | 该yield旧final被新final替换，未叠加／残留；其余四项按当前事实稳定。跨D的旧差值失效时只使用可信原生基准／绝对值；确有歧义才同session重新配一组基线 |
-| 3 | 加入第二件支持著作，读总量 | 新五yield每件值不变，W2总量正确翻倍；不将total再次逐件应用 |
-| 4 | END，再读 | 新45项对应的本模块效果退出，旧GWA按当前事实恢复；不是再次验证OFF文本或要求总原生值变0 |
-
-不默认启用态保存→手动关闭→冷重启→再启用。B162就绪／load、引用及错误保护算法未改时继承本次已测与相应LOCAL，新增目录由定向模拟和步骤4检验。若实施实际改变了生命周期或出现具体异常，再说明哪处差异不能继承，才调整那个native步骤；不因单纯新增yield机械加冷加载仪式。
-
-通过仅关闭本次五yield整数单值及所测transition门禁；其它作品精准排除、Dialogue／主题化独立、正常回合结算与全城cutover仍分别待计划／授权。probe现“同类未知作品整城拒绝”保护不成为Design。失败停止对应路径，保留原结果，不调整K／Floor／资格或用城市补贴绕过。后续建议顺序为recipient／倍率与结算门禁→正式GWA替换→下一文化能力；本计划不授权自动进入这些项。
-
-本轮只写计划，不创建载体、跑Gameplay模拟、更新build或部署。授权实施后按当前main/develop／W0003流程commit/push并在游戏已退出、精确receipt／staging／恢复／equality通过后部署；保持已知良好恢复点，不启动游戏。下一build在实施时按实际HEAD分配，当前运行基线仍B162.189。
+**退出。** 通过只关闭所测六yield／宿主／替换／W／退出门禁。其它作品精准资格、Dialogue／主题化独立与正常结算另做差异测试，未授权正式全城cutover。保留Culture共存风险；不因候选失败改K、删HD收益、按城市补贴、扩大目录或改Gameplay。部署按W0003已知良好receipt恢复点及安全工具，不启动游戏。
 
 ## 已授权切片 — 加载清理与OFF退出
 
@@ -268,7 +241,7 @@ UI按需可靠theme boolean、分建筑小计与S/G/C实际差值；缓存最多
 
 ## 范围与完整规则
 
-当前D0043仅在D0042上暂排意义延展Government／Diplomatic；逐领域Floor继承D0038，固定追加继承D0041，其它资格／生命周期保持。上方L2A no-rounding与P0-L2B九域为当时历史合同。
+当前D0046恢复意义延展Government／Diplomatic→Culture，取代D0043暂排；逐领域Floor继承D0038，固定追加继承D0041，其它资格／生命周期保持。上方L2A no-rounding与P0-L2B九域为当时历史合同。
 
 只接Culture ACTIVE4的意义延展；每件合格巨作，逐领域追加：
 
@@ -284,8 +257,8 @@ meaning_K=0.5为初版参数；金币一份=3，其它普通产出一份=1。每
 | Harbor | Gold | Admiral |
 | Encampment | Production | General |
 | Holy Site | Faith | Prophet |
-| Government Plaza | 本版暂不参与Meaning | 无 |
-| Diplomatic Quarter | 本版暂不参与Meaning | 无 |
+| Government Plaza | Culture | 无 |
+| Diplomatic Quarter | Culture | 无 |
 | Neighborhood | Food | 无 |
 
 不包括Theater自身。完整作品资格只复用K的已支持七类/历史时代目录；Relic、Product、Wonder及未知定义排除。普通建筑完工/未掠夺、免费/特色及缺Tier规则按Shared；不使用旧BASE相邻、旧Actual复制或额外填值。例：Campus D10→每件5Science，Industry D6→3Production，Commercial D3→floor(4.5)=4Gold；不先按份额Floor，也不先合并Harbor。

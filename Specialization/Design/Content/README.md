@@ -11,7 +11,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 ## D0028共享入口
 
-[Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0045.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0046.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 
@@ -104,3 +104,5 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 ## D0038 Culture Meaning Extension Floor — retained base
 
 [Culture D0038](Culture_D0038.json)在D0029基础上仅明确意义延展：每领域先换算为实际产出并分别Floor，之后同yield相加，最后乘合格巨作件数W。系数0.5、金币份额3、领域与作品资格、原生产出倍率隔离保持；不外推GPP。D0029原件与旧Shared引用保留，按当前Spec的D0035覆盖声明解释；其它primitive及完整运行切换未接受。
+
+D0046仅恢复意义延展政府广场／外交区的文化输入；其它专业／Shared仍D0045，Culture原生共存门禁未自动通过。

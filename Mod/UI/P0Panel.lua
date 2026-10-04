@@ -74,14 +74,15 @@ local function displayResponse()
       if c and v and v.token==pendingToken then
         local ref=SPCNetworkInput.Reference(c);local turn=Game.GetCurrentGameTurn()
         local selected=UI.GetHeadSelectedCity()
-        local selectedMatch=not (v.diagnostic or v.productionOnly) or selected and selected:GetOwner()==c:GetOwner() and SPCNetworkInput.Reference(selected)==ref
+        local selectedMatch=not (v.diagnostic or v.productionOnly or v.finalValues) or selected and selected:GetOwner()==c:GetOwner() and SPCNetworkInput.Reference(selected)==ref
         if meaningResponseToken~=pendingToken and selectedMatch then
           if v.diagnostic then
             meaningResponseText=SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE',pendingToken,meaningReadReference,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ')
           else
             meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')
-            if v.productionOnly and pendingAction=='CULTURE_MEANING_READ' then
-              meaningResponseText=meaningResponseText..'\n'..SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
+            if (v.productionOnly or v.finalValues) and pendingAction=='CULTURE_MEANING_READ' then
+              local detail=SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
+              meaningResponseText=meaningResponseText..'\n'..(v.finalValues and SPCBoostGreatWorkRead.ModifierSummary(pendingToken) or detail)
             end
           end
           meaningResponseToken=pendingToken;meaningResponseReference=ref;meaningResponseTurn=turn
@@ -89,7 +90,7 @@ local function displayResponse()
         if selectedMatch and ref==meaningResponseReference and ref==v.reference and turn==meaningResponseTurn then
           report=report..'\n'..meaningResponseText
         else
-          SPCBoostGreatWorkRead.ClearMeaningRead()
+          SPCBoostGreatWorkRead.ClearMeaningRead();SPCBoostGreatWorkRead.ClearModifierRead()
           meaningResponseToken=pendingToken;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil -- Consume stale token; never replay or rescan it.
           report=report..'\n本次原生报告已过期；重新右键读取，不复用旧差值。'
         end
@@ -253,7 +254,7 @@ end
 local function copy()
   if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then
     if displayResponse() and localReport then
-      print('[SPC][MEANING_READ] '..P.VERSION..'\n'..localReport)
+      print('[SPC][MEANING_READ] '..P.VERSION..'\n'..localReport..'\n'..(SPCBoostGreatWorkRead.ModifierDetails(pendingToken) or ''))
       status('本次诊断报告已写入Lua.log；也可直接截图。')
     else status('尚无本次意义延展回复；请稍后重新右键读取。')end
     return

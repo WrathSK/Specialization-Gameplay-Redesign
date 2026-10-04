@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0045
+Latest Accepted Design Revision: D0046
 Document State: ACCEPTED
+
+## Accepted D0046 — 2026-10-04
+
+Acceptance: ACCEPTED / Meaning-only Culture domain restoration
+Acceptance Evidence: 用户“把文化再加回来，然后授权实施”。仅恢复Government Plaza／Diplomatic Quarter→Culture；当前九域六产出，取代D0043暂排。
+Accepted Spec SHA256: 3ed49ed7f047e7e02fd35d0bf1451fd6d75a41878349d4517c8c3cd10770cc09
+Canonical Culture Content SHA256: ce8a1ec8b6cbef511d2ae88988bfa0c772f76d9c646ea1d6f32f02a9d279d4cc
+Previous Accepted Revision: D0045
+Frozen D0045: [原文](Revisions/Specialization_Design_Spec_D0045.md)
+Content: [Culture D0046](Content/Culture_D0046.json) / [文化阅读版](Culture.md)；其它专业、Shared原件不变。
+
+K0.5首测、逐领域Floor→同yield相加→W、份额、作品资格、ACTIVE IV、Dialogue／主题化不放大追加均保持。用户同时授权单城六产出最终值原型；不等于正式全城cutover或原生收益已通过。[B155/B157文化反证](../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留；多片Production失败不能证明Culture单片共存已解决，技术门禁独立记录于[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。没有新名称、数值或其它玩法变化。
 
 ## Accepted D0045 — 2026-10-03
 

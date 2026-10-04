@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "967b79e78230a6e6e5bde43e3497b030e595e40e8a1989adbae76ad40d1f91bd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
-      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
+      "sha256": "9a55f88a33ff706360224a52de16e2d03f72da477aed18c8269e052ebcc51bb5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cc73c84c3c663a3678d2a988780cd97a693000afcdf145446f0d69d32015b666",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
-      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
+      "sha256": "61e2b73091e5760293dcc3ac45371c1bc83140d9b5ede60a25417e384bf93b5f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "33d1a7a68693eb712292d184e3385e249e4870df8995523b8387b0b4f747d7e4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "2da6ad6b269717445c3fcdec67563f7df65c75ff946e522e2ccee2e9c33d4bc2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "1bcc101d566b81d64bf2f4baec10a93358c6ff2a4ee5efb78549f2b3dc31c1a4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
-      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
+      "sha256": "dc395fbd40d9d47da1e2e543efe7db74f31b98aa35630a26ab70bf740b749a8e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "d830da6579ba868436fbf28fa9fcb5cd8e64cd99549c28e7c9ba80d3c5a579da",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "3693e7057e51daa6a6fb6093bbf1509c6fa2e6566f82c8f43f88dcdedbb31877",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
@@ -901,19 +901,19 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "8f5d8bf08f3b455d3f96b6d0b60be1ab2a99ff3324e5e126fa4b70928acf399f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "4c07e172472f0b38518ad9be9d214cfc0917205f3aa64223d350916595c49290",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "c230ef3ec822aa4bfac7390d6ca478878c1a94dc6efeec18a20e438dc4da3ddf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
-      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
+      "sha256": "3bb84956a6c3afb81ddc9195727efd55951803c32b3b1025f3379bd4cabec939",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
-      "sha256": "ca5a7a9dd2fefdc9be4fdc13fc6b9fa4f7b4df2bcb459fc5760fc1c369264092",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "963da6b8bdfbff5d63a5f04b7414f5fe109c02c5bc3fe43ac2a75fcd2686f024",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     }
   }
 }

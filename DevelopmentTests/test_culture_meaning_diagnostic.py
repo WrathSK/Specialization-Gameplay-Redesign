@@ -22,8 +22,8 @@ FIXTURE = r"""
 -- cleanup responsibility. Do not mutate historical five-yield writer tests.
 function seedAllMeaning(c)
  for _,name in ipairs(SPCCultureMeaningModel.Owned)do building(c,name,c.ds[1])end
- assert(#SPCCultureMeaningModel.Owned==37)
- local n=0;for _ in pairs(exactMeaning(c))do n=n+1 end;assert(n==37)
+ assert(#SPCCultureMeaningModel.Owned==92)
+ local n=0;for _ in pairs(exactMeaning(c))do n=n+1 end;assert(n==92)
 end
 sampleRequest(1)
 assert(shared.GreatWorkFacts.Summary(0,1).count==1)
@@ -367,7 +367,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    seedAllMeaning(a)
    local damaged=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_PRODUCTION_1.Index;a.pillaged[damaged]=true
    local before=writes;local v=probe.View(0,a,true)
-   assert(v.diagnostic and v.diagnosticStage=='OFF' and v.remainingOwned==37 and #v.diagnosticCarriers==37)
+   assert(v.diagnostic and v.diagnosticStage=='OFF' and v.remainingOwned==92 and #v.diagnosticCarriers==92)
    local seen={};for _,part in ipairs(v.diagnosticCarriers)do
     assert(not seen[part.name]);seen[part.name]=true
     assert(part.yield and type(part.amount)=='number' and type(part.pillaged)=='boolean')

@@ -53,6 +53,7 @@ def database():
  carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6),('CULTURE',4),('PRODUCTION',4),('FOOD',3),('FAITH',3)]for bit in range(bits)]
  carriers += ['BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3','BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3_SCALE100','BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3']
  carriers += [f'BUILDING_SPC_MEANING_PROBE_PRODUCTION_VALUE_{n}' for n in range(1,11)]
+ carriers += [f'BUILDING_SPC_MEANING_PROBE_{y}_VALUE_{n}' for y,limit in [('SCIENCE',5),('GOLD',30),('FOOD',5),('FAITH',5),('CULTURE',10)] for n in range(1,limit+1)]
  modifiers=[b.removeprefix('BUILDING_')+'_'+cat for b in carriers for cat in ['WRITING','MUSIC','SCULPTURE','PORTRAIT','LANDSCAPE','RELIGIOUS','ARTIFACT']]
  for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:
   d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
@@ -129,7 +130,7 @@ class MeaningProbeTests(unittest.TestCase):
     end end
     local diagnostic=SPCCultureMeaningModel.DiagnosticSingle3
     if y=='PRODUCTION' and diagnostic and c.present[GameInfo.Buildings[diagnostic.name].Index]then n=n+diagnostic.amount end
-    if y=='PRODUCTION' then for _,part in ipairs(SPCCultureMeaningModel.ProductionValues)do
+    if SPCCultureMeaningModel.FinalValues then for _,part in ipairs(SPCCultureMeaningModel.FinalValues[y])do
      if c.present[GameInfo.Buildings[part.name].Index]then n=n+part.amount end
     end end
     return n

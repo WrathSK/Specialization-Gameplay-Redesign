@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="189">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="190">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B162.189: Meaning startup/load exact-owned cleanup readiness before legacy projection; readonly pending/failure diagnostics and scoped OFF-END recovery. Production formula, carrier definitions, Design and GC unchanged.</Description>
+    <Description>B163.190: one-city six-yield final-value Meaning gate; Government/Diplomatic Culture restored with Theater-host candidate, readable native deltas and cached exact detail. No formal cutover or GC change.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

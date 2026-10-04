@@ -1,0 +1,703 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0046",
+  "specialization": "CULTURE",
+  "document_state": "ACCEPTED",
+  "freeze_status": "DESIGN_FROZEN",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "balance_validation": "PENDING",
+  "shared_contract_ref": "Shared_D0045.json",
+  "supported_locales": [
+    "zh_CN"
+  ],
+  "reference_locales": [
+    "en_US"
+  ],
+  "institutions": [
+    {
+      "institution_id": "CUL_INST_1",
+      "specialization": "CULTURE",
+      "level": 1,
+      "name": {
+        "zh_CN": "文艺同好会",
+        "en_US_reference": null
+      },
+      "description": {
+        "zh_CN": "创作者与爱好者因共同的艺文兴趣形成稳定社群，构成城市文化专业化的基础。",
+        "en_US": null
+      },
+      "potential_requirement": 1,
+      "existence_active_requirement": null,
+      "ability_ids": [],
+      "status": "USER_CONFIRMED",
+      "notes": "Cumulative permanent Potential institution; presentation-only, not engine Building. Each explains only own stage additions."
+    },
+    {
+      "institution_id": "CUL_INST_2",
+      "specialization": "CULTURE",
+      "level": 2,
+      "name": {
+        "zh_CN": "赞助人行会",
+        "en_US_reference": null
+      },
+      "description": {
+        "zh_CN": "稳定的资助、委托与社会支持，使文学、艺术与音乐创作成为持续的城市事业。",
+        "en_US": null
+      },
+      "potential_requirement": 2,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "CUL_L2_PATRONAGE"
+      ],
+      "status": "USER_CONFIRMED",
+      "notes": "Cumulative permanent Potential institution; presentation-only, not engine Building. Each explains only own stage additions."
+    },
+    {
+      "institution_id": "CUL_INST_3",
+      "specialization": "CULTURE",
+      "level": 3,
+      "name": {
+        "zh_CN": "人文联合会",
+        "en_US_reference": null
+      },
+      "description": {
+        "zh_CN": "作品不再只属于创作当下；历史不断赋予新的理解，艺术也逐渐塑造整座城市的审美。",
+        "en_US": null
+      },
+      "potential_requirement": 3,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "CUL_L3_DIALOGUE",
+        "CUL_L3_AESTHETIC"
+      ],
+      "status": "USER_CONFIRMED",
+      "notes": "Cumulative permanent Potential institution; presentation-only, not engine Building. Each explains only own stage additions."
+    },
+    {
+      "institution_id": "CUL_INST_4",
+      "specialization": "CULTURE",
+      "level": 4,
+      "name": {
+        "zh_CN": "博雅总院",
+        "en_US_reference": null
+      },
+      "description": {
+        "zh_CN": "成熟的人文体系从社会各领域理解文化，让巨作启发未来人才，并主动走向其它文明拓展自身视野。",
+        "en_US": null
+      },
+      "potential_requirement": 4,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "CUL_L4_MEANING",
+        "CUL_L4_INSPIRE",
+        "CUL_L4_EXPEDITION"
+      ],
+      "status": "USER_CONFIRMED",
+      "notes": "Cumulative permanent Potential institution; presentation-only, not engine Building. Each explains only own stage additions."
+    }
+  ],
+  "base_effects": [
+    {
+      "effect_id": "CUL_BASE_SUPPORT",
+      "institution_id": "CUL_INST_1",
+      "specialization": "CULTURE",
+      "level": 1,
+      "name": null,
+      "tooltip": {
+        "zh_CN": "每名正在工作的文化专家额外获得3点食物和3点生产力，各专业等级均保持此加成。",
+        "en_US": null
+      },
+      "mechanical_contract": "Additional3Food+3Production per working Culture specialist, ACTIVE1–4. Native specialist yields separate; no Lv3 upgrade.",
+      "input_facts": [
+        "working Culture specialists",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "specialist Food",
+        "specialist Production"
+      ],
+      "active_requirement": 1,
+      "potential_requirement": 1,
+      "status": "USER_CONFIRMED"
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "CUL_L2_PATRONAGE",
+      "institution_id": "CUL_INST_2",
+      "specialization": "CULTURE",
+      "level": 2,
+      "name": {
+        "zh_CN": "文艺赞助",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "每名正在工作的文化专家额外提供大作家、大艺术家和大音乐家基础点数各2点，并正常受到伟人点数百分比加成。剧院广场及其每一级建筑各提供1点住房。",
+        "en_US": null
+      },
+      "mechanical_contract": "Retain SHARED-001/002 Culture branch, shared pillage eligibility; one package.",
+      "input_facts": [
+        "working Culture specialists",
+        "eligible theater/building tiers",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "Housing",
+        "three cultural base GPP"
+      ],
+      "active_requirement": 2,
+      "potential_requirement": 2,
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "dynamic_fields": [],
+      "notes_compatibility": "Use shared facts/events/bounded reconciliation; no periodic per-second scans."
+    },
+    {
+      "ability_id": "CUL_L3_DIALOGUE",
+      "institution_id": "CUL_INST_3",
+      "specialization": "CULTURE",
+      "level": 3,
+      "name": {
+        "zh_CN": "时代对话",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "每个游戏时代可通过同名城市项目重新诠释本城馆藏一次。项目需连续占用一个完整城市生产回合；完成时，每个不同馆藏时代使城市永久累计5个百分点的巨作原生产出倍率，历次相加，不设置额外累计上限。累计倍率与已用启动时代额度随城保留，仅当前文化身份且启用三级能力时生效；离开文化身份后不能开始新对话。",
+        "en_US": null
+      },
+      "mechanical_contract": "contracts.dialogue; X=current distinct eligible work eras at successful completion; gain=5 percentage points*X; total=sum gains, with no additional cumulative cap. Only native yields, excludes Meaning Extension additions.",
+      "input_facts": [
+        "eligible works eras",
+        "start GameEra",
+        "project continuous production-turn completion",
+        "city-scoped dialogue ledger",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "city historical accumulated native GreatWork percentage; current Culture ACTIVE3 effect gate"
+      ],
+      "active_requirement": 3,
+      "potential_requirement": 3,
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "dynamic_fields": [
+        "collection_era_count",
+        "prospective_gain",
+        "cumulative_modifier",
+        "start_era_used",
+        "preferred_or_fallback_target"
+      ],
+      "notes_compatibility": "Use shared facts/events/bounded reconciliation; no periodic per-second scans."
+    },
+    {
+      "ability_id": "CUL_L3_AESTHETIC",
+      "institution_id": "CUL_INST_3",
+      "specialization": "CULTURE",
+      "level": 3,
+      "name": {
+        "zh_CN": "风雅熏陶",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "本城典藏的不同时代巨作塑造城市审美。每个不同巨作时代，使本城每座合格普通建筑产生1点旅游业绩；被掠夺建筑不计入，地块改良设施不适用。",
+        "en_US": null
+      },
+      "mechanical_contract": "Each current eligible ordinary building gains Tourism=1*current distinct eligible work eras. Not per work count; no historical maximum.",
+      "input_facts": [
+        "current work era diversity",
+        "ordinary eligible buildings",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "building Tourism"
+      ],
+      "active_requirement": 3,
+      "potential_requirement": 3,
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "dynamic_fields": [
+        "era_count",
+        "tourism_per_building"
+      ],
+      "notes_compatibility": "Use shared facts/events/bounded reconciliation; no periodic per-second scans."
+    },
+    {
+      "ability_id": "CUL_L4_MEANING",
+      "institution_id": "CUL_INST_4",
+      "specialization": "CULTURE",
+      "level": 4,
+      "name": {
+        "zh_CN": "意义延展",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "本城其它专业领域从不同角度诠释巨作。纳入学院、工业区、商业中心、港口、军营、圣地、社区、政府广场和外交区；后两者代表文化。每个合格领域每有1点区域基础设施深度，每件合格巨作便获得0.5份该领域代表产出；金币每份为3点。各领域先换算为实际产出并分别向下取整，再将同产出领域相加，最后按合格巨作件数计算总追加量。追加值独立计算，不受时代对话或主题化放大。",
+        "en_US": null
+      },
+      "mechanical_contract": "For each eligible domain d in contracts.meaning_domains.included, per_work_d=floor(0.5*Shared.DomainDevelopment(d)*Shared.YIELD_SHARE(yield_d)); per_work_y=sum(per_work_d for domains mapped to y); total_y=per_work_y*eligible work count W. Floor after per-domain share conversion, before same-yield addition and W; Meaning Extension only, not GPP. Meaning additions remain independent of Great Work yield amplification: neither Dialogue nor theming amplifies them. Government Plaza and Diplomatic Quarter are restored as Culture sources by user decision D0046. No Tourism output. Native Culture coexistence, recipient, multiplier isolation and settlement remain technical gates, not inferred PASS.",
+      "input_facts": [
+        "eligible GreatWorks",
+        "domain development",
+        "domain mapping",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "additional per-work mapped yields"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "dynamic_fields": [
+        "domain",
+        "development",
+        "shares",
+        "yield_amount_per_work"
+      ],
+      "notes_compatibility": "Use shared facts/events/bounded reconciliation; no periodic per-second scans."
+    },
+    {
+      "ability_id": "CUL_L4_INSPIRE",
+      "institution_id": "CUL_INST_4",
+      "specialization": "CULTURE",
+      "level": 4,
+      "name": {
+        "zh_CN": "巨作启迪",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "巨作启发不同领域未来的杰出人才。每件合格巨作，为对应领域提供其区域基础设施深度×0.1的基础伟人点数，正常受到伟人点数百分比加成；不产生大作家、大艺术家或大音乐家点数。",
+        "en_US": null
+      },
+      "mechanical_contract": "Per mapped noncultural GP domain: baseGPP/turn=0.1*Shared.DomainDevelopment(d)*eligible work count. Include Prophet; no custom overflow conversion. No per-domain/per-work intermediate floor is imposed by Design. Fractional native GPP carriage is TECHNICAL_INVESTIGATION_REQUIRED; if the engine ultimately requires an integer, assess the actual final native path later without changing this formula.",
+      "input_facts": [
+        "eligible work count",
+        "domain development",
+        "GPP mapping",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "ongoing base GPP/turn"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "dynamic_fields": [
+        "domain_development",
+        "work_count",
+        "base_gpp_by_class"
+      ],
+      "notes_compatibility": "Use shared facts/events/bounded reconciliation; no periodic per-second scans."
+    },
+    {
+      "ability_id": "CUL_L4_EXPEDITION",
+      "institution_id": "CUL_INST_4",
+      "specialization": "CULTURE",
+      "level": 4,
+      "name": {
+        "zh_CN": "人文考察团",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "文化四级可以训练人文考察团，生产成本等于当前间谍生产成本。当前玩家全国同时最多存在1支，来源退出或等待重新挂靠的现存单位仍计入。前往其它文明开展风土考察、艺文采撷和奇观巡礼；标准速度每项任务2回合，部署耗时另算。每个来源城市对每个外国文明的每类考察只能成功完成一次，每次获得1份文化见闻，使来源文化四级城市整体旅游业绩增加2个百分点，并可通过国内文化网络传播其价值。考察完成后单位保留，可继续考察；不能被敌方捕获或转换Owner。",
+        "en_US": null
+      },
+      "mechanical_contract": "Train non-hostile expedition at ACTIVE4 with cost exactly equal to current Spy production cost and Player-wide existing-Team cap1. All surviving own Teams count, including source-exited or waiting-reattachment units; check before new training, no automatic deletion of surviving units. contracts.expedition/observations govern independent unit use, source-transfer abort and free archive reattachment; source downgrade/Identity exit/REALLOCATING do not revoke existing missions. Shared professional-unit protection applies; no enemy capture or Owner conversion.",
+      "input_facts": [
+        "training city ACTIVE",
+        "current player nationwide existing Expedition Teams, including source-exited/waiting-reattachment units",
+        "current Spy production cost",
+        "foreign target eligibility",
+        "city historical sourceCity/foreignCivilization/insightCategory ledger and current-owner effective filter",
+        "deployment and mission completion"
+      ],
+      "output_effects": [
+        "unit",
+        "observations",
+        "source-city Tourism multiplier"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "USER_CONFIRMED_IMPLEMENTATION_PENDING",
+      "dynamic_fields": [
+        "observation_count",
+        "completed_civilizations",
+        "city_tourism_modifier",
+        "foreign_category_completion",
+        "production_cost",
+        "player_wide_existing_teams",
+        "player_wide_cap",
+        "training_available"
+      ],
+      "notes_compatibility": "Use shared facts/events/bounded reconciliation; no periodic per-second scans."
+    }
+  ],
+  "parameters": {
+    "dialogue_K_percent": {
+      "value": 5,
+      "status": "INITIAL_BALANCE_VALUE"
+    },
+    "dialogue_cap": {
+      "value": "NO_ADDITIONAL_CAP",
+      "status": "USER_CONFIRMED",
+      "scope": "Dialogue gains add permanently; no extra cumulative cap. This is an explicit no-cap rule, not an unknown/null balance value."
+    },
+    "aesthetic_K": {
+      "value": 1,
+      "status": "INITIAL_BALANCE_VALUE"
+    },
+    "meaning_K": {
+      "value": 0.5,
+      "status": "INITIAL_BALANCE_VALUE"
+    },
+    "GPP_K": {
+      "value": 0.1,
+      "status": "DESIGN_VALUE_TECHNICAL_CONFIRMATION_REQUIRED"
+    },
+    "observations_tourism_K_percent": {
+      "value": 2,
+      "status": "USER_CONFIRMED_V0_1_FIRST_TEST_VALUE",
+      "unit": "percentage points per current effective Insight",
+      "scope": "Additive overall source-city Tourism modifier, not nationwide Tourism multiplication; 33 effective Insights give +66% to that city."
+    },
+    "network_culture_K": {
+      "value": 1,
+      "status": "INITIAL_BALANCE_VALUE"
+    },
+    "mission_base_turns": {
+      "value": 2,
+      "status": "INITIAL_BALANCE_VALUE"
+    },
+    "expedition_cost": {
+      "value": "current Spy production cost",
+      "status": "USER_CONFIRMED_V0_1_FIRST_TEST_VALUE",
+      "scope": "Exactly equal to current Spy production cost under the current game rules; no independently guessed fixed cost or speed-cost schedule."
+    },
+    "expedition_player_wide_cap": {
+      "value": 1,
+      "status": "USER_CONFIRMED_V0_1_FIRST_TEST_VALUE",
+      "scope": "Current player nationwide existing Expedition Teams, not per city/source/mission. All surviving Teams count, including source-exited or awaiting-reattachment units. Check before training a new Team; do not silently delete surviving existing units."
+    }
+  },
+  "contracts": {
+    "work_pool": {
+      "included": [
+        "WRITING",
+        "MUSIC",
+        "SCULPTURE",
+        "PORTRAIT",
+        "LANDSCAPE",
+        "RELIGIOUS",
+        "ARTIFACT"
+      ],
+      "excluded": [
+        "RELIC",
+        "PRODUCT",
+        "Wonder",
+        "unknown Mod works/types"
+      ],
+      "known_definition": "Use recognized, explicitly supported work definitions; matching broad object category alone does not auto-admit unknown Mod works.",
+      "era": "Historical era belonging to the work; current loaded data has GreatWorks.EraType for all supported categories; creator association can provide validated equivalent semantics. Artifact own era. Unknown/unreliable work metadata excluded, never player/current/acquisition era substitution."
+    },
+    "domains": [
+      "DISTRICT_CAMPUS",
+      "DISTRICT_INDUSTRIAL_ZONE",
+      "DISTRICT_COMMERCIAL_HUB",
+      "DISTRICT_HARBOR",
+      "DISTRICT_ENCAMPMENT",
+      "DISTRICT_HOLY_SITE",
+      "DISTRICT_GOVERNMENT",
+      "DISTRICT_DIPLOMATIC_QUARTER",
+      "DISTRICT_NEIGHBORHOOD"
+    ],
+    "dialogue": {
+      "quota": "One successful completion per City x START Game Era, independent of owner. Owner change does not reset used quota. X=0 allowed, successful completion consumes opportunity. No banking unspent past eras.",
+      "duration": "Exactly one full uninterrupted city production turn regardless of Production or overflow; interruption restarts full continuous turn requirement, no low-cost substitute.",
+      "sample": "Era diversity sampled on completion, not start.",
+      "accumulation": "Add permanent percentage points with no additional cumulative cap; total=sum successful gains. City state not individual work state; new works benefit, departed works carry nothing. Retained history is not an unconditional current effect; follows A city historical lifecycle.",
+      "active": "Current Culture Identity and ACTIVE>=3 required for accumulated effect. Governor departure/ACTIVE<3 retain history and pause effect; Identity exit retains history, pauses effect and disallows new Dialogue. Unsupported owner freezes use/growth. Pending project cancellation is separately governed by pending_transaction; retained successful history is never unfinished progress.",
+      "ownership": "A city historical legacy: accumulated successful modifier and used City x START Game Era quota/deduplication follow the persistent city, never original-owner copies. Any enabled owner meeting current Culture Identity/ACTIVE3 may use retained history; Owner change never resets used quota.",
+      "target": "DESIGN_PREFERRED all eligible Great Work NATIVE yields incl Tourism; never Meaning Extension appended yields.",
+      "fallback": "If reliable city-level all-native path unavailable, allowed Tourism-only technical fallback must be reported and distinguished before adoption; native-only restriction still applies.",
+      "precision": "Native floor accepted for this percentage effect; no compensation layer. Always display accumulated percentage even if no integer yield increment.",
+      "pending_transaction": {
+        "history_transition": "Only full uninterrupted production turn AND successful permanent commit enters A city history.",
+        "cancel_triggers": [
+          "Governor departure causing insufficient ACTIVE",
+          "Culture ACTIVE<III",
+          "Culture Identity exit",
+          "REALLOCATING",
+          "Owner change",
+          "normal production interruption"
+        ],
+        "cancellation": "Cancel current progress; no permanent modifier, no successful START Game Era quota, no stored half-progress. Requalification permits a new full turn only if era still legal. Never pause-and-resume an incomplete turn.",
+        "after_commit": "Successful modifier/quota follow existing A city history, not pending cancellation."
+      }
+    },
+    "expedition": {
+      "training": "Culture ACTIVE4. Cost exactly equals current Spy production cost; check current player nationwide existing-Team cap1 before new training. All surviving own Teams count, including source ACTIVE decline/Identity exit/REALLOCATING and waiting-reattachment units; not per city/source/mission, no automatic inherited Spy capacity or silent deletion of surviving units. Deployment copies Spy distance/time relationship, not map walking.",
+      "source": "Initially bound to training city as report archive. Completed unit remains usable through source Governor/ACTIVE decline, Culture Identity exit or REALLOCATING. Successful mission credits currently valid bound archive city; current city effects require its normal Culture gate.",
+      "mission_success": "Deterministic success for valid missions; no espionage failure/capture/death/diplomatic penalties.",
+      "after_success_unit": "Retain unit, allow redeployment and other unfinished missions; user confirmed.",
+      "duration": "floor(2 * game speed turn-duration multiplier relative to Standard); deployment additional; do not add unapproved minimum or round convention.",
+      "diplomacy": "Met, living other Major Civilization plus mission-specific valid target. City-States explicitly excluded in first version with future expansion candidate; Free Cities excluded as non-stable cultural subjects. No Open Borders, Embassy, Alliance, foreign or domestic Trade Route, or other added diplomatic permission.",
+      "war_transition": "War permits deployment, mission start, continuation and successful completion. Declaration of war alone never cancels mission. Non-hostile deterministic success, no capture/death/espionage failure/diplomatic penalty remain. Any engine-forced recall/reset is TECHNICAL_INVESTIGATION_REQUIRED / IMPLEMENTATION_LIMITATION, not a Design exception.",
+      "target_invalidation": "If target loses required works, current capital changes, city changes owner or civilization eliminated: cancel with no gain/no successful quota consumption; retain unit for redeployment. War itself is not target invalidation.",
+      "presentation": "Deployment/Target/Mission UI target; show foreign civ three category completion states, no automatic Spy capacity inheritance.",
+      "source_owner_change": {
+        "unit": "Keep original Owner unit; no transfer/deletion.",
+        "mission": "Immediately abort unfinished mission, no incomplete record.",
+        "binding": "Old report-archive binding invalid; await reattachment, no new missions until valid. Never write new Insights to transferred old source."
+      },
+      "reattachment": {
+        "target": "Any own city with Culture Identity; no high ACTIVE or unit-training-tier requirement.",
+        "cost": "Free and unlimited; reassignment of report archive, not retraining.",
+        "result": "After reattachment may start new missions; successful new records belong to new bound source city under its category quota. No eligible city: unit survives, cannot start mission.",
+        "ui": "Governor relocation/city-selection interaction is a technical candidate only, not selected implementation."
+      },
+      "direct_unit_capture": "Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE/G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING/professional_unit_protection: Expedition Teams cannot be captured by enemies or converted to another Owner; interactions otherwise causing capture/elimination use protective withdrawal/safe return. Native interface choice is TECHNICAL_INVESTIGATION_REQUIRED, not a Gameplay ownership TBD. Source-owner-change mission abort/original-Owner unit retention/free reattachment remains the higher-priority specific lifecycle; source transfer never grants the unit to the new Owner.",
+      "player_wide_cap": {
+        "parameter_ref": "parameters.expedition_player_wide_cap",
+        "count": "All currently existing Expedition Teams of the current player, regardless of training source, current source qualification, mission state or reattachment state. Source-owner-change units retained by original Owner still count for that Owner.",
+        "training_gate": "A new Team may be trained only when the player currently has no existing Expedition Team; the v0.1 cap is1. Existing Teams are not consumed on successful missions or silently cleared to permit training.",
+        "balance_rationale": "Conservative first test: parallel Teams would accelerate complete-civilization sets; any later relaxation requires Balance Validation and user-approved revision."
+      }
+    },
+    "observations": {
+      "unique_key": "D0040 replaces original-owner key: (sourceCity, foreignCivilization, insightCategory). Owner is not record ownership or uniqueness key. Each source city retains one successful record per civilization/category across transfers; successful mission credits currently valid bound archive city; after E3 reattachment new reports use new source, never transferred old source.",
+      "award": "Each first successful key awards1 nonspendable/nontradeable observation.",
+      "theoretical_max": "One record per source city x civilization x category, no Owner reset/era reset/cooldown/infinite repetition. 3*N is the corresponding effective foreign-civilization range, not a promise that changing Owner grants new quota. Historical total and current effective count are distinct; foreign civilization later dying does not erase history.",
+      "ownership": "A city historical legacy: Culture Insights and completed categories follow the persistent source city. ACTIVE/Governor decline and Culture Identity exit retain history; effects follow current Culture gates. Unsupported owner freezes use/growth. Any enabled owner requalifies using same city ledger, not original-owner copy; receiver acquires no history.",
+      "tourism": "With supported current owner, Culture Identity and ACTIVE>=4: additive overall city Tourism modifier = 2 percentage points * current effective Insights count after current-owner own-civilization filter. Historical total alone is not effective total. K_T=2% is the accepted v0.1 first-test value; 33 effective Insights give this source city +66%, never nationwide Tourism *1.66.",
+      "completed_civ": "A civilization enters source S_i only if this source city ledger individually contains all3 categories and civilization is not current Owner own civilization. No owner sub-ledger and no partial cross-source assembly.",
+      "current_owner_filter": "Effective Insights = city historical Insights minus records concerning current Owner own civilization. Exclude only from current effect and completed-civilization payload, never physically delete history or reset category quota. Later Owner changes reinclude records when that civilization is foreign again."
+    },
+    "network_effect": {
+      "slot": "Separate from ability packages; domestic existing topology, no foreign trade route required.",
+      "source": "Valid current Culture ACTIVE4 source uses city historical Insights under current supported owner; downgrade/Identity exit retains history but withdraws current source qualification. Apply current-owner own-civilization filter.",
+      "payload": "Each source i forms S_i from civilizations individually completed People+Works+Places in its city history, excluding current Owner own civilization. Never combine partial records across sources; effective filtered S_i is the payload, not raw historical total.",
+      "receiver": "Only working specialists corresponding to receiver single specialization Identity; not all specialists; no Identity means no matching beneficiary.",
+      "formula": "Additional Culture per eligible working specialist=K_C*C_receiver; K_C=parameters.network_culture_K (currently1).",
+      "merge": "S_receiver=union(S_i for all currently valid connected Culture sources i); C_receiver=cardinality(S_receiver). Same civilization counted once. No sum of source counts and no max-source rule.",
+      "ownership": "Receiver does not acquire observations, cannot re-export as own payload; existing authorized center distribution topology retained.",
+      "replaces": "Old Culture Eureka boost withdrawn from new Design. Research Inspiration network retained pending NETWORK_REDESIGN_REQUIRED."
+    },
+    "meaning_multipliers": {
+      "current_rule": "D0041 latest user direction: Meaning additions stay independent; neither Dialogue nor theming amplifies them. Original native work yields retain their own normal effects.",
+      "source_boundary": "All current Meaning additions, including restored Government Plaza and Diplomatic Quarter Culture, are excluded from Dialogue/theming amplification. Shared YieldType never turns appended yields into native yields.",
+      "amount": "Existing per-domain Floor -> same-yield sum -> eligible work count W is the fixed additional amount. No multiplier compensation or altered K/Floor is authorized.",
+      "technical_gate": "Flat coexistence, native-only Dialogue and theme-independent additions must be measured separately. Reading aggregate work yields cannot establish native/appended provenance or prove a primitive isolates it.",
+      "future_option": "The earlier suggestion that theming includes Meaning is retained for possible future user Design change, not the current accepted rule. Preserve prototype evidence for that decision.",
+      "scope": "This clarification concerns Great Work yield amplification discussed here. It does not silently invent exemptions from unrelated city/civilization-wide modifiers or settle all engine stacking algorithms.",
+      "tourism": "Meaning has no Tourism output; native Tourism may be a separate multiplier control, not Meaning Tourism."
+    },
+    "meaning_domains": {
+      "included": [
+        "DISTRICT_CAMPUS",
+        "DISTRICT_INDUSTRIAL_ZONE",
+        "DISTRICT_COMMERCIAL_HUB",
+        "DISTRICT_HARBOR",
+        "DISTRICT_ENCAMPMENT",
+        "DISTRICT_HOLY_SITE",
+        "DISTRICT_GOVERNMENT",
+        "DISTRICT_DIPLOMATIC_QUARTER",
+        "DISTRICT_NEIGHBORHOOD"
+      ],
+      "excluded_for_v0_1": [],
+      "yield_scope": [
+        "SCIENCE",
+        "PRODUCTION",
+        "GOLD",
+        "FAITH",
+        "FOOD",
+        "CULTURE"
+      ],
+      "status": "USER_ACCEPTED_NINE_DOMAIN_RESTORATION",
+      "scope": "Meaning Extension only. contracts.domains retains the full domain vocabulary/mapping for other Culture consumers. Do not remove Shared domains or infer changes to Great Work Inspiration, other abilities or Government/Diplomatic specialization designs.",
+      "future_restoration": "D0046 user restores both Culture domains; prior technical evidence retained. Native implementation remains gated, especially coexistence with HD Culture flat effects. No coefficient compensation, removal of third-party effects or alternate yield is authorized.",
+      "technical_evidence_refs": [
+        "../../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md",
+        "../../Status/Validation/Results/Specialization_B155_P0L2B_Single3_Native_Stopped.md",
+        "../../Status/Validation/Results/Specialization_B155_P0L2B_Scale100_Native_Stopped.md",
+        "../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md"
+      ]
+    }
+  },
+  "missions": [
+    {
+      "mission_id": "CUL_MISSION_PEOPLE",
+      "name": {
+        "zh_CN": "风土考察",
+        "en_US_reference": null
+      },
+      "category": "PEOPLE",
+      "target": "Foreign civilization current actually controlled capital",
+      "tooltip": {
+        "zh_CN": "考察该文明的社会生活、风俗、制度与城市文化。首次完成获得1份文化见闻。 每个来源城市对该文明的此类考察只能成功完成一次。",
+        "en_US": null
+      },
+      "duration_ref": "contracts.expedition.duration",
+      "unique_key_ref": "contracts.observations.unique_key",
+      "status": "USER_CONFIRMED",
+      "dynamic_fields": [
+        "target_validity",
+        "duration",
+        "deployment_time",
+        "already_completed"
+      ]
+    },
+    {
+      "mission_id": "CUL_MISSION_WORKS",
+      "name": {
+        "zh_CN": "艺文采撷",
+        "en_US_reference": null
+      },
+      "category": "WORKS",
+      "target": "Foreign city with>=1 eligible Cultural Great Work",
+      "tooltip": {
+        "zh_CN": "接触并理解该文明的艺文成果，汲取文化经验。首次完成获得1份文化见闻；不移动、复制、窃取或消耗对方巨作。 每个来源城市对该文明的此类考察只能成功完成一次。",
+        "en_US": null
+      },
+      "duration_ref": "contracts.expedition.duration",
+      "unique_key_ref": "contracts.observations.unique_key",
+      "status": "USER_CONFIRMED",
+      "dynamic_fields": [
+        "target_validity",
+        "duration",
+        "deployment_time",
+        "already_completed"
+      ]
+    },
+    {
+      "mission_id": "CUL_MISSION_PLACES",
+      "name": {
+        "zh_CN": "奇观巡礼",
+        "en_US_reference": null
+      },
+      "category": "PLACES",
+      "target": "Foreign city with>=1 completed Wonder",
+      "tooltip": {
+        "zh_CN": "巡访该文明的伟大建筑与物质遗产，理解其中的审美、工程与文明象征。首次完成获得1份文化见闻。 每个来源城市对该文明的此类考察只能成功完成一次。",
+        "en_US": null
+      },
+      "duration_ref": "contracts.expedition.duration",
+      "unique_key_ref": "contracts.observations.unique_key",
+      "status": "USER_CONFIRMED",
+      "dynamic_fields": [
+        "target_validity",
+        "duration",
+        "deployment_time",
+        "already_completed"
+      ]
+    }
+  ],
+  "review_markers": [
+    {
+      "id": "CUL-REVIEW-01",
+      "status": "CONFIRMED",
+      "topic": "D0040 SUPERSEDES original-owner uniqueness: sourceCity + foreignCivilization + insightCategory; Owner not ownership key."
+    },
+    {
+      "id": "CUL-REVIEW-02",
+      "status": "CONFIRMED",
+      "topic": "Met living foreign majors eligible; City-States excluded first version, FUTURE_EXPANSION candidate; Free Cities excluded."
+    },
+    {
+      "id": "CUL-REVIEW-03",
+      "status": "CONFIRMED",
+      "topic": "D0040 both Dialogue and Insights are distinct A city historical assets; independent effect gates, no original-owner Insights partition.",
+      "observations": "City-owned records with current-owner own-civilization effective filter; history/quota never deleted.",
+      "dialogue": "City-scoped total modifier and City x START Game Era quota; retained across owner/Identity changes, current Culture ACTIVE3 use gate."
+    },
+    {
+      "id": "CUL-REVIEW-04",
+      "status": "RESOLVED_CONFIRMED",
+      "topic": "Union of independently fully examined civilization sets; deduplicate same civilization; never assemble partial records across sources."
+    },
+    {
+      "id": "CUL-REVIEW-05",
+      "status": "USER_CONFIRMED_V0_1_FIRST_TEST_VALUES",
+      "topic": "D0045 closes Dialogue additional-cap, Expedition cost/nationwide-cap and K_T choice; K_C1, standard2T missions, aesthetic1, Meaning0.5/share conversion and GPP0.1 retained. Balance Validation remains pending, especially an overly early Culture victory path. D0042 city-history/current-owner filter and archive reattachment remain authoritative."
+    },
+    {
+      "id": "CUL-REVIEW-06",
+      "status": "USER_CONFIRMED",
+      "topic": "D0045 Shared professional-unit protection closes unit-body enemy capture/Owner-conversion Gameplay TBD. Native protective withdrawal/safe-return interfaces remain Technical Investigation; source-transfer mission abort and original-Owner reattachment are retained."
+    }
+  ],
+  "technical_flags": [
+    "Exactly one full city production turn despite overflow and interruption",
+    "Native-only Great Work all-yield percentage, excluding appended Meaning yields; fallback report gate",
+    "0.1*D*W base GPP native path/fractional accumulation/percentage interaction; no Design-layer per-domain/per-work floor, final native integer carriage if required must be investigated without formula change",
+    "City overall Tourism modifier",
+    "Spy-style independent non-hostile unit with current-player existing-Team cap1 and no inherited Spy capacity/risk; exact current Spy cost, deployment/mission and war-transition engine behavior",
+    "Known work registry/era resolution and ordinary-building taxonomy adapters",
+    "Event-driven updates/shared facts/bounded reconciliation only",
+    "Independent city Dialogue/Insights ledgers, effective-owner filtering, successful action idempotency and save contract; D0042 pending cancellation/mission abort/reattachment and source binding save require technical adaptation; no implementation in this Design batch.",
+    "D0046: six-yield native precision/recipient and Dialogue/theming independence require separate evidence. Culture single flat failed in B155/B157; Production final-value success is not a Culture coexistence PASS. No formal cutover without remaining native gates and separate authorization.",
+    "Native protective withdrawal/safe-return interfaces for Shared no-capture/no-Owner-conversion professional units; player-wide existing-Team cap1, archive-selection UI and idempotent cancellation/commit/reload. Source-owner-loss abort/retain/reattach contract remains; no Gameplay capture ownership TBD."
+  ],
+  "superseded_old_rules": [
+    "Old Culture Lv3 +5F5P and population Culture removed.",
+    "Old Lv4 per-specialist cityCulture percent removed.",
+    "Dynamic25%*(eraCount-1)Dialogue replaced by city-scoped permanent project accumulation.",
+    "Old GreatWork BASE-adjacency yields replaced by Meaning Extension DistrictDevelopment shares. D0038 explicitly accepts per-domain floor after share conversion, then same-yield addition and finally work count for Meaning Extension only; no GPP rounding authorization.",
+    "Old Culture Eureka boost replaced by new observations network; Research unchanged pending redesign.",
+    "D0040 supersedes CUL-REVIEW-01/03 original-owner/source-city Insights ownership and non-inheritance; both history and category quota follow city, effective own-civilization records temporarily excluded. Dialogue city history and independent3/3 Network union retained.",
+    "D0042 replaces immutable training-city REPORT binding with source-owner-loss invalidation/free reattachment; closes pending Dialogue cancellation instead of unspecified E/G lifecycle. Successful city history unchanged.",
+    "D0045 replaces future Dialogue cumulative-cap TBD with explicit additive accumulation and no additional cap.",
+    "D0045 replaces unchosen K_T1–3 candidate with first-test K_T2 percentage points per effective Insight on the source city; replaces Spy-reference cost pending balance with cost exactly equal to current Spy production cost.",
+    "D0045 supersedes no approved Expedition capacity with current-player nationwide existing-Team cap1, counting surviving source-exited/waiting-reattachment Teams; K_C1 and standard2T mission duration retained as confirmed first-test values.",
+    "D0045 closes direct professional-unit enemy capture/Owner-conversion Gameplay TBD through Shared protection; native protective withdrawal/safe-return APIs remain technical, D0042 source-transfer lifecycle unchanged.",
+    "D0046 supersedes D0043 Meaning-only Government/Diplomatic exclusion. Restore nine domains/six yields without modifying formulas, other abilities or declaring the former Culture technical failure solved."
+  ],
+  "state_tooltips": {
+    "observations": {
+      "zh_CN": "文化见闻是来源城市保留的历史文化经验，不是可消费资源。每来源城对每外国文明每类只能成功一次，记录随城保留。当前主人自身文明的见闻暂不参与有效数量和完整文明集合，但不删除；合格文化四级来源城每份当前有效见闻使整城旅游业绩加算2个百分点，完整考察成果可经国内网络支持接收城市本专业工作专家，每完整文明每专家加1文化。不同来源的不完整三类不能拼接，接收值不递归传播。",
+      "dynamic_fields": [
+        "observations",
+        "fully_examined_civilizations",
+        "tourism_modifier",
+        "historical_observations",
+        "effective_observations",
+        "excluded_current_owner_civilization"
+      ]
+    },
+    "project": {
+      "zh_CN": "连续占用一个完整城市生产回合，在完成时根据当前馆藏时代数增加时代对话倍率，历次加法累计且不设置额外累计上限。成功后占用启动时代的次数；零时代馆藏也会消耗机会。 永久提交前失去文化三级资格、退出身份、重组、易主或生产中断，取消进度且不消耗成功额度；恢复后须重新完整执行一回合。",
+      "dynamic_fields": [
+        "start_era",
+        "used",
+        "X",
+        "gain",
+        "total",
+        "effect_target"
+      ]
+    },
+    "unit": {
+      "zh_CN": "训练后以来源城作为报告归档机构，通过部署开展非敌对考察；生产成本等于当前间谍生产成本，当前玩家全国现存考察团上限1支，来源退出或等待重新挂靠的单位仍计入。来源降级、退出文化或重组不影响已有单位。来源易主则中止任务、保留原主单位并等待免费重新挂靠到任意己方文化身份城市。标准速度每项任务2回合，部署时间另计，任务耗时按游戏速度缩放。单位不能被敌方捕获或转换Owner，采用保护式撤退／安全回归。",
+      "dynamic_fields": [
+        "source_city",
+        "production_cost",
+        "travel_time",
+        "mission_turns",
+        "archive_binding_status",
+        "reattachment_eligibility",
+        "player_wide_existing_teams",
+        "player_wide_cap",
+        "training_available"
+      ]
+    }
+  },
+  "previous_content_revision": "D0045",
+  "future_candidates": [
+    {
+      "id": "CUL_FUTURE_CITY_STATE_EXCHANGE",
+      "status": "FUTURE_CANDIDATE / FUTURE_EXPANSION",
+      "description_zh_CN": "城邦具有文化价值，但当前三维度完整文明考察以主要文明为对象。未来可独立设计城邦文化交流/考察；本轮不定义类别、奖励或见闻。"
+    },
+    {
+      "id": "CUL_FUTURE_MEANING_CULTURE_RESTORE",
+      "status": "SUPERSEDED_BY_D0046_USER_RESTORATION",
+      "description_zh_CN": "D0046用户恢复市政／外交文化来源。B154／B155／B157反证保留；原生平加共存技术门禁未自动关闭。"
+    }
+  ],
+  "amendment_kind": "User explicitly restores Government Plaza and Diplomatic Quarter Culture contributions to Meaning Extension. Same per-domain Floor, K0.5/share, work qualification and independent additions retained. Technical validation authorized separately; prior single-Culture and multi-carrier failures are not declared resolved.",
+  "lifecycle_authority_ref": "../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md"
+}

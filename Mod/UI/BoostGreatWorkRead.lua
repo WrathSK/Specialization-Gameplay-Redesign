@@ -122,11 +122,12 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
     assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
     return string.format('实验OFF｜首次清理 %s｜当前原生作品生产力 %.2f；撤销见下方精确实例，不作追加差值PASS。',tostring(v.cleanupStatus or 'UNKNOWN'),actual)
    end
-   return '测试已关闭；本次五产出对照已释放。'
+   return '实验已关闭；实际撤销与旧系统恢复见本次实例读取。'
   end
   assert(v.mode=='BASELINE' or v.mode=='ACTIVE','ME_UI_MODE_UNKNOWN')
   assert(not v.error and not v.configurationError and not v.dialogueError and v.oldHeld and v.planStatus=='READY','ME_UI_CONFIGURATION_PENDING')
-  assert(v.dialoguePercent==0 and v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')
+  assert(v.dialoguePercent==0,'ME_UI_CONFIGURATION_PENDING')
+  if not v.finalValues then assert(v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')end
   local function finite(n)return type(n)=='number' and n==n and math.abs(n)<math.huge end
   local function integer(n)return finite(n) and n>=0 and n%1==0 end
   assert(integer(v.count),'ME_UI_WORK_COUNT_UNKNOWN')
@@ -135,9 +136,10 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    {'PRODUCTION','生产力','production','totalProduction','configuredProduction'},
    {'GOLD','金币','gold','totalGold','configuredGold'},
    {'FOOD','食物','food','totalFood','configuredFood'},
-   {'FAITH','信仰','faith','totalFaith','configuredFaith'}
+   {'FAITH','信仰','faith','totalFaith','configuredFaith'},
+   {'CULTURE','文化','culture','totalCulture','configuredCulture'}
   }
-  if v.productionOnly then definitions={definitions[2]}end
+  if v.productionOnly then definitions={definitions[2]}elseif not v.finalValues then table.remove(definitions,6)end
   local on=v.mode=='ACTIVE';local totals={};local expected={}
   for _,entry in ipairs(definitions)do
    local yield,each,total,configured=entry[1],v[entry[3]],v[entry[4]],v[entry[5]]
@@ -187,11 +189,12 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   if mark and v.mode=='BASELINE' and stable then meaningReadings={key=key,baseline=totals,current=totals}end
   local valid=stable and meaningReadings and meaningReadings.key==key
   if valid then meaningReadings.current=totals else meaningReadings=nil end
-  local lines={string.format('%s｜合格W=%d／%d座馆藏建筑｜%s',v.productionOnly and '生产力单值对照' or '原生巨作读数',workCount,buildings,on and '追加中' or '基线')}
+  local lines={string.format('%s｜合格W=%d／%d座馆藏建筑｜%s',v.productionOnly and '生产力单值对照' or '意义延展原生读数',workCount,buildings,on and '追加中' or '基线')}
   if v.productionOnly then lines[#lines+1]='本次仅开启生产力；其它产出未验证。'end
   for _,entry in ipairs(definitions)do
    local y=entry[1];local delta=valid and on and (totals[y]-meaningReadings.baseline[y]) or nil
    lines[#lines+1]=string.format('%s｜每件 +%g／本城 +%g｜实测差值 %s｜当前原生 %.2f',entry[2],on and v[entry[3]] or 0,expected[y],delta~=nil and string.format('%+.2f',delta) or (on and '未确认' or '待启用追加'),totals[y])
+    if delta~=nil and math.abs(delta-expected[y])>0.001 then lines[#lines+1]=entry[2]..'异常：实测追加与预期不符；保存本次报告，停止该项验收。'end
   end
   if not valid then
    local reason=not stable and '人口／资格／领域D未确认' or '回合／人口／馆藏位置／主题／领域D／资格已变，或尚无同回合基线'
@@ -200,11 +203,11 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    lines[#lines+1]=on and '右键只刷新当前读数；左键或结束按钮撤回追加。' or '同回合基线已记录；左键启用追加。'
   end
   if themedBuildings>0 then lines[#lines+1]='已主题化'..themedBuildings..'座；当前预期追加保持固定，不乘主题倍率。'end
-  lines[#lines+1]='原生读数可能延迟；配置与界面差值不自动证明正常回合结算。'
+  if v.finalValues then lines[#lines+1]='文化：检验与古罗马剧场＋2共存；有配置不等于已生效。'end
   return table.concat(lines,'\n')
  end)
  if not ok then meaningReadings=nil end -- An unknown/error cannot retain a successful comparison.
- return ok and result or ((v.productionOnly and '生产力' or '五产出')..'原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
+ return ok and result or ((v.productionOnly and '生产力' or v.finalValues and '六产出' or '五产出')..'原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end
 
 -- Fixed technical comparison only; this does not calculate Design D or Floor.
@@ -323,7 +326,7 @@ end
 -- B156: explicit UI read only. Never retain native handles/tables between reads.
 include('CultureMeaningModel')
 do
- local lastToken,cached,stamp
+ local lastToken,cached,stamp,cachedSummary
  local LIMIT,HITS,SUBJECTS=32768,64,64
  local function text(v)
   if v==nil then return 'nil' end
@@ -360,7 +363,7 @@ do
   did,pid,cid=tonumber(did),tonumber(pid),tonumber(cid)
   for _,n in ipairs({did,pid,cid})do if not integer(n) or n>9007199254740991 then return 'UNKNOWN:ID' end end
   if player~=pid then return 'UNKNOWN:OWNER_CONFLICT' end
-  local ok,result=pcall(function()
+  local ok,result,districtType=pcall(function()
    local city=assert(CityManager.GetCity(pid,cid),'CITY_UNAVAILABLE')
    assert(city:GetOwner()==pid and city:GetID()==cid,'CITY_CONFLICT')
    local district=assert(city:GetDistricts():FindID(did),'DISTRICT_UNAVAILABLE')
@@ -370,11 +373,13 @@ do
    assert(SPCNetworkInput.Reference(parent)==ref,'DISTRICT_CITY_CONFLICT')
    if pid==c:GetOwner() and cid==c:GetID() then
     assert(ref==SPCNetworkInput.Reference(c),'REFERENCE_CONFLICT')
-    return '本城已核验'
+    local row=district.GetType and GameInfo.Districts and GameInfo.Districts[district:GetType()]
+    return '本城已核验',row and row.DistrictType or 'UNKNOWN'
    end
-   return '其它城已核验: '..pid..'/'..cid
+   local row=district.GetType and GameInfo.Districts and GameInfo.Districts[district:GetType()]
+   return '其它城已核验: '..pid..'/'..cid,row and row.DistrictType or 'UNKNOWN'
   end)
-  return ok and result or 'UNKNOWN:OBJECT_CHECK'
+  return ok and result or 'UNKNOWN:OBJECT_CHECK',ok and districtType or 'UNKNOWN'
  end
  local function signature(c,v)
   local selected=UI.GetHeadSelectedCity()
@@ -382,22 +387,26 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','finalValues','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()
-  cached=nil;stamp=nil -- Keep consumed token: redisplaying a released reply must not rescan.
+  cached=nil;stamp=nil;cachedSummary=nil -- Keep consumed token: redisplaying a released reply must not rescan.
  end
  local function allowlist(v)
   local allow={}
   local function add(id,building,label,priority,family)
    if GameInfo.Buildings[building] then allow[id]={building=building,label=label,priority=priority,family=family,attached=false}end
   end
-  if v.diagnostic or v.productionOnly then
+  if v.diagnostic or v.productionOnly or v.finalValues then
    for _,b in ipairs(SPCCultureMeaningModel.Owned)do add(b:sub(10)..'_WRITING',b,'意义延展',2,'MEANING')end
-   for _,sign in ipairs({'P','N'})do for bit=0,12 do
-    local b='BUILDING_SPC_B060_PRODUCTION_'..sign..bit;add(b:sub(10)..'_WRITING',b,'旧相邻生产力',6,'GWA')
-   end end
+   local yields=v.finalValues and SPCCultureMeaningModel.WriteYields or {'PRODUCTION'}
+   for _,y in ipairs(yields)do for _,sign in ipairs({'P','N'})do for bit=0,12 do
+    local b='BUILDING_SPC_B060_'..y..'_'..sign..bit;add(b:sub(10)..'_WRITING',b,'旧相邻'..y,6,'GWA')
+   end end end
+   if v.finalValues then
+    add('HD_AMPHITHEATER_WRITING_CULTURE_BOOST','BUILDING_AMPHITHEATER','剧场著作文化',1,'HD')
+   end
   else
   add('HD_AMPHITHEATER_WRITING_CULTURE_BOOST','BUILDING_AMPHITHEATER','剧场著作文化',1)
   add('HD_AMPHITHEATER_WRITING_TOURISM_BOOST','BUILDING_AMPHITHEATER','剧场著作旅游业',5)
@@ -461,7 +470,7 @@ do
    local pk,p=call('GetObjectsPlayerId',id);local tk,t=call('GetObjectType',id);local sk,raw=call('GetObjectString',id)
    local valid=pk and integer(p) and tk and type(t)=='string' and sk and type(raw)=='string'
    local o={player=pk and integer(p) and p or 'UNKNOWN',kind=tk and type(t)=='string' and t or 'UNKNOWN',raw=sk and type(raw)=='string' and text(raw) or 'UNKNOWN'}
-   o.mapping=valid and mapDistrict(t,raw,p,c) or 'UNKNOWN:API';objectReads[key]=o;return o
+   if valid then o.mapping,o.districtType=mapDistrict(t,raw,p,c)else o.mapping='UNKNOWN:API' end;objectReads[key]=o;return o
   end; local complete=true;local foreign,unknown,defs=0,0,0
   local function fail(reason)complete=false;if #errors<3 then errors[#errors+1]=text(reason)end end
   for id,a in pairs(allow)do if not a.attached then fail('ATTACHMENT_MISSING:'..id)end end
@@ -480,7 +489,7 @@ do
       local row={mapping='UNKNOWN:OWNER',subjectRows={},instanceID=text(id),id=def.Id,family=allow[def.Id].family,label=allow[def.Id].label,priority=allow[def.Id].priority,player='UNKNOWN',active='UNKNOWN',ownerType='UNKNOWN',raw='UNKNOWN',subjects='UNKNOWN'}
       if playerOK and integer(player) then row.player=player else unknown=unknown+1;fail('OWNER_PLAYER_UNKNOWN')end
       if ownOK and integer(owner) then
-       local o=object(owner);row.ownerType=text(o.kind);row.raw=o.raw;row.mapping=o.mapping
+       local o=object(owner);row.ownerType=text(o.kind);row.raw=o.raw;row.mapping=o.mapping;row.districtType=o.districtType
        if o.player~=row.player then row.mapping='UNKNOWN:OWNER_CHANGED';fail('OWNER_CHANGED')end
        if o.kind=='UNKNOWN' then fail('OWNER_TYPE_UNKNOWN')end
        if o.raw=='UNKNOWN' then fail('OWNER_STRING_UNKNOWN')end
@@ -490,6 +499,11 @@ do
       if type(args)=='table' then
        if type(args.GreatWorkObjectType)~='string' or (args.YieldChange==nil and args.ScalingFactor==nil) then fail('ARGUMENTS_UNKNOWN')end
        for _,key in ipairs({'YieldType','YieldChange','ScalingFactor'})do local value=args[key];if value~=nil and type(value)~='string' and type(value)~='number' then fail('ARGUMENTS_UNKNOWN:'..key)end end
+       if v.finalValues and row.mapping=='本城已核验' and allow[def.Id].family=='MEANING' then
+        local required=GameInfo.Buildings[allow[def.Id].building].PrereqDistrict
+        if row.districtType=='UNKNOWN' or not row.districtType then fail('CARRIER_HOST_UNKNOWN')
+        elseif row.districtType~=required then fail('CARRIER_HOST_MISMATCH')end
+       end
        row.yield=text(args.YieldType);row.args='对象='..text(args.GreatWorkObjectType)..' yield='..text(args.YieldType)..' flat='..text(args.YieldChange)..' scale='..text(args.ScalingFactor)
       else row.args='Arguments UNKNOWN';fail('ARGUMENTS_UNKNOWN')end
       local sk,subjects=call('GetModifierSubjects',id)
@@ -509,7 +523,7 @@ do
   end
   ids=nil
   table.sort(rows,function(a,b)
-   if v.diagnostic or v.productionOnly then
+   if v.diagnostic or v.productionOnly or v.finalValues then
     local function rank(r)return (r.mapping=='本城已核验' and 0 or 10)+(r.yield=='YIELD_PRODUCTION' and 0 or 5)+(r.family=='MEANING' and 0 or 1)end
     local ar,br=rank(a),rank(b);if ar~=br then return ar<br end
    end
@@ -521,7 +535,7 @@ do
   for _,s in ipairs(fixture(P,c,v))do lines[#lines+1]=s end
   lines[#lines+1]='本玩家匹配实例 '..(#rows-unknown)..'｜玩家未知 '..unknown..'｜其它玩家跳过 '..foreign..'｜已检查定义 '..defs
   if #rows==0 then lines[#lines+1]=complete and '本次未观察到匹配实例；不等于本城没有效果。' or '读取不完整，不能解释为零实例。'end
-  if v.diagnostic or v.productionOnly then
+  if v.diagnostic or v.productionOnly or v.finalValues then
    local meaning,active,gwa,unmapped=0,0,0,0
    for _,r in ipairs(rows)do
     if r.mapping=='本城已核验' then
@@ -529,34 +543,55 @@ do
      elseif r.family=='GWA' then gwa=gwa+1 end
     elseif r.mapping:sub(1,8)=='UNKNOWN:' then unmapped=unmapped+1 end
    end
-   lines[#lines+1]='本城Meaning Writing实例 '..meaning..'（Active=true '..active..'）｜本城旧GWA Production实例 '..gwa..'｜城市UNKNOWN '..unmapped
-   if v.diagnosticStage=='OFF' or v.productionOnly and v.mode=='OFF' then
+   lines[#lines+1]='本城Meaning Writing实例 '..meaning..'（Active=true '..active..'）｜本城旧GWA '..(v.finalValues and '六产出' or 'Production')..'实例 '..gwa..'｜城市UNKNOWN '..unmapped
+   if v.diagnosticStage=='OFF' or (v.productionOnly or v.finalValues) and v.mode=='OFF' then
     lines[#lines+1]=(meaning>0 or v.remainingOwned and v.remainingOwned>0) and '异常：OFF仍观察到本城Meaning实例或精确载体；不能确认撤销。'
-     or ((not complete or unmapped>0 or #rows>12) and '撤销未确认：读取不完整／城市UNKNOWN／报告截断。' or '本次未观察到本城Meaning Writing实例；真实退出收益及旧系统恢复另行核对。')
+     or ((not complete or unmapped>0) and '撤销未确认：读取不完整／城市UNKNOWN。' or '本次未观察到本城Meaning Writing实例；真实退出收益及旧系统恢复另行核对。')
    end
   end
   local owners={};local ownerCount=0
   for i=1,math.min(12,#rows)do local row=rows[i];local key=tostring(row.player)..'|'..row.ownerType..'|'..row.raw
    if not owners[key] then ownerCount=ownerCount+1;owners[key]=ownerCount;lines[#lines+1]='归属对象'..ownerCount..'｜玩家 '..text(row.player)..'｜'..row.ownerType..'｜'..row.raw end
-   lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜'..row.mapping..'｜subjects='..row.subjects
-   lines[#lines+1]=((v.diagnostic or v.productionOnly) and ('实例ID '..row.instanceID..'｜') or '')..row.id..'｜'..row.args
+   lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜'..row.mapping..'｜宿主区域='..text(row.districtType)..'｜subjects='..row.subjects
+   lines[#lines+1]=((v.diagnostic or v.productionOnly or v.finalValues) and ('实例ID '..row.instanceID..'｜') or '')..row.id..'｜'..row.args
    for _,subject in ipairs(row.subjectRows)do lines[#lines+1]=subject end
   end
   if #rows>12 then lines[#lines+1]='另'..(#rows-12)..'个匹配实例未展开；本报告不声称完成全部效果核对。'end
   for _,e in ipairs(errors)do lines[#lines+1]='未确认：'..e end
-  return table.concat(lines,'\n')
+  local meaning,gwa,hd,unmapped=0,0,0,0
+  for _,r in ipairs(rows)do
+   if r.mapping=='本城已核验' then
+    if r.family=='MEANING' then meaning=meaning+1 elseif r.family=='GWA' then gwa=gwa+1 elseif r.family=='HD' then hd=hd+1 end
+   elseif r.mapping:sub(1,8)=='UNKNOWN:' then unmapped=unmapped+1 end
+  end
+  local summary=string.format('本城著作实例：意义延展%d／旧系统%d／HD文化%d',meaning,gwa,hd)
+  if not complete or unmapped>0 then summary=summary..'；读取不完整或归属未知，不能判定通过。'
+  elseif v.mode=='OFF' and (meaning>0 or (v.remainingOwned or 0)>0) then summary=summary..'；异常：结束后仍有残留。'
+  elseif v.mode=='ACTIVE' and gwa>0 then summary=summary..'；异常：旧系统仍有实例。'
+  elseif v.mode=='OFF' then summary=summary..'；未见Meaning著作实例。'end
+  return table.concat(lines,'\n'),summary
  end
  function SPCBoostGreatWorkRead.Modifiers(P,c,v,token,requestedReference)
   local ok,key=pcall(signature,c,v)
   if not ok or type(token)~='string' or v.token~=token or requestedReference~=v.reference then
    SPCBoostGreatWorkRead.ClearModifierRead();lastToken=token;return 'Modifier诊断已过期（STALE）；请重新选城并右键读取。'
   end
-  if token==lastToken then return cached and stamp==key and cached or 'Modifier诊断已释放或过期；请右键重新读取。'end
+  if token==lastToken then
+   if cached and stamp==key then return cached end
+   SPCBoostGreatWorkRead.ClearModifierRead() -- Keep token consumed; drop stale summary/details without rescanning.
+   return 'Modifier诊断已释放或过期；请右键重新读取。'
+  end
   lastToken=token;cached=nil;stamp=nil
-  local good,report=pcall(collect,P,c,v)
+  local good,report,summary=pcall(collect,P,c,v)
   local fresh,after=pcall(signature,c,v)
   if not fresh or key~=after then report='Modifier诊断已过期（STALE）；不采用本次实例。'
   elseif not good then report='Modifier诊断未完整（API_READ_BOUNDARY）：'..text(report)..'；未改变任何收益，请截图。'end
-  cached=report;stamp=key;return report
+  cached=report;stamp=key;cachedSummary=good and fresh and key==after and summary or report;return report
+ end
+ function SPCBoostGreatWorkRead.ModifierSummary(token)
+  return token==lastToken and cachedSummary or '实例读取未确认；重新右键读取。'
+ end
+ function SPCBoostGreatWorkRead.ModifierDetails(token)
+  return token==lastToken and cached or nil
  end
 end
