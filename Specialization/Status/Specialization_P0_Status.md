@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0415
-Implementation Build: source/live B159.186 / modinfo186 LOCAL_COMPLETE / NATIVE_COMBINATION_FAIL; stable B069.96
+Status Revision: S0416
+Implementation Build: source B160.187 / modinfo187 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; live B159.186 pending safe switch; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0045（Meaning直接合同与D0043相等；本轮仅原生证据调查／归档，正式接入未完成）
+Design Revision Reviewed: D0045（Meaning直接合同不改；B160仅诊断，正式接入未完成）
 Latest Accepted Design Revision: D0045
-Design Sync State: D0045_AUTHORITY_RETAINED / B159_NATIVE_COMBINATION_FAIL; B158 native failure retained
-Work State: P0_L2C_PRODUCTION_COMBINATION_NATIVE_FAIL
+Design Sync State: D0045_AUTHORITY_RETAINED / B160_DIAGNOSTIC_LOCAL_COMPLETE; B159/B158 native failure retained
+Work State: P0_L2C_PRODUCTION_RECONFIGURATION_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-[最新Design D0045](../Design/Design_ChangeLog.md#accepted-d0045--2026-10-03)保持；Meaning直接合同及四个Shared输入对象与原基线相等。本轮只读B159截图／直接代码调查并记录结果，未改Design／Mod／测试／GC或推进玩法。
+当前Design D0045／Architecture A0161保持，Meaning直接合同不改。本轮用户已明确授权最小撤销／重配诊断，**B160.187／modinfo187 LOCAL_COMPLETE／USER_GAME_TEST_REQUIRED**；[结果与短测](Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)、[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。固定0→1→清0→2→双片1/2→只撤1留2→独立3→OFF，非正式Meaning接入。
 
-[B159四图](Validation/Results/Specialization_B159_Production_Combination_Native.md)同T62／同Writing：基线0、单片＋2实际2，双片＋1／＋2实际1。两不同原生实例Active=true、flat1／2、本城映射可靠，旧GWA Production0；**单片即时读数USER_GAME_TEST_PASS／多片组合USER_GAME_TEST_FAIL**。现编码不能用于正式接入；不宣布全部同yield接口不叠加或唯一内部算法。图4只是双片报告下半段，END／cold-load未提供原生证据，完整L2 NOT_PASSED。
+47定向方法／58子用例PASS；CLEAR1保留旧writer hold，REMAIN2健康＋2不拆建，独立＋3不进入普通Parts。27精确owned退出、UNKNOWN／他城／load／失败保护本地通过；原生实例延续、单值应用和退出仍待验。另20项直接reader回归有覆盖交集。没有全历史／stress。
 
-[当前切片与停止点](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)记录用户撤销单片1／重配的建议：单片1→撤销0→单片2→双片1/2→仅撤1留2；可同fixture增单片3验证单yield单值替代。现B159缺少此控制，**新诊断未授权实施**。D／K／逐域Floor／W、Catalog独立缺口、精准recipient／倍率／结算／全城cutover门禁保留。不要求立即重复旧五yield或长测，不进入L3／M／N／U2。
+[B159原生反证](Validation/Results/Specialization_B159_Production_Combination_Native.md)保留：单片2即时读数PASS、双片1/2实际1 FAIL；图4不是END，不扩大原生结论。D／K／逐域Floor／W及Catalog独立缺口不改，精准recipient／倍率／结算／冷加载／全城cutover仍有各自门禁，完整L2 NOT_PASSED。
 
-source/live沿既有B159.186／modinfo186、source `59e686feb5e66dde7429c3e44a457cb6a826ace8`及W0003 receipt `B159.186-59e686f-playtest.json` DEVELOP_ACTIVE／182 MATCH记录；本轮未重新核验外部运行包。四图ignored原字节归档4/4 SHA256 MATCH；旧LOCAL18方法／31子测试证据不变，未运行新玩法测试、部署或启动游戏。main／永久状态未改。停止等待下一最小诊断实施授权。
+源码B160本地完成，外部live当前经只读核对仍B159.186、receipt `B159.186-59e686f-playtest.json` DEVELOP_ACTIVE／182 MATCH；main及其stable backup一致、无pending marker。OS已确认游戏退出，待clean commit／push后按W0003安全切换；未启动游戏。永久数据／Design／GC／main不变。停止在本次诊断验收，不自动进L3／M／N／U2。
 
 ## 历史阶段记录
 

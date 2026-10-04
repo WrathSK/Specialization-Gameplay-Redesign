@@ -62,3 +62,12 @@ function M.Parts(y,amount,variant)
  local out={};for bit=0,bits-1 do if n%2==1 then out[#out+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit end;n=math.floor(n/2)end
  return out
 end
+-- Fixed Production controls only; ordinary Meaning retains its current encoding.
+M.DiagnosticSingle3={name='BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3',amount=3}
+M.Owned[#M.Owned+1]=M.DiagnosticSingle3.name
+M.DiagnosticExpected={BASELINE=0,SINGLE1=1,CLEAR1=0,SINGLE2=2,PAIR12=3,REMAIN2=2,SINGLE3=3,OFF=0}
+function M.DiagnosticParts(stage)
+ local amount=assert(M.DiagnosticExpected[stage],'ME_DIAGNOSTIC_STAGE')
+ if stage=='SINGLE3' then return {M.DiagnosticSingle3.name}end
+ return M.Parts('PRODUCTION',amount)
+end

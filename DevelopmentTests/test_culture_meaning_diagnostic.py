@@ -41,6 +41,18 @@ shared.DistrictCompleteness.Read=function(pid,c,token)
  return diagOriginalDepth(pid,c,token)
 end
 function diagAdvance(token)probe.DiagnosticAdvance(0,a,token);return probe.View(0,a,true)end
+-- Advance through the real fixed stages, never set the stage/projection directly.
+function diagTo(stage,prefix)
+ local stages={'BASELINE','SINGLE1','CLEAR1','SINGLE2','PAIR12','REMAIN2','SINGLE3'}
+ local at=0;local wanted
+ for i,name in ipairs(stages)do
+  if name==probe.diagnosticStage then at=i end
+  if name==stage then wanted=i end
+ end
+ assert(wanted and at<=wanted,'INVALID_TEST_STAGE_ORDER')
+ for i=at+1,wanted do diagAdvance(prefix..':'..stages[i])end
+ return probe.View(0,a,true)
+end
 function diagRequest(action,token,city)
  meaningRequest(0,{Action=action,CityID=city or 1,Token=token})
  assert(shared.LastToken==token and shared.CultureMeaningView.token==token)
@@ -57,7 +69,9 @@ function assertDiagnostic(v,stage,amount,names)
  assert(v.remainingOwned==count and #v.diagnosticCarriers==count)
  for _,part in ipairs(v.diagnosticCarriers)do
   assert(expected[part.name] and part.yield=='PRODUCTION' and part.pillaged==false)
-  assert(part.amount==(part.name:sub(-1)=='0' and 1 or 2))
+  local values={BUILDING_SPC_MEANING_PROBE_PRODUCTION_0=1,BUILDING_SPC_MEANING_PROBE_PRODUCTION_1=2,
+   BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3=3}
+  assert(part.amount==values[part.name])
  end
  if stage~='OFF' then
   local work=v.diagnosticWork
@@ -174,46 +188,56 @@ class ProductionDiagnosticTests(unittest.TestCase):
   """)
   return lua
 
- def test_actual_request_four_stages_exact_existing_parts_and_other_city(self):
+ def test_actual_request_eight_stages_exact_operations_holds_and_other_city(self):
   lua=self.runtime();lua.execute(r"""
    local other=snapshotBuildings(b);local originalToken=a.token
    local advance='CULTURE_MEANING_DIAGNOSTIC_ADVANCE'
-   local v=diagRequest(advance,'baseline')
-   assert(v.mode=='BASELINE' and not v.error)
-   assertDiagnostic(v,'BASELINE',0,{})
-   assert(gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0) and not old(a,'SCIENCE'))
-   v=diagRequest(advance,'single');assert(v.mode=='ACTIVE' and not v.error)
-   assertDiagnostic(v,'SINGLE2',2,{'BUILDING_SPC_MEANING_PROBE_PRODUCTION_1'})
    local operations={};local create,remove=P.CreateBuilding,P.RemoveBuilding
-   local id1=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_PRODUCTION_0.Index
-   local id2=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_PRODUCTION_1.Index
+   local n1='BUILDING_SPC_MEANING_PROBE_PRODUCTION_0'
+   local n2='BUILDING_SPC_MEANING_PROBE_PRODUCTION_1'
+   local n3=SPCCultureMeaningModel.DiagnosticSingle3.name
+   local id1=GameInfo.Buildings[n1].Index
+   local id2=GameInfo.Buildings[n2].Index
+   local id3=GameInfo.Buildings[n3].Index
+   local watched={[id1]=true,[id2]=true,[id3]=true}
    P.RemoveBuilding=function(buildings,id)
-    if buildings.city==a and (id==id1 or id==id2)then operations[#operations+1]='remove:'..id end
+    if buildings.city==a and watched[id]then operations[#operations+1]='remove:'..id end
     return remove(buildings,id)
    end
    P.CreateBuilding=function(queue,id)
-    if queue.city==a and (id==id1 or id==id2)then operations[#operations+1]='create:'..id end
+    if queue.city==a and watched[id]then operations[#operations+1]='create:'..id end
     return create(queue,id)
    end
-   v=diagRequest(advance,'pair');assert(v.mode=='ACTIVE' and not v.error)
-   assertDiagnostic(v,'PAIR12',3,{'BUILDING_SPC_MEANING_PROBE_PRODUCTION_0','BUILDING_SPC_MEANING_PROBE_PRODUCTION_1'})
-   assert(#operations==3 and operations[1]=='remove:'..id2 and operations[2]=='create:'..id1 and operations[3]=='create:'..id2)
-   P.CreateBuilding=create;P.RemoveBuilding=remove
-   v=diagRequest(advance,'off');assert(v.mode=='OFF' and not v.error)
-   assertDiagnostic(v,'OFF',0,{})
-   assert(not gwa.IsMeaningHeld(0,a) and dialogue.meaningOverride==nil and old(a,'SCIENCE'))
-   assert(a.token==originalToken);assertBuildingsSame(b,other)
+   local stages={
+    {'BASELINE',0,{},{}},
+    {'SINGLE1',1,{n1},{'create:'..id1}},
+    {'CLEAR1',0,{}, {'remove:'..id1}},
+    {'SINGLE2',2,{n2},{'create:'..id2}},
+    {'PAIR12',3,{n1,n2},{'remove:'..id2,'create:'..id1,'create:'..id2}},
+    {'REMAIN2',2,{n2},{'remove:'..id1}},
+    {'SINGLE3',3,{n3},{'remove:'..id2,'create:'..id3}},
+    {'OFF',0,{}, {'remove:'..id3}}}
+   for _,case in ipairs(stages)do
+    operations={};local v=diagRequest(advance,'stage:'..case[1])
+    assert(not v.error,case[1]);assertDiagnostic(v,case[1],case[2],case[3])
+    assert(#operations==#case[4],case[1]..':OP_COUNT')
+    for i,expected in ipairs(case[4])do assert(operations[i]==expected,case[1]..':OP_ID')end
+    if case[1]~='OFF' then
+     assert(gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0) and not old(a,'SCIENCE'))
+    else assert(not gwa.IsMeaningHeld(0,a) and dialogue.meaningOverride==nil and old(a,'SCIENCE'))end
+    assert(a.token==originalToken);assertBuildingsSame(b,other)
+   end
   """)
 
  def test_duplicate_tokens_conflict_and_regular_advance_cannot_mix(self):
   lua=self.runtime();lua.execute(r"""
-   for _,token in ipairs({'baseline','single','pair','off'})do
+   for _,token in ipairs({'baseline','single1','clear1','single2','pair12','remain2','single3','off'})do
     diagAdvance(token);local before=writes;local stage=probe.diagnosticStage
     diagAdvance(token);assert(writes==before and probe.diagnosticStage==stage)
     assert(not pcall(probe.DiagnosticAdvance,0,b,token) and writes==before)
     assert(not pcall(probe.Advance,0,a,token) and writes==before)
    end
-   diagAdvance('baseline2');diagAdvance('single2')
+   diagAdvance('baseline2');diagTo('SINGLE2','single2')
    local before=writes;assert(not pcall(probe.Advance,0,a,'regular-mixed'))
    assert(probe.diagnosticStage=='SINGLE2' and writes==before and configured(a,'PRODUCTION')==2)
    probe.End(0,a,'end');before=writes;probe.End(0,a,'end');assert(writes==before)
@@ -230,7 +254,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
   lua=self.runtime();lua.execute(r"""
    local before=writes;local v=diagRequest('CULTURE_MEANING_DIAGNOSTIC_READ','off-read')
    assertDiagnostic(v,'OFF',0,{});assert(writes==before)
-   diagAdvance('baseline');diagAdvance('single')
+   diagAdvance('baseline');diagTo('SINGLE2','single')
    before=writes;local action=probe.lastAction
    v=diagRequest('CULTURE_MEANING_DIAGNOSTIC_READ','active-read')
    assertDiagnostic(v,'SINGLE2',2,{'BUILDING_SPC_MEANING_PROBE_PRODUCTION_1'})
@@ -245,7 +269,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
   for kind in ('work','active','facts'):
    with self.subTest(kind=kind):
     lua=self.runtime();lua.globals().unknownKind=kind;lua.execute(r"""
-     diagAdvance('baseline');diagAdvance('single')
+     diagAdvance('baseline');diagTo('SINGLE2','single')
      local prior=exactMeaning(a);local before=writes
      local summary,read=shared.GreatWorkFacts.Summary,shared.GreatWorkFacts.Read
      if unknownKind=='work' then
@@ -265,7 +289,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
   for kind in ('id','slot','building','type','count'):
    with self.subTest(kind=kind):
     lua=self.runtime();lua.globals().changeKind=kind;lua.execute(r"""
-     diagAdvance('baseline');diagAdvance('single');local other=snapshotBuildings(b)
+     diagAdvance('baseline');diagTo('SINGLE2','single');local other=snapshotBuildings(b)
      local bid=GameInfo.Buildings.BUILDING_AMPHITHEATER.Index
      local rows={{1,bid,0,100,'GREATWORK_BHASA_1'},{2,bid,0,200,'GREATWORK_BHASA_1'}}
      if changeKind=='id' then rows[1][4]=101
@@ -293,7 +317,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
 
  def test_end_failure_keeps_holds_duplicate_no_retry_new_token_recovers(self):
   lua=self.runtime();lua.execute(r"""
-   diagAdvance('baseline');diagAdvance('single');diagAdvance('pair')
+   diagAdvance('baseline');diagTo('SINGLE2','single');diagAdvance('pair')
    local id=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_PRODUCTION_1.Index
    failRemove=id;local v=diagRequest('CULTURE_MEANING_END','failed-end')
    assert(v.error and probe.stopping and a.present[id])
@@ -310,7 +334,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
   for reason in ('load','loss','reference'):
    with self.subTest(reason=reason):
     lua=self.runtime();lua.globals().exitReason=reason;lua.execute(r"""
-     diagAdvance('baseline');diagAdvance('single');seedAllMeaning(a)
+     diagAdvance('baseline');diagTo('SINGLE2','single');seedAllMeaning(a)
      local token=a.token;local other=snapshotBuildings(b)
      if exitReason=='load' then
       seedAllMeaning(b);a.owner=3;fire('LoadScreenClose')
@@ -335,7 +359,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    seedAllMeaning(a)
    local damaged=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_PRODUCTION_1.Index;a.pillaged[damaged]=true
    local before=writes;local v=probe.View(0,a,true)
-   assert(v.diagnostic and v.diagnosticStage=='OFF' and v.remainingOwned==26 and #v.diagnosticCarriers==26)
+   assert(v.diagnostic and v.diagnosticStage=='OFF' and v.remainingOwned==27 and #v.diagnosticCarriers==27)
    local seen={};for _,part in ipairs(v.diagnosticCarriers)do
     assert(not seen[part.name]);seen[part.name]=true
     assert(part.yield and type(part.amount)=='number' and type(part.pillaged)=='boolean')
@@ -348,7 +372,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
  def test_independent_native_observation_reports_composite_and_off_mismatch(self):
   lua=self.native_runtime();lua.execute(r"""
    nativeBegin();local other=snapshotBuildings(b)
-   diagAdvance('single');nativeObservation=12;local before=writes
+   diagTo('SINGLE2','single');nativeObservation=12;local before=writes
    local report=nativeReport(false,'single',false)
    assert(report:find('SINGLE2',1,true) and report:find('预期 +2',1,true))
    assert(report:find('当前原生作品生产力 12.00',1,true) and report:find('实测差值 +2.00',1,true))
@@ -368,11 +392,62 @@ class ProductionDiagnosticTests(unittest.TestCase):
    assertBuildingsSame(b,other)
   """)
 
+ def test_independent_clear_remain_and_single3_native_observations(self):
+  lua=self.native_runtime();lua.execute(r"""
+   nativeBegin();local other=snapshotBuildings(b)
+   local steps={{'SINGLE1',1,11},{'CLEAR1',0,10},{'SINGLE2',2,12},
+    {'PAIR12',3,11},{'REMAIN2',2,12},{'SINGLE3',3,13}}
+   for _,case in ipairs(steps)do
+    diagAdvance('independent:'..case[1]);nativeObservation=case[3]
+    local before=writes;local report=nativeReport(false,'read:'..case[1],false)
+    assert(report:find(case[1],1,true) and report:find('预期 +'..case[2],1,true),report)
+    assert(report:find(string.format('当前原生作品生产力 %.2f',case[3]),1,true),report)
+    assert(report:find(string.format('实测差值 %+.2f',case[3]-10),1,true),report)
+    if case[1]=='PAIR12' then
+     assert(report:find('不一致',1,true) and not report:find('一致（仅即时读数）',1,true))
+    else assert(report:find('一致（仅即时读数）',1,true),report)end
+    assert(not report:find('PASS',1,true) and writes==before and globalScans==0)
+    assertBuildingsSame(b,other)
+   end
+   probe.End(0,a,'end-independent');assert(next(exactMeaning(a))==nil)
+  """)
+
+ def test_diagnostic_single3_creation_and_withdrawal_failures_are_scoped(self):
+  for phase in ('create','remove','load'):
+   with self.subTest(phase=phase):
+    lua=self.runtime();lua.globals().failurePhase=phase;lua.execute(r"""
+     diagTo('REMAIN2','before-failure')
+     local name=SPCCultureMeaningModel.DiagnosticSingle3.name;local id=GameInfo.Buildings[name].Index
+     local other=snapshotBuildings(b);local token=a.token;local create=P.CreateBuilding
+     if failurePhase=='create' then
+      P.CreateBuilding=function(queue,index)if index~=id then return create(queue,index)end end
+      assert(not pcall(probe.DiagnosticAdvance,0,a,'failed-create') and probe.error)
+      assert(gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0) and not old(a,'SCIENCE'))
+      assert(not a.present[id]);P.CreateBuilding=create
+      probe.End(0,a,'recover-create');assert(next(exactMeaning(a))==nil and old(a,'SCIENCE'))
+     else
+      diagAdvance('independent3');assert(a.present[id] and probe.diagnosticStage=='SINGLE3')
+      failRemove=id
+      if failurePhase=='load' then
+       fire('LoadScreenClose');assert(probe.error and not probe.ready and probe.resetFailed and a.present[id])
+       assert(gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0))
+       failRemove=nil;fire('LoadScreenClose');assert(probe.mode=='OFF' and probe.ready and not probe.resetFailed)
+      else
+       assert(not pcall(probe.End,0,a,'failed-remove') and probe.error and probe.stopping)
+       assert(a.present[id] and gwa.IsMeaningHeld(0,a) and dialogue.IsMeaningProbeHeld(0,a,0) and not old(a,'SCIENCE'))
+       local before=writes;failRemove=nil;probe.End(0,a,'failed-remove');assert(writes==before and a.present[id])
+       probe.End(0,a,'recover-remove');assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and old(a,'SCIENCE'))
+      end
+     end
+     assert(a.token==token and a.present[GameInfo.Buildings.BUILDING_LIBRARY.Index])
+     assertBuildingsSame(b,other);assert(diagDepthCalls==0)
+    """)
+
  def test_native_unknown_clears_baseline_not_successful_zero(self):
   for bad in ('nil','nan','inf'):
    with self.subTest(bad=bad):
     lua=self.native_runtime();lua.globals().badCase=bad;lua.execute(r"""
-     nativeBegin();diagAdvance('single');nativeObservation=12;nativeBad=badCase
+     nativeBegin();diagTo('SINGLE2','single');nativeObservation=12;nativeBad=badCase
      local before=writes;local report=nativeReport(false,'bad-native',false)
      assert(report:find('ME_UI_DIAG_NATIVE_UNKNOWN',1,true),report)
      assert(not report:find('实测差值 +0.00',1,true) and not report:find('一致（仅即时读数）',1,true))
@@ -386,7 +461,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
            'a.active=nil',"a.token='other-reference'")
   for change in changes:
    with self.subTest(change=change):
-    lua=self.native_runtime();lua.execute('nativeBegin();diagAdvance("single");nativeObservation=12;'+change)
+    lua=self.native_runtime();lua.execute('nativeBegin();diagTo("SINGLE2","single");nativeObservation=12;'+change)
     before=lua.globals().writes;report=lua.globals().nativeReport(False,'changed',False)
     self.assertNotIn('实测差值 +2.00',report)
     self.assertNotIn('一致（仅即时读数）',report)
@@ -402,7 +477,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    local calls=nativeCalls;local prior=report
    report=nativeReport(false,'inspect',true);assert(report==prior and globalScans==1)
    nativeReport(false,'inspect-new',true);assert(globalScans==2 and writes==before)
-   nativeBegin();diagAdvance('single');nativeObservation=12
+   nativeBegin();diagTo('SINGLE2','single');nativeObservation=12
    assert(nativeReport(false,'active',false):find('实测差值 +2.00',1,true))
    SPCBoostGreatWorkRead.ClearMeaningRead()
    report=nativeReport(false,'cleared',false);assert(report:find('实测差值 未确认',1,true))
@@ -415,12 +490,12 @@ class ProductionDiagnosticTests(unittest.TestCase):
  def test_off_native_instances_are_exact_and_residue_or_unknown_is_not_withdrawal_pass(self):
   lua=self.native_runtime()
   names=['SPC_MEANING_PROBE_PRODUCTION_1_WRITING','SPC_B060_PRODUCTION_P1_WRITING',
-         'SPC_MEANING_PROBE_CULTURE_0_WRITING']
+         'SPC_MEANING_PROBE_CULTURE_0_WRITING','SPC_MEANING_PROBE_PRODUCTION_SINGLE3_WRITING']
   definitions={}
   for instance,name in enumerate(names,701):
    definitions[instance]={'Id':name,'Arguments':dict(self.sql.execute(
        'SELECT Name,Value FROM ModifierArguments WHERE ModifierId=?',(name,)))}
-  definitions[704]={'Id':'HD_AMPHITHEATER_WRITING_CULTURE_BOOST',
+  definitions[705]={'Id':'HD_AMPHITHEATER_WRITING_CULTURE_BOOST',
                     'Arguments':{'GreatWorkObjectType':'GREATWORKOBJECT_WRITING','YieldType':'YIELD_CULTURE','YieldChange':2}}
   lua.globals().nativeDefinitions=modifier.table(lua,definitions)
   lua.execute(r"""
@@ -430,21 +505,21 @@ class ProductionDiagnosticTests(unittest.TestCase):
     return out
    end
    CityManager.GetCity=function(pid,id)if pid==0 then return Players[0]:GetCities():FindID(id)end end
-   instanceList={701,702,703,704}
+   instanceList={701,702,703,704,705}
    GameEffects={GetModifiers=function()globalScans=globalScans+1;return instanceList end,
     GetModifierDefinition=function(id)return nativeDefinitions[id]end,GetModifierOwner=function()return 9001 end,
     GetObjectsPlayerId=function()return 0 end,GetObjectType=function()return 'LOC_MODIFIER_OBJECT_DISTRICT' end,
     GetObjectString=function()return 'District: 2, Owner: 0, SubType: 1, SubValue: 0, City: 1' end,
     GetModifierActive=function()return true end,GetModifierSubjects=function()return {9001}end}
    local before=writes;local report=nativeReport(false,'residue-read',true)
-   assert(report:find('实例ID 701',1,true) and report:find('实例ID 702',1,true) and report:find('实例ID 703',1,true))
+   assert(report:find('实例ID 701',1,true) and report:find('实例ID 702',1,true) and report:find('实例ID 703',1,true) and report:find('实例ID 704',1,true))
    assert(not report:find('HD_AMPHITHEATER_WRITING_CULTURE_BOOST',1,true))
-   assert(report:find('本城Meaning Writing实例 2',1,true) and report:find('本城旧GWA Production实例 1',1,true))
+   assert(report:find('本城Meaning Writing实例 3',1,true) and report:find('本城旧GWA Production实例 1',1,true))
    assert(report:find('异常：OFF仍观察到本城Meaning实例或精确载体',1,true))
    assert(writes==before and next(exactMeaning(a))==nil and globalScans==1 and not report:find('PASS',1,true))
    GameEffects.GetObjectString=function()return 'UNOBSERVED_SCHEMA' end
    report=nativeReport(false,'unknown-read',true)
-   assert(report:find('城市UNKNOWN 3',1,true) and report:find('撤销未确认',1,true))
+   assert(report:find('城市UNKNOWN 4',1,true) and report:find('撤销未确认',1,true))
    assert(writes==before and not report:find('本次未观察到本城Meaning Writing实例',1,true))
    instanceList={};report=nativeReport(false,'empty-read',true)
    assert(report:find('本次未观察到本城Meaning Writing实例',1,true))
@@ -463,7 +538,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
      ExposedMembers.SPC_P0.LastToken='late-baseline'
      assert(not panelDisplay() and nativeCalls==native and writes==before and globalScans==0)
      assert(probe.mode=='BASELINE' and gwa.IsMeaningHeld(0,a))
-     diagAdvance('single');nativeObservation=12
+     diagTo('SINGLE2','single');nativeObservation=12
      local report=nativeReport(false,'read-after-close',false)
      assert(report:find('实测差值 未确认',1,true) and not report:find('同回合基线已记录',1,true))
     """)
@@ -471,7 +546,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
  def test_panel_cached_display_and_copy_validate_current_selection_without_rescan(self):
   lua=self.panel_runtime();lua.execute(r"""
    diagAdvance('baseline');panelPrepare('CULTURE_MEANING_DIAGNOSTIC_ADVANCE','baseline-ui')
-   assert(panelDisplay());diagAdvance('single');nativeObservation=12
+   assert(panelDisplay());diagTo('SINGLE2','single');nativeObservation=12
    panelPrepare('CULTURE_MEANING_DIAGNOSTIC_READ','read-ui');local before=writes
    assert(panelDisplay());local _,_,report=panelState()
    assert(report:find('实测差值 +2.00',1,true),report)
@@ -496,7 +571,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    panelSelected=a;assert(panelDisplay());local _,_,returned=panelState()
    assert(not returned:find('同回合基线已记录',1,true) and not returned:find('当前原生作品生产力',1,true))
    assert(nativeCalls==native and globalScans==scans and writes==before)
-   diagAdvance('single-after-first-ack');nativeObservation=12
+   diagTo('SINGLE2','single-after-first-ack');nativeObservation=12
    local report=nativeReport(false,'explicit-after-first-ack',false)
    assert(report:find('实测差值 未确认',1,true) and not report:find('实测差值 +2.00',1,true))
   """)

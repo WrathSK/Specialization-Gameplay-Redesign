@@ -227,16 +227,20 @@ local function diagnosticSnapshot(P,c,v)
  return {key=key,value=value,work=work,qualified=qKnown,fixtureMatches=fixtureMatches}
 end
 local function diagnosticConfiguration(v)
- assert(v.diagnostic==true and (v.diagnosticStage=='BASELINE' or v.diagnosticStage=='SINGLE2' or v.diagnosticStage=='PAIR12' or v.diagnosticStage=='OFF'),'ME_UI_DIAG_CONFIGURATION')
- local expected=({BASELINE=0,SINGLE2=2,PAIR12=3,OFF=0})[v.diagnosticStage]
+ local M=SPCCultureMeaningModel
+ local expected=type(M.DiagnosticExpected)=='table' and M.DiagnosticExpected[v.diagnosticStage]
+ assert(v.diagnostic==true and diagnosticInteger(expected),'ME_UI_DIAG_CONFIGURATION')
  assert(v.diagnosticExpected==expected and diagnosticInteger(v.remainingOwned)
-  and type(v.diagnosticCarriers)=='table' and #v.diagnosticCarriers<=26,'ME_UI_DIAG_CONFIGURATION')
+  and type(v.diagnosticCarriers)=='table' and #v.diagnosticCarriers<=#M.Owned,'ME_UI_DIAG_CONFIGURATION')
  local count,amount,names=0,0,{};local owned={}
- for _,name in ipairs(SPCCultureMeaningModel.Owned)do owned[name]=true end
+ for _,name in ipairs(M.Owned)do owned[name]=true end
  for k,entry in pairs(v.diagnosticCarriers)do
   assert(diagnosticInteger(k) and k>=1 and k<=#v.diagnosticCarriers and type(entry)=='table'
    and type(entry.name)=='string' and owned[entry.name] and not names[entry.name]
    and type(entry.yield)=='string' and diagnosticFinite(entry.amount) and entry.amount>=0 and type(entry.pillaged)=='boolean','ME_UI_DIAG_CONFIGURATION')
+  if M.DiagnosticSingle3 and entry.name==M.DiagnosticSingle3.name then
+   assert((entry.yield=='PRODUCTION' or entry.yield=='YIELD_PRODUCTION') and entry.amount==M.DiagnosticSingle3.amount,'ME_UI_DIAG_CONFIGURATION')
+  end
   names[entry.name]=true;count=count+1
   if (entry.yield=='PRODUCTION' or entry.yield=='YIELD_PRODUCTION') and not entry.pillaged then amount=amount+entry.amount end
  end
@@ -279,7 +283,10 @@ function SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,mark,token,requestedRe
   end
   if #v.diagnosticCarriers>4 then lines[#lines+1]='另'..(#v.diagnosticCarriers-4)..'项载体未展开。'end
  end
- if v.diagnosticStage=='OFF' then lines[#lines+1]='OFF是控制状态；退出差值含旧系统恢复，载体为0仍需核对原生实例和真实收益。'end
+ if v.diagnosticStage=='CLEAR1' then lines[#lines+1]='CLEAR1仅撤＋1；旧系统应继续hold，尚未结束。'
+ elseif v.diagnosticStage=='REMAIN2' then lines[#lines+1]='仅撤＋1、保留健康＋2；用实例ID核对是否重建。'
+ elseif v.diagnosticStage=='SINGLE3' then lines[#lines+1]='独立单片＋3；与两片＋1／＋2总量相同。'
+ elseif v.diagnosticStage=='OFF' then lines[#lines+1]='OFF是控制状态；退出差值含旧系统恢复，载体为0仍需核对原生实例和真实收益。'end
  if v.configuredProduction==nil or v.error or v.configurationError or v.dialogueError then lines[#lines+1]='当前错误／配置待确认；即时读数不构成验证通过。'end
  if inspect then lines[#lines+1]=SPCBoostGreatWorkRead.Modifiers(P,c,v,token,requestedReference)end
  return table.concat(lines,'\n')

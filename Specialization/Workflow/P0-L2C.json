@@ -97,13 +97,13 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0415",
-    "runtime": "B159.186 / modinfo186",
+    "status": "S0416",
+    "runtime": "B160.187 / modinfo187",
     "military": "D0037",
     "harbor": "D0037"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--production组合与退出诊断",
-  "goal": "User-authorized one-city/one-Writing fixed Production +2 versus +1/+2 native diagnostic and explicit END/cold-load read; existing carriers, no D/Floor/formal cutover change.",
+  "goal": "User-authorized one-city/one-Writing single1 withdrawal/reconfiguration, preserved2 and independent flat3 diagnostic; no D/Floor/W or formal cutover change.",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -215,7 +215,7 @@
     {
       "path": "Mod/Data/CultureMeaningProbe.sql",
       "kind": "full",
-      "reason": "Exact26 owned/182 attachments; old16 unchanged, new P/F/Faith finite integer family"
+      "reason": "Exact27 owned/189 attachments; old16 unchanged, new P/F/Faith finite integer family"
     },
     {
       "path": "Mod/GreatWorkFacts.lua",
@@ -260,7 +260,7 @@
     {
       "path": "DevelopmentTests/test_culture_meaning_probe.py",
       "kind": "full",
-      "reason": "Maintained exact26 memory-DB + L1/K fixture; selected valid direct tests only, old four-state assertions preserved"
+      "reason": "Maintained exact27 memory-DB + L1/K fixture; selected valid direct tests only, old four-state assertions preserved"
     },
     {
       "path": "Mod/Data/GreatWorkAdjacency.sql",
@@ -305,9 +305,9 @@
       "reason": "Current 27 targeted writer/reader/fixture/lifecycle tests; no historical four-state suite"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
       "kind": "full",
-      "reason": "Actual current local evidence, precise minimal user flow and native stop"
+      "reason": "Current B160 local evidence, exact diagnostic controls/exit protection and minimal native flow; former B159 contract is linked only as needed."
     },
     {
       "path": "DevelopmentTests/test_culture_meaning_diagnostic.py",
@@ -329,7 +329,7 @@
   "old_writers": [
     "Only one selected-city GWA exact156 owned hold; confirm new withdrawal before normal current-sample restore",
     "Existing local-reference Dialogue0% override only during probe; preserve other cities and K producer/ACK",
-    "Exact26 Meaning withdrawal directory retains original16 S/G/Culture/candidate IDs; only five yields generate, no Culture candidate configuration."
+    "Exact27 Meaning withdrawal directory retains all former26 IDs and adds independent Production flat3; only explicit SINGLE3 diagnostic creates it. Ordinary Parts/Plan unchanged."
   ],
   "non_scope": [
     "Culture flat coexistence/host diagnostic and Government/Diplomatic restoration are deferred",
@@ -339,23 +339,23 @@
   "validation": {
     "depth": "W0004 L2 plus touched load/loss/reference L3; targeted only, no full history/stress",
     "local": [
-      "Fixed four-stage exact existing parts, prior +2 withdrawal then +1/+2 creation; no diagnostic D read",
+      "Fixed eight-stage exact projection operations; CLEAR1 holds old writers; REMAIN2 only removes+1 preserving healthy+2; independent3 excluded from ordinary Parts; no diagnostic D read.",
       "UNKNOWN/repeated notifications/fixture/current-reference isolation; owned failure/loss/load protects legacy hold and permanent data",
       "Independent native observations, OFF residue/UNKNOWN/exact instance mapping, current selection/late ACK/cache invalidation; targeted only"
     ],
-    "user": "One supported Writing/Culture ACTIVE IV city: BASELINE→single+2→pieces+1/+2→END and cold-load enabled copy; at most four reports. Full L2/settlement not proven."
+    "user": "One supported Writing/Culture ACTIVE IV city, same turn: baseline→1→clear0→2→pair1/2→remove only1 retaining2→independent3→END plus cold-load enabled copy. Pair knownFAIL may continue to retained2 control; other errors pause. At most five key reports. No full L2/settlement proof."
   },
   "result": {
-    "plan": "User explicitly authorized minimal Production combination and exit diagnostic; no further cutover/batch authorization.",
-    "implementation": "B159.186 / modinfo186 LOCAL_COMPLETE; 18 test methods / 31 subtests PASS, fixed controls only.",
+    "plan": "User explicitly authorized B160 minimal reconfiguration plus independent single3; no formal cutover/batch expansion.",
+    "implementation": "B160.187 / modinfo187 LOCAL_COMPLETE; 47 methods/58 subtests PASS, fixed diagnostic controls only.",
     "native": "B159 USER_GAME_TEST_PASS for same-turn single Writing Production2; USER_GAME_TEST_FAIL pair1/2 expected3/native1, two distinct native instances Active=true flat1/2 mapped to same city. END/cold-load still unconfirmed; full L2 NOT_PASSED. Internal selection rule unknown; no all-yield generalization.",
-    "stop": "Await explicit authorization for minimal single1 withdrawal/reconfiguration diagnostic, optionally single aggregate Production3; B159 pair1/2 nativeFAIL. No formal cutover or L3/M/N/U2.",
-    "deployment": "B159.186 / modinfo186; source 59e686feb5e66dde7429c3e44a457cb6a826ace8; existing receipt B159.186-59e686f-playtest.json DEVELOP_ACTIVE records 182/182 source-runtime MATCH, B158/stable recovery MATCH and no pending marker at deployment. B159 native single2 immediate PASS / pair1/2 FAIL; END/cold-load unconfirmed. This doc-only turn did not reverify runtime or current game-process state.",
+    "stop": "Await B160 native withdrawal/reconfiguration/single3 diagnostic only. No formal cutover or L3/M/N/U2 authorization.",
+    "deployment": "B160.187 source LOCAL_COMPLETE, live verified B159.186 / modinfo186 receipt B159.186-59e686f-playtest.json DEVELOP_ACTIVE and 182 MATCH; stable/receipt backup MATCH, no pending marker. OS confirms game exited. Safe W0003 switch awaits clean committed source. No game launch.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
-    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-    "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:18 methods/31 subtests, includes9 retained Modifier assertions; no full historical suite.",
-    "next_proposal": "User suggests single1 withdrawal/reconfiguration. Plan in B159 native result: 1→0→2→1/2→withdraw1 keeping2→END, optional independent single3; no current code for isolated withdrawal, no new implementation authorization."
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+    "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:20 methods plus test_culture_meaning_l2c.py:27 methods; 58 subtests. Includes retained Modifier assertions; no full historical/stress.",
+    "next_proposal": "Evaluate current B160 native control evidence before any future single-yield single-value formal writer plan; no further implementation authorized."
   }
 }

@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "513caf84d7eaa821e8384e770f22054486612d5af38f039a94c45c1776d69226",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "785fb134e524eec51f607fe24bbd3b8fec3d831bc94a9249eee23c6ccfb21f57",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7b9dfecb3a1984720281be728a94b302ddefbc319b981e03086e647999529f56",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "faef614d2a0193698940ba2ffcf792e08c3ffefa85638c63927ab52072ef689c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "74269234ca07536393970f463168d3bdeace925b805606fa0f5b60bfbc268fd3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "45abc7f35c7029c5f04833dc00e0e85955ec55a353b7cdd827eb4f1765a3ab38",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "e06a0e066923812cb0a3af2d54eeb0c2f968b219c6293cca657b96d8dadf37c9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "568104e181748f6d085dd3f9c08c4eb2ef119a16d22b6424cfb229f664be8ec3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -901,19 +901,19 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "f845431582a1d4519acc8b88fb061f77d305dd497a9b7febd74135d986da703f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "68599c156202bcf4306ebf2c72dfde1c1fe9fb94028121a9628e5c60940e73b1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "90d2f0431a74bafc8a6468ec3ee6cc83696a1d9d0c1071491f97d19835074239",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "8769357060092d907bc1a5112ca9e610c7cf75a0631c0c0436bb82be40f90889",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
-      "sha256": "8d2331628a164950dbc1d46149d3ba9201f564214bafd2cd7aec3d2b49c865a0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md",
-      "provenance": "B158 user-authorized P0-L2C seven-domain/five-yield single-city gate; targeted LOCAL47 PASS, native pending; no permanent/GC/global cutover."
+      "sha256": "3a99b166d44e465c4a6e12b93229c42a49a5fd329ecf9ceef30116415bd4f93f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
     }
   }
 }

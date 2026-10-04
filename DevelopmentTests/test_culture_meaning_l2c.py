@@ -22,6 +22,7 @@ OWNED = [f"BUILDING_SPC_MEANING_PROBE_{y}_{bit}"
          for y, bits in BITS.items() for bit in range(bits)] + [
     "BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3",
     "BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3_SCALE100",
+    "BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3",
 ]
 
 HELPERS = r"""
@@ -34,8 +35,8 @@ function exactMeaning(c)
 end
 function seedAllMeaning(c)
  for _,name in ipairs(SPCCultureMeaningModel.Owned)do building(c,name,c.ds[1])end
- assert(#SPCCultureMeaningModel.Owned==26)
- local n=0;for _ in pairs(exactMeaning(c))do n=n+1 end;assert(n==26)
+ assert(#SPCCultureMeaningModel.Owned==27)
+ local n=0;for _ in pairs(exactMeaning(c))do n=n+1 end;assert(n==27)
 end
 function snapshotBuildings(c)
  local out={};for id,value in pairs(c.present)do out[id]=value end;return out
@@ -155,7 +156,7 @@ class L2CTests(unittest.TestCase):
   lua = self.runtime()
   lua.execute(r"""
    local m=SPCCultureMeaningModel;local limits={SCIENCE=5,PRODUCTION=10,GOLD=30,FOOD=5,FAITH=5}
-   local seen={};assert(#m.Owned==26)
+   local seen={};assert(#m.Owned==27)
    for _,name in ipairs(m.Owned)do assert(not seen[name]);seen[name]=true;assert(GameInfo.Buildings[name])end
    for y,limit in pairs(limits)do
     for amount=0,limit do
@@ -171,9 +172,14 @@ class L2CTests(unittest.TestCase):
    for _,y in ipairs({'PRODUCTION','FOOD','FAITH'})do assert(not pcall(m.Parts,y,0.5))end
    for _,amount in ipairs({0,1,3})do assert(not pcall(m.Parts,'CULTURE',amount))end
    for _,variant in ipairs({'SINGLE3','SINGLE3_SCALE100'})do assert(not pcall(m.Parts,'CULTURE',3,variant))end
+   local single=m.DiagnosticSingle3
+   assert(single.name=='BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3' and single.amount==3 and seen[single.name])
+   local parts=m.Parts('PRODUCTION',3)
+   assert(#parts==2 and parts[1]=='BUILDING_SPC_MEANING_PROBE_PRODUCTION_0' and parts[2]=='BUILDING_SPC_MEANING_PROBE_PRODUCTION_1')
+   for _,name in ipairs(parts)do assert(name~=single.name)end
   """)
 
- def test_sql_exact_26_owned_and_182_attachments(self):
+ def test_sql_exact_27_owned_and_189_attachments(self):
   placeholders = ','.join('?' for _ in OWNED)
   rows = self.sql.execute(f'SELECT BuildingType,InternalOnly,CitizenSlots,Housing,PrereqDistrict FROM Buildings WHERE BuildingType IN ({placeholders})', OWNED).fetchall()
   self.assertEqual({row[0] for row in rows}, set(OWNED))
@@ -195,7 +201,7 @@ class L2CTests(unittest.TestCase):
     self.assertEqual(set(arguments),{'GreatWorkObjectType','YieldType','YieldChange'}|({'ScalingFactor'} if part=='SINGLE3_SCALE100' else set()))
     if part=='SINGLE3_SCALE100':self.assertEqual(float(arguments['ScalingFactor']),100)
    self.assertEqual(categories,{'GREATWORKOBJECT_'+category for category in CATEGORIES})
-  self.assertEqual(count,182)
+  self.assertEqual(count,189)
 
  def test_zero_culture_three_state_flow_and_disabled_configuration(self):
   lua=self.runtime();legacy.bind_actual_request(lua)
@@ -271,14 +277,14 @@ class L2CTests(unittest.TestCase):
    assert(probe.mode=='OFF' and next(exactMeaning(a))==nil and not gwa.IsMeaningHeld(0,a))
   """)
 
- def test_confirmed_loss_clears_all_26_owned_without_other_city_or_permanent_write(self):
+ def test_confirmed_loss_clears_all_27_owned_without_other_city_or_permanent_write(self):
   lua=self.runtime();lua.execute(r"""
    fiveDepthFixture(a);begin();seedAllMeaning(a)
    local other=snapshotBuildings(b);local token=a.token;a.owner=3
    local loss={confirmed=false,targetID=a.id,origin={owner=0}}
    local before=writes
    assert(not pcall(exits.CultureMeaningProbe,a,loss) and writes==before)
-   local n=0;for _ in pairs(exactMeaning(a))do n=n+1 end;assert(n==26)
+   local n=0;for _ in pairs(exactMeaning(a))do n=n+1 end;assert(n==27)
    loss.confirmed=true;loss.targetID=b.id
    assert(not pcall(exits.CultureMeaningProbe,a,loss) and writes==before)
    loss.targetID=a.id
@@ -291,7 +297,7 @@ class L2CTests(unittest.TestCase):
    assert(probe.mode=='OFF' and next(exactMeaning(a))==nil)
   """)
 
- def test_cold_load_clears_all_26_owned_on_supported_and_foreign_cities(self):
+ def test_cold_load_clears_all_27_owned_on_supported_and_foreign_cities(self):
   lua=self.runtime();lua.execute(r"""
    begin();seedAllMeaning(a);seedAllMeaning(b);a.owner=3
    local token=a.token;fire('LoadScreenClose')
@@ -502,6 +508,7 @@ class L2CTests(unittest.TestCase):
  def test_panel_explicit_read_same_ack_and_copy_reuse_without_native_or_gameplay_work(self):
   lua=self.reader_runtime();lua.execute(r"""
    readerBegin();local before=writes
+   UI={GetHeadSelectedCity=function()return a end}
    P.VERSION='L2C_READER_TEST';pendingToken='reader:ack';pendingAction='CULTURE_MEANING_READ';pageCity=1
    readings={};page=1;localReport=nil;meaningReadReference=SPCNetworkInput.Reference(a)
    function status(s)readerShown=s end;function print(s)readerLogged=s end

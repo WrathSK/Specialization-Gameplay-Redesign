@@ -49,9 +49,9 @@ def database():
  d.execute('DROP TABLE IF EXISTS SPC_CultureAestheticBits')
  d.executescript((M/'Data/CultureAesthetic.sql').read_text())
  # Earlier probe definitions may be present in the read-only DB too. Rebuild
- # only the exact 26 owned carriers / 182 attachments in this memory copy.
+ # only the exact 27 owned carriers / 189 attachments in this memory copy.
  carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6),('CULTURE',4),('PRODUCTION',4),('FOOD',3),('FAITH',3)]for bit in range(bits)]
- carriers += ['BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3','BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3_SCALE100']
+ carriers += ['BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3','BUILDING_SPC_MEANING_PROBE_CULTURE_SINGLE3_SCALE100','BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3']
  modifiers=[b.removeprefix('BUILDING_')+'_'+cat for b in carriers for cat in ['WRITING','MUSIC','SCULPTURE','PORTRAIT','LANDSCAPE','RELIGIOUS','ARTIFACT']]
  for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:
   d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
@@ -123,7 +123,10 @@ class MeaningProbeTests(unittest.TestCase):
     end
     if y=='CULTURE' then for _,part in pairs(SPCCultureMeaningModel.VariantParts)do
      if c.present[GameInfo.Buildings[part.name].Index]then n=n+part.amount end
-    end end;return n
+    end end
+    local diagnostic=SPCCultureMeaningModel.DiagnosticSingle3
+    if y=='PRODUCTION' and diagnostic and c.present[GameInfo.Buildings[diagnostic.name].Index]then n=n+diagnostic.amount end
+    return n
    end
    function old(c,y)return c.present[GameInfo.Buildings['BUILDING_SPC_B060_'..y..'_P1'].Index]==true end
    function begin()probe.Advance(0,a);assert(probe.mode=='BASELINE');probe.Advance(0,a);assert(probe.mode=='ACTIVE')end

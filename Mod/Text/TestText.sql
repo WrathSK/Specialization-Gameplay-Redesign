@@ -103,7 +103,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','Either click ends this city probe: withdraw additions before restoring legacy consumers from current facts. Culture candidates are deferred.'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','生产力组合诊断'),
 ('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Production combination diagnostic'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及仅1件已支持著作。左键：基线 → 单片＋2 → 两片＋1／＋2 → 结束；右键读取当前作品生产力和精确实例，关闭后也可读。不改D公式，配置不等于原生收益。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','One supported Writing work in a Culture ACTIVE4 city. Left click: baseline, single +2, pieces +1/+2, then end. Right click reads native production and exact instances, including OFF. No D formula change; configuration is not native yield evidence.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及仅1件已支持著作。左键依次：基线 → 单片＋1 → 清零 → 单片＋2 → 两片＋1／＋2 → 只撤＋1 → 独立单片＋3 → 结束。右键读取真实生产力和实例；“结束验证”随时退出。清零阶段仍暂停旧收益，不改D公式。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','One supported Writing in a Culture ACTIVE4 city. Left click: baseline, single +1, clear0, single +2, pair1/2, remove only +1, independent single +3, then end. Right click reads native production and instances; End yield gate exits any stage. Clear0 still holds legacy yields. No D formula change.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');

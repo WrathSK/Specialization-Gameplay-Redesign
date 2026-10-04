@@ -62,7 +62,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
     if #r.works~=1 or #(r.excluded or {})~=0 or r.works[1].category~='GREATWORKOBJECT_WRITING' then p.status='DIAGNOSTIC_WORK_CHANGED'
     else
      local work=r.works[1];p.work={id=work.id,type=work.type,building=work.building,slot=work.slot}
-     p.status='READY';p.each.PRODUCTION=d.diagnosticStage=='SINGLE2' and 2 or d.diagnosticStage=='PAIR12' and 3 or 0
+     p.status='READY';p.each.PRODUCTION=assert(M.DiagnosticExpected[d.diagnosticStage],'ME_DIAGNOSTIC_STAGE')
      p.total.PRODUCTION=p.each.PRODUCTION
     end
    end
@@ -90,7 +90,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if not ok then d.error=tostring(why);error(why)end
  end
  local function reset(isLoad)
-  -- One load-only pass over twenty-six exact owned definitions. Not an AI ability audit.
+  -- One load-only pass over twenty-seven exact owned definitions. Not an AI ability audit.
   -- Saved transient test carriers must be removed even on a foreign held city.
   d.busy=true
   local ok,why=pcall(function()
@@ -122,14 +122,18 @@ function SPCCultureMeaningProbe.Start(P,shared)
     dialogueHold(target.owner,c,0)
    end
    if not d.stopping and d.mode=='ACTIVE' and p.status=='READY' and p.count>0 then
-    for _,y in ipairs(M.WriteYields)do for _,name in ipairs(M.Parts(y,p.each[y]))do want[name]=true end end
+    if target.diagnostic then
+     for _,name in ipairs(M.DiagnosticParts(d.diagnosticStage))do want[name]=true end
+    else
+     for _,y in ipairs(M.WriteYields)do for _,name in ipairs(M.Parts(y,p.each[y]))do want[name]=true end end
+    end
    end
    project(c,want);d.lastPlan=p
   end)
   if not ok then
    local code=tostring(why)
    -- Unknown same-reference inputs retain the last confirmed projection. A
-   -- known unsafe collection/configuration removes only these twenty-six exact test IDs.
+   -- known unsafe collection/configuration removes only these twenty-seven exact test IDs.
    if c and (code:find('ME_FIXTURE_UNSUPPORTED_WORK') or code:find('ME_CREATE_') or code:find('ME_ENCODING_') or code:find('ME_OLD_WRITER_'))then
     local cleared,err=pcall(project,c,{});if not cleared then why=err end
    end
@@ -195,12 +199,17 @@ function SPCCultureMeaningProbe.Start(P,shared)
    -- Repeat the old module's confirmation before any new native write.
    shared.GreatWorkAdjacency.HoldMeaningProbe(pid,c)
    local p=plan(c);assert(p.status=='READY' and p.count>0,'ME_NEEDS_CULTURE_IV_AND_WORK')
-   transition('ACTIVE',c,diagnostic and 'SINGLE2' or nil)
-  elseif diagnostic and d.diagnosticStage=='SINGLE2' then
+   transition('ACTIVE',c,diagnostic and 'SINGLE1' or nil)
+  elseif diagnostic then
    local p=plan(c);assert(p.status=='READY' and p.count==1,'ME_DIAGNOSTIC_WORK_REQUIRED')
-   -- Clear +2 before creating +1 then +2: no prior instance order contaminates this control.
-   project(c,{})
-   transition('ACTIVE',c,'PAIR12')
+   local nextStage=({SINGLE1='CLEAR1',CLEAR1='SINGLE2',SINGLE2='PAIR12',PAIR12='REMAIN2',REMAIN2='SINGLE3'})[d.diagnosticStage]
+   if nextStage then
+    -- PAIR12 starts clean, in +1/+2 order; SINGLE3 is an independent flat3.
+    -- REMAIN2 deliberately uses project({+2}) without clearing the healthy +2:
+    -- its native instance must survive while only the +1 instance is removed.
+    if nextStage=='PAIR12' or nextStage=='SINGLE3' then project(c,{})end
+    transition('ACTIVE',c,nextStage)
+   else finish()end
   else finish()end
  end
  function d.Advance(pid,c,token)
@@ -254,6 +263,10 @@ function SPCCultureMeaningProbe.Start(P,shared)
      if not damaged then configured[y]=configured[y]+2^bit/M.ProbeScale[y] end
     end
    end end
+   if installed(c,M.DiagnosticSingle3.name) then
+    local damaged=c:GetBuildings():IsPillaged(indices[M.DiagnosticSingle3.name]);assert(type(damaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
+    if not damaged then configured.PRODUCTION=configured.PRODUCTION+M.DiagnosticSingle3.amount end
+   end
    -- Culture is retired from this probe, not silently treated as a valid zero
    -- while an old piece is still present. End/load use the exact same owned IDs.
    for bit=0,M.ProbeBits.CULTURE-1 do
@@ -273,7 +286,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
   if diagnostic or match and target.diagnostic then
    v.diagnostic=true;v.diagnosticStage=match and target.diagnostic and d.diagnosticStage or 'OFF'
-   v.diagnosticExpected=v.diagnosticStage=='SINGLE2' and 2 or v.diagnosticStage=='PAIR12' and 3 or 0
+   v.diagnosticExpected=assert(M.DiagnosticExpected[v.diagnosticStage],'ME_DIAGNOSTIC_STAGE')
    v.diagnosticWork=p and p.work
    local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
    v.currentIdentity=f.identity;v.currentPotential=f.potential;v.currentActive=f.active
@@ -284,6 +297,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
      local pillaged=c:GetBuildings():IsPillaged(indices[name]);assert(type(pillaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
      local y,bit=name:match('^BUILDING_SPC_MEANING_PROBE_([A-Z]+)_(%d+)$');local amount
      if y then amount=2^tonumber(bit)/M.ProbeScale[y]
+     elseif name==M.DiagnosticSingle3.name then y='PRODUCTION';amount=M.DiagnosticSingle3.amount
      else for _,part in pairs(M.VariantParts)do if part.name==name then y='CULTURE';amount=part.amount end end end
      assert(y and amount,'ME_DEFINITION_UNKNOWN');rows[#rows+1]={name=name,yield=y,amount=amount,pillaged=pillaged}
     end end
@@ -315,12 +329,11 @@ function SPCCultureMeaningProbe.Start(P,shared)
  function d.Describe(pid,c,view)
   local v=view or d.View(pid,c)
   if v.diagnostic then
-   local names={OFF='已关闭',BASELINE='①基线',SINGLE2='②单片＋2',PAIR12='③两片＋1／＋2'}
+   local names={OFF='已关闭',BASELINE='①基线',SINGLE1='②单片＋1',CLEAR1='③撤销至0（仍在对照）',SINGLE2='④单片＋2',PAIR12='⑤两片＋1／＋2',REMAIN2='⑥仅撤＋1，保留＋2',SINGLE3='⑦独立单片＋3'}
+   local nextText={BASELINE='左键：单片＋1。',SINGLE1='左键：只撤＋1至0。',CLEAR1='旧收益仍暂停；左键：重新配置单片＋2。',SINGLE2='左键：清空后建立两片＋1／＋2。',PAIR12='已知组合对照；左键：只撤＋1，保留＋2。',REMAIN2='左键：清空后建立独立单片＋3。',SINGLE3='左键：结束。'}
    local lines={'生产力组合诊断｜'..(names[v.diagnosticStage] or '未确认')}
    if v.diagnosticStage=='OFF' then lines[#lines+1]='左键开始；右键只读退出状态。'
-   elseif v.diagnosticStage=='BASELINE' then lines[#lines+1]='左键测试单片＋2；右键读取实例。'
-   elseif v.diagnosticStage=='SINGLE2' then lines[#lines+1]='左键测试两片；右键读取实例。'
-   else lines[#lines+1]='左键或结束按钮退出；右键读取实例。'end
+   else lines[#lines+1]=(nextText[v.diagnosticStage] or '状态未确认，先结束。')..' 右键读取实例；可随时结束。'end
    local err=v.error or v.configurationError or v.dialogueError
    if err then lines[#lines+1]='待处理：'..(tostring(err):match('ME_[A-Z_]+') or '接口未确认')..'；先结束。'
    elseif v.planStatus=='DIAGNOSTIC_WORK_CHANGED' then lines[#lines+1]='作品条件已变，新片已撤；需本城仅1件著作。'

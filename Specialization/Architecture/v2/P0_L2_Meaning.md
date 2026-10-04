@@ -1,27 +1,27 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_PRODUCTION_COMBINATION_NATIVE_FAIL；B159单片＋2通过、双片＋1／＋2实际1；下一撤销／重配诊断仅建议，未获实施授权。完整L2 NOT_PASSED，无正式全城cutover／下一能力授权。
+State: P0_L2C_PRODUCTION_RECONFIGURATION_LOCAL_COMPLETE；B160撤销／重配／独立单值诊断已授权并LOCAL完成，原生待验。B159组合FAIL保留；完整L2 NOT_PASSED，无正式全城cutover／下一能力授权。
 Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-[B159四图原生证据](../../Status/Validation/Results/Specialization_B159_Production_Combination_Native.md)：同T62／同Writing，0→单片＋2实际2→双片＋1／＋2实际1；两distinct native实例Active=true、flat1／2、本城映射完整、旧GWA Production0。**USER_GAME_TEST_FAIL／多片加算不能用于正式接入**；单片＋2即时读数PASS，不外推所有金额／yield或内部选择算法。图4是PAIR12下半报告，不是END；退出／cold-load仍未确认。B158失败和独立社区Catalog缺口保留，D／Floor不改。
+[B159原生反证](../../Status/Validation/Results/Specialization_B159_Production_Combination_Native.md)保持：同T62／Writing，单片＋2实际2，双片＋1／＋2实际1；两distinct native实例Active=true、flat1／2、本城映射完整，旧GWA Production0。USER_GAME_TEST_FAIL限定多片组合场景，不宣布唯一内部算法或全部yield结论；原图4不是END。
 
-用户本轮只授权截图调查；随后提出单片＋1撤销再重配的对照思路。完整判断和不同结果的区分见[下一最小建议](../../Status/Validation/Results/Specialization_B159_Production_Combination_Native.md#下一最小对照建议未实施未授权)。建议单片1→撤销0→单片2→双片1/2→仅撤1保留2；若验证替代编码，再同fixture加入独立单片3，当前bit3实际＋8不能充当＋3。现B159没有仅撤1控制，须新诊断实施授权后才改包；本轮无Mod／SQL／测试／永久状态／Catalog／GC改变。
+用户本轮已明确授权单片＋1撤销重配及独立单片＋3对照。**B160.187 / modinfo187 LOCAL_COMPLETE／原生待验**：[本地结果及一次最小流程](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)。0→1→清0→2→双片1/2→只撤1保留2→独立3→OFF；CLEAR1仍hold旧收益，REMAIN2不重建健康＋2，独立3不进入普通Meaning Parts。47方法／58子用例PASS，原生尚不能由此认定。
 
-不立即要求用户重复五yield或长测。精确recipient、倍率独立、正常结算、END／cold-load与全城cutover仍独立门禁，完整L2 NOT_PASSED。未来单yield单值方案保持逐域Floor后合计`each[y]`，不以已乘W的total再作用每件作品。市政／外交Culture仍延期，不重开或进L3／M／N／U2；source/live、Git／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准。停止等待最小诊断授权。
+不改D／K／逐域Floor后同yield合计／W、Catalog、永久状态或GC；保持UNKNOWN、精确loss/load退出及旧模块恢复合同。source/live／Git／部署receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准。下一允许动作仅本批原生验收／记录；精准recipient、倍率隔离、结算、冷加载和全城cutover仍独立门禁，不自动进L3／M／N／U2。
 
 ## 已授权切片 — Production组合与退出诊断
 
-**B159已完成的诊断合同。** 单片＋2已测PASS／两片失败，END及cold-load仍未测；本节保留已实施范围，不代表再次实施或要求重复验收。
+**B160当前合同；替代B159固定四态测试流程。** B159实际反证与[原本地合同](../../Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)保留，不要求重复旧五yield或长测。
 
-**范围。** 默认OFF、当前本地Culture ACTIVE IV城恰好一件已确认支持Writing。固定技术对照0→＋2→＋1/＋2→0，不消费D、不改能力公式或Balance；复用两个已有Production carrier，PAIR12先撤上阶段＋2，再按＋1／＋2创建。旧GWA只hold本城精确156项，本城旧Dialogue0%；先确认新26项owned撤除，再由原模块按当前事实恢复，不能混合效果。
+**范围。** 默认OFF、单本地Culture ACTIVE IV城、恰好一件当前已确认支持Writing。固定BASELINE0 → SINGLE1＋1 → CLEAR1零 → SINGLE2＋2 → PAIR12＋1/＋2 → REMAIN2仅＋2 → SINGLE3独立＋3 → OFF。不消费D或改能力公式。CLEAR1只撤＋1，仍hold本城旧GWA和Dialogue0%；PAIR12先清旧＋2再按＋1/＋2创建；REMAIN2仅撤＋1，不拆建健康＋2；SINGLE3清旧后只建一个flat3。追加一个InternalOnly carrier、七exact object附件，沿原primitive；只验证Writing，不等于其它作品或正式单值writer授权。
 
-**数据与生命周期。** Gameplay复用CurrentSpecializationFacts／GreatWorkFacts当前引用与确认馆藏；同回合已知资格／作品变化定域更新，UNKNOWN保留最近确认且不推进；不复制全城采集。session只保留一个fixture／阶段及单个action receipt，END／loss／reference／load定域退出，load默认OFF不重放。临时状态不写永久Property／E2账本。已有L1 consumer因旧writer撤除而合法核对不被停用。
+**所有权与退出。** 新精确目录27（189附件），保留此前所有候选清理依据；旧GWA只hold本城精确156项，旧Dialogue0%沿原reference override。先确认新owned撤除再释放旧模块按当前事实恢复，不重放快照。session只有单fixture／阶段／action receipt；END／confirmed loss／引用／load沿module-owned退出，load默认OFF。UNKNOWN保留最近确认且不推进，损坏／撤销失败保持保护，不清永久Property、普通建筑或其它城市。
 
-**观察。** 左键只推进阶段，右键一次显式token收集真实宿主作品Production及精确实例；普通advance／END不全局枚举。只在同回合、同reference、同唯一Writing／宿主／槽位／主题／当前资格可靠baseline计算Δ；配置、预期、真实值独立。OFF仍可读绝对值／owned健康状态／实例；旧路径恢复与Meaning残留分开解释，UNKNOWN／截断不当0。Show／Copy缓存字符串，close／load取消迟到ACK；换城／过期token不回选重放或重扫。
+**观察与性能。** Gameplay只复用CurrentSpecializationFacts与GreatWorkFacts当前确认输入；真实同回合变化继续响应，不复制全城采集。左键只推进；右键显式token读取独立原生Production及exact Writing实例，REMAIN2看＋2的instance ID是否延续。预期、配置、实际独立；只在同回合／引用／唯一作品位置／主题／资格可靠baseline比较。OFF无基线也能读绝对值／owned／实例，UNKNOWN／截断不当零。旧字符串／baseline缓存与迟到ACK保护保留，Show／Copy不重扫；没有新订阅、polling、hover请求或GC。
 
-**验证与退出。** W0004 L2＋所触及loss／load／ref相关L3定向18方法／31子测试PASS，详见本地结果；独立模拟getter专门显示多片不符，不能证明原生组合。用户只需同城①基线、②＋2、③＋1/＋2、END及启用副本冷加载的最多四份报告。原生失败记录具体实例／实际读数，停止该路径；不猜引擎公式、调D／Floor或加清理范围。正常结算／精准recipient等不因此自动关闭。回滚沿Git＋既有精确部署receipt，不改安全工具／main或其它mod。
+**验证／停止。** W0004 L2及直接loss／load／reference L3：47方法／58子用例PASS，另20项reader回归与其中部分重合；[证据／精确文件及五份报告流程](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)。PAIR12已知失败仍继续REMAIN2作区分，其它异常停止对应路径。独立3成功不自动切换正式编码；精准recipient、倍率、结算与完整L2均另行门禁。完成后停止等待本批原生反馈；回滚沿Git及W0003精确receipt，不改Design／main／安全工具。
 
 ## 下一批计划 — P0-L2C 七域五产出门禁
 
