@@ -1,17 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0413
+Status Revision: S0414
 Implementation Build: source/live B159.186 / modinfo186 LOCAL_COMPLETE / NATIVE_DIAGNOSTIC_PENDING; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
-Latest Accepted Design Revision: D0044
-Design Sync State: D0043_MEANING_SCOPE_PROBE_NATIVE_DIAGNOSTIC_PENDING; B158 native failure retained
+Design Revision Reviewed: D0045（Meaning直接合同与D0043相等；本轮仅Design同步，正式接入未完成）
+Latest Accepted Design Revision: D0045
+Design Sync State: D0045_DESIGN_ONLY_SYNC / B159_NATIVE_DIAGNOSTIC_PENDING; B158 native failure retained
 Work State: P0_L2C_PRODUCTION_DIAGNOSTIC_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-最新Design仍D0044；本轮不适配工业Design，Culture D0043／Shared D合同、Floor／Catalog／永久状态／GC不变。
+最新[Design D0045](../Design/Design_ChangeLog.md#accepted-d0045--2026-10-03)正式同步工业逐模板效率／合法Gold-Faith／研习中断、文化首测参数与具名单位保护；原始首都改制仅Future，不入当前计划。此次只有Design：B159待验与代码／运行包／GC不变；Meaning直接合同及四个Shared输入对象相等，未授权其它Implementation或部署。
 
 用户明确“授权实施诊断”后，B159.186／modinfo186单城单Writing **Production组合／退出诊断LOCAL完成**：[实际范围、18方法／31子测试与一个最小实机流程](Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)。固定BASELINE→＋2单片→＋1/＋2两片→OFF，只复用既有定义；右键显式读取当前作品真实Production与精确实例。UNKNOWN、loss／load、旧writer hold／退出保护保持；close／换城迟到回复不重放基线。STATIC／LOCAL不等于原生PASS。
 

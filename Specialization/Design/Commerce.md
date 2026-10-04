@@ -361,7 +361,7 @@ D按[Shared](Shared.md#区域基础设施深度)计算，普通建筑、Tier与�
 
 已签合同普通资格下降继续、关键城市易主异常终止、信誉Owner无关而Identity退出清零、重组目标征服销毁，均**不再未决**。
 
-城市彻底摧毁／移除、原Owner消失但尚未确认关键城转移、发展目标区域／建筑变得不合法后的处置未由本轮决定。商业化LIFO只暂停及自动恢复、身份／易主清配置、重组团队不因训练来源变化而退出，均已关闭。风险投资隐藏保护本身跨Owner如何保留／重置／分账仍未定义，不能套用信誉或配置规则；合同异常终止不修改保护，也不撤回签约时已发生的保护更新。改变D／S／领域基本面后的保护组合仍未定。单位本体直接捕获／转Owner先调查原生行为，不能自动赠予新主人；旧机构详细界面是后续呈现，安全撤回不代表任意强制删除后都有恢复合同。
+城市彻底摧毁／移除、原Owner消失但尚未确认关键城转移、发展目标区域／建筑变得不合法后的处置未由本轮决定。商业化LIFO只暂停及自动恢复、身份／易主清配置、重组团队不因训练来源变化而退出，均已关闭。风险投资隐藏保护本身跨Owner如何保留／重置／分账仍未定义，不能套用信誉或配置规则；合同异常终止不修改保护，也不撤回签约时已发生的保护更新。改变D／S／领域基本面后的保护组合仍未定。重组团队明确不能被敌方捕获或转Owner，敌方原可能捕获／消灭的交互采用保护撤退／安全回归；重组目标易主解散绑定团队的专属事务规则优先。原生保护／回归接口仍需技术验证，不能再列为捕获归属Gameplay未决；旧机构详细界面是后续呈现，安全撤回不代表任意强制删除后都有恢复合同。
 
 ### 技术尚需确认
 
@@ -384,12 +384,12 @@ D按[Shared](Shared.md#区域基础设施深度)计算，普通建筑、Tier与�
 
 [返回Design导航](README.md)。本文是完整阅读呈现，不是独立Gameplay authority。用户Design Talk经确认后由Codex维护正式来源，并同步实际受影响的阅读章节。
 
-- [商业D0042正式内容](Content/Commerce_D0042.json)：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
+- [商业D0045正式内容](Content/Commerce_D0045.json)：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
 - [A–D生命周期接受审阅](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)及[D0039公式收口](../Historical/Design/Reviews/Commerce_D0039_Review.md)与[ChangeLog](Design_ChangeLog.md)：关闭项、代数解释和真实未决；不在Review另设公式权威。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：共同成长、参与资格、PROG-011显式重组征服例外、COM和NET。
-- [Shared D0042](Content/Shared_D0042.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。
+- [Shared D0045](Content/Shared_D0045.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。
 - [D0032历史冻结](Content/Commerce_D0032.json)及[历史审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)：主体接受与旧效果退出；其中本轮已关闭的TBD不再当前。
-- [工业当前内容](Content/Industry_D0042.json)：标准化自身模板／资格；商业叠加例子不改其Balance。
+- [工业当前内容](Content/Industry_D0045.json)：标准化自身模板／资格；商业叠加例子不改其Balance。
 
 实现、部署与验证统一见[Status](../Status/Specialization_P0_Status.md)。本轮仅Design同步，不授予Commercialization／投资／重组实现或新部署授权。
 

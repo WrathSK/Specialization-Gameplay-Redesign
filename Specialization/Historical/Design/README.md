@@ -17,6 +17,7 @@
 | [Research_D0030_Review.md](Reviews/Research_D0030_Review.md) | 学以致用改用D及不应机械统一其它consumer的理由 |
 | [Boundary_D0031_Review.md](Reviews/Boundary_D0031_Review.md) | 学术传统身份暂停、施工队有限库存与文化展示要求；容量及展示方向后由D0032关闭 |
 | [Commerce_D0032_Review.md](Reviews/Commerce_D0032_Review.md) | 商业冻结、旧规则取代、未决合同及静态技术证据 |
+| [Industry_Culture_Future_D0045_Review.md](Reviews/Industry_Culture_Future_D0045_Review.md) | 工业逐模板来源／合法Gold-Faith／研习中断、文化首测值、专业单位保护及原始首都Future的用户接受与取代依据；仍适用，非新实施授权 |
 | [Long_Term_State_D0040_Review.md](Reviews/Long_Term_State_D0040_Review.md) | 用户确认的A–D城市／文明历史、信誉与合同生命周期；取代项、未讨论边界及当前测试复用 |
 | [Commerce_D0039_Review.md](Reviews/Commerce_D0039_Review.md) | 用户确认的v0.1公式/首版Balance/指定Legacy收口与精确剩余边界；公式基线保留，生命周期现行增量见Commerce_D0040 |
 | [Military_D0033_Review.md](Reviews/Military_D0033_Review.md) | 军事主体冻结与训练快照等边界；综合训练深度后由D0034恢复 |

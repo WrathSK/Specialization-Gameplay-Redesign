@@ -3,8 +3,30 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0044
+Latest Accepted Design Revision: D0045
 Document State: ACCEPTED
+
+## Accepted D0045 — 2026-10-03
+
+Acceptance: ACCEPTED / Industry source-bound efficiency and Culture first-test closure; original-capital reform Future only
+Acceptance Evidence: 用户完整Industry／Culture／原始首都未来改制Design Talk，明确授权正式同步；D0044已应用职责保留，不Implementation、不部署、不修改main或冻结原件。
+Accepted Spec SHA256: 667faae6365637e91211009fae42ba51149de0856ace74568425b28b42f2db00
+Canonical Industry Content SHA256: 5619165405b68c84f19ee7d141d4b7eb967201c0be0fd86293778eec49b45e3b
+Canonical Culture Content SHA256: 1ddff9df63abddccbbced9a30c326b5d1af9c29a7e02992fd1a22e9c73943a9c
+Canonical Shared Content SHA256: 104f28e604d45330e676549e4ce8c54c75ab7ee7625c3802629a95c639775516
+Canonical Commerce Content SHA256: 5f4857256c381212dbec391665ee0f200e9389f385c4821073e98230cb7d366f
+Previous Accepted Revision: D0044
+Frozen D0044: [原文](Revisions/Specialization_Design_Spec_D0044.md)
+Content: [Industry D0045](Content/Industry_D0045.json) / [Culture D0045](Content/Culture_D0045.json) / [Shared D0045](Content/Shared_D0045.json) / [Commerce D0045](Content/Commerce_D0045.json)
+Review: [覆盖、六项旧规则取代与真实剩余](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)
+
+工业每模板只在实际持有它的有效来源中分别择最高建造／合法购买效率；Faith与Gold正式同等合法渠道，不新增购买权。研习明确与Dialogue同完整1T事务、以IV资格取消／重做，不清成功L；最终整数Production／Gold／Cost使用Floor，不外推Commerce或GPP。D0044全部职责与首测值保留：III10%／0、IV每L两项+2个百分点，III150%、IV按N1／3／6为140／130／120%；III I–III／IV IV–V无E门槛，巨构仅正常城市Production，固定施工力注入不受buff且不溢出。专业单位不可捕获／转Owner，保护回归原生接口仍Technical；专属事务退出优先。
+
+文化对话无额外cap；考察成本等于当前Spy Production cost、全国现存最多1支，K_T=2个百分点／份仅来源城市整城Tourism；风雅1、Meaning0.5及Gold份额3、启迪0.1基础GPP（无Design逐项Floor）、标准任务2T／部署另算、K_C1保持。D0042城市见闻／有效自身文明过滤／任务取消及重挂靠完整保留；首测不等于最终平衡。
+
+原始首都实体一次权利、三阶段各完整1T、第二阶段锁候选／第三阶段重验切Identity保留Potential并消费、普通中断前置保留与完成前易主全清，完整保存为FUTURE／DESIGN_RECORDED／NOT_V0.1_IMPLEMENTATION；外交暂排复审、Civic允许、名字占位。没有当前计划、milestone或runtime任务。
+
+旧D0044／D0043／D0042 Content与Review原件不改，Research／Military／Harbor及其它未来未列规则不变。Authority／当前P0-L2C仅直接对象revalidation：Meaning能力／K／作品池／七域／倍率及四个Shared输入对象相等；Dialogue只改变accumulation无cap，B159固定诊断不消费新规则。B159.186／modinfo186及待验停止点保持，无新本地玩法／原生PASS，不部署、不授予下一Implementation。
 
 ## Accepted D0044 — 2026-10-03
 
