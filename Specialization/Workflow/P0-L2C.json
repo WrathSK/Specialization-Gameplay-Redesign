@@ -87,7 +87,7 @@
     "Native precision cannot implement current contract; no gameplay workaround without user decision"
   ],
   "batch": "P0-L2C",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0045",
     "research": "D0040",
@@ -97,13 +97,13 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0421",
+    "status": "S0422",
     "runtime": "B162.189 / modinfo189",
     "military": "D0037",
     "harbor": "D0037"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--加载清理与off退出",
-  "goal": "Authorized B161 startup/load readiness and OFF-END residual fix only; preserve Production formula/37 exact directory and prior native3→5/W2=10. No formal cutover or other-yield migration.",
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#下一批计划--五产出单值承载",
+  "goal": "Planned one-city five-yield final-value gate only: retain Production1..10 and add Science1..5,Gold1..30,Food1..5,Faith1..5, each at most one carrier/no0; per-domain Floor and W unchanged. Readable five-yield native report with bounded exact details; no formal cutover, recipient workaround, other ability or permanent state.",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -120,8 +120,14 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
+      "selector": "## 下一批计划 — 五产出单值承载",
+      "reason": "Complete proposed scope/dependencies/registry/native delta/local validation/report lifecycle and stop; not authorization"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
       "selector": "## 已授权切片 — 加载清理与OFF退出",
-      "reason": "Complete current authorized initialization/readiness, per-city legacy writer safety, readonly diagnostics and minimal native exit boundary; yield contract remains inherited"
+      "reason": "Inherited B162 initialization/readiness/scoped withdrawal contract for enlarged exact directory; source algorithm not automatically reworked"
     },
     {
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -151,7 +157,7 @@
     {
       "path": "Specialization/Design/Content/Culture_D0045.json",
       "kind": "json",
-      "reason": "Complete nine-domain/share mapping, no Theater",
+      "reason": "Shared full domain/share vocabulary; current Meaning-specific included/excluded scope is in meaning_domains, not the nine-domain vocabulary",
       "selector": "/contracts/domains"
     },
     {
@@ -333,18 +339,24 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md",
       "kind": "full",
       "reason": "Current four-image scoped cold-load/END acceptance, preserved limits and stop; no repeat user test or next implementation authorization"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md",
+      "kind": "section",
+      "selector": "## 本次观察",
+      "reason": "Prior concurrent five-yield/W native positive control plus reconfiguration counterexample; not proof of new final values or a repeat full historical recipe"
     }
   ],
   "dependencies": [
-    "D0045 current Authority preserves per-domain Floor→same-yield each→W, current D/ordinary/qualification/work contracts. Current gate projects only Production from authoritative shared facts.",
+    "D0045 current Authority: per-domain Floor after share conversion -> same-yield each -> W; seven included domains/current ordinary depth/qualification/recognized works/multiplier exclusions unchanged. Plan extends normal final-value projection to five yields, not already implemented.",
     "Existing K confirmed current-reference bridge and local ACTIVE facade",
     "B157 named S/G/same-session owned exit evidence only; B161 Writing Production3→5/W2=10 native PASS, original post-restart withdrawal FAIL preserved; B162 scoped cold-load/END cleanup PASS closes that delta. Food/Faith/other objects and full Meaning remain unresolved.",
     "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI"
   ],
   "old_writers": [
-    "Only one selected-city GWA exact156 owned hold; confirm new37 withdrawal before normal current-sample restore",
+    "Selected-city GWA exact156 hold only; confirm enlarged exact82 Meaning withdrawal before normal current-sample restore. Current source still37; planned new45 definitions are not active yet.",
     "Existing local-reference Dialogue0% override only during probe; preserve other cities and K producer/ACK",
-    "Exact37 Meaning withdrawal directory retains previous27 IDs; normal only one VALUE1..10 carrier or none, old fixed diagnostic pieces remain private negative controls"
+    "Retain exact37 prior Meaning withdrawal IDs and add45 final-value IDs only after implementation; normal goal one final per yield (max5), no0/bits. Existing private Production controls retain negative evidence; no blanket prefix cleanup."
   ],
   "non_scope": [
     "Culture flat coexistence/host diagnostic and Government/Diplomatic restoration are deferred",
@@ -352,26 +364,26 @@
     "Probe mixed-unknown-work rejection is not a new Design rule or exact recipient PASS"
   ],
   "validation": {
-    "depth": "W0004 L2 and directly changed startup/load/exit L3 targeted closure; no full history/stress",
+    "depth": "W0004 L2 plus exact new-directory/load/withdrawal L3 targeted checks; named unchanged evidence inherited, no full history/stress or default cold-load user ritual",
     "local": [
-      "Final Production0..10 one carrier/no0, per-domain Floor and W matrix/physical Shared events; no other-yield projection; exact37/259/old SQL prefix",
-      "Same-turn changes/zero-write/UNKNOWN/two-city/loss/reference/load/owned create-remove failure and hold; actual request/K sample pairing/reentrancy/token",
-      "Production-only independent getters and signed field exact identity checks; explicit READ only once, repeated/late/cache selection, OFF residual/config metadata",
-      "Fresh session without Probe LoadScreenClose, zero-city/eligibility pending, per-city failed withdrawal/no auto retry/foreign cleanup/independent ACK, scoped OFF-END token recovery and global legacy reentry isolation; normal ready gate no scan/write"
+      "All legal per-work amounts SCIENCE/FOOD/FAITH0..5,PRODUCTION0..10,GOLD0..30;no0,at most one final/yield,exact82/574 SQL and unchanged prior37;invalid amounts fail not clamp;no Culture/Tourism or normal bits",
+      "Per-domain Floor counterexamples P:D1+D1=0 and Gold:D3+D3=8;W0/1/2 once;five-yield joint projection,current Shared/same-turn changes,duplicate zero writes,two-city/UNKNOWN/reference/create-remove failure,current GWA/Dialogue hold/recovery",
+      "Expanded exact directory load/startup residual and scoped END/error simulations using existing B162 algorithm; actual request/K ACK and normal ready fast path remain; no permanent state",
+      "Five-yield native getter/configuration/reference-baseline pairing; readonly/late ACK/cache invalidation,short Chinese summary and bounded details same token;Show/Copy/log do not enumerate again;incomplete/UNKNOWN never zero/PASS"
     ],
-    "user": "Completed B162 one-session cold-load OFF cleanup + user-described prepare/enable/END read, four screenshots scoped PASS. No repeat3→5/W2 or shared enabled-save/restart/re-enable ritual. Remaining five-yield/full-cutover native gates require a new finite plan; no immediate user test requested."
+    "user": "After separately authorized implementation/deployment: one continuous session on supported Culture ACTIVE IV fixture,baseline->five-yield enable/native comparison->one D final-value replacement->W2 totals->END/new exact effects gone,current old writer restored. Inherit B161Production/B162load; no enabled-save/cold/re-enable loop unless a concrete changed native lifecycle gap is explained. Current user test not requested."
   },
   "result": {
-    "plan": "User explicitly authorized scoped fix after native-delta policy and workflow responsibility clarification; no wider Gameplay or plan authorization.",
+    "plan": "S0422 five-yield final-value next-slice plan prepared at user request; PLANNED_NOT_AUTHORIZED. Current B162 cleanup gate complete, full L2 not complete; no new Design decision required.",
     "implementation": "B162.189 / modinfo189 LOCAL_COMPLETE;108 methods/96subtests PASS,0 failures/errors/skips. Exact37 startup readiness gate and scoped OFF-END repair; B162 scoped native cleanup/END now PASS.",
     "native": "B161 scoped Writing model/native3→5 replacement, W2 host10 and signed identity PASS retained; original post-restart OFF+VALUE5 FAIL preserved. B162 four-image USER_GAME_TEST_PASS only for cold-load cleanup and user-described post-END terminal state: OFF/CONFIRMED/owned0/Meaning Writing0, old GWA two city-verified active instances/native Production2. Intermediate ACTIVE not pictured, exact startup event not proved; other yield/object/recipient/multiplier/settlement gates remain unresolved, full L2 NOT_PASSED.",
-    "stop": "B162 scoped cold-load cleanup/direct-END native PASS; no further user test for this delta. Prepare next finite plan for user review; other yields/formal cutover/L3/M/N/U2 implementation remains unauthorized.",
+    "stop": "Await explicit authorization for planned P0-L2C five-yield final-value one-city gate: extend Science/Gold/Food/Faith, inherit Production and B162 cleanup evidence. No current test/deploy or formal cutover/L3/M/N/U2 authorization.",
     "deployment": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH at recorded deployment. B162 scoped cold-load cleanup/direct-END native PASS; B1613→5/W2=10 retained. This docs-only acceptance did not reverify or change external runtime; full L2 NOT_PASSED.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
     "local_test_entry": "test_culture_meaning_cleanup.py + current single_value24/diagnostic18 + selected reader31 + K Facts14/Producer8/LegacyIsolation1;108 methods/96subtests; historical wrappers not selected",
-    "next_proposal": "B162 scoped cold-load cleanup/direct-END native PASS; no further user test for this delta. Prepare next finite plan for user review; other yields/formal cutover/L3/M/N/U2 implementation remains unauthorized."
+    "next_proposal": "Await explicit authorization for planned P0-L2C five-yield final-value one-city gate: extend Science/Gold/Food/Faith, inherit Production and B162 cleanup evidence. No current test/deploy or formal cutover/L3/M/N/U2 authorization."
   }
 }

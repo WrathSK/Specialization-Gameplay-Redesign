@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0421",
+    "status": "S0422",
     "runtime": "B162.189 / modinfo189",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,8 +33,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "84b34061144311b6857418e708836c7ba646bef9",
-  "current_batch": "P0_L2C_PRODUCTION_SCOPED_NATIVE_PASS",
-  "next_batch": "B162 scoped cold-load cleanup/direct-END native PASS; no further user test for this delta. Prepare next finite plan for user review; other yields/formal cutover/L3/M/N/U2 implementation remains unauthorized.",
+  "current_batch": "P0_L2C_FIVE_YIELD_FINAL_VALUE_PLANNED_NOT_AUTHORIZED",
+  "next_batch": "Await explicit authorization for planned P0-L2C five-yield final-value one-city gate: extend Science/Gold/Food/Faith, inherit Production and B162 cleanup evidence. No current test/deploy or formal cutover/L3/M/N/U2 authorization.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
   "live": "B162.189 / modinfo189 DEVELOP_ACTIVE; source 84b34061144311b6857418e708836c7ba646bef9; receipt B162.189-84b3406-playtest.json;182/182 MATCH at recorded deployment. B162 scoped cold-load cleanup/direct-END native PASS; B1613→5/W2=10 retained. This docs-only acceptance did not reverify or change external runtime; full L2 NOT_PASSED.",
   "stable": "main B069.96 / modinfo96",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0421 four B162 originals individually read and archived4/4 MATCH: cold-load OFF/CONFIRMED/owned0/Meaning Writing0 and user-described post-END same terminal state; old GWA two city-verified active instances/native host Production2 each group. Scoped native PASS, no new intermediate activation/yield or all-city/lifecycle claim; B161 yield PASS and original FAIL evidence retained. User-authorized report readability principle added only to existing agent guidance. Only named changed/new docs hashes reviewed; Runtime_Index/Mod/Design/tests/GC/main/live package unchanged, no gameplay rerun/deployment. Next implementation requires separate plan/authorization.",
+  "context_review_status": "S0422 next-plan only: current clean develop/source-state, D0045 Meaning/work/domain/multiplier direct contracts, relevant Shared facts and present Production-only model/Probe/UI branch/exact directory checked; unchanged review hashes and named native B158/B160/B161/B162 evidence reused. Proposed45 new final-value carriers,82/574 total and five-yield native delta are plan targets, not implemented. No Gameplay/Design/test/runtime/deploy change or full-history audit. Only current plan/Status/Authority/active manifest reviewed hashes advanced; new implementation awaits user approval.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
