@@ -7,6 +7,33 @@ SPCCultureMeaningModel={K=0.5,Domains={
  {'DISTRICT_HOLY_SITE','FAITH'},{'DISTRICT_NEIGHBORHOOD','FOOD'}
 }}
 local M=SPCCultureMeaningModel
+-- A category-wide native effect is safe only when the loaded category set is
+-- exactly covered by the reviewed resolver. No admission of new Mod works.
+-- Metadata is immutable within this game; the caller caches this bounded proof.
+function M.RecipientCoverage(P)
+ local C=assert(SPCGreatWorkCatalog,'ME_RECIPIENT_CATALOG_UNAVAILABLE')
+ local kinds={WRITING=true,MUSIC=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true}
+ local out={verified=0,blocked=0,other=0,byCategory={},reasons={}}
+ local seen={};local count=0
+ for row in GameInfo.GreatWorks()do
+  count=count+1;assert(count<=4096,'ME_RECIPIENT_METADATA_LIMIT')
+  assert(type(row.GreatWorkType)=='string' and type(row.GreatWorkObjectType)=='string' and not seen[row.GreatWorkType],'ME_RECIPIENT_METADATA_UNKNOWN')
+  seen[row.GreatWorkType]=true
+  local kind=row.GreatWorkObjectType:gsub('GREATWORKOBJECT_','')
+  if kinds[kind] then
+   local meta,reason=C.Resolve(P,row.GreatWorkType)
+   if meta and meta.category==row.GreatWorkObjectType then
+    out.verified=out.verified+1;out.byCategory[kind]=(out.byCategory[kind] or 0)+1
+   else
+    out.blocked=out.blocked+1
+    if #out.reasons<3 then out.reasons[#out.reasons+1]=row.GreatWorkType..':'..tostring(reason or 'CATEGORY_METADATA')end
+   end
+  else out.other=out.other+1 end
+ end
+ assert(count>0 and out.verified>0,'ME_RECIPIENT_METADATA_EMPTY')
+ out.status=out.blocked==0 and 'VERIFIED_LOADED_SET' or 'BLOCKED_LOADED_SET'
+ return out
+end
 M.WriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH','CULTURE'}
 M.CultureDeferred=true -- Native coexistence failed; never take over another mod's effect.
 M.ActiveWriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH'} -- Not formal all-city cutover.

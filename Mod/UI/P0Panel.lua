@@ -79,7 +79,7 @@ local function displayResponse()
           if v.diagnostic then
             meaningResponseText=SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE',pendingToken,meaningReadReference,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ')
           else
-            meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')
+            meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE' or pendingAction=='CULTURE_MEANING_GATE_ADVANCE')
             if (v.productionOnly or v.finalValues) and pendingAction=='CULTURE_MEANING_READ' then
               local detail=SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
               meaningResponseText=meaningResponseText..'\n'..(v.finalValues and SPCBoostGreatWorkRead.ModifierSummary(pendingToken) or detail)
@@ -502,7 +502,7 @@ local function initialize()
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_END') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_END') end)
-  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_ADVANCE') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_GATE_ADVANCE') end)
   Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_AESTHETIC_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_AESTHETIC_DETAIL',true) end)

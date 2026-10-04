@@ -143,7 +143,7 @@ function SPCDialogue.Start(P,shared)
      local meaning=shared.CultureMeaningProbe
      -- An exact held zero still needs current qualification/sample checks, but
      -- it cannot mix a positive legacy yield with Meaning. Gate positive paths.
-     if meaning and not d.IsMeaningProbeHeld(pid,c,0) then local safe,why=meaning.CanProjectLegacy(pid,c);assert(safe,why)end
+     if meaning and not d.IsMeaningProbeHeld(pid,c,0) then local safe,why=meaning.CanProjectLegacy(pid,c,'Dialogue');assert(safe,why)end
      local f=shared.EffectiveFacts.Read(pid,c)
      local works=s and s.turn==Game.GetCurrentGameTurn() and s.cities[id]
      assert(works,'DIALOGUE_COLLECTION_PENDING')
@@ -204,6 +204,27 @@ function SPCDialogue.Start(P,shared)
     if has then assert(b:IsPillaged(row.Index)==false,'ME_DIALOGUE_CARRIER_DAMAGED')end
    end end
    return h.percent
+  end)
+  return ok and value or nil,not ok and tostring(value):sub(1,240) or nil
+ end
+ -- B165: explicitly requested coexistence gate. Read current AUTO, never a
+ -- saved percent, test override, global OFF or merely a matching UI number.
+ function d.ReadNormalForMeaning(pid,c)
+  local ok,value=pcall(function()
+   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
+   assert(not d.meaningOverride and not d.off[pid] and not (d.test[pid] and d.test[pid].city==c:GetID()),'ME_DIALOGUE_OTHER_TEST')
+   meaningQualification(pid,c)
+   local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
+   local p=d.last[pid] and d.last[pid][c:GetID()]
+   local s=d.samples[pid]
+   assert(p and not p.error and not p.meaning and p.sampleSeq==s.seq and p.applied==p.percent,'ME_DIALOGUE_AUTO_PENDING')
+   local b=c:GetBuildings()
+   for name in pairs(owned)do local row=P.Info('Buildings',name);if row then
+    local has=P.HasBuilding(b,row.Index);assert(type(has)=='boolean','ME_DIALOGUE_CARRIER_UNKNOWN')
+    assert(has==(name==p.carrier),'ME_DIALOGUE_PROJECTION_CHANGED')
+    if has then assert(b:IsPillaged(row.Index)==false,'ME_DIALOGUE_CARRIER_DAMAGED')end
+   end end
+   return p.applied
   end)
   return ok and value or nil,not ok and tostring(value):sub(1,240) or nil
  end

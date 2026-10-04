@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0427
-Implementation Build: source/live B164.191 / modinfo191 LOCAL_COMPLETE / NATIVE_DEFERRED; stable B069.96
+Status Revision: S0428
+Implementation Build: source B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; live last verified B164.191; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0047
 Design Sync State: D0047_GOVERNMENT_FUTURE_BASELINE / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B164_SCOPED_REPAIR_LOCAL_COMPLETE_NATIVE_DEFERRED
+Work State: P0_L2C_B165_NATIVE_GATES_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改，v0.1仍四专业。source／live按既有记录为B164.191／modinfo191（runtime source `e09ba9b`、receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE／182 MATCH）；本轮未重新核验外部运行包。main稳定B069.96不改。
+当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改，v0.1仍四专业。source B165.192／modinfo192 LOCAL_COMPLETE；last verified live B164.191（source `e09ba9b`、receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE／182 MATCH），本批部署尚未执行。main稳定B069.96不改。
 
-[B164当前落地审查](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)区分自动Gameplay、手动原型及旧writer：科研主要本地收益与文化L1已接入；Meaning仍手动单城七域五产出，Culture暂隔离；M／L3／新文化网络与工业／商业新独有体系尚未完成。学术传统已定Owner恢复规则仍留旧暂停分支，是具体适配缺口。此前原语／所测场景PASS保留，不扩大为完整能力落地。
+本轮已授权并完成[Meaning剩余接入门禁](../Architecture/v2/P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：加载集合支持证明、正常Dialogue／主题化共存入口、普通建筑真实进度READ；[本地55方法PASS](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)。仍是手动单城七域五yield，Culture暂隔离，社区合并本次session。STATIC／LOCAL不代表追加独立或正常结算已获原生PASS；已有B161／B162／B163证据按范围继承。
 
-下一建议[Meaning正式接入计划](../Architecture/v2/P0_L2_Meaning.md#下一建议--意义延展正式接入)：先关闭精准recipient／正常倍率下追加独立／真实结算门禁，再单独授权自动writer及旧GWA cutover；**本轮仅审查和计划，未授权实施**。L3计划后置；社区D无独立实机，合并后续获授权session。无新测试要求，不自动进L3／M／N／U2、工业／商业或学术传统修复；永久Property、收益writer及GC不改。
+当前待一次最小native session，之后门禁关闭才单独授权全城自动writer／旧GWA cutover。L3／M／新文化网络、工业／商业新独有体系及学术传统Owner适配仍见[B164落地盘点](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)，不自动实施。永久账本／GC及main不改；没有新Gameplay决定或全局writer退役。
+
+## S0428 — B165剩余接入门禁LOCAL与原生待验
+
+用户授权推进上一轮计划第一段；[结果](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)记录模块／实际caller／现行DB范围与55方法检查。normal gate保留正常Dialogue，不恢复实验0%快照；recipient proof证明当前加载集合，不是新增原生逐作品过滤或跨Mod保证。普通建筑结算仅增加按需观测，不自动根据即时getter宣告PASS。当前源码完成、本批部署待既有W0003实际交易核验；B164／stable恢复点不得凭Git猜测。
+
+后续只等待本批最小原生delta；全城自动接入与global GWA切换尚未授权。旧package191专用断言原样保留，由当前192检查替代；不跑全历史／stress、不启动游戏、不清永久状态、不改Design／GC。
 
 ## S0427 — 四专业落地审查与下一计划纠正
 

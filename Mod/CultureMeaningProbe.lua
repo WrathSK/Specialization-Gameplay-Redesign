@@ -1,4 +1,5 @@
 include('CultureMeaningModel')
+include('GreatWorkCatalog')
 include('CurrentSpecializationFacts')
 include('NetworkInput')
 -- One explicitly chosen session fixture, no saved authority or benefit replay.
@@ -70,6 +71,16 @@ function SPCCultureMeaningProbe.Start(P,shared)
   assert(SPCNetworkInput.Reference(c)==target.reference,'ME_REFERENCE_CHANGED');return p
  end
  local function dialogueHold(pid,c,percent)
+  if target and target.normalEnvironment then
+   assert(d.recipientCoverage and d.recipientCoverage.status=='VERIFIED_LOADED_SET','ME_RECIPIENT_CATALOG_UNVERIFIED')
+   local actual,why=shared.Dialogue.ReadNormalForMeaning(pid,c)
+   if actual==nil then
+    local updated,reason=shared.Dialogue.Audit(pid,c:GetID());assert(updated,'ME_DIALOGUE_UPDATE_PENDING: '..tostring(reason))
+    actual,why=shared.Dialogue.ReadNormalForMeaning(pid,c)
+   end
+   assert(actual~=nil,why) -- Reuse the accepted projection; no duplicate work plan.
+   return
+  end
   local ok,why=pcall(shared.Dialogue.HoldMeaningProbe,pid,c,percent)
   if not ok then d.error=tostring(why):sub(1,240);error(why)end
  end
@@ -130,8 +141,13 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if d.resetFailed then return false,d.cleanupError end -- No automatic deletion storm.
   return reset(false,reason)
  end
- function d.CanProjectLegacy(pid,c)
+ function d.CanProjectLegacy(pid,c,writer)
   if not c or c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return false,'ME_OWNER_UNKNOWN' end
+  -- Only normal Dialogue may coexist during this gate's synchronous update.
+  -- GWA remains held; startup/recovery and unknown ownership never bypass exit.
+  if writer=='Dialogue' and d.ready and not recoveryCity and target and target.normalEnvironment
+   and target.owner==pid and target.city==c:GetID() and target.reference==SPCNetworkInput.Reference(c)
+   and d.recipientCoverage and d.recipientCoverage.status=='VERIFIED_LOADED_SET' then return true end
   if not d.busy and not recoveryCity and d.EnsureStartupCleanup('LEGACY_PROJECTION') then return true end
   -- A failed city must not mix residual Meaning with the old writers. Already
   -- cleared cities may run normally, without releasing a failed fixture hold.
@@ -189,7 +205,8 @@ function SPCCultureMeaningProbe.Start(P,shared)
    local why=d.error or 'ME_UPDATE_PENDING'
    if target then
     local percent=0
-    local restored,err=pcall(shared.Dialogue.RestoreMeaningProbeIntent,c:GetOwner(),c,percent)
+    local restored,err=true,nil
+    if not target.normalEnvironment then restored,err=pcall(shared.Dialogue.RestoreMeaningProbeIntent,c:GetOwner(),c,percent)end
     if restored then d.mode=previous;d.diagnosticStage=previousStage else why=why..'; '..tostring(err)end
    end -- An exact reference exit may already have forgotten this fixture.
    error(why)
@@ -204,17 +221,17 @@ function SPCCultureMeaningProbe.Start(P,shared)
   -- reconciliation, not a retry loop or a once-per-turn suppression.
   if deferred and target and not d.stopping then audit({player=target.owner,city=target.city})end
  end
- local function advance(pid,c,diagnostic)
+ local function advance(pid,c,diagnostic,normalEnvironment)
   if not d.ready then assert(reset(false,'ADVANCE'),'ME_LOAD_CLEANUP_FAILED')end
   if target and (target.owner~=pid or target.city~=c:GetID() or target.reference~=SPCNetworkInput.Reference(c))then finish()end
-  assert(not target or target.diagnostic==diagnostic,'ME_DIAGNOSTIC_OTHER_FLOW')
+  assert(not target or target.diagnostic==diagnostic and target.normalEnvironment==normalEnvironment,'ME_DIAGNOSTIC_OTHER_FLOW')
   if target and diagnostic and d.error and not d.stopping then
    -- Unknown facts never turn an advance into an implicit END. Reconfirm this
    -- exact fixture once; on failure retain the stage and confirmed projection.
    assert(audit({player=pid,city=c:GetID()}),d.error or 'ME_UPDATE_PENDING')
   end
   if not target then
-   target={owner=pid,city=c:GetID(),reference=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY(),diagnostic=diagnostic}
+   target={owner=pid,city=c:GetID(),reference=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY(),diagnostic=diagnostic,normalEnvironment=normalEnvironment}
    d.diagnosticStage=diagnostic and 'BASELINE' or nil
    local ok,p=pcall(function()
     local value=plan(c)
@@ -259,6 +276,20 @@ function SPCCultureMeaningProbe.Start(P,shared)
    advance(pid,c,false)
   end)
  end
+ function d.GateAdvance(pid,c,token)
+  assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
+  assert(type(token)=='string' and #token>0 and #token<=100,'ME_ACTION_TOKEN')
+  local old=d.lastAction
+  if old and old.token==token then
+   assert(old.owner==pid and old.city==c:GetID() and old.kind=='GATE_ADVANCE','ME_ACTION_TOKEN_CONFLICT');return
+  end
+  return action(function()
+   d.lastAction={token=token,owner=pid,city=c:GetID(),kind='GATE_ADVANCE'}
+   if not d.recipientCoverage then d.recipientCoverage=M.RecipientCoverage(P)end
+   assert(d.recipientCoverage.status=='VERIFIED_LOADED_SET','ME_RECIPIENT_CATALOG_UNVERIFIED: '..table.concat(d.recipientCoverage.reasons,';'))
+   advance(pid,c,false,true)
+  end)
+ end
  function d.DiagnosticAdvance(pid,c,token)
   assert(P.IsTestPlayer(pid) and c and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
   if token then
@@ -287,7 +318,10 @@ function SPCCultureMeaningProbe.Start(P,shared)
   local configured={SCIENCE=0,GOLD=0,PRODUCTION=0,FOOD=0,FAITH=0,CULTURE=0}
   local stamp={};if p then for _,entry in ipairs(M.Domains)do local v=p.domains[entry[1]];stamp[#stamp+1]=entry[1]..':'..tostring(v and v.value)end end
   local dialoguePercent,dialogueError
-  if match then dialoguePercent,dialogueError=shared.Dialogue.ReadMeaningProbe(pid,c)end
+  if match then
+   if target.normalEnvironment then dialoguePercent,dialogueError=shared.Dialogue.ReadNormalForMeaning(pid,c)
+   else dialoguePercent,dialogueError=shared.Dialogue.ReadMeaningProbe(pid,c)end
+  end
   local q=match and shared.Dialogue.meaningQualification
   if q and (q.owner~=pid or q.city~=c:GetID() or q.reference~=ref)then q=nil end
   local read,why=pcall(function()
@@ -337,6 +371,10 @@ function SPCCultureMeaningProbe.Start(P,shared)
    oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false,
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
   v.finalValues=not diagnosticFlow;v.productionOnly=false;v.cultureDeferred=M.CultureDeferred
+  v.normalEnvironment=match and target.normalEnvironment==true or false
+  local coverage=d.recipientCoverage
+  v.recipientStatus=coverage and coverage.status;v.recipientCount=coverage and coverage.verified
+  v.recipientBlocked=coverage and coverage.blocked;v.recipientReason=coverage and table.concat(coverage.reasons,';')
   if diagnosticFlow then
    v.diagnostic=true;v.diagnosticStage=match and target.diagnostic and d.diagnosticStage or 'OFF'
    v.diagnosticExpected=assert(M.DiagnosticExpected[v.diagnosticStage],'ME_DIAGNOSTIC_STAGE')
@@ -412,6 +450,13 @@ function SPCCultureMeaningProbe.Start(P,shared)
   local names={OFF='未开启',BASELINE='①基线',ACTIVE='②追加中'}
   local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜五产出单值'}
   lines[#lines+1]='文化追加暂隔离；HD原有效果保持。'
+  if v.normalEnvironment then
+   lines[#lines+1]='正常时代对话＋'..tostring(v.dialoguePercent or '未确认')..'%；主题状态保持。'
+   lines[#lines+1]='已加载recipient核对：'..tostring(v.recipientCount)..'个已支持定义；此结论仅限当前规则环境。'
+  elseif v.recipientBlocked and v.recipientBlocked>0 then
+   lines[#lines+1]='接入门禁未通过：'..v.recipientBlocked..'个同类定义未获支持；未启用新追加。'
+   lines[#lines+1]=v.recipientReason
+  end
   if v.cleanupStatus~='CONFIRMED' then lines[#lines+1]='首次清理尚未确认：'..tostring(v.cleanupStatus)end
   if v.count then lines[#lines+1]=string.format('合格%d件｜当前ACTIVE %s',v.count,tostring(v.currentActiveStatus=='KNOWN' and v.currentActive or '未确认'))end
   if v.mode=='OFF' then lines[#lines+1]='左键准备基线；需文化ACTIVE4及确认馆藏。'

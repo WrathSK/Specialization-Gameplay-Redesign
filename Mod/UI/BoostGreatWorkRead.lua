@@ -126,7 +126,9 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   end
   assert(v.mode=='BASELINE' or v.mode=='ACTIVE','ME_UI_MODE_UNKNOWN')
   assert(not v.error and not v.configurationError and not v.dialogueError and v.oldHeld and v.planStatus=='READY','ME_UI_CONFIGURATION_PENDING')
-  assert(v.dialoguePercent==0,'ME_UI_CONFIGURATION_PENDING')
+  if v.normalEnvironment then
+   assert(v.recipientStatus=='VERIFIED_LOADED_SET' and type(v.dialoguePercent)=='number' and v.dialoguePercent>=0,'ME_UI_CONFIGURATION_PENDING')
+  else assert(v.dialoguePercent==0,'ME_UI_CONFIGURATION_PENDING')end
   if v.cultureDeferred or not v.finalValues then assert(v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')end
   local function finite(n)return type(n)=='number' and n==n and math.abs(n)<math.huge end
   local function integer(n)return finite(n) and n>=0 and n%1==0 end
@@ -183,7 +185,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   local depthKnown=type(v.stamp)=='string' and #v.stamp>0
   local qualification=table.concat({tostring(v.currentIdentity),tostring(v.currentPotential),tostring(v.currentActive),tostring(v.currentActiveStatus)},':')
   table.sort(signature)
-  local key=v.reference..'|'..tostring(v.productionOnly==true)..'|'..tostring(v.cultureDeferred==true)..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
+  local key=v.reference..'|'..tostring(v.normalEnvironment==true)..'|'..tostring(v.dialoguePercent)..'|'..tostring(v.productionOnly==true)..'|'..tostring(v.cultureDeferred==true)..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
   assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
   local stable=populationKnown and qualificationKnown and depthKnown
   if mark and v.mode=='BASELINE' and stable then meaningReadings={key=key,baseline=totals,current=totals}end
@@ -203,6 +205,25 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    lines[#lines+1]=on and '右键只刷新当前读数；左键或结束按钮撤回追加。' or '同回合基线已记录；左键启用追加。'
   end
   if themedBuildings>0 then lines[#lines+1]='已主题化'..themedBuildings..'座；当前预期追加保持固定，不乘主题倍率。'end
+  if v.normalEnvironment then
+   lines[#lines+1]='本次检验正常对话／主题环境的固定追加；不强制0%或关闭主题。'
+   -- Explicit READ/ACK only; existing queue API precedents, no hook or history.
+   -- This is actual progress evidence to pair across one controlled turn, not
+   -- an automatic settlement PASS based on a Great Work tooltip/getter.
+   local queueOK,queueText=pcall(function()
+    local q=c:GetBuildQueue();assert(q:GetSize()==1,'ME_SETTLEMENT_SINGLE_TARGET')
+    local hash=q:GetCurrentProductionTypeHash();local row=P.Info('Buildings',hash)
+    assert(row and row.Hash==hash and row.InternalOnly~=1 and row.InternalOnly~=true and row.IsWonder~=1 and row.IsWonder~=true,'ME_SETTLEMENT_NORMAL_BUILDING')
+    local progress=q:GetBuildingProgress(row.Index);local cost=q:GetBuildingCost(row.Index)
+    assert(finite(progress) and finite(cost) and progress>=0 and progress<cost,'ME_SETTLEMENT_PROGRESS_UNKNOWN')
+    local rateOK,rate=P.Call(q,'GetProductionYield')
+    local rateText=rateOK and finite(rate) and rate>=0 and string.format('队列生产读数 %.2f',rate) or '队列生产读数未确认（请同时核对城市面板）'
+    assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
+    return string.format('结算观察｜T%d｜%s｜进度 %.2f / %.2f｜%s',turn,Locale.Lookup(row.Name),progress,cost,rateText)
+   end)
+   lines[#lines+1]=queueOK and queueText or ('结算观察未就绪：'..(tostring(queueText):match('ME_[A-Z_]+') or '原生进度接口未确认')..'；请选一项下回合不会完成的普通建筑，作为唯一目标。')
+   lines[#lines+1]='过一回合后再次右键，比较实际进度；期间不砍树／注入／换目标或改生产条件。不凭即时读数判定结算通过。'
+  end
   if v.cultureDeferred then lines[#lines+1]='文化追加暂隔离；HD原有效果保持。'
   elseif v.finalValues then lines[#lines+1]='文化：检验与古罗马剧场＋2共存；有配置不等于已生效。'end
   return table.concat(lines,'\n')
@@ -388,7 +409,7 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','finalValues','cultureDeferred','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','finalValues','cultureDeferred','normalEnvironment','recipientStatus','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()

@@ -101,9 +101,9 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','End yield gate'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','左／右键均结束本城实验：先撤销追加，再按当前事实恢复旧系统；不再切换文化候选。'),
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','Either click ends this city probe: withdraw additions before restoring legacy consumers from current facts. Legacy Culture candidates are not cycled.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展·五产出'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning: Five Yields'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及确认的合格巨作。左键：基线 → 五产出追加 → 结束。各领域分别Floor，同产出合计后每件使用一个最终值载体。文化追加暂隔离，HD原有效果保持。右键查看预期／原生差值，详细实例可写入诊断日志；可随时结束。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Culture ACTIVE4 and confirmed eligible works. Baseline, five final yields, then end. Floor each domain before summing. Culture additions are deferred; HD effects are unchanged. Right click reads expected/native changes; log contains exact details. End at any stage.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展·接入门禁'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning: Integration Gates'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','文化ACTIVE4及确认馆藏；先核对当前已加载作品定义。左键：正常时代对话基线 → 五产出追加 → 结束。主题状态保持，逐领域Floor不变。右键查看差值与普通建筑真实进度；文化追加暂隔离，HD保持。可随时结束。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Culture ACTIVE4 with confirmed works. Verify loaded definitions before baseline, five final yields, and end. Normal Dialogue and theming remain in effect. Right click reads differences and normal-building progress. Culture additions are deferred; HD is unchanged. End at any stage.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');

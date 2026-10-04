@@ -226,9 +226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "b0b9b62022b0a84a88b6176e1d2321bd2e0e726c8ee9bc07e2da4c7845d7b200",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
-      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
+      "sha256": "2487090bf1920afd9e1a6d75d6827def516137e93b96aa421748936ff433d7d6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "a7971e3592fb1cdfe97f2c6bf229aaefbadc892b25615a13b35e31369c72fc0a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "df5bbef8558fd9e0bf91c1cf872bd5906c7209323f21b49ccb8c1eef3a117467",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "81d95b4ba0193eb3a8dbd09dc76a541bfb627c4167b7c454bdf3f53f1f24084e",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "d0ad660d47425adaba4df46dd9dabd81c6969d6909327cab13920fbb457a8194",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "d4e1255df890fd9f6e0369b472bd19415bcd825eb9a0bf94905541130ac2d7d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "abf285d4780f39327c0fbc1e6e7fa542ce53b4b445a1fa0653369f53ce6840b2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "9f27412310a9baa1fa47e2bd0b7eb12d88f88493b13be1ac28c71c5ec94b18e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "d84389bcca6ed8a246c3c244e32784c4f0f517459f93d3fd8772d4000590955d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "a714c89655a3761dea3cb2508fc854c4ad1070d6572cfdaea1541a3f584b0337",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "7396400118dfeacc929f95f47f5c92cba0af3855578b0c00852659bac0f7e498",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "ae17bdd63047da547cf13dbe0fa1bca230146dbec882d0475a2339a4d293976c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "3693e7057e51daa6a6fb6093bbf1509c6fa2e6566f82c8f43f88dcdedbb31877",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "1847558d7fe5c6b71a1c64462798d05d307ff54bf1b424ab315a3cd49922f387",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
@@ -901,14 +901,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "1bbd71cd3ee7c162ceb9de9152e54466ea2a540253c8ed14177a7d874abfb660",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "aa1e0e02c249c8630cee3a04277163b6e7d3cc44b754cbeefe67c25124c033f7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "7132b45ab252fa740a9364a8c92450ac881078278b49beccb453d23eeb950639",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "9f817f006262ce396bc4892b60b0a38e7f61d87a5983a7efcc9238336b953d35",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "963da6b8bdfbff5d63a5f04b7414f5fe109c02c5bc3fe43ac2a75fcd2686f024",

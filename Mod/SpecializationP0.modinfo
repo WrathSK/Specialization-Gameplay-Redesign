@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="191">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="192">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B164.191: scoped Meaning Culture quarantine with exact92 withdrawal retained; five final yields and three reviewed Neighborhood depth entries. HD effects unchanged; no formal cutover or GC change.</Description>
+    <Description>B165.192: loaded-recipient coverage gate, normal Dialogue coexistence and on-demand normal-building settlement read. Five final yields; Culture deferred. Exact92 cleanup retained; no automatic all-city cutover or GC change.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
