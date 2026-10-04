@@ -26,4 +26,4 @@ Meaning精准recipient、Dialogue／主题化追加独立、正常结算及全�
 
 ## 源码与运行包
 
-源码B164.191／modinfo191；实际部署结果待receipt确认，不从Git HEAD推断运行包。原B163恢复点及main stable保持。
+W0003实际source／live B164.191／modinfo191，runtime source `e09ba9b8d33236de6b50b46ceae50f66f806046f`；receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。确认OS游戏退出后使用旧B163精确receipt恢复stable，再激活当前已提交推送源码。B163／stable恢复点均验证保留，pending marker无、未启动游戏；不提升原生证据。

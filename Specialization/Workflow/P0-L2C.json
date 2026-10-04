@@ -98,7 +98,7 @@
     "presentation": "D0032",
     "architecture": "A0161",
     "status": "S0426",
-    "runtime": "B163.190 / modinfo190",
+    "runtime": "B164.191 / modinfo191",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -422,7 +422,7 @@
     "implementation": "B164.191 / modinfo191: active seven domains/five final yields, Culture temporary quarantine; three reviewed Neighborhood D entries. Full92/644 cleanup remains.",
     "native": "B163 five screenshots: W1 baseline then non-Culture1/5/4/1/1 with paired deltas; S1→3/G4→9/Faith1→3 and W2 native6/10/18/2/6 agree in observed Writing scope. Culture required3 but4→4/delta0 FAIL. D/W later baselines invalid correctly; no new END/load/recipient/multiplier/settlement PASS, full L2 NOT_PASSED. B161/B162 named prior evidence retained.",
     "stop": "L3-A single-city/class fractional base-GPP gate plan prepared; await user authorization. Community D native check joins a later authorized session, no standalone request; no formal Meaning cutover/HD takeover/M/N/U2.",
-    "deployment": "B163.190 / modinfo190 last verified DEVELOP_ACTIVE, source3763677/receipt B163.190-3763677-playtest.json. B164 source local complete; actual new deployment not yet recorded. Community native deferred; full L2 NOT_PASSED.",
+    "deployment": "B164.191 / modinfo191 DEVELOP_ACTIVE; source e09ba9b8d33236de6b50b46ceae50f66f806046f; receipt B164.191-e09ba9b-playtest.json /182 MATCH verified. B163 and stable recovery retained; no marker/game launch. Local scoped repair PASS, Community native deferred; full L2 NOT_PASSED.",
     "authority_revalidation": "D0046 narrow user-approved two-domain restoration, no coefficient/qualification/lifecycle/other consumer change; unchanged Shared objects and old source/history review hashes reused. D0047 Government future baseline and dedicated blank scope recorded only; current four-profession scope and Culture/Shared direct contracts unchanged. Government is not a new context/dependency or runtime authorization.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md",
     "deferred_culture": "B164 implements user-selected temporary own Culture quarantine. Accepted D0046 unchanged; no HD takeover and root cause unresolved.",

@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0426
-Implementation Build: source B164.191 / modinfo191 LOCAL_COMPLETE / NATIVE_DEFERRED; last verified live B163.190; stable B069.96
+Implementation Build: source/live B164.191 / modinfo191 LOCAL_COMPLETE / NATIVE_DEFERRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0047
@@ -15,7 +15,7 @@ Work State: P0_L2C_B164_SCOPED_REPAIR_LOCAL_COMPLETE_NATIVE_DEFERRED
 
 社区D不安排独立实机，按用户决定并入以后获授权测试；当前STATIC／LOCAL，未标原生PASS。精准recipient、Dialogue／主题化追加独立、正常结算与正式全城cutover仍开放；Culture根因与恢复延期保留。下一建议[L3-A单城单class小数基础GPP门禁](../Architecture/v2/P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，**只计划、未授权实现**；无需新K collector，已存在count通知复用。
 
-source B164.191，上一verified live B163.190/source `3763677`／receipt `B163.190-3763677-playtest.json`；本批实际部署在核对退出与receipt后单独记载，不从HEAD推断。main稳定B069.96、永久Property／投资／账本／GC不改。不自动进入L3／M／N／U2或正式cutover。
+source／live B164.191／modinfo191（runtime source `e09ba9b`，receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE／182 MATCH）；已确认OS游戏退出、旧B163精确restore／stable bridge及两个恢复点，pending marker无、未启动游戏。main稳定B069.96、永久Property／投资／账本／GC不改。不自动进入L3／M／N／U2或正式cutover。
 
 ## S0426 — B164定域修复与合并验收边界
 
