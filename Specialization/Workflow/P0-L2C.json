@@ -97,13 +97,13 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0419",
-    "runtime": "B161.188 / modinfo188",
+    "status": "S0420",
+    "runtime": "B162.189 / modinfo189",
     "military": "D0037",
     "harbor": "D0037"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--production单值承载",
-  "goal": "User-authorized reversible one-city Production-only final per-work value0..10; original per-domain Floor then same-yield sum then W preserved. Signed opaque SubValue diagnostic only; no formal cutover/other-yield migration.",
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--加载清理与off退出",
+  "goal": "Authorized B161 startup/load readiness and OFF-END residual fix only; preserve Production formula/37 exact directory and prior native3→5/W2=10. No formal cutover or other-yield migration.",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -120,8 +120,8 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
-      "selector": "## 已授权切片 — Production单值承载",
-      "reason": "Complete newly authorized Production-only single-value qualification, lifecycle, old writers, diagnostics and native stop"
+      "selector": "## 已授权切片 — 加载清理与OFF退出",
+      "reason": "Complete current authorized initialization/readiness, per-city legacy writer safety, readonly diagnostics and minimal native exit boundary; yield contract remains inherited"
     },
     {
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -318,6 +318,16 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md",
       "kind": "full",
       "reason": "Latest seven-image native3→5/W2 PASS, OFF residual FAIL, direct END unconfirmed and scoped stop; prior B160/B158/B157 evidence linked, no full history default"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_meaning_cleanup.py",
+      "kind": "full",
+      "reason": "Fresh-session missing/early-load, exact cleanup failure, ACK/isolation, OFF-END/reentrant and normal fast-path targeted tests"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "kind": "full",
+      "reason": "Current B162 local facts and one native cleanup/END delta; old yield PASS retained, no repeated full lifecycle recipe"
     }
   ],
   "dependencies": [
@@ -337,25 +347,26 @@
     "Probe mixed-unknown-work rejection is not a new Design rule or exact recipient PASS"
   ],
   "validation": {
-    "depth": "W0004 L2 plus touched load/loss/reference L3; targeted only, no full history/stress",
+    "depth": "W0004 L2 and directly changed startup/load/exit L3 targeted closure; no full history/stress",
     "local": [
       "Final Production0..10 one carrier/no0, per-domain Floor and W matrix/physical Shared events; no other-yield projection; exact37/259/old SQL prefix",
       "Same-turn changes/zero-write/UNKNOWN/two-city/loss/reference/load/owned create-remove failure and hold; actual request/K sample pairing/reentrancy/token",
-      "Production-only independent getters and signed field exact identity checks; explicit READ only once, repeated/late/cache selection, OFF residual/config metadata"
+      "Production-only independent getters and signed field exact identity checks; explicit READ only once, repeated/late/cache selection, OFF residual/config metadata",
+      "Fresh session without Probe LoadScreenClose, zero-city/eligibility pending, per-city failed withdrawal/no auto retry/foreign cleanup/independent ACK, scoped OFF-END token recovery and global legacy reentry isolation; normal ready gate no scan/write"
     ],
-    "user": "Ordinary incremental gate: one continuous session W1 final3→D changed known final4 (or equivalent5) replacing3→W2 expected8 (or10)→END exact Meaning0/current legacy restoration. Each step distinguishes new native behavior; no default enabled-save/cold-load/re-enable loop. B161 actual3→5/W2=10 PASS, directEND unconfirmed. Post-restart OFF residual is a separate concrete exception: after an authorized readiness/cleanup repair, one scoped cold-load+exact read; repeat END only if that path changes, do not repeat passed yield gates."
+    "user": "One session: cold load existing B161 save, readonly OFF/cleanup CONFIRMED/exact Meaning0/no active Meaning Writing instance; after PASS prepare/enable once then END/read exact cleanup/current legacy recovery. Do not repeat3→5/W2, enabled-save/restart/re-enable ritual. These two steps test actual changed native cleanup/END paths."
   },
   "result": {
-    "plan": "User explicitly authorized prior Production-only single-value recommendation; complete B161 scoped contract recorded, no wider plan/Design change.",
-    "implementation": "B161.188 / modinfo188 LOCAL_COMPLETE; 73 methods/78subtests PASS, Production-only one selected city final-value gate.",
+    "plan": "User explicitly authorized scoped fix after native-delta policy and workflow responsibility clarification; no wider Gameplay or plan authorization.",
+    "implementation": "B162.189 / modinfo189 LOCAL_COMPLETE;108 methods/96subtests PASS,0 failures/errors/skips. Exact37 startup readiness gate and scoped OFF-END repair; native cleanup required.",
     "native": "B161 USER_GAME_TEST_PASS scoped Writing model/native3→5 replacement, W2 host10, signed identity format; USER_GAME_TEST_FAIL post-restart OFF with VALUE5 Active plus old GWA restored. Direct END NOT_CONFIRMED; saved/END ordering and actual load event cause unknown; full L2 NOT_PASSED. Existing73/78 local results retained, not rerun or upgraded.",
-    "stop": "Await authorization for scoped Probe first-cleanup/readiness/OFF-residual repair. Native3→5/W2=10 PASS; post-restart VALUE5+legacy coexistence FAIL; direct END unconfirmed. No repeated yield test now or automatic other-yield/cutover/L3/M/N/U2.",
+    "stop": "Await scoped B162 native cleanup/END acceptance; inherit B161 yield evidence. No automatic new yields/formal cutover/next batch.",
     "deployment": "Last verified B161.188 / modinfo188 DEVELOP_ACTIVE; source fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 MATCH. Not reverified/deployed this docs turn. Native observed3→5/W2=10 PASS, OFF residual FAIL; full L2 NOT_PASSED.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
-    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-    "local_test_entry": "DevelopmentTests/test_culture_meaning_single_value.py + test_culture_meaning_diagnostic.py + selected direct test_modifier_read.py methods; targeted only, historical five-yield suite not run",
-    "next_proposal": "Only scoped first-cleanup/readiness/OFF-residual repair after explicit implementation authorization. No runtime edits this policy/archive turn; no new testing now, no other-yield migration/formal cutover."
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+    "local_test_entry": "test_culture_meaning_cleanup.py + current single_value24/diagnostic18 + selected reader31 + K Facts14/Producer8/LegacyIsolation1;108 methods/96subtests; historical wrappers not selected",
+    "next_proposal": "Await scoped B162 native cleanup/END acceptance; inherit B161 yield evidence. No automatic new yields/formal cutover/next batch."
   }
 }

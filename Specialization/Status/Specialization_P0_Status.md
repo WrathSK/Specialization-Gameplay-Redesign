@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0419
-Implementation Build: source/live B161.188 / modinfo188 LOCAL_COMPLETE / NATIVE_PARTIAL_PASS_OFF_RESIDUAL_FAIL; stable B069.96
+Status Revision: S0420
+Implementation Build: source B162.189 / modinfo189 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; last verified live B161.188; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0045（Meaning直接合同不改；B161仅Production单城门禁，正式接入未完成）
 Latest Accepted Design Revision: D0045
-Design Sync State: D0045_AUTHORITY_RETAINED / B161_PRODUCTION_NATIVE_PARTIAL_OFF_RESIDUAL
-Work State: P0_L2C_PRODUCTION_NATIVE_PARTIAL_OFF_RESIDUAL
+Design Sync State: D0045_AUTHORITY_RETAINED / B162_LOAD_CLEANUP_NATIVE_REQUIRED
+Work State: P0_L2C_LOAD_CLEANUP_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-Design D0045／Architecture A0161不变，**B161.188／modinfo188原生部分PASS：每件Production3→5精确替换、W2宿主10、signed字段本城核验；重启后OFF仍有VALUE_5并与旧writer并存，退出门禁FAIL。** [七图／证据边界](Validation/Results/Specialization_B161_Production_Single_Value_Native.md)，直接END未确认，完整L2 NOT_PASSED。
+Design D0045／Architecture A0161不变，**B162.189／modinfo189首次清理与OFF END修复LOCAL完成，108方法／96subTest PASS；原生清理／直接END待验。** [修改、证据及一次最小流程](Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md)。B161每件3→5／W2宿主10／signed映射PASS继续沿用；重启OFF残留FAIL原件保留，完整L2 NOT_PASSED。
 
-[当前完整切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--production单值承载)按[长期native delta／继承政策](../Workflow/README.md#native-delta-and-inherited-evidence)收敛；普通增量一个连续session，不默认保存启用副本／cold-load／再启用。原73方法／78subTest证据及错误保护保留；本次具体残留只重开相应首次清理／就绪边界，不重做已过收益、不把此前未确认的冷加载当PASS。
+[当前完整切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--加载清理与off退出)：旧正向投影前就绪门禁，0城／身份暂未知等待，真实撤销失败锁停自动重试且按城市隔离；OFF END真正撤载体，READ仍只读。Shared/K采样／ACK、37／259SQL目录、Production公式、永久Property／账本与GC未改。按[长期native delta政策](../Workflow/README.md#native-delta-and-inherited-evidence)只补本轮新增native风险，不重测已过收益或完整保存重载循环。
 
-source/live沿最近核对B161.188、运行源码`fcea242`、receipt `B161.188-fcea242-playtest.json` DEVELOP_ACTIVE／182 MATCH，本轮未重新核验外部包。七图ignored原样归档7/7 MATCH，仅文档／验收及review hash更新；Mod／测试／Design／永久状态／GC／main不变，无部署／游戏启动／新玩法回归。下一仅Probe首次清理／OFF残留定域修复建议，**待用户授权；现在无需补测**，不自动其它yield／cutover／L3／M／N／U2。
+source B162.189待W0003实际部署；最近已核对live仍B161.188、运行源码`fcea242`、receipt `B161.188-fcea242-playtest.json` DEVELOP_ACTIVE／182 MATCH，部署结果完成后单独更新。main稳定B069.96不动。下一仅用户一次连续session：冷加载已有测试存档→OFF只读精确清理→准备／启用一次→END只读退出，不自动其它yield／formal cutover／L3／M／N／U2。新测试未通过前不宣称修复原生PASS。
 
 ## 历史阶段记录
 

@@ -64,7 +64,7 @@ class MeaningProbeTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.sql=database()
- def runtime(self,real_samples=False):
+ def runtime(self,real_samples=False,meaning_ready=True):
   helper=ae.AestheticTests();helper.sql=self.sql;l=helper.runtime()
   for table,key in [('GreatWorks','GreatWorkType'),('Yields','YieldType'),('GreatPersonIndividuals','GreatPersonIndividualType'),('Eras','EraType'),('GreatWork_YieldChanges','GreatWorkType')]:
    cur=self.sql.execute('SELECT * FROM '+table);columns=[a[0]for a in cur.description];rows=[dict(zip(columns,r))for r in cur]
@@ -79,6 +79,7 @@ class MeaningProbeTests(unittest.TestCase):
   for n in ['Dialogue','GreatWorkAdjacency','CultureMeaningProbe']:imported_include(n)
   if real_samples:imported_include('GreatWorkFacts')
   l.globals().realSamples=real_samples
+  l.globals().meaningReady=meaning_ready
   l.execute("""
    Game.GetLocalPlayer=function()return 0 end
    for _,c in ipairs(cities)do building(c,'BUILDING_MARKET',c.ds[3],false);building(c,'BUILDING_FAIR',c.ds[3]);c.active=4;c.workCount=1;c.badCount=0;c.categoryUnknown=0;local campus=district(c,6,'DISTRICT_CAMPUS');building(c,'BUILDING_LIBRARY',campus)end
@@ -111,7 +112,8 @@ class MeaningProbeTests(unittest.TestCase):
    gwa.samples[0]={turn=turn,rows={{city=1,values={0,0,2,2,0,0}},{city=2,values={0,0,2,2,0,0}}}}
    gwa.Audit(0)
    SPCCultureMeaningProbe.Start(P,shared);probe=shared.CultureMeaningProbe
-   fire('LoadScreenClose');if not realSamples then collection()end;svc.MarkDirty();gwa.Audit(0)
+   if meaningReady then fire('LoadScreenClose')end
+   if not realSamples then collection()end;svc.MarkDirty();if meaningReady then gwa.Audit(0)end
    function confirmCollection()
     assert(not realSamples,'REAL_SAMPLE_MUST_USE_REQUEST')
     shared.GreatWorkFacts.OnConfirmed(0,{1}) -- Preserve the existing L1 callback.
@@ -136,10 +138,10 @@ class MeaningProbeTests(unittest.TestCase):
    function begin()probe.Advance(0,a);assert(probe.mode=='BASELINE');probe.Advance(0,a);assert(probe.mode=='ACTIVE')end
   """)
   return l
- def real_sample_runtime(self):
+ def real_sample_runtime(self,meaning_ready=True):
   # Reuse the engine/SQL fixture, but both collection interpreters execute real
   # source. No Summary override or preinstalled Dialogue sample is permitted.
-  l=self.runtime(real_samples=True);bind_actual_request(l)
+  l=self.runtime(real_samples=True,meaning_ready=meaning_ready);bind_actual_request(l)
   l.execute("""
    assert(dialogue.samples[0]==nil and shared.GreatWorkFacts.Summary(0,1)==nil)
    for _,d in ipairs(b.ds)do d.id=d.id+100 end -- Native district IDs are unique.

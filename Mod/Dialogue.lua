@@ -140,6 +140,10 @@ function SPCDialogue.Start(P,shared)
      end
     end
     local valid,p=pcall(function()
+     local meaning=shared.CultureMeaningProbe
+     -- An exact held zero still needs current qualification/sample checks, but
+     -- it cannot mix a positive legacy yield with Meaning. Gate positive paths.
+     if meaning and not d.IsMeaningProbeHeld(pid,c,0) then local safe,why=meaning.CanProjectLegacy(pid,c);assert(safe,why)end
      local f=shared.EffectiveFacts.Read(pid,c)
      local works=s and s.turn==Game.GetCurrentGameTurn() and s.cities[id]
      assert(works,'DIALOGUE_COLLECTION_PENDING')

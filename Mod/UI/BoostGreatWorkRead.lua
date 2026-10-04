@@ -120,7 +120,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    if v.productionOnly then
     local turn=Game.GetCurrentGameTurn();local actual=productionAbsolute(P,c)
     assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
-    return string.format('生产力对照已关闭｜当前原生作品生产力 %.2f；旧系统恢复另行核对，不作追加差值PASS。',actual)
+    return string.format('实验OFF｜首次清理 %s｜当前原生作品生产力 %.2f；撤销见下方精确实例，不作追加差值PASS。',tostring(v.cleanupStatus or 'UNKNOWN'),actual)
    end
    return '测试已关闭；本次五产出对照已释放。'
   end
@@ -382,7 +382,7 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()
@@ -427,6 +427,7 @@ do
     or ('原型状态 '..text(v.mode)..' / '..text(v.variant)..'｜配置 S/G/C='..text(v.configuredScience)..'/'..text(v.configuredGold)..'/'..text(v.configuredCulture)),
    '城市引用 '..text(v.reference)}
   if v.productionOnly then
+   lines[#lines+1]='首次清理 '..text(v.cleanupStatus)..(v.cleanupError and ('｜'..text(v.cleanupError:match('ME_[A-Z_]+') or 'UNKNOWN')) or '')
    local ok,value=pcall(productionAbsolute,P,c)
    lines[#lines+1]=ok and ('当前原生作品生产力 '..text(value)..'（本城馆藏建筑小计）')
     or ('生产力实际读数未确认：'..text(value)..'；不以0代替未知。')

@@ -5,8 +5,8 @@ include('NetworkInput')
 SPCCultureMeaningProbe={}
 function SPCCultureMeaningProbe.Start(P,shared)
  local M=SPCCultureMeaningModel
- local d={ready=false,busy=false,mode='OFF',variant='SPLIT',changes=0};shared.CultureMeaningProbe=d
- local target,indices
+ local d={ready=false,busy=false,mode='OFF',variant='SPLIT',changes=0,cleanupStatus='PENDING',cleanupPasses=0};shared.CultureMeaningProbe=d
+ local target,indices,recoveryCity
  local owned={};for _,name in ipairs(M.Owned)do owned[name]=true end
  function d.IsOwnedCarrier(name)return owned[name]==true end
  local function validate()
@@ -89,23 +89,56 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end)
   if not ok then d.error=tostring(why);error(why)end
  end
- local function reset(isLoad)
-  -- One load-only pass over thirty-seven exact owned definitions. Not an AI ability audit.
-  -- Saved transient test carriers must be removed even on a foreign held city.
-  d.busy=true
+ local function reset(isLoad,reason)
+  -- One startup/load pass over 37 exact test-owned IDs, including saved foreign
+  -- pieces. No AI ability audit; no persistent state or per-frame retry.
+  if d.busy then return false,'ME_CLEANUP_BUSY' end
+  d.busy=true;d.ready=false;d.cleanupStatus='CLEANING';d.cleanupReason=reason or (isLoad and 'LOAD' or 'STARTUP')
+  local pending=false
   local ok,why=pcall(function()
-   validate();local count=0
+   validate();local cities={};local supported=false
    for _,player in pairs(Players)do local collection=player:GetCities();if collection then
-    for _,c in collection:Members()do P.Count('city_scan');count=count+1;assert(count<=2048,'ME_CLEANUP_SCOPE_LIMIT');project(c,{})end
+    for _,c in collection:Members()do
+     P.Count('city_scan');cities[#cities+1]=c;assert(#cities<=2048,'ME_CLEANUP_SCOPE_LIMIT')
+     if P.IsTestPlayer(c:GetOwner()) then supported=true end
+    end
    end end
-   if isLoad then shared.Dialogue.ready=false;shared.Dialogue.Init() -- Cold-load cleanup of saved foreign test pieces.
+   -- An early/missing load notification cannot certify an empty enumeration.
+   -- Existing background projection or local turn will retry when cities exist.
+   if not supported then pending=true;return end
+   d.cleanupPasses=d.cleanupPasses+1
+   local failure
+   for _,c in ipairs(cities)do
+    local cleared,err=pcall(project,c,{})
+    if not cleared then failure=failure or err end -- Other cities still withdraw.
+   end
+   assert(not failure,failure)
+   if isLoad then shared.Dialogue.ready=false;shared.Dialogue.Init()
    elseif target then shared.Dialogue.WithdrawMeaningProbe(target.owner,current())
-   else shared.Dialogue.Init()end -- Never clear already-ready other cities on first probe fallback.
+   else shared.Dialogue.Init()end -- Do not clear already-ready unrelated cities.
    forget();if isLoad then d.variant='SPLIT';d.lastAction=nil end;d.ready=true
   end)
-  d.busy=false;d.error=not ok and tostring(why) or nil
-  if not ok then d.ready=false;d.resetFailed=true else d.resetFailed=nil end
-  return ok
+  d.busy=false
+  d.cleanupStatus=not ok and 'FAILED' or pending and 'PENDING' or 'CONFIRMED'
+  d.cleanupError=not ok and tostring(why):sub(1,240) or pending and 'ME_CITIES_PENDING' or nil
+  d.error=not ok and d.cleanupError or nil;d.resetFailed=not ok or nil
+  return ok and not pending,d.cleanupError
+ end
+ function d.EnsureStartupCleanup(reason)
+  if d.ready then return true end
+  if d.busy then return false,'ME_CLEANUP_BUSY' end
+  if d.resetFailed then return false,d.cleanupError end -- No automatic deletion storm.
+  return reset(false,reason)
+ end
+ function d.CanProjectLegacy(pid,c)
+  if not c or c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return false,'ME_OWNER_UNKNOWN' end
+  if not d.busy and not recoveryCity and d.EnsureStartupCleanup('LEGACY_PROJECTION') then return true end
+  -- A failed city must not mix residual Meaning with the old writers. Already
+  -- cleared cities may run normally, without releasing a failed fixture hold.
+  local safe,why=pcall(function()
+   validate();for _,name in ipairs(M.Owned)do assert(not installed(c,name),'ME_CLEANUP_RESIDUE')end
+  end)
+  return safe,not safe and tostring(why):sub(1,240) or nil
  end
  local function audit(scope)
   if not d.ready or d.busy or not target then return end
@@ -172,7 +205,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if deferred and target and not d.stopping then audit({player=target.owner,city=target.city})end
  end
  local function advance(pid,c,diagnostic)
-  if not d.ready then assert(reset(),'ME_LOAD_CLEANUP_FAILED')end
+  if not d.ready then assert(reset(false,'ADVANCE'),'ME_LOAD_CLEANUP_FAILED')end
   if target and (target.owner~=pid or target.city~=c:GetID() or target.reference~=SPCNetworkInput.Reference(c))then finish()end
   assert(not target or target.diagnostic==diagnostic,'ME_DIAGNOSTIC_OTHER_FLOW')
   if target and diagnostic and d.error and not d.stopping then
@@ -290,6 +323,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end)
   local v={variant=d.variant,configuredScience=read and configured.SCIENCE or nil,configuredGold=read and configured.GOLD or nil,configuredCulture=read and configured.CULTURE or nil,configuredProduction=read and configured.PRODUCTION or nil,configuredFood=read and configured.FOOD or nil,configuredFaith=read and configured.FAITH or nil,configurationError=not read and tostring(why) or nil,
    owner=pid,cityID=c:GetID(),reference=ref,mode=match and d.mode or 'OFF',error=d.error,
+   cleanupStatus=d.cleanupStatus,cleanupError=d.cleanupError,cleanupReason=d.cleanupReason,
    currentIdentity=q and q.specialization,currentPotential=q and q.potential,currentActive=q and q.active,currentActiveStatus=q and q.activeStatus,
    active=p and p.active,count=p and p.count,science=p and p.each.SCIENCE,gold=p and p.each.GOLD,culture=p and p.each.CULTURE,production=p and p.each.PRODUCTION,food=p and p.each.FOOD,faith=p and p.each.FAITH,
    totalScience=p and p.total.SCIENCE,totalGold=p and p.total.GOLD,totalCulture=p and p.total.CULTURE,totalProduction=p and p.total.PRODUCTION,totalFood=p and p.total.FOOD,totalFaith=p and p.total.FAITH,planStatus=p and p.status,
@@ -340,7 +374,21 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end
   return action(function()
    if not target and d.mode=='OFF' and token then
-    d.lastAction={token=token,owner=pid,city=c:GetID(),kind='END'};return
+    d.lastAction={token=token,owner=pid,city=c:GetID(),kind='END'}
+    -- OFF describes the session only. Explicit END must withdraw saved pieces,
+    -- not merely acknowledge a token. Keep this recovery scoped to this city.
+    recoveryCity=c;d.busy=true;local cleared,why=pcall(project,c,{});d.busy=false
+    if not cleared then
+     d.ready=false;d.resetFailed=true;d.cleanupStatus='FAILED';d.cleanupError=tostring(why):sub(1,240)
+    end
+    -- During this explicit scoped recovery, do not start a global sweep. Both
+    -- old writers independently check exact absence; on failure they withdraw
+    -- their own pieces instead of restoring a saved/current positive effect.
+    local resumed,err=pcall(function()
+     shared.Dialogue.Audit(pid,c:GetID());shared.GreatWorkAdjacency.Audit(pid,c:GetID())
+    end)
+    recoveryCity=nil;assert(cleared,why);assert(resumed,err)
+    d.error=nil;return
    end
    assert(target and target.owner==pid and target.city==c:GetID(),'ME_NO_FIXTURE')
    if token then d.lastAction={token=token,owner=pid,city=c:GetID(),kind='END'}end
@@ -353,6 +401,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    local names={OFF='已关闭',BASELINE='①基线',SINGLE1='②单片＋1',CLEAR1='③撤销至0（仍在对照）',SINGLE2='④单片＋2',PAIR12='⑤两片＋1／＋2',REMAIN2='⑥仅撤＋1，保留＋2',SINGLE3='⑦独立单片＋3'}
    local nextText={BASELINE='左键：单片＋1。',SINGLE1='左键：只撤＋1至0。',CLEAR1='旧收益仍暂停；左键：重新配置单片＋2。',SINGLE2='左键：清空后建立两片＋1／＋2。',PAIR12='已知组合对照；左键：只撤＋1，保留＋2。',REMAIN2='左键：清空后建立独立单片＋3。',SINGLE3='左键：结束。'}
    local lines={'生产力组合诊断｜'..(names[v.diagnosticStage] or '未确认')}
+   lines[#lines+1]='首次清理：'..(({CONFIRMED='已确认',PENDING='待城市就绪',CLEANING='进行中',FAILED='失败，需处理'})[v.cleanupStatus] or '未确认')
    if v.diagnosticStage=='OFF' then lines[#lines+1]='左键开始；右键只读退出状态。'
    else lines[#lines+1]=(nextText[v.diagnosticStage] or '状态未确认，先结束。')..' 右键读取实例；可随时结束。'end
    local err=v.error or v.configurationError or v.dialogueError
@@ -363,6 +412,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   end
   local names={OFF='未开启',BASELINE='①基线',ACTIVE='②整数追加'}
   local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜仅生产力单值'}
+  if v.mode=='OFF' or v.cleanupStatus~='CONFIRMED' then lines[#lines+1]='首次清理：'..(({CONFIRMED='已确认',PENDING='待城市就绪',CLEANING='进行中',FAILED='失败，需处理'})[v.cleanupStatus] or '未确认')end
   if v.count then lines[#lines+1]=string.format('合格%d件｜当前ACTIVE %s',v.count,tostring(v.currentActiveStatus=='KNOWN' and v.currentActive or '未确认'))end
   if v.mode=='OFF' then lines[#lines+1]='左键准备基线；需文化ACTIVE4及确认馆藏。'
   elseif v.mode=='BASELINE' then lines[#lines+1]='追加已清除；左键启用，右键只读。'
@@ -386,7 +436,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
  local lastTurn
  bind(Events,'PlayerTurnActivated',function(pid)
   if not P.IsTestPlayer(pid)then return end
-  if not d.ready and not d.resetFailed then reset()end
+  if not d.ready and not d.resetFailed then d.EnsureStartupCleanup('PLAYER_TURN')end
   local turn=Game.GetCurrentGameTurn();if lastTurn~=turn then lastTurn=turn;d.Audit({player=pid})end
  end)
  bind(Events,'CityBuildingsChanged',function(pid,cid)d.Audit({player=pid,city=cid})end)

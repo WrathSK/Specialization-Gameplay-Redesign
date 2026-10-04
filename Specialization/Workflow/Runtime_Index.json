@@ -226,9 +226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "1e5476973effb8db3d538d327d2b1456afbaecc65ccb4c4249b8aac44c3e9e5a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B154_P0L2B_Transition_Repair.md",
-      "provenance": "B154 authorized one-city transition/reentry/failure-intent/current qualification and on-demand Culture auxiliary readout;61 Meaning/26 K LOCAL. SQL/Design/GC/permanent semantics unchanged;native pending."
+      "sha256": "b0b9b62022b0a84a88b6176e1d2321bd2e0e726c8ee9bc07e2da4c7845d7b200",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -271,9 +271,9 @@
       "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/GreatWorkAdjacency.lua": {
-      "sha256": "40e66671958521f70e95a546b4a8aa8bf2fd4d5b09037e749427e104794a39aa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B153_P0L2B_Entry_Repair.md",
-      "provenance": "B153 authorized scoped Dialogue/Meaning entry repair; direct GWA synchronous iterator/lock dependency, accepted-pair receipt, 53 Meaning +26 K targeted LOCAL. No formula/permanent/GC change; native pending."
+      "sha256": "81d95b4ba0193eb3a8dbd09dc76a541bfb627c4167b7c454bdf3f53f1f24084e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
     },
     "Mod/GreatWorkAdjacencyModel.lua": {
       "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "3551219062f24c05fb79326aff20b7335071d991966754944a937e43726a02c1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "967b79e78230a6e6e5bde43e3497b030e595e40e8a1989adbae76ad40d1f91bd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b4eae31006957bd16197877fabd60c9d8ec14e5c1adcd11cdae33821d5656d6c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "cc73c84c3c663a3678d2a988780cd97a693000afcdf145446f0d69d32015b666",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "59c0132c24ff9ccbbfdc78be35216d4768d17e13f2a16a1fa19ab0dbb598fa00",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "1bcc101d566b81d64bf2f4baec10a93358c6ff2a4ee5efb78549f2b3dc31c1a4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -906,9 +906,9 @@
       "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "ffbad4ea934f5d41066376c213e3f75ea060fa497ec7dbb8f3a0f4ad2d4936fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
-      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
+      "sha256": "c230ef3ec822aa4bfac7390d6ca478878c1a94dc6efeec18a20e438dc4da3ddf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
+      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "ca5a7a9dd2fefdc9be4fdc13fc6b9fa4f7b4df2bcb459fc5760fc1c369264092",

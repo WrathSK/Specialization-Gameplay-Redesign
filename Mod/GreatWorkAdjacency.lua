@@ -62,6 +62,8 @@ function SPCGWAdjacency.Start(P,shared)
   for _,c in visit,state,initial do P.Count('city_scan');
    local ok,plan=pcall(function()
     if d.IsMeaningHeld(pid,c)then return {base={},count=0,active=false,want={},meaningHeld=true}end
+    local meaning=shared.CultureMeaningProbe
+    if meaning then local safe,why=meaning.CanProjectLegacy(pid,c);assert(safe,why)end
     local sample=d.samples[pid];local collection=shared.Dialogue.samples[pid]
     assert(sample and collection and sample.turn==Game.GetCurrentGameTurn() and collection.turn==sample.turn,'GWA_SAMPLE_PENDING')
     local f=shared.EffectiveFacts.Read(pid,c);local base={};for _,y in ipairs(M.Yields) do base[y]=0 end

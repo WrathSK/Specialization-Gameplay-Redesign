@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0419",
-    "runtime": "B161.188 / modinfo188",
+    "status": "S0420",
+    "runtime": "B162.189 / modinfo189",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -33,8 +33,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "fcea2427786cc3230c8b3ad0b9f8564834311816",
-  "current_batch": "P0_L2C_PRODUCTION_NATIVE_PARTIAL_OFF_RESIDUAL",
-  "next_batch": "Await authorization for scoped Probe first-cleanup/readiness/OFF-residual repair. Native3→5/W2=10 PASS; post-restart VALUE5+legacy coexistence FAIL; direct END unconfirmed. No repeated yield test now or automatic other-yield/cutover/L3/M/N/U2.",
+  "current_batch": "P0_L2C_LOAD_CLEANUP_LOCAL_COMPLETE",
+  "next_batch": "Await one scoped native cold-load exact-cleanup and direct-END check for B162; inherit B1613→5/W2=10. No repeat yield/save-enabled ritual or automatic other-yield/cutover/L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
   "live": "Last verified B161.188 / modinfo188 DEVELOP_ACTIVE; source fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 MATCH. Not reverified/deployed this docs turn. Native observed3→5/W2=10 PASS, OFF residual FAIL; full L2 NOT_PASSED.",
   "stable": "main B069.96 / modinfo96",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0419 user-authorized long-term native-delta/inherited-evidence policy, not runtime implementation. Seven original screenshots individually read and SHA256 archived: Production3→5/W2=10 and signed mapping PASS; post-restart OFF+VALUE5+old GWA coexistence FAIL, direct END NOT_CONFIRMED. Exact Probe/read/init and fixture readiness inspected; missed/early load or cleanup failure remain hypotheses. Prior73/78 local results/frozen native evidence retained; current test recipe narrowed, no gameplay tests/deploy/Design/Mod/GC/main changes. Only named changed/new documents rehashed after review; next scoped repair requires authorization.",
+  "context_review_status": "S0420 user-authorized B161 readiness/OFF-residual scoped fix. Direct Meaning/Dialogue/GWA/request/UI/test closure reviewed;108 methods/96subtests PASS. Exact37/259 SQL, Design/permanent/GC unchanged. Normal ready fast path; pending zero-city retry only at existing entry; true failure locks auto retry, per-city legacy projection safety and scoped OFF END. Native cause/withdrawal still require one minimal session; inherit B161 yield PASS, no full history/stress. Only named changed/new files rehashed after review. Source B162 committed/deployed separately; existing live pointer is not inferred from new source.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
