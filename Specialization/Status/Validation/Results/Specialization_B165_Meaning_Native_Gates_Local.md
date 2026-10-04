@@ -31,7 +31,7 @@ Metadata proof由probe会话持有，本局DB固定，只核对一次；失败�
 
 覆盖加载311定义及七class附件、未知同class／未审阅Era／重复／空／不可用metadata拒绝；正常正Dialogue与同回合D变更／无变化零写、实际request/token／隔离、流互斥、END失败／重复退出、UNKNOWN与confirmed loss；真实Lua reader在native-shaped themed fixture中识别固定追加与错误放大，普通队列progress跨turn只读、缺队列API诚实未就绪／缺rate仍保留实际progress并明确读数未知；metadata缓存及无新增hook。继承20项exact92／644与当前18项Catalog→Shared D→Meaning／ResearchApply保护。
 
-模拟native读数只是reader行为证据，不证明Civ VI真实倍率或结算。现有GetBuildingProgress／cost／target读取沿已使用队列API；GetProductionYield是否在本环境可读且与本目标当回合结算一致仍待native核对，该rate未知时仍显示可靠progress，并要求结合城市面板判断；未知不得转PASS。没有运行全历史回归／stress、启动游戏或修改HD／Design／main。文档链接、当前selector／schema、Runtime_Index／Context_Lock与diff检查完成后仅更新本批命名hash，不全历史rehash。
+模拟native读数只是reader行为证据，不证明Civ VI真实倍率或结算。现有GetBuildingProgress／cost／target读取沿已使用队列API；GetProductionYield是否在本环境可读且与本目标当回合结算一致仍待native核对，该rate未知时仍显示可靠progress，并要求结合城市面板判断；未知不得转PASS。没有运行全历史回归／stress、启动游戏或修改HD／Design／main。36处本批文档链接／锚点、当前selector／schema、context check／self-test（182 runtime／448 guarded）及diff检查PASS；Status／plan CURRENT均8行。仅更新本批命名hash，不全历史rehash。
 
 ## 一个最小实机session
 
@@ -45,7 +45,7 @@ Metadata proof由probe会话持有，本局DB固定，只核对一次；失败�
 
 ## 源码与运行包
 
-source B165.192／modinfo192 LOCAL_COMPLETE，本批部署尚未执行。last verified live B164.191／modinfo191、source e09ba9b8d33236de6b50b46ceae50f66f806046f、receipt B164.191-e09ba9b-playtest.json。实际W0003交易后再记录source commit、receipt与182-file equality；Git HEAD不证明外部运行包。
+W0003 source／live B165.192／modinfo192，source `16f1f999d6f9634f973f660cc67c70b52dd11c63`、receipt `B165.192-16f1f99-playtest.json` DEVELOP_ACTIVE，**182/182 MATCH**。clean／synced develop与main、OS游戏退出及旧B164精确receipt／稳定恢复包均先核对；使用未改动的temporary tool与mandatory flags完成stable桥接／激活。B164与stable恢复点验证保留，无pending marker、未启动游戏。部署记录不提升native门禁为PASS；main source保持B069.96。
 
 ## 停止点
 

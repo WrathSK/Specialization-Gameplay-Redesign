@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0428
-Implementation Build: source B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; live last verified B164.191; stable B069.96
+Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0047
@@ -11,7 +11,7 @@ Work State: P0_L2C_B165_NATIVE_GATES_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改，v0.1仍四专业。source B165.192／modinfo192 LOCAL_COMPLETE；last verified live B164.191（source `e09ba9b`、receipt `B164.191-e09ba9b-playtest.json` DEVELOP_ACTIVE／182 MATCH），本批部署尚未执行。main稳定B069.96不改。
+当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改，v0.1仍四专业。source／live B165.192／modinfo192 LOCAL_COMPLETE（source `16f1f99`、receipt `B165.192-16f1f99-playtest.json` DEVELOP_ACTIVE／182 MATCH），已实际核验。main稳定B069.96不改。
 
 本轮已授权并完成[Meaning剩余接入门禁](../Architecture/v2/P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：加载集合支持证明、正常Dialogue／主题化共存入口、普通建筑真实进度READ；[本地55方法PASS](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)。仍是手动单城七域五yield，Culture暂隔离，社区合并本次session。STATIC／LOCAL不代表追加独立或正常结算已获原生PASS；已有B161／B162／B163证据按范围继承。
 
@@ -19,7 +19,7 @@ Work State: P0_L2C_B165_NATIVE_GATES_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## S0428 — B165剩余接入门禁LOCAL与原生待验
 
-用户授权推进上一轮计划第一段；[结果](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)记录模块／实际caller／现行DB范围与55方法检查。normal gate保留正常Dialogue，不恢复实验0%快照；recipient proof证明当前加载集合，不是新增原生逐作品过滤或跨Mod保证。普通建筑结算仅增加按需观测，不自动根据即时getter宣告PASS。当前源码完成、本批部署待既有W0003实际交易核验；B164／stable恢复点不得凭Git猜测。
+用户授权推进上一轮计划第一段；[结果](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)记录模块／实际caller／现行DB范围与55方法检查。normal gate保留正常Dialogue，不恢复实验0%快照；recipient proof证明当前加载集合，不是新增原生逐作品过滤或跨Mod保证。普通建筑结算仅增加按需观测，不自动根据即时getter宣告PASS。W0003已实际完成B164精确receipt恢复stable桥接→B165激活，182/182 MATCH；B164／stable恢复点验证保留，pending marker无、未启动游戏，不提升native证据。
 
 后续只等待本批最小原生delta；全城自动接入与global GWA切换尚未授权。旧package191专用断言原样保留，由当前192检查替代；不跑全历史／stress、不启动游戏、不清永久状态、不改Design／GC。
 
