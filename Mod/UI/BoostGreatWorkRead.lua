@@ -127,7 +127,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   assert(v.mode=='BASELINE' or v.mode=='ACTIVE','ME_UI_MODE_UNKNOWN')
   assert(not v.error and not v.configurationError and not v.dialogueError and v.oldHeld and v.planStatus=='READY','ME_UI_CONFIGURATION_PENDING')
   assert(v.dialoguePercent==0,'ME_UI_CONFIGURATION_PENDING')
-  if not v.finalValues then assert(v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')end
+  if v.cultureDeferred or not v.finalValues then assert(v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')end
   local function finite(n)return type(n)=='number' and n==n and math.abs(n)<math.huge end
   local function integer(n)return finite(n) and n>=0 and n%1==0 end
   assert(integer(v.count),'ME_UI_WORK_COUNT_UNKNOWN')
@@ -139,7 +139,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    {'FAITH','信仰','faith','totalFaith','configuredFaith'},
    {'CULTURE','文化','culture','totalCulture','configuredCulture'}
   }
-  if v.productionOnly then definitions={definitions[2]}elseif not v.finalValues then table.remove(definitions,6)end
+  if v.productionOnly then definitions={definitions[2]}elseif v.cultureDeferred or not v.finalValues then table.remove(definitions,6)end
   local on=v.mode=='ACTIVE';local totals={};local expected={}
   for _,entry in ipairs(definitions)do
    local yield,each,total,configured=entry[1],v[entry[3]],v[entry[4]],v[entry[5]]
@@ -183,7 +183,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   local depthKnown=type(v.stamp)=='string' and #v.stamp>0
   local qualification=table.concat({tostring(v.currentIdentity),tostring(v.currentPotential),tostring(v.currentActive),tostring(v.currentActiveStatus)},':')
   table.sort(signature)
-  local key=v.reference..'|'..tostring(v.productionOnly==true)..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
+  local key=v.reference..'|'..tostring(v.productionOnly==true)..'|'..tostring(v.cultureDeferred==true)..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
   assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
   local stable=populationKnown and qualificationKnown and depthKnown
   if mark and v.mode=='BASELINE' and stable then meaningReadings={key=key,baseline=totals,current=totals}end
@@ -203,11 +203,12 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    lines[#lines+1]=on and '右键只刷新当前读数；左键或结束按钮撤回追加。' or '同回合基线已记录；左键启用追加。'
   end
   if themedBuildings>0 then lines[#lines+1]='已主题化'..themedBuildings..'座；当前预期追加保持固定，不乘主题倍率。'end
-  if v.finalValues then lines[#lines+1]='文化：检验与古罗马剧场＋2共存；有配置不等于已生效。'end
+  if v.cultureDeferred then lines[#lines+1]='文化追加暂隔离；HD原有效果保持。'
+  elseif v.finalValues then lines[#lines+1]='文化：检验与古罗马剧场＋2共存；有配置不等于已生效。'end
   return table.concat(lines,'\n')
  end)
  if not ok then meaningReadings=nil end -- An unknown/error cannot retain a successful comparison.
- return ok and result or ((v.productionOnly and '生产力' or v.finalValues and '六产出' or '五产出')..'原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
+ return ok and result or ((v.productionOnly and '生产力' or v.finalValues and not v.cultureDeferred and '六产出' or '五产出')..'原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end
 
 -- Fixed technical comparison only; this does not calculate Design D or Floor.
@@ -387,7 +388,7 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','finalValues','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly','finalValues','cultureDeferred','cleanupStatus','cleanupError'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()

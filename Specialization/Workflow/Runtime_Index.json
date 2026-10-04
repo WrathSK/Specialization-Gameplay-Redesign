@@ -356,9 +356,9 @@
       "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
-      "sha256": "68395e041876adc9072eb2d54da92f3104b840c7d18704ca306a83053e67ab53",
-      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/PerformanceCounters.lua": {
       "sha256": "2047dea377cd9a9929bc969dee5a91c37a1ee2eb3baac2d82666eb09849d5313",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "9a55f88a33ff706360224a52de16e2d03f72da477aed18c8269e052ebcc51bb5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "d0ad660d47425adaba4df46dd9dabd81c6969d6909327cab13920fbb457a8194",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "61e2b73091e5760293dcc3ac45371c1bc83140d9b5ede60a25417e384bf93b5f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "abf285d4780f39327c0fbc1e6e7fa542ce53b4b445a1fa0653369f53ce6840b2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "2da6ad6b269717445c3fcdec67563f7df65c75ff946e522e2ccee2e9c33d4bc2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "d84389bcca6ed8a246c3c244e32784c4f0f517459f93d3fd8772d4000590955d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "dc395fbd40d9d47da1e2e543efe7db74f31b98aa35630a26ab70bf740b749a8e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "7396400118dfeacc929f95f47f5c92cba0af3855578b0c00852659bac0f7e498",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -901,14 +901,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "4c07e172472f0b38518ad9be9d214cfc0917205f3aa64223d350916595c49290",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "1bbd71cd3ee7c162ceb9de9152e54466ea2a540253c8ed14177a7d874abfb660",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "3bb84956a6c3afb81ddc9195727efd55951803c32b3b1025f3379bd4cabec939",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "sha256": "7132b45ab252fa740a9364a8c92450ac881078278b49beccb453d23eeb950639",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "963da6b8bdfbff5d63a5f04b7414f5fe109c02c5bc3fe43ac2a75fcd2686f024",

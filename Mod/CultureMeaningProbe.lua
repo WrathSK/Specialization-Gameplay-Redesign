@@ -312,6 +312,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
     end end
    end
    if not diagnosticFlow then
+    assert(not M.CultureDeferred or finalCounts.CULTURE==0,'ME_DEFERRED_CULTURE_PRESENT')
     for _,n in pairs(finalCounts)do assert(n<=1,'ME_MULTIPLE_FINAL_VALUES')end
     for _,name in ipairs(M.Owned)do
      assert(finalNames[name] or not installed(c,name),'ME_LEGACY_PROJECTION_PRESENT')
@@ -335,7 +336,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    harbor=p and p.domains.DISTRICT_HARBOR and p.domains.DISTRICT_HARBOR.value,
    oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false,
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
-  v.finalValues=not diagnosticFlow;v.productionOnly=false
+  v.finalValues=not diagnosticFlow;v.productionOnly=false;v.cultureDeferred=M.CultureDeferred
   if diagnosticFlow then
    v.diagnostic=true;v.diagnosticStage=match and target.diagnostic and d.diagnosticStage or 'OFF'
    v.diagnosticExpected=assert(M.DiagnosticExpected[v.diagnosticStage],'ME_DIAGNOSTIC_STAGE')
@@ -409,12 +410,13 @@ function SPCCultureMeaningProbe.Start(P,shared)
    return table.concat(lines,'\n')
   end
   local names={OFF='未开启',BASELINE='①基线',ACTIVE='②追加中'}
-  local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜六产出单值'}
+  local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜五产出单值'}
+  lines[#lines+1]='文化追加暂隔离；HD原有效果保持。'
   if v.cleanupStatus~='CONFIRMED' then lines[#lines+1]='首次清理尚未确认：'..tostring(v.cleanupStatus)end
   if v.count then lines[#lines+1]=string.format('合格%d件｜当前ACTIVE %s',v.count,tostring(v.currentActiveStatus=='KNOWN' and v.currentActive or '未确认'))end
   if v.mode=='OFF' then lines[#lines+1]='左键准备基线；需文化ACTIVE4及确认馆藏。'
   elseif v.mode=='BASELINE' then lines[#lines+1]='先右键记录基线，再左键启用。'
-  else lines[#lines+1]='右键查看六项预期／原生差值；结束验证可撤回。'end
+  else lines[#lines+1]='右键查看五项预期／原生差值；结束验证可撤回。'end
   if v.currentActiveStatus and v.currentActiveStatus~='KNOWN' then lines[#lines+1]='当前资格未确认，UNKNOWN不当作0。'end
   local err=v.error or v.configurationError or v.dialogueError
   if err then lines[#lines+1]='待处理：'..(tostring(err):match('ME_[A-Z_]+') or '接口未确认')..'；先结束验证。'end

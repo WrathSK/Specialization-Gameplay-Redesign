@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0425
-Implementation Build: source/live B163.190 / modinfo190 NATIVE_PARTIAL / CULTURE_FAIL / CATALOG_REPAIR_PENDING; stable B069.96
+Status Revision: S0426
+Implementation Build: source B164.191 / modinfo191 LOCAL_COMPLETE / NATIVE_DEFERRED; last verified live B163.190; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0047
 Design Sync State: D0047_GOVERNMENT_FUTURE_BASELINE / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B163_NATIVE_PARTIAL_SCOPED_REPAIR_PENDING
+Work State: P0_L2C_B164_SCOPED_REPAIR_LOCAL_COMPLETE_NATIVE_DEFERRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Spec／Government D0047、Culture D0046、Shared D0045及Architecture A0161不改；当前v0.1四专业范围保持。[B163五图实机](Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)通过本城Writing五项非Culture初始值、所测D重配及W2当前读数；Culture要求＋3、实测Δ0，社区目录仍缺Tier1／2来源。完整L2 NOT_PASSED，不能把配置正确当文化收益已生效。
+当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改；v0.1仍四专业。用户授权的B164.191定域修复完成：Meaning七域五项投影，Culture临时隔离；全部92项／644附件精确退出保留，HD原效果不改。社区Villa／Mansion／BusStop进入当前Tier路径（本环境1／1／2），不改D公式或扫描范围；ResearchApply社区Food直接依赖同步验证。[本地结果](Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)与[B163已测五项／Culture失败](Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)分别记录。
 
-[只读调查](../Reports/Technical/Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)不建议接管HD普通剧场附着。用户条件后备已选：市政／外交Culture临时实施隔离，保留已接受Design与失败证据；当前B163代码还未落实隔离。社区Villa／Mansion／BusStop ordinaryOnly→D目录补齐独立处理。下一[最小修复计划](../Architecture/v2/P0_L2_Meaning.md#下一最小修复--文化隔离与社区d目录)待实施授权；不再派发当前六产出验收或重做冷加载。
+社区D不安排独立实机，按用户决定并入以后获授权测试；当前STATIC／LOCAL，未标原生PASS。精准recipient、Dialogue／主题化追加独立、正常结算与正式全城cutover仍开放；Culture根因与恢复延期保留。下一建议[L3-A单城单class小数基础GPP门禁](../Architecture/v2/P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，**只计划、未授权实现**；无需新K collector，已存在count通知复用。
 
-source／live仍B163.190／modinfo190（运行源码`3763677`、既有receipt `B163.190-3763677-playtest.json`／182 MATCH），本轮不重核外部包、不改Mod／部署／启动游戏。B161／B162所测收益与定域清理证据继承，当前截图没有END／倍率／结算新PASS；main稳定B069.96、永久数据及GC保持。不自动正式cutover或进L3／M／N／U2。
+source B164.191，上一verified live B163.190/source `3763677`／receipt `B163.190-3763677-playtest.json`；本批实际部署在核对退出与receipt后单独记载，不从HEAD推断。main稳定B069.96、永久Property／投资／账本／GC不改。不自动进入L3／M／N／U2或正式cutover。
+
+## S0426 — B164定域修复与合并验收边界
+
+用户授权修复，并明确社区D未来顺带验证。本批本地检查与模块／caller／风险范围见[结果](Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)；历史B163及P0A fixture／断言不改，原生旧证据只继承相符范围。下一L3原计划更新为当前Authority及真实count通知、移除过期B148派发与默认cold-load仪式，只准备单class原语门禁，不执行新能力。代码、结果、当前计划与必要索引定域同步；无全历史／stress／游戏启动。
 
 ## S0425 — B163反馈与定域修复待授权
 

@@ -27,7 +27,7 @@
 - [区域精度实验](../../Architecture/v2/P0_D1_District_Precision_Probe.md) → [正式科研floor路径](../../Architecture/v2/P0_D1_Research_Cross_Cutover.md)及[用户结果](../../Status/Validation/Results/Specialization_B084_P0D1_User_Pass.md)；[每专家floor](../../Architecture/v2/P0_D2_Research_Apply.md)是另一计算层级。不能把一个接口的成功/失败变成全引擎精度定理。
 - [标准化账本](Specialization_B052_Standardization_Ledger.md)、[原生购买实验](Specialization_B053_Purchase_Currency.md)、[自动折扣](Specialization_B054_Network_Discounts.md)：保留旧实际技术路径；新Industry生产加速目标不能由旧购买折扣证明完成。
 
-- [意义延展HD共存与社区D目录](Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)：普通剧场直接附HD文化，外部效果接管风险；社区ordinaryOnly／Tier覆盖缺口。用户条件后备采用Culture临时实施隔离，当前包尚未修复；[五图实机](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)分别记录五项读数与Culture失败。
+- [意义延展HD共存与社区D目录](Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)：普通剧场直接附HD文化，外部效果接管风险；社区ordinaryOnly／Tier覆盖缺口。用户条件后备采用Culture临时实施隔离，B164修复见[本地记录](../../Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)，社区原生合并后续；[五图实机](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)分别记录五项读数与Culture失败。
 - [原文化追加调查](Specialization_B155_Meaning_Culture_Path.md)：B055单flat证据与B155／B157反证保留；不是当前测试派发，也不证明同primitive普遍不能加算。
 
 ## 呈现与候选接口

@@ -1,27 +1,24 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_B163_NATIVE_PARTIAL_SCOPED_REPAIR_PENDING；五产出所测读数通过、Culture失败、社区目录缺口未修复；下一修复计划待授权，正式全城L2未通过。
-Authority: Spec D0047、Culture D0046已接受规则及Shared D0045保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。当前包仍B163六产出原型，未落实隔离或社区目录修复；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+State: P0_L2C_B164_SCOPED_REPAIR_LOCAL_COMPLETE_NATIVE_DEFERRED；五项既有证据保留、Culture暂隔离、社区目录已修复待合并实机；正式全城L2未通过。
+Authority: Spec D0047、Culture D0046已接受规则及Shared D0045保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-[B163五图](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)已读取归档：单城Writing初始五项非Culture收益、Science1→3／Gold4→9／Faith1→3及W2当前原生读数一致；Culture要求＋3、有效Δ0，社区仍每件Food1。D／W变化后旧baseline失效属正确保护；本次没有END图，不新增撤销或冷加载PASS。B161／B162证据只继承原范围。
+用户已授权B164定域修复，并指定社区D不单独实机验证。源码落实Meaning Culture暂隔离与Villa／Mansion／BusStop进入既有Tier路径；[本地结果](../../Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)保留直接consumer／退出／证据边界。D0046仍为九域正式Design，HD与Shared公式未改。source/live与receipt仅查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
-[只读调查](../../Reports/Technical/Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)确认HD文化直接附普通剧场，没有可安全接管的独立carrier；用户条件后备采用市政／外交Culture临时隔离。D0046机制保留、技术实施延期，不移除HD、不宣称同primitive普遍不叠加。社区Villa／BusStop／Mansion仍ordinaryOnly、D资格未开放；不是D公式／Meaning映射或新单值writer失效。
+[B163五图](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)通过所测Writing五项即时读数，CultureΔ0失败与目录缺口分别记录；[HD调查](../../Reports/Technical/Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)仍是有效反证。B161/B162范围继承，不重新派发六yield或共享cold-load仪式。社区及本批Culture退出原生核对合并到后续获授权session，当前无新USER_GAME_TEST_PASS。
 
-当前没有新代码／部署，source／live沿B163；下面只给最小修复计划，目录补齐及整批实施仍待授权。本轮不安排实机。精准recipient、Dialogue／主题化独立、正常结算与正式全城cutover均保留门禁，不自动L3／M／N／U2。
+精准recipient、Dialogue／主题化独立、正常结算和正式全城cutover保持门禁。下一建议[L3-A单class基础小数GPP](P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，只准备计划，未获实施授权；不自动M／N／U2。
 
 ## 下一最小修复 — 文化隔离与社区D目录
 
-**状态／授权。** PLANNED_NOT_AUTHORIZED。用户对高风险HD接管的条件后备已满足并选用；不把它扩大成社区修复、全城正式接入或外部Modifier控制授权。既有B163合同在下一节保留，属于已实现基线，不再派发六产出验收。
+**状态／授权。** B164_IMPLEMENTED_LOCAL_VALIDATION；本节保留已授权边界，社区原生验收合并后续，不单独派发。
 
-1. **Meaning自身隔离。** 正常投影先退出本模块Culture，当前可运行域回到Campus／IZ／Commercial／Harbor／Encampment／HolySite／Neighborhood，五产出按原逐域Floor→同yield合计→W；不改Shared映射、K、资格、其它能力或HD附件。92个精确旧新owned及清理元数据继续保留；旧Culture定义不删除，退出／load／loss仍清自己。诊断明确“文化暂隔离”，不用新Culture配置与HD原值制造FAIL或PASS。
-2. **社区精确目录补齐。** 仅Villa／Mansion／BusStop从已ordinary但无D资格转入审核过的Tier路径，读取当前HD Tier1／1／2，不写死所有环境、不新增自动全库纳入。FoodMarket3既有条目、dummy／internal／位置／替代冲突保护保留；D仍cap10、同域highest-single-district，已有同Tier建筑逐栋计算。先核对所有直接消费该共享域的调用点，不私设Meaning独立D。
-3. **最小直接文件。** Catalog、MeaningModel／Probe和必要reader／Panel／Text／modinfo；相关Catalog／D／Meaning定向测试与文档索引。SQL精确旧92项保留，除确有必要不改。CityProgressionStore／GWA／Dialogue退出接口沿用，仅在真实依赖要求时修改；不接管其它Mod／普通建筑／永久账本／GC／事件系统。
-4. **本地验证。** W0004 L2＋直接owned/loss/load边界定向：三条目录完整／掠夺／未知Tier／internal-dummy／位置与替代冲突；Villa1＋Bus2＋FoodMarket3→D6、Food每件3，重复同期变化与第二社区不跨域求和；缺建筑不补层、cap10与未审核对象保持。Meaning无新Culture投影且92项能退出，五项模型／final值保持；UNKNOWN、同回合D／W变化、重复零写、失城退出、已有load／END保护复用必要回归。没有full/stress或默认重测harness。
-5. **将来一段最小原生delta。** 包就绪后只用现有Culture城：核对社区三栋组成D6／每件Food3与W总量，并用一次READ确认Meaning Culture实例退出、HD原文化仍在，最后END核对本批影响的退出。继承已测S／P／G／Faith和B162未改生命周期，不机械加冷加载。具体步骤待实现／本地结果确定；本轮不要求执行。
-
-**退出条件。** 只关闭社区目录／Food本次差异与本模块文化退出，不把临时隔离写成文化共存修复。全作品recipient、倍率隔离、结算与正式all-city cutover仍独立；不因五图数值一致提前退休全局GWA。保存原生失败和HD调查供未来单独设计／技术授权。
+1. **Meaning自身隔离。** ActiveWriteYields只五项、模型七域；WriteYields与SQL全部92精确owned／644附件仍保留。Culture正值拒绝，健康／掠夺残留均异常；先确认本模块退出才释放旧GWA／Dialogue，失败不混写。简报五行、完整实例观察六类与HD，隔离标志纳入缓存签名。HD没有接管／合并。
+2. **社区精确目录。** 仅Villa／Mansion／BusStop移入审核过Tier路径，读取环境Tier1／1／2；FoodMarket3保持。Villa＋Bus＋FoodMarket完整未掠夺为D6。D仍cap10／最高单社区，不自动纳入其它对象，不新增扫描。未知Tier／位置／替代冲突不能补默认值。
+3. **直接依赖。** ResearchApply Neighborhood→Food同样受本次覆盖修复；实际Shared sample→每专家3、workers2→6纳入定向模拟。风雅熏陶ordinary计数不变，Campus-only consumers、四专业Housing无需代码适配。
+4. **验证与退出。** W0004 L2加受影响owned/loss/load定向，不跑全历史／stress。当前测试与结果见本地记录；社区／Food及Culture退出原生顺带下次组合session，继承未改共享证据。完整L2未通过，不提前全局退役GWA或将临时隔离写成Design取消。
 
 ## 已授权切片 — 六产出单值承载
 

@@ -1,14 +1,15 @@
--- Culture D0046: nine domains / six yields, authorized restoration; native gates remain.
+-- D0046 retains nine-domain Design; B164 quarantines failed Culture projection.
+-- Seven live domains / five yields; all six owned definition families stay for cleanup.
 -- Floor EACH domain before same-yield sum and W; controlled one-city probe only.
 SPCCultureMeaningModel={K=0.5,Domains={
  {'DISTRICT_CAMPUS','SCIENCE'},{'DISTRICT_INDUSTRIAL_ZONE','PRODUCTION'},
  {'DISTRICT_COMMERCIAL_HUB','GOLD'},{'DISTRICT_HARBOR','GOLD'},{'DISTRICT_ENCAMPMENT','PRODUCTION'},
- {'DISTRICT_HOLY_SITE','FAITH'},{'DISTRICT_NEIGHBORHOOD','FOOD'},
- {'DISTRICT_GOVERNMENT','CULTURE'},{'DISTRICT_DIPLOMATIC_QUARTER','CULTURE'}
+ {'DISTRICT_HOLY_SITE','FAITH'},{'DISTRICT_NEIGHBORHOOD','FOOD'}
 }}
 local M=SPCCultureMeaningModel
 M.WriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH','CULTURE'}
-M.ActiveWriteYields=M.WriteYields -- One-city reversible gate, not formal all-city cutover.
+M.CultureDeferred=true -- Native coexistence failed; never take over another mod's effect.
+M.ActiveWriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH'} -- Not formal all-city cutover.
 local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
 function M.Plan(f,w,depth)
  assert(f and f.validity=='VERIFIED','ME_FACT_UNKNOWN')
@@ -86,6 +87,7 @@ for _,y in ipairs(M.WriteYields)do if y~='PRODUCTION' then
  end
 end end
 function M.Parts(y,amount,variant)
+ assert(not M.CultureDeferred or y~='CULTURE' or amount==0,'ME_CULTURE_DEFERRED')
  assert(variant==nil or variant=='SPLIT','ME_VARIANT_DEFERRED')
  local limit=assert(M.FinalLimits[y],'ME_PROBE_YIELD')
  assert(integer(amount) and amount<=limit,'ME_ENCODING_RANGE')

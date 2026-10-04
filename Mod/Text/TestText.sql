@@ -101,9 +101,9 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','End yield gate'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','左／右键均结束本城实验：先撤销追加，再按当前事实恢复旧系统；不再切换文化候选。'),
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','Either click ends this city probe: withdraw additions before restoring legacy consumers from current facts. Legacy Culture candidates are not cycled.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展·六产出'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning: Six Yields'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及确认的合格巨作。左键：基线 → 六产出追加 → 结束。各领域分别Floor，同产出合计后每件使用一个最终值载体；市政／外交恢复文化输入。右键查看预期／原生差值，详细实例可写入诊断日志。文化共存仍待本批原生验证；可随时结束。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Culture ACTIVE4 and confirmed eligible works. Baseline, six final yields, then end. Floor each domain before summing; Government/Diplomatic Culture restored. Right click reads expected/native changes; log contains exact details. Culture coexistence is a native gate, not a confirmed fix. End at any stage.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展·五产出'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning: Five Yields'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及确认的合格巨作。左键：基线 → 五产出追加 → 结束。各领域分别Floor，同产出合计后每件使用一个最终值载体。文化追加暂隔离，HD原有效果保持。右键查看预期／原生差值，详细实例可写入诊断日志；可随时结束。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Culture ACTIVE4 and confirmed eligible works. Baseline, five final yields, then end. Floor each domain before summing. Culture additions are deferred; HD effects are unchanged. Right click reads expected/native changes; log contains exact details. End at any stage.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');

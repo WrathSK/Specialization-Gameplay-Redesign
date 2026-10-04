@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="190">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="191">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B163.190: one-city six-yield final-value Meaning gate; Government/Diplomatic Culture restored with Theater-host candidate, readable native deltas and cached exact detail. No formal cutover or GC change.</Description>
+    <Description>B164.191: scoped Meaning Culture quarantine with exact92 withdrawal retained; five final yields and three reviewed Neighborhood depth entries. HD effects unchanged; no formal cutover or GC change.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
