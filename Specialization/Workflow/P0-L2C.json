@@ -97,7 +97,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0414",
+    "status": "S0415",
     "runtime": "B159.186 / modinfo186",
     "military": "D0037",
     "harbor": "D0037"
@@ -313,6 +313,11 @@
       "path": "DevelopmentTests/test_culture_meaning_diagnostic.py",
       "kind": "full",
       "reason": "Direct fixed-control writer/request/reader/Panel/lifecycle and retained mapping regression"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Native.md",
+      "kind": "full",
+      "reason": "Latest exact native combination failure, source exclusion, withdrawal/reconfiguration suggestion and END/cold-load evidence limits; not new implementation authority"
     }
   ],
   "dependencies": [
@@ -343,13 +348,14 @@
   "result": {
     "plan": "User explicitly authorized minimal Production combination and exit diagnostic; no further cutover/batch authorization.",
     "implementation": "B159.186 / modinfo186 LOCAL_COMPLETE; 18 test methods / 31 subtests PASS, fixed controls only.",
-    "native": "B159 USER_GAME_TEST_REQUIRED, no native result yet. Prior B158 partial single-piece/W match and composite S3/P3/G9 versus native1 FAIL preserved; cold-load withdrawal/old-writer restoration unresolved. Full L2 NOT_PASSED.",
-    "stop": "Await B159 one-city single-Writing Production +2 / +1+2 native diagnostic and END/cold-load evidence; no formal cutover or L3/M/N/U2.",
-    "deployment": "B159.186 / modinfo186; source 59e686feb5e66dde7429c3e44a457cb6a826ace8; B159.186-59e686f-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; B158/stable recovery MATCH; no pending marker. OS game exit verified; game not launched. Native diagnostic pending.",
+    "native": "B159 USER_GAME_TEST_PASS for same-turn single Writing Production2; USER_GAME_TEST_FAIL pair1/2 expected3/native1, two distinct native instances Active=true flat1/2 mapped to same city. END/cold-load still unconfirmed; full L2 NOT_PASSED. Internal selection rule unknown; no all-yield generalization.",
+    "stop": "Await explicit authorization for minimal single1 withdrawal/reconfiguration diagnostic, optionally single aggregate Production3; B159 pair1/2 nativeFAIL. No formal cutover or L3/M/N/U2.",
+    "deployment": "B159.186 / modinfo186; source 59e686feb5e66dde7429c3e44a457cb6a826ace8; existing receipt B159.186-59e686f-playtest.json DEVELOP_ACTIVE records 182/182 source-runtime MATCH, B158/stable recovery MATCH and no pending marker at deployment. B159 native single2 immediate PASS / pair1/2 FAIL; END/cold-load unconfirmed. This doc-only turn did not reverify runtime or current game-process state.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-    "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:18 methods/31 subtests, includes9 retained Modifier assertions; no full historical suite."
+    "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:18 methods/31 subtests, includes9 retained Modifier assertions; no full historical suite.",
+    "next_proposal": "User suggests single1 withdrawal/reconfiguration. Plan in B159 native result: 1→0→2→1/2→withdraw1 keeping2→END, optional independent single3; no current code for isolated withdrawal, no new implementation authorization."
   }
 }

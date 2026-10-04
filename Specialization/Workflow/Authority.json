@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0414",
+    "status": "S0415",
     "runtime": "B159.186 / modinfo186",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "59e686feb5e66dde7429c3e44a457cb6a826ace8",
-  "current_batch": "P0_L2C_PRODUCTION_DIAGNOSTIC_LOCAL_COMPLETE",
-  "next_batch": "Await B159 one-city single-Writing Production +2 / +1+2 native diagnostic and END/cold-load evidence; no formal cutover or L3/M/N/U2.",
+  "current_batch": "P0_L2C_PRODUCTION_COMBINATION_NATIVE_FAIL",
+  "next_batch": "Await explicit authorization for minimal single1 withdrawal/reconfiguration diagnostic, optionally single aggregate Production3; B159 pair1/2 nativeFAIL. No formal cutover or L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B159.186 / modinfo186; source 59e686feb5e66dde7429c3e44a457cb6a826ace8; B159.186-59e686f-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; B158/stable recovery MATCH; no pending marker. OS game exit verified; game not launched. Native diagnostic pending.",
+  "live": "B159.186 / modinfo186; source 59e686feb5e66dde7429c3e44a457cb6a826ace8; existing receipt B159.186-59e686f-playtest.json DEVELOP_ACTIVE records 182/182 source-runtime MATCH, B158/stable recovery MATCH and no pending marker at deployment. B159 native single2 immediate PASS / pair1/2 FAIL; END/cold-load unconfirmed. This doc-only turn did not reverify runtime or current game-process state.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0414 reviewed D0045 user-authorized Design sync only: Industry bound per-template efficiency/legal Gold-Faith/full1T cancellation/precision, Culture first-test closure, named shared unit protection and original-capital Future record. Current P0-L2C Meaning/work/multiplier and four Shared input objects unchanged; Dialogue accumulation cap changed but B159 fixed diagnostic does not consume it. Source/live B159/native pending, all runtime/permanent/GC/plan boundaries unchanged; no new implementation/deployment.",
+  "context_review_status": "S0415 reviewed four B159 originals and exact model/writer/SQL/native-reader paths: same-turn single2 native2, pair1/2 native1 despite two distinct Active Writing instances and same-city mapping. Multi-piece addition FAIL, internal selection/settlement unknown; image4 is PAIR12 continuation, not END. User proposed single1 withdrawal/reconfiguration, next diagnostic not authorized. D0045/permanent/GC/runtime/tests unchanged; only native result/current slice/Status/manifest and named review hashes updated.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,17 +1,19 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_PRODUCTION_DIAGNOSTIC_LOCAL_COMPLETE；B159.186已授权单城著作Production组合／退出诊断LOCAL完成，等待实机；完整L2 NOT_PASSED，无正式全城cutover／下一能力授权。
-Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`；Shared D0044 `DISTRICT_DEVELOPMENT/YIELD_SHARE`精确保留既定合同。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+State: P0_L2C_PRODUCTION_COMBINATION_NATIVE_FAIL；B159单片＋2通过、双片＋1／＋2实际1；下一撤销／重配诊断仅建议，未获实施授权。完整L2 NOT_PASSED，无正式全城cutover／下一能力授权。
+Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户采用D0043并授权P0-L2C后，B158五yield原型初始单片与W读数一致；建筑增长后预期S3/P3/G9、实际均1，[USER_GAME_TEST_FAIL](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)。结束／cold-load控制OFF不能证明原生撤销；社区目录覆盖独立，D／Floor不改。
+[B159四图原生证据](../../Status/Validation/Results/Specialization_B159_Production_Combination_Native.md)：同T62／同Writing，0→单片＋2实际2→双片＋1／＋2实际1；两distinct native实例Active=true、flat1／2、本城映射完整、旧GWA Production0。**USER_GAME_TEST_FAIL／多片加算不能用于正式接入**；单片＋2即时读数PASS，不外推所有金额／yield或内部选择算法。图4是PAIR12下半报告，不是END；退出／cold-load仍未确认。B158失败和独立社区Catalog缺口保留，D／Floor不改。
 
-当前用户明确“授权实施诊断”：B159.186已LOCAL完成一城一Writing／Production现有＋2单片对照＋1/＋2两片、显式native实例／真实读数及END／cold-load核对。完整规则与最小用户流程见[本地结果](../../Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)及下一节。无新SQL、永久状态、Catalog或GC改变；source/live、Git／receipt只见[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+用户本轮只授权截图调查；随后提出单片＋1撤销再重配的对照思路。完整判断和不同结果的区分见[下一最小建议](../../Status/Validation/Results/Specialization_B159_Production_Combination_Native.md#下一最小对照建议未实施未授权)。建议单片1→撤销0→单片2→双片1/2→仅撤1保留2；若验证替代编码，再同fixture加入独立单片3，当前bit3实际＋8不能充当＋3。现B159没有仅撤1控制，须新诊断实施授权后才改包；本轮无Mod／SQL／测试／永久状态／Catalog／GC改变。
 
-只等待本次原生结果，不重复旧五yield／长测，不将STATIC／LOCAL、配置或OFF写成原生PASS。精确recipient、Dialogue／theming独立、正常结算及全城cutover仍独立门禁；完整L2 NOT_PASSED。市政／外交Culture反证与技术档案保持未来参考，不重开该路径或进L3／M／N／U2。
+不立即要求用户重复五yield或长测。精确recipient、倍率独立、正常结算、END／cold-load与全城cutover仍独立门禁，完整L2 NOT_PASSED。未来单yield单值方案保持逐域Floor后合计`each[y]`，不以已乘W的total再作用每件作品。市政／外交Culture仍延期，不重开或进L3／M／N／U2；source/live、Git／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准。停止等待最小诊断授权。
 
 ## 已授权切片 — Production组合与退出诊断
+
+**B159已完成的诊断合同。** 单片＋2已测PASS／两片失败，END及cold-load仍未测；本节保留已实施范围，不代表再次实施或要求重复验收。
 
 **范围。** 默认OFF、当前本地Culture ACTIVE IV城恰好一件已确认支持Writing。固定技术对照0→＋2→＋1/＋2→0，不消费D、不改能力公式或Balance；复用两个已有Production carrier，PAIR12先撤上阶段＋2，再按＋1／＋2创建。旧GWA只hold本城精确156项，本城旧Dialogue0%；先确认新26项owned撤除，再由原模块按当前事实恢复，不能混合效果。
 
