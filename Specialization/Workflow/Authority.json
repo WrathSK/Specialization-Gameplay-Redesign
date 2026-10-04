@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "59e686feb5e66dde7429c3e44a457cb6a826ace8",
+  "runtime_commit": "83e191854983089a968629aafc3f7ff05a6aad11",
   "current_batch": "P0_L2C_PRODUCTION_RECONFIGURATION_LOCAL_COMPLETE",
   "next_batch": "Await B160 native withdrawal/reconfiguration/single3 diagnostic only. No formal cutover or L3/M/N/U2 authorization.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B160.187 source LOCAL_COMPLETE, live verified B159.186 / modinfo186 receipt B159.186-59e686f-playtest.json DEVELOP_ACTIVE and 182 MATCH; stable/receipt backup MATCH, no pending marker. OS confirms game exited. Safe W0003 switch awaits clean committed source. No game launch.",
+  "live": "B160.187 / modinfo187; source 83e191854983089a968629aafc3f7ff05a6aad11; receipt B160.187-83e1918-playtest.json DEVELOP_ACTIVE, 182/182 source-runtime MATCH. OS verified game exited; exact B159 receipt stable restore then staged activation. B159/stable recovery MATCH, no pending marker, no game launch. B160 native required; B159 pairFAIL retained.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0416 user explicitly authorized minimal B160 single1/clear0/single2/pair12/remain2/single3/OFF diagnostic; seven runtime files and three directly affected tests reviewed. 47 targeted methods/58 subtests PASS, independent native fixtures and owned failure/load/loss; direct20 reader regression overlaps. Exact27/189 directory and SQL append reviewed; no D/Floor/W/permanent/GC/Design change, full L2 NOT_PASSED. B159 native pairFAIL retained; B160 native required.",
+  "context_review_status": "S0416 user explicitly authorized minimal B160 single1/clear0/single2/pair12/remain2/single3/OFF diagnostic; seven runtime files and three directly affected tests reviewed. 47 targeted methods/58 subtests PASS, independent native fixtures and owned failure/load/loss; direct20 reader regression overlaps. Exact27/189 directory and SQL append reviewed; no D/Floor/W/permanent/GC/Design change, full L2 NOT_PASSED. B159 native pairFAIL retained; B160 native required. W0003 B160 deployment completed from clean pushed source; receipt-bound B159/stable recovery and182 equality verified, native still required.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0416
-Implementation Build: source B160.187 / modinfo187 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; live B159.186 pending safe switch; stable B069.96
+Implementation Build: source/live B160.187 / modinfo187 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0045（Meaning直接合同不改；B160仅诊断，正式接入未完成）
 Latest Accepted Design Revision: D0045
@@ -17,7 +17,7 @@ Work State: P0_L2C_PRODUCTION_RECONFIGURATION_LOCAL_COMPLETE
 
 [B159原生反证](Validation/Results/Specialization_B159_Production_Combination_Native.md)保留：单片2即时读数PASS、双片1/2实际1 FAIL；图4不是END，不扩大原生结论。D／K／逐域Floor／W及Catalog独立缺口不改，精准recipient／倍率／结算／冷加载／全城cutover仍有各自门禁，完整L2 NOT_PASSED。
 
-源码B160本地完成，外部live当前经只读核对仍B159.186、receipt `B159.186-59e686f-playtest.json` DEVELOP_ACTIVE／182 MATCH；main及其stable backup一致、无pending marker。OS已确认游戏退出，待clean commit／push后按W0003安全切换；未启动游戏。永久数据／Design／GC／main不变。停止在本次诊断验收，不自动进L3／M／N／U2。
+源码／live B160.187，source `83e191854983089a968629aafc3f7ff05a6aad11`，W0003 receipt `B160.187-83e1918-playtest.json` DEVELOP_ACTIVE／182/182 MATCH。OS确认游戏退出，精确B159 receipt恢复stable后staging激活；B159／stable恢复点MATCH、无pending marker，未启动游戏。永久数据／Design／GC／main不变。停止等本次原生诊断，不自动进L3／M／N／U2。
 
 ## 历史阶段记录
 
