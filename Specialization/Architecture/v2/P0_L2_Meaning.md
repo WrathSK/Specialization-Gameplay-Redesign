@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE；用户已明确授权，B158.185七域五产出单城原型LOCAL完成；未正式全城cutover／L2 PASS／下一能力授权。
+State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL；B158.185单城原型LOCAL完成，初始单片原生一致、增长后多片收益FAIL；未获下一定域原型／正式全城cutover／L2 PASS／下一能力授权。
 Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`；Shared D0042 `DISTRICT_DEVELOPMENT/YIELD_SHARE`保持。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,7 +9,9 @@ Authority: Culture D0043 `CUL_L4_MEANING`、`contracts.meaning_domains/work_pool
 
 旧GWA只hold目标城精确156项及本城Dialogue0%；确认撤新owned后释放旧模块按当前事实恢复。load默认OFF；UNKNOWN、loss、reference及失败保护保持。按需报告五yield预期／实际差值／native绝对值，同ACK复用，普通右键不继续旧全局实例诊断。实际source/live、Git／receipt见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
-下一仅本单城五yield原生门禁，USER_GAME_TEST_REQUIRED；本地通过不等于完整L2。精确支持recipient、Dialogue／theming独立、正常结算与正式cutover仍按各自门禁。B157 Culture失败及[技术档案](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)保留未来恢复，不再阻塞本版五yield；不重开文化调查，不进L3/M/N/U2。
+[本次B158十图](../../Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)：初始单片五yield和W变化读数一致；建筑增长后预期S3/P3/G9、原生均1，USER_GAME_TEST_FAIL。模型已更新，首要区分同yield单片／多片组合及native刷新；社区ordinaryOnly两对象导致D3而非完整三建筑D6，是独立Catalog覆盖问题。结束／冷加载控制OFF但原生读数不同，退出／旧writer恢复不能记PASS。
+
+下一最小建议：一城一Writing／Production，对照现有单片＋2与两片＋1/＋2，按需核对精确实例／读数及END／cold-load退出；**未实施／未授权**，不要求用户重复旧长测。不改D／Floor，不混入目录扩展、Culture候选或正式cutover。精确recipient、Dialogue／theming独立及正常结算仍独立门禁。B157 Culture失败及[技术档案](../../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)保留未来恢复；不重开文化调查，不进L3/M/N/U2。
 
 ## 下一批计划 — P0-L2C 七域五产出门禁
 

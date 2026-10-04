@@ -10,7 +10,7 @@
     "shared": "D0044",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0411",
+    "status": "S0412",
     "runtime": "B158.185 / modinfo185",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe",
-  "current_batch": "P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE",
-  "next_batch": "Await minimal P0-L2C five-yield native gate; no formal all-city cutover or L3/M/N/U2 authorization.",
+  "current_batch": "P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL",
+  "next_batch": "Await user authorization for minimal one-city/one-yield single-piece versus composite native diagnostic and exact exit check; no formal cutover or L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B158.185 / modinfo185; source daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe; B158.185-daaef4b-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; stable/B157 recovery MATCH; no pending marker. OS game exit verified; game not launched; five-yield native gate pending.",
+  "live": "B158.185 / modinfo185; source daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe; B158.185-daaef4b-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; stable/B157 recovery MATCH; no pending marker. OS game exit verified; game not launched; B158 native initial single-piece readings matched; composite growth FAIL, load withdrawal unresolved. Receipt inherited; no deployment/package reinspection in this evidence turn.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0411 D0044 Industry responsibilities/initial values and named Shared city-study L Design sync only; unchanged four direct P0-L2C Shared objects and Culture D0043 reviewed. B158 five-yield native still pending, full L2 NOT_PASSED; no implementation/deployment/next batch.",
+  "context_review_status": "S0412 B158 ten screenshots read/archived: initial five-yield/W match, changed composite S3/P3/G9 versus native1 FAIL. Current inner DB Tier3/1/2 confirms independent Neighborhood Catalog coverage gap; load OFF is not native withdrawal PASS. Direct model/writer/reader and relevant catalog/event/DB paths reviewed; no source/Design/deployment/GC change. Await authorization for discriminating prototype.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

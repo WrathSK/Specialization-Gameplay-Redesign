@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0411
-Implementation Build: source/live B158.185 / modinfo185 LOCAL / USER_GAME_TEST_REQUIRED; stable B069.96
+Status Revision: S0412
+Implementation Build: source/live B158.185 / modinfo185 LOCAL / NATIVE_PARTIAL_YIELD_FAIL; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
 Latest Accepted Design Revision: D0044
-Design Sync State: D0043_MEANING_SCOPE_PROBE_LOCAL_NATIVE_PENDING
-Work State: P0_L2C_LOCAL_COMPLETE_AWAITING_NATIVE
+Design Sync State: D0043_MEANING_SCOPE_PROBE_NATIVE_PARTIAL_YIELD_FAIL
+Work State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL
 
 ## CURRENT AUTHORITATIVE STATE
 
-最新[Design D0044](../Design/Design_ChangeLog.md#accepted-d0044--2026-10-03)已同步工业职责／首测值及Shared具名研习L；**只更新设计，没有工业运行适配**。Culture D0043及P0-L2C直接Shared事实对象均不变，以下B158原生待验、授权与停止点保持，不进入工业实施。
+最新[Design D0044](../Design/Design_ChangeLog.md#accepted-d0044--2026-10-03)已同步工业职责／首测值及Shared具名研习L；只更新设计，没有工业运行适配。Culture D0043及P0-L2C直接Shared合同不变，不进入工业实施。
 
-用户已明确授权P0-L2C，B158.185／modinfo185七域五产出默认OFF单城门禁已LOCAL完成。[实际模块、47项定向PASS及一个最小实机流程](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md)：复用S/G，补P/F/Faith整数承载；每域Floor后按yield合并再乘W；旧GWA只hold本城、旧Dialogue0%，新owned退出后按当前事实恢复。D0043不改，市政／外交Culture仅本能力暂排，旧失败／技术档案保持未来参考。
+用户已授权的B158.185／modinfo185单城五yield原型LOCAL完成47项定向PASS；[本次十图原生结果](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)初始单片S/P/G/Food/Faith及W2→1读数一致，但建筑变化后预期S3/P3/G9、实际均1，**USER_GAME_TEST_FAIL／完整L2 NOT_PASSED**。模型已增长，不是D完全未更新；优先区分单片与多片同yield组合／native刷新，不宣布引擎覆盖算法已证实。社区三建筑环境Tier3/1/2，当前ordinaryOnly排除后两者→D3／Food1，独立Catalog覆盖缺口；D公式／Floor不改。
 
-五yield native／本次变化／退出／启用存档冷加载仍USER_GAME_TEST_REQUIRED；**完整L2 NOT_PASSED，正式全城接入／cutover／下一能力未授权**。UNKNOWN／失城／reference／失败／load保护本地已测；精确recipient、倍率独立及正常结算未覆盖部分仍独立门禁。当前停止等待单城测试，不重做旧Culture四态／性能长测。
+结束及冷加载控制报告OFF；冷加载巨作读数与直接结束后不同，**原生撤销／旧writer恢复仍未确认**，不把OFF当完整PASS。精准recipient、倍率独立、正常结算与正式全城cutover仍独立门禁；[本地结果](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Local.md)原件保持。当前仅截图归档／只读核对及状态记录；下一建议单城单yield＋2单片对照＋1/＋2多片并核对精确退出，**未获新实施授权**，不要求用户立即重复旧测试或长测。
 
-source/live B158.185，source `daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe`，W0003 receipt `B158.185-daaef4b-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS确认游戏退出，精确B157 receipt恢复stable过桥后staging激活；B157／stable恢复点MATCH，无pending marker，未启动游戏。main B069.96、永久Property／E2历史／Shared目录／GC未改。当前等待一个最小原生门禁，再提出正式接入计划，不自动实施。
+source/live沿B158.185，source `daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe`，既有W0003 receipt `B158.185-daaef4b-playtest.json` DEVELOP_ACTIVE／182 MATCH引用，本轮未重核外部包。十图ignored原样归档10/10 SHA256 MATCH；只读实际内层DB，外层旧Cache不作证据。Mod／测试／Design／永久Property／Shared目录／GC／main未改，无新模拟、部署或游戏启动。停止等待定域原型授权，不自动正式接入或进L3/M/N/U2。
 
 ## 历史阶段记录
 
