@@ -1,17 +1,19 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
 State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED / PERSISTENCE_AND_NATIVE_ONLY_GATES_OPEN。
-Authority: Culture D0029 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool`；Shared D0035；基线与顺序见[文化准备入口](Culture_Preparation.md)。
+Authority: Spec D0047 / Culture D0046 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；本次为既有计划revalidation，不是新Design或实施授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
 
 ## 完整Gameplay合同
 
-Culture ACTIVE≥3，通过同名项目连续占用一个完整城市生产回合。中断后需要重新连续一回合；高Production/overflow不能令正常项目瞬间完成，不能拿普通低成本项目近似。
+当前Culture Identity且ACTIVE≥3，通过同名项目连续占用一个完整城市生产回合。已接受高成本真实项目路线；正常结束与下述异常强制completion例外分开，不拿普通低成本项目近似。
 
 每座城市×**启动时Game Era**最多成功一次，不按完成时代、不按Owner重置，不囤积过去未用机会。完成时取当前合格馆藏时代数X，增加`5×X`永久百分点；5为初版系数。X0允许成功且消耗机会。启动不锁馆藏，期间移动作品会改变完成时X。
 
-累计按未来cap约束；cap当前null/BALANCE_REQUIRED，不代表0或已批准无上限。累计倍率和used START Era是**城市历史**，随城市转移保留，ACTIVE<3暂停当前效果但不丢历史；符合资格后恢复。新作品获得本城倍率，移走作品不带走倍率。
+累计历次加算，**无额外累计cap（NO_ADDITIONAL_CAP）**；5%×X是v0.1首测值，不是最终平衡。累计倍率、used START Era和成功去重凭据是**城市历史**，不按原Owner分区，随城市保留。ACTIVE<3、退出Culture或REALLOCATING暂停当前收益但不丢已成功历史；任何受支持Owner恢复Culture且ACTIVE≥3后按当前事实使用，非支持Owner冻结使用/增长。新作品获得本城倍率，移走作品不带走倍率。
 
-优先只提高合格巨作**原生产出（含旅游）**，不提高意义延展附加值。若只能可靠实现Tourism-only，正式Content允许报告并区分后采用该fallback，不能本计划默认为最终路径。百分比效果接受原生floor、无补偿；即使整数收益没变，UI仍显示累计百分比。这项许可不适用于L2/L3小数。
+合格作品采用当前共同work_pool：明确支持的著作、音乐、雕塑、肖像、风景、宗教艺术及文物；Relic、Product、Wonder、未知Mod作品/不可靠时代排除。同类别不自动等于目录已支持；时代取可靠作品历史时代，创作者关联需经验证，文物取自身时代，不以玩家/取得时代代替。
+
+优先只提高合格巨作**原生产出（含旅游）**。Meaning追加独立，既不被Dialogue放大，也不被主题化放大；同YieldType不能作为合并放大的理由。若只能可靠实现Tourism-only，正式Content允许报告并区分后采用该fallback，不能本计划默认为最终路径。百分比效果接受原生floor、无补偿；即使整数收益没变，UI仍显示累计百分比。这项许可不适用于L2/L3小数。
 
 ## 已验项目路线可以复用什么
 
@@ -19,40 +21,42 @@ Culture ACTIVE≥3，通过同名项目连续占用一个完整城市生产回�
 
 旧empty-queue、负AddProgress清overflow等失败路线不重新打开。已有项目接口的测试只按[B123所测范围](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)及[Claim核心结果](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)复用；不宣称全部Production injection、队列顺序或Dialogue业务已通过。
 
-`TimedProject`仍是session单城实验；`ClaimProjects`有正式持久续接，但其UNASSIGNED资格、Claim receipt与失城时清claimTimer都是Claim业务。**不能直接把Dialogue写成Claim项目，或复制Claim清空语义来决定文化历史。** 用户为高成本项目原型接受了奇特方式强制同回合完成不做额外保护、原生completion用于发奖的测试便利；保留其真实适用范围，不另加防Cheat体系。新Dialogue的同回合强制completion与quota/reward边界在实施前对照该接受记录及完整生产回合合同核对；本计划不把强制completion当成已证明完整生产周期，也不自行覆盖既有用户例外。
+`TimedProject`仍是session单城实验；`ClaimProjects`有正式持久续接，但其UNASSIGNED资格、Claim receipt与失城时清claimTimer都是Claim业务。**不能直接把Dialogue写成Claim项目，或复制Claim清空语义来决定文化历史。** 用户为高成本项目原型接受了奇特方式强制同回合完成不做额外保护、原生completion用于发奖的明确决定；保留其真实适用范围，不另加防Cheat体系。新Dialogue的同回合强制completion与quota/reward边界在实施前对照该接受记录及完整生产回合合同核对；本计划不把强制completion当成已证明完整生产周期，也不自行覆盖既有用户例外。
 
 ## 业务保存与读模型
 
 建议在现有可靠E2 city record增加小型Dialogue专业块，分别保存：城市累计百分点、已成功START Era集合、当次项目身份/当前引用、启动回合与Game Era、连续占用/已完成调用阶段、唯一completion凭据。字段在实施时按直接合同确定，不新建cityKey/通用Contract对象。
 
 - **城市owned历史：** cumulative＋used era＋completion dedup，不按原Owner分割；不得从旧动态25%载体推导累计或给旧值迁移奖励。
-- **当次计时：** 属于本次项目操作，不是永久倍率；切换生产中断，旧项目进度/旧timer不得在下次开始补算连续时间。load只恢复可靠保存事务，不能因打开列表才“开始”。
+- **当次计时：** 属于E未完成事务，不是永久倍率。完整连续生产回合且永久成功提交前，ACTIVE<III、Identity退出、REALLOCATING、Owner改变或正常生产中断，均取消本次轮次：无奖励、无成功START Era额度、无可恢复半进度。恢复合法资格后，若额度仍可用，重新完整执行一回合。load只恢复尚合法且可靠保存的事务，不能复活已取消轮次或因打开列表才“开始”。
 - **派生effect：** 当前资格＋可靠ledger＋native-only路径。载体、Tooltip、UI选择状态不能单独发奖或保存次数。
 - 发奖前验证current owner/ref、完整周期和completion证据、未用START Era、完成时confirmed X。一次保存累计＋quota＋凭据，先确认永久写入再派生modifier；重复事件/load不重奖。
-- Completion阶段若馆藏UNKNOWN，不猜X0，不消耗机会；保留可证明的待结算事务。必须取得能归属于**完成边界**的confirmed X/版本，不可等待到后续馆藏变化后用新的当前X替代；若不能可靠证明该时点，停止该结算路径并记录TECHNICAL_INVESTIGATION_REQUIRED。不能无界重试、超时当成功或将重载变第二次项目。
+- Completion阶段若馆藏UNKNOWN，不猜X0，不消耗机会；保留可证明的待结算事务。必须取得能归属于**完成边界**的confirmed X/版本，不可等待到后续馆藏变化后用新的当前X替代；若不能可靠证明该时点，停止该结算路径并记录TECHNICAL_INVESTIGATION_REQUIRED。不能无界重试、超时当成功或将重载变第二次项目。待结算尚未永久提交时，同样执行上述取消条件；HOLD不能绕过已确认取消。
 - 损坏/缺失历史显式HOLD，不用当前馆藏或旧carrier“重建完整历史”。在现有Store专属validate/read/write中维护，不用独立本机文件保存。
 
-## 必须在对应切片处理的边界
+## 已定语义与真正技术门槛
 
-cap值/策略是Balance gate：不阻塞纯计时、配额模型及技术probe；正式累计奖励需要明确参数，不将null写0或自行无cap。
+D0045已关闭累计cap决策，D0042已关闭未提交项目取消语义；不再把它们列为DESIGN_DECISION_REQUIRED。Dialogue与文化见闻都是各自独立的城市历史，不能继续用“见闻归原主人”解释差异。完整连续周期、completion、取消与永久提交的可靠事件顺序仍需技术证明，尤其不能把未提交前的资格丢失当普通收益去重。
 
-正式合同明确ACTIVE下降暂停已有收益、城市倍率/quota易主保留，但**未明确执行中的未结算项目在ACTIVE下降或confirmed owner-loss后如何处理**。计划保留为执行中生命周期待核对项：能证明的历史和事务保留，AI不继续运行/发奖，不能把“暂停已有倍率”自行解释成“项目继续且成功”，也不借Claim清timer决定它。实施该路径前提具体DESIGN_DECISION_REQUIRED；该局部问题不阻塞L1/L2/L3或计时/存盘probe。
+当前`DialogueModel`仍按25%×max(0,D−1)动态投影，旧`Dialogue`资格仍是Culture ACTIVE4；**不是新M**。旧D档表达当前时代多样性，不能直接承担永久累计倍率。新累计的原生表达不得自行夹断或加一个方便实现的cap；做不到时报告具体技术限制。
 
-城市记录跟城的持久scope与原主人见闻不同；E2已有可靠同城映射可复用，不能靠名字/单独坐标/猜CityID。当前v0.1仅本地人类运行，AI owner全部效果休眠；不要求新增AI投资或城市建筑监听。
+B165只完成当前加载集合支持证明和正常Dialogue/主题化/结算观测入口的STATIC/LOCAL门禁，native仍待验；Culture追加暂隔离。M应继承未来B165实际通过的范围，再验证新累计载体，不将旧动态倍率probe等同新M，也不重复共享harness仪式。旧B059.82只有非主题化作品读数，整城Culture未变，不证明真实结算或native-only隔离。
+
+E2已有可靠同城映射可复用，不能靠名字/单独坐标/猜CityID。城市彻底摧毁等Shared尚未涵盖边界保留为局部待定，遇到直接依赖才提出；不扩成当前M整体阻塞，也不以AI休眠为由清掉城市历史。
 
 ## 建议小切片与精确退休
 
 | 切片 | Goal / 依赖 | 不包含 | Exit |
 |---|---|---|---|
-| M计时/ledger门禁 | 复用真实项目、可靠city mapping；START Era quota、完成X和dedup先用fixture/影子；处理上述执行中边界 | 正式新倍率、旧Dialogue退休、所有Production来源全追踪 | 开始/中断/下一回合/cold-load、多城、重复及保存错误明确 |
+| M计时/ledger门禁 | 复用真实项目、可靠city mapping；START Era quota、完成X和dedup先用fixture/影子；实现已接受的取消/提交顺序 | 正式新倍率、旧Dialogue退休、所有Production来源全追踪 | 开始/中断/下一回合/cold-load、多城、重复及保存错误明确 |
 | M native-only门禁 | 核对所有原生作品yield路径、支持类型过滤，联用L2追加值作隔离 | 自动採用Tourism-only/改L2语义 | 原生作品增幅、追加不被放大、当前城市限定被证实 |
-| M正式cutover | 以上通过、cap/执行中规则足够明确，正常资格读模型 | 考察见闻/Network/其它专业Legacy | 业务本地通过＋一次最小原生；停于M |
+| M正式cutover | 上述技术门槛通过，使用已定无额外cap/取消规则与正常资格读模型 | 考察见闻/Network/其它专业Legacy | 业务本地通过＋一次最小原生；停于M |
 
 每切片实施前单独固定范围/授权，不一次部署三个未知变量。可以合用现有文件职责，但禁止把旧单城实验当完整永久系统。
 
 cutover只清旧Dialogue的动态D档、TEST25/50/100及其保留的旧B055测试owned列表，核对实际SQL附件/Start/load/manual/ACK路径；不前缀清建筑。新ledger不由它们初始化；旧writer确认撤销后启新倍率。
 
-**K仍依赖DIALOGUE_SAMPLE和共享后台槽位collector。** 将旧收益writer与采样/ACK分离，保留确认事实与有界pending；旧`Dialogue.Receive`转兼容传输职责或明确最小替代，不简单停Start使ACK重试积压。不复活已退休GWA，不动L1/L3或旧Culture Eureka。
+**K仍依赖DIALOGUE_SAMPLE和共享后台槽位collector。** 将旧收益writer与采样/ACK分离，保留确认事实与有界pending；旧`Dialogue.Receive`转兼容传输职责或明确最小替代，不简单停Start使ACK重试积压。当前GWA仅在单城probe期间hold，global cutover尚未完成。按实施时实际L2状态保留传输与writer隔离，不能提前假定GWA已退休；不动L1/L3或旧Culture Eureka。
 
 预计涉及`ClaimProjects/TimedProject`可复用小接口、专属Dialogue model/Store专业块/consumer/SQL，选择确认与项目1T UI，Gameplay/modinfo、诊断、本地测试。真正共享改动须核对Claim直接调用点并做其回归，不创建通用项目引擎。
 
@@ -68,10 +72,12 @@ Production changed/completed、目标切换、城市生命周期、load、quota/
 
 W0004 L3，但仅相关项目/Store/重复/保存及native-only回归，不默认全历史stress。
 
-本地矩阵：跨START/完成Era、同城第二次拒绝、X0/X变化、低/高Production、overflow/chop/native强制完成区别、切走再回、多个并行城市、duplicate/reentrant/存盘失败、cold load、UNKNOWN完成样本、owner/ACTIVE变化、旧writer退出及Claim不回归。执行中未决路径不能靠测试fixture“选择一种规则”。
+本地矩阵：跨START/完成Era、同城第二次拒绝、X0/X变化、低/高Production、overflow/chop/native强制完成区别、切走再回、多个并行城市、duplicate/reentrant/存盘失败、cold load、UNKNOWN完成样本、owner/ACTIVE变化、旧writer退出及Claim不回归。明确覆盖永久提交前取消无额度/无半进度、成功后暂停不删历史；不能靠fixture发明Shared未覆盖处置。
 
-一次最小原生：同一高生产馆藏城开始→移作品使完成X不同→正常一回合完成→同启动时代不能再成功→冷加载记录和1T续接。追加收益隔离用同城L2对照；ownership quota仅在实施覆盖该路径时补最小流程，既有E2 PASS不能替代新增文化块验证。不是现在要求用户跑。
+未来native按新增差异分配：同一馆藏城开始→移作品改变完成X→正常一回合成功→同START Era拒绝重复，证明新取样/额度；一次未提交取消后完整重做，证明新取消路径。新增专业持久块需一次有明确保存状态的load边界，证明累计/额度或进行中事务恢复；不机械同时重跑二者及probe默认OFF/END/re-enable。新增累计载体的真实收益与Meaning隔离只补B165未覆盖差异；跨Owner仅在该子批实际接入时安排最小历史/quota验证。每子批实施前固定一段连续session及必要持久性边界，不在本轮向用户派发测试。
 
-诊断显示启动时代/已用、计时状态、当前X/待确认、累计%/cap待定、优先/技术fallback、native实测范围。不要堆Property/令牌；异常再展开。Exit不将计时probe成功或旧百分比实测升级为完整M。
+诊断显示启动时代/已用、计时状态、当前X/待确认、累计%/无额外cap、优先/技术fallback、native实测范围。不要堆Property/令牌；异常再展开。Exit不将计时probe成功或旧百分比实测升级为完整M。
 
-来源：[正式Culture](../../Design/Content/Culture_D0029.json)、[项目调查](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)、[既有E2保存合同](P0_E2_Plan.md#current-slice--recovery-and-action-routing)、[旧百分比实现](../../Reports/Technical/Specialization_B059_Dialogue_Implementation.md)、[特定native/theming结果](../../Status/Validation/Results/Specialization_B059_82_Percent_User_Result.md)。
+来源：[正式Culture](../../Design/Content/Culture_D0046.json)、[项目调查](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)、[既有E2保存合同](P0_E2_Plan.md#current-slice--recovery-and-action-routing)、[旧百分比实现](../../Reports/Technical/Specialization_B059_Dialogue_Implementation.md)、[旧非主题化读数及结算限制](../../Status/Validation/Results/Specialization_B059_82_Percent_User_Result.md)。
+
+生命周期依据：[Shared D0045](../../Design/Content/Shared_D0045.json)、[D0042接受记录](../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)。仅首测强度仍需Balance观察，本轮无新Gameplay决策请求。

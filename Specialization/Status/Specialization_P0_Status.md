@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0429
+Status Revision: S0430
 Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
@@ -15,7 +15,13 @@ Work State: P0_L2C_B165_NATIVE_GATES_LOCAL_COMPLETE_NATIVE_PENDING
 
 已授权并完成的[Meaning剩余接入门禁](../Architecture/v2/P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：加载集合支持证明、正常Dialogue／主题化共存入口、普通建筑真实进度READ；[本地55方法PASS](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)。仍是手动单城七域五yield，Culture暂隔离，社区合并本次session。STATIC／LOCAL不代表追加独立或正常结算已获原生PASS；已有B161／B162／B163证据按范围继承。
 
-当前待一次最小native session，之后门禁关闭才单独授权全城自动writer／旧GWA cutover。[商业准备](../Architecture/v2/Commerce_Preparation.md)／[工业准备](../Architecture/v2/Industry_Preparation.md)已完成调查/计划，均未授权实施；其它缺口仍见[B164落地盘点](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)。永久账本／GC及main不改；无新Gameplay决定、writer退役、build、部署或本轮实机要求。
+当前待一次最小native session，之后门禁关闭才单独授权全城自动writer／旧GWA cutover。[商业准备](../Architecture/v2/Commerce_Preparation.md)／[工业准备](../Architecture/v2/Industry_Preparation.md)已完成调查/计划，[文化M/N/U2准备](../Architecture/v2/Culture_Preparation.md)已按最新Authority重核；均不授权新实施；其它缺口仍见[B164落地盘点](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)。永久账本／GC及main不改；无新Gameplay决定、writer退役、build、部署或本轮实机要求。
+
+## S0430 — 文化M/N/U2计划按当前Authority重核
+
+用户授权第一项计划维护；[文化准备](../Architecture/v2/Culture_Preparation.md)及M/N/U2已核对Culture D0046、Shared D0045、Spec D0047与直接代码。删除过期的cap/K_T待决、原Owner见闻分账、永久来源不可变及count未通知假设；补齐已定取消/城市历史/自身文明过滤、cap1/Spy等价成本、重挂靠/保护，区分真实项目、累计原语、整体旅游与呈现通知门槛。旧D0032目标/技术线索只加明确取代导航，冻结证据不改。
+
+本轮只有合同/直接源码静态复核和文档/selector/context检查，无新Gameplay模拟或原生结果。B165手动单城/原生待验、source/live/manifest实施范围不变；不扩每日读取，不重开已闭性能调查，不改Mod/Design/GC/main，不部署、不请求新测试。现有计划可供后续逐批审核，但不自动进入M/N/U2或正式L2。
 
 ## S0429 — 商业与工业模块调查及计划
 

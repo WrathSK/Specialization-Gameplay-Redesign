@@ -15,6 +15,8 @@ Gate: GATE B — READY FOR P0-A (only after user authorization)
 
 商业O/P/Q/R/S/T采用[当前商业准备计划](Commerce_Preparation.md)，工业G/H/I/J采用[当前工业准备计划](Industry_Preparation.md)：已按Spec D0047及Commerce/Industry/Shared D0045重核。下表相关行更新为现行合同；旧target/spike里的已取代公式或deferred状态不再适用。共同迁移/单writer/UNKNOWN合同保留，具体实施仍须逐批授权；本次只调查与计划，没有新writer、部署或原生PASS。用户实机流程按现行W0004 native delta原则收敛，不机械重跑旧表全套load/退出步骤。
 
+文化M/N/U2采用[当前文化准备](Culture_Preparation.md)：无额外Dialogue cap、未提交取消、见闻城市历史、考察归档易主/重挂靠、全国cap1与首测值已由Culture D0046/Shared D0045明确；旧计划中的相反规则不再是活动TBD。B165及各原语的技术门禁仍独立，不因本次重核增加实施/原生PASS。
+
 ## Implementation progress (2026-09-18)
 
 P0-A B078: user confirms D and working-specialist reads; pillage untested. P0-B1 separately authorized and completed in B079.106: [scope, retirement and local evidence](P0_B1_Specialist_Support.md). Only existing basic support cutover; no new Research Infrastructure effect. P0-B1 local PASS and user-reported game PASS including Industry; see Status validation record. P0-B2 explicitly authorized and locally completed in B080.107; user-reported P0-B2 game PASS. A0160 plan and frozen Design rules are unchanged.
@@ -100,15 +102,15 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 | P0-J2 Wonder施工 | [J2计划](Industry_Preparation.md#j2目标固定注入与保护)：Wonder-only、一次消耗、固定锁定capacity无普通Production buff/overflow、专业单位保护 | J1及固定注入/安全回归；不依赖Macro加成，普通建筑/区域授权退出 | 预览/重验、slot释放一次、未知执行不重放、无Owner转换 | 固定注入+下一目标无overflow、保护回归的新delta；完整正式入口非面板原型 |
 | P0-K Great Work事实 | 已知作品目录、时代解析、city collection及国内时代索引 | A–D2协议；适配Dialogue producer；不改旧收益 | 未知作品排除、Artifact时代、移动两城、暂不可用/epoch | 一件作品在两城移动后读诊断；Exit事实层 |
 | P0-L1/L2/L3 文化被动能力 | 分别风雅熏陶普通建筑Tourism、意义延展D份产出、巨作启迪0.1D base GPP | A/K及每条primitive；L1退出旧Culture人口及worker%；L2退出旧GW adjacency；L3不另覆盖已完成L1/L2 | native与追加分层、普通建筑掠夺、作品池、领域/GPP映射；Meaning仅D0038逐领域Floor，GPP不外推 | 同一馆藏城含两领域，每批只加入一种效应；0.1未证实不得宣布L3完成 |
-| P0-M 时代对话项目 | 连续完整生产回合、START Era quota、完成时X、city ledger及native-only倍率 | E1/K及项目/收益隔离spike、cap参数；替换旧25%(D−1) | 高P/中断/跨时代/X0/重复/读档/易主quota；不放大意义延展 | 高P一城中断后完成、移动作品、读档；转移quota另做最小补测 |
-| P0-N1/N2/N3 人文考察 | N1交互原型；N2来源绑定、原Owner记录及整城Tourism；N3 Culture Network | E1/K、Spy-like与Tourism原型、K参数；仅N3退出旧Culture Eureka | 战争/目标失效、固定成功保留单位、来源降级继续任务、3N唯一性；source各自3/3后union | 外国capital兼有GW/Wonder，单任务+战争/读档；集合并集主要本地验证，三子批独立完成 |
+| P0-M 时代对话项目 | [M计划](P0_M_Dialogue.md)：完整1T、START Era额度、完成X、城市累计5%×X无额外cap；未提交取消已定 | E2/K/真实项目及新累计native-only；替换旧25%(D−1)，保留采样/ACK职责 | 提交前取消无额度/半进度、成功后保留、完成样本/重复/原子保存；不放大Meaning | 新项目/累计/实际收益delta；新增持久块一个必要load边界，既有harness继承 |
+| P0-N1/N2/N3 人文考察 | [N计划](P0_N_Expedition.md)：N1远程/来源/保护；N2城市历史与本城2%/有效见闻；N3每完整文明+1专家Culture | Spy等价成本/全国cap1/标准2T已定；重挂靠/外国事实/整体旅游/保存原语；仅N3退旧Culture Eureka | 战争/目标失效；归档易主abort/原主保留团；城市历史自身文明过滤；各source独立3/3后union | 各子批只验新原生差异，集合主要本地；新绑定保存才加对应load，Research不受切换影响 |
 | P0-O 有向商路读服务 | [O计划](Commerce_Preparation.md#o只读资格三种路线关系分开)：同一verified snapshot direct incoming/outgoing/pair，只读 | 现Input/Bridge及已接受后台来源；不加provider、不改共同topology或旧收益 | 两方向/去重/异Owner/UNKNOWN/epoch/端点改变；distribution不替direct | 未改native来源可继承；Exit只读事实，不算商业落地 |
 | P0-P 商业化 | [P1配置/P2效果](Commerce_Preparation.md#p与s配置当前效果与制度历史分开)：五域0.1DX、容量/order/LIFO暂停恢复，IV有效R | O/D/worker/配置/UI；COM-DETAIL-X与Gold原语后P2精确退3项COM+48Convergence | 最高source/非递归、同回合变化、配置退出、exact单writer；不套旧20%或Floor | 原生Gold真实结算、自动接入和改动的退出路径；P1无收益不能宣布P完成 |
 | P0-Q1/Q2 资本合同 | [Q合同计划](Commerce_Preparation.md#q合同与隐藏保护有各自的持久权威)：Q1稳健25%余额/10T/具体S锁；Q2确认锁结果和更新pity | Q1需S池/level/空池/同域scope；Q2另需pity rebase/Owner；资金/原子恢复/UI原语 | 重复扣款/到期/quote、具体S选择、隐藏字段、合同Owner异常终止与pity分开 | 新Gold与锁定保存/结算delta；不机械让风险TBD阻塞safe技术准备 |
 | P0-R 发展投资 | [R计划](Commerce_Preparation.md#r报价与签约后的合同独立)：IV/outgoing签约、标准15P_ref/10T/普通建筑+50%、专家容量 | O、P_low/无解决策及普通Production/资金原语；只需H3加算证明，不依赖全工业 | 签后断路/资格下降续存、target-domain唯一、关键Owner无退款终止并撤效果 | 新普通progress/合同终止/组合delta；Owner合同已定，特殊删除/非法target仍未决 |
 | P0-S 商业信誉 | [S1记录](Commerce_Preparation.md#p与s配置当前效果与制度历史分开)：首次IV后标准Identity完整T+1/cap40；收益IV、Owner保留、Identity退出0 | E2业务专属保存；记录独立于P/Q，效果分别由P/Q消费；非标准速度未定 | 重复计龄/ACTIVE下降/Owner休眠/清Identity/缺史HELD，不能抄科研policy | 新记录生命周期delta；不再把已定增长/用途/Owner整体标待定 |
 | P0-T1/T2 资产重组 | [T计划](Commerce_Preparation.md#t团队存续与绑定事务分别管理)：IV500P保护Team；P−1/REALLOCATING/5完整T/扰动/配置一次 | E2/Permanent debit及全部直接consumer；无需等待Q/R，但需专业保护/净余粮原语 | source provenance与bound target分离；目标Owner变毁未完成事务/team，历史不全删 | 新单位/扰动/持久事务delta；非标准速度及未涵盖处置不自填 |
-| P0-U1/U2/U3 Presentation | U1当前/历史机构；U2 Hybrid D；U3 Commerce project入口与两个panel | 各自confirmed read model及UI hook；U3先fixture可测，正式confirm需真实owner | institution非Building、分阶段tooltip、hover零请求、队列不动、报价版本校验 | 对应一个城市/巨作/Commerce界面，检查当前及另一UI scale；不引入新玩法 |
+| P0-U1/U2/U3 Presentation | U1当前/历史机构；[U2 Hybrid D](P0_U2_Culture_Era.md)按当前K组成/国内索引通知；U3 Commerce project入口与两个panel | 各自confirmed read model及UI hook；U3先fixture可测，正式confirm需真实owner | institution非Building、分阶段tooltip、hover零请求、队列不动、报价版本校验 | 对应一个城市/巨作/Commerce界面，检查当前及另一UI scale；不引入新玩法 |
 | P0-V 集成门禁 | 四专业所选完整规则集、retirement、保存、性能矩阵 | 所有拟发布能力及参数门禁通过 | 无旧效果复活、normal无error、明确参数profile、回合/load/idle预算 | 一个混合城市准备档合并商路/专家/掠夺/回合/读档断言；长局内存另记趋势 |
 
 未定参数可用明确标记的本地fixture完成纯plan或技术原型，不得作为默认正式游戏值发布。Commerce DESIGN_FROZEN不等于P/Q/R/S/T已具备全部实现输入。UI原型和对应contract owner可在相同依赖层分别开发；正式玩家功能的Exit必须二者都完成，避免“没有入口却宣布可玩”。

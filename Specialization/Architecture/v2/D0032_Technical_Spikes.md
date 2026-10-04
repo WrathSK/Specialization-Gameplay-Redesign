@@ -2,6 +2,8 @@
 
 > 本文保留D0032规划时的目标/技术线索，不是当前完成度或授权。商业的配置/信誉/合同Owner、公式与单位归属，以及工业每模板来源、N/E/L、队档/成本/注入规则已由当前Design取代；实际差异与门禁见[商业准备](Commerce_Preparation.md)／[工业准备](Industry_Preparation.md)。例如TS06的“只排序”、TS20“公式/信誉未冻结”和旧高档队E门槛不能继续作为活动规则；仍有效的请求/保存/UNKNOWN及原生反证保留。
 
+> 文化现行差异见[文化准备](Culture_Preparation.md)及[M](P0_M_Dialogue.md)/[N](P0_N_Expedition.md)/[U2](P0_U2_Culture_Era.md)：旧原Owner见闻分账、未提交Dialogue取消未定、cap/K_T未定已被取代；考察全国cap1、归档易主/重挂靠与专业单位保护已定。TS09/10/13/14的旧业务假设不再作为实施指令，仍有效的接口/事件/原生门槛保留。真实1T项目已有范围限定证据，不重开空队列/负进度路线；新M/N仍未实施。
+
 Document Owner: Codex
 Architecture: A0160 / planning only
 Baseline: B076.103; Design D0032 mixed authority map见[D0032_Adaptation](D0032_Adaptation.md)。

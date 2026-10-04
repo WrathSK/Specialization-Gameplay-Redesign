@@ -40,9 +40,9 @@
 - [商业模块准备](Commerce_Preparation.md)：O商路只读、P商业化、Q资本、R发展、S信誉、T重组；区分当前D0045合同、旧writer和窄未决项。
 - [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；纠正每模板holder、N/E/L、III/IV成本与固定注入。两份仅调查/计划，不派发实施、不替代B165待验，不加入日常全量context。
 
-- [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。当前仅准备获授权，实施等B148验收后逐批审核；按模块读，不加入日常全量context。
+- [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。M/N/U2已按Culture D0046/Shared D0045重核；当前B165仍待原生，正式L2及其它切片逐批审核/授权。按模块读，不加入日常全量context。
 
-- [文化风雅熏陶L1合同与检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)：已授权的逐栋贡献/所属区域投影和旧人口/worker%退出；本地完成，原生门禁待验，当前验收/下一授权仍看Status。
+- [文化风雅熏陶L1已测结算](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)：所测逐栋加值与结算已通过；[原始实施检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)保留技术依据，当前任务/下一授权仍看Status。
 - [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[此前计划](P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
 - [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[原计划](P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
 - [学以致用](P0_D2_Research_Apply.md)：每专家floor；[学术主持](P0_D3_Research_Chair.md)：逐普通建筑consumer。

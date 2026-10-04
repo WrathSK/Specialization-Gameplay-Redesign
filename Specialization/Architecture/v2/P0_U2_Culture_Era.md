@@ -1,7 +1,7 @@
 # P0-U2 — Culture时代馆藏Hybrid D展示准备计划
 
 State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED / UI_PROTOTYPE_REQUIRED。
-Direction: USER_CONFIRMED_PRESENTATION_DIRECTION，来源D0032；玩法仍Culture D0029。基线和逐批边界见[准备入口](Culture_Preparation.md)。不是重新讨论方向，也不包含机构排版修整。
+Direction: USER_CONFIRMED_PRESENTATION_DIRECTION，来源D0032；当前玩法资格按Spec D0047 / Culture D0046 / Shared D0045。基线和逐批边界见[准备入口](Culture_Preparation.md)。不是重新讨论方向，也不包含机构排版修整。
 
 ## 已批准的展示合同
 
@@ -17,7 +17,7 @@ Tooltip缓存明细按受支持作品历史时代列本城合格件数、缺失�
 
 现有K已提供confirmed本城馆藏、时代/件数及`Domestic`索引/availability/revision。`Summary`缺时代内组成；可在已确认发布时建立小型presentation read model，不能每hover深拷贝完整国内索引或请求Gameplay。
 
-K `OnConfirmed`当前只比较L1所需X等输入，同一时代件数变化/国内来源移动未必触发它；U2必须结合实际馆藏/国内索引revision或补最小呈现变化通知。不能假定L1 callback覆盖全部Tooltip失效条件。
+K `OnConfirmed`在B150已补上count及modifierExcludedCount/unknownCategoryCount，现比较reference、X、件数、排除/未知计数和确认状态；同一时代增减件数不再是缺口。但等件数、等时代数的时代组成/作品替换或国内来源变化仍可能不触发此compact callback。`Read`提供完整城市事实副本，`Domestic`提供revision/availability及时代来源；现有revision变化并不等于UI已收到通知。U2须接入最小呈现版本通知/传输，按确认变化重建缓存，不能只等L1 callback或每hover深拷贝全集。
 
 ## 建议实施步骤与真实文件依赖
 
@@ -41,10 +41,10 @@ UNKNOWN同可靠引用可显示“最近确认/待复核”，不能当无作品
 
 W0004 L1 UI/低长期state风险；若修改K共享通知，补直接受影响的K/L1/L3事实回归，不默认全历史测试/长测。
 
-本地fixture覆盖：compact摘要、中文长era/city名、同era件数变化、国内有/无/UNKNOWN、两城移动与trade、owner/load/epoch失效、重复open/shutdown、hover零request和零collector调用。真实长名称/字体/tooltip placement仍需实机。
+本地fixture覆盖：compact摘要、中文长era/city名、同era件数变化、等count/X但时代组成替换、国内有/无/UNKNOWN、两城移动与trade、owner/load/epoch失效、重复open/shutdown、hover零request和零collector调用。真实长名称/字体/tooltip placement仍需实机。
 
-一个最小原生流程：打开有Culture馆藏的Great Works界面→读compact与Tooltip→移作品到国内另一城→再次hover核对双方时代数/来源→重开界面与一次UI scale；冷加载可合并于同批已有测试，不要求再一套截图。接口/layout失败只停止该展示路径，不影响已验Gameplay。
+未来一个连续native session：打开Culture馆藏界面核对摘要/Tooltip→移作品核对双方时代/国内来源刷新→重开及一个不同UI scale检查控件/文字。这些分别验证新hook、通知/缓存和布局；等数量/等X但组成变化优先本地fixture。未改变共享load/reference路径时继承已有证据，不默认再保存启用态/完全退出/冷加载/再启用；若新UI注册或跨context重建有旧证据未覆盖的具体差异，再说明原因补一个边界。接口/layout失败只停止展示路径，不影响已验Gameplay，本轮不派发测试。
 
 回滚移除本批UI hook/显示资源，保持K共享事实与L/M/N记录；不改作品、不回退或删除永久Gameplay数据。Exit为所测HD布局、刷新/缓存和hover零请求通过；不能将技术prototype验收写为所有缩放最终美术完成。
 
-来源：[已批准方向D0032](../../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[K事实实际检查点](P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)、[Culture正式work_pool](../../Design/Content/Culture_D0029.json)、[Presentation合同](Presentation_Institution_Carrier_Model.md)。
+来源：[已批准方向D0032](../../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[K事实实际检查点](P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)、[Culture正式work_pool](../../Design/Content/Culture_D0046.json)、[Presentation合同](Presentation_Institution_Carrier_Model.md)。
