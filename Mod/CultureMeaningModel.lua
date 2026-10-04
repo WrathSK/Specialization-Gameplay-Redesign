@@ -7,6 +7,8 @@ SPCCultureMeaningModel={K=0.5,Domains={
 }}
 local M=SPCCultureMeaningModel
 M.WriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH'}
+-- This reversible gate projects Production only; the five-yield formula stays intact.
+M.ActiveWriteYields={'PRODUCTION'}
 local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
 function M.Plan(f,w,depth)
  assert(f and f.validity=='VERIFIED','ME_FACT_UNKNOWN')
@@ -54,20 +56,33 @@ end
 for _,y in ipairs({'PRODUCTION','FOOD','FAITH'})do for bit=0,M.ProbeBits[y]-1 do
  M.Owned[#M.Owned+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit
 end end
-function M.Parts(y,amount,variant)
- assert(variant==nil or variant=='SPLIT','ME_VARIANT_DEFERRED')
+local function bitParts(y,amount)
  assert(y~='CULTURE','ME_CULTURE_DEFERRED')
  local bits=assert(M.ProbeBits[y],'ME_PROBE_YIELD');local n=amount*M.ProbeScale[y]
  assert(integer(n) and n<2^bits,'ME_ENCODING_RANGE')
  local out={};for bit=0,bits-1 do if n%2==1 then out[#out+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit end;n=math.floor(n/2)end
  return out
 end
--- Fixed Production controls only; ordinary Meaning retains its current encoding.
+-- Fixed B160 controls retain the exact old pieces as negative evidence.
+-- Production's model projection uses one FINAL per-work value, never these bits.
 M.DiagnosticSingle3={name='BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3',amount=3}
 M.Owned[#M.Owned+1]=M.DiagnosticSingle3.name
+M.ProductionValues={}
+for amount=1,10 do
+ local part={name='BUILDING_SPC_MEANING_PROBE_PRODUCTION_VALUE_'..amount,amount=amount}
+ M.ProductionValues[amount]=part;M.Owned[#M.Owned+1]=part.name
+end
+function M.Parts(y,amount,variant)
+ assert(variant==nil or variant=='SPLIT','ME_VARIANT_DEFERRED')
+ if y=='PRODUCTION' then
+  assert(integer(amount) and amount<=10,'ME_ENCODING_RANGE')
+  return amount==0 and {} or {M.ProductionValues[amount].name}
+ end
+ return bitParts(y,amount)
+end
 M.DiagnosticExpected={BASELINE=0,SINGLE1=1,CLEAR1=0,SINGLE2=2,PAIR12=3,REMAIN2=2,SINGLE3=3,OFF=0}
 function M.DiagnosticParts(stage)
  local amount=assert(M.DiagnosticExpected[stage],'ME_DIAGNOSTIC_STAGE')
  if stage=='SINGLE3' then return {M.DiagnosticSingle3.name}end
- return M.Parts('PRODUCTION',amount)
+ return bitParts('PRODUCTION',amount)
 end

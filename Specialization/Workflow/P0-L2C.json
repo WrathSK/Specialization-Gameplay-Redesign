@@ -97,13 +97,13 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0417",
-    "runtime": "B160.187 / modinfo187",
+    "status": "S0418",
+    "runtime": "B161.188 / modinfo188",
     "military": "D0037",
     "harbor": "D0037"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--production组合与退出诊断",
-  "goal": "User-authorized one-city/one-Writing single1 withdrawal/reconfiguration, preserved2 and independent flat3 diagnostic; no D/Floor/W or formal cutover change.",
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--production单值承载",
+  "goal": "User-authorized reversible one-city Production-only final per-work value0..10; original per-domain Floor then same-yield sum then W preserved. Signed opaque SubValue diagnostic only; no formal cutover/other-yield migration.",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -120,8 +120,8 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
-      "selector": "## 已授权切片 — Production组合与退出诊断",
-      "reason": "Complete current diagnostic scope/qualification/lifecycle/observation/exit contract"
+      "selector": "## 已授权切片 — Production单值承载",
+      "reason": "Complete newly authorized Production-only single-value qualification, lifecycle, old writers, diagnostics and native stop"
     },
     {
       "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -215,7 +215,7 @@
     {
       "path": "Mod/Data/CultureMeaningProbe.sql",
       "kind": "full",
-      "reason": "Exact27 owned/189 attachments; old16 unchanged, new P/F/Faith finite integer family"
+      "reason": "Exact37 owned/259 attachments: old27/189 immutable prefix,10 finite Production final values ×7 object attachments"
     },
     {
       "path": "Mod/GreatWorkFacts.lua",
@@ -300,14 +300,14 @@
       "reason": "Complete current formula/mapping/qualification and exceptions, not old chronological prototype history"
     },
     {
-      "path": "DevelopmentTests/test_culture_meaning_l2c.py",
+      "path": "DevelopmentTests/test_culture_meaning_single_value.py",
       "kind": "full",
-      "reason": "Current 27 targeted writer/reader/fixture/lifecycle tests; no historical four-state suite"
+      "reason": "Current Production-only targeted model/writer/actual Shared-event/request/UI/lifecycle SQL tests; historical five-yield assertions retained, not selected as current suite"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
       "kind": "full",
-      "reason": "Current B160 local evidence, exact diagnostic controls/exit protection and minimal native flow; former B159 contract is linked only as needed."
+      "reason": "Current B161 local results and once-short-test contract; original B160 evidence remains linked"
     },
     {
       "path": "DevelopmentTests/test_culture_meaning_diagnostic.py",
@@ -321,15 +321,15 @@
     }
   ],
   "dependencies": [
-    "D0045 current Authority retains exact D0043 Meaning scope/qualification and D0044 four Shared input objects; fixed native diagnostic does not consume D or new Dialogue accumulation cap.",
+    "D0045 current Authority preserves per-domain Floor→same-yield each→W, current D/ordinary/qualification/work contracts. Current gate projects only Production from authoritative shared facts.",
     "Existing K confirmed current-reference bridge and local ACTIVE facade",
     "B157 named S/G and owned lifecycle evidence only; P/F/Faith native unresolved",
     "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI"
   ],
   "old_writers": [
-    "Only one selected-city GWA exact156 owned hold; confirm new withdrawal before normal current-sample restore",
+    "Only one selected-city GWA exact156 owned hold; confirm new37 withdrawal before normal current-sample restore",
     "Existing local-reference Dialogue0% override only during probe; preserve other cities and K producer/ACK",
-    "Exact27 Meaning withdrawal directory retains all former26 IDs and adds independent Production flat3; only explicit SINGLE3 diagnostic creates it. Ordinary Parts/Plan unchanged."
+    "Exact37 Meaning withdrawal directory retains previous27 IDs; normal only one VALUE1..10 carrier or none, old fixed diagnostic pieces remain private negative controls"
   ],
   "non_scope": [
     "Culture flat coexistence/host diagnostic and Government/Diplomatic restoration are deferred",
@@ -339,23 +339,23 @@
   "validation": {
     "depth": "W0004 L2 plus touched load/loss/reference L3; targeted only, no full history/stress",
     "local": [
-      "Fixed eight-stage exact projection operations; CLEAR1 holds old writers; REMAIN2 only removes+1 preserving healthy+2; independent3 excluded from ordinary Parts; no diagnostic D read.",
-      "UNKNOWN/repeated notifications/fixture/current-reference isolation; owned failure/loss/load protects legacy hold and permanent data",
-      "Independent native observations, OFF residue/UNKNOWN/exact instance mapping, current selection/late ACK/cache invalidation; targeted only"
+      "Final Production0..10 one carrier/no0, per-domain Floor and W matrix/physical Shared events; no other-yield projection; exact37/259/old SQL prefix",
+      "Same-turn changes/zero-write/UNKNOWN/two-city/loss/reference/load/owned create-remove failure and hold; actual request/K sample pairing/reentrancy/token",
+      "Production-only independent getters and signed field exact identity checks; explicit READ only once, repeated/late/cache selection, OFF residual/config metadata"
     ],
-    "user": "One supported Writing/Culture ACTIVE IV city, same turn: baseline→1→clear0→2→pair1/2→remove only1 retaining2→independent3→END plus cold-load enabled copy. Pair knownFAIL may continue to retained2 control; other errors pause. At most five key reports. No full L2/settlement proof."
+    "user": "One Culture ACTIVEIV city, supported Writing: baseline→model final3→domain change final4→W2 per-work4/total8, save enabled copy→directEND exact withdrawal/current legacy restore→cold-load saved enabled copy OFF/clean→manual reenable. At most4 key reports. Alternate known nonbinary input if fixture cannot form3/4; no long/all-object test, no full L2/settlement proof."
   },
   "result": {
-    "plan": "User explicitly authorized B160 minimal reconfiguration plus independent single3; no formal cutover/batch expansion.",
-    "implementation": "B160.187 / modinfo187 LOCAL_COMPLETE; 47 methods/58 subtests PASS, fixed diagnostic controls only.",
-    "native": "B160 USER_GAME_TEST_PASS within same-turn single-Writing immediate observations: single1/clear0/single2/retained2/single3 actual1/0/2/2/3; retained2 same native instance12328. USER_GAME_TEST_FAIL pair1/2 expected3/native1, two mapped Active instances. Standalone3 native getter3 but precise city mapping UNKNOWN:FORMAT from negative SubValue; END/cold-load unobserved. Full L2 NOT_PASSED.",
-    "stop": "Propose Production-only final single-value carrier plan, with scoped signed-SubValue diagnostic fix; await separate implementation authorization. No internal early/min algorithm investigation or formal cutover/L3/M/N/U2.",
-    "deployment": "B160.187 / modinfo187; source83e191854983089a968629aafc3f7ff05a6aad11; existing receipt B160.187-83e1918-playtest.json DEVELOP_ACTIVE/182MATCH with B159/stable recovery. This evidence/doc-only turn did not reverify runtime/process or redeploy. B160 native single1/2/3 immediate values and held withdrawal/reconfiguration observed, pair1/2 native1 FAIL; standalone3 city mapping UNKNOWN:FORMAT, END/cold-load unobserved.",
+    "plan": "User explicitly authorized prior Production-only single-value recommendation; complete B161 scoped contract recorded, no wider plan/Design change.",
+    "implementation": "B161.188 / modinfo188 LOCAL_COMPLETE; 73 methods/78subtests PASS, Production-only one selected city final-value gate.",
+    "native": "B161 USER_GAME_TEST_REQUIRED; B160 frozen scoped single1/2/3 PASS and multipiece FAIL retained. Signed-format fix is LOCAL only; native value transitions/W/END/cold-load unconfirmed; full L2 NOT_PASSED.",
+    "stop": "Await B161 Production-only final-value native gate, W/END/enabled-copy cold-load; no other yield/cutover/L3/M/N/U2 authorization.",
+    "deployment": "B160.187 / modinfo187 remains active until explicit receipt-bound W0003 B161 switch. Existing receipt B160.187-83e1918-playtest.json; source B161.188 LOCAL_COMPLETE is not deployment/native proof.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
-    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-    "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:20 methods plus test_culture_meaning_l2c.py:27 methods; 58 subtests. Includes retained Modifier assertions; no full historical/stress.",
-    "next_proposal": "Production-only final per-work integer value0..10 instead of same-yield bit pieces, plus observed signed-SubValue parser boundary; keep each-domain Floor→sum each→W, scoped cleanup/holds/UNKNOWN/loss/load. No new implementation authorization; direct END/cold-load may combine with next batch test. No further engine early/min investigation."
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+    "local_test_entry": "DevelopmentTests/test_culture_meaning_single_value.py + test_culture_meaning_diagnostic.py + selected direct test_modifier_read.py methods; targeted only, historical five-yield suite not run",
+    "next_proposal": "After native evidence, propose only remaining specific gate; no automatic other-yield migration/formal cutover."
   }
 }

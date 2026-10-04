@@ -32,6 +32,7 @@ class ModifierReadTests(unittest.TestCase):
    if name==hd:args=dict(GreatWorkObjectType='GREATWORKOBJECT_WRITING',YieldType='YIELD_CULTURE',YieldChange=2)
    if name==tour:args=dict(GreatWorkObjectType='GREATWORKOBJECT_WRITING',ScalingFactor=150)
    defs.append(dict(Id=name,Arguments=args))
+  l.globals().all_definitions=table(l,{r['ModifierId']:dict(Id=r['ModifierId'],Arguments=dict(d.execute('SELECT Name,Value FROM ModifierArguments WHERE ModifierId=?',(r['ModifierId'],))))for r in rows('SELECT ModifierId FROM Modifiers')})
   d.close();l.globals().definitions=table(l,defs)
   l.execute('''
   calls=0;detailCalls=0;turn=62;owner=0;cityID=42;binding='ORIGINAL';mode='OFF';active=true
@@ -106,6 +107,99 @@ class ModifierReadTests(unittest.TestCase):
   """);return l
  def test_observed_district_format_and_subject_verified_with_objects(self):
   l=self.mapped();s=l.globals().read('a');self.assertIn('本城已核验',s);self.assertIn('接收对象1｜本城已核验',s)
+ def test_observed_negative_subvalue_maps_owner_and_subject(self):
+  l=self.mapped();l.execute("GameEffects.GetObjectString=function()return 'District: 1114126, Owner: 0, SubType: 1, SubValue: -544493210, City: 42' end")
+  s=l.globals().read('signed');self.assertIn('读取完整',s);self.assertIn('接收对象1｜本城已核验',s);self.assertNotIn('UNKNOWN:',s)
+  self.assertIn('SubValue: -544493210',s);self.assertEqual(l.globals().calls,1)
+  self.assertEqual(s,l.globals().read('signed'));self.assertEqual(l.globals().calls,1)
+ def test_signed_subvalue_still_requires_current_objects_and_identity(self):
+  raw='District: 1114126, Owner: 0, SubType: 1, SubValue: -544493210, City: 42'
+  for mutate in ['CityManager=nil','district.GetID=function()return 99 end',"district.GetCity=function()return {GetOwner=function()return 0 end,GetID=function()return 42 end,GetX=function()return 8 end,GetY=function()return 9 end,GetProperty=function()return 'OTHER' end}end"]:
+   with self.subTest(mutate=mutate):
+    l=self.mapped();l.globals().signed_raw=raw;l.execute('GameEffects.GetObjectString=function()return signed_raw end;'+mutate)
+    s=l.globals().read('signed');self.assertNotIn('本城已核验',s);self.assertIn('UNKNOWN:OBJECT_CHECK',s)
+  for bad,want in [(raw.replace('Owner: 0','Owner: 1'),'UNKNOWN:OWNER_CONFLICT'),(raw.replace('City: 42','City: 43'),'UNKNOWN:OBJECT_CHECK')]:
+   with self.subTest(bad=bad):
+    l=self.mapped();l.globals().bad=bad;l.execute('GameEffects.GetObjectString=function()return bad end')
+    s=l.globals().read('signed');self.assertNotIn('本城已核验',s);self.assertIn(want,s)
+ def test_signed_subvalue_does_not_expand_other_district_fields_or_format(self):
+  raw='District: 1114126, Owner: 0, SubType: 1, SubValue: -544493210, City: 42'
+  bads=[raw+' extra','prefix '+raw,raw.replace('SubType: 1','SubType: -1'),raw.replace('District: 1114126','District: -1114126'),raw.replace('Owner: 0','Owner: -1'),raw.replace('City: 42','City: -42')]
+  bads.extend(raw.replace('SubValue: -544493210','SubValue: '+value)for value in ['-','--544493210','+544493210','-544493210.0','-544493210x'])
+  for bad in bads:
+   with self.subTest(bad=bad):
+    l=self.mapped();l.globals().bad=bad;l.execute('GameEffects.GetObjectString=function()return bad end')
+    s=l.globals().read('signed');self.assertNotIn('本城已核验',s);self.assertIn('UNKNOWN:FORMAT',s)
+ def production(self):
+  l=self.mapped();l.execute("""
+  GameInfo.Yields=db({{YieldType='YIELD_CULTURE',Index=1},{YieldType='YIELD_PRODUCTION',Index=2}},'YieldType')
+  P.Info=function(name,key)return GameInfo[name][key]end
+  P.HasBuilding=function(buildings,index)return index==GameInfo.Buildings.BUILDING_AMPHITHEATER.Index end
+  c.GetPopulation=function()return 4 end
+  b.IsBuildingThemedCorrectly=function()return false end
+  workCount=1;nativeProduction=0;yieldCalls=0
+  b.GetGreatWorkInSlot=function(self,index,slot)return slot<workCount and slot+9 or -1 end
+  b.GetBuildingYieldFromGreatWorks=function(self,y,index)assert(y==GameInfo.Yields.YIELD_PRODUCTION.Index,'OTHER_YIELD_READ');yieldCalls=yieldCalls+1;return nativeProduction end
+  v.productionOnly=true;v.mode='BASELINE';v.count=1;v.production=3;v.totalProduction=3;v.configuredProduction=0;v.configuredCulture=0
+  v.oldHeld=true;v.dialoguePercent=0;v.planStatus='READY';v.currentIdentity='CULTURE';v.currentPotential=4;v.currentActive=4;v.currentActiveStatus='KNOWN';v.stamp='INDUSTRY:6';v.remainingOwned=0
+  function meaning(mark)return SPCBoostGreatWorkRead.Meaning(P,c,v,mark)end
+  """);return l
+ def test_production_only_meaning_reads_production_and_counts_w_once(self):
+  for count in [1,2]:
+   with self.subTest(count=count):
+    l=self.production();l.execute(f'workCount={count};v.count={count};v.totalProduction=3*{count}')
+    self.assertIn('同回合基线已记录',l.globals().meaning(True))
+    l.execute(f"v.mode='ACTIVE';v.configuredProduction=3;nativeProduction=3*{count}")
+    s=l.globals().meaning(False);self.assertIn(f'合格W={count}',s);self.assertIn(f'每件 +3／本城 +{3*count}',s);self.assertIn(f'实测差值 +{3*count:.2f}',s)
+    self.assertIn('其它产出未验证',s);self.assertNotIn('科研｜',s);self.assertNotIn('金币｜',s);self.assertNotIn('未确认',s);self.assertEqual(l.globals().yieldCalls,2)
+ def test_production_only_absolute_off_and_unknown_are_independent(self):
+  l=self.production();l.execute("v.mode='OFF';nativeProduction=7;ids={}")
+  s=l.globals().read('off');self.assertIn('当前原生作品生产力 7',s);self.assertNotIn('实际文化',s);self.assertIn('真实退出收益及旧系统恢复另行核对',s)
+  off=l.globals().meaning(False);self.assertIn('当前原生作品生产力 7.00',off);self.assertIn('不作追加差值PASS',off);self.assertEqual(l.globals().calls,1)
+  l=self.production();l.execute("v.mode='OFF';nativeProduction=0/0;ids={}")
+  s=l.globals().read('unknown');self.assertIn('WORK_YIELD_UNKNOWN',s);self.assertIn('不以0代替未知',s);self.assertNotIn('当前原生作品生产力 0',s)
+ def test_finite_production_value_writing_native_allowlist(self):
+  for amount in range(1,11):
+   with self.subTest(amount=amount):
+    l=self.production();l.execute(f"ids={{1}};definitions={{all_definitions['SPC_MEANING_PROBE_PRODUCTION_VALUE_{amount}_WRITING']}};v.mode='ACTIVE';nativeProduction={amount};v.production={amount};v.configuredProduction={amount};v.remainingOwned=1")
+    s=l.globals().read('value');self.assertIn('读取完整',s);self.assertIn(f'SPC_MEANING_PROBE_PRODUCTION_VALUE_{amount}_WRITING',s);self.assertIn(f'flat={amount}',s);self.assertIn('本城Meaning Writing实例 1',s);self.assertIn('实例ID 1',s);self.assertEqual(l.globals().calls,1)
+ def test_production_allowlist_does_not_match_lookalike_or_nonwriting(self):
+  l=self.production();l.execute("""
+  ids={1,2,3,4,5};definitions={all_definitions.SPC_MEANING_PROBE_PRODUCTION_VALUE_3_WRITING,
+   {Id='SPC_MEANING_PROBE_PRODUCTION_VALUE_11_WRITING',Arguments={YieldType='YIELD_PRODUCTION',YieldChange=11}},
+   {Id='SPC_MEANING_PROBE_PRODUCTION_VALUE_0_WRITING',Arguments={YieldType='YIELD_PRODUCTION',YieldChange=0}},
+   {Id='SPC_MEANING_PROBE_PRODUCTION_VALUE_3_EXTRA_WRITING',Arguments={YieldType='YIELD_PRODUCTION',YieldChange=3}},
+   all_definitions.SPC_MEANING_PROBE_PRODUCTION_VALUE_3_MUSIC}
+  v.mode='ACTIVE';nativeProduction=3;v.production=3;v.configuredProduction=3;v.remainingOwned=1
+  """)
+  s=l.globals().read('exact');self.assertIn('读取完整',s);self.assertIn('本城Meaning Writing实例 1',s)
+  for name in ['VALUE_11_WRITING','VALUE_0_WRITING','VALUE_3_EXTRA_WRITING','VALUE_3_MUSIC']:self.assertNotIn(name,s)
+ def test_production_mode_change_invalidates_cached_modifier_report(self):
+  l=self.production();l.execute('ids={}');l.globals().read('mode');l.execute('v.productionOnly=false')
+  self.assertIn('过期',l.globals().read('mode'));self.assertEqual(l.globals().calls,1)
+ def test_production_read_lifecycle_does_not_automatically_enumerate(self):
+  l=self.production();l.globals().meaning(True);self.assertEqual(l.globals().calls,0)
+  l.execute("v.mode='ACTIVE';v.configuredProduction=3;nativeProduction=3")
+  l.globals().meaning(False);self.assertEqual(l.globals().calls,0)
+  l.globals().read('explicit');l.globals().read('explicit');self.assertEqual(l.globals().calls,1)
+  l.execute("v.mode='OFF';v.configuredProduction=0")
+  l.globals().meaning(False);self.assertEqual(l.globals().calls,1)
+  l.globals().read('off');self.assertEqual(l.globals().calls,2)
+  l.execute('SPCBoostGreatWorkRead.ClearModifierRead()');self.assertIn('释放',l.globals().read('off'));self.assertEqual(l.globals().calls,2)
+ def test_production_late_or_stale_reference_does_not_scan_or_replay(self):
+  for mutate in ["binding='REPLACED'",'selected=nil',"requested='OTHER'"]:
+   with self.subTest(mutate=mutate):
+    l=self.production();l.execute(mutate);self.assertIn('STALE',l.globals().read('late'));self.assertEqual(l.globals().calls,0)
+  l=self.production();l.execute("GameEffects.GetModifiers=function()calls=calls+1;binding='REPLACED';return ids end")
+  self.assertIn('STALE',l.globals().read('race'));self.assertEqual(l.globals().calls,1)
+  l.execute("binding='ORIGINAL'");self.assertIn('STALE',l.globals().read('race'));self.assertEqual(l.globals().calls,1)
+ def test_production_value_amount_uses_model_metadata(self):
+  l=self.production();l.execute("""
+  v.diagnostic=true;v.diagnosticStage='OFF';v.diagnosticExpected=0;v.configuredProduction=2;v.remainingOwned=1
+  v.diagnosticCarriers={{name=SPCCultureMeaningModel.ProductionValues[3].name,yield='PRODUCTION',amount=2,pillaged=false}}
+  """)
+  s=l.globals().SPCBoostGreatWorkRead.ProductionDiagnostic(l.globals().P,l.globals().c,l.globals().v,False,'metadata',l.globals().requested,False)
+  self.assertIn('配置未确认：ME_UI_DIAG_CONFIGURATION',s);self.assertEqual(l.globals().calls,0)
  def test_mapping_rejects_partial_malformed_ids_and_owner(self):
   raw='District: 1114126, Owner: 0, SubType: 1, SubValue: 762987263, City: 42'
   for value in [raw+' extra','prefix '+raw,raw.replace('City: 42','City: 43'),raw.replace('Owner: 0','Owner: 1'),raw.replace('1114126','9007199254740992')]:

@@ -208,7 +208,7 @@ local function request(playerID,params)
       end
       actionStage=at
       at='VIEW';assert(type(probe.View)=='function','ME_VIEW_NOT_READY')
-      local diagnostic=params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ' or params.Action=='CULTURE_MEANING_END'
+      local diagnostic=params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ'
       local view=probe.View(playerID,c,diagnostic)
       assert(type(view)=='table' and view.owner==playerID and view.cityID==params.CityID,'ME_VIEW_INVALID')
       -- These errors belong only to this disposable view, not the probe's state.

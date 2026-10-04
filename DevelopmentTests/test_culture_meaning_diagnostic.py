@@ -18,6 +18,13 @@ import test_culture_meaning_probe as legacy
 import test_modifier_read as modifier
 
 FIXTURE = r"""
+-- Preserve the fixed legacy diagnostic while exercising its expanded exact
+-- cleanup responsibility. Do not mutate historical five-yield writer tests.
+function seedAllMeaning(c)
+ for _,name in ipairs(SPCCultureMeaningModel.Owned)do building(c,name,c.ds[1])end
+ assert(#SPCCultureMeaningModel.Owned==37)
+ local n=0;for _ in pairs(exactMeaning(c))do n=n+1 end;assert(n==37)
+end
 sampleRequest(1)
 assert(shared.GreatWorkFacts.Summary(0,1).count==1)
 assert(shared.GreatWorkFacts.Read(0,1).works[1].category=='GREATWORKOBJECT_WRITING')
@@ -245,8 +252,9 @@ class ProductionDiagnosticTests(unittest.TestCase):
    fiveDepthFixture(a)
    probe.Advance(0,a,'regular-baseline');probe.Advance(0,a,'regular-active')
    local v=probe.View(0,a)
-   assert(v.mode=='ACTIVE' and v.configuredScience==3 and v.configuredProduction==4 and v.configuredGold==8)
-   assert(v.configuredFood==3 and v.configuredFaith==3 and v.configuredCulture==0)
+   assert(v.mode=='ACTIVE' and v.productionOnly and v.configuredScience==0 and v.configuredProduction==4 and v.configuredGold==0)
+   assert(probe.lastPlan.each.GOLD==8 and probe.lastPlan.each.SCIENCE==3) -- Formula remains intact; ordinary writer is Production-only.
+   assert(v.configuredFood==0 and v.configuredFaith==0 and v.configuredCulture==0)
    probe.End(0,a,'regular-end');assert(next(exactMeaning(a))==nil)
   """)
 
@@ -260,7 +268,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    assertDiagnostic(v,'SINGLE2',2,{'BUILDING_SPC_MEANING_PROBE_PRODUCTION_1'})
    assert(writes==before and probe.lastAction==action)
    v=diagRequest('CULTURE_MEANING_END','end')
-   assertDiagnostic(v,'OFF',0,{})
+   assert(v.productionOnly and v.mode=='OFF');assertDiagnostic(probe.View(0,a,true),'OFF',0,{})
    before=writes;v=diagRequest('CULTURE_MEANING_DIAGNOSTIC_READ','end-read')
    assertDiagnostic(v,'OFF',0,{});assert(writes==before)
   """)
@@ -325,7 +333,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    local before=writes;failRemove=nil;diagRequest('CULTURE_MEANING_END','failed-end')
    assert(writes==before and probe.stopping and a.present[id])
    v=diagRequest('CULTURE_MEANING_END','recover-end')
-   assertDiagnostic(v,'OFF',0,{});assert(not v.error and not probe.stopping)
+   assert(v.productionOnly and v.mode=='OFF');assertDiagnostic(probe.View(0,a,true),'OFF',0,{});assert(not v.error and not probe.stopping)
    assert(not gwa.IsMeaningHeld(0,a) and dialogue.meaningOverride==nil and old(a,'SCIENCE') and old(b,'SCIENCE'))
    before=writes;diagRequest('CULTURE_MEANING_END','recover-end');assert(writes==before)
   """)
@@ -359,7 +367,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
    seedAllMeaning(a)
    local damaged=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_PRODUCTION_1.Index;a.pillaged[damaged]=true
    local before=writes;local v=probe.View(0,a,true)
-   assert(v.diagnostic and v.diagnosticStage=='OFF' and v.remainingOwned==27 and #v.diagnosticCarriers==27)
+   assert(v.diagnostic and v.diagnosticStage=='OFF' and v.remainingOwned==37 and #v.diagnosticCarriers==37)
    local seen={};for _,part in ipairs(v.diagnosticCarriers)do
     assert(not seen[part.name]);seen[part.name]=true
     assert(part.yield and type(part.amount)=='number' and type(part.pillaged)=='boolean')
@@ -581,7 +589,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
   for name in ['CultureMeaningProbe.lua','Gameplay.lua','UI/BoostGreatWorkRead.lua','UI/P0Panel.lua']:
    lua.execute('assert(load(...))',(R/'Mod'/name).read_text())
   panel=(R/'Mod/UI/P0Panel.lua').read_text()
-  for mouse,action in [('eLClick','CULTURE_MEANING_DIAGNOSTIC_ADVANCE'),('eRClick','CULTURE_MEANING_DIAGNOSTIC_READ')]:
+  for mouse,action in [('eLClick','CULTURE_MEANING_ADVANCE'),('eRClick','CULTURE_MEANING_READ')]:
    self.assertIn("Controls.MeaningProbeButton:RegisterCallback(Mouse."+mouse+",function() request('"+action+"') end)",panel)
   self.assertIn('SPCBoostGreatWorkRead.ProductionDiagnostic',panel)
 

@@ -90,7 +90,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if not ok then d.error=tostring(why);error(why)end
  end
  local function reset(isLoad)
-  -- One load-only pass over twenty-seven exact owned definitions. Not an AI ability audit.
+  -- One load-only pass over thirty-seven exact owned definitions. Not an AI ability audit.
   -- Saved transient test carriers must be removed even on a foreign held city.
   d.busy=true
   local ok,why=pcall(function()
@@ -125,7 +125,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
     if target.diagnostic then
      for _,name in ipairs(M.DiagnosticParts(d.diagnosticStage))do want[name]=true end
     else
-     for _,y in ipairs(M.WriteYields)do for _,name in ipairs(M.Parts(y,p.each[y]))do want[name]=true end end
+     for _,y in ipairs(M.ActiveWriteYields)do for _,name in ipairs(M.Parts(y,p.each[y]))do want[name]=true end end
     end
    end
    project(c,want);d.lastPlan=p
@@ -133,7 +133,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
   if not ok then
    local code=tostring(why)
    -- Unknown same-reference inputs retain the last confirmed projection. A
-   -- known unsafe collection/configuration removes only these twenty-seven exact test IDs.
+   -- known unsafe collection/configuration removes only these thirty-seven exact test IDs.
    if c and (code:find('ME_FIXTURE_UNSUPPORTED_WORK') or code:find('ME_CREATE_') or code:find('ME_ENCODING_') or code:find('ME_OLD_WRITER_'))then
     local cleared,err=pcall(project,c,{});if not cleared then why=err end
    end
@@ -185,9 +185,9 @@ function SPCCultureMeaningProbe.Start(P,shared)
    d.diagnosticStage=diagnostic and 'BASELINE' or nil
    local ok,p=pcall(function()
     local value=plan(c)
-    if value.status=='READY' and value.count>0 then for _,y in ipairs(M.WriteYields)do M.Parts(y,value.each[y])end end
+    if value.status=='READY' and value.count>0 then for _,y in ipairs(M.ActiveWriteYields)do M.Parts(y,value.each[y])end end
     return value
-   end) -- Validate the five-yield plan before holding any old effect.
+   end) -- Validate only the authorized Production projection before holding old effects.
    if not ok or p.status~='READY' or p.count==0 then forget();error(not ok and p or 'ME_NEEDS_CULTURE_IV_AND_WORK')end
    -- Hold first, clear by old writer's exact owned path, never use off[player].
    d.mode='BASELINE'
@@ -249,6 +249,8 @@ function SPCCultureMeaningProbe.Start(P,shared)
   local ref=SPCNetworkInput.Reference(c)
   local match=target and target.owner==pid and target.city==c:GetID() and target.reference==ref
   local p=match and d.lastPlan or nil
+  local diagnosticFlow=diagnostic or match and target.diagnostic
+  local finalNames={};for _,part in ipairs(M.ProductionValues)do finalNames[part.name]=true end
   local configured={SCIENCE=0,GOLD=0,PRODUCTION=0,FOOD=0,FAITH=0,CULTURE=0}
   local stamp={};if p then for _,entry in ipairs(M.Domains)do local v=p.domains[entry[1]];stamp[#stamp+1]=entry[1]..':'..tostring(v and v.value)end end
   local dialoguePercent,dialogueError
@@ -267,6 +269,18 @@ function SPCCultureMeaningProbe.Start(P,shared)
     local damaged=c:GetBuildings():IsPillaged(indices[M.DiagnosticSingle3.name]);assert(type(damaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
     if not damaged then configured.PRODUCTION=configured.PRODUCTION+M.DiagnosticSingle3.amount end
    end
+   local finalCount=0
+   for _,part in ipairs(M.ProductionValues)do if installed(c,part.name) then
+    finalCount=finalCount+1
+    local damaged=c:GetBuildings():IsPillaged(indices[part.name]);assert(type(damaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
+    if not damaged then configured.PRODUCTION=configured.PRODUCTION+part.amount end
+   end end
+   if not diagnosticFlow then
+    assert(finalCount<=1,'ME_MULTIPLE_FINAL_VALUES')
+    for _,name in ipairs(M.Owned)do
+     assert(finalNames[name] or not installed(c,name),'ME_LEGACY_PROJECTION_PRESENT')
+    end
+   end
    -- Culture is retired from this probe, not silently treated as a valid zero
    -- while an old piece is still present. End/load use the exact same owned IDs.
    for bit=0,M.ProbeBits.CULTURE-1 do
@@ -284,19 +298,27 @@ function SPCCultureMeaningProbe.Start(P,shared)
    harbor=p and p.domains.DISTRICT_HARBOR and p.domains.DISTRICT_HARBOR.value,
    oldHeld=match and shared.GreatWorkAdjacency.IsMeaningHeld(pid,c) or false,
    dialoguePercent=dialoguePercent,dialogueError=dialogueError,stamp=table.concat(stamp,';')}
-  if diagnostic or match and target.diagnostic then
+  v.productionOnly=not diagnosticFlow
+  if v.productionOnly then
+   for _,y in ipairs({'Science','Gold','Culture','Food','Faith'})do
+    v[y:lower()]=p and 0 or nil;v['total'..y]=p and 0 or nil
+   end
+  end
+  if diagnosticFlow then
    v.diagnostic=true;v.diagnosticStage=match and target.diagnostic and d.diagnosticStage or 'OFF'
    v.diagnosticExpected=assert(M.DiagnosticExpected[v.diagnosticStage],'ME_DIAGNOSTIC_STAGE')
    v.diagnosticWork=p and p.work
    local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
    v.currentIdentity=f.identity;v.currentPotential=f.potential;v.currentActive=f.active
    v.currentActiveStatus=f.validity=='VERIFIED' and f.activeStatus or 'UNKNOWN_FACTS'
-   local rows={};local known,reason=pcall(function()
+  end
+  local rows={};local known,reason=pcall(function()
     validate()
     for _,name in ipairs(M.Owned)do if installed(c,name) then
      local pillaged=c:GetBuildings():IsPillaged(indices[name]);assert(type(pillaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
      local y,bit=name:match('^BUILDING_SPC_MEANING_PROBE_([A-Z]+)_(%d+)$');local amount
      if y then amount=2^tonumber(bit)/M.ProbeScale[y]
+     elseif finalNames[name] then for _,part in ipairs(M.ProductionValues)do if part.name==name then y='PRODUCTION';amount=part.amount end end
      elseif name==M.DiagnosticSingle3.name then y='PRODUCTION';amount=M.DiagnosticSingle3.amount
      else for _,part in pairs(M.VariantParts)do if part.name==name then y='CULTURE';amount=part.amount end end end
      assert(y and amount,'ME_DEFINITION_UNKNOWN');rows[#rows+1]={name=name,yield=y,amount=amount,pillaged=pillaged}
@@ -304,8 +326,7 @@ function SPCCultureMeaningProbe.Start(P,shared)
    end)
    v.diagnosticCarriers=known and rows or nil;v.remainingOwned=known and #rows or nil
    if not known then v.configurationError=v.configurationError or tostring(reason)end
-   if match and not target.diagnostic then v.error=v.error or 'ME_DIAGNOSTIC_OTHER_FLOW'end
-  end
+   if diagnosticFlow and match and not target.diagnostic then v.error=v.error or 'ME_DIAGNOSTIC_OTHER_FLOW'end
   return v
  end
  function d.End(pid,c,token)
@@ -341,11 +362,13 @@ function SPCCultureMeaningProbe.Start(P,shared)
    return table.concat(lines,'\n')
   end
   local names={OFF='未开启',BASELINE='①基线',ACTIVE='②整数追加'}
-  local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜七域五产出'}
+  local lines={'意义延展｜'..(names[v.mode] or '状态未确认')..'｜仅生产力单值'}
   if v.count then lines[#lines+1]=string.format('合格%d件｜当前ACTIVE %s',v.count,tostring(v.currentActiveStatus=='KNOWN' and v.currentActive or '未确认'))end
   if v.mode=='OFF' then lines[#lines+1]='左键准备基线；需文化ACTIVE4及确认馆藏。'
   elseif v.mode=='BASELINE' then lines[#lines+1]='追加已清除；左键启用，右键只读。'
-  else lines[#lines+1]='左键结束；右键刷新五产出。'end
+  else lines[#lines+1]='左键结束；右键读取生产力与精确实例。'end
+  if v.production~=nil then lines[#lines+1]=string.format('每件预期%d｜本城预期%d｜载体每件%s',v.production,v.totalProduction,tostring(v.configuredProduction or '未确认'))end
+  lines[#lines+1]='其它产出本批未启用；原生值见右键读数。'
   if v.currentActiveStatus and v.currentActiveStatus~='KNOWN' then lines[#lines+1]='当前资格未确认，UNKNOWN不当作0。'end
   local err=v.error or v.configurationError or v.dialogueError
   if err then lines[#lines+1]='待处理：'..(tostring(err):match('ME_[A-Z_]+') or '接口未确认')..'；先结束验证。'end

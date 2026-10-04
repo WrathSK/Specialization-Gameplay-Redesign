@@ -101,9 +101,9 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG','End yield gate'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','左／右键均结束本城实验：先撤销追加，再按当前事实恢复旧系统；不再切换文化候选。'),
 ('en_US','LOC_SPC_CULTURE_MEANING_CONFIG_HINT','Either click ends this city probe: withdraw additions before restoring legacy consumers from current facts. Culture candidates are deferred.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','生产力组合诊断'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Production combination diagnostic'),
-('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及仅1件已支持著作。左键依次：基线 → 单片＋1 → 清零 → 单片＋2 → 两片＋1／＋2 → 只撤＋1 → 独立单片＋3 → 结束。右键读取真实生产力和实例；“结束验证”随时退出。清零阶段仍暂停旧收益，不改D公式。'),
-('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','One supported Writing in a Culture ACTIVE4 city. Left click: baseline, single +1, clear0, single +2, pair1/2, remove only +1, independent single +3, then end. Right click reads native production and instances; End yield gate exits any stage. Clear0 still holds legacy yields. No D formula change.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE','意义延展·生产力'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE','Meaning: Production'),
+('zh_Hans_CN','LOC_SPC_CULTURE_MEANING_PROBE_HINT','本城需文化ACTIVE4及确认的合格巨作。左键：基线 → 仅生产力单值追加 → 结束。工业区与军营分别Floor后合计，每件只用一个最终值载体；右键读取真实生产力和实例。“结束验证”随时退出；其它产出本批未启用。'),
+('en_US','LOC_SPC_CULTURE_MEANING_PROBE_HINT','Culture ACTIVE4 and confirmed eligible works. Left click: baseline, Production-only final value, then end. Floor Industrial Zone and Encampment contributions separately before summing; one final-value carrier per work. Right click reads native production and instances. End yield gate exits any stage. Other yields are not enabled in this batch.'),
 ('zh_Hans_CN','LOC_SPC_MEANING_PROBE_CARRIER','意义延展验证载体'),
 ('en_US','LOC_SPC_MEANING_PROBE_CARRIER','Meaning probe carrier');

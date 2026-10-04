@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0417
-Implementation Build: source/live B160.187 / modinfo187 NATIVE_CONTROLS_REVIEWED / COMBINATION_FAIL; stable B069.96
+Status Revision: S0418
+Implementation Build: source B161.188 / modinfo188 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; live B160.187 until W0003 deployment; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0045（Meaning直接合同不改；B160仅诊断，正式接入未完成）
+Design Revision Reviewed: D0045（Meaning直接合同不改；B161仅Production单城门禁，正式接入未完成）
 Latest Accepted Design Revision: D0045
-Design Sync State: D0045_AUTHORITY_RETAINED / B160_NATIVE_REVIEWED; multi-piece failure retained
-Work State: P0_L2C_PRODUCTION_RECONFIGURATION_NATIVE_REVIEWED
+Design Sync State: D0045_AUTHORITY_RETAINED / B161_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE
+Work State: P0_L2C_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Design D0045／Architecture A0161保持，source/live仍B160.187。[八图原生结果](Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)同T62／Writing实际0→1→清0→2→双片1/2实际1→仅撤1恢复2→独立3实际3。**单值1/2/3与hold内撤销重配即时读数USER_GAME_TEST_PASS，多片合计要求3 USER_GAME_TEST_FAIL**；不宣布完整L2通过。
+当前Design D0045／Architecture A0161不变。用户已授权单城Production-only单值门禁，**source B161.188／modinfo188 LOCAL_COMPLETE／USER_GAME_TEST_REQUIRED**；[结果与一次短测](Validation/Results/Specialization_B161_Production_Single_Value_Local.md)、[完整当前合同](../Architecture/v2/P0_L2_Meaning.md#已授权切片--production单值承载)。每域Floor后合计each，W最后乘；其它产出本批不启用，完整L2 NOT_PASSED。
 
-仅撤1后flat2仍为同一instance12328，排除重建2才能恢复的假象。独立3图含negative SubValue，现reader格式不支持，城市映射UNKNOWN保留；图5/6同为PAIR12，图8仍SINGLE3，没有END／cold-load证据。原LOCAL47方法／58子用例证据不改。八原图ignored归档8/8 SHA256 MATCH，不进Git。
+73定向方法／78subTest PASS；0–10有限最终载体、物理D事件／W／同回合变化／零写、UNKNOWN／loss／reference／load／失败hold／token及独立reader覆盖。Owned37／附件259，旧27及SQL原189前缀保留；signed SubValue最小格式已补，严谨城市核验不变。旧多片FAIL及[B160八图](Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)冻结，未追内部算法。
 
-[当前切片与停止点](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)：用户确认无需追早／低选择，下一建议只Production最终单值承载与signed SubValue诊断补齐，**未授权新实施**。D／K／逐域Floor后同yield合计／W、Catalog、永久状态和GC不改；精准recipient／倍率／结算／其它yield／全城cutover仍各自门禁。END／冷加载可随下批验收合并，不立即要求重复旧实验。
-
-运行关系沿W0003 source `83e191854983089a968629aafc3f7ff05a6aad11`／receipt `B160.187-83e1918-playtest.json` DEVELOP_ACTIVE／182 MATCH既有记录，本轮未重核外部包或进程。仅文档／截图归档，无Mod／测试／Design／main变化、新Gameplay模拟／部署或游戏启动。停止等待下一最小承载计划／实施授权，不自动进L3／M／N／U2。
+source/live分离：部署前live仍B160.187，沿receipt `B160.187-83e1918-playtest.json`；B161尚未部署／实机通过。W0003自动测试部署须commit／push／clean及再次确认游戏退出，再按精确旧receipt恢复stable并激活新包，保留恢复点。永久数据／Design／GC／其它专业／main不变，没有full／stress／游戏启动。停止等本批最小原生验收，不自动其它yield、正式cutover或L3／M／N／U2。
 
 ## 历史阶段记录
 

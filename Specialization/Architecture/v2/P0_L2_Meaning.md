@@ -1,15 +1,27 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_PRODUCTION_RECONFIGURATION_NATIVE_REVIEWED；B160单值1/2/3与hold内撤销重配即时读数通过、多片组合FAIL；独立3归属格式待补，END／cold-load未证。完整L2 NOT_PASSED，下一单值承载仅建议、未获实施授权。
+State: P0_L2C_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE；用户明确授权B161单城Production最终值承载及signed SubValue诊断。STATIC／LOCAL通过、USER_GAME_TEST_REQUIRED；其它yield／全城cutover与完整L2未通过。
 Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-[B160八图原生结果](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)：同T62／Writing实际0→1→清0→2→双片1/2实际1→仅撤1恢复2→独立3实际3。REMAIN2保留同一flat2原生instance12328；单值／hold内撤销重配即时读数USER_GAME_TEST_PASS，双片要求3仍USER_GAME_TEST_FAIL。用户确认不再追早／低优先的内部算法，停止依赖现多片编码作正式承载。
+用户已授权并本地完成**B161.188／modinfo188 Production-only单值门禁**：[实现／本地结果及一次短测](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md)。每域Floor→同yield合计each→W不改；0无carrier，1–10一个最终值，不开启其它yield或正式全城能力。
 
-独立3的原生值正确，但owner／subject SubValue=-544493210被现非负格式parser拒绝，城市归属UNKNOWN保留；这是reader格式缺口，不是已证实identity失败。图5/6是PAIR12上下部分、图8仍为SINGLE3；END／cold-load未提供，不扩大PASS。47方法／58子用例的[原LOCAL证据](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)保持，原图ignored归档8/8 SHA256 MATCH。
+[B160反证](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)原件保持：双片加算FAIL、单值1/2/3即时PASS；无需继续内部优先排序调查。已补已观测signed SubValue诊断格式，ID／parent／完整reference仍核验；不能将新LOCAL补丁升级为新原生PASS。
 
-下一仅建议Production单值承载定域批次及signed SubValue的最小诊断补齐，待新计划／授权。模型仍逐域Floor后同yield合计each、W最后乘，不改D／K／Catalog／永久状态／GC。精准recipient、倍率、结算、其它yield与全城cutover仍按各自门禁；直接退出／cold-load可合并下批短测，不立即要求重复旧实验。source/live／Git／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准，不自动实施或进L3／M／N／U2。
+Owned旧27＋新10=37、259附件；旧writer仅hold本城，退出确认后按当前事实恢复；UNKNOWN／失城／引用／load／失败保护保持。73定向方法／78subTest PASS，无full／stress。source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准，当前停止待本批原生测试，不自动进其它yield／cutover／L3／M／N／U2。
+
+## 已授权切片 — Production单值承载
+
+**Goal／边界。** 用户在B160验收记录后明确授权该最小实现；只将所选Culture ACTIVE IV城的Production门禁改成一个最终值，不将“单3成功”推为完整Meaning通过。D0045意义延展及Shared当前资格、D与W合同完整沿用。
+
+**计算／承载。** 工业区及军营各自Floor(0.5D)后合计为each.PRODUCTION∈0..10，W只乘total。M.Plan五yield／七域不变，当前投影仅Production。0无carrier、1..10精确单载体各含七既有object附件，无ScalingFactor。旧27完整保留清理，新10追加成37／259；私有B160固定八态保留原bits反证，不作为正式编码。其它yield写入不扩大；normal View遇旧bits／非Production或多个final残留明确配置错误。
+
+**退出／更新。** 复用现一城默认OFF→BASELINE→ACTIVE→OFF和本城GWA156／Dialogue0%互斥。金额变化先确认清旧37中的废弃项后才添新；失败不释放旧hold或混写。UNKNOWN保留最近确认，不当0；同回合真实变化及重复零写保留，confirmed loss／reference退出及load默认OFF沿原module-owned路径，不动永久状态。完整诊断只explicitView，不新增订阅、轮询或GC；缓存／session按原key／退出清理合同。
+
+**诊断。** 复用按钮左普通ADVANCE、右普通READ及结束。normal仅Production实际getter／W／each／total；精确Writing名单含37旧新与旧GWA Production，每explicitREAD token一次全局GetModifiers枚举，Show／Copy／ADVANCE／END不重扫。signed SubValue仅可选负号、其它ID非负及parent／reference核验不放宽。未知／截断不当零，END／cold-load仍需真实验证，退出绝对值包含旧writer恢复。其它object、精准recipient、倍率、正常结算与其它yield各有门禁。
+
+**验证／停止。** W0004 L2＋直接loss／load／reference L3定向断言，真实fixture／SQL内存验证，不跑旧five-yield全套／fullstress，不改历史断言。一次短测模型非二进制单值变化、W、直接END及启用副本cold-load；详见当前结果。commit／push／W0003安全部署后等用户验收，禁止自动正式cutover、其它yield迁移或下一能力。
 
 ## 已授权切片 — Production组合与退出诊断
 

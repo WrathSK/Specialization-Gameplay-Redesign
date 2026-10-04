@@ -95,12 +95,35 @@ end
 
 -- One on-demand comparison for the current single-city fixture. Never persisted,
 -- never a Gameplay source, and no native handles survive a read.
+local function productionAbsolute(P,c)
+ local b=c:GetBuildings();local y=assert(GameInfo.Yields.YIELD_PRODUCTION,'PRODUCTION_DEFINITION_MISSING');local total=0
+ for r in GameInfo.Buildings()do
+  local has=P.HasBuilding(b,r.Index);assert(type(has)=='boolean','BUILDING_UNKNOWN')
+  if has then
+   local slots=b:GetNumGreatWorkSlots(r.Index)
+   assert(type(slots)=='number' and slots>=0 and slots%1==0 and slots<=16,'SLOTS_UNKNOWN')
+   if slots>0 then
+    local actual=b:GetBuildingYieldFromGreatWorks(y.Index,r.Index)
+    assert(type(actual)=='number' and actual==actual and math.abs(actual)<math.huge,'WORK_YIELD_UNKNOWN');total=total+actual
+   end
+  end
+ end
+ assert(total==total and math.abs(total)<math.huge,'WORK_YIELD_UNKNOWN');return total
+end
 local meaningReadings,productionReading
 function SPCBoostGreatWorkRead.ClearMeaningRead() meaningReadings=nil;productionReading=nil end
 function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
  local ok,result=pcall(function()
   assert(v.owner==Game.GetLocalPlayer() and v.cityID==c:GetID() and v.reference==SPCNetworkInput.Reference(c),'ME_UI_REFERENCE_CHANGED')
-  if v.mode=='OFF' then meaningReadings=nil;return '测试已关闭；本次五产出对照已释放。'end
+  if v.mode=='OFF' then
+   meaningReadings=nil
+   if v.productionOnly then
+    local turn=Game.GetCurrentGameTurn();local actual=productionAbsolute(P,c)
+    assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
+    return string.format('生产力对照已关闭｜当前原生作品生产力 %.2f；旧系统恢复另行核对，不作追加差值PASS。',actual)
+   end
+   return '测试已关闭；本次五产出对照已释放。'
+  end
   assert(v.mode=='BASELINE' or v.mode=='ACTIVE','ME_UI_MODE_UNKNOWN')
   assert(not v.error and not v.configurationError and not v.dialogueError and v.oldHeld and v.planStatus=='READY','ME_UI_CONFIGURATION_PENDING')
   assert(v.dialoguePercent==0 and v.configuredCulture==0,'ME_UI_CONFIGURATION_PENDING')
@@ -114,6 +137,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
    {'FOOD','食物','food','totalFood','configuredFood'},
    {'FAITH','信仰','faith','totalFaith','configuredFaith'}
   }
+  if v.productionOnly then definitions={definitions[2]}end
   local on=v.mode=='ACTIVE';local totals={};local expected={}
   for _,entry in ipairs(definitions)do
    local yield,each,total,configured=entry[1],v[entry[3]],v[entry[4]],v[entry[5]]
@@ -157,13 +181,14 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   local depthKnown=type(v.stamp)=='string' and #v.stamp>0
   local qualification=table.concat({tostring(v.currentIdentity),tostring(v.currentPotential),tostring(v.currentActive),tostring(v.currentActiveStatus)},':')
   table.sort(signature)
-  local key=v.reference..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
+  local key=v.reference..'|'..tostring(v.productionOnly==true)..'|'..tostring(v.stamp)..'|'..v.count..'|'..turn..'|'..qualification..'|'..tostring(population)..'|'..table.concat(signature,';')
   assert(v.reference==SPCNetworkInput.Reference(c) and turn==Game.GetCurrentGameTurn(),'ME_UI_REFERENCE_CHANGED')
   local stable=populationKnown and qualificationKnown and depthKnown
   if mark and v.mode=='BASELINE' and stable then meaningReadings={key=key,baseline=totals,current=totals}end
   local valid=stable and meaningReadings and meaningReadings.key==key
   if valid then meaningReadings.current=totals else meaningReadings=nil end
-  local lines={string.format('原生巨作读数｜%d件／%d座馆藏建筑｜%s',workCount,buildings,on and '追加中' or '基线')}
+  local lines={string.format('%s｜合格W=%d／%d座馆藏建筑｜%s',v.productionOnly and '生产力单值对照' or '原生巨作读数',workCount,buildings,on and '追加中' or '基线')}
+  if v.productionOnly then lines[#lines+1]='本次仅开启生产力；其它产出未验证。'end
   for _,entry in ipairs(definitions)do
    local y=entry[1];local delta=valid and on and (totals[y]-meaningReadings.baseline[y]) or nil
    lines[#lines+1]=string.format('%s｜每件 +%g／本城 +%g｜实测差值 %s｜当前原生 %.2f',entry[2],on and v[entry[3]] or 0,expected[y],delta~=nil and string.format('%+.2f',delta) or (on and '未确认' or '待启用追加'),totals[y])
@@ -179,7 +204,7 @@ function SPCBoostGreatWorkRead.Meaning(P,c,v,mark)
   return table.concat(lines,'\n')
  end)
  if not ok then meaningReadings=nil end -- An unknown/error cannot retain a successful comparison.
- return ok and result or ('五产出原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
+ return ok and result or ((v.productionOnly and '生产力' or '五产出')..'原生读数未确认：'..(tostring(result):match('ME_[A-Z_]+') or '原生接口未知')..'；不记录成功基线。')
 end
 
 -- Fixed technical comparison only; this does not calculate Design D or Floor.
@@ -241,6 +266,9 @@ local function diagnosticConfiguration(v)
   if M.DiagnosticSingle3 and entry.name==M.DiagnosticSingle3.name then
    assert((entry.yield=='PRODUCTION' or entry.yield=='YIELD_PRODUCTION') and entry.amount==M.DiagnosticSingle3.amount,'ME_UI_DIAG_CONFIGURATION')
   end
+  for _,part in pairs(M.ProductionValues or {})do if entry.name==part.name then
+   assert((entry.yield=='PRODUCTION' or entry.yield=='YIELD_PRODUCTION') and entry.amount==part.amount,'ME_UI_DIAG_CONFIGURATION')
+  end end
   names[entry.name]=true;count=count+1
   if (entry.yield=='PRODUCTION' or entry.yield=='YIELD_PRODUCTION') and not entry.pillaged then amount=amount+entry.amount end
  end
@@ -323,11 +351,11 @@ do
   if type(f)~='function' then return false,'API_MISSING:'..name end
   return pcall(f,...)
  end
- -- B157: only the complete District format observed in B156 is interpreted.
+ -- Complete observed District format only, including B160's signed SubValue.
  -- GameEffects object IDs are NOT city/district IDs. SubType/SubValue are opaque.
  local function mapDistrict(kind,raw,player,c)
   if kind~='LOC_MODIFIER_OBJECT_DISTRICT' or type(raw)~='string' or #raw>512 then return 'UNKNOWN:FORMAT' end
-  local did,pid,sub,val,cid=raw:match('^District: (%d+), Owner: (%d+), SubType: (%d+), SubValue: (%d+), City: (%d+)$')
+  local did,pid,sub,val,cid=raw:match('^District: (%d+), Owner: (%d+), SubType: (%d+), SubValue: (%-?%d+), City: (%d+)$')
   if not did then return 'UNKNOWN:FORMAT' end
   did,pid,cid=tonumber(did),tonumber(pid),tonumber(cid)
   for _,n in ipairs({did,pid,cid})do if not integer(n) or n>9007199254740991 then return 'UNKNOWN:ID' end end
@@ -354,7 +382,7 @@ do
   local ref=SPCNetworkInput.Reference(c)
   assert(SPCNetworkInput.Reference(selected)==ref and v.owner==c:GetOwner() and v.cityID==c:GetID() and v.reference==ref,'STALE_REFERENCE')
   local parts={ref,tostring(Game.GetCurrentGameTurn())}
-  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned'})do parts[#parts+1]=text(v[k])end
+  for _,k in ipairs({'mode','variant','stamp','configuredScience','configuredGold','configuredCulture','configuredProduction','configuredFood','configuredFaith','dialoguePercent','count','error','configurationError','diagnostic','diagnosticStage','diagnosticExpected','remainingOwned','productionOnly'})do parts[#parts+1]=text(v[k])end
   return table.concat(parts,'|')
  end
  function SPCBoostGreatWorkRead.ClearModifierRead()
@@ -365,7 +393,7 @@ do
   local function add(id,building,label,priority,family)
    if GameInfo.Buildings[building] then allow[id]={building=building,label=label,priority=priority,family=family,attached=false}end
   end
-  if v.diagnostic then
+  if v.diagnostic or v.productionOnly then
    for _,b in ipairs(SPCCultureMeaningModel.Owned)do add(b:sub(10)..'_WRITING',b,'意义延展',2,'MEANING')end
    for _,sign in ipairs({'P','N'})do for bit=0,12 do
     local b='BUILDING_SPC_B060_PRODUCTION_'..sign..bit;add(b:sub(10)..'_WRITING',b,'旧相邻生产力',6,'GWA')
@@ -395,8 +423,15 @@ do
    return lines
   end
   local lines={'所选城 '..text(c:GetName())..'｜玩家'..c:GetOwner()..' / 城市'..c:GetID(),
-   '原型状态 '..text(v.mode)..' / '..text(v.variant)..'｜配置 S/G/C='..text(v.configuredScience)..'/'..text(v.configuredGold)..'/'..text(v.configuredCulture),
+   v.productionOnly and ('原型状态 '..text(v.mode)..'｜每件Production '..text(v.production)..'｜载体配置 '..text(v.configuredProduction)..'｜合格W '..text(v.count)..'｜remainingOwned '..text(v.remainingOwned))
+    or ('原型状态 '..text(v.mode)..' / '..text(v.variant)..'｜配置 S/G/C='..text(v.configuredScience)..'/'..text(v.configuredGold)..'/'..text(v.configuredCulture)),
    '城市引用 '..text(v.reference)}
+  if v.productionOnly then
+   local ok,value=pcall(productionAbsolute,P,c)
+   lines[#lines+1]=ok and ('当前原生作品生产力 '..text(value)..'（本城馆藏建筑小计）')
+    or ('生产力实际读数未确认：'..text(value)..'；不以0代替未知。')
+   return lines
+  end
   local ok,why=pcall(function()
    local r=assert(GameInfo.Buildings.BUILDING_AMPHITHEATER,'AMPHITHEATER_DEFINITION_MISSING');local b=c:GetBuildings()
    local has=P.HasBuilding(b,r.Index);lines[#lines+1]='古罗马剧场：存在='..text(has)..'｜掠夺='..(has and text(b:IsPillaged(r.Index)) or '不适用')
@@ -473,7 +508,7 @@ do
   end
   ids=nil
   table.sort(rows,function(a,b)
-   if v.diagnostic then
+   if v.diagnostic or v.productionOnly then
     local function rank(r)return (r.mapping=='本城已核验' and 0 or 10)+(r.yield=='YIELD_PRODUCTION' and 0 or 5)+(r.family=='MEANING' and 0 or 1)end
     local ar,br=rank(a),rank(b);if ar~=br then return ar<br end
    end
@@ -485,7 +520,7 @@ do
   for _,s in ipairs(fixture(P,c,v))do lines[#lines+1]=s end
   lines[#lines+1]='本玩家匹配实例 '..(#rows-unknown)..'｜玩家未知 '..unknown..'｜其它玩家跳过 '..foreign..'｜已检查定义 '..defs
   if #rows==0 then lines[#lines+1]=complete and '本次未观察到匹配实例；不等于本城没有效果。' or '读取不完整，不能解释为零实例。'end
-  if v.diagnostic then
+  if v.diagnostic or v.productionOnly then
    local meaning,active,gwa,unmapped=0,0,0,0
    for _,r in ipairs(rows)do
     if r.mapping=='本城已核验' then
@@ -494,7 +529,7 @@ do
     elseif r.mapping:sub(1,8)=='UNKNOWN:' then unmapped=unmapped+1 end
    end
    lines[#lines+1]='本城Meaning Writing实例 '..meaning..'（Active=true '..active..'）｜本城旧GWA Production实例 '..gwa..'｜城市UNKNOWN '..unmapped
-   if v.diagnosticStage=='OFF' then
+   if v.diagnosticStage=='OFF' or v.productionOnly and v.mode=='OFF' then
     lines[#lines+1]=(meaning>0 or v.remainingOwned and v.remainingOwned>0) and '异常：OFF仍观察到本城Meaning实例或精确载体；不能确认撤销。'
      or ((not complete or unmapped>0 or #rows>12) and '撤销未确认：读取不完整／城市UNKNOWN／报告截断。' or '本次未观察到本城Meaning Writing实例；真实退出收益及旧系统恢复另行核对。')
    end
@@ -503,7 +538,7 @@ do
   for i=1,math.min(12,#rows)do local row=rows[i];local key=tostring(row.player)..'|'..row.ownerType..'|'..row.raw
    if not owners[key] then ownerCount=ownerCount+1;owners[key]=ownerCount;lines[#lines+1]='归属对象'..ownerCount..'｜玩家 '..text(row.player)..'｜'..row.ownerType..'｜'..row.raw end
    lines[#lines+1]=row.label..'｜Active='..row.active..'｜归属对象'..owners[key]..'｜'..row.mapping..'｜subjects='..row.subjects
-   lines[#lines+1]=(v.diagnostic and ('实例ID '..row.instanceID..'｜') or '')..row.id..'｜'..row.args
+   lines[#lines+1]=((v.diagnostic or v.productionOnly) and ('实例ID '..row.instanceID..'｜') or '')..row.id..'｜'..row.args
    for _,subject in ipairs(row.subjectRows)do lines[#lines+1]=subject end
   end
   if #rows>12 then lines[#lines+1]='另'..(#rows-12)..'个匹配实例未展开；本报告不声称完成全部效果核对。'end

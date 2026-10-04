@@ -74,11 +74,16 @@ local function displayResponse()
       if c and v and v.token==pendingToken then
         local ref=SPCNetworkInput.Reference(c);local turn=Game.GetCurrentGameTurn()
         local selected=UI.GetHeadSelectedCity()
-        local selectedMatch=not v.diagnostic or selected and selected:GetOwner()==c:GetOwner() and SPCNetworkInput.Reference(selected)==ref
+        local selectedMatch=not (v.diagnostic or v.productionOnly) or selected and selected:GetOwner()==c:GetOwner() and SPCNetworkInput.Reference(selected)==ref
         if meaningResponseToken~=pendingToken and selectedMatch then
           if v.diagnostic then
             meaningResponseText=SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE',pendingToken,meaningReadReference,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ')
-          else meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')end
+          else
+            meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE')
+            if v.productionOnly and pendingAction=='CULTURE_MEANING_READ' then
+              meaningResponseText=meaningResponseText..'\n'..SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
+            end
+          end
           meaningResponseToken=pendingToken;meaningResponseReference=ref;meaningResponseTurn=turn
         end
         if selectedMatch and ref==meaningResponseReference and ref==v.reference and turn==meaningResponseTurn then
@@ -496,8 +501,8 @@ local function initialize()
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_END') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_END') end)
-  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_DIAGNOSTIC_ADVANCE') end)
-  Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_DIAGNOSTIC_READ') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_ADVANCE') end)
+  Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_AESTHETIC_READ') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_AESTHETIC_DETAIL',true) end)
   Controls.GWReadButton:RegisterCallback(Mouse.eLClick,function() request('GREAT_WORK_FACTS_READ') end)

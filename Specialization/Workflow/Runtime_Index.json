@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "49d9d7a8aad021dc8eebd3dd28596da29c6135ca5208eb935a36dd3ae3c3fada",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "a7971e3592fb1cdfe97f2c6bf229aaefbadc892b25615a13b35e31369c72fc0a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "40e66671958521f70e95a546b4a8aa8bf2fd4d5b09037e749427e104794a39aa",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "785fb134e524eec51f607fe24bbd3b8fec3d831bc94a9249eee23c6ccfb21f57",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "3551219062f24c05fb79326aff20b7335071d991966754944a937e43726a02c1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "faef614d2a0193698940ba2ffcf792e08c3ffefa85638c63927ab52072ef689c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "b4eae31006957bd16197877fabd60c9d8ec14e5c1adcd11cdae33821d5656d6c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "45abc7f35c7029c5f04833dc00e0e85955ec55a353b7cdd827eb4f1765a3ab38",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "33d1a7a68693eb712292d184e3385e249e4870df8995523b8387b0b4f747d7e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -471,9 +471,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "568104e181748f6d085dd3f9c08c4eb2ef119a16d22b6424cfb229f664be8ec3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "59c0132c24ff9ccbbfdc78be35216d4768d17e13f2a16a1fa19ab0dbb598fa00",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "a6dd17858ee4424a2f9d382a6666f4bf96975ed2d01910a80d8af434ef514583",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md",
-      "provenance": "B159 explicitly authorized single-Writing Production diagnostic; targeted LOCAL18 methods/31 subtests PASS, native pending. Existing definitions only, no Design/GC/permanent/global cutover."
+      "sha256": "d830da6579ba868436fbf28fa9fcb5cd8e64cd99549c28e7c9ba80d3c5a579da",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
@@ -901,19 +901,19 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "68599c156202bcf4306ebf2c72dfde1c1fe9fb94028121a9628e5c60940e73b1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "8f5d8bf08f3b455d3f96b6d0b60be1ab2a99ff3324e5e126fa4b70928acf399f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "8769357060092d907bc1a5112ca9e610c7cf75a0631c0c0436bb82be40f90889",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "ffbad4ea934f5d41066376c213e3f75ea060fa497ec7dbb8f3a0f4ad2d4936fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     },
     "Mod/Data/CultureMeaningProbe.sql": {
-      "sha256": "3a99b166d44e465c4a6e12b93229c42a49a5fd329ecf9ceef30116415bd4f93f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
-      "provenance": "B160 authorized fixed one-city Production reconfiguration and independent3 diagnostic. Exact27/189 cleanup; REMAIN2 preserves healthy+2; ordinary Meaning model unchanged. Targeted LOCAL PASS, B160 native pending; no permanent/Design/GC change."
+      "sha256": "ca5a7a9dd2fefdc9be4fdc13fc6b9fa4f7b4df2bcb459fc5760fc1c369264092",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
+      "provenance": "B161 authorized Production-only single-value scoped delta; STATIC/LOCAL, native pending; no all-runtime audit"
     }
   }
 }
