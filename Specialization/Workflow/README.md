@@ -126,6 +126,26 @@ Choose L1/L2/L3 from the actual changed path and failure cost before implementat
 
 `GAME_TEST_LOCAL` = static/mock, never engine PASS. `GAME_TEST_COMPUTER_USE` = UNRESOLVED / DEFERRED; requires reliable capability and explicit game/test authorization, does not override prohibition. `GAME_TEST_USER` covers remaining native behavior only; compress assertions into one minimal test after local verification. No game test for W0001.
 
+### Native delta and inherited evidence
+
+USER_GAME_TEST targets the batch's new or changed native uncertainty, not every theoretical lifecycle risk. In the existing plan, distinguish (A) changed native behavior, (B) unchanged shared paths with applicable evidence, and (C) genuinely uncovered boundaries. Do not create a separate policy manifest/report. Every requested step must briefly identify what its PASS/FAIL would newly distinguish; repeat confirmation of unchanged, already-covered infrastructure is not sufficient information value.
+
+Inherit named USER_GAME_TEST/LOCAL_SIMULATION evidence only for its actual source/path, fixture, ownership and observation scope. Keep targeted local regression and error protections; inheritance does not turn an untested native boundary into PASS. Confirm relevant implementation/configuration differences before reuse. Local mocks do not prove native persistence, instance withdrawal or event ordering.
+
+Gameplay ability identity, persistent assets and current activation are distinct from a Probe's temporary ACTIVE/OFF, UI baseline, native-reader token and default-OFF control session. State explicitly whether a step tests gameplay or the test harness. OFF alone is not proof that owned native effects withdrew or the old consumer restored. Saving an enabled Probe copy, loading it to confirm OFF and re-enabling is not a default gate for every new yield.
+
+Reintroduce a scoped native lifecycle assertion only for a concrete reason: changed lifecycle source; different state ownership/persistence/carrier/cleanup path; a native difference local tests cannot faithfully model; earlier evidence missing the relevant difference; an observed anomaly reasonably suggesting regression; or an explicit integration/cutover checkpoint. Explain the precise changed or anomalous path, the prior evidence gap, the two outcomes being distinguished and why existing local checks cannot answer. A theoretical possibility of save/load failure alone does not qualify. A known unresolved or failed boundary remains unresolved/failed; shortening a test must never erase it.
+
+| Change / risk | Default user-game budget |
+|---|---|
+| Incremental ability/yield | One continuous session: new native primitive, decisive transition/reconfiguration, and its scoped withdrawal where relevant; no automatic save → END → exit → cold-load → re-enable loop. |
+| Shared lifecycle unchanged and covered | Inherit scoped evidence + targeted local regression; no repeated native ritual. |
+| Persistence, ownership, save schema or load reconstruction changed | Only the relevant save/load or transfer boundary. |
+| Exit/cleanup/reference ownership changed, or concrete residual observed | Targeted withdrawal/recovery check; unrelated already-passed yield transitions need not repeat. |
+| Important integration milestone / formal cutover | A broader integration test with explicit scope and purpose. |
+
+Keep W0004's L1/L2/L3 local risk classification, USER_GAME_TEST gate, evidence levels, exact owned withdrawal, UNKNOWN/confirmed-loss distinction and deployment/save safeguards. This policy supersedes mechanical test recipes in earlier plans without rewriting frozen results. A failure blocks its dependent path; it does not by itself reopen all historical testing or halt unrelated development.
+
 ## W0004 v2 — Git-era responsibility boundaries
 
 **W0004_V2_GIT_ERA_SIMPLIFICATION_ACTIVE.** Git/GitHub provide canonical source history/recovery/provenance; deployment tools protect the external runtime transaction; automated tests follow W0004 v1; USER_GAME_TEST establishes native behavior. Keep Design, approval, isolation and batch-stop gates unchanged.

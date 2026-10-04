@@ -1,15 +1,15 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE；用户明确授权B161单城Production最终值承载及signed SubValue诊断。STATIC／LOCAL通过、USER_GAME_TEST_REQUIRED；其它yield／全城cutover与完整L2未通过。
+State: P0_L2C_PRODUCTION_NATIVE_PARTIAL_OFF_RESIDUAL；B161所测Production3→5／W2总10及signed映射USER_GAME_TEST_PASS，重启后OFF残留USER_GAME_TEST_FAIL；直接END未确认，下一定域修复待授权，完整L2未通过。
 Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户已授权并本地完成**B161.188／modinfo188 Production-only单值门禁**：[实现／本地结果及一次短测](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md)。每域Floor→同yield合计each→W不改；0无carrier，1–10一个最终值，不开启其它yield或正式全城能力。
+**B161.188／modinfo188单城Production原生增量已验：3→5替换、W2小计10及signed映射PASS；重启OFF仍有VALUE_5并与旧writer并存，退出门禁FAIL。** [七图结果／范围](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md)。直接END未截图，仅NOT_CONFIRMED，不能把用户操作不明当作已退出。
 
-[B160反证](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)原件保持：双片加算FAIL、单值1/2/3即时PASS；无需继续内部优先排序调查。已补已观测signed SubValue诊断格式，ID／parent／完整reference仍核验；不能将新LOCAL补丁升级为新原生PASS。
+每域Floor→each→W、0无carrier／1–10一个最终值及D0045不变；[原73方法／78subTest](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md)冻结，[B160多片反证](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)保留。按[长期native delta原则](../../Workflow/README.md#native-delta-and-inherited-evidence)只测新增不确定性，不默认重做保存／冷加载／再启用。
 
-Owned旧27＋新10=37、259附件；旧writer仅hold本城，退出确认后按当前事实恢复；UNKNOWN／失城／引用／load／失败保护保持。73定向方法／78subTest PASS，无full／stress。source／live／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准，当前停止待本批原生测试，不自动进其它yield／cutover／L3／M／N／U2。
+source／live／receipt沿[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)最近核对；本轮无运行改动。下一仅Probe首次清理／就绪／OFF残留定域修复建议，**未授权实施**；不重测已过收益，不自动其它yield／正式cutover／L3／M／N／U2。
 
 ## 已授权切片 — Production单值承载
 
@@ -19,9 +19,18 @@ Owned旧27＋新10=37、259附件；旧writer仅hold本城，退出确认后按�
 
 **退出／更新。** 复用现一城默认OFF→BASELINE→ACTIVE→OFF和本城GWA156／Dialogue0%互斥。金额变化先确认清旧37中的废弃项后才添新；失败不释放旧hold或混写。UNKNOWN保留最近确认，不当0；同回合真实变化及重复零写保留，confirmed loss／reference退出及load默认OFF沿原module-owned路径，不动永久状态。完整诊断只explicitView，不新增订阅、轮询或GC；缓存／session按原key／退出清理合同。
 
-**诊断。** 复用按钮左普通ADVANCE、右普通READ及结束。normal仅Production实际getter／W／each／total；精确Writing名单含37旧新与旧GWA Production，每explicitREAD token一次全局GetModifiers枚举，Show／Copy／ADVANCE／END不重扫。signed SubValue仅可选负号、其它ID非负及parent／reference核验不放宽。未知／截断不当零，END／cold-load仍需真实验证，退出绝对值包含旧writer恢复。其它object、精准recipient、倍率、正常结算与其它yield各有门禁。
+**诊断。** 复用按钮左普通ADVANCE、右普通READ及结束。normal仅Production实际getter／W／each／total；精确Writing名单含37旧新与旧GWA Production，每explicitREAD token一次全局GetModifiers枚举，Show／Copy／ADVANCE／END不重扫。signed SubValue仅可选负号、其它ID非负及parent／reference核验不放宽。未知／截断不当零，OFF控制状态不证明精确退出，退出绝对值包含旧writer恢复。其它object、精准recipient、倍率、正常结算与其它yield各有门禁。
 
-**验证／停止。** W0004 L2＋直接loss／load／reference L3定向断言，真实fixture／SQL内存验证，不跑旧five-yield全套／fullstress，不改历史断言。一次短测模型非二进制单值变化、W、直接END及启用副本cold-load；详见当前结果。commit／push／W0003安全部署后等用户验收，禁止自动正式cutover、其它yield迁移或下一能力。
+**验证／停止。** 本地W0004 L2＋直接loss／load／reference L3断言不降低，原73／78证据继承；不跑旧five-yield全套／fullstress或改历史断言。普通native验收只围绕下列连续session delta，不机械附加启用副本／退出游戏／cold-load／再启用。
+
+| 连续session断言 | 新增信息价值／失败区分 | 当前证据 |
+|---|---|---|
+| W1启用一个最终值3 | 证明真实模型最终值以一个flat carrier产生原生＋3，不是配置自证 | 图1／2 PASS |
+| 改D为另一个已知值，核对旧3被替换 | 区分正常最终值与旧新叠加／旧值残留；不共享失效基线 | 实际3→5、唯一VALUE_5／原生5，图3 PASS；不记成4 |
+| 增加第二件支持著作 | 区分per-work正确应用与W被重复乘入 | 实际每件5、宿主10，图4 PASS；不记成8 |
+| 直接END核对精确Meaning0及旧writer当前事实恢复 | 验证当前新VALUE目录的模块退出与互斥，不把OFF文本当清理 | 当前NOT_CONFIRMED，不要求立即重做前三项 |
+
+**当前异常独立处理。** 重启后OFF＋VALUE_5活动实例与旧GWA并存为真实FAIL。先只读核对首次reset／ready／空城市集合、READ和后台旧writer恢复顺序；[结果中的下一最小建议](../../Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md#下一最小建议未实施待授权)另待授权。只有修复这项实际边界时才做一次定域冷加载核对，必要时补被改动的END，不复跑已过3→5／W。其它生命周期依[长期原则](../../Workflow/README.md#native-delta-and-inherited-evidence)继承明确匹配证据；B158冷加载仅OFF、原生清理未确认，不伪造PASS。禁止自动正式cutover、其它yield迁移或下一能力。
 
 ## 已授权切片 — Production组合与退出诊断
 
@@ -36,6 +45,8 @@ Owned旧27＋新10=37、259附件；旧writer仅hold本城，退出确认后按�
 **验证／停止。** W0004 L2及直接loss／load／reference L3：47方法／58子用例PASS，另20项reader回归与其中部分重合；[证据／精确文件及五份报告流程](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)。PAIR12已知失败仍继续REMAIN2作区分，其它异常停止对应路径。独立3成功不自动切换正式编码；精准recipient、倍率、结算与完整L2均另行门禁。本批原生反馈已审阅，下一单值承载待授权；回滚沿Git及W0003精确receipt，不改Design／main／安全工具。
 
 ## 下一批计划 — P0-L2C 七域五产出门禁
+
+**B158阶段计划记录，非当前用户测试派发。** 下列原生流程中的保存／冷加载整套清单已由上方B161当前验收与长期delta政策取代；旧范围及技术合同保留，未覆盖的证据不变成PASS。
 
 **Goal／边界。** 一个默认OFF、单城可逆原型，验证七域模型及五产出的整数承载、实际读数和定域退出。先让剩余五yield进入可验证状态；不是全城正式接入，也不是整个L2完成。用户本轮已授权并LOCAL完成；不实施Culture新候选或宿主诊断，不进入巨作启迪／时代对话正式改造／考察／Network／UI润色。
 

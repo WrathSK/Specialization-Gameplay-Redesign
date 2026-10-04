@@ -13,7 +13,7 @@ The original unchanged source/document checkpoint is `ca54045`. A following infr
 
 ## Validation depth — W0004 v1
 
-[W0004 v1 validation policy](../Workflow/README.md#w0004-v1--quota-efficient-validation-policy) defines risk-matched L1/L2/L3 local checks; “passes local checks” below means that minimum sufficient scope, not automatic full historical regression. W0003 deployment authorization and every exit/hash/manifest/backup/rollback/clean-source safeguard remain unchanged. Tools perform deterministic verification; consume their summary unless a mismatch needs investigation. Local PASS never substitutes for USER_GAME_TEST_PASS.
+[W0004 v1 validation policy](../Workflow/README.md#w0004-v1--quota-efficient-validation-policy) defines risk-matched L1/L2/L3 local checks; “passes local checks” below means that minimum sufficient scope, not automatic full historical regression. W0003 deployment authorization and every exit/hash/manifest/backup/rollback/clean-source safeguard remain unchanged. Tools perform deterministic verification; consume their summary unless a mismatch needs investigation. Local PASS never substitutes for USER_GAME_TEST_PASS. Native acceptance follows the [delta/inherited-evidence policy](../Workflow/README.md#native-delta-and-inherited-evidence): test new uncertainty, inherit unchanged covered lifecycle paths, and justify any scoped save/load or cleanup retest.
 
 ## Current temporary development-test mode — W0003
 

@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0418",
+    "status": "S0419",
     "runtime": "B161.188 / modinfo188",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "fcea2427786cc3230c8b3ad0b9f8564834311816",
-  "current_batch": "P0_L2C_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE",
-  "next_batch": "Await B161 Production-only final-value native gate, W/END/enabled-copy cold-load; no other yield/cutover/L3/M/N/U2 authorization.",
+  "current_batch": "P0_L2C_PRODUCTION_NATIVE_PARTIAL_OFF_RESIDUAL",
+  "next_batch": "Await authorization for scoped Probe first-cleanup/readiness/OFF-residual repair. Native3→5/W2=10 PASS; post-restart VALUE5+legacy coexistence FAIL; direct END unconfirmed. No repeated yield test now or automatic other-yield/cutover/L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B161.188 / modinfo188 DEVELOP_ACTIVE; source commit fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 source/runtime MATCH, B160/stable recovery MATCH, no pending transaction; USER_GAME_TEST_REQUIRED.",
+  "live": "Last verified B161.188 / modinfo188 DEVELOP_ACTIVE; source fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 MATCH. Not reverified/deployed this docs turn. Native observed3→5/W2=10 PASS, OFF residual FAIL; full L2 NOT_PASSED.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0418 user explicitly authorized B161 Production-only final per-work value0..10 plus observed signed SubValue; nine directly affected runtime files and four targeted test/support files reviewed. 73 methods/78subtests PASS; exact37/259, old SQL prefix, same-turn/zero-write/UNKNOWN/loss/load/failure, actual request/K/token/UI and independent native fixtures. Design/permanent/GC/other professions unchanged; no full history/stress or full L2 PASS. Only named hashes, new result/test updated after review. W0003 deploy after clean/sync and reliable OS-exit checks: B161.188-fcea242-playtest.json, 182/182 MATCH; exact B160 restore bridge and retained recovery verified. Only deployment metadata hashes advanced; native pending.",
+  "context_review_status": "S0419 user-authorized long-term native-delta/inherited-evidence policy, not runtime implementation. Seven original screenshots individually read and SHA256 archived: Production3→5/W2=10 and signed mapping PASS; post-restart OFF+VALUE5+old GWA coexistence FAIL, direct END NOT_CONFIRMED. Exact Probe/read/init and fixture readiness inspected; missed/early load or cleanup failure remain hypotheses. Prior73/78 local results/frozen native evidence retained; current test recipe narrowed, no gameplay tests/deploy/Design/Mod/GC/main changes. Only named changed/new documents rehashed after review; next scoped repair requires authorization.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

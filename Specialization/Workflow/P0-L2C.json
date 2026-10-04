@@ -97,7 +97,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0418",
+    "status": "S0419",
     "runtime": "B161.188 / modinfo188",
     "military": "D0037",
     "harbor": "D0037"
@@ -307,7 +307,7 @@
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
       "kind": "full",
-      "reason": "Current B161 local results and once-short-test contract; original B160 evidence remains linked"
+      "reason": "Frozen B161 implementation/local73/78 basis; original native recipe is historical, current acceptance scope follows current slice and native-delta policy"
     },
     {
       "path": "DevelopmentTests/test_culture_meaning_diagnostic.py",
@@ -315,15 +315,15 @@
       "reason": "Direct fixed-control writer/request/reader/Panel/lifecycle and retained mapping regression"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md",
       "kind": "full",
-      "reason": "Latest actual B160 eight-image control evidence, retained2 instance, standalone3 signed-field UNKNOWN and stop. Prior B159/B158 negative evidence linked; does not authorize next writer."
+      "reason": "Latest seven-image native3→5/W2 PASS, OFF residual FAIL, direct END unconfirmed and scoped stop; prior B160/B158/B157 evidence linked, no full history default"
     }
   ],
   "dependencies": [
     "D0045 current Authority preserves per-domain Floor→same-yield each→W, current D/ordinary/qualification/work contracts. Current gate projects only Production from authoritative shared facts.",
     "Existing K confirmed current-reference bridge and local ACTIVE facade",
-    "B157 named S/G and owned lifecycle evidence only; P/F/Faith native unresolved",
+    "B157 named S/G/same-session owned exit evidence only; B161 Writing Production3→5/W2=10 native PASS, post-restart withdrawal FAIL. Food/Faith/other objects and full Meaning remain unresolved.",
     "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI"
   ],
   "old_writers": [
@@ -343,19 +343,19 @@
       "Same-turn changes/zero-write/UNKNOWN/two-city/loss/reference/load/owned create-remove failure and hold; actual request/K sample pairing/reentrancy/token",
       "Production-only independent getters and signed field exact identity checks; explicit READ only once, repeated/late/cache selection, OFF residual/config metadata"
     ],
-    "user": "One Culture ACTIVEIV city, supported Writing: baseline→model final3→domain change final4→W2 per-work4/total8, save enabled copy→directEND exact withdrawal/current legacy restore→cold-load saved enabled copy OFF/clean→manual reenable. At most4 key reports. Alternate known nonbinary input if fixture cannot form3/4; no long/all-object test, no full L2/settlement proof."
+    "user": "Ordinary incremental gate: one continuous session W1 final3→D changed known final4 (or equivalent5) replacing3→W2 expected8 (or10)→END exact Meaning0/current legacy restoration. Each step distinguishes new native behavior; no default enabled-save/cold-load/re-enable loop. B161 actual3→5/W2=10 PASS, directEND unconfirmed. Post-restart OFF residual is a separate concrete exception: after an authorized readiness/cleanup repair, one scoped cold-load+exact read; repeat END only if that path changes, do not repeat passed yield gates."
   },
   "result": {
     "plan": "User explicitly authorized prior Production-only single-value recommendation; complete B161 scoped contract recorded, no wider plan/Design change.",
     "implementation": "B161.188 / modinfo188 LOCAL_COMPLETE; 73 methods/78subtests PASS, Production-only one selected city final-value gate.",
-    "native": "B161 USER_GAME_TEST_REQUIRED; B160 frozen scoped single1/2/3 PASS and multipiece FAIL retained. Signed-format fix is LOCAL only; native value transitions/W/END/cold-load unconfirmed; full L2 NOT_PASSED.",
-    "stop": "Await B161 Production-only final-value native gate, W/END/enabled-copy cold-load; no other yield/cutover/L3/M/N/U2 authorization.",
-    "deployment": "B161.188 / modinfo188 DEVELOP_ACTIVE; source commit fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 source/runtime MATCH, B160/stable recovery MATCH, no pending transaction; USER_GAME_TEST_REQUIRED.",
+    "native": "B161 USER_GAME_TEST_PASS scoped Writing model/native3→5 replacement, W2 host10, signed identity format; USER_GAME_TEST_FAIL post-restart OFF with VALUE5 Active plus old GWA restored. Direct END NOT_CONFIRMED; saved/END ordering and actual load event cause unknown; full L2 NOT_PASSED. Existing73/78 local results retained, not rerun or upgraded.",
+    "stop": "Await authorization for scoped Probe first-cleanup/readiness/OFF-residual repair. Native3→5/W2=10 PASS; post-restart VALUE5+legacy coexistence FAIL; direct END unconfirmed. No repeated yield test now or automatic other-yield/cutover/L3/M/N/U2.",
+    "deployment": "Last verified B161.188 / modinfo188 DEVELOP_ACTIVE; source fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 MATCH. Not reverified/deployed this docs turn. Native observed3→5/W2=10 PASS, OFF residual FAIL; full L2 NOT_PASSED.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B161_Production_Single_Value_Local.md",
     "local_test_entry": "DevelopmentTests/test_culture_meaning_single_value.py + test_culture_meaning_diagnostic.py + selected direct test_modifier_read.py methods; targeted only, historical five-yield suite not run",
-    "next_proposal": "After native evidence, propose only remaining specific gate; no automatic other-yield migration/formal cutover."
+    "next_proposal": "Only scoped first-cleanup/readiness/OFF-residual repair after explicit implementation authorization. No runtime edits this policy/archive turn; no new testing now, no other-yield migration/formal cutover."
   }
 }
