@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0424
-Implementation Build: source/live B163.190 / modinfo190 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
+Status Revision: S0425
+Implementation Build: source/live B163.190 / modinfo190 NATIVE_PARTIAL / CULTURE_FAIL / CATALOG_REPAIR_PENDING; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0047（市政未来基线／白板载体范围同步；Culture D0046原生共存仍待验）
+Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0047
 Design Sync State: D0047_GOVERNMENT_FUTURE_BASELINE / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_SIX_YIELD_FINAL_VALUE_LOCAL_COMPLETE_AWAITING_USER
+Work State: P0_L2C_B163_NATIVE_PARTIAL_SCOPED_REPAIR_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-Design Spec／市政D0047已接受，仅未来设计与当前专用白板文明范围同步；四专业实施范围、B163验收及下述停止点不变。Culture D0046恢复市政／外交文化来源（九域六产出）；Shared D0045／Architecture A0161保持。用户已授权[六产出单值切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--六产出单值承载)，B163.190 LOCAL完成后等待最小原生验收；仍单城可逆probe，非正式全城cutover。每域Floor→同yield相加→W、K／永久数据／GC不变。
+Spec／Government D0047、Culture D0046、Shared D0045及Architecture A0161不改；当前v0.1四专业范围保持。[B163五图实机](Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)通过本城Writing五项非Culture初始值、所测D重配及W2当前读数；Culture要求＋3、实测Δ0，社区目录仍缺Tier1／2来源。完整L2 NOT_PASSED，不能把配置正确当文化收益已生效。
 
-[本地结果](Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md)区分静态／模拟；B161 Production3→5/W2及B162 scoped清理／END PASS继承。Culture单片B155/B157失败保留，本批改剧院宿主，不把Production多片解释推定为Culture根因关闭。六行简报／缓存明细，只测新增原生差异，不重复未改harness冷加载；精准recipient／倍率／结算仍待，完整L2 NOT_PASSED。
+[只读调查](../Reports/Technical/Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)不建议接管HD普通剧场附着。用户条件后备已选：市政／外交Culture临时实施隔离，保留已接受Design与失败证据；当前B163代码还未落实隔离。社区Villa／Mansion／BusStop ordinaryOnly→D目录补齐独立处理。下一[最小修复计划](../Architecture/v2/P0_L2_Meaning.md#下一最小修复--文化隔离与社区d目录)待实施授权；不再派发当前六产出验收或重做冷加载。
 
-source／live B163.190／modinfo190已按W0003部署（源码`3763677`，receipt `B163.190-3763677-playtest.json`、182/182 MATCH）。B162及stable恢复点保留，无pending marker、未启动游戏；main稳定B069.96不动。部署完成不等于原生验收，停止等待本切片反馈，不自动进入其它能力或正式cutover。
+source／live仍B163.190／modinfo190（运行源码`3763677`、既有receipt `B163.190-3763677-playtest.json`／182 MATCH），本轮不重核外部包、不改Mod／部署／启动游戏。B161／B162所测收益与定域清理证据继承，当前截图没有END／倍率／结算新PASS；main稳定B069.96、永久数据及GC保持。不自动正式cutover或进L3／M／N／U2。
+
+## S0425 — B163反馈与定域修复待授权
+
+五张原图逐张读取、ignored归档5/5 SHA256 MATCH；[原生结果](Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)将五项读数、Culture失败、社区覆盖分开。图3–5旧baseline因D／W失效，绝对值仍可观察；不假造新的差值、END或冷加载证据。
+
+静态核对HD实际theater.sql及内层只读DB：HD＋2直接附普通剧场，无已验证单项detach；接管会扩大到其它城市／Writing集合与倍率、失城／加载恢复，Music／Art另有同类flat。采用用户条件后备并保留根因未知。社区三项未进Tier解析，是B158已知目录缺口继续存在；Shared公式与最高单社区不变。当前仅文档／证据／计划／已审阅hash同步，无修复实现、新build、Gameplay模拟或实机派发。
 
 ## S0424 — 市政未来Design同步（不推进运行任务）
 

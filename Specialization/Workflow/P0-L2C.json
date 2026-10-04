@@ -87,7 +87,7 @@
     "Native precision cannot implement current contract; no gameplay workaround without user decision"
   ],
   "batch": "P0-L2C",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0047",
     "research": "D0040",
@@ -97,14 +97,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0424",
+    "status": "S0425",
     "runtime": "B163.190 / modinfo190",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--六产出单值承载",
-  "goal": "Authorized one-city six-yield final-value probe. D0046 restores Government/Diplomatic Culture; S5/P10/G30/Food5/Faith5/C10, zero none/maxone per yield. Culture Theater host new native candidate; original failures retained. No formal cutover/permanent/GC change.",
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#下一最小修复--文化隔离与社区d目录",
+  "goal": "Proposed scoped repair only: implement the user-selected temporary Meaning Culture quarantine, retain exact92 cleanup and HD unchanged, review three Neighborhood ordinary-only entries for D/Tier coverage. Five-yield final-value baseline and accepted D0046 remain; no formal cutover.",
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -121,8 +121,8 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
-      "selector": "## 已授权切片 — 六产出单值承载",
-      "reason": "Complete authorized six-yield scope; Culture host gate and minimal native delta, not historical dispatch"
+      "selector": "## 下一最小修复 — 文化隔离与社区D目录",
+      "reason": "Complete proposed current delta and inherited direct contracts; catalog repair/batch implementation not authorized. Read cited B163 implementation contract when changing its owned writer/cleanup."
     },
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
@@ -356,43 +356,54 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
       "kind": "full",
       "reason": "Current static/local evidence, unresolved native gate and minimal test/stop"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "Proposed three-entry D/Tier coverage change: direct ontology, raw/normalized Tier and exclusion safeguards; complete source required before implementation"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_a.py",
+      "kind": "full",
+      "reason": "Existing actual Catalog/Shared D mocked-Lua tests for proposed coverage delta; select affected cases, do not run historical gameplay full regression"
     }
   ],
   "dependencies": [
     "D0046 restores Government/Diplomatic Culture only; per-domain Floor/share/W, other qualifications and Shared D0045 unchanged. Native Culture coexistence not inferred from Production.",
     "Existing K confirmed current-reference bridge and local ACTIVE facade",
     "B157 named S/G/same-session owned exit evidence only; B161 Writing Production3→5/W2=10 native PASS, original post-restart withdrawal FAIL preserved; B162 scoped cold-load/END cleanup PASS closes that delta. Food/Faith/other objects and full Meaning remain unresolved.",
-    "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI"
+    "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI",
+    "B163 five-image native evidence and scoped HD/Catalog static investigation: five non-Culture Writing readings pass only observed values/D/W; Culture FAIL and Neighborhood ordinaryOnly gap remain. Temporary Culture implementation quarantine selected, no accepted Design cancellation or outside effect takeover."
   ],
   "old_writers": [
     "Selected-city GWA exact156 hold; confirm enlarged exact92 Meaning withdrawal before current-fact restore. No prefix sweep.",
     "Current-reference Dialogue0% during probe only; unchanged K ACK/current sample.",
-    "Retain old37 definitions/negative controls; append55 final values. Six-yield maxone positive carrier, no0/bits."
+    "B163 baseline old37 plus55 finals=exact92/644 retained. Proposed repair creates only one positive final per each of five non-Culture yields; keep all Culture IDs solely for precise withdrawal, no0/bits and no external HD attachment ownership."
   ],
   "non_scope": [
-    "No formal all-city Meaning/global GWA retirement, L3/M/N/U2, catalog expansion, AI/MP, permanent schema or GC change",
+    "No formal all-city Meaning/global GWA retirement, L3/M/N/U2, AI/MP, permanent schema or GC change; catalog proposal limited to Villa/Mansion/BusStop only, not general environment coverage.",
     "Probe mixed-unknown-work rejection is not a new Design rule or exact recipient PASS"
   ],
   "validation": {
-    "depth": "W0004 L2 plus exact new-directory/load/withdrawal L3 targeted checks; named unchanged evidence inherited, no full history/stress or default cold-load user ritual",
+    "depth": "W0004 L2 plus directly affected exact owned withdrawal/loss/load targeted checks; inherit unchanged evidence, no full history/stress or default cold-load user ritual",
     "local": [
-      "Six legal per-work ranges,92/644 SQL and prior37 immutable prefix; Culture Theater host exact validation; invalid/no0/multiple final detection.",
-      "Nine-domain Floor before sum/W, same-turn replacement/duplicate zero writes,current facts/UNKNOWN/reference/loss/load/isolation/failed-create-remove/token retry.",
-      "B162 readiness and scoped END algorithm inherited; all new IDs tested. Actual request/K/native independent getter, six-row summary/cached detail/strict actual host/late ACK/one enumeration."
+      "Proposed repair: exact three Neighborhood entries via existing Tier/ontology/replacement/internal/dummy checks; D6 from1+2+3/Food3, pillage/unknown/multiple Neighborhood/highest-single/cap10 and other-city isolation.",
+      "Proposed repair: no new Meaning Culture projection, retained92 exact cleanup plus five final yields/current facts/same-turn D-W changes/duplicate no-write and directly affected exit/load/UNKNOWN paths; inherited unchanged evidence remains scoped."
     ],
-    "user": "One continuous session: baseline/right READ -> six finals/paired native -> D replacement -> W2 -> END/right READ. Culture must add to retained HD native baseline. No default save/load harness ritual; stop scoped native failure."
+    "user": "No new native test requested this investigation. After authorized implementation/local validation, one delta session: Neighborhood composition D6/Food3 and W, own Culture withdrawal with HD intact, affected END only; no default repeat cold-load lifecycle."
   },
   "result": {
-    "plan": "User explicitly authorizes previous plan plus Culture restoration; current six-yield slice replaces old five-yield next proposal.",
+    "plan": "B163 authorized six-yield probe completed; five-image feedback now reviewed. Next narrow repair is proposed, with user-selected Culture quarantine and separately pending Neighborhood catalog/batch implementation authorization.",
     "implementation": "B163.190 six-yield one-city probe; exact92/644 and Theater-host Culture candidate. Local result is separate from native acceptance.",
-    "native": "B161 scoped Writing model/native3→5 replacement, W2 host10 and signed identity PASS retained; original post-restart OFF+VALUE5 FAIL preserved. B162 four-image USER_GAME_TEST_PASS only for cold-load cleanup and user-described post-END terminal state: OFF/CONFIRMED/owned0/Meaning Writing0, old GWA two city-verified active instances/native Production2. Intermediate ACTIVE not pictured, exact startup event not proved; other yield/object/recipient/multiplier/settlement gates remain unresolved, full L2 NOT_PASSED.",
-    "stop": "Wait current B163 six-yield native delta; no formal cutover/L3/M/N/U2. User authorized domain restoration and current probe; Culture coexistence remains independently unproved.",
-    "deployment": "B163.190 / modinfo190 DEVELOP_ACTIVE; source 37636776d9ce00cebcbefbf600af24984f2c6451; receipt B163.190-3763677-playtest.json;182/182 MATCH at verified deployment. B162 and stable recovery retained, no pending marker/game launch. Six-yield native coexistence/replacement/W/END pending; full L2 NOT_PASSED.",
+    "native": "B163 five screenshots: W1 baseline then non-Culture1/5/4/1/1 with paired deltas; S1→3/G4→9/Faith1→3 and W2 native6/10/18/2/6 agree in observed Writing scope. Culture required3 but4→4/delta0 FAIL. D/W later baselines invalid correctly; no new END/load/recipient/multiplier/settlement PASS, full L2 NOT_PASSED. B161/B162 named prior evidence retained.",
+    "stop": "Await authorization for the narrow Meaning-owned Culture quarantine plus three reviewed Neighborhood D catalog entries; no HD takeover, formal cutover/L3/M/N/U2 or new game test this turn.",
+    "deployment": "B163.190 / modinfo190 DEVELOP_ACTIVE; source 37636776d9ce00cebcbefbf600af24984f2c6451; prior receipt B163.190-3763677-playtest.json /182 MATCH retained, not reverified this turn. Native partial: five non-Culture yields in observed Writing/D/W scope PASS, Culture delta0 FAIL, Neighborhood coverage pending. No new build/deployment; full L2 NOT_PASSED.",
     "authority_revalidation": "D0046 narrow user-approved two-domain restoration, no coefficient/qualification/lifecycle/other consumer change; unchanged Shared objects and old source/history review hashes reused. D0047 Government future baseline and dedicated blank scope recorded only; current four-profession scope and Culture/Shared direct contracts unchanged. Government is not a new context/dependency or runtime authorization.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md",
-    "deferred_culture": "D0046 Design restoration authorized; native coexistence is still pending. B155/B157 CityCenter single3 failures preserved; Theater candidate is a real host delta, not proven fix.",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md",
+    "deferred_culture": "User conditional fallback selected after HD ownership/lifecycle risk confirmed: temporarily quarantine Meaning Government/Diplomatic Culture implementation, preserve accepted D0046 and exact owned cleanup. Current B163 still projects Culture; no runtime isolation claimed complete, no HD takeover.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-    "local_test_entry": "Current final_yields + B162 cleanup + selected fixed Production diagnostics + unchanged mapping/token/reader tests; exact counts in local result.",
-    "next_proposal": "Wait current B163 six-yield native delta; no formal cutover/L3/M/N/U2. User authorized domain restoration and current probe; Culture coexistence remains independently unproved."
+    "local_test_entry": "B163 baseline final_yields/B162 cleanup/fixed Production/mapping-token-reader evidence retained in linked local result. Proposed repair adds exact Catalog/P0-A and affected Meaning targeted tests only after implementation; no new simulation PASS in this investigation.",
+    "next_proposal": "Await authorization for the narrow Meaning-owned Culture quarantine plus three reviewed Neighborhood D catalog entries; no HD takeover, formal cutover/L3/M/N/U2 or new game test this turn.",
+    "investigation_evidence": "Specialization/Reports/Technical/Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md"
   }
 }
