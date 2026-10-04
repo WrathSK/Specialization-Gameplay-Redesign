@@ -97,7 +97,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0416",
+    "status": "S0417",
     "runtime": "B160.187 / modinfo187",
     "military": "D0037",
     "harbor": "D0037"
@@ -315,9 +315,9 @@
       "reason": "Direct fixed-control writer/request/reader/Panel/lifecycle and retained mapping regression"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Native.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md",
       "kind": "full",
-      "reason": "Latest exact native combination failure, source exclusion, withdrawal/reconfiguration suggestion and END/cold-load evidence limits; not new implementation authority"
+      "reason": "Latest actual B160 eight-image control evidence, retained2 instance, standalone3 signed-field UNKNOWN and stop. Prior B159/B158 negative evidence linked; does not authorize next writer."
     }
   ],
   "dependencies": [
@@ -348,14 +348,14 @@
   "result": {
     "plan": "User explicitly authorized B160 minimal reconfiguration plus independent single3; no formal cutover/batch expansion.",
     "implementation": "B160.187 / modinfo187 LOCAL_COMPLETE; 47 methods/58 subtests PASS, fixed diagnostic controls only.",
-    "native": "B159 USER_GAME_TEST_PASS for same-turn single Writing Production2; USER_GAME_TEST_FAIL pair1/2 expected3/native1, two distinct native instances Active=true flat1/2 mapped to same city. END/cold-load still unconfirmed; full L2 NOT_PASSED. Internal selection rule unknown; no all-yield generalization. B160 new controls not yet user-tested; USER_GAME_TEST_REQUIRED.",
-    "stop": "Await B160 native withdrawal/reconfiguration/single3 diagnostic only. No formal cutover or L3/M/N/U2 authorization.",
-    "deployment": "B160.187 / modinfo187; source 83e191854983089a968629aafc3f7ff05a6aad11; receipt B160.187-83e1918-playtest.json DEVELOP_ACTIVE, 182/182 source-runtime MATCH. OS verified game exited; exact B159 receipt stable restore then staged activation. B159/stable recovery MATCH, no pending marker, no game launch. B160 native required; B159 pairFAIL retained.",
+    "native": "B160 USER_GAME_TEST_PASS within same-turn single-Writing immediate observations: single1/clear0/single2/retained2/single3 actual1/0/2/2/3; retained2 same native instance12328. USER_GAME_TEST_FAIL pair1/2 expected3/native1, two mapped Active instances. Standalone3 native getter3 but precise city mapping UNKNOWN:FORMAT from negative SubValue; END/cold-load unobserved. Full L2 NOT_PASSED.",
+    "stop": "Propose Production-only final single-value carrier plan, with scoped signed-SubValue diagnostic fix; await separate implementation authorization. No internal early/min algorithm investigation or formal cutover/L3/M/N/U2.",
+    "deployment": "B160.187 / modinfo187; source83e191854983089a968629aafc3f7ff05a6aad11; existing receipt B160.187-83e1918-playtest.json DEVELOP_ACTIVE/182MATCH with B159/stable recovery. This evidence/doc-only turn did not reverify runtime/process or redeploy. B160 native single1/2/3 immediate values and held withdrawal/reconfiguration observed, pair1/2 native1 FAIL; standalone3 city mapping UNKNOWN:FORMAT, END/cold-load unobserved.",
     "authority_revalidation": "S0414 D0045 Design-only review: CUL_L4_MEANING, meaning_K, work_pool, domains, meaning_domains, meaning_multipliers exact equal D0043; ORDINARY_INFRASTRUCTURE/BUILDING_CURRENT_ELIGIBILITY/DISTRICT_DEVELOPMENT/YIELD_SHARE exact equal D0044. Dialogue accumulation now no cap, target/fallback/precision/pending exact equal; B159 explicit0% diagnostic control unchanged and does not implement new accumulation. Industry/Culture unit/parameter updates and original-capital Future do not change current dependencies/writers/validation/stop; no plan/runtime/deployment or scope expansion.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B159_Production_Combination_Native.md",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md",
     "local_test_entry": "DevelopmentTests/test_culture_meaning_diagnostic.py:20 methods plus test_culture_meaning_l2c.py:27 methods; 58 subtests. Includes retained Modifier assertions; no full historical/stress.",
-    "next_proposal": "Evaluate current B160 native control evidence before any future single-yield single-value formal writer plan; no further implementation authorized."
+    "next_proposal": "Production-only final per-work integer value0..10 instead of same-yield bit pieces, plus observed signed-SubValue parser boundary; keep each-domain Floor→sum each→W, scoped cleanup/holds/UNKNOWN/loss/load. No new implementation authorization; direct END/cold-load may combine with next batch test. No further engine early/min investigation."
   }
 }

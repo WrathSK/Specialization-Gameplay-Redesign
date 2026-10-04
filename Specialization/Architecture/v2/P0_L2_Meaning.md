@@ -1,19 +1,19 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_PRODUCTION_RECONFIGURATION_LOCAL_COMPLETE；B160撤销／重配／独立单值诊断已授权并LOCAL完成，原生待验。B159组合FAIL保留；完整L2 NOT_PASSED，无正式全城cutover／下一能力授权。
+State: P0_L2C_PRODUCTION_RECONFIGURATION_NATIVE_REVIEWED；B160单值1/2/3与hold内撤销重配即时读数通过、多片组合FAIL；独立3归属格式待补，END／cold-load未证。完整L2 NOT_PASSED，下一单值承载仅建议、未获实施授权。
 Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Shared输入对象与D0044相等；`CUL_L4_MEANING`、`contracts.meaning_domains/work_pool/meaning_multipliers`及`DISTRICT_DEVELOPMENT/YIELD_SHARE`不因本次技术失败改变。实际source/live与授权见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-[B159原生反证](../../Status/Validation/Results/Specialization_B159_Production_Combination_Native.md)保持：同T62／Writing，单片＋2实际2，双片＋1／＋2实际1；两distinct native实例Active=true、flat1／2、本城映射完整，旧GWA Production0。USER_GAME_TEST_FAIL限定多片组合场景，不宣布唯一内部算法或全部yield结论；原图4不是END。
+[B160八图原生结果](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)：同T62／Writing实际0→1→清0→2→双片1/2实际1→仅撤1恢复2→独立3实际3。REMAIN2保留同一flat2原生instance12328；单值／hold内撤销重配即时读数USER_GAME_TEST_PASS，双片要求3仍USER_GAME_TEST_FAIL。用户确认不再追早／低优先的内部算法，停止依赖现多片编码作正式承载。
 
-用户本轮已明确授权单片＋1撤销重配及独立单片＋3对照。**B160.187 / modinfo187 LOCAL_COMPLETE／原生待验**：[本地结果及一次最小流程](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)。0→1→清0→2→双片1/2→只撤1保留2→独立3→OFF；CLEAR1仍hold旧收益，REMAIN2不重建健康＋2，独立3不进入普通Meaning Parts。47方法／58子用例PASS，原生尚不能由此认定。
+独立3的原生值正确，但owner／subject SubValue=-544493210被现非负格式parser拒绝，城市归属UNKNOWN保留；这是reader格式缺口，不是已证实identity失败。图5/6是PAIR12上下部分、图8仍为SINGLE3；END／cold-load未提供，不扩大PASS。47方法／58子用例的[原LOCAL证据](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)保持，原图ignored归档8/8 SHA256 MATCH。
 
-不改D／K／逐域Floor后同yield合计／W、Catalog、永久状态或GC；保持UNKNOWN、精确loss/load退出及旧模块恢复合同。source/live／Git／部署receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准。下一允许动作仅本批原生验收／记录；精准recipient、倍率隔离、结算、冷加载和全城cutover仍独立门禁，不自动进L3／M／N／U2。
+下一仅建议Production单值承载定域批次及signed SubValue的最小诊断补齐，待新计划／授权。模型仍逐域Floor后同yield合计each、W最后乘，不改D／K／Catalog／永久状态／GC。精准recipient、倍率、结算、其它yield与全城cutover仍按各自门禁；直接退出／cold-load可合并下批短测，不立即要求重复旧实验。source/live／Git／receipt以[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准，不自动实施或进L3／M／N／U2。
 
 ## 已授权切片 — Production组合与退出诊断
 
-**B160当前合同；替代B159固定四态测试流程。** B159实际反证与[原本地合同](../../Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)保留，不要求重复旧五yield或长测。
+**B160已实施诊断合同；原生已按上方当前切片审阅。** 原生诊断完成不授权下一writer，未测END／cold-load保留；以下范围用于解释证据，不再派发整套旧测试。B159实际反证与[原本地合同](../../Status/Validation/Results/Specialization_B159_Production_Combination_Diagnostic_Local.md)保留，不要求重复旧五yield或长测。
 
 **范围。** 默认OFF、单本地Culture ACTIVE IV城、恰好一件当前已确认支持Writing。固定BASELINE0 → SINGLE1＋1 → CLEAR1零 → SINGLE2＋2 → PAIR12＋1/＋2 → REMAIN2仅＋2 → SINGLE3独立＋3 → OFF。不消费D或改能力公式。CLEAR1只撤＋1，仍hold本城旧GWA和Dialogue0%；PAIR12先清旧＋2再按＋1/＋2创建；REMAIN2仅撤＋1，不拆建健康＋2；SINGLE3清旧后只建一个flat3。追加一个InternalOnly carrier、七exact object附件，沿原primitive；只验证Writing，不等于其它作品或正式单值writer授权。
 
@@ -21,7 +21,7 @@ Authority: 当前Culture／Shared D0045：Meaning直接合同与D0043、四个Sh
 
 **观察与性能。** Gameplay只复用CurrentSpecializationFacts与GreatWorkFacts当前确认输入；真实同回合变化继续响应，不复制全城采集。左键只推进；右键显式token读取独立原生Production及exact Writing实例，REMAIN2看＋2的instance ID是否延续。预期、配置、实际独立；只在同回合／引用／唯一作品位置／主题／资格可靠baseline比较。OFF无基线也能读绝对值／owned／实例，UNKNOWN／截断不当零。旧字符串／baseline缓存与迟到ACK保护保留，Show／Copy不重扫；没有新订阅、polling、hover请求或GC。
 
-**验证／停止。** W0004 L2及直接loss／load／reference L3：47方法／58子用例PASS，另20项reader回归与其中部分重合；[证据／精确文件及五份报告流程](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)。PAIR12已知失败仍继续REMAIN2作区分，其它异常停止对应路径。独立3成功不自动切换正式编码；精准recipient、倍率、结算与完整L2均另行门禁。完成后停止等待本批原生反馈；回滚沿Git及W0003精确receipt，不改Design／main／安全工具。
+**验证／停止。** W0004 L2及直接loss／load／reference L3：47方法／58子用例PASS，另20项reader回归与其中部分重合；[证据／精确文件及五份报告流程](../../Status/Validation/Results/Specialization_B160_Production_Reconfiguration_Diagnostic_Local.md)。PAIR12已知失败仍继续REMAIN2作区分，其它异常停止对应路径。独立3成功不自动切换正式编码；精准recipient、倍率、结算与完整L2均另行门禁。本批原生反馈已审阅，下一单值承载待授权；回滚沿Git及W0003精确receipt，不改Design／main／安全工具。
 
 ## 下一批计划 — P0-L2C 七域五产出门禁
 

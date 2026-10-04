@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0416",
+    "status": "S0417",
     "runtime": "B160.187 / modinfo187",
     "military": "D0037",
     "harbor": "D0037"
@@ -33,10 +33,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "83e191854983089a968629aafc3f7ff05a6aad11",
-  "current_batch": "P0_L2C_PRODUCTION_RECONFIGURATION_LOCAL_COMPLETE",
-  "next_batch": "Await B160 native withdrawal/reconfiguration/single3 diagnostic only. No formal cutover or L3/M/N/U2 authorization.",
+  "current_batch": "P0_L2C_PRODUCTION_RECONFIGURATION_NATIVE_REVIEWED",
+  "next_batch": "Propose Production-only final single-value carrier plan, with scoped signed-SubValue diagnostic fix; await separate implementation authorization. No internal early/min algorithm investigation or formal cutover/L3/M/N/U2.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B160.187 / modinfo187; source 83e191854983089a968629aafc3f7ff05a6aad11; receipt B160.187-83e1918-playtest.json DEVELOP_ACTIVE, 182/182 source-runtime MATCH. OS verified game exited; exact B159 receipt stable restore then staged activation. B159/stable recovery MATCH, no pending marker, no game launch. B160 native required; B159 pairFAIL retained.",
+  "live": "B160.187 / modinfo187; source83e191854983089a968629aafc3f7ff05a6aad11; existing receipt B160.187-83e1918-playtest.json DEVELOP_ACTIVE/182MATCH with B159/stable recovery. This evidence/doc-only turn did not reverify runtime/process or redeploy. B160 native single1/2/3 immediate values and held withdrawal/reconfiguration observed, pair1/2 native1 FAIL; standalone3 city mapping UNKNOWN:FORMAT, END/cold-load unobserved.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0416 user explicitly authorized minimal B160 single1/clear0/single2/pair12/remain2/single3/OFF diagnostic; seven runtime files and three directly affected tests reviewed. 47 targeted methods/58 subtests PASS, independent native fixtures and owned failure/load/loss; direct20 reader regression overlaps. Exact27/189 directory and SQL append reviewed; no D/Floor/W/permanent/GC/Design change, full L2 NOT_PASSED. B159 native pairFAIL retained; B160 native required. W0003 B160 deployment completed from clean pushed source; receipt-bound B159/stable recovery and182 equality verified, native still required.",
+  "context_review_status": "S0417 visually reviewed eight B160 originals and exact reader District parser: actual0/1/0/2/1/2/3, retained flat2 instance12328, standalone flat3 instance12335 with negative opaque SubValue causing strict mapping UNKNOWN. User accepts multi-piece non-addition without further early/min selection research. No END/cold-load images; no full L2 PASS/new implementation. Named doc/manifest/evidence hashes only, runtime/Design/tests/permanent/GC unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
