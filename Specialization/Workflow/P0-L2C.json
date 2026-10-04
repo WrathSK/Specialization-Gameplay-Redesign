@@ -98,7 +98,7 @@
     "presentation": "D0032",
     "architecture": "A0161",
     "status": "S0413",
-    "runtime": "B158.185 / modinfo185",
+    "runtime": "B159.186 / modinfo186",
     "military": "D0037",
     "harbor": "D0037"
   },
@@ -345,7 +345,7 @@
     "implementation": "B159.186 / modinfo186 LOCAL_COMPLETE; 18 test methods / 31 subtests PASS, fixed controls only.",
     "native": "B159 USER_GAME_TEST_REQUIRED, no native result yet. Prior B158 partial single-piece/W match and composite S3/P3/G9 versus native1 FAIL preserved; cold-load withdrawal/old-writer restoration unresolved. Full L2 NOT_PASSED.",
     "stop": "Await B159 one-city single-Writing Production +2 / +1+2 native diagnostic and END/cold-load evidence; no formal cutover or L3/M/N/U2.",
-    "deployment": "B158.185 / modinfo185; source daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe; B158.185-daaef4b-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; stable/B157 recovery MATCH; no pending marker. OS game exit verified; game not launched; B158 native initial single-piece readings matched; composite growth FAIL, load withdrawal unresolved. Receipt inherited; no deployment/package reinspection in this evidence turn.",
+    "deployment": "B159.186 / modinfo186; source 59e686feb5e66dde7429c3e44a457cb6a826ace8; B159.186-59e686f-playtest.json DEVELOP_ACTIVE; 182/182 source-runtime MATCH; B158/stable recovery MATCH; no pending marker. OS game exit verified; game not launched. Native diagnostic pending.",
     "authority_revalidation": "S0411 D0044 Industry-only responsibility/initial-value update and Shared completed-study L; exact ORDINARY_INFRASTRUCTURE, BUILDING_CURRENT_ELIGIBILITY, DISTRICT_DEVELOPMENT, YIELD_SHARE objects equal D0042. Culture D0043 and B158 direct contracts/evidence/deployment/native stop unchanged; no extra mandatory context or implementation.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md",
     "deferred_culture": "D0043 formally adopted Meaning-only two-domain exclusion; original negative evidence/prototype retained for future user-approved restoration, not current dependency.",

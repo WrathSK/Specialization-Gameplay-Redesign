@@ -2,12 +2,12 @@
 
 Document Owner: Codex
 Status Revision: S0413
-Implementation Build: source/live B158.185 / modinfo185 LOCAL / NATIVE_PARTIAL_YIELD_FAIL; stable B069.96
+Implementation Build: source/live B159.186 / modinfo186 LOCAL_COMPLETE / NATIVE_DIAGNOSTIC_PENDING; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0043 (意义延展七域五产出；单城门禁已适配，正式接入未完成)
 Latest Accepted Design Revision: D0044
-Design Sync State: D0043_MEANING_SCOPE_PROBE_NATIVE_PARTIAL_YIELD_FAIL
-Work State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL
+Design Sync State: D0043_MEANING_SCOPE_PROBE_NATIVE_DIAGNOSTIC_PENDING; B158 native failure retained
+Work State: P0_L2C_PRODUCTION_DIAGNOSTIC_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -17,7 +17,7 @@ Work State: P0_L2C_NATIVE_PARTIAL_COMPOSITE_YIELD_FAIL
 
 [B158组合FAIL](Validation/Results/Specialization_B158_P0L2C_Five_Yield_Native.md)、冷加载撤销／旧writer恢复未知及独立社区Catalog缺口保持；完整L2 NOT_PASSED。精确recipient／倍率隔离／结算／全城cutover仍独立门禁。不重复五yield或长测，不进L3／M／N／U2。
 
-source当前B159.186；外部暂沿B158.185，source `daaef4b31ceb2e5858c5479c8b14ceaf9d3180fe`／receipt `B158.185-daaef4b-playtest.json` DEVELOP_ACTIVE（既有记录）。本地验证后按W0003授权核对游戏退出／精确receipt并部署；Git提交不作部署证明。main B069.96未promotion；未启动游戏。当前只完成此诊断并等待原生结果，不自动进入正式接入或其它能力。
+source/live B159.186／modinfo186，source `59e686feb5e66dde7429c3e44a457cb6a826ace8`；W0003 receipt `B159.186-59e686f-playtest.json` DEVELOP_ACTIVE，182/182 MATCH。OS核对游戏退出，经精确B158 receipt恢复stable过桥再staging激活，B158／stable恢复点均MATCH，无pending marker。main B069.96未promotion；未启动游戏。当前只等待一次单城Production诊断，未获正式接入或其它能力授权。
 
 ## 历史阶段记录
 
