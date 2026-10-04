@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0423
+Status Revision: S0424
 Implementation Build: source/live B163.190 / modinfo190 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0046（意义延展九域六产出恢复；原生文化共存未通过）
-Latest Accepted Design Revision: D0046
-Design Sync State: D0046_MEANING_CULTURE_RESTORED / NATIVE_COEXISTENCE_GATE_RETAINED
+Design Revision Reviewed: D0047（市政未来基线／白板载体范围同步；Culture D0046原生共存仍待验）
+Latest Accepted Design Revision: D0047
+Design Sync State: D0047_GOVERNMENT_FUTURE_BASELINE / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
 Work State: P0_L2C_SIX_YIELD_FINAL_VALUE_LOCAL_COMPLETE_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-Design／Culture D0046恢复市政／外交文化来源（九域六产出）；Shared D0045／Architecture A0161保持。用户已授权[六产出单值切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--六产出单值承载)，B163.190 LOCAL完成后等待最小原生验收；仍单城可逆probe，非正式全城cutover。每域Floor→同yield相加→W、K／永久数据／GC不变。
+Design Spec／市政D0047已接受，仅未来设计与当前专用白板文明范围同步；四专业实施范围、B163验收及下述停止点不变。Culture D0046恢复市政／外交文化来源（九域六产出）；Shared D0045／Architecture A0161保持。用户已授权[六产出单值切片](../Architecture/v2/P0_L2_Meaning.md#已授权切片--六产出单值承载)，B163.190 LOCAL完成后等待最小原生验收；仍单城可逆probe，非正式全城cutover。每域Floor→同yield相加→W、K／永久数据／GC不变。
 
 [本地结果](Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md)区分静态／模拟；B161 Production3→5/W2及B162 scoped清理／END PASS继承。Culture单片B155/B157失败保留，本批改剧院宿主，不把Production多片解释推定为Culture根因关闭。六行简报／缓存明细，只测新增原生差异，不重复未改harness冷加载；精准recipient／倍率／结算仍待，完整L2 NOT_PASSED。
 
 source／live B163.190／modinfo190已按W0003部署（源码`3763677`，receipt `B163.190-3763677-playtest.json`、182/182 MATCH）。B162及stable恢复点保留，无pending marker、未启动游戏；main稳定B069.96不动。部署完成不等于原生验收，停止等待本切片反馈，不自动进入其它能力或正式cutover。
+
+## S0424 — 市政未来Design同步（不推进运行任务）
+
+用户市政Design Talk正式同步D0047，结构化[内容](../Design/Content/Government_D0047.json)与[阅读版](../Design/Government.md)一致。四机构／七项能力、完整制度研习／Legacy取鉴／动态政策容量替代旧Government；当前白板载体范围与旧ELIG冲突已明确取代。工作名、初测k、折扣及具名生命周期／技术未决均保留。
+
+P0-L2C只做Authority元数据revalidation：Culture／Shared直接对象、实际源码／测试／182文件runtime索引／部署receipt未改，不扩大必读或实施依赖。B163.190六产出原生待验、正式全城L2未通过、main B069.96及GC保持。无本轮玩法模拟、原生测试、部署或下一批授权。
 
 ## 历史阶段记录
 

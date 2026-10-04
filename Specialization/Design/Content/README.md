@@ -9,6 +9,12 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Industry D0045](Industry_D0045.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 
+## D0047 — 当前市政基线与全系统载体范围
+
+[Government D0047](Government_D0047.json)是市政完整结构化正文：[中文阅读版](../Government.md)解释治所／内政司／典制院／国策府及1／1／2／3七项能力。旧自动补建筑、永久总督头衔、旧Wildcard公式与Loyalty网络正式取代；内政司／政制择用工作名、费用折扣、k首测候选、生命周期与技术分别保留，不声称全部细节冻结。
+
+全系统当前只向专用白板文明开放，资格与未来复用边界以[Spec ELIG](../Specialization_v0.1_Design_Spec.md#system-scope--opt-in-player-eligibility--elig)为准；不默认全原版／Mod文明与领袖能力叠加兼容。Government仍未来范围，当前v0.1只实施四专业；不修改Mod或当前待验任务。Culture现行D0046恢复九域六产出，Shared／Industry／Commerce D0045、Research D0040、Military／Harbor D0037原件不变。以下旧修订段是接受来源追溯，不覆盖本段当前入口。[接受与取代](../Design_ChangeLog.md#accepted-d0047--2026-10-04)。
+
 ## D0028共享入口
 
 [Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0046.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
@@ -37,9 +43,9 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 ## 单一权威与修订
 
-本轮的公式、文案、映射以JSON为唯一编辑位置；[审阅记录](../../Historical/Design/Reviews/Research_D0026_Review.md)引用ID，不复制第二套权威公式。Accepted Spec的RES条目已指向content；D0025历史原文冻结不倒改。Industry及Culture已加入；其余专业后续沿同schema分别维护，不强制命名能力数量。各专业JSON是自身内容权威，Spec引用，Review只作审阅记录。
+已经纳入Content的专业，其公式、文案、映射以JSON为唯一编辑位置；未纳入的未来规则仍由Spec保存。[审阅记录](../../Historical/Design/Reviews/Research_D0026_Review.md)引用ID，不复制第二套权威公式。Accepted Spec的RES条目已指向content；D0025历史原文冻结不倒改。Industry及Culture已加入；其余专业后续沿同schema分别维护，不强制命名能力数量。各专业JSON是自身内容权威，Spec引用，Review只作审阅记录。
 
-## D0045 — 当前工业、文化、Shared与商业增量Authority
+## D0045 — 工业、Shared与商业当前增量；文化接受基线由D0046恢复两域
 
 [Industry D0045](Industry_D0045.json)保留D0044首测职责，正式每模板实际有效持有来源择优、已有合法Gold/Faith、完整1T研习取消／重做但历史L不变、最终整数Floor。[Culture D0045](Culture_D0045.json)收口无额外Dialogue cap、Spy等价成本、全国现存考察团cap1、K_T=2个百分点；风雅1／Meaning0.5／启迪0.1／K_C1／标准任务2T与D0042归属保持。不是数值最终平衡或实现验收。
 
@@ -49,7 +55,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Industry D0044](Industry_D0044.json)正式采用标准化基础10%／Gold0%、四级研习L每层两项各2个百分点、四级工程实践降低组建损耗、III／IV按等级开放施工队、巨构10／20／30%只加速自行生产及固定注入隔离。三级成本150%，四级才按N1／3／6降至140／130／120%；五档标准速度施工力与成本已给首测表，非最终平衡。名称候选／占位、技术及未提交研习边界仍分别登记。[Shared D0044](Shared_D0044.json)仅新增成功研习L为A城市历史，E仍B文明历史，易主E<L不截断已有L。D／目录／份额／其它A–G不变；[本轮接受](../Design_ChangeLog.md#accepted-d0044--2026-10-03)及[审阅](../../Historical/Design/Reviews/Industry_D0044_Review.md)。Culture D0043／Commerce D0042／Research D0040保持原件，本轮不实现／不部署，不改变B158单城待验。
 
-## D0043 Meaning七域 — 保留的作用域来源，现行Culture D0045
+## D0043 Meaning七域 — 已由D0046九域恢复取代，原件仅追溯
 
 [Culture D0043](Culture_D0043.json)仅将意义延展政府广场／外交区来源暂排，当前为七域五产出；`contracts.meaning_domains`是本能力白名单，`contracts.domains`仍保留其它consumer使用的完整映射。K／份额／逐领域Floor／作品资格／独立追加／A–G生命周期保持。Shared／其它专业原件不变；[接受记录](../Design_ChangeLog.md#accepted-d0043--2026-10-03)。文化追加技术及负面证据保留供未来恢复，不阻碍本版v0.1；剩余yield／recipient／倍率／结算仍需实际实现与证据。此次仅Design同步与计划，不改运行包或部署。
 

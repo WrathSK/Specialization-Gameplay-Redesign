@@ -11,8 +11,8 @@
       "MILITARY",
       "other future specializations"
     ],
-    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
-    "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
   "conditional_context": [
     {
@@ -89,7 +89,7 @@
   "batch": "P0-L2C",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0046",
+    "design": "D0047",
     "research": "D0040",
     "industry": "D0045",
     "culture": "D0046",
@@ -97,10 +97,11 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0423",
+    "status": "S0424",
     "runtime": "B163.190 / modinfo190",
     "military": "D0037",
-    "harbor": "D0037"
+    "harbor": "D0037",
+    "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#已授权切片--六产出单值承载",
   "goal": "Authorized one-city six-yield final-value probe. D0046 restores Government/Diplomatic Culture; S5/P10/G30/Food5/Faith5/C10, zero none/maxone per yield. Culture Theater host new native candidate; original failures retained. No formal cutover/permanent/GC change.",
@@ -387,7 +388,7 @@
     "native": "B161 scoped Writing model/native3→5 replacement, W2 host10 and signed identity PASS retained; original post-restart OFF+VALUE5 FAIL preserved. B162 four-image USER_GAME_TEST_PASS only for cold-load cleanup and user-described post-END terminal state: OFF/CONFIRMED/owned0/Meaning Writing0, old GWA two city-verified active instances/native Production2. Intermediate ACTIVE not pictured, exact startup event not proved; other yield/object/recipient/multiplier/settlement gates remain unresolved, full L2 NOT_PASSED.",
     "stop": "Wait current B163 six-yield native delta; no formal cutover/L3/M/N/U2. User authorized domain restoration and current probe; Culture coexistence remains independently unproved.",
     "deployment": "B163.190 / modinfo190 DEVELOP_ACTIVE; source 37636776d9ce00cebcbefbf600af24984f2c6451; receipt B163.190-3763677-playtest.json;182/182 MATCH at verified deployment. B162 and stable recovery retained, no pending marker/game launch. Six-yield native coexistence/replacement/W/END pending; full L2 NOT_PASSED.",
-    "authority_revalidation": "D0046 narrow user-approved two-domain restoration, no coefficient/qualification/lifecycle/other consumer change; unchanged Shared objects and old source/history review hashes reused.",
+    "authority_revalidation": "D0046 narrow user-approved two-domain restoration, no coefficient/qualification/lifecycle/other consumer change; unchanged Shared objects and old source/history review hashes reused. D0047 Government future baseline and dedicated blank scope recorded only; current four-profession scope and Culture/Shared direct contracts unchanged. Government is not a new context/dependency or runtime authorization.",
     "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md",
     "deferred_culture": "D0046 Design restoration authorized; native coexistence is still pending. B155/B157 CityCenter single3 failures preserved; Theater candidate is a real host delta, not proven fix.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",

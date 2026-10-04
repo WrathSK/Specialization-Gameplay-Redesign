@@ -11,7 +11,7 @@
 | 共同系统 | [Shared](Shared.md) | 身份、潜力、激活等级、成长、资格、易主、建筑、深度与机构 | 当前共同规则；特定未决边界保留 |
 | 国内网络 | [Network](Network.md) | 来源接入、中心接收分发、首都例外、去重与失效 | 共同连接合同；专业载荷另读各篇 |
 | 科研 | [Research](Research.md) | 人才、跨领域研究、科研设施与学术传统 | 本地主体已冻结；网络保留旧合同待重设计；精度临时例外单列 |
-| 文化 | [Culture](Culture.md) | 馆藏时代、城市审美、跨领域诠释与对外考察 | 主体已冻结；意义延展本版七域、文化追加技术暂缓；平衡／其它技术未完；时代界面方向已批准 |
+| 文化 | [Culture](Culture.md) | 馆藏时代、城市审美、跨领域诠释与对外考察 | 主体已冻结；意义延展九域六产出已恢复，原生文化共存仍待验；平衡／其它技术未完；时代界面方向已批准 |
 | 工业 | [Industry](Industry.md) | 标准模板、施工力量、工程实践与文明传统 | 主体已冻结；职责与首测值已定、逐模板来源择优；候选命名／原生验证与平衡仍分开 |
 | 商业 | [Commerce](Commerce.md) | 商业化、资本合同、发展投资、重组与信誉 | 主体及主要公式已定、名称锁定；首版参数可调；合同易主终止／信誉身份规则明确，其余精确边界保留 |
 
@@ -27,7 +27,7 @@
 | 景观／保护区 | [Landscape](Landscape.md) | 景观经营、生态维护、公园与生境衍播 | 已接受未来基础＋强冻结候选；命名／边界／参数待定 |
 | 宗教／圣地 | [Religion](Religion.md) | 教育、宗教稳定、神学战斗与信条吸收 | 已接受未来方向；信条与压力边界待决 |
 | 港口 | [Harbor](Harbor.md) | 完整海洋商业与海军军事双线 | 双线新基线已接受；镜像当前军事，名称／数值／技术／Legacy分别待定 |
-| 政府广场 | [Government](Government.md) | 完整制度建筑、永久总督头衔与当前政策容量 | 已接受具体机制；非完整四机构表 |
+| 市政／政府广场 | [Government](Government.md) | 行政支持、制度学习、Legacy取鉴与国家政策容量 | 四机构／七能力新基线已接受；工作名、折扣、初测值与生命周期／技术未决分开；未来范围 |
 | 外交区 | [Diplomatic](Diplomatic.md) | 保护国、使者、可见度与间谍 | 已接受未来方向；保护国与多来源有待决 |
 | 联盟外交任务 | [DiplomaticMissions](DiplomaticMissions.md) | 按领域开展不同形式的盟友交流 | 框架已接受；已定方向、暂定奖励与纯候选分别标示 |
 | 社区／都会 | [Community](Community.md) | 城市就业、国际移民、国内分流与高密度都市化 | 已接受基础＋新强冻结候选；旧规则差异单列，参数与边界待定 |
@@ -56,7 +56,7 @@ Shared负责共同概念，Network负责共同连接，专业正文直接写全�
 ## 实现、正式来源与历史
 
 - **想看做到哪里、哪些通过、哪些待测：** [Status](../Status/Specialization_P0_Status.md)。本目录阅读页不另存运行版本或PASS清单。
-- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec D0045；工业／文化／Shared／商业当前D0045（逐模板效率、首测参数、专业单位保护；原始首都改制仅Future）；科研D0040、军事／港口D0037原件保持；D0043七域、D0042具名生命周期与D0038逐领域Floor继续有效。其它未来条款由当前Spec保留。
+- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec／市政D0047；文化D0046九域恢复，工业／Shared／商业D0045，科研D0040、军事／港口D0037。市政及其它未来设计不扩大当前四专业实施范围；D0042生命周期与D0038逐领域Floor等未被取代条款继续有效，成熟度逐项保留。
 - **想查展示接受来源：** [文化馆藏时代方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
 - **想查为什么改过：** [接受与取代记录](Design_ChangeLog.md)、各篇页尾来源及[冻结历史](Revisions/)。较新的文件或更大的编号不自动覆盖未被取代的规则。
 - **Codex／开发者起点：** [项目导航](../README.md)和[AGENTS](../AGENTS.md)，继续按任务读取正式来源，不要求每轮加载全部阅读页。阅读版维护约定集中在[Content导航](Content/README.md#人类阅读入口)。

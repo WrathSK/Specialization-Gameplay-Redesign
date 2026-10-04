@@ -2,7 +2,7 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Codex is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0046",
+    "design": "D0047",
     "research": "D0040",
     "industry": "D0045",
     "culture": "D0046",
@@ -10,10 +10,11 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0423",
+    "status": "S0424",
     "runtime": "B163.190 / modinfo190",
     "military": "D0037",
-    "harbor": "D0037"
+    "harbor": "D0037",
+    "government": "D0047"
   },
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
@@ -27,7 +28,8 @@
     "status": "Specialization/Status/Specialization_P0_Status.md",
     "runtime": "Mod/SpecializationP0.modinfo",
     "military": "Specialization/Design/Content/Military_D0037.json",
-    "harbor": "Specialization/Design/Content/Harbor_D0037.json"
+    "harbor": "Specialization/Design/Content/Harbor_D0037.json",
+    "government": "Specialization/Design/Content/Government_D0047.json"
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
@@ -47,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0423 authorized six final yields and D0046 restoration: exact model/Probe/SQL/reader/Panel/Text/package, current tests and old writer/current facts contracts reviewed; new55 exact IDs + prior37=92/644. Culture Theater host is new candidate; B155/B157 single-Culture failure preserved, no asserted root-cause closure. Shared/K/permanent/GC unchanged. Named changed/new hashes only; no all-history rehash. Local evidence and deployed receipt remain separate. W0003 deployment verified: clean/sync source3763677, exact B162 receipt/stable bridge, B163.190 receipt DEVELOP_ACTIVE/182MATCH; native remains pending.",
+  "context_review_status": "S0423 authorized six final yields and D0046 restoration: exact model/Probe/SQL/reader/Panel/Text/package, current tests and old writer/current facts contracts reviewed; new55 exact IDs + prior37=92/644. Culture Theater host is new candidate; B155/B157 single-Culture failure preserved, no asserted root-cause closure. Shared/K/permanent/GC unchanged. Named changed/new hashes only; no all-history rehash. Local evidence and deployed receipt remain separate. W0003 deployment verified: clean/sync source3763677, exact B162 receipt/stable bridge, B163.190 receipt DEVELOP_ACTIVE/182MATCH; native remains pending. S0424/D0047 user-approved Government handoff only: four institutions/seven abilities, explicit old-rule and blank-carrier supersession reviewed; Culture D0046 / Shared D0045 direct objects unchanged. Government future metadata does not expand current L2C context. No runtime/tests/GC/deployment/native acceptance change; named reviewed documentation hashes only.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -59,8 +61,8 @@
       "MILITARY",
       "other future specializations"
     ],
-    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
-    "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
   "context_revalidation_report": "Specialization/Architecture/v2/P0_L2_Meaning.md"
 }

@@ -3,8 +3,26 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0046
+Latest Accepted Design Revision: D0047
 Document State: ACCEPTED
+
+## Accepted D0047 — 2026-10-04
+
+Acceptance: ACCEPTED / Government current baseline and dedicated-blank-civilization scope
+Acceptance Evidence: 用户完整市政Design Talk明确要求将本轮规则同步为当前Design Authority，替换旧Government，不实现／不扩展其它专业。
+Accepted Spec SHA256: 8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c
+Canonical Government Content SHA256: d915e2d0c43f8c73e6d4a47f327d58df6ea68308efb3a7686b65a52296852fa4
+Previous Accepted Revision: D0046
+Frozen D0046: [原文](Revisions/Specialization_Design_Spec_D0046.md)
+Frozen D0046 SHA256: 3ed49ed7f047e7e02fd35d0bf1451fd6d75a41878349d4517c8c3cd10770cc09
+Content: [Government D0047](Content/Government_D0047.json) / [市政完整阅读版](Government.md)
+
+- 接受国家治理中枢定位，治所／内政司／典制院／国策府，基础市政支持／政令通达／兼采诸制／政制取鉴／多元统筹／因时制宜／治理效能七项能力。逐栋完整生产回合研习标准速度1／2／3T（补两栋2／4／6T、总12T），只吸收持续效果、不重复一次性奖励；Legacy最多1项，无槽、可重选、同政体／超Tier失效。
+- 明确取代旧GOV-001自动免费同Tier另外两栋、GOV-002 Potential永久头衔、GOV-003 `W=min(ACTIVE,Government Tier)`、GOV-004 Loyalty网络及旧OPEN-03值。新槽位按当前不同非市政ACTIVE IV类型N；免费重配每回合首个主动完整配置一次，原生免费机会保持。
+- 内政司／政制择用仍Placeholder；折扣未定，治理效能每Tier1个百分点为初测候选、非最终平衡。已完成制度学习不因临时Governor／ACTIVE清除；精确Identity／Owner／当前效力／未提交项目及Legacy配置生命周期保留TBD，不统一所有资产。All Yields精确范围及多市政来源组合等未声明处不猜。
+- 与现行ELIG-001/002/006、ID-001、COMPAT-001的旧载体描述存在实质冲突，按本轮最新用户决定取代：**当前计划只向专用白板文明开放**，无需默认兼容所有原版／Mod文明与领袖能力叠加；未来AI／其它载体／多人可能性仍需单独授权，不构成当前支持承诺。enabled过滤与非支持Owner休眠不变。
+- Government仍FUTURE／OUT_OF_V0.1；Research／Culture／Industry／Commerce当前实施范围不扩。独立Canal与国事访问未来交互不改，社区D／娱乐文化网络／海空军衔接未决不动。Culture D0046与其反证／技术门禁保留；导航原先残留D0045／七域文字纠正为已接受D0046，非再改Culture Gameplay。
+- D0046 Spec逐字节冻结；其它Content与历史原件不改。只维护当前Authority／Status／manifest元数据及已审阅文档hash，不加入Government正文到文化任务默认context；B163.190原生待验／当前receipt／GC保持，无Implementation、部署或下一专业设计。
 
 ## Accepted D0046 — 2026-10-04
 

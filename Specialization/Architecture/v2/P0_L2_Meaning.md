@@ -1,7 +1,7 @@
 # P0-L2 —「意义延展」计划与接口调查
 
 State: P0_L2C_SIX_YIELD_FINAL_VALUE_LOCAL_COMPLETE_AWAITING_USER；用户已授权，正式全城L2未通过。
-Authority: Culture／Spec D0046恢复两域；Shared D0045不变，用户授权本批单城技术验证。source／live与停止点见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+Authority: Spec D0047只更新未来市政／当前白板范围；Culture D0046两域恢复、Shared D0045及本切片直接规则保持。用户授权范围不扩，source／live与停止点见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
