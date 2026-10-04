@@ -32,11 +32,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "83e191854983089a968629aafc3f7ff05a6aad11",
+  "runtime_commit": "fcea2427786cc3230c8b3ad0b9f8564834311816",
   "current_batch": "P0_L2C_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE",
   "next_batch": "Await B161 Production-only final-value native gate, W/END/enabled-copy cold-load; no other yield/cutover/L3/M/N/U2 authorization.",
   "manifest": "Specialization/Workflow/P0-L2C.json",
-  "live": "B160.187 / modinfo187 remains active until explicit receipt-bound W0003 B161 switch. Existing receipt B160.187-83e1918-playtest.json; source B161.188 LOCAL_COMPLETE is not deployment/native proof.",
+  "live": "B161.188 / modinfo188 DEVELOP_ACTIVE; source commit fcea2427786cc3230c8b3ad0b9f8564834311816; receipt B161.188-fcea242-playtest.json; 182/182 source/runtime MATCH, B160/stable recovery MATCH, no pending transaction; USER_GAME_TEST_REQUIRED.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -47,7 +47,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0418 user explicitly authorized B161 Production-only final per-work value0..10 plus observed signed SubValue; nine directly affected runtime files and four targeted test/support files reviewed. 73 methods/78subtests PASS; exact37/259, old SQL prefix, same-turn/zero-write/UNKNOWN/loss/load/failure, actual request/K/token/UI and independent native fixtures. Design/permanent/GC/other professions unchanged; no full history/stress or full L2 PASS. Only named hashes, new result/test updated after review.",
+  "context_review_status": "S0418 user explicitly authorized B161 Production-only final per-work value0..10 plus observed signed SubValue; nine directly affected runtime files and four targeted test/support files reviewed. 73 methods/78subtests PASS; exact37/259, old SQL prefix, same-turn/zero-write/UNKNOWN/loss/load/failure, actual request/K/token/UI and independent native fixtures. Design/permanent/GC/other professions unchanged; no full history/stress or full L2 PASS. Only named hashes, new result/test updated after review. W0003 deploy after clean/sync and reliable OS-exit checks: B161.188-fcea242-playtest.json, 182/182 MATCH; exact B160 restore bridge and retained recovery verified. Only deployment metadata hashes advanced; native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

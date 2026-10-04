@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0418
-Implementation Build: source B161.188 / modinfo188 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; live B160.187 until W0003 deployment; stable B069.96
+Implementation Build: source/live B161.188 / modinfo188 LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0045（Meaning直接合同不改；B161仅Production单城门禁，正式接入未完成）
 Latest Accepted Design Revision: D0045
@@ -15,7 +15,7 @@ Work State: P0_L2C_PRODUCTION_SINGLE_VALUE_LOCAL_COMPLETE
 
 73定向方法／78subTest PASS；0–10有限最终载体、物理D事件／W／同回合变化／零写、UNKNOWN／loss／reference／load／失败hold／token及独立reader覆盖。Owned37／附件259，旧27及SQL原189前缀保留；signed SubValue最小格式已补，严谨城市核验不变。旧多片FAIL及[B160八图](Validation/Results/Specialization_B160_Production_Reconfiguration_Native.md)冻结，未追内部算法。
 
-source/live分离：部署前live仍B160.187，沿receipt `B160.187-83e1918-playtest.json`；B161尚未部署／实机通过。W0003自动测试部署须commit／push／clean及再次确认游戏退出，再按精确旧receipt恢复stable并激活新包，保留恢复点。永久数据／Design／GC／其它专业／main不变，没有full／stress／游戏启动。停止等本批最小原生验收，不自动其它yield、正式cutover或L3／M／N／U2。
+部署已核对：source/live B161.188，运行源码commit `fcea242`，receipt `B161.188-fcea242-playtest.json` DEVELOP_ACTIVE／182/182 MATCH。按W0003先精确旧receipt恢复stable，再激活新包；B160及stable恢复点MATCH，无pending marker，可靠OS核对游戏退出，未启动游戏。部署不等于实机通过。永久数据／Design／GC／其它专业／main不变，没有full／stress／游戏启动。停止等本批最小原生验收，不自动其它yield、正式cutover或L3／M／N／U2。
 
 ## 历史阶段记录
 

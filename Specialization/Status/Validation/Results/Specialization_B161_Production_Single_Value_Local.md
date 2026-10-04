@@ -24,6 +24,10 @@
 
 Lua语法、Python AST、modinfo XML、精确SQL附件及旧SQL前缀检查通过。没有full historical／stress／原生游戏运行或性能长测。模拟getter／写入计数不能当作真实Civ VI收益或性能PASS；不运行已不适用于Production-only切片的历史five-yield writer套件，不修改那些断言使其变绿。
 
+## 部署核对
+
+运行源码commit `fcea2427786cc3230c8b3ad0b9f8564834311816` 已普通提交／推送，干净develop通过可靠OS游戏退出检查后，以既有W0003工具精确旧receipt恢复stable桥接并激活本包。receipt `B161.188-fcea242-playtest.json` 为DEVELOP_ACTIVE，source/live182/182 MATCH；B160与stable恢复点均MATCH，无pending transaction，未启动游戏。只证明部署一致性，原生值变化／退出／冷加载仍待用户短测。
+
 ## 一次最小实机流程
 
 复用文化ACTIVE IV测试城；优先只留一件已支持著作，固定其它产出加成，采用独立测试存档。用现有建筑／Cheat准备**工业区D6、军营D0或D1**，预期每件Production3；看D报告确认输入，不凭建筑名字猜Tier。
