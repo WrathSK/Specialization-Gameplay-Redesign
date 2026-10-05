@@ -2,6 +2,10 @@
 
 从[架构系统说明](../../Architecture/Specialization_v0.1_Architecture.md#系统如何组成)了解结构；这里回答“依据在哪里、结论能用到哪一步”。当前任务/授权/待测只看[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。文件较旧不代表结论无效，较新也不自动覆盖不同接口的证据。
 
+## 独立并行调查
+
+[General Investigation Zone / 通用调查区](Investigations/README.md)仅保存用户授权主题的非权威技术调查。独立调查会话只写自己的主题Markdown、Git仅限只读查询；Stable checkpoint由主任务审阅、用户接受后显式提交。不会自动成为Design、实现授权或日常必读；当前主题导航在根区README维护。
+
 ## 城市身份、保存与事件顺序
 
 | 问题 | 优先资料 | 仍须保留的边界 |

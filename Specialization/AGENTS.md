@@ -1,6 +1,14 @@
 # Specialization agent map
 
-遵守[根AGENTS](../AGENTS.md)。用户是最终语义权威；Design写入与决策边界统一见[W0005](Workflow/README.md#w0005--authority-and-repository-knowledge)，任务读取与验证见W0001/W0004。一个活动写入任务；不要覆盖其它未审查修改。
+遵守[根AGENTS](../AGENTS.md)。用户是最终语义权威；Design写入与决策边界统一见[W0005](Workflow/README.md#w0005--authority-and-repository-knowledge)，任务读取与验证见W0001/W0004。默认一个活动写入主任务；仅允许下述隔离的Investigation并行例外。不要覆盖其它未审查修改。
+
+## 并行 Investigation 窄例外
+
+- 用户可另开一个长期复用的调查会话，在同一develop worktree中只写[Investigation Zone](Reports/Technical/Investigations/README.md)下当前明确授权主题的Markdown。其它区域仍按现有单写者规则；不建立第二套Design Authority。
+- 调查会话遵守[根区AGENTS](Reports/Technical/Investigations/AGENTS.md)：只读Git，不stage/commit/push，不修改治理、Design、Architecture、Status、代码或hash。主题与文件归属明确，双方不修改对方专属文件。
+- 主任务在并行期间只能显式stage本批自己负责的文件，禁止`git add .`、`git add -A`、`git commit -a`；调查的dirty/untracked文件应原样保留，不顺带提交、stash、reset或clean。
+- 调查者停写指定Stable报告→主任务只读审阅→用户接受指定checkpoint→主任务显式commit/push。Stable不等于Design接受；提交完成前不恢复该文件写入。
+- 调查协议的初始化／后续修改仅由用户明确授权的主任务维护。普通开发不因此新增调查全文必读项、自动hash登记、分支、worktree或调度系统。
 
 ## 读取与证据
 
