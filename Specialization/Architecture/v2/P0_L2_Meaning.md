@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_B164_SCOPED_REPAIR_LOCAL_COMPLETE_NATIVE_DEFERRED；五项既有证据保留、Culture暂隔离、社区目录已修复待合并实机；正式全城L2未通过。
+State: P0_L2C_B165_PARTIAL_NATIVE_EVIDENCE；所测五项即时值／END已确认，主题化放大用户暂接受待Balance；正Dialogue及精确追加结算仍开放，正式全城L2未通过。
 Authority: Spec D0047、Culture D0046已接受规则及Shared D0045保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,14 +9,14 @@ Authority: Spec D0047、Culture D0046已接受规则及Shared D0045保持；用�
 
 本轮仍为显式选择的一座文化ACTIVE4城市：七域五项单值追加，Culture暂隔离，HD与Shared不改。当前311个已加载七类定义均由既有目录支持；同类未审阅定义使此技术路线停止，不能扩大作品资格、把整城混合馆藏拒绝升级为Gameplay规则或接管HD。既有[B161／B162](../../Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Native.md)及[B163](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)证据按原范围继承；社区D6／Food3合并同session，无独立实机。
 
-当前等待一次原生delta验收：正常Dialogue／主题化下追加固定、普通建筑实际结算及精确END；本地PASS不关闭这些native门禁。全城自动writer／全局旧GWA cutover仍需门禁通过后单独授权。L3／M／N／U2及其它适配不自动开始；永久账本／GC不改。
+[B165五图原生反馈](../../Status/Validation/Results/Specialization_B165_Meaning_Native_Review.md)确认所测未主题化五项即时固定值及END精确退出；图5重新启用Meaning后五项×2主题化，用户暂接受待Balance，不记为原隔离预期PASS。旧AUTO Dialogue均+0%，正倍率未覆盖；艺术利社0→132已观察，精确追加贡献结算未独立证明。此前“正常Dialogue”是旧B059 AUTO，不是未实施的新M完整1T项目；本轮不要求寻找项目或自动追加测试。全城自动writer／全局旧GWA cutover仍需相关合同／native边界评审后单独授权。L3／M／N／U2及其它适配不自动开始；永久账本／GC不改。
 
 ## 本轮已授权 — B165剩余接入门禁
 
 **范围与状态。** 用户“很好，授权推进”落实上一节方案的第一段，不包含门禁后的自动writer／全局cutover。B165.192 LOCAL_COMPLETE／USER_GAME_TEST_REQUIRED；[本地结果与最小实机流程](../../Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)是本批证据入口，不是新的Design来源。
 
 - **精准recipient的技术边界。** 原生city Great Work yield effect只有已验证的ObjectType／YieldType／YieldChange／ScalingFactor参数，没有已确认的逐GreatWorkType过滤。保留原92载体／644附件；进入门禁前用现行GreatWorkCatalog resolver核对本局加载的七类定义，当前只读DB为311／311支持、0未支持。元数据每会话一次、最多4096条／3条失败摘要；未知或未审阅同类定义在接管前拒绝此路线。Relic／Product等其它类别保持排除；不推广为所有环境的精准原生过滤，不更改正式作品池。若未来加载集合不等价，停止对应接入并调查过滤路径。
-- **正常倍率共存。** 新门禁不建立0% Dialogue override，不关闭主题化；只读取当前AUTO、同reference、当前已接受sample且owned投影真实匹配的Dialogue。已有可靠投影直接复用；仅未就绪时调用一次原有定域Audit，再核对。只允许该城市正常Dialogue共存，旧BASE GWA仍由既有精确定域hold；退出失败不释放旧GWA，UNKNOWN／loss与原清理合同保留。
+- **正常倍率共存（旧B059 AUTO，非新M项目）。** 新门禁不建立0% Dialogue override，不关闭主题化；只读取当前AUTO、同reference、当前已接受sample且owned投影真实匹配的Dialogue。已有可靠投影直接复用；仅未就绪时调用一次原有定域Audit，再核对。只允许该城市正常Dialogue共存，旧BASE GWA仍由既有精确定域hold；退出失败不释放旧GWA，UNKNOWN／loss与原清理合同保留。
 - **结算观测。** 现有右键READ增加当前普通非奇观建筑的真实队列进度／成本和可读生产读数，仅按需读取。缺接口／非单一目标明确未就绪，不作结算PASS；没有跨回合日志、永久Property、每帧／hover请求或新订阅。实际生产进度前后对照关闭“只有tooltip变化”的native不确定性。
 - **更新与临时状态。** 变化仍沿现有事实／K／probe定域Audit链路处理；同回合D/W真实变化保持响应，可靠输入不重复写。新增recipient proof由probe会话拥有，元数据本局固定，仅新会话替换；normalEnvironment随现有target在END／loss／加载清理退出。UI同回合baseline包含Dialogue／主题／馆藏／D／资格／reference，变化即失效；结算progress只读，不保存历史或native对象。
 - **验证与停止。** W0004 L2＋直接退出定向共55方法PASS；旧modinfo191专用断言保持原样、不适用于192，由当前192检查取代。原生只测本批新不确定性，不重复启用存档→END→冷加载harness仪式。正常Dialogue需>0，主题化若没有现成fixture则明确未验，不假造全门禁通过。失败只阻断对应正式cutover，不扩大清理、不改Design。
@@ -27,7 +27,7 @@ Authority: Spec D0047、Culture D0046已接受规则及Shared D0045保持；用�
 
 **状态。** 第一段剩余门禁现由本轮B165授权执行；第二段起的全城自动writer／全局cutover仍PLANNED_NOT_AUTHORIZED。B164／B165单城原型不等于正式自动玩法，不扩大用户授权。完整四专业盘点、源码差异和顺序见[B164审查报告](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)。
 
-1. **先补真正剩余的门禁。** 复用既有五项单值原语，只核对已支持作品与同class未知对象的精准recipient、正常Dialogue／主题化下追加独立、普通生产等正常结算。先本地确认；无法模拟的native差异尽量合并一session，社区D6／Food3顺带确认。不能以整城拒绝混合馆藏、扩大未知作品资格或HD接管绕过。Culture保持已授权暂延期，不重做既有五yield与共享harness仪式。
+1. **先处理真正剩余的合同／门禁。** 复用既有五项单值原语与本次精确END证据，保留精准recipient、旧AUTO正Dialogue下追加独立及精确追加结算的剩余边界。主题化×2已有本次观察与用户暂接受，正式接入前同步对应合同及Balance标记，不按原独立预期重复派发本轮主题化测试。先本地核对；确需native时给具体区分，不要求寻找未实施M项目或重复五yield／共享harness。不能以整城拒绝混合馆藏、扩大未知作品资格或HD接管绕过；Culture保持已授权暂延期。
 2. **门禁关闭后单独授权正式接入。** 建立所有合格文化城正常加载／资格自动派生的module-owned writer，复用Shared D、K确认通知与输入版本；移除必须P0启用的target依赖。诊断默认只读，旧probe显式DEV互斥；无新永久收益账本。
 3. **精确cutover。** 新writer资格、D/W替换、UNKNOWN及loss路径可靠后退役旧BASE GWA正向写入／精确旧owned，保留必要清理。去掉实验Dialogue0%／100%hold并验证正常共存；新Dialogue项目留M，不偷做。失败不可混写或凭历史收益快照恢复。
 4. **更新及生命周期约束。** 实际同回合变化仍响应、同一可靠输入零重复写；跨城移动更新实际两端，全国变化才扩大。缓存／pending按模块和当前city/reference/version拥有、失效及退出，不加per-frame／hover Gameplay请求、全局新扫描或GC。

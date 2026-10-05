@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0430
+Status Revision: S0431
 Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0047
 Design Sync State: D0047_GOVERNMENT_FUTURE_BASELINE / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B165_NATIVE_GATES_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: P0_L2C_B165_PARTIAL_NATIVE_EVIDENCE_THEMING_ACCEPTED_BALANCE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161不改，v0.1仍四专业。source／live B165.192／modinfo192 LOCAL_COMPLETE（source `16f1f99`、receipt `B165.192-16f1f99-playtest.json` DEVELOP_ACTIVE／182 MATCH），已实际核验。main稳定B069.96不改。
+当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161保持，v0.1仍四专业。source／live B165.192／modinfo192（source `16f1f99`、既有receipt DEVELOP_ACTIVE／182MATCH记录）不变，main稳定B069.96不改。
 
-已授权并完成的[Meaning剩余接入门禁](../Architecture/v2/P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：加载集合支持证明、正常Dialogue／主题化共存入口、普通建筑真实进度READ；[本地55方法PASS](Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)。仍是手动单城七域五yield，Culture暂隔离，社区合并本次session。STATIC／LOCAL不代表追加独立或正常结算已获原生PASS；已有B161／B162／B163证据按范围继承。
+[B165五图已审阅归档](Validation/Results/Specialization_B165_Meaning_Native_Review.md)：所测未主题化五项即时值及END精确退出PASS；图5重新启用Meaning后五项×2主题化，用户暂接受、Balance待实测，正式隔离条款与待同步决定明确保留。旧AUTO Dialogue+0%，正倍率未覆盖；普通建筑0→132有真实推进，精确追加贡献未独立证明。不是全部native门禁或全城cutoverPASS。
 
-当前待一次最小native session，之后门禁关闭才单独授权全城自动writer／旧GWA cutover。[商业准备](../Architecture/v2/Commerce_Preparation.md)／[工业准备](../Architecture/v2/Industry_Preparation.md)已完成调查/计划，[文化M/N/U2准备](../Architecture/v2/Culture_Preparation.md)已按最新Authority重核；均不授权新实施；其它缺口仍见[B164落地盘点](../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)。永久账本／GC及main不改；无新Gameplay决定、writer退役、build、部署或本轮实机要求。
+当前仍手动单城七域五yield、Culture追加隔离。新M时代对话项目尚未实施；旧测试“正常Dialogue”只指B059 AUTO，本轮不追加未实施项目测试。自动writer／全局GWA切换、L3/M/N/U2仍须独立方案审核／实施授权；[商业](../Architecture/v2/Commerce_Preparation.md)／[工业](../Architecture/v2/Industry_Preparation.md)／[文化准备](../Architecture/v2/Culture_Preparation.md)仍仅计划。永久账本／GC／运行包不改。
+
+## S0431 — B165五图原生反馈与主题化暂接受
+
+用户投递五图并暂接受主题化放大、要求后续Balance实测；确认图5在重新启用Meaning后拍摄。逐张读取后按原名原字节归档，5/5 SHA256 MATCH。所测五项即时值与END终态已确认；主题化×2与原隔离预期不同，记录暂接受／待正式同步意见，不改Design或参数。真实生产推进不等于精确追加贡献已量化，正旧AUTO与新M集成未测。
+
+解释缺失城市项目是M未实施，纠正当前计划对旧AUTO的含混称呼；不改冻结本地结果／源码，不要求用户找尚不存在的项目。用户明确结束Governor只读审计边界并授权恢复本轮记录；本批只同步result、当前Status／plan／Authority／manifest status pin及命名已审阅hash，无新implementation、build、部署、Gameplay测试或实机要求。外交调查untracked文件保留、不随本批提交。
 
 ## S0430 — 文化M/N/U2计划按当前Authority重核
 
