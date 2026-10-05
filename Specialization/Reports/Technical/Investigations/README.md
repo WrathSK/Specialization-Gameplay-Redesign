@@ -4,7 +4,7 @@
 
 > **Investigation / Non-authoritative / No design decision implied**
 
-用户是最终语义权威。这里与现有Design、Architecture、Status、Validation职责分离；不构成第二套Authority、Workflow、调度或memory系统。操作约束见[本区AGENTS](AGENTS.md)、[项目并行例外](../../../AGENTS.md#并行-investigation-窄例外)、[W0001/W0005](../../../Workflow/README.md)。这是文档工作协议，不是额外的操作系统沙箱。
+用户是最终语义权威；玩法构思、比较、Red Team与设计讨论由用户在自己的外部设计对话（例如ChatGPT）中进行，外部工具没有独立repo权威。当前没有活跃的独立仓库Design Agent；归档的旧Design Talk不参与交接或写入。Main Task / Develop Agent是唯一负责正式repo写入的主任务，在用户授权下维护Design Authority／当前设计、Architecture／Status、实现、测试、Git写操作及用户接受的调查checkpoint。General Investigation Agent不拥有外部设计对话上下文，只维护本区当前授权主题的调查Markdown。这里与现有Design、Architecture、Status、Validation职责分离；不构成第二套Authority、Workflow、调度或memory系统。操作约束见[本区AGENTS](AGENTS.md)、[项目并行例外](../../../AGENTS.md#并行-investigation-窄例外)、[W0001/W0005](../../../Workflow/README.md)。这是文档工作协议，不是额外的操作系统沙箱。
 
 ## 主题目录与当前导航
 
@@ -46,7 +46,7 @@ Investigations保持Git可跟踪，不加gitignore。调查者仅做只读Git查
 4. 主任务复核diff、归属及并行状态，仅显式stage被接受文件，commit/push；其它改动不随入。
 5. 主任务确认checkpoint结束。后续修改已被引用／锁定的Stable版本先协调，不后台改写。
 
-技术结果影响玩法时继续使用：**Investigation evidence → Design Talk discussion → User decision → Design Authority update → separately authorized Implementation**。用户接受调查checkpoint只是接受记录入库，不自动接受某种Gameplay方案。
+技术结果影响玩法时使用：**Investigation evidence → user review / external design discussion → user decision → Main Task updates authoritative design → separately authorized implementation**。用户可以把报告带回自己的外部设计对话；调查者只向用户交付，不要求与归档的Design Talk或不存在的Design Agent交接。用户接受调查checkpoint只是接受记录入库，不自动接受某种Gameplay方案。
 
 ## 报告模板
 

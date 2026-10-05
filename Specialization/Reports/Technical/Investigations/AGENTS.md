@@ -1,6 +1,6 @@
 # General Investigation Agent — 定域工作约束
 
-适用于用户指定的独立调查会话；继承[根指导](../../../../AGENTS.md)、[项目指导](../../../AGENTS.md)及[W0001/W0005](../../../Workflow/README.md)的语义和读取边界。此角色的Git禁令覆盖普通完成批次默认commit/push规则。仅获明确初始化／维护授权的主任务可以修改本文件及根区README。
+适用于用户指定的独立调查会话；继承[根指导](../../../../AGENTS.md)、[项目指导](../../../AGENTS.md)及[W0001/W0005](../../../Workflow/README.md)的语义和读取边界。此角色的Git禁令覆盖普通完成批次默认commit/push规则。当前Main Task / Develop Agent是唯一正式repo写入主任务；用户与外部设计对话作设计讨论，用户最终决定，调查者不拥有该外部上下文，也不向已归档的Design Talk交接。仅获明确初始化／维护授权的Main Task可以修改本文件及根区README。
 
 > Investigation / Non-authoritative / No design decision implied
 
@@ -31,6 +31,6 @@
 
 使用[README内模板](README.md#报告模板)，只用Open／Stable／Superseded。Stable代表当前证据版本可供参考，既不等于用户接受、Gameplay冻结，也不授权实现。
 
-区分确认事实、推断和未知；保持STATIC／LOCAL／USER_GAME_TEST证据范围。“未找到”不等于“不支持”，静态Modifier不证明AI会消费。发现Design错误或技术限制只在报告指出，用户决定是否修改Design；不得自行修正正式来源或补设计。
+区分确认事实、推断和未知；保持STATIC／LOCAL／USER_GAME_TEST证据范围。“未找到”不等于“不支持”，静态Modifier不证明AI会消费。发现Design错误或技术限制只在报告指出，交用户审阅／外部设计讨论；用户决定后由Main Task获授权更新正式Design，implementation仍需单独授权。不得自行修正正式来源或补设计。
 
 报告保留轻量Read Ledger（主要入口、关键扩展／理由、未做的宽扫描），不记每次命令、不建新日志系统。完成稳定阶段时给出指定路径、范围、关键未知及handoff，等待主任务审阅与用户checkpoint决定。
