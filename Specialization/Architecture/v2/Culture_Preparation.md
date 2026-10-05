@@ -1,20 +1,20 @@
 # 文化后续模块：计划与调查入口
 
-State: B165_NATIVE_PENDING / M_N_U2_PLANS_REVALIDATED / NO_NEW_IMPLEMENTATION_AUTHORIZATION。
-Review baseline: develop `647407a`，Spec D0047 / Culture D0046 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只记录准备范围，实际source/live/授权仍从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取；本次未核验外部运行包。
+State: B165_FIRST_BATCH_CONTRACT_SYNC_COMPLETE / MINIMAL_NATIVE_DELTA_PENDING / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
+Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048 / Culture D0048 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只记录准备范围，实际source/live/授权仍从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取；本次未核验外部运行包。
 
 ## 当前切片与停止点
 
-当前B165仍为意义延展手动单城门禁：加载集合支持证明、正常Dialogue/主题化共存及普通建筑实际进度观察入口已LOCAL完成，原生待验；Culture追加仍隔离，社区D合并同一session。全城自动writer与global旧GWA cutover未授权，不能把已验载体原语当正式能力落地。
+当前B165仍为意义延展手动单城门禁：五项即时值与所测END已有证据；D0048暂行允许原生主题化、Balance待验。正旧AUTO及精确追加结算按[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)一次最小对照收口；Culture追加仍隔离。全城自动writer与global旧GWA cutover未授权，不能把已验载体原语当正式能力落地。
 
-用户本次授权按最新Design重核M/N/U2和本入口，消除旧cap/原Owner分账/K_T未定等过期计划；没有授权新原型、实施、部署或测试。商业/工业准备独立保留。准备页不成为第二份Design/状态台账，也不加入每日必读；对应模块获批后才收敛其W0001上下文。
+前轮仅授权按当时Design重核M/N/U2和本入口，消除旧cap/原Owner分账/K_T未定等过期计划；那一轮没有新原型、实施、部署或测试授权。本轮仅授权L2第一批合同同步与剩余证据收口，不改变M/N/U2实施边界。商业/工业准备独立保留。准备页不成为第二份Design/状态台账，也不加入每日必读；对应模块获批后才收敛其W0001上下文。
 
 ## 按模块阅读
 
 | 模块 | 计划 / 可复用基础 | 当前准确门槛 |
 |---|---|---|
 | 风雅熏陶L1 | [L1](P0_L1_Aesthetic.md#当前切片与停止点)：逐栋Tourism、已测结算/退出 | [B149限定PASS](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保留，不重开无变化回合时序调查、不扩大未测组合 |
-| 意义延展L2 | [B165当前门禁](P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：Shared D、逐领域Floor、单一最终值与已支持作品目录 | 当前加载集合证明不等于跨Mod通用recipient；正常倍率共存/真实结算/END待原生，七域五yield实施投影不改变九域六yield Design；正式cutover后置 |
+| 意义延展L2 | [B165当前门禁](P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：Shared D、逐领域Floor、单一最终值与已支持作品目录 | 当前加载集合证明不等于跨Mod通用recipient；五项即时值／END按已测范围继承，主题化暂接受待Balance，正旧AUTO／精确结算仍待对照；七域五yield运行投影不改变九域六yield Design，正式cutover后置 |
 | 巨作启迪L3 | [当前L3-A](P0_L3_Inspiration.md)：0.1D×W基础GPP原语 | 单class小数/正常倍率/退出门槛；count通知已补，不能继续列为已知缺口；不把L2 Floor移植给GPP |
 | 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | START Era额度/无额外cap累计/已定取消与原子提交；新累计native-only路径，B165实际过范围才继承 |
 | 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
@@ -60,6 +60,6 @@ M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅�
 
 按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
 
-用户当前需要决定：无。当前仅保留B165既有待验，不新增测试请求。Codex停止于计划更新，等待B165反馈与下一明确实施授权；v0.1仍四专业，AI/自由城市休眠、单人及保存/GC边界不变。
+本轮L2第一批合同同步与只读结算复核已完成；一次既有B165包最小native差异待用户，详见[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)。不开始自动writer、L3/M/N/U2，不部署；准备页及前轮计划复核不授予这些实施。
 
-来源：[Culture D0046](../../Design/Content/Culture_D0046.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+来源：[Culture D0048](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

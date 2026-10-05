@@ -9,15 +9,19 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Industry D0045](Industry_D0045.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 
+## D0048 — 意义延展主题化暂行首测规则
+
+[Culture D0048](Culture_D0048.json)为当前文化结构化正文：Meaning追加允许原生主题化，v0.1暂接受／Balance待实测，仍不被Dialogue放大。K0.5、逐领域Floor、份额／W、九域六产出Design及其它能力／历史保持；不把B165 Writing×2推广为固定公式。Culture运行追加仍隔离，不等于自动writer或正Dialogue／精确结算已通过。[接受记录](../Design_ChangeLog.md#accepted-d0048--2026-10-05)。Shared／Industry／Commerce D0045、Research D0040、Government D0047、Military／Harbor D0037原件不改。
+
 ## D0047 — 当前市政基线与全系统载体范围
 
 [Government D0047](Government_D0047.json)是市政完整结构化正文：[中文阅读版](../Government.md)解释治所／内政司／典制院／国策府及1／1／2／3七项能力。旧自动补建筑、永久总督头衔、旧Wildcard公式与Loyalty网络正式取代；内政司／政制择用工作名、费用折扣、k首测候选、生命周期与技术分别保留，不声称全部细节冻结。
 
-全系统当前只向专用白板文明开放，资格与未来复用边界以[Spec ELIG](../Specialization_v0.1_Design_Spec.md#system-scope--opt-in-player-eligibility--elig)为准；不默认全原版／Mod文明与领袖能力叠加兼容。Government仍未来范围，当前v0.1只实施四专业；不修改Mod或当前待验任务。Culture现行D0046恢复九域六产出，Shared／Industry／Commerce D0045、Research D0040、Military／Harbor D0037原件不变。以下旧修订段是接受来源追溯，不覆盖本段当前入口。[接受与取代](../Design_ChangeLog.md#accepted-d0047--2026-10-04)。
+全系统当前只向专用白板文明开放，资格与未来复用边界以[Spec ELIG](../Specialization_v0.1_Design_Spec.md#system-scope--opt-in-player-eligibility--elig)为准；不默认全原版／Mod文明与领袖能力叠加兼容。Government仍未来范围，当前v0.1只实施四专业；不修改Mod或当前待验任务。Culture现行D0048保留D0046九域六产出并暂行允许原生主题化，Shared／Industry／Commerce D0045、Research D0040、Military／Harbor D0037原件不变。以下旧修订段是接受来源追溯，不覆盖本段当前入口。[接受与取代](../Design_ChangeLog.md#accepted-d0047--2026-10-04)。
 
 ## D0028共享入口
 
-[Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0046.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0048.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 

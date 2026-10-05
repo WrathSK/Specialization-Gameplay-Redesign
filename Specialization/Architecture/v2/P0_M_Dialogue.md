@@ -1,7 +1,7 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
 State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED / PERSISTENCE_AND_NATIVE_ONLY_GATES_OPEN。
-Authority: Spec D0047 / Culture D0046 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；本次为既有计划revalidation，不是新Design或实施授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
+Authority: Spec D0048 / Culture D0048 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；本次为既有计划revalidation，不是新Design或实施授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
 
 ## 完整Gameplay合同
 
@@ -13,7 +13,7 @@ Authority: Spec D0047 / Culture D0046 `CUL_L3_DIALOGUE`、`contracts.dialogue/wo
 
 合格作品采用当前共同work_pool：明确支持的著作、音乐、雕塑、肖像、风景、宗教艺术及文物；Relic、Product、Wonder、未知Mod作品/不可靠时代排除。同类别不自动等于目录已支持；时代取可靠作品历史时代，创作者关联需经验证，文物取自身时代，不以玩家/取得时代代替。
 
-优先只提高合格巨作**原生产出（含旅游）**。Meaning追加独立，既不被Dialogue放大，也不被主题化放大；同YieldType不能作为合并放大的理由。若只能可靠实现Tourism-only，正式Content允许报告并区分后采用该fallback，不能本计划默认为最终路径。百分比效果接受原生floor、无补偿；即使整数收益没变，UI仍显示累计百分比。这项许可不适用于L2/L3小数。
+优先只提高合格巨作**原生产出（含旅游）**。Meaning追加基值独立且不得被Dialogue放大；D0048允许原生主题化作用于追加，作为v0.1暂行首测规则／Balance待验，不在本M计划另建主题倍率。相同YieldType仍不能让Dialogue合并放大追加。若只能可靠实现Tourism-only，正式Content允许报告并区分后采用该fallback，不能本计划默认为最终路径。百分比效果接受原生floor、无补偿；即使整数收益没变，UI仍显示累计百分比。这项许可不适用于L2/L3小数。
 
 ## 已验项目路线可以复用什么
 
@@ -40,7 +40,7 @@ D0045已关闭累计cap决策，D0042已关闭未提交项目取消语义；不�
 
 当前`DialogueModel`仍按25%×max(0,D−1)动态投影，旧`Dialogue`资格仍是Culture ACTIVE4；**不是新M**。旧D档表达当前时代多样性，不能直接承担永久累计倍率。新累计的原生表达不得自行夹断或加一个方便实现的cap；做不到时报告具体技术限制。
 
-B165只完成当前加载集合支持证明和正常Dialogue/主题化/结算观测入口的STATIC/LOCAL门禁，native仍待验；Culture追加暂隔离。M应继承未来B165实际通过的范围，再验证新累计载体，不将旧动态倍率probe等同新M，也不重复共享harness仪式。旧B059.82只有非主题化作品读数，整城Culture未变，不证明真实结算或native-only隔离。
+B165已有加载集合STATIC证明、五项即时固定值与所测END原生证据；主题化×2已暂接受并按D0048同步，Balance待验；正旧AUTO／精确追加结算仍开放，Culture追加暂隔离。M继承这些实际范围，再验证新累计载体，不将旧动态倍率probe等同新M，也不重复共享harness仪式。旧B059.82只有非主题化作品读数，整城Culture未变，不证明真实结算或native-only隔离。
 
 E2已有可靠同城映射可复用，不能靠名字/单独坐标/猜CityID。城市彻底摧毁等Shared尚未涵盖边界保留为局部待定，遇到直接依赖才提出；不扩成当前M整体阻塞，也不以AI休眠为由清掉城市历史。
 
@@ -78,6 +78,6 @@ W0004 L3，但仅相关项目/Store/重复/保存及native-only回归，不默�
 
 诊断显示启动时代/已用、计时状态、当前X/待确认、累计%/无额外cap、优先/技术fallback、native实测范围。不要堆Property/令牌；异常再展开。Exit不将计时probe成功或旧百分比实测升级为完整M。
 
-来源：[正式Culture](../../Design/Content/Culture_D0046.json)、[项目调查](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)、[既有E2保存合同](P0_E2_Plan.md#current-slice--recovery-and-action-routing)、[旧百分比实现](../../Reports/Technical/Specialization_B059_Dialogue_Implementation.md)、[旧非主题化读数及结算限制](../../Status/Validation/Results/Specialization_B059_82_Percent_User_Result.md)。
+来源：[正式Culture](../../Design/Content/Culture_D0048.json)、[项目调查](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md)、[既有E2保存合同](P0_E2_Plan.md#current-slice--recovery-and-action-routing)、[旧百分比实现](../../Reports/Technical/Specialization_B059_Dialogue_Implementation.md)、[旧非主题化读数及结算限制](../../Status/Validation/Results/Specialization_B059_82_Percent_User_Result.md)。
 
 生命周期依据：[Shared D0045](../../Design/Content/Shared_D0045.json)、[D0042接受记录](../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)。仅首测强度仍需Balance观察，本轮无新Gameplay决策请求。

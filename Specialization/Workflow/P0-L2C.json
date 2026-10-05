@@ -88,15 +88,15 @@
   "batch": "P0-L2C",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0047",
+    "design": "D0048",
     "research": "D0040",
     "industry": "D0045",
-    "culture": "D0046",
+    "culture": "D0048",
     "commerce": "D0045",
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0431",
+    "status": "S0432",
     "runtime": "B165.192 / modinfo192",
     "military": "D0037",
     "harbor": "D0037",
@@ -120,6 +120,12 @@
     {
       "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
       "kind": "section",
+      "selector": "## 第一批已授权 — 合同同步与剩余证据收口",
+      "reason": "Current user-approved first batch: narrow theming contract sync and existingB165 minimal native evidence closure only; no code/auto-writer authorization."
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
       "selector": "## 本轮已授权 — B165剩余接入门禁",
       "reason": "Complete currently authorized B165 scope/native stop/normal coexistence and bounded temporary lifecycle; prior B164 contract/evidence inherited."
     },
@@ -136,47 +142,47 @@
       "selector": "## 6. Culture / Theater Square — CUL"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "reason": "Complete Meaning qualifications/formula/exceptions",
       "selector": "/abilities/3",
       "expected_id": "CUL_L4_MEANING"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "reason": "Initial0.5 parameter, not final balance",
       "selector": "/parameters/meaning_K"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "reason": "Explicit eligible work pool/era/exclusions",
       "selector": "/contracts/work_pool"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "reason": "Shared full domain/share vocabulary; current Meaning-specific included/excluded scope is in meaning_domains, not the nine-domain vocabulary",
       "selector": "/contracts/domains"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "selector": "/contracts/meaning_domains",
       "reason": "User D0046 nine-domain/six-yield restoration and retained native coexistence gate"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "selector": "/contracts/dialogue",
       "reason": "Complete native-only target/fallback and lifecycle; shared YieldType not eligibility"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0046.json",
+      "path": "Specialization/Design/Content/Culture_D0048.json",
       "kind": "json",
       "selector": "/contracts/meaning_multipliers",
-      "reason": "D0041 fixed Dialogue/theming-independent additions and deferred future option"
+      "reason": "D0048 permits native theming provisionally; Dialogue never amplifies Meaning; same pre-theming K/share/domain Floor/W, Balance pending and other stacking unknown."
     },
     {
       "path": "Specialization/Design/Content/Shared_D0045.json",
@@ -430,17 +436,17 @@
       "Current package192 syntax/imports/action/Text and unchanged exact92/644; old191 package assertion kept unchanged and explicitly NA.",
       "Current links/selectors/schema/context/runtime review hashes and diff only."
     ],
-    "user": "One session: normal Dialogue>0 and existing theme if available, fixed five-value delta, one actual normal-building production turn, exact END. Community D6/Food3 joins same session. No default enabled-save/cold-load/re-enable ritual; unmet theme/API condition remains unresolved."
+    "user": "Reuse existingB165 one city and one ordinary building: supported works with distinct historical eras and positive old AUTO; unthemed host for fixed-base check. BASELINE one normal production turn then ACTIVE one normal production turn, three actual progress readings and same-turn positive-AUTO addition delta. Same comparable production conditions, no chopping/injection/target change. Inherit five-yield/Theme/END/load evidence; no default save/cold-load/re-enable ritual or M-project test."
   },
   "result": {
-    "plan": "Authorized remaining Meaning native gates only, local complete; no all-city automatic writer/global GWA cutover authorization.",
+    "plan": "User authorized first batch only: narrow formal theming synchronization and remaining evidence reconciliation/preparation complete; normal native differential pending. No automatic writer/global GWA cutover or M implementation.",
     "implementation": "B165.192 / modinfo192: loaded-recipient proof once/session, normal current Dialogue retained, actual ordinary-building progress READ; seven-domain/five final yields with Culture quarantine, exact92/644 unchanged.",
-    "native": "B163 five screenshots: W1 baseline then non-Culture1/5/4/1/1 with paired deltas; S1→3/G4→9/Faith1→3 and W2 native6/10/18/2/6 agree in observed Writing scope. Culture required3 but4→4/delta0 FAIL. D/W later baselines invalid correctly; no new END/load/recipient/multiplier/settlement PASS, full L2 NOT_PASSED. B161/B162 named prior evidence retained. B165 normal gate has no new native result yet; current311 loaded-set STATIC proof is not a native multiplier/settlement or formal all-city PASS.",
-    "stop": "Await B165 native normal Dialogue/theming fixed-addition, actual settlement and exact END gates; separately authorize all-city automatic writer/global GWA cutover only afterwards. No L3/M/N/U2 or other implementation.",
+    "native": "B165 five images: observed unthemed five-value deltas and exact END PASS; user confirms re-enabled Meaning before themed Writingx2, provisionally accepted and now D0048 with Balance pending. Old AUTO0 only; raw100->110/progress0->132 is actual native progress but not exact added-contribution attribution. No new native PASS in first-batch document sync.",
+    "stop": "Await the current minimal positive-old-AUTO/two-turn production differential in existingB165. Separate user approval required afterwards for automatic writer/global GWA cutover; no L3/M/N/U2 or new implementation.",
     "deployment": "B165.192 / modinfo192 DEVELOP_ACTIVE; source 16f1f999d6f9634f973f660cc67c70b52dd11c63; receipt B165.192-16f1f99-playtest.json;182/182 MATCH. Exact B164/stable recovery verified and retained; no pending marker/game launch.55 LOCAL checks PASS, normal multiplier/settlement/END native pending; no formal all-city cutover.",
-    "authority_revalidation": "D0046 narrow user-approved two-domain restoration, no coefficient/qualification/lifecycle/other consumer change; unchanged Shared objects and old source/history review hashes reused. D0047 Government future baseline and dedicated blank scope recorded only; current four-profession scope and Culture/Shared direct contracts unchanged. Government is not a new context/dependency or runtime authorization. B165 loaded-set proof and current normal Dialogue consume unchanged exact eligible-work/independent-multiplier contracts; no new Design or future-profession dependency.",
-    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md",
-    "deferred_culture": "B164 implements user-selected temporary own Culture quarantine. Accepted D0046 unchanged; no HD takeover and root cause unresolved.",
+    "authority_revalidation": "D0048 changes only Meaning native theming permission from exclusion to provisional v0.1 acceptance/Balance. Complete ability and multiplier contract reviewed; Dialogue native-only target, K0.5, domain/share/W/qualification/lifecycle and Shared objects unchanged. Runtime/test bytes retained; old theme-independent expectations in frozen records remain historical, not rehashed. No Government/future-profession dependency or code authorization introduced.",
+    "latest_native_evidence": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Review.md",
+    "deferred_culture": "B164 own Culture quarantine remains runtime behavior; accepted D0048 retains nine-domain Design and provisional native theming. No HD takeover, native Culture coexistence unresolved.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
     "local_test_entry": "test_culture_meaning_native_gates.py;55 targeted methods PASS; no historical/full/stress.",
     "next_proposal": "After native gates and user review, request separate authorization for all-city normal writer/global GWA cutover; no automatic continuation.",

@@ -3,8 +3,23 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0047
+Latest Accepted Design Revision: D0048
 Document State: ACCEPTED
+
+## Accepted D0048 — 2026-10-05
+
+Acceptance: ACCEPTED / Meaning native theming provisionally allowed for v0.1; Balance pending
+Acceptance Evidence: 用户B165反馈“主题化可以接受，先Mark，需实机Balance”，确认图5重新启用Meaning后拍摄，并明确“授权实施第一批”合同同步与证据收口。
+Accepted Spec SHA256: 2edf9900e847e36968b8bfb4ac7e5237718ea2c679bcd122913f7239ad8254e0
+Canonical Culture Content SHA256: 8df7841e42a686ab4ba737e17cb32dd00e3db2dbd9fc83d535ba7c579a9bbe9b
+Previous Accepted Revision: D0047
+Frozen D0047: [原文](Revisions/Specialization_Design_Spec_D0047.md)
+Frozen D0047 SHA256: 8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c
+Content: [Culture D0048](Content/Culture_D0048.json) / [文化阅读版](Culture.md)
+
+只取代D0041／D0046中Meaning主题化排除：追加按原生主题化规则作用，v0.1暂行许可，Balance待实测。Dialogue仍只放大作品原生产出、不放大Meaning；K0.5、逐域Floor→同yield和→W作为主题化前基值，份额、九域六产出Design、作品资格、ACTIVE IV及城市历史不改。没有新倍率、cap、补偿或其它公共倍率豁免；B165所测×2不是普适固定公式。
+
+原生文化平加运行隔离保持、Shared／其它专业Content不改，旧D0046与D0047 Spec原件冻结。同期B165第一批只复核生产读数与真实进度、不从110×1.2猜20%来源；剩余正旧AUTO／精确追加结算用既有包一次最小对照。没有Mod／tests／GC／main／部署或自动writer／M实施；新Design接受不提升未测native门禁。
 
 ## Accepted D0047 — 2026-10-04
 

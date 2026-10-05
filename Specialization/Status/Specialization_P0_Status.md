@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0431
+Status Revision: S0432
 Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0047（正式设计保持；Culture D0046共存失败、实施暂隔离）
-Latest Accepted Design Revision: D0047
-Design Sync State: D0047_GOVERNMENT_FUTURE_BASELINE / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B165_PARTIAL_NATIVE_EVIDENCE_THEMING_ACCEPTED_BALANCE_REQUIRED
+Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
+Latest Accepted Design Revision: D0048
+Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
+Work State: P0_L2C_B165_FIRST_BATCH_DOC_COMPLETE_NATIVE_DELTA_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec D0047／Culture D0046／Shared D0045及Architecture A0161保持，v0.1仍四专业。source／live B165.192／modinfo192（source `16f1f99`、既有receipt DEVELOP_ACTIVE／182MATCH记录）不变，main稳定B069.96不改。
+当前Spec／Culture D0048暂行允许Meaning原生主题化、Balance待实测，Dialogue仍不放大追加；Shared D0045／Architecture A0161及四专业范围保持。source／live继续B165.192／modinfo192、source `16f1f99`与既有receipt记录；main稳定B069.96不改。
 
-[B165五图已审阅归档](Validation/Results/Specialization_B165_Meaning_Native_Review.md)：所测未主题化五项即时值及END精确退出PASS；图5重新启用Meaning后五项×2主题化，用户暂接受、Balance待实测，正式隔离条款与待同步决定明确保留。旧AUTO Dialogue+0%，正倍率未覆盖；普通建筑0→132有真实推进，精确追加贡献未独立证明。不是全部native门禁或全城cutoverPASS。
+用户已授权[第一批合同同步与证据收口](../Architecture/v2/P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)，文档及现有入口只读复核已完成。[B165五图](Validation/Results/Specialization_B165_Meaning_Native_Review.md)五项即时值／所测END继承，主题化不按旧隔离预期重测；旧AUTO0与raw110／进度132不能关闭正共存／精确追加归因。一次现有包两回合对照待用户，不保存冷载／重验共享harness。
 
-当前仍手动单城七域五yield、Culture追加隔离。新M时代对话项目尚未实施；旧测试“正常Dialogue”只指B059 AUTO，本轮不追加未实施项目测试。自动writer／全局GWA切换、L3/M/N/U2仍须独立方案审核／实施授权；[商业](../Architecture/v2/Commerce_Preparation.md)／[工业](../Architecture/v2/Industry_Preparation.md)／[文化准备](../Architecture/v2/Culture_Preparation.md)仍仅计划。永久账本／GC／运行包不改。
+当前仍手动单城七域五yield、Culture追加隔离，新M项目未实施；本轮无代码、测试逻辑、build或部署。自动writer／全局GWA切换及L3/M/N/U2仍须独立授权；[商业](../Architecture/v2/Commerce_Preparation.md)／[工业](../Architecture/v2/Industry_Preparation.md)／[文化准备](../Architecture/v2/Culture_Preparation.md)仅准备，永久账本／GC不改。
+
+## S0432 — 已授权第一批：主题化合同同步与最小收口
+
+用户“授权实施第一批”；D0048仅取代Meaning主题化排除，作为v0.1首测暂行许可，Balance待实测，仍不得被Dialogue放大。K0.5、逐域Floor、份额／W、九域六产出Design、资格／生命周期与其它能力不改；旧D0046 Content保持，D0047 Spec原字节冻结，相关阅读／计划同步。
+
+只读复核现有reader、原版CitySupport和定义DB：没有本fixture实时目标倍率来源，不把110×1.2猜成已确认20%。提供一次现有B165包、BASELINE与ACTIVE各一个正常回合的进度差异对照，并同时确认正旧AUTO；不重做已过五项／Theme／END或未实施M。原生证据不升级，第一批文档完成／最小native待用户。没有Mod／tests／GC／main／runtime修改、部署或新机制，外交调查文件保留，不随本批提交。
 
 ## S0431 — B165五图原生反馈与主题化暂接受
 
