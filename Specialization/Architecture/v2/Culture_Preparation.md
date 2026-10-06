@@ -17,7 +17,7 @@ Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048
 | 意义延展L2 | [B165当前门禁](P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：Shared D、逐领域Floor、单一最终值与已支持作品目录 | 当前加载集合证明不等于跨Mod通用recipient；五项即时值／END按已测范围继承，主题化暂接受待Balance，正旧AUTO／精确结算仍待对照；七域五yield运行投影不改变九域六yield Design，正式cutover后置 |
 | 巨作启迪L3 | [当前L3-A](P0_L3_Inspiration.md)：0.1D×W基础GPP原语 | 单class小数/正常倍率/退出门槛；count通知已补，不能继续列为已知缺口；不把L2 Floor移植给GPP |
 | 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | START Era额度/无额外cap累计/已定取消与原子提交；新累计native-only路径，B165实际过范围才继承 |
-| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
+| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
 | Hybrid D U2 | [U2](P0_U2_Culture_Era.md)：已批准紧凑摘要+Tooltip、K国内索引 | 真实UI hook、等count/X组成变化通知、缓存及布局；不包含机构排版重做 |
 
 这些计划可以在用户不方便测试时准备，但不会自动连续实施。B165失败只影响真实依赖它的Meaning/M收益隔离路径，不把U2或全部文化都判为阻塞；也不据计划已写好绕开逐批授权。
@@ -60,6 +60,6 @@ M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅�
 
 按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
 
-本轮L2第一批合同同步与只读结算复核已完成；一次既有B165包最小native差异待用户，详见[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)。不开始自动writer、L3/M/N/U2，不部署；准备页及前轮计划复核不授予这些实施。
+本轮L2第一批合同同步与只读结算复核已完成；一次既有B165包最小native差异按用户要求暂列待办，详见[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)。不开始自动writer、L3/M/N/U2，不部署；准备页及前轮计划复核不授予这些实施。
 
 来源：[Culture D0048](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

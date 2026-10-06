@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0432
+Status Revision: S0433
 Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B165_FIRST_BATCH_DOC_COMPLETE_NATIVE_DELTA_PENDING
+Work State: P0_L2C_B165_NATIVE_TEST_DEFERRED_EXPEDITION_UI_PLANNING_ONLY
 
 ## CURRENT AUTHORITATIVE STATE
 
 当前Spec／Culture D0048暂行允许Meaning原生主题化、Balance待实测，Dialogue仍不放大追加；Shared D0045／Architecture A0161及四专业范围保持。source／live继续B165.192／modinfo192、source `16f1f99`与既有receipt记录；main稳定B069.96不改。
 
-用户已授权[第一批合同同步与证据收口](../Architecture/v2/P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)，文档及现有入口只读复核已完成。[B165五图](Validation/Results/Specialization_B165_Meaning_Native_Review.md)五项即时值／所测END继承，主题化不按旧隔离预期重测；旧AUTO0与raw110／进度132不能关闭正共存／精确追加归因。一次现有包两回合对照待用户，不保存冷载／重验共享harness。
+用户已授权[第一批合同同步与证据收口](../Architecture/v2/P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)，文档及现有入口只读复核已完成。[B165五图](Validation/Results/Specialization_B165_Meaning_Native_Review.md)五项即时值／所测END继承，主题化不按旧隔离预期重测；旧AUTO0与raw110／进度132不能关闭正共存／精确追加归因。一次现有包两回合对照按用户要求暂列待办，无截止／新测试要求；不保存冷载／重验共享harness。
 
-当前仍手动单城七域五yield、Culture追加隔离，新M项目未实施；本轮无代码、测试逻辑、build或部署。自动writer／全局GWA切换及L3/M/N/U2仍须独立授权；[商业](../Architecture/v2/Commerce_Preparation.md)／[工业](../Architecture/v2/Industry_Preparation.md)／[文化准备](../Architecture/v2/Culture_Preparation.md)仅准备，永久账本／GC不改。
+当前仍手动单城七域五yield、Culture追加隔离，新M项目未实施。[考察团UI规划](../Architecture/v2/P0_N_Expedition_UI.md)已保存，独立窗口／任务／归档／见闻／网络均仅提案；本轮无代码、测试逻辑、build或部署。自动writer／全局GWA切换及L3/M/N/U2仍须独立授权；[商业](../Architecture/v2/Commerce_Preparation.md)／[工业](../Architecture/v2/Industry_Preparation.md)／[文化准备](../Architecture/v2/Culture_Preparation.md)仅准备，永久账本／GC不改。
+
+## S0433 — B165补测待办与考察团UI规划
+
+用户暂不方便测试，B165两回合最小native对照保留待办，不撤销已有证据、不标通过，也不推进Meaning自动writer。只读取本地Stable UI复用／Spy语义报告与Culture D0048／Shared D0045直接合同，提出独立人文考察窗口，覆盖训练、目标与三类任务、进度／失效、必要重挂靠、城市历史／当前有效数及网络；保持成本／cap／时间／生命周期，不补主动取消／购买等未定规则。
+
+调查是非权威STATIC依据，借鉴视图／选择／确认而不继承原生Spy身份／惩罚／筛选。UI报告和其它调查文件仍未入库，由各调查会话维护，本批不修改／提交。只新增主任务UI计划、当前N引用及导航／Status／Authority／manifest status pin／已审阅hash；无Design变更、代码／测试／运行包／main／GC或部署。UI原型与N1/N2/N3仍需单独审核授权，本轮不请求实机。
 
 ## S0432 — 已授权第一批：主题化合同同步与最小收口
 
