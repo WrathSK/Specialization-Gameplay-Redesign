@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "208ded2f21cd680986a0a4627e737c5a21f88f39",
-  "runtime": "B167.194 / modinfo194",
+  "runtime_commit": "c3de1140ea4504d8fe4d247211b8af5a4527975e",
+  "runtime": "B168.195 / modinfo195",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -368,7 +368,7 @@
     "Mod/Probe.lua": {
       "sha256": "6474606f9541247b3677ed531ef964138133acdcdf5562be03984455ec415846",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Deployed sourcec3de114/receiptB168.195-c3de114-playtest.json; native still pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -428,7 +428,7 @@
     "Mod/SpecializationP0.modinfo": {
       "sha256": "5f85a57aec856407e0f886e10f15cb3667c50f27178ecd21a8388110502499c5",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Deployed sourcec3de114/receiptB168.195-c3de114-playtest.json; native still pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -453,7 +453,7 @@
     "Mod/Text/TestText.sql": {
       "sha256": "9cca38287f8253c9648585f0513ade992e57bccd5ac917bc9bf8b6b06b451ed8",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Deployed sourcec3de114/receiptB168.195-c3de114-playtest.json; native still pending."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -923,12 +923,12 @@
     "Mod/CultureInspirationProbe.lua": {
       "sha256": "addf885d4a10e369e253b1aeaa22b961ba24d81104278320b952ad07b2d03d14",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Deployed sourcec3de114/receiptB168.195-c3de114-playtest.json; native still pending."
     },
     "Mod/InspirationReadout.lua": {
       "sha256": "0de09021dc8cd4395bb8338b3b174c1f0b4a351231c01117c8844f861c032821",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Deployed sourcec3de114/receiptB168.195-c3de114-playtest.json; native still pending."
     },
     "Mod/Data/CultureInspirationProbe.sql": {
       "sha256": "c0814c30d8cf913d36228a6528dc46aa8e8120327e0506e4112372fdcc33c552",

@@ -1,6 +1,6 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / B168_L3_A_REPAIR_LOCAL_COMPLETE_NATIVE_REQUIRED / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
+State: B166_AUTOMATIC_USER_PASS / B168_L3_A_REPAIR_DEPLOYED_NATIVE_REQUIRED / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
 Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048 / Culture D0048 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只记录准备范围，实际source/live/授权仍从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取；本次未核验外部运行包。
 
 ## 当前切片与停止点

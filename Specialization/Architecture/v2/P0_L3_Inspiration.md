@@ -1,11 +1,11 @@
 # P0-L3 —「巨作启迪」计划与小数GPP调查
 
-State: B168_L3A_DIAGNOSTIC_REPAIR_LOCAL_COMPLETE / FULL_ABILITY_NOT_IMPLEMENTED。
+State: B168_L3A_DIAGNOSTIC_REPAIR_DEPLOYED_NATIVE_REQUIRED / FULL_ABILITY_NOT_IMPLEMENTED。
 Authority: 当前Spec D0048／Culture D0048 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
 
 ## 当前切片与停止点
 
-用户授权定域修复，source B168.195本地39项PASS；[修复结果与最小原生内容](../../Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md)补末档正常退出、只读实例／倍率来源与有界响应缓存。live仍按[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)及实际receipt核对，不从源码推部署。
+用户授权定域修复，source/live B168.195／sourcec3de114，本地39项PASS、已部署186/186 MATCH；[修复结果与最小原生内容](../../Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md)补末档正常退出、只读实例／倍率来源与有界响应缓存。实际receipt与恢复点按[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)及实际receipt核对，不从源码推部署。
 
 [B167反馈](../../Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md)小数／正常倍率仍未闭合。B168仅0→整数1→END定域对照，不把候选来源求和成有效倍率。用户自选不同档位读档信息属于补充，不纳入必做流程或门禁。
 

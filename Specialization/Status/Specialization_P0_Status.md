@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0442
-Implementation Build: source B168.195 / live B167.194 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
+Status Revision: S0443
+Implementation Build: source/live B168.195 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B168_L3A_REPAIR_LOCAL_COMPLETE_NATIVE_REQUIRED
+Work State: B168_L3A_REPAIR_DEPLOYED_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161与四专业范围不变；source B168.195诊断／退出修复39项本地PASS，live仍已登记B167.194／source208ded2，尚未切换本批。B166自动／冷重启人工PASS保留。
+D0048／A0161与四专业范围不变；source B168.195诊断／退出修复39项本地PASS，source/live B168.195／sourcec3de114，receipt `B168.195-c3de114-playtest.json`，186/186 MATCH。B166自动／冷重启人工PASS保留。
 
 [B168修复与最小流程](Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md)：末档正常退出，右键／END读取精确四ID与倍率候选；城市归属／有效总倍率未知明确保留。B167小数反馈未判PASS，不直接启用Floor。
 
 当前授权到本批修复／W0003安全部署／0→整数1→END原生门禁停止。用户自选多档读档仅补充信息，不纳入必做流程；完整自动L3/M/N/UI未授权，不扩永久记录／GC。
+
+## S0443 — B168诊断修复安全部署
+
+OS只读进程检查确认游戏退出，clean/pushed sourcec3de114；用原B167精确receipt恢复stable桥接后激活B168.195，186/186 MATCH、DEVELOP_ACTIVE、无pending事务。B167完整恢复包与stable恢复点保留，未启动游戏、未改main。原生结果仍待用户，本地39项不冒充倍率／小数PASS。
+
+本轮必做内容仅单session的0→整数1→END；右键诊断可随实际刷新时机读取。自主多档读档属于用户可选补充，不纳入门禁，不启用Floor或推进正式L3。
 
 ## S0442 — B168退出与原生诊断本地完成
 
