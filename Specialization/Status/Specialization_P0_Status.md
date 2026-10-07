@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0439
-Implementation Build: source B167.194 LOCAL_COMPLETE / live B166.193 USER_PASS; stable B069.96
+Status Revision: S0440
+Implementation Build: source/live B167.194 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B167_L3A_LOCAL_COMPLETE_NATIVE_REQUIRED
+Work State: B167_L3A_DEPLOYED_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持。source B167.194为已授权L3-A小数科学家基础GPP原型，本地29项PASS、原生待验；live仍已登记B166.193，main稳定B069.96不改。
+Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持。source B167.194为已授权L3-A小数科学家基础GPP原型，本地29项PASS、原生待验；live现为B167.194，source `208ded2`／receipt `B167.194-208ded2-playtest.json`，186/186 MATCH；main稳定B069.96不改。
 
 [B167结果／最小流程](Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)：单城固定0.1／0.3／0.6与可选整数1、正常倍率／退出；只读全国率，允许一回合延迟，跨回合不自动归因。B166自动／冷重启人工PASS保留，无截图。
 
 用户授权按城按伟人类别合计后Floor为备用，先测试小数，本轮未启用；完整自动L3/M/N/UI未授权。当前到原型提交／安全部署／一次定域实机为止，不清永久记录或改GC。
+
+## S0440 — B167原型安全部署
+
+OS进程只读确认游戏退出，clean/sync develop `208ded2`经原B166 receipt恢复stable桥接，再按未修改部署工具激活B167.194。186/186文件一致，receipt DEVELOP_ACTIVE，无pending事务，B166完整恢复点及stable保留；没有启动游戏、修改main或新原生PASS。
+
+当前等待L3-A一次小数/正常倍率/退出原生记录。允许延迟一回合刷新并由用户留记录，跨回合全国率不自动归因；不派重复冷加载，不启用Floor或完整自动L3。
 
 ## S0439 — L3-A原型本地完成
 

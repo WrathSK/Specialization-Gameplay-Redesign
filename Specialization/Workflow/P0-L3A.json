@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0439",
+    "status": "S0440",
     "runtime": "B167.194 / modinfo194",
     "military": "D0037",
     "harbor": "D0037",
@@ -155,6 +155,7 @@
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md",
     "native": "USER_GAME_TEST_REQUIRED",
     "stop": "Probe only; full automatic ability needs separate approved plan.",
-    "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch."
+    "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch.",
+    "deployment": "B167.194 / modinfo194 DEVELOP_ACTIVE; source208ded2f21cd680986a0a4627e737c5a21f88f39;receipt B167.194-208ded2-playtest.json;186/186 MATCH. B166 and stable recovery retained, no pending transaction/game launch;29 local checks PASS, fractional GPP/multiplier native required."
   }
 }

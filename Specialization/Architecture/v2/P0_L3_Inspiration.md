@@ -1,11 +1,11 @@
 # P0-L3 —「巨作启迪」计划与小数GPP调查
 
-State: B167_L3A_LOCAL_COMPLETE / NATIVE_REQUIRED / FULL_ABILITY_NOT_IMPLEMENTED。
+State: B167_L3A_DEPLOYED / NATIVE_REQUIRED / FULL_ABILITY_NOT_IMPLEMENTED。
 Authority: 当前Spec D0048／Culture D0048 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
 
 ## 当前切片与停止点
 
-B167.194为已授权L3-A单城科学家小数基础GPP原型，29项本地PASS，原生精度／倍率待验。source/live分开查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)，本地与最小流程见[B167结果](../../Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)。
+B167.194为已授权L3-A单城科学家小数基础GPP原型，29项本地PASS，原生精度／倍率待验；B167已部署186/186 MATCH。source/live分开查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)，本地与最小流程见[B167结果](../../Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)。
 
 固定0→0.1→0.3→0.6，+1仅作可选整数接口对照，END撤销。原生读数是全国率，同回合、其它条件固定时才作差；用户可等待一回合刷新并留记录，跨回合不自动归因。没有完整六class自动收益或新永久状态。
 
