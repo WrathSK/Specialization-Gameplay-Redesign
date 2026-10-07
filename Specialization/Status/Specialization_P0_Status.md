@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0433
+Status Revision: S0434
 Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B165_NATIVE_TEST_DEFERRED_EXPEDITION_UI_PLANNING_ONLY
+Work State: P0_L2C_B165_POSITIVE_AUTO_SCOPED_PASS_SETTLEMENT_ATTRIBUTION_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec／Culture D0048暂行允许Meaning原生主题化、Balance待实测，Dialogue仍不放大追加；Shared D0045／Architecture A0161及四专业范围保持。source／live继续B165.192／modinfo192、source `16f1f99`与既有receipt记录；main稳定B069.96不改。
+当前Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持，主题化许可仍暂行／Balance待验。source／live继续B165.192／modinfo192、source `16f1f99`与既有receipt；main稳定B069.96不改。
 
-用户已授权[第一批合同同步与证据收口](../Architecture/v2/P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)，文档及现有入口只读复核已完成。[B165五图](Validation/Results/Specialization_B165_Meaning_Native_Review.md)五项即时值／所测END继承，主题化不按旧隔离预期重测；旧AUTO0与raw110／进度132不能关闭正共存／精确追加归因。一次现有包两回合对照按用户要求暂列待办，无截止／新测试要求；不保存冷载／重验共享harness。
+[B165补测四图已审阅归档](Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)：正旧AUTO+25%下五项原生仍为基值，所测共存通过；同T64城市生产97.7→110.7，加13与20%＋HD燃煤厂10%相容。进度0→117→250真实推进，但背景生产变化，精确结算归因仍开放；此轮补测已做，不重复派发或标整个L2PASS。
 
-当前仍手动单城七域五yield、Culture追加隔离，新M项目未实施。[考察团UI规划](../Architecture/v2/P0_N_Expedition_UI.md)已保存，独立窗口／任务／归档／见闻／网络均仅提案；本轮无代码、测试逻辑、build或部署。自动writer／全局GWA切换及L3/M/N/U2仍须独立授权；[商业](../Architecture/v2/Commerce_Preparation.md)／[工业](../Architecture/v2/Industry_Preparation.md)／[文化准备](../Architecture/v2/Culture_Preparation.md)仅准备，永久账本／GC不改。
+当前仍手动单城七域五yield／Culture隔离，M项目未实施；[考察团UI](../Architecture/v2/P0_N_Expedition_UI.md)仅规划。后续精确门槛处置、自动writer／GWA切换和M/N/UI仍须独立审核授权；本轮仅记录，无代码／测试／Design／build／部署或新实机要求，永久账本／GC保持。
+
+## S0434 — 正旧AUTO与生产对照四图
+
+用户投递B165四图，逐张读取后原字节归档，4/4 SHA256 MATCH。旧AUTO+25%保持，图2／3同T64绝对值0→6/10/18/6/6及城市生产+13支持所测共存；图4明确燃煤厂产出、HD原件与只读加载DB的Amount10／无Requirement／Coal附件闭合建筑奇观+10%来源。图4基项81.2及20%＋10%与105.5显示相容。
+
+进度增量117与133，两个过回合基础生产不同，不把差16或110×1.2冒充精确归因，不判Gameplay故障。不立即要求用户重跑；后续正式切片的剩余门槛处置须明确审核，不自行豁免。本轮只新增原生结果与相关当前导航／metadata／命名hash；此前证据与Design不改、无新运行包或部署，调查原件保持未跟踪不提交。
 
 ## S0433 — B165补测待办与考察团UI规划
 

@@ -1,6 +1,6 @@
 # 文化后续模块：计划与调查入口
 
-State: B165_FIRST_BATCH_CONTRACT_SYNC_COMPLETE / MINIMAL_NATIVE_DELTA_PENDING / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
+State: B165_POSITIVE_AUTO_REVIEWED / SETTLEMENT_ATTRIBUTION_OPEN / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
 Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048 / Culture D0048 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只记录准备范围，实际source/live/授权仍从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取；本次未核验外部运行包。
 
 ## 当前切片与停止点
@@ -60,6 +60,6 @@ M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅�
 
 按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
 
-本轮L2第一批合同同步与只读结算复核已完成；一次既有B165包最小native差异按用户要求暂列待办，详见[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)。不开始自动writer、L3/M/N/U2，不部署；准备页及前轮计划复核不授予这些实施。
+本轮L2第一批合同同步与只读结算复核已完成；B165最小补测已投递／审阅，正旧AUTO所测范围通过，精确结算归因单列开放；不立即重跑，详见[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)。不开始自动writer、L3/M/N/U2，不部署；准备页及前轮计划复核不授予这些实施。
 
 来源：[Culture D0048](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

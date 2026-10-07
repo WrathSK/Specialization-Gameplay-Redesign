@@ -1,17 +1,19 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_B165_FIRST_BATCH_DOC_COMPLETE_NATIVE_DELTA_PENDING；D0048主题化暂行合同已同步，五项即时值／END继承；正旧AUTO及精确追加结算待一次最小对照，正式全城L2未通过。
+State: P0_L2C_B165_POSITIVE_AUTO_SCOPED_PASS_SETTLEMENT_ATTRIBUTION_OPEN；正旧AUTO下五项已确认，同回合Production+13与修正吻合；精确队列归因仍开放，正式全城L2未通过。
 Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化暂行许可／Balance标记，Dialogue隔离与其它规则保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户“授权实施第一批”仅授权[合同同步与证据收口](#第一批已授权--合同同步与剩余证据收口)。D0048允许Meaning追加受原生主题化、Balance待实测，仍不得被Dialogue放大；K0.5／逐域Floor／资格不改。源码／运行包继续B165.192／modinfo192，source／receipt只查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+用户B165最小补测四图已投递并[审阅归档](../../Status/Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)：同T64旧AUTO+25%下Meaning原生五项保持基值、城市Production97.7→110.7，所测正倍率共存通过。此前五项／END及D0048主题化暂行规则／Balance边界继承；source／live继续B165，见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
-[B165五图](../../Status/Validation/Results/Specialization_B165_Meaning_Native_Review.md)的五项即时值及所测END继承；主题化×2不按旧隔离预期重测。旧AUTO正倍率未覆盖，0→132仅证真实进度；110×1.2不是已知20%来源。本地只读入口复核后仍需一座城、同一建筑、两个正常回合的最小差异对照，使用既有B165包。
+最后图81.2×(1+20%+10%)与105.5显示相容，建筑／奇观10%由该城燃煤发电厂和HD附件闭合。实际进度0→117→250，增量117／133；背景生产跨回合变化，不能将差16直接归因Meaning。补测资料已完成，不重复派发这轮待办；精确结算归因保留，后续门槛处置／整合方案需审核。
 
-当前仍手动单城七域五yield、Culture追加隔离；加载集合支持不推广所有Mod。第一批没有代码、测试逻辑或部署改动，不要求未实施M城市项目。自动writer／全局GWA退役及L3/M/N/U2仍须独立授权，永久账本／GC不改；本轮不能以文档同步代替剩余native证明。
+当前仍手动单城七域五yield、Culture追加隔离，不把所测Writing推广其它输出／新M或全城writer。原cutover门槛不自行放宽，自动writer／全局GWA及M/N/UI仍须独立授权；本轮仅证据／状态同步，无代码／测试／Design／部署，永久账本／GC不改，不追加实机。
 
 ## 第一批已授权 — 合同同步与剩余证据收口
+
+本轮实际反馈优先见[正旧AUTO／生产对照结果](../../Status/Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)。本节保存原最小对照及第一批合同，不表示要求重新执行；正倍率部分已有证据，精确归因仍须后续具体方案。
 
 **完成范围。** 用户批准第一批；仅把已给出的主题化暂接受意见同步为D0048首测合同、复核现有生产证据并整理必要最小native流程。继续B165，不新增build、代码、诊断订阅或部署；自动writer属于下一单独授权批次。
 

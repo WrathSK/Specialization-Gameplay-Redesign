@@ -1,7 +1,7 @@
 # 人文考察团 UI 计划
 
 State: PLANNING_ONLY / PROPOSED_LAYOUT / IMPLEMENTATION_NOT_AUTHORIZED。
-Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165最小补测按用户要求待办；本计划不解除其门禁、不部署、不产生native UI PASS。
+Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构
 
@@ -109,7 +109,7 @@ N3接入后显示选中接收城的有效来源、各来源独立完整文明集
 | N2 任务与见闻 | 真实计时／成功提交／取消、城市历史、当前有效数／整城Tourism，接真档案 | 新任务／绑定／历史块才做一个必要保存边界；不复测成熟probe默认OFF |
 | N3 网络 | 接真来源集合／接收摘要与专家效果，精确旧Culture Eureka退出 | 原生专家Culture及实际接入／退出；集合组合主要本地，保留Research |
 
-每段独立授权。B165补测尚待用户，只不阻塞本次文档规划，不因此提前批准任何UI原型或代码。
+每段独立授权。B165补测已审阅、剩余精确门槛仍按当前Status处理；本计划不因此提前批准任何UI原型或代码。
 
 ## 不补设计的边界
 
