@@ -1,15 +1,15 @@
 # P0-L3 —「巨作启迪」计划与小数GPP调查
 
-State: B167_L3A_DEPLOYED / NATIVE_REQUIRED / FULL_ABILITY_NOT_IMPLEMENTED。
+State: B167_L3A_NATIVE_GATE_UNRESOLVED / FULL_ABILITY_NOT_IMPLEMENTED。
 Authority: 当前Spec D0048／Culture D0048 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
 
 ## 当前切片与停止点
 
-B167.194为已授权L3-A单城科学家小数基础GPP原型，29项本地PASS，原生精度／倍率待验；B167已部署186/186 MATCH。source/live分开查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)，本地与最小流程见[B167结果](../../Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)。
+B167.194本地29项PASS／已部署；[八图反馈](../../Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md)观察小数0.1/0.3均使全国率比初始高1，整数1高2，存在跨回合刷新；正常倍率／原生取整／迟延撤销尚未区分。原本地合同与证据保留，不标小数PASS或完全不可用。
 
-固定0→0.1→0.3→0.6，+1仅作可选整数接口对照，END撤销。原生读数是全国率，同回合、其它条件固定时才作差；用户可等待一回合刷新并留记录，跨回合不自动归因。没有完整六class自动收益或新永久状态。
+NEXT末档报错不退出；独立END按钮存在但本次未证实退出。下一建议为明确退出引导及定域原生实例／倍率诊断，须授权后实施，不直接进入完整六class。
 
-用户允许未来按每城每伟人类别 `floor(0.1×D×W)` 备用，先验小数。合计不Floor与原公式等价；不合并类别，不逐作品Floor，不开余量账本。本批到原型部署／验收停止，正式consumer另批。
+用户允许每城每类合计Floor备用，尚未启用；先解释整数对照，不能把Floor当作异常修复。B166 PASS、Design与既有运行包不变；实际状态查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## B167当前原型合同
 

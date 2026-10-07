@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0440
+Status Revision: S0441
 Implementation Build: source/live B167.194 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B167_L3A_DEPLOYED_NATIVE_REQUIRED
+Work State: B167_L3A_NATIVE_GATE_UNRESOLVED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持。source B167.194为已授权L3-A小数科学家基础GPP原型，本地29项PASS、原生待验；live现为B167.194，source `208ded2`／receipt `B167.194-208ded2-playtest.json`，186/186 MATCH；main稳定B069.96不改。
+D0048／A0161与四专业范围保持；source/live B167.194／source208ded2及既有部署receipt不变，本轮未核验外部运行包或部署。B166自动／冷重启人工PASS保留。
 
-[B167结果／最小流程](Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)：单城固定0.1／0.3／0.6与可选整数1、正常倍率／退出；只读全国率，允许一回合延迟，跨回合不自动归因。B166自动／冷重启人工PASS保留，无截图。
+[B167八图原生反馈](Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md)：全国率50.199→0.1/0.3档51.199→整数1档52.199，跨回合刷新；小数精度／倍率／END仍未闭合。末档NEXT报错但不退出是明确交互缺陷，不等于没有独立END入口。
 
-用户授权按城按伟人类别合计后Floor为备用，先测试小数，本轮未启用；完整自动L3/M/N/UI未授权。当前到原型提交／安全部署／一次定域实机为止，不清永久记录或改GC。
+下一建议为定域退出引导及原生实例／倍率诊断修复，待用户授权；不直接启用Floor或完整L3。只阻塞对应L3原语，不扩M/N/UI、不改永久记录／GC。
+
+## S0441 — B167首轮原生异常记录
+
+八图逐张读取并原字节归档，8/8 SHA256一致。记录用户的可能刷新／读档延迟，不宣称读档必需；0.6未独立观察、END无原生证据。只读DB确认精确四组值和附件无额外GPP；代码确认末档NEXT错误不撤carrier。没有修复实施／新build／部署／Gameplay Design变更，原本地证据保留。下一建议见结果，不能用Floor掩盖整数1当前观察增2的未解释问题。
 
 ## S0440 — B167原型安全部署
 
