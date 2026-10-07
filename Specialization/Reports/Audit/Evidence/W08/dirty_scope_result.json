@@ -1,0 +1,18 @@
+{
+  "scope": "LOCAL_STRUCTURAL_REPRODUCTION; not Civ VI VM, native memory or native event evidence",
+  "source": {
+    "Mod/GreatWorkFacts.lua": "0d3ffda96973fb75123bba2174ec89f2e8949183149952712fce05767a9187dc"
+  },
+  "script_sha256": "682d64d1db5fe5be0c8c7583a550ff55ea273a4d0680c1a0451e4b0fd7eed59a",
+  "lua_version": "Lua 5.5",
+  "fixture": "Eight synthetic local city IDs added then removed; current native city collection is empty. Catalog, Events, player scope and native collection are stubs. Actual source Start/handlers/Receive/Reset execute unchanged.",
+  "dirty_keys": {
+    "marked": 8,
+    "deduplicated": 8,
+    "failed": 8,
+    "afterReset": 8,
+    "afterAccepted": 0
+  },
+  "failure_reason": "GW_SAMPLE_SIZE",
+  "limits": "No historical gameplay tests executed; no allocation measurement, process/native GC, current-save frequency or all-module lifecycle claim."
+}
