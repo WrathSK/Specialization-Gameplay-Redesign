@@ -5,7 +5,7 @@ Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048
 
 ## 当前切片与停止点
 
-用户已授权意义延展正式接入；[B166当前合同](P0_L2_Meaning.md#b166已授权--意义延展自动接入)为自动七域五yield及旧GWA退出的LOCAL完成checkpoint。实际live仍B165，部署clean门禁和一次新自动加载／资格验收见Status。Culture追加隔离及D0048暂行主题化／Balance保留。
+用户已授权意义延展正式接入；[B166当前合同](P0_L2_Meaning.md#b166已授权--意义延展自动接入)为自动七域五yield及旧GWA退出的LOCAL完成checkpoint。实际live为B166，183/183 MATCH；一次新自动加载／资格验收仍待用户，见Status。Culture追加隔离及D0048暂行主题化／Balance保留。
 
 B165原语证据按实测范围继承；跨回合生产差的精确归因作为非阻塞备注，不重复对照。L3/M/N/U2均为后续逐批授权范围；本轮不推进。
 

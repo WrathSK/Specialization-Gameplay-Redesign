@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_NATIVE_REQUIRED；当前源码自动接入，运行包仍B165，未跟踪调查默认ignore后，部署仍按game exit与receipt/hash门禁核对。
+State: B166_MEANING_AUTOMATIC_DEPLOYED_NATIVE_REQUIRED；source/live B166.193，183/183 MATCH，等待新自动／资格／正常冷加载整合。
 Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化暂行许可／Balance标记，Dialogue隔离与其它规则保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化
 
 B165五项／替换／END及正旧AUTO共存证据按实测范围继承；跨回合进度差的精确归因不作为本模块阻塞，不重复补测。D0048主题化许可仍暂行／Balance待验；七域五yield与Culture隔离不改变九域六yield正式Design。
 
-当前live仍B165，未提交调查Markdown默认ignore、不要求先公开；部署仍须clean source、game exit及receipt/hash事务核对。B166部署后只验新自动生效、D/W变化、ACTIVE退出/恢复及一次正常冷加载；L3/M/N/UI仍需单独授权，永久账本／GC不改。
+当前live为B166.193，未提交调查Markdown默认ignore、不要求先公开；本次clean source、game exit及receipt/hash事务已核对，恢复点保留。B166部署后只验新自动生效、D/W变化、ACTIVE退出/恢复及一次正常冷加载；L3/M/N/UI仍需单独授权，永久账本／GC不改。
 
 ## B166已授权 — 意义延展自动接入
 

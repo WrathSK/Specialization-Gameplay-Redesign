@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0436
-Implementation Build: source B166.193 LOCAL_COMPLETE / NATIVE_REQUIRED; live B165.192; stable B069.96
+Status Revision: S0437
+Implementation Build: source/live B166.193 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_DEPLOYMENT_READY
+Work State: B166_MEANING_AUTOMATIC_DEPLOYED_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持；source B166.193已完成意义延展自动接入，本地通过／新原生整合待验。live仍B165.192、source `16f1f99`及原receipt；main稳定B069.96不改，源码提交不等于运行包切换。
+Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持；source/live B166.193自动意义延展已LOCAL完成／原生整合待验。部署source `f24ae40`、receipt `B166.193-f24ae40-playtest.json`，183/183 MATCH；main稳定B069.96不改。
 
-[B166结果／最小验收](Validation/Results/Specialization_B166_Meaning_Automatic_Local.md)：七域五yield、精确旧GWA退役、当前事实重建及只读P0；Culture追加隔离、主题化暂行／Balance待验。B165原语证据继承，跨回合进度精确归因仅观察备注，不阻塞、不重复派测。
+[B166结果／最小验收](Validation/Results/Specialization_B166_Meaning_Automatic_Local.md)：七域五yield、精确旧GWA退役、当前事实重建及只读P0；Culture追加隔离、主题化暂行／Balance待验。B165证据继承，跨回合精确归因仅观察备注；44项本地PASS不代表新自动／加载实机通过。
 
-新主题Investigation Markdown／README按用户决定默认本地ignore，公开需单独隐私审阅和人工授权；调查不再要求先commit来解除普通流程。B166部署仍须当前源码clean、game exit及receipt/hash事务核对；新自动／资格／冷加载原生待验，L3/M/N/UI未授权。
+新主题Investigation Markdown／README默认本地ignore，公开需隐私审阅／人工授权，不阻挡普通流程。当前5份原件保持本地，B166已按W0003 game exit/clean/sync/receipt/hash事务部署，B165与stable恢复点保留；等待自动／资格／一次正常冷加载验收，L3/M/N/UI未授权。
+
+## S0437 — B166安全部署与恢复点核对
+
+默认本地排除规则提交f24ae40并push后，主/开发工作树clean／origin同步、OS game exit、原B165 receipt及stable备份均确认。依既有W0003授权，用未修改的temporary_playtest工具经stable桥接部署B166：新receipt DEVELOP_ACTIVE、183/183逐文件hash MATCH，B165完整恢复副本和stable恢复点保留，无pending marker、未启动游戏。当前Mod与B166源码checkpoint相同，没有新实施或Gameplay规则变更。
+
+本轮隐私／默认ignore规则仅涉及新调查Markdown，5份原件未发布／未修改，根区指导仍跟踪；未放宽其它tracked修改、Mod、目标路径、hash、staging、rollback或game exit门禁。等待B166最小新自动／加载整合验收，不重复旧长测、不进入下一批。
 
 ## S0436 — Investigation隐私审查与默认本地排除
 
