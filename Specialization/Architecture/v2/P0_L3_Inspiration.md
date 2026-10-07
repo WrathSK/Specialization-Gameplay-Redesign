@@ -1,20 +1,20 @@
 # P0-L3 —「巨作启迪」计划与小数GPP调查
 
 State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED / FRACTIONAL_BASE_GPP_GATE_OPEN。
-Authority: 当前Spec D0047／Culture D0046 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
+Authority: 当前Spec D0048／Culture D0048 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
 
 ## 下一最小批次 — L3-A 单城单class原生门禁
 
-**PLANNED_NOT_AUTHORIZED。** B164修复后的下一建议，用户审核后才实施／部署。只验证原生基础GPP接口，不直接交付完整六class能力，不因Design接受自动启用全国writer。
+**PLANNED_NOT_AUTHORIZED。** B166自动接入验收后的下一建议，用户审核后才实施／部署。只验证原生基础GPP接口，不直接交付完整六class能力，不因Design接受自动启用全国writer。
 
 - 选已有Culture ACTIVE IV城与Scientist一类；先复核当前city/district基础GPP Modifier，保留HD／原生基础来源。最小可逆probe依次配置0.1、0.3、0.6，按需读取本城per-turn基础贡献／速率及实例；必要时用当前可观察的正常GPP百分比核对倍率。数据库字段接收小数、carrier存在不算原生生效。
 - 门禁原型的固定值是接口对照；正式能力仍0.1×对应D×合格W，不能用Gold份额、专家、时代数或Floor替代。未知原生字段明确UNKNOWN；不能用全国点数总值冒充该城基础率，不能直接发点数或建小数余量账本。
 - 复用本城reference／资格／K／Shared D与精确module-owned退出，单一会话／有界错误状态，END／换引用／confirmed loss／load退出，UNKNOWN按既有保护。无每帧／hover Gameplay请求、AI、永久成果或GC变更；不重构通知框架。
 - 本地：小数配置与实际SQL／Lua、同城可逆替换与重复零写、读数独立于配置、退出失败／UNKNOWN及两城隔离；只补直接路径回归。若修改共享生命周期源码，再按真实delta补相应验证，不机械派发冷加载。
 - 用户：一次连续session，基线→0.1→0.3→0.6→正常倍率（若当前可隔离）→END。每步分别确认小数精度、值替换、倍率及本模块撤销；无法区分基础率则停止并保留具体技术门禁，不自行舍入。
-- 社区D不单独测试：该次session中可顺带用现有Meaning入口核对Villa1＋Bus2＋FoodMarket3的D6／Food每件3，确认Culture实例退出与HD保留，再END。与GPP对照分阶段，不将混合读数全部归因于GPP。无需再造社区或重新长测。
+- 社区D不新增独立验收步骤。仅当现有fixture正好具备时，可顺带只读查看正常Meaning报告；不再要求已退役Probe的启用／END操作，也不为此重建社区或长测。
 
-**退出／下一边界。** 小数基础率和正常倍率取得对应原生证据后，再单独提出六class正式consumer计划。失败只阻塞依赖该primitive的L3；Meaning精准recipient／倍率隔离／结算／正式cutover、未来Culture恢复保持各自门禁，不自动关闭或推进。
+**退出／下一边界。** 小数基础率和正常倍率取得对应原生证据后，再单独提出六class正式consumer计划。失败只阻塞依赖该primitive的L3；B166七域五yield自动接入已人工通过；未来Culture追加恢复与主题化Balance保持独立边界，不自动关闭或推进。
 
 ## 完整能力边界
 
@@ -66,4 +66,4 @@ probe就绪后只要求一个单城最小流程：使一类D3、W1，核对0.3�
 
 诊断`W件｜领域D｜预计base/class｜配置｜可取得的原生读数/UNKNOWN`，右键映射/排除分页。Exit为小数基础率和原生倍率门禁、本地状态/通知回归、最小原生对应范围通过；否则仍partial，不宣布已实现。
 
-来源：[正式Culture](../../Design/Content/Culture_D0046.json)、[Shared](../../Design/Content/Shared_D0045.json)、[旧基础GPP实现证据](../../Reports/Technical/Specialization_B035_Lv2_GPP.md)、[K检查点](P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)、[精度待办](Yield_Precision_Backlog.md)。
+来源：[正式Culture](../../Design/Content/Culture_D0048.json)、[Shared](../../Design/Content/Shared_D0045.json)、[旧基础GPP实现证据](../../Reports/Technical/Specialization_B035_Lv2_GPP.md)、[K检查点](P0_K_Great_Work_Facts.md#b147174--facts-only-implementation-checkpoint)、[精度待办](Yield_Precision_Backlog.md)。

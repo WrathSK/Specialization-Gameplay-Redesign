@@ -1,11 +1,11 @@
 # 文化后续模块：计划与调查入口
 
-State: B165_POSITIVE_AUTO_REVIEWED / SETTLEMENT_ATTRIBUTION_OPEN / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
+State: B166_AUTOMATIC_USER_PASS / L3_A_PROPOSED_NOT_AUTHORIZED / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
 Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048 / Culture D0048 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只记录准备范围，实际source/live/授权仍从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取；本次未核验外部运行包。
 
 ## 当前切片与停止点
 
-用户已授权意义延展正式接入；[B166当前合同](P0_L2_Meaning.md#b166已授权--意义延展自动接入)为自动七域五yield及旧GWA退出的LOCAL完成checkpoint。实际live为B166，183/183 MATCH；一次新自动加载／资格验收仍待用户，见Status。Culture追加隔离及D0048暂行主题化／Balance保留。
+用户已授权意义延展正式接入；[B166当前合同](P0_L2_Meaning.md#b166已授权--意义延展自动接入)为自动七域五yield及旧GWA退出的LOCAL完成checkpoint。实际live为B166，183/183 MATCH；用户已确认本批人工PASS及冷重启自动重建PASS，无截图，见Status。Culture追加隔离及D0048暂行主题化／Balance保留。
 
 B165原语证据按实测范围继承；跨回合生产差的精确归因作为非阻塞备注，不重复对照。L3/M/N/U2均为后续逐批授权范围；本轮不推进。
 
@@ -14,7 +14,7 @@ B165原语证据按实测范围继承；跨回合生产差的精确归因作为�
 | 模块 | 计划 / 可复用基础 | 当前准确门槛 |
 |---|---|---|
 | 风雅熏陶L1 | [L1](P0_L1_Aesthetic.md#当前切片与停止点)：逐栋Tourism、已测结算/退出 | [B149限定PASS](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保留，不重开无变化回合时序调查、不扩大未测组合 |
-| 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役LOCAL完成；live与新整合见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
+| 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役限定整合获用户人工PASS；证据见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
 | 巨作启迪L3 | [当前L3-A](P0_L3_Inspiration.md)：0.1D×W基础GPP原语 | 单class小数/正常倍率/退出门槛；count通知已补，不能继续列为已知缺口；不把L2 Floor移植给GPP |
 | 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | START Era额度/无额外cap累计/已定取消与原子提交；新累计native-only路径，B165实际过范围才继承 |
 | 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
@@ -60,6 +60,6 @@ M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅�
 
 按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
 
-B166已完成获授权的意义延展自动writer／精确GWA退出源码，本地checkpoint与待部署／新原生整合见[L2](P0_L2_Meaning.md#b166已授权--意义延展自动接入)。L3/M/N/U2仍须独立审核授权；本准备页不授予后续实施。
+B166已完成获授权的意义延展自动writer／精确GWA退出源码，本地checkpoint与人工通过记录见[L2](P0_L2_Meaning.md#b166已授权--意义延展自动接入)。L3/M/N/U2仍须独立审核授权；本准备页不授予后续实施。
 
 来源：[Culture D0048](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

@@ -96,7 +96,7 @@
     "Native precision cannot implement current contract; no gameplay workaround without user decision"
   ],
   "batch": "P0-L2C",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0048",
     "research": "D0040",
@@ -106,7 +106,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0437",
+    "status": "S0438",
     "runtime": "B166.193 / modinfo193",
     "military": "D0037",
     "harbor": "D0037",
@@ -363,13 +363,14 @@
   "result": {
     "plan": "Authorized automatic integration proposal; B165 exact cross-turn attribution nonblocking observation, no repeat test.",
     "implementation": "B166.193 LOCAL_COMPLETE: normal module, current facts/one-final projected effects, exact GWA retired routes/old producer, read-only P0; current seven-domain/five-yield quarantine.",
-    "native": "Existing B165 scoped primitive/positiveAUTO/theming/END evidence inherited; new automatic start/load/qualification native integration pending.",
+    "native": "USER_GAME_TEST_PASS: user accepts B166 integration and explicitly confirms cold-restart automatic reconstruction. No screenshots; no invented independent observations or measurements.",
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
     "local_test_entry": "test_culture_meaning_automatic.py plus explicit seven AE/seven K methods recorded in B166 result; no historical wrappers.",
-    "stop": "B166 deployed/current automatic integration awaits one scoped user session; new Investigation topic Markdown remains local-ignore. No L3/M/N/UI implementation.",
-    "deployment": "B166.193 / modinfo193 DEVELOP_ACTIVE; source f24ae403a32adcd613d194013169a6759808b040; receipt B166.193-f24ae40-playtest.json;183/183 MATCH. Exact B165 and stable recovery verified/retained; no pending marker/game launch.44 local checks PASS; automatic/current qualification/cold-load native integration pending.",
+    "stop": "B166 accepted; wait for separate L3-A authorization. No new implementation/deployment.",
+    "deployment": "B166.193 / modinfo193 DEVELOP_ACTIVE; source f24ae403a32adcd613d194013169a6759808b040; receipt B166.193-f24ae40-playtest.json;183/183 MATCH. Exact B165 and stable recovery verified/retained; no pending marker/game launch.44 local checks PASS; B166 integration accepted by user, including cold-restart automatic reconstruction; no screenshots. Deployment not repeated this turn.",
     "authority_revalidation": "D0048 ability/multiplier/work-pool and full Culture Spec/Shared D contract reused unchanged. Exact GWA/Meaning writer paths/callers and Store confirmed exit API reviewed. No Design or permanent-state change.",
-    "next_proposal": "B166 deployment/native review, then a separate L3 plan; no immediate unrelated attribution test."
+    "next_proposal": "L3-A one-city one-class fractional base GPP primitive, normal multiplier and reversible withdrawal; planned only.",
+    "user_evidence": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_User_Pass.md"
   },
-  "implementation_authorized": true
+  "implementation_authorized": false
 }

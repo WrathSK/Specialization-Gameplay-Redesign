@@ -1,15 +1,15 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: B166_MEANING_AUTOMATIC_DEPLOYED_NATIVE_REQUIRED；source/live B166.193，183/183 MATCH，等待新自动／资格／正常冷加载整合。
+State: B166_MEANING_AUTOMATIC_USER_PASS；source/live B166.193，用户人工验收含冷重启自动重建，无截图。
 Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化暂行许可／Balance标记，Dialogue隔离与其它规则保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户已授权“意义延展正式接入”批次；source B166.193实现合格文化城自动五产出、旧GWA退役及只读P0报告。本地结果与新加载／资格门槛见[B166记录](../../Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md)，source/live关系以[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准。
+B166.193正常自动意义延展已获用户整批人工PASS，并单独确认冷重启自动重建PASS，见[B166人工记录](../../Status/Validation/Results/Specialization_B166_Meaning_Automatic_User_Pass.md)。没有截图或新增数值；源码／已登记部署关系见Status。
 
-B165五项／替换／END及正旧AUTO共存证据按实测范围继承；跨回合进度差的精确归因不作为本模块阻塞，不重复补测。D0048主题化许可仍暂行／Balance待验；七域五yield与Culture隔离不改变九域六yield正式Design。
+B165原语与44项本地证据按原范围继承；当前七域五yield，Culture追加隔离及D0048主题化暂行／Balance保留。不扩大为完整九域六yield或所有环境通过。
 
-当前live为B166.193，未提交调查Markdown默认ignore、不要求先公开；本次clean source、game exit及receipt/hash事务已核对，恢复点保留。B166部署后只验新自动生效、D/W变化、ACTIVE退出/恢复及一次正常冷加载；L3/M/N/UI仍需单独授权，永久账本／GC不改。
+本批验收收口，下一建议为[L3-A](P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，等待授权；M/N/UI未授权。本轮只记录验收与计划，无新实现／部署。
 
 ## B166已授权 — 意义延展自动接入
 
@@ -19,7 +19,7 @@ B165五项／替换／END及正旧AUTO共存证据按实测范围继承；跨回
 
 **事实与生命周期。** 依赖CurrentSpecializationFacts／GreatWorkFacts Summary／DistrictCompleteness，plan按city/reference拥有且只含当前值。UNKNOWN只保留同引用的确认会话配置；冷加载、新引用不回放旧载体。confirmed loss由Store确认后撤本模块exact92，不清Identity／Potential／永久记录；return重新派生。正常建筑/馆藏已知事件定域，跨城搬移两端；总督调任因旧城参数缺失核对受影响玩家，未确认签名保留支持玩家核对。同结果零写，owned通知排除，有界重入后补，不引入高频扫描／全局GC／新永久schema。
 
-**本地与原生。** W0004 L2＋实际加载／退出L3定向；当前新方法和直接AE/K回归、包／SQL／helper/context/diff检查，继承未改原语。新自动冷加载确有新风险，因此一次整合含加载；不把Probe默认OFF仪式重新加入。准确结果、一次最小实机和部署门禁见B166记录。自动writer已LOCAL完成，未将其标原生PASS。
+**本地与原生。** W0004 L2＋实际加载／退出L3定向；当前新方法和直接AE/K回归、包／SQL／helper/context/diff检查，继承未改原语。新自动冷加载确有新风险，因此一次整合含加载；不把Probe默认OFF仪式重新加入。准确结果、一次最小实机和部署门禁见B166记录。自动writer本地44项通过；后续用户人工验收及冷重启PASS见上方当前记录，不改原始本地证据。
 
 **停止。** 本批到commit/push与具备门禁时的W0003部署／用户验收为止。未跟踪Investigation默认本地ignore，归属不变；未放宽Mod或其它tracked修改的clean门禁，不推进L3/M/N/UI或改玩法。
 
