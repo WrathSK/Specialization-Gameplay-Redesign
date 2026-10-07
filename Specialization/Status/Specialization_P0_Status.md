@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0441
-Implementation Build: source/live B167.194 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
+Status Revision: S0442
+Implementation Build: source B168.195 / live B167.194 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B167_L3A_NATIVE_GATE_UNRESOLVED
+Work State: B168_L3A_REPAIR_LOCAL_COMPLETE_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161与四专业范围保持；source/live B167.194／source208ded2及既有部署receipt不变，本轮未核验外部运行包或部署。B166自动／冷重启人工PASS保留。
+D0048／A0161与四专业范围不变；source B168.195诊断／退出修复39项本地PASS，live仍已登记B167.194／source208ded2，尚未切换本批。B166自动／冷重启人工PASS保留。
 
-[B167八图原生反馈](Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md)：全国率50.199→0.1/0.3档51.199→整数1档52.199，跨回合刷新；小数精度／倍率／END仍未闭合。末档NEXT报错但不退出是明确交互缺陷，不等于没有独立END入口。
+[B168修复与最小流程](Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md)：末档正常退出，右键／END读取精确四ID与倍率候选；城市归属／有效总倍率未知明确保留。B167小数反馈未判PASS，不直接启用Floor。
 
-下一建议为定域退出引导及原生实例／倍率诊断修复，待用户授权；不直接启用Floor或完整L3。只阻塞对应L3原语，不扩M/N/UI、不改永久记录／GC。
+当前授权到本批修复／W0003安全部署／0→整数1→END原生门禁停止。用户自选多档读档仅补充信息，不纳入必做流程；完整自动L3/M/N/UI未授权，不扩永久记录／GC。
+
+## S0442 — B168退出与原生诊断本地完成
+
+用户授权修复并明确自主多档读档不成为测试设计。末档NEXT正常withdraw/forget，失败保留目标；只读GameEffects四ID／参数／Active／Owner／Subject，相关百分比候选不当有效总倍率。归属／API未知不假报零，本玩家范围与其它玩家分开；请求枚举／响应缓存有界、不新增周期工作。
+
+39方法PASS，原B167失败事实与冻结证据保留；只变本模块／报告／包标识与定向测试，不改Gameplay Design／SQL参数／永久schema／GC／Meaning／main。source B168.195到本地checkpoint，实际部署另据game exit／现有receipt／hash确认；不发重复保存仪式。
 
 ## S0441 — B167首轮原生异常记录
 

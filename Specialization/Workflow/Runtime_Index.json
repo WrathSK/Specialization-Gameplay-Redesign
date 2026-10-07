@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "d864b50533fcb15bb5c274f0d100b5b9035bd593719730e5ce384fc7893e0e52",
+      "sha256": "6474606f9541247b3677ed531ef964138133acdcdf5562be03984455ec415846",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "86c3a4d4e47301e7e947f03070b3e3dbf518960214d326d8e2ddca3115b01750",
+      "sha256": "5f85a57aec856407e0f886e10f15cb3667c50f27178ecd21a8388110502499c5",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "44438445206b61217ef8d2863d6c8b8219deeb6d15426cdc60a1db80f0371ab6",
+      "sha256": "9cca38287f8253c9648585f0513ade992e57bccd5ac917bc9bf8b6b06b451ed8",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -921,14 +921,14 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureInspirationProbe.lua": {
-      "sha256": "3cf25c77a3da319f10556f7b2e7aae744c5b17f41ac418cbffd1854edba841d5",
+      "sha256": "addf885d4a10e369e253b1aeaa22b961ba24d81104278320b952ad07b2d03d14",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
     },
     "Mod/InspirationReadout.lua": {
-      "sha256": "5b8a89d4e929c3132db694efc9ca4c0a31d407fddfadf7b993e8bf313fbcb0c6",
+      "sha256": "0de09021dc8cd4395bb8338b3b174c1f0b4a351231c01117c8844f861c032821",
       "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "provenance": "B168 authorized scoped final-stage withdrawal and native diagnostics;39 local checks. Source changed; live B167 until recorded deployment."
     },
     "Mod/Data/CultureInspirationProbe.sql": {
       "sha256": "c0814c30d8cf913d36228a6528dc46aa8e8120327e0506e4112372fdcc33c552",

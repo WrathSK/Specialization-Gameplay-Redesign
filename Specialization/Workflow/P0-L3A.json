@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0441",
-    "runtime": "B167.194 / modinfo194",
+    "status": "S0442",
+    "runtime": "B168.195 / modinfo195",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_L3_Inspiration.md#b167当前原型合同",
-  "goal": "Single-city Scientist native fractional base-GPP gate, not full automatic ability.",
+  "goal_reference": "Specialization/Architecture/v2/P0_L3_Inspiration.md#b168当前修复合同",
+  "goal": "Authorized final-stage exit and bounded native instance/percent-source diagnostics; fixed Scientist probe only.",
   "implementation_authorized": true,
   "context": [
     {
@@ -38,6 +38,12 @@
       "kind": "section",
       "reason": "Complete bounded primitive/lifecycle/readout contract",
       "selector": "## B167当前原型合同"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Current authorized diagnostic/exit delta",
+      "selector": "## B168当前修复合同"
     },
     {
       "path": "Specialization/Design/Content/Culture_D0048.json",
@@ -101,9 +107,15 @@
       "reason": "Direct L3-A dependency"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md",
+      "kind": "section",
+      "reason": "Current native counterexample only; old full test instructions are not current task",
+      "selector": "## 原生观察"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md",
       "kind": "full",
-      "reason": "Direct L3-A dependency"
+      "reason": "Current repair evidence and minimal native stop"
     }
   ],
   "dependencies": [
@@ -137,6 +149,12 @@
         "tools/temporary_playtest.py"
       ],
       "trigger": "Actual deployment only, strict existing transaction gates."
+    },
+    {
+      "paths": [
+        "Mod/UI/BoostGreatWorkRead.lua"
+      ],
+      "trigger": "Native GameEffects API provenance; inspect existing bounded collector only, no full GreatWork/HD history."
     }
   ],
   "non_scope": [
@@ -144,20 +162,20 @@
   ],
   "validation": {
     "depth": "L2 targeted; only changed cleanup/load behavior locally covered.",
-    "local": "23 new plus6 selected B166 =29 methods PASS; SQL/source/XML/registration/context/diff.",
-    "user": "One city fixed baseline/.1/.3/.6/optional1/END; normal multiplier if isolatable, allow refresh one turn and label national scope. No mandatory cold-load repeat."
+    "local": "39 methods PASS: existing29 plus10 scoped repair cases; source/SQL/XML/docs/context.",
+    "user": "One continuous session 0→integer1→END, native arguments/instance exit/percent sources; allow observed refresh delay. User self-chosen reloads are optional evidence, not steps or gate."
   },
   "full_audit_triggers": [
     "Unexpected old writer ownership or saved-state write",
     "Unknown native precision/multiplier cannot be guessed"
   ],
   "result": {
-    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md",
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Probe only; full automatic ability needs separate approved plan.",
+    "stop": "Repair only; authorized W0003 safety and minimal native gate, no Floor/full automatic ability.",
     "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch.",
     "deployment": "B167.194 / modinfo194 DEVELOP_ACTIVE; source208ded2f21cd680986a0a4627e737c5a21f88f39;receipt B167.194-208ded2-playtest.json;186/186 MATCH. B166 and stable recovery retained, no pending transaction/game launch;29 local checks PASS, fractional GPP/multiplier native required.",
     "native_feedback": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md",
-    "native_gate": "UNRESOLVED: delayed nationwide rate +1/+1/+2; multiplier/rounding/native exit not isolated; next repair requires approval"
+    "native_gate": "B167 fractional precision/multiplier unresolved; B168 diagnostic repair native pending; full ability not authorized"
   }
 }

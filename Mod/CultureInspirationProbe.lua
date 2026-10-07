@@ -111,8 +111,11 @@ function SPCCultureInspirationProbe.Start(P,shared)
      project(c,nil)
     else
      assert(same(c),'INSPIRE_FINISH_PREVIOUS_CITY');assert(eligible(c),'INSPIRE_REQUIRE_ACTIVE_IV')
-     assert(d.stage<4,'INSPIRE_STAGES_COMPLETE');local nextStage=d.stage+1
-     project(c,names[nextStage]);d.stage=nextStage
+     if d.stage==4 then
+      project(c,nil);forget() -- Final NEXT is an explicit, normal exit, not an error.
+     else
+      local nextStage=d.stage+1;project(c,names[nextStage]);d.stage=nextStage
+     end
     end
    elseif action~='INSPIRE_READ' then error('INSPIRE_ACTION_UNKNOWN')end
    if target then
@@ -125,7 +128,8 @@ function SPCCultureInspirationProbe.Start(P,shared)
      session=target and target.session or nil,stage=d.stage,amount=amount,count=count}
    d.error=nil
    local title=target and tr('STAGE',d.stage,amount) or tr('OFF')
-   return tr('TITLE')..'\n'..title..'\n'..tr('INSTANCES',count)..'\n'..tr('CONTROL')..'\n'..tr('NEXT_HELP')
+   local help=target and (d.stage==4 and tr('FINAL_HELP') or tr('NEXT_HELP')) or tr('OFF_HELP')
+   return tr('TITLE')..'\n'..title..'\n'..tr('INSTANCES',count)..'\n'..help
   end)
   d.busy=false
   if not ok then d.error=tostring(out):sub(1,180);shared.CultureInspirationView=nil;out=tr('STOP',d.error)end

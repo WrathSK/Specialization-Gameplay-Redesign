@@ -1,4 +1,4 @@
-"""B167 native precision gate: local behavior/SQL only, not native fractional PASS."""
+"""B168 native diagnostic/exit repair: local behavior/SQL only, not native fractional PASS."""
 from pathlib import Path
 import unittest, xml.etree.ElementTree as ET
 import test_culture_aesthetic as ae
@@ -9,12 +9,18 @@ class InspirationTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.sql=legacy.database()
+  # Current read-only DB may already include these four test definitions.
+  # Replace only exact owned rows in the disposable copy before applying source.
+  carriers=['BUILDING_SPC_INSPIRE_PROBE_'+str(v)for v in [1,3,6,10]]
+  modifiers=['SPC_INSPIRE_PROBE_'+str(v)for v in [1,3,6,10]]
+  for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:
+   cls.sql.executemany(f'DELETE FROM {table} WHERE {col}=?',[(v,)for v in values])
   cls.sql.executescript((R/'Mod/Data/CultureInspirationProbe.sql').read_text())
  @classmethod
  def tearDownClass(cls):cls.sql.close()
  def runtime(self,ready=True):
   h=ae.AestheticTests();h.sql=self.sql;l=h.runtime(ready=False)
-  for table,key in [('ModifierArguments','ModifierId'),('BuildingModifiers','BuildingType'),('GreatPersonClasses','GreatPersonClassType')]:
+  for table,key in [('ModifierArguments','ModifierId'),('BuildingModifiers','BuildingType'),('GreatPersonClasses','GreatPersonClassType'),('DynamicModifiers','ModifierType')]:
    cur=self.sql.execute('select * from '+table);cols=[x[0] for x in cur.description];rows=[dict(zip(cols,row))for row in cur]
    for i,row in enumerate(rows):row['Index']=i+1
    l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
@@ -98,9 +104,63 @@ class InspirationTests(unittest.TestCase):
    update();assert(finalAmount(a,'SCIENCE')==before and finalAmount(b,'SCIENCE')==other)
    ip.Request(0,a,'INSPIRE_END','c');update();assert(finalAmount(a,'SCIENCE')==before and finalAmount(b,'SCIENCE')==other)
   """)
+ def test_final_next_exits_normally_duplicate_notification_does_not_restart(self):
+  l=self.runtime();l.execute("req('INSPIRE_NEXT');for i=1,4 do req('INSPIRE_NEXT')end;local out=req('INSPIRE_NEXT');local n=writes;assert(amount(a)==0 and ip.stage==-1 and shared.CultureInspirationView.count==0 and not out:find('STOP'));assert(ip.Request(0,a,'INSPIRE_NEXT','r6')==out and writes==n and ip.stage==-1);req('INSPIRE_READ');assert(amount(a)==0)")
+ def test_final_next_failed_withdrawal_preserves_target_then_end_can_retry(self):
+  l=self.runtime();l.execute("req('INSPIRE_NEXT');for i=1,4 do req('INSPIRE_NEXT')end;failRemove=GameInfo.Buildings.BUILDING_SPC_INSPIRE_PROBE_10.Index;assert(req('INSPIRE_NEXT'):find('INSPIRE_REMOVE_UNCONFIRMED'));assert(ip.stage==4 and amount(a)==1);failRemove=nil;req('INSPIRE_END');assert(amount(a)==0 and ip.stage==-1)")
+ def diagnostics(self):
+  l=self.runtime();l.globals().include('InspirationReadout');l.execute("""
+   Game.GetLocalPlayer=function()return 0 end;rate=50;nativeCalls=0
+   Players[0].GetGreatPeoplePoints=function()return {GetPointsPerTurn=function()return rate end}end
+   defs={};owners={};objects={};subjects={};actives={};nativeIDs={}
+   GameEffects={GetModifiers=function()nativeCalls=nativeCalls+1;return nativeIDs end,
+    GetModifierDefinition=function(id)return defs[id]end,GetModifierOwner=function(id)return owners[id]end,
+    GetObjectsPlayerId=function(id)return objects[id] and objects[id].player end,
+    GetObjectType=function(id)return objects[id] and objects[id].kind end,
+    GetObjectString=function(id)return objects[id] and objects[id].raw end,
+    GetModifierSubjects=function(id)return subjects[id]end,GetModifierActive=function(id)return actives[id]end}
+   function effect(id,mid,amount,owner,class)
+    nativeIDs[#nativeIDs+1]=id;defs[id]={Id=mid,Arguments={Amount=amount,GreatPersonClassType=class or 'GREAT_PERSON_CLASS_SCIENTIST'}}
+    owners[id]=owner;subjects[id]={owner};actives[id]=true
+   end
+   objects[101]={player=0,kind='CITY_UNVERIFIED',raw='City: 999, Owner: 0'}
+   objects[102]={player=3,kind='FOREIGN',raw='City: 1, Owner: 3'}
+   req('INSPIRE_NEXT')
+   function render(action)return SPCInspirationReadout.Render(P,shared.CultureInspirationView,'r'..seq,action)end
+  """);return l
+ def test_native_parameters_can_disagree_and_multiple_instances_not_hidden(self):
+  l=self.diagnostics();l.execute("effect(7,'SPC_INSPIRE_PROBE_1',1,101);effect(8,'SPC_INSPIRE_PROBE_10',1,101);effect(9,'SPC_INSPIRE_PROBE_3',0.3,102);local n=writes;local s=render('INSPIRE_READ');assert(s:find('DIAG_SCAN | COMPLETE | 2 | 0') and s:find('DIAG_PROBE | 7 | true | 1 | 0.1'));assert(s:find('City: 999, Owner: 0') and not s:find('本城已核验'));assert(not s:find('DIAG_PROBE | 9'));assert(writes==n)")
+ def test_diagnostic_only_requested_cached_once_and_fresh_token_reads_again(self):
+  l=self.diagnostics();l.execute("render('INSPIRE_NEXT');assert(nativeCalls==0);render('INSPIRE_READ');render('INSPIRE_READ');assert(nativeCalls==1);req('INSPIRE_READ');render('INSPIRE_READ');assert(nativeCalls==2);a.token='different';local s=render('INSPIRE_READ');assert(s:find('READ_UNKNOWN') and nativeCalls==2)")
+ def test_incomplete_native_enumeration_is_not_zero_and_rate_failure_does_not_hide_diagnostics(self):
+  l=self.diagnostics();l.execute("nativeIDs={1,3};defs[1]={Id='SPC_INSPIRE_PROBE_1',Arguments={Amount=0.1}};owners[1]=101;subjects[1]={101};actives[1]=true;rate=nil;local s=render('INSPIRE_READ');assert(s:find('READ_UNKNOWN') and s:find('DIAG_UNKNOWN') and not s:find('DIAG_NONE'))")
+ def test_unknown_owner_sparse_ids_and_api_failure_explicitly_incomplete(self):
+  for setup in ["effect(1,'SPC_INSPIRE_PROBE_1',0.1,999)","nativeIDs={[2]=1}","GameEffects=nil"]:
+   with self.subTest(setup=setup):
+    l=self.diagnostics();l.execute(setup+";local s=render('INSPIRE_READ');assert(s:find('DIAG_UNKNOWN') and not s:find('DIAG_NONE'))")
+ def test_unknown_native_fields_are_not_reported_complete(self):
+  for setup in ["objects[101].kind=nil", "defs[1].Arguments.Amount=nil", "defs[1].Arguments.GreatPersonClassType=123"]:
+   with self.subTest(setup=setup):
+    l=self.diagnostics();l.execute("effect(1,'SPC_INSPIRE_PROBE_1',0.1,101);"+setup+";local s=render('INSPIRE_READ');assert(s:find('DIAG_UNKNOWN') and not s:find('DIAG_SCAN | COMPLETE'))")
+ def test_percent_candidates_are_not_summed_and_foreign_subject_target_is_retained(self):
+  l=self.diagnostics();l.execute("""
+   local old=P.Info;P.Info=function(t,k)
+    if t=='Modifiers' and k=='PCT_TEST' then return {ModifierType='MODIFIER_PLAYER_ADJUST_GREAT_PERSON_POINTS_PERCENT'}end
+    return old(t,k)
+   end
+   effect(1,'PCT_TEST',100,101);effect(2,'PCT_TEST',30,101,'GREAT_PERSON_CLASS_WRITER')
+   effect(3,'PCT_TEST',25,102);subjects[3]={101};actives[3]=false
+   local s=render('INSPIRE_READ');assert(s:find('DIAG_PERCENT | PCT_TEST | true | 100') and s:find('DIAG_PERCENT | PCT_TEST | false | 25'))
+   assert(not s:find('GREAT_PERSON_CLASS_WRITER') and s:find('DIAG_MULTIPLIER'))
+   subjects[3]=nil;req('INSPIRE_READ');s=render('INSPIRE_READ');assert(s:find('DIAG_PERCENT | PCT_TEST | false | 25') and s:find('DIAG_UNKNOWN'))
+  """)
+ def test_end_reports_native_residue_instead_of_claiming_complete_cleanup(self):
+  l=self.diagnostics();l.execute("req('INSPIRE_NEXT');effect(1,'SPC_INSPIRE_PROBE_1',0.1,101);req('INSPIRE_END');local s=render('INSPIRE_END');assert(amount(a)==0 and s:find('DIAG_PROBE | 1') and not s:find('DIAG_NONE'))")
+ def test_diagnostic_detail_is_bounded_and_does_not_interpret_missing_subjects(self):
+  l=self.diagnostics();l.execute("objects[101].raw=string.rep('x',1000);for i=1,12 do effect(i,'SPC_INSPIRE_PROBE_1',0.1,101)end;local s=render('INSPIRE_READ');assert(s:find('DIAG_LIMIT | 4') and not s:find(string.rep('x',193)));subjects[1]=nil;req('INSPIRE_READ');s=render('INSPIRE_READ');assert(s:find('DIAG_UNKNOWN'))")
  def test_sql_and_package(self):
   rows=self.sql.execute("select Value from ModifierArguments where ModifierId like 'SPC_INSPIRE_PROBE_%' and Name='Amount'").fetchall();self.assertEqual(sorted(float(x[0])for x in rows),[.1,.3,.6,1])
-  tree=ET.parse(R/'Mod/SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'194')
+  tree=ET.parse(R/'Mod/SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'195')
   for f in ['CultureInspirationProbe.lua','InspirationReadout.lua','Data/CultureInspirationProbe.sql']:
    self.assertEqual([x.text for x in tree.findall('./Files/File')].count(f),1)
   xml=ET.parse(R/'Mod/UI/P0Panel.xml');ids=[n.get('ID')for n in xml.iter()if n.get('ID')];self.assertEqual(len(ids),len(set(ids)))

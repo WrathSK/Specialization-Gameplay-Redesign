@@ -1,15 +1,23 @@
 # P0-L3 —「巨作启迪」计划与小数GPP调查
 
-State: B167_L3A_NATIVE_GATE_UNRESOLVED / FULL_ABILITY_NOT_IMPLEMENTED。
+State: B168_L3A_DIAGNOSTIC_REPAIR_LOCAL_COMPLETE / FULL_ABILITY_NOT_IMPLEMENTED。
 Authority: 当前Spec D0048／Culture D0048 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
 
 ## 当前切片与停止点
 
-B167.194本地29项PASS／已部署；[八图反馈](../../Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md)观察小数0.1/0.3均使全国率比初始高1，整数1高2，存在跨回合刷新；正常倍率／原生取整／迟延撤销尚未区分。原本地合同与证据保留，不标小数PASS或完全不可用。
+用户授权定域修复，source B168.195本地39项PASS；[修复结果与最小原生内容](../../Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md)补末档正常退出、只读实例／倍率来源与有界响应缓存。live仍按[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)及实际receipt核对，不从源码推部署。
 
-NEXT末档报错不退出；独立END按钮存在但本次未证实退出。下一建议为明确退出引导及定域原生实例／倍率诊断，须授权后实施，不直接进入完整六class。
+[B167反馈](../../Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md)小数／正常倍率仍未闭合。B168仅0→整数1→END定域对照，不把候选来源求和成有效倍率。用户自选不同档位读档信息属于补充，不纳入必做流程或门禁。
 
-用户允许每城每类合计Floor备用，尚未启用；先解释整数对照，不能把Floor当作异常修复。B166 PASS、Design与既有运行包不变；实际状态查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+每城每类合计Floor仍为已允许但未启用的备用；完整六class自动L3/M/N/UI未授权，B166PASS与Design保留。本批修复／安全部署／最小原生后停止。
+
+## B168当前修复合同
+
+继承下方B167固定四ID／正常基础GPP／资格及owned退出合同。末档NEXT改为正常撤销并结束，独立END不变；失败不遗忘目标或假报OFF。只读原生接口和报告范围详见B168结果，UNKNOWN/归属/倍率不能猜测。
+
+UI枚举只随READ／END／末档退出请求，32768定义／64Subject边界，测试与倍率各展开8、Subject最多2；只缓存一个token/reference/turn报告，不保留原生数组或增加周期/每帧扫描。正常小档推进不枚举原生实例。
+
+原生计数限本玩家／Owner未知范围，城市原始对象保留不推断。倍率候选依据精确Effect与Scientist/未限定class，外国Subject未知不排除；有效总倍率继续UNKNOWN。本批不改SQL四值、原生来源或直接发点；外部API不可读不阻塞退出、不冒充零残留。
 
 ## B167当前原型合同
 
