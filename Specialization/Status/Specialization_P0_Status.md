@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0443
+Status Revision: S0444
 Implementation Build: source/live B168.195 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B168_L3A_REPAIR_DEPLOYED_NATIVE_REQUIRED
+Work State: B168_L3A_NATIVE_TEST_DEFERRED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,11 @@ D0048／A0161与四专业范围不变；source B168.195诊断／退出修复39�
 
 [B168修复与最小流程](Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md)：末档正常退出，右键／END读取精确四ID与倍率候选；城市归属／有效总倍率未知明确保留。B167小数反馈未判PASS，不直接启用Floor。
 
-当前授权到本批修复／W0003安全部署／0→整数1→END原生门禁停止。用户自选多档读档仅补充信息，不纳入必做流程；完整自动L3/M/N/UI未授权，不扩永久记录／GC。
+2026-10-07用户将B168原生测试暂存[待办](Playtest_Backlog.md#b168--巨作启迪原生诊断验收待办)，当前无需测试，等待恢复。0→整数1→END门槛未取消／未通过，自选多档读档仅补充；完整L3/M/N/UI未授权，不改运行包。
+
+## S0444 — B168用户测试暂存待办
+
+用户暂缓B168测试；保留已部署B168.195与39项本地证据，小数／倍率／原生退出仍待验。不重新部署、不请求当前实机、不推进正式L3或其它批次；可选多档读档不成为必做流程。本轮仅登记待办与当前导航／metadata，无代码／Design／runtime／main改动。
 
 ## S0443 — B168诊断修复安全部署
 

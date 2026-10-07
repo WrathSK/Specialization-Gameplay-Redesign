@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0443",
+    "status": "S0444",
     "runtime": "B168.195 / modinfo195",
     "military": "D0037",
     "harbor": "D0037",
@@ -176,6 +176,6 @@
     "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch.",
     "deployment": "B168.195 / modinfo195 DEVELOP_ACTIVE; sourcec3de1140ea4504d8fe4d247211b8af5a4527975e;receipt B168.195-c3de114-playtest.json;186/186 MATCH. B167/stable recovery retained, no pending transaction/game launch;39 local checks PASS, primitive/multiplier/exit native pending.",
     "native_feedback": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md",
-    "native_gate": "B167 fractional precision/multiplier unresolved; B168 diagnostic repair native pending; full ability not authorized"
+    "native_gate": "USER_DEFERRED 2026-10-07: existing0→integer1→END gate remains unverified; optional multi-save observations not required; wait for user resumption."
   }
 }

@@ -176,3 +176,10 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 ### PT001 B138 — bounded stabilization / one integrated acceptance
 
 [B138参数、一次测试与固定退出标准](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)。GC运行缓解本地通过，native阶段/暂停/回收基线/进程改善待验。正常Network同存档最多10T或4次自动回收，起末进程读数＋最终GC报告；不要求重复旧长测/征服。公共业务路径未改，UNKNOWN失城补撤销反例已有定向回归。通过后“稳定化完成，剩余分配效率问题开放”，恢复功能计划；不等待定位所有分配来源、不自动实施F。剩余事项及重开条件集中在该合同末表；不得事后放宽阈值。
+
+
+## B168 — 巨作启迪原生诊断验收待办
+
+2026-10-07用户明确暂缓测试。B168.195已部署、39项LOCAL通过；原生整数入口／倍率来源／实例撤销仍USER_GAME_TEST_REQUIRED，未记PASS。最小内容保持单session的0→整数1→END，详见[B168结果](Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md#一次最小实机内容)。用户自选多档读档仅补充，不纳入必做步骤或门禁。
+
+等待用户方便时恢复；当前无需测试、不重新部署、不启用Floor或完整L3，不自动进入M/N/UI。仅相关L3原语接入门槛保留，B166既有PASS不受影响；正式当前授权／source/live查[Status](Specialization_P0_Status.md#current-authoritative-state)。
