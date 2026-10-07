@@ -1,24 +1,44 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: USER_STOP_CHECKPOINT；P01与P13a公共hot-path slice覆盖完成；P06a未开始。用户即将合盖，已停止调查扩张。尚无总审计结论。
+State: AUDIT_IN_PROGRESS；P01、P13a、P06a已完成各自slice覆盖；下一为P09b跨Context传播与消费者失败边界。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成阶段：**P01：权威／Workflow／Status／当前manifest与证据入口一致性**。这是覆盖完成，不是项目PASS。
-- 当前检查点：P01三组独立只读复核已收齐，关键候选由主任务重读/内存反例复核；confirmed/provisional/rejected与实际覆盖已写入。只改本文件，原Authority/Status/Design/Mod保持。
-- 上轮停止点：P01覆盖完成并提交437bb3b；既有阅读、证据与finding全部保留。B168实机继续待办。
-- 当前窗口W02已完成：按用户方向修正建立公共event→dirty→recompute→publish、hot-path/主要state初版map及有界缓存反例；baseline437bb3b的Mod与P01一致。只查新相关source，不重做P01或局部native gate。
-- 本轮停止点：用户要求立即收束；三个本轮子任务均completed，结果已收齐。P13a公共map、confirmed/provisional/timing及准确P06a入口已保存；P06a没有开始。没有重构、新worker、长测或用户测试。
-- 下一准确入口：**P06a主要持久/会话state ownership与mutation边界**：`Mod/CityProgressionStore.lua`的StartCollection:630–811、CreateProgressionRecord的root/save/active:100–169，再按实际read/write callers扩展；配合`Architecture/v2/P0_E2_Plan.md`CURRENT/实际保存合同。追查index/envelope/workers/Game slots、pending/receipt、RegisterExit/Return及读回来源；不逐能力重复完整native生命周期。随后P09b验证GW/Network跨Context更新与依赖闭包。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
+- W03检查点：P06a三个只读审阅结果已收齐；真实Lua的4个规模、2个损坏隔离、1个注入重入fixture已完成并独立核证。详见[P06a报告](P06a_State_Ownership.md)。项目本体只读，B168实机继续待办。
+- 下一准确入口：**P09b跨Context接受/发布与消费者失败隔离**。从 `Mod/GreatWorkFacts.lua` Receive/OnConfirmed、CultureAesthetic/Meaning的注册与Audit、`NetworkBridge` accepted input/private view/public compatibility开始；再沿实际调用查NetworkInput、UI DialogueRefresh/BackgroundRoutes/Sender的ACK、token和失效。核查谁拥有接受样本、什么时候通知、失败能否隔离、正常getter是否借出mutable state。复用W02 map，不重复复杂度盘点或逐能力save/load。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
 
 恢复时只读：ledger → Git branch/HEAD/dirty diff → Authority及真实CURRENT → 当前阶段指定入口。若HEAD变化，比较其与本检查点的相关文件diff；仅使受影响结论重新待核，不清空已完成审计、不盲目rehash或reset。没有新diff且来源不变时复用已核证据。不因最终聊天报告缺失重复执行部署、测试或提交。
+
+## W03 — P06a主要持久状态ownership（slice覆盖完成）
+
+恢复baseline：`dbac359`，develop clean/sync；相对W02的Mod/Design/Architecture/正式测试/Workflow无差异，复用已核P01/P13a证据。Authority/Status仍S0444/B168原生测试暂缓；`context.py check P0-L3A`186/469引用完整性PASS，不是玩法或原生PASS。
+
+问题、完整ownership/mutation map、实际阅读范围、反证、候选修复边界和未来验证见[P06a报告](P06a_State_Ownership.md)。本slice没有修复任何finding，也没有改现行合同/状态。
+
+| 新发现 | 证据强度 | severity / refactor timing | 结论与限制 |
+|---|---|---|---|
+| IA-P06a-F01 每写全记录引用检查 × 逐城计龄 | STATIC + 实际Lua结构复现 | MEDIUM / FIX_NOW | N/T=8/8、20/20、40/40、40/1分别为64/400/1600/40次唯一性loop访问；建议在增加长期writer前收窄保存层约束，不等于本轮实施或全项目停工。未测native耗时/分配 |
+| IA-P06a-F02 单城坏endpoint扩大为collection fault | STATIC + 实际Lua结构复现 | HIGH / DEFER | A.current=true使正常B也不可读；A.revision损坏可隔离。无load写入/B mock记录不变；不是已发生原生存档损坏 |
+| IA-P06a-F03 专业业务嵌入保存核心/词汇散落 | STATIC | MEDIUM / FIX_BEFORE_NEXT_PROFESSION | 下一永久资产接入前明确纯模型与原子保存边界；不主张统一不同资产归属或新建通用state engine |
+| IA-P06a-Q01 未提交root可见 | 注入setter重入复现；native可达未知 | MEDIUM / MONITOR | 回调可读取未保存template，随后写失败hold；未证明真实引擎消费该值 |
+| IA-P06a-Q02 return阶段/注册次序隐含 | STATIC；当前效果漏更新未证实 | LOW / FIX_BEFORE_NEXT_PROFESSION | return在提交前，消费者依赖后续事件；交P09b核依赖闭包 |
+| IA-P06a-Q03 pending与历史保留 | 部分STATIC | OBSERVATION / MONITOR | 无无限retry证据；间接保留留P13b，不擅自删历史 |
+| IA-P06a-Q04 legacy capture读写命名/错误reason | STATIC | LOW / DEFER | production已captured，不是正常读取每次写；保留定域维护事项 |
+
+已知适配缺口K01：科研跨Owner旧OWNER_POLICY_UNRESOLVED与当前已接受规则不一致，B164报告已登记，MEDIUM / DEFER；不是新Design TBD。本slice不扩成逐能力正确性调查。
+
+证据：[最小复现](Evidence/W03/progression_store_reproduction.py)、[原始JSON](Evidence/W03/progression_store_result.json)。脚本SHA256 `d8585de5beb42fad71ab26c792d8f370694d1a601b77312c3f9fa2aaf3e8eba5`；结果SHA256 `b8a136eb0dfcabcbb0c180137b7860ef8c6a38d912f2bb9ea089c52fc30ad065`；实际Store SHA在结果中。复用现有Lupa环境，没有安装工具、运行历史全回归或触碰外部runtime。
+
+未覆盖：完整E2事件正确性、单位事务、所有专业永久资产、native中断原子性，仍分属P06后续/P07/P10/P11。下一P09b的准确入口见本文件开头与报告末尾。
 
 ## 审计总范围
 
@@ -84,7 +104,7 @@ severity与timing分别记录，不能互相代替：
 | P03 | Research_D0040、Industry_D0045及对应Spec/当前计划 | Research与Industry分别完成rule→合同矩阵，数值/门槛/长期资产/首测区别不遗漏 | NOT_YET_AUDITED |
 | P04 | Culture_D0048、Commerce_D0045及生命周期接受记录/计划 | Culture与Commerce分别完成矩阵；排除旧能力混入、未決条款伪定案 | NOT_YET_AUDITED |
 | P05 | modinfo、Gameplay/include/Start、SQL注册、writer切换矩阵 | W02核direct公共dispatch/14RuntimeWork caller；全Mod可达/依赖分类未完成 | PARTIAL_W02 |
-| P06 | CityProgressionStore、E2 current合同、CityFlow/identity/Evidence/helper及定向测试 | identity/initialize/held/recapture/claim/load及损坏/UNKNOWN真实状态与写入边界闭合 | NOT_YET_AUDITED |
+| P06 | CityProgressionStore、E2 current合同、CityFlow/identity/Evidence/helper及定向测试 | P06a主要持久权威/保存成本/损坏隔离已核；完整identity/lifecycle仍待后续 | P06a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P07 | InvestmentAction、单位/项目action、待结算/REALLOCATING生命周期合同 | receipt/重复/中断/Owner变化/出入系统的每类事务核对，不套统一永久语义 | NOT_YET_AUDITED |
 | P08 | 各module owned lists、SQL Modifier/requirements、载体创建/退出direct callers | 清单ownership、旧writer退出、remove失败/重入/stale reference/未知与原生边界闭合 | NOT_YET_AUDITED |
 | P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02核公共路由/版本/成本map；完整跨Context/GW/native语义闭包未完成 | PARTIAL_W02 |
@@ -105,7 +125,7 @@ severity与timing分别记录，不能互相代替：
 - **始终只读**：`Mod/`、`Design/`、正式`Architecture/`、`Status/`、`Workflow/Authority`及相关权威索引、当前manifests、正式`DevelopmentTests/`及断言、deploy/runtime implementation、main/develop玩法源码、外部运行包、游戏目录、正式配置、frozen historical evidence。不得因审计发现而修改这些内容，也不得为审计PASS补hash、改规则、调GC、部署或重构。
 - **严重finding不触发自动修复**：即使为CRITICAL、HIGH或`FIX_NOW`，也只记录finding、证据与证据强度、影响面、独立的severity/refactor timing、建议的refactor boundary/candidate solution，以及未来修复所需验证。timing表示建议处理时机，不是当前实施许可。既有finding正文与已完成阶段结论保持原样；上述要求用于后续发现与审计汇总，不追改原证据。
 - **继续与停止**：在有效前提下可自主完成既定logical slice；缺陷本身不要求停审。只有继续调查会因基础前提已经失效而产生错误结论时，才停止受影响审计并说明失效前提、影响范围与待用户决定事项。用户明确暂停/停止的指令仍优先。
-- **可恢复交付**：每个slice完成后更新同一ledger的实际阅读、发现、未覆盖范围与准确续接点，验证并commit/push审计产物；不另建平行plan，不推进玩法。此次仅补充执行纪律，保持`USER_STOP_CHECKPOINT`、P01/P13a已完成覆盖与P06a未开始的停止位置。
+- **可恢复交付**：每个slice完成后更新同一ledger的实际阅读、发现、未覆盖范围与准确续接点，验证并commit/push审计产物；不另建平行plan，不推进玩法。用户2026-10-07恢复审计后继续现有phase；历史停止位置保留为历史记录，当前进度以本文件开头为准。
 
 ## 高强度审查与证据规则
 
@@ -390,11 +410,13 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 - 当前native小数/GPP倍率/退出仍待B168用户测试；审计仅核其记录，不制造新实机要求。是否适用每城每类Floor仍未在正式运行接入，本轮无决定。
 - receipt存在/目录相同不证明今天恢复包内容或崩溃中途恢复正确；P14再检查具体transaction/failure/recovery路径，不能从“有backup”猜安全。
 - 321条链接检查仅8个活动入口；远端GitHub页面、冻结材料全部引用、其它文档/工具内旧路径及迁移映射未完整审计。
-- 下一准确slice：**P06a主要runtime state ownership与mutation边界**。从CityProgressionStore:630–811现代index/positions/worker/逐record保存，:100–169 worker root/active/save开始，追Base/Investment/native mirror/具名exit-return/未完成事务的权威与失效；结合E2 current合同，只为公共架构边界读Shared/资格/UNKNOWN完整规则。目标是可扩展公共ownership接口，不逐能力重做save/load/exit/re-enable测试。之后P09b/08a/05b按方向修正优先顺序推进。原P02a入口保留供相关合同核对。
+- W02当时的下一slice（W03现已完成，保留续接来历）：**P06a主要runtime state ownership与mutation边界**。从CityProgressionStore:630–811现代index/positions/worker/逐record保存，:100–169 worker root/active/save开始，追Base/Investment/native mirror/具名exit-return/未完成事务的权威与失效；结合E2 current合同，只为公共架构边界读Shared/资格/UNKNOWN完整规则。目标是可扩展公共ownership接口，不逐能力重做save/load/exit/re-enable测试。之后P09b/08a/05b按方向修正优先顺序推进。原P02a入口保留供相关合同核对。
 - 进入下一轮前只需检查baseline相关文件是否变更；本轮没有修复授权、没有修改正式状态或实现边界。用户需要决定：当前无；用户需要测试：当前无（B168待办继续）。
 
 ## 窗口结束与checkpoint纪律
 
 每完成一个可核证单元及时更新本文件；接近窗口结束先停止扩张，保存已读范围/结果/未决/下一入口。突然中断留下dirty ledger也优于丢失工作；恢复从Git diff确定哪些内容已完成，不reset求clean。必要时在完整审计slice边界普通commit/push本报告；只stage本审计产物，不顺带修改Authority/Context_Lock/Status/Design/runtime/测试或调查主题。
 
-本轮checkpoint：W02公共更新/扩展成本及实际Lua缓存反例已收束；按用户合盖指令停止。方向调整/timing/maps/findings/未覆盖/下一P06a入口及2份持久复现证据已保存。仅提交原ledger和这两份证据；P01不重置，B168待办不变，下一phase未开始，审计文档提交不改变游戏运行基线。
+W02历史checkpoint：公共更新/扩展成本及实际Lua缓存反例已收束；按当时用户合盖指令停止。方向调整/timing/maps/findings/未覆盖/下一P06a入口及2份持久复现证据已保存。仅提交原ledger和这两份证据；P01不重置，B168待办不变，下一phase未开始，审计文档提交不改变游戏运行基线。
+
+W03 checkpoint：P06a完整逻辑slice已核证，报告/复现/原始结果与ledger共同保存。没有总审计PASS；下一进入P09b，不重新审P01/P13a，不触碰项目本体或B168实机待办。
