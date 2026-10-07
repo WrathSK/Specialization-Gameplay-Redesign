@@ -7,7 +7,7 @@
 ## 可写范围
 
 - 仅本根区下当前用户明确授权主题的README、自己创建或用户明确交接的Markdown报告。新主题复用已有目录；只建立必要目录与文件，不预建其它主题。
-- 每个主题必须有README，写明范围、排除项、报告导航和非权威地位。首次任务推荐主任务先审阅／提交最小骨架；用户允许先创建时可暂留untracked，不自行Git提交。
+- 每个主题必须有README，写明范围、排除项、报告导航和非权威地位。主题骨架和新报告默认是ignored本机材料，不自行Git提交；公开checkpoint由主任务完成隐私／内容审阅并取得用户明确授权。
 - 不修改根区AGENTS／README、主题AGENTS、其它主题或其它Agent的文件；不移动、删除、重命名任何已有文件。不写区外文件，包括Design／接受记录、Architecture、Status、Workflow／Context Lock、其它Reports、Mod、tests、tools、运行包、游戏／HD原件与本机配置。
 - 不创建implementation prototype、不部署、不启动游戏、不修改AI决策。额外实验需要单独授权，不从调查任务推导实施权限。
 
@@ -22,9 +22,9 @@
 ## Git 与并行安全
 
 - 只允许`status`、`diff`、`log`、`show`、`rev-parse`等只读Git查询，可用`GIT_OPTIONAL_LOCKS=0`。禁止add、commit、push、pull、fetch、创建／切换branch、checkout／restore、reset／clean、stash、merge／rebase、worktree操作及Git config修改。
-- 不把Investigations加入gitignore。Dirty/untracked不是错误，不制造整树clean，不改变主任务已有改动。
+- 主题目录中的新Markdown／README默认由repo gitignore排除；根区AGENTS／README继续受版本控制。调查者不修改gitignore，不自行force-add。Ignored不是错误，不要求用户接受／提交调查checkpoint来解除普通主任务或部署门禁；已跟踪文件的真实改动仍须保留与审阅，不借ignore隐藏它们。
 - 同一报告只允许一个写者。发现归属不明、他人diff或文件正在checkpoint审阅，暂停该文件并报告，继续其它独立工作；不自行接管或回退。
-- 不写任何authority/hash/index metadata。主任务在用户接受指定Stable checkpoint后显式stage/commit/push；调查者停写这些文件，等主任务确认完成后再继续。
+- 不写任何authority/hash/index metadata。主任务可简短提示指定Stable checkpoint是否需要公开，未授权则保持本地并继续其它工作，不反复追问或顺带提交。用户接受后，调查者停写指定文件；主任务隐私／内容审阅后仅force-add明确授权的文件、commit/push，完成前不恢复该文件写入。
 - 已作为主任务review/hash依据的Stable版本，不在后台改写；先协调后续版本。相关输入在并行期间改变时，复核受影响结论并标明所用revision／commit及working-tree差异，不能把旧观察称为新状态。
 
 ## 报告与交接
@@ -32,5 +32,7 @@
 使用[README内模板](README.md#报告模板)，只用Open／Stable／Superseded。Stable代表当前证据版本可供参考，既不等于用户接受、Gameplay冻结，也不授权实现。
 
 区分确认事实、推断和未知；保持STATIC／LOCAL／USER_GAME_TEST证据范围。“未找到”不等于“不支持”，静态Modifier不证明AI会消费。发现Design错误或技术限制只在报告指出，交用户审阅／外部设计讨论；用户决定后由Main Task获授权更新正式Design，implementation仍需单独授权。不得自行修正正式来源或补设计。
+
+新报告引用仓库文件采用相对路径；外部来源优先用已有配置项／清楚定义的来源根与相对文件、行号、版本，不重复写真实用户名和机器绝对路径。不得记录可复用密码、认证Cookie／session／token或私人配置。公开checkpoint前单独复核本机路径／认证数据及外部链接可访问性；个人路径需要由报告写者规范化，既有调查原件不由主任务自动改写。
 
 报告保留轻量Read Ledger（主要入口、关键扩展／理由、未做的宽扫描），不记每次命令、不建新日志系统。完成稳定阶段时给出指定路径、范围、关键未知及handoff，等待主任务审阅与用户checkpoint决定。

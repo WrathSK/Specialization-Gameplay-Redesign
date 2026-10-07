@@ -1,6 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_NATIVE_REQUIRED；当前源码自动接入，运行包仍B165，部署待clean-worktree门禁。
+State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_NATIVE_REQUIRED；当前源码自动接入，运行包仍B165，未跟踪调查默认ignore后，部署仍按game exit与receipt/hash门禁核对。
 Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化暂行许可／Balance标记，Dialogue隔离与其它规则保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化
 
 B165五项／替换／END及正旧AUTO共存证据按实测范围继承；跨回合进度差的精确归因不作为本模块阻塞，不重复补测。D0048主题化许可仍暂行／Balance待验；七域五yield与Culture隔离不改变九域六yield正式Design。
 
-当前live仍B165，5份未提交Investigation与严格部署clean门禁独立处理。B166部署后只验新自动生效、D/W变化、ACTIVE退出/恢复及一次正常冷加载；L3/M/N/UI仍需单独授权，永久账本／GC不改。
+当前live仍B165，未提交调查Markdown默认ignore、不要求先公开；部署仍须clean source、game exit及receipt/hash事务核对。B166部署后只验新自动生效、D/W变化、ACTIVE退出/恢复及一次正常冷加载；L3/M/N/UI仍需单独授权，永久账本／GC不改。
 
 ## B166已授权 — 意义延展自动接入
 
@@ -21,7 +21,7 @@ B165五项／替换／END及正旧AUTO共存证据按实测范围继承；跨回
 
 **本地与原生。** W0004 L2＋实际加载／退出L3定向；当前新方法和直接AE/K回归、包／SQL／helper/context/diff检查，继承未改原语。新自动冷加载确有新风险，因此一次整合含加载；不把Probe默认OFF仪式重新加入。准确结果、一次最小实机和部署门禁见B166记录。自动writer已LOCAL完成，未将其标原生PASS。
 
-**停止。** 本批到commit/push与具备门禁时的W0003部署／用户验收为止。当前未跟踪Investigation归属不变，未绕过strict clean门禁，不推进L3/M/N/UI或改玩法。
+**停止。** 本批到commit/push与具备门禁时的W0003部署／用户验收为止。未跟踪Investigation默认本地ignore，归属不变；未放宽Mod或其它tracked修改的clean门禁，不推进L3/M/N/UI或改玩法。
 
 ## 第一批已授权 — 合同同步与剩余证据收口
 

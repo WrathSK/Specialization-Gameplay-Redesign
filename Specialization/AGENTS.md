@@ -6,7 +6,7 @@
 
 - 用户可另开一个长期复用的调查会话，在同一develop worktree中只写[Investigation Zone](Reports/Technical/Investigations/README.md)下当前明确授权主题的Markdown。其它区域仍按现有单写者规则；不建立第二套Design Authority。
 - 调查会话遵守[根区AGENTS](Reports/Technical/Investigations/AGENTS.md)：只读Git，不stage/commit/push，不修改治理、Design、Architecture、Status、代码或hash。主题与文件归属明确，双方不修改对方专属文件。
-- 主任务在并行期间只能显式stage本批自己负责的文件，禁止`git add .`、`git add -A`、`git commit -a`；调查的dirty/untracked文件应原样保留，不顺带提交、stash、reset或clean。
+- 主任务在并行期间只能显式stage本批自己负责的文件，禁止`git add .`、`git add -A`、`git commit -a`；调查的dirty/ignored/untracked文件应原样保留，不顺带提交、stash、reset或clean。新主题Markdown默认本地排除，不要求先提交它们才能继续主任务；公开checkpoint按下条单独授权。
 - 调查者停写指定Stable报告→主任务只读审阅→用户接受指定checkpoint→主任务显式commit/push。Stable不等于Design接受；提交完成前不恢复该文件写入。
 - 调查协议的初始化／后续修改仅由用户明确授权的主任务维护。普通开发不因此新增调查全文必读项、自动hash登记、分支、worktree或调度系统。
 

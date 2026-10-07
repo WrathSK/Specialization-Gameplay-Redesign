@@ -48,3 +48,6 @@ htmlcov/
 /Steam/
 /steamapps/
 /workshop/
+
+# Local Investigation topic Markdown; publish named checkpoints only with user approval.
+/Specialization/Reports/Technical/Investigations/*/**/*.md

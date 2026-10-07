@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0435
+Status Revision: S0436
 Implementation Build: source B166.193 LOCAL_COMPLETE / NATIVE_REQUIRED; live B165.192; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_DEPLOYMENT_HELD
+Work State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_DEPLOYMENT_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,14 @@ Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持
 
 [B166结果／最小验收](Validation/Results/Specialization_B166_Meaning_Automatic_Local.md)：七域五yield、精确旧GWA退役、当前事实重建及只读P0；Culture追加隔离、主题化暂行／Balance待验。B165原语证据继承，跨回合进度精确归因仅观察备注，不阻塞、不重复派测。
 
-部署被5份并行Investigation未提交文件与工具严格clean-worktree门禁阻挡；保留原件、不顺带提交或绕过检查。解除后按W0003核对game exit/receipt安全切换，再验自动／资格／一次冷加载；L3/M/N/UI未授权，永久状态／GC不改。
+新主题Investigation Markdown／README按用户决定默认本地ignore，公开需单独隐私审阅和人工授权；调查不再要求先commit来解除普通流程。B166部署仍须当前源码clean、game exit及receipt/hash事务核对；新自动／资格／冷加载原生待验，L3/M/N/UI未授权。
+
+## S0436 — Investigation隐私审查与默认本地排除
+
+定向检查本区7份Markdown：4份主题文件含108处个人机器绝对路径，主要是游戏／HD来源与加载DB；另3份没有这类命中。未发现可复用密码／密钥／认证Cookie或token候选，技术API里的token／session不当作认证数据。5份主题原件保持字节不变并默认ignore，不发布、不自动规范化或纳入Git。公开前由写者规范化个人路径并由主任务审阅授权；仅修改gitignore与现有操作指导，不新建制度／状态文件，不放宽部署工具。
+
+B166源码／44项本地证据保持。此前未跟踪调查文件的部署阻挡解除，实际live仍B165，是否安全切换另须真实game exit／receipt／hash核对。Design／Mod／GC／main不变，未推进L3/M/N/UI。
+
 
 ## S0435 — 意义延展自动接入，待部署与原生整合
 

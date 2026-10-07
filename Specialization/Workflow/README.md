@@ -26,6 +26,10 @@ Do not invent missing gameplay, choose between genuine design alternatives, or s
 
 Fresh threads and post-compaction recovery follow these pointers with task-scoped reading. Preserve unique durable information in the appropriate existing source; no conversation transcript, new memory system or mandatory handoff document. Frozen history stays unchanged. Historical tool restrictions do not override this active authority model; History is evidence, not the next-task queue.
 
+### Investigation本地文件与公开checkpoint
+
+[调查区协议](../Reports/Technical/Investigations/README.md#并行文件与git边界)规定：新主题Markdown／README默认本地ignore，普通批次不stage、不要求先提交它们才能继续。主任务可以提示用户授权公开指定checkpoint；未授权就保留本地，正常工作继续。公开前做隐私／内容审阅，只force-add已授权文件。根区指导和其它tracked改动仍受正常审阅／clean-source规则保护；不放宽Mod、部署目标、hash、事务恢复或游戏退出门禁。定位本机调查文件时，只在明确主题内显式查看ignored文件，不扩大日常context。
+
 ## Current entry
 
 [Authority](Authority.json) identifies current revisions, source/live status and requested batch manifest; [Status](../Status/Specialization_P0_Status.md) provides current progress/evidence/next boundary. Do not duplicate a current task or version ledger here. v0.1 implementation remains Research/Culture/Commerce/Industry only; Military/future Design does not expand runtime dependencies. Integrity PASS never authorizes implementation.
