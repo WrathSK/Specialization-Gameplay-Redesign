@@ -2,7 +2,7 @@
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
 State: USER_STOP_CHECKPOINT；P01与P13a公共hot-path slice覆盖完成；P06a未开始。用户即将合盖，已停止调查扩张。尚无总审计结论。
-性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。仅此ledger由主任务写入；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
+性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
@@ -94,6 +94,16 @@ severity与timing分别记录，不能互相代替：
 | P15 | Historical/Design目录、legacy mapping、当前索引/真实脚本路径引用 | 活动与冻结角色、重要反证可达、旧派工/断链/路径迁移是否误导；不改历史 | NOT_YET_AUDITED |
 | P16 | P05依赖/可达图与前述发现、废弃模块/防御/兼容层 | 有证据地区分独立安全职责与重复复杂度，列具体债务/成本而不猜性能 | NOT_YET_AUDITED |
 | P17 | 全部已核矩阵与findings | 交叉验证严重问题、去重、优先级/真实阻塞、覆盖与剩余native限制；此时才形成总报告 | NOT_YET_AUDITED |
+
+## 审计执行纪律：全生命周期 audit-only（2026-10-07用户澄清）
+
+**audit authorization ≠ implementation authorization。** 从本次澄清到最终独立审计报告完成，项目本体始终只读。完整流程为“调查 → 记录 → 复现 → 分析 → 汇总 → 最终审计报告”；审计结束也不自动进入修复，须由用户另行决定并授权。
+
+- **允许写入**：`Reports/Audit/` 下的现有ledger、阶段报告、finding、dependency/ownership/hot-path map、证明finding所需的最小reproduction script、raw result/evidence，以及必要的审计索引/元数据。复现使用隔离fixture与审计/临时输出，不借复现改正式实现、测试断言、配置或运行数据。审计产物可按既有流程审阅、普通commit/push；只显式提交本轮审计文件，保留其它任务改动。
+- **始终只读**：`Mod/`、`Design/`、正式`Architecture/`、`Status/`、`Workflow/Authority`及相关权威索引、当前manifests、正式`DevelopmentTests/`及断言、deploy/runtime implementation、main/develop玩法源码、外部运行包、游戏目录、正式配置、frozen historical evidence。不得因审计发现而修改这些内容，也不得为审计PASS补hash、改规则、调GC、部署或重构。
+- **严重finding不触发自动修复**：即使为CRITICAL、HIGH或`FIX_NOW`，也只记录finding、证据与证据强度、影响面、独立的severity/refactor timing、建议的refactor boundary/candidate solution，以及未来修复所需验证。timing表示建议处理时机，不是当前实施许可。既有finding正文与已完成阶段结论保持原样；上述要求用于后续发现与审计汇总，不追改原证据。
+- **继续与停止**：在有效前提下可自主完成既定logical slice；缺陷本身不要求停审。只有继续调查会因基础前提已经失效而产生错误结论时，才停止受影响审计并说明失效前提、影响范围与待用户决定事项。用户明确暂停/停止的指令仍优先。
+- **可恢复交付**：每个slice完成后更新同一ledger的实际阅读、发现、未覆盖范围与准确续接点，验证并commit/push审计产物；不另建平行plan，不推进玩法。此次仅补充执行纪律，保持`USER_STOP_CHECKPOINT`、P01/P13a已完成覆盖与P06a未开始的停止位置。
 
 ## 高强度审查与证据规则
 
