@@ -1,0 +1,42 @@
+{
+  "after_real_changed_sample": {
+    "ack": 3,
+    "aeCalls": 2,
+    "factsCount": 1,
+    "meCalls": 1,
+    "sends": 2,
+    "uiState": "IDLE"
+  },
+  "after_twelve_idle_pulses_and_identical_new_sequence": {
+    "ack": 2,
+    "aeCalls": 1,
+    "consumerError": "GW_CONSUMER_UPDATE_FAILED",
+    "meCalls": 0,
+    "retries": 0,
+    "sends": 1
+  },
+  "classification": "LOCAL_SIMULATION_CONFIRMED_COUNTEREXAMPLE",
+  "first_exception": {
+    "ack": 1,
+    "aeCalls": 1,
+    "consumerError": "GW_CONSUMER_UPDATE_FAILED",
+    "meCalls": 0,
+    "sends": 1,
+    "state": "VERIFIED",
+    "uiState": "IDLE"
+  },
+  "limits": "No native event timing, yield behavior, persistence, full consumer runtime, or probability of escaped AE exceptions established.",
+  "scope": "Real GreatWorkFacts and UI sender, actual Gameplay branch and verbatim AE/Meaning callback registration plus actual Meaning CollectionConfirmed. Engine and effect Audit bodies are stubs; AE Audit deliberately throws once. Dialogue only supplies independent accepted ACK.",
+  "source_sha256": {
+    "DevelopmentTests/test_p0_k.py": "d11026b7d5e44653df4af9f123b3baa4fe2938452c6e04e4924bd25ae2712aa8",
+    "Mod/CultureAesthetic.lua": "3747fa9eb73a974226fdc30ba8548171e47ce748c161bab79aefaabf1b53f106",
+    "Mod/CultureMeaning.lua": "c637ce8044f0411d8194ef89888902e435f0d63a7b1ff48bbe1c8b794840549c",
+    "Mod/DialogueModel.lua": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
+    "Mod/Gameplay.lua": "ac01292932f2d9cd34dcef49e4536708c45d32b41aaa70c74960a1a0ac44160e",
+    "Mod/GreatWorkAdjacencyModel.lua": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
+    "Mod/GreatWorkCatalog.lua": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
+    "Mod/GreatWorkFacts.lua": "0d3ffda96973fb75123bba2174ec89f2e8949183149952712fce05767a9187dc",
+    "Mod/NetworkInput.lua": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
+    "Mod/UI/DialogueRefresh.lua": "7f003a35cfa744360fc9b09cbb83e73e65ebdc860bc99385230542d86b20d414"
+  }
+}

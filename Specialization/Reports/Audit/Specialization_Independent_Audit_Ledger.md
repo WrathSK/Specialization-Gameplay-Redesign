@@ -1,17 +1,18 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: AUDIT_IN_PROGRESS；P01、P13a、P06a已完成各自slice覆盖；下一为P09b跨Context传播与消费者失败边界。尚无总审计结论。
+State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b已完成各自slice覆盖；下一P08a精确effect ownership与公共投影边界。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
 - 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
-- W03检查点：P06a三个只读审阅结果已收齐；真实Lua的4个规模、2个损坏隔离、1个注入重入fixture已完成并独立核证。详见[P06a报告](P06a_State_Ownership.md)。项目本体只读，B168实机继续待办。
-- 下一准确入口：**P09b跨Context接受/发布与消费者失败隔离**。从 `Mod/GreatWorkFacts.lua` Receive/OnConfirmed、CultureAesthetic/Meaning的注册与Audit、`NetworkBridge` accepted input/private view/public compatibility开始；再沿实际调用查NetworkInput、UI DialogueRefresh/BackgroundRoutes/Sender的ACK、token和失效。核查谁拥有接受样本、什么时候通知、失败能否隔离、正常getter是否借出mutable state。复用W02 map，不重复复杂度盘点或逐能力save/load。
+- W03：P06a已提交/push `8e2dcb7`；真实Lua4个规模、2个损坏隔离、1个注入重入fixture，见[P06a报告](P06a_State_Ownership.md)。没有修改项目本体。
+- W04检查点：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
+- 下一准确入口：**P08a精确effect ownership与公共投影算法边界**。从 `Mod/CultureMeaning.lua:24–57,88–128`的installed/project/reconcile，`ResearchApply.lua`和`ResearchChair.lua`的installed/reconcile/Audit，以及`CityProgressionStore.lua`的RemoveOwned/IsExitTarget开始；再沿精确Owned名单、代表SQL和直接定向测试扩读。判断相同语义的撤旧/加新/验证/退出是否值得公共化；UNKNOWN、失城和不同资产归属不机械合并。复用W02/P06a/P09b，不重做facts规模图或逐能力冷加载。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
@@ -38,7 +39,25 @@ State: AUDIT_IN_PROGRESS；P01、P13a、P06a已完成各自slice覆盖；下一�
 
 证据：[最小复现](Evidence/W03/progression_store_reproduction.py)、[原始JSON](Evidence/W03/progression_store_result.json)。脚本SHA256 `d8585de5beb42fad71ab26c792d8f370694d1a601b77312c3f9fa2aaf3e8eba5`；结果SHA256 `b8a136eb0dfcabcbb0c180137b7860ef8c6a38d912f2bb9ea089c52fc30ad065`；实际Store SHA在结果中。复用现有Lupa环境，没有安装工具、运行历史全回归或触碰外部runtime。
 
-未覆盖：完整E2事件正确性、单位事务、所有专业永久资产、native中断原子性，仍分属P06后续/P07/P10/P11。下一P09b的准确入口见本文件开头与报告末尾。
+未覆盖：完整E2事件正确性、单位事务、所有专业永久资产、native中断原子性，仍分属P06后续/P07/P10/P11。W03当时的P09b续接已完成，见下方W04；当前下一入口以本文件开头为准。
+
+## W04 — P09b传播与跨Context（slice覆盖完成）
+
+起点为P06a checkpoint `8e2dcb7`，Mod与前序slice无变化。完整传播/ownership map、实际读文件/行号、测试覆盖缺口、反证和候选修复边界见[P09b报告](P09b_Propagation_Boundaries.md)。三路只读审阅均已收束；主任务核关键行并重跑最终四个内存场景，不重跑历史套件。
+
+| 结果 | 证据／severity／timing | 本次收束 |
+|---|---|---|
+| IA-P13a-F04既有GW回调链finding补证 | STATIC + LOCAL结构反例；MEDIUM / FIX_BEFORE_NEXT_PROFESSION | 前置回调逃逸异常跳过Meaning；12idle pulse及相同内容新seq均不补发；真实新样本可恢复。不是所有业务错误或永久失效；不新增重复finding |
+| IA-P09b-F01公开accepted input别名 | STATIC + LOCAL结构反例；MEDIUM / FIX_BEFORE_NEXT_PROFESSION | 故意改公开input后UNKNOWN fallback能发布该值；private查询副本自身仍安全。未发现当前caller主动写它，不称原生已污染 |
+| IA-P13a-Q04容量边界补证 | STATIC + LOCAL；MEDIUM / MONITOR | 实测fixture128发送接受、129静默不发送、旧128保留；真实native容量/出现频率UNKNOWN。未升格为必须停工问题 |
+| IA-P06a-Q02 return阶段补核 | STATIC；LOW / FIX_BEFORE_NEXT_PROFESSION | return前invalidate/queue、提交后正常事件/Flush；当前未证明恢复遗漏；新consumer不能当作post-commit通知 |
+| IA-P09b-Q01忙碌时跳过 / Q02共用publication metadata | 条件性STATIC；LOW / MONITOR、LOW / FIX_BEFORE_NEXT_PROFESSION | native重入或current caller mutation未证实，保留具体触发，不做泛化修复 |
+
+NO_ACTION与已知约束：Network逐consumer异常隔离的最小对照中5个均被调用、均见已提交view；processed ACK不等于效果成功是现行明确合同；同路线仍刷新ACTIVE事实；UNKNOWN与确认loss职责不同；K对旧Dialogue transport的依赖已在P0-M精确退休计划明示，不造新finding或复活retired GWA。
+
+证据：[GW脚本](Evidence/W04/callback_isolation_reproduction.py)／[GW结果](Evidence/W04/callback_isolation_result.json)、[Network脚本](Evidence/W04/network_boundary_reproduction.py)／[Network结果](Evidence/W04/network_boundary_result.json)。SHA256依次为 `bad06e33d388f1b2f447a8fc383b95dd483fd25a14b3a67ebae06b3f4f5d9c22`、`95d2ddca4fe8e47d68ab38dd915d990a551c64574b0870dc7c2f11ac6e94f860`、`94faf2132a473b3e3ac213850d8985caffb0b866a35374396e156ecdf9c69747`、`3384c37a1305834aa8f9431a0e6c485def7b0ccfc4de3add454b41ff4617ff86`。每份结果另含真实源码/fixture hash。
+
+未覆盖：所有consumer恢复完备性、全部跨Context协议、native事件时序/原生收益/耗时、真实路线规模。下一P08a问题与入口见开头，尚未启动。无新用户测试或设计决定要求。
 
 ## 审计总范围
 
@@ -107,7 +126,7 @@ severity与timing分别记录，不能互相代替：
 | P06 | CityProgressionStore、E2 current合同、CityFlow/identity/Evidence/helper及定向测试 | P06a主要持久权威/保存成本/损坏隔离已核；完整identity/lifecycle仍待后续 | P06a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P07 | InvestmentAction、单位/项目action、待结算/REALLOCATING生命周期合同 | receipt/重复/中断/Owner变化/出入系统的每类事务核对，不套统一永久语义 | NOT_YET_AUDITED |
 | P08 | 各module owned lists、SQL Modifier/requirements、载体创建/退出direct callers | 清单ownership、旧writer退出、remove失败/重入/stale reference/未知与原生边界闭合 | NOT_YET_AUDITED |
-| P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02核公共路由/版本/成本map；完整跨Context/GW/native语义闭包未完成 | PARTIAL_W02 |
+| P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02公共map与P09b接受/发布/通知边界已核；全部协议/consumer与native语义未覆盖 | P09b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P10 | ResearchSupport/Cross/Apply/Tradition、Standardization/Construction/Industry | Research、Industry各一slice：效果/模板/奇观/历史/队源绑定与Design/证据对应 | NOT_YET_AUDITED |
 | P11 | Culture facts/Aesthetic/Meaning/Inspire/旧Dialogue、Commerce现行/旧consumer | Culture、Commerce各一slice：当前/待接入/试验边界、长期记录/合同/hidden protection对应 | NOT_YET_AUDITED |
 | P12 | Tests README/Catalog、每条当前路径实际测试源码/fixture与Validation结果 | 风险→断言→local/native证据矩阵；只为缺口选定必要复现，不机械跑全部历史 | NOT_YET_AUDITED |
@@ -420,3 +439,5 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 W02历史checkpoint：公共更新/扩展成本及实际Lua缓存反例已收束；按当时用户合盖指令停止。方向调整/timing/maps/findings/未覆盖/下一P06a入口及2份持久复现证据已保存。仅提交原ledger和这两份证据；P01不重置，B168待办不变，下一phase未开始，审计文档提交不改变游戏运行基线。
 
 W03 checkpoint：P06a完整逻辑slice已核证，报告/复现/原始结果与ledger共同保存。没有总审计PASS；下一进入P09b，不重新审P01/P13a，不触碰项目本体或B168实机待办。
+
+W04 checkpoint：用户要求在合适时停下，现于P09b完整逻辑slice边界停止。四个定向内存场景、report与ledger共同保存；所有本slice只读子任务已收齐，项目本体始终只读。下一P08a未开始，用户续接时沿精确effect ownership入口继续。总审计尚未完成，不给全项目PASS。
