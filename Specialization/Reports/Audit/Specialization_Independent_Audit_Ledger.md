@@ -1,18 +1,19 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b已完成各自slice覆盖；下一P08a精确effect ownership与公共投影边界。尚无总审计结论。
+State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a已完成各自slice覆盖；下一P05b/P16a模块依赖与新增专业接入成本。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
 - 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
 - W03：P06a已提交/push `8e2dcb7`；真实Lua4个规模、2个损坏隔离、1个注入重入fixture，见[P06a报告](P06a_State_Ownership.md)。没有修改项目本体。
-- W04检查点：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
-- 下一准确入口：**P08a精确effect ownership与公共投影算法边界**。从 `Mod/CultureMeaning.lua:24–57,88–128`的installed/project/reconcile，`ResearchApply.lua`和`ResearchChair.lua`的installed/reconcile/Audit，以及`CityProgressionStore.lua`的RemoveOwned/IsExitTarget开始；再沿精确Owned名单、代表SQL和直接定向测试扩读。判断相同语义的撤旧/加新/验证/退出是否值得公共化；UNKNOWN、失城和不同资产归属不机械合并。复用W02/P06a/P09b，不重做facts规模图或逐能力冷加载。
+- W04已提交/push `77568aa`：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
+- W05检查点：P08a三个只读子审阅已收齐；主任务独立核关键分支并重跑Apply/Chair×两种注入。报告、effect ownership/成本map、精确SQL名单检查及4场景原始JSON已保存，见[P08a报告](P08a_Effect_Ownership.md)。未修复任何代码、未要求实机或重新开启性能专项。
+- 下一准确入口：**P05b/P16a模块依赖与新增第五/第六专业接入成本**。先读 `Mod/Gameplay.lua`的include/Start及`Mod/SpecializationP0.modinfo`注册；沿 `EffectiveFacts.lua`、`CurrentSpecializationFacts.lua`、`CityProgressionStore.lua`的专业词汇/接入注册，`NetworkInput.lua`/`NetworkBridge.lua`角色及已核RuntimeWork调用点扩读。形成中央修改面、共享层反向依赖、必须复制的生命周期与合法语义差异图。复用P06a/P09b/P08a，不重做D cache、四场景writer注入或逐能力冷加载；暂未开始此slice。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
@@ -57,7 +58,26 @@ NO_ACTION与已知约束：Network逐consumer异常隔离的最小对照中5个�
 
 证据：[GW脚本](Evidence/W04/callback_isolation_reproduction.py)／[GW结果](Evidence/W04/callback_isolation_result.json)、[Network脚本](Evidence/W04/network_boundary_reproduction.py)／[Network结果](Evidence/W04/network_boundary_result.json)。SHA256依次为 `bad06e33d388f1b2f447a8fc383b95dd483fd25a14b3a67ebae06b3f4f5d9c22`、`95d2ddca4fe8e47d68ab38dd915d990a551c64574b0870dc7c2f11ac6e94f860`、`94faf2132a473b3e3ac213850d8985caffb0b866a35374396e156ecdf9c69747`、`3384c37a1305834aa8f9431a0e6c485def7b0ccfc4de3add454b41ff4617ff86`。每份结果另含真实源码/fixture hash。
 
-未覆盖：所有consumer恢复完备性、全部跨Context协议、native事件时序/原生收益/耗时、真实路线规模。下一P08a问题与入口见开头，尚未启动。无新用户测试或设计决定要求。
+未覆盖：所有consumer恢复完备性、全部跨Context协议、native事件时序/原生收益/耗时、真实路线规模。W04当时的下一P08a现已完成，见W05；当前下一入口以本文件开头为准。无新用户测试或设计决定要求。
+
+## W05 — P08a效果归属与公共投影边界（slice覆盖完成）
+
+恢复baseline `77568aa`，起始develop clean/sync；Authority/Status与B168待办未变，当前context完整性186/469 PASS。三个定域只读审阅已收齐，主任务独立复核源码并重跑4个最小内存场景；不运行正式玩法套件或原生游戏。完整协议/ownership map、直接合同/测试来源、hot-path补充、反证和候选边界见[P08a报告](P08a_Effect_Ownership.md)。
+
+| 结果 | 证据／severity／timing | 结论与限制 |
+|---|---|---|
+| IA-P08a-F01机械步骤的失败/验证合同隐含 | STATIC＋测试覆盖审阅；MEDIUM / FIX_BEFORE_NEXT_PROFESSION | Apply/Chair与Meaning的部分失败、读回及重入策略不同；先明确小型操作边界，不能直接合并成全能writer或统一收益模型 |
+| IA-P08a-Q01写中资格变化被busy跳过 | 实际Lua条件反例；MEDIUM / MONITOR | 注入ACTIVE4→1同步Audit后Apply/Chair仍留下3/4个旧plan carrier，无pending；下一Audit清0。原生可达未知，与P09b-Q01同类，不重复放大风险 |
+| 部分失败语义反证 | 实际Lua；不单列错误玩法finding | 第二次新增抛错后各留1个、报告错误；下次Audit收敛3/4。不能说原子替换、也不能说失败静默未检出 |
+| IA-P08a-Q02真实Store×Meaning/写中故障覆盖缺口 | STATIC；LOW / FIX_BEFORE_NEXT_PROFESSION | Meaning fixture简化Store，旧exact名单集成不含Meaning；补真实接口/名单碰撞定向覆盖，不等于当前退出失败 |
+| IA-P08a-Q03退出诊断只计整模块成功尝试 | STATIC；LOW / DEFER | 部分删除失败不进入checked/removed汇总，PARTIAL_HELD/error仍可见；不是收益或永久记录故障 |
+| P13a-F03/F05/Q05补证 | STATIC；保留既有timing | 各模块owned全表检查与内部通知过滤不同；不将源码调用量当native耗时，不移除历史清理ID或必要UNKNOWN保护 |
+
+保留机制／NO_ACTION：三模块exact符号集合无重叠；Apply25、Meaning92与SQL声明相符，Chair是实际loaded targets×8（13候选上限，实际T未知）。Store具备全名单InternalOnly/presence预检、逐项target/readback、逐模块错误隔离和3次有界重试；无需新增长期ownership registry。Meaning单值与Research bits、worker0及附着对象不同，不能统一业务规则；native返回nil不等于失败，保留读回验证。
+
+证据：[portable脚本](Evidence/W05/reproduce_projection_protocol.py)／[原始JSON](Evidence/W05/projection_protocol_result.json)。脚本SHA256 `01b5fb8cf8bf33beeab41f69637e2c8e6e47935287340fe95bfa99fae3d4a11a`；结果SHA256 `93ad90ffae5e8b2021c7cd9ce3e3d41679eae6e537e1b5615c4ff94318c66671`。JSON另记6个实际Lua源码与fixture hash；现有Lupa Lua5.5执行，EffectiveFacts/native/D/DB为明确stub，不是游戏VM或native PASS。无安装、部署、实机请求或正式测试断言修改。
+
+当前停止点：P08a完整逻辑问题已收束，下一P05b/P16a尚未开始。全部模块名单、完整ownership时序、所有consumer、native延迟/收益、间接缓存保留及其它长期事务仍未覆盖；不能将本slice覆盖完成写成整个P08/P12或项目PASS。
 
 ## 审计总范围
 
@@ -125,7 +145,7 @@ severity与timing分别记录，不能互相代替：
 | P05 | modinfo、Gameplay/include/Start、SQL注册、writer切换矩阵 | W02核direct公共dispatch/14RuntimeWork caller；全Mod可达/依赖分类未完成 | PARTIAL_W02 |
 | P06 | CityProgressionStore、E2 current合同、CityFlow/identity/Evidence/helper及定向测试 | P06a主要持久权威/保存成本/损坏隔离已核；完整identity/lifecycle仍待后续 | P06a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P07 | InvestmentAction、单位/项目action、待结算/REALLOCATING生命周期合同 | receipt/重复/中断/Owner变化/出入系统的每类事务核对，不套统一永久语义 | NOT_YET_AUDITED |
-| P08 | 各module owned lists、SQL Modifier/requirements、载体创建/退出direct callers | 清单ownership、旧writer退出、remove失败/重入/stale reference/未知与原生边界闭合 | NOT_YET_AUDITED |
+| P08 | 各module owned lists、SQL Modifier/requirements、载体创建/退出direct callers | P08a三个代表writer/Store精确归属、失败协议与复用边界已核；全module/native闭包仍待后续 | P08a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02公共map与P09b接受/发布/通知边界已核；全部协议/consumer与native语义未覆盖 | P09b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P10 | ResearchSupport/Cross/Apply/Tradition、Standardization/Construction/Industry | Research、Industry各一slice：效果/模板/奇观/历史/队源绑定与Design/证据对应 | NOT_YET_AUDITED |
 | P11 | Culture facts/Aesthetic/Meaning/Inspire/旧Dialogue、Commerce现行/旧consumer | Culture、Commerce各一slice：当前/待接入/试验边界、长期记录/合同/hidden protection对应 | NOT_YET_AUDITED |
@@ -424,7 +444,7 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 
 ## Unresolved questions / NOT_YET_AUDITED
 
-- P01覆盖保留；W02/P13a公共hot-path slice覆盖完成，P05/P09仅direct map部分覆盖；其余P02/P03/P04/P06/P07/P08/P10/P11/P12/P13b/P14/P15/P16/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭。
+- 已完成P01/P13a/P06a/P09b/P08a各自slice，P05仅direct map部分覆盖；P06/P08/P09的完整领域尚未结束，其余P02/P03/P04/P07/P10/P11/P12/P13b/P14/P15/P16/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P05b/P16a以开头入口为准。
 - P01没有完整审阅accepted规则、Spec/Content逐条取代、正式阅读版完整一致性、全部Mod/SQL可达writer、save/owner损坏、REALLOCATING/未结算合同、Network退出、缓存间接保留、GC策略正确性或所有测试断言/fixture。
 - 当前native小数/GPP倍率/退出仍待B168用户测试；审计仅核其记录，不制造新实机要求。是否适用每城每类Floor仍未在正式运行接入，本轮无决定。
 - receipt存在/目录相同不证明今天恢复包内容或崩溃中途恢复正确；P14再检查具体transaction/failure/recovery路径，不能从“有backup”猜安全。
@@ -441,3 +461,5 @@ W02历史checkpoint：公共更新/扩展成本及实际Lua缓存反例已收束
 W03 checkpoint：P06a完整逻辑slice已核证，报告/复现/原始结果与ledger共同保存。没有总审计PASS；下一进入P09b，不重新审P01/P13a，不触碰项目本体或B168实机待办。
 
 W04 checkpoint：用户要求在合适时停下，现于P09b完整逻辑slice边界停止。四个定向内存场景、report与ledger共同保存；所有本slice只读子任务已收齐，项目本体始终只读。下一P08a未开始，用户续接时沿精确effect ownership入口继续。总审计尚未完成，不给全项目PASS。
+
+W05 checkpoint：P08a完整逻辑slice已收束，三路只读审阅均结束；报告、4个真实writer内存注入结果、portable脚本与ledger已保存。项目本体保持只读，B168待办不变。下一P05b/P16a尚未开始；此处自然停下，无总审计结论或自动修复。

@@ -1,0 +1,116 @@
+{
+  "classification": "LOCAL_SIMULATION_CONFIRMED_CONDITIONAL_BEHAVIOR",
+  "fixture_sha256": "c55d3752211e3faa971b4b554f437ff93c2d88b1996e6007c0f21dab246110b2",
+  "limits": "Artificial synchronous callback and second-create exception. No claim that these interleavings occur in Civ VI, no native yield or saved-state validation, no repository test suite executed.",
+  "lua_version": "Lua 5.5",
+  "reproduction_script_sha256": "01b5fb8cf8bf33beeab41f69637e2c8e6e47935287340fe95bfa99fae3d4a11a",
+  "results": [
+    {
+      "after_explicit_recovery_audit": {
+        "active": 1,
+        "busy": false,
+        "error": null,
+        "installed": []
+      },
+      "after_injected_audit": {
+        "active": 1,
+        "busy": false,
+        "create_attempts": 3,
+        "error": null,
+        "installed": [
+          "BUILDING_SPC_RESEARCH_APPLY_GOLD_0",
+          "BUILDING_SPC_RESEARCH_APPLY_GOLD_1",
+          "BUILDING_SPC_RESEARCH_APPLY_PRODUCTION_0"
+        ],
+        "pending_present": false,
+        "reentrant_audit_calls": 1
+      },
+      "injection": "active_drop_reentry",
+      "module": "ResearchApply"
+    },
+    {
+      "after_explicit_recovery_audit": {
+        "active": 4,
+        "busy": false,
+        "error": null,
+        "installed": [
+          "BUILDING_SPC_RESEARCH_APPLY_GOLD_0",
+          "BUILDING_SPC_RESEARCH_APPLY_GOLD_1",
+          "BUILDING_SPC_RESEARCH_APPLY_PRODUCTION_0"
+        ]
+      },
+      "after_injected_audit": {
+        "active": 4,
+        "busy": false,
+        "create_attempts": 2,
+        "error": "[string \"<python>\"]:23: INJECTED_SECOND_CREATE_FAILURE",
+        "installed": [
+          "BUILDING_SPC_RESEARCH_APPLY_PRODUCTION_0"
+        ],
+        "pending_present": false,
+        "reentrant_audit_calls": 0
+      },
+      "injection": "second_create_throws",
+      "module": "ResearchApply"
+    },
+    {
+      "after_explicit_recovery_audit": {
+        "active": 1,
+        "busy": false,
+        "error": null,
+        "installed": []
+      },
+      "after_injected_audit": {
+        "active": 1,
+        "busy": false,
+        "create_attempts": 4,
+        "error": null,
+        "installed": [
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_LIBRARY_0",
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_LIBRARY_1",
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_UNIVERSITY_0",
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_UNIVERSITY_1"
+        ],
+        "pending_present": false,
+        "reentrant_audit_calls": 1
+      },
+      "injection": "active_drop_reentry",
+      "module": "ResearchChair"
+    },
+    {
+      "after_explicit_recovery_audit": {
+        "active": 4,
+        "busy": false,
+        "error": null,
+        "installed": [
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_LIBRARY_0",
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_LIBRARY_1",
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_UNIVERSITY_0",
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_UNIVERSITY_1"
+        ]
+      },
+      "after_injected_audit": {
+        "active": 4,
+        "busy": false,
+        "create_attempts": 2,
+        "error": "[string \"<python>\"]:23: INJECTED_SECOND_CREATE_FAILURE",
+        "installed": [
+          "BUILDING_SPC_RESEARCH_CHAIR_BUILDING_LIBRARY_0"
+        ],
+        "pending_present": false,
+        "reentrant_audit_calls": 0
+      },
+      "injection": "second_create_throws",
+      "module": "ResearchChair"
+    }
+  ],
+  "scope": "Actual unmodified Lua writers, models, RuntimeWork and current-facts facade. In-memory engine/metadata/depth stubs; representative exact carriers (25 Apply, 2 Chair target buildings x 8 bits).",
+  "source_sha256": {
+    "Mod/CurrentSpecializationFacts.lua": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
+    "Mod/ResearchApply.lua": "ae19effeb1dd68603fa2d03ba8028532033f907f73c6d4f1ef336b90463a26cb",
+    "Mod/ResearchApplyModel.lua": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
+    "Mod/ResearchChair.lua": "ea2ffce12e1f8cc788b3e12889ff7623fd8b27365389320511bcada6c3c640e5",
+    "Mod/ResearchChairModel.lua": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
+    "Mod/RuntimeWork.lua": "77658c47a3d168420309903f3fec9b0a76e69b03fc99a4f5820c748ef004f8a2"
+  }
+}
