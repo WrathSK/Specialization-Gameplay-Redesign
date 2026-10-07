@@ -266,14 +266,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "df5bbef8558fd9e0bf91c1cf872bd5906c7209323f21b49ccb8c1eef3a117467",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "2d764a48e6751f0b3db4f951adf470452ec6ec4bfca07279b10d50d2cba15c8f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
-      "sha256": "81d95b4ba0193eb3a8dbd09dc76a541bfb627c4167b7c454bdf3f53f1f24084e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B162_Meaning_Load_Cleanup_Local.md",
-      "provenance": "B162 authorized startup/load readiness/OFF-END scoped repair;108/96 LOCAL PASS. SQL/Design/permanent/GC unchanged, native cleanup pending. Other source inherited."
+      "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/GreatWorkAdjacencyModel.lua": {
       "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "d4e1255df890fd9f6e0369b472bd19415bcd825eb9a0bf94905541130ac2d7d0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "a92e9d7a4563bb7c20b38e379ecde7a77844ed62e4e03f72c0871fd8f667d5b0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9f27412310a9baa1fa47e2bd0b7eb12d88f88493b13be1ac28c71c5ec94b18e1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "70762afa3d471a3297ea03868134faa625c002bc3ad70a38f71f9e775f4fe145",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "a714c89655a3761dea3cb2508fc854c4ad1070d6572cfdaea1541a3f584b0337",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "b9dbed048d3900a3ff35af312eb8a53678e2cced92e20d9c4807824f864e9bbd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -511,9 +511,9 @@
       "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "47f9399d5ed0d5939cd254a87e487e6855dc08de0e4295889fcffc476771311d",
-      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
-      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+      "sha256": "7f003a35cfa744360fc9b09cbb83e73e65ebdc860bc99385230542d86b20d414",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "1847558d7fe5c6b71a1c64462798d05d307ff54bf1b424ab315a3cd49922f387",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "145bfc60963ce04b2b6b3f551e0f7cb449af4f42e3d69f02ad73af6cca740f5c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
@@ -886,9 +886,9 @@
       "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "f96508a6eab7dcd487b772071dae1c7814579b72f91c6289da50bb40f4f99155",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "3747fa9eb73a974226fdc30ba8548171e47ce748c161bab79aefaabf1b53f106",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -901,19 +901,24 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "aa1e0e02c249c8630cee3a04277163b6e7d3cc44b754cbeefe67c25124c033f7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "2b4d396b91b4dc5623ae1dc0d74170995d6d34356fe101ade037784cfd686a1d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureMeaningProbe.lua": {
-      "sha256": "9f817f006262ce396bc4892b60b0a38e7f61d87a5983a7efcc9238336b953d35",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "c7b738aa0179fd97280dd3766a73ae936590f27f116af435fd89b3b0ed98207b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "963da6b8bdfbff5d63a5f04b7414f5fe109c02c5bc3fe43ac2a75fcd2686f024",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
       "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+    },
+    "Mod/CultureMeaning.lua": {
+      "sha256": "c637ce8044f0411d8194ef89888902e435f0d63a7b1ff48bbe1c8b794840549c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     }
   }
 }

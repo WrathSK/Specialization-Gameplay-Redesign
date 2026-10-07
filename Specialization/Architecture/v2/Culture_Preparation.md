@@ -5,16 +5,16 @@ Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048
 
 ## 当前切片与停止点
 
-当前B165仍为意义延展手动单城门禁：五项即时值与所测END已有证据；D0048暂行允许原生主题化、Balance待验。正旧AUTO及精确追加结算按[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)一次最小对照收口；Culture追加仍隔离。全城自动writer与global旧GWA cutover未授权，不能把已验载体原语当正式能力落地。
+用户已授权意义延展正式接入；[B166当前合同](P0_L2_Meaning.md#b166已授权--意义延展自动接入)为自动七域五yield及旧GWA退出的LOCAL完成checkpoint。实际live仍B165，部署clean门禁和一次新自动加载／资格验收见Status。Culture追加隔离及D0048暂行主题化／Balance保留。
 
-前轮仅授权按当时Design重核M/N/U2和本入口，消除旧cap/原Owner分账/K_T未定等过期计划；那一轮没有新原型、实施、部署或测试授权。本轮仅授权L2第一批合同同步与剩余证据收口，不改变M/N/U2实施边界。商业/工业准备独立保留。准备页不成为第二份Design/状态台账，也不加入每日必读；对应模块获批后才收敛其W0001上下文。
+B165原语证据按实测范围继承；跨回合生产差的精确归因作为非阻塞备注，不重复对照。L3/M/N/U2均为后续逐批授权范围；本轮不推进。
 
 ## 按模块阅读
 
 | 模块 | 计划 / 可复用基础 | 当前准确门槛 |
 |---|---|---|
 | 风雅熏陶L1 | [L1](P0_L1_Aesthetic.md#当前切片与停止点)：逐栋Tourism、已测结算/退出 | [B149限定PASS](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保留，不重开无变化回合时序调查、不扩大未测组合 |
-| 意义延展L2 | [B165当前门禁](P0_L2_Meaning.md#本轮已授权--b165剩余接入门禁)：Shared D、逐领域Floor、单一最终值与已支持作品目录 | 当前加载集合证明不等于跨Mod通用recipient；五项即时值／END按已测范围继承，主题化暂接受待Balance，正旧AUTO／精确结算仍待对照；七域五yield运行投影不改变九域六yield Design，正式cutover后置 |
+| 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役LOCAL完成；live与新整合见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
 | 巨作启迪L3 | [当前L3-A](P0_L3_Inspiration.md)：0.1D×W基础GPP原语 | 单class小数/正常倍率/退出门槛；count通知已补，不能继续列为已知缺口；不把L2 Floor移植给GPP |
 | 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | START Era额度/无额外cap累计/已定取消与原子提交；新累计native-only路径，B165实际过范围才继承 |
 | 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
@@ -38,7 +38,7 @@ Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048
 | 见闻与考察团 | 见闻随城，不按原Owner分账；自身文明仅过滤当前使用。归档城易主中止任务、单位留原Owner、旧归档失效，按E3免费重挂靠 | 任何时候任意换归档，或把城市历史搬到新归档城 |
 | 新首测值 | Spy当前成本等价、全国现存cap1、标准任务2T、整体本城K_T2、Network K_C1 | 最终平衡、接口可用或原生已验 |
 | 真实1T项目 | [B123](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)正常入口/显示/完成/无后续溢出及所测chop；[B126](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)Claim限定核心证据 | M新额度/取消/累计/全部注入通过；异常强制completion接受决定仍按原记录保留 |
-| GW百分比与追加 | 旧[B059.82](../../Status/Validation/Results/Specialization_B059_82_Percent_User_Result.md)为非主题化作品读数，整城Culture未变化；B161–B165各自scope另见L2结果 | 旧读数证明实际结算、主题化或native-only隔离；不能称GWA已global退休 |
+| GW百分比与追加 | 旧[B059.82](../../Status/Validation/Results/Specialization_B059_82_Percent_User_Result.md)为非主题化作品读数，整城Culture未变化；B161–B165各自scope另见L2结果 | 旧读数证明实际结算、主题化或native-only隔离；B166已在正常源码退役GWA；旧记录本身不证明新包已部署／原生通过 |
 | GPP / 整城Tourism | 此前缓存有GPP Amount接口、PointsPerTurn整数字段；Tourism例多带类别过滤，未找到无过滤先例 | 引擎一定不支持小数/整体旅游；也不能据接口名宣布可行 |
 | Spy静态线索 | 旧缓存有Cost/Spy/CanTrain/PurchaseYield字段，只用于技术定位；本次未重读外部DB/UI | 缓存60固定为考察成本，自动继承Spy容量/购买/敌对行为 |
 
@@ -60,6 +60,6 @@ M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅�
 
 按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
 
-本轮L2第一批合同同步与只读结算复核已完成；B165最小补测已投递／审阅，正旧AUTO所测范围通过，精确结算归因单列开放；不立即重跑，详见[L2第一批](P0_L2_Meaning.md#第一批已授权--合同同步与剩余证据收口)。不开始自动writer、L3/M/N/U2，不部署；准备页及前轮计划复核不授予这些实施。
+B166已完成获授权的意义延展自动writer／精确GWA退出源码，本地checkpoint与待部署／新原生整合见[L2](P0_L2_Meaning.md#b166已授权--意义延展自动接入)。L3/M/N/U2仍须独立审核授权；本准备页不授予后续实施。
 
 来源：[Culture D0048](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

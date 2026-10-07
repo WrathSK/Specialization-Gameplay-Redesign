@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="192">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="193">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B165.192: loaded-recipient coverage gate, normal Dialogue coexistence and on-demand normal-building settlement read. Five final yields; Culture deferred. Exact92 cleanup retained; no automatic all-city cutover or GC change.</Description>
+    <Description>B166.193: automatic Meaning Extension for eligible Culture cities; exact legacy GWA retirement and current-fact load reconstruction. Five final yields; Culture deferred. Read-only diagnosis; GC unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -179,6 +179,7 @@
       <File>GreatWorkFacts.lua</File>
       <File>CultureMeaningModel.lua</File>
       <File>CultureMeaningProbe.lua</File>
+    <File>CultureMeaning.lua</File>
       <File>CultureAestheticModel.lua</File>
       <File>CultureAesthetic.lua</File>
       <File>DialogueModel.lua</File>
@@ -361,6 +362,7 @@
   <Files>
     <File>CultureMeaningModel.lua</File>
     <File>CultureMeaningProbe.lua</File>
+    <File>CultureMeaning.lua</File>
     <File>Data/CultureMeaningProbe.sql</File>
     <File>Data/CultureAesthetic.sql</File>
     <File>CultureAestheticModel.lua</File>

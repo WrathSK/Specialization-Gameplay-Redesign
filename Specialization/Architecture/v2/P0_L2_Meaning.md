@@ -1,19 +1,31 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: P0_L2C_B165_POSITIVE_AUTO_SCOPED_PASS_SETTLEMENT_ATTRIBUTION_OPEN；正旧AUTO下五项已确认，同回合Production+13与修正吻合；精确队列归因仍开放，正式全城L2未通过。
+State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_NATIVE_REQUIRED；当前源码自动接入，运行包仍B165，部署待clean-worktree门禁。
 Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化暂行许可／Balance标记，Dialogue隔离与其它规则保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 ## 当前切片与停止点
 
-用户B165最小补测四图已投递并[审阅归档](../../Status/Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)：同T64旧AUTO+25%下Meaning原生五项保持基值、城市Production97.7→110.7，所测正倍率共存通过。此前五项／END及D0048主题化暂行规则／Balance边界继承；source／live继续B165，见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+用户已授权“意义延展正式接入”批次；source B166.193实现合格文化城自动五产出、旧GWA退役及只读P0报告。本地结果与新加载／资格门槛见[B166记录](../../Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md)，source/live关系以[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)为准。
 
-最后图81.2×(1+20%+10%)与105.5显示相容，建筑／奇观10%由该城燃煤发电厂和HD附件闭合。实际进度0→117→250，增量117／133；背景生产跨回合变化，不能将差16直接归因Meaning。补测资料已完成，不重复派发这轮待办；精确结算归因保留，后续门槛处置／整合方案需审核。
+B165五项／替换／END及正旧AUTO共存证据按实测范围继承；跨回合进度差的精确归因不作为本模块阻塞，不重复补测。D0048主题化许可仍暂行／Balance待验；七域五yield与Culture隔离不改变九域六yield正式Design。
 
-当前仍手动单城七域五yield、Culture追加隔离，不把所测Writing推广其它输出／新M或全城writer。原cutover门槛不自行放宽，自动writer／全局GWA及M/N/UI仍须独立授权；本轮仅证据／状态同步，无代码／测试／Design／部署，永久账本／GC不改，不追加实机。
+当前live仍B165，5份未提交Investigation与严格部署clean门禁独立处理。B166部署后只验新自动生效、D/W变化、ACTIVE退出/恢复及一次正常冷加载；L3/M/N/UI仍需单独授权，永久账本／GC不改。
+
+## B166已授权 — 意义延展自动接入
+
+**范围。** 用户审核下一批计划后明确授权实施：正常Culture Identity、Potential IV且ACTIVE IV城市自动消费K确认馆藏和Shared D；不依赖P0目标／实验session。加载集合proof每局一次，未知同类定义停止对应native投影，不扩作品池。七域五yield沿现有公式／92定义，Culture继续延期；原生主题化暂接受、不硬编码x2。
+
+**所有权与切换。** `CultureMeaning`为唯一正常writer；旧GWA启动为retired，关闭旧Audit／Receive／Init／控制的正向路径与旧AdjData采集。保留156项定义和其module-owned撤销；启动／加载清理完成后才施加新值，失败不混写、不恢复旧BASE。旧Probe保留源码但不启动，正常与DEV互斥；旧Meaning控制请求没有写权限，P0只读当前报告。旧AUTO Dialogue保留且无实验override；新M项目另批。
+
+**事实与生命周期。** 依赖CurrentSpecializationFacts／GreatWorkFacts Summary／DistrictCompleteness，plan按city/reference拥有且只含当前值。UNKNOWN只保留同引用的确认会话配置；冷加载、新引用不回放旧载体。confirmed loss由Store确认后撤本模块exact92，不清Identity／Potential／永久记录；return重新派生。正常建筑/馆藏已知事件定域，跨城搬移两端；总督调任因旧城参数缺失核对受影响玩家，未确认签名保留支持玩家核对。同结果零写，owned通知排除，有界重入后补，不引入高频扫描／全局GC／新永久schema。
+
+**本地与原生。** W0004 L2＋实际加载／退出L3定向；当前新方法和直接AE/K回归、包／SQL／helper/context/diff检查，继承未改原语。新自动冷加载确有新风险，因此一次整合含加载；不把Probe默认OFF仪式重新加入。准确结果、一次最小实机和部署门禁见B166记录。自动writer已LOCAL完成，未将其标原生PASS。
+
+**停止。** 本批到commit/push与具备门禁时的W0003部署／用户验收为止。当前未跟踪Investigation归属不变，未绕过strict clean门禁，不推进L3/M/N/UI或改玩法。
 
 ## 第一批已授权 — 合同同步与剩余证据收口
 
-本轮实际反馈优先见[正旧AUTO／生产对照结果](../../Status/Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)。本节保存原最小对照及第一批合同，不表示要求重新执行；正倍率部分已有证据，精确归因仍须后续具体方案。
+本轮实际反馈优先见[正旧AUTO／生产对照结果](../../Status/Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)。本节保存原最小对照及第一批合同，不表示要求重新执行；正倍率部分已有证据，精确归因当时尚未闭合；B166已明确将其作为非阻塞观察备注，原始证据不改。
 
 **完成范围。** 用户批准第一批；仅把已给出的主题化暂接受意见同步为D0048首测合同、复核现有生产证据并整理必要最小native流程。继续B165，不新增build、代码、诊断订阅或部署；自动writer属于下一单独授权批次。
 
@@ -26,7 +38,7 @@ Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化
 3. 保持②再正常过一回合，右键记P2／rawA，得到ΔA=P2−P1。比较ΔA−ΔB与新增raw生产通过相同目标修正后的结果；例如raw100→110、实际增量120→132，支持新增10经过同一1.2倍率得到12。实际不同不强套例数；条件变化则记录具体歧义，不自动判PASS或要求长测。
 4. 正常结束验证即可，不再拍整套END／默认OFF／保存／冷加载／重新启用，既有证据继承。只需三次进度及②即时报告（可合并日志或截图），不按回合铺大量图。
 
-**退出。** 正旧AUTO不放大追加及可比生产对照通过后，才申请自动writer／精确旧GWA切换；本轮不自行实施。失败只阻相应路径并给一项具体区分动作。主题化强度另留Balance，不调系数、不制造旧正倍率native PASS。原B165测试合同见下一节，它记录当时目标，不重复派发其已覆盖部分。
+**当时退出条件（B166已取代）。** 当时计划要求正旧AUTO及可比生产对照后申请正式接入；B166用户已接受按本模块新增不确定性收口，跨回合差的精确归因不再阻塞。失败只阻相应路径并给一项具体区分动作。主题化强度另留Balance，不调系数、不制造旧正倍率native PASS。原B165测试合同见下一节，它记录当时目标，不重复派发其已覆盖部分。
 
 ## 本轮已授权 — B165剩余接入门禁
 
@@ -42,15 +54,9 @@ Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化
 
 ## 下一建议 — 意义延展正式接入
 
-**状态。** 第一段剩余门禁现由本轮B165授权执行；第二段起的全城自动writer／全局cutover仍PLANNED_NOT_AUTHORIZED。B164／B165单城原型不等于正式自动玩法，不扩大用户授权。完整四专业盘点、源码差异和顺序见[B164审查报告](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)。
+该建议已获用户授权并由上方[B166自动接入合同](#b166已授权--意义延展自动接入)落实。此前手动单城原型并非正式玩法；当前自动writer为LOCAL完成，实际部署／原生验收以Status与B166记录为准。完整四专业盘点仍见[B164审查报告](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)，其当时“未落地”状态由各后续记录定域更新。
 
-1. **第一批收口。** 主题化合同已同步D0048；按[本轮最小native对照](#第一批已授权--合同同步与剩余证据收口)处理正旧AUTO和精确追加结算，不重复已验主题化／五项原语／END或要求未实施M。精准recipient仍按加载支持集合合同，不扩大作品资格或接管HD；Culture保持暂延期。
-2. **门禁关闭后单独授权正式接入。** 建立所有合格文化城正常加载／资格自动派生的module-owned writer，复用Shared D、K确认通知与输入版本；移除必须P0启用的target依赖。诊断默认只读，旧probe显式DEV互斥；无新永久收益账本。
-3. **精确cutover。** 新writer资格、D/W替换、UNKNOWN及loss路径可靠后退役旧BASE GWA正向写入／精确旧owned，保留必要清理。去掉实验Dialogue0%／100%hold并验证正常共存；新Dialogue项目留M，不偷做。失败不可混写或凭历史收益快照恢复。
-4. **更新及生命周期约束。** 实际同回合变化仍响应、同一可靠输入零重复写；跨城移动更新实际两端，全国变化才扩大。缓存／pending按模块和当前city/reference/version拥有、失效及退出，不加per-frame／hover Gameplay请求、全局新扫描或GC。
-5. **验证与停止。** 剩余门禁批次用L2＋直接退出L3定向；自动接入批次涉及真实初始化／加载／退出改变，才补一次有信息价值的冷加载native整合。不跑全历史／stress。精准recipient／追加独立不能满足Design则停止对应cutover并报告具体边界；不能直接从即时getter PASS推全城上线。
-
-**完成定义。** 不打开P0也按当前事实自动生效；五产出、真实结算、资格变化与旧GWA正式退出已有对应证据。Culture暂延期及目录／对象支持范围明确，不能记九域完整PASS。随后才推荐L3；所有后续实现仍需用户明确授权。
+**完成定义。** 不打开P0按当前资格／D／W自动生效，旧BASE不由加载、样本或旧按钮恢复；新正常加载／资格转换有对应原生验收。只记七域五yield支持，Culture延期及目录／recipient边界保留。通过后才提出L3批次，不自动实施。
 
 ## 下一最小修复 — 文化隔离与社区D目录
 

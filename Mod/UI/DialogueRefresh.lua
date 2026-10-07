@@ -73,7 +73,7 @@ local function refresh()
   end
   for id in pairs(cache) do if not seenCities[id] then cache[id]=nil end end
   assert(legacyValid,'GW_COLLECTION_UNAVAILABLE')
-  if s.GreatWorkAdjacency then
+  if s.GreatWorkAdjacency and not s.GreatWorkAdjacency.retired then
    local aok,adata,acount=pcall(SPCGWAdjacencyModel.Collect,P,pid)
    public.adjacencyError=not aok and tostring(adata) or nil
    if aok then adjData,adjCount=adata,acount else adjData='';adjCount=-1 end
@@ -150,7 +150,7 @@ ContextPtr:SetInitHandler(function()
  end
  -- Preserve the existing adjacency dependencies. They do not recollect work slots.
  for _,name in ipairs({'ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','FeatureAddedToMap','CityTileOwnershipChanged'})do
-  local reason=name;bind(name,function()mark(reason,nil,false)end)
+  local reason=name;bind(name,function()local s=ExposedMembers.SPC_P0;if s and s.GreatWorkAdjacency and not s.GreatWorkAdjacency.retired then mark(reason,nil,false)end end)
  end
  bind('LoadScreenClose',function()cache={};mark('LOAD_SCREEN_CLOSE',nil,true);safe()end)
  for _,name in ipairs({'SystemUpdateUI','GameCoreEventPublishComplete','GameCoreEventPlaybackComplete'})do bind(name,pulse)end

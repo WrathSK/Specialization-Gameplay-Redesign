@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0434
-Implementation Build: source/live B165.192 / modinfo192 LOCAL_COMPLETE / NATIVE_REQUIRED; stable B069.96
+Status Revision: S0435
+Implementation Build: source B166.193 LOCAL_COMPLETE / NATIVE_REQUIRED; live B165.192; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: P0_L2C_B165_POSITIVE_AUTO_SCOPED_PASS_SETTLEMENT_ATTRIBUTION_OPEN
+Work State: B166_MEANING_AUTOMATIC_LOCAL_COMPLETE_DEPLOYMENT_HELD
 
 ## CURRENT AUTHORITATIVE STATE
 
-当前Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持，主题化许可仍暂行／Balance待验。source／live继续B165.192／modinfo192、source `16f1f99`与既有receipt；main稳定B069.96不改。
+Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持；source B166.193已完成意义延展自动接入，本地通过／新原生整合待验。live仍B165.192、source `16f1f99`及原receipt；main稳定B069.96不改，源码提交不等于运行包切换。
 
-[B165补测四图已审阅归档](Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md)：正旧AUTO+25%下五项原生仍为基值，所测共存通过；同T64城市生产97.7→110.7，加13与20%＋HD燃煤厂10%相容。进度0→117→250真实推进，但背景生产变化，精确结算归因仍开放；此轮补测已做，不重复派发或标整个L2PASS。
+[B166结果／最小验收](Validation/Results/Specialization_B166_Meaning_Automatic_Local.md)：七域五yield、精确旧GWA退役、当前事实重建及只读P0；Culture追加隔离、主题化暂行／Balance待验。B165原语证据继承，跨回合进度精确归因仅观察备注，不阻塞、不重复派测。
 
-当前仍手动单城七域五yield／Culture隔离，M项目未实施；[考察团UI](../Architecture/v2/P0_N_Expedition_UI.md)仅规划。后续精确门槛处置、自动writer／GWA切换和M/N/UI仍须独立审核授权；本轮仅记录，无代码／测试／Design／build／部署或新实机要求，永久账本／GC保持。
+部署被5份并行Investigation未提交文件与工具严格clean-worktree门禁阻挡；保留原件、不顺带提交或绕过检查。解除后按W0003核对game exit/receipt安全切换，再验自动／资格／一次冷加载；L3/M/N/UI未授权，永久状态／GC不改。
+
+## S0435 — 意义延展自动接入，待部署与原生整合
+
+用户明确授权正式接入计划，取消无关精确生产差值门槛；原始截图与冻结结果仍如实保留。新增正常CultureMeaning模块复用既有K／Shared D／单一最终值SQL：自动处理当前资格、D/W更新、UNKNOWN、确认失城退出与返回重算，旧GWA在Start／Audit／Receive／控制被退役，旧BASE采集关闭。原Probe不启动且DEV互斥；P0按钮只读。本地新30方法＋直接AE/K各7方法；语法、SQL字节／注册、链接／context检查分别记录，不标原生完成。
+
+source B166.193已到本批待验checkpoint，live仍B165；调查文件属于独立会话，strict部署工具不接受未跟踪工作树，本轮保留而暂缓部署。无需用户重复旧五产出／主题化／END／长测；新自动加载确有实际实现差异，部署后一次正常冷加载并入最小验收。没有Gameplay Design变更、永久ledger/schema/GC/main改动或L3/M/N/UI推进。
 
 ## S0434 — 正旧AUTO与生产对照四图
 

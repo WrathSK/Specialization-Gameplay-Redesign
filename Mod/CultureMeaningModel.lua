@@ -1,6 +1,6 @@
 -- D0046 retains nine-domain Design; B164 quarantines failed Culture projection.
 -- Seven live domains / five yields; all six owned definition families stay for cleanup.
--- Floor EACH domain before same-yield sum and W; controlled one-city probe only.
+-- Floor EACH domain before same-yield sum and W; shared by normal writer and isolated DEV fixtures.
 SPCCultureMeaningModel={K=0.5,Domains={
  {'DISTRICT_CAMPUS','SCIENCE'},{'DISTRICT_INDUSTRIAL_ZONE','PRODUCTION'},
  {'DISTRICT_COMMERCIAL_HUB','GOLD'},{'DISTRICT_HARBOR','GOLD'},{'DISTRICT_ENCAMPMENT','PRODUCTION'},
@@ -36,7 +36,7 @@ function M.RecipientCoverage(P)
 end
 M.WriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH','CULTURE'}
 M.CultureDeferred=true -- Native coexistence failed; never take over another mod's effect.
-M.ActiveWriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH'} -- Not formal all-city cutover.
+M.ActiveWriteYields={'SCIENCE','PRODUCTION','GOLD','FOOD','FAITH'} -- Current normal projection; Culture restoration stays deferred.
 local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
 function M.Plan(f,w,depth)
  assert(f and f.validity=='VERIFIED','ME_FACT_UNKNOWN')

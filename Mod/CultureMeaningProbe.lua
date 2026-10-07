@@ -5,6 +5,7 @@ include('NetworkInput')
 -- One explicitly chosen session fixture, no saved authority or benefit replay.
 SPCCultureMeaningProbe={}
 function SPCCultureMeaningProbe.Start(P,shared)
+ assert(not shared.CultureMeaning,'ME_AUTOMATIC_WRITER_ACTIVE') -- DEV and normal ownership are mutually exclusive.
  local M=SPCCultureMeaningModel
  local d={ready=false,busy=false,mode='OFF',variant='SPLIT',changes=0,cleanupStatus='PENDING',cleanupPasses=0};shared.CultureMeaningProbe=d
  local target,indices,recoveryCity

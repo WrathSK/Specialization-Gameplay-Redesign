@@ -1,8 +1,9 @@
 include('GreatWorkAdjacencyModel')
 SPCGWAdjacency={}
-function SPCGWAdjacency.Start(P,shared)
+function SPCGWAdjacency.Start(P,shared,options)
+ assert(not shared.CultureMeaning or options and options.retired,'GWA_RETIRED')
  local M=SPCGWAdjacencyModel
- local d={ready=false,busy=false,samples={},last={},off={},errors={}};shared.GreatWorkAdjacency=d
+ local d={ready=false,busy=false,samples={},last={},off={},errors={}};d.retired=options and options.retired==true or false;shared.GreatWorkAdjacency=d
  local allowed={WRITING=true,MUSIC=true,SCULPTURE=true,PORTRAIT=true,LANDSCAPE=true,RELIGIOUS=true,ARTIFACT=true}
  local function key(y,part) return 'BUILDING_SPC_B060_'..y..'_'..part end
  local owned={};for _,y in ipairs(M.Yields)do for _,sign in ipairs({'P','N'})do for bit=0,12 do owned[key(y,sign..bit)]=true end end end
@@ -11,6 +12,7 @@ function SPCGWAdjacency.Start(P,shared)
   local h=d.meaningHold;return h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c) or false
  end
  function d.HoldMeaningProbe(pid,c)
+  assert(not d.retired,'GWA_RETIRED')
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'GWA_MEANING_OWNER')
   local ref=SPCNetworkInput.Reference(c);local h=d.meaningHold
   assert(not h or h.owner==pid and h.city==c:GetID() and h.reference==ref,'GWA_MEANING_OTHER_FIXTURE')
@@ -44,12 +46,24 @@ function SPCGWAdjacency.Start(P,shared)
    assert(P.HasBuilding(b,r.Index),'GWA_WRITE_FAILED')
   end
  end
+ function d.Withdraw(c)
+  for name in pairs(owned)do
+   local row=assert(P.Info('Buildings',name),'GWA_DATABASE_MISSING')
+   assert(row.InternalOnly==1 or row.InternalOnly==true,'GWA_NON_INTERNAL')
+   local buildings=c:GetBuildings();local has=P.HasBuilding(buildings,row.Index)
+   assert(type(has)=='boolean','GWA_CARRIER_UNKNOWN')
+   if has then P.RemoveBuilding(buildings,row.Index);assert(P.HasBuilding(buildings,row.Index)==false,'GWA_REMOVE_UNCONFIRMED')end
+  end
+  return true
+ end
  function d.Init()
+  if d.retired then return end
   if d.ready then return end
   for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan'); carriers(c,{}) end end end
   d.ready=true
  end
  function d.Audit(pid,cid)
+  if d.retired then return false,'GWA_RETIRED'end
   if not d.ready or d.busy or not P.IsTestPlayer(pid) then return end;d.busy=true
   local completed,failure=pcall(function()
   if cid==nil then d.last[pid]={} else d.last[pid]=d.last[pid] or {} end
@@ -85,6 +99,7 @@ function SPCGWAdjacency.Start(P,shared)
   if not completed then d.errors[pid]='GWA_AUDIT_FAILED: '..tostring(failure):sub(1,180)end
  end
  function d.Receive(pid,a)
+  if d.retired then return false,'GWA_RETIRED'end
   if not P.IsTestPlayer(pid) then return end
   local ok,result=pcall(function()
    d.Init()
@@ -108,6 +123,7 @@ function SPCGWAdjacency.Start(P,shared)
   d.samples[pid]=ok and result or nil;d.errors[pid]=not ok and tostring(result) or nil;d.Audit(pid)
  end
  function d.Describe(pid,c)
+  if d.retired then return '旧巨作相邻已退役；意义延展按当前资格自动生效。'end
   local p=d.last[pid] and d.last[pid][c:GetID()]
   if not p or p.error then return '巨作基础相邻未就绪：'..tostring(d.errors[pid] or (p and p.error) or '等待后台样本') end
   if p.meaningHeld then return '旧巨作相邻：本城因意义延展验证暂停；其它城市仍走正常路径。'end

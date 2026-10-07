@@ -176,6 +176,19 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
+  if shared.CultureMeaning and type(params.Action)=='string' and params.Action:find('^CULTURE_MEANING_') then
+    shared.CultureMeaningView=nil -- No test baseline or stale native view in normal mode.
+    local ok,out=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
+      assert(c:GetOwner()==playerID,'ME_OWNER_UNKNOWN')
+      local report=shared.CultureMeaning.Describe(playerID,c) -- Read-only; old controls cannot write.
+      if params.Action~='CULTURE_MEANING_READ' and params.Action~='CULTURE_MEANING_STATUS' then
+        report=report..'\n实验开关已停用；此请求不会启用、撤销或替换正常收益。'
+      end
+      return report
+    end)
+    shared.Snapshot=ok and out or '意义延展：当前城市暂不可读。';shared.LastToken=params.Token;return
+  end
   if params.Action=='CULTURE_MEANING_GATE_ADVANCE' or params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' or params.Action=='CULTURE_MEANING_END' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ' then
     -- One request-local read model; a failed request must not reuse a prior UI view.
     shared.CultureMeaningView=nil
@@ -250,6 +263,7 @@ local function request(playerID,params)
       if shared.Dialogue and P.IsTestPlayer(playerID) then shared.Dialogue.errors[playerID]='DIALOGUE_RECEIVE_EXCEPTION: '..tostring(accepted) end
       print('[SPC][B059][SAMPLE] '..tostring(accepted))
     end
+    if factsOK and factsAccepted==true and shared.CultureMeaning then shared.CultureMeaning.CollectionConfirmed(playerID)end
     if factsOK and factsAccepted==true and ok and accepted==true then
       local paired,confirmed=pcall(shared.Dialogue.ConfirmSamplePair,playerID,params)
       if paired and confirmed==true and shared.CultureMeaningProbe then
@@ -298,6 +312,7 @@ local function request(playerID,params)
       assert(c and c:GetOwner()==playerID,'GWA_CITY_UNAVAILABLE')
       local d=assert(shared.GreatWorkAdjacency,'GWA_MODULE_NOT_LOADED')
       assert(type(d.Describe)=='function','GWA_MODULE_INCOMPLETE')
+      assert(not d.retired or params.Action=='GWA_READ','GWA_RETIRED')
       if params.Action~='GWA_READ' then d.off[playerID]=params.Action=='GWA_OFF';d.Audit(playerID) end
       return d.Describe(playerID,c)
     end)
@@ -413,6 +428,7 @@ local function request(playerID,params)
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
     if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
+    if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -430,6 +446,7 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
+    if params.FactsChanged and shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
@@ -489,6 +506,7 @@ local function request(playerID,params)
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
     if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
+    if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -750,9 +768,9 @@ include("Dialogue")
 SPCDialogue.Start(P,shared)
 
 include("GreatWorkAdjacency")
-SPCGWAdjacency.Start(P,shared)
-include('CultureMeaningProbe')
-SPCCultureMeaningProbe.Start(P,shared)
+SPCGWAdjacency.Start(P,shared,{retired=true})
+include('CultureMeaning')
+SPCCultureMeaning.Start(P,shared)
 
 include("CommerceConvergence")
 SPCCommerceConvergence.Start(P,shared)
