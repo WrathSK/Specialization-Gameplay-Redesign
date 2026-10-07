@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "batch": "P0-L3A",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0048",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0048",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0439",
+    "runtime": "B167.194 / modinfo194",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L3_Inspiration.md#b167当前原型合同",
+  "goal": "Single-city Scientist native fractional base-GPP gate, not full automatic ability.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current slice, acceptance and source/live",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Current authorization and native stop",
+      "selector": "## 当前切片与停止点"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Complete bounded primitive/lifecycle/readout contract",
+      "selector": "## B167当前原型合同"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "reason": "Current Inspire full ability; verify stable id",
+      "selector": "/abilities/4"
+    },
+    {
+      "path": "Mod/CultureInspirationProbe.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/InspirationReadout.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/Data/CultureInspirationProbe.sql",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_inspiration_probe.py",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    }
+  ],
+  "dependencies": [
+    "Existing supported-player/current facts/reference and module-owned confirmed-loss API; no new persistence.",
+    "Existing native GPP current-load definitions and exact4 attachments; configuration is not native proof.",
+    "B166 normal Meaning retained; six direct regressions only."
+  ],
+  "old_writers": [
+    "No old Inspire writer. Preserve existing Lv2 GPP/HD/base sources and B166 normal Meaning; probe owns exact4 new carriers only."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/Lv2GPP.lua"
+      ],
+      "trigger": "Changing ownership cleanup/API or interpreting native source; inspect exact direct calls, no full E2 history."
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_culture_meaning_automatic.py",
+        "DevelopmentTests/test_culture_meaning_probe.py",
+        "DevelopmentTests/test_culture_aesthetic.py"
+      ],
+      "trigger": "Direct fixture and selected regression implementation; no all historical wrappers."
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md",
+        "tools/temporary_playtest.py"
+      ],
+      "trigger": "Actual deployment only, strict existing transaction gates."
+    }
+  ],
+  "non_scope": [
+    "No full L3/D-W automatic writer/Floor activation/new ledger/AI/GC/M/N or Design revision."
+  ],
+  "validation": {
+    "depth": "L2 targeted; only changed cleanup/load behavior locally covered.",
+    "local": "23 new plus6 selected B166 =29 methods PASS; SQL/source/XML/registration/context/diff.",
+    "user": "One city fixed baseline/.1/.3/.6/optional1/END; normal multiplier if isolatable, allow refresh one turn and label national scope. No mandatory cold-load repeat."
+  },
+  "full_audit_triggers": [
+    "Unexpected old writer ownership or saved-state write",
+    "Unknown native precision/multiplier cannot be guessed"
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Probe only; full automatic ability needs separate approved plan.",
+    "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch."
+  }
+}

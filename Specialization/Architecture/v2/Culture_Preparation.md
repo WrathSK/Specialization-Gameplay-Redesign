@@ -1,13 +1,13 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / L3_A_PROPOSED_NOT_AUTHORIZED / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
+State: B166_AUTOMATIC_USER_PASS / B167_L3_A_LOCAL_COMPLETE_NATIVE_REQUIRED / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
 Review baseline: develop `5170598`＋本轮用户授权合同同步，Spec D0048 / Culture D0048 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只记录准备范围，实际source/live/授权仍从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取；本次未核验外部运行包。
 
 ## 当前切片与停止点
 
-用户已授权意义延展正式接入；[B166当前合同](P0_L2_Meaning.md#b166已授权--意义延展自动接入)为自动七域五yield及旧GWA退出的LOCAL完成checkpoint。实际live为B166，183/183 MATCH；用户已确认本批人工PASS及冷重启自动重建PASS，无截图，见Status。Culture追加隔离及D0048暂行主题化／Balance保留。
+B166正常自动意义延展已获人工PASS（含冷重启），七域五yield／Culture追加隔离／主题化Balance边界保留。当前用户已授权[L3-A](P0_L3_Inspiration.md#当前切片与停止点)，B167.194单城科学家小数GPP原型本地29项通过、原生待验，source/live见Status。
 
-B165原语证据按实测范围继承；跨回合生产差的精确归因作为非阻塞备注，不重复对照。L3/M/N/U2均为后续逐批授权范围；本轮不推进。
+先测试0.1／0.3／0.6，+1可选整数对照；用户允许未来按城按类合计后Floor备用，本批未启用。接受可能延迟一回合刷新，测试保持可比条件并记录。完整L3自动、M/N/U2仍需独立授权。
 
 ## 按模块阅读
 
@@ -60,6 +60,6 @@ M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅�
 
 按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
 
-B166已完成获授权的意义延展自动writer／精确GWA退出源码，本地checkpoint与人工通过记录见[L2](P0_L2_Meaning.md#b166已授权--意义延展自动接入)。L3/M/N/U2仍须独立审核授权；本准备页不授予后续实施。
+B166已完成获授权的意义延展自动writer／精确GWA退出源码，本地checkpoint与人工通过记录见[L2](P0_L2_Meaning.md#b166已授权--意义延展自动接入)。L3-A原型已有授权，完整L3/M/N/U2仍须独立审核授权；本准备页不授予后续实施。
 
 来源：[Culture D0048](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。

@@ -176,6 +176,12 @@ local function request(playerID,params)
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
     return
   end
+  if type(params.Action)=='string' and params.Action:find('^INSPIRE_') then
+    if not P.IsTestPlayer(playerID) then return end
+    local c=Players[playerID]:GetCities():FindID(params.CityID)
+    shared.Snapshot=shared.CultureInspirationProbe.Request(playerID,c,params.Action,params.Token)
+    shared.LastToken=params.Token;return
+  end
   if shared.CultureMeaning and type(params.Action)=='string' and params.Action:find('^CULTURE_MEANING_') then
     shared.CultureMeaningView=nil -- No test baseline or stale native view in normal mode.
     local ok,out=pcall(function()
@@ -771,6 +777,8 @@ include("GreatWorkAdjacency")
 SPCGWAdjacency.Start(P,shared,{retired=true})
 include('CultureMeaning')
 SPCCultureMeaning.Start(P,shared)
+include('CultureInspirationProbe')
+SPCCultureInspirationProbe.Start(P,shared)
 
 include("CommerceConvergence")
 SPCCommerceConvergence.Start(P,shared)

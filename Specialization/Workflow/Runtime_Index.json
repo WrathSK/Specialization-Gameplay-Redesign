@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "2d764a48e6751f0b3db4f951adf470452ec6ec4bfca07279b10d50d2cba15c8f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "ac01292932f2d9cd34dcef49e4536708c45d32b41aaa70c74960a1a0ac44160e",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "a92e9d7a4563bb7c20b38e379ecde7a77844ed62e4e03f72c0871fd8f667d5b0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "d864b50533fcb15bb5c274f0d100b5b9035bd593719730e5ce384fc7893e0e52",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "70762afa3d471a3297ea03868134faa625c002bc3ad70a38f71f9e775f4fe145",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "86c3a4d4e47301e7e947f03070b3e3dbf518960214d326d8e2ddca3115b01750",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "b9dbed048d3900a3ff35af312eb8a53678e2cced92e20d9c4807824f864e9bbd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "44438445206b61217ef8d2863d6c8b8219deeb6d15426cdc60a1db80f0371ab6",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "145bfc60963ce04b2b6b3f551e0f7cb449af4f42e3d69f02ad73af6cca740f5c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "b110f9959a2e1f5b5c8cd3ac6569303f3e6501f4948a010794a57fe7fff71ac2",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "3759e99237be844a662a33e3f13d1a601df0502993fe77612f82b6daa277164e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
-      "provenance": "B155 authorized single-city flat candidates/config selection and known-themed reader; targeted local evidence only; native gates pending. No permanent/GC/formal cutover."
+      "sha256": "19251dbbc7ccff208a463a4992097bd3c215574f96b30923f066b67562e88f09",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -919,6 +919,21 @@
       "sha256": "c637ce8044f0411d8194ef89888902e435f0d63a7b1ff48bbe1c8b794840549c",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+    },
+    "Mod/CultureInspirationProbe.lua": {
+      "sha256": "3cf25c77a3da319f10556f7b2e7aae744c5b17f41ac418cbffd1854edba841d5",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+    },
+    "Mod/InspirationReadout.lua": {
+      "sha256": "5b8a89d4e929c3132db694efc9ca4c0a31d407fddfadf7b993e8bf313fbcb0c6",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+    },
+    "Mod/Data/CultureInspirationProbe.sql": {
+      "sha256": "c0814c30d8cf913d36228a6528dc46aa8e8120327e0506e4112372fdcc33c552",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     }
   }
 }

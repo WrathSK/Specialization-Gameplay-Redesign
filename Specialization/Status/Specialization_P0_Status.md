@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0438
-Implementation Build: source/live B166.193 USER_GAME_TEST_PASS (user-reported, no screenshots); stable B069.96
+Status Revision: S0439
+Implementation Build: source B167.194 LOCAL_COMPLETE / live B166.193 USER_PASS; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B166_MEANING_AUTOMATIC_USER_PASS
+Work State: B167_L3A_LOCAL_COMPLETE_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持；source/live B166.193意义延展自动接入已获用户人工验收，冷重启自动重建另行明确PASS。沿用已登记部署source `f24ae40`／receipt `B166.193-f24ae40-playtest.json`；main稳定B069.96不改。
+Spec／Culture D0048、Shared D0045／Architecture A0161与四专业范围保持。source B167.194为已授权L3-A小数科学家基础GPP原型，本地29项PASS、原生待验；live仍已登记B166.193，main稳定B069.96不改。
 
-[B166人工验收](Validation/Results/Specialization_B166_Meaning_Automatic_User_Pass.md)：无截图，不虚构独立观察或数值。当前七域五yield、Culture追加隔离及主题化暂行／Balance边界保留；本地44项与既有原语证据按原范围继承。
+[B167结果／最小流程](Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)：单城固定0.1／0.3／0.6与可选整数1、正常倍率／退出；只读全国率，允许一回合延迟，跨回合不自动归因。B166自动／冷重启人工PASS保留，无截图。
 
-下一建议：[L3-A巨作启迪小数基础GPP原型](../Architecture/v2/P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，单城单类先验0.1／0.3／0.6及正常倍率与退出，待授权。L3/M/N/UI未授权；本轮只归档确认／计划维护，无新源码或部署。
+用户授权按城按伟人类别合计后Floor为备用，先测试小数，本轮未启用；完整自动L3/M/N/UI未授权。当前到原型提交／安全部署／一次定域实机为止，不清永久记录或改GC。
+
+## S0439 — L3-A原型本地完成
+
+用户授权L3-A，并允许未来每城每类floor(0.1×D×W)备用，先验小数。非舍入聚合与原公式等价，可减少每作品实例；本轮固定值原型不按W/D发正式收益、不启用Floor。原生路径复核当前DB及官方伟人读取，单城单类精确4ID，重复请求、UNKNOWN、退出、加载、失败保护与只读范围分别覆盖。
+
+23项新定向测试＋6项直接Meaning回归共29项PASS；用户提醒可能延迟一回合，流程及回合读数已纳入，不把即时未刷新判失败。原语／倍率／实际刷新仍需实机，不新增重复保存仪式，不改正式Design或自动推进完整L3。源码新B167.194，部署未执行时live保持B166，按W0003真实门禁另记。
 
 ## S0438 — B166人工通过与下一批建议
 

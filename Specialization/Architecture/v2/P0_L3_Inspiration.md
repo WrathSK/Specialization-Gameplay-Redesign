@@ -1,14 +1,31 @@
 # P0-L3 —「巨作启迪」计划与小数GPP调查
 
-State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED / FRACTIONAL_BASE_GPP_GATE_OPEN。
+State: B167_L3A_LOCAL_COMPLETE / NATIVE_REQUIRED / FULL_ABILITY_NOT_IMPLEMENTED。
 Authority: 当前Spec D0048／Culture D0048 `CUL_L4_INSPIRE`及domains/work_pool；Shared D0045。基线与授权见[文化准备入口](Culture_Preparation.md)。
+
+## 当前切片与停止点
+
+B167.194为已授权L3-A单城科学家小数基础GPP原型，29项本地PASS，原生精度／倍率待验。source/live分开查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)，本地与最小流程见[B167结果](../../Status/Validation/Results/Specialization_B167_Inspiration_Probe_Local.md)。
+
+固定0→0.1→0.3→0.6，+1仅作可选整数接口对照，END撤销。原生读数是全国率，同回合、其它条件固定时才作差；用户可等待一回合刷新并留记录，跨回合不自动归因。没有完整六class自动收益或新永久状态。
+
+用户允许未来按每城每伟人类别 `floor(0.1×D×W)` 备用，先验小数。合计不Floor与原公式等价；不合并类别，不逐作品Floor，不开余量账本。本批到原型部署／验收停止，正式consumer另批。
+
+## B167当前原型合同
+
+- 读取当前受支持玩家、当前可靠城市reference与Culture Potential/ACTIVE IV资格；固定测试值不依赖作品池或D，避免把接口失败与公式输入混在一起。正式六class公式仍复用K／Shared D，未在此原型假装落地。
+- 原生路径：4个精确内部City Center建筑分别附加`MODIFIER_SINGLE_CITY_ADJUST_GREAT_PERSON_POINT`，`Amount=0.1/0.3/0.6/1`，仅Scientist。加载定义检查类型、金额、类别及attachment；没有直接加全国总点数、没有替换HD来源。
+- 单目标／单session，先撤旧再加新；重复token幂等，错误保留可诊断终态，移除失败不混写，UNKNOWN资格不清确认投影。确认失城由Store module-owned退出；reference改变清本模块并结束，不恢复原型；正常Governor/当地回合事件只核对当前fixture，无默认全城收益扫描。
+- startup/load只对精确4ID做一次有界清理，外国城只清自己测试载体、不运行AI能力。缺load事件可由本地回合／请求完成；失败锁停，禁止无界重试；状态不保存、无新Property/ledger/GC。该新增原型生命周期由本地定向覆盖，不派重复OFF冷加载仪式。
+- P0复用空闲测试按钮加独立END：左键准备/下一值，右键只读刷新；显示阶段、配置、载体数。UI只读原生全国Scientist/turn并显示回合，基线只在同城同session同回合比较；报告不得把配置或全国率称为本城实测基础率。原生可延迟一回合，保留读数与操作记录，延迟本身不是FAIL。
+- 合计策略评估：同城同类一份最终量避免每作品实例／重复更新，数学上不舍入时等价；这不证明特定原生carrier精度或非叠加问题已解决。备用`floor(D×W/10)`如D3/W4为1，逐件Floor为0；只在原生门槛结果明确后进入正式接入方案，不在本轮暗改Gameplay。
 
 ## 下一最小批次 — L3-A 单城单class原生门禁
 
-**PLANNED_NOT_AUTHORIZED。** B166自动接入验收后的下一建议，用户审核后才实施／部署。只验证原生基础GPP接口，不直接交付完整六class能力，不因Design接受自动启用全国writer。
+**L3-A已获用户授权；完整六class自动能力仍未授权。** B166自动接入验收后，用户授权先测试小数，并允许按本城每类总量Floor作为备用。只验证原生基础GPP接口，不直接交付完整六class能力，不因Design接受自动启用全国writer。
 
 - 选已有Culture ACTIVE IV城与Scientist一类；先复核当前city/district基础GPP Modifier，保留HD／原生基础来源。最小可逆probe依次配置0.1、0.3、0.6，按需读取本城per-turn基础贡献／速率及实例；必要时用当前可观察的正常GPP百分比核对倍率。数据库字段接收小数、carrier存在不算原生生效。
-- 门禁原型的固定值是接口对照；正式能力仍0.1×对应D×合格W，不能用Gold份额、专家、时代数或Floor替代。未知原生字段明确UNKNOWN；不能用全国点数总值冒充该城基础率，不能直接发点数或建小数余量账本。
+- 门禁原型的固定值是接口对照；正式能力仍0.1×对应D×合格W，不能用Gold份额、专家或时代数替代。本轮不启用Floor，备用条件见下方当前合同。未知原生字段明确UNKNOWN；不能用全国点数总值冒充该城基础率，不能直接发点数或建小数余量账本。
 - 复用本城reference／资格／K／Shared D与精确module-owned退出，单一会话／有界错误状态，END／换引用／confirmed loss／load退出，UNKNOWN按既有保护。无每帧／hover Gameplay请求、AI、永久成果或GC变更；不重构通知框架。
 - 本地：小数配置与实际SQL／Lua、同城可逆替换与重复零写、读数独立于配置、退出失败／UNKNOWN及两城隔离；只补直接路径回归。若修改共享生命周期源码，再按真实delta补相应验证，不机械派发冷加载。
 - 用户：一次连续session，基线→0.1→0.3→0.6→正常倍率（若当前可隔离）→END。每步分别确认小数精度、值替换、倍率及本模块撤销；无法区分基础率则停止并保留具体技术门禁，不自行舍入。
@@ -26,7 +43,7 @@ W是当前合格作品**件数**，不同时代数X不参与该公式；不要�
 
 新增的是正常基础GPP每回合来源，受现有百分比倍率；不直接ChangePointsTotal、每回合发固定点数、不创造小数余量账本或自定义Prophet溢出Faith。例：D3、W1→0.3 base；W2→0.6；D10、W1→1；100%合法GPP加成作用于基础来源，不是把所有城市GPP替换成该公式。
 
-0.1是正式Design值但技术待确认。没有Design舍入；科研floor、Boost round、旧GreatWork量化及HD per-population小数先例不能跨接口当许可。
+0.1是正式Design值但技术待确认。用户本轮另外授权每城每类总量Floor作为备用，先测试小数，不直接启用或改正式来源。科研floor、Boost round、旧GreatWork量化及HD per-population小数先例不能跨接口当证据。
 
 ## 已核对的接口
 
@@ -40,7 +57,7 @@ W是当前合格作品**件数**，不同时代数X不参与该公式；不要�
 1. 下一轮获得授权后先做真实Lua纯模型/小数SQL配置与一个最小原生GPP probe；单城单class隔离，记录预期base与native per-turn rate/正常倍率。探针有独立退出，不把未知配置当正式能力。
 2. 原生门禁通过再接正式ACTIVE/D/W模型与module-owned派生writer；参数集中为GPP_K，禁止多个Lua/SQL各硬编码。没有新永久成果或每回合奖励事务。
 3. 复用现有事实和E2 RegisterExit/Return，load重新派生；Lv2GPP原有owned列表不与L3混用。测试看增量，不能因HD原有基础/其它城市点数叠加把全国总率当选中城市贡献。
-4. 如果原生精度/正常倍率不满足，停止该接口，报告TECHNICAL_INVESTIGATION_REQUIRED；要求改值或量化才向用户提DESIGN_DECISION_REQUIRED。不自动使用整数、floor、累计到整数再发或额外Faith转换。
+4. 如果原生精度/正常倍率不满足，停止该接口，报告TECHNICAL_INVESTIGATION_REQUIRED；要求改值或量化才向用户提DESIGN_DECISION_REQUIRED。本次测试不启用Floor；若确需启用已授权总量Floor备用，须在随后正式接入批次显式同步合同，不能静默套用逐作品Floor、跨类合并、累计发点或额外Faith转换。
 
 本批没有旧同名writer要关闭；不提前退休Dialogue/旧Culture Eureka，不重复退出L1/L2已处理对象。预计涉及一个小型模型/consumer/SQL及定向测试，复用K现有count通知、Gameplay/modinfo/按需诊断；按真实primitive复用现有文件，不创建泛化能力引擎。L3不以L2原生精度成功为证据，L2失败也不直接证明L3失败。
 
