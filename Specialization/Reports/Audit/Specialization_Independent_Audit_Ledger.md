@@ -1,14 +1,14 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: AUDIT_IN_PROGRESS；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；P06b身份事件slice也已覆盖；P02a Shared合同slice也已覆盖；P02b共同Network合同也已覆盖；P03a/P10a科研slice也已覆盖；P03b/P10b工业slice也已覆盖；W18/P04a-P11a文化合同/实现对照已收束；W19/P04b-P11b商业合同/实现对照已收束；W20/P05a-P08b注册与owned闭包已收束。尚无总审计结论。
+State: AUDIT_IN_PROGRESS；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；P06b身份事件slice也已覆盖；P02a Shared合同slice也已覆盖；P02b共同Network合同也已覆盖；P03a/P10a科研slice也已覆盖；P03b/P10b工业slice也已覆盖；W18/P04a-P11a文化合同/实现对照已收束；W19/P04b-P11b商业合同/实现对照已收束；W20/P05a-P08b注册与owned闭包已收束；W21/P15-P12b导航与证据继承收尾已收束。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务、P06b身份事件、P02a Shared合同、P02b Network合同、P03a/P10a科研、P03b/P10b工业、P04a/P11a文化、P04b/P11b商业、P05a/P08b注册与owned闭包**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务、P06b身份事件、P02a Shared合同、P02b Network合同、P03a/P10a科研、P03b/P10b工业、P04a/P11a文化、P04b/P11b商业、P05a/P08b注册与owned闭包、P15/P12b导航与证据继承**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
 - 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
 - W03：P06a已提交/push `8e2dcb7`；真实Lua4个规模、2个损坏隔离、1个注入重入fixture，见[P06a报告](P06a_State_Ownership.md)。没有修改项目本体。
 - W04已提交/push `77568aa`：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
@@ -27,8 +27,9 @@ State: AUDIT_IN_PROGRESS；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、
 - W17已提交/push `1cd5e07`：三路工业contract/current/evidence只读核证及actual Store/Std3场景完成，见[工业报告](P03b_P10b_Industry_Contract_Runtime.md)。IA-P10b-F01 nil presence确认为empty初始化，MEDIUM/BEFORE_NEXT（H1 typed前），native nil未observed；true/throw对照正常，禁止重建可靠空/损坏history。H/G/I/J已知缺口不重列新TBD/事故。
 - W18已提交/push `a75c73a`：三路只读审阅完成，见[文化报告](P04a_P11a_Culture_Contract_Runtime.md)。L1/L2 normal、L3 probe、新M/N deferred、旧Dialogue/retiredGWA分层明确；B149/B165/B166证据范围及B168诊断已核，不新增高返工风险finding/原生PASS，不恢复用户测试。
 - W19已提交/push `06a7300`：三路商业contract/current/evidence只读核证完成，见[商业报告](P04b_P11b_Commerce_Contract_Runtime.md)。新P/Q/R/S/T均有明确未实施标记；信誉/配置/pity/已签合同/训练source与绑定target职责分开，旧3+48退出留正式cutover。不新增finding或native门禁，不以旧Science/D2局部模拟证明新合同。
-- W20已收束：三路只读注册/UI/owned核证完成，见[注册与退出报告](P05a_P08b_Registration_Owned_Closure.md)。185文件/20roots/literal候选图；1720固定声明与退出并集/InternalOnly闭合，动态3family数量未知。actual Probe3场景确认IA-P08b-F01 LOW/DEFER（4ID已撤、错误loss字段留session），UI teardown为Q01 LOW/MONITOR；不修复/不称native泄漏。
-- 下一准确入口：**P15/P12b 活动导航、冻结证据与测试继承收尾**。Architecture/Reports/Historical/legacy mapping→当前计划/权威链接→重要反证/弃用方案/具名验证；重点旧派工是否会绕过CURRENT、有效技术约束是否可达、已核local/native范围是否被错误扩大。只沿直接来源，不读全Historical、不修导航/正式tests。随后P16/P17交叉去重、返工优先级与最终覆盖合成；当前尚未开始。
+- W20已提交/push `77e0947`：三路只读注册/UI/owned核证完成，见[注册与退出报告](P05a_P08b_Registration_Owned_Closure.md)。185文件/20roots/literal候选图；1720固定声明与退出并集/InternalOnly闭合，动态3family数量未知。actual Probe3场景确认IA-P08b-F01 LOW/DEFER（4ID已撤、错误loss字段留session），UI teardown为Q01 LOW/MONITOR；不修复/不称native泄漏。
+- W21已收束：三路活动导航/冻结mapping/测试继承核证完成，见[导航与证据报告](P15_P12b_Navigation_Evidence_Inheritance.md)。重要反证/性能结项/恢复职责仍可达；224入口link/anchor 0失败（非全仓）；Metadata mapping样例不等于原图/备份PASS。IA-P15-F01旧Design版本标签LOW/DEFER，既有P01旧派工补证，不恢复测试或修导航。
+- 下一准确入口：**P16/P17 跨finding返工优先级与最终覆盖合成**。先从各已保存report/maps/原始证据及ledger确认工作集/风险根因、severity与timing分开、重复finding归并及反证；重点P06a-F01/F03、P13a-F02/F03/F04、P09b-F01、P08a-F01、P06b-F01及局部HIGH/交易边界。无需重读全Mod/所有历史或重跑repro；必要只扩精确矛盾。完整scope/未执行native与外部项明确后才形成最终报告，仍不实施。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
@@ -310,6 +311,18 @@ P09/P13 callback/采集/扫描与P06永久writer耦合沿既有ID/timing；没�
 
 文档/源码读取与未覆盖列于报告；不读游戏/HDloader/外部包/截图，不跑全suite/stress，未部署/修复。P05/P08静态组合与归属闭包覆盖完成不证明完整native合同；下一P15/P12b尚未开始，先保存checkpoint。
 
+## W21 — P15/P12b导航与证据继承收尾（slice覆盖完成）
+
+恢复baseline `77e0947`，develop起始clean/sync。三路只读review与父任务入口/anchors核证完成，见[报告](P15_P12b_Navigation_Evidence_Inheritance.md)。没有新reproduction/玩法测试、截图/外部包读取或navigation修复。
+
+活动技术入口能到达身份失败不猜、GW bits/文化隔离、性能结项与具体重开条件、receipt/pending/恢复职责；历史阶段文字不能覆盖CURRENT/Authority。当前Tests/Catalog/manifest/Validation正确区分39LOCAL/186MATCH/native暂缓、probe与正式六class，旧wrapper非默认，现行步骤delta继承政策不重复ON/OFF保存仪式。
+
+新IA-P15-F01：DesignREADME59 Spec/Culture版本标签旧，LOW/DEFER，实际链接当前正确，不是Gameplay冲突。P01-F04/F05/Q02/Q03/Q04旧派工/直链补证，不新造同类ID；Q02结项从主Architecture可达，不重开性能专项。W20 loss fixture形状与真实callback差异保留，不能用39LOCAL关闭。
+
+受限链接检查：review129README/mapping路径＋106ChangeLog路径存在，29 currentContent source/ref与2Shared pointer定位；parent另核6核心入口224link/anchor 0失败，各口径重叠不相加。3迁移样例目录/index存在，未重看图/核字节；Phase1旧counts不是今日active失败数，外部备份/DB/log/存档UNKNOWN。冻结原件及3设计未衔接边界原样。
+
+所有原finding正文保留；这里只写Audit report/ledger。下一P16/P17尚未开始，先保存checkpoint；总审计结论仍未产生。
+
 ## 审计总范围
 
 覆盖用户A–L，重点是规则／实现／证据一致性及错误、数据与部署风险。包含四专业当前v0.1范围；未来专业只检查接受规则/元数据/边界是否污染当前范围，不把未来功能缺实现当作当前缺陷。
@@ -380,10 +393,10 @@ severity与timing分别记录，不能互相代替：
 | P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02公共map与P09b接受/发布/通知边界已核；全部协议/consumer与native语义未覆盖 | P09b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P10 | ResearchSupport/Cross/Apply/Tradition、Standardization/Construction/Industry | P10a/P10b direct writer/历史/模板/已知Crew边界已核；完整native环境不承诺覆盖 | DIRECT_RUNTIME_COVERAGE_COMPLETE |
 | P11 | Culture facts/Aesthetic/Meaning/Inspire/旧Dialogue、Commerce现行/旧consumer | P11a/b已核Culture与Commerce当前/待接入/试验/旧writer及历史/合同状态 | DIRECT_RUNTIME_COVERAGE_COMPLETE |
-| P12 | Tests README/Catalog、每条当前路径实际测试源码/fixture与Validation结果 | P12a已核D/Store/公共传播/Network规模断言与fixture；全测试/native证据矩阵仍未完成 | P12a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
+| P12 | Tests README/Catalog、每条当前路径实际测试源码/fixture与Validation结果 | P12a/b及逐专业核测试风险/fixture/规模/证据继承；不执行全部历史tests或证明native | EVIDENCE_REVIEW_COVERAGE_COMPLETE |
 | P13 | RuntimeWork/Performance/MemoryGC/public fact/dirty路径及结项限制 | P13a公共hot-path/规模成本与P13b所选会话闭包/GC职责已核；全部对象图/native回收未覆盖 | P13a_P13b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P14 | tools/deploy/temporary_playtest、Playtest合同、main/develop/receipt/recovery | P14a已核工具事务/恢复及临时注入；真实外部恢复、部署历史/完整promotion未覆盖 | P14a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
-| P15 | Historical/Design目录、legacy mapping、当前索引/真实脚本路径引用 | 活动与冻结角色、重要反证可达、旧派工/断链/路径迁移是否误导；不改历史 | NOT_YET_AUDITED |
+| P15 | Historical/Design目录、legacy mapping、当前索引/真实脚本路径引用 | 活动入口/冻结角色/反证/限定mapping及测试路由已核；不逐篇重读全部历史/外部证据 | NAVIGATION_COVERAGE_COMPLETE |
 | P16 | P05依赖/可达图与前述发现、废弃模块/防御/兼容层 | P16a已核新增专业的中央修改面/可复用边界；全项目债务与兼容层仍未审完 | P16a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P17 | 全部已核矩阵与findings | 交叉验证严重问题、去重、优先级/真实阻塞、覆盖与剩余native限制；此时才形成总报告 | NOT_YET_AUDITED |
 
@@ -675,7 +688,7 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 
 ## Unresolved questions / NOT_YET_AUDITED
 
-- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c/P06b/P02a/P02b/P03a-P10a/P03b-P10b各自slice；P06/P07/P09/P12/P13/P14/P16仍有明确余界，P05a/b与P08a/b静态组合/归属已核，P04a/b及P11a/b两专业也已核，P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P15/P12b以开头入口为准。
+- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c/P06b/P02a/P02b/P03a-P10a/P03b-P10b各自slice；P06/P07/P09/P12/P13/P14/P16仍有明确余界，P05a/b与P08a/b静态组合/归属已核，P04a/b及P11a/b两专业也已核，P15/P12b也已核，P16余项/P17综合尚未完成。未确认风险不能因局部map关闭；当前下一P16/P17以开头入口为准。
 - P01没有完整审阅accepted规则、Spec/Content逐条取代、正式阅读版完整一致性、全部Mod/SQL可达writer、save/owner损坏、REALLOCATING/未结算合同、Network退出、缓存间接保留、GC策略正确性或所有测试断言/fixture。
 - 当前native小数/GPP倍率/退出仍待B168用户测试；审计仅核其记录，不制造新实机要求。是否适用每城每类Floor仍未在正式运行接入，本轮无决定。
 - receipt存在/目录相同不证明今天恢复包内容或崩溃中途恢复正确。P14a已核工具transaction/failure/recovery及4个临时场景；真实外部包/恢复执行、OS中断/掉电仍未覆盖，不能从“有backup”猜安全。
