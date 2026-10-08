@@ -1,14 +1,14 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；W11 checkpoint收束，下一P07c未开始。尚无总审计结论。
+State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；W12 checkpoint收束，下一P06b未开始。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
 - 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
 - W03：P06a已提交/push `8e2dcb7`；真实Lua4个规模、2个损坏隔离、1个注入重入fixture，见[P06a报告](P06a_State_Ownership.md)。没有修改项目本体。
 - W04已提交/push `77568aa`：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
@@ -18,8 +18,9 @@ State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P
 - W08已提交/push `8711348`：P13b三路只读审阅与主任务复核已收束，见[会话保留与GC报告](P13b_Session_Retention_GC.md)。保存真实GW模块8-ID反例，确认坏样本/Reset后dirty keys仍8、合法空全集清0；没有native泄漏或新FIX_NOW结论，GC不变。
 - W09已提交/push `eda22fa`：三路只读审阅及主任务核证完成，见[P14a报告](P14a_Deployment_Recovery_Boundaries.md)。真实工具仅处理临时微型包的4个注入/对照场景；确认stable首rename生效后赋值前中断会误清marker，旧backup完整；temporary保留恢复记录。没有真实部署或工具修改。
 - W10已提交/push `9904a97`：三路只读审阅与实际Lua3场景核证完成，见[P07a报告](P07a_Investment_Transaction_Boundaries.md)。正常receipt/单位消耗/现代后端职责明确；pending与失城组合有条件恢复死端，Q01 MEDIUM/MONITOR，native可达未知。没有修复或新实机要求。
-- W11已收束待本次commit/push：三路只读审阅与主任务4场景核证完成，见[P07b报告](P07b_Claim_Completion_Boundaries.md)。确认二次失城用origin key清current活动集合的局部残留F01 LOW/DEFER；CALLING＋最终写失败为Q01 MEDIUM/MONITOR既有不确定保护边界，不实施修复。
-- 下一准确入口：**P07c施工队来源、当前Owner容量、单位消耗与生产注入receipt**。从`Mod/UnitActions.lua` CREW分支、`Mod/CrewProjects.lua`、`Mod/CrewPrecision.lua`、`Mod/ConstructionProbe.lua`进入，核当前Industry D0045/Spec与实际旧writer/deferred适配。按直接调用选crew_unit_actions/projects/precision测试，复用P07a单位事务及P07b事件/退出观察；不全读历史wrapper、不实施新成本。W11只定位了这些文件，尚未开始正文审阅；恢复先核HEAD/dirty与direct source变化。
+- W11已提交/push `189e837`：三路只读审阅与主任务4场景核证完成，见[P07b报告](P07b_Claim_Completion_Boundaries.md)。确认二次失城用origin key清current活动集合的局部残留F01 LOW/DEFER；CALLING＋最终写失败为Q01 MEDIUM/MONITOR既有不确定保护边界，不实施修复。
+- W12已收束待本次commit/push：三路只读审阅及最小实际Lua核证完成，见[P07c报告](P07c_Crew_Transaction_Boundaries.md)。Crew Player receipt没有读回门禁，F01 MEDIUM/FIX_BEFORE_NEXT_PROFESSION（J1/J2依赖它前）；没有native silent-drop或重复grant事故。全表历史规模是既有OBSERVATION/MONITOR，新来源/2槽/成本仍已登记deferred。
+- 下一准确入口：**P06b city identity事件证据与失城/返回传播**。从`Mod/CityProgressionStore.lua` observe/track/reconcile及manager dispatch、`Mod/CityIdentityRead.lua`、`Mod/FreshBindingHook.lua`、`Mod/CityFlowProbe.lua`直接admission/reference路径进入；复用P06a保存与P07a–c事务结论。核事件fan-out、记录/引用生命周期、UNKNOWN与confirmed loss、证据匹配/同址新代支持边界，按调用选E2现有fixture。不扩AI/多人/new cityKey或实施。P07其余商业/REALLOCATING未落地合同留后续对应专业阶段。本轮尚未读新slice，恢复先核HEAD/dirty/直接source变化。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
@@ -181,6 +182,21 @@ NO_ACTION与已知约束：Network逐consumer异常隔离的最小对照中5个�
 
 检查仅审计链接/语法/hash/context/diff；旧finding正文保持。完整P07还含Crew/其它事务边界，native跨context/serializer/真正故障时序未验；无需新增用户测试或Design决定。下一P07c按用户持续授权在checkpoint后进入，不在审计中修复。
 
+## W12 — P07c施工队事务与新设计适配（slice覆盖完成）
+
+起点`189e837` clean/sync；三路只读审阅及主任务核source/消费/注入/保存闭包完成。范围与支持矩阵、已知适配/反证见[P07c报告](P07c_Crew_Transaction_Boundaries.md)。旧训练运行不等于已实施J1/J2，accepted新规则不因此重开成TBD。
+
+| 结果 | severity / timing | 证据与限制 |
+|---|---|---|
+| IA-P07c-F01 receipt阶段未经读回即继续debit/grant | MEDIUM / FIX_BEFORE_NEXT_PROFESSION | actual Lua silent-drop Player setter：consume1/grant1/success text、持久receipt0；throw INTENT零consume/grant且HELD。正常/故障重复grant均0；native丢写未知，应在J1/J2把阶段用于来源/库存前补门禁，不阻塞无关模块 |
+| IA-P07c-K01全Player历史map传入规模 | OBSERVATION / MONITOR | 历史Performance_Audit177已知无总上限；N=1/8/64的setter3/24/192、累计参数entries3/108/6240。不测CPU/分配/序列化，mock deepcopy不算生产成本，不重复造新leak |
+| 来源/容量2/成本/Wonder-only/保护 | 已知K02 / DEFER | Industry Preparation明示J1/J2未实施；source receipt不是训练provenance。不能用旧PASS宣称新系统完成，也不新增Ownership TBD |
+| 当前执行保留机制 | 所核边界NO_ACTION | fresh unit/Owner/位置/charge/queue、min remaining、plan消费、busy/重复/未知不重放；observer不是精确native入账证据 |
+
+证据：[最小脚本](Evidence/W12/reproduce_crew_receipts.py)／[原始JSON](Evidence/W12/crew_receipt_result.json)。3故障/对照＋3规模shape场景，actual Probe/ConstructionProbe/UnitActions，Property/单位/queue/HD helpers/目标为明确mock。Player getterdeepcopy排除alias遮掩；Lua5.5现有环境，无安装、正式回归/stress或游戏操作。首次缺include的临时夹具已纠正；最终script/result hash固定，源码不改。
+
+三历史crew测试保留旧路径/小数断言不改；后继整数Floor、B039DEV/B042正常施工/B046限定读数各有具名反证，只读结果未重看图。保存阶段COMPLETED不等于精确native收益，源变化和pending历史不为内存擅删。context/hash/链接/diff仅机械检查；完整P07未来合同、完整P06事件/identity与总审计仍未结束。下一P06b checkpoint后持续推进。
+
 ## 审计总范围
 
 覆盖用户A–L，重点是规则／实现／证据一致性及错误、数据与部署风险。包含四专业当前v0.1范围；未来专业只检查接受规则/元数据/边界是否污染当前范围，不把未来功能缺实现当作当前缺陷。
@@ -246,7 +262,7 @@ severity与timing分别记录，不能互相代替：
 | P04 | Culture_D0048、Commerce_D0045及生命周期接受记录/计划 | Culture与Commerce分别完成矩阵；排除旧能力混入、未決条款伪定案 | NOT_YET_AUDITED |
 | P05 | modinfo、Gameplay/include/Start、SQL注册、writer切换矩阵 | P05b核Identity/Claim/Network/composition直接接入闭包；全Mod/SQL可达仍未完成 | P05b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P06 | CityProgressionStore、E2 current合同、CityFlow/identity/Evidence/helper及定向测试 | P06a主要持久权威/保存成本/损坏隔离已核；完整identity/lifecycle仍待后续 | P06a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
-| P07 | InvestmentAction、单位/项目action、待结算/REALLOCATING生命周期合同 | P07a/P07b已核投资/Claim及直接失败/退出组合；Crew/其它合同仍待核 | P07a_P07b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
+| P07 | InvestmentAction、单位/项目action、待结算/REALLOCATING生命周期合同 | P07a/P07b/P07c已核投资/Claim/Crew及直接组合；未落地商业/重组合同留对应专业阶段 | P07a_P07b_P07c_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P08 | 各module owned lists、SQL Modifier/requirements、载体创建/退出direct callers | P08a三个代表writer/Store精确归属、失败协议与复用边界已核；全module/native闭包仍待后续 | P08a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02公共map与P09b接受/发布/通知边界已核；全部协议/consumer与native语义未覆盖 | P09b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P10 | ResearchSupport/Cross/Apply/Tradition、Standardization/Construction/Industry | Research、Industry各一slice：效果/模板/奇观/历史/队源绑定与Design/证据对应 | NOT_YET_AUDITED |
@@ -546,7 +562,7 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 
 ## Unresolved questions / NOT_YET_AUDITED
 
-- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b各自slice；P05/P06/P07/P08/P09/P12/P13/P14/P16完整领域尚未结束，其余P02/P03/P04/P10/P11/P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P07c以开头入口为准。
+- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c各自slice；P05/P06/P07/P08/P09/P12/P13/P14/P16完整领域尚未结束，其余P02/P03/P04/P10/P11/P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P06b以开头入口为准。
 - P01没有完整审阅accepted规则、Spec/Content逐条取代、正式阅读版完整一致性、全部Mod/SQL可达writer、save/owner损坏、REALLOCATING/未结算合同、Network退出、缓存间接保留、GC策略正确性或所有测试断言/fixture。
 - 当前native小数/GPP倍率/退出仍待B168用户测试；审计仅核其记录，不制造新实机要求。是否适用每城每类Floor仍未在正式运行接入，本轮无决定。
 - receipt存在/目录相同不证明今天恢复包内容或崩溃中途恢复正确。P14a已核工具transaction/failure/recovery及4个临时场景；真实外部包/恢复执行、OS中断/掉电仍未覆盖，不能从“有backup”猜安全。
@@ -577,3 +593,5 @@ W09 checkpoint：P14a完整逻辑slice收束，事务authority/recovery map、�
 W10 checkpoint：P07a完整逻辑slice收束；3场景条件恢复证据与正常路径/当前测试反证保存。仅Audit report/ledger/script/result普通commit/push，项目本体仍只读；下一P07b按用户持续推进授权续接，不自动进入修复。
 
 W11 checkpoint：P07b已核完成权威/恢复/调度问题，1个LOW局部confirmed finding与1个条件边界及4场景证据保存；不夸大为native事故/全项目阻塞。审计产物普通commit/push后沿P07c持续推进，项目本体仍只读。
+
+W12 checkpoint：P07c source/receipt/native副作用分层已核；新保存门禁finding、旧永久map规模补证及已知J1/J2适配矩阵保存。仅审计产物普通commit/push，下一P06b按用户持续授权推进；未实施修复或运行游戏。

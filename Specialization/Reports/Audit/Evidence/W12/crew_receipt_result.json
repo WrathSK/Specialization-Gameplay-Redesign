@@ -1,0 +1,85 @@
+{
+  "evidence": "LOCAL_STRUCTURAL_REPRODUCTION",
+  "source": {
+    "Mod/Probe.lua": "6474606f9541247b3677ed531ef964138133acdcdf5562be03984455ec415846",
+    "Mod/PerformanceCounters.lua": "2047dea377cd9a9929bc969dee5a91c37a1ee2eb3baac2d82666eb09849d5313",
+    "Mod/ConstructionProbe.lua": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
+    "Mod/UnitActions.lua": "0e87494ff86dbc2dd211865b092853025fec315272bac65e04129593b014e02b"
+  },
+  "script_sha256": "1589b40a4687e95faed35b22265aa1563ec15a64e0f8458f67ed28d5d7298ba6",
+  "limits": [
+    "Native queue, units, HD readers and deep-copy Player Property are explicit mocks.",
+    "Silent-drop/throw are injected, not observed native faults; no zero-overflow or engine multiplier claim.",
+    "Entries passed describe full-map setter payload shape, not measured Lua allocation, serialization or native time."
+  ],
+  "fault_cases": [
+    {
+      "mode": "NORMAL",
+      "persisted_receipts": 1,
+      "receipt_setter_calls": 3,
+      "cumulative_receipt_entries_passed": 3,
+      "repeat_grants": 0,
+      "actions": 1,
+      "final_message": "CREW CONSUMED | added=250 | wasted=0",
+      "grant_calls": 1,
+      "unit_consumptions": 1
+    },
+    {
+      "mode": "SILENT_DROP_ALL",
+      "persisted_receipts": 0,
+      "receipt_setter_calls": 3,
+      "cumulative_receipt_entries_passed": 3,
+      "repeat_grants": 0,
+      "actions": 1,
+      "final_message": "CREW CONSUMED | added=250 | wasted=0",
+      "grant_calls": 1,
+      "unit_consumptions": 1
+    },
+    {
+      "mode": "THROW_INTENT",
+      "persisted_receipts": 0,
+      "receipt_setter_calls": 1,
+      "cumulative_receipt_entries_passed": 1,
+      "repeat_grants": 0,
+      "actions": 1,
+      "final_message": "HELD: 操作结果尚未确认，请停止重试并回传日志。",
+      "grant_calls": 0,
+      "unit_consumptions": 0
+    }
+  ],
+  "history_cases": [
+    {
+      "mode": "NORMAL",
+      "persisted_receipts": 1,
+      "receipt_setter_calls": 3,
+      "cumulative_receipt_entries_passed": 3,
+      "repeat_grants": 0,
+      "actions": 1,
+      "final_message": "CREW CONSUMED | added=250 | wasted=0",
+      "grant_calls": 1,
+      "unit_consumptions": 1
+    },
+    {
+      "mode": "NORMAL",
+      "persisted_receipts": 8,
+      "receipt_setter_calls": 24,
+      "cumulative_receipt_entries_passed": 108,
+      "repeat_grants": 0,
+      "actions": 8,
+      "final_message": "CREW CONSUMED | added=250 | wasted=0",
+      "grant_calls": 8,
+      "unit_consumptions": 8
+    },
+    {
+      "mode": "NORMAL",
+      "persisted_receipts": 64,
+      "receipt_setter_calls": 192,
+      "cumulative_receipt_entries_passed": 6240,
+      "repeat_grants": 0,
+      "actions": 64,
+      "final_message": "CREW CONSUMED | added=250 | wasted=0",
+      "grant_calls": 64,
+      "unit_consumptions": 64
+    }
+  ]
+}
