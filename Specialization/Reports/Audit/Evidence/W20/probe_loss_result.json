@@ -1,0 +1,55 @@
+{
+  "lua_version": "Lua 5.5",
+  "script_sha256": "8d2066a1e8830636d93cc23db3c59dbe37dc6dfde511bcccdefa76209b1bdd0c",
+  "sources": {
+    "Mod/CultureInspirationProbe.lua": "addf885d4a10e369e253b1aeaa22b961ba24d81104278320b952ad07b2d03d14",
+    "Mod/CityProgressionStore.lua": "d629655cd709d351e4544e721d9bf6b27256120ec4a5a64a4c9866a9c9ed4e6f",
+    "DevelopmentTests/test_culture_inspiration_probe.py": "5662efffc1a7b0b282968b4014930c1bfb2bd5fad786238cd9768df482d1ee80"
+  },
+  "limits": [
+    "Actual unmodified Probe; native/facts/Store RemoveOwned are controlled stubs, not full Store integration or engine evidence.",
+    "Source-shaped loss matches CityProgressionStore:602; synthetic targetID matches current local-test shape only.",
+    "No permanent writes, native effect reads, memory measurement or native lifecycle PASS."
+  ],
+  "scenarios": [
+    {
+      "ordinary_retained": true,
+      "mode": "PRODUCTION_SHAPE",
+      "end_blocked": true,
+      "carrier_amount_at_exit": 0,
+      "new_city_blocked": true,
+      "stage_after_audit": 1,
+      "stage_at_exit": 1,
+      "carrier_removals_at_exit": 1,
+      "cold_cleanup_stage": -1,
+      "new_city_stage_after_cleanup": 0,
+      "audit_error": "[string \"<python>\"]:80: INSPIRE_CITY_UNKNOWN"
+    },
+    {
+      "ordinary_retained": true,
+      "mode": "SYNTHETIC_TARGET_ID",
+      "end_blocked": false,
+      "carrier_amount_at_exit": 0,
+      "new_city_blocked": false,
+      "stage_after_audit": -1,
+      "stage_at_exit": -1,
+      "carrier_removals_at_exit": 1,
+      "cold_cleanup_stage": -1,
+      "new_city_stage_after_cleanup": 0,
+      "audit_error": ""
+    },
+    {
+      "ordinary_retained": true,
+      "mode": "UNKNOWN_CONTROL",
+      "end_blocked": false,
+      "carrier_amount_at_exit": 0.1,
+      "new_city_blocked": false,
+      "stage_after_audit": 1,
+      "stage_at_exit": 1,
+      "carrier_removals_at_exit": 0,
+      "cold_cleanup_stage": -1,
+      "new_city_stage_after_cleanup": 0,
+      "audit_error": ""
+    }
+  ]
+}

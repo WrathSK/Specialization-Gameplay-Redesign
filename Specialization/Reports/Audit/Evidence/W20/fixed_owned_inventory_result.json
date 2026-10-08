@@ -1,0 +1,63 @@
+{
+  "registered_database_files": 35,
+  "literal_types": 1739,
+  "literal_buildings": 1720,
+  "families": {
+    "Support": 3,
+    "Lv2Housing": 9,
+    "Lv2GPP": 32,
+    "Lv3SupportRetired": 12,
+    "Lv3Effects": 11,
+    "Lv4PercentRetired": 8,
+    "IndustrySupport": 9,
+    "CrewProjects": 1,
+    "ResearchInfrastructure": 52,
+    "ResearchCross": 43,
+    "Apply": 25,
+    "Tradition": 5,
+    "Copy": 40,
+    "Half": 32,
+    "Boost": 1126,
+    "DialogueTests": 3,
+    "GreatWorkProbe": 2,
+    "PurchaseProbe": 2,
+    "GWARetired": 156,
+    "Meaning": 92,
+    "Aesthetic": 1,
+    "Inspiration": 4,
+    "Claim": 4,
+    "Convergence": 48
+  },
+  "expected_fixed_unique": 1720,
+  "bad_or_missing": [],
+  "duplicates_types": [],
+  "duplicates_buildings": [],
+  "fixed_family_overlaps": [],
+  "dynamic_type_building_statements": [
+    [
+      "Data/ResearchChair.sql",
+      "Types"
+    ],
+    [
+      "Data/ResearchChair.sql",
+      "Buildings"
+    ],
+    [
+      "Data/StandardizationDiscount.sql",
+      "Types"
+    ],
+    [
+      "Data/StandardizationDiscount.sql",
+      "Buildings"
+    ],
+    [
+      "Data/Dialogue.sql",
+      "Types"
+    ],
+    [
+      "Data/Dialogue.sql",
+      "Buildings"
+    ]
+  ],
+  "literal_buildings_outside_fixed_set": []
+}

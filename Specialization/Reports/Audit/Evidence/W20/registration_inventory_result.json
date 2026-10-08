@@ -1,0 +1,3161 @@
+{
+  "head": "06a7300010baae8dc8bfe2ffc7097af83497ec16",
+  "limits": [
+    "Literal structural includes include branch-limited/manual paths; not runtime execution reachability.",
+    "XML paired Lua candidates and external game/mod includes require manual contract review.",
+    "SQL source availability is not loaded catalog, native effect or cleanup proof."
+  ],
+  "modinfo_sha256": "5f85a57aec856407e0f886e10f15cb3667c50f27178ecd21a8388110502499c5",
+  "registered_count": 185,
+  "duplicate_files": 0,
+  "missing_files": [],
+  "actions": [
+    {
+      "group": "FrontEndActions",
+      "kind": "UpdateText",
+      "id": "SPC_FE_Text",
+      "files": [
+        "Text/TestText.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "FrontEndActions",
+      "kind": "UpdateIcons",
+      "id": "SPC_FE_Icons",
+      "files": [
+        "Data/Icons.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "FrontEndActions",
+      "kind": "UpdateColors",
+      "id": "SPC_FE_Colors",
+      "files": [
+        "Data/Colors.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "FrontEndActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_FE_Identity",
+      "files": [
+        "Config/Players.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_CultureInspirationProbe",
+      "files": [
+        "Data/CultureInspirationProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001031"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_CultureMeaningProbe",
+      "files": [
+        "Data/CultureMeaningProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001030"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_CultureAesthetic",
+      "files": [
+        "Data/CultureAesthetic.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001030"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_ResearchTradition",
+      "files": [
+        "Data/ResearchTradition.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000007"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_ClaimProjects",
+      "files": [
+        "Data/ClaimProjects.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000006"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateText",
+      "id": "SPC_ClaimText",
+      "files": [
+        "Text/ClaimProjects.sql"
+      ],
+      "properties": {}
+    },
+    {
+      "group": "InGameActions",
+      "kind": "ReplaceUIScript",
+      "id": "SPC_TimedProjectCityPanel",
+      "files": [],
+      "properties": {
+        "LoadOrder": "2000005",
+        "LuaContext": "CityPanel",
+        "LuaReplace": "UI/TimedProjectCityPanel.lua"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_OverflowSinkTest",
+      "files": [
+        "Data/OverflowSinkTest.sql"
+      ],
+      "properties": {}
+    },
+    {
+      "group": "InGameActions",
+      "kind": "ReplaceUIScript",
+      "id": "SPC_TimedTurnProbe",
+      "files": [],
+      "properties": {
+        "LoadOrder": "2000004",
+        "LuaContext": "ActionPanel",
+        "LuaReplace": "UI/TimedTurnProbe.lua"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "ReplaceUIScript",
+      "id": "SPC_InstitutionOverview",
+      "files": [],
+      "properties": {
+        "LoadOrder": "2000003",
+        "LuaContext": "CityPanelOverview",
+        "LuaReplace": "UI/InstitutionOverview.lua"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_Institutions",
+      "files": [
+        "UI/Institutions.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_ResearchChair",
+      "files": [
+        "Data/ResearchChair.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_ResearchApply",
+      "files": [
+        "Data/ResearchApply.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_ResearchCross",
+      "files": [
+        "Data/ResearchCross.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_ResearchCrossRefresh",
+      "files": [
+        "UI/ResearchCrossRefresh.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B082_DistrictPrecision",
+      "files": [
+        "Data/DistrictPrecisionProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_RuntimeAudit",
+      "files": [
+        "UI/RuntimeAudit.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B054_Discounts",
+      "files": [
+        "Data/StandardizationDiscount.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000001"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B054_Eligibility",
+      "files": [
+        "UI/DiscountEligibility.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B053_Purchase",
+      "files": [
+        "Data/PurchaseProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B051_Copy",
+      "files": [
+        "Data/CopyYields.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B051_Background",
+      "files": [
+        "UI/CopyYieldRefresh.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B050_Half",
+      "files": [
+        "Data/HalfYieldProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "ImportFiles",
+      "id": "SPCP0_Common",
+      "files": [
+        "OverflowStorageProbe.lua",
+        "UI/OverflowStorageRead.lua",
+        "TimedProductionProbe.lua",
+        "ProjectTurnObservation.lua",
+        "ClaimProjects.lua",
+        "UI/ClaimProjectUI.lua",
+        "TimedProject.lua",
+        "UI/TimedProjectRead.lua",
+        "UI/TimedProjectDisplay.lua",
+        "UI/TimedProjectSelection.lua",
+        "UI/CityBannerManager_SPC_TimedProject.lua",
+        "UI/TimedProjectCityPanel.lua",
+        "UI/ProjectTurnRead.lua",
+        "UI/TimedTurnProbe.lua",
+        "CityIdentityExperiment.lua",
+        "CityIdentityMapping.lua",
+        "UI/CityIdentityEvidence.lua",
+        "CityProgressionStore.lua",
+        "ResearchTradition.lua",
+        "ResearchTraditionEffects.lua",
+        "CitySequenceProbe.lua",
+        "CityIdentityRead.lua",
+        "InstitutionPresentation.lua",
+        "UI/InstitutionOverview.lua",
+        "UI/Institutions.lua",
+        "UI/Institutions.xml",
+        "PerformanceCounters.lua",
+        "RuntimeAuditCore.lua",
+        "UI/RuntimeAudit.lua",
+        "UI/RuntimeAudit.xml",
+        "StandardizationDiscount.lua",
+        "UI/DiscountEligibility.lua",
+        "UI/DiscountEligibility.xml",
+        "PurchaseProbe.lua",
+        "PurchaseProbeRead.lua",
+        "StandardizationCatalog.lua",
+        "Standardization.lua",
+        "CopyYields.lua",
+        "SampleLifecycle.lua",
+        "RuntimeWork.lua",
+        "OrdinaryBuildingCatalog.lua",
+        "DistrictCompleteness.lua",
+        "CurrentSpecializationFacts.lua",
+        "ResearchInfrastructureShadow.lua",
+        "ResearchInfrastructure.lua",
+        "ResearchCrossModel.lua",
+        "ResearchCrossSample.lua",
+        "ResearchCross.lua",
+        "ResearchApplyModel.lua",
+        "ResearchApply.lua",
+        "ResearchChairModel.lua",
+        "ResearchChair.lua",
+        "UI/ResearchCrossRefresh.lua",
+        "UI/ResearchCrossRefresh.xml",
+        "UI/CopyYieldRefresh.lua",
+        "UI/CopyYieldRefresh.xml",
+        "HalfYieldProbe.lua",
+        "DistrictPrecisionProbe.lua",
+        "DistrictPrecisionRead.lua",
+        "Lv4CopyRead.lua",
+        "Probe.lua",
+        "TradeRouteProbe.lua",
+        "CompletionProbe.lua",
+        "StorageProbe.lua",
+        "EnvelopeProbe.lua",
+        "FreshBindingHook.lua",
+        "CityFlowProbe.lua",
+        "ResearchSupport.lua",
+        "SpecialistSupport.lua",
+        "IndustrySupport.lua",
+        "UI/IndustryRefresh.lua",
+        "UI/IndustryRefresh.xml",
+        "Lv2Housing.lua",
+        "Lv2GPP.lua",
+        "Lv3Support.lua",
+        "Lv3Effects.lua",
+        "ConstructionProbe.lua",
+        "GPPReadout.lua",
+        "InvestmentAction.lua",
+        "EffectiveFacts.lua",
+        "NetworkBridge.lua",
+        "NetworkIsolation.lua",
+        "NetworkInput.lua",
+        "NetworkSender.lua",
+        "BindingProbe.lua",
+        "CompletionRecordProbe.lua",
+        "CityJournalProbe.lua",
+        "EligibilityProbe.lua",
+        "QualificationProbe.lua",
+        "ShadowRouteState.lua",
+        "SourceYieldProbe.lua",
+        "CommerceConvergence.lua",
+        "CityInheritanceRead.lua",
+        "InheritanceShadow.lua",
+        "CityInheritance.lua",
+        "YieldCarrierProbe.lua",
+        "UnitActionSitePolicy.lua",
+        "UnitSiteProbe.lua",
+        "UnitTargets.lua",
+        "UnitActions.lua",
+        "CrewProjects.lua",
+        "CrewPrecision.lua",
+        "Lv4Percent.lua",
+        "BoostConfig.lua",
+        "NetworkBoost.lua",
+        "GreatWorkProbe.lua",
+        "UI/BoostGreatWorkRead.lua",
+        "UI/BoostRefresh.lua",
+        "UI/BoostRefresh.xml",
+        "BoostIntegerConfig.lua",
+        "UI/GreatWorkBasis.lua",
+        "GreatWorkCatalog.lua",
+        "GreatWorkFacts.lua",
+        "CultureMeaningModel.lua",
+        "CultureMeaningProbe.lua",
+        "CultureMeaning.lua",
+        "CultureInspirationProbe.lua",
+        "InspirationReadout.lua",
+        "CultureAestheticModel.lua",
+        "CultureAesthetic.lua",
+        "DialogueModel.lua",
+        "GreatWorkAdjacencyModel.lua",
+        "GreatWorkAdjacency.lua",
+        "Dialogue.lua",
+        "UI/CityPotential.lua",
+        "DiagnosticLog.lua"
+      ],
+      "properties": {}
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B029_Carrier",
+      "files": [
+        "Data/YieldCarrierProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1100"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B034_Housing",
+      "files": [
+        "Data/Lv2Housing.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1200"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B036_IndustryRefresh",
+      "files": [
+        "UI/IndustryRefresh.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B038_Lv3Effects",
+      "files": [
+        "Data/Lv3Effects.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001003"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B037_Lv3Support",
+      "files": [
+        "Data/Lv3Support.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B036_Industry",
+      "files": [
+        "Data/IndustrySupport.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001001"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B035_GPP",
+      "files": [
+        "Data/Lv2GPP.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B035_GPPRefresh",
+      "files": [
+        "UI/GPPRefresh.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddGameplayScripts",
+      "id": "SPCP0_Gameplay",
+      "files": [
+        "Gameplay.lua"
+      ],
+      "properties": {}
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPCP0_UI",
+      "files": [
+        "UI/P0Panel.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPCP0_BackgroundRoutes",
+      "files": [
+        "UI/BackgroundRoutes.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateText",
+      "id": "SPC_IG_Text",
+      "files": [
+        "Text/TestText.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateIcons",
+      "id": "SPC_IG_Icons",
+      "files": [
+        "Data/Icons.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateColors",
+      "id": "SPC_IG_Colors",
+      "files": [
+        "Data/Colors.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_IG_Identity",
+      "files": [
+        "Data/Identity.sql",
+        "Data/GovernorProbe.sql",
+        "Data/ResearchSupport.sql",
+        "Data/ConstantSupport.sql"
+      ],
+      "properties": {
+        "LoadOrder": "1000"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B068_CityPotential",
+      "files": [
+        "UI/CityPotential.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B040_UnitSites",
+      "files": [
+        "UI/UnitSites.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B041_TargetMarkers",
+      "files": [
+        "UI/UnitTargetMarkers.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B042_Crew",
+      "files": [
+        "Data/Crew.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001004"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateArt",
+      "id": "SPC_B042_CrewArt",
+      "files": [
+        "Specialization.dep"
+      ],
+      "properties": {
+        "LoadOrder": "10001004"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B043_UnitPanelActions",
+      "files": [
+        "UI/UnitPanelActions.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B044_CrewProjects",
+      "files": [
+        "Data/CrewProjects.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001005"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "ReplaceUIScript",
+      "id": "SPC_B046_ProjectOrder",
+      "files": [],
+      "properties": {
+        "LoadOrder": "150100",
+        "LuaContext": "ProductionPanel",
+        "LuaReplace": "UI/CrewProjectOrder.lua"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_P0C_ResearchInfrastructure",
+      "files": [
+        "Data/ResearchInfrastructure.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001020"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B048_Lv4Percent",
+      "files": [
+        "Data/Lv4Percent.sql"
+      ],
+      "properties": {
+        "LoadOrder": "10001006"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B055_Boost",
+      "files": [
+        "Data/NetworkBoost.sql",
+        "Data/BoostIntegerTest.sql",
+        "Data/NetworkBoostInteger.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B055_GW",
+      "files": [
+        "Data/GreatWorkProbe.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000002"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B055_Background",
+      "files": [
+        "UI/BoostRefresh.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B062_Commerce",
+      "files": [
+        "Data/CommerceConvergence.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000005"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B060_Adjacency",
+      "files": [
+        "Data/GreatWorkAdjacency.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000004"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "UpdateDatabase",
+      "id": "SPC_B059_Dialogue",
+      "files": [
+        "Data/Dialogue.sql"
+      ],
+      "properties": {
+        "LoadOrder": "2000003"
+      }
+    },
+    {
+      "group": "InGameActions",
+      "kind": "AddUserInterfaces",
+      "id": "SPC_B059_Dialogue",
+      "files": [
+        "UI/DialogueRefresh.xml"
+      ],
+      "properties": {
+        "Context": "InGame"
+      }
+    }
+  ],
+  "roots": [
+    "Gameplay.lua",
+    "UI/BackgroundRoutes.lua",
+    "UI/BoostRefresh.lua",
+    "UI/CityPotential.lua",
+    "UI/CopyYieldRefresh.lua",
+    "UI/CrewProjectOrder.lua",
+    "UI/DialogueRefresh.lua",
+    "UI/DiscountEligibility.lua",
+    "UI/GPPRefresh.lua",
+    "UI/IndustryRefresh.lua",
+    "UI/InstitutionOverview.lua",
+    "UI/Institutions.lua",
+    "UI/P0Panel.lua",
+    "UI/ResearchCrossRefresh.lua",
+    "UI/RuntimeAudit.lua",
+    "UI/TimedProjectCityPanel.lua",
+    "UI/TimedTurnProbe.lua",
+    "UI/UnitPanelActions.lua",
+    "UI/UnitSites.lua",
+    "UI/UnitTargetMarkers.lua"
+  ],
+  "literal_candidates_reachable": [
+    "BindingProbe.lua",
+    "BoostConfig.lua",
+    "BoostIntegerConfig.lua",
+    "CityFlowProbe.lua",
+    "CityIdentityExperiment.lua",
+    "CityIdentityMapping.lua",
+    "CityIdentityRead.lua",
+    "CityJournalProbe.lua",
+    "CityProgressionStore.lua",
+    "CitySequenceProbe.lua",
+    "ClaimProjects.lua",
+    "CommerceConvergence.lua",
+    "CompletionProbe.lua",
+    "CompletionRecordProbe.lua",
+    "ConstructionProbe.lua",
+    "CopyYields.lua",
+    "CrewPrecision.lua",
+    "CrewProjects.lua",
+    "CultureAesthetic.lua",
+    "CultureAestheticModel.lua",
+    "CultureInspirationProbe.lua",
+    "CultureMeaning.lua",
+    "CultureMeaningModel.lua",
+    "CurrentSpecializationFacts.lua",
+    "DiagnosticLog.lua",
+    "Dialogue.lua",
+    "DialogueModel.lua",
+    "DistrictCompleteness.lua",
+    "EffectiveFacts.lua",
+    "EligibilityProbe.lua",
+    "EnvelopeProbe.lua",
+    "FreshBindingHook.lua",
+    "GPPReadout.lua",
+    "Gameplay.lua",
+    "GreatWorkAdjacency.lua",
+    "GreatWorkAdjacencyModel.lua",
+    "GreatWorkCatalog.lua",
+    "GreatWorkFacts.lua",
+    "GreatWorkProbe.lua",
+    "HalfYieldProbe.lua",
+    "IndustrySupport.lua",
+    "InspirationReadout.lua",
+    "InstitutionPresentation.lua",
+    "InvestmentAction.lua",
+    "Lv2GPP.lua",
+    "Lv2Housing.lua",
+    "Lv3Effects.lua",
+    "Lv3Support.lua",
+    "Lv4CopyRead.lua",
+    "Lv4Percent.lua",
+    "NetworkBoost.lua",
+    "NetworkBridge.lua",
+    "NetworkInput.lua",
+    "NetworkIsolation.lua",
+    "NetworkSender.lua",
+    "OrdinaryBuildingCatalog.lua",
+    "OverflowStorageProbe.lua",
+    "PerformanceCounters.lua",
+    "Probe.lua",
+    "ProjectTurnObservation.lua",
+    "PurchaseProbe.lua",
+    "PurchaseProbeRead.lua",
+    "QualificationProbe.lua",
+    "ResearchApply.lua",
+    "ResearchApplyModel.lua",
+    "ResearchChair.lua",
+    "ResearchChairModel.lua",
+    "ResearchCross.lua",
+    "ResearchCrossModel.lua",
+    "ResearchCrossSample.lua",
+    "ResearchInfrastructure.lua",
+    "ResearchInfrastructureShadow.lua",
+    "ResearchSupport.lua",
+    "ResearchTradition.lua",
+    "ResearchTraditionEffects.lua",
+    "RuntimeAuditCore.lua",
+    "RuntimeWork.lua",
+    "SampleLifecycle.lua",
+    "ShadowRouteState.lua",
+    "SourceYieldProbe.lua",
+    "SpecialistSupport.lua",
+    "Standardization.lua",
+    "StandardizationCatalog.lua",
+    "StandardizationDiscount.lua",
+    "StorageProbe.lua",
+    "TimedProductionProbe.lua",
+    "TimedProject.lua",
+    "TradeRouteProbe.lua",
+    "UI/BackgroundRoutes.lua",
+    "UI/BoostGreatWorkRead.lua",
+    "UI/BoostRefresh.lua",
+    "UI/CityIdentityEvidence.lua",
+    "UI/CityPotential.lua",
+    "UI/ClaimProjectUI.lua",
+    "UI/CopyYieldRefresh.lua",
+    "UI/CrewProjectOrder.lua",
+    "UI/DialogueRefresh.lua",
+    "UI/DiscountEligibility.lua",
+    "UI/GPPRefresh.lua",
+    "UI/IndustryRefresh.lua",
+    "UI/InstitutionOverview.lua",
+    "UI/Institutions.lua",
+    "UI/OverflowStorageRead.lua",
+    "UI/P0Panel.lua",
+    "UI/ProjectTurnRead.lua",
+    "UI/ResearchCrossRefresh.lua",
+    "UI/RuntimeAudit.lua",
+    "UI/TimedProjectCityPanel.lua",
+    "UI/TimedProjectDisplay.lua",
+    "UI/TimedProjectRead.lua",
+    "UI/TimedProjectSelection.lua",
+    "UI/TimedTurnProbe.lua",
+    "UI/UnitPanelActions.lua",
+    "UI/UnitSites.lua",
+    "UI/UnitTargetMarkers.lua",
+    "UnitActionSitePolicy.lua",
+    "UnitActions.lua",
+    "UnitSiteProbe.lua",
+    "UnitTargets.lua",
+    "YieldCarrierProbe.lua"
+  ],
+  "registered_lua_outside_literal_candidates": [
+    "CityInheritance.lua",
+    "CityInheritanceRead.lua",
+    "CultureMeaningProbe.lua",
+    "DistrictPrecisionProbe.lua",
+    "DistrictPrecisionRead.lua",
+    "InheritanceShadow.lua",
+    "UI/CityBannerManager_SPC_TimedProject.lua",
+    "UI/GreatWorkBasis.lua"
+  ],
+  "includes": [
+    {
+      "file": "CultureMeaningProbe.lua",
+      "line": 1,
+      "name": "CultureMeaningModel",
+      "candidates": [
+        "CultureMeaningModel.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaningProbe.lua",
+      "line": 2,
+      "name": "GreatWorkCatalog",
+      "candidates": [
+        "GreatWorkCatalog.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaningProbe.lua",
+      "line": 3,
+      "name": "CurrentSpecializationFacts",
+      "candidates": [
+        "CurrentSpecializationFacts.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaningProbe.lua",
+      "line": 4,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 1,
+      "name": "CultureMeaningModel",
+      "candidates": [
+        "CultureMeaningModel.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 2,
+      "name": "GreatWorkCatalog",
+      "candidates": [
+        "GreatWorkCatalog.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 3,
+      "name": "CurrentSpecializationFacts",
+      "candidates": [
+        "CurrentSpecializationFacts.lua"
+      ]
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 4,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "CultureInspirationProbe.lua",
+      "line": 1,
+      "name": "CurrentSpecializationFacts",
+      "candidates": [
+        "CurrentSpecializationFacts.lua"
+      ]
+    },
+    {
+      "file": "CultureInspirationProbe.lua",
+      "line": 2,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "InspirationReadout.lua",
+      "line": 1,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "CultureAesthetic.lua",
+      "line": 1,
+      "name": "CultureAestheticModel",
+      "candidates": [
+        "CultureAestheticModel.lua"
+      ]
+    },
+    {
+      "file": "CultureAesthetic.lua",
+      "line": 2,
+      "name": "CurrentSpecializationFacts",
+      "candidates": [
+        "CurrentSpecializationFacts.lua"
+      ]
+    },
+    {
+      "file": "CultureAesthetic.lua",
+      "line": 3,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "UI/TimedProjectDisplay.lua",
+      "line": 1,
+      "name": "ClaimProjectUI",
+      "candidates": [
+        "UI/ClaimProjectUI.lua"
+      ]
+    },
+    {
+      "file": "UI/CityBannerManager_SPC_TimedProject.lua",
+      "line": 2,
+      "name": "TimedProjectDisplay",
+      "candidates": [
+        "UI/TimedProjectDisplay.lua"
+      ]
+    },
+    {
+      "file": "UI/TimedProjectCityPanel.lua",
+      "line": 2,
+      "name": "DL_CityPanel",
+      "candidates": []
+    },
+    {
+      "file": "UI/TimedProjectCityPanel.lua",
+      "line": 3,
+      "name": "TimedProjectDisplay",
+      "candidates": [
+        "UI/TimedProjectDisplay.lua"
+      ]
+    },
+    {
+      "file": "UI/TimedTurnProbe.lua",
+      "line": 2,
+      "name": "HD_ActionPanel",
+      "candidates": []
+    },
+    {
+      "file": "UI/TimedTurnProbe.lua",
+      "line": 3,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "CityProgressionStore.lua",
+      "line": 1,
+      "name": "ResearchTradition",
+      "candidates": [
+        "ResearchTradition.lua"
+      ]
+    },
+    {
+      "file": "UI/InstitutionOverview.lua",
+      "line": 3,
+      "name": "DL_CityPanelOverview",
+      "candidates": []
+    },
+    {
+      "file": "UI/InstitutionOverview.lua",
+      "line": 5,
+      "name": "CityPanelOverview_Expansion2",
+      "candidates": []
+    },
+    {
+      "file": "UI/InstitutionOverview.lua",
+      "line": 7,
+      "name": "InstitutionPresentation",
+      "candidates": [
+        "InstitutionPresentation.lua"
+      ]
+    },
+    {
+      "file": "UI/Institutions.lua",
+      "line": 2,
+      "name": "InstanceManager",
+      "candidates": []
+    },
+    {
+      "file": "UI/Institutions.lua",
+      "line": 3,
+      "name": "InstitutionPresentation",
+      "candidates": [
+        "InstitutionPresentation.lua"
+      ]
+    },
+    {
+      "file": "UI/RuntimeAudit.lua",
+      "line": 2,
+      "name": "RuntimeAuditCore",
+      "candidates": [
+        "RuntimeAuditCore.lua"
+      ]
+    },
+    {
+      "file": "UI/DiscountEligibility.lua",
+      "line": 1,
+      "name": "DiagnosticLog",
+      "candidates": [
+        "DiagnosticLog.lua"
+      ]
+    },
+    {
+      "file": "UI/DiscountEligibility.lua",
+      "line": 3,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "CopyYields.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "CopyYields.lua",
+      "line": 2,
+      "name": "SampleLifecycle",
+      "candidates": [
+        "SampleLifecycle.lua"
+      ]
+    },
+    {
+      "file": "ResearchInfrastructure.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "ResearchCrossSample.lua",
+      "line": 1,
+      "name": "SampleLifecycle",
+      "candidates": [
+        "SampleLifecycle.lua"
+      ]
+    },
+    {
+      "file": "ResearchCrossSample.lua",
+      "line": 2,
+      "name": "ResearchCrossModel",
+      "candidates": [
+        "ResearchCrossModel.lua"
+      ]
+    },
+    {
+      "file": "ResearchCross.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "ResearchCross.lua",
+      "line": 2,
+      "name": "ResearchCrossSample",
+      "candidates": [
+        "ResearchCrossSample.lua"
+      ]
+    },
+    {
+      "file": "ResearchApply.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "ResearchApply.lua",
+      "line": 2,
+      "name": "ResearchApplyModel",
+      "candidates": [
+        "ResearchApplyModel.lua"
+      ]
+    },
+    {
+      "file": "ResearchChair.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "ResearchChair.lua",
+      "line": 2,
+      "name": "ResearchChairModel",
+      "candidates": [
+        "ResearchChairModel.lua"
+      ]
+    },
+    {
+      "file": "UI/ResearchCrossRefresh.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/ResearchCrossRefresh.lua",
+      "line": 2,
+      "name": "SampleLifecycle",
+      "candidates": [
+        "SampleLifecycle.lua"
+      ]
+    },
+    {
+      "file": "UI/ResearchCrossRefresh.lua",
+      "line": 3,
+      "name": "ResearchCrossSample",
+      "candidates": [
+        "ResearchCrossSample.lua"
+      ]
+    },
+    {
+      "file": "UI/CopyYieldRefresh.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/CopyYieldRefresh.lua",
+      "line": 2,
+      "name": "SampleLifecycle",
+      "candidates": [
+        "SampleLifecycle.lua"
+      ]
+    },
+    {
+      "file": "UI/GPPRefresh.lua",
+      "line": 1,
+      "name": "DiagnosticLog",
+      "candidates": [
+        "DiagnosticLog.lua"
+      ]
+    },
+    {
+      "file": "UI/GPPRefresh.lua",
+      "line": 4,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "CommerceConvergence.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "Probe.lua",
+      "line": 540,
+      "name": "PerformanceCounters",
+      "candidates": [
+        "PerformanceCounters.lua"
+      ]
+    },
+    {
+      "file": "ResearchSupport.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "ResearchSupport.lua",
+      "line": 2,
+      "name": "SpecialistSupport",
+      "candidates": [
+        "SpecialistSupport.lua"
+      ]
+    },
+    {
+      "file": "IndustrySupport.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "IndustrySupport.lua",
+      "line": 2,
+      "name": "SampleLifecycle",
+      "candidates": [
+        "SampleLifecycle.lua"
+      ]
+    },
+    {
+      "file": "IndustrySupport.lua",
+      "line": 3,
+      "name": "SpecialistSupport",
+      "candidates": [
+        "SpecialistSupport.lua"
+      ]
+    },
+    {
+      "file": "UI/IndustryRefresh.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/IndustryRefresh.lua",
+      "line": 2,
+      "name": "SampleLifecycle",
+      "candidates": [
+        "SampleLifecycle.lua"
+      ]
+    },
+    {
+      "file": "Lv2Housing.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "Lv2Housing.lua",
+      "line": 2,
+      "name": "SpecialistSupport",
+      "candidates": [
+        "SpecialistSupport.lua"
+      ]
+    },
+    {
+      "file": "Lv2GPP.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "Lv2GPP.lua",
+      "line": 2,
+      "name": "SpecialistSupport",
+      "candidates": [
+        "SpecialistSupport.lua"
+      ]
+    },
+    {
+      "file": "Lv3Support.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "Lv3Support.lua",
+      "line": 94,
+      "name": "SpecialistSupport",
+      "candidates": [
+        "SpecialistSupport.lua"
+      ]
+    },
+    {
+      "file": "Lv3Effects.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "NetworkBridge.lua",
+      "line": 2,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 2,
+      "name": "SourceYieldProbe",
+      "candidates": [
+        "SourceYieldProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 3,
+      "name": "Lv4CopyRead",
+      "candidates": [
+        "Lv4CopyRead.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 4,
+      "name": "YieldCarrierProbe",
+      "candidates": [
+        "YieldCarrierProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 639,
+      "name": "TradeRouteProbe",
+      "candidates": [
+        "TradeRouteProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 642,
+      "name": "CompletionProbe",
+      "candidates": [
+        "CompletionProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 645,
+      "name": "StorageProbe",
+      "candidates": [
+        "StorageProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 648,
+      "name": "CityIdentityRead",
+      "candidates": [
+        "CityIdentityRead.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 649,
+      "name": "CitySequenceProbe",
+      "candidates": [
+        "CitySequenceProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 652,
+      "name": "CityProgressionStore",
+      "candidates": [
+        "CityProgressionStore.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 656,
+      "name": "BindingProbe",
+      "candidates": [
+        "BindingProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 659,
+      "name": "CompletionRecordProbe",
+      "candidates": [
+        "CompletionRecordProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 662,
+      "name": "CityJournalProbe",
+      "candidates": [
+        "CityJournalProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 665,
+      "name": "EligibilityProbe",
+      "candidates": [
+        "EligibilityProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 668,
+      "name": "QualificationProbe",
+      "candidates": [
+        "QualificationProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 671,
+      "name": "EnvelopeProbe",
+      "candidates": [
+        "EnvelopeProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 674,
+      "name": "FreshBindingHook",
+      "candidates": [
+        "FreshBindingHook.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 675,
+      "name": "CityFlowProbe",
+      "candidates": [
+        "CityFlowProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 678,
+      "name": "EffectiveFacts",
+      "candidates": [
+        "EffectiveFacts.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 681,
+      "name": "ResearchTraditionEffects",
+      "candidates": [
+        "ResearchTraditionEffects.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 684,
+      "name": "OrdinaryBuildingCatalog",
+      "candidates": [
+        "OrdinaryBuildingCatalog.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 685,
+      "name": "DistrictCompleteness",
+      "candidates": [
+        "DistrictCompleteness.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 686,
+      "name": "CurrentSpecializationFacts",
+      "candidates": [
+        "CurrentSpecializationFacts.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 687,
+      "name": "ResearchInfrastructureShadow",
+      "candidates": [
+        "ResearchInfrastructureShadow.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 690,
+      "name": "InvestmentAction",
+      "candidates": [
+        "InvestmentAction.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 693,
+      "name": "ResearchSupport",
+      "candidates": [
+        "ResearchSupport.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 695,
+      "name": "Lv2Housing",
+      "candidates": [
+        "Lv2Housing.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 697,
+      "name": "Lv2GPP",
+      "candidates": [
+        "Lv2GPP.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 700,
+      "name": "NetworkBridge",
+      "candidates": [
+        "NetworkBridge.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 703,
+      "name": "IndustrySupport",
+      "candidates": [
+        "IndustrySupport.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 706,
+      "name": "Lv3Support",
+      "candidates": [
+        "Lv3Support.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 709,
+      "name": "Lv3Effects",
+      "candidates": [
+        "Lv3Effects.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 712,
+      "name": "ConstructionProbe",
+      "candidates": [
+        "ConstructionProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 715,
+      "name": "UnitActionSitePolicy",
+      "candidates": [
+        "UnitActionSitePolicy.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 716,
+      "name": "UnitSiteProbe",
+      "candidates": [
+        "UnitSiteProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 719,
+      "name": "UnitTargets",
+      "candidates": [
+        "UnitTargets.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 722,
+      "name": "UnitActions",
+      "candidates": [
+        "UnitActions.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 725,
+      "name": "CrewProjects",
+      "candidates": [
+        "CrewProjects.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 728,
+      "name": "CrewPrecision",
+      "candidates": [
+        "CrewPrecision.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 731,
+      "name": "Lv4Percent",
+      "candidates": [
+        "Lv4Percent.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 733,
+      "name": "ResearchInfrastructure",
+      "candidates": [
+        "ResearchInfrastructure.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 736,
+      "name": "ResearchCross",
+      "candidates": [
+        "ResearchCross.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 738,
+      "name": "ResearchApply",
+      "candidates": [
+        "ResearchApply.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 740,
+      "name": "ResearchChair",
+      "candidates": [
+        "ResearchChair.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 742,
+      "name": "HalfYieldProbe",
+      "candidates": [
+        "HalfYieldProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 745,
+      "name": "CopyYields",
+      "candidates": [
+        "CopyYields.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 748,
+      "name": "StandardizationCatalog",
+      "candidates": [
+        "StandardizationCatalog.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 749,
+      "name": "Standardization",
+      "candidates": [
+        "Standardization.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 752,
+      "name": "PurchaseProbe",
+      "candidates": [
+        "PurchaseProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 755,
+      "name": "StandardizationDiscount",
+      "candidates": [
+        "StandardizationDiscount.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 758,
+      "name": "NetworkBoost",
+      "candidates": [
+        "NetworkBoost.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 760,
+      "name": "GreatWorkProbe",
+      "candidates": [
+        "GreatWorkProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 763,
+      "name": "GreatWorkFacts",
+      "candidates": [
+        "GreatWorkFacts.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 765,
+      "name": "CultureAesthetic",
+      "candidates": [
+        "CultureAesthetic.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 768,
+      "name": "Dialogue",
+      "candidates": [
+        "Dialogue.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 771,
+      "name": "GreatWorkAdjacency",
+      "candidates": [
+        "GreatWorkAdjacency.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 773,
+      "name": "CultureMeaning",
+      "candidates": [
+        "CultureMeaning.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 775,
+      "name": "CultureInspirationProbe",
+      "candidates": [
+        "CultureInspirationProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 778,
+      "name": "CommerceConvergence",
+      "candidates": [
+        "CommerceConvergence.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 788,
+      "name": "ClaimProjects",
+      "candidates": [
+        "ClaimProjects.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 797,
+      "name": "CityIdentityExperiment",
+      "candidates": [
+        "CityIdentityExperiment.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 798,
+      "name": "CityIdentityMapping",
+      "candidates": [
+        "CityIdentityMapping.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 801,
+      "name": "TimedProductionProbe",
+      "candidates": [
+        "TimedProductionProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 804,
+      "name": "OverflowStorageProbe",
+      "candidates": [
+        "OverflowStorageProbe.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 807,
+      "name": "ProjectTurnObservation",
+      "candidates": [
+        "ProjectTurnObservation.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 809,
+      "name": "TimedProject",
+      "candidates": [
+        "TimedProject.lua"
+      ]
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 812,
+      "name": "NetworkIsolation",
+      "candidates": [
+        "NetworkIsolation.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 1,
+      "name": "OverflowStorageRead",
+      "candidates": [
+        "UI/OverflowStorageRead.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 2,
+      "name": "BoostGreatWorkRead",
+      "candidates": [
+        "UI/BoostGreatWorkRead.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 3,
+      "name": "PurchaseProbeRead",
+      "candidates": [
+        "PurchaseProbeRead.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 4,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 5,
+      "name": "GPPReadout",
+      "candidates": [
+        "GPPReadout.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 6,
+      "name": "InspirationReadout",
+      "candidates": [
+        "InspirationReadout.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 7,
+      "name": "Lv4CopyRead",
+      "candidates": [
+        "Lv4CopyRead.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 8,
+      "name": "CityIdentityEvidence",
+      "candidates": [
+        "UI/CityIdentityEvidence.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 588,
+      "name": "ProjectTurnRead",
+      "candidates": [
+        "UI/ProjectTurnRead.lua"
+      ]
+    },
+    {
+      "file": "UI/P0Panel.lua",
+      "line": 591,
+      "name": "TimedProjectRead",
+      "candidates": [
+        "UI/TimedProjectRead.lua"
+      ]
+    },
+    {
+      "file": "UI/BackgroundRoutes.lua",
+      "line": 2,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/BackgroundRoutes.lua",
+      "line": 3,
+      "name": "ShadowRouteState",
+      "candidates": [
+        "ShadowRouteState.lua"
+      ]
+    },
+    {
+      "file": "UI/BackgroundRoutes.lua",
+      "line": 6,
+      "name": "NetworkSender",
+      "candidates": [
+        "NetworkSender.lua"
+      ]
+    },
+    {
+      "file": "UI/UnitSites.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/UnitTargetMarkers.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/CityPotential.lua",
+      "line": 2,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/UnitPanelActions.lua",
+      "line": 1,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "CrewProjects.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "UI/CrewProjectOrder.lua",
+      "line": 2,
+      "name": "DL_ProductionPanel",
+      "candidates": []
+    },
+    {
+      "file": "UI/CrewProjectOrder.lua",
+      "line": 3,
+      "name": "TimedProjectDisplay",
+      "candidates": [
+        "UI/TimedProjectDisplay.lua"
+      ]
+    },
+    {
+      "file": "UI/CrewProjectOrder.lua",
+      "line": 41,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/CrewProjectOrder.lua",
+      "line": 42,
+      "name": "ProjectTurnRead",
+      "candidates": [
+        "UI/ProjectTurnRead.lua"
+      ]
+    },
+    {
+      "file": "UI/CrewProjectOrder.lua",
+      "line": 43,
+      "name": "TimedProjectSelection",
+      "candidates": [
+        "UI/TimedProjectSelection.lua"
+      ]
+    },
+    {
+      "file": "UI/CrewProjectOrder.lua",
+      "line": 44,
+      "name": "ClaimProjectUI",
+      "candidates": [
+        "UI/ClaimProjectUI.lua"
+      ]
+    },
+    {
+      "file": "NetworkBoost.lua",
+      "line": 1,
+      "name": "RuntimeWork",
+      "candidates": [
+        "RuntimeWork.lua"
+      ]
+    },
+    {
+      "file": "NetworkBoost.lua",
+      "line": 3,
+      "name": "BoostConfig",
+      "candidates": [
+        "BoostConfig.lua"
+      ]
+    },
+    {
+      "file": "NetworkBoost.lua",
+      "line": 4,
+      "name": "BoostIntegerConfig",
+      "candidates": [
+        "BoostIntegerConfig.lua"
+      ]
+    },
+    {
+      "file": "UI/BoostGreatWorkRead.lua",
+      "line": 2,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "UI/BoostGreatWorkRead.lua",
+      "line": 346,
+      "name": "CultureMeaningModel",
+      "candidates": [
+        "CultureMeaningModel.lua"
+      ]
+    },
+    {
+      "file": "UI/BoostRefresh.lua",
+      "line": 1,
+      "name": "DiagnosticLog",
+      "candidates": [
+        "DiagnosticLog.lua"
+      ]
+    },
+    {
+      "file": "UI/BoostRefresh.lua",
+      "line": 4,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "GreatWorkFacts.lua",
+      "line": 2,
+      "name": "GreatWorkCatalog",
+      "candidates": [
+        "GreatWorkCatalog.lua"
+      ]
+    },
+    {
+      "file": "GreatWorkFacts.lua",
+      "line": 3,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "GreatWorkAdjacency.lua",
+      "line": 1,
+      "name": "GreatWorkAdjacencyModel",
+      "candidates": [
+        "GreatWorkAdjacencyModel.lua"
+      ]
+    },
+    {
+      "file": "Dialogue.lua",
+      "line": 1,
+      "name": "DialogueModel",
+      "candidates": [
+        "DialogueModel.lua"
+      ]
+    },
+    {
+      "file": "Dialogue.lua",
+      "line": 2,
+      "name": "NetworkInput",
+      "candidates": [
+        "NetworkInput.lua"
+      ]
+    },
+    {
+      "file": "UI/DialogueRefresh.lua",
+      "line": 1,
+      "name": "DiagnosticLog",
+      "candidates": [
+        "DiagnosticLog.lua"
+      ]
+    },
+    {
+      "file": "UI/DialogueRefresh.lua",
+      "line": 3,
+      "name": "Probe",
+      "candidates": [
+        "Probe.lua"
+      ]
+    },
+    {
+      "file": "UI/DialogueRefresh.lua",
+      "line": 4,
+      "name": "DialogueModel",
+      "candidates": [
+        "DialogueModel.lua"
+      ]
+    },
+    {
+      "file": "UI/DialogueRefresh.lua",
+      "line": 5,
+      "name": "GreatWorkAdjacencyModel",
+      "candidates": [
+        "GreatWorkAdjacencyModel.lua"
+      ]
+    },
+    {
+      "file": "UI/DialogueRefresh.lua",
+      "line": 6,
+      "name": "GreatWorkFacts",
+      "candidates": [
+        "GreatWorkFacts.lua"
+      ]
+    }
+  ],
+  "nonliteral_include_files": [],
+  "start_call_locations": [
+    {
+      "file": "CultureMeaningProbe.lua",
+      "line": 7,
+      "symbol": "SPCCultureMeaningProbe"
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 7,
+      "symbol": "SPCCultureMeaning"
+    },
+    {
+      "file": "CultureInspirationProbe.lua",
+      "line": 5,
+      "symbol": "SPCCultureInspirationProbe"
+    },
+    {
+      "file": "OverflowStorageProbe.lua",
+      "line": 3,
+      "symbol": "SPCOverflowStorageProbe"
+    },
+    {
+      "file": "TimedProductionProbe.lua",
+      "line": 3,
+      "symbol": "SPCTimedProductionProbe"
+    },
+    {
+      "file": "ProjectTurnObservation.lua",
+      "line": 3,
+      "symbol": "SPCProjectTurnObservation"
+    },
+    {
+      "file": "ClaimProjects.lua",
+      "line": 3,
+      "symbol": "SPCClaimProjects"
+    },
+    {
+      "file": "TimedProject.lua",
+      "line": 3,
+      "symbol": "SPCTimedProject"
+    },
+    {
+      "file": "CityIdentityExperiment.lua",
+      "line": 35,
+      "symbol": "SPCCityIdentityExperiment"
+    },
+    {
+      "file": "CityIdentityMapping.lua",
+      "line": 3,
+      "symbol": "SPCCityIdentityMapping"
+    },
+    {
+      "file": "CityProgressionStore.lua",
+      "line": 636,
+      "symbol": "SPCCityProgressionStore"
+    },
+    {
+      "file": "CityProgressionStore.lua",
+      "line": 1180,
+      "symbol": "SPCCityProgressionStore"
+    },
+    {
+      "file": "CitySequenceProbe.lua",
+      "line": 3,
+      "symbol": "SPCCitySequenceProbe"
+    },
+    {
+      "file": "StandardizationDiscount.lua",
+      "line": 3,
+      "symbol": "SPCStandardizationDiscount"
+    },
+    {
+      "file": "PurchaseProbe.lua",
+      "line": 3,
+      "symbol": "SPCPurchaseProbe"
+    },
+    {
+      "file": "Standardization.lua",
+      "line": 3,
+      "symbol": "SPCStandardization"
+    },
+    {
+      "file": "CopyYields.lua",
+      "line": 15,
+      "symbol": "SPCCopyYields"
+    },
+    {
+      "file": "HalfYieldProbe.lua",
+      "line": 9,
+      "symbol": "SPCHalfYieldProbe"
+    },
+    {
+      "file": "CommerceConvergence.lua",
+      "line": 4,
+      "symbol": "SPCCommerceConvergence"
+    },
+    {
+      "file": "CityInheritanceRead.lua",
+      "line": 3,
+      "symbol": "SPCCityInheritanceRead"
+    },
+    {
+      "file": "InheritanceShadow.lua",
+      "line": 3,
+      "symbol": "SPCInheritanceShadow"
+    },
+    {
+      "file": "CityInheritance.lua",
+      "line": 3,
+      "symbol": "SPCCityInheritance"
+    },
+    {
+      "file": "TradeRouteProbe.lua",
+      "line": 4,
+      "symbol": "SPCTradeRouteProbe"
+    },
+    {
+      "file": "CompletionProbe.lua",
+      "line": 3,
+      "symbol": "SPCCompletionProbe"
+    },
+    {
+      "file": "StorageProbe.lua",
+      "line": 3,
+      "symbol": "SPCStorageProbe"
+    },
+    {
+      "file": "CityFlowProbe.lua",
+      "line": 3,
+      "symbol": "SPCCityFlowProbe"
+    },
+    {
+      "file": "ResearchSupport.lua",
+      "line": 5,
+      "symbol": "SPCResearchSupport"
+    },
+    {
+      "file": "IndustrySupport.lua",
+      "line": 7,
+      "symbol": "SPCIndustrySupport"
+    },
+    {
+      "file": "Lv2Housing.lua",
+      "line": 6,
+      "symbol": "SPCLv2Housing"
+    },
+    {
+      "file": "Lv2GPP.lua",
+      "line": 5,
+      "symbol": "SPCLv2GPP"
+    },
+    {
+      "file": "Lv3Support.lua",
+      "line": 95,
+      "symbol": "SPCLv3Support"
+    },
+    {
+      "file": "Lv3Effects.lua",
+      "line": 4,
+      "symbol": "SPCLv3Effects"
+    },
+    {
+      "file": "ConstructionProbe.lua",
+      "line": 3,
+      "symbol": "SPCConstructionProbe"
+    },
+    {
+      "file": "InvestmentAction.lua",
+      "line": 3,
+      "symbol": "SPCInvestmentAction"
+    },
+    {
+      "file": "EffectiveFacts.lua",
+      "line": 3,
+      "symbol": "SPCEffectiveFacts"
+    },
+    {
+      "file": "NetworkBridge.lua",
+      "line": 4,
+      "symbol": "SPCNetworkBridge"
+    },
+    {
+      "file": "NetworkIsolation.lua",
+      "line": 3,
+      "symbol": "SPCNetworkIsolation"
+    },
+    {
+      "file": "BindingProbe.lua",
+      "line": 3,
+      "symbol": "SPCBindingProbe"
+    },
+    {
+      "file": "CompletionRecordProbe.lua",
+      "line": 3,
+      "symbol": "SPCCompletionRecordProbe"
+    },
+    {
+      "file": "CityJournalProbe.lua",
+      "line": 3,
+      "symbol": "SPCCityJournalProbe"
+    },
+    {
+      "file": "EligibilityProbe.lua",
+      "line": 3,
+      "symbol": "SPCEligibilityProbe"
+    },
+    {
+      "file": "QualificationProbe.lua",
+      "line": 137,
+      "symbol": "SPCQualificationProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 640,
+      "symbol": "SPCTradeRouteProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 643,
+      "symbol": "SPCCompletionProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 646,
+      "symbol": "SPCStorageProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 650,
+      "symbol": "SPCCitySequenceProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 653,
+      "symbol": "SPCCityProgressionStore"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 657,
+      "symbol": "SPCBindingProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 660,
+      "symbol": "SPCCompletionRecordProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 663,
+      "symbol": "SPCCityJournalProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 666,
+      "symbol": "SPCEligibilityProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 669,
+      "symbol": "SPCQualificationProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 672,
+      "symbol": "SPCEnvelopeProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 676,
+      "symbol": "SPCCityFlowProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 679,
+      "symbol": "SPCEffectiveFacts"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 680,
+      "symbol": "SPCResearchTradition"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 682,
+      "symbol": "SPCResearchTraditionEffects"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 688,
+      "symbol": "SPCDistrictCompleteness"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 691,
+      "symbol": "SPCInvestmentAction"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 694,
+      "symbol": "SPCResearchSupport"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 696,
+      "symbol": "SPCLv2Housing"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 698,
+      "symbol": "SPCLv2GPP"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 701,
+      "symbol": "SPCNetworkBridge"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 704,
+      "symbol": "SPCIndustrySupport"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 707,
+      "symbol": "SPCLv3Support"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 710,
+      "symbol": "SPCLv3Effects"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 713,
+      "symbol": "SPCConstructionProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 717,
+      "symbol": "SPCUnitSiteProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 720,
+      "symbol": "SPCUnitTargets"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 723,
+      "symbol": "SPCUnitActions"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 726,
+      "symbol": "SPCCrewProjects"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 729,
+      "symbol": "SPCCrewPrecision"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 732,
+      "symbol": "SPCLv4Percent"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 734,
+      "symbol": "SPCResearchInfrastructure"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 737,
+      "symbol": "SPCResearchCross"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 739,
+      "symbol": "SPCResearchApply"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 741,
+      "symbol": "SPCResearchChair"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 743,
+      "symbol": "SPCHalfYieldProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 746,
+      "symbol": "SPCCopyYields"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 750,
+      "symbol": "SPCStandardization"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 753,
+      "symbol": "SPCPurchaseProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 756,
+      "symbol": "SPCStandardizationDiscount"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 759,
+      "symbol": "SPCNetworkBoost"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 761,
+      "symbol": "SPCGreatWorkProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 764,
+      "symbol": "SPCGreatWorkFacts"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 766,
+      "symbol": "SPCCultureAesthetic"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 769,
+      "symbol": "SPCDialogue"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 772,
+      "symbol": "SPCGWAdjacency"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 774,
+      "symbol": "SPCCultureMeaning"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 776,
+      "symbol": "SPCCultureInspirationProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 779,
+      "symbol": "SPCCommerceConvergence"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 788,
+      "symbol": "SPCClaimProjects"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 795,
+      "symbol": "SPCCityIdentityRead"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 799,
+      "symbol": "SPCCityIdentityMapping"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 802,
+      "symbol": "SPCTimedProductionProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 805,
+      "symbol": "SPCOverflowStorageProbe"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 808,
+      "symbol": "SPCProjectTurnObservation"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 810,
+      "symbol": "SPCTimedProject"
+    },
+    {
+      "file": "Gameplay.lua",
+      "line": 813,
+      "symbol": "SPCNetworkIsolation"
+    },
+    {
+      "file": "UnitSiteProbe.lua",
+      "line": 3,
+      "symbol": "SPCUnitSiteProbe"
+    },
+    {
+      "file": "UnitTargets.lua",
+      "line": 3,
+      "symbol": "SPCUnitTargets"
+    },
+    {
+      "file": "UnitActions.lua",
+      "line": 3,
+      "symbol": "SPCUnitActions"
+    },
+    {
+      "file": "CrewProjects.lua",
+      "line": 4,
+      "symbol": "SPCCrewProjects"
+    },
+    {
+      "file": "CrewPrecision.lua",
+      "line": 3,
+      "symbol": "SPCCrewPrecision"
+    },
+    {
+      "file": "Lv4Percent.lua",
+      "line": 4,
+      "symbol": "SPCLv4Percent"
+    },
+    {
+      "file": "NetworkBoost.lua",
+      "line": 15,
+      "symbol": "SPCNetworkBoost"
+    },
+    {
+      "file": "GreatWorkProbe.lua",
+      "line": 3,
+      "symbol": "SPCGreatWorkProbe"
+    },
+    {
+      "file": "GreatWorkAdjacency.lua",
+      "line": 3,
+      "symbol": "SPCGWAdjacency"
+    },
+    {
+      "file": "Dialogue.lua",
+      "line": 4,
+      "symbol": "SPCDialogue"
+    }
+  ],
+  "lifecycle_registration_locations": [
+    {
+      "file": "CultureMeaningProbe.lua",
+      "line": 473,
+      "kind": "Exit",
+      "name": "CultureMeaningProbe"
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 242,
+      "kind": "Exit",
+      "name": "CultureMeaning"
+    },
+    {
+      "file": "CultureMeaning.lua",
+      "line": 246,
+      "kind": "Return",
+      "name": "CultureMeaning"
+    },
+    {
+      "file": "CultureInspirationProbe.lua",
+      "line": 143,
+      "kind": "Exit",
+      "name": "CultureInspirationProbe"
+    },
+    {
+      "file": "CultureAesthetic.lua",
+      "line": 249,
+      "kind": "Exit",
+      "name": "CultureAesthetic"
+    },
+    {
+      "file": "CultureAesthetic.lua",
+      "line": 253,
+      "kind": "Return",
+      "name": "CultureAesthetic"
+    },
+    {
+      "file": "ClaimProjects.lua",
+      "line": 204,
+      "kind": "Exit",
+      "name": "ClaimProjects"
+    },
+    {
+      "file": "ResearchTraditionEffects.lua",
+      "line": 92,
+      "kind": "Exit",
+      "name": "ResearchTradition"
+    },
+    {
+      "file": "StandardizationDiscount.lua",
+      "line": 301,
+      "kind": "Exit",
+      "name": "StandardizationDiscount"
+    },
+    {
+      "file": "StandardizationDiscount.lua",
+      "line": 307,
+      "kind": "Return",
+      "name": "StandardizationDiscount"
+    },
+    {
+      "file": "PurchaseProbe.lua",
+      "line": 36,
+      "kind": "Exit",
+      "name": "PurchaseProbe"
+    },
+    {
+      "file": "Standardization.lua",
+      "line": 169,
+      "kind": "Return",
+      "name": "Standardization"
+    },
+    {
+      "file": "CopyYields.lua",
+      "line": 178,
+      "kind": "Exit",
+      "name": "CopyYields"
+    },
+    {
+      "file": "CopyYields.lua",
+      "line": 183,
+      "kind": "Return",
+      "name": "CopyYields"
+    },
+    {
+      "file": "DistrictCompleteness.lua",
+      "line": 177,
+      "kind": "Return",
+      "name": "DistrictCompleteness"
+    },
+    {
+      "file": "ResearchInfrastructure.lua",
+      "line": 164,
+      "kind": "Exit",
+      "name": "ResearchInfrastructure"
+    },
+    {
+      "file": "ResearchCross.lua",
+      "line": 131,
+      "kind": "Exit",
+      "name": "ResearchCross"
+    },
+    {
+      "file": "ResearchApply.lua",
+      "line": 138,
+      "kind": "Exit",
+      "name": "ResearchApply"
+    },
+    {
+      "file": "ResearchChair.lua",
+      "line": 124,
+      "kind": "Exit",
+      "name": "ResearchChair"
+    },
+    {
+      "file": "HalfYieldProbe.lua",
+      "line": 77,
+      "kind": "Exit",
+      "name": "HalfYieldProbe"
+    },
+    {
+      "file": "YieldCarrierProbe.lua",
+      "line": 52,
+      "kind": "Exit",
+      "name": "YieldCarrierProbe"
+    },
+    {
+      "file": "CommerceConvergence.lua",
+      "line": 171,
+      "kind": "Exit",
+      "name": "CommerceConvergence"
+    },
+    {
+      "file": "ResearchSupport.lua",
+      "line": 71,
+      "kind": "Exit",
+      "name": "ResearchSupport"
+    },
+    {
+      "file": "IndustrySupport.lua",
+      "line": 82,
+      "kind": "Exit",
+      "name": "IndustrySupport"
+    },
+    {
+      "file": "IndustrySupport.lua",
+      "line": 87,
+      "kind": "Return",
+      "name": "IndustrySupport"
+    },
+    {
+      "file": "Lv2Housing.lua",
+      "line": 103,
+      "kind": "Exit",
+      "name": "Lv2Housing"
+    },
+    {
+      "file": "Lv2GPP.lua",
+      "line": 120,
+      "kind": "Exit",
+      "name": "Lv2GPP"
+    },
+    {
+      "file": "Lv3Support.lua",
+      "line": 119,
+      "kind": "Exit",
+      "name": "Lv3Support"
+    },
+    {
+      "file": "Lv3Effects.lua",
+      "line": 138,
+      "kind": "Exit",
+      "name": "Lv3Effects"
+    },
+    {
+      "file": "InvestmentAction.lua",
+      "line": 162,
+      "kind": "Return",
+      "name": "InvestmentAction"
+    },
+    {
+      "file": "NetworkBridge.lua",
+      "line": 434,
+      "kind": "Exit",
+      "name": "NetworkBridge"
+    },
+    {
+      "file": "NetworkBridge.lua",
+      "line": 445,
+      "kind": "Return",
+      "name": "NetworkBridge"
+    },
+    {
+      "file": "CrewProjects.lua",
+      "line": 55,
+      "kind": "Exit",
+      "name": "CrewProjects"
+    },
+    {
+      "file": "Lv4Percent.lua",
+      "line": 22,
+      "kind": "Exit",
+      "name": "Lv4Percent"
+    },
+    {
+      "file": "NetworkBoost.lua",
+      "line": 166,
+      "kind": "Exit",
+      "name": "NetworkBoost"
+    },
+    {
+      "file": "GreatWorkProbe.lua",
+      "line": 39,
+      "kind": "Exit",
+      "name": "GreatWorkProbe"
+    },
+    {
+      "file": "GreatWorkFacts.lua",
+      "line": 245,
+      "kind": "Exit",
+      "name": "GreatWorkFacts"
+    },
+    {
+      "file": "GreatWorkFacts.lua",
+      "line": 255,
+      "kind": "Return",
+      "name": "GreatWorkFacts"
+    },
+    {
+      "file": "GreatWorkAdjacency.lua",
+      "line": 136,
+      "kind": "Exit",
+      "name": "GreatWorkAdjacency"
+    },
+    {
+      "file": "GreatWorkAdjacency.lua",
+      "line": 141,
+      "kind": "Return",
+      "name": "GreatWorkAdjacency"
+    },
+    {
+      "file": "Dialogue.lua",
+      "line": 299,
+      "kind": "Exit",
+      "name": "Dialogue"
+    },
+    {
+      "file": "Dialogue.lua",
+      "line": 304,
+      "kind": "Return",
+      "name": "Dialogue"
+    }
+  ],
+  "registered_sql": [
+    "Config/Players.sql",
+    "Data/BoostIntegerTest.sql",
+    "Data/ClaimProjects.sql",
+    "Data/Colors.sql",
+    "Data/CommerceConvergence.sql",
+    "Data/ConstantSupport.sql",
+    "Data/CopyYields.sql",
+    "Data/Crew.sql",
+    "Data/CrewProjects.sql",
+    "Data/CultureAesthetic.sql",
+    "Data/CultureInspirationProbe.sql",
+    "Data/CultureMeaningProbe.sql",
+    "Data/Dialogue.sql",
+    "Data/DistrictPrecisionProbe.sql",
+    "Data/GovernorProbe.sql",
+    "Data/GreatWorkAdjacency.sql",
+    "Data/GreatWorkProbe.sql",
+    "Data/HalfYieldProbe.sql",
+    "Data/Icons.sql",
+    "Data/Identity.sql",
+    "Data/IndustrySupport.sql",
+    "Data/Lv2GPP.sql",
+    "Data/Lv2Housing.sql",
+    "Data/Lv3Effects.sql",
+    "Data/Lv3Support.sql",
+    "Data/Lv4Percent.sql",
+    "Data/NetworkBoost.sql",
+    "Data/NetworkBoostInteger.sql",
+    "Data/OverflowSinkTest.sql",
+    "Data/PurchaseProbe.sql",
+    "Data/ResearchApply.sql",
+    "Data/ResearchChair.sql",
+    "Data/ResearchCross.sql",
+    "Data/ResearchInfrastructure.sql",
+    "Data/ResearchSupport.sql",
+    "Data/ResearchTradition.sql",
+    "Data/StandardizationDiscount.sql",
+    "Data/YieldCarrierProbe.sql",
+    "Text/ClaimProjects.sql",
+    "Text/TestText.sql"
+  ],
+  "script_sha256": "6173d50545853fd04ca22b294ff805a49e4c4d4c69c9881405e8a48cd2b930cc"
+}
