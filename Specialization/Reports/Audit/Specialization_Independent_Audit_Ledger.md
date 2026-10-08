@@ -1,14 +1,14 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；P06b身份事件slice也已覆盖；P02a Shared合同slice也已覆盖；W14 checkpoint收束，下一P02b未开始。尚无总审计结论。
+State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；P06b身份事件slice也已覆盖；P02a Shared合同slice也已覆盖；P02b共同Network合同也已覆盖；W15 checkpoint收束，下一P03a/P10a科研未开始。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务、P06b身份事件、P02a Shared合同**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务、P06b身份事件、P02a Shared合同、P02b Network合同**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
 - 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
 - W03：P06a已提交/push `8e2dcb7`；真实Lua4个规模、2个损坏隔离、1个注入重入fixture，见[P06a报告](P06a_State_Ownership.md)。没有修改项目本体。
 - W04已提交/push `77568aa`：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
@@ -21,8 +21,9 @@ State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P
 - W11已提交/push `189e837`：三路只读审阅与主任务4场景核证完成，见[P07b报告](P07b_Claim_Completion_Boundaries.md)。确认二次失城用origin key清current活动集合的局部残留F01 LOW/DEFER；CALLING＋最终写失败为Q01 MEDIUM/MONITOR既有不确定保护边界，不实施修复。
 - W12已提交/push `32971f6`：三路只读审阅及最小实际Lua核证完成，见[P07c报告](P07c_Crew_Transaction_Boundaries.md)。Crew Player receipt没有读回门禁，F01 MEDIUM/FIX_BEFORE_NEXT_PROFESSION（J1/J2依赖它前）；没有native silent-drop或重复grant事故。全表历史规模是既有OBSERVATION/MONITOR，新来源/2槽/成本仍已登记deferred。
 - W13已提交/push `ac1a2b7`：三路只读审阅及actual Store7场景核证完成，见[P06b报告](P06b_Identity_Event_Boundaries.md)。F01 MEDIUM/FIX_BEFORE_NEXT_PROFESSION核C1/4/20/40无关Transfer定位1/4/20/40，非现行regression/卡顿；Q01 MEDIUM/MONITOR核一次UNKNOWN Transfer后Initialized/load不补loss，重复匹配Transfer可恢复，native可达未知。支持限制与结构观察/路由/连续性proof分开。
-- W14已收束待本次commit/push：三路Shared/生命周期/测试只读审阅完成，见[P02a报告](P02a_Shared_Contract_Layers.md)。所核D/ordinary/share/Lv2/gate无新增规则冲突；已有P13/P06风险与具名未实施资产复用。null说明LOW/DEFER候选不能把明确无映射当TBD；目录几个旧对象已补，不扩大完整HD PASS。
-- 下一准确入口：**P02b共同Network合同与资格方向**。读Shared NETWORK_LAYER、Spec完整NET节、Network当前规则/例外与D0032目标网络合同；对照NetworkInput/Bridge具名role/derive及P09已核publication，专业consumer仅直接相关qualification片段。核source/receiver/forward、首都self、方向/去重/失效/非递归，不重测每个网络收益。三处未衔接设计边界继续保留。尚未开始正文；恢复先核HEAD/dirty/direct source变化。
+- W14已提交/push `2a61f34`：三路Shared/生命周期/测试只读审阅完成，见[P02a报告](P02a_Shared_Contract_Layers.md)。所核D/ordinary/share/Lv2/gate无新增规则冲突；已有P13/P06风险与具名未实施资产复用。null说明LOW/DEFER候选不能把明确无映射当TBD；目录几个旧对象已补，不扩大完整HD PASS。
+- W15已收束待本次commit/push：三路共同Network/payload/测试只读核证完成，见[P02b报告](P02b_Network_Contract_Layers.md)。没有新共同拓扑矛盾；候选role/各业务资格/旧payload与当前Design分层，既有public bucket/consumer/容量risk保持。旧pureNetworkState不能作为现行NET oracle，不新增native测试。
+- 下一准确入口：**P03a/P10a Research accepted规则→当前模块/长期资产对照**。完整Research_D0040/current Spec RES及直接接受/替代→Infrastructure/Cross/Apply/Chair/Tradition模型/入口/资格/保存/退出/证据。Shared/Network与P06/P07/P08复用，不重复每能力完整native lifecycle。优先公共合同/扩大返工面；既有K01原Owner返回年龄hold及Research网络重设计按deferred保留，不实施L3或其它功能。尚未开始，恢复先核HEAD/dirty/direct source变化。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
@@ -228,6 +229,19 @@ NO_ACTION与已知约束：Network逐consumer异常隔离的最小对照中5个�
 
 本轮无reproduction新增；Shared全对象/current Spec相关完整节、Content主从/适用状态、Architecture target/current职责与直接事实/份额/Lv2/gate来源核对。现有native结果文字复用，不重看图，B168继续deferred。链接/context/diff是机械检查，不能给Shared全部PASS。下一P02b checkpoint后持续推进，正式Design/Architecture/Status/Mod/运行包不改。
 
+## W15 — P02b共同Network与payload分层（slice覆盖完成）
+
+起点`2a61f34` clean/sync；三个只读审阅及主任务current NET/Bridge/direct事实/旧模型反证核证完成，见[P02b报告](P02b_Network_Contract_Layers.md)。没有新复现、Gameplay测试或native PASS；P09/P12已核传播/查询事实复用。
+
+| 结果 | 判断 / timing | 限制 |
+|---|---|---|
+| NET001–004 topology/direct/capital/receive/nonrelay | 所核范围无新增矛盾 | Source候选R/C/I P≥1、Commerce中心不要求IV；accepted ingress ownorigin，receiver不变direct source，资格与payload不统一 |
+| Research/Culture/Industry/Commerce payload | 已知cutover / DEFER | Research保留Inspiration；新Culture3/3集合、Industryactual-holder、Commerce直接pair/签约不同于旧输出；H/N3/P负责退休，不改共同中心拓扑 |
+| 旧模型/当前测试/native范围 | 证据分层保持 | NetworkState在DevelopmentTests而非Mod；pure旧self/no receive与假设IV资格非现行oracle。实际A/B/B134/B136有强断言，D2 30000query只Current，E2例routes0 |
+| public bucket/consumer名单/容量 | 原P09b/P13a编号/timing不变 | privatecopy不能反证accepted别名；processedACK≠effect完成，128/129结构证据≠native容量预算，不重跑/加人测 |
+
+正式NET全文与Shared layer、Network人类正文、目标适配、当前三个专业network对象、直接legacy consumer/Startup/退役责任与具名native文字审阅。未重看截图，没把旧qualified网络PASS升级到新payload。链接/context/diff仅完整性，不给整个P02/native/项目PASS。P02a+b核心合同已覆盖；专业与全部实际consumer闭包仍交后续P03/P04/P10/P11。下一科研checkpoint后进入。
+
 ## 审计总范围
 
 覆盖用户A–L，重点是规则／实现／证据一致性及错误、数据与部署风险。包含四专业当前v0.1范围；未来专业只检查接受规则/元数据/边界是否污染当前范围，不把未来功能缺实现当作当前缺陷。
@@ -288,7 +302,7 @@ severity与timing分别记录，不能互相代替：
 | 阶段 | 完整slice/主要入口 | 完成条件 | 状态 |
 |---|---|---|---|
 | P01 | 根/项目AGENTS、README、Workflow/Authority、CURRENT、当前manifest/结果，必要receipt | 权威版本/来源/授权/selector、当前证据分层与源/live事实核对；候选反证检查 | COVERAGE_COMPLETE |
-| P02 | 当前Shared Content/Spec、Network合同、Shared目标Architecture | P02a共同完整规则/A–G分层与直接接口已核；Network P02b待核 | P02a_COVERAGE_COMPLETE / P02b_NOT_YET_AUDITED |
+| P02 | 当前Shared Content/Spec、Network合同、Shared目标Architecture | P02a/P02b共同规则/Network与target-current分层已核；完整专业/consumer对照分属后续 | CORE_CONTRACT_COVERAGE_COMPLETE |
 | P03 | Research_D0040、Industry_D0045及对应Spec/当前计划 | Research与Industry分别完成rule→合同矩阵，数值/门槛/长期资产/首测区别不遗漏 | NOT_YET_AUDITED |
 | P04 | Culture_D0048、Commerce_D0045及生命周期接受记录/计划 | Culture与Commerce分别完成矩阵；排除旧能力混入、未決条款伪定案 | NOT_YET_AUDITED |
 | P05 | modinfo、Gameplay/include/Start、SQL注册、writer切换矩阵 | P05b核Identity/Claim/Network/composition直接接入闭包；全Mod/SQL可达仍未完成 | P05b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
@@ -593,7 +607,7 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 
 ## Unresolved questions / NOT_YET_AUDITED
 
-- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c/P06b/P02a各自slice；P02/P05/P06/P07/P08/P09/P12/P13/P14/P16完整领域尚未结束，其余P03/P04/P10/P11/P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P02b以开头入口为准。
+- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c/P06b/P02a/P02b各自slice；P05/P06/P07/P08/P09/P12/P13/P14/P16完整领域尚未结束，其余P03/P04/P10/P11/P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P03a/P10a以开头入口为准。
 - P01没有完整审阅accepted规则、Spec/Content逐条取代、正式阅读版完整一致性、全部Mod/SQL可达writer、save/owner损坏、REALLOCATING/未结算合同、Network退出、缓存间接保留、GC策略正确性或所有测试断言/fixture。
 - 当前native小数/GPP倍率/退出仍待B168用户测试；审计仅核其记录，不制造新实机要求。是否适用每城每类Floor仍未在正式运行接入，本轮无决定。
 - receipt存在/目录相同不证明今天恢复包内容或崩溃中途恢复正确。P14a已核工具transaction/failure/recovery及4个临时场景；真实外部包/恢复执行、OS中断/掉电仍未覆盖，不能从“有backup”猜安全。
@@ -630,3 +644,5 @@ W12 checkpoint：P07c source/receipt/native副作用分层已核；新保存门�
 W13 checkpoint：P06b共享事件定位/后补/连续性问题已收束，7场景及已知支持限制保存；无native事故/泄漏声明。不实施路由或pending修复，仅audit产物commit/push后沿P02a继续。
 
 W14 checkpoint：P02a Shared规则/技术层/未实施边界已核，无新共同规则矛盾；仅一个低优先级说明候选及既有risk补证。两份审计文档普通commit/push后继续P02b，不改正式来源或要求用户重做成熟基础设施测试。
+
+W15 checkpoint：P02b共同Network/资格方向/payload层与测试真实性已核，无新拓扑finding。两份audit文档commit/push后继续科研正式合同/实现对照，不改玩法或进入Implementation。
