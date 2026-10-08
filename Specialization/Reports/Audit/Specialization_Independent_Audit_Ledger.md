@@ -1,14 +1,14 @@
 # Specialization 独立长期审计 Ledger
 
 Audit ID: IA20261007；启动日期2026-10-07（America/Vancouver）。
-State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；P06b身份事件slice也已覆盖；P02a Shared合同slice也已覆盖；P02b共同Network合同也已覆盖；P03a/P10a科研slice也已覆盖；W16 checkpoint收束，下一工业P03b/P10b未开始。尚无总审计结论。
+State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P13b已完成各自slice覆盖；P14a部署事务authority与失败恢复边界已完成slice覆盖；P07a投资事务slice也已完成覆盖；P07b Claim完成事务slice也已覆盖；P07c施工队事务slice也已覆盖；P06b身份事件slice也已覆盖；P02a Shared合同slice也已覆盖；P02b共同Network合同也已覆盖；P03a/P10a科研slice也已覆盖；P03b/P10b工业slice也已覆盖；W17 checkpoint收束，下一文化P04a/P11a未开始。尚无总审计结论。
 性质：用户授权的独立审计记录，不是Design Authority、Architecture合同、Status替代品或新开发授权。主任务仅写审计产物，统一维护此ledger；定域只读审阅可并行。severity与refactor timing独立，未确认合法工作集/触发频率时保留条件而不制造必改项。
 
 ## 快速恢复与本轮停止点
 
 - 起始develop HEAD：`7de45dddba1f874ae21d2f1335bf911b485f8ab4`，启动时clean且与本地origin/develop一致。
 - 当前已登记开发状态：S0444，source/live B168.195；L3-A原生测试由用户暂缓。审计不能把它恢复成必测任务或通过。
-- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务、P06b身份事件、P02a Shared合同、P02b Network合同、P03a/P10a科研**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
+- 已完成slice：**P01权威/证据入口、P13a公共hot-path、P06a主要持久状态ownership与mutation边界、P09b跨Context传播、P08a代表effect ownership与公共投影边界、P05b/P16a模块依赖与新增专业接入成本、P12a规模风险断言与fixture真实性、P13b会话状态间接保留与GC职责、P14a部署事务恢复边界、P07a投资事务、P07b Claim完成事务、P07c施工队事务、P06b身份事件、P02a Shared合同、P02b Network合同、P03a/P10a科研、P03b/P10b工业**。这是覆盖完成，不是项目PASS；完整P06生命周期仍未审完。
 - 历史checkpoint：P01 `437bb3b`；W02公共map与D cache复现 `0a02c52`；audit-only边界 `7d55404`；logical-slice纪律 `dbac359`。既有证据/finding保留，不重新扫描。
 - W03：P06a已提交/push `8e2dcb7`；真实Lua4个规模、2个损坏隔离、1个注入重入fixture，见[P06a报告](P06a_State_Ownership.md)。没有修改项目本体。
 - W04已提交/push `77568aa`：P09b三个只读审阅已收齐，主任务独立复核；四个内存场景的最终脚本/原始JSON、传播/ownership map和证据限制已保存，见[P09b报告](P09b_Propagation_Boundaries.md)。未新增native PASS；B168实机继续待办。
@@ -23,8 +23,9 @@ State: AUDIT_CHECKPOINT；P01、P13a、P06a、P09b、P08a、P05b/P16a、P12a、P
 - W13已提交/push `ac1a2b7`：三路只读审阅及actual Store7场景核证完成，见[P06b报告](P06b_Identity_Event_Boundaries.md)。F01 MEDIUM/FIX_BEFORE_NEXT_PROFESSION核C1/4/20/40无关Transfer定位1/4/20/40，非现行regression/卡顿；Q01 MEDIUM/MONITOR核一次UNKNOWN Transfer后Initialized/load不补loss，重复匹配Transfer可恢复，native可达未知。支持限制与结构观察/路由/连续性proof分开。
 - W14已提交/push `2a61f34`：三路Shared/生命周期/测试只读审阅完成，见[P02a报告](P02a_Shared_Contract_Layers.md)。所核D/ordinary/share/Lv2/gate无新增规则冲突；已有P13/P06风险与具名未实施资产复用。null说明LOW/DEFER候选不能把明确无映射当TBD；目录几个旧对象已补，不扩大完整HD PASS。
 - W15已提交/push `d208ecc`：三路共同Network/payload/测试只读核证完成，见[P02b报告](P02b_Network_Contract_Layers.md)。没有新共同拓扑矛盾；候选role/各业务资格/旧payload与当前Design分层，既有public bucket/consumer/容量risk保持。旧pureNetworkState不能作为现行NET oracle，不新增native测试。
-- W16已收束待本次commit/push：三路科研规则/模块/测试只读审阅完成，见[科研报告](P03a_P10a_Research_Contract_Runtime.md)。六本地包主要计算/gate一致，Floor有授权；K01原Owner返回后永久年龄hold仍真实适配缺口、MEDIUM/DEFER。P06保存和P08writer风险复用，未新造测试或修复。
-- 下一准确入口：**P03b/P10b Industry合同→模板/历史/折扣/施工链**。Industry_D0045/SpecIND、Shared已核A/B/E/G→Standardization/Catalog/Discount、IndustrySupport及已有Crew链；N/E/L/三工程能力按当前准备矩阵判实际缺实现。P07c source/receipt不重审，优先每模板actual holder、自身来源、旧全局max/Copy退休和扩展责任。尚未开始，不进入H/J实现；恢复先核HEAD/dirty/direct变化。
+- W16已提交/push `4289d64`：三路科研规则/模块/测试只读审阅完成，见[科研报告](P03a_P10a_Research_Contract_Runtime.md)。六本地包主要计算/gate一致，Floor有授权；K01原Owner返回后永久年龄hold仍真实适配缺口、MEDIUM/DEFER。P06保存和P08writer风险复用，未新造测试或修复。
+- W17已收束待本次commit/push：三路工业contract/current/evidence只读核证及actual Store/Std3场景完成，见[工业报告](P03b_P10b_Industry_Contract_Runtime.md)。IA-P10b-F01 nil presence确认为empty初始化，MEDIUM/BEFORE_NEXT（H1 typed前），native nil未observed；true/throw对照正常，禁止重建可靠空/损坏history。H/G/I/J已知缺口不重列新TBD/事故。
+- 下一准确入口：**P04a/P11a Culture current合同→正常writer/Probe/旧效果/城市历史**。完整Culture_D0048/SpecCUL与K/L/M/N直接准备/证据→Aesthetic/Meaning/Inspiration probe/GreatWorkFacts/旧Dialogue-GWA。前序state/callback/transport/perf复用；核normal/probe/legacy切换及永久record/追加/theming职责，不恢复B168实机、不实施M/N。尚未开始，恢复先核HEAD/dirty/direct source变化。
 - 原P02a详细入口保留为后续按需合同核对：P02a，先`Design/Content/README.md`确认主从，再完整读取current Spec的SCOPE/ELIG（第1节）、ID/TERMS（第2节）、PROG（第3节）、SHARED（第4节），并读取`Shared_D0045.json`中ORDINARY_INFRASTRUCTURE、BUILDING_CURRENT_ELIGIBILITY、DISTRICT_DEVELOPMENT、YIELD_SHARE及其完整引用。对应`D0032_Adaptation.md`的Canonical state model／Shared facts and services；当前接受增量仅按直接revision/lifecycle引用扩读。Network另作P02b，不凭文件编号判断权威。
 
 路径默认相对于`Specialization/`；`Mod/`、`DevelopmentTests/`、`tools/`相对于仓库根。
@@ -257,6 +258,21 @@ NO_ACTION与已知约束：Network逐consumer异常隔离的最小对照中5个�
 
 sourceContent整体NOT_IMPLEMENTED不能盖今天Status；当前singleCampus/encoding/已审目标/旧P4起点明确支持边界，不设新Gameplaycap或补history。科研network明确保留待重设计，无新payload。仅报告/ledger链接/context/diff机械核对；当前B168延期不变。下一工业checkpoint后进入。
 
+## W17 — P03b/P10b工业知识、历史与旧效果（slice覆盖完成）
+
+起点`4289d64` clean/sync；三路只读完整Industry/IND、模板/旧price/Copy/未实现N/E/L与直接测试核证完成，见[工业报告](P03b_P10b_Industry_Contract_Runtime.md)。仅新presence3场景实际Lua复现；不安装/运行外部DB或正式回归。
+
+| 结果 | severity / timing | 范围 |
+|---|---|---|
+| IA-P10b-F01 HasBuilding=nil当absent并完成初始化ACK | MEDIUM / FIX_BEFORE_NEXT_PROFESSION | actualStore/Std一条Tier0catalogstub：nil→INITIALIZED empty/pendingfalse，可读后Discover/boot仍0；true→1、throw保UNINITIALIZED/pending并恢复1。native nil未证，可能新event/reentry补，非永不能恢复 |
+| 建筑历史保存/reconcile/T0/可靠empty/坏史 | 已有实现/限定PASS保持 | reliable旧history∪当前事实，不反删；ledger+marker同record/readback；目录与D不同，不maskhistory损坏 |
+| III/IV Std/typedDistrict/self/holder/GoldFaith与N/E/L/Crew | 已知H/G/I/J / DEFER | 定稿参数/归属/1T中断与保护≠实现；旧Level×10/globalmax/Copy50及旧训练仍在，不说新机制PASS |
+| 保存/事实/consumer扩张风险 | P06/P07c/P13/P12原编号/timing | 保留纯business validator与root save、可靠coverage/holder/渠道维度；不为DRY合N/E/L或让missing历史=0 |
+
+证据：[脚本](Evidence/W17/reproduce_template_unknown.py)／[结果](Evidence/W17/template_unknown_result.json)，current Lua/Store/Std不改，mockpresence/Property/event及onecatalog，W03声明复用；source/script hash在JSON。只证明初始化UNKNOWN布尔判定，不整个HD/native数据事故。B142文字仅T0/T1记录与用户重启保持，不重看图/推实际价格或完整ownership PASS。
+
+P03a+b/P10a+b各自合同/current闭包已审，任意native/cat环境不承诺全面证明。Link/context/diff是完整性，原findings/frozen不改。下一文化checkpoint后进入；B168延期与正式Status保持。
+
 ## 审计总范围
 
 覆盖用户A–L，重点是规则／实现／证据一致性及错误、数据与部署风险。包含四专业当前v0.1范围；未来专业只检查接受规则/元数据/边界是否污染当前范围，不把未来功能缺实现当作当前缺陷。
@@ -318,14 +334,14 @@ severity与timing分别记录，不能互相代替：
 |---|---|---|---|
 | P01 | 根/项目AGENTS、README、Workflow/Authority、CURRENT、当前manifest/结果，必要receipt | 权威版本/来源/授权/selector、当前证据分层与源/live事实核对；候选反证检查 | COVERAGE_COMPLETE |
 | P02 | 当前Shared Content/Spec、Network合同、Shared目标Architecture | P02a/P02b共同规则/Network与target-current分层已核；完整专业/consumer对照分属后续 | CORE_CONTRACT_COVERAGE_COMPLETE |
-| P03 | Research_D0040、Industry_D0045及对应Spec/当前计划 | P03a科研规则/实际已核；Industry P03b待核 | P03a_COVERAGE_COMPLETE / P03b_NOT_YET_AUDITED |
+| P03 | Research_D0040、Industry_D0045及对应Spec/当前计划 | P03a/P03b两专业完整规则与当前/target/证据矩阵已核 | CONTRACT_COVERAGE_COMPLETE |
 | P04 | Culture_D0048、Commerce_D0045及生命周期接受记录/计划 | Culture与Commerce分别完成矩阵；排除旧能力混入、未決条款伪定案 | NOT_YET_AUDITED |
 | P05 | modinfo、Gameplay/include/Start、SQL注册、writer切换矩阵 | P05b核Identity/Claim/Network/composition直接接入闭包；全Mod/SQL可达仍未完成 | P05b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P06 | CityProgressionStore、E2 current合同、CityFlow/identity/Evidence/helper及定向测试 | P06a/P06b已核持久权威/保存成本/identity proof/event传播；全consumer/native闭包仍待后续 | P06a_P06b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P07 | InvestmentAction、单位/项目action、待结算/REALLOCATING生命周期合同 | P07a/P07b/P07c已核投资/Claim/Crew及直接组合；未落地商业/重组合同留对应专业阶段 | P07a_P07b_P07c_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P08 | 各module owned lists、SQL Modifier/requirements、载体创建/退出direct callers | P08a三个代表writer/Store精确归属、失败协议与复用边界已核；全module/native闭包仍待后续 | P08a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P09 | NetworkInput/Bridge/BackgroundRoutes/Sender及消费者 | W02公共map与P09b接受/发布/通知边界已核；全部协议/consumer与native语义未覆盖 | P09b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
-| P10 | ResearchSupport/Cross/Apply/Tradition、Standardization/Construction/Industry | P10a科研已核；P10b工业待核；完整native环境不承诺覆盖 | P10a_COVERAGE_COMPLETE / P10b_NOT_YET_AUDITED |
+| P10 | ResearchSupport/Cross/Apply/Tradition、Standardization/Construction/Industry | P10a/P10b direct writer/历史/模板/已知Crew边界已核；完整native环境不承诺覆盖 | DIRECT_RUNTIME_COVERAGE_COMPLETE |
 | P11 | Culture facts/Aesthetic/Meaning/Inspire/旧Dialogue、Commerce现行/旧consumer | Culture、Commerce各一slice：当前/待接入/试验边界、长期记录/合同/hidden protection对应 | NOT_YET_AUDITED |
 | P12 | Tests README/Catalog、每条当前路径实际测试源码/fixture与Validation结果 | P12a已核D/Store/公共传播/Network规模断言与fixture；全测试/native证据矩阵仍未完成 | P12a_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
 | P13 | RuntimeWork/Performance/MemoryGC/public fact/dirty路径及结项限制 | P13a公共hot-path/规模成本与P13b所选会话闭包/GC职责已核；全部对象图/native回收未覆盖 | P13a_P13b_COVERAGE_COMPLETE / remainder_NOT_YET_AUDITED |
@@ -622,7 +638,7 @@ Refactor timing: **DEFER**。Apply installed:47–61、Chair:47–59建amounts�
 
 ## Unresolved questions / NOT_YET_AUDITED
 
-- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c/P06b/P02a/P02b/P03a-P10a各自slice；P03/P05/P06/P07/P08/P09/P10/P12/P13/P14/P16完整领域尚未结束，其余P04/P11/P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P03b/P10b以开头入口为准。
+- 已完成P01/P13a/P06a/P09b/P08a/P05b/P16a/P12a/P13b/P14a/P07a/P07b/P07c/P06b/P02a/P02b/P03a-P10a/P03b-P10b各自slice；P05/P06/P07/P08/P09/P12/P13/P14/P16完整领域尚未结束，其余P04/P11/P15/P17仍NOT_YET_AUDITED。未确认风险不能因局部map关闭；当前下一P04a/P11a以开头入口为准。
 - P01没有完整审阅accepted规则、Spec/Content逐条取代、正式阅读版完整一致性、全部Mod/SQL可达writer、save/owner损坏、REALLOCATING/未结算合同、Network退出、缓存间接保留、GC策略正确性或所有测试断言/fixture。
 - 当前native小数/GPP倍率/退出仍待B168用户测试；审计仅核其记录，不制造新实机要求。是否适用每城每类Floor仍未在正式运行接入，本轮无决定。
 - receipt存在/目录相同不证明今天恢复包内容或崩溃中途恢复正确。P14a已核工具transaction/failure/recovery及4个临时场景；真实外部包/恢复执行、OS中断/掉电仍未覆盖，不能从“有backup”猜安全。
@@ -663,3 +679,5 @@ W14 checkpoint：P02a Shared规则/技术层/未实施边界已核，无新共�
 W15 checkpoint：P02b共同Network/资格方向/payload层与测试真实性已核，无新拓扑finding。两份audit文档commit/push后继续科研正式合同/实现对照，不改玩法或进入Implementation。
 
 W16 checkpoint：完整科研本地合同/主要actual与证据核对已收束，既有结构/owner风险保留，没有新nativePASS或实施。两份audit文档正常commit/push后继续工业，不复制科研规则给其它专业。
+
+W17 checkpoint：工业contract/current/evidence matrix及UNKNOWN presence初始化反例已保存；原T0修复/限定PASS与H/G/I/J缺实现并列保持。4份audit产物commit/push后继续Culture，项目本体仍只读。
