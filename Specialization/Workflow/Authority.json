@@ -34,7 +34,7 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
-  "runtime_commit": "943f26c46a9667e06800235c7db2ff2fb5f20f8c",
+  "runtime_commit": "234a5863c55741fa8125dcb15fa73303d289a58e",
   "current_batch": "B169_DEPLOYED_AWAITING_B168_B169_USER_TEST",
   "next_batch": "Wait for separate B168 0 -> integer1 -> END and B169 normal write/save/cold-load user evidence; no other repair/gameplay authorization.",
   "manifest": "Specialization/Workflow/Store-Write-Repair.json",

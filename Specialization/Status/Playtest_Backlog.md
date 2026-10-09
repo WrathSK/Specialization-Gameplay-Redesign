@@ -182,4 +182,4 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 
 2026-10-07用户暂缓后，于2026-10-08明确恢复B168与B169测试。当前B169.196已部署并保留B168诊断；39项LOCAL证据保持；原生整数入口／倍率来源／实例撤销仍USER_GAME_TEST_REQUIRED，未记PASS。最小内容保持单session的0→整数1→END，详见[B168结果](Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md#一次最小实机内容)。用户自选多档读档仅补充，不纳入必做步骤或门禁。
 
-等待用户方便时恢复；当前无需测试、不重新部署、不启用Floor或完整L3，不自动进入M/N/UI。仅相关L3原语接入门槛保留，B166既有PASS不受影响；正式当前授权／source/live查[Status](Specialization_P0_Status.md#current-authoritative-state)。
+当前等待用户执行上述最小测试；不启用Floor或完整L3，不自动进入M/N/UI。仅相关L3原语接入门槛保留，B166既有PASS不受影响；正式当前授权／source/live查[Status](Specialization_P0_Status.md#current-authoritative-state)。
