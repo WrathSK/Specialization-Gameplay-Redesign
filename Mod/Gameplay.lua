@@ -179,7 +179,13 @@ local function request(playerID,params)
   if type(params.Action)=='string' and params.Action:find('^INSPIRE_') then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
-    shared.Snapshot=shared.CultureInspirationProbe.Request(playerID,c,params.Action,params.Token)
+    shared.CultureInspirationView=nil
+    local ok,out=pcall(function()
+      assert(c and c:GetOwner()==playerID,'INSP_CITY_UNKNOWN')
+      local report,view=shared.CultureInspiration.Describe(playerID,c)
+      view.token=params.Token;shared.CultureInspirationView=view;return report
+    end)
+    shared.Snapshot=ok and out or Locale.Lookup('LOC_SPC_INSPIRATION_PENDING')
     shared.LastToken=params.Token;return
   end
   if shared.CultureMeaning and type(params.Action)=='string' and params.Action:find('^CULTURE_MEANING_') then
@@ -270,6 +276,7 @@ local function request(playerID,params)
       print('[SPC][B059][SAMPLE] '..tostring(accepted))
     end
     if factsOK and factsAccepted==true and shared.CultureMeaning then shared.CultureMeaning.CollectionConfirmed(playerID)end
+    if factsOK and factsAccepted==true and shared.CultureInspiration then shared.CultureInspiration.CollectionConfirmed(playerID)end
     if factsOK and factsAccepted==true and ok and accepted==true then
       local paired,confirmed=pcall(shared.Dialogue.ConfirmSamplePair,playerID,params)
       if paired and confirmed==true and shared.CultureMeaningProbe then
@@ -435,6 +442,7 @@ local function request(playerID,params)
     if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
+    if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -453,6 +461,7 @@ local function request(playerID,params)
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
     if params.FactsChanged and shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
+    if params.FactsChanged and shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID})end
     if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
@@ -513,6 +522,7 @@ local function request(playerID,params)
     if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
     if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
+    if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -778,7 +788,9 @@ SPCGWAdjacency.Start(P,shared,{retired=true})
 include('CultureMeaning')
 SPCCultureMeaning.Start(P,shared)
 include('CultureInspirationProbe')
-SPCCultureInspirationProbe.Start(P,shared)
+SPCCultureInspirationProbe.Start(P,shared,{retired=true})
+include('CultureInspiration')
+SPCCultureInspiration.Start(P,shared)
 
 include("CommerceConvergence")
 SPCCommerceConvergence.Start(P,shared)

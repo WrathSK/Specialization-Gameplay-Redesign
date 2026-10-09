@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0453
-Implementation Build: source/live B171.198 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0454
+Implementation Build: source B172.199 LOCAL_COMPLETE; live B171.198 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0049（巨作启迪当前时代百分比，设计同步；实现未授权）
+Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
-Design Sync State: D0049_INSPIRE_CURRENT_ERA_GPP_PERCENT / IMPLEMENTATION_NOT_AUTHORIZED
-Work State: B170_ACCEPTED_B171_PANEL_CLEANUP_COMPLETE
+Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_REQUIRED
+Work State: B172_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0049已接受巨作启迪本城全类别+3%×当前馆藏时代E（0–7），仅Design同步；A0161及四专业实施范围不变。source/live B171.198 P0按钮整理已安全部署；checkout `5304e9a`／实现commit `2d3d2f4`，receipt `B171.198-5304e9a-playtest.json`，186/186 MATCH，无pending事务，B170/stable恢复点保留；main stable B069.96不变。
+D0049巨作启迪已获用户授权直接复用Garden/Pingala city GPP百分比并实施，取消独立原型。source B172.199／modinfo199本地完成，当前live仍B171.198（checkout `5304e9a`，receipt `B171.198-5304e9a-playtest.json`）；不能由源码推部署。main stable B069.96不变。
 
-[B170人工反馈及B171面板](Validation/Results/Specialization_B171_P0_Panel_Cleanup.md)：用户确认B170流程1/2正常，限定USER_GAME_TEST_PASS。第3步入口描述错误，Meaning没有详细切换，撤回而非假报通过；模式隔离仍为本地证据，无需补测。当前manifest `P0-Panel-Cleanup.json`，用户授权15按钮/旧实验隐藏；7方法208 subTest及static通过，外观随正常使用顺带确认，无独立玩法门禁；等待下一项用户指示。
+[当前L3合同](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)／manifest `P0-L3.json`：Culture Potential/ACTIVE IV，当前合格时代E0–7、本城全类别3%×E，正式自动writer；旧B168 Probe退役。43方法46 subTest为LOCAL_SIMULATION_PASS，[结果与一次最小验收](Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)；百分比实际入账/叠加仍USER_GAME_TEST_REQUIRED。P0只读报告，不用旧开关/默认OFF冷加载仪式。
 
-[B168旧基础GPP证据](Validation/Results/Specialization_B168_Zero_Control.md)保留，旧0.1D×W方案已被D0049替代；新百分比承载／累计／叠加／生命周期未验证，不授权新测试或完整L3。运行包旧诊断入口未改。B169保存验收保持PASS；全建筑扫描/GW/事件传播等其它审计项未处理，无新实施授权。
+B166自动Meaning、B169限定保存、B170已接受范围不扩大；[B168旧证据](Validation/Results/Specialization_B168_Zero_Control.md)保留，旧小数方案不再作为新能力前置门禁。当前允许完成本批检查点和W0003安全部署后等待验收；[投资传播修复计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)仍独立未授权，M/N/U2与其它审计项不推进。
+
+## S0454 — B172巨作启迪自动能力本地完成
+
+按用户授权直接复用city GPP百分比原语，D0049全类别3%×当前E自动重算；新7选1派生载体、旧Probe精确退役、只读中文报告和必要当前入口同步。43方法46 subTest PASS，旧保存/永久schema/GC不变；不是原生PASS。live B171与source B172分开记录；后续仅W0003安全部署及最小用户验收。
 
 ## S0453 — D0049巨作启迪设计同步
 

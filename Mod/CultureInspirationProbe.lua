@@ -2,7 +2,7 @@ include('CurrentSpecializationFacts')
 include('NetworkInput')
 -- L3-A native precision gate only. No saved rewards, no normal ability writer.
 SPCCultureInspirationProbe={}
-function SPCCultureInspirationProbe.Start(P,shared)
+function SPCCultureInspirationProbe.Start(P,shared,options)
  local d={ready=false,busy=false,stage=-1,changes=0,sequence=0};shared.CultureInspirationProbe=d
  local values={0,0.1,0.3,0.6,1}
  local names={};for _,v in ipairs({1,3,6,10})do names[#names+1]='BUILDING_SPC_INSPIRE_PROBE_'..v end
@@ -57,6 +57,12 @@ function SPCCultureInspirationProbe.Start(P,shared)
    end
    assert(present(c,want),'INSPIRE_CREATE_UNCONFIRMED')
   end
+ end
+ -- B172 retires manual writes; this module still owns its four historical IDs.
+ if options and options.retired then
+  d.retired=true
+  function d.Withdraw(c)project(c,nil)end
+  return d
  end
  local function forget()target=nil;d.stage=-1;d.error=nil end
  local function cleanup()

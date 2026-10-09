@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="198">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="199">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B171.198: compact P0 diagnostic menu; retired test controls hidden, B168 GPP controls retained. Gameplay unchanged.</Description>
+    <Description>B172.199: automatic D0049 Great Works Inspiration, city-wide GPP +3% per current collection era; native acceptance pending.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_CultureInspiration"><Properties><LoadOrder>10001032</LoadOrder></Properties><File>Data/CultureInspiration.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureInspirationProbe"><Properties><LoadOrder>10001031</LoadOrder></Properties><File>Data/CultureInspirationProbe.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureMeaningProbe"><Properties><LoadOrder>10001030</LoadOrder></Properties><File>Data/CultureMeaningProbe.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureAesthetic"><Properties><LoadOrder>10001030</LoadOrder></Properties><File>Data/CultureAesthetic.sql</File></UpdateDatabase>
@@ -182,6 +183,8 @@
       <File>CultureMeaningProbe.lua</File>
     <File>CultureMeaning.lua</File>
     <File>CultureInspirationProbe.lua</File>
+    <File>CultureInspirationModel.lua</File>
+    <File>CultureInspiration.lua</File>
     <File>InspirationReadout.lua</File>
       <File>CultureAestheticModel.lua</File>
       <File>CultureAesthetic.lua</File>
@@ -367,6 +370,8 @@
     <File>CultureMeaningProbe.lua</File>
     <File>CultureMeaning.lua</File>
     <File>CultureInspirationProbe.lua</File>
+    <File>CultureInspirationModel.lua</File>
+    <File>CultureInspiration.lua</File>
     <File>InspirationReadout.lua</File>
     <File>Data/CultureMeaningProbe.sql</File>
     <File>Data/CultureAesthetic.sql</File>
@@ -548,6 +553,7 @@
     <File>UI/DialogueRefresh.xml</File>
   <File>DiagnosticLog.lua</File>
     <File>Data/CultureInspirationProbe.sql</File>
+    <File>Data/CultureInspiration.sql</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />

@@ -208,7 +208,7 @@ function M.Start(P,shared)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do
   bind(Events,name,function(x,y,id,owner)
    local row=P.Info('Buildings',id)
-   if row and (row.BuildingType==M.Carrier or shared.CultureMeaning and shared.CultureMeaning.IsOwnedCarrier(row.BuildingType) or shared.CultureMeaningProbe and shared.CultureMeaningProbe.IsOwnedCarrier(row.BuildingType))then return end
+   if row and (row.BuildingType==M.Carrier or shared.CultureInspiration and shared.CultureInspiration.IsOwnedCarrier(row.BuildingType) or shared.CultureMeaning and shared.CultureMeaning.IsOwnedCarrier(row.BuildingType) or shared.CultureMeaningProbe and shared.CultureMeaningProbe.IsOwnedCarrier(row.BuildingType))then return end
    -- L2A's exact ten transient test carriers cannot change ordinary buildings/X.
    local ok,c=pcall(function()
     local district=CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)

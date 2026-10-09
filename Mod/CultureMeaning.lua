@@ -203,6 +203,7 @@ function SPCCultureMeaning.Start(P,shared)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do bind(Events,name,function(x,y,id,owner)
   local row=P.Info('Buildings',id);local typ=row and row.BuildingType
   if typ and (owned[typ] or shared.GreatWorkAdjacency.IsOwnedCarrier(typ) or shared.Dialogue.IsOwnedCarrier(typ)
+   or shared.CultureInspiration and shared.CultureInspiration.IsOwnedCarrier(typ)
    or SPCCultureAesthetic and typ==SPCCultureAesthetic.Carrier)then return end
   if type(owner)=='number' and not P.IsTestPlayer(owner)then return end
   local ok,c=pcall(function()local district=CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y);return district and district:GetCity() or CityManager.GetCityAt(x,y)end)

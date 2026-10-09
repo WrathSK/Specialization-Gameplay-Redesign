@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "batch": "P0-L3",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0454",
+    "runtime": "B172.199 / modinfo199",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+  "goal": "D0049 automatic city-wide GPP percentage using existing Garden/Pingala primitive; no separate technical probe.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current authorization/evidence/source versus live",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Complete current slice; old prototype history excluded",
+      "selector": "## 当前切片与停止点"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Accepted ability and qualification",
+      "selector": "/abilities/4",
+      "expected_id": "CUL_L4_INSPIRE"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Complete current percentage semantics and unknowns",
+      "selector": "/contracts/inspiration"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Full eligible work pool / exclusions",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Accepted coefficient and range",
+      "selector": "/parameters/inspiration_percent_per_era"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
+      "kind": "full",
+      "reason": "Local results, native delta, stopping boundary"
+    },
+    {
+      "path": "Mod/CultureInspirationModel.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureInspiration.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/Data/CultureInspiration.sql",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureInspirationProbe.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/InspirationReadout.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_inspiration_automatic.py",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    }
+  ],
+  "dependencies": [
+    "CurrentSpecializationFacts qualification, NetworkInput reference, confirmed K compact Summary and changed-city callbacks.",
+    "CityProgressionStore exact owned loss withdrawal and current-facts return; existing save schema unchanged.",
+    "Old B168 four IDs are cleared by the retired owner; Aesthetic/Meaning ignore only the seven new known internal carriers."
+  ],
+  "old_writers": [
+    "CultureInspirationProbe retired in normal Gameplay; all INSPIRE controls read only. Old SQL/diagnostic evidence preserved, no source of old fractional writes."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/EffectiveFacts.lua",
+        "Mod/GreatWorkCatalog.lua",
+        "Mod/UI/DialogueRefresh.lua"
+      ],
+      "trigger": "Actual ownership, qualification, rejected sample or lifecycle anomaly: follow exact call points; no all-module reread."
+    },
+    {
+      "paths": [
+        "Specialization/Design/Content/Shared_D0045.json",
+        "DevelopmentTests/test_culture_aesthetic.py",
+        "DevelopmentTests/test_culture_meaning_automatic.py",
+        "DevelopmentTests/test_culture_meaning_probe.py",
+        "DevelopmentTests/test_culture_inspiration_probe.py",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ],
+      "trigger": "Shared semantic/fixture or safe deployment check; inherited rules are not reauthorized by hashes."
+    }
+  ],
+  "non_scope": [
+    "No Design/other abilities/permanent schema/AI/GC/main changes; no investment propagation refactor; no new collector or source-isolated fractional prototype."
+  ],
+  "validation": {
+    "depth": "L2 affected consumers plus ownership/fault cases",
+    "local": "43 methods46 subTests; Lua/SQL/XML/package/context/link/diff. No full historical or stress suite.",
+    "user": "One continuous session, current E percentage / era changes / E0 withdrawal; native rates may lag a turn. No repeated Probe OFF/load/re-enable."
+  },
+  "full_audit_triggers": [
+    "Need to change accepted semantics, shared persistence or collector ownership, or cannot isolate old/new carriers: stop affected path."
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
+    "native": "USER_GAME_TEST_REQUIRED; configuration/local behavior never native percentage or settlement PASS",
+    "deployment": "Source B172 local; live B171 unchanged until actual W0003 receipt",
+    "stop": "Complete batch and native handoff; do not implement subsequent repairs/abilities."
+  }
+}
