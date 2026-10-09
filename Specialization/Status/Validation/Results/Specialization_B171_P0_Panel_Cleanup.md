@@ -37,3 +37,9 @@ Lua解析、XML ID唯一及完整Files清单、modinfo198/P0-B-171.198标识和d
 ## 使用与停止
 
 本批不设置独立强制UI门禁，也不重复B170保存/收益测试。下一次正常使用面板时，顺带确认15项、无重叠、报告滚动与长中文正常即可；异常再定域处理。B168精度调查独立继续，不启用Floor或正式L3。完成检查点并按现有W0003安全门禁处理部署后停止，不自动开始其它审计修复或玩法。
+
+## 部署记录与机械检查
+
+系统进程只读确认游戏完全退出，两分支clean/sync；既有工具经B170精确receipt恢复stable桥接并激活B171.198。部署checkout `5304e9a`，实现commit `2d3d2f4`；receipt `B171.198-5304e9a-playtest.json`为DEVELOP_ACTIVE，186/186源/运行文件MATCH，无pending事务。B170及stable完整恢复点保留，未启动游戏、未改main。
+
+当前context/schema/selector/self-test与247个Markdown链接/锚点PASS，diff review完成。只同步本批已审source/doc/index hash，没有全历史rehash。B170前两步已确认，B171外观未原生观察但只需正常使用时顺带确认，不新增强制实机门禁。

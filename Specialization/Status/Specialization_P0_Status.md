@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0451
-Implementation Build: source B171.198 LOCAL_COMPLETE; live B170.197; stable B069.96
+Status Revision: S0452
+Implementation Build: source/live B171.198 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B171_PANEL_CLEANUP_LOCAL_COMPLETE
+Work State: B170_ACCEPTED_B171_PANEL_CLEANUP_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161及四专业范围不变。source B171.198仅P0按钮整理本地完成；live仍B170.197，receipt `B170.197-a05a072-playtest.json`；main stable B069.96不变，源码存在不等于已部署。
+D0048／A0161及四专业范围不变。source/live B171.198 P0按钮整理已安全部署；checkout `5304e9a`／实现commit `2d3d2f4`，receipt `B171.198-5304e9a-playtest.json`，186/186 MATCH，无pending事务，B170/stable恢复点保留；main stable B069.96不变。
 
-[B170人工反馈及B171面板](Validation/Results/Specialization_B171_P0_Panel_Cleanup.md)：用户确认B170流程1/2正常，限定USER_GAME_TEST_PASS。第3步入口描述错误，Meaning没有详细切换，撤回而非假报通过；模式隔离仍为本地证据，无需补测。当前manifest `P0-Panel-Cleanup.json`，用户授权15按钮/旧实验隐藏；7方法208 subTest及static通过，下一仅安全部署，外观随正常使用顺带确认，无独立玩法门禁。
+[B170人工反馈及B171面板](Validation/Results/Specialization_B171_P0_Panel_Cleanup.md)：用户确认B170流程1/2正常，限定USER_GAME_TEST_PASS。第3步入口描述错误，Meaning没有详细切换，撤回而非假报通过；模式隔离仍为本地证据，无需补测。当前manifest `P0-Panel-Cleanup.json`，用户授权15按钮/旧实验隐藏；7方法208 subTest及static通过，外观随正常使用顺带确认，无独立玩法门禁；等待下一项用户指示。
 
 [B168 GPP精度调查](Validation/Results/Specialization_B168_Zero_Control.md)保持未决，测试/结束入口仍可见，不启用Floor/完整L3。B169保存验收保持PASS；全建筑扫描/GW/事件传播等其它审计项未处理，无新实施授权。
+
+## S0452 — B171安全部署，本轮收尾
+
+OS确认退出、clean/sync、B170 receipt及恢复点hash核对，通过既有stable桥接部署B171.198。186/186 MATCH、DEVELOP_ACTIVE，无pending事务；B170/stable保留，未启动游戏。15任务按钮及原callback已本地验证，原生字体/scale未观察；不要求独立UI验收或补B170错误第3步。没有Gameplay、Design、GC、保存或main改变；本轮停止。
 
 ## S0451 — B170通过，面板15项整理本地完成
 

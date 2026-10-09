@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-Panel-Cleanup",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0048",
     "research": "D0040",
@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0451",
+    "status": "S0452",
     "runtime": "B171.198 / modinfo198",
     "military": "D0037",
     "harbor": "D0037",
@@ -91,7 +91,7 @@
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
     "source_commit": "2d3d2f45c6dfc30746d0ac13e5b219abbd76cce6",
     "native": "UI rendering not yet observed; no mandatory separate gate",
-    "deployment": "NOT_DEPLOYED; registered live B170.197",
-    "stop": "Only safe UI deployment then stop, no next gameplay/repair batch."
+    "deployment": "B171.198 DEVELOP_ACTIVE; checkout5304e9a; receipt B171.198-5304e9a-playtest.json;186/186 MATCH; B170/stable recovery retained",
+    "stop": "UI cleanup complete in authorized scope; incidental visual observation only; wait next user direction."
   }
 }
