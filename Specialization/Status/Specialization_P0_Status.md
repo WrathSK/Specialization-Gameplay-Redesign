@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0446
+Status Revision: S0447
 Implementation Build: source/live B169.196 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B169_DEPLOYED_AWAITING_B168_B169_USER_TEST
+Work State: B169_USER_PASS_B168_NATIVE_GATE_UNRESOLVED
 
 ## CURRENT AUTHORITATIVE STATE
 
 D0048／A0161与四专业范围不变。source/live **B169.196/modinfo196**已安全部署；部署checkout `234a586`（Mod实现commit `943f26c`），receipt `B169.196-234a586-playtest.json`，186/186 MATCH、DEVELOP_ACTIVE、无pending事务。main stable B069.96不变。
 
-[保存层检查点与一次最小测试](Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)：普通写跨record成本、坏引用隔离、实际读回驱动失败占用保护已本地完成；无新持久schema。当前manifest为`Store-Write-Repair.json`，一次保存／冷加载仍待USER_GAME_TEST。
+[本轮实机记录](Validation/Results/Specialization_B168_B169_Native_Feedback.md)：B169工业I→II投资、旧征服城科研认领I及冷重启保持，Meaning加载／同回合工厂变化、基础专家支持由用户确认正常。本批最小USER_GAME_TEST_PASS，无需重复；异常读回保护仍属本地证据，不宣称原生性能改善。
 
-用户授权部署并恢复[B168 GPP测试](Playtest_Backlog.md#b168--巨作启迪原生诊断验收待办)：B169保留原B168诊断，同包完成0→整数1→END；B168与B169证据独立，均未判原生PASS。不启用Floor／完整L3，不推进其它修复或玩法批次。
+B168九图归档：同T68起点各档重载，T69整数1为52.199，小数0.1/0.3/0.6均51.199；T68基线50.199。单一启用实例与参数正确，所测率需过回合刷新；T69零档与END证据仍缺，不能判取整／倍率或完整PASS。下一建议为一个零档过回合对照，非新实施授权。不启用Floor／完整L3，不推进其它修复。
+
+## S0447 — B169人工验收通过，B168对照证据记录
+
+九图逐张读取、9/9归档SHA256一致；B169以用户文字确认记录通过，未补造截图。B168分别保留参数、实例与全国率证据层：同回合未刷新、T69小数同值且比整数低1，但缺少T69零档，不把跨回合全部差值归因于probe。人工51.6估算仅在花园对本城13点全额+20%的前提下成立，其实际范围未核实。只更新证据／状态／必要metadata，无代码、Design、运行包、部署、main或新实施。
 
 ## S0446 — B169安全部署，等待两项独立验收
 

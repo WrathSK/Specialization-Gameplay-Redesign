@@ -171,11 +171,11 @@
   ],
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md",
-    "native": "USER_GAME_TEST_REQUIRED",
+    "native": "PARTIAL / NATIVE_GATE_UNRESOLVED",
     "stop": "Repair only; authorized W0003 safety and minimal native gate, no Floor/full automatic ability.",
     "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch.",
     "deployment": "B168.195 / modinfo195 DEVELOP_ACTIVE; sourcec3de1140ea4504d8fe4d247211b8af5a4527975e;receipt B168.195-c3de114-playtest.json;186/186 MATCH. B167/stable recovery retained, no pending transaction/game launch;39 local checks PASS, primitive/multiplier/exit native pending.",
-    "native_feedback": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md",
-    "native_gate": "USER_DEFERRED 2026-10-07: existing0→integer1→END gate remains unverified; optional multi-save observations not required; wait for user resumption."
+    "native_feedback": "Specialization/Status/Validation/Results/Specialization_B168_B169_Native_Feedback.md",
+    "native_gate": "2026-10-08: four reload-controlled T68->T69 pairs and one T68 baseline; single active instance/arguments confirmed. T69 zero-stage contrast and END native evidence absent; no Floor/full L3."
   }
 }

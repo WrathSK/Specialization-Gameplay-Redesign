@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "Store-Write-Repair",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0048",
     "research": "D0040",
@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0446",
+    "status": "S0447",
     "runtime": "B169.196 / modinfo196",
     "military": "D0037",
     "harbor": "D0037",
@@ -100,6 +100,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
       "kind": "full",
       "reason": "Current local evidence and single native boundary"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B168_B169_Native_Feedback.md",
+      "kind": "full",
+      "reason": "Scoped user acceptance and separate B168 unresolved native evidence"
     }
   ],
   "dependencies": [
@@ -156,8 +161,9 @@
   ],
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
-    "native": "USER_GAME_TEST_REQUIRED",
+    "native": "USER_GAME_TEST_PASS: reported industrial investment I->II, captured city Research Claim I, cold-load persistence and scoped ability checks",
     "deployment": "B169.196 DEVELOP_ACTIVE; checkout234a586; receipt B169.196-234a586-playtest.json;186/186 MATCH",
-    "stop": "Wait for B169 save/cold-load and separate B168 GPP evidence; no other repair/gameplay batch."
+    "stop": "B169 complete in accepted scope; B168 remains independently unresolved; no next implementation authorization.",
+    "native_evidence": "Specialization/Status/Validation/Results/Specialization_B168_B169_Native_Feedback.md"
   }
 }

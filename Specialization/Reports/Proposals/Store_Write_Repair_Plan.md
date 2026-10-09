@@ -1,10 +1,10 @@
 # 保存层定域修复计划
 
 Date: 2026-10-08 / America/Vancouver
-State: **IMPLEMENTATION_COMPLETE_AWAITING_USER**
+State: **COMPLETE — B169 scoped USER_GAME_TEST_PASS**
 Review baseline（计划制定时）: develop `e02ef7519d17c5733ebc324a4fa3bc9aa458a5c2`，clean／与origin同步；登记source/live B168.195不变。
 
-用户于2026-10-08认可本计划并授权独立批次，补充普通写异常读回也须按实证保护占用。B169.196已完成本地实现，结果见[本地检查点](../../Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)。原审计及冻结结果保持不变；B168实机待办独立保留。当前源码检查点未部署。
+用户于2026-10-08认可本计划并授权独立批次，补充普通写异常读回也须按实证保护占用。B169.196已完成本地实现，结果见[本地检查点](../../Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)。原审计及冻结结果保持不变；B168实机待办独立保留。已部署B169；用户确认本批正常投资／认领／保存冷加载与有限跨城能力正常，见[原生验收](../../Status/Validation/Results/Specialization_B168_B169_Native_Feedback.md)。不扩展原计划范围。
 
 ## 目标和单批范围
 
