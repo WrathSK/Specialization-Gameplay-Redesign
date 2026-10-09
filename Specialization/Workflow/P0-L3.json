@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0454",
+    "status": "S0455",
     "runtime": "B172.199 / modinfo199",
     "military": "D0037",
     "harbor": "D0037",
@@ -189,7 +189,8 @@
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
     "native": "USER_GAME_TEST_REQUIRED; configuration/local behavior never native percentage or settlement PASS",
-    "deployment": "Source B172 local; live B171 unchanged until actual W0003 receipt",
-    "stop": "Complete batch and native handoff; do not implement subsequent repairs/abilities."
+    "deployment": "B172.199 DEVELOP_ACTIVE; checkout94c964b; receipt B172.199-94c964b-playtest.json;189/189 MATCH; B171/stable recovery retained",
+    "stop": "Complete batch and native handoff; do not implement subsequent repairs/abilities.",
+    "source_commit": "94c964b68310623065eb652eb9d327c4d594cea1"
   }
 }

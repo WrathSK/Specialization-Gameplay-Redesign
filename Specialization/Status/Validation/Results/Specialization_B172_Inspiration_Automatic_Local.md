@@ -49,3 +49,10 @@ Lua/XML/SQL/package（189文件）、当前context/schema/selectors/hash、self-
 ## 部署与停止
 
 本地检查点阶段：live仍B171.198，未因源代码写入推定部署。提交推送后，按W0003既有授权与游戏退出/clean/hash/receipt/staging门禁处理，实际结果另记。main/stable不推广，不启动游戏。交付后停止，等待本批用户验收；投资传播、M/N/U2及其它修复不自动推进。
+
+
+## W0003部署结果
+
+系统进程确认游戏退出、main/develop clean且与origin同步。既有工具按B171精确receipt恢复stable桥接，再激活B172.199；部署源码 `94c964b68310623065eb652eb9d327c4d594cea1`，receipt `B172.199-94c964b-playtest.json` 为DEVELOP_ACTIVE，189/189文件MATCH，package digest `939e7848a50f7f60781718148ccc73a47d0c50cd70ac1b3a2e9994c62a61f402`。B171 outgoing恢复包与stable恢复点核对保留，无pending事务，未启动游戏。
+
+本次实现与必要记录已普通commit/push develop；main未改，原生验收仍待用户，不因部署成功升级证据。

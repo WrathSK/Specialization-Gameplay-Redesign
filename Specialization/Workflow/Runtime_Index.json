@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "5304e9aeaec076a2f68f0582b302fd77ac75bf36",
-  "runtime": "B171.198 / modinfo198 deployed checkout5304e9a; UI native appearance unobserved",
+  "runtime_commit": "94c964b68310623065eb652eb9d327c4d594cea1",
+  "runtime": "B172.199 / modinfo199 deployed checkout94c964b; automatic Inspiration native acceptance pending",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

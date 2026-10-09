@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0454
-Implementation Build: source B172.199 LOCAL_COMPLETE; live B171.198 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0455
+Implementation Build: source/live B172.199 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_REQUIRED
-Work State: B172_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B172_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0049巨作启迪已获用户授权直接复用Garden/Pingala city GPP百分比并实施，取消独立原型。source B172.199／modinfo199本地完成，当前live仍B171.198（checkout `5304e9a`，receipt `B171.198-5304e9a-playtest.json`）；不能由源码推部署。main stable B069.96不变。
+D0049巨作启迪已获用户授权直接复用Garden/Pingala city GPP百分比并实施，取消独立原型。source/live B172.199／modinfo199已由既有工具安全部署（checkout `94c964b`，receipt `B172.199-94c964b-playtest.json`，189/189 MATCH，无pending事务）；B171/stable恢复点保留，main stable B069.96不变。
 
 [当前L3合同](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)／manifest `P0-L3.json`：Culture Potential/ACTIVE IV，当前合格时代E0–7、本城全类别3%×E，正式自动writer；旧B168 Probe退役。43方法46 subTest为LOCAL_SIMULATION_PASS，[结果与一次最小验收](Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)；百分比实际入账/叠加仍USER_GAME_TEST_REQUIRED。P0只读报告，不用旧开关/默认OFF冷加载仪式。
 
-B166自动Meaning、B169限定保存、B170已接受范围不扩大；[B168旧证据](Validation/Results/Specialization_B168_Zero_Control.md)保留，旧小数方案不再作为新能力前置门禁。当前允许完成本批检查点和W0003安全部署后等待验收；[投资传播修复计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)仍独立未授权，M/N/U2与其它审计项不推进。
+B166自动Meaning、B169限定保存、B170已接受范围不扩大；[B168旧证据](Validation/Results/Specialization_B168_Zero_Control.md)保留，旧小数方案不再作为新能力前置门禁。本批检查点及W0003部署已完成，当前等待本批最小原生验收；[投资传播修复计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)仍独立未授权，M/N/U2与其它审计项不推进。
+
+## S0455 — B172安全部署，等待最小原生验收
+
+OS退出／clean-sync／source-live-recovery hashes通过；既有工具B171精确receipt→stable桥接→B172，checkout `94c964b`，receipt `B172.199-94c964b-playtest.json`，189/189 MATCH／DEVELOP_ACTIVE／无pending。B171/stable恢复保留，未启动游戏、main不变；只同步部署元数据，43方法46 subTest仍为本地证据，无新增原生PASS。停止，等待用户。
 
 ## S0454 — B172巨作启迪自动能力本地完成
 
