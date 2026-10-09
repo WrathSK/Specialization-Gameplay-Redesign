@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "234a5863c55741fa8125dcb15fa73303d289a58e",
-  "runtime": "B169.196 / modinfo196 (deployed checkout234a586; native pending)",
+  "runtime": "source B170.197 / modinfo197; last deployed B169.196 checkout234a586 (receipt independent)",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -236,9 +236,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "cdbf2c9be2213b01f7483df4d149ff9c598671ab66a8b45178d25f5654e2e03c",
-      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "sha256": "3399091abca7023c9744a480d1705fe85e4b98ab1d02c34b2929d942909f1813",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/EffectiveFacts.lua": {
       "sha256": "969b4ab656c6cb59de0d343438d3d0c42eb9a563f6ed96353ebbe9b81ef4283d",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "6795a7bd6395c14e699e4a1a5d74d6768233b6aefac3db2bfd3c5ed700b7aec8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
-      "provenance": "B169 bounded Store same-reference write/reference/load safety; 18 targeted methods/48 subTests plus direct regression PASS. Package stamps only outside Store. No schema/Design/GC change; not deployed/native pending."
+      "sha256": "383478d1e8d9fe22966d3e57a176f539061d3af8805bda055b45aa6c0a7daf28",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "212ab029358cdb70192b6212d6dd6a9c08447c9b640b927c5bbc2de9a0df2374",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
-      "provenance": "B169 bounded Store same-reference write/reference/load safety; 18 targeted methods/48 subTests plus direct regression PASS. Package stamps only outside Store. No schema/Design/GC change; not deployed/native pending."
+      "sha256": "a26a93f40c0bf75b86e69c3cc902123113a13022b6567d4f2d165ae6936b857d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -636,9 +636,9 @@
       "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "e93864a3487ee4abec08a45384233fd9d8d6b4d3737e28ca7262b9d0cec9ad52",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B132 authorized narrow event/cache optimization; targeted L2 PASS, native pending"
+      "sha256": "12d2c77d6419e07d95de46bbf9f34ec689495d4bc419fa48bf2544cdb2117019",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/Data/ResearchInfrastructure.sql": {
       "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
@@ -691,9 +691,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "ae19effeb1dd68603fa2d03ba8028532033f907f73c6d4f1ef336b90463a26cb",
-      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "sha256": "b14ccc3d7fc768500b7569057a45c1b865b0a7ce5029ee3c66a35e73b776d904",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -711,9 +711,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "ea2ffce12e1f8cc788b3e12889ff7623fd8b27365389320511bcada6c3c640e5",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "sha256": "6e598c5da206177880c09e3bd65767dcbec1fdc0bc5fe27e3f5f2fe2a880c896",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/Data/ResearchChair.sql": {
       "sha256": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",
@@ -886,9 +886,9 @@
       "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "3747fa9eb73a974226fdc30ba8548171e47ce748c161bab79aefaabf1b53f106",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "0cb45f3a7c5a484b407660d703706673b05945589919fbc0f018a7b7a6104837",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -916,9 +916,9 @@
       "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "c637ce8044f0411d8194ef89888902e435f0d63a7b1ff48bbe1c8b794840549c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "e1163231579404cfdd68fe08798282432ea3528630b4c40bd89253c173dbb862",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/CultureInspirationProbe.lua": {
       "sha256": "addf885d4a10e369e253b1aeaa22b961ba24d81104278320b952ad07b2d03d14",

@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "batch": "Shared-D-Facts",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0048",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0048",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0449",
+    "runtime": "B170.197 / modinfo197",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Reports/Proposals/Shared_D_Fact_Read_Repair_Plan.md",
+  "goal": "B170 compact normal Shared D facts and lazy same-sample diagnostics; preserve all native availability/qualification checks.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Authorized slice and source/live boundary"
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Shared_D_Fact_Read_Repair_Plan.md",
+      "kind": "full",
+      "reason": "Approved bounded Shared D scope"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "### Shared D业务事实与按需明细（B170）",
+      "reason": "Runtime fact/diagnostic contract"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE",
+      "reason": "Complete shared eligibility/depth including exceptions/unknown and metadata"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY",
+      "reason": "Complete shared eligibility/depth including exceptions/unknown and metadata"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT",
+      "reason": "Complete shared eligibility/depth including exceptions/unknown and metadata"
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/ResearchApply.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/ResearchApplyModel.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/ResearchChair.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/ResearchChairModel.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/ResearchInfrastructure.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/ResearchInfrastructureShadow.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/CultureAestheticModel.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "Mod/CultureMeaningModel.lua",
+      "kind": "full",
+      "reason": "Actual direct fact/consumer/model closure; no independent gameplay changes"
+    },
+    {
+      "path": "DevelopmentTests/test_shared_d_fact_read.py",
+      "kind": "full",
+      "reason": "Actual baseline/current value/failure/scale runner"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "kind": "full",
+      "reason": "Local evidence limits and single native gate"
+    }
+  ],
+  "dependencies": [
+    "Same OrdinaryBuildingCatalog, D formula, perconsumer guards; no save/GC/event/capacity change.",
+    "Existing native raw capture and bounded8 entry cache/ref/error owner; detached projection.",
+    "Lupa lua55, fixed Git df0cc39 and existing fixture prefixes; optional configured read-only DB for Culture regressions."
+  ],
+  "old_writers": [
+    "DistrictCompleteness remains sole D owner; five normal callers use ReadFacts, existing Read retained for diagnostic only. No yield writer replacement."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "DevelopmentTests/test_p0_a.py",
+        "DevelopmentTests/test_p0_c.py",
+        "DevelopmentTests/test_research_chair.py",
+        "DevelopmentTests/test_culture_aesthetic.py",
+        "DevelopmentTests/test_culture_meaning_automatic.py",
+        "DevelopmentTests/test_culture_meaning_probe.py"
+      ],
+      "trigger": "Exact existing fixture prefixes/direct selected regression; no full historical wrapper/stress."
+    },
+    {
+      "paths": [
+        "Mod/CultureMeaningProbe.lua",
+        "Mod/Probe.lua",
+        "Mod/SpecializationP0.modinfo",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ],
+      "trigger": "Diagnostic compatibility or package/deployment boundary only; no new prototype/other tooling change."
+    }
+  ],
+  "non_scope": [
+    "No Design/persistence/Store/GW slots/event dispatcher/cachecapacity/GC/SQL changes, no other auditfinding or full L3.",
+    "No main promotion or gameplay-scope expansion; deployment requires existing explicit standing permission and actual safety gates."
+  ],
+  "validation": {
+    "depth": "L2 public current-fact/consumer behavior",
+    "local": "19 methods50 subTests actual differential and43 scoped Culture regression; source/static/context checks; detailed limits in result.",
+    "user": "One existing Culture IV D change and full report mode comparison; no repeated save/load or memory longtest."
+  },
+  "full_audit_triggers": [
+    "Changed ordinary classification, UNKNOWN policy, permanent semantics, larger event/cache redesign or novel native enumeration: stop affected path and report."
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+    "source_commit": "343868e8bcd23efddb629b12b8bedf134334cb67",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "deployment": "NOT_DEPLOYED; registered live B169.196",
+    "stop": "After safely gated B170 deployment wait for minimum native gate; no next repair/gameplay."
+  }
+}

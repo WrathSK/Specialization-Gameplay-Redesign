@@ -58,6 +58,14 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
 
+### Shared D业务事实与按需明细（B170）
+
+DistrictCompleteness是唯一D采集/计算owner。正常收益使用`ReadFacts`：保留区域/建筑资格、tier/位置/掠夺、domainD及availability/UNKNOWN；省略name/tierSource/excluded展示树。现有`Read`从同一已确认raw延迟派生完整明细，切换模式不重复采native、不发收益或增加业务revision，返回副本独立。
+
+raw＋compact及按需detail由同一≤8城cache拥有，dirty/ref/token/owner/new-turn/load/return规则保持；成功刷新使旧detail失效，失败保留旧确认样本且标TEMPORARILY_UNAVAILABLE。revision是业务事实版本，不是完整诊断内容identity；诊断独有变化刷新内容但不触发业务publish。
+
+全部presence/location/pillage/queue安全读保留；因此全Building规模成本仍开放，不因拆分明细宣称原生性能改善。正常五consumer已接紧凑入口，Research/Aesthetic详细描述及Probe/Shadow仍可读完整说明。具体差分/残余成本与原生门禁见[B170结果](../Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md)，当前部署/验收只查Status。
+
 ### Store普通写与故障占用（B169）
 
 Store仍唯一拥有提交权，完整record校验、manager旧snapshot和Game旧值比较、写锁、setter/readback及成功后复制都保留。有效引用按字段存在性选择`loss.target → current → origin`；损坏字段不静默回退。普通写在已提交引用与候选引用相同时不遍历其它record；恢复、新登记、有效引用改变仍检查唯一性。登记在index/token写前预检，record提交再次复核。无新save字段／schema／全量反向索引。

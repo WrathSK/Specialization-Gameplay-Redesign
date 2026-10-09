@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0448
-Implementation Build: source/live B169.196 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0449
+Implementation Build: source B170.197 LOCAL_COMPLETE; live B169.196; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B169_USER_PASS_B168_NATIVE_GATE_UNRESOLVED
+Work State: B170_SHARED_D_LOCAL_CHECKPOINT
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161与四专业范围不变。source/live **B169.196/modinfo196**已安全部署；部署checkout `234a586`（Mod实现commit `943f26c`），receipt `B169.196-234a586-playtest.json`，186/186 MATCH、DEVELOP_ACTIVE、无pending事务。main stable B069.96不变。
+D0048／A0161与四专业范围不变。source **B170.197/modinfo197** Shared D紧凑事实／按需诊断本地完成；live仍登记B169.196（receipt `B169.196-234a586-playtest.json`），stable B069.96。源码存在不证明新包已部署。
 
-[本轮实机记录](Validation/Results/Specialization_B168_B169_Native_Feedback.md)：B169工业I→II投资、旧征服城科研认领I及冷重启保持，Meaning加载／同回合工厂变化、基础专家支持由用户确认正常。本批最小USER_GAME_TEST_PASS，无需重复；异常读回保护仍属本地证据，不宣称原生性能改善。
+[本批合同与最小验收](Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md)：五个正常consumer使用ReadFacts，同一原生采样按需Read完整报告；完整安全检查、UNKNOWN、8条缓存与失效保持。本地19方法/50 subTest＋43文化直接回归PASS；全Building扫描仍保留，无原生CPU/内存改善声明。用户已授权实施，当前manifest `Shared-D-Facts.json`；下一仅安全部署和一次正常D变化／报告切换测试。
 
-[B168零档补证](Validation/Results/Specialization_B168_Zero_Control.md)：零档T69/T70为51.199；结合既有同T69对照，0.1/0.3/0.6无可见率增量，整数1为+1。共同跨回合+1非probe效果，精度层次／实际累计／百分比组合可行性仍待调查，END未观察。不再派重复四档；独立调查只读，花园仅作百分比示例。不启用Floor／完整L3，不自动推进修复。
+[B169最小保存验收已PASS](Validation/Results/Specialization_B168_B169_Native_Feedback.md)，无需重做。[B168零档补证](Validation/Results/Specialization_B168_Zero_Control.md)仍是独立GPP精度调查：同T69小数无可见率增量、整数+1；未实施Floor/完整L3。GW扫描、公共广播及其它审计修复未授权。
+
+## S0449 — B170 Shared D独立本地检查点
+
+按批准计划分离普通事实与完整诊断；由于旧nonordinary native读承担未知保护，保留全定义扫描，不按前缀或catalog分类跳过安全检查。实际五model/三个科研writer逐值一致，详细切换无额外capture/publish/收益。原始审计和旧测试不变，历史wrapper限制在本批结果明示。无Design/永久schema/GC/main变更；原生待最小用户确认。
 
 ## S0448 — 零档对照补齐，收敛GPP精度问题
 

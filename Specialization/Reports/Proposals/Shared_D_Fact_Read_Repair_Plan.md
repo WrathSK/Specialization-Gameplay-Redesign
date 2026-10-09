@@ -1,6 +1,6 @@
 # Shared D 普通事实与诊断分离：定域修复计划
 
-Date: 2026-10-08。State: **PLANNED_NOT_AUTHORIZED**。评估baseline：develop `9659316`，工作树clean；source/live B169.196不变，B169最小保存验收已通过。此文是待审核方案，不是新Architecture合同或实施授权。
+Date: 2026-10-08。State: **IMPLEMENTATION_COMPLETE_AWAITING_USER**。评估baseline：develop `9659316`，工作树clean；source/live B169.196不变，B169最小保存验收已通过。用户已授权本独立Shared D切片，B170.197本地完成，见[实施与验证](../../Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md)。下文保留批准时范围；实际实现保留全presence检查，不改目录／其它finding。
 
 ## 为什么排第二
 
@@ -101,6 +101,6 @@ cache仍由DistrictCompleteness拥有，沿既有ref/token、epoch、dirty、own
 
 真正需要新Design、改变普通建筑资格/UNKNOWN策略、扩大缓存/事件架构、持久schema、替换公共writer时停止对应路径。其它finding不因本批一并授权。
 
-用户需要决定：是否授权此Shared D独立切片。
+用户需要决定：无新增Gameplay决策。
 用户需要测试：本轮无；实施后至多上述一次最小功能对照，沿既有部署门禁。
-Codex下一步：计划提交后停止，等待审核；不实施、不部署，不干扰B168独立精度调查。
+Codex下一步：本地完成后按现行安全门禁处理测试部署；等待一次最小实机，不扩大其它finding或B168调查。
