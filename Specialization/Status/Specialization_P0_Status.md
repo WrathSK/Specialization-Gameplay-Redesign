@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0447
+Status Revision: S0448
 Implementation Build: source/live B169.196 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
@@ -15,7 +15,11 @@ D0048／A0161与四专业范围不变。source/live **B169.196/modinfo196**已�
 
 [本轮实机记录](Validation/Results/Specialization_B168_B169_Native_Feedback.md)：B169工业I→II投资、旧征服城科研认领I及冷重启保持，Meaning加载／同回合工厂变化、基础专家支持由用户确认正常。本批最小USER_GAME_TEST_PASS，无需重复；异常读回保护仍属本地证据，不宣称原生性能改善。
 
-B168九图归档：同T68起点各档重载，T69整数1为52.199，小数0.1/0.3/0.6均51.199；T68基线50.199。单一启用实例与参数正确，所测率需过回合刷新；T69零档与END证据仍缺，不能判取整／倍率或完整PASS。下一建议为一个零档过回合对照，非新实施授权。不启用Floor／完整L3，不推进其它修复。
+[B168零档补证](Validation/Results/Specialization_B168_Zero_Control.md)：零档T69/T70为51.199；结合既有同T69对照，0.1/0.3/0.6无可见率增量，整数1为+1。共同跨回合+1非probe效果，精度层次／实际累计／百分比组合可行性仍待调查，END未观察。不再派重复四档；独立调查只读，花园仅作百分比示例。不启用Floor／完整L3，不自动推进修复。
+
+## S0448 — 零档对照补齐，收敛GPP精度问题
+
+五图逐张核对并归档5/5 hash一致，零档原生匹配实例0；正常人口增长和Cheat+2分支T69同为51.199。前轮小数/整数跨回合差值改用同T69零档对照解释，冻结原记录保留。用户修正交接主线为小数精度与整数＋百分比候选；本轮只记证据和交接，不实施、不部署。B169保存层验收保持PASS。
 
 ## S0447 — B169人工验收通过，B168对照证据记录
 

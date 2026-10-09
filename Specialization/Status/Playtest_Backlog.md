@@ -178,6 +178,6 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 [B138参数、一次测试与固定退出标准](../Reports/Technical/Specialization_B129_Event_Memory_Investigation.md#b138165--bounded-stabilization-trial)。GC运行缓解本地通过，native阶段/暂停/回收基线/进程改善待验。正常Network同存档最多10T或4次自动回收，起末进程读数＋最终GC报告；不要求重复旧长测/征服。公共业务路径未改，UNKNOWN失城补撤销反例已有定向回归。通过后“稳定化完成，剩余分配效率问题开放”，恢复功能计划；不等待定位所有分配来源、不自动实施F。剩余事项及重开条件集中在该合同末表；不得事后放宽阈值。
 
 
-## B168 — 巨作启迪原生诊断验收待办
+## B168 — 巨作启迪原生精度调查
 
-2026-10-08九图归档与B169验收见[本轮结果](Validation/Results/Specialization_B168_B169_Native_Feedback.md)。同档过回合刷新与单实例/参数有证据；整数和小数仍缺T69零档对照及END原生证据，NATIVE_GATE_UNRESOLVED。不重测四档，不重复共享保存仪式；下一最小区分仅零档过一回合，退出按需要合并观察。未启用Floor／完整L3，不进入M/N/UI。B169最小保存验收已由用户确认PASS，不被此项阻塞。
+[零档补证](Validation/Results/Specialization_B168_Zero_Control.md)已补齐T69对照：0/0.1/0.3/0.6均51.199，整数1为52.199。所测整数增量+1，小数无可见率增量；取整层次、实际累计与百分比候选仍未知。无需重做零档/四档，END未单独观察但不附加重复生命周期流程。交给调查Agent只读研究小数精度，花园仅作百分比实现参考；不启用Floor/完整L3。B169限定保存验收PASS保持。
