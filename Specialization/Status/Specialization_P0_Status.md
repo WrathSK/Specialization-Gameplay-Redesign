@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0449
-Implementation Build: source B170.197 LOCAL_COMPLETE; live B169.196; stable B069.96
+Status Revision: S0450
+Implementation Build: source/live B170.197 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B170_SHARED_D_LOCAL_CHECKPOINT
+Work State: B170_SHARED_D_USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161与四专业范围不变。source **B170.197/modinfo197** Shared D紧凑事实／按需诊断本地完成；live仍登记B169.196（receipt `B169.196-234a586-playtest.json`），stable B069.96。源码存在不证明新包已部署。
+D0048／A0161与四专业范围不变。source/live **B170.197/modinfo197** 已安全部署；checkout `a05a072`／实现commit `343868e`，receipt `B170.197-a05a072-playtest.json`，186/186 MATCH、无pending事务。B169/stable恢复点保留，main stable B069.96不变。
 
-[本批合同与最小验收](Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md)：五个正常consumer使用ReadFacts，同一原生采样按需Read完整报告；完整安全检查、UNKNOWN、8条缓存与失效保持。本地19方法/50 subTest＋43文化直接回归PASS；全Building扫描仍保留，无原生CPU/内存改善声明。用户已授权实施，当前manifest `Shared-D-Facts.json`；下一仅安全部署和一次正常D变化／报告切换测试。
+[本批合同与最小验收](Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md)：五个正常consumer使用ReadFacts，同一原生采样按需Read完整报告；完整安全检查、UNKNOWN、8条缓存与失效保持。本地19方法/50 subTest＋43文化直接回归PASS；全Building扫描仍保留，无原生CPU/内存改善声明。用户已授权实施，当前manifest `Shared-D-Facts.json`；当前仅等待一次正常D变化／报告切换测试。
 
 [B169最小保存验收已PASS](Validation/Results/Specialization_B168_B169_Native_Feedback.md)，无需重做。[B168零档补证](Validation/Results/Specialization_B168_Zero_Control.md)仍是独立GPP精度调查：同T69小数无可见率增量、整数+1；未实施Floor/完整L3。GW扫描、公共广播及其它审计修复未授权。
+
+## S0450 — B170安全部署，待最小实机
+
+OS确认游戏退出、两分支clean/sync；既有工具经原B169精确receipt恢复stable桥接，再激活B170，186/186 MATCH、DEVELOP_ACTIVE、无pending事务，B169/stable完整恢复点保留。没有启动游戏或新的原生PASS；本地读取/复制计数不等于native内存/CPU改善。下一仅现有Culture IV城一次D变化＋详细查看，无额外保存仪式。
 
 ## S0449 — B170 Shared D独立本地检查点
 

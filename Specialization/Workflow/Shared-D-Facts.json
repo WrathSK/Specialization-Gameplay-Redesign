@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0449",
+    "status": "S0450",
     "runtime": "B170.197 / modinfo197",
     "military": "D0037",
     "harbor": "D0037",
@@ -179,7 +179,7 @@
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
     "source_commit": "343868e8bcd23efddb629b12b8bedf134334cb67",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "NOT_DEPLOYED; registered live B169.196",
-    "stop": "After safely gated B170 deployment wait for minimum native gate; no next repair/gameplay."
+    "deployment": "B170.197 DEVELOP_ACTIVE; checkouta05a072; receipt B170.197-a05a072-playtest.json;186/186 MATCH; B169/stable recovery retained",
+    "stop": "Wait for one D-change/detail-switch native gate; no next repair/gameplay."
   }
 }

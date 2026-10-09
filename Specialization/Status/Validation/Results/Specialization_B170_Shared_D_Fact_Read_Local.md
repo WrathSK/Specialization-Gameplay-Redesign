@@ -61,3 +61,9 @@ python3 Specialization/Workflow/context.py self-test Shared-D-Facts
 ## 停止点
 
 本地检查点完成，后续部署受有效W0003与真实game exit/clean-source/receipt/hash/恢复点门禁约束。原生结果仍待用户；不自动处理GW、广播、下一审计修复或正式L3。B168小数GPP精度调查独立，不受本批变化。
+
+## 安全部署与最终文档检查
+
+按有效W0003授权，OS再次确认游戏完全退出、main/develop clean/sync、原B169 receipt及stable备份hash相符；精确stable桥接后激活B170.197。部署checkout `a05a072`，实现commit `343868e`；receipt `B170.197-a05a072-playtest.json`为DEVELOP_ACTIVE，186/186与源码MATCH、无pending事务，B169完整恢复副本与stable恢复点保留。没有启动游戏或修改main。
+
+文档351个本地链接/锚点无失败，context/schema/selector及self-test PASS，helper三项PASS；Context Lock仅同步本批已审文件，Runtime Index只更新八项源码（含包标识）provenance。最终原生待一次上述D变化/详细切换，不重复保存/冷加载，不进入其它finding。
