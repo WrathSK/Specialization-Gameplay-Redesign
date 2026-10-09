@@ -19,18 +19,19 @@ function M.Start(P,shared)
    end end;assert(n==1,'AP_YIELD_MISSING')
   end end;definitions=true
  end
- local function inspect(pid,c)
+ local function inspect(pid,c,detail)
   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
   local inactive=SPCResearchApplyModel.Plan(f,nil,nil)
   if inactive.status~='NEEDS_DEPTH' then return inactive end
-  local v=shared.DistrictCompleteness.Read(pid,c,f.token)
+  local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
+  local v=reader(pid,c,f.token)
   assert(v.validity=='VERIFIED' and v.availability=='READY' and v.value,'AP_DEPTH_UNKNOWN')
   local campus,n=nil,0;local warnings={}
   for _,d in ipairs(v.value.districts) do
    if d.domain=='DISTRICT_CAMPUS' then campus=d;n=n+1 end
    for _,b in ipairs(d.buildings) do
     assert(not (b.ordinary and b.depthEligible~=false and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'AP_BUILDING_FACT_UNKNOWN')
-    if b.reason=='UNREVIEWED_BUILDING' then warnings[#warnings+1]=b.name or b.type end
+    if detail and b.reason=='UNREVIEWED_BUILDING' then warnings[#warnings+1]=b.name or b.type end
    end
   end
   assert(n<=1,'AP_MULTIPLE_CAMPUSES')
@@ -94,7 +95,7 @@ function M.Start(P,shared)
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()
    assert(data.ready,'AP_NOT_READY');validate()
-   local p=inspect(pid,c);local rows,coeff=installed(c)
+   local p=inspect(pid,c,true);local rows,coeff=installed(c)
    local lines={'学以致用 | '..(p.status=='READY' and ('ACTIVE '..p.active..'；工作科研专家 '..p.workers) or '未生效'),
     '同产出领域先合并 → 每名floor → 按工作专家结算。'}
    for _,y in ipairs(SPCResearchApplyModel.Yields) do

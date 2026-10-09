@@ -28,12 +28,13 @@ function M.Start(P,shared)
   end
   assert(#defs>0,'CHAIR_TARGET_TABLE_EMPTY');definitions=defs;targets=ts
  end
- local function inspect(pid,c)
+ local function inspect(pid,c,detail)
   assert(c:GetOwner()==pid,'CHAIR_OWNER_CHANGED')
   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
   local p=SPCResearchChairModel.Plan(f,nil,nil,targets)
   if p.status~='NEEDS_BUILDINGS' then return p end
-  local v=shared.DistrictCompleteness.Read(pid,c,f.token)
+  local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
+  local v=reader(pid,c,f.token)
   p=SPCResearchChairModel.Plan(f,v,nil,targets)
   if p.status~='NEEDS_WORKERS' then return p end
   local plot=assert(Map.GetPlotByIndex(p.plot),'CHAIR_PLOT_UNKNOWN')
@@ -91,7 +92,7 @@ function M.Start(P,shared)
  end
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()
-   assert(data.ready,'CHAIR_NOT_READY');validate();local p=inspect(pid,c);local rows,amounts=installed(c)
+   assert(data.ready,'CHAIR_NOT_READY');validate();local p=inspect(pid,c,true);local rows,amounts=installed(c)
    local total=0;local mismatch=false
    for k,n in pairs(amounts) do total=total+n;if n~=(p.amounts[k] or 0) then mismatch=true end end
    for k,n in pairs(p.amounts) do if n~=(amounts[k] or 0) then mismatch=true end end

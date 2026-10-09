@@ -98,7 +98,7 @@ function SPCCultureMeaning.Start(P,shared)
    if plan.status=='NEEDS_DEPTH'then
     assert(coverage and coverage.status=='VERIFIED_LOADED_SET','ME_RECIPIENT_CATALOG_UNVERIFIED')
     if plan.count==0 then plan.status='READY'
-    else plan=M.Plan(f,w,shared.DistrictCompleteness.Read(pid,c,f.token))end
+    else plan=M.Plan(f,w,shared.DistrictCompleteness.ReadFacts(pid,c,f.token))end
    end
    return plan
   end)

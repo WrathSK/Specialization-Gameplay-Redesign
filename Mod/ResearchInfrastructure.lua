@@ -36,7 +36,7 @@ function M.Start(P,shared)
   if f.identity~='RESEARCH' then return p end
   assert(integer(f.active) and f.active<=4 and integer(f.potential) and f.potential<=4 and f.active<=f.potential,'RI_ACTIVE_UNKNOWN')
   if f.active<4 then return p end
-  local v=shared.DistrictCompleteness.Read(pid,c,f.token)
+  local v=shared.DistrictCompleteness.ReadFacts(pid,c,f.token)
   assert(v.validity=='VERIFIED' and v.availability=='READY' and v.value,'RI_DEPTH_UNAVAILABLE')
   p.depth=v
   local count=0;local campus

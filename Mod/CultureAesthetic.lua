@@ -78,7 +78,8 @@ function M.Start(P,shared)
   local p=SPCCultureAestheticModel.Plan(f,gw,nil)
   local view
   if p.status=='NEEDS_BUILDINGS' then
-   view=shared.DistrictCompleteness.Read(pid,c,f.token)
+   local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
+   view=reader(pid,c,f.token)
    p=SPCCultureAestheticModel.Plan(f,gw,view,detail)
   end
   return p,f,view

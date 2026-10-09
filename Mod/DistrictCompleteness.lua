@@ -14,8 +14,10 @@ local function same(a,b)
 end
 local function bool(v,code) assert(type(v)=='boolean',code);return v end
 -- Pure calculation consumes a complete native sample and reviewed catalog only.
-function M.Calculate(catalog,raw)
- local out={districts={},domains={},excluded={},catalogRevision=catalog.revision}
+function M.Calculate(catalog,raw,detail)
+ detail=detail~=false
+ local out={districts={},domains={},catalogRevision=catalog.revision}
+ if detail then out.excluded={} end
  local seen={}
  table.sort(raw.districts,function(a,b) return a.id<b.id end)
  for _,d in ipairs(raw.districts) do
@@ -25,7 +27,7 @@ function M.Calculate(catalog,raw)
   bool(d.complete,'DC_COMPLETION_UNKNOWN');bool(d.pillaged,'DC_DISTRICT_PILLAGE_UNKNOWN')
   for _,b in ipairs(d.buildings) do
    local c=catalog.buildings[b.index] or {type=tostring(b.index),reason='UNREVIEWED_BUILDING'}
-   local v={type=c.type,name=c.name,tier=c.tier,tierSource=c.tierSource,ordinary=c.ordinary==true,
+   local v={type=c.type,name=detail and c.name or nil,tier=c.tier,tierSource=detail and c.tierSource or nil,ordinary=c.ordinary==true,
     complete=b.complete,pillaged=b.pillaged,contribution=0,reason=c.reason,
     ordinaryReason=c.ordinaryReason,ordinaryDistrict=c.ordinaryDistrict,depthEligible=c.depthEligible~=false}
    bool(b.complete,'DC_BUILDING_COMPLETION_UNKNOWN');bool(b.pillaged,'DC_BUILDING_PILLAGE_UNKNOWN')
@@ -47,7 +49,20 @@ function M.Calculate(catalog,raw)
    if not previous or r.value>previous.value then out.domains[domain]={value=r.value,districtID=r.id} end
   end
  end
- for _,b in ipairs(raw.unplaced or {}) do out.excluded[#out.excluded+1]=clone(b) end
+ if detail then
+  -- These small native observations belong to the same confirmed capture;
+  -- names/reasons/excluded display rows are materialized only on explicit Read.
+  for _,b in ipairs(raw.observations or {}) do
+   local entry=catalog.buildings[b.index]
+   out.excluded[#out.excluded+1]={type=entry.type,reason=entry.reason or 'UNREVIEWED_BUILDING',
+    contribution=0,pillaged=b.pillaged,plot=b.plot}
+  end
+  if raw.queued then
+   out.excluded[#out.excluded+1]={type=raw.queued,reason='UNDER_CONSTRUCTION',contribution=0,pillaged=false}
+  end
+  -- Existing pure callers/fixtures may supply already-described unplaced rows.
+  for _,b in ipairs(raw.unplaced or {}) do out.excluded[#out.excluded+1]=clone(b) end
+ end
  return out
 end
 function M.Start(P,shared)
@@ -73,7 +88,7 @@ function M.Start(P,shared)
    catalog=nextCatalog;buildingOrder=order
   end
   local buildings=c:GetBuildings();local districts=c:GetDistricts()
-  local raw={districts={},unplaced={}};local seen={};local byPlot={}
+  local raw={districts={}};local seen={};local byPlot={}
   -- Use indexed Gameplay CityDistricts and Gameplay building locations, not UI enumeration.
   local n=districts:GetNumDistricts()
   assert(type(n)=='number' and n>=0 and n%1==0,'DC_DISTRICT_COUNT_UNAVAILABLE')
@@ -88,7 +103,7 @@ function M.Start(P,shared)
    byPlot[rec.plot]=rec;raw.districts[#raw.districts+1]=rec
   end
   -- One cached definition pass for this selected city, not one pass per district/player.
-  -- Includes non-ordinary entries so exclusions remain visible in diagnostics.
+  -- Retain even non-ordinary checks: failures are still availability evidence.
   for _,entry in ipairs(buildingOrder) do
    local index=entry.index;P.Count('building_check')
    if bool(buildings:HasBuilding(index),'DC_BUILDING_COMPLETION_UNKNOWN') then
@@ -104,18 +119,18 @@ function M.Start(P,shared)
      -- Wonders/internal objects can live off district plots. Never drop a known
      -- ordinary building silently: that would publish an incomplete D as zero.
      assert(not (entry and entry.ordinary),'DC_ORDINARY_LOCATION_UNRESOLVED')
-     raw.unplaced[#raw.unplaced+1]={type=entry.type,reason=entry and entry.reason or 'UNREVIEWED_BUILDING',
-      contribution=0,pillaged=pillaged,plot=location}
+     raw.observations=raw.observations or {}
+     raw.observations[#raw.observations+1]={index=index,pillaged=pillaged,plot=location}
     end
    end
   end
   -- Only the current unfinished Building is diagnostic evidence, not a contribution.
   local current=c:GetBuildQueue():CurrentlyBuilding();local row=P.Info('Buildings',current)
   if row and not seen[row.Index] and not buildings:HasBuilding(row.Index) then
-   raw.unplaced[#raw.unplaced+1]={type=row.BuildingType,reason='UNDER_CONSTRUCTION',contribution=0,pillaged=false}
+   raw.queued=row.BuildingType
   end
   assert(c:GetOwner()==pid,'DC_OWNER_CHANGED_DURING_READ')
-  return M.Calculate(catalog,raw)
+  return M.Calculate(catalog,raw,false),raw
  end
  function data.MarkDirty(pid,cid)
   -- At most eight cached city entries, no native reads, strings or event history.
@@ -125,7 +140,7 @@ function M.Start(P,shared)
    end
   end
  end
- function data.Read(pid,c,token)
+ local function read(pid,c,token,detail)
   count('read');assert(P.IsTestPlayer(pid),'DC_OWNER_NOT_ENABLED')
   local current=ref(pid,c,token);local k=key(pid,current.id);local turn=Game.GetCurrentGameTurn()
   local e=cache[k]
@@ -138,16 +153,25 @@ function M.Start(P,shared)
   if n>8 then cache[oldKey]=nil end
   if e.dirty or e.turn~=turn then
    e.dirty=false;e.turn=turn
-   local ok,value=pcall(capture,pid,c)
+   local ok,value,raw=pcall(capture,pid,c)
    if ok and same(current,ref(pid,c,token)) then
     if not e.value or not same(e.value,value) then revision=revision+1;e.revision=revision;count('publish') end
-    e.value=value;e.error=nil
+    e.value=value;e.raw=raw;e.detail=nil;e.error=nil
    else e.error=ok and 'DC_REFERENCE_CHANGED' or tostring(value);count('failure') end
   else count('hit') end
+  local value=e.value
+  if detail and e.raw then
+   if not e.detail then e.detail=M.Calculate(catalog,e.raw) end
+   value=e.detail
+  end
   return {schema=1,epoch=epoch,reference=clone(current),validity=e.value and 'VERIFIED' or 'UNKNOWN',
    availability=e.error and 'TEMPORARILY_UNAVAILABLE' or 'READY',error=e.error,
-   revision=e.revision,value=e.value and clone(e.value) or nil}
+   revision=e.revision,value=value and clone(value) or nil}
  end
+ -- Both projections share one confirmed sample/error/ref/revision owner. The
+ -- compact copy keeps all eligibility guards; neither returns mutable cache.
+ function data.ReadFacts(pid,c,token)return read(pid,c,token,false) end
+ function data.Read(pid,c,token)return read(pid,c,token,true) end
  function data.CacheSize() local n=0;for _ in pairs(cache) do n=n+1 end;return n end
  local function hook(source,name,fn)
   local event=P.Field(source,name);if event and event.Add then event.Add(fn) end
