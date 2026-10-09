@@ -1,10 +1,10 @@
 # 保存层定域修复计划
 
 Date: 2026-10-08 / America/Vancouver
-State: **PLANNED_NOT_AUTHORIZED**
-Review baseline: develop `e02ef7519d17c5733ebc324a4fa3bc9aa458a5c2`，clean／与origin同步；登记source/live B168.195不变。
+State: **IMPLEMENTATION_COMPLETE_AWAITING_USER**
+Review baseline（计划制定时）: develop `e02ef7519d17c5733ebc324a4fa3bc9aa458a5c2`，clean／与origin同步；登记source/live B168.195不变。
 
-本文件是用户要求的修复方案，等待审核及明确implementation授权；不取代当前Authority/manifest/Status，也不恢复B168实机待办。审计已经收束，原报告及原始证据不改写。本轮只提交本计划，无实现、玩法测试或部署。
+用户于2026-10-08认可本计划并授权独立批次，补充普通写异常读回也须按实证保护占用。B169.196已完成本地实现，结果见[本地检查点](../../Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)。原审计及冻结结果保持不变；B168实机待办独立保留。当前源码检查点未部署。
 
 ## 目标和单批范围
 
@@ -17,7 +17,7 @@ Review baseline: develop `e02ef7519d17c5733ebc324a4fa3bc9aa458a5c2`，clean／�
 
 不加入全量owner-by-ref索引、不新增持久字段/文件/状态机。仍由Store持有唯一提交权；业务model及原有record schema不变。
 
-## 现有事实与不能误改的保护
+## 修复前基线事实与必须保留的保护
 
 - `storage.Write`676–694先比manager旧snapshot、Game旧值，再扫描其它record；写/readback成功后才更新envelope。
 - worker `save`160–164先完整validate并持有candidate，失败hold目标；本批不顺带改变提交期间reader可见性（Q01）。
@@ -54,11 +54,18 @@ load时安全收集可确认的端点并检查真实碰撞。不可读record保�
 
 失城与夺回不能按“只是stage改变”走快路径：只要实际有效引用改变就走结构检查。同回合真实变化继续允许，不加“每城每回合最多写一次”。复制隔离和目标完整校验不删除；本批只减少重复跨城检查，不声称所有分配／扫描归零。
 
-### 4. 引用变更失败时保留占用
+### 4. 任何写失败按实际读回保护占用
 
-当前代码setter抛错会跳过readback；若底层实际已写入candidate，Game与envelope可能不同。这是源码可见的失败窗口，原生可达性未证明，不报告成已经发生的事故。
+修复前代码setter抛错会跳过readback；若底层实际已写入candidate，Game与envelope可能不同。这是源码可见的失败窗口，原生可达性未证明，不报告成已经发生的事故。
 
-对**首次record提交／引用变更未正常成功确认，且不能可靠证明Game仍等于旧snapshot**的失败token，保留旧引用及候选引用的session reservation。首次提交旧值为nil，不补造旧引用；每个已hold token至多一个候选，不维护全量反向索引、不写存档、不自动重试。setter失败后读到完整candidate也只证明可能占用，不能晋升成功snapshot或恢复worker。读回既非旧值也非candidate时标明确未知占用并保守阻止相关结构写，二元reservation不冒充覆盖任意第三值。重新加载按实际可靠记录重新建立检查，不直接重放failed candidate。
+所有失败路径均依据实际可证明的读回分类，包括普通同引用写、首次提交、引用变更，以及写前Game旧值不符。普通写不能因为旧／候选引用相同就跳过故障占用判断。
+
+- 可靠读到原端点：仍hold目标worker，不新增未知占用；第三值若仅业务字段不同而端点可靠未变，也采用此局部处理。
+- 可靠读到候选端点：保留该端点的session reservation，但setter错误／未完整确认仍不能晋升成功snapshot或恢复worker。
+- 第三端点、不可解析结构、getter／有界Copy失败：明确UNKNOWN并保守拒绝无法证明安全的结构写；可靠旧snapshot仍保留。
+- 可靠nil：现存record保留旧引用；首次提交不补造旧record，保留已确认index的登记端点。
+
+每个held token最多一份有界session占用保护，无持久字段／全量反向索引。重新加载从实际可靠记录重建；不重放失败candidate。新登记在index/token写前先检查，index成功后即保留登记端点以覆盖City token失败。其它正常城市的不变引用写继续保持局部隔离。
 
 单城失败仍hold目标；其它正常不变引用写不被无必要停止。后续结构写必须核这些可能占用，不能拿envelope旧snapshot当Game已确认真值。若最小路径不能保持现有失城撤销／恢复保护，停止该具体路径，报告需要扩大哪些调用点；不静默牺牲安全性。
 
@@ -71,7 +78,7 @@ load时安全收集可确认的端点并检查真实碰撞。不可读record保�
 | 当前对应Store/E2定向tests | 仅必要fixture接入；原断言和冻结通过记录保留，不能改到全绿 |
 | 既有Architecture保存说明、实施结果、Status及必要W0001索引 | implementation获授权后记录新协议和证据，按已审变化同步hash；不整库rehash |
 
-本计划先单独落在Proposals；不新建批次manifest、不把当前P0-L3A替换为已授权修复。获准实施时再登记该批准确依赖与版本；build/modinfo届时分配，不预先写成已完成或已部署。
+计划审核已完成。独立批次登记为`Store-Write-Repair`／B169.196，P0-L3A保留原待验历史和独立待办；不扩展其实现。
 
 ## 本地验证：W0004 L3，限定保存风险
 
@@ -102,6 +109,6 @@ load时安全收集可确认的端点并检查真实碰撞。不可读record保�
 
 退出条件：成本快路径和逐值行为通过；恢复/结构检查仍有正确碰撞保护；坏record不被清空／猜补、普通对照城正常；未知写入占用有明确保护；定向回归与文档/context检查完成。若需要改持久schema、业务ownership或扩公共事件架构，停止对应路径另报，不以本方案授权。
 
-用户需要决定：是否接受这一个定域批次及上述保守故障边界，再明确授权implementation。
-用户需要测试：当前无；本地完成后仅上述一次最小流程。
-Codex下一步：本计划提交后停止，等待授权；不实施或部署。
+用户需要决定：无新增玩法决策。
+用户需要测试：当前运行包仍B168；后续安全部署B169后，仅上述一次最小保存／冷加载流程。
+Codex下一步：本地检查点commit/push后停止；本轮不部署、不自动推进其它审计修复。

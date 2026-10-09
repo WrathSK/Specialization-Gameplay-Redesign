@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "batch": "Store-Write-Repair",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0048",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0048",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0445",
+    "runtime": "B169.196 / modinfo196",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Reports/Proposals/Store_Write_Repair_Plan.md",
+  "goal": "B169: unchanged-reference ordinary write fast path, bad-reference isolation and evidence-driven bounded failed occupancy; no persistence framework rewrite.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current authorized checkpoint and source/live separation",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Store_Write_Repair_Plan.md",
+      "kind": "full",
+      "reason": "Approved scope including ordinary-write actual-readback clarification"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Bounded Store save protocol and exclusions",
+      "selector": "### Store普通写与故障占用（B169）"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "reason": "Existing per-record authority, reservation and failure contract; old batch progress is historical",
+      "selector": "## B108 authorized new-game multi-city cutover — contract before implementation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "kind": "section",
+      "reason": "Current supported-save initialization correction",
+      "selector": "## B109.136 — start-enabled initialization repair"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Complete existing Identity/Potential/receipts/ownership and exceptions; no semantic change",
+      "selector": "## 3. 共同成长与永久投资 — PROG"
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Changed writer/load/reference and all public entrypoints"
+    },
+    {
+      "path": "Mod/CityIdentityRead.lua",
+      "kind": "full",
+      "reason": "Bounded copy and record validator used by Store"
+    },
+    {
+      "path": "Mod/ResearchTradition.lua",
+      "kind": "full",
+      "reason": "Actual ordinary per-turn age model used by value comparison"
+    },
+    {
+      "path": "DevelopmentTests/test_store_write_boundaries.py",
+      "kind": "full",
+      "reason": "New actual Store counterexamples and selected regression entry"
+    },
+    {
+      "path": "DevelopmentTests/test_b140_templates.py",
+      "kind": "full",
+      "reason": "Actual template/Claim/return/consumer regression"
+    },
+    {
+      "path": "DevelopmentTests/test_b143_tradition.py",
+      "kind": "full",
+      "reason": "Actual age/investment/atomic recovery regression"
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "Package version stamp only; SetProperty caller contract"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Package version only"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
+      "kind": "full",
+      "reason": "Current local evidence and single native boundary"
+    }
+  ],
+  "dependencies": [
+    "Existing production Start V3 index/record schema and compact binding; no new key/fields.",
+    "Public Store business APIs, full validator, copy isolation, current facts and module-owned exits remain unchanged.",
+    "Read-only source baseline cdd3ceb for exact record/write/visit comparisons; Lupa lua55 and retained direct fixture files."
+  ],
+  "old_writers": [
+    "Store remains sole production writer; legacy adapter unchanged, no enabling old City property writers or fallback."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/InvestmentAction.lua",
+        "Mod/Standardization.lua",
+        "Mod/ClaimProjects.lua",
+        "Mod/EffectiveFacts.lua",
+        "Mod/CityFlowProbe.lua",
+        "Mod/ResearchTraditionEffects.lua"
+      ],
+      "trigger": "Exact unchanged public caller/read/exit contract review or direct regression failure; no new business semantics."
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_p0_e1.py",
+        "DevelopmentTests/test_p0_e2.py",
+        "DevelopmentTests/test_b108_e2_multicity.py",
+        "DevelopmentTests/test_b111_district_snapshot.py",
+        "DevelopmentTests/test_b124_claim.py",
+        "DevelopmentTests/test_b127_claim_resume.py",
+        "DevelopmentTests/test_b128_unassigned_return.py"
+      ],
+      "trigger": "Direct fixture declarations/selected cases used by targeted runner; no full historical wrappers."
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ],
+      "trigger": "Future authorized deployment only; none in this local checkpoint."
+    }
+  ],
+  "non_scope": [
+    "No F03/Q01/Q02/Research owner-policy, new schema/cityKey/reverse index, GC/event/cache overhaul, Design or gameplay changes.",
+    "No B168 native test resumption, no other repair phase, deployment or main promotion."
+  ],
+  "validation": {
+    "depth": "L3 scoped Store persistence/reference risk",
+    "local": "See linked result: actual Store value/cost comparison and failure matrix; B140/B143 and selected B127/B128 regression. No broad historical suite or native memory claim.",
+    "user": "After separate safe deployment: existing supported two-city save, one normal turn and one legitimate business write, save/fully exit/cold load once. No corruption injection or extra user steps."
+  },
+  "full_audit_triggers": [
+    "Need for new schema, changed permanent ownership/business semantics, external writer bypass or broader lifecycle changes: stop that path and report."
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
+    "native": "USER_GAME_TEST_REQUIRED_AFTER_DEPLOYMENT",
+    "deployment": "NOT_DEPLOYED; registered live B168.195 remains unchanged",
+    "stop": "Local implementation/checkpoint only. Preserve B168 USER_DEFERRED and all excluded audit items."
+  }
+}

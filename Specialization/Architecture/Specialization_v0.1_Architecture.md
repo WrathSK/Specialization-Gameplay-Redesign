@@ -58,6 +58,16 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
 
+### Store普通写与故障占用（B169）
+
+Store仍唯一拥有提交权，完整record校验、manager旧snapshot和Game旧值比较、写锁、setter/readback及成功后复制都保留。有效引用按字段存在性选择`loss.target → current → origin`；损坏字段不静默回退。普通写在已提交引用与候选引用相同时不遍历其它record；恢复、新登记、有效引用改变仍检查唯一性。登记在index/token写前预检，record提交再次复核。无新save字段／schema／全量反向索引。
+
+损坏record保留index、位置及原件并hold本worker；可靠端点（即使业务字段损坏）仍占用，可靠缺record保留登记端点。不可解析或读取失败的占用标UNKNOWN，只拒绝无法证明安全的新登记／引用变更；其他正常城的不变引用写可继续。加载时真实引用碰撞仍hold collection，candidate碰撞仅拒绝目标。
+
+所有写失败（包括普通写和写前stale）以实际读回决定有限session reservation。可靠原端点不扩大保护；可靠候选端点被保留但不晋升成功；第三端点／不可解析／读取或有界Copy失败为UNKNOWN。setter抛错后仍读回一次；不盲重试。失败城的旧snapshot、永久记录不删除，重新加载依据实际可靠存储重建。session条目按held/incomplete token有界，成功确认即清除；没有新增持久账本或全城每回合限频。
+
+[实施与验证](../Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)记录访问计数、逐值对照和保护反例；该计数不是原生CPU／内存证明。目标record读回现在经有界Copy，复制／校验及业务写成本仍在。提交期间候选root可见性、return回调顺序和专业业务耦合仍是原审计保留项，本批不改；部署／实机状态只从Status获取。
+
 ### 网络与跨context数据
 
 已接受的[后台UI来源合同](../Reports/Technical/Specialization_Network_Background_Source_Decision.md)允许不开贸易窗口读取当前路线。Gameplay计数核对不是完整端点枚举的替代。路线事件使输入失效/重采，事件历史本身不是现在的网络。
