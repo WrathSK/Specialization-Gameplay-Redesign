@@ -641,10 +641,53 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local modern=not legacyTest;local index,positions,capacity;local initialized=false
  local INDEX=SPCCityProgressionStore.INDEX;local PREFIX=SPCCityProgressionStore.RECORD
  local initializeNew
+ -- Session-only reservations for held/incomplete records. The committed envelope
+ -- remains the normal source; no second all-record reference index is maintained.
+ local reservations={}
+ local function int(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
+ local function referenceKey(r)
+  if type(r)~='table' then return nil end
+  local a
+  -- Presence, not truthiness: malformed selected endpoints must not fall back.
+  if r.loss~=nil then
+   if type(r.loss)~='table' then return nil end
+   a=r.loss.target
+  elseif r.current~=nil then a=r.current
+  else a=r.origin end
+  if type(a)~='table' or not int(a.owner) or not int(a.cityID) then return nil end
+  return string.format('%d:%d',a.owner,a.cityID)
+ end
+ local function checkReference(token,reference)
+  assert(reference,'STORE_CURRENT_REFERENCE')
+  for other,r in pairs(envelope.records)do if other~=token then
+   local occupied=referenceKey(r)
+   assert(occupied,'STORE_REFERENCE_UNKNOWN')
+   assert(reference~=occupied,'STORE_REFERENCE_COLLISION')
+  end end
+  for other,reserved in pairs(reservations)do if other~=token then
+   assert(not reserved.unknown,'STORE_REFERENCE_UNKNOWN')
+   assert(reference~=reserved.reference,'STORE_REFERENCE_COLLISION')
+  end end
+ end
  local function same(a,b)
   if type(a)~=type(b)then return false end;if type(a)~='table'then return a==b end
   for k,v in pairs(a)do if not same(v,b[k])then return false end end
   for k in pairs(b)do if a[k]==nil then return false end end;return true
+ end
+ -- A failed write never promotes its candidate. Occupancy follows actual readback,
+ -- including stale/ordinary writes: a different or unreadable endpoint is UNKNOWN.
+ local function protectFailed(token,before,value,readOK,observed)
+  local oldRef=referenceKey(before);local candidateRef=referenceKey(value)
+  if readOK and observed==nil then
+   reservations[token]=before==nil and {reference=candidateRef} or nil -- incomplete registration keeps its index endpoint
+   return
+  end
+  local actual=readOK and referenceKey(observed) or nil
+  if actual and (actual==oldRef or actual==candidateRef) then
+   reservations[token]=actual~=oldRef and {reference=actual} or nil
+  else
+   reservations[token]={unknown=true,reference=candidateRef~=oldRef and candidateRef or nil}
+  end
  end
  local function check()assert(not fault,fault or 'STORE_COLLECTION_HELD')end
  local function count()if modern and index then return index.counter end;local n=0;for _ in pairs(envelope.records)do n=n+1 end;return n end
@@ -670,7 +713,10 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   storage.Check=check
   function storage.Read()
    check()
-   if modern and not admitting then assert(envelope.records[token],'REGISTRATION_INCOMPLETE')end
+   if modern and not admitting then
+    assert(not (reservations[token] and reservations[token].unknown),'STORE_REFERENCE_UNKNOWN')
+    assert(envelope.records[token],'REGISTRATION_INCOMPLETE')
+   end
    return cp(envelope.records[token])
   end
   function storage.Write(old,value)
@@ -678,20 +724,24 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    assert(value.base.token==token,'STORE_TOKEN_CHANGED')
    if modern then
     local key=PREFIX..token;local before=envelope.records[token]
-    assert(same(Game:GetProperty(key),before),'STORE_RECORD_STALE')
-    -- Exact current-reference uniqueness; no collection clone/property rewrite.
-    local current=value.loss and value.loss.target or value.current or value.origin
-    for other,r in pairs(envelope.records)do if other~=token then
-     local v=r.loss and r.loss.target or r.current or r.origin
-     assert(current.owner~=v.owner or current.cityID~=v.cityID,'STORE_REFERENCE_COLLISION')
-    end end
+    local readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
+    if not readOK or not same(observed,before) then
+     protectFailed(token,before,value,readOK,observed)
+     error('STORE_RECORD_STALE')
+    end
+    local current=assert(referenceKey(value),'STORE_CURRENT_REFERENCE')
+    -- Full worker validation and old-value checks still run. Only unchanged
+    -- committed endpoints skip the cross-record uniqueness walk.
+    if current~=referenceKey(before) then checkReference(token,current)end
     writing=true
-    local ok,err=pcall(function()
-     P.SetProperty(Game,key,cp(value));assert(same(Game:GetProperty(key),value),'STORE_WRITE_UNCONFIRMED')
-    end)
+    local ok,err=pcall(function()P.SetProperty(Game,key,cp(value))end)
+    -- Even a throwing setter may have applied. Read once while the lock is held.
+    readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
+    local confirmed=ok and readOK and same(observed,value)
+    if not confirmed then protectFailed(token,before,value,readOK,observed)end
     writing=false
-    -- Worker holds its own failed write; unrelated records remain usable.
-    assert(ok,err);envelope.records[token]=cp(value);return
+    assert(confirmed,not ok and err or 'STORE_WRITE_UNCONFIRMED')
+    envelope.records[token]=cp(value);reservations[token]=nil;return
    end
    local nextValue=cp(envelope);nextValue.records[token]=cp(value);nextValue.revision=nextValue.revision+1
    validateCollection(nextValue)
@@ -711,7 +761,6 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for name,fn in pairs(returns)do w.RegisterReturn(name,fn)end
   return w
  end
- local function int(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
  local function copyIndex(v)
   assert(type(v)=='table' and v.schema==3 and int(v.counter) and v.counter<=capacity and type(v.entries)=='table','UNSUPPORTED_SAVE_SCHEMA')
   local out={schema=3,counter=v.counter,entries={}};local seen={};local n=0
@@ -725,23 +774,29 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   assert(n==v.counter,'INDEX_INCOMPLETE');return out
  end
  local function loadIndex(v)
-  index=copyIndex(v);positions={};envelope={records={}}
+  index=copyIndex(v);positions={};envelope={records={}};reservations={}
   for token,a in pairs(index.entries)do
    local pos=a.x..':'..a.y;assert(not positions[pos],'STORE_LOCATION_COLLISION');positions[pos]=token
-   local good,row=pcall(function()
-    local value=cp(Game:GetProperty(PREFIX..token))
-    if value then assert((value.schema==2 or value.schema==3) and type(value.binding)=='table' and value.binding.schema==2 and same(value.origin,{owner=a.owner,cityID=a.cityID,x=a.x,y=a.y}) and type(value.base)=='table' and value.base.token==token,'INDEX_RECORD_CONFLICT')end
-    return value
+   local readOK,row=pcall(function()return cp(Game:GetProperty(PREFIX..token))end)
+   local good=readOK and pcall(function()
+    if row~=nil then assert(type(row)=='table' and (row.schema==2 or row.schema==3) and type(row.binding)=='table' and row.binding.schema==2 and same(row.origin,{owner=a.owner,cityID=a.cityID,x=a.x,y=a.y}) and type(row.base)=='table' and row.base.token==token,'INDEX_RECORD_CONFLICT')end
    end)
-   if good then envelope.records[token]=row end
-   -- Bad/missing city record gets a held worker, never legacy or a reset.
-   local w=make(token)
-   if not good then envelope.records[token]=nil end
+   if good then
+    envelope.records[token]=row
+    if row==nil then reservations[token]={reference=referenceKey({origin=a})}
+    elseif not referenceKey(row) then reservations[token]={unknown=true}end
+   else reservations[token]={unknown=true}end
+   -- Index/location reservations survive. A bad/missing record holds only its worker.
+   make(token)
   end
   local refs={}
   for _,row in pairs(envelope.records)do
-   local a=row.loss and row.loss.target or row.current or row.origin
-   local key=a.owner..':'..a.cityID;assert(not refs[key],'STORE_REFERENCE_COLLISION');refs[key]=true
+   local key=referenceKey(row)
+   if key then assert(not refs[key],'STORE_REFERENCE_COLLISION');refs[key]=true end
+  end
+  for _,reserved in pairs(reservations)do
+   local key=reserved.reference
+   if key then assert(not refs[key],'STORE_REFERENCE_COLLISION');refs[key]=true end
   end
   initialized=true
  end
@@ -1011,7 +1066,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    local token,ledger
    if modern then
     assert(initialized and not writing,'NEW_SAVE_NOT_READY')
-    local a=q.reference;local nextIndex=copyIndex(index);local serial=nextIndex.counter+1
+    local a=q.reference
+    -- Reject known unsafe admission before allocating index/token state; the
+    -- eventual record write checks again across any intervening engine callbacks.
+    checkReference(nil,referenceKey({origin=a}))
+    local nextIndex=copyIndex(index);local serial=nextIndex.counter+1
     assert(serial<=capacity,'MAP_REGISTRATION_LIMIT')
     token='DEV-B013-P'..a.owner..'-'..serial
     assert(Game:GetProperty(PREFIX..token)==nil,'FOUNDATION_ORPHAN_RECORD')
@@ -1024,6 +1083,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     writing=false
     if not good then fault=tostring(err);error(fault)end
     index=nextIndex;positions[a.x..':'..a.y]=token
+    reservations[token]={reference=referenceKey({origin=a})}
     assert(same(reference(c),a) and c:GetProperty(M.Keys.TOKEN)==nil,'FOUNDATION_REFERENCE_CHANGED')
     P.SetProperty(c,M.Keys.TOKEN,token);assert(c:GetProperty(M.Keys.TOKEN)==token,'CITY_WRITE_UNCONFIRMED')
     ledger={schema=2,owner=a.owner,counter=serial,records={[tostring(a.cityID)]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial,uid=token,state='CONFIRMED'}}}
