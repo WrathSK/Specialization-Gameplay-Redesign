@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0455
-Implementation Build: source/live B172.199 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0456
+Implementation Build: source B173.200; live B172.199 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_REQUIRED
-Work State: B172_DEPLOYED_AWAITING_NATIVE
+Work State: B173_LOCAL_COMPLETE_AWAITING_DEPLOYMENT_AND_COMBINED_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0049巨作启迪已获用户授权直接复用Garden/Pingala city GPP百分比并实施，取消独立原型。source/live B172.199／modinfo199已由既有工具安全部署（checkout `94c964b`，receipt `B172.199-94c964b-playtest.json`，189/189 MATCH，无pending事务）；B171/stable恢复点保留，main stable B069.96不变。
+用户授权B173馆藏通知定域修复，并与B172巨作启迪合并验收。source B173.200／modinfo200本地完成；live仍为上次已核B172.199／receipt `B172.199-94c964b-playtest.json`，不是因代码更新就已部署；main stable B069.96不变。W0003部署须先提交/推送和确认游戏退出。
 
-[当前L3合同](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)／manifest `P0-L3.json`：Culture Potential/ACTIVE IV，当前合格时代E0–7、本城全类别3%×E，正式自动writer；旧B168 Probe退役。43方法46 subTest为LOCAL_SIMULATION_PASS，[结果与一次最小验收](Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)；百分比实际入账/叠加仍USER_GAME_TEST_REQUIRED。P0只读报告，不用旧开关/默认OFF冷加载仪式。
+[当前L3合同](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)／manifest `P0-L3.json`：D0049本城当前时代E0–7、全类别3%×E语义不变。B173改K具名订阅、独立异常隔离、下一有效采样有限补投与启动兜底；81方法44 subTest为LOCAL_SIMULATION_PASS，[结果和一次合并验收](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。原生GPP入账/叠加仍USER_GAME_TEST_REQUIRED；不再开独立Probe或重复冷加载仪式。
 
-B166自动Meaning、B169限定保存、B170已接受范围不扩大；[B168旧证据](Validation/Results/Specialization_B168_Zero_Control.md)保留，旧小数方案不再作为新能力前置门禁。本批检查点及W0003部署已完成，当前等待本批最小原生验收；[投资传播修复计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)仍独立未授权，M/N/U2与其它审计项不推进。
+B166/B169/B170已接受范围和B168旧证据保留。本批仅P13a-F04相关通知修复；[投资传播计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)、全定义扫描及其它审计项仍独立未授权，M/N/U2不推进。下一步仅安全部署本检查点、等待合并验收；本地通知计数不证明原生CPU/内存改善。
 
 ## S0455 — B172安全部署，等待最小原生验收
 

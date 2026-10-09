@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "562870b3e1e098a6153e81091ed597fa676093ec545cbf51cc562e78231bd10a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "41104f02e3b4d74b39c56f0462332885cf3c488556b2bba4a6d5544887f7268f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "0a2d26a667d90bfe9460c618afe92e698f750153bfbd554d5c9f42ccb90e7bdb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "f8083dbe6d9fe0efd48d464499dba3dc4be84e250b4924b9e1ad4586072184ac",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "aadcaa4e1c64083e41dd800d0fe02a8887f2f7cafdf57d29726ec7c58c77223c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "867f4a6915c1798d69872474ce4c5013207cdee0e88fd9a740577267b1244351",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -881,14 +881,14 @@
       "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/GreatWorkFacts.lua": {
-      "sha256": "0d3ffda96973fb75123bba2174ec89f2e8949183149952712fce05767a9187dc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B150_P0L2A_Local.md",
-      "provenance": "B150.177 L2A user-authorized scoped review; static/local only, native pending"
+      "sha256": "e3caf8bd3ab9e617dc2aac4e16d563b6e69029f6df2a3d901169b70eea1e7c43",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "7a3a194f54e75e674c88d506389144be5423dc33194708728ebb3df1edb327d1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "e035ce2b7225120daf3723344bfdde4d823631c0936ab8370153ec0833aacd67",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -916,9 +916,9 @@
       "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "cc815f9253b333f1fce6b5d763ac65705475beee22155051a973b8bb509536d5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "f4616dfbefb28dfdd8b09ee3db1684b5efbd7b55ff28694f44da7014c850414a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/CultureInspirationProbe.lua": {
       "sha256": "436bf4290966cddd03f084718c17c13aed282b62ad4423b8368a6b9c4f3fee31",
@@ -936,9 +936,9 @@
       "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
     },
     "Mod/CultureInspiration.lua": {
-      "sha256": "d9f77b384b244b95ad6da86d048fafc53b8329c204e77955cc4dab1c99f426c2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "aff0a250222f0848591d72ecb6b132dacd909e1ffd64aed13f76d94c11fdae8f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/CultureInspirationModel.lua": {
       "sha256": "23f8b218c1a5a556bbe330a54b733f5ae7d5c518c18f2d8d4abdaafd10e9e115",

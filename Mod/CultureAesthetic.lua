@@ -228,8 +228,8 @@ function M.Start(P,shared)
   end
  end)
  for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'})do bind(GameEvents,name,function()d.Audit()end)end
- -- One explicitly scoped consumer notification, not a new shared event bus.
- shared.GreatWorkFacts.OnConfirmed=function(pid,changed)
+ -- Each ability owns its response; delivery failures cannot suppress siblings.
+ shared.GreatWorkFacts.RegisterConsumer('CultureAesthetic',function(pid,changed)
   if not P.IsTestPlayer(pid)then return end
   -- A confirmed current-city sample is a ready boundary even if the UI load
   -- notification was missed. UNKNOWN/foreign input cannot open this path.
@@ -244,7 +244,7 @@ function M.Start(P,shared)
    return
   end
   for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end
- end
+ end)
  local store=shared.CityProgressionStore
  if store then
   store.RegisterExit('CultureAesthetic',function(c,loss)

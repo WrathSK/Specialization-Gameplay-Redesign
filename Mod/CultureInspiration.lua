@@ -196,14 +196,11 @@ function SPCCultureInspiration.Start(P,shared)
  bind('PlayerTurnActivated',function(pid)
   if P.IsTestPlayer(pid)then local turn=Game.GetCurrentGameTurn();if lastTurn~=turn then lastTurn=turn;d.Audit({player=pid})end end
  end)
- local previous=shared.GreatWorkFacts.OnConfirmed
- shared.GreatWorkFacts.OnConfirmed=function(pid,changed)
-  local ok,why=true,nil;if previous then ok,why=pcall(previous,pid,changed)end
+ shared.GreatWorkFacts.RegisterConsumer('CultureInspiration',function(pid,changed)
   if P.IsTestPlayer(pid)then
    if not d.ready then d.Audit({player=pid})else for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end end
   end
-  if not ok then error(why)end -- Preserve upstream failure without suppressing this consumer.
- end
+ end)
  local store=shared.CityProgressionStore
  if store then
   store.RegisterExit('CultureInspiration',function(c,loss)

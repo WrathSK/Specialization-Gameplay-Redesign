@@ -7,9 +7,18 @@ Authority: Spec D0036 Culture节 → Culture_D0029.contracts.work_pool；A0161/D
 
 ## 当前切片与停止点
 
-用户已审核本计划并授权P0-K实施。B146机构显示可继续使用，但用户对视觉效果不完全满意；登记非阻塞优化，不把截图当成所有字体/缩放/ACTIVE刷新PASS。P0-K只交付一个可被后续文化能力和展示使用的权威巨作事实层、国内时代索引及简明按需诊断。没有新Culture收益、项目、永久成果或旧writer退出；本批已获明确授权；后续能力仍须另审计划/授权。
+K馆藏事实层已有下方B147限定实机证据。用户本轮只授权B173的P13a-F04通知隔离修复，并与B172巨作启迪合并验收；当前状态及运行包只查[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。下方旧实施计划按其baseline阅读，不能作为新的能力/部署授权。
 
-依赖是现有城市引用/owner读取、已验证的跨context传输与失效合同、当前人类玩家参与资格。无需先完成未落地的工业G–J、商业O–T或完整U1。P0-L/M/N/U2可使用本批结果，但不在本批实施。
+## 馆藏消费者通知（B173）
+
+- `GreatWorkFacts.RegisterConsumer(name, callback)`仅用于同session启动期的具名注册，重复名拒绝。Aesthetic/Meaning/Inspiration各拥有一个回调，顺序稳定但不互相调用前驱；各自ACTIVE、收益writer及退出合同不变。
+- Receive只在接受新有效样本后通知变化城市，逐消费者独立隔离异常。采集ACK、通知完成、业务应用和native结算是四种不同证据；模块内部已捕获的业务错误仍由模块负责。
+- 每消费者pending只保存当前城市reference/owner/epoch与本次尝试标记，后续有效采样补投失败者，读取当前事实；不重放旧馆藏/收益。成功订阅者不因其它失败重复，重复/失效/foreign包不触发补投。没有自动定时器、持久字段或无界历史。
+- 可靠Owner/ref变化裁剪旧目标；临时UNKNOWN保留待核对、不扩当前权限。Reset/confirmed loss的epoch转换清pending，Shutdown清订阅；不支持跨session携带回调或动态热插拔。消失城市收益仍由既有module-owned loss路径退出。
+- 同步新采样只合并待通知，外层最多立即补一轮；之后等下一有效边界，不忙循环。原有UI producer/采集/ACK retry不变，通知错误不能要求它每帧重采。
+- Gameplay启动兜底逐项隔离，且不对同包待通知项再尝试；不阻断Dialogue样本配对。普通报告只在异常时提示具体能力，详细错误按需读取。
+
+[本地反例/结果及一次合并验收](../../Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。本合同不处理扫描优化、投资广播、通用writer或玩法变更。
 
 ## 已核对的实际链路
 

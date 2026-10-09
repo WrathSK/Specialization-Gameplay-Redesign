@@ -58,6 +58,23 @@ function F.Start(P,shared)
  ExposedMembers.SPC_GreatWorkEpoch=(ExposedMembers.SPC_GreatWorkEpoch or 0)+1
  local d={epoch=ExposedMembers.SPC_GreatWorkEpoch,ack=0,revision=0,state='UNKNOWN',catalogCount=catalog.count,inputRevision=0,dirtyScope={all=true,cities={}}}
  local cities,index={},{};local signature;local hooks={}
+ -- Static session subscribers only; no chained callback, persistent queue or bus.
+ local consumers,order={},{};local serial=0;local publishing=false;local closed=false
+ local function clearNotifications()
+  for _,s in pairs(consumers)do s.pending={};s.error=nil end
+  d.consumerError=nil
+ end
+ function d.RegisterConsumer(name,callback)
+  assert(not closed and type(name)=='string' and #name>0 and #name<=64
+   and type(callback)=='function','GW_CONSUMER_INVALID')
+  assert(not consumers[name],'GW_CONSUMER_DUPLICATE')
+  consumers[name]={callback=callback,pending={}};order[#order+1]=name
+ end
+ function d.ConsumerStatus(name)
+  local s=consumers[name];if not s then return nil end
+  local count=0;for _ in pairs(s.pending)do count=count+1 end
+  return {pending=count,error=s.error} -- detached diagnostic summary, never effect ACK
+ end
  shared.GreatWorkFacts=d
  local function rebuild()
   index={};d.state='VERIFIED'
@@ -71,11 +88,13 @@ function F.Start(P,shared)
  end
  local function invalidate(cid)
   if cities[cid] then
+   for _,s in pairs(consumers)do s.pending[cid]=nil end
    cities[cid]=nil;signature=nil;d.revision=d.revision+1
    d.inputRevision=d.inputRevision+1;d.dirtyScope.cities[cid]=true;rebuild()
   end
  end
  function d.Reset()
+  clearNotifications()
   ExposedMembers.SPC_GreatWorkEpoch=math.max(ExposedMembers.SPC_GreatWorkEpoch or 0,d.epoch)+1
   d.epoch=ExposedMembers.SPC_GreatWorkEpoch;d.ack=0;d.state='UNKNOWN';signature=nil
   for _,r in pairs(cities) do r.availability='UNKNOWN' end
@@ -146,9 +165,60 @@ function F.Start(P,shared)
  local function sameInput(a,b)
   return a and b and a.reference==b.reference and a.eraCount==b.eraCount and a.count==b.count and a.modifierExcludedCount==b.modifierExcludedCount and a.unknownCategoryCount==b.unknownCategoryCount and a.availability==b.availability and a.hasConfirmed==b.hasConfirmed
  end
+ -- An accepted sample schedules only changed cities plus prior failed delivery.
+ -- Pending entries carry no work/yield snapshot and are bounded by current cities.
+ local function notify(pid,changed)
+  serial=serial+1
+  for _,name in ipairs(order)do
+   local s=consumers[name]
+   for cid,item in pairs(s.pending)do
+    local r=cities[cid]
+    if item.epoch~=d.epoch or item.owner~=pid or not r or r.reference~=item.reference then s.pending[cid]=nil end
+   end
+   for _,cid in ipairs(changed)do
+    local r=cities[cid]
+    -- Removed cities exit through their module-owned Store path, not stale IDs.
+    if r then s.pending[cid]={owner=pid,reference=r.reference,epoch=d.epoch}end
+   end
+   if not next(s.pending)then s.error=nil end
+  end
+  if publishing then return end -- a reentrant accepted sample joins the same bounded work
+  publishing=true
+  local function pass()
+   for _,name in ipairs(order)do
+    if closed then break end
+    local s=consumers[name];local ids,attempt={},{};local stamp=serial
+    for cid,item in pairs(s.pending)do if item.attempted~=stamp then
+     local r=cities[cid]
+     local ok,valid=pcall(function()
+      local c=Players[item.owner]:GetCities():FindID(cid)
+      return item.epoch==d.epoch and r and r.reference==item.reference and c
+       and c:GetOwner()==item.owner and reference(c)==item.reference
+     end)
+     if ok and not valid then s.pending[cid]=nil
+     elseif not ok then item.attempted=stamp;s.error='GW_NOTIFY_REFERENCE_UNKNOWN'
+     else ids[#ids+1]=cid;attempt[cid]=item;item.attempted=stamp end
+    end end
+    table.sort(ids)
+    if #ids>0 then
+     local ok,why=pcall(s.callback,pid,ids)
+     if ok then
+      -- Do not consume newer work received synchronously during this callback.
+      for cid,item in pairs(attempt)do if s.pending[cid]==item then s.pending[cid]=nil end end
+     else s.error=tostring(why):sub(1,180)end
+    end
+    if not next(s.pending)then s.error=nil end
+   end
+  end
+  local first=serial;pass()
+  if serial~=first and not closed then pass()end -- at most one catch-up, never a busy retry loop
+  publishing=false;d.consumerError=nil
+  for _,s in pairs(consumers)do if s.error then d.consumerError='GW_CONSUMER_UPDATE_FAILED';break end end
+ end
  function d.Receive(pid,p)
+  if closed then return false,'GW_SESSION_CLOSED'end
   if not P.IsTestPlayer(pid) then return false,'GW_UNSUPPORTED_OWNER' end
-  local before=d.OnConfirmed and consumerInputs()
+  local before=#order>0 and consumerInputs()
   local ok,result=pcall(receive,pid,p)
   if not ok then
    d.lastError=tostring(result):match('GW_[A-Z_]+') or 'GW_RECEIVE_ERROR'
@@ -156,17 +226,14 @@ function F.Start(P,shared)
    if p.FactsEpoch==d.epoch and p.Seq==d.ack then d.state='UNKNOWN';for _,r in pairs(cities)do r.availability='UNKNOWN' end;signature=nil end
    return false,d.lastError
   end
-  if result and d.OnConfirmed then
+  if result and #order>0 then
    local changed={};local after=consumerInputs()
    for cid,r in pairs(after)do if not sameInput(before[cid],r)then changed[#changed+1]=cid end end
    for cid in pairs(before)do if not after[cid]then changed[#changed+1]=cid end end
    table.sort(changed)
-   if #changed>0 then
-    local notified=pcall(d.OnConfirmed,pid,changed)
-    if not notified then d.consumerError='GW_CONSUMER_UPDATE_FAILED' else d.consumerError=nil end
-   end
+   notify(pid,changed) -- identical new samples retry only outstanding failed delivery
   end
-  return result
+  return result -- processed/validated facts, not a claim that every benefit applied
  end
  local function current(pid,cid)
   if not P.IsTestPlayer(pid) then return nil end
@@ -238,6 +305,13 @@ function F.Start(P,shared)
   end
   if d.state~='VERIFIED' or not catalog.complete then lines[#lines+1]='国内来源尚未完全确认；不将缺项判为不存在。' end
   if d.lastError then lines[#lines+1]='待复核：'..d.lastError end
+  local labels={CultureAesthetic='风雅熏陶',CultureMeaning='意义延展',CultureInspiration='巨作启迪'}
+  for _,name in ipairs(order)do local s=consumers[name]
+   if s.error then
+    lines[#lines+1]='馆藏通知待重试：'..(labels[name] or name)
+    if detail then lines[#lines+1]=s.error end
+   end
+  end
   return table.concat(lines,'\n')
  end
  local store=shared.CityProgressionStore
@@ -276,7 +350,7 @@ function F.Start(P,shared)
  end)
  function d.Shutdown()
   for _,h in ipairs(hooks)do if h.event.Remove then h.event.Remove(h.fn)end end
-  hooks={};cities={};index={};d.OnConfirmed=nil
+  closed=true;clearNotifications();consumers={};order={};hooks={};cities={};index={}
   if shared.GreatWorkFacts==d then shared.GreatWorkFacts=nil end
  end
  return d

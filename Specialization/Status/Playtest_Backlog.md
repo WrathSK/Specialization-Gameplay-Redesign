@@ -183,6 +183,6 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 [零档补证](Validation/Results/Specialization_B168_Zero_Control.md)已补齐T69对照：0/0.1/0.3/0.6均51.199，整数1为52.199。所测整数增量+1，小数无可见率增量；取整层次、实际累计与百分比候选仍未知。无需重做零档/四档，END未单独观察但不附加重复生命周期流程。交给调查Agent只读研究小数精度，花园仅作百分比实现参考；不启用Floor/完整L3。B169限定保存验收PASS保持。
 
 
-## B172 — D0049自动巨作启迪，待最小验收
+## B172 / B173 — 巨作启迪与馆藏通知修复合并验收
 
-新本城百分比自动能力已本地完成；[一次session流程与证据边界](Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md#一次最小实机验收)。这取代B168旧基础小数方案的后续派发，不改写上面的旧观察。无启用/END按钮、无重复默认OFF冷加载流程；实际安装版本见Status/receipt，原生未验。其它待办状态不因此自动改变。
+新本城百分比能力及馆藏通知修复均本地完成；[一次合并session与证据边界](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md#与巨作启迪一次验收)。同次时代/作品移动顺便观察三项文化能力，不分别重复两批测试。这取代B168旧基础小数方案的后续派发，不改写上面的旧观察。无启用/END按钮、无重复默认OFF冷加载流程；实际安装版本见Status/receipt，原生未验。其它待办状态不因此自动改变。

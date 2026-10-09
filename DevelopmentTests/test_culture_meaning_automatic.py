@@ -52,7 +52,7 @@ class AutomaticMeaningTests(unittest.TestCase):
         """)
         if real:
             l.globals().include('GreatWorkFacts')
-            l.execute('local callback=shared.GreatWorkFacts.OnConfirmed;SPCGreatWorkFacts.Start(P,shared);shared.GreatWorkFacts.OnConfirmed=callback')
+            l.execute('SPCGreatWorkFacts.Start(P,shared);for _,s in ipairs(fixtureConsumers)do shared.GreatWorkFacts.RegisterConsumer(s.name,s.callback)end')
             legacy.bind_actual_request(l)
             l.execute(r"""
               function packet(seq,amountA,amountB)

@@ -102,6 +102,16 @@ end},GreatWorkFacts={Summary=function(pid,id)
 end,Read=function(pid,id)return {eras={ERA_CLASSICAL=1,ERA_MEDIEVAL=1}}end},NetworkBridge={ConnectedKinds=function()return {RESEARCH=true,CULTURE=true}end},
  CityProgressionStore={RegisterExit=function(n,f)assert(not exits[n]);exits[n]=f end,RegisterReturn=function(n,f)assert(not returns[n]);returns[n]=f end,
  IsExitTarget=function(c,loss)return loss.confirmed==true and c.id==loss.targetID and c.owner~=loss.origin.owner end}}
+-- Fixture-only direct notification adapter for older single-consumer model cases.
+-- Production delivery/isolation is tested with the real GreatWorkFacts receiver.
+fixtureConsumers={}
+function shared.GreatWorkFacts.RegisterConsumer(name,callback)
+ for _,s in ipairs(fixtureConsumers)do assert(s.name~=name)end
+ fixtureConsumers[#fixtureConsumers+1]={name=name,callback=callback}
+end
+function shared.GreatWorkFacts.OnConfirmed(pid,ids)
+ for _,s in ipairs(fixtureConsumers)do s.callback(pid,ids)end
+end
 function shared.CityProgressionStore.RemoveOwned(c,loss,names)
  assert(shared.CityProgressionStore.IsExitTarget(c,loss))
  for _,name in ipairs(names)do local id=GameInfo.Buildings[name].Index;if P.HasBuilding(c:GetBuildings(),id)then P.RemoveBuilding(c:GetBuildings(),id)end end
@@ -189,7 +199,7 @@ class AestheticTests(unittest.TestCase):
   sys.path.insert(0,str(R/'DevelopmentTests'))
   from test_p0_k import Fixture
   fx=Fixture()
-  fx.check("notifies={};shared.GreatWorkFacts.OnConfirmed=function(pid,ids)notifies[#notifies+1]=ids end;assert(receive(1,sampleRows()));assert(#notifies==1 and #notifies[1]==3);local s=shared.GreatWorkFacts.Summary(0,7);assert(s.eraCount==2 and s.works==nil and s.excluded==nil and s.eras==nil);assert(receive(2,sampleRows()));assert(#notifies==1)")
+  fx.check("notifies={};shared.GreatWorkFacts.RegisterConsumer('Fixture',function(pid,ids)notifies[#notifies+1]=ids end);assert(receive(1,sampleRows()));assert(#notifies==1 and #notifies[1]==3);local s=shared.GreatWorkFacts.Summary(0,7);assert(s.eraCount==2 and s.works==nil and s.excluded==nil and s.eras==nil);assert(receive(2,sampleRows()));assert(#notifies==1)")
   fx.check("local rows=sampleRows();table.remove(rows,2);assert(receive(3,rows));assert(#notifies==1);rows[2][1]=8;assert(receive(4,rows));assert(#notifies==2 and #notifies[2]==2 and notifies[2][1]==7 and notifies[2][2]==8)")
  def test_current_eligibility_exclusions_and_d_regression(self):
   l=self.runtime();l.execute("catalog=SPCOrdinaryBuildingCatalog.Build(P);local raw={districts={{id=1,type='DISTRICT_CITY_CENTER',plot=101,complete=true,pillaged=false,buildings={}}}};local d=raw.districts[1];for _,kind in ipairs({'BUILDING_MONUMENT','BUILDING_WALLS','BUILDING_PALACE','BUILDING_SPC_CULTURE_AESTHETIC'})do d.buildings[#d.buildings+1]={index=GameInfo.Buildings[kind].Index,complete=true,pillaged=false}end;local v=SPCDistrictCompleteness.Calculate(catalog,raw);assert(v.districts[1].value==0);local p=SPCCultureAestheticModel.Plan({validity='VERIFIED',identity='CULTURE',potential=3,active=3,activeStatus='KNOWN'},{hasConfirmed=true,availability='KNOWN',eraCount=2},{validity='VERIFIED',availability='READY',value=v},true);assert(p.count==2 and p.total==4);d.buildings[1].complete=false;v=SPCDistrictCompleteness.Calculate(catalog,raw);p=SPCCultureAestheticModel.Plan({validity='VERIFIED',identity='CULTURE',potential=3,active=3,activeStatus='KNOWN'},{hasConfirmed=true,availability='KNOWN',eraCount=2},{validity='VERIFIED',availability='READY',value=v},true);assert(p.count==1)")

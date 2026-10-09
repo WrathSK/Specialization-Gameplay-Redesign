@@ -152,15 +152,14 @@ class InspirationAutomaticTests(unittest.TestCase):
    refresh();assert(inspiration(a)==6 and not ins.pending)
   """)
  def test_upstream_callback_error_does_not_silence_new_consumer(self):
-  l=self.runtime(False);l.execute("fire('LoadScreenClose');assert(inspiration(a)==6)")
-  # Build a second isolated runtime with a failing predecessor before registration.
-  h=meaning.AutomaticMeaningTests();h.sql=self.sql
-  # The actual wrapper must preserve/rethrow the predecessor failure after visiting new scope.
-  source=(R/'Mod/CultureInspiration.lua').read_text()
-  start=source.index(' local previous=shared.GreatWorkFacts.OnConfirmed')
-  end=source.index(' local store=shared.CityProgressionStore',start)
-  l.execute("shared.GreatWorkFacts.OnConfirmed=function()error('PREVIOUS_FAILED')end\nlocal d=ins\n"+source[start:end])
-  l.execute("a.eras=1;assert(not pcall(shared.GreatWorkFacts.OnConfirmed,0,{1}));assert(inspiration(a)==3)")
+  l=self.runtime(False,real=True);l.execute(r"""
+   local audit=data.Audit;data.Audit=function()error('AE_NOTIFY_FAILED')end
+   sample(1,1,1)
+   assert(inspiration(a)==3 and finalAmount(a,'SCIENCE')==3)
+   assert(shared.GreatWorkFacts.ConsumerStatus('CultureAesthetic').error)
+   data.Audit=audit;sample(2,1,1)
+   assert(not shared.GreatWorkFacts.ConsumerStatus('CultureAesthetic').error and total(a)>0)
+  """)
  def test_city_scoped_update_never_reads_shared_d_or_full_work_list(self):
   l=self.runtime();l.execute(r"""
    shared.DistrictCompleteness.Read=function()error('UNNEEDED_D_SCAN')end

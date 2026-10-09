@@ -231,13 +231,11 @@ function SPCCultureMeaning.Start(P,shared)
   if not P.IsTestPlayer(pid)then return end
   local turn=Game.GetCurrentGameTurn();if lastTurn~=turn then lastTurn=turn;d.Audit({player=pid})end
  end)
- local previous=shared.GreatWorkFacts.OnConfirmed
- shared.GreatWorkFacts.OnConfirmed=function(pid,changed)
-  if previous then previous(pid,changed)end
+ shared.GreatWorkFacts.RegisterConsumer('CultureMeaning',function(pid,changed)
   if not P.IsTestPlayer(pid)then return end
   if not d.ready then d.Audit({player=pid});return end
   for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end
- end
+ end)
  local store=shared.CityProgressionStore
  if store then
   store.RegisterExit('CultureMeaning',function(c,loss)

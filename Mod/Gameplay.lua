@@ -275,8 +275,20 @@ local function request(playerID,params)
       if shared.Dialogue and P.IsTestPlayer(playerID) then shared.Dialogue.errors[playerID]='DIALOGUE_RECEIVE_EXCEPTION: '..tostring(accepted) end
       print('[SPC][B059][SAMPLE] '..tostring(accepted))
     end
-    if factsOK and factsAccepted==true and shared.CultureMeaning then shared.CultureMeaning.CollectionConfirmed(playerID)end
-    if factsOK and factsAccepted==true and shared.CultureInspiration then shared.CultureInspiration.CollectionConfirmed(playerID)end
+    if factsOK and factsAccepted==true then
+      -- Readiness fallback is not a second delivery attempt for failed callbacks.
+      -- Keep legacy sample-pair confirmation independent of any one ability.
+      for _,name in ipairs({'CultureMeaning','CultureInspiration'})do
+        local consumer=shared[name]
+        if consumer then
+          local status=shared.GreatWorkFacts.ConsumerStatus(name)
+          if not status or status.pending==0 then
+            local ready=pcall(consumer.CollectionConfirmed,playerID)
+            if not ready then consumer.error='GW_CONSUMER_READY_FAILED' end
+          end
+        end
+      end
+    end
     if factsOK and factsAccepted==true and ok and accepted==true then
       local paired,confirmed=pcall(shared.Dialogue.ConfirmSamplePair,playerID,params)
       if paired and confirmed==true and shared.CultureMeaningProbe then

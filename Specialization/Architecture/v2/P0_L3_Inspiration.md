@@ -1,26 +1,28 @@
 # P0-L3 — 巨作启迪自动能力
 
-State: B172_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED。当前Authority为Spec／Culture D0049 `CUL_L4_INSPIRE`，Shared D0045；实际部署与授权只查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。本页是实现合同，不另立Design。
+State: B172能力＋B173通知修复LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED。当前Authority为Spec／Culture D0049 `CUL_L4_INSPIRE`，Shared D0045；实际部署与授权只查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。本页是实现合同，不另立Design。
 
 ## 当前切片与停止点
 
-用户明确取消独立技术原型，授权直接复用花园／HD平伽拉的本城百分比原语并实施正式自动能力，再验收。B172.199本地完成，尚无本批原生PASS；[本地结果及一次最小验收](../../Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)。投资提交后传播修复仍独立未授权，M/N/U2及其它审计项不顺带推进。
+用户明确取消独立技术原型，授权直接复用花园／HD平伽拉的本城百分比原语并实施正式自动能力，再验收。B172.199本地完成，尚无本批原生PASS；[本地结果及一次最小验收](../../Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)。用户随后授权B173馆藏通知定域修复，与启迪同一轮验收；[B173结果](../../Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。投资提交后传播修复仍独立未授权，M/N/U2及其它审计项不顺带推进。
 
 ### 现行合同
 
 - Culture Identity、Potential IV且ACTIVE IV；沿用K已确认作品池。E为**当前**不同合格时代0–7，所有本城伟人类别+3%×E，E0不建载体，E7为21%。不依赖D、专家数、作品件数，不排除文艺类别；不新增项目、计时器、永久Property或点数账本，不启用旧Floor备用。
 - 复用`MODIFIER_CITY_INCREASE_GREAT_PERSON_POINT_BONUS`：`COLLECTION_OWNER / EFFECT_ADJUST_CITY_GREAT_PERSON_POINTS_MODIFIER`，与Garden/HD Pingala定义相同。7个精确内部City Center载体各挂一个最终百分比，无class参数；不复制花园10人口条件或总督Promotion作为额外门槛，不修改HD、不直接ChangePointsTotal。
 - 先撤旧再加新；移除/读取不明不混写，创建异常定域撤销并保留错误。same-reference UNKNOWN只保留本session确认投影；新引用/冷加载不从旧载体反推权威。旧B168四个测试ID由原模块自己的退役Withdraw处理，手动NEXT/END入口全部改只读，不能复活旧writer。
-- K `Summary/OnConfirmed`提供时代数与reference，沿用现有馆藏采集与验证，无第二套扫描。普通更新只读CurrentSpecializationFacts+小型Summary+7个owned存在性；不调用Shared D/完整作品副本/原生Modifier枚举。确认样本只更新changed城市；GovernorEstablished、投资、明确district/city通知定域；GovernorAssigned核受支持玩家旧/新城；签名不确定事件保留受支持玩家核对；原有本地回合边界一次fallback，不屏蔽同回合真实变化。
-- 模块拥有派生记录、错误、待清理集合和一次合并pending范围；full audit裁剪消失城市，startup一次有界清理（复用被退役Probe的2048城防护），无诊断历史/独立GC。own写入只抑制本模块已知同步回声；Aesthetic/Meaning只忽略精确7个新内部载体的建筑事件，不忽略普通建筑。上游K回调失败保留错误但不阻止本consumer处理。
+- K `Summary/RegisterConsumer`提供时代数与reference，沿用现有馆藏采集与验证，无第二套扫描。普通更新只读CurrentSpecializationFacts+小型Summary+7个owned存在性；不调用Shared D/完整作品副本/原生Modifier枚举。确认样本只更新changed城市；GovernorEstablished、投资、明确district/city通知定域；GovernorAssigned核受支持玩家旧/新城；签名不确定事件保留受支持玩家核对；原有本地回合边界一次fallback，不屏蔽同回合真实变化。
+- 模块拥有派生记录、错误、待清理集合和一次合并pending范围；full audit裁剪消失城市，startup一次有界清理（复用被退役Probe的2048城防护），无诊断历史/独立GC。own写入只抑制本模块已知同步回声；Aesthetic/Meaning只忽略精确7个新内部载体的建筑事件，不忽略普通建筑。K使用具名独立通知及有限失败补投，见[通知合同](P0_K_Great_Work_Facts.md#馆藏消费者通知b173)。
 - confirmed loss沿Store `IsExitTarget/RemoveOwned`撤本模块和旧测试精确ID；return/load按当前资格及新馆藏样本重建，不恢复旧百分比快照。UNKNOWN不能作失城确认。永久资产、其它城市/普通建筑和现行保存schema不变。
 - P0“巨作启迪报告”左键简报、右键原生明细；没有启用/结束测试步骤。普通报告列当前E和**配置**百分比；UI按需列各类别原生**全国**率/累计6位小数，不能称本城贡献。右键复用有界实例枚举并包含city/player百分比来源、旧测试残留、未知归属；不相加推导有效总倍率。
 
 ### 验证与停止
 
-W0004 L2＋相关ownership/fault定向反例。当前入口`DevelopmentTests/test_culture_inspiration_automatic.py`共43方法/46 subTest：24新自动路径，19直接依赖回归；实际Lua/SQL、K样本/请求、替换/撤销、冷重建、UNKNOWN/失城/失败隔离、40城定域计数及只读UI均LOCAL_PASS。计数不证明原生CPU/内存改善。
+B172按W0004 L2；B173为L3的通知顺序/会话引用定域修复，不运行无关历史全回归。B173当前测试入口`DevelopmentTests/test_great_work_notifications.py`：81方法44 subTest PASS，含真实三消费者/K与失败补投；通知成功不等业务/native成功。
 
-原生仍需在一个连续session查看：现有Culture IV城E→E+1→E0时本城百分比载体/可观察点数更新；含一类文艺及一类非文艺原有非零来源。已确认GPP读数可能过回合刷新。无需旧Probe启用态存档→END→冷加载→再启用仪式，也不单独重复全部共享生命周期。小数累计/倍率叠加及未具备来源的类别保持未证，按实际观察记范围。先完成本批交付并停止，不自动推进新能力。
+以下为继承的B172结果：当前入口`DevelopmentTests/test_culture_inspiration_automatic.py`共43方法/46 subTest：24新自动路径，19直接依赖回归；实际Lua/SQL、K样本/请求、替换/撤销、冷重建、UNKNOWN/失城/失败隔离、40城定域计数及只读UI均LOCAL_PASS。计数不证明原生CPU/内存改善。
+
+原生仍需在一个连续session查看：现有Culture IV城E→E+1→E0时本城百分比载体/可观察点数更新；含一类文艺及一类非文艺原有非零来源。已确认GPP读数可能过回合刷新。无需旧Probe启用态存档→END→冷加载→再启用仪式，也不单独重复全部共享生命周期。小数累计/倍率叠加及未具备来源的类别保持未证，按实际观察记范围。B173只在同次E变化/移城中顺便观察风雅熏陶和意义延展的对应更新；不另开异常注入/保存重载人工流程。完成合并交付后停止，不自动推进新能力。
 
 ## 来源与证据边界
 
