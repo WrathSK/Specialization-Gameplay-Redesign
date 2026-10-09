@@ -3,8 +3,24 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0048
+Latest Accepted Design Revision: D0049
 Document State: ACCEPTED
+
+## Accepted D0049 — 2026-10-08
+
+Acceptance: ACCEPTED / Great Works Inspiration current-era city-wide GPP percentage; implementation/native validation pending
+Acceptance Evidence: 用户本轮Design Handoff明确接受完整新机制，授权正式Design／阅读版／metadata同步及commit/push；不授权实现、原型、测试或部署。
+Accepted Spec SHA256: b3feaf64de02bfd9310b60a91544d998c147a041f5e32515bac8a183e29cd22a
+Canonical Culture Content SHA256: 3515cdb4c5639407222ebc09eb2271b8f5704893cfd356129a627f4440186ad1
+Previous Accepted Revision: D0048
+Frozen D0048: [原文](Revisions/Specialization_Design_Spec_D0048.md)
+Frozen D0048 SHA256: 2edf9900e847e36968b8bfb4ac7e5237718ea2c679bcd122913f7239ad8254e0
+Content: [Culture D0049](Content/Culture_D0049.json) / [文化阅读版](Culture.md#巨作启迪)
+
+- 本城当前不同合格巨作时代E=0–7，所有伟人类别+3%×E，0至21%；大作家／艺术家／音乐家不再排除。既有ACTIVE IV与作品池／时代定义保留，不按D／作品总量，不增加独立项目／计时器／永久积累或历史最高覆盖。
+- 明确取代旧CUL_L4_INSPIRE、GPP_K0.1及其非文艺映射；旧方案的Floor备选不迁入新设计。既有调查及原生反证保留，小数基础写入不等于有效收益；新百分比也未获得技术PASS。
+- 本城全类别承载、各类别覆盖、小数累计、现有倍率叠加、馆藏更新和失城／夺回／读档仍待验证；不假定同一加成池。+21%为用户有意选值，不擅改1%／2%或额外cap。
+- 时代对话、风雅熏陶、意义延展、人文考察团及其它专业规则不改；v0.1优先级不变，投资提交更新传播计划仍未授权。旧D0048 Content及Spec原文保留；没有代码／测试／运行包／main／部署变更。
 
 ## Accepted D0048 — 2026-10-05
 

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0452
+Status Revision: S0453
 Implementation Build: source/live B171.198 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
-Latest Accepted Design Revision: D0048
-Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
+Design Revision Reviewed: D0049（巨作启迪当前时代百分比，设计同步；实现未授权）
+Latest Accepted Design Revision: D0049
+Design Sync State: D0049_INSPIRE_CURRENT_ERA_GPP_PERCENT / IMPLEMENTATION_NOT_AUTHORIZED
 Work State: B170_ACCEPTED_B171_PANEL_CLEANUP_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161及四专业范围不变。source/live B171.198 P0按钮整理已安全部署；checkout `5304e9a`／实现commit `2d3d2f4`，receipt `B171.198-5304e9a-playtest.json`，186/186 MATCH，无pending事务，B170/stable恢复点保留；main stable B069.96不变。
+D0049已接受巨作启迪本城全类别+3%×当前馆藏时代E（0–7），仅Design同步；A0161及四专业实施范围不变。source/live B171.198 P0按钮整理已安全部署；checkout `5304e9a`／实现commit `2d3d2f4`，receipt `B171.198-5304e9a-playtest.json`，186/186 MATCH，无pending事务，B170/stable恢复点保留；main stable B069.96不变。
 
 [B170人工反馈及B171面板](Validation/Results/Specialization_B171_P0_Panel_Cleanup.md)：用户确认B170流程1/2正常，限定USER_GAME_TEST_PASS。第3步入口描述错误，Meaning没有详细切换，撤回而非假报通过；模式隔离仍为本地证据，无需补测。当前manifest `P0-Panel-Cleanup.json`，用户授权15按钮/旧实验隐藏；7方法208 subTest及static通过，外观随正常使用顺带确认，无独立玩法门禁；等待下一项用户指示。
 
-[B168 GPP精度调查](Validation/Results/Specialization_B168_Zero_Control.md)保持未决，测试/结束入口仍可见，不启用Floor/完整L3。B169保存验收保持PASS；全建筑扫描/GW/事件传播等其它审计项未处理，无新实施授权。
+[B168旧基础GPP证据](Validation/Results/Specialization_B168_Zero_Control.md)保留，旧0.1D×W方案已被D0049替代；新百分比承载／累计／叠加／生命周期未验证，不授权新测试或完整L3。运行包旧诊断入口未改。B169保存验收保持PASS；全建筑扫描/GW/事件传播等其它审计项未处理，无新实施授权。
+
+## S0453 — D0049巨作启迪设计同步
+
+用户接受当前馆藏时代E0–7、本城全类别GPP+3%×E，取代小数基础GPP和文艺排除；既有ACTIVE IV／作品池沿用，其它能力与优先级不变。正式Content／Spec／阅读版同步，旧调查与冻结原件保留。百分比技术未验证，无实现／原型／测试／部署；[投资传播修复计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)独立且尚未授权。等待下一步用户决定。
 
 ## S0452 — B171安全部署，本轮收尾
 
