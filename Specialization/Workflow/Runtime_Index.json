@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "a05a072a9e4d381eea6b08ae3c075bb450d98c91",
-  "runtime": "B170.197 / modinfo197 deployed checkouta05a072 (native pending)",
+  "runtime": "source B171.198 / modinfo198; last deployed B170.197 checkouta05a072",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "383478d1e8d9fe22966d3e57a176f539061d3af8805bda055b45aa6c0a7daf28",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
-      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+      "sha256": "49e5a7b7afb6773f88a840216cbc68732a0d1e14eadeb6afdcc8d7bfafd4ccd5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+      "provenance": "B171 L1 panel default visibility/layout; local7 checks208 subTests, backend unchanged; native UI unobserved"
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a26a93f40c0bf75b86e69c3cc902123113a13022b6567d4f2d165ae6936b857d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
-      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+      "sha256": "8e5380704e098533b52954abb7ecf3ff1d453e32b52a65cce640aa1b0d3c793a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+      "provenance": "B171 L1 panel default visibility/layout; local7 checks208 subTests, backend unchanged; native UI unobserved"
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "b110f9959a2e1f5b5c8cd3ac6569303f3e6501f4948a010794a57fe7fff71ac2",
-      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "sha256": "e48adb4ae34153dd33fe79f543380aa24ff1eeee10265d2afb5b98cbe6198880",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+      "provenance": "B171 L1 panel default visibility/layout; local7 checks208 subTests, backend unchanged; native UI unobserved"
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "19251dbbc7ccff208a463a4992097bd3c215574f96b30923f066b67562e88f09",
-      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "sha256": "e61159cb0d28ecf4fe1e3a2b4fa3551ee3e655a4d3b3768cb5c590765be17dbd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+      "provenance": "B171 L1 panel default visibility/layout; local7 checks208 subTests, backend unchanged; native UI unobserved"
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0450
-Implementation Build: source/live B170.197 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0451
+Implementation Build: source B171.198 LOCAL_COMPLETE; live B170.197; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B170_SHARED_D_USER_GAME_TEST_REQUIRED
+Work State: B171_PANEL_CLEANUP_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161与四专业范围不变。source/live **B170.197/modinfo197** 已安全部署；checkout `a05a072`／实现commit `343868e`，receipt `B170.197-a05a072-playtest.json`，186/186 MATCH、无pending事务。B169/stable恢复点保留，main stable B069.96不变。
+D0048／A0161及四专业范围不变。source B171.198仅P0按钮整理本地完成；live仍B170.197，receipt `B170.197-a05a072-playtest.json`；main stable B069.96不变，源码存在不等于已部署。
 
-[本批合同与最小验收](Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md)：五个正常consumer使用ReadFacts，同一原生采样按需Read完整报告；完整安全检查、UNKNOWN、8条缓存与失效保持。本地19方法/50 subTest＋43文化直接回归PASS；全Building扫描仍保留，无原生CPU/内存改善声明。用户已授权实施，当前manifest `Shared-D-Facts.json`；当前仅等待一次正常D变化／报告切换测试。
+[B170人工反馈及B171面板](Validation/Results/Specialization_B171_P0_Panel_Cleanup.md)：用户确认B170流程1/2正常，限定USER_GAME_TEST_PASS。第3步入口描述错误，Meaning没有详细切换，撤回而非假报通过；模式隔离仍为本地证据，无需补测。当前manifest `P0-Panel-Cleanup.json`，用户授权15按钮/旧实验隐藏；7方法208 subTest及static通过，下一仅安全部署，外观随正常使用顺带确认，无独立玩法门禁。
 
-[B169最小保存验收已PASS](Validation/Results/Specialization_B168_B169_Native_Feedback.md)，无需重做。[B168零档补证](Validation/Results/Specialization_B168_Zero_Control.md)仍是独立GPP精度调查：同T69小数无可见率增量、整数+1；未实施Floor/完整L3。GW扫描、公共广播及其它审计修复未授权。
+[B168 GPP精度调查](Validation/Results/Specialization_B168_Zero_Control.md)保持未决，测试/结束入口仍可见，不启用Floor/完整L3。B169保存验收保持PASS；全建筑扫描/GW/事件传播等其它审计项未处理，无新实施授权。
+
+## S0451 — B170通过，面板15项整理本地完成
+
+用户人工确认B170前两步，不要求不存在的Meaning详细切换。旧内存/GC控制、Network隔离、自动项目原型、E2及网络专项从默认列表隐藏，旧代码保留，正常收益不变。3×5布局/更大报告区、完整初始化最终visibility及当前GPP操作定向检查通过；实际字体/scale尚未观察，不要求单独实机流程。
 
 ## S0450 — B170安全部署，待最小实机
 

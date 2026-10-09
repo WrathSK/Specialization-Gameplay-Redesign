@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "batch": "P0-Panel-Cleanup",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0048",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0048",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0451",
+    "runtime": "B171.198 / modinfo198",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+  "goal": "User-authorized P0 button visibility/layout cleanup; retain B168 controls and useful current reports; no backend changes.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current accepted boundary and source/live state"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+      "kind": "full",
+      "reason": "Exact visible list, withdrawn invalid gate, UI-only result"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Actual UI, package or current focused test source"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Actual UI, package or current focused test source"
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "Actual UI, package or current focused test source"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Actual UI, package or current focused test source"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_panel_current_layout.py",
+      "kind": "full",
+      "reason": "Actual UI, package or current focused test source"
+    }
+  ],
+  "dependencies": [
+    "Existing controls/actions and native panel context; no API/schema/assets changes.",
+    "B168 NEXT/READ/END retained; B170/normal abilities operate automatically."
+  ],
+  "old_writers": [
+    "All Gameplay writers and prior controls/callbacks remain; only default button visibility/offsets and tooltip changed."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/InspirationReadout.lua",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ],
+      "trigger": "Exact callback semantics or future safe deployment check; do not reopen unrelated implementation."
+    }
+  ],
+  "non_scope": [
+    "No Gameplay/Design/persistence/GC/network policy/old test/frozen evidence/main changes; no mandatory gameplay/native memory regression."
+  ],
+  "validation": {
+    "depth": "L1 local observable UI",
+    "local": "7 methods208 subTest; current actual init/callbacks and XML geometry, syntax/manifest/static/context/link.",
+    "user": "Incidental 15-button visual/read use, not separate mandatory acceptance; native fonts/UIscale unknown."
+  },
+  "full_audit_triggers": [
+    "Any need to change backend state, live test lifecycle, accepted design or GC/Network behavior: stop affected path."
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md",
+    "source_commit": "2d3d2f45c6dfc30746d0ac13e5b219abbd76cce6",
+    "native": "UI rendering not yet observed; no mandatory separate gate",
+    "deployment": "NOT_DEPLOYED; registered live B170.197",
+    "stop": "Only safe UI deployment then stop, no next gameplay/repair batch."
+  }
+}

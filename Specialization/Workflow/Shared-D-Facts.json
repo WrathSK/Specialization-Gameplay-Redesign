@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "Shared-D-Facts",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0048",
     "research": "D0040",
@@ -178,8 +178,9 @@
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
     "source_commit": "343868e8bcd23efddb629b12b8bedf134334cb67",
-    "native": "USER_GAME_TEST_REQUIRED",
+    "native": "USER_GAME_TEST_PASS: user confirms flows1/2 normal Meaning and same-turn D update; invalid detail instruction withdrawn, actual mode isolation remains LOCAL only.",
     "deployment": "B170.197 DEVELOP_ACTIVE; checkouta05a072; receipt B170.197-a05a072-playtest.json;186/186 MATCH; B169/stable recovery retained",
-    "stop": "Wait for one D-change/detail-switch native gate; no next repair/gameplay."
+    "stop": "B170 scoped implementation complete; no additional native step3 gate, no next repair authorization.",
+    "native_evidence": "Specialization/Status/Validation/Results/Specialization_B171_P0_Panel_Cleanup.md"
   }
 }
