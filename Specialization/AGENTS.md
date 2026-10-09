@@ -18,13 +18,13 @@
 
 ## 用户交付与诊断
 
-使用独立、简明的中文用户摘要，说明结果、游戏影响、阻塞及下一步；技术细节按需提供。技术限制若要求改Design，解释原因和替代方案的玩法差异，交用户决定。
+Follow the [language convention](Workflow/README.md#language-convention). Use a concise, self-contained development summary covering the outcome, gameplay impact, blockers and next steps; add technical detail when useful. If a technical limitation requires a Design change, explain the implications and alternatives for the user to decide.
 
 证据首次出现时说明：STATIC_CONFIRMED=代码/数据库证据；LOCAL_SIMULATION_PASS=本地模拟；USER_GAME_TEST_PASS/FAIL=用户实机已测场景；USER_GAME_TEST_REQUIRED=待实机；BLOCKED=需技术突破或用户决定。不扩大未测范围，不把外部建议当验收。
 
-最终交付明确“用户需要决定”“用户需要测试”“Codex下一步”；无则写无，到批次边界停止。
+Final handoffs state “User decision”, “User testing” and “Codex next” (or none), then stop at the approved batch boundary.
 
-日常验收／使用报告优先让用户直接判断：先以简明中文显示本次对象与结果、必要的预期／实际对照、需处理的异常和下一动作，省略无关模块信息、重复警告及原始ID／reference／nil清单。原生接口未定、残留或归属冲突等排障需要时，保留完整技术报告，按当前问题选择简报、明细或简报后附明细；不禁止复杂报告，也不要求每份报告都展开。保留UNKNOWN、残留效果、实验污染等重要信息，区分预期值、载体配置、原生实测；不能为简洁隐藏失败或扩大PASS。若可读报告已足够支持用户判断，不默认要求截图；确需原生证据时仍可使用截图。后续涉及报告的修改沿用此原则，不另开全局UI重构。面板无需固定9按钮，约15以内一般可接受；隐藏暂不用入口并保留可复用代码，优先报告阅读空间，不据此扩张UI范围。
+游戏内面向玩家的验收／使用报告保持中文优先，让用户直接判断：先以简明中文显示本次对象与结果、必要的预期／实际对照、需处理的异常和下一动作，省略无关模块信息、重复警告及原始ID／reference／nil清单。原生接口未定、残留或归属冲突等排障需要时，保留完整技术报告，按当前问题选择简报、明细或简报后附明细；不禁止复杂报告，也不要求每份报告都展开。保留UNKNOWN、残留效果、实验污染等重要信息，区分预期值、载体配置、原生实测；不能为简洁隐藏失败或扩大PASS。若可读报告已足够支持用户判断，不默认要求截图；确需原生证据时仍可使用截图。后续涉及报告的修改沿用此原则，不另开全局UI重构。面板无需固定9按钮，约15以内一般可接受；隐藏暂不用入口并保留可复用代码，优先报告阅读空间，不据此扩张UI范围。
 
 ## 截图归档（持续授权）
 

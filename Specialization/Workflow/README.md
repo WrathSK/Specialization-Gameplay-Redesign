@@ -12,6 +12,15 @@ External discussion/advisory tools can explore alternatives, review plans and pr
 
 Do not invent missing gameplay, choose between genuine design alternatives, or silently change accepted rules to accommodate implementation/API limits. Report `DESIGN_DECISION_REQUIRED` and obtain the user's decision. Record technical limitations honestly; neither an Architecture recommendation nor a passing test grants semantic approval. Plan → user review → explicit implementation authorization remains unchanged.
 
+### Language convention
+
+- Use clear, professional English by default for development communication, plans, audits, investigation and validation reports, new technical documentation, and commit messages where appropriate. Understand Chinese or mixed-language user input normally; never require the user to write English. Follow an explicit request for Chinese explanations. Preserve technical depth and evidence boundaries.
+- Chinese remains the primary language for authoritative gameplay Design and player-facing content. Preserve the complete Chinese Design and the existing Spec/Content authority and acceptance process. Any separately authorized English Design reading page derives from the same accepted decisions, identifies its source revision and scope, and stays synchronized with affected accepted changes; it is not a second authority. Established Chinese names and localization identifiers require separate authorization to change.
+- In user test instructions, refer to P0 panel buttons by their actual current Chinese labels, even when the surrounding instructions are English. Verify a label when uncertain; do not substitute an English translation or internal identifier. Specify left-click or right-click when the action depends on it.
+- Apply English-first conventions to new technical writing without requiring duplicate Chinese technical reports or wholesale translation of existing documents. Existing edits remain task-scoped; frozen historical records stay unchanged. Historical translation and portfolio case studies require separate authorization.
+
+These conventions change language only: existing document contracts, schemas, W0001 reading scope, user approval, evidence levels and Investigation Agent write permissions remain unchanged.
+
 ### Durable recovery through existing sources
 
 | Responsibility | Existing source / recovery entry |
