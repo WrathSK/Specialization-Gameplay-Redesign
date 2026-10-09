@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "94c964b68310623065eb652eb9d327c4d594cea1",
-  "runtime": "B172.199 / modinfo199 deployed checkout94c964b; automatic Inspiration native acceptance pending",
+  "runtime_commit": "bc5448268929c2625f06d6d39bf89778dd70147d",
+  "runtime": "B173.200 / modinfo200 deployed checkoutbc54482; combined Inspiration/notification native acceptance pending",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

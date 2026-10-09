@@ -48,3 +48,9 @@ Date: 2026-10-08。Source baseline: develop a12fdce / B172.199。用户已批准
 P13a-F04的静态订阅/通知异常隔离/下一有效采样补投在本地完成；未声称统一处理所有业务失败或所有事件链。P13a-F02全建筑定义扫描、P13a-F03投资提交传播、P08机械writer公共化仍开放且不在本批。原独立审计证据不改写。
 
 本批不改Design、main、GC或保存schema，不推进M/N/U2。按W0003既有门禁部署后停止，等待与巨作启迪合并的原生验收；游戏运行/退出不明时保留本地检查点，不替换运行包。
+
+## 部署记录
+
+W0003门禁已完成：clean/sync develop源码提交 `bc5448268929c2625f06d6d39bf89778dd70147d`，OS确认游戏退出。既有工具按B172精确receipt恢复stable桥接，再激活B173；receipt `B173.200-bc54482-playtest.json`，**189/189 MATCH／DEVELOP_ACTIVE／无pending事务**。B172完整运行包及main stable恢复点保留，未启动游戏、未修改main、未删备份。
+
+当前包摘要 `d6a7567daf5fcee46ab648e22d48d8ac633e1ab20401ed13326ef9981bde428b`。context/schema/selectors/integrity及helper self-test通过，具名文档hash更新；没有新增原生PASS。停止等待上面同一轮验收，不再派独立冷加载或异常注入。

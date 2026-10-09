@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0456",
+    "status": "S0457",
     "runtime": "B173.200 / modinfo200",
     "military": "D0037",
     "harbor": "D0037",
@@ -200,7 +200,8 @@
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
     "native": "USER_GAME_TEST_REQUIRED; combined with B172 city GPP percentage.",
-    "deployment": "Source B173.200 locally complete; last verified live B172.199 receipt unchanged pending W0003.",
-    "stop": "After safe checkpoint deployment stop for combined native acceptance; other repairs/abilities not authorized."
+    "deployment": "B173.200 DEVELOP_ACTIVE; B173.200-bc54482-playtest.json;189/189 MATCH;B172/stable recovery verified;no pending transaction.",
+    "stop": "Deployed checkpoint; stop for combined native acceptance. Other repairs/abilities not authorized.",
+    "source_commit": "bc5448268929c2625f06d6d39bf89778dd70147d"
   }
 }

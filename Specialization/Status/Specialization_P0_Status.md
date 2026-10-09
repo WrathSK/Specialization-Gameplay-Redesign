@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0456
-Implementation Build: source B173.200; live B172.199 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0457
+Implementation Build: source/live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_REQUIRED
-Work State: B173_LOCAL_COMPLETE_AWAITING_DEPLOYMENT_AND_COMBINED_NATIVE
+Work State: B173_DEPLOYED_AWAITING_COMBINED_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户授权B173馆藏通知定域修复，并与B172巨作启迪合并验收。source B173.200／modinfo200本地完成；live仍为上次已核B172.199／receipt `B172.199-94c964b-playtest.json`，不是因代码更新就已部署；main stable B069.96不变。W0003部署须先提交/推送和确认游戏退出。
+用户授权B173馆藏通知定域修复，并与B172巨作启迪合并验收。source/live现为B173.200／modinfo200，已按W0003部署提交 `bc54482`；receipt `B173.200-bc54482-playtest.json`，189/189 MATCH／DEVELOP_ACTIVE／无pending。OS确认游戏退出，B172及stable恢复点保留；main stable B069.96不变。
 
 [当前L3合同](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)／manifest `P0-L3.json`：D0049本城当前时代E0–7、全类别3%×E语义不变。B173改K具名订阅、独立异常隔离、下一有效采样有限补投与启动兜底；81方法44 subTest为LOCAL_SIMULATION_PASS，[结果和一次合并验收](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。原生GPP入账/叠加仍USER_GAME_TEST_REQUIRED；不再开独立Probe或重复冷加载仪式。
 
-B166/B169/B170已接受范围和B168旧证据保留。本批仅P13a-F04相关通知修复；[投资传播计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)、全定义扫描及其它审计项仍独立未授权，M/N/U2不推进。下一步仅安全部署本检查点、等待合并验收；本地通知计数不证明原生CPU/内存改善。
+B166/B169/B170已接受范围和B168旧证据保留。本批仅P13a-F04相关通知修复；[投资传播计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)、全定义扫描及其它审计项仍独立未授权，M/N/U2不推进。下一步仅等待合并验收；本地通知计数不证明原生CPU/内存改善。
+
+## S0456 — B173通知隔离本地完成
+
+具名静态订阅、独立异常隔离、当前reference有限补投及相邻启动兜底；81方法44 subTest本地通过，三个实际消费者/K/transport/faults覆盖。没有公式、SQL、保存schema、采集器、GC或main变化。源码检查点已提交；当时live仍B172，部署另由S0457精确receipt确认，未生成原生PASS。
 
 ## S0455 — B172安全部署，等待最小原生验收
 
