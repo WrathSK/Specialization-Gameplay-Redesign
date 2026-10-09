@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0445
-Implementation Build: source B169.196 LOCAL_COMPLETE / NOT_DEPLOYED; live B168.195; stable B069.96
+Status Revision: S0446
+Implementation Build: source/live B169.196 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0048（原生主题化暂行许可；Culture共存失败、实施暂隔离）
 Latest Accepted Design Revision: D0048
 Design Sync State: D0048_MEANING_NATIVE_THEMING_PROVISIONAL / CURRENT_FOUR_PROFESSION_SCOPE_UNCHANGED
-Work State: B169_STORE_WRITE_LOCAL_CHECKPOINT
+Work State: B169_DEPLOYED_AWAITING_B168_B169_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
-D0048／A0161与四专业范围不变。source **B169.196/modinfo196**保存层独立修复本地完成，**未部署**；live仍登记为B168.195／sourcec3de114，receipt `B168.195-c3de114-playtest.json`（历史186/186 MATCH，本轮未核验外部包）。main stable B069.96不变。
+D0048／A0161与四专业范围不变。source/live **B169.196/modinfo196**已安全部署；部署checkout `234a586`（Mod实现commit `943f26c`），receipt `B169.196-234a586-playtest.json`，186/186 MATCH、DEVELOP_ACTIVE、无pending事务。main stable B069.96不变。
 
-[保存层检查点与一次最小测试](Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)：仅普通写跨record成本、坏引用隔离、实际读回驱动的失败占用保护；无新持久schema。用户已授权本批实施，当前manifest为`Store-Write-Repair.json`。本地结论不等于原生保存验证；后续部署另过既有安全门禁，本轮到commit/push停止。
+[保存层检查点与一次最小测试](Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)：普通写跨record成本、坏引用隔离、实际读回驱动失败占用保护已本地完成；无新持久schema。当前manifest为`Store-Write-Repair.json`，一次保存／冷加载仍待USER_GAME_TEST。
 
-[B168 GPP原生待办](Playtest_Backlog.md#b168--巨作启迪原生诊断验收待办)独立USER_DEFERRED，0→整数1→END未判PASS，不启用Floor／完整L3。原审计报告和冻结证据保留，未授权其它修复或玩法批次。
+用户授权部署并恢复[B168 GPP测试](Playtest_Backlog.md#b168--巨作启迪原生诊断验收待办)：B169保留原B168诊断，同包完成0→整数1→END；B168与B169证据独立，均未判原生PASS。不启用Floor／完整L3，不推进其它修复或玩法批次。
+
+## S0446 — B169安全部署，等待两项独立验收
+
+OS只读进程检查确认游戏退出；clean/sync main与develop、原B168 receipt及实际包hash相符。经精确stable桥接，使用既有工具激活B169：186/186逐文件MATCH、DEVELOP_ACTIVE、无pending事务；B168完整恢复副本及stable恢复点保留。未启动游戏、未修改main或源码，没有新增原生PASS。
+
+B168测试恢复为待用户执行；先END再进行B169普通写／保存冷加载可使两项观察分开，不要求额外Probe启用态保存或重复长测。
 
 ## S0445 — B169保存层独立本地检查点
 

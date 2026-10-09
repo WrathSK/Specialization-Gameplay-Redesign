@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0445",
+    "status": "S0446",
     "runtime": "B169.196 / modinfo196",
     "military": "D0037",
     "harbor": "D0037",
@@ -139,12 +139,12 @@
         "Specialization/Architecture/Playtest_Workflow.md",
         "tools/README.md"
       ],
-      "trigger": "Future authorized deployment only; none in this local checkpoint."
+      "trigger": "Authorized deployment safety checks and receipt verification."
     }
   ],
   "non_scope": [
     "No F03/Q01/Q02/Research owner-policy, new schema/cityKey/reverse index, GC/event/cache overhaul, Design or gameplay changes.",
-    "No B168 native test resumption, no other repair phase, deployment or main promotion."
+    "No other repair phase, main promotion or additional gameplay implementation; user separately authorized B169 deployment and B168 test resumption."
   ],
   "validation": {
     "depth": "L3 scoped Store persistence/reference risk",
@@ -156,8 +156,8 @@
   ],
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
-    "native": "USER_GAME_TEST_REQUIRED_AFTER_DEPLOYMENT",
-    "deployment": "NOT_DEPLOYED; registered live B168.195 remains unchanged",
-    "stop": "Local implementation/checkpoint only. Preserve B168 USER_DEFERRED and all excluded audit items."
+    "native": "USER_GAME_TEST_REQUIRED",
+    "deployment": "B169.196 DEVELOP_ACTIVE; checkout234a586; receipt B169.196-234a586-playtest.json;186/186 MATCH",
+    "stop": "Wait for B169 save/cold-load and separate B168 GPP evidence; no other repair/gameplay batch."
   }
 }
