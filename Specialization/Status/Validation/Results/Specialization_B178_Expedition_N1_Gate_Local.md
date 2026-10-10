@@ -38,4 +38,4 @@ After the native gate, choose the independent remote-state/placement route based
 
 ## Deployment
 
-Source B178.205 / modinfo205 prepared. At the local checkpoint, last verified live package remains B177.204 (receipt `B177.204-3bb1079-playtest.json`); actual switch, if completed, is recorded by Authority/Status and the exact deployment receipt. No main promotion.
+Source `34e0d1f6f35a69e1ba3004ded6886afae8880c00` / B178.205 / modinfo205 deployed using existing W0003 tools after clean/pushed-source and OS game-exit verification. Receipt `B178.205-34e0d1f-playtest.json` is DEVELOP_ACTIVE; **202/202 source/runtime MATCH**, exact B177 and stable recovery retained, no pending transaction. Main remains unchanged. No game launch or native acceptance follows from deployment.

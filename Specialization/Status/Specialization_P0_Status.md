@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0473
-Implementation Build: source B178.205; last live B177.204 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0474
+Implementation Build: source/live B178.205 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B178_N1_NATIVE_GATE_LOCAL_COMPLETE
+Work State: B178_N1_GATE_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,7 @@ User authorized **人文考察团 N1**, starting with travel/protection. [B178.2
 
 [Local result and one-session native flow](Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md):34 new methods and29 applicable related methods PASS; exact202-file package/syntax/SQL/localization checked. Native helper suitability and retreat are **USER_GAME_TEST_REQUIRED**, never inferred from the flag or mock. Existing B177 earned Dialogue integration remains [scoped native PASS](Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md); prior numerical attribution unknowns do not reopen its gate.
 
-Source **B178.205 / modinfo205**; last verified live **B177.204 DEVELOP_ACTIVE**, source `3bb1079`, receipt `B177.204-3bb1079-playtest.json`,196/196 MATCH with recovery retained. This is the pre-deployment local checkpoint; consult a subsequent receipt/Status update for an actual switch. Manifest: `P0-N1.json`.
+Source/live **B178.205 / modinfo205 DEVELOP_ACTIVE**, source `34e0d1f`, receipt `B178.205-34e0d1f-playtest.json`, **202/202 MATCH**. Verified game exit, exact B177/stable recovery and clean/pushed source; no pending transaction. Native acceptance remains pending. Manifest: `P0-N1.json`.
 
 Next: user runs the bounded gate; Codex reviews observations then resumes the already-authorized N1 route. No guessing Spy isolation/travel time/protection and no N2/N3/U2 progression, Design change, main promotion or unrelated audit repair.
 

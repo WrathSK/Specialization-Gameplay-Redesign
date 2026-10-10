@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3bb10790f32256ad20d339a62cc24de3c3269c82",
-  "runtime": "B177.204 / modinfo204 deployed source3bb1079; last deployment196/196 MATCH; scoped automatic cumulative Tourism-only native integration PASS; no runtime change in evidence review",
+  "runtime_commit": "34e0d1f6f35a69e1ba3004ded6886afae8880c00",
+  "runtime": "B178.205 / modinfo205 deployed source 34e0d1f; 202/202 MATCH; receipt B178.205-34e0d1f-playtest.json; exact B177/stable recovery retained. N1 first gate only, native pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0473",
+    "status": "S0474",
     "runtime": "B178.205 / modinfo205",
     "military": "D0037",
     "harbor": "D0037",
@@ -148,7 +148,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-    "source": "B178.205 / modinfo205; 202 runtime files",
+    "source": "B178.205 / modinfo205; source 34e0d1f6f35a69e1ba3004ded6886afae8880c00; 202/202 deployed equality MATCH",
     "native": "USER_GAME_TEST_REQUIRED; READ_OK is not remote deployment PASS",
     "stop": "Gate package ready. Resume authorized N1 only after route evidence; N2/N3/U2 remain held."
   }
