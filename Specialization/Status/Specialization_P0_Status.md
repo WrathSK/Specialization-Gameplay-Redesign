@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0470
-Implementation Build: source B177.204 local complete; live B176.203; stable B069.96
+Status Revision: S0471
+Implementation Build: source/live B177.204 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B177_CUMULATIVE_DIALOGUE_LOCAL_COMPLETE
+Work State: B177_DEPLOYED_USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,13 @@ User-authorized [B177 cumulative Dialogue cutover](../Architecture/v2/P0_M_Dialo
 
 [Local scope, failure/exit tests and one minimal integration check](Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md):25 new methods PASS;90 related PASS and one pre-existing six-versus-eight localization assertion mismatch, unchanged. New native automatic integration is pending. B175 project/history/restart and B176 carrier/Meaning/END evidence retain their scoped acceptance; no repeated high-percentage control or known-unreliable same-turn city-panel gate. B173 exact GPP attribution remains non-blocking.
 
-Live remains **B176.203** from source `f139bc2`, receipt `B176.203-f139bc2-playtest.json`, last verified194/194 MATCH until a separately recorded W0003 transaction. Local source has196 files; source is not deployment. Main, GC and frozen evidence unchanged. Current manifest: `P0-M3.json`.
+Live **B177.204 DEVELOP_ACTIVE**, source `3bb1079`, receipt `B177.204-3bb1079-playtest.json`. OS-confirmed game exit, clean/pushed source, exact B176/stable bridge and existing staged tools verified **196/196 MATCH**; outgoing B176 and stable recovery retained, no pending transaction. No game launch, main promotion or native PASS. Current manifest: `P0-M3.json`.
 
-Boundary: commit/push this coherent batch, deploy only through standing W0003 game-exit/receipt/staging gates, then stop for the minimal user integration check. No N/U2, all-native prototype, new Design or unrelated repair. Current outstanding observation: automatic reconstruction/qualification transition, plus next legal project commit if available; do not manufacture another used-era opportunity.
+Boundary: implementation committed/pushed and safely deployed under standing W0003; stop for the minimal user integration check. No N/U2, all-native prototype, new Design or unrelated repair. Current outstanding observation: automatic reconstruction/qualification transition, plus next legal project commit if available; do not manufacture another used-era opportunity.
+
+## S0470 — cumulative Dialogue local checkpoint
+
+Source `3bb1079` completes the user-authorized Tourism-only fallback and exact legacy cutover.25 new methods and90 related checks pass; the old localization-count assertion mismatch is reproduced against prior source and preserved. Design/Store schema/Meaning/GC/main and previous evidence remain unchanged. Subsequent actual deployment is recorded in CURRENT.
 
 ## S0469 — B176 comparison acceptance clarified
 

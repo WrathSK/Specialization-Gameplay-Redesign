@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "B177 source checkpoint pending; live source f139bc2fb22a3eda4563945f3b002c11915d3086",
-  "runtime": "B177.204 / modinfo204 local source; live remains B176.203 until receipt",
+  "runtime_commit": "3bb10790f32256ad20d339a62cc24de3c3269c82",
+  "runtime": "B177.204 / modinfo204 deployed source3bb1079;196/196 MATCH; automatic cumulative Tourism-only native integration pending",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

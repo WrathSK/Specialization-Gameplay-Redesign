@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0470",
+    "status": "S0471",
     "runtime": "B177.204 / modinfo204",
     "military": "D0037",
     "harbor": "D0037",
@@ -189,8 +189,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-    "source": "B177.204 / modinfo204;196 runtime files; source-only until actual W0003 receipt.",
-    "deployment": "Pending; live B176 exact receipt retained.",
+    "source": "B177.204 / modinfo204;196 runtime files; source 3bb10790f32256ad20d339a62cc24de3c3269c82",
+    "deployment": "B177.204-3bb1079-playtest.json: DEVELOP_ACTIVE,196/196 MATCH; exact B176/stable recovery retained; no pending transaction or game launch.",
     "stop": "Await minimal native automatic-integration result; no automatic next batch."
   }
 }
