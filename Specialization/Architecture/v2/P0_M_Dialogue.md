@@ -1,7 +1,13 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
-State: FIRST_SLICE_SCOPED_NATIVE_PASS / B175_PROJECT_HISTORY_RESTART_CONFIRMED / NATIVE_ONLY_MULTIPLIER_NOT_IMPLEMENTED。
-Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；后续倍率与cutover未授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
+State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_CARRIER_CONTROL_LOCAL_PASS / NATIVE_ONLY_CUTOVER_NOT_IMPLEMENTED。
+Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；用户另行授权B176高倍率临时载体对照；正式累计倍率与cutover未授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
+
+## Current slice — B176.203 carrier comparison
+
+The user authorizes inspection of existing theatre-building modifiers and a direct +100%/+200% test control, without earning that history. [B176 scope, database evidence, local tests and one short native flow](../../Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md). Right-click **时代对话**: 0% baseline → +100% → +200% → END. Left-click remains the project/history report. This reuses the exact single-city held writer, replaces rather than stacks, leaves Meaning/HD effects active, and never writes the saved Dialogue block/quota. Single session; no repeated M1/save-load acceptance.
+
+Culture/Tourism test configuration is locally confirmed; actual yield response, Meaning isolation and stacking remain USER_GAME_TEST_REQUIRED. Other native yield coverage and full cumulative writer/cutover are outside this control. Follow Status for actual deployment; do not infer it from source presence. Stop after this bounded test checkpoint.
 
 ## Current slice — B175.202 project and history
 
@@ -11,7 +17,7 @@ This first slice stores actual accepted city history but **does not yet project 
 
 The Store owns the optional Dialogue extension and a missing-history witness; the pure model validates it. Gameplay owns exact entry marker, saved pending attempt and completion. UI owns only intent/read/display. Normal turn work visits pending attempts; only load/Game Era change reconciles all local entries, and fresh completion sampling is target-city only. A held completion cannot later substitute a changed collection; loaded CALLING is not replayed. No additional GC or general event bus is introduced.
 
-Inherited Claim/high-cost-project evidence is retained; combined local coverage remains 63 methods/66 subtests. [B175 native feedback](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md) now supports normal entry/1T, cancellation without quota and completion using the collection changed after start (X=1, +5%). The user confirms +5% and the used era survive restart; that load observation has no new screenshot. Other local/inherited boundaries are not promoted to native PASS. B174 investment/Housing and Scientist response are recorded separately; Engineer attribution remains non-blocking UNKNOWN. No repeat Probe lifecycle/GPP test. Stop for review before the separately authorized multiplier/cutover slice.
+Inherited Claim/high-cost-project evidence is retained; combined local coverage remains 63 methods/66 subtests. [B175 native feedback](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md) now supports normal entry/1T, cancellation without quota and completion using the collection changed after start (X=1, +5%). The user confirms +5% and the used era survive restart; that load observation has no new screenshot. Other local/inherited boundaries are not promoted to native PASS. B174 investment/Housing and Scientist response are recorded separately; Engineer attribution remains non-blocking UNKNOWN. No repeat Probe lifecycle/GPP test. M1 remains closed; the separately authorized B176 carrier comparison above does not authorize the full multiplier/cutover.
 
 ## 完整Gameplay合同
 

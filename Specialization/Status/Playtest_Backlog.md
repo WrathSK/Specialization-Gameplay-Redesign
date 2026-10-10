@@ -190,3 +190,7 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 ## B175.202 — combined Dialogue first slice / B174 acceptance
 
 Completed in the observed scope: [B175 native result](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). Dialogue cancellation, normal T70→T71 completion with collection changed after start, +5%/used era and user-confirmed restart persistence pass. B174 investment/Lv2 Housing are user-reported correct; Scientist −24/+24 matches the declared worker change. Engineer −4.4/+6.6 leaves +2.2 unexplained, non-blocking; no package-refresh cause or exact all-class GPP PASS established. No extra GPP test or repeat lifecycle flow. New cumulative yields/cutover remain unimplemented and need separate authorization; this does not reopen old B168 diagnostics.
+
+## B176.203 — optional high-percentage Dialogue comparison
+
+User authorizes a direct native carrier control after B175 project/history acceptance. [One-session flow and evidence limits](Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md): right-click **时代对话** for0/100/200%/END, left-click reads history. No need to earn100%, complete another project, or repeat save/load. Test stays pending until user evidence; full native-only cumulative integration is separate. B174/GPP and other deferred boundaries are unchanged.

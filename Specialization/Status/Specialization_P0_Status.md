@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0465
-Implementation Build: source/live B175.202 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0466
+Implementation Build: source B176.203; recorded live B175.202 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B175_M1_SCOPED_NATIVE_PASS_B174_OBSERVED
+Work State: B176_CARRIER_CONTROL_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source/live remain **B175.202 / modinfo202**. The [first Dialogue slice](../Architecture/v2/P0_M_Dialogue.md#current-slice--b175202-project-and-history) has **USER_GAME_TEST_PASS in the observed project/history scope**: cancellation without quota, T70→T71 completion using the changed collection X=1, +5 percentage points and used Medieval opportunity; the user subsequently confirms both survive restart. [Native result and eight-image manifest](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). The new cumulative yield multiplier and old Dialogue retirement remain **unimplemented**; no full P0-M PASS. Current manifest `P0-M1.json` closes M1 only.
+Source **B176.203 / modinfo203** adds the user-authorized [single-city Dialogue carrier comparison](../Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison): right-click **时代对话**, 0% → +100% → +200% → END; left-click remains read-only history. [Database evidence, local results and minimal test](Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md). No earned history/quota change or HD/Meaning writer change. Current manifest `P0-M2.json` authorizes this control only; actual yield/Meaning isolation remains USER_GAME_TEST_REQUIRED, not full cumulative integration.
 
-B174 normal investment and Lv2 Housing are user-confirmed correct. Scientist specialist removal/restoration shows **88.9→64.9→88.9 (−24/+24)**. Engineer **35.9→31.5→38.1** leaves a +2.2 residual with UNKNOWN cause, non-blocking; no exact all-class or isolated post-investment GPP PASS. A package-refresh explanation is unproven. No new GPP investigation, repair or repeat test is requested; B173 accepted API evidence and its numerical limits remain intact.
+B175 M1 retains **scoped USER_GAME_TEST_PASS** for cancellation, normal1T completion with changed completion-time X, +5%/used-era and user-confirmed restart. [Original evidence](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). B174 investment/Housing and Scientist minus24/plus24 remain accepted; Engineer +2.2 residual and B173 exact stacking attribution are non-blocking UNKNOWN. No new GPP test/repair.
 
-Recorded deployment remains source `886484a`, receipt `B175.202-886484a-playtest.json`, DEVELOP_ACTIVE / 194/194 MATCH at deployment; no new runtime inspection or deployment in this evidence batch. Main/stable B069.96 and recovery packages are unchanged. Existing local 63 methods/66 subtests retain their scope; no gameplay tests rerun.
+Local:16 new methods plus18 selected related methods PASS; two old probe assertions fail identically with pre-change Dialogue and are explicitly excluded from PASS. Context/package/link checks do not prove native settlement. Recorded live remains B175.202 (`886484a`, receipt `B175.202-886484a-playtest.json`,194/194 MATCH at its deployment) until the reviewed W0003 transaction. Main/stable and recovery remain unchanged.
 
-Next boundary is user review of this result and a separately authorized cumulative-yield/cutover slice. No automatic next M implementation, N/U2, other repair or promotion. New history must not be inferred from carriers or later collection snapshots; existing save/receipt recovery protections remain.
+Next permitted action: deploy this locally checked control only through existing exit/clean-source/hash/recovery gates, then one native comparison. Stop for feedback; no full M cutover, new native-yield coverage, N/U2, Design change, promotion or other audit repair.
 
 ## S0465 — B175 project/history native evidence and B174 observations
 

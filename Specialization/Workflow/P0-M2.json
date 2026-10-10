@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "batch": "P0-M2",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0466",
+    "runtime": "B176.203 / modinfo203",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison",
+  "goal": "Explicit single-city 0/100/200/END carrier comparison, reusing native HD/theatre primitives without earning or writing Dialogue history.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Source/live and current permission/evidence",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_M_Dialogue.md",
+      "kind": "section",
+      "reason": "Current bounded slice",
+      "selector": "## Current slice — B176.203 carrier comparison"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_M_Dialogue.md",
+      "kind": "section",
+      "reason": "Native-only requirements and Meaning exclusion",
+      "selector": "## 完整Gameplay合同"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Accepted full ability",
+      "selector": "/abilities/1",
+      "expected_id": "CUL_L3_DIALOGUE"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Complete directly applicable contract",
+      "selector": "/contracts/dialogue"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Complete directly applicable contract",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Mod/Dialogue.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/DialogueModel.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/Data/Dialogue.sql",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/BoostGreatWorkRead.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/Text/DialogueProjects.sql",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/CultureMeaningProbe.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/DialogueRefresh.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "DevelopmentTests/test_dialogue_carrier_control.py",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md",
+      "kind": "full",
+      "reason": "Direct current carrier/control/caller dependency; inspect changed complete functions, not unrelated consumers"
+    }
+  ],
+  "dependencies": [
+    "Exact legacy Dialogue owned writer/hold, current effective facts and paired K collection; Meaning remains automatic.",
+    "Existing native work categories and city-scoped Culture/Tourism ScalingFactor; all-yield/native-only separation not assumed."
+  ],
+  "old_writers": [
+    "Temporary selected-city override only; END returns current old Dialogue AUTO. No full cutover, other-city/global OFF, HD removal or GWA reactivation."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "History/project behavior or reported earned-state anomaly",
+      "paths": [
+        "Mod/DialogueProjects.lua",
+        "Mod/DialogueProjectModel.lua",
+        "Mod/CityProgressionStore.lua",
+        "Specialization/Workflow/P0-M1.json"
+      ]
+    },
+    {
+      "trigger": "Deployment/recovery only",
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ]
+    }
+  ],
+  "non_scope": [
+    "No Design/permanent history/quota/save schema/Meaning writer/GPP/GC/AI/MP/main change; no full cumulative projection or general framework."
+  ],
+  "validation": {
+    "depth": "L2 scoped carrier replacement and caller behavior; targeted lifecycle faults only",
+    "local": "16 targeted +18 related PASS;2 selected historical tests fail identically on af3bc4c Dialogue baseline. No gameplay-wide/stress run.",
+    "user": "One session: same work/city 0/100/200/END; no repeat history accumulation, cold-load/defaultOFF/re-enable ritual. Native yield and Meaning isolation pending."
+  },
+  "full_audit_triggers": [
+    "Need to modify HD, accepted semantics, persistence or global writer cutover: stop that extension and report."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md",
+    "source": "B176.203/modinfo203;194 runtime files; temporary comparison only.",
+    "deployment": "Recorded B175 receipt until actual W0003 transaction; do not infer deployment from HEAD.",
+    "stop": "Await bounded native comparison; no further implementation automatically."
+  }
+}

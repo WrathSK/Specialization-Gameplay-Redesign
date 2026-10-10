@@ -73,13 +73,21 @@ local function request(playerID,params)
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
   end
+  if params.Action=='DIALOGUE_CARRIER_NEXT' then
+    local ok,out=pcall(function()
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
+      shared.Dialogue.CarrierTestNext(playerID,c,params.Token,params.Reference)
+      return shared.Dialogue.DescribeCarrierTest(playerID,c)
+    end)
+    shared.Snapshot=ok and out or ('倍率对照暂停：'..tostring(out)..'；回到原测试城市右键结束。');shared.LastToken=params.Token;return
+  end
   if params.Action=='DIALOGUE_PROJECT_BEGIN' or params.Action=='DIALOGUE_PROJECT_SYNC' or params.Action=='DIALOGUE_PROJECT_READ' then
     local ok,out=pcall(function()
       local d=assert(shared.DialogueProjects,'时代对话未初始化');assert(not d.startupError,d.startupError)
       if params.Action=='DIALOGUE_PROJECT_SYNC' then d.Sync(playerID,params.CityID,params.Token);return end
       if params.Action=='DIALOGUE_PROJECT_BEGIN' then d.Request(playerID,params);return end
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
-      return d.Describe(playerID,c)
+      return d.Describe(playerID,c)..'\n\n'..shared.Dialogue.DescribeCarrierTest(playerID,c)
     end)
     if params.Action=='DIALOGUE_PROJECT_READ' then shared.Snapshot=ok and out or ('时代对话暂停：'..tostring(out));shared.LastToken=params.Token end
     return

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="202">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="203">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B175.202: first Era Dialogue project and saved-history gate, combined with B174 scoped investment propagation. New cumulative yield is not enabled; native validation pending.</Description>
+    <Description>B176.203: optional single-city Dialogue 0/100/200 percent carrier comparison. Earned history and normal project remain unchanged; full cumulative yield integration is not enabled.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

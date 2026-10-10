@@ -17,7 +17,7 @@ function SPCDialogue.Start(P,shared)
   local ok,why=pcall(function()
    for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
     for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id) then set(c,id,false) end end
-    for _,v in ipairs({25,50,100}) do local id='BUILDING_SPC_B059_TEST'..v;if P.Info('Buildings',id) then set(c,id,false) end end
+    for _,v in ipairs({25,50,100,200}) do local id='BUILDING_SPC_B059_TEST'..v;if P.Info('Buildings',id) then set(c,id,false) end end
     for _,m in ipairs({'CITY','OBJECT'}) do local id='BUILDING_SPC_B055_GW_'..m;if P.Info('Buildings',id) then set(c,id,false) end end
    end end end
   end)
@@ -26,7 +26,7 @@ function SPCDialogue.Start(P,shared)
   d.ready=true
  end
  local owned={};for n=2,#levels do owned['BUILDING_SPC_B059_D'..n]=true end
- for _,v in ipairs({25,50,100})do owned['BUILDING_SPC_B059_TEST'..v]=true end
+ for _,v in ipairs({25,50,100,200})do owned['BUILDING_SPC_B059_TEST'..v]=true end
  function d.IsOwnedCarrier(name)return owned[name]==true end
  function d.IsMeaningProbeHeld(pid,c,percent)
   local h=d.meaningOverride
@@ -64,26 +64,27 @@ function SPCDialogue.Start(P,shared)
   return ok,not ok and (tostring(why):match('ME_[A-Z_]+') or 'ME_DIALOGUE_SAMPLE_PAIR_PENDING') or nil
  end
  -- Current qualification is a single bounded diagnostic projection, not authority.
- local function meaningQualification(pid,c)
+ local function meaningQualification(pid,c,minimumActive)
   local ok,f=pcall(shared.EffectiveFacts.Read,pid,c)
   d.meaningQualification={owner=pid,city=c:GetID(),reference=SPCNetworkInput.Reference(c),
    specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
    active=ok and f.active or nil,activeStatus=ok and f.activeStatus or 'UNKNOWN_FACTS'}
   assert(ok,'ME_DIALOGUE_FACT_UNKNOWN')
   assert(f.activeStatus=='KNOWN','ME_DIALOGUE_ACTIVE_UNKNOWN')
-  assert(f.specialization=='CULTURE' and f.active==4,'ME_DIALOGUE_ACTIVE_REQUIRED')
+  assert(f.specialization=='CULTURE' and (f.active==4 or minimumActive==3 and f.active==3),'ME_DIALOGUE_ACTIVE_REQUIRED')
  end
- function d.HoldMeaningProbe(pid,c,percent)
+ function d.HoldMeaningProbe(pid,c,percent,minimumActive)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
-  assert(percent==0 or percent==100,'ME_DIALOGUE_PERCENT')
+  assert(percent==0 or percent==100 or percent==200,'ME_DIALOGUE_PERCENT')
   assert(not d.off[pid] and not (d.test[pid] and d.test[pid].city==c:GetID()),'ME_DIALOGUE_OTHER_TEST')
   local ref=SPCNetworkInput.Reference(c);local h=d.meaningOverride
   assert(not h or h.owner==pid and h.city==c:GetID() and h.reference==ref,'ME_DIALOGUE_OTHER_FIXTURE')
   -- Reject before changing the holder: a reentrant request owns no Audit lock.
   assert(not d.busy and not d.initializing,'ME_DIALOGUE_UPDATE_PENDING: BUSY')
-  d.Init();meaningQualification(pid,c)
+  assert(minimumActive==nil or minimumActive==3 or minimumActive==4,'ME_DIALOGUE_GATE')
+  d.Init();meaningQualification(pid,c,minimumActive)
   local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
-  local candidate=h and h.percent==percent and h or {owner=pid,city=c:GetID(),reference=ref,percent=percent}
+  local candidate=h and h.percent==percent and h.minimumActive==(minimumActive or 4) and h or {owner=pid,city=c:GetID(),reference=ref,percent=percent,minimumActive=minimumActive or 4}
   d.meaningOverride=candidate
   local ok,why=pcall(function()
    local updated,updateReason=d.Audit(pid,c:GetID());assert(updated,'ME_DIALOGUE_UPDATE_PENDING: '..tostring(updateReason))
@@ -102,11 +103,11 @@ function SPCDialogue.Start(P,shared)
  -- No native snapshot is replayed: Read still exposes a partial projection.
  function d.RestoreMeaningProbeIntent(pid,c,percent)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
-  assert(percent==0 or percent==100,'ME_DIALOGUE_PERCENT')
+  assert(percent==0 or percent==100 or percent==200,'ME_DIALOGUE_PERCENT')
   assert(not d.busy and not d.initializing,'ME_DIALOGUE_UPDATE_PENDING: BUSY')
   local h=d.meaningOverride
   assert(h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_REFERENCE_CHANGED')
-  if h.percent~=percent then d.meaningOverride={owner=h.owner,city=h.city,reference=h.reference,percent=percent}end
+  if h.percent~=percent then d.meaningOverride={owner=h.owner,city=h.city,reference=h.reference,percent=percent,minimumActive=h.minimumActive}end
  end
  function d.WithdrawMeaningProbe(pid,c)
   local h=d.meaningOverride
@@ -117,7 +118,7 @@ function SPCDialogue.Start(P,shared)
   local h=d.meaningOverride
   assert(h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_REFERENCE_CHANGED')
   d.WithdrawMeaningProbe(pid,c) -- Failed test withdrawal keeps binding/hold.
-  d.meaningOverride=nil;d.meaningQualification=nil;d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
+  d.meaningOverride=nil;d.meaningQualification=nil;return d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
  end
  function d.Audit(pid,cid)
   if P.Observe then P.Observe('audit','Dialogue') end
@@ -158,19 +159,24 @@ function SPCDialogue.Start(P,shared)
       plan.sampleEpoch=s.factsEpoch;plan.sampleInput=s.factsInput;plan.reference=h.reference
       local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
       plan.meaning=true;plan.test=h.percent
-      plan.applied=(not d.off[pid] and f.specialization=='CULTURE' and f.active==4) and h.percent or 0
+      plan.applied=(not d.off[pid] and f.specialization=='CULTURE' and (f.active==4 or h.minimumActive==3 and f.active==3)) and h.percent or 0
      end
      plan.carrier=plan.applied>0 and ('BUILDING_SPC_B059_'..(plan.test and 'TEST'..plan.test or 'D'..plan.d)) or nil
      return plan
     end)
     if not valid then p={applied=0,error=tostring(p)} end
     local written,writeError=pcall(function()
+     local h=d.meaningOverride
+     if h and h.owner==pid and h.city==id then assert(c:GetOwner()==pid and SPCNetworkInput.Reference(c)==h.reference,'ME_DIALOGUE_REFERENCE_CHANGED')end
      -- Remove old level first, then add at most one current level.
      for n=2,#levels do if p.carrier~='BUILDING_SPC_B059_D'..n then
       local key='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',key) then set(c,key,false) end
      end end
-     for _,v in ipairs({25,50,100}) do local key='BUILDING_SPC_B059_TEST'..v;if key~=p.carrier and P.Info('Buildings',key) then set(c,key,false) end end
-     if p.applied>0 then assert(p.d<=#levels,'DIALOGUE_ERA_DIRECTORY');set(c,p.carrier,true) end
+     for _,v in ipairs({25,50,100,200}) do local key='BUILDING_SPC_B059_TEST'..v;if key~=p.carrier and P.Info('Buildings',key) then set(c,key,false) end end
+     if h and h.owner==pid and h.city==id then assert(c:GetOwner()==pid and SPCNetworkInput.Reference(c)==h.reference,'ME_DIALOGUE_REFERENCE_CHANGED')end
+     if p.applied>0 then assert(p.d<=#levels,'DIALOGUE_ERA_DIRECTORY');set(c,p.carrier,true)
+      if h and h.owner==pid and h.city==id then assert(c:GetOwner()==pid and SPCNetworkInput.Reference(c)==h.reference,'ME_DIALOGUE_REFERENCE_CHANGED')end
+     end
     end)
     if not written then p.error=tostring(writeError);p.applied=nil end
     output[id]=p
@@ -191,13 +197,13 @@ function SPCDialogue.Start(P,shared)
  function d.ReadMeaningProbe(pid,c)
   local ok,value=pcall(function()
    local h=d.meaningOverride;assert(h and d.IsMeaningProbeHeld(pid,c,h.percent),'ME_DIALOGUE_REFERENCE_CHANGED')
-   meaningQualification(pid,c) -- Zero percent alone cannot prove ACTIVE4.
+   meaningQualification(pid,c,h.minimumActive) -- Zero alone cannot prove the held gate.
    local paired,reason=d.IsMeaningSampleCurrent(pid,c);assert(paired,reason)
    local p=d.last[pid] and d.last[pid][c:GetID()];assert(p and not p.error and p.meaning,'ME_DIALOGUE_SAMPLE_PENDING')
    local s=d.samples[pid];assert(p.sampleSeq==s.seq and p.sampleGeneration==s.generation and p.sampleTurn==s.turn
     and p.sampleEpoch==s.factsEpoch and p.sampleInput==s.factsInput and p.reference==SPCNetworkInput.Reference(c),'ME_DIALOGUE_SAMPLE_PENDING')
    assert(p.applied==h.percent,'ME_DIALOGUE_QUALIFICATION_CHANGED')
-   local expected=h.percent==100 and 'BUILDING_SPC_B059_TEST100' or nil;local b=c:GetBuildings()
+   local expected=h.percent>0 and ('BUILDING_SPC_B059_TEST'..h.percent) or nil;local b=c:GetBuildings()
    for name in pairs(owned)do local row=P.Info('Buildings',name);if row then
     local has=P.HasBuilding(b,row.Index);assert(type(has)=='boolean','ME_DIALOGUE_CARRIER_UNKNOWN')
     assert(has==(name==expected),'ME_DIALOGUE_PROJECTION_CHANGED')
@@ -227,6 +233,65 @@ function SPCDialogue.Start(P,shared)
    return p.applied
   end)
   return ok and value or nil,not ok and tostring(value):sub(1,240) or nil
+ end
+ -- B176: reuse the held writer for a high-value native comparison. This
+ -- controller owns one session fixture and one request receipt, never history.
+ function d.CarrierTestNext(pid,c,token,reference)
+  assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'DIALOGUE_TEST_OWNER')
+  assert(type(token)=='string' and #token>0 and #token<=100,'DIALOGUE_TEST_TOKEN')
+  assert(reference==SPCNetworkInput.Reference(c),'DIALOGUE_TEST_REFERENCE_CHANGED')
+  local old=d.carrierTestRequest
+  if old and old.token==token then
+   assert(old.owner==pid and old.reference==reference,'DIALOGUE_TEST_TOKEN_CONFLICT');return
+  end
+  local t=d.carrierTest
+  assert(not t or t.owner==pid and t.city==c:GetID() and t.reference==reference,'DIALOGUE_TEST_OTHER_CITY')
+  assert(not shared.CultureMeaningProbe,'DIALOGUE_TEST_OTHER_PROBE')
+  if not t then
+   assert(not d.meaningOverride,'DIALOGUE_TEST_OTHER_PROBE')
+   -- Validate before acquiring a fixture or disturbing the ordinary writer.
+   meaningQualification(pid,c,3)
+   local paired,why=d.IsMeaningSampleCurrent(pid,c);assert(paired,why)
+   t={owner=pid,city=c:GetID(),reference=reference,percent=nil};d.carrierTest=t
+  end
+  d.carrierTestRequest={owner=pid,reference=reference,token=token}
+  local nextPercent=not t.error and (t.percent==nil and 0 or t.percent==0 and 100 or t.percent==100 and 200) or nil
+  local ok,why=pcall(function()
+   if nextPercent==nil then
+    local restored,reason
+    if d.meaningOverride then restored,reason=d.ReleaseMeaningProbe(pid,c)
+    else
+     for name in pairs(owned)do if P.Info('Buildings',name)then set(c,name,false)end end
+     restored,reason=d.Audit(pid,c:GetID())
+    end
+    assert(restored,'DIALOGUE_TEST_RESTORE_PENDING: '..tostring(reason))
+    local current=d.last[pid] and d.last[pid][c:GetID()]
+    assert(current and not current.error,'DIALOGUE_TEST_RESTORE_UNCONFIRMED')
+    d.carrierTest=nil
+   else
+    d.HoldMeaningProbe(pid,c,nextPercent,3);t.percent=nextPercent;t.error=nil
+   end
+  end)
+  if not ok then t.error=tostring(why):sub(1,180);error(why)end
+ end
+ function d.DescribeCarrierTest(pid,c)
+  local t=d.carrierTest
+  local lines={'倍率对照｜临时单城测试；不改变累计记录／已用时代。'}
+  if not t then
+   lines[#lines+1]='右键：0%基线 → ＋100% → ＋200% → 结束；左键只读。'
+   local p=d.last[pid] and d.last[pid][c:GetID()]
+   lines[#lines+1]=p and not p.error and ('正常旧倍率：＋'..tostring(p.applied)..'%（不是累计记录）') or '正常旧倍率：待当前馆藏确认。'
+  elseif t.owner~=pid or t.city~=c:GetID() or t.reference~=SPCNetworkInput.Reference(c) then
+   lines[#lines+1]='测试绑定在另一城市／引用；请回原测试城市，不可在这里推进。'
+  else
+   local value,reason=d.ReadMeaningProbe(pid,c)
+   lines[#lines+1]='本次档位：'..(t.percent~=nil and ('＋'..t.percent..'%') or '未完成')
+   lines[#lines+1]=value~=nil and ('载体配置已确认：＋'..value..'%；实际收益请看巨作界面。') or '载体配置未确认；不要据此验收收益。'
+   if t.error or reason then lines[#lines+1]='待处理：'..tostring(t.error or reason)..'；右键结束。'
+   else lines[#lines+1]=t.percent==0 and '右键：替换为＋100%。' or t.percent==100 and '右键：替换为＋200%。' or '右键：结束并按当前事实恢复旧倍率。' end
+  end
+  lines[#lines+1]='仅测试巨作文化／旅游倍率；意义延展与HD建筑保持，需比较是否被误放大。'
+  return table.concat(lines,'\n')
  end
  function d.Receive(pid,a)
   if not P.IsTestPlayer(pid) then return false end
@@ -294,11 +359,19 @@ function SPCDialogue.Start(P,shared)
    else auditAll() end -- unknown signature retains prior conservative scope
   end) end
  end
- local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
+ local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.carrierTest then d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil end;d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
-   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
+   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100,200})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   local t=d.carrierTest
+   if t and t.owner==loss.origin.owner then
+    -- Exit has already proved its exact target. Drop only the matching hold.
+    local h=d.meaningOverride
+    if h and h.reference==t.reference and h.city==loss.origin.cityID then
+     d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil
+    end
+   end
  end)end
 
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Dialogue',function(pid)d.generation=d.generation+1;d.samples={};d.paired={};d.seq={};d.last={};d.test={} end)end

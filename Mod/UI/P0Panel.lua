@@ -219,6 +219,7 @@ request=function(action,advance)
     if not ok then pendingToken=nil;status('Network隔离未启动；停止本次对照，冷启动原存档。\n'..tostring(err));return end
     packet.Epoch=epoch
   end
+  if action=='DIALOGUE_CARRIER_NEXT' then packet.Reference=SPCNetworkInput.Reference(city)end
   if action:find('^GWA_') then gwaFlight={pid=playerID,packet=packet,pulses=0,retries=0,busy=true} end
   local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
   if gwaFlight then gwaFlight.busy=false end
@@ -515,8 +516,9 @@ local function initialize()
   Controls.GWReadButton:RegisterCallback(Mouse.eLClick,function() request('GREAT_WORK_FACTS_READ') end)
   Controls.GWReadButton:RegisterCallback(Mouse.eRClick,function() request('GREAT_WORK_FACTS_DETAIL',true) end)
   Controls.DialogueProjectCaption:SetText(Locale.Lookup('LOC_SPC_DIALOGUE_PROJECT_REPORT'))
-  Controls.GWCityButton:SetToolTipString('左键：时代对话计时、已用时代与累计记录。只读；请从城市生产列表开始。本批不新增倍率产出。')
+  Controls.GWCityButton:SetToolTipString(Locale.Lookup('LOC_SPC_DIALOGUE_CARRIER_HINT'))
   Controls.GWCityButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_PROJECT_READ') end)
+  Controls.GWCityButton:RegisterCallback(Mouse.eRClick,function() request('DIALOGUE_CARRIER_NEXT') end)
   Controls.GWObjectButton:RegisterCallback(Mouse.eLClick,function() request('GW_OBJECT') end)
   Controls.GWOffButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_OFF') end)
   Controls.DiscountsButton:RegisterCallback(Mouse.eLClick,function() request('DISCOUNT_READ',true) end)
