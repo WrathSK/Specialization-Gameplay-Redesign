@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0467
+Status Revision: S0468
 Implementation Build: source/live B176.203 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B176_DEPLOYED_AWAITING_NATIVE
+Work State: B176_NATIVE_REVIEWED_SETTLEMENT_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source **B176.203 / modinfo203** adds the user-authorized [single-city Dialogue carrier comparison](../Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison): right-click **时代对话**, 0% → +100% → +200% → END; left-click remains read-only history. [Database evidence, local results and minimal test](Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md). No earned history/quota change or HD/Meaning writer change. Current manifest `P0-M2.json` authorizes this control only; actual yield/Meaning isolation remains USER_GAME_TEST_REQUIRED, not full cumulative integration.
+Source/live **B176.203 / modinfo203** remains the user-authorized [single-city Dialogue carrier control](../Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison). [Ten reviewed screenshots](Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md): work Culture9→18→27, Tourism15→20→25; five current Meaning additions unchanged. END restores normal old+25% (works11/15), preserving earned+5%/used era. Scoped display/replacement/END evidence, not full P0-M PASS.
 
-B175 M1 retains **scoped USER_GAME_TEST_PASS** for cancellation, normal1T completion with changed completion-time X, +5%/used-era and user-confirmed restart. [Original evidence](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). B174 investment/Housing and Scientist minus24/plus24 remain accepted; Engineer +2.2 residual and B173 exact stacking attribution are non-blocking UNKNOWN. No new GPP test/repair.
+City Culture76.1992→74.1992/74.1992 does not track work yields; actual turn settlement is unresolved. Culture scaling also amplifies the HD Amphitheater flat addition. No claimed universal native-base-only or same-yield Meaning isolation. Current manifest `P0-M2.json` records this bounded result; no new cumulative integration is authorized.
 
-Local:16 new methods plus18 selected related methods PASS; two old probe assertions fail identically with pre-change Dialogue and are explicitly excluded from PASS. Context/package/link checks do not prove native settlement. B176 is deployed from `f139bc2`, receipt `B176.203-f139bc2-playtest.json`: DEVELOP_ACTIVE /194/194 MATCH, no pending transaction. Game exit was verified without launching it; exact B175/stable recovery retained. Main unchanged.
+B175 M1 retains [scoped project/history/restart PASS](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). B174 investment/Housing and Scientist response remain accepted; Engineer residual and B173 exact ordering remain non-blocking UNKNOWN. B176 local16+18 PASS and two reproduced historical assertion failures stay as recorded. Deployment remains source `f139bc2`, receipt `B176.203-f139bc2-playtest.json`, last verified194/194 MATCH; not re-deployed or rechecked against runtime here. Main unchanged.
 
-Next permitted action: one native comparison using the deployed control. Stop for feedback; no full M cutover, new native-yield coverage, N/U2, Design change, promotion or other audit repair.
+Stop after evidence review. Proposed next distinction is credited turn yield versus stale same-turn readings, without a repeat lifecycle ritual. No full M cutover, new yield coverage, N/U2, Design change, GPP repair, promotion or automatic next implementation.
+
+## S0467 — B176 safely deployed
+
+Existing tools verified clean/pushed sourcef139bc2, OS game exit, exact B175/stable recovery bridge and194-file source/runtime equality. Receipt B176.203-f139bc2-playtest.json recorded DEVELOP_ACTIVE with retained recovery and no pending transaction. That deployment checkpoint did not establish native yield acceptance; the subsequent bounded evidence is linked in CURRENT.
 
 ## S0466 — B176 bounded carrier control locally complete
 
