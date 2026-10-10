@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "bc5448268929c2625f06d6d39bf89778dd70147d",
-  "runtime": "B173.200 / modinfo200 deployed checkoutbc54482; combined Inspiration/notification native acceptance pending",
+  "runtime": "B173.200 / modinfo200 recorded deployed checkoutbc54482; B174.201 is source-only, native acceptance deferred to the combined Dialogue session",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "41104f02e3b4d74b39c56f0462332885cf3c488556b2bba4a6d5544887f7268f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+      "sha256": "832c3a1c8576ea75dc812d1975326647f13ef00b11ad47016fe2aa33988b3237",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -301,19 +301,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/InvestmentAction.lua": {
-      "sha256": "c55150ca23d41bb5010b38aed8fe4d54ac4a4d32debd243fd986c9170e6920f5",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "7f1089dbc0b54a5d6c82bc6d5efd0ff326515401da87d0f1498813f3be761ecd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "672d8259f382876cd4f9586b15060805ce8dab9e62f40b7b778e08b9345495e0",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B133 optimization reviewed, targeted L2 PASS; deployed170/170 MATCH, native pending"
+      "sha256": "66c61e4b84b625d1f6c6baa27a88288a3e7bf6dd3d034dae11e2a4d2dd0f4b5e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "3921e3e7b27ec0434fe6a0689982423aed97e8bae20e9ba3fc7e2c88f9522148",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B132 authorized narrow event/cache optimization; targeted L2 PASS, native pending"
+      "sha256": "bea3d3c8519a2da29ab280e2945570bb770e44282926dd91e289a27bcb5d8300",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "45e39d15e1b18613198a0b6ae6a9c8725f3ce334666c4598b440638208cc9aa2",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "f8083dbe6d9fe0efd48d464499dba3dc4be84e250b4924b9e1ad4586072184ac",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+      "sha256": "586750b677a60188ce3fbc40151d35592cb683ea41881b6e63c49d11423c1a7c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -401,9 +401,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "77658c47a3d168420309903f3fec9b0a76e69b03fc99a4f5820c748ef004f8a2",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "sha256": "104ee9271c93bc5b40bf533003c1b86da016d47c487ef110fe0ed378da38a3e3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "867f4a6915c1798d69872474ce4c5013207cdee0e88fd9a740577267b1244351",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+      "sha256": "726fbaa124b4dcb6c6adada5c6e70745ab4a381230eadaf42b1c794bf0f46289",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -611,9 +611,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UnitActions.lua": {
-      "sha256": "0e87494ff86dbc2dd211865b092853025fec315272bac65e04129593b014e02b",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "be1ec9fb4368293048496eb603d7b417c44589e45e717fef49f63d8adf656503",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/UnitSiteProbe.lua": {
       "sha256": "f54c582cc46ba965ddbfc3c631dcba198bbb2663e14d982693d0503b8c7f1d43",

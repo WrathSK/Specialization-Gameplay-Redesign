@@ -49,13 +49,14 @@ function SPCInvestmentAction.Start(P,shared)
   if not (store and store.Owns(c)) and shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'InvestmentAction.lua') end
   facts(pid,c) -- same native reader used by Lv1/network validates each state
  end
- local function finish(pid,c,ledger)
+ local function finish(pid,c,ledger,onCandidate)
   local op=ledger.pending
   assert(op and op.stage=='CONSUMED_CONFIRMED','CONFIRMED_DEBIT_REQUIRED')
   local u=Players[pid]:GetUnits():FindID(op.unitID)
   assert(not u or u:GetProperty(UNIT_KEY)~=op.unitUID,'CONSUMED_UNIT_STILL_PRESENT')
   local nextValue=cp(ledger);nextValue.investments[op.receipt]=op.unitUID
   nextValue.revision=nextValue.revision+1;nextValue.pending=nil
+  if onCandidate then onCandidate(nextValue) end -- call-local evidence, never persisted separately
   write(pid,c,ledger,nextValue)
  end
  local data={};shared.InvestmentAction=data
@@ -104,12 +105,18 @@ function SPCInvestmentAction.Start(P,shared)
   return ok and out or ('B033 REJECTED: '..tostring(out))
  end
  function data.Confirm(pid,c,token)
-  if busy[pid] then halted[hk(pid,c)]=true;return 'B033 HELD: REENTRANT' end
+  if busy[pid] then halted[hk(pid,c)]=true;return 'B033 HELD: REENTRANT',{status='UNKNOWN'} end
   busy[pid]=true;local destructive=false
+  local candidate,reference,already
+  local function ref()return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
   local ok,out=pcall(function()
    assert(not halted[hk(pid,c)],'INVESTMENT_HELD')
    local f=facts(pid,c);local old=ledgerRead(pid,c)
-   if old and old.investments[token] then return 'B033 ALREADY_COMMITTED\n'..shared.EffectiveFacts.Describe(pid,c) end
+   reference=ref()
+   if old and old.investments[token] then
+    candidate=cp(old);already=true
+    return 'B033 ALREADY_COMMITTED\n'..shared.EffectiveFacts.Describe(pid,c)
+   end
    local p=plans[pid]
    assert(p and p.token==token and p.owner==pid and p.cityID==c:GetID(),'PREPARE_FIRST')
    assert(p.turn==Game.GetCurrentGameTurn(),'PREVIEW_EXPIRED_PREPARE_AGAIN')
@@ -127,14 +134,32 @@ function SPCInvestmentAction.Start(P,shared)
    Players[pid]:GetUnits():Destroy(u)
    assert(not Players[pid]:GetUnits():FindID(p.unitID),'UNIT_DEBIT_UNCONFIRMED')
    local confirmed=cp(intent);confirmed.pending.stage='CONSUMED_CONFIRMED';write(pid,c,intent,confirmed)
-   finish(pid,c,confirmed)
+   finish(pid,c,confirmed,function(value)candidate=value end)
    plans[pid]=nil
    -- Existing consumers read committed facts; no new Lv2-4 effects are granted.
    return 'B033 INVESTED: consumed 1 Settler\n'..shared.EffectiveFacts.Describe(pid,c)
   end)
+  -- Prove the final saved value, independently of report generation. A debit or
+  -- an INVESTED string alone cannot authorize a narrowed consumer refresh.
+  local result={status=destructive and 'UNKNOWN' or 'REJECTED'}
+  if candidate then
+   result.status='UNKNOWN'
+   local verified,evidence=pcall(function()
+    assert(not halted[hk(pid,c)] and same(ref(),reference),'COMMIT_REFERENCE_UNCONFIRMED')
+    assert(candidate.pending==nil and same(ledgerRead(pid,c),candidate),'COMMIT_READBACK_UNCONFIRMED')
+    local f=facts(pid,c)
+    assert(same(anchor(f),candidate.anchor) and not f.investmentPending,'COMMIT_FACTS_UNCONFIRMED')
+    assert(type(candidate.investments[token])=='string','COMMIT_RECEIPT_UNCONFIRMED')
+    assert(not halted[hk(pid,c)] and same(ref(),reference),'COMMIT_CHANGED_DURING_READ')
+    return {status=already and 'ALREADY_COMMITTED' or 'COMMITTED',cause='INVESTMENT_COMMITTED',
+     player=pid,city=f.cityID,reference=reference,anchor=cp(candidate.anchor),
+     receipt=token,unitUID=candidate.investments[token],revision=candidate.revision}
+   end)
+   if verified then result=evidence end
+  end
   busy[pid]=false
-  if not ok and destructive then halted[hk(pid,c)]=true end
-  return ok and out or ('B033 '..(destructive and 'HELD' or 'REJECTED')..': '..tostring(out))
+  if not ok and destructive then halted[hk(pid,c)]=true end -- retain existing failure policy
+  return ok and out or ('B033 '..(destructive and 'HELD' or 'REJECTED')..': '..tostring(out)),result
  end
  -- Invalidate a prepared unit if it is removed, even if its numeric ID is reused.
  local removed=P.Field(Events,'UnitRemovedFromMap')

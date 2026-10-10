@@ -76,6 +76,10 @@ Store仍唯一拥有提交权，完整record校验、manager旧snapshot和Game�
 
 [实施与验证](../Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md)记录访问计数、逐值对照和保护反例；该计数不是原生CPU／内存证明。目标record读回现在经有界Copy，复制／校验及业务写成本仍在。提交期间候选root可见性、return回调顺序和专业业务耦合仍是原审计保留项，本批不改；部署／实机状态只从Status获取。
 
+### Scoped investment publication (B174)
+
+The actual Settler transaction now returns call-local final-readback evidence through both Gameplay/UnitActions entrances. A named composition function uses only COMMITTED to scope Lv2Housing and Lv2GPP to the proved city; other outcomes keep their existing player fallback. Each writer checks current reference/binding and owns its own facts batch, carriers and failure record. One consumer failure does not stop the other or replay a debit. Native hooks, cross-city Network scope, Store schema and player-wide district enumeration remain unchanged. This establishes one bounded publication contract, not a general bus or complete migration of the central consumer lists. [Implementation and measured limits](../Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md); source/live/native status remains in Status.
+
 ### 网络与跨context数据
 
 已接受的[后台UI来源合同](../Reports/Technical/Specialization_Network_Background_Source_Decision.md)允许不开贸易窗口读取当前路线。Gameplay计数核对不是完整端点枚举的替代。路线事件使输入失效/重采，事件历史本身不是现在的网络。

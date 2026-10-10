@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0461
-Implementation Build: source/live B173.200 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0462
+Implementation Build: source B174.201; recorded live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B173_INSPIRATION_NATIVE_API_ACCEPTED
+Work State: B174_LOCAL_COMPLETE_NATIVE_DEFERRED_FOR_COMBINED_DIALOGUE
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source and recorded live package remain B173.200 / modinfo200, deployed from `bc54482` under W0003; receipt `B173.200-bc54482-playtest.json`, 189/189 MATCH. B172/stable recovery and main stable B069.96 are unchanged. This feedback update performs no deployment or runtime check.
+Source is **B174.201 / modinfo201**, the user-authorized [investment propagation repair](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md#current-checkpoint--b174201). [Result and exact scope](Validation/Results/Specialization_B174_Investment_Propagation_Local.md) / current manifest `Investment-Propagation.json`: two actual investment entrances, reliable final receipt evidence, and only the target city's Housing/GPP refresh. 21 methods/59 subtests plus four Store regressions and two existing offline-model suites passed locally. No new Design/save fields/GC, or new native PASS.
 
-[Current L3 contract](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点) / manifest `P0-L3.json`: D0049 city-local, all-class +3%×current E0–7 remains unchanged. B173 notification isolation/bounded retry has 81 methods / 44 subTests LOCAL_SIMULATION_PASS; see [local result and combined acceptance](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md).
+Recorded live remains **B173.200**, source `bc54482`, receipt `B173.200-bc54482-playtest.json`, prior 189/189 MATCH; no runtime check or deployment was performed. Main/stable B069.96 and existing recovery remain unchanged. The user requested one later package/session shared with 时代对话; hold this repair's separate deployment/native test.
 
-**2026-10-09 user acceptance:** Inspiration's city-GPP percentage API is accepted for the observed General/Prophet response, era-dependent changes and fractional accumulation: scoped USER_GAME_TEST_PASS. The [E3 evidence](Validation/Results/Specialization_B173_Inspiration_E3_Feedback.md) and [source/two-city comparison](Validation/Results/Specialization_B173_Inspiration_Two_City_Comparison.md) retain exact observations. Scientist/Merchant source coverage, stacking order and general rounding formula remain UNKNOWN but non-blocking; full national GPP reconciliation is not an acceptance prerequisite. Do not change gameplay/engine calculation, invent corrected bases or request another test solely to close those unknowns.
+B173 Inspiration's percentage API remains accepted for the observed General/Prophet response, era-dependent changes and fractional accumulation ([acceptance boundary](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)). Exact Scientist/Merchant source coverage/stacking/rounding remain UNKNOWN and non-blocking; no further numerical test. B173 adjacent-consumer native observations were not independently confirmed; inherited local and earlier ability evidence retain their own scopes.
 
-B173 shared-notification correctness retains its 81-method / 44-subTest LOCAL_SIMULATION_PASS. Adjacent 风雅熏陶/意义延展 behavior during this specific native session was not separately confirmed; neither local tests nor API acceptance promote it to new native PASS. No additional manual procedure is requested here. B166/B169/B170 and prior ability evidence remain intact. Await the user's next scope; [investment propagation](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md), M/N/U2 and other repairs remain separately unauthorized. Reopen numerical attribution only for a concrete repeatable failure of the expected response or a relevant future modifier/source-path change.
+The repair's future native observation is one normal investment I→II (current Housing/GPP and an unaffected city, respecting next-turn GPP refresh), combined with the [next Dialogue slice](../Architecture/v2/P0_M_Dialogue.md). Dialogue's new transaction/native-yield gates remain distinct; package sharing is not evidence that M is implemented. Stop at this locally complete repair checkpoint; M/N/U2 and other repairs require their respective scope authorization. No automatic deployment or gameplay continuation.
+
+## S0462 — investment propagation locally complete; combined native session planned
+
+Both actual Confirm entrances carry proved call-local commit evidence. Only Housing/GPP city scope is narrowed; actual module comparison preserves values/debits/receipts, failure isolation and existing foreign/late/load fallbacks. 8/20/40-city fixtures show 16/40/80→2 target visits, with district enumeration unchanged; no native performance claim. The user approved implementation and combining native observation with 时代对话. B174 is source-only, live B173 retained. No new Gameplay/save schema/GC or Dialogue implementation; audit/frozen records unchanged.
 
 ## S0461 — Native GPP API accepted; exact attribution is non-blocking
 

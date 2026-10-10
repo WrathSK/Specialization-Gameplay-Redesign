@@ -73,7 +73,7 @@ function SPCUnitActions.Start(P,shared)
   if busy[pid] then return 'BUSY: no second action' end
   busy[pid]=true
   local destructive=false
-  local ok,result=pcall(function()
+  local ok,result,investment=pcall(function()
    assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
    if p.Action=='UNIT_ACTION_SPAWN' then
     local c=Players[pid]:GetCities():FindID(p.CityID);assert(c and c:GetOwner()==pid,'SELECT_OWN_CITY')
@@ -151,14 +151,14 @@ function SPCUnitActions.Start(P,shared)
     MOVE_CIVILIAN_OFF_CITY_CENTER='请先将平民单位移出市中心。',
    }
    for code,hint in pairs(hints) do
-    if output:find(code,1,true) and not destructive then return 'REJECTED: '..hint..' ['..code..']' end
+    if output:find(code,1,true) and not destructive then return 'REJECTED: '..hint..' ['..code..']',investment end
    end
-   if destructive or output:find('HELD',1,true) then return 'HELD: 操作结果尚未确认，请停止重试并回传日志。' end
+   if destructive or output:find('HELD',1,true) then return 'HELD: 操作结果尚未确认，请停止重试并回传日志。',investment end
    -- Preserve stable uppercase reason identifiers, not Lua paths/line numbers.
    local reason=output:match(':%d+:%s*([A-Z][A-Z0-9_]+)') or 'ACTION_REJECTED'
-   return 'REJECTED: 当前操作不可执行。['..reason..'] 详细信息已写入日志。'
+   return 'REJECTED: 当前操作不可执行。['..reason..'] 详细信息已写入日志。',investment
   end
-  return output
+  return output,investment
  end
  local removed=Events and Events.UnitRemovedFromMap
  if removed and removed.Add then removed.Add(function(pid,id)

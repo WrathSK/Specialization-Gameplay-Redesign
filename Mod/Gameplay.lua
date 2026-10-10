@@ -15,6 +15,21 @@ local function stage(value)
   shared.Events[#shared.Events+1]=line
   if #shared.Events>32 then table.remove(shared.Events,1) end
 end
+-- One post-investment contract, shared by DEV and normal Settler confirmation.
+-- Only a proved new receipt narrows these two consumers; other actions retain
+-- the old player fallback. No facts/cache or native object survives this call.
+local function refreshInvestmentSupport(playerID,result)
+ for _,name in ipairs({'Lv2Housing','Lv2GPP'})do
+  local consumer=shared[name]
+  if consumer then
+   local scope={player=playerID}
+   if type(result)=='table' and result.status=='COMMITTED' then scope.investment=result end
+   local ok,err=pcall(consumer.Audit,scope)
+   local key='investment-notify:'..tostring(playerID)
+   consumer.errors[key]=not ok and tostring(err) or nil
+  end
+ end
+end
 local function request(playerID,params)
   shared.RequestIngress=shared.RequestIngress or {count=0}
   local ingress=shared.RequestIngress;ingress.count=ingress.count+1
@@ -444,10 +459,10 @@ local function request(playerID,params)
   end
   if params.Action=="UNIT_ACTION_SPAWN" or params.Action=="UNIT_ACTION_PREPARE" or params.Action=="UNIT_ACTION_CONFIRM" then
     if not P.IsTestPlayer(playerID) then return end
-    shared.Snapshot=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
+    local result
+    shared.Snapshot,result=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
-    if shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
+    refreshInvestmentSupport(playerID,result)
     if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
@@ -520,14 +535,14 @@ local function request(playerID,params)
     shared.LastToken=params.Token;stage("ACK CONSTRUCTION_PROBE");return
   end
   if params.Action=="INVEST_PREPARE" or params.Action=="INVEST_CONFIRM" then
+    local result
     if params.Action=="INVEST_PREPARE" then
       shared.Snapshot=shared.InvestmentAction.Prepare(playerID,city,params.UnitID,params.Token)
     elseif type(params.PlanToken)=="string" and #params.PlanToken<=400 then
-      shared.Snapshot=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
+      shared.Snapshot,result=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
     else shared.Snapshot="B033 REJECTED: PREPARE_FIRST" end
     if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
-    if shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
+    refreshInvestmentSupport(playerID,result)
     if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
     if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
     if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end

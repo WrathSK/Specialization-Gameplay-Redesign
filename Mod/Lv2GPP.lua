@@ -72,6 +72,16 @@ function SPCLv2GPP.Start(P,shared)
   if P.Observe then P.Observe('audit','Lv2GPP') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
   data.busy=true;batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
+  if type(scope)=='table' and scope.investment~=nil then
+   local pid=scope.player;local key='investment:'..tostring(pid)
+   local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
+   data.errors[key]=not ok and tostring(city) or nil
+   if ok then
+    P.Count('city_scan');local good,why=pcall(function() reconcile(pid,city) end)
+    data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
+   end
+   data.busy=false;batch=nil;return
+  end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local good,err=pcall(function()

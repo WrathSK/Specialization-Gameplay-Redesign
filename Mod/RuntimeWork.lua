@@ -30,6 +30,32 @@ end
 function SPCRuntimeWork.Player(scope,pid)
  return type(scope)~='table' or scope.player==nil or scope.player==pid
 end
+-- Only the named, synchronous investment result may narrow these two writers.
+-- Native hooks/player scopes remain unchanged. Facts belong to this writer's
+-- batch; the next writer must revalidate rather than reuse post-write inputs.
+function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch)
+ local function same(a,b)
+  if type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end
+  for k,v in pairs(a)do if not same(v,b[k])then return false end end
+  for k in pairs(b)do if a[k]==nil then return false end end;return true
+ end
+ local e=scope.investment;local pid=scope.player
+ assert(type(e)=='table' and e.status=='COMMITTED' and e.cause=='INVESTMENT_COMMITTED'
+  and type(pid)=='number' and pid==e.player and P.IsTestPlayer(pid),'INVESTMENT_SCOPE_UNKNOWN')
+ assert(type(e.city)=='number' and e.city>=0 and e.city%1==0 and type(e.anchor)=='table'
+  and e.anchor.owner==pid and e.anchor.cityID==e.city and type(e.anchor.token)=='string' and #e.anchor.token>0
+  and type(e.receipt)=='string' and #e.receipt>0 and type(e.unitUID)=='string'
+  and type(e.revision)=='number' and e.revision>=2 and e.revision<=4 and e.revision%1==0,'INVESTMENT_EVIDENCE_UNKNOWN')
+ local player=assert(Players[pid],'INVESTMENT_PLAYER_UNAVAILABLE')
+ local city=assert(player:GetCities():FindID(e.city),'INVESTMENT_CITY_UNAVAILABLE')
+ assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()})
+  and city:GetOwner()==pid,'INVESTMENT_REFERENCE_CHANGED')
+ local f=batch.Facts(pid,city)
+ assert(same(e.anchor,{owner=f.owner,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization})
+  and not f.investmentPending and f.investmentCount>=e.revision-1,'INVESTMENT_BINDING_CHANGED')
+ assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()}),'INVESTMENT_CHANGED_DURING_READ')
+ return city
+end
 function SPCRuntimeWork.Hook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
  local lastTurn={}

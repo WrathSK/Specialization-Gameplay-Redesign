@@ -1,7 +1,13 @@
 # 投资提交后的定域更新：修复计划
 
-Date: 2026-10-08。State: **PLANNED_NOT_AUTHORIZED**。
+Date: 2026-10-08。Original plan state: **PLANNED_NOT_AUTHORIZED** (superseded by the checkpoint below).
 评估baseline：develop `c4b5b85`，clean／origin同步；source/live B171.198。本轮只评估与写计划，不实施、不部署、不修改当前任务或Design。
+
+## Current checkpoint — B174.201
+
+2026-10-09: the user authorized this bounded repair and agreed to combine its native observation with the later 时代对话 package/session. Implementation is **LOCAL_COMPLETE / NATIVE_DEFERRED_FOR_COMBINED_SESSION**; see [actual-module results and limits](../../Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md). Source B174.201; recorded live remains B173.200, no separate deployment. The original plan below preserves the approved scope, not a current instruction to wait for repair authorization. M implementation remains a separately scoped next stage.
+
+Actual normal-unit actions are `UNIT_ACTION_SPAWN/PREPARE/CONFIRM`; `UNIT_ACTION_VIEW` is read-only. The old planning table's `UNIT_ACTIONS_READ` spelling is not an executable action. Both real Confirm entrances now propagate typed commit evidence; non-commit actions retain the player fallback. No other consumer, permanent field or GC path was changed.
 
 ## 排序与本批问题
 

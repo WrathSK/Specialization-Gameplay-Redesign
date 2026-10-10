@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "batch": "Investment-Propagation",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0462",
+    "runtime": "B174.201 / modinfo201",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md",
+  "goal": "B174: proved investment commit propagation to target-city Housing/GPP, both DEV and normal Settler entrances.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current scope, actual evidence and source/live distinction",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md",
+      "kind": "full",
+      "reason": "Approved bounded repair and checkpoint"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Publication and owner boundary",
+      "selector": "### Scoped investment publication (B174)"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Existing event/facts/lifecycle and native-delta discipline",
+      "selector": "### 公共更新与临时状态接入约束"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Complete investment, ACTIVE, acquisition and exception rules",
+      "selector": "## 3. 共同成长与永久投资 — PROG"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Actual Housing/GPP and common lifecycle contract",
+      "selector": "## 4. v0.1共同Lv2规则 — SHARED"
+    },
+    {
+      "path": "Mod/InvestmentAction.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/UnitActions.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/Lv2Housing.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/Lv2GPP.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/SpecialistSupport.lua",
+      "kind": "full",
+      "reason": "Direct changed module or unchanged qualification dependency"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Two actual ingress branches, other-consumer order and unchanged late/native routing"
+    },
+    {
+      "path": "Mod/UI/UnitPanelActions.lua",
+      "kind": "full",
+      "reason": "Normal request shape and existing player-facing action; no UI change"
+    },
+    {
+      "path": "DevelopmentTests/test_investment_update_propagation.py",
+      "kind": "full",
+      "reason": "Maintained actual-module local acceptance"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "kind": "full",
+      "reason": "Scope, measured counts, failure boundaries and combined future native observation"
+    }
+  ],
+  "dependencies": [
+    "Existing Store.Investment/WriteInvestment and EffectiveFacts remain authority; inspect those exact paths and actual caller tests when changing commit proof.",
+    "RuntimeWork batch facts/index are per Audit; no sharing across consumer writes. Existing Network and other consumer scopes retained."
+  ],
+  "old_writers": [
+    "No writer cutover. Replace exactly the Housing/GPP calls at both successful investment ingress positions; existing carrier owners/native hooks remain."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/NetworkBridge.lua",
+        "DevelopmentTests/test_store_write_boundaries.py",
+        "DevelopmentTests/test_b138_update_contract.py",
+        "DevelopmentTests/test_p0_b2.py",
+        "DevelopmentTests/test_investment_store_bridge.py",
+        "DevelopmentTests/test_settler_investment_executor.py"
+      ],
+      "trigger": "Receipt/Store/ownership, unchanged broader scope or fixture regression requires exact related paths; no all-history run."
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/v2/P0_M_Dialogue.md",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ],
+      "trigger": "Preparing the later explicitly scoped shared Dialogue package; no deployment in this checkpoint."
+    }
+  ],
+  "non_scope": [
+    "No Design, persistent schema, SQL/carrier amounts, GC, native hooks, broad dispatcher or other audit repair. No Dialogue implementation, runtime/main changes or deployment."
+  ],
+  "validation": {
+    "depth": "L3 scoped commit evidence/propagation/failure; no broad historical or stress suite",
+    "local": "21 methods/59 subtests, four Store regressions and two existing offline-model suites PASS; syntax/package, context/selectors, links and diff reviewed.",
+    "user": "Deferred to one shared package/session with Dialogue. One normal I→II investment and control city; no duplicate save/load or GPP rounding sequence. Dialogue gates remain separate."
+  },
+  "full_audit_triggers": [
+    "Need to change permanent transaction semantics, identity authority, native hook scope or broaden beyond two consumers: stop affected extension and review."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+    "source": "B174.201 source-only checkpoint; exact commit in Git history.",
+    "deployment": "Not performed; recorded live B173.200-bc54482-playtest.json preserved.",
+    "stop": "Local repair complete. Await separately scoped Dialogue batch; combine native observations, no standalone repair test request."
+  }
+}
