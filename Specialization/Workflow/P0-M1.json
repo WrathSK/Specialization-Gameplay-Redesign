@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-M1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0464",
+    "status": "S0465",
     "runtime": "B175.202 / modinfo202",
     "military": "D0037",
     "harbor": "D0037",
@@ -168,6 +168,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
       "kind": "full",
       "reason": "Current acceptance or inherited separate repair evidence"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md",
+      "kind": "full",
+      "reason": "Current M1 scoped native result; screenshot/user-confirmation boundaries and separate B174 observations"
     }
   ],
   "dependencies": [
@@ -225,15 +230,15 @@
   "validation": {
     "depth": "L3 scoped project/Store/new saved lifecycle and shared UI; no full gameplay/stress run",
     "local": "63 methods/66 subtests PASS; current SQL/schema/package, Lua/XML, selectors/context/links/diff reviewed. Native ordering/serialization not proved.",
-    "user": "One combined B174 normal investment and M1 project start/cancel/complete/current-X/quota flow, plus one post-success cold load. No GPP precision or shared harness ritual."
+    "user": "M1 scoped PASS: cancellation, normal 1T completion with collection changed after start, +5%/used era; user confirms restart persistence. B174 investment/Housing correct by user report; Scientist minus24/plus24 observed. Engineer residual non-blocking UNKNOWN, no exact all-class GPP PASS or repeat test."
   },
   "full_audit_triggers": [
     "Need unknown-owner/city reconstruction, changed Gameplay contract, general event/save architecture or cumulative-yield implementation: stop that extension and obtain its separate scope."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md",
     "source": "B175.202/modinfo202; committed 886484a69189ac6c5cdacfd409f065f66957387f;194 files.",
-    "deployment": "DEVELOP_ACTIVE; B175.202-886484a-playtest.json;194/194 MATCH, B173/stable recovery retained; pending native.",
-    "stop": "Await combined native observation; M multiplier/cutover and N/U2 not implemented."
+    "deployment": "DEVELOP_ACTIVE; B175.202-886484a-playtest.json;194/194 MATCH at deployment, B173/stable recovery retained; unchanged in this evidence batch.",
+    "stop": "M1 closed within observed native scope. Await review and separate multiplier/cutover authorization; new cumulative yields and N/U2 not implemented. No GPP repair or additional test dispatched."
   }
 }

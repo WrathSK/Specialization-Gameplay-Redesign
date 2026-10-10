@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0464
+Status Revision: S0465
 Implementation Build: source/live B175.202 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B175_DEPLOYED_COMBINED_NATIVE_REQUIRED
+Work State: B175_M1_SCOPED_NATIVE_PASS_B174_OBSERVED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source is **B175.202 / modinfo202**, the approved [first Dialogue slice](../Architecture/v2/P0_M_Dialogue.md#current-slice--b175202-project-and-history): normal production entry, one-turn timer, START-era quota, completion-time X and city-owned history. The new cumulative yield multiplier and old Dialogue retirement are **not implemented**. [Result and combined test](Validation/Results/Specialization_B175_Dialogue_Project_Local.md); current manifest `P0-M1.json`. 63 targeted methods/66 subtests passed locally, not natively.
+Source/live remain **B175.202 / modinfo202**. The [first Dialogue slice](../Architecture/v2/P0_M_Dialogue.md#current-slice--b175202-project-and-history) has **USER_GAME_TEST_PASS in the observed project/history scope**: cancellation without quota, T70→T71 completion using the changed collection X=1, +5 percentage points and used Medieval opportunity; the user subsequently confirms both survive restart. [Native result and eight-image manifest](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). The new cumulative yield multiplier and old Dialogue retirement remain **unimplemented**; no full P0-M PASS. Current manifest `P0-M1.json` closes M1 only.
 
-The package also contains B174's [investment propagation repair](Validation/Results/Specialization_B174_Investment_Propagation_Local.md); its native observation is combined with Dialogue while PASS labels stay separate. No new GPP rounding investigation. B173 percentage API acceptance remains scoped to observed behavior; exact Scientist/Merchant source/stacking attribution stays UNKNOWN and non-blocking.
+B174 normal investment and Lv2 Housing are user-confirmed correct. Scientist specialist removal/restoration shows **88.9→64.9→88.9 (−24/+24)**. Engineer **35.9→31.5→38.1** leaves a +2.2 residual with UNKNOWN cause, non-blocking; no exact all-class or isolated post-investment GPP PASS. A package-refresh explanation is unproven. No new GPP investigation, repair or repeat test is requested; B173 accepted API evidence and its numerical limits remain intact.
 
-Recorded live is **B175.202**, source `886484a`, receipt `B175.202-886484a-playtest.json`: DEVELOP_ACTIVE / 194/194 MATCH, no pending transaction. Verified OS game exit and existing W0003 tools; B173 and stable recovery retained. Main/stable B069.96 is unchanged. Next action is the single combined user test; no automatic next M slice, N/U2, other repair or promotion.
+Recorded deployment remains source `886484a`, receipt `B175.202-886484a-playtest.json`, DEVELOP_ACTIVE / 194/194 MATCH at deployment; no new runtime inspection or deployment in this evidence batch. Main/stable B069.96 and recovery packages are unchanged. Existing local 63 methods/66 subtests retain their scope; no gameplay tests rerun.
 
-The new persistence is a small optional per-city Store extension, not a general save migration. Pre-test save/receipt recovery remains required; uncertain completion is held, never reconstructed from a later collection. Current native flow includes one meaningful post-success cold load; no shared-Probe OFF/re-enable ceremony.
+Next boundary is user review of this result and a separately authorized cumulative-yield/cutover slice. No automatic next M implementation, N/U2, other repair or promotion. New history must not be inferred from carriers or later collection snapshots; existing save/receipt recovery protections remain.
+
+## S0465 — B175 project/history native evidence and B174 observations
+
+Eight originals reviewed and hash-archived. Cancelled attempt preserves opportunity; normal full-turn completion records current X=1/+5%, with the user confirming the work moved after start. User reopens the game and confirms +5%/used era remain; no post-load screenshot claimed. B174 investment/Housing are user-reported correct; Scientist −24/+24 matches, Engineer residual +2.2 stays non-blocking UNKNOWN. No attribution to stale package carriers, new GPP test, source/Design/GC/main change, deployment or next implementation. The linked native result preserves separate evidence scopes and unchanged local results.
 
 ## S0464 — combined B175 package safely deployed
 

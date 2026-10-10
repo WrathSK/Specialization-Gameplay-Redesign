@@ -1,6 +1,6 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
-State: FIRST_SLICE_LOCAL_COMPLETE / B175_NATIVE_PROJECT_HISTORY_GATE_PENDING / NATIVE_ONLY_MULTIPLIER_NOT_IMPLEMENTED。
+State: FIRST_SLICE_SCOPED_NATIVE_PASS / B175_PROJECT_HISTORY_RESTART_CONFIRMED / NATIVE_ONLY_MULTIPLIER_NOT_IMPLEMENTED。
 Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；后续倍率与cutover未授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
 
 ## Current slice — B175.202 project and history
@@ -11,7 +11,7 @@ This first slice stores actual accepted city history but **does not yet project 
 
 The Store owns the optional Dialogue extension and a missing-history witness; the pure model validates it. Gameplay owns exact entry marker, saved pending attempt and completion. UI owns only intent/read/display. Normal turn work visits pending attempts; only load/Game Era change reconciles all local entries, and fresh completion sampling is target-city only. A held completion cannot later substitute a changed collection; loaded CALLING is not replayed. No additional GC or general event bus is introduced.
 
-Inherited Claim/high-cost-project evidence is retained. New native uncertainty is entry/1T/cancellation/completion-time sampling and the new saved receipt/quota. One post-success cold-load boundary is justified; Probe OFF/re-enable rituals and GPP rounding tests are not. Combined local: 63 methods/66 subtests; no native PASS yet. Stop for user feedback before the next slice.
+Inherited Claim/high-cost-project evidence is retained; combined local coverage remains 63 methods/66 subtests. [B175 native feedback](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md) now supports normal entry/1T, cancellation without quota and completion using the collection changed after start (X=1, +5%). The user confirms +5% and the used era survive restart; that load observation has no new screenshot. Other local/inherited boundaries are not promoted to native PASS. B174 investment/Housing and Scientist response are recorded separately; Engineer attribution remains non-blocking UNKNOWN. No repeat Probe lifecycle/GPP test. Stop for review before the separately authorized multiplier/cutover slice.
 
 ## 完整Gameplay合同
 
