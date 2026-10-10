@@ -75,11 +75,18 @@ local function refreshTargets()
  updateTarget()
 end
 local function close()
- Controls.Window:SetHide(true);ContextPtr:ClearUpdate();pending=nil;targets={};travel=nil
+ Controls.Window:SetHide(true);ContextPtr:SetHide(true)
+ ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
+ ContextPtr:ClearUpdate();pending=nil;targets={};travel=nil
 end
 local function open()
  if not P.IsTestPlayer(Game.GetLocalPlayer())then return end
- Controls.Window:SetHide(false);refreshTargets();request('READ')
+ -- InGame.LoadNewContext starts every add-in root hidden; a visible child
+ -- cannot override that parent. Confirm both before acknowledging the handoff.
+ ContextPtr:SetHide(false);Controls.Window:SetHide(false)
+ if ContextPtr:IsHidden() or Controls.Window:IsHidden()then return end
+ refreshTargets();request('READ')
+ ExposedMembers.SPC_ExpeditionGateUIOpenVersion=P.VERSION
 end
 local function visibility()
  if not P.IsTestPlayer(Game.GetLocalPlayer())then close()end
@@ -102,7 +109,7 @@ local function initialize()
   if not current or not current.unitID then setReport(L('TEAM_CHANGED'));return end
   if not targets[selected]then setReport(L('NO_TARGET'));return end
   travel=R.Read(Game.GetLocalPlayer(),current.unitID,targets[selected]);render()
-  print('[SPC][B179][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
+  print('[SPC][B180][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
  end)
  for control,key in pairs({CloseButtonCaption='CLOSE',CreateButtonCaption='CREATE',RefreshButtonCaption='REFRESH',TravelButtonCaption='TRAVEL',ArmButtonCaption='ARM',EndButtonCaption='END'})do
   Controls[control]:SetText(L(key))

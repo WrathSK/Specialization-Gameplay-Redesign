@@ -38,7 +38,7 @@ def panel_runtime():
             local e=event(k);rawset(t,k,e);return e
         end})
         Mouse={eLClick=1,eRClick=2}
-        expeditionOpens=0;LuaEvents={SPC_ExpeditionGateOpen=function()expeditionOpens=expeditionOpens+1 end}
+        expeditionOpens=0;LuaEvents={SPC_ExpeditionGateOpen=function()expeditionOpens=expeditionOpens+1;if acknowledgeExpedition then ExposedMembers.SPC_ExpeditionGateUIOpenVersion=SPCP0.VERSION end end}
         PlayerOperations={EXECUTE_SCRIPT=1}
         SPCP0={VERSION='current-panel-fixture', IsTestPlayer=function(pid)return pid==0 end,
                Scalar=tostring, Call=function()return false end, Count=function()end}
@@ -175,10 +175,74 @@ class CurrentPanelTests(unittest.TestCase):
             Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]()
             assert(not Controls.Window.hidden and expeditionOpens==0 and #requests==0)
             assert(Controls.Status.text:find('UI_UNAVAILABLE'))
-            ExposedMembers.SPC_ExpeditionGateUIVersion=SPCP0.VERSION
+            ExposedMembers.SPC_ExpeditionGateUIVersion=SPCP0.VERSION;acknowledgeExpedition=true
             Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]()
             assert(Controls.Window.hidden and expeditionOpens==1 and #requests==0)
         ''')
+
+    def test_unacknowledged_or_failed_window_keeps_p0_open(self):
+        for failure in ('NO_LISTENER', 'THROW', 'STALE_ACK'):
+            with self.subTest(failure=failure):
+                _, lua = panel_runtime()
+                lua.execute("Controls.OpenButton.callbacks[Mouse.eLClick]();ExposedMembers.SPC_ExpeditionGateUIVersion=SPCP0.VERSION")
+                if failure == 'THROW':
+                    lua.execute("LuaEvents.SPC_ExpeditionGateOpen=function()error('window open failure')end")
+                if failure == 'STALE_ACK':
+                    lua.execute("ExposedMembers.SPC_ExpeditionGateUIOpenVersion=SPCP0.VERSION")
+                lua.execute("Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]();assert(not Controls.Window.hidden and #requests==0);assert(Controls.Status.text:find('UI_OPEN_FAILED'))")
+
+    def test_real_p0_to_separate_hidden_n1_context(self):
+        _, lua = panel_runtime()
+        # Load the actual N1 script into a separate Lua environment. Both
+        # contexts share the real bridge shape, never an assumed-success opener.
+        lua.execute(r"""
+            gateControls={}
+            function makeGateControl(id,hidden)
+                local c={hidden=hidden}
+                function c:SetHide(v)self.hidden=v end
+                function c:IsHidden()return self.hidden end
+                function c:SetText(v)self.text=v end
+                function c:RegisterCallback(mouse,fn)self.click=fn end
+                function c:CalculateSize()end
+                function c:ReprocessAnchoring()end
+                gateControls[id]=c
+            end
+            gateContext={hidden=true,
+                SetHide=function(self,v)self.hidden=v end,
+                IsHidden=function(self)return self.hidden end,
+                SetInitHandler=function(_,fn)gateInit=fn end,
+                SetShutdown=function(_,fn)gateShutdown=fn end,
+                SetUpdate=function(_,fn)gateUpdate=fn end,
+                ClearUpdate=function()gateUpdate=nil end,
+                SetInputHandler=function(_,fn)gateInput=fn end}
+            LuaEvents.SPC_ExpeditionGateOpen=setmetatable({
+                Add=function(fn)gateOpen=fn end,
+                Remove=function(fn)assert(gateOpen==fn);gateOpen=nil end
+            },{__call=function()if gateOpen then gateOpen()end end})
+            gateEnv=setmetatable({Controls=gateControls,ContextPtr=gateContext,
+                SPCExpeditionGateRead={Targets=function()return {}end,Capacity=function()return 2 end},
+                KeyEvents={KeyUp=1},Keys={VK_ESCAPE=27}
+            },{__index=_G})
+        """)
+        for element in ET.parse(PANEL/'ExpeditionGateWindow.xml').getroot().iter():
+            if element.get('ID'):
+                lua.globals().makeGateControl(element.get('ID'), element.get('Hidden')=='1')
+        lua.eval("function(source)assert(load(source,'N1','t',gateEnv))()end")(
+            (PANEL/'ExpeditionGateWindow.lua').read_text())
+        lua.execute(r"""
+            gateInit();assert(gateContext.hidden and gateControls.Window.hidden)
+            Controls.OpenButton.callbacks[Mouse.eLClick]()
+            Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]()
+            assert(Controls.Window.hidden and not gateContext.hidden and not gateControls.Window.hidden)
+            assert(#requests==1 and requests[1].Action=='READ')
+            gateControls.CloseButton.click()
+            assert(gateContext.hidden and gateControls.Window.hidden)
+            assert(not ExposedMembers.SPC_ExpeditionGateUIOpenVersion)
+            gateShutdown();assert(not ExposedMembers.SPC_ExpeditionGateUIVersion)
+            Controls.OpenButton.callbacks[Mouse.eLClick]()
+            Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]()
+            assert(not Controls.Window.hidden and #requests==1)
+        """)
 
     def test_meaning_both_clicks_are_read_only_status(self):
         _, lua = panel_runtime()

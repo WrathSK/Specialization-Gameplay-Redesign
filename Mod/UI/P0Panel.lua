@@ -397,7 +397,15 @@ local function initialize()
     if ExposedMembers.SPC_ExpeditionGateUIVersion~=P.VERSION then
       status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE',P.VERSION));return
     end
-    closeWindow();LuaEvents.SPC_ExpeditionGateOpen()
+    -- UI-only synchronous acknowledgement; never hide P0 on a stale ready flag
+    -- or a failed/missing listener. No Gameplay request is retried here.
+    ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
+    local ok,err=pcall(function()LuaEvents.SPC_ExpeditionGateOpen()end)
+    if not ok or ExposedMembers.SPC_ExpeditionGateUIOpenVersion~=P.VERSION then
+      if not ok then print('[SPC][N1_UI_OPEN] '..tostring(err):sub(1,240))end
+      status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_UI_OPEN_FAILED'));return
+    end
+    closeWindow()
   end)
   Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()
     ContextPtr:ClearUpdate();pendingToken=nil

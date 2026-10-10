@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0476",
-    "runtime": "B179.206 / modinfo206",
+    "status": "S0477",
+    "runtime": "B180.207 / modinfo207 (source; live B179.206)",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -99,24 +99,24 @@
       "reason": "Direct gate implementation, inherited qualification dependency or validation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
       "kind": "full",
-      "reason": "B178 entry failure, repaired P0 entrance and remaining native gate"
+      "reason": "Native-hidden parent failure, corrected UI handoff and remaining same gate"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
       "kind": "full",
-      "reason": "B179 entry routing and exactly requested diagnostic visibility; preserve callbacks"
+      "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
     },
     {
       "path": "Mod/UI/P0Panel.xml",
       "kind": "full",
-      "reason": "B179 entry routing and exactly requested diagnostic visibility; preserve callbacks"
+      "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
     },
     {
       "path": "DevelopmentTests/test_p0_panel_current_layout.py",
       "kind": "full",
-      "reason": "B179 entry routing and exactly requested diagnostic visibility; preserve callbacks"
+      "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
     }
   ],
   "dependencies": [
@@ -153,8 +153,8 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 UI entry/visibility repair; N1 gameplay unchanged. Targeted gate regressions retained.",
-    "local": "38 gate + 8 current panel methods PASS; XML/Lua/text/registration and named integrity checks.",
+    "depth": "L1 UI root visibility and handoff correction; N1 Gameplay unchanged.",
+    "local": "41 gate + 10 panel methods PASS, including hidden-root counterexample and actual two-context handoff; named integrity checks.",
     "user": "One new non-Spy helper/protection gate session; no repeated save/load harness checks."
   },
   "full_audit_triggers": [
@@ -162,9 +162,9 @@
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
-    "source": "B179.206 / modinfo206; source 579593581a1cca0480baf4e570da558bb34d6852; deployed 202/202 MATCH",
-    "native": "USER_GAME_TEST_REQUIRED; READ_OK is not remote deployment PASS",
-    "stop": "Gate package ready. Resume authorized N1 only after route evidence; N2/N3/U2 remain held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
+    "source": "B180.207 / modinfo207 local; live B179.206 until verified deployment",
+    "native": "USER_GAME_TEST_REQUIRED; B179 click failure, no N1 helper/protection evidence",
+    "stop": "UI correction only; same N1 gate remains pending. N2/N3/U2 held."
   }
 }

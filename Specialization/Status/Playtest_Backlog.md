@@ -206,3 +206,7 @@ User authorized N1 first; U2/N2/N3 held. [One combined gate session](Validation/
 ## B179 — N1 missing-entry repair; same gate remains pending
 
 [B178 screenshot and B179 repair](Validation/Results/Specialization_B179_N1_Entry_Repair.md): no usable native entry, no helper/protection evidence yet. Use **专业化诊断 → 人文考察·验证**, then the same create/read/contact/END gate. Seven red-boxed diagnostics are hidden only. No extra ability or save/load tests; era UI/N2/N3 stay held.
+
+## B180 — N1 hidden-root repair; same gate pending
+
+[B179 click failure and B180 correction](Validation/Results/Specialization_B180_N1_Window_Visibility.md): P0 entry is present, but the N1 parent remained hidden. Corrected root visibility and acknowledged handoff; failures keep P0 open. After deployment, use **专业化诊断 → 人文考察·验证**, then the same create/read/contact/END gate. No extra save/load or other ability testing. N2/N3/U2 stay held.

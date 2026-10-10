@@ -165,7 +165,7 @@ class Package(unittest.TestCase):
         new=['ExpeditionGate.lua','ExpeditionGateRead.lua','Data/ExpeditionGate.sql','Text/ExpeditionGate.sql','UI/ExpeditionGateWindow.lua','UI/ExpeditionGateWindow.xml']
         for p in new:self.assertIn(p,files)
         for e in m.findall('./InGameActions/*/File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
-        self.assertEqual(m.attrib['version'],'206')
+        self.assertEqual(m.attrib['version'],'207')
         ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml')
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
         self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(len(names),6)
@@ -193,7 +193,7 @@ class Window(unittest.TestCase):
     def runtime(self, initialize=True):
         l=Reader().runtime()
         l.execute(r"""
-          P.VERSION='P0-B-179.206';SPCP0=P;units={};sent=0
+          P.VERSION='P0-B-180.207';SPCP0=P;units={};sent=0
           include=function()end;Mouse={eLClick=1};KeyEvents={KeyUp=1};Keys={VK_ESCAPE=27}
           Locale={Lookup=function(key,...)local a={...};for i,v in ipairs(a)do a[i]=tostring(v)end;return key..':'..table.concat(a,',')end}
           Controls={}
@@ -203,7 +203,7 @@ class Window(unittest.TestCase):
            function c:IsHidden()return self.hidden end;function c:RegisterCallback(mouse,fn)self.click=fn end
            function c:CalculateSize()end;function c:ReprocessAnchoring()end;Controls[id]=c
           end
-          ContextPtr={SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetInputHandler=function(self,fn)input=fn end,
+          ContextPtr={hidden=true,SetHide=function(self,value)self.hidden=value end,IsHidden=function(self)return self.hidden end,SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetInputHandler=function(self,fn)input=fn end,
             SetInitHandler=function(self,fn)init=fn end,SetShutdown=function(self,fn)shutdown=fn end}
           LuaEvents={SPC_ExpeditionGateOpen={Add=function(fn)gateOpen=fn;gateAdds=(gateAdds or 0)+1 end,Remove=function(fn)assert(gateOpen==fn);gateOpen=nil end}}
           UI={GetHeadSelectedCity=function()return city end,RequestPlayerOperation=function(pid,operation,packet)
@@ -222,6 +222,13 @@ class Window(unittest.TestCase):
         return l
     def test_closed_start_no_native_helpers_or_creation(self):
         l=self.runtime();l.execute("assert(Controls.Window.hidden and initCalls==0 and helperCalls==0 and sent==0);turnBegin();publish();assert(sent==0)")
+    def test_native_hidden_addin_root_must_be_visible_before_open_ack(self):
+        l=self.runtime();l.execute("assert(ContextPtr.hidden and not ExposedMembers.SPC_ExpeditionGateUIOpenVersion);gateOpen();assert(not ContextPtr.hidden and not Controls.Window.hidden);assert(ExposedMembers.SPC_ExpeditionGateUIOpenVersion==P.VERSION);Controls.CloseButton.click();assert(ContextPtr.hidden and Controls.Window.hidden and not ExposedMembers.SPC_ExpeditionGateUIOpenVersion)")
+    def test_hidden_root_rejects_open_ack_without_gameplay_read(self):
+        l=self.runtime();l.execute("ContextPtr.SetHide=function()end;gateOpen();assert(not ExposedMembers.SPC_ExpeditionGateUIOpenVersion and sent==0)")
+    def test_close_escape_and_player_exit_hide_entire_context(self):
+        l=self.runtime();l.execute("gateOpen();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE));assert(ContextPtr.hidden and Controls.Window.hidden and not ExposedMembers.SPC_ExpeditionGateUIOpenVersion);gateOpen();Game.GetLocalPlayer=function()return 3 end;turnBegin();assert(ContextPtr.hidden and Controls.Window.hidden and not ExposedMembers.SPC_ExpeditionGateUIOpenVersion)")
+
     def test_actual_window_create_read_arm_end_flow(self):
         l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();assert(initCalls==1);Controls.TravelButton.click();assert(helperCalls==2 and Controls.Report.text:find('TIMING'));Controls.ArmButton.click();units[40].x=8;Controls.RefreshButton.click();assert(Controls.Report.text:find('WATCH'));Controls.EndButton.click();assert(destroys==1 and not Controls.Report.text:find('TIMING'))")
     def test_pending_action_never_auto_reissued(self):

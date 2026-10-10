@@ -1,6 +1,6 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_AUTHORIZED_B179_GATE_PENDING / N2_N3_U2_ON_HOLD。
+State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_AUTHORIZED_B180_GATE_PENDING / N2_N3_U2_ON_HOLD。
 Authority: Culture D0049 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只维护相关准备范围；实际source/live与授权从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取。
 
 ## 当前切片与停止点
@@ -19,7 +19,7 @@ B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是�
 | 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役限定整合获用户人工PASS；证据见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
 | 巨作启迪L3 | [当前L3](P0_L3_Inspiration.md)：3%×当前时代E，本城全类别GPP | B173自动city百分比API获用户按所测范围接受；精确来源/叠加顺序非阻塞UNKNOWN；不使用D/W或Floor |
 | 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | B175项目/历史首段限定原生PASS；B176倍率/五项追加/END限定通过，不因同回合城市面板延迟追加测试；B177累计Tourism-only与cutover所测自动整合通过；无新增实机步骤，全原生产出分离未实施 |
-| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | N1已授权，B179修复B178入口后继续非Spy耗时／保护gate，原生仍待验证；正式训练／部署／归档后续，N2/N3仍暂停；既定数值不变 |
+| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | N1已授权，B179入口已显示但窗口失败；B180修复隐藏父Context后继续非Spy耗时／保护gate，原生仍待验证；正式训练／部署／归档后续，N2/N3仍暂停；既定数值不变 |
 | Hybrid D U2 | [U2](P0_U2_Culture_Era.md)：已批准紧凑摘要+Tooltip、K国内索引 | 真实UI hook、等count/X组成变化通知、缓存及布局；不包含机构排版重做 |
 
 这些计划可以在用户不方便测试时准备，但不会自动连续实施。B165失败只影响真实依赖它的Meaning/M收益隔离路径，不把U2或全部文化都判为阻塞；也不据计划已写好绕开逐批授权。
