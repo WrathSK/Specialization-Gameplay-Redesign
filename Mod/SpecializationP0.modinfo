@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="212">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="213">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B185.212: marker-verified travel/source continuity and an independent two-turn, no-reward task. Exact-type Spy UI isolation; one native Spy slot temporarily accepted. No formal Expedition rewards.</Description>
+    <Description>B186.213: exact-marker arrival lookup through the player unit collection, with bounded identity/source diagnostics. Independent no-reward task and Spy UI isolation retained; native marker survival pending.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

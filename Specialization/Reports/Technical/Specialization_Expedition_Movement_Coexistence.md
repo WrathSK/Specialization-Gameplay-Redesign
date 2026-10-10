@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B185 native travel reached the target, but identity binding NOT_PASSED; task NOT_REACHED.** [Four-image review and actual-module counterexamples](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md) separate successful button redirection from the unresolved arrival marker. Earlier records below retain their chronological scope; current source/live remain in Status.
+Date: 2026-10-10. **B186 arrival lookup/diagnostic patch locally complete, native gate pending.** [Current result](../../Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md): player collection with exact surviving marker/readback and valid endpoints replaces plot-dependent arrival; unbound source and failure distinctions remain visible. Native marker survival is unresolved. B185 evidence and prior records below retain their chronological scope; current source/live and authorization are in Status.
 
 ## B185 returned-unit lookup boundary
 
@@ -8,7 +8,7 @@ Native ID changes again, `3276829 → 3342365`. The separate native off-map Spy 
 
 B185 uses old-ID lookup / target plot occupants for continuity, while its report uses the player unit collection for the visible unit. Three actual-module counterexamples show preserved-marker/plot-omitted and lost-marker/plot-present produce the same unbound display; preserved-marker/plot-present succeeds. Marker loss and native Spy occupancy membership remain UNKNOWN. Source data is retained, but the unbound UI hides its line. This is a confirmed lookup/reporting gap, not yet the confirmed native root cause.
 
-The [proposed bounded repair](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md#proposed-next-bounded-repair--not-implemented-or-newly-authorized) reuses the current player collection, requires the exact surviving marker and valid endpoints, and reports direct candidate evidence. No name/position/ID arithmetic or sole-unit adoption. No patch or unchanged-package retest is authorized by this review. User-confirmed button redirection is retained; independent task/END remain untested. Reusing the original button icon is a recorded later UI preference.
+The [proposed bounded repair](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md#proposed-next-bounded-repair--not-implemented-or-newly-authorized) reuses the current player collection, requires the exact surviving marker and valid endpoints, and reports direct candidate evidence. No name/position/ID arithmetic or sole-unit adoption. That review did not authorize a patch or unchanged-package retest; the user subsequently approved only the bounded repair, now B186 above. User-confirmed button redirection is retained; independent task/END remain untested. Reusing the original button icon is a recorded later UI preference.
 
 ## B184 travel result and continuity prerequisite
 

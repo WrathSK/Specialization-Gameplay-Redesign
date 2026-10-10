@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "2c34d2016154d31c2423b3477fe0666d3c3ca4b5a1dc8c4ffaccacaeb32ee3f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "d7b6c394d14a2b1d41ed48352724bc6b43cefccc4c77f4b235e7bfda821487a0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b331a5c70fbe4ca67a628a58991b1662bb7ce92f7b93a55c07af8948f29d0762",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "cb8e4d1b710967691e75cf1d7d84fff60824b4ce105de62a93230b9aa172ac7a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "ff9c5aa09e4eb8d6e0c84edc0432384d970b89622ee86b11f5e74ea5863924d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "5be2b338dc7610d9d458162a8abd90dd92fcee0dea7590814607f6514760618d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,14 +1021,14 @@
       "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "69638fcfdddb2f89363188dd01f5333bf96f32c8fcd30d09e9fac4ee80fc1657",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "67b608038d4f3ac52062f09f9ae0595cab5d98e68f510f01e8208aa94f98fc60",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "57526a32393235bafdf4fd6546044685d9e44cf8cf72d54d84c24f435b01815b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "8a2c7ea3e8a9d4228926776b64639922c0288ec7a892e3b98de137a8f8bf7062",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",

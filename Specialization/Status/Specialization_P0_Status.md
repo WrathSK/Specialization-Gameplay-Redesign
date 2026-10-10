@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0492
-Implementation Build: source/live B185.212 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0493
+Implementation Build: source B186.213; live B185.212 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B185_NATIVE_IDENTITY_NOT_PASSED_TASK_NOT_REACHED
+Work State: B186_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B185.212 native identity gate NOT_PASSED; independent task NOT_REACHED.** [Four-image review and bounded investigation](Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md): creation/off-map marker verified, destination unit has changed ID and stays unbound. User confirms original-button redirection. Local counterexamples expose plot-versus-player lookup ambiguity; native marker loss and engine delete/recreate remain unproved. Source record retention is distinct from accepted returned-unit binding.
+**B186.213 bounded arrival lookup/diagnostic patch locally complete; native gate pending.** [81 targeted checks and one session](Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md): player collection plus exact surviving marker/readback/source/target replaces plot-dependent arrival. Unbound reports retain source and distinguish marker/lookup failures. B185 button routing evidence remains scoped; native marker survival and the independent task/END are not yet passed.
 
-Canonical source/live remains **B185.212 / modinfo212**, deployed source `4d8ace2`, receipt `B185.212-4d8ace2-playtest.json`, last verified211/211 MATCH. This review does not re-verify or modify runtime. Main/stable and recoveries unchanged. The accepted temporary one-Spy-slot cost, own cap1/source and no-native-reward boundary remain.
+Source **B186.213 / modinfo213**; live remains **B185.212**, deployed source `4d8ace2`, receipt `B185.212-4d8ace2-playtest.json`, last verified211/211 MATCH. Existing W0003 game-exit/clean-source/hash/receipt gates govern deployment; no runtime claim from HEAD. Main/stable and recoveries unchanged.
 
-Next proposal: exact returned-candidate marker lookup and diagnostic distinction, with unchanged UNKNOWN/ambiguity protection; **implementation awaits authorization**. No unchanged-package retest. Then resume one session arrival → no-reward task → END. Formal N1/N2/N3/U2/rewards remain held. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), manifest `P0-N1.json`. Original-icon reuse recorded for later UI work.
+User approved this patch. Next: guarded deployment, then one session arrival → no-reward task → END; if binding remains unknown, report exact evidence and stop. Own cap1/source and temporary native-slot cost remain. Formal N1/N2/N3/U2/rewards remain held. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate); `P0-N1.json`. No additional implementation follows automatically.
 
 ## S0478 — B180 deployment checkpoint (historical)
 

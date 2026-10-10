@@ -1,4 +1,4 @@
--- B185: native Spy travel, marker-proved continuity, independent no-reward timer.
+-- B186: player-collection arrival lookup, exact marker/readback and bounded diagnostics.
 -- Only this unit gets a probe marker. No city/player ledger, native mission or reward.
 -- Marker survival across engine travel is a native gate; missing/ambiguous proof stops.
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO',MARKER='SPC_N1_SPY_PROBE_ID'}
@@ -68,46 +68,63 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return tostring(err):gsub('[%c]',' '):gsub('%[','('):gsub('%]',')'):sub(1,220)
  end
  local function logFailure(code,at,raw)
-  print('[SPC][B185][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
+  print('[SPC][B186][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
  end
  local function hold(err)
   state.phase='HELD';state.stop=reason(err);state.errorStep=step;state.errorDetail=detail(err)
   logFailure(state.stop,state.errorStep,state.errorDetail)
  end
- local function marked(u)
-  local r=row(u)
-  return u and u:GetOwner()==state.owner and r and r.UnitType==M.KIND
-   and type(u.GetProperty)=='function' and u:GetProperty(M.MARKER)==state.marker and state.marker~=nil
+ -- No raw marker is published. Missing readback is not proof of native loss.
+ local function markerStatus(u)
+  if not u then return 'NO_UNIT' end
+  if not state.marker then return 'NO_SESSION' end
+  local ok,value=pcall(function()
+   local r=row(u)
+   if u:GetOwner()~=state.owner or not r or r.UnitType~=M.KIND then return 'WRONG_UNIT' end
+   if type(u.GetProperty)~='function' then return 'UNREADABLE' end
+   local value=u:GetProperty(M.MARKER)
+   if value==nil then return 'ABSENT' end
+   return value==state.marker and 'MATCH' or 'MISMATCH'
+  end)
+  return ok and value or 'UNREADABLE'
+ end
+ local function marked(u)return markerStatus(u)=='MATCH' end
+ local function lookupStatus(id)
+  if not id then return nil,'NO_UNIT' end
+  local ok,u=pcall(function()return Players[state.owner]:GetUnits():FindID(id)end)
+  if not ok then return nil,'UNREADABLE' end
+  if not u then return nil,'NO_UNIT' end
+  local read,actual=pcall(function()return u:GetID()end)
+  if not read then return nil,'UNREADABLE' end
+  return actual,markerStatus(u)
  end
  local function tracked()
   local u=owned(state.owner,state.unitID)
   assert(marked(u),'TEAM_MARKER_UNAVAILABLE');return u
  end
- local function observe(allowTaskCompletion)
+ local function observe(allowTaskCompletion,knownUnits)
   if not state.unitID or state.phase=='ENDED' or state.phase=='HELD' then return end
   source()
   if state.phase=='TRAVELLING' then
    target(state.owner,state.target)
-   -- Native FindID may return an object with a changed public ID. A matching ID,
-   -- name or location is not continuity proof. Never copy a marker onto arrivals.
-   local u=Players[state.owner]:GetUnits():FindID(state.unitID)
-   if not (marked(u) and u:GetX()==state.target.x and u:GetY()==state.target.y) then
-    u=nil
-    for _,a in ipairs(occupants(state.target.x,state.target.y))do
-     if a.owner==state.owner then
-      local candidate=Players[state.owner]:GetUnits():FindID(a.id)
-      if marked(candidate) then assert(not u,'TEAM_MARKER_AMBIGUOUS');u=candidate end
-     end
-    end
+   -- Spies need not appear in physical plot occupancy. Inspect the exact
+   -- prototype collection; only a surviving marker proves continuity.
+   -- Snapshot passes its one collection read; pending-turn checks read once.
+   local all=knownUnits or list(state.owner);local candidate
+   for _,u in ipairs(all)do
+    if marked(u) then assert(not candidate,'TEAM_MARKER_AMBIGUOUS');candidate=u end
    end
-   if u then
-    -- One scan on the actual arrival transition, not a new per-turn player scan.
-    local all=list(state.owner)
-    assert(#all==1 and all[1]:GetID()==u:GetID() and marked(all[1]),'TEAM_MARKER_AMBIGUOUS')
-    assert(u:GetX()==state.target.x and u:GetY()==state.target.y,'TARGET_CHANGED')
-    local id=u:GetID();owned(state.owner,id)
-    state.unitID=id;state.x=u:GetX();state.y=u:GetY();state.phase='ARRIVED'
-    return
+   if candidate then
+    assert(#all==1,'TEAM_MARKER_AMBIGUOUS')
+    if candidate:GetX()==state.target.x and candidate:GetY()==state.target.y then
+     local id=candidate:GetID()
+     -- Validate the actual exact-lookup object as well as the collection item.
+     local current=owned(state.owner,id)
+     assert(marked(current),'TEAM_MARKER_UNAVAILABLE')
+     assert(current:GetX()==state.target.x and current:GetY()==state.target.y,'TARGET_CHANGED')
+     state.unitID=id;state.x=current:GetX();state.y=current:GetY();state.phase='ARRIVED'
+     return
+    end
    end
    assert(Game.GetCurrentGameTurn()<=state.dueTurn+1,'NATIVE_IDENTITY_UNCONFIRMED')
    return
@@ -123,13 +140,14 @@ function SPCExpeditionSpyGate.Start(P,shared)
    if allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
     state.taskCompletions=1 -- One fixture task per team; completion has no effects.
-    print('[SPC][B185][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
+    print('[SPC][B186][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
    end
   end
  end
  local function snapshot(pid)
-  if state.owner==pid then local ok,err=pcall(observe);if not ok then hold(err)end end
-  local units=list(pid);local v={owner=pid,count=#units,turn=Game.GetCurrentGameTurn(),phase=state.phase or 'IDLE'}
+  local units=list(pid)
+  if state.owner==pid then local ok,err=pcall(observe,false,units);if not ok then hold(err)end end
+  local v={owner=pid,count=#units,turn=Game.GetCurrentGameTurn(),phase=state.phase or 'IDLE'}
   if #units==1 then
    local u=units[1];v.unitID=u:GetID();v.x=u:GetX();v.y=u:GetY();v.legacy=row(u).UnitType~=M.KIND
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
@@ -143,10 +161,13 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.targetName=state.target and state.target.name
    if state.target then v.targetOwner=state.target.owner;v.targetID=state.target.id;v.targetX=state.target.x;v.targetY=state.target.y end
    if state.unitID then
-    local u=Players[pid]:GetUnits():FindID(state.unitID);local r=row(u)
-    v.sameUnit=u~=nil and u:GetID()==state.unitID and marked(u) or false
+    local ok,id,x,y=pcall(function()
+     local u=owned(pid,state.unitID)
+     if marked(u) then return u:GetID(),u:GetX(),u:GetY()end
+    end)
+    v.sameUnit=ok and id==state.unitID or false
     v.bound=v.sameUnit and state.phase~='HELD';v.unbound=not v.bound
-    if v.sameUnit then v.unitID=u:GetID();v.x=u:GetX();v.y=u:GetY()end
+    if v.sameUnit then v.unitID=id;v.x=x;v.y=y end
    end
    v.expectedX=state.x;v.expectedY=state.y
   end
@@ -154,11 +175,32 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if state.owner==pid and state.unitID and state.phase~='ENDED' and not v.sameUnit then
    v.count=math.max(1,v.count);v.reservedCapacity=true
   end
+  -- Explicit snapshots only: bounded diagnostic scalars, no history or native writes.
+  if state.owner==pid and state.unitID then
+   local d={turn=v.turn,memberCount=#units,plotStatus='NO_UNIT'};v.identity=d
+   d.createdLookupID,d.createdMarker=lookupStatus(state.createdID)
+   d.trackedLookupID,d.trackedMarker=lookupStatus(state.unitID)
+   d.sourceStatus=pcall(source) and 'MATCH' or 'UNREADABLE'
+   if #units==1 then
+    local u=units[1];d.candidateID=u:GetID();d.candidateMarker=markerStatus(u)
+    d.candidateLookupID,d.lookupMarker=lookupStatus(d.candidateID)
+   else
+    d.candidateMarker=#units==0 and 'NO_UNIT' or 'AMBIGUOUS';d.lookupMarker=d.candidateMarker
+   end
+  end
   if v.unitID and not v.legacy and v.x>=0 and v.y>=0 then
    local ok,o=pcall(occupants,v.x,v.y)
    if ok then
-    v.coLocated=0;for _,a in ipairs(o)do if a.owner~=pid or a.id~=v.unitID then v.coLocated=v.coLocated+1 end end
-   else v.occupancyUnknown=true end
+    v.coLocated=0;local found=false
+    for _,a in ipairs(o)do
+     if a.owner==pid and a.id==v.unitID then found=true else v.coLocated=v.coLocated+1 end
+    end
+    if v.identity then v.identity.plotStatus=found and 'PRESENT' or 'ABSENT' end
+   else
+    v.occupancyUnknown=true;if v.identity then v.identity.plotStatus='UNREADABLE' end
+   end
+  elseif v.identity and v.unitID and v.x and v.y and (v.x<0 or v.y<0)then
+   v.identity.plotStatus='OFF_MAP'
   end
   return v
  end
@@ -251,7 +293,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   mutating=false
   v.token=p.Token;lastToken=p.Token;lastReply=v
   ExposedMembers.SPC_ExpeditionGateReply=v
-  print('[SPC][B185][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
+  print('[SPC][B186][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)
@@ -263,7 +305,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   shared.RequestDepth=shared.RequestDepth-1;busy=false
   mutating=false;if not ok then hold(err)end
  end
- Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; travelling adds one bounded destination-occupant read.
+ Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
   if not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then
    step='REFERENCE';local ok,err=pcall(function()observe();if state.phase=='TRAVELLING' then target(state.owner,state.target)end end);if not ok then hold(err)end

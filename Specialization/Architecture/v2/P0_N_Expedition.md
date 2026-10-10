@@ -1,19 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B185_NATIVE_IDENTITY_NOT_PASSED_TASK_NOT_REACHED / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B186_LOCAL_COMPLETE_AWAITING_NATIVE / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B185.212 native identity gate did not pass; independent task was not reached.** [Four screenshots and bounded investigation](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md) show verified creation/off-map marker, then a changed ID at the destination with unbound report. The user confirms original-button redirection works in the observed path. Existing67 local methods are not native continuity proof.
+**B186.213 authorized patch is locally complete; native identity/task gate pending.** [Current result and one-session test](../../Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md) records81 targeted checks. The [B185 native evidence](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md) remains unchanged: original-button routing observed, changed destination ID unbound, independent task not reached.
 
-The user accepts one native Spy slot as a temporary prototype cost. Own cap/source remain recorded; an unbound report hides the source line rather than demonstrating erased data. No task/END acceptance is inferred from arrival.
+Pending arrival now reads the player's prototype collection, requires the original surviving marker, exact candidate-ID readback and valid source/target, and rejects extra prototypes/ambiguous evidence. Physical plot occupancy is diagnostic-only. Source/capacity remain reserved while uncertain; no names, coordinates, arithmetic IDs, lone-unit adoption or marker copying. Reports distinguish absent/mismatched/unreadable marker and lookup failures, with retained source clearly separated from verified binding.
 
-Arrival lookup uses old ID/plot occupants while reporting uses player Units. Actual-module counterexamples prove preserved-marker/plot-omitted and lost-marker cases are indistinguishable in the current report. Native off-map records preserve Name/Level, but literal engine delete/recreate and arbitrary marker survival remain unproved. The linked next proposal reads the returned candidate directly, retains exact-marker/endpoints checks and exposes the missing diagnostic distinction. **Implementation awaits authorization**; no guessed identity or copied marker.
+One native Spy slot remains an accepted temporary cost. Own cap1/source and the independent no-reward2T session timer are unchanged. A READ reuses one unit-collection scan; ordinary task turns after arrival do not scan the player collection. Diagnostic scalars are request-owned and not persisted.
 
-No new user test of unchanged B185. Source/live receipt remains in Status. Formal training/saved journey/reattachment, rewards, N2/N3/U2, Store/schema/GC and Design are outside this evidence review. After an authorized delta, resume the one-session arrival → no-reward task → END gate without default cold-load retest.
+Follow Status for source/live receipt and the linked minimal arrival → no-reward task → END session after guarded deployment. Stop if identity remains unproved. No cold-load ritual or another test of unchanged B185. Formal training/saved journey/reattachment, N2/N3/U2/rewards, Store/schema/GC and Design remain outside this patch. Future original-button icon reuse is recorded, not implemented.
 
 ## 三种状态与已定数值
 

@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0492",
-    "runtime": "B185.212 / modinfo212",
+    "status": "S0493",
+    "runtime": "B186.213 / modinfo213",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "B185.212 local checkpoint: exact marker/source continuity, one independent no-reward2T task and exact-type native UI isolation. Native marker survival/idle behavior pending; one native Spy slot temporarily accepted.",
+  "goal": "B186.213 approved bounded arrival lookup/diagnostic repair; exact marker/source/readback and unknown reservations retained. Resume independent no-reward task only after native binding proof.",
   "implementation_authorized": true,
   "context": [
     {
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
       "kind": "full",
-      "reason": "Current local delta, exact native gate and honest source/runtime distinction"
+      "reason": "Current authorized delta, local evidence and one native session"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -157,6 +157,11 @@
       "path": "DevelopmentTests/test_expedition_spy_task.py",
       "kind": "full",
       "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_binding.py",
+      "kind": "full",
+      "reason": "Exact returned-candidate and diagnostic fault/ambiguity cases for the changed lookup"
     }
   ],
   "dependencies": [
@@ -197,6 +202,13 @@
         "Specialization/Architecture/Playtest_Workflow.md",
         "tools/README.md"
       ]
+    },
+    {
+      "trigger": "Need the direct native counterexample or unchanged independent timer/UI evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md"
+      ]
     }
   ],
   "non_scope": [
@@ -204,7 +216,7 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "67 methods PASS:31 current gate/package +26 identity/timer/UI +10 panel. Syntax/package/localization, links/selectors/context and diff reviewed.",
+    "local": "81 methods PASS:14 new binding +31 gate/package +26 identity/timer/UI +10 panel. Syntax/package/localization; links/selectors/context and diff review. Native survival not implied.",
     "user": "B185 four screenshots: creation/off-map marker and target arrival observed; changed ID unbound. Original-button redirection user-confirmed; independent task/END not reached/submitted. Native marker survival unknown."
   },
   "full_audit_triggers": [
@@ -212,9 +224,9 @@
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md",
-    "source": "B185.212/modinfo212 DEVELOP_ACTIVE; source4d8ace285643de7dccb7276383ab425cfeaf2d71; receipt B185.212-4d8ace2-playtest.json;211/211 MATCH. Game exit verified; exact B184 and stable recoveries retained; no pending transaction. Native validation pending.",
-    "native": "PARTIAL: observed UI routing PASS; arrival identity NOT_PASSED; task NOT_REACHED. Missing marker versus enumeration mismatch remains unresolved.",
-    "stop": "Await authorization for the bounded returned-candidate lookup/diagnostic proposal. No unchanged-package test, formal N1/N2/N3/U2/rewards."
+    "report": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+    "source": "Source B186.213/modinfo213 locally complete; live B185.212/source4d8ace2 until guarded deployment.",
+    "native": "B185 scoped UI routing PASS; arrival identity NOT_PASSED and task NOT_REACHED. B186 native validation pending; marker survival unresolved.",
+    "stop": "Wait for the one-session native identity/task/END result after deployment; stop on unproved identity, no new mechanism or formal N1/N2/N3/U2."
   }
 }

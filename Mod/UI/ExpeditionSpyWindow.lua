@@ -25,9 +25,22 @@ local function render()
  o[#o+1]=common('COUNT',v.count or 'UNKNOWN')
  if v.reservedCapacity then o[#o+1]=L('RESERVED',v.observedCount or 'UNKNOWN')end
  if v.unitID then o[#o+1]=common('UNIT',v.unitID,v.x,v.y)end
- if v.legacy or v.unbound then o[#o+1]=L('UNBOUND')
- elseif v.sourceName then o[#o+1]=common(v.phase=='HELD' and 'SOURCE_RECORDED' or 'SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)end
+ if v.legacy or v.unbound then o[#o+1]=L('UNBOUND')end
+ if v.sourceName then
+  o[#o+1]=v.bound and common('SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+   or L('RETAINED_SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+ end
  if v.bound then o[#o+1]=L('BOUND',v.createdID,v.unitID)end
+ if v.identity then
+  local d=v.identity
+  local function status(s)return L('IDENTITY_'..(s or 'UNREADABLE'))end
+  o[#o+1]=L('IDENTITY_SUMMARY',status(d.candidateMarker),status(d.lookupMarker),status(d.plotStatus),status(d.sourceStatus))
+  if not v.bound then
+   o[#o+1]=L('IDENTITY_IDS',value(v.createdID),value(v.trackedID),value(d.candidateID),d.memberCount)
+   o[#o+1]=L('IDENTITY_LOOKUPS',value(d.createdLookupID),status(d.createdMarker),value(d.trackedLookupID),status(d.trackedMarker),value(d.candidateLookupID),status(d.lookupMarker))
+   o[#o+1]=L('IDENTITY_TURN',d.turn,value(v.dueTurn))
+  end
+ end
  if v.taskStart then
   o[#o+1]=L('TASK_PROGRESS',v.taskStart,v.taskDue,v.taskCompletions or 0)
   o[#o+1]=L('TASK_ISOLATION',value(taskBefore and taskBefore.sourceTurns),value(taskAfter and taskAfter.sourceTurns),value(taskAfter and taskAfter.operation),missionEvents-(taskEventsBefore or missionEvents))
@@ -72,7 +85,7 @@ local function reply()
   local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY}
   local ok,err=R.SubmitTravel(v.owner,v.unitID,target,v.nativePermit)
   if not ok then request('STOP',err);return true end
-  print('[SPC][B185][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
+  print('[SPC][B186][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
   request('READ');return true
  elseif action=='TASK' and not v.error then taskAfter=taskRead()
  elseif action=='END' and not v.error then
@@ -87,7 +100,7 @@ local function readChecks()
  travel=R.Read(Game.GetLocalPlayer(),current.unitID,t)
  gain=R.GainSources(Game.GetLocalPlayer(),current.unitID,t)
  updateAudit();render()
- print('[SPC][B185][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
+ print('[SPC][B186][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
  return travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
 end
 request=function(action,detail)
@@ -152,7 +165,7 @@ local function missionEvent(pid,id)
  local ok,m=pcall(function()return Players[pid]:GetDiplomacy():GetMission(pid,id)end)
  lastMission=ok and type(m)=='table' and tostring(m.Operation):sub(1,40) or 'UNKNOWN'
  -- Player-level event only: never infer ownership from a matching unit name.
- print('[SPC][B185][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
+ print('[SPC][B186][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
 end
 local function published()
  local waiting=afterPublish

@@ -240,3 +240,7 @@ No additional user test now. [Next proposed batch](../Reports/Technical/Speciali
 **Paused after native binding failure.** [Four-image review](Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md): creation/off-map marker and target arrival observed; changed ID remains unbound. Original-button redirection user-confirmed; task/END not reached/submitted. Capacity reservation/source retention are separate from accepted returned-unit identity. The lookup/reporting gap has local counterexamples; marker loss itself remains unproved.
 
 No repeated test of unchanged B185 or cold-load ritual. Await authorization for the linked narrow returned-candidate lookup/diagnostic repair, then resume arrival → no-reward task → END in one session. B185.212 remains deployed; no formal N1/N2/N3/U2/rewards or full UI implementation is queued.
+
+## B186 — bounded arrival repair; resume one session after deployment
+
+Supersedes B185's awaiting-authorization instruction: user approved the narrow repair, now locally complete. [One session](Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md#one-minimal-native-session): create/dispatch → arrival marker/readback/source → independent no-reward2T task → exact END. On unbound/held arrival, capture the new identity summary/details and stop. No repeated unchanged-package test, save/load ritual, new ordinary Spy fixture or formal N1/N2/N3/U2. Runtime eligibility comes from current Status/receipt, not this queue.
