@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0484
-Implementation Build: source B183.210 local; live B182.209 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0485
+Implementation Build: source/live B183.210 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B183_N1_CONTEXT_FIX_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B183_N1_CONTEXT_FIX_DEPLOYED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B183.210 / modinfo210: authorized N1 API-context/error-report repair locally complete.** [Result and minimal native session](Validation/Results/Specialization_B183_Expedition_Context_Fix.md): Gameplay validates the capital through GetCapitalCity; failures show stage/detail with reliable unit/source/count or explicit UNKNOWN. Spy0, cap1, exact city binding, timer and placement route unchanged.
+**B183.210 / modinfo210: authorized N1 API-context/error-report repair deployed; native gate pending.** [Result and minimal native session](Validation/Results/Specialization_B183_Expedition_Context_Fix.md): Gameplay validates the capital through GetCapitalCity; failures show stage/detail with reliable unit/source/count or explicit UNKNOWN. Spy0, cap1, exact city binding, timer and placement route unchanged.
 
 **71 N1 +10 panel tests PASS** locally, including a context-faithful old/new source counterexample and error/hold/no-retry/readback cases. [B182 observations](Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) retain their scope; actual arrival and harmless coexistence remain USER_GAME_TEST_REQUIRED. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
 
-Source **B183.210**; recorded live **B182.209 DEVELOP_ACTIVE**, source `03a1072`, receipt `B182.209-03a1072-playtest.json`, last verified **202/202 MATCH**. Deployment is not inferred from source. Main unchanged. Manifest: `P0-N1.json`.
+Source/live **B183.210 / modinfo210 DEVELOP_ACTIVE**, source `219c4e7`, receipt `B183.210-219c4e7-playtest.json`, **202/202 MATCH**. OS game exit verified; exact B182/stable recovery retained; no pending transaction. Main unchanged. Manifest: `P0-N1.json`.
 
-Next: W0003 guarded deployment when game exit is verified, then one arrival/actual military-civilian coexistence/END session; stop on failure. No repeat save/load ritual, Design change, Spy1 fallback, formal N1 training/persistence/reattachment, N2/N3, rewards or era UI. Formal named Culture/Shared synchronization still precedes formal integration.
+Next: one arrival/actual military-civilian coexistence/END session; stop on failure. No repeat save/load ritual, Design change, Spy1 fallback, formal N1 training/persistence/reattachment, N2/N3, rewards or era UI. Formal named Culture/Shared synchronization still precedes formal integration.
 
 ## S0478 — B180 deployment checkpoint (historical)
 

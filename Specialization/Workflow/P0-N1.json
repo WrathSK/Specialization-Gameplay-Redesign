@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0484",
+    "status": "S0485",
     "runtime": "B183.210 / modinfo210",
     "military": "D0037",
     "harbor": "D0037",
@@ -179,7 +179,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
-    "source": "B183.210 / modinfo210 locally complete; recorded live B182.209 until verified W0003 deployment.",
+    "source": "B183.210 / modinfo210; source 219c4e7030f3427ec484c4716da3dc90deca9515; deployed 202/202 MATCH; Spy0 context/report repair only.",
     "native": "USER_GAME_TEST_REQUIRED for arrival/coexistence; original B182 scoped observations retained.",
     "stop": "Await minimal gate evidence; no automatic Spy1/fallback, formal N1/N2/N3/U2 or Design change."
   }

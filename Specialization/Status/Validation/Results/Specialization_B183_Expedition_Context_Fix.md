@@ -45,4 +45,4 @@ New localization uses the existing `LOC_SPC_EXPEDITION_GATE_` namespace: `FAILUR
 
 ## Source and deployment
 
-Source **B183.210 / modinfo210** locally complete. Recorded live package remains **B182.209**, source03a1072/receipt `B182.209-03a1072-playtest.json`, until a separately verified W0003 transaction is recorded below. Main and frozen B182 evidence are unchanged. No new native acceptance is recorded by this implementation.
+Source `219c4e7030f3427ec484c4716da3dc90deca9515` / **B183.210 / modinfo210** deployed through the existing W0003 transaction after clean/pushed-source and OS game-exit checks. Receipt `B183.210-219c4e7-playtest.json`: **DEVELOP_ACTIVE; 202/202 MATCH**. Exact B182 and stable recovery packages retained; no pending transaction. Main unchanged; game not launched and no new native PASS. Spy0, capacity, source binding and placement route unchanged; no formal N1/N2/N3 continuation.
