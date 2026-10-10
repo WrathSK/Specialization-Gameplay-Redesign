@@ -7,7 +7,7 @@ Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 ## Current slice — N1 travel and protection gate
 
-**B185.212 is locally complete; native pending.** The user authorized identity/source continuity after native travel and an independently timed no-reward task, with exact-type native UI isolation. [Current result and one native session](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md) record67 targeted methods PASS. Source/live deployment state is only in Status; the game is running and B184 remains installed.
+**B185.212 is locally complete; native pending.** The user authorized identity/source continuity after native travel and an independently timed no-reward task, with exact-type native UI isolation. [Current result and one native session](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md) record67 targeted methods PASS. Source/live deployment state and receipt are in Status; the native gate remains pending.
 
 The four new B184 images confirm native **间谍(1/5)** and a second arrival-ID change/unbound report. **One native Spy slot is an explicitly accepted temporary prototype cost**; own cap1/source binding remains. This does not redefine the formal capacity contract below.
 

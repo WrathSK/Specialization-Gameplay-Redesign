@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0490
-Implementation Build: source B185.212; last-verified live B184.211 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0491
+Implementation Build: source/live B185.212 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B185_LOCAL_COMPLETE_DEPLOY_DEFERRED_GAME_RUNNING
+Work State: B185_DEPLOYED_AWAITING_USER_GAME_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,9 @@ Work State: B185_LOCAL_COMPLETE_DEPLOY_DEFERRED_GAME_RUNNING
 
 The user accepts **one native Spy slot as a temporary prototype cost**, shown in the new native overview screenshot. Our cap1/source remain separate. No native Gain Sources/Spy completion/reward is requested; formal N1 training/saved travel/reattachment, N2/N3/U2, Design, Store and GC remain outside this batch. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), manifest `P0-N1.json`.
 
-Canonical source is **B185.212 / modinfo212**; external runtime remains last-verified **B184.211**, source `3e9092c`, receipt `B184.211-3e9092c-playtest.json`, prior207/207 MATCH. A running Civ6 process prevents deployment; no runtime change/verification is claimed in S0490. Main/stable and recoveries are unchanged.
+Canonical source/live: **B185.212/modinfo212 DEVELOP_ACTIVE; source4d8ace285643de7dccb7276383ab425cfeaf2d71; receipt B185.212-4d8ace2-playtest.json;211/211 MATCH. Game exit verified; exact B184 and stable recoveries retained; no pending transaction. Native validation pending.** Main/stable unchanged.
 
-Next authorized operational step: after verified game exit, deploy this committed source through W0003, then one combined arrival-binding → independent task → END session. Hold on missing/ambiguous marker or unintended native mission/reward. No automatic formal N1/N2/N3 implementation or repeat old gate.
+Next: one combined arrival-binding → independent task → END session. Hold on missing/ambiguous marker or unintended native mission/reward. No automatic formal N1/N2/N3 implementation or repeat old gate.
 
 ## S0478 — B180 deployment checkpoint (historical)
 
