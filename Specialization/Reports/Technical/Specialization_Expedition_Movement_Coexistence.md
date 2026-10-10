@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B183 evidence review: exact Spy0 arrival failed; Spy1 isolation remains a proposal.** [Five-image native result](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md) supersedes the pending B183 gate. No code or Design change. Earlier findings below retain their chronological scope.
+Date: 2026-10-10. **B184 Spy1 isolation prototype authorized and locally complete; native travel/coexistence pending.** [Implementation and bounded test](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md). Gain Sources execution stays blocked: no verified per-prototype isolation of native source state or HD completion rewards. Ordinary Spy definitions/hooks and accepted Design unchanged. Earlier evidence/recommendations below retain their chronological scope; “next approval” in the B183 record is historical, not current dispatch.
 
 
 ## B183 native failure and Spy1 isolation reassessment

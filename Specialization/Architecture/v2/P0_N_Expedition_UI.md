@@ -1,7 +1,7 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B183_EXACT_ARRIVAL_FAILED / NEXT_ROUTE_AWAITING_APPROVAL. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-Current entry: **专业化诊断 → 人文考察·验证**. Temporary Spy0 fixture; B183 adds readable failure stage and bounded detail while retaining reliable count/source readback. Held sources are labeled recorded, missing readback UNKNOWN. Layout/cap/binding and the [movement/coexistence route](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) are unchanged; this is not the formal management system. B183 native arrival failed; no new session is requested. Possible Spy1 UI reuse is under technical review only, not a replacement of this proposal.
+State: N1_PARTIAL / B184_SPY1_LOCAL_COMPLETE / GAIN_SOURCES_BLOCKED. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+Current entry: **专业化诊断 → 人文考察·验证**. B184 retains the proven separate-window layout, with **① 创建Spy验证团 / ② 读取派遣与情报隔离 / ③ 原生派遣 / 刷新报告 / 结束并移除验证团**. Native travel uses a UI request after the Gameplay permit. Readable ordinary-Spy checks, reserved capacity, unknown identity and blocked Gain Sources are explicit. [One-session flow](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md#one-minimal-native-session); this is not the formal management system and creates no mission rewards.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

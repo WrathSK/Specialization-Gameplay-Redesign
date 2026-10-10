@@ -6,9 +6,9 @@
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
     "Mod/ArtDefs/Units.artdef": {
-      "sha256": "255841e6565e8d988fac6a7714fab2e4dcb50e89c74445f2c8281957405302fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
-      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
+      "sha256": "8f3b2c1c81874a19906dd6e407d7b068f2d8a8a0e417fa2c6131f071e51357b7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/BindingProbe.lua": {
       "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "bbf5d7c12650ba9dca5bb614949f6cb828d0a52adaba9cb2f3acc588d647f2b4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
-      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
+      "sha256": "3fd5457c4e4e4d32badef590343400c1b9b64673b564b52e2e9aad569c3c46be",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "f401fd35654dea6abd5dcc0f0027f35a91408a714b56bf1b2f0098c8d1a894d2",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "0be48eca511e09f6f544d53ef14a332db1818fd042fbd903983119d5392e44ef",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "864d72f6a7f516d53e3fe04ad10e8bee3573a05e279c370b7339dc2725afa5ae",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "0d4b10c2259ec3310cfca03d148d8709897c3a8664d1ba865fe2d65344136d1e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
-      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
+      "sha256": "14c54555f5ccf391d31eb544d8a27ac3e87708b01d92496c92ef168f9b70b115",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "342335fddf85c5354d422ae1016db517f176ee3c80adcd7aecded4a2cb6debdb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
-      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
+      "sha256": "a3783f6e0700e80f3ec26940b017d724f9630173b78d62557ff5bfd66b138ffc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "3db6ad7ef31d798844b92e64db1357dab64725f6f0ff9434a9045bcbbb429b3b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
-      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
+      "sha256": "80ccdbac24e942d75a4eaa0ddeff398a2f518302a2508d0dbfd6c01476ae9c2b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1014,6 +1014,31 @@
       "sha256": "5ce5ff851733a7b7d0bd1ab2e299b5b2acc11711c3d70c630144ce3b78a12373",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+    },
+    "Mod/ExpeditionSpyRead.lua": {
+      "sha256": "b12044d03ae5b4a570f5f43e072a3ecb1baa057dcdc52680d0951a7a6454a61d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+    },
+    "Mod/ExpeditionSpyGate.lua": {
+      "sha256": "5ef71354b1093cefe5438f18366b71806dfb098bb47495a43d1bab0f8d48139b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+    },
+    "Mod/UI/ExpeditionSpyWindow.lua": {
+      "sha256": "ab0cfbf363706058a5e4f4eed6cfc8592895bad9cb9b40f2b9b189a07428cda7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+    },
+    "Mod/UI/ExpeditionSpyWindow.xml": {
+      "sha256": "82ff9aeea0d8e0897a5953c685272ae7f3611cf02edb663e26db4989f77dfa03",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+    },
+    "Mod/Data/ExpeditionSpyGate.sql": {
+      "sha256": "505de3fa1260fb5583af8deee95f6610fe5caff5eada5c7f634b87286b7591a4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     }
   }
 }

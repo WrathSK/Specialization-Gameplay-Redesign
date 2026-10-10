@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0486",
-    "runtime": "B183.210 / modinfo210",
+    "status": "S0487",
+    "runtime": "B184.211 / modinfo211",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "B183 native evidence archived: independent dispatch works, exact arrival fails; review next Spy1 isolation candidate only. Completed B183 repair is not authorization for a new route.",
-  "implementation_authorized": false,
+  "goal": "Minimal authorized Spy1 native travel/coexistence gate with own cap/source; read-only Gain Sources isolation diagnostic, execution blocked until a scoped native/HD isolation path is proved.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -59,29 +59,29 @@
       "reason": "Unit survival/protection and priority of named source-transfer semantics"
     },
     {
-      "path": "Mod/ExpeditionGate.lua",
+      "path": "Mod/ExpeditionSpyGate.lua",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Mod/ExpeditionGateRead.lua",
+      "path": "Mod/ExpeditionSpyRead.lua",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Mod/UI/ExpeditionGateWindow.lua",
+      "path": "Mod/UI/ExpeditionSpyWindow.lua",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Mod/UI/ExpeditionGateWindow.xml",
+      "path": "Mod/UI/ExpeditionSpyWindow.xml",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Mod/Data/ExpeditionGate.sql",
+      "path": "Mod/Data/ExpeditionSpyGate.sql",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
       "path": "Mod/Text/ExpeditionGate.sql",
@@ -94,14 +94,14 @@
       "reason": "Direct gate implementation, inherited qualification dependency or validation"
     },
     {
-      "path": "DevelopmentTests/test_expedition_gate.py",
+      "path": "DevelopmentTests/test_expedition_spy_gate.py",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
       "kind": "full",
-      "reason": "Current authorized repair, inherited prototype boundaries, local evidence and minimal native test"
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -127,21 +127,27 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md",
       "kind": "full",
       "reason": "Latest submitted native evidence and exact failure boundary; completed repair does not authorize the next route"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_gate.py",
+      "kind": "full",
+      "reason": "New targeted suite reuses prior fixture environment; old runtime assertions preserved"
     }
   ],
   "dependencies": [
-    "EffectiveFacts current qualification + existing NetworkInput.Reference exact source binding; isolated unit SQL/art/icons; existing P0 UI ingress.",
-    "Gameplay owns one session timer; actual PlaceUnit/input/coexistence remain native gate. No native Spy operation, mission, reward or saved history."
+    "EffectiveFacts qualification + NetworkInput.Reference exact source; independent session cap1 including old fixtures and off-map reservation.",
+    "UI-only native Spy travel and read-only source/probability/ordinary-Spy availability checks; Gameplay permit and original-unit arrival observation. No Gain Sources execution or persistent journey."
   ],
   "old_writers": [
-    "Old gate CREATE/ARM replaced by new type CREATE/DISPATCH. Old unit DB row retained; both exact types counted, explicit END only. No professional effect writer changes."
+    "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
   ],
   "conditional_context": [
     {
-      "trigger": "Review current approved Spy0 route and preserved alternative/Spy1 evidence boundaries",
+      "trigger": "Inspect native/HD isolation boundary or prior Spy0 counterexample",
       "paths": [
         "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md",
-        "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md"
+        "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md"
       ]
     },
     {
@@ -170,18 +176,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L2: narrow target API/diagnostic path and actual Lua/UI faults; no saved schema/unit definition change.",
-    "local": "71 N1 +10 P0 panel methods PASS; Gameplay mock omits UI-only IsCapital. Same-fixture baseline rejects before timer, corrected source accepts. No gameplay-wide suite.",
-    "user": "B183 five images: dispatch scheduled and attempted, exact placement FAIL; own-city overlap USER_REPORTED_FAIL; foreign/hostile coexistence and END NOT_TESTED. No new test requested."
+    "depth": "L2: scoped unit/native request/context, cap/source and UI/SQL changes; no new saved schema.",
+    "local": "31 B184 actual Lua/UI/SQL/package methods +10 existing P0-panel methods PASS; no full gameplay regression.",
+    "user": "One continuous create/read/native dispatch/arrival/END session. Native coexistence, original ID after travel and ordinary-Spy slot isolation pending; Gain Sources execution intentionally blocked, not native PASS."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md",
-    "source": "B183.210 / modinfo210; source 219c4e7030f3427ec484c4716da3dc90deca9515; deployed 202/202 MATCH; Spy0 context/report repair only.",
-    "native": "USER_GAME_TEST_PASS for dispatch acceptance/timing only; USER_GAME_TEST_FAIL for exact arrival. Own-city overlap failure user-reported; binding after failed arrival not newly validated.",
-    "stop": "Await next-route decision; no Spy1 implementation, repeated failed-route test, formal N1/N2/N3/U2, deployment or Design change."
+    "report": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+    "source": "B184.211/modinfo211 LOCAL_COMPLETE; last verified live still B183 until W0003 receipt.",
+    "native": "USER_GAME_TEST_REQUIRED for travel/coexistence/ordinary-Spy availability. BLOCKED for Gain Sources execution; no isolation claim.",
+    "stop": "Stop after authorized prototype/local checkpoint and safe deployment/native gate. No formal N1, N2/N3/U2, rewards or automatic alternative route."
   }
 }

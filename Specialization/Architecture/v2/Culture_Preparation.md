@@ -1,6 +1,6 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_PARTIAL_B183_EXACT_ARRIVAL_FAILED_NEXT_ROUTE_PENDING / N2_N3_U2_ON_HOLD。
+State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_PARTIAL_B184_SPY1_LOCAL_COMPLETE_GAIN_SOURCES_BLOCKED / N2_N3_U2_ON_HOLD。
 Authority: Culture D0049 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只维护相关准备范围；实际source/live与授权从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ B173巨作启迪百分比API已获用户按所测范围接受；Scientist/Mercha
 
 用户已授权时代对话首段：B175真实项目＋城市历史已取得所测取消、完成时取样、额度及用户冷重启确认的限定原生PASS；[B174合并观察与证据边界](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md)单独记录。见[M当前切片](P0_M_Dialogue.md#current-slice--b175202-project-and-history)。B176单城0/100/200%对照已取得所测巨作显示响应、五项意义追加不变及END恢复旧AUTO的证据；用户澄清整城面板存在同回合刷新问题，不作为本批反证或新增结算测试门禁，见[M当前切片](P0_M_Dialogue.md#current-slice--b176203-carrier-comparison)。[B177累计接入](P0_M_Dialogue.md#current-slice--b177204-earned-projection)已获授权并本地完成：明确采用Design允许的Tourism-only备用路径，旧动态writer退休；[四图原生整合](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md)已确认累计5/资格暂停0/恢复5/完成后三时代累计20的所测路径。不扩大为所有M生命周期或所有原生产出通过。实际部署与证据只从Status读取。
 
-B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。B180撤退证据不等于共存。[B182三图审阅](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md)保留创建/来源/耗时及API错误事实。用户已授权并完成[B183定域修复](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md)：Gameplay首都读取与错误报告，不改变Spy0、独立容量/来源绑定。81项定向本地检查保留；[B183五图原生审阅](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md)已确认派遣计时进入，但精确到达失败，用户另报我方城重叠失败。暂不重测；Spy1壳／原生派遣＋自有任务仅为待授权候选。[N1当前切片](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate)是活动边界；正式训练／持久派遣／重挂靠尚未实施，N2/N3及U2保持暂停。
+B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。B180撤退证据不等于共存。[B182三图审阅](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md)保留创建/来源/耗时及API错误事实。用户已授权并完成[B183定域修复](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md)：Gameplay首都读取与错误报告，不改变Spy0、独立容量/来源绑定。81项定向本地检查保留；[B183五图原生审阅](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md)已确认派遣计时进入，但精确到达失败，用户另报我方城重叠失败。不重复旧Spy0失败测试；用户现已授权并本地完成[B184 Spy1隔离原型](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md)：41项定向检查通过，独立容量/来源、UI原生派遣和精确到达门禁；获取情报源仅诊断，原生/HD奖励未隔离，禁止执行。[N1当前切片](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate)是活动边界；正式训练／持久派遣／重挂靠尚未实施，N2/N3及U2保持暂停。
 
 ## 按模块阅读
 
@@ -19,7 +19,7 @@ B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是�
 | 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役限定整合获用户人工PASS；证据见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
 | 巨作启迪L3 | [当前L3](P0_L3_Inspiration.md)：3%×当前时代E，本城全类别GPP | B173自动city百分比API获用户按所测范围接受；精确来源/叠加顺序非阻塞UNKNOWN；不使用D/W或Floor |
 | 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | B175项目/历史首段限定原生PASS；B176倍率/五项追加/END限定通过，不因同回合城市面板延迟追加测试；B177累计Tourism-only与cutover所测自动整合通过；无新增实机步骤，全原生产出分离未实施 |
-| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为后续管理提案 | B183已进入派遣计时，但精确到达原生FAIL；用户另报我方城重叠失败。容量1/1和记录来源保留不等于到达后绑定通过。Spy1候选待授权，不重复旧测试；正式训练／持久部署／归档未实施，N2/N3暂停 |
+| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为后续管理提案 | B183已进入派遣计时，但精确到达原生FAIL；用户另报我方城重叠失败。容量1/1和记录来源保留不等于到达后绑定通过。B184 Spy1原生派遣原型本地完成，最小实机待测；情报源执行禁止，不重复旧测试；正式训练／持久部署／归档未实施，N2/N3暂停 |
 | Hybrid D U2 | [U2](P0_U2_Culture_Era.md)：已批准紧凑摘要+Tooltip、K国内索引 | 真实UI hook、等count/X组成变化通知、缓存及布局；不包含机构排版重做 |
 
 这些计划可以在用户不方便测试时准备，但不会自动连续实施。B165失败只影响真实依赖它的Meaning/M收益隔离路径，不把U2或全部文化都判为阻塞；也不据计划已写好绕开逐批授权。

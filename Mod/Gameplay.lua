@@ -905,5 +905,5 @@ SPCNetworkIsolation.Start(P,shared)
 SPCPerformance.StartMemory(P,shared)
 
 -- N1 native gate only: explicit requests, no automatic mission or city-state writes.
-include('ExpeditionGate')
-SPCExpeditionGate.Start(P,shared)
+include('ExpeditionSpyGate')
+SPCExpeditionSpyGate.Start(P,shared)

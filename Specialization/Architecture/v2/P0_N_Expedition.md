@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B183_EXACT_ARRIVAL_FAILED / NEXT_ROUTE_AWAITING_APPROVAL. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B184_SPY1_TRAVEL_LOCAL_COMPLETE / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B183.210 native review: dispatch accepted; exact arrival failed.** [Five-image result](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md) records T84→T86, `EXACT_PLACEMENT_REJECTED`, the same unit at another coordinate and count1/1; held source is recorded, not freshly validated. User also reports own-city overlap failure. Harmless coexistence and END are not passed.
+**B184.211: explicitly authorized Spy1 isolation prototype, locally complete; native gate pending.** [Scope/local checks/one-session flow](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md). New exact unit + UI native travel request; own session cap1/source reference and strict original-unit arrival verification. Missing/off-map units reserve capacity; identity ambiguity holds without name adoption or respawn. Prior Spy0 native arrival failure remains valid evidence, not a reason to retry it.
 
-The [context repair](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md) and71 N1+10 panel local checks remain valid within scope; native evidence now reaches placement after the old API error. Spy0/Stackable1/IgnoreMoves1 are confirmed in the current DB. Own session cap/source/timer remain unchanged; no native Spy operation, normal training, Property/Store write, persisted journey or reward.
+Ordinary Spy definitions/operations/HD hooks are unchanged; native used slots and coexistence remain unproved. Creation compares readable normal-Spy state; changes hold dispatch. **Gain Sources is read-only/blocked**: native source state and HD completion rewards have no verified scoped isolation. No global zeroing, handler removal, reward reversal or mission execution. 31 new +10 P0 panel local methods pass; no native PASS inferred.
 
-**Next/stop:** no repeated test of this failed route or automatic fallback. The [bounded Spy1 reassessment](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#b183-native-failure-and-spy1-isolation-reassessment) recommends native shell/travel with our deterministic tasks, subject to new approval and proof of target/capacity/identity/coexistence/native-hook isolation. No new code/test/deployment authorized here. Formal named Culture/Shared synchronization still precedes formal integration; N2/N3/U2 remain held. Source/live and current authorization come from Status.
+Stop after the minimal travel/coexistence/cleanup observation; no formal training, saved journey, reattachment, rewards, N2/N3/U2 or Design change. Formal named Culture/Shared synchronization still precedes formal integration. Deployment and exact current source/live are recorded only in Status; W0003 gates remain.
 
 ## 三种状态与已定数值
 
