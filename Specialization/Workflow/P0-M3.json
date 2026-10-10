@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-M3",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0471",
+    "status": "S0472",
     "runtime": "B177.204 / modinfo204",
     "military": "D0037",
     "harbor": "D0037",
@@ -19,7 +19,7 @@
   },
   "goal_reference": "Specialization/Architecture/v2/P0_M_Dialogue.md#current-slice--b177204-earned-projection",
   "goal": "Automatic saved cumulative Dialogue at Culture ACTIVE III+, reported Tourism-only fallback and exact legacy writer retirement; no change to project history.",
-  "implementation_authorized": true,
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -182,7 +182,7 @@
   "validation": {
     "depth": "L3 scoped writer cutover, saved authority read and exact exit/failure boundaries; no full regression/stress.",
     "local": "25 new methods PASS;90 related PASS;1 pre-existing historical localization count mismatch;2 old package assertions not selected. New package204 checked.",
-    "user": "One minimal automatic-integration session; inherit B175/B176 evidence. No repeat high-value carrier control or probe save ceremony."
+    "user": "Scoped B177 native integration PASS: four screenshots show saved5/qualification pause0/restore5/project completion20. Prior B175/B176 evidence inherited in scope; no extra test requested."
   },
   "full_audit_triggers": [
     "Need to change accepted semantics, saved history or another Mod: stop that path and report."
@@ -191,6 +191,8 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
     "source": "B177.204 / modinfo204;196 runtime files; source 3bb10790f32256ad20d339a62cc24de3c3269c82",
     "deployment": "B177.204-3bb1079-playtest.json: DEVELOP_ACTIVE,196/196 MATCH; exact B176/stable recovery retained; no pending transaction or game launch.",
-    "stop": "Await minimal native automatic-integration result; no automatic next batch."
+    "stop": "B177 scoped integration complete; await next user batch decision. No N/U2/all-native prototype, repair or additional test automatically authorized.",
+    "native_report": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md",
+    "native": "USER_GAME_TEST_PASS for observed automatic projection, qualification transitions, retained history/quota and after-commit5->20 update. No new independent credited-Tourism/rounding/Meaning proof; all-native separation unimplemented."
   }
 }

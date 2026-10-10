@@ -1,7 +1,7 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
-State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_TOURISM_ONLY_CUMULATIVE_LOCAL_COMPLETE。
-Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；用户另行授权B176高倍率临时载体对照；用户已授权B177累计倍率与old-writer cutover；Tourism-only已接受备用路径，本地完成、原生整合待验。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
+State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_TOURISM_ONLY_INTEGRATION_SCOPED_NATIVE_PASS。
+Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；用户另行授权B176高倍率临时载体对照；用户已授权B177累计倍率与old-writer cutover；Tourism-only已接受备用路径，本地完成、所测自动整合已通过。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
 
 ## Current slice — B177.204 earned projection
 
@@ -9,7 +9,7 @@ User-approved cumulative integration is locally complete through the **Tourism-o
 
 `DialogueEffects` owns the new projection. `Dialogue` retains shared collection/ACK transport and existing governor dispatch, but its dynamic/manual writers are retired. Project commit notifies the exact city only after successful Store readback; normal entry/facts/load/return drive automatic refresh. Old owned IDs are removed before new effects; failures cannot fall back to old AUTO. Ordinary checks use only previous/requested carrier; no new periodic scanner/GC. Meaning is unchanged. P0 **时代对话** is read-only on either mouse button; normal production completion earns the history.
 
-All-native separation remains unproved, not silently implemented: current checked scaling cannot separate same-yield appended additions. This batch attaches Tourism only, never Culture/Food/Production/Science/Faith/Gold. Small percentages follow accepted native floor. B175/B176 evidence is inherited within scope; no repeat100/200 test or city-panel settlement gate. New automatic integration is USER_GAME_TEST_REQUIRED, not full P0-M PASS. No N/U2 or further implementation is authorized. Status alone identifies actual deployment.
+All-native separation remains unproved, not silently implemented: current checked scaling cannot separate same-yield appended additions. This batch attaches Tourism only, never Culture/Food/Production/Science/Faith/Gold. Small percentages follow accepted native floor. B175/B176 evidence is inherited within scope; no repeat100/200 test or city-panel settlement gate. [B177 four-image native result](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md) closes the scoped integration check: saved+5% on load, qualification pause0/restore5, then a three-era project commits+15 and automatically projects cumulative+20%. The carrier report is not an independent credited-Tourism measurement; unchanged small-value work displays are retained, with the B176 primitive evidence inherited in scope. No repeat test is requested or universal P0-M PASS claimed. No N/U2 or further implementation is authorized. Status alone identifies actual deployment.
 
 ## Current slice — B176.203 carrier comparison
 
