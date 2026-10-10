@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0460
+Status Revision: S0461
 Implementation Build: source/live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
-Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_REQUIRED
-Work State: B173_NATIVE_PARTIAL_AWAITING_COMBINED_ACCEPTANCE
+Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
+Work State: B173_INSPIRATION_NATIVE_API_ACCEPTED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,13 @@ Source and recorded live package remain B173.200 / modinfo200, deployed from `bc
 
 [Current L3 contract](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点) / manifest `P0-L3.json`: D0049 city-local, all-class +3%×current E0–7 remains unchanged. B173 notification isolation/bounded retry has 81 methods / 44 subTests LOCAL_SIMULATION_PASS; see [local result and combined acceptance](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md).
 
-[Latest source/two-city clarification](Validation/Results/Specialization_B173_Inspiration_Two_City_Comparison.md) links the original E0/E2/E3 evidence. Merchant base corrected to22 plus player10%; the new E2 screenshot repeats all nine prior rates. A6%→9% gives Scientist +0.480469 / Merchant +0.613281, still not an exact fit to stated bases/common stacking models. B remains E1 in both runs, so its unchanged bonus cannot explain the differential. Independent per-city application is statically confirmed; earlier General/Prophet fractional support remains scoped. Combined acceptance stays PARTIAL; no confirmed defect/all-class PASS, new repair/probe or repeated save/load ritual.
+**2026-10-09 user acceptance:** Inspiration's city-GPP percentage API is accepted for the observed General/Prophet response, era-dependent changes and fractional accumulation: scoped USER_GAME_TEST_PASS. The [E3 evidence](Validation/Results/Specialization_B173_Inspiration_E3_Feedback.md) and [source/two-city comparison](Validation/Results/Specialization_B173_Inspiration_Two_City_Comparison.md) retain exact observations. Scientist/Merchant source coverage, stacking order and general rounding formula remain UNKNOWN but non-blocking; full national GPP reconciliation is not an acceptance prerequisite. Do not change gameplay/engine calculation, invent corrected bases or request another test solely to close those unknowns.
 
-B166/B169/B170 acceptance and B168 evidence remain intact. Next action is bounded interpretation/completion of the existing combined acceptance only; [investment propagation](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md), other audit repairs and M/N/U2 remain unauthorized. Local notification counts do not prove native CPU/memory gains.
+B173 shared-notification correctness retains its 81-method / 44-subTest LOCAL_SIMULATION_PASS. Adjacent 风雅熏陶/意义延展 behavior during this specific native session was not separately confirmed; neither local tests nor API acceptance promote it to new native PASS. No additional manual procedure is requested here. B166/B169/B170 and prior ability evidence remain intact. Await the user's next scope; [investment propagation](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md), M/N/U2 and other repairs remain separately unauthorized. Reopen numerical attribution only for a concrete repeatable failure of the expected response or a relevant future modifier/source-path change.
+
+## S0461 — Native GPP API accepted; exact attribution is non-blocking
+
+The user accepts the General/Prophet evidence as sufficient to establish that Inspiration's reused native percentage API works in the tested setup. The prior review had set the acceptance bar too high by requiring national Scientist/Merchant totals to be fully reconciled. Preserve those residuals and 1/256 observations as bounded findings, not a proven defect or a requirement to reverse-engineer engine ordering. No extra GPP test, source census, diagnostic, rounding compensation, save/load cycle or runtime change is authorized/requested. B173's adjacent-consumer native observations remain unconfirmed rather than silently passed; existing local coverage and earlier native evidence retain their own scope. No next gameplay batch starts automatically.
 
 ## S0460 — B173 corrected sources and two-city comparison
 

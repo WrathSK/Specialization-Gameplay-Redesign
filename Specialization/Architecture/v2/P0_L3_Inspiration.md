@@ -1,10 +1,10 @@
 # P0-L3 — 巨作启迪自动能力
 
-State: B172能力＋B173通知修复LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED。当前Authority为Spec／Culture D0049 `CUL_L4_INSPIRE`，Shared D0045；实际部署与授权只查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。本页是实现合同，不另立Design。
+State: B172原生百分比API已获用户范围验收；B173通知修复LOCAL_SIMULATION_PASS，邻接能力联合实机观察未单独确认。当前Authority为Spec／Culture D0049 `CUL_L4_INSPIRE`，Shared D0045；实际部署与授权只查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。本页是实现合同，不另立Design。
 
 ## 当前切片与停止点
 
-用户明确取消独立技术原型，授权直接复用花园／HD平伽拉的本城百分比原语并实施正式自动能力，再验收。B172.199本地完成，尚无本批原生PASS；[本地结果及一次最小验收](../../Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)。用户随后授权B173馆藏通知定域修复，与启迪同一轮验收；[B173结果](../../Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。投资提交后传播修复仍独立未授权，M/N/U2及其它审计项不顺带推进。
+用户明确取消独立技术原型，授权直接复用花园／HD平伽拉的本城百分比原语并实施正式自动能力，再验收。B172.199本地完成；2026-10-09用户接受General/Prophet所示原生百分比响应与小数累计（scoped USER_GAME_TEST_PASS），精确叠加/来源归因不阻塞该API验收；[本地结果及一次最小验收](../../Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md)。用户随后授权B173馆藏通知定域修复，与启迪同一轮验收；[B173结果](../../Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。投资提交后传播修复仍独立未授权，M/N/U2及其它审计项不顺带推进。
 
 ### 现行合同
 
@@ -22,7 +22,9 @@ B172按W0004 L2；B173为L3的通知顺序/会话引用定域修复，不运行�
 
 以下为继承的B172结果：当前入口`DevelopmentTests/test_culture_inspiration_automatic.py`共43方法/46 subTest：24新自动路径，19直接依赖回归；实际Lua/SQL、K样本/请求、替换/撤销、冷重建、UNKNOWN/失城/失败隔离、40城定域计数及只读UI均LOCAL_PASS。计数不证明原生CPU/内存改善。
 
-原生仍需在一个连续session查看：现有Culture IV城E→E+1→E0时本城百分比载体/可观察点数更新；含一类文艺及一类非文艺原有非零来源。已确认GPP读数可能过回合刷新。无需旧Probe启用态存档→END→冷加载→再启用仪式，也不单独重复全部共享生命周期。小数累计/倍率叠加及未具备来源的类别保持未证，按实际观察记范围。B173只在同次E变化/移城中顺便观察风雅熏陶和意义延展的对应更新；不另开异常注入/保存重载人工流程。完成合并交付后停止，不自动推进新能力。
+用户已接受现有General/Prophet的原生百分比响应、时代变化及小数累计证据，按所测范围记录USER_GAME_TEST_PASS。Scientist/Merchant基数归属、原生百分比叠加次序和普遍舍入算法仍为UNKNOWN，但不再要求先完整对账全国GPP才能验收该API；不据此调整玩法或添加补偿。原始观测/推算保留在[当前Status链接的结果](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+
+B173通知修复仍保留对应LOCAL_SIMULATION_PASS；本次移动作品时风雅熏陶/意义延展的联合原生观察未单独确认，不将既有本地结果升级为新实机PASS。本条不追加人工流程，也不重复旧Probe保存→END→冷加载→再启用仪式。只有出现可重复的实际响应失败，或未来修改相关Modifier/来源路径，才按新增风险提出一次定域差分测试；精确引擎运算次序未知本身不阻塞后续开发。停止等待下一范围授权，不自动推进新能力。
 
 ## 来源与证据边界
 

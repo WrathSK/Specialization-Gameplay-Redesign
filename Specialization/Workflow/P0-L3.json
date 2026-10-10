@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0460",
+    "status": "S0461",
     "runtime": "B173.200 / modinfo200",
     "military": "D0037",
     "harbor": "D0037",
@@ -192,16 +192,16 @@
   "validation": {
     "depth": "L3 scoped shared notification/session/ref/reentrant path; no unrelated full historical/stress suite",
     "local": "81 methods44 subTests PASS; actual three consumers and K ingress/producer. Lua/package/context/links/diff. Dispatch success is not business/native success.",
-    "user": "One combined B172/B173 continuous session: E percentage/era/work move/E0; observe AE/Meaning during same changes. No new manual failure injection or repeated save/load."
+    "user": "Observed Inspiration percentage response/fractional accumulation accepted by user (General/Prophet scope). Exact Scientist/Merchant attribution and engine ordering are non-blocking UNKNOWN; no extra numerical/save-load test. B173 adjacent AE/Meaning native observations not separately confirmed; local coverage and inherited evidence retain their original scope."
   },
   "full_audit_triggers": [
     "Need to change accepted semantics, shared persistence or collector ownership, or cannot isolate old/new carriers: stop affected path."
   ],
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-    "native": "PARTIAL: E2 rates reproduced; General/Prophet percentage/fractional support retained. Corrected Merchant22/player10 and unchanged E1 city B do not yet fully reconcile E2-to-E3 Scientist/Merchant deltas; independent per-city application statically confirmed. See Specialization/Status/Validation/Results/Specialization_B173_Inspiration_Two_City_Comparison.md. No all-class PASS or confirmed defect.",
+    "native": "SCOPED USER_GAME_TEST_PASS: user accepts observed General/Prophet response as sufficient for the reused city-GPP percentage API. Prior numerical reports remain unchanged; exact Scientist/Merchant source/stacking/rounding unknowns are non-blocking. B173 adjacent-consumer native observations are not independently confirmed, not promoted to PASS. See Status S0461/current L3 acceptance boundary.",
     "deployment": "B173.200 DEVELOP_ACTIVE; B173.200-bc54482-playtest.json;189/189 MATCH;B172/stable recovery verified;no pending transaction.",
-    "stop": "Record/interpret submitted evidence only; no automatic repair, new probe or next ability. Existing combined acceptance remains open; no repeated save/load ritual.",
+    "stop": "Stop and await the next user-selected scope. Do not require full national GPP reconciliation, add tests solely for unknown engine order, or auto-start diagnostics/repair/next ability. Overall manifest remains awaiting user for any broader joint closeout, not because the Inspiration API is unaccepted.",
     "source_commit": "bc5448268929c2625f06d6d39bf89778dd70147d"
   }
 }
