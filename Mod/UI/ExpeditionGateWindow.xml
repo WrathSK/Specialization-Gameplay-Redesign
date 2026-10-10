@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context Name="SPCExpeditionGate">
- <GridButton ID="OpenButton" Anchor="L,T" Offset="8,156" Size="165,32" Style="MainButton" Hidden="1">
-  <Label Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_OPEN" />
- </GridButton>
  <Container ID="Window" Anchor="C,C" Size="620,572" Hidden="1">
   <Box Size="620,572" Color="12,19,27,250" />
-  <Label Anchor="L,T" Offset="18,16" Style="FontNormal18" String="LOC_SPC_EXPEDITION_GATE_TITLE" />
-  <GridButton ID="CloseButton" Anchor="R,T" Offset="12,10" Size="78,30" Style="MainButton" String="LOC_SPC_EXPEDITION_GATE_CLOSE" />
-  <Label ID="Intro" Anchor="L,T" Offset="18,52" Style="FontNormal14" WrapWidth="580" String="LOC_SPC_EXPEDITION_GATE_INTRO" />
-  <GridButton ID="CreateButton" Anchor="L,T" Offset="18,105" Size="282,32" Style="MainButton" String="LOC_SPC_EXPEDITION_GATE_CREATE" />
-  <GridButton ID="RefreshButton" Anchor="L,T" Offset="320,105" Size="282,32" Style="MainButton" String="LOC_SPC_EXPEDITION_GATE_REFRESH" />
-  <GridButton ID="PreviousButton" Anchor="L,T" Offset="18,151" Size="40,30" Style="MainButton" String="◀" />
-  <Label ID="TargetLabel" Anchor="C,T" Offset="0,157" Style="FontNormal14" WrapWidth="476" String="LOC_SPC_EXPEDITION_GATE_NO_TARGET" />
-  <GridButton ID="NextButton" Anchor="R,T" Offset="18,151" Size="40,30" Style="MainButton" String="▶" />
-  <GridButton ID="TravelButton" Anchor="L,T" Offset="18,196" Size="282,32" Style="MainButton" String="LOC_SPC_EXPEDITION_GATE_TRAVEL" />
-  <GridButton ID="ArmButton" Anchor="L,T" Offset="320,196" Size="282,32" Style="MainButton" String="LOC_SPC_EXPEDITION_GATE_ARM" />
+  <Label Anchor="L,T" Offset="18,16" Style="FontNormal18" String="LOC_SPC_EXPEDITION_GATE_TITLE" Color="255,255,255,255" />
+  <GridButton ID="CloseButton" Anchor="R,T" Offset="12,10" Size="78,30" Style="MainButton"><Label ID="CloseButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_CLOSE" Color="255,255,255,255" /></GridButton>
+  <Label ID="Intro" Anchor="L,T" Offset="18,52" Style="FontNormal14" WrapWidth="580" String="LOC_SPC_EXPEDITION_GATE_INTRO" Color="255,255,255,255" />
+  <GridButton ID="CreateButton" Anchor="L,T" Offset="18,105" Size="282,32" Style="MainButton"><Label ID="CreateButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_CREATE" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="RefreshButton" Anchor="L,T" Offset="320,105" Size="282,32" Style="MainButton"><Label ID="RefreshButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_REFRESH" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="PreviousButton" Anchor="L,T" Offset="18,151" Size="40,30" Style="MainButton"><Label ID="PreviousButtonCaption" Anchor="C,C" Style="FontNormal14" String="◀" Color="255,255,255,255" /></GridButton>
+  <Label ID="TargetLabel" Anchor="C,T" Offset="0,157" Style="FontNormal14" WrapWidth="476" String="LOC_SPC_EXPEDITION_GATE_NO_TARGET" Color="255,255,255,255" />
+  <GridButton ID="NextButton" Anchor="R,T" Offset="18,151" Size="40,30" Style="MainButton"><Label ID="NextButtonCaption" Anchor="C,C" Style="FontNormal14" String="▶" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="TravelButton" Anchor="L,T" Offset="18,196" Size="282,32" Style="MainButton"><Label ID="TravelButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_TRAVEL" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="ArmButton" Anchor="L,T" Offset="320,196" Size="282,32" Style="MainButton"><Label ID="ArmButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_ARM" Color="255,255,255,255" /></GridButton>
   <ScrollPanel ID="ReportScroll" Anchor="L,T" Offset="18,246" Size="584,264" Vertical="1" AutoScrollBar="1">
-   <Label ID="Report" Anchor="L,T" Style="FontNormal14" WrapWidth="552" String="LOC_SPC_EXPEDITION_GATE_INITIAL" />
+   <Label ID="Report" Anchor="L,T" Style="FontNormal14" WrapWidth="552" String="LOC_SPC_EXPEDITION_GATE_INITIAL" Color="255,255,255,255" />
   </ScrollPanel>
-  <GridButton ID="EndButton" Anchor="L,B" Offset="18,16" Size="282,32" Style="MainButton" String="LOC_SPC_EXPEDITION_GATE_END" />
-  <Label Anchor="L,B" Offset="320,19" Style="FontNormal12" WrapWidth="282" String="LOC_SPC_EXPEDITION_GATE_END_HINT" />
+  <GridButton ID="EndButton" Anchor="L,B" Offset="18,16" Size="282,32" Style="MainButton"><Label ID="EndButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_END" Color="255,255,255,255" /></GridButton>
+  <Label Anchor="L,B" Offset="320,19" Style="FontNormal12" WrapWidth="282" String="LOC_SPC_EXPEDITION_GATE_END_HINT" Color="255,255,255,255" />
  </Container>
 </Context>

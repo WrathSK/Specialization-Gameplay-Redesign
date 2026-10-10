@@ -149,6 +149,11 @@ class Reader(unittest.TestCase):
 class Package(unittest.TestCase):
     def test_actual_database_and_no_existing_unit_change(self):
         p=external_database(R);external=sqlite3.connect(p.as_uri()+'?mode=ro',uri=True);db=sqlite3.connect(':memory:');external.backup(db);external.close();db.create_function('Make_Hash',1,lambda text:zlib.crc32(text.encode()))
+        # Loaded DBs after B178 contain this exact fixture unit; remove only it
+        # in memory before replaying source SQL. All other unit rows stay compared.
+        db.execute("delete from TypeTags where Type='UNIT_SPC_EXPEDITION_GATE'")
+        db.execute("delete from Units where UnitType='UNIT_SPC_EXPEDITION_GATE'")
+        db.execute("delete from Types where Type='UNIT_SPC_EXPEDITION_GATE'")
         before=db.execute('select * from Units order by UnitType').fetchall()
         db.executescript((R/'Mod/Data/ExpeditionGate.sql').read_text())
         after=db.execute("select * from Units where UnitType<>'UNIT_SPC_EXPEDITION_GATE' order by UnitType").fetchall();self.assertEqual(before,after)
@@ -160,7 +165,7 @@ class Package(unittest.TestCase):
         new=['ExpeditionGate.lua','ExpeditionGateRead.lua','Data/ExpeditionGate.sql','Text/ExpeditionGate.sql','UI/ExpeditionGateWindow.lua','UI/ExpeditionGateWindow.xml']
         for p in new:self.assertIn(p,files)
         for e in m.findall('./InGameActions/*/File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
-        self.assertEqual(m.attrib['version'],'205')
+        self.assertEqual(m.attrib['version'],'206')
         ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml')
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
         self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(len(names),6)
@@ -185,38 +190,62 @@ class Package(unittest.TestCase):
 
 
 class Window(unittest.TestCase):
-    def runtime(self):
+    def runtime(self, initialize=True):
         l=Reader().runtime()
         l.execute(r"""
-          P.VERSION='P0-B-178.205';SPCP0=P;units={};sent=0
+          P.VERSION='P0-B-179.206';SPCP0=P;units={};sent=0
           include=function()end;Mouse={eLClick=1};KeyEvents={KeyUp=1};Keys={VK_ESCAPE=27}
           Locale={Lookup=function(key,...)local a={...};for i,v in ipairs(a)do a[i]=tostring(v)end;return key..':'..table.concat(a,',')end}
-          Controls=setmetatable({}, {__index=function(t,k)
-           local c={hidden=false}
+          Controls={}
+          function makeControl(id,hidden)
+           local c={hidden=hidden}
            function c:SetText(v)self.text=v end;function c:SetHide(v)self.hidden=v end
            function c:IsHidden()return self.hidden end;function c:RegisterCallback(mouse,fn)self.click=fn end
-           function c:CalculateSize()end;function c:ReprocessAnchoring()end;t[k]=c;return c
-          end})
-          ContextPtr={SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetInputHandler=function(self,fn)input=fn end}
+           function c:CalculateSize()end;function c:ReprocessAnchoring()end;Controls[id]=c
+          end
+          ContextPtr={SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetInputHandler=function(self,fn)input=fn end,
+            SetInitHandler=function(self,fn)init=fn end,SetShutdown=function(self,fn)shutdown=fn end}
+          LuaEvents={SPC_ExpeditionGateOpen={Add=function(fn)gateOpen=fn;gateAdds=(gateAdds or 0)+1 end,Remove=function(fn)assert(gateOpen==fn);gateOpen=nil end}}
           UI={GetHeadSelectedCity=function()return city end,RequestPlayerOperation=function(pid,operation,packet)
             sent=sent+1;lastPacket=packet;if not deferred then handler(pid,packet)end
           end}
           PlayerOperations={EXECUTE_SCRIPT=1};Game.GetLocalPlayer=function()return 2 end
-          Events.LoadScreenClose={Add=function(fn)loadScreen=fn end}
-          Events.LocalPlayerTurnBegin={Add=function(fn)turnBegin=fn end}
-          Events.GameCoreEventPublishComplete={Add=function(fn)publish=fn end}
+          Events.LoadScreenClose={Add=function(fn)loadScreen=fn end,Remove=function(fn)assert(loadScreen==fn);loadScreen=nil end}
+          Events.LocalPlayerTurnBegin={Add=function(fn)turnBegin=fn end,Remove=function(fn)assert(turnBegin==fn);turnBegin=nil end}
+          Events.GameCoreEventPublishComplete={Add=function(fn)publish=fn end,Remove=function(fn)assert(publish==fn);publish=nil end}
         """)
+        for element in ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml').getroot().iter():
+            if element.get('ID'):
+                l.globals().makeControl(element.get('ID'),element.get('Hidden')=='1')
         l.execute((R/'Mod/UI/ExpeditionGateWindow.lua').read_text())
+        if initialize:l.execute('init()')
         return l
     def test_closed_start_no_native_helpers_or_creation(self):
         l=self.runtime();l.execute("assert(Controls.Window.hidden and initCalls==0 and helperCalls==0 and sent==0);turnBegin();publish();assert(sent==0)")
     def test_actual_window_create_read_arm_end_flow(self):
-        l=self.runtime();l.execute("Controls.OpenButton.click();Controls.CreateButton.click();assert(initCalls==1);Controls.TravelButton.click();assert(helperCalls==2 and Controls.Report.text:find('TIMING'));Controls.ArmButton.click();units[40].x=8;Controls.RefreshButton.click();assert(Controls.Report.text:find('WATCH'));Controls.EndButton.click();assert(destroys==1 and not Controls.Report.text:find('TIMING'))")
+        l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();assert(initCalls==1);Controls.TravelButton.click();assert(helperCalls==2 and Controls.Report.text:find('TIMING'));Controls.ArmButton.click();units[40].x=8;Controls.RefreshButton.click();assert(Controls.Report.text:find('WATCH'));Controls.EndButton.click();assert(destroys==1 and not Controls.Report.text:find('TIMING'))")
     def test_pending_action_never_auto_reissued(self):
-        l=self.runtime();l.execute("Controls.OpenButton.click();deferred=true;Controls.CreateButton.click();assert(sent==2);Controls.CreateButton.click();for i=1,3 do publish()end;assert(sent==2);update(11);assert(update==nil and sent==2 and Controls.Report.text:find('TIMEOUT'))")
+        l=self.runtime();l.execute("gateOpen();deferred=true;Controls.CreateButton.click();assert(sent==2);Controls.CreateButton.click();for i=1,3 do publish()end;assert(sent==2);update(11);assert(update==nil and sent==2 and Controls.Report.text:find('TIMEOUT'))")
     def test_close_does_not_cancel_accepted_request_or_spawn_again(self):
-        l=self.runtime();l.execute("Controls.OpenButton.click();deferred=true;Controls.CreateButton.click();local p=lastPacket;Controls.CloseButton.click();handler(2,p);deferred=false;Controls.OpenButton.click();assert(initCalls==1 and Controls.Report.text:find('UNIT'))")
+        l=self.runtime();l.execute("gateOpen();deferred=true;Controls.CreateButton.click();local p=lastPacket;Controls.CloseButton.click();handler(2,p);deferred=false;gateOpen();assert(initCalls==1 and Controls.Report.text:find('UNIT'))")
     def test_unknown_helpers_shown_without_operating_unit(self):
-        l=self.runtime();l.execute("Controls.OpenButton.click();Controls.CreateButton.click();UnitManager.GetTravelTime=nil;Controls.TravelButton.click();assert(Controls.Report.text:find('TIMING_UNKNOWN') and destroys==0 and units[40].x==1)")
+        l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();UnitManager.GetTravelTime=nil;Controls.TravelButton.click();assert(Controls.Report.text:find('TIMING_UNKNOWN') and destroys==0 and units[40].x==1)")
+
+    def test_ready_only_after_successful_init_and_single_subscription(self):
+        l=self.runtime(False);l.execute("assert(not ExposedMembers.SPC_ExpeditionGateUIVersion and not gateOpen);init();init();assert(gateAdds==1 and ExposedMembers.SPC_ExpeditionGateUIVersion==P.VERSION and sent==0)")
+    def test_shutdown_unregisters_ui_without_destroying_or_sending(self):
+        l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();local n=sent;shutdown();assert(not gateOpen and not publish and not turnBegin and not loadScreen and not ExposedMembers.SPC_ExpeditionGateUIVersion);assert(sent==n and units[40] and destroys==0)")
+    def test_unsupported_local_player_cannot_open_and_existing_window_closes(self):
+        l=self.runtime();l.execute("gateOpen();local n=sent;Game.GetLocalPlayer=function()return 3 end;turnBegin();assert(Controls.Window.hidden);gateOpen();assert(Controls.Window.hidden and sent==n)")
+    def test_no_fixed_hud_entry_and_buttons_have_visible_child_captions(self):
+        root=ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml').getroot()
+        self.assertIsNone(root.find("GridButton[@ID='OpenButton']"))
+        buttons=root.findall(".//GridButton");self.assertEqual(len(buttons),8)
+        for button in buttons:
+            with self.subTest(button=button.get('ID')):
+                label=button.find('Label');self.assertIsNotNone(label)
+                self.assertEqual(label.get('Color'),'255,255,255,255')
+                self.assertTrue(label.get('String'))
+        l=self.runtime();l.execute("assert(Controls.CreateButtonCaption.text:find('CREATE') and Controls.EndButtonCaption.text:find('END'))")
 
 if __name__=='__main__':unittest.main(verbosity=2)

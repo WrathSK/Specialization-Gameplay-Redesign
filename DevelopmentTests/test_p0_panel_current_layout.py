@@ -14,9 +14,7 @@ PANEL = ROOT / 'Mod' / 'UI'
 ROWS = (
     ('SourceYieldButton', 'GovernorButton', 'SpecialistsButton'),
     ('GWReadButton', 'AestheticButton', 'MeaningProbeButton'),
-    ('DPReadButton', 'DP03Button', 'DP05Button'),
-    ('CompletenessButton', 'TemplatesButton', 'UnitReadButton'),
-    ('MeaningConfigButton', 'InspirationEndButton', 'CopyButton'),
+    ('MeaningConfigButton', 'GWCityButton', 'ExpeditionGateButton'),
 )
 VISIBLE = frozenset(button for row in ROWS for button in row)
 
@@ -40,6 +38,7 @@ def panel_runtime():
             local e=event(k);rawset(t,k,e);return e
         end})
         Mouse={eLClick=1,eRClick=2}
+        expeditionOpens=0;LuaEvents={SPC_ExpeditionGateOpen=function()expeditionOpens=expeditionOpens+1 end}
         PlayerOperations={EXECUTE_SCRIPT=1}
         SPCP0={VERSION='current-panel-fixture', IsTestPlayer=function(pid)return pid==0 end,
                Scalar=tostring, Call=function()return false end, Count=function()end}
@@ -116,11 +115,13 @@ class CurrentPanelTests(unittest.TestCase):
         self.assertTrue(lua.globals().Controls.LegacyProbeButtons.hidden)
         for control_id in ('GWAReadButton', 'PerformanceSnapshotButton', 'PerformanceReadButton',
                            'InheritRecordButton', 'InheritReadButton', 'BackgroundRoutesButton',
-                           'NetworkButton', 'CarrierStepButton', 'DiscountsButton'):
+                           'NetworkButton', 'CarrierStepButton', 'DiscountsButton',
+                           'DPReadButton','CompletenessButton','DP03Button','TemplatesButton',
+                           'DP05Button','UnitReadButton','CopyButton'):
             with self.subTest(retired=control_id):
                 self.assertTrue(lua.globals().Controls[control_id].hidden)
 
-    def test_three_columns_five_rows_and_report_do_not_overlap(self):
+    def test_three_columns_three_rows_and_report_do_not_overlap(self):
         tree = ET.parse(PANEL / 'P0Panel.xml')
         window = tree.getroot().find("Container[@ID='Window']")
         self.assertEqual(window.get('Size'), '840,664')
@@ -130,7 +131,7 @@ class CurrentPanelTests(unittest.TestCase):
             for column, control_id in enumerate(row):
                 button = buttons[control_id]
                 self.assertEqual(button.get('Anchor'), 'L,B')
-                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{178 - row_number * 40}')
+                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{98 - row_number * 40}')
                 self.assertEqual(button.get('Size'), '240,32')
                 x, bottom = map(int, button.get('Offset').split(','))
                 width, height = map(int, button.get('Size').split(','))
@@ -138,8 +139,8 @@ class CurrentPanelTests(unittest.TestCase):
                 rectangles.append((control_id, x, y, x + width, y + height))
         report = window.find("ScrollPanel[@ID='ReportScroll']")
         self.assertEqual(report.get('Offset'), '18,58')
-        self.assertEqual(report.get('Size'), '804,380')
-        report_bottom = 58 + 380
+        self.assertEqual(report.get('Size'), '804,460')
+        report_bottom = 58 + 460
         for control_id, x1, y1, x2, y2 in rectangles:
             with self.subTest(control=control_id):
                 self.assertGreaterEqual(x1, 0)
@@ -153,18 +154,30 @@ class CurrentPanelTests(unittest.TestCase):
                                  or first[4] <= second[2] or second[4] <= first[2])
                     self.assertTrue(separated)
 
-    def test_inspiration_next_read_and_end_remain_available(self):
+    def test_inspiration_and_dialogue_are_current_read_only_reports(self):
         _, lua = panel_runtime()
         lua.execute(r'''
             Controls.MeaningConfigButton.callbacks[Mouse.eLClick]()
-            assert(requests[#requests].Action=='INSPIRE_NEXT')
+            assert(requests[#requests].Action=='INSPIRE_STATUS')
             Controls.MeaningConfigButton.callbacks[Mouse.eRClick]()
-            assert(requests[#requests].Action=='INSPIRE_READ')
+            assert(requests[#requests].Action=='INSPIRE_DETAIL')
             for _,event in ipairs({Mouse.eLClick,Mouse.eRClick})do
-                Controls.InspirationEndButton.callbacks[event]()
-                assert(requests[#requests].Action=='INSPIRE_END')
+                Controls.GWCityButton.callbacks[event]()
+                assert(requests[#requests].Action=='DIALOGUE_PROJECT_READ')
             end
-            assert(#requests==4)
+            assert(#requests==4 and Controls.InspirationEndButton.hidden)
+        ''')
+
+    def test_expedition_entry_waits_for_ready_ui_and_sends_no_gameplay_action(self):
+        _, lua = panel_runtime()
+        lua.execute(r'''
+            Controls.OpenButton.callbacks[Mouse.eLClick]()
+            Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]()
+            assert(not Controls.Window.hidden and expeditionOpens==0 and #requests==0)
+            assert(Controls.Status.text:find('UI_UNAVAILABLE'))
+            ExposedMembers.SPC_ExpeditionGateUIVersion=SPCP0.VERSION
+            Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]()
+            assert(Controls.Window.hidden and expeditionOpens==1 and #requests==0)
         ''')
 
     def test_meaning_both_clicks_are_read_only_status(self):

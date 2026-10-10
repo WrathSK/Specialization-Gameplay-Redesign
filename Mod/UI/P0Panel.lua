@@ -337,6 +337,11 @@ local function showRoot()
   local enabled=P.IsTestPlayer(Game.GetLocalPlayer())
   ContextPtr:SetHide(not enabled);placeEntry();Controls.OpenButton:SetHide(not enabled)
 end
+local function closeWindow()
+  Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
+  meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
+  cancelMeaningReply() -- A late ACK cannot recreate a released diagnostic baseline.
+end
 local function initialize()
   -- Explicit labels bypass GridButton style-owned text rendering.
   Controls.CompletenessButtonCaption:SetText('科研基础设施')
@@ -385,10 +390,14 @@ local function initialize()
   showRoot();Controls.Window:SetHide(true)
   Controls.Title:SetText("SPC "..P.VERSION.." | Specialization diagnostics")
   Controls.OpenButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(false) end)
-  Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()
-    Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
-    meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
-    cancelMeaningReply() -- A late ACK cannot recreate a released diagnostic baseline.
+  Controls.CloseButton:RegisterCallback(Mouse.eLClick,closeWindow)
+  Controls.ExpeditionGateButtonCaption:SetText(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_OPEN'))
+  Controls.ExpeditionGateButton:SetToolTipString(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_INTRO'))
+  Controls.ExpeditionGateButton:RegisterCallback(Mouse.eLClick,function()
+    if ExposedMembers.SPC_ExpeditionGateUIVersion~=P.VERSION then
+      status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE',P.VERSION));return
+    end
+    closeWindow();LuaEvents.SPC_ExpeditionGateOpen()
   end)
   Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()
     ContextPtr:ClearUpdate();pendingToken=nil
@@ -564,7 +573,7 @@ local function initialize()
   Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)
   Controls.UnitReadButton:RegisterCallback(Mouse.eRClick,function() request('CITY_SEQUENCE_BEGIN') end)
   Controls.UnitReadButton:SetToolTipString('左键：移民/施工队报告。右键：旧E2事件观察，仅供排障（替换会话观察，不建专业记录）；日常查看使用左键。')
-  status('P0-D1：跨学科研究已自动运行。[NEWLINE]选中科研城市，左键看摘要、右键看区域组成。诊断只读。')
+  status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_PANEL_HINT'))
 end
 local oldInitialize=initialize
 initialize=function()

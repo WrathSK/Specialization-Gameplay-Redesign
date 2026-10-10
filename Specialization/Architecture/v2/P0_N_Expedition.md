@@ -1,13 +1,13 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_AUTHORIZED / B178_GATE_LOCAL_COMPLETE_AWAITING_NATIVE. N2/N3 and U2 remain ON_HOLD. Current slice below supersedes older planning-only dispatch language; full accepted contracts remain below.
+State: N1_AUTHORIZED / B179_UI_REPAIR_LOCAL_COMPLETE_AWAITING_NATIVE. N2/N3 and U2 remain ON_HOLD. Current slice below supersedes older planning-only dispatch language; full accepted contracts remain below.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。本次重核已接受规则及直接依赖，没有展开新的外交/Spy接口调查；实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；N1已获授权并先执行下述gate。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
-## Current slice — B178.205 travel and protection gate
+## Current slice — N1 travel and protection gate
 
-User authorized N1 implementation on 2026-10-10, **starting with the remote-travel and unit-protection gate**. Era display U2, N2 and N3 remain on hold. Source B178.205 implements only this first gate; **N1 as a whole is not complete**. No further implementation approval is required merely to resume already-authorized N1 after this gate, but a route requiring changed gameplay must return to the user.
+User authorized N1 implementation on 2026-10-10, **starting with the remote-travel and unit-protection gate**. Era display U2, N2 and N3 remain on hold. Source B179.206 keeps the B178 primitive and repairs its missing entry; it implements only this first gate; **N1 as a whole is not complete**. No further implementation approval is required merely to resume already-authorized N1 after this gate, but a route requiring changed gameplay must return to the user.
 
 The gate creates one explicitly requested, free temporary `UNIT_SPC_EXPEDITION_GATE` at a verified Culture ACTIVE IV city. It has `Spy=0`, `CanRetreatWhenCaptured=1`, no normal training/purchase, no Spy promotion/class or archaeology action. Native Builder appearance/icon is a temporary existing asset reference. Exact test-unit END never removes another unit. No City/Player/Unit Property, permanent city record, mission or reward is written. The native unit itself is naturally saveable; no test requires saving it, and loading one only allows explicit inspection/cleanup, never auto-creation.
 
@@ -15,7 +15,7 @@ This is a gate fixture, **not** formal production, training-source receipt, nati
 
 Technical choice: test the native retreat flag directly on a non-Spy custom civilian, with no scripted resurrection or interception. Read `UnitManager.GetTravelTime(unit, city)` and `GetEstablishInCityTime(unit, city)` only when the user clicks the new window. No SPY operation is sent, no off-map placement or guessed travel formula is implemented. A valid numeric return is only `READ_OK`; actual remote deployment/war continuity remain unproved. Native errors, absent helpers or invalid numbers remain UNKNOWN and stop that route. This gate is needed before committing to a remote state/placement strategy.
 
-[Local result and exact native test](../../Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md). New independent **人文考察·验证** HUD entry opens its own small window, with explicit create/read/mark/END controls. It does not alter the P0 panel or replace native espionage UI. Targets are revealed capitals of met, living foreign Majors for a small known fixture; **this is not a new visibility or capital-only gameplay restriction**. Final three mission target rules below remain intact.
+[B179 repair and exact native test](../../Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md). **专业化诊断 → 人文考察·验证** opens the independent small window, with explicit create/read/mark/END controls. The B178 fixed HUD entry was not visible in the submitted screenshot and is replaced by the P0 entry. Seven user-marked completed diagnostics are temporarily hidden with handlers retained. Native espionage UI is unchanged. Targets are revealed capitals of met, living foreign Majors for a small known fixture; **this is not a new visibility or capital-only gameplay restriction**. Final three mission target rules below remain intact.
 
 Execution/state: one explicit request owner; transient spawn reservation before the native grant; uncertain outcome locks creation for the session; duplicate last request cannot repeat its mutation; a single watched unit and last reply are bounded. Normal turns do not scan cities or collect travel data. Opening/refreshing scans only local units and met-major capital summaries; travel reads one selected target. No independent GC, global event-dispatch rewrite or saved Store schema change.
 

@@ -77,34 +77,54 @@ end
 local function close()
  Controls.Window:SetHide(true);ContextPtr:ClearUpdate();pending=nil;targets={};travel=nil
 end
-Controls.OpenButton:RegisterCallback(Mouse.eLClick,function()
+local function open()
+ if not P.IsTestPlayer(Game.GetLocalPlayer())then return end
  Controls.Window:SetHide(false);refreshTargets();request('READ')
-end)
-Controls.CloseButton:RegisterCallback(Mouse.eLClick,close)
-Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()request('CREATE')end)
-Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()refreshTargets();request('READ')end)
-Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()request('ARM')end)
-Controls.EndButton:RegisterCallback(Mouse.eLClick,function()request('END')end)
-local function move(delta)
- if #targets>0 then selected=((selected-1+delta)%#targets)+1;travel=nil;updateTarget();render()end
 end
-Controls.PreviousButton:RegisterCallback(Mouse.eLClick,function()move(-1)end)
-Controls.NextButton:RegisterCallback(Mouse.eLClick,function()move(1)end)
-Controls.TravelButton:RegisterCallback(Mouse.eLClick,function()
- if pending then setReport(L('WAIT'));return end
- if not current or not current.unitID then setReport(L('TEAM_CHANGED'));return end
- if not targets[selected]then setReport(L('NO_TARGET'));return end
- travel=R.Read(Game.GetLocalPlayer(),current.unitID,targets[selected]);render()
- print('[SPC][B178][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
-end)
 local function visibility()
- local pid=Game.GetLocalPlayer();Controls.OpenButton:SetHide(not P.IsTestPlayer(pid))
+ if not P.IsTestPlayer(Game.GetLocalPlayer())then close()end
 end
-Events.LoadScreenClose.Add(visibility)
-Events.LocalPlayerTurnBegin.Add(visibility)
-Events.GameCoreEventPublishComplete.Add(reply) -- O(1), only while waiting on an explicit request.
-ContextPtr:SetInputHandler(function(message,key)
- if message==KeyEvents.KeyUp and key==Keys.VK_ESCAPE and not Controls.Window:IsHidden()then close();return true end
- return false
-end,true)
-Controls.Window:SetHide(true);visibility()
+local initialized=false
+local function initialize()
+ if initialized then return end
+ Controls.CloseButton:RegisterCallback(Mouse.eLClick,close)
+ Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()request('CREATE')end)
+ Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()refreshTargets();request('READ')end)
+ Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()request('ARM')end)
+ Controls.EndButton:RegisterCallback(Mouse.eLClick,function()request('END')end)
+ local function move(delta)
+  if #targets>0 then selected=((selected-1+delta)%#targets)+1;travel=nil;updateTarget();render()end
+ end
+ Controls.PreviousButton:RegisterCallback(Mouse.eLClick,function()move(-1)end)
+ Controls.NextButton:RegisterCallback(Mouse.eLClick,function()move(1)end)
+ Controls.TravelButton:RegisterCallback(Mouse.eLClick,function()
+  if pending then setReport(L('WAIT'));return end
+  if not current or not current.unitID then setReport(L('TEAM_CHANGED'));return end
+  if not targets[selected]then setReport(L('NO_TARGET'));return end
+  travel=R.Read(Game.GetLocalPlayer(),current.unitID,targets[selected]);render()
+  print('[SPC][B179][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
+ end)
+ for control,key in pairs({CloseButtonCaption='CLOSE',CreateButtonCaption='CREATE',RefreshButtonCaption='REFRESH',TravelButtonCaption='TRAVEL',ArmButtonCaption='ARM',EndButtonCaption='END'})do
+  Controls[control]:SetText(L(key))
+ end
+ LuaEvents.SPC_ExpeditionGateOpen.Add(open)
+ Events.LoadScreenClose.Add(visibility)
+ Events.LocalPlayerTurnBegin.Add(visibility)
+ Events.GameCoreEventPublishComplete.Add(reply) -- O(1), only while waiting on an explicit request.
+ ContextPtr:SetInputHandler(function(message,key)
+  if message==KeyEvents.KeyUp and key==Keys.VK_ESCAPE and not Controls.Window:IsHidden()then close();return true end
+  return false
+ end,true)
+ close();visibility();initialized=true
+ ExposedMembers.SPC_ExpeditionGateUIVersion=P.VERSION -- UI readiness only; no saved gameplay state.
+end
+ContextPtr:SetInitHandler(initialize)
+ContextPtr:SetShutdown(function()
+ close()
+ if initialized then
+  LuaEvents.SPC_ExpeditionGateOpen.Remove(open)
+  Events.LoadScreenClose.Remove(visibility);Events.LocalPlayerTurnBegin.Remove(visibility)
+  Events.GameCoreEventPublishComplete.Remove(reply)
+  ExposedMembers.SPC_ExpeditionGateUIVersion=nil;initialized=false
+ end
+end)

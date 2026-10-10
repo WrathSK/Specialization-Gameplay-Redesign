@@ -11,13 +11,13 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0474",
-    "runtime": "B178.205 / modinfo205",
+    "status": "S0475",
+    "runtime": "B179.206 / modinfo206",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b178205-travel-and-protection-gate",
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
   "goal": "Resolve N1 non-Spy travel/protection gate before formal training and remote mission architecture. N1 remains partial.",
   "implementation_authorized": true,
   "context": [
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
       "kind": "section",
-      "selector": "## Current slice — B178.205 travel and protection gate",
+      "selector": "## Current slice — N1 travel and protection gate",
       "reason": "Complete current gate, native stop and N1 continuation"
     },
     {
@@ -99,9 +99,24 @@
       "reason": "Direct gate implementation, inherited qualification dependency or validation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
       "kind": "full",
-      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+      "reason": "B178 entry failure, repaired P0 entrance and remaining native gate"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "B179 entry routing and exactly requested diagnostic visibility; preserve callbacks"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "B179 entry routing and exactly requested diagnostic visibility; preserve callbacks"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_panel_current_layout.py",
+      "kind": "full",
+      "reason": "B179 entry routing and exactly requested diagnostic visibility; preserve callbacks"
     }
   ],
   "dependencies": [
@@ -138,8 +153,8 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L2 scoped explicit native unit creation/destruction and cross-context diagnostics; permanent city/mission state untouched.",
-    "local": "34 new methods and 29 applicable related methods PASS; 202 exact runtime files; Lua/XML/SQL/localization/art/registration. Historical fixture/stamp/manual-panel caveats disclosed.",
+    "depth": "L1 UI entry/visibility repair; N1 gameplay unchanged. Targeted gate regressions retained.",
+    "local": "38 gate + 8 current panel methods PASS; XML/Lua/text/registration and named integrity checks.",
     "user": "One new non-Spy helper/protection gate session; no repeated save/load harness checks."
   },
   "full_audit_triggers": [
@@ -147,8 +162,8 @@
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-    "source": "B178.205 / modinfo205; source 34e0d1f6f35a69e1ba3004ded6886afae8880c00; 202/202 deployed equality MATCH",
+    "report": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+    "source": "B179.206 / modinfo206; 202 runtime files; last deployed B178 until receipt",
     "native": "USER_GAME_TEST_REQUIRED; READ_OK is not remote deployment PASS",
     "stop": "Gate package ready. Resume authorized N1 only after route evidence; N2/N3/U2 remain held."
   }

@@ -73,3 +73,10 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_DESCRIPTION','N1技术验证单位：非间谍，采用原生被捕撤退标志。免费测试创建；不提供正式任务或收益。'),
 ('en_US','LOC_SPC_EXPEDITION_GATE_UNIT_NAME','人文考察团（验证）'),
 ('en_US','LOC_SPC_EXPEDITION_GATE_DESCRIPTION','N1技术验证单位：非间谍，采用原生被捕撤退标志。免费测试创建；不提供正式任务或收益。');
+
+-- B179: P0 entry and readable unavailable state; Chinese remains the UI language.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE','人文考察验证窗口尚未就绪（{1_Version}）。请停止并回传此提示；本次没有创建单位。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE','人文考察验证窗口尚未就绪（{1_Version}）。请停止并回传此提示；本次没有创建单位。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_PANEL_HINT','选中城市后查看专业与文化报告。人文考察团测试请点击右下方“人文考察·验证”。[NEWLINE]已完成阶段的诊断入口暂时隐藏，相关能力仍正常运行。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_PANEL_HINT','选中城市后查看专业与文化报告。人文考察团测试请点击右下方“人文考察·验证”。[NEWLINE]已完成阶段的诊断入口暂时隐藏，相关能力仍正常运行。');

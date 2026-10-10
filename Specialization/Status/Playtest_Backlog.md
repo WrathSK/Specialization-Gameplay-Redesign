@@ -202,3 +202,7 @@ Completed in the observed scope: [B175 native result](Validation/Results/Special
 ## B178 — Expedition N1 travel/protection gate pending
 
 User authorized N1 first; U2/N2/N3 held. [One combined gate session](Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md#one-minimal-native-session) checks an explicit non-Spy test unit, read-only travel helpers and actual enemy-contact retreat. No save-enabled/END/cold-load/re-enable ritual. Native remote deployment, formal training/source/archive and mission history are not declared implemented or passed. Missing enemy-contact fixture means protection NOT_TESTED, not a request for a long test. B177 evidence remains scoped accepted; no repeat required.
+
+## B179 — N1 missing-entry repair; same gate remains pending
+
+[B178 screenshot and B179 repair](Validation/Results/Specialization_B179_N1_Entry_Repair.md): no usable native entry, no helper/protection evidence yet. Use **专业化诊断 → 人文考察·验证**, then the same create/read/contact/END gate. Seven red-boxed diagnostics are hidden only. No extra ability or save/load tests; era UI/N2/N3 stay held.

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="205">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="206">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B178.205: N1 Expedition non-Spy travel-time and native retreat gate. Explicit temporary unit only; no formal training, missions, Insights or Network.</Description>
+    <Description>B179.206: restore the N1 gate entry inside P0 diagnostics and temporarily hide completed diagnostic buttons. Existing gameplay and N1 gate behavior unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

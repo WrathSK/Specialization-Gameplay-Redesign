@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "08a7b52b0b8f3753d5ba0769e5336e11d233a178ced8bdbb01657b3400959af1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "b787217e91aa3d6b6dc2606456c7c151c6fafa85a2eff9016b42f258a0d4237d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b67c34f9641bfb249a4687d1945f1754d823e193925e271bf3df007ba7321d2e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "c14e71508b06ae4230fc1f482bdc70831f29d376d86c83e2d5b8b64bec088820",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "7da57ebdb104ec3477bb4623fcb33eead9e1d9ba6f73d7e764753a68f982af51",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+      "sha256": "8aed8afdc510b133d25891aec07bf0ca319203f32323583542795b2332e5b029",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "3c6e6b42ba333c07bf3af2d3f38e659c8475bb3e285e090576e89914435aff3f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
-      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+      "sha256": "b5a3c39b5a19d3184d517a5f666184d62ecef5dd5c006a1896f322d477e7c127",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -1001,19 +1001,19 @@
       "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "5f1b34b17927bb424ce9f0f2a6efc601d3110eebb9bafcf7920adf7888b29e52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "ec9fbfb0928f42fc1bb04811a359bb9fdef0ec509460eda854c061dc280a025f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
-      "sha256": "8482147d79f1ad63be5e058c7d16a84618403a2b20b8ef6003ff82c3a134d2a5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "bc350eadb81b178c0ea6c07704175a9458a3665d0047109a338b06900fd43f5a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     },
     "Mod/UI/ExpeditionGateWindow.xml": {
-      "sha256": "20a4e5ed0541af24315dcfadb76fad9338690ba05519dc1aa96ed5ab7c6978e6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "abb3306c8ebf520de7bfe1dae4ae3f8cf162256a4bb028d59f51efee64e27416",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
+      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
     }
   }
 }

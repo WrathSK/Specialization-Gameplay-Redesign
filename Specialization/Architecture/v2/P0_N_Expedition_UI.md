@@ -1,6 +1,7 @@
 # 人文考察团 UI 计划
 
-State: N1_AUTHORIZED / GATE_WINDOW_IMPLEMENTED; full management layout remains proposed until the travel route is established. N2/N3 pages remain ON_HOLD. See [current N1 gate](P0_N_Expedition.md#current-slice--b178205-travel-and-protection-gate); older planning-only dispatch below does not revoke the current N1 authorization.
+State: N1_AUTHORIZED / B179_GATE_P0_ENTRY_REPAIRED; full management layout remains proposed until the travel route is established. N2/N3 pages remain ON_HOLD. See [current N1 gate](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate); older planning-only dispatch below does not revoke the current N1 authorization.
+Current gate entry: **专业化诊断 → 人文考察·验证**. This temporary validation entrance does not replace the proposed normal management UI below.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

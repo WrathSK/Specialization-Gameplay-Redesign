@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0474
-Implementation Build: source/live B178.205 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0475
+Implementation Build: source B179.206; last live B178.205 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B178_N1_GATE_DEPLOYED_AWAITING_NATIVE
+Work State: B179_N1_ENTRY_REPAIR_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-User authorized **人文考察团 N1**, starting with travel/protection. [B178.205 gate](../Architecture/v2/P0_N_Expedition.md#current-slice--b178205-travel-and-protection-gate) is locally complete: explicit non-Spy test unit, native retreat flag, independent **人文考察·验证** window and read-only travel helpers. **N1 is partial**: normal training, actual remote deployment, reliable training/archive binding and reattachment wait on native route evidence. No mission/reward/Insights/Network or city-ledger writes. Era UI U2, N2 and N3 remain on hold.
+**B179.206 N1 entry repair locally complete.** User's B178 screenshot shows the expected package but no usable test entry; the gate is ENTRY_BLOCKED, not native PASS. [Repair and one-session continuation](Validation/Results/Specialization_B179_N1_Entry_Repair.md): **专业化诊断 → 人文考察·验证** now opens the independent window. Seven marked diagnostics are hidden with handlers retained. Nine visible entries, explicit captions and UI-ready feedback; N1 Gameplay/SQL/reader, existing abilities, saved state and GC unchanged.
+
+**38 gate tests + 8 current panel tests PASS**; native rendering/helpers/protection remain USER_GAME_TEST_REQUIRED. The [N1 current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) is partial: no formal training, actual remote deployment or archive lifecycle yet. N1 continuation already authorized after route evidence; N2/N3/era UI stay held. B177 scoped acceptance is unchanged.
+
+Source **B179.206 / modinfo206**; last verified live **B178.205**, source `34e0d1f`, receipt `B178.205-34e0d1f-playtest.json`, 202/202 MATCH. A new receipt is required before claiming B179 deployed. Manifest: `P0-N1.json`.
+
+Next: complete the same unexecuted gate through the corrected entry; no repeated historical ability or save/load tests, Design change, main promotion or unrelated repair.
+
+## S0474 — B178 first gate deployment checkpoint
+
+User authorized **人文考察团 N1**, starting with travel/protection. [B178.205 gate](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) is locally complete: explicit non-Spy test unit, native retreat flag, independent **人文考察·验证** window and read-only travel helpers. **N1 is partial**: normal training, actual remote deployment, reliable training/archive binding and reattachment wait on native route evidence. No mission/reward/Insights/Network or city-ledger writes. Era UI U2, N2 and N3 remain on hold.
 
 [Local result and one-session native flow](Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md):34 new methods and29 applicable related methods PASS; exact202-file package/syntax/SQL/localization checked. Native helper suitability and retreat are **USER_GAME_TEST_REQUIRED**, never inferred from the flag or mock. Existing B177 earned Dialogue integration remains [scoped native PASS](Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md); prior numerical attribution unknowns do not reopen its gate.
 
