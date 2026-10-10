@@ -62,3 +62,7 @@ Native event ordering, live synchronous UI-to-Gameplay completion sampling and a
 The source checkpoint contains both B174 and this first Dialogue slice. Deployment is recorded only after the existing W0003 receipt/hash/game-exit transaction completes; the pre-transaction live reference is B173.200. No main promotion or new native acceptance is implied.
 
 Await the combined user result. Later native-only multiplier work and old Dialogue writer retirement remain separate, unimplemented slices. Do not advance N/U2, another audit repair or another profession automatically.
+
+## Deployment checkpoint — 2026-10-09
+
+Verified OS game exit and clean/pushed source `886484a69189ac6c5cdacfd409f065f66957387f`. Existing W0003 tools restored the exact B173 receipt's stable bridge, retaining the outgoing B173 package, then activated B175.202. Receipt `B175.202-886484a-playtest.json`: **DEVELOP_ACTIVE / 194/194 MATCH**, no pending transaction; B173 and stable recovery packages retained. Main/source contracts and GC unchanged; no game launch or new native PASS. Deployment metadata is committed separately from the implementation.

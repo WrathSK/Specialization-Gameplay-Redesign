@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0463
-Implementation Build: source B175.202; recorded live B173.200 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0464
+Implementation Build: source/live B175.202 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B175_M1_LOCAL_COMPLETE_COMBINED_NATIVE_REQUIRED
+Work State: B175_DEPLOYED_COMBINED_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,13 @@ Source is **B175.202 / modinfo202**, the approved [first Dialogue slice](../Arch
 
 The package also contains B174's [investment propagation repair](Validation/Results/Specialization_B174_Investment_Propagation_Local.md); its native observation is combined with Dialogue while PASS labels stay separate. No new GPP rounding investigation. B173 percentage API acceptance remains scoped to observed behavior; exact Scientist/Merchant source/stacking attribution stays UNKNOWN and non-blocking.
 
-Recorded live is still **B173.200** (`bc54482`, `B173.200-bc54482-playtest.json`, prior189/189 MATCH) until the W0003 game-exit/hash/receipt transaction is separately recorded. Main/stable B069.96 and recovery are unchanged. Approved next actions: complete this batch's checkpoint/safe test-package deployment and receive the single combined user test. No automatic next M slice, N/U2, other repair or promotion.
+Recorded live is **B175.202**, source `886484a`, receipt `B175.202-886484a-playtest.json`: DEVELOP_ACTIVE / 194/194 MATCH, no pending transaction. Verified OS game exit and existing W0003 tools; B173 and stable recovery retained. Main/stable B069.96 is unchanged. Next action is the single combined user test; no automatic next M slice, N/U2, other repair or promotion.
 
 The new persistence is a small optional per-city Store extension, not a general save migration. Pre-test save/receipt recovery remains required; uncertain completion is held, never reconstructed from a later collection. Current native flow includes one meaningful post-success cold load; no shared-Probe OFF/re-enable ceremony.
+
+## S0464 — combined B175 package safely deployed
+
+Clean/pushed source `886484a`, verified OS exit, exact B173 receipt/stable bridge and staged B175 switch completed through existing tools. 194/194 MATCH / DEVELOP_ACTIVE, no pending transaction, B173/stable recovery retained. No game launch, main promotion, source change after validation or native PASS. Await the one combined B174/Dialogue flow; new cumulative yields remain deferred.
 
 ## S0463 — first Dialogue project/history batch locally complete
 

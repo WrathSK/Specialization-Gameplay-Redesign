@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "bc5448268929c2625f06d6d39bf89778dd70147d",
-  "runtime": "B173.200 / modinfo200 recorded deployed checkoutbc54482; B175.202 source combines first Dialogue gate and B174 repair, native acceptance pending",
+  "runtime_commit": "886484a69189ac6c5cdacfd409f065f66957387f",
+  "runtime": "B175.202 / modinfo202 deployed committed source886484a;194/194 MATCH; combined B174/M1 native gate pending; new cumulative yield not enabled",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

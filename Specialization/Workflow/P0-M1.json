@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0463",
+    "status": "S0464",
     "runtime": "B175.202 / modinfo202",
     "military": "D0037",
     "harbor": "D0037",
@@ -232,8 +232,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
-    "source": "B175.202/modinfo202; exact source commit in Git,194 package files.",
-    "deployment": "Pre-transaction recorded live B173.200; only actual W0003 receipt establishes switch.",
+    "source": "B175.202/modinfo202; committed 886484a69189ac6c5cdacfd409f065f66957387f;194 files.",
+    "deployment": "DEVELOP_ACTIVE; B175.202-886484a-playtest.json;194/194 MATCH, B173/stable recovery retained; pending native.",
     "stop": "Await combined native observation; M multiplier/cutover and N/U2 not implemented."
   }
 }
