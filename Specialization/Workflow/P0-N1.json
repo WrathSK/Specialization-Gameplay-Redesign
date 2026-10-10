@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0477",
-    "runtime": "B180.207 / modinfo207 (source; live B179.206)",
+    "status": "S0478",
+    "runtime": "B180.207 / modinfo207",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -163,7 +163,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-    "source": "B180.207 / modinfo207 local; live B179.206 until verified deployment",
+    "source": "B180.207 / modinfo207; source 42a66afc0aef8db2f30d84c2272919ce7cecd394; deployed202/202 MATCH",
     "native": "USER_GAME_TEST_REQUIRED; B179 click failure, no N1 helper/protection evidence",
     "stop": "UI correction only; same N1 gate remains pending. N2/N3/U2 held."
   }

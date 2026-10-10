@@ -41,4 +41,4 @@ Original image moved byte-identically, unchanged filename, to ignored `local/leg
 
 ## Deployment
 
-Source B180.207 is locally validated; recorded live remains B179.206, source5795935 / receipt `B179.206-5795935-playtest.json`, until a verified existing-tool transaction. No game launch or native PASS.
+Source `42a66afc0aef8db2f30d84c2272919ce7cecd394` / B180.207 / modinfo207 deployed through existing W0003 tools after clean/pushed-source and repeated OS game-exit verification. Receipt `B180.207-42a66af-playtest.json` is **DEVELOP_ACTIVE; 202/202 MATCH**. Exact B179 and stable recovery retained; no pending transaction. Main unchanged; no game launch or native PASS.

@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0477
-Implementation Build: source B180.207 local; live B179.206 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0478
+Implementation Build: source/live B180.207 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B180_N1_WINDOW_VISIBILITY_LOCAL_COMPLETE
+Work State: B180_N1_WINDOW_VISIBILITY_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B180.207 N1 hidden-parent correction locally complete.** B179 screenshot confirms the P0 entry/layout; user reports clicking closes P0 without opening N1. [Diagnosis and correction](Validation/Results/Specialization_B180_N1_Window_Visibility.md): native add-ins start hidden; N1 now unhides its root and acknowledges opening before P0 closes. Failures retain P0 with a Chinese error. The seven hidden diagnostics remain hidden.
+**B180.207 N1 hidden-parent correction deployed; native confirmation pending.** B179 screenshot confirms the P0 entry/layout; user reports clicking closes P0 without opening N1. [Diagnosis and correction](Validation/Results/Specialization_B180_N1_Window_Visibility.md): native add-ins start hidden; N1 now unhides its root and acknowledges opening before P0 closes. Failures retain P0 with a Chinese error. The seven hidden diagnostics remain hidden.
 
 **41 gate + 10 panel tests PASS**; new fixtures cover hidden parent and real two-context routing. Native rendering/helpers/protection remain USER_GAME_TEST_REQUIRED. [N1 current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) remains partial; N2/N3/era UI held. Gameplay, Design, permanent state and GC unchanged.
 
-Source **B180.207 / modinfo207**; recorded live **B179.206 DEVELOP_ACTIVE**, source `5795935`, receipt `B179.206-5795935-playtest.json` until verified replacement. Main unchanged. Manifest: `P0-N1.json`.
+Source/live **B180.207 / modinfo207 DEVELOP_ACTIVE**, source `42a66af`, receipt `B180.207-42a66af-playtest.json`, **202/202 MATCH**. Game exit verified; exact B179/stable recovery retained; no pending transaction. Main unchanged. Manifest: `P0-N1.json`.
 
-Next: after safe deployment, open **专业化诊断 → 人文考察·验证**, then resume the same pending N1 gate. No extra save/load or unrelated ability tests.
+Next: open **专业化诊断 → 人文考察·验证**, then resume the same pending N1 gate. No extra save/load or unrelated ability tests.
 
 ## S0474 — B178 first gate deployment checkpoint
 
