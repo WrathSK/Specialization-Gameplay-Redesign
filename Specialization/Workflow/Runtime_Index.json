@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "7fa7c49efd9a7a81a4534af4d13ea1f8e038b022a5a1e3f990de75aac1ce719e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-      "provenance": "B180 authorized N1 UI root visibility and acknowledged handoff; targeted local regressions. No Gameplay change; native rendering pending."
+      "sha256": "eb785a211a75dea27f44b6f8db652e4366266a55c8c7e30ce407a436e6f62afd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "888e47f2e550c321f7f4be0439beeb993387d2db8b7c57b3ad3bf67e5d0993b9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-      "provenance": "B180 authorized N1 UI root visibility and acknowledged handoff; targeted local regressions. No Gameplay change; native rendering pending."
+      "sha256": "0518823ec7a567daef8161f92c43c76aaade41fb5326968246a734f58aa840a7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,19 +1001,19 @@
       "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "65a3b2e8649f2b3fd4be856ca8fe6bcc249189cb6805bef01fc9d127ce970f41",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-      "provenance": "B180 authorized N1 UI root visibility and acknowledged handoff; targeted local regressions. No Gameplay change; native rendering pending."
+      "sha256": "fbc749bcf6d66f402fc2eed190a829c5b2ac8cf58db0f69fea1264329e87a4da",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
-      "sha256": "b18edab275eb482b15de970f303cb1c45fcdff8d69699ff5e7ca1a437363c5f8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-      "provenance": "B180 authorized N1 UI root visibility and acknowledged handoff; targeted local regressions. No Gameplay change; native rendering pending."
+      "sha256": "01da28a95db25b4d2d47b2e4aca4bb11f996334dcf56efaf444bc576787b645d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/UI/ExpeditionGateWindow.xml": {
-      "sha256": "abb3306c8ebf520de7bfe1dae4ae3f8cf162256a4bb028d59f51efee64e27416",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
-      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
+      "sha256": "5ce5ff851733a7b7d0bd1ab2e299b5b2acc11711c3d70c630144ce3b78a12373",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     }
   }
 }

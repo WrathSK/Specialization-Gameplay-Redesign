@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0478",
-    "runtime": "B180.207 / modinfo207",
+    "status": "S0479",
+    "runtime": "B181.208 / modinfo208",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Resolve N1 non-Spy travel/protection gate before formal training and remote mission architecture. N1 remains partial.",
-  "implementation_authorized": true,
+  "goal": "Record B180 scoped gate evidence, repair panel only, and review mission-only movement/coexistence replacement plan. N1 remains partial.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct gate implementation, inherited qualification dependency or validation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
       "kind": "full",
-      "reason": "Native-hidden parent failure, corrected UI handoff and remaining same gate"
+      "reason": "Latest native observations, authorized panel repair, explicit plan-only continuation boundary"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -121,12 +121,18 @@
   ],
   "dependencies": [
     "Current EffectiveFacts qualification read; new native unit/database/icon/art registration and explicit independent UI request.",
-    "Native helper and retreat behavior unproven; no other professional-unit protection is changed."
+    "B180 native helper and one hostile-contact retreat observed; final mission-only/coexistence primitive unknown. No other professional-unit behavior changes."
   ],
   "old_writers": [
     "No existing Expedition writer or city archive; no existing ability retired or overridden."
   ],
   "conditional_context": [
+    {
+      "trigger": "Review the proposed mission-only movement/coexistence route; implementation requires next batch approval",
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md"
+      ]
+    },
     {
       "trigger": "After native route evidence, formal N1 production/source/reattachment work",
       "paths": [
@@ -153,18 +159,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 UI root visibility and handoff correction; N1 Gameplay unchanged.",
-    "local": "41 gate + 10 panel methods PASS, including hidden-root counterexample and actual two-context handoff; named integrity checks.",
-    "user": "One new non-Spy helper/protection gate session; no repeated save/load harness checks."
+    "depth": "L1 panel-only layout/copy repair; N1 Gameplay unchanged. B180 evidence archival and bounded technical investigation.",
+    "local": "42 gate + 10 panel methods PASS; new native-style geometry/caption counterexample. Named integrity/selector/link review.",
+    "user": "B180 scoped window/create/helper/retreat evidence recorded; no repeat retreat/save-load test. Incidental B181 visual check only."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-    "source": "B180.207 / modinfo207; source 42a66afc0aef8db2f30d84c2272919ce7cecd394; deployed202/202 MATCH",
-    "native": "USER_GAME_TEST_REQUIRED; B179 click failure, no N1 helper/protection evidence",
-    "stop": "UI correction only; same N1 gate remains pending. N2/N3/U2 held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+    "source": "B181.208 / modinfo208 panel local complete; live remains B180 until a verified new receipt.",
+    "native": "B180 scoped USER_GAME_TEST_PASS/READ_OK; END not observed; formal coexistence/dispatch NOT_IMPLEMENTED.",
+    "stop": "Replacement plan review only; no new unit route implementation, no N2/N3/U2."
   }
 }

@@ -165,7 +165,7 @@ class Package(unittest.TestCase):
         new=['ExpeditionGate.lua','ExpeditionGateRead.lua','Data/ExpeditionGate.sql','Text/ExpeditionGate.sql','UI/ExpeditionGateWindow.lua','UI/ExpeditionGateWindow.xml']
         for p in new:self.assertIn(p,files)
         for e in m.findall('./InGameActions/*/File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
-        self.assertEqual(m.attrib['version'],'207')
+        self.assertEqual(m.attrib['version'],'208')
         ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml')
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
         self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(len(names),6)
@@ -193,7 +193,7 @@ class Window(unittest.TestCase):
     def runtime(self, initialize=True):
         l=Reader().runtime()
         l.execute(r"""
-          P.VERSION='P0-B-180.207';SPCP0=P;units={};sent=0
+          P.VERSION='P0-B-181.208';SPCP0=P;units={};sent=0
           include=function()end;Mouse={eLClick=1};KeyEvents={KeyUp=1};Keys={VK_ESCAPE=27}
           Locale={Lookup=function(key,...)local a={...};for i,v in ipairs(a)do a[i]=tostring(v)end;return key..':'..table.concat(a,',')end}
           Controls={}
@@ -254,5 +254,24 @@ class Window(unittest.TestCase):
                 self.assertEqual(label.get('Color'),'255,255,255,255')
                 self.assertTrue(label.get('String'))
         l=self.runtime();l.execute("assert(Controls.CreateButtonCaption.text:find('CREATE') and Controls.EndButtonCaption.text:find('END'))")
+
+    def test_target_controls_use_readable_captions_and_nonoverlapping_small_buttons(self):
+        # MainButton has native MinSize=80x41; the old 40x30 arrow controls
+        # overflowed their declared slot. Small style and explicit bounds avoid it.
+        root=ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml').getroot()
+        window=root.find("Container[@ID='Window']");width=int(window.get('Size').split(',')[0])
+        bounds=[]
+        for name,key in [('PreviousButton','PREVIOUS'),('NextButton','NEXT')]:
+            b=root.find(".//GridButton[@ID='"+name+"']")
+            self.assertEqual(b.get('Style'),'MainButtonSmall')
+            self.assertEqual(b.get('Anchor'),'L,T')
+            x,y=map(int,b.get('Offset').split(','));w,h=map(int,b.get('Size').split(','))
+            self.assertGreaterEqual(w,100);self.assertGreaterEqual(x,18);self.assertLessEqual(x+w,width-18)
+            self.assertEqual(b.find('Label').get('String'),'LOC_SPC_EXPEDITION_GATE_'+key)
+            bounds.append((x,x+w))
+        label=root.find(".//Label[@ID='TargetLabel']");wrap=int(label.get('WrapWidth'))
+        self.assertGreaterEqual((width-wrap)/2,bounds[0][1]+10)
+        self.assertLessEqual((width+wrap)/2,bounds[1][0]-10)
+        l=self.runtime();l.execute("assert(Controls.PreviousButtonCaption.text:find('PREVIOUS') and Controls.NextButtonCaption.text:find('NEXT'))")
 
 if __name__=='__main__':unittest.main(verbosity=2)

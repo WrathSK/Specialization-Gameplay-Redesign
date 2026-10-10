@@ -1,7 +1,7 @@
 # 人文考察团 UI 计划
 
-State: N1_AUTHORIZED / B180_GATE_HIDDEN_ROOT_CORRECTED_NATIVE_PENDING; full management layout remains proposed until the travel route is established. N2/N3 pages remain ON_HOLD. See [current N1 gate](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate); older planning-only dispatch below does not revoke the current N1 authorization.
-Current gate entry: **专业化诊断 → 人文考察·验证**. This temporary validation entrance does not replace the proposed normal management UI below.
+State: N1_PARTIAL / B180_SCOPED_NATIVE_OBSERVED / B181_PANEL_REPAIRED / COEXISTENCE_PLAN_REVIEW. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; the old planning prose below is not fresh implementation authorization.
+Current entry: **专业化诊断 → 人文考察·验证**. This is still a temporary legacy fixture with readable target navigation, not the formal management system. The [movement/coexistence plan](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) records the user's mission-only movement and exact map-location requirements. No new route is implemented here.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构
@@ -32,7 +32,7 @@ Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、exp
 | 任务成功 | 已确认归档成果、该文明类别完成情况，单位保留 | 下一合法考察／重新部署 |
 | 目标失效 | 原因、未获得见闻、未占成功额度、单位保留 | 重新选择合法目标 |
 | 等待重新挂靠 | 原归档因易主失效，未完成任务已中止 | 选择新归档城；没有合法城时等待 |
-| 保护式回归 | 只展示后端已确认的回归／任务状态 | 不在技术未证明时许诺具体位置或回归时间 |
+| 共存／派遣位置 | 正式考察团按最新用户方向仅通过派遣／任务变更位置 | 共存原语未确认；不把旧接敌撤退展示成最终玩法 |
 
 现存团不因来源Governor／ACTIVE下降、转出Culture或REALLOCATING而禁用，其合法任务与报告能力保持；归档城当下Tourism／Network效果另外按资格显示。Source易主则立即中止未完成任务、旧绑定失效、原Owner保留团，不能继续向已转移来源写新成果。
 

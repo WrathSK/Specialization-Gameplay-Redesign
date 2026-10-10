@@ -210,3 +210,9 @@ User authorized N1 first; U2/N2/N3 held. [One combined gate session](Validation/
 ## B180 — N1 hidden-root repair; same gate pending
 
 [B179 click failure and B180 correction](Validation/Results/Specialization_B180_N1_Window_Visibility.md): P0 entry is present, but the N1 parent remained hidden. Corrected root visibility and acknowledged handoff; failures keep P0 open. After deployment, use **专业化诊断 → 人文考察·验证**, then the same create/read/contact/END gate. No extra save/load or other ability testing. N2/N3/U2 stay held.
+
+## B180 / B181 — scoped evidence accepted; new route is plan-only
+
+[Six-image result and panel repair](Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md): window/creation, non-Spy timing2+0 and capacity5→5 observed; user confirms hostile contact caused the same-unit original-Owner retreat. END not observed. No additional retreat or save/load request. B181 target controls/copy repaired locally; visual check may be incidental after deployment. This supersedes the old B178–B180 test dispatches above, without rewriting frozen results.
+
+The formal Expedition must use mission-only movement and harmless coexistence, per the latest explicit direction. [Replacement plan](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) awaits review; it does not assert native immunity or execute a new test. N1 formal training/dispatch/source, N2/N3 and era UI remain incomplete/held at their named boundaries. Live package comes only from Status/receipt.

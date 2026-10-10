@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="207">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="208">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B180.207: unhide the N1 validation context and keep P0 open unless the new window acknowledges opening. Gameplay unchanged.</Description>
+    <Description>B181.208: readable N1 target buttons and contained native-style layout; clearer legacy-prototype instructions. Gameplay unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

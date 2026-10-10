@@ -109,9 +109,9 @@ local function initialize()
   if not current or not current.unitID then setReport(L('TEAM_CHANGED'));return end
   if not targets[selected]then setReport(L('NO_TARGET'));return end
   travel=R.Read(Game.GetLocalPlayer(),current.unitID,targets[selected]);render()
-  print('[SPC][B180][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
+  print('[SPC][B181][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
  end)
- for control,key in pairs({CloseButtonCaption='CLOSE',CreateButtonCaption='CREATE',RefreshButtonCaption='REFRESH',TravelButtonCaption='TRAVEL',ArmButtonCaption='ARM',EndButtonCaption='END'})do
+ for control,key in pairs({CloseButtonCaption='CLOSE',CreateButtonCaption='CREATE',RefreshButtonCaption='REFRESH',TravelButtonCaption='TRAVEL',ArmButtonCaption='ARM',EndButtonCaption='END',PreviousButtonCaption='PREVIOUS',NextButtonCaption='NEXT'})do
   Controls[control]:SetText(L(key))
  end
  LuaEvents.SPC_ExpeditionGateOpen.Add(open)

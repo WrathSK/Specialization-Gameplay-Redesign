@@ -1,6 +1,6 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_AUTHORIZED_B180_GATE_PENDING / N2_N3_U2_ON_HOLD。
+State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_PARTIAL_B180_OBSERVED_B181_PANEL_COEXISTENCE_PLAN_REVIEW / N2_N3_U2_ON_HOLD。
 Authority: Culture D0049 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只维护相关准备范围；实际source/live与授权从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取。
 
 ## 当前切片与停止点
@@ -9,7 +9,7 @@ B173巨作启迪百分比API已获用户按所测范围接受；Scientist/Mercha
 
 用户已授权时代对话首段：B175真实项目＋城市历史已取得所测取消、完成时取样、额度及用户冷重启确认的限定原生PASS；[B174合并观察与证据边界](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md)单独记录。见[M当前切片](P0_M_Dialogue.md#current-slice--b175202-project-and-history)。B176单城0/100/200%对照已取得所测巨作显示响应、五项意义追加不变及END恢复旧AUTO的证据；用户澄清整城面板存在同回合刷新问题，不作为本批反证或新增结算测试门禁，见[M当前切片](P0_M_Dialogue.md#current-slice--b176203-carrier-comparison)。[B177累计接入](P0_M_Dialogue.md#current-slice--b177204-earned-projection)已获授权并本地完成：明确采用Design允许的Tourism-only备用路径，旧动态writer退休；[四图原生整合](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md)已确认累计5/资格暂停0/恢复5/完成后三时代累计20的所测路径。不扩大为所有M生命周期或所有原生产出通过。实际部署与证据只从Status读取。
 
-B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。用户已授权N1，先完成[N1远程耗时／单位保护门槛](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate)。N1整体未完成；N2/N3及U2仍暂停，其它修复未获本批授权。
+B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。B180窗口、只读耗时与所测接敌撤退已记录；B181仅修面板。用户明确正式考察团仅任务派遣、无害共存，当前[调查与修改计划](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md)待审阅，不继续实现新路线。[N1当前切片](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate)保留精确边界；N1整体未完成，N2/N3及U2仍暂停。
 
 ## 按模块阅读
 
