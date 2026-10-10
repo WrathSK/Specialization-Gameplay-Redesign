@@ -1,13 +1,13 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
-State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_NATIVE_DISPLAY_SCOPED_PASS / SETTLEMENT_UNRESOLVED / NATIVE_ONLY_CUTOVER_NOT_IMPLEMENTED。
+State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / NATIVE_ONLY_CUTOVER_NOT_IMPLEMENTED。
 Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；用户另行授权B176高倍率临时载体对照；正式累计倍率与cutover未授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
 
 ## Current slice — B176.203 carrier comparison
 
 The user authorizes inspection of existing theatre-building modifiers and a direct +100%/+200% test control, without earning that history. [B176 scope, database evidence, local tests and one short native flow](../../Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md). Right-click **时代对话**: 0% baseline → +100% → +200% → END. Left-click remains the project/history report. This reuses the exact single-city held writer, replaces rather than stacks, leaves Meaning/HD effects active, and never writes the saved Dialogue block/quota. Single session; no repeated M1/save-load acceptance.
 
-[B176 native result](../../Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md): two Writing works show Culture9→18→27 and Tourism15→20→25; five current Meaning additions stay fixed. END reports old AUTO+25%, works11/15 and unchanged saved+5%/used era. Culture scaling includes the HD Amphitheater flat addition; this is not universal base-only separation. City Culture76.1992→74.1992/74.1992 does not track work yields, so actual turn settlement remains unresolved. Other native yields and same-yield Meaning isolation remain outside this control. No repeat lifecycle test or automatic full cumulative writer/cutover; stop at the reviewed checkpoint. Follow Status for deployment and authorization.
+[B176 native result](../../Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md): two Writing works show Culture9→18→27 and Tourism15→20→25; five current Meaning additions stay fixed. END reports old AUTO+25%, works11/15 and unchanged saved+5%/used era. Culture scaling includes the HD Amphitheater flat addition; this is not universal base-only separation. [User clarification and corrected acceptance](../../Status/Validation/Results/Specialization_B176_Acceptance_Clarification.md): original Tourism5 plus existing bonuses explains15/20/25; the known unreliable same-turn city panel is not contrary yield evidence. The extra settlement gate is withdrawn; B176 comparison is complete in its observed scope, without claiming a separate measured turn-credit result. Other native yields and same-yield Meaning isolation remain outside this control. No repeat test or automatic full cumulative writer/cutover. Follow Status for deployment and authorization.
 
 ## Current slice — B175.202 project and history
 

@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0468
+Status Revision: S0469
 Implementation Build: source/live B176.203 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B176_NATIVE_REVIEWED_SETTLEMENT_OPEN
+Work State: B176_CARRIER_COMPARISON_SCOPED_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source/live **B176.203 / modinfo203** remains the user-authorized [single-city Dialogue carrier control](../Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison). [Ten reviewed screenshots](Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md): work Culture9→18→27, Tourism15→20→25; five current Meaning additions unchanged. END restores normal old+25% (works11/15), preserving earned+5%/used era. Scoped display/replacement/END evidence, not full P0-M PASS.
+Source/live **B176.203 / modinfo203** remains the user-authorized [single-city Dialogue carrier control](../Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison). [Ten reviewed screenshots](Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md): work Culture9→18→27, Tourism15→20→25; five current Meaning additions unchanged. END restores normal old+25% (works11/15), preserving earned+5%/used era. Scoped native carrier/replacement/END PASS, not full P0-M completion.
 
-City Culture76.1992→74.1992/74.1992 does not track work yields; actual turn settlement is unresolved. Culture scaling also amplifies the HD Amphitheater flat addition. No claimed universal native-base-only or same-yield Meaning isolation. Current manifest `P0-M2.json` records this bounded result; no new cumulative integration is authorized.
+[User clarification](Validation/Results/Specialization_B176_Acceptance_Clarification.md): original Tourism5 plus existing bonuses gives15/20/25; same-turn city-panel readings are unreliable and are not a new settlement gate. That proposed extra test is withdrawn, without inventing an independently measured turn-credit result. Culture also scales the HD Amphitheater flat addition; universal native-base-only/same-yield Meaning isolation remains outside this comparison. `P0-M2.json` is complete in its bounded scope; no cumulative integration is authorized.
 
 B175 M1 retains [scoped project/history/restart PASS](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). B174 investment/Housing and Scientist response remain accepted; Engineer residual and B173 exact ordering remain non-blocking UNKNOWN. B176 local16+18 PASS and two reproduced historical assertion failures stay as recorded. Deployment remains source `f139bc2`, receipt `B176.203-f139bc2-playtest.json`, last verified194/194 MATCH; not re-deployed or rechecked against runtime here. Main unchanged.
 
-Stop after evidence review. Proposed next distinction is credited turn yield versus stale same-turn readings, without a repeat lifecycle ritual. No full M cutover, new yield coverage, N/U2, Design change, GPP repair, promotion or automatic next implementation.
+Stop after this evidence correction; no additional B176 test. Next proposed work is the separate cumulative Dialogue integration plan, retaining the remaining yield/Meaning boundaries. No full M cutover, new yield implementation, N/U2, Design change, GPP repair, promotion or automatic next implementation.
+
+## S0468 — B176 screenshots recorded
+
+Ten originals hash-archived; work yields/Meaning/END recorded in the frozen native result. Its extra settlement-test proposal based on the city-panel reading was subsequently withdrawn after the user clarified known same-turn refresh limitations; see CURRENT and the separate clarification. Raw readings and original evidence remain unchanged.
 
 ## S0467 — B176 safely deployed
 

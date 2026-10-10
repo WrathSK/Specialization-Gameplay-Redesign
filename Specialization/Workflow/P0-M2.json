@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-M2",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0468",
+    "status": "S0469",
     "runtime": "B176.203 / modinfo203",
     "military": "D0037",
     "harbor": "D0037",
@@ -155,7 +155,7 @@
   "validation": {
     "depth": "L2 scoped carrier replacement and caller behavior; targeted lifecycle faults only",
     "local": "16 targeted +18 related PASS;2 selected historical tests fail identically on af3bc4c Dialogue baseline. No gameplay-wide/stress run.",
-    "user": "Ten-image same-T76 comparison reviewed: scoped native work-display response/replacement/END and five unchanged Meaning outputs. City Culture does not track work yields; credited settlement remains unresolved. No repeat cold-load/defaultOFF/re-enable ritual."
+    "user": "B176 bounded comparison scoped PASS: Culture9/18/27, Tourism15/20/25 using intrinsic5; five Meaning outputs unchanged; END normal old25. User identifies same-turn city panel as unreliable, so no added settlement/lifecycle test. No separately measured turn-credit result claimed."
   },
   "full_audit_triggers": [
     "Need to modify HD, accepted semantics, persistence or global writer cutover: stop that extension and report."
@@ -164,8 +164,9 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md",
     "source": "B176.203/modinfo203;194 runtime files; temporary comparison only.",
     "deployment": "B176.203-f139bc2-playtest.json: DEVELOP_ACTIVE from f139bc2fb22a3eda4563945f3b002c11915d3086;194/194 MATCH. Exact B175/stable recovery retained; no pending transaction/game launch.",
-    "stop": "Evidence checkpoint complete. No new implementation authorization; next proposed check distinguishes stale display from credited turn yield, not repeat lifecycle acceptance.",
+    "stop": "Bounded B176 comparison complete. No further test or implementation authorized by this correction; separate cumulative Dialogue plan is the proposed next work.",
     "native_report": "Specialization/Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md",
-    "native": "PARTIAL: Culture9/18/27, Tourism15/20/25; F6/P10/G18/S6/Faith6 constant. END old25, C11/T15, earned5/used era retained. HD flat Culture amplified; same-yield isolation and actual settlement unproven."
+    "native": "SCOPED_PASS: tested Culture/Tourism response/replacement, five unchanged Meaning additions and END old25. Saved5/used era retained. Same-turn city-panel readings do not create a new acceptance gate. Full cumulative integration/other native yields/same-yield Meaning separation remain separate.",
+    "clarification_report": "Specialization/Status/Validation/Results/Specialization_B176_Acceptance_Clarification.md"
   }
 }
