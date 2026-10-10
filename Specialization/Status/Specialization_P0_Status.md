@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0466
-Implementation Build: source B176.203; recorded live B175.202 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0467
+Implementation Build: source/live B176.203 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B176_CARRIER_CONTROL_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B176_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,13 @@ Source **B176.203 / modinfo203** adds the user-authorized [single-city Dialogue 
 
 B175 M1 retains **scoped USER_GAME_TEST_PASS** for cancellation, normal1T completion with changed completion-time X, +5%/used-era and user-confirmed restart. [Original evidence](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). B174 investment/Housing and Scientist minus24/plus24 remain accepted; Engineer +2.2 residual and B173 exact stacking attribution are non-blocking UNKNOWN. No new GPP test/repair.
 
-Local:16 new methods plus18 selected related methods PASS; two old probe assertions fail identically with pre-change Dialogue and are explicitly excluded from PASS. Context/package/link checks do not prove native settlement. Recorded live remains B175.202 (`886484a`, receipt `B175.202-886484a-playtest.json`,194/194 MATCH at its deployment) until the reviewed W0003 transaction. Main/stable and recovery remain unchanged.
+Local:16 new methods plus18 selected related methods PASS; two old probe assertions fail identically with pre-change Dialogue and are explicitly excluded from PASS. Context/package/link checks do not prove native settlement. B176 is deployed from `f139bc2`, receipt `B176.203-f139bc2-playtest.json`: DEVELOP_ACTIVE /194/194 MATCH, no pending transaction. Game exit was verified without launching it; exact B175/stable recovery retained. Main unchanged.
 
-Next permitted action: deploy this locally checked control only through existing exit/clean-source/hash/recovery gates, then one native comparison. Stop for feedback; no full M cutover, new native-yield coverage, N/U2, Design change, promotion or other audit repair.
+Next permitted action: one native comparison using the deployed control. Stop for feedback; no full M cutover, new native-yield coverage, N/U2, Design change, promotion or other audit repair.
+
+## S0466 — B176 bounded carrier control locally complete
+
+User-authorized theatre/HD primitive check and single-city0/100/200/END control.16 new and18 applicable related checks pass; two old probe cases reproduce unchanged-baseline failures. Earned Dialogue history, normal projects, Meaning/HD definitions, Design andGC remain unchanged. No cumulative writer/cutover or broad native PASS. Deployment is recorded in CURRENT and the linked B176 result.
 
 ## S0465 — B175 project/history native evidence and B174 observations
 

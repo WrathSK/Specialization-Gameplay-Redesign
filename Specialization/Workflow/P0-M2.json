@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0466",
+    "status": "S0467",
     "runtime": "B176.203 / modinfo203",
     "military": "D0037",
     "harbor": "D0037",
@@ -163,7 +163,7 @@
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md",
     "source": "B176.203/modinfo203;194 runtime files; temporary comparison only.",
-    "deployment": "Recorded B175 receipt until actual W0003 transaction; do not infer deployment from HEAD.",
+    "deployment": "B176.203-f139bc2-playtest.json: DEVELOP_ACTIVE from f139bc2fb22a3eda4563945f3b002c11915d3086;194/194 MATCH. Exact B175/stable recovery retained; no pending transaction/game launch.",
     "stop": "Await bounded native comparison; no further implementation automatically."
   }
 }

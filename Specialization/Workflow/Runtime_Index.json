@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "886484a69189ac6c5cdacfd409f065f66957387f",
-  "runtime": "B175.202 / modinfo202 deployed committed source886484a;194/194 MATCH; combined B174/M1 native gate pending; new cumulative yield not enabled",
+  "runtime_commit": "f139bc2fb22a3eda4563945f3b002c11915d3086",
+  "runtime": "B176.203 / modinfo203 deployed committed sourcef139bc2;194/194 MATCH; optional high-percentage carrier native gate pending, cumulative writer not enabled",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
