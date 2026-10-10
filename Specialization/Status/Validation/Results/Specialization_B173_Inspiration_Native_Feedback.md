@@ -15,7 +15,7 @@ Selected city: EDINBURGH (TEST). Every image is the left-click “巨作启迪�
 | 3 | 18:22:04 | 71 | 2 | +6% | National rates/totals refreshed; city no longer producing anything, consistent with Cinema completion |
 | 4 | 18:23:54 | 72 | 0 | +0% | Era/configuration returned to zero; national rates changed; Police Station now queued |
 
-The user confirms that the works were moved to a city that is **not Culture-specialized**, that they did **not** recruit/patronize a Great Merchant, and that no Scientist-GPP-related change is known. Their reminder of an unexplained +1 in earlier saves is preserved as prior uncertainty, not subtracted as a correction from the present figures.
+The user confirms that the works were moved to a city that is **not Culture-specialized**, that they did **not** recruit/patronize a Great Merchant, and that no Scientist-GPP-related change is known. They subsequently clarified that they **passed / gave up the available Great Merchant**. Passing is a separate native action with a point cost; it must not be treated as no point-spending action. Their reminder of an unexplained +1 in earlier saves is preserved as prior uncertainty, not subtracted as a correction from the present figures.
 
 The user estimates this city's Scientist base as `7 + 6`, with a suspicion that the +6 component might not receive percentage bonuses, and Merchant base as approximately 7 (explicitly uncertain). They report Garden +20%. These are user estimates, not a verified city-source inventory or proof of modifier stacking. The [earlier source discussion](Specialization_B168_B169_Native_Feedback.md#用户的516估算) also left the exact source coverage unresolved.
 
@@ -51,7 +51,9 @@ These are national `GPP/turn` readings, not this city's base production. Image 2
 
 All nine T70→T71 total increments equal the T71 displayed rate to within 0.000001, the precision of the displayed values. T71→T72 behaves the same for eight classes. This shows actual changes in accumulated totals in the submitted session; it does **not** isolate how much of each increment came from Inspiration.
 
-Merchant is different: `289.753906 - 307.296875 = -17.542969`, whereas the displayed rate is `+30.457031`. The residual is **-48.000000**. The user explicitly denies recruitment/patronage; its cause remains **UNKNOWN**. Do not relabel it as a recruitment event, a negative Inspiration reward or a carrier defect without evidence.
+Merchant is different: `289.753906 - 307.296875 = -17.542969`, whereas the displayed rate is `+30.457031`. The residual is **-48.000000**. After the user clarified the **Pass** action, a scoped read of the installed native UI confirmed that passing spends GPP: `GetRejectCost` supplies the cost and the button requests `REJECT_GREAT_PERSON`. The displayed totals reconcile exactly as `307.296875 + 30.457031 - 48 = 289.753906`. A 48-point Pass cost is therefore the supported working explanation, not evidence of an Inspiration deduction. The actual cost tooltip/API value at the action was not captured; do not claim it was directly observed. This explains the stock arithmetic, not changes in the per-turn rate.
+
+Static source check (read-only; `CIV_ASSETS` means the installed game asset root): `Base/Assets/UI/Popups/GreatPeoplePopup.lua` lines 279–284, 728–733 and 897–903; `Base/Assets/Text/Vanilla_zh_Hans_CN.xml` lines 51650–51651 and `Base/Assets/Text/en_US/InGameText.xml` lines 4746–4747, key `LOC_GREAT_PEOPLE_PASS_DETAILS`, explicitly state that passing costs Great Person points. No external files or Investigation reports were modified, no full source census was performed, and no universal fixed rejection percentage is assumed.
 
 ## Interpreting the Garden and the user's estimate
 
@@ -75,9 +77,9 @@ General `4.796875 → 5.039062 → 4.796875` and Prophet `9.597656 → 10.078125
 
 Observed: E0→E2→E0 report/configuration updates; unchanged same-turn national readings followed by next-turn refresh; accumulated totals matching the new-turn rate in the comparisons described above. These are stronger than configuration-only evidence, but are not a complete attribution of the bonus.
 
-Still unresolved: exact city base/source eligibility and stacking; the Merchant -48 residual; native-instance withdrawal; a positive-era→different-positive-era replacement; and separately identifiable Aesthetic/Meaning correctness during the work moves. Overall city yields change in the background, but no module-specific reports were submitted, so that is not promoted to a joint three-consumer PASS. No cold-load or re-enable ritual is added.
+Still unresolved: exact city base/source eligibility and stacking; native-instance withdrawal; a positive-era→different-positive-era replacement; and separately identifiable Aesthetic/Meaning correctness during the work moves. Overall city yields change in the background, but no module-specific reports were submitted, so that is not promoted to a joint three-consumer PASS. No cold-load or re-enable ritual is added.
 
-No repeat test or new diagnostic implementation is mandated here. The remaining numerical question is whether a stable, known city source receives the configured percentage and returns to its corresponding baseline. Use the existing bounded combined test and already-observed stable classes where possible; do not expand this into an empire-wide GPP census or reopen the retired fractional-base probe. Further interpretation should preserve the user's recollection and any subsequent evidence rather than force an unexplained baseline to fit a formula.
+The user plans a more precise follow-up test voluntarily. No repeat save/load cycle or new diagnostic implementation is mandated here. The remaining numerical question is whether a stable, known city source receives the configured percentage and returns to its corresponding baseline. Use the existing bounded combined test and already-observed stable classes where possible; do not expand this into an empire-wide GPP census or reopen the retired fractional-base probe. Further interpretation should preserve the user's recollection and any subsequent evidence rather than force an unexplained baseline to fit a formula.
 
 ## Original evidence archive
 
