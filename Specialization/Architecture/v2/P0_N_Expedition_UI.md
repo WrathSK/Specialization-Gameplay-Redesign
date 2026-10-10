@@ -1,7 +1,7 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B182_SPY0_DISPATCH_BLOCKED_REVIEW. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-Current entry: **专业化诊断 → 人文考察·验证**. This is the temporary Spy0 fixture with readable target navigation, not the formal management system. The [movement/coexistence plan](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) records the user's mission-only movement and exact map-location requirements. No new route is implemented here.
+State: N1_PARTIAL / B183_CONTEXT_FIX_LOCAL_COMPLETE. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+Current entry: **专业化诊断 → 人文考察·验证**. Temporary Spy0 fixture; B183 adds readable failure stage and bounded detail while retaining reliable count/source readback. Held sources are labeled recorded, missing readback UNKNOWN. Layout/cap/binding and the [movement/coexistence route](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) are unchanged; this is not the formal management system.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

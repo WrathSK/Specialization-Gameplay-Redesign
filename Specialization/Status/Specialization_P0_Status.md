@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0483
-Implementation Build: source/live B182.209 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0484
+Implementation Build: source B183.210 local; live B182.209 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B182_N1_SPY0_NATIVE_DISPATCH_BLOCKED_REVIEW
+Work State: B183_N1_CONTEXT_FIX_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B182.209 / modinfo209: Spy0 dispatch gate stopped with API_UNAVAILABLE; N1 remains partial.** [Three-image native review](Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md): creation/readback, same unit/source across T84→T85, count1/1, Spy-capacity maximum5→5 and Sparta timing2+0 observed. No arrival or overlap; coexistence is NOT_TESTED. Error rendering hides source/count rather than proving deletion.
+**B183.210 / modinfo210: authorized N1 API-context/error-report repair locally complete.** [Result and minimal native session](Validation/Results/Specialization_B183_Expedition_Context_Fix.md): Gameplay validates the capital through GetCapitalCity; failures show stage/detail with reliable unit/source/count or explicit UNKNOWN. Spy0, cap1, exact city binding, timer and placement route unchanged.
 
-Gameplay calls UI-only City:IsCapital; removing the method from the existing mock reproduces the error before timer/placement. Exact native exception remains unconfirmed. Earlier **62+10 local methods PASS** remains local evidence, not travel PASS. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) now stops for report review, with no automatic fix or Spy1 fallback.
+**71 N1 +10 panel tests PASS** locally, including a context-faithful old/new source counterexample and error/hold/no-retry/readback cases. [B182 observations](Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) retain their scope; actual arrival and harmless coexistence remain USER_GAME_TEST_REQUIRED. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
 
-Recorded source/live **B182.209 DEVELOP_ACTIVE**, source `03a1072`, receipt `B182.209-03a1072-playtest.json`; last deployment verified **202/202 MATCH** and retained B181/stable recovery. This documentation review does not reverify or modify runtime. Main unchanged. Manifest: `P0-N1.json`.
+Source **B183.210**; recorded live **B182.209 DEVELOP_ACTIVE**, source `03a1072`, receipt `B182.209-03a1072-playtest.json`, last verified **202/202 MATCH**. Deployment is not inferred from source. Main unchanged. Manifest: `P0-N1.json`.
 
-Next recommendation, not authorization: narrow API-context/error-report repair, then only the unresolved arrival/coexistence gate. No further test requested now. No Design change, formal N1 training/persistence/reattachment, N2/N3, rewards or era UI; formal named Culture/Shared synchronization still precedes formal N1 integration.
+Next: W0003 guarded deployment when game exit is verified, then one arrival/actual military-civilian coexistence/END session; stop on failure. No repeat save/load ritual, Design change, Spy1 fallback, formal N1 training/persistence/reattachment, N2/N3, rewards or era UI. Formal named Culture/Shared synchronization still precedes formal integration.
 
 ## S0478 — B180 deployment checkpoint (historical)
 

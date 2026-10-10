@@ -12,27 +12,30 @@ end
 local function render()
  local out={};local v=current;local pid=Game.GetLocalPlayer()
  if not v then setReport(L('INITIAL'));return end
- if v.error then
-  out[#out+1]=L(errorKeys[v.error] or 'ERROR',v.error)
- else
-  out[#out+1]=L('COUNT',v.count or 0)
-  if v.unitID then out[#out+1]=L('UNIT',v.unitID,v.x,v.y)end
-  if v.phase=='ENDED' then out[#out+1]=L('ENDED')end
-  if v.phase=='HELD' then out[#out+1]=L('HELD');if v.stop then out[#out+1]=L('ERROR',v.stop)end end
-  if v.createdID and not v.sameUnit and v.phase~='ENDED' then out[#out+1]=L('MISSING')end
-  if v.legacy then out[#out+1]=L('LEGACY')
-  elseif v.unbound then out[#out+1]=L('UNBOUND')
-  elseif v.sourceName then
-   out[#out+1]=L('SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
-   if v.phase=='TRAVELLING' then out[#out+1]=L('JOURNEY',Locale.Lookup(v.targetName),v.dueTurn,math.max(0,v.dueTurn-v.turn))
-   elseif v.phase=='ARRIVED' then out[#out+1]=L('ARRIVED',Locale.Lookup(v.targetName),v.arrivalOthers or 0)
-   elseif v.phase=='CREATED' then out[#out+1]=L('READY')end
-   if v.coLocated then out[#out+1]=L('COLOCATED',v.coLocated)
-   elseif v.occupancyUnknown then out[#out+1]=L('OCCUPANCY_UNKNOWN')end
-  end
+ local failure=v.error or v.stop
+ if failure then
+  out[#out+1]=L(errorKeys[failure] or 'ERROR',failure)
+  if v.errorStep then out[#out+1]=L('FAILURE_STEP',L('STEP_'..v.errorStep))end
+ end
+ -- Keep reliable readback visible on failure; missing readback is never count zero.
+ if v.count~=nil then out[#out+1]=L('COUNT',v.count)else out[#out+1]=L('READBACK_UNKNOWN')end
+ if v.unitID then out[#out+1]=L('UNIT',v.unitID,v.x,v.y)end
+ if v.phase=='ENDED' then out[#out+1]=L('ENDED')end
+ if v.phase=='HELD' and errorKeys[failure]~='HELD' then out[#out+1]=L('HELD')end
+ if v.createdID and not v.sameUnit and v.phase~='ENDED' then out[#out+1]=L('MISSING')end
+ if v.legacy then out[#out+1]=L('LEGACY')
+ elseif v.unbound then out[#out+1]=L('UNBOUND')
+ elseif v.sourceName then
+  out[#out+1]=L(v.phase=='HELD' and 'SOURCE_RECORDED' or 'SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+  if v.phase=='TRAVELLING' then out[#out+1]=L('JOURNEY',Locale.Lookup(v.targetName),v.dueTurn,math.max(0,v.dueTurn-v.turn))
+  elseif v.phase=='ARRIVED' then out[#out+1]=L('ARRIVED',Locale.Lookup(v.targetName),v.arrivalOthers or 0)
+  elseif v.phase=='CREATED' and not failure then out[#out+1]=L('READY')end
+  if v.coLocated then out[#out+1]=L('COLOCATED',v.coLocated)
+  elseif v.occupancyUnknown then out[#out+1]=L('OCCUPANCY_UNKNOWN')end
  end
  local now=R.Capacity(pid)
  out[#out+1]=L('CAPACITY',initialCapacity or '?',now or '?')
+ if v.errorDetail then out[#out+1]=L('FAILURE_DETAIL',v.errorDetail)end
  if travel then
   if travel.status=='READ_OK' then
    out[#out+1]=L('TIMING',Locale.Lookup(travel.targetName),travel.travel,travel.establish,travel.total)

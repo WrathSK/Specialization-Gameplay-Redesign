@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0483",
-    "runtime": "B182.209 / modinfo209",
+    "status": "S0484",
+    "runtime": "B183.210 / modinfo210",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Review B182 Spy0 native dispatch failure and separate API-context defect from untested coexistence; any narrow repair or alternate route needs authorization.",
-  "implementation_authorized": false,
+  "goal": "Authorized B183 narrow Gameplay API-context correction and useful failure report, retaining Spy0/own cap/source binding; native arrival and coexistence pending.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct gate implementation, inherited qualification dependency or validation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
       "kind": "full",
-      "reason": "Complete current prototype scope, local evidence, native steps and stop conditions"
+      "reason": "Current authorized repair, inherited prototype boundaries, local evidence and minimal native test"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -169,18 +169,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L2: new isolated unit/timer/placement lifecycle, actual Lua faults and database/UI integration; no shared Store schema change.",
-    "local": "Prior62 gate+10 panel methods remain LOCAL evidence. Review adds two read-only actual-module comparisons of the documented API-context gap; no source/test modifications or full suite rerun.",
-    "user": "B182 creation/readback and timing scoped native PASS; operation API_UNAVAILABLE, no arrival/coexistence observed. No additional user test before authorized repair."
+    "depth": "L2: narrow target API/diagnostic path and actual Lua/UI faults; no saved schema/unit definition change.",
+    "local": "71 N1 +10 P0 panel methods PASS; Gameplay mock omits UI-only IsCapital. Same-fixture baseline rejects before timer, corrected source accepts. No gameplay-wide suite.",
+    "user": "B182 creation/source/count/timing retained; B183 actual arrival and harmless coexistence plus END at tested destination pending in one session; no repeated cold load."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
-    "source": "B182.209 / modinfo209; source 03a10723197d76d0ec7729e30670c7b4a45b19b3; deployed 202/202 MATCH; Spy0 prototype only.",
-    "native": "Three screenshots: one own unit/source/count retained across T84-T85, Spy max5 and timing2+0; dispatch operation error. Coexistence/arrival/END/duplicate create NOT_TESTED; exact native cause not traced.",
-    "stop": "Review report; narrow API-context repair proposed only. No automatic implementation, Spy1 fallback, formal N1/N2/N3/U2 or Design change."
+    "report": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+    "source": "B183.210 / modinfo210 locally complete; recorded live B182.209 until verified W0003 deployment.",
+    "native": "USER_GAME_TEST_REQUIRED for arrival/coexistence; original B182 scoped observations retained.",
+    "stop": "Await minimal gate evidence; no automatic Spy1/fallback, formal N1/N2/N3/U2 or Design change."
   }
 }

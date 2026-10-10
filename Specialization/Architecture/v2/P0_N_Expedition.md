@@ -1,21 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B182_SPY0_DISPATCH_BLOCKED / REVIEW_BEFORE_REPAIR. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B183_CONTEXT_FIX_LOCAL_COMPLETE / NATIVE_ARRIVAL_COEXISTENCE_PENDING. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B182.209 / modinfo209: native dispatch gate stopped with API_UNAVAILABLE.** [Three-image review and Design implications](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) is the current evidence. The unchanged [local result](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md) preserves the prototype scope and original test contract; its 62+10 local methods are not native travel proof.
+**B183.210 / modinfo210: authorized API-context correction locally complete.** [Repair, 81 targeted checks and one minimal session](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md) is current. Gameplay now validates the chosen capital through `PlayerCities:GetCapitalCity`; failure reports retain known unit/source/count and identify the failed stage, with UNKNOWN for unavailable readback. No capacity/binding/Spy0 or movement-route redesign.
 
-Creation/readback shows one Spy0 fixture, the same own unit/source across T84→T85, Spy-capacity maximum5→5 and travel2+establishment0 for Sparta. Native Spy-operation eligibility rejects this fixture without identifying the reason. No arrival, same-tile contact, END or save/load observation is supplied. Source/count are hidden by the final error rendering, not proven deleted.
+[B182 native review](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) retains creation/count/source/timing evidence and API_UNAVAILABLE. The corrected context-faithful fixture reproduces old B182 rejection versus B183 timer acceptance; **71 N1 +10 panel tests PASS** locally. Native arrival/coexistence remain untested, not failed or passed by simulation.
 
-**Blocking implementation boundary:** Gameplay calls UI-only City:IsCapital; its local fixture incorrectly supplies that method. A read-only actual-module counterexample reproduces API_UNAVAILABLE before timer/placement while retaining count/unit/source. Exact native exception remains unconfirmed. Recommend a narrow context-correct target check and useful error evidence if separately authorized; no fix or fallback has been implemented by this review.
+**Retained scope:** exact old/new types count toward own cap1; source uses current owner/city/coordinates/token; session-only timer waits visibly at departure then attempts exact PlaceUnit. No native Spy operation, normal training, Property/Store write, persisted journey or rewards. Reloaded unbound fixtures are cleanup-only. Met/living/revealed Major capital is a test restriction, not Design.
 
-**Retained prototype scope:** own cap1 counts exact old/new types; source uses current owner/city/coordinates/token; session-only timer waits visibly at departure then attempts exact PlaceUnit. No native Spy operation, normal training, Property/Store write, persisted journey or rewards. Reloaded unbound fixtures are cleanup-only. Target is a met/living/revealed Major capital for this test, not a new Design restriction.
-
-**Stop:** report to the user for route/Design discussion. Do not repeat the failing test before a repair; no automatic Spy1, religious/marker fallback, formal N1 or N2/N3/U2. Formal named Culture/Shared synchronization remains necessary before formal integration; the probe does not change Design. Source/live identity and further authorization remain in Status.
+**Next/stop:** after verified deployment, one continuous session checks actual arrival, available military/civilian overlap, retained source/count and END at the new location. Stop on native failure; do not repeat an uncertain placement. No save/load ritual, Spy1/fallback, formal N1 or N2/N3/U2. Formal named Culture/Shared synchronization still precedes formal integration. Source/live and deployment authorization are in Status.
 
 ## 三种状态与已定数值
 

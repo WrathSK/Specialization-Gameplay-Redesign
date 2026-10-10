@@ -1,8 +1,12 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **Research with B182 Spy0-first prototype follow-up.** Earlier sections preserve inspected source facts and candidate tradeoffs. The latest user approval selects the bounded Spy0 route first; the older Spy1-first ordering below is superseded. [B182 native review](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) is current; the unchanged [local result](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md) retains the pre-test contract; [B180/B181 evidence](../../Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md) stays scoped.
+Date: 2026-10-10. **Research with B183 authorized API-context correction.** [B183 current result](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md) supersedes the B182 repair-awaiting-authorization instruction only. Spy0 remains selected; native arrival/coexistence remain pending. Earlier research and frozen B180/B182 observations retain their original scope.
 
-## B182 native review — stop before repair or Design revision
+## B183 authorized correction — same native route
+
+The user authorized a narrow correction, keeping Spy0, our capacity and city binding unchanged. Gameplay capital validation now uses `PlayerCities:GetCapitalCity`; bounded error stage/detail survives failure alongside reliable readback. Missing readback is UNKNOWN, held source is recorded rather than validated. The actual module with a Gameplay-faithful mock fails on old B182 before timer acceptance and succeeds on B183; 81 targeted methods PASS locally. No unit-row, cap, source, timer, placement, native Spy-operation or persistence change. Arrival and harmless coexistence require the linked one-session gate; a local API fix does not settle native immunity or the need for Spy1.
+
+## B182 native review — preserved pre-repair finding
 
 Three screenshots establish creation/readback, unchanged displayed source/count and Spy-capacity maximum5, plus Spy0 timing2+0 for Sparta. The next operation reports `API_UNAVAILABLE`; arrival and harmless coexistence were not reached. Both successful readbacks have zero other units on the tile. No native END, duplicate-create enforcement or save/load result is claimed.
 

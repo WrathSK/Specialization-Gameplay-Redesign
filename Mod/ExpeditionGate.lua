@@ -1,8 +1,8 @@
--- B182: one session-owned Spy=0 fixture. No permanent ledger, rewards or Spy operations.
+-- B183: context-correct capital check and bounded failure evidence. One session-owned Spy=0 fixture. No permanent ledger, rewards or Spy operations.
 SPCExpeditionGate={KIND='UNIT_SPC_EXPEDITION_ZERO',LEGACY='UNIT_SPC_EXPEDITION_GATE'}
 function SPCExpeditionGate.Start(P,shared)
  local M=SPCExpeditionGate
- local state={};local busy=false;local mutating=false;local lastToken;local lastReply
+ local state={};local busy=false;local mutating=false;local lastToken;local lastReply;local step='REQUEST'
  local function int(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
  local function flag(v)return v==true or v==1 end
  local function row(u)return u and P.Info('Units',u:GetType())end
@@ -41,12 +41,20 @@ function SPCExpeditionGate.Start(P,shared)
   return c
  end
  local function target(pid,t)
+  step='TARGET'
   assert(type(t)=='table' and int(t.owner) and int(t.id) and int(t.x) and int(t.y),'TARGET_CHANGED')
   local p=Players[t.owner]
   assert(p and t.owner~=pid and p:IsMajor() and p:IsAlive(),'TARGET_CHANGED')
   assert(Players[pid]:GetDiplomacy():HasMet(t.owner),'TARGET_CHANGED')
-  local c=p:GetCities():FindID(t.id)
-  assert(c and c:GetOwner()==t.owner and c:GetX()==t.x and c:GetY()==t.y and c:IsCapital(),'TARGET_CHANGED')
+  local cities=p:GetCities();local c=cities:FindID(t.id)
+  assert(c and c:GetOwner()==t.owner and c:GetX()==t.x and c:GetY()==t.y,'TARGET_CHANGED')
+  -- City:IsCapital is UI-only. Gameplay reads the player's current capital.
+  step='CAPITAL'
+  assert(type(cities.GetCapitalCity)=='function','CAPITAL_API_UNAVAILABLE')
+  local capital=cities:GetCapitalCity()
+  assert(capital and capital:GetOwner()==t.owner and capital:GetID()==c:GetID()
+   and capital:GetX()==t.x and capital:GetY()==t.y,'TARGET_CHANGED')
+  step='TARGET'
   local vis=PlayersVisibility and PlayersVisibility[pid]
   assert(vis and vis:IsRevealed(t.x,t.y),'TARGET_UNKNOWN')
   return c -- Capital/revealed restriction belongs only to this bounded fixture.
@@ -54,7 +62,16 @@ function SPCExpeditionGate.Start(P,shared)
  local function reason(err)
   return tostring(err):match(':%d+:%s*([A-Z][A-Z0-9_]+)') or tostring(err):match('^([A-Z][A-Z0-9_]+)') or 'API_UNAVAILABLE'
  end
- local function hold(err)state.phase='HELD';state.stop=reason(err)end
+ local function detail(err)
+  return tostring(err):gsub('[%c]',' '):gsub('%[','('):gsub('%]',')'):sub(1,220)
+ end
+ local function logFailure(code,at,raw)
+  print('[SPC][B183][N1_ZERO_ERROR] step='..at..' code='..code..' detail='..raw)
+ end
+ local function hold(err)
+  state.phase='HELD';state.stop=reason(err);state.errorStep=step;state.errorDetail=detail(err)
+  logFailure(state.stop,state.errorStep,state.errorDetail)
+ end
  local function observe()
   if not state.unitID or state.phase=='ENDED' or state.phase=='HELD' then return end
   local u=owned(state.owner,state.unitID)
@@ -69,7 +86,7 @@ function SPCExpeditionGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers'})do
+   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end
@@ -91,15 +108,15 @@ function SPCExpeditionGate.Start(P,shared)
   return v
  end
  local function arrive()
-  observe();local c=target(state.owner,state.target);local u=owned(state.owner,state.unitID)
-  local before=occupants(c:GetX(),c:GetY())
+  step='ARRIVAL_CHECK';observe();local c=target(state.owner,state.target);local u=owned(state.owner,state.unitID)
+  step='ARRIVAL_CHECK';local before=occupants(c:GetX(),c:GetY())
   assert(type(UnitManager.PlaceUnit)=='function','PLACEMENT_UNAVAILABLE')
   mutating=true;state.phase='PLACING' -- Reserve before a potentially partial native mutation; never retry it.
-  UnitManager.RestoreMovement(u)
-  UnitManager.PlaceUnit(u,c:GetX(),c:GetY())
-  u=owned(state.owner,state.unitID)
+  step='RESTORE_MOVEMENT';UnitManager.RestoreMovement(u)
+  step='PLACE_UNIT';UnitManager.PlaceUnit(u,c:GetX(),c:GetY())
+  step='ARRIVAL_VERIFY';u=owned(state.owner,state.unitID)
   assert(u:GetX()==state.target.x and u:GetY()==state.target.y,'EXACT_PLACEMENT_REJECTED')
-  target(state.owner,state.target);source();unchangedOthers(before)
+  target(state.owner,state.target);step='ARRIVAL_VERIFY';source();unchangedOthers(before)
   UnitManager.FinishMoves(u)
   state.x=u:GetX();state.y=u:GetY();state.arrivalOthers=0
   for _,a in ipairs(before)do if a.owner~=state.owner or a.id~=state.unitID then state.arrivalOthers=state.arrivalOthers+1 end end
@@ -109,6 +126,7 @@ function SPCExpeditionGate.Start(P,shared)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
   assert(P.IsTestPlayer(pid),'SUPPORTED_PLAYER_REQUIRED')
   assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='DISPATCH' or p.Action=='END','BAD_ACTION')
+  step=p.Action
   if p.Action=='READ' then return snapshot(pid)end
   if p.Action=='CREATE' then
    assert(state.phase~='CREATING' and state.phase~='HELD' and state.phase~='PLACING','SPAWN_UNCERTAIN_NO_RETRY')
@@ -137,7 +155,7 @@ function SPCExpeditionGate.Start(P,shared)
    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.FromX==u:GetX() and p.FromY==u:GetY(),'STALE_TRAVEL_SAMPLE')
    assert(int(p.Travel) and int(p.Establish) and p.Travel+p.Establish<=1000,'TRAVEL_TIME_UNKNOWN')
    local t={owner=p.TargetOwner,id=p.TargetID,x=p.TargetX,y=p.TargetY}
-   local c=target(pid,t);t.name=c:GetName()
+   local c=target(pid,t);t.name=c:GetName();step='DISPATCH'
    state.target=t;state.startTurn=Game.GetCurrentGameTurn();state.dueTurn=state.startTurn+p.Travel+p.Establish
    state.nativeAllowed=type(p.NativeAllowed)=='boolean' and p.NativeAllowed or false
    state.nativeStatus=p.NativeStatus=='KNOWN' and 'KNOWN' or 'UNKNOWN'
@@ -160,25 +178,27 @@ function SPCExpeditionGate.Start(P,shared)
   if busy then return end
   if p.Token==lastToken then ExposedMembers.SPC_ExpeditionGateReply=lastReply;return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
-  local ok,v=pcall(handle,pid,p)
+  step='REQUEST';local ok,v=pcall(handle,pid,p)
   shared.RequestDepth=shared.RequestDepth-1;busy=false
   if not ok then
-   local err=v
+   local err=v;local failedStep=step;local raw=detail(err)
    if mutating then hold(err)end
    local readOK,result=pcall(snapshot,pid)
-   v=readOK and result or {owner=pid,phase=state.phase or 'HELD'}
+   v=readOK and result or {owner=pid,phase=state.phase or 'HELD',snapshotUnknown=true}
    v.error=state.stop or reason(err)
+   v.errorStep=state.errorStep or failedStep;v.errorDetail=state.errorDetail or raw
+   if not mutating then logFailure(v.error,v.errorStep,v.errorDetail)end
   end
   mutating=false
   v.token=p.Token;lastToken=p.Token;lastReply=v
   ExposedMembers.SPC_ExpeditionGateReply=v
-  print('[SPC][B182][N1_ZERO] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
+  print('[SPC][B183][N1_ZERO] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
-  local ok,err=pcall(function()
+  step='TURN';local ok,err=pcall(function()
    observe();UnitManager.FinishMoves(owned(pid,state.unitID))
    if state.phase=='TRAVELLING' and Game.GetCurrentGameTurn()>=state.dueTurn then arrive()end
   end)
@@ -188,7 +208,7 @@ function SPCExpeditionGate.Start(P,shared)
  Events.PlayerTurnActivated.Add(data.Turn) -- O(1) owned unit + bound endpoints, no player/city scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
   if not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then
-   local ok,err=pcall(function()observe();if state.phase=='TRAVELLING' then target(state.owner,state.target)end end);if not ok then hold(err)end
+   step='REFERENCE';local ok,err=pcall(function()observe();if state.phase=='TRAVELLING' then target(state.owner,state.target)end end);if not ok then hold(err)end
   end
  end)end
  if Events.UnitRemovedFromMap then Events.UnitRemovedFromMap.Add(function(pid,id)

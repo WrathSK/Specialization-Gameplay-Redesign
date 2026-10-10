@@ -1,4 +1,4 @@
-"""B182: actual Spy=0 gate, independent timer/binding and database checks.
+"""B183: context-correct Spy=0 gate and bounded failure diagnostics.
 Native placement/coexistence remain unproved by local mocks.
 Run with the project's Lua55/Lupa environment and explicit read-only HD DB path.
 """
@@ -47,10 +47,12 @@ class Gate(unittest.TestCase):
           targetCity={id=9,owner=3,x=15,y=8}
           function targetCity:GetID()return self.id end;function targetCity:GetOwner()return self.owner end
           function targetCity:GetX()return self.x end;function targetCity:GetY()return self.y end
-          function targetCity:GetName()return '目标城' end;function targetCity:IsCapital()return capital~=false end
+          function targetCity:GetName()return '目标城' end -- Gameplay has no City:IsCapital.
+          targetCities={FindID=function(self,id)if id==targetCity.id then return targetCity end end,
+            GetCapitalCity=function()if capital~=false then return targetCity end end}
           Players[3]={IsMajor=function()return major~=false end,IsAlive=function()return alive~=false end,
             GetUnits=function()return {FindID=function(self,id)return foreignUnits[id]end}end,
-            GetCities=function()return {FindID=function(self,id)if id==targetCity.id then return targetCity end end}end}
+            GetCities=function()return targetCities end}
           PlayersVisibility={[2]={IsRevealed=function()return visible~=false end}}
           Units={GetUnitsInPlot=function(x,y)
             local o={};for _,collection in ipairs({units,foreignUnits})do for _,u in pairs(collection)do
@@ -170,6 +172,21 @@ class Gate(unittest.TestCase):
     def test_finish_error_after_dispatch_locks_no_automatic_retry(self):
         l=self.runtime();l.execute("req('CREATE','a');finishError=true;assert(dispatch('b').phase=='HELD');finishError=false;currentTurn=83;ownTurn(2);assert(placeCalls==0)")
 
+    def test_gameplay_capital_check_never_requires_ui_city_method(self):
+        l=self.runtime();l.execute("assert(targetCity.IsCapital==nil);req('CREATE','c');local r=dispatch('d');assert(r.phase=='TRAVELLING' and r.dueTurn==83 and not r.error);currentTurn=83;ownTurn(2);r=req('READ','r');assert(r.phase=='ARRIVED' and r.sourceCity==1 and r.unitID==40 and r.count==1 and placeCalls==1)")
+    def test_unavailable_or_different_capital_rejected_before_timer_or_placement(self):
+        for change,code in [('targetCities.GetCapitalCity=nil','CAPITAL_API_UNAVAILABLE'),('capital=false','TARGET_CHANGED'),('targetCities.GetCapitalCity=function()return city end','TARGET_CHANGED')]:
+            with self.subTest(change=change):
+                l=self.runtime();l.execute("req('CREATE','c');"+change+";local r=dispatch('d');assert(r.error=='"+code+"' and r.errorStep=='CAPITAL' and r.errorDetail and r.phase=='CREATED' and not r.dueTurn and r.count==1 and r.sourceCity==1 and r.bound and r.sameUnit and placeCalls==0)")
+    def test_unclassified_capital_exception_keeps_stage_detail_and_readback(self):
+        l=self.runtime();l.execute("req('CREATE','c');targetCities.GetCapitalCity=function()error('native capital read failed')end;local r=dispatch('d');assert(r.error=='API_UNAVAILABLE' and r.errorStep=='CAPITAL' and r.errorDetail:find('native capital read failed') and r.count==1 and r.sourceCity==1 and r.unitID==40 and not r.dueTurn)")
+    def test_turn_failure_survives_refresh_without_repeating_placement(self):
+        l=self.runtime();l.execute("req('CREATE','c');dispatch('d');UnitManager.PlaceUnit=function()placeCalls=placeCalls+1;error('native placement rejected')end;currentTurn=83;ownTurn(2);ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.stop=='API_UNAVAILABLE' and r.errorStep=='PLACE_UNIT' and r.errorDetail:find('native placement rejected') and r.count==1 and r.sourceCity==1 and placeCalls==1 and initCalls==1 and properties==0)")
+    def test_failure_detail_is_bounded_and_cannot_add_ui_markup(self):
+        l=self.runtime();l.execute("req('CREATE','c');targetCities.GetCapitalCity=function()error('[NEWLINE]'..string.char(10)..string.rep('x',1000))end;local r=dispatch('d');assert(#r.errorDetail==220 and not r.errorDetail:find('%[') and not r.errorDetail:find('%c') and r.errorStep=='CAPITAL')")
+    def test_failed_snapshot_does_not_report_empty_capacity(self):
+        l=self.runtime();l.execute("req('CREATE','c');Players[2]:GetUnits().Members=function()error('collection unavailable')end;local r=req('READ','r');assert(r.snapshotUnknown and r.count==nil and r.errorStep=='READ' and r.errorDetail:find('collection unavailable'))")
+
 class Reader(unittest.TestCase):
     def runtime(self):
         l=Gate().runtime()
@@ -250,7 +267,7 @@ class Package(unittest.TestCase):
         new=['ExpeditionGate.lua','ExpeditionGateRead.lua','Data/ExpeditionGate.sql','Text/ExpeditionGate.sql','UI/ExpeditionGateWindow.lua','UI/ExpeditionGateWindow.xml']
         for p in new:self.assertIn(p,files)
         for e in m.findall('./InGameActions/*/File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
-        self.assertEqual(m.attrib['version'],'209')
+        self.assertEqual(m.attrib['version'],'210')
         ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml')
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
         self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(names.count('UNIT_SPC_EXPEDITION_ZERO'),1);self.assertEqual(len(names),7)
@@ -292,7 +309,7 @@ class Window(unittest.TestCase):
     def runtime(self, initialize=True):
         l=Reader().runtime()
         l.execute(r"""
-          P.VERSION='P0-B-182.209';SPCP0=P;units={};sent=0
+          P.VERSION='P0-B-183.210';SPCP0=P;units={};sent=0
           include=function()end;Mouse={eLClick=1};KeyEvents={KeyUp=1};Keys={VK_ESCAPE=27}
           Locale={Lookup=function(key,...)local a={...};for i,v in ipairs(a)do a[i]=tostring(v)end;return key..':'..table.concat(a,',')end}
           Controls={}
@@ -378,5 +395,12 @@ class Window(unittest.TestCase):
         self.assertGreaterEqual((width-wrap)/2,bounds[0][1]+10)
         self.assertLessEqual((width+wrap)/2,bounds[1][0]-10)
         l=self.runtime();l.execute("assert(Controls.PreviousButtonCaption.text:find('PREVIOUS') and Controls.NextButtonCaption.text:find('NEXT'))")
+
+    def test_request_failure_keeps_source_capacity_and_hides_ready_instruction(self):
+        l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();local cities=Players[3]:GetCities();cities.GetCapitalCity=nil;Players[3].GetCities=function()return cities end;Controls.ArmButton.click();local s=Controls.Report.text;assert(s:find('FAILURE_STEP') and s:find('STEP_CAPITAL') and s:find('FAILURE_DETAIL') and s:find('COUNT:1') and s:find('SOURCE:') and not s:find('READY:') and placeCalls==0)")
+    def test_held_failure_shows_recorded_not_validated_source(self):
+        l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();Controls.ArmButton.click();placeThrow=true;currentTurn=85;ownTurn(2);Controls.RefreshButton.click();local s=Controls.Report.text;assert(s:find('STEP_PLACE_UNIT') and s:find('FAILURE_DETAIL') and s:find('SOURCE_RECORDED') and s:find('COUNT:1') and s:find('HELD'))")
+    def test_unknown_snapshot_is_not_rendered_as_zero_teams(self):
+        l=self.runtime();l.execute("gateOpen();Controls.CreateButton.click();Players[2]:GetUnits().Members=function()error('read failed')end;Controls.RefreshButton.click();local s=Controls.Report.text;assert(s:find('READBACK_UNKNOWN') and not s:find('COUNT:0') and s:find('FAILURE_STEP'))")
 
 if __name__=='__main__':unittest.main(verbosity=2)
