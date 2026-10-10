@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0475
-Implementation Build: source B179.206; last live B178.205 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0476
+Implementation Build: source/live B179.206 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B179_N1_ENTRY_REPAIR_LOCAL_COMPLETE
+Work State: B179_N1_ENTRY_REPAIR_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B179.206 N1 entry repair locally complete.** User's B178 screenshot shows the expected package but no usable test entry; the gate is ENTRY_BLOCKED, not native PASS. [Repair and one-session continuation](Validation/Results/Specialization_B179_N1_Entry_Repair.md): **专业化诊断 → 人文考察·验证** now opens the independent window. Seven marked diagnostics are hidden with handlers retained. Nine visible entries, explicit captions and UI-ready feedback; N1 Gameplay/SQL/reader, existing abilities, saved state and GC unchanged.
+**B179.206 N1 entry repair deployed; native confirmation pending.** User's B178 screenshot shows the expected package but no usable test entry; the gate is ENTRY_BLOCKED, not native PASS. [Repair and one-session continuation](Validation/Results/Specialization_B179_N1_Entry_Repair.md): **专业化诊断 → 人文考察·验证** now opens the independent window. Seven marked diagnostics are hidden with handlers retained. Nine visible entries, explicit captions and UI-ready feedback; N1 Gameplay/SQL/reader, existing abilities, saved state and GC unchanged.
 
 **38 gate tests + 8 current panel tests PASS**; native rendering/helpers/protection remain USER_GAME_TEST_REQUIRED. The [N1 current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) is partial: no formal training, actual remote deployment or archive lifecycle yet. N1 continuation already authorized after route evidence; N2/N3/era UI stay held. B177 scoped acceptance is unchanged.
 
-Source **B179.206 / modinfo206**; last verified live **B178.205**, source `34e0d1f`, receipt `B178.205-34e0d1f-playtest.json`, 202/202 MATCH. A new receipt is required before claiming B179 deployed. Manifest: `P0-N1.json`.
+Source/live **B179.206 / modinfo206 DEVELOP_ACTIVE**, source `5795935`, receipt `B179.206-5795935-playtest.json`, **202/202 MATCH**. Verified game exit and exact B178/stable recovery; no pending transaction. Main unchanged. Manifest: `P0-N1.json`.
 
 Next: complete the same unexecuted gate through the corrected entry; no repeated historical ability or save/load tests, Design change, main promotion or unrelated repair.
 

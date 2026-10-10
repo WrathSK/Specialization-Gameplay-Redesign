@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "34e0d1f6f35a69e1ba3004ded6886afae8880c00",
-  "runtime": "B178.205 / modinfo205 deployed source 34e0d1f; 202/202 MATCH; receipt B178.205-34e0d1f-playtest.json; exact B177/stable recovery retained. N1 first gate only, native pending.",
+  "runtime_commit": "579593581a1cca0480baf4e570da558bb34d6852",
+  "runtime": "B179.206 / modinfo206 deployed source 5795935; receipt B179.206-5795935-playtest.json; 202/202 MATCH, B178/stable recovery retained. UI repair, native gate pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

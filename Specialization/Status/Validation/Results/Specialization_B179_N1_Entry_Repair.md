@@ -47,4 +47,4 @@ The original PNG was moved without renaming or re-encoding into ignored `local/l
 
 ## Deployment
 
-Source B179.206 / modinfo206 local checkpoint. Last verified live B178.205, receipt `B178.205-34e0d1f-playtest.json`; actual switch is recorded by the subsequent receipt/Status update. No main promotion or game launch.
+Source `579593581a1cca0480baf4e570da558bb34d6852` / B179.206 / modinfo206 deployed using existing W0003 tools after clean/pushed-source and OS game-exit verification. Receipt `B179.206-5795935-playtest.json` is DEVELOP_ACTIVE; **202/202 MATCH**, exact B178 and stable recovery retained, no pending transaction. Main unchanged; no game launch or native PASS.
