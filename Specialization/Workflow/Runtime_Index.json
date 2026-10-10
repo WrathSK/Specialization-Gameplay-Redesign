@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "14c54555f5ccf391d31eb544d8a27ac3e87708b01d92496c92ef168f9b70b115",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "2c34d2016154d31c2423b3477fe0666d3c3ca4b5a1dc8c4ffaccacaeb32ee3f1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a3783f6e0700e80f3ec26940b017d724f9630173b78d62557ff5bfd66b138ffc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "b331a5c70fbe4ca67a628a58991b1662bb7ce92f7b93a55c07af8948f29d0762",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "80ccdbac24e942d75a4eaa0ddeff398a2f518302a2508d0dbfd6c01476ae9c2b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "ff9c5aa09e4eb8d6e0c84edc0432384d970b89622ee86b11f5e74ea5863924d7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,29 +1016,49 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "b12044d03ae5b4a570f5f43e072a3ecb1baa057dcdc52680d0951a7a6454a61d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "695b1f766e86b38dcb201f33711b74336177978f61cb7f050b1dade8bb1100b4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "5ef71354b1093cefe5438f18366b71806dfb098bb47495a43d1bab0f8d48139b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "69638fcfdddb2f89363188dd01f5333bf96f32c8fcd30d09e9fac4ee80fc1657",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "ab0cfbf363706058a5e4f4eed6cfc8592895bad9cb9b40f2b9b189a07428cda7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "57526a32393235bafdf4fd6546044685d9e44cf8cf72d54d84c24f435b01815b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
-      "sha256": "82ff9aeea0d8e0897a5953c685272ae7f3611cf02edb663e26db4989f77dfa03",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
       "sha256": "505de3fa1260fb5583af8deee95f6610fe5caff5eada5c7f634b87286b7591a4",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
       "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+    },
+    "Mod/ExpeditionSpyUI.lua": {
+      "sha256": "6a6a4fb401b70db7af0ce72928e00ccc2af9d1c6981851c70968b56143c4a0a4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+    },
+    "Mod/UI/ExpeditionSpyChooser.lua": {
+      "sha256": "e3505526ebe165af033680b244d92c3825da1d5f1f183b43718c798767038386",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+    },
+    "Mod/UI/ExpeditionSpyPopup.lua": {
+      "sha256": "a94aaa1bcf3ef527ad87e72bf3c757bef3acb67593d6f755e94c07370509f66a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+    },
+    "Mod/UI/ExpeditionSpyUnitPanel.lua": {
+      "sha256": "32bc488328c5f803f3b69deb65803816bdee61c25d2c76f05e0b0ed7b6c453df",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
     }
   }
 }

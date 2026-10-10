@@ -1,17 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B184_NATIVE_TRAVEL_OBSERVED_IDENTITY_BOUNDARY / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B185_CONTINUITY_TIMER_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B184.211 reviewed: native travel/arrival and one co-located unit observed; source continuity NOT_PASSED.** [Five-image result](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md): returned ID changes, report says both ARRIVED and unbound. An actual-module counterexample confirms a missing returned-ID equality guard; the native identity mechanism remains unproved. Own count1/1 and END0/1 are observed; immediate post-END native classification1 is unresolved, not a leak/cleanup conclusion.
+**B185.212 is locally complete; native pending.** The user authorized identity/source continuity after native travel and an independently timed no-reward task, with exact-type native UI isolation. [Current result and one native session](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md) record67 targeted methods PASS. Source/live deployment state is only in Status; the game is running and B184 remains installed.
 
-**Gain Sources remains read-only/blocked.** Undetected1/escape0 and source0T were read before travel; no mission ran. Native source state and HD completion rewards are not isolated. Readable ordinary-Spy fields remain unchanged only in the tested zero-normal-Spy fixture; full slot/passive immunity is not certified. Prior local checks remain scoped; no new native PASS is inferred for untested lifecycle paths.
+The four new B184 images confirm native **间谍(1/5)** and a second arrival-ID change/unbound report. **One native Spy slot is an explicitly accepted temporary prototype cost**; own cap1/source binding remains. This does not redefine the formal capacity contract below.
 
-[Next proposed batch](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#next-proposed-batch--continuity-and-mission-isolation): reliable logical-team/source continuity, then one independently timed no-reward task on the Spy1 shell with exact-type native mission routing isolated. **Await authorization; no new implementation/test queued.** No name/position adoption, global source zeroing, HD hook removal, formal training, saved journey, rewards, N2/N3/U2 or Design change. Source/live and receipt remain in Status; do not repeat the unchanged B184 gate.
+B185 writes one owned unit marker and requires its unique, exact survival before changing the current native ID; source reference is retained independently. Native marker survival remains unproved: absence/ambiguity holds, without name/coordinate/sole-unit adoption or token copying. A two-player-turn session task grants nothing; native Gain Sources execution and fabricated completion events remain prohibited. The native/HD UI wrappers redirect only the exact custom unit; ordinary Spy logic is retained.
+
+No formal training, saved journey/reattachment, rewards, N2/N3/U2, Store/schema/GC or Design change. Use the new delta session after safe deployment; do not repeat unchanged Spy0 tests or a cold-load ritual. Full passive Spy isolation and formal mission placement remain technical boundaries.
 
 ## 三种状态与已定数值
 

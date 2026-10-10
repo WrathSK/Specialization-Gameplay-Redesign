@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B184 native review: travel/arrival observed, binding continuity not passed; mission isolation still unresolved.** [Five-image review](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md). The original-ID guard has a confirmed reporting/verification gap; this review changes no runtime. Gain Sources execution remains blocked. Earlier evidence below retains its chronological scope; historical requests for approval/testing are not current dispatch.
+Date: 2026-10-10. **B185 continuity/no-reward task locally complete; native pending.** [Current checkpoint](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md) includes the new four-image B184 slot/ID evidence, accepted temporary native-slot cost, exact-type UI integration and the minimal native gate. Earlier evidence below retains its chronological limits; source/live state remains in Status.
 
 ## B184 travel result and continuity prerequisite
 
@@ -12,7 +12,7 @@ The immediate post-END native classification1 versus own Gameplay count0 remains
 
 ## Next proposed batch — continuity and mission isolation
 
-**Plan only, awaiting user authorization.** Keep Spy1, independent capacity/source binding, ordinary Spy/HD definitions and all permanent gameplay records unchanged. This is a technical prototype, not formal N1/N2/N3 or a new task/reward design.
+**Authorized and locally implemented as B185; native validation pending.** The user accepts one native Spy slot temporarily. Keep our cap1/source binding; native/HD definitions and permanent gameplay records remain unchanged. The original proposed boundaries below are retained; the [B185 result](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md#spy-ui-reuse-and-isolation) records the chosen marker/UI/timer solution and its unproved native limits. This is a technical prototype, not formal N1/N2/N3 or a new task/reward design.
 
 1. **Establish continuity before task writes.** Correct the contradictory ARRIVED/same-unit report and verify the ID returned by native lookup. Investigate only the native travel/arrival reference needed to relate the outbound team to its returned object; a supported stable reference or a proved surviving unit-owned marker is a candidate, not assumed available. Retain the source record and capacity reservation while identity is unknown. Never attach by name, coordinates, a guessed ID transformation or merely one matching unit. If no reliable link is available, stop this path and report the exact boundary. Read native classification after publication before declaring END complete.
 2. **Prefer our own no-reward task on the Spy1 shell.** Retain native TRAVEL where valid, but do not request `SPY_GAIN_SOURCES` or synthesize `SpyMissionCompleted` to advance an Expedition task. One explicit task selection, our bounded timer and one completion acknowledgement are enough for the isolation gate. Reuse UI style/components only where they do not invoke native espionage operations. No formal insights, Tourism, Era Score, archive writes, production training or N2/N3 effects in this gate.

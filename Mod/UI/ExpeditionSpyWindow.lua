@@ -4,6 +4,12 @@ local P=SPCP0;local R=SPCExpeditionSpyRead
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local targets={};local selected=1;local request;local lastNativePermit
 local auditSourceID
+local taskBefore,taskAfter,taskEventsBefore,afterPublish
+local function taskRead()
+ if current and current.unitID and current.targetID then
+  return R.TaskRead(Game.GetLocalPlayer(),current.unitID,{owner=current.targetOwner,id=current.targetID,x=current.targetX,y=current.targetY})
+ end
+end
 local missionEvents=0;local lastMission;local observing=false
 local function L(k,...)return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_'..k,...)end
 local function common(k,...)return Locale.Lookup('LOC_SPC_EXPEDITION_GATE_'..k,...)end
@@ -21,6 +27,11 @@ local function render()
  if v.unitID then o[#o+1]=common('UNIT',v.unitID,v.x,v.y)end
  if v.legacy or v.unbound then o[#o+1]=L('UNBOUND')
  elseif v.sourceName then o[#o+1]=common(v.phase=='HELD' and 'SOURCE_RECORDED' or 'SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)end
+ if v.bound then o[#o+1]=L('BOUND',v.createdID,v.unitID)end
+ if v.taskStart then
+  o[#o+1]=L('TASK_PROGRESS',v.taskStart,v.taskDue,v.taskCompletions or 0)
+  o[#o+1]=L('TASK_ISOLATION',value(taskBefore and taskBefore.sourceTurns),value(taskAfter and taskAfter.sourceTurns),value(taskAfter and taskAfter.operation),missionEvents-(taskEventsBefore or missionEvents))
+ end
  if v.phase=='TRAVELLING' then o[#o+1]=L('JOURNEY',Locale.Lookup(v.targetName),v.dueTurn)
  elseif v.coLocated~=nil then o[#o+1]=common('COLOCATED',v.coLocated)end
  if before and audit then
@@ -52,18 +63,22 @@ local function reply()
  if not v or v.owner~=Game.GetLocalPlayer() or v.token~=pending then return end
  local action=pendingAction;pending=nil;pendingAction=nil;ContextPtr:ClearUpdate();current=v
  if action=='CREATE' and not v.error then
-  observing=true;missionEvents=0;lastMission=nil;updateAudit()
+  observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;updateAudit();afterPublish=true
   if comparison=='CHANGED' or comparison=='UNKNOWN' then
    request('STOP','ORDINARY_SPY_PREFLIGHT_'..comparison);return true
   end
  elseif action=='DISPATCH' and not v.error and v.nativePermit and v.nativePermit~=lastNativePermit then
   lastNativePermit=v.nativePermit -- Consume before a native request, including exceptions.
   local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY}
-  local ok,err=R.SubmitTravel(v.owner,v.createdID,target,v.nativePermit)
+  local ok,err=R.SubmitTravel(v.owner,v.unitID,target,v.nativePermit)
   if not ok then request('STOP',err);return true end
-  print('[SPC][B184][N1_SPY_REQUEST] submitted unit='..tostring(v.createdID))
+  print('[SPC][B185][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
   request('READ');return true
- elseif action=='END' and not v.error then observing=false;travel=nil;gain=nil;updateAudit()end
+ elseif action=='TASK' and not v.error then taskAfter=taskRead()
+ elseif action=='END' and not v.error then
+  observing=false;travel=nil;gain=nil;taskBefore=nil;taskAfter=nil;updateAudit();afterPublish=true
+ end
+ if v.taskStart and v.unitID then taskAfter=taskRead()end
  render();return true
 end
 local function readChecks()
@@ -72,18 +87,23 @@ local function readChecks()
  travel=R.Read(Game.GetLocalPlayer(),current.unitID,t)
  gain=R.GainSources(Game.GetLocalPlayer(),current.unitID,t)
  updateAudit();render()
- print('[SPC][B184][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
+ print('[SPC][B185][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
  return travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
 end
 request=function(action,detail)
  if pending then setReport(common('WAIT'));return end
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
- local c=UI.GetHeadSelectedCity();local id=current and (action=='STOP' and current.createdID or current.unitID)
- if (action=='DISPATCH' or action=='END' or action=='STOP') and not id then setReport(common('TEAM_CHANGED'));return end
+ local c=UI.GetHeadSelectedCity();local id=current and (action=='STOP' and current.trackedID or current.unitID)
+ if (action=='DISPATCH' or action=='END' or action=='STOP' or action=='TASK') and not id then setReport(common('TEAM_CHANGED'));return end
  if action=='CREATE' then
   if not c or c:GetOwner()~=pid then setReport(common('OWN_CITY'));return end
   auditSourceID=c:GetID();before=R.Audit(pid,auditSourceID);audit=nil;comparison=nil;travel=nil;gain=nil
   if before.status~='KNOWN' then setReport(L('READ_ERROR',before.error or 'CAPACITY_UNKNOWN'));return end
+ end
+ if action=='TASK' then
+  if not current or not current.bound or current.phase~='ARRIVED' then setReport(L('TASK_REQUIRES_ARRIVAL'));return end
+  taskBefore=taskRead();taskEventsBefore=missionEvents
+  if not taskBefore or taskBefore.status~='KNOWN' or taskBefore.operation~=-1 then setReport(L('TASK_NATIVE_NOT_IDLE'));return end
  end
  if action=='DISPATCH' then
   if not readChecks()then return end
@@ -92,6 +112,7 @@ request=function(action,detail)
  ExposedMembers.SPC_ExpeditionGateSequence=(ExposedMembers.SPC_ExpeditionGateSequence or 0)+1
  pending='N1:'..P.VERSION..':'..ExposedMembers.SPC_ExpeditionGateSequence;pendingAction=action
  local packet={OnStart='SPC_ExpeditionGateRequest',Token=pending,Action=action,CityID=c and c:GetID(),UnitID=id,Detail=detail}
+ if action=='TASK' then packet.SampleTurn=Game.GetCurrentGameTurn();packet.NativeOperation=taskBefore.operation end
  if action=='DISPATCH' then
   packet.SampleTurn=travel.turn;packet.FromX=travel.fromX;packet.FromY=travel.fromY
   packet.TargetOwner=travel.targetOwner;packet.TargetID=travel.targetID;packet.TargetX=travel.targetX;packet.TargetY=travel.targetY
@@ -131,7 +152,16 @@ local function missionEvent(pid,id)
  local ok,m=pcall(function()return Players[pid]:GetDiplomacy():GetMission(pid,id)end)
  lastMission=ok and type(m)=='table' and tostring(m.Operation):sub(1,40) or 'UNKNOWN'
  -- Player-level event only: never infer ownership from a matching unit name.
- print('[SPC][B184][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
+ print('[SPC][B185][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
+end
+local function published()
+ local waiting=afterPublish
+ reply()
+ if waiting then
+  afterPublish=false;updateAudit()
+  if current and current.taskStart then taskAfter=taskRead()end
+  if not ContextPtr:IsHidden()then render()end
+ end
 end
 local initialized=false
 local function initialize()
@@ -140,6 +170,7 @@ local function initialize()
  Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()request('CREATE')end)
  Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()refreshTargets();updateAudit();request('READ')end)
  Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()request('DISPATCH')end)
+ Controls.TaskButton:RegisterCallback(Mouse.eLClick,function()request('TASK')end)
  Controls.EndButton:RegisterCallback(Mouse.eLClick,function()request('END')end)
  Controls.TravelButton:RegisterCallback(Mouse.eLClick,function()if not pending then readChecks()end end)
  local function move(delta)
@@ -148,10 +179,10 @@ local function initialize()
  end
  Controls.PreviousButton:RegisterCallback(Mouse.eLClick,function()move(-1)end)
  Controls.NextButton:RegisterCallback(Mouse.eLClick,function()move(1)end)
- for c,k in pairs({CreateButtonCaption='CREATE',TravelButtonCaption='CHECK',ArmButtonCaption='DISPATCH'})do Controls[c]:SetText(L(k))end
+ for c,k in pairs({CreateButtonCaption='CREATE',TravelButtonCaption='CHECK',ArmButtonCaption='DISPATCH',TaskButtonCaption='TASK'})do Controls[c]:SetText(L(k))end
  for c,k in pairs({CloseButtonCaption='CLOSE',RefreshButtonCaption='REFRESH',EndButtonCaption='END',PreviousButtonCaption='PREVIOUS',NextButtonCaption='NEXT'})do Controls[c]:SetText(common(k))end
  LuaEvents.SPC_ExpeditionGateOpen.Add(open);Events.LoadScreenClose.Add(visibility);Events.LocalPlayerTurnBegin.Add(visibility)
- Events.GameCoreEventPublishComplete.Add(reply)
+ Events.GameCoreEventPublishComplete.Add(published)
  if Events.SpyMissionCompleted then Events.SpyMissionCompleted.Add(missionEvent)end
  ContextPtr:SetInputHandler(function(message,key)
   if message==KeyEvents.KeyUp and key==Keys.VK_ESCAPE and not Controls.Window:IsHidden()then close();return true end
@@ -164,7 +195,7 @@ ContextPtr:SetShutdown(function()
  close();observing=false
  if initialized then
   LuaEvents.SPC_ExpeditionGateOpen.Remove(open);Events.LoadScreenClose.Remove(visibility);Events.LocalPlayerTurnBegin.Remove(visibility)
-  Events.GameCoreEventPublishComplete.Remove(reply)
+  Events.GameCoreEventPublishComplete.Remove(published)
   if Events.SpyMissionCompleted then Events.SpyMissionCompleted.Remove(missionEvent)end
   ExposedMembers.SPC_ExpeditionGateUIVersion=nil;initialized=false
  end

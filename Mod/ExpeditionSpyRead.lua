@@ -1,4 +1,4 @@
--- B184 UI native boundary. Read-only Gain Sources diagnostics; one-shot TRAVEL only.
+-- B185 UI native boundary. Read-only Gain Sources diagnostics; one-shot TRAVEL only.
 SPCExpeditionSpyRead={KIND='UNIT_SPC_EXPEDITION_SPY'}
 local M=SPCExpeditionSpyRead
 local function integer(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
@@ -98,16 +98,17 @@ function M.Audit(pid,sourceID)
 end
 function M.Compare(before,after)
  if not before or not after or before.status~='KNOWN' or after.status~='KNOWN' then return 'UNKNOWN' end
- if before.capacity~=after.capacity or before.fingerprint~=after.fingerprint
-  or integer(before.offmap) and integer(after.offmap) and before.offmap~=after.offmap
-  or type(before.trainable)=='boolean' and type(after.trainable)=='boolean' and before.trainable~=after.trainable then return 'CHANGED' end
+ if before.capacity~=after.capacity or before.fingerprint~=after.fingerprint then return 'CHANGED' end
+ -- Native used slots/off-map count/trainability may change: explicitly accepted
+ -- temporary cost, still displayed. Not evidence of independent native capacity.
+ if before.nativeTotal~=after.nativeTotal or before.offmap~=after.offmap or before.trainable~=after.trainable then return 'SLOT_COST_ACCEPTED' end
  return before.trainable==true and after.trainable==true and integer(before.offmap) and integer(after.offmap) and 'SCOPED_UNCHANGED' or 'PARTIAL'
 end
 function M.GainSources(pid,id,t)
  local v={status='NOT_ISOLATED',executionAllowed=false}
  local ok,err=pcall(function()
   local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
-  assert(u and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
+  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
   local c=M.Target(pid,t.owner,t.id);assert(c and c:GetX()==t.x and c:GetY()==t.y,'TARGET_CHANGED')
   local d=Players[pid]:GetDiplomacy();local turns=call(d,'GetSourceTurnsRemaining',c)
   if integer(turns)then v.sourceTurns=turns end
@@ -130,12 +131,27 @@ function M.GainSources(pid,id,t)
  -- Even undetected=1 cannot isolate native source state or HD completion hooks.
  return v
 end
+function M.TaskRead(pid,id,t)
+ local v={status='UNKNOWN'}
+ local ok,err=pcall(function()
+  local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
+  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
+  local c=M.Target(pid,t.owner,t.id)
+  assert(c and c:GetX()==t.x and c:GetY()==t.y,'TARGET_CHANGED')
+  v.operation=call(u,'GetSpyOperation');assert(type(v.operation)=='number','NATIVE_OPERATION_UNKNOWN')
+  v.sourceTurns=call(Players[pid]:GetDiplomacy(),'GetSourceTurnsRemaining',c)
+  if not integer(v.sourceTurns)then v.sourceTurns=nil end
+  v.status='KNOWN'
+ end)
+ if not ok then v.error=tostring(err):sub(1,200)end
+ return v
+end
 local lastPermit
 function M.SubmitTravel(pid,id,t,permit)
  if type(permit)~='string' or #permit==0 or #permit>100 or permit==lastPermit then return false,'INVALID_OR_USED_PERMIT' end
  local ok,err=pcall(function()
   local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
-  assert(u and u:GetOwner()==pid and r and r.UnitType==M.KIND and (r.Spy==true or r.Spy==1),'SPY_TEST_TEAM_REQUIRED')
+  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND and (r.Spy==true or r.Spy==1),'SPY_TEST_TEAM_REQUIRED')
   local c=M.Target(pid,t.owner,t.id);assert(c and c:GetX()==t.x and c:GetY()==t.y,'TARGET_CHANGED')
   local params={};params[UnitOperationTypes.PARAM_X]=c:GetX();params[UnitOperationTypes.PARAM_Y]=c:GetY()
   assert(UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(c:GetX(),c:GetY()),params)==true,'NATIVE_TRAVEL_NOT_ALLOWED')

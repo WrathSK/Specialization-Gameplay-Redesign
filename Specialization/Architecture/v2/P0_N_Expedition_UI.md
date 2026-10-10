@@ -1,7 +1,7 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B184_NATIVE_TRAVEL_OBSERVED_IDENTITY_BOUNDARY / GAIN_SOURCES_BLOCKED. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-Current entry: **专业化诊断 → 人文考察·验证**, retaining **① 创建Spy验证团 / ② 读取派遣与情报隔离 / ③ 原生派遣 / 刷新报告 / 结束并移除验证团**. [Native review](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md) records travel but a contradictory ARRIVED/unbound report; current UI is not reliable proof of source continuity. [Next plan](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#next-proposed-batch--continuity-and-mission-isolation) first resolves identity/report freshness, then checks exact-type native mission entries and an independent no-reward task. Plan only; no UI change or new test dispatch in this review.
+State: N1_PARTIAL / B185_CONTINUITY_TIMER_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+Current entry: **专业化诊断 → 人文考察·验证**, with **① 创建Spy验证团 / ② 读取派遣与情报隔离 / ③ 原生派遣 / ④ 无奖励任务（2回合） / 刷新报告 / 结束并移除验证团**. [B185 result/UI reuse](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md#spy-ui-reuse-and-isolation) describes exact-type native chooser/popup/unit-panel routing, marker/source reporting and a session-owned timer. Native marker survival, rendering and idle-effect isolation remain pending; a native slot is temporarily accepted. This small window is not the full formal management UI.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

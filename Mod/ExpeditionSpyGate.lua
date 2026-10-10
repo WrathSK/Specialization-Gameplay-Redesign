@@ -1,6 +1,7 @@
--- B184: isolated Spy=1 shell. UI requests native TRAVEL only after a Gameplay permit.
--- Own session capacity/source binding; no Gain Sources execution, rewards or permanent state.
-SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
+-- B185: native Spy travel, marker-proved continuity, independent no-reward timer.
+-- Only this unit gets a probe marker. No city/player ledger, native mission or reward.
+-- Marker survival across engine travel is a native gate; missing/ambiguous proof stops.
+SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO',MARKER='SPC_N1_SPY_PROBE_ID'}
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
  local state={};local busy=false;local mutating=false;local lastToken;local lastReply;local step='REQUEST'
@@ -17,7 +18,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  local function owned(pid,id,allowLegacy)
   local u=Players[pid]:GetUnits():FindID(id);local r=row(u)
-  assert(u and u:GetOwner()==pid and r and (r.UnitType==M.KIND or allowLegacy and (r.UnitType==M.LEGACY or r.UnitType==M.ZERO)),'TEST_TEAM_CHANGED')
+  assert(u and u:GetID()==id and u:GetOwner()==pid and r and (r.UnitType==M.KIND or allowLegacy and (r.UnitType==M.LEGACY or r.UnitType==M.ZERO)),'TEST_TEAM_CHANGED')
   return u
  end
  local function occupants(x,y)
@@ -67,31 +68,64 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return tostring(err):gsub('[%c]',' '):gsub('%[','('):gsub('%]',')'):sub(1,220)
  end
  local function logFailure(code,at,raw)
-  print('[SPC][B184][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
+  print('[SPC][B185][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
  end
  local function hold(err)
   state.phase='HELD';state.stop=reason(err);state.errorStep=step;state.errorDetail=detail(err)
   logFailure(state.stop,state.errorStep,state.errorDetail)
  end
- local function observe()
+ local function marked(u)
+  local r=row(u)
+  return u and u:GetOwner()==state.owner and r and r.UnitType==M.KIND
+   and type(u.GetProperty)=='function' and u:GetProperty(M.MARKER)==state.marker and state.marker~=nil
+ end
+ local function tracked()
+  local u=owned(state.owner,state.unitID)
+  assert(marked(u),'TEAM_MARKER_UNAVAILABLE');return u
+ end
+ local function observe(allowTaskCompletion)
   if not state.unitID or state.phase=='ENDED' or state.phase=='HELD' then return end
   source()
   if state.phase=='TRAVELLING' then
    target(state.owner,state.target)
+   -- Native FindID may return an object with a changed public ID. A matching ID,
+   -- name or location is not continuity proof. Never copy a marker onto arrivals.
    local u=Players[state.owner]:GetUnits():FindID(state.unitID)
-   if u then
-    owned(state.owner,state.unitID) -- Same native ID/type/Owner or stop; never bind by name.
-    if u:GetX()==state.target.x and u:GetY()==state.target.y then
-     state.x=u:GetX();state.y=u:GetY();state.phase='ARRIVED';return
+   if not (marked(u) and u:GetX()==state.target.x and u:GetY()==state.target.y) then
+    u=nil
+    for _,a in ipairs(occupants(state.target.x,state.target.y))do
+     if a.owner==state.owner then
+      local candidate=Players[state.owner]:GetUnits():FindID(a.id)
+      if marked(candidate) then assert(not u,'TEAM_MARKER_AMBIGUOUS');u=candidate end
+     end
     end
    end
-   -- Native off-map travel may temporarily remove the unit. Keep cap reserved;
-   -- allow one publish/turn boundary, then stop instead of adopting a new ID.
-   assert(Game.GetCurrentGameTurn()<=state.dueTurn+1,'NATIVE_ARRIVAL_UNCONFIRMED')
+   if u then
+    -- One scan on the actual arrival transition, not a new per-turn player scan.
+    local all=list(state.owner)
+    assert(#all==1 and all[1]:GetID()==u:GetID() and marked(all[1]),'TEAM_MARKER_AMBIGUOUS')
+    assert(u:GetX()==state.target.x and u:GetY()==state.target.y,'TARGET_CHANGED')
+    local id=u:GetID();owned(state.owner,id)
+    state.unitID=id;state.x=u:GetX();state.y=u:GetY();state.phase='ARRIVED'
+    return
+   end
+   assert(Game.GetCurrentGameTurn()<=state.dueTurn+1,'NATIVE_IDENTITY_UNCONFIRMED')
    return
   end
-  local u=owned(state.owner,state.unitID)
+  local u=tracked()
   assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
+  if state.target then target(state.owner,state.target)end
+  if state.phase=='TASK_RUNNING' then
+   -- GetSpyOperation is established in UI, not assumed present in Gameplay.
+   -- If exposed here, also reject a native mission; otherwise the no-reward
+   -- fixture relies on the checked start sample + exact-type UI isolation.
+   if type(u.GetSpyOperation)=='function' then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
+   if allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
+    state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
+    state.taskCompletions=1 -- One fixture task per team; completion has no effects.
+    print('[SPC][B185][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
+   end
+  end
  end
  local function snapshot(pid)
   if state.owner==pid then local ok,err=pcall(observe);if not ok then hold(err)end end
@@ -101,17 +135,18 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail'})do
+   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end
-   v.createdID=state.unitID;v.bound=state.unitID~=nil and not v.unbound
+   v.createdID=state.createdID;v.trackedID=state.unitID;v.bound=false
    v.targetName=state.target and state.target.name
    if state.target then v.targetOwner=state.target.owner;v.targetID=state.target.id;v.targetX=state.target.x;v.targetY=state.target.y end
    if state.unitID then
     local u=Players[pid]:GetUnits():FindID(state.unitID);local r=row(u)
-    v.sameUnit=u~=nil and u:GetOwner()==pid and r and r.UnitType==M.KIND or false
-    if v.sameUnit then v.unitID=u:GetID();v.x=u:GetX();v.y=u:GetY()else v.unitID=nil end
+    v.sameUnit=u~=nil and u:GetID()==state.unitID and marked(u) or false
+    v.bound=v.sameUnit and state.phase~='HELD';v.unbound=not v.bound
+    if v.sameUnit then v.unitID=u:GetID();v.x=u:GetX();v.y=u:GetY()end
    end
    v.expectedX=state.x;v.expectedY=state.y
   end
@@ -130,7 +165,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local function handle(pid,p)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
   assert(P.IsTestPlayer(pid),'SUPPORTED_PLAYER_REQUIRED')
-  assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='END','BAD_ACTION')
+  assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='END','BAD_ACTION')
   step=p.Action
   if p.Action=='READ' then return snapshot(pid)end
   if p.Action=='CREATE' then
@@ -149,13 +184,19 @@ function SPCExpeditionSpyGate.Start(P,shared)
    mutating=true;state={owner=pid,phase='CREATING',sourceCity=c:GetID(),sourceName=c:GetName(),sourceRef=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY()}
    local u=UnitManager.InitUnit(pid,M.KIND,c:GetX(),c:GetY())
    assert(u and u:GetOwner()==pid,'SPAWN_UNCONFIRMED')
-   state.unitID=u:GetID();owned(pid,state.unitID)
+   state.unitID=u:GetID();state.createdID=state.unitID;owned(pid,state.unitID)
+   assert(type(u.GetProperty)=='function' and type(u.SetProperty)=='function','TEAM_MARKER_API_UNAVAILABLE')
+   assert(u:GetProperty(M.MARKER)==nil,'TEAM_MARKER_ALREADY_PRESENT')
+   state.marker=p.Token..':'..state.sourceRef..':'..state.createdID
+   u:SetProperty(M.MARKER,state.marker)
+   assert(marked(u),'TEAM_MARKER_WRITE_UNCONFIRMED')
    assert(#list(pid)==1,'SPAWN_COUNT_UNCONFIRMED')
    assert(u:GetX()==state.x and u:GetY()==state.y,'EXACT_PLACEMENT_REJECTED')
    unchangedOthers(before);source();state.phase='CREATED'
   elseif p.Action=='DISPATCH' then
    assert(state.owner==pid and state.unitID==p.UnitID and (state.phase=='CREATED' or state.phase=='ARRIVED'),'BOUND_TEAM_REQUIRED')
-   observe();local u=owned(pid,p.UnitID)
+   observe();local u=tracked()
+   assert(state.phase~='HELD' and u:GetID()==p.UnitID,'BOUND_TEAM_REQUIRED')
    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.FromX==u:GetX() and p.FromY==u:GetY(),'STALE_TRAVEL_SAMPLE')
    assert(p.NativeStatus=='KNOWN' and p.NativeAllowed==true,'NATIVE_TRAVEL_NOT_ALLOWED')
    assert(int(p.Travel) and int(p.Establish) and p.Travel+p.Establish<=1000,'TRAVEL_TIME_UNKNOWN')
@@ -165,6 +206,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
    state.nativeAllowed=type(p.NativeAllowed)=='boolean' and p.NativeAllowed or false
    state.nativeStatus=p.NativeStatus=='KNOWN' and 'KNOWN' or 'UNKNOWN'
    mutating=true;state.phase='TRAVELLING';state.permit=p.Token
+  elseif p.Action=='TASK' then
+   assert(state.owner==pid and state.unitID==p.UnitID,'BOUND_TEAM_REQUIRED')
+   observe();assert(state.phase=='ARRIVED' and not state.taskStart,'TASK_NOT_AVAILABLE')
+   local u=tracked();target(pid,state.target)
+   assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1,'NATIVE_OPERATION_UNKNOWN')
+   if type(u.GetSpyOperation)=='function' then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
+   -- Fixed two player-turn boundaries are a test fixture, not a new Design duration.
+   mutating=true;state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
+   state.taskCompletions=0;state.phase='TASK_RUNNING'
   elseif p.Action=='STOP' then
    assert(state.owner==pid and state.unitID==p.UnitID and state.phase~='ENDED','BOUND_TEAM_REQUIRED')
    mutating=true;error('ISOLATION_OR_REQUEST_STOP: '..tostring(p.Detail or 'UNKNOWN'):sub(1,180))
@@ -201,19 +251,19 @@ function SPCExpeditionSpyGate.Start(P,shared)
   mutating=false
   v.token=p.Token;lastToken=p.Token;lastReply=v
   ExposedMembers.SPC_ExpeditionGateReply=v
-  print('[SPC][B184][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
+  print('[SPC][B185][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
   step='TURN';local ok,err=pcall(function()
-   observe()
+   observe(true)
   end)
   shared.RequestDepth=shared.RequestDepth-1;busy=false
   mutating=false;if not ok then hold(err)end
  end
- Events.PlayerTurnActivated.Add(data.Turn) -- O(1) owned unit + bound endpoints, no player/city scan.
+ Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; travelling adds one bounded destination-occupant read.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
   if not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then
    step='REFERENCE';local ok,err=pcall(function()observe();if state.phase=='TRAVELLING' then target(state.owner,state.target)end end);if not ok then hold(err)end

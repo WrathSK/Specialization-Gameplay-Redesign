@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0489",
-    "runtime": "B184.211 / modinfo211",
+    "status": "S0490",
+    "runtime": "B185.212 / modinfo212",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "B184 native evidence review complete with identity/source continuity not passed. Next proposed scope: reliable travel continuity and one independent no-reward task on the Spy1 shell; awaiting authorization, Gain Sources execution blocked.",
-  "implementation_authorized": false,
+  "goal": "B185.212 local checkpoint: exact marker/source continuity, one independent no-reward2T task and exact-type native UI isolation. Native marker survival/idle behavior pending; one native Spy slot temporarily accepted.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
       "kind": "full",
-      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+      "reason": "Current local delta, exact native gate and honest source/runtime distinction"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -126,17 +126,43 @@
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md",
       "kind": "full",
-      "reason": "Latest native travel/binding discrepancy and mission-isolation boundary; no implementation authorization"
+      "reason": "Direct prior ID-change/report counterexample; no new proof of marker survival"
     },
     {
       "path": "DevelopmentTests/test_expedition_gate.py",
       "kind": "full",
       "reason": "New targeted suite reuses prior fixture environment; old runtime assertions preserved"
+    },
+    {
+      "path": "Mod/ExpeditionSpyUI.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyUnitPanel.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyChooser.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyPopup.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_task.py",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
     }
   ],
   "dependencies": [
-    "EffectiveFacts qualification + NetworkInput.Reference exact source; independent session cap1 including old fixtures and off-map reservation.",
-    "UI-only native Spy travel and read-only source/probability/ordinary-Spy checks; original-ID observation has a confirmed missing returned-ID equality guard. Reliable logical-team continuity must be established before new task writes."
+    "EffectiveFacts creation qualification + exact NetworkInput.Reference source; session cap1 includes old fixtures/off-map reservation. One unit-owned marker, no city/player ledger change.",
+    "UI-only travel/idle/source read; Gameplay owns permit/timer/source and verifies marker before accepting changed native ID. No name/coordinate fallback.",
+    "Native Expansion chooser/popup and installed HD UnitPanel are included, exact-type callbacks intercepted. Ordinary paths stay native; no external source/DB/listener changes."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -177,18 +203,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 evidence/document review; prior B184 implementation L2 evidence retained. No gameplay regression or new native test in this review.",
-    "local": "Prior31 B184 +10 P0-panel methods remain scoped evidence, not rerun. Actual unmodified Gate with an injected lookup alias reproduces ARRIVED/sameUnit/unbound; native alias behavior not inferred. Links/selectors/context/diff checked.",
-    "user": "Five images reviewed: travel/arrival/co-location1/count1 and END0 observed; changed ID/unbound source continuity NOT_PASSED; native END classification freshness and complete slot/passive isolation unresolved. Gain Sources not executed. No additional user test now."
+    "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
+    "local": "67 methods PASS:31 current gate/package +26 identity/timer/UI +10 panel. Syntax/package/localization, links/selectors/context and diff reviewed.",
+    "user": "Four new B184 images reviewed; native slot accepted, ID-change boundary repeated. B185 one-session arrival/binding, 2T no-reward task/UI isolation and END remains pending after deployment. No default save/load retest."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md",
-    "source": "B184.211/modinfo211 deployed from3e9092c; receipt B184.211-3e9092c-playtest.json,207/207 MATCH, B183/stable recovery retained.",
-    "native": "PARTIAL: travel observed; TECHNICAL_IDENTITY_BOUNDARY for reliable team/source continuity. One co-location only, no universal immunity claim. Gain Sources execution BLOCKED.",
-    "stop": "Evidence archived; next continuity/mission-isolation plan awaits authorization. No runtime change, new test dispatch, formal N1/N2/N3/U2/rewards or automatic alternative route."
+    "report": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+    "source": "B185.212/modinfo212 canonical source; last-verified live B184.211 source3e9092c/receipt B184.211-3e9092c-playtest.json. No deployment: game running.",
+    "native": "B184 partial retained; B185 USER_GAME_TEST_REQUIRED for marker survival/native UI/task/passive effects.",
+    "stop": "After local checkpoint commit/push, await game exit and then the bounded native gate; no formal N1/N2/N3/U2/rewards."
   }
 }

@@ -1,5 +1,5 @@
-"""B184 isolated Spy=1 gate. Native travel/coexistence/rewards remain USER_GAME_TEST.
-Reuses the preceding fixture environment; exercises actual B184 Lua/SQL/UI.
+"""B185 Spy=1 gate regression (extends B184 fixture). Native travel/coexistence/rewards remain USER_GAME_TEST.
+Reuses the preceding fixture environment; exercises actual current Lua/SQL/UI.
 External DB is read-only and copied in memory. No ordinary Spy definitions change.
 """
 from pathlib import Path
@@ -14,6 +14,14 @@ def gate(ui=False, window=False):
       kind='UNIT_SPC_EXPEDITION_SPY';info[100].UnitType=kind;info[100].Spy=true
       info[100].PromotionClass='PROMOTION_CLASS_SPY';info[kind]=info[100]
       info[103]={UnitType='UNIT_SPY',Spy=true,Hash=103};info.UNIT_SPY=info[103]
+      local originalUnit=unit
+      function unit(...)
+       local u=originalUnit(...);u.properties={}
+       function u:GetProperty(k)return self.properties[k]end
+       function u:SetProperty(k,v)assert(k=='SPC_N1_SPY_PROBE_ID');properties=properties+1;self.properties[k]=v end
+       function u:GetSpyOperation()return self.operation or -1 end
+       return u
+      end
       units={};nativeCalls=0;nativeAllow=true;trainable=true;offmap=0;sourceTurns=0
       GameInfo=GameInfo or {Units=info};GameInfo.UnitOperations={UNITOPERATION_SPY_GAIN_SOURCES={Index=27,Hash=900}}
       function nativeDispatch(token,overrides)
@@ -40,13 +48,13 @@ def gate(ui=False, window=False):
         """)
         l.execute((R/'Mod/ExpeditionSpyRead.lua').read_text());l.execute('reader=SPCExpeditionSpyRead')
     if window:
-        l.execute("P.VERSION='P0-B-184.211';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
+        l.execute("makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-185.212';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
         l.execute((R/'Mod/UI/ExpeditionSpyWindow.lua').read_text());l.execute('init()')
     return l
 
 class Gate(unittest.TestCase):
-    def test_create_own_source_capacity_and_no_property_or_native_write(self):
-        l=gate();l.execute("units[7]=unit(7,101);req('CREATE','a');req('CREATE','a');local r=req('READ','b');assert(r.phase=='CREATED' and r.count==1 and r.coLocated==1 and r.sourceCity==1 and r.unitID==40 and initCalls==1 and properties==0 and finishCalls==0 and placeCalls==0 and units[7])")
+    def test_create_own_source_capacity_one_unit_marker_and_no_native_mission(self):
+        l=gate();l.execute("units[7]=unit(7,101);req('CREATE','a');req('CREATE','a');local r=req('READ','b');assert(r.phase=='CREATED' and r.count==1 and r.coLocated==1 and r.sourceCity==1 and r.unitID==40 and initCalls==1 and properties==1 and finishCalls==0 and placeCalls==0 and units[7])")
     def test_old_fixtures_count_and_cleanup_only(self):
         for kind in ['UNIT_SPC_EXPEDITION_GATE','UNIT_SPC_EXPEDITION_ZERO']:
             with self.subTest(kind=kind):
@@ -60,19 +68,19 @@ class Gate(unittest.TestCase):
     def test_unknown_live_identity_prevents_create_without_intermediate_read(self):
         l=gate();l.execute("req('CREATE','a');units[40]=nil;req('CREATE','b');assert(initCalls==1 and ExposedMembers.SPC_ExpeditionGateReply.phase=='HELD')")
     def test_same_id_arrival_and_active_decline(self):
-        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');active=1;spec='REALLOCATING';units[40].x=15;units[40].y=8;foreignUnits[9]=unit(9,101,3,15,8);currentTurn=83;ownTurn(2);ownTurn(2);local r=req('READ','c');assert(r.phase=='ARRIVED' and r.sameUnit and r.sourceCity==1 and r.count==1 and r.coLocated==1 and foreignUnits[9] and placeCalls==0 and properties==0)")
+        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');active=1;spec='REALLOCATING';units[40].x=15;units[40].y=8;foreignUnits[9]=unit(9,101,3,15,8);currentTurn=83;ownTurn(2);ownTurn(2);local r=req('READ','c');assert(r.phase=='ARRIVED' and r.sameUnit and r.sourceCity==1 and r.count==1 and r.coLocated==1 and foreignUnits[9] and placeCalls==0 and properties==1)")
     def test_changed_id_never_rebound_and_missing_arrival_stops(self):
-        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[40]=nil;units[41]=unit(41,100,2,15,8);currentTurn=85;ownTurn(2);local r=req('READ','c');assert(r.phase=='HELD' and r.stop=='NATIVE_ARRIVAL_UNCONFIRMED' and not r.unitID and r.createdID==40 and r.reservedCapacity and units[41] and destroys==0)")
-    def test_source_unknown_loss_or_target_change_retains_original_without_writes(self):
+        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[40]=nil;units[41]=unit(41,100,2,15,8);currentTurn=85;ownTurn(2);local r=req('READ','c');assert(r.phase=='HELD' and r.stop=='NATIVE_IDENTITY_UNCONFIRMED' and r.unitID==41 and not r.bound and r.createdID==40 and r.reservedCapacity and units[41] and destroys==0)")
+    def test_source_unknown_loss_or_target_change_retains_original_without_further_writes(self):
         for change in ['city.token=nil','city.token="new"','city.owner=3','targetCity.owner=4','met=false','visible=false']:
             with self.subTest(change=change):
-                l=gate();l.execute("req('CREATE','a');nativeDispatch('b');"+change+";transfer();assert(req('READ','c').phase=='HELD' and units[40] and properties==0 and destroys==0)")
+                l=gate();l.execute("req('CREATE','a');nativeDispatch('b');"+change+";transfer();assert(req('READ','c').phase=='HELD' and units[40] and properties==1 and destroys==0)")
     def test_end_never_destroys_ordinary_spy_or_foreign_unit(self):
         for change in ['units[40].type_=103','units[40].owner=3']:
             with self.subTest(change=change):
                 l=gate();l.execute("req('CREATE','a');"+change+";req('END','b',40);assert(units[40] and destroys==0)")
     def test_end_exact_prototype_only_and_repeated_token(self):
-        l=gate();l.execute("req('CREATE','a');units[5]=unit(5,103);req('END','b',40);req('END','b',40);assert(destroys==1 and units[5] and not units[40] and properties==0)")
+        l=gate();l.execute("req('CREATE','a');units[5]=unit(5,103);req('END','b',40);req('END','b',40);assert(destroys==1 and units[5] and not units[40] and properties==1)")
     def test_explicit_stop_blocks_dispatch_but_allows_exact_cleanup(self):
         l=gate();l.execute("req('CREATE','a');handler(2,{Action='STOP',Token='s',UnitID=40,Detail='ordinary spy changed'});assert(req('READ','r').phase=='HELD');nativeDispatch('b');assert(not ExposedMembers.SPC_ExpeditionGateReply.nativePermit);req('END','e',40);assert(destroys==1)")
     def test_qualification_unknown_never_creates(self):
@@ -84,7 +92,7 @@ class Gate(unittest.TestCase):
             with self.subTest(change=change):
                 l=gate();l.execute(change+";req('CREATE','a');assert(initCalls==0 and ExposedMembers.SPC_ExpeditionGateReply.error=='TEST_DATABASE_NOT_READY')")
     def test_foreign_turn_does_not_observe_or_write(self):
-        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[40]=nil;currentTurn=999;ownTurn(3);assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='TRAVELLING' and placeCalls==0 and properties==0)")
+        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[40]=nil;currentTurn=999;ownTurn(3);assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='TRAVELLING' and placeCalls==0 and properties==1)")
     def test_failed_create_locks_no_blind_retry(self):
         for change in ['initNil=true','initThrowBefore=true','initThrowAfter=true']:
             with self.subTest(change=change):
@@ -92,7 +100,7 @@ class Gate(unittest.TestCase):
 
 class Reader(unittest.TestCase):
     def test_gain_sources_is_read_only_even_with_undetected_one(self):
-        l=gate(ui=True);l.execute("req('CREATE','a');sourceTurns=6;local r=reader.GainSources(2,40,target);assert(r.readOK and r.canStart and r.ESPIONAGE_SUCCESS_UNDETECTED==1 and r.sourceTurns==6 and r.status=='NOT_ISOLATED' and not r.executionAllowed and nativeCalls==0 and properties==0)")
+        l=gate(ui=True);l.execute("req('CREATE','a');sourceTurns=6;local r=reader.GainSources(2,40,target);assert(r.readOK and r.canStart and r.ESPIONAGE_SUCCESS_UNDETECTED==1 and r.sourceTurns==6 and r.status=='NOT_ISOLATED' and not r.executionAllowed and nativeCalls==0 and properties==1)")
     def test_gain_sources_unknown_never_zero_or_success(self):
         l=gate(ui=True);l.execute("req('CREATE','a');sourceTurns=nil;UnitManager.GetResultProbability=nil;local r=reader.GainSources(2,40,target);assert(r.sourceTurns==nil and r.ESPIONAGE_SUCCESS_UNDETECTED==nil and not r.executionAllowed and nativeCalls==0)")
     def test_one_shot_native_travel_no_gain_sources_request(self):
@@ -106,21 +114,21 @@ class Reader(unittest.TestCase):
             with self.subTest(change=change):
                 l=gate(ui=True);l.execute("req('CREATE','a');"+change+";assert(not reader.SubmitTravel(2,40,target,'one'));assert(nativeCalls==0)")
     def test_ordinary_spy_classification_not_confused_with_own_cap(self):
-        l=gate(ui=True);l.execute("units[8]=unit(8,103);local b=reader.Audit(2,1);req('CREATE','a');local a=reader.Audit(2,1);assert(a.nativeTotal==2 and a.normal==1 and a.capacity==2 and reader.Compare(b,a)=='SCOPED_UNCHANGED');trainable=false;assert(reader.Compare(b,reader.Audit(2,1))=='CHANGED')")
+        l=gate(ui=True);l.execute("units[8]=unit(8,103);local b=reader.Audit(2,1);req('CREATE','a');local a=reader.Audit(2,1);assert(a.nativeTotal==2 and a.normal==1 and a.capacity==2 and reader.Compare(b,a)=='SLOT_COST_ACCEPTED');trainable=false;assert(reader.Compare(b,reader.Audit(2,1))=='SLOT_COST_ACCEPTED')")
     def test_no_native_capacity_evidence_does_not_claim_isolation(self):
         l=gate(ui=True);l.execute("trainable=false;local b=reader.Audit(2,1);assert(reader.Compare(b,b)=='PARTIAL');spyCapacity=nil;assert(reader.Compare(b,reader.Audit(2,1))=='UNKNOWN')")
 
 class Window(unittest.TestCase):
     def test_actual_ui_roundtrip_native_request_once_gain_sources_never(self):
         l=gate(window=True);l.execute("assert(sent==0 and nativeCalls==0 and Controls.Window.hidden);gateOpen();Controls.CreateButton.click();assert(initCalls==1);Controls.TravelButton.click();assert(Controls.Report.text:find('GAIN_BLOCKED'));Controls.ArmButton.click();assert(nativeCalls==1 and placeCalls==0 and not Controls.Window.hidden);units[40].x=15;units[40].y=8;currentTurn=85;ownTurn(2);Controls.RefreshButton.click();assert(Controls.Report.text:find('PHASE_ARRIVED'));Controls.EndButton.click();assert(destroys==1 and Controls.Report.text:find('PHASE_ENDED'))")
-    def test_changed_ordinary_spy_trainability_stops_after_creation(self):
-        l=gate(window=True);l.execute("local f=UnitManager.InitUnit;UnitManager.InitUnit=function(...)local u=f(...);trainable=false;return u end;gateOpen();Controls.CreateButton.click();assert(Controls.Report.text:find('PHASE_HELD') and nativeCalls==0 and units[40]);Controls.EndButton.click();assert(destroys==1)")
+    def test_accepted_native_slot_trainability_cost_does_not_stop_creation(self):
+        l=gate(window=True);l.execute("local f=UnitManager.InitUnit;UnitManager.InitUnit=function(...)local u=f(...);trainable=false;return u end;gateOpen();Controls.CreateButton.click();assert(Controls.Report.text:find('PHASE_CREATED') and Controls.Report.text:find('SLOT_COST_ACCEPTED') and nativeCalls==0 and units[40]);Controls.EndButton.click();assert(destroys==1)")
     def test_native_request_throw_holds_and_not_retried(self):
         l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();nativeThrow=true;Controls.ArmButton.click();publish();Controls.ArmButton.click();assert(nativeCalls==1 and Controls.Report.text:find('BOUND_REQUIRED'))")
     def test_close_shutdown_no_creation_or_lingering_callbacks(self):
         l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();Controls.CloseButton.click();assert(ContextPtr.hidden);shutdown();assert(not mission and not publish and not gateOpen and not turnBegin and units[40] and destroys==0)")
     def test_completion_event_is_read_only_bounded_and_never_attributed(self):
-        l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();for i=1,105 do mission(2,i)end;Controls.RefreshButton.click();assert(Controls.Report.text:find('EVENTS:99,UNKNOWN') and properties==0 and nativeCalls==0 and destroys==0)")
+        l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();for i=1,105 do mission(2,i)end;Controls.RefreshButton.click();assert(Controls.Report.text:find('EVENTS:99,UNKNOWN') and properties==1 and nativeCalls==0 and destroys==0)")
     def test_native_rejection_report_does_not_send_dispatch(self):
         l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();nativeAllow=false;local n=sent;Controls.ArmButton.click();assert(sent==n and nativeCalls==0 and Controls.Report.text:find('TIMING'))")
     def test_timeout_does_not_retry(self):
@@ -140,7 +148,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'211')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'212')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -150,8 +158,8 @@ class Package(unittest.TestCase):
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         lua=(R/'Mod/UI/ExpeditionSpyWindow.lua').read_text();xml=(R/'Mod/UI/ExpeditionSpyWindow.xml').read_text()
         keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_'}
-        keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','CREATED','TRAVELLING','ARRIVED','HELD','ENDING','ENDED']}
-        keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED']}
+        keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','CREATED','TRAVELLING','ARRIVED','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
+        keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED','SLOT_COST_ACCEPTED']}
         for k in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_'+k,)).fetchone()[0],2,k)
         for key in re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml):self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)
         db.close()
