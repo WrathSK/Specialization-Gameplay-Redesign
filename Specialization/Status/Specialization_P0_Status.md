@@ -1,23 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0491
+Status Revision: S0492
 Implementation Build: source/live B185.212 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B185_DEPLOYED_AWAITING_USER_GAME_TEST
+Work State: B185_NATIVE_IDENTITY_NOT_PASSED_TASK_NOT_REACHED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B185.212 local checkpoint complete; native pending.** User-authorized exact-marker travel/source continuity, one independent no-reward2T task and exact custom-type native Spy UI isolation. [Result, supplementary B184 screenshots and minimal flow](Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md):67 targeted methods PASS. Native marker survival and passive/task isolation are not yet demonstrated.
+**B185.212 native identity gate NOT_PASSED; independent task NOT_REACHED.** [Four-image review and bounded investigation](Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md): creation/off-map marker verified, destination unit has changed ID and stays unbound. User confirms original-button redirection. Local counterexamples expose plot-versus-player lookup ambiguity; native marker loss and engine delete/recreate remain unproved. Source record retention is distinct from accepted returned-unit binding.
 
-The user accepts **one native Spy slot as a temporary prototype cost**, shown in the new native overview screenshot. Our cap1/source remain separate. No native Gain Sources/Spy completion/reward is requested; formal N1 training/saved travel/reattachment, N2/N3/U2, Design, Store and GC remain outside this batch. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), manifest `P0-N1.json`.
+Canonical source/live remains **B185.212 / modinfo212**, deployed source `4d8ace2`, receipt `B185.212-4d8ace2-playtest.json`, last verified211/211 MATCH. This review does not re-verify or modify runtime. Main/stable and recoveries unchanged. The accepted temporary one-Spy-slot cost, own cap1/source and no-native-reward boundary remain.
 
-Canonical source/live: **B185.212/modinfo212 DEVELOP_ACTIVE; source4d8ace285643de7dccb7276383ab425cfeaf2d71; receipt B185.212-4d8ace2-playtest.json;211/211 MATCH. Game exit verified; exact B184 and stable recoveries retained; no pending transaction. Native validation pending.** Main/stable unchanged.
-
-Next: one combined arrival-binding → independent task → END session. Hold on missing/ambiguous marker or unintended native mission/reward. No automatic formal N1/N2/N3 implementation or repeat old gate.
+Next proposal: exact returned-candidate marker lookup and diagnostic distinction, with unchanged UNKNOWN/ambiguity protection; **implementation awaits authorization**. No unchanged-package retest. Then resume one session arrival → no-reward task → END. Formal N1/N2/N3/U2/rewards remain held. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), manifest `P0-N1.json`. Original-icon reuse recorded for later UI work.
 
 ## S0478 — B180 deployment checkpoint (historical)
 
