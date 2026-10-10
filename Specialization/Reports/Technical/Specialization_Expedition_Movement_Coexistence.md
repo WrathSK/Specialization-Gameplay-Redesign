@@ -47,6 +47,32 @@ The DONT_SPY promise's configured Favor/grievance parameters remain evidence of 
 
 **Preferred investigation order after this clarification:** evaluate native Spy shell/travel + independent deterministic Expedition tasks first. Use the non-Spy IgnoreMoves/Stackable route as a fallback if a specific isolation boundary fails. This reverses the initial non-Spy-first proposal; it does not assert that direct reuse already works. A complete copy of native risky mission execution with inflated success odds is not the recommended route.
 
+## Selective reuse and independent Expedition state — further clarification
+
+The user wants Expedition Era Score as a **future feature owned by Specialization**, not HD's Spy reward route. No amount, trigger, repeatability or implementation is defined or authorized by this clarification. Its future presence does not justify receiving HD's current incidental rewards. The user also asks whether a custom non-Spy type can borrow individual Spy components while retaining our own capacity, bound city and task state. This is a valid alternative within the existing investigation; no complete Spy copy is required.
+
+**Three separate identifiers, not one removable tag:**
+
+| Mechanism | Direct evidence | Meaning for selective reuse |
+|---|---|---|
+| `Units.Spy` | Native `Gameplay/Data/Schema/01_GameplaySchema.sql:2885`: Boolean, default 0; loaded UNIT_SPY=1 and UNIT_SPC_EXPEDITION_GATE=0 | A unit-type definition flag. A dedicated custom unit can use 0 without changing ordinary Spies. This is not a per-unit save Property; the inspected UI reads `GameInfo.Units[type].Spy`, not `GetProperty("Spy")` |
+| `TypeTags` / `CLASS_SPY` | Native `Units.xml:542,715`; separate TypeTags table at schema:2826. Loaded CLASS_SPY links UNIT_SPY and 10 ability definitions; all 10 ability rows are Inactive1 | A separate ability-class association. Removing only this tag does not change Units.Spy or bypass UI checks of that boolean. Inactive associations are not evidence that every ability is automatically granted |
+| `PromotionClass` | Native `Units.xml:769` and loaded row use PROMOTION_CLASS_SPY; the current DB has 20 promotions in this class | A separate promotion-tree dependency. Copying the whole Spy row and deleting one tag still retains other Spy-specific configuration |
+
+The same schema separately declares `Stackable` (2879) and `IgnoreMoves` (2888). They can be configured without setting Spy1. Independence of fields does **not** prove that all their desired native effects survive on a non-Spy unit.
+
+| Component | Reuse / ownership conclusion |
+|---|---|
+| Management UI and target-selection presentation | Adapt the Lua/XML pattern in our own window. The stock chooser itself refuses a selected unit without `.Spy` (`EspionageChooser.lua:630–639`), and its automatic mode switching also checks that flag (738–755); it is not a drop-in window for Spy0 |
+| Travel-time getter | Already **READ_OK in B180** with Spy0 for the recorded fixture: travel2 + establishment0. This is concrete selective reuse, not a promise that every target or execution path works |
+| Ordinary map-input lock | Existing WorldInput checks IgnoreMoves directly, independently of its Spy checks; all command paths still need the narrow native gate |
+| Native travel, off-map state, arrival and collision | **UNKNOWN for Spy0.** Chooser delegates travel to `CanStartOperation` / `RequestOperation` (606–618). The Lua does not expose the native operation implementation or a detachable travel module. Copying the caller cannot establish native eligibility, identity preservation or harmless coexistence. The [API index](https://sukritact.github.io/Civilization-VI-Modding-Knowledge-Base/UnitManager) documents these separate methods but does not specify a non-Spy eligibility contract |
+| Expedition cap, source/archive city, timers, task results and future rewards | Owned by our Gameplay state regardless of whether any native Spy component is reused. No reason to inherit native Spy cap or archive semantics. However, our own counter cannot prove a Spy1 unit is excluded from the native Spy subsystem: the stock overview counts every `.Spy` unit (88–100), and actual ordinary-Spy trainability remains a separate native question |
+
+The useful boundary is **selective reuse of independently usable UI, fields and getters; our own state and deterministic tasks; explicit verification of any native operation retained**. Do not describe it as “remove CLASS_SPY and everything else still works,” or conversely “Spy0 means none of the Spy helpers can work.” Our B180 getter observation already refutes the latter blanket assumption.
+
+This refines the pending plan's component boundaries; it does not authorize a prototype or select an unproved implementation. A future implementation should first separate what requires Spy1 from what merely uses Spy-shaped presentation or data. If native travel rejects Spy0, that is a specific execution boundary: retain the proven getter/UI parts and assess our timer/placement route, or evaluate the Spy1 isolation candidate. In either case, harmless coexistence still needs proof; removing Spy identity does not confer immunity. No global Spy edits, HD listener changes, artificial Spy-completion event or new persistent fields were made here.
+
 ## Route assessment
 
 | Candidate | Assessment | Proposed disposition |
