@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="208">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="209">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
     <Description>B181.208: readable N1 target buttons and contained native-style layout; clearer legacy-prototype instructions. Gameplay unchanged.</Description>

@@ -216,3 +216,7 @@ User authorized N1 first; U2/N2/N3 held. [One combined gate session](Validation/
 [Six-image result and panel repair](Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md): window/creation, non-Spy timing2+0 and capacity5→5 observed; user confirms hostile contact caused the same-unit original-Owner retreat. END not observed. No additional retreat or save/load request. B181 target controls/copy repaired locally; visual check may be incidental after deployment. This supersedes the old B178–B180 test dispatches above, without rewriting frozen results.
 
 The formal Expedition must use mission-only movement and harmless coexistence, per the latest explicit direction. [Replacement plan](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) awaits review; it does not assert native immunity or execute a new test. N1 formal training/dispatch/source, N2/N3 and era UI remain incomplete/held at their named boundaries. Live package comes only from Status/receipt.
+
+## B182 — Spy0 independent dispatch/coexistence gate pending
+
+User selected the minimal Spy0 route before formal N1. [One-session flow and stop conditions](Validation/Results/Specialization_B182_Expedition_Spy0_Local.md#one-minimal-native-session) supersede the preceding plan-only next step. Own cap/binding/timer, exact placement and occupied-unit checks are locally covered; native movement lock/coexistence remain unproved. No separate cold-load or old-retreat test, no Spy1 fallback, no N2/N3/era UI. Actual package comes only from Status/receipt.

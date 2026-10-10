@@ -1,5 +1,5 @@
 -- UI-only read gate. No RequestOperation, native Spy registration or gameplay setter.
-SPCExpeditionGateRead={KIND='UNIT_SPC_EXPEDITION_GATE'}
+SPCExpeditionGateRead={KIND='UNIT_SPC_EXPEDITION_ZERO'}
 local M=SPCExpeditionGateRead
 local function integer(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
 local function call(obj,name,...)
@@ -51,7 +51,16 @@ function M.Read(pid,unitID,target)
   v.spyAfter=M.Capacity(pid)
   assert(integer(v.travel) and integer(v.establish),'HELPER_RESULT_INVALID')
   assert(u:GetOwner()==pid and u:GetID()==unitID and u:GetX()==v.fromX and u:GetY()==v.fromY,'UNIT_CHANGED_DURING_READ')
-  v.total=v.travel+v.establish;v.status='READ_OK' -- Not deployed or native travel PASS.
+  v.nativeStatus='UNKNOWN'
+  -- Diagnostic only. A false result is not proof that Spy is the only reason.
+  local checked,allowed=pcall(function()
+   assert(UnitOperationTypes and UnitOperationTypes.SPY_TRAVEL_NEW_CITY and Map and Map.GetPlot)
+   local params={};params[UnitOperationTypes.PARAM_X]=c:GetX();params[UnitOperationTypes.PARAM_Y]=c:GetY()
+   return UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(c:GetX(),c:GetY()),params)
+  end)
+  if checked and type(allowed)=='boolean' then v.nativeStatus='KNOWN';v.nativeAllowed=allowed end
+  assert(u:GetOwner()==pid and u:GetID()==unitID and u:GetX()==v.fromX and u:GetY()==v.fromY,'UNIT_CHANGED_DURING_READ')
+  v.total=v.travel+v.establish;v.status='READ_OK'  -- Not deployed or native travel PASS.
  end)
  if not ok then v.error=tostring(err):sub(1,220)end
  return v

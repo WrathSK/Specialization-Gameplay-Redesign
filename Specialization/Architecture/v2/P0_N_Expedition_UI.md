@@ -1,6 +1,6 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B180_SCOPED_NATIVE_OBSERVED / B181_PANEL_REPAIRED / COEXISTENCE_PLAN_REVIEW. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; the old planning prose below is not fresh implementation authorization.
+State: N1_PARTIAL / B182_SPY0_PROTOTYPE_NATIVE_GATE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
 Current entry: **专业化诊断 → 人文考察·验证**. This is still a temporary legacy fixture with readable target navigation, not the formal management system. The [movement/coexistence plan](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md) records the user's mission-only movement and exact map-location requirements. No new route is implemented here.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
@@ -125,4 +125,4 @@ N3接入后显示选中接收城的有效来源、各来源独立完整文明集
 
 本地调查资料（Non-authoritative、尚未由Main Task提交，不复制／修改／登记为强制context）：`Specialization/Reports/Technical/Investigations/UI/UI_Framework_Reuse_Investigation.md`（独立context／模式／异步边界）；`Specialization/Reports/Technical/Investigations/Diplomacy/CityState_Control_Protection_and_Diplomat_Spy_Semantics.md`（Spy身份与后果）。当前版本仅STATIC，未证明我们的新窗口、最终VFS加载、非Spy部署或新业务可用。
 
-本轮只保存计划／B165待办并检查文档，不实现、不运行测试或游戏、不部署、不写Design／调查原件。用户先审阅布局；具体UI原型、N1/N2/N3需后续单独授权，停在计划边界。
+The original page was planning-only. B182 now implements only the existing gate window's create/read/independent-dispatch/refresh/END controls, not the full layout above. [B182 result](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md) records the exact authorized scope and remaining native gate; N2/N3/U2 remain held.

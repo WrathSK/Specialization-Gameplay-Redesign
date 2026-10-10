@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0480",
-    "runtime": "B181.208 / modinfo208",
+    "status": "S0481",
+    "runtime": "B182.209 / modinfo209",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Record B180 scoped gate evidence, repair panel only, and review mission-only movement/coexistence replacement plan. N1 remains partial.",
-  "implementation_authorized": false,
+  "goal": "Minimal Spy0-first prototype: independent cap1/source binding and timed exact placement, observe native travel eligibility and harmless coexistence; stop before formal N1/N2/N3.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct gate implementation, inherited qualification dependency or validation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
       "kind": "full",
-      "reason": "Latest native observations, authorized panel repair, explicit plan-only continuation boundary"
+      "reason": "Complete current prototype scope, local evidence, native steps and stop conditions"
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -117,18 +117,23 @@
       "path": "DevelopmentTests/test_p0_panel_current_layout.py",
       "kind": "full",
       "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct reused city Reference implementation; no new persistent identity"
     }
   ],
   "dependencies": [
-    "Current EffectiveFacts qualification read; new native unit/database/icon/art registration and explicit independent UI request.",
-    "B180 native helper and one hostile-contact retreat observed; final mission-only/coexistence primitive unknown. No other professional-unit behavior changes."
+    "EffectiveFacts current qualification + existing NetworkInput.Reference exact source binding; isolated unit SQL/art/icons; existing P0 UI ingress.",
+    "Gameplay owns one session timer; actual PlaceUnit/input/coexistence remain native gate. No native Spy operation, mission, reward or saved history."
   ],
   "old_writers": [
-    "No existing Expedition writer or city archive; no existing ability retired or overridden."
+    "Old gate CREATE/ARM replaced by new type CREATE/DISPATCH. Old unit DB row retained; both exact types counted, explicit END only. No professional effect writer changes."
   ],
   "conditional_context": [
     {
-      "trigger": "Review the proposed mission-only movement/coexistence route; implementation requires next batch approval",
+      "trigger": "Review current approved Spy0 route and preserved alternative/Spy1 evidence boundaries",
       "paths": [
         "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md"
       ]
@@ -159,18 +164,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 panel-only layout/copy repair; N1 Gameplay unchanged. B180 evidence archival and bounded technical investigation.",
-    "local": "42 gate + 10 panel methods PASS; new native-style geometry/caption counterexample. Named integrity/selector/link review.",
-    "user": "B180 scoped window/create/helper/retreat evidence recorded; no repeat retreat/save-load test. Incidental B181 visual check only."
+    "depth": "L2: new isolated unit/timer/placement lifecycle, actual Lua faults and database/UI integration; no shared Store schema change.",
+    "local": "62 gate +10 P0 panel methods PASS; named integrity/selectors/links/package review.",
+    "user": "One continuous new primitive/transition gate; no repeat cold-load ritual. Native input lock, exact placement and harmless coexistence remain required."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-    "source": "B181.208 / modinfo208; source c6b83cb7262d6097870415fbd5972ddeb784826f; deployed 202/202 MATCH; panel-only.",
-    "native": "B180 scoped USER_GAME_TEST_PASS/READ_OK; END not observed; formal coexistence/dispatch NOT_IMPLEMENTED.",
-    "stop": "Replacement plan review only; no new unit route implementation, no N2/N3/U2."
+    "report": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+    "source": "B182.209 / modinfo209 local; verified live remains B181.208 until receipt.",
+    "native": "B180 getter/retreat scope inherited only; B182 Spy0 placement/coexistence USER_GAME_TEST_REQUIRED.",
+    "stop": "No Spy1 fallback, formal N1 persistence/training/reattachment, N2/N3/U2 or reward/Era Score."
   }
 }

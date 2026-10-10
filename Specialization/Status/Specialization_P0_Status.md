@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0480
-Implementation Build: source/live B181.208 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0481
+Implementation Build: source B182.209 local; live B181.208 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B181_N1_PANEL_DEPLOYED_COEXISTENCE_PLAN_REVIEW
+Work State: B182_N1_SPY0_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B180 N1 observations reviewed; B181.208 panel-only repair deployed.** [Result](Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md): window/creation and capacity5→5 confirmed, Sparta helper2+0 read, original-Owner same-unit retreat confirmed by screenshots plus user contact confirmation. This is not formal dispatch/coexistence; END not observed. Six originals hash-archived.
+**B182.209 / modinfo209 Spy0 minimum N1 prototype locally complete.** User approved Spy0 first with our independent capacity and city binding. [Local result / one-session native gate](Validation/Results/Specialization_B182_Expedition_Spy0_Local.md): new exact fixture, IgnoreMoves1/Stackable1/retreat0, own cap1 and existing source-token reference, UI getter → Gameplay timer → exact native placement attempt. Old retreat unit stays unchanged. No native Spy operation, Property/Store write, reward, formal training or persisted journey.
 
-**42 gate + 10 panel tests PASS.** Readable target captions, native small-button sizing and shorter old-prototype copy; Gameplay/Design/permanent state/GC unchanged. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) stops at the [mission-only/coexistence modification plan](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md). User clarification supersedes retreat for Expedition, pending named formal synchronization; no new route implemented. N2/N3/era UI held.
+**62 N1 +10 panel methods PASS.** Native manual-input lock, exact arrival and military/civilian harmless coexistence remain USER_GAME_TEST_REQUIRED. Existing B180 getter/retreat observations remain scoped; no automatic Spy1 fallback. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) stops after this gate; formal Culture/Shared named exception sync remains before formal N1 integration. N2/N3/era UI held.
 
-Source/live **B181.208 / modinfo208 DEVELOP_ACTIVE**, source `c6b83cb`, receipt `B181.208-c6b83cb-playtest.json`, **202/202 MATCH**. Game exit checked; exact B180/stable recoveries retained; no pending transaction. Main unchanged. Manifest: `P0-N1.json`.
+Source **B182.209 / modinfo209**, local checkpoint. Live remains **B181.208 DEVELOP_ACTIVE**, source `c6b83cb`, receipt `B181.208-c6b83cb-playtest.json`, last202/202 MATCH. No new deployment claim until verified receipt. Main unchanged. Manifest: `P0-N1.json`.
 
-Next: user reviews the replacement plan, now prioritizing Spy shell/travel + independent tasks after the explicit follow-up. No repeat retreat/save-load session; B181 appearance can be checked incidentally next time the panel is opened. No automatic continuation into the coexistence prototype.
+Next: after safe deployment, one continuous **人文考察·验证** session checks creation/input lock, interface read, independent dispatch/arrival, available contact fixture and exact END. The probe waits visibly at departure; reload is cleanup-only and not required for this gate. No extra ability/save-load ritual or formal N1/N2/N3 continuation.
 
 ## S0478 — B180 deployment checkpoint (historical)
 

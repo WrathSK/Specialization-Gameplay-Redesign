@@ -18,13 +18,17 @@ local function render()
   out[#out+1]=L('COUNT',v.count or 0)
   if v.unitID then out[#out+1]=L('UNIT',v.unitID,v.x,v.y)end
   if v.phase=='ENDED' then out[#out+1]=L('ENDED')end
-  if v.phase=='HELD' then out[#out+1]=L('HELD')end
+  if v.phase=='HELD' then out[#out+1]=L('HELD');if v.stop then out[#out+1]=L('ERROR',v.stop)end end
   if v.createdID and not v.sameUnit and v.phase~='ENDED' then out[#out+1]=L('MISSING')end
-  if v.watchID then
-   if v.watchedAlive then
-    out[#out+1]=L('WATCH',v.watchID,v.watchX,v.watchY,v.watchedX,v.watchedY)
-    out[#out+1]=L('WATCH_NOTE')
-   else out[#out+1]=L('MISSING')end
+  if v.legacy then out[#out+1]=L('LEGACY')
+  elseif v.unbound then out[#out+1]=L('UNBOUND')
+  elseif v.sourceName then
+   out[#out+1]=L('SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+   if v.phase=='TRAVELLING' then out[#out+1]=L('JOURNEY',Locale.Lookup(v.targetName),v.dueTurn,math.max(0,v.dueTurn-v.turn))
+   elseif v.phase=='ARRIVED' then out[#out+1]=L('ARRIVED',Locale.Lookup(v.targetName),v.arrivalOthers or 0)
+   elseif v.phase=='CREATED' then out[#out+1]=L('READY')end
+   if v.coLocated then out[#out+1]=L('COLOCATED',v.coLocated)
+   elseif v.occupancyUnknown then out[#out+1]=L('OCCUPANCY_UNKNOWN')end
   end
  end
  local now=R.Capacity(pid)
@@ -33,6 +37,7 @@ local function render()
   if travel.status=='READ_OK' then
    out[#out+1]=L('TIMING',Locale.Lookup(travel.targetName),travel.travel,travel.establish,travel.total)
    out[#out+1]=L('TIMING_SCOPE',travel.turn)
+   out[#out+1]=L(travel.nativeStatus~='KNOWN' and 'NATIVE_UNKNOWN' or travel.nativeAllowed and 'NATIVE_ALLOWED' or 'NATIVE_REJECTED')
   else out[#out+1]=L('TIMING_UNKNOWN',travel.error or 'UNKNOWN')end
  end
  out[#out+1]=L('STOP_HINT');setReport(table.concat(out,'[NEWLINE][NEWLINE]'))
@@ -44,18 +49,32 @@ local function reply()
   current=v;if pendingAction=='END' and not v.error then travel=nil end;pending=nil;pendingAction=nil;ContextPtr:ClearUpdate();render();return true
  end
 end
+local function readTravel()
+ if not current or not current.unitID then setReport(L('TEAM_CHANGED'));return end
+ if current.legacy or current.unbound then setReport(L(current.legacy and 'LEGACY' or 'UNBOUND'));return end
+ if not targets[selected]then setReport(L('NO_TARGET'));return end
+ travel=R.Read(Game.GetLocalPlayer(),current.unitID,targets[selected]);render()
+ print('[SPC][B182][N1_ZERO_READ] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' nativeStatus='..tostring(travel.nativeStatus)..' nativeAllowed='..tostring(travel.nativeAllowed)..' error='..tostring(travel.error))
+ return travel.status=='READ_OK'
+end
 local function request(action)
  if pending then setReport(L('WAIT'));return end
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
  local c=UI.GetHeadSelectedCity()
  local id=current and current.unitID
- if (action=='ARM' or action=='END') and not id then setReport(L('TEAM_CHANGED'));return end
+ if (action=='DISPATCH' or action=='END') and not id then setReport(L('TEAM_CHANGED'));return end
  if action=='CREATE' and (not c or c:GetOwner()~=pid)then setReport(L('OWN_CITY'));return end
  if action=='CREATE' then initialCapacity=R.Capacity(pid);travel=nil end
+ if action=='DISPATCH' and not readTravel()then return end
  ExposedMembers.SPC_ExpeditionGateSequence=(ExposedMembers.SPC_ExpeditionGateSequence or 0)+1
  pending='N1:'..P.VERSION..':'..ExposedMembers.SPC_ExpeditionGateSequence
  pendingAction=action
  local packet={OnStart='SPC_ExpeditionGateRequest',Token=pending,Action=action,CityID=c and c:GetID(),UnitID=id}
+ if action=='DISPATCH' then
+  packet.SampleTurn=travel.turn;packet.FromX=travel.fromX;packet.FromY=travel.fromY
+  packet.TargetOwner=travel.targetOwner;packet.TargetID=travel.targetID;packet.TargetX=travel.targetX;packet.TargetY=travel.targetY
+  packet.Travel=travel.travel;packet.Establish=travel.establish;packet.NativeAllowed=travel.nativeAllowed;packet.NativeStatus=travel.nativeStatus
+ end
  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,packet)
  if not ok then pending=nil;setReport(L('SEND_ERROR',tostring(err)));return end
  setReport(L('WAIT'));if reply()then return end
@@ -97,7 +116,7 @@ local function initialize()
  Controls.CloseButton:RegisterCallback(Mouse.eLClick,close)
  Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()request('CREATE')end)
  Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()refreshTargets();request('READ')end)
- Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()request('ARM')end)
+ Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()request('DISPATCH')end)
  Controls.EndButton:RegisterCallback(Mouse.eLClick,function()request('END')end)
  local function move(delta)
   if #targets>0 then selected=((selected-1+delta)%#targets)+1;travel=nil;updateTarget();render()end
@@ -106,10 +125,7 @@ local function initialize()
  Controls.NextButton:RegisterCallback(Mouse.eLClick,function()move(1)end)
  Controls.TravelButton:RegisterCallback(Mouse.eLClick,function()
   if pending then setReport(L('WAIT'));return end
-  if not current or not current.unitID then setReport(L('TEAM_CHANGED'));return end
-  if not targets[selected]then setReport(L('NO_TARGET'));return end
-  travel=R.Read(Game.GetLocalPlayer(),current.unitID,targets[selected]);render()
-  print('[SPC][B181][N1_TRAVEL] status='..travel.status..' unit='..tostring(travel.unitID)..' target='..tostring(travel.targetOwner)..':'..tostring(travel.targetID)..' travel='..tostring(travel.travel)..' establish='..tostring(travel.establish)..' spyBefore='..tostring(travel.spyBefore)..' spyAfter='..tostring(travel.spyAfter)..' error='..tostring(travel.error))
+  readTravel()
  end)
  for control,key in pairs({CloseButtonCaption='CLOSE',CreateButtonCaption='CREATE',RefreshButtonCaption='REFRESH',TravelButtonCaption='TRAVEL',ArmButtonCaption='ARM',EndButtonCaption='END',PreviousButtonCaption='PREVIOUS',NextButtonCaption='NEXT'})do
   Controls[control]:SetText(L(key))

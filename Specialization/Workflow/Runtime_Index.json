@@ -6,9 +6,9 @@
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
     "Mod/ArtDefs/Units.artdef": {
-      "sha256": "f605394dedfd268537028e1b6b7349b371837ceba092757c9a7850ac7d68fa6e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "255841e6565e8d988fac6a7714fab2e4dcb50e89c74445f2c8281957405302fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/BindingProbe.lua": {
       "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "aac34fd83e8d3bcd27bb637e17fc5a95ad0d9792664682c0938f6b170ad4c34b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "bbf5d7c12650ba9dca5bb614949f6cb828d0a52adaba9cb2f3acc588d647f2b4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "f401fd35654dea6abd5dcc0f0027f35a91408a714b56bf1b2f0098c8d1a894d2",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "eb785a211a75dea27f44b6f8db652e4366266a55c8c7e30ce407a436e6f62afd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+      "sha256": "af4fa24eb96e18fad7050421e13fcba4d70f6c63fe897c0edc9d9124f063a367",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0518823ec7a567daef8161f92c43c76aaade41fb5326968246a734f58aa840a7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+      "sha256": "f5c4d71caddcfea53e2124afb11fb008ccc42fdbfca0d139f7a73cd3b412d345",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -986,29 +986,29 @@
       "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
     },
     "Mod/Data/ExpeditionGate.sql": {
-      "sha256": "0a39410a88ac23d0675a8727d2130301732cbcfd3d79cde05759c1441c8998d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "a2444b37cc885e653b15e98c883dc2d794702b6aa505fd3fc3fb8af1e5c2f262",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/ExpeditionGate.lua": {
-      "sha256": "56cfcee2e5c6b6d1d0848fcc8153e06f9af1f0e1160543fba9a4362eba7b774b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "75b0285793d3c83b34f91f317b047d6e438519b3547e63de5c4b2f476b885ed5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/ExpeditionGateRead.lua": {
-      "sha256": "fbf97e83078c0f3e6bf114fd304cacab5151d0734a7e10050531d1d80b30ab97",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
-      "provenance": "B178 authorized isolated N1 non-Spy gate; direct source/registration and targeted local tests reviewed. Native helpers/protection pending."
+      "sha256": "2044cee5d389d4030cdec1ec8ec4c0ec5c414dddda333d8136da4a9def3c8392",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "fbc749bcf6d66f402fc2eed190a829c5b2ac8cf58db0f69fea1264329e87a4da",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+      "sha256": "ad9e7ece9c86d61a3e25cf503658c4d56e3537c872500c67cc7a54d98b31221d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
-      "sha256": "01da28a95db25b4d2d47b2e4aca4bb11f996334dcf56efaf444bc576787b645d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+      "sha256": "fe86eb1cefab956bece4e929a9436b02e6f13b3dd68bd0be34fd86a56961d063",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/UI/ExpeditionGateWindow.xml": {
       "sha256": "5ce5ff851733a7b7d0bd1ab2e299b5b2acc11711c3d70c630144ce3b78a12373",

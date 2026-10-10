@@ -23,3 +23,8 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
 SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_GATE'),Atlas,"Index"
 FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
+
+-- B182: reuse the same existing Builder icon, no new asset.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_ZERO'),Atlas,"Index"
+FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
