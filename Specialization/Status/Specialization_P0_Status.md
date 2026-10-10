@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0459
+Status Revision: S0460
 Implementation Build: source/live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
@@ -15,9 +15,13 @@ Source and recorded live package remain B173.200 / modinfo200, deployed from `bc
 
 [Current L3 contract](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点) / manifest `P0-L3.json`: D0049 city-local, all-class +3%×current E0–7 remains unchanged. B173 notification isolation/bounded retry has 81 methods / 44 subTests LOCAL_SIMULATION_PASS; see [local result and combined acceptance](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md).
 
-[Initial E0/E2/E0 feedback](Validation/Results/Specialization_B173_Inspiration_Native_Feedback.md) and [E3 / +9% follow-up](Validation/Results/Specialization_B173_Inspiration_E3_Feedback.md): delayed national refresh and fractional accumulated increments observed. General/Prophet fit additive 20%→29% with 1/256 quantization; exact Scientist/Merchant changes do not match the user's estimated city bases. E3 image 1 already has +9% configured but prior rates, not a freshly settled E0 control. Merchant stock residual matches the visible 48-point Pass cost; it does not explain per-turn changes. Combined acceptance remains PARTIAL, not a confirmed failure or all-class PASS. No new diagnostic/repair or repeated save/load ritual is authorized.
+[Latest source/two-city clarification](Validation/Results/Specialization_B173_Inspiration_Two_City_Comparison.md) links the original E0/E2/E3 evidence. Merchant base corrected to22 plus player10%; the new E2 screenshot repeats all nine prior rates. A6%→9% gives Scientist +0.480469 / Merchant +0.613281, still not an exact fit to stated bases/common stacking models. B remains E1 in both runs, so its unchanged bonus cannot explain the differential. Independent per-city application is statically confirmed; earlier General/Prophet fractional support remains scoped. Combined acceptance stays PARTIAL; no confirmed defect/all-class PASS, new repair/probe or repeated save/load ritual.
 
 B166/B169/B170 acceptance and B168 evidence remain intact. Next action is bounded interpretation/completion of the existing combined acceptance only; [investment propagation](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md), other audit repairs and M/N/U2 remain unauthorized. Local notification counts do not prove native CPU/memory gains.
+
+## S0460 — B173 corrected sources and two-city comparison
+
+One additional E2 original reviewed/archived with SHA256 equality. Recorded user-corrected Merchant specialist base/player modifier and confirmed unchanged E1 in city B; compared E2/E3 rates without double-counting B or guessing the native stacking pool. Current model/writer/SQL confirm independent city-local automatic application. Prior raw evidence and project implementation remain unchanged; exact numerical attribution and combined acceptance remain open, with no new test or repair authorization.
 
 ## S0459 — B173 E3 numerical follow-up
 
