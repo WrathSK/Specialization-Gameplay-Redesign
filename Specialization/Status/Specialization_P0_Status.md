@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0457
+Status Revision: S0458
 Implementation Build: source/live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_REQUIRED
-Work State: B173_DEPLOYED_AWAITING_COMBINED_NATIVE
+Work State: B173_NATIVE_PARTIAL_AWAITING_COMBINED_ACCEPTANCE
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户授权B173馆藏通知定域修复，并与B172巨作启迪合并验收。source/live现为B173.200／modinfo200，已按W0003部署提交 `bc54482`；receipt `B173.200-bc54482-playtest.json`，189/189 MATCH／DEVELOP_ACTIVE／无pending。OS确认游戏退出，B172及stable恢复点保留；main stable B069.96不变。
+Source and recorded live package remain B173.200 / modinfo200, deployed from `bc54482` under W0003; receipt `B173.200-bc54482-playtest.json`, 189/189 MATCH. B172/stable recovery and main stable B069.96 are unchanged. This feedback update performs no deployment or runtime check.
 
-[当前L3合同](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)／manifest `P0-L3.json`：D0049本城当前时代E0–7、全类别3%×E语义不变。B173改K具名订阅、独立异常隔离、下一有效采样有限补投与启动兜底；81方法44 subTest为LOCAL_SIMULATION_PASS，[结果和一次合并验收](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md)。原生GPP入账/叠加仍USER_GAME_TEST_REQUIRED；不再开独立Probe或重复冷加载仪式。
+[Current L3 contract](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点) / manifest `P0-L3.json`: D0049 city-local, all-class +3%×current E0–7 remains unchanged. B173 notification isolation/bounded retry has 81 methods / 44 subTests LOCAL_SIMULATION_PASS; see [local result and combined acceptance](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md).
 
-B166/B169/B170已接受范围和B168旧证据保留。本批仅P13a-F04相关通知修复；[投资传播计划](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md)、全定义扫描及其它审计项仍独立未授权，M/N/U2不推进。下一步仅等待合并验收；本地通知计数不证明原生CPU/内存改善。
+[Four-image native feedback](Validation/Results/Specialization_B173_Inspiration_Native_Feedback.md): E0→E2→E0 and delayed national-rate refresh observed; T70→T71 accumulated increments match displayed rates. Exact bonus attribution remains PARTIAL: city bases are estimates, Cinema completes, and Merchant has an unexplained -48 residual despite user-confirmed no recruitment. The user reports no known Scientist-GPP change and moved works to a non-Culture city. Do not infer a full PASS or failure, or subtract an assumed historical +1. No repeated save/load ritual or new test implementation is authorized.
+
+B166/B169/B170 acceptance and B168 evidence remain intact. Next action is bounded interpretation/completion of the existing combined acceptance only; [investment propagation](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md), other audit repairs and M/N/U2 remain unauthorized. Local notification counts do not prove native CPU/memory gains.
+
+## S0458 — B173 initial native feedback recorded
+
+Four originals reviewed and archived with 4/4 SHA256 equality. The new result distinguishes reported configuration, national rates/accumulation, user source estimates and unresolved numerical attribution. Garden dilution is explained conditionally, without assuming the actual stacking pool or +6 Scientist source eligibility. B173 combined acceptance remains pending; no Design, code, tests, runtime, deployment, main or new implementation changes.
 
 ## S0456 — B173通知隔离本地完成
 

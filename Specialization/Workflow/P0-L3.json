@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0457",
+    "status": "S0458",
     "runtime": "B173.200 / modinfo200",
     "military": "D0037",
     "harbor": "D0037",
@@ -199,9 +199,9 @@
   ],
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-    "native": "USER_GAME_TEST_REQUIRED; combined with B172 city GPP percentage.",
+    "native": "PARTIAL: four-image E0/E2/E0 and next-turn national rates/totals observed; exact attribution/combined native acceptance remains pending. See Specialization/Status/Validation/Results/Specialization_B173_Inspiration_Native_Feedback.md.",
     "deployment": "B173.200 DEVELOP_ACTIVE; B173.200-bc54482-playtest.json;189/189 MATCH;B172/stable recovery verified;no pending transaction.",
-    "stop": "Deployed checkpoint; stop for combined native acceptance. Other repairs/abilities not authorized.",
+    "stop": "Record/interpret submitted evidence only; no automatic repair, new probe or next ability. Existing combined acceptance remains open; no repeated save/load ritual.",
     "source_commit": "bc5448268929c2625f06d6d39bf89778dd70147d"
   }
 }
