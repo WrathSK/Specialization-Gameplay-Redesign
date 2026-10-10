@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0482",
+    "status": "S0483",
     "runtime": "B182.209 / modinfo209",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Minimal Spy0-first prototype: independent cap1/source binding and timed exact placement, observe native travel eligibility and harmless coexistence; stop before formal N1/N2/N3.",
-  "implementation_authorized": true,
+  "goal": "Review B182 Spy0 native dispatch failure and separate API-context defect from untested coexistence; any narrow repair or alternate route needs authorization.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -122,6 +122,11 @@
       "path": "Mod/NetworkInput.lua",
       "kind": "full",
       "reason": "Direct reused city Reference implementation; no new persistent identity"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
+      "kind": "full",
+      "reason": "Current submitted native evidence, actual-module API-boundary counterexample and explicit review/repair stop; no new gameplay authority"
     }
   ],
   "dependencies": [
@@ -165,17 +170,17 @@
   ],
   "validation": {
     "depth": "L2: new isolated unit/timer/placement lifecycle, actual Lua faults and database/UI integration; no shared Store schema change.",
-    "local": "62 gate +10 P0 panel methods PASS; named integrity/selectors/links/package review.",
-    "user": "One continuous new primitive/transition gate; no repeat cold-load ritual. Native input lock, exact placement and harmless coexistence remain required."
+    "local": "Prior62 gate+10 panel methods remain LOCAL evidence. Review adds two read-only actual-module comparisons of the documented API-context gap; no source/test modifications or full suite rerun.",
+    "user": "B182 creation/readback and timing scoped native PASS; operation API_UNAVAILABLE, no arrival/coexistence observed. No additional user test before authorized repair."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
     "source": "B182.209 / modinfo209; source 03a10723197d76d0ec7729e30670c7b4a45b19b3; deployed 202/202 MATCH; Spy0 prototype only.",
-    "native": "B180 getter/retreat scope inherited only; B182 Spy0 placement/coexistence USER_GAME_TEST_REQUIRED.",
-    "stop": "No Spy1 fallback, formal N1 persistence/training/reattachment, N2/N3/U2 or reward/Era Score."
+    "native": "Three screenshots: one own unit/source/count retained across T84-T85, Spy max5 and timing2+0; dispatch operation error. Coexistence/arrival/END/duplicate create NOT_TESTED; exact native cause not traced.",
+    "stop": "Review report; narrow API-context repair proposed only. No automatic implementation, Spy1 fallback, formal N1/N2/N3/U2 or Design change."
   }
 }

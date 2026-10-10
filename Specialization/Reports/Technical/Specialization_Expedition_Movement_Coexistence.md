@@ -1,6 +1,14 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **Research with B182 Spy0-first prototype follow-up.** Earlier sections preserve inspected source facts and candidate tradeoffs. The latest user approval selects the bounded Spy0 route first; the older Spy1-first ordering below is superseded. [B182 local result/native gate](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md) is current; [B180/B181 evidence](../../Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md) stays scoped.
+Date: 2026-10-10. **Research with B182 Spy0-first prototype follow-up.** Earlier sections preserve inspected source facts and candidate tradeoffs. The latest user approval selects the bounded Spy0 route first; the older Spy1-first ordering below is superseded. [B182 native review](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) is current; the unchanged [local result](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md) retains the pre-test contract; [B180/B181 evidence](../../Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md) stays scoped.
+
+## B182 native review — stop before repair or Design revision
+
+Three screenshots establish creation/readback, unchanged displayed source/count and Spy-capacity maximum5, plus Spy0 timing2+0 for Sparta. The next operation reports `API_UNAVAILABLE`; arrival and harmless coexistence were not reached. Both successful readbacks have zero other units on the tile. No native END, duplicate-create enforcement or save/load result is claimed.
+
+The actual Gameplay target validator calls UI-only `City:IsCapital()`; the existing local mock provides it in both contexts. Removing only that method in memory reproduces the reported error before timer/placement, with unit/source/count retained. This is a confirmed source/test boundary defect and a local counterexample, **not a recovered native stack trace**. The third image suppresses source/count on error, so post-failure native binding is not independently confirmed. See the linked result for sources and exact limits.
+
+This failure does not prove Spy1 is required. Stock chooser/overview have an explicit Spy flag dependency; independent cap/binding/window/timer do not, and the timing getters worked with Spy0. Native Spy execution, off-map lifecycle and harmless coexistence remain unresolved. Recommended next technical step is a narrow context-appropriate target-check/error-report repair if authorized, not an automatic switch of representation or weakened Design. No repair/new prototype/test request is made by this review.
 
 ## B182 authorized prototype boundary
 
@@ -20,7 +28,7 @@ Unchanged: own-player cap1/current Spy production cost, met living foreign Major
 
 ## What the inspected implementation establishes
 
-Source paths below are relative to the installed Civ VI asset root or the configured HD Workshop root. The loaded DB is the existing read-only `debug_gameplay_db` from local configuration, not an assumed vanilla DB. No external source was edited.
+The table below preserves the pre-B182 inspection: its references to the then-current gate mean the old B180 retreat fixture, not the new B182 Spy0 type. Source paths below are relative to the installed Civ VI asset root or the configured HD Workshop root. The loaded DB is the existing read-only `debug_gameplay_db` from local configuration, not an assumed vanilla DB. No external source was edited.
 
 | Surface | Direct evidence | What this establishes / does not establish |
 |---|---|---|
@@ -104,4 +112,4 @@ No on-contact kill/recreate, resurrection, forced retreat/reposition loop, per-f
 
 Performance boundary: read current target/occupants only on explicit gate actions; normal formal N1 later processes only the one owned team and due work. No all-city/all-unit-every-frame scan, new GC, global building ledger or independently growing history. UI displays backend-owned state and does not settle tasks.
 
-**Current stop:** complete B182 native Spy0 gate, then review its actual boundary. Earlier Spy1-first ordering is retained only as candidate history; no Spy1 switch, formal N1 extension or new Design sync is automatically authorized.
+**Current stop:** B182 native dispatch stopped with API_UNAVAILABLE; review the linked report and proposed narrow API-context repair before any new implementation or test. Earlier Spy1-first ordering is retained only as candidate history; no Spy1 switch, formal N1 extension or new Design sync is automatically authorized.
