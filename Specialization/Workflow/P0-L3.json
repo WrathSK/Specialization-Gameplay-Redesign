@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0458",
+    "status": "S0459",
     "runtime": "B173.200 / modinfo200",
     "military": "D0037",
     "harbor": "D0037",
@@ -199,7 +199,7 @@
   ],
   "result": {
     "local_evidence": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-    "native": "PARTIAL: four-image E0/E2/E0 and next-turn national rates/totals observed; exact attribution/combined native acceptance remains pending. See Specialization/Status/Validation/Results/Specialization_B173_Inspiration_Native_Feedback.md.",
+    "native": "PARTIAL: initial E0/E2/E0 plus E3 follow-up; General/Prophet support additive +9% and fractional accumulation with 1/256 numerical fit. Exact Scientist/Merchant attribution and combined acceptance pending. See Specialization/Status/Validation/Results/Specialization_B173_Inspiration_E3_Feedback.md and initial native feedback. No universal engine rounding or all-class PASS claimed.",
     "deployment": "B173.200 DEVELOP_ACTIVE; B173.200-bc54482-playtest.json;189/189 MATCH;B172/stable recovery verified;no pending transaction.",
     "stop": "Record/interpret submitted evidence only; no automatic repair, new probe or next ability. Existing combined acceptance remains open; no repeated save/load ritual.",
     "source_commit": "bc5448268929c2625f06d6d39bf89778dd70147d"

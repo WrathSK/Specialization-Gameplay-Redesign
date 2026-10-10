@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0458
+Status Revision: S0459
 Implementation Build: source/live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
@@ -15,9 +15,13 @@ Source and recorded live package remain B173.200 / modinfo200, deployed from `bc
 
 [Current L3 contract](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点) / manifest `P0-L3.json`: D0049 city-local, all-class +3%×current E0–7 remains unchanged. B173 notification isolation/bounded retry has 81 methods / 44 subTests LOCAL_SIMULATION_PASS; see [local result and combined acceptance](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md).
 
-[Four-image native feedback](Validation/Results/Specialization_B173_Inspiration_Native_Feedback.md): E0→E2→E0 and delayed national-rate refresh observed; T70→T71 accumulated increments match displayed rates. Exact bonus attribution remains PARTIAL: city bases are estimates and Cinema completes. The Merchant -48 stock residual aligns with the subsequently reported Pass action; native rejection spends GPP, but does not explain per-turn changes. The user reports no known Scientist-GPP change and moved works to a non-Culture city. Do not infer a full PASS or failure, or subtract an assumed historical +1. No repeated save/load ritual or new test implementation is authorized.
+[Initial E0/E2/E0 feedback](Validation/Results/Specialization_B173_Inspiration_Native_Feedback.md) and [E3 / +9% follow-up](Validation/Results/Specialization_B173_Inspiration_E3_Feedback.md): delayed national refresh and fractional accumulated increments observed. General/Prophet fit additive 20%→29% with 1/256 quantization; exact Scientist/Merchant changes do not match the user's estimated city bases. E3 image 1 already has +9% configured but prior rates, not a freshly settled E0 control. Merchant stock residual matches the visible 48-point Pass cost; it does not explain per-turn changes. Combined acceptance remains PARTIAL, not a confirmed failure or all-class PASS. No new diagnostic/repair or repeated save/load ritual is authorized.
 
 B166/B169/B170 acceptance and B168 evidence remain intact. Next action is bounded interpretation/completion of the existing combined acceptance only; [investment propagation](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md), other audit repairs and M/N/U2 remain unauthorized. Local notification counts do not prove native CPU/memory gains.
+
+## S0459 — B173 E3 numerical follow-up
+
+Three additional originals reviewed and archived with 3/3 SHA256 equality. User reports no building completion and estimates Scientist 7+6 / Merchant6. The follow-up separates additive/multiplicative hypotheses, source eligibility, actual national rates, Pass spending and 1/256 numerical fit. Scoped native percentage/fractional support is recorded without claiming a universal rounding algorithm or exact all-class attribution. Source/live B173, formal contracts and earlier evidence unchanged; no gameplay/test/runtime/main/deployment action. Continue only bounded existing acceptance interpretation.
 
 ## S0458 — B173 initial native feedback recorded
 
