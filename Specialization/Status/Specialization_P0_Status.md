@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0462
-Implementation Build: source B174.201; recorded live B173.200 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0463
+Implementation Build: source B175.202; recorded live B173.200 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B174_LOCAL_COMPLETE_NATIVE_DEFERRED_FOR_COMBINED_DIALOGUE
+Work State: B175_M1_LOCAL_COMPLETE_COMBINED_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source is **B174.201 / modinfo201**, the user-authorized [investment propagation repair](../Reports/Proposals/Investment_Update_Propagation_Repair_Plan.md#current-checkpoint--b174201). [Result and exact scope](Validation/Results/Specialization_B174_Investment_Propagation_Local.md) / current manifest `Investment-Propagation.json`: two actual investment entrances, reliable final receipt evidence, and only the target city's Housing/GPP refresh. 21 methods/59 subtests plus four Store regressions and two existing offline-model suites passed locally. No new Design/save fields/GC, or new native PASS.
+Source is **B175.202 / modinfo202**, the approved [first Dialogue slice](../Architecture/v2/P0_M_Dialogue.md#current-slice--b175202-project-and-history): normal production entry, one-turn timer, START-era quota, completion-time X and city-owned history. The new cumulative yield multiplier and old Dialogue retirement are **not implemented**. [Result and combined test](Validation/Results/Specialization_B175_Dialogue_Project_Local.md); current manifest `P0-M1.json`. 63 targeted methods/66 subtests passed locally, not natively.
 
-Recorded live remains **B173.200**, source `bc54482`, receipt `B173.200-bc54482-playtest.json`, prior 189/189 MATCH; no runtime check or deployment was performed. Main/stable B069.96 and existing recovery remain unchanged. The user requested one later package/session shared with 时代对话; hold this repair's separate deployment/native test.
+The package also contains B174's [investment propagation repair](Validation/Results/Specialization_B174_Investment_Propagation_Local.md); its native observation is combined with Dialogue while PASS labels stay separate. No new GPP rounding investigation. B173 percentage API acceptance remains scoped to observed behavior; exact Scientist/Merchant source/stacking attribution stays UNKNOWN and non-blocking.
 
-B173 Inspiration's percentage API remains accepted for the observed General/Prophet response, era-dependent changes and fractional accumulation ([acceptance boundary](../Architecture/v2/P0_L3_Inspiration.md#当前切片与停止点)). Exact Scientist/Merchant source coverage/stacking/rounding remain UNKNOWN and non-blocking; no further numerical test. B173 adjacent-consumer native observations were not independently confirmed; inherited local and earlier ability evidence retain their own scopes.
+Recorded live is still **B173.200** (`bc54482`, `B173.200-bc54482-playtest.json`, prior189/189 MATCH) until the W0003 game-exit/hash/receipt transaction is separately recorded. Main/stable B069.96 and recovery are unchanged. Approved next actions: complete this batch's checkpoint/safe test-package deployment and receive the single combined user test. No automatic next M slice, N/U2, other repair or promotion.
 
-The repair's future native observation is one normal investment I→II (current Housing/GPP and an unaffected city, respecting next-turn GPP refresh), combined with the [next Dialogue slice](../Architecture/v2/P0_M_Dialogue.md). Dialogue's new transaction/native-yield gates remain distinct; package sharing is not evidence that M is implemented. Stop at this locally complete repair checkpoint; M/N/U2 and other repairs require their respective scope authorization. No automatic deployment or gameplay continuation.
+The new persistence is a small optional per-city Store extension, not a general save migration. Pre-test save/receipt recovery remains required; uncertain completion is held, never reconstructed from a later collection. Current native flow includes one meaningful post-success cold load; no shared-Probe OFF/re-enable ceremony.
+
+## S0463 — first Dialogue project/history batch locally complete
+
+User authorized M1 and combining it with B174. Added normal high-cost project, exact entry marker, deterministic timer/history model, Store-owned receipts/quota, completion-time single-city sample, bounded UI handshake and read-only Chinese report. Scoped cancellation/UNKNOWN/duplicate/write-failure/load and existing Claim/B174 checks pass; new native order/save behavior pending. No new cumulative yield writer, Design/GC/main change or unrelated implementation. See the B175 result for scope, rollback boundary and one combined test.
 
 ## S0462 — investment propagation locally complete; combined native session planned
 

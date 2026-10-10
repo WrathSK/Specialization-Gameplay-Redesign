@@ -186,3 +186,7 @@ PT001后续定域调查完成：[最小优化候选](../Reports/Technical/Specia
 ## B172 / B173 — 巨作启迪与馆藏通知修复合并验收
 
 新本城百分比能力及馆藏通知修复均本地完成；[一次合并session与证据边界](Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md#与巨作启迪一次验收)。同次时代/作品移动顺便观察三项文化能力，不分别重复两批测试。这取代B168旧基础小数方案的后续派发，不改写上面的旧观察。无启用/END按钮、无重复默认OFF冷加载流程；实际安装版本见Status/receipt，原生未验。其它待办状态不因此自动改变。
+
+## B175.202 — combined Dialogue first slice / B174 acceptance
+
+USER_GAME_TEST_REQUIRED: [one combined flow](Validation/Results/Specialization_B175_Dialogue_Project_Local.md#一次合并验收流程). Normal investment I→II and existing support refresh; Culture III Dialogue start/cancel/restart, completion-time X and START-era quota; one post-success cold load of the new history. New cumulative yield is not enabled. No extra GPP precision test, repeated Probe lifecycle or long run. Package/receipt state is in Status CURRENT; this entry does not imply deployment or PASS.

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="201">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="202">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B173.200: isolated Great Work consumer notifications and bounded retry; combined Inspiration native acceptance pending.</Description>
+    <Description>B175.202: first Era Dialogue project and saved-history gate, combined with B174 scoped investment propagation. New cumulative yield is not enabled; native validation pending.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -15,6 +15,8 @@
     <UpdateDatabase id="SPC_ResearchTradition"><Properties><LoadOrder>2000007</LoadOrder></Properties><File>Data/ResearchTradition.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ClaimProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/ClaimProjects.sql</File></UpdateDatabase>
     <UpdateText id="SPC_ClaimText"><File>Text/ClaimProjects.sql</File></UpdateText>
+    <UpdateDatabase id="SPC_DialogueProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/DialogueProjects.sql</File></UpdateDatabase>
+    <UpdateText id="SPC_DialogueProjectText"><File>Text/DialogueProjects.sql</File></UpdateText>
     <ReplaceUIScript id="SPC_TimedProjectCityPanel"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
     <ReplaceUIScript id="SPC_TimedTurnProbe"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
@@ -71,7 +73,10 @@
       <File>TimedProductionProbe.lua</File>
       <File>ProjectTurnObservation.lua</File>
       <File>ClaimProjects.lua</File>
+      <File>DialogueProjectModel.lua</File>
+      <File>DialogueProjects.lua</File>
       <File>UI/ClaimProjectUI.lua</File>
+      <File>UI/DialogueProjectUI.lua</File>
       <File>TimedProject.lua</File>
       <File>UI/TimedProjectRead.lua</File>
       <File>UI/TimedProjectDisplay.lua</File>
@@ -384,9 +389,14 @@
     <File>TimedProductionProbe.lua</File>
     <File>ProjectTurnObservation.lua</File>
     <File>ClaimProjects.lua</File>
+    <File>DialogueProjectModel.lua</File>
+    <File>DialogueProjects.lua</File>
     <File>UI/ClaimProjectUI.lua</File>
+    <File>UI/DialogueProjectUI.lua</File>
     <File>Data/ClaimProjects.sql</File>
     <File>Text/ClaimProjects.sql</File>
+    <File>Data/DialogueProjects.sql</File>
+    <File>Text/DialogueProjects.sql</File>
     <File>TimedProject.lua</File>
     <File>UI/TimedProjectRead.lua</File>
     <File>UI/TimedProjectDisplay.lua</File>

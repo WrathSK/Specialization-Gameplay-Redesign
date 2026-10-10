@@ -29,6 +29,11 @@ local function refreshInvestmentSupport(playerID,result)
    consumer.errors[key]=not ok and tostring(err) or nil
   end
  end
+ if type(result)=='table' and result.status=='COMMITTED' and shared.DialogueProjects
+  and not shared.DialogueProjects.startupError and shared.DialogueProjects.Refresh then
+  local ok,err=pcall(shared.DialogueProjects.Refresh,playerID,result.city) -- target entry only
+  if not ok then print('[SPC][Dialogue investment entry] '..tostring(err))end
+ end
 end
 local function request(playerID,params)
   shared.RequestIngress=shared.RequestIngress or {count=0}
@@ -67,6 +72,17 @@ local function request(playerID,params)
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
+  end
+  if params.Action=='DIALOGUE_PROJECT_BEGIN' or params.Action=='DIALOGUE_PROJECT_SYNC' or params.Action=='DIALOGUE_PROJECT_READ' then
+    local ok,out=pcall(function()
+      local d=assert(shared.DialogueProjects,'时代对话未初始化');assert(not d.startupError,d.startupError)
+      if params.Action=='DIALOGUE_PROJECT_SYNC' then d.Sync(playerID,params.CityID,params.Token);return end
+      if params.Action=='DIALOGUE_PROJECT_BEGIN' then d.Request(playerID,params);return end
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
+      return d.Describe(playerID,c)
+    end)
+    if params.Action=='DIALOGUE_PROJECT_READ' then shared.Snapshot=ok and out or ('时代对话暂停：'..tostring(out));shared.LastToken=params.Token end
+    return
   end
   if params.Action=='CLAIM_BEGIN' or params.Action=='CLAIM_SYNC' then
     local claim=shared.ClaimProjects
@@ -836,6 +852,13 @@ if not claimOK then
  shared.ClaimProjects=shared.ClaimProjects or {views={},revision=0}
  shared.ClaimProjects.startupError=tostring(claimError):gsub('^.-:%d+: ',''):match('[^\r\n]+')
  print('[SPC][Claim startup] '..tostring(claimError))
+end
+
+local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
+if not dialogueOK then
+ shared.DialogueProjects=shared.DialogueProjects or {views={},syncAck={},revision=0}
+ shared.DialogueProjects.startupError=tostring(dialogueError)
+ print('[SPC][Dialogue project startup] '..tostring(dialogueError))
 end
 
 -- Independent read-only evidence; never start the isolated inheritance writers.

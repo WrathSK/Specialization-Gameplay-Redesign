@@ -1,7 +1,7 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
-local claimSelection
+local claimSelection,dialogueSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
@@ -14,11 +14,12 @@ function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
  if claimSelection then claimSelection.Sync(data.City)end
+ if dialogueSelection then dialogueSelection.Sync(data.City)end
  SPCTimedProjectDisplay.Items(data)
  -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
  local items={}
  for _,item in ipairs(data.ProjectItems)do
-  local owned=ranks[item.Type] or SPCClaimProjectUI.IsProject(item.Type)
+  local owned=ranks[item.Type] or SPCClaimProjectUI.IsProject(item.Type) or item.Type==SPCDialogueProjectUI.PROJECT
   if not owned or item.Disabled~=true or item.IsCurrentProduction==true then items[#items+1]=item end
  end
  data.ProjectItems=items
@@ -48,8 +49,11 @@ local projectSelection=SPCTimedProjectSelection.New(SPCP0,function(...)return UI
  function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
 claimSelection=SPCClaimProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
  function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+dialogueSelection=SPCDialogueProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
 local baseAdvance=AdvanceProject
 function AdvanceProject(c,item)
+ if not dialogueSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not claimSelection.Before(c,item,CheckQueueItemSelected()) then return end
  if item.Type=="PROJECT_SPC_OVERFLOW_SINK_TEST" and CheckQueueItemSelected() then return end
  if not projectSelection.Before(c,item) then return end
@@ -57,6 +61,8 @@ function AdvanceProject(c,item)
 end
 Events.GameCoreEventPublishComplete.Add(projectSelection.Pulse)
 Events.GameCoreEventPublishComplete.Add(claimSelection.Pulse)
+Events.GameCoreEventPublishComplete.Add(dialogueSelection.Pulse)
+Events.LoadScreenClose.Add(dialogueSelection.WarmStart)
 Events.LoadScreenClose.Add(claimSelection.WarmStart)
 LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
  local c=UI.GetHeadSelectedCity()

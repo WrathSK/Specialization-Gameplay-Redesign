@@ -25,7 +25,7 @@
     <GridButton Hidden="1" ID="NextTemplatesButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Next templates" />
     <GridButton Hidden="1" ID="BoostBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Boost baseline" />
     <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" Hidden="1" />
-    <GridButton ID="GWCityButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Dialogue AUTO" Hidden="1" />
+    <GridButton ID="GWCityButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="DialogueProjectCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_DIALOGUE_PROJECT_REPORT" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="1" ID="GWObjectButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="GW per work +2C" />
     <GridButton ID="GWOffButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Dialogue OFF" Hidden="1" />
     <GridButton Hidden="1" ID="BoostTestZeroButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Boost test 0" />

@@ -58,6 +58,12 @@ A0161保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
 
+### Dialogue project and saved history (B175)
+
+The first [P0-M slice](v2/P0_M_Dialogue.md#current-slice--b175202-project-and-history) adds an optional city-owned Dialogue extension to the existing per-city Store. `DialogueProjectModel` validates receipts/quota/pending transitions; `DialogueProjects` owns the exact entry marker and one-turn completion transaction. UI selection/display is not saved authority. Completion uses the existing Great Work collector/catalogue for a fresh, single-city observation with matching reference/turn, not a cached background sample.
+
+Only pending attempts participate in normal turn work. Known pre-commit qualification/owner/production loss cancels the attempt while retaining successful history; UNKNOWN or ambiguous completion holds. CALLING is persisted before native completion, and an uncertain completion cannot be replayed or resampled after load. No new city key, AI history listener, GC strategy or generic contract framework is added. The new cumulative yield writer and old Dialogue retirement are still unimplemented; [result](../Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md) and Status carry validation/deployment evidence.
+
 ### Shared D业务事实与按需明细（B170）
 
 DistrictCompleteness是唯一D采集/计算owner。正常收益使用`ReadFacts`：保留区域/建筑资格、tier/位置/掠夺、domainD及availability/UNKNOWN；省略name/tierSource/excluded展示树。现有`Read`从同一已确认raw延迟派生完整明细，切换模式不重复采native、不发收益或增加业务revision，返回副本独立。
@@ -126,7 +132,7 @@ B138稳定化补充既有事件驱动合同，不重建事件总线。新/修改
 
 ### 目标合同与尚未落地部分
 
-[目标状态模型](v2/D0032_Adaptation.md#canonical-state-model--target-contracts-not-implemented-schemas)包含Historical State、REALLOCATING、专业永久成果与长期合同；这是依赖这些能力时必须满足的职责，不是当前已存在的全部保存schema。新通用cityKey、资产重组、Culture永久对话/考察记录、Commerce长期合同和Research学术传统，不能从旧模块同名或Game存储存在推断完成。各专业Legacy保持独立，未决项不由架构类推。
+[目标状态模型](v2/D0032_Adaptation.md#canonical-state-model--target-contracts-not-implemented-schemas)包含Historical State、REALLOCATING、专业永久成果与长期合同；这是依赖这些能力时必须满足的职责，不是当前已存在的全部保存schema。新通用cityKey、资产重组、Culture完整永久对话收益/考察记录及Commerce长期合同，不能从旧模块同名或Game存储存在推断完成。B175仅完成上方Dialogue项目/历史首段；科研传统实际实现见本页专属入口。各专业Legacy保持独立，未决项不由架构类推。
 
 [总实施计划](v2/D0032_Implementation_Plan.md)解释依赖与切换策略；[当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)限制现在做什么；[技术spike](v2/D0032_Technical_Spikes.md)记录未来必须验证的接口。目标文件中的旧“推荐下一批”是当时规划，授权只从Status及用户明确决定取得。
 

@@ -1,13 +1,15 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / B172_INSPIRATION_LOCAL_COMPLETE_NATIVE_REQUIRED / M_N_U2_IMPLEMENTATION_NOT_AUTHORIZED。
+State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_LOCAL_COMPLETE_NATIVE_PENDING / N_U2_NOT_AUTHORIZED。
 Authority: Culture D0049 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只维护相关准备范围；实际source/live与授权从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取。
 
 ## 当前切片与停止点
 
-B166自动意义延展已获人工PASS（含冷重启），七域五yield／Culture追加隔离／主题化Balance边界保留。用户授权直接复用city GPP百分比原语实施[D0049巨作启迪](P0_L3_Inspiration.md#当前切片与停止点)，B172本地完成、原生待验。无需单独技术原型，不要求旧B168小数门禁或Probe冷加载仪式。
+B173巨作启迪百分比API已获用户按所测范围接受；Scientist/Merchant精确来源与计算顺序仍是非阻塞UNKNOWN，不再派发小数排查。B166自动意义延展及其冷重启人工PASS保留，Culture追加隔离／主题化Balance边界不变。
 
-B168基础GPP原证据保留；0.1D×W／六class／Floor备用已被D0049当前时代、本城全类别3%×E取代。M/N/U2及投资传播修复仍未授权，不自动实施。
+用户已授权时代对话首段：B175真实项目＋城市历史本地完成，与B174投资传播修复同包、同一最小验收流程。见[M当前切片](P0_M_Dialogue.md#current-slice--b175202-project-and-history)。新累计倍率与旧Dialogue退休尚未落地，项目/保存通过不等于完整M通过。实际部署与证据只从Status读取。
+
+B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。N/U2和其它修复仍未授权，不自动实施。
 
 ## 按模块阅读
 
@@ -15,8 +17,8 @@ B168基础GPP原证据保留；0.1D×W／六class／Floor备用已被D0049当前
 |---|---|---|
 | 风雅熏陶L1 | [L1](P0_L1_Aesthetic.md#当前切片与停止点)：逐栋Tourism、已测结算/退出 | [B149限定PASS](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保留，不重开无变化回合时序调查、不扩大未测组合 |
 | 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役限定整合获用户人工PASS；证据见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
-| 巨作启迪L3 | [当前L3](P0_L3_Inspiration.md)：3%×当前时代E，本城全类别GPP | B172正式自动路径LOCAL完成；复用Garden/Pingala，原生点数/叠加待验；不使用D/W或Floor |
-| 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | START Era额度/无额外cap累计/已定取消与原子提交；新累计native-only路径，B165实际过范围才继承 |
+| 巨作启迪L3 | [当前L3](P0_L3_Inspiration.md)：3%×当前时代E，本城全类别GPP | B173自动city百分比API获用户按所测范围接受；精确来源/叠加顺序非阻塞UNKNOWN；不使用D/W或Floor |
+| 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | B175项目/历史首段本地完成，合并B174待最小原生；新累计native-only倍率/cutover仍未实现 |
 | 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
 | Hybrid D U2 | [U2](P0_U2_Culture_Era.md)：已批准紧凑摘要+Tooltip、K国内索引 | 真实UI hook、等count/X组成变化通知、缓存及布局；不包含机构排版重做 |
 
@@ -28,13 +30,13 @@ B168基础GPP原证据保留；0.1D×W／六class／Floor备用已被D0049当前
 - K当前`Summary/OnConfirmed`已有X/count/排除与未知计数/引用/确认状态。等count/X的时代组成、作品替换与国内来源变化仍可能没有compact callback；U2要小型呈现通知，L3只消费E和资格，等E组成变化不改变其倍率；无需新采集器。`Read`完整副本、`Domestic`时代索引仅在真实需要时构造，hover不请求。
 - K的UI collector/Gameplay完整集合校验面向本地人类城市；N外国WORKS目标须按选中/活动任务定域采样及Gameplay复核，不冒充国内样本或广播全世界。
 - 普通计算复用DistrictCompleteness的确认D与所需资格；UNKNOWN不当0，不补Tier或用名字猜同城。详细建筑/作品行仅按需诊断。
-- 当前Store/E2可提供可靠城市映射与具名退出/恢复，已有投资、工业模板及Research传统业务；新Dialogue累计/额度和考察/见闻业务仍须分别新增。城市历史、进行中事务、单位归档与派生收益分开，不套统一永久成果继承，不新建cityKey/通用Legacy框架。
+- 当前Store/E2可提供可靠城市映射与具名退出/恢复，已有投资、工业模板及Research传统业务；B175新增Dialogue累计/额度首段；对应新收益与考察/见闻业务仍须分别完成。城市历史、进行中事务、单位归档与派生收益分开，不套统一永久成果继承，不新建cityKey/通用Legacy框架。
 
 ## 本次纠正及仍保留的技术证据
 
 | 项目 | 已定规则 / 本次纠正 | 不可扩大为 |
 |---|---|---|
-| Dialogue | 每次5%×完成X，历次加算无额外cap；提交前资格/身份/重组/Owner/生产中断取消，无额度无半进度；成功后城市历史保留 | 新项目/累计writer已实现，或所有生命周期已通过 |
+| Dialogue | 每次5%×完成X，历次加算无额外cap；提交前资格/身份/重组/Owner/生产中断取消，无额度无半进度；成功后城市历史保留 | 完整新累计yield writer已实现，或所有生命周期已通过；B175项目/历史只属本地首段 |
 | 见闻与考察团 | 见闻随城，不按原Owner分账；自身文明仅过滤当前使用。归档城易主中止任务、单位留原Owner、旧归档失效，按E3免费重挂靠 | 任何时候任意换归档，或把城市历史搬到新归档城 |
 | 新首测值 | Spy当前成本等价、全国现存cap1、标准任务2T、整体本城K_T2、Network K_C1 | 最终平衡、接口可用或原生已验 |
 | 真实1T项目 | [B123](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)正常入口/显示/完成/无后续溢出及所测chop；[B126](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)Claim限定核心证据 | M新额度/取消/累计/全部注入通过；异常强制completion接受决定仍按原记录保留 |

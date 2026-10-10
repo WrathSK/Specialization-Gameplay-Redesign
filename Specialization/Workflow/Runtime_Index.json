@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "bc5448268929c2625f06d6d39bf89778dd70147d",
-  "runtime": "B173.200 / modinfo200 recorded deployed checkoutbc54482; B174.201 is source-only, native acceptance deferred to the combined Dialogue session",
+  "runtime": "B173.200 / modinfo200 recorded deployed checkoutbc54482; B175.202 source combines first Dialogue gate and B174 repair, native acceptance pending",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "832c3a1c8576ea75dc812d1975326647f13ef00b11ad47016fe2aa33988b3237",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "078fba011c462c8d3ee926285b18de29613b954a598cf37f971760fdc076f266",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "586750b677a60188ce3fbc40151d35592cb683ea41881b6e63c49d11423c1a7c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "e7c329a505da815a18d09977357bc060e881d8eca323f373056ffa1198b21934",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "726fbaa124b4dcb6c6adada5c6e70745ab4a381230eadaf42b1c794bf0f46289",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "422c0642c551d6c1fada6ab3b8723e518ee3105ef26ec7205d258591bf66f139",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "bc8ca50fb5ce200fb691e58c8fdebbc10e6b0619ee5ff047768eaedc25325309",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B127 authorized load sync and exact visibility; targeted local pass, combined user validation pending"
+      "sha256": "56c50b78fcad36180ca47444f87a960a81745bb04c371cf29673af31c1638520",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "7f003a35cfa744360fc9b09cbb83e73e65ebdc860bc99385230542d86b20d414",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "454e86b289bebab1827b3e58ca0c866de0dc8ff10e8e76872a0b617de0926f7e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "42ff0b893672f4e3341f4b1e7bb98fb6fc59396cedd06d56f83d5980576959b4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "a5d1a0db5b765529b46d10854234e761dc1ffec2fb154b10328e94360be7aa7b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "3c6e6b42ba333c07bf3af2d3f38e659c8475bb3e285e090576e89914435aff3f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "3edd6f144cc7dc12740c709050a68caa0626ce3526769f9d9194006a06345770",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B169_Store_Write_Repair_Local.md",
-      "provenance": "B169 bounded Store same-reference write/reference/load safety; 18 targeted methods/48 subTests plus direct regression PASS. Package stamps only outside Store. No schema/Design/GC change; not deployed/native pending."
+      "sha256": "281777098cc953a74c586c7afc6f46cca391821cbc7f22a1c53baf03cf087bae",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -811,9 +811,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/UI/TimedProjectDisplay.lua": {
-      "sha256": "5d2bb128c7083398cd417e8bd49d606e8cbeddc98a233e4c5a2402837afe20e1",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "sha256": "78c29df3d460a75b9411a0e92874c0711e0363170ccda338072676d7d10690b5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     },
     "Mod/UI/TimedProjectRead.lua": {
       "sha256": "4fdd50853302ca414249532becbdd17f052b31ebaa5860438a888f80d5e83214",
@@ -949,6 +949,31 @@
       "sha256": "b72705f4be2a464ae3187eb34e572da95a77e3c282f41b8a1270b02ac7655fa8",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+    },
+    "Mod/Data/DialogueProjects.sql": {
+      "sha256": "9a4ab6028432f366b8b2b98fc1c2477b79d40b624f243b7343231560fb797a93",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+    },
+    "Mod/DialogueProjectModel.lua": {
+      "sha256": "cc042bb1f281989edc3837307f27ca59ce5bb5c2117b67e064c35f49f897d8ed",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+    },
+    "Mod/DialogueProjects.lua": {
+      "sha256": "0c52f978ccc19de1adf5501470f327a6de6869f139af2abded647e1b7c2a9977",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+    },
+    "Mod/Text/DialogueProjects.sql": {
+      "sha256": "60f05ed8e2c6432717970c484a517cff30913f014ad0772172ae17184c327f2a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+    },
+    "Mod/UI/DialogueProjectUI.lua": {
+      "sha256": "81a282d7ec58fa1a7bd22d145ca0e292ba861967c8bc63ddf1069ee1c147bf2b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
     }
   }
 }

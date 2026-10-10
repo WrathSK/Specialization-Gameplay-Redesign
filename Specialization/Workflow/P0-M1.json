@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "batch": "P0-M1",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0463",
+    "runtime": "B175.202 / modinfo202",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_M_Dialogue.md#current-slice--b175202-project-and-history",
+  "goal": "First Era Dialogue normal project/timer/city-history gate; combine native flow with B174 without enabling new cumulative yields.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current scope, source/live, acceptance boundary",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_M_Dialogue.md",
+      "kind": "full",
+      "reason": "Full Dialogue contract, approved first slice and deferred yield boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Accepted complete ability including gates and notes",
+      "selector": "/abilities/1",
+      "expected_id": "CUL_L3_DIALOGUE"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "START era, completed X, current benefit and history semantics",
+      "selector": "/contracts/dialogue"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "All supported/excluded work and era rules",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "reason": "City history, pending transaction and derived-state ownership; read A/E/F and scope together",
+      "selector": "/concepts/LONG_TERM_STATE_LIFECYCLE"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Actual state/owner and new saved extension",
+      "selector": "### Dialogue project and saved history (B175)"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Existing event/facts/exit and performance constraints",
+      "selector": "### 公共更新与临时状态接入约束"
+    },
+    {
+      "path": "Mod/DialogueProjectModel.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/DialogueProjects.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/ClaimProjects.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/GreatWorkCatalog.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/DialogueProjectUI.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/ClaimProjectUI.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/TimedProjectDisplay.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/CrewProjectOrder.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/Data/DialogueProjects.sql",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/Text/DialogueProjects.sql",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Direct implementation/authority/normal entry or exact unchanged primitive dependency; inspect affected complete functions, not all unrelated consumers"
+    },
+    {
+      "path": "DevelopmentTests/test_dialogue_projects.py",
+      "kind": "full",
+      "reason": "Current acceptance or inherited separate repair evidence"
+    },
+    {
+      "path": "DevelopmentTests/test_dialogue_project_ui.py",
+      "kind": "full",
+      "reason": "Current acceptance or inherited separate repair evidence"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "kind": "full",
+      "reason": "Current acceptance or inherited separate repair evidence"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "kind": "full",
+      "reason": "Current acceptance or inherited separate repair evidence"
+    }
+  ],
+  "dependencies": [
+    "Existing E2 Store reliable reference/active/save/readback and module-owned exit; no new cityKey or all-owner migration.",
+    "Current Game Era and real queue/project completion; synchronous fresh target-city UI collector/catalogue sample must pass native gate.",
+    "B174 proof transport/two writers retained; new target Dialogue access refresh only after proved COMMITTED."
+  ],
+  "old_writers": [
+    "No old Dialogue yield writer cutover. Keep Dialogue/DialogueRefresh sampling, K/ACK, old projection and other consumers. New module owns only its exact access marker and saved Dialogue extension."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "Review B174 combined propagation or actual Store fixture fault coverage",
+      "paths": [
+        "Specialization/Workflow/Investment-Propagation.json",
+        "DevelopmentTests/test_investment_update_propagation.py",
+        "DevelopmentTests/test_store_write_boundaries.py",
+        "Mod/InvestmentAction.lua",
+        "Mod/UnitActions.lua",
+        "Mod/Lv2Housing.lua",
+        "Mod/Lv2GPP.lua"
+      ]
+    },
+    {
+      "trigger": "Display/Claim regression or uncertain load/timer ordering",
+      "paths": [
+        "Mod/UI/TimedProjectCityPanel.lua",
+        "Mod/UI/CityBannerManager_SPC_TimedProject.lua",
+        "DevelopmentTests/test_b124_project_ui.py",
+        "DevelopmentTests/test_b129_claim_sync.py",
+        "Specialization/Status/Validation/Results/Specialization_B123_Project_Pass.md",
+        "Specialization/Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md"
+      ]
+    },
+    {
+      "trigger": "Later native-only multiplier slice; not authorized by this batch",
+      "paths": [
+        "Mod/Dialogue.lua",
+        "Mod/DialogueModel.lua",
+        "Mod/UI/DialogueRefresh.lua",
+        "Mod/CultureMeaning.lua"
+      ]
+    },
+    {
+      "trigger": "Deployment/recovery only",
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ]
+    }
+  ],
+  "non_scope": [
+    "No new yield multiplier/old writer retirement, Design change, other profession, AI/MP, general save/event framework, GC strategy, main promotion or other audit repair."
+  ],
+  "validation": {
+    "depth": "L3 scoped project/Store/new saved lifecycle and shared UI; no full gameplay/stress run",
+    "local": "63 methods/66 subtests PASS; current SQL/schema/package, Lua/XML, selectors/context/links/diff reviewed. Native ordering/serialization not proved.",
+    "user": "One combined B174 normal investment and M1 project start/cancel/complete/current-X/quota flow, plus one post-success cold load. No GPP precision or shared harness ritual."
+  },
+  "full_audit_triggers": [
+    "Need unknown-owner/city reconstruction, changed Gameplay contract, general event/save architecture or cumulative-yield implementation: stop that extension and obtain its separate scope."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+    "source": "B175.202/modinfo202; exact source commit in Git,194 package files.",
+    "deployment": "Pre-transaction recorded live B173.200; only actual W0003 receipt establishes switch.",
+    "stop": "Await combined native observation; M multiplier/cutover and N/U2 not implemented."
+  }
+}
