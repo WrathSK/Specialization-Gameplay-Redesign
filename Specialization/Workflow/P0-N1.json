@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0485",
+    "status": "S0486",
     "runtime": "B183.210 / modinfo210",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Authorized B183 narrow Gameplay API-context correction and useful failure report, retaining Spy0/own cap/source binding; native arrival and coexistence pending.",
-  "implementation_authorized": true,
+  "goal": "B183 native evidence archived: independent dispatch works, exact arrival fails; review next Spy1 isolation candidate only. Completed B183 repair is not authorization for a new route.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -124,9 +124,9 @@
       "reason": "Direct reused city Reference implementation; no new persistent identity"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md",
       "kind": "full",
-      "reason": "Current submitted native evidence, actual-module API-boundary counterexample and explicit review/repair stop; no new gameplay authority"
+      "reason": "Latest submitted native evidence and exact failure boundary; completed repair does not authorize the next route"
     }
   ],
   "dependencies": [
@@ -140,7 +140,8 @@
     {
       "trigger": "Review current approved Spy0 route and preserved alternative/Spy1 evidence boundaries",
       "paths": [
-        "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md"
+        "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md",
+        "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md"
       ]
     },
     {
@@ -171,16 +172,16 @@
   "validation": {
     "depth": "L2: narrow target API/diagnostic path and actual Lua/UI faults; no saved schema/unit definition change.",
     "local": "71 N1 +10 P0 panel methods PASS; Gameplay mock omits UI-only IsCapital. Same-fixture baseline rejects before timer, corrected source accepts. No gameplay-wide suite.",
-    "user": "B182 creation/source/count/timing retained; B183 actual arrival and harmless coexistence plus END at tested destination pending in one session; no repeated cold load."
+    "user": "B183 five images: dispatch scheduled and attempted, exact placement FAIL; own-city overlap USER_REPORTED_FAIL; foreign/hostile coexistence and END NOT_TESTED. No new test requested."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md",
     "source": "B183.210 / modinfo210; source 219c4e7030f3427ec484c4716da3dc90deca9515; deployed 202/202 MATCH; Spy0 context/report repair only.",
-    "native": "USER_GAME_TEST_REQUIRED for arrival/coexistence; original B182 scoped observations retained.",
-    "stop": "Await minimal gate evidence; no automatic Spy1/fallback, formal N1/N2/N3/U2 or Design change."
+    "native": "USER_GAME_TEST_PASS for dispatch acceptance/timing only; USER_GAME_TEST_FAIL for exact arrival. Own-city overlap failure user-reported; binding after failed arrival not newly validated.",
+    "stop": "Await next-route decision; no Spy1 implementation, repeated failed-route test, formal N1/N2/N3/U2, deployment or Design change."
   }
 }

@@ -1,6 +1,82 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **Research with B183 authorized API-context correction.** [B183 current result](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md) supersedes the B182 repair-awaiting-authorization instruction only. Spy0 remains selected; native arrival/coexistence remain pending. Earlier research and frozen B180/B182 observations retain their original scope.
+Date: 2026-10-10. **B183 evidence review: exact Spy0 arrival failed; Spy1 isolation remains a proposal.** [Five-image native result](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md) supersedes the pending B183 gate. No code or Design change. Earlier findings below retain their chronological scope.
+
+
+## B183 native failure and Spy1 isolation reassessment
+
+The context repair reached its intended next boundary: T84 dispatch schedules T86, but arrival reports **EXACT_PLACEMENT_REJECTED**. The same unit is read back elsewhere, count1/1 and native Spy maximum5 unchanged; held source is recorded, not freshly validated. The user additionally reports own-city overlap failure. See the linked native result for screenshot/statement distinctions. **Stackable1 + IgnoreMoves1 on Spy0 is insufficient for this tested setup.** It is not evidence that every non-Spy representation is impossible or that Spy1 already satisfies Expedition.
+
+### What can actually be configured
+
+| Surface | Verified exposure | Limit |
+|---|---|---|
+| `Units.Spy` | Unit-type Boolean; native chooser and overview explicitly branch on it | Not a removable Property or an immunity-only switch; also joins native Spy classification |
+| `Units.Stackable` | Separate Boolean; current loaded Spy and prototype both1 | The prototype still fails the required native behavior; not a demonstrated universal cross-owner occupancy override |
+| `Units.IgnoreMoves` | Separate Boolean read by native cursor/path input | Input restriction, not protection or legal placement |
+| Formation, `CLASS_SPY`, promotion class | Independent database/classification surfaces | Copying/removing one does not detach native travel, capture/detection or off-map state |
+| `CanCapture` / `CanRetreatWhenCaptured` | Capture capability / retreat settings in Units | Neither is evidence of an independent “cannot be captured and never displaced” contract |
+| Travel / placement | Native `SPY_TRAVEL_NEW_CITY` request versus Gameplay `PlaceUnit`; separate getter/read APIs | Engine execution/occupancy is not implemented in the inspected Lua. No verified per-unit universal collision/detection opt-out was found |
+
+Thus the model is **data configuration + Lua presentation/request routing + native engine behavior**, not “one tag defines everything.” We can change the exposed inputs, but cannot infer the hidden behavior from their names. The [API reference](https://sukritact.github.io/Civilization-VI-Modding-Knowledge-Base/UnitManager) documents read/request/place separation; it is incomplete and not proof that no other interface exists.
+
+### Probability adjustment versus guaranteed non-detection
+
+The loaded database exposes `UnitOperations.BaseProbability`, `LevelProbChange`, `EnemyProbChange`, `EnemyLevelProbChange`; these belong to registered operation definitions, not a per-custom-unit safety toggle. Native/HD modifiers include `EFFECT_ADJUST_UNIT_SPY_OPERATION_CHANCE` with OperationType/Offensive/Amount, plus city/player Spy bonuses and separate operation/establishment-time effects. Chance Amount is described as effective-level improvement, not direct percentage points. Escape also has global ESPIONAGE_ESCAPE parameters. Their exact native formula/saturation and detection partition are **UNKNOWN**; modifying global values would affect ordinary espionage and is outside this proposal.
+
+`UnitManager.GetResultProbability` reads outcome probabilities. It is not a setter for “never detected.” The native UI adds **SUCCESS_UNDETECTED + SUCCESS_MUST_ESCAPE**, then rounds. `EspionageSupport` explicitly labels the latter detected and processes escape/capture/death. Therefore even displayed100% success is insufficient; no supported arbitrary per-unit detection-probability setter or immunity flag has been established in the inspected source/DB/API surfaces. This is a bounded negative finding, not proof of engine impossibility.
+
+### Avoiding diplomatic consequences
+
+The rechecked loaded chain is `STANDARD_DIPLOMATIC_ESPIONAGE` → `ON_ESPIONAGE_DETECTED` → triggered `REQUIREMENT_ESPIONAGE_DETECTED`, with−5 per transgression and STOP_SPYING_ON_ME. It is **not a mere Spy1-presence check**. If our route produces no detection, this particular chain lacks that trigger; the native producer and all possible passive/travel/war interactions remain unverified.
+
+The most useful next candidate is therefore **custom Spy1 shell/native travel + independent deterministic Expedition tasks**, not ordinary risky Spy missions with inflated odds. Reuse destination/operative presentation where appropriate, while our code owns cap1, source/archive binding, selected task, duration and results. Do not submit an espionage operation to implement the study itself. Arrival/idle/native-hook isolation still requires evidence before this can be called penalty-free.
+
+Do not use Gain Sources or Listening Post as harmless dummy timers: they have native source/visibility effects. The installed HD `SpyMissionCompleted` listener forwards every completion to a handler whose reward branch excludes Listening Post/Counterspy but not Gain Sources; that branch adds Era Score and has other conditional effects. Whether travel emits such a completion and whether a custom Spy type survives the handler's assumptions are unresolved. Removing another Mod's listener or globally suppressing espionage penalties would affect normal Spies and would not prove prevention of warnings, capture or promise/grievance events.
+
+### UI reuse has real benefits and concrete limits
+
+Spy1 meets the stock chooser's explicit type flag check, so native destination/operative components are more directly reusable than under Spy0. It does **not** automatically expose our custom tasks or preserve the intended target rules: the inspected chooser lists only Major players and excludes allied targets; native eligibility may impose more. The overview counts all Spy1 units and off-map records. Independent Expedition accounting cannot by itself remove native used-slot/training effects. HD also contains a comment that native travel changes unit IDs; that is a warning to validate continuity, not permission to identify units by names.
+
+Before implementation adoption, resolve one bounded shell/travel gate: exact arrival/coexistence; same custom type and reliable identity across off-map travel; ordinary Spy used slots/trainability; ally/war eligibility; unintended result/event/diplomacy/HD hooks. Exact Great Work-host/Wonder mission placement remains separately unproved. Only adapt necessary UI paths after those facts; do not promise that all custom UI work disappears. **Recommendation only; no new prototype or test is authorized by this review.**
+
+### Gain Sources as a possible task template — user follow-up
+
+**The user's recollection has explicit support.** Installed native `Base/Assets/Text/en_US/Espionage_Text.xml:59–60` says Gain Sources automatically succeeds after its required time; lines282–283 explicitly say there is no risk to the Spy. This establishes the intended native safe-operation behavior, rather than success obtained through a large chance Modifier. It does not independently expose the engine's detection event producer or prove zero AI/HD consequences for a new custom unit in this environment. No native probability vector/event trace was sampled this turn.
+
+The current loaded operation is Turns2, BaseProbability/LevelProbChange/EnemyProbChange/EnemyLevelProbChange all0, Offensive1. Thus “Offensive1 means it must risk detection” is not a sound rule. Conversely, copying those zero fields into a new row does not prove automatic safe execution: the inspected UnitOperations schema exposes no operation-handler inheritance/alias field, and the native executor is not Lua here. **A new operation cloned from its row inheriting Gain Sources behavior is unverified, not declared impossible.**
+
+| Reuse level | What can be retained | What must not be assumed |
+|---|---|---|
+| UI/briefing/timer presentation pattern | Existing native visual structure and an explicit safe-task presentation | UI suppressing reward display does not suppress rewards or detection events |
+| Existing Gain Sources operation, with custom Expedition completion handling | Native operation already has a documented safe-success contract; our report/reward callback could be independent | Completion still grants native intelligence-source state and enters existing completion listeners unless a scoped isolation mechanism is proved |
+| New operation copied from its DB row | Names, UI metadata, turns and exposed parameters are data | No verified way to inherit only the native safe executor while replacing its completion effect |
+| Spy1 travel shell plus our own task timer/completion | Native travel/presentation where proved suitable; our deterministic task and archive semantics | Safe coexistence, native travel identity/capacity/target rules and idle/event isolation still need the shell gate |
+
+Two concrete side effects make “rename Gain Sources and append our reward” incomplete:
+
+1. Native text grants better offensive operations in the target city. The UI reads `PlayerDiplomacy:GetSourceTurnsRemaining(city)` in the chooser/overview, so this is player/city-addressed timed state, not merely our task's private marker. Loaded globals are bonus2 and duration multiplier6. Do not assert exact effective duration or cross-unit sharing from that alone. No scoped setter to prevent/restore this state was established in the inspected surfaces; clearing it after completion could erase legitimate ordinary-Spy state. Setting its global bonus to0 would alter normal Spies.
+2. HD forwards `SpyMissionCompleted`; its reward branch excludes Listening Post/Counterspy but not Gain Sources and includes Era Score. Native `EspionagePopup.ShouldShowRewards` hides its usual reward presentation, but this does not disable that handler. Do not remove HD listeners or use unverified event ordering to undo effects afterward. Exact execution on a custom type remains untested, including the handler's unit lookup assumptions.
+
+**Revised assessment:** Gain Sources is a worthwhile model/control for a future safe-task investigation, not a route rejected because it is risky espionage. The unresolved blocker is **per-unit completion-effect isolation and native operation extensibility**, not a need to force success probability. First determine whether the safe executor can be separated without changing ordinary espionage, or whether a scoped callback/operation is actually supported. If not, use its presentation pattern with our own deterministic task on a separately validated Spy1 travel shell. This remains research advice; no global setting change, prototype, test request or Design decision is made.
+
+### Direct sources checked for this follow-up
+
+`CIV_ASSETS` means the configured installed Civ VI asset root; `HD_CORE` is the installed core Workshop package identified by its existing investigation index. No machine-specific root or game file is copied into Git.
+
+| Source | Evidence |
+|---|---|
+| CIV_ASSETS/Base/Assets/Gameplay/Data/Schema/01_GameplaySchema.sql:2860–2896; configured DB Units/UnitOperations/DynamicModifiers | Separate unit fields; operation and modifier surfaces; current prototype flags. DB fingerprint in native result |
+| CIV_ASSETS/Base/Assets/UI/WorldInput.lua:803,898 | IgnoreMoves input branches |
+| CIV_ASSETS/Base/Assets/UI/Choosers/EspionageChooser.lua:173–177,606–639 | Allied target filter; native operation submission; Spy flag check |
+| CIV_ASSETS/Base/Assets/UI/PartialScreens/EspionageOverview.lua:88–146 | Native Spy membership, off-map/captured state and capacity display |
+| CIV_ASSETS/Base/Assets/UI/Popups/EspionagePopup.lua:279–309; UI/EspionageSupport.lua:132–175 | Probability query, displayed aggregate and detected-success outcomes |
+| CIV_ASSETS/Base/Assets/Gameplay/Data/UnitOperations.xml:105–114; configured diplomacy Modifier/Requirement rows | Travel is a distinct operation; known detection-gated diplomatic chain |
+| CIV_ASSETS/Base/Assets/Text/en_US/Espionage_Text.xml:59–63,194–195,282–283; UI/Popups/EspionagePopup.lua:257–267 | Gain Sources automatic completion/no-risk intent, source bonus and presentation-only reward suppression |
+| CIV_ASSETS/Base/Assets/UI/Choosers/EspionageChooser.lua:108–120; UI/PartialScreens/EspionageOverview.lua:414–421; HD_CORE/UpdateDataBase/DL_Units.sql:109–112 | Player/city source-duration read; HD configured task duration |
+| HD_CORE/Gameplay/Temp_Interface.lua:355–365; Gameplay/UnitAbilities.lua:347–381,507–518,530–539 | Completion forwarding, broad reward branch and unit-ID warning |
+
+Previous local Stable Investigation reports remain non-authoritative, unchanged and unpublished here. Their probability limits are corroborated only to the direct surfaces above; no empirical frequency test or native immunity claim is added.
 
 ## B183 authorized correction — same native route
 
@@ -116,4 +192,4 @@ No on-contact kill/recreate, resurrection, forced retreat/reposition loop, per-f
 
 Performance boundary: read current target/occupants only on explicit gate actions; normal formal N1 later processes only the one owned team and due work. No all-city/all-unit-every-frame scan, new GC, global building ledger or independently growing history. UI displays backend-owned state and does not settle tasks.
 
-**Current stop:** B182 native dispatch stopped with API_UNAVAILABLE; review the linked report and proposed narrow API-context repair before any new implementation or test. Earlier Spy1-first ordering is retained only as candidate history; no Spy1 switch, formal N1 extension or new Design sync is automatically authorized.
+**Current stop:** B183 exact arrival failed; the user also reports own-city overlap failure. Preserve the failed fixture/evidence, no blind retry. Spy1 shell/native travel with independent tasks is the recommended next candidate for approval, not an implemented or proven solution. Formal N1/N2/N3/U2 and Design synchronization remain separate; no new test is requested now.

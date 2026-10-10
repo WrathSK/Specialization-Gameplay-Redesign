@@ -1,19 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B183_CONTEXT_FIX_LOCAL_COMPLETE / NATIVE_ARRIVAL_COEXISTENCE_PENDING. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B183_EXACT_ARRIVAL_FAILED / NEXT_ROUTE_AWAITING_APPROVAL. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B183.210 / modinfo210: authorized API-context correction locally complete.** [Repair, 81 targeted checks and one minimal session](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md) is current. Gameplay now validates the chosen capital through `PlayerCities:GetCapitalCity`; failure reports retain known unit/source/count and identify the failed stage, with UNKNOWN for unavailable readback. No capacity/binding/Spy0 or movement-route redesign.
+**B183.210 native review: dispatch accepted; exact arrival failed.** [Five-image result](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md) records T84→T86, `EXACT_PLACEMENT_REJECTED`, the same unit at another coordinate and count1/1; held source is recorded, not freshly validated. User also reports own-city overlap failure. Harmless coexistence and END are not passed.
 
-[B182 native review](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) retains creation/count/source/timing evidence and API_UNAVAILABLE. The corrected context-faithful fixture reproduces old B182 rejection versus B183 timer acceptance; **71 N1 +10 panel tests PASS** locally. Native arrival/coexistence remain untested, not failed or passed by simulation.
+The [context repair](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md) and71 N1+10 panel local checks remain valid within scope; native evidence now reaches placement after the old API error. Spy0/Stackable1/IgnoreMoves1 are confirmed in the current DB. Own session cap/source/timer remain unchanged; no native Spy operation, normal training, Property/Store write, persisted journey or reward.
 
-**Retained scope:** exact old/new types count toward own cap1; source uses current owner/city/coordinates/token; session-only timer waits visibly at departure then attempts exact PlaceUnit. No native Spy operation, normal training, Property/Store write, persisted journey or rewards. Reloaded unbound fixtures are cleanup-only. Met/living/revealed Major capital is a test restriction, not Design.
-
-**Next/stop:** after verified deployment, one continuous session checks actual arrival, available military/civilian overlap, retained source/count and END at the new location. Stop on native failure; do not repeat an uncertain placement. No save/load ritual, Spy1/fallback, formal N1 or N2/N3/U2. Formal named Culture/Shared synchronization still precedes formal integration. Source/live and deployment authorization are in Status.
+**Next/stop:** no repeated test of this failed route or automatic fallback. The [bounded Spy1 reassessment](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#b183-native-failure-and-spy1-isolation-reassessment) recommends native shell/travel with our deterministic tasks, subject to new approval and proof of target/capacity/identity/coexistence/native-hook isolation. No new code/test/deployment authorized here. Formal named Culture/Shared synchronization still precedes formal integration; N2/N3/U2 remain held. Source/live and current authorization come from Status.
 
 ## 三种状态与已定数值
 

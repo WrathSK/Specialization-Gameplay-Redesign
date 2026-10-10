@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0485
+Status Revision: S0486
 Implementation Build: source/live B183.210 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B183_N1_CONTEXT_FIX_DEPLOYED_NATIVE_PENDING
+Work State: B183_N1_EXACT_ARRIVAL_FAILED_NEXT_ROUTE_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B183.210 / modinfo210: authorized N1 API-context/error-report repair deployed; native gate pending.** [Result and minimal native session](Validation/Results/Specialization_B183_Expedition_Context_Fix.md): Gameplay validates the capital through GetCapitalCity; failures show stage/detail with reliable unit/source/count or explicit UNKNOWN. Spy0, cap1, exact city binding, timer and placement route unchanged.
+**B183.210: independent dispatch starts, but exact arrival fails.** [Five-image native review](Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md): T84→T86 reaches `EXACT_PLACEMENT_REJECTED`; same own unit moves elsewhere, count1/1 and Spy maximum5 remain. Held source is recorded, not newly validated. User additionally reports own-city overlap failure; harmless coexistence/END are not passed.
 
-**71 N1 +10 panel tests PASS** locally, including a context-faithful old/new source counterexample and error/hold/no-retry/readback cases. [B182 observations](Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md) retain their scope; actual arrival and harmless coexistence remain USER_GAME_TEST_REQUIRED. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
+The API-context fix and prior **71 N1 +10 panel local PASS** retain their scope; no local result is promoted to native immunity. [Current N1 slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) remains partial. [Spy1 reassessment](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#b183-native-failure-and-spy1-isolation-reassessment) is read-only technical advice: native shell/travel plus our tasks is a candidate, not implemented or approved.
 
-Source/live **B183.210 / modinfo210 DEVELOP_ACTIVE**, source `219c4e7`, receipt `B183.210-219c4e7-playtest.json`, **202/202 MATCH**. OS game exit verified; exact B182/stable recovery retained; no pending transaction. Main unchanged. Manifest: `P0-N1.json`.
+Recorded source/live **B183.210 / modinfo210 DEVELOP_ACTIVE**, source `219c4e7`, receipt `B183.210-219c4e7-playtest.json`, last deployment **202/202 MATCH** with B182/stable recoveries retained. This evidence-only review does not reverify or change runtime. Main unchanged; manifest `P0-N1.json`.
 
-Next: one arrival/actual military-civilian coexistence/END session; stop on failure. No repeat save/load ritual, Design change, Spy1 fallback, formal N1 training/persistence/reattachment, N2/N3, rewards or era UI. Formal named Culture/Shared synchronization still precedes formal integration.
+Next: user decision on the next isolated route; no new test, blind placement retry, automatic Spy1 switch, formal N1 training/persistence/reattachment, N2/N3, rewards or era UI. Formal named Culture/Shared synchronization still precedes formal integration. Five originals archived with matching hashes, excluded from Git.
 
 ## S0478 — B180 deployment checkpoint (historical)
 
