@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "219c4e7030f3427ec484c4716da3dc90deca9515",
-  "runtime": "B183.210 / modinfo210 deployed source 219c4e7; receipt B183.210-219c4e7-playtest.json; 202/202 MATCH, B182/stable recovery retained. Spy0 context/report repair; native arrival/coexistence pending.",
+  "runtime_commit": "3e9092c3e0d6a0f734f06598e456456acd778dd6",
+  "runtime": "B184.211/modinfo211 deployed source3e9092c; receipt B184.211-3e9092c-playtest.json;207/207 MATCH, B183/stable recoveries retained. Isolated Spy1/native travel probe; Gain Sources execution blocked; native pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

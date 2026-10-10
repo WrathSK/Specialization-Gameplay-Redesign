@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0487
-Implementation Build: source B184.211 LOCAL_COMPLETE; live B183.210 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0488
+Implementation Build: source/live B184.211 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B184_N1_SPY1_LOCAL_COMPLETE_GAIN_SOURCES_BLOCKED
+Work State: B184_N1_SPY1_DEPLOYED_AWAITING_NATIVE_GAIN_SOURCES_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,9 +15,9 @@ Work State: B184_N1_SPY1_LOCAL_COMPLETE_GAIN_SOURCES_BLOCKED
 
 **Gain Sources execution BLOCKED**, diagnostics only: automatic success does not isolate native intelligence state or HD completion rewards. No new mission reward, persistent journey, formal N1, N2/N3/U2 or Design change. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) and manifest `P0-N1.json` are the direct continuation.
 
-Source **B184.211 / modinfo211**; last verified live **B183.210 DEVELOP_ACTIVE**, source `219c4e7`, receipt `B183.210-219c4e7-playtest.json`, last verified202/202 MATCH. No B184 deployment yet. Existing W0003 clean/pushed-source, OS exit and transactional recovery gates apply; main unchanged.
+Source/live **B184.211 / modinfo211 DEVELOP_ACTIVE**, source `3e9092c`, receipt `B184.211-3e9092c-playtest.json`, **207/207 MATCH**. Clean/pushed source, verified OS exit and exact B183/stable recovery transaction completed; recoveries retained, no pending transaction or game launch. Main unchanged.
 
-Next allowed: finish the source checkpoint, safely deploy under W0003 if exited, then the single new native session. Stop on identity/native availability/coexistence uncertainty; do not run Gain Sources or choose another route automatically. Earlier B183 arrival FAIL and B180 retreat evidence retain their exact scope.
+Next: user performs the single new native session; no additional implementation/deployment is queued. Stop on identity/native availability/coexistence uncertainty; do not run Gain Sources or choose another route automatically. Earlier B183 arrival FAIL and B180 retreat evidence retain their exact scope.
 
 ## S0478 — B180 deployment checkpoint (historical)
 

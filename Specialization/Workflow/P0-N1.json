@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0487",
+    "status": "S0488",
     "runtime": "B184.211 / modinfo211",
     "military": "D0037",
     "harbor": "D0037",
@@ -186,8 +186,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-    "source": "B184.211/modinfo211 LOCAL_COMPLETE; last verified live still B183 until W0003 receipt.",
+    "source": "B184.211/modinfo211 deployed from3e9092c; receipt B184.211-3e9092c-playtest.json,207/207 MATCH, B183/stable recovery retained.",
     "native": "USER_GAME_TEST_REQUIRED for travel/coexistence/ordinary-Spy availability. BLOCKED for Gain Sources execution; no isolation claim.",
-    "stop": "Stop after authorized prototype/local checkpoint and safe deployment/native gate. No formal N1, N2/N3/U2, rewards or automatic alternative route."
+    "stop": "Await one native travel/coexistence gate; Gain Sources execution blocked. No further implementation, formal N1/N2/N3/U2/rewards or automatic alternative route."
   }
 }
