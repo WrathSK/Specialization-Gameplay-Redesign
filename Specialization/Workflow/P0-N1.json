@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0488",
+    "status": "S0489",
     "runtime": "B184.211 / modinfo211",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Minimal authorized Spy1 native travel/coexistence gate with own cap/source; read-only Gain Sources isolation diagnostic, execution blocked until a scoped native/HD isolation path is proved.",
-  "implementation_authorized": true,
+  "goal": "B184 native evidence review complete with identity/source continuity not passed. Next proposed scope: reliable travel continuity and one independent no-reward task on the Spy1 shell; awaiting authorization, Gain Sources execution blocked.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -124,9 +124,9 @@
       "reason": "Direct reused city Reference implementation; no new persistent identity"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md",
       "kind": "full",
-      "reason": "Latest submitted native evidence and exact failure boundary; completed repair does not authorize the next route"
+      "reason": "Latest native travel/binding discrepancy and mission-isolation boundary; no implementation authorization"
     },
     {
       "path": "DevelopmentTests/test_expedition_gate.py",
@@ -136,7 +136,7 @@
   ],
   "dependencies": [
     "EffectiveFacts qualification + NetworkInput.Reference exact source; independent session cap1 including old fixtures and off-map reservation.",
-    "UI-only native Spy travel and read-only source/probability/ordinary-Spy availability checks; Gameplay permit and original-unit arrival observation. No Gain Sources execution or persistent journey."
+    "UI-only native Spy travel and read-only source/probability/ordinary-Spy checks; original-ID observation has a confirmed missing returned-ID equality guard. Reliable logical-team continuity must be established before new task writes."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -147,7 +147,8 @@
       "paths": [
         "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md",
         "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
-        "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md"
+        "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+        "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md"
       ]
     },
     {
@@ -176,18 +177,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L2: scoped unit/native request/context, cap/source and UI/SQL changes; no new saved schema.",
-    "local": "31 B184 actual Lua/UI/SQL/package methods +10 existing P0-panel methods PASS; no full gameplay regression.",
-    "user": "One continuous create/read/native dispatch/arrival/END session. Native coexistence, original ID after travel and ordinary-Spy slot isolation pending; Gain Sources execution intentionally blocked, not native PASS."
+    "depth": "L1 evidence/document review; prior B184 implementation L2 evidence retained. No gameplay regression or new native test in this review.",
+    "local": "Prior31 B184 +10 P0-panel methods remain scoped evidence, not rerun. Actual unmodified Gate with an injected lookup alias reproduces ARRIVED/sameUnit/unbound; native alias behavior not inferred. Links/selectors/context/diff checked.",
+    "user": "Five images reviewed: travel/arrival/co-location1/count1 and END0 observed; changed ID/unbound source continuity NOT_PASSED; native END classification freshness and complete slot/passive isolation unresolved. Gain Sources not executed. No additional user test now."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md",
     "source": "B184.211/modinfo211 deployed from3e9092c; receipt B184.211-3e9092c-playtest.json,207/207 MATCH, B183/stable recovery retained.",
-    "native": "USER_GAME_TEST_REQUIRED for travel/coexistence/ordinary-Spy availability. BLOCKED for Gain Sources execution; no isolation claim.",
-    "stop": "Await one native travel/coexistence gate; Gain Sources execution blocked. No further implementation, formal N1/N2/N3/U2/rewards or automatic alternative route."
+    "native": "PARTIAL: travel observed; TECHNICAL_IDENTITY_BOUNDARY for reliable team/source continuity. One co-location only, no universal immunity claim. Gain Sources execution BLOCKED.",
+    "stop": "Evidence archived; next continuity/mission-isolation plan awaits authorization. No runtime change, new test dispatch, formal N1/N2/N3/U2/rewards or automatic alternative route."
   }
 }

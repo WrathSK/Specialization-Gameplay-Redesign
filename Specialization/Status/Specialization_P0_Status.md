@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0488
+Status Revision: S0489
 Implementation Build: source/live B184.211 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B184_N1_SPY1_DEPLOYED_AWAITING_NATIVE_GAIN_SOURCES_BLOCKED
+Work State: B184_NATIVE_PARTIAL_IDENTITY_BOUNDARY_MISSION_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B184.211: authorized minimal Spy1 isolation prototype locally complete; native travel/coexistence pending.** [Result and one-session test](Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md):31 new +10 P0-panel local methods PASS. Dedicated unit/native travel, own cap1/source, original-ID arrival, off-map reservation and scoped END. Ordinary Spy definitions/operations/HD hooks unchanged; native slot isolation remains unproved.
+**B184.211 native review is partial.** [Five images](Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md): travel/arrival and co-location with1 unit observed; own count1/1 and END0/1. Returned ID changes and the panel says unbound despite ARRIVED. Source continuity **NOT_PASSED**; actual-module alias counterexample confirms the report/guard gap, not the engine's identity mechanism. Immediate post-END native classification1 remains unresolved.
 
-**Gain Sources execution BLOCKED**, diagnostics only: automatic success does not isolate native intelligence state or HD completion rewards. No new mission reward, persistent journey, formal N1, N2/N3/U2 or Design change. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) and manifest `P0-N1.json` are the direct continuation.
+**Gain Sources execution remains BLOCKED.** Readable ordinary-Spy fields were unchanged in this fixture; full native slot/passive isolation not proved. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) and `P0-N1.json` retain formal N1/N2/N3/U2/reward boundaries. Prior local41-method evidence is unchanged; no new gameplay implementation or Design acceptance.
 
-Source/live **B184.211 / modinfo211 DEVELOP_ACTIVE**, source `3e9092c`, receipt `B184.211-3e9092c-playtest.json`, **207/207 MATCH**. Clean/pushed source, verified OS exit and exact B183/stable recovery transaction completed; recoveries retained, no pending transaction or game launch. Main unchanged.
+Last verified source/live **B184.211 / modinfo211 DEVELOP_ACTIVE**, source `3e9092c`, receipt `B184.211-3e9092c-playtest.json`, **207/207 MATCH**; B183/stable recoveries retained. This evidence review does not redeploy or re-verify runtime. Main unchanged.
 
-Next: user performs the single new native session; no additional implementation/deployment is queued. Stop on identity/native availability/coexistence uncertainty; do not run Gain Sources or choose another route automatically. Earlier B183 arrival FAIL and B180 retreat evidence retain their exact scope.
+Next: review the [continuity and mission-isolation plan](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#next-proposed-batch--continuity-and-mission-isolation), then authorize a bounded batch. No repeat of unchanged B184, new test, implementation or deployment queued. Keep own capacity/source; no name/coordinate adoption, unisolated Gain Sources or HD/global changes.
 
 ## S0478 — B180 deployment checkpoint (historical)
 

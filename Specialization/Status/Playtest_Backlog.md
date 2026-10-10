@@ -228,3 +228,9 @@ The formal Expedition must use mission-only movement and harmless coexistence, p
 ## B184 — Spy1 travel/coexistence gate queued; Gain Sources blocked
 
 The user authorized this next isolated route. [41 local checks and one native session](Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md#one-minimal-native-session) cover create/native dispatch/exact arrival/END, own cap/source and readable ordinary-Spy impact. No cold-load ritual or repeated Spy0 failure test. Gain Sources is not executed: raw success/source diagnostics do not isolate native intelligence or HD rewards. Native identity change, occupied-slot interference or coexistence failure stop that path; formal N1/N2/N3/U2 remain held. This supersedes the prior awaiting-approval instruction only for this prototype.
+
+## B184 — native review: travel observed; continuity and mission isolation remain
+
+[Five-image review](Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md) completes the submitted gate review and supersedes the queued instruction above. Native travel/arrival, co-location with one unit, count1/1 and END0/1 observed; arrival changes ID and says unbound despite its headline. Reliable source continuity is not passed; immediate post-END native classification1 is unresolved. Ordinary Spy fields are unchanged only in the observed fixture. Gain Sources did not execute.
+
+No additional user test now. [Next proposed batch](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#next-proposed-batch--continuity-and-mission-isolation) resolves continuity/reporting before one independently timed no-reward task and exact-type mission isolation; awaiting authorization. No ordinary Spy/HD changes, native Gain Sources request, formal rewards, N2/N3/U2 or repeated save/load ritual.
