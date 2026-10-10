@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0493",
+    "status": "S0494",
     "runtime": "B186.213 / modinfo213",
     "military": "D0037",
     "harbor": "D0037",
@@ -225,7 +225,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
-    "source": "Source B186.213/modinfo213 locally complete; live B185.212/source4d8ace2 until guarded deployment.",
+    "source": "B186.213/modinfo213 DEVELOP_ACTIVE; sourcec6275296cc654254e15ad0ad7b82bf0df5a4da7b; receipt B186.213-c627529-playtest.json;211/211 MATCH. OS game exit verified, B185/stable recovery hashes MATCH, no pending transaction. Native identity/task validation pending.",
     "native": "B185 scoped UI routing PASS; arrival identity NOT_PASSED and task NOT_REACHED. B186 native validation pending; marker survival unresolved.",
     "stop": "Wait for the one-session native identity/task/END result after deployment; stop on unproved identity, no new mechanism or formal N1/N2/N3/U2."
   }

@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0493
-Implementation Build: source B186.213; live B185.212 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0494
+Implementation Build: source/live B186.213 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,9 +13,13 @@ Work State: B186_LOCAL_COMPLETE_AWAITING_NATIVE
 
 **B186.213 bounded arrival lookup/diagnostic patch locally complete; native gate pending.** [81 targeted checks and one session](Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md): player collection plus exact surviving marker/readback/source/target replaces plot-dependent arrival. Unbound reports retain source and distinguish marker/lookup failures. B185 button routing evidence remains scoped; native marker survival and the independent task/END are not yet passed.
 
-Source **B186.213 / modinfo213**; live remains **B185.212**, deployed source `4d8ace2`, receipt `B185.212-4d8ace2-playtest.json`, last verified211/211 MATCH. Existing W0003 game-exit/clean-source/hash/receipt gates govern deployment; no runtime claim from HEAD. Main/stable and recoveries unchanged.
+Source/live **B186.213 / modinfo213**, deployed source `c627529`, receipt `B186.213-c627529-playtest.json`, verified211/211 MATCH. OS game exit, clean/pushed source, exact B185→stable→B186 transaction and B185/stable recovery hashes verified; no pending transaction. Main unchanged; native gate still pending.
 
-User approved this patch. Next: guarded deployment, then one session arrival → no-reward task → END; if binding remains unknown, report exact evidence and stop. Own cap1/source and temporary native-slot cost remain. Formal N1/N2/N3/U2/rewards remain held. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate); `P0-N1.json`. No additional implementation follows automatically.
+User approved this patch. Next: one session arrival → no-reward task → END; if binding remains unknown, report exact evidence and stop. Own cap1/source and temporary native-slot cost remain. Formal N1/N2/N3/U2/rewards remain held. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate); `P0-N1.json`. No additional implementation follows automatically.
+
+## S0494 — B186 deployment checkpoint (historical)
+
+W0003 switch completed from clean/pushed source `c627529`, after OS game-exit verification. Receipt `B186.213-c627529-playtest.json` is DEVELOP_ACTIVE;211/211 equality and retained B185/stable recovery hashes match, no pending transaction. An initial relative `--stable-root` invocation was refused at the worktree check before any transaction or runtime mutation; using the verified absolute main path completed the unchanged tool's guards. No game launch, promotion or new native evidence.
 
 ## S0478 — B180 deployment checkpoint (historical)
 
