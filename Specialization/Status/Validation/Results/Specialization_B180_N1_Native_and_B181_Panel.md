@@ -51,4 +51,4 @@ Original filenames retained under ignored `local/legacy-workspace/Specialization
 
 ## Deployment
 
-B181 source is locally validated; deployment is separate and requires the existing W0003 clean/pushed-source, process-exit, receipt/hash/staging/recovery checks. Until a new verified receipt exists, live remains B180.207, source42a66af, receipt `B180.207-42a66af-playtest.json`. No deployment follows merely from editing this report.
+Source `c6b83cb7262d6097870415fbd5972ddeb784826f` / B181.208 / modinfo208 deployed through the existing W0003 transaction after clean/pushed-source and repeated OS game-exit checks. Receipt `B181.208-c6b83cb-playtest.json`: **DEVELOP_ACTIVE; 202/202 MATCH**. Exact B180 and stable recovery packages retained; no pending transaction. Main unchanged; no game launch or new native PASS. Only the authorized panel correction is deployed; Spy reuse remains a plan.

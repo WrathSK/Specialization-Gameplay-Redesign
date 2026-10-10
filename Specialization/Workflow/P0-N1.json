@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0479",
+    "status": "S0480",
     "runtime": "B181.208 / modinfo208",
     "military": "D0037",
     "harbor": "D0037",
@@ -169,7 +169,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-    "source": "B181.208 / modinfo208 panel local complete; live remains B180 until a verified new receipt.",
+    "source": "B181.208 / modinfo208; source c6b83cb7262d6097870415fbd5972ddeb784826f; deployed 202/202 MATCH; panel-only.",
     "native": "B180 scoped USER_GAME_TEST_PASS/READ_OK; END not observed; formal coexistence/dispatch NOT_IMPLEMENTED.",
     "stop": "Replacement plan review only; no new unit route implementation, no N2/N3/U2."
   }
