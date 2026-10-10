@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="203">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="204">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B176.203: optional single-city Dialogue 0/100/200 percent carrier comparison. Earned history and normal project remain unchanged; full cumulative yield integration is not enabled.</Description>
+    <Description>B177.204: automatic earned Dialogue Tourism-only fallback at Culture ACTIVE III+. Saved history is unchanged; old dynamic multiplier retired; Meaning remains independent.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -15,6 +15,7 @@
     <UpdateDatabase id="SPC_ResearchTradition"><Properties><LoadOrder>2000007</LoadOrder></Properties><File>Data/ResearchTradition.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ClaimProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/ClaimProjects.sql</File></UpdateDatabase>
     <UpdateText id="SPC_ClaimText"><File>Text/ClaimProjects.sql</File></UpdateText>
+    <UpdateDatabase id="SPC_DialogueEffects"><Properties><LoadOrder>10001040</LoadOrder></Properties><File>Data/DialogueEffects.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_DialogueProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/DialogueProjects.sql</File></UpdateDatabase>
     <UpdateText id="SPC_DialogueProjectText"><File>Text/DialogueProjects.sql</File></UpdateText>
     <ReplaceUIScript id="SPC_TimedProjectCityPanel"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
@@ -75,6 +76,7 @@
       <File>ClaimProjects.lua</File>
       <File>DialogueProjectModel.lua</File>
       <File>DialogueProjects.lua</File>
+    <File>DialogueEffects.lua</File>
       <File>UI/ClaimProjectUI.lua</File>
       <File>UI/DialogueProjectUI.lua</File>
       <File>TimedProject.lua</File>
@@ -391,11 +393,13 @@
     <File>ClaimProjects.lua</File>
     <File>DialogueProjectModel.lua</File>
     <File>DialogueProjects.lua</File>
+    <File>DialogueEffects.lua</File>
     <File>UI/ClaimProjectUI.lua</File>
     <File>UI/DialogueProjectUI.lua</File>
     <File>Data/ClaimProjects.sql</File>
     <File>Text/ClaimProjects.sql</File>
     <File>Data/DialogueProjects.sql</File>
+    <File>Data/DialogueEffects.sql</File>
     <File>Text/DialogueProjects.sql</File>
     <File>TimedProject.lua</File>
     <File>UI/TimedProjectRead.lua</File>

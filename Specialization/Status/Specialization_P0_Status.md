@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0469
-Implementation Build: source/live B176.203 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0470
+Implementation Build: source B177.204 local complete; live B176.203; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B176_CARRIER_COMPARISON_SCOPED_PASS
+Work State: B177_CUMULATIVE_DIALOGUE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-Source/live **B176.203 / modinfo203** remains the user-authorized [single-city Dialogue carrier control](../Architecture/v2/P0_M_Dialogue.md#current-slice--b176203-carrier-comparison). [Ten reviewed screenshots](Validation/Results/Specialization_B176_Dialogue_Carrier_Native_Result.md): work Culture9→18→27, Tourism15→20→25; five current Meaning additions unchanged. END restores normal old+25% (works11/15), preserving earned+5%/used era. Scoped native carrier/replacement/END PASS, not full P0-M completion.
+User-authorized [B177 cumulative Dialogue cutover](../Architecture/v2/P0_M_Dialogue.md#current-slice--b177204-earned-projection) is locally complete, source **B177.204 / modinfo204**. Saved earned total automatically projects at Culture ACTIVE III+ through the explicitly allowed **Tourism-only fallback**, reported before adoption. Old dynamic/manual writers are retired; shared collection transport, Meaning, saved history/quota and Design are unchanged. All-native-yield separation is not implemented.
 
-[User clarification](Validation/Results/Specialization_B176_Acceptance_Clarification.md): original Tourism5 plus existing bonuses gives15/20/25; same-turn city-panel readings are unreliable and are not a new settlement gate. That proposed extra test is withdrawn, without inventing an independently measured turn-credit result. Culture also scales the HD Amphitheater flat addition; universal native-base-only/same-yield Meaning isolation remains outside this comparison. `P0-M2.json` is complete in its bounded scope; no cumulative integration is authorized.
+[Local scope, failure/exit tests and one minimal integration check](Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md):25 new methods PASS;90 related PASS and one pre-existing six-versus-eight localization assertion mismatch, unchanged. New native automatic integration is pending. B175 project/history/restart and B176 carrier/Meaning/END evidence retain their scoped acceptance; no repeated high-percentage control or known-unreliable same-turn city-panel gate. B173 exact GPP attribution remains non-blocking.
 
-B175 M1 retains [scoped project/history/restart PASS](Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md). B174 investment/Housing and Scientist response remain accepted; Engineer residual and B173 exact ordering remain non-blocking UNKNOWN. B176 local16+18 PASS and two reproduced historical assertion failures stay as recorded. Deployment remains source `f139bc2`, receipt `B176.203-f139bc2-playtest.json`, last verified194/194 MATCH; not re-deployed or rechecked against runtime here. Main unchanged.
+Live remains **B176.203** from source `f139bc2`, receipt `B176.203-f139bc2-playtest.json`, last verified194/194 MATCH until a separately recorded W0003 transaction. Local source has196 files; source is not deployment. Main, GC and frozen evidence unchanged. Current manifest: `P0-M3.json`.
 
-Stop after this evidence correction; no additional B176 test. Next proposed work is the separate cumulative Dialogue integration plan, retaining the remaining yield/Meaning boundaries. No full M cutover, new yield implementation, N/U2, Design change, GPP repair, promotion or automatic next implementation.
+Boundary: commit/push this coherent batch, deploy only through standing W0003 game-exit/receipt/staging gates, then stop for the minimal user integration check. No N/U2, all-native prototype, new Design or unrelated repair. Current outstanding observation: automatic reconstruction/qualification transition, plus next legal project commit if available; do not manufacture another used-era opportunity.
+
+## S0469 — B176 comparison acceptance clarified
+
+The user's intrinsic Tourism5 versus buffed15 explanation and known city-panel same-turn refresh limitations close the bounded comparison without an added settlement gate. Raw evidence remains preserved in B176 results/correction; no separately measured turn-credit result is invented.
 
 ## S0468 — B176 screenshots recorded
 

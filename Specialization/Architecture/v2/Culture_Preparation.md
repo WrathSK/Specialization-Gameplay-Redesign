@@ -1,13 +1,13 @@
 # 文化后续模块：计划与调查入口
 
-State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / N_U2_NOT_AUTHORIZED。
+State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_LOCAL_COMPLETE / N_U2_NOT_AUTHORIZED。
 Authority: Culture D0049 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只维护相关准备范围；实际source/live与授权从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取。
 
 ## 当前切片与停止点
 
 B173巨作启迪百分比API已获用户按所测范围接受；Scientist/Merchant精确来源与计算顺序仍是非阻塞UNKNOWN，不再派发小数排查。B166自动意义延展及其冷重启人工PASS保留，Culture追加隔离／主题化Balance边界不变。
 
-用户已授权时代对话首段：B175真实项目＋城市历史已取得所测取消、完成时取样、额度及用户冷重启确认的限定原生PASS；[B174合并观察与证据边界](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md)单独记录。见[M当前切片](P0_M_Dialogue.md#current-slice--b175202-project-and-history)。B176单城0/100/200%对照已取得所测巨作显示响应、五项意义追加不变及END恢复旧AUTO的证据；用户澄清整城面板存在同回合刷新问题，不作为本批反证或新增结算测试门禁，见[M当前切片](P0_M_Dialogue.md#current-slice--b176203-carrier-comparison)。新累计倍率与旧Dialogue退休尚未落地，项目/保存通过不等于完整M通过。实际部署与证据只从Status读取。
+用户已授权时代对话首段：B175真实项目＋城市历史已取得所测取消、完成时取样、额度及用户冷重启确认的限定原生PASS；[B174合并观察与证据边界](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md)单独记录。见[M当前切片](P0_M_Dialogue.md#current-slice--b175202-project-and-history)。B176单城0/100/200%对照已取得所测巨作显示响应、五项意义追加不变及END恢复旧AUTO的证据；用户澄清整城面板存在同回合刷新问题，不作为本批反证或新增结算测试门禁，见[M当前切片](P0_M_Dialogue.md#current-slice--b176203-carrier-comparison)。[B177累计接入](P0_M_Dialogue.md#current-slice--b177204-earned-projection)已获授权并本地完成：明确采用Design允许的Tourism-only备用路径，旧动态writer退休，自动整合待实机；项目/保存通过不等于完整M通过。实际部署与证据只从Status读取。
 
 B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。N/U2和其它修复仍未授权，不自动实施。
 
@@ -18,7 +18,7 @@ B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是�
 | 风雅熏陶L1 | [L1](P0_L1_Aesthetic.md#当前切片与停止点)：逐栋Tourism、已测结算/退出 | [B149限定PASS](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保留，不重开无变化回合时序调查、不扩大未测组合 |
 | 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役限定整合获用户人工PASS；证据见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
 | 巨作启迪L3 | [当前L3](P0_L3_Inspiration.md)：3%×当前时代E，本城全类别GPP | B173自动city百分比API获用户按所测范围接受；精确来源/叠加顺序非阻塞UNKNOWN；不使用D/W或Floor |
-| 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | B175项目/历史首段限定原生PASS；B176倍率/五项追加/END限定通过，不因同回合城市面板延迟追加测试；新累计native-only倍率/cutover仍未实现 |
+| 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | B175项目/历史首段限定原生PASS；B176倍率/五项追加/END限定通过，不因同回合城市面板延迟追加测试；B177累计Tourism-only与cutover本地完成，自动整合待验 |
 | 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为独立窗口／任务／归档／档案／网络提案 | cap1/Spy等价成本/2T/K_T2/K_C1已定首测；远程非敌对、重挂靠/保护、外国事实、整体旅游和旧Culture切换仍技术门槛 |
 | Hybrid D U2 | [U2](P0_U2_Culture_Era.md)：已批准紧凑摘要+Tooltip、K国内索引 | 真实UI hook、等count/X组成变化通知、缓存及布局；不包含机构排版重做 |
 

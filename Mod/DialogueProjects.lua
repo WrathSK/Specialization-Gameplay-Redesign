@@ -1,4 +1,4 @@
--- P0-M1: real production/timer/history; cumulative yield projection is not cut over.
+-- P0-M: real production/timer/history. DialogueEffects owns derived yield projection.
 include('DialogueProjectModel')
 SPCDialogueProjects={}
 function SPCDialogueProjects.Start(P,shared)
@@ -104,7 +104,10 @@ function SPCDialogueProjects.Start(P,shared)
   for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
   busy=false
  end
- function d.Refresh(pid,id)mark(pid,id);d.Flush()end
+ function d.Refresh(pid,id)
+  mark(pid,id);d.Flush()
+  if shared.DialogueEffects then shared.DialogueEffects.Audit({player=pid,city=id})end
+ end
  local advance
  function d.Sync(pid,id,token)
   if not P.IsTestPlayer(pid) or type(id)~='number' or not city(pid,id)then return end
@@ -153,6 +156,7 @@ function SPCDialogueProjects.Start(P,shared)
     write(pid,c,s,M.Hold(v,'完成时事实未确认；不以之后的馆藏补算'));mark(pid,id);return
    end
    write(pid,c,s,M.Complete(v,p.id,sample.x,sample.turn));active[k]=nil;interrupted[k]=nil;mark(pid,id)
+   if shared.DialogueEffects then shared.DialogueEffects.Audit({player=pid,city=id})end
   end)
   settling[k]=nil
  end
@@ -205,9 +209,9 @@ function SPCDialogueProjects.Start(P,shared)
   local s=store.DialogueState(pid,c);local v=s.value;local p=v and v.pending;local e=era()
   local f=shared.EffectiveFacts.Read(pid,c)
   local row=d.views[key(pid,c:GetID())]
-  local lines={'时代对话｜'..c:GetName()..'｜项目 / 保存验证',
+  local lines={'时代对话｜'..c:GetName(),
    '文化资格：'..(f.specialization=='CULTURE' and '文化' or '非文化')..' ACTIVE '..tostring(f.active),
-   '累计记录：+'..tostring(v and v.total or 0)..'%（本批尚未接入实际产出）',
+   '累计记录：+'..tostring(v and v.total or 0)..'%'..(shared.DialogueEffects and '' or '（本批尚未接入实际产出）'),
    '当前游戏时代：'..Locale.Lookup((P.Info('Eras',e) or {}).Name or e)..'｜机会：'..(v and v.used[e] and '已使用' or '未使用')}
   local readOK,current=pcall(function()
    local x=assert(ExposedMembers.SPC_DialogueProjectRead)(pid,c:GetID(),true)
@@ -220,7 +224,8 @@ function SPCDialogueProjects.Start(P,shared)
    for _,r in pairs(v.used)do if r.id==v.last.id then lines[#lines+1]='完成时 '..r.x..' 个时代 → 记录 +'..r.gain..' 个百分点'end end
   else lines[#lines+1]='在城市生产列表选择“时代对话”；报告按钮只读。'end
   if row and row.stage=='HELD' then lines[#lines+1]='需要处理：'..row.reason end
-  lines[#lines+1]='旧对话收益未在本批替换；请验项目、记录和额度，不按这里的累计值验收益。'
+  if shared.DialogueEffects then lines[#lines+1]=shared.DialogueEffects.Describe(pid,c)
+  else lines[#lines+1]='累计收益模块未就绪；不要把记录当作实际生效。'end
   return table.concat(lines,'\n')
  end
  local function hook(name,fn,optional)

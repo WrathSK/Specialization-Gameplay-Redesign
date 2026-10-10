@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "batch": "P0-M3",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0470",
+    "runtime": "B177.204 / modinfo204",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_M_Dialogue.md#current-slice--b177204-earned-projection",
+  "goal": "Automatic saved cumulative Dialogue at Culture ACTIVE III+, reported Tourism-only fallback and exact legacy writer retirement; no change to project history.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current source/live, acceptance and boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_M_Dialogue.md",
+      "kind": "section",
+      "selector": "## Current slice — B177.204 earned projection",
+      "reason": "Current authorized implementation and fallback"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_M_Dialogue.md",
+      "kind": "section",
+      "selector": "## 完整Gameplay合同",
+      "reason": "Complete direct lifecycle, quota, no-cap and native-only/fallback contract"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "selector": "/abilities/1",
+      "reason": "Accepted direct contract, including exclusions and fallback",
+      "expected_id": "CUL_L3_DIALOGUE"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "selector": "/contracts/dialogue",
+      "reason": "Accepted direct contract, including exclusions and fallback"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "selector": "/contracts/work_pool",
+      "reason": "Accepted direct contract, including exclusions and fallback"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "selector": "/contracts/meaning_multipliers",
+      "reason": "Accepted direct contract, including exclusions and fallback"
+    },
+    {
+      "path": "Mod/DialogueEffects.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/Data/DialogueEffects.sql",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/Dialogue.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/DialogueProjects.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/DialogueProjectModel.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/CultureMeaningModel.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/Text/DialogueProjects.sql",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "DevelopmentTests/test_dialogue_effects.py",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
+      "kind": "full",
+      "reason": "Direct implementation dependency envelope; read complete affected functions/contracts for the action"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Direct current-fact reader also depends on Store; distinguish its failure from governor UNKNOWN"
+    }
+  ],
+  "dependencies": [
+    "Store-owned successful Dialogue history / failure protection; current EffectiveFacts and confirmed GreatWorkFacts summary.",
+    "Existing category coverage and city Tourism percentage primitive; K transport/ACK and Meaning remain."
+  ],
+  "old_writers": [
+    "Normal legacy dynamic25*(D-1) and test controls retired before new projection; exact owned cleanup only."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "Deployment/recovery only",
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ]
+    },
+    {
+      "trigger": "Changed caller, collection or projection behavior",
+      "paths": [
+        "Mod/CultureMeaning.lua",
+        "Mod/UI/DialogueRefresh.lua",
+        "DevelopmentTests/test_culture_meaning_automatic.py",
+        "DevelopmentTests/test_dialogue_projects.py",
+        "DevelopmentTests/test_dialogue_project_ui.py"
+      ]
+    }
+  ],
+  "non_scope": [
+    "No Design/save schema/quota/Meaning/GC/main/other ability change. No all-native prototype, N/U2 or general framework."
+  ],
+  "validation": {
+    "depth": "L3 scoped writer cutover, saved authority read and exact exit/failure boundaries; no full regression/stress.",
+    "local": "25 new methods PASS;90 related PASS;1 pre-existing historical localization count mismatch;2 old package assertions not selected. New package204 checked.",
+    "user": "One minimal automatic-integration session; inherit B175/B176 evidence. No repeat high-value carrier control or probe save ceremony."
+  },
+  "full_audit_triggers": [
+    "Need to change accepted semantics, saved history or another Mod: stop that path and report."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
+    "source": "B177.204 / modinfo204;196 runtime files; source-only until actual W0003 receipt.",
+    "deployment": "Pending; live B176 exact receipt retained.",
+    "stop": "Await minimal native automatic-integration result; no automatic next batch."
+  }
+}

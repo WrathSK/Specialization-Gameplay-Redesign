@@ -7,5 +7,5 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_DIALOGUE_PROJECT_REPORT','时代对话');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_DIALOGUE_CARRIER_HINT','左键：读取计时、已用时代与累计记录。右键：本城倍率对照，按0%基线→+100%→+200%→结束推进；仅临时替换旧倍率，不修改已得记录。意义延展与HD建筑保持。'),
-('en_US','LOC_SPC_DIALOGUE_CARRIER_HINT','左键：读取计时、已用时代与累计记录。右键：本城倍率对照，按0%基线→+100%→+200%→结束推进；仅临时替换旧倍率，不修改已得记录。意义延展与HD建筑保持。');
+('zh_Hans_CN','LOC_SPC_DIALOGUE_CARRIER_HINT','读取项目、已用时代、累计百分比与当前生效状态（左右键均只读）。收益自动启用；当前采用仅旅游业绩的技术备用方案。'),
+('en_US','LOC_SPC_DIALOGUE_CARRIER_HINT','读取项目、已用时代、累计百分比与当前生效状态（左右键均只读）。收益自动启用；当前采用仅旅游业绩的技术备用方案。');

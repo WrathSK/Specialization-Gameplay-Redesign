@@ -1,7 +1,15 @@
 # P0-M —「时代对话」项目与持久倍率准备计划
 
-State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / NATIVE_ONLY_CUTOVER_NOT_IMPLEMENTED。
-Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；用户另行授权B176高倍率临时载体对照；正式累计倍率与cutover未授权。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
+State: B175_PROJECT_HISTORY_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_TOURISM_ONLY_CUMULATIVE_LOCAL_COMPLETE。
+Authority: Spec D0049 / Culture D0049 `CUL_L3_DIALOGUE`、`contracts.dialogue/work_pool` / Shared D0045具名A/E/F；用户已授权并实施首段项目/历史；用户另行授权B176高倍率临时载体对照；用户已授权B177累计倍率与old-writer cutover；Tourism-only已接受备用路径，本地完成、原生整合待验。实际基线与顺序见[文化准备入口](Culture_Preparation.md)。
+
+## Current slice — B177.204 earned projection
+
+User-approved cumulative integration is locally complete through the **Tourism-only technical fallback explicitly allowed by D0049**, reported before adoption. [B177 scope, fallback evidence, tests and minimal integration check](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md). Saved successful total + current Culture ACTIVE III+ -> one exact final carrier. No extra cap: all reachable totals are enumerated from loaded Game Era quota ×7×5. No new save schema or history reconstruction from carriers.
+
+`DialogueEffects` owns the new projection. `Dialogue` retains shared collection/ACK transport and existing governor dispatch, but its dynamic/manual writers are retired. Project commit notifies the exact city only after successful Store readback; normal entry/facts/load/return drive automatic refresh. Old owned IDs are removed before new effects; failures cannot fall back to old AUTO. Ordinary checks use only previous/requested carrier; no new periodic scanner/GC. Meaning is unchanged. P0 **时代对话** is read-only on either mouse button; normal production completion earns the history.
+
+All-native separation remains unproved, not silently implemented: current checked scaling cannot separate same-yield appended additions. This batch attaches Tourism only, never Culture/Food/Production/Science/Faith/Gold. Small percentages follow accepted native floor. B175/B176 evidence is inherited within scope; no repeat100/200 test or city-panel settlement gate. New automatic integration is USER_GAME_TEST_REQUIRED, not full P0-M PASS. No N/U2 or further implementation is authorized. Status alone identifies actual deployment.
 
 ## Current slice — B176.203 carrier comparison
 
@@ -54,7 +62,7 @@ B175首段已在现有可靠E2 city record增加小型Dialogue专业块，分别
 
 D0045已关闭累计cap决策，D0042已关闭未提交项目取消语义；不再把它们列为DESIGN_DECISION_REQUIRED。Dialogue与文化见闻都是各自独立的城市历史，不能继续用“见闻归原主人”解释差异。完整连续周期、completion、取消与永久提交的可靠事件顺序仍需技术证明，尤其不能把未提交前的资格丢失当普通收益去重。
 
-当前`DialogueModel`仍按25%×max(0,D−1)动态投影，旧`Dialogue`资格仍是Culture ACTIVE4；**不是新M**。旧D档表达当前时代多样性，不能直接承担永久累计倍率。新累计的原生表达不得自行夹断或加一个方便实现的cap；做不到时报告具体技术限制。
+旧`DialogueModel`按25%×max(0,D−1)及Culture ACTIVE4的代码仅保留为历史测试依赖；B177正常启动已禁用其writer。`DialogueEffects`按Store已得累计与当前ACTIVE≥3投影Tourism-only备用路径，不把旧D档迁成永久成果、不额外夹断。
 
 B165已有加载集合STATIC证明、五项即时固定值与所测END原生证据；主题化×2已暂接受并按D0048同步，Balance待验；正旧AUTO／精确追加结算仍开放，Culture追加暂隔离。M继承这些实际范围，再验证新累计载体，不将旧动态倍率probe等同新M，也不重复共享harness仪式。旧B059.82只有非主题化作品读数，整城Culture未变，不证明真实结算或native-only隔离。
 
@@ -72,7 +80,7 @@ E2已有可靠同城映射可复用，不能靠名字/单独坐标/猜CityID。�
 
 cutover只清旧Dialogue的动态D档、TEST25/50/100及其保留的旧B055测试owned列表，核对实际SQL附件/Start/load/manual/ACK路径；不前缀清建筑。新ledger不由它们初始化；旧writer确认撤销后启新倍率。
 
-**K仍依赖DIALOGUE_SAMPLE和共享后台槽位collector。** 将旧收益writer与采样/ACK分离，保留确认事实与有界pending；旧`Dialogue.Receive`转兼容传输职责或明确最小替代，不简单停Start使ACK重试积压。当前GWA仅在单城probe期间hold，global cutover尚未完成。按实施时实际L2状态保留传输与writer隔离，不能提前假定GWA已退休；不动L1/L3或旧Culture Eureka。
+**K仍依赖DIALOGUE_SAMPLE和共享后台槽位collector。** 将旧收益writer与采样/ACK分离，保留确认事实与有界pending；旧`Dialogue.Receive`转兼容传输职责或明确最小替代，不简单停Start使ACK重试积压。B166已退役正常GWA并自动启用Meaning；B177继续保留其现有分工和K传输，只退役旧Dialogue收益writer，不动L1/L3或旧Culture Eureka。
 
 预计涉及`ClaimProjects/TimedProject`可复用小接口、专属Dialogue model/Store专业块/consumer/SQL，选择确认与项目1T UI，Gameplay/modinfo、诊断、本地测试。真正共享改动须核对Claim直接调用点并做其回归，不创建通用项目引擎。
 

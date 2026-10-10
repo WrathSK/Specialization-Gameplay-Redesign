@@ -73,6 +73,9 @@ local function request(playerID,params)
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
   end
+  if params.Action=='DIALOGUE_CARRIER_NEXT' and shared.DialogueEffects then
+    params.Action='DIALOGUE_PROJECT_READ' -- stale UI cannot re-enable the retired test writer
+  end
   if params.Action=='DIALOGUE_CARRIER_NEXT' then
     local ok,out=pcall(function()
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
@@ -87,7 +90,7 @@ local function request(playerID,params)
       if params.Action=='DIALOGUE_PROJECT_SYNC' then d.Sync(playerID,params.CityID,params.Token);return end
       if params.Action=='DIALOGUE_PROJECT_BEGIN' then d.Request(playerID,params);return end
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
-      return d.Describe(playerID,c)..'\n\n'..shared.Dialogue.DescribeCarrierTest(playerID,c)
+      return d.Describe(playerID,c)..(shared.DialogueEffects and '' or '\n\n'..shared.Dialogue.DescribeCarrierTest(playerID,c))
     end)
     if params.Action=='DIALOGUE_PROJECT_READ' then shared.Snapshot=ok and out or ('时代对话暂停：'..tostring(out));shared.LastToken=params.Token end
     return
@@ -513,6 +516,7 @@ local function request(playerID,params)
     P.Observe('ui','received')
     if params.FactsChanged and shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if params.FactsChanged and shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID})end
+    if params.FactsChanged and shared.DialogueEffects then shared.DialogueEffects.Audit({player=playerID})end
     if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
     if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
@@ -867,6 +871,15 @@ if not dialogueOK then
  shared.DialogueProjects=shared.DialogueProjects or {views={},syncAck={},revision=0}
  shared.DialogueProjects.startupError=tostring(dialogueError)
  print('[SPC][Dialogue project startup] '..tostring(dialogueError))
+end
+
+-- New effect failure must not restore the retired dynamic writer.
+shared.Dialogue.retired=true
+local effectOK,effectError=pcall(function()include('DialogueEffects');SPCDialogueEffects.Start(P,shared)end)
+if not effectOK then
+ shared.DialogueEffects=shared.DialogueEffects or {}
+ shared.DialogueEffects.startupError=tostring(effectError)
+ print('[SPC][Dialogue effect startup] '..tostring(effectError))
 end
 
 -- Independent read-only evidence; never start the isolated inheritance writers.

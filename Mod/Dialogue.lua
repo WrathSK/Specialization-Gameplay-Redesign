@@ -27,7 +27,7 @@ function SPCDialogue.Start(P,shared)
  end
  local owned={};for n=2,#levels do owned['BUILDING_SPC_B059_D'..n]=true end
  for _,v in ipairs({25,50,100,200})do owned['BUILDING_SPC_B059_TEST'..v]=true end
- function d.IsOwnedCarrier(name)return owned[name]==true end
+ function d.IsOwnedCarrier(name)return owned[name]==true or shared.DialogueEffects and shared.DialogueEffects.IsOwnedCarrier and shared.DialogueEffects.IsOwnedCarrier(name)==true end
  function d.IsMeaningProbeHeld(pid,c,percent)
   local h=d.meaningOverride
   return h and h.owner==pid and h.city==c:GetID() and h.reference==SPCNetworkInput.Reference(c) and h.percent==percent or false
@@ -74,6 +74,7 @@ function SPCDialogue.Start(P,shared)
   assert(f.specialization=='CULTURE' and (f.active==4 or minimumActive==3 and f.active==3),'ME_DIALOGUE_ACTIVE_REQUIRED')
  end
  function d.HoldMeaningProbe(pid,c,percent,minimumActive)
+  assert(not d.retired,'DIALOGUE_LEGACY_WRITER_RETIRED')
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_DIALOGUE_OWNER')
   assert(percent==0 or percent==100 or percent==200,'ME_DIALOGUE_PERCENT')
   assert(not d.off[pid] and not (d.test[pid] and d.test[pid].city==c:GetID()),'ME_DIALOGUE_OTHER_TEST')
@@ -121,6 +122,7 @@ function SPCDialogue.Start(P,shared)
   d.meaningOverride=nil;d.meaningQualification=nil;return d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
  end
  function d.Audit(pid,cid)
+  if d.retired then return shared.DialogueEffects and shared.DialogueEffects.Audit and shared.DialogueEffects.Audit({player=pid,city=cid}) end
   if P.Observe then P.Observe('audit','Dialogue') end
   if not d.ready then return false,'NOT_READY' end
   if d.busy then return false,'BUSY' end
@@ -326,6 +328,7 @@ function SPCDialogue.Start(P,shared)
   return ok -- Accepted collection, independent of legacy projection success.
  end
  function d.Describe(pid,c)
+  if d.retired then return shared.DialogueEffects and shared.DialogueEffects.Describe and shared.DialogueEffects.Describe(pid,c) or '时代对话收益未就绪' end
   local p=d.last[pid] and d.last[pid][c:GetID()]
   if not p then
    local r=d.received[pid]
@@ -359,7 +362,7 @@ function SPCDialogue.Start(P,shared)
    else auditAll() end -- unknown signature retains prior conservative scope
   end) end
  end
- local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.carrierTest then d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil end;d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
+ local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.retired then d.samples={};d.paired={};auditAll();return end;if d.carrierTest then d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil end;d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
    local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100,200})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
