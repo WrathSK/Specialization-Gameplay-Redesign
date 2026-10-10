@@ -69,4 +69,4 @@ User approved this technical prototype first. The explicit mission-only/no-retre
 
 ## Deployment
 
-Local checkpoint B182.209 / modinfo209. No deployment claimed here until the existing W0003 transaction is verified; previous recorded live package remains B181.208, receipt `B181.208-c6b83cb-playtest.json`. Main unchanged.
+Source `03a10723197d76d0ec7729e30670c7b4a45b19b3` / **B182.209 / modinfo209** deployed through the existing W0003 transaction after clean/pushed-source and OS game-exit checks. Receipt `B182.209-03a1072-playtest.json`: **DEVELOP_ACTIVE; 202/202 MATCH**. Exact B181 and stable recovery packages retained; no pending transaction. Main unchanged; game not launched and no new native PASS. Only the approved Spy0 prototype is deployed; no Spy1 switch or formal N1/N2/N3 continuation.

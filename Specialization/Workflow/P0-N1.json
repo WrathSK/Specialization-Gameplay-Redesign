@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0481",
+    "status": "S0482",
     "runtime": "B182.209 / modinfo209",
     "military": "D0037",
     "harbor": "D0037",
@@ -174,7 +174,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
-    "source": "B182.209 / modinfo209 local; verified live remains B181.208 until receipt.",
+    "source": "B182.209 / modinfo209; source 03a10723197d76d0ec7729e30670c7b4a45b19b3; deployed 202/202 MATCH; Spy0 prototype only.",
     "native": "B180 getter/retreat scope inherited only; B182 Spy0 placement/coexistence USER_GAME_TEST_REQUIRED.",
     "stop": "No Spy1 fallback, formal N1 persistence/training/reattachment, N2/N3/U2 or reward/Era Score."
   }

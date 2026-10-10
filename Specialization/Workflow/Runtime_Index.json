@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "c6b83cb7262d6097870415fbd5972ddeb784826f",
-  "runtime": "B181.208 / modinfo208 deployed source c6b83cb; receipt B181.208-c6b83cb-playtest.json; 202/202 MATCH, B180/stable recovery retained. Panel correction only; Spy reuse remains plan-only.",
+  "runtime_commit": "03a10723197d76d0ec7729e30670c7b4a45b19b3",
+  "runtime": "B182.209 / modinfo209 deployed source 03a1072; receipt B182.209-03a1072-playtest.json; 202/202 MATCH, B181/stable recovery retained. Isolated Spy0 gate; native travel/coexistence pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
