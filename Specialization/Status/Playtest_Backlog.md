@@ -198,3 +198,7 @@ Completed in the observed scope: [B175 native result](Validation/Results/Special
 ## B177 — earned Dialogue automatic integration complete within observed scope
 
 [Four-image native result](Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md): saved+5% projects, ACTIVE I pauses to0 with history retained, ACTIVE IV restores5, and T82→83 completion with three eras automatically updates total/carrier to20 and consumes the opportunity. USER_GAME_TEST_PASS for this integration sequence; small-value Tourism displays do not establish a separately credited delta or universal rounding. B175 history and B176 primitive evidence retain their scopes. No extra B177 test, repeated100/200 control, probe save ritual or city-panel gate. All-native separation remains unimplemented; N/U2 and any next batch require their own authorization. Actual deployed package comes from Status/receipt.
+
+## B178 — Expedition N1 travel/protection gate pending
+
+User authorized N1 first; U2/N2/N3 held. [One combined gate session](Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md#one-minimal-native-session) checks an explicit non-Spy test unit, read-only travel helpers and actual enemy-contact retreat. No save-enabled/END/cold-load/re-enable ritual. Native remote deployment, formal training/source/archive and mission history are not declared implemented or passed. Missing enemy-contact fixture means protection NOT_TESTED, not a request for a long test. B177 evidence remains scoped accepted; no repeat required.

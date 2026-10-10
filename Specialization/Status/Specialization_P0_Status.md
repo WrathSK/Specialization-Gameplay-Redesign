@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0472
-Implementation Build: source/live B177.204 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0473
+Implementation Build: source B178.205; last live B177.204 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B177_AUTOMATIC_INTEGRATION_SCOPED_NATIVE_PASS
+Work State: B178_N1_NATIVE_GATE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
+
+User authorized **人文考察团 N1**, starting with travel/protection. [B178.205 gate](../Architecture/v2/P0_N_Expedition.md#current-slice--b178205-travel-and-protection-gate) is locally complete: explicit non-Spy test unit, native retreat flag, independent **人文考察·验证** window and read-only travel helpers. **N1 is partial**: normal training, actual remote deployment, reliable training/archive binding and reattachment wait on native route evidence. No mission/reward/Insights/Network or city-ledger writes. Era UI U2, N2 and N3 remain on hold.
+
+[Local result and one-session native flow](Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md):34 new methods and29 applicable related methods PASS; exact202-file package/syntax/SQL/localization checked. Native helper suitability and retreat are **USER_GAME_TEST_REQUIRED**, never inferred from the flag or mock. Existing B177 earned Dialogue integration remains [scoped native PASS](Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md); prior numerical attribution unknowns do not reopen its gate.
+
+Source **B178.205 / modinfo205**; last verified live **B177.204 DEVELOP_ACTIVE**, source `3bb1079`, receipt `B177.204-3bb1079-playtest.json`,196/196 MATCH with recovery retained. This is the pre-deployment local checkpoint; consult a subsequent receipt/Status update for an actual switch. Manifest: `P0-N1.json`.
+
+Next: user runs the bounded gate; Codex reviews observations then resumes the already-authorized N1 route. No guessing Spy isolation/travel time/protection and no N2/N3/U2 progression, Design change, main promotion or unrelated audit repair.
+
+## S0472 — B177 scoped native integration accepted
 
 [B177 cumulative Dialogue cutover](../Architecture/v2/P0_M_Dialogue.md#current-slice--b177204-earned-projection), source **B177.204 / modinfo204**, has completed its scoped native automatic-integration check. Saved earned total projects at Culture ACTIVE III+ through the explicitly allowed **Tourism-only fallback**. Old dynamic/manual writers are retired; shared collection transport, Meaning, saved history/quota and Design are unchanged. All-native-yield separation is not implemented.
 
@@ -17,7 +27,7 @@ Work State: B177_AUTOMATIC_INTEGRATION_SCOPED_NATIVE_PASS
 
 Live **B177.204 DEVELOP_ACTIVE**, source `3bb1079`, receipt `B177.204-3bb1079-playtest.json`; last deployment verified **196/196 MATCH**, with B176/stable recovery retained. This evidence-only review does not reverify or change runtime. Current manifest: `P0-M3.json`.
 
-Boundary: B177 scoped integration complete; no additional B177 test requested. Stop for the user's next batch decision. No N/U2, all-native prototype, new Design or unrelated repair is authorized; no main promotion or deployment in this review.
+Historical B177 checkpoint: no additional B177 test requested. N1 authorization is now recorded in CURRENT; this record is not a new task dispatch.
 
 ## S0471 — B177 safely deployed
 

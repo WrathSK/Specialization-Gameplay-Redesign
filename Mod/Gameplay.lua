@@ -903,3 +903,7 @@ SPCTimedProject.Start(P,shared)
 include("NetworkIsolation")
 SPCNetworkIsolation.Start(P,shared)
 SPCPerformance.StartMemory(P,shared)
+
+-- N1 native gate only: explicit requests, no automatic mission or city-state writes.
+include('ExpeditionGate')
+SPCExpeditionGate.Start(P,shared)

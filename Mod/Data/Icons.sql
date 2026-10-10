@@ -18,3 +18,8 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_UNIT_BUILDER';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_UNIT_BUILDER';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_UNIT_BUILDER';
+
+-- N1 temporary test unit reuses the existing Builder icon; no new artwork.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_GATE'),Atlas,"Index"
+FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');

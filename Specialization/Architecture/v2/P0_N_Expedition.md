@@ -1,9 +1,25 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: PLANNING_AUTHORIZED / IMPLEMENTATION_NOT_AUTHORIZED。N1交互、N2任务/城市历史/整城旅游、N3网络为独立门禁。
-Authority: Spec D0048 / Culture D0048 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。本次重核已接受规则及直接依赖，没有展开新的外交/Spy接口调查；实际运行与授权见[准备入口](Culture_Preparation.md)。
+State: N1_AUTHORIZED / B178_GATE_LOCAL_COMPLETE_AWAITING_NATIVE. N2/N3 and U2 remain ON_HOLD. Current slice below supersedes older planning-only dispatch language; full accepted contracts remain below.
+Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。本次重核已接受规则及直接依赖，没有展开新的外交/Spy接口调查；实际运行与授权见[准备入口](Culture_Preparation.md)。
 
-[人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。仅规划，UI借鉴不证明可复用真实Spy管线，也不批准N1/N2/N3实施。
+[人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；N1已获授权并先执行下述gate。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
+
+## Current slice — B178.205 travel and protection gate
+
+User authorized N1 implementation on 2026-10-10, **starting with the remote-travel and unit-protection gate**. Era display U2, N2 and N3 remain on hold. Source B178.205 implements only this first gate; **N1 as a whole is not complete**. No further implementation approval is required merely to resume already-authorized N1 after this gate, but a route requiring changed gameplay must return to the user.
+
+The gate creates one explicitly requested, free temporary `UNIT_SPC_EXPEDITION_GATE` at a verified Culture ACTIVE IV city. It has `Spy=0`, `CanRetreatWhenCaptured=1`, no normal training/purchase, no Spy promotion/class or archaeology action. Native Builder appearance/icon is a temporary existing asset reference. Exact test-unit END never removes another unit. No City/Player/Unit Property, permanent city record, mission or reward is written. The native unit itself is naturally saveable; no test requires saving it, and loading one only allows explicit inspection/cleanup, never auto-creation.
+
+This is a gate fixture, **not** formal production, training-source receipt, nationwide production-queue cap, archive binding, remote deployment or reattachment. Those N1 pieces wait on the selected route. The current Spy cost is not a hardcoded60: the configured DB has cost60 with previous-copies progression15; final training must match the current native cost, which the gate does not charge or claim verified.
+
+Technical choice: test the native retreat flag directly on a non-Spy custom civilian, with no scripted resurrection or interception. Read `UnitManager.GetTravelTime(unit, city)` and `GetEstablishInCityTime(unit, city)` only when the user clicks the new window. No SPY operation is sent, no off-map placement or guessed travel formula is implemented. A valid numeric return is only `READ_OK`; actual remote deployment/war continuity remain unproved. Native errors, absent helpers or invalid numbers remain UNKNOWN and stop that route. This gate is needed before committing to a remote state/placement strategy.
+
+[Local result and exact native test](../../Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md). New independent **人文考察·验证** HUD entry opens its own small window, with explicit create/read/mark/END controls. It does not alter the P0 panel or replace native espionage UI. Targets are revealed capitals of met, living foreign Majors for a small known fixture; **this is not a new visibility or capital-only gameplay restriction**. Final three mission target rules below remain intact.
+
+Execution/state: one explicit request owner; transient spawn reservation before the native grant; uncertain outcome locks creation for the session; duplicate last request cannot repeat its mutation; a single watched unit and last reply are bounded. Normal turns do not scan cities or collect travel data. Opening/refreshing scans only local units and met-major capital summaries; travel reads one selected target. No independent GC, global event-dispatch rewrite or saved Store schema change.
+
+Exit: after one combined gate session, review non-Spy helper results and actual protection observations. If usable, continue authorized N1 with a concrete independent deployment route, formal cost/source/cap and archive lifecycle. If insufficient, report `TECHNICAL_INVESTIGATION_REQUIRED` for that route; do not silently adopt native espionage, weaken protection or claim N1 PASS. No N2/N3 progression.
 
 ## 三种状态与已定数值
 
@@ -51,7 +67,7 @@ Authority: Spec D0048 / Culture D0048 `CUL_L4_EXPEDITION`、missions、contracts
 
 Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→远程部署/任务交互→来源变化及重新挂靠/保护候选；不提交正式见闻、不施加旅游或新Network。
 
-已有本地UI／Spy语义调查支持独立窗口和样式借鉴；真实Spy身份／SPY_*管线的外交后果与盟友筛选风险仍需定域技术确认。实施时核对实际command/UI与HD替换，不把参考样式等同原生任务引擎。`Spy=1`可能继承容量、敌对任务、战争召回；`Spy=0`不能凭字段就宣称相同部署可用。原生可隔离路径、受控远程选择UI和现有计时均只是候选，未选定、未获native PASS。本次没有重新读取外部游戏UI全集或DB；既有Spy静态线索保留，最终数据成本/部署关系待原型核实。
+已有本地UI／Spy语义调查支持独立窗口和样式借鉴；真实Spy身份／SPY_*管线的外交后果与盟友筛选风险仍需定域技术确认。实施时核对实际command/UI与HD替换，不把参考样式等同原生任务引擎。`Spy=1`可能继承容量、敌对任务、战争召回；`Spy=0`不能凭字段就宣称相同部署可用。原生可隔离路径、受控远程选择UI和现有计时均只是候选，未选定、未获native PASS。B178只核对gate直接需要的原生UI调用点及当前配置DB；既有Spy静态线索保留，最终生产成本与实际部署关系仍待原型核实。
 
 来源靠训练/完成事件及可靠receipt证明，不按单位位置/名称/最近城猜测；重复登记幂等。全国cap包含无归档团，同回合grant与队列并发都要核对。Spy的Gold购买字段不是考察团购买授权，涉及购买入口须核对正式范围。
 
@@ -99,6 +115,6 @@ N1按实际交互/单位状态风险选L2或涉及持久绑定时L3；N2/N3按L3
 
 N1回退撤销原型；N2回退不得删城市历史/成功凭据，先说明schema和存档副本边界；N3退出新owned效果并保留N2成果，按已知独立网络包恢复，不清账本恢复旧系统。
 
-真实门槛仍为远程非敌对/战争路径、外国事实、训练来源/cap时序、重挂靠与保护、专属持久事务、整城Tourism及新网络投影/精确旧writer切换。没有新的Gameplay决定请求；未涵盖的毁城等边界只在涉及时单独提出。每子批另行审核/授权，本计划不把N1→N2→N3连续实施视为授权，也不改变B165待验。
+真实门槛仍为远程非敌对/战争路径、外国事实、训练来源/cap时序、重挂靠与保护、专属持久事务、整城Tourism及新网络投影/精确旧writer切换。没有新的Gameplay决定请求；未涵盖的毁城等边界只在涉及时单独提出。N1现已获授权但先停在上述native gate；N2/N3仍需后续独立授权。旧B165待验描述不是当前活动门禁，见Status。
 
-来源：[Culture D0046](../../Design/Content/Culture_D0048.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[共同Network](../../Design/Network.md)、[既有网络合同](Batch_B_Shared_Network.md)、[退出合同](Batch_C1_Discount_Lifecycle.md)、[E2当前保存](P0_E2_Plan.md#current-slice--recovery-and-action-routing)。历史技术线索见[D0032 spikes](D0032_Technical_Spikes.md)，本页更新其文化归属/参数语义，不提升原生证据。
+来源：[Culture D0049](../../Design/Content/Culture_D0049.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[共同Network](../../Design/Network.md)、[既有网络合同](Batch_B_Shared_Network.md)、[退出合同](Batch_C1_Discount_Lifecycle.md)、[E2当前保存](P0_E2_Plan.md#current-slice--recovery-and-action-routing)。历史技术线索见[D0032 spikes](D0032_Technical_Spikes.md)，本页更新其文化归属/参数语义，不提升原生证据。

@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "batch": "P0-N1",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0473",
+    "runtime": "B178.205 / modinfo205",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b178205-travel-and-protection-gate",
+  "goal": "Resolve N1 non-Spy travel/protection gate before formal training and remote mission architecture. N1 remains partial.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current gate, authorization and source/live distinction"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
+      "kind": "section",
+      "selector": "## Current slice — B178.205 travel and protection gate",
+      "reason": "Complete current gate, native stop and N1 continuation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
+      "kind": "section",
+      "selector": "## N1：训练、远程交互、来源与保护原型",
+      "reason": "N1 full intended boundary; distinguish prototype from normal training"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "selector": "/abilities/5",
+      "reason": "Accepted exact nonhostile unit/travel/source contract, not prototype-derived gameplay",
+      "expected_id": "CUL_L4_EXPEDITION"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "selector": "/contracts/expedition",
+      "reason": "Accepted exact nonhostile unit/travel/source contract, not prototype-derived gameplay"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "selector": "/concepts/LONG_TERM_STATE_LIFECYCLE/G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING",
+      "reason": "Unit survival/protection and priority of named source-transfer semantics"
+    },
+    {
+      "path": "Mod/ExpeditionGate.lua",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/ExpeditionGateRead.lua",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/UI/ExpeditionGateWindow.lua",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/UI/ExpeditionGateWindow.xml",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/Data/ExpeditionGate.sql",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/Text/ExpeditionGate.sql",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_gate.py",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    }
+  ],
+  "dependencies": [
+    "Current EffectiveFacts qualification read; new native unit/database/icon/art registration and explicit independent UI request.",
+    "Native helper and retreat behavior unproven; no other professional-unit protection is changed."
+  ],
+  "old_writers": [
+    "No existing Expedition writer or city archive; no existing ability retired or overridden."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "After native route evidence, formal N1 production/source/reattachment work",
+      "paths": [
+        "Specialization/Architecture/v2/P0_N_Expedition_UI.md",
+        "Mod/CityProgressionStore.lua",
+        "Mod/UnitActions.lua",
+        "Mod/CrewProjects.lua"
+      ]
+    },
+    {
+      "trigger": "Registration or deployment",
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/Probe.lua",
+        "Mod/SpecializationP0.modinfo",
+        "Mod/ArtDefs/Units.artdef",
+        "Mod/Data/Icons.sql",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ]
+    }
+  ],
+  "non_scope": [
+    "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
+  ],
+  "validation": {
+    "depth": "L2 scoped explicit native unit creation/destruction and cross-context diagnostics; permanent city/mission state untouched.",
+    "local": "34 new methods and 29 applicable related methods PASS; 202 exact runtime files; Lua/XML/SQL/localization/art/registration. Historical fixture/stamp/manual-panel caveats disclosed.",
+    "user": "One new non-Spy helper/protection gate session; no repeated save/load harness checks."
+  },
+  "full_audit_triggers": [
+    "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
+    "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B178_Expedition_N1_Gate_Local.md",
+    "source": "B178.205 / modinfo205; 202 runtime files",
+    "native": "USER_GAME_TEST_REQUIRED; READ_OK is not remote deployment PASS",
+    "stop": "Gate package ready. Resume authorized N1 only after route evidence; N2/N3/U2 remain held."
+  }
+}
