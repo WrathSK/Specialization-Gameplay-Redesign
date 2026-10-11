@@ -1,4 +1,4 @@
-"""B190 actual Gameplay Gate + invisible activity bridge + optional management Window.
+"""B191 actual Gameplay Gate + database-hash activity bridge + optional management Window.
 Engine writes/events are mocked; native sleep/ready-unit behavior remains USER_GAME_TEST.
 """
 from pathlib import Path
@@ -30,13 +30,15 @@ def integrated(window=False):
       if previousTurn then Events.LocalPlayerTurnBegin.Add(previousTurn)end
       if previousChanged then LuaEvents.SPC_ExpeditionActivityChanged.Add(previousChanged)end
       ActivityTypes={ACTIVITY_AWAKE=0,ACTIVITY_SLEEP=1,ACTIVITY_HOLD=2,ACTIVITY_OPERATION=3}
-      UnitOperationTypes.SLEEP=70;UnitCommandTypes.WAKE=80;OperationResultsTypes={NO_TARGETS=99}
+      GameInfo.UnitOperations={UNITOPERATION_SLEEP={Hash=70}}
+      GameInfo.UnitCommands={UNITCOMMAND_WAKE={Hash=80}}
+      UnitOperationTypes.SLEEP=nil;UnitCommandTypes.WAKE=nil;OperationResultsTypes=nil
       sleepCalls=0;wakeCalls=0;activityPackets={};delayedPackets={}
       UnitManager.GetActivityType=function(u)return u.activity or 0 end
       local canOperation=UnitManager.CanStartOperation;local requestOperation=UnitManager.RequestOperation
       UnitManager.CanStartOperation=function(u,op,target,visible,results)
        if op~=70 then return canOperation(u,op,target,visible,results)end
-       assert(target==nil and visible==false and results==99);return true
+       assert(target==nil and visible==false and results==false);return true
       end
       UnitManager.RequestOperation=function(u,op,...)
        if op~=70 then return requestOperation(u,op,...)end
@@ -96,6 +98,31 @@ class ActivityIntegration(unittest.TestCase):
           assert(view().phase=='TASK_COMPLETE' and view().mode=='NONE' and view().taskCompletions==1)
           assert(sleepCalls==1 and wakeCalls==1 and units[41].activity==0 and not activityUpdate)
           assert(properties==0 and nativeCalls==0 and destroys==0 and placeCalls==0 and finishCalls==0)
+        """)
+
+    def test_missing_sleep_row_preserves_specific_failure_without_starting_task(self):
+        l=integrated();l.execute("""
+          GameInfo.UnitOperations.UNITOPERATION_SLEEP=nil;beginTask()
+          assert(view().phase=='HELD' and view().mode=='NONE' and not view().taskStart)
+          assert(view().taskCompletions==0 and not view().owned and not activityUpdate)
+          assert(sleepCalls==0 and wakeCalls==0 and #activityPackets==1)
+          assert(activityPackets[1].Detail:find('ACTIVITY_SLEEP_ROW_UNAVAILABLE',1,true))
+          assert(view().activityFailure and view().activityFailure:find('ACTIVITY_SLEEP_ROW_UNAVAILABLE',1,true))
+          handler(2,{Action='READ',Token='failure-read'})
+          assert(ExposedMembers.SPC_ExpeditionGateReply.activityFailure:find('ACTIVITY_SLEEP_ROW_UNAVAILABLE',1,true))
+          for i=1,10 do Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin()end
+          assert(sleepCalls==0 and wakeCalls==0 and #activityPackets==1 and not view().taskStart)
+        """)
+
+    def test_invalid_wake_hash_keeps_release_blocked_and_specific_reason(self):
+        l=integrated();l.execute("""
+          beginTask();GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash='80'
+          currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='HELD' and view().mode=='BLOCKED' and view().owned)
+          assert(view().taskCompletions==1 and sleepCalls==1 and wakeCalls==0 and units[41].activity==1)
+          assert(view().activityFailure and view().activityFailure:find('ACTIVITY_WAKE_HASH_UNAVAILABLE',1,true))
+          for i=1,10 do Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin()end
+          assert(sleepCalls==1 and wakeCalls==0 and not activityUpdate)
         """)
 
     def test_source_loss_after_sleep_before_readback_releases_attempt(self):

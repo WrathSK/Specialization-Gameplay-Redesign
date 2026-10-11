@@ -1,4 +1,6 @@
-"""B190 actual invisible activity bridge; native sleep/ready-unit behavior remains a user gate."""
+"""B191 actual activity bridge, database action hashes, and bounded activity ownership.
+Native sleep/ready-unit behavior remains a user gate.
+"""
 from pathlib import Path
 import unittest
 from lupa.lua55 import LuaRuntime
@@ -18,7 +20,9 @@ def bridge():
       ContextPtr={SetInitHandler=function(self,f)init=f end,SetShutdown=function(self,f)shutdown=f end,
        SetUpdate=function(self,f)update=f end,ClearUpdate=function()update=nil end}
       Game={GetLocalPlayer=function()return localOwner end,GetCurrentGameTurn=function()return turn end}
-      GameInfo={Units={[1]={UnitType='UNIT_SPC_EXPEDITION_SPY'},[2]={UnitType='UNIT_SPY'}}}
+      GameInfo={Units={[1]={UnitType='UNIT_SPC_EXPEDITION_SPY'},[2]={UnitType='UNIT_SPY'}},
+       UnitOperations={UNITOPERATION_SLEEP={Hash=70}},UnitCommands={UNITCOMMAND_WAKE={Hash=80}}}
+      expectedSleepHash=70;expectedWakeHash=80;sleepChecks=0;wakeChecks=0
       ActivityTypes={ACTIVITY_AWAKE=0,ACTIVITY_SLEEP=1,ACTIVITY_HOLD=2,ACTIVITY_OPERATION=3}
       function unit(id,owner,kind)
        local u={id=id,owner=owner or 2,kind=kind or 1,name='Native Named Spy',x=15,y=8,activity=0,spy=-1}
@@ -30,21 +34,26 @@ def bridge():
       end
       units={[41]=unit(41),[42]=unit(42,2,2)}
       Players={[2]={GetUnits=function()return {FindID=function(self,id)return units[id]end}end}}
-      UnitOperationTypes={SLEEP=70};UnitCommandTypes={WAKE=80};OperationResultsTypes={NO_TARGETS=99}
+      UnitOperationTypes={};UnitCommandTypes={};OperationResultsTypes=nil
       UnitManager={GetActivityType=function(u)if readThrow then error('READ_THROW')end;return u.activity end}
       UnitManager.CanStartOperation=function(u,op,target,visible,results)
-       assert(op==70 and target==nil and visible==false and results==99);return not sleepDenied end
+       assert(op==expectedSleepHash and target==nil and visible==false and results==false)
+       sleepChecks=sleepChecks+1;if mutateSleepRow then GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=71 end
+       return not sleepDenied end
       UnitManager.RequestOperation=function(u,op)
-       assert(op==70 and u.id==41);sleepCalls=sleepCalls+1
+       assert(op==expectedSleepHash and u.id==41);sleepCalls=sleepCalls+1
        if throwBeforeSleep then error('AMBIGUOUS_BEFORE_SLEEP')end
        if not delaySleep then u.activity=1 end
        Events.UnitActivityChanged(2,41);Events.GameCoreEventPublishComplete()
        if throwAfterSleep then error('AMBIGUOUS_AFTER_SLEEP')end
        if rejectSleep then return false end
       end
-      UnitManager.CanStartCommand=function(u,cmd,visible)assert(cmd==80 and visible==false);return not wakeDenied end
+      UnitManager.CanStartCommand=function(u,cmd,visible)
+       assert(cmd==expectedWakeHash and visible==false);wakeChecks=wakeChecks+1
+       if mutateWakeRow then GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash=81 end
+       return not wakeDenied end
       UnitManager.RequestCommand=function(u,cmd)
-       assert(cmd==80 and u.id==41);wakeCalls=wakeCalls+1
+       assert(cmd==expectedWakeHash and u.id==41);wakeCalls=wakeCalls+1
        if not delayWake then u.activity=0 end
        Events.UnitActivityChanged(2,41);Events.GameCoreEventPublishComplete()
        if throwWake then error('AMBIGUOUS_WAKE')end
@@ -120,9 +129,75 @@ class ActivityBridge(unittest.TestCase):
     def test_native_mission_during_asleep_is_not_cancelled_or_woken(self):
         l=bridge();l.execute("publish('SLEEP');units[41].spy=9;Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and wakeCalls==0 and packets[2].Result=='FAILED' and packets[3].Result=='FAILED' and update==nil)")
 
+    def test_default_fixture_requires_no_alias_or_optional_result_constants(self):
+        l=bridge();l.execute("assert(UnitOperationTypes.SLEEP==nil and UnitCommandTypes.WAKE==nil and OperationResultsTypes==nil);publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==1 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
+
+    def test_stale_aliases_are_ignored_in_favor_of_database_hash(self):
+        l=bridge();l.execute("UnitOperationTypes.SLEEP=700;UnitCommandTypes.WAKE=800;OperationResultsTypes={NO_TARGETS=999};publish('SLEEP');publish('RELEASE',true);assert(sleepCalls==1 and wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED')")
+
+    def test_valid_signed_and_zero_database_hashes_use_same_eligibility_and_writer_hash(self):
+        for sleep_hash, wake_hash in [(-2147483648, -1), (0, 0)]:
+            with self.subTest(sleep_hash=sleep_hash, wake_hash=wake_hash):
+                l=bridge();l.execute(f"expectedSleepHash={sleep_hash};expectedWakeHash={wake_hash};GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=expectedSleepHash;GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash=expectedWakeHash;publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==1 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
+
+    def test_indexable_userdata_database_collection_and_row_are_supported(self):
+        l=bridge()
+        # Lupa exposes these mapping objects as userdata, like a native database adapter.
+        l.globals().nativeOperations={"UNITOPERATION_SLEEP": {"Hash": 70}}
+        l.globals().nativeCommands={"UNITCOMMAND_WAKE": {"Hash": 80}}
+        l.execute("GameInfo.UnitOperations=nativeOperations;GameInfo.UnitCommands=nativeCommands;assert(type(GameInfo.UnitOperations)=='userdata' and type(GameInfo.UnitOperations.UNITOPERATION_SLEEP)=='userdata');publish('SLEEP');publish('RELEASE',true);assert(sleepCalls==1 and wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED')")
+
+    def test_hash_change_inside_eligibility_cannot_change_the_subsequent_writer(self):
+        l=bridge();l.execute("mutateSleepRow=true;mutateWakeRow=true;publish('SLEEP');publish('RELEASE',true);assert(sleepCalls==1 and wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED')")
+
+    def test_missing_invalid_action_rows_stop_before_native_eligibility_and_writer(self):
+        cases = [
+            ("TABLE_UNAVAILABLE", "nil"),
+            ("TABLE_UNAVAILABLE", "false"),
+            ("TABLE_UNAVAILABLE", "'invalid table'"),
+            ("TABLE_UNAVAILABLE", "7"),
+            ("ROW_UNAVAILABLE", "{}"),
+            ("ROW_UNAVAILABLE", "{ROW=false}"),
+            ("ROW_UNAVAILABLE", "{ROW='invalid row'}"),
+            ("ROW_UNAVAILABLE", "{ROW=7}"),
+            ("HASH_UNAVAILABLE", "{ROW={}}"),
+            ("HASH_UNAVAILABLE", "{ROW={Hash=false}}"),
+            ("HASH_UNAVAILABLE", "{ROW={Hash='70'}}"),
+            ("HASH_UNAVAILABLE", "{ROW={Hash=70.5}}"),
+            ("HASH_UNAVAILABLE", "{ROW={Hash=0/0}}"),
+            ("HASH_UNAVAILABLE", "{ROW={Hash=math.huge}}"),
+            ("HASH_UNAVAILABLE", "{ROW={Hash=-math.huge}}"),
+        ]
+        for action, table, row in [("SLEEP", "UnitOperations", "UNITOPERATION_SLEEP"),
+                                   ("WAKE", "UnitCommands", "UNITCOMMAND_WAKE")]:
+            for suffix, value in cases:
+                with self.subTest(action=action, suffix=suffix, value=value):
+                    l=bridge()
+                    # A correct alias is deliberately present: invalid DB data must not fall back to it.
+                    l.execute("UnitOperationTypes.SLEEP=70;UnitCommandTypes.WAKE=80")
+                    if action == "WAKE":
+                        l.execute("publish('SLEEP')")
+                    l.execute(f"GameInfo.{table}={value.replace('ROW', row)}")
+                    l.execute("publish('SLEEP')" if action == "SLEEP" else "publish('RELEASE',true)")
+                    packet=1 if action=="SLEEP" else 2
+                    prior=0 if action=="SLEEP" else 1
+                    l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_{suffix}',1,true) and packets[{packet}].Owned=={str(action=='WAKE').lower()} and update==nil);assert(sleepChecks=={prior} and wakeChecks==0);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(#packets=={packet})")
+
     def test_denied_sleep_or_wake_never_bypasses_guard(self):
-        l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepCalls==0 and packets[1].Result=='FAILED' and not packets[1].Owned)")
-        l=bridge();l.execute("publish('SLEEP');wakeDenied=true;publish('RELEASE',true);assert(wakeCalls==0 and packets[2].Result=='FAILED' and packets[2].Owned)")
+        l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepChecks==1 and sleepCalls==0 and wakeCalls==0 and packets[1].Result=='FAILED' and not packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_NOT_ALLOWED',1,true))")
+        l=bridge();l.execute("publish('SLEEP');wakeDenied=true;publish('RELEASE',true);assert(wakeChecks==1 and sleepCalls==1 and wakeCalls==0 and packets[2].Result=='FAILED' and packets[2].Owned and packets[2].Detail:find('ACTIVITY_WAKE_NOT_ALLOWED',1,true))")
+
+    def test_missing_native_eligibility_or_writer_api_is_reported_without_native_write(self):
+        for action, method in [("SLEEP", "CanStartOperation"), ("SLEEP", "RequestOperation"),
+                               ("WAKE", "CanStartCommand"), ("WAKE", "RequestCommand")]:
+            with self.subTest(action=action, method=method):
+                l=bridge()
+                if action=="WAKE":l.execute("publish('SLEEP')")
+                l.execute(f"UnitManager.{method}=nil")
+                l.execute("publish('SLEEP')" if action=="SLEEP" else "publish('RELEASE',true)")
+                packet=1 if action=="SLEEP" else 2
+                prior=0 if action=="SLEEP" else 1
+                l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_API_UNAVAILABLE',1,true) and update==nil)")
 
     def test_delayed_wake_timeout_is_bounded(self):
         l=bridge();l.execute("publish('SLEEP');delayWake=true;publish('RELEASE',true);assert(wakeCalls==1 and update);update(11);assert(wakeCalls==1 and packets[2].Result=='FAILED' and packets[2].Owned and update==nil)")

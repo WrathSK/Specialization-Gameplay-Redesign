@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B190_TASK_ACTIVITY_CONSTANT_PREFLIGHT_FAIL_REPAIR_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B190 native review](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) shows a missing-constant preflight stop before sleep. The generic HELD/unbound label hides still-matching name/source evidence; the next proposed narrow patch should present the precise component and distinguish task hold from actual source mismatch. No UI/code change yet.
-Current entry stays **专业化诊断 → 人文考察·验证**. Own source/cap, name continuity and accepted native-slot cost remain. Await bounded repair approval; no unchanged B190 retest or new formal persistence/UI rollout.
+State: N1_PARTIAL / B191_ACTIVITY_LOOKUP_REPAIR_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B191 repair](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md) places the precise activity error near the top and distinguishes task HELD from proven source loss. A matching label requires fresh same-phase/revision/turn identity evidence; stale views retain the source record with a refresh instruction. Held controls remain blocked. Native Hash lookup replaces assumed aliases without changing activity ownership or source/capacity.
+Current entry stays **专业化诊断 → 人文考察·验证**. One automatic sleep/readiness/release session remains pending; no repeated naming or generic cold-load test. Formal persistence and wider UI rollout remain held.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

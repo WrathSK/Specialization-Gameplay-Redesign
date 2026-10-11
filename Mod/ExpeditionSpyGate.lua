@@ -1,4 +1,4 @@
--- B190: session task owns native sleep only after explicit UI readback.
+-- B191: session task owns native sleep only after explicit UI readback.
 -- Source/capacity remain our own record; no city/player ledger, mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
@@ -11,7 +11,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local v={owner=state.owner,unitID=state.unitID,expectedName=state.expectedName,x=state.x,y=state.y,
    teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=state.activityMode or 'NONE',
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
-   taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,error=state.stop}
+   taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,error=state.stop,activityFailure=state.activityFailure}
   v.locked=v.mode~='NONE'
   local changed=false
   for k,value in pairs(v)do if published[k]~=value then changed=true;break end end
@@ -84,7 +84,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return tostring(err):gsub('[%c]',' '):gsub('%[','('):gsub('%]',')'):sub(1,220)
  end
  local function logFailure(code,at,raw)
-  print('[SPC][B190][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
+  print('[SPC][B191][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
  end
  local function hold(err)
   releaseActivity()
@@ -208,7 +208,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
     releaseActivity()
     state.taskCompletions=1 -- One fixture task per team; completion has no effects.
-    print('[SPC][B190][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
+    print('[SPC][B191][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
    end
   end
  end
@@ -221,7 +221,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','activityMode','activityOwned','activityKey','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
+   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','activityMode','activityOwned','activityKey','activityFailure','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end
@@ -356,6 +356,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     mutating=true
     if state.activityMode=='RELEASE' then state.activityMode='BLOCKED'
     else state.activityOwned=state.activityOwned or p.Owned;state.activityPending=false end
+    state.activityFailure=tostring(p.Detail or ''):match('(ACTIVITY_[A-Z0-9_]+)') or 'ACTIVITY_FAILURE_UNKNOWN'
     error('ACTIVITY_READBACK_STOP: '..tostring(p.Detail or 'UNKNOWN'):sub(1,180))
    end
   elseif p.Action=='STOP' then
@@ -402,7 +403,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
    lastToken=p.Token;lastReply=v;ExposedMembers.SPC_ExpeditionGateReply=v
   end
   publishActivity()
-  print('[SPC][B190][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
+  v.activityRevision=revision -- Correlate this diagnostic read with the scalar transition mirror.
+  print('[SPC][B191][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)

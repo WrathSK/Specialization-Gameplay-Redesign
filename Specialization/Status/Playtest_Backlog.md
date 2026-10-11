@@ -281,3 +281,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B190 — native constant preflight failure; unchanged retest stopped
 
 [Two-image review and bounded repair](Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md): ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE before sleep submission, source/name MATCH retained. Supersedes the pending B190 test instruction above: no unchanged-package retest. Native sleep/readiness/release NOT_REACHED. Await approval for exact DB-hash lookup/boolean eligibility/precise diagnostics and corresponding local fixtures; then reuse only the unreached activity session.
+
+## B191 — approved constant lookup repair; native activity session pending
+
+[Exact minimal session](Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md#one-minimal-native-session) supersedes B190's awaiting-repair stop: bound arrival → **④ 无奖励任务（2回合）**, no manual sleep → normal turns/window closed → completion/owned release → **结束并移除验证团**. Check source/live Status before testing. This reaches the previously blocked activity path; no repeated generic cold-load/name test. Stop at precise error; formal N1/N2/N3/U2/rewards held.

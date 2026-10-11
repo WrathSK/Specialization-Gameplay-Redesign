@@ -353,3 +353,23 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ERROR','Task activity error: {1}'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_WAIT','任务进行中或正在释放活动占用；目前只能查看管理报告或结束验证团。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_WAIT','Task active or releasing activity; use management/status or END.');
+
+
+-- B191: a held task does not by itself prove lost source identity.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_HELD_MATCH','本次读取确认：当前单位、姓名及来源引用仍匹配；任务已暂停，不代表绑定丢失。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_HELD_MATCH','This read confirms matching unit, name and source reference. The task is held; binding loss is not demonstrated.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_HELD_RECHECK','任务暂停；来源记录保留，当前绑定请刷新核对。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_HELD_RECHECK','Task held; source record retained. Refresh to verify the current binding.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_HELD_SOURCE','保留的来源记录：{1}（城市 #{2}）。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_HELD_SOURCE','Retained source record: {1} (city #{2}).');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_FAILURE','任务状态异常：{1}[NEWLINE]错误代码：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_FAILURE','Task activity error: {1}[NEWLINE]Error code: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DATA','任务活动所需的原生动作定义不可用。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DATA','A required native action definition is unavailable.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_API','当前界面缺少所需的原生接口。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_API','A required native API is unavailable in this UI context.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DENIED','原生引擎未允许或未接受本次活动操作。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DENIED','The native engine did not allow or accept this activity action.');

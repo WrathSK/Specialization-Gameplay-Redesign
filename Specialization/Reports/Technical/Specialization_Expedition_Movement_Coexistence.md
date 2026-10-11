@@ -1,6 +1,10 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B190 task startup fails at constant preflight; native sleep eligibility/readiness/release NOT_REACHED.** [Two-image diagnosis and repair proposal](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) identifies ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE before the writer. The combined guard cannot identify the individual missing symbol. Native UnitPanel reads GameInfo row.Hash; the proposed repair follows that path and its false/false eligibility call, preserving ownership/readback. Await implementation approval. B189 observed name/source/task PASS and user-confirmed END remain scoped evidence; source/live stay B190, no deployment in this review. Earlier sections are chronological evidence, not current dispatch instructions.
+Date: 2026-10-10. **B191 activity lookup/report repair locally complete; native pending.** [Implementation and197 scoped checks](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md) use exact native GameInfo action Hash with false/false eligibility, no alias fallback, one request and unchanged owned release. Precise failures and fresh HELD identity presentation address the diagnostic ambiguity. No Design or persistence expansion. Current source/live is in Status; older sections retain their evidence and authorization context.
+
+## B190 native failure basis
+
+[Two-image review](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) records ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE before eligibility/submission. The specific missing symbol remains UNKNOWN; original name/source/cap1 match was retained. B191 repairs the lookup; this does not retroactively prove B190 native activity or change B189 scoped evidence.
 
 ## B190 approved activity implementation
 

@@ -1,4 +1,4 @@
--- B190: invisible UI bridge for one Gameplay-owned Expedition activity lease.
+-- B191: invisible UI bridge for one Gameplay-owned Expedition activity lease.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
 local P=SPCP0
@@ -60,10 +60,23 @@ local function acknowledge(n,result,reason)
  end)
  if not ok then
   -- The request may already have executed: never retry or submit another native operation.
-  print('[SPC][B190][ACTIVITY_ACK_UNKNOWN] '..detail(err))
+  print('[SPC][B191][ACTIVITY_ACK_UNKNOWN] '..detail(err))
  end
 end
 local function fail(n,err)acknowledge(n,'FAILED',err)end
+-- Native UnitPanel resolves action identifiers through exact GameInfo rows.
+-- Keep the checked hash for the one request; enum aliases and optional result hints
+-- are not portable across the UI contexts used by supported game builds.
+local function actionHash(tableName,key,label)
+ local rows=GameInfo and GameInfo[tableName];local kind=type(rows)
+ assert(kind=='table' or kind=='userdata','ACTIVITY_'..label..'_TABLE_UNAVAILABLE')
+ local row=rows[key];kind=type(row)
+ assert(kind=='table' or kind=='userdata','ACTIVITY_'..label..'_ROW_UNAVAILABLE')
+ local hash=row.Hash
+ assert(type(hash)=='number' and hash==hash and hash>-math.huge and hash<math.huge and hash%1==0,
+  'ACTIVITY_'..label..'_HASH_UNAVAILABLE')
+ return hash
+end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
  if not ok then fail(n,u);return end
@@ -77,15 +90,16 @@ local function evaluate(n)
    fail(n,'ACTIVITY_UNEXPECTED_STATE');return
   end
   if not n.requested then
-   local allowed,why=pcall(function()
-    assert(UnitOperationTypes and UnitOperationTypes.SLEEP and OperationResultsTypes and OperationResultsTypes.NO_TARGETS,'ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE')
+   local allowed,hash=pcall(function()
+    local hash=actionHash('UnitOperations','UNITOPERATION_SLEEP','SLEEP')
     assert(type(UnitManager.CanStartOperation)=='function' and type(UnitManager.RequestOperation)=='function','ACTIVITY_SLEEP_API_UNAVAILABLE')
-    assert(UnitManager.CanStartOperation(u,UnitOperationTypes.SLEEP,nil,false,OperationResultsTypes.NO_TARGETS)==true,'ACTIVITY_SLEEP_NOT_ALLOWED')
+    assert(UnitManager.CanStartOperation(u,hash,nil,false,false)==true,'ACTIVITY_SLEEP_NOT_ALLOWED')
+    return hash
    end)
-   if not allowed then fail(n,why);return end
+   if not allowed then fail(n,hash);return end
    n.requested=true;n.owned=true;seen.attempted=true -- Preserve the attempt until this activity key ends.
    local sent,err=pcall(function()
-    assert(UnitManager.RequestOperation(u,UnitOperationTypes.SLEEP)~=false,'ACTIVITY_SLEEP_REJECTED')
+    assert(UnitManager.RequestOperation(u,hash)~=false,'ACTIVITY_SLEEP_REJECTED')
    end)
    if not sent then fail(n,err);return end
   end
@@ -100,15 +114,16 @@ local function evaluate(n)
   end
   if activity~=ActivityTypes.ACTIVITY_SLEEP then fail(n,'ACTIVITY_RELEASE_STATE_UNKNOWN');return end
   if not n.requested then
-   local allowed,why=pcall(function()
-    assert(UnitCommandTypes and UnitCommandTypes.WAKE,'ACTIVITY_WAKE_CONSTANT_UNAVAILABLE')
+   local allowed,hash=pcall(function()
+    local hash=actionHash('UnitCommands','UNITCOMMAND_WAKE','WAKE')
     assert(type(UnitManager.CanStartCommand)=='function' and type(UnitManager.RequestCommand)=='function','ACTIVITY_WAKE_API_UNAVAILABLE')
-    assert(UnitManager.CanStartCommand(u,UnitCommandTypes.WAKE,false)==true,'ACTIVITY_WAKE_NOT_ALLOWED')
+    assert(UnitManager.CanStartCommand(u,hash,false)==true,'ACTIVITY_WAKE_NOT_ALLOWED')
+    return hash
    end)
-   if not allowed then fail(n,why);return end
+   if not allowed then fail(n,hash);return end
    n.requested=true
    local sent,err=pcall(function()
-    assert(UnitManager.RequestCommand(u,UnitCommandTypes.WAKE)~=false,'ACTIVITY_WAKE_REJECTED')
+    assert(UnitManager.RequestCommand(u,hash)~=false,'ACTIVITY_WAKE_REJECTED')
    end)
    if not sent then fail(n,err);return end
   end
@@ -171,7 +186,7 @@ pump=function(monitor)
  busy=false
  if not ok then
   local n=job
-  if n then fail(n,err)else print('[SPC][B190][ACTIVITY_READ_FAILED] '..detail(err))end
+  if n then fail(n,err)else print('[SPC][B191][ACTIVITY_READ_FAILED] '..detail(err))end
  end
 end
 local function published()pump(false)end

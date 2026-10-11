@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="217">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="218">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B190.217: task-owned native sleep/readback and bounded release for the expedition prototype; capacity, source binding and independent no-reward task retained.</Description>
+    <Description>B191.218: native GameInfo action-hash lookup and precise held-task diagnostics for the expedition activity prototype; capacity, binding and task semantics retained.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

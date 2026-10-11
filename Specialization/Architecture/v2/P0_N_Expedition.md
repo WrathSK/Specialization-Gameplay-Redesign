@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B190_TASK_ACTIVITY_CONSTANT_PREFLIGHT_FAIL_REPAIR_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B191_ACTIVITY_LOOKUP_REPAIR_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B190 native startup FAIL before SLEEP eligibility/submission.** [Two-image review, local counterexamples and repair proposal](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) identifies ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE. Native name/current-ID/source checks remain MATCH and cap1/1; HELD makes the generic diagnostic label unbound. No new identity-loss proof. SLEEP/readiness/release remain NOT_REACHED.
+**B191.218 approved activity lookup/report repair locally complete; native pending.** [197 local checks and minimal session](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md): exact GameInfo row Hash lookup, native false/false eligibility, component-specific failures and fresh HELD identity presentation. No enum fallback or bypass of native permission. One request/readback and owned release remain.
 
-The approved B190 activity code remains deployed; this review implements no repair. Proposed next minimum: exact GameInfo operation/command Hash lookup, native false/false eligibility form instead of mandatory NO_TARGETS, component-specific diagnostics and fixtures without invented aliases. Retain task timer, pending-attempt ownership, independent closed-window bridge and ordinary-Spy isolation. Await user approval; no unchanged-package retest.
+[B190 native failure](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) happened before sleep submission; exact missing alias remains UNKNOWN. [B189 continuity/task evidence](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) remains scoped. Independent timer, cap1, exact source/name, pending-attempt ownership, closed-window bridge and ordinary-Spy isolation are unchanged.
 
-[B189 continuity/task evidence](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) and [B190179 local checks](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md) retain their scoped conclusions. After a separately approved patch, test only the unreached activity path, not generic save/load/naming. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held. Status/receipt govern source/live.
+After verified deployment, use one bound arrived fixture → **④ 无奖励任务（2回合）** without manual sleep → normal turns with window closed → completion/owned release → **结束并移除验证团**. Native eligibility/readiness/release remain unproved. No generic save/load/naming retest. Formal training/persistence/reattachment, N2/N3/U2/rewards and repeated-task rollout remain held; Status/receipt govern source/live.
 
 
 ## 三种状态与已定数值

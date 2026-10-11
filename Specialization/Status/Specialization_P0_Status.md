@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0508
-Implementation Build: source/live B190.217 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0509
+Implementation Build: source B191.218; last deployed B190.217 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B190_TASK_ACTIVITY_CONSTANT_PREFLIGHT_FAIL_REPAIR_PENDING
+Work State: B191_ACTIVITY_LOOKUP_REPAIR_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B191.218 approved activity lookup/report repair locally complete; native pending.** [Changes,197 scoped checks and minimal session](Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md): exact GameInfo action Hash and native boolean eligibility form, precise component errors, fresh HELD identity display. B190's native constant preflight FAIL remains recorded; no new native activity PASS. Source/cap/name/timer/owned-release semantics unchanged.
+
+Source is **B191.218 / modinfo218**. Last recorded live is **B190.217**, source `4c577a4`, receipt `B190.217-4c577a4-playtest.json`,213/213 MATCH with recovery retained. Deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+
+Next: one arrived fixture → **④ 无奖励任务（2回合）**, without manual sleep → close window/normal turns → completion/owned release → **结束并移除验证团**. Stop at the precise error if failed. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
+
+## S0508 — B190 native preflight failure and repair proposal (historical)
 
 **B190.217 native task startup FAIL at constant preflight; no sleep request reached.** [Two-image review and bounded repair proposal](Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md): ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE; exact name/source readbacks still MATCH, cap1/1. Generic unbound wording follows HELD, not proven identity loss. The combined guard does not identify the single missing symbol; native SLEEP permission/readiness/release remain NOT_REACHED.
 

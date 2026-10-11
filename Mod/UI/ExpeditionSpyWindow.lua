@@ -2,6 +2,7 @@ include('Probe')
 include('ExpeditionSpyRead')
 local P=SPCP0;local R=SPCExpeditionSpyRead
 local current,pending,pendingAction,travel,gain,before,audit,comparison
+local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local request;local lastNativePermit
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
@@ -29,9 +30,25 @@ local function syncActivity()
  local v=activityView();if not v then return end
  current.phase=v.phase or current.phase
  current.activityMode=v.mode;current.activityOwned=v.owned
- current.activityError=v.error
+ current.activityError=v.error;current.activityFailure=v.activityFailure
  current.taskStart=v.taskStart;current.taskDue=v.taskDue;current.taskCompleted=v.taskCompleted;current.taskCompletions=v.taskCompletions
  if v.phase=='HELD' then current.bound=false;current.unbound=true end
+end
+-- Transition publication is not a fresh identity read. Only a diagnostic reply
+-- sampled in this held phase/revision/turn can support a matching-source label.
+local function heldDiagnosticCurrent()
+ local a=activityView()
+ return diagnosticPhase=='HELD' and diagnosticTurn==Game.GetCurrentGameTurn()
+  and a~=nil and diagnosticRevision~=nil and diagnosticRevision==a.revision
+end
+local function activityFailureText(code)
+ local category
+ if type(code)=='string' then
+  if code:find('_TABLE_UNAVAILABLE',1,true) or code:find('_ROW_UNAVAILABLE',1,true) or code:find('_HASH_UNAVAILABLE',1,true)then category='DATA'
+  elseif code:find('_API_UNAVAILABLE',1,true) or code=='ACTIVITY_READER_UNAVAILABLE' or code=='ACTIVITY_REQUEST_UNAVAILABLE'then category='API'
+  elseif code:find('_NOT_ALLOWED',1,true) or code:find('_REJECTED',1,true)then category='DENIED' end
+ end
+ return category and L('ACTIVITY_FAILURE',L('ACTIVITY_CAUSE_'..category),code) or L('ACTIVITY_ERROR',code)
 end
 local function activityLocked()
  local v=activityView()
@@ -45,25 +62,31 @@ local function render()
  syncActivity()
  local v=current;if not v then setReport(L('INITIAL'));return end
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
+ local activityFailure=v.activityFailure or v.activityError
+ if activityFailure then o[#o+1]=activityFailureText(activityFailure)end
+ local held=v.phase=='HELD' and type(v.teamKey)=='string' and v.sourceCity~=nil
+ local heldFresh=held and heldDiagnosticCurrent()
+ local heldMatch=heldFresh and v.sameUnit==true and v.nameVerified==true and v.identity~=nil and v.identity.sourceStatus=='MATCH'
+ if held then o[#o+1]=L(heldMatch and 'HELD_MATCH' or 'HELD_RECHECK')end
  if v.activityMode and (v.taskStart or v.phase=='TASK_PREPARING' or v.activityMode~='NONE')then
   o[#o+1]=L('ACTIVITY_'..v.activityMode)
  end
- if v.activityError then o[#o+1]=L('ACTIVITY_ERROR',v.activityError)end
- if nameStage then o[#o+1]=L('NAME_STAGE',L('NAME_STAGE_'..nameStage),nameReason or '—')end
- if failure then o[#o+1]=common('ERROR',failure)end
+ if nameStage and not held then o[#o+1]=L('NAME_STAGE',L('NAME_STAGE_'..nameStage),nameReason or '—')end
+ if failure and not activityFailure then o[#o+1]=common('ERROR',failure)end
  o[#o+1]=common('COUNT',v.count or 'UNKNOWN')
  if v.reservedCapacity then o[#o+1]=L('RESERVED',v.observedCount or 'UNKNOWN')end
  if v.unitID then o[#o+1]=common('UNIT',v.unitID,v.x,v.y)end
- if v.legacy or v.unbound then o[#o+1]=L('UNBOUND')end
+ if not held and (v.legacy or v.unbound)then o[#o+1]=L('UNBOUND')end
  if v.sourceName then
-  o[#o+1]=v.bound and common('SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
-   or L('RETAINED_SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+  if held then o[#o+1]=L('HELD_SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+  else o[#o+1]=v.bound and common('SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)
+   or L('RETAINED_SOURCE',Locale.Lookup(v.sourceName),v.sourceCity)end
  end
  if v.namePoolCivilization or v.namePoolCount then o[#o+1]=L('NAME_POOL',value(v.namePoolCivilization),value(v.namePoolCount))end
  if nameObservation then o[#o+1]=L('NAME_OBSERVATION',value(nameObservation.name),value(nameObservation.defaultName),value(nameObservation.poolCount),value(nameObservation.offmapCount))end
- if v.expectedName then o[#o+1]=L('NAME_READBACK',v.expectedName,v.observedName or 'UNKNOWN',L(v.nameVerified and 'NAME_VERIFIED' or 'NAME_WAITING'))end
+ if v.expectedName and (not held or heldFresh)then o[#o+1]=L('NAME_READBACK',v.expectedName,v.observedName or 'UNKNOWN',L(v.nameVerified and 'NAME_VERIFIED' or 'NAME_WAITING'))end
  if v.bound then o[#o+1]=L('BOUND',v.createdID,v.unitID)end
- if v.identity then
+ if v.identity and (not held or heldFresh)then
   local d=v.identity
   local function status(s)return L('IDENTITY_'..(s or 'UNREADABLE'))end
   o[#o+1]=L('IDENTITY_SUMMARY',status(d.candidateName),status(d.lookupName),status(d.plotStatus),status(d.sourceStatus))
@@ -160,6 +183,7 @@ local function reply()
  local action=pendingAction;pending=nil;pendingAction=nil;ContextPtr:ClearUpdate()
  -- Do not mutate the shared request reply when applying current activity facts.
  current={};for key,item in pairs(v)do current[key]=item end
+ diagnosticPhase=v.phase;diagnosticRevision=v.activityRevision;diagnosticTurn=v.turn
  if action=='CREATE' and not v.error then
   observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;afterPublish=false
   prepareName(v);return true
@@ -168,7 +192,7 @@ local function reply()
   local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY}
   local ok,err=R.SubmitTravel(v.owner,v.unitID,target,v.nativePermit)
   if not ok then request('STOP',err);return true end
-  print('[SPC][B190][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
+  print('[SPC][B191][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
   request('READ');return true
  elseif action=='TASK' and not v.error then taskAfter=taskRead()
  elseif action=='END' and not v.error then
@@ -186,7 +210,7 @@ local function readChecks()
  travel=R.Read(Game.GetLocalPlayer(),current.unitID,t)
  gain=R.GainSources(Game.GetLocalPlayer(),current.unitID,t)
  updateAudit();render()
- print('[SPC][B190][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
+ print('[SPC][B191][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
  return travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
 end
 request=function(action,detail)
@@ -264,7 +288,7 @@ local function missionEvent(pid,id)
  local ok,m=pcall(function()return Players[pid]:GetDiplomacy():GetMission(pid,id)end)
  lastMission=ok and type(m)=='table' and tostring(m.Operation):sub(1,40) or 'UNKNOWN'
  -- Player-level event only: never infer ownership from a matching unit name.
- print('[SPC][B190][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
+ print('[SPC][B191][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
 end
 local function published()
  if naming and checkName()then return end
