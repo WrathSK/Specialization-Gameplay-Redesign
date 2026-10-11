@@ -13,14 +13,16 @@ Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 ## Next functional slice — normal training and source registration
 
-State: **PLAN_READY_FOR_REVIEW**. User directs functional Expedition development to continue and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The next bounded implementation proposal replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
+State: **IMPLEMENTATION_AUTHORIZED / TRAINING_PROVENANCE_PREFLIGHT_OPEN**. User approved this batch and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The next bounded implementation proposal replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
 
 - Admission: Culture ACTIVE IV, own national cap1 including travelling, held and unbound surviving teams; check queue/completion concurrency. Do not silently invent refunds, delete an existing team or alter production on an ambiguous race. If the native queue contract cannot enforce the accepted scope without a new gameplay decision, report that specific boundary.
-- Cost: resolve the current ruleset's Spy production cost and relevant native scaling, rather than retaining placeholder1 or hardcoding a remembered base. Gold/Faith purchases are not implicitly enabled.
+- Cost clarification accepted by user on 2026-10-11: copy the current Spy cost formula, counting previous Expeditions separately from ordinary Spies. Resolve base/progression fields from the ruleset; do not hardcode the observed HD80/10 values. Gold/Faith purchases are not implicitly enabled.
 - Provenance: use the actual production completion/unit creation evidence to register the exact trained unit and source city through the existing Store. No nearest-city, position-only or name-only source inference. Duplicate completion notifications are idempotent; unconfirmed persistence reserves capacity and holds actions.
 - Keep the supported test-civilization/name-pool scope explicit for this first training integration; do not advertise all-civilization release. The previously accepted temporary native Spy-slot cost remains a prototype limitation, not a newly accepted final design rule.
 - Reuse existing explicit **派遣到新城市 / 任务** controls. Auto-opening is optional: include a small well-supported correction if available; do not start another native diagnostic campaign for it. Disabling auto-open must not disable explicit controls or ordinary Spy UI.
 - Preserve task duration/reward isolation, source ACTIVE-loss versus Owner-loss distinction and existing saved team semantics. Reattachment, repeat tasks, real mission rewards/history and Network remain later slices.
+
+[Implementation preflight and exact continuation](../../Reports/Technical/Specialization_Expedition_Training_Preflight.md) record the confirmed completion-event type/instance distinction and unresolved native queue/provenance contract. Training remains disabled; no new build or native impossibility claim. Approval remains valid.
 
 Direct closure to establish during implementation: unit SQL/eligibility and production UI, production-completion event provenance, Gate/Store registration, existing capacity queries and targeted tests. Registration triggers only from relevant production/unit lifecycle events; operate on the source city, produced unit and bounded player reservation. Pending correlation retires on confirmed registration, terminal failure or invalidation; no all-city per-frame scan or extra GC.
 
