@@ -92,7 +92,7 @@ def gate(ui=False, window=False):
         """)
         l.execute((R/'Mod/ExpeditionSpyRead.lua').read_text());l.execute('reader=SPCExpeditionSpyRead')
     if window:
-        l.execute("makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-189.216';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
+        l.execute("LuaEvents.SPC_ExpeditionActivityChanged={Add=function(fn)activityChanged=fn end,Remove=function(fn)assert(activityChanged==fn);activityChanged=nil end};makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-189.216';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
         l.execute((R/'Mod/UI/ExpeditionSpyWindow.lua').read_text());l.execute('init()')
     return l
 
@@ -192,20 +192,21 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'216')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'217')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
-        self.assertIn('UI/ExpeditionSpyWindow.xml',active);self.assertNotIn('UI/ExpeditionGateWindow.xml',active)
+        self.assertIn('UI/ExpeditionSpyActivity.xml',active);self.assertIn('UI/ExpeditionSpyWindow.xml',active);self.assertNotIn('UI/ExpeditionGateWindow.xml',active)
         code=(R/'Mod/Gameplay.lua').read_text();self.assertIn('SPCExpeditionSpyGate.Start(P,shared)',code);self.assertNotIn('SPCExpeditionGate.Start(P,shared)',code)
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text'] for e in art.findall('m_RootCollections/Element/Element/m_Name')];self.assertEqual(names.count('UNIT_SPC_EXPEDITION_SPY'),1);self.assertEqual(len(names),8)
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         lua=(R/'Mod/UI/ExpeditionSpyWindow.lua').read_text();xml=(R/'Mod/UI/ExpeditionSpyWindow.xml').read_text()
-        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_'}
-        keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','NAMING','CREATED','TRAVELLING','ARRIVED','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
+        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_'}
+        keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','NAMING','CREATED','TRAVELLING','ARRIVED','TASK_PREPARING','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
         keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED','SLOT_COST_ACCEPTED']}
         keys|={f'IDENTITY_{p}' for p in ['MATCH','ABSENT','MISMATCH','UNREADABLE','NO_UNIT','NO_SESSION','WRONG_UNIT','AMBIGUOUS','PRESENT','OFF_MAP']}
         keys|={f'NAME_STAGE_{p}' for p in ['READINESS','READING','GAMEPLAY','CONFIRMED','CANCELLED']}
+        keys|={f'ACTIVITY_{p}' for p in ['SLEEP','ASLEEP','RELEASE','NONE','BLOCKED']}
         for k in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_'+k,)).fetchone()[0],2,k)
         for key in re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml):self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)
         db.close()

@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0505
-Implementation Build: source/live B189.216 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0506
+Implementation Build: source B190.217; last deployed B189.216 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B189_NAME_SOURCE_TASK_NATIVE_PASS_ACTIVITY_PENDING
+Work State: B190_TASK_ACTIVITY_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B190.217 task-controlled native activity prototype locally complete; native pending.** [Changes, targeted checks and minimal session](Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md): automatic exact-unit SLEEP/readback before timer start, bounded owned release, task-aware controls and separate always-active UI bridge. Source/cap1/name/no-reward timer remain. B189 name/source/task PASS and user-confirmed END remain limited to their recorded scope.
+
+Source is **B190.217 / modinfo217**. Last recorded live is **B189.216**, source `b2b945f`, receipt `B189.216-b2b945f-playtest.json`,211/211 MATCH with recovery retained. B190 deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+
+Next: one session at confirmed arrival → **④ 无奖励任务（2回合）**, without manual sleep → close panel/normal turns → automatic completion/release → **结束并移除验证团**. Native SLEEP/WAKE eligibility and needs-orders remain unproved. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
+
+## S0505 — B189 native review and task-activity proposal (historical)
 
 **B189.216 name/source continuity and no-reward task PASS in the observed session; END user-confirmed.** [Five-image review](Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md): 艾莉森 survives3276829→3342365 arrival; original source/cap1 retained; T88→T90 completion1/1, source turns0→0/native operation-1/events0. END has no screenshot; no persistent identity or formal N1 completeness claim.
 

@@ -14,10 +14,10 @@ function GetUnitActionsTable(u)
   end)
  -- Skip is an ordinary unit operation, not a Spy mission; no reward/completion hook.
  local skip=GameInfo.UnitOperations.UNITOPERATION_SKIP_TURN
- if skip and UnitManager.CanStartOperation(u,skip.Hash,nil,nil,false)then
+ if skip and not R.ActivityLocked(u) and UnitManager.CanStartOperation(u,skip.Hash,nil,nil,false)then
   AddActionToTable(actions,skip,false,Locale.Lookup(skip.Description),skip.Hash,function()
    local selected=UI.GetHeadSelectedUnit()
-   if R.IsTeam(selected) and UnitManager.CanStartOperation(selected,skip.Hash,nil,nil,false)then
+   if R.IsTeam(selected) and not R.ActivityLocked(selected) and UnitManager.CanStartOperation(selected,skip.Hash,nil,nil,false)then
     UnitManager.RequestOperation(selected,skip.Hash)
    end
   end)
@@ -34,3 +34,16 @@ function OnUnitActionClicked_CancelSpyMission(...)
  if R.IsTeam(UI.GetHeadSelectedUnit())then R.Open();return end
  return baseCancel(...)
 end
+
+-- Refresh clears native action/hotkey bindings before rebuilding our exact-type
+-- list. Previously captured callbacks still recheck the current task lock.
+local function activityChanged()
+ local u=UI.GetHeadSelectedUnit()
+ if R.IsTeam(u)then Refresh(u:GetOwner(),u:GetID())end
+end
+LuaEvents.SPC_ExpeditionActivityChanged.Add(activityChanged)
+-- The inspected native/HD UnitPanel chain has no shutdown handler. Own only
+-- this subscription; ordinary UnitPanel behavior and handlers remain intact.
+ContextPtr:SetShutdown(function()
+ LuaEvents.SPC_ExpeditionActivityChanged.Remove(activityChanged)
+end)

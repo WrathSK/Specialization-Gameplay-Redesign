@@ -2,6 +2,10 @@
 
 Date: 2026-10-10. **B189 observed name/source continuity and no-reward task PASS; END user-confirmed. Task activity integration remains missing.** [Five-image native review](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) records the public-ID change with stable艾莉森/source, T88→T90 completion and zero observed native mission/source effects. The user still has to idle the unit manually. Investigation below is non-authoritative and does not authorize implementation; earlier sections retain their dated evidence, not current instructions. Status/receipt govern runtime.
 
+## B190 approved activity implementation
+
+The user approved the following bounded proposal. [B190 implementation and local evidence](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md) add an independent UI activity bridge, exact SLEEP/readback, owned release and task-aware controls. Pending-command cancellation and separate reply channels are locally covered. Native permission, ready-unit suppression and release remain pending; no formal N1 completion claim. Earlier proposal wording below records its pre-approval state.
+
 ## Task activity investigation — after B189
 
 ### Why the timer does not make the unit busy

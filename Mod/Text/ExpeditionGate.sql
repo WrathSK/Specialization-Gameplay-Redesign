@@ -333,3 +333,23 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_OBSERVATION','Observed raw name: {1}; default: {2}; pool {3} / off-map spies {4}.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','本次确认姓名：{1}[NEWLINE]当前读回：{2}[NEWLINE]姓名核对：{3}'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','Accepted session name: {1}[NEWLINE]Current readback: {2}[NEWLINE]Name check: {3}');
+
+
+-- B190 task-owned native activity. Display only; Gameplay remains authoritative.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_PREPARING','正在准备任务状态；确认后开始计时。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_PREPARING','Preparing task activity; timing begins after confirmation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_SLEEP','正在让考察团进入任务状态，请稍候。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_SLEEP','Entering task activity; please wait.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ASLEEP','任务进行中：无需手动待命；完成后自动释放活动占用。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ASLEEP','Task active: no manual idle action required; activity releases on completion.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RELEASE','正在释放任务活动占用，请稍候。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RELEASE','Releasing task activity; please wait.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_NONE','任务活动占用已释放。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_NONE','Task activity released.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_BLOCKED','任务活动异常，已暂停；请保留报告，可结束并移除验证团。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_BLOCKED','Task activity blocked; retain the report. END can remove the probe.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ERROR','任务状态异常：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ERROR','Task activity error: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_WAIT','任务进行中或正在释放活动占用；目前只能查看管理报告或结束验证团。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_WAIT','Task active or releasing activity; use management/status or END.');

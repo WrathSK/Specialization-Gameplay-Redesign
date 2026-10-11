@@ -273,3 +273,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B189 — reviewed; activity integration proposed, no retest now
 
 [Five-image review](Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) supersedes the pending B189 session above: name/source continuity and independent2T/no-native-mission observations PASS; END user-confirmed without screenshot. Native task activity is missing, not a timer failure. [SLEEP/task-control proposal](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#task-activity-investigation--after-b189) awaits implementation approval. No new test, repeated naming attempt or generic save/load campaign now; formal N1/N2/N3/U2/rewards remain held.
+
+## B190 — task-controlled native activity, minimal session pending
+
+[B190 local result and exact flow](Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md#one-minimal-native-session): bound arrival → **④ 无奖励任务（2回合）**, no manual sleep → close panel/normal turns with other units unchanged → completion/owned activity release → **结束并移除验证团**. Native activity permission/readback/readiness are the new delta. Inherit B189 naming/source/task evidence; no generic cold-load ritual. Formal persistence/reattachment/N2/N3 remain held.

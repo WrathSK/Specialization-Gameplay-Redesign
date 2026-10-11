@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="216">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="217">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B189.216: test-civilization citizen-name pool and bounded native-name observation; own capacity/source binding and no-reward task unchanged. Native name assignment and arrival remain test gates.</Description>
+    <Description>B190.217: task-owned native sleep/readback and bounded release for the expedition prototype; capacity, source binding and independent no-reward task retained.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -14,6 +14,7 @@
     <ReplaceUIScript id="SPC_ExpeditionSpyUnitPanel"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/ExpeditionSpyUnitPanel.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_ExpeditionSpyChooser"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionageChooser</LuaContext><LuaReplace>UI/ExpeditionSpyChooser.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_ExpeditionSpyPopup"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionagePopup</LuaContext><LuaReplace>UI/ExpeditionSpyPopup.lua</LuaReplace></Properties></ReplaceUIScript>
+    <AddUserInterfaces id="SPC_ExpeditionActivityUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionSpyActivity.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_ExpeditionGateUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionSpyWindow.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_CultureInspiration"><Properties><LoadOrder>10001032</LoadOrder></Properties><File>Data/CultureInspiration.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureInspirationProbe"><Properties><LoadOrder>10001031</LoadOrder></Properties><File>Data/CultureInspirationProbe.sql</File></UpdateDatabase>
@@ -82,6 +83,7 @@
       <File>UI/ExpeditionSpyChooser.lua</File>
       <File>UI/ExpeditionSpyPopup.lua</File>
       <File>ExpeditionSpyRead.lua</File>
+      <File>UI/ExpeditionSpyActivity.lua</File>
       <File>UI/ExpeditionSpyWindow.lua</File>
       <File>ExpeditionGate.lua</File>
       <File>ExpeditionGateRead.lua</File>
@@ -398,6 +400,8 @@
     <File>ExpeditionSpyRead.lua</File>
     <File>Data/ExpeditionSpyGate.sql</File>
     <File>UI/ExpeditionSpyWindow.lua</File>
+    <File>UI/ExpeditionSpyActivity.lua</File>
+    <File>UI/ExpeditionSpyActivity.xml</File>
     <File>UI/ExpeditionSpyWindow.xml</File>
     <File>Data/ExpeditionGate.sql</File>
     <File>ExpeditionGate.lua</File>

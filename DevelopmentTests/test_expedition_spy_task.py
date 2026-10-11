@@ -21,7 +21,14 @@ def gate(ui=False,window=False):
       function task(token,overrides)
        local p={Action='TASK',Token=token,UnitID=41,SampleTurn=currentTurn,NativeOperation=-1}
        for k,v in pairs(overrides or {})do p[k]=v end
-       handler(2,p);return ExposedMembers.SPC_ExpeditionGateReply
+       handler(2,p)
+       local r=ExposedMembers.SPC_ExpeditionGateReply
+       if r.phase=='TASK_PREPARING' and not r.error then
+        handler(2,{Action='ACTIVITY',Token=token..':sleep',UnitID=41,ActivityKey=token,
+         Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
+        return ExposedMembers.SPC_ExpeditionActivityReply
+       end
+       return ExposedMembers.SPC_ExpeditionGateReply
       end
     """)
     return l
@@ -70,13 +77,13 @@ class Timer(unittest.TestCase):
             with self.subTest(change=change):
                 l=self.ready();l.execute("task('t');"+change+";currentTurn=85;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.taskCompletions==0 and destroys==0 and properties==0)")
     def test_active_drop_does_not_erase_source_or_advance_on_foreign_turn(self):
-        l=self.ready();l.execute("task('t');active=1;currentTurn=85;ownTurn(3);assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='TASK_RUNNING');ownTurn(2);local r=req('READ','r');assert(r.phase=='TASK_COMPLETE' and r.sourceCity==1 and r.bound)")
+        l=self.ready();l.execute("task('t');active=1;currentTurn=85;ownTurn(3);assert(ExposedMembers.SPC_ExpeditionActivity.phase=='TASK_RUNNING');ownTurn(2);local r=req('READ','r');assert(r.phase=='TASK_COMPLETE' and r.sourceCity==1 and r.bound)")
     def test_read_at_due_turn_does_not_replace_player_turn_completion(self):
         l=self.ready();l.execute("task('t');currentTurn=85;ownTurn(3);assert(req('READ','before').phase=='TASK_RUNNING');ownTurn(2);assert(req('READ','after').phase=='TASK_COMPLETE')")
     def test_source_and_team_only_no_per_turn_player_scan_after_arrival(self):
         l=self.ready();l.execute("task('t');local us=Players[2]:GetUnits();local original=us.Members;us.Members=function()error('unexpected all-unit scan')end;currentTurn=84;ownTurn(2);currentTurn=85;ownTurn(2);us.Members=original;local r=req('READ','after');assert(shared.RequestDepth==0 and r.phase=='TASK_COMPLETE' and r.taskCompletions==1)")
     def test_window_closed_timer_and_source_diagnostics(self):
-        l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();Controls.ArmButton.click();arrival(41,true,false);Controls.RefreshButton.click();Controls.TaskButton.click();assert(lastPacket.Action=='TASK');Controls.CloseButton.click();currentTurn=85;ownTurn(2);gateOpen();assert(Controls.Report.text:find('PHASE_TASK_COMPLETE') and Controls.Report.text:find('TASK_ISOLATION:0,0,-1,0',1,true));Controls.EndButton.click();publish();assert(destroys==1 and Controls.Report.text:find('PHASE_ENDED'))")
+        l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();Controls.ArmButton.click();arrival(41,true,false);Controls.RefreshButton.click();Controls.TaskButton.click();assert(lastPacket.Action=='TASK');local key=lastPacket.Token;handler(2,{Action='ACTIVITY',Token=key..':sleep',UnitID=41,ActivityKey=key,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1});Controls.CloseButton.click();currentTurn=85;ownTurn(2);gateOpen();assert(Controls.Report.text:find('PHASE_TASK_COMPLETE') and Controls.Report.text:find('TASK_ISOLATION:0,0,-1,0',1,true));Controls.EndButton.click();publish();assert(destroys==1 and Controls.Report.text:find('PHASE_ENDED'))")
     def test_task_button_requires_verified_arrival_and_idle_native_state(self):
         l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();local n=sent;Controls.TaskButton.click();assert(sent==n);Controls.ArmButton.click();arrival(41,true,false);Controls.RefreshButton.click();units[41].operation=9;n=sent;Controls.TaskButton.click();assert(sent==n and Controls.Report.text:find('TASK_NATIVE_NOT_IDLE'))")
 
@@ -93,10 +100,10 @@ def ui(kind):
       Players={[2]={GetUnits=function()return {FindID=function(self,id)return units[id]end}end}}
       UI={GetHeadSelectedUnit=function()return selected end,GetInterfaceMode=function()return mode end,SetInterfaceMode=function(m)mode=m end}
       InterfaceModeTypes={SELECTION=0};Locale={Lookup=function(s)return s end};Mouse={eLClick=1}
-      LuaEvents={SPC_ExpeditionGateOpen=event(),GameDebug_Return=event(),EspionageChooser_ShowMissionBriefing=event(),UnitPanel_CancelMission=event()}
+      LuaEvents={SPC_ExpeditionActivityChanged=event(),SPC_ExpeditionGateOpen=event(),GameDebug_Return=event(),EspionageChooser_ShowMissionBriefing=event(),UnitPanel_CancelMission=event()}
       LuaEvents.SPC_ExpeditionGateOpen.Add(function()routed=routed+1 end)
       Controls={};for _,id in ipairs({'ConfirmButton','AcceptButton','AbortButton'})do Controls[id]={RegisterCallback=function(self,key,fn)self.click=fn end}end
-      include=function()end
+      ContextPtr={SetShutdown=function(self,fn)panelShutdown=fn end};Refresh=base('Refresh');include=function()end
       for _,name in ipairs({'Open','Close','GoToProperInterfaceMode','TeleportToSelectedCity','OnConfirmPlacement','OnCounterspySelected','OnMissionSelected','OnGameDebugReturn','OnShowMissionBriefing','OnShowMissionAbort','OnAccept','OnAbort','RenewMission','ShowMissionCompletedPopup','OnUnitActionClicked','OnUnitActionClicked_CancelSpyMission','GetUnitActionsTable'})do _G[name]=base(name)end
       LuaEvents.GameDebug_Return.Add(OnGameDebugReturn)
       LuaEvents.EspionageChooser_ShowMissionBriefing.Add(OnShowMissionBriefing)

@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B189_NAME_SOURCE_TASK_NATIVE_PASS_ACTIVITY_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B189 native review](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) confirms the observed name/source arrival and independent task, with user-reported END. The remaining native activity gap is separate: the task timer does not suppress needs-orders, and ordinary wakeable idle is not the intended task interaction.
-Current **专业化诊断 → 人文考察·验证** controls stay unchanged. [Proposed task activity boundary](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#task-activity-investigation--after-b189) uses exact-unit SLEEP plus task-aware input control/internal release, pending approval and native eligibility proof. No new implementation, rewards, formal persistence or management UI rollout is authorized. Own source/cap and temporary native-slot cost remain unchanged.
+State: N1_PARTIAL / B190_TASK_ACTIVITY_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B190 activity implementation](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md) adds automatic sleep/readback, task-aware action controls and owned internal release. The activity addin remains active when this management window closes. Show concise preparing/running/releasing/blocked status from the matched current mirror, without polling the diagnostic snapshot. Keep management and exact END; no ordinary Spy/native mission changes.
+Current entry stays **专业化诊断 → 人文考察·验证**. Own source/cap, name continuity and accepted native-slot cost stay unchanged. Native activity eligibility and needs-orders behavior await one minimal session; formal persistence and wider UI rollout remain held.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

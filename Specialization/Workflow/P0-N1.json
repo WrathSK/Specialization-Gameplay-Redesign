@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0505",
-    "runtime": "B189.216 / modinfo216",
+    "status": "S0506",
+    "runtime": "B190.217 / modinfo217",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Record B189 native name/source/task and user-confirmed END; investigate task-owned native activity without implementation, preserving own source/cap and no native espionage mission.",
-  "implementation_authorized": false,
+  "goal": "Approved B190 task-controlled activity prototype locally complete; await native sleep/readiness/release. Original source/cap/name and independent no-reward task retained.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
       "kind": "full",
-      "reason": "Current scoped native evidence, remaining activity gap and proposal/authorization boundary."
+      "reason": "Approved activity delta, exact ownership/failure boundaries, local tests and minimal native gate."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -177,12 +177,38 @@
       "path": "DevelopmentTests/test_expedition_spy_name_pool.py",
       "kind": "full",
       "reason": "Actual in-memory SQL isolation and metadata tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyActivity.lua",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyActivity.xml",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity.py",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_ui.py",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_integration.py",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
     }
   ],
   "dependencies": [
     "EffectiveFacts creation qualification + exact NetworkInput.Reference source; own cap1 includes old fixtures/off-map session reservation. Observed native name is only this session continuity candidate; source remains separate, no Property/ledger writes.",
     "UI-only exact readiness and visible/off-map name observation; Gameplay independently checks exact unit/source/raw name/pool and current-turn UI sample before acceptance. Native travel/idle read paths unchanged; no invented Gameplay off-map API.",
-    "Native Expansion chooser/popup and installed HD UnitPanel are included, exact-type callbacks intercepted. Ordinary paths stay native; no external source/DB/listener changes."
+    "Native Expansion chooser/popup and installed HD UnitPanel are included, exact-type callbacks intercepted. Ordinary paths stay native; no external source/DB/listener changes.",
+    "Gameplay transition view → independent exact-unit UI activity read/write/readback → separate acknowledgement channel; task starts only after ASLEEP, releases only attempted owned sleep. No persistent reconstruction or diagnostic hot-path scan."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -257,6 +283,12 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md"
       ]
+    },
+    {
+      "trigger": "Inspect inherited B189 native name/source/task and user-confirmed END evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md"
+      ]
     }
   ],
   "non_scope": [
@@ -264,17 +296,17 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "124 methods PASS:4 actual SQL pool tests,39 native-name/UI preparation,14 binding,26 task/UI,31 gate/package and10 panel. Missing/default/duplicate and localized ambiguity, UI-only off-map evidence, exact source/owner/type/ID, current-turn confirmation, delayed publication, cancellation/reentrant notifications, arrival/capacity/task/END covered. No native naming/travel PASS implied.",
-    "user": "B189 five-image scoped name/source/no-reward2T observations PASS; END user-confirmed, not pictured. No activity suppression implementation/PASS. No new test until a bounded patch is approved."
+    "local": "179 test methods PASS:124 inherited scoped name/pool/binding/task/UI/package/panel tests,18 Gameplay activity cases,26 actual activity-bridge tests and11 actual Gate/bridge/Window integration tests. Explicit subTests add identity/failure variants. Local mocks prove scoped state/control behavior, not native SLEEP/WAKE eligibility or ready-unit suppression.",
+    "user": "One B190 continuous session: automatic sleep and correct needs-orders without manual idle, task-aware actions, two-turn no-reward completion/owned release, END. No generic save/load ritual."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md",
-    "source": "B189.216/modinfo216 DEVELOP_ACTIVE; sourceb2b945f3d720689f4b1c3dfd61f853a93a2e423e; receipt B189.216-b2b945f-playtest.json; last verified211/211 MATCH, recovery retained. S0505 evidence review does not reverify runtime. Scoped native name/source/task PASS; END user-reported; native activity integration missing.",
-    "native": "USER_GAME_TEST_PASS in observed session: native name/source continuity across ID change, own cap1, T88-to-T90 task completion with source0/nativeoperation-1/events0. END USER_REPORTED_PASS without screenshot. Native task activity missing; formal N1 incomplete.",
-    "stop": "Await implementation approval for the bounded task-activity proposal; no new test now. Formal persistence/reattachment, N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
+    "source": "Source B190.217/modinfo217 locally complete; last deployed B189.216/source b2b945f/receipt B189.216-b2b945f-playtest.json,211/211 MATCH. Deployment not inferred.",
+    "native": "B190 activity USER_GAME_TEST_REQUIRED. B189 observed name/source/task PASS and user-reported END remain inherited within their original scope.",
+    "stop": "Await verified deployment and one activity session; formal N1 persistence/reattachment, N2/N3/U2/rewards remain held."
   }
 }
