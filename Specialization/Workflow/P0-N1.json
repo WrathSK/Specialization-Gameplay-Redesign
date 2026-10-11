@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0540",
+    "status": "S0541",
     "runtime": "B202.229 / modinfo229",
     "military": "D0037",
     "harbor": "D0037",
@@ -19,7 +19,7 @@
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
   "goal": "Complete approved normal Expedition training, one saved queue/cap reservation and exact native completion/birth source registration; retain existing name/travel/task gates and non-blocking auto-opening.",
-  "implementation_authorized": true,
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -575,9 +575,9 @@
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Native_Review.md",
     "source": "B202.229/modinfo229 DEVELOP_ACTIVE; deployed source c61524e8d00735bc5b467929152e8c3350f2442f; receipt B202.229-c61524e-playtest.json;218/218 MATCH. Fresh automatic OS game-exit checks before both guarded switches; B201/stable recovery retained, no pending transaction. Native training validation pending.",
-    "native": "B202 USER_GAME_TEST_REQUIRED. Inherit scoped B201 persistence acceptance; auto-open failure non-blocking.",
-    "stop": "One normal training, queued save/cold-load, source/cap/name confirmation then explicit travel/task; no repeated B201 travel-load check."
+    "native": "Panel-independent explicit dispatch FAIL; source/arrival/task scoped PASS after opening diagnostic panel. Exact native cause UNKNOWN.",
+    "stop": "Await bounded automatic name-confirmation repair approval; no new native test now."
   }
 }
