@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B194_BOUNDED_OPERATION_WAIT_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B194_NATIVE_ACTIVITY_PASS_B195_VISUAL_LOCAL_COMPLETE / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B194.221 bounded owned-request OPERATION wait locally complete.** [276 scoped checks and one native flow](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md): existing 0.25s/10s polling/deadline, no second request, ASLEEP acknowledgement only after exact SLEEP. Gameplay timer/capacity/source binding unchanged; no native completion claim.
+**B194 native activity/timer/release gate PASS in the submitted run.** [Five-image result](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md): task runs T88→T90, completes1/1 and acknowledges released activity; binding/cap1 unchanged. Exact Sleep acknowledgement is established by running-state source guards; no per-sample OPERATION trace/duration is claimed. Retained startup AWAKE is not current activity.
 
-[B193 observed post-request OPERATION](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md) is now permitted to wait, not accepted as Sleep. Timeout retains last-valid-read values and timing separately from the deadline; conservative release and identity/native-mission guards remain. Native eventual Sleep/readiness/completion/release await user evidence.
+**B195.222 requested cosmetic fixes locally complete,44 focused tests PASS.** [Applied scope and small visual check](../../Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md): native recessed action backing, compact prepare/confirm slots, Spy artwork and five formal one-turn district project icons. No task/capacity/binding/Gameplay changes; Status/receipt governs deployment.
 
-After verified deployment, one **④ 无奖励任务（2回合）** start→running without manual Sleep→two-turn completion/release, or one terminal diagnostic and stop. No save/load campaign. Formal N1/N2/N3/U2/rewards remain held; Status/receipt govern source/live.
+[Next UI batch](P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions) records explicit dispatch/task entry, no automatic diagnostic popup and no task-time unit action buttons. Not implemented in B195; no new missions/rewards, formal training/reattachment/persistence or repeatable-task scope. No B194/save-load repeat; formal N1/N2/N3/U2 remain held.
 
 
 ## 三种状态与已定数值

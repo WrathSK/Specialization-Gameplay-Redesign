@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "d447ff53d0600f194330013bc4850a1211007ee2",
-  "runtime": "B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. One native Sleep/completion/release flow pending; capacity/binding unchanged.",
+  "runtime": "B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. B194 submitted native task Sleep/completion/release flow passed; B195 source presentation changes not yet deployed.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "3fd5457c4e4e4d32badef590343400c1b9b64673b564b52e2e9aad569c3c46be",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "db474c7776a33f4197846870d19bf1f2165e3acec991807ffb70ce1e1a6cbf1f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "7f46bc15867c26ae665e5d5bbd6dc62e02bfce416b8aecf4ce4a851dafc2172f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-      "provenance": "B194 approved bounded owned-request OPERATION wait and timeout evidence; 276 local tests PASS. Gate/capacity/binding unchanged; native Sleep/completion/release pending."
+      "sha256": "7055c4775aea3a4aa8125ce81c93b959af73f6ae3ba619026c611c712d61137a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b074bbdb9f0e587e53b5ddb2d88e3d0d6bc5b409bcefd90cb6221ae55ce4ea85",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-      "provenance": "B194 approved bounded owned-request OPERATION wait and timeout evidence; 276 local tests PASS. Gate/capacity/binding unchanged; native Sleep/completion/release pending."
+      "sha256": "9113faa9ab7dbe5801b87900d4499073239b9b82530f555b4108026051edddcb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -576,14 +576,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "80d10426ab64fb9ea23ec3218e152d58d90989567f97b4411534c58e0f4cf022",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "3990c60bcf44914cabcbc747863d2ce718a87c4dfbd290af5cb905eb0a454290",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
     },
     "Mod/UI/UnitPanelActions.xml": {
-      "sha256": "69587034c08cbb154cd36642be8aa1958505724405828e1bb87d0de018b73d4b",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "9c1dc80a26363e7409ad398239f7e40a3a7c817bb011a29f5a6b13ac45d43dbc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
     },
     "Mod/UI/UnitSites.lua": {
       "sha256": "e9f5f28e6118ec091fff180e7d7a27ade57362f6a109468bb3b9b821a53f542f",

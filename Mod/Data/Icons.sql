@@ -29,7 +29,14 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
 SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_ZERO'),Atlas,"Index"
 FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
 
--- B184 isolated native Spy shell, existing artwork only.
+-- B195: the current native Spy shell uses native Spy artwork only.
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
-SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_SPY'),Atlas,"Index"
-FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
+SELECT REPLACE(Name,'UNIT_SPY','UNIT_SPC_EXPEDITION_SPY'),Atlas,"Index"
+FROM IconDefinitions WHERE Name IN ('ICON_UNIT_SPY','ICON_UNIT_SPY_PORTRAIT');
+
+-- Formal one-turn projects reuse their district's native Great Person project icon.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_RESEARCH',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_CAMPUS';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_CULTURE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_THEATER';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_INDUSTRY',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_INDUSTRIAL_ZONE';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_COMMERCE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_ERA_DIALOGUE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_THEATER';

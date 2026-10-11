@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B194 bounded post-request OPERATION wait locally complete; native transition still unknown.** [Implementation and 276 scoped tests](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md) permit only the same owned request to wait within the existing deadline; OPERATION is not Sleep. Timer/capacity/binding unchanged, terminal timeout retains last-read timing and primary cause. [B193 native basis](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md) is preserved. One completion/release flow pending; no assumed native success.
+Date: 2026-10-10. **B194 task activity gate USER_GAME_TEST_PASS for the submitted run.** [Native review](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md): T88 running after observed-Sleep acknowledgement→T90 completion1/1 and released activity, source/cap retained; no native mission/source reward/completion event shown. This closes the earlier requested minimal flow, not formal persistence or all input surfaces. OPERATION dwell time is not measured; retained startup AWAKE is historical. B195 only changes slots/icons; [future two-action/input-lock plan](../../Architecture/v2/P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions) remains separate. Prior investigations below retain their original evidence scope.
 
 ## B190 native failure basis
 

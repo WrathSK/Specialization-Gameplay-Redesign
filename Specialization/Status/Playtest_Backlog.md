@@ -309,3 +309,9 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B194 — one bounded-wait completion/release flow
 
 [Minimal test](Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md#one-minimal-completionrelease-test): after verified deployment, fresh arrived team → **④ 无奖励任务（2回合）** once → running without manual Sleep → two-turn completion and **任务活动占用已释放**. Any terminal error → capture **等待超时诊断** or failure block and stop. This tests the newly reachable native Sleep/timer/release path; no unchanged naming/save-load or unrelated yield campaign. OPERATION is pending only; no success inferred.
+
+## B194 closed; B195 visual check only
+
+[B194 five-image review](Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md): submitted T88→T90 task completes1/1 and releases activity; tested activity gate PASS. The earlier minimal B194 task request is complete; no unchanged repeat or save/load campaign. Future task-time unit-button hiding remains a UI requirement, not evidence that current management buttons are absent.
+
+[B195 presentation check](Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md#minimal-visual-check-after-verified-deployment): when convenient after verified deployment, inspect an available investment/crew action idle→prepared for native backing/no empty slot/distinct confirmation, an available one-turn project icon, and the Expedition Spy icon. No need to spend a unit, manufacture every candidate project, or repeat native task lifecycle. Two explicit Expedition actions are the next UI plan, not part of this patch.

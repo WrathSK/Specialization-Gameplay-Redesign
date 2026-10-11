@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0519",
-    "runtime": "B194.221 / modinfo221",
+    "status": "S0520",
+    "runtime": "B195.222 / modinfo222",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Approved B194 bounded post-request OPERATION wait locally complete; only observed SLEEP starts timer, terminal timeout preserved. Await native completion/release flow.",
+  "goal": "Record B194 native activity PASS and apply requested B195 compact native-style action slots and native icon aliases only; broader two-action Expedition UI remains planned.",
   "implementation_authorized": true,
   "context": [
     {
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
       "kind": "full",
-      "reason": "Current approved pending-state delta, timeout evidence, targeted validation and one native flow."
+      "reason": "Current visual-only implementation and risk-matched acceptance; B194 native evidence linked separately."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -232,6 +232,36 @@
       "path": "DevelopmentTests/test_expedition_spy_activity_pending.py",
       "kind": "full",
       "reason": "Direct bounded pending/timeout and actual Gate timer/completion/release regression."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md",
+      "kind": "full",
+      "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
+    },
+    {
+      "path": "Mod/UI/UnitPanelActions.lua",
+      "kind": "full",
+      "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
+    },
+    {
+      "path": "Mod/UI/UnitPanelActions.xml",
+      "kind": "full",
+      "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
+    },
+    {
+      "path": "Mod/Data/Icons.sql",
+      "kind": "full",
+      "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
+    },
+    {
+      "path": "DevelopmentTests/test_unit_panel_action_layout.py",
+      "kind": "full",
+      "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
+    },
+    {
+      "path": "DevelopmentTests/test_native_icon_aliases.py",
+      "kind": "full",
+      "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
     }
   ],
   "dependencies": [
@@ -367,24 +397,30 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md"
       ]
+    },
+    {
+      "trigger": "Review inherited unchanged B194 wait/local evidence; no new activity implementation in B195",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md"
+      ]
     }
   ],
   "non_scope": [
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "276 scoped methods PASS; 18 new pending/integration and 4 report cases. No early timer/repeated native request, exact timeout samples and existing failure/owned release guards. Native behavior unproved.",
-    "user": "One B194 task start→running without manual Sleep→two-turn completion/release. Any terminal error: capture timeout/failure block and stop. No save/load/re-enable campaign."
+    "depth": "L1 presentation-only; focused actual Lua/SQL/package checks and small visual check. No gameplay full regression or stress.",
+    "local": "B19544 focused tests PASS: layout9, icon4, package/gate31. B194276 checks inherited unchanged, not rerun as new proof.",
+    "user": "B194 task gate passed in submitted T88→T90 run. B195 native backing/compact confirmation/icon rendering only; no repeat task/save-load campaign."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-    "source": "B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. One native Sleep/completion/release flow pending; capacity/binding unchanged.",
-    "native": "B194 native OPERATION→SLEEP, readiness suppression and completion/release USER_GAME_TEST_REQUIRED. B193 proved post-request OPERATION, not eventual Sleep.",
-    "stop": "Await one native Sleep/completion/release flow or terminal diagnostic; no formal persistence/reattachment, N2/N3/U2/rewards."
+    "report": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+    "source": "Source B195.222/modinfo222 locally complete; B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. B194 submitted native task Sleep/completion/release flow passed; B195 source presentation changes not yet deployed.",
+    "native": "B194 observed running after exact Sleep acknowledgement, T88→T90 completion1/1/released activity; source/cap retained. No raw OPERATION duration measured. B195 pixels not yet tested.",
+    "stop": "After visual-only batch, stop for review. Future explicit dispatch/task and task-time empty action bar is planned, not implemented; formal persistence/reattachment/N2/N3/U2/rewards held."
   }
 }

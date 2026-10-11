@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0519
-Implementation Build: source/live B194.221 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0520
+Implementation Build: source B195.222; last deployed B194.221 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B194_BOUNDED_OPERATION_WAIT_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B194_NATIVE_ACTIVITY_PASS_B195_VISUAL_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B194 observed task activity PASS; B195 visual correction locally complete.** [Five-image review](Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md): T88 running after observed-Sleep acknowledgement→T90 completion1/1 and activity released; binding/cap1 retained. Raw OPERATION dwell time is unmeasured; startup AWAKE is historical. [B195 / 44 checks](Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md) adds native action backing, collapses hidden confirmation space and reuses Spy/district project icons; task/gameplay unchanged.
+
+Source is **B195.222 / modinfo222**. Last recorded live remains **B194.221**, deployed source `d447ff5`, receipt `B194.221-d447ff5-playtest.json`, last verified213/213 MATCH with retained recovery. This source checkpoint does not itself prove new deployment.
+
+Next: after verified deployment, a small visual check during normal play; no B194/save-load retest. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [next UI plan](../Architecture/v2/P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions). Two explicit 派遣/任务 actions, no selection auto-popup and no task-time unit actions are planned, not in B195; formal N1/N2/N3/U2/rewards remain held.
+
+## S0519 — B194 local implementation and deployment checkpoint (historical)
+
 
 **B194.221 approved bounded post-request OPERATION wait locally complete; native test pending.** [Implementation and 276 scoped checks](Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md): exact owned request may wait within the existing bound; only observed SLEEP starts the two-turn timer. Terminal timeout keeps last-read timing and original cause. Capacity/binding/Gate unchanged; native Sleep/readiness/completion/release unverified.
 

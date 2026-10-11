@@ -1,15 +1,29 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B194_BOUNDED_OPERATION_WAIT_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B194 wait/timeout report](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md) labels retained last-read activity separately from deadline time and preserves the original timeout through release failure. Existing immediate-failure/startup reports remain; no new button or layout.
-Current entry stays **专业化诊断 → 人文考察·验证**, using **④ 无奖励任务（2回合）** for one start/completion/release flow. Only observed SLEEP starts the timer. No save/load campaign, formal persistence or wider UI rollout.
+State: N1_PARTIAL / B194_NATIVE_ACTIVITY_PASS_B195_VISUAL_LOCAL_COMPLETE. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+[B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B195 implements only the requested slot/icon corrections; normal Expedition controls below remain a next-batch plan.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
+
+## Next UI batch — explicit dispatch and task actions
+
+User presentation direction after B194; planning boundary only, except the B195 cosmetics explicitly identified below. This section supersedes the earlier single “管理考察团”/selection-to-diagnostic-window proposal for normal unit interaction. It does not accept new Gameplay or authorize N2/N3 rewards.
+
+1. **Selection and actions:** selecting the Expedition leaves the unit information panel visible; it must not automatically open the verification report. Two native-style actions, **派遣到新城市** and **任务**, explicitly open the appropriate city/task view. Reuse native Spy travel and Gain Sources artwork respectively; artwork does not submit a native espionage mission.
+2. **Task lock:** while preparation/running/release owns activity, return no unit-action buttons for this exact team. Guard captured callbacks and chooser/popup routing as well as visibility so stale clicks cannot wake/cancel/dispatch/open the normal management menu. Consume the existing transition-published activity view, not the last diagnostic reply. Keep P0 diagnostic/END recovery separate and ordinary units/Spies unchanged.
+3. **Reuse boundary:** current native TRAVEL already runs only after our Gate permit. Reuse native window controls/style, but custom task selections remain on our independent timer. Do not reactivate OnMissionSelected/OnAccept/native reward callbacks. Current automatic chooser Open/GoToProperInterfaceMode/debug-return redirection should stop opening the verification report implicitly.
+4. **First UI slice:** present only the existing revealed foreign-major-capital dispatch fixture and one no-reward two-turn task. Clearly label unavailable actions after the one-shot task. Formal target expansion, new tasks/rewards and repeatable scheduling require their actual later batch; a pretty menu must not imply those exist.
+5. **Direct files:** `Mod/ExpeditionSpyUI.lua`, `Mod/UI/ExpeditionSpyUnitPanel.lua`, `ExpeditionSpyChooser.lua`, `ExpeditionSpyPopup.lua`, `ExpeditionSpyWindow.lua/.xml`, existing localization and targeted UI tests. Inspect exact current callbacks before editing; retain Gate capacity/source/name ownership and the B194 activity bridge. No broad panel/framework rewrite.
+6. **Validation delta:** local exact-team routing, lock transitions/stale callbacks and ordinary-Spy delegation; one later native session checks selection does not auto-open, explicit buttons open correct views, task-time action bar is empty, completion restores permitted controls. Inherit B194 timer/Sleep and earlier binding evidence; no automatic save/cold-load retest. Native control reuse may need a bounded fixture first; do not claim the whole native interface is already reusable.
+
+**B195 applied cosmetic scope:** the shared Settler/crew addin now uses native recessed backing with one visible slot until a matching confirmation exists. Preparing expands left while retaining a distinct confirmation, never replacing Prepare with a destructive action. The Expedition unit icon/portrait now use Spy art. Four identity-claim projects use their district GP project icons; 时代对话 uses the Theater icon. No new icon assets or localization keys. Existing crew projects are not one-turn projects; the obsolete generic timing fixture stays unchanged.
+
+Current source evidence: UnitPanel adds management unconditionally and locks only Skip; generic/cancel callbacks redirect to the report. Chooser selection hooks can also redirect to it. These are identified next UI targets, not failures of B194 native Sleep. Screenshot5 is a Settler: its missing backing comes from the separate UnitPanelActions addin bypassing native GroupArtInstance, not the Expedition window.
 
 ## 推荐入口与整体结构
 
 采用一个独立“人文考察”管理窗口，避免替换原版间谍总览。名称与以下布局是UI提案，不成为新增能力名或冻结玩法。
 
-- **常规入口**：独立HUD／LaunchBar按钮打开全国管理；选中考察团的单位操作区提供“管理考察团”；城市文化机构／见闻摘要可直接打开该城档案。常规操作不依赖P0面板。
+- **常规入口**：独立HUD／LaunchBar按钮打开全国管理；选中考察团的单位操作区按上方最新方向提供“派遣到新城市 / 任务”；城市文化机构／见闻摘要可直接打开该城档案。常规操作不依赖P0面板。
 - **三个页面**：考察团、文化见闻、文化网络。派遣／任务是考察团页里的双栏选择流程；重新挂靠是绑定失效时的城市选择弹窗，不另占永久页签。N3尚未实现时，不把空网络页包装成已有功能，最终入口随真实consumer接入。
 - **首屏**：全国现存数量／上限、当前团状态、当前归档城、位置／目标、部署或任务剩余回合、下一可执行操作。单位行按数据生成，当前cap1不硬编码为永远只能一个控件。
 - **视觉**：沿用Civ VI字体、行高、滚动、选中与禁用风格，三类任务以中文短名＋状态标识显示。初版不新增美术资源；reference／receipt等仅高级诊断展开，不进入正常操作主文案。

@@ -114,11 +114,13 @@ local function update(dt)
   local newKey=icon..'|'..a..'|'..tostring(b)..'|'..tostring(confirmed)..'|'..tostring(pending~=nil)
   if newKey==renderKey then return end;renderKey=newKey
   Controls.PrepareIcon:SetIcon(icon);Controls.ConfirmIcon:SetIcon(icon)
-  -- Reserve both positions in both states. Confirm never replaces the first click.
-  Controls.ActionGroup:SetSizeX(90)
-  Controls.PrepareButton:SetOffsetX(46);Controls.ConfirmButton:SetOffsetX(0)
+  -- The group grows to the left only when a matching confirmation exists.
+  -- Keep Prepare at the right edge; Confirm never replaces the first-click hitbox.
+  Controls.ActionGroup:SetSizeX(confirmed and 90 or 44)
+  Controls.ActionSlot:SetSizeX(confirmed and 93 or 47)
+  Controls.PrepareButton:SetOffsetX(confirmed and 46 or 0);Controls.ConfirmButton:SetOffsetX(0)
   Controls.PrepareButton:SetToolTipString(a);Controls.ConfirmButton:SetToolTipString(b or (invest and '确认投资' or '确认施工'))
-  Controls.ConfirmButton:SetHide(not (v and v.prepared and preview(u) and preview(u).token==v.planToken))
+  Controls.ConfirmButton:SetHide(not confirmed)
   Controls.PrepareButton:SetDisabled(pending~=nil)
   Controls.ConfirmButton:SetDisabled(pending~=nil)
  end
