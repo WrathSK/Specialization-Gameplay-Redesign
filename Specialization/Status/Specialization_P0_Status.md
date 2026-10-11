@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0518
-Implementation Build: source B194.221; last deployed B193.220 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0519
+Implementation Build: source/live B194.221 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,7 +13,7 @@ Work State: B194_BOUNDED_OPERATION_WAIT_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B194.221 approved bounded post-request OPERATION wait locally complete; native test pending.** [Implementation and 276 scoped checks](Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md): exact owned request may wait within the existing bound; only observed SLEEP starts the two-turn timer. Terminal timeout keeps last-read timing and original cause. Capacity/binding/Gate unchanged; native Sleep/readiness/completion/release unverified.
 
-Source is **B194.221 / modinfo221**. Last recorded live is **B193.220**, source `f934073`, receipt `B193.220-f934073-playtest.json`, 213/213 MATCH with retained recovery. Deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+Source/live is **B194.221 / modinfo221 DEVELOP_ACTIVE**, deployed source `d447ff5`, receipt `B194.221-d447ff5-playtest.json`, 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and recovery hashes verified; no pending transaction. No game launch, main promotion or native PASS.
 
 Next after verified deployment: one fresh arrived team → **④ 无奖励任务（2回合）** → running without manual Sleep → two-turn completion/release; terminal error → screenshot and stop. No save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; further repair, formal N1/N2/N3/U2/rewards held.
 

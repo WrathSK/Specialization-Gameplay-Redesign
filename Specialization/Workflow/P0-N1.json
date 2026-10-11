@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0518",
+    "status": "S0519",
     "runtime": "B194.221 / modinfo221",
     "military": "D0037",
     "harbor": "D0037",
@@ -383,8 +383,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-    "source": "Source B194.221/modinfo221 locally complete; last recorded deployment B193.220/sourcef934073/receipt B193.220-f934073-playtest.json. Deployment not inferred.",
+    "source": "B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. One native Sleep/completion/release flow pending; capacity/binding unchanged.",
     "native": "B194 native OPERATION→SLEEP, readiness suppression and completion/release USER_GAME_TEST_REQUIRED. B193 proved post-request OPERATION, not eventual Sleep.",
-    "stop": "Await verified deployment and one completion/release flow or terminal diagnostic; no formal persistence/reattachment, N2/N3/U2/rewards."
+    "stop": "Await one native Sleep/completion/release flow or terminal diagnostic; no formal persistence/reattachment, N2/N3/U2/rewards."
   }
 }
