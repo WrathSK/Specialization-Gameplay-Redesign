@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0496",
+    "status": "S0497",
     "runtime": "B187.214 / modinfo214",
     "military": "D0037",
     "harbor": "D0037",
@@ -231,7 +231,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-    "source": "B187.214/modinfo214 locally complete; last verified live B186.213 sourcec627529, receipt B186.213-c627529-playtest.json. Deployment not inferred from source.",
+    "source": "B187.214/modinfo214 DEVELOP_ACTIVE; source198234b68f99c401b4b3d439356cf497e9cff727; receipt B187.214-198234b-playtest.json;211/211 MATCH. OS game exit and exact B186/stable recovery hashes verified; no pending transaction. Native controlled-name/task validation pending.",
     "native": "USER_GAME_TEST_REQUIRED for controlled rename/travel/task/END; B186 marker absence retained.",
     "stop": "Await this one-session result; formal training/persistence/reattachment/N2/N3/U2/rewards held."
   }
