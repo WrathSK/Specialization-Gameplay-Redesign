@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0500
+Status Revision: S0501
 Implementation Build: source/live B188.215 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B188_UI_READINESS_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B188_NAME_COMMAND_ELIGIBILITY_NATIVE_FAIL
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B188.215 stops at native naming eligibility.** [Two-image review](Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md): exact UI unit and ordinary-Spy preflight now succeed in this fixture, but `NAME_COMMAND_NOT_ALLOWED` stops before RequestCommand. Source/reference and own cap1 remain intact; arrival, independent task and END are NOT_TESTED. Veteran-level naming is a supported hypothesis, not the confirmed engine reason;110 local methods retain their scoped evidence.
+
+Recorded live remains **B188.215 / modinfo215**, source `21f2bf1`, receipt `B188.215-21f2bf1-playtest.json`, last verified211/211 MATCH with recovery retained. This evidence-only review does not reverify or change runtime/main.
+
+Next: establish a supported exact-unit naming/continuity API before another patch; no unchanged B188 retest or automatic implementation. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held.
+
+## S0500 — B188 deployment checkpoint (historical)
 
 **B188.215 approved readiness repair locally complete; native pending.** [110 targeted checks and one session](Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md): bounded UI exact-unit readiness → one name command → raw readback/Gameplay confirmation. Specific mismatches stop; close/timeout cancel late commands. Reentrant request publication cannot overwrite the naming timer. Source/capacity, Gameplay Gate and independent no-reward task are unchanged.
 

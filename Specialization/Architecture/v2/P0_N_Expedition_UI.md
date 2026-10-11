@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B188_UI_READINESS_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-B188 separates UI unit readiness, command submission and name readback, with bounded waits and visible cancellation/mismatch reasons. [110 local checks and native session](../../Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md); prior B187 failure remains frozen. Source/capacity and task/arrival authority are unchanged. Native name eligibility/travel preservation still await testing.
-Current entry: **专业化诊断 → 人文考察·验证**, with **① 创建Spy验证团 / ② 读取派遣与情报隔离 / ③ 原生派遣 / ④ 无奖励任务（2回合） / 刷新报告 / 结束并移除验证团**. Keep the window open until name confirmation; closing cancels preparation without deleting the team or retrying commands. Native redirection and future icon reuse preference are retained; temporary native-slot cost remains accepted. This is not full formal management UI.
+State: N1_PARTIAL / B188_NAME_COMMAND_ELIGIBILITY_NATIVE_FAIL. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+B188 now reaches the rename permission check but stops at **NAME_COMMAND_NOT_ALLOWED** before submission. [Native review](../../Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) separates successful exact-unit readiness/source retention from the failed native naming prerequisite. No unchanged-package retest or new UI implementation is authorized; first establish a supported naming path.
+Current entry remains **专业化诊断 → 人文考察·验证**. Existing create/read/dispatch/task/refresh/END controls are unchanged; the failed preparation retains the team/source/capacity. Arrival/name survival and task/END remain untested in this submission. Native redirection, future icon reuse and temporarily accepted native-slot cost are retained. Full management UI below remains a proposal.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

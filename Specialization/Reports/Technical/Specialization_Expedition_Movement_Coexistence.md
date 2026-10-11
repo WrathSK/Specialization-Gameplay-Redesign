@@ -1,6 +1,12 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B188 bounded UI readiness repair locally complete; native pending.** [98 targeted checks and one-session gate](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) record the user-approved follow-up to B186 marker absence; its native session is now stopped at preparation. Exact name assignment/readback precedes dispatch; name/current-ID/source/target checks govern arrival. Own cap/source and no-reward task remain separate. Earlier records below retain their chronological evidence/authorization limits; source/live status is in Status.
+Date: 2026-10-10. **B188 exact-unit readiness reached; native NAME_UNIT eligibility stops before submission.** [Current native review](../../Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) records two T86 images, source/cap retention and the precise command guard. Earlier sections retain chronological evidence/authorization limits; current source/live and permission come from Status.
+
+## B188 naming eligibility boundary
+
+The native and HD rename signatures/parameters match the prototype, but their truthiness guard differs from B188's strict boolean true; the actual return type is not recorded. Loaded/native `UNIT_EXPERIENCE_LEVEL_FOR_CUSTOM_NAME=2`, together with the custom Spy's CanEarnExperience0, provides a plausible eligibility explanation; the engine predicate remains UNKNOWN. No string/readback/travel failure is demonstrated because RequestCommand is not reached. B188's110 local methods do not establish native custom-Spy naming permission.
+
+The bounded native script search establishes no direct SetName predecessor, not universal API absence. UnitNames is generic prefix/suffix data, not a demonstrated custom Spy name pool. Establish a supported exact-unit setter/native assignment path before another repair proposal. No blind command bypass, global threshold/ordinary Spy/HD edits, XP workaround, extra wait or unchanged B188 retest. Source/capacity and current code stay unchanged; formal N1/N2/N3/U2 remain held.
 
 ## B188 readiness repair
 

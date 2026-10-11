@@ -261,3 +261,7 @@ Supersedes B186's awaiting-approval instruction. [98 local checks and minimal na
 ## B188 — readiness repair; one native session after deployment
 
 Supersedes B187 awaiting-repair instructions. [110 local checks and the exact flow](Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md#one-minimal-native-session): **① 创建Spy验证团** with window open until confirmed → **③ 原生派遣**/arrival/source → **④ 无奖励任务（2回合）** → **结束并移除验证团**. First step tests the repaired readiness boundary; later steps reach pending name-survival/task evidence. Stop on failure, no save/load campaign. Runtime eligibility comes from current Status/receipt. No formal N1/N2/N3/U2/rewards.
+
+## B188 — native naming eligibility failed; unchanged session stopped
+
+[Two-image review](Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) supersedes the pending B188 session above. Exact unit readiness/ordinary preflight is reached; NAME_COMMAND_NOT_ALLOWED prevents submission. Source/cap1 retained; arrival/task/END NOT_TESTED. **No unchanged B188 retest.** Establish a supported naming path before proposing another patch; veteran-level restriction is plausible, not a proved cause. No save/load campaign, automatic implementation or formal N1/N2/N3/U2/rewards.
