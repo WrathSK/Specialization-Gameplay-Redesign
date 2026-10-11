@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "65f00384a737babb7536a725b4e8a05ddd6b1cf7",
-  "runtime": "B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 backing alignment failed in supplied crop; B196 source fix/new UI not yet deployed.",
+  "runtime_commit": "e6e19e545eb0cc388c7418de62f55615c0ce0412",
+  "runtime": "B196.223/modinfo223 DEVELOP_ACTIVE; source e6e19e545eb0cc388c7418de62f55615c0ce0412; receipt B196.223-e6e19e5-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B195/stable bridge and retained recovery verified; no pending transaction. B194 activity PASS inherited; B196 normal UI/input and backing appearance pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

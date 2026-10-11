@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0522",
+    "status": "S0523",
     "runtime": "B196.223 / modinfo223",
     "military": "D0037",
     "harbor": "D0037",
@@ -435,7 +435,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
-    "source": "Source B196.223/modinfo223 local complete; last deployed B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 backing alignment failed in supplied crop; B196 source fix/new UI not yet deployed.",
+    "source": "B196.223/modinfo223 DEVELOP_ACTIVE; source e6e19e545eb0cc388c7418de62f55615c0ce0412; receipt B196.223-e6e19e5-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B195/stable bridge and retained recovery verified; no pending transaction. B194 activity PASS inherited; B196 normal UI/input and backing appearance pending.",
     "native": "B194 activity/timer/release scoped PASS inherited. B195 lowered backing observed. B196 new UI and corrected pixels remain pending.",
     "stop": "After B196 implementation/deployment checkpoint, await one minimal UI acceptance. No formal N1 training/persistence/reattachment, repeatable tasks, N2/N3/U2/rewards."
   }

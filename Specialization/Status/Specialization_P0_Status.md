@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0522
-Implementation Build: source B196.223; last deployed B195.222 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0523
+Implementation Build: source/live B196.223 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,9 +13,9 @@ Work State: B196_EXPLICIT_EXPEDITION_UI_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B196 explicit Expedition UI locally complete;145 focused tests PASS.** [Changes/minimal session](Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md): quiet selection; explicit 派遣到新城市/任务 pages; task-controlled empty action bar; stale/hidden callbacks guarded; P0 diagnostic preserved. [B195 screenshot](Validation/Results/Specialization_B195_Action_Backing_Native_Review.md) confirms lowered backing; B196 corrects only its decorative offset. B194 native Sleep/timer/release acceptance is inherited, capacity/binding/Gate unchanged.
 
-Source is **B196.223 / modinfo223**. Last recorded live remains **B195.222**, source `65f0038`, receipt `B195.222-65f0038-playtest.json`, last verified213/213 MATCH with recovery retained. This source checkpoint does not prove B196 deployment.
+Source/live is **B196.223 / modinfo223 DEVELOP_ACTIVE**, deployed source `e6e19e5`, receipt `B196.223-e6e19e5-playtest.json`,213/213 MATCH. Fresh OS exit/clean pushed source/guarded B195→stable→B196 transaction verified; B195/stable recovery retained, no pending transaction. Native UI/input/appearance remains untested.
 
-Next after verified deployment: one explicit travel→task→locked action bar→completion UI session plus available Settler/crew backing check; no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [UI scope](../Architecture/v2/P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions). One-shot prototype remains; repeat tasks, formal N1 persistence/reattachment/training, N2/N3/U2/rewards held.
+Next: one explicit travel→task→locked action bar→completion UI session plus available Settler/crew backing check; no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [UI scope](../Architecture/v2/P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions). One-shot prototype remains; repeat tasks, formal N1 persistence/reattachment/training, N2/N3/U2/rewards held.
 
 ## S0521 — B195 visual package checkpoint (historical)
 
