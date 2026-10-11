@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0532
+Status Revision: S0533
 Implementation Build: source B200.227 local complete; live B199.226 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B200_UI_REFINEMENT_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B200_UI_NATIVE_DEFERRED_NEXT_PLAN_AWAITING_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,7 +15,9 @@ Work State: B200_UI_REFINEMENT_LOCAL_COMPLETE_NATIVE_PENDING
 
 Last recorded runtime remains **B199.226**, source `b4126a4`, receipt `B199.226-b4126a4-playtest.json`; B200 has not been deployed. Source/local evidence does not establish native layout or event timing. The [interruption checkpoint](Validation/Results/Specialization_B200_Expedition_UI_Checkpoint.md) is resolved by this source completion.
 
-Next: after separately guarded deployment, one minimal home selection → foreign selection/card → accepted task lock UI session. No save/load campaign. Capacity/binding/task semantics unchanged; formal N1/repeat tasks/N2/N3/U2/rewards remain held. This authorized B200 batch stops at source completion; no game launch or gameplay expansion.
+User deferred the B200 UI check to a future combined test. [Next proposed slice: persistent team/source recovery](../Architecture/v2/P0_N_Expedition.md#next-proposed-slice--persistent-team-and-source-recovery) is PLANNED_NOT_AUTHORIZED; current Gate is session-only, so durable identity precedes rewarded missions. One new travel/cold-load boundary can also cover the B200 selection/card delta. No test is requested now.
+
+The user confirmed the game closed. Read-only hashes match the B199 receipt and pushed B200 source; sandbox process inspection was unavailable, and automatic approval review blocked the check-only restore preflight as a runtime-switch authorization concern. No runtime command ran or package changed. Deployment remains pending; no automatic retry. No implementation, Design, main or gameplay expansion in this planning turn.
 
 
 ## S0529 — B198 deployment before native UI feedback (historical)

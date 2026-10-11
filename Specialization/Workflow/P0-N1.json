@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0532",
+    "status": "S0533",
     "runtime": "B200.227 / modinfo227",
     "military": "D0037",
     "harbor": "D0037",
@@ -484,7 +484,7 @@
   "validation": {
     "depth": "L1 UI/event-routing delta with directly related task/ACK/package regression; no broad gameplay/stress.",
     "local": "209 focused tests PASS:189 relevant B199 cases +14 selection-routing +6 card-layout. Actual Lua, package/XML/bilingual SQL checked. Native fonts/event ordering are not simulated proof.",
-    "user": "B199 flow scoped USER_REPORTED_PASS with card/header defect. B200 home/foreign selection, card fit and task-lock suppression pending one UI delta session; unchanged lifecycle evidence inherited only in scope."
+    "user": "B200 UI explicitly deferred by user into future combined functional test; not native PASS. Proposed persistent team/source slice awaits authorization and adds one genuinely new travel/load boundary."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
@@ -494,6 +494,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
     "source": "B200.227/modinfo227 locally complete; no deployment in this batch. Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B199 flow scoped user-accepted with card-layout defect; working source B200.227 locally complete but not deployed in this batch. No new external runtime inspection; retained recovery unchanged.",
     "native": "USER_GAME_TEST_REQUIRED for B200 selection/event/layout delta; no formal mission or foreign inventory completeness claim.",
-    "stop": "Stop after B200 source checkpoint; guarded deployment and minimal native UI acceptance remain separate. No formal N1/repeat tasks/rewards/N2/N3/U2 or save/load campaign."
+    "stop": "Planning only: await persistent team/source slice approval. No standalone B200 test now, no deployment performed, no formal N1/rewards/N2/N3/U2 implementation authorized."
   }
 }
