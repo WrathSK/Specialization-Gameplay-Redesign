@@ -1,6 +1,10 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B187 native preparation failed before dispatch; readiness repair proposed.** [98 targeted checks and one-session gate](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) record the user-approved follow-up to B186 marker absence; its native session is now stopped at preparation. Exact name assignment/readback precedes dispatch; name/current-ID/source/target checks govern arrival. Own cap/source and no-reward task remain separate. Earlier records below retain their chronological evidence/authorization limits; source/live status is in Status.
+Date: 2026-10-10. **B188 bounded UI readiness repair locally complete; native pending.** [98 targeted checks and one-session gate](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) record the user-approved follow-up to B186 marker absence; its native session is now stopped at preparation. Exact name assignment/readback precedes dispatch; name/current-ID/source/target checks govern arrival. Own cap/source and no-reward task remain separate. Earlier records below retain their chronological evidence/authorization limits; source/live status is in Status.
+
+## B188 readiness repair
+
+[110 local methods and minimal native flow](../../Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md) implement the approved repair: exact unit availability is read-only/bounded before one rename; wrong identity/type stops explicitly, raw readback and Gameplay confirmation remain. The post-create ordinary audit waits for readiness; close/timeout cancels observation. Token-scoped request continuation also fixes a reproduced nested-publication timer overwrite, preventing late rename after timeout. Source/cap, Spy1, Gate gameplay logic and no-reward timer are unchanged. Native success is not implied; formal N1/N2/N3/U2 remain held. Earlier proposals below retain their historical authorization/evidence scope.
 
 ## B187 pre-dispatch UI readiness failure
 

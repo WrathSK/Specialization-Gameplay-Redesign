@@ -1,4 +1,4 @@
--- B187 UI native boundary. Controlled naming and readback; Read-only Gain Sources diagnostics; one-shot TRAVEL only.
+-- B188 UI native boundary. Controlled naming and readback; Read-only Gain Sources diagnostics; one-shot TRAVEL only.
 SPCExpeditionSpyRead={KIND='UNIT_SPC_EXPEDITION_SPY'}
 local M=SPCExpeditionSpyRead
 local function integer(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
@@ -148,22 +148,48 @@ function M.TaskRead(pid,id,t)
 end
 -- Naming is one explicit command, followed by read-only observation. Never use
 -- selection as authority or rename ordinary spies; an ambiguous write is not retried.
-function M.NameStatus(pid,id,expected)
- local ok,value=pcall(function()
-  local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
-  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
-  local name=u:GetName();assert(type(name)=='string','TEAM_NAME_UNREADABLE')
-  return name==expected and 'MATCH' or 'MISMATCH'
+-- Gameplay creation can precede publication into UI. This exact lookup is
+-- read-only and never searches for a substitute unit or uses selection/name.
+function M.NameReadiness(pid,id)
+ local at='UI_UNITS_UNREADABLE'
+ local ok,status,reason,u=pcall(function()
+  local player=Players and Players[pid]
+  if not player then return 'INVALID','UI_PLAYER_UNAVAILABLE' end
+  local units=player:GetUnits()
+  if not units then return 'PENDING','UI_UNITS_UNREADABLE' end
+  at='UI_UNIT_LOOKUP_UNREADABLE'
+  local unit=units:FindID(id)
+  if not unit then return 'PENDING','UI_UNIT_NOT_PUBLISHED' end
+  at='UI_UNIT_ID_UNREADABLE';local actual=unit:GetID()
+  if actual==nil then return 'PENDING',at end
+  if actual~=id then return 'INVALID','UI_UNIT_ID_MISMATCH' end
+  at='UI_UNIT_OWNER_UNREADABLE';local owner=unit:GetOwner()
+  if owner==nil then return 'PENDING',at end
+  if owner~=pid then return 'INVALID','UI_UNIT_OWNER_MISMATCH' end
+  at='UI_UNIT_TYPE_UNREADABLE';local kind=unit:GetUnitType()
+  if kind==nil then return 'PENDING',at end
+  local row=GameInfo and GameInfo.Units and GameInfo.Units[kind]
+  if not row then return 'INVALID','UI_UNIT_DEFINITION_UNAVAILABLE' end
+  if row.UnitType~=M.KIND then return 'INVALID','UI_UNIT_TYPE_MISMATCH' end
+  return 'READY','UI_UNIT_READY',unit
  end)
- return ok and value or 'UNREADABLE'
+ if not ok then return 'PENDING',at end
+ return status,reason,u
+end
+function M.NameStatus(pid,id,expected)
+ local ready,reason,u=M.NameReadiness(pid,id)
+ if ready~='READY' then return 'UNREADABLE',reason end
+ local ok,name=pcall(function()return u:GetName()end)
+ if not ok or type(name)~='string' then return 'UNREADABLE','TEAM_NAME_UNREADABLE' end
+ return name==expected and 'MATCH' or 'MISMATCH'
 end
 local lastNamePermit
 function M.SubmitName(pid,id,expected,permit)
  if type(permit)~='string' or #permit==0 or #permit>100 or permit==lastNamePermit then return false,'INVALID_OR_USED_NAME_PERMIT' end
  local ok,err=pcall(function()
   assert(type(expected)=='string' and #expected>0 and #expected<=220,'TEAM_NAME_INVALID')
-  local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
-  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
+  local ready,reason,u=M.NameReadiness(pid,id)
+  assert(ready=='READY',reason)
   assert(GameCapabilities and GameCapabilities.HasCapability('CAPABILITY_RENAME')==true,'RENAME_CAPABILITY_UNAVAILABLE')
   assert(UnitCommandTypes and UnitCommandTypes.NAME_UNIT and UnitCommandTypes.PARAM_NAME,'NAME_COMMAND_UNAVAILABLE')
   assert(UnitManager.CanStartCommand(u,UnitCommandTypes.NAME_UNIT,true)==true,'NAME_COMMAND_NOT_ALLOWED')
@@ -172,8 +198,8 @@ function M.SubmitName(pid,id,expected,permit)
   assert(UnitManager.RequestCommand(u,UnitCommandTypes.NAME_UNIT,params)~=false,'NAME_COMMAND_REJECTED')
  end)
  if not ok then return false,tostring(err):sub(1,200)end
- local status=M.NameStatus(pid,id,expected)
- if status=='UNREADABLE' then return false,'TEAM_NAME_UNREADABLE' end
+ local status,reason=M.NameStatus(pid,id,expected)
+ if status=='UNREADABLE' then return false,reason end
  return true,status=='MATCH' and 'NAME_MATCH' or 'NAME_PENDING'
 end
 local lastPermit

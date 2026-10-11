@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0498
-Implementation Build: source/live B187.214 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0499
+Implementation Build: source B188.215; last deployed B187.214 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B187_NAME_PREFLIGHT_FAILED_AWAITING_READINESS_REPAIR_REVIEW
+Work State: B188_UI_READINESS_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B188.215 approved readiness repair locally complete; native pending.** [110 targeted checks and one session](Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md): bounded UI exact-unit readiness → one name command → raw readback/Gameplay confirmation. Specific mismatches stop; close/timeout cancel late commands. Reentrant request publication cannot overwrite the naming timer. Source/capacity, Gameplay Gate and independent no-reward task are unchanged.
+
+Source is **B188.215 / modinfo215**. Last recorded live remains **B187.214**, source `198234b`, receipt `B187.214-198234b-playtest.json`, last verified211/211 MATCH. W0003 deployment remains subject to clean/pushed source, verified exit and existing recovery transaction. No main promotion or new native PASS.
+
+Next: after verified deployment, keep **人文考察·验证** open for confirmed name → arrival → no-reward2T task → END. Stop at failure; no extra save/load ritual. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held.
+
+## S0498 — B187 name-preflight failure review (historical)
 
 **B187.214 name preparation failed before dispatch.** [Two-image native review and actual-module counterexample](Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md): UI exact-unit guard stops before NAME_UNIT submission; source/reference and cap1 remain retained. Immediate CREATE-reply naming cannot tolerate delayed UI unit publication. Exact native failing operand remains UNKNOWN; arrival/name survival, task and END were not tested. Previous98 local checks retain their scoped evidence.
 

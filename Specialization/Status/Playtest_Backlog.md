@@ -257,3 +257,7 @@ Supersedes B186's awaiting-approval instruction. [98 local checks and minimal na
 ## B187 — name preflight failed; session stopped
 
 [Native review and proposed readiness repair](Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md) supersede the pending B187 instructions above. Two T86 screenshots stop before naming/dispatch; source/cap retained. Local delayed-UI-publication reproduction sends zero name/travel commands. Exact native guard operand remains unknown. **No unchanged B187 retest; await repair approval.** After a checked repair, resume the same name → arrival → no-reward task → END session. No save/load campaign or formal N1/N2/N3/U2.
+
+## B188 — readiness repair; one native session after deployment
+
+Supersedes B187 awaiting-repair instructions. [110 local checks and the exact flow](Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md#one-minimal-native-session): **① 创建Spy验证团** with window open until confirmed → **③ 原生派遣**/arrival/source → **④ 无奖励任务（2回合）** → **结束并移除验证团**. First step tests the repaired readiness boundary; later steps reach pending name-survival/task evidence. Stop on failure, no save/load campaign. Runtime eligibility comes from current Status/receipt. No formal N1/N2/N3/U2/rewards.

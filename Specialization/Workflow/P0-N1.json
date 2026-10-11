@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0498",
-    "runtime": "B187.214 / modinfo214",
+    "status": "S0499",
+    "runtime": "B188.215 / modinfo215",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Review B187 pre-dispatch name failure; proposed bounded UI exact-unit readiness repair awaits approval. Preserve controlled-name/source/cap separation and no-reward task scope.",
-  "implementation_authorized": false,
+  "goal": "B188 approved UI-readiness/name repair locally complete; preserve exact source/cap and one-command/raw-readback/arrival/task guards, await one native session.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
       "kind": "full",
-      "reason": "Current native failure, exact source path, local counterexample and bounded repair proposal; previous local result linked separately."
+      "reason": "Current authorized readiness delta, local regression, diagnostics and native stop/test contract."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -221,6 +221,12 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md"
       ]
+    },
+    {
+      "trigger": "Inspect the direct B188 failure basis or separate-context reproduction",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md"
+      ]
     }
   ],
   "non_scope": [
@@ -228,17 +234,17 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "98 methods PASS:17 controlled-name +14 binding +26 task/UI +31 gate/package +10 panel. Syntax/package/localization, links/selectors/context and diff review. Native custom-name preservation not implied.",
-    "user": "B187 preparation FAIL; dispatch/arrival/task/END not tested. No unchanged-package retest. After approved repair, resume the same continuous session; no extra save/load."
+    "local": "110 methods PASS:29 controlled-name/readiness (47 subTests),14 binding,26 task/UI,31 gate/package,10 panel. Reentrant failure reproduced then corrected; bounded independent review complete. Native timing/rename/travel not implied.",
+    "user": "One B188 session after verified deployment: confirmed name with window open → arrival/source → no-reward2T task → END. Stop on failure; no save/load ritual."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md",
-    "source": "B187.214/modinfo214 DEVELOP_ACTIVE; source198234b68f99c401b4b3d439356cf497e9cff727; receipt B187.214-198234b-playtest.json;211/211 MATCH. OS game exit and exact B186/stable recovery hashes verified; no pending transaction. B187 name preflight failed before dispatch; later native stages untested. Receipt/equality are last-deployment records, not reverified by this review.",
-    "native": "USER_GAME_TEST_FAIL at initial name preflight; command submission not reached. Exact native failing operand UNKNOWN. Arrival/name survival/task/END NOT_TESTED.",
-    "stop": "Await bounded readiness repair approval; formal training/persistence/reattachment/N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
+    "source": "Source B188.215/modinfo215 locally complete; last verified deployed package B187.214/source198234b/receipt B187.214-198234b-playtest.json. No B188 deployment inferred.",
+    "native": "USER_GAME_TEST_REQUIRED: repaired readiness and remaining name/travel/task/END. Prior B187 preparation FAIL remains frozen.",
+    "stop": "Await verified deployment and one-session native review. Formal training/persistence/reattachment/N2/N3/U2/rewards held."
   }
 }

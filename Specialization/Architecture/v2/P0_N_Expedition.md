@@ -1,19 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B187_NAME_PREFLIGHT_FAILED_AWAITING_READINESS_REPAIR_REVIEW / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B188_UI_READINESS_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B187.214 native name preparation FAIL; readiness repair proposed, not yet authorized.** [Native observations, actual-module counterexample and bounded plan](../../Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md) show the initial UI exact-unit guard stops before NAME_UNIT submission. CREATE reply immediately starts naming without waiting for UI unit publication; delayed publication reproduces the error locally. The exact native guard operand remains UNKNOWN. No evidence yet rejects the controlled-name transport itself.
+**B188.215 authorized bounded readiness repair;110 local methods PASS, native pending.** [Implementation and one session](../../Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md) fix B187 preparation: wait read-only for exact UI unit readiness, stop definite mismatches, compare ordinary-Spy state when readable, submit one name command, retain raw-name/Gameplay confirmation before dispatch. Separate10s readiness/readback bounds, close cancellation and token-scoped request timers prevent late/reentrant commands.
 
-Own count1/source reference remain retained. Arrival/name survival, independent no-reward2T task and END are NOT_TESTED in this submission. The [98-method local checkpoint](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) and B186 marker-loss evidence stay frozen; delayed name readback coverage did not cover delayed UI unit availability.
+The [B187 native failure/counterexample](../../Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md) stays frozen; exact native failed lookup and arbitrary-name travel preservation remain unproved. Own cap1/source, Spy1/native-slot cost, arrival lookup, independent no-reward2T task and END are unchanged. Name/key identifies the session team; the existing exact source record remains city authority, never city display text.
 
-Proposed fix: bounded read-only exact-unit readiness before one rename request; distinguish absence from definite ID/owner/type mismatch; post-creation native audit at readiness; preserve raw-name/Gameplay confirmation before dispatch and close/timeout cancellation. Add separate UI/Gameplay visibility cases. No cap/source/Spy/task/Store/Design changes. **Await approval; no unchanged-package retest.** After repair, reuse name → arrival → no-reward task → END in one session, without a cold-load ritual.
+One native session after deployment: **① 创建Spy验证团** with window open until confirmed → **③ 原生派遣**/arrival/source → **④ 无奖励任务（2回合）** → **结束并移除验证团**. Stop on failure; no repeated cold-load campaign. This tests the repaired readiness delta and still-unreached name-survival/task gate, not all formal N1.
 
-Controlled name/key remains only the prototype team's continuity evidence; the existing exact source record remains city authority. Cold load cannot reconstruct the test session from a name. Formal training/persistence/reattachment, N2/N3/U2/rewards and icons remain held; source/live/authorization stay in Status. Future reattachment remains a separate authorized lifecycle.
+Cold load does not reconstruct the prototype session from a name. Formal training/persistence/reattachment, N2/N3/U2/rewards and icon reuse remain held. Source/live/authorization stay in Status; only this repair/prototype batch is authorized.
 
 
 ## 三种状态与已定数值

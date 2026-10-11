@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "89329a959e53bd6c0abb501d774bd600e6a7657687ce9fe103f5cbfec8dc7d11",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
+      "sha256": "5ac7115863db1f877abff60fc33554e6d6b97726f920df17c2debf6a97cf82ce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
+      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4a6c962957155d198de1bc1187354449527a6fa085b8febff07f0a046ae5aa3d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
+      "sha256": "f8db9fcc5a3b9c3dd51d246af1b5b8c1057dae11074b3c0def29b11c77d5e696",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
+      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "8f0e799716eeebe0ed6cb0c3fb5f4053c06ce697c7e3b6ac7209e8919ef8b5ad",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
+      "sha256": "e6149c24999ba90c63cedf0519662893e9a7190ed3f64a42e72dd01f5d9ef830",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
+      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,9 +1016,9 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "7282f31a6b08f06afb4c550dd9aff56b1bce8950e7fe976701ef75fa1074ca54",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
+      "sha256": "8600fe446b10d1d27d0cf73bc8039ec03aee9cbb38e02179e33c42c434bc2f86",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
+      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
       "sha256": "8df7290db034a588e2f60b657741c5a12c7ddf975b22ed3389566fcfa4fb5e4f",
@@ -1026,9 +1026,9 @@
       "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "0fd5025fbcee9d394d00f43a58aaed913f9e7e788ae53754c1bfc70797548e48",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
+      "sha256": "57160761bf8fdf446bb553ab79908459992d37403cdcea2f3386183689fe252a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
+      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",

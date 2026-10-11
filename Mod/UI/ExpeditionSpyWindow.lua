@@ -3,7 +3,7 @@ include('ExpeditionSpyRead')
 local P=SPCP0;local R=SPCExpeditionSpyRead
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local targets={};local selected=1;local request;local lastNativePermit
-local naming
+local naming,nameStage,nameReason
 local auditSourceID
 local taskBefore,taskAfter,taskEventsBefore,afterPublish
 local function taskRead()
@@ -22,6 +22,7 @@ end
 local function render()
  local v=current;if not v then setReport(L('INITIAL'));return end
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
+ if nameStage then o[#o+1]=L('NAME_STAGE',L('NAME_STAGE_'..nameStage),nameReason or '—')end
  if failure then o[#o+1]=common('ERROR',failure)end
  o[#o+1]=common('COUNT',v.count or 'UNKNOWN')
  if v.reservedCapacity then o[#o+1]=L('RESERVED',v.observedCount or 'UNKNOWN')end
@@ -72,25 +73,56 @@ local function updateAudit()
   comparison=R.Compare(before,audit)
  end
 end
+local function stopName(reason)
+ naming=nil;ContextPtr:ClearUpdate();nameReason=reason
+ request('STOP',reason)
+ return true
+end
 local function checkName()
  if not naming then return end
- local n=naming;local status=R.NameStatus(n.owner,n.id,n.expected)
+ local n=naming
+ if ContextPtr:IsHidden() or Game.GetLocalPlayer()~=n.owner or not P.IsTestPlayer(n.owner)then
+  naming=nil;ContextPtr:ClearUpdate();return true
+ end
+ if n.stage=='READINESS' then
+  local status,reason=R.NameReadiness(n.owner,n.id)
+  local changed=nameReason~=reason;nameReason=reason
+  if status=='PENDING' then if changed then render()end;return end
+  if status~='READY' then return stopName(reason)end
+  -- Only now is the new unit visible in UI. Do not compare a stale post-create
+  -- snapshot or submit a command while exact unit identity is still unknown.
+  updateAudit();afterPublish=false
+  if comparison=='CHANGED' or comparison=='UNKNOWN' then
+   return stopName('ORDINARY_SPY_PREFLIGHT_'..comparison)
+  end
+  n.stage='SUBMITTING';nameStage='COMMAND';nameReason=nil
+  -- Set SUBMITTING before the native call: a nested publish cannot rename twice.
+  local ok,result=R.SubmitName(n.owner,n.id,n.expected,n.permit)
+  if naming~=n then return true end -- Close/shutdown can cancel observation.
+  if not ok then return stopName(result)end
+  n.stage='READBACK';n.elapsed=0;n.poll=0;nameStage='READBACK'
+  render()
+ end
+ if n.stage~='READBACK' then return end
+ local status,reason=R.NameStatus(n.owner,n.id,n.expected)
  if status=='MISMATCH' then return end
  naming=nil;ContextPtr:ClearUpdate()
- if status=='MATCH' then request('READ')else request('STOP','TEAM_NAME_UNREADABLE')end
+ if status=='MATCH' then nameStage='GAMEPLAY';nameReason=nil;request('READ')
+ else return stopName(reason or 'TEAM_NAME_UNREADABLE')end
  return true
 end
 local function prepareName(v)
- local ok,status=R.SubmitName(v.owner,v.unitID,v.expectedName,v.token)
- if not ok then request('STOP',status);return end
- naming={owner=v.owner,id=v.unitID,expected=v.expectedName}
- render()
+ naming={owner=v.owner,id=v.unitID,expected=v.expectedName,permit=v.token,stage='READINESS',elapsed=0,poll=0}
+ nameStage='READINESS';nameReason=nil;render()
  if checkName()then return end
- local elapsed,poll=0,0
+ local n=naming
  ContextPtr:SetUpdate(function(dt)
-  elapsed=elapsed+dt;poll=poll+dt
-  if poll>=0.25 then poll=0;if checkName()then return end end
-  if elapsed>=10 then naming=nil;ContextPtr:ClearUpdate();request('STOP','TEAM_NAME_READBACK_TIMEOUT')end
+  if naming~=n then return end
+  n.elapsed=n.elapsed+dt;n.poll=n.poll+dt
+  if n.elapsed>=10 then
+   stopName(n.stage=='READINESS' and ('TEAM_UI_READY_TIMEOUT:'..(nameReason or 'UNKNOWN')) or 'TEAM_NAME_READBACK_TIMEOUT');return
+  end
+  if n.poll>=0.25 then n.poll=0;checkName()end
  end)
 end
 local function reply()
@@ -99,22 +131,20 @@ local function reply()
  if not v or v.owner~=Game.GetLocalPlayer() or v.token~=pending then return end
  local action=pendingAction;pending=nil;pendingAction=nil;ContextPtr:ClearUpdate();current=v
  if action=='CREATE' and not v.error then
-  observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;updateAudit();afterPublish=true
-  if comparison=='CHANGED' or comparison=='UNKNOWN' then
-   request('STOP','ORDINARY_SPY_PREFLIGHT_'..comparison);return true
-  end
+  observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;afterPublish=false
   prepareName(v);return true
  elseif action=='DISPATCH' and not v.error and v.nativePermit and v.nativePermit~=lastNativePermit then
   lastNativePermit=v.nativePermit -- Consume before a native request, including exceptions.
   local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY}
   local ok,err=R.SubmitTravel(v.owner,v.unitID,target,v.nativePermit)
   if not ok then request('STOP',err);return true end
-  print('[SPC][B187][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
+  print('[SPC][B188][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
   request('READ');return true
  elseif action=='TASK' and not v.error then taskAfter=taskRead()
  elseif action=='END' and not v.error then
-  observing=false;travel=nil;gain=nil;taskBefore=nil;taskAfter=nil;updateAudit();afterPublish=true
+  observing=false;travel=nil;gain=nil;taskBefore=nil;taskAfter=nil;nameStage=nil;nameReason=nil;updateAudit();afterPublish=true
  end
+ if v.nameVerified and v.bound and nameStage then nameStage='CONFIRMED';nameReason=nil end
  if v.taskStart and v.unitID then taskAfter=taskRead()end
  render();return true
 end
@@ -124,7 +154,7 @@ local function readChecks()
  travel=R.Read(Game.GetLocalPlayer(),current.unitID,t)
  gain=R.GainSources(Game.GetLocalPlayer(),current.unitID,t)
  updateAudit();render()
- print('[SPC][B187][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
+ print('[SPC][B188][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
  return travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
 end
 request=function(action,detail)
@@ -134,7 +164,7 @@ request=function(action,detail)
  if (action=='DISPATCH' or action=='END' or action=='STOP' or action=='TASK') and not id then setReport(common('TEAM_CHANGED'));return end
  if action=='CREATE' then
   if not c or c:GetOwner()~=pid then setReport(common('OWN_CITY'));return end
-  auditSourceID=c:GetID();before=R.Audit(pid,auditSourceID);audit=nil;comparison=nil;travel=nil;gain=nil
+  auditSourceID=c:GetID();before=R.Audit(pid,auditSourceID);audit=nil;comparison=nil;travel=nil;gain=nil;nameStage=nil;nameReason=nil
   if before.status~='KNOWN' then setReport(L('READ_ERROR',before.error or 'CAPACITY_UNKNOWN'));return end
  end
  if action=='TASK' then
@@ -155,11 +185,16 @@ request=function(action,detail)
   packet.TargetOwner=travel.targetOwner;packet.TargetID=travel.targetID;packet.TargetX=travel.targetX;packet.TargetY=travel.targetY
   packet.Travel=travel.travel;packet.Establish=travel.establish;packet.NativeAllowed=travel.nativeAllowed;packet.NativeStatus=travel.nativeStatus
  end
+ local token=pending
  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,packet)
+ -- A synchronous publish can consume this reply/start naming, or close can
+ -- cancel it. This request must not replace that newer timer or reopen a wait.
+ if pending~=token then return end
  if not ok then pending=nil;pendingAction=nil;setReport(common('SEND_ERROR',tostring(err)));return end
  setReport(common('WAIT'));if reply()then return end
  local elapsed=0
  ContextPtr:SetUpdate(function(dt)
+  if pending~=token then return end
   elapsed=elapsed+dt;if reply()then return end
   if elapsed>=10 then pending=nil;pendingAction=nil;ContextPtr:ClearUpdate();setReport(common('TIMEOUT'))end
  end)
@@ -173,8 +208,9 @@ local function refreshTargets()
  updateTarget()
 end
 local function close()
+ if naming or pendingAction=='CREATE' then nameStage='CANCELLED';nameReason='UI_NAME_WAIT_CANCELLED' end
  Controls.Window:SetHide(true);ContextPtr:SetHide(true);ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
- ContextPtr:ClearUpdate();pending=nil;pendingAction=nil;naming=nil;targets={};travel=nil;gain=nil
+ ContextPtr:ClearUpdate();pending=nil;pendingAction=nil;naming=nil;afterPublish=false;targets={};travel=nil;gain=nil
 end
 local function open()
  if not P.IsTestPlayer(Game.GetLocalPlayer())then return end
@@ -189,7 +225,7 @@ local function missionEvent(pid,id)
  local ok,m=pcall(function()return Players[pid]:GetDiplomacy():GetMission(pid,id)end)
  lastMission=ok and type(m)=='table' and tostring(m.Operation):sub(1,40) or 'UNKNOWN'
  -- Player-level event only: never infer ownership from a matching unit name.
- print('[SPC][B187][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
+ print('[SPC][B188][N1_SPY_EVENT] player='..pid..' mission='..tostring(id)..' operation='..lastMission..' attribution=UNKNOWN')
 end
 local function published()
  if naming and checkName()then return end

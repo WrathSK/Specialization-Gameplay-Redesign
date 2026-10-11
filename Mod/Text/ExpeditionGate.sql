@@ -301,3 +301,22 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','not yet verified'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_SUMMARY','身份读取：可见名称={1}；精确查询名称={2}；地块枚举={3}；来源引用={4}。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_SUMMARY','Identity read: visible name={1}; exact-lookup name={2}; plot membership={3}; source reference={4}.');
+
+-- B188: separate UI publication readiness, native command and name confirmation.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE','名称准备：{1}[NEWLINE]读取详情：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE','Name preparation: {1}[NEWLINE]Read detail: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','等待界面读到新考察团（最多10秒）；尚未发送改名'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','waiting for the new unit in UI (up to10seconds); no rename sent'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_COMMAND','单位已核对；检查并提交一次改名'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_COMMAND','unit verified; checking and submitting one rename'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READBACK','已提交改名；等待名称读回（最多10秒）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READBACK','rename submitted; waiting for name readback (up to10seconds)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_GAMEPLAY','界面名称一致；等待游戏逻辑确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_GAMEPLAY','UI name matches; awaiting Gameplay confirmation'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CONFIRMED','已确认，可以派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CONFIRMED','confirmed; ready to dispatch');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CANCELLED','准备已因关闭窗口取消；不会自动重试。若仍未确认，请结束并移除验证团'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CANCELLED','preparation cancelled on close; no automatic retry. If still unconfirmed, use END');
