@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0509
-Implementation Build: source B191.218; last deployed B190.217 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0510
+Implementation Build: source/live B191.218 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,7 +13,7 @@ Work State: B191_ACTIVITY_LOOKUP_REPAIR_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B191.218 approved activity lookup/report repair locally complete; native pending.** [Changes,197 scoped checks and minimal session](Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md): exact GameInfo action Hash and native boolean eligibility form, precise component errors, fresh HELD identity display. B190's native constant preflight FAIL remains recorded; no new native activity PASS. Source/cap/name/timer/owned-release semantics unchanged.
 
-Source is **B191.218 / modinfo218**. Last recorded live is **B190.217**, source `4c577a4`, receipt `B190.217-4c577a4-playtest.json`,213/213 MATCH with recovery retained. Deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+Source/live is **B191.218 / modinfo218 DEVELOP_ACTIVE**, deployed source `b2bad17`, receipt `B191.218-b2bad17-playtest.json`,213/213 MATCH. Fresh OS exit, clean/pushed source, exact B190/stable bridge and recovery hashes verified; no pending transaction. No game launch, main promotion or native PASS.
 
 Next: one arrived fixture → **④ 无奖励任务（2回合）**, without manual sleep → close window/normal turns → completion/owned release → **结束并移除验证团**. Stop at the precise error if failed. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
 

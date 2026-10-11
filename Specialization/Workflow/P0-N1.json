@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0509",
+    "status": "S0510",
     "runtime": "B191.218 / modinfo218",
     "military": "D0037",
     "harbor": "D0037",
@@ -322,8 +322,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-    "source": "Source B191.218/modinfo218 locally complete; last recorded deployment remains B190.217/source4c577a4/receipt B190.217-4c577a4-playtest.json. Deployment not inferred.",
+    "source": "B191.218/modinfo218 DEVELOP_ACTIVE; source b2bad1785a2b766f3bca61fdb946ed8a6cf6c607; receipt B191.218-b2bad17-playtest.json;213/213 MATCH. Fresh OS exit, clean/pushed source, exact B190/stable bridge and retained recovery hashes verified; no pending transaction. Native activity/readiness/release gate pending.",
     "native": "B191 activity USER_GAME_TEST_REQUIRED; B190 constant preflight FAIL retained; B189 scoped name/source/task/END evidence inherited.",
-    "stop": "Await verified deployment and one native activity session; formal persistence/reattachment, N2/N3/U2/rewards held."
+    "stop": "Await one-session native activity review; formal persistence/reattachment, N2/N3/U2/rewards held."
   }
 }
