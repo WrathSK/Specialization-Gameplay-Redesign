@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0515",
+    "status": "S0516",
     "runtime": "B193.220 / modinfo220",
     "military": "D0037",
     "harbor": "D0037",
@@ -366,8 +366,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md",
-    "source": "Source B193.220/modinfo220 locally complete; last recorded deployment B192.219/source4e4bbc7/receipt B192.219-4e4bbc7-playtest.json. Deployment not inferred.",
+    "source": "B193.220/modinfo220 DEVELOP_ACTIVE; source f93407319e6eadc5b70c5760851261c645d40db4; receipt B193.220-f934073-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B192/stable bridge and retained recovery hashes verified; no pending transaction. One native failure-time diagnostic sample pending; behavior unchanged.",
     "native": "B193 failure-time diagnostic USER_GAME_TEST_REQUIRED. B192 startup AWAKE/ready/eligible observed; actual failing state/request history still unknown. No Sleep/completion/release PASS.",
-    "stop": "Await verified deployment and one failure-time diagnostic sample; no behavior repair, formal persistence/reattachment, N2/N3/U2/rewards."
+    "stop": "Await one native failure-time diagnostic sample; no behavior repair, formal persistence/reattachment, N2/N3/U2/rewards."
   }
 }
