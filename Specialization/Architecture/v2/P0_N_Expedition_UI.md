@@ -1,12 +1,12 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B196_EXPLICIT_EXPEDITION_UI_LOCAL_COMPLETE_NATIVE_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
-[B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 implements the approved explicit travel/task UI below; native appearance/input verification remains pending. Broader formal UI and N2/N3 are still proposals.
+State: N1_PARTIAL / B196_NATIVE_UI_PASS_PRESENTATION_FOLLOWUP. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+[B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 explicit travel/task interaction has scoped native acceptance; [new review and UI references](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) distinguish tested prototype function from the desired future sidebar layout. Broader formal UI and N2/N3 are still proposals.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## Next UI batch — explicit dispatch and task actions
 
-User-approved B196 slice, now locally implemented with [145 checks and minimal native flow](../../Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md). The heading remains stable for existing links. Native UI acceptance is pending. This section supersedes the earlier single “管理考察团”/selection-to-diagnostic-window proposal for normal unit interaction. It does not accept new Gameplay or authorize N2/N3 rewards.
+User-approved B196 slice, now locally implemented with [145 checks and minimal native flow](../../Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md). The heading remains stable for existing links. Native UI acceptance is now recorded in the B196 review; no further unchanged test is requested. This section supersedes the earlier single “管理考察团”/selection-to-diagnostic-window proposal for normal unit interaction. It does not accept new Gameplay or authorize N2/N3 rewards.
 
 1. **Selection and actions:** selecting the Expedition leaves the unit information panel visible; it must not automatically open the verification report. Two native-style actions, **派遣到新城市** and **任务**, explicitly open the appropriate city/task view. Reuse native Spy travel and Gain Sources artwork respectively; artwork does not submit a native espionage mission.
 2. **Task lock:** while preparation/running/release owns activity, return no unit-action buttons for this exact team. Guard captured callbacks and chooser/popup routing as well as visibility so stale clicks cannot wake/cancel/dispatch/open the normal management menu. Consume the existing transition-published activity view, not the last diagnostic reply. Keep P0 diagnostic/END recovery separate and ordinary units/Spies unchanged.
@@ -18,6 +18,18 @@ User-approved B196 slice, now locally implemented with [145 checks and minimal n
 **B195 applied cosmetic scope:** the shared Settler/crew addin now uses native recessed backing with one visible slot until a matching confirmation exists. Preparing expands left while retaining a distinct confirmation, never replacing Prepare with a destructive action. The Expedition unit icon/portrait now use Spy art. Four identity-claim projects use their district GP project icons; 时代对话 uses the Theater icon. No new icon assets or localization keys. Existing crew projects are not one-turn projects; the obsolete generic timing fixture stays unchanged.
 
 B196 source: UnitPanel consumes the existing transition view and returns two explicit actions, or no actions while task-controlled. Native chooser/popup routes quietly suppress this exact team; P0 explicitly opens diagnostic mode. Normal modes do not run Gain Sources diagnostics, add events or persist presentation state. Current prototype still permits only revealed/met foreign-major-capital targets and one no-reward task; after completion both actions are unavailable. Native font/icon/control styling is reused within our custom window, not the entire native chooser; normal travel timing is checked on confirmation, not previewed. The B195 backing offset is corrected without moving hitboxes. Earlier unconditional management/Skip behavior is superseded, not a failure of B194 native Sleep.
+
+## B196 feedback — native-style sidebar reference
+
+User feedback after B196: images3/4 in the [native review](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) show the desired **left-docked city list and task-card panel**. B196 passes its functional UI gate; its large central window is an intermediate presentation, not the accepted final look.
+
+- Dispatch: use a scrollable city-row list beside the map, recognizable city/civilization information, clear selection, and an explicit confirmation. The reference supplies layout, not a new target-eligibility rule.
+- Tasks: vertically arranged compact cards with an existing icon, concise description, relevant duration and availability. Reuse native framing/header/close/spacing; avoid a central block of diagnostic text. Include only implemented tasks; do not display invented rewards or native espionage success/detection percentages.
+- Preserve the two explicit unit actions and controlled-task empty action bar. Source/capacity/identity and timer remain owned by our existing modules; adapting presentation must not reactivate ordinary Spy mission/reward callbacks or alter ordinary Spy screens.
+- Image5's two disabled post-completion actions are expected under the one-shot prototype. This feedback does not authorize repeatable tasks, redispatch after completion, formal persistence/reattachment/training, N2/N3, or this next UI implementation. P0 diagnostics/END remain separate.
+- Settler backing is accepted by explicit user confirmation without screenshot. No additional picture or save/load test is needed solely to duplicate that acceptance.
+
+This narrows the future travel/task presentation direction within the existing plan. The larger HUD/national overview/archives/network proposals below remain future proposals; do not implement them merely to match the two reference screens.
 
 ## 推荐入口与整体结构
 

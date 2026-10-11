@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B196_EXPLICIT_EXPEDITION_UI_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B196_NATIVE_UI_PASS_PRESENTATION_FOLLOWUP / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B196.223 explicit-action UI locally complete;145 focused tests PASS.** [Implementation/minimal session](../../Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md): quiet selection, two normal dispatch/task views, empty task-controlled action bar and exact stale-callback guards; P0 diagnostics remain separate. Existing one-shot Gate/capacity/binding/native reader/activity bridge unchanged; no new task or reward.
+**B196.223 UI/input gate accepted in the reported run.** [Five-image review](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md): dispatch page, empty selected-team action bar and disabled post-completion actions match the prototype; overall flow USER_REPORTED_PASS. Settler backing explicitly passes without screenshot. B194 activity evidence and B196145 local checks remain distinct inherited evidence.
 
-[B195 screenshot](../../Status/Validation/Results/Specialization_B195_Action_Backing_Native_Review.md) identifies lowered backing; B196 lifts only the decoration. [B194 accepted activity gate](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) remains inherited; native B196 UI/scale/event ordering pending, actual deployment from Status/receipt.
+[Images3/4 direction](P0_N_Expedition_UI.md#b196-feedback--native-style-sidebar-reference): native-style docked left city list/task cards are the desired next presentation, not current B196 output or permission to run native espionage missions. Runtime remains B196; Status/receipt governs deployment.
 
-[Approved UI scope](P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions): after verified deployment, one travel→task→empty action bar→completion session plus backing appearance; no save/load repeat. Completion permits no second task/redispatch in this prototype; P0 END remains. Formal training/reattachment/persistence/N2/N3/U2/rewards held.
+No further B196 test or unchanged lifecycle/save-load campaign. One-shot completion still disallows another task/redispatch; use P0 END. Further UI implementation requires its scoped approval; formal training/reattachment/persistence/N2/N3/U2/rewards remain held.
 
 
 ## 三种状态与已定数值

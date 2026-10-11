@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0523
+Status Revision: S0524
 Implementation Build: source/live B196.223 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B196_EXPLICIT_EXPEDITION_UI_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B196_NATIVE_UI_PASS_PRESENTATION_FOLLOWUP
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B196 scoped UI/input USER_GAME_TEST_PASS.** [Five-image review plus user confirmation](Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md): explicit dispatch page, selected-team empty action bar and expected disabled actions after one-shot completion; overall flow accepted. Settler backing has explicit USER_REPORTED_PASS without screenshot. Images3/4 are the preferred future left-sidebar city/task UI, not an implemented feature or native mission leakage.
+
+Source/live remains **B196.223 / modinfo223 DEVELOP_ACTIVE**, deployed source `e6e19e5`, receipt `B196.223-e6e19e5-playtest.json`; prior deployment verified213/213 MATCH and retained B195/stable recovery. This acceptance checkpoint changes documentation only; no new runtime inspection/deployment.
+
+No further B196 test is requested. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [recorded UI direction](../Architecture/v2/P0_N_Expedition_UI.md#b196-feedback--native-style-sidebar-reference). Next implementation needs its own approved scope; formal training/persistence/reattachment, repeat tasks, N2/N3/U2/rewards remain held. Keep P0 END for the one-shot prototype.
+
+## S0523 — B196 local/deployed checkpoint before native acceptance (historical)
+
 
 **B196 explicit Expedition UI locally complete;145 focused tests PASS.** [Changes/minimal session](Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md): quiet selection; explicit 派遣到新城市/任务 pages; task-controlled empty action bar; stale/hidden callbacks guarded; P0 diagnostic preserved. [B195 screenshot](Validation/Results/Specialization_B195_Action_Backing_Native_Review.md) confirms lowered backing; B196 corrects only its decorative offset. B194 native Sleep/timer/release acceptance is inherited, capacity/binding/Gate unchanged.
 

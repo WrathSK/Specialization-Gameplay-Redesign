@@ -319,3 +319,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B196 — explicit Expedition UI; supersedes the pending B195 backing check
 
 [B195 single-image alignment defect](Validation/Results/Specialization_B195_Action_Backing_Native_Review.md) archived1/1 SHA256; B196 corrects the decoration and implements the approved two-action UI. [One minimal native session](Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md#one-minimal-native-session) checks quiet selection→explicit travel→explicit task→empty task-controlled action bar→one-shot completion and available Settler/crew backing alignment. P0 creation/END diagnostics remain, normal views are concise. No save/load/name/capacity campaign; unchanged B194 evidence inherited. Formal N1/N2/N3/U2/repeatable tasks stay held. B195 project/Spy icons remain available for incidental observation, no expanded fixture requirement.
+
+## B196 closed — UI/input accepted; future sidebar direction retained
+
+[Native review](Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md): five originals archived/hash matched; explicit UI flow accepted, image2 empty selected-team actions and image5 expected disabled completed actions. Settler backing explicitly USER_REPORTED_PASS without screenshot. This closes the B196 session request; no extra screenshot, unchanged lifecycle or save/load retest. Images3/4 are desired left-sidebar city/task-card UI references for a future approved presentation batch, not new missions or formal N1 acceptance.

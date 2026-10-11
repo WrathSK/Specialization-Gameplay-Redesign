@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "e6e19e545eb0cc388c7418de62f55615c0ce0412",
-  "runtime": "B196.223/modinfo223 DEVELOP_ACTIVE; source e6e19e545eb0cc388c7418de62f55615c0ce0412; receipt B196.223-e6e19e5-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B195/stable bridge and retained recovery verified; no pending transaction. B194 activity PASS inherited; B196 normal UI/input and backing appearance pending.",
+  "runtime": "B196.223/modinfo223 DEVELOP_ACTIVE; source e6e19e545eb0cc388c7418de62f55615c0ce0412; receipt B196.223-e6e19e5-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B195/stable bridge and retained recovery verified; no pending transaction. Deployment verification above is inherited, not rerun by this documentation checkpoint. B194 activity PASS inherited; B196 scoped UI/input PASS, Settler backing USER_REPORTED_PASS.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
