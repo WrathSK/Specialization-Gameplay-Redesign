@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0512
-Implementation Build: source B192.219; last deployed B191.218 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0513
+Implementation Build: source/live B192.219 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,7 +13,7 @@ Work State: B192_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B192.219 approved diagnostic-only patch locally complete; native sample pending.** [Changes,227 scoped checks and one capture](Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md): actual activity/types/enums, readiness and native SLEEP eligibility captured once before the unchanged guard. No capacity, binding, timer, activity permission or owned-release change. B191 native failure remains unresolved; no new native PASS.
 
-Source is **B192.219 / modinfo219**. Last recorded live is **B191.218**, source `b2bad17`, receipt `B191.218-b2bad17-playtest.json`,213/213 MATCH with recovery retained. Deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+Source/live is **B192.219 / modinfo219 DEVELOP_ACTIVE**, deployed source `4e4bbc7`, receipt `B192.219-4e4bbc7-playtest.json`,213/213 MATCH. Fresh OS exit, clean/pushed source, exact B191/stable bridge and recovery hashes verified; no pending transaction. No game launch, main promotion or native PASS.
 
 Next: one fresh bound arrived fixture → **④ 无奖励任务（2回合）** once → screenshot **启动时活动诊断** and precise error → stop. No task-completion or cold-load ritual. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; writer repair, formal persistence/reattachment, N2/N3/U2/rewards await later authorization.
 
