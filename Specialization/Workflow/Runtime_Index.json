@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "e392435f2867c1c8a9310d66b3075b285382e82c",
-  "runtime": "B198.225/modinfo225 DEVELOP_ACTIVE; source e392435f2867c1c8a9310d66b3075b285382e82c; receipt B198.225-e392435-playtest.json; 213/213 MATCH. Verified game exit before both switches; clean/pushed source, receipt-bound B197 to stable to B198 transaction and retained B197/stable recovery. No pending transaction. Native repaired relocation/sidebar integration remains pending; prior B197 failure retained.",
+  "runtime_commit": "b4126a4628d4f2cdedbf4c9761c853b99a2d4946",
+  "runtime": "B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH. Fresh OS game exit checks before both switches; clean/pushed source and receipt-bound B198 to stable to B199 transaction verified; B198/stable recovery retained, no pending transaction. Changed UI/foreign location visibility remain native pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

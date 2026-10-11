@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0530",
+    "status": "S0531",
     "runtime": "B199.226 / modinfo226",
     "military": "D0037",
     "harbor": "D0037",
@@ -477,7 +477,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
-    "source": "B199.226/modinfo226 source; last verified live B198.225 until a new deployment receipt.",
+    "source": "B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH. Fresh OS game exit checks before both switches; clean/pushed source and receipt-bound B198 to stable to B199 transaction verified; B198/stable recovery retained, no pending transaction. Changed UI/foreign location visibility remain native pending.",
     "native": "USER_GAME_TEST_REQUIRED for changed selection/locations/autoclose; no formal mission eligibility or foreign completeness claim.",
     "stop": "Stop after approved B199 UI handoff; no formal N1/repeat tasks/rewards/N2/N3/U2 or save/load campaign."
   }
