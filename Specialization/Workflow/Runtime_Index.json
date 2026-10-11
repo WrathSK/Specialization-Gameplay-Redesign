@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "d447ff53d0600f194330013bc4850a1211007ee2",
-  "runtime": "B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. B194 submitted native task Sleep/completion/release flow passed; B195 source presentation changes not yet deployed.",
+  "runtime_commit": "65f00384a737babb7536a725b4e8a05ddd6b1cf7",
+  "runtime": "B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 visual rendering pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

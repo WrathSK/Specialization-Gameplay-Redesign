@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0520",
+    "status": "S0521",
     "runtime": "B195.222 / modinfo222",
     "military": "D0037",
     "harbor": "D0037",
@@ -419,7 +419,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-    "source": "Source B195.222/modinfo222 locally complete; B194.221/modinfo221 DEVELOP_ACTIVE; source d447ff53d0600f194330013bc4850a1211007ee2; receipt B194.221-d447ff5-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B193/stable bridge and retained recovery hashes verified; no pending transaction. B194 submitted native task Sleep/completion/release flow passed; B195 source presentation changes not yet deployed.",
+    "source": "B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 visual rendering pending.",
     "native": "B194 observed running after exact Sleep acknowledgement, T88→T90 completion1/1/released activity; source/cap retained. No raw OPERATION duration measured. B195 pixels not yet tested.",
     "stop": "After visual-only batch, stop for review. Future explicit dispatch/task and task-time empty action bar is planned, not implemented; formal persistence/reattachment/N2/N3/U2/rewards held."
   }
