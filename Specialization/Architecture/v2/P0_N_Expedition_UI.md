@@ -1,8 +1,16 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B196_NATIVE_UI_PASS_PRESENTATION_FOLLOWUP. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+State: N1_PARTIAL / B197_SIDEBAR_LOCAL_COMPLETE_NATIVE_UI_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
 [B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 explicit travel/task interaction has scoped native acceptance; [new review and UI references](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) distinguish tested prototype function from the desired future sidebar layout. Broader formal UI and N2/N3 are still proposals.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
+
+## B197 — native-style sidebar
+
+User-approved and locally implemented; [result and minimal UI test](../../Status/Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md). This supersedes the earlier awaiting-approval wording below only for the sidebar presentation. B196 interaction and B194 activity evidence are inherited; native B197 appearance/input remains pending.
+
+Normal TRAVEL/TASK use an independent native `ChooserAnim` left frame, pooled city rows/task card, existing Spy icons and explicit confirmation footer. The exact target snapshot/current selected unit and pending-request guards stay in the existing Window; city enumeration occurs only on explicit open. Escape/close checks the guard before immediate hide; no native mission controller or generic asynchronous close callback. Resize is layout-only; pooled callbacks/references retire on close and the resize listener on shutdown. P0 diagnostic controls retain their separate central view.
+
+One-shot prototype, cap/source/name binding, travel eligibility/permit and two-turn independent task behavior are unchanged. No new task, rewards, normal training, repeatability, persistence, N2/N3 or era UI. Native Chinese fit/scrolling/provider and click behavior require the single UI session; no repeated shared lifecycle campaign.
 
 ## Next UI batch — explicit dispatch and task actions
 

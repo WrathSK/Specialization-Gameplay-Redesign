@@ -480,3 +480,18 @@ INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDING','Status: ending'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDED','状态：验证团已结束'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDED','Status: team ended');
+
+-- B197: native-style sidebar presentation, no new task or reward.
+INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','选择目的地，再确认派遣。当前仅列出已遇见文明的已揭示首都；确认时核对派遣时间与条件。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','Select a destination, then confirm travel. Only revealed capitals of met civilizations are listed; travel time and eligibility are checked on confirmation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','选择任务，使用下方按钮确认开始。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','Review the task, then use the button below to start it.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_NAME','无奖励验证任务'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_NAME','No-reward test task'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','在当前城市停留2回合，不发放奖励。开始后将锁定单位操作；关闭窗口不会中断任务。每团仅验证一次。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','Remain in the current city for 2 turns without rewards. Unit actions are locked while the task runs; closing the panel does not interrupt it. One test per team.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] 当前城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] Current city'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','文明信息未知'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','Civilization unavailable');

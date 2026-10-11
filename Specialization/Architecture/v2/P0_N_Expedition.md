@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B196_NATIVE_UI_PASS_PRESENTATION_FOLLOWUP / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B197_SIDEBAR_LOCAL_COMPLETE_NATIVE_UI_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B196.223 UI/input gate accepted in the reported run.** [Five-image review](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md): dispatch page, empty selected-team action bar and disabled post-completion actions match the prototype; overall flow USER_REPORTED_PASS. Settler backing explicitly passes without screenshot. B194 activity evidence and B196145 local checks remain distinct inherited evidence.
+**B197.224 native-style sidebar is locally implemented under the user's scoped approval.** [145 focused tests and one minimal UI session](../../Status/Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md) cover new row/card controls and inherited business guards. B194 activity and B196 explicit-input acceptance remain scoped prior native evidence; B197 rendered layout/input is USER_GAME_TEST_REQUIRED.
 
-[Images3/4 direction](P0_N_Expedition_UI.md#b196-feedback--native-style-sidebar-reference): native-style docked left city list/task cards are the desired next presentation, not current B196 output or permission to run native espionage missions. Runtime remains B196; Status/receipt governs deployment.
+[Current UI boundary](P0_N_Expedition_UI.md#b197--native-style-sidebar): left city list, compact no-reward task card, existing explicit confirmation; P0 diagnostics separate. No capacity, source/name binding, target eligibility, travel or task behavior changes. Status/receipt governs source/live identity.
 
-No further B196 test or unchanged lifecycle/save-load campaign. One-shot completion still disallows another task/redispatch; use P0 END. Further UI implementation requires its scoped approval; formal training/reattachment/persistence/N2/N3/U2/rewards remain held.
+Next after deployment: one sidebar travel→task session. No save/load/name/capacity retest. One-shot completion still disallows another task/redispatch; use P0 END. Stop for a blocked/error state. Formal training/reattachment/persistence/N2/N3/U2/rewards remain held.
 
 
 ## 三种状态与已定数值

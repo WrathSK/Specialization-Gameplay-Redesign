@@ -1,6 +1,8 @@
 include('Probe')
 include('ExpeditionSpyRead')
 include('ExpeditionSpyUI')
+include('InstanceManager')
+include('SupportFunctions')
 local P=SPCP0;local R=SPCExpeditionSpyRead;local U=SPCExpeditionSpyUI
 local viewMode='DIAGNOSTIC';local requestedUnitID;local close
 local current,pending,pendingAction,travel,gain,before,audit,comparison
@@ -8,6 +10,25 @@ local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local request;local lastNativePermit
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
+local cityRows=InstanceManager:new('SPCExpeditionDestination','DestinationButton',Controls.DestinationStack)
+local taskRows=InstanceManager:new('SPCExpeditionMission','MissionButton',Controls.MissionStack)
+local normalRows={};local rowGeneration=0
+local function noAction()end
+local function clearRows()
+ rowGeneration=rowGeneration+1
+ for _,row in ipairs(normalRows)do row.button:RegisterCallback(Mouse.eLClick,noAction)end
+ normalRows={};cityRows:ResetInstances();taskRows:ResetInstances()
+end
+local function resizeSidebar()
+ if viewMode=='DIAGNOSTIC' or ContextPtr:IsHidden()then return end
+ local _,height=UIManager:GetScreenSizeVal()
+ Controls.SlideAnim:SetSizeY(height-30)
+ Controls.NormalStack:CalculateSize();Controls.NormalScroll:CalculateInternalSize()
+ Controls.NormalFeedbackScroll:CalculateInternalSize()
+end
+local function screenChanged(kind)
+ if kind==SystemUpdateUI.ScreenResize then resizeSidebar()end
+end
 local taskBefore,taskAfter,taskEventsBefore,afterPublish
 local function taskRead()
  if current and current.unitID and current.targetID then
@@ -110,7 +131,10 @@ local function normalCanAct()
   and U.CanOpen(viewMode,UI.GetHeadSelectedUnit())
 end
 local function setReport(s)
- if viewMode~='DIAGNOSTIC'then Controls.NormalFeedback:SetText(s);return end
+ if viewMode~='DIAGNOSTIC'then
+  Controls.NormalFeedback:SetText(s);Controls.NormalFeedback:SetToolTipString(s)
+  Controls.NormalFeedbackScroll:CalculateInternalSize();return
+ end
  Controls.Report:SetText(s);Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring()
 end
 local function renderNormal()
@@ -133,8 +157,11 @@ local function renderNormal()
  Controls.NormalSummary:SetText(table.concat(o,'[NEWLINE]'))
  local can=normalCanAct()
  Controls.NormalConfirmButton:SetDisabled(not can or (viewMode=='TRAVEL' and not targets[selected]))
- Controls.NormalTargetPrevious:SetDisabled(not can or #targets<2)
- Controls.NormalTargetNext:SetDisabled(not can or #targets<2)
+ for _,row in ipairs(normalRows)do
+  row.button:SetDisabled(not can)
+  row.brace:SetHide(viewMode=='TRAVEL' and row.index~=selected)
+ end
+ resizeSidebar()
 end
 local function render()
  syncActivity()
@@ -357,7 +384,48 @@ request=function(action,detail)
 end
 local function updateTarget()
  local t=targets[selected];local label=t and Locale.Lookup(t.name) or common('NO_TARGET')
- Controls.TargetLabel:SetText(label);Controls.NormalTargetLabel:SetText(label)
+ Controls.TargetLabel:SetText(label)
+ if viewMode=='TRAVEL'then TruncateStringWithTooltip(Controls.NormalTargetLabel,250,label)end
+end
+-- These pooled controls own only current display/selection callbacks. Rebuild
+-- on an explicit open, never per turn or per native event. A retired callback
+-- cannot act on a reused row, different team, mode or target snapshot.
+local function populateSidebar()
+ clearRows()
+ Controls.DestinationStack:SetHide(viewMode~='TRAVEL')
+ Controls.MissionStack:SetHide(viewMode~='TASK')
+ Controls.NormalEmptyLabel:SetHide(viewMode~='TRAVEL' or #targets>0)
+ local generation,id=rowGeneration,requestedUnitID
+ if viewMode=='TRAVEL'then
+  for index,target in ipairs(targets)do
+   local row=cityRows:GetInstance();local owner,cityID=target.owner,target.id
+   local name=Locale.Lookup(target.name)
+   TruncateStringWithTooltip(row.CityName,225,name)
+   local config=PlayerConfigurations and PlayerConfigurations[owner]
+   local civType=config and config:GetCivilizationTypeName()
+   local civ=civType and GameInfo.Civilizations and GameInfo.Civilizations[civType]
+   TruncateStringWithTooltip(row.CivilName,235,civ and Locale.Lookup(civ.Name) or L('SIDEBAR_CIV_UNKNOWN'))
+   local back,front=UI.GetPlayerColors(owner);row.BannerBase:SetColor(back);row.CityName:SetColor(front)
+   normalRows[#normalRows+1]={button=row.DestinationButton,brace=row.SelectorBrace,index=index}
+   row.DestinationButton:RegisterCallback(Mouse.eLClick,function()
+    if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TRAVEL' or not normalCanAct()
+     or targets[index]~=target or target.owner~=owner or target.id~=cityID then return end
+    selected=index;travel=nil;gain=nil;updateTarget();setReport('');render()
+   end)
+  end
+ elseif viewMode=='TASK'then
+  local row=taskRows:GetInstance()
+  row.MissionIcon:SetIcon('ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+  row.MissionName:SetText(L('SIDEBAR_TASK_NAME'))
+  row.MissionDetails:SetText(L('SIDEBAR_TASK_DETAILS'))
+  row.MissionLocation:SetText(L('SIDEBAR_TASK_LOCATION'))
+  row.DetailsStack:CalculateSize();row.MissionButton:DoAutoSize()
+  normalRows[1]={button=row.MissionButton,brace=row.SelectorBrace}
+  row.MissionButton:RegisterCallback(Mouse.eLClick,function()
+   if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TASK' or not normalCanAct()then return end
+   setReport(L('SIDEBAR_TASK_HINT'))
+  end)
+ end
 end
 local function refreshTargets()
  local old=targets[selected];targets=R.Targets(Game.GetLocalPlayer());selected=1
@@ -371,6 +439,9 @@ close=function(force)
   setReport(common('WAIT'));return false
  end
  if naming or pendingAction=='CREATE' then nameStage='CANCELLED';nameReason='UI_NAME_WAIT_CANCELLED' end
+ -- Hide immediately only after the pending-action guard. The native generic
+ -- close animation callback must not bypass our request acknowledgement.
+ clearRows();Controls.SlideAnim:Stop()
  Controls.Window:SetHide(true);ContextPtr:SetHide(true);ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
  ContextPtr:ClearUpdate();pending=nil;pendingAction=nil;naming=nil;afterPublish=false;targets={};travel=nil;gain=nil
  requestedUnitID=nil;return true
@@ -386,17 +457,20 @@ local function open(mode,id)
  Controls.DiagnosticPanel:SetHide(mode~=nil);Controls.NormalPanel:SetHide(mode==nil)
  Controls.TitleLabel:SetText(mode and L('ACTION_'..mode) or L('TITLE'))
  if mode then
-  Controls.NormalIntro:SetText(L('NORMAL_'..mode..'_INTRO'))
+  Controls.Title:SetText(L('ACTION_'..mode))
+  Controls.NormalIntro:SetText(L(mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
   Controls.NormalConfirmLabel:SetText(L('NORMAL_'..mode..'_CONFIRM'))
   Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
-  Controls.NormalTargetPrevious:SetHide(mode~='TRAVEL');Controls.NormalTargetNext:SetHide(mode~='TRAVEL')
-  Controls.NormalTargetLabel:SetHide(mode~='TRAVEL');Controls.NormalFeedback:SetText('')
+  Controls.NormalTargetLabel:SetHide(mode~='TRAVEL');setReport('')
   -- Do not enable a control from a previous diagnostic reply.
   current=nil;Controls.NormalConfirmButton:SetDisabled(true)
  end
  ContextPtr:SetHide(false);Controls.Window:SetHide(false)
  if ContextPtr:IsHidden() or Controls.Window:IsHidden()then return end
  if mode~='TASK'then refreshTargets()end
+ if mode then
+  populateSidebar();resizeSidebar();Controls.SlideAnim:SetToBeginning();Controls.SlideAnim:Play()
+ end
  request('READ');ExposedMembers.SPC_ExpeditionGateUIOpenVersion=P.VERSION
 end
 local function visibility()
@@ -431,6 +505,7 @@ local initialized=false
 local function initialize()
  if initialized then return end
  Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()close()end)
+ Controls.NormalCloseButton:RegisterCallback(Mouse.eLClick,function()close()end)
  Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('CREATE')end end)
  Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then refreshTargets();updateAudit();request('READ')end end)
  Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('DISPATCH')end end)
@@ -443,8 +518,6 @@ local function initialize()
  end
  Controls.PreviousButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then move(-1)end end)
  Controls.NextButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then move(1)end end)
- Controls.NormalTargetPrevious:RegisterCallback(Mouse.eLClick,function()if viewMode=='TRAVEL'then move(-1)end end)
- Controls.NormalTargetNext:RegisterCallback(Mouse.eLClick,function()if viewMode=='TRAVEL'then move(1)end end)
  Controls.NormalConfirmButton:RegisterCallback(Mouse.eLClick,function()
   if viewMode=='DIAGNOSTIC' or not normalCanAct()then return end
   request(viewMode=='TRAVEL' and 'DISPATCH' or 'TASK')
@@ -455,7 +528,12 @@ local function initialize()
  Events.GameCoreEventPublishComplete.Add(published)
  LuaEvents.SPC_ExpeditionActivityChanged.Add(activityChanged)
  if Events.SpyMissionCompleted then Events.SpyMissionCompleted.Add(missionEvent)end
+ Events.SystemUpdateUI.Add(screenChanged)
  ContextPtr:SetInputHandler(function(message,key)
+  -- Native input uses an InputStruct; retain the existing legacy signature too.
+  if type(message)=='table' or type(message)=='userdata'then
+   key=message:GetKey();message=message:GetMessageType()
+  end
   if message==KeyEvents.KeyUp and key==Keys.VK_ESCAPE and not Controls.Window:IsHidden()then close();return true end
   return false
  end,true)
@@ -465,6 +543,7 @@ ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
  close(true);observing=false
  if initialized then
+  Events.SystemUpdateUI.Remove(screenChanged)
   LuaEvents.SPC_ExpeditionGateOpen.Remove(open);Events.LoadScreenClose.Remove(visibility);Events.LocalPlayerTurnBegin.Remove(visibility)
   Events.GameCoreEventPublishComplete.Remove(published)
   LuaEvents.SPC_ExpeditionActivityChanged.Remove(activityChanged)

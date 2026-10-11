@@ -93,7 +93,59 @@ def gate(ui=False, window=False):
         l.execute((R/'Mod/ExpeditionSpyRead.lua').read_text());l.execute('reader=SPCExpeditionSpyRead')
     if window:
         l.execute("LuaEvents.SPC_ExpeditionActivityChanged={Add=function(fn)activityChanged=fn end,Remove=function(fn)assert(activityChanged==fn);activityChanged=nil end};makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-189.216';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
-        l.execute("for _,id in ipairs({'TitleLabel','DiagnosticPanel','NormalPanel','NormalIntro','NormalSummary','NormalTargetLabel','NormalTargetPrevious','NormalTargetNext','NormalConfirmButton','NormalConfirmLabel','NormalConfirmIcon','NormalFeedback'})do makeControl(id);Controls[id].SetIcon=function(self,v)self.icon=v end;Controls[id].SetDisabled=function(self,v)self.disabled=v end end")
+        # Current presentation controls and instance templates; native rendering is
+        # still a user-game gate. No fake old controls are retained after removal.
+        l.execute("""
+          local original=makeControl
+          function makeControl(id,hidden)
+           original(id,hidden);local c=Controls[id];c.sizex=0;c.sizey=0
+           function c:SetIcon(v)self.icon=v end;function c:SetDisabled(v)self.disabled=v end
+           function c:SetSizeY(v)self.sizey=v end
+           function c:SetToolTipString(v)self.tooltip=v end
+           function c:CalculateSize()self.calculations=(self.calculations or 0)+1 end
+           function c:ReprocessAnchoring()self.reanchors=(self.reanchors or 0)+1 end
+           function c:CalculateInternalSize()self.internalCalculations=(self.internalCalculations or 0)+1 end
+           function c:DoAutoSize()self.autoSizes=(self.autoSizes or 0)+1 end
+           function c:SetColor(v)self.color=v end
+           function c:Play()self.played=(self.played or 0)+1 end
+           function c:SetToBeginning()self.beginning=true end
+           function c:Stop()self.stopped=true end
+           return c
+          end
+          UI.GetPlayerColors=function(pid)return 'BACK_'..pid,'FRONT_'..pid end
+          screenWidth=1920;screenHeight=1080
+          UIManager={GetScreenSizeVal=function()return screenWidth,screenHeight end}
+          Events.SystemUpdateUI={Add=function(fn)systemUpdate=fn end,Remove=function(fn)assert(systemUpdate==fn);systemUpdate=nil end}
+          SystemUpdateUI={ScreenResize=1}
+          instanceTemplates={};instanceManagers={}
+          InstanceManager={new=function(self,template,root,parent)
+           local m={instances={},template=template,root=root,parent=parent,resets=0}
+           function m:GetInstance()
+            local row={}
+            for _,id in ipairs(instanceTemplates[self.template])do
+             local old=Controls[id];row[id]=makeControl(id,false);Controls[id]=old
+            end
+            self.instances[#self.instances+1]=row;return row
+           end
+           function m:ResetInstances()self.instances={};self.resets=self.resets+1 end
+           instanceManagers[template]=m;return m
+          end}
+        """)
+        xml=ET.parse(R/'Mod/UI/ExpeditionSpyWindow.xml').getroot()
+        for element in xml.iter():
+            if element.get('ID'):
+                c=l.globals().makeControl(element.get('ID'),element.get('Hidden')=='1')
+                dims=element.get('Size','').split(',')
+                if len(dims)==2 and all(d.isdigit() for d in dims):
+                    c['sizex'],c['sizey']=map(int,dims)
+        for instance in xml.findall('./Instance'):
+            l.globals().instanceTemplates[instance.get('Name')]=l.table_from(
+                [e.get('ID') for e in instance.iter() if e.get('ID')])
+        # IDs and helper supplied by native Civ VI ChooserAnim/SupportFunctions.
+        l.execute("""
+          for _,id in ipairs({'SlideAnim','Title'})do if not Controls[id]then makeControl(id)end end
+          TruncateStringWithTooltip=function(control,width,text)control:SetText(text);control.truncateWidth=width end
+        """)
         l.execute((R/'Mod/ExpeditionSpyUI.lua').read_text())
         l.execute((R/'Mod/UI/ExpeditionSpyWindow.lua').read_text());l.execute('init()')
     return l
@@ -194,7 +246,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'223')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'224')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

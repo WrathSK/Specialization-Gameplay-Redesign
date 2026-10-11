@@ -323,3 +323,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B196 closed — UI/input accepted; future sidebar direction retained
 
 [Native review](Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md): five originals archived/hash matched; explicit UI flow accepted, image2 empty selected-team actions and image5 expected disabled completed actions. Settler backing explicitly USER_REPORTED_PASS without screenshot. This closes the B196 session request; no extra screenshot, unchanged lifecycle or save/load retest. Images3/4 are desired left-sidebar city/task-card UI references for a future approved presentation batch, not new missions or formal N1 acceptance.
+
+## B197 — native-style sidebar UI pending
+
+[One minimal continuous session](Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md#one-minimal-ui-test): city-row selection/confirmation → arrival task card/confirmation, check Chinese fit/scrolling/footer/close at the actual UI scale. Existing two-turn lock/release remains unchanged. No save/load/capacity/name/Settler campaign. Source/live eligibility comes from Status/receipt; formal N1/N2/N3/U2/rewards held. B196's prior acceptance remains valid, not replaced by a new native PASS claim.

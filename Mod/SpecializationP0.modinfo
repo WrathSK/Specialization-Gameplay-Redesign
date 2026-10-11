@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="223">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="224">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B196.223: explicit Expedition travel/task views, silent selection, task-time action lock and corrected native action backing. Capacity, binding and B194 activity/timer unchanged.</Description>
+    <Description>B197.224: native-style Expedition relocation sidebar and mission cards. Capacity, binding, travel and task behavior unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

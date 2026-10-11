@@ -159,7 +159,7 @@ class ExplicitWindow(unittest.TestCase):
         l.execute("""
          local nativeBefore=nativeCalls;gateOpen('TASK',41)
          assert(not ContextPtr.hidden and not Controls.NormalPanel.hidden and Controls.DiagnosticPanel.hidden)
-         assert(Controls.NormalTargetLabel.hidden and Controls.NormalTargetPrevious.hidden and Controls.NormalTargetNext.hidden)
+         assert(Controls.NormalTargetLabel.hidden and Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
          assert(not Controls.NormalConfirmButton.disabled and lastPacket.Action=='READ')
          assert(ExposedMembers.SPC_ExpeditionActivity.phase=='ARRIVED')
          Controls.NormalConfirmButton.click()
