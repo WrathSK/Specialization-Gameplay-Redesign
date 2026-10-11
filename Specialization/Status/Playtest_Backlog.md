@@ -293,3 +293,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B192 — one startup diagnostic capture, no behavior repair
 
 [Minimal test](Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md#one-minimal-native-test): after verified deployment, fresh bound arrived team → **④ 无奖励任务（2回合）** once → screenshot precise error and **启动时活动诊断** through **原生 SLEEP 资格** → stop. This replaces B191's unchanged retest and does not require completion turns or save/cold-load/re-enable. The existing activity guard remains; its failure may repeat with new evidence. Formal N1/N2/N3/U2/rewards held.
+
+## B192 — requested startup sample received; unchanged test closed
+
+[Native review](Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md): the two screenshots already contain the requested diagnostic. No extra diagnostic button or repeat required. Startup AWAKE/ready/eligible; task remains HELD. Failure-time activity and whether an earlier request occurred are unresolved, not proof of native refusal. Any next attempt must first add a separately approved phase-specific diagnostic; no completion/save-load campaign now.

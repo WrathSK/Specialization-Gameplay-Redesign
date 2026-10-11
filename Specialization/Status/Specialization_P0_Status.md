@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0513
+Status Revision: S0514
 Implementation Build: source/live B192.219 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B192_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B192_STARTUP_DIAGNOSTIC_RECEIVED_FAILURE_PHASE_UNKNOWN
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B192 startup diagnostic received; task remains HELD / ACTIVITY_UNEXPECTED_STATE.** [Two-image review and timing correction](Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md): initial activity prints AWAKE, readiness true and SLEEP eligibility true. The one-shot startup sample does not identify the later failing evaluation or prove no request occurred. Source/name/cap1 match retained; no Sleep/completion/release PASS.
+
+Source/live remains **B192.219 / modinfo219 DEVELOP_ACTIVE**, source `4e4bbc7`, receipt `B192.219-4e4bbc7-playtest.json`, last verified213/213 MATCH with retained B191/stable recovery. This documentation checkpoint does not deploy or alter runtime/main.
+
+No repeated B192 test needed. Proposed next boundary: failure-time activity/equality plus request-attempt phase, before any behavior repair. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; further diagnostic implementation, writer repair, formal persistence/reattachment, N2/N3/U2/rewards await approval.
+
+## S0513 — B192 diagnostic implementation and deployment checkpoint (historical)
 
 **B192.219 approved diagnostic-only patch locally complete; native sample pending.** [Changes,227 scoped checks and one capture](Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md): actual activity/types/enums, readiness and native SLEEP eligibility captured once before the unchanged guard. No capacity, binding, timer, activity permission or owned-release change. B191 native failure remains unresolved; no new native PASS.
 

@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B192_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B192 diagnostic](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md) adds a seven-line historical startup sample near the precise error: typed activity/enums, readiness, native operation/end turn and SLEEP eligibility. Exact team/task/identity matching prevents stale report reuse. This is presentation only, with no new button or control/permission change.
-Current entry stays **专业化诊断 → 人文考察·验证**. One task-start click and report capture only; no task-completion or save/load retest. The B191 state guard failure remains unresolved; formal persistence and wider UI rollout remain held.
+State: N1_PARTIAL / B192_STARTUP_DIAGNOSTIC_RECEIVED_FAILURE_PHASE_UNKNOWN. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B192 native review](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md) confirms the startup diagnostic is visible. **④ 无奖励任务（2回合）** is the existing full-width button; **启动时活动诊断** is report text, not another button. Initial AWAKE/ready/eligible does not describe the later failure-time state.
+Current entry stays **专业化诊断 → 人文考察·验证**. No unchanged retest. Failure-time/attempt-phase observation is proposed, not implemented; formal persistence and wider UI rollout remain held.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

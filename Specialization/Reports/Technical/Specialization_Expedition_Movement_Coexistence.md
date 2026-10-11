@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B192 diagnostic-only patch locally complete; native sample pending.** [Implementation,227 scoped checks and one capture](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md) record the raw startup activity/types/enums, readiness and native SLEEP eligibility without changing task permission, source/capacity or behavior. One bounded historical UI sample, no persistent state or extra polling. [B191 failure](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) remains unresolved; the next observation does not authorize writer repair, forced Wake or a real native mission. Earlier sections retain their original evidence and authorization context.
+Date: 2026-10-10. **B192 startup observation received; task failure phase remains unknown.** [Native review and bounded counterexample](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md): initial activity prints AWAKE, readiness true and SLEEP eligibility true; a later guard evaluation can fail after a request while this one-shot sample remains unchanged. The earlier B191 pre-request interpretation was too strong. No proved comparison bug, native Sleep refusal or failure-time OPERATION value. Next proposed diagnostic distinguishes failure-time state and attempted-request phase; no implementation or unchanged retest here. Prior evidence is preserved with this correction.
 
 ## B190 native failure basis
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "4e4bbc787feeaaeff81016169f166b87091957dd",
-  "runtime": "B192.219/modinfo219 DEVELOP_ACTIVE; source 4e4bbc787feeaaeff81016169f166b87091957dd; receipt B192.219-4e4bbc7-playtest.json;213/213 MATCH. Fresh OS exit, clean/pushed source, exact B191/stable bridge and retained recovery hashes verified; no pending transaction. One native startup diagnostic sample pending; behavior unchanged.",
+  "runtime": "B192.219/modinfo219 DEVELOP_ACTIVE; source 4e4bbc787feeaaeff81016169f166b87091957dd; receipt B192.219-4e4bbc7-playtest.json;213/213 MATCH. Fresh OS exit, clean/pushed source, exact B191/stable bridge and retained recovery hashes verified; no pending transaction. B192 startup diagnostic sample received; failure-time activity/request phase remains unknown. Runtime behavior unchanged.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
