@@ -285,3 +285,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B191 — approved constant lookup repair; native activity session pending
 
 [Exact minimal session](Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md#one-minimal-native-session) supersedes B190's awaiting-repair stop: bound arrival → **④ 无奖励任务（2回合）**, no manual sleep → normal turns/window closed → completion/owned release → **结束并移除验证团**. Check source/live Status before testing. This reaches the previously blocked activity path; no repeated generic cold-load/name test. Stop at precise error; formal N1/N2/N3/U2/rewards held.
+
+## B191 — native initial activity guard failed; unchanged testing stopped
+
+[Two-image review and route comparison](Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) supersedes the pending B191 session above: ACTIVITY_UNEXPECTED_STATE before lookup/eligibility/write. Exact activity/enum values UNKNOWN; no proven native Sleep refusal. Do not repeat unchanged package or switch to native espionage as a silent fallback. Proposed next: one exact-unit read-only activity/readiness/eligibility observation before a separately approved repair.

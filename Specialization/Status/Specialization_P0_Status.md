@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0510
+Status Revision: S0511
 Implementation Build: source/live B191.218 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B191_ACTIVITY_LOOKUP_REPAIR_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B191_ACTIVITY_STATE_PREFLIGHT_FAIL_NATIVE_REUSE_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B191 native task startup FAIL at ACTIVITY_UNEXPECTED_STATE, before action lookup/eligibility/write.** [Two-image review and native task comparison](Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md): exact returned activity/enum values UNKNOWN. This does not prove native SLEEP refusal. Pre-task name/source MATCH/cap1 retained; post-stop report correctly distinguishes HELD from confirmed binding loss.
+
+Source/live remains **B191.218 / modinfo218 DEVELOP_ACTIVE**, source `b2bad17`, receipt `B191.218-b2bad17-playtest.json`, last verified213/213 MATCH with retained B190/stable recovery. This evidence checkpoint does not reverify or modify runtime/main.
+
+Next proposed boundary: one exact-unit activity/enum/readiness/native-eligibility observation before any writer repair; no unchanged retest or blind state bypass. Spy UI/travel are separable from native mission execution; no neutral mission executor established. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
+
+## S0510 — B191 local repair and deployment checkpoint (historical)
 
 **B191.218 approved activity lookup/report repair locally complete; native pending.** [Changes,197 scoped checks and minimal session](Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md): exact GameInfo action Hash and native boolean eligibility form, precise component errors, fresh HELD identity display. B190's native constant preflight FAIL remains recorded; no new native activity PASS. Source/cap/name/timer/owned-release semantics unchanged.
 

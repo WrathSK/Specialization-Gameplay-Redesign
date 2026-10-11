@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B191 activity lookup/report repair locally complete; native pending.** [Implementation and197 scoped checks](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md) use exact native GameInfo action Hash with false/false eligibility, no alias fallback, one request and unchanged owned release. Precise failures and fresh HELD identity presentation address the diagnostic ambiguity. No Design or persistence expansion. Current source/live is in Status; older sections retain their evidence and authorization context.
+Date: 2026-10-10. **B191 startup fails at ACTIVITY_UNEXPECTED_STATE before native lookup/eligibility/write.** [Native review and other-unit/task comparison](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) distinguish raw activity (still UNKNOWN), native Spy operation-1, readiness and our timer. Native UI/data/travel can be reused; a neutral native busy-for-N-turns executor is not established. This does not prove Sleep refusal or force reuse of Gain Sources. Proposed next minimum is exact activity/enums/readiness and eligibility observation before writer changes; no unchanged retest or implementation now. Earlier sections retain their original evidence and authorization context.
 
 ## B190 native failure basis
 

@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B191_ACTIVITY_LOOKUP_REPAIR_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B191 repair](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md) places the precise activity error near the top and distinguishes task HELD from proven source loss. A matching label requires fresh same-phase/revision/turn identity evidence; stale views retain the source record with a refresh instruction. Held controls remain blocked. Native Hash lookup replaces assumed aliases without changing activity ownership or source/capacity.
-Current entry stays **专业化诊断 → 人文考察·验证**. One automatic sleep/readiness/release session remains pending; no repeated naming or generic cold-load test. Formal persistence and wider UI rollout remain held.
+State: N1_PARTIAL / B191_ACTIVITY_STATE_PREFLIGHT_FAIL_NATIVE_REUSE_REVIEWED. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B191 native review](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) shows precise ACTIVITY_UNEXPECTED_STATE before native eligibility/write. HELD/source-retained wording works; raw activity/type/enums and readiness are still missing. Spy presentation reuse does not expose a neutral native task executor. No code change or broad UI redesign in this investigation.
+Current entry stays **专业化诊断 → 人文考察·验证**. No unchanged B191 retest. A bounded read-only activity/eligibility diagnostic is the proposed next step; formal persistence and wider UI rollout remain held.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构
