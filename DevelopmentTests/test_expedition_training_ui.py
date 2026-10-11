@@ -71,7 +71,7 @@ class ProductionAdapter(unittest.TestCase):
  def test_native_replacement_intent_releases_only_after_queue_change(self):
   l=production_adapter();l.execute("train('RESERVE','r');entries={{Directive=1,UnitType=100}};train('CONFIRM','c');BuildUnit(city,{Type='UNIT_SPY'});hooks.GameCoreEventPublishComplete();hooks.GameCoreEventPublishComplete();assert(state().phase=='ENDED' and nativeBuilds==1)")
 
-def naming():
+def naming(initialize=True):
  l=ui();l.execute('''
  include=function()end;SPCP0=P;elapsed=0;nameReads=0;calls=0
  ContextPtr={SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetShutdown=function(self,fn)shutdown=fn end,SetInitHandler=function(self,fn)initializeName=fn end}
@@ -82,19 +82,22 @@ def naming():
 
  SPCExpeditionSpyRead={NativeName=function(pid,id)nameReads=nameReads+1;return {status=nameStatus or 'READY',name='LOC_CITIZEN_TEST_A',reason='TEST_ERROR'}end}
  UI.RequestPlayerOperation=function(pid,op,p)calls=calls+1;lastName=p;if direct then shared.ExpeditionGate.Request(pid,p)end end
+ function advanceName(dt)if update then update(dt)end end
  function mirror()ExposedMembers.SPC_ExpeditionActivity={owner=2,unitID=50,teamKey='K',phase='NAMING',trainingToken='r'}end
- ''');l.execute((R/'Mod/UI/ExpeditionTrainingName.lua').read_text());l.execute('initializeName()');return l
+ ''');l.execute((R/'Mod/UI/ExpeditionTrainingName.lua').read_text());
+ if initialize:l.execute('initializeName()')
+ return l
 class Name(unittest.TestCase):
  def test_default_idle_no_polling(self):
   l=naming();l.execute("hooks.GameCoreEventPublishComplete();assert(update==nil and calls==0)")
  def test_exact_ready_name_sent_once(self):
-  l=naming();l.execute("mirror();hooks.GameCoreEventPublishComplete();update(.25);update(.25);assert(calls==1 and lastName.UnitID==50 and lastName.NameOffmapChecked)")
+  l=naming();l.execute("mirror();hooks.GameCoreEventPublishComplete();advanceName(.25);advanceName(.25);assert(calls==1 and lastName.UnitID==50 and lastName.NameOffmapChecked)")
  def test_pending_timeout_bounded(self):
-  l=naming();l.execute("nameStatus='PENDING';mirror();hooks.GameCoreEventPublishComplete();update(.25);update(10);hooks.GameCoreEventPublishComplete();assert(update==nil and calls==0 and nameReads==1)")
+  l=naming();l.execute("nameStatus='PENDING';mirror();hooks.GameCoreEventPublishComplete();advanceName(.25);advanceName(10);hooks.GameCoreEventPublishComplete();assert(update==nil and calls==0 and nameReads==2)")
  def test_invalid_never_mutates(self):
-  l=naming();l.execute("nameStatus='INVALID';mirror();hooks.GameCoreEventPublishComplete();update(.25);assert(update==nil and calls==0)")
+  l=naming();l.execute("nameStatus='INVALID';mirror();hooks.GameCoreEventPublishComplete();advanceName(.25);assert(update==nil and calls==0)")
  def test_full_training_automatic_binding_without_panel(self):
-  l=naming();l.execute("adapter.Before(city,{Type=kind},false);adapter.Pulse();adapter.Pulse();born();entries={};complete();pulse();direct=true;hooks.GameCoreEventPublishComplete();update(.25);assert(state().phase=='CREATED' and state().sourceCity==1 and state().nameVerified)")
+  l=naming();l.execute("adapter.Before(city,{Type=kind},false);adapter.Pulse();adapter.Pulse();born();entries={};complete();pulse();direct=true;hooks.GameCoreEventPublishComplete();advanceName(.25);assert(state().phase=='CREATED' and state().sourceCity==1 and state().nameVerified)")
  def test_name_ack_error_preserved(self):
-  l=naming();l.execute("mirror();hooks.GameCoreEventPublishComplete();update(.25);ExposedMembers.SPC_ExpeditionGateReply={owner=2,token=lastName.Token,error='ERR'};update(.25);assert(ExposedMembers.SPC_ExpeditionTrainingNameError=='ERR')")
+  l=naming();l.execute("mirror();hooks.GameCoreEventPublishComplete();advanceName(.25);ExposedMembers.SPC_ExpeditionGateReply={owner=2,token=lastName.Token,error='ERR'};advanceName(.25);assert(ExposedMembers.SPC_ExpeditionTrainingNameError=='ERR')")
 if __name__=='__main__':unittest.main()

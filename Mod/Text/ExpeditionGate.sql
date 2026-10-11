@@ -576,3 +576,32 @@ INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
 ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','Native name is not ready. Reselect the team or wait for the next player turn for a bounded retry. Capacity and source are retained.'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STOPPED','身份确认已暂停：{1_Reason}。请保留此信息；不要另建考察团。'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STOPPED','Identity confirmation stopped: {1_Reason}. Preserve this message; do not create another team.');
+
+-- B204: one readable stage/reason, including absence of an initialized observer.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_NOT_STARTED','身份确认服务尚未启动。请截图保留此状态；不必继续等待。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_NOT_STARTED','Identity confirmation has not initialized. Capture this status; further waiting is not required.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_NOT_OBSERVED','身份确认服务已启动，但尚未读取本团。请截图保留此状态。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_NOT_OBSERVED','Identity confirmation is initialized but has not observed this team. Capture this status.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_READING','正在读取本团的原生身份信息。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_READING','Reading this team''s native identity.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','原生身份信息暂未就绪：{1_Reason}。名额与来源已保留。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','Native identity information is not ready: {1_Reason}. Capacity and source are retained.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_CONFIRMING','原生姓名已核对，正在等待绑定确认。无需打开 P0 面板。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_CONFIRMING','Native name checked; awaiting binding confirmation. Opening P0 is not required.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_RETRY_WAIT','本次等待已结束：{1_Reason}。重新选择本团或下个玩家回合会有限重试；名额与来源保留。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_RETRY_WAIT','This wait ended: {1_Reason}. Reselect the team or use the next player turn for a bounded retry; capacity and source remain reserved.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNASSIGNED','游戏尚未分配原生姓名'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNASSIGNED','the game has not assigned a native name'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNIT','新单位尚未出现在界面读取中'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNIT','the new unit is not yet visible to the UI reader'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OFFMAP','暂时无法核对在途间谍的重名情况'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OFFMAP','names of off-map Spies cannot yet be checked for collisions'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_ACK','尚未收到可靠的绑定确认；不会重复提交'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_ACK','no reliable binding acknowledgement; the request will not be repeated'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_RETRIES','本次会话的有限重试已用完'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_RETRIES','the bounded retries for this session are exhausted'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_READ','原生身份读取发生异常'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_READ','native identity reading failed'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OBSERVER','身份确认服务发生异常'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OBSERVER','the identity confirmation observer encountered an error');

@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "eeb22b8c99174b573d87466e4f0e19056aeec579b7040570fdd636a4d0b587bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "ee6e42fd8b820cd31bddb5700298538b5335499a9ca38a08fb55054e07be5f20",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
+      "provenance": "B204 event-first exact-team UI confirmation and readable stage/reason feedback;478 targeted tests plus package checks. Existing Gate/Store/cost/cap/source/travel/task unchanged; native pending. Version metadata only where applicable."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "fa2dc60ecfa701c332180e5f3f8728250cf89f84f8b53718674916eed01bc2ba",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "eed3b657e5d175e9122ddfc1bfa69fd290ac2c328849ae54868a9f2525fbb4e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
+      "provenance": "B204 event-first exact-team UI confirmation and readable stage/reason feedback;478 targeted tests plus package checks. Existing Gate/Store/cost/cap/source/travel/task unchanged; native pending. Version metadata only where applicable."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "09441d89d6750636525bc178754945af97c4df5f6aba8da201d72849255a7c54",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "e3054425429fbca033f56e155168ffc146629e0f6b3c6e515ca94928ecec3587",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
+      "provenance": "B204 event-first exact-team UI confirmation and readable stage/reason feedback;478 targeted tests plus package checks. Existing Gate/Store/cost/cap/source/travel/task unchanged; native pending. Version metadata only where applicable."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1041,9 +1041,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/ExpeditionSpyUI.lua": {
-      "sha256": "ab92aa6deacf58fa6cd8e8485fce637d96da001e2c8567c2474feb78931b5453",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "216ec8ed507f78cefd9e5b9f223149512945de259d2a0f9a5a0d63d0a9b3a663",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
+      "provenance": "B204 event-first exact-team UI confirmation and readable stage/reason feedback;478 targeted tests plus package checks. Existing Gate/Store/cost/cap/source/travel/task unchanged; native pending. Version metadata only where applicable."
     },
     "Mod/UI/ExpeditionSpyChooser.lua": {
       "sha256": "153c44a5d223d71ba7cf9bc20fcdd9c582b7b5fee9e7b006fd406438caf003bc",
@@ -1081,9 +1081,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/ExpeditionTrainingName.lua": {
-      "sha256": "88e3e5d896c56a44f46762ba9a044eac8cef308e4cd6c286902a2d7588cabe83",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "23b8191c335e0ea5dc31b47e284b3652c7edc5d4d62efa746cb6f94685195d58",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
+      "provenance": "B204 event-first exact-team UI confirmation and readable stage/reason feedback;478 targeted tests plus package checks. Existing Gate/Store/cost/cap/source/travel/task unchanged; native pending. Version metadata only where applicable."
     },
     "Mod/UI/ExpeditionTrainingName.xml": {
       "sha256": "e0e9aedef6807f84f4028d03ca9defd52bee6040b978ed040a7c533e6f205c4e",

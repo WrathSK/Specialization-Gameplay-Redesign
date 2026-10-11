@@ -37,15 +37,29 @@ function M.CanOpen(mode,u)
  return mode=='TASK' and v.phase=='ARRIVED' and v.taskStart==nil
 end
 -- Presentation only; this mirror cannot authorize an action or alter saved binding.
+local function nameReason(reason)
+ local keys={TEAM_NATIVE_NAME_DEFAULT='UNASSIGNED',TEAM_NATIVE_NAME_UNASSIGNED='UNASSIGNED',
+  UI_UNIT_NOT_PUBLISHED='UNIT',OFFMAP_NAME_COUNT_UNAVAILABLE='OFFMAP',OFFMAP_NAME_COLLISION_READ_UNAVAILABLE='OFFMAP',
+  TRAINING_NAME_ACK_UNCONFIRMED='ACK',TRAINING_NAME_RETRY_EXHAUSTED='RETRIES',
+  TRAINING_NAME_READ_ERROR='READ',TRAINING_NAME_OBSERVER_ERROR='OBSERVER'}
+ local code=tostring(reason or 'UNKNOWN'):gsub('[%c%[%]]',' '):sub(1,160)
+ local key=keys[code]
+ return key and Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_REASON_'..key)..' ('..code..')' or code
+end
 function M.UnavailableText(u)
  local v=M.ActivityView(u)
  if v and v.phase=='NAMING' and v.trainingToken then
   local n=ExposedMembers.SPC_ExpeditionTrainingNameStatus
-  if n and n.owner==v.owner and n.unitID==v.unitID and n.teamKey==v.teamKey then
-   if n.status=='STOPPED' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_STOPPED',n.reason or 'UNKNOWN')end
-   if n.status=='WAITING' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_WAITING')end
+  if not n or not n.initialized then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_NOT_STARTED')end
+  if n.status=='ERROR' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_STOPPED',nameReason(n.reason))end
+  if n.owner==v.owner and n.unitID==v.unitID and n.teamKey==v.teamKey and n.trainingToken==v.trainingToken then
+   if n.status=='STOPPED' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_STOPPED',nameReason(n.reason))end
+   if n.status=='WAITING' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_RETRY_WAIT',nameReason(n.reason))end
+   if n.status=='CONFIRMING' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_CONFIRMING')end
+   if n.status=='READING' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_READING')end
+   if n.status=='PENDING' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_PENDING',nameReason(n.reason))end
   end
-  return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_PENDING')
+  return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_NOT_OBSERVED')
  end
  return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_UNAVAILABLE')
 end

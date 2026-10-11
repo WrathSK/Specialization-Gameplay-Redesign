@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0544
-Implementation Build: source/live B203.230 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0545
+Implementation Build: source B204.231; last verified live B203.230 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B203_NAME_RECOVERY_NATIVE_FAIL_INVESTIGATED
+Work State: B204_EVENT_FIRST_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B203.230 panel-independent confirmation has USER_REPORTED_FAIL.** The trained team remained unavailable after prolonged waiting; the user recalls an identity-confirmation message and did not try P0 in this run. [Investigation, precise evidence limits and proposed event-first repair](Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md). No new screenshot was available. The prior457 targeted local PASS remain local evidence; the observer's first read depends on an update callback, and the waiting tooltip cannot prove that observer startup/read occurred. Injected-callback local reproduction is not native root-cause proof.
+**B204.231 event-first confirmation repair is locally complete; 478 targeted tests PASS.** [Applied behavior, exact stage feedback and one minimal native flow](Validation/Results/Specialization_B204_Expedition_Event_First_Local.md). Existing events now attempt the exact-team native read immediately; deferred checks only follow pending facts/acknowledgement. Gate/Store, training costs/cap/source, travel and task behavior are unchanged. No P0 opening is needed by the implementation; native integration remains USER_GAME_TEST_REQUIRED.
 
-Source/live remain **B203.230 / modinfo230 DEVELOP_ACTIVE**, deployed source `aec8c41`, receipt `B203.230-aec8c41-playtest.json`; the existing218/218 deployment verification and retained recovery packages are unchanged. This investigation rechecked only six direct package files (all MATCH); it did not redeploy or re-audit the entire runtime. B202 panel-assisted source/arrival/task scoped PASS remains; B203 P0 recovery was not tested and trained READ no longer submits NAME.
+Last verified live remains **B203.230 / modinfo230 DEVELOP_ACTIVE**, deployed source `aec8c41`, receipt `B203.230-aec8c41-playtest.json`. B203 user-reported failure and its unresolved native cause remain in the [investigation](Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md); callback-withheld local evidence is not a native scheduler diagnosis. B202 panel-assisted and B201 persistence evidence remain scoped, not a PASS for the repaired path.
 
-Next proposed repair: immediate exact-team confirmation attempt from the event path, deferred checks only for genuinely pending facts/acknowledgement, and bounded stage/reason feedback. **Investigation complete; implementation awaits approval.** No new user test requested now. Fixed1T project is a backup proposal, not an accepted replacement for Spy-formula training. Capacity/source, Design, Mod, tests and main unchanged. Reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
+Next authorized action: reviewed commit/push, then guarded B204 deployment if automatic game-exit/hash/recovery gates permit. One normal training with P0 closed → explicit **派遣到新城市** → arrival/source check; if blocked, capture the new stage/reason instead of prolonged waiting. Selection auto-opening is optional; no new save/load or task campaign. Stop at native evidence. Fixed1T training replacement, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
 
 ## S0535 — B201 deployment before native evidence (historical)
 
