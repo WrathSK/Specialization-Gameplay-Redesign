@@ -268,7 +268,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','activityMode','activityOwned','activityKey','activityFailure','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
+   for _,k in ipairs({'trainingToken','sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','activityMode','activityOwned','activityKey','activityFailure','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end

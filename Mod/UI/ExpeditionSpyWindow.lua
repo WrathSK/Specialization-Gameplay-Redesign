@@ -218,7 +218,7 @@ local function render()
  if failure and not activityFailure then o[#o+1]=failureText(v);o[#o+1]=common('ERROR',failure)end
  local trainingError=ExposedMembers.SPC_ExpeditionTrainingUIError or ExposedMembers.SPC_ExpeditionTrainingNameError
  if trainingError then o[#o+1]=L('TRAINING_ERROR',trainingError)end
- o[#o+1]=common('COUNT',v.count or 'UNKNOWN')
+ o[#o+1]=v.trainingToken and L('TRAINED_COUNT',v.count or 'UNKNOWN') or common('COUNT',v.count or 'UNKNOWN')
  if v.reservedCapacity then o[#o+1]=L('RESERVED',v.observedCount or 'UNKNOWN')end
  if v.unitID then o[#o+1]=common('UNIT',v.unitID,v.x,v.y)end
  if not held and (v.legacy or v.unbound)then o[#o+1]=L('UNBOUND')end
@@ -333,7 +333,7 @@ local function reply()
  if action=='CREATE' and not v.error then
   observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;afterPublish=false
   prepareName(v);return true
- elseif action=='READ' and v.phase=='NAMING' and not v.error then
+ elseif action=='READ' and v.phase=='NAMING' and not v.trainingToken and not v.error then
   prepareName(v);return true
  elseif action=='DISPATCH' and not v.error and v.nativePermit and v.nativePermit~=lastNativePermit then
   lastNativePermit=v.nativePermit -- Consume before a native request, including exceptions.

@@ -262,6 +262,12 @@ class Package(unittest.TestCase):
         p=external_database(R);src=sqlite3.connect(p.as_uri()+'?mode=ro',uri=True);db=sqlite3.connect(':memory:');src.backup(db);src.close();db.create_function('Make_Hash',1,lambda s:zlib.crc32(s.encode()))
         k='UNIT_SPC_EXPEDITION_SPY'
         for table,col in [('TypeTags','Type'),('Units','UnitType'),('Types','Type')]:db.execute(f'delete from {table} where {col}=?',(k,))
+        # The read-only loaded DB may already include B202. Reset only this
+        # package's exact definitions in the in-memory copy before reapplying SQL.
+        marker='BUILDING_SPC_EXPEDITION_TRAINING_ACCESS'
+        db.execute('delete from Unit_BuildingPrereqs where Unit=? and PrereqBuilding=?',(k,marker))
+        db.execute('delete from Buildings where BuildingType=?',(marker,))
+        db.execute('delete from Types where Type=?',(marker,))
         tables=['Units','UnitOperations','GlobalParameters','Modifiers','ModifierArguments','UnitAbilities','UnitAbilityModifiers']
         before={t:db.execute(f'select * from {t} order by 1').fetchall() for t in tables}
         db.executescript((R/'Mod/Data/ExpeditionSpyGate.sql').read_text())
@@ -275,7 +281,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select PrereqBuilding,NumSupported from Unit_BuildingPrereqs where Unit=?',(k,)).fetchall(),[('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'229')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'230')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

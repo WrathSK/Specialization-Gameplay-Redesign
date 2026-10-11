@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0541",
-    "runtime": "B202.229 / modinfo229",
+    "status": "S0542",
+    "runtime": "B203.230 / modinfo230",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
-  "goal": "Complete approved normal Expedition training, one saved queue/cap reservation and exact native completion/birth source registration; retain existing name/travel/task gates and non-blocking auto-opening.",
-  "implementation_authorized": false,
+  "goal": "Complete approved bounded independent normal-training name confirmation and diagnostic READ separation, preserving source/capacity/travel/task semantics.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -394,6 +394,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
       "kind": "full",
       "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_name_recovery.py",
+      "kind": "full",
+      "reason": "B203 exact observer retry/ack/diagnostic separation counterexamples"
     }
   ],
   "dependencies": [
@@ -567,17 +572,17 @@
   ],
   "validation": {
     "depth": "L3 targeted queue/source/persistence/handshake plus existing direct gate/UI regressions; no full gameplay or stress.",
-    "local": "437 distinct tests PASS; native cost SQL copy/purchase exclusion/package and actual Lua paths. Native timing/serialization unproven locally.",
-    "user": "One normal training, queued save/cold-load, source/cap/name confirmation then explicit travel/task; no repeated B201 travel-load check."
+    "local": "457 distinct targeted tests PASS; actual Lua observer/Gate/UI and direct inherited training/persistence/task closure; native timing remains pending.",
+    "user": "One normal training with P0 closed, explicit dispatch and arrival/source check; no repeated unchanged save/task campaign."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Native_Review.md",
-    "source": "B202.229/modinfo229 DEVELOP_ACTIVE; deployed source c61524e8d00735bc5b467929152e8c3350f2442f; receipt B202.229-c61524e-playtest.json;218/218 MATCH. Fresh automatic OS game-exit checks before both guarded switches; B201/stable recovery retained, no pending transaction. Native training validation pending.",
-    "native": "Panel-independent explicit dispatch FAIL; source/arrival/task scoped PASS after opening diagnostic panel. Exact native cause UNKNOWN.",
-    "stop": "Await bounded automatic name-confirmation repair approval; no new native test now."
+    "report": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
+    "source": "B203.230 LOCAL_COMPLETE, not deployed; live B202.229 unchanged.",
+    "native": "B203 USER_GAME_TEST_REQUIRED; B202 panel-independent failure and panel-assisted arrival/task PASS preserved.",
+    "stop": "One normal training with P0 closed, explicit dispatch and arrival/source check; no repeated unchanged save/task campaign."
   }
 }

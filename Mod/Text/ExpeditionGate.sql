@@ -565,3 +565,14 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LO
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_SPY_TRAINING_ERROR','训练或自动登记未确认：{1_Reason}。请查看原因并保留报告；未确认的名额不会自动释放。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED','原生生产条件未满足（例如间谍名额不足）；训练未开始，已释放本次预留。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED','原生生产条件未满足（例如间谍名额不足）；训练未开始，已释放本次预留。');
+
+-- B203: normal-training readiness, separate from free diagnostic creation.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TRAINED_COUNT','考察团：{1_Count}／1（城市训练）。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_TRAINED_COUNT','Expedition: {1_Count}/1 (city-trained).'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','正在确认考察团身份，请稍候；无需打开 P0 面板。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','Confirming Expedition identity; please wait. Opening P0 is not required.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','原生姓名暂未就绪。重新选择本团或下个玩家回合会有限重试；名额与来源保留。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','Native name is not ready. Reselect the team or wait for the next player turn for a bounded retry. Capacity and source are retained.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STOPPED','身份确认已暂停：{1_Reason}。请保留此信息；不要另建考察团。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STOPPED','Identity confirmation stopped: {1_Reason}. Preserve this message; do not create another team.');

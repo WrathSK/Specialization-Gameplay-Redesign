@@ -36,6 +36,19 @@ function M.CanOpen(mode,u)
  if mode=='TRAVEL'then return v.phase=='CREATED' or v.phase=='ARRIVED' end
  return mode=='TASK' and v.phase=='ARRIVED' and v.taskStart==nil
 end
+-- Presentation only; this mirror cannot authorize an action or alter saved binding.
+function M.UnavailableText(u)
+ local v=M.ActivityView(u)
+ if v and v.phase=='NAMING' and v.trainingToken then
+  local n=ExposedMembers.SPC_ExpeditionTrainingNameStatus
+  if n and n.owner==v.owner and n.unitID==v.unitID and n.teamKey==v.teamKey then
+   if n.status=='STOPPED' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_STOPPED',n.reason or 'UNKNOWN')end
+   if n.status=='WAITING' then return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_WAITING')end
+  end
+  return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_PENDING')
+ end
+ return Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_UNAVAILABLE')
+end
 -- Native-like selection routing is presentation only. Read the selected team's
 -- current city through the native city lookup; unreadable facts never guess a
 -- mission menu from a foreign-owned plot or a saved target. Keep ordinary Spy

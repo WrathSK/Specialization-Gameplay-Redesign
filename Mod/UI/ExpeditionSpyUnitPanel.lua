@@ -13,7 +13,7 @@ function GetUnitActionsTable(u)
  local function add(mode,icon,key,hash)
   local enabled=R.CanOpen(mode,u)
   local label=Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_'..key)
-  if not enabled then label=label..'[NEWLINE]'..Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_UNAVAILABLE')end
+  if not enabled then label=label..'[NEWLINE]'..R.UnavailableText(u)end
   AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not enabled,label,hash,function()
    local selected=UI.GetHeadSelectedUnit()
    if R.IsTeam(selected) and selected:GetOwner()==owner and selected:GetID()==id and R.CanOpen(mode,selected)then

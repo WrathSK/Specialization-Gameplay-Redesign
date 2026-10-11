@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="229">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="230">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B202.229: normal Expedition training with reserved capacity and verified source binding; existing travel and no-reward task retained.</Description>
+    <Description>B203.230: bounded panel-independent Expedition name confirmation; capacity, source, travel and task behavior retained.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

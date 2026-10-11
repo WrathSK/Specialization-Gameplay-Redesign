@@ -74,12 +74,16 @@ class ProductionAdapter(unittest.TestCase):
 def naming():
  l=ui();l.execute('''
  include=function()end;SPCP0=P;elapsed=0;nameReads=0;calls=0
- ContextPtr={SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetShutdown=function(self,fn)shutdown=fn end}
+ ContextPtr={SetUpdate=function(self,fn)update=fn end,ClearUpdate=function()update=nil end,SetShutdown=function(self,fn)shutdown=fn end,SetInitHandler=function(self,fn)initializeName=fn end}
  Events.GameCoreEventPublishComplete.Remove=function()end;Events.LoadScreenClose.Remove=function()end
+ Events.LocalPlayerTurnBegin={Add=function(fn)nameTurn=fn end,Remove=function()nameTurn=nil end}
+ Events.UnitSelectionChanged={Add=function(fn)nameSelection=fn end,Remove=function()nameSelection=nil end}
+ UI.GetHeadSelectedUnit=function()return {GetOwner=function()return selectedOwner or 2 end,GetID=function()return selectedID or 50 end}end
+
  SPCExpeditionSpyRead={NativeName=function(pid,id)nameReads=nameReads+1;return {status=nameStatus or 'READY',name='LOC_CITIZEN_TEST_A',reason='TEST_ERROR'}end}
  UI.RequestPlayerOperation=function(pid,op,p)calls=calls+1;lastName=p;if direct then shared.ExpeditionGate.Request(pid,p)end end
  function mirror()ExposedMembers.SPC_ExpeditionActivity={owner=2,unitID=50,teamKey='K',phase='NAMING',trainingToken='r'}end
- ''');l.execute((R/'Mod/UI/ExpeditionTrainingName.lua').read_text());return l
+ ''');l.execute((R/'Mod/UI/ExpeditionTrainingName.lua').read_text());l.execute('initializeName()');return l
 class Name(unittest.TestCase):
  def test_default_idle_no_polling(self):
   l=naming();l.execute("hooks.GameCoreEventPublishComplete();assert(update==nil and calls==0)")
@@ -92,5 +96,5 @@ class Name(unittest.TestCase):
  def test_full_training_automatic_binding_without_panel(self):
   l=naming();l.execute("adapter.Before(city,{Type=kind},false);adapter.Pulse();adapter.Pulse();born();entries={};complete();pulse();direct=true;hooks.GameCoreEventPublishComplete();update(.25);assert(state().phase=='CREATED' and state().sourceCity==1 and state().nameVerified)")
  def test_name_ack_error_preserved(self):
-  l=naming();l.execute("mirror();hooks.GameCoreEventPublishComplete();update(.25);ExposedMembers.SPC_ExpeditionGateReply={token=lastName.Token,error='ERR'};update(.25);assert(ExposedMembers.SPC_ExpeditionTrainingNameError=='ERR')")
+  l=naming();l.execute("mirror();hooks.GameCoreEventPublishComplete();update(.25);ExposedMembers.SPC_ExpeditionGateReply={owner=2,token=lastName.Token,error='ERR'};update(.25);assert(ExposedMembers.SPC_ExpeditionTrainingNameError=='ERR')")
 if __name__=='__main__':unittest.main()
