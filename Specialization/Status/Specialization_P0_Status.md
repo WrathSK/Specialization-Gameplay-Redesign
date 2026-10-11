@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0497
+Status Revision: S0498
 Implementation Build: source/live B187.214 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B187_CONTROLLED_NAME_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B187_NAME_PREFLIGHT_FAILED_AWAITING_READINESS_REPAIR_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B187.214 name preparation failed before dispatch.** [Two-image native review and actual-module counterexample](Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md): UI exact-unit guard stops before NAME_UNIT submission; source/reference and cap1 remain retained. Immediate CREATE-reply naming cannot tolerate delayed UI unit publication. Exact native failing operand remains UNKNOWN; arrival/name survival, task and END were not tested. Previous98 local checks retain their scoped evidence.
+
+Recorded source/live remains **B187.214 / modinfo214**, source `198234b`, receipt `B187.214-198234b-playtest.json`, last verified211/211 MATCH. This review archives evidence and updates documentation only; no deployment or runtime re-verification, main/stable unchanged.
+
+Next proposal: bounded exact-unit UI readiness before one rename command, specific failure diagnostics and separate-context local tests. **Await repair approval; no unchanged B187 retest.** [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held.
+
+## S0497 — B187 deployment checkpoint (historical)
 
 **B187.214 controlled-name prototype locally complete; native verification pending.** [98 targeted checks and one session](Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md): exact native name command/readback before dispatch, unique name/current-ID/source/target agreement at arrival, unchanged cap1/source and independent no-reward2T task/END. B186 marker-loss evidence remains frozen; no guessed city-name binding or Property copying.
 

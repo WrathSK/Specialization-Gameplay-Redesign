@@ -1,17 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B186_NATIVE_MARKER_ABSENT_AWAITING_NAME_PROTOTYPE_REVIEW / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B187_NAME_PREFLIGHT_FAILED_AWAITING_READINESS_REPAIR_REVIEW / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B187.214: authorized controlled-name prototype,98 local methods PASS; native pending.** [Implementation and minimal session](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) replaces only B186's failed custom Property continuity. NAME_UNIT submits once for the exact owned custom Spy; raw name readback in Gameplay must succeed before dispatch. Controlled label/key identifies the session team; the existing source reference remains city authority.
+**B187.214 native name preparation FAIL; readiness repair proposed, not yet authorized.** [Native observations, actual-module counterexample and bounded plan](../../Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md) show the initial UI exact-unit guard stops before NAME_UNIT submission. CREATE reply immediately starts naming without waiting for UI unit publication; delayed publication reproduces the error locally. The exact native guard operand remains UNKNOWN. No evidence yet rejects the controlled-name transport itself.
 
-Arrival requires unique exact type/owner/name plus actual current-ID lookup, source and target. Old-ID aliases/unknown names never authorize adoption. Own cap1, off-map reservation, temporary native-slot cost and independent no-reward2T timer/END are unchanged. No city/player/unit Property writes or new saved registry. The [B186 marker counterexample](../../Status/Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md) stays frozen.
+Own count1/source reference remain retained. Arrival/name survival, independent no-reward2T task and END are NOT_TESTED in this submission. The [98-method local checkpoint](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) and B186 marker-loss evidence stay frozen; delayed name readback coverage did not cover delayed UI unit availability.
 
-One native session: verified name → arrival → no-reward task → END. Stop before dispatch if renaming/readback fails; stop before task on unbound arrival. Prior unchanged lifecycle evidence is inherited; no cold-load campaign. Prototype session state intentionally does not reconstruct itself from a saved name. Formal training/saved journey/reattachment, N2/N3/U2/rewards and icons remain held; source/live/authorization stay in Status. Future reattachment would retain team key while changing the authoritative source record and label, only under its separate approved lifecycle.
+Proposed fix: bounded read-only exact-unit readiness before one rename request; distinguish absence from definite ID/owner/type mismatch; post-creation native audit at readiness; preserve raw-name/Gameplay confirmation before dispatch and close/timeout cancellation. Add separate UI/Gameplay visibility cases. No cap/source/Spy/task/Store/Design changes. **Await approval; no unchanged-package retest.** After repair, reuse name → arrival → no-reward task → END in one session, without a cold-load ritual.
+
+Controlled name/key remains only the prototype team's continuity evidence; the existing exact source record remains city authority. Cold load cannot reconstruct the test session from a name. Formal training/persistence/reattachment, N2/N3/U2/rewards and icons remain held; source/live/authorization stay in Status. Future reattachment remains a separate authorized lifecycle.
 
 
 ## 三种状态与已定数值

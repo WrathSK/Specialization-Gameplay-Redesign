@@ -253,3 +253,7 @@ Supersedes B185's awaiting-authorization instruction: user approved the narrow r
 ## B187 — controlled-name continuity / one session pending
 
 Supersedes B186's awaiting-approval instruction. [98 local checks and minimal native flow](Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md#one-minimal-native-session): verify assigned raw name before dispatch → arrival with same key/exact source → independent no-reward2T task → END. Stop on rename failure/unbound arrival; no unchanged B186 repetition or cold-load ritual. Own cap1/source and temporary native-slot cost unchanged. Deployment eligibility is current Status/receipt, not this queue; formal N1/N2/N3/U2/rewards held.
+
+## B187 — name preflight failed; session stopped
+
+[Native review and proposed readiness repair](Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md) supersede the pending B187 instructions above. Two T86 screenshots stop before naming/dispatch; source/cap retained. Local delayed-UI-publication reproduction sends zero name/travel commands. Exact native guard operand remains unknown. **No unchanged B187 retest; await repair approval.** After a checked repair, resume the same name → arrival → no-reward task → END session. No save/load campaign or formal N1/N2/N3/U2.

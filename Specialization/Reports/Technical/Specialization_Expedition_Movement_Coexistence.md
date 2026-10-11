@@ -1,6 +1,12 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B187 controlled-name prototype locally complete; native pending.** [98 targeted checks and one-session gate](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) implement the user-approved follow-up to B186 marker absence. Exact name assignment/readback precedes dispatch; name/current-ID/source/target checks govern arrival. Own cap/source and no-reward task remain separate. Earlier records below retain their chronological evidence/authorization limits; source/live status is in Status.
+Date: 2026-10-10. **B187 native preparation failed before dispatch; readiness repair proposed.** [98 targeted checks and one-session gate](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) record the user-approved follow-up to B186 marker absence; its native session is now stopped at preparation. Exact name assignment/readback precedes dispatch; name/current-ID/source/target checks govern arrival. Own cap/source and no-reward task remain separate. Earlier records below retain their chronological evidence/authorization limits; source/live status is in Status.
+
+## B187 pre-dispatch UI readiness failure
+
+[Two-image review and local counterexample](../../Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md): source/cap retained, default name, UI exact-unit guard fails before NAME_UNIT. CREATE reply currently starts naming immediately; its later readback wait cannot handle a unit not yet published into UI. Actual modules reproduce this with separate Gameplay/UI visibility, zero rename/travel calls and no recovery after late publication. Exact native failing operand remains UNKNOWN; name eligibility/travel survival is not disproved.
+
+Recommend one bounded readiness step and precise mismatch diagnostics before the existing one-command/readback path, retaining close/timeout cancellation and ordinary-Spy checks. Await approval; no implementation or unchanged-package retest. The original98 local checks and frozen result remain scoped evidence, not coverage of this new timing counterexample.
 
 ## B187 controlled-name implementation boundary
 
