@@ -162,8 +162,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 -- B184 Spy=1 isolation prototype (old keys retained).
 INSERT INTO LocalizedText(Language,Tag,Text) VALUES
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME','人文考察团·间谍隔离验证'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_NAME','Humanities Expedition: Spy isolation probe'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME','人文考察团'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME','Humanities Expedition'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','独立容量/来源绑定的验证团；暂占1个原生间谍名额。自有计时任务，无奖励，不执行原生间谍任务。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','Own capacity/source probe; temporarily uses one native Spy slot. Independent timer, no reward or native Spy mission.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TITLE','人文考察·Spy=1隔离验证'),
@@ -555,3 +555,13 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_RESTORED','Restored from save'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','无法可靠读取；容量保留，禁止新建'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','Record unavailable; capacity reserved, creation blocked');
+
+-- B202 normal training presentation.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_HELP','文化专业ACTIVE IV可训练；全国上限1支，队列亦占用名额。生产成本沿用间谍公式，考察团次数独立累计。训练完成后自动绑定来源城；请使用派遣到新城市／任务按钮。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TRAINING','训练中（名额已保留）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_TRAINING_HELP','文化专业ACTIVE IV可训练；全国上限1支，队列亦占用名额。生产成本沿用间谍公式，考察团次数独立累计。训练完成后自动绑定来源城；请使用派遣到新城市／任务按钮。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TRAINING','训练中（名额已保留）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TRAINING_ERROR','训练或自动登记未确认：{1_Reason}。请查看原因并保留报告；未确认的名额不会自动释放。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_SPY_TRAINING_ERROR','训练或自动登记未确认：{1_Reason}。请查看原因并保留报告；未确认的名额不会自动释放。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED','原生生产条件未满足（例如间谍名额不足）；训练未开始，已释放本次预留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED','原生生产条件未满足（例如间谍名额不足）；训练未开始，已释放本次预留。');

@@ -6,6 +6,15 @@ Latest Draft Design Revision: NONE
 Latest Accepted Design Revision: D0049
 Document State: ACCEPTED
 
+## Accepted D0049 clarification — 2026-10-11
+
+用户对人文考察团训练成本明确选择：**Use the same formula, counting Expeditions separately**。沿用加载规则中的间谍生产基础成本／递增公式，但普通间谍生产次数不计入考察团递增次数。该澄清取代“当前间谍成本”可能被误读为普通间谍下一份报价的解释，不另定固定数值／速度表，也不授权Gold/Faith购买。只澄清原有训练成本条款；其它能力、任务及生命周期规则不变。
+
+Current clarified Spec SHA256: 22a7d50b6539c4e3b7762f1a7d4287e64712b6d382b9cd14b5a14ba6b9ca25d6
+Current clarified Culture Content SHA256: 2c8ceaf48909de9e374178b4fbef5985ef8a546e449ee22be5f39806f6e218e0
+
+下方2026-10-08原接受记录及其hash保持原样，代表澄清前的接受证据；本条不是重写旧冻结结果，也不宣称技术实现已通过实机。
+
 ## Accepted D0049 — 2026-10-08
 
 Acceptance: ACCEPTED / Great Works Inspiration current-era city-wide GPP percentage; implementation/native validation pending

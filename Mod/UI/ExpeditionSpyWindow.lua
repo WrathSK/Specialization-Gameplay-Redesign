@@ -216,6 +216,8 @@ local function render()
  end
  if nameStage and not held then o[#o+1]=L('NAME_STAGE',L('NAME_STAGE_'..nameStage),nameReason or '—')end
  if failure and not activityFailure then o[#o+1]=failureText(v);o[#o+1]=common('ERROR',failure)end
+ local trainingError=ExposedMembers.SPC_ExpeditionTrainingUIError or ExposedMembers.SPC_ExpeditionTrainingNameError
+ if trainingError then o[#o+1]=L('TRAINING_ERROR',trainingError)end
  o[#o+1]=common('COUNT',v.count or 'UNKNOWN')
  if v.reservedCapacity then o[#o+1]=L('RESERVED',v.observedCount or 'UNKNOWN')end
  if v.unitID then o[#o+1]=common('UNIT',v.unitID,v.x,v.y)end

@@ -2,12 +2,12 @@
 -- callers own phase/native-action semantics. No retries, migration or cleanup here.
 SPCExpeditionSpyStore={PREFIX='SPC_EXPEDITION_TEAM_P'}
 local M=SPCExpeditionSpyStore
-local phases={CREATING=true,NAMING=true,CREATED=true,TRAVELLING=true,ARRIVED=true,
+local phases={TRAINING=true,CREATING=true,NAMING=true,CREATED=true,TRAVELLING=true,ARRIVED=true,
  TASK_PREPARING=true,TASK_RUNNING=true,TASK_COMPLETE=true,HELD=true,ENDING=true,ENDED=true}
 local numbers={owner=true,unitID=true,createdID=true,sourceCity=true,x=true,y=true,
- startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true}
-local booleans={nameVerified=true,activityOwned=true,activityPending=true,sleepConfirmed=true}
-local strings={sourceName=220,sourceRef=2048,expectedName=220,teamKey=100,
+ trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true}
+local booleans={trainingQueued=true,trainingCompleted=true,nameVerified=true,activityOwned=true,activityPending=true,sleepConfirmed=true}
+local strings={trainingToken=100,sourceName=220,sourceRef=2048,expectedName=220,teamKey=100,
  activityKey=100,activityMode=32,stop=100,errorStep=100,errorDetail=220}
 local modes={NONE=true,SLEEP=true,ARMED=true,ASLEEP=true,RELEASE=true,BLOCKED=true}
 local function integer(v)
@@ -42,7 +42,11 @@ local function state(value,pid)
   out[key]=v
  end
  local phase=out.phase
- if phase~='CREATING' and phase~='HELD' and phase~='ENDING' and phase~='ENDED' then
+ if phase=='TRAINING' then
+  for _,k in ipairs({'sourceCity','sourceName','sourceRef','x','y','trainingToken','trainingTurn'})do if out[k]==nil then return nil end end
+  if out.unitID~=nil or out.teamKey~=nil or out.expectedName~=nil then return nil end
+ end
+ if phase~='TRAINING' and phase~='CREATING' and phase~='HELD' and phase~='ENDING' and phase~='ENDED' then
   for _,k in ipairs({'unitID','createdID','sourceCity','sourceRef','x','y','teamKey'})do
    if out[k]==nil then return nil end
   end

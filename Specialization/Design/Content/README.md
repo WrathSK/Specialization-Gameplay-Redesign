@@ -13,6 +13,8 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Culture D0049](Culture_D0049.json)为当前文化结构化正文：巨作启迪在原ACTIVE IV／合格作品池下，按本城当前不同巨作时代E（0–7）给予全部伟人类别+3%×E，含文艺伟人，最高+21%；不使用D或作品总数，不增加项目、计时器或永久历史。取代旧0.1D×W基础GPP及文艺排除。百分比接口、类别覆盖、小数累计、叠加与生命周期仍待验证；不授权实现或改变优先级。[接受记录](../Design_ChangeLog.md#accepted-d0049--2026-10-08)。以下修订段保留当时背景，不覆盖D0049。
 
+2026-10-11：[考察团成本澄清](../Design_ChangeLog.md#accepted-d0049-clarification--2026-10-11)采用当前间谍公式、考察团次数独立累计；不是普通间谍下一份报价。其余D0049规则不变。
+
 ## D0048 — 意义延展主题化暂行首测规则
 
 [Culture D0048](Culture_D0048.json)为当前文化结构化正文：Meaning追加允许原生主题化，v0.1暂接受／Balance待实测，仍不被Dialogue放大。K0.5、逐领域Floor、份额／W、九域六产出Design及其它能力／历史保持；不把B165 Writing×2推广为固定公式。Culture运行追加仍隔离，不等于自动writer或正Dialogue／精确结算已通过。[接受记录](../Design_ChangeLog.md#accepted-d0048--2026-10-05)。Shared／Industry／Commerce D0045、Research D0040、Government D0047、Military／Harbor D0037原件不改。

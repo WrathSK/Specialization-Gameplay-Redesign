@@ -6,7 +6,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
  local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
  local Store=SPCExpeditionSpyStore
- local fields={'owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
+ local fields={'trainingToken','trainingBorn','trainingReceiptTurn','trainingTurn','trainingQueued','trainingCompleted','owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
  local function savedState()
   local out={};for _,k in ipairs(fields)do out[k]=state[k]end
   if state.target then out.target={};for _,k in ipairs({'name','owner','id','x','y'})do out.target[k]=state.target[k]end end
@@ -30,7 +30,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     if type(v)=='table'then state[k]={};for a,b in pairs(v)do state[k][a]=b end else state[k]=v end
    end;restored=true
    recovering=state.activityMode=='SLEEP' or state.activityMode=='ARMED' or state.activityMode=='ASLEEP' or state.activityMode=='RELEASE'
-   if state.phase=='CREATING' or state.phase=='ENDING' then
+   if state.phase=='CREATING' or state.phase=='ENDING' or (state.phase=='TRAINING' and (state.trainingBorn or state.trainingCompleted)) then
     state.phase='HELD';state.stop='EXPEDITION_NATIVE_TRANSACTION_UNCONFIRMED'
    end
   end
@@ -48,7 +48,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  -- Scalar transition mirror, independent of explicit diagnostic snapshots.
  local revision=0;local published={}
  local function publishActivity()
-  local v={owner=state.owner,unitID=state.unitID,expectedName=state.expectedName,x=state.x,y=state.y,
+  local v={trainingToken=state.trainingToken,owner=state.owner,unitID=state.unitID,expectedName=state.expectedName,x=state.x,y=state.y,
    teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,sleepConfirmed=state.sleepConfirmed==true,
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
    taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,error=state.stop,activityFailure=state.activityFailure}
@@ -330,7 +330,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if p.Action=='READ' then return snapshot(pid)end
   assert(not storeBlocked,'EXPEDITION_STORE_UNAVAILABLE')
   if p.Action=='CREATE' then
-   assert(state.phase~='CREATING' and state.phase~='HELD' and (not state.unitID or state.phase=='ENDED'),'SPAWN_UNCERTAIN_NO_RETRY')
+   assert(state.phase~='TRAINING' and state.phase~='CREATING' and state.phase~='HELD' and (not state.unitID or state.phase=='ENDED'),'SPAWN_UNCERTAIN_NO_RETRY')
    assert(#list(pid)==0,'EXISTING_TEST_TEAM_COUNTS')
    local c=Players[pid]:GetCities():FindID(p.CityID)
    assert(c and c:GetOwner()==pid and c:GetID()==p.CityID,'OWN_CITY_REQUIRED')
@@ -476,6 +476,62 @@ function SPCExpeditionSpyGate.Start(P,shared)
  for pid in pairs(Players)do if P.IsTestPlayer(pid)then load(pid);break end end
  publishActivity() -- Restored activity is observation-only until a fresh UI sample.
  local data={};shared.ExpeditionGate=data
+ -- Training shares this exact saved reservation with creation/travel. The
+ -- adapter owns native event correlation; it cannot write this record directly.
+ data.Training={}
+ local T=data.Training
+ function T.Read(pid)
+  load(pid);local v=savedState();v.blocked=storeBlocked;return v
+ end
+ function T.Available(pid)
+  load(pid)
+  return not storeBlocked and not busy and (not state.phase or state.phase=='ENDED') and #list(pid)==0
+ end
+ function T.Reserve(pid,cid,token)
+  assert(P.IsTestPlayer(pid) and T.Available(pid),'TRAINING_CAPACITY_RESERVED')
+  local c=Players[pid]:GetCities():FindID(cid)
+  assert(c and c:GetOwner()==pid,'OWN_CITY_REQUIRED')
+  local f=shared.EffectiveFacts.Read(pid,c)
+  assert(f.specialization=='CULTURE' and f.active==4 and not f.investmentPending,'CULTURE_ACTIVE_IV_REQUIRED')
+  assert(f.token and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')==f.token,'SOURCE_REFERENCE_UNKNOWN')
+  namePool(pid)
+  local ref=SPCNetworkInput.Reference(c);assert(type(ref)=='string' and #ref>0,'SOURCE_REFERENCE_UNKNOWN')
+  state={owner=pid,phase='TRAINING',sourceCity=cid,sourceName=c:GetName(),sourceRef=ref,x=c:GetX(),y=c:GetY(),trainingToken=token,trainingTurn=Game.GetCurrentGameTurn()}
+  save(true);source();publishActivity()
+ end
+ function T.Evidence(pid,token,field,value)
+  assert(not storeBlocked and state.owner==pid and state.phase=='TRAINING' and state.trainingToken==token,'TRAINING_RESERVATION_CHANGED')
+  source()
+  assert(field=='trainingQueued' or field=='trainingBorn' or field=='trainingCompleted','TRAINING_BAD_EVIDENCE')
+  if field=='trainingBorn' then
+   assert(int(value) and (not state.trainingBorn or state.trainingBorn==value),'TRAINING_MULTIPLE_BIRTHS')
+   local u=owned(pid,value);assert(u:GetX()==state.x and u:GetY()==state.y,'TRAINING_BIRTH_ENDPOINT_CHANGED')
+  else assert(value==true,'TRAINING_BAD_EVIDENCE')end
+  state[field]=value
+  if field~='trainingQueued' and not state.trainingReceiptTurn then state.trainingReceiptTurn=Game.GetCurrentGameTurn()end
+  save();source();publishActivity()
+ end
+ function T.Finish(pid,token)
+  assert(not storeBlocked and state.owner==pid and state.phase=='TRAINING' and state.trainingToken==token,'TRAINING_RESERVATION_CHANGED')
+  assert(state.trainingQueued and state.trainingCompleted and state.trainingBorn,'TRAINING_RECEIPT_INCOMPLETE')
+  source();local all=list(pid);assert(#all==1 and all[1]:GetID()==state.trainingBorn,'TRAINING_UNIT_AMBIGUOUS')
+  local u=owned(pid,state.trainingBorn)
+  assert(u:GetX()==state.x and u:GetY()==state.y,'TRAINING_BIRTH_ENDPOINT_CHANGED')
+  state.unitID=u:GetID();state.createdID=state.unitID
+  state.teamKey=string.format('E%X-%X-%X',pid,state.createdID,envelope.generation)
+  state.phase='NAMING';state.nameVerified=false
+  state.trainingReceiptTurn=nil;state.trainingBorn=nil;state.trainingCompleted=nil;state.trainingQueued=nil;state.trainingTurn=nil
+  save();source();local confirmed=owned(pid,state.unitID)
+  assert(confirmed:GetX()==state.x and confirmed:GetY()==state.y,'TRAINING_BIRTH_ENDPOINT_CHANGED')
+  publishActivity()
+ end
+ function T.Cancel(pid,token)
+  assert(not storeBlocked and state.owner==pid and state.phase=='TRAINING' and state.trainingToken==token,'TRAINING_RESERVATION_CHANGED')
+  assert(not state.trainingBorn and not state.trainingCompleted and #list(pid)==0,'TRAINING_OUTCOME_UNKNOWN')
+  source();state={owner=pid,phase='ENDED'};save();publishActivity()
+ end
+ function T.Hold(err)hold(err);publishActivity()end
+
  function data.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token==0 or #p.Token>100 then return end
   if busy then return end

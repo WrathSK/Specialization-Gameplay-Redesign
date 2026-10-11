@@ -1,5 +1,7 @@
 # Expedition normal training — implementation preflight
 
+**Superseded preflight; correction 2026-10-11:** the80/10 DB observation below came from an obsolete2023 outer cache, not current HD. Installed HD SQL and the current nested DB use60/15. [B202 implementation, source evidence and scoped validation](../../Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md) closes the local implementation checkpoint; native verification remains pending. Earlier observations below are retained as the original preflight, not current instructions.
+
 Date: 2026-10-11. User approved the normal-training/source-registration slice following B201. This checkpoint records a bounded technical dependency; it does not withdraw that approval, enable training, or establish native impossibility. No B202 build or deployment has been produced.
 
 ## Explicit cost clarification

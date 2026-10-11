@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0538",
-    "runtime": "B201.228 / modinfo228",
+    "status": "S0539",
+    "runtime": "B202.229 / modinfo229",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Complete the approved B201 bounded player-owned Expedition identity/source/travel/task persistence, confirmed pre-action readback/reservation and fresh load/activity recovery. Include deferred B200 selection/card delta, without normal training, repeat missions or rewards.",
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
+  "goal": "Complete approved normal Expedition training, one saved queue/cap reservation and exact native completion/birth source registration; retain existing name/travel/task gates and non-blocking auto-opening.",
   "implementation_authorized": true,
   "context": [
     {
@@ -36,8 +36,8 @@
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
       "kind": "section",
-      "selector": "## Next proposed slice — persistent team and source recovery",
-      "reason": "Complete approved B201 minimum implementation/ownership/failure contract, native gate and held future scope; previous proposal is now locally implemented."
+      "selector": "## Next functional slice — normal training and source registration",
+      "reason": "Current approved training/source/queue contract and pending native scope; existing persistence contract inherited unless changed."
     },
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
@@ -354,13 +354,54 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md",
       "kind": "full",
       "reason": "Current scoped persistence native evidence and selection UI failure; exact rejection unknown, repair approval required."
+    },
+    {
+      "path": "Mod/ExpeditionTraining.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/ExpeditionTrainingUI.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/ExpeditionTrainingName.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/ExpeditionTrainingName.xml",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/CrewProjectOrder.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training.py",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_ui.py",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
     }
   ],
   "dependencies": [
     "Exact EffectiveFacts creation qualification and NetworkInput.Reference source; native pool/name plus owner/type/endpoint evidence. One bounded saved player record reserves cap1 across off-map/load and confirmed END; no new cityKey or city-history schema.",
     "ExpeditionSpyStore copied schema/generation/revision and exact single-write readback; failed/corrupt/unknown outcomes quarantine capacity. CityProgressionStore is unchanged; its reviewed Property primitive is reused through P.SetProperty.",
     "Native engine owns units/travel/activity; logical Gate state survives load. Transient native permits/callback tokens/diagnostics never authorize replay. Independent UI re-observes activity and persists ARMED acknowledgement before any native SLEEP.",
-    "Existing native/HD chooser/popup/UnitPanel exact-type isolation and B200 presentation-only selection remain. Exact logical task/team keys correlate accepted task replies; task timer requires observed SLEEP; only fresh owned sleep may release."
+    "Existing native/HD chooser/popup/UnitPanel exact-type isolation and B200 presentation-only selection remain. Exact logical task/team keys correlate accepted task replies; task timer requires observed SLEEP; only fresh owned sleep may release.",
+    "B202 one saved TRAINING source/cap reservation precedes exact marker/native queue; fresh UI GetAt bridge + matching native city/type completion + one new exact-type birth. No position-only adoption or empty-queue cancellation inference. Production UI observes explicit remove/replace intent; bounded independent name observer reuses existing Gate NAME validation."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -515,28 +556,28 @@
       ]
     },
     {
-      "trigger": "Continue approved normal-training implementation; exact queue/provenance contract and accepted cost clarification",
+      "trigger": "Trace superseded training preflight / obsolete cache mistake; implementation contract is the current training slice and B202 result.",
       "paths": [
         "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md"
       ]
     }
   ],
   "non_scope": [
-    "No formal N1 completeness, normal training, reattachment/repeat missions, broader civilization support, N2/N3/U2/rewards, new city history/schema, accepted Design change, general Store rewrite, GC, main or external Mod edits. Guarded authorized deployment is separate from source validation."
+    "No full N1 release, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards, new city-history schema, unrelated Design, general Store/GC/main/HD changes. No auto-open gate. Deployment remains separate."
   ],
   "validation": {
-    "depth": "L3 targeted persistence/action ownership/recovery counterexamples plus directly affected B200 UI/ACK/package regression; no broad gameplay/stress.",
-    "local": "383 distinct focused tests PASS. Actual Gate/Store/UI bridge independent contexts, strict readback/schema, unit replacement, source/UNKNOWN/fault isolation, durable ARM and recovery/cleanup; native serialization not simulated proof.",
-    "user": "Three-image B201 native review and user clarification recorded. No unchanged-package retest requested; future approved repair should use one selection/card UI session without repeating persistence."
+    "depth": "L3 targeted queue/source/persistence/handshake plus existing direct gate/UI regressions; no full gameplay or stress.",
+    "local": "437 distinct tests PASS; native cost SQL copy/purchase exclusion/package and actual Lua paths. Native timing/serialization unproven locally.",
+    "user": "One normal training, queued save/cold-load, source/cap/name confirmation then explicit travel/task; no repeated B201 travel-load check."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md",
-    "source": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Scoped B201 persistence sequence PASS; selection-opening USER_REPORTED_FAIL. This review does not re-inspect runtime.",
-    "native": "Scoped USER_GAME_TEST_PASS: saved travelling team/source/cap, loaded arrival ID replacement and subsequent no-reward task/release. USER_REPORTED_FAIL: idle selection auto-open at home and abroad. END/card rendering unobserved; exact failing predicate UNKNOWN.",
-    "stop": "Approved normal-training/source-registration implementation: establish exact native queue/provenance contract, synchronize user-confirmed Spy-formula with separate Expedition copy history, then implement/validate. No source change/build yet; auto-open non-blocking, N2/N3 held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
+    "source": "B202.229 source LOCAL_COMPLETE, not deployed; live B201.228 receipt unchanged.",
+    "native": "B202 USER_GAME_TEST_REQUIRED. Inherit scoped B201 persistence acceptance; auto-open failure non-blocking.",
+    "stop": "One normal training, queued save/cold-load, source/cap/name confirmation then explicit travel/task; no repeated B201 travel-load check."
   }
 }

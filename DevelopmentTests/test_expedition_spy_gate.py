@@ -267,11 +267,15 @@ class Package(unittest.TestCase):
         db.executescript((R/'Mod/Data/ExpeditionSpyGate.sql').read_text())
         for t in tables:
             after=db.execute(f'select * from {t}'+(' where UnitType != ?' if t=='Units' else '')+' order by 1',(k,) if t=='Units' else ()).fetchall();self.assertEqual(before[t],after,t)
-        self.assertEqual(db.execute('select Spy,IgnoreMoves,Stackable,CanTrain,CanCapture,CanRetreatWhenCaptured,CanEarnExperience,PromotionClass from Units where UnitType=?',(k,)).fetchone(),(1,1,1,0,0,0,0,'PROMOTION_CLASS_SPY'))
+        self.assertEqual(db.execute('select Spy,IgnoreMoves,Stackable,CanTrain,CanCapture,CanRetreatWhenCaptured,CanEarnExperience,PromotionClass from Units where UnitType=?',(k,)).fetchone(),(1,1,1,1,0,0,0,'PROMOTION_CLASS_SPY'))
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
+        columns='Cost,CostProgressionModel,CostProgressionParam1'
+        self.assertEqual(db.execute('select '+columns+' from Units where UnitType=?',(k,)).fetchone(),db.execute("select "+columns+" from Units where UnitType='UNIT_SPY'").fetchone())
+        self.assertIsNone(db.execute('select PurchaseYield from Units where UnitType=?',(k,)).fetchone()[0])
+        self.assertEqual(db.execute('select PrereqBuilding,NumSupported from Unit_BuildingPrereqs where Unit=?',(k,)).fetchall(),[('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'228')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'229')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

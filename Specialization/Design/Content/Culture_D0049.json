@@ -293,14 +293,14 @@
         "en_US_reference": null
       },
       "tooltip": {
-        "zh_CN": "文化四级可以训练人文考察团，生产成本等于当前间谍生产成本。当前玩家全国同时最多存在1支，来源退出或等待重新挂靠的现存单位仍计入。前往其它文明开展风土考察、艺文采撷和奇观巡礼；标准速度每项任务2回合，部署耗时另算。每个来源城市对每个外国文明的每类考察只能成功完成一次，每次获得1份文化见闻，使来源文化四级城市整体旅游业绩增加2个百分点，并可通过国内文化网络传播其价值。考察完成后单位保留，可继续考察；不能被敌方捕获或转换Owner。",
+        "zh_CN": "文化四级可以训练人文考察团，生产成本沿用当前间谍生产成本公式，已生产考察团次数独立累计，不受普通间谍生产次数影响。当前玩家全国同时最多存在1支，来源退出或等待重新挂靠的现存单位仍计入。前往其它文明开展风土考察、艺文采撷和奇观巡礼；标准速度每项任务2回合，部署耗时另算。每个来源城市对每个外国文明的每类考察只能成功完成一次，每次获得1份文化见闻，使来源文化四级城市整体旅游业绩增加2个百分点，并可通过国内文化网络传播其价值。考察完成后单位保留，可继续考察；不能被敌方捕获或转换Owner。",
         "en_US": null
       },
-      "mechanical_contract": "Train non-hostile expedition at ACTIVE4 with cost exactly equal to current Spy production cost and Player-wide existing-Team cap1. All surviving own Teams count, including source-exited or waiting-reattachment units; check before new training, no automatic deletion of surviving units. contracts.expedition/observations govern independent unit use, source-transfer abort and free archive reattachment; source downgrade/Identity exit/REALLOCATING do not revoke existing missions. Shared professional-unit protection applies; no enemy capture or Owner conversion.",
+      "mechanical_contract": "Train non-hostile expedition at ACTIVE4 with cost following the current Spy production cost formula with Expedition copies counted separately and Player-wide existing-Team cap1. All surviving own Teams count, including source-exited or waiting-reattachment units; check before new training, no automatic deletion of surviving units. contracts.expedition/observations govern independent unit use, source-transfer abort and free archive reattachment; source downgrade/Identity exit/REALLOCATING do not revoke existing missions. Shared professional-unit protection applies; no enemy capture or Owner conversion.",
       "input_facts": [
         "training city ACTIVE",
         "current player nationwide existing Expedition Teams, including source-exited/waiting-reattachment units",
-        "current Spy production cost",
+        "current Spy production cost formula with Expedition copies counted separately",
         "foreign target eligibility",
         "city historical sourceCity/foreignCivilization/insightCategory ledger and current-owner effective filter",
         "deployment and mission completion"
@@ -359,9 +359,9 @@
       "status": "INITIAL_BALANCE_VALUE"
     },
     "expedition_cost": {
-      "value": "current Spy production cost",
+      "value": "current Spy production cost formula with Expedition copies counted separately",
       "status": "USER_CONFIRMED_V0_1_FIRST_TEST_VALUE",
-      "scope": "Exactly equal to current Spy production cost under the current game rules; no independently guessed fixed cost or speed-cost schedule."
+      "scope": "Use the current ruleset Spy base/progression formula but count previous Expeditions separately; ordinary Spy history does not raise Expedition cost; no independently guessed fixed cost or speed-cost schedule."
     },
     "expedition_player_wide_cap": {
       "value": 1,
@@ -431,7 +431,7 @@
       }
     },
     "expedition": {
-      "training": "Culture ACTIVE4. Cost exactly equals current Spy production cost; check current player nationwide existing-Team cap1 before new training. All surviving own Teams count, including source ACTIVE decline/Identity exit/REALLOCATING and waiting-reattachment units; not per city/source/mission, no automatic inherited Spy capacity or silent deletion of surviving units. Deployment copies Spy distance/time relationship, not map walking.",
+      "training": "Culture ACTIVE4. Cost follows the current Spy production cost formula with Expedition copies counted separately; check current player nationwide existing-Team cap1 before new training. All surviving own Teams count, including source ACTIVE decline/Identity exit/REALLOCATING and waiting-reattachment units; not per city/source/mission, no automatic inherited Spy capacity or silent deletion of surviving units. Deployment copies Spy distance/time relationship, not map walking.",
       "source": "Initially bound to training city as report archive. Completed unit remains usable through source Governor/ACTIVE decline, Culture Identity exit or REALLOCATING. Successful mission credits currently valid bound archive city; current city effects require its normal Culture gate.",
       "mission_success": "Deterministic success for valid missions; no espionage failure/capture/death/diplomatic penalties.",
       "after_success_unit": "Retain unit, allow redeployment and other unfinished missions; user confirmed.",
@@ -652,7 +652,7 @@
     "Native-only Great Work all-yield percentage, excluding appended Meaning yields; fallback report gate",
     "City-local all-class +3%*E GPP: native availability/class coverage/fractional accumulation/stacking/current-era update/owner loss/return/load all require technical validation; Design acceptance is not native PASS.",
     "City overall Tourism modifier",
-    "Spy-style independent non-hostile unit with current-player existing-Team cap1 and no inherited Spy capacity/risk; exact current Spy cost, deployment/mission and war-transition engine behavior",
+    "Spy-style independent non-hostile unit with current-player existing-Team cap1 and no inherited Spy capacity/risk; current Spy formula with separate Expedition copy history, deployment/mission and war-transition engine behavior",
     "Known work registry/era resolution and ordinary-building taxonomy adapters",
     "Event-driven updates/shared facts/bounded reconciliation only",
     "Independent city Dialogue/Insights ledgers, effective-owner filtering, successful action idempotency and save contract; D0042 pending cancellation/mission abort/reattachment and source binding save require technical adaptation; no implementation in this Design batch.",
@@ -698,7 +698,7 @@
       ]
     },
     "unit": {
-      "zh_CN": "训练后以来源城作为报告归档机构，通过部署开展非敌对考察；生产成本等于当前间谍生产成本，当前玩家全国现存考察团上限1支，来源退出或等待重新挂靠的单位仍计入。来源降级、退出文化或重组不影响已有单位。来源易主则中止任务、保留原主单位并等待免费重新挂靠到任意己方文化身份城市。标准速度每项任务2回合，部署时间另计，任务耗时按游戏速度缩放。单位不能被敌方捕获或转换Owner，采用保护式撤退／安全回归。",
+      "zh_CN": "训练后以来源城作为报告归档机构，通过部署开展非敌对考察；生产成本沿用当前间谍生产成本公式，已生产考察团次数独立累计，不受普通间谍生产次数影响，当前玩家全国现存考察团上限1支，来源退出或等待重新挂靠的单位仍计入。来源降级、退出文化或重组不影响已有单位。来源易主则中止任务、保留原主单位并等待免费重新挂靠到任意己方文化身份城市。标准速度每项任务2回合，部署时间另计，任务耗时按游戏速度缩放。单位不能被敌方捕获或转换Owner，采用保护式撤退／安全回归。",
       "dynamic_fields": [
         "source_city",
         "production_cost",

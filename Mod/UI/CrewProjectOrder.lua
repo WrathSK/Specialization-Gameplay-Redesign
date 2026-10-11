@@ -1,7 +1,7 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
-local claimSelection,dialogueSelection
+local claimSelection,dialogueSelection,trainingSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
@@ -13,6 +13,7 @@ local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
+ if trainingSelection then trainingSelection.Items(data)end
  if claimSelection then claimSelection.Sync(data.City)end
  if dialogueSelection then dialogueSelection.Sync(data.City)end
  SPCTimedProjectDisplay.Items(data)
@@ -68,3 +69,30 @@ LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
  local c=UI.GetHeadSelectedCity()
  if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden() then Refresh()end
 end)
+
+-- B202 exact normal-unit queue admission, preserving the native insert mode.
+include('ExpeditionTrainingUI')
+local baseBuildUnit=BuildUnit
+trainingSelection=SPCExpeditionTrainingUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseBuildUnit)
+function BuildUnit(c,item)
+ if item.Type~=SPCExpeditionTrainingUI.KIND then return baseBuildUnit(c,item)end
+ if trainingSelection.Before(c,item,CheckQueueItemSelected())then return baseBuildUnit(c,item)end
+end
+local baseRemoveQueueItem=RemoveQueueItem
+function RemoveQueueItem(index)
+ trainingSelection.CancelQueue(UI.GetHeadSelectedCity(),index)
+ return baseRemoveQueueItem(index)
+end
+Events.GameCoreEventPublishComplete.Add(trainingSelection.Pulse)
+
+-- Observe native replacement intent without changing its parameters. This also
+-- covers ordinary building/project selection replacing the reserved queue slot.
+local baseGetBuildInsertMode=GetBuildInsertMode
+function GetBuildInsertMode(parameters)
+ local result=baseGetBuildInsertMode(parameters)
+ if parameters[CityOperationTypes.PARAM_INSERT_MODE]==CityOperationTypes.VALUE_REPLACE_AT then
+  trainingSelection.CancelQueue(UI.GetHeadSelectedCity(),parameters[CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION])
+ end
+ return result
+end
