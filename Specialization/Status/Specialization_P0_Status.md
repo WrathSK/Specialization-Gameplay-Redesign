@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0516
+Status Revision: S0517
 Implementation Build: source/live B193.220 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B193_FAILURE_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B193_NATIVE_POST_REQUEST_OPERATION_CONFIRMED_REPAIR_PROPOSED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B193 failure-time observation received: SLEEP requested, then OPERATION; task HELD.** [Two-image evidence and proposed repair](Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md): failure activity1225574625 exactly equals OPERATION; requested/attempt flags true. The bridge immediately rejects this post-request state. Native transition to Sleep, readiness suppression, completion/release remain unverified.
+
+Source/live remains **B193.220 / modinfo220 DEVELOP_ACTIVE**, source `f934073`, receipt `B193.220-f934073-playtest.json`, last verified213/213 MATCH with retained recovery. This documentation checkpoint does not deploy or change runtime/main; direct four-file source/live comparison matched.
+
+Next proposal: exact owned post-request OPERATION waits within the existing bound; only observed SLEEP starts the timer, with terminal-timeout evidence retained. No unchanged test now. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; repair awaits approval, formal N1/N2/N3/U2/rewards held.
+
+## S0516 — B193 local diagnostic and deployment checkpoint (historical)
 
 **B193.220 approved failure-time diagnostic locally complete; native sample pending.** [Changes,254 scoped checks and one capture](Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md): exact failing activity/enums/equality and SLEEP request/attempt flags, separate from startup evidence. No added native query/writer or capacity/binding/task change. B192 failure remains unresolved; no native Sleep/completion/release PASS.
 

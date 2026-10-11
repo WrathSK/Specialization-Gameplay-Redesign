@@ -301,3 +301,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B193 — one failure-time diagnostic capture
 
 [Minimal test](Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md#one-minimal-native-test): after verified deployment, fresh bound arrived team → existing **④ 无奖励任务（2回合）** once → screenshot **失败时活动诊断**, especially failure stage/activity and request-attempt flags → stop. This is a report block, not a new button. Distinguishes pre-request from later failing readback; no completion turns/save-load ritual. Guard/task behavior unchanged, no native acceptance assumed.
+
+## B193 — failure-time capture complete; await repair approval
+
+[Native review](Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md): requested/attempt=true, actual failure activity=OPERATION; task remains HELD. The above capture request is complete, with no unchanged B193 retest. Proposed next repair permits only owned post-request OPERATION to wait within the existing deadline, retains timeout evidence and does not assume success. After approval/implementation, one continuous task flow tests Sleep/readiness suppression and completion/release; stop on a terminal failure. No save/load campaign or new test requested in this documentation checkpoint.

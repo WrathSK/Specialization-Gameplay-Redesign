@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B193 failure-time diagnostic locally complete; native sample pending.** [Implementation and254 scoped tests](../../Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md) capture the actual failed guard value and request-attempt phase separately from startup, without another native query or command. Capacity/binding/task/owned release unchanged. [B192 correction](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md) remains: startup AWAKE/eligible does not prove a pre-request failure or identify the later state. No assumed OPERATION/bypass/native acceptance; prior evidence retained.
+Date: 2026-10-10. **B193 failure-time OPERATION after a SLEEP request confirmed; task still HELD.** [Native evidence and bounded repair proposal](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md): exact equality with OPERATION and requested/attempt=true resolve the prior timing uncertainty. The current guard aborts before OPERATION can use existing pending polling. Proposed owned-request-only bounded wait is not implemented and does not treat OPERATION as Sleep; transition/readiness/completion/release remain unverified. Prior evidence and B192 correction retained.
 
 ## B190 native failure basis
 

@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B193_FAILURE_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B193_NATIVE_POST_REQUEST_OPERATION_CONFIRMED_REPAIR_PROPOSED / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B193.220 approved failure-time diagnostic locally complete; native sample pending.** [254 local checks and one capture](../../Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md): exact failed activity guard value, enums/equality and request/attempt flags, captured separately from startup. No new native read/write, permission bypass or saved state; capacity/source/name/task/owned release unchanged.
+**B193 native failure-time evidence received; task HELD.** [Review and next repair proposal](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md): exact failure activity is OPERATION1225574625; requested/attempt flags true. Startup AWAKE is a different evaluation. The bridge rejects the post-request state before its existing wait can resolve it.
 
-[B192 observation and correction](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md) remain: initial AWAKE/ready/eligible does not locate a later guard failure. B193 distinguishes PRE_REQUEST_GUARD from POST_REQUEST_READBACK; recorded attempt is not native acceptance. Neither native failure-time OPERATION nor Sleep refusal is assumed.
+Proposed narrow repair: allow OPERATION as pending only for the same owned SLEEP request; retain the0.25s/10s bound and all identity/native-mission guards. Only observed SLEEP acknowledges success and starts the two-turn timer. Preserve timeout/release protections and bounded terminal diagnostics; no retry/forced Wake. Seven in-memory local counterfactuals support this boundary, not native Sleep success.
 
-After verified deployment, one fresh bound arrived fixture → existing **④ 无奖励任务（2回合）** once → screenshot **失败时活动诊断** → stop. No new diagnostic button, completion-turn or save/load campaign. Behavior repair, formal training/persistence/reattachment, N2/N3/U2/rewards remain held; Status/receipt govern source/live.
+No unchanged B193 retest. Repair awaits approval; if implemented, one task start→two-turn completion/release flow, or one terminal report on failure. No save/load campaign. Capacity/binding/task/rewards/Design unchanged; formal N1, N2/N3/U2 held. Status/receipt govern source/live.
 
 
 ## 三种状态与已定数值
