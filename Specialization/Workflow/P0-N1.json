@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0503",
+    "status": "S0504",
     "runtime": "B189.216 / modinfo216",
     "military": "D0037",
     "harbor": "D0037",
@@ -267,8 +267,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
-    "source": "Source B189.216/modinfo216 locally complete. Last recorded deployed B188.215/source21f2bf1/receipt B188.215-21f2bf1-playtest.json,211MATCH. B189 deployment not inferred.",
+    "source": "B189.216/modinfo216 DEVELOP_ACTIVE; sourceb2b945f3d720689f4b1c3dfd61f853a93a2e423e; receipt B189.216-b2b945f-playtest.json;211/211 MATCH. Fresh OS exit, clean/pushed source, exact B188/stable bridge and retained recovery hashes verified; no pending transaction. Native name/arrival/task gate pending.",
     "native": "USER_GAME_TEST_REQUIRED: native automatic assignment and travel-name survival, task and END. Prior B188 NAME_UNIT eligibility FAIL remains frozen.",
-    "stop": "Await verified deployment and native review; no formal N1/N2/N3/U2/reward continuation."
+    "stop": "Await one-session native review; formal N1/N2/N3/U2/rewards held."
   }
 }

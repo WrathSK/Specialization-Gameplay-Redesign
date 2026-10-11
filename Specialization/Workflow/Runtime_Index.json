@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8",
-  "runtime": "B188.215/modinfo215 DEVELOP_ACTIVE; source21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8; receipt B188.215-21f2bf1-playtest.json;211/211 MATCH. Fresh OS exit, clean/pushed source, exact B187/stable bridge and retained recovery hashes verified; no pending transaction. Native name/arrival/task gate pending.",
+  "runtime_commit": "b2b945f3d720689f4b1c3dfd61f853a93a2e423e",
+  "runtime": "B189.216/modinfo216 DEVELOP_ACTIVE; sourceb2b945f3d720689f4b1c3dfd61f853a93a2e423e; receipt B189.216-b2b945f-playtest.json;211/211 MATCH. Fresh OS exit, clean/pushed source, exact B188/stable bridge and retained recovery hashes verified; no pending transaction. Native name/arrival/task gate pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
