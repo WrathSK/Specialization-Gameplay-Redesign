@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588",
-  "runtime": "B197.224/modinfo224 DEVELOP_ACTIVE; source daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588; receipt B197.224-daaa97f-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B196/stable bridge and retained recovery verified; no pending transaction. B194 activity/B196 input acceptance inherited; B197 relocation native FAIL and presentation not accepted; receipt/equality inherited, no runtime reinspection in this documentation review.",
+  "runtime_commit": "e392435f2867c1c8a9310d66b3075b285382e82c",
+  "runtime": "B198.225/modinfo225 DEVELOP_ACTIVE; source e392435f2867c1c8a9310d66b3075b285382e82c; receipt B198.225-e392435-playtest.json; 213/213 MATCH. Verified game exit before both switches; clean/pushed source, receipt-bound B197 to stable to B198 transaction and retained B197/stable recovery. No pending transaction. Native repaired relocation/sidebar integration remains pending; prior B197 failure retained.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

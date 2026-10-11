@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0528",
+    "status": "S0529",
     "runtime": "B198.225 / modinfo225",
     "military": "D0037",
     "harbor": "D0037",
@@ -456,7 +456,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-    "source": "B198.225/modinfo225 source; live remains last verified B197.224. Deployment deferred: Civilization VI process running; no runtime replacement attempted.",
+    "source": "B198.225/modinfo225 DEVELOP_ACTIVE; source e392435f2867c1c8a9310d66b3075b285382e82c; receipt B198.225-e392435-playtest.json; 213/213 MATCH. Verified game exit before both switches; clean/pushed source, receipt-bound B197 to stable to B198 transaction and retained B197/stable recovery. No pending transaction. Native repaired relocation/sidebar integration remains pending; prior B197 failure retained.",
     "native": "USER_GAME_TEST_REQUIRED for guard/layout integration; B197 remains FAIL.",
     "stop": "Stop after approved repair and combined native handoff; no formal N1, repeat tasks, new missions/rewards, N2/N3/U2 or save/load campaign."
   }

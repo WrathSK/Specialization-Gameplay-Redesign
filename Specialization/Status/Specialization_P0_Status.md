@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0528
-Implementation Build: source B198.225; last deployed B197.224 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0529
+Implementation Build: source/live B198.225 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,9 +13,9 @@ Work State: B198_GUARD_LAYOUT_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B198 dispatch guard/native layout repair locally complete;160 focused tests PASS.** [Repair, ownership and one combined native flow](Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md): creation-time ordinary-Spy isolation retained; later historical changes no longer veto current valid dispatch. Native city banners/district rows, selected header and adjacent preview/task drawer replace B197's rejected simplified layout. Own capacity/binding/travel/task semantics unchanged. Native integration remains pending; B197 failure retained.
 
-Source is **B198.225 / modinfo225**. Last verified live remains **B197.224**, deployed source `daaa97f`, receipt `B197.224-daaa97f-playtest.json`,213/213 MATCH with recovery retained. B198 deployment is deferred: OS process inspection found Civilization VI running. No runtime replacement was attempted.
+Source/live is **B198.225 / modinfo225 DEVELOP_ACTIVE**, deployed source `e392435`, receipt `B198.225-e392435-playtest.json`,213/213 MATCH. User-confirmed/fresh OS game exit and guarded B197→stable→B198 transaction verified; B197/stable recovery retained, no pending transaction. Native repaired relocation/UI acceptance remains pending.
 
-Next after verified deployment: one ordinary-Spy creation after team setup → relocation → arrival/task UI flow, no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B198 UI boundary](../Architecture/v2/P0_N_Expedition_UI.md#b198--dispatch-guard-and-native-layout-repair). Existing HELD team needs P0 END/fresh setup. Formal training/reattachment/persistence, repeat tasks, N2/N3/U2/rewards remain held.
+Next: one ordinary-Spy creation after team setup → relocation → arrival/task UI flow, no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B198 UI boundary](../Architecture/v2/P0_N_Expedition_UI.md#b198--dispatch-guard-and-native-layout-repair). Existing HELD team needs P0 END/fresh setup. Formal training/reattachment/persistence, repeat tasks, N2/N3/U2/rewards remain held.
 
 ## S0527 — B197 native failure and repair proposal (historical)
 
