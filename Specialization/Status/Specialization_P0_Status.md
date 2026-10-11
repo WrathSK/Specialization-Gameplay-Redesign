@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0506
-Implementation Build: source B190.217; last deployed B189.216 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0507
+Implementation Build: source/live B190.217 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,7 +13,7 @@ Work State: B190_TASK_ACTIVITY_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B190.217 task-controlled native activity prototype locally complete; native pending.** [Changes, targeted checks and minimal session](Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md): automatic exact-unit SLEEP/readback before timer start, bounded owned release, task-aware controls and separate always-active UI bridge. Source/cap1/name/no-reward timer remain. B189 name/source/task PASS and user-confirmed END remain limited to their recorded scope.
 
-Source is **B190.217 / modinfo217**. Last recorded live is **B189.216**, source `b2b945f`, receipt `B189.216-b2b945f-playtest.json`,211/211 MATCH with recovery retained. B190 deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+Source/live is **B190.217 / modinfo217 DEVELOP_ACTIVE**, deployed source `4c577a4`, receipt `B190.217-4c577a4-playtest.json`,213/213 MATCH. Fresh OS exit, clean/pushed source, exact B189/stable bridge and recovery hashes verified; no pending transaction. No game launch, main promotion or native PASS.
 
 Next: one session at confirmed arrival → **④ 无奖励任务（2回合）**, without manual sleep → close panel/normal turns → automatic completion/release → **结束并移除验证团**. Native SLEEP/WAKE eligibility and needs-orders remain unproved. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
 
