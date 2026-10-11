@@ -248,3 +248,8 @@ Supersedes B185's awaiting-authorization instruction: user approved the narrow r
 ## B186 — native marker absent; unchanged-package test stopped
 
 [Two-image review and proposal](Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md): arrival object lacks the custom marker, while source and plot reads succeed; old-ID lookups return the new public ID. Task/END not tested. This supersedes the queued B186 session above. No repeat requested. Await approval for a controlled-name continuity prototype; only after implementation resume arrival → task → END. No formal reattachment, N2/N3/U2 or cold-load campaign.
+
+
+## B187 — controlled-name continuity / one session pending
+
+Supersedes B186's awaiting-approval instruction. [98 local checks and minimal native flow](Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md#one-minimal-native-session): verify assigned raw name before dispatch → arrival with same key/exact source → independent no-reward2T task → END. Stop on rename failure/unbound arrival; no unchanged B186 repetition or cold-load ritual. Own cap1/source and temporary native-slot cost unchanged. Deployment eligibility is current Status/receipt, not this queue; formal N1/N2/N3/U2/rewards held.

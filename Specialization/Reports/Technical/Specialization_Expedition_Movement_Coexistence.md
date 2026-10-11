@@ -1,12 +1,16 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B186 native arrival marker absent; binding NOT_PASSED.** [Two-image result and controlled-name proposal](../../Status/Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md) distinguish actual marker absence from the old plot-enumeration ambiguity. Source remains valid. Native/HD name continuity supports the user's naming idea as the next small prototype; custom rename/readback/travel must still be verified. No implementation authorized by this review. Earlier records retain their chronological scope; source/live and authorization are in Status.
+Date: 2026-10-10. **B187 controlled-name prototype locally complete; native pending.** [98 targeted checks and one-session gate](../../Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md) implement the user-approved follow-up to B186 marker absence. Exact name assignment/readback precedes dispatch; name/current-ID/source/target checks govern arrival. Own cap/source and no-reward task remain separate. Earlier records below retain their chronological evidence/authorization limits; source/live status is in Status.
+
+## B187 controlled-name implementation boundary
+
+The native UI command is scoped to the exact custom unit; no normal Spy definitions or global naming/mission APIs change. Gameplay waits for raw name equality, then later accepts a uniquely matching returned current ID. City text is presentation only; the existing source reference governs binding. No unit Property copy, persistent registry or general name-to-city lookup. A conservative bounded label preserves the full short key; native rename eligibility/travel survival remain unproved. Closing the window can cancel its bounded pending-name poll without recreating or releasing the team. Cold load cannot recover the test session merely from a name. Formal reattachment/persistence remains later work.
 
 ## B186 marker result and next identity carrier proposal
 
 Off-map3276829 has a matching marker; arrival3342365 lacks it through both collection and exact lookup. Old/current ID requests resolve to the returned ID, plot membership is present, and the retained source matches. Literal native object destruction/recreation remains UNKNOWN. The current marker route cannot accept this observed arrival; do not repeat unchanged B186.
 
-Use a controlled unit name as a proposed continuity carrier: readable source-city text plus a short fixed team key. Keep exact source authority in the existing record. Native mission renewal and HD already match ordinary Spies by raw name; custom-unit rename eligibility and assigned-name preservation remain the new technical gate. The linked plan preserves unique exact type/owner/name/current-ID and source/target checks without a new registry or broad persistence system. Formal reattachment remains later; changing the label alone is not a source transfer. Await approval before implementation.
+Use a controlled unit name as a proposed continuity carrier: readable source-city text plus a short fixed team key. Keep exact source authority in the existing record. Native mission renewal and HD already match ordinary Spies by raw name; custom-unit rename eligibility and assigned-name preservation remain the new technical gate. The linked plan preserves unique exact type/owner/name/current-ID and source/target checks without a new registry or broad persistence system. Formal reattachment remains later; changing the label alone is not a source transfer. This proposal was subsequently approved only as the B187 prototype above.
 
 ## B185 returned-unit lookup boundary
 

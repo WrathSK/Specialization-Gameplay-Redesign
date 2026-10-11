@@ -1,4 +1,4 @@
--- B185 UI native boundary. Read-only Gain Sources diagnostics; one-shot TRAVEL only.
+-- B187 UI native boundary. Controlled naming and readback; Read-only Gain Sources diagnostics; one-shot TRAVEL only.
 SPCExpeditionSpyRead={KIND='UNIT_SPC_EXPEDITION_SPY'}
 local M=SPCExpeditionSpyRead
 local function integer(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
@@ -145,6 +145,36 @@ function M.TaskRead(pid,id,t)
  end)
  if not ok then v.error=tostring(err):sub(1,200)end
  return v
+end
+-- Naming is one explicit command, followed by read-only observation. Never use
+-- selection as authority or rename ordinary spies; an ambiguous write is not retried.
+function M.NameStatus(pid,id,expected)
+ local ok,value=pcall(function()
+  local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
+  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
+  local name=u:GetName();assert(type(name)=='string','TEAM_NAME_UNREADABLE')
+  return name==expected and 'MATCH' or 'MISMATCH'
+ end)
+ return ok and value or 'UNREADABLE'
+end
+local lastNamePermit
+function M.SubmitName(pid,id,expected,permit)
+ if type(permit)~='string' or #permit==0 or #permit>100 or permit==lastNamePermit then return false,'INVALID_OR_USED_NAME_PERMIT' end
+ local ok,err=pcall(function()
+  assert(type(expected)=='string' and #expected>0 and #expected<=220,'TEAM_NAME_INVALID')
+  local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
+  assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND,'SPY_TEST_TEAM_REQUIRED')
+  assert(GameCapabilities and GameCapabilities.HasCapability('CAPABILITY_RENAME')==true,'RENAME_CAPABILITY_UNAVAILABLE')
+  assert(UnitCommandTypes and UnitCommandTypes.NAME_UNIT and UnitCommandTypes.PARAM_NAME,'NAME_COMMAND_UNAVAILABLE')
+  assert(UnitManager.CanStartCommand(u,UnitCommandTypes.NAME_UNIT,true)==true,'NAME_COMMAND_NOT_ALLOWED')
+  local params={};params[UnitCommandTypes.PARAM_NAME]=expected
+  lastNamePermit=permit
+  assert(UnitManager.RequestCommand(u,UnitCommandTypes.NAME_UNIT,params)~=false,'NAME_COMMAND_REJECTED')
+ end)
+ if not ok then return false,tostring(err):sub(1,200)end
+ local status=M.NameStatus(pid,id,expected)
+ if status=='UNREADABLE' then return false,'TEAM_NAME_UNREADABLE' end
+ return true,status=='MATCH' and 'NAME_MATCH' or 'NAME_PENDING'
 end
 local lastPermit
 function M.SubmitTravel(pid,id,t,permit)

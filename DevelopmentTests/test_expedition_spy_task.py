@@ -1,5 +1,5 @@
-"""B185 actual-module identity, independent timer and exact-type UI boundary.
-Native property survival/idle effects/rendering require the one-session game test.
+"""B187 actual-module name identity, inherited independent timer and exact-type UI boundary.
+Native controlled-name survival/idle effects/rendering require the one-session game test.
 """
 from pathlib import Path
 import unittest
@@ -12,7 +12,7 @@ def gate(ui=False,window=False):
     l.execute("""
       function arrival(id,keep,alias)
        local old=units[40];local u=unit(id,100,2,15,8)
-       if keep then u.properties=old.properties end
+       if keep then u.name=old.name end
        units[40]=nil;units[id]=u
        local us=Players[2]:GetUnits()
        if alias then us.FindID=function(self,key)if key==40 then return u end;return units[key]end end
@@ -27,27 +27,25 @@ def gate(ui=False,window=False):
     return l
 
 class Continuity(unittest.TestCase):
-    def test_marker_not_native_id_proves_arrival_including_lookup_alias(self):
+    def test_name_not_native_id_proves_arrival_including_lookup_alias(self):
         for alias in ['true','false']:
             with self.subTest(alias=alias):
-                l=gate();l.execute("req('CREATE','a');nativeDispatch('b');local r=arrival(41,true,"+alias+");assert(r.phase=='ARRIVED' and r.bound and not r.unbound and r.unitID==41 and r.createdID==40 and r.sourceCity==1 and r.count==1 and properties==1)")
-    def test_same_name_coordinates_and_sole_unit_without_marker_do_not_rebind(self):
-        for change in ['units[41].properties={}','units[41].properties.SPC_N1_SPY_PROBE_ID="wrong"','units[41].owner=3','units[41].type_=103']:
+                l=gate();l.execute("req('CREATE','a');nativeDispatch('b');local r=arrival(41,true,"+alias+");assert(r.phase=='ARRIVED' and r.bound and not r.unbound and r.unitID==41 and r.createdID==40 and r.sourceCity==1 and r.count==1 and properties==0)")
+    def test_default_name_coordinates_and_sole_unit_do_not_rebind(self):
+        for change in ['units[41].name=nil','units[41].name="wrong"','units[41].owner=3','units[41].type_=103']:
             with self.subTest(change=change):
-                l=gate();l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,false,false);"+change+";currentTurn=85;ownTurn(2);local r=req('READ','c');assert(r.phase=='HELD' and not r.bound and r.sourceCity==1 and destroys==0 and properties==1)")
-    def test_two_marker_matches_are_ambiguous(self):
-        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[41]=unit(41,100,2,15,8);units[42]=unit(42,100,2,15,8);units[41].properties=units[40].properties;units[42].properties=units[40].properties;units[40]=nil;currentTurn=83;ownTurn(2);assert(req('READ','c').stop=='TEAM_MARKER_AMBIGUOUS' and destroys==0 and properties==1)")
-    def test_same_marker_elsewhere_does_not_count_as_arrival(self):
+                l=gate();l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,false,false);"+change+";currentTurn=85;ownTurn(2);local r=req('READ','c');assert(r.phase=='HELD' and not r.bound and r.sourceCity==1 and destroys==0 and properties==0)")
+    def test_two_name_matches_are_ambiguous(self):
+        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[41]=unit(41,100,2,15,8);units[42]=unit(42,100,2,15,8);units[41].name=units[40].name;units[42].name=units[40].name;units[40]=nil;currentTurn=83;ownTurn(2);assert(req('READ','c').stop=='TEAM_NAME_AMBIGUOUS' and destroys==0 and properties==0)")
+    def test_same_name_elsewhere_does_not_count_as_arrival(self):
         l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[40].x=16;units[40].y=8;currentTurn=85;ownTurn(2);assert(req('READ','r').phase=='HELD' and not req('READ','s').bound)")
     def test_source_replacement_during_travel_never_reattaches(self):
-        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');city.token='replacement';local r=arrival(41,true,true);assert(r.phase=='HELD' and not r.bound and r.createdID==40 and r.sourceCity==1 and properties==1)")
-    def test_marker_write_failure_is_held_no_retry(self):
-        for body in ["error('write failed')",'return',"self.properties[k]='wrong'"]:
-            with self.subTest(body=body):
-                l=gate();l.execute("local original=unit;unit=function(...)local u=original(...);u.SetProperty=function(self,k,v)"+body+" end;return u end;req('CREATE','a');req('CREATE','b');assert(initCalls==1 and req('READ','c').phase=='HELD')")
-    def test_unbound_marker_lost_team_can_be_explicitly_cleaned_not_adopted(self):
+        l=gate();l.execute("req('CREATE','a');nativeDispatch('b');city.token='replacement';local r=arrival(41,true,true);assert(r.phase=='HELD' and not r.bound and r.createdID==40 and r.sourceCity==1 and properties==0)")
+    def test_name_pending_does_not_create_or_dispatch_again(self):
+        l=gate();l.execute("rawreq('CREATE','a');rawreq('CREATE','b');local r=nativeDispatch('d');assert(initCalls==1 and not r.nativePermit and r.phase=='NAMING' and properties==0)")
+    def test_unbound_name_lost_team_can_be_explicitly_cleaned_not_adopted(self):
         l=gate();l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,false,false);currentTurn=85;ownTurn(2);local r=req('READ','c');assert(not r.bound and r.unitID==41);req('END','e',41);assert(destroys==1 and req('READ','f').count==0)")
-    def test_cold_session_never_claims_a_surviving_marker(self):
+    def test_cold_session_never_claims_a_surviving_name(self):
         l=gate();l.execute("req('CREATE','a');SPCExpeditionSpyGate.Start(P,shared);local r=req('READ','new');assert(r.unbound and not r.bound and r.unitID==40);req('CREATE','new2');assert(initCalls==1);req('END','e',40);assert(destroys==1)")
     def test_strict_id_guard_rejects_ui_dispatch_or_end_through_alias(self):
         l=gate(ui=True);l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,true,true);assert(not reader.SubmitTravel(2,40,target,'stale'));req('END','e',40);assert(destroys==0 and units[41])")
@@ -56,9 +54,9 @@ class Timer(unittest.TestCase):
     def ready(self):
         l=gate();l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,true,false)");return l
     def test_two_turn_task_has_no_rewards_native_operations_or_extra_writes(self):
-        l=self.ready();l.execute("local r=task('t');assert(r.phase=='TASK_RUNNING' and r.taskDue==85);currentTurn=84;ownTurn(2);assert(req('READ','r').taskCompletions==0);currentTurn=85;ownTurn(2);ownTurn(2);r=req('READ','s');assert(r.phase=='TASK_COMPLETE' and r.taskCompletions==1 and nativeCalls==0 and properties==1 and placeCalls==0 and finishCalls==0 and destroys==0)")
+        l=self.ready();l.execute("local r=task('t');assert(r.phase=='TASK_RUNNING' and r.taskDue==85);currentTurn=84;ownTurn(2);assert(req('READ','r').taskCompletions==0);currentTurn=85;ownTurn(2);ownTurn(2);r=req('READ','s');assert(r.phase=='TASK_COMPLETE' and r.taskCompletions==1 and nativeCalls==0 and properties==0 and placeCalls==0 and finishCalls==0 and destroys==0)")
     def test_duplicate_start_and_completion_are_idempotent(self):
-        l=self.ready();l.execute("task('t');task('t');task('t2');assert(req('READ','r').taskDue==85);currentTurn=85;ownTurn(2);task('t3');currentTurn=86;ownTurn(2);local r=req('READ','s');assert(r.taskCompletions==1 and r.taskCompleted==85 and properties==1)")
+        l=self.ready();l.execute("task('t');task('t');task('t2');assert(req('READ','r').taskDue==85);currentTurn=85;ownTurn(2);task('t3');currentTurn=86;ownTurn(2);local r=req('READ','s');assert(r.taskCompletions==1 and r.taskCompleted==85 and properties==0)")
     def test_stale_or_nonidle_ui_sample_cannot_start(self):
         for fields in ['SampleTurn=82','NativeOperation=9','NativeOperation=false']:
             with self.subTest(fields=fields):
@@ -67,10 +65,10 @@ class Timer(unittest.TestCase):
         l=self.ready();l.execute("units[41].GetSpyOperation=nil;task('t');currentTurn=85;ownTurn(2);assert(req('READ','r').phase=='TASK_COMPLETE')")
     def test_native_operation_when_readable_stops_completion(self):
         l=self.ready();l.execute("task('t');units[41].operation=9;currentTurn=85;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.taskCompletions==0 and r.stop=='NATIVE_MISSION_ACTIVE_STOP')")
-    def test_source_unknown_loss_target_change_marker_loss_or_displacement_holds(self):
-        for change in ['city.token=nil','city.owner=3','targetCity.owner=4','targetCity.id=10','units[41].properties={}','units[41].x=16']:
+    def test_source_unknown_loss_target_change_name_loss_or_displacement_holds(self):
+        for change in ['city.token=nil','city.owner=3','targetCity.owner=4','targetCity.id=10','units[41].name=nil','units[41].x=16']:
             with self.subTest(change=change):
-                l=self.ready();l.execute("task('t');"+change+";currentTurn=85;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.taskCompletions==0 and destroys==0 and properties==1)")
+                l=self.ready();l.execute("task('t');"+change+";currentTurn=85;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.taskCompletions==0 and destroys==0 and properties==0)")
     def test_active_drop_does_not_erase_source_or_advance_on_foreign_turn(self):
         l=self.ready();l.execute("task('t');active=1;currentTurn=85;ownTurn(3);assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='TASK_RUNNING');ownTurn(2);local r=req('READ','r');assert(r.phase=='TASK_COMPLETE' and r.sourceCity==1 and r.bound)")
     def test_read_at_due_turn_does_not_replace_player_turn_completion(self):

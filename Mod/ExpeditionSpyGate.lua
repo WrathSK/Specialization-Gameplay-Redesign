@@ -1,10 +1,10 @@
--- B186: player-collection arrival lookup, exact marker/readback and bounded diagnostics.
--- Only this unit gets a probe marker. No city/player ledger, native mission or reward.
--- Marker survival across engine travel is a native gate; missing/ambiguous proof stops.
-SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO',MARKER='SPC_N1_SPY_PROBE_ID'}
+-- B187: controlled raw name carries this session team key through native travel.
+-- Source/capacity remain our own record; no city/player ledger, mission or reward.
+-- Native name assignment and travel survival remain explicit user-game gates.
+SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
- local state={};local busy=false;local mutating=false;local lastToken;local lastReply;local step='REQUEST'
+ local serial=0;local state={};local busy=false;local mutating=false;local lastToken;local lastReply;local step='REQUEST'
  local function int(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
  local function flag(v)return v==true or v==1 end
  local function row(u)return u and P.Info('Units',u:GetType())end
@@ -68,27 +68,27 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return tostring(err):gsub('[%c]',' '):gsub('%[','('):gsub('%]',')'):sub(1,220)
  end
  local function logFailure(code,at,raw)
-  print('[SPC][B186][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
+  print('[SPC][B187][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
  end
  local function hold(err)
   state.phase='HELD';state.stop=reason(err);state.errorStep=step;state.errorDetail=detail(err)
   logFailure(state.stop,state.errorStep,state.errorDetail)
  end
- -- No raw marker is published. Missing readback is not proof of native loss.
- local function markerStatus(u)
+ -- Compare raw engine names only; displayed/localized city text is never city authority.
+ local function nameStatus(u)
   if not u then return 'NO_UNIT' end
-  if not state.marker then return 'NO_SESSION' end
+  if not state.expectedName then return 'NO_SESSION' end
   local ok,value=pcall(function()
    local r=row(u)
    if u:GetOwner()~=state.owner or not r or r.UnitType~=M.KIND then return 'WRONG_UNIT' end
-   if type(u.GetProperty)~='function' then return 'UNREADABLE' end
-   local value=u:GetProperty(M.MARKER)
-   if value==nil then return 'ABSENT' end
-   return value==state.marker and 'MATCH' or 'MISMATCH'
+   if type(u.GetName)~='function' then return 'UNREADABLE' end
+   local value=u:GetName()
+   if value==nil or value=='' then return 'ABSENT' end
+   return value==state.expectedName and 'MATCH' or 'MISMATCH'
   end)
   return ok and value or 'UNREADABLE'
  end
- local function marked(u)return markerStatus(u)=='MATCH' end
+ local function named(u)return nameStatus(u)=='MATCH' end
  local function lookupStatus(id)
   if not id then return nil,'NO_UNIT' end
   local ok,u=pcall(function()return Players[state.owner]:GetUnits():FindID(id)end)
@@ -96,31 +96,40 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if not u then return nil,'NO_UNIT' end
   local read,actual=pcall(function()return u:GetID()end)
   if not read then return nil,'UNREADABLE' end
-  return actual,markerStatus(u)
+  return actual,nameStatus(u)
  end
  local function tracked()
   local u=owned(state.owner,state.unitID)
-  assert(marked(u),'TEAM_MARKER_UNAVAILABLE');return u
+  assert(named(u),'TEAM_NAME_UNAVAILABLE');return u
  end
  local function observe(allowTaskCompletion,knownUnits)
   if not state.unitID or state.phase=='ENDED' or state.phase=='HELD' then return end
   source()
+  if state.phase=='NAMING' then
+   local u=owned(state.owner,state.unitID)
+   assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
+   if named(u) then
+    assert(#(knownUnits or list(state.owner))==1,'TEAM_NAME_AMBIGUOUS')
+    state.phase='CREATED';state.nameVerified=true
+   end
+   return -- A submitted UI command is not synchronous Gameplay readback proof.
+  end
   if state.phase=='TRAVELLING' then
    target(state.owner,state.target)
    -- Spies need not appear in physical plot occupancy. Inspect the exact
-   -- prototype collection; only a surviving marker proves continuity.
+   -- prototype collection; only the exact controlled name proves session continuity.
    -- Snapshot passes its one collection read; pending-turn checks read once.
    local all=knownUnits or list(state.owner);local candidate
    for _,u in ipairs(all)do
-    if marked(u) then assert(not candidate,'TEAM_MARKER_AMBIGUOUS');candidate=u end
+    if named(u) then assert(not candidate,'TEAM_NAME_AMBIGUOUS');candidate=u end
    end
    if candidate then
-    assert(#all==1,'TEAM_MARKER_AMBIGUOUS')
+    assert(#all==1,'TEAM_NAME_AMBIGUOUS')
     if candidate:GetX()==state.target.x and candidate:GetY()==state.target.y then
      local id=candidate:GetID()
      -- Validate the actual exact-lookup object as well as the collection item.
      local current=owned(state.owner,id)
-     assert(marked(current),'TEAM_MARKER_UNAVAILABLE')
+     assert(named(current),'TEAM_NAME_UNAVAILABLE')
      assert(current:GetX()==state.target.x and current:GetY()==state.target.y,'TARGET_CHANGED')
      state.unitID=id;state.x=current:GetX();state.y=current:GetY();state.phase='ARRIVED'
      return
@@ -140,7 +149,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    if allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
     state.taskCompletions=1 -- One fixture task per team; completion has no effects.
-    print('[SPC][B186][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
+    print('[SPC][B187][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
    end
   end
  end
@@ -153,7 +162,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions'})do
+   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','expectedName','teamKey','nameVerified'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end
@@ -163,10 +172,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
    if state.unitID then
     local ok,id,x,y=pcall(function()
      local u=owned(pid,state.unitID)
-     if marked(u) then return u:GetID(),u:GetX(),u:GetY()end
+     if named(u) then return u:GetID(),u:GetX(),u:GetY()end
     end)
     v.sameUnit=ok and id==state.unitID or false
-    v.bound=v.sameUnit and state.phase~='HELD';v.unbound=not v.bound
+    v.bound=v.sameUnit and state.nameVerified==true and state.phase~='HELD';v.unbound=not v.bound
     if v.sameUnit then v.unitID=id;v.x=x;v.y=y end
    end
    v.expectedX=state.x;v.expectedY=state.y
@@ -178,14 +187,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
   -- Explicit snapshots only: bounded diagnostic scalars, no history or native writes.
   if state.owner==pid and state.unitID then
    local d={turn=v.turn,memberCount=#units,plotStatus='NO_UNIT'};v.identity=d
-   d.createdLookupID,d.createdMarker=lookupStatus(state.createdID)
-   d.trackedLookupID,d.trackedMarker=lookupStatus(state.unitID)
+   d.createdLookupID,d.createdName=lookupStatus(state.createdID)
+   d.trackedLookupID,d.trackedName=lookupStatus(state.unitID)
    d.sourceStatus=pcall(source) and 'MATCH' or 'UNREADABLE'
    if #units==1 then
-    local u=units[1];d.candidateID=u:GetID();d.candidateMarker=markerStatus(u)
-    d.candidateLookupID,d.lookupMarker=lookupStatus(d.candidateID)
+    local u=units[1];d.candidateID=u:GetID();d.candidateName=nameStatus(u)
+    d.candidateLookupID,d.lookupName=lookupStatus(d.candidateID)
+    local ok,n=pcall(function()return u:GetName()end);if ok and type(n)=='string' then v.observedName=n:sub(1,220)end
    else
-    d.candidateMarker=#units==0 and 'NO_UNIT' or 'AMBIGUOUS';d.lookupMarker=d.candidateMarker
+    d.candidateName=#units==0 and 'NO_UNIT' or 'AMBIGUOUS';d.lookupName=d.candidateName
    end
   end
   if v.unitID and not v.legacy and v.x>=0 and v.y>=0 then
@@ -227,14 +237,25 @@ function SPCExpeditionSpyGate.Start(P,shared)
    local u=UnitManager.InitUnit(pid,M.KIND,c:GetX(),c:GetY())
    assert(u and u:GetOwner()==pid,'SPAWN_UNCONFIRMED')
    state.unitID=u:GetID();state.createdID=state.unitID;owned(pid,state.unitID)
-   assert(type(u.GetProperty)=='function' and type(u.SetProperty)=='function','TEAM_MARKER_API_UNAVAILABLE')
-   assert(u:GetProperty(M.MARKER)==nil,'TEAM_MARKER_ALREADY_PRESENT')
-   state.marker=p.Token..':'..state.sourceRef..':'..state.createdID
-   u:SetProperty(M.MARKER,state.marker)
-   assert(marked(u),'TEAM_MARKER_WRITE_UNCONFIRMED')
+   assert(type(u.GetName)=='function','TEAM_NAME_API_UNAVAILABLE')
+   serial=serial+1
+   state.teamKey=string.format('E%X-%X-%X',pid,state.createdID,serial)
+   -- Keep the ASCII identity suffix intact, within a conservative48-unit budget inspired by
+   -- the native rename input. Only the readable label may be shortened.
+   local suffix=' ['..state.teamKey..']';assert(#suffix<40,'TEAM_NAME_KEY_TOO_LONG')
+   local label=Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_PREFIX')..Locale.Lookup(state.sourceName)
+   label=label:gsub('%b[]',''):gsub('[%z\1-\31\127]',' ')
+   local parts={};local size=0
+   for ch in label:gmatch('[%z\1-\127\194-\244][\128-\191]*')do
+    local cost=#ch==4 and 2 or 1
+    if size+cost>48-#suffix then break end
+    parts[#parts+1]=ch;size=size+cost
+   end
+   assert(#parts>0,'TEAM_NAME_LABEL_UNAVAILABLE')
+   state.expectedName=table.concat(parts)..suffix;state.nameVerified=false
    assert(#list(pid)==1,'SPAWN_COUNT_UNCONFIRMED')
    assert(u:GetX()==state.x and u:GetY()==state.y,'EXACT_PLACEMENT_REJECTED')
-   unchangedOthers(before);source();state.phase='CREATED'
+   unchangedOthers(before);source();state.phase='NAMING'
   elseif p.Action=='DISPATCH' then
    assert(state.owner==pid and state.unitID==p.UnitID and (state.phase=='CREATED' or state.phase=='ARRIVED'),'BOUND_TEAM_REQUIRED')
    observe();local u=tracked()
@@ -293,7 +314,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   mutating=false
   v.token=p.Token;lastToken=p.Token;lastReply=v
   ExposedMembers.SPC_ExpeditionGateReply=v
-  print('[SPC][B186][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
+  print('[SPC][B187][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)

@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "d7b6c394d14a2b1d41ed48352724bc6b43cefccc4c77f4b235e7bfda821487a0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
-      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
+      "sha256": "89329a959e53bd6c0abb501d774bd600e6a7657687ce9fe103f5cbfec8dc7d11",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cb8e4d1b710967691e75cf1d7d84fff60824b4ce105de62a93230b9aa172ac7a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
-      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
+      "sha256": "4a6c962957155d198de1bc1187354449527a6fa085b8febff07f0a046ae5aa3d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "5be2b338dc7610d9d458162a8abd90dd92fcee0dea7590814607f6514760618d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
-      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
+      "sha256": "8f0e799716eeebe0ed6cb0c3fb5f4053c06ce697c7e3b6ac7209e8919ef8b5ad",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,19 +1016,19 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "695b1f766e86b38dcb201f33711b74336177978f61cb7f050b1dade8bb1100b4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "7282f31a6b08f06afb4c550dd9aff56b1bce8950e7fe976701ef75fa1074ca54",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "67b608038d4f3ac52062f09f9ae0595cab5d98e68f510f01e8208aa94f98fc60",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
-      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
+      "sha256": "8df7290db034a588e2f60b657741c5a12c7ddf975b22ed3389566fcfa4fb5e4f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "8a2c7ea3e8a9d4228926776b64639922c0288ec7a892e3b98de137a8f8bf7062",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
-      "provenance": "B186 approved collection-based arrival and exact-marker/readback guards; bounded source/identity diagnostics;81 targeted checks and diff review. Native survival pending; ordinary Spy/Design/permanent data/GC unchanged."
+      "sha256": "0fd5025fbcee9d394d00f43a58aaed913f9e7e788ae53754c1bfc70797548e48",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",

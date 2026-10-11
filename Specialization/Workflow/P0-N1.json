@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0495",
-    "runtime": "B186.213 / modinfo213",
+    "status": "S0496",
+    "runtime": "B187.214 / modinfo214",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "B186 arrival marker absent in native readback; source retained and stale-ID alias observed. Review controlled-name continuity proposal; no new implementation authorized.",
-  "implementation_authorized": false,
+  "goal": "B187 controlled-name prototype: verified native name before dispatch; unique exact arrival identity preserves own source/cap and independent no-reward task. Native gate pending.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,7 +99,7 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
       "kind": "full",
       "reason": "Current authorized delta, local evidence and one native session"
     },
@@ -162,11 +162,16 @@
       "path": "DevelopmentTests/test_expedition_spy_binding.py",
       "kind": "full",
       "reason": "Exact returned-candidate and diagnostic fault/ambiguity cases for the changed lookup"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_name.py",
+      "kind": "full",
+      "reason": "Controlled-name assignment/readback, bounded async command and exact identity counterexamples"
     }
   ],
   "dependencies": [
-    "EffectiveFacts creation qualification + exact NetworkInput.Reference source; session cap1 includes old fixtures/off-map reservation. One unit-owned marker, no city/player ledger change.",
-    "UI-only travel/idle/source read; Gameplay owns permit/timer/source and verifies marker before accepting changed native ID. No name/coordinate fallback.",
+    "EffectiveFacts creation qualification + exact NetworkInput.Reference source; session cap1 includes old fixtures/off-map reservation. Controlled raw name/key for team continuity; source remains separate, no Property or ledger writes.",
+    "UI-only name command/travel/idle/source read; Gameplay verifies exact controlled raw name before dispatch and changed-ID arrival. Source authority stays in its own record; no city-name/coordinate inference.",
     "Native Expansion chooser/popup and installed HD UnitPanel are included, exact-type callbacks intercepted. Ordinary paths stay native; no external source/DB/listener changes."
   ],
   "old_writers": [
@@ -217,17 +222,17 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "81 methods PASS:14 new binding +31 gate/package +26 identity/timer/UI +10 panel. Syntax/package/localization; links/selectors/context and diff review. Native survival not implied.",
-    "user": "B186 two screenshots: off-map marker MATCH, arrival collection/exact marker ABSENT, plot PRESENT/source MATCH, old/current ID lookups return new3342365. Binding NOT_PASSED; task/END not tested."
+    "local": "98 methods PASS:17 controlled-name +14 binding +26 task/UI +31 gate/package +10 panel. Syntax/package/localization, links/selectors/context and diff review. Native custom-name preservation not implied.",
+    "user": "One B187 session after verified deployment: name preparation/readback, native arrival with exact source/cap, no-reward2T task, END. Stop on failure; no save/load repetition."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md",
-    "source": "B186.213/modinfo213 DEVELOP_ACTIVE; sourcec6275296cc654254e15ad0ad7b82bf0df5a4da7b; receipt B186.213-c627529-playtest.json;211/211 MATCH. OS game exit verified, B185/stable recovery hashes MATCH, no pending transaction. Native identity/task validation pending.",
-    "native": "B186 arrival binding NOT_PASSED: marker absent on returned unit. Source still valid, old-ID alias observed. Task/END NOT_TESTED.",
-    "stop": "Await controlled-name prototype approval; no unchanged-package retest or formal N1/N2/N3/U2."
+    "report": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
+    "source": "B187.214/modinfo214 locally complete; last verified live B186.213 sourcec627529, receipt B186.213-c627529-playtest.json. Deployment not inferred from source.",
+    "native": "USER_GAME_TEST_REQUIRED for controlled rename/travel/task/END; B186 marker absence retained.",
+    "stop": "Await this one-session result; formal training/persistence/reattachment/N2/N3/U2/rewards held."
   }
 }
