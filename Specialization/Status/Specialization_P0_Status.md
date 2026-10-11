@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0526
+Status Revision: S0527
 Implementation Build: source/live B197.224 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B197_SIDEBAR_LOCAL_COMPLETE_NATIVE_UI_PENDING
+Work State: B197_NATIVE_RELOCATION_FAIL_UI_ADAPTATION_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B197 relocation USER_GAME_TEST_FAIL; sidebar presentation not accepted.** [Four-image review, source/local counterexample and repair proposal](Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md): terminal ISOLATION_OR_REQUEST_STOP; user confirms ordinary Spy creation between Expedition setup and dispatch. Lifetime creation-audit guard reproduces this trigger locally; exact native detail was not captured. Mission/arrival untested; images2/3 are original UI references.
+
+Source/live remains **B197.224 / modinfo224 DEVELOP_ACTIVE**, deployed source `daaa97f`, receipt `B197.224-daaa97f-playtest.json`; prior213/213 equality and B196/stable recovery retained. This review changes documentation only; no new runtime inspection/deployment.
+
+No unchanged B197 retest. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [combined guard/faithful UI repair proposal](../Architecture/v2/P0_N_Expedition_UI.md#b197-follow-up--faithful-native-layout-and-relocation-guard). Await scoped repair approval; capacity/binding/travel/task behavior, one-shot boundary, formal N1/N2/N3/U2/rewards stay unchanged.
+
+## S0526 — B197 local/deployed checkpoint before native failure (historical)
 
 **B197 native-style sidebar locally complete;145 focused tests PASS.** [Presentation delta and one minimal UI session](Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md): left city list, compact no-reward task card and explicit confirmation; P0 diagnostics separate. Capacity/binding/travel/task modules unchanged. B194 activity/B196 explicit-input acceptance inherited; native sidebar appearance/input remains pending.
 

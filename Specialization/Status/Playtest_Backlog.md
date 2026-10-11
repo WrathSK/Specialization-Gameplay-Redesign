@@ -327,3 +327,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B197 — native-style sidebar UI pending
 
 [One minimal continuous session](Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md#one-minimal-ui-test): city-row selection/confirmation → arrival task card/confirmation, check Chinese fit/scrolling/footer/close at the actual UI scale. Existing two-turn lock/release remains unchanged. No save/load/capacity/name/Settler campaign. Source/live eligibility comes from Status/receipt; formal N1/N2/N3/U2/rewards held. B196's prior acceptance remains valid, not replaced by a new native PASS claim.
+
+## B197 stopped — relocation guard and presentation revision
+
+[Four-image native review](Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md) supersedes the pending B197 session. User-created ordinary Spy matches reproduced lifetime-audit STOP; native raw detail uncaptured. Original city-header/list/adjacent task-drawer layout requested. No unchanged-package test. After separately approved repair, combine relocation with existing ordinary Spy and task-card UI in one session; no save/load campaign. Own cap/source/task and formal scope remain unchanged.

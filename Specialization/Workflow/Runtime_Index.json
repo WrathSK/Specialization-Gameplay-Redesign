@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588",
-  "runtime": "B197.224/modinfo224 DEVELOP_ACTIVE; source daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588; receipt B197.224-daaa97f-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B196/stable bridge and retained recovery verified; no pending transaction. B194 activity/B196 input acceptance inherited; B197 native sidebar appearance/input pending.",
+  "runtime": "B197.224/modinfo224 DEVELOP_ACTIVE; source daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588; receipt B197.224-daaa97f-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B196/stable bridge and retained recovery verified; no pending transaction. B194 activity/B196 input acceptance inherited; B197 relocation native FAIL and presentation not accepted; receipt/equality inherited, no runtime reinspection in this documentation review.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

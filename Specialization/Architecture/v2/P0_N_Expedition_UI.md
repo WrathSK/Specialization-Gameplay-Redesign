@@ -1,8 +1,18 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B197_SIDEBAR_LOCAL_COMPLETE_NATIVE_UI_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+State: N1_PARTIAL / B197_NATIVE_RELOCATION_FAIL_UI_ADAPTATION_REQUIRED. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
 [B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 explicit travel/task interaction has scoped native acceptance; [new review and UI references](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) distinguish tested prototype function from the desired future sidebar layout. Broader formal UI and N2/N3 are still proposals.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
+
+## B197 follow-up — faithful native layout and relocation guard
+
+**Proposed, awaiting scoped repair approval.** [Native failure review](../../Status/Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md) supersedes B197's pending-test instruction below. The user rejects the simplified presentation and supplies images2/3 as the desired original layout. Native XML/presenter reuse is possible; callback isolation does not require discarding the original visual hierarchy.
+
+- Correct the confirmed lifetime ordinary-Spy audit defect: unrelated recruitment/mission/capacity changes must not invalidate an otherwise valid Expedition dispatch. Keep creation isolation and all exact current team/source/target/turn/permit guards; native rejection/unknown outcomes remain protected. Test actual UI CREATE, not direct backend setup that omits the snapshot.
+- Adapt selected-city header → compact city rows → adjacent mission/preview drawer → confirm/cancel, using original banner layers, spacing, icon/stat containers and sizing. Preserve the existing capital-only fixture and one no-reward2T card; native espionage lists/rewards/probabilities remain excluded. Keep prototype diagnostics outside the main hierarchy.
+- Existing Window adapters remain the sole DISPATCH/TASK route. Reuse neutral presenter code only, not native acceptance or automatic mission routing. Close/cancel must honor pending acknowledgements; ordinary Spy UI and our independent task owner remain unchanged. Any time/district preview uses bounded explicit-open/selection reads.
+- Expected scope: Window Lua/XML, necessary localization, relevant Reader helper only if required, targeted UI-create regressions. No capacity/binding/task schema or Gate state-machine redesign, ordinary-Spy/HD changes or new missions.
+- One combined repaired relocation→arrival/task UI session; no unchanged B197 or save/load campaign. The exact native STOP detail was hidden; show a concise differentiated reason in normal UI and retain technical detail in P0. No repair implemented by this review.
 
 ## B197 — native-style sidebar
 
