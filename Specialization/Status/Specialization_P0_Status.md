@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0536
+Status Revision: S0537
 Implementation Build: source/live B201.228 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
@@ -15,7 +15,7 @@ Work State: B201_NATIVE_PERSISTENCE_SCOPED_PASS_SELECTION_UI_FAIL
 
 Last verified source/live remains **B201.228 / modinfo228 DEVELOP_ACTIVE**, deployed source `37f1096`, receipt `B201.228-37f1096-playtest.json`,214/214 MATCH at deployment. This evidence review does not recheck or replace runtime. Main unchanged.
 
-Next: await approval for the bounded selection-routing repair/diagnostic proposal; preserve persistence, binding, capacity and task behavior. No unchanged-package retest or repeated cold-load campaign. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards stay held.
+User decision: selection auto-opening is optional/non-blocking; bundle a small fix with functional work if practical, otherwise leave it disabled. Explicit controls remain the entry. [Next functional batch: normal training and automatic source registration](../Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration) is ready for implementation review. No standalone UI diagnostic campaign or repeat cold-load request. Reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain later scope.
 
 ## S0535 — B201 deployment before native evidence (historical)
 

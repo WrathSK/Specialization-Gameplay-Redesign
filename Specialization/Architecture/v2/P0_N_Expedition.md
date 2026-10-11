@@ -9,7 +9,24 @@ Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 **B201.228 native persistence sequence has scoped PASS; selection auto-opening has USER_REPORTED_FAIL.** [Evidence and proposed bounded UI repair](../../Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md): travelling-save/cold-load retains source/cap/name, native arrival replaces ID correctly, subsequent two-turn no-reward task completes/releases. User confirms selection fails at home and abroad before tasks with diagnostics closed. Exact rejected predicate remains UNKNOWN; no repair is implemented or automatically authorized.
 
-383 targeted local tests remain the prior implementation evidence. B200 card layout and B201 END are not demonstrated in these images. Source/live remains B201 per Status/receipt. Await scoped UI repair approval; no unchanged-package retest or repeated save/load campaign. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
+383 targeted local tests remain the prior implementation evidence. B200 card layout and B201 END are not demonstrated in these images. Source/live remains B201 per Status/receipt. User has classified selection auto-opening as optional/non-blocking: bundle a bounded fix with functional work if practical, otherwise leave it disabled; explicit buttons remain the supported entry. No standalone repair gate or repeated save/load campaign. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
+
+## Next functional slice — normal training and source registration
+
+State: **PLAN_READY_FOR_REVIEW**. User directs functional Expedition development to continue and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The next bounded implementation proposal replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
+
+- Admission: Culture ACTIVE IV, own national cap1 including travelling, held and unbound surviving teams; check queue/completion concurrency. Do not silently invent refunds, delete an existing team or alter production on an ambiguous race. If the native queue contract cannot enforce the accepted scope without a new gameplay decision, report that specific boundary.
+- Cost: resolve the current ruleset's Spy production cost and relevant native scaling, rather than retaining placeholder1 or hardcoding a remembered base. Gold/Faith purchases are not implicitly enabled.
+- Provenance: use the actual production completion/unit creation evidence to register the exact trained unit and source city through the existing Store. No nearest-city, position-only or name-only source inference. Duplicate completion notifications are idempotent; unconfirmed persistence reserves capacity and holds actions.
+- Keep the supported test-civilization/name-pool scope explicit for this first training integration; do not advertise all-civilization release. The previously accepted temporary native Spy-slot cost remains a prototype limitation, not a newly accepted final design rule.
+- Reuse existing explicit **派遣到新城市 / 任务** controls. Auto-opening is optional: include a small well-supported correction if available; do not start another native diagnostic campaign for it. Disabling auto-open must not disable explicit controls or ordinary Spy UI.
+- Preserve task duration/reward isolation, source ACTIVE-loss versus Owner-loss distinction and existing saved team semantics. Reattachment, repeat tasks, real mission rewards/history and Network remain later slices.
+
+Direct closure to establish during implementation: unit SQL/eligibility and production UI, production-completion event provenance, Gate/Store registration, existing capacity queries and targeted tests. Registration triggers only from relevant production/unit lifecycle events; operate on the source city, produced unit and bounded player reservation. Pending correlation retires on confirmed registration, terminal failure or invalidation; no all-city per-frame scan or extra GC.
+
+Local checks: training eligibility/cost, cap with off-map/held team, competing queues/completions, exact source correlation, duplicate/unknown events, failed save/readback, unrelated unit isolation, and unchanged travel/task controls. Native delta: train one team normally → confirm automatic source/cap registration → dispatch and complete the existing no-reward task through explicit controls. Inspect card fit in that same session. Do not repeat B201 cold-load by default; add a load boundary only if the actual implementation changes reconstruction beyond the tested shared path.
+
+After this batch, prepare source-loss reattachment/repeat-task completion, then N2 mission-specific permanent results, then N3 Network. Each remains a separately bounded implementation decision; no automatic scope expansion.
 
 ## Next proposed slice — persistent team and source recovery
 

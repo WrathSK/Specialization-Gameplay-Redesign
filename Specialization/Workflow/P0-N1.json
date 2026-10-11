@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0536",
+    "status": "S0537",
     "runtime": "B201.228 / modinfo228",
     "military": "D0037",
     "harbor": "D0037",
@@ -531,6 +531,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md",
     "source": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Scoped B201 persistence sequence PASS; selection-opening USER_REPORTED_FAIL. This review does not re-inspect runtime.",
     "native": "Scoped USER_GAME_TEST_PASS: saved travelling team/source/cap, loaded arrival ID replacement and subsequent no-reward task/release. USER_REPORTED_FAIL: idle selection auto-open at home and abroad. END/card rendering unobserved; exact failing predicate UNKNOWN.",
-    "stop": "Await scoped selection-routing repair approval. Native travelling-load/source/cap/arrival/task sequence has scoped PASS; exact auto-open rejection UNKNOWN. No unchanged-package retest or further N1/N2/N3 implementation."
+    "stop": "Selection auto-open optional/non-blocking by user decision. Next bounded functional proposal: normal training and automatic source registration; review before implementation. Explicit controls remain usable; no standalone UI retest or N2/N3 expansion."
   }
 }
