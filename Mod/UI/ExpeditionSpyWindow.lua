@@ -26,19 +26,19 @@ local function activityView()
   or v.teamKey~=current.teamKey then return nil end
  return v
 end
--- One historical startup sample, never a current-state or eligibility authority.
--- Keep the report exact-key scoped even if an old diagnostic mirror survives.
-local function activityDiagnostic()
- local a=activityView();local d=ExposedMembers.SPC_ExpeditionActivityDiagnostic
+-- Historical samples are never current-state or activity permission authority.
+-- Keep both reports exact-key scoped even if an old diagnostic mirror survives.
+local function activityDiagnostic(d)
+ local a=activityView()
  if not a or type(d)~='table' or type(a.activityKey)~='string' or a.activityKey==''
   or d.owner~=a.owner or d.unitID~=a.unitID or d.teamKey~=a.teamKey or d.activityKey~=a.activityKey then return nil end
  for _,key in ipairs({'expectedName','x','y'})do
-  if a[key]~=nil and d[key]~=a[key]then return nil end
+  if d[key]~=a[key]then return nil end
  end
  return d
 end
 local function appendActivityDiagnostic(out)
- local d=activityDiagnostic();if not d then return end
+ local d=activityDiagnostic(ExposedMembers.SPC_ExpeditionActivityDiagnostic);if not d then return end
  local function raw(key)return type(d[key])=='string' and d[key] or 'UNKNOWN' end
  local status=d.eligibilityStatus
  if status~='ALLOWED' and status~='DENIED' then status='UNKNOWN' end
@@ -49,6 +49,21 @@ local function appendActivityDiagnostic(out)
  out[#out+1]=L('DIAGNOSTIC_SPY',raw('operation'),raw('endTurn'))
  out[#out+1]=L('DIAGNOSTIC_SLEEP_HASH',raw('hash'))
  out[#out+1]=L('DIAGNOSTIC_ELIGIBILITY',L('DIAGNOSTIC_'..status),raw('eligibility'))
+end
+-- B193: the failed guard has its own sample; do not infer it from startup.
+local function appendFailureDiagnostic(out)
+ local d=activityDiagnostic(ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic);if not d then return end
+ local function raw(key)return type(d[key])=='string' and d[key] or 'UNKNOWN' end
+ local phase=d.phase
+ if phase~='PRE_REQUEST_GUARD' and phase~='POST_REQUEST_READBACK' then phase='UNKNOWN' end
+ out[#out+1]=L('FAILURE_DIAGNOSTIC_HEADER',value(d.turn))
+ out[#out+1]=L('FAILURE_DIAGNOSTIC_PHASE',L('FAILURE_DIAGNOSTIC_PHASE_'..phase),raw('reason'))
+ out[#out+1]=L('FAILURE_DIAGNOSTIC_ACTIVITY',raw('activity'))
+ out[#out+1]=L('FAILURE_DIAGNOSTIC_REQUEST',raw('requested'),raw('sleepAttempted'))
+ out[#out+1]=L('DIAGNOSTIC_ENUM_A',raw('awake'),raw('hold'))
+ out[#out+1]=L('DIAGNOSTIC_ENUM_B',raw('sleep'),raw('operationEnum'))
+ out[#out+1]=L('FAILURE_DIAGNOSTIC_EQUAL_A',raw('equalsAwake'),raw('equalsHold'))
+ out[#out+1]=L('FAILURE_DIAGNOSTIC_EQUAL_B',raw('equalsSleep'),raw('equalsOperation'))
 end
 local function syncActivity()
  local v=activityView();if not v then return end
@@ -88,6 +103,7 @@ local function render()
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
  local activityFailure=v.activityFailure or v.activityError
  if activityFailure then o[#o+1]=activityFailureText(activityFailure)end
+ appendFailureDiagnostic(o)
  appendActivityDiagnostic(o)
  local held=v.phase=='HELD' and type(v.teamKey)=='string' and v.sourceCity~=nil
  local heldFresh=held and heldDiagnosticCurrent()

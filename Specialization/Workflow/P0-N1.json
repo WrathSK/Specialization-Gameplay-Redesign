@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0514",
-    "runtime": "B192.219 / modinfo219",
+    "status": "S0515",
+    "runtime": "B193.220 / modinfo220",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Record B192 startup observation and failure-phase uncertainty; no repeat test, new diagnostic or behavior repair until approved.",
-  "implementation_authorized": false,
+  "goal": "Approved B193 failure-time activity and SLEEP request-attempt diagnostic complete locally; await one native report sample without changing task behavior.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md",
       "kind": "full",
-      "reason": "Current native sample, startup/failure timing distinction and bounded next diagnostic proposal."
+      "reason": "Current diagnostic-only delta, exact failed-evaluation scope, validation and one native capture."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -217,6 +217,16 @@
       "path": "DevelopmentTests/test_expedition_spy_activity_diagnostic_report.py",
       "kind": "full",
       "reason": "Direct one-shot diagnostic and historical report isolation regression; no new gameplay authority."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_failure.py",
+      "kind": "full",
+      "reason": "Direct failure-time sample, PRE/POST request distinction and exact-identity report regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_failure_report.py",
+      "kind": "full",
+      "reason": "Direct failure-time sample, PRE/POST request distinction and exact-identity report regression."
     }
   ],
   "dependencies": [
@@ -334,6 +344,12 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md"
       ]
+    },
+    {
+      "trigger": "Review B192 native startup observation and correction to prior pre-request inference",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md"
+      ]
     }
   ],
   "non_scope": [
@@ -341,17 +357,17 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "227 scoped methods PASS;30 new diagnostic/report methods including read failures, typed values, independent eligibility, bounded lifecycle, stale/reentrant exact-lease isolation. Existing writer/ownership assertions retained; no native proof.",
-    "user": "B192 startup sample received: activity prints AWAKE, ready true, native SLEEP eligibility true. Task HELD; native failure-time state/request history unknown. No repeat of unchanged test."
+    "local": "254 scoped methods PASS;27 new failure/report cases, exact no-extra native read/write assertions, startup separation, pending/reentry and sample isolation; native behavior unproved.",
+    "user": "One B193 existing-task click and failure-time report screenshot. No new button, completion-turn/save-load/re-enable campaign; existing task may still fail."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md",
-    "source": "B192.219/modinfo219 DEVELOP_ACTIVE; source 4e4bbc787feeaaeff81016169f166b87091957dd; receipt B192.219-4e4bbc7-playtest.json;213/213 MATCH. Fresh OS exit, clean/pushed source, exact B191/stable bridge and retained recovery hashes verified; no pending transaction. B192 startup diagnostic received; failure-time state/request phase unknown. Runtime unchanged.",
-    "native": "Two T88 images: initial typed activity/enums and eligibility captured; source/name/cap1 matching; ACTIVITY_UNEXPECTED_STATE remains. Startup evidence cannot locate later failure phase; Sleep/completion/release unverified.",
-    "stop": "Await proposed failure-time/attempt-phase diagnostic decision; no implementation, deployment or new user test in this review. Formal N1/N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md",
+    "source": "Source B193.220/modinfo220 locally complete; last recorded deployment B192.219/source4e4bbc7/receipt B192.219-4e4bbc7-playtest.json. Deployment not inferred.",
+    "native": "B193 failure-time diagnostic USER_GAME_TEST_REQUIRED. B192 startup AWAKE/ready/eligible observed; actual failing state/request history still unknown. No Sleep/completion/release PASS.",
+    "stop": "Await verified deployment and one failure-time diagnostic sample; no behavior repair, formal persistence/reattachment, N2/N3/U2/rewards."
   }
 }

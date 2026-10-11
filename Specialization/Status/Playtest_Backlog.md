@@ -297,3 +297,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B192 — requested startup sample received; unchanged test closed
 
 [Native review](Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md): the two screenshots already contain the requested diagnostic. No extra diagnostic button or repeat required. Startup AWAKE/ready/eligible; task remains HELD. Failure-time activity and whether an earlier request occurred are unresolved, not proof of native refusal. Any next attempt must first add a separately approved phase-specific diagnostic; no completion/save-load campaign now.
+
+## B193 — one failure-time diagnostic capture
+
+[Minimal test](Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md#one-minimal-native-test): after verified deployment, fresh bound arrived team → existing **④ 无奖励任务（2回合）** once → screenshot **失败时活动诊断**, especially failure stage/activity and request-attempt flags → stop. This is a report block, not a new button. Distinguishes pre-request from later failing readback; no completion turns/save-load ritual. Guard/task behavior unchanged, no native acceptance assumed.

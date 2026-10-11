@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0514
-Implementation Build: source/live B192.219 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0515
+Implementation Build: source B193.220; last deployed B192.219 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B192_STARTUP_DIAGNOSTIC_RECEIVED_FAILURE_PHASE_UNKNOWN
+Work State: B193_FAILURE_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B193.220 approved failure-time diagnostic locally complete; native sample pending.** [Changes,254 scoped checks and one capture](Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md): exact failing activity/enums/equality and SLEEP request/attempt flags, separate from startup evidence. No added native query/writer or capacity/binding/task change. B192 failure remains unresolved; no native Sleep/completion/release PASS.
+
+Source is **B193.220 / modinfo220**. Last recorded live is **B192.219**, source `4e4bbc7`, receipt `B192.219-4e4bbc7-playtest.json`,213/213 MATCH with retained recovery. Deployment requires the existing clean-source/game-exit/hash transaction; source HEAD does not prove runtime.
+
+Next: one fresh bound arrived fixture → existing **④ 无奖励任务（2回合）** once → screenshot **失败时活动诊断** → stop. The diagnostic is report text, not a new button. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; behavior repair, formal persistence/reattachment, N2/N3/U2/rewards await later authorization.
+
+## S0514 — B192 startup observation and failure-phase correction (historical)
 
 **B192 startup diagnostic received; task remains HELD / ACTIVITY_UNEXPECTED_STATE.** [Two-image review and timing correction](Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md): initial activity prints AWAKE, readiness true and SLEEP eligibility true. The one-shot startup sample does not identify the later failing evaluation or prove no request occurred. Source/name/cap1 match retained; no Sleep/completion/release PASS.
 

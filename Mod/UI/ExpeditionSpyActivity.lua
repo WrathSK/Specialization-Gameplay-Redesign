@@ -1,4 +1,4 @@
--- B192: invisible UI bridge for one Gameplay-owned Expedition activity lease.
+-- B193: invisible UI bridge for one Gameplay-owned Expedition activity lease.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
 local P=SPCP0
@@ -113,13 +113,30 @@ local function captureDiagnostic(n,u,activity)
  -- A reentrant publication may have changed the target during a reader call.
  if same(view(),n) then ExposedMembers.SPC_ExpeditionActivityDiagnostic=d end
 end
-local function clearStaleDiagnostic(v)
- local d=ExposedMembers and ExposedMembers.SPC_ExpeditionActivityDiagnostic
+-- Preserve the exact failing evaluation separately from the first startup sample.
+-- This observes existing control flags; an attempted request is not native acceptance.
+local function captureFailureDiagnostic(n,activity,awake,hold,sleep)
+ if seen.failureDiagnosed or not same(view(),n)then return end
+ seen.failureDiagnosed=true
+ local operation=ActivityTypes.ACTIVITY_OPERATION
+ local d={owner=n.owner,unitID=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
+  expectedName=n.expectedName,x=n.x,y=n.y,turn=Game.GetCurrentGameTurn(),
+  reason='ACTIVITY_UNEXPECTED_STATE',
+  phase=(n.requested==true or seen.attempted==true) and 'POST_REQUEST_READBACK' or 'PRE_REQUEST_GUARD',
+  activity=diagnosticText(activity),awake=diagnosticText(awake),hold=diagnosticText(hold),
+  sleep=diagnosticText(sleep),operationEnum=diagnosticText(operation),
+  equalsAwake=diagnosticText(activity==awake),equalsHold=diagnosticText(activity==hold),
+  equalsSleep=diagnosticText(activity==sleep),equalsOperation=diagnosticText(activity==operation),
+  requested=diagnosticText(n.requested==true),sleepAttempted=diagnosticText(seen.attempted==true)}
+ if same(view(),n)then ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=d end
+end
+local function clearStaleDiagnostic(v,key)
+ local d=ExposedMembers and ExposedMembers[key]
  if not d then return end
  if type(v)~='table' or v.owner~=Game.GetLocalPlayer() or v.owner~=d.owner or v.unitID~=d.unitID
   or v.teamKey~=d.teamKey or v.activityKey~=d.activityKey or v.expectedName~=d.expectedName
   or v.x~=d.x or v.y~=d.y or v.phase=='ENDED' then
-  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
+  ExposedMembers[key]=nil
  end
 end
 local function evaluate(n)
@@ -136,8 +153,12 @@ local function evaluate(n)
    if not captured then print('[SPC][B192][ACTIVITY_DIAGNOSTIC_UNAVAILABLE] '..detail(err))end
    if job~=n or not same(view(),n)then return end
   end
-  if activity==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP');return end
-  if activity~=ActivityTypes.ACTIVITY_AWAKE and activity~=ActivityTypes.ACTIVITY_HOLD then
+  local sleep=ActivityTypes.ACTIVITY_SLEEP
+  if activity==sleep then acknowledge(n,'ASLEEP');return end
+  local awake,hold=ActivityTypes.ACTIVITY_AWAKE,ActivityTypes.ACTIVITY_HOLD
+  if activity~=awake and activity~=hold then
+   local captured,err=pcall(captureFailureDiagnostic,n,activity,awake,hold,sleep)
+   if not captured then print('[SPC][B193][ACTIVITY_FAILURE_DIAGNOSTIC_UNAVAILABLE] '..detail(err))end
    fail(n,'ACTIVITY_UNEXPECTED_STATE');return
   end
   if not n.requested then
@@ -203,7 +224,8 @@ local function start(v)
 end
 local function refresh(monitor)
  local v=view()
- clearStaleDiagnostic(v)
+ clearStaleDiagnostic(v,'SPC_ExpeditionActivityDiagnostic')
+ clearStaleDiagnostic(v,'SPC_ExpeditionActivityFailureDiagnostic')
  if type(v)=='table' and integer(v.revision) and v.revision~=lastRevision then
   lastRevision=v.revision
   if LuaEvents and LuaEvents.SPC_ExpeditionActivityChanged then LuaEvents.SPC_ExpeditionActivityChanged(v.revision)end
@@ -251,6 +273,7 @@ local function initialize()
  if initialized then return end
  initialized=true;stopped=false
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
+ ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=nil
  Events.GameCoreEventPublishComplete.Add(published)
  Events.LocalPlayerTurnBegin.Add(turn)
  if Events.UnitActivityChanged then Events.UnitActivityChanged.Add(activityChanged)end
@@ -260,6 +283,7 @@ ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
  stopped=true;cancel()
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
+ ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=nil
  if initialized then
   Events.GameCoreEventPublishComplete.Remove(published)
   Events.LocalPlayerTurnBegin.Remove(turn)
