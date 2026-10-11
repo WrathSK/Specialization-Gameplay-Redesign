@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0499
-Implementation Build: source B188.215; last deployed B187.214 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0500
+Implementation Build: source/live B188.215 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,9 +13,9 @@ Work State: B188_UI_READINESS_LOCAL_COMPLETE_NATIVE_PENDING
 
 **B188.215 approved readiness repair locally complete; native pending.** [110 targeted checks and one session](Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md): bounded UI exact-unit readiness → one name command → raw readback/Gameplay confirmation. Specific mismatches stop; close/timeout cancel late commands. Reentrant request publication cannot overwrite the naming timer. Source/capacity, Gameplay Gate and independent no-reward task are unchanged.
 
-Source is **B188.215 / modinfo215**. Last recorded live remains **B187.214**, source `198234b`, receipt `B187.214-198234b-playtest.json`, last verified211/211 MATCH. W0003 deployment remains subject to clean/pushed source, verified exit and existing recovery transaction. No main promotion or new native PASS.
+Source/live is **B188.215 / modinfo215 DEVELOP_ACTIVE**, deployed source `21f2bf1`, receipt `B188.215-21f2bf1-playtest.json`,211/211 MATCH. Fresh OS exit, clean/pushed source, exact B187/stable bridge and retained recovery hashes verified; no pending transaction. No game launch, main promotion or new native PASS.
 
-Next: after verified deployment, keep **人文考察·验证** open for confirmed name → arrival → no-reward2T task → END. Stop at failure; no extra save/load ritual. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held.
+Next: keep **人文考察·验证** open for confirmed name → arrival → no-reward2T task → END. Stop at failure; no extra save/load ritual. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held.
 
 ## S0498 — B187 name-preflight failure review (historical)
 

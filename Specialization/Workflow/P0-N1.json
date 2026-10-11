@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0499",
+    "status": "S0500",
     "runtime": "B188.215 / modinfo215",
     "military": "D0037",
     "harbor": "D0037",
@@ -243,8 +243,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
-    "source": "Source B188.215/modinfo215 locally complete; last verified deployed package B187.214/source198234b/receipt B187.214-198234b-playtest.json. No B188 deployment inferred.",
+    "source": "B188.215/modinfo215 DEVELOP_ACTIVE; source21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8; receipt B188.215-21f2bf1-playtest.json;211/211 MATCH. Fresh OS exit, clean/pushed source, exact B187/stable bridge and retained recovery hashes verified; no pending transaction. Native name/arrival/task gate pending.",
     "native": "USER_GAME_TEST_REQUIRED: repaired readiness and remaining name/travel/task/END. Prior B187 preparation FAIL remains frozen.",
-    "stop": "Await verified deployment and one-session native review. Formal training/persistence/reattachment/N2/N3/U2/rewards held."
+    "stop": "Await one-session native review; formal training/persistence/reattachment/N2/N3/U2/rewards held."
   }
 }

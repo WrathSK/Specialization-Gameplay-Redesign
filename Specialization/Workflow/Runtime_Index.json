@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "198234b68f99c401b4b3d439356cf497e9cff727",
-  "runtime": "B187.214/modinfo214 DEVELOP_ACTIVE; source198234b68f99c401b4b3d439356cf497e9cff727; receipt B187.214-198234b-playtest.json;211/211 MATCH. OS game exit and exact B186/stable recovery hashes verified; no pending transaction. Native controlled-name/task validation pending.",
+  "runtime_commit": "21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8",
+  "runtime": "B188.215/modinfo215 DEVELOP_ACTIVE; source21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8; receipt B188.215-21f2bf1-playtest.json;211/211 MATCH. Fresh OS exit, clean/pushed source, exact B187/stable bridge and retained recovery hashes verified; no pending transaction. Native name/arrival/task gate pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
