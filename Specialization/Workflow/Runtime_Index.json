@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "b4126a4628d4f2cdedbf4c9761c853b99a2d4946",
-  "runtime": "Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B201.228 source locally complete, includes deferred B200 UI; combined deployment explicitly authorized, pending verified transaction.",
+  "runtime_commit": "37f10961edf9ddeb6fcabfa6d909cff2a881bd00",
+  "runtime": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Native persistence/B200 UI pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

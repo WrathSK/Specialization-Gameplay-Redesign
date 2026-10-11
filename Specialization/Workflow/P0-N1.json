@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0534",
+    "status": "S0535",
     "runtime": "B201.228 / modinfo228",
     "military": "D0037",
     "harbor": "D0037",
@@ -524,8 +524,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
-    "source": "B201.228/modinfo228 locally complete; Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B201.228 source locally complete, includes deferred B200 UI; combined deployment explicitly authorized, pending verified transaction.",
+    "source": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Native persistence/B200 UI pending.",
     "native": "USER_GAME_TEST_REQUIRED for new saved travel/identity and activity reconstruction plus B200 rendered selection/card delta. No formal mission/reward claim.",
-    "stop": "Complete authorized guarded deployment and request one combined native session, then stop. Training/reattachment/repeat tasks/N2/N3/U2 remain held."
+    "stop": "Combined B201 deployed; await one travelling-save/cold-load → arrival/no-reward task/UI → END native session, then stop for review. Training/reattachment/repeat tasks/N2/N3/U2 remain held."
   }
 }

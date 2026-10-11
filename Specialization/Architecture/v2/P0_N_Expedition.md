@@ -1,6 +1,6 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B201_PERSISTENCE_LOCAL_COMPLETE_COMBINED_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B201_PERSISTENCE_DEPLOYED_COMBINED_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
@@ -9,7 +9,7 @@ Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 **B201.228 approved persistent-team/source slice locally complete;383 targeted tests PASS.** [Current result and combined native flow](../../Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md). The bounded saved record owns identity/source/travel/task intent; native unit/travel/activity facts are fresh. Confirmed writes precede side effects, ambiguous persistence keeps cap reservation, and restored activity cannot run/release from stale samples. B200 selection/card changes are included, with native appearance still deferred into this batch's one travel/cold-load test. Source/live and deployment authorization are recorded in Status/receipt, not inferred from this plan.
 
-User approved implementation and deployment and confirmed game exit. Local completion is not native serialization/travel PASS. The minimum persistence contract below is implemented; one combined travelling-save/cold-load → arrival/task/UI → END session remains. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards are outside this authorization.
+User-approved combined B201 deployment is verified in Status/receipt. Local completion and package equality are not native serialization/travel PASS. The minimum persistence contract below is implemented; one combined travelling-save/cold-load → arrival/task/UI → END session remains. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards are outside this authorization.
 
 ## Next proposed slice — persistent team and source recovery
 

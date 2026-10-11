@@ -48,3 +48,7 @@ After verified deployment, use the current test save/test civilization and one v
 ## Held scope / evidence limits
 
 Cap1, Spy=1, own source binding, test-civilization name pool, revealed-capital fixture and fixed2T one-shot no-reward task remain. The temporary native Spy-capacity cost remains accepted for the prototype; final own-cap-only behavior is not solved here. Normal training/current Spy cost, broader civilizations, source-loss reattachment, repeat missions/game-speed duration, N2/N3/U2/rewards are not implemented by this batch. Design, general Store, carriers, GC, main, deployment tools and frozen evidence are unchanged. No game launch or native PASS.
+
+## Verified combined deployment
+
+B201.228 / modinfo228 **DEVELOP_ACTIVE**, source `37f10961edf9ddeb6fcabfa6d909cff2a881bd00`, receipt `B201.228-37f1096-playtest.json`. The approved existing-tool B199→stable→B201 transaction completed after clean/pushed source and fresh OS game-exit checks. Source/runtime **214/214 MATCH**; B199213-file and stable115-file recovery packages retained and hash-verified; no pending transaction. Main source and external game configuration unchanged; no game launch or native PASS. The combined user flow above is the next action.

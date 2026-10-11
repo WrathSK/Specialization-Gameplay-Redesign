@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0534
-Implementation Build: source B201.228 local complete; live B199.226 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0535
+Implementation Build: source/live B201.228 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B201_PERSISTENCE_LOCAL_COMPLETE_COMBINED_NATIVE_PENDING
+Work State: B201_PERSISTENCE_DEPLOYED_COMBINED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B201.228 persistent Expedition team/source slice deployed;383 targeted local tests PASS.** [Ownership/readback/recovery contract, fault coverage, deployment and one combined native flow](Validation/Results/Specialization_B201_Expedition_Persistence_Local.md). Bounded player-owned saved identity/source/travel/task state and fresh native activity reconstruction; ambiguous records reserve cap and hold. B200 selection/card refinement is included and remains native-unverified. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
+
+Source/live is **B201.228 / modinfo228 DEVELOP_ACTIVE**, deployed source `37f1096`, receipt `B201.228-37f1096-playtest.json`,214/214 MATCH. Fresh OS exit, clean/pushed source and guarded B199→stable→B201 transaction verified; B199/stable recovery retained, no pending transaction. Main unchanged; no game launch or native PASS.
+
+Next: **one travelling-save/cold-load → arrival/no-reward task/UI → END session**. Close the P0 diagnostic window before selection-opening checks. This validates the new durable off-map mapping and B200 rendering together; no second unchanged-harness cold-load campaign. Stop at native evidence; normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards stay held. No further implementation automatically authorized.
+
+## S0534 — B201 local checkpoint before deployment (historical)
+
 
 **B201.228 persistent Expedition team/source slice locally complete;383 targeted tests PASS.** [Applied state/ownership contract, fault coverage and one combined native flow](Validation/Results/Specialization_B201_Expedition_Persistence_Local.md). A bounded player-owned Game Property records logical team/source/travel/task state; exact readback precedes dependent native actions. Loading re-observes activity before timer progression/release; corrupt or ambiguous records retain capacity and hold. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
 
