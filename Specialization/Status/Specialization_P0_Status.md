@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0494
+Status Revision: S0495
 Implementation Build: source/live B186.213 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B186_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B186_NATIVE_MARKER_ABSENT_AWAITING_NAME_PROTOTYPE_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B186.213 bounded arrival lookup/diagnostic patch locally complete; native gate pending.** [81 targeted checks and one session](Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md): player collection plus exact surviving marker/readback/source/target replaces plot-dependent arrival. Unbound reports retain source and distinguish marker/lookup failures. B185 button routing evidence remains scoped; native marker survival and the independent task/END are not yet passed.
+**B186.213 arrival binding NOT_PASSED: returned-unit marker absent; custom task/END not tested.** [Two-image review and name-based proposal](Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md) show off-map marker MATCH, then absent marker through both current collection and exact lookup at T88. Old-ID lookups return the new public ID; plot includes the unit and source reference still matches. This distinguishes the previous enumeration ambiguity without proving native C++ delete/recreate.
 
-Source/live **B186.213 / modinfo213**, deployed source `c627529`, receipt `B186.213-c627529-playtest.json`, verified211/211 MATCH. OS game exit, clean/pushed source, exact B185→stable→B186 transaction and B185/stable recovery hashes verified; no pending transaction. Main unchanged; native gate still pending.
+Source/live remains **B186.213 / modinfo213**, deployed source `c627529`, receipt `B186.213-c627529-playtest.json`, last verified211/211 MATCH. This review changes no package or deployment; main/stable/recoveries remain unchanged. Own cap1/source and temporary native-slot cost remain accepted.
 
-User approved this patch. Next: one session arrival → no-reward task → END; if binding remains unknown, report exact evidence and stop. Own cap1/source and temporary native-slot cost remain. Formal N1/N2/N3/U2/rewards remain held. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate); `P0-N1.json`. No additional implementation follows automatically.
+Next proposal: controlled unit name with readable city label and a short fixed team key; exact source stays in our existing record. Native/HD name continuity has static precedent, but rename eligibility and custom-name travel survival need a bounded prototype. **Await user approval; no unchanged B186 retest.** [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`. Formal N1/N2/N3/U2/rewards remain held.
 
 ## S0494 — B186 deployment checkpoint (historical)
 

@@ -244,3 +244,7 @@ No repeated test of unchanged B185 or cold-load ritual. Await authorization for 
 ## B186 — bounded arrival repair; resume one session after deployment
 
 Supersedes B185's awaiting-authorization instruction: user approved the narrow repair, now locally complete. [One session](Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md#one-minimal-native-session): create/dispatch → arrival marker/readback/source → independent no-reward2T task → exact END. On unbound/held arrival, capture the new identity summary/details and stop. No repeated unchanged-package test, save/load ritual, new ordinary Spy fixture or formal N1/N2/N3/U2. Runtime eligibility comes from current Status/receipt, not this queue.
+
+## B186 — native marker absent; unchanged-package test stopped
+
+[Two-image review and proposal](Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md): arrival object lacks the custom marker, while source and plot reads succeed; old-ID lookups return the new public ID. Task/END not tested. This supersedes the queued B186 session above. No repeat requested. Await approval for a controlled-name continuity prototype; only after implementation resume arrival → task → END. No formal reattachment, N2/N3/U2 or cold-load campaign.

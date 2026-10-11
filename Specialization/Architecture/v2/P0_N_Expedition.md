@@ -1,19 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B186_LOCAL_COMPLETE_AWAITING_NATIVE / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B186_NATIVE_MARKER_ABSENT_AWAITING_NAME_PROTOTYPE_REVIEW / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B186.213 authorized patch is locally complete; native identity/task gate pending.** [Current result and one-session test](../../Status/Validation/Results/Specialization_B186_Expedition_Arrival_Lookup_Local.md) records81 targeted checks. The [B185 native evidence](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md) remains unchanged: original-button routing observed, changed destination ID unbound, independent task not reached.
+**B186.213 native arrival binding did not pass; custom task/END not tested.** [Two-image review](../../Status/Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md) records off-map marker MATCH and arrival marker ABSENT in both collection/exact lookup. Plot membership is present, the source reference remains valid, and old-ID lookups return the new public ID. The previous lookup ambiguity is resolved for this sample; actual native engine destruction/recreation remains unproved. Prior81 local checks and frozen native records are unchanged.
 
-Pending arrival now reads the player's prototype collection, requires the original surviving marker, exact candidate-ID readback and valid source/target, and rejects extra prototypes/ambiguous evidence. Physical plot occupancy is diagnostic-only. Source/capacity remain reserved while uncertain; no names, coordinates, arithmetic IDs, lone-unit adoption or marker copying. Reports distinguish absent/mismatched/unreadable marker and lookup failures, with retained source clearly separated from verified binding.
+The user proposes a name-carried binding. Recommended narrow next prototype: readable city label plus short fixed team key, retaining the existing exact source record. Native/HD name continuity supplies precedent, not proof that this custom unit can be renamed or retain our assigned name. The linked proposal checks those two facts before relying on the key; no city search by name, lone-unit adoption, copied Property proof or generic identity framework. **Implementation awaits approval.** B186 still runs its current marker guards.
 
-One native Spy slot remains an accepted temporary cost. Own cap1/source and the independent no-reward2T session timer are unchanged. A READ reuses one unit-collection scan; ordinary task turns after arrival do not scan the player collection. Diagnostic scalars are request-owned and not persisted.
+One native Spy slot remains an accepted temporary cost; own cap1/source and the independent no-reward2T session timer are unchanged. No repeated test of unchanged B186 or default save/load ritual. After an approved delta, resume name readback → native arrival → no-reward task → END in one session, stopping on missing proof.
 
-Follow Status for source/live receipt and the linked minimal arrival → no-reward task → END session after guarded deployment. Stop if identity remains unproved. No cold-load ritual or another test of unchanged B185. Formal training/saved journey/reattachment, N2/N3/U2/rewards, Store/schema/GC and Design remain outside this patch. Future original-button icon reuse is recorded, not implemented.
+Formal training/saved journey/reattachment, N2/N3/U2/rewards, Store/schema/GC and Design remain outside this review. Future reattachment would change the readable city label and source record, retaining team identity, only under its accepted lifecycle. Future original-button icon reuse is recorded, not implemented. Source/live/authorization remain in Status.
 
 ## 三种状态与已定数值
 
