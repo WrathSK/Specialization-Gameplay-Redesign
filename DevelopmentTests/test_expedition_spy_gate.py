@@ -1,4 +1,4 @@
-"""B187 Spy=1 controlled-name gate regression (extends prior fixture). Native travel/coexistence/rewards remain USER_GAME_TEST.
+"""B189 Spy=1 native-name observation gate regression (extends prior fixture). Native travel/coexistence/rewards remain USER_GAME_TEST.
 Reuses the preceding fixture environment; exercises actual current Lua/SQL/UI.
 External DB is read-only and copied in memory. No ordinary Spy definitions change.
 """
@@ -12,24 +12,45 @@ def gate(ui=False, window=False):
     l=previous.Window().runtime(False) if window else previous.Reader().runtime() if ui else previous.Gate().runtime()
     l.execute("""
       kind='UNIT_SPC_EXPEDITION_SPY';info[100].UnitType=kind;info[100].Spy=true
-      info[100].PromotionClass='PROMOTION_CLASS_SPY';info[kind]=info[100]
+      info[100].PromotionClass='PROMOTION_CLASS_SPY';info[100].Name='LOC_TEST_DEFAULT';info[kind]=info[100]
       info[103]={UnitType='UNIT_SPY',Spy=true,Hash=103};info.UNIT_SPY=info[103]
       local originalUnit=unit
       function unit(...)
-       local u=originalUnit(...);u.properties={};u.name='Native Spy'
+       local u=originalUnit(...);u.properties={};u.name=u.type_==100 and 'LOC_TEST_DEFAULT' or 'Native Spy'
        function u:GetName()return self.name end
        function u:GetProperty(k)return self.properties[k]end
-       function u:SetProperty(k,v)properties=properties+1;error('B187 must not write Unit Properties')end
+       function u:SetProperty(k,v)properties=properties+1;error('Spy identity gate must not write Unit Properties')end
        function u:GetSpyOperation()return self.operation or -1 end
        return u
       end
       units={};nativeCalls=0;nativeAllow=true;trainable=true;offmap=0;sourceTurns=0
+      -- Mock engine assignment only; native pool support remains an in-game gate.
+      nativeName='LOC_CITIZEN_TEST_A';nameConfirmCalls=0
+      local nativeInit=UnitManager.InitUnit
+      UnitManager.InitUnit=function(...)
+       local u=nativeInit(...);if u then u.name=nativeName end;return u
+      end
+      PlayerConfigurations={[2]={GetCivilizationTypeName=function()return civilization or 'CIVILIZATION_SPC_TEST' end}}
+      P.PlayerConfigurations=PlayerConfigurations
+      poolRows={{CivilizationType='CIVILIZATION_SPC_TEST',CitizenName='LOC_CITIZEN_TEST_A',Female=0,Modern=0},
+       {CivilizationType='CIVILIZATION_SPC_TEST',CitizenName='LOC_CITIZEN_TEST_B',Female=1,Modern=1},
+       {CivilizationType='CIVILIZATION_OTHER',CitizenName='LOC_CITIZEN_OTHER',Female=0,Modern=0}}
+      GameInfo=GameInfo or {Units=info}
+      GameInfo.CivilizationCitizenNames=function()
+       local n=0;return function()n=n+1;return poolRows[n]end
+      end
+      P.GameInfo=GameInfo
+      -- Gameplay-only fixture intentionally exposes no off-map Spy API.
+      -- That evidence is read in UI and sent as an explicit current-turn sample.
       rawreq=req
+      function confirmName(token,id,name)
+       handler(2,{Action='NAME',Token=token,UnitID=id or 40,Name=name or units[id or 40].name,NameOffmapChecked=true,NameSampleTurn=currentTurn})
+       return ExposedMembers.SPC_ExpeditionGateReply
+      end
       function req(action,token,...)
        local r=rawreq(action,token,...)
        if action=='CREATE' and r.phase=='NAMING' and not r.error then
-        units[r.unitID].name=r.expectedName
-        r=rawreq('READ',token..':fixture-name')
+        r=confirmName(token..':fixture-name',r.unitID)
        end
        return r
       end
@@ -45,26 +66,22 @@ def gate(ui=False, window=False):
        local p={NativeAllowed=true};for k,v in pairs(overrides or {})do p[k]=v end;return dispatch(token,p)
       end
     """)
-    l.execute((R/'Mod/ExpeditionSpyGate.lua').read_text());l.execute('SPCExpeditionSpyGate.Start(P,shared)')
+    l.execute((R/'Mod/ExpeditionSpyGate.lua').read_text());l.execute("SPCExpeditionSpyGate.Start(P,shared);local h=handler;handler=function(pid,p)if p.Action=='NAME' then nameConfirmCalls=nameConfirmCalls+1 end;return h(pid,p)end")
     if ui or window:
         l.execute("""
           Players[2].GetDiplomacy=function()return {HasMet=function()return met~=false end,
            GetSpyCapacity=function()return spyCapacity end,GetNumSpiesOffMap=function()return offmap end,
+           GetNthOffMapSpy=function(self,pid,n)return offmapRows and offmapRows[n+1]end,
            GetSourceTurnsRemaining=function()return sourceTurns end}end
           city.GetBuildQueue=function()return {CanProduce=function(self,params,a,b)
            assert(type(params)=='table' and params.UnitType==103 and a==false and b==true);return trainable end}end
           MilitaryFormationTypes={STANDARD_MILITARY_FORMATION=0}
           UnitOperationTypes.SPY_GAIN_SOURCES=9
-          UnitCommandTypes={NAME_UNIT=10,PARAM_NAME='Name'};nameCalls=0;nameAllow=true;renameCapability=true
-          GameCapabilities={HasCapability=function(k)assert(k=='CAPABILITY_RENAME');return renameCapability end}
-          UnitManager.CanStartCommand=function(u,cmd,params)
-           assert(cmd==10 and params==true);return nameAllow end
-          UnitManager.RequestCommand=function(u,cmd,params)
-           assert(cmd==10 and type(params.Name)=='string');nameCalls=nameCalls+1;lastNamedID=u:GetID();requestedName=params.Name
-           if nameThrow then error('NAME_REQUEST_UNKNOWN')end
-           if nameFalse then return false end
-           if not nameDelayed then u.name=params.Name end
-          end
+          nameCalls=0
+          -- Any accidental old rename path is a failure, not a simulated success.
+          UnitCommandTypes={NAME_UNIT=10,PARAM_NAME='Name'}
+          UnitManager.CanStartCommand=function()nameCalls=nameCalls+1;error('B189 must not query rename command')end
+          UnitManager.RequestCommand=function()nameCalls=nameCalls+1;error('B189 must not rename')end
           UnitManager.CanStartOperation=function(u,op,plot,params)
            assert(op==8 or op==9);assert(plot.x==params.X and plot.y==params.Y);return nativeAllow end
           UnitManager.GetResultProbability=function(index,u,plot)assert(index==27);return {ESPIONAGE_SUCCESS_UNDETECTED=1,ESPIONAGE_SUCCESS_MUST_ESCAPE=0}end
@@ -75,12 +92,12 @@ def gate(ui=False, window=False):
         """)
         l.execute((R/'Mod/ExpeditionSpyRead.lua').read_text());l.execute('reader=SPCExpeditionSpyRead')
     if window:
-        l.execute("makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-188.215';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
+        l.execute("makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-189.216';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
         l.execute((R/'Mod/UI/ExpeditionSpyWindow.lua').read_text());l.execute('init()')
     return l
 
 class Gate(unittest.TestCase):
-    def test_create_own_source_capacity_one_controlled_name_and_no_native_mission(self):
+    def test_create_own_source_capacity_one_native_name_and_no_native_mission(self):
         l=gate();l.execute("units[7]=unit(7,101);req('CREATE','a');req('CREATE','a');local r=req('READ','b');assert(r.phase=='CREATED' and r.count==1 and r.coLocated==1 and r.sourceCity==1 and r.unitID==40 and initCalls==1 and properties==0 and finishCalls==0 and placeCalls==0 and units[7])")
     def test_old_fixtures_count_and_cleanup_only(self):
         for kind in ['UNIT_SPC_EXPEDITION_GATE','UNIT_SPC_EXPEDITION_ZERO']:
@@ -175,7 +192,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'215')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'216')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -188,7 +205,7 @@ class Package(unittest.TestCase):
         keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','NAMING','CREATED','TRAVELLING','ARRIVED','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
         keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED','SLOT_COST_ACCEPTED']}
         keys|={f'IDENTITY_{p}' for p in ['MATCH','ABSENT','MISMATCH','UNREADABLE','NO_UNIT','NO_SESSION','WRONG_UNIT','AMBIGUOUS','PRESENT','OFF_MAP']}
-        keys|={f'NAME_STAGE_{p}' for p in ['READINESS','COMMAND','READBACK','GAMEPLAY','CONFIRMED','CANCELLED']}
+        keys|={f'NAME_STAGE_{p}' for p in ['READINESS','READING','GAMEPLAY','CONFIRMED','CANCELLED']}
         for k in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_'+k,)).fetchone()[0],2,k)
         for key in re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml):self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)
         db.close()

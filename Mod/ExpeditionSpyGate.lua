@@ -1,4 +1,4 @@
--- B187: controlled raw name carries this session team key through native travel.
+-- B189: observe a native citizen-pool name, then retain it for session travel.
 -- Source/capacity remain our own record; no city/player ledger, mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
@@ -68,7 +68,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return tostring(err):gsub('[%c]',' '):gsub('%[','('):gsub('%]',')'):sub(1,220)
  end
  local function logFailure(code,at,raw)
-  print('[SPC][B187][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
+  print('[SPC][B189][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
  end
  local function hold(err)
   state.phase='HELD';state.stop=reason(err);state.errorStep=step;state.errorDetail=detail(err)
@@ -89,6 +89,51 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return ok and value or 'UNREADABLE'
  end
  local function named(u)return nameStatus(u)=='MATCH' end
+ local function namePool(pid)
+  local config=PlayerConfigurations and PlayerConfigurations[pid]
+  assert(config and type(config.GetCivilizationTypeName)=='function','NAME_CIVILIZATION_UNAVAILABLE')
+  local civ=config:GetCivilizationTypeName()
+  assert(civ=='CIVILIZATION_SPC_TEST','NAME_TEST_CIVILIZATION_REQUIRED')
+  assert(GameInfo and GameInfo.CivilizationCitizenNames,'NAME_POOL_UNAVAILABLE')
+  local names={};local count=0
+  for r in GameInfo.CivilizationCitizenNames()do
+   if r.CivilizationType==civ then
+    assert(type(r.CitizenName)=='string' and #r.CitizenName>0,'NAME_POOL_INVALID')
+    if not names[r.CitizenName]then names[r.CitizenName]=true;count=count+1 end
+   end
+  end
+  assert(count>0,'NAME_POOL_EMPTY')
+  return names,count,civ
+ end
+ local function acceptName(pid,p)
+  assert(state.owner==pid and state.unitID==p.UnitID and
+   (state.phase=='NAMING' or state.phase=='CREATED'),'BOUND_TEAM_REQUIRED')
+  assert(p.NameOffmapChecked==true and p.NameSampleTurn==Game.GetCurrentGameTurn(),'NAME_UI_SAMPLE_REQUIRED')
+  source();local u=owned(pid,state.unitID)
+  assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
+  local names,count,civ=namePool(pid);local r=row(u)
+  assert(type(p.Name)=='string' and #p.Name>0 and #p.Name<=220,'TEAM_NAME_INVALID')
+  assert(type(r.Name)=='string' and p.Name~=r.Name and p.Name~=Locale.Lookup(r.Name),'TEAM_NAME_DEFAULT')
+  if not names[p.Name]then
+   local matches=0
+   for key in pairs(names)do if Locale.Lookup(key)==p.Name then matches=matches+1 end end
+   assert(matches>0,'TEAM_NAME_NOT_IN_POOL');assert(matches==1,'TEAM_NAME_AMBIGUOUS')
+  end
+  assert(type(u.GetName)=='function' and u:GetName()==p.Name,'TEAM_NAME_UNAVAILABLE')
+  -- Explicit confirmation only. Include every visible same-owner unit, while
+  -- the UI separately checks native off-map Spy records before sending NAME.
+  -- Our single session reservation blocks another custom creation while absent.
+  assert(#list(pid)==1,'TEAM_NAME_AMBIGUOUS')
+  for _,other in Players[pid]:GetUnits():Members()do
+   if other:GetID()~=state.unitID then
+    assert(type(other.GetName)=='function','TEAM_NAME_UNREADABLE')
+    assert(other:GetName()~=p.Name,'TEAM_NAME_AMBIGUOUS')
+   end
+  end
+  assert(not state.nameVerified or state.expectedName==p.Name,'TEAM_NAME_CHANGED')
+  state.expectedName=p.Name;state.namePoolCount=count;state.namePoolCivilization=civ
+  state.nameVerified=true;state.phase='CREATED'
+ end
  local function lookupStatus(id)
   if not id then return nil,'NO_UNIT' end
   local ok,u=pcall(function()return Players[state.owner]:GetUnits():FindID(id)end)
@@ -108,16 +153,12 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if state.phase=='NAMING' then
    local u=owned(state.owner,state.unitID)
    assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
-   if named(u) then
-    assert(#(knownUnits or list(state.owner))==1,'TEAM_NAME_AMBIGUOUS')
-    state.phase='CREATED';state.nameVerified=true
-   end
-   return -- A submitted UI command is not synchronous Gameplay readback proof.
+   return -- Only an explicit UI observation + independent NAME check can accept.
   end
   if state.phase=='TRAVELLING' then
    target(state.owner,state.target)
    -- Spies need not appear in physical plot occupancy. Inspect the exact
-   -- prototype collection; only the exact controlled name proves session continuity.
+   -- prototype collection; the observed native name is the bounded continuity candidate.
    -- Snapshot passes its one collection read; pending-turn checks read once.
    local all=knownUnits or list(state.owner);local candidate
    for _,u in ipairs(all)do
@@ -149,7 +190,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    if allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
     state.taskCompletions=1 -- One fixture task per team; completion has no effects.
-    print('[SPC][B187][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
+    print('[SPC][B189][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
    end
   end
  end
@@ -162,7 +203,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','expectedName','teamKey','nameVerified'})do
+   for _,k in ipairs({'sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end
@@ -217,7 +258,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local function handle(pid,p)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
   assert(P.IsTestPlayer(pid),'SUPPORTED_PLAYER_REQUIRED')
-  assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='END','BAD_ACTION')
+  assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='NAME' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='END','BAD_ACTION')
   step=p.Action
   if p.Action=='READ' then return snapshot(pid)end
   if p.Action=='CREATE' then
@@ -232,30 +273,22 @@ function SPCExpeditionSpyGate.Start(P,shared)
    assert(r and flag(r.Spy) and flag(r.IgnoreMoves) and flag(r.Stackable)
     and (r.CanRetreatWhenCaptured==false or r.CanRetreatWhenCaptured==0)
     and r.PromotionClass=='PROMOTION_CLASS_SPY','TEST_DATABASE_NOT_READY')
+   local _,poolCount,civ=namePool(pid)
    local before=occupants(c:GetX(),c:GetY())
-   mutating=true;state={owner=pid,phase='CREATING',sourceCity=c:GetID(),sourceName=c:GetName(),sourceRef=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY()}
+   mutating=true;state={owner=pid,phase='CREATING',sourceCity=c:GetID(),sourceName=c:GetName(),sourceRef=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY(),namePoolCount=poolCount,namePoolCivilization=civ}
    local u=UnitManager.InitUnit(pid,M.KIND,c:GetX(),c:GetY())
    assert(u and u:GetOwner()==pid,'SPAWN_UNCONFIRMED')
    state.unitID=u:GetID();state.createdID=state.unitID;owned(pid,state.unitID)
    assert(type(u.GetName)=='function','TEAM_NAME_API_UNAVAILABLE')
    serial=serial+1
    state.teamKey=string.format('E%X-%X-%X',pid,state.createdID,serial)
-   -- Keep the ASCII identity suffix intact, within a conservative48-unit budget inspired by
-   -- the native rename input. Only the readable label may be shortened.
-   local suffix=' ['..state.teamKey..']';assert(#suffix<40,'TEAM_NAME_KEY_TOO_LONG')
-   local label=Locale.Lookup('LOC_SPC_EXPEDITION_SPY_NAME_PREFIX')..Locale.Lookup(state.sourceName)
-   label=label:gsub('%b[]',''):gsub('[%z\1-\31\127]',' ')
-   local parts={};local size=0
-   for ch in label:gmatch('[%z\1-\127\194-\244][\128-\191]*')do
-    local cost=#ch==4 and 2 or 1
-    if size+cost>48-#suffix then break end
-    parts[#parts+1]=ch;size=size+cost
-   end
-   assert(#parts>0,'TEAM_NAME_LABEL_UNAVAILABLE')
-   state.expectedName=table.concat(parts)..suffix;state.nameVerified=false
+   -- Logical session key is internal; it is never written into a name/Property.
+   state.nameVerified=false
    assert(#list(pid)==1,'SPAWN_COUNT_UNCONFIRMED')
    assert(u:GetX()==state.x and u:GetY()==state.y,'EXACT_PLACEMENT_REJECTED')
    unchangedOthers(before);source();state.phase='NAMING'
+  elseif p.Action=='NAME' then
+   mutating=true;acceptName(pid,p)
   elseif p.Action=='DISPATCH' then
    assert(state.owner==pid and state.unitID==p.UnitID and (state.phase=='CREATED' or state.phase=='ARRIVED'),'BOUND_TEAM_REQUIRED')
    observe();local u=tracked()
@@ -314,7 +347,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   mutating=false
   v.token=p.Token;lastToken=p.Token;lastReply=v
   ExposedMembers.SPC_ExpeditionGateReply=v
-  print('[SPC][B187][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
+  print('[SPC][B189][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)

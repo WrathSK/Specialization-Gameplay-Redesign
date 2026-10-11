@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="215">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="216">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B188.215: bounded UI unit readiness before one controlled rename, exact failure diagnostics and cancellation. Own capacity, source binding and no-reward task unchanged; native name/travel gate pending.</Description>
+    <Description>B189.216: test-civilization citizen-name pool and bounded native-name observation; own capacity/source binding and no-reward task unchanged. Native name assignment and arrival remain test gates.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

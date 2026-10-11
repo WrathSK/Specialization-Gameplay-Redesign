@@ -1,4 +1,4 @@
--- B188 UI native boundary. Controlled naming and readback; Read-only Gain Sources diagnostics; one-shot TRAVEL only.
+-- B189 UI native boundary. Read-only native citizen-name observation; Read-only Gain Sources diagnostics; one-shot TRAVEL only.
 SPCExpeditionSpyRead={KIND='UNIT_SPC_EXPEDITION_SPY'}
 local M=SPCExpeditionSpyRead
 local function integer(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
@@ -146,8 +146,7 @@ function M.TaskRead(pid,id,t)
  if not ok then v.error=tostring(err):sub(1,200)end
  return v
 end
--- Naming is one explicit command, followed by read-only observation. Never use
--- selection as authority or rename ordinary spies; an ambiguous write is not retried.
+-- Names are observed only. No rename command or fallback label is submitted.
 -- Gameplay creation can precede publication into UI. This exact lookup is
 -- read-only and never searches for a substitute unit or uses selection/name.
 function M.NameReadiness(pid,id)
@@ -183,24 +182,86 @@ function M.NameStatus(pid,id,expected)
  if not ok or type(name)~='string' then return 'UNREADABLE','TEAM_NAME_UNREADABLE' end
  return name==expected and 'MATCH' or 'MISMATCH'
 end
-local lastNamePermit
-function M.SubmitName(pid,id,expected,permit)
- if type(permit)~='string' or #permit==0 or #permit>100 or permit==lastNamePermit then return false,'INVALID_OR_USED_NAME_PERMIT' end
- local ok,err=pcall(function()
-  assert(type(expected)=='string' and #expected>0 and #expected<=220,'TEAM_NAME_INVALID')
-  local ready,reason,u=M.NameReadiness(pid,id)
-  assert(ready=='READY',reason)
-  assert(GameCapabilities and GameCapabilities.HasCapability('CAPABILITY_RENAME')==true,'RENAME_CAPABILITY_UNAVAILABLE')
-  assert(UnitCommandTypes and UnitCommandTypes.NAME_UNIT and UnitCommandTypes.PARAM_NAME,'NAME_COMMAND_UNAVAILABLE')
-  assert(UnitManager.CanStartCommand(u,UnitCommandTypes.NAME_UNIT,true)==true,'NAME_COMMAND_NOT_ALLOWED')
-  local params={};params[UnitCommandTypes.PARAM_NAME]=expected
-  lastNamePermit=permit
-  assert(UnitManager.RequestCommand(u,UnitCommandTypes.NAME_UNIT,params)~=false,'NAME_COMMAND_REJECTED')
+-- The loaded current-civilization pool is evidence, not a name generator. Accept
+-- a raw pool key or its unique localized value. Preserve the observed string
+-- verbatim for continuity; ambiguous localized names never establish identity.
+function M.NativeName(pid,id)
+ local ready,reason,u=M.NameReadiness(pid,id)
+ local v={status=ready,reason=reason}
+ if ready~='READY' then return v end
+ local at='CITIZEN_NAME_POOL_UNREADABLE';local failure='INVALID'
+ local ok=pcall(function()
+  local config=PlayerConfigurations and PlayerConfigurations[pid]
+  if not config or type(config.GetCivilizationTypeName)~='function' then
+   v.status='INVALID';v.reason='CIVILIZATION_CONFIGURATION_UNAVAILABLE';return
+  end
+  at='CIVILIZATION_CONFIGURATION_UNREADABLE'
+  local civ=config:GetCivilizationTypeName();v.civilization=civ
+  if type(civ)~='string' or civ=='' then v.status='INVALID';v.reason='CIVILIZATION_TYPE_UNAVAILABLE';return end
+  if not GameInfo or not GameInfo.CivilizationCitizenNames then
+   v.status='INVALID';v.reason='CITIZEN_NAME_POOL_UNAVAILABLE';return
+  end
+  at='CITIZEN_NAME_POOL_UNREADABLE'
+  local names={};v.poolCount=0
+  for row in GameInfo.CivilizationCitizenNames()do
+   if row.CivilizationType==civ then
+    if type(row.CitizenName)~='string' or row.CitizenName=='' then
+     v.status='INVALID';v.reason='CITIZEN_NAME_POOL_INVALID';return
+    end
+    if not names[row.CitizenName]then names[row.CitizenName]=true;v.poolCount=v.poolCount+1 end
+   end
+  end
+  if v.poolCount==0 then v.status='INVALID';v.reason='CITIZEN_NAME_POOL_EMPTY';return end
+  local row=GameInfo.Units[u:GetUnitType()];v.defaultName=row and row.Name
+  if type(v.defaultName)~='string' or v.defaultName=='' then
+   v.status='INVALID';v.reason='UI_UNIT_DEFAULT_NAME_UNAVAILABLE';return
+  end
+  at='UNIT_DEFAULT_LOCALIZATION_UNREADABLE'
+  local defaultLocalized=Locale.Lookup(v.defaultName)
+  failure='PENDING';at='TEAM_NATIVE_NAME_UNREADABLE'
+  local name=u:GetName();v.name=type(name)=='string' and name or nil
+  if type(name)~='string' or name:match('^%s*$')then v.status='PENDING';v.reason='TEAM_NATIVE_NAME_UNASSIGNED';return end
+  if name==v.defaultName or name==defaultLocalized then v.status='PENDING';v.reason='TEAM_NATIVE_NAME_DEFAULT';return end
+  if #name>220 then v.status='INVALID';v.reason='TEAM_NATIVE_NAME_OUTSIDE_POOL';return end
+  if names[name]then v.representation='RAW_KEY'
+  else
+   failure='INVALID';at='CITIZEN_NAME_LOCALIZATION_UNREADABLE'
+   local matches=0
+   for key in pairs(names)do if Locale.Lookup(key)==name then matches=matches+1 end end
+   if matches>1 then v.status='INVALID';v.reason='TEAM_NATIVE_NAME_AMBIGUOUS_LOCALIZED';return end
+   if matches==0 then v.status='INVALID';v.reason='TEAM_NATIVE_NAME_OUTSIDE_POOL';return end
+   v.representation='LOCALIZED_VALUE'
+  end
+  failure='PENDING'
+  at='VISIBLE_NAME_COLLISION_READ_UNAVAILABLE'
+  for _,other in Players[pid]:GetUnits():Members()do
+   if other:GetOwner()==pid and other:GetID()~=id then
+    local otherName=other:GetName()
+    if type(otherName)~='string' then error(at)end
+    if otherName==name then v.status='INVALID';v.reason='TEAM_NATIVE_NAME_DUPLICATE_VISIBLE';return end
+   end
+  end
+  -- Native Overview enumerates off-map spy records with (player, zero-based
+  -- index). Include every record, even ReturnTurn=-1; display filtering is not
+  -- identity evidence. This is an initial collision check, not a global registry.
+  at='OFFMAP_NAME_COUNT_UNAVAILABLE'
+  local diplomacy=Players[pid]:GetDiplomacy()
+  local count=diplomacy:GetNumSpiesOffMap();v.offmapCount=count
+  if not integer(count)then error(at)end
+  at='OFFMAP_NAME_COLLISION_READ_UNAVAILABLE'
+  for i=0,count-1 do
+   local other=diplomacy:GetNthOffMapSpy(pid,i)
+   if type(other)~='table' or type(other.Name)~='string' or other.Name=='' then error(at)end
+   if other.Name==name then v.status='INVALID';v.reason='TEAM_NATIVE_NAME_DUPLICATE_OFFMAP';return end
+  end
+  local final,why,exact=M.NameReadiness(pid,id)
+  if final~='READY' then v.status=final;v.reason=why;return end
+  at='TEAM_NATIVE_NAME_UNREADABLE'
+  if exact:GetName()~=name then v.status='PENDING';v.reason='TEAM_NATIVE_NAME_CHANGED_DURING_READ';return end
+  v.status='READY';v.reason='TEAM_NATIVE_NAME_CONFIRMED'
  end)
- if not ok then return false,tostring(err):sub(1,200)end
- local status,reason=M.NameStatus(pid,id,expected)
- if status=='UNREADABLE' then return false,reason end
- return true,status=='MATCH' and 'NAME_MATCH' or 'NAME_PENDING'
+ if not ok then v.status=failure;v.reason=at end
+ return v
 end
 local lastPermit
 function M.SubmitTravel(pid,id,t,permit)

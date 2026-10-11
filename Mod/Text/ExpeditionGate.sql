@@ -186,8 +186,8 @@ INSERT INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_RESERVED','Travelling/unconfirmed identity: capacity reserved; {1} visible probes.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_UNBOUND','旧团或未绑定团：只计入容量，可明确结束，不自动接回来源。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_UNBOUND','Old/unbound probe: counts against capacity; explicit END only, no automatic rebinding.'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_JOURNEY','原生派遣至{1}；预计T{2}附近抵达，届时核对完整受控名称。'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_JOURNEY','Native travel to {1}; expected near T{2}, followed by controlled-name verification.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_JOURNEY','原生派遣至{1}；预计T{2}附近抵达，届时核对完整原生命名。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_JOURNEY','Native travel to {1}; expected near T{2}, followed by native-name verification.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_AUDIT','原生上限 {1}→{2}；普通间谍 {3}→{4}；来源城可训练普通间谍 {5}→{6}。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_AUDIT','Native maximum {1}→{2}; ordinary spies {3}→{4}; source can train ordinary Spy {5}→{6}.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_CLASSIFIED','原生Spy分类总数：{1}。隔离观察：{2}。'),
@@ -223,7 +223,7 @@ INSERT INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TRAVELLING','原生派遣中，容量与来源记录保留'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TRAVELLING','Native travel in progress; capacity/source retained'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_ARRIVED','已抵达；身份与原来源绑定已核对，可开始无奖励任务。'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_ARRIVED','Arrived; controlled name and original source verified. The no-reward task is available.'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_ARRIVED','Arrived; native name and original source verified. The no-reward task is available.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_HELD','实验暂停；保留原单位/来源记录，不猜测恢复'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_HELD','Probe held; unit/source record retained without guessed recovery'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_ENDING','正在确认结束结果'),
@@ -237,8 +237,8 @@ INSERT INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_MANAGE','Manage Expedition: open its own travel/task window'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK','④ 无奖励任务（2回合）'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_TASK','4. No-reward task (two turns)'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_BOUND','受控名称核对成功；创建编号{1} → 当前编号{2}，原来源保留。'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_BOUND','Marker verified; created ID {1} → current ID {2}, original source retained.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_BOUND','原生命名核对成功；创建编号{1} → 当前编号{2}，原来源保留。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_BOUND','Native name verified; created ID {1} → current ID {2}, original source retained.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK_PROGRESS','独立任务：T{1}开始，T{2}到期；完成次数{3}/1；奖励：无。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_TASK_PROGRESS','Own task: started T{1}, due T{2}; completions {3}/1; reward: none.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK_ISOLATION','情报源剩余回合 {1}→{2}；当前原生任务 {3}（-1=无）；本玩家原生任务完成事件新增 {4}。'),
@@ -287,7 +287,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_OFF_MAP','原生途中/地图外'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_OFF_MAP','native travel/off-map');
 
--- B187 controlled-name preparation and raw before/after readback.
+-- B187 native-name preparation and raw before/after readback.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_PREFIX','人文考察团·'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_PREFIX','Expedition · '),
@@ -306,8 +306,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE','名称准备：{1}[NEWLINE]读取详情：{2}'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE','Name preparation: {1}[NEWLINE]Read detail: {2}'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','等待界面读到新考察团（最多10秒）；尚未发送改名'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','waiting for the new unit in UI (up to10seconds); no rename sent'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','等待界面读到新考察团（最多10秒）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','waiting for the new unit in UI (up to10seconds)'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_COMMAND','单位已核对；检查并提交一次改名'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_COMMAND','unit verified; checking and submitting one rename'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READBACK','已提交改名；等待名称读回（最多10秒）'),
@@ -320,3 +320,16 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CANCELLED','准备已因关闭窗口取消；不会自动重试。若仍未确认，请结束并移除验证团'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CANCELLED','preparation cancelled on close; no automatic retry. If still unconfirmed, use END');
+
+-- B189: native automatic naming; no NAME_UNIT command.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_NAMING','等待原生姓名；尚不能派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_NAMING','Waiting for a native name; dispatch unavailable'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READING','观察引擎分配的姓名'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READING','Observing the engine-assigned name'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_POOL','已加载姓名池：{1}，{2}个姓名。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_POOL','Loaded name pool: {1}, {2} names.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_OBSERVATION','当前原生姓名：{1}；默认名：{2}；姓名池{3}条／途中间谍{4}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_OBSERVATION','Observed raw name: {1}; default: {2}; pool {3} / off-map spies {4}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','本次确认姓名：{1}[NEWLINE]当前读回：{2}[NEWLINE]姓名核对：{3}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','Accepted session name: {1}[NEWLINE]Current readback: {2}[NEWLINE]Name check: {3}');

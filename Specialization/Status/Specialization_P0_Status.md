@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0502
-Implementation Build: source/live B188.215 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0503
+Implementation Build: source B189.216; last deployed B188.215 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B188_SPY_IDENTITY_INVESTIGATION_COMPLETE_PLAN_PENDING
+Work State: B189_NATIVE_NAME_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B189.216 approved native name-pool prototype locally complete; native pending.** [Changes, targeted checks and one session](Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md): test-civilization citizen pool → bounded exact native-name observation → independent Gameplay confirmation. No manual rename; default/duplicate/unknown names stop. Own source/capacity, native travel, no-reward timer and END remain separate. B188 failure is preserved, not retested unchanged.
+
+Source is **B189.216 / modinfo216**. Last recorded live is **B188.215**, source `21f2bf1`, receipt `B188.215-21f2bf1-playtest.json`, last verified211/211 MATCH with recovery retained. Deployment still requires clean/pushed source, verified game exit and the existing transaction; no main promotion or native PASS is inferred.
+
+Next after deployment: **① 创建Spy验证团** and confirm native name → **③ 原生派遣**/arrival/source → **④ 无奖励任务（2回合）** → **结束并移除验证团**. Stop on failure; no extra save/load. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal N1 persistence/reattachment, N2/N3/U2/rewards remain held.
+
+## S0502 — native identity investigation and proposal (historical)
 
 **B188 naming/identity investigation complete; next prototype is not yet authorized.** [Findings and bounded proposal](../Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md): CIVILIZATION_SPC_TEST has0 citizen names (Scotland/England40); native/HD evidence supports a pool-based naming candidate. Engine assignment to our custom Spy and travel survival remain UNKNOWN. Native captured NameIndex is a lead, not an established stable Lua identity. B188 NAME_UNIT gate failure and prior110 local checks retain their separate scope.
 

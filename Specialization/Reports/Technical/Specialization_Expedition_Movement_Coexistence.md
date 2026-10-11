@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B188 naming/identity investigation complete; native citizen-name-pool candidate proposed.** [Focused investigation](Specialization_Expedition_Spy_Identity_Naming.md) confirms the test civilization lacks citizen names and distinguishes engine Spy records, raw names and source binding. Custom automatic naming/travel preservation remain unproved; no new implementation or user test. Earlier sections retain chronological evidence; current source/live and permission come from Status.
+Date: 2026-10-10. **B189 native name-pool prototype locally complete; native pending.** [Implementation and one session](../../Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md) follow the [identity investigation](Specialization_Expedition_Spy_Identity_Naming.md). The scoped civilization pool and bounded native-name reader replace the failed manual rename; original cap/source, independent task and END remain. No native naming/continuity PASS is implied. Earlier sections retain their chronological evidence; Status/receipt govern runtime.
 
 ## Native identity and missing citizen-name pool
 

@@ -265,3 +265,7 @@ Supersedes B187 awaiting-repair instructions. [110 local checks and the exact fl
 ## B188 — native naming eligibility failed; unchanged session stopped
 
 [Two-image review](Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) supersedes the pending B188 session above. Exact unit readiness/ordinary preflight is reached; NAME_COMMAND_NOT_ALLOWED prevents submission. Source/cap1 retained; arrival/task/END NOT_TESTED. **No unchanged B188 retest.** Establish a supported naming path before proposing another patch; veteran-level restriction is plausible, not a proved cause. No save/load campaign, automatic implementation or formal N1/N2/N3/U2/rewards.
+
+## B189 — native name-pool prototype, one session pending
+
+Supersedes unchanged B188 retest instructions. [Local result and exact minimal session](Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md#one-minimal-native-session): newly created named team → arrival/original source → independent no-reward2T task → END. Stop if loaded pool still yields default/ambiguous name; no manual rename, automatic ordinary-Spy control or save/load campaign. Source/live eligibility comes from Status/receipt; formal N1/N2/N3/U2 remain held.

@@ -15,6 +15,13 @@ INSERT INTO CityNames (CivilizationType,CityName) VALUES
  ('CIVILIZATION_SPC_TEST','LOC_SPC_CITY_STIRLING'),
  ('CIVILIZATION_SPC_TEST','LOC_SPC_CITY_EDINBURGH'),
  ('CIVILIZATION_SPC_TEST','LOC_SPC_CITY_ABERDEEN');
+-- Supply this independent test civilization's citizen-name pool for native Spy naming.
+-- Reuse localized Scotland names and metadata; no Scottish gameplay traits are inherited.
+-- An absent source pool stays empty and must be reported by the prototype readiness gate.
+INSERT OR IGNORE INTO CivilizationCitizenNames (CivilizationType,CitizenName,Female,Modern)
+SELECT 'CIVILIZATION_SPC_TEST',CitizenName,Female,Modern
+FROM CivilizationCitizenNames
+WHERE CivilizationType = 'CIVILIZATION_SCOTLAND';
 INSERT INTO Traits (TraitType,Name,Description)
 VALUES ('TRAIT_CIVILIZATION_SPC_TEST','LOC_SPC_ABILITY_NAME','LOC_SPC_ABILITY_DESCRIPTION');
 INSERT INTO CivilizationTraits (CivilizationType,TraitType)

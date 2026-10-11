@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B188_SPY_IDENTITY_INVESTIGATION_COMPLETE_PLAN_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[Identity/naming investigation](../../Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md) finds the independent test civilization has no citizen-name pool. A scoped pool addition/native-name observation is proposed before another implementation; B188's manual rename failure remains unchanged. Engine-assigned team name and current archive-city label should be separate presentation fields; this is a proposal, not a UI/schema change. No new user test is requested.
-Current entry remains **专业化诊断 → 人文考察·验证**. Existing create/read/dispatch/task/refresh/END controls are unchanged; the failed preparation retains the team/source/capacity. Arrival/name survival and task/END remain untested in this submission. Native redirection, future icon reuse and temporarily accepted native-slot cost are retained. Full management UI below remains a proposal.
+State: N1_PARTIAL / B189_NATIVE_NAME_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B189 implementation and one session](../../Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md) replace mandatory rename with bounded native-name observation. Show loaded pool, observed/default raw name and confirmation/failure stage; source-city presentation remains separate. Closing cancels preparation without deleting the reserved team; no late automatic confirmation.
+Current entry remains **专业化诊断 → 人文考察·验证**; create/read/dispatch/no-reward task/refresh/END controls and native redirection remain. Test-civilization pool addition also affects its ordinary Spy naming data, not other civilizations. Own cap/source and temporary native-slot cost unchanged; native name/arrival/task/END remain the current gate.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

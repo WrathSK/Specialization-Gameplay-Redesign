@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0502",
-    "runtime": "B188.215 / modinfo215",
+    "status": "S0503",
+    "runtime": "B189.216 / modinfo216",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Naming/continuity investigation complete; scoped test-civilization citizen-name pool/native-name observation prototype proposed, awaiting implementation approval.",
-  "implementation_authorized": false,
+  "goal": "Approved B189 test-civilization name pool and bounded native-name observation implemented locally; preserve own cap/source, await native name assignment/arrival/task/END.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
       "kind": "full",
-      "reason": "Current native failure, exact eligibility boundary, bounded technical evidence and next-step/stop contract."
+      "reason": "Current approved delta, trust boundary, targeted local evidence and exact native stop/test contract."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -166,12 +166,22 @@
     {
       "path": "DevelopmentTests/test_expedition_spy_name.py",
       "kind": "full",
-      "reason": "Controlled-name assignment/readback, bounded async command and exact identity counterexamples"
+      "reason": "Actual native-name preparation and exact identity/publication/cancellation counterexamples"
+    },
+    {
+      "path": "Mod/Data/Identity.sql",
+      "kind": "full",
+      "reason": "Exact test-civilization pool initialization only"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_name_pool.py",
+      "kind": "full",
+      "reason": "Actual in-memory SQL isolation and metadata tests"
     }
   ],
   "dependencies": [
-    "EffectiveFacts creation qualification + exact NetworkInput.Reference source; session cap1 includes old fixtures/off-map reservation. Controlled raw name/key for team continuity; source remains separate, no Property or ledger writes.",
-    "UI-only name command/travel/idle/source read; Gameplay verifies exact controlled raw name before dispatch and changed-ID arrival. Source authority stays in its own record; no city-name/coordinate inference.",
+    "EffectiveFacts creation qualification + exact NetworkInput.Reference source; own cap1 includes old fixtures/off-map session reservation. Observed native name is only this session continuity candidate; source remains separate, no Property/ledger writes.",
+    "UI-only exact readiness and visible/off-map name observation; Gameplay independently checks exact unit/source/raw name/pool and current-turn UI sample before acceptance. Native travel/idle read paths unchanged; no invented Gameplay off-map API.",
     "Native Expansion chooser/popup and installed HD UnitPanel are included, exact-type callbacks intercepted. Ordinary paths stay native; no external source/DB/listener changes."
   ],
   "old_writers": [
@@ -235,7 +245,7 @@
       ]
     },
     {
-      "trigger": "Prepare the proposed automatic native naming prototype after explicit approval",
+      "trigger": "Review the directly preceding native-name investigation or independent test-civilization registration",
       "paths": [
         "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md",
         "Mod/Data/Identity.sql",
@@ -248,17 +258,17 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "110 methods PASS:29 controlled-name/readiness (47 subTests),14 binding,26 task/UI,31 gate/package,10 panel. Reentrant failure reproduced then corrected; bounded independent review complete. Native timing/rename/travel not implied.",
-    "user": "USER_GAME_TEST_FAIL at NAME_UNIT eligibility after exact readiness; arrival/task/END NOT_TESTED. No unchanged B188 retest. Existing local110 scope retained; no new test package."
+    "local": "124 methods PASS:4 actual SQL pool tests,39 native-name/UI preparation,14 binding,26 task/UI,31 gate/package and10 panel. Missing/default/duplicate and localized ambiguity, UI-only off-map evidence, exact source/owner/type/ID, current-turn confirmation, delayed publication, cancellation/reentrant notifications, arrival/capacity/task/END covered. No native naming/travel PASS implied.",
+    "user": "One B189 session after verified deployment: native name/pool confirmation → arrival/source → no-reward2T task → END. Stop on failure; no save/load campaign."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md",
-    "source": "B188.215/modinfo215 DEVELOP_ACTIVE; source21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8; receipt B188.215-21f2bf1-playtest.json; last verified211/211 MATCH with recovery retained. S0501 evidence review does not reverify runtime. Native name eligibility fails before submission; arrival/task remain pending.",
-    "native": "USER_GAME_TEST_FAIL: NAME_COMMAND_NOT_ALLOWED before submission; source/cap retained, readiness/preflight reached in observed fixture. Arrival/name survival/task/END NOT_TESTED.",
-    "stop": "Investigation complete; await implementation approval for scoped pool/native-name candidate. No user retest now; formal N1/N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+    "source": "Source B189.216/modinfo216 locally complete. Last recorded deployed B188.215/source21f2bf1/receipt B188.215-21f2bf1-playtest.json,211MATCH. B189 deployment not inferred.",
+    "native": "USER_GAME_TEST_REQUIRED: native automatic assignment and travel-name survival, task and END. Prior B188 NAME_UNIT eligibility FAIL remains frozen.",
+    "stop": "Await verified deployment and native review; no formal N1/N2/N3/U2/reward continuation."
   }
 }

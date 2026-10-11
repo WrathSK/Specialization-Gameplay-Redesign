@@ -156,9 +156,9 @@
       "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/Data/Identity.sql": {
-      "sha256": "f401fd35654dea6abd5dcc0f0027f35a91408a714b56bf1b2f0098c8d1a894d2",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/Data/IndustrySupport.sql": {
       "sha256": "cfc3b01995f758362026fb1bcfe280012a980f7341b798071ab567f7743a4064",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "5ac7115863db1f877abff60fc33554e6d6b97726f920df17c2debf6a97cf82ce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
-      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
+      "sha256": "aed580b71ea27a1ce7df21e6e683fb768f7bab4a8b872fc6e9492f42b9e35f3e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f8db9fcc5a3b9c3dd51d246af1b5b8c1057dae11074b3c0def29b11c77d5e696",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
-      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
+      "sha256": "5efa06288b09edb9511294be2802b6356d942d55135644400421117e332e8f28",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "e6149c24999ba90c63cedf0519662893e9a7190ed3f64a42e72dd01f5d9ef830",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
-      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
+      "sha256": "db25165b8d5a4a69f33941967162005650158487c27dba5dee6667e135b0679b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,19 +1016,19 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "8600fe446b10d1d27d0cf73bc8039ec03aee9cbb38e02179e33c42c434bc2f86",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
-      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
+      "sha256": "15099092b577dc12b3c499d10899cdac2deb40457020a8947a32fb42f8924ab8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "8df7290db034a588e2f60b657741c5a12c7ddf975b22ed3389566fcfa4fb5e4f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md",
-      "provenance": "B187 user-approved controlled-name prototype; exact one-shot rename/readback, source/capacity and changed-ID arrival reviewed with targeted tests. No ordinary Spy, Design, Store or GC change; native pending."
+      "sha256": "04bf2d8669dfc366a3f9203f9c0fb35e20a7b8947caccdfb702290407094fa96",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "57160761bf8fdf446bb553ab79908459992d37403cdcea2f3386183689fe252a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md",
-      "provenance": "B188 approved bounded UI readiness/name repair; exact identity, single command, cancellation and request-token timing reviewed with110 targeted methods. Build/localization only elsewhere; native pending."
+      "sha256": "4419ba33020d6ee0e1fe54b3726c125aec65c413ab6a69ec17e93f823e8b8661",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",
