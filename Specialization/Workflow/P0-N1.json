@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0539",
+    "status": "S0540",
     "runtime": "B202.229 / modinfo229",
     "military": "D0037",
     "harbor": "D0037",
@@ -576,7 +576,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
-    "source": "B202.229 source LOCAL_COMPLETE, not deployed; live B201.228 receipt unchanged.",
+    "source": "B202.229/modinfo229 DEVELOP_ACTIVE; deployed source c61524e8d00735bc5b467929152e8c3350f2442f; receipt B202.229-c61524e-playtest.json;218/218 MATCH. Fresh automatic OS game-exit checks before both guarded switches; B201/stable recovery retained, no pending transaction. Native training validation pending.",
     "native": "B202 USER_GAME_TEST_REQUIRED. Inherit scoped B201 persistence acceptance; auto-open failure non-blocking.",
     "stop": "One normal training, queued save/cold-load, source/cap/name confirmation then explicit travel/task; no repeated B201 travel-load check."
   }

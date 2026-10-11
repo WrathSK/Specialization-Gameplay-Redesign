@@ -37,3 +37,7 @@ Use the supported test civilization, one Culture ACTIVE IV city and no surviving
 3. Use **派遣到新城市**, then **任务**, completing the existing no-reward task. Confirm source/cap stay correct. Explicit buttons are the acceptance path; selection auto-opening is not a gate. Stop if training/registration reports an error; preserve that report rather than creating another team.
 
 User decision: no new decision needed. User testing: this one new native training/queued-load integration remains pending. Codex next: deploy only through existing authorization/safety gates when appropriate, then review evidence; do not start later Expedition missions.
+
+## Deployment checkpoint
+
+B202.229 / modinfo229 **DEVELOP_ACTIVE**, source `c61524e8d00735bc5b467929152e8c3350f2442f`, receipt `B202.229-c61524e-playtest.json`. Automatic OS process inspection confirmed game exit immediately before both existing-tool B201→stable→B202 switches. Source/runtime **218/218 MATCH**; B201 and stable recovery packages retained, no pending transaction. Main, game configuration and source unchanged; no game launch or native PASS. The source-only statement above describes the prior local checkpoint. Next: the single native training/queued-load session above. Automatic process inspection remains the normal gate; a running-game result defers that attempt rather than revoking standing authorization.

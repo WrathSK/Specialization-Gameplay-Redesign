@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "37f10961edf9ddeb6fcabfa6d909cff2a881bd00",
-  "runtime": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Scoped B201 persistence sequence PASS; selection-opening USER_REPORTED_FAIL. This review does not re-inspect runtime.",
+  "runtime_commit": "c61524e8d00735bc5b467929152e8c3350f2442f",
+  "runtime": "B202.229/modinfo229 DEVELOP_ACTIVE; deployed source c61524e8d00735bc5b467929152e8c3350f2442f; receipt B202.229-c61524e-playtest.json;218/218 MATCH. Fresh automatic OS game-exit checks before both guarded switches; B201/stable recovery retained, no pending transaction. Native training validation pending.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

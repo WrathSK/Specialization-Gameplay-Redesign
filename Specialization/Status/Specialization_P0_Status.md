@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0539
-Implementation Build: source B202.229 LOCAL_COMPLETE; live B201.228; stable B069.96
+Status Revision: S0540
+Implementation Build: source/live B202.229 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B202_TRAINING_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B202_TRAINING_DEPLOYED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B202.229 normal Expedition training/source registration locally complete;437 targeted tests PASS.** [Implementation, corrected cost evidence, lifecycle boundaries and one native flow](Validation/Results/Specialization_B202_Expedition_Training_Local.md). Queue admission saves a cap1/source reservation before native production; matching queue/completion/birth evidence registers the trained team, then automatic native-name confirmation uses the existing Gate. Ambiguous outcomes hold; no unit spawn/refund/adoption by position alone.
 
-Source B202.229 is not deployed. Last verified live remains **B201.228 / modinfo228**, source `37f1096`, receipt `B201.228-37f1096-playtest.json`,214/214 MATCH at deployment. This batch does not recheck runtime. Main unchanged. B201 scoped travelling-save/cold-load/arrival/task PASS remains; selection auto-opening is non-blocking and unchanged.
+Source/live is **B202.229 / modinfo229 DEVELOP_ACTIVE**, deployed source `c61524e`, receipt `B202.229-c61524e-playtest.json`,218/218 MATCH. Fresh automatic OS exit checks before both switches and guarded B201→stable→B202 transaction verified; B201/stable recovery retained, no pending transaction. Main unchanged. B201 scoped travelling-save/cold-load/arrival/task PASS remains; selection auto-opening is non-blocking and unchanged.
 
 User's cost clarification is synchronized: use the Spy production formula, counting Expedition copies separately. Installed HD/current nested DB60/15 confirmed; earlier80/10 came from an obsolete2023 cache. No Gold/Faith purchasing inferred.
 
-Next: guarded deployment when appropriate, then one normal-training → queued save/cold-load → automatic source/name registration → explicit **派遣到新城市 / 任务** session. The queued-load step covers new TRAINING reconstruction; no repeat travel-load ritual. [Current slice](../Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration). Native event/prerequisite behavior remains USER_GAME_TEST_REQUIRED. Auto-opening is not a gate; reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
+Next: one normal-training → queued save/cold-load → automatic source/name registration → explicit **派遣到新城市 / 任务** session. The queued-load step covers new TRAINING reconstruction; no repeat travel-load ritual. [Current slice](../Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration). Native event/prerequisite behavior remains USER_GAME_TEST_REQUIRED. Auto-opening is not a gate; reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
 
 ## S0535 — B201 deployment before native evidence (historical)
 
