@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0543",
+    "status": "S0544",
     "runtime": "B203.230 / modinfo230",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
-  "goal": "Complete approved bounded independent normal-training name confirmation and diagnostic READ separation, preserving source/capacity/travel/task semantics.",
-  "implementation_authorized": true,
+  "goal": "Review B203 native confirmation failure and proposed event-first exact-team observer repair; this checkpoint authorizes no new implementation.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -565,6 +565,12 @@
       "paths": [
         "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md"
       ]
+    },
+    {
+      "trigger": "B203 panel-independent confirmation failure or event-first repair review",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md"
+      ]
     }
   ],
   "non_scope": [
@@ -572,17 +578,17 @@
   ],
   "validation": {
     "depth": "L3 targeted queue/source/persistence/handshake plus existing direct gate/UI regressions; no full gameplay or stress.",
-    "local": "457 distinct targeted tests PASS; actual Lua observer/Gate/UI and direct inherited training/persistence/task closure; native timing remains pending.",
-    "user": "One normal training with P0 closed, explicit dispatch and arrival/source check; no repeated unchanged save/task campaign."
+    "local": "Prior457 distinct targeted PASS retained. Investigation uses actual reader/observer/Gate/Store under injected callback delivery; native callback/root cause unproved.",
+    "user": "B203 panel-independent training confirmation USER_REPORTED_FAIL; approximate waiting tooltip, P0 not opened. No new test requested during investigation."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-    "source": "B203.230/modinfo230 DEVELOP_ACTIVE; deployed source aec8c412ac087dce79f071f850d7f9a224215c67; receipt B203.230-aec8c41-playtest.json;218/218 MATCH. Fresh automatic OS exit checks before both switches; B202/stable recovery hashes verified, no pending transaction. Native delta pending.",
-    "native": "B203 USER_GAME_TEST_REQUIRED; B202 panel-independent failure and panel-assisted arrival/task PASS preserved.",
-    "stop": "One normal training with P0 closed, explicit dispatch and arrival/source check; no repeated unchanged save/task campaign."
+    "report": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md",
+    "source": "B203.230/modinfo230 DEVELOP_ACTIVE; deployed source aec8c412ac087dce79f071f850d7f9a224215c67; receipt B203.230-aec8c41-playtest.json;218/218 MATCH. Fresh automatic OS exit checks before both switches; B202/stable recovery hashes verified, no pending transaction. B203 panel-independent confirmation USER_REPORTED_FAIL; package unchanged, investigation recorded.",
+    "native": "B203 USER_REPORTED_FAIL; B202 panel-assisted arrival/task PASS retained. Current observer startup/read/ack stage unresolved.",
+    "stop": "Review proposed event-first exact-team confirmation repair; investigation only, no new implementation/test/deployment authorization. Fixed1T project remains backup."
   }
 }

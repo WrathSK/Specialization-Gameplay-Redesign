@@ -13,7 +13,7 @@ Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 ## Next functional slice — normal training and source registration
 
-State: **B203_NAME_RECOVERY_LOCAL_COMPLETE / NATIVE_DELTA_PENDING**. User approved this batch and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The completed bounded implementation replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
+State: **B203_NAME_RECOVERY_NATIVE_FAIL / EVENT_FIRST_REPAIR_PROPOSED**. User approved this batch and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The completed bounded implementation replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
 
 - Admission: Culture ACTIVE IV, own national cap1 including travelling, held and unbound surviving teams; check queue/completion concurrency. Do not silently invent refunds, delete an existing team or alter production on an ambiguous race. If the native queue contract cannot enforce the accepted scope without a new gameplay decision, report that specific boundary.
 - Cost clarification accepted by user on 2026-10-11: copy the current Spy cost formula, counting previous Expeditions separately from ordinary Spies. Resolve base/progression fields from the ruleset; do not hardcode cache observations; the prior80/10 was obsolete, current installed HD/current nested DB60/15. Gold/Faith purchases are not implicitly enabled.
@@ -33,6 +33,8 @@ Local checks: training eligibility/cost, cap with off-map/held team, competing q
 After this batch, prepare source-loss reattachment/repeat-task completion, then N2 mission-specific permanent results, then N3 Network. Each remains a separately bounded implementation decision; no automatic scope expansion.
 
 ### B203 — independent confirmation recovery
+
+**Native follow-up:** user reports B203 still waiting for identity confirmation; P0 was not opened. [Bounded investigation and next repair proposal](../../Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md) distinguishes actual production/source events from the UI name-confirmation callback. Event-only local wake-ups never reach the first read without frame delivery; this is an injected counterexample, not a proven native scheduler failure. Existing457 local PASS and original applied boundary below remain; the native gate failed. Next proposal is event-first confirmation plus exact bounded stage feedback, awaiting implementation approval. Fixed1T project remains backup only. No further test or deployment is requested by this investigation.
 
 User-approved repair of the B202 panel-dependent confirmation failure. [B203 result](../../Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md) records457 targeted PASS. One transient exact-team observer, three event-triggered ten-second readiness attempts maximum, separate ten-second sent-request acknowledgement window; unknown send/ack outcomes never replay. P0 READ no longer confirms normally trained names. Existing Gate remains the only authority for saved source/name acceptance. No new persistent field, cap/queue/travel/task change or idle scan. Native delta is normal training with P0 closed → explicit dispatch → arrival/source check; prior save/task evidence is inherited. Optional auto-opening stays non-blocking.
 
