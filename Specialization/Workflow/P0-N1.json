@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0517",
-    "runtime": "B193.220 / modinfo220",
+    "status": "S0518",
+    "runtime": "B194.221 / modinfo221",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Record B193 post-request OPERATION evidence and propose bounded pending repair; no implementation or unchanged retest until approved.",
-  "implementation_authorized": false,
+  "goal": "Approved B194 bounded post-request OPERATION wait locally complete; only observed SLEEP starts timer, terminal timeout preserved. Await native completion/release flow.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
       "kind": "full",
-      "reason": "Current native failing state/request-phase evidence, uncertainty and bounded next repair proposal."
+      "reason": "Current approved pending-state delta, timeout evidence, targeted validation and one native flow."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -227,6 +227,11 @@
       "path": "DevelopmentTests/test_expedition_spy_activity_failure_report.py",
       "kind": "full",
       "reason": "Direct failure-time sample, PRE/POST request distinction and exact-identity report regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_pending.py",
+      "kind": "full",
+      "reason": "Direct bounded pending/timeout and actual Gate timer/completion/release regression."
     }
   ],
   "dependencies": [
@@ -356,6 +361,12 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md"
       ]
+    },
+    {
+      "trigger": "Review the direct B193 native post-request OPERATION evidence behind the approved wait repair",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md"
+      ]
     }
   ],
   "non_scope": [
@@ -363,17 +374,17 @@
   ],
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
-    "local": "254 scoped methods PASS;27 new failure/report cases, exact no-extra native read/write assertions, startup separation, pending/reentry and sample isolation; native behavior unproved.",
-    "user": "B193 requested capture received; no unchanged retest. Proposed future repaired task flow only after approval, with timeout stop; no assumed native Sleep success."
+    "local": "276 scoped methods PASS; 18 new pending/integration and 4 report cases. No early timer/repeated native request, exact timeout samples and existing failure/owned release guards. Native behavior unproved.",
+    "user": "One B194 task start→running without manual Sleep→two-turn completion/release. Any terminal error: capture timeout/failure block and stop. No save/load/re-enable campaign."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md",
-    "source": "B193.220/modinfo220 DEVELOP_ACTIVE; source f93407319e6eadc5b70c5760851261c645d40db4; receipt B193.220-f934073-playtest.json; 213/213 MATCH. Fresh OS exit, clean/pushed source, exact B192/stable bridge and retained recovery hashes verified; no pending transaction. B193 failure-time sample received; task HELD. No runtime change in this review.",
-    "native": "Two T88 images: failure-time OPERATION exact equality, requested/attempt=true, prior startup AWAKE. Task HELD. Diagnostic observation complete; eventual Sleep, readiness suppression/completion/release unverified.",
-    "stop": "Await bounded post-request pending repair approval; no implementation/deployment or new native test now. Formal N1/N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
+    "source": "Source B194.221/modinfo221 locally complete; last recorded deployment B193.220/sourcef934073/receipt B193.220-f934073-playtest.json. Deployment not inferred.",
+    "native": "B194 native OPERATION→SLEEP, readiness suppression and completion/release USER_GAME_TEST_REQUIRED. B193 proved post-request OPERATION, not eventual Sleep.",
+    "stop": "Await verified deployment and one completion/release flow or terminal diagnostic; no formal persistence/reattachment, N2/N3/U2/rewards."
   }
 }

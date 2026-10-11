@@ -419,3 +419,15 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_A','Exact equality AWAKE: {1}; HOLD: {2}'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_B','精确相等 SLEEP：{1}；OPERATION：{2}'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_B','Exact equality SLEEP: {1}; OPERATION: {2}');
+
+
+-- B194: timeout preserves the last valid activity read, not a new deadline query.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','等待超时诊断 · 回合 {1}（活动取自最近有效读取，非超时瞬间新读取）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','Activity timeout diagnostic · turn {1} (last valid read, not a fresh query at timeout)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_PENDING_TIMEOUT','SLEEP 已请求，等待确认超时'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_PENDING_TIMEOUT','SLEEP requested; confirmation wait timed out'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMING','超时时已等待：{1}秒；最近有效读取：等待{2}秒时（回合{3}）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMING','Elapsed at timeout: {1}s; last valid read at {2}s (turn {3})'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY','最近有效读取的活动：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY','Activity from the last valid read: {1}');

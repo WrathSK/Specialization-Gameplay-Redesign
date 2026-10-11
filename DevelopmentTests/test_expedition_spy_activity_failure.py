@@ -1,4 +1,4 @@
-"""B193 actual UI bridge: failure-time observation never changes activity behavior.
+"""B194 retains B193 failure observation for unsupported states; owned OPERATION now waits.
 The numeric activities below are deterministic fixtures, not native measurements.
 """
 import unittest
@@ -12,10 +12,10 @@ def failure_bridge():
       activityReads=0
       local original=UnitManager.GetActivityType
       UnitManager.GetActivityType=function(u)activityReads=activityReads+1;return original(u)end
-      function request_into_operation()
+      function request_into_operation(activity)
        UnitManager.RequestOperation=function(u,op)
         assert(op==expectedSleepHash and u.id==41);sleepCalls=sleepCalls+1
-        u.activity=ActivityTypes.ACTIVITY_OPERATION
+        u.activity=activity or ActivityTypes.ACTIVITY_OPERATION
         Events.UnitActivityChanged(2,41);Events.GameCoreEventPublishComplete()
        end
       end
@@ -40,13 +40,13 @@ class FailureDiagnostic(unittest.TestCase):
          assert(activityReads==1 and sleepChecks==1 and readinessReads==1 and endTurnReads==1)
         """)
 
-    def test_post_request_operation_preserves_awake_startup_and_attempt_not_acceptance(self):
+    def test_post_request_unsupported_state_preserves_awake_startup_and_attempt_not_acceptance(self):
         l=failure_bridge()
         l.execute("""
-         noAck=true;request_into_operation();publish('SLEEP')
+         noAck=true;request_into_operation(9);publish('SLEEP')
          local s=diag();local d=failure()
          assert(s.activity=='0 (number)' and s.eligibilityStatus=='ALLOWED')
-         assert(d.activity=='3 (number)' and d.equalsOperation=='true (boolean)')
+         assert(d.activity=='9 (number)' and d.equalsOperation=='false (boolean)')
          assert(d.equalsAwake=='false (boolean)' and d.equalsHold=='false (boolean)' and d.equalsSleep=='false (boolean)')
          assert(d.phase=='POST_REQUEST_READBACK' and d.requested=='true (boolean)' and d.sleepAttempted=='true (boolean)')
          assert(s~=d and sleepCalls==1 and wakeCalls==0 and sleepChecks==2 and wakeChecks==0)
@@ -59,8 +59,8 @@ class FailureDiagnostic(unittest.TestCase):
     def test_failure_sample_survives_owned_release_failure_without_sending_wake(self):
         l=failure_bridge()
         l.execute("""
-         request_into_operation();publish('SLEEP')
-         assert(failure().phase=='POST_REQUEST_READBACK' and failure().activity=='3 (number)')
+         request_into_operation(9);publish('SLEEP')
+         assert(failure().phase=='POST_REQUEST_READBACK' and failure().activity=='9 (number)')
          assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==2 and wakeChecks==0)
          assert(#packets==2 and packets[1].Detail:find('ACTIVITY_UNEXPECTED_STATE',1,true))
          assert(packets[2].Detail:find('ACTIVITY_RELEASE_STATE_UNKNOWN',1,true))
@@ -86,10 +86,10 @@ class FailureDiagnostic(unittest.TestCase):
     def test_repeated_events_preserve_first_failure_and_do_not_reread_or_write(self):
         l=failure_bridge()
         l.execute("""
-         noAck=true;request_into_operation();publish('SLEEP');local d=failure();local s=diag()
+         noAck=true;request_into_operation(9);publish('SLEEP');local d=failure();local s=diag()
          units[41].activity=8;turn=82;local reads=activityReads
          for i=1,30 do Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin();Events.UnitActivityChanged(2,41)end
-         assert(failure()==d and d.activity=='3 (number)' and d.turn==81 and diag()==s)
+         assert(failure()==d and d.activity=='9 (number)' and d.turn==81 and diag()==s)
          assert(activityReads==reads and sleepChecks==2 and readinessReads==1 and endTurnReads==1)
          assert(sleepCalls==1 and wakeCalls==0 and #packets==1 and update==nil)
         """)
@@ -171,7 +171,7 @@ class FailureDiagnostic(unittest.TestCase):
     def test_new_task_key_replaces_bounded_snapshot_and_resets_attempt(self):
         l=failure_bridge()
         l.execute("""
-         noAck=true;request_into_operation();publish('SLEEP');local old=failure()
+         noAck=true;request_into_operation(9);publish('SLEEP');local old=failure()
          units[41].activity=7;turn=82;publish('SLEEP',false,'task2')
          local d=failure();assert(d~=old and d.activityKey=='task2' and d.activity=='7 (number)' and d.turn==82)
          assert(d.phase=='PRE_REQUEST_GUARD' and d.requested=='false (boolean)' and d.sleepAttempted=='false (boolean)')
@@ -183,7 +183,7 @@ class FailureDiagnostic(unittest.TestCase):
         l.execute("""
          noAck=true
          UnitManager.RequestOperation=function(u,op)
-          sleepCalls=sleepCalls+1;u.activity=3
+          sleepCalls=sleepCalls+1;u.activity=9
           local original=tostring
           tostring=function(v)if v==false then error('DIAGNOSTIC_FORMAT_FAILURE')end;return original(v)end
           Events.UnitActivityChanged(2,41)

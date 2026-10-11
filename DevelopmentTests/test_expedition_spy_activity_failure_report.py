@@ -1,4 +1,4 @@
-"""B193 failure-time presentation on the actual management window.
+"""B193/B194 guard and timeout presentation on the actual management window.
 These tests preserve the distinction between a failed guard and its earlier startup sample.
 They do not establish native SLEEP acceptance or task correctness.
 """
@@ -44,6 +44,65 @@ class ActivityFailureReport(unittest.TestCase):
                       'DIAGNOSTIC_ENUM_B:1 (number),4 (number)',
                       'SPY_DIAGNOSTIC_ACTIVITY:number: 7,boolean: false'):
             self.assertIn(value, text)
+
+    def test_timeout_labels_last_read_timing_and_retains_initial_cause(self):
+        lua = failure_window()
+        lua.execute("""
+          failureSample.phase='PENDING_TIMEOUT';failureSample.reason='ACTIVITY_SLEEP_TIMEOUT'
+          failureSample.elapsed='10.25 (number)';failureSample.sampledElapsed='9.75 (number)'
+          failureSample.sampleTurn=83;failureSample.turn=84
+          local a=ExposedMembers.SPC_ExpeditionActivity
+          a.activityFailure='ACTIVITY_RELEASE_STATE_UNKNOWN';a.error='ACTIVITY_RELEASE_STATE_UNKNOWN'
+          activityChanged()
+        """)
+        text = lua.eval('Controls.Report.text')
+        for part in ('FAILURE_DIAGNOSTIC_TIMEOUT_HEADER:84',
+                     'FAILURE_DIAGNOSTIC_PHASE_PENDING_TIMEOUT',
+                     'ACTIVITY_RELEASE_STATE_UNKNOWN', 'ACTIVITY_SLEEP_TIMEOUT',
+                     'FAILURE_DIAGNOSTIC_TIMING:10.25 (number),9.75 (number),83',
+                     'FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY:4 (number)',
+                     'FAILURE_DIAGNOSTIC_REQUEST:true (boolean),true (boolean)'):
+            self.assertIn(part, text)
+        self.assertNotIn('SPY_FAILURE_DIAGNOSTIC_HEADER:', text)
+        self.assertNotIn('SPY_FAILURE_DIAGNOSTIC_ACTIVITY:', text)
+        self.assertLess(text.index('FAILURE_DIAGNOSTIC_TIMEOUT_HEADER'), text.index('SPY_DIAGNOSTIC_HEADER'))
+        self.assertIn('SPY_DIAGNOSTIC_HEADER:83', text)
+
+    def test_timeout_does_not_invent_missing_read_timing(self):
+        lua = failure_window()
+        lua.execute("""
+          failureSample.phase='PENDING_TIMEOUT';failureSample.reason='ACTIVITY_SLEEP_TIMEOUT'
+          failureSample.elapsed='10 (number)';activityChanged()
+        """)
+        self.assertIn('FAILURE_DIAGNOSTIC_TIMING:10 (number),UNKNOWN,UNKNOWN',
+                      lua.eval('Controls.Report.text'))
+
+    def test_guard_reports_do_not_gain_timeout_timing_or_relabeling(self):
+        for phase in ('PRE_REQUEST_GUARD', 'POST_REQUEST_READBACK'):
+            with self.subTest(phase=phase):
+                lua = failure_window()
+                lua.globals().phase = phase
+                lua.execute("failureSample.phase=phase;failureSample.elapsed='4 (number)';activityChanged()")
+                text = lua.eval('Controls.Report.text')
+                self.assertIn('FAILURE_DIAGNOSTIC_HEADER:83', text)
+                self.assertIn('FAILURE_DIAGNOSTIC_ACTIVITY:4 (number)', text)
+                self.assertNotIn('FAILURE_DIAGNOSTIC_TIMING', text)
+                self.assertNotIn('FAILURE_DIAGNOSTIC_TIMEOUT_HEADER', text)
+
+    def test_timeout_render_retains_sample_without_native_queries_or_requests(self):
+        lua = failure_window()
+        lua.execute("""
+          failureSample.phase='PENDING_TIMEOUT';failureSample.reason='ACTIVITY_SLEEP_TIMEOUT'
+          failureSample.elapsed='10 (number)';failureSample.sampledElapsed='9.75 (number)'
+          failureSample.sampleTurn=83
+          local n=sent;local native=nativeCalls
+          UnitManager.GetActivityType=function()error('timeout report native read')end
+          UnitManager.CanStartOperation=function()error('timeout report eligibility query')end
+          for i=1,10 do activityChanged()end
+          assert(sent==n and nativeCalls==native and destroys==0 and properties==0)
+          assert(failureSample.reason=='ACTIVITY_SLEEP_TIMEOUT' and failureSample.sampledElapsed=='9.75 (number)')
+          assert(Controls.Report.text:find('FAILURE_DIAGNOSTIC_TIMEOUT_HEADER:83',1,true))
+        """)
 
     def test_pre_request_false_flags_remain_false_without_truthiness_coercion(self):
         lua = failure_window()
@@ -142,7 +201,8 @@ class ActivityFailureReport(unittest.TestCase):
         db.execute('CREATE TABLE LocalizedText(Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY(Language,Tag))')
         db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         for key in ('HEADER', 'PHASE', 'PHASE_PRE_REQUEST_GUARD', 'PHASE_POST_REQUEST_READBACK',
-                    'PHASE_UNKNOWN', 'ACTIVITY', 'REQUEST', 'EQUAL_A', 'EQUAL_B'):
+                    'PHASE_UNKNOWN', 'ACTIVITY', 'REQUEST', 'EQUAL_A', 'EQUAL_B',
+                    'PHASE_PENDING_TIMEOUT', 'TIMEOUT_HEADER', 'TIMEOUT_ACTIVITY', 'TIMING'):
             with self.subTest(key=key):
                 rows=db.execute('SELECT Language,Text FROM LocalizedText WHERE Tag=?',
                                 ('LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_'+key,)).fetchall()
@@ -152,6 +212,11 @@ class ActivityFailureReport(unittest.TestCase):
                 if key == 'HEADER':
                     self.assertIn('失败瞬间采样', labels['zh_Hans_CN'])
                     self.assertIn('sample at failure', labels['en_US'])
+                if key == 'TIMEOUT_HEADER':
+                    self.assertIn('非超时瞬间新读取', labels['zh_Hans_CN'])
+                    self.assertIn('not a fresh query at timeout', labels['en_US'])
+                if key == 'TIMING':
+                    self.assertTrue(all('{1}' in v and '{2}' in v and '{3}' in v for v in labels.values()))
                 if key == 'REQUEST':
                     self.assertIn('不代表引擎已接受', labels['zh_Hans_CN'])
                     self.assertIn('not proof of native acceptance', labels['en_US'])

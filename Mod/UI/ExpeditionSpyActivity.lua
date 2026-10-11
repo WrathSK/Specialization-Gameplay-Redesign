@@ -1,4 +1,4 @@
--- B193: invisible UI bridge for one Gameplay-owned Expedition activity lease.
+-- B194: invisible UI bridge for one Gameplay-owned Expedition activity lease.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
 local P=SPCP0
@@ -38,6 +38,13 @@ local function read(n)
  assert(UnitManager and type(UnitManager.GetActivityType)=='function' and ActivityTypes,'ACTIVITY_READER_UNAVAILABLE')
  local activity=UnitManager.GetActivityType(u)
  assert(activity~=nil,'ACTIVITY_UNREADABLE')
+ if n.mode=='SLEEP' then
+  -- One replaceable last-read sample, not a fresh read at the timeout deadline.
+  n.lastActivity=activity;n.sampledElapsed=n.elapsed
+  n.sampleAwake=ActivityTypes.ACTIVITY_AWAKE;n.sampleHold=ActivityTypes.ACTIVITY_HOLD
+  n.sampleSleep=ActivityTypes.ACTIVITY_SLEEP;n.sampleOperation=ActivityTypes.ACTIVITY_OPERATION
+  local timed,turn=pcall(Game.GetCurrentGameTurn);n.sampleTurn=timed and turn or nil
+ end
  if activity==ActivityTypes.ACTIVITY_SLEEP and seen.key==n.activityKey then seen.sleepObserved=true end
  return u,activity
 end
@@ -115,19 +122,24 @@ local function captureDiagnostic(n,u,activity)
 end
 -- Preserve the exact failing evaluation separately from the first startup sample.
 -- This observes existing control flags; an attempted request is not native acceptance.
-local function captureFailureDiagnostic(n,activity,awake,hold,sleep)
+local function captureFailureDiagnostic(n,activity,awake,hold,sleep,timeout)
  if seen.failureDiagnosed or not same(view(),n)then return end
  seen.failureDiagnosed=true
  local operation=ActivityTypes.ACTIVITY_OPERATION
+ if timeout then operation=n.sampleOperation end
  local d={owner=n.owner,unitID=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
   expectedName=n.expectedName,x=n.x,y=n.y,turn=Game.GetCurrentGameTurn(),
-  reason='ACTIVITY_UNEXPECTED_STATE',
-  phase=(n.requested==true or seen.attempted==true) and 'POST_REQUEST_READBACK' or 'PRE_REQUEST_GUARD',
+  reason=timeout and 'ACTIVITY_SLEEP_TIMEOUT' or 'ACTIVITY_UNEXPECTED_STATE',
+  phase=timeout and 'PENDING_TIMEOUT' or ((n.requested==true or seen.attempted==true) and 'POST_REQUEST_READBACK' or 'PRE_REQUEST_GUARD'),
   activity=diagnosticText(activity),awake=diagnosticText(awake),hold=diagnosticText(hold),
   sleep=diagnosticText(sleep),operationEnum=diagnosticText(operation),
   equalsAwake=diagnosticText(activity==awake),equalsHold=diagnosticText(activity==hold),
   equalsSleep=diagnosticText(activity==sleep),equalsOperation=diagnosticText(activity==operation),
   requested=diagnosticText(n.requested==true),sleepAttempted=diagnosticText(seen.attempted==true)}
+ if timeout then
+  d.elapsed=diagnosticText(n.elapsed);d.sampledElapsed=diagnosticText(n.sampledElapsed)
+  d.sampleTurn=n.sampleTurn
+ end
  if same(view(),n)then ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=d end
 end
 local function clearStaleDiagnostic(v,key)
@@ -155,6 +167,10 @@ local function evaluate(n)
   end
   local sleep=ActivityTypes.ACTIVITY_SLEEP
   if activity==sleep then acknowledge(n,'ASLEEP');return end
+  -- Native OPERATION after our own request is pending, never proof of Sleep.
+  -- Reuse the existing deadline; do not request again or start the Gameplay timer.
+  if n.requested==true and n.owned==true and seen.attempted==true
+   and activity==ActivityTypes.ACTIVITY_OPERATION then return end
   local awake,hold=ActivityTypes.ACTIVITY_AWAKE,ActivityTypes.ACTIVITY_HOLD
   if activity~=awake and activity~=hold then
    local captured,err=pcall(captureFailureDiagnostic,n,activity,awake,hold,sleep)
@@ -218,7 +234,13 @@ local function start(v)
   n.elapsed=n.elapsed+dt;n.poll=n.poll+dt
   if not same(view(),n)then cancel();pump(false);return end
   if n.poll>=0.25 then n.poll=0;pump(false)end
-  if job==n and n.elapsed>=10 then fail(n,'ACTIVITY_'..n.mode..'_TIMEOUT')end
+  if job==n and n.elapsed>=10 then
+   if n.mode=='SLEEP' then
+    local captured,err=pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)
+    if not captured then print('[SPC][B194][ACTIVITY_TIMEOUT_DIAGNOSTIC_UNAVAILABLE] '..detail(err))end
+   end
+   fail(n,'ACTIVITY_'..n.mode..'_TIMEOUT')
+  end
  end)
  return n
 end

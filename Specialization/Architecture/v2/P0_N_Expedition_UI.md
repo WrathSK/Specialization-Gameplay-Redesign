@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B193_NATIVE_POST_REQUEST_OPERATION_CONFIRMED_REPAIR_PROPOSED. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B193 native review](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md) confirms **失败时活动诊断** shows post-request OPERATION with both request flags true, separately from startup AWAKE. The observation is complete; no new diagnostic button or unchanged retest.
-Current entry stays **专业化诊断 → 人文考察·验证**. Proposed repair would retain a bounded terminal pending/timeout report; no UI rewrite, implementation or native Sleep acceptance in this review.
+State: N1_PARTIAL / B194_BOUNDED_OPERATION_WAIT_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B194 wait/timeout report](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md) labels retained last-read activity separately from deadline time and preserves the original timeout through release failure. Existing immediate-failure/startup reports remain; no new button or layout.
+Current entry stays **专业化诊断 → 人文考察·验证**, using **④ 无奖励任务（2回合）** for one start/completion/release flow. Only observed SLEEP starts the timer. No save/load campaign, formal persistence or wider UI rollout.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

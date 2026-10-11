@@ -55,10 +55,12 @@ local function appendFailureDiagnostic(out)
  local d=activityDiagnostic(ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic);if not d then return end
  local function raw(key)return type(d[key])=='string' and d[key] or 'UNKNOWN' end
  local phase=d.phase
- if phase~='PRE_REQUEST_GUARD' and phase~='POST_REQUEST_READBACK' then phase='UNKNOWN' end
- out[#out+1]=L('FAILURE_DIAGNOSTIC_HEADER',value(d.turn))
+ if phase~='PRE_REQUEST_GUARD' and phase~='POST_REQUEST_READBACK' and phase~='PENDING_TIMEOUT' then phase='UNKNOWN' end
+ local timeout=phase=='PENDING_TIMEOUT'
+ out[#out+1]=L(timeout and 'FAILURE_DIAGNOSTIC_TIMEOUT_HEADER' or 'FAILURE_DIAGNOSTIC_HEADER',value(d.turn))
  out[#out+1]=L('FAILURE_DIAGNOSTIC_PHASE',L('FAILURE_DIAGNOSTIC_PHASE_'..phase),raw('reason'))
- out[#out+1]=L('FAILURE_DIAGNOSTIC_ACTIVITY',raw('activity'))
+ if timeout then out[#out+1]=L('FAILURE_DIAGNOSTIC_TIMING',raw('elapsed'),raw('sampledElapsed'),value(d.sampleTurn))end
+ out[#out+1]=L(timeout and 'FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY' or 'FAILURE_DIAGNOSTIC_ACTIVITY',raw('activity'))
  out[#out+1]=L('FAILURE_DIAGNOSTIC_REQUEST',raw('requested'),raw('sleepAttempted'))
  out[#out+1]=L('DIAGNOSTIC_ENUM_A',raw('awake'),raw('hold'))
  out[#out+1]=L('DIAGNOSTIC_ENUM_B',raw('sleep'),raw('operationEnum'))

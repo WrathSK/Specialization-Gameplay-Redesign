@@ -192,7 +192,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'220')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'221')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -209,7 +209,8 @@ class Package(unittest.TestCase):
         keys|={f'ACTIVITY_{p}' for p in ['SLEEP','ASLEEP','RELEASE','NONE','BLOCKED']}
         keys|={f'ACTIVITY_CAUSE_{p}' for p in ['DATA','API','DENIED']}
         keys|={f'DIAGNOSTIC_{p}' for p in ['ALLOWED','DENIED','UNKNOWN']}
-        keys|={f'FAILURE_DIAGNOSTIC_PHASE_{p}' for p in ['PRE_REQUEST_GUARD','POST_REQUEST_READBACK','UNKNOWN']}
+        keys|={f'FAILURE_DIAGNOSTIC_PHASE_{p}' for p in ['PRE_REQUEST_GUARD','POST_REQUEST_READBACK','PENDING_TIMEOUT','UNKNOWN']}
+        keys|={'FAILURE_DIAGNOSTIC_HEADER','FAILURE_DIAGNOSTIC_ACTIVITY','FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY'}
         keys|={'HELD_MATCH','HELD_RECHECK','HELD_SOURCE','ACTIVITY_FAILURE'}
         for k in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_'+k,)).fetchone()[0],2,k)
         for key in re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml):self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)

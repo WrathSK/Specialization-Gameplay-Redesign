@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B193 failure-time OPERATION after a SLEEP request confirmed; task still HELD.** [Native evidence and bounded repair proposal](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md): exact equality with OPERATION and requested/attempt=true resolve the prior timing uncertainty. The current guard aborts before OPERATION can use existing pending polling. Proposed owned-request-only bounded wait is not implemented and does not treat OPERATION as Sleep; transition/readiness/completion/release remain unverified. Prior evidence and B192 correction retained.
+Date: 2026-10-10. **B194 bounded post-request OPERATION wait locally complete; native transition still unknown.** [Implementation and 276 scoped tests](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md) permit only the same owned request to wait within the existing deadline; OPERATION is not Sleep. Timer/capacity/binding unchanged, terminal timeout retains last-read timing and primary cause. [B193 native basis](../../Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md) is preserved. One completion/release flow pending; no assumed native success.
 
 ## B190 native failure basis
 
