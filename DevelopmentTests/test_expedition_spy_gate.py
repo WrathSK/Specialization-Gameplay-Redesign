@@ -105,6 +105,7 @@ def gate(ui=False, window=False):
            original(id,hidden);local c=Controls[id];c.sizex=0;c.sizey=0;c.offsetx=0;c.children={}
            function c:SetIcon(v)self.icon=v end;function c:SetDisabled(v)self.disabled=v end
            function c:SetSizeY(v)self.sizey=v end
+           function c:GetSizeY()return self.sizey end
            function c:SetOffsetX(v)self.offsetx=v end
            function c:SetOffsetY(v)self.offsety=v end
            function c:SetToolTipString(v)self.tooltip=v end
@@ -258,7 +259,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'226')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'227')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

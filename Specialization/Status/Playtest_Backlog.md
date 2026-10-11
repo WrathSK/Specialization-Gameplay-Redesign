@@ -338,4 +338,8 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 
 ## B199 — explicit selection, mission locations and task-start close
 
-[B198 feedback](Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the layout direction, with confirmed missing task-start close and requested refinements; no repeat of the unchanged B198 flow. [B199 minimum delta](Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md#one-minimal-native-flow): explicit city selection/location strip/mission preview → arrival and explicit task selection → accepted start closes sidebar; existing timer continues.189 local tests PASS, native rendering/foreign visibility pending. No save/load/name/capacity campaign or formal mission expansion.
+[Native review](Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md): functional flow scoped USER_REPORTED_PASS; two images show explicit task choice and an overlong selected frame. The user also reports header overlap. No universal foreign-inventory or completion claim; no unchanged B199 retest.
+
+## B200 — automatic page opening and card layout
+
+[One minimal native UI session](Validation/Results/Specialization_B200_Expedition_UI_Local.md#one-minimal-native-ui-session), pending verified deployment: idle team at home opens relocation without a destination → arrived team abroad opens tasks without a selection → selected card fits header/frame → Start closes and task-controlled selection stays quiet.209 local tests PASS. No save/load, source/capacity/name or unchanged lifecycle campaign. Current source/runtime distinction comes from Status/receipt. Formal N1/repeat missions/N2/N3/U2/rewards remain held.

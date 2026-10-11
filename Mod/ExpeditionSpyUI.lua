@@ -36,6 +36,34 @@ function M.CanOpen(mode,u)
  if mode=='TRAVEL'then return v.phase=='CREATED' or v.phase=='ARRIVED' end
  return mode=='TASK' and v.phase=='ARRIVED' and v.taskStart==nil
 end
+-- Native-like selection routing is presentation only. Read the selected team's
+-- current city through the native city lookup; unreadable facts never guess a
+-- mission menu from a foreign-owned plot or a saved target. Keep ordinary Spy
+-- selection and all explicit action controls on their existing paths.
+local function selectionMode(u)
+ if ExposedMembers and ExposedMembers.SPC_ExpeditionGateUIOpenVersion~=nil then return nil end
+ local selected=UI.GetHeadSelectedUnit()
+ if not M.IsTeam(u) or not M.IsTeam(selected) or selected:GetOwner()~=u:GetOwner()
+  or selected:GetID()~=u:GetID()then return nil end
+ local v=M.ActivityView(u)
+ if not v or M.ActivityLocked(u)then return nil end
+ local ok,mode=pcall(function()
+  if u:GetX()~=v.x or u:GetY()~=v.y or not u:IsReadyToMove()
+   or UnitManager.GetActivityType(u)~=ActivityTypes.ACTIVITY_AWAKE then return nil end
+  local plot=Map.GetPlot(u:GetX(),u:GetY())
+  local city=plot and Cities.GetPlotPurchaseCity(plot)
+  if not city then return nil end
+  local owner,id=city:GetOwner(),city:GetID()
+  if type(owner)~='number' or owner<0 or owner%1~=0 or type(id)~='number' or id<0 or id%1~=0 then return nil end
+  local player=Players[owner]
+  local current=player and player:GetCities():FindID(id)
+  if not current or current:GetOwner()~=owner or current:GetID()~=id
+   or current:GetX()~=city:GetX() or current:GetY()~=city:GetY()then return nil end
+  local desired=owner==Game.GetLocalPlayer() and 'TRAVEL' or 'TASK'
+  return M.CanOpen(desired,u) and desired or nil
+ end)
+ return ok and mode or nil
+end
 local routing=false
 function M.SuppressNative()
  if routing then return end
@@ -46,11 +74,12 @@ function M.SuppressNative()
  routing=false
  if not ok then print('[SPC][B196][N1_UI_SUPPRESS] '..tostring(err):sub(1,180))end
 end
-function M.Open(mode,id)
+function M.Open(mode,id,fromSelection)
  if routing then return false end
  local function allowed()
   local u=UI.GetHeadSelectedUnit()
   return M.IsTeam(u) and u:GetID()==id and M.CanOpen(mode,u)
+   and (not fromSelection or selectionMode(u)==mode)
  end
  if not allowed()then return false end
  routing=true
@@ -63,5 +92,9 @@ function M.Open(mode,id)
  routing=false
  if not ok then print('[SPC][B196][N1_UI_OPEN] '..tostring(err):sub(1,180))end
  return ok and opened
+end
+function M.OpenOnSelection(u)
+ local mode=selectionMode(u)
+ return mode~=nil and M.Open(mode,u:GetID(),true) or false
 end
 return M

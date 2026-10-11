@@ -1,17 +1,15 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B199_SELECTION_LOCATIONS_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B200_UI_REFINEMENT_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B199.226 user-requested UI refinements locally complete;189 focused tests PASS.** [B198 native review](../../Status/Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the layout direction and records missing task-start close. [B199 changes/evidence/minimal flow](../../Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md): explicit city/task selection, no city outline, mission preview, accepted-TASK close and read-only location icons. Foreign work visibility and rendered fit remain native pending.
+**B200 selection/card refinement locally complete;209 focused tests PASS, native UI pending.** [Implementation and one minimal flow](../../Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md). B199 functional flow has scoped user acceptance; its overlong frame/header issue is recorded in the [native review](../../Status/Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md). B200 sizes rows from content, removes idle instructions and opens relocation/tasks on actual own/foreign city selection, with explicit choice and existing task locks retained.
 
-[B199 UI boundary](P0_N_Expedition_UI.md#b199--explicit-selection-and-mission-location-preview): existing exact dispatch/task adapters and capacity/name/source/activity behavior stay unchanged; location snapshots do not grant mission permission. Unknown reads remain incomplete. Earlier B189/B194/B196 lifecycle acceptance stays inherited only where unchanged; B197 failure stays preserved.
-
-Next after receipt-confirmed deployment: one location/explicit-selection → arrival/task/autoclose session. No save/load campaign; END a finished/held prototype before fresh setup. Formal training/reattachment/persistence/repeat tasks/N2/N3/U2/rewards held; Status/receipt governs source/live identity.
+Source B200.227 is separate from last recorded live B199.226. No deployment in this resumed finalization; Status/receipt govern. The paused checkpoint is resolved, not a new implementation mandate. Next native delta: home selection → foreign selection/card → start closes and task-controlled selection stays quiet. No repeated shared save/load test. Capacity/source/name/activity/one-shot behavior unchanged; formal training/reattachment/persistence/repeat tasks/N2/N3/U2/rewards remain held. [Current UI boundary](P0_N_Expedition_UI.md#b200--selection-routing-and-card-layout).
 
 
 ## 三种状态与已定数值

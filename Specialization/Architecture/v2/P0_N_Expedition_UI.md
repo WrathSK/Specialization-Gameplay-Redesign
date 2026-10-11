@@ -1,12 +1,20 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B199_SELECTION_LOCATIONS_LOCAL_COMPLETE_NATIVE_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+State: N1_PARTIAL / B200_UI_REFINEMENT_LOCAL_COMPLETE_NATIVE_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
 [B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 explicit travel/task interaction has scoped native acceptance; [new review and UI references](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) distinguish tested prototype function from the desired future sidebar layout. Broader formal UI and N2/N3 are still proposals.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
+## B200 — selection routing and card layout
+
+[B199 native feedback](../../Status/Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md) accepts the functional flow and requests a better card/header fit and native-like selection opening. [B200 local result](../../Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md) records209 passing focused tests; native layout/event timing remains pending. This is the current applied UI boundary.
+
+Mission card height is measured from content, excluding the selection overlay; a7px header gap and existing footer clearance prevent the observed overlap/extended frame. Redundant idle instruction text is removed; errors remain. Positive exact local idle-team selection opens relocation in an owned city or tasks in a foreign city, but never chooses a target or starts an action. Existing-open, UNKNOWN, phase/readiness and task locks prevent repeated or unsafe opens. Generic activity/mode/debug callbacks cannot auto-open; ordinary Spy paths remain native.
+
+This explicitly supersedes B196's **silent selection / explicit-open-only** presentation direction below. Existing manual buttons remain available; presentation facts are now sampled on a permitted selection-open as well as an explicit open, never from resize or generic activity callbacks. Capacity, source binding, travel/task and one-shot semantics are unchanged. One minimal native UI session only; deployment is recorded separately in Status. Formal N1/repeat missions/N2/N3/U2/rewards stay held.
+
 ## B199 — explicit selection and mission location preview
 
-[Native B198 feedback](../../Status/Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the general layout and authorizes these refinements. [B199 local evidence and minimal delta flow](../../Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md) record189 focused passing tests. This is the current applied UI boundary; older sections below describe their own checkpoints, not current pending instructions.
+[Native B198 feedback](../../Status/Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the general layout and authorizes these refinements. [B199 local evidence and minimal delta flow](../../Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md) record189 focused passing tests. Historical B199 implementation boundary; B200 above supplies the current selection/layout delta, while these unchanged rules remain applicable.
 
 Normal opens reset city/task choice; confirmation requires a click. City outlines stay hidden, selection appears in the top banner. The relocation drawer previews the existing no-reward two-turn task instead of travel; it cannot select/start a task. An exact accepted TASK acknowledgement closes the normal window while the independent task continues; failures/HELD remain visible.
 

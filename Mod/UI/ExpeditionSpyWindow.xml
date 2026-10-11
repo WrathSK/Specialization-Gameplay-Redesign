@@ -62,7 +62,7 @@
       <Grid ID="NormalDrawerHeader" Anchor="L,T" Size="parent+2,50" Offset="0,-1" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34">
        <Label ID="NormalDrawerTitle" Anchor="C,C" Style="FontFlair20" SmallCaps="26" SmallCapsType="EveryWord" String="LOC_ESPIONAGECHOOSER_POSSIBLE_MISSIONS" />
       </Grid>
-      <ScrollPanel ID="NormalMissionScroll" Anchor="L,T" Offset="19,43" Size="parent-22,parent-135" Vertical="1" AutoScrollBar="0" ConsumeMouse="1" FullClip="1">
+      <ScrollPanel ID="NormalMissionScroll" Anchor="L,T" Offset="19,56" Size="parent-22,parent-148" Vertical="1" AutoScrollBar="0" ConsumeMouse="1" FullClip="1">
        <ScrollBar Anchor="L,C" Size="11,parent" AnchorSide="O,I" Offset="4,0" Style="ScrollVerticalBar" />
        <Stack ID="NormalPreviewStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="2">
         <Label ID="NormalSummary" Style="FontNormal14" WrapWidth="250" Color="White" Hidden="1" />
@@ -114,9 +114,9 @@
   </GridButton>
  </Instance>
  <Instance Name="SPCExpeditionMission">
-  <GridButton ID="MissionButton" Size="parent,auto" Anchor="C,T">
+  <GridButton ID="MissionButton" Size="parent,76" Anchor="C,T">
    <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" NoStateChange="0" />
-   <Container ID="MissionContent" Anchor="C,C" Size="parent,auto" AutoSizePadding="6,3" ConsumeMouse="0">
+   <Container ID="MissionContent" Anchor="L,T" Size="parent,76" ConsumeMouse="0">
     <Grid Size="55,55" Offset="7,7" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
      <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_UNITOPERATION_SPY_GAIN_SOURCES" />
     </Grid>

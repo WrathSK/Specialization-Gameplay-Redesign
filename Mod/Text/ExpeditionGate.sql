@@ -489,8 +489,8 @@ INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','Review the task, then use the button below to start it.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_NAME','无奖励验证任务'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_NAME','No-reward test task'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','在当前城市停留2回合，不发放奖励。开始后将锁定单位操作；关闭窗口不会中断任务。每团仅验证一次。'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','Remain in the current city for 2 turns without rewards. Unit actions are locked while the task runs; closing the panel does not interrupt it. One test per team.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','在当前城市停留2回合，不发放奖励。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','Remain in the current city for 2 turns without rewards.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] 当前城市'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] Current city'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','文明信息未知'),
@@ -528,8 +528,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_TASK','Select a task, then confirm to start.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW','任务预览'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW','Mission preview'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','抵达后可在该城市开始一次无奖励的2回合验证任务。这里只预览任务，派遣不会自动开始任务。'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','After arrival, start one no-reward, two-turn test task in this city. This is a preview only; travel does not start a task.');
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','抵达后可开始一次2回合的无奖励任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','After arrival, start one two-turn task without rewards.');
 
 
 -- B199: partial foreign location data is not a complete empty result.

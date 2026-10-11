@@ -1,21 +1,22 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0531
-Implementation Build: source/live B199.226 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0532
+Implementation Build: source B200.227 local complete; live B199.226 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B199_SELECTION_LOCATIONS_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B200_UI_REFINEMENT_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B198 UI direction accepted with scoped refinements; B199 locally complete,189 focused tests PASS.** [Five-image native review](Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) separates ordinary Spy references from test screens and confirms missing task-start close. [B199 result/minimal flow](Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md): explicit city/task choice, no city outline, mission preview, correlated task-start close and display-only mission locations/Wonder icons. Foreign collection visibility and rendered fit remain native pending; capacity/binding/task semantics unchanged.
+**B200.227 UI refinement locally complete;209 targeted tests PASS.** [Applied changes, ownership and minimal native flow](Validation/Results/Specialization_B200_Expedition_UI_Local.md). Mission cards use content-measured height and clear the header; idle instruction text is removed. Selecting the idle team opens relocation at home or tasks abroad without choosing/starting anything. [B199 flow accepted by user, card defect recorded](Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md).
 
-Source/live is **B199.226 / modinfo226 DEVELOP_ACTIVE**, deployed source `b4126a4`, receipt `B199.226-b4126a4-playtest.json`,213/213 MATCH. Fresh OS game-exit checks and guarded B198→stable→B199 transaction verified; B198/stable recovery retained, no pending transaction. Changed UI/foreign location visibility remain native pending.
+Last recorded runtime remains **B199.226**, source `b4126a4`, receipt `B199.226-b4126a4-playtest.json`; B200 has not been deployed. Source/local evidence does not establish native layout or event timing. The [interruption checkpoint](Validation/Results/Specialization_B200_Expedition_UI_Checkpoint.md) is resolved by this source completion.
 
-Next: one selection/location-preview → arrival/task selection/autoclose flow, no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B199 UI boundary](../Architecture/v2/P0_N_Expedition_UI.md#b199--explicit-selection-and-mission-location-preview). Formal training/reattachment/persistence, repeat tasks, N2/N3/U2/rewards remain held.
+Next: after separately guarded deployment, one minimal home selection → foreign selection/card → accepted task lock UI session. No save/load campaign. Capacity/binding/task semantics unchanged; formal N1/repeat tasks/N2/N3/U2/rewards remain held. This authorized B200 batch stops at source completion; no game launch or gameplay expansion.
+
 
 ## S0529 — B198 deployment before native UI feedback (historical)
 

@@ -1,4 +1,5 @@
-"""B196 explicit Expedition action routing; native selection is silent.
+"""Explicit Expedition actions and generic native callback isolation.
+B200 actual selection routing is covered in test_expedition_spy_auto_open.
 Actual Lua UI helpers/wrappers, mocked Civ VI controls and events. No native mission evidence.
 """
 import unittest
@@ -105,7 +106,7 @@ class ExplicitActions(unittest.TestCase):
          assert(calls.OnUnitActionClicked==1 and calls.OnUnitActionClicked_CancelSpyMission==1 and routed==0)
         """)
 
-    def test_native_chooser_selection_never_opens_custom_window(self):
+    def test_generic_native_chooser_callbacks_never_open_custom_window(self):
         l=ui('Chooser')
         l.execute("""
          phase('ARRIVED');Open();GoToProperInterfaceMode(team)

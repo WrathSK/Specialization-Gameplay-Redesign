@@ -100,6 +100,7 @@ def ui(kind):
        function u:GetUnitType()return self.kind end;function u:GetOwner()return self.owner end
        function u:GetID()return self.id end;function u:GetX()return self.x end;function u:GetY()return self.y end
        function u:GetName()return self.name end;function u:GetSpyOperation()return self.operation end
+       function u:IsReadyToMove()return self.ready~=false end
        return u
       end
       team=unit(1);ordinary=unit(2);civilian=unit(3);otherTeam=unit(1,2,42)
@@ -109,19 +110,31 @@ def ui(kind):
       function phase(value,modeValue,locked)
        local v=ExposedMembers.SPC_ExpeditionActivity;v.phase=value;v.mode=modeValue or 'NONE';v.locked=locked or false
       end
-      Players={[2]={GetUnits=function()return {FindID=function(self,id)return units[id]end}end}}
+      function selectionCity(owner,id,x,y)
+       return {GetOwner=function()return owner end,GetID=function()return id end,GetX=function()return x end,GetY=function()return y end}
+      end
+      homeCity=selectionCity(2,1,15,8);foreignCity=selectionCity(3,9,15,8);selectionCityObject=homeCity
+      Players={[2]={GetUnits=function()return {FindID=function(self,id)return units[id]end}end,
+       GetCities=function()return {FindID=function(self,id)if id==1 then return homeCity end end}end},
+       [3]={GetCities=function()return {FindID=function(self,id)if id==9 then return foreignCity end end}end}}
+      Map={GetPlot=function(x,y)return {}end};Cities={GetPlotPurchaseCity=function()cityLookups=(cityLookups or 0)+1;return selectionCityObject end}
+      Events={UnitSelectionChanged=event(),UnitActivityChanged=event()}
+      ActivityTypes={ACTIVITY_AWAKE=0,ACTIVITY_SLEEP=1};activityType=0
       UI={GetHeadSelectedUnit=function()return selected end,GetInterfaceMode=function()return mode end,SetInterfaceMode=function(m)mode=m;if onMode then onMode()end end}
       InterfaceModeTypes={SELECTION=0};Locale={Lookup=function(s)return s end};Mouse={eLClick=1}
       LuaEvents={SPC_ExpeditionActivityChanged=event(),SPC_ExpeditionGateOpen=event(),GameDebug_Return=event(),EspionageChooser_ShowMissionBriefing=event(),UnitPanel_CancelMission=event()}
       LuaEvents.SPC_ExpeditionGateOpen.Add(function(action,id)routed=routed+1;routes[#routes+1]={mode=action,id=id}end)
       Controls={};for _,id in ipairs({'ConfirmButton','AcceptButton','AbortButton'})do Controls[id]={RegisterCallback=function(self,key,fn)self.click=fn end}end
       ContextPtr={SetShutdown=function(self,fn)panelShutdown=fn end};Refresh=base('Refresh');include=function()end
-      for _,name in ipairs({'Open','Close','GoToProperInterfaceMode','TeleportToSelectedCity','OnConfirmPlacement','OnCounterspySelected','OnMissionSelected','OnGameDebugReturn','OnShowMissionBriefing','OnShowMissionAbort','OnAccept','OnAbort','RenewMission','ShowMissionCompletedPopup','OnUnitActionClicked','OnUnitActionClicked_CancelSpyMission','GetUnitActionsTable'})do _G[name]=base(name)end
+      for _,name in ipairs({'Open','Close','GoToProperInterfaceMode','TeleportToSelectedCity','OnConfirmPlacement','OnCounterspySelected','OnMissionSelected','OnGameDebugReturn','OnShowMissionBriefing','OnShowMissionAbort','OnAccept','OnAbort','RenewMission','ShowMissionCompletedPopup','OnUnitActionClicked','OnUnitActionClicked_CancelSpyMission','GetUnitActionsTable','OnUnitSelectionChanged','OnShutdown'})do _G[name]=base(name)end
+      Events.UnitSelectionChanged.Add(OnUnitSelectionChanged)
+      function OnUnitActivityChanged()GoToProperInterfaceMode(UI.GetHeadSelectedUnit())end
+      Events.UnitActivityChanged.Add(OnUnitActivityChanged)
       LuaEvents.GameDebug_Return.Add(OnGameDebugReturn)
       LuaEvents.EspionageChooser_ShowMissionBriefing.Add(OnShowMissionBriefing)
       LuaEvents.UnitPanel_CancelMission.Add(OnShowMissionAbort)
       function AddActionToTable(actions,row,disabled,tip,hash,callback)table.insert(actions[row.CategoryInUI],{CallbackFunc=callback,userTag=hash,disabled=disabled,tip=tip,icon=row.Icon})end
-      UnitManager={CanStartOperation=function(u,op)assert(op==8);return true end,RequestOperation=function(u,op)assert(op==8);calls.skip=(calls.skip or 0)+1 end}
+      UnitManager={GetActivityType=function()return activityType end,CanStartOperation=function(u,op)assert(op==8);return true end,RequestOperation=function(u,op)assert(op==8);calls.skip=(calls.skip or 0)+1 end}
     """)
     l.execute((R/'Mod/ExpeditionSpyUI.lua').read_text());l.execute((R/f'Mod/UI/ExpeditionSpy{kind}.lua').read_text());return l
 

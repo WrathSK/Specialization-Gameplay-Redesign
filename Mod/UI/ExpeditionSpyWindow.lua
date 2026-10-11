@@ -25,10 +25,20 @@ local function clearRows()
  end
  districtStrips={};normalRows={};previewRow=nil;cityRows:ResetInstances();taskRows:ResetInstances()
 end
+-- The selected outline is an overlay, never an input to row sizing. An auto
+-- height button with a parent-height brace feeds its previous height back into
+-- DoAutoSize. Measure only the text stack (which reserves 24px for the stats).
+local function sizeMissionCard(row)
+ row.MissionStatsStack:CalculateSize();row.DetailsStack:CalculateSize()
+ local height=math.max(76,row.DetailsStack:GetSizeY()+14)
+ row.MissionContent:SetSizeY(height);row.MissionButton:SetSizeY(height)
+ row.MissionContent:ReprocessAnchoring();row.MissionButton:ReprocessAnchoring()
+end
 local function resizeSidebar()
  if viewMode=='DIAGNOSTIC' or ContextPtr:IsHidden()then return end
  local _,height=UIManager:GetScreenSizeVal()
  Controls.SlideAnim:SetSizeY(height-30)
+ if previewRow then sizeMissionCard(previewRow)end
  Controls.NormalStack:CalculateSize();Controls.NormalScroll:CalculateInternalSize()
  Controls.NormalPreviewStack:CalculateSize();Controls.NormalMissionScroll:CalculateInternalSize()
 end
@@ -347,7 +357,7 @@ local function reply()
  if v.taskStart and v.unitID then taskAfter=taskRead()end
  if action=='READ' and viewMode=='TASK' and refreshHeader then
   taskDisplay=nil;refreshHeader()
-  if not v.error and not taskSelected then setReport(L('NORMAL_SELECT_TASK'))end
+  if not v.error and not taskSelected then setReport('')end
  end
  render();return true
 end
@@ -509,7 +519,7 @@ refreshHeader=function()
  if previewRow then
   TruncateStringWithTooltip(previewRow.MissionLocation,135,display and display.name and Locale.Lookup(display.name) or L('NORMAL_NAME_UNKNOWN'))
   previewRow.MissionTurns:SetText('2')
-  previewRow.MissionStatsStack:CalculateSize();previewRow.DetailsStack:CalculateSize();previewRow.MissionButton:DoAutoSize()
+  sizeMissionCard(previewRow)
  end
 end
 local function updateTarget()
@@ -545,7 +555,6 @@ local function populateSidebar()
  row.MissionIcon:SetIcon('ICON_UNITOPERATION_SPY_GAIN_SOURCES')
  row.MissionName:SetText(L('SIDEBAR_TASK_NAME'))
  row.MissionDetails:SetText(L(viewMode=='TRAVEL' and 'NORMAL_MISSION_PREVIEW_DETAILS' or 'SIDEBAR_TASK_DETAILS'))
- row.DetailsStack:CalculateSize();row.MissionButton:DoAutoSize()
  normalRows[#normalRows+1]={button=row.MissionButton,brace=row.SelectorBrace}
  row.MissionButton:RegisterCallback(Mouse.eLClick,function()
   if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TASK' or not normalCanAct()then return end
@@ -589,7 +598,7 @@ local function open(mode,id)
   Controls.NormalIntro:SetText(L(mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
   Controls.NormalConfirmLabel:SetText(L(mode=='TASK' and 'NORMAL_START_TASK' or 'NORMAL_TRAVEL_CONFIRM'))
   Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
-  Controls.NormalTargetLabel:SetHide(true);setReport(mode=='TASK' and L('NORMAL_SELECT_TASK') or '')
+  Controls.NormalTargetLabel:SetHide(true);setReport('')
   -- Do not enable a control from a previous diagnostic reply.
   current=nil;Controls.NormalConfirmButton:SetDisabled(true)
  end

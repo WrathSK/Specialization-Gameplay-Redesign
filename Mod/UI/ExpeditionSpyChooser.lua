@@ -16,6 +16,26 @@ function GoToProperInterfaceMode(u,...)
  if R.IsTeam(u)then redirect();return end
  blocked=false;return baseMode(u,...)
 end
+-- The native initializer already captured its selection listener. Replace
+-- only that entry: generic mode/activity/debug callbacks keep suppressing our
+-- team, so native SLEEP/release notifications cannot reopen a management panel.
+local baseSelection=OnUnitSelectionChanged
+Events.UnitSelectionChanged.Remove(baseSelection)
+function OnUnitSelectionChanged(playerID,unitID,x,y,z,selected,editable)
+ local u=UI.GetHeadSelectedUnit()
+ if not R.IsTeam(u)then return baseSelection(playerID,unitID,x,y,z,selected,editable)end
+ redirect()
+ if selected==true and editable~=false and playerID==Game.GetLocalPlayer() and unitID==u:GetID()then
+  R.OpenOnSelection(u)
+ end
+end
+Events.UnitSelectionChanged.Add(OnUnitSelectionChanged)
+local baseShutdown=OnShutdown
+function OnShutdown(...)
+ Events.UnitSelectionChanged.Remove(OnUnitSelectionChanged)
+ return baseShutdown(...)
+end
+ContextPtr:SetShutdown(OnShutdown)
 -- Guard both mouse callbacks and global calls. The native initializer captured
 -- the original confirmation function, so explicitly replace that control binding.
 for _,name in ipairs({'TeleportToSelectedCity','OnConfirmPlacement','OnCounterspySelected','OnMissionSelected'})do
