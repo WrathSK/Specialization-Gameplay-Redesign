@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0525",
+    "status": "S0526",
     "runtime": "B197.224 / modinfo224",
     "military": "D0037",
     "harbor": "D0037",
@@ -451,7 +451,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md",
-    "source": "B197.224/modinfo224 source; live B196.223 until a verified deployment receipt.",
+    "source": "B197.224/modinfo224 DEVELOP_ACTIVE; source daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588; receipt B197.224-daaa97f-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B196/stable bridge and retained recovery verified; no pending transaction. B194 activity/B196 input acceptance inherited; B197 native sidebar appearance/input pending.",
     "native": "USER_GAME_TEST_REQUIRED for new sidebar only. Prior B194/B196 evidence retained.",
     "stop": "Stop after scoped sidebar verification; formal N1 remains partial. No new missions, repeatability, formal training/persistence/reattachment, N2/N3/U2/rewards."
   }

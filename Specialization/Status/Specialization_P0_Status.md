@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0525
-Implementation Build: source B197.224; last deployed B196.223 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0526
+Implementation Build: source/live B197.224 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
@@ -13,9 +13,9 @@ Work State: B197_SIDEBAR_LOCAL_COMPLETE_NATIVE_UI_PENDING
 
 **B197 native-style sidebar locally complete;145 focused tests PASS.** [Presentation delta and one minimal UI session](Validation/Results/Specialization_B197_Expedition_Sidebar_Local.md): left city list, compact no-reward task card and explicit confirmation; P0 diagnostics separate. Capacity/binding/travel/task modules unchanged. B194 activity/B196 explicit-input acceptance inherited; native sidebar appearance/input remains pending.
 
-Source is **B197.224 / modinfo224**. Last verified live remains **B196.223**, deployed source `e6e19e5`, receipt `B196.223-e6e19e5-playtest.json`,213/213 MATCH with recovery retained. This source checkpoint does not prove B197 deployment.
+Source/live is **B197.224 / modinfo224 DEVELOP_ACTIVE**, deployed source `daaa97f`, receipt `B197.224-daaa97f-playtest.json`,213/213 MATCH. Fresh OS exit/clean pushed source/guarded B196→stable→B197 transaction verified; B196/stable recovery retained, no pending transaction. Native sidebar appearance/input remains untested.
 
-Next after verified deployment: one sidebar travel→task UI session, no save/load or unchanged lifecycle campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B197 UI scope](../Architecture/v2/P0_N_Expedition_UI.md#b197--native-style-sidebar). One-shot completion remains; formal training/persistence/reattachment, repeat tasks, N2/N3/U2/rewards remain held.
+Next: one sidebar travel→task UI session, no save/load or unchanged lifecycle campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B197 UI scope](../Architecture/v2/P0_N_Expedition_UI.md#b197--native-style-sidebar). One-shot completion remains; formal training/persistence/reattachment, repeat tasks, N2/N3/U2/rewards remain held.
 
 ## S0524 — B196 acceptance before approved sidebar implementation (historical)
 
