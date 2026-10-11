@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0545
-Implementation Build: source B204.231; last verified live B203.230 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0546
+Implementation Build: source/live B204.231 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B204_EVENT_FIRST_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B204_EVENT_FIRST_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B204.231 event-first confirmation repair is locally complete; 478 targeted tests PASS.** [Applied behavior, exact stage feedback and one minimal native flow](Validation/Results/Specialization_B204_Expedition_Event_First_Local.md). Existing events now attempt the exact-team native read immediately; deferred checks only follow pending facts/acknowledgement. Gate/Store, training costs/cap/source, travel and task behavior are unchanged. No P0 opening is needed by the implementation; native integration remains USER_GAME_TEST_REQUIRED.
 
-Last verified live remains **B203.230 / modinfo230 DEVELOP_ACTIVE**, deployed source `aec8c41`, receipt `B203.230-aec8c41-playtest.json`. B203 user-reported failure and its unresolved native cause remain in the [investigation](Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md); callback-withheld local evidence is not a native scheduler diagnosis. B202 panel-assisted and B201 persistence evidence remain scoped, not a PASS for the repaired path.
+Source/live is **B204.231 / modinfo231 DEVELOP_ACTIVE**, deployed source `84773a8`, receipt `B204.231-84773a8-playtest.json`, 218/218 MATCH. Fresh automatic game-exit checks and guarded transaction verified; B203/stable recovery retained, no pending transaction. Main unchanged. B203 user-reported failure and its unresolved native cause remain in the [investigation](Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md); callback-withheld local evidence is not a native scheduler diagnosis. B202 panel-assisted and B201 persistence evidence remain scoped, not a PASS for the repaired path.
 
-Next authorized action: reviewed commit/push, then guarded B204 deployment if automatic game-exit/hash/recovery gates permit. One normal training with P0 closed → explicit **派遣到新城市** → arrival/source check; if blocked, capture the new stage/reason instead of prolonged waiting. Selection auto-opening is optional; no new save/load or task campaign. Stop at native evidence. Fixed1T training replacement, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
+Next: one normal training with P0 closed → explicit **派遣到新城市** → arrival/source check; if blocked, capture the new stage/reason instead of prolonged waiting. Selection auto-opening is optional; no new save/load or task campaign. Stop at native evidence. Fixed1T training replacement, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
 
 ## S0535 — B201 deployment before native evidence (historical)
 

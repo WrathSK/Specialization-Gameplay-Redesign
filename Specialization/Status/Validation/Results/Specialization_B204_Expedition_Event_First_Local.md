@@ -33,8 +33,8 @@ B203's native failure remains recorded. The local counterexample proves that B20
 
 If the button remains unavailable, capture its tooltip once; its exact stage/reason is the evidence needed. Do not wait indefinitely, repeatedly create teams, or use P0 to make this test pass. Existing B202/B201 scoped evidence is inherited where unchanged.
 
-User decision: none. User testing: this one normal-training → dispatch/arrival session. Codex next: guarded deployment under standing W0003 permission if automatic exit/hash checks permit, then review native evidence. Reattachment/repeat tasks, broader civilizations, N2/N3/U2 and rewards remain held.
+User decision: none. User testing: this one normal-training → dispatch/arrival session. Codex next: review the native evidence after the completed guarded deployment. Reattachment/repeat tasks, broader civilizations, N2/N3/U2 and rewards remain held.
 
 ## Deployment
 
-Source B204.231 / modinfo231 is locally complete. Last verified live remains B203.230, source `aec8c41`, receipt `B203.230-aec8c41-playtest.json`. Source completion is not deployment; the guarded transaction and receipt will be recorded here if completed.
+B204.231 / modinfo231 **DEVELOP_ACTIVE**, source `84773a8632ae334c5a7e934cd148f1899f2311dc`, receipt `B204.231-84773a8-playtest.json`. Fresh automatic OS game-exit checks immediately before both guarded B203→stable→B204 switches; 218/218 runtime/source files MATCH. B203 and stable recovery packages retained with verified hashes; no pending transaction. Main, other Mods and game configuration unchanged; no game launch or native PASS. The single native delta above is next.
