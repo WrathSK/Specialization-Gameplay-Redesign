@@ -1,6 +1,12 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B188 exact-unit readiness reached; native NAME_UNIT eligibility stops before submission.** [Current native review](../../Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) records two T86 images, source/cap retention and the precise command guard. Earlier sections retain chronological evidence/authorization limits; current source/live and permission come from Status.
+Date: 2026-10-10. **B188 naming/identity investigation complete; native citizen-name-pool candidate proposed.** [Focused investigation](Specialization_Expedition_Spy_Identity_Naming.md) confirms the test civilization lacks citizen names and distinguishes engine Spy records, raw names and source binding. Custom automatic naming/travel preservation remain unproved; no new implementation or user test. Earlier sections retain chronological evidence; current source/live and permission come from Status.
+
+## Native identity and missing citizen-name pool
+
+CIVILIZATION_SPC_TEST is independent of Scotland and has0 CivilizationCitizenNames rows versus40 for Scotland/England. HD's commented name-expansion proposal explicitly ties this table to Spy names; it is not an active fix. Supplying this pool is the first proposed candidate, distinct from B188's veteran NAME_UNIT gate. No arbitrary setter was established.
+
+Native UI uses current unit IDs, separate off-map records and captured NameIndex in different paths; mission renewal/HD use raw names for limited purposes. None proves the engine relies solely on displayed names. A city association can be retained separately, but it cannot identify a returning unnamed unit by itself. The linked plan keeps team identity stable across future reattachment and preserves exact city authority, without implementing a new registry/property/schema now.
 
 ## B188 naming eligibility boundary
 

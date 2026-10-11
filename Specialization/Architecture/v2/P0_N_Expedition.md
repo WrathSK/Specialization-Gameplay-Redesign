@@ -1,19 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B188_NAME_COMMAND_ELIGIBILITY_NATIVE_FAIL / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B188_SPY_IDENTITY_INVESTIGATION_COMPLETE_PLAN_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B188.215 native naming eligibility FAIL; exact UI readiness/source/cap retained.** [Two-image review and bounded source evidence](../../Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) show `NAME_COMMAND_NOT_ALLOWED` before RequestCommand. Native and HD use the same command pattern; the level2 naming parameter plus non-experience prototype is a plausible restriction, not a proved engine cause. Arrival/name survival, independent task and END were not reached.
+**B188 naming/identity investigation complete; pool-based prototype proposed, not authorized.** [Technical findings and plan](../../Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md) confirm no citizen names for the independent test civilization, versus40 each for Scotland/England. City names/presentation do not supply that pool. Native/HD sources point to automatic Spy naming as a separate route from the failed veteran rename command; custom-type assignment, timing and travel preservation remain native gates.
 
-[110 local methods](../../Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md) remain scoped evidence for bounded readiness, one command, readback and cancellation. B187's earlier failure stays frozen. No evidence yet supports another wait adjustment; the native predicate/return type remain unobserved. No unchanged B188 retest or new test now.
+The [B188 NAME_COMMAND_NOT_ALLOWED result](../../Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) and110 local methods remain unchanged. Native off-map records preserve attributes; captured NameIndex is exposed only in the inspected captured path, not proved a live/off-map continuity key. Generic visible names do not reveal the engine's internal identity algorithm.
 
-Next technical boundary: establish a supported exact-unit naming or native Spy name-assignment API, context and readback before proposing another patch. No supported alternative setter/pool is established. Do not bypass eligibility blindly, change global naming/ordinary Spy/HD rules, award XP or infer returned identity from sole-unit/location/city text. Source authority remains the separate exact record; own cap1/Spy1/native-slot cost and independent no-reward task are unchanged.
+Recommended next bounded patch after approval: add only the test civilization's citizen-name pool, observe/read back the exact custom team's native name without mandatory manual rename, preserve source/capacity and require unique validated arrival. Conditional native flow remains creation → arrival/source → no-reward2T task → END; stop at unusable names. No test now or repeated save/load campaign.
 
-Current authorization covers evidence review/documentation only; further implementation needs approval. Cold load does not reconstruct the prototype from a name. Formal training/persistence/reattachment, N2/N3/U2/rewards and icon reuse remain held; Status/receipt govern source/live.
+Future reattachment should keep verified team identity while updating its exact archive-city association; city display text and a city-only Property are insufficient identity authority. This is a technical candidate consistent with accepted source-loss semantics, not a chosen persistent schema. No global naming/XP changes, normal-civilization changes, blind ID/name adoption or new implementation authorization. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held; Status/receipt govern runtime.
 
 
 ## 三种状态与已定数值

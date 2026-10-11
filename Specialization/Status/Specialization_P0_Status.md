@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0501
+Status Revision: S0502
 Implementation Build: source/live B188.215 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B188_NAME_COMMAND_ELIGIBILITY_NATIVE_FAIL
+Work State: B188_SPY_IDENTITY_INVESTIGATION_COMPLETE_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B188 naming/identity investigation complete; next prototype is not yet authorized.** [Findings and bounded proposal](../Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md): CIVILIZATION_SPC_TEST has0 citizen names (Scotland/England40); native/HD evidence supports a pool-based naming candidate. Engine assignment to our custom Spy and travel survival remain UNKNOWN. Native captured NameIndex is a lead, not an established stable Lua identity. B188 NAME_UNIT gate failure and prior110 local checks retain their separate scope.
+
+Recorded live remains **B188.215 / modinfo215**, source `21f2bf1`, receipt `B188.215-21f2bf1-playtest.json`, last verified211/211 MATCH with recovery retained. This investigation does not reverify or change runtime/main.
+
+Next proposal: test-civilization name-pool data + bounded native-name observation, preserving own source/capacity, then the pending arrival/task/END flow if naming succeeds. No current user retest, automatic implementation or new city Property/schema. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal N1/N2/N3/U2/rewards remain held.
+
+## S0501 — B188 naming failure checkpoint (historical)
 
 **B188.215 stops at native naming eligibility.** [Two-image review](Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md): exact UI unit and ordinary-Spy preflight now succeed in this fixture, but `NAME_COMMAND_NOT_ALLOWED` stops before RequestCommand. Source/reference and own cap1 remain intact; arrival, independent task and END are NOT_TESTED. Veteran-level naming is a supported hypothesis, not the confirmed engine reason;110 local methods retain their scoped evidence.
 

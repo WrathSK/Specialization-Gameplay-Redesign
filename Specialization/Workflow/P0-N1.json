@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0501",
+    "status": "S0502",
     "runtime": "B188.215 / modinfo215",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Record B188 native NAME_UNIT eligibility failure; establish supported naming/continuity evidence before proposing a repair, preserving source/cap and current runtime.",
+  "goal": "Naming/continuity investigation complete; scoped test-civilization citizen-name pool/native-name observation prototype proposed, awaiting implementation approval.",
   "implementation_authorized": false,
   "context": [
     {
@@ -233,6 +233,14 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md"
       ]
+    },
+    {
+      "trigger": "Prepare the proposed automatic native naming prototype after explicit approval",
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md",
+        "Mod/Data/Identity.sql",
+        "Mod/Config/Players.sql"
+      ]
     }
   ],
   "non_scope": [
@@ -248,9 +256,9 @@
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md",
+    "report": "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md",
     "source": "B188.215/modinfo215 DEVELOP_ACTIVE; source21f2bf1cec8cf32a8d7cb9ac97a40ec9447120f8; receipt B188.215-21f2bf1-playtest.json; last verified211/211 MATCH with recovery retained. S0501 evidence review does not reverify runtime. Native name eligibility fails before submission; arrival/task remain pending.",
     "native": "USER_GAME_TEST_FAIL: NAME_COMMAND_NOT_ALLOWED before submission; source/cap retained, readiness/preflight reached in observed fixture. Arrival/name survival/task/END NOT_TESTED.",
-    "stop": "Evidence-only checkpoint; establish supported naming route before repair proposal/authorization. Formal N1/N2/N3/U2/rewards held."
+    "stop": "Investigation complete; await implementation approval for scoped pool/native-name candidate. No user retest now; formal N1/N2/N3/U2/rewards held."
   }
 }
