@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0527
-Implementation Build: source/live B197.224 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0528
+Implementation Build: source B198.225; last deployed B197.224 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B197_NATIVE_RELOCATION_FAIL_UI_ADAPTATION_REQUIRED
+Work State: B198_GUARD_LAYOUT_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B198 dispatch guard/native layout repair locally complete;160 focused tests PASS.** [Repair, ownership and one combined native flow](Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md): creation-time ordinary-Spy isolation retained; later historical changes no longer veto current valid dispatch. Native city banners/district rows, selected header and adjacent preview/task drawer replace B197's rejected simplified layout. Own capacity/binding/travel/task semantics unchanged. Native integration remains pending; B197 failure retained.
+
+Source is **B198.225 / modinfo225**. Last verified live remains **B197.224**, deployed source `daaa97f`, receipt `B197.224-daaa97f-playtest.json`,213/213 MATCH with recovery retained. B198 deployment is deferred: OS process inspection found Civilization VI running. No runtime replacement was attempted.
+
+Next after verified deployment: one ordinary-Spy creation after team setup → relocation → arrival/task UI flow, no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B198 UI boundary](../Architecture/v2/P0_N_Expedition_UI.md#b198--dispatch-guard-and-native-layout-repair). Existing HELD team needs P0 END/fresh setup. Formal training/reattachment/persistence, repeat tasks, N2/N3/U2/rewards remain held.
+
+## S0527 — B197 native failure and repair proposal (historical)
 
 **B197 relocation USER_GAME_TEST_FAIL; sidebar presentation not accepted.** [Four-image review, source/local counterexample and repair proposal](Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md): terminal ISOLATION_OR_REQUEST_STOP; user confirms ordinary Spy creation between Expedition setup and dispatch. Lifetime creation-audit guard reproduces this trigger locally; exact native detail was not captured. Mission/arrival untested; images2/3 are original UI references.
 

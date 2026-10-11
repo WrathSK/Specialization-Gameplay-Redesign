@@ -98,9 +98,10 @@ def gate(ui=False, window=False):
         l.execute("""
           local original=makeControl
           function makeControl(id,hidden)
-           original(id,hidden);local c=Controls[id];c.sizex=0;c.sizey=0
+           original(id,hidden);local c=Controls[id];c.sizex=0;c.sizey=0;c.offsetx=0;c.children={}
            function c:SetIcon(v)self.icon=v end;function c:SetDisabled(v)self.disabled=v end
            function c:SetSizeY(v)self.sizey=v end
+           function c:SetOffsetX(v)self.offsetx=v end
            function c:SetToolTipString(v)self.tooltip=v end
            function c:CalculateSize()self.calculations=(self.calculations or 0)+1 end
            function c:ReprocessAnchoring()self.reanchors=(self.reanchors or 0)+1 end
@@ -117,7 +118,7 @@ def gate(ui=False, window=False):
           UIManager={GetScreenSizeVal=function()return screenWidth,screenHeight end}
           Events.SystemUpdateUI={Add=function(fn)systemUpdate=fn end,Remove=function(fn)assert(systemUpdate==fn);systemUpdate=nil end}
           SystemUpdateUI={ScreenResize=1}
-          instanceTemplates={};instanceManagers={}
+          instanceTemplates={};instanceManagers={};instanceManagerList={}
           InstanceManager={new=function(self,template,root,parent)
            local m={instances={},template=template,root=root,parent=parent,resets=0}
            function m:GetInstance()
@@ -125,10 +126,16 @@ def gate(ui=False, window=False):
             for _,id in ipairs(instanceTemplates[self.template])do
              local old=Controls[id];row[id]=makeControl(id,false);Controls[id]=old
             end
-            self.instances[#self.instances+1]=row;return row
+            self.instances[#self.instances+1]=row
+            self.parent.children[#self.parent.children+1]=row
+            if self.template=='SPCExpeditionDistrict'then self.parent.sizex=#self.instances*32 end
+            return row
            end
-           function m:ResetInstances()self.instances={};self.resets=self.resets+1 end
-           instanceManagers[template]=m;return m
+           function m:ResetInstances()
+            self.instances={};self.parent.children={};self.resets=self.resets+1
+            if self.template=='SPCExpeditionDistrict'then self.parent.sizex=0 end
+           end
+           instanceManagers[template]=m;instanceManagerList[#instanceManagerList+1]=m;return m
           end}
         """)
         xml=ET.parse(R/'Mod/UI/ExpeditionSpyWindow.xml').getroot()
@@ -246,7 +253,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'224')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'225')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -266,11 +273,24 @@ class Package(unittest.TestCase):
         keys|={f'FAILURE_DIAGNOSTIC_PHASE_{p}' for p in ['PRE_REQUEST_GUARD','POST_REQUEST_READBACK','PENDING_TIMEOUT','UNKNOWN']}
         keys|={'FAILURE_DIAGNOSTIC_HEADER','FAILURE_DIAGNOSTIC_ACTIVITY','FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY'}
         keys|={'HELD_MATCH','HELD_RECHECK','HELD_SOURCE','ACTIVITY_FAILURE'}
+        keys|={f'NORMAL_FAILURE_{cause}' for cause in ['CREATION','TARGET','NATIVE','UNKNOWN']}
         keys|={f'NORMAL_PHASE_{p}' for p in ['CREATED','TRAVELLING','ARRIVED','TASK_PREPARING','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
         keys|={f'NORMAL_{mode}_{suffix}' for mode in ['TRAVEL','TASK'] for suffix in ['INTRO','CONFIRM']}
         keys|={f'ACTION_{mode}' for mode in ['TRAVEL','TASK','UNAVAILABLE']}
         for k in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_'+k,)).fetchone()[0],2,k)
-        for key in re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml):self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)
+        xml_keys=set(re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml))
+        # The adapted native chooser owns these two base-game strings. This
+        # in-memory DB contains our SQL only; do not invent duplicate translations.
+        self.assertEqual({key for key in xml_keys if not key.startswith('LOC_SPC_')},
+                         {'LOC_ESPIONAGECHOOSER_POSSIBLE_MISSIONS','LOC_ESPIONAGECHOOSER_CANCEL'})
+        for key in xml_keys:
+            if key.startswith('LOC_SPC_'):
+                self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)
+        unknown=dict(db.execute('select Language,Text from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN',)))
+        self.assertIn('仅为观察',unknown['zh_Hans_CN'])
+        self.assertIn('diagnostic',unknown['en_US'])
+        self.assertNotIn('已暂停',unknown['zh_Hans_CN'])
+        self.assertNotIn('stopped',unknown['en_US'])
         db.close()
 
 if __name__=='__main__':unittest.main()

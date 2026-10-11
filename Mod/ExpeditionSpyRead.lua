@@ -34,6 +34,39 @@ function M.Targets(pid)
  end
  table.sort(out,function(a,b)return a.owner<b.owner end);return out
 end
+-- B198: display-only snapshot for one already eligible destination. Optional
+-- presentation failures never grant/deny travel. No capacity/operation reader,
+-- permission token or mutation; the real preflight is still M.Read/SubmitTravel.
+function M.Presentation(pid,id,target)
+ local out={districts={}}
+ local ok=pcall(function()
+  local city=target and M.Target(pid,target.owner,target.id)
+  if not city or city:GetX()~=target.x or city:GetY()~=target.y then return end
+  out.name=city:GetName();out.owner=target.owner;out.id=target.id
+  local unit=call(call(Players[pid],'GetUnits'),'FindID',id)
+  local row=unit and GameInfo.Units[unit:GetUnitType()]
+  if unit and unit:GetID()==id and unit:GetOwner()==pid and row and row.UnitType==M.KIND then
+   local timing,t,e=pcall(function()
+    return UnitManager.GetTravelTime(unit,city),UnitManager.GetEstablishInCityTime(unit,city)
+   end)
+   if timing and integer(t) and integer(e) then out.travel=t;out.establish=e;out.total=t+e end
+  end
+  local districts=call(city,'GetDistricts')
+  if districts and type(districts.Members)=='function' then
+   local items={}
+   for _,district in districts:Members()do
+    local def=GameInfo.Districts and GameInfo.Districts[call(district,'GetType')]
+    if call(district,'IsComplete')==true and def and def.DistrictType~='DISTRICT_WONDER' then
+     items[#items+1]={icon='ICON_'..def.DistrictType,name=def.Name}
+    end
+   end
+   out.districts=items
+  end
+ end)
+ if not ok then out.districts={} end
+ return out
+end
+
 function M.Read(pid,unitID,target)
  local v={owner=pid,unitID=unitID,turn=Game.GetCurrentGameTurn(),status='UNKNOWN'}
  local ok,err=pcall(function()

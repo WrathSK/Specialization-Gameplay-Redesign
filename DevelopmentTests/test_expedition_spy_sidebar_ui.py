@@ -35,10 +35,10 @@ class SidebarRouting(unittest.TestCase):
         lua.execute("""
           gateOpen('TRAVEL',40)
           local rows=instanceManagers.SPCExpeditionDestination.instances
-          assert(#rows==2 and not Controls.DestinationStack.hidden and Controls.MissionStack.hidden)
+          assert(#rows==2 and not Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
           local before=sent;local reads=helperCalls;rows[2].DestinationButton.click()
           assert(sent==before and nativeCalls==0 and helperCalls==reads and lastPacket.Action=='READ')
-          assert(Controls.NormalTargetLabel.text:find('第二目标',1,true))
+          assert(Controls.NormalCityName.text:find('第二目标',1,true))
           Controls.NormalConfirmButton.click()
           assert(lastPacket.Action=='DISPATCH' and lastPacket.TargetOwner==4 and lastPacket.TargetID==10)
           assert(nativeCalls==1 and ContextPtr.hidden and properties==0 and placeCalls==0)
@@ -52,9 +52,9 @@ class SidebarRouting(unittest.TestCase):
           local old=instanceManagers.SPCExpeditionDestination.instances[2].DestinationButton.click
           Controls.NormalCloseButton.click();assert(ContextPtr.hidden)
           gateOpen('TRAVEL',40)
-          local before=Controls.NormalTargetLabel.text;local count=sent
+          local before=Controls.NormalCityName.text;local count=sent
           old()
-          assert(Controls.NormalTargetLabel.text==before and sent==count and nativeCalls==0)
+          assert(Controls.NormalCityName.text==before and sent==count and nativeCalls==0)
         """)
 
     def test_stale_city_row_rejects_changed_unit_and_wrong_view(self):
@@ -67,9 +67,9 @@ class SidebarRouting(unittest.TestCase):
                 """)
                 lua.execute(change)
                 lua.execute("""
-                  local before=Controls.NormalTargetLabel.text;local count=sent
+                  local before=Controls.NormalCityName.text;local count=sent
                   stale()
-                  assert(Controls.NormalTargetLabel.text==before and sent==count and nativeCalls==0 and properties==0)
+                  assert(Controls.NormalCityName.text==before and sent==count and nativeCalls==0 and properties==0)
                 """)
 
     def test_mission_card_is_preview_and_confirm_uses_independent_task_request(self):
@@ -78,6 +78,7 @@ class SidebarRouting(unittest.TestCase):
           gateOpen('TASK',41)
           local rows=instanceManagers.SPCExpeditionMission.instances
           assert(#rows==1 and Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
+          assert(rows[1].MissionLocation.truncateWidth==135)
           local before=sent;local operations=nativeCalls
           rows[1].MissionButton.click()
           assert(sent==before and nativeCalls==operations and ExposedMembers.SPC_ExpeditionActivity.phase=='ARRIVED')
@@ -103,7 +104,7 @@ class SidebarRouting(unittest.TestCase):
           gateOpen('TRAVEL',40);deferred=true;Controls.NormalConfirmButton.click()
           local packet=lastPacket;local before=sent
           assert(packet.Action=='DISPATCH' and nativeCalls==0)
-          Controls.NormalCloseButton.click();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE))
+          Controls.NormalCloseButton.click();Controls.NormalCancelButton.click();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE))
           Controls.NormalConfirmButton.click()
           assert(not ContextPtr.hidden and sent==before)
           handler(2,packet);deferred=false;publish()
@@ -124,7 +125,7 @@ class SidebarRouting(unittest.TestCase):
         lua.execute("""
           gateOpen('TASK',41);deferred=true;Controls.NormalConfirmButton.click()
           local packet=lastPacket;local before=sent;local operations=nativeCalls
-          Controls.NormalCloseButton.click();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE))
+          Controls.NormalCloseButton.click();Controls.NormalCancelButton.click();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE))
           assert(not ContextPtr.hidden and sent==before)
           handler(2,packet);deferred=false;publish()
           assert(ExposedMembers.SPC_ExpeditionActivity.phase=='TASK_PREPARING' and nativeCalls==operations and properties==0)
@@ -173,9 +174,17 @@ class SidebarLayout(unittest.TestCase):
         self.assertTrue(any(e.tag=='SlideAnim' and e.get('Style')=='ChooserAnim' for e in root.iter()))
         self.assertIn('NormalCloseButton',ids)
         self.assertIn('NormalScroll',ids)
+        self.assertEqual(ids['NormalScroll'].get('Offset'),'18,133')
+        self.assertEqual(ids['NormalCurrentSlot'].get('Texture'),'DestinationChooser_CurrentSlot')
+        self.assertEqual(ids['NormalMissionGrid'].get('Offset'),'296,126')
+        self.assertEqual(ids['NormalBannerBase'].get('Texture'),'CityPanel_BannerBase')
+        self.assertEqual(ids['NormalBannerDarker'].get('Texture'),'CityPanel_BannerDarker')
+        self.assertEqual(ids['NormalBannerLighter'].get('Texture'),'CityPanel_BannerLighter')
+        self.assertIn('NormalCancelButton',ids)
+        self.assertNotIn('NormalFeedbackScroll',ids)
         self.assertNotIn('NormalTargetPrevious',ids)
         self.assertNotIn('NormalTargetNext',ids)
-        self.assertEqual({e.get('Name') for e in root.findall('./Instance')},{'SPCExpeditionDestination','SPCExpeditionMission'})
+        self.assertEqual({e.get('Name') for e in root.findall('./Instance')},{'SPCExpeditionDestination','SPCExpeditionMission','SPCExpeditionDistrict'})
         source=(R/'Mod/UI/ExpeditionSpyWindow.lua').read_text()
         self.assertNotIn("include('EspionageChooser')",source)
         self.assertNotIn("include('AnimSidePanelSupport')",source)

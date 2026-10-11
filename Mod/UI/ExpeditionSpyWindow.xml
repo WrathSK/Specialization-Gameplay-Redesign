@@ -21,29 +21,67 @@
   <Label Anchor="L,B" Offset="320,19" Style="FontNormal12" WrapWidth="282" String="LOC_SPC_EXPEDITION_GATE_END_HINT" Color="255,255,255,255" />
   </Container>
   <Container ID="NormalPanel" Anchor="L,T" Size="parent,parent" ConsumeMouse="0" Hidden="1">
-   <!-- Native style supplies SlideAnim, Background, Header and Title. -->
+   <!-- Adapted from the native EspionageChooser presentation; no native mission controller. -->
    <SlideAnim Style="ChooserAnim">
+    <!-- Selected city: native current slot, layered banner and district strip. -->
+    <Grid ID="NormalCurrentSlot" Anchor="C,T" Size="parent+7,102" Offset="0,28" Texture="DestinationChooser_CurrentSlot" SliceStart="0,0" SliceCorner="23,23" SliceSize="250,70" SliceTextureSize="308,173">
+     <Grid ID="NormalBannerBase" Anchor="C,T" Offset="0,14" Size="parent-26,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="150,170,100,255">
+      <Grid ID="NormalBannerDarker" Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,100" />
+      <Grid ID="NormalBannerLighter" Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,255" />
+      <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+      <Label ID="NormalCityName" Anchor="L,C" Offset="34,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" SmallCaps="16" SmallCapsType="EveryWord" />
+      <Stack ID="NormalTravelTimeStack" Anchor="R,T" Offset="12,3" StackGrowth="Right" StackPadding="2">
+       <Image ID="NormalTravelTimeIcon" Size="16,16" Offset="0,2" Texture="Stats16" TextureOffset="48,0" />
+       <Label ID="NormalTravelTime" Style="FontFlair20" String="?" />
+      </Stack>
+     </Grid>
+     <Button ID="NormalDistrictsScrollLeftButton" Anchor="L,T" Offset="16,51" Style="ArrowButtonLeft" Hidden="1" />
+     <Grid ID="NormalDistrictInfo" Size="225,30" Anchor="C,T" Offset="0,48" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Box Size="32,parent" Offset="32,0" Color="255,255,255,10" />
+      <Box Size="32,parent" Offset="96,0" Color="255,255,255,10" />
+      <Box Size="32,parent" Offset="161,0" Color="255,255,255,10" />
+      <Stack ID="NormalDistrictIconStack" Anchor="L,C" StackGrowth="Right" />
+     </Grid>
+     <Button ID="NormalDistrictsScrollRightButton" Anchor="R,T" Offset="16,51" Style="ArrowButtonRight" Hidden="1" />
+     <Label ID="NormalEmptyLabel" Anchor="C,C" Style="FontNormal16" Align="C,C" WrapWidth="250" Color="Dark_Gray" String="LOC_SPC_EXPEDITION_GATE_NO_TARGET" Hidden="1" />
+    </Grid>
     <Button ID="NormalCloseButton" Anchor="L,T" Offset="265,2" Style="CloseButtonSmall" />
-    <ScrollPanel ID="NormalScroll" Anchor="L,T" Offset="18,54" Size="parent-22,parent-187" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1">
+
+    <!-- City selection remains visible while the neighboring preview is open. -->
+    <ScrollPanel ID="NormalScroll" Anchor="L,T" Offset="18,133" Size="parent-22,parent-135" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1">
      <ScrollBar Anchor="L,C" Size="11,parent" AnchorSide="O,I" Offset="4,0" Style="ScrollVerticalBar" />
-     <Stack ID="NormalStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="8">
-      <Label ID="NormalSummary" Style="FontNormal14" WrapWidth="250" Color="White" />
-      <Label ID="NormalIntro" Style="FontNormal12" WrapWidth="250" Color="220,223,229,255" />
-      <Stack ID="DestinationStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="3" />
-      <Stack ID="MissionStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="3" />
-      <Label ID="NormalEmptyLabel" Style="FontNormal14" WrapWidth="250" String="LOC_SPC_EXPEDITION_GATE_NO_TARGET" Color="220,223,229,255" />
+     <Stack ID="NormalStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="2">
+      <Stack ID="DestinationStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="2" />
      </Stack>
     </ScrollPanel>
-    <Grid Anchor="C,B" Size="parent,126" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" ConsumeMouse="1">
-     <Label ID="NormalTargetLabel" Anchor="C,T" Offset="0,5" Style="FontNormal14" Color="White" />
-     <ScrollPanel ID="NormalFeedbackScroll" Anchor="C,T" Offset="0,27" Size="263,43" Vertical="1" AutoScrollBar="1" FullClip="1">
-      <Label ID="NormalFeedback" Style="FontNormal12" WrapWidth="246" Color="220,223,229,255" />
-     </ScrollPanel>
-     <GridButton ID="NormalConfirmButton" Anchor="C,B" Offset="0,8" Size="275,44">
-      <GridData Texture="Controls_Confirm" StateOffsetIncrement="0,41" SliceCorner="40,21" SliceSize="1,1" SliceTextureSize="80,41" />
-      <Image ID="NormalConfirmIcon" Anchor="L,C" Offset="13,0" Size="32,32" IconSize="32" Icon="ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY" />
-      <Label ID="NormalConfirmLabel" Anchor="C,C" Offset="18,0" Style="FontNormal14" WrapWidth="215" Align="C,C" Color="White" />
-     </GridButton>
+
+    <!-- Better Espionage Screen's adjacent drawer composition; our own card and callbacks. -->
+    <Grid ID="NormalMissionGrid" Size="295,parent-126" Offset="296,126" Texture="Controls_ContainerBlue" SliceStart="0,0" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1">
+     <Container ID="NormalMissionPanel" Size="parent,parent">
+      <Grid ID="NormalDrawerHeader" Anchor="L,T" Size="parent+2,50" Offset="0,-1" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34">
+       <Label ID="NormalDrawerTitle" Anchor="C,C" Style="FontFlair20" SmallCaps="26" SmallCapsType="EveryWord" String="LOC_ESPIONAGECHOOSER_POSSIBLE_MISSIONS" />
+      </Grid>
+      <ScrollPanel ID="NormalMissionScroll" Anchor="L,T" Offset="19,43" Size="parent-22,parent-135" Vertical="1" AutoScrollBar="0" ConsumeMouse="1" FullClip="1">
+       <ScrollBar Anchor="L,C" Size="11,parent" AnchorSide="O,I" Offset="4,0" Style="ScrollVerticalBar" />
+       <Stack ID="NormalPreviewStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="2">
+        <Label ID="NormalSummary" Style="FontNormal14" WrapWidth="250" Color="White" Hidden="1" />
+        <Label ID="NormalIntro" Style="FontNormal12" WrapWidth="250" Color="220,223,229,255" Hidden="1" />
+        <Label ID="NormalTargetLabel" Style="FontNormal14" WrapWidth="250" Color="White" Hidden="1" />
+        <Stack ID="MissionStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="2" />
+        <Label ID="NormalFeedback" Style="FontNormal12" WrapWidth="250" Color="220,223,229,255" />
+       </Stack>
+      </ScrollPanel>
+      <Grid ID="NormalDestinationChooserButtons" Anchor="C,B" Size="parent,90" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" ConsumeMouse="1">
+       <GridButton ID="NormalConfirmButton" Anchor="C,T" Offset="0,4" Size="285,41">
+        <GridData Texture="Controls_Confirm" StateOffsetIncrement="0,41" SliceCorner="40,21" SliceSize="1,1" SliceTextureSize="80,41" />
+        <Image ID="NormalConfirmIcon" Anchor="L,C" Offset="13,0" Size="32,32" IconSize="32" Icon="ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY" Hidden="1" />
+        <Label ID="NormalConfirmLabel" Anchor="C,C" Style="FontFlair14" FontStyle="Shadows" EffectColor="0,0,0,255" SmallCaps="18" SmallCapsType="EveryWord" WrapWidth="245" Align="C,C" Color="White" />
+       </GridButton>
+       <GridButton ID="NormalCancelButton" Anchor="C,T" Offset="0,49" Size="285,24" String="LOC_ESPIONAGECHOOSER_CANCEL" Style="FontFlair14" FontStyle="Shadows" TextOffset="0,6" EffectColor="0,0,0,255" SmallCaps="18" SmallCapsType="EveryWord">
+        <GridData Style="ButtonLightWeightGrid" />
+       </GridButton>
+      </Grid>
+     </Container>
     </Grid>
    </SlideAnim>
   </Container>
@@ -51,27 +89,59 @@
  <Instance Name="SPCExpeditionDestination">
   <GridButton ID="DestinationButton" Size="parent,72" Anchor="C,T">
    <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" />
-   <Grid ID="BannerBase" Anchor="C,T" Offset="-1,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33">
-    <Label ID="CityName" Anchor="L,C" Offset="14,-2" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,90" Color="White" />
+   <Grid ID="BannerBase" Anchor="C,T" Offset="-1,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="150,170,100,255">
+    <Grid ID="BannerDarker" Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50" />
+    <Grid ID="BannerLighter" Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150" />
+    <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+    <Label ID="CityName" Anchor="L,C" Offset="34,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" SmallCaps="16" SmallCapsType="EveryWord" />
+    <Stack ID="TravelTimeStack" Anchor="R,T" Offset="12,3" StackGrowth="Right" StackPadding="2">
+     <Image ID="TravelTimeIcon" Size="16,16" Offset="0,2" Texture="Stats16" TextureOffset="48,0" />
+     <Label ID="TravelTime" Style="FontFlair20" String="?" />
+    </Stack>
    </Grid>
-   <Label ID="CivilName" Anchor="L,B" Offset="14,12" Style="FontNormal12" Color="220,223,229,255" />
+   <Button ID="DistrictsScrollLeftButton" Anchor="L,B" Offset="3,10" Style="ArrowButtonLeft" Hidden="1" />
+   <Grid ID="DistrictInfo" Size="225,30" Anchor="C,B" Offset="-1,6" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Box Size="32,parent" Offset="32,0" Color="255,255,255,10" />
+    <Box Size="32,parent" Offset="96,0" Color="255,255,255,10" />
+    <Box Size="32,parent" Offset="161,0" Color="255,255,255,10" />
+    <Stack ID="DistrictIconStack" Anchor="L,C" StackGrowth="Right" />
+   </Grid>
+   <Button ID="DistrictsScrollRightButton" Anchor="R,B" Offset="4,10" Style="ArrowButtonRight" Hidden="1" />
+   <Label ID="CivilName" Style="FontNormal12" Hidden="1" />
    <Grid ID="SelectorBrace" Anchor="C,C" Size="parent,parent" Texture="Controls_SelectorBrace" SliceCorner="29,29" SliceSize="2,2" SliceTextureSize="64,64" Hidden="1" ConsumeMouse="0" />
   </GridButton>
  </Instance>
  <Instance Name="SPCExpeditionMission">
-  <GridButton ID="MissionButton" Size="parent,auto" Anchor="C,T" AutoSizePadding="0,8">
-   <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" />
+  <GridButton ID="MissionButton" Size="parent,auto" Anchor="C,T">
+   <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" NoStateChange="0" />
    <Grid ID="SelectorBrace" Anchor="C,C" Size="parent,auto" AutoSizePadding="6,3" Texture="Controls_SelectorBrace" SliceCorner="29,29" SliceSize="2,2" SliceTextureSize="64,64" ConsumeMouse="0">
-   <Grid Anchor="L,T" Size="48,48" Offset="7,7" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
-    <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_UNITOPERATION_SPY_GAIN_SOURCES" />
-   </Grid>
-   <Stack ID="DetailsStack" StackGrowth="Bottom" StackPadding="5" Offset="62,8">
-    <Label ID="MissionName" Style="FontNormal16" WrapWidth="192" Color="White" />
-    <Label ID="MissionDetails" Style="FontNormal12" WrapWidth="192" Color="220,223,229,255" />
-    <Label ID="MissionLocation" Style="FontNormal12" WrapWidth="192" Color="White" />
-    <Label ID="MissionTurns" Style="FontNormal14" String="[ICON_Turn] 2" Color="White" />
-   </Stack>
+    <Grid Size="55,55" Offset="7,7" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+     <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_UNITOPERATION_SPY_GAIN_SOURCES" />
+    </Grid>
+    <Stack ID="DetailsStack" StackGrowth="Down" Offset="70,7">
+     <Label ID="MissionName" Style="FontNormal16" WrapWidth="192" />
+     <Label ID="MissionDetails" Style="FontNormal12" WrapWidth="192" />
+     <Container Size="192,24" />
+    </Stack>
+    <Stack ID="MissionStatsStack" Anchor="R,B" Offset="8,5" StackGrowth="Right" StackPadding="4">
+     <Grid Size="auto,20" AutoSizePadding="-3,0" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Stack Offset="-2,0" StackGrowth="Right" StackPadding="0">
+       <Label Offset="-2,5" Style="FontNormal14" String="[ICON_LocationPip]" />
+       <Label ID="MissionLocation" Anchor="L,C" Offset="-3,-2" Style="FontNormal14" String="LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION" />
+       <Image ID="MissionDistrictIcon" Offset="0,-1" Size="22,22" IconSize="22" Icon="ICON_DISTRICT_CITY_CENTER" />
+      </Stack>
+     </Grid>
+     <Grid Size="auto,auto" AutoSizePadding="2,1" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Stack Offset="0,2" StackGrowth="Right" StackPadding="-3">
+       <Label Style="FontNormal14" String="[ICON_Turn]" />
+       <Label ID="MissionTurns" Style="FontNormal14" String="2" />
+      </Stack>
+     </Grid>
+    </Stack>
    </Grid>
   </GridButton>
+ </Instance>
+ <Instance Name="SPCExpeditionDistrict">
+  <Image ID="DistrictIcon" Size="32,32" IconSize="32" Texture="Districts32" />
  </Instance>
 </Context>

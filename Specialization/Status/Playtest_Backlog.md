@@ -331,3 +331,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B197 stopped — relocation guard and presentation revision
 
 [Four-image native review](Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md) supersedes the pending B197 session. User-created ordinary Spy matches reproduced lifetime-audit STOP; native raw detail uncaptured. Original city-header/list/adjacent task-drawer layout requested. No unchanged-package test. After separately approved repair, combine relocation with existing ordinary Spy and task-card UI in one session; no save/load campaign. Own cap/source/task and formal scope remain unchanged.
+
+## B198 — combined dispatch repair/native layout gate
+
+[One combined flow](Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md#one-combined-minimal-native-test) supersedes the unchanged B197 retry: fresh prepared team → create ordinary Spy → city list/adjacent drawer and confirmed travel → arrival/task drawer → no-reward2T completion → P0 END. Keep pending until deployed/observed; no save/load or shared-lifecycle campaign. B197 failure remains; capacity/binding/task behavior and formal N1/N2/N3 boundaries unchanged.

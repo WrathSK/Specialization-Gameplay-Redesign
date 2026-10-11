@@ -192,8 +192,8 @@ INSERT INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_AUDIT','Native maximum {1}→{2}; ordinary spies {3}→{4}; source can train ordinary Spy {5}→{6}.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_CLASSIFIED','原生Spy分类总数：{1}。隔离观察：{2}。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_CLASSIFIED','Native Spy-class count: {1}. Isolation observation: {2}.'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN','无法确认，停止派遣'),
- ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN','unknown; dispatch stopped'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN','无法确认；仅为观察结果'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN','unknown; diagnostic observation only'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_CHANGED','出现变化，需核对；不等于已证明干扰原因'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_CHANGED','changed; attribution requires review'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_SCOPED_UNCHANGED','上述可读项未变；不证明所有间谍名额完全隔离'),
@@ -495,3 +495,26 @@ INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] Current city'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','文明信息未知'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','Civilization unavailable');
+
+-- B198: native-layout labels and readable scoped failure reasons.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_START_TASK','开始任务'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_START_TASK','Start task'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_PREVIEW','派遣预览'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_PREVIEW','Travel preview'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_CARD','派遣至所选城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_CARD','Travel to selected city'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_DETAILS','抵达后可选择无奖励验证任务。此处显示预计派遣与建立联络的总回合数，确认时重新核对。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_DETAILS','After arrival, select the no-reward test task. This preview shows travel plus establishment turns; confirmation checks them again.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TIMING_UNKNOWN','预计时间暂时无法读取；确认时重新核对。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TIMING_UNKNOWN','Estimated time unavailable; checked again on confirmation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PREFLIGHT_UNKNOWN','尚未确认当前考察团或目标的派遣条件，本次未发送派遣请求。请重新打开；若仍失败，查看 P0「人文考察·验证」详细报告。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PREFLIGHT_UNKNOWN','Current team or target eligibility could not be confirmed; no travel request was sent. Reopen, or inspect the P0 Expedition verification report if it persists.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_CREATION','创建准备期间普通间谍状态发生变化或无法读取，验证团已暂停。请从 P0 结束本团后重新创建；准备完成后可正常操作普通间谍。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_CREATION','Ordinary Spy state changed or became unreadable during creation. The test team is held. END it through P0 and create a new team; ordinary Spies may be used normally after preparation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_TARGET','目标城市已变化或无法确认，本次不能派遣。请重新打开目的地列表；详细原因见 P0 报告。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_TARGET','The target changed or could not be confirmed. Reopen the destination list; the P0 report retains the detailed reason.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_NATIVE','原生引擎未确认或拒绝本次派遣。请查看 P0「人文考察·验证」详细报告，不要连续重复提交。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_NATIVE','The native engine did not confirm or rejected this travel request. Inspect the P0 Expedition verification report; do not repeatedly submit.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_UNKNOWN','考察团已暂停或操作失败。请查看 P0「人文考察·验证」详细报告，保留其中的具体错误。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_UNKNOWN','The team is held or the action failed. Inspect the P0 Expedition verification report for the specific error.');

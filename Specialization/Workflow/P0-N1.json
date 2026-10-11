@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0527",
-    "runtime": "B197.224 / modinfo224",
+    "status": "S0528",
+    "runtime": "B198.225 / modinfo225",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Complete B197 native failure review and bounded repair proposal; this review is complete, N1 remains partial and repair awaits authorization.",
-  "implementation_authorized": false,
+  "goal": "Complete only the user-approved B198 dispatch isolation comparison and faithful native presentation repair; retain capacity, binding, target eligibility and independent task behavior.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -279,9 +279,14 @@
       "reason": "New actual Window Lua/sidebar selection, request guards, cleanup and layout regression."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
       "kind": "full",
-      "reason": "Current native failure, bounded counterexample and proposed next scope; prior local evidence linked."
+      "reason": "Current approved repair, local evidence and bounded native test; prior native failure linked."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_relocation_ui.py",
+      "kind": "full",
+      "reason": "B198 actual UI-create/dispatch guard and bounded display regression; read for affected implementation/validation only."
     }
   ],
   "dependencies": [
@@ -441,18 +446,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 presentation/input delta plus targeted actual-Lua regressions; no broad gameplay/stress.",
-    "local": "Prior145 local checks retained; four in-memory actual UI-create counterexamples establish lifetime audit defect. No formal tests changed.",
-    "user": "B197 relocation FAIL, presentation not accepted; images2/3 reference-only. User-created ordinary Spy corroborates reproduced trigger. Native suffix not captured; no mission PASS or unchanged retest."
+    "depth": "L1 UI/permission delta plus targeted actual-Lua native-boundary regressions; no broad gameplay/stress.",
+    "local": "160 focused tests PASS including15 new real UI-create/dispatch and display cases. Native-key package fixture separates exact2 native labels from bilingual custom SQL.",
+    "user": "B198 native UI/travel integration pending: one combined ordinary-Spy creation after preparation to relocation/task flow. B197 FAIL preserved; inherited B189/B194/B196 evidence only where unchanged."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B197_Expedition_Sidebar_Native_Review.md",
-    "source": "B197.224/modinfo224 DEVELOP_ACTIVE; source daaa97ff2f6320bd8c04401f8ce17ec9dd7e8588; receipt B197.224-daaa97f-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B196/stable bridge and retained recovery verified; no pending transaction. B194 activity/B196 input acceptance inherited; B197 relocation native FAIL and presentation not accepted; receipt/equality inherited, no runtime reinspection in this documentation review.",
-    "native": "B197 relocation FAIL, presentation not accepted; images2/3 reference-only. User-created ordinary Spy corroborates reproduced trigger. Native suffix not captured; no mission PASS or unchanged retest.",
-    "stop": "Review checkpoint complete; scoped guard/layout repair awaits approval. No new missions, capacity/binding/task behavior, formal N1/N2/N3/U2 or save/load campaign."
+    "report": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
+    "source": "B198.225/modinfo225 source; live remains last verified B197.224. Deployment deferred: Civilization VI process running; no runtime replacement attempted.",
+    "native": "USER_GAME_TEST_REQUIRED for guard/layout integration; B197 remains FAIL.",
+    "stop": "Stop after approved repair and combined native handoff; no formal N1, repeat tasks, new missions/rewards, N2/N3/U2 or save/load campaign."
   }
 }

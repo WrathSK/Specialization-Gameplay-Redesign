@@ -8,6 +8,7 @@ local viewMode='DIAGNOSTIC';local requestedUnitID;local close
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local request;local lastNativePermit
+local refreshHeader;local taskDisplay;local previewRow;local districtStrips={}
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
 local cityRows=InstanceManager:new('SPCExpeditionDestination','DestinationButton',Controls.DestinationStack)
@@ -17,14 +18,19 @@ local function noAction()end
 local function clearRows()
  rowGeneration=rowGeneration+1
  for _,row in ipairs(normalRows)do row.button:RegisterCallback(Mouse.eLClick,noAction)end
- normalRows={};cityRows:ResetInstances();taskRows:ResetInstances()
+ for _,strip in ipairs(districtStrips)do
+  strip.DistrictsScrollLeftButton:RegisterCallback(Mouse.eLClick,noAction)
+  strip.DistrictsScrollRightButton:RegisterCallback(Mouse.eLClick,noAction)
+  strip.iconPool:ResetInstances()
+ end
+ districtStrips={};normalRows={};previewRow=nil;cityRows:ResetInstances();taskRows:ResetInstances()
 end
 local function resizeSidebar()
  if viewMode=='DIAGNOSTIC' or ContextPtr:IsHidden()then return end
  local _,height=UIManager:GetScreenSizeVal()
  Controls.SlideAnim:SetSizeY(height-30)
  Controls.NormalStack:CalculateSize();Controls.NormalScroll:CalculateInternalSize()
- Controls.NormalFeedbackScroll:CalculateInternalSize()
+ Controls.NormalPreviewStack:CalculateSize();Controls.NormalMissionScroll:CalculateInternalSize()
 end
 local function screenChanged(kind)
  if kind==SystemUpdateUI.ScreenResize then resizeSidebar()end
@@ -133,9 +139,18 @@ end
 local function setReport(s)
  if viewMode~='DIAGNOSTIC'then
   Controls.NormalFeedback:SetText(s);Controls.NormalFeedback:SetToolTipString(s)
-  Controls.NormalFeedbackScroll:CalculateInternalSize();return
+  Controls.NormalPreviewStack:CalculateSize();Controls.NormalMissionScroll:CalculateInternalSize();return
  end
  Controls.Report:SetText(s);Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring()
+end
+local function failureText(v)
+ local code=v.errorDetail or v.activityFailure or v.activityError or v.error or v.stop
+ if not code then return nil end
+ local key='NORMAL_FAILURE_UNKNOWN'
+ if code:find('ORDINARY_SPY_PREFLIGHT',1,true)then key='NORMAL_FAILURE_CREATION'
+ elseif code:find('TARGET',1,true)then key='NORMAL_FAILURE_TARGET'
+ elseif code:find('TRAVEL_REQUEST',1,true) or code:find('TRAVEL_NOT_ALLOWED',1,true) or code:find('NATIVE_REQUEST',1,true)then key='NORMAL_FAILURE_NATIVE' end
+ return L(key)
 end
 local function renderNormal()
  local exact=normalExact();local v=current
@@ -151,15 +166,18 @@ local function renderNormal()
   end
   if v.phase=='TASK_COMPLETE'then o[#o+1]=L('NORMAL_ONE_SHOT')end
   if v.activityFailure or v.activityError or v.error or v.stop then
-   o[#o+1]=common('ERROR',v.activityFailure or v.activityError or v.error or v.stop)
+   o[#o+1]=failureText(v)
   end
  end
- Controls.NormalSummary:SetText(table.concat(o,'[NEWLINE]'))
+ local summary=table.concat(o,'[NEWLINE]')
+ Controls.NormalSummary:SetText(summary);Controls.NormalCurrentSlot:SetToolTipString(summary)
+ if exact and failureText(v)then setReport(failureText(v))
+ elseif not exact then setReport(L('NORMAL_SELECTION_CHANGED'))end
  local can=normalCanAct()
  Controls.NormalConfirmButton:SetDisabled(not can or (viewMode=='TRAVEL' and not targets[selected]))
  for _,row in ipairs(normalRows)do
   row.button:SetDisabled(not can)
-  row.brace:SetHide(viewMode=='TRAVEL' and row.index~=selected)
+  row.brace:SetHide(row.index~=nil and row.index~=selected)
  end
  resizeSidebar()
 end
@@ -180,7 +198,7 @@ local function render()
   o[#o+1]=L('ACTIVITY_'..v.activityMode)
  end
  if nameStage and not held then o[#o+1]=L('NAME_STAGE',L('NAME_STAGE_'..nameStage),nameReason or '—')end
- if failure and not activityFailure then o[#o+1]=common('ERROR',failure)end
+ if failure and not activityFailure then o[#o+1]=failureText(v);o[#o+1]=common('ERROR',failure)end
  o[#o+1]=common('COUNT',v.count or 'UNKNOWN')
  if v.reservedCapacity then o[#o+1]=L('RESERVED',v.observedCount or 'UNKNOWN')end
  if v.unitID then o[#o+1]=common('UNIT',v.unitID,v.x,v.y)end
@@ -312,6 +330,9 @@ local function reply()
  end
  if v.nameVerified and v.bound and nameStage then nameStage='CONFIRMED';nameReason=nil end
  if v.taskStart and v.unitID then taskAfter=taskRead()end
+ if action=='READ' and viewMode=='TASK' and refreshHeader then
+  taskDisplay=nil;refreshHeader()
+ end
  render();return true
 end
 local function readChecks()
@@ -325,7 +346,9 @@ local function readChecks()
  if gain then
   print('[SPC][B191][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
  end
- return travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
+ local allowed=travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
+ if not allowed and viewMode~='DIAGNOSTIC'then setReport(L(travel.nativeStatus=='KNOWN' and travel.nativeAllowed==false and 'NORMAL_FAILURE_NATIVE' or 'NORMAL_PREFLIGHT_UNKNOWN'))end
+ return allowed
 end
 request=function(action,detail)
  syncActivity()
@@ -352,7 +375,9 @@ request=function(action,detail)
  end
  if action=='DISPATCH' then
   if not readChecks()then return end
-  if comparison=='CHANGED' or comparison=='UNKNOWN' then request('STOP','ORDINARY_SPY_PREFLIGHT_'..comparison);return end
+  -- Creation owns the before/after ordinary-Spy isolation check. Later player
+  -- actions may legitimately change that fingerprint/capacity. Keep it as
+  -- diagnostics; dispatch authority is the exact current team/target preflight.
  end
  ExposedMembers.SPC_ExpeditionGateSequence=(ExposedMembers.SPC_ExpeditionGateSequence or 0)+1
  pending='N1:'..P.VERSION..':'..ExposedMembers.SPC_ExpeditionGateSequence;pendingAction=action
@@ -382,30 +407,92 @@ request=function(action,detail)
   if elapsed>=10 then pending=nil;pendingAction=nil;ContextPtr:ClearUpdate();setReport(common('TIMEOUT'))end
  end)
 end
+-- Native city-banner/district-strip presentation. Display snapshots are owned
+-- by this explicit open and discarded at close. Paging/resize/render do not
+-- query the world, and retired callbacks cannot operate on reused rows.
+local header={BannerBase=Controls.NormalBannerBase,CityName=Controls.NormalCityName,
+ TravelTime=Controls.NormalTravelTime,TravelTimeIcon=Controls.NormalTravelTimeIcon,
+ TravelTimeStack=Controls.NormalTravelTimeStack,DistrictInfo=Controls.NormalDistrictInfo,
+ DistrictIconStack=Controls.NormalDistrictIconStack,
+ DistrictsScrollLeftButton=Controls.NormalDistrictsScrollLeftButton,
+ DistrictsScrollRightButton=Controls.NormalDistrictsScrollRightButton}
+local function paintDistricts(row,items)
+ if not row.iconPool then row.iconPool=InstanceManager:new('SPCExpeditionDistrict','DistrictIcon',row.DistrictIconStack)end
+ row.iconPool:ResetInstances()
+ local icons={};local start=1;local generation=rowGeneration
+ for _,item in ipairs(items or {})do
+  local icon=row.iconPool:GetInstance().DistrictIcon
+  icon:SetIcon(item.icon);icon:SetToolTipString(Locale.Lookup(item.name));icons[#icons+1]=icon
+ end
+ local function page(delta)
+  if generation~=rowGeneration or ContextPtr:IsHidden()then return end
+  start=math.max(1,math.min(math.max(1,#icons-6),start+delta))
+  for i,icon in ipairs(icons)do icon:SetHide(i<start or i>start+6)end
+  row.DistrictsScrollLeftButton:SetDisabled(start==1)
+  row.DistrictsScrollRightButton:SetDisabled(start>=#icons-6)
+  row.DistrictIconStack:CalculateSize()
+ end
+ row.DistrictsScrollLeftButton:SetHide(#icons<=7);row.DistrictsScrollRightButton:SetHide(#icons<=7)
+ row.DistrictsScrollLeftButton:RegisterCallback(Mouse.eLClick,function()page(-1)end)
+ row.DistrictsScrollRightButton:RegisterCallback(Mouse.eLClick,function()page(1)end)
+ -- Header can be refreshed more than once; own each pool only once per open.
+ local seen=false;for _,strip in ipairs(districtStrips)do if strip==row then seen=true;break end end
+ if not seen then districtStrips[#districtStrips+1]=row end
+ page(0)
+end
+local function paintCity(row,display,showTime)
+ local valid=display and display.owner~=nil
+ row.BannerBase:SetHide(not valid);row.DistrictInfo:SetHide(not valid)
+ row.TravelTimeStack:SetHide(not valid or not showTime)
+ if not valid then paintDistricts(row,{});return end
+ local back,front=UI.GetPlayerColors(display.owner)
+ row.BannerBase:SetColor(back);row.CityName:SetColor(front)
+ TruncateStringWithTooltip(row.CityName,185,'[ICON_Capital] '..Locale.Lookup(display.name))
+ row.TravelTime:SetColor(front);row.TravelTimeIcon:SetColor(front)
+ row.TravelTime:SetText(display.total and tostring(display.total) or '?')
+ row.BannerBase:SetToolTipString(display.total and Locale.Lookup('LOC_ESPIONAGECHOOSER_TRAVEL_TIME_TOOLTIP',display.travel,display.establish) or L('NORMAL_TIMING_UNKNOWN'))
+ paintDistricts(row,display.districts)
+end
+refreshHeader=function()
+ if viewMode=='DIAGNOSTIC'then return end
+ local display
+ if viewMode=='TRAVEL'then display=targets[selected] and targets[selected].display
+ elseif current and current.targetID and current.unitID==requestedUnitID then
+  if not taskDisplay then
+   taskDisplay=R.Presentation(Game.GetLocalPlayer(),requestedUnitID,
+    {owner=current.targetOwner,id=current.targetID,x=current.targetX,y=current.targetY})
+  end
+  display=taskDisplay
+ end
+ paintCity(header,display,viewMode=='TRAVEL')
+ Controls.NormalEmptyLabel:SetHide(display~=nil and display.owner~=nil)
+ if previewRow then
+  TruncateStringWithTooltip(previewRow.MissionLocation,135,display and display.name and Locale.Lookup(display.name) or L('NORMAL_NAME_UNKNOWN'))
+  previewRow.MissionTurns:SetText(viewMode=='TASK' and '2' or display and display.total and tostring(display.total) or '?')
+  previewRow.MissionStatsStack:CalculateSize();previewRow.DetailsStack:CalculateSize();previewRow.MissionButton:DoAutoSize()
+ end
+end
 local function updateTarget()
  local t=targets[selected];local label=t and Locale.Lookup(t.name) or common('NO_TARGET')
  Controls.TargetLabel:SetText(label)
- if viewMode=='TRAVEL'then TruncateStringWithTooltip(Controls.NormalTargetLabel,250,label)end
+ if viewMode=='TRAVEL'then TruncateStringWithTooltip(Controls.NormalTargetLabel,250,label);refreshHeader()end
 end
--- These pooled controls own only current display/selection callbacks. Rebuild
--- on an explicit open, never per turn or per native event. A retired callback
--- cannot act on a reused row, different team, mode or target snapshot.
 local function populateSidebar()
  clearRows()
- Controls.DestinationStack:SetHide(viewMode~='TRAVEL')
- Controls.MissionStack:SetHide(viewMode~='TASK')
- Controls.NormalEmptyLabel:SetHide(viewMode~='TRAVEL' or #targets>0)
+ Controls.NormalScroll:SetHide(viewMode~='TRAVEL')
+ Controls.DestinationStack:SetHide(viewMode~='TRAVEL');Controls.MissionStack:SetHide(false)
+ Controls.NormalMissionGrid:SetOffsetX(viewMode=='TRAVEL' and 296 or 0)
+ Controls.NormalDrawerTitle:SetText(L(viewMode=='TRAVEL' and 'NORMAL_TRAVEL_PREVIEW' or 'ACTION_TASK'))
  local generation,id=rowGeneration,requestedUnitID
  if viewMode=='TRAVEL'then
   for index,target in ipairs(targets)do
    local row=cityRows:GetInstance();local owner,cityID=target.owner,target.id
-   local name=Locale.Lookup(target.name)
-   TruncateStringWithTooltip(row.CityName,225,name)
+   target.display=R.Presentation(Game.GetLocalPlayer(),id,target)
+   paintCity(row,target.display,true)
    local config=PlayerConfigurations and PlayerConfigurations[owner]
    local civType=config and config:GetCivilizationTypeName()
    local civ=civType and GameInfo.Civilizations and GameInfo.Civilizations[civType]
-   TruncateStringWithTooltip(row.CivilName,235,civ and Locale.Lookup(civ.Name) or L('SIDEBAR_CIV_UNKNOWN'))
-   local back,front=UI.GetPlayerColors(owner);row.BannerBase:SetColor(back);row.CityName:SetColor(front)
+   row.DestinationButton:SetToolTipString(civ and Locale.Lookup(civ.Name) or L('SIDEBAR_CIV_UNKNOWN'))
    normalRows[#normalRows+1]={button=row.DestinationButton,brace=row.SelectorBrace,index=index}
    row.DestinationButton:RegisterCallback(Mouse.eLClick,function()
     if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TRAVEL' or not normalCanAct()
@@ -413,19 +500,18 @@ local function populateSidebar()
     selected=index;travel=nil;gain=nil;updateTarget();setReport('');render()
    end)
   end
- elseif viewMode=='TASK'then
-  local row=taskRows:GetInstance()
-  row.MissionIcon:SetIcon('ICON_UNITOPERATION_SPY_GAIN_SOURCES')
-  row.MissionName:SetText(L('SIDEBAR_TASK_NAME'))
-  row.MissionDetails:SetText(L('SIDEBAR_TASK_DETAILS'))
-  row.MissionLocation:SetText(L('SIDEBAR_TASK_LOCATION'))
-  row.DetailsStack:CalculateSize();row.MissionButton:DoAutoSize()
-  normalRows[1]={button=row.MissionButton,brace=row.SelectorBrace}
-  row.MissionButton:RegisterCallback(Mouse.eLClick,function()
-   if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TASK' or not normalCanAct()then return end
-   setReport(L('SIDEBAR_TASK_HINT'))
-  end)
  end
+ local row=taskRows:GetInstance();previewRow=row
+ row.MissionIcon:SetIcon(viewMode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+ row.MissionName:SetText(L(viewMode=='TRAVEL' and 'NORMAL_TRAVEL_CARD' or 'SIDEBAR_TASK_NAME'))
+ row.MissionDetails:SetText(L(viewMode=='TRAVEL' and 'NORMAL_TRAVEL_DETAILS' or 'SIDEBAR_TASK_DETAILS'))
+ row.DetailsStack:CalculateSize();row.MissionButton:DoAutoSize()
+ normalRows[#normalRows+1]={button=row.MissionButton,brace=row.SelectorBrace}
+ row.MissionButton:RegisterCallback(Mouse.eLClick,function()
+  if generation~=rowGeneration or requestedUnitID~=id or viewMode=='DIAGNOSTIC' or not normalCanAct()then return end
+  setReport(L(viewMode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
+ end)
+ refreshHeader()
 end
 local function refreshTargets()
  local old=targets[selected];targets=R.Targets(Game.GetLocalPlayer());selected=1
@@ -444,7 +530,7 @@ close=function(force)
  clearRows();Controls.SlideAnim:Stop()
  Controls.Window:SetHide(true);ContextPtr:SetHide(true);ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
  ContextPtr:ClearUpdate();pending=nil;pendingAction=nil;naming=nil;afterPublish=false;targets={};travel=nil;gain=nil
- requestedUnitID=nil;return true
+ requestedUnitID=nil;taskDisplay=nil;return true
 end
 local function open(mode,id)
  if not P.IsTestPlayer(Game.GetLocalPlayer()) or pending or naming then return end
@@ -453,15 +539,15 @@ local function open(mode,id)
   local u=UI.GetHeadSelectedUnit()
   if not U.IsTeam(u) or u:GetID()~=id or not U.CanOpen(mode,u)then return end
  end
- viewMode=mode or 'DIAGNOSTIC';requestedUnitID=mode and id or nil
+ viewMode=mode or 'DIAGNOSTIC';requestedUnitID=mode and id or nil;taskDisplay=nil
  Controls.DiagnosticPanel:SetHide(mode~=nil);Controls.NormalPanel:SetHide(mode==nil)
  Controls.TitleLabel:SetText(mode and L('ACTION_'..mode) or L('TITLE'))
  if mode then
   Controls.Title:SetText(L('ACTION_'..mode))
   Controls.NormalIntro:SetText(L(mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
-  Controls.NormalConfirmLabel:SetText(L('NORMAL_'..mode..'_CONFIRM'))
+  Controls.NormalConfirmLabel:SetText(L(mode=='TASK' and 'NORMAL_START_TASK' or 'NORMAL_TRAVEL_CONFIRM'))
   Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
-  Controls.NormalTargetLabel:SetHide(mode~='TRAVEL');setReport('')
+  Controls.NormalTargetLabel:SetHide(true);setReport('')
   -- Do not enable a control from a previous diagnostic reply.
   current=nil;Controls.NormalConfirmButton:SetDisabled(true)
  end
@@ -506,6 +592,7 @@ local function initialize()
  if initialized then return end
  Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()close()end)
  Controls.NormalCloseButton:RegisterCallback(Mouse.eLClick,function()close()end)
+ Controls.NormalCancelButton:RegisterCallback(Mouse.eLClick,function()close()end)
  Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('CREATE')end end)
  Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then refreshTargets();updateAudit();request('READ')end end)
  Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('DISPATCH')end end)

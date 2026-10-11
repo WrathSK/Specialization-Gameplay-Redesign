@@ -134,8 +134,12 @@ def normal_window(arrived=False):
     l=gate(ui=True,window=True)
     l.globals().print=lambda *args:None
     l.execute("""
-     req('CREATE','normal-window-setup');selectedID=40
-     UI.GetHeadSelectedUnit=function()return units[selectedID]end
+     -- Exercise the real CREATE entry, including its ordinary-Spy audit and
+     -- asynchronous-name confirmation. A direct req('CREATE') omits that state.
+     gateOpen();Controls.CreateButton.click()
+     assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='CREATED' and nameConfirmCalls==1)
+     selectedID=40;UI.GetHeadSelectedUnit=function()return units[selectedID]end
+     Controls.CloseButton.click();assert(ContextPtr.hidden)
     """)
     if arrived:
         l.execute("nativeDispatch('normal-window-travel');arrival(41,true,false);selectedID=41")
@@ -148,7 +152,7 @@ class ExplicitWindow(unittest.TestCase):
         l.execute("""
          gateOpen('TRAVEL',40)
          assert(not ContextPtr.hidden and not Controls.NormalPanel.hidden and Controls.DiagnosticPanel.hidden)
-         assert(not Controls.NormalTargetLabel.hidden and not Controls.NormalConfirmButton.disabled)
+         assert(not Controls.NormalCurrentSlot.hidden and not Controls.NormalConfirmButton.disabled)
          assert(nativeCalls==0 and lastPacket.Action=='READ')
          Controls.NormalConfirmButton.click()
          assert(lastPacket.Action=='DISPATCH' and nativeCalls==1 and placeCalls==0 and properties==0)
