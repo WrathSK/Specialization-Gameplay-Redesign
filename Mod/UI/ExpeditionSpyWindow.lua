@@ -1,6 +1,8 @@
 include('Probe')
 include('ExpeditionSpyRead')
-local P=SPCP0;local R=SPCExpeditionSpyRead
+include('ExpeditionSpyUI')
+local P=SPCP0;local R=SPCExpeditionSpyRead;local U=SPCExpeditionSpyUI
+local viewMode='DIAGNOSTIC';local requestedUnitID;local close
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local request;local lastNativePermit
@@ -96,11 +98,47 @@ local function activityLocked()
  return v~=nil and (v.locked==true or v.mode=='SLEEP' or v.mode=='RELEASE' or v.mode=='BLOCKED'
   or v.phase=='TASK_PREPARING' or v.phase=='TASK_RUNNING')
 end
+-- Normal views are read-only presentation of the same Gate. No native fact
+-- collection occurs here; only explicit requests run preflight readers.
+local function normalExact()
+ local u=UI.GetHeadSelectedUnit()
+ return U.IsTeam(u) and u:GetID()==requestedUnitID and current~=nil
+  and current.unitID==requestedUnitID and activityView()~=nil
+end
+local function normalCanAct()
+ return normalExact() and current.bound==true and not pending and not naming
+  and U.CanOpen(viewMode,UI.GetHeadSelectedUnit())
+end
 local function setReport(s)
+ if viewMode~='DIAGNOSTIC'then Controls.NormalFeedback:SetText(s);return end
  Controls.Report:SetText(s);Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring()
+end
+local function renderNormal()
+ local exact=normalExact();local v=current
+ local o={}
+ if not exact then o[1]=L('NORMAL_SELECTION_CHANGED')
+ else
+  o[#o+1]=L('NORMAL_TEAM',v.expectedName or L('NORMAL_NAME_UNKNOWN'))
+  o[#o+1]=L('NORMAL_SOURCE',v.sourceName and Locale.Lookup(v.sourceName) or L('NORMAL_NAME_UNKNOWN'))
+  o[#o+1]=L('NORMAL_PHASE_'..v.phase)
+  if v.targetName then o[#o+1]=L('NORMAL_DESTINATION',Locale.Lookup(v.targetName))end
+  if v.phase=='TASK_RUNNING' and v.taskDue then
+   o[#o+1]=L('NORMAL_REMAINING',math.max(0,v.taskDue-Game.GetCurrentGameTurn()))
+  end
+  if v.phase=='TASK_COMPLETE'then o[#o+1]=L('NORMAL_ONE_SHOT')end
+  if v.activityFailure or v.activityError or v.error or v.stop then
+   o[#o+1]=common('ERROR',v.activityFailure or v.activityError or v.error or v.stop)
+  end
+ end
+ Controls.NormalSummary:SetText(table.concat(o,'[NEWLINE]'))
+ local can=normalCanAct()
+ Controls.NormalConfirmButton:SetDisabled(not can or (viewMode=='TRAVEL' and not targets[selected]))
+ Controls.NormalTargetPrevious:SetDisabled(not can or #targets<2)
+ Controls.NormalTargetNext:SetDisabled(not can or #targets<2)
 end
 local function render()
  syncActivity()
+ if viewMode~='DIAGNOSTIC'then renderNormal();return end
  local v=current;if not v then setReport(L('INITIAL'));return end
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
  local activityFailure=v.activityFailure or v.activityError
@@ -227,6 +265,7 @@ local function reply()
  -- Do not mutate the shared request reply when applying current activity facts.
  current={};for key,item in pairs(v)do current[key]=item end
  diagnosticPhase=v.phase;diagnosticRevision=v.activityRevision;diagnosticTurn=v.turn
+ if viewMode~='DIAGNOSTIC'then Controls.NormalFeedback:SetText('')end
  if action=='CREATE' and not v.error then
   observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;afterPublish=false
   prepareName(v);return true
@@ -236,6 +275,9 @@ local function reply()
   local ok,err=R.SubmitTravel(v.owner,v.unitID,target,v.nativePermit)
   if not ok then request('STOP',err);return true end
   print('[SPC][B191][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
+  -- Native travel may replace the UnitID. Close this exact-unit view; arrival
+  -- requires a new explicit action against the freshly selected team.
+  if viewMode=='TRAVEL'then close(true);return true end
   request('READ');return true
  elseif action=='TASK' and not v.error then taskAfter=taskRead()
  elseif action=='END' and not v.error then
@@ -251,13 +293,21 @@ local function readChecks()
  if not current or not current.unitID or current.legacy or current.unbound or current.phase=='HELD' then setReport(L('BOUND_REQUIRED'));return false end
  local t=targets[selected];if not t then setReport(common('NO_TARGET'));return false end
  travel=R.Read(Game.GetLocalPlayer(),current.unitID,t)
- gain=R.GainSources(Game.GetLocalPlayer(),current.unitID,t)
+ if viewMode=='DIAGNOSTIC'then gain=R.GainSources(Game.GetLocalPlayer(),current.unitID,t)end
  updateAudit();render()
- print('[SPC][B191][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
+ if gain then
+  print('[SPC][B191][N1_SPY_READ] travel='..travel.status..' native='..tostring(travel.nativeAllowed)..' sources='..value(gain.sourceTurns)..' gainAllowed='..yes(gain.canStart)..' undetected='..value(gain.ESPIONAGE_SUCCESS_UNDETECTED)..' detected='..value(gain.ESPIONAGE_SUCCESS_MUST_ESCAPE)..' execution=BLOCKED')
+ end
  return travel.status=='READ_OK' and travel.nativeStatus=='KNOWN' and travel.nativeAllowed==true
 end
 request=function(action,detail)
  syncActivity()
+ if viewMode~='DIAGNOSTIC'then
+  local expected=viewMode=='TRAVEL' and 'DISPATCH' or 'TASK'
+  if action~='READ' and action~='STOP' then
+   if action~=expected or not normalCanAct()then setReport(L('ACTION_UNAVAILABLE'));return end
+  end
+ end
  if (action=='TASK' or action=='DISPATCH') and activityLocked()then setReport(L('ACTIVITY_WAIT'));return end
  if pending or naming then setReport(common('WAIT'));return end
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
@@ -306,25 +356,53 @@ request=function(action,detail)
  end)
 end
 local function updateTarget()
- local t=targets[selected];Controls.TargetLabel:SetText(t and Locale.Lookup(t.name) or common('NO_TARGET'))
+ local t=targets[selected];local label=t and Locale.Lookup(t.name) or common('NO_TARGET')
+ Controls.TargetLabel:SetText(label);Controls.NormalTargetLabel:SetText(label)
 end
 local function refreshTargets()
  local old=targets[selected];targets=R.Targets(Game.GetLocalPlayer());selected=1
  if old then for i,t in ipairs(targets)do if t.owner==old.owner and t.id==old.id then selected=i;break end end end
  updateTarget()
 end
-local function close()
+close=function(force)
+ -- Do not cancel the UI half of an accepted dispatch while its permit reply
+ -- is in flight. This window does not own or cancel the independent task.
+ if not force and viewMode~='DIAGNOSTIC' and (pendingAction=='DISPATCH' or pendingAction=='TASK')then
+  setReport(common('WAIT'));return false
+ end
  if naming or pendingAction=='CREATE' then nameStage='CANCELLED';nameReason='UI_NAME_WAIT_CANCELLED' end
  Controls.Window:SetHide(true);ContextPtr:SetHide(true);ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
  ContextPtr:ClearUpdate();pending=nil;pendingAction=nil;naming=nil;afterPublish=false;targets={};travel=nil;gain=nil
+ requestedUnitID=nil;return true
 end
-local function open()
- if not P.IsTestPlayer(Game.GetLocalPlayer())then return end
+local function open(mode,id)
+ if not P.IsTestPlayer(Game.GetLocalPlayer()) or pending or naming then return end
+ if mode~=nil and mode~='TRAVEL' and mode~='TASK'then return end
+ if mode then
+  local u=UI.GetHeadSelectedUnit()
+  if not U.IsTeam(u) or u:GetID()~=id or not U.CanOpen(mode,u)then return end
+ end
+ viewMode=mode or 'DIAGNOSTIC';requestedUnitID=mode and id or nil
+ Controls.DiagnosticPanel:SetHide(mode~=nil);Controls.NormalPanel:SetHide(mode==nil)
+ Controls.TitleLabel:SetText(mode and L('ACTION_'..mode) or L('TITLE'))
+ if mode then
+  Controls.NormalIntro:SetText(L('NORMAL_'..mode..'_INTRO'))
+  Controls.NormalConfirmLabel:SetText(L('NORMAL_'..mode..'_CONFIRM'))
+  Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+  Controls.NormalTargetPrevious:SetHide(mode~='TRAVEL');Controls.NormalTargetNext:SetHide(mode~='TRAVEL')
+  Controls.NormalTargetLabel:SetHide(mode~='TRAVEL');Controls.NormalFeedback:SetText('')
+  -- Do not enable a control from a previous diagnostic reply.
+  current=nil;Controls.NormalConfirmButton:SetDisabled(true)
+ end
  ContextPtr:SetHide(false);Controls.Window:SetHide(false)
  if ContextPtr:IsHidden() or Controls.Window:IsHidden()then return end
- refreshTargets();request('READ');ExposedMembers.SPC_ExpeditionGateUIOpenVersion=P.VERSION
+ if mode~='TASK'then refreshTargets()end
+ request('READ');ExposedMembers.SPC_ExpeditionGateUIOpenVersion=P.VERSION
 end
-local function visibility()if not P.IsTestPlayer(Game.GetLocalPlayer())then close()end end
+local function visibility()
+ if not P.IsTestPlayer(Game.GetLocalPlayer())then close(true)
+ elseif not ContextPtr:IsHidden() and viewMode~='DIAGNOSTIC'then render()end
+end
 local function missionEvent(pid,id)
  if not observing or not P.IsTestPlayer(pid)then return end
  missionEvents=math.min(99,missionEvents+1)
@@ -352,19 +430,25 @@ end
 local initialized=false
 local function initialize()
  if initialized then return end
- Controls.CloseButton:RegisterCallback(Mouse.eLClick,close)
- Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()request('CREATE')end)
- Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()refreshTargets();updateAudit();request('READ')end)
- Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()request('DISPATCH')end)
- Controls.TaskButton:RegisterCallback(Mouse.eLClick,function()request('TASK')end)
- Controls.EndButton:RegisterCallback(Mouse.eLClick,function()request('END')end)
- Controls.TravelButton:RegisterCallback(Mouse.eLClick,function()if not pending and not naming then readChecks()end end)
+ Controls.CloseButton:RegisterCallback(Mouse.eLClick,function()close()end)
+ Controls.CreateButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('CREATE')end end)
+ Controls.RefreshButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then refreshTargets();updateAudit();request('READ')end end)
+ Controls.ArmButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('DISPATCH')end end)
+ Controls.TaskButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('TASK')end end)
+ Controls.EndButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then request('END')end end)
+ Controls.TravelButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC' and not pending and not naming then readChecks()end end)
  local function move(delta)
-  if pending or naming then return end
+  if pending or naming or (viewMode~='DIAGNOSTIC' and (viewMode~='TRAVEL' or not normalCanAct()))then return end
   if #targets>0 then selected=((selected-1+delta)%#targets)+1;travel=nil;gain=nil;updateTarget();render()end
  end
- Controls.PreviousButton:RegisterCallback(Mouse.eLClick,function()move(-1)end)
- Controls.NextButton:RegisterCallback(Mouse.eLClick,function()move(1)end)
+ Controls.PreviousButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then move(-1)end end)
+ Controls.NextButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then move(1)end end)
+ Controls.NormalTargetPrevious:RegisterCallback(Mouse.eLClick,function()if viewMode=='TRAVEL'then move(-1)end end)
+ Controls.NormalTargetNext:RegisterCallback(Mouse.eLClick,function()if viewMode=='TRAVEL'then move(1)end end)
+ Controls.NormalConfirmButton:RegisterCallback(Mouse.eLClick,function()
+  if viewMode=='DIAGNOSTIC' or not normalCanAct()then return end
+  request(viewMode=='TRAVEL' and 'DISPATCH' or 'TASK')
+ end)
  for c,k in pairs({CreateButtonCaption='CREATE',TravelButtonCaption='CHECK',ArmButtonCaption='DISPATCH',TaskButtonCaption='TASK'})do Controls[c]:SetText(L(k))end
  for c,k in pairs({CloseButtonCaption='CLOSE',RefreshButtonCaption='REFRESH',EndButtonCaption='END',PreviousButtonCaption='PREVIOUS',NextButtonCaption='NEXT'})do Controls[c]:SetText(common(k))end
  LuaEvents.SPC_ExpeditionGateOpen.Add(open);Events.LoadScreenClose.Add(visibility);Events.LocalPlayerTurnBegin.Add(visibility)
@@ -379,7 +463,7 @@ local function initialize()
 end
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
- close();observing=false
+ close(true);observing=false
  if initialized then
   LuaEvents.SPC_ExpeditionGateOpen.Remove(open);Events.LoadScreenClose.Remove(visibility);Events.LocalPlayerTurnBegin.Remove(visibility)
   Events.GameCoreEventPublishComplete.Remove(published)

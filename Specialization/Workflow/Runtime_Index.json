@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "65f00384a737babb7536a725b4e8a05ddd6b1cf7",
-  "runtime": "B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 visual rendering pending.",
+  "runtime": "B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 backing alignment failed in supplied crop; B196 source fix/new UI not yet deployed.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "7055c4775aea3a4aa8125ce81c93b959af73f6ae3ba619026c611c712d61137a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
+      "sha256": "7d7796e1860246b8602da2209b5e5031dbf7f0bd2cf2ef932aeb271b50d734b1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9113faa9ab7dbe5801b87900d4499073239b9b82530f555b4108026051edddcb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
+      "sha256": "c5490c4ac674d922417e05491d505c4cf954f1c763d88ec092f033406f48d7af",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -581,9 +581,9 @@
       "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
     },
     "Mod/UI/UnitPanelActions.xml": {
-      "sha256": "9c1dc80a26363e7409ad398239f7e40a3a7c817bb011a29f5a6b13ac45d43dbc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
+      "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/UnitSites.lua": {
       "sha256": "e9f5f28e6118ec091fff180e7d7a27ade57362f6a109468bb3b9b821a53f542f",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "4b08d631aad430c91c20d142f887542e7b399de99ce24e88302fc36bd927b61c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-      "provenance": "B194 approved bounded owned-request OPERATION wait and timeout evidence; 276 local tests PASS. Gate/capacity/binding unchanged; native Sleep/completion/release pending."
+      "sha256": "9f6829b64b1b13c5d76dc45d1ad99a774d71a3b3ea2b432bc14ac4d1cb754850",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1026,14 +1026,14 @@
       "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "b08f75353551216608bfe851ec22698c0be67958514a5446f6581def1ee79838",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-      "provenance": "B194 approved bounded owned-request OPERATION wait and timeout evidence; 276 local tests PASS. Gate/capacity/binding unchanged; native Sleep/completion/release pending."
+      "sha256": "c06b8d152b29162cba8f97a8f28da74f2fb6678da9150cc60e3a5df36dde9ee2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
-      "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "0599d108994f58fd04bdb7782f44aee723c938991357682cf46cc6e152348361",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
       "sha256": "505de3fa1260fb5583af8deee95f6610fe5caff5eada5c7f634b87286b7591a4",
@@ -1041,24 +1041,24 @@
       "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
     },
     "Mod/ExpeditionSpyUI.lua": {
-      "sha256": "6d48679092c68dde78f7e54bdaa72d199ec8c792f5a5c0e729b72d248e99aff4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
-      "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
+      "sha256": "da5f6d9a629afd28ed15fed7e442fcf66ae0a338cf48df187634b3c6fe0a6766",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyChooser.lua": {
-      "sha256": "e3505526ebe165af033680b244d92c3825da1d5f1f183b43718c798767038386",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "c6721a73aed3014a7718b3fbead5793f2345b5396cfbc96326afac121d4877e3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyPopup.lua": {
-      "sha256": "a94aaa1bcf3ef527ad87e72bf3c757bef3acb67593d6f755e94c07370509f66a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
-      "provenance": "B185 authorized exact-unit marker/source continuity, independent no-reward timer and exact-type native UI routing; actual code and67 targeted checks reviewed. Native survival/isolation pending; no external/Design/Store/GC change."
+      "sha256": "f96d75a0793ecf0fb3f2301f50bea57a3f414727998b0b8dabf0ad615f9400e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "d79173cda29591efe5076a7d1683db79b6ab510f4ec119cffee68f1b0d2b9fe6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
-      "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
+      "sha256": "27ceab331a3a5a13d01aff23af04515ce8c6177c6b944f4141e1a30021632caa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
       "sha256": "1ba5c3d6ad638fd4aa3440d5ef768d0da46e1286196d6999e64f3dc988b14dfd",

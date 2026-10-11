@@ -82,14 +82,15 @@ class ActivityGate(unittest.TestCase):
 
     def test_ui_controls_lock_and_release_selected_exact_team(self):
         l=ui('UnitPanel');l.execute("""
-          function team:GetID()return 40 end
-          selected=team;local old=GetUnitActionsTable(team)
-          ExposedMembers={SPC_ExpeditionActivity={owner=2,unitID=40,locked=true,mode='ASLEEP'}}
-          assert(#GetUnitActionsTable(team).INPLACE==0);old.INPLACE[1].CallbackFunc();assert(not calls.skip)
+          selected=team;phase('ARRIVED');local old=GetUnitActionsTable(team)
+          phase('TASK_RUNNING','ASLEEP',true)
+          assert(#GetUnitActionsTable(team).SPECIFIC==0 and #GetUnitActionsTable(team).INPLACE==0)
+          old.SPECIFIC[1].CallbackFunc();old.SPECIFIC[2].CallbackFunc();assert(routed==0 and not calls.skip)
           LuaEvents.SPC_ExpeditionActivityChanged(1);assert(calls.Refresh==1)
           selected=ordinary;LuaEvents.SPC_ExpeditionActivityChanged(2);assert(calls.Refresh==1 and GetUnitActionsTable(ordinary)=='ordinary')
-          selected=team;ExposedMembers.SPC_ExpeditionActivity.locked=false
-          assert(#GetUnitActionsTable(team).INPLACE==1);panelShutdown();LuaEvents.SPC_ExpeditionActivityChanged(3);assert(calls.Refresh==1)
+          selected=team;phase('ARRIVED')
+          assert(#GetUnitActionsTable(team).SPECIFIC==2 and #GetUnitActionsTable(team).INPLACE==0)
+          panelShutdown();LuaEvents.SPC_ExpeditionActivityChanged(3);assert(calls.Refresh==1)
         """)
 
 if __name__=='__main__':unittest.main()

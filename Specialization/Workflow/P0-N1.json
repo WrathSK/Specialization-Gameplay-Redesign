@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0521",
-    "runtime": "B195.222 / modinfo222",
+    "status": "S0522",
+    "runtime": "B196.223 / modinfo223",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Record B194 native activity PASS and apply requested B195 compact native-style action slots and native icon aliases only; broader two-action Expedition UI remains planned.",
+  "goal": "Implement approved B196 explicit travel/task UI, quiet selection, task-time empty action bar and B195 backing correction; preserve existing one-shot Gate/capacity/binding/activity.",
   "implementation_authorized": true,
   "context": [
     {
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
       "kind": "full",
-      "reason": "Current visual-only implementation and risk-matched acceptance; B194 native evidence linked separately."
+      "reason": "Current approved UI delta, local evidence, inheritance and minimal native boundary."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -262,6 +262,16 @@
       "path": "DevelopmentTests/test_native_icon_aliases.py",
       "kind": "full",
       "reason": "Direct current B194 acceptance/B195 presentation scope; inspect only when relevant to action."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B195_Action_Backing_Native_Review.md",
+      "kind": "full",
+      "reason": "Direct B196 action/window guards or backing-failure evidence; action-scoped reading only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_actions_ui.py",
+      "kind": "full",
+      "reason": "Direct B196 action/window guards or backing-failure evidence; action-scoped reading only."
     }
   ],
   "dependencies": [
@@ -403,24 +413,30 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md"
       ]
+    },
+    {
+      "trigger": "Inspect unchanged B195 icon/compact-slot evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md"
+      ]
     }
   ],
   "non_scope": [
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 presentation-only; focused actual Lua/SQL/package checks and small visual check. No gameplay full regression or stress.",
-    "local": "B19544 focused tests PASS: layout9, icon4, package/gate31. B194276 checks inherited unchanged, not rerun as new proof.",
-    "user": "B194 task gate passed in submitted T88→T90 run. B195 native backing/compact confirmation/icon rendering only; no repeat task/save-load campaign."
+    "depth": "L1 UI/input delta; actual Lua exact-scope and package/localization checks plus one native UI session. No full gameplay/stress.",
+    "local": "145 focused tests PASS including20 new explicit-action/window tests; Gate/business assertions unchanged.",
+    "user": "B194 activity evidence inherited; B195 backing defect observed. B196 explicit mode/open/lock/completion appearance and native alignment pending; no save/load campaign."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-    "source": "B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 visual rendering pending.",
-    "native": "B194 observed running after exact Sleep acknowledgement, T88→T90 completion1/1/released activity; source/cap retained. No raw OPERATION duration measured. B195 pixels not yet tested.",
-    "stop": "After visual-only batch, stop for review. Future explicit dispatch/task and task-time empty action bar is planned, not implemented; formal persistence/reattachment/N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+    "source": "Source B196.223/modinfo223 local complete; last deployed B195.222/modinfo222 DEVELOP_ACTIVE; source 65f00384a737babb7536a725b4e8a05ddd6b1cf7; receipt B195.222-65f0038-playtest.json; 213/213 MATCH. Fresh OS exit before both switches, clean/pushed source, exact B194/stable bridge and retained recovery verified; no pending transaction. B194 task activity native PASS inherited unchanged; B195 backing alignment failed in supplied crop; B196 source fix/new UI not yet deployed.",
+    "native": "B194 activity/timer/release scoped PASS inherited. B195 lowered backing observed. B196 new UI and corrected pixels remain pending.",
+    "stop": "After B196 implementation/deployment checkpoint, await one minimal UI acceptance. No formal N1 training/persistence/reattachment, repeatable tasks, N2/N3/U2/rewards."
   }
 }

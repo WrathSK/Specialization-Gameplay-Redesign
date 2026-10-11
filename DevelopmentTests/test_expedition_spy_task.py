@@ -90,40 +90,52 @@ class Timer(unittest.TestCase):
 def ui(kind):
     l=LuaRuntime(unpack_returned_tuples=True)
     l.execute("""
-      calls={};routed=0;selected=nil;mode=0
+      calls={};routed=0;routes={};selected=nil;mode=0
       function base(name)return function(...)calls[name]=(calls[name]or 0)+1;return 'ordinary' end end
       function event()local e={listeners={}};function e.Add(fn)e.listeners[fn]=true end;function e.Remove(fn)e.listeners[fn]=nil end
        return setmetatable(e,{__call=function(self,...)for f in pairs(self.listeners)do f(...)end end})end
       Game={GetLocalPlayer=function()return 2 end};GameInfo={Units={[1]={UnitType='UNIT_SPC_EXPEDITION_SPY'},[2]={UnitType='UNIT_SPY'},[3]={UnitType='UNIT_SETTLER'}},UnitOperations={UNITOPERATION_SKIP_TURN={Hash=8,CategoryInUI='INPLACE'}}}
-      function unit(kind,owner)return {GetUnitType=function()return kind end,GetOwner=function()return owner or 2 end}end
-      team=unit(1);ordinary=unit(2);civilian=unit(3);units={[40]=team,[41]=ordinary}
+      function unit(kind,owner,id)
+       local u={id=id or (kind==1 and 40 or kind==2 and 41 or 43),owner=owner or 2,kind=kind,x=15,y=8,name='Native Named Spy',operation=-1}
+       function u:GetUnitType()return self.kind end;function u:GetOwner()return self.owner end
+       function u:GetID()return self.id end;function u:GetX()return self.x end;function u:GetY()return self.y end
+       function u:GetName()return self.name end;function u:GetSpyOperation()return self.operation end
+       return u
+      end
+      team=unit(1);ordinary=unit(2);civilian=unit(3);otherTeam=unit(1,2,42)
+      units={[40]=team,[41]=ordinary,[42]=otherTeam};selected=team
+      ExposedMembers={SPC_ExpeditionActivity={owner=2,unitID=40,teamKey='team1',activityKey='',
+       expectedName='Native Named Spy',x=15,y=8,phase='CREATED',mode='NONE',locked=false,revision=1}}
+      function phase(value,modeValue,locked)
+       local v=ExposedMembers.SPC_ExpeditionActivity;v.phase=value;v.mode=modeValue or 'NONE';v.locked=locked or false
+      end
       Players={[2]={GetUnits=function()return {FindID=function(self,id)return units[id]end}end}}
-      UI={GetHeadSelectedUnit=function()return selected end,GetInterfaceMode=function()return mode end,SetInterfaceMode=function(m)mode=m end}
+      UI={GetHeadSelectedUnit=function()return selected end,GetInterfaceMode=function()return mode end,SetInterfaceMode=function(m)mode=m;if onMode then onMode()end end}
       InterfaceModeTypes={SELECTION=0};Locale={Lookup=function(s)return s end};Mouse={eLClick=1}
       LuaEvents={SPC_ExpeditionActivityChanged=event(),SPC_ExpeditionGateOpen=event(),GameDebug_Return=event(),EspionageChooser_ShowMissionBriefing=event(),UnitPanel_CancelMission=event()}
-      LuaEvents.SPC_ExpeditionGateOpen.Add(function()routed=routed+1 end)
+      LuaEvents.SPC_ExpeditionGateOpen.Add(function(action,id)routed=routed+1;routes[#routes+1]={mode=action,id=id}end)
       Controls={};for _,id in ipairs({'ConfirmButton','AcceptButton','AbortButton'})do Controls[id]={RegisterCallback=function(self,key,fn)self.click=fn end}end
       ContextPtr={SetShutdown=function(self,fn)panelShutdown=fn end};Refresh=base('Refresh');include=function()end
       for _,name in ipairs({'Open','Close','GoToProperInterfaceMode','TeleportToSelectedCity','OnConfirmPlacement','OnCounterspySelected','OnMissionSelected','OnGameDebugReturn','OnShowMissionBriefing','OnShowMissionAbort','OnAccept','OnAbort','RenewMission','ShowMissionCompletedPopup','OnUnitActionClicked','OnUnitActionClicked_CancelSpyMission','GetUnitActionsTable'})do _G[name]=base(name)end
       LuaEvents.GameDebug_Return.Add(OnGameDebugReturn)
       LuaEvents.EspionageChooser_ShowMissionBriefing.Add(OnShowMissionBriefing)
       LuaEvents.UnitPanel_CancelMission.Add(OnShowMissionAbort)
-      function AddActionToTable(actions,row,disabled,tip,hash,callback)table.insert(actions[row.CategoryInUI],{CallbackFunc=callback,userTag=hash})end
+      function AddActionToTable(actions,row,disabled,tip,hash,callback)table.insert(actions[row.CategoryInUI],{CallbackFunc=callback,userTag=hash,disabled=disabled,tip=tip,icon=row.Icon})end
       UnitManager={CanStartOperation=function(u,op)assert(op==8);return true end,RequestOperation=function(u,op)assert(op==8);calls.skip=(calls.skip or 0)+1 end}
     """)
     l.execute((R/'Mod/ExpeditionSpyUI.lua').read_text());l.execute((R/f'Mod/UI/ExpeditionSpy{kind}.lua').read_text());return l
 
 class UIIsolation(unittest.TestCase):
     def test_action_layout_matches_native_primary_and_secondary_reader(self):
-        l=ui('UnitPanel');l.execute("local a=GetUnitActionsTable(team);local n=0;for _,area in ipairs({'primaryArea','secondaryArea'})do for _,category in ipairs(a.displayOrder[area])do for _,action in ipairs(a[category])do assert(type(action.CallbackFunc)=='function');n=n+1 end end end;assert(n==2)")
+        l=ui('UnitPanel');l.execute("local a=GetUnitActionsTable(team);local n=0;for _,area in ipairs({'primaryArea','secondaryArea'})do for _,category in ipairs(a.displayOrder[area])do for _,action in ipairs(a[category])do assert(type(action.CallbackFunc)=='function');n=n+1 end end end;assert(n==2 and #a.SPECIFIC==2 and #a.INPLACE==0)")
     def test_unitpanel_custom_actions_do_not_build_base_native_hotkeys(self):
-        l=ui('UnitPanel');l.execute("selected=team;local a=GetUnitActionsTable(team);assert(not calls.GetUnitActionsTable and #a.OFFENSIVESPY==0 and #a.SPECIFIC==1 and #a.INPLACE==1);a.SPECIFIC[1].CallbackFunc();a.INPLACE[1].CallbackFunc();OnUnitActionClicked(99,9);OnUnitActionClicked_CancelSpyMission();assert(routed==3 and calls.skip==1 and not calls.OnUnitActionClicked);selected=ordinary;assert(GetUnitActionsTable(ordinary)=='ordinary');OnUnitActionClicked(99,9);assert(calls.OnUnitActionClicked==1)")
+        l=ui('UnitPanel');l.execute("selected=team;phase('ARRIVED');local a=GetUnitActionsTable(team);assert(not calls.GetUnitActionsTable and #a.OFFENSIVESPY==0 and #a.SPECIFIC==2 and #a.INPLACE==0);a.SPECIFIC[1].CallbackFunc();a.SPECIFIC[2].CallbackFunc();OnUnitActionClicked(99,9);OnUnitActionClicked_CancelSpyMission();assert(routed==2 and not calls.skip and not calls.OnUnitActionClicked);assert(routes[1].mode=='TRAVEL' and routes[1].id==40 and routes[2].mode=='TASK' and routes[2].id==40);selected=ordinary;assert(GetUnitActionsTable(ordinary)=='ordinary');OnUnitActionClicked(99,9);assert(calls.OnUnitActionClicked==1)")
     def test_callbacks_recheck_current_selection(self):
-        l=ui('UnitPanel');l.execute("selected=team;local a=GetUnitActionsTable(team);selected=ordinary;a.SPECIFIC[1].CallbackFunc();a.INPLACE[1].CallbackFunc();assert(routed==0 and not calls.skip)")
-    def test_chooser_mouse_selection_hot_reload_and_globals_redirect_exact_type(self):
-        l=ui('Chooser');l.execute("selected=team;Open();GoToProperInterfaceMode(team);Controls.ConfirmButton.click();OnCounterspySelected();OnMissionSelected();TeleportToSelectedCity();LuaEvents.GameDebug_Return('EspionageChooser',{selectedSpy=team,isVisible=true});assert(routed==7 and not calls.Open and not calls.OnConfirmPlacement and not calls.OnGameDebugReturn);selected=ordinary;Open();Controls.ConfirmButton.click();assert(calls.Open==1 and calls.OnConfirmPlacement==1)")
+        l=ui('UnitPanel');l.execute("selected=team;phase('ARRIVED');local a=GetUnitActionsTable(team);selected=ordinary;a.SPECIFIC[1].CallbackFunc();a.SPECIFIC[2].CallbackFunc();assert(routed==0 and not calls.skip)")
+    def test_chooser_mouse_selection_hot_reload_and_globals_suppress_exact_type_without_report(self):
+        l=ui('Chooser');l.execute("selected=team;Open();GoToProperInterfaceMode(team);Controls.ConfirmButton.click();OnCounterspySelected();OnMissionSelected();TeleportToSelectedCity();LuaEvents.GameDebug_Return('EspionageChooser',{selectedSpy=team,isVisible=true});assert(routed==0 and not calls.Open and not calls.OnConfirmPlacement and not calls.OnGameDebugReturn and calls.Close);selected=ordinary;Open();Controls.ConfirmButton.click();assert(calls.Open==1 and calls.OnConfirmPlacement==1)")
     def test_popup_briefing_cancel_accept_renew_and_hot_reload_never_cache_team(self):
-        l=ui('Popup');l.execute("selected=team;LuaEvents.EspionageChooser_ShowMissionBriefing(9,40,{});Controls.AcceptButton.click();LuaEvents.UnitPanel_CancelMission(40);Controls.AbortButton.click();RenewMission(team,9,1,1);LuaEvents.GameDebug_Return('EspionagePopup',{spy=team,isHidden=false});assert(routed==6 and not calls.OnShowMissionBriefing and not calls.OnShowMissionAbort and not calls.RenewMission and not calls.OnGameDebugReturn);selected=ordinary;LuaEvents.EspionageChooser_ShowMissionBriefing(9,41,{});Controls.AcceptButton.click();RenewMission(ordinary,9,1,1);assert(calls.OnShowMissionBriefing==1 and calls.OnAccept==1 and calls.RenewMission==1)")
+        l=ui('Popup');l.execute("selected=team;LuaEvents.EspionageChooser_ShowMissionBriefing(9,40,{});Controls.AcceptButton.click();LuaEvents.UnitPanel_CancelMission(40);Controls.AbortButton.click();RenewMission(team,9,1,1);LuaEvents.GameDebug_Return('EspionagePopup',{spy=team,isHidden=false});assert(routed==0 and calls.Close and not calls.OnShowMissionBriefing and not calls.OnShowMissionAbort and not calls.RenewMission and not calls.OnGameDebugReturn);selected=ordinary;LuaEvents.EspionageChooser_ShowMissionBriefing(9,41,{});Controls.AcceptButton.click();RenewMission(ordinary,9,1,1);assert(calls.OnShowMissionBriefing==1 and calls.OnAccept==1 and calls.RenewMission==1)")
     def test_foreign_same_type_and_other_units_pass_through(self):
         l=ui('UnitPanel');l.execute("assert(GetUnitActionsTable(unit(1,3))=='ordinary' and GetUnitActionsTable(civilian)=='ordinary' and calls.GetUnitActionsTable==2)")
 

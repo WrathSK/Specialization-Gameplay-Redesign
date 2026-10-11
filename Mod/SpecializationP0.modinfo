@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="222">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="223">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B195.222: compact native-style investment/construction action slots, Spy artwork and district project icons. B194 task activity behavior unchanged.</Description>
+    <Description>B196.223: explicit Expedition travel/task views, silent selection, task-time action lock and corrected native action backing. Capacity, binding and B194 activity/timer unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

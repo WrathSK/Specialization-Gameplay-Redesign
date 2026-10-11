@@ -8,30 +8,31 @@ function GetUnitActionsTable(u)
  -- Do not call the base builder first: it also registers native mission hotkeys.
  local actions={ATTACK={},BUILD={},GAMEMODIFY={},MOVE={},OFFENSIVESPY={},INPLACE={},SECONDARY={},SPECIFIC={},
   displayOrder={primaryArea={'ATTACK','OFFENSIVESPY','SPECIFIC','MOVE','INPLACE','GAMEMODIFY'},secondaryArea={'SECONDARY'}}}
- AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon='ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY'},false,
-  Locale.Lookup('LOC_SPC_EXPEDITION_SPY_MANAGE'),-185,function()
-   if R.IsTeam(UI.GetHeadSelectedUnit())then R.Open()end
-  end)
- -- Skip is an ordinary unit operation, not a Spy mission; no reward/completion hook.
- local skip=GameInfo.UnitOperations.UNITOPERATION_SKIP_TURN
- if skip and not R.ActivityLocked(u) and UnitManager.CanStartOperation(u,skip.Hash,nil,nil,false)then
-  AddActionToTable(actions,skip,false,Locale.Lookup(skip.Description),skip.Hash,function()
+ if not R.ActivityView(u) or R.ActivityLocked(u)then return actions end
+ local id,owner=u:GetID(),u:GetOwner()
+ local function add(mode,icon,key,hash)
+  local enabled=R.CanOpen(mode,u)
+  local label=Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_'..key)
+  if not enabled then label=label..'[NEWLINE]'..Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_UNAVAILABLE')end
+  AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not enabled,label,hash,function()
    local selected=UI.GetHeadSelectedUnit()
-   if R.IsTeam(selected) and not R.ActivityLocked(selected) and UnitManager.CanStartOperation(selected,skip.Hash,nil,nil,false)then
-    UnitManager.RequestOperation(selected,skip.Hash)
+   if R.IsTeam(selected) and selected:GetOwner()==owner and selected:GetID()==id and R.CanOpen(mode,selected)then
+    R.Open(mode,id)
    end
   end)
  end
+ add('TRAVEL','ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY','TRAVEL',-196)
+ add('TASK','ICON_UNITOPERATION_SPY_GAIN_SOURCES','TASK',-197)
  return actions
 end
 local baseClick=OnUnitActionClicked
 function OnUnitActionClicked(...)
- if R.IsTeam(UI.GetHeadSelectedUnit())then R.Open();return end
+ if R.IsTeam(UI.GetHeadSelectedUnit())then R.SuppressNative();return end
  return baseClick(...)
 end
 local baseCancel=OnUnitActionClicked_CancelSpyMission
 function OnUnitActionClicked_CancelSpyMission(...)
- if R.IsTeam(UI.GetHeadSelectedUnit())then R.Open();return end
+ if R.IsTeam(UI.GetHeadSelectedUnit())then R.SuppressNative();return end
  return baseCancel(...)
 end
 

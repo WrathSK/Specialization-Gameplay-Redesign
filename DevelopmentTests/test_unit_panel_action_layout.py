@@ -194,7 +194,7 @@ class NativeSlotStructure(unittest.TestCase):
         self.assertEqual(slot.get('Texture'),'UnitPanel_ActionGroupSlot')
         self.assertEqual(slot.get('Size'),'47,41')
         self.assertEqual(slot.get('Anchor'),'C,B')
-        self.assertEqual(slot.get('Offset'),'1,-2')
+        self.assertEqual(slot.get('Offset'),'1,2')
         self.assertEqual(slot.get('SliceCorner'),'5,19')
         self.assertEqual(slot.get('SliceSize'),'1,1')
         glow=slot.find("Image[@Texture='UnitPanel_ActionGroupGlow']")

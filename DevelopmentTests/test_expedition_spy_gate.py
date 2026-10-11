@@ -93,6 +93,8 @@ def gate(ui=False, window=False):
         l.execute((R/'Mod/ExpeditionSpyRead.lua').read_text());l.execute('reader=SPCExpeditionSpyRead')
     if window:
         l.execute("LuaEvents.SPC_ExpeditionActivityChanged={Add=function(fn)activityChanged=fn end,Remove=function(fn)assert(activityChanged==fn);activityChanged=nil end};makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-189.216';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
+        l.execute("for _,id in ipairs({'TitleLabel','DiagnosticPanel','NormalPanel','NormalIntro','NormalSummary','NormalTargetLabel','NormalTargetPrevious','NormalTargetNext','NormalConfirmButton','NormalConfirmLabel','NormalConfirmIcon','NormalFeedback'})do makeControl(id);Controls[id].SetIcon=function(self,v)self.icon=v end;Controls[id].SetDisabled=function(self,v)self.disabled=v end end")
+        l.execute((R/'Mod/ExpeditionSpyUI.lua').read_text())
         l.execute((R/'Mod/UI/ExpeditionSpyWindow.lua').read_text());l.execute('init()')
     return l
 
@@ -192,7 +194,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'222')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'223')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -201,7 +203,7 @@ class Package(unittest.TestCase):
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text'] for e in art.findall('m_RootCollections/Element/Element/m_Name')];self.assertEqual(names.count('UNIT_SPC_EXPEDITION_SPY'),1);self.assertEqual(len(names),8)
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         lua=(R/'Mod/UI/ExpeditionSpyWindow.lua').read_text();xml=(R/'Mod/UI/ExpeditionSpyWindow.xml').read_text()
-        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_','ACTIVITY_CAUSE_','DIAGNOSTIC_','FAILURE_DIAGNOSTIC_PHASE_'}
+        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_','ACTIVITY_CAUSE_','DIAGNOSTIC_','FAILURE_DIAGNOSTIC_PHASE_','NORMAL_PHASE_','NORMAL_','ACTION_'}
         keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','NAMING','CREATED','TRAVELLING','ARRIVED','TASK_PREPARING','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
         keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED','SLOT_COST_ACCEPTED']}
         keys|={f'IDENTITY_{p}' for p in ['MATCH','ABSENT','MISMATCH','UNREADABLE','NO_UNIT','NO_SESSION','WRONG_UNIT','AMBIGUOUS','PRESENT','OFF_MAP']}
@@ -212,6 +214,9 @@ class Package(unittest.TestCase):
         keys|={f'FAILURE_DIAGNOSTIC_PHASE_{p}' for p in ['PRE_REQUEST_GUARD','POST_REQUEST_READBACK','PENDING_TIMEOUT','UNKNOWN']}
         keys|={'FAILURE_DIAGNOSTIC_HEADER','FAILURE_DIAGNOSTIC_ACTIVITY','FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY'}
         keys|={'HELD_MATCH','HELD_RECHECK','HELD_SOURCE','ACTIVITY_FAILURE'}
+        keys|={f'NORMAL_PHASE_{p}' for p in ['CREATED','TRAVELLING','ARRIVED','TASK_PREPARING','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
+        keys|={f'NORMAL_{mode}_{suffix}' for mode in ['TRAVEL','TASK'] for suffix in ['INTRO','CONFIRM']}
+        keys|={f'ACTION_{mode}' for mode in ['TRAVEL','TASK','UNAVAILABLE']}
         for k in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_EXPEDITION_SPY_'+k,)).fetchone()[0],2,k)
         for key in re.findall(r'String="(LOC_[A-Z0-9_]+)"',xml):self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(key,)).fetchone()[0],2,key)
         db.close()

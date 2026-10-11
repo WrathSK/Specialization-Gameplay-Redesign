@@ -2,8 +2,9 @@
 <Context Name="SPCExpeditionSpyGate">
  <Container ID="Window" Anchor="C,C" Size="620,614" Hidden="1">
   <Box Size="620,614" Color="12,19,27,250" />
-  <Label Anchor="L,T" Offset="18,16" Style="FontNormal18" String="LOC_SPC_EXPEDITION_SPY_TITLE" Color="255,255,255,255" />
+  <Label ID="TitleLabel" Anchor="L,T" Offset="18,16" Style="FontNormal18" String="LOC_SPC_EXPEDITION_SPY_TITLE" Color="255,255,255,255" />
   <GridButton ID="CloseButton" Anchor="R,T" Offset="12,10" Size="78,30" Style="MainButtonSmall"><Label ID="CloseButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_CLOSE" Color="255,255,255,255" /></GridButton>
+  <Container ID="DiagnosticPanel" Size="620,614">
   <Label ID="Intro" Anchor="L,T" Offset="18,52" Style="FontNormal14" WrapWidth="580" String="LOC_SPC_EXPEDITION_SPY_INTRO" Color="255,255,255,255" />
   <GridButton ID="CreateButton" Anchor="L,T" Offset="18,105" Size="282,32" Style="MainButtonSmall"><Label ID="CreateButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_SPY_CREATE" Color="255,255,255,255" /></GridButton>
   <GridButton ID="RefreshButton" Anchor="L,T" Offset="320,105" Size="282,32" Style="MainButtonSmall"><Label ID="RefreshButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_REFRESH" Color="255,255,255,255" /></GridButton>
@@ -18,5 +19,18 @@
   </ScrollPanel>
   <GridButton ID="EndButton" Anchor="L,B" Offset="18,16" Size="282,32" Style="MainButtonSmall"><Label ID="EndButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_END" Color="255,255,255,255" /></GridButton>
   <Label Anchor="L,B" Offset="320,19" Style="FontNormal12" WrapWidth="282" String="LOC_SPC_EXPEDITION_GATE_END_HINT" Color="255,255,255,255" />
+  </Container>
+  <Container ID="NormalPanel" Size="620,614" Hidden="1">
+   <Label ID="NormalIntro" Anchor="L,T" Offset="18,60" Style="FontNormal14" WrapWidth="580" Color="220,223,229,255" />
+   <Label ID="NormalSummary" Anchor="L,T" Offset="18,130" Style="FontNormal16" WrapWidth="580" Color="255,255,255,255" />
+   <GridButton ID="NormalTargetPrevious" Anchor="L,T" Offset="18,342" Size="100,32" Style="MainButtonSmall"><Label Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_PREVIOUS" Color="255,255,255,255" /></GridButton>
+   <Label ID="NormalTargetLabel" Anchor="C,T" Offset="0,348" Style="FontNormal16" WrapWidth="350" Color="255,255,255,255" />
+   <GridButton ID="NormalTargetNext" Anchor="R,T" Offset="18,342" Size="100,32" Style="MainButtonSmall"><Label Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_NEXT" Color="255,255,255,255" /></GridButton>
+   <GridButton ID="NormalConfirmButton" Anchor="C,T" Offset="0,402" Size="360,44" Style="MainButtonSmall">
+    <Image ID="NormalConfirmIcon" Anchor="L,C" Offset="12,0" Size="38,38" Icon="ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY" />
+    <Label ID="NormalConfirmLabel" Anchor="C,C" Offset="15,0" Style="FontNormal16" Color="255,255,255,255" />
+   </GridButton>
+   <Label ID="NormalFeedback" Anchor="L,T" Offset="18,470" Style="FontNormal14" WrapWidth="580" Color="239,209,142,255" />
+  </Container>
  </Container>
 </Context>

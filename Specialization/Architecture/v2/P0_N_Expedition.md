@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B194_NATIVE_ACTIVITY_PASS_B195_VISUAL_LOCAL_COMPLETE / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B196_EXPLICIT_EXPEDITION_UI_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B194 native activity/timer/release gate PASS in the submitted run.** [Five-image result](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md): task runs T88→T90, completes1/1 and acknowledges released activity; binding/cap1 unchanged. Exact Sleep acknowledgement is established by running-state source guards; no per-sample OPERATION trace/duration is claimed. Retained startup AWAKE is not current activity.
+**B196.223 explicit-action UI locally complete;145 focused tests PASS.** [Implementation/minimal session](../../Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md): quiet selection, two normal dispatch/task views, empty task-controlled action bar and exact stale-callback guards; P0 diagnostics remain separate. Existing one-shot Gate/capacity/binding/native reader/activity bridge unchanged; no new task or reward.
 
-**B195.222 requested cosmetic fixes locally complete,44 focused tests PASS.** [Applied scope and small visual check](../../Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md): native recessed action backing, compact prepare/confirm slots, Spy artwork and five formal one-turn district project icons. No task/capacity/binding/Gameplay changes; Status/receipt governs deployment.
+[B195 screenshot](../../Status/Validation/Results/Specialization_B195_Action_Backing_Native_Review.md) identifies lowered backing; B196 lifts only the decoration. [B194 accepted activity gate](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) remains inherited; native B196 UI/scale/event ordering pending, actual deployment from Status/receipt.
 
-[Next UI batch](P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions) records explicit dispatch/task entry, no automatic diagnostic popup and no task-time unit action buttons. Not implemented in B195; no new missions/rewards, formal training/reattachment/persistence or repeatable-task scope. No B194/save-load repeat; formal N1/N2/N3/U2 remain held.
+[Approved UI scope](P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions): after verified deployment, one travel→task→empty action bar→completion session plus backing appearance; no save/load repeat. Completion permits no second task/redispatch in this prototype; P0 END remains. Formal training/reattachment/persistence/N2/N3/U2/rewards held.
 
 
 ## 三种状态与已定数值

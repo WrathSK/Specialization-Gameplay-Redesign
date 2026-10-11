@@ -4,7 +4,7 @@ include('ExpeditionSpyUI')
 local R=SPCExpeditionSpyUI
 local blocked=false
 local function redirect()
- blocked=true;Close();R.Open()
+ blocked=true;Close();R.SuppressNative()
 end
 local baseOpen=Open
 function Open(...)
