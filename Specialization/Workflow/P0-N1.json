@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0542",
+    "status": "S0543",
     "runtime": "B203.230 / modinfo230",
     "military": "D0037",
     "harbor": "D0037",
@@ -581,7 +581,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-    "source": "B203.230 LOCAL_COMPLETE, not deployed; live B202.229 unchanged.",
+    "source": "B203.230/modinfo230 DEVELOP_ACTIVE; deployed source aec8c412ac087dce79f071f850d7f9a224215c67; receipt B203.230-aec8c41-playtest.json;218/218 MATCH. Fresh automatic OS exit checks before both switches; B202/stable recovery hashes verified, no pending transaction. Native delta pending.",
     "native": "B203 USER_GAME_TEST_REQUIRED; B202 panel-independent failure and panel-assisted arrival/task PASS preserved.",
     "stop": "One normal training with P0 closed, explicit dispatch and arrival/source check; no repeated unchanged save/task campaign."
   }

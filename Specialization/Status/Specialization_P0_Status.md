@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0542
-Implementation Build: source B203.230 LOCAL_COMPLETE; live B202.229; stable B069.96
+Status Revision: S0543
+Implementation Build: source/live B203.230 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B203_NAME_RECOVERY_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B203_NAME_RECOVERY_DEPLOYED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B203.230 name-confirmation repair locally complete;457 targeted tests PASS.** [Applied boundary, evidence and one native delta](Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md). Independent bounded readiness recovery; no replay of uncertain NAME requests; exact Gameplay validator retained. P0 READ is no longer a naming writer for normally trained teams. Ordinary unit buttons show pending/wait/error; optional auto-opening remains non-blocking.
 
-Source B203.230 is not deployed. Last verified live **B202.229 / modinfo229**, deployed source `c61524e`, receipt `B202.229-c61524e-playtest.json`, prior218/218 MATCH. B202 source/arrival/task scoped PASS after panel-assisted recovery remains; its panel-independent dispatch failure is preserved. Main unchanged. No new native PASS.
+Source/live **B203.230 / modinfo230 DEVELOP_ACTIVE**, deployed source `aec8c41`, receipt `B203.230-aec8c41-playtest.json`,218/218 MATCH. Automatic OS exit checks and guarded B202→stable→B203 transaction verified; B202/stable recovery retained, no pending transaction. B202 source/arrival/task scoped PASS after panel-assisted recovery remains; its panel-independent dispatch failure is preserved. Main unchanged; no game launch or new native PASS.
 
-Next: guarded deployment, then one normal training with P0 closed → explicit **派遣到新城市** → arrival/source check. No repeat unchanged queued-save/cold-load or task campaign. Capacity/source authority, queue/travel/task semantics and permanent data unchanged. Reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
+Next: one normal training with P0 closed → explicit **派遣到新城市** → arrival/source check. No repeat unchanged queued-save/cold-load or task campaign. Capacity/source authority, queue/travel/task semantics and permanent data unchanged. Reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
 
 ## S0535 — B201 deployment before native evidence (historical)
 

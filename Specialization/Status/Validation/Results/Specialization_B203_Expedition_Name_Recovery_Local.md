@@ -26,3 +26,7 @@ Raw local result and SHA256 are in ignored `local/legacy-workspace/Specializatio
 2. Dispatch through **派遣到新城市** and confirm arrival with the original source. You may open **人文考察·验证 → 刷新报告** afterward to inspect it. Stop and capture the ordinary tooltip if confirmation stops. No repeat queued-save/cold-load or no-reward-task campaign is required for this delta; inherited B202 results remain scoped.
 
 User decision: none. User testing: this single panel-independent training/arrival check. Codex next: guarded deployment under existing authorization when automatic game-exit/hash checks permit, then review evidence. No later Expedition implementation authorized.
+
+## Deployment
+
+B203.230 / modinfo230 **DEVELOP_ACTIVE**, source `aec8c412ac087dce79f071f850d7f9a224215c67`, receipt `B203.230-aec8c41-playtest.json`. Fresh automatic OS exit checks before both guarded switches; source/runtime218/218 MATCH, B202/stable recovery hashes verified, no pending transaction. Main and game configuration unchanged; no game launch or native PASS. The single native delta above is next.
