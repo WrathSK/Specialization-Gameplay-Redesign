@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "ac84bb89b10b1d5791a754584fcb9f0de70393febd1cab3caa3d6dd4ce0e5955",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-      "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
+      "sha256": "78e6d3d762db6afd20633c09f347505c243f74b72da9a17c013136736a0d34c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md",
+      "provenance": "B192 diagnostic-only bounded startup observation;227 local tests PASS. Capacity/source/task behavior unchanged; native activity/readiness/eligibility sample pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b9ee0db4c38c761568dcf4f546d5bddb7d5900f5a2c4492421b8327891418c36",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-      "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
+      "sha256": "6d532a58386bc3fd79c5f50d1a85f0ba63383014c576282af4a25ee3af725372",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md",
+      "provenance": "B192 diagnostic-only bounded startup observation;227 local tests PASS. Capacity/source/task behavior unchanged; native activity/readiness/eligibility sample pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "5a558803d43d6d93875cabc0bf73d8f37830da4068bbe4ec474f48316f9c0c4c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-      "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
+      "sha256": "f4e1754f039291f6f31cfbbaed893e52ddf73380ec967c62dbd37bd837600e14",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md",
+      "provenance": "B192 diagnostic-only bounded startup observation;227 local tests PASS. Capacity/source/task behavior unchanged; native activity/readiness/eligibility sample pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1026,9 +1026,9 @@
       "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "15ae0d4141c11d465b4bccd90c42ae7ea4c8d078b7e28bc0422b2736f0b3554e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-      "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
+      "sha256": "c708ed6c0adddda5b3300b3cba1fbcef14e680d6af450e634d41c6842cacb7d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md",
+      "provenance": "B192 diagnostic-only bounded startup observation;227 local tests PASS. Capacity/source/task behavior unchanged; native activity/readiness/eligibility sample pending."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "f474e8028205c9c3b31038e67c8e267fb68c5b043dc5875d6381b3a9e9b073f6",
@@ -1061,9 +1061,9 @@
       "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "2b13b05964930e7fab1810f075609d51351e39f08927548c11f150310e07d664",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-      "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
+      "sha256": "ce6ab7f096fcc2d84edf1e3a97fecad82f2e963e5efdfc606d8480b6a8b8a499",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md",
+      "provenance": "B192 diagnostic-only bounded startup observation;227 local tests PASS. Capacity/source/task behavior unchanged; native activity/readiness/eligibility sample pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",

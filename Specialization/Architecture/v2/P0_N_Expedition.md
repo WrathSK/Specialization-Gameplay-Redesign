@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B191_ACTIVITY_STATE_PREFLIGHT_FAIL_NATIVE_REUSE_REVIEWED / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B192_ACTIVITY_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B191 native startup FAIL at ACTIVITY_UNEXPECTED_STATE before lookup/eligibility/SLEEP request.** [Two-image evidence, local counterexamples and reuse comparison](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) preserve UNKNOWN raw activity/enum values. This is not native Sleep denial; the pre-task source/name/capacity readbacks remain matching. B191's197 local checks remain scoped evidence, not proof of native arrival activity.
+**B192.219 approved read-only activity diagnostic locally complete; native sample pending.** [227 local checks and one capture](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md): exact startup activity/type, live enums, readiness, native Spy operation/end turn and independent SLEEP eligibility. One bounded historical sample per task key; no new writer, permission bypass or persistent state.
 
-Spy UI/data/readers and native travel are reusable within their measured boundaries; operation execution is native. Trader routes, healing, patrol and real Spy missions carry their own semantics. No neutral busy-for-N-turns executor was established. Proposed next minimum: exact-unit raw activity/type, live enums, readiness and SLEEP eligibility before changing the guard. No forced Wake, automatic ACTIVITY_OPERATION acceptance or mission fallback.
+[B191 native guard failure](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) remains unresolved. An unknown third activity is still rejected even when the diagnostic query says ALLOWED; normal writer independently rechecks its original eligibility. Capacity/source/name/timer/owned release and B189 scoped evidence remain unchanged. The sample cannot authorize native mission execution or a fallback.
 
-No implementation is authorized by this investigation. Stop unchanged B191 tests; retain source/cap/name/task ownership and B189 scoped evidence. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held; Status/receipt govern source/live.
+After verified deployment, one fresh bound arrived fixture → **④ 无奖励任务（2回合）** once → capture **启动时活动诊断** through native SLEEP eligibility and precise error → stop. No task-completion, generic save/load or naming campaign. Writer repair, formal training/persistence/reattachment, N2/N3/U2/rewards remain held; Status/receipt govern source/live.
 
 
 ## 三种状态与已定数值

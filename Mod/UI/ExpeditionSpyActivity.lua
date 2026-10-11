@@ -1,4 +1,4 @@
--- B191: invisible UI bridge for one Gameplay-owned Expedition activity lease.
+-- B192: invisible UI bridge for one Gameplay-owned Expedition activity lease.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
 local P=SPCP0
@@ -77,6 +77,51 @@ local function actionHash(tableName,key,label)
   'ACTIVITY_'..label..'_HASH_UNAVAILABLE')
  return hash
 end
+-- A single historical observation, not a permission or state authority. All extra
+-- reads are protected independently; no unit objects or history are retained.
+local function diagnosticText(v)
+ local kind=type(v)
+ if kind~='nil' and kind~='boolean' and kind~='number' and kind~='string' then return '('..kind..')' end
+ return (tostring(v):gsub('[%c%[%]]',' ')..' ('..kind..')'):sub(1,100)
+end
+local function observe(fn)
+ local ok,v=pcall(fn)
+ if not ok then return ('UNKNOWN: '..detail(v):gsub('[%[%]]',' ')):sub(1,100),nil end
+ return diagnosticText(v),v
+end
+local function captureDiagnostic(n,u,activity)
+ local d={owner=n.owner,unitID=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
+  expectedName=n.expectedName,x=n.x,y=n.y,turn=Game.GetCurrentGameTurn(),
+  activity=diagnosticText(activity),awake=diagnosticText(ActivityTypes.ACTIVITY_AWAKE),
+  hold=diagnosticText(ActivityTypes.ACTIVITY_HOLD),sleep=diagnosticText(ActivityTypes.ACTIVITY_SLEEP),
+  operationEnum=diagnosticText(ActivityTypes.ACTIVITY_OPERATION)}
+ d.ready=observe(function()
+  assert(type(u.IsReadyToMove)=='function','READINESS_READER_UNAVAILABLE');return u:IsReadyToMove()
+ end)
+ d.operation=observe(function()return u:GetSpyOperation()end)
+ d.endTurn=observe(function()
+  assert(type(u.GetSpyOperationEndTurn)=='function','SPY_END_TURN_READER_UNAVAILABLE');return u:GetSpyOperationEndTurn()
+ end)
+ local hash;d.hash,hash=observe(function()return actionHash('UnitOperations','UNITOPERATION_SLEEP','SLEEP')end)
+ local allowed
+ d.eligibility,allowed=observe(function()
+  assert(hash~=nil,'SLEEP_HASH_UNAVAILABLE')
+  assert(type(UnitManager.CanStartOperation)=='function','SLEEP_ELIGIBILITY_READER_UNAVAILABLE')
+  return UnitManager.CanStartOperation(u,hash,nil,false,false)
+ end)
+ d.eligibilityStatus=allowed==true and 'ALLOWED' or (allowed==false and 'DENIED' or 'UNKNOWN')
+ -- A reentrant publication may have changed the target during a reader call.
+ if same(view(),n) then ExposedMembers.SPC_ExpeditionActivityDiagnostic=d end
+end
+local function clearStaleDiagnostic(v)
+ local d=ExposedMembers and ExposedMembers.SPC_ExpeditionActivityDiagnostic
+ if not d then return end
+ if type(v)~='table' or v.owner~=Game.GetLocalPlayer() or v.owner~=d.owner or v.unitID~=d.unitID
+  or v.teamKey~=d.teamKey or v.activityKey~=d.activityKey or v.expectedName~=d.expectedName
+  or v.x~=d.x or v.y~=d.y or v.phase=='ENDED' then
+  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
+ end
+end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
  if not ok then fail(n,u);return end
@@ -85,6 +130,12 @@ local function evaluate(n)
   return
  end
  if n.mode=='SLEEP' then
+  if not seen.diagnosed then
+   seen.diagnosed=true
+   local captured,err=pcall(captureDiagnostic,n,u,activity)
+   if not captured then print('[SPC][B192][ACTIVITY_DIAGNOSTIC_UNAVAILABLE] '..detail(err))end
+   if job~=n or not same(view(),n)then return end
+  end
   if activity==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP');return end
   if activity~=ActivityTypes.ACTIVITY_AWAKE and activity~=ActivityTypes.ACTIVITY_HOLD then
    fail(n,'ACTIVITY_UNEXPECTED_STATE');return
@@ -152,6 +203,7 @@ local function start(v)
 end
 local function refresh(monitor)
  local v=view()
+ clearStaleDiagnostic(v)
  if type(v)=='table' and integer(v.revision) and v.revision~=lastRevision then
   lastRevision=v.revision
   if LuaEvents and LuaEvents.SPC_ExpeditionActivityChanged then LuaEvents.SPC_ExpeditionActivityChanged(v.revision)end
@@ -198,6 +250,7 @@ local function turn()pump(true)end
 local function initialize()
  if initialized then return end
  initialized=true;stopped=false
+ ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
  Events.GameCoreEventPublishComplete.Add(published)
  Events.LocalPlayerTurnBegin.Add(turn)
  if Events.UnitActivityChanged then Events.UnitActivityChanged.Add(activityChanged)end
@@ -206,6 +259,7 @@ end
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
  stopped=true;cancel()
+ ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
  if initialized then
   Events.GameCoreEventPublishComplete.Remove(published)
   Events.LocalPlayerTurnBegin.Remove(turn)

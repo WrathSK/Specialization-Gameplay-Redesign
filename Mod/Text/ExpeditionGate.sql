@@ -373,3 +373,27 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_API','A required native API is unavailable in this UI context.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DENIED','原生引擎未允许或未接受本次活动操作。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DENIED','The native engine did not allow or accept this activity action.');
+
+
+-- B192: read-only startup sample; this does not authorize an activity request.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_HEADER','启动时活动诊断 · 回合 {1}（历史采样，非实时状态）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_HEADER','Startup activity diagnostic · turn {1} (historical sample, not live state)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ACTIVITY','实际活动：{1}；待命就绪：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ACTIVITY','Actual activity: {1}; ready: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_A','活动枚举 AWAKE：{1}；HOLD：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_A','Activity enums AWAKE: {1}; HOLD: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_B','活动枚举 SLEEP：{1}；OPERATION：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_B','Activity enums SLEEP: {1}; OPERATION: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SPY','原生间谍任务：{1}；结束回合：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SPY','Native spy operation: {1}; end turn: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SLEEP_HASH','原生 SLEEP 动作 Hash：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SLEEP_HASH','Native SLEEP action Hash: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ELIGIBILITY','原生 SLEEP 资格：{1}；原始返回值：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ELIGIBILITY','Native SLEEP eligibility: {1}; raw return: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ALLOWED','允许'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ALLOWED','Allowed'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_DENIED','不允许'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_DENIED','Denied'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_UNKNOWN','未知'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_UNKNOWN','Unknown');

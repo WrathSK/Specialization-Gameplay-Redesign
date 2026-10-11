@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B191 startup fails at ACTIVITY_UNEXPECTED_STATE before native lookup/eligibility/write.** [Native review and other-unit/task comparison](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) distinguish raw activity (still UNKNOWN), native Spy operation-1, readiness and our timer. Native UI/data/travel can be reused; a neutral native busy-for-N-turns executor is not established. This does not prove Sleep refusal or force reuse of Gain Sources. Proposed next minimum is exact activity/enums/readiness and eligibility observation before writer changes; no unchanged retest or implementation now. Earlier sections retain their original evidence and authorization context.
+Date: 2026-10-10. **B192 diagnostic-only patch locally complete; native sample pending.** [Implementation,227 scoped checks and one capture](../../Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md) record the raw startup activity/types/enums, readiness and native SLEEP eligibility without changing task permission, source/capacity or behavior. One bounded historical UI sample, no persistent state or extra polling. [B191 failure](../../Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) remains unresolved; the next observation does not authorize writer repair, forced Wake or a real native mission. Earlier sections retain their original evidence and authorization context.
 
 ## B190 native failure basis
 

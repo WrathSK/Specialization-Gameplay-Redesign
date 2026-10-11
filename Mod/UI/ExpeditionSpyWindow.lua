@@ -26,6 +26,30 @@ local function activityView()
   or v.teamKey~=current.teamKey then return nil end
  return v
 end
+-- One historical startup sample, never a current-state or eligibility authority.
+-- Keep the report exact-key scoped even if an old diagnostic mirror survives.
+local function activityDiagnostic()
+ local a=activityView();local d=ExposedMembers.SPC_ExpeditionActivityDiagnostic
+ if not a or type(d)~='table' or type(a.activityKey)~='string' or a.activityKey==''
+  or d.owner~=a.owner or d.unitID~=a.unitID or d.teamKey~=a.teamKey or d.activityKey~=a.activityKey then return nil end
+ for _,key in ipairs({'expectedName','x','y'})do
+  if a[key]~=nil and d[key]~=a[key]then return nil end
+ end
+ return d
+end
+local function appendActivityDiagnostic(out)
+ local d=activityDiagnostic();if not d then return end
+ local function raw(key)return type(d[key])=='string' and d[key] or 'UNKNOWN' end
+ local status=d.eligibilityStatus
+ if status~='ALLOWED' and status~='DENIED' then status='UNKNOWN' end
+ out[#out+1]=L('DIAGNOSTIC_HEADER',value(d.turn))
+ out[#out+1]=L('DIAGNOSTIC_ACTIVITY',raw('activity'),raw('ready'))
+ out[#out+1]=L('DIAGNOSTIC_ENUM_A',raw('awake'),raw('hold'))
+ out[#out+1]=L('DIAGNOSTIC_ENUM_B',raw('sleep'),raw('operationEnum'))
+ out[#out+1]=L('DIAGNOSTIC_SPY',raw('operation'),raw('endTurn'))
+ out[#out+1]=L('DIAGNOSTIC_SLEEP_HASH',raw('hash'))
+ out[#out+1]=L('DIAGNOSTIC_ELIGIBILITY',L('DIAGNOSTIC_'..status),raw('eligibility'))
+end
 local function syncActivity()
  local v=activityView();if not v then return end
  current.phase=v.phase or current.phase
@@ -64,6 +88,7 @@ local function render()
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
  local activityFailure=v.activityFailure or v.activityError
  if activityFailure then o[#o+1]=activityFailureText(activityFailure)end
+ appendActivityDiagnostic(o)
  local held=v.phase=='HELD' and type(v.teamKey)=='string' and v.sourceCity~=nil
  local heldFresh=held and heldDiagnosticCurrent()
  local heldMatch=heldFresh and v.sameUnit==true and v.nameVerified==true and v.identity~=nil and v.identity.sourceStatus=='MATCH'

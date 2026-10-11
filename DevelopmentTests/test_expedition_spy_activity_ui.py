@@ -1,4 +1,4 @@
-"""B191 actual activity bridge, database action hashes, and bounded activity ownership.
+"""B192 actual activity bridge; existing ownership behavior plus one diagnostic query.
 Native sleep/ready-unit behavior remains a user gate.
 """
 from pathlib import Path
@@ -38,7 +38,7 @@ def bridge():
       UnitManager={GetActivityType=function(u)if readThrow then error('READ_THROW')end;return u.activity end}
       UnitManager.CanStartOperation=function(u,op,target,visible,results)
        assert(op==expectedSleepHash and target==nil and visible==false and results==false)
-       sleepChecks=sleepChecks+1;if mutateSleepRow then GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=71 end
+       sleepChecks=sleepChecks+1;if mutateSleepRow and sleepChecks==2 then GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=71 end
        return not sleepDenied end
       UnitManager.RequestOperation=function(u,op)
        assert(op==expectedSleepHash and u.id==41);sleepCalls=sleepCalls+1
@@ -130,7 +130,7 @@ class ActivityBridge(unittest.TestCase):
         l=bridge();l.execute("publish('SLEEP');units[41].spy=9;Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and wakeCalls==0 and packets[2].Result=='FAILED' and packets[3].Result=='FAILED' and update==nil)")
 
     def test_default_fixture_requires_no_alias_or_optional_result_constants(self):
-        l=bridge();l.execute("assert(UnitOperationTypes.SLEEP==nil and UnitCommandTypes.WAKE==nil and OperationResultsTypes==nil);publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==1 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
+        l=bridge();l.execute("assert(UnitOperationTypes.SLEEP==nil and UnitCommandTypes.WAKE==nil and OperationResultsTypes==nil);publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==2 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
 
     def test_stale_aliases_are_ignored_in_favor_of_database_hash(self):
         l=bridge();l.execute("UnitOperationTypes.SLEEP=700;UnitCommandTypes.WAKE=800;OperationResultsTypes={NO_TARGETS=999};publish('SLEEP');publish('RELEASE',true);assert(sleepCalls==1 and wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED')")
@@ -138,7 +138,7 @@ class ActivityBridge(unittest.TestCase):
     def test_valid_signed_and_zero_database_hashes_use_same_eligibility_and_writer_hash(self):
         for sleep_hash, wake_hash in [(-2147483648, -1), (0, 0)]:
             with self.subTest(sleep_hash=sleep_hash, wake_hash=wake_hash):
-                l=bridge();l.execute(f"expectedSleepHash={sleep_hash};expectedWakeHash={wake_hash};GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=expectedSleepHash;GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash=expectedWakeHash;publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==1 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
+                l=bridge();l.execute(f"expectedSleepHash={sleep_hash};expectedWakeHash={wake_hash};GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=expectedSleepHash;GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash=expectedWakeHash;publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==2 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
 
     def test_indexable_userdata_database_collection_and_row_are_supported(self):
         l=bridge()
@@ -181,10 +181,10 @@ class ActivityBridge(unittest.TestCase):
                     l.execute("publish('SLEEP')" if action == "SLEEP" else "publish('RELEASE',true)")
                     packet=1 if action=="SLEEP" else 2
                     prior=0 if action=="SLEEP" else 1
-                    l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_{suffix}',1,true) and packets[{packet}].Owned=={str(action=='WAKE').lower()} and update==nil);assert(sleepChecks=={prior} and wakeChecks==0);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(#packets=={packet})")
+                    l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_{suffix}',1,true) and packets[{packet}].Owned=={str(action=='WAKE').lower()} and update==nil);assert(sleepChecks=={2*prior} and wakeChecks==0);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(#packets=={packet})")
 
     def test_denied_sleep_or_wake_never_bypasses_guard(self):
-        l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepChecks==1 and sleepCalls==0 and wakeCalls==0 and packets[1].Result=='FAILED' and not packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_NOT_ALLOWED',1,true))")
+        l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepChecks==2 and sleepCalls==0 and wakeCalls==0 and packets[1].Result=='FAILED' and not packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_NOT_ALLOWED',1,true))")
         l=bridge();l.execute("publish('SLEEP');wakeDenied=true;publish('RELEASE',true);assert(wakeChecks==1 and sleepCalls==1 and wakeCalls==0 and packets[2].Result=='FAILED' and packets[2].Owned and packets[2].Detail:find('ACTIVITY_WAKE_NOT_ALLOWED',1,true))")
 
     def test_missing_native_eligibility_or_writer_api_is_reported_without_native_write(self):

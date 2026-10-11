@@ -289,3 +289,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B191 — native initial activity guard failed; unchanged testing stopped
 
 [Two-image review and route comparison](Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md) supersedes the pending B191 session above: ACTIVITY_UNEXPECTED_STATE before lookup/eligibility/write. Exact activity/enum values UNKNOWN; no proven native Sleep refusal. Do not repeat unchanged package or switch to native espionage as a silent fallback. Proposed next: one exact-unit read-only activity/readiness/eligibility observation before a separately approved repair.
+
+## B192 — one startup diagnostic capture, no behavior repair
+
+[Minimal test](Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md#one-minimal-native-test): after verified deployment, fresh bound arrived team → **④ 无奖励任务（2回合）** once → screenshot precise error and **启动时活动诊断** through **原生 SLEEP 资格** → stop. This replaces B191's unchanged retest and does not require completion turns or save/cold-load/re-enable. The existing activity guard remains; its failure may repeat with new evidence. Formal N1/N2/N3/U2/rewards held.
