@@ -1,6 +1,6 @@
 # Expedition mission-only movement and coexistence
 
-Date: 2026-10-10. **B189 observed name/source continuity and no-reward task PASS; END user-confirmed. Task activity integration remains missing.** [Five-image native review](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) records the public-ID change with stable艾莉森/source, T88→T90 completion and zero observed native mission/source effects. The user still has to idle the unit manually. Investigation below is non-authoritative and does not authorize implementation; earlier sections retain their dated evidence, not current instructions. Status/receipt govern runtime.
+Date: 2026-10-10. **B190 task startup fails at constant preflight; native sleep eligibility/readiness/release NOT_REACHED.** [Two-image diagnosis and repair proposal](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) identifies ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE before the writer. The combined guard cannot identify the individual missing symbol. Native UnitPanel reads GameInfo row.Hash; the proposed repair follows that path and its false/false eligibility call, preserving ownership/readback. Await implementation approval. B189 observed name/source/task PASS and user-confirmed END remain scoped evidence; source/live stay B190, no deployment in this review. Earlier sections are chronological evidence, not current dispatch instructions.
 
 ## B190 approved activity implementation
 

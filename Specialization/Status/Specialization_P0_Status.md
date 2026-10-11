@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0507
+Status Revision: S0508
 Implementation Build: source/live B190.217 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B190_TASK_ACTIVITY_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B190_TASK_ACTIVITY_CONSTANT_PREFLIGHT_FAIL_REPAIR_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B190.217 native task startup FAIL at constant preflight; no sleep request reached.** [Two-image review and bounded repair proposal](Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md): ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE; exact name/source readbacks still MATCH, cap1/1. Generic unbound wording follows HELD, not proven identity loss. The combined guard does not identify the single missing symbol; native SLEEP permission/readiness/release remain NOT_REACHED.
+
+Source/live remains **B190.217 / modinfo217 DEVELOP_ACTIVE**, deployed source `4c577a4`, receipt `B190.217-4c577a4-playtest.json`, last verified213/213 MATCH with recovery retained. This evidence checkpoint does not reverify or modify runtime/main.
+
+Next proposed repair: native GameInfo row hashes for SLEEP/WAKE, native boolean eligibility form, precise error presentation and realistic alias-absent fixtures. Await approval; no unchanged B190 retest. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
+
+## S0507 — B190 activity local/deployment checkpoint (historical)
 
 **B190.217 task-controlled native activity prototype locally complete; native pending.** [Changes, targeted checks and minimal session](Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md): automatic exact-unit SLEEP/readback before timer start, bounded owned release, task-aware controls and separate always-active UI bridge. Source/cap1/name/no-reward timer remain. B189 name/source/task PASS and user-confirmed END remain limited to their recorded scope.
 

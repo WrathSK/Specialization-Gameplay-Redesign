@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B190_TASK_ACTIVITY_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B190 activity implementation](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md) adds automatic sleep/readback, task-aware action controls and owned internal release. The activity addin remains active when this management window closes. Show concise preparing/running/releasing/blocked status from the matched current mirror, without polling the diagnostic snapshot. Keep management and exact END; no ordinary Spy/native mission changes.
-Current entry stays **专业化诊断 → 人文考察·验证**. Own source/cap, name continuity and accepted native-slot cost stay unchanged. Native activity eligibility and needs-orders behavior await one minimal session; formal persistence and wider UI rollout remain held.
+State: N1_PARTIAL / B190_TASK_ACTIVITY_CONSTANT_PREFLIGHT_FAIL_REPAIR_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B190 native review](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) shows a missing-constant preflight stop before sleep. The generic HELD/unbound label hides still-matching name/source evidence; the next proposed narrow patch should present the precise component and distinguish task hold from actual source mismatch. No UI/code change yet.
+Current entry stays **专业化诊断 → 人文考察·验证**. Own source/cap, name continuity and accepted native-slot cost remain. Await bounded repair approval; no unchanged B190 retest or new formal persistence/UI rollout.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

@@ -277,3 +277,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B190 — task-controlled native activity, minimal session pending
 
 [B190 local result and exact flow](Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md#one-minimal-native-session): bound arrival → **④ 无奖励任务（2回合）**, no manual sleep → close panel/normal turns with other units unchanged → completion/owned activity release → **结束并移除验证团**. Native activity permission/readback/readiness are the new delta. Inherit B189 naming/source/task evidence; no generic cold-load ritual. Formal persistence/reattachment/N2/N3 remain held.
+
+## B190 — native constant preflight failure; unchanged retest stopped
+
+[Two-image review and bounded repair](Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md): ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE before sleep submission, source/name MATCH retained. Supersedes the pending B190 test instruction above: no unchanged-package retest. Native sleep/readiness/release NOT_REACHED. Await approval for exact DB-hash lookup/boolean eligibility/precise diagnostics and corresponding local fixtures; then reuse only the unreached activity session.
