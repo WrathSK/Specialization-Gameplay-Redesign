@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0535",
+    "status": "S0536",
     "runtime": "B201.228 / modinfo228",
     "military": "D0037",
     "harbor": "D0037",
@@ -349,6 +349,11 @@
       "path": "DevelopmentTests/test_expedition_spy_recovery_activity.py",
       "kind": "full",
       "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md",
+      "kind": "full",
+      "reason": "Current scoped persistence native evidence and selection UI failure; exact rejection unknown, repair approval required."
     }
   ],
   "dependencies": [
@@ -516,16 +521,16 @@
   "validation": {
     "depth": "L3 targeted persistence/action ownership/recovery counterexamples plus directly affected B200 UI/ACK/package regression; no broad gameplay/stress.",
     "local": "383 distinct focused tests PASS. Actual Gate/Store/UI bridge independent contexts, strict readback/schema, unit replacement, source/UNKNOWN/fault isolation, durable ARM and recovery/cleanup; native serialization not simulated proof.",
-    "user": "One combined travelling-save/cold-load → arrival/no-reward task/UI → END session. New durable off-map identity risk justifies this single load; unchanged harness lifecycle inherited."
+    "user": "Three-image B201 native review and user clarification recorded. No unchanged-package retest requested; future approved repair should use one selection/card UI session without repeating persistence."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
-    "source": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Native persistence/B200 UI pending.",
-    "native": "USER_GAME_TEST_REQUIRED for new saved travel/identity and activity reconstruction plus B200 rendered selection/card delta. No formal mission/reward claim.",
-    "stop": "Combined B201 deployed; await one travelling-save/cold-load → arrival/no-reward task/UI → END native session, then stop for review. Training/reattachment/repeat tasks/N2/N3/U2 remain held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md",
+    "source": "B201.228/modinfo228 DEVELOP_ACTIVE; deployed source 37f10961edf9ddeb6fcabfa6d909cff2a881bd00; receipt B201.228-37f1096-playtest.json;214/214 MATCH. Fresh OS game exit, clean/pushed source and exact B199/stable recovery transaction verified. B199/stable recovery retained; no pending transaction. Scoped B201 persistence sequence PASS; selection-opening USER_REPORTED_FAIL. This review does not re-inspect runtime.",
+    "native": "Scoped USER_GAME_TEST_PASS: saved travelling team/source/cap, loaded arrival ID replacement and subsequent no-reward task/release. USER_REPORTED_FAIL: idle selection auto-open at home and abroad. END/card rendering unobserved; exact failing predicate UNKNOWN.",
+    "stop": "Await scoped selection-routing repair approval. Native travelling-load/source/cap/arrival/task sequence has scoped PASS; exact auto-open rejection UNKNOWN. No unchanged-package retest or further N1/N2/N3 implementation."
   }
 }

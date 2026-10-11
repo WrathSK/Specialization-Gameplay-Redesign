@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0535
+Status Revision: S0536
 Implementation Build: source/live B201.228 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B201_PERSISTENCE_DEPLOYED_COMBINED_NATIVE_PENDING
+Work State: B201_NATIVE_PERSISTENCE_SCOPED_PASS_SELECTION_UI_FAIL
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B201.228 travelling-save/cold-load, source/cap retention, arrival ID replacement and subsequent no-reward task completion/release: scoped USER_GAME_TEST_PASS. Selection auto-opening: USER_REPORTED_FAIL at home and abroad before tasks.** [Three-image evidence, explicit user clarification and bounded UI repair proposal](Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md). Exact rejected native routing predicate remains UNKNOWN; local383 tests do not establish native selection timing. B200 card rendering and B201 END are not demonstrated by this submission.
+
+Last verified source/live remains **B201.228 / modinfo228 DEVELOP_ACTIVE**, deployed source `37f1096`, receipt `B201.228-37f1096-playtest.json`,214/214 MATCH at deployment. This evidence review does not recheck or replace runtime. Main unchanged.
+
+Next: await approval for the bounded selection-routing repair/diagnostic proposal; preserve persistence, binding, capacity and task behavior. No unchanged-package retest or repeated cold-load campaign. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards stay held.
+
+## S0535 — B201 deployment before native evidence (historical)
 
 **B201.228 persistent Expedition team/source slice deployed;383 targeted local tests PASS.** [Ownership/readback/recovery contract, fault coverage, deployment and one combined native flow](Validation/Results/Specialization_B201_Expedition_Persistence_Local.md). Bounded player-owned saved identity/source/travel/task state and fresh native activity reconstruction; ambiguous records reserve cap and hold. B200 selection/card refinement is included and remains native-unverified. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
 
