@@ -1,19 +1,19 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B189_NATIVE_NAME_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B189_NAME_SOURCE_TASK_NATIVE_PASS_ACTIVITY_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B189.216 approved pool/native-name prototype locally complete; USER_GAME_TEST_REQUIRED.** [Implementation and minimal flow](../../Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md) adds citizen names only for CIVILIZATION_SPC_TEST and replaces manual renaming with bounded exact native-name observation. Loaded pool, nondefault/unique raw name, UI readiness and independent Gameplay source/unit checks precede dispatch. No global naming/XP or other-civilization changes.
+**B189 native name/source continuity and independent no-reward task PASS within one session; END user-confirmed without screenshot.** [Five-image result](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md): 艾莉森 retains the original source through public-ID change; task0/1 atT88/T89→1/1 atT90, source turns0→0/native operation-1/events0. Own cap1 retained; temporary native-slot cost remains accepted. No permanent/global name-identity or formal N1 completion claim.
 
-The [identity investigation](../../Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md) and [B188 failure](../../Status/Validation/Results/Specialization_B188_Expedition_Name_Eligibility_Native_Review.md) retain their evidence limits. Raw pool keys or uniquely localized values can be observed; no conversion into guessed identity. Off-map names are checked through the evidenced UI API, with a current-turn acknowledgement; Gameplay does not assume that API exists in its context.
+User identifies the remaining activity gap: the timer leaves the native unit idle. [Investigation and next proposal](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#task-activity-investigation--after-b189): exact-unit native SLEEP/readback, task-owned UI input isolation, transition-published activity state and internal release; no Gain Sources or global end-turn bypass. Current last diagnostic reply is not a reliable turn-completion lock source. Custom-Spy SLEEP permission and native release remain untested.
 
-Own cap1/session reservation and exact source remain unchanged. Native name survival is still unproved. One session after deployment: **① 创建Spy验证团** with window open → confirmed arrival through **③ 原生派遣** → **④ 无奖励任务（2回合）** → **结束并移除验证团**. Stop on default/ambiguous/unbound state; no repeat save/load ritual or automatic ordinary-Spy control.
+This turn authorizes evidence/investigation only. Await approval before that minimal activity prototype; no current user retest. Keep original source/cap/name trust boundaries. Native sleep may outlive a session-only timer, so release/loaded-unbound recovery needs an explicit bounded contract; do not infer saved task identity from name.
 
-Native name is a bounded session continuity candidate, not city authority or a persistent registry. No cold reconstruction from name, new city Property or saved journey schema. Formal training/persistence/reattachment, N2/N3/U2/rewards and broader war/target behavior remain held; Status/receipt govern runtime.
+[124 local methods](../../Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md) and earlier failures retain their scopes. Formal training/persistence/reattachment, N2/N3/U2/rewards remain held; current Status/receipt govern source/live.
 
 
 ## 三种状态与已定数值

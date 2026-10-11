@@ -1,8 +1,8 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B189_NATIVE_NAME_LOCAL_COMPLETE_NATIVE_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
-[B189 implementation and one session](../../Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md) replace mandatory rename with bounded native-name observation. Show loaded pool, observed/default raw name and confirmation/failure stage; source-city presentation remains separate. Closing cancels preparation without deleting the reserved team; no late automatic confirmation.
-Current entry remains **专业化诊断 → 人文考察·验证**; create/read/dispatch/no-reward task/refresh/END controls and native redirection remain. Test-civilization pool addition also affects its ordinary Spy naming data, not other civilizations. Own cap/source and temporary native-slot cost unchanged; native name/arrival/task/END remain the current gate.
+State: N1_PARTIAL / B189_NAME_SOURCE_TASK_NATIVE_PASS_ACTIVITY_PENDING. N2/N3 and era UI remain ON_HOLD. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; full management UI below remains a proposal.
+[B189 native review](../../Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) confirms the observed name/source arrival and independent task, with user-reported END. The remaining native activity gap is separate: the task timer does not suppress needs-orders, and ordinary wakeable idle is not the intended task interaction.
+Current **专业化诊断 → 人文考察·验证** controls stay unchanged. [Proposed task activity boundary](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#task-activity-investigation--after-b189) uses exact-unit SLEEP plus task-aware input control/internal release, pending approval and native eligibility proof. No new implementation, rewards, formal persistence or management UI rollout is authorized. Own source/cap and temporary native-slot cost remain unchanged.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
 ## 推荐入口与整体结构

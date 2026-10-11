@@ -269,3 +269,7 @@ Supersedes B187 awaiting-repair instructions. [110 local checks and the exact fl
 ## B189 — native name-pool prototype, one session pending
 
 Supersedes unchanged B188 retest instructions. [Local result and exact minimal session](Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md#one-minimal-native-session): newly created named team → arrival/original source → independent no-reward2T task → END. Stop if loaded pool still yields default/ambiguous name; no manual rename, automatic ordinary-Spy control or save/load campaign. Source/live eligibility comes from Status/receipt; formal N1/N2/N3/U2 remain held.
+
+## B189 — reviewed; activity integration proposed, no retest now
+
+[Five-image review](Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md) supersedes the pending B189 session above: name/source continuity and independent2T/no-native-mission observations PASS; END user-confirmed without screenshot. Native task activity is missing, not a timer failure. [SLEEP/task-control proposal](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#task-activity-investigation--after-b189) awaits implementation approval. No new test, repeated naming attempt or generic save/load campaign now; formal N1/N2/N3/U2/rewards remain held.

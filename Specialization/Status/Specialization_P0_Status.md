@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0504
+Status Revision: S0505
 Implementation Build: source/live B189.216 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B189_NATIVE_NAME_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B189_NAME_SOURCE_TASK_NATIVE_PASS_ACTIVITY_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B189.216 name/source continuity and no-reward task PASS in the observed session; END user-confirmed.** [Five-image review](Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md): 艾莉森 survives3276829→3342365 arrival; original source/cap1 retained; T88→T90 completion1/1, source turns0→0/native operation-1/events0. END has no screenshot; no persistent identity or formal N1 completeness claim.
+
+Recorded source/live remains **B189.216 / modinfo216**, source `b2b945f`, receipt `B189.216-b2b945f-playtest.json`, last verified211/211 MATCH with recovery retained. This evidence/investigation checkpoint does not reverify or modify runtime/main.
+
+Current gap: task timer does not set native activity; user must manually idle the unit. [Bounded SLEEP plus task-control proposal](../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#task-activity-investigation--after-b189) awaits implementation approval; no new test now. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), `P0-N1.json`; formal persistence/reattachment, N2/N3/U2/rewards held.
+
+## S0504 — B189 deployed native-name checkpoint (historical)
 
 **B189.216 approved native name-pool prototype locally complete; native pending.** [Changes, targeted checks and one session](Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md): test-civilization citizen pool → bounded exact native-name observation → independent Gameplay confirmation. No manual rename; default/duplicate/unknown names stop. Own source/capacity, native travel, no-reward timer and END remain separate. B188 failure is preserved, not retested unchanged.
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0049",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0504",
+    "status": "S0505",
     "runtime": "B189.216 / modinfo216",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Approved B189 test-civilization name pool and bounded native-name observation implemented locally; preserve own cap/source, await native name assignment/arrival/task/END.",
-  "implementation_authorized": true,
+  "goal": "Record B189 native name/source/task and user-confirmed END; investigate task-owned native activity without implementation, preserving own source/cap and no native espionage mission.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -99,9 +99,9 @@
       "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md",
       "kind": "full",
-      "reason": "Current approved delta, trust boundary, targeted local evidence and exact native stop/test contract."
+      "reason": "Current scoped native evidence, remaining activity gap and proposal/authorization boundary."
     },
     {
       "path": "Mod/UI/P0Panel.lua",
@@ -251,6 +251,12 @@
         "Mod/Data/Identity.sql",
         "Mod/Config/Players.sql"
       ]
+    },
+    {
+      "trigger": "Review unchanged B189 name-pool/local regression basis before an approved activity delta",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md"
+      ]
     }
   ],
   "non_scope": [
@@ -259,16 +265,16 @@
   "validation": {
     "depth": "L2 bounded identity/lifecycle/UI execution delta; no gameplay full regression or stress.",
     "local": "124 methods PASS:4 actual SQL pool tests,39 native-name/UI preparation,14 binding,26 task/UI,31 gate/package and10 panel. Missing/default/duplicate and localized ambiguity, UI-only off-map evidence, exact source/owner/type/ID, current-turn confirmation, delayed publication, cancellation/reentrant notifications, arrival/capacity/task/END covered. No native naming/travel PASS implied.",
-    "user": "One B189 session after verified deployment: native name/pool confirmation → arrival/source → no-reward2T task → END. Stop on failure; no save/load campaign."
+    "user": "B189 five-image scoped name/source/no-reward2T observations PASS; END user-confirmed, not pictured. No activity suppression implementation/PASS. No new test until a bounded patch is approved."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
-    "source": "B189.216/modinfo216 DEVELOP_ACTIVE; sourceb2b945f3d720689f4b1c3dfd61f853a93a2e423e; receipt B189.216-b2b945f-playtest.json;211/211 MATCH. Fresh OS exit, clean/pushed source, exact B188/stable bridge and retained recovery hashes verified; no pending transaction. Native name/arrival/task gate pending.",
-    "native": "USER_GAME_TEST_REQUIRED: native automatic assignment and travel-name survival, task and END. Prior B188 NAME_UNIT eligibility FAIL remains frozen.",
-    "stop": "Await one-session native review; formal N1/N2/N3/U2/rewards held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md",
+    "source": "B189.216/modinfo216 DEVELOP_ACTIVE; sourceb2b945f3d720689f4b1c3dfd61f853a93a2e423e; receipt B189.216-b2b945f-playtest.json; last verified211/211 MATCH, recovery retained. S0505 evidence review does not reverify runtime. Scoped native name/source/task PASS; END user-reported; native activity integration missing.",
+    "native": "USER_GAME_TEST_PASS in observed session: native name/source continuity across ID change, own cap1, T88-to-T90 task completion with source0/nativeoperation-1/events0. END USER_REPORTED_PASS without screenshot. Native task activity missing; formal N1 incomplete.",
+    "stop": "Await implementation approval for the bounded task-activity proposal; no new test now. Formal persistence/reattachment, N2/N3/U2/rewards held."
   }
 }
