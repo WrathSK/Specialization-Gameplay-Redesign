@@ -1,17 +1,17 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B198_GUARD_LAYOUT_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B199_SELECTION_LOCATIONS_LOCAL_COMPLETE_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B198.225 approved dispatch guard/native layout repair locally complete.** [160 focused tests and one combined UI flow](../../Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md) exercise actual UI creation, ordinary-Spy changes, retained exact permission checks and native-style display controls. B197 remains failed native evidence; B198 native integration pending. B189 binding/B194 activity/B196 scoped acceptance stay inherited where unchanged.
+**B199.226 user-requested UI refinements locally complete;189 focused tests PASS.** [B198 native review](../../Status/Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the layout direction and records missing task-start close. [B199 changes/evidence/minimal flow](../../Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md): explicit city/task selection, no city outline, mission preview, accepted-TASK close and read-only location icons. Foreign work visibility and rendered fit remain native pending.
 
-[B198 UI boundary](P0_N_Expedition_UI.md#b198--dispatch-guard-and-native-layout-repair): creation isolation stays, later ordinary-Spy comparison is diagnostic only; layered city banners/district strips and adjacent preview/task drawer use the existing DISPATCH/TASK adapters. Own capacity/name/source, target eligibility, Gate/activity/no-reward2T behavior unchanged; no native mission controller.
+[B199 UI boundary](P0_N_Expedition_UI.md#b199--explicit-selection-and-mission-location-preview): existing exact dispatch/task adapters and capacity/name/source/activity behavior stay unchanged; location snapshots do not grant mission permission. Unknown reads remain incomplete. Earlier B189/B194/B196 lifecycle acceptance stays inherited only where unchanged; B197 failure stays preserved.
 
-Next after receipt-confirmed deployment: one ordinary-Spy creation after preparation → travel → arrival/task UI session. No save/load campaign. END any previously held team before fresh setup. Formal training/reattachment/persistence/repeat tasks/N2/N3/U2/rewards held; Status/receipt governs source/live identity.
+Next after receipt-confirmed deployment: one location/explicit-selection → arrival/task/autoclose session. No save/load campaign; END a finished/held prototype before fresh setup. Formal training/reattachment/persistence/repeat tasks/N2/N3/U2/rewards held; Status/receipt governs source/live identity.
 
 
 ## 三种状态与已定数值

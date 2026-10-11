@@ -136,6 +136,14 @@ def normal_window(arrived=False):
     l.execute("""
      -- Exercise the real CREATE entry, including its ordinary-Spy audit and
      -- asynchronous-name confirmation. A direct req('CREATE') omits that state.
+     function chooseCity(index)
+      local row=instanceManagers.SPCExpeditionDestination.instances[index or 1]
+      assert(row,'explicit city choice requires an available row');row.DestinationButton.click()
+     end
+     function chooseTask()
+      local row=instanceManagers.SPCExpeditionMission.instances[1]
+      assert(row,'explicit task choice requires an available row');row.MissionButton.click()
+     end
      gateOpen();Controls.CreateButton.click()
      assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='CREATED' and nameConfirmCalls==1)
      selectedID=40;UI.GetHeadSelectedUnit=function()return units[selectedID]end
@@ -150,7 +158,7 @@ class ExplicitWindow(unittest.TestCase):
     def test_travel_entry_is_not_diagnostic_and_dispatch_requires_explicit_confirm(self):
         l=normal_window()
         l.execute("""
-         gateOpen('TRAVEL',40)
+         gateOpen('TRAVEL',40);chooseCity()
          assert(not ContextPtr.hidden and not Controls.NormalPanel.hidden and Controls.DiagnosticPanel.hidden)
          assert(not Controls.NormalCurrentSlot.hidden and not Controls.NormalConfirmButton.disabled)
          assert(nativeCalls==0 and lastPacket.Action=='READ')
@@ -161,7 +169,7 @@ class ExplicitWindow(unittest.TestCase):
     def test_task_entry_hides_destination_controls_and_starts_only_on_confirm(self):
         l=normal_window(arrived=True)
         l.execute("""
-         local nativeBefore=nativeCalls;gateOpen('TASK',41)
+         local nativeBefore=nativeCalls;gateOpen('TASK',41);chooseTask()
          assert(not ContextPtr.hidden and not Controls.NormalPanel.hidden and Controls.DiagnosticPanel.hidden)
          assert(Controls.NormalTargetLabel.hidden and Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
          assert(not Controls.NormalConfirmButton.disabled and lastPacket.Action=='READ')
@@ -174,7 +182,7 @@ class ExplicitWindow(unittest.TestCase):
     def test_opened_normal_window_cannot_submit_after_selection_changes(self):
         l=normal_window(arrived=True)
         l.execute("""
-         gateOpen('TASK',41);local before=sent;selectedID=99
+         gateOpen('TASK',41);chooseTask();local before=sent;selectedID=99
          Controls.NormalConfirmButton.click()
          assert(sent==before and ExposedMembers.SPC_ExpeditionActivity.phase=='ARRIVED' and properties==0)
         """)
@@ -182,7 +190,7 @@ class ExplicitWindow(unittest.TestCase):
     def test_opened_normal_window_cannot_submit_after_activity_locks(self):
         l=normal_window(arrived=True)
         l.execute("""
-         gateOpen('TASK',41);local before=sent
+         gateOpen('TASK',41);chooseTask();local before=sent
          local v=ExposedMembers.SPC_ExpeditionActivity;v.mode='ASLEEP';v.locked=true;v.phase='TASK_RUNNING'
          activityChanged();Controls.NormalConfirmButton.click()
          assert(Controls.NormalConfirmButton.disabled and sent==before and properties==0)
@@ -205,7 +213,7 @@ class ExplicitWindow(unittest.TestCase):
     def test_pending_native_dispatch_reply_is_not_cancelled_by_close_or_duplicate_click(self):
         l=normal_window()
         l.execute("""
-         gateOpen('TRAVEL',40);deferred=true;Controls.NormalConfirmButton.click()
+         gateOpen('TRAVEL',40);chooseCity();deferred=true;Controls.NormalConfirmButton.click()
          local packet=lastPacket;local before=sent
          assert(packet.Action=='DISPATCH' and nativeCalls==0)
          Controls.CloseButton.click();Controls.NormalConfirmButton.click()

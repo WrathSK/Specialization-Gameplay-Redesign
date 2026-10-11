@@ -43,6 +43,7 @@
       <Stack ID="NormalDistrictIconStack" Anchor="L,C" StackGrowth="Right" />
      </Grid>
      <Button ID="NormalDistrictsScrollRightButton" Anchor="R,T" Offset="16,51" Style="ArrowButtonRight" Hidden="1" />
+     <Label ID="NormalLocationNotice" Anchor="C,T" Offset="0,81" Style="FontNormal12" Align="C,C" WrapWidth="250" Color="Dark_Gray" Hidden="1" />
      <Label ID="NormalEmptyLabel" Anchor="C,C" Style="FontNormal16" Align="C,C" WrapWidth="250" Color="Dark_Gray" String="LOC_SPC_EXPEDITION_GATE_NO_TARGET" Hidden="1" />
     </Grid>
     <Button ID="NormalCloseButton" Anchor="L,T" Offset="265,2" Style="CloseButtonSmall" />
@@ -108,13 +109,14 @@
    </Grid>
    <Button ID="DistrictsScrollRightButton" Anchor="R,B" Offset="4,10" Style="ArrowButtonRight" Hidden="1" />
    <Label ID="CivilName" Style="FontNormal12" Hidden="1" />
+   <Label ID="LocationNotice" Anchor="L,B" Offset="24,4" Style="FontNormal12" WrapWidth="230" Color="Dark_Gray" Hidden="1" />
    <Grid ID="SelectorBrace" Anchor="C,C" Size="parent,parent" Texture="Controls_SelectorBrace" SliceCorner="29,29" SliceSize="2,2" SliceTextureSize="64,64" Hidden="1" ConsumeMouse="0" />
   </GridButton>
  </Instance>
  <Instance Name="SPCExpeditionMission">
   <GridButton ID="MissionButton" Size="parent,auto" Anchor="C,T">
    <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" NoStateChange="0" />
-   <Grid ID="SelectorBrace" Anchor="C,C" Size="parent,auto" AutoSizePadding="6,3" Texture="Controls_SelectorBrace" SliceCorner="29,29" SliceSize="2,2" SliceTextureSize="64,64" ConsumeMouse="0">
+   <Container ID="MissionContent" Anchor="C,C" Size="parent,auto" AutoSizePadding="6,3" ConsumeMouse="0">
     <Grid Size="55,55" Offset="7,7" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
      <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_UNITOPERATION_SPY_GAIN_SOURCES" />
     </Grid>
@@ -138,7 +140,8 @@
       </Stack>
      </Grid>
     </Stack>
-   </Grid>
+   </Container>
+   <Grid ID="SelectorBrace" Anchor="C,C" Size="parent,parent" Texture="Controls_SelectorBrace" SliceCorner="29,29" SliceSize="2,2" SliceTextureSize="64,64" Hidden="1" ConsumeMouse="0" />
   </GridButton>
  </Instance>
  <Instance Name="SPCExpeditionDistrict">

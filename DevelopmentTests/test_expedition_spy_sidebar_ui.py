@@ -35,10 +35,10 @@ class SidebarRouting(unittest.TestCase):
         lua.execute("""
           gateOpen('TRAVEL',40)
           local rows=instanceManagers.SPCExpeditionDestination.instances
-          assert(#rows==2 and not Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
+          assert(#rows==2 and not Controls.DestinationStack.hidden and Controls.NormalMissionGrid.hidden)
           local before=sent;local reads=helperCalls;rows[2].DestinationButton.click()
           assert(sent==before and nativeCalls==0 and helperCalls==reads and lastPacket.Action=='READ')
-          assert(Controls.NormalCityName.text:find('第二目标',1,true))
+          assert(Controls.NormalCityName.text:find('第二目标',1,true) and not Controls.NormalMissionGrid.hidden)
           Controls.NormalConfirmButton.click()
           assert(lastPacket.Action=='DISPATCH' and lastPacket.TargetOwner==4 and lastPacket.TargetID==10)
           assert(nativeCalls==1 and ContextPtr.hidden and properties==0 and placeCalls==0)
@@ -90,7 +90,7 @@ class SidebarRouting(unittest.TestCase):
     def test_locked_activity_rejects_captured_mission_and_confirm(self):
         lua=sidebar(arrived=True)
         lua.execute("""
-          gateOpen('TASK',41)
+          gateOpen('TASK',41);chooseTask()
           local old=instanceManagers.SPCExpeditionMission.instances[1].MissionButton.click
           local v=ExposedMembers.SPC_ExpeditionActivity;v.mode='ASLEEP';v.locked=true;v.phase='TASK_RUNNING'
           activityChanged();local before=sent
@@ -101,7 +101,7 @@ class SidebarRouting(unittest.TestCase):
     def test_pending_dispatch_cannot_be_cancelled_by_sidebar_close_or_escape(self):
         lua=sidebar()
         lua.execute("""
-          gateOpen('TRAVEL',40);deferred=true;Controls.NormalConfirmButton.click()
+          gateOpen('TRAVEL',40);chooseCity();deferred=true;Controls.NormalConfirmButton.click()
           local packet=lastPacket;local before=sent
           assert(packet.Action=='DISPATCH' and nativeCalls==0)
           Controls.NormalCloseButton.click();Controls.NormalCancelButton.click();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE))
@@ -123,7 +123,7 @@ class SidebarRouting(unittest.TestCase):
     def test_pending_task_uses_same_guard_without_native_operation(self):
         lua=sidebar(arrived=True)
         lua.execute("""
-          gateOpen('TASK',41);deferred=true;Controls.NormalConfirmButton.click()
+          gateOpen('TASK',41);chooseTask();deferred=true;Controls.NormalConfirmButton.click()
           local packet=lastPacket;local before=sent;local operations=nativeCalls
           Controls.NormalCloseButton.click();Controls.NormalCancelButton.click();assert(input(KeyEvents.KeyUp,Keys.VK_ESCAPE))
           assert(not ContextPtr.hidden and sent==before)

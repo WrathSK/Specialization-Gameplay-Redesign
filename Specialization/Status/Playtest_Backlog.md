@@ -335,3 +335,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B198 — combined dispatch repair/native layout gate
 
 [One combined flow](Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md#one-combined-minimal-native-test) supersedes the unchanged B197 retry: fresh prepared team → create ordinary Spy → city list/adjacent drawer and confirmed travel → arrival/task drawer → no-reward2T completion → P0 END. Keep pending until deployed/observed; no save/load or shared-lifecycle campaign. B197 failure remains; capacity/binding/task behavior and formal N1/N2/N3 boundaries unchanged.
+
+## B199 — explicit selection, mission locations and task-start close
+
+[B198 feedback](Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the layout direction, with confirmed missing task-start close and requested refinements; no repeat of the unchanged B198 flow. [B199 minimum delta](Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md#one-minimal-native-flow): explicit city selection/location strip/mission preview → arrival and explicit task selection → accepted start closes sidebar; existing timer continues.189 local tests PASS, native rendering/foreign visibility pending. No save/load/name/capacity campaign or formal mission expansion.

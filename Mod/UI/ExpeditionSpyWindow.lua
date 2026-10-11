@@ -7,7 +7,7 @@ local P=SPCP0;local R=SPCExpeditionSpyRead;local U=SPCExpeditionSpyUI
 local viewMode='DIAGNOSTIC';local requestedUnitID;local close
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local diagnosticPhase,diagnosticRevision,diagnosticTurn
-local targets={};local selected=1;local request;local lastNativePermit
+local targets={};local selected=1;local taskSelected=false;local request;local lastNativePermit
 local refreshHeader;local taskDisplay;local previewRow;local districtStrips={}
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
@@ -154,8 +154,11 @@ local function failureText(v)
 end
 local function renderNormal()
  local exact=normalExact();local v=current
+ -- Native SLEEP can clear selection before an immediate task failure arrives.
+ -- Keep that exact team's correlated error visible; selection still gates actions.
+ local failure=(exact or (v and v.unitID==requestedUnitID and activityView())) and failureText(v) or nil
  local o={}
- if not exact then o[1]=L('NORMAL_SELECTION_CHANGED')
+ if not exact then o[1]=failure or L('NORMAL_SELECTION_CHANGED')
  else
   o[#o+1]=L('NORMAL_TEAM',v.expectedName or L('NORMAL_NAME_UNKNOWN'))
   o[#o+1]=L('NORMAL_SOURCE',v.sourceName and Locale.Lookup(v.sourceName) or L('NORMAL_NAME_UNKNOWN'))
@@ -171,13 +174,15 @@ local function renderNormal()
  end
  local summary=table.concat(o,'[NEWLINE]')
  Controls.NormalSummary:SetText(summary);Controls.NormalCurrentSlot:SetToolTipString(summary)
- if exact and failureText(v)then setReport(failureText(v))
+ if failure then setReport(failure)
  elseif not exact then setReport(L('NORMAL_SELECTION_CHANGED'))end
  local can=normalCanAct()
- Controls.NormalConfirmButton:SetDisabled(not can or (viewMode=='TRAVEL' and not targets[selected]))
+ Controls.NormalConfirmButton:SetDisabled(not can or (viewMode=='TRAVEL' and not targets[selected])
+  or (viewMode=='TASK' and not taskSelected))
  for _,row in ipairs(normalRows)do
-  row.button:SetDisabled(not can)
-  row.brace:SetHide(row.index~=nil and row.index~=selected)
+  -- City selection lives in the header. A relocation mission is preview-only.
+  row.button:SetDisabled(not can or (row.index==nil and viewMode=='TRAVEL'))
+  row.brace:SetHide(row.index~=nil or viewMode~='TASK' or not taskSelected)
  end
  resizeSidebar()
 end
@@ -306,7 +311,7 @@ local function reply()
  if not pending then return end
  local v=ExposedMembers.SPC_ExpeditionGateReply
  if not v or v.owner~=Game.GetLocalPlayer() or v.token~=pending then return end
- local action=pendingAction;pending=nil;pendingAction=nil;ContextPtr:ClearUpdate()
+ local action,token=pendingAction,pending;pending=nil;pendingAction=nil;ContextPtr:ClearUpdate()
  -- Do not mutate the shared request reply when applying current activity facts.
  current={};for key,item in pairs(v)do current[key]=item end
  diagnosticPhase=v.phase;diagnosticRevision=v.activityRevision;diagnosticTurn=v.turn
@@ -324,7 +329,17 @@ local function reply()
   -- requires a new explicit action against the freshly selected team.
   if viewMode=='TRAVEL'then close(true);return true end
   request('READ');return true
- elseif action=='TASK' and not v.error then taskAfter=taskRead()
+ elseif action=='TASK' and not v.error then
+  taskAfter=taskRead();syncActivity()
+  local a=activityView()
+  -- Accepted TASK owns the independent activity lease, not this window. A
+  -- synchronous bridge failure can already supersede the preparing reply.
+  if viewMode=='TASK' and v.unitID==requestedUnitID and v.activityKey==token and v.bound==true
+   and (v.phase=='TASK_PREPARING' or v.phase=='TASK_RUNNING') and a and a.activityKey==token
+   and (a.phase=='TASK_PREPARING' or a.phase=='TASK_RUNNING')
+   and not v.stop and not v.activityFailure and not a.error and not a.activityFailure then
+   close(true);return true
+  end
  elseif action=='END' and not v.error then
   observing=false;travel=nil;gain=nil;taskBefore=nil;taskAfter=nil;nameStage=nil;nameReason=nil;nameObservation=nil;updateAudit();afterPublish=true
  end
@@ -332,6 +347,7 @@ local function reply()
  if v.taskStart and v.unitID then taskAfter=taskRead()end
  if action=='READ' and viewMode=='TASK' and refreshHeader then
   taskDisplay=nil;refreshHeader()
+  if not v.error and not taskSelected then setReport(L('NORMAL_SELECT_TASK'))end
  end
  render();return true
 end
@@ -356,6 +372,8 @@ request=function(action,detail)
   local expected=viewMode=='TRAVEL' and 'DISPATCH' or 'TASK'
   if action~='READ' and action~='STOP' then
    if action~=expected or not normalCanAct()then setReport(L('ACTION_UNAVAILABLE'));return end
+   if action=='DISPATCH' and not targets[selected]then setReport(L('NORMAL_SELECT_CITY'));return end
+   if action=='TASK' and not taskSelected then setReport(L('NORMAL_SELECT_TASK'));return end
   end
  end
  if (action=='TASK' or action=='DISPATCH') and activityLocked()then setReport(L('ACTIVITY_WAIT'));return end
@@ -413,6 +431,7 @@ end
 local header={BannerBase=Controls.NormalBannerBase,CityName=Controls.NormalCityName,
  TravelTime=Controls.NormalTravelTime,TravelTimeIcon=Controls.NormalTravelTimeIcon,
  TravelTimeStack=Controls.NormalTravelTimeStack,DistrictInfo=Controls.NormalDistrictInfo,
+ LocationNotice=Controls.NormalLocationNotice,
  DistrictIconStack=Controls.NormalDistrictIconStack,
  DistrictsScrollLeftButton=Controls.NormalDistrictsScrollLeftButton,
  DistrictsScrollRightButton=Controls.NormalDistrictsScrollRightButton}
@@ -422,7 +441,14 @@ local function paintDistricts(row,items)
  local icons={};local start=1;local generation=rowGeneration
  for _,item in ipairs(items or {})do
   local icon=row.iconPool:GetInstance().DistrictIcon
-  icon:SetIcon(item.icon);icon:SetToolTipString(Locale.Lookup(item.name));icons[#icons+1]=icon
+  local iconName=item.icon
+  if item.kind=='WONDER' then
+   -- Native IconManager reports missing atlas sizes with a nil/empty sheet.
+   -- This is display-only; a missing individual asset must not hide the site.
+   local ok,x,y,sheet=pcall(function()return IconManager:FindIconAtlas(iconName,32)end)
+   if not ok or type(sheet)~='string' or sheet=='' then iconName='ICON_DISTRICT_WONDER'end
+  end
+  icon:SetIcon(iconName);icon:SetToolTipString(Locale.Lookup(item.name));icons[#icons+1]=icon
  end
  local function page(delta)
   if generation~=rowGeneration or ContextPtr:IsHidden()then return end
@@ -442,6 +468,18 @@ local function paintDistricts(row,items)
 end
 local function paintCity(row,display,showTime)
  local valid=display and display.owner~=nil
+ local incomplete=valid and display.locationStatus~='READABLE'
+ row.LocationNotice:SetHide(not incomplete)
+ row.LocationNotice:SetText(incomplete and L('NORMAL_LOCATIONS_INCOMPLETE') or '')
+ row.LocationNotice:SetToolTipString(incomplete and L('NORMAL_LOCATIONS_INCOMPLETE_TT') or '')
+ row.DistrictInfo:SetToolTipString(incomplete and L('NORMAL_LOCATIONS_INCOMPLETE_TT') or '')
+ if row.DestinationButton then
+  -- Only incomplete rows need a short second line beneath the icon strip.
+  row.DestinationButton:SetSizeY(incomplete and 90 or 72)
+  row.DistrictInfo:SetOffsetY(incomplete and 24 or 6)
+  row.DistrictsScrollLeftButton:SetOffsetY(incomplete and 28 or 10)
+  row.DistrictsScrollRightButton:SetOffsetY(incomplete and 28 or 10)
+ end
  row.BannerBase:SetHide(not valid);row.DistrictInfo:SetHide(not valid)
  row.TravelTimeStack:SetHide(not valid or not showTime)
  if not valid then paintDistricts(row,{});return end
@@ -466,9 +504,11 @@ refreshHeader=function()
  end
  paintCity(header,display,viewMode=='TRAVEL')
  Controls.NormalEmptyLabel:SetHide(display~=nil and display.owner~=nil)
+ Controls.NormalEmptyLabel:SetText(viewMode=='TRAVEL' and #targets>0 and L('NORMAL_SELECT_CITY') or common('NO_TARGET'))
+ Controls.NormalMissionGrid:SetHide(viewMode=='TRAVEL' and not targets[selected])
  if previewRow then
   TruncateStringWithTooltip(previewRow.MissionLocation,135,display and display.name and Locale.Lookup(display.name) or L('NORMAL_NAME_UNKNOWN'))
-  previewRow.MissionTurns:SetText(viewMode=='TASK' and '2' or display and display.total and tostring(display.total) or '?')
+  previewRow.MissionTurns:SetText('2')
   previewRow.MissionStatsStack:CalculateSize();previewRow.DetailsStack:CalculateSize();previewRow.MissionButton:DoAutoSize()
  end
 end
@@ -482,7 +522,7 @@ local function populateSidebar()
  Controls.NormalScroll:SetHide(viewMode~='TRAVEL')
  Controls.DestinationStack:SetHide(viewMode~='TRAVEL');Controls.MissionStack:SetHide(false)
  Controls.NormalMissionGrid:SetOffsetX(viewMode=='TRAVEL' and 296 or 0)
- Controls.NormalDrawerTitle:SetText(L(viewMode=='TRAVEL' and 'NORMAL_TRAVEL_PREVIEW' or 'ACTION_TASK'))
+ Controls.NormalDrawerTitle:SetText(L(viewMode=='TRAVEL' and 'NORMAL_MISSION_PREVIEW' or 'ACTION_TASK'))
  local generation,id=rowGeneration,requestedUnitID
  if viewMode=='TRAVEL'then
   for index,target in ipairs(targets)do
@@ -502,19 +542,20 @@ local function populateSidebar()
   end
  end
  local row=taskRows:GetInstance();previewRow=row
- row.MissionIcon:SetIcon(viewMode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
- row.MissionName:SetText(L(viewMode=='TRAVEL' and 'NORMAL_TRAVEL_CARD' or 'SIDEBAR_TASK_NAME'))
- row.MissionDetails:SetText(L(viewMode=='TRAVEL' and 'NORMAL_TRAVEL_DETAILS' or 'SIDEBAR_TASK_DETAILS'))
+ row.MissionIcon:SetIcon('ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+ row.MissionName:SetText(L('SIDEBAR_TASK_NAME'))
+ row.MissionDetails:SetText(L(viewMode=='TRAVEL' and 'NORMAL_MISSION_PREVIEW_DETAILS' or 'SIDEBAR_TASK_DETAILS'))
  row.DetailsStack:CalculateSize();row.MissionButton:DoAutoSize()
  normalRows[#normalRows+1]={button=row.MissionButton,brace=row.SelectorBrace}
  row.MissionButton:RegisterCallback(Mouse.eLClick,function()
-  if generation~=rowGeneration or requestedUnitID~=id or viewMode=='DIAGNOSTIC' or not normalCanAct()then return end
-  setReport(L(viewMode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
+  if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TASK' or not normalCanAct()then return end
+  taskSelected=true;setReport('');render()
  end)
  refreshHeader()
 end
 local function refreshTargets()
- local old=targets[selected];targets=R.Targets(Game.GetLocalPlayer());selected=1
+ local old=viewMode=='DIAGNOSTIC' and targets[selected] or nil
+ targets=R.Targets(Game.GetLocalPlayer());selected=viewMode=='DIAGNOSTIC' and 1 or nil
  if old then for i,t in ipairs(targets)do if t.owner==old.owner and t.id==old.id then selected=i;break end end end
  updateTarget()
 end
@@ -530,7 +571,7 @@ close=function(force)
  clearRows();Controls.SlideAnim:Stop()
  Controls.Window:SetHide(true);ContextPtr:SetHide(true);ExposedMembers.SPC_ExpeditionGateUIOpenVersion=nil
  ContextPtr:ClearUpdate();pending=nil;pendingAction=nil;naming=nil;afterPublish=false;targets={};travel=nil;gain=nil
- requestedUnitID=nil;taskDisplay=nil;return true
+ requestedUnitID=nil;taskDisplay=nil;selected=nil;taskSelected=false;return true
 end
 local function open(mode,id)
  if not P.IsTestPlayer(Game.GetLocalPlayer()) or pending or naming then return end
@@ -540,6 +581,7 @@ local function open(mode,id)
   if not U.IsTeam(u) or u:GetID()~=id or not U.CanOpen(mode,u)then return end
  end
  viewMode=mode or 'DIAGNOSTIC';requestedUnitID=mode and id or nil;taskDisplay=nil
+ if mode then selected=nil end;taskSelected=false
  Controls.DiagnosticPanel:SetHide(mode~=nil);Controls.NormalPanel:SetHide(mode==nil)
  Controls.TitleLabel:SetText(mode and L('ACTION_'..mode) or L('TITLE'))
  if mode then
@@ -547,7 +589,7 @@ local function open(mode,id)
   Controls.NormalIntro:SetText(L(mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
   Controls.NormalConfirmLabel:SetText(L(mode=='TASK' and 'NORMAL_START_TASK' or 'NORMAL_TRAVEL_CONFIRM'))
   Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
-  Controls.NormalTargetLabel:SetHide(true);setReport('')
+  Controls.NormalTargetLabel:SetHide(true);setReport(mode=='TASK' and L('NORMAL_SELECT_TASK') or '')
   -- Do not enable a control from a previous diagnostic reply.
   current=nil;Controls.NormalConfirmButton:SetDisabled(true)
  end

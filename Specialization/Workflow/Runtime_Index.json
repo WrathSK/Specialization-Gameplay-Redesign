@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "e34d3d28c7b3ac132b1d16e01fc030043cf3315e82541637be1eb6c89c092e09",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-      "provenance": "B198 approved dispatch-comparison scope and native presentation repair;160 focused checks PASS. Native integration pending; Gate/task/capacity/binding unchanged."
+      "sha256": "7ac2e06586f6384b9b791229a81be1a62f84ed11e94173803c85d33f369122fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f4084fe4e74ef0611038b40239deae55b994152eee711fee74f55d4185196e08",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-      "provenance": "B198 approved dispatch-comparison scope and native presentation repair;160 focused checks PASS. Native integration pending; Gate/task/capacity/binding unchanged."
+      "sha256": "585c223b687d089294485b12da7de5ced0a401d4fed894414b809b0723acf7aa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "2e69abdbb0e5189df7e518debe57e3a2caaf037bc7405e41c8111c96cdee053b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-      "provenance": "B198 approved dispatch-comparison scope and native presentation repair;160 focused checks PASS. Native integration pending; Gate/task/capacity/binding unchanged."
+      "sha256": "8490b77569adc772bb6b4292a84589215e5e843b23ae564786bef0bdbf3f4f6e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,9 +1016,9 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "5b7b8e44fba0d1b511e2d698be22d23a2a387e3d7d3259d032eb12e21361d3cc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-      "provenance": "B198 approved dispatch-comparison scope and native presentation repair;160 focused checks PASS. Native integration pending; Gate/task/capacity/binding unchanged."
+      "sha256": "43f6b5e50c01364fac891d2ced718257a13cec80cdbfb46adf4347150bcdf348",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/ExpeditionSpyGate.lua": {
       "sha256": "1de6ae1977cceb872a652764a2e48d87a3808daef68fa5b3633b01ecc5b741ad",
@@ -1026,14 +1026,14 @@
       "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "63f14992df81e6827e228930974eddb31c51ddec4df7eb12214f7be27f2192d8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-      "provenance": "B198 approved dispatch-comparison scope and native presentation repair;160 focused checks PASS. Native integration pending; Gate/task/capacity/binding unchanged."
+      "sha256": "b47132e1e2d72a5446294b6c4408b66a8cbedc4887121c0e8d1859403d958261",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
-      "sha256": "dc208f85b884c0876d864d56d60de7ee4b68a6bc7c3e3471c228747fe47481ce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-      "provenance": "B198 approved dispatch-comparison scope and native presentation repair;160 focused checks PASS. Native integration pending; Gate/task/capacity/binding unchanged."
+      "sha256": "8037027bd5617ace36c8d0ef64035573519604b3fdcdef6b58d5c5937c9afc95",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
       "sha256": "505de3fa1260fb5583af8deee95f6610fe5caff5eada5c7f634b87286b7591a4",

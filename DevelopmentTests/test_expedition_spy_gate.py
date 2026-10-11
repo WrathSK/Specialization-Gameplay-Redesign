@@ -90,6 +90,10 @@ def gate(ui=False, window=False):
            if nativeFalse then return false end
           end
         """)
+        # Load the reader's real classification dependency; include is supplied
+        # by Civ VI, while this standalone Lua fixture loads files explicitly.
+        l.execute("include=include or function()end")
+        l.execute((R/'Mod/GreatWorkCatalog.lua').read_text())
         l.execute((R/'Mod/ExpeditionSpyRead.lua').read_text());l.execute('reader=SPCExpeditionSpyRead')
     if window:
         l.execute("LuaEvents.SPC_ExpeditionActivityChanged={Add=function(fn)activityChanged=fn end,Remove=function(fn)assert(activityChanged==fn);activityChanged=nil end};makeControl('TaskButton');makeControl('TaskButtonCaption');P.VERSION='P0-B-189.216';Events.SpyMissionCompleted={Add=function(fn)mission=fn end,Remove=function(fn)assert(mission==fn);mission=nil end}")
@@ -102,6 +106,7 @@ def gate(ui=False, window=False):
            function c:SetIcon(v)self.icon=v end;function c:SetDisabled(v)self.disabled=v end
            function c:SetSizeY(v)self.sizey=v end
            function c:SetOffsetX(v)self.offsetx=v end
+           function c:SetOffsetY(v)self.offsety=v end
            function c:SetToolTipString(v)self.tooltip=v end
            function c:CalculateSize()self.calculations=(self.calculations or 0)+1 end
            function c:ReprocessAnchoring()self.reanchors=(self.reanchors or 0)+1 end
@@ -253,7 +258,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'225')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'226')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

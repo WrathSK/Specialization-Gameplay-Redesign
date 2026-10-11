@@ -518,3 +518,23 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_NATIVE','The native engine did not confirm or rejected this travel request. Inspect the P0 Expedition verification report; do not repeatedly submit.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_UNKNOWN','考察团已暂停或操作失败。请查看 P0「人文考察·验证」详细报告，保留其中的具体错误。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_UNKNOWN','The team is held or the action failed. Inspect the P0 Expedition verification report for the specific error.');
+
+
+-- B199: explicit choices and mission-only relocation preview.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_CITY','请选择目的地'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_CITY','Select a destination'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_TASK','请选择任务，再确认开始。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_TASK','Select a task, then confirm to start.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW','任务预览'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW','Mission preview'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','抵达后可在该城市开始一次无奖励的2回合验证任务。这里只预览任务，派遣不会自动开始任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','After arrival, start one no-reward, two-turn test task in this city. This is a preview only; travel does not start a task.');
+
+
+-- B199: partial foreign location data is not a complete empty result.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE','地点信息未完整确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE','Location data incomplete'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE_TT','仅显示已确认的地点；其余地点暂时无法完整读取，不代表不存在。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE_TT','Only confirmed locations are shown. Other locations could not be fully read; this does not mean they are absent.');

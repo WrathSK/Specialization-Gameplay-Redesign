@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0529",
-    "runtime": "B198.225 / modinfo225",
+    "status": "S0530",
+    "runtime": "B199.226 / modinfo226",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Complete only the user-approved B198 dispatch isolation comparison and faithful native presentation repair; retain capacity, binding, target eligibility and independent task behavior.",
+  "goal": "Complete only B198 user-requested explicit selection, mission preview, accepted task-close and display-only mission-location refinements; preserve capacity/binding/travel/task semantics.",
   "implementation_authorized": true,
   "context": [
     {
@@ -279,14 +279,35 @@
       "reason": "New actual Window Lua/sidebar selection, request guards, cleanup and layout regression."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
       "kind": "full",
-      "reason": "Current approved repair, local evidence and bounded native test; prior native failure linked."
+      "reason": "Current approved UI delta, local evidence and minimal native test; prior native feedback linked."
     },
     {
       "path": "DevelopmentTests/test_expedition_spy_relocation_ui.py",
       "kind": "full",
       "reason": "B198 actual UI-create/dispatch guard and bounded display regression; read for affected implementation/validation only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_selection_ui.py",
+      "kind": "full",
+      "reason": "Direct explicit-choice/ACK/incomplete-data/icon regression; read for affected UI work."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_locations.py",
+      "kind": "full",
+      "reason": "Direct optional location reader contract and bounded/UNKNOWN/no-write tests."
+    },
+    {
+      "path": "Mod/GreatWorkCatalog.lua",
+      "kind": "full",
+      "reason": "Existing catalog reused by optional location preview; inspect Resolve and observed entry metadata for affected work only."
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Exact shared work pool used by display-only host identification.",
+      "selector": "/contracts/work_pool"
     }
   ],
   "dependencies": [
@@ -446,18 +467,18 @@
     "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
   ],
   "validation": {
-    "depth": "L1 UI/permission delta plus targeted actual-Lua native-boundary regressions; no broad gameplay/stress.",
-    "local": "160 focused tests PASS including15 new real UI-create/dispatch and display cases. Native-key package fixture separates exact2 native labels from bilingual custom SQL.",
-    "user": "B198 native UI/travel integration pending: one combined ordinary-Spy creation after preparation to relocation/task flow. B197 FAIL preserved; inherited B189/B194/B196 evidence only where unchanged."
+    "depth": "L1 scoped UI/read-only facts plus direct ACK/task regressions; no broad gameplay/stress.",
+    "local": "189 focused tests PASS:160 inherited relevant checks,19 explicit-selection/ACK/display cases,10 actual location reader tests. XML/SQL and bilingual keys checked.",
+    "user": "B198 layout direction scoped accepted; missing task-start close confirmed. B199 rendered UI/foreign location visibility pending one delta session; inherited lifecycle evidence only where unchanged."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md",
-    "source": "B198.225/modinfo225 DEVELOP_ACTIVE; source e392435f2867c1c8a9310d66b3075b285382e82c; receipt B198.225-e392435-playtest.json; 213/213 MATCH. Verified game exit before both switches; clean/pushed source, receipt-bound B197 to stable to B198 transaction and retained B197/stable recovery. No pending transaction. Native repaired relocation/sidebar integration remains pending; prior B197 failure retained.",
-    "native": "USER_GAME_TEST_REQUIRED for guard/layout integration; B197 remains FAIL.",
-    "stop": "Stop after approved repair and combined native handoff; no formal N1, repeat tasks, new missions/rewards, N2/N3/U2 or save/load campaign."
+    "report": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
+    "source": "B199.226/modinfo226 source; last verified live B198.225 until a new deployment receipt.",
+    "native": "USER_GAME_TEST_REQUIRED for changed selection/locations/autoclose; no formal mission eligibility or foreign completeness claim.",
+    "stop": "Stop after approved B199 UI handoff; no formal N1/repeat tasks/rewards/N2/N3/U2 or save/load campaign."
   }
 }

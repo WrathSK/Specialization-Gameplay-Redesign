@@ -1,12 +1,22 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B198_GUARD_LAYOUT_LOCAL_COMPLETE_NATIVE_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+State: N1_PARTIAL / B199_SELECTION_LOCATIONS_LOCAL_COMPLETE_NATIVE_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
 [B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 explicit travel/task interaction has scoped native acceptance; [new review and UI references](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) distinguish tested prototype function from the desired future sidebar layout. Broader formal UI and N2/N3 are still proposals.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 
+## B199 — explicit selection and mission location preview
+
+[Native B198 feedback](../../Status/Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) accepts the general layout and authorizes these refinements. [B199 local evidence and minimal delta flow](../../Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md) record189 focused passing tests. This is the current applied UI boundary; older sections below describe their own checkpoints, not current pending instructions.
+
+Normal opens reset city/task choice; confirmation requires a click. City outlines stay hidden, selection appears in the top banner. The relocation drawer previews the existing no-reward two-turn task instead of travel; it cannot select/start a task. An exact accepted TASK acknowledgement closes the normal window while the independent task continues; failures/HELD remain visible.
+
+District strips become compact mission-location previews: center, positively identified shared-catalog work hosts at their actual district plot, completed Wonders using individual icons with generic fallback. Work-bearing Wonders are not duplicated. Optional explicit-open reads publish only icon/name/kind and READABLE/UNKNOWN status, no work inventory; UNKNOWN shows a short incomplete-data notice and never changes dispatch permission. Native foreign completeness remains unverified. Rendering/paging/resize add no facts scans; existing close-owned snapshots/callbacks remain bounded.
+
+No formal task rewards, target expansion, repeat missions, capacity/source/persistence/activity change or ordinary Spy modification. Future foreign-information granularity and N2/N3 are still separate boundaries; these previews do not settle them. One selection/location→arrival/task-autoclose test replaces repeated shared lifecycle tests. See Status for actual deployment.
+
 ## B198 — dispatch guard and native layout repair
 
-User approved the combined repair; [implementation and160 focused checks](../../Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md) are locally complete. This is the current applied UI boundary; the proposal/history below remains traceable. Native rendered fit and repaired travel integration require the one combined session.
+User approved the combined repair; [implementation and160 focused checks](../../Status/Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md) are locally complete. Historical B198 checkpoint; the native review and B199 section above now govern current acceptance and follow-up. The proposal/history below remains traceable.
 
 The creation-time isolation comparator remains an active guard only during initial preparation. Later ordinary-Spy/capacity changes are observations, not dispatch authority; exact team/source/target/turn/native eligibility/permit checks stay intact. Readable failure categories accompany retained P0 technical detail.
 

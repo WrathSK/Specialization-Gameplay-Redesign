@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0529
-Implementation Build: source/live B198.225 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0530
+Implementation Build: source B199.226; last deployed B198.225 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B198_GUARD_LAYOUT_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B199_SELECTION_LOCATIONS_LOCAL_COMPLETE_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B198 UI direction accepted with scoped refinements; B199 locally complete,189 focused tests PASS.** [Five-image native review](Validation/Results/Specialization_B198_Expedition_UI_Native_Review.md) separates ordinary Spy references from test screens and confirms missing task-start close. [B199 result/minimal flow](Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md): explicit city/task choice, no city outline, mission preview, correlated task-start close and display-only mission locations/Wonder icons. Foreign collection visibility and rendered fit remain native pending; capacity/binding/task semantics unchanged.
+
+Source is **B199.226 / modinfo226**. Last verified live is **B198.225**, deployed source `e392435`, receipt `B198.225-e392435-playtest.json`,213/213 MATCH with B197/stable recovery retained. This source checkpoint does not itself prove B199 deployment.
+
+Next after verified deployment: one selection/location-preview → arrival/task selection/autoclose flow, no save/load campaign. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate), [B199 UI boundary](../Architecture/v2/P0_N_Expedition_UI.md#b199--explicit-selection-and-mission-location-preview). Formal training/reattachment/persistence, repeat tasks, N2/N3/U2/rewards remain held.
+
+## S0529 — B198 deployment before native UI feedback (historical)
 
 **B198 dispatch guard/native layout repair locally complete;160 focused tests PASS.** [Repair, ownership and one combined native flow](Validation/Results/Specialization_B198_Expedition_Native_Layout_Local.md): creation-time ordinary-Spy isolation retained; later historical changes no longer veto current valid dispatch. Native city banners/district rows, selected header and adjacent preview/task drawer replace B197's rejected simplified layout. Own capacity/binding/travel/task semantics unchanged. Native integration remains pending; B197 failure retained.
 
