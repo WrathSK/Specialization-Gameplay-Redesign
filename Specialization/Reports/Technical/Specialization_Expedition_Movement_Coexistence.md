@@ -2,6 +2,56 @@
 
 Date: 2026-10-10. **B194 task activity gate USER_GAME_TEST_PASS for the submitted run.** [Native review](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md): T88 running after observed-Sleep acknowledgement→T90 completion1/1 and released activity, source/cap retained; no native mission/source reward/completion event shown. This closes the earlier requested minimal flow, not formal persistence or all input surfaces. OPERATION dwell time is not measured; retained startup AWAKE is historical. B196 locally implements the approved [two-action/input-lock UI](../../Architecture/v2/P0_N_Expedition_UI.md#next-ui-batch--explicit-dispatch-and-task-actions), with [145 focused checks](../../Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md); [B196 native review](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) now records scoped UI/input acceptance and oral Settler-backing PASS; reference images3/4 specify a future sidebar presentation, not a new mission path. Activity/Gate/capacity/binding are unchanged. Prior investigations below retain their original evidence scope.
 
+## B196 follow-up — native relocation and mission presentation
+
+**STATIC_CONFIRMED / investigation only.** User requested investigation of reference images3/4 after accepting B196, and explicitly suggested reusing the Investigation Agent's work. The existing local `Specialization/Reports/Technical/Investigations/UI/UI_Framework_Reuse_Investigation.md` (Stable, non-authoritative; common components, Spy section and reuse recommendation) was consulted without modification or publication. Its source baseline is older; the relevant installed chooser/registration/helper paths and current B196 adapters were checked directly. This is not an implementation authorization, new build, or additional native PASS.
+
+### How the panel is built
+
+The relocation list and mission selection are two modes of the same **EspionageChooser** UI context. XML defines the presentation; Lua supplies entries, selection and callbacks. The installed Base/Expansion chain exposes this structure; screenshot resemblance alone does not establish the exact currently resolved native/BES/HD file.
+
+| Presentation | Confirmed installed structure | Reuse implication |
+|---|---|---|
+| Docked shell | Shared `ChooserAnim` style: left/top anchored, 295 UI-unit width, slide from x=-330 to0 at y=27; native fill/gradient/header. Base InGame mounts it under TopLevelHUD. | Reuse native styling in our existing independent context; no need for a new gameplay service or replacement of ordinary Spy screens. Width is a source reference, not a promise that all Chinese text will fit unchanged. |
+| Relocation list | Clipped vertical scroll plus bottom-growing stack. Pooled 72-unit city rows contain colored city name/banner, travel time and district icons. Clicking a city selects/previews; confirmation submits. | Render our existing allowed targets as rows. Retain owner+city ID/reference checks; names remain display text. Native city enumeration is not our eligibility authority. |
+| Mission list | Separate scroll/stack; auto-height cards with icon, name, wrapped description, selector brace and location/time/probability strip. | Use the card layout for our own implemented tasks; omit native probability, Gain Sources boost and espionage rewards. A visual card does not require a native UnitOperation. |
+| Resize and long labels | Animation helper uses screen height minus30 and reacts to ScreenResize. Native city labels truncate with tooltips; mission text recalculates stack and auto-size. | Good existing patterns; our eventual panel still needs a small native check for Chinese wrapping, clipping and HUD overlap at the user's scale. |
+| Repeated controls | Separate InstanceManagers reset/reuse city and task instances. | Reuse instance pooling. It is not list virtualization or evidence of large-map performance; only populate visible/open views and clear obsolete row callbacks. |
+
+### Where presentation becomes native behavior
+
+The native chooser derives its mode from Spy interface modes and selected-unit identity. It enumerates native UnitOperations, queries CanStartOperation and native mission statistics, and opens `EspionageChooser_ShowMissionBriefing` on card selection. `EspionagePopup.OnAccept` then requests the chosen native operation. Native counterspy also directly requests its operation. Merely changing the name/icon or hiding success percentage would leave these execution paths intact.
+
+Travel is a separate case: B196 already intentionally submits native `SPY_TRAVEL_NEW_CITY` through its verified, permitted `ExpeditionSpyRead.SubmitTravel` path. Keep that adapter; do not bypass our name/source/capacity checks by wiring the native chooser's raw confirmation callback directly. Our mission button continues to request the existing independent `TASK` action, using the B194 activity/timer path. No Gain Sources mission or extra reward handler is needed to obtain the visual style.
+
+**Important close boundary:** `AnimSidePanelSupport` defaults Escape to `Hide`, and its optional close callback runs after hiding has begun. A future adapter must route Escape/header/close-all through our existing guarded close first, then animate only when permitted. Otherwise a cosmetic change could bypass B196's pending DISPATCH/TASK acknowledgement guard. Presentation closure must not cancel the independent task. Register and remove any new resize/close listeners as one context-owned pair; no new per-turn/per-city polling.
+
+### Smallest future implementation boundary (proposal)
+
+1. Retain B196's explicit **派遣到新城市 / 任务** actions, exact-unit guards, quiet selection and task-controlled empty action bar.
+2. Replace only normal presentation with a left-docked shell, city-row instances and task-card instances. Keep the P0 diagnostic view separate and retain its existing entry.
+3. Supply entries/availability from the current target reader and transition-published activity view. Reuse guarded DISPATCH/TASK requests and pending feedback. Do not make native preview data authoritative or gather the full diagnostic report to populate a card.
+4. Show only the current no-reward test task until later gameplay is authorized. Preserve one-shot completion and disabled post-completion actions. Repeat tasks, broader destinations, formal training/persistence/reattachment and N2/N3 remain outside this UI change.
+5. Expected files: existing `Mod/UI/ExpeditionSpyWindow.lua/.xml`, necessary localization and targeted UI checks. A uniquely named shared instance file is optional only if necessary; no global EspionageChooser replacement, business-state/schema change or new UI framework is proposed. Existing native suppression wrappers should remain intact unless a demonstrated routing dependency requires a narrow adjustment.
+6. Later validation should focus on the actual UI delta: row selection/confirmation, task card, guarded close, stale selection, task lock, ordinary Spy delegation and native layout/scrolling. Inherit unchanged binding/timer/save-load evidence; do not repeat a full lifecycle campaign. No test is requested or run by this investigation.
+
+### Direct source coordinates and remaining limits
+
+`CIV_ASSETS` means the installed game's `Civ6.app/Contents/Assets`; `HD_CORE` and `BES` mean the installed HD and Better Espionage Screen packages already identified in the local investigation. These coordinates are not public repository links or newly introduced configuration paths.
+
+| Source | Evidence read |
+|---|---|
+| `CIV_ASSETS/Base/Assets/UI/Choosers/EspionageChooser.xml:50–81,85–163` | Scroll panels, destination rows and auto-sized mission instances. |
+| `CIV_ASSETS/Base/Assets/UI/Civ6_Styles.xml:1861–1874`; `UI/InGame.xml:76–85`; `UI/AnimSidePanelSupport.lua:7–118` (same Base/Assets prefix) | Native shell, HUD mounting, resize/animation and Escape behavior. |
+| `CIV_ASSETS/Base/Assets/UI/Choosers/EspionageChooser.lua:18–41,127–240,343–379,394–463,596–714,738–883` | Modes, pools, population, selected city, native submission and event/hotload dependencies. |
+| `CIV_ASSETS/DLC/Expansion1/UI/Replacements/EspionageChooser_Expansion1.lua:9–42` and corresponding Expansion2 file | Include base chooser; override destination filtering rather than introducing independent layout. |
+| `CIV_ASSETS/Base/Assets/UI/Popups/EspionagePopup.lua:350–361,472–493` | Briefing resolves operation/unit; acceptance submits native operation; separate popup queue. |
+| `BES/BetterEspionageScreen.modinfo:13–22`; its `Base/Assets/UI/Choosers/EspionageChooser.xml:50–104` and `.lua:142–173` | Installed candidate imports same-name chooser/support; adds filters and side-by-side destination/mission views. |
+| `HD_CORE/DL.modinfo:946` | Same-name EspionageSupport is also imported. This and BES explain why a plain include is not a guaranteed pristine Base file. Final runtime provider was not sampled. |
+| Repository `Mod/SpecializationP0.modinfo:14–18`; `Mod/UI/ExpeditionSpyChooser.lua`; `Mod/ExpeditionSpyUI.lua`; `Mod/ExpeditionSpyRead.lua:13–58,267–281`; `Mod/UI/ExpeditionSpyWindow.lua:103–141,354–471` | Existing independent context, ordinary-Spy delegation/custom suppression, target/permit path, current normal view, pending-close and owned subscriptions. |
+
+**Conclusion:** reuse is technically well supported at the XML/style/instance and small helper level; no new native mission primitive is needed for the requested visual direction. Wholesale native chooser/popup controller reuse would reintroduce native missions, eligibility, auto-open and reload state. Our existing independent context is the smaller boundary. Exact live UI-provider precedence, the custom adapted layout and all-scale compatibility remain unverified; these do not require re-investigating the accepted activity gate. Existing Investigation files remain local and unpublished. No Design, Mod, tests, external game files or runtime were changed.
+
 ## B190 native failure basis
 
 [Two-image review](../../Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md) records ACTIVITY_SLEEP_CONSTANTS_UNAVAILABLE before eligibility/submission. The specific missing symbol remains UNKNOWN; original name/source/cap1 match was retained. B191 repairs the lookup; this does not retroactively prove B190 native activity or change B189 scoped evidence.

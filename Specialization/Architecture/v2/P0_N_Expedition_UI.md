@@ -29,6 +29,8 @@ User feedback after B196: images3/4 in the [native review](../../Status/Validati
 - Image5's two disabled post-completion actions are expected under the one-shot prototype. This feedback does not authorize repeatable tasks, redispatch after completion, formal persistence/reattachment/training, N2/N3, or this next UI implementation. P0 diagnostics/END remain separate.
 - Settler backing is accepted by explicit user confirmation without screenshot. No additional picture or save/load test is needed solely to duplicate that acceptance.
 
+[Bounded native UI investigation](../../Reports/Technical/Specialization_Expedition_Movement_Coexistence.md#b196-follow-up--native-relocation-and-mission-presentation) reuses the Investigation Agent's existing UI findings and confirms the shared chooser's XML rows/cards, native styles and animation helper. Proposed implementation boundary: adapt normal presentation in our independent context; retain existing target/permit/TASK adapters and P0 diagnostics. Do not include the native mission controller or copy its automatic Spy-mode routing. Route Escape/close through our pending-request guard before hiding; preserve context-owned listener cleanup. Installed BES/HD can supply same-name UI helpers, so source structure is confirmed but effective live provider and custom layout remain unverified. This is investigation/planning only; no implementation or additional test is authorized here.
+
 This narrows the future travel/task presentation direction within the existing plan. The larger HUD/national overview/archives/network proposals below remain future proposals; do not implement them merely to match the two reference screens.
 
 ## 推荐入口与整体结构
