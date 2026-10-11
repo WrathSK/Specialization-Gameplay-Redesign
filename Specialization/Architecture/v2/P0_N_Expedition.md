@@ -1,25 +1,25 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B200_UI_NATIVE_DEFERRED_NEXT_PLAN_AWAITING_APPROVAL / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B201_PERSISTENCE_LOCAL_COMPLETE_COMBINED_NATIVE_PENDING / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
 
 ## Current slice — N1 travel and protection gate
 
-**B200 UI native check deferred by the user to the next combined test.**209 local checks remain valid; deferment is not native PASS. [B200 result](../../Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md) and [B199 acceptance/layout feedback](../../Status/Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md) remain the evidence basis. Source B200.227 is pushed; last verified live remains B199.226. No runtime switch occurred in this planning turn; automatic approval review blocked deployment preflight. Status/receipt govern deployment.
+**B201.228 approved persistent-team/source slice locally complete;383 targeted tests PASS.** [Current result and combined native flow](../../Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md). The bounded saved record owns identity/source/travel/task intent; native unit/travel/activity facts are fresh. Confirmed writes precede side effects, ambiguous persistence keeps cap reservation, and restored activity cannot run/release from stale samples. B200 selection/card changes are included, with native appearance still deferred into this batch's one travel/cold-load test. Source/live and deployment authorization are recorded in Status/receipt, not inferred from this plan.
 
-The [next proposed slice](#next-proposed-slice--persistent-team-and-source-recovery) below is **PLANNED_NOT_AUTHORIZED**. It addresses the remaining session-only identity before formal rewards. No standalone B200 test now; fold its selection/card check into that future slice's one genuinely new native persistence test. Capacity/source/name/activity/one-shot behavior is unchanged today. Formal training/reattachment/repeat missions/N2/N3/U2/rewards still require their separate scoped authorization.
+User approved implementation and deployment and confirmed game exit. Local completion is not native serialization/travel PASS. The minimum persistence contract below is implemented; one combined travelling-save/cold-load → arrival/task/UI → END session remains. Normal training, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards are outside this authorization.
 
 ## Next proposed slice — persistent team and source recovery
 
-State: **PLANNED_NOT_AUTHORIZED**. This is a technical sequencing proposal, not a Design change or authorization to implement B201. It reuses the proved Spy=1/name-pool/travel/independent-activity route and the B200 sidebar; no new native mission or probability investigation.
+State: **IMPLEMENTED_LOCALLY / USER_GAME_TEST_REQUIRED**. User explicitly approved this bounded B201 persistence slice and combined deployment. The following implementation boundary remains the reviewed contract; no Design change, native mission or probability investigation.
 
 ### Why this comes next
 
-Current `Mod/ExpeditionSpyGate.lua` owns a local `state={}` and a session-generated team key; its startup deliberately refuses to adopt a surviving activity lease. It stores no durable team/source/travel transaction. `Mod/Data/ExpeditionSpyGate.sql` still has `CanTrain=0` and placeholder cost1; creation is through P0. The native name pool is deliberately restricted to `CIVILIZATION_SPC_TEST`. The no-reward task is fixed2T and one-shot. These are current prototype boundaries, not completed formal N1 features. Adding rewarded missions before reliable load reconstruction would put permanent city results on a session-only team identity.
+Pre-B201 baseline: `Mod/ExpeditionSpyGate.lua` owns a local `state={}` and a session-generated team key; its startup deliberately refuses to adopt a surviving activity lease. It stores no durable team/source/travel transaction. `Mod/Data/ExpeditionSpyGate.sql` still has `CanTrain=0` and placeholder cost1; creation is through P0. The native name pool is deliberately restricted to `CIVILIZATION_SPC_TEST`. The no-reward task is fixed2T and one-shot. These were the pre-persistence prototype boundaries; normal training, test-civilization restriction and one-shot2T remain current, not completed formal N1 features. Adding rewarded missions before reliable load reconstruction would put permanent city results on a session-only team identity.
 
-### Minimum implementation boundary, after approval
+### Approved minimum implementation boundary
 
 1. Add one bounded player-owned team record for this existing cap1 scope: durable logical team identity, verified native identity evidence, source city reference and confirmed travel/task transition state. City-owned cultural history is a separate later responsibility. Reuse current city identity/reference contracts; no new cityKey, general entity store or AI history listener. Select the smallest existing persistence primitive after checking its exact read/write/failure contract; do not extend city-history schema just to store a player-owned unit.
 2. Persist and read back critical transitions before dependent native actions can run. A failed or ambiguous write keeps a bounded reservation/hold; it does not free capacity or permit a duplicate team. Keep native operation permits, callback tokens, diagnostic snapshots and cached activity observations transient. Store only the minimum recoverable task intent/ownership evidence, then re-observe native activity on load before any sleep/release action.
@@ -37,7 +37,7 @@ Trigger only on team creation, explicit travel/task transition, relevant source/
 
 Use targeted L3 checks because persistence is newly introduced: actual-module round trips for each relevant phase; travel UnitID replacement; duplicate notifications; missing/corrupt/third-value readback; failed writes; UNKNOWN/native off-map ambiguity; source ACTIVE decline versus confirmed Owner loss; unrelated unit/city isolation; fresh activity ownership before release. Inherit existing ordinary-Spy isolation, no-reward timer and UI tests where unchanged. No broad gameplay regression or repeated naming/harmless-coexistence investigation.
 
-One planned native session, after implementation and verified deployment: fresh P0 **① 创建Spy验证团** at a valid source → selecting it at home opens **派遣到新城市** with no destination chosen → **确认派遣** → save and cold restart while travelling → verify the same source and cap reservation, then arrival → select the team to open **任务** without a task choice → select **无奖励验证任务** and check B200 card/header fit → **开始任务**, observe task lock and completion → **结束并移除验证团**.
+One combined native session, after verified deployment: fresh P0 **① 创建Spy验证团** at a valid source → wait for confirmed preparation and close its diagnostic window → selecting it at home opens **派遣到新城市** with no destination chosen → **确认派遣** → save and cold restart while travelling → verify the same source and cap reservation, close the diagnostic window, then arrival → select the team to open **任务** without a task choice → select **无奖励验证任务** and check B200 card/header fit → **开始任务**, observe task lock and completion → **结束并移除验证团**.
 
 The save boundary specifically tests the new durable mapping while the native Spy is off-map; prior session-prototype save evidence cannot answer it. Do not add a second cold-load ritual by default. Running-task restoration is covered locally first; add a native boundary only if implementation exposes a distinct native ownership uncertainty that this sequence cannot cover, explaining that difference before requesting it. If native identity cannot be proved after load, stop this path and report; do not add name-only or sole-candidate adoption.
 
@@ -48,7 +48,7 @@ The save boundary specifically tests the new durable mapping while the native Sp
 - N2: three real mission categories, unique city-owned cultural history and local Tourism.
 - N3: current Network projection and scoped old Culture writer retirement.
 
-B200 visual verification does not block preparing this plan. Implementation still awaits user approval; no permanent record, source code or runtime is changed by the plan.
+B201 implements only the approved minimum persistence slice. B200 visual verification remains part of the combined native session; future scopes above do not gain authorization from this completion. The local result describes the actual durable ARM/recovery protocol and reviewed files.
 
 
 ## 三种状态与已定数值
@@ -145,6 +145,6 @@ N1按实际交互/单位状态风险选L2或涉及持久绑定时L3；N2/N3按L3
 
 N1回退撤销原型；N2回退不得删城市历史/成功凭据，先说明schema和存档副本边界；N3退出新owned效果并保留N2成果，按已知独立网络包恢复，不清账本恢复旧系统。
 
-真实门槛仍为远程非敌对/战争路径、外国事实、训练来源/cap时序、重挂靠与保护、专属持久事务、整城Tourism及新网络投影/精确旧writer切换。没有新的Gameplay决定请求；未涵盖的毁城等边界只在涉及时单独提出。早期B182 Spy0停止点已被后续Spy1原型取代；当前停止点及待批准的持久化切片见本页CURRENT。正式N1续接及N2/N3仍需后续独立范围确认。旧B165待验描述不是当前活动门禁，见Status。
+真实门槛仍为远程非敌对/战争路径、外国事实、训练来源/cap时序、重挂靠与保护、专属持久事务、整城Tourism及新网络投影/精确旧writer切换。没有新的Gameplay决定请求；未涵盖的毁城等边界只在涉及时单独提出。早期B182 Spy0停止点已被后续Spy1原型取代；当前停止点及已实施、待实机的持久化切片见本页Current slice。正式N1续接及N2/N3仍需后续独立范围确认。旧B165待验描述不是当前活动门禁，见Status。
 
 来源：[Culture D0049](../../Design/Content/Culture_D0049.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[共同Network](../../Design/Network.md)、[既有网络合同](Batch_B_Shared_Network.md)、[退出合同](Batch_C1_Discount_Lifecycle.md)、[E2当前保存](P0_E2_Plan.md#current-slice--recovery-and-action-routing)。历史技术线索见[D0032 spikes](D0032_Technical_Spikes.md)，本页更新其文化归属/参数语义，不提升原生证据。

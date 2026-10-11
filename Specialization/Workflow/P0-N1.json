@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0533",
-    "runtime": "B200.227 / modinfo227",
+    "status": "S0534",
+    "runtime": "B201.228 / modinfo228",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate",
-  "goal": "Complete only the approved B200 UI delta: content-measured mission cards/header spacing, remove idle instruction and open relocation/task from exact idle-team selection by current city ownership. No automatic city/task choice or behavior expansion.",
+  "goal": "Complete the approved B201 bounded player-owned Expedition identity/source/travel/task persistence, confirmed pre-action readback/reservation and fresh load/activity recovery. Include deferred B200 selection/card delta, without normal training, repeat missions or rewards.",
   "implementation_authorized": true,
   "context": [
     {
@@ -32,6 +32,12 @@
       "kind": "section",
       "selector": "## Current slice — N1 travel and protection gate",
       "reason": "Complete current gate, native stop and N1 continuation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
+      "kind": "section",
+      "selector": "## Next proposed slice — persistent team and source recovery",
+      "reason": "Complete approved B201 minimum implementation/ownership/failure contract, native gate and held future scope; previous proposal is now locally implemented."
     },
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
@@ -279,9 +285,9 @@
       "reason": "New actual Window Lua/sidebar selection, request guards, cleanup and layout regression."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
       "kind": "full",
-      "reason": "Current B200 applied UI delta, local evidence and minimal native test; previous acceptance linked."
+      "reason": "Current B201 applied ownership/readback/recovery contract, local evidence and one combined native flow; inherited B200 evidence linked."
     },
     {
       "path": "DevelopmentTests/test_expedition_spy_relocation_ui.py",
@@ -323,13 +329,33 @@
       "path": "DevelopmentTests/test_expedition_spy_card_layout.py",
       "kind": "full",
       "reason": "Content-only sizing, repeated growth/shrink, header/footer geometry and error-preserving idle-copy regression."
+    },
+    {
+      "path": "Mod/ExpeditionSpyStore.lua",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_store.py",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_persistence.py",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_recovery_activity.py",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
     }
   ],
   "dependencies": [
-    "EffectiveFacts creation qualification + exact NetworkInput.Reference source; own cap1 includes old fixtures/off-map session reservation. Observed native name is only this session continuity candidate; source remains separate, no Property/ledger writes.",
-    "UI-only exact readiness and visible/off-map name observation; Gameplay independently checks exact unit/source/raw name/pool and current-turn UI sample before acceptance. Native travel/idle read paths unchanged; no invented Gameplay off-map API.",
-    "Native Expansion chooser/popup and installed HD UnitPanel are included, exact-type callbacks intercepted. Ordinary paths stay native; no external source/DB/listener changes.",
-    "Gameplay transition view → independent exact-unit UI activity read/write/readback → separate acknowledgement channel; task starts only after ASLEEP, releases only attempted owned sleep. No persistent reconstruction or diagnostic hot-path scan."
+    "Exact EffectiveFacts creation qualification and NetworkInput.Reference source; native pool/name plus owner/type/endpoint evidence. One bounded saved player record reserves cap1 across off-map/load and confirmed END; no new cityKey or city-history schema.",
+    "ExpeditionSpyStore copied schema/generation/revision and exact single-write readback; failed/corrupt/unknown outcomes quarantine capacity. CityProgressionStore is unchanged; its reviewed Property primitive is reused through P.SetProperty.",
+    "Native engine owns units/travel/activity; logical Gate state survives load. Transient native permits/callback tokens/diagnostics never authorize replay. Independent UI re-observes activity and persists ARMED acknowledgement before any native SLEEP.",
+    "Existing native/HD chooser/popup/UnitPanel exact-type isolation and B200 presentation-only selection remain. Exact logical task/team keys correlate accepted task replies; task timer requires observed SLEEP; only fresh owned sleep may release."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -476,24 +502,30 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md"
       ]
+    },
+    {
+      "trigger": "Review unchanged inherited B200 selection/card evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md"
+      ]
     }
   ],
   "non_scope": [
-    "No formal N1 completeness, N2/N3/U2, reward/carrier, new city history/schema, accepted Design change, GC, main or external Mod edits."
+    "No formal N1 completeness, normal training, reattachment/repeat missions, broader civilization support, N2/N3/U2/rewards, new city history/schema, accepted Design change, general Store rewrite, GC, main or external Mod edits. Guarded authorized deployment is separate from source validation."
   ],
   "validation": {
-    "depth": "L1 UI/event-routing delta with directly related task/ACK/package regression; no broad gameplay/stress.",
-    "local": "209 focused tests PASS:189 relevant B199 cases +14 selection-routing +6 card-layout. Actual Lua, package/XML/bilingual SQL checked. Native fonts/event ordering are not simulated proof.",
-    "user": "B200 UI explicitly deferred by user into future combined functional test; not native PASS. Proposed persistent team/source slice awaits authorization and adds one genuinely new travel/load boundary."
+    "depth": "L3 targeted persistence/action ownership/recovery counterexamples plus directly affected B200 UI/ACK/package regression; no broad gameplay/stress.",
+    "local": "383 distinct focused tests PASS. Actual Gate/Store/UI bridge independent contexts, strict readback/schema, unit replacement, source/UNKNOWN/fault isolation, durable ARM and recovery/cleanup; native serialization not simulated proof.",
+    "user": "One combined travelling-save/cold-load → arrival/no-reward task/UI → END session. New durable off-map identity risk justifies this single load; unchanged harness lifecycle inherited."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-    "source": "B200.227/modinfo227 locally complete; no deployment in this batch. Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B199 flow scoped user-accepted with card-layout defect; working source B200.227 locally complete but not deployed in this batch. No new external runtime inspection; retained recovery unchanged.",
-    "native": "USER_GAME_TEST_REQUIRED for B200 selection/event/layout delta; no formal mission or foreign inventory completeness claim.",
-    "stop": "Planning only: await persistent team/source slice approval. No standalone B200 test now, no deployment performed, no formal N1/rewards/N2/N3/U2 implementation authorized."
+    "report": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+    "source": "B201.228/modinfo228 locally complete; Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B201.228 source locally complete, includes deferred B200 UI; combined deployment explicitly authorized, pending verified transaction.",
+    "native": "USER_GAME_TEST_REQUIRED for new saved travel/identity and activity reconstruction plus B200 rendered selection/card delta. No formal mission/reward claim.",
+    "stop": "Complete authorized guarded deployment and request one combined native session, then stop. Training/reattachment/repeat tasks/N2/N3/U2 remain held."
   }
 }

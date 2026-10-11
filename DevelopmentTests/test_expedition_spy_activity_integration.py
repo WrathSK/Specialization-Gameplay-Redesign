@@ -33,7 +33,7 @@ def integrated(window=False):
       GameInfo.UnitOperations={UNITOPERATION_SLEEP={Hash=70}}
       GameInfo.UnitCommands={UNITCOMMAND_WAKE={Hash=80}}
       UnitOperationTypes.SLEEP=nil;UnitCommandTypes.WAKE=nil;OperationResultsTypes=nil
-      sleepCalls=0;wakeCalls=0;activityPackets={};delayedPackets={}
+      sleepCalls=0;wakeCalls=0;activityPackets={};armPackets={};allActivityPackets={};delayedPackets={}
       UnitManager.GetActivityType=function(u)return u.activity or 0 end
       local canOperation=UnitManager.CanStartOperation;local requestOperation=UnitManager.RequestOperation
       UnitManager.CanStartOperation=function(u,op,target,visible,results)
@@ -62,8 +62,10 @@ def integrated(window=False):
        assert(pid==2 and op==PlayerOperations.EXECUTE_SCRIPT)
        sent=(sent or 0)+1;lastPacket=packet
        if packet.Action=='ACTIVITY' then
-        activityPackets[#activityPackets+1]=packet
-        if deferActivity then delayedPackets[#delayedPackets+1]=packet;return end
+        allActivityPackets[#allActivityPackets+1]=packet
+        if packet.Result=='ARMED' then armPackets[#armPackets+1]=packet; if deferArm then delayedPackets[#delayedPackets+1]=packet;return end
+        else activityPackets[#activityPackets+1]=packet end
+        if deferActivity and packet.Result~='ARMED' then delayedPackets[#delayedPackets+1]=packet;return end
        end
        handler(pid,packet)
        -- Publish before the caller returns, exercising synchronous/reentrant ordering.
@@ -214,6 +216,110 @@ class ActivityIntegration(unittest.TestCase):
           assert(ExposedMembers.SPC_ExpeditionGateReply.token==token and not update)
           Controls.CloseButton.click();currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
           assert(wakeCalls==1 and view().phase=='TASK_COMPLETE' and view().mode=='NONE')
+        """)
+
+
+class PersistentActivityIntegration(unittest.TestCase):
+    def restart_bridge(self,l):
+        l.execute("activityShutdown();SPCExpeditionSpyGate.Start(P,shared)")
+        l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
+        l.execute('activityInit()')
+
+    def test_durable_arm_precedes_native_sleep_and_cold_running_keeps_due(self):
+        l=integrated();l.execute("""
+          local nativeSleep=UnitManager.RequestOperation
+          UnitManager.RequestOperation=function(u,op,...)
+           if op==70 then local saved=gameProperties.SPC_EXPEDITION_TEAM_P2
+            assert(saved.state.activityMode=='ARMED' and saved.state.activityOwned and not saved.state.sleepConfirmed)
+           end
+           return nativeSleep(u,op,...)
+          end
+          beginTask();assert(#armPackets==1 and allActivityPackets[1].Result=='ARMED')
+          assert(view().taskDue==85 and view().mode=='ASLEEP' and sleepCalls==1)
+        """)
+        self.restart_bridge(l)
+        l.execute("""
+          assert(view().mode=='ASLEEP' and view().taskDue==85 and sleepCalls==1 and wakeCalls==0)
+          assert(allActivityPackets[#allActivityPackets].Result=='RECOVERED')
+          currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='TASK_COMPLETE' and view().mode=='NONE' and wakeCalls==1 and sleepCalls==1)
+          assert(gameProperties.SPC_EXPEDITION_TEAM_P2.state.taskCompletions==1)
+        """)
+
+    def test_unreadable_cold_recovery_reaches_terminal_block_without_guessed_wake(self):
+        l=integrated();l.execute("""
+          beginTask();UnitManager.GetActivityType=function()error('ACTIVITY_UNREADABLE')end
+        """)
+        self.restart_bridge(l)
+        l.execute("""
+          assert(view().phase=='HELD' and view().mode=='BLOCKED' and not view().recovering)
+          assert(view().taskCompletions==0 and not view().taskCompleted and sleepCalls==1 and wakeCalls==0)
+          assert(units[41].activity==1 and not activityUpdate)
+          local packets=#allActivityPackets
+          UnitManager.GetActivityType=function(u)return u.activity or 0 end
+          for i=1,20 do Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin()end
+          assert(#allActivityPackets==packets and wakeCalls==0 and not activityUpdate)
+        """)
+
+    def test_stale_cold_recovery_consumes_reply_then_releases_exact_owned_sleep_once(self):
+        l=integrated();l.execute("beginTask();deferActivity=true")
+        self.restart_bridge(l)
+        l.execute("""
+          assert(view().mode=='RECOVER' and #delayedPackets==1 and delayedPackets[1].Result=='RECOVERED')
+          currentTurn=84;deferActivity=false;deliver(delayedPackets[1])
+          assert(view().phase=='HELD' and view().mode=='NONE' and not view().recovering)
+          assert(view().taskCompletions==0 and not view().taskCompleted and view().taskDue==85)
+          assert(sleepCalls==1 and wakeCalls==1 and units[41].activity==0 and not activityUpdate)
+          deliver(delayedPackets[1]);Events.GameCoreEventPublishComplete()
+          assert(wakeCalls==1 and view().mode=='NONE' and not view().recovering)
+        """)
+
+    def test_source_loss_before_cold_recovery_ack_releases_only_fresh_owned_sleep(self):
+        l=integrated();l.execute("beginTask();activityShutdown();SPCExpeditionSpyGate.Start(P,shared);city.token=nil;ownTurn(2)")
+        l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
+        l.execute("""
+          activityInit();assert(view().phase=='HELD' and view().mode=='NONE' and not view().recovering)
+          assert(view().taskCompletions==0 and not view().taskCompleted and units[41].activity==0)
+          assert(sleepCalls==1 and wakeCalls==1 and not activityUpdate)
+        """)
+
+    def test_changed_exact_unit_during_cold_recovery_never_wakes_a_substitute(self):
+        for change in ("units[41].name='substitute'", "units[41].owner=3", "units[41].type_=103", "units[41].x=16"):
+            with self.subTest(change=change):
+                l=integrated();l.execute("beginTask();"+change)
+                self.restart_bridge(l)
+                l.execute("""
+                  assert(view().phase=='HELD' and view().mode=='BLOCKED' and not view().recovering)
+                  assert(sleepCalls==1 and wakeCalls==0 and not view().taskCompleted and view().taskCompletions==0)
+                  for i=1,10 do Events.GameCoreEventPublishComplete()end
+                  assert(wakeCalls==0 and not activityUpdate)
+                """)
+
+    def test_failed_arm_store_readback_never_requests_sleep(self):
+        l=integrated();l.execute("""
+          local write=P.SetProperty
+          P.SetProperty=function(o,k,v)if v.state.activityMode=='ARMED' then return end;return write(o,k,v)end
+          beginTask();assert(view().phase=='HELD' and view().mode=='BLOCKED' and sleepCalls==0 and wakeCalls==0)
+          assert(gameProperties.SPC_EXPEDITION_TEAM_P2.state.activityMode=='SLEEP')
+        """)
+
+    def test_delayed_arm_ack_cannot_submit_native_action(self):
+        l=integrated();l.execute("""
+          deferArm=true;beginTask();assert(#delayedPackets==1 and delayedPackets[1].Result=='ARMED' and sleepCalls==0)
+          assert(gameProperties.SPC_EXPEDITION_TEAM_P2.state.activityMode=='SLEEP')
+          deferArm=false;deliver(delayedPackets[1]);assert(sleepCalls==1 and view().taskDue==85)
+        """)
+
+    def test_load_pending_operation_observes_sleep_without_resubmitting(self):
+        l=integrated();l.execute("""
+          delaySleep=true;beginTask();units[41].activity=3
+          assert(sleepCalls==1 and view().mode=='ARMED' and not view().taskStart)
+        """)
+        self.restart_bridge(l)
+        l.execute("""
+          assert(view().mode=='RECOVER' and sleepCalls==1 and activityUpdate)
+          units[41].activity=1;Events.UnitActivityChanged(2,41)
+          assert(view().mode=='ASLEEP' and view().taskDue==85 and sleepCalls==1 and not activityUpdate)
         """)
 
 

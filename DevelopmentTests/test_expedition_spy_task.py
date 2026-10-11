@@ -24,7 +24,9 @@ def gate(ui=False,window=False):
        handler(2,p)
        local r=ExposedMembers.SPC_ExpeditionGateReply
        if r.phase=='TASK_PREPARING' and not r.error then
-        handler(2,{Action='ACTIVITY',Token=token..':sleep',UnitID=41,ActivityKey=token,
+        handler(2,{Action='ACTIVITY',Token=token..':arm',UnitID=41,ActivityKey=ExposedMembers.SPC_ExpeditionActivity.activityKey,
+         Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1})
+        handler(2,{Action='ACTIVITY',Token=token..':sleep',UnitID=41,ActivityKey=ExposedMembers.SPC_ExpeditionActivity.activityKey,
          Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
         return ExposedMembers.SPC_ExpeditionActivityReply
        end
@@ -53,7 +55,7 @@ class Continuity(unittest.TestCase):
     def test_unbound_name_lost_team_can_be_explicitly_cleaned_not_adopted(self):
         l=gate();l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,false,false);currentTurn=85;ownTurn(2);local r=req('READ','c');assert(not r.bound and r.unitID==41);req('END','e',41);assert(destroys==1 and req('READ','f').count==0)")
     def test_cold_session_never_claims_a_surviving_name(self):
-        l=gate();l.execute("req('CREATE','a');SPCExpeditionSpyGate.Start(P,shared);local r=req('READ','new');assert(r.unbound and not r.bound and r.unitID==40);req('CREATE','new2');assert(initCalls==1);req('END','e',40);assert(destroys==1)")
+        l=gate();l.execute("req('CREATE','a');gameProperties={};SPCExpeditionSpyGate.Start(P,shared);local r=req('READ','new');assert(r.unbound and not r.bound and r.unitID==40);req('CREATE','new2');assert(initCalls==1);req('END','e',40);assert(destroys==1)")
     def test_strict_id_guard_rejects_ui_dispatch_or_end_through_alias(self):
         l=gate(ui=True);l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,true,true);assert(not reader.SubmitTravel(2,40,target,'stale'));req('END','e',40);assert(destroys==0 and units[41])")
 
@@ -83,7 +85,7 @@ class Timer(unittest.TestCase):
     def test_source_and_team_only_no_per_turn_player_scan_after_arrival(self):
         l=self.ready();l.execute("task('t');local us=Players[2]:GetUnits();local original=us.Members;us.Members=function()error('unexpected all-unit scan')end;currentTurn=84;ownTurn(2);currentTurn=85;ownTurn(2);us.Members=original;local r=req('READ','after');assert(shared.RequestDepth==0 and r.phase=='TASK_COMPLETE' and r.taskCompletions==1)")
     def test_window_closed_timer_and_source_diagnostics(self):
-        l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();Controls.ArmButton.click();arrival(41,true,false);Controls.RefreshButton.click();Controls.TaskButton.click();assert(lastPacket.Action=='TASK');local key=lastPacket.Token;handler(2,{Action='ACTIVITY',Token=key..':sleep',UnitID=41,ActivityKey=key,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1});Controls.CloseButton.click();currentTurn=85;ownTurn(2);gateOpen();assert(Controls.Report.text:find('PHASE_TASK_COMPLETE') and Controls.Report.text:find('TASK_ISOLATION:0,0,-1,0',1,true));Controls.EndButton.click();publish();assert(destroys==1 and Controls.Report.text:find('PHASE_ENDED'))")
+        l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();Controls.ArmButton.click();arrival(41,true,false);Controls.RefreshButton.click();Controls.TaskButton.click();assert(lastPacket.Action=='TASK');local key=ExposedMembers.SPC_ExpeditionActivity.activityKey;handler(2,{Action='ACTIVITY',Token='arm',UnitID=41,ActivityKey=key,Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1});handler(2,{Action='ACTIVITY',Token=key..':sleep',UnitID=41,ActivityKey=key,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1});Controls.CloseButton.click();currentTurn=85;ownTurn(2);gateOpen();assert(Controls.Report.text:find('PHASE_TASK_COMPLETE') and Controls.Report.text:find('TASK_ISOLATION:0,0,-1,0',1,true));Controls.EndButton.click();publish();assert(destroys==1 and Controls.Report.text:find('PHASE_ENDED'))")
     def test_task_button_requires_verified_arrival_and_idle_native_state(self):
         l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();local n=sent;Controls.TaskButton.click();assert(sent==n);Controls.ArmButton.click();arrival(41,true,false);Controls.RefreshButton.click();units[41].operation=9;n=sent;Controls.TaskButton.click();assert(sent==n and Controls.Report.text:find('TASK_NATIVE_NOT_IDLE'))")
 

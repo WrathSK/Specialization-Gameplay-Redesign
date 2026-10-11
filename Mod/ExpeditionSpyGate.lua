@@ -1,15 +1,55 @@
--- B191: session task owns native sleep only after explicit UI readback.
--- Source/capacity remain our own record; no city/player ledger, mission or reward.
+-- B201: bounded player-owned identity/intent, exact Property readback.
+-- Native unit/travel/activity are fresh facts; no native mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
- local serial=0;local state={};local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
+ local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
+ local Store=SPCExpeditionSpyStore
+ local fields={'owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
+ local function savedState()
+  local out={};for _,k in ipairs(fields)do out[k]=state[k]end
+  if state.target then out.target={};for _,k in ipairs({'name','owner','id','x','y'})do out.target[k]=state.target[k]end end
+  return out
+ end
+ local function equal(a,b)
+  if type(a)~=type(b)then return false end
+  if type(a)~='table'then return a==b end
+  for k,v in pairs(a)do if not equal(v,b[k])then return false end end
+  for k in pairs(b)do if a[k]==nil then return false end end;return true
+ end
+ local function load(pid)
+  if loaded then return end
+  loaded=true
+  local err;envelope,err=Store.Read(pid)
+  if err then
+   storeBlocked=true;state={owner=pid,phase='HELD',stop=err,activityMode='BLOCKED'};return
+  end
+  if envelope and envelope.state then
+   state={};for k,v in pairs(envelope.state)do
+    if type(v)=='table'then state[k]={};for a,b in pairs(v)do state[k][a]=b end else state[k]=v end
+   end;restored=true
+   recovering=state.activityMode=='SLEEP' or state.activityMode=='ARMED' or state.activityMode=='ASLEEP' or state.activityMode=='RELEASE'
+   if state.phase=='CREATING' or state.phase=='ENDING' then
+    state.phase='HELD';state.stop='EXPEDITION_NATIVE_TRANSACTION_UNCONFIRMED'
+   end
+  end
+ end
+ local function save(newGeneration)
+  assert(not storeBlocked,'EXPEDITION_STORE_UNAVAILABLE')
+  local nextState=savedState()
+  if not newGeneration and envelope and equal(nextState,envelope.state)then return end
+  local candidate={schema=1,owner=state.owner,generation=(envelope and envelope.generation or 0)+(newGeneration and 1 or 0),revision=(envelope and envelope.revision or 0)+1,state=nextState}
+  if candidate.generation==0 then candidate.generation=1 end
+  local confirmed,err=Store.Write(P,state.owner,envelope,candidate)
+  if not confirmed then storeBlocked=true;recovering=false;state.activityMode='BLOCKED';error(err or 'EXPEDITION_STORE_WRITE_UNCONFIRMED',0)end
+  envelope=confirmed
+ end
  -- Scalar transition mirror, independent of explicit diagnostic snapshots.
  local revision=0;local published={}
  local function publishActivity()
   local v={owner=state.owner,unitID=state.unitID,expectedName=state.expectedName,x=state.x,y=state.y,
-   teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=state.activityMode or 'NONE',
+   teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,sleepConfirmed=state.sleepConfirmed==true,
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
    taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,error=state.stop,activityFailure=state.activityFailure}
   v.locked=v.mode~='NONE'
@@ -87,9 +127,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
   print('[SPC][B191][N1_SPY_ERROR] step='..at..' code='..code..' detail='..raw)
  end
  local function hold(err)
-  releaseActivity()
+  -- Recovery is consumed by a terminal hold; release still re-reads the exact
+  -- native identity and owned activity independently before any Wake request.
+  recovering=false
+  if storeBlocked then state.activityMode='BLOCKED' else releaseActivity()end
   state.phase='HELD';state.stop=reason(err);state.errorStep=step;state.errorDetail=detail(err)
   logFailure(state.stop,state.errorStep,state.errorDetail)
+  if state.owner and not storeBlocked then
+   local ok,err=pcall(save);if not ok then state.stop=reason(err);state.activityMode='BLOCKED' end
+  end
  end
  -- Compare raw engine names only; displayed/localized city text is never city authority.
  local function nameStatus(u)
@@ -190,7 +236,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
      assert(named(current),'TEAM_NAME_UNAVAILABLE')
      assert(current:GetX()==state.target.x and current:GetY()==state.target.y,'TARGET_CHANGED')
      state.unitID=id;state.x=current:GetX();state.y=current:GetY();state.phase='ARRIVED'
-     return
+     save();return
     end
    end
    assert(Game.GetCurrentGameTurn()<=state.dueTurn+1,'NATIVE_IDENTITY_UNCONFIRMED')
@@ -199,7 +245,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local u=tracked()
   assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
   if state.target then target(state.owner,state.target)end
-  if state.phase=='TASK_RUNNING' then
+  if state.phase=='TASK_RUNNING' and not recovering then
    -- GetSpyOperation is established in UI, not assumed present in Gameplay.
    -- If exposed here, also reject a native mission; otherwise the no-reward
    -- fixture relies on the checked start sample + exact-type UI isolation.
@@ -208,13 +254,14 @@ function SPCExpeditionSpyGate.Start(P,shared)
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
     releaseActivity()
     state.taskCompletions=1 -- One fixture task per team; completion has no effects.
+    save()
     print('[SPC][B191][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
    end
   end
  end
  local function snapshot(pid)
   local units=list(pid)
-  if state.owner==pid then local ok,err=pcall(observe,false,units);if not ok then hold(err)end end
+  if state.owner==pid and not storeBlocked then local ok,err=pcall(observe,false,units);if not ok then hold(err)end end
   local v={owner=pid,count=#units,turn=Game.GetCurrentGameTurn(),phase=state.phase or 'IDLE'}
   if #units==1 then
    local u=units[1];v.unitID=u:GetID();v.x=u:GetX();v.y=u:GetY();v.legacy=row(u).UnitType~=M.KIND
@@ -239,8 +286,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
    end
    v.expectedX=state.x;v.expectedY=state.y
   end
+  v.persistence=storeBlocked and 'UNAVAILABLE' or restored and 'RESTORED' or envelope and 'CONFIRMED' or 'ABSENT'
+  v.recovering=recovering;v.generation=envelope and envelope.generation;v.storeRevision=envelope and envelope.revision
   v.observedCount=v.count
-  if state.owner==pid and state.unitID and state.phase~='ENDED' and not v.sameUnit then
+  if state.owner==pid and state.phase~='ENDED' and (storeBlocked or not v.sameUnit) then
    v.count=math.max(1,v.count);v.reservedCapacity=true
   end
   -- Explicit snapshots only: bounded diagnostic scalars, no history or native writes.
@@ -277,13 +326,14 @@ function SPCExpeditionSpyGate.Start(P,shared)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
   assert(P.IsTestPlayer(pid),'SUPPORTED_PLAYER_REQUIRED')
   assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='NAME' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='ACTIVITY' or p.Action=='END','BAD_ACTION')
-  step=p.Action
+  load(pid);step=p.Action
   if p.Action=='READ' then return snapshot(pid)end
+  assert(not storeBlocked,'EXPEDITION_STORE_UNAVAILABLE')
   if p.Action=='CREATE' then
    assert(state.phase~='CREATING' and state.phase~='HELD' and (not state.unitID or state.phase=='ENDED'),'SPAWN_UNCERTAIN_NO_RETRY')
    assert(#list(pid)==0,'EXISTING_TEST_TEAM_COUNTS')
    local c=Players[pid]:GetCities():FindID(p.CityID)
-   assert(c and c:GetOwner()==pid,'OWN_CITY_REQUIRED')
+   assert(c and c:GetOwner()==pid and c:GetID()==p.CityID,'OWN_CITY_REQUIRED')
    local f=shared.EffectiveFacts.Read(pid,c)
    assert(f.specialization=='CULTURE' and f.active==4 and not f.investmentPending,'CULTURE_ACTIVE_IV_REQUIRED')
    assert(type(f.token)=='string' and #f.token>0 and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')==f.token,'SOURCE_REFERENCE_UNKNOWN')
@@ -292,19 +342,33 @@ function SPCExpeditionSpyGate.Start(P,shared)
     and (r.CanRetreatWhenCaptured==false or r.CanRetreatWhenCaptured==0)
     and r.PromotionClass=='PROMOTION_CLASS_SPY','TEST_DATABASE_NOT_READY')
    local _,poolCount,civ=namePool(pid)
-   local before=occupants(c:GetX(),c:GetY())
-   mutating=true;state={owner=pid,phase='CREATING',sourceCity=c:GetID(),sourceName=c:GetName(),sourceRef=SPCNetworkInput.Reference(c),x=c:GetX(),y=c:GetY(),namePoolCount=poolCount,namePoolCivilization=civ}
-   local u=UnitManager.InitUnit(pid,M.KIND,c:GetX(),c:GetY())
+   local x,y=c:GetX(),c:GetY();assert(int(x) and int(y),'SOURCE_REFERENCE_UNKNOWN')
+   local function currentSource(expectedRef)
+    local current=Players[pid]:GetCities():FindID(p.CityID)
+    assert(current and current:GetOwner()==pid and current:GetID()==p.CityID
+     and current:GetX()==x and current:GetY()==y
+     and current:GetProperty('SPC_DEV_BINDING_B013_TOKEN')==f.token,'SOURCE_REFERENCE_CHANGED')
+    local ref=SPCNetworkInput.Reference(current)
+    assert(type(ref)=='string' and #ref>0 and #ref<=2048,'SOURCE_REFERENCE_UNKNOWN')
+    assert(not expectedRef or ref==expectedRef,'SOURCE_REFERENCE_CHANGED')
+    return current,ref
+   end
+   local before=occupants(x,y)
+   local ref;c,ref=currentSource() -- Occupancy/native readers may change the source.
+   mutating=true;state={owner=pid,phase='CREATING',sourceCity=c:GetID(),sourceName=c:GetName(),sourceRef=ref,x=x,y=y,namePoolCount=poolCount,namePoolCivilization=civ}
+   save(true) -- Reserve before InitUnit; ambiguous outcome never retries or frees cap.
+   currentSource(ref) -- Readback callbacks cannot invalidate the source then spawn.
+   local u=UnitManager.InitUnit(pid,M.KIND,x,y)
    assert(u and u:GetOwner()==pid,'SPAWN_UNCONFIRMED')
    state.unitID=u:GetID();state.createdID=state.unitID;owned(pid,state.unitID)
    assert(type(u.GetName)=='function','TEAM_NAME_API_UNAVAILABLE')
-   serial=serial+1
-   state.teamKey=string.format('E%X-%X-%X',pid,state.createdID,serial)
-   -- Logical session key is internal; it is never written into a name/Property.
+   state.teamKey=string.format('E%X-%X-%X',pid,state.createdID,envelope.generation)
+   -- Monotonic saved generation survives END and native UnitID reuse.
    state.nameVerified=false
    assert(#list(pid)==1,'SPAWN_COUNT_UNCONFIRMED')
    assert(u:GetX()==state.x and u:GetY()==state.y,'EXACT_PLACEMENT_REJECTED')
    unchangedOthers(before);source();state.phase='NAMING'
+   save();restored=false -- Only a confirmed fresh native creation resets this diagnostic.
   elseif p.Action=='NAME' then
    mutating=true;acceptName(pid,p)
   elseif p.Action=='DISPATCH' then
@@ -320,6 +384,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    state.nativeAllowed=type(p.NativeAllowed)=='boolean' and p.NativeAllowed or false
    state.nativeStatus=p.NativeStatus=='KNOWN' and 'KNOWN' or 'UNKNOWN'
    mutating=true;state.phase='TRAVELLING';state.permit=p.Token
+   save() -- Durable intent precedes the one-shot UI native permit; never replay on load.
   elseif p.Action=='TASK' then
    assert(state.owner==pid and state.unitID==p.UnitID,'BOUND_TEAM_REQUIRED')
    observe();assert(state.phase=='ARRIVED' and not state.taskStart,'TASK_NOT_AVAILABLE')
@@ -327,21 +392,52 @@ function SPCExpeditionSpyGate.Start(P,shared)
    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1,'NATIVE_OPERATION_UNKNOWN')
    if type(u.GetSpyOperation)=='function' then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
    -- Do not advance the independent timer before native sleep is observed.
-   mutating=true;state.activityKey=p.Token;state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
+   mutating=true;state.activityKey=state.teamKey..':task1';state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
    state.taskCompletions=0;state.phase='TASK_PREPARING'
   elseif p.Action=='ACTIVITY' then
    assert(state.owner==pid and state.unitID==p.UnitID and state.activityKey==p.ActivityKey,'ACTIVITY_REFERENCE_CHANGED')
    assert(type(p.Owned)=='boolean','ACTIVITY_OWNERSHIP_UNKNOWN')
-   assert(p.Result=='ASLEEP' or p.Result=='RELEASED' or p.Result=='FAILED','ACTIVITY_RESULT_UNKNOWN')
-   if p.Result=='ASLEEP' then
-    assert(state.phase=='TASK_PREPARING' and state.activityMode=='SLEEP','ACTIVITY_NOT_PENDING')
+   assert(p.Result=='ARMED' or p.Result=='RECOVERED' or p.Result=='ASLEEP' or p.Result=='RELEASED' or p.Result=='FAILED','ACTIVITY_RESULT_UNKNOWN')
+   if p.Result=='RECOVERED' then
+    assert(recovering,'ACTIVITY_NOT_PENDING')
+    mutating=true;recovering=false -- Matching one-shot reply is consumed even if stale/invalid.
+    assert(p.SampleTurn==Game.GetCurrentGameTurn(),'STALE_ACTIVITY_SAMPLE')
+    local u=tracked();assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
+    assert(p.NativeOperation==-1 and type(p.Sleeping)=='boolean' and type(p.Awake)=='boolean','ACTIVITY_RECOVERY_UNKNOWN')
+    assert(p.Sleeping~=p.Awake,'ACTIVITY_RECOVERY_UNKNOWN')
+    if state.activityMode=='SLEEP' and not state.activityOwned then
+     -- No request could run before durable ARMED. Pre-existing Sleep remains unowned.
+     if p.Sleeping then
+      source();target(pid,state.target);state.sleepConfirmed=true;state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
+      state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
+     end
+    elseif state.activityMode=='ARMED' then
+     assert(p.Sleeping,'ACTIVITY_SLEEP_OUTCOME_UNKNOWN')
+     source();target(pid,state.target);state.sleepConfirmed=true;state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
+     state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
+    elseif state.activityMode=='ASLEEP' then
+     assert(p.Sleeping and state.sleepConfirmed,'ACTIVITY_UNEXPECTED_WAKE')
+     source();target(pid,state.target)
+    elseif state.activityMode=='RELEASE' then
+     if p.Sleeping then assert(state.activityOwned,'ACTIVITY_UNOWNED_SLEEP');state.sleepConfirmed=true
+     else state.activityMode='NONE';state.activityOwned=false;state.activityPending=false end
+    else error('ACTIVITY_RECOVERY_UNKNOWN')end
+   elseif p.Result=='ARMED' then
+    assert(not recovering and state.phase=='TASK_PREPARING' and state.activityMode=='SLEEP','ACTIVITY_NOT_PENDING')
+    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1 and p.Owned and p.Awake==true and p.Sleeping==false,'STALE_ACTIVITY_SAMPLE')
+    observe();tracked();target(pid,state.target)
+    mutating=true;state.activityOwned=true;state.activityMode='ARMED'
+    save() -- Readback grants one native Sleep attempt; saved intent is not completion.
+   elseif p.Result=='ASLEEP' then
+    assert(not recovering and state.phase=='TASK_PREPARING' and (state.activityMode=='SLEEP' or state.activityMode=='ARMED'),'ACTIVITY_NOT_PENDING')
+    assert(not p.Owned or state.activityMode=='ARMED','ACTIVITY_OWNERSHIP_UNCONFIRMED')
     -- Retain attempted sleep ownership before source/target recheck can fail.
     -- The bridge independently guards exact unit/name/position before any release.
     mutating=true;state.activityOwned=p.Owned
     assert(p.SampleTurn==Game.GetCurrentGameTurn(),'STALE_ACTIVITY_SAMPLE')
     observe();tracked();target(pid,state.target)
     assert(p.NativeOperation==-1,'NATIVE_MISSION_ACTIVE_STOP')
-    state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
+    state.sleepConfirmed=true;state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
     state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
    elseif p.Result=='RELEASED' then
     assert(state.activityMode=='RELEASE','ACTIVITY_NOT_PENDING')
@@ -352,8 +448,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
     assert(p.NativeOperation==-1,'NATIVE_MISSION_ACTIVE_STOP')
     mutating=true;state.activityMode='NONE';state.activityOwned=false;state.activityPending=false
    else
-    assert(state.activityMode=='SLEEP' or state.activityMode=='ASLEEP' or state.activityMode=='RELEASE','ACTIVITY_NOT_PENDING')
-    mutating=true
+    assert(state.activityMode=='SLEEP' or state.activityMode=='ARMED' or state.activityMode=='ASLEEP' or state.activityMode=='RELEASE','ACTIVITY_NOT_PENDING')
+    mutating=true;recovering=false
     if state.activityMode=='RELEASE' then state.activityMode='BLOCKED'
     else state.activityOwned=state.activityOwned or p.Owned;state.activityPending=false end
     state.activityFailure=tostring(p.Detail or ''):match('(ACTIVITY_[A-Z0-9_]+)') or 'ACTIVITY_FAILURE_UNKNOWN'
@@ -366,16 +462,19 @@ function SPCExpeditionSpyGate.Start(P,shared)
    -- Explicit cleanup of the exact currently owned prototype, including an unbound loaded one.
    local u=owned(pid,p.UnitID,true)
    assert(#list(pid)==1,'SPAWN_COUNT_UNCONFIRMED')
-   mutating=true;state.phase='ENDING'
+   mutating=true;state.owner=pid;state.unitID=p.UnitID;state.phase='ENDING';recovering=false
+   save() -- Native destruction follows durable reservation.
    Players[pid]:GetUnits():Destroy(u)
    assert(not Players[pid]:GetUnits():FindID(p.UnitID) and #list(pid)==0,'END_UNCONFIRMED')
-   state={phase='ENDED'}
+   state={owner=pid,phase='ENDED'}
   end
+  if mutating then save()end
   local v=snapshot(pid)
   if p.Action=='DISPATCH' and state.phase=='TRAVELLING' then v.nativePermit=state.permit end
   return v
  end
- publishActivity() -- Fresh Gameplay context cannot adopt a surviving session activity lease.
+ for pid in pairs(Players)do if P.IsTestPlayer(pid)then load(pid);break end end
+ publishActivity() -- Restored activity is observation-only until a fresh UI sample.
  local data={};shared.ExpeditionGate=data
  function data.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token==0 or #p.Token>100 then return end
@@ -408,6 +507,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)
+  if P.IsTestPlayer(pid)then load(pid)end
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
   step='TURN';local ok,err=pcall(function()
@@ -417,6 +517,9 @@ function SPCExpeditionSpyGate.Start(P,shared)
   mutating=false;if not ok then hold(err)end
   publishActivity()
  end
+ if Events.LoadScreenClose then Events.LoadScreenClose.Add(function()
+  if state.owner then data.Turn(state.owner)end
+ end)end
  Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
   if not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then

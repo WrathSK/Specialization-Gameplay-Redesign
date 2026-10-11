@@ -25,9 +25,9 @@ class ActivityPending(unittest.TestCase):
          units[41].activity=ActivityTypes.ACTIVITY_AWAKE
          expectedSleepHash=-41338758;GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=expectedSleepHash
          publish('SLEEP')
-         assert(sleepCalls==1 and sleepChecks==2 and #packets==0 and update and failure()==nil)
+         assert(sleepCalls==1 and sleepChecks==3 and #packets==0 and update and failure()==nil)
          assert(diag().activity=='1797587246 (number)' and units[41].activity==1225574625)
-         update(.25);assert(#packets==0 and sleepCalls==1 and sleepChecks==2)
+         update(.25);assert(#packets==0 and sleepCalls==1 and sleepChecks==3)
          units[41].activity=ActivityTypes.ACTIVITY_SLEEP;Events.UnitActivityChanged(2,41)
          assert(#packets==1 and packets[1].Result=='ASLEEP' and packets[1].Owned and update==nil)
          assert(sleepCalls==1 and wakeCalls==0 and failure()==nil)
@@ -39,11 +39,11 @@ class ActivityPending(unittest.TestCase):
          publish('SLEEP');local s=diag()
          for i=1,30 do Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin();Events.UnitActivityChanged(2,41)end
          update(9.75)
-         assert(#packets==0 and sleepCalls==1 and sleepChecks==2 and wakeCalls==0 and failure()==nil)
+         assert(#packets==0 and sleepCalls==1 and sleepChecks==3 and wakeCalls==0 and failure()==nil)
          assert(diag()==s and readinessReads==1 and endTurnReads==1)
          update(.25)
          assert(#packets==1 and packets[1].Detail:find('ACTIVITY_SLEEP_TIMEOUT',1,true))
-         assert(failure().phase=='PENDING_TIMEOUT' and update==nil and sleepCalls==1 and sleepChecks==2)
+         assert(failure().phase=='PENDING_TIMEOUT' and update==nil and sleepCalls==1 and sleepChecks==3)
         """)
 
     def test_persistent_operation_timeout_is_bounded_and_retains_original_observation(self):
@@ -55,7 +55,7 @@ class ActivityPending(unittest.TestCase):
          assert(d.activity=='3 (number)' and d.equalsOperation=='true (boolean)')
          assert(d.requested=='true (boolean)' and d.sleepAttempted=='true (boolean)')
          assert(d.turn==81 and d.sampleTurn==81 and activityReads==before+1)
-         assert(sleepChecks==2 and sleepCalls==1 and wakeChecks==0 and wakeCalls==0)
+         assert(sleepChecks==3 and sleepCalls==1 and wakeChecks==0 and wakeCalls==0)
          assert(#packets==1 and packets[1].Result=='FAILED' and packets[1].Owned and update==nil)
          assert(diag().activity=='0 (number)' and diag().turn==81)
          for k,v in pairs(d)do assert(type(v)~='table' and type(v)~='function' and type(v)~='userdata')end
@@ -73,7 +73,7 @@ class ActivityPending(unittest.TestCase):
          turn=82;units[41].activity=8;update(.11)
          assert(activityReads==reads and failure().activity=='3 (number)')
          assert(failure().turn==82 and failure().sampleTurn==81)
-         assert(failure().reason=='ACTIVITY_SLEEP_TIMEOUT' and sleepChecks==2 and sleepCalls==1 and wakeCalls==0)
+         assert(failure().reason=='ACTIVITY_SLEEP_TIMEOUT' and sleepChecks==3 and sleepCalls==1 and wakeCalls==0)
         """)
         self.assertAlmostEqual(number(l.eval('failure().elapsed')),10.01)
         self.assertAlmostEqual(number(l.eval('failure().sampledElapsed')),9.9)
@@ -86,7 +86,7 @@ class ActivityPending(unittest.TestCase):
          assert(#packets==2 and packets[1].Detail:find('ACTIVITY_SLEEP_TIMEOUT',1,true))
          assert(packets[2].Detail:find('ACTIVITY_RELEASE_STATE_UNKNOWN',1,true))
          assert(ExposedMembers.SPC_ExpeditionActivity.mode=='BLOCKED' and update==nil)
-         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==2)
+         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==3)
         """)
 
     def test_timeout_formatter_failure_does_not_prevent_original_failed_ack(self):
@@ -95,7 +95,7 @@ class ActivityPending(unittest.TestCase):
          publish('SLEEP');local original=tostring
          tostring=function(v)if v==false then error('TIMEOUT_DIAGNOSTIC_FORMAT_FAILURE')end;return original(v)end
          update(10)
-         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==2 and #packets==1 and update==nil)
+         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==3 and #packets==1 and update==nil)
          assert(packets[1].Result=='FAILED' and packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_TIMEOUT',1,true))
          assert(diag().activity=='0 (number)')
         """)
@@ -105,7 +105,7 @@ class ActivityPending(unittest.TestCase):
         l.execute("""
          publish('SLEEP');update(9.75);units[41].activity=1;update(.25)
          assert(#packets==1 and packets[1].Result=='ASLEEP' and failure()==nil and update==nil)
-         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==2)
+         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==3)
         """)
 
     def test_preexisting_operation_never_adopts_or_requests_sleep(self):
@@ -131,7 +131,7 @@ class ActivityPending(unittest.TestCase):
         for change in changes:
             with self.subTest(change=change):
                 l=pending_bridge(no_ack=True)
-                l.execute("publish('SLEEP');assert(update and #packets==0);"+change+";update(.25);assert(update==nil and #packets==1 and packets[1].Result=='FAILED' and packets[1].Owned and failure()==nil and sleepCalls==1 and wakeCalls==0 and sleepChecks==2)")
+                l.execute("publish('SLEEP');assert(update and #packets==0);"+change+";update(.25);assert(update==nil and #packets==1 and packets[1].Result=='FAILED' and packets[1].Owned and failure()==nil and sleepCalls==1 and wakeCalls==0 and sleepChecks==3)")
 
     def test_pending_cancel_cannot_wake_unknown_operation_or_restart_after_late_sleep(self):
         l=pending_bridge()

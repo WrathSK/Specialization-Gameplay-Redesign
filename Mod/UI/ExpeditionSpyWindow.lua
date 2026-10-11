@@ -109,7 +109,7 @@ end
 local function syncActivity()
  local v=activityView();if not v then return end
  current.phase=v.phase or current.phase
- current.activityMode=v.mode;current.activityOwned=v.owned
+ current.activityMode=v.mode;current.activityOwned=v.owned;current.recovering=v.recovering
  current.activityError=v.error;current.activityFailure=v.activityFailure
  current.taskStart=v.taskStart;current.taskDue=v.taskDue;current.taskCompleted=v.taskCompleted;current.taskCompletions=v.taskCompletions
  if v.phase=='HELD' then current.bound=false;current.unbound=true end
@@ -173,6 +173,7 @@ local function renderNormal()
   o[#o+1]=L('NORMAL_TEAM',v.expectedName or L('NORMAL_NAME_UNKNOWN'))
   o[#o+1]=L('NORMAL_SOURCE',v.sourceName and Locale.Lookup(v.sourceName) or L('NORMAL_NAME_UNKNOWN'))
   o[#o+1]=L('NORMAL_PHASE_'..v.phase)
+  if v.recovering then o[#o+1]=L('ACTIVITY_RECOVER')end
   if v.targetName then o[#o+1]=L('NORMAL_DESTINATION',Locale.Lookup(v.targetName))end
   if v.phase=='TASK_RUNNING' and v.taskDue then
    o[#o+1]=L('NORMAL_REMAINING',math.max(0,v.taskDue-Game.GetCurrentGameTurn()))
@@ -201,6 +202,7 @@ local function render()
  if viewMode~='DIAGNOSTIC'then renderNormal();return end
  local v=current;if not v then setReport(L('INITIAL'));return end
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
+ if v.persistence then o[#o+1]=L('PERSISTENCE',L('PERSISTENCE_'..v.persistence),v.generation or '—')end
  local activityFailure=v.activityFailure or v.activityError
  if activityFailure then o[#o+1]=activityFailureText(activityFailure)end
  appendFailureDiagnostic(o)
@@ -329,6 +331,8 @@ local function reply()
  if action=='CREATE' and not v.error then
   observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;afterPublish=false
   prepareName(v);return true
+ elseif action=='READ' and v.phase=='NAMING' and not v.error then
+  prepareName(v);return true
  elseif action=='DISPATCH' and not v.error and v.nativePermit and v.nativePermit~=lastNativePermit then
   lastNativePermit=v.nativePermit -- Consume before a native request, including exceptions.
   local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY}
@@ -344,8 +348,8 @@ local function reply()
   local a=activityView()
   -- Accepted TASK owns the independent activity lease, not this window. A
   -- synchronous bridge failure can already supersede the preparing reply.
-  if viewMode=='TASK' and v.unitID==requestedUnitID and v.activityKey==token and v.bound==true
-   and (v.phase=='TASK_PREPARING' or v.phase=='TASK_RUNNING') and a and a.activityKey==token
+  if viewMode=='TASK' and v.unitID==requestedUnitID and type(v.activityKey)=='string' and v.bound==true
+   and (v.phase=='TASK_PREPARING' or v.phase=='TASK_RUNNING') and a and a.activityKey==v.activityKey and a.teamKey==v.teamKey
    and (a.phase=='TASK_PREPARING' or a.phase=='TASK_RUNNING')
    and not v.stop and not v.activityFailure and not a.error and not a.activityFailure then
    close(true);return true

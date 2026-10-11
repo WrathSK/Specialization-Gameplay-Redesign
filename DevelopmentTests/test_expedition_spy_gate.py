@@ -11,6 +11,17 @@ R=Path(__file__).resolve().parents[1]
 def gate(ui=False, window=False):
     l=previous.Window().runtime(False) if window else previous.Reader().runtime() if ui else previous.Gate().runtime()
     l.execute("""
+      gameProperties={};storeWrites=0
+      function Game:GetProperty(k)if storeReadError then error('read failed')end;return gameProperties[k]end
+      function Game:SetProperty(k,v)
+       storeWrites=storeWrites+1
+       if storeThrowBefore then error('write failed')end
+       if not storeNoop then gameProperties[k]=v end
+       if storeThird then gameProperties[k]={schema=1,owner=2,generation=99,revision=99,state={owner=2,phase='HELD'}}end
+       if storeMalformed then gameProperties[k]='bad' end
+       if storeThrowAfter then error('write returned error')end
+      end
+      P.SetProperty=function(o,k,v)return o:SetProperty(k,v)end
       kind='UNIT_SPC_EXPEDITION_SPY';info[100].UnitType=kind;info[100].Spy=true
       info[100].PromotionClass='PROMOTION_CLASS_SPY';info[100].Name='LOC_TEST_DEFAULT';info[kind]=info[100]
       info[103]={UnitType='UNIT_SPY',Spy=true,Hash=103};info.UNIT_SPY=info[103]
@@ -66,6 +77,7 @@ def gate(ui=False, window=False):
        local p={NativeAllowed=true};for k,v in pairs(overrides or {})do p[k]=v end;return dispatch(token,p)
       end
     """)
+    l.execute((R/'Mod/ExpeditionSpyStore.lua').read_text())
     l.execute((R/'Mod/ExpeditionSpyGate.lua').read_text());l.execute("SPCExpeditionSpyGate.Start(P,shared);local h=handler;handler=function(pid,p)if p.Action=='NAME' then nameConfirmCalls=nameConfirmCalls+1 end;return h(pid,p)end")
     if ui or window:
         l.execute("""
@@ -259,7 +271,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Tag from TypeTags where Type=?',(k,)).fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'227')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'228')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -268,12 +280,13 @@ class Package(unittest.TestCase):
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text'] for e in art.findall('m_RootCollections/Element/Element/m_Name')];self.assertEqual(names.count('UNIT_SPC_EXPEDITION_SPY'),1);self.assertEqual(len(names),8)
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         lua=(R/'Mod/UI/ExpeditionSpyWindow.lua').read_text();xml=(R/'Mod/UI/ExpeditionSpyWindow.xml').read_text()
-        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_','ACTIVITY_CAUSE_','DIAGNOSTIC_','FAILURE_DIAGNOSTIC_PHASE_','NORMAL_PHASE_','NORMAL_','ACTION_'}
+        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_','ACTIVITY_CAUSE_','DIAGNOSTIC_','FAILURE_DIAGNOSTIC_PHASE_','NORMAL_PHASE_','NORMAL_','ACTION_','PERSISTENCE_'}
         keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','NAMING','CREATED','TRAVELLING','ARRIVED','TASK_PREPARING','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
         keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED','SLOT_COST_ACCEPTED']}
         keys|={f'IDENTITY_{p}' for p in ['MATCH','ABSENT','MISMATCH','UNREADABLE','NO_UNIT','NO_SESSION','WRONG_UNIT','AMBIGUOUS','PRESENT','OFF_MAP']}
         keys|={f'NAME_STAGE_{p}' for p in ['READINESS','READING','GAMEPLAY','CONFIRMED','CANCELLED']}
-        keys|={f'ACTIVITY_{p}' for p in ['SLEEP','ASLEEP','RELEASE','NONE','BLOCKED']}
+        keys|={f'ACTIVITY_{p}' for p in ['SLEEP','ARMED','RECOVER','ASLEEP','RELEASE','NONE','BLOCKED']}
+        keys|={f'PERSISTENCE_{p}' for p in ['ABSENT','CONFIRMED','RESTORED','UNAVAILABLE']}
         keys|={f'ACTIVITY_CAUSE_{p}' for p in ['DATA','API','DENIED']}
         keys|={f'DIAGNOSTIC_{p}' for p in ['ALLOWED','DENIED','UNKNOWN']}
         keys|={f'FAILURE_DIAGNOSTIC_PHASE_{p}' for p in ['PRE_REQUEST_GUARD','POST_REQUEST_READBACK','PENDING_TIMEOUT','UNKNOWN']}

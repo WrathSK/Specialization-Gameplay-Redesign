@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0533
-Implementation Build: source B200.227 local complete; live B199.226 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0534
+Implementation Build: source B201.228 local complete; live B199.226 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B200_UI_NATIVE_DEFERRED_NEXT_PLAN_AWAITING_APPROVAL
+Work State: B201_PERSISTENCE_LOCAL_COMPLETE_COMBINED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B201.228 persistent Expedition team/source slice locally complete;383 targeted tests PASS.** [Applied state/ownership contract, fault coverage and one combined native flow](Validation/Results/Specialization_B201_Expedition_Persistence_Local.md). A bounded player-owned Game Property records logical team/source/travel/task state; exact readback precedes dependent native actions. Loading re-observes activity before timer progression/release; corrupt or ambiguous records retain capacity and hold. [Current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate).
+
+Last verified live remains **B199.226**, source `b4126a4`, receipt `B199.226-b4126a4-playtest.json`; source B201 includes the deferred B200 UI changes. User explicitly authorized implementation and combined deployment and confirmed the game fully exited. Runtime replacement still requires the existing clean-source/hash/recovery transaction; source/local evidence is not a deployed or native PASS.
+
+Next authorized action: guarded B201 deployment, then **one travelling-save/cold-load → arrival/no-reward task → END session** also checks B200 selection/card layout. Native saved identity/activity recovery remains USER_GAME_TEST_REQUIRED. No separate unchanged-harness cold-load campaign. Normal training, reattachment/repeat missions, N2/N3/U2/rewards stay held. No Design, GC, general Store, main or gameplay expansion.
+
+## S0533 — B200 test deferment and persistence proposal (historical)
+
 
 **B200.227 UI refinement locally complete;209 targeted tests PASS.** [Applied changes, ownership and minimal native flow](Validation/Results/Specialization_B200_Expedition_UI_Local.md). Mission cards use content-measured height and clear the header; idle instruction text is removed. Selecting the idle team opens relocation at home or tasks abroad without choosing/starting anything. [B199 flow accepted by user, card defect recorded](Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md).
 

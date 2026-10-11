@@ -14,9 +14,12 @@ def ready():
       seq=0
       function ack(result,owned,overrides)
        seq=seq+1
-       local p={Action='ACTIVITY',Token='ack'..seq,ActivityKey='task',UnitID=41,
+       local p={Action='ACTIVITY',Token='ack'..seq,ActivityKey=ExposedMembers.SPC_ExpeditionActivity.activityKey,UnitID=41,
         Result=result,Owned=owned,SampleTurn=currentTurn,NativeOperation=-1,Detail='test'}
        for k,v in pairs(overrides or {})do p[k]=v end
+       if result=='ASLEEP' and owned==true and p.UnitID==41 and p.ActivityKey==ExposedMembers.SPC_ExpeditionActivity.activityKey and p.Owned==true and ExposedMembers.SPC_ExpeditionActivity.mode=='SLEEP' then
+        handler(2,{Action='ACTIVITY',Token='arm'..seq,ActivityKey=p.ActivityKey,UnitID=41,Result='ARMED',Owned=true,Awake=true,Sleeping=false,NativeOperation=-1,SampleTurn=currentTurn})
+       end
        handler(2,p);return ExposedMembers.SPC_ExpeditionActivityReply
       end
     """)
@@ -37,7 +40,7 @@ class ActivityGate(unittest.TestCase):
         for p in ["ActivityKey='other'", "UnitID=40", "Owned=3"]:
             with self.subTest(p=p):
                 l=ready();l.execute("begin();local r=ack('ASLEEP',true,{"+p+"});assert(r.error and r.phase=='TASK_PREPARING' and not r.taskStart and not r.activityOwned)")
-        l=ready();l.execute("begin();handler(3,{Action='ACTIVITY',Token='foreign',ActivityKey='task',UnitID=41,Result='ASLEEP',Owned=true,SampleTurn=currentTurn});assert(ExposedMembers.SPC_ExpeditionActivity.mode=='SLEEP')")
+        l=ready();l.execute("begin();handler(3,{Action='ACTIVITY',Token='foreign',ActivityKey=ExposedMembers.SPC_ExpeditionActivity.activityKey,UnitID=41,Result='ASLEEP',Owned=true,SampleTurn=currentTurn});assert(ExposedMembers.SPC_ExpeditionActivity.mode=='SLEEP')")
 
     def test_late_sleep_ack_holds_and_releases_without_starting_timer(self):
         l=ready();l.execute("begin();currentTurn=84;local r=ack('ASLEEP',true,{SampleTurn=83});assert(r.phase=='HELD' and r.activityMode=='RELEASE' and r.activityOwned and not r.taskStart)")
@@ -58,7 +61,7 @@ class ActivityGate(unittest.TestCase):
         l=ready();l.execute("begin();local r=ack('FAILED',true);assert(r.phase=='HELD' and r.activityMode=='RELEASE' and r.activityOwned);r=ack('RELEASED',true);assert(r.phase=='HELD' and r.activityMode=='NONE' and not r.activityOwned)")
 
     def test_source_loss_after_native_sleep_before_ack_preserves_release(self):
-        l=ready();l.execute("begin();city.token=nil;local r=ack('ASLEEP',true);assert(r.phase=='HELD' and r.activityMode=='RELEASE' and r.activityOwned and not r.taskStart);ack('RELEASED',true);assert(ExposedMembers.SPC_ExpeditionActivity.mode=='NONE')")
+        l=ready();l.execute("begin();ack('ARMED',true,{Awake=true,Sleeping=false});city.token=nil;local r=ack('ASLEEP',true);assert(r.phase=='HELD' and r.activityMode=='RELEASE' and r.activityOwned and not r.taskStart);ack('RELEASED',true);assert(ExposedMembers.SPC_ExpeditionActivity.mode=='NONE')")
 
     def test_source_loss_during_running_releases_exact_unit_without_reward(self):
         l=ready();l.execute("begin();ack('ASLEEP',true);city.owner=3;transfer();local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.phase=='HELD' and v.mode=='RELEASE' and v.taskCompletions==0);ack('RELEASED',true);assert(ExposedMembers.SPC_ExpeditionActivity.mode=='NONE' and properties==0)")
@@ -75,7 +78,7 @@ class ActivityGate(unittest.TestCase):
         l=ready();l.execute("begin();ack('ASLEEP',true);req('END','end',41);assert(ExposedMembers.SPC_ExpeditionActivity.mode=='NONE' and not ExposedMembers.SPC_ExpeditionActivity.unitID);ack('ASLEEP',true);assert(destroys==1 and ExposedMembers.SPC_ExpeditionActivity.phase=='ENDED')")
 
     def test_cold_context_never_rebuilds_activity_ownership(self):
-        l=ready();l.execute("begin();ack('ASLEEP',true);SPCExpeditionSpyGate.Start(P,shared);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='NONE' and not v.unitID);assert(req('READ','cold').unbound and properties==0)")
+        l=ready();l.execute("begin();ack('ASLEEP',true);gameProperties={};SPCExpeditionSpyGate.Start(P,shared);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='NONE' and not v.unitID);assert(req('READ','cold').unbound and properties==0)")
 
     def test_unchanged_task_turns_do_not_republish_or_scan_collection(self):
         l=ready();l.execute("begin();ack('ASLEEP',true);local v=ExposedMembers.SPC_ExpeditionActivity;Players[2]:GetUnits().Members=function()error('scan')end;currentTurn=84;ownTurn(2);ownTurn(2);assert(ExposedMembers.SPC_ExpeditionActivity==v and shared.RequestDepth==0)")

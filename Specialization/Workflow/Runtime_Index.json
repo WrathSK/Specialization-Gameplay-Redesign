@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "b4126a4628d4f2cdedbf4c9761c853b99a2d4946",
-  "runtime": "Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B199 flow scoped user-accepted with card-layout defect; working source B200.227 locally complete but not deployed in this batch. No new external runtime inspection; retained recovery unchanged.",
+  "runtime": "Last verified live B199.226/modinfo226 DEVELOP_ACTIVE; source b4126a4628d4f2cdedbf4c9761c853b99a2d4946; receipt B199.226-b4126a4-playtest.json;213/213 MATCH at prior deployment. B201.228 source locally complete, includes deferred B200 UI; combined deployment explicitly authorized, pending verified transaction.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "864d72f6a7f516d53e3fe04ad10e8bee3573a05e279c370b7339dc2725afa5ae",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "61d66e9e22c455c940797292c3feda25581bd3c5bc5895adfe4ba4487660e083",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "63c601a879cbdb583d41e8d469461ca093fd6ab9d8e40b27479a60f1c0734ce2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+      "sha256": "ae4ff094e849b2a3ee525918a55a4a64555a9746d63902b92c71b47e3cd6e8cb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e44b1f0af427a0be0a641bb8ebe95cb93a4b047e16fd46991a34d1e4ab68c5d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+      "sha256": "decefb4998aaacc51c9a1652d67fd60c841700cc1d499f6021eb895e8a0f4509",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "f66772e000b616c946f6c40cda53b873aa21f21be698077e9e36a1d89943b851",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+      "sha256": "9d5f1913233997fc3ff5fccb4b4a4e7c580f30ebfa5220e76244bfa9e166d5ce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,14 +1021,14 @@
       "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "1de6ae1977cceb872a652764a2e48d87a3808daef68fa5b3633b01ecc5b741ad",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md",
-      "provenance": "B191 approved GameInfo hash lookup and precise held-task diagnostics;197 local methods PASS. Native eligibility/readiness/release pending; owned task/source/cap unchanged."
+      "sha256": "f1dba7c219dd56966a36896998d24fc924020384da4573ffabd40074792f18b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "fd364ca5d9a0139a9582c4bfc02da20b45dcacddf72a59881a142516223c0b79",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+      "sha256": "c691ca6bc068bdcbc861fb630f270be90ec2ee419b11a1135581cfaf93f94eee",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "bc487d91668746a1b52077d28a0d0306abe5a1b083341c0218491146f09066dc",
@@ -1061,14 +1061,19 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "1ba5c3d6ad638fd4aa3440d5ef768d0da46e1286196d6999e64f3dc988b14dfd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md",
-      "provenance": "B194 approved bounded owned-request OPERATION wait and timeout evidence; 276 local tests PASS. Gate/capacity/binding unchanged; native Sleep/completion/release pending."
+      "sha256": "5d40a80ae888dc3f4e5a31fda91b15820bfe6575f6b596ab6f1e3ea0b4760f20",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
       "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
+    },
+    "Mod/ExpeditionSpyStore.lua": {
+      "sha256": "325468955958869b18ce084082329d7ddd74c4eadece0b14cc39702e457b1365",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
     }
   }
 }

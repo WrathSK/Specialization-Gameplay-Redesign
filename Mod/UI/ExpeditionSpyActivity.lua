@@ -1,4 +1,4 @@
--- B194: invisible UI bridge for one Gameplay-owned Expedition activity lease.
+-- B201: fresh recovery observations and durable arming before one native Sleep request.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
 local P=SPCP0
@@ -12,7 +12,8 @@ local function integer(v)return type(v)=='number' and v>=0 and v%1==0 end
 local function same(v,n)
  return v and v.owner==n.owner and v.unitID==n.unitID and v.activityKey==n.activityKey
   and v.teamKey==n.teamKey and v.mode==n.mode and v.expectedName==n.expectedName
-  and v.x==n.x and v.y==n.y
+  and v.x==n.x and v.y==n.y and (v.owned==true)==n.publishedOwned
+  and (v.releasePending==true)==n.releasePending
 end
 local function cancel()
  job=nil;ContextPtr:ClearUpdate()
@@ -38,7 +39,7 @@ local function read(n)
  assert(UnitManager and type(UnitManager.GetActivityType)=='function' and ActivityTypes,'ACTIVITY_READER_UNAVAILABLE')
  local activity=UnitManager.GetActivityType(u)
  assert(activity~=nil,'ACTIVITY_UNREADABLE')
- if n.mode=='SLEEP' then
+ if n.mode=='SLEEP' or n.mode=='ARMED' or n.mode=='RECOVER' then
   -- One replaceable last-read sample, not a fresh read at the timeout deadline.
   n.lastActivity=activity;n.sampledElapsed=n.elapsed
   n.sampleAwake=ActivityTypes.ACTIVITY_AWAKE;n.sampleHold=ActivityTypes.ACTIVITY_HOLD
@@ -48,7 +49,7 @@ local function read(n)
  if activity==ActivityTypes.ACTIVITY_SLEEP and seen.key==n.activityKey then seen.sleepObserved=true end
  return u,activity
 end
-local function acknowledge(n,result,reason)
+local function acknowledge(n,result,reason,sleeping,awake)
  local current=view()
  if not same(current,n)then cancel();return end
  if seen.key~=n.activityKey then return end
@@ -61,6 +62,7 @@ local function acknowledge(n,result,reason)
   UnitID=n.unitID,ActivityKey=n.activityKey,Result=result,Owned=n.owned==true,
   SampleTurn=Game.GetCurrentGameTurn(),Detail=reason and detail(reason) or nil}
  if result~='FAILED' then args.NativeOperation=-1 end
+ if result=='RECOVERED' or result=='ARMED'then args.Sleeping=sleeping;args.Awake=awake end
  local ok,err=pcall(function()
   assert(UI and type(UI.RequestPlayerOperation)=='function' and PlayerOperations,'ACTIVITY_REQUEST_UNAVAILABLE')
   UI.RequestPlayerOperation(n.owner,PlayerOperations.EXECUTE_SCRIPT,args)
@@ -158,7 +160,15 @@ local function evaluate(n)
   if activity~=ActivityTypes.ACTIVITY_SLEEP then fail(n,'ACTIVITY_UNEXPECTED_WAKE')end
   return
  end
- if n.mode=='SLEEP' then
+ if n.mode=='RECOVER' then
+  -- Saved intent never substitutes for actual activity. No eligibility/writer
+  -- calls here; Gameplay decides how the preserved phase continues.
+  if activity==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'RECOVERED',nil,true,false)
+  elseif activity==ActivityTypes.ACTIVITY_AWAKE or activity==ActivityTypes.ACTIVITY_HOLD then acknowledge(n,'RECOVERED',nil,false,true)
+  elseif activity~=ActivityTypes.ACTIVITY_OPERATION then fail(n,'ACTIVITY_RECOVERY_STATE_UNKNOWN')end
+  return
+ end
+ if n.mode=='SLEEP' or n.mode=='ARMED' then
   if not seen.diagnosed then
    seen.diagnosed=true
    local captured,err=pcall(captureDiagnostic,n,u,activity)
@@ -166,7 +176,10 @@ local function evaluate(n)
    if job~=n or not same(view(),n)then return end
   end
   local sleep=ActivityTypes.ACTIVITY_SLEEP
-  if activity==sleep then acknowledge(n,'ASLEEP');return end
+  if activity==sleep then
+   if n.mode=='SLEEP'then n.owned=false end -- Pre-existing Sleep is never acquired.
+   acknowledge(n,'ASLEEP');return
+  end
   -- Native OPERATION after our own request is pending, never proof of Sleep.
   -- Reuse the existing deadline; do not request again or start the Gameplay timer.
   if n.requested==true and n.owned==true and seen.attempted==true
@@ -185,6 +198,13 @@ local function evaluate(n)
     return hash
    end)
    if not allowed then fail(n,hash);return end
+   if job~=n or not same(view(),n)then return end
+   if n.mode=='SLEEP' then
+    -- The durable Gate must confirm this intent before the native writer runs.
+    -- A lost/failed acknowledgement cannot authorize a best-effort Sleep.
+    seen.armRequested=true;n.owned=true;acknowledge(n,'ARMED',nil,false,true);return
+   end
+   if not seen.armRequested then fail(n,'ACTIVITY_ARM_ACK_NOT_OBSERVED');return end
    n.requested=true;n.owned=true;seen.attempted=true -- Preserve the attempt until this activity key ends.
    local sent,err=pcall(function()
     assert(UnitManager.RequestOperation(u,hash)~=false,'ACTIVITY_SLEEP_REJECTED')
@@ -194,7 +214,7 @@ local function evaluate(n)
  elseif n.mode=='RELEASE' then
   -- Cancellation can precede the Gameplay acknowledgement. Only this UI lease knows
   -- whether a sleep was attempted; never wake a pre-existing, unowned sleep.
-  if n.releasePending and not n.owned then acknowledge(n,'RELEASED');return end
+  if not n.owned then acknowledge(n,'RELEASED');return end
   if activity==ActivityTypes.ACTIVITY_AWAKE or activity==ActivityTypes.ACTIVITY_HOLD then
    -- Awake is not proof that an attempted, unobserved operation cannot still arrive.
    if seen.attempted and not seen.sleepObserved then fail(n,'ACTIVITY_SLEEP_OUTCOME_UNKNOWN');return end
@@ -220,14 +240,14 @@ local function evaluate(n)
  if job~=n or not same(view(),n)then return end
  local readOK,_,after=pcall(read,n)
  if not readOK then fail(n,_);return end
- if n.mode=='SLEEP' and after==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP')
+ if (n.mode=='SLEEP' or n.mode=='ARMED') and after==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP')
  elseif n.mode=='RELEASE' and (after==ActivityTypes.ACTIVITY_AWAKE or after==ActivityTypes.ACTIVITY_HOLD)then acknowledge(n,'RELEASED')end
 end
 local function start(v)
  local n={revision=v.revision,owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,
   x=v.x,y=v.y,teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,
-  owned=v.owned==true or (v.releasePending==true and seen.attempted==true),
-  releasePending=v.releasePending==true,elapsed=0,poll=0}
+  owned=v.owned==true or (v.mode~='RECOVER' and v.releasePending==true and seen.attempted==true),
+  publishedOwned=v.owned==true,releasePending=v.releasePending==true,elapsed=0,poll=0}
  job=n
  ContextPtr:SetUpdate(function(dt)
   if stopped or job~=n then return end
@@ -235,11 +255,11 @@ local function start(v)
   if not same(view(),n)then cancel();pump(false);return end
   if n.poll>=0.25 then n.poll=0;pump(false)end
   if job==n and n.elapsed>=10 then
-   if n.mode=='SLEEP' then
+   if n.mode=='SLEEP' or n.mode=='ARMED' then
     local captured,err=pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)
     if not captured then print('[SPC][B194][ACTIVITY_TIMEOUT_DIAGNOSTIC_UNAVAILABLE] '..detail(err))end
    end
-   fail(n,'ACTIVITY_'..n.mode..'_TIMEOUT')
+   fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT')
   end
  end)
  return n
@@ -258,11 +278,12 @@ local function refresh(monitor)
   cancel()
   if monitor and not seen.monitor then
    evaluate({owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,x=v.x,y=v.y,
-    teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,owned=v.owned==true})
+    teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,owned=v.owned==true,
+    publishedOwned=v.owned==true,releasePending=v.releasePending==true})
   end
   return
  end
- if v.mode~='SLEEP' and v.mode~='RELEASE' then cancel();return end
+ if v.mode~='SLEEP' and v.mode~='ARMED' and v.mode~='RECOVER' and v.mode~='RELEASE' then cancel();return end
  if v.mode=='RELEASE' and v.owned~=true and v.releasePending~=true then cancel();return end
  if seen[v.mode]then cancel();return end
  if not job or not same(v,job)then cancel();start(v)end

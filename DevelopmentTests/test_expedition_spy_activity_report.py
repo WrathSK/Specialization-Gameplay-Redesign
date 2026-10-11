@@ -15,7 +15,7 @@ def held_window(reason="ACTIVITY_SLEEP_ROW_UNAVAILABLE"):
       gateOpen();Controls.CreateButton.click();Controls.ArmButton.click()
       arrival(41,true,false);Controls.RefreshButton.click();Controls.TaskButton.click()
       local token=lastPacket.Token
-      handler(2,{Action='ACTIVITY',Token=token..':failed',UnitID=41,ActivityKey=token,
+      handler(2,{Action='ACTIVITY',Token=token..':failed',UnitID=41,ActivityKey=ExposedMembers.SPC_ExpeditionActivity.activityKey,
        Result='FAILED',Owned=false,SampleTurn=currentTurn,
        Detail='ERROR_CODE'})
       activityChanged()
@@ -103,7 +103,7 @@ class ActivityReport(unittest.TestCase):
     def test_cold_unbound_team_still_uses_existing_unbound_label(self):
         lua = previous.gate(window=True)
         lua.execute("""
-          gateOpen();Controls.CreateButton.click();SPCExpeditionSpyGate.Start(P,shared)
+          gateOpen();Controls.CreateButton.click();gameProperties={};SPCExpeditionSpyGate.Start(P,shared)
           Controls.RefreshButton.click();local text=Controls.Report.text
           assert(text:find('SPY_UNBOUND',1,true) and not text:find('HELD_MATCH',1,true))
           Controls.EndButton.click();assert(destroys==1)

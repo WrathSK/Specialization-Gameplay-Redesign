@@ -166,9 +166,10 @@ class AcceptedTaskClose(unittest.TestCase):
           gateOpen('TASK',41);chooseTask();Controls.NormalConfirmButton.click()
           local packet=lastPacket;local a=ExposedMembers.SPC_ExpeditionActivity
           assert(packet.Action=='TASK' and ContextPtr.hidden and a.phase=='TASK_PREPARING')
-          assert(a.activityKey==packet.Token and not a.taskStart and not a.taskDue)
+          assert(a.activityKey==a.teamKey..':task1' and not a.taskStart and not a.taskDue)
+          handler(2,{Action='ACTIVITY',Token=packet.Token..':arm',UnitID=41,ActivityKey=a.activityKey,Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1})
           handler(2,{Action='ACTIVITY',Token=packet.Token..':sleep',UnitID=41,
-           ActivityKey=packet.Token,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
+           ActivityKey=a.activityKey,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
           assert(ExposedMembers.SPC_ExpeditionActivity.phase=='TASK_RUNNING')
           assert(ExposedMembers.SPC_ExpeditionActivity.taskDue==85)
           currentTurn=84;ownTurn(2);assert(ExposedMembers.SPC_ExpeditionActivity.taskCompletions==0)

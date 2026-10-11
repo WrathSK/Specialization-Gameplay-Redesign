@@ -50,6 +50,6 @@ class Binding(unittest.TestCase):
     def test_unbound_window_keeps_source_and_precise_name_states(self):
         l=gate(window=True);l.execute("gateOpen();Controls.CreateButton.click();Controls.ArmButton.click();"+REPLACE+";units[41].name=nil;Units.GetUnitsInPlot=function()return {}end;Controls.RefreshButton.click();local s=Controls.Report.text;assert(s:find('RETAINED_SOURCE') and s:find('IDENTITY_ABSENT') and s:find('IDENTITY_IDS:40,40,41,1',1,true) and s:find('IDENTITY_TURN:83,85',1,true));local n=sent;Controls.TaskButton.click();assert(sent==n and properties==0)")
     def test_cold_session_cannot_adopt_name_or_claim_source(self):
-        l=self.ready();l.execute("SPCExpeditionSpyGate.Start(P,shared);local r=req('READ','r');assert(r.unbound and not r.bound and not r.sourceCity and not r.identity and r.count==1);req('CREATE','again');assert(initCalls==1 and properties==0)")
+        l=self.ready();l.execute("gameProperties={};SPCExpeditionSpyGate.Start(P,shared);local r=req('READ','r');assert(r.unbound and not r.bound and not r.sourceCity and not r.identity and r.count==1);req('CREATE','again');assert(initCalls==1 and properties==0)")
 
 if __name__=='__main__':unittest.main()

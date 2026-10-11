@@ -538,3 +538,20 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE','Location data incomplete'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE_TT','仅显示已确认的地点；其余地点暂时无法完整读取，不代表不存在。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE_TT','Only confirmed locations are shown. Other locations could not be fully read; this does not mean they are absent.');
+
+-- B201: persistence and fresh activity recovery; no gameplay naming changes.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ARMED','任务开始请求已保存，等待单位进入休眠'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ARMED','Task request saved; waiting for native sleep'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RECOVER','正在核对读档后的单位活动，不重发原生指令'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RECOVER','Checking loaded unit activity; native commands are not replayed'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE','考察团记录：{1}；记录代次：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE','Expedition record: {1}; generation: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_ABSENT','无本批保存记录'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_ABSENT','No saved batch record'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_CONFIRMED','已保存并读回确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_CONFIRMED','Saved and confirmed by readback'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_RESTORED','已从存档恢复'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_RESTORED','Restored from save'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','无法可靠读取；容量保留，禁止新建'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','Record unavailable; capacity reserved, creation blocked');

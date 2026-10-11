@@ -189,7 +189,7 @@ class ActivityFailureReport(unittest.TestCase):
     def test_cold_session_cannot_render_retained_old_failure(self):
         lua = failure_window()
         lua.execute("""
-          SPCExpeditionSpyGate.Start(P,shared);Controls.RefreshButton.click()
+          gameProperties={};SPCExpeditionSpyGate.Start(P,shared);Controls.RefreshButton.click()
           assert(not Controls.Report.text:find('FAILURE_DIAGNOSTIC_HEADER',1,true))
           assert(not Controls.Report.text:find('SPY_DIAGNOSTIC_HEADER',1,true))
           assert(Controls.Report.text:find('SPY_UNBOUND',1,true))

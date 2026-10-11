@@ -12,7 +12,7 @@ def bridge():
     l.execute(r'''
       include=function()end
       SPCP0={IsTestPlayer=function(pid)return pid==2 end}
-      ExposedMembers={};turn=81;localOwner=2;packets={};sleepCalls=0;wakeCalls=0;changed=0
+      ExposedMembers={};turn=81;localOwner=2;packets={};allRequests={};arms=0;sleepCalls=0;wakeCalls=0;changed=0
       function event()local e={listeners={}};function e.Add(f)e.listeners[f]=true end;function e.Remove(f)e.listeners[f]=nil end
        return setmetatable(e,{__call=function(self,...)for f in pairs(self.listeners)do f(...)end end})end
       Events={GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),LocalPlayerTurnBegin=event()}
@@ -38,7 +38,7 @@ def bridge():
       UnitManager={GetActivityType=function(u)if readThrow then error('READ_THROW')end;return u.activity end}
       UnitManager.CanStartOperation=function(u,op,target,visible,results)
        assert(op==expectedSleepHash and target==nil and visible==false and results==false)
-       sleepChecks=sleepChecks+1;if mutateSleepRow and sleepChecks==2 then GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=71 end
+       sleepChecks=sleepChecks+1;if mutateSleepRow and sleepChecks==3 then GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=71 end
        return not sleepDenied end
       UnitManager.RequestOperation=function(u,op)
        assert(op==expectedSleepHash and u.id==41);sleepCalls=sleepCalls+1
@@ -69,7 +69,12 @@ def bridge():
       UI={RequestPlayerOperation=function(owner,op,args)
        assert(owner==2 and op==7 and args.OnStart=='SPC_ExpeditionGateRequest' and args.Action=='ACTIVITY')
        assert(args.UnitID==41 and (args.ActivityKey=='task1' or args.ActivityKey=='task2') and type(args.Token)=='string' and #args.Token<=100)
-       assert(args.SampleTurn==turn);packets[#packets+1]=args
+       assert(args.SampleTurn==turn);allRequests[#allRequests+1]=args
+       if args.Result=='ARMED' then
+        arms=arms+1;assert(args.Awake and args.Sleeping==false and args.Owned and args.NativeOperation==-1)
+        if not noArmAck then publish('ARMED',true)end;return
+       end
+       packets[#packets+1]=args
        if args.Result~='FAILED'then assert(args.NativeOperation==-1)end
        if not noAck then
         if args.Result=='ASLEEP'then publish('ASLEEP',args.Owned)
@@ -130,7 +135,7 @@ class ActivityBridge(unittest.TestCase):
         l=bridge();l.execute("publish('SLEEP');units[41].spy=9;Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and wakeCalls==0 and packets[2].Result=='FAILED' and packets[3].Result=='FAILED' and update==nil)")
 
     def test_default_fixture_requires_no_alias_or_optional_result_constants(self):
-        l=bridge();l.execute("assert(UnitOperationTypes.SLEEP==nil and UnitCommandTypes.WAKE==nil and OperationResultsTypes==nil);publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==2 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
+        l=bridge();l.execute("assert(UnitOperationTypes.SLEEP==nil and UnitCommandTypes.WAKE==nil and OperationResultsTypes==nil);publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==3 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
 
     def test_stale_aliases_are_ignored_in_favor_of_database_hash(self):
         l=bridge();l.execute("UnitOperationTypes.SLEEP=700;UnitCommandTypes.WAKE=800;OperationResultsTypes={NO_TARGETS=999};publish('SLEEP');publish('RELEASE',true);assert(sleepCalls==1 and wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED')")
@@ -138,7 +143,7 @@ class ActivityBridge(unittest.TestCase):
     def test_valid_signed_and_zero_database_hashes_use_same_eligibility_and_writer_hash(self):
         for sleep_hash, wake_hash in [(-2147483648, -1), (0, 0)]:
             with self.subTest(sleep_hash=sleep_hash, wake_hash=wake_hash):
-                l=bridge();l.execute(f"expectedSleepHash={sleep_hash};expectedWakeHash={wake_hash};GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=expectedSleepHash;GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash=expectedWakeHash;publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==2 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
+                l=bridge();l.execute(f"expectedSleepHash={sleep_hash};expectedWakeHash={wake_hash};GameInfo.UnitOperations.UNITOPERATION_SLEEP.Hash=expectedSleepHash;GameInfo.UnitCommands.UNITCOMMAND_WAKE.Hash=expectedWakeHash;publish('SLEEP');publish('RELEASE',true);assert(sleepChecks==3 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1 and #packets==2)")
 
     def test_indexable_userdata_database_collection_and_row_are_supported(self):
         l=bridge()
@@ -181,7 +186,7 @@ class ActivityBridge(unittest.TestCase):
                     l.execute("publish('SLEEP')" if action == "SLEEP" else "publish('RELEASE',true)")
                     packet=1 if action=="SLEEP" else 2
                     prior=0 if action=="SLEEP" else 1
-                    l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_{suffix}',1,true) and packets[{packet}].Owned=={str(action=='WAKE').lower()} and update==nil);assert(sleepChecks=={2*prior} and wakeChecks==0);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(#packets=={packet})")
+                    l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_{suffix}',1,true) and packets[{packet}].Owned=={str(action=='WAKE').lower()} and update==nil);assert(sleepChecks=={3*prior} and wakeChecks==0);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(#packets=={packet})")
 
     def test_denied_sleep_or_wake_never_bypasses_guard(self):
         l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepChecks==2 and sleepCalls==0 and wakeCalls==0 and packets[1].Result=='FAILED' and not packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_NOT_ALLOWED',1,true))")
@@ -215,7 +220,7 @@ class ActivityBridge(unittest.TestCase):
         l=bridge();l.execute("publish('SLEEP');readThrow=true;for i=1,20 do Events.GameCoreEventPublishComplete()end;assert(#packets==1);Events.LocalPlayerTurnBegin();assert(#packets==3 and packets[2].Result=='FAILED' and packets[3].Result=='FAILED')")
 
     def test_token_uses_existing_cross_context_sequence(self):
-        l=bridge();l.execute("ExposedMembers.SPC_ExpeditionGateSequence=37;publish('SLEEP');assert(packets[1].Token=='Activity:38');publish('RELEASE',true);assert(packets[2].Token=='Activity:39')")
+        l=bridge();l.execute("ExposedMembers.SPC_ExpeditionGateSequence=37;publish('SLEEP');assert(allRequests[1].Result=='ARMED' and allRequests[1].Token=='Activity:38' and packets[1].Token=='Activity:39');publish('RELEASE',true);assert(packets[2].Token=='Activity:40')")
 
     def test_cancel_unacknowledged_sleep_releases_retained_attempt_once(self):
         l=bridge();l.execute("delaySleep=true;publish('SLEEP');assert(sleepCalls==1 and #packets==0 and update);units[41].activity=1;publish('RELEASE',false,nil,true);assert(wakeCalls==1 and #packets==1 and packets[1].Result=='RELEASED' and packets[1].Owned and units[41].activity==0 and update==nil);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(wakeCalls==1)")
