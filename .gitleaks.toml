@@ -1,0 +1,11 @@
+title = "Specialization staged publication checks"
+
+[extend]
+useDefault = true
+
+# Four reviewed, literal game property identifiers. Never allow a namespace,
+# directory, commit, or arbitrary value assigned to an SPC_* variable.
+[[allowlists]]
+targetRules = ["generic-api-key"]
+description = "Exact Civ VI property names confirmed in publication audit F6"
+regexes = ['''^(SPC_CITY_INHERITANCE_V1|SPC_INHERITANCE_SHADOW_V1|SPC_B050_HALF_ENABLED|SPC_P0_GOV_ESTABLISHED)$''']

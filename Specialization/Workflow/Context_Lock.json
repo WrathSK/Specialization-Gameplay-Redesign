@@ -75,7 +75,7 @@
     "Mod/UI/GPPRefresh.lua": "914e53cc361199500b7bdc6d7e723d98fd9605d5046ed401f15cb8115e9ea58b",
     "Mod/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
     "Specialization/Workflow/context.py": "08458f4f8bc41b87aab664576f6aaa5f393d57b966d721adb5b9d3aeb401222c",
-    "Specialization/Workflow/README.md": "c20ad6ed39f6fe993dde63ce8dfcfbf598ce7ff2c5e8b0f04467e6560998533b",
+    "Specialization/Workflow/README.md": "9920ae670d5852ffa2d4bc3a1e1eddc5230cd14e5d849344b50e64fac61345ae",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md": "f657b5b836e5b898f2d3f26fedaf77e63eeb3336f5a0334ab708fd81a798fdc0",
     "DevelopmentTests/test_p0_b2.py": "d767741f9968759bcb733f6295cc08750d2fa8c3111a5cca42adbc8e8c424acf",

@@ -21,6 +21,11 @@ htmlcov/
 !.env.example
 !.env.template
 /local/
+/local.config.json
+*.Civ6Save
+*.ips
+*.crash
+Crash-*.txt
 *.log
 *.tmp
 *.sqlite
@@ -49,6 +54,6 @@ htmlcov/
 /steamapps/
 /workshop/
 
-# Local advisory/research topic Markdown; publish named checkpoints only with user approval.
+# Local research Markdown; Primary publishes reviewed Stable checkpoints under W0005.
 /Specialization/Reports/Technical/Investigations/*/**/*.md
 /Specialization/Reports/Advisory/*/**/*.md
