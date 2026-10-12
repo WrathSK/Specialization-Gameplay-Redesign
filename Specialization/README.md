@@ -8,13 +8,14 @@ Civ VI / Harmony in Diversity城市专业化与国内商路网络Mod。当前v0.
 
 先读[根AGENTS](../AGENTS.md)与[本目录约定](AGENTS.md)，再按[W0001](Workflow/README.md)进行task-scoped读取。Gameplay Design由用户最终决定；权限与决策边界集中在[W0005](Workflow/README.md#w0005--authority-and-repository-knowledge)。
 
-| 要回答的问题 | 权威入口 |
+| Question | Entry |
 |---|---|
 | 游戏应当怎样运行？ | [Design Spec](Design/Specialization_v0.1_Design_Spec.md) → [各专业/Shared内容索引](Design/Content/README.md)；接受与修订见[ChangeLog](Design/Design_ChangeLog.md) |
-| 技术上如何实现？ | [技术阅读入口](Architecture/README.md) → 系统说明、合同与相关证据；Codex仍按当前任务读取 |
+| 技术上如何实现？ | [技术阅读入口](Architecture/README.md) → 系统说明、合同与相关证据; Primary follows task-scoped reading |
 | 当前做到哪里、还缺什么、下一步允许什么？ | [Status CURRENT块](Status/Specialization_P0_Status.md)与[Authority所指manifest](Workflow/Authority.json)；计划建议不等于授权 |
 | 哪些结论已被证明？ | Status引用的[Validation Results](Status/Validation/Results/)；STATIC / LOCAL / USER_GAME_TEST分别保留范围 |
 | 哪些调查不应重复？ | [技术索引](Reports/Technical/README.md)及当前计划引用的技术约束；只读与本任务有关的报告 |
+| Where are non-authoritative reviews? | [Advisory](Reports/Advisory/README.md) for scoped reviews; [Investigation](Reports/Technical/Investigations/README.md) for authorized ongoing research |
 | 源码、测试、部署在哪里？ | [Mod](../Mod/)、[测试](../DevelopmentTests/README.md)、[部署工具](../tools/README.md)、[Playtest Workflow](Architecture/Playtest_Workflow.md) |
 
 main为最后明确promote的可信源码；develop为独立worktree中的当前开发源码。外部SpecializationP0是部署副本。当前build、live/stable关系、待验状态只查Status/Authority，本文不复制版本账本。

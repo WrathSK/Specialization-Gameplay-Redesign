@@ -1,6 +1,6 @@
 {
   "workflow": "W0001",
-  "role": "Navigation/review basis only. User is final semantic authority; Codex is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
+  "role": "Navigation/review basis only. User is final semantic authority; Primary is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
     "design": "D0049",
     "research": "D0040",

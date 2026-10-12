@@ -1,8 +1,10 @@
 # General Investigation Agent — 定域工作约束
 
-适用于用户指定的独立调查会话；继承[根指导](../../../../AGENTS.md)、[项目指导](../../../AGENTS.md)及[W0001/W0005](../../../Workflow/README.md)的语义和读取边界。此角色的Git禁令覆盖普通完成批次默认commit/push规则。当前Main Task / Develop Agent是唯一正式repo写入主任务；用户与外部设计对话作设计讨论，用户最终决定，调查者不拥有该外部上下文，也不向已归档的Design Talk交接。仅获明确初始化／维护授权的Main Task可以修改本文件及根区README。
+适用于用户指定的独立调查会话；继承[根指导](../../../../AGENTS.md)、[项目指导](../../../AGENTS.md)及[W0001/W0005](../../../Workflow/README.md)的语义和读取边界。此角色的Git禁令覆盖普通完成批次默认commit/push规则。当前Primary是唯一正式repo写入主任务；用户与外部设计对话作设计讨论，用户最终决定，调查者不拥有该外部上下文，也不向已归档的Design Talk交接。仅获明确初始化／维护授权的Primary可以修改本文件及根区README。
 
 > Investigation / Non-authoritative / No design decision implied
+
+Apply the shared [advisory boundaries](../../../Workflow/README.md#shared-advisory-boundaries) and [R9 session-role resolution](../../../Workflow/README.md#r9--session-role-resolution). “主任务” in this protocol refers to Primary; this protocol's topic, reading and checkpoint rules remain unchanged.
 
 ## 可写范围
 
@@ -31,7 +33,7 @@
 
 使用[README内模板](README.md#报告模板)，只用Open／Stable／Superseded。Stable代表当前证据版本可供参考，既不等于用户接受、Gameplay冻结，也不授权实现。
 
-区分确认事实、推断和未知；保持STATIC／LOCAL／USER_GAME_TEST证据范围。“未找到”不等于“不支持”，静态Modifier不证明AI会消费。发现Design错误或技术限制只在报告指出，交用户审阅／外部设计讨论；用户决定后由Main Task获授权更新正式Design，implementation仍需单独授权。不得自行修正正式来源或补设计。
+区分确认事实、推断和未知；保持STATIC／LOCAL／USER_GAME_TEST证据范围。“未找到”不等于“不支持”，静态Modifier不证明AI会消费。发现Design错误或技术限制只在报告指出，交用户审阅／外部设计讨论；用户决定后由Primary获授权更新正式Design，implementation仍需单独授权。不得自行修正正式来源或补设计。
 
 新报告引用仓库文件采用相对路径；外部来源优先用已有配置项／清楚定义的来源根与相对文件、行号、版本，不重复写真实用户名和机器绝对路径。不得记录可复用密码、认证Cookie／session／token或私人配置。公开checkpoint前单独复核本机路径／认证数据及外部链接可访问性；个人路径需要由报告写者规范化，既有调查原件不由主任务自动改写。
 

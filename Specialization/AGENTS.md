@@ -1,14 +1,14 @@
 # Specialization agent map
 
-遵守[根AGENTS](../AGENTS.md)。用户是最终语义权威；Design写入与决策边界统一见[W0005](Workflow/README.md#w0005--authority-and-repository-knowledge)，任务读取与验证见W0001/W0004。默认一个活动写入主任务；仅允许下述隔离的Investigation并行例外。不要覆盖其它未审查修改。
+Follow [root guidance](../AGENTS.md). The user is the final semantic authority; [W0005](Workflow/README.md#w0005--authority-and-repository-knowledge) defines roles and decision boundaries, while W0001/W0004 define scoped reading and validation. Resolve session authorization under [R9](Workflow/README.md#r9--session-role-resolution) before writing. Preserve other work.
 
-## 并行 Investigation 窄例外
+## Parallel advisory work
 
-- 用户可另开一个长期复用的调查会话，在同一develop worktree中只写[Investigation Zone](Reports/Technical/Investigations/README.md)下当前明确授权主题的Markdown。其它区域仍按现有单写者规则；不建立第二套Design Authority。
-- 调查会话遵守[根区AGENTS](Reports/Technical/Investigations/AGENTS.md)：只读Git，不stage/commit/push，不修改治理、Design、Architecture、Status、代码或hash。主题与文件归属明确，双方不修改对方专属文件。
-- 主任务在并行期间只能显式stage本批自己负责的文件，禁止`git add .`、`git add -A`、`git commit -a`；调查的dirty/ignored/untracked文件应原样保留，不顺带提交、stash、reset或clean。新主题Markdown默认本地排除，不要求先提交它们才能继续主任务；公开checkpoint按下条单独授权。
-- 调查者停写指定Stable报告→主任务只读审阅→用户接受指定checkpoint→主任务显式commit/push。Stable不等于Design接受；提交完成前不恢复该文件写入。
-- 调查协议的初始化／后续修改仅由用户明确授权的主任务维护。普通开发不因此新增调查全文必读项、自动hash登记、分支、worktree或调度系统。
+- Use the existing develop worktree with one active Primary implementation writer. Authorized Advisor and Investigation sessions write only within their separate [Advisory](Reports/Advisory/README.md) and [Investigation](Reports/Technical/Investigations/README.md) areas; neither creates a second authority.
+- Apply [shared advisory boundaries](Workflow/README.md#shared-advisory-boundaries) and each area's AGENTS. Read other roles' outputs only as needed; do not modify their files. Stop only the affected operation when ownership or concurrent edits are unclear.
+- Primary stages only explicit batch-owned or user-accepted checkpoint paths. Never use `git add .`, `git add -A` or `git commit -a`; preserve both roles' dirty, ignored and untracked work without incidental staging, stash, reset or clean.
+- [Local checkpoints](Workflow/README.md#advisory-and-investigation-local-checkpoints) keep new reports out of ordinary commits. They do not block ordinary work; tracked changes retain normal review and clean-source gates. Report acceptance for Git does not authorize Design changes or implementation.
+- Only explicitly authorized Primary governance work may maintain these protocols. No automatic report ingestion/hash registration, new branch/worktree, session registry or scheduling layer is introduced.
 
 ## 读取与证据
 
@@ -22,7 +22,7 @@ Follow the [language convention](Workflow/README.md#language-convention). Use a 
 
 证据首次出现时说明：STATIC_CONFIRMED=代码/数据库证据；LOCAL_SIMULATION_PASS=本地模拟；USER_GAME_TEST_PASS/FAIL=用户实机已测场景；USER_GAME_TEST_REQUIRED=待实机；BLOCKED=需技术突破或用户决定。不扩大未测范围，不把外部建议当验收。
 
-Final handoffs state “User decision”, “User testing” and “Codex next” (or none), then stop at the approved batch boundary.
+Final handoffs state “User decision”, “User testing” and “Primary next” (or none), then stop at the approved batch boundary.
 
 游戏内面向玩家的验收／使用报告保持中文优先，让用户直接判断：先以简明中文显示本次对象与结果、必要的预期／实际对照、需处理的异常和下一动作，省略无关模块信息、重复警告及原始ID／reference／nil清单。原生接口未定、残留或归属冲突等排障需要时，保留完整技术报告，按当前问题选择简报、明细或简报后附明细；不禁止复杂报告，也不要求每份报告都展开。保留UNKNOWN、残留效果、实验污染等重要信息，区分预期值、载体配置、原生实测；不能为简洁隐藏失败或扩大PASS。若可读报告已足够支持用户判断，不默认要求截图；确需原生证据时仍可使用截图。后续涉及报告的修改沿用此原则，不另开全局UI重构。面板无需固定9按钮，约15以内一般可接受；隐藏暂不用入口并保留可复用代码，优先报告阅读空间，不据此扩张UI范围。
 

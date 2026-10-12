@@ -1,16 +1,49 @@
-# Codex Workflow v1 — W0001
+# Repository Workflow v1 — W0001
 
-Maintainer: Codex. Scope: engineering operation and context navigation. Gameplay rules remain in user-accepted Design; technical contracts remain in Architecture.
+Maintainer: Primary. Scope: engineering operation and context navigation. Gameplay rules remain in user-accepted Design; technical contracts remain in Architecture.
 
 ## W0005 — Authority and repository knowledge
 
 **W0005_AUTHORITY_SIMPLIFICATION_ACTIVE.** The user is the final semantic authority: accepted gameplay, scope, interpretation and ambiguity resolution, implementation approval, user-game acceptance, priorities/defer decisions and acceptance of major architecture tradeoffs.
 
-Codex is the repository engineering, investigation, implementation, validation automation, documentation and Git operator. Codex may write Design only to record explicit user decisions, user-approved Design Talk/handoffs, or non-semantic formatting/link maintenance. Write permission does not imply semantic ownership. Proposals remain proposals until the user accepts them; forwarding advice is not by itself acceptance.
+Primary is the repository engineering, investigation, implementation, validation automation, documentation and Git operator. Primary may write Design only to record explicit user decisions, user-approved Design Talk/handoffs, or non-semantic formatting/link maintenance. Write permission does not imply semantic ownership. Proposals remain proposals until the user accepts them; forwarding advice is not by itself acceptance.
 
 External discussion/advisory tools can explore alternatives, review plans and prepare handoffs, but have no independent repository authority. External discussion → user approval → repository record; no particular product, direct-write integration or conversation access is required. Existing `Document Owner: Codex` metadata means document maintenance responsibility, never ownership of gameplay meaning.
 
 Do not invent missing gameplay, choose between genuine design alternatives, or silently change accepted rules to accommodate implementation/API limits. Report `DESIGN_DECISION_REQUIRED` and obtain the user's decision. Record technical limitations honestly; neither an Architecture recommendation nor a passing test grants semantic approval. Plan → user review → explicit implementation authorization remains unchanged.
+
+### Roles and current assignment
+
+| Role | Responsibility | Current project assignment |
+|---|---|---|
+| Primary | Authorized implementation, repository maintenance, technical investigation, validation automation, Git and deployment under existing gates | Codex main task |
+| Advisor | Bug finding, architecture/Design review, bounded read-only source investigation, evidence and implementation proposals; no implementation | Claude, when assigned an explicit advisory task |
+| Investigation | Long-running, topic-scoped research under the existing [Investigation protocol](../Reports/Technical/Investigations/README.md) | The separately user-authorized Investigation session under that protocol |
+
+Only the user may change these assignments. They are recorded here, not in Authority.json or a role registry. All roles use the existing develop worktree; only one implementation agent is active. No additional clone, branch, worktree or synchronization mechanism is introduced. Session permission is resolved by R9 below. These are behavioral rules, not a claim of configured tool or operating-system enforcement.
+
+### Shared advisory boundaries
+
+These restrictions apply to both Advisor and Investigation, in addition to their task and area-specific limits. Existing W0001 reading scope, W0004 evidence/validation rules, user authority and `DESIGN_DECISION_REQUIRED` remain shared; neither role repeats or replaces them.
+
+- Write only Markdown within the role's own explicitly authorized topic/report area, in files it owns or the user explicitly hands over. Do not edit the other role's files or move, delete or rename existing files. Area governance is maintained only by Primary under explicit governance authorization.
+- Mod/source, tests/tools, Design/acceptance records, Architecture, Status, governance, Authority/manifests/hash metadata, configuration, runtime and external game/HD/Mod sources are read-only. No implementation prototypes, gameplay/test execution, deployment or game launch. Findings and candidate fixes go into the report; they do not authorize edits elsewhere.
+- Git queries are read-only (`status`, `diff`, `log`, `show`, `rev-parse`; optionally `GIT_OPTIONAL_LOCKS=0`). No stage/add, commit/push, pull/fetch, branch creation/switch, checkout/restore, reset/clean, stash, merge/rebase, worktree operations or Git configuration changes. Primary's default commit/deployment instructions do not apply to these roles.
+- Reports are advisory, even when Stable. The user reviews evidence and makes decisions; Primary records accepted decisions and implements only separately authorized scope. Checkpoint acceptance for Git is not gameplay acceptance or implementation authorization. Use the checkpoint process below; do not change shared indexes concurrently.
+
+The existing Investigation Stage A/B/C protocol, report states and handoff remain in force. [Advisory guidance](../Reports/Advisory/AGENTS.md) defines its separate review area. Neither area's reports become mandatory reading for every task.
+
+### R9 — Session Role Resolution
+
+1. A product-level assignment does not authorize every session using that product.
+2. Each session obtains its active role through the user's explicit task or conversation-level instruction, consistent with the current assignment above. No fixed phrase is required: “implement the approved B205” or “review this diff and write an Advisory report” can assign the corresponding role.
+3. Once assigned, the role remains valid within that continuing task unless the user changes or revokes it.
+4. Role persistence does not grant unlimited implementation authorization. Primary must still follow the approved batch, Authority, manifest and existing implementation gates.
+5. A new or ambiguous session without an identifiable role defaults to read-only.
+6. A session must not infer write authorization solely from the project assignment, repository access, historical conversations or the presence of an approved batch.
+7. If a claimed role conflicts with the current W0005 assignment or another explicit restriction, stop the affected write operation and ask the user to resolve the conflict. Do not silently choose the more permissive interpretation.
+8. After compaction or fresh-thread recovery, if role assignment is no longer visible in the session, ask the user to reconfirm it before any write. Do not reconstruct it from repository records or inference. Compaction alone does not require reconfirmation when the explicit assignment remains visible.
+9. Adoption transition: the user's approval of this governance change confirms the existing main task session as Primary and the existing investigation session as Investigation; adoption does not downgrade either to read-only. This transition is not standing authorization for new sessions.
 
 ### Language convention
 
@@ -33,11 +66,15 @@ These conventions change language only: existing document contracts, schemas, W0
 | Canonical source versus deployed runtime | Authority/Status live references plus deployment receipts and [Playtest Workflow](../Architecture/Playtest_Workflow.md); a commit does not prove deployment |
 | Engineering operation / context freshness | Root/local AGENTS, W0001/W0004 here, Context_Lock and Runtime_Index review provenance |
 
-Fresh threads and post-compaction recovery follow these pointers with task-scoped reading. Preserve unique durable information in the appropriate existing source; no conversation transcript, new memory system or mandatory handoff document. Frozen history stays unchanged. Historical tool restrictions do not override this active authority model; History is evidence, not the next-task queue.
+Fresh threads and post-compaction recovery follow these pointers with task-scoped reading. These sources recover project facts, not lost session authorization; apply [R9](#r9--session-role-resolution) before writing. Preserve unique durable information in the appropriate existing source; no conversation transcript, new memory system or mandatory handoff document. Frozen history stays unchanged. Historical tool restrictions do not override this active authority model; History is evidence, not the next-task queue.
 
-### Investigation本地文件与公开checkpoint
+### Advisory and Investigation local checkpoints
 
-[调查区协议](../Reports/Technical/Investigations/README.md#并行文件与git边界)规定：新主题Markdown／README默认本地ignore，普通批次不stage、不要求先提交它们才能继续。主任务可以提示用户授权公开指定checkpoint；未授权就保留本地，正常工作继续。公开前做隐私／内容审阅，只force-add已授权文件。根区指导和其它tracked改动仍受正常审阅／clean-source规则保护；不放宽Mod、部署目标、hash、事务恢复或游戏退出门禁。定位本机调查文件时，只在明确主题内显式查看ignored文件，不扩大日常context。
+New topic Markdown/README files in [Advisory](../Reports/Advisory/README.md) and [Investigation](../Reports/Technical/Investigations/README.md#并行文件与git边界) are ignored locally by default. Ordinary batches neither stage them nor require their publication to proceed. Primary may offer a named Stable checkpoint for user approval; without approval, keep it local and continue unrelated work. Root area guidance stays tracked. Later changes to tracked reports retain normal review and clean-source rules; ignore patterns do not hide them or relax source, deployment, hash, transaction-recovery or game-exit gates.
+
+The report owner identifies a Stable version and pauses writes to the specified files → Primary reviews read-only and returns requested corrections to the owner → the user accepts the named checkpoint for Git → Primary reviews privacy/content, ownership and the final diff, explicitly force-adds only accepted ignored paths, commits/pushes → Primary confirms the checkpoint is released. Preserve all other roles' files; never use `git add .`, `git add -A` or `git commit -a`. Unknown ownership or an active concurrent write stops the affected operation. Already cited/review-hashed Stable files require coordination before further edits. Primary maintains any genuinely needed formal references/hashes after review, without turning every report into a default context dependency.
+
+Use repository-relative citations and existing configuration/source-root conventions for external evidence; no credentials, private configuration or unnecessary personal paths. Raw game files, logs, screenshots, saves and packages stay outside these report areas. Unpublished reports cannot be the sole durable basis for authoritative project recovery: Primary records actually adopted technical constraints in the appropriate existing source under the relevant authorization. Inspect ignored files only within the explicit topic; do not expand ordinary context.
 
 ## Current entry
 
@@ -45,7 +82,7 @@ Fresh threads and post-compaction recovery follow these pointers with task-scope
 
 ## Start protocol
 
-1. Read repository AGENTS, Specialization AGENTS/README. Read Authority.json, current Spec/Architecture metadata and Status CURRENT block. Applicable nested instructions still apply. Historical introductory versions in test/report documents do not override current Authority/Status.
+1. Read repository AGENTS, Specialization AGENTS/README. Read Authority.json, current Spec/Architecture metadata and Status CURRENT block. Applicable nested instructions still apply. Resolve the session role under R9 before any write; reading current assignments is not session authorization. Historical introductory versions in test/report documents do not override current Authority/Status.
 2. Confirm authorized Batch ID, branch, HEAD/upstream, staged/unstaged/untracked changes; preserve existing work. `PLANNED_NOT_AUTHORIZED` is not permission to implement.
 3. Run `python3 Specialization/Workflow/context.py check <batch-id>`. It reads hashes/file sets/Git; never rewrites hashes, stages, deploys, launches game or runs runtime tests. Failure blocks trusting the index, never authorizes reset.
 4. Choose the action-scoped reading path below first; a manifest context list is the implementation dependency envelope, not mandatory full ingestion for every action. `python3 Specialization/Workflow/context.py plan <batch-id>` lists ordered context and reproducible byte counts. `read <batch-id> N` emits one reference (zero-based N); use `all` only with adequate output budget. Do not treat truncated tool output as a completed read.
@@ -70,18 +107,20 @@ Recovery procedure:
 1. Confirm worktree, branch, HEAD/upstream and staged/unstaged/untracked changes. Preserve partial work; never reset to manufacture a clean tree.
 2. Read CURRENT and its current-slice links, then direct results. Distinguish recommendation, explicit authorization, work in progress, local completion, recorded deployment and pending native validation.
 3. Compare diff/commits with those records; consult the actual receipt only if deployment matters. A missing final message is not evidence that work or deployment failed; do not repeat completed actions blindly.
-4. If authorization, provenance, an incomplete transaction or dirty edit is unclear, investigate read-only and ask only for genuinely missing information. A lock mismatch can be legitimate unfinished work or unexpected change; neither auto-accept nor discard it.
+4. If authorization, provenance, an incomplete transaction or dirty edit is unclear, investigate read-only and ask only for genuinely missing information. Missing session authorization follows R9; repository recovery cannot supply it. A lock mismatch can be legitimate unfinished work or unexpected change; neither auto-accept nor discard it.
 5. Review/validate the affected edits before updating only their review hashes. Record a short boundary/decision/negative finding in existing Status/plan only when needed for safe continuation. No per-tool journal, Memory.md or new hook.
 
 Cross-machine handoff: clone complete Git history when selected regression uses `git show` baselines (a shallow clone may be insufficient); install the interpreter/Lupa versions required by selected tests. Real local config and external read-only Civ VI/HD databases must be supplied separately only for paths requiring them. Screenshots/native evidence, deployment receipts and recovery packages remain external; retrieve them when native evidence or deployment recovery is in scope. No screenshots means no claim of reinspection; no receipt means HEAD cannot identify the deployed package. Do not copy game files, saves or backups into Git. See [test dependencies](../../DevelopmentTests/README.md) and [deployment contract](../Architecture/Playtest_Workflow.md).
 
 ## End protocol
 
+The write, metadata, Git and deployment steps below apply only to authorized Primary work. Advisor/Investigation finish through their own report and the [checkpoint handoff](#advisory-and-investigation-local-checkpoints); they do not update formal project state.
+
 Review changed modules, effect IDs, callers and dependency changes. Run the W0004 v1 risk-selected validation depth below; distinguish STATIC_CONFIRMED, LOCAL_SIMULATION_PASS and USER_GAME_TEST_PASS. Update Status, batch result, changed-module inventory/provenance, hashes and technical gates. Architecture revision changes only when its contract changes, not every batch. No full Architecture regeneration.
 
 Refresh hashes ONLY after source/references are re-read and reviewed. Carry unchanged evidence from named baseline; never auto-accept mismatches. Authority changes require review of the active/requested manifest before use, including unchanged filenames. Completed historical manifests retain their reviewed version pins; do not rehash or update all history to match today. A historical manifest cannot be reused as a current implementation gate without revalidation. Keep historical inventories frozen; current Runtime_Index holds inherited references plus explicit deltas. Checksum is not semantic review.
 
-Before commit inspect diff/branch/untracked/secret/temp boundaries. Coherent completed batch → commit develop → push origin/develop → verify matching HEAD/clean tree. Awaiting engine validation is committed separately from later validation. Deployment, main, promotion, tag and published-history rewrite require their existing explicit authorization. Stop at batch boundary.
+Primary: before commit inspect diff/branch/untracked/secret/temp boundaries and use only explicit approved paths. Coherent completed batch → commit develop → push origin/develop → verify matching HEAD/clean tree. Awaiting engine validation is committed separately from later validation. Deployment, main, promotion, tag and published-history rewrite require their existing explicit authorization. Stop at batch boundary.
 
 ## Reading classification / cost audit
 
@@ -132,7 +171,7 @@ Choose L1/L2/L3 from the actual changed path and failure cost before implementat
 | **L3 — Persistent state / infrastructure / hard-to-observe risk** | Save/load, identity, ownership transfer, persistence/migration, Network/state foundation, event ordering or concurrency-like behavior; high-cost failures difficult to observe briefly | Usually broad relevant regression, risk-relevant stress, integrity, save/load/state-transition simulation and representative failure/recovery. L3 is not permission to mechanically run every historical test. |
 
 - Prefer lightweight local checks + a short USER_GAME_TEST for observable, reversible, low-state-risk errors. Preserve heavy validation for hidden state corruption, ordering and costly failure risks. Do not downgrade explicit safety or user acceptance requirements.
-- If validation expands to full regression or large stress, give the concrete risk reason in one sentence in the existing final report. No separate mandatory report, tier manifest, persistent tier state, telemetry, quota CSV/JSON/dashboard or historical snapshot mechanism. Account usage is recorded externally by the user, not maintained by Codex.
+- If validation expands to full regression or large stress, give the concrete risk reason in one sentence in the existing final report. No separate mandatory report, tier manifest, persistent tier state, telemetry, quota CSV/JSON/dashboard or historical snapshot mechanism. Account usage is recorded externally by the user, not maintained by the agent.
 - Keep mechanical source/runtime hashes, file manifests, deployment equality, Git clean/sync and schema/reference consistency checks. Reliable scripts perform them; consume their summary (e.g. `143/143 files match`), not manual per-file re-analysis. Investigate mismatches; never silently refresh hashes to hide them. Hash equality is not gameplay proof.
 - Docs-only work uses document/reference/schema checks and diff review, not gameplay regression. Once sufficient checks pass, do not broaden/repeat without new changes, failure or an unresolved concrete concern.
 - Design Authority and DESIGN_DECISION_REQUIRED, plan → user review → explicit implementation authorization, W0001 loading, main/develop and canonical/deployed separation, commit/push, USER_GAME_TEST gates, LOCAL_SIMULATION_PASS ≠ USER_GAME_TEST_PASS, stable/temporary deployment, deterministic safety/rollback/backup and stop-at-batch boundaries remain unchanged.
@@ -188,7 +227,7 @@ No tooling/state architecture change: retained indexes still require reviewed ha
 | Shared change only local-tested | changed path/exported-contract review | affected-consumer regression at W0004 depth; broaden for identified state/foundation risk |
 | context too narrow | unresolved reference/gate or conflicting rule | enclosing section, then whole canonical file |
 | external DB changed, source unchanged | evidence/config/catalog provenance mismatch | revalidate external evidence, no compatibility inference |
-| compaction lost scope | Authority+manifest+git diff/current result | continue existing work, never restart/reset |
+| compaction lost scope | Authority+manifest+git diff/current result; visible session authorization under R9 | recover project facts without restarting/resetting; missing role requires user reconfirmation before writing |
 | old Status treated current | current-block/historical boundary | current source of authority; history evidence only |
 
 ## Schema, template and maintenance
