@@ -38,7 +38,7 @@
     "Mod/UI/IndustryRefresh.lua": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
     "Mod/UI/P0Panel.lua": "1af60e0fdc92f3f68148e84400d9ab44c92ad30d1a54f0eecb161fe306bea7d5",
     "Mod/UI/P0Panel.xml": "b5a3c39b5a19d3184d517a5f666184d62ecef5dd5c006a1896f322d477e7c127",
-    "Specialization/AGENTS.md": "d020dab127ef3330b4fa202ad3e331e51248828b0dc5b2a7aaa481d5e489b0b6",
+    "Specialization/AGENTS.md": "a743c31689bca41425af6dca5a417b09742be5e2d21f31ba77f4de31e3b13aa8",
     "Specialization/Architecture/Playtest_Workflow.md": "159da91788ceb21ded7a7c9c324caa5a44c30ca8d9fa6ed9135609f70788351c",
     "Specialization/Architecture/Specialization_v0.1_Architecture.md": "6733b66c07dac9d29c28a30867d0b100c4e03c2ada364bba3b00cbccb0fa510b",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
@@ -75,7 +75,7 @@
     "Mod/UI/GPPRefresh.lua": "914e53cc361199500b7bdc6d7e723d98fd9605d5046ed401f15cb8115e9ea58b",
     "Mod/GPPReadout.lua": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
     "Specialization/Workflow/context.py": "08458f4f8bc41b87aab664576f6aaa5f393d57b966d721adb5b9d3aeb401222c",
-    "Specialization/Workflow/README.md": "23f6462700b855495e60859723dde2d452aa3713511c13659f2019aea29b18ef",
+    "Specialization/Workflow/README.md": "c20ad6ed39f6fe993dde63ce8dfcfbf598ce7ff2c5e8b0f04467e6560998533b",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Architecture/v2/P0_B2_Lv2_Qualification.md": "f657b5b836e5b898f2d3f26fedaf77e63eeb3336f5a0334ab708fd81a798fdc0",
     "DevelopmentTests/test_p0_b2.py": "d767741f9968759bcb733f6295cc08750d2fa8c3111a5cca42adbc8e8c424acf",
@@ -293,7 +293,7 @@
     "Mod/NetworkSender.lua": "153389e46600e65251fc398158659c261336580e7b21d44af808d16d4488c999",
     "Mod/UI/BackgroundRoutes.lua": "2795eae71356e775d2c62f6c7464f1cea6b39fba5bf7abc7852506967c920b82",
     "Mod/UI/DiscountEligibility.lua": "574e4ccc92c09b27ce57dcc9fa7bdd1aa99bea7e559eba1feb3829e3ace0a81b",
-    "Specialization/Reports/Technical/README.md": "7c348472e487661da6b0b2130b3f4739f39131ec2b25c1705c7c17e27f8a530c",
+    "Specialization/Reports/Technical/README.md": "0ceca3729b1b91662312ce22f7c0871a56ec021c6a51bde3500fc9c844d14459",
     "Specialization/Status/Playtest_Backlog.md": "a783a3cdf8bb35728cab2fe3c4d9f4f6cbb034d9320cac46818aad940e6c9bdc",
     "Mod/NetworkIsolation.lua": "2ec3c021dddd056a90f897b557d159846edcb61a01d7204c84b914b84bcba748",
     "DevelopmentTests/test_b137_network_isolation.py": "71010500bb18ae5cac8cc1b4b9d2e72129aa865eb153dc46dc66ff26e9b143c0",
@@ -452,8 +452,8 @@
     "DevelopmentTests/test_culture_meaning_native_gates.py": "6d956b947aa48dcc1010d62beb851b8ec06d968a30e5d55f3e26cb4b6f4c7037",
     "Specialization/Architecture/v2/Commerce_Preparation.md": "d2531e298fb0056e07bd42ef33c529108f337edee8486333cd9fdcec0105f4a6",
     "Specialization/Architecture/v2/Industry_Preparation.md": "3288d86719123d94844ed4811ecad158d84a15b8772144d359f776f8b252cfd2",
-    "Specialization/Reports/Technical/Investigations/AGENTS.md": "96b0d6092c5aeba52235320cce60d4ac1614cafef8b0f51baa862db01e221cd6",
-    "Specialization/Reports/Technical/Investigations/README.md": "5ec804661c492910fc133a3f2fe74b3abeb825fcfe04a2885ab17e33389977b8",
+    "Specialization/Reports/Technical/Investigations/AGENTS.md": "e217b8f260896c54f5b581bba0e116114489dede80c1a43126ed28d47beb4c12",
+    "Specialization/Reports/Technical/Investigations/README.md": "e20196de1c2f05925764d9b074553fd3fb1b57e7f93ea134fdab8c125d845156",
     "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Review.md": "7bb3f9ad71d66f7abd4303d20cb185c9f9f6609b55cecefa22e8e7064d4754ac",
     "Specialization/Design/Content/Culture_D0048.json": "8df7841e42a686ab4ba737e17cb32dd00e3db2dbd9fc83d535ba7c579a9bbe9b",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0047.md": "8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c",
@@ -636,7 +636,7 @@
     "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md": "45087e75f9a2ab6e3300cf4a6edfcc3ba5c4805477b61e854941b5d603ed0bbf",
     "DevelopmentTests/test_expedition_training_name_events.py": "ed0a7ac7add0e97a659532ae90f236d453b70cd25c539c22ce77147ac4950773",
     "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
-    "Specialization/Reports/Advisory/AGENTS.md": "65cbcaec2fba01afe192c6618286ea29236430332fe723d2b14db1a97ec37dd4",
-    "Specialization/Reports/Advisory/README.md": "d319c0dc09239f2d5f15c22543d3ecfff764ba62077bdc5f8c924119a1925022"
+    "Specialization/Reports/Advisory/AGENTS.md": "796477e259f690e19b182af54718cd3da9d7724061945b93e70f51491f550f7e",
+    "Specialization/Reports/Advisory/README.md": "86744d29f9bc84e42a322b38b1e1b16302f4797926eeac1f35687e021f73517d"
   }
 }

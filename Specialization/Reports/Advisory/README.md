@@ -10,7 +10,7 @@ Read [area guidance](AGENTS.md) and [W0005](../../Workflow/README.md#w0005--auth
 
 Use a subdirectory for the explicitly authorized topic, with only necessary owned Markdown reports/navigation. Root guidance is tracked; new topic Markdown is ignored by default. There is no central report registry, per-task manifest or requirement to publish before ordinary development can continue.
 
-Use Open, Stable or Superseded. Stable means the evidence version is ready for review, not that the user accepted its recommendations. For publication, follow the [shared checkpoint process](../../Workflow/README.md#advisory-and-investigation-local-checkpoints): pause specified files, Primary reviews read-only, user accepts named files for Git, Primary explicitly commits/pushes and releases the checkpoint. Corrections return to the report owner. Already tracked changes keep normal review/clean-source constraints.
+Use Open, Stable or Superseded. Stable means the evidence version is ready for review, not acceptance of its recommendations. Follow the [shared checkpoint process](../../Workflow/README.md#advisory-and-investigation-local-checkpoints): the author checks publishability and pauses named files; Primary reviews and may explicitly commit/push under standing user authorization, without asking for each report, then releases the checkpoint. Corrections return to the owner unless the user explicitly grants a narrow editorial handoff. Already tracked changes keep normal review/clean-source constraints; publication grants no implementation or Design authority.
 
 ## Reports and evidence
 

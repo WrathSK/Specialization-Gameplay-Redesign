@@ -4,7 +4,7 @@
 
 ## 独立并行调查
 
-[General Investigation Zone / 通用调查区](Investigations/README.md)仅保存用户授权主题的非权威技术调查。独立调查会话只写自己的主题Markdown、Git仅限只读查询；Stable checkpoint由主任务审阅、用户接受后显式提交。不会自动成为Design、实现授权或日常必读；当前主题导航在根区README维护。
+[General Investigation Zone / 通用调查区](Investigations/README.md) holds non-authoritative research within user-authorized topics. Investigation writes only its own topic Markdown and has read-only Git access. Primary may publish reviewed Stable checkpoints under [W0005 standing publication permission](../../Workflow/README.md#advisory-and-investigation-local-checkpoints), without per-report approval. Publication is not acceptance of conclusions, Design authority, implementation permission or mandatory context.
 
 ## 城市身份、保存与事件顺序
 

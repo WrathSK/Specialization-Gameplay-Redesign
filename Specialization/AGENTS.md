@@ -5,8 +5,8 @@ Follow [root guidance](../AGENTS.md). The user is the final semantic authority; 
 ## Parallel advisory work
 
 - Use the existing develop worktree with one active Primary implementation writer. Authorized Advisor and Investigation sessions write only within their separate [Advisory](Reports/Advisory/README.md) and [Investigation](Reports/Technical/Investigations/README.md) areas; neither creates a second authority.
-- Apply [shared advisory boundaries](Workflow/README.md#shared-advisory-boundaries) and each area's AGENTS. Read other roles' outputs only as needed; do not modify their files. Stop only the affected operation when ownership or concurrent edits are unclear.
-- Primary stages only explicit batch-owned or user-accepted checkpoint paths. Never use `git add .`, `git add -A` or `git commit -a`; preserve both roles' dirty, ignored and untracked work without incidental staging, stash, reset or clean.
+- Apply [shared advisory boundaries](Workflow/README.md#shared-advisory-boundaries) and each area's AGENTS. Read other roles' outputs only as needed; do not modify their files unless the user explicitly grants a narrow editorial handoff. Stop only the affected operation when ownership or concurrent edits are unclear.
+- Primary stages only explicit batch-owned paths or Stable checkpoint paths reviewed under [W0005 publication authorization](Workflow/README.md#advisory-and-investigation-local-checkpoints). Never use `git add .`, `git add -A` or `git commit -a`; preserve both roles' dirty, ignored and untracked work without incidental staging, stash, reset or clean.
 - [Local checkpoints](Workflow/README.md#advisory-and-investigation-local-checkpoints) keep new reports out of ordinary commits. They do not block ordinary work; tracked changes retain normal review and clean-source gates. Report acceptance for Git does not authorize Design changes or implementation.
 - Only explicitly authorized Primary governance work may maintain these protocols. No automatic report ingestion/hash registration, new branch/worktree, session registry or scheduling layer is introduced.
 
