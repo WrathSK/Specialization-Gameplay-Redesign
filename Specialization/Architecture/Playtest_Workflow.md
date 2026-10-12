@@ -5,9 +5,10 @@ Workflow Revision: W0003
 Baseline: B069.96 / modinfo96 / accepted D0025
 Baseline tag: v0.1-playtest-b069.96
 
-main worktree: `/Users/xutingzheng/Projects/Specialization-Gameplay-Redesign`
-develop worktree: `/Users/xutingzheng/Projects/Specialization-Gameplay-Redesign-develop`
-These are machine-local locations, not hardcoded tooling dependencies. Git worktree owns isolation; no second manually maintained source/runtime tree.
+- main worktree: the separate checkout of the `main` branch (stable source).
+- develop worktree: the canonical checkout of the `develop` branch (current development source).
+
+Run `git worktree list` from either repository checkout to locate their actual machine-local directories. Neither checkout is a deployment directory. Git worktree owns isolation; no second manually maintained source/runtime tree.
 
 The original unchanged source/document checkpoint is `ca54045`. A following infrastructure-only commit adds this contract and deployment gates; the annotated baseline tag and both initial branches point to that final infrastructure commit, with identical Mod/ contents. This is a playtest milestone, not a final release or balance/performance certification.
 
