@@ -16,8 +16,8 @@ Do not invent missing gameplay, choose between genuine design alternatives, or s
 
 | Role | Responsibility | Current project assignment |
 |---|---|---|
-| Primary | Authorized implementation, repository maintenance, technical investigation, validation automation, Git and deployment under existing gates | Codex main task |
-| Advisor | Bug finding, architecture/Design review, bounded read-only source investigation, evidence and implementation proposals; no implementation | Claude, when assigned an explicit advisory task |
+| Primary | Authorized implementation, repository maintenance, technical investigation, validation automation, Git and deployment under existing gates | Claude main task |
+| Advisor | Bug finding, architecture/Design review, bounded read-only source investigation, evidence and implementation proposals; no implementation | Codex, when assigned an explicit advisory task |
 | Investigation | Long-running, topic-scoped research under the existing [Investigation protocol](../Reports/Technical/Investigations/README.md) | The separately user-authorized Investigation session under that protocol |
 
 Only the user may change these assignments. They are recorded here, not in Authority.json or a role registry. All roles use the existing develop worktree; only one implementation agent is active. No additional clone, branch, worktree or synchronization mechanism is introduced. Session permission is resolved by R9 below. These are behavioral rules, not a claim of configured tool or operating-system enforcement.
