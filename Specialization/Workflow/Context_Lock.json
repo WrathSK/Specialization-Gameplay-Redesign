@@ -638,11 +638,11 @@
     "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
     "Specialization/Reports/Advisory/AGENTS.md": "796477e259f690e19b182af54718cd3da9d7724061945b93e70f51491f550f7e",
     "Specialization/Reports/Advisory/README.md": "86744d29f9bc84e42a322b38b1e1b16302f4797926eeac1f35687e021f73517d",
-    "DevelopmentTests/test_expedition_trace_reader.py": "09d515b03f0598519d03369d206c6d5ccddd34c2bff90d10a7e23484d67c763f",
+    "DevelopmentTests/test_expedition_trace_reader.py": "4714ea7a45355bf4408fa2696934cb59a961a761f4c911b6d355a46c39d52ddc",
     "DevelopmentTests/test_expedition_training_diagnostics.py": "2023084bcad0e39757c49662fa076d5c1e6865ca53d42182cd00048006485ef2",
     "DevelopmentTests/test_expedition_training_trace_integration.py": "2eea961b3c6be7335703351d082a0e052cef2300c8561d59a482dc95a572765c",
     "Mod/ExpeditionTrainingDiagnostics.lua": "4181e04ea85a3f7380a9c8f154fd0353cdc3c6714cb85c96edc0c38cadf19661",
     "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md": "b1d014e6c7985baebfc4b6966f641cc289971f03d08d83d13756f7d613790c22",
-    "tools/read_expedition_trace.py": "d53a7831453402164a18973b9c159ccbaff5f75b53f00f73928a0b6b4f03b06a"
+    "tools/read_expedition_trace.py": "554e71a7dbadcbf505dc2075280bbeae86041870d0ebad9459a027b62096dcca"
   }
 }

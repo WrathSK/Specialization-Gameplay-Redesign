@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""One-shot, fixed read-only B205 FireTuner queries; stdout is local evidence.
+"""Fixed read-only B205 FireTuner reader and bounded local JSONL recorder.
 
-Protocol reference (independently implemented, no copied client code):
-https://github.com/PatrickJYKang/civ6-logger/blob/main/docs/ARCHITECTURE.md
-Only 127.0.0.1:4318 and the advertised GameCore_Tuner context are accepted.
-No arbitrary Lua, configuration changes, file writes, watchers or retries.
-Native probe success does not establish trace availability in every context.
+Protocol reference: https://github.com/PatrickJYKang/civ6-logger/blob/main/docs/ARCHITECTURE.md
+Only localhost4318 / advertised GameCore_Tuner; no arbitrary Lua or config writes.
+Record sends one snapshot query, then passively receives B205 diagnostic prints.
+It never polls, reconnects, trains, changes Properties, launches the game or runs GC.
 """
 import argparse
+from datetime import datetime, timezone
+import json
+from pathlib import Path
+import re
 import secrets
 import socket
 import struct
@@ -19,19 +22,27 @@ DEADLINE_SECONDS = 5.0
 MAX_FRAME = 262144
 MAX_TOTAL = 1048576
 MAX_RECORDS = 70
+MAX_RECORD_SECONDS = 600
+MAX_STREAM_TOTAL = 4 * 1048576
+MAX_STREAM_RECORDS = 1024
+MAX_FRAMES = 4096
 PREFIX = '[SPC][B205][READ] '
+TRAIN_PREFIX = '[SPC][B205][TRAIN] '
+LOG_DIR = Path(__file__).resolve().parents[1] / 'local/diagnostics/B205'
 
 
 class CaptureError(RuntimeError):
-    """Fixed error labels only: do not echo arbitrary native output."""
+    """Safe labels plus bounded partial evidence, never arbitrary engine errors."""
+    def __init__(self, label, phase='CONNECT', records=()):
+        super().__init__(label)
+        self.phase = phase
+        self.records = tuple(records)
 
 
 class Transport:
-    def __init__(self, connection, deadline, clock=time.monotonic):
-        self.connection = connection
-        self.deadline = deadline
-        self.clock = clock
-        self.total = 0
+    def __init__(self, connection, deadline, clock=time.monotonic, limit=MAX_TOTAL):
+        self.connection, self.deadline, self.clock = connection, deadline, clock
+        self.total, self.frames, self.limit = 0, 0, limit
 
     def remaining(self):
         value = self.deadline - self.clock()
@@ -55,13 +66,16 @@ class Transport:
             if not data:
                 raise CaptureError('CONNECTION_CLOSED')
             self.total += len(data)
-            if self.total > MAX_TOTAL:
+            if self.total > self.limit:
                 raise CaptureError('TOTAL_BYTE_LIMIT')
             parts.append(data)
             left -= len(data)
         return b''.join(parts)
 
     def frame(self):
+        self.frames += 1
+        if self.frames > MAX_FRAMES:
+            raise CaptureError('FRAME_COUNT_LIMIT')
         size, tag = struct.unpack('<II', self.exact(8))
         if size > MAX_FRAME:
             raise CaptureError('FRAME_BYTE_LIMIT')
@@ -75,7 +89,7 @@ def select_context(payload):
     except UnicodeDecodeError:
         raise CaptureError('CONTEXT_ENCODING_INVALID') from None
     if len(fields) < 2 or len(fields) % 2:
-        return None  # APP reply, not the state list.
+        return None
     matches = []
     for i in range(0, len(fields), 2):
         index, name = fields[i:i + 2]
@@ -89,34 +103,39 @@ def select_context(payload):
 
 
 def command(mode, marker, sentinel):
-    # Both interpolated tokens are generated locally, not accepted from CLI.
+    # Actual Mac GameCore_Tuner has no rawget. Ordinary table reads were observed.
     common = "local function out(s) print('" + marker + "'..s) end; "
     if mode == 'probe':
         body = "local turn=Game and Game.GetCurrentGameTurn and Game.GetCurrentGameTurn(); " \
                "out('PROBE turn='..tostring(type(turn)=='number' and turn or 'UNKNOWN')" \
                "..' exposed='..type(ExposedMembers)..' spc='" \
-               "..type(type(ExposedMembers)=='table' and rawget(ExposedMembers,'SPC_P0') or nil)); "
+               "..type(type(ExposedMembers)=='table' and ExposedMembers.SPC_P0 or nil)); "
     elif mode == 'trace':
-        body = """local t=type(ExposedMembers)=='table' and rawget(ExposedMembers,'SPC_B205TrainingTrace');
+        body = """local t=type(ExposedMembers)=='table' and ExposedMembers.SPC_B205TrainingTrace;
 local function scalar(v)
  if type(v)=='number' or type(v)=='boolean' then return tostring(v) end
  if type(v)=='string' then return (v:sub(1,80):gsub('%c','_')) end
  return 'UNKNOWN'
 end;
 if type(t)~='table' then out('ERROR TRACE_UNAVAILABLE')
-elseif rawget(t,'schema')~=205 then out('ERROR TRACE_SCHEMA_INVALID')
+elseif t.schema~=205 then out('ERROR TRACE_SCHEMA_INVALID')
 else
- out('META schema=205 sequence='..scalar(rawget(t,'sequence'))..' suppressed='..scalar(rawget(t,'suppressed'))..' errors='..scalar(rawget(t,'errors'))..' sinkStatus='..scalar(rawget(t,'sinkStatus')));
- local entries=rawget(t,'entries');
+ out('META schema=205 sequence='..scalar(t.sequence)..' suppressed='..scalar(t.suppressed)..' errors='..scalar(t.errors)..' sinkStatus='..scalar(t.sinkStatus));
+ local entries=t.entries;
  if type(entries)~='table' then out('ERROR TRACE_ENTRIES_INVALID')
  else
+  local gap=false;
   for i=1,64 do
-   local e=rawget(entries,i); if e==nil then break end;
-   local line=type(e)=='table' and rawget(e,'line');
-   if type(line)=='string' and #line<=4096 then out('ENTRY '..i..' '..line:gsub('%c','_'))
-   else out('ERROR TRACE_ENTRY_INVALID '..i) end
+   local e=entries[i];
+   if e==nil then gap=true
+   else
+    if gap then out('ERROR TRACE_ENTRIES_SPARSE'); break end;
+    local line=type(e)=='table' and e.line;
+    if type(line)=='string' and #line<=4096 then out('ENTRY '..i..' '..line:gsub('%c','_'))
+    else out('ERROR TRACE_ENTRY_INVALID '..i) end
+   end
   end;
-  if rawget(entries,65)~=nil then out('ERROR TRACE_ENTRIES_OVER_LIMIT') end
+  if entries[65]~=nil then out('ERROR TRACE_ENTRIES_OVER_LIMIT') end
  end
 end; """
     else:
@@ -125,7 +144,6 @@ end; """
 
 
 def output_text(payload):
-    # Output frames are channel NUL text NUL. Never emit other engine messages.
     fields = payload.split(b'\0')
     if len(fields) < 2:
         return ''
@@ -135,65 +153,184 @@ def output_text(payload):
         return ''
 
 
-def capture(mode, connect=socket.create_connection, clock=time.monotonic):
-    if mode not in ('probe', 'trace'):
+def native_error(payload):
+    if not payload.startswith(b'ERR:'):
+        return None
+    if b'function expected instead of nil' in payload or b'attempt to call' in payload:
+        return 'NATIVE_FUNCTION_UNAVAILABLE'
+    return 'NATIVE_COMMAND_ERROR'
+
+
+def training_line(line):
+    # An exact batch/stage prefix; no other engine output is written to disk.
+    match = re.search(r'\[SPC\]\[B205\]\[TRAIN\] seq=\d+ stage=[A-Z_]+(?: |$)', line)
+    if not match:
+        return None
+    value = line[match.start():]
+    if len(value) > 4096:
+        raise CaptureError('OUTPUT_LINE_LIMIT')
+    return value
+
+
+def capture(mode, connect=socket.create_connection, clock=time.monotonic,
+            on_record=None, record_seconds=120):
+    if mode not in ('probe', 'trace', 'record'):
         raise CaptureError('MODE_INVALID')
-    nonce = secrets.token_hex(12)
-    marker = PREFIX + nonce + ' '
-    sentinel = PREFIX + nonce + ' DONE'
+    if mode == 'record' and not 1 <= record_seconds <= MAX_RECORD_SECONDS:
+        raise CaptureError('DURATION_INVALID')
+    marker = PREFIX + secrets.token_hex(12) + ' '
+    sentinel = marker + 'DONE'
     deadline = clock() + DEADLINE_SECONDS
     connection = None
+    records, phase, passive_count = [], 'CONNECT', 0
+    has_trace_error = False
+
+    def emit(line):
+        if on_record:
+            try:
+                on_record(line)
+            except OSError:
+                raise CaptureError('LOG_WRITE_FAILED') from None
+
     try:
         connection = connect(ADDRESS, timeout=DEADLINE_SECONDS)
-        wire = Transport(connection, deadline, clock)
+        wire = Transport(connection, deadline, clock,
+                         MAX_STREAM_TOTAL if mode == 'record' else MAX_TOTAL)
         wire.send(4, 'APP:SPC_B205_ReadOnly')
         wire.send(4, 'LSQ:')
-        context = None
+        phase, context = 'CONTEXT', None
         while context is None:
             tag, payload = wire.frame()
             if tag == 4:
                 context = select_context(payload)
-        wire.send(3, 'CMD:' + str(context) + ':' + command(mode, marker, sentinel))
-        records = []
+        phase = 'SNAPSHOT'
+        wire.send(3, 'CMD:' + str(context) + ':' + command('trace' if mode == 'record' else mode, marker, sentinel))
         while True:
-            tag, payload = wire.frame()
-            if tag != 0xFFFFFFFF:
-                continue  # An ACK alone is not a successful capture.
-            for line in output_text(payload).splitlines():
-                # The engine may prepend the context name to each print.
-                pos = line.find(marker)
-                if pos < 0:
-                    continue
-                item = line[pos:]
-                if item == sentinel:
-                    records.append(PREFIX + 'DONE')
+            before = wire.total
+            try:
+                tag, payload = wire.frame()
+            except (socket.timeout, TimeoutError, CaptureError) as error:
+                expired = isinstance(error, (socket.timeout, TimeoutError)) or str(error) == 'DEADLINE_EXCEEDED'
+                if phase == 'PASSIVE' and expired and clock() >= wire.deadline:
+                    if wire.total != before:
+                        raise CaptureError('PARTIAL_FRAME_AT_DEADLINE') from None
+                    emit(PREFIX + 'WINDOW_COMPLETE passive_records=' + str(passive_count))
                     return records
-                if len(item) > len(marker) + 4200:
-                    raise CaptureError('OUTPUT_LINE_LIMIT')
-                if len(records) >= MAX_RECORDS:
-                    raise CaptureError('OUTPUT_RECORD_LIMIT')
-                records.append(PREFIX + item[len(marker):])
+                raise
+            if tag == 3:
+                error = native_error(payload)
+                if error:
+                    raise CaptureError(error)
+            if tag != 0xFFFFFFFF:
+                continue
+            for line in output_text(payload).splitlines():
+                pos = line.find(marker)
+                if phase == 'SNAPSHOT' and pos >= 0:
+                    item = line[pos:]
+                    if len(item) > len(marker) + 4200:
+                        raise CaptureError('OUTPUT_LINE_LIMIT')
+                    if len(records) >= MAX_RECORDS:
+                        raise CaptureError('OUTPUT_RECORD_LIMIT')
+                    value = PREFIX + item[len(marker):]
+                    records.append(value)
+                    emit(value)  # Flush before waiting for the next frame/sentinel.
+                    has_trace_error |= value.startswith(PREFIX + 'ERROR ')
+                    if item == sentinel:
+                        if mode != 'record' or has_trace_error:
+                            return records
+                        phase = 'PASSIVE'
+                        wire.deadline = clock() + record_seconds
+                        emit(PREFIX + 'LISTENING seconds=' + str(record_seconds))
+                elif mode == 'record':
+                    value = training_line(line)
+                    if value:
+                        if passive_count >= MAX_STREAM_RECORDS:
+                            raise CaptureError('OUTPUT_RECORD_LIMIT')
+                        passive_count += 1
+                        emit(value)  # Do not retain a growing list of passive output.
+    except CaptureError as error:
+        error.phase, error.records = phase, tuple(records)
+        raise
     except (socket.timeout, TimeoutError):
-        raise CaptureError('DEADLINE_EXCEEDED') from None
+        raise CaptureError('DEADLINE_EXCEEDED', phase, records) from None
     except OSError:
-        raise CaptureError('SOCKET_UNAVAILABLE') from None
+        raise CaptureError('SOCKET_UNAVAILABLE', phase, records) from None
     finally:
         if connection is not None:
             connection.close()
 
 
+class LocalLog:
+    """Exclusive, line-flushed local evidence. Directory is never user supplied."""
+    def __init__(self):
+        root = Path(__file__).resolve().parents[1]
+        directory = LOG_DIR
+        if directory.resolve() != directory.absolute():
+            raise CaptureError('LOG_DIRECTORY_SYMLINK')
+        if not directory.is_relative_to(root / 'local'):
+            raise CaptureError('LOG_DIRECTORY_INVALID')
+        directory.mkdir(parents=True, exist_ok=True)
+        name = 'tuner-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ-') + secrets.token_hex(4) + '.jsonl'
+        self.path = directory / name
+        self.file = self.path.open('x', encoding='utf-8')
+
+    def write(self, event, **values):
+        self.file.write(json.dumps({'time_utc': datetime.now(timezone.utc).isoformat(),
+                                    'event': event, **values}, ensure_ascii=True) + '\n')
+        self.file.flush()
+
+    def close(self):
+        self.file.close()
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('mode', choices=('probe', 'trace'))
+    parser.add_argument('mode', choices=('probe', 'trace', 'record'))
+    parser.add_argument('--seconds', type=int, default=120, help='record window, 1..600 seconds (default120)')
     args = parser.parse_args(argv)
+    if not 1 <= args.seconds <= MAX_RECORD_SECONDS:
+        parser.error('--seconds must be 1..600')
+    log = None
+    status = 1
     try:
-        records = capture(args.mode)
+        log = LocalLog()  # Every attempt gets a log, including connection failure.
+        print('Local log: ' + str(log.path), flush=True)
+        log.write('start', mode=args.mode, seconds=args.seconds if args.mode == 'record' else None)
+        def output(line):
+            log.write('record', line=line)
+            if args.mode != 'record' or line.startswith(PREFIX + 'LISTENING'):
+                print(line, flush=True)
+        records = capture(args.mode, on_record=output, record_seconds=args.seconds)
+        failed = any(line.startswith(PREFIX + 'ERROR ') for line in records)
+        log.write('end', result='TRACE_ERROR' if failed else 'COLLECTION_COMPLETE',
+                  note='Collection is not gameplay PASS; quiet window does not prove passive delivery.')
+        status = int(failed)
     except CaptureError as error:
-        print(PREFIX + 'ERROR ' + str(error), file=sys.stderr)
-        return 1
-    for line in records:
-        print(line)
-    return int(any(line.startswith(PREFIX + 'ERROR ') for line in records))
+        if log:
+            try:
+                log.write('error', code=str(error), phase=error.phase)
+            except OSError:
+                pass
+        print(PREFIX + 'ERROR ' + str(error) + ' phase=' + error.phase, file=sys.stderr)
+        status = 1
+    except KeyboardInterrupt:
+        if log:
+            try:
+                log.write('end', result='INTERRUPTED')
+            except OSError:
+                pass
+        status = 130
+    except OSError:
+        print(PREFIX + 'ERROR LOCAL_LOG_IO', file=sys.stderr)
+        status = 1
+    finally:
+        if log:
+            try:
+                log.close()
+            except OSError:
+                print(PREFIX + 'ERROR LOCAL_LOG_CLOSE', file=sys.stderr)
+                status = 1
+    return status
 
 
 if __name__ == '__main__':
