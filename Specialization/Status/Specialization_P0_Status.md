@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0555
+Status Revision: S0556
 Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B208_MARKER_SUPPORT_EXPERIMENT_DEPLOYED_AWAITING_USER_RUN
+Work State: B208_SUPPORT_EXCLUDED_INVESTIGATING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B208 user runs: marker support is excluded.** Expedition creation still applied +2430, and +193189 from a derived autosave, and one load hit the memory runaway. The delta is per load and differs between saves. The first training after a load costs 1, later ones 75 (60+15). A new defect also appeared: an order completed immediately by overflow can HOLD before queue confirmation. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-user-runs--2026-10-16-user_game_test-diagnostic). Read-only investigation in progress; no repair authorized.
 
 **B208 temporary marker-support experiment is deployed: B208.235 DEVELOP_ACTIVE, source `3a84a6e`, receipt `B208.235-3a84a6e-playtest.json`, 219/219 MATCH after fresh game-exit checks; no pending transaction.** The Expedition marker prerequisite now uses unlimited support (−1) instead of 1, and the Design cost formula is restored. Cap1 and source binding are unchanged. Training-time protection against a second queue entry now comes only from the Lua checks, which HOLD on violation. The first-training-after-load cost1 remains a separate open defect. L2: 171 targeted PASS. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-marker-support-experiment--2026-10-16-local).
 

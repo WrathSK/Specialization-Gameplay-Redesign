@@ -343,3 +343,27 @@ The marker, its city gating and its lifecycle are unchanged, as are the Store ca
 **Local validation (L2).** The targeted gate SQL (read-only external DB), training, training UI, diagnostics, trace integration, reader and collector suites pass (171 tests). The gate assertions state the restored Spy cost fields, `NumSupported=-1` and version 235. No full regression.
 
 **Deployment.** B208.235/modinfo235 is **DEVELOP_ACTIVE**, source `3a84a6e4296e727140f59fc709a218f9ce73814f`, receipt `B208.235-3a84a6e-playtest.json`. A fresh OS check confirmed game exit before both guarded switches: B207 restored to stable through its receipt, then B208 activated. 219/219 files MATCH, and there is no pending transaction.
+
+## B208 user runs — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** B208.235, three loads in one game process (session `local/diagnostics/B205/session-20261016T140812Z-a612db`, stopped with Ctrl-C):
+- **Load 1:** "Continue game" loaded a T89 autosave with population 4877 and an Expedition TRAINING. The user ended the turn.
+- **Load 2:** the base T88 save, two trainings.
+- **Load 3:** the base T88 save, one training. The memory ran away at end turn.
+
+**Native observations.**
+- **Load 1:** at T90 the Expedition creation applied **+193189** (4877→198066), then +1. Birth, completion and finish followed normally.
+- **Load 2:**
+  - T88 training: **+2430** at T89 (16→2446), then +1.
+  - A second order at T89 read native cost **75**, which is 60+15×1 previous copy. That is the restored Spy formula working after the first copy.
+  - That order completed immediately through carried overflow, applying **+2430** (2447→4877). Because birth and completion arrived before our queue confirmation, training went **HELD**. This is a separate state-machine defect.
+- **Load 3:** T88 training. The trace stops after `TURN_END`, and the user observed the ~80 GB memory runaway.
+- The first training after each load read native cost **1**.
+
+**What this establishes.**
+- Per-building support (`NumSupported`) is **excluded**. The delta and the memory runaway persist with −1.
+- The delta X is fixed within a load but **differs between saves**: +193189 for a derived autosave, against 0/+2430 for the base save. It is not a constant of the unit definition.
+- The first-after-load cost1 followed by 75 indicates that the engine's previous-copies state for this unit type is invalid immediately after a load and becomes valid after one creation.
+- New defect: an order that completes immediately through carried overflow can arrive before the queue confirmation and HOLD.
+
+Root cause remains UNKNOWN. A read-only multi-angle investigation is in progress, covering save lineage, unit-type table history, logs, definitions and public engine knowledge.
