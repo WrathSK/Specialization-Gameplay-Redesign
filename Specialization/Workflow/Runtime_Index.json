@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e7198373838608d03d77987c567bebb447e9f8ffde4275e2de6839252ac0ca2f",
+      "sha256": "b79f880c1db113b2354de8cba18cef8f8463c958d2a42313eac156c3da3aa76f",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B207 user-authorized TEMPORARY diagnostic experiment: Expedition fixed cost (no previous-copy progression), not a design decision; L2 targeted 171 tests PASS."
+      "provenance": "B208 user-authorized TEMPORARY diagnostic experiment: marker prereq NumSupported -1, Spy cost formula restored; not a design decision; L2 targeted 171 tests PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1036,9 +1036,9 @@
       "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
-      "sha256": "59d8bc1613c2445876e9c96abb19021fb26e14de318b714e1eb3c213ed52aeda",
+      "sha256": "3340083385851739c908f7fe5e3d8e4b3f4faaa556fdffa65669692a961cd7b2",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B207 user-authorized TEMPORARY diagnostic experiment: Expedition fixed cost (no previous-copy progression), not a design decision; L2 targeted 171 tests PASS."
+      "provenance": "B208 user-authorized TEMPORARY diagnostic experiment: marker prereq NumSupported -1, Spy cost formula restored; not a design decision; L2 targeted 171 tests PASS."
     },
     "Mod/ExpeditionSpyUI.lua": {
       "sha256": "216ec8ed507f78cefd9e5b9f223149512945de259d2a0f9a5a0d63d0a9b3a663",

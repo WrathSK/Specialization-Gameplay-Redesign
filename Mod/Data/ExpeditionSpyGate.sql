@@ -8,17 +8,20 @@ VALUES('UNIT_SPC_EXPEDITION_SPY','LOC_SPC_EXPEDITION_SPY_NAME','LOC_SPC_EXPEDITI
 -- supplies the native shell's classification; isolation remains a native gate.
 INSERT INTO TypeTags(Type,Tag) VALUES('UNIT_SPC_EXPEDITION_SPY','CLASS_LANDCIVILIAN');
 
--- B202: reuse the resolved Spy base cost. No ordinary Spy purchase or unlock inheritance.
--- B207 TEMPORARY DIAGNOSTIC EXPERIMENT (user-authorized, not a design decision):
--- fixed cost without previous-copy progression, to test whether the native
--- cost1 / population delta on creation comes from that progression.
+-- B202: reuse resolved Spy cost fields, but native previous-copy accounting is
+-- for this distinct UnitType. No ordinary Spy purchase or unlock inheritance.
 UPDATE Units SET CanTrain=1,
  Cost=(SELECT Cost FROM Units WHERE UnitType='UNIT_SPY'),
- CostProgressionModel='NO_COST_PROGRESSION',
- CostProgressionParam1=0
+ CostProgressionModel=(SELECT CostProgressionModel FROM Units WHERE UnitType='UNIT_SPY'),
+ CostProgressionParam1=(SELECT CostProgressionParam1 FROM Units WHERE UnitType='UNIT_SPY')
  WHERE UnitType='UNIT_SPC_EXPEDITION_SPY';
 INSERT INTO Types(Type,Kind) VALUES('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS','KIND_BUILDING');
 INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)
  VALUES('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS','Expedition training reservation',1,'DISTRICT_CITY_CENTER',1,0,0);
+-- B208 TEMPORARY DIAGNOSTIC EXPERIMENT (user-authorized, not a design decision):
+-- unlimited support (-1, as every other non-Archaeologist prereq) instead of 1,
+-- to test whether native per-building unit support plus removal of this
+-- transient marker causes the population delta / memory runaway on creation.
+-- Cap1 stays enforced by the Store reservation and queue checks.
 INSERT INTO Unit_BuildingPrereqs(Unit,PrereqBuilding,NumSupported)
- VALUES('UNIT_SPC_EXPEDITION_SPY','BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1);
+ VALUES('UNIT_SPC_EXPEDITION_SPY','BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',-1);

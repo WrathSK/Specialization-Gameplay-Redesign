@@ -324,3 +324,20 @@ What each outcome would mean:
 - the missing `UnitAiInfos` row.
 
 Root cause remains UNKNOWN. No repair is authorized.
+
+## B208 marker-support experiment — 2026-10-16 (local)
+
+**Authorization.** The user authorized option A after the Design/Architecture re-read and rule check. This is a temporary diagnostic experiment, not a design decision.
+
+**Hypothesis.** The engine links a unit to its supporting prerequisite building. The Expedition is the only unit besides the Archaeologist with `NumSupported=1`, and its transient marker building is removed while the trained unit lives. That removal may leave a stale native reference, which would be consistent with a per-load fixed population delta (0/+2430) at creation and with the memory runaway.
+
+**Runtime change (B208.235 / modinfo235).** In `Mod/Data/ExpeditionSpyGate.sql`, the Expedition's `Unit_BuildingPrereqs.NumSupported` is set to −1 (unlimited, as for every other building-prereq unit except the Archaeologist), instead of 1. The B207 fixed cost is reverted: Cost, model and step are again copied from `UNIT_SPY`, as Design requires. Against B206 the SQL diff is only the `NumSupported` value plus its comment.
+
+The marker, its city gating and its lifecycle are unchanged, as are the Store cap1 reservation and queue checks, the source provenance and all B206 diagnostics.
+
+**Rule check.**
+- Kept: cost formula with independent counting, national cap1 and source binding.
+- Changed during the experiment: the native per-building guard against a second queued Expedition in the reserved city. A second queue entry would now be detected by `TRAINING_MULTIPLE_QUEUE_ENTRIES` and HELD instead of being natively blocked, and no extra team can be created.
+- Open separately: the first-training-after-load cost1 (Design: cost must equal the Spy cost).
+
+**Local validation (L2).** The targeted gate SQL (read-only external DB), training, training UI, diagnostics, trace integration, reader and collector suites pass (171 tests). The gate assertions state the restored Spy cost fields, `NumSupported=-1` and version 235. No full regression.
