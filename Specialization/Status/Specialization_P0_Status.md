@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0557
+Status Revision: S0558
 Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B208_DELTA_CITY_A_SPECIFIC_INVESTIGATING
+Work State: B208_INVESTIGATION_COMPLETE_AWAITING_USER_TESTS
 
 ## CURRENT AUTHORITATIVE STATE
+
+**Read-only investigations are complete, and the conclusion is inference only.**
+- The test campaign predates the appended Expedition type (index 244), and its cities hold 242-entry per-unit arrays.
+- The +2430 equals city A's Theater Square plot index, where A has a museum and a half-built media center; B has neither.
+- Our stored data is not supported as the cause.
+- First-after-load cost1 comes from a stale cost cache saved for player 0.
+- The HELD-on-second-order defect is caused by the installed Overflow Bug Fix mod.
+
+Next discriminating tests need no runtime change: an Archaeologist in A, an Expedition in a city founded after 2026-10-10 or in a new campaign, and a governor swap. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference). No repair authorized.
 
 **City A/B comparison: the population delta is specific to city A (Edinburgh).** City B (Durocorteron) applied delta 0 in 6+ trainings across three loads of the same save; city A applied +2430 in the same process. The first-after-load cost1 happens in both cities, so it is a separate issue. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-city-ab-comparison--2026-10-16-user_game_test-diagnostic). Read-only A/B investigation in progress; no repair authorized.
 

@@ -388,3 +388,44 @@ The sessions are `…142028Z-c8e51a` and `…142347Z-018767`.
 - B's name suggests a captured city and A's a founded one (INFERENCE). A was also the source city for every earlier Expedition prototype and training.
 
 Root cause remains UNKNOWN. A focused read-only city A/B investigation is in progress.
+
+## Read-only investigations — 2026-10-16 (STATIC / INFERENCE)
+
+Two user-requested read-only multi-agent investigations were run, each with independent skeptic review. Their raw outputs are kept in the session scratchpad and are not committed. Saves were decoded in memory or in scratch; nothing was written to the game, saves or configuration.
+
+**Facts (save decoding, git, logs).**
+- **Campaign age.** The campaign began on 2026-09-30 with 242 unit types. GATE, ZERO and SPY were appended on 2026-10-10 at indices 242–244 and never reordered. Save headers do not store the mod version. Type hashes are CRC32 without the final XOR.
+- **Per-city arrays.** Every player-0 city, A and B included, holds a count-prefixed per-unit-type int32 array of length 242, fixed when the city was founded. Index 244, the Expedition, is outside it; UNIT_SPY (18) is inside. Cities founded later hold 243/245. Hash-keyed type tables are rewritten at the current size (245 units, 2802 buildings).
+- **Stale cost cache.** Player 0's saved per-unit cost cache still holds Expedition = **1** (the pre-B202 definition) in the base save and AutoSave_0089. Later autosaves hold 60 and then 75. This explains the first-after-load cost1, and it is independent of the population fault.
+- **The 2430 value.** It equals plot index 2430 = (62,32), city A's Theater Square: map width 74, and the same plot as A's half-built `JNR_MEDIA_CENTER` and A's `BUILDING_MUSEUM_ARTIFACT`. The museum is the Archaeologist's `NumSupported=1` prerequisite, and B has no museum. 193189 is not stored in either city.
+- **A/B differences.**
+
+  | | City A | City B |
+  |---|---|---|
+  | Origin | founded `BY_SETTLER` | captured `BY_COMBAT` from Gaul |
+  | Governor | Victor | Magnus (HD base promotion disables settler population consumption) |
+  | Museum (Archaeologist) | present | absent |
+
+- **Our stored data.** The only city property our mod writes on these cities is `SPC_DEV_BINDING_B013_TOKEN`, which no native/HD code reads. Store/Expedition records are Game-level Lua tables. No Lua anywhere, in history or now, changes population by more than ±1. This does **not** support a cause in our stored data.
+- **HELD defect O11.** The installed Overflow Bug Fix mod (2589004769) calls `AddProgress(0)` on every production change. A second order with carried overflow therefore completes immediately, and our training state machine HOLDs.
+- **Correction.** B207 "run 2" and "run 3" were loads 1 and 2 of one process, not separate processes.
+
+**Leading inference.** Completing an Expedition (type index 244, which has a building prerequisite) makes the engine read a per-city or per-type slot that does not hold a valid population amount. In city A, that read lands on data carrying A's Theater plot index. Whether the bad read occurs is decided per load, and a write variant would explain the memory runaway.
+
+The investigations disagree on the exact structure:
+- an undersized 242-entry per-city array accessed at index 244 (≈0.6);
+- a building-prereq/support read reaching A's theater-plot objects (≈0.45).
+
+Both point to the native completion path for this appended unit type in an older campaign. Refuted:
+- the marker building index;
+- Expedition definition fields as a per-type constant;
+- cost1 as the same mechanism;
+- stale Lua or heap residue from earlier prototypes;
+- a founded-city-only rule.
+
+**Cheapest discriminating tests (no runtime change).** Each test first confirms a 2430 load in A, and the user must not end the turn in a bad load (memory risk).
+1. Train a vanilla Archaeologist in A, which has a museum prerequisite at an in-range index.
+2. Train an Expedition in a city founded after 2026-10-10 (245-entry array), or in a fresh campaign.
+3. Swap or unassign the governors (Victor/Magnus) to clear that confound.
+
+Fix directions remain options only (`DESIGN_DECISION_REQUIRED` where noted in Status). Root cause remains UNKNOWN (INFERENCE only).

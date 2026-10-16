@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0557",
+    "status": "S0558",
     "runtime": "B208.235 / modinfo235",
     "military": "D0037",
     "harbor": "D0037",
@@ -634,7 +634,7 @@
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
     "source": "B208.235/modinfo235 DEVELOP_ACTIVE (temporary marker-support experiment); source 3a84a6e4296e727140f59fc709a218f9ce73814f; receipt B208.235-3a84a6e-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B207->stable->B208 switches; outgoing B207 and stable recovery packages retained, no pending deployment transaction. EnableTuner stays1, user-toggled. Faults remain unresolved.",
-    "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory associated with same-process reload or restored training; cost1 observed at cold load before training; root cause UNKNOWN. Fixed native Tuner query returned; reader rawget defect fixed in 8963218 (tools only, validation pending). S0551: B206 re-run shows one native +2430 population change then +1 at T89 adjacent to Expedition unit creation; ordinary spy native cost60 vs Expedition1 in the same city; final 2447 identical across sessions. S0552: Expedition creation applies one native population delta that varied 0/+2430 across loads of the same save; ordinary spies unaffected; native cost1 despite definition identical to UNIT_SPY. S0554: B207 excludes cost progression; per-load fixed delta 0/+2430 at every Expedition creation; memory runaway recurred; first training after load costs1, later60. S0556: B208 excludes NumSupported; delta +2430/+193189 per load and save; memory runaway recurred; first-after-load cost1 then 75; overflow-immediate completion can HOLD. S0557: delta is city-A-specific (city B 0 across 6+ trainings/3 loads); cost1 occurs in both cities.",
+    "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory associated with same-process reload or restored training; cost1 observed at cold load before training; root cause UNKNOWN. Fixed native Tuner query returned; reader rawget defect fixed in 8963218 (tools only, validation pending). S0551: B206 re-run shows one native +2430 population change then +1 at T89 adjacent to Expedition unit creation; ordinary spy native cost60 vs Expedition1 in the same city; final 2447 identical across sessions. S0552: Expedition creation applies one native population delta that varied 0/+2430 across loads of the same save; ordinary spies unaffected; native cost1 despite definition identical to UNIT_SPY. S0554: B207 excludes cost progression; per-load fixed delta 0/+2430 at every Expedition creation; memory runaway recurred; first training after load costs1, later60. S0556: B208 excludes NumSupported; delta +2430/+193189 per load and save; memory runaway recurred; first-after-load cost1 then 75; overflow-immediate completion can HOLD. S0557: delta is city-A-specific (city B 0 across 6+ trainings/3 loads); cost1 occurs in both cities. S0558: read-only investigations: campaign predates appended Expedition index244 (cities hold 242-entry arrays); +2430 = city A Theater plot index; stored mod data not supported as cause; cost1 from stale saved cost cache; HELD from Overflow Bug Fix mod. INFERENCE only.",
     "stop": "B208 experiment, guarded deployment and user multi-load runs only. Stop before any repair or design decision."
   }
 }
