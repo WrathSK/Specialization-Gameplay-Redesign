@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0552
-Implementation Build: source/live B206.233 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0553
+Implementation Build: source B207.234 (live B206.233 DEVELOP_ACTIVE until the authorized switch); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B206_EXPEDITION_CREATION_POPULATION_DELTA_VARIES
+Work State: B207_FIXED_COST_EXPERIMENT_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B207 temporary experiment is locally complete; deployment is authorized.** The Expedition keeps the Spy base cost60 but drops previous-copy progression, to test whether native cost1 and the varying population delta on creation come from that progression. This is not a design decision. The collector no longer exits during in-game reloads and logs its waiting codes. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b207-fixed-cost-experiment-and-collector-reload-fix--2026-10-16-local).
 
 **B206 spy comparison and multi-load runs.**
 - Creating an Expedition unit triggers one native population change in the source city. It was 0 in one load and +2430 in others of the same save, so it is not tied to first load or reload.

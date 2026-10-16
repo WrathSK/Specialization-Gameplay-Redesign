@@ -8,12 +8,14 @@ VALUES('UNIT_SPC_EXPEDITION_SPY','LOC_SPC_EXPEDITION_SPY_NAME','LOC_SPC_EXPEDITI
 -- supplies the native shell's classification; isolation remains a native gate.
 INSERT INTO TypeTags(Type,Tag) VALUES('UNIT_SPC_EXPEDITION_SPY','CLASS_LANDCIVILIAN');
 
--- B202: reuse resolved Spy cost fields, but native previous-copy accounting is
--- for this distinct UnitType. No ordinary Spy purchase or unlock inheritance.
+-- B202: reuse the resolved Spy base cost. No ordinary Spy purchase or unlock inheritance.
+-- B207 TEMPORARY DIAGNOSTIC EXPERIMENT (user-authorized, not a design decision):
+-- fixed cost without previous-copy progression, to test whether the native
+-- cost1 / population delta on creation comes from that progression.
 UPDATE Units SET CanTrain=1,
  Cost=(SELECT Cost FROM Units WHERE UnitType='UNIT_SPY'),
- CostProgressionModel=(SELECT CostProgressionModel FROM Units WHERE UnitType='UNIT_SPY'),
- CostProgressionParam1=(SELECT CostProgressionParam1 FROM Units WHERE UnitType='UNIT_SPY')
+ CostProgressionModel='NO_COST_PROGRESSION',
+ CostProgressionParam1=0
  WHERE UnitType='UNIT_SPC_EXPEDITION_SPY';
 INSERT INTO Types(Type,Kind) VALUES('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS','KIND_BUILDING');
 INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)

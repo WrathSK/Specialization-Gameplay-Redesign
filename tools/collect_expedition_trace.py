@@ -5,7 +5,8 @@ Start it before or after launching the game; it waits for the local FireTuner
 socket, then repeatedly runs the fixed read-only `record` capture from
 read_expedition_trace.py (one ring snapshot plus a passive listening window),
 reconnecting across loads until the game has been gone for --idle-exit seconds
-(default 30). Ctrl-C/SIGTERM also stop it and still write the summary.
+(default 30). Only a refused connection counts as gone; a socket that accepts
+but closes or times out during the handshake (an in-game load) keeps waiting. Ctrl-C/SIGTERM also stop it and still write the summary.
 
 Every unique `[SPC][B205][TRAIN]` record is appended to a local session log and
 summarized at the end. B206: allowlisted HD population/hospital prints are
@@ -155,6 +156,7 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
     connected_once = False
     last_ok = None
     waiting_reported = False
+    last_wait = None
     while True:
         now = clock()
         if now - start >= max_seconds:
@@ -179,12 +181,21 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
             if not connected_once:
                 out('Connected to the game; collecting. Press Ctrl-C to stop.')
                 session.event('connected')
-            connected_once, last_ok, waiting_reported = True, clock(), False
+            connected_once, last_ok, waiting_reported, last_wait = True, clock(), False, None
         except reader.CaptureError as error:
             code = str(error)
-            unavailable = code in ('SOCKET_UNAVAILABLE', 'CONNECTION_CLOSED') or \
-                (code == 'DEADLINE_EXCEEDED' and error.phase == 'CONTEXT')
-            if unavailable and connected_once and last_ok is not None and clock() - last_ok >= idle_exit:
+            # Refused: nothing listens, the game is gone or not started yet.
+            # Closed/handshake timeout: the process is alive (e.g. loading a save).
+            gone = code == 'SOCKET_UNAVAILABLE'
+            loading = code == 'CONNECTION_CLOSED' or \
+                (code == 'DEADLINE_EXCEEDED' and error.phase in ('CONNECT', 'CONTEXT'))
+            unavailable = gone or loading
+            if unavailable and (code, error.phase) != last_wait:
+                session.event('waiting', code=code, phase=error.phase)
+                last_wait = (code, error.phase)
+            if loading and connected_once:
+                last_ok = clock()
+            if gone and connected_once and last_ok is not None and clock() - last_ok >= idle_exit:
                 return 'GAME_EXITED'
             if unavailable and not waiting_reported:
                 out('Waiting for the game / Tuner socket (localhost:4318)...')

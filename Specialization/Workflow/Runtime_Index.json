@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "30c5db72642a15a92f14e3bf4deefbe6acb7babc3a0c9feaf61e368fe947675c",
+      "sha256": "e7198373838608d03d77987c567bebb447e9f8ffde4275e2de6839252ac0ca2f",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
+      "provenance": "B207 user-authorized TEMPORARY diagnostic experiment: Expedition fixed cost (no previous-copy progression), not a design decision; L2 targeted 171 tests PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1036,9 +1036,9 @@
       "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
-      "sha256": "2e4c7595f31c041da028607550671a44fe5188f2876f9919f5081032996f6ce2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
-      "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
+      "sha256": "59d8bc1613c2445876e9c96abb19021fb26e14de318b714e1eb3c213ed52aeda",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B207 user-authorized TEMPORARY diagnostic experiment: Expedition fixed cost (no previous-copy progression), not a design decision; L2 targeted 171 tests PASS."
     },
     "Mod/ExpeditionSpyUI.lua": {
       "sha256": "216ec8ed507f78cefd9e5b9f223149512945de259d2a0f9a5a0d63d0a9b3a663",

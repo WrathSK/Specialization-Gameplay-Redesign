@@ -131,6 +131,29 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(len((self.session.directory / 'records.log').read_text().splitlines()), 4)
         self.assertEqual(len(self.session.seen), 0)
 
+    def test_in_game_reload_keeps_waiting_and_logs_wait_codes(self):
+        clock = FakeClock()
+        out = []
+        loading = [reader.CaptureError('CONNECTION_CLOSED', 'CONTEXT')] + \
+            [reader.CaptureError('DEADLINE_EXCEEDED', 'CONTEXT')] * 20  # 100 s load
+        script = ['up'] + loading + ['up'] + [reader.CaptureError('SOCKET_UNAVAILABLE')] * 10
+
+        def capture(mode, on_record=None, record_seconds=None):
+            step = script.pop(0) if script else reader.CaptureError('SOCKET_UNAVAILABLE')
+            if step != 'up':
+                raise step
+            clock.now += record_seconds
+            on_record(TRAIN % (len(script), 'LOAD_CLOSE', 16, '1'))
+
+        reason = collector.run(self.session, capture=capture, clock=clock, sleep=clock.sleep,
+                               window=30, idle_exit=30, retry=5, out=out.append)
+        self.assertEqual(reason, 'GAME_EXITED')
+        self.assertEqual(len(self.session.seen), 2)  # survived the long load, saw the second load
+        events = (self.session.directory / 'events.jsonl').read_text()
+        for code in ('CONNECTION_CLOSED', 'DEADLINE_EXCEEDED', 'SOCKET_UNAVAILABLE'):
+            self.assertIn(code, events)
+        self.assertEqual(events.count('"waiting"'), 3)  # logged once per code change
+
     def test_session_must_stay_under_local(self):
         with self.assertRaises(reader.CaptureError):
             collector.Session(root=Path(tempfile.gettempdir()) / 'spc-outside', stamp='X')

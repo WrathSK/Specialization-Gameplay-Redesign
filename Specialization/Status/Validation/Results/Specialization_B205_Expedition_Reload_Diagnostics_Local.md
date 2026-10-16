@@ -274,3 +274,21 @@ The user reports that ordinary spies never changed population, and that the jump
 - Root cause remains UNKNOWN. No repair is authorized.
 
 **Collector defect (tools only, not yet fixed).** During an in-game reload, the Tuner connection is unavailable for more than the 30 s idle exit, so the collector ended with `GAME_EXITED` while the game was still running. The waiting error codes are not logged, so whether a loading game refuses connections or only times out on the context is not yet recorded.
+
+## B207 fixed-cost experiment and collector reload fix — 2026-10-16 (local)
+
+**Authorization.** The user authorized both proposed items: the collector reload fix, and a temporary discriminating runtime experiment. The experiment is not a design decision. Whether Expedition cost keeps previous-copy progression remains the user's decision.
+
+**Runtime change (B207.234 / modinfo234, TEMPORARY diagnostic experiment).** `Mod/Data/ExpeditionSpyGate.sql` keeps the Spy base cost (60) for `UNIT_SPC_EXPEDITION_SPY`. It sets `CostProgressionModel='NO_COST_PROGRESSION'` and `CostProgressionParam1=0` instead of copying the Spy's previous-copy progression. All B206 diagnostics, gameplay flow, capacity, source, Store and GC are unchanged.
+
+What each outcome would mean:
+- Native cost 60 and no population delta on creation across several loads: this implicates the previous-copy progression on this type.
+- Cost1 or the jump persists: the progression is excluded.
+
+**Tools.** `tools/collect_expedition_trace.py` now counts only a refused connection (`SOCKET_UNAVAILABLE`) toward the idle exit. A socket that accepts but closes, or times out in connect/context during an in-game load, keeps the session alive. Each change of waiting code is logged as a `waiting` event.
+
+**Local validation (L2, W0004 v1 minimum sufficient).**
+- The targeted training/diagnostics/UI/gate/reader/collector suites pass (171 tests), with the gate SQL test run against the explicit read-only external `DebugGameplay.sqlite`.
+- One new collector test covers a 100 s in-game load, reconnect and real exit.
+- The gate SQL assertion now states the experiment's fixed-cost values, and the package version assertion is 234.
+- No full regression: no concrete cross-module risk was identified.
