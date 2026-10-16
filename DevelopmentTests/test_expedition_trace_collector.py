@@ -97,6 +97,19 @@ class CollectorTests(unittest.TestCase):
         self.assertIn('trace_error', events)
         self.assertIn('NATIVE_FUNCTION_UNAVAILABLE', events)
 
+    def test_loading_context_timeout_counts_as_waiting(self):
+        clock = FakeClock()
+        out = []
+
+        def capture(mode, on_record=None, record_seconds=None):
+            raise reader.CaptureError('DEADLINE_EXCEEDED', 'CONTEXT')
+
+        reason = collector.run(self.session, capture=capture, clock=clock, sleep=clock.sleep,
+                               retry=5, max_seconds=30, out=out.append)
+        self.assertEqual(reason, 'MAX_DURATION')
+        self.assertEqual(sum('Waiting for the game' in o for o in out), 1)
+        self.assertNotIn('capture_error', (self.session.directory / 'events.jsonl').read_text())
+
     def test_session_must_stay_under_local(self):
         with self.assertRaises(reader.CaptureError):
             collector.Session(root=Path(tempfile.gettempdir()) / 'spc-outside', stamp='X')

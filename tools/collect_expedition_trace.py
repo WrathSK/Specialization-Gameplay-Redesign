@@ -4,7 +4,8 @@
 Start it before or after launching the game; it waits for the local FireTuner
 socket, then repeatedly runs the fixed read-only `record` capture from
 read_expedition_trace.py (one ring snapshot plus a passive listening window),
-reconnecting across loads until the game has been gone for --idle-exit seconds.
+reconnecting across loads until the game has been gone for --idle-exit seconds
+(default 30). Ctrl-C/SIGTERM also stop it and still write the summary.
 
 Every unique `[SPC][B205][TRAIN]` record is appended to a local session log and
 summarized at the end. It sends no gameplay command, changes no configuration,
@@ -128,7 +129,7 @@ class Session:
 
 
 def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
-        window=30, idle_exit=120, retry=5, max_seconds=MAX_HOURS * 3600, out=print):
+        window=30, idle_exit=30, retry=5, max_seconds=MAX_HOURS * 3600, out=print):
     """Main loop. Returns the end reason. All injected callables ease offline tests."""
     start = clock()
     connected_once = False
@@ -154,7 +155,8 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
             connected_once, last_ok, waiting_reported = True, clock(), False
         except reader.CaptureError as error:
             code = str(error)
-            unavailable = code in ('SOCKET_UNAVAILABLE', 'CONNECTION_CLOSED')
+            unavailable = code in ('SOCKET_UNAVAILABLE', 'CONNECTION_CLOSED') or \
+                (code == 'DEADLINE_EXCEEDED' and error.phase == 'CONTEXT')
             if unavailable and connected_once and last_ok is not None and clock() - last_ok >= idle_exit:
                 return 'GAME_EXITED'
             if unavailable and not waiting_reported:
@@ -168,10 +170,10 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--window', type=int, default=30, help='passive window per connection, 5..600 s (default 30)')
-    parser.add_argument('--idle-exit', type=int, default=120, help='stop after the game is gone this long, 30..3600 s (default 120)')
+    parser.add_argument('--idle-exit', type=int, default=30, help='stop after the game is gone this long, 10..3600 s (default 30)')
     parser.add_argument('--max-hours', type=float, default=MAX_HOURS, help='hard cap, 0.1..12 h (default 12)')
     args = parser.parse_args(argv)
-    if not 5 <= args.window <= 600 or not 30 <= args.idle_exit <= 3600 or not 0.1 <= args.max_hours <= MAX_HOURS:
+    if not 5 <= args.window <= 600 or not 10 <= args.idle_exit <= 3600 or not 0.1 <= args.max_hours <= MAX_HOURS:
         parser.error('argument out of range')
     def stop(signum, frame):
         raise KeyboardInterrupt

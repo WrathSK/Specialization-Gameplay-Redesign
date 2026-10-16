@@ -86,7 +86,7 @@ It does not enable Tuner, launch the game, select arbitrary Lua/context/host or 
 - It repeats the fixed `record` capture, by default with a 30 s window, reconnecting across loads.
 - It deduplicates records and writes `local/diagnostics/B205/session-*/` (`records.log`, `events.jsonl`, `summary.txt`).
 - It flags population changes per city and native/definition cost mismatches.
-- It stops after the game has been gone for `--idle-exit` seconds (default 120), on Ctrl-C/SIGTERM, or at a 12-hour cap.
+- It stops after the game has been gone for `--idle-exit` seconds (default 30), on Ctrl-C/SIGTERM, or at a 12-hour cap.
 - It sends no gameplay command and changes no configuration.
 
 Tuner policy (user decision, 2026-10-16): during development `EnableTuner` stays 1 and the user toggles it from the terminal with the game closed. `AppOptions.txt` uses CRLF line endings, so a sed pattern must include `\r`. Primary does not restore it after sessions. From repository root:

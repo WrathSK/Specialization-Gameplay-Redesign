@@ -135,7 +135,7 @@ This is an authorized tools-only batch. It changes no runtime package and requir
 - It repeatedly runs the existing fixed read-only `record` capture: one ring snapshot plus a 30 s passive window per connection. It reconnects across loads.
 - It deduplicates exact `[SPC][B205][TRAIN]` records and writes ignored `local/diagnostics/B205/session-*/records.log`, `events.jsonl` and `summary.txt`.
 - It flags per-city population changes, and each distinct native-versus-definition cost mismatch once.
-- It ends when the game has been gone for 120 s, on Ctrl-C/SIGTERM, or at a 12-hour cap.
+- It ends when the game has been gone for 30 s (default; was 120 s), on Ctrl-C/SIGTERM, or at a 12-hour cap.
 - It builds no command of its own. It sends no gameplay operation, changes no configuration and launches nothing.
 
 **Evidence status.**
@@ -149,3 +149,36 @@ This is an authorized tools-only batch. It changes no runtime package and requir
 - Smoke run with the game closed: the collector waited, stopped on SIGTERM and wrote its summary. The smoke artifacts were removed.
 
 None of this is a native PASS. No gameplay repair, deployment or user test is authorized by this batch.
+
+## First collector session — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** Cold start, first load of one save, train once, end turn. The collector ran unattended and ended on `GAME_EXITED`. Its session folder is ignored `local/diagnostics/B205/session-20261016T102624Z-f62c2c/`: 24 unique records from 3 observer contexts.
+
+**Native observations.**
+- Passive socket delivery worked: records seq5–14 arrived live. The snapshot also worked: seq1–4 and 15–24.
+- Records seq5–14 (T88, cold load, `loads=1`) cover: eligible row → order → reserve (`TRAIN:P0-B-205.232:2`, prior phase ENDED) → marker created → native build → queue count1.
+  - Population is 16 throughout.
+  - Native cost is 1 against definition 60/15 (the same mismatch checkpoint A recorded).
+- The first T89 record is `BIRTH_ENTRY` (seq15, unit 3407901), and it already shows **population 2447**. Completion (seq17–19) and Finish with marker removal (seq21–24) all follow at 2447.
+- Engine `Player_Stats.csv` records 54 for the test player at T89 start.
+- `City_BuildQueue.csv` T89 records the Expedition completed with 342.3 production added, 1 needed and 107.3 overflow.
+- An AI knowledge row for the city records 2447.
+- `UserInterface.log` contains no B205 lines, and `Modding.log` shows no load error for this Mod's files.
+
+**What this establishes.**
+- The jump happened during the player's T89 city processing, after the T89 stats row and before the first Mod handler that observed the training (unit birth).
+- None of the Mod's traced code wrote anything between seq14 (T88) and seq15 (T89).
+- This session reproduced the fault on a **cold start's first load**. Same-process reloading is therefore not necessary for it, although which save was used still matters.
+- Cost 1 is present from the eligible row onward.
+
+**What it does not establish.**
+- Which native step, or which other script, changed population.
+- Whether that change was one step or many increments.
+- Whether cost 1 is related.
+
+The memory runaway did not occur. Cause remains UNKNOWN.
+
+**Collector maintenance in the same batch.**
+- The default idle exit is now 30 s (the user found 120 s too long).
+- A deadline during the Tuner context handshake while the game loads now counts as waiting, not as an error.
+- 7 offline collector tests PASS.
