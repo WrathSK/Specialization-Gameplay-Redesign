@@ -1,15 +1,19 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0550
+Status Revision: S0551
 Implementation Build: source/live B206.233 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B206_POPULATION_DIAGNOSTICS_DEPLOYED_AWAITING_USER_RUN
+Work State: B206_SINGLE_NATIVE_POPULATION_JUMP_OBSERVED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B206 user re-run (cold start, first load): the jump is one native population change of +2430, followed by +1, during T89 processing and adjacent to Expedition unit creation.** It is not 2431 increments. The ordinary spy's native cost in the same city is 60, against the Expedition's 1, so cost1 is unit-specific. The final value 2447 is identical to the previous session, so the jump is deterministic for this save on B205/B206. No Mod or Lua script found can apply +2430. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-collector-session--2026-10-16-user_game_test-diagnostic). Root cause UNKNOWN; no repair authorized.
+
+By user decision, conversation with the user is in Chinese for every session role, and written repository artifacts stay English ([language convention](../Workflow/README.md#language-convention)).
 
 **B206 diagnostic-only batch is deployed: B206.233/modinfo233 DEVELOP_ACTIVE, source `179228a`, receipt `B206.233-179228a-playtest.json`, 219/219 MATCH after fresh game-exit checks and guarded B205→stable→B206 switches; no pending transaction.** The user stated that the first collector session's save predates checkpoint A, and that the same save had loaded and trained normally in earlier runs. The jump is therefore not a property of the save alone. The user then authorized the proposed next step. [B206 record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-population-change-and-spy-cost-diagnostics--2026-10-16-local).
 

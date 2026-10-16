@@ -218,3 +218,32 @@ The memory runaway did not occur. Cause remains UNKNOWN.
 **Limits.** This is local simulation, not user-game PASS. Whether HD prints reach the Tuner socket from HD's script context is unverified natively. Root cause remains UNKNOWN.
 
 **Deployment.** B206.233/modinfo233 is **DEVELOP_ACTIVE**, source `179228aff1e51ea66da2759c68115bb97763b6b4`, receipt `B206.233-179228a-playtest.json`. A fresh OS check confirmed game exit before both guarded switches (B205 restored to stable via its receipt → B206 activated). 219/219 source/runtime files MATCH. Outgoing B205 and stable recovery packages are retained, and there is no pending transaction. No game launch or native result is claimed.
+
+## B206 collector session — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** B206.233, cold start, first load of the same pre-checkpoint-A save, train once, end turn. The collector ended on `GAME_EXITED`. Session `local/diagnostics/B205/session-20261016T105922Z-ad1e9b/` holds 31 unique records. The user notes that this save loaded and trained normally in earlier runs, but the jump now reproduces on every first load.
+
+**Native observations.**
+- T88: eligible row, order, reserve, marker and native build all show population16. Expedition native cost is 1 against definition60. **Ordinary `UNIT_SPY` native cost in the same city is 60** (`spyNativeCost=60`), so cost1 is specific to the Expedition unit, not to the city or production path.
+- `TURN_END` (T88, seq15): population16.
+- `GameEvents.OnCityPopulationChanged`, which is synchronous:
+  - **one notification with delta +2430** (16→2446, seq16);
+  - then one with delta +1 (→2447, seq17).
+  - There were no other notifications. The jump is a single native population change, not 2431 increments.
+- The deferred `Events` queue was published in this order:
+  - `UnitAddedToMap` (BIRTH, seq18–19);
+  - `CityPopulationChanged` to 2446 (seq20);
+  - `CityProductionCompleted` (seq21–23);
+  - `CityPopulationChanged` to 2447 (seq24);
+  - then `TURN_BEGIN` at 2447.
+  - If that queue preserves engine order, the +2430 change occurs right after the Expedition unit is created, and the +1 occurs after production completion.
+- `City_BuildQueue.csv` T89 again records production added 342.3, needed 1, overflow 107.3. The final value 2447 is identical to the earlier session.
+- No allowlisted HD print arrived (`hd_prints: 0`). It is unverified whether HD script-context prints reach the Tuner socket at all, so this does not prove that HD code was inactive.
+- A source search found no `ChangePopulation`/`SetPopulation` in this Mod. In the installed HD and other Workshop scripts, only ±1 calls exist. None can produce +2430.
+
+**What this establishes.**
+- The fault is one native +2430 population change during the player's T89 processing, adjacent to creation of the cost-1 Expedition unit.
+- It is deterministic for this save on B205/B206: the same final value 2447 appeared in two sessions.
+- Cost1 is unit-specific.
+
+**What it does not establish.** Which native rule applies +2430, whether it is caused by the unit's definition (cost/overflow, or some other copied or omitted column), and why earlier runs on this save did not show it. Root cause remains UNKNOWN. No repair is authorized.
