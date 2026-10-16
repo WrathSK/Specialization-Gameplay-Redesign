@@ -1,8 +1,13 @@
 -- B202: bounded admission adapter. Native production owns cost/progress/copy
 -- history; this UI never spawns, destroys or teleports the trained unit.
+if include then include('ExpeditionTrainingDiagnostics')end
 SPCExpeditionTrainingUI={KIND='UNIT_SPC_EXPEDITION_SPY'}
 function SPCExpeditionTrainingUI.New(P,send,notify,build)
- local M=SPCExpeditionTrainingUI;local api={};local pending;local selected;local sync;local view;local lastRevision
+ local M=SPCExpeditionTrainingUI;local api={};local pending;local selected;local sync;local view;local lastRevision;local diagnosticRowKey
+ local diag=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'PRODUCTION_UI')
+ local function observe(stage,c,extra)if diag then pcall(diag.Event,stage,c,nil,extra)end end
+ -- Scalar provenance only; admission never depends on these diagnostic fields.
+ if diag then pcall(function()ExposedMembers.SPC_B205TrainingTrace.bridge=diag.id end)end
  local function request(action,c,reservation)
   ExposedMembers.SPC_ExpeditionTrainingSequence=(ExposedMembers.SPC_ExpeditionTrainingSequence or 0)+1
   local token='TRAIN:'..P.VERSION..':'..ExposedMembers.SPC_ExpeditionTrainingSequence
@@ -23,7 +28,8 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
     if r.UnitType==M.KIND then count=count+1 end
    end
   end
-  return {owner=pid,city=id,turn=Game.GetCurrentGameTurn(),count=count}
+  return {owner=pid,city=id,turn=Game.GetCurrentGameTurn(),count=count,
+   _b205_context=diag and diag.id,_b205_load=diag and diag.loads}
  end
  function api.Sync(c)
   if not localCity(c)then return end
@@ -42,10 +48,20 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
   data.UnitItems=items
   if not view or view.city~=c:GetID() or not view.eligible then return end
   local r=GameInfo.Units[M.KIND];if not r then return end
-  local q=c:GetBuildQueue()
+  local q=c:GetBuildQueue();local nativeCost=q:GetUnitCost(r.Index)
+  -- Reuse the displayed cost. One disposable selected-row key avoids repeated
+  -- diagnostic native reads on unchanged renders, including pre-training reads.
+  if diag then pcall(function()
+   local trace=ExposedMembers.SPC_B205TrainingTrace or {};local roles=trace.roles or {}
+   local key=table.concat({c:GetID(),Game.GetCurrentGameTurn(),r.Index or -1,r.Cost or -1,
+    nativeCost or -1,trace.loadSequence or 0,roles.GAMEPLAY or '-',roles.LOG_UI or '-'},':')
+   if key~=diagnosticRowKey then
+    diagnosticRowKey=key;observe('UI_ROW',c,{nativeCost=nativeCost})
+   end
+  end)end
   items[#items+1]={Index=r.Index,Type=r.UnitType,Name=r.Name,Hash=r.Hash,Kind='KIND_UNIT',
    ToolTip=Locale.Lookup('LOC_SPC_EXPEDITION_TRAINING_HELP')..(ExposedMembers.SPC_ExpeditionTrainingUIError and ('[NEWLINE]'..Locale.Lookup('LOC_SPC_EXPEDITION_SPY_TRAINING_ERROR',ExposedMembers.SPC_ExpeditionTrainingUIError)) or ''),TurnsLeft=q:GetTurnsLeft(r.Hash),
-   Disabled=pending~=nil,Civilian=true,Cost=q:GetUnitCost(r.Index),Progress=q:GetUnitProgress(r.Index),
+   Disabled=pending~=nil,Civilian=true,Cost=nativeCost,Progress=q:GetUnitProgress(r.Index),
    Corps=false,Army=false,CorpsCost=0,ArmyCost=0,CorpsTurnsLeft=1,ArmyTurnsLeft=1,
    CorpsTooltip="",ArmyTooltip="",CorpsName="",ArmyName="",ReligiousStrength=r.ReligiousStrength or 0,
    IsCurrentProduction=q:GetCurrentProductionTypeHash()==r.Hash,SortIndex=999}
@@ -53,6 +69,7 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
  function api.Before(c,item,queueSelected)
   if not item or item.Type~=M.KIND then return true end
   if not localCity(c) or pending or queueSelected then return false end
+  observe('UI_ORDER_BEFORE',c)
   local token,packet=request('RESERVE',c)
   pending={owner=c:GetOwner(),city=c:GetID(),token=token,item=item,stage='RESERVE',turn=Game.GetCurrentGameTurn(),attempts=0}
   transmit(c:GetOwner(),packet);return false
@@ -93,7 +110,9 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
     if not c:GetBuildQueue():CanProduce({UnitType=row.Hash},false,true)then p.stage='CANCEL';p.cancelReason=Locale.Lookup('LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED')
     else
      p.stage='QUEUE';p.issued=true -- before native callback; never resend BUILD
+     observe('UI_BUILD_BEFORE',c)
      local ok,err=pcall(build,c,p.item)
+     observe('UI_BUILD_RETURNED',c)
      if not ok then clear(p,tostring(err));return end
     end
    end

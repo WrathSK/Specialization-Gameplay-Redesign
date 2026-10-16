@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0546",
-    "runtime": "B204.231 / modinfo231",
+    "status": "S0547",
+    "runtime": "B205.232 / modinfo232",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
-  "goal": "B204 approved event-first exact-team confirmation with clear stage feedback; keep normal training costs, capacity, source, travel/task behavior unchanged.",
+  "goal": "B205 authorized bounded observations for same-process reload, native cost1 and population corruption; preserve capacity/source/permanent state/GC. Local validation only; no deployment this turn.",
   "implementation_authorized": true,
   "context": [
     {
@@ -404,6 +404,36 @@
       "path": "DevelopmentTests/test_expedition_training_name_events.py",
       "kind": "full",
       "reason": "B204 event-only actual-reader/Gate/Store confirmation and exact stage feedback counterexamples; read for this delta only."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "kind": "full",
+      "reason": "B204 native chronology and current B205 observation/stop boundary"
+    },
+    {
+      "path": "Mod/ExpeditionTrainingDiagnostics.lua",
+      "kind": "full",
+      "reason": "Bounded diagnostic-only scalar sampling, output and failure isolation"
+    },
+    {
+      "path": "tools/read_expedition_trace.py",
+      "kind": "full",
+      "reason": "Fixed one-shot read-only localhost transport; explicit temporary-Tuner session only"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_diagnostics.py",
+      "kind": "full",
+      "reason": "Diagnostic bounds, error/reentry and scalar privacy counterexamples"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_trace_integration.py",
+      "kind": "full",
+      "reason": "Actual Training/Gate/Store diagnostic ON/OFF equivalence and injected boundaries"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_trace_reader.py",
+      "kind": "full",
+      "reason": "Offline bounded transport/selection/filter/close failure tests"
     }
   ],
   "dependencies": [
@@ -411,7 +441,8 @@
     "ExpeditionSpyStore copied schema/generation/revision and exact single-write readback; failed/corrupt/unknown outcomes quarantine capacity. CityProgressionStore is unchanged; its reviewed Property primitive is reused through P.SetProperty.",
     "Native engine owns units/travel/activity; logical Gate state survives load. Transient native permits/callback tokens/diagnostics never authorize replay. Independent UI re-observes activity and persists ARMED acknowledgement before any native SLEEP.",
     "Existing native/HD chooser/popup/UnitPanel exact-type isolation and B200 presentation-only selection remain. Exact logical task/team keys correlate accepted task replies; task timer requires observed SLEEP; only fresh owned sleep may release.",
-    "B202 one saved TRAINING source/cap reservation precedes exact marker/native queue; fresh UI GetAt bridge + matching native city/type completion + one new exact-type birth. No position-only adoption or empty-queue cancellation inference. Production UI observes explicit remove/replace intent; bounded independent name observer reuses existing Gate NAME validation."
+    "B202 one saved TRAINING source/cap reservation precedes exact marker/native queue; fresh UI GetAt bridge + matching native city/type completion + one new exact-type birth. No position-only adoption or empty-queue cancellation inference. Production UI observes explicit remove/replace intent; bounded independent name observer reuses existing Gate NAME validation.",
+    "B205 disposable scalar trace is observation only, never admission/source/save authority. Existing event callsites only; no extra Store reads/GC/scanner. UI log sink and fixed external query have bounded independent failure handling."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -582,18 +613,18 @@
     "No full N1 release, reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards, new city-history schema, unrelated Design, general Store/GC/main/HD changes. No auto-open gate. Deployment remains separate."
   ],
   "validation": {
-    "depth": "L3 targeted queue/source/persistence/handshake plus existing direct gate/UI regressions; no full gameplay or stress.",
-    "local": "478 distinct targeted Expedition tests PASS, including21 new event-first tests. Actual reader/Gate/Store under mocked native APIs; XML/SQL/localization, schema/selectors/hash and links checked separately.",
-    "user": "B203 USER_REPORTED_FAIL retained. B204 requires one normal training with P0 closed -> explicit dispatch/arrival/source check; tooltip stage on failure. No repeated save/load or task campaign; auto-open optional."
+    "depth": "L3 targeted diagnostic failure isolation and existing direct Expedition closure; no full gameplay/stress.",
+    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately.",
+    "user": "B204 native training fails overall despite no-P0 dispatch success. Same-process reload population/memory/cost discrepancies unresolved. One fixed FireTuner query worked; config restored. No B205 native test requested until deployment/collection gates; no uncontrolled repetition."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
-    "source": "B204.231/modinfo231 DEVELOP_ACTIVE; deployed source 84773a8632ae334c5a7e934cd148f1899f2311dc; receipt B204.231-84773a8-playtest.json;218/218 MATCH. Fresh automatic OS exit checks before both guarded switches; B203/stable recovery hashes verified, no pending transaction. Native event-first confirmation remains pending.",
-    "native": "B204 USER_GAME_TEST_REQUIRED; inherited B202 panel-assisted arrival/task and B201 persistence only. Native original cause remains unproved.",
-    "stop": "User tests one P0-closed normal training -> explicit dispatch/arrival/source check; capture exact tooltip stage if blocked. Stop for evidence; auto-open non-blocking, later scopes held."
+    "report": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+    "source": "B205.232/modinfo232 LOCAL_ONLY; live remains B204.231 under prior receipt.",
+    "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory and cost1 evidence; root cause UNKNOWN. Fixed native Tuner query returned; passive/diagnostic trace unverified.",
+    "stop": "Native training paused after population/cost/severe-memory faults. Review diagnostic checkpoint; no deployment or repeat reproduction this turn. Later collect pre-training cold/reload observations under explicit session gates before deciding one bounded training step."
   }
 }

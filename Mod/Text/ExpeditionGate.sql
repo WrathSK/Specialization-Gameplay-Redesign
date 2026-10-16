@@ -605,3 +605,10 @@ INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
 ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_READ','native identity reading failed'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OBSERVER','身份确认服务发生异常'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OBSERVER','the identity confirmation observer encountered an error');
+
+-- B205 bounded diagnostic trace; never gameplay state.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAIN_DIAG_HEADER','训练诊断（仅记录，不修复）'),
+('en_US','LOC_SPC_EXPEDITION_TRAIN_DIAG_HEADER','Training diagnostics (observation only)'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAIN_DIAG_STATE','保留 {1} 条；限额抑制 {2}；记录异常 {3}；日志出口 {4}。下方 cost 为定义值/原生查询值。'),
+('en_US','LOC_SPC_EXPEDITION_TRAIN_DIAG_STATE','Retained {1}; budget-suppressed {2}; record errors {3}; log sink {4}. Cost below: definition/native query.');

@@ -1,6 +1,7 @@
 include('Probe')
 include('ExpeditionSpyRead')
 include('ExpeditionSpyUI')
+include('ExpeditionTrainingDiagnostics')
 include('InstanceManager')
 include('SupportFunctions')
 local P=SPCP0;local R=SPCExpeditionSpyRead;local U=SPCExpeditionSpyUI
@@ -150,6 +151,10 @@ local function setReport(s)
  if viewMode~='DIAGNOSTIC'then
   Controls.NormalFeedback:SetText(s);Controls.NormalFeedback:SetToolTipString(s)
   Controls.NormalPreviewStack:CalculateSize();Controls.NormalMissionScroll:CalculateInternalSize();return
+ end
+ if SPCExpeditionTrainingDiagnostics then
+  local trace=SPCExpeditionTrainingDiagnostics.Report()
+  if trace~=''then s=s..'[NEWLINE][NEWLINE]'..trace end
  end
  Controls.Report:SetText(s);Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring()
 end

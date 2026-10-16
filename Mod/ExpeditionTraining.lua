@@ -1,11 +1,17 @@
 -- B202: one saved queue reservation; native queue/completion/birth are evidence,
 -- never an instruction to create a unit. No periodic all-city collection.
+if include then include('ExpeditionTrainingDiagnostics')end
 SPCExpeditionTraining={KIND='UNIT_SPC_EXPEDITION_SPY',MARKER='BUILDING_SPC_EXPEDITION_TRAINING_ACCESS'}
 function SPCExpeditionTraining.Start(P,shared)
  local M=SPCExpeditionTraining;local T=assert(shared.ExpeditionGate.Training)
  local d={};shared.ExpeditionTraining=d
+ local diag=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'GAMEPLAY')
+ local function observe(stage,c,s,extra)if diag then pcall(diag.Event,stage,c,s,extra)end end
  local busy=false;local dirty=false;local waitingReader;local readerAttempts=0;local lastToken,lastReply
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
+ local function observeAt(stage,pid,id,s,extra)
+  if diag then pcall(function()observe(stage,id~=nil and city(pid,id) or nil,s,extra)end)end
+ end
  local function exact(s)
   local c=city(s.owner,s.sourceCity)
   assert(c and c:GetOwner()==s.owner and SPCNetworkInput.Reference(c)==s.sourceRef,'TRAINING_SOURCE_CHANGED')
@@ -15,7 +21,9 @@ function SPCExpeditionTraining.Start(P,shared)
   local row=assert(P.Info('Buildings',M.MARKER),'TRAINING_MARKER_MISSING');local b=c:GetBuildings()
   local has=P.HasBuilding(b,row.Index);assert(type(has)=='boolean','TRAINING_MARKER_UNKNOWN')
   if has~=wanted then
+   observe('MARKER_BEFORE',c,nil,{wanted=wanted})
    if wanted then P.CreateBuilding(c:GetBuildQueue(),row.Index)else P.RemoveBuilding(b,row.Index)end
+   observe('MARKER_AFTER',c,nil,{wanted=wanted})
    assert(P.HasBuilding(b,row.Index)==wanted,'TRAINING_MARKER_UNCONFIRMED')
   end
  end
@@ -23,6 +31,7 @@ function SPCExpeditionTraining.Start(P,shared)
   local read=assert(ExposedMembers.SPC_ExpeditionQueueRead,'TRAINING_QUEUE_READER_UNAVAILABLE')
   -- GetAt is a UI surface. Read a fresh exact-city sample, not a cached count.
   local v=read(c:GetOwner(),c:GetID())
+  if type(v)=='table'then observe('QUEUE_SAMPLE',c,nil,{reader=v._b205_context,readerLoad=v._b205_load,count=v.count})end
   assert(type(v)=='table' and v.owner==c:GetOwner() and v.city==c:GetID() and v.turn==Game.GetCurrentGameTurn() and
    type(v.count)=='number' and v.count>=0 and v.count%1==0,'TRAINING_QUEUE_UNKNOWN')
   return v.count
@@ -62,9 +71,11 @@ function SPCExpeditionTraining.Start(P,shared)
     local valid=pcall(eligible,pid,c)
     return {eligible=valid and T.Available(pid),phase=s.phase or 'IDLE'}
    elseif p.Action=='RESERVE' then
+    observe('RESERVE_ENTRY',c,s)
     eligible(pid,c);assert(T.Available(pid),'TRAINING_CAPACITY_RESERVED')
     assert(queue(c)==0,'TRAINING_ALREADY_QUEUED')
     mutation=true;T.Reserve(pid,p.CityID,p.Token);marker(exact(T.Read(pid)),true);exact(T.Read(pid))
+    observe('RESERVE_EXIT',c,nil,{reservation=p.Token})
     return {reserved=true,reservation=p.Token}
    elseif p.Action=='CONFIRM' or p.Action=='CANCEL' then
     assert(s.phase=='TRAINING' and s.trainingToken==p.Reservation and s.sourceCity==p.CityID,'TRAINING_RESERVATION_CHANGED')
@@ -86,19 +97,25 @@ function SPCExpeditionTraining.Start(P,shared)
   local u=Players[pid]:GetUnits():FindID(id);local r=u and P.Info('Units',u:GetType())
   if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
-   local s=T.Read(pid);if s.phase~='TRAINING' then return end
+   local s=T.Read(pid)
+   if s.phase~='TRAINING' then return end
+   observeAt('BIRTH_ENTRY',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id})
    assert(s.trainingQueued,'TRAINING_BIRTH_BEFORE_QUEUE_CONFIRMATION')
    T.Evidence(pid,s.trainingToken,'trainingBorn',id);dirty=true
+   observeAt('BIRTH_EXIT',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id,born=id})
   end)
  end
  function d.Complete(pid,id,kind,index,cancelled)
   if not P.IsTestPlayer(pid) or kind~=0 then return end
   local r=P.Info('Units',index);if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
+   observeAt('COMPLETE_CALLBACK',pid,id,nil,{eventOwner=pid,eventCity=id,eventKind=kind,eventIndex=index,cancelled=cancelled})
    local s=T.Read(pid)
+   observeAt('COMPLETE_STATE',pid,id,s)
    if s.phase~='TRAINING' then return end
    assert(s.sourceCity==id and s.trainingQueued and not cancelled,'TRAINING_COMPLETION_MISMATCH')
    T.Evidence(pid,s.trainingToken,'trainingCompleted',true);dirty=true
+   observeAt('COMPLETE_EXIT',pid,id,s,{completed=true})
   end)
  end
  function d.Pulse(pid,recovery)
@@ -111,7 +128,9 @@ function SPCExpeditionTraining.Start(P,shared)
   run(pid,function()
    local c=exact(s);local n=queue(c);assert(n<=1,'TRAINING_MULTIPLE_QUEUE_ENTRIES')
    if s.trainingBorn and s.trainingCompleted then
-    if n==0 then marker(c,false);T.Finish(pid,s.trainingToken)
+    if n==0 then
+     observe('FINISH_ENTRY',c,s);marker(c,false);T.Finish(pid,s.trainingToken)
+     observe('FINISH_EXIT',c,nil)
     elseif recovery or Game.GetCurrentGameTurn()>(s.trainingReceiptTurn or s.trainingTurn)then error('TRAINING_QUEUE_REMAINS_AFTER_COMPLETION')else dirty=true end
    elseif s.trainingBorn or s.trainingCompleted then
     -- Do not guess the missing half or release capacity at a publish boundary.
@@ -149,7 +168,11 @@ function SPCExpeditionTraining.Start(P,shared)
   elseif dirty then dirty=false;current(false)end
  end)
  hook('PlayerTurnActivated',function(pid)d.Pulse(pid,false)end)
- hook('LoadScreenClose',function()current(true)end)
+ hook('LoadScreenClose',function()
+  if diag then pcall(diag.Load)end
+  current(true)
+  if diag then pcall(diag.Record,'LOAD_RECOVERY_RETURNED')end
+ end)
  hook('CityTransfered',function()current(false)end)
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss)
   local pid=loss.origin.owner;local s=T.Read(pid)

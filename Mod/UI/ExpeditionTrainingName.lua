@@ -1,7 +1,9 @@
 -- B204: event-first exact-team confirmation; timers only follow a pending read/ack.
 include('Probe')
 include('ExpeditionSpyRead')
+include('ExpeditionTrainingDiagnostics')
 local P=SPCP0
+local diag
 local job,record
 local seq=0
 local initialized=false
@@ -140,7 +142,7 @@ pump=function(retry,event,dt)
  end
 end
 local function published()pump(false,'PUBLISH')end
-local function loaded()pump(true,'LOAD')end
+local function loaded()if diag then pcall(diag.Load)end;pump(true,'LOAD')end
 local function turn()pump(true,'TURN')end
 local function selection(owner,id,...) -- Read the selected unit, not a guessed boolean layout.
  local v=view();if not valid(v) or owner~=v.owner or id~=v.unitID then return end
@@ -149,6 +151,9 @@ local function selection(owner,id,...) -- Read the selected unit, not a guessed 
 end
 local function initialize()
  if initialized then return end;initialized=true
+ if SPCExpeditionTrainingDiagnostics then
+  local ok,sink=pcall(SPCExpeditionTrainingDiagnostics.Sink,P);if ok then diag=sink end
+ end
  Events.GameCoreEventPublishComplete.Add(published);Events.LoadScreenClose.Add(loaded)
  Events.LocalPlayerTurnBegin.Add(turn);Events.UnitSelectionChanged.Add(selection)
  idle();print('[SPC][B204][TRAIN_NAME] stage=INITIALIZED')
@@ -159,6 +164,7 @@ ExposedMembers.SPC_ExpeditionTrainingNameStatus={version=P.VERSION,initialized=f
 print('[SPC][B204][TRAIN_NAME] stage=LOADED')
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
+ if diag then pcall(diag.Stop)end
  stopped=true;cancel();record=nil
  ExposedMembers.SPC_ExpeditionTrainingNameStatus=nil;ExposedMembers.SPC_ExpeditionTrainingNameError=nil
  if initialized then

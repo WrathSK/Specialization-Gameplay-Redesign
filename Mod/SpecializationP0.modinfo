@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="231">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="232">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B204.231: event-first Expedition identity confirmation with stage feedback; training, capacity, source and travel retained.</Description>
+    <Description>B205.232: bounded Expedition reload, cost and population diagnostics; capacity, source, persistence and GC unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -79,6 +79,7 @@
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
       <File>ExpeditionTraining.lua</File>
+      <File>ExpeditionTrainingDiagnostics.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>
@@ -398,6 +399,7 @@
   </InGameActions>
   <Files>
     <File>ExpeditionTraining.lua</File>
+      <File>ExpeditionTrainingDiagnostics.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>

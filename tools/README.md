@@ -71,3 +71,16 @@ Targeted validation (temporary Git repositories, synthetic inputs, real gitleaks
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_publication_gate.py
 ```
+
+## Fixed Expedition diagnostic read (B205)
+
+[read_expedition_trace.py](read_expedition_trace.py) is a one-shot, read-only FireTuner client for the current diagnostic batch. `probe` reads turn/context availability; `trace` reads only the bounded B205 scalar ring. It does not enable Tuner, launch the game, select arbitrary Lua/context/host, write files or watch/retry. Exact advertised GameCore_Tuner required;5s deadline and bounded output. Errors are NOT_VERIFIED, never successful collection.
+
+Only use during a user-authorized temporary-Tuner session: back up the existing configuration, verify game exit before a setting change, let the user load and wait, perform the fixed read, then restore after exit. The B205 preflight is completed/restored; it is not standing permission to re-enable the debug endpoint. No training/turn command is sent. From repository root:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 tools/read_expedition_trace.py probe
+PYTHONDONTWRITEBYTECODE=1 python3 tools/read_expedition_trace.py trace
+```
+
+Native fixed-query transport was observed once; automatic disk logging, passive streaming and B205 trace retrieval are distinct unverified surfaces. Retain output only in ignored local evidence; do not publish raw engine logs/configuration. [Scope and evidence](../Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md). Offline transport checks: `python3 DevelopmentTests/test_expedition_trace_reader.py`; no live socket is opened by those tests.
