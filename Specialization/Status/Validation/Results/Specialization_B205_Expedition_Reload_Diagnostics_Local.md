@@ -482,3 +482,7 @@ Root cause in the old campaign remains INFERENCE. No repair authorized.
 - The former `test_unconfirmed_queue_birth_hold` assertion was replaced by its cross-turn form, following the approved contract change.
 - Targeted gate SQL (read-only external DB), training, training UI and trace integration: 111 PASS.
 - Affected-subsystem regression over all `test_expedition_*` suites (719 tests): 14 failures/errors, **identical to HEAD `130cc0d` without B209** (711 tests, same 14, all in the historical `test_expedition_spy_activity_diagnostic` and `test_expedition_spy_activity_failure` suites). No new failure.
+
+**Deployment.** B209.236/modinfo236 is **DEVELOP_ACTIVE**, source `3060008723d527b6b50501275244f2011aaf27a2`, receipt `B209.236-3060008-playtest.json`. A fresh OS check confirmed game exit before both guarded switches: B208 restored to stable through its receipt, then B209 activated. 219/219 files MATCH, and there is no pending transaction.
+
+The first exit check reported a false "game running": its pattern also matched the Claude process, whose arguments contain the Civ VI directory path. The check now matches only the game executable (`Civ6.app/Contents`), and no package was touched while it reported running.
