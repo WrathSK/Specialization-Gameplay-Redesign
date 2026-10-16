@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0558
+Status Revision: S0559
 Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B208_INVESTIGATION_COMPLETE_AWAITING_USER_TESTS
+Work State: B208_NEW_CAMPAIGN_CLEAN
 
 ## CURRENT AUTHORITATIVE STATE
+
+**New-campaign check is clean.** In a campaign created with the current mod, Expedition creations fired no population notification. Cost followed the Design formula exactly (60/75/90/105/120 across reloads, never 1), and no HELD or memory problem occurred. Scope was one city, early turns and in-process reloads. The user designates this campaign as the future test base. The population fault and cost1 are tied to the pre-Expedition campaign. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#new-campaign-check--2026-10-16-user_game_test-diagnostic).
 
 **Read-only investigations are complete, and the conclusion is inference only.**
 - The test campaign predates the appended Expedition type (index 244), and its cities hold 242-entry per-unit arrays.

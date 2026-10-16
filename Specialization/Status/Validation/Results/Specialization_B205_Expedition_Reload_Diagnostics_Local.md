@@ -429,3 +429,22 @@ Both point to the native completion path for this appended unit type in an older
 3. Swap or unassign the governors (Victor/Magnus) to clear that confound.
 
 Fix directions remain options only (`DESIGN_DECISION_REQUIRED` where noted in Status). Root cause remains UNKNOWN (INFERENCE only).
+
+## New-campaign check — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** B208.235 in a **new campaign** started with the current mod. In city Stirling (65536), at turn 3, the user trained several Expeditions across four loads in one process (sessions `…163612Z-ba8c11` and `…164427Z-b45c29`). The user will use this campaign as the base for future tests.
+
+**Native observations.**
+- **No population notification at all** occurred at any Expedition creation. In the old campaign, every creation fired one, with delta 0 or X.
+- Population stayed at 1.
+- Native cost and engine "Production Needed" both followed the Design formula exactly: 60, 75, 90, 105, 120. After a reload the cost reflects the saved copy count, and **cost1 never appeared**.
+- No HELD occurred and no memory problem appeared.
+
+**User clarification.** In the old campaign, cities A and B were both founded or conquered, and invested to Culture ACTIVE IV, before any Expedition-related module existed. Founding era and specialization history do not distinguish A from B, which is consistent with both holding 242-entry per-unit arrays.
+
+**What this establishes.**
+- The population fault, the population-notification path and the stale cost1 are all **tied to the pre-Expedition campaign**. They did not reproduce in a campaign created with the current unit set.
+- This supports the inferred old-save mechanism.
+- Scope limit: this check covers one city, early turns and in-process reloads. It does not yet cover multiple cities, Culture ACTIVE IV cities with theater/museum content, or end-turn completion.
+
+Root cause in the old campaign remains INFERENCE. No repair authorized.
