@@ -216,3 +216,5 @@ The memory runaway did not occur. Cause remains UNKNOWN.
 - Full discovery: 2209 tests, of which 488 failures/errors. This is the identical failure set to HEAD `c37de97` in a temporary detached worktree (2202 tests, same 488; legacy/external-DB modules), so there are no new failures.
 
 **Limits.** This is local simulation, not user-game PASS. Whether HD prints reach the Tuner socket from HD's script context is unverified natively. Root cause remains UNKNOWN.
+
+**Deployment.** B206.233/modinfo233 is **DEVELOP_ACTIVE**, source `179228aff1e51ea66da2759c68115bb97763b6b4`, receipt `B206.233-179228a-playtest.json`. A fresh OS check confirmed game exit before both guarded switches (B205 restored to stable via its receipt → B206 activated). 219/219 source/runtime files MATCH. Outgoing B205 and stable recovery packages are retained, and there is no pending transaction. No game launch or native result is claimed.

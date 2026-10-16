@@ -633,7 +633,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-    "source": "B205.232/modinfo232 DEVELOP_ACTIVE; source 505695dfdb0058c970d4a9fa40f4e45d68f14df6; receipt B205.232-505695d-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B204->stable->B205 switches; B204/stable recovery verified, no pending deployment transaction. Native diagnostic comparison pending; faults remain unresolved.",
+    "source": "B206.233/modinfo233 DEVELOP_ACTIVE; source 179228aff1e51ea66da2759c68115bb97763b6b4; receipt B206.233-179228a-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B205->stable->B206 switches; outgoing B205 and stable recovery packages retained, no pending deployment transaction. Development policy: EnableTuner stays1, toggled by the user. Faults remain unresolved.",
     "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory associated with same-process reload or restored training; cost1 observed at cold load before training; root cause UNKNOWN. Fixed native Tuner query returned; reader rawget defect fixed in 8963218 (tools only, validation pending).",
     "stop": "B206 diagnostic runtime, guarded deployment and collector re-run only. Stop before any gameplay repair."
   }

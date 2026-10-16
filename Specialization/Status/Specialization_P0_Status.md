@@ -2,16 +2,16 @@
 
 Document Owner: Codex
 Status Revision: S0550
-Implementation Build: source B206.233 (live B205.232 DEVELOP_ACTIVE until the authorized switch); stable B069.96
+Implementation Build: source/live B206.233 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B206_POPULATION_DIAGNOSTICS_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
+Work State: B206_POPULATION_DIAGNOSTICS_DEPLOYED_AWAITING_USER_RUN
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B206 diagnostic-only batch is locally complete; deployment through the existing guarded switch is authorized.** The user stated that the first collector session's save predates checkpoint A, and that the same save had loaded and trained normally in earlier runs. The jump is therefore not a property of the save alone. The user then authorized the proposed next step. [B206 record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-population-change-and-spy-cost-diagnostics--2026-10-16-local).
+**B206 diagnostic-only batch is deployed: B206.233/modinfo233 DEVELOP_ACTIVE, source `179228a`, receipt `B206.233-179228a-playtest.json`, 219/219 MATCH after fresh game-exit checks and guarded B205→stable→B206 switches; no pending transaction.** The user stated that the first collector session's save predates checkpoint A, and that the same save had loaded and trained normally in earlier runs. The jump is therefore not a property of the save alone. The user then authorized the proposed next step. [B206 record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-population-change-and-spy-cost-diagnostics--2026-10-16-local).
 
 B206.233 / modinfo233 adds bounded observation of the reserved source city while TRAINING:
 - every population notification, aggregated per source and turn (1st/2nd/4th… plus boundary totals);

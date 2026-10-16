@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "505695dfdb0058c970d4a9fa40f4e45d68f14df6",
-  "runtime": "B205.232/modinfo232 DEVELOP_ACTIVE; source 505695dfdb0058c970d4a9fa40f4e45d68f14df6; receipt B205.232-505695d-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B204->stable->B205 switches; B204/stable recovery verified, no pending deployment transaction. Native diagnostic comparison pending; faults remain unresolved.",
+  "runtime_commit": "179228aff1e51ea66da2759c68115bb97763b6b4",
+  "runtime": "B206.233/modinfo233 DEVELOP_ACTIVE; source 179228aff1e51ea66da2759c68115bb97763b6b4; receipt B206.233-179228a-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B205->stable->B206 switches; outgoing B205 and stable recovery packages retained, no pending deployment transaction. Development policy: EnableTuner stays1, toggled by the user. Faults remain unresolved.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
