@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0548
+Status Revision: S0549
 Implementation Build: source/live B205.232 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B205_DIAGNOSTICS_DEPLOYED_AWAITING_NO_TRAINING_COMPARISON
+Work State: B205_CHECKPOINT_A_STOPPED_COLLECTOR_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B205.232 diagnostic-only package is deployed;529 targeted local tests PASS. Native cost/reload comparison is pending.** [Evidence, deployment and exact no-training flow](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#deployment-and-authorized-pre-training-comparison--2026-10-15). B204's no-P0 dispatch success does not close repeated same-process-reload population16→2447 / severe-memory faults or observed cost1 versus definitions60/15. Cause remains UNKNOWN; prior travel/task is not necessary.
+**B205 checkpoint A stopped on its own condition: before any training, a cold-loaded eligible row showed native Expedition cost1 against definition60/15; population stayed16. Checkpoint B was not collected.** [Checkpoint A, handoff and corrected record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#checkpoint-a-handoff-and-corrected-record--2026-10-16). Cost1 is therefore present at cold load, not only after a same-process reload. The two reserve/build cycles in that trace were the user's own clicks to test reading; there is no automatic trigger.
 
-Source/live **B205.232 / modinfo232 DEVELOP_ACTIVE**, source `505695d`, receipt `B205.232-505695d-playtest.json`,219/219 MATCH. Fresh OS exit checks before both guarded switches; B204/stable recovery retained, no pending deployment transaction. Capacity/source/persistence/formula/GC/main unchanged. Temporary **EnableTuner1 is authorized and active for this comparison; restoration to0 is pending after user exit**. Backup/checkpoint stays in ignored B205 evidence. Previous fixed native query worked; B205 ring/passive logging remain unverified.
+Source/live remains **B205.232 / modinfo232 DEVELOP_ACTIVE**, source `505695d`, receipt `B205.232-505695d-playtest.json`,219/219 MATCH; no deployment since. Reader-only fix `8963218` (GameCore_Tuner lacks `rawget`; native ERR was masked as timeout) changes tools/tests only, not the runtime package; its local validation belongs to the authorized collector batch. W0005 `4081e49`: Claude is Primary, Codex Advisor. By user decision, **EnableTuner stays1 during development and the user toggles it from the terminal**; Primary no longer restores it after sessions (handoff restoration to0 and the user's re-enable to1 are both verified).
 
-Next: cold-load the existing pre-training baseline, open the eligible production list without choosing training, then captureA. Only after A is saved, reload the same save within the process and captureB. No P0, training or turn. Stop on abnormal cost/population/memory; missing trace is UNKNOWN. Then user exits and Primary restores Tuner0. No gameplay repair, reattachment, rewards or later slice authorized.
+Population16→2447 and ~80GB memory remain USER_REPORTED_FAIL with cause UNKNOWN, associated with training after a same-process reload or a restored in-progress training, not with the overflow test project (user chronology; the earlier Advisory attribution is withdrawn). Authorized next: a records update (this revision) and an unattended read-only Tuner trace collector, tools and local tests only. No gameplay repair, deployment or user test is authorized; a later controlled flow needs separate approval.
 
 ## S0535 — B201 deployment before native evidence (historical)
 

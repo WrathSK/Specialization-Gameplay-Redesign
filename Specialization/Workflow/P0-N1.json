@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0548",
+    "status": "S0549",
     "runtime": "B205.232 / modinfo232",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
-  "goal": "B205 bounded reload/cost/population diagnostics locally complete and explicitly deployed; current authorization is two pre-training cold-load/same-process-load observations, then restore temporary Tuner0 after exit. No training, turn or repair.",
+  "goal": "B205 bounded reload/cost/population diagnostics deployed. Checkpoint A (cold-load eligible row) stopped on native cost1 vs definition60/15; B not collected. Current authorization: records update and an unattended read-only Tuner trace collector (tools/local tests only). No training, turn, repair or deployment.",
   "implementation_authorized": true,
   "context": [
     {
@@ -615,7 +615,7 @@
   "validation": {
     "depth": "L3 targeted diagnostic failure isolation and existing direct Expedition closure; no full gameplay/stress.",
     "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately.",
-    "user": "B205 fixed traceA/B comparison without training or turn is authorized; P0 unnecessary. Capture cold-load eligible row, retain before same-save in-process reload. Stop on anomalies, restore temporary EnableTuner0 after full exit. Equal samples do not certify training safety."
+    "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
@@ -624,7 +624,7 @@
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
     "source": "B205.232/modinfo232 DEVELOP_ACTIVE; source 505695dfdb0058c970d4a9fa40f4e45d68f14df6; receipt B205.232-505695d-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B204->stable->B205 switches; B204/stable recovery verified, no pending deployment transaction. Native diagnostic comparison pending; faults remain unresolved.",
-    "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory and cost1 evidence; root cause UNKNOWN. Fixed native Tuner query returned; passive/diagnostic trace unverified.",
-    "stop": "User cold-starts an existing pre-training baseline and opens the eligible production list without choosing training; Primary captures fixed trace A. Only after A is retained, reload the same save within that process and repeat for trace B. No training/turn/P0. Then fully exit and restore EnableTuner0; stop on cost1/population/memory anomaly. No gameplay repair authorized."
+    "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory associated with same-process reload or restored training; cost1 observed at cold load before training; root cause UNKNOWN. Fixed native Tuner query returned; reader rawget defect fixed in 8963218 (tools only, validation pending).",
+    "stop": "Records update and read-only collector tool only. Stop before any runtime change, deployment, gameplay repair or user test."
   }
 }

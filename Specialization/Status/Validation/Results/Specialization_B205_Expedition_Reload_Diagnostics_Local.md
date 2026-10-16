@@ -72,3 +72,56 @@ The user authorizes the following no-training comparison and temporary Tuner use
 The list still runs existing qualification SYNC; this is not a claim that no gameplay script executes. It sends no training order. Distinguish one turn from one Production. If actual cost1, population change or obvious memory growth appears, stop at that checkpoint, retain the available read and exit; do not continue the reload sequence or reproduce training. Missing eligibility/trace, stopped budget or context ambiguity is reported without P0 creation/recovery. If no suitable pre-training save exists, report it instead of constructing one. Equal A/B only means no difference was observed before training, not that the B204 fault is repaired or training is safe.
 
 User decision: none. User testing: the two gated no-training observations above. Primary next: captureA, then B, then restore configuration after confirmed exit; no unrelated implementation.
+
+## Checkpoint A, handoff and corrected record — 2026-10-16
+
+Recorded by Primary (Claude, W0005 `4081e49`) after a read-only handoff review. No code, package or game state changed for this section.
+
+**Checkpoint A (cold load, eligible production row, before training).**
+- The first `UI_ROW` sample for Edinburgh(Test) city393220 at T88 shows:
+  - population16;
+  - unit `UNIT_SPC_EXPEDITION_SPY` (index244, reverse lookup matching);
+  - definition cost60, `COST_PROGRESSION_PREVIOUS_COPIES` step15, ordinary Spy cost60;
+  - **native cost1**, progress0;
+  - marker absent.
+- This met the stop condition, so checkpoint B (same-process reload) was not collected.
+- Population stayed16 in every record.
+- Cost1 is therefore present at a cold load. It is not specific to a same-process reload.
+- What the trace does not establish:
+  - the final charged price;
+  - why native cost differs from the loaded definition;
+  - any connection to the population or memory faults.
+
+**Trace provenance.**
+- The same trace contains two complete click→reserve→marker→build cycles (reservations `:2` and `:7`). Between them, the queue count went1→0 and the current item changed, and an explicit cancellation released capacity.
+- The user confirmed these were their own clicks to test whether reading worked. The session's interactive Tuner connection had timed out. There is **no automatic trigger**. These cycles are not part of the no-training comparison.
+
+**Reader defect.**
+- The advertised `GameCore_Tuner` context has no `rawget`. The original reader treated the native `ERR` reply as a timeout.
+- Commit `8963218` changes only `tools/read_expedition_trace.py` and its test. It does not touch the runtime package, and its tests were not recorded when it was committed.
+- Its validation is part of the authorized collector batch.
+
+**Configuration.**
+- At handoff, after a fresh OS check that the game had exited, `EnableTuner` was restored to0, byte-identical to the original backup (ignored `B205/cost-read-preflight-20261015-232136/`).
+- The user then decided that **during development `EnableTuner` stays1 and the user toggles it from the terminal**. The user set it to1 on 2026-10-16 with the CRLF line ending preserved, and Primary verified it read-only.
+- This supersedes the earlier "restore to0 after the session" instruction for future sessions.
+
+**Corrected population chronology** (user report, retained in ignored `B204/same-process-reload-20261015/`):
+
+| Run | Sequence | Result |
+|---|---|---|
+| 1 | Full restart → load → train | Normal |
+| 2 | Full restart → load → train → dispatch/task, then same-process reload → train → end turn | ~80GB memory, forced exit |
+| 3 | Full restart → load → train, then same-process reload → train | Population anomaly at training completion; no memory runaway |
+
+Separately:
+- Training, then saving, reloading and completing the training, already showed the anomaly at completion.
+- Loading, producing something else for one turn, then training did not avoid it.
+- The overflow test project was chosen only *after* the first anomaly, and is not a cause. The earlier Advisory attribution to it is withdrawn.
+- The cause remains UNKNOWN. The leading boundary to observe is restored or reloaded training state versus fresh training after END.
+
+**Next (authorized 2026-10-16):**
+1. this records update;
+2. an unattended, read-only Tuner trace collector (tools and local tests only, no runtime package change) that turns the B205 ring into local log evidence, partly replacing screenshots.
+
+No gameplay repair, deployment, user test or later Expedition slice is authorized.
