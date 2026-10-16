@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0551
+Status Revision: S0552
 Implementation Build: source/live B206.233 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B206_SINGLE_NATIVE_POPULATION_JUMP_OBSERVED
+Work State: B206_EXPEDITION_CREATION_POPULATION_DELTA_VARIES
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B206 spy comparison and multi-load runs.**
+- Creating an Expedition unit triggers one native population change in the source city. It was 0 in one load and +2430 in others of the same save, so it is not tied to first load or reload.
+- Ordinary spies in the same city never changed population.
+- The Expedition's native cost1 persists even though its cost definition rows are identical to `UNIT_SPY` (60, previous-copies, step15).
+- The collector wrongly exits during in-game reloads (tools defect).
+
+[Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-spy-comparison-and-multi-load-sessions--2026-10-16-user_game_test-diagnostic). Root cause UNKNOWN; no repair or tool change authorized.
 
 **B206 user re-run (cold start, first load): the jump is one native population change of +2430, followed by +1, during T89 processing and adjacent to Expedition unit creation.** It is not 2431 increments. The ordinary spy's native cost in the same city is 60, against the Expedition's 1, so cost1 is unit-specific. The final value 2447 is identical to the previous session, so the jump is deterministic for this save on B205/B206. No Mod or Lua script found can apply +2430. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-collector-session--2026-10-16-user_game_test-diagnostic). Root cause UNKNOWN; no repair authorized.
 

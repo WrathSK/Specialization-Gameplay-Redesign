@@ -247,3 +247,30 @@ The memory runaway did not occur. Cause remains UNKNOWN.
 - Cost1 is unit-specific.
 
 **What it does not establish.** Which native rule applies +2430, whether it is caused by the unit's definition (cost/overflow, or some other copied or omitted column), and why earlier runs on this save did not show it. Root cause remains UNKNOWN. No repair is authorized.
+
+## B206 spy comparison and multi-load sessions — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** The same save on B206.233, in several loads within one or more game processes:
+- Expedition training from T88;
+- ordinary `UNIT_SPY` training in the same city, two or three times;
+- Expedition training that completed in the same turn as a spy, through overflow production.
+
+The user reports that ordinary spies never changed population, and that the jump followed Expedition completion. The collector had to be restarted after in-game reloads (see the collector defect below). The game process kept the ring across collector restarts, so the sessions `20261016T110553Z-c21e72`, `…111108Z-2daccd` and `…111234Z-71931b` overlap and show load sequences 1–4.
+
+**Native observations.**
+- **Load 1** (normal): training from T88. At T89 `GameEvents.OnCityPopulationChanged` delivered **one notification with delta 0** at the point where the jump otherwise occurs. Birth, completion and finish all stayed at population 16.
+- **Load 2** (same process): the same flow gave delta **+2430** and then +1, ending at 2447.
+- **Load 4** (same process): the Expedition was ordered at T89 after a spy completed, and it completed in the same turn through overflow. Delta **+2430** occurred just before `BIRTH_ENTRY`, without any turn boundary.
+- The Expedition's native cost was 1 in every load. The definition in the read-only `DebugGameplay.sqlite` is identical to `UNIT_SPY` on every cost field: Cost 60, `COST_PROGRESSION_PREVIOUS_COPIES`, Param1 15, PopulationCost NULL. It differs only in name, sight, moves, purchase yield, maintenance, team visibility, advisor, experience, tags, the building prereq and missing `UnitAiInfos`/`Units_XP2` rows. Missing `Units_XP2` rows are common (117 of 245 units), including many normal ones.
+- The database has no population-on-creation modifier that applies to this player. The only one is the Janissary −1, which belongs to Suleiman.
+
+**What this establishes.**
+- Creating an Expedition unit makes the engine apply one population change to the source city. That change was 0 in one load and +2430 in other loads of the same save, including a cold-start first load in an earlier session.
+- The value is **not tied to first load or reload**. It varies between loads, which is consistent with the user's suspicion of a probabilistic or undefined value.
+- Ordinary spies did not show it. Native cost1 is Expedition-specific even though the definition rows match.
+
+**What it does not establish.**
+- Which native rule produces the change, or why the Expedition's native cost differs from the matching definition. One unverified observation: 2430 = 162 × 15, where 15 is the cost-progression step.
+- Root cause remains UNKNOWN. No repair is authorized.
+
+**Collector defect (tools only, not yet fixed).** During an in-game reload, the Tuner connection is unavailable for more than the 30 s idle exit, so the collector ended with `GAME_EXITED` while the game was still running. The waiting error codes are not logged, so whether a loading game refuses connections or only times out on the context is not yet recorded.
