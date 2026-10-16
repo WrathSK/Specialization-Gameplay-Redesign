@@ -292,3 +292,5 @@ What each outcome would mean:
 - One new collector test covers a 100 s in-game load, reconnect and real exit.
 - The gate SQL assertion now states the experiment's fixed-cost values, and the package version assertion is 234.
 - No full regression: no concrete cross-module risk was identified.
+
+**Deployment.** B207.234/modinfo234 is **DEVELOP_ACTIVE**, source `1f90648d41f359b8120c3b2b23add24dfc0b542c`, receipt `B207.234-1f90648-playtest.json`. A fresh OS check confirmed game exit before both guarded switches: B206 restored to stable through its receipt, then B207 activated. 219/219 files MATCH, and there is no pending transaction. A shell word-splitting error in the first invocation stopped the run after the verified stable restore and before activation. Activation then ran with explicit reviewed hashes.
