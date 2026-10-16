@@ -1,15 +1,22 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0560
-Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
+Status Revision: S0561
+Implementation Build: source B209.236 (live B208.235 DEVELOP_ACTIVE until the authorized switch); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B209_PLAN_AWAITING_REVIEW
+Work State: B209_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B209 is locally complete and deployment is authorized.**
+- The marker support is back to 1, as in Design.
+- A same-turn immediate native completion in the reserved city now counts as queue evidence (user-approved), so carried-overflow orders no longer HOLD. Other unconfirmed or cross-turn receipts still HOLD.
+- L2: 111 targeted PASS. The Expedition-suite regression shows the same failure set as HEAD (14 historical activity-diagnostic failures).
+
+[Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b209-marker-revert-and-immediate-completion-receipt--2026-10-16-local).
 
 **User decisions (2026-10-16):**
 - Only saves started with the current build are supported; this is recorded in Playtest Workflow, and the new campaign is the test base.

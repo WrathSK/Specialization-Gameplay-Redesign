@@ -455,3 +455,30 @@ Root cause in the old campaign remains INFERENCE. No repair authorized.
 - **No population protection** is added. The old-campaign population delta, memory runaway and stale cost1 are closed as out-of-scope old-save faults, not repaired. Recurrence in an in-scope game reopens the investigation.
 - **Revert the B208 experiment:** the marker prerequisite returns to `NumSupported=1`, restoring the native per-city guard.
 - **Fix the overflow-immediate-completion HELD** if practical. Cap1 makes it rare, but the user asked for it; the plan goes to user review first.
+
+## B209 marker revert and immediate-completion receipt — 2026-10-16 (local)
+
+**Authorization.** On 2026-10-16 the user approved the reviewed plan, including the new evidence rule that a same-turn native completion in the reserved city substitutes for the UI queue confirmation.
+
+**Runtime change (B209.236 / modinfo236).**
+- **Marker prerequisite.** `Mod/Data/ExpeditionSpyGate.sql` returns to `NumSupported=1`, which restores the native per-city guard. The file is now identical to B206/Design.
+- **Training receipts.** In `Mod/ExpeditionTraining.lua`, a birth or completion in the **reservation turn** (`trainingTurn`) no longer requires a prior queue confirmation. A native completion in the reserved source city that is not cancelled records `trainingQueued` and then `trainingCompleted`. A birth before the completion is recorded and waits for it.
+  - Outside the reservation turn, the old requirement stays: an unconfirmed birth or completion still HOLDs.
+  - Other-city or cancelled completions still HOLD.
+  - Finish still requires queued + completed + exactly one born unit at the source endpoint.
+  - A half receipt still HOLDs at the next turn or on recovery.
+- **Activity publication.** In `Mod/ExpeditionSpyGate.lua`, the published activity adds a scalar `trainingReceipt`, true while TRAINING once a birth or completion is recorded.
+- **Production UI.** In `Mod/UI/ExpeditionTrainingUI.lua`, a pending QUEUE handshake whose reservation already has a receipt, or has left TRAINING, closes without retrying the queue read and without sending CONFIRM. A HELD outcome surfaces the Gameplay error.
+- **Unchanged.** Cost formula, cap1, source reference checks, marker lifecycle and B206 diagnostics.
+
+**Local validation (L2).**
+- The 8 new or replaced tests cover:
+  - same-turn immediate completion in both callback orders;
+  - birth without completion holding at the next turn;
+  - other-city, cancelled and second-birth holds;
+  - cross-turn unconfirmed birth/completion holds;
+  - the UI handshake closing silently;
+  - the UI surfacing HELD.
+- The former `test_unconfirmed_queue_birth_hold` assertion was replaced by its cross-turn form, following the approved contract change.
+- Targeted gate SQL (read-only external DB), training, training UI and trace integration: 111 PASS.
+- Affected-subsystem regression over all `test_expedition_*` suites (719 tests): 14 failures/errors, **identical to HEAD `130cc0d` without B209** (711 tests, same 14, all in the historical `test_expedition_spy_activity_diagnostic` and `test_expedition_spy_activity_failure` suites). No new failure.

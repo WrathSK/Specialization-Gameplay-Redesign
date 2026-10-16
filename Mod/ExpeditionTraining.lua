@@ -112,7 +112,10 @@ function SPCExpeditionTraining.Start(P,shared)
    local s=T.Read(pid)
    if s.phase~='TRAINING' then return end
    popFlush('POP_SUMMARY',pid);observeAt('BIRTH_ENTRY',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id})
-   assert(s.trainingQueued,'TRAINING_BIRTH_BEFORE_QUEUE_CONFIRMATION')
+   -- B209: an order completed immediately (carried overflow) in the reservation
+   -- turn is born before the UI can confirm the queue; matching completion
+   -- evidence must still follow. Any later unconfirmed birth stays held.
+   assert(s.trainingQueued or s.trainingTurn==Game.GetCurrentGameTurn(),'TRAINING_BIRTH_BEFORE_QUEUE_CONFIRMATION')
    T.Evidence(pid,s.trainingToken,'trainingBorn',id);dirty=true
    observeAt('BIRTH_EXIT',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id,born=id})
   end)
@@ -125,7 +128,10 @@ function SPCExpeditionTraining.Start(P,shared)
    local s=T.Read(pid)
    observeAt('COMPLETE_STATE',pid,id,s)
    if s.phase~='TRAINING' then return end
-   assert(s.sourceCity==id and s.trainingQueued and not cancelled,'TRAINING_COMPLETION_MISMATCH')
+   assert(s.sourceCity==id and not cancelled and (s.trainingQueued or s.trainingTurn==Game.GetCurrentGameTurn()),'TRAINING_COMPLETION_MISMATCH')
+   -- B209: the marker exists only in the reserved city after the saved
+   -- reservation, so a same-turn native completion there is the queue evidence.
+   if not s.trainingQueued then T.Evidence(pid,s.trainingToken,'trainingQueued',true)end
    T.Evidence(pid,s.trainingToken,'trainingCompleted',true);dirty=true
    observeAt('COMPLETE_EXIT',pid,id,s,{completed=true})
   end)

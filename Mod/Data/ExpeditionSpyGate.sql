@@ -18,10 +18,5 @@ UPDATE Units SET CanTrain=1,
 INSERT INTO Types(Type,Kind) VALUES('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS','KIND_BUILDING');
 INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)
  VALUES('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS','Expedition training reservation',1,'DISTRICT_CITY_CENTER',1,0,0);
--- B208 TEMPORARY DIAGNOSTIC EXPERIMENT (user-authorized, not a design decision):
--- unlimited support (-1, as every other non-Archaeologist prereq) instead of 1,
--- to test whether native per-building unit support plus removal of this
--- transient marker causes the population delta / memory runaway on creation.
--- Cap1 stays enforced by the Store reservation and queue checks.
 INSERT INTO Unit_BuildingPrereqs(Unit,PrereqBuilding,NumSupported)
- VALUES('UNIT_SPC_EXPEDITION_SPY','BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',-1);
+ VALUES('UNIT_SPC_EXPEDITION_SPY','BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1);

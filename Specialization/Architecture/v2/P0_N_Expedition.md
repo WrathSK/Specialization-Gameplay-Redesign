@@ -1,6 +1,6 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B208_MARKER_SUPPORT_EXPERIMENT / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B209_IMMEDIATE_COMPLETION_RECEIPT / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
@@ -32,7 +32,13 @@ Local checks: training eligibility/cost, cap with off-map/held team, competing q
 
 After this batch, prepare source-loss reattachment/repeat-task completion, then N2 mission-specific permanent results, then N3 Network. Each remains a separately bounded implementation decision; no automatic scope expansion.
 
-### B206–B208 — population delta isolation (current)
+### B209 — receipt rule for immediate completion (current)
+
+The user approved a change to the B202 provenance contract on 2026-10-16. A native completion of the Expedition in the reserved source city, in the reservation turn and not cancelled, is accepted as the queue evidence. Carried overflow can complete the order before the UI observes the queue. Birth may precede completion in that turn.
+
+Outside the reservation turn the original queue confirmation remains required. Cap1, the source reference/endpoint checks and the exactly-one-unit Finish are unchanged. The marker `NumSupported` is restored to 1. Old-campaign population faults are closed as out of scope (Playtest Workflow save scope).
+
+### B206–B208 — population delta isolation (historical)
 
 Diagnostic batches under explicit user authorization. They are recorded in the [B205 result](../../Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md) sections B206–B208; current build, live state and next step are in Status.
 - **B206** added bounded source-city population, turn-mark and spy-cost observation. It showed that each Expedition creation applies one native population delta that is fixed per load: 0, or exactly +2430.

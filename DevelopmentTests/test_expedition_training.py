@@ -57,8 +57,23 @@ class Training(unittest.TestCase):
         self.check("reserve();born(50,2);assert(state().phase=='HELD')")
     def test_birth_without_reserved_queue_not_adopted(self):
         self.check("born();assert(state().phase==nil and not shared.ExpeditionGate.Training.Available(2))")
-    def test_unconfirmed_queue_birth_hold(self):
-        self.check("train('RESERVE','r');born();assert(state().phase=='HELD')")
+    def test_unconfirmed_queue_birth_after_reservation_turn_hold(self):
+        self.check("train('RESERVE','r');currentTurn=currentTurn+1;born();assert(state().phase=='HELD')")
+    def test_unconfirmed_queue_completion_after_reservation_turn_hold(self):
+        self.check("train('RESERVE','r');currentTurn=currentTurn+1;complete();assert(state().phase=='HELD' and not marker)")
+    def test_same_turn_immediate_completion_without_queue_confirmation(self):
+        # B209: carried overflow completes the order before the UI can confirm it.
+        for order in ['born();complete()','complete();born()']:
+            with self.subTest(order=order):
+                self.check("assert(train('RESERVE','r').reserved);"+order+";assert(state().phase=='TRAINING' and state().trainingQueued and state().trainingCompleted and state().trainingBorn==50);pulse();assert(state().phase=='NAMING' and state().unitID==50 and state().sourceCity==1 and not marker)")
+    def test_same_turn_birth_without_completion_still_holds_next_turn(self):
+        self.check("train('RESERVE','r');born();assert(state().phase=='TRAINING' and not state().trainingQueued);currentTurn=currentTurn+1;pulse();assert(state().phase=='HELD')")
+    def test_same_turn_completion_in_other_city_still_holds(self):
+        self.check("train('RESERVE','r');shared.ExpeditionTraining.Complete(2,2,0,100,false);assert(state().phase=='HELD' and not marker)")
+    def test_same_turn_cancelled_completion_holds(self):
+        self.check("train('RESERVE','r');shared.ExpeditionTraining.Complete(2,1,0,100,true);assert(state().phase=='HELD')")
+    def test_same_turn_second_birth_still_holds(self):
+        self.check("train('RESERVE','r');complete();born();born(51);assert(state().phase=='HELD')")
     def test_empty_queue_does_not_guess_cancellation(self):
         self.check("reserve();queueCount=0;pulse();assert(state().phase=='TRAINING' and not marker);born();complete();pulse();assert(state().phase=='NAMING')")
     def test_explicit_cancel_releases_only_proven_empty(self):

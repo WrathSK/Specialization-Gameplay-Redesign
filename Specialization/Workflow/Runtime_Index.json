@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b79f880c1db113b2354de8cba18cef8f8463c958d2a42313eac156c3da3aa76f",
+      "sha256": "8ad8689911d403ca6b7941d49be81e880bcbcb9bf367a621217314dfac24520b",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B208 user-authorized TEMPORARY diagnostic experiment: marker prereq NumSupported -1, Spy cost formula restored; not a design decision; L2 targeted 171 tests PASS."
+      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1021,9 +1021,9 @@
       "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "1d26124db3229c2cccd2b736a2c3b23f427271c7f50287987166c6c882744c7b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "b9d15f3a37e65c1910fd830c8ef6b80ac280b95f28fe86423b03e58fac8a8fbe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "33c7f00a0851ba7f285a43c2f5b21f3f1652f7f207cebd8bc7d639549a9efa07",
@@ -1036,9 +1036,9 @@
       "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
-      "sha256": "3340083385851739c908f7fe5e3d8e4b3f4faaa556fdffa65669692a961cd7b2",
+      "sha256": "2e4c7595f31c041da028607550671a44fe5188f2876f9919f5081032996f6ce2",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B208 user-authorized TEMPORARY diagnostic experiment: marker prereq NumSupported -1, Spy cost formula restored; not a design decision; L2 targeted 171 tests PASS."
+      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionSpyUI.lua": {
       "sha256": "216ec8ed507f78cefd9e5b9f223149512945de259d2a0f9a5a0d63d0a9b3a663",
@@ -1076,9 +1076,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "b4aa15e30cd638c63397b9a6f6efb32d07a0a8803d406af5429ba67378dea522",
+      "sha256": "9c6b9ee7f281345fc721743c213436460217265e1611d18590dfd6ba8e8fe261",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
+      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/UI/ExpeditionTrainingName.lua": {
       "sha256": "e795a4ec009c61358f28deef878da9d2415871532c3876153f3b5b60420b201b",
@@ -1091,9 +1091,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/ExpeditionTrainingUI.lua": {
-      "sha256": "448f5e5f5e1813f3b6157796d77500b34a5493e2c6716a45e98631e09e529c1e",
+      "sha256": "422ed7f145aabf0f4b6566b33e9765f4f6bd3342fd77db8752261c547feae61d",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "d7dd1563344138df7e8ac750d682cb3f9fe0f96bb8f6589a1e20340574ac5086",

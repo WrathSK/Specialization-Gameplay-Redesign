@@ -278,10 +278,10 @@ class Package(unittest.TestCase):
         columns='Cost,CostProgressionModel,CostProgressionParam1'
         self.assertEqual(db.execute('select '+columns+' from Units where UnitType=?',(k,)).fetchone(),db.execute("select "+columns+" from Units where UnitType='UNIT_SPY'").fetchone())
         self.assertIsNone(db.execute('select PurchaseYield from Units where UnitType=?',(k,)).fetchone()[0])
-        self.assertEqual(db.execute('select PrereqBuilding,NumSupported from Unit_BuildingPrereqs where Unit=?',(k,)).fetchall(),[('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',-1)])  # B208 diagnostic experiment
+        self.assertEqual(db.execute('select PrereqBuilding,NumSupported from Unit_BuildingPrereqs where Unit=?',(k,)).fetchall(),[('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'235')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'236')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

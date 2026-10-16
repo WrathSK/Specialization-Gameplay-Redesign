@@ -23,6 +23,19 @@ class UI(unittest.TestCase):
  def check(self,s):ui().execute(s)
  def test_normal_admission_and_one_native_request(self):
   self.check("assert(not adapter.Before(city,{Type=kind},false));adapter.Pulse();adapter.Pulse();adapter.Pulse();assert(builds==1 and state().trainingQueued);adapter.Pulse();assert(builds==1)")
+ def test_immediate_native_completion_closes_handshake_without_error(self):
+  # B209: build() completes at once (carried overflow); the queue never shows the entry.
+  self.check("""build=function(c,item)builds=builds+1;entries={};shared.ExpeditionTraining.Complete(2,1,0,100,false);born()end
+   adapter=SPCExpeditionTrainingUI.New(P,send,notify,build)
+   assert(not adapter.Before(city,{Type=kind},false));adapter.Pulse();adapter.Pulse()
+   local n=#sentPackets;for i=1,14 do adapter.Pulse()end
+   assert(builds==1 and #sentPackets==n and ExposedMembers.SPC_ExpeditionTrainingUIError==nil)
+   pulse();assert(state().phase=='NAMING' and not marker)""")
+ def test_held_reservation_surfaces_error_and_stops_waiting(self):
+  self.check("""build=function(c,item)builds=builds+1;entries={};born();born(51)end
+   adapter=SPCExpeditionTrainingUI.New(P,send,notify,build)
+   adapter.Before(city,{Type=kind},false);adapter.Pulse();adapter.Pulse();adapter.Pulse()
+   assert(state().phase=='HELD' and ExposedMembers.SPC_ExpeditionTrainingUIError~=nil and builds==1)""")
  def test_double_click_reserves_once(self):
   self.check("adapter.Before(city,{Type=kind},false);adapter.Before(city,{Type=kind},false);assert(#sentPackets==1)")
  def test_other_unit_unaffected(self):self.check("assert(adapter.Before(city,{Type='UNIT_SPY'},false));assert(#sentPackets==0)")
