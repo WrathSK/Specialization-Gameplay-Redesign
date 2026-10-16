@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "84773a8632ae334c5a7e934cd148f1899f2311dc",
-  "runtime": "B204.231/modinfo231 last verified DEVELOP_ACTIVE; source84773a8632ae334c5a7e934cd148f1899f2311dc; receipt B204.231-84773a8-playtest.json; prior218/218 MATCH. B205 diagnostic source is LOCAL_ONLY, not deployed; no new runtime claim. Native training faults unresolved.",
+  "runtime_commit": "505695dfdb0058c970d4a9fa40f4e45d68f14df6",
+  "runtime": "B205.232/modinfo232 DEVELOP_ACTIVE; source 505695dfdb0058c970d4a9fa40f4e45d68f14df6; receipt B205.232-505695d-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B204->stable->B205 switches; B204/stable recovery verified, no pending deployment transaction. Native diagnostic comparison pending; faults remain unresolved.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

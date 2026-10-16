@@ -1,21 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0547
-Implementation Build: source B205.232 LOCAL_ONLY; live B204.231; stable B069.96
+Status Revision: S0548
+Implementation Build: source/live B205.232 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B205_RELOAD_DIAGNOSTICS_LOCAL_COMPLETE_NOT_DEPLOYED
+Work State: B205_DIAGNOSTICS_DEPLOYED_AWAITING_NO_TRAINING_COMPARISON
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B204 normal-training confirmation works in observed cold-start branches, but training is blocked by native population/cost/memory faults. B205.232 diagnostic-only source is locally complete,529 targeted tests PASS; not deployed.** [Evidence, corrected chronology, bounded observations and next distinction](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md). Same-process reload precedes repeated population16→2447 / severe memory episodes; source/live definitions60/15 conflict with observed cost1. Cause remains UNKNOWN. Prior travel/task is not necessary; overflow/Forbidden City chronology does not explain the first population jump.
+**B205.232 diagnostic-only package is deployed;529 targeted local tests PASS. Native cost/reload comparison is pending.** [Evidence, deployment and exact no-training flow](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#deployment-and-authorized-pre-training-comparison--2026-10-15). B204's no-P0 dispatch success does not close repeated same-process-reload population16→2447 / severe-memory faults or observed cost1 versus definitions60/15. Cause remains UNKNOWN; prior travel/task is not necessary.
 
-Live remains **B204.231 / modinfo231**, deployed source `84773a8`, receipt `B204.231-84773a8-playtest.json`; prior218/218 match retained, no new deployment. B205 adds scalar diagnostics/fixed read tooling only; capacity/source/persistence/formula/GC/main unchanged. A user-authorized native FireTuner read returned turn88 and expected tables. EnableTuner is restored to0 and the whole configuration matches its original backup; background streaming and the not-yet-deployed ring remain unverified.
+Source/live **B205.232 / modinfo232 DEVELOP_ACTIVE**, source `505695d`, receipt `B205.232-505695d-playtest.json`,219/219 MATCH. Fresh OS exit checks before both guarded switches; B204/stable recovery retained, no pending deployment transaction. Capacity/source/persistence/formula/GC/main unchanged. Temporary **EnableTuner1 is authorized and active for this comparison; restoration to0 is pending after user exit**. Backup/checkpoint stays in ignored B205 evidence. Previous fixed native query worked; B205 ring/passive logging remain unverified.
 
-Next: no uninstrumented retraining/long test. Review the diagnostic checkpoint; any subsequent guarded deployment and temporary-Tuner session remain explicit steps. Compare pre-training cold/reload cost/type/context first, then decide whether one bounded training observation is needed. No gameplay repair, reattachment, rewards or later slice is automatically authorized.
+Next: cold-load the existing pre-training baseline, open the eligible production list without choosing training, then captureA. Only after A is saved, reload the same save within the process and captureB. No P0, training or turn. Stop on abnormal cost/population/memory; missing trace is UNKNOWN. Then user exits and Primary restores Tuner0. No gameplay repair, reattachment, rewards or later slice authorized.
 
 ## S0535 — B201 deployment before native evidence (historical)
 

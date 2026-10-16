@@ -1,6 +1,6 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B205_RELOAD_DIAGNOSTICS_LOCAL_COMPLETE / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL / B205_DIAGNOSTICS_DEPLOYED_AWAITING_NO_TRAINING_COMPARISON / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
@@ -13,7 +13,7 @@ Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 ## Next functional slice — normal training and source registration
 
-State: **B204_TRAINING_NATIVE_FAILURE / B205_DIAGNOSTICS_LOCAL_COMPLETE_NOT_DEPLOYED**. Current diagnostic scope and testing stop override the earlier acceptance flows below; see the B205 subsection. User approved this batch and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The completed bounded implementation replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
+State: **B204_TRAINING_NATIVE_FAILURE / B205_DIAGNOSTICS_DEPLOYED**. Current diagnostic scope and testing stop override the earlier acceptance flows below; see the B205 subsection. User approved this batch and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The completed bounded implementation replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
 
 - Admission: Culture ACTIVE IV, own national cap1 including travelling, held and unbound surviving teams; check queue/completion concurrency. Do not silently invent refunds, delete an existing team or alter production on an ambiguous race. If the native queue contract cannot enforce the accepted scope without a new gameplay decision, report that specific boundary.
 - Cost clarification accepted by user on 2026-10-11: copy the current Spy cost formula, counting previous Expeditions separately from ordinary Spies. Resolve base/progression fields from the ruleset; do not hardcode cache observations; the prior80/10 was obsolete, current installed HD/current nested DB60/15. Gold/Faith purchases are not implicitly enabled.
@@ -36,9 +36,9 @@ After this batch, prepare source-loss reattachment/repeat-task completion, then 
 
 User authorized a bounded diagnostic patch after repeated B204 population corruption and severe process-memory episodes. [B205 result and corrected chronology](../../Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md) records the successful cold-start branches separately from same-process-reload failures; prior dispatch/task is not necessary. Normal no-P0 dispatch worked, but overall training is not accepted. Cost1 conflicts with current60/15 definitions; native cause remains UNKNOWN.
 
-One bounded scalar ring observes existing admission, queue, birth/completion, marker and context/load boundaries, without changing business state or clearing stale contexts. The existing independent UI supplies a bounded output attempt; a fixed loopback reader supports retrieval without P0.529 targeted local tests PASS. One separately authorized native fixed FireTuner query succeeded; configuration is now restored byte-for-byte, EnableTuner0. Passive log streaming and B205 trace visibility remain unverified.
+One bounded scalar ring observes existing admission, queue, birth/completion, marker and context/load boundaries, without changing business state or clearing stale contexts. The existing independent UI supplies a bounded output attempt; a fixed loopback reader supports retrieval without P0.529 targeted local tests PASS. One separately authorized native fixed FireTuner query succeeded; that earlier preflight restored configuration byte-for-byte to EnableTuner0. Passive log streaming and B205 trace visibility remain unverified.
 
-Live remains B204.231; B205.232 is not deployed in this turn. Further uninstrumented training/reload repetition is stopped. Next proposed collection compares pre-training cold-load/same-process-load facts first; no turn or80GB reproduction is automatic. Capacity, source, permanent state, GC and training formula remain unchanged. Reattachment/rewards/later slices stay held.
+B205.232 is now deployed under explicit user authorization; see the result's deployment/no-training section. Further uninstrumented training repetition is stopped. The authorized comparison collects pre-training cold-load/same-process-load facts in two retained checkpoints; no training/turn or80GB reproduction. Temporary Tuner1 is active, with restoration pending after user exit. Capacity, source, permanent state, GC and training formula remain unchanged. Reattachment/rewards/later slices stay held.
 
 ### B204 — event-first confirmation and stage feedback
 
