@@ -74,13 +74,26 @@ PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_publication_gate.py
 
 ## Fixed Expedition diagnostic read (B205)
 
-[read_expedition_trace.py](read_expedition_trace.py) is a one-shot, read-only FireTuner client for the current diagnostic batch. `probe` reads turn/context availability; `trace` reads only the bounded B205 scalar ring. It does not enable Tuner, launch the game, select arbitrary Lua/context/host, write files or watch/retry. Exact advertised GameCore_Tuner required;5s deadline and bounded output. Errors are NOT_VERIFIED, never successful collection.
+[read_expedition_trace.py](read_expedition_trace.py) is a read-only FireTuner client for the current diagnostic batch:
+- `probe` reads turn/context availability.
+- `trace` reads only the bounded B205 scalar ring.
+- `record` takes one ring snapshot, then passively keeps exact `[SPC][B205][TRAIN]` prints for a bounded window.
 
-Only use during a user-authorized temporary-Tuner session: back up the existing configuration, verify game exit before a setting change, let the user load and wait, perform the fixed read, then restore after exit. The B205 preflight is completed/restored; it is not standing permission to re-enable the debug endpoint. No training/turn command is sent. From repository root:
+It does not enable Tuner, launch the game, select arbitrary Lua/context/host or run GC. The exact advertised GameCore_Tuner context is required, and output is bounded. Errors are NOT_VERIFIED, never successful collection. The Mac `GameCore_Tuner` context has no `rawget`, so the command uses ordinary table reads and reports a native `ERR` reply instead of masking it as a timeout (`8963218`).
+
+[collect_expedition_trace.py](collect_expedition_trace.py) is the unattended session collector (S0549):
+- It waits for localhost:4318.
+- It repeats the fixed `record` capture, by default with a 30 s window, reconnecting across loads.
+- It deduplicates records and writes `local/diagnostics/B205/session-*/` (`records.log`, `events.jsonl`, `summary.txt`).
+- It flags population changes per city and native/definition cost mismatches.
+- It stops after the game has been gone for `--idle-exit` seconds (default 120), on Ctrl-C/SIGTERM, or at a 12-hour cap.
+- It sends no gameplay command and changes no configuration.
+
+Tuner policy (user decision, 2026-10-16): during development `EnableTuner` stays 1 and the user toggles it from the terminal with the game closed. `AppOptions.txt` uses CRLF line endings, so a sed pattern must include `\r`. Primary does not restore it after sessions. From repository root:
 
 ```sh
+PYTHONDONTWRITEBYTECODE=1 python3 tools/collect_expedition_trace.py
 PYTHONDONTWRITEBYTECODE=1 python3 tools/read_expedition_trace.py probe
-PYTHONDONTWRITEBYTECODE=1 python3 tools/read_expedition_trace.py trace
 ```
 
-Native fixed-query transport was observed once; automatic disk logging, passive streaming and B205 trace retrieval are distinct unverified surfaces. Retain output only in ignored local evidence; do not publish raw engine logs/configuration. [Scope and evidence](../Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md). Offline transport checks: `python3 DevelopmentTests/test_expedition_trace_reader.py`; no live socket is opened by those tests.
+Native fixed-query transport was observed once; automatic disk logging, passive streaming and B205 trace retrieval are distinct unverified surfaces. Retain output only in ignored local evidence; do not publish raw engine logs/configuration. [Scope and evidence](../Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md). Offline checks: `python3 DevelopmentTests/test_expedition_trace_reader.py` (needs Lupa) and `python3 DevelopmentTests/test_expedition_trace_collector.py`. Neither opens a live socket.

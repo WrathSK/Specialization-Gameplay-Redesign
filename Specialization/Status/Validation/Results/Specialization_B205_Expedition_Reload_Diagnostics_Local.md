@@ -125,3 +125,27 @@ Separately:
 2. an unattended, read-only Tuner trace collector (tools and local tests only, no runtime package change) that turns the B205 ring into local log evidence, partly replacing screenshots.
 
 No gameplay repair, deployment, user test or later Expedition slice is authorized.
+
+## Unattended trace collector — 2026-10-16
+
+This is an authorized tools-only batch. It changes no runtime package and requires no deployment.
+
+**What the collector does.** [collect_expedition_trace.py](../../../../tools/collect_expedition_trace.py) replaces the interactive "tell Primary when you are in game" flow.
+- The user starts it once. It waits quietly for localhost:4318.
+- It repeatedly runs the existing fixed read-only `record` capture: one ring snapshot plus a 30 s passive window per connection. It reconnects across loads.
+- It deduplicates exact `[SPC][B205][TRAIN]` records and writes ignored `local/diagnostics/B205/session-*/records.log`, `events.jsonl` and `summary.txt`.
+- It flags per-city population changes, and each distinct native-versus-definition cost mismatch once.
+- It ends when the game has been gone for 120 s, on Ctrl-C/SIGTERM, or at a 12-hour cap.
+- It builds no command of its own. It sends no gameplay operation, changes no configuration and launches nothing.
+
+**Evidence status.**
+- The B205 ring prints every record (`Mod/ExpeditionTrainingDiagnostics.lua:57-59`), so passive capture is the primary path. The repeated snapshot covers prints missed between windows.
+- Passive delivery over the socket remains native-unverified; the snapshot path is native-observed.
+- The `UI.DataError` sink did not reach `UserInterface.log` in the checkpoint A session (0 B205 lines). Disk output therefore depends on this collector.
+
+**Local verification.**
+- Reader: 36 tests PASS under Python 3.14 / Lupa 2.8 (validates `8963218`).
+- Collector: 6 offline tests PASS under Python 3.10 and 3.14. They cover record extraction, deduplication, population and cost alerts, waiting and reconnecting, exit after idle, non-fatal trace errors, the duration cap, the local-only directory, and the absence of any command construction.
+- Smoke run with the game closed: the collector waited, stopped on SIGTERM and wrote its summary. The smoke artifacts were removed.
+
+None of this is a native PASS. No gameplay repair, deployment or user test is authorized by this batch.

@@ -418,7 +418,12 @@
     {
       "path": "tools/read_expedition_trace.py",
       "kind": "full",
-      "reason": "Fixed one-shot read-only localhost transport; explicit temporary-Tuner session only"
+      "reason": "Fixed read-only localhost transport (probe/trace/record); Mac GameCore_Tuner without rawget (8963218)"
+    },
+    {
+      "path": "tools/collect_expedition_trace.py",
+      "kind": "full",
+      "reason": "S0549 unattended read-only session collector reusing the fixed record capture; local-only logs"
     },
     {
       "path": "DevelopmentTests/test_expedition_training_diagnostics.py",
@@ -434,6 +439,11 @@
       "path": "DevelopmentTests/test_expedition_trace_reader.py",
       "kind": "full",
       "reason": "Offline bounded transport/selection/filter/close failure tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_trace_collector.py",
+      "kind": "full",
+      "reason": "Offline collector dedup/alert/reconnect/idle-exit/cap/no-command tests"
     }
   ],
   "dependencies": [
@@ -614,7 +624,7 @@
   ],
   "validation": {
     "depth": "L3 targeted diagnostic failure isolation and existing direct Expedition closure; no full gameplay/stress.",
-    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately.",
+    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately. S0549: reader 36 tests PASS (validates 8963218); collector 6 offline tests PASS on Python 3.10/3.14; smoke wait/SIGTERM summary checked.",
     "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval."
   },
   "full_audit_triggers": [
