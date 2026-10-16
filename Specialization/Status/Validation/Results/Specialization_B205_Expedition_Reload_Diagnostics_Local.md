@@ -341,3 +341,5 @@ The marker, its city gating and its lifecycle are unchanged, as are the Store ca
 - Open separately: the first-training-after-load cost1 (Design: cost must equal the Spy cost).
 
 **Local validation (L2).** The targeted gate SQL (read-only external DB), training, training UI, diagnostics, trace integration, reader and collector suites pass (171 tests). The gate assertions state the restored Spy cost fields, `NumSupported=-1` and version 235. No full regression.
+
+**Deployment.** B208.235/modinfo235 is **DEVELOP_ACTIVE**, source `3a84a6e4296e727140f59fc709a218f9ce73814f`, receipt `B208.235-3a84a6e-playtest.json`. A fresh OS check confirmed game exit before both guarded switches: B207 restored to stable through its receipt, then B208 activated. 219/219 files MATCH, and there is no pending transaction.

@@ -2,16 +2,16 @@
 
 Document Owner: Codex
 Status Revision: S0555
-Implementation Build: source B208.235 (live B207.234 DEVELOP_ACTIVE until the authorized switch); stable B069.96
+Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B208_MARKER_SUPPORT_EXPERIMENT_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
+Work State: B208_MARKER_SUPPORT_EXPERIMENT_DEPLOYED_AWAITING_USER_RUN
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B208 temporary marker-support experiment is locally complete; deployment is authorized.** The Expedition marker prerequisite now uses unlimited support (−1) instead of 1, and the Design cost formula is restored. Cap1 and source binding are unchanged. Training-time protection against a second queue entry now comes only from the Lua checks, which HOLD on violation. The first-training-after-load cost1 remains a separate open defect. L2: 171 targeted PASS. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-marker-support-experiment--2026-10-16-local).
+**B208 temporary marker-support experiment is deployed: B208.235 DEVELOP_ACTIVE, source `3a84a6e`, receipt `B208.235-3a84a6e-playtest.json`, 219/219 MATCH after fresh game-exit checks; no pending transaction.** The Expedition marker prerequisite now uses unlimited support (−1) instead of 1, and the Design cost formula is restored. Cap1 and source binding are unchanged. Training-time protection against a second queue entry now comes only from the Lua checks, which HOLD on violation. The first-training-after-load cost1 remains a separate open defect. L2: 171 targeted PASS. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-marker-support-experiment--2026-10-16-local).
 
 **B207 user runs: cost progression is excluded.** Each Expedition creation applies a per-load fixed population delta: 0 in a normal load, exactly +2430 in an affected load. One run recurred the ~80GB memory runaway. Engine logs show only the first training after a load costing 1; later trainings cost 60. In-game loads refuse the Tuner socket, so the collector still exits during reloads. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b207-user-runs--2026-10-16-user_game_test-diagnostic). Root cause UNKNOWN; awaiting the user's decision on the next step.
 
