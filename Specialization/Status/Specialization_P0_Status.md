@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0553
+Status Revision: S0554
 Implementation Build: source/live B207.234 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B207_FIXED_COST_EXPERIMENT_DEPLOYED_AWAITING_USER_RUN
+Work State: B207_PROGRESSION_EXCLUDED_PER_LOAD_DELTA
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B207 user runs: cost progression is excluded.** Each Expedition creation applies a per-load fixed population delta: 0 in a normal load, exactly +2430 in an affected load. One run recurred the ~80GB memory runaway. Engine logs show only the first training after a load costing 1; later trainings cost 60. In-game loads refuse the Tuner socket, so the collector still exits during reloads. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b207-user-runs--2026-10-16-user_game_test-diagnostic). Root cause UNKNOWN; awaiting the user's decision on the next step.
 
 **B207 temporary experiment is deployed: B207.234 DEVELOP_ACTIVE, source `1f90648`, receipt `B207.234-1f90648-playtest.json`, 219/219 MATCH after fresh game-exit checks; no pending transaction.** The Expedition keeps the Spy base cost60 but drops previous-copy progression, to test whether native cost1 and the varying population delta on creation come from that progression. This is not a design decision. The collector no longer exits during in-game reloads and logs its waiting codes. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b207-fixed-cost-experiment-and-collector-reload-fix--2026-10-16-local).
 

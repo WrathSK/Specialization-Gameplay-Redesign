@@ -294,3 +294,33 @@ What each outcome would mean:
 - No full regression: no concrete cross-module risk was identified.
 
 **Deployment.** B207.234/modinfo234 is **DEVELOP_ACTIVE**, source `1f90648d41f359b8120c3b2b23add24dfc0b542c`, receipt `B207.234-1f90648-playtest.json`. A fresh OS check confirmed game exit before both guarded switches: B206 restored to stable through its receipt, then B207 activated. 219/219 files MATCH, and there is no pending transaction. A shell word-splitting error in the first invocation stopped the run after the verified stable restore and before activation. Activation then ran with explicit reviewed hashes.
+
+## B207 user runs — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** B207.234 with the same save, in three game sessions:
+- **Run 1:** ended turn and the game's memory ran away to about 80 GB. The trace stops at `TURN_END` T88 with population 16 (session `…112517Z-932203`).
+- **Run 2:** the user repeatedly cleared the Expedition through the P0 panel and retrained it, 4–5 trainings in all. Population never changed. Every Expedition creation produced one `GameEvents.OnCityPopulationChanged` notification with **delta 0** (session `…112930Z-24d9ff`).
+- **Run 3:** the first training already jumped, and so did every later one, 4 trainings in all. Each Expedition creation applied exactly **+2430**: 16→2446, 2447→4877, 4877→7307 and 7306→9736. Unrelated ±1 changes occurred in between (session `…113253Z-38c444`).
+
+**Native observations.**
+- Every record shows `costModel=NO_COST_PROGRESSION costStep=0`, so the experiment loaded.
+- The population delta per Expedition creation is constant within a load: 0 in normal loads, and exactly +2430 in affected loads, in every session observed so far. Whether a load is affected appears to be decided per load.
+- `City_BuildQueue.csv`, read-only:
+  - The first Expedition completion after a load needs **1** (T89: added 342.3, overflow 107.3).
+  - Later ones in the same load need **60** (T89–T91), in both normal and affected loads.
+  - The trace's diagnostic `nativeCost` read stays 1 throughout, so that read does not match what the engine log records as needed.
+- In run 3, T90 production rose to 14879.1 and 10770.4, which is a consequence of the inflated population.
+- During in-game loads the Tuner socket **refuses connections** (`SOCKET_UNAVAILABLE`) for about 2–3 min. The B207 collector change therefore does not cover reloads: it still ends with `GAME_EXITED`.
+
+**What this establishes.**
+- Previous-copy cost progression is **excluded** as the cause of the population delta. The jump persists with a fixed cost.
+- The delta is a per-load fixed value applied at each Expedition creation: 0 or +2430. It is not a probability per training.
+- Cost1 affects only the first training after a load.
+- The memory runaway recurred on the same path.
+
+**What it does not establish.** The native mechanism. The Expedition's remaining structural differences from ordinary spies include:
+- `Unit_BuildingPrereqs` with `NumSupported=1`, whose only other user is the Archaeologist;
+- an InternalOnly marker building that Lua creates and later removes;
+- the missing `UnitAiInfos` row.
+
+Root cause remains UNKNOWN. No repair is authorized.
