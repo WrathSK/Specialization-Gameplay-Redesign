@@ -182,3 +182,37 @@ The memory runaway did not occur. Cause remains UNKNOWN.
 - The default idle exit is now 30 s (the user found 120 s too long).
 - A deadline during the Tuner context handshake while the game loads now counts as waiting, not as an error.
 - 7 offline collector tests PASS.
+
+## B206 population-change and spy-cost diagnostics — 2026-10-16 (local)
+
+**Authorization.** The user said the first collector session's save predates checkpoint A, and that the same save had loaded and trained normally in earlier runs. They then authorized the proposed next step: a diagnostic-only runtime batch deployed through the existing gates, followed by a re-run with the collector. No gameplay repair is authorized.
+
+**Runtime change (B206.233 / modinfo233, diagnostic-only).**
+- `Mod/ExpeditionTraining.lua` subscribes to `GameEvents.OnCityPopulationChanged(player, city, delta)` (synchronous; HD's hospital handler uses the same event) and `Events.CityPopulationChanged(player, city, newPopulation)`.
+  - Only the test player's reserved source city during `TRAINING` is observed.
+  - Each source (`GAME`/`EVENT`) aggregates per turn: event count, last delta/new value, sum, min and max.
+  - `POP_CHANGE` is emitted on the 1st, 2nd, 4th, 8th… notification, so 2431 increments cost 12 records per source. Unreported totals are emitted as `POP_SUMMARY` before `BIRTH_ENTRY`, before `COMPLETE_CALLBACK` and at turn boundaries.
+  - `PlayerTurnDeactivated` emits `TURN_END` and `PlayerTurnActivated` emits `TURN_BEGIN`, each with the source city's population, while `TRAINING`.
+- `Mod/ExpeditionTrainingDiagnostics.lua`: every sampled record also carries `spyNativeCost`, which is `GetUnitCost(UNIT_SPY)` in the same city's queue (comparison only). New whitelisted keys are `spyNativeCost`, `popSource`, `popEvents`, `popDelta`, `popTo`, `popSum`, `popMin`, `popMax` and `popTurn`.
+- Ring schema, keep (64), per-context budget (96), dedup, scalar redaction and the print line format are unchanged. Capacity, source, Store, unit formula, admission and GC are unchanged. Every observer path is wrapped in `pcall`, and a failure cannot change progression.
+
+**Tools (not in the runtime package).**
+- `tools/read_expedition_trace.py` `record` mode passes a fixed allowlist of HD print shapes as `[SPC][B206][HD] …`. The two shapes are `<name> 人口变化 <int>` and `中心医院 …`.
+  - At most 200 are passed per passive window; the rest are counted.
+  - `WINDOW_COMPLETE` now reports `hd_records`/`hd_dropped`. All other engine output is still dropped.
+- `tools/collect_expedition_trace.py` logs HD lines without dedup (the first 2000 per session) and counts them by kind and amount in the summary.
+
+**Local validation (L2).**
+- +7 tests:
+  - population aggregation/order with ON/OFF equivalence;
+  - other-city/non-training rejection;
+  - turn-boundary flush order with equivalence;
+  - spy native cost;
+  - observer exception equivalence;
+  - reader HD allowlist/cap;
+  - collector HD count.
+- Two reader `WINDOW_COMPLETE` assertions were updated to the extended format, and the package version assertion moved to 233.
+- Affected suites: 134 + 5 PASS on Python 3.14/Lupa.
+- Full discovery: 2209 tests, of which 488 failures/errors. This is the identical failure set to HEAD `c37de97` in a temporary detached worktree (2202 tests, same 488; legacy/external-DB modules), so there are no new failures.
+
+**Limits.** This is local simulation, not user-game PASS. Whether HD prints reach the Tuner socket from HD's script context is unverified natively. Root cause remains UNKNOWN.

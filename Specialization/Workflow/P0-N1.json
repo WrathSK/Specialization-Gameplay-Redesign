@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0549",
-    "runtime": "B205.232 / modinfo232",
+    "status": "S0550",
+    "runtime": "B206.233 / modinfo233",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
-  "goal": "B205 bounded reload/cost/population diagnostics deployed. Checkpoint A (cold-load eligible row) stopped on native cost1 vs definition60/15; B not collected. Current authorization: records update and an unattended read-only Tuner trace collector (tools/local tests only). No training, turn, repair or deployment.",
+  "goal": "B206 diagnostic-only: bounded source-city population-change aggregation, turn-boundary marks and ordinary spy native cost during TRAINING, plus a fixed HD population-print allowlist in the read-only reader/collector. Deploy through the guarded W0003 switch; user re-runs with the collector. No gameplay repair.",
   "implementation_authorized": true,
   "context": [
     {
@@ -624,8 +624,8 @@
   ],
   "validation": {
     "depth": "L3 targeted diagnostic failure isolation and existing direct Expedition closure; no full gameplay/stress.",
-    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately. S0549: reader 36 tests PASS (validates 8963218); collector 6 offline tests PASS on Python 3.10/3.14; smoke wait/SIGTERM summary checked.",
-    "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval."
+    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately. S0549: reader 36 tests PASS (validates 8963218); collector 6 offline tests PASS on Python 3.10/3.14; smoke wait/SIGTERM summary checked. S0550 B206: +7 tests PASS (population aggregation/order and ON/OFF equivalence, scope rejection, turn flush, spy cost, observer exception, reader HD allowlist/cap, collector HD count); affected suites 139 PASS; full discovery failure set identical to HEAD c37de97.",
+    "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval. S0550: the first collector session save predates checkpoint A and loaded normally before; user authorized B206 diagnostics and a collector re-run."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
@@ -635,6 +635,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
     "source": "B205.232/modinfo232 DEVELOP_ACTIVE; source 505695dfdb0058c970d4a9fa40f4e45d68f14df6; receipt B205.232-505695d-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B204->stable->B205 switches; B204/stable recovery verified, no pending deployment transaction. Native diagnostic comparison pending; faults remain unresolved.",
     "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory associated with same-process reload or restored training; cost1 observed at cold load before training; root cause UNKNOWN. Fixed native Tuner query returned; reader rawget defect fixed in 8963218 (tools only, validation pending).",
-    "stop": "Records update and read-only collector tool only. Stop before any runtime change, deployment, gameplay repair or user test."
+    "stop": "B206 diagnostic runtime, guarded deployment and collector re-run only. Stop before any gameplay repair."
   }
 }

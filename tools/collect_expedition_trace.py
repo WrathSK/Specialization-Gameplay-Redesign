@@ -8,7 +8,8 @@ reconnecting across loads until the game has been gone for --idle-exit seconds
 (default 30). Ctrl-C/SIGTERM also stop it and still write the summary.
 
 Every unique `[SPC][B205][TRAIN]` record is appended to a local session log and
-summarized at the end. It sends no gameplay command, changes no configuration,
+summarized at the end. B206: allowlisted HD population/hospital prints are
+logged as they arrive (not deduplicated; the first MAX_HD_LOGGED) and counted. It sends no gameplay command, changes no configuration,
 launches nothing and runs no GC. Output stays under ignored local/diagnostics/.
 """
 import argparse
@@ -32,6 +33,7 @@ _spec.loader.exec_module(reader)
 SESSION_ROOT = ROOT / 'local/diagnostics/B205'
 MAX_SEEN = 50000
 MAX_HOURS = 12
+MAX_HD_LOGGED = 2000
 FIELD = re.compile(r'(\w+)=(\S+)')
 TRAIN = re.compile(r'\[SPC\]\[B205\]\[TRAIN\] seq=\d+ stage=[A-Z_]+(?: .*|$)')
 
@@ -66,6 +68,9 @@ class Session:
         self.last_population = {}
         self.cost_seen = set()
         self.contexts = set()
+        self.hd = Counter()
+        self.hd_total = 0
+        self.hd_dropped = 0
 
     def event(self, kind, **values):
         self.events.write(json.dumps({'time_utc': datetime.now(timezone.utc).isoformat(),
@@ -111,12 +116,27 @@ class Session:
             definition or '?', native or '?', f.get('phase', '-'))
         return '\n'.join([line] + ['  !! ' + a for a in alerts])
 
+    def add_hd(self, line):
+        """HD prints repeat legitimately, so count each one; log a bounded prefix."""
+        self.hd_total += 1
+        text = line[len(reader.HD_PREFIX):]
+        match = re.search(r' 人口变化 (-?\d+)$', text)
+        self.hd['population_change ' + match.group(1) if match else 'hospital'] += 1
+        if self.hd_total > MAX_HD_LOGGED:
+            return None
+        stamp = datetime.now(timezone.utc).strftime('%H:%M:%S')
+        self.records.write(stamp + ' hd ' + line + '\n')
+        self.records.flush()
+        return stamp + ' HD ' + text if self.hd_total <= 20 else None
+
     def summary(self, reason):
         lines = ['B205 trace session summary (read-only collection; not a gameplay PASS)',
                  'end_reason: ' + reason,
                  'unique_records: %d' % len(self.seen),
                  'observer_contexts: %d' % len(self.contexts),
                  'stages: ' + ', '.join('%s=%d' % kv for kv in sorted(self.stages.items()))]
+        lines.append('hd_prints: %d (dropped by reader: %d)' % (self.hd_total, self.hd_dropped))
+        lines += ['hd: %s x%d' % kv for kv in sorted(self.hd.items())]
         lines += ['alert: ' + text for text in self.alerts] or ['alerts: none']
         text = '\n'.join(lines) + '\n'
         (self.directory / 'summary.txt').write_text(text, encoding='utf-8')
@@ -146,6 +166,13 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                     shown = session.add(record, 'snap' if 'ENTRY ' in line else 'live')
                     if shown:
                         out(shown)
+                elif line.startswith(reader.HD_PREFIX):
+                    shown = session.add_hd(line)
+                    if shown:
+                        out(shown)
+                elif line.startswith(reader.PREFIX + 'WINDOW_COMPLETE '):
+                    dropped = fields(line).get('hd_dropped', '0')
+                    session.hd_dropped += int(dropped) if dropped.isdigit() else 0
                 elif line.startswith(reader.PREFIX + 'ERROR '):
                     session.event('trace_error', line=line)
             capture('record', on_record=on_record, record_seconds=window)

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="232">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="233">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B205.232: bounded Expedition reload, cost and population diagnostics; capacity, source, persistence and GC unchanged.</Description>
+    <Description>B206.233: B205 diagnostics plus bounded source-city population-change, spy native-cost and turn-boundary observation; gameplay unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

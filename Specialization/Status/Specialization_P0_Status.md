@@ -1,16 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0549
-Implementation Build: source/live B205.232 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0550
+Implementation Build: source B206.233 (live B205.232 DEVELOP_ACTIVE until the authorized switch); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B205_CHECKPOINT_A_STOPPED_COLLECTOR_AUTHORIZED
+Work State: B206_POPULATION_DIAGNOSTICS_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
+**B206 diagnostic-only batch is locally complete; deployment through the existing guarded switch is authorized.** The user stated that the first collector session's save predates checkpoint A, and that the same save had loaded and trained normally in earlier runs. The jump is therefore not a property of the save alone. The user then authorized the proposed next step. [B206 record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b206-population-change-and-spy-cost-diagnostics--2026-10-16-local).
+
+B206.233 / modinfo233 adds bounded observation of the reserved source city while TRAINING:
+- every population notification, aggregated per source and turn (1st/2nd/4th… plus boundary totals);
+- `TURN_END`/`TURN_BEGIN` population marks;
+- the ordinary spy native cost beside the Expedition native cost.
+
+The reader/collector also keep a fixed allowlist of HD population/hospital prints. Gameplay, capacity, source, Store, unit formula and GC are unchanged. Local L2: +7 tests PASS; full discovery shows the failure set identical to HEAD.
+
+Population16→2447 and ~80GB memory remain USER_REPORTED_FAIL with cause UNKNOWN. EnableTuner stays1 by user policy. After deployment, the user re-runs with the collector. No gameplay repair is authorized.
+
+## S0549 — B205 checkpoint A stop and collector (historical)
 **B205 checkpoint A stopped on its own condition: before any training, a cold-loaded eligible row showed native Expedition cost1 against definition60/15; population stayed16. Checkpoint B was not collected.** [Checkpoint A, handoff and corrected record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#checkpoint-a-handoff-and-corrected-record--2026-10-16). Cost1 is therefore present at cold load, not only after a same-process reload. The two reserve/build cycles in that trace were the user's own clicks to test reading; there is no automatic trigger.
 
 Source/live remains **B205.232 / modinfo232 DEVELOP_ACTIVE**, source `505695d`, receipt `B205.232-505695d-playtest.json`,219/219 MATCH; no deployment since. Reader-only fix `8963218` (GameCore_Tuner lacks `rawget`; native ERR was masked as timeout) changes tools/tests only, not the runtime package; its local validation belongs to the authorized collector batch. W0005 `4081e49`: Claude is Primary, Codex Advisor. By user decision, **EnableTuner stays1 during development and the user toggles it from the terminal**; Primary no longer restores it after sessions (handoff restoration to0 and the user's re-enable to1 are both verified).

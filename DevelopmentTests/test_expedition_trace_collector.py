@@ -110,6 +110,27 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(sum('Waiting for the game' in o for o in out), 1)
         self.assertNotIn('capture_error', (self.session.directory / 'events.jsonl').read_text())
 
+    def test_hd_prints_counted_not_deduplicated(self):
+        clock = FakeClock()
+        out = []
+
+        def capture(mode, on_record=None, record_seconds=None):
+            clock.now += record_seconds
+            for _ in range(3):
+                on_record(reader.HD_PREFIX + '北京 人口变化 1')
+            on_record(reader.HD_PREFIX + '中心医院 北京 额外人口增长 随机数 37')
+            on_record(reader.PREFIX + 'WINDOW_COMPLETE passive_records=0 hd_records=4 hd_dropped=7')
+
+        collector.run(self.session, capture=capture, clock=clock, sleep=clock.sleep,
+                      window=30, max_seconds=30, out=out.append)
+        text = self.session.summary('TEST')
+        self.assertIn('hd_prints: 4 (dropped by reader: 7)', text)
+        self.assertIn('hd: population_change 1 x3', text)
+        self.assertIn('hd: hospital x1', text)
+        self.session.records.flush()
+        self.assertEqual(len((self.session.directory / 'records.log').read_text().splitlines()), 4)
+        self.assertEqual(len(self.session.seen), 0)
+
     def test_session_must_stay_under_local(self):
         with self.assertRaises(reader.CaptureError):
             collector.Session(root=Path(tempfile.gettempdir()) / 'spc-outside', stamp='X')

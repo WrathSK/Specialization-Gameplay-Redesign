@@ -12,6 +12,18 @@ function SPCExpeditionTraining.Start(P,shared)
  local function observeAt(stage,pid,id,s,extra)
   if diag then pcall(function()observe(stage,id~=nil and city(pid,id) or nil,s,extra)end)end
  end
+ -- B206 diagnostic only: aggregate source-city population notifications while
+ -- TRAINING. Emits the 1st, 2nd, 4th, 8th... notification per source and turn,
+ -- plus unreported totals at lifecycle/turn boundaries. Never mutates state.
+ local pops={}
+ local function popReport(stage,pid,a)
+  a.reported=a.events
+  observeAt(stage,pid,a.city,T.Read(pid),{popSource=a.source,popEvents=a.events,popDelta=a.delta,popTo=a.to,popSum=a.sum,popMin=a.min,popMax=a.max,popTurn=a.turn})
+ end
+ local function popFlush(stage,pid)
+  if not diag then return end
+  pcall(function()for _,a in pairs(pops)do if a.pid==pid and a.events>a.reported then popReport(stage,pid,a)end end end)
+ end
  local function exact(s)
   local c=city(s.owner,s.sourceCity)
   assert(c and c:GetOwner()==s.owner and SPCNetworkInput.Reference(c)==s.sourceRef,'TRAINING_SOURCE_CHANGED')
@@ -99,7 +111,7 @@ function SPCExpeditionTraining.Start(P,shared)
   run(pid,function()
    local s=T.Read(pid)
    if s.phase~='TRAINING' then return end
-   observeAt('BIRTH_ENTRY',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id})
+   popFlush('POP_SUMMARY',pid);observeAt('BIRTH_ENTRY',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id})
    assert(s.trainingQueued,'TRAINING_BIRTH_BEFORE_QUEUE_CONFIRMATION')
    T.Evidence(pid,s.trainingToken,'trainingBorn',id);dirty=true
    observeAt('BIRTH_EXIT',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id,born=id})
@@ -109,7 +121,7 @@ function SPCExpeditionTraining.Start(P,shared)
   if not P.IsTestPlayer(pid) or kind~=0 then return end
   local r=P.Info('Units',index);if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
-   observeAt('COMPLETE_CALLBACK',pid,id,nil,{eventOwner=pid,eventCity=id,eventKind=kind,eventIndex=index,cancelled=cancelled})
+   popFlush('POP_SUMMARY',pid);observeAt('COMPLETE_CALLBACK',pid,id,nil,{eventOwner=pid,eventCity=id,eventKind=kind,eventIndex=index,cancelled=cancelled})
    local s=T.Read(pid)
    observeAt('COMPLETE_STATE',pid,id,s)
    if s.phase~='TRAINING' then return end
@@ -149,6 +161,26 @@ function SPCExpeditionTraining.Start(P,shared)
   end)
  end
  local function hook(name,fn)if Events[name]then Events[name].Add(fn)end end
+ local function popWatch(source,pid,id,delta,to)
+  if not diag or not P.IsTestPlayer(pid)then return end
+  pcall(function()
+   local s=T.Read(pid);if s.phase~='TRAINING' or s.sourceCity~=id then return end
+   local turn=Game.GetCurrentGameTurn();local a=pops[source]
+   if not a or a.turn~=turn or a.city~=id or a.pid~=pid then a={source=source,pid=pid,city=id,turn=turn,events=0,reported=0,sum=0};pops[source]=a end
+   a.events=a.events+1;a.delta=delta;a.to=to
+   if type(delta)=='number'then a.sum=a.sum+delta;a.min=math.min(a.min or delta,delta);a.max=math.max(a.max or delta,delta)end
+   local n=a.events;while n>1 and n%2==0 do n=n/2 end
+   if n==1 then popReport('POP_CHANGE',pid,a)end
+  end)
+ end
+ if GameEvents.OnCityPopulationChanged then GameEvents.OnCityPopulationChanged.Add(function(pid,id,delta)popWatch('GAME',pid,id,delta,nil)end)end
+ if Events.CityPopulationChanged then Events.CityPopulationChanged.Add(function(pid,id,to)popWatch('EVENT',pid,id,nil,to)end)end
+ local function turnMark(stage,pid)
+  if not diag or not P.IsTestPlayer(pid)then return end
+  popFlush('POP_SUMMARY',pid)
+  pcall(function()local s=T.Read(pid);if s.phase=='TRAINING' then observeAt(stage,pid,s.sourceCity,s)end end)
+ end
+ if Events.PlayerTurnDeactivated then Events.PlayerTurnDeactivated.Add(function(pid)turnMark('TURN_END',pid)end)end
  GameEvents.SPC_ExpeditionTrainingRequest.Add(d.Request)
  hook('UnitAddedToMap',d.Birth);hook('CityProductionCompleted',d.Complete)
  local function affected(pid,id)
@@ -167,7 +199,7 @@ function SPCExpeditionTraining.Start(P,shared)
    end
   elseif dirty then dirty=false;current(false)end
  end)
- hook('PlayerTurnActivated',function(pid)d.Pulse(pid,false)end)
+ hook('PlayerTurnActivated',function(pid)turnMark('TURN_BEGIN',pid);d.Pulse(pid,false)end)
  hook('LoadScreenClose',function()
   if diag then pcall(diag.Load)end
   current(true)

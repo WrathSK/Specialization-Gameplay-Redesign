@@ -23,8 +23,13 @@ def runtime(enabled=True):
     function buildings:HasBuilding(id)assert(id==999);return marker end
     local row=info.UNIT_SPC_EXPEDITION_SPY;row.Index=100;row.Cost=60;row.CostProgressionParam1=15
     function city:GetBuildQueue()return {
-      GetUnitCost=function()return 1 end,GetUnitProgress=function()return 0 end,
+      GetUnitCost=function(self,i)if i==7 then return 200 end;return 1 end,GetUnitProgress=function()return 0 end,
       GetSize=function()return queueCount end,GetCurrentProductionTypeHash=function()return 100 end}end
+    info.UNIT_SPY=info.UNIT_SPY or {};info.UNIT_SPY.Index=7
+    GameEvents.OnCityPopulationChanged=event('popGame');Events.CityPopulationChanged=event('popEvent')
+    Events.PlayerTurnDeactivated=event('PlayerTurnDeactivated')
+    function grow(n,pid,id)for i=1,n do population=population+1;hooks.popGame(pid or 2,id or 1,1);hooks.popEvent(pid or 2,id or 1,population)end end
+    function stages(name)local t,n=diagnostic(),{};for _,e in ipairs(t and t.entries or {})do if e.stage==name then n[#n+1]=e end end;return n end
     function diagnostic()return ExposedMembers.SPC_B205TrainingTrace end
     function findStage(stage)
       local t=diagnostic();if not t then return end
@@ -100,6 +105,52 @@ class Integration(unittest.TestCase):
 
     def test_loaded_training_recovery_equivalent(self):
         self.equivalent('reserve();hooks.LoadScreenClose()')
+
+    def test_population_notifications_equivalent_and_aggregated(self):
+        lua = self.equivalent('reserve();grow(2431);complete();born();pulse()')
+        lua.execute("""
+         local game={};for _,e in ipairs(stages('POP_CHANGE'))do if e.popSource=='GAME' then game[#game+1]=e.popEvents end end
+         -- 1st, 2nd, 4th ... 2048th within the 64-entry ring (EVENT shares it).
+         assert(table.concat(game,',')=='1,2,4,8,16,32,64,128,256,512,1024,2048',table.concat(game,','))
+         local s=stages('POP_SUMMARY');assert(#s==2)
+         for _,e in ipairs(s)do assert(e.popEvents=='2431' and e.population=='2447')end
+         local g=s[1].popSource=='GAME' and s[1] or s[2];local v=s[1].popSource=='EVENT' and s[1] or s[2]
+         assert(g.popSum=='2431' and g.popMin=='1' and g.popMax=='1' and g.popDelta=='1' and g.popTurn=='81')
+         assert(v.popTo=='2447' and v.popSum=='0')
+         local seq={};for _,e in ipairs(diagnostic().entries)do seq[e.stage]=seq[e.stage]or e.sequence end
+         assert(seq.POP_SUMMARY<seq.COMPLETE_CALLBACK)
+        """)
+
+    def test_population_outside_training_or_source_city_not_observed(self):
+        lua = runtime(True)
+        lua.execute("""grow(3);reserve();grow(2,2,999);grow(1,3,1)
+         assert(#stages('POP_CHANGE')==0 and #stages('POP_SUMMARY')==0)""")
+
+    def test_turn_boundaries_flush_and_mark_training_city(self):
+        lua = self.equivalent('reserve();grow(3);hooks.PlayerTurnDeactivated(2);currentTurn=currentTurn+1;grow(1);hooks.PlayerTurnActivated(2)')
+        lua.execute("""
+         local e=stages('TURN_END');assert(#e==1 and e[1].population=='19' and e[1].phase=='TRAINING')
+         local b=stages('TURN_BEGIN');assert(#b==1 and b[1].population=='20')
+         -- Turn 81 had unreported 3rd events; the single turn-82 event was emitted at once.
+         local s=stages('POP_SUMMARY');assert(#s==2 and s[1].popTurn=='81' and s[1].popEvents=='3' and s[2].popEvents=='3')
+         local c=stages('POP_CHANGE');assert(c[#c].popTurn=='82' and c[#c].popEvents=='1')
+         assert(s[2].sequence<e[1].sequence and e[1].sequence<c[#c].sequence and c[#c].sequence<b[1].sequence)
+        """)
+
+    def test_spy_native_cost_recorded_beside_expedition_cost(self):
+        lua = runtime(True)
+        lua.execute("reserve();local e=findStage('RESERVE_ENTRY');assert(e.nativeCost=='1' and e.spyNativeCost=='200')")
+
+    def test_population_observer_exception_cannot_change_progression(self):
+        baseline = runtime(False)
+        observed = runtime(True)
+        observed.execute("""SPCExpeditionTrainingDiagnostics.New=function()return {
+          Event=function()error('DIAG_EVENT_FAIL')end,Load=function()end,Record=function()end}end
+          SPCExpeditionTraining.Start(P,shared)""")
+        script = "reserve();grow(5);hooks.PlayerTurnDeactivated(2);complete();born();pulse();confirmName('name',50)"
+        baseline.execute(script)
+        observed.execute(script)
+        self.assertEqual(snapshot(observed), snapshot(baseline))
 
     def test_population_delta_is_logged_at_marker_boundary_only(self):
         lua = runtime(True)

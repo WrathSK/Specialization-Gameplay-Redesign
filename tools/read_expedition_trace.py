@@ -3,7 +3,8 @@
 
 Protocol reference: https://github.com/PatrickJYKang/civ6-logger/blob/main/docs/ARCHITECTURE.md
 Only localhost4318 / advertised GameCore_Tuner; no arbitrary Lua or config writes.
-Record sends one snapshot query, then passively receives B205 diagnostic prints.
+Record sends one snapshot query, then passively receives B205 diagnostic prints
+and (B206) a fixed allowlist of HD population/hospital prints, capped per window.
 It never polls, reconnects, trains, changes Properties, launches the game or runs GC.
 """
 import argparse
@@ -25,6 +26,10 @@ MAX_RECORDS = 70
 MAX_RECORD_SECONDS = 600
 MAX_STREAM_TOTAL = 4 * 1048576
 MAX_STREAM_RECORDS = 1024
+MAX_HD_RECORDS = 200  # B206: per passive window; the remainder is only counted
+HD_PREFIX = '[SPC][B206][HD] '
+# B206: fixed allowlist of HD population/hospital print shapes (game text only).
+HD_PATTERNS = (re.compile(r'\S{1,40} 人口变化 -?\d{1,6}$'), re.compile(r'中心医院 [^\x00-\x1f]{1,120}$'))
 MAX_FRAMES = 4096
 PREFIX = '[SPC][B205][READ] '
 TRAIN_PREFIX = '[SPC][B205][TRAIN] '
@@ -162,7 +167,7 @@ def native_error(payload):
 
 
 def training_line(line):
-    # An exact batch/stage prefix; no other engine output is written to disk.
+    # An exact batch/stage prefix; other engine output is dropped except hd_line().
     match = re.search(r'\[SPC\]\[B205\]\[TRAIN\] seq=\d+ stage=[A-Z_]+(?: |$)', line)
     if not match:
         return None
@@ -170,6 +175,15 @@ def training_line(line):
     if len(value) > 4096:
         raise CaptureError('OUTPUT_LINE_LIMIT')
     return value
+
+
+def hd_line(line):
+    """Return one allowlisted HD population print, or None. Arbitrary output is dropped."""
+    for pattern in HD_PATTERNS:
+        match = pattern.search(line.rstrip())
+        if match:
+            return HD_PREFIX + match.group(0)
+    return None
 
 
 def capture(mode, connect=socket.create_connection, clock=time.monotonic,
@@ -183,6 +197,7 @@ def capture(mode, connect=socket.create_connection, clock=time.monotonic,
     deadline = clock() + DEADLINE_SECONDS
     connection = None
     records, phase, passive_count = [], 'CONNECT', 0
+    hd_count = hd_dropped = 0
     has_trace_error = False
 
     def emit(line):
@@ -214,7 +229,8 @@ def capture(mode, connect=socket.create_connection, clock=time.monotonic,
                 if phase == 'PASSIVE' and expired and clock() >= wire.deadline:
                     if wire.total != before:
                         raise CaptureError('PARTIAL_FRAME_AT_DEADLINE') from None
-                    emit(PREFIX + 'WINDOW_COMPLETE passive_records=' + str(passive_count))
+                    emit(PREFIX + 'WINDOW_COMPLETE passive_records=' + str(passive_count)
+                         + ' hd_records=' + str(hd_count) + ' hd_dropped=' + str(hd_dropped))
                     return records
                 raise
             if tag == 3:
@@ -248,6 +264,13 @@ def capture(mode, connect=socket.create_connection, clock=time.monotonic,
                             raise CaptureError('OUTPUT_RECORD_LIMIT')
                         passive_count += 1
                         emit(value)  # Do not retain a growing list of passive output.
+                    else:
+                        value = hd_line(line)
+                        if value and hd_count < MAX_HD_RECORDS:
+                            hd_count += 1
+                            emit(value)
+                        elif value:
+                            hd_dropped += 1
     except CaptureError as error:
         error.phase, error.records = phase, tuple(records)
         raise

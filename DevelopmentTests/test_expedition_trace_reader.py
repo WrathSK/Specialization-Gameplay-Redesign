@@ -256,7 +256,7 @@ class RecorderTests(unittest.TestCase):
         fake,clock=self.fixture(extra);seen=[]
         result=self.capture(fake,clock=clock,record_seconds=1,on_record=seen.append)
         self.assertIn(line,seen);self.assertEqual(len(result),2)
-        self.assertEqual(seen[-1],reader.PREFIX+'WINDOW_COMPLETE passive_records=1')
+        self.assertEqual(seen[-1],reader.PREFIX+'WINDOW_COMPLETE passive_records=1 hd_records=0 hd_dropped=0')
         self.assertEqual(sum(text.startswith('CMD:') for _,text in fake.sent),1)
         self.assertFalse(any('private token' in x or '[B204]' in x for x in seen))
 
@@ -270,10 +270,21 @@ class RecorderTests(unittest.TestCase):
         fake.sendall=send
         self.capture(fake,clock=clock,record_seconds=1,on_record=seen.append);self.assertIn(line,seen)
 
+    def test_hd_population_prints_allowlisted_and_capped(self):
+        hd=['GameCore: 北京 人口变化 1','中心医院 北京 额外人口增长 随机数 37','private 人口变化 token value','人口变化 abc']
+        extra=frame(4,'500\0GameCore_Tuner\0')+b''.join(frame(0xffffffff,'0\0'+x+'\0') for x in hd*2)
+        fake,clock=self.fixture(extra);seen=[]
+        with mock.patch.object(reader,'MAX_HD_RECORDS',3):
+            self.capture(fake,clock=clock,record_seconds=1,on_record=seen.append)
+        got=[x for x in seen if x.startswith(reader.HD_PREFIX)]
+        self.assertEqual(got,[reader.HD_PREFIX+'北京 人口变化 1',reader.HD_PREFIX+'中心医院 北京 额外人口增长 随机数 37',reader.HD_PREFIX+'北京 人口变化 1'])
+        self.assertEqual(seen[-1],reader.PREFIX+'WINDOW_COMPLETE passive_records=0 hd_records=3 hd_dropped=1')
+        self.assertFalse(any('private' in x or 'abc' in x for x in seen))
+
     def test_quiet_window_not_pass(self):
         fake,clock=self.fixture();seen=[]
         self.capture(fake,clock=clock,record_seconds=1,on_record=seen.append)
-        self.assertEqual(seen[-1],reader.PREFIX+'WINDOW_COMPLETE passive_records=0')
+        self.assertEqual(seen[-1],reader.PREFIX+'WINDOW_COMPLETE passive_records=0 hd_records=0 hd_dropped=0')
         self.assertFalse(any('PASS' in x for x in seen))
 
     def test_partial_frame_deadline(self):

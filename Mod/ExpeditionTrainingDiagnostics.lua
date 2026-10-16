@@ -1,8 +1,8 @@
--- B205 diagnostic-only scalar trace. Never an admission/ownership authority.
+-- B205/B206 diagnostic-only scalar trace. Never an admission/ownership authority.
 SPCExpeditionTrainingDiagnostics={ENABLED=true,KEEP=64,BUDGET=96}
 local M=SPCExpeditionTrainingDiagnostics
 local KEY='SPC_B205TrainingTrace'
-local keys={'stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence'}
+local keys={'stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn'}
 local function scalar(v)
  local t=type(v)
  if t=='nil'then return 'NIL' end
@@ -80,6 +80,8 @@ function M.New(P,role)
     local q=read(c,'GetBuildQueue');local buildings=read(c,'GetBuildings')
     v.nativeCost=type(i)=='number' and read(q,'GetUnitCost',i) or 'INDEX_UNKNOWN'
     v.nativeProgress=type(i)=='number' and read(q,'GetUnitProgress',i) or 'INDEX_UNKNOWN'
+    -- B206: ordinary spy native cost in the same city, for comparison only.
+    local si=field(info(P,'Units','UNIT_SPY'),'Index');v.spyNativeCost=type(si)=='number' and read(q,'GetUnitCost',si) or 'INDEX_UNKNOWN'
     v.queueSize=read(q,'GetSize');v.currentHash=read(q,'GetCurrentProductionTypeHash')
     if type(bi)=='number'then v.markerPresent=read(buildings,'HasBuilding',bi)else v.markerPresent='INDEX_UNKNOWN'end
     for _,k in ipairs(keys)do if extra and extra[k]~=nil then v[k]=extra[k]end end

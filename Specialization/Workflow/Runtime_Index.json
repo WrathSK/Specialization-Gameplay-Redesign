@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "88ecca7b44d25a39109497a180bc7e75982fca2f8ebcafbb86642ad65aea015d",
+      "sha256": "30c5db72642a15a92f14e3bf4deefbe6acb7babc3a0c9feaf61e368fe947675c",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1076,9 +1076,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "a90475fa5852ff2e12d1d20f8fb99238de59d9b9a27342e263cb89f51d2dc6e0",
+      "sha256": "b4aa15e30cd638c63397b9a6f6efb32d07a0a8803d406af5429ba67378dea522",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
     },
     "Mod/UI/ExpeditionTrainingName.lua": {
       "sha256": "e795a4ec009c61358f28deef878da9d2415871532c3876153f3b5b60420b201b",
@@ -1096,9 +1096,9 @@
       "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "4181e04ea85a3f7380a9c8f154fd0353cdc3c6714cb85c96edc0c38cadf19661",
+      "sha256": "d7dd1563344138df7e8ac750d682cb3f9fe0f96bb8f6589a1e20340574ac5086",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
     }
   }
 }
