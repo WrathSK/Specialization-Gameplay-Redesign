@@ -30,6 +30,12 @@ The original unchanged source/document checkpoint is `ca54045`. A following infr
 
 Current authorization is ACTIVE. This changes deployment permission only, not Gameplay, Design or A0161 state contracts.
 
+## Save scope and test base (user decision 2026-10-16)
+
+- Development supports only saves of games that **started with the current mod build loaded**. Saves begun under an earlier build and continued after an update are out of scope; no compatibility, migration or protection code is added for them.
+- Faults that reproduce only in such saves are recorded and closed without repair. A fault that reappears in an in-scope game is treated as a real defect to locate.
+- Current test base: the new campaign started on 2026-10-16 with B208.235. Pre-Expedition campaign saves (base save `B204.231-1`, turn 88) are historical evidence only.
+
 ## Git-era source recovery / records — W0004 v2
 
 Main is the last explicitly promoted trusted source, currently B069.96; develop holds current work including implementations awaiting USER_GAME_TEST. Existing promotion approval remains; no merge/promotion is implied. Recover source from main/known-good Git commits using non-destructive Git operations; ordinary source history no longer requires permanent batch copies or “before” snapshots. GitHub push supplies off-machine source backup. Preserve existing historical backups, accepted Design artifacts, frozen evidence and user saves.

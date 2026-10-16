@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0559
+Status Revision: S0560
 Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B208_NEW_CAMPAIGN_CLEAN
+Work State: B209_PLAN_AWAITING_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
+
+**User decisions (2026-10-16):**
+- Only saves started with the current build are supported; this is recorded in Playtest Workflow, and the new campaign is the test base.
+- The old-campaign population, memory and cost1 faults are closed without repair, and no protection is added.
+- The B208 `NumSupported` experiment is reverted to 1.
+- The overflow-immediate-completion HELD is to be fixed after plan review.
+
+Next: the B209 plan (revert + HELD fix) awaits user review. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#user-decisions--2026-10-16).
 
 **New-campaign check is clean.** In a campaign created with the current mod, Expedition creations fired no population notification. Cost followed the Design formula exactly (60/75/90/105/120 across reloads, never 1), and no HELD or memory problem occurred. Scope was one city, early turns and in-process reloads. The user designates this campaign as the future test base. The population fault and cost1 are tied to the pre-Expedition campaign. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#new-campaign-check--2026-10-16-user_game_test-diagnostic).
 

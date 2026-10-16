@@ -448,3 +448,10 @@ Fix directions remain options only (`DESIGN_DECISION_REQUIRED` where noted in St
 - Scope limit: this check covers one city, early turns and in-process reloads. It does not yet cover multiple cities, Culture ACTIVE IV cities with theater/museum content, or end-turn completion.
 
 Root cause in the old campaign remains INFERENCE. No repair authorized.
+
+## User decisions — 2026-10-16
+
+- **Save scope:** only saves of games started with the current mod build loaded are supported, with no compatibility for updated or older saves ([Playtest Workflow](../../../Architecture/Playtest_Workflow.md#save-scope-and-test-base-user-decision-2026-10-16)). The new campaign is the test base.
+- **No population protection** is added. The old-campaign population delta, memory runaway and stale cost1 are closed as out-of-scope old-save faults, not repaired. Recurrence in an in-scope game reopens the investigation.
+- **Revert the B208 experiment:** the marker prerequisite returns to `NumSupported=1`, restoring the native per-city guard.
+- **Fix the overflow-immediate-completion HELD** if practical. Cap1 makes it rare, but the user asked for it; the plan goes to user review first.
