@@ -1,15 +1,17 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0556
+Status Revision: S0557
 Implementation Build: source/live B208.235 DEVELOP_ACTIVE (temporary experiment); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B208_SUPPORT_EXCLUDED_INVESTIGATING
+Work State: B208_DELTA_CITY_A_SPECIFIC_INVESTIGATING
 
 ## CURRENT AUTHORITATIVE STATE
+
+**City A/B comparison: the population delta is specific to city A (Edinburgh).** City B (Durocorteron) applied delta 0 in 6+ trainings across three loads of the same save; city A applied +2430 in the same process. The first-after-load cost1 happens in both cities, so it is a separate issue. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-city-ab-comparison--2026-10-16-user_game_test-diagnostic). Read-only A/B investigation in progress; no repair authorized.
 
 **B208 user runs: marker support is excluded.** Expedition creation still applied +2430, and +193189 from a derived autosave, and one load hit the memory runaway. The delta is per load and differs between saves. The first training after a load costs 1, later ones 75 (60+15). A new defect also appeared: an order completed immediately by overflow can HOLD before queue confirmation. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b208-user-runs--2026-10-16-user_game_test-diagnostic). Read-only investigation in progress; no repair authorized.
 

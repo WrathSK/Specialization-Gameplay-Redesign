@@ -367,3 +367,24 @@ The marker, its city gating and its lifecycle are unchanged, as are the Store ca
 - New defect: an order that completes immediately through carried overflow can arrive before the queue confirmation and HOLD.
 
 Root cause remains UNKNOWN. A read-only multi-angle investigation is in progress, covering save lineage, unit-type table history, logs, definitions and public engine knowledge.
+
+## B208 city A/B comparison — 2026-10-16 (USER_GAME_TEST, diagnostic)
+
+**What the user ran.** On B208.235 with the same base T88 save, the user trained Expeditions repeatedly in a second Culture ACTIVE IV city:
+- **City B:** id 262147, `LOC_CITY_NAME_DUROCORTERON`, population 13.
+- **City A:** id 393220, `LOC_SPC_CITY_EDINBURGH`, the city used in all earlier tests.
+
+The sessions are `…142028Z-c8e51a` and `…142347Z-018767`.
+
+**Native observations.**
+- **City B:** in 6+ trainings across three loads, every Expedition creation produced `GameEvents.OnCityPopulationChanged` with **delta 0**. Population stayed 13.
+- **City A**, in the third load of the same process: **+2430** (16→2446).
+- **Both cities:** the first training after each load read native cost **1**, and later trainings **75**. Cost1 is therefore a per-player/per-type issue, independent of the city.
+- **Both cities:** a second training ordered in the same turn completed at once and went **HELD**, the same overflow-immediate defect recorded under B208 user runs.
+
+**What this establishes.**
+- The population delta is **specific to city A**. It is not a general property of the Expedition unit, of loading, or of this save as a whole.
+- Ordinary spies in city A remain unaffected, so the cause needs both the Expedition creation path and something particular to city A.
+- B's name suggests a captured city and A's a founded one (INFERENCE). A was also the source city for every earlier Expedition prototype and training.
+
+Root cause remains UNKNOWN. A focused read-only city A/B investigation is in progress.
