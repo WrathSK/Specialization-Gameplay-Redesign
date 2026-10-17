@@ -57,4 +57,4 @@ Collector logs are primary evidence; screenshot only a visible disagreement. Sto
 
 ## Delivery and stop point
 
-Local implementation complete; live remains last verified B225.252 until the guarded B226 deployment record is filled. User decision: none. User testing: the single combined session above. Primary next: review that evidence. Reattachment, era UI, site movement, additional professions, new network formulas and unrelated audit repairs remain outside this batch.
+B226.253 deployed from clean/pushed `fee812f` after fresh automatic OS exit checks before both guarded B225/stable/B226 switches. Receipt `B226.253-fee812f-playtest.json`; **226/226 MATCH**, source/runtime digest `33fd04da7945deaa1758cab42810bdd5283a7a241affbe0ec6b3557859c8f8a1`. B225 and stable recovery retained; no pending transaction, configuration change, main promotion or game launch. Deployment integrity does not supply native PASS. User decision: none. User testing: the single combined session above. Primary next: review that evidence. Reattachment, era UI, site movement, additional professions, new network formulas and unrelated audit repairs remain outside this batch.

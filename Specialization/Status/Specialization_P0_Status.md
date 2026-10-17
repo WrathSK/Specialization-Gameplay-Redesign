@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0602
-Implementation Build: source B226.253 LOCAL_COMPLETE; live B225.252; stable B069.96
+Status Revision: S0603
+Implementation Build: source/live B226.253 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B226_LOCAL_COMPLETE_AWAITING_COMBINED_NATIVE
+Work State: B226_DEPLOYED_AWAITING_COMBINED_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B226 Culture Network implemented; combined B225+B226 native gate pending.** [Result, exact retirement and one test session](Validation/Results/Specialization_B226_Culture_Network.md).
-- **Source B226.253 / modinfo253**,670 targeted local tests PASS. **Live remains B225.252**, source `9a73208`, receipt `B225.252-9a73208-playtest.json`,224/224 MATCH until guarded B226 deployment. Main stable B069.96; configuration/GC unchanged.
+- **Source/live B226.253 / modinfo253**, source `fee812f`, receipt `B226.253-fee812f-playtest.json`,226/226 MATCH. **670 targeted local tests PASS**; native pending. Main stable B069.96; configuration/GC unchanged.
 - **Network:** each Culture ACTIVE IV source independently supplies complete three-category civilization sets; receivers union/deduplicate them. Native matching working specialists receive +1 Culture per complete civilization. Receiver Identity has no additional ACTIVE gate. No received history or recursive propagation.
 - **Exact cutover:** old Culture Eureka normal/TEST generation and1,126 native/HD attachments retired;563 old buildings remain cleanup-only. Research formula, SQL attachments and tests remain separate and unchanged in behavior.
 - **State/update:** existing city history and topology authorities reused; no new permanent field or timer. Source history changes update dependent receivers without route changes; confirmed loss withdraws, UNKNOWN protects, Return waits for committed facts. Existing **文化见闻** provides selected-city network summary/logs.
-- **Pending/authorization:** B225 task/release/city-WORKS/sale checks are explicitly merged, not passed. B226 local implementation and guarded deployment authorized; next action is the [N3 slice](../Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出) combined session then evidence review. Reattachment, era UI, site movement and unrelated audit work remain held.
+- **Pending/authorization:** B225 task/release/city-WORKS/sale checks are explicitly merged, not passed. B226 local checks and guarded deployment complete; next action is the [N3 slice](../Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出) combined session then evidence review. Reattachment, era UI, site movement and unrelated audit work remain held.
+
+## S0603 — B226 verified deployment
+
+Clean/pushed `fee812f`, automatic OS exit at both receipt/hash-guarded switches, source/runtime226/226 MATCH. Receipt `B226.253-fee812f-playtest.json`; B225/stable recovery retained, no pending transaction. Deployment metadata only; combined B225+B226 native pending. No configuration/main change or game launch.
 
 ## S0602 — B226 Culture network / B225 combined gate
 
