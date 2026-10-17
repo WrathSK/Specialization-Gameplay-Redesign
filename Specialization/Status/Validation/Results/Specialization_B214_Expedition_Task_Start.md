@@ -1,6 +1,6 @@
 # B214 — Expedition task-start repair
 
-State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source B214.241; deployed package is recorded separately below.
+State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_PASS (PEOPLE task start/completion and observed Insight scope); WORKS/PLACES native evidence deferred. Source B214.241; deployed package is recorded separately below.
 
 ## Approved boundary and cause
 
@@ -30,3 +30,27 @@ Start the existing collector before testing. With an already-arrived bound team,
 ## Deployment
 
 B214.241/modinfo241 DEVELOP_ACTIVE; source 29391974f1ac887565f4ea8563a73b023acde4cd; receipt B214.241-2939197-playtest.json;219/219 MATCH. Automatic OS exit checks before both guarded switches; B213/stable recovery retained; no pending transaction. Configuration unchanged. No game launch or new native PASS.
+
+## Native continuation — 2026-10-16
+
+The user reports 风土考察 working and no available AI Great Work/Wonder targets. The existing collector session `session-20261017T042355Z-deee61` independently records:
+
+- 04:25:11 UTC: TASK_PREPARING → TASK_RUNNING, no error; 04:26:50 PEOPLE SUCCESS for Khmer, Insight NEW; subsequent ARRIVED.
+- 04:27:06 UTC: explicit source-city Insight report KNOWN, historical=1, effective=1, Khmer/PEOPLE effective=true.
+- 04:28:14–15 UTC: another task starts/runs; 04:28:44 PEOPLE SUCCESS for Hungary, Insight NEW, returned=CENTRE, ACTIVITY → ARRIVED.
+
+These support the narrow assertion repair, observed PEOPLE completions, return and the explicitly sampled ledger view. The second success has no later Insight report in this session; do not claim a sampled total of2. No new cold-load evidence. Legacy `[B191]` prefixes are inherited component tags, not build identifiers.
+
+WORKS and PLACES share the repaired request/activity path, but their target readers and district/Wonder placement remain distinct native gates. User explicitly defers those two checks to future combined batches when targets exist; this does not block the next bounded batch and does not mark them native PASS. No request to create artificial targets or repeat PEOPLE.
+
+Collector limitation: one PARTIAL_FRAME_AT_DEADLINE event occurs near the end, then INTERRUPTED. No task-error line is captured; this is not proof of gapless logging. The successful records above suffice for their stated scope. Raw logs stay at their existing ignored location. One inspected Builder screenshot is archived with SHA256 under the ignored B214 evidence folder; it is a UI reference only. Collector startup remains manual by user choice.
+
+## Proposed next batch — B215 idle actions and bounded Tourism preparation
+
+Not implementation authorization. Restore native **跳过回合 / 休眠** for an idle, exact owned Expedition through the existing UnitPanel action builder and native availability/request primitives. Current `ExpeditionSpyUnitPanel.lua` deliberately avoids the base builder (which registers Spy mission hotkeys), builds only TRAVEL/TASK, and suppresses native action clicks for teams. Thus adding icons alone is insufficient.
+
+- Inspect the direct native/HD handlers and use an explicit action allowlist; do not re-enable native espionage missions/hotkeys or ordinary movement. Ordinary Spies/Builders stay unchanged.
+- Recheck exact selection, owner, current activity lock and native eligibility at click time. Keep PREPARING/RUNNING/recovery/release locked. Manual idle sleep remains engine-owned, separate from task-owned SLEEP; determine the existing native wake route before release so the unit cannot be stranded. No saved field, capacity or binding change.
+- Local tests: idle/locked/stale selection, native request arguments, manual sleep versus task-owned cleanup, ordinary-unit isolation. Native delta: skip once, sleep/wake once on an idle team; confirm normal dispatch/task remains accessible. No full save-load campaign. Merge available WORKS/PLACES evidence opportunistically, not as a mandatory prerequisite.
+- In the same planning boundary, inspect the already identified whole-city Tourism modifier and direct loaded HD/native definitions for the accepted `+2 percentage points × effective Insights` rule. Verify truly city-wide scope rather than Great Work-only filtering. Reuse the existing city Insight ledger/current ACTIVE facts, preserve historical records when inactive, and avoid a second global scanner or persistent derived bonus.
+- Do not automatically implement an unverified Tourism writer. If a matching native primitive is established, present the minimal implementation/native comparison before proceeding; otherwise report the exact technical gap. Planned following slice: local Tourism application with two distinguishable Tourism sources and ACTIVE on/off, then N3 separately. No new Design, auto-launch collector or unrelated audit repair.

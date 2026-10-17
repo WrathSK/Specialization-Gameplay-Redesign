@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0574",
+    "status": "S0575",
     "runtime": "B214.241 / modinfo241",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B214: repair only B213 successful mission result passed as assert message; retain B213 mission/capacity/binding/UI contracts.88 targeted local tests PASS; deployed with exact equality; native continuation pending. Steam launcher investigation only, no configuration changes.",
+  "goal": "B214 PEOPLE native continuation accepted in logged scope. WORKS/PLACES native evidence deferred to future available targets. B215 idle-action/Tourism-preparation proposal awaits approval; no new implementation authorized.",
   "implementation_authorized": true,
   "context": [
     {
@@ -662,7 +662,7 @@
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
     "source": "B214.241/modinfo241 DEVELOP_ACTIVE; source 29391974f1ac887565f4ea8563a73b023acde4cd; receipt B214.241-2939197-playtest.json;219/219 MATCH. Automatic OS exit checks before both guarded switches; B213/stable recovery retained; no pending transaction. Configuration unchanged.",
-    "native": "B213 task-start failure retained; B214 repair awaits native continuation. No new native PASS.",
-    "stop": "No further gameplay batch; minimal mission start/completion and source-city Insight check after deployment."
+    "native": "Two logged PEOPLE SUCCESS/NEW records; Khmer explicit historical/effective1, Hungary returned centre. WORKS/PLACES native checks deferred; collector partial-frame gap disclosed.",
+    "stop": "Await B215 plan approval; manual collector retained; no new implementation or deployment."
   }
 }
