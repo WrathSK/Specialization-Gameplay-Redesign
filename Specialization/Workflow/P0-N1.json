@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0576",
+    "status": "S0577",
     "runtime": "B215.242 / modinfo242",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B215 approved native idle skip/sleep/wake and read-only whole-city Tourism preparation; implementation locally complete, native idle UI pending. WORKS/PLACES evidence deferred.",
+  "goal": "B215 approved native idle skip/sleep/wake and read-only whole-city Tourism preparation; implementation locally complete and deployed, native idle UI pending. WORKS/PLACES evidence deferred.",
   "implementation_authorized": true,
   "context": [
     {
@@ -666,7 +666,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
-    "source": "B215.242 locally complete; B214.241 remains live pending guarded switch.",
+    "source": "B215.242/modinfo242 DEVELOP_ACTIVE; source 93fa70551f3d2a120c6f083085cc79d9330efabd; receipt B215.242-93fa705-playtest.json;219/219 MATCH. Fresh automatic OS exit checks before both guarded switches; B214/stable recovery retained, no pending transaction. Config unchanged.",
     "native": "B214 PEOPLE scoped PASS retained. B215 idle controls pending; WORKS/PLACES deferred.",
     "stop": "No Tourism writer/N3; wait for native idle check and next implementation approval."
   }

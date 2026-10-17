@@ -1,6 +1,6 @@
 # B215 — Expedition idle actions and Tourism preparation
 
-State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source B215.242; runtime remains B214.241 until the guarded deployment record below.
+State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source B215.242; runtime is B215.242 as verified below.
 
 ## Approved implementation
 
@@ -41,4 +41,4 @@ With the manually started collector and an idle team, click **跳过回合**, th
 
 ## Deployment
 
-Pending verified game exit and the existing guarded transaction. No game launch or native PASS.
+B215.242/modinfo242 DEVELOP_ACTIVE; source 93fa70551f3d2a120c6f083085cc79d9330efabd; receipt B215.242-93fa705-playtest.json;219/219 MATCH. Fresh automatic OS exit checks before both guarded switches; B214/stable recovery retained, no pending transaction. Config unchanged. No game launch or native PASS.

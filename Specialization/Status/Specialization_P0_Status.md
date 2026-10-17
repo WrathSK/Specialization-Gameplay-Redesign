@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0576
-Implementation Build: source B215.242; live B214.241 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0577
+Implementation Build: source/live B215.242 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B215_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
+Work State: B215_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B215.242 idle native skip/sleep/wake is locally complete; deployment pending.** B214 PEOPLE task-start/completion evidence remains accepted; WORKS/PLACES native targets are deferred by the user.
-- **Live B214.241**, source `2939197`, receipt `B214.241-2939197-playtest.json`,219/219 MATCH. Automatic OS exit checks passed before both guarded switches; B213/stable recovery retained, no pending transaction. Main stable B069.96 and configuration are unchanged.
+**B215.242 idle native skip/sleep/wake is locally complete and deployed; native idle-control check pending.** B214 PEOPLE task-start/completion evidence remains accepted; WORKS/PLACES native targets are deferred by the user.
+- **Live B215.242**, source `93fa705`, receipt `B215.242-93fa705-playtest.json`,219/219 MATCH. Fresh OS exit checks before both guarded switches; B214/stable recovery retained, no pending transaction. Main and configuration unchanged.
 - **Current implementation scope:** fresh mission-attempt identity; VALID/INVALID/UNKNOWN target evidence; eligible works in Wonders; bounded collector failures; Culture institutions, selected-city Insight report/log and mission-specific relocation icons. Source/capacity/cost/GC and Tourism/Network rewards are unchanged.
 - **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. Historical B213: three TASK attempts failed; arrival/binding remained intact, and Culture Lv4 institutions rendered. B214:88 local checks pass and the new logs confirm PEOPLE starts/completions; WORKS/PLACES native evidence is deferred. B213 local and combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
 - **Current contract and task context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Earlier B205–B212 progress below is historical; durable training/persistence contracts remain linked by the plan.
 - **Retained boundaries:** accepted new-campaign save scope; standard speed only; source-loss reattachment deferred; existing native Spy-slot limitation; old-campaign faults closed without repair: saved cost1 is directly evidenced; undersized unit arrays and population delta matching the Theater plot strongly support a native old-save mismatch, while the exact native corruption/memory path remains inferred ([evidence](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference)). EnableTuner remains user-managed; this batch does not change it.
-- **Next boundary:** [B215 result and Tourism preparation](Validation/Results/Specialization_B215_Expedition_Idle_Actions.md):90 UI/task/activity +31 Gate/package tests PASS. Guarded deployment then one idle skip/sleep/wake check; WORKS/PLACES opportunistic later. Film Studio city Tourism-pressure effect is a static candidate only; no Tourism writer or N3 implementation authorized. Collector remains manual.
+- **Next boundary:** [B215 result and Tourism preparation](Validation/Results/Specialization_B215_Expedition_Idle_Actions.md):90 UI/task/activity +31 Gate/package tests PASS. Deployment verified; next one idle skip/sleep/wake check; WORKS/PLACES opportunistic later. Film Studio city Tourism-pressure effect is a static candidate only; no Tourism writer or N3 implementation authorized. Collector remains manual.
 
 ## Historical progress — B205–B212 checkpoint
 
