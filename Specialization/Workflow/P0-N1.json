@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0595",
-    "runtime": "B222.249 / modinfo249",
+    "status": "S0596",
+    "runtime": "B223.250 / modinfo250",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B222 shared unexecuted task-rejection repair and bounded native failure reasons; preserve uncertain-action protection and the existing successful mission pipeline.",
+  "goal": "B223 diagnostic-only manual-sleep/redispatch/arrival native state and reconnect-readable final Gate/save outcome; no admission, capacity, binding, reward or task-rule changes.",
   "implementation_authorized": true,
   "context": [
     {
@@ -506,7 +506,17 @@
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
       "kind": "full",
-      "reason": "Latest native evidence, manual-sleep redispatch hypothesis, collector limitation and bounded unapproved continuation; action-scoped reading."
+      "reason": "Direct prior native evidence and missing manual-sleep/dispatch/arrival state plus final receipt motivating B223; action-scoped reading."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "kind": "full",
+      "reason": "Current authorized diagnostic, evidence boundaries and one minimal native capture."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_native_state_trace.py",
+      "kind": "full",
+      "reason": "Direct actual-code native sample, final receipt/readback, offline retention and noninterference counterexamples."
     }
   ],
   "dependencies": [
@@ -712,18 +722,18 @@
     "No generic site-movement repair, timers/polling, new native mission, capacity/binding/schema/history/GC/Commerce/N3/main/configuration change. Existing entry-city travel is preserved."
   ],
   "validation": {
-    "depth": "L2: targeted shared task/activity/Store/UI and offline collector checks.",
-    "local": "381 targeted tests PASS (350 runtime/tool fixtures +31 read-only DB/package tests).",
-    "user": "USER_GAME_TEST_PASS: Khmer PLACES, Gaul PEOPLE and Gaul PLACES captured completions; USER_GAME_TEST_FAIL: Ottawa pre-request SLEEP denial. Manual-sleep/redispatch cause unproven; clean-rejection final ACK not captured; WORKS remains untested."
+    "depth": "L2: targeted diagnostic/mission/activity/Store/UI/training and offline collector checks; read-only DB/package check.",
+    "local": "416 targeted tests PASS (385 runtime/tool fixtures including17 new tests +31 read-only DB/package tests).",
+    "user": "B223 USER_GAME_TEST_REQUIRED: one manual-sleep/redispatch/arrival/task capture. B222 three PEOPLE/PLACES completions remain scoped PASS, Ottawa admission FAIL; native predicate and final unwind unresolved, WORKS untested."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
-    "source": "B222.249/modinfo249 DEVELOP_ACTIVE; source ac321eb10b680be2117fa1284b25fde7e9fcc359; receipt B222.249-ac321eb-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B221/stable recovery retained; no pending transaction, main or configuration change.",
-    "native": "PARTIAL: three captured successful missions; Ottawa start DENIED/no native reasons. Clean-rejection unwind remains unverified across a collector reconnect gap.",
-    "stop": "Review complete; manual-sleep/dispatch/arrival investigation proposed only. No new implementation, native test or deployment."
+    "report": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+    "source": "B223.250/modinfo250 local implementation complete; live remains B222.249 source ac321eb, receipt B222.249-ac321eb-playtest.json until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; diagnostic-only change, not a root-cause fix.",
+    "stop": "After local verification and W0003 deployment, await one bounded capture. No automatic native-state normalization or next gameplay repair."
   }
 }

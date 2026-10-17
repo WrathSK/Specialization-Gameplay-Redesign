@@ -2,6 +2,7 @@
 -- Native unit/travel/activity are fresh facts; no native mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
 if include and not SPCGreatWorkCatalog then include('GreatWorkCatalog')end
+if include and not SPCExpeditionTrainingDiagnostics then include('ExpeditionTrainingDiagnostics')end
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
@@ -17,6 +18,12 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local out={};for _,k in ipairs(fields)do out[k]=state[k]end
   if state.target then out.target={};for _,k in ipairs({'name','owner','id','x','y'})do out.target[k]=state.target[k]end end
   return out
+ end
+ -- B223: one bounded diagnostic producer; never owns team/save decisions.
+ local trace
+ if SPCExpeditionTrainingDiagnostics then
+  local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'GATE')
+  if ok then trace=value end
  end
  local function equal(a,b)
   if type(a)~=type(b)then return false end
@@ -50,6 +57,27 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local confirmed,err=Store.Write(P,state.owner,envelope,candidate)
   if not confirmed then storeBlocked=true;recovering=false;state.activityMode='BLOCKED';error(err or 'EXPEDITION_STORE_WRITE_UNCONFIRMED',0)end
   envelope=confirmed
+ end
+ local function traceState(stage,u,extra)
+  pcall(function()
+   if not trace then return end
+   if not u then
+    local ok,value=pcall(function()
+     local player=Players[state.owner];return player and player:GetUnits():FindID(state.unitID)
+    end)
+    if ok then u=value end
+   end
+   local v={owner=state.owner,eventUnit=state.unitID,sourceCity=state.sourceCity,
+    teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase,mode=state.activityMode or 'NONE',
+    x=state.x,y=state.y,missionCategory=state.missionCategory,taskStart=state.taskStart or 'NIL',taskDue=state.taskDue or 'NIL',
+    owned=state.activityOwned==true,releasePending=state.activityPending==true,
+    storeStatus=storeBlocked and 'BLOCKED' or (envelope and 'CONFIRMED' or 'ABSENT'),
+    storeRevision=envelope and envelope.revision,savedPhase=envelope and envelope.state and envelope.state.phase,
+    savedMatches=envelope~=nil and equal(savedState(),envelope.state)}
+   if state.target then v.targetOwner=state.target.owner;v.targetCity=state.target.id;v.targetX=state.target.x;v.targetY=state.target.y end
+   for k,value in pairs(extra or {})do v[k]=value end
+   trace.Unit(stage,u,v)
+  end)
  end
  -- Scalar transition mirror, independent of explicit diagnostic snapshots.
  local revision=0;local published={}
@@ -413,11 +441,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
      assert(named(current),'TEAM_NAME_UNAVAILABLE')
      assert(current:GetX()==ex and current:GetY()==ey,'TARGET_CHANGED')
      state.unitID=id
+     local route=ex==state.target.x and ey==state.target.y and 'DIRECT' or 'ENTRY_RELOCATE'
+     traceState('ARRIVAL_BEFORE',current,{entryX=ex,entryY=ey,arrivalRoute=route})
      -- B212: entered through another city of the same civilization; continue on its
      -- internal routes to the target city centre (no added time, implementation reading).
      if ex~=state.target.x or ey~=state.target.y then step='ENTRY_RELOCATE';current=relocate(current,state.target.x,state.target.y)end
      state.x=current:GetX();state.y=current:GetY();state.phase='ARRIVED';state.entryX=nil;state.entryY=nil
-     save();return
+     save()
+     traceState('ARRIVAL_CONFIRMED',current,{entryX=ex,entryY=ey,arrivalRoute=route})
+     return
     end
    end
    assert(Game.GetCurrentGameTurn()<=state.dueTurn+1,'NATIVE_IDENTITY_UNCONFIRMED')
@@ -882,6 +914,14 @@ function SPCExpeditionSpyGate.Start(P,shared)
   end
   publishActivity()
   v.activityRevision=revision -- Correlate this diagnostic read with the scalar transition mirror.
+  -- Reconnect-readable final result, after handle/save, any hold, and publication.
+  -- A blocked write retains the last confirmed envelope; never label it idle success.
+  if p.Action=='DISPATCH' or p.Action=='TASK' or p.Action=='ACTIVITY' then
+   local known={ARMED=true,RECOVERED=true,ASLEEP=true,RELEASED=true,REJECTED=true,FAILED=true}
+   traceState('GATE_RESULT',nil,{requestAction=p.Action,requestResult=known[p.Result] and p.Result or 'NONE',
+    requestKey=p.ActivityKey,requestMission=({PEOPLE=true,WORKS=true,PLACES=true})[p.Mission] and p.Mission or nil,
+    requestAccepted=ok and v.error==nil,reason=v.error})
+  end
   print('[SPC][B191][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)

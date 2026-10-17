@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a27ebdf1a7ac2d337b76712a5c6e0b049a6669eb7b8bc0159d86575be56b1e91",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
+      "sha256": "4b3d6a57887fdb06afc786eab512fc1e5c523b37f401d50982b934b10ada2466",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1016,14 +1016,14 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "c192e59d6e9d7fd812de811d2a2250e8f99f8d3c7b89964262b4eee946dace73",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "d9965352a4f6a2b00721eaf6a2ddf240b39162873f4c87346213e92bb7c3fbab",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "7af57e0fad484dddddc1c1d9896ceac9097953b878acaf6cbee46fb7f5c444f2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
+      "sha256": "b4ea99315eee8f6b801a84c0e813dc57431b924a46ee673d0402266b10f8d6c0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "3fd348b6441f52c844266ada64311665d52b321d9c45a641125aadcc2de70d99",
@@ -1061,9 +1061,9 @@
       "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "142b10867bf06e9c64da8364bd58c705f71527fa13b20f34cbe07e577e6e4c95",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
+      "sha256": "4372e957edd6d4c5bbc006f10304820102d91d694b299bb5edaed91423272bbb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "2c5124f5440c758253ead4a3a6b424a1c872d5bdfcfbe934b57da496a4677225",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
+      "sha256": "a6ef52aa4a3b77e392b1619eafe8101b8306e543ba7b570aab20e3d9a1fd3fe9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",

@@ -187,7 +187,8 @@ local function recordActivity(n,stage,reason,d)
    v[k]=traceValue(d[k])
   end
  end
- trace.Record(stage,v)
+ local ok,u=pcall(function()local player=Players[n.owner];return player and player:GetUnits():FindID(n.unitID)end)
+ pcall(trace.Unit,stage,ok and u or nil,v)
 end
 traceFailure=function(n,err)
  if seen.traceFailure or not same(view(),n)then return end
@@ -408,6 +409,15 @@ local function refresh(monitor)
  if type(v)=='table' and integer(v.revision) and v.revision~=lastRevision then
   lastRevision=v.revision
   if LuaEvents and LuaEvents.SPC_ExpeditionActivityChanged then LuaEvents.SPC_ExpeditionActivityChanged(v.revision)end
+  -- One sample on an existing idle publication (arrival, release or load).
+  -- No frame sampling, new listener, native request or new state authority.
+  if v.phase=='ARRIVED' and v.mode=='NONE' and trace and view()==v then
+   pcall(function()
+    local player=Players[v.owner];local u=player and player:GetUnits():FindID(v.unitID)
+    trace.Unit('IDLE_UI',u,{owner=v.owner,eventUnit=v.unitID,teamKey=v.teamKey,phase=v.phase,mode=v.mode,
+     x=v.x,y=v.y,taskStart=v.taskStart or 'NIL',taskDue=v.taskDue or 'NIL'})
+   end)
+  end
  end
  if not supported(v)then cancel();return end
  if seen.key~=v.activityKey then seen={key=v.activityKey};cancel()end

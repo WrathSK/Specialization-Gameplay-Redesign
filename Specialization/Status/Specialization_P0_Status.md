@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0595
-Implementation Build: source/live B222.249 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0596
+Implementation Build: source B223.250 LOCAL_COMPLETE; live B222.249 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B222_PARTIAL_NATIVE_SLEEP_DENIED
+Work State: B223_DIAGNOSTIC_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B222 native review: three PEOPLE/PLACES tasks completed; Ottawa task start denied.** [Evidence, manual-sleep transition hypothesis and remaining gap](Validation/Results/Specialization_B222_Task_Start_Native_Review.md).
-- **Source B222.249 / modinfo249:** [shared clean-rejection repair](Validation/Results/Specialization_B222_Task_Start_Rejection.md);381 targeted local tests inherited. All categories use the existing centre/sleep/completion pipeline. No new implementation in this review.
-- **Live B222.249**, source `ac321eb`, receipt `B222.249-ac321eb-playtest.json`, last verified224/224 MATCH. Main stable B069.96 unchanged; no deployment or runtime revalidation performed by this evidence review.
-- **Native evidence:** Khmer PLACES, Gaul PEOPLE and Gaul PLACES each completed with new Insight and released activity. Archive report shows5 effective Insights /10% Tourism projection; native fractional Tourism settlement is not newly verified. WORKS remains untested.
-- **Unresolved:** after user-reported manual sleep in Gaul and redispatch, Ottawa arrival-turn start reads exact centre/AWAKE/ready but native SLEEP DENIED, no request, no supplied reason. Sleep-to-travel transition is a supported hypothesis, not proven cause. Collector reconnection missed the final Gate outcome; B222 clean-rejection unwind is not yet native-certified.
-- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Capacity, source binding, Store schema, Insight semantics and GC unchanged; no automatic HELD recovery. Retain standard-speed/test-campaign scope, source-loss reattachment deferment and native Spy-slot limitation.
-- **Next boundary:** proposed bounded manual-sleep → dispatch → arrival admission investigation and reconnect-readable rejection outcome. No blind repetition, new native test, permission bypass, timer or next implementation batch authorized.
+**B223 diagnostic-only implementation locally complete; native cause remains UNKNOWN.** [Scope,416 local checks and one minimal capture](Validation/Results/Specialization_B223_Native_State_Diagnostic.md).
+- **Source B223.250 / modinfo250:** existing-event samples for manual sleep → native dispatch → arrival → task admission; movement/activity/Spy/turn context and reconnect-readable final Gate/save receipt. No new timer, operation, task rule or recovery behavior.
+- **Live remains B222.249**, source `ac321eb`, receipt `B222.249-ac321eb-playtest.json`, last verified224/224 MATCH; B223 deployment not yet performed. Main stable B069.96 unchanged.
+- **Inherited native evidence:** [B222 review](Validation/Results/Specialization_B222_Task_Start_Native_Review.md) confirms Khmer PLACES, Gaul PEOPLE and Gaul PLACES completion; Ottawa later reads exact centre/AWAKE/ready but native SLEEP DENIED before any request. User recalls manual sleep before redispatch. This is a hypothesis, not proven cause; the final rejection/save outcome was not captured.
+- **Preserved boundaries:** capacity, source binding, Store schema, rewards/Insight history, centre mission rules and GC unchanged. No automatic HELD recovery. WORKS, Tourism fractional settlement and source-loss reattachment retain their own pending/deferred scope.
+- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B223 is explicitly authorized; deployment follows W0003 exit/hash/receipt gates. No further gameplay repair is authorized.
+- **Next:** after deployment, one manual-sleep/redispatch/arrival/task capture using the existing manual collector. Stop on denial; correlate actual native state with the confirmed final receipt before proposing a narrow repair. No blind repeats or new save/load ritual.
 
 ## Historical progress — B205–B212 checkpoint
 

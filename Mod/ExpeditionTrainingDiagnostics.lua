@@ -2,7 +2,7 @@
 SPCExpeditionTrainingDiagnostics={ENABLED=true,KEEP=64,BUDGET=96}
 local M=SPCExpeditionTrainingDiagnostics
 local KEY='SPC_B205TrainingTrace'
-local keys={'stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4'}
+local keys={'stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4','nativeOwner','nativeUnit','nativeActivity','movesRemaining','maxMoves','nativeReady','spyOperation','spyEndTurn','ownerTurnActive','localPlayer','interfaceMode','sourceCity','targetOwner','targetCity','targetX','targetY','entryX','entryY','arrivalRoute','requestAction','requestResult','requestKey','requestAccepted','storeStatus','storeRevision','savedPhase','savedMatches','taskStart','taskDue','owned','releasePending','submitStatus','missionCategory','requestMission'}
 local function scalar(v)
  local t=type(v)
  if t=='nil'then return 'NIL' end
@@ -29,7 +29,30 @@ end
 local function info(P,name,k)
  local ok,v=pcall(function()return P.Info(name,k)end);return ok and v or nil
 end
-local noop={id='DISABLED',loads=0,Event=function()end,Record=function()end,Load=function()end}
+-- B223: optional native readers are observations only. No names, properties,
+-- eligibility queries, operations, timers or retries; preserve false/zero/-1.
+local function nativeCall(object,key,method,...)
+ local fn=field(object,key);if type(fn)~='function'then return 'UNAVAILABLE'end
+ local ok,value
+ if method then ok,value=pcall(fn,object,...)else ok,value=pcall(fn,...)end
+ if not ok then return 'READ_ERROR'end
+ if value==nil then return 'NIL'end
+ if type(value)=='boolean' or (type(value)=='number' and value==value and value>-math.huge and value<math.huge)then return value end
+ return 'INVALID_TYPE'
+end
+local function unitSample(u)
+ local owner=nativeCall(u,'GetOwner',true)
+ local player=type(owner)=='number' and field(Players,owner) or nil
+ local activity='UNAVAILABLE';if u then activity=nativeCall(UnitManager,'GetActivityType',false,u)end
+ return {nativeOwner=owner,nativeUnit=nativeCall(u,'GetID',true),
+  actualX=nativeCall(u,'GetX',true),actualY=nativeCall(u,'GetY',true),
+  nativeActivity=activity,
+  movesRemaining=nativeCall(u,'GetMovesRemaining',true),maxMoves=nativeCall(u,'GetMaxMoves',true),
+  nativeReady=nativeCall(u,'IsReadyToMove',true),spyOperation=nativeCall(u,'GetSpyOperation',true),
+  spyEndTurn=nativeCall(u,'GetSpyOperationEndTurn',true),ownerTurnActive=nativeCall(player,'IsTurnActive',true),
+  localPlayer=nativeCall(Game,'GetLocalPlayer',false),interfaceMode=nativeCall(UI,'GetInterfaceMode',false)}
+end
+local noop={id='DISABLED',loads=0,Event=function()end,Record=function()end,Unit=function()end,Load=function()end}
 function M.New(P,role)
  if not M.ENABLED then return noop end
  local ok,api=pcall(function()
@@ -64,6 +87,20 @@ function M.New(P,role)
    busy=false
   end
   function a.Record(stage,data)record(stage,data)end
+  function a.Unit(stage,u,extra)
+   if busy or sampling then return end
+   if used>=M.BUDGET then record(stage);return end
+   sampling=true
+   local good=pcall(function()
+    local v=unitSample(u)
+    -- Callers supply only fixed state/attempt scalars. Native samples stay separate
+    -- from the activity guard's last-read fields and from persisted authority.
+    for _,k in ipairs(keys)do if extra and extra[k]~=nil then v[k]=extra[k]end end
+    record(stage,v)
+   end)
+   if not good then r.errors=math.min(2147483647,r.errors+1)end
+   sampling=false
+  end
   function a.Event(stage,c,s,extra)
    if busy or sampling then return end
    if used>=M.BUDGET then record(stage);return end

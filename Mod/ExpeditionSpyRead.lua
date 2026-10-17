@@ -1,5 +1,6 @@
 -- B189 UI native boundary. Read-only native citizen-name observation; Read-only Gain Sources diagnostics; one-shot TRAVEL only.
 include('GreatWorkCatalog')
+if include and not SPCExpeditionTrainingDiagnostics then include('ExpeditionTrainingDiagnostics')end
 SPCExpeditionSpyRead={KIND='UNIT_SPC_EXPEDITION_SPY'}
 local M=SPCExpeditionSpyRead
 local function integer(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
@@ -413,6 +414,18 @@ function M.NativeName(pid,id)
  return v
 end
 local lastPermit
+local travelTrace
+local function traceTravel(stage,u,pid,id,t,ex,ey,status)
+ pcall(function()
+  if not SPCExpeditionTrainingDiagnostics then return end
+  if not travelTrace then travelTrace=SPCExpeditionTrainingDiagnostics.New(nil,'TRAVEL_UI')end
+  local v=ExposedMembers and ExposedMembers.SPC_ExpeditionActivity
+  local same=type(v)=='table' and v.owner==pid and v.unitID==id
+  travelTrace.Unit(stage,u,{owner=pid,eventUnit=id,teamKey=same and v.teamKey or nil,
+   phase=same and v.phase or 'UNKNOWN',targetOwner=t.owner,targetCity=t.id,targetX=t.x,targetY=t.y,
+   entryX=ex,entryY=ey,arrivalRoute=ex==t.x and ey==t.y and 'DIRECT' or 'ENTRY_RELOCATE',submitStatus=status})
+ end)
+end
 function M.SubmitTravel(pid,id,t,permit)
  if type(permit)~='string' or #permit==0 or #permit>100 or permit==lastPermit then return false,'INVALID_OR_USED_PERMIT' end
  local ok,err=pcall(function()
@@ -427,9 +440,11 @@ function M.SubmitTravel(pid,id,t,permit)
   end
   assert(e and e:GetOwner()==t.owner and revealed(pid,e),'ENTRY_CHANGED')
   local params={};params[UnitOperationTypes.PARAM_X]=ex;params[UnitOperationTypes.PARAM_Y]=ey
+  traceTravel('DISPATCH_BEFORE',u,pid,id,t,ex,ey,'NOT_REQUESTED')
   assert(UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(ex,ey),params)==true,'NATIVE_TRAVEL_NOT_ALLOWED')
   lastPermit=permit -- Reserve BEFORE the request; an ambiguous result is not retried.
   local result=UnitManager.RequestOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,params)
+  traceTravel('DISPATCH_RETURNED',u,pid,id,t,ex,ey,result==false and 'RETURNED_FALSE' or 'CALL_RETURNED')
   assert(result~=false,'NATIVE_REQUEST_REJECTED') -- nil is common for command submission, not arrival PASS.
  end)
  return ok,not ok and tostring(err):sub(1,200) or 'REQUEST_SUBMITTED'
