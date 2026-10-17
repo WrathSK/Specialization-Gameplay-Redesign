@@ -1,15 +1,24 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0563
-Implementation Build: source/live B210.237 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0564
+Implementation Build: source B211.238 (live B210.237 DEVELOP_ACTIVE until the authorized switch); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B210_USER_GAME_TEST_PASS_SCOPED
+Work State: B211_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B211 is locally complete and deployment is authorized.**
+- A completed 人文考察团 (Expedition) can be redispatched after its activity is released and can run another no-reward task.
+- Task duration is one standard-speed constant.
+- The historical activity-diagnostic and package tests were realigned with B201.
+- User scope decisions: reattachment is deferred to v0.1 close-out or later (source loss keeps HOLDing), and v0.1 is standard speed only.
+- L2: the only Expedition-suite failures are 3 tests that depend on the external DB, identical at HEAD.
+
+[Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b211-repeat-dispatch-and-task--2026-10-16-local).
 
 **B210: USER_GAME_TEST_PASS (scoped).**
 - Replacing a queued 人文考察团 (Expedition) through district placement released the reservation, and the row returned and could be reordered.

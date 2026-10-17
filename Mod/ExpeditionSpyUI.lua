@@ -29,11 +29,12 @@ function M.ActivityLocked(u)
  return v~=nil and (v.locked==true or v.mode=='SLEEP' or v.mode=='RELEASE' or v.mode=='BLOCKED'
   or v.phase=='TASK_PREPARING' or v.phase=='TASK_RUNNING')
 end
--- Availability follows the existing one-shot Gate, not a second lifecycle.
+-- Availability follows the Gate, not a second lifecycle. B211: a completed task
+-- (activity released, so not locked) may be redispatched.
 function M.CanOpen(mode,u)
  local v=M.ActivityView(u)
  if not v or M.ActivityLocked(u)then return false end
- if mode=='TRAVEL'then return v.phase=='CREATED' or v.phase=='ARRIVED' end
+ if mode=='TRAVEL'then return v.phase=='CREATED' or v.phase=='ARRIVED' or v.phase=='TASK_COMPLETE' end
  return mode=='TASK' and v.phase=='ARRIVED' and v.taskStart==nil
 end
 -- Presentation only; this mirror cannot authorize an action or alter saved binding.
@@ -86,6 +87,8 @@ local function selectionMode(u)
   local current=player and player:GetCities():FindID(id)
   if not current or current:GetOwner()~=owner or current:GetID()~=id
    or current:GetX()~=city:GetX() or current:GetY()~=city:GetY()then return nil end
+  -- B211: redispatching a completed team stays an explicit button action.
+  local view=M.ActivityView(u);if view and view.phase=='TASK_COMPLETE' then return nil end
   local desired=owner==Game.GetLocalPlayer() and 'TRAVEL' or 'TASK'
   return M.CanOpen(desired,u) and desired or nil
  end)

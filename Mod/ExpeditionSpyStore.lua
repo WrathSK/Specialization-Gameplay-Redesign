@@ -5,7 +5,7 @@ local M=SPCExpeditionSpyStore
 local phases={TRAINING=true,CREATING=true,NAMING=true,CREATED=true,TRAVELLING=true,ARRIVED=true,
  TASK_PREPARING=true,TASK_RUNNING=true,TASK_COMPLETE=true,HELD=true,ENDING=true,ENDED=true}
 local numbers={owner=true,unitID=true,createdID=true,sourceCity=true,x=true,y=true,
- trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true}
+ trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true,taskCount=true}
 local booleans={trainingQueued=true,trainingCompleted=true,nameVerified=true,activityOwned=true,activityPending=true,sleepConfirmed=true}
 local strings={trainingToken=100,sourceName=220,sourceRef=2048,expectedName=220,teamKey=100,
  activityKey=100,activityMode=32,stop=100,errorStep=100,errorDetail=220}

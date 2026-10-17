@@ -1,4 +1,6 @@
 """B194 retains B193 failure observation for unsupported states; owned OPERATION now waits.
+B211: counts follow the B201 two-step arming (diagnostic read + pre-arm guard + pre-sleep
+guard, one extra activity read); diagnostic semantics unchanged.
 The numeric activities below are deterministic fixtures, not native measurements.
 """
 import unittest
@@ -49,8 +51,8 @@ class FailureDiagnostic(unittest.TestCase):
          assert(d.activity=='9 (number)' and d.equalsOperation=='false (boolean)')
          assert(d.equalsAwake=='false (boolean)' and d.equalsHold=='false (boolean)' and d.equalsSleep=='false (boolean)')
          assert(d.phase=='POST_REQUEST_READBACK' and d.requested=='true (boolean)' and d.sleepAttempted=='true (boolean)')
-         assert(s~=d and sleepCalls==1 and wakeCalls==0 and sleepChecks==2 and wakeChecks==0)
-         assert(activityReads==3 and readinessReads==1 and endTurnReads==1)
+         assert(s~=d and sleepCalls==1 and wakeCalls==0 and sleepChecks==3 and wakeChecks==0)
+         assert(activityReads==4 and readinessReads==1 and endTurnReads==1)
          assert(#packets==1 and packets[1].Result=='FAILED' and packets[1].Owned)
          assert(packets[1].Detail:find('ACTIVITY_UNEXPECTED_STATE',1,true) and update==nil)
          for k,v in pairs(d)do assert(type(v)~='table' and type(v)~='function' and type(v)~='userdata')end
@@ -61,7 +63,7 @@ class FailureDiagnostic(unittest.TestCase):
         l.execute("""
          request_into_operation(9);publish('SLEEP')
          assert(failure().phase=='POST_REQUEST_READBACK' and failure().activity=='9 (number)')
-         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==2 and wakeChecks==0)
+         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==3 and wakeChecks==0)
          assert(#packets==2 and packets[1].Detail:find('ACTIVITY_UNEXPECTED_STATE',1,true))
          assert(packets[2].Detail:find('ACTIVITY_RELEASE_STATE_UNKNOWN',1,true))
          assert(ExposedMembers.SPC_ExpeditionActivity.mode=='BLOCKED' and update==nil)
@@ -74,12 +76,12 @@ class FailureDiagnostic(unittest.TestCase):
          noAck=true
          UnitManager.RequestOperation=function(u,op)assert(op==expectedSleepHash and u.id==41);sleepCalls=sleepCalls+1 end
          publish('SLEEP')
-         assert(failure()==nil and activityReads==2 and sleepCalls==1 and sleepChecks==2 and update)
+         assert(failure()==nil and activityReads==3 and sleepCalls==1 and sleepChecks==3 and update)
          units[41].activity=9;turn=82;update(.25)
          assert(failure().activity=='9 (number)' and failure().turn==82)
          assert(failure().phase=='POST_REQUEST_READBACK' and failure().requested=='true (boolean)')
          assert(diag().turn==81 and diag().activity=='0 (number)')
-         assert(activityReads==3 and sleepChecks==2 and readinessReads==1 and endTurnReads==1)
+         assert(activityReads==4 and sleepChecks==3 and readinessReads==1 and endTurnReads==1)
          assert(sleepCalls==1 and wakeCalls==0 and #packets==1 and update==nil)
         """)
 
@@ -90,7 +92,7 @@ class FailureDiagnostic(unittest.TestCase):
          units[41].activity=8;turn=82;local reads=activityReads
          for i=1,30 do Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin();Events.UnitActivityChanged(2,41)end
          assert(failure()==d and d.activity=='9 (number)' and d.turn==81 and diag()==s)
-         assert(activityReads==reads and sleepChecks==2 and readinessReads==1 and endTurnReads==1)
+         assert(activityReads==reads and sleepChecks==3 and readinessReads==1 and endTurnReads==1)
          assert(sleepCalls==1 and wakeCalls==0 and #packets==1 and update==nil)
         """)
 
@@ -124,9 +126,9 @@ class FailureDiagnostic(unittest.TestCase):
     def test_normal_sleep_release_keeps_two_eligibility_reads_and_no_failure_sample(self):
         l=failure_bridge()
         l.execute("""
-         publish('SLEEP');assert(failure()==nil and sleepChecks==2 and sleepCalls==1 and packets[1].Result=='ASLEEP')
+         publish('SLEEP');assert(failure()==nil and sleepChecks==3 and sleepCalls==1 and packets[1].Result=='ASLEEP')
          publish('RELEASE',true)
-         assert(failure()==nil and sleepChecks==2 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1)
+         assert(failure()==nil and sleepChecks==3 and wakeChecks==1 and sleepCalls==1 and wakeCalls==1)
          assert(#packets==2 and packets[2].Result=='RELEASED' and units[42].activity==0)
          assert(readinessReads==1 and endTurnReads==1 and update==nil)
         """)
@@ -175,7 +177,7 @@ class FailureDiagnostic(unittest.TestCase):
          units[41].activity=7;turn=82;publish('SLEEP',false,'task2')
          local d=failure();assert(d~=old and d.activityKey=='task2' and d.activity=='7 (number)' and d.turn==82)
          assert(d.phase=='PRE_REQUEST_GUARD' and d.requested=='false (boolean)' and d.sleepAttempted=='false (boolean)')
-         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==3 and #packets==2)
+         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==4 and #packets==2)
         """)
 
     def test_diagnostic_format_error_does_not_prevent_original_failure_ack(self):
@@ -189,7 +191,7 @@ class FailureDiagnostic(unittest.TestCase):
           Events.UnitActivityChanged(2,41)
          end
          publish('SLEEP')
-         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==2 and #packets==1 and update==nil)
+         assert(sleepCalls==1 and wakeCalls==0 and sleepChecks==3 and #packets==1 and update==nil)
          assert(packets[1].Result=='FAILED' and packets[1].Owned and packets[1].Detail:find('ACTIVITY_UNEXPECTED_STATE',1,true))
          assert(diag().activity=='0 (number)')
         """)

@@ -22,15 +22,14 @@ class ExplicitActions(unittest.TestCase):
          assert(not calls.GetUnitActionsTable and not calls.skip)
         """)
 
-    def test_complete_is_visible_but_disabled_without_repeat_gameplay_authority(self):
+    def test_complete_released_team_can_redispatch_but_not_repeat_task_in_place(self):
+        # B211: after a completed task and released activity, travel is enabled; task waits for arrival.
         l=ui('UnitPanel')
         l.execute("""
-         phase('ARRIVED');local stale=GetUnitActionsTable(team)
          phase('TASK_COMPLETE');local a=GetUnitActionsTable(team)
-         assert(#a.SPECIFIC==2 and a.SPECIFIC[1].disabled and a.SPECIFIC[2].disabled)
-         for _,v in ipairs(a.SPECIFIC)do v.CallbackFunc()end
-         for _,v in ipairs(stale.SPECIFIC)do v.CallbackFunc()end
-         assert(routed==0 and not calls.skip and not calls.GetUnitActionsTable)
+         assert(#a.SPECIFIC==2 and not a.SPECIFIC[1].disabled and a.SPECIFIC[2].disabled)
+         a.SPECIFIC[2].CallbackFunc();assert(routed==0)
+         a.SPECIFIC[1].CallbackFunc();assert(routed==1)
         """)
 
     def test_activity_transition_locks_have_no_actions_and_reject_stale_callbacks(self):

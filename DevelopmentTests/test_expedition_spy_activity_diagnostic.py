@@ -1,4 +1,5 @@
 """B192 actual bridge: bounded, read-only preflight evidence cannot authorize activity.
+B211: check counts follow the B201 two-step arming (3 eligibility reads on the normal path).
 Fixtures prove isolation and representation, not native readiness or SLEEP support.
 """
 import unittest
@@ -101,11 +102,11 @@ class ActivityDiagnostic(unittest.TestCase):
         l=diagnostic_bridge()
         l.execute("""
          publish('SLEEP')
-         assert(sleepChecks==2 and sleepCalls==1 and wakeCalls==0 and #packets==1 and packets[1].Result=='ASLEEP')
+         assert(sleepChecks==3 and sleepCalls==1 and wakeCalls==0 and #packets==1 and packets[1].Result=='ASLEEP')
          assert(diag().activity=='0 (number)' and diag().ready=='true (boolean)' and diag().eligibilityStatus=='ALLOWED')
          local saved=diag();publish('RELEASE',true)
          assert(wakeChecks==1 and wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED')
-         assert(sleepChecks==2 and readinessReads==1 and endTurnReads==1)
+         assert(sleepChecks==3 and readinessReads==1 and endTurnReads==1)
          assert(saved.activity=='0 (number)' and units[42].activity==0)
         """)
 
@@ -118,8 +119,8 @@ class ActivityDiagnostic(unittest.TestCase):
         """)
         l=diagnostic_bridge()
         l.execute("""
-         UnitManager.CanStartOperation=function()sleepChecks=sleepChecks+1;return sleepChecks==2 end
-         publish('SLEEP');assert(diag().eligibilityStatus=='DENIED' and sleepChecks==2)
+         UnitManager.CanStartOperation=function()sleepChecks=sleepChecks+1;return sleepChecks>=2 end
+         publish('SLEEP');assert(diag().eligibilityStatus=='DENIED' and sleepChecks==3)
          assert(sleepCalls==1 and packets[1].Result=='ASLEEP')
         """)
 
@@ -129,7 +130,7 @@ class ActivityDiagnostic(unittest.TestCase):
          UnitManager.CanStartOperation=function()
           sleepChecks=sleepChecks+1;if sleepChecks==1 then error('TRANSIENT_READ')end;return true
          end
-         publish('SLEEP');assert(diag().eligibilityStatus=='UNKNOWN' and sleepChecks==2)
+         publish('SLEEP');assert(diag().eligibilityStatus=='UNKNOWN' and sleepChecks==3)
          assert(sleepCalls==1 and packets[1].Result=='ASLEEP')
         """)
 

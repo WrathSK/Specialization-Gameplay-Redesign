@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a6e70e03587e27cd8364c1df6ce4b64426850d16df6f933b5245ae039db37f1e",
+      "sha256": "864d9e12d2343f6525c355ea43d1d84231ddf9a367fa3a8d8223590dec1b43e9",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "c33637e911ac044244e256448d9ae897256b08615e7afe5ecf5f29a1611d9093",
+      "sha256": "2217a86de320a3b8c530fe7988b5684a69231b15fdb769a1dc08393fb4aca9b7",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,9 +1021,9 @@
       "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "e5be59e21fb721c6ed0c85eb930f21f9d886d14bb1e860a474a5b6390555ac20",
+      "sha256": "9fc1e3a26b0c6708b1bcd25db9e6bfcdf12bb506584403a3ab81b29e6552aec2",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "33c7f00a0851ba7f285a43c2f5b21f3f1652f7f207cebd8bc7d639549a9efa07",
@@ -1041,9 +1041,9 @@
       "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionSpyUI.lua": {
-      "sha256": "216ec8ed507f78cefd9e5b9f223149512945de259d2a0f9a5a0d63d0a9b3a663",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B204_Expedition_Event_First_Local.md",
-      "provenance": "B204 event-first exact-team UI confirmation and readable stage/reason feedback;478 targeted tests plus package checks. Existing Gate/Store/cost/cap/source/travel/task unchanged; native pending. Version metadata only where applicable."
+      "sha256": "a19873023674c435b9eb132a8cdbdee0d01fa928245ce42c5dfb6d6db79bdc06",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/UI/ExpeditionSpyChooser.lua": {
       "sha256": "153c44a5d223d71ba7cf9bc20fcdd9c582b7b5fee9e7b006fd406438caf003bc",
@@ -1071,9 +1071,9 @@
       "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
     },
     "Mod/ExpeditionSpyStore.lua": {
-      "sha256": "7dae22d6fa8f27e663c003e793d1d8cf17f181f2af18fdedf6e43367b468ec8e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
-      "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
+      "sha256": "0cbe7eb2962e71d45d09b62ae26fba36ff346886555c8dbaba0ab9861bbabee2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/ExpeditionTraining.lua": {
       "sha256": "5feeae7bdf2b90a86078fe6c833820cbca7bb2c5c8bf1fdff555e240f61a4e4c",

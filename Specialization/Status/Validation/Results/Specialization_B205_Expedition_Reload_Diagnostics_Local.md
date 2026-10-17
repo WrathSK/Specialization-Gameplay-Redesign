@@ -538,3 +538,33 @@ The first exit check reported a false "game running": its pattern also matched t
 - USER_GAME_TEST_PASS for the B210 native-replacement release.
 - USER_GAME_TEST_PASS for normal training and overflow-immediate retraining without HELD.
 - Scope: new campaign, one city, one load, early turns. Reload during a replaced or immediate order was not tested natively.
+
+## B211 repeat dispatch and task — 2026-10-16 (local)
+
+**Authorization and scope decisions.** The user approved B211: repeat dispatch/task plus test cleanup. In the same message the user deferred reattachment (planned B212) to v0.1 close-out or later, and limited v0.1 to standard speed. Both decisions are recorded in [P0_N_Expedition](../../../Architecture/v2/P0_N_Expedition.md#v01-scope-decisions-user-2026-10-16).
+
+Deferral rework assessment:
+- **Reattachment:** low cost if the archive binding stays solely in `sourceCity`/`sourceRef`, and source loss keeps HOLDing without writing insights. Reattachment later only converts that HOLD into cancel-and-await, plus one action and button. No old-save migration is needed under the save-scope decision.
+- **Speed:** negligible. Duration is one constant, and deployment time already follows native Spy travel.
+
+**Runtime change (B211.238 / modinfo238).**
+- **Gate** (`Mod/ExpeditionSpyGate.lua`):
+  - DISPATCH also accepts `TASK_COMPLETE`, but only once the native activity has been released (`activityMode=NONE`, not pending, not owned). It clears the previous task's timer and activity fields.
+  - The per-task `taskCompletions` keeps its 0/1 meaning. A new saved counter `taskCount` counts completed tasks, so later tasks get fresh activity keys (`:task2`…); the first task keeps `:task1`.
+  - Task duration is `TASK_TURNS=2` (v0.1 standard speed).
+- **Store** (`Mod/ExpeditionSpyStore.lua`) accepts the numeric `taskCount`.
+- **Activity** (`Mod/ExpeditionSpyUI.lua`): `CanOpen('TRAVEL')` includes `TASK_COMPLETE`, which is unlocked only after release. Automatic selection-opening excludes completed teams, so redispatch stays an explicit button.
+- **Text** (`Mod/Text/ExpeditionGate.sql`): the completed-task notice now says the unit remains and can use 「派遣到新城市」.
+- **Unchanged:** the no-reward fixture task, target rules, source checks, training and cap1.
+
+**Test cleanup.**
+- The 10 historical `test_expedition_spy_activity_diagnostic`/`_failure` tests (13 errors) had failed since `37f1096` (B201, found by bisect). B201 introduced two-step durable arming (diagnostic read + pre-arm guard + pre-sleep guard, one extra activity read) but updated only the main activity suite. Their expected counts now follow B201, and every diagnostic assertion is kept.
+- `test_expedition_gate` pinned version 210 and 7 art entries. The version is now asserted only in `test_expedition_spy_gate`, and the art check expects 8 entries, including the Expedition.
+- **Known environment issue:** 3 `test_expedition_spy_name` tests depend on the contents of the external `DebugGameplay.sqlite`, which the game rewrote at 18:33 after the new campaign. They now fail identically at HEAD and at B208–B210 commits. They are not a B211 regression; they need a fixture that does not depend on the last-loaded ruleset.
+
+**Local validation (L2).**
+- 3 new tests:
+  - a completed team cannot redispatch before release;
+  - it redispatches after release to a second capital, arrives with a replaced unit ID and completes a second task with key `:task2`;
+  - a released completed team can travel but cannot repeat the task in place.
+- All `test_expedition_*` suites: 727 tests, only the 3 environment-dependent name tests fail, identically at HEAD. HEAD itself had those 3 plus the 11 historical failures fixed above.

@@ -64,6 +64,38 @@ class Timer(unittest.TestCase):
         l=gate();l.execute("req('CREATE','a');nativeDispatch('b');arrival(41,true,false)");return l
     def test_two_turn_task_has_no_rewards_native_operations_or_extra_writes(self):
         l=self.ready();l.execute("local r=task('t');assert(r.phase=='TASK_RUNNING' and r.taskDue==85);currentTurn=84;ownTurn(2);assert(req('READ','r').taskCompletions==0);currentTurn=85;ownTurn(2);ownTurn(2);r=req('READ','s');assert(r.phase=='TASK_COMPLETE' and r.taskCompletions==1 and nativeCalls==0 and properties==0 and placeCalls==0 and finishCalls==0 and destroys==0)")
+    def test_completed_team_redispatches_after_release_and_runs_another_task(self):
+        # B211: completion -> released activity -> new dispatch -> arrival -> second task with a fresh activity key.
+        l=self.ready();l.execute("""
+         task('t');currentTurn=85;ownTurn(2);ownTurn(2)
+         local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.phase=='TASK_COMPLETE' and v.mode=='RELEASE')
+         -- A second met major's capital as the new target (v0.1 fixture targets capitals).
+         local second={id=12,owner=4,x=20,y=5}
+         for k,f in pairs({GetID=function(c)return c.id end,GetOwner=function(c)return c.owner end,GetX=function(c)return c.x end,GetY=function(c)return c.y end,GetName=function()return '第二目标城' end})do second[k]=f end
+         local cs={FindID=function(self,id)if id==12 then return second end end,GetCapitalCity=function()return second end}
+         Players[4]={IsMajor=function()return true end,IsAlive=function()return true end,GetCities=function()return cs end,
+          GetUnits=function()return {FindID=function()return nil end}end}
+         local early=nativeDispatch('early',{UnitID=41,FromX=15,FromY=8,TargetOwner=4,TargetID=12,TargetX=20,TargetY=5})
+         assert(early.error and req('READ','still').phase=='TASK_COMPLETE')
+         handler(2,{Action='ACTIVITY',Token='rel',UnitID=41,ActivityKey=v.activityKey,Result='RELEASED',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
+         assert(ExposedMembers.SPC_ExpeditionActivity.mode=='NONE')
+         local r=nativeDispatch('again',{UnitID=41,FromX=15,FromY=8,TargetOwner=4,TargetID=12,TargetX=20,TargetY=5})
+         assert(r.phase=='TRAVELLING' and not r.error and r.taskStart==nil and r.taskCompleted==nil)
+         local old=units[41];local u=unit(42,100,2,20,5);u.name=old.name;units[41]=nil;units[42]=u
+         currentTurn=currentTurn+2;ownTurn(2);r=req('READ','arrived2');assert(r.phase=='ARRIVED' and r.trackedID==42,tostring(r.phase))
+         handler(2,{Action='TASK',Token='t2',UnitID=42,SampleTurn=currentTurn,NativeOperation=-1})
+         local key=ExposedMembers.SPC_ExpeditionActivity.activityKey;assert(key:match(':task2$'),key)
+         handler(2,{Action='ACTIVITY',Token='t2:arm',UnitID=42,ActivityKey=key,Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1})
+         handler(2,{Action='ACTIVITY',Token='t2:sleep',UnitID=42,ActivityKey=key,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
+         r=ExposedMembers.SPC_ExpeditionActivityReply;assert(r.phase=='TASK_RUNNING',tostring(r.phase)..tostring(r.error))
+         currentTurn=currentTurn+2;ownTurn(2);ownTurn(2);r=req('READ','done2')
+         assert(r.phase=='TASK_COMPLETE' and r.taskCompletions==1 and destroys==0)
+        """)
+    def test_completed_team_without_release_cannot_redispatch(self):
+        l=self.ready();l.execute("""
+         task('t');currentTurn=85;ownTurn(2);ownTurn(2)
+         local r=nativeDispatch('x',{UnitID=41,FromX=15,FromY=8});assert(r.error and req('READ','r').phase=='TASK_COMPLETE')
+        """)
     def test_duplicate_start_and_completion_are_idempotent(self):
         l=self.ready();l.execute("task('t');task('t');task('t2');assert(req('READ','r').taskDue==85);currentTurn=85;ownTurn(2);task('t3');currentTurn=86;ownTurn(2);local r=req('READ','s');assert(r.taskCompletions==1 and r.taskCompleted==85 and properties==0)")
     def test_stale_or_nonidle_ui_sample_cannot_start(self):

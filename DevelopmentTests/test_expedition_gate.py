@@ -267,10 +267,10 @@ class Package(unittest.TestCase):
         new=['ExpeditionGate.lua','ExpeditionGateRead.lua','Data/ExpeditionGate.sql','Text/ExpeditionGate.sql','UI/ExpeditionGateWindow.lua','UI/ExpeditionGateWindow.xml']
         for p in new:self.assertIn(p,files)
         for e in m.findall('./InGameActions/*/File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
-        self.assertEqual(m.attrib['version'],'210')
+        # B211: the current package version is asserted once, in test_expedition_spy_gate.
         ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml')
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
-        self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(names.count('UNIT_SPC_EXPEDITION_ZERO'),1);self.assertEqual(len(names),7)
+        self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(names.count('UNIT_SPC_EXPEDITION_ZERO'),1);self.assertEqual(names.count('UNIT_SPC_EXPEDITION_SPY'),1);self.assertEqual(len(names),8)  # B184 added the Expedition art
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         text='\n'.join((R/'Mod'/p).read_text()for p in new)
         keys=set(re.findall(r'LOC_SPC_EXPEDITION_(?:GATE|ZERO)_[A-Z_]+',text))

@@ -4,9 +4,11 @@
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
+ -- v0.1 supports standard speed only; Design floor(2 x speed multiplier) is deferred.
+ local TASK_TURNS=2
  local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
  local Store=SPCExpeditionSpyStore
- local fields={'trainingToken','trainingBorn','trainingReceiptTurn','trainingTurn','trainingQueued','trainingCompleted','owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
+ local fields={'trainingToken','trainingBorn','trainingReceiptTurn','trainingTurn','trainingQueued','trainingCompleted','owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','taskCount','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
  local function savedState()
   local out={};for _,k in ipairs(fields)do out[k]=state[k]end
   if state.target then out.target={};for _,k in ipairs({'name','owner','id','x','y'})do out.target[k]=state.target[k]end end
@@ -255,7 +257,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
    if allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
     releaseActivity()
-    state.taskCompletions=1 -- One fixture task per team; completion has no effects.
+    state.taskCompletions=1 -- This task; completion has no effects.
+    state.taskCount=(state.taskCount or 0)+1 -- B211: completed tasks of this team (unique activity keys).
     save()
     print('[SPC][B191][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
    end
@@ -374,7 +377,9 @@ function SPCExpeditionSpyGate.Start(P,shared)
   elseif p.Action=='NAME' then
    mutating=true;acceptName(pid,p)
   elseif p.Action=='DISPATCH' then
-   assert(state.owner==pid and state.unitID==p.UnitID and (state.phase=='CREATED' or state.phase=='ARRIVED'),'BOUND_TEAM_REQUIRED')
+   -- B211: a completed task may be redispatched once its native activity is released.
+   local again=state.phase=='TASK_COMPLETE' and state.activityMode=='NONE' and not state.activityPending and not state.activityOwned
+   assert(state.owner==pid and state.unitID==p.UnitID and (state.phase=='CREATED' or state.phase=='ARRIVED' or again),'BOUND_TEAM_REQUIRED')
    observe();local u=tracked()
    assert(state.phase~='HELD' and u:GetID()==p.UnitID,'BOUND_TEAM_REQUIRED')
    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.FromX==u:GetX() and p.FromY==u:GetY(),'STALE_TRAVEL_SAMPLE')
@@ -385,6 +390,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
    state.target=t;state.startTurn=Game.GetCurrentGameTurn();state.dueTurn=state.startTurn+p.Travel+p.Establish
    state.nativeAllowed=type(p.NativeAllowed)=='boolean' and p.NativeAllowed or false
    state.nativeStatus=p.NativeStatus=='KNOWN' and 'KNOWN' or 'UNKNOWN'
+   if again then
+    state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil;state.activityKey=nil
+    state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil
+   end
    mutating=true;state.phase='TRAVELLING';state.permit=p.Token
    save() -- Durable intent precedes the one-shot UI native permit; never replay on load.
   elseif p.Action=='TASK' then
@@ -394,7 +403,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1,'NATIVE_OPERATION_UNKNOWN')
    if type(u.GetSpyOperation)=='function' then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
    -- Do not advance the independent timer before native sleep is observed.
-   mutating=true;state.activityKey=state.teamKey..':task1';state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
+   mutating=true;state.activityKey=state.teamKey..':task'..((state.taskCount or 0)+1);state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
    state.taskCompletions=0;state.phase='TASK_PREPARING'
   elseif p.Action=='ACTIVITY' then
    assert(state.owner==pid and state.unitID==p.UnitID and state.activityKey==p.ActivityKey,'ACTIVITY_REFERENCE_CHANGED')
@@ -411,12 +420,12 @@ function SPCExpeditionSpyGate.Start(P,shared)
      -- No request could run before durable ARMED. Pre-existing Sleep remains unowned.
      if p.Sleeping then
       source();target(pid,state.target);state.sleepConfirmed=true;state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
-      state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
+      state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+TASK_TURNS
      end
     elseif state.activityMode=='ARMED' then
      assert(p.Sleeping,'ACTIVITY_SLEEP_OUTCOME_UNKNOWN')
      source();target(pid,state.target);state.sleepConfirmed=true;state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
-     state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
+     state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+TASK_TURNS
     elseif state.activityMode=='ASLEEP' then
      assert(p.Sleeping and state.sleepConfirmed,'ACTIVITY_UNEXPECTED_WAKE')
      source();target(pid,state.target)
@@ -440,7 +449,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     observe();tracked();target(pid,state.target)
     assert(p.NativeOperation==-1,'NATIVE_MISSION_ACTIVE_STOP')
     state.sleepConfirmed=true;state.activityPending=false;state.activityMode='ASLEEP';state.phase='TASK_RUNNING'
-    state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+2
+    state.taskStart=Game.GetCurrentGameTurn();state.taskDue=state.taskStart+TASK_TURNS
    elseif p.Result=='RELEASED' then
     assert(state.activityMode=='RELEASE','ACTIVITY_NOT_PENDING')
     -- The one-shot release reply is consumed. Any failed readback must be terminal, not a stuck RELEASE.
