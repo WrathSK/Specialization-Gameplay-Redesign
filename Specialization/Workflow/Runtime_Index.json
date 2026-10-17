@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "7528133c411e3e314c5a66413426bd44fbd31631d3f20c49e98e5f4ba19759f9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
+      "sha256": "e33f65e801cd169411102acc69f779d482e7bf1eff169d792e2e6f5ccee48bfd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4b3d6a57887fdb06afc786eab512fc1e5c523b37f401d50982b934b10ada2466",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
+      "sha256": "bba5ae7a7a71978b642136299ddd02b7e7e4a77bdd9efbe1d943a3e6eb3e189a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -511,9 +511,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "7f003a35cfa744360fc9b09cbb83e73e65ebdc860bc99385230542d86b20d414",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "19c7812b07d26f2bec114c27e305022020c12c416c7d9a9e537bd3bb83901c3b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
@@ -881,9 +881,9 @@
       "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/GreatWorkFacts.lua": {
-      "sha256": "e3caf8bd3ab9e617dc2aac4e16d563b6e69029f6df2a3d901169b70eea1e7c43",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+      "sha256": "7d26a5a9121e0658091b7537ab68402480fdbe8f91558662e68a747224cb2a47",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "e035ce2b7225120daf3723344bfdde4d823631c0936ab8370153ec0833aacd67",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "70725eec30e8291c6a4b43c28c77700ef6f92cd873d7a7779a3144dac01b7a0b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
+      "sha256": "a19a92d8adb9baa69775bb41b472166e0852e417e11045962ce284392119a163",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,14 +1016,14 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "d9965352a4f6a2b00721eaf6a2ddf240b39162873f4c87346213e92bb7c3fbab",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
+      "sha256": "37c0b1557d249af1a36cde45b3dd216b04736bcd49a9cafa721fe54b1ed2ec15",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "b4ea99315eee8f6b801a84c0e813dc57431b924a46ee673d0402266b10f8d6c0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
+      "sha256": "98bfe651ad4404859cc06444c7630ca9c8afa20273085aa670d2b16bb4ddbca4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "3fd348b6441f52c844266ada64311665d52b321d9c45a641125aadcc2de70d99",
@@ -1056,14 +1056,14 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "ca6a73b119e449715a972e8ea064109aef73c670a24bf4344b7e688ac344d463",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
+      "sha256": "177ccb460dd20bd99992dbe4d787b33c66181d0564f49af375435e584feb0294",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "4372e957edd6d4c5bbc006f10304820102d91d694b299bb5edaed91423272bbb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
+      "sha256": "2d577810b34bab1e3ec1c97acc008b506c790c2f6d4e86daf801d8a3942577b5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",

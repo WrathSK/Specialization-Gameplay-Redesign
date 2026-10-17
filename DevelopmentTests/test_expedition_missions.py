@@ -12,17 +12,19 @@ MISSION_FIXTURE = """
   info.BUILDING_AMPHITHEATER={Index=5,BuildingType='BUILDING_AMPHITHEATER',IsWonder=false}
   info.BUILDING_PYRAMIDS={Index=6,BuildingType='BUILDING_PYRAMIDS',IsWonder=true}
   info.GREATWORK_TEST={Index=77,GreatWorkType='GREATWORK_TEST'}
+  info[77]=info.GREATWORK_TEST;info[99]={GreatWorkType='GREATWORK_OTHER',Index=99}
   SPCGreatWorkCatalog={Resolve=function(adapter,kind)if kind=='GREATWORK_TEST' then return {type=kind}end;return nil,'UNSUPPORTED_TYPE' end}
   has={[5]=true,[6]=true};slotWork=12;locations={[5]=8*100+16,[6]=9*100+15}
   slotReads=0
   P.HasBuilding=function(b,index)return has[index] end
-  function targetCity:GetBuildings()return {
+  uiMissionBuildings={
     GetBuildingLocation=function(self,index)if locationError then error('unavailable')end;return locations[index]end,
     GetGreatWorkInSlot=function(self,index,slot)
      slotReads=slotReads+1;if slotError then error('unavailable')end;if slotNil then return nil end
      if (index==5 or index==6) and slot==0 and slotWork then return slotWork end;return -1 end,
     GetGreatWorkTypeFromIndex=function(self,id)if typeError then error('unavailable')end;if typeNil then return nil end
-     if id==12 or id==13 then return workType or 77 end end}end
+     if id==12 or id==13 then return workType or 77 end end}
+  function targetCity:GetBuildings()return {GetBuildingLocation=uiMissionBuildings.GetBuildingLocation}end
   function startMission(token,mission,unit)
    local p={Action='TASK',Token=token,UnitID=unit or 41,SampleTurn=currentTurn,NativeOperation=-1}
    for k,v in pairs(mission)do p[k]=v end
@@ -44,6 +46,23 @@ MISSION_FIXTURE = """
   WORKS={Mission='WORKS',MissionX=16,MissionY=8,Building='BUILDING_AMPHITHEATER',Slot=0,Work='GREATWORK_TEST'}
   PLACES={Mission='PLACES',MissionX=15,MissionY=9,Building='BUILDING_PYRAMIDS'}
 """
+# Actual UI reader in an isolated engine context. Gameplay intentionally has no
+# work-slot/type getters; do not let fixtures hide that native API boundary.
+MISSION_FIXTURE += r"""
+ uiMissionCity=setmetatable({GetBuildings=function()return uiMissionBuildings end},{__index=targetCity})
+ workReaderEnv=setmetatable({include=function()end,
+  Game={GetLocalPlayer=function()return 2 end,GetCurrentGameTurn=function()return currentTurn end},
+  GameInfo={Buildings=info,GreatWorks=info},
+  Players={[3]={GetCities=function()return {FindID=function(_,id)if id==targetCity.id then return uiMissionCity end end}end}}
+ },{__index=_G})
+"""
+MISSION_FIXTURE += "assert(load([==[" + (base.R/'Mod/ExpeditionSpyRead.lua').read_text() + "]==], 'UI_WorkReader', 't', workReaderEnv))()\n"
+MISSION_FIXTURE += r"""
+ SPCExpeditionSpyRead=SPCExpeditionSpyRead or {}
+ SPCExpeditionSpyRead.WorkSlot=workReaderEnv.SPCExpeditionSpyRead.WorkSlot
+ ExposedMembers.SPC_ExpeditionWorkRead=SPCExpeditionSpyRead.WorkSlot
+"""
+
 
 
 class Missions(unittest.TestCase):
@@ -168,7 +187,7 @@ class Missions(unittest.TestCase):
         for change in ['slotError=true', 'slotNil=true', 'typeError=true', 'typeNil=true',
                        'SPCGreatWorkCatalog=nil', "SPCGreatWorkCatalog.Resolve=function()return nil,'ERA_UNAVAILABLE' end",
                        'locationError=true', 'locations[5]=nil', 'has[5]=nil',
-                       "local buildings=targetCity:GetBuildings();buildings.GetGreatWorkTypeFromIndex=nil;targetCity.GetBuildings=function()return buildings end",
+                       "uiMissionBuildings.GetGreatWorkTypeFromIndex=nil",
                        "local buildings=targetCity:GetBuildings();buildings.GetBuildingLocation=nil;targetCity.GetBuildings=function()return buildings end"]:
             with self.subTest(change=change):
                 self.ready().execute(change + ";local r=startMission('w',WORKS);assert(r.error and r.missionStatus=='UNKNOWN' and r.phase=='ARRIVED' and not r.activityKey and placeCalls==0 and insightWrites==0)")

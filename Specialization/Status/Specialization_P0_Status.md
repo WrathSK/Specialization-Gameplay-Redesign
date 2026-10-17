@@ -1,23 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0597
-Implementation Build: source/live B223.250 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0598
+Implementation Build: source B224.251 LOCAL_COMPLETE; live B223.250; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B223_DIAGNOSTIC_DEPLOYED_AWAITING_NATIVE
+Work State: B224_CURRENT_WORKS_IDLE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B223 diagnostic-only package deployed; native cause remains UNKNOWN.** [Scope,416 local checks and one minimal capture](Validation/Results/Specialization_B223_Native_State_Diagnostic.md).
-- **Source B223.250 / modinfo250:** existing-event samples for manual sleep → native dispatch → arrival → task admission; movement/activity/Spy/turn context and reconnect-readable final Gate/save receipt. No new timer, operation, task rule or recovery behavior.
-- **Live B223.250**, source `55d0cdb`, receipt `B223.250-55d0cdb-playtest.json`, verified224/224 MATCH after automatic game-exit checks and the guarded B222/stable bridge. Recovery retained, no pending transaction; main stable B069.96 and configuration unchanged.
-- **Inherited native evidence:** [B222 review](Validation/Results/Specialization_B222_Task_Start_Native_Review.md) confirms Khmer PLACES, Gaul PEOPLE and Gaul PLACES completion; Ottawa later reads exact centre/AWAKE/ready but native SLEEP DENIED before any request. User recalls manual sleep before redispatch. This is a hypothesis, not proven cause; the final rejection/save outcome was not captured.
-- **Preserved boundaries:** capacity, source binding, Store schema, rewards/Insight history, centre mission rules and GC unchanged. No automatic HELD recovery. WORKS, Tourism fractional settlement and source-loss reattachment retain their own pending/deferred scope.
-- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B223 explicitly authorized and deployed under W0003; no further gameplay repair is authorized.
-- **Next:** one manual-sleep/redispatch/arrival/task capture using the existing manual collector. Stop on denial; correlate actual native state with the confirmed final receipt before proposing a narrow repair. No blind repeats or new save/load ritual.
+**B224 narrow repairs locally complete; native acceptance pending.** [B223 evidence, repairs and minimal combined flow](Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md).
+- **Source B224.251 / modinfo251:** confirmed empty collections transmit explicitly; WORKS admission/completion read fresh UI-context slots; idle controls resolve the current unit, retain native gates and show unavailable reasons. No new timer, permanent field, capacity/binding/reward/task-rule or GC change.
+- **Live remains last verified B223.250**, source `55d0cdb`, receipt `B223.250-55d0cdb-playtest.json`,224/224 MATCH. Source completion alone is not deployment. Main stable B069.96 remains unchanged.
+- **Native evidence:** B223 seven captured arrivals and four PEOPLE starts; London WORKS preflight reader failure and disappearing controls confirmed. Later successful attempts do not erase those faults. User reports 风雅熏陶 persists after selling all works; the empty-payload local counterexample and corrected withdrawal are recorded separately from native acceptance.
+- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). User authorized these simultaneous bounded repairs. Existing PEOPLE/PLACES evidence is inherited; Tourism fractional settlement, reattachment, N3 and deferred audit repairs remain outside this batch.
+- **Next:** W0003 verified deployment if game exit is confirmed, then one combined session: collection→zero withdrawal/recovery, and an available WORKS task with arrival idle controls. No blind repeated sleep trials or extra save/load gate.
+
+## S0598 — B224 current facts and idle-control repair
+
+User authorized parallel investigation/repair of the Expedition fault and empty-collection Tourism residue. [Result](Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md) retains the B223 log digests and scoped outcomes, implementation boundaries, local checks and next native deltas. No Design/permanent history/GC/main change; deployment remains receipt-bound.
 
 ## Historical progress — B205–B212 checkpoint
 

@@ -16,7 +16,9 @@ def fixture():
       GameInfo.UnitOperations.UNITOPERATION_SKIP_TURN=row(8,'skip')
       GameInfo.UnitOperations.UNITOPERATION_SLEEP=row(9,'sleep')
       GameInfo.UnitCommands={UNITCOMMAND_WAKE=row(10,'wake')}
-      available=true;processing=true;requests={};sleeping=false
+      ActivityTypes={ACTIVITY_AWAKE=1,ACTIVITY_HOLD=2,ACTIVITY_SLEEP=3}
+      UnitManager.GetActivityType=function()return sleeping and 3 or 1 end
+      available=true;g_isOkayToProcess=true;requests={};sleeping=false
       UnitManager.CanStartOperation=function(u,h,params,visible,hint)
         assert(params==nil and type(visible)=='boolean' and (visible and hint==nil or not visible and hint==9))
         if throws then error('unavailable')end
@@ -28,11 +30,14 @@ def fixture():
         return sleeping and available
       end
       GetUnitActionsTable=function()calls.GetUnitActionsTable=(calls.GetUnitActionsTable or 0)+1;return 'ordinary'end
-      OnUnitActionClicked=function(kind,hash,currentMode)
-        if not processing then return end
-        assert(currentMode==mode)
-        requests[#requests+1]={kind=kind,hash=hash,id=selected:GetID()}
-        if hash==9 then sleeping=true elseif hash==10 then sleeping=false end
+      UnitManager.RequestOperation=function(u,hash)
+       assert(not u.stale,'REQUEST_USED_STALE_UNIT')
+       requests[#requests+1]={kind=1,hash=hash,id=u:GetID()}
+       if hash==9 then sleeping=true end
+      end
+      UnitManager.RequestCommand=function(u,hash)
+       assert(not u.stale,'REQUEST_USED_STALE_UNIT')
+       requests[#requests+1]={kind=2,hash=hash,id=u:GetID()};sleeping=false
       end
     """)
     l.execute((R/'Mod/UI/ExpeditionSpyUnitPanel.lua').read_text())
@@ -72,7 +77,7 @@ class IdleActions(unittest.TestCase):
                 l=fixture();l.execute("phase('ARRIVED');old=GetUnitActionsTable(team);"+change+";old.INPLACE[1].CallbackFunc();assert(#requests==0)")
 
     def test_native_permission_and_turn_gate_rechecked(self):
-        for change in ['available=false','unknown=true','throws=true','processing=false']:
+        for change in ['available=false','unknown=true','throws=true','g_isOkayToProcess=false','g_isOkayToProcess=nil']:
             with self.subTest(change=change):
                 l=fixture();l.execute("phase('ARRIVED');old=GetUnitActionsTable(team);"+change+";old.INPLACE[1].CallbackFunc();assert(#requests==0)")
 
@@ -81,10 +86,13 @@ class IdleActions(unittest.TestCase):
             with self.subTest(phase=phase):
                 fixture().execute(f"phase('{phase}');assert(#GetUnitActionsTable(team).INPLACE==0)")
 
-    def test_unknown_native_permission_hides_actions(self):
-        for change in ['unknown=true','throws=true','GameInfo.UnitOperations.UNITOPERATION_SLEEP=nil']:
+    def test_unknown_native_permission_keeps_disabled_controls(self):
+        for change in ['unknown=true','throws=true']:
             with self.subTest(change=change):
-                l=fixture();l.execute("phase('ARRIVED');"+change+";a=GetUnitActionsTable(team);assert(#a.INPLACE<=1 and #requests==0)")
+                l=fixture();l.execute("phase('ARRIVED');"+change+";a=GetUnitActionsTable(team);assert(#a.INPLACE>=1 and #requests==0);for _,v in ipairs(a.INPLACE)do assert(v.disabled)end")
+
+    def test_missing_operation_definition_never_fabricates_a_row(self):
+        l=fixture();l.execute("phase('ARRIVED');GameInfo.UnitOperations.UNITOPERATION_SLEEP=nil;local a=GetUnitActionsTable(team);assert(#a.INPLACE==1 and a.INPLACE[1].icon=='skip' and #requests==0)")
 
     def test_ordinary_units_still_use_base_builder(self):
         l=fixture();l.execute("selected=ordinary;assert(GetUnitActionsTable(ordinary)=='ordinary' and calls.GetUnitActionsTable==1)")
@@ -93,7 +101,7 @@ class ArrivalRefresh(unittest.TestCase):
     def test_native_availability_changes_without_gate_revision(self):
         l=fixture();l.execute("""
           phase('ARRIVED');available=false;Events.GameCoreEventPublishComplete()
-          assert(#rendered.INPLACE==0 and calls.Refresh==1)
+          assert(#rendered.INPLACE==2 and rendered.INPLACE[1].disabled and calls.Refresh==1)
           local rev=ExposedMembers.SPC_ExpeditionActivity.revision
           available=true;Events.GameCoreEventPublishComplete()
           assert(#rendered.INPLACE==2 and calls.Refresh==2)
@@ -113,7 +121,7 @@ class ArrivalRefresh(unittest.TestCase):
     def test_replaced_arrival_id_and_selection_rebuild(self):
         l=fixture();l.execute("""
           phase('TRAVELLING');Events.GameCoreEventPublishComplete()
-          team.id=52;ExposedMembers.SPC_ExpeditionActivity.unitID=52;phase('ARRIVED')
+          units[40]=nil;units[52]=team;team.id=52;ExposedMembers.SPC_ExpeditionActivity.unitID=52;phase('ARRIVED')
           Events.UnitSelectionChanged(2,52,true);assert(#rendered.INPLACE==2)
           local n=calls.Refresh;selected=ordinary;Events.GameCoreEventPublishComplete()
           assert(calls.Refresh==n);selected=team;Events.UnitSelectionChanged(2,52,true)
@@ -127,7 +135,7 @@ class ArrivalRefresh(unittest.TestCase):
           phase('TASK_RUNNING','ASLEEP',true);ExposedMembers.SPC_ExpeditionActivity.revision=2
           LuaEvents.SPC_ExpeditionActivityChanged();assert(#rendered.INPLACE==0)
           phase('ARRIVED');ExposedMembers.SPC_ExpeditionActivity.revision=3;unknown=true
-          Events.GameCoreEventPublishComplete();assert(#rendered.INPLACE==0)
+          Events.GameCoreEventPublishComplete();assert(#rendered.INPLACE==2 and rendered.INPLACE[1].disabled)
           n=calls.Refresh;panelShutdown();unknown=false;available=true
           Events.GameCoreEventPublishComplete();Events.UnitOperationDeactivated(2,40)
           LuaEvents.SPC_ExpeditionActivityChanged();assert(calls.Refresh==n and #requests==0)

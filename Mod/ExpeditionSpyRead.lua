@@ -8,6 +8,34 @@ local function call(obj,name,...)
  if not obj or type(obj[name])~='function' then return nil end
  local ok,v=pcall(obj[name],obj,...);if ok then return v end
 end
+-- B224: exact fresh UI-context slot read, callable without opening a panel.
+-- No cached target list or saved work inventory is an authority for completion.
+function M.WorkSlot(observer,owner,id,x,y,building,slot)
+ assert(observer==Game.GetLocalPlayer() and integer(owner) and integer(id)
+  and integer(x) and integer(y) and integer(slot),'MISSION_WORK_REFERENCE_UNKNOWN')
+ local turn=Game.GetCurrentGameTurn()
+ local cities=Players[owner] and Players[owner]:GetCities()
+ local c=assert(cities and cities:FindID(id),'MISSION_WORK_REFERENCE_UNKNOWN')
+ local function sameCity()
+  return c:GetOwner()==owner and c:GetID()==id and c:GetX()==x and c:GetY()==y
+   and Game.GetCurrentGameTurn()==turn and Game.GetLocalPlayer()==observer
+ end
+ assert(sameCity(),'MISSION_WORK_REFERENCE_CHANGED')
+ local def=assert(GameInfo.Buildings[building],'MISSION_BUILDING_UNKNOWN')
+ local b=assert(c:GetBuildings(),'MISSION_BUILDING_UNKNOWN')
+ assert(type(b.GetGreatWorkInSlot)=='function','MISSION_WORK_READER_UNAVAILABLE')
+ local wid=b:GetGreatWorkInSlot(def.Index,slot)
+ assert(wid==-1 or integer(wid),'MISSION_WORK_READER_UNAVAILABLE')
+ local kind
+ if wid~=-1 then
+  assert(type(b.GetGreatWorkTypeFromIndex)=='function','MISSION_WORK_TYPE_UNAVAILABLE')
+  local row=GameInfo.GreatWorks[b:GetGreatWorkTypeFromIndex(wid)]
+  assert(row and type(row.GreatWorkType)=='string','MISSION_WORK_TYPE_UNAVAILABLE')
+  kind=row.GreatWorkType
+ end
+ assert(sameCity(),'MISSION_WORK_REFERENCE_CHANGED')
+ return {owner=owner,city=id,x=x,y=y,turn=turn,building=building,slot=slot,workID=wid,work=kind}
+end
 function M.Capacity(pid)
  local d=Players[pid] and call(Players[pid],'GetDiplomacy')
  local n=call(d,'GetSpyCapacity');return integer(n) and n or nil

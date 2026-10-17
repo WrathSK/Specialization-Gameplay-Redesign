@@ -87,7 +87,7 @@ local function refresh()
  if sent~=key or not s.Dialogue.ready then
   seq=math.max(seq,ack)+1;sent=key
   local packet={OnStart='SPC_P0_Request',Action='DIALOGUE_SAMPLE',Token=P.VERSION..':dialogue:'..seq,Generation=generation,Seq=seq,Turn=turn,Valid=ok and 1 or 0,Data=data,Count=#rows,AdjData=adjData,AdjCount=adjCount,
-   FactsEpoch=epoch,FactsInput=inputRevision,FactsRefs=refData,FactsData=factData,FactsCount=factsCount,FactsCities=factsCities}
+   FactsEpoch=epoch,FactsInput=inputRevision,FactsRefs=refData,FactsData=factData=='' and 'EMPTY' or factData,FactsCount=factsCount,FactsCities=factsCities}
   pending={seq=seq,turn=turn,generation=generation,epoch=epoch,packet=packet,pulses=0,retries=0};public.state='WAIT_ACK'
   dispatch(pid,packet)
   if acknowledged(s,pid,pending) then pending=nil;public.state='IDLE' end

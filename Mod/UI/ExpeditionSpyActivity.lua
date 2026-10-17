@@ -2,6 +2,7 @@
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
 include('ExpeditionTrainingDiagnostics')
+include('ExpeditionSpyRead')
 local P=SPCP0
 local KIND='UNIT_SPC_EXPEDITION_SPY'
 local initialized=false;local stopped=false;local busy=false;local queued=false;local queuedMonitor=false
@@ -10,6 +11,7 @@ local pump
 local watch
 local trace
 local traceFailure
+local workReader
 local function detail(err)return tostring(err):gsub('[%c]',' '):sub(1,180)end
 local function view()return ExposedMembers and ExposedMembers.SPC_ExpeditionActivity end
 local function integer(v)return type(v)=='number' and v>=0 and v%1==0 end
@@ -470,6 +472,8 @@ end
 local function initialize()
  if initialized then return end
  initialized=true;stopped=false
+ workReader=SPCExpeditionSpyRead and SPCExpeditionSpyRead.WorkSlot
+ ExposedMembers.SPC_ExpeditionWorkRead=workReader
  if SPCExpeditionTrainingDiagnostics then
   local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'ACTIVITY_UI')
   if ok then trace=value end
@@ -485,6 +489,8 @@ end
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
  stopped=true;cancel()
+ if ExposedMembers.SPC_ExpeditionWorkRead==workReader then ExposedMembers.SPC_ExpeditionWorkRead=nil end
+ workReader=nil
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
  ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=nil
  if initialized then

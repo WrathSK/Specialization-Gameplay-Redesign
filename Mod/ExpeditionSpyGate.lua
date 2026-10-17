@@ -233,22 +233,24 @@ function SPCExpeditionSpyGate.Start(P,shared)
    missionAssert(SPCGreatWorkCatalog and type(SPCGreatWorkCatalog.Resolve)=='function','UNKNOWN','MISSION_WORK_CATALOG_UNAVAILABLE')
    local eligible,why=SPCGreatWorkCatalog.Resolve(P,m.work)
    missionAssert(eligible,(why=='UNSUPPORTED_TYPE' or why=='UNREVIEWED_ERA') and 'INVALID' or 'UNKNOWN','MISSION_WORK_INELIGIBLE')
-   missionAssert(type(b.GetGreatWorkInSlot)=='function','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
-   local workID=b:GetGreatWorkInSlot(def.Index,m.slot)
-   missionAssert(workID~=nil,'UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   -- These native work getters are UI-context APIs. Read the exact slot now,
+   -- at both admission and completion, through the always-loaded UI endpoint.
+   local reader=ExposedMembers and ExposedMembers.SPC_ExpeditionWorkRead
+   missionAssert(type(reader)=='function','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   local ok,sample=pcall(reader,pid,t.owner,t.id,t.x,t.y,m.building,m.slot)
+   missionAssert(ok and type(sample)=='table','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   missionAssert(sample.owner==t.owner and sample.city==t.id and sample.x==t.x and sample.y==t.y
+    and sample.turn==Game.GetCurrentGameTurn() and sample.building==m.building and sample.slot==m.slot,
+    'UNKNOWN','MISSION_WORK_REFERENCE_CHANGED')
+   local workID=sample.workID
+   missionAssert(workID==-1 or int(workID),'UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
    missionAssert(workID~=-1,'INVALID','MISSION_TARGET_INVALID')
-   missionAssert(int(workID),'UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
    if m.requireWorkID then
     missionAssert(int(m.workID),'UNKNOWN','MISSION_WORK_ID_UNAVAILABLE')
     missionAssert(workID==m.workID,'INVALID','MISSION_TARGET_INVALID')
    end
-   local reader=type(b.GetGreatWorkTypeFromIndex)=='function' and function(id)return b:GetGreatWorkTypeFromIndex(id)end
-    or (Game and type(Game.GetGreatWorkTypeFromIndex)=='function' and Game.GetGreatWorkTypeFromIndex)
-   missionAssert(reader~=nil,'UNKNOWN','MISSION_WORK_TYPE_UNAVAILABLE')
-   local kind=missionFact(reader(workID),'MISSION_WORK_TYPE_UNAVAILABLE')
-   missionAssert(type(kind)=='string' or (type(kind)=='number' and kind==kind and kind%1==0),'UNKNOWN','MISSION_WORK_TYPE_UNAVAILABLE')
-   local row=missionFact(P.Info('GreatWorks',m.work),'MISSION_WORK_TYPE_UNAVAILABLE')
-   missionAssert(kind==row.Index or kind==row.Hash or kind==m.work,'INVALID','MISSION_TARGET_INVALID')
+   missionAssert(type(sample.work)=='string','UNKNOWN','MISSION_WORK_TYPE_UNAVAILABLE')
+   missionAssert(sample.work==m.work,'INVALID','MISSION_TARGET_INVALID')
    return c,workID
   end
   return c

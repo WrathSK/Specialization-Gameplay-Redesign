@@ -708,3 +708,12 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','任务未开始：引擎当前不允许休眠，未发出休眠指令，也未计时或发放见闻。本次启动锁定已解除；拒绝信息已记录，请保留日志，不必反复尝试。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','Task not started: the engine currently denies Sleep. No Sleep request, task time or Insight was applied. The startup lock was released; denial details were recorded. Retain the log instead of repeatedly retrying.');
+
+-- B224: idle controls remain visible when a fresh native query cannot enable them.
+INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_IDLE_DENIED','原生状态暂不允许此操作；状态更新后自动刷新。'),
+('en_US','LOC_SPC_EXPEDITION_IDLE_DENIED','The current native state does not allow this action. It refreshes when the state changes.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_IDLE_UNAVAILABLE','单位操作状态尚未就绪；状态更新后自动刷新。'),
+('en_US','LOC_SPC_EXPEDITION_IDLE_UNAVAILABLE','Unit action availability is not ready. It refreshes when the state changes.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_IDLE_READ_ERROR','暂时无法读取单位操作状态；状态更新后自动刷新。'),
+('en_US','LOC_SPC_EXPEDITION_IDLE_READ_ERROR','Unit action availability could not be read. It refreshes when the state changes.');

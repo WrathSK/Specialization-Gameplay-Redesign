@@ -14,21 +14,36 @@ local function nativeEligible(u,row,command,visible)
   return UnitManager.CanStartOperation(u,row.Hash,nil,false,
    OperationResultsTypes and OperationResultsTypes.NO_TARGETS)
  end)
- return ok and yes==true
+ return ok and yes==true,not ok and 'READ_ERROR' or (type(yes)~='boolean' and 'UNAVAILABLE' or (yes and 'ALLOWED' or 'DENIED'))
+end
+-- Selection wrappers can outlive native Spy replacement. Always resolve the
+-- selected identity again, as the base panel does when it builds its rows.
+local function current(u)
+ if not R.IsTeam(u)then return nil end
+ local ok,fresh=pcall(R.ByID,u:GetID())
+ if ok and R.IsTeam(fresh) and fresh:GetOwner()==u:GetOwner() and fresh:GetID()==u:GetID()then return fresh end
+end
+local function idleKind(u)
+ local ok,a=pcall(function()return UnitManager.GetActivityType(u)end)
+ if not ok or a==nil or not ActivityTypes then return 'UNKNOWN'end
+ if a==ActivityTypes.ACTIVITY_SLEEP then return 'SLEEP'end
+ if a==ActivityTypes.ACTIVITY_AWAKE or a==ActivityTypes.ACTIVITY_HOLD then return 'AWAKE'end
+ return 'OTHER'
 end
 function GetUnitActionsTable(u)
  if not R.IsTeam(u)then return baseActions(u)end
+ u=current(u)
  -- Do not call the base builder first: it also registers native mission hotkeys.
  local actions={ATTACK={},BUILD={},GAMEMODIFY={},MOVE={},OFFENSIVESPY={},INPLACE={},SECONDARY={},SPECIFIC={},
   displayOrder={primaryArea={'ATTACK','OFFENSIVESPY','SPECIFIC','MOVE','INPLACE','GAMEMODIFY'},secondaryArea={'SECONDARY'}}}
- if not R.ActivityView(u) or R.ActivityLocked(u)then return actions end
+ if not u or not R.ActivityView(u) or R.ActivityLocked(u)then return actions end
  local id,owner=u:GetID(),u:GetOwner()
  local function add(mode,icon,key,hash)
   local enabled=R.CanOpen(mode,u)
   local label=Locale.Lookup('LOC_SPC_EXPEDITION_SPY_ACTION_'..key)
   if not enabled then label=label..'[NEWLINE]'..R.UnavailableText(u)end
   AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not enabled,label,hash,function()
-   local selected=UI.GetHeadSelectedUnit()
+   local selected=current(UI.GetHeadSelectedUnit())
    if R.IsTeam(selected) and selected:GetOwner()==owner and selected:GetID()==id and R.CanOpen(mode,selected)then
     R.Open(mode,id)
    end
@@ -48,12 +63,29 @@ function GetUnitActionsTable(u)
    or (not command and UnitOperationTypes and UnitOperationTypes.TYPE)
   if not row or type(row.Hash)~='number' or type(actionType)~='number' or not idle(u)then return end
   local function eligible(selected,visible)return nativeEligible(selected,row,command,visible)end
-  if not eligible(u,true)then return end
-  AddActionToTable(actions,row,not eligible(u,false),Locale.Lookup(row.Description),row.Hash,function()
-   local selected=UI.GetHeadSelectedUnit()
-   if idle(selected) and eligible(selected,false)then
-    -- Retain native turn-processing and interface-mode checks.
-    baseClick(actionType,row.Hash,UI.GetInterfaceMode())
+  local visible,visibility=eligible(u,true)
+  local enabled,status=eligible(u,false)
+  local kind=idleKind(u)
+  -- Do not silently remove an idle control when the native reader temporarily
+  -- denies/unpublishes it. Display only the relevant activity family; execution
+  -- still requires the fresh native permission and the base turn/mode guard.
+  local relevant=command and kind=='SLEEP' or not command and (kind=='AWAKE' or kind=='UNKNOWN')
+  if not visible and not relevant then return end
+  enabled=visible and enabled
+  local label=Locale.Lookup(row.Description)
+  if not enabled then
+   local reason=status~='ALLOWED' and status or visibility
+   label=label..'[NEWLINE]'..Locale.Lookup('LOC_SPC_EXPEDITION_IDLE_'..reason)
+  end
+  AddActionToTable(actions,row,not enabled,label,row.Hash,function()
+   local selected=current(UI.GetHeadSelectedUnit())
+   if g_isOkayToProcess==true and row.InterfaceMode==nil and idle(selected)
+    and eligible(selected,true) and eligible(selected,false)then
+    -- Same no-interface branch as the base panel, on the freshly resolved
+    -- unit rather than re-fetching a possibly stale selected wrapper inside it.
+    -- AddActionToTable retains its native SELECTION-mode wrapper.
+    if command then UnitManager.RequestCommand(selected,row.Hash)
+    else UnitManager.RequestOperation(selected,row.Hash)end
    end
   end)
  end
@@ -83,14 +115,16 @@ local function signature(u)
  local function bits(tableName,name,command)
   local row=GameInfo[tableName] and GameInfo[tableName][name]
   if not row or type(row.Hash)~='number'then return ':NA'end
-  return ':'..tostring(nativeEligible(u,row,command,true))..':'..tostring(nativeEligible(u,row,command,false))
+  local _,visible=nativeEligible(u,row,command,true)
+  local _,enabled=nativeEligible(u,row,command,false)
+  return ':'..visible..':'..enabled
  end
- return key..bits('UnitOperations','UNITOPERATION_SKIP_TURN',false)
+ return key..':'..idleKind(u)..bits('UnitOperations','UNITOPERATION_SKIP_TURN',false)
   ..bits('UnitOperations','UNITOPERATION_SLEEP',false)..bits('UnitCommands','UNITCOMMAND_WAKE',true)
 end
 local function refreshSelected()
  if refreshing then return end
- local u=UI.GetHeadSelectedUnit()
+ local u=current(UI.GetHeadSelectedUnit())
  if not R.IsTeam(u)then lastSignature=nil;return end
  local nextSignature=signature(u)
  if nextSignature==lastSignature then return end
@@ -105,7 +139,7 @@ local function refreshSelected()
  end
 end
 local function unitChanged(pid,id)
- local u=UI.GetHeadSelectedUnit()
+ local u=current(UI.GetHeadSelectedUnit())
  if R.IsTeam(u) and pid==u:GetOwner() and id==u:GetID()then refreshSelected()end
 end
 LuaEvents.SPC_ExpeditionActivityChanged.Add(refreshSelected)

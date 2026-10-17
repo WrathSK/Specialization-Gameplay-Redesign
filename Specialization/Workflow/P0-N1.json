@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0597",
-    "runtime": "B223.250 / modinfo250",
+    "status": "S0598",
+    "runtime": "B224.251 / modinfo251",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B223 diagnostic-only manual-sleep/redispatch/arrival native state and reconnect-readable final Gate/save outcome; no admission, capacity, binding, reward or task-rule changes.",
+  "goal": "B224 confirmed-empty collection withdrawal, fresh UI-context WORKS admission/completion and current-unit idle controls; no timer or gameplay-rule change.",
   "implementation_authorized": true,
   "context": [
     {
@@ -517,6 +517,56 @@
       "path": "DevelopmentTests/test_expedition_native_state_trace.py",
       "kind": "full",
       "reason": "Direct actual-code native sample, final receipt/readback, offline retention and noninterference counterexamples."
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/UI/DialogueRefresh.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureAestheticModel.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureInspiration.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/test_p0_k.py",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/test_great_work_notifications.py",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/test_b224_current_facts.py",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
     }
   ],
   "dependencies": [
@@ -525,7 +575,8 @@
     "Read complete mission/observation contracts. Native current target readers must distinguish unavailable from confirmed invalid; current-source/owner loss keeps existing protection. Owned SLEEP/release and exact logical keys remain direct consumers.",
     "Training retains B209 immediate source-city completion receipt and B210 three-condition removal/replacement release; do not reintroduce obsolete blanket empty-queue rejection. Exact source/owner/reference and one matching birth remain required; cost/capacity/source unchanged.",
     "Research and Culture share selected-city institution rendering; ACTIVE does not erase established stages. Insight report only reads selected owned city on request, includes effective owner filtering and no reward writer. Native icons do not authorize missions.",
-    "Disposable diagnostic trace never authorizes admission or persistence. Missing trace retry is delayed; invalid trace is fatal; explicit report logs are bounded. No additional game polling, global scans or GC changes."
+    "Disposable diagnostic trace never authorizes admission or persistence. Missing trace retry is delayed; invalid trace is fatal; explicit report logs are bounded. No additional game polling, global scans or GC changes.",
+    "B224 WORKS gets fresh scalar UI slot evidence via the always-loaded Activity context; Gate alone validates and writes rewards. Explicit EMPTY needs count0 plus complete KNOWN per-city references; it never turns UNKNOWN into zero. Three existing Culture consumers retain their own effect ownership."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -719,21 +770,21 @@
     }
   ],
   "non_scope": [
-    "No generic site-movement repair, timers/polling, new native mission, capacity/binding/schema/history/GC/Commerce/N3/main/configuration change. Existing entry-city travel is preserved."
+    "No new timers, forced native permission, automatic Wake, site movement, capacity/binding/Store-schema/history/GC/Design/main/configuration change. No unrelated feature or audit repair."
   ],
   "validation": {
-    "depth": "L2: targeted diagnostic/mission/activity/Store/UI/training and offline collector checks; read-only DB/package check.",
-    "local": "416 targeted tests PASS (385 runtime/tool fixtures including17 new tests +31 read-only DB/package tests).",
-    "user": "B223 USER_GAME_TEST_REQUIRED: one manual-sleep/redispatch/arrival/task capture. B222 three PEOPLE/PLACES completions remain scoped PASS, Ottawa admission FAIL; native predicate and final unwind unresolved, WORKS untested."
+    "depth": "L2 targeted exact source/consumer/UI/mission and shared-facts regressions; inherited native lifecycle evidence, no all-gameplay/stress suite.",
+    "local": "490 targeted tests PASS; current package251 validated. Historical package pins193/199/200 and obsolete standalone Aesthetic SQL bootstrap are not claimed current PASS; actual writer verified via maintained three-consumer integration.",
+    "user": "B223 London WORKS reader failure and missing idle controls confirmed; B224 native pending. Existing PEOPLE/PLACES scoped evidence inherited."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-    "source": "B223.250/modinfo250 DEVELOP_ACTIVE; source 55d0cdb96cf41a90a063e90347392f1b3b5bfb14; receipt B223.250-55d0cdb-playtest.json;224/224 MATCH. Fresh automatic OS exit checks at both guarded switches; B222/stable recovery retained; no pending transaction, main/configuration change or game launch.",
-    "native": "USER_GAME_TEST_REQUIRED; diagnostic-only change, not a root-cause fix.",
-    "stop": "B223.250 deployed; await one bounded native capture. No automatic native-state normalization, timer or next gameplay repair."
+    "report": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+    "source": "B224.251/modinfo251 LOCAL_COMPLETE; live remains receipt-verified B223.250 until separate W0003 switch.",
+    "native": "USER_GAME_TEST_REQUIRED for changed current-facts paths and idle controls; no blanket cause closure.",
+    "stop": "One combined native session after verified deployment; unrelated modules remain held."
   }
 }

@@ -113,7 +113,11 @@ function F.Start(P,shared)
   assert(p.Turn==Game.GetCurrentGameTurn(),'GW_STALE_TURN')
   assert(p.FactsInput==d.inputRevision,'GW_STALE_INPUT')
   assert(type(p.FactsRefs)=='string' and #p.FactsRefs<=200000,'GW_REFERENCE_SIZE')
-  assert(type(p.FactsData)=='string' and #p.FactsData<=500000,'GW_SAMPLE_SIZE')
+  -- Empty strings may disappear across EXECUTE_SCRIPT serialization. A nonempty
+  -- marker carries a positively observed zero; missing data remains UNKNOWN.
+  local data=p.FactsData
+  if data=='EMPTY' then assert(p.FactsCount==0,'GW_WORK_FORMAT');data='' end
+  assert(type(data)=='string' and #data<=500000,'GW_SAMPLE_SIZE')
   local candidate,refCount={},0
   for cidText,hex,status in p.FactsRefs:gmatch('(%d+),([0-9a-f]+),([01]);') do
    local cid=tonumber(cidText);assert(not candidate[cid],'GW_DUPLICATE_CITY')
@@ -130,7 +134,7 @@ function F.Start(P,shared)
   for _,c in Players[pid]:GetCities():Members() do count=count+1;assert(count<=512 and c:GetOwner()==pid and candidate[c:GetID()],'GW_INCOMPLETE_SCOPE') end
   assert(count==refCount,'GW_INCOMPLETE_SCOPE')
   local seen,slots,reencoded={},{},{};local workCount=0
-  for cidText,bidText,slotText,idText,kind in p.FactsData:gmatch('(%d+),(%d+),(%d+),(%d+),([A-Z0-9_]+);') do
+  for cidText,bidText,slotText,idText,kind in data:gmatch('(%d+),(%d+),(%d+),(%d+),([A-Z0-9_]+);') do
    local cid,bid,slot,id=tonumber(cidText),tonumber(bidText),tonumber(slotText),tonumber(idText)
    local r=assert(candidate[cid],'GW_WORK_CITY');assert(r.availability=='KNOWN','GW_UNKNOWN_WITH_WORKS')
    assert(not seen[id],'GW_DUPLICATE_INSTANCE');seen[id]=true
@@ -140,8 +144,8 @@ function F.Start(P,shared)
    r.raw[#r.raw+1]={id=id,type=kind,building=bid,slot=slot}
    reencoded[#reencoded+1]=cid..','..bid..','..slot..','..id..','..kind..';'
   end
-  assert(workCount==p.FactsCount and table.concat(reencoded)==p.FactsData,'GW_WORK_FORMAT')
-  local key=p.FactsRefs..'/'..p.FactsData
+  assert(workCount==p.FactsCount and table.concat(reencoded)==data,'GW_WORK_FORMAT')
+  local key=p.FactsRefs..'/'..data
   if signature==key then
    for cid,r in pairs(cities)do r.availability=candidate[cid].availability end
    d.lastError=nil;d.dirtyScope={all=false,cities={}};rebuild();return true
