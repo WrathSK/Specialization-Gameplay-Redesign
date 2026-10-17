@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8ad8689911d403ca6b7941d49be81e880bcbcb9bf367a621217314dfac24520b",
+      "sha256": "a6e70e03587e27cd8364c1df6ce4b64426850d16df6f933b5245ae039db37f1e",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1021,9 +1021,9 @@
       "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "b9d15f3a37e65c1910fd830c8ef6b80ac280b95f28fe86423b03e58fac8a8fbe",
+      "sha256": "e5be59e21fb721c6ed0c85eb930f21f9d886d14bb1e860a474a5b6390555ac20",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "33c7f00a0851ba7f285a43c2f5b21f3f1652f7f207cebd8bc7d639549a9efa07",
@@ -1076,9 +1076,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "9c6b9ee7f281345fc721743c213436460217265e1611d18590dfd6ba8e8fe261",
+      "sha256": "5feeae7bdf2b90a86078fe6c833820cbca7bb2c5c8bf1fdff555e240f61a4e4c",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/UI/ExpeditionTrainingName.lua": {
       "sha256": "e795a4ec009c61358f28deef878da9d2415871532c3876153f3b5b60420b201b",
@@ -1091,9 +1091,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/ExpeditionTrainingUI.lua": {
-      "sha256": "422ed7f145aabf0f4b6566b33e9765f4f6bd3342fd77db8752261c547feae61d",
+      "sha256": "8242c44d60af4fb4da71b28cc0769d32e480ef0fb6c4b9252e2e57f5dd04b0c5",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "d7dd1563344138df7e8ac750d682cb3f9fe0f96bb8f6589a1e20340574ac5086",

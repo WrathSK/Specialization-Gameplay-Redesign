@@ -36,6 +36,19 @@ class UI(unittest.TestCase):
    adapter=SPCExpeditionTrainingUI.New(P,send,notify,build)
    adapter.Before(city,{Type=kind},false);adapter.Pulse();adapter.Pulse();adapter.Pulse()
    assert(state().phase=='HELD' and ExposedMembers.SPC_ExpeditionTrainingUIError~=nil and builds==1)""")
+ def test_native_replacement_before_confirmation_closes_quietly_and_reorders(self):
+  # B210: map-placement replacement bypasses the panel hook; Gameplay releases, UI stays silent.
+  self.check("""build=function(c,item)builds=builds+1
+     entries={{Directive=1,UnitType=100}};pulse();assert(state().trainingQueued)
+     entries={};pulse();assert(state().phase=='ENDED' and not marker)end
+   adapter=SPCExpeditionTrainingUI.New(P,send,notify,build)
+   adapter.Before(city,{Type=kind},false)
+   local n;for i=1,14 do adapter.Pulse();n=n or #sentPackets end
+   assert(builds==1 and #sentPackets==n and ExposedMembers.SPC_ExpeditionTrainingUIError==nil)
+   build=function(c,item)builds=builds+1;entries={{Directive=1,UnitType=100}}end
+   adapter=SPCExpeditionTrainingUI.New(P,send,notify,build)
+   assert(not adapter.Before(city,{Type=kind},false));adapter.Pulse();adapter.Pulse();adapter.Pulse()
+   assert(builds==2 and state().phase=='TRAINING' and state().trainingQueued)""")
  def test_double_click_reserves_once(self):
   self.check("adapter.Before(city,{Type=kind},false);adapter.Before(city,{Type=kind},false);assert(#sentPackets==1)")
  def test_other_unit_unaffected(self):self.check("assert(adapter.Before(city,{Type='UNIT_SPY'},false));assert(#sentPackets==0)")

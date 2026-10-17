@@ -157,10 +157,14 @@ function SPCExpeditionTraining.Start(P,shared)
     if not s.trainingQueued then T.Evidence(pid,s.trainingToken,'trainingQueued',true)end
     marker(c,true)
    elseif s.trainingQueued then
-    if recovery then error('TRAINING_LOADED_QUEUE_MISSING')end
-    -- Empty queue is not proof of cancellation; only explicit UI cancel
-    -- can release it. Keep the reservation through late event delivery.
-    marker(c,false)
+    -- B210 (user-approved): an empty queue alone is not cancellation, but an
+    -- empty queue with no birth/completion receipt and no Expedition unit on
+    -- the map means the order was removed or replaced natively (including map
+    -- placement paths that bypass the panel hook). A completed order would
+    -- already have its unit, so late events cannot be mistaken for removal.
+    if T.NoUnits(pid) then marker(c,false);T.Cancel(pid,s.trainingToken)
+    elseif recovery then error('TRAINING_LOADED_QUEUE_MISSING')
+    else marker(c,false)end
    elseif Game.GetCurrentGameTurn()>s.trainingTurn then
     error('TRAINING_ORDER_OUTCOME_UNKNOWN')
    end

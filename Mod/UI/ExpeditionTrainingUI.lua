@@ -118,11 +118,12 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
    end
   end
   if p.stage=='QUEUE' then
-   -- B209: an immediate native completion empties the queue before it can be
-   -- confirmed; Gameplay owns that receipt, so stop waiting without an error.
+   -- B209/B210: Gameplay already holds the queue evidence or a receipt, or the
+   -- reservation ended (immediate completion, native replacement); stop
+   -- waiting without an error instead of re-reading an emptied queue.
    local v=ExposedMembers.SPC_ExpeditionActivity
-   if v and v.trainingToken==p.reservation and (v.trainingReceipt or v.phase~='TRAINING') then
-    clear(p,v.phase=='HELD' and v.error or nil);return
+   if v and (v.trainingToken~=p.reservation or v.trainingQueued or v.trainingReceipt or v.phase~='TRAINING') then
+    clear(p,v.phase=='HELD' and v.trainingToken==p.reservation and v.error or nil);return
    end
   end
   if p.stage=='QUEUE' or p.stage=='CANCEL' then

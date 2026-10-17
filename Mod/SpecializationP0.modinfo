@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="236">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="237">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B209.236: Expedition marker support restored to 1; same-turn immediate native completion accepted as queue evidence (no HELD); B206 diagnostics unchanged.</Description>
+    <Description>B210.237: Expedition reservation released when the queued order is removed or replaced natively (empty queue, no receipt, no unit); B209 receipt rule and B206 diagnostics unchanged.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

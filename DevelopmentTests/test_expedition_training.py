@@ -74,8 +74,18 @@ class Training(unittest.TestCase):
         self.check("train('RESERVE','r');shared.ExpeditionTraining.Complete(2,1,0,100,true);assert(state().phase=='HELD')")
     def test_same_turn_second_birth_still_holds(self):
         self.check("train('RESERVE','r');complete();born();born(51);assert(state().phase=='HELD')")
-    def test_empty_queue_does_not_guess_cancellation(self):
-        self.check("reserve();queueCount=0;pulse();assert(state().phase=='TRAINING' and not marker);born();complete();pulse();assert(state().phase=='NAMING')")
+    def test_empty_queue_with_unit_present_waits_for_late_events(self):
+        # A completed order already has its unit; late events must not be mistaken for removal.
+        self.check("reserve();units[50]=unit(50,100,2,1,1);queueCount=0;pulse();assert(state().phase=='TRAINING' and not marker);born();complete();pulse();assert(state().phase=='NAMING')")
+    def test_native_replacement_releases_reservation(self):
+        # B210: queue emptied, no receipt, no Expedition unit on the map -> removed/replaced natively.
+        self.check("reserve();queueCount=0;pulse();assert(state().phase=='ENDED' and not marker and shared.ExpeditionGate.Training.Available(2));assert(train('RESERVE','again').reserved and marker and state().phase=='TRAINING')")
+    def test_native_replacement_never_releases_with_receipt(self):
+        self.check("reserve();born();queueCount=0;pulse();assert(state().phase=='TRAINING' and state().trainingBorn==50)")
+    def test_unconfirmed_empty_queue_is_not_release_evidence(self):
+        self.check("train('RESERVE','r');pulse();assert(state().phase=='TRAINING' and marker)")
+    def test_native_replacement_with_other_expedition_unit_holds_capacity(self):
+        self.check("reserve();units[60]=unit(60,100,2,5,5);queueCount=0;pulse();assert(state().phase=='TRAINING')")
     def test_explicit_cancel_releases_only_proven_empty(self):
         self.check("reserve();queueCount=0;assert(train('CANCEL','x').confirmed);assert(state().phase=='ENDED' and not marker and shared.ExpeditionGate.Training.Available(2))")
     def test_cancel_with_birth_holds(self):
@@ -101,8 +111,10 @@ class Training(unittest.TestCase):
         self.check("reserve();local n=storeWrites;SPCExpeditionSpyGate.Start(P,shared);SPCExpeditionTraining.Start(P,shared);shared.ExpeditionTraining.Pulse(2,true);assert(state().phase=='TRAINING' and storeWrites==n)")
     def test_load_half_receipt_held_never_adopted(self):
         self.check("reserve();born();SPCExpeditionSpyGate.Start(P,shared);assert(state().phase=='HELD' and state().unitID==nil)")
-    def test_load_missing_queue_held(self):
-        self.check("reserve();queueCount=0;shared.ExpeditionTraining.Pulse(2,true);assert(state().phase=='HELD')")
+    def test_load_missing_queue_with_unit_held(self):
+        self.check("reserve();units[50]=unit(50,100,2,1,1);queueCount=0;shared.ExpeditionTraining.Pulse(2,true);assert(state().phase=='HELD')")
+    def test_load_missing_queue_without_unit_released(self):
+        self.check("reserve();queueCount=0;shared.ExpeditionTraining.Pulse(2,true);assert(state().phase=='ENDED' and not marker)")
     def test_long_training_partial_receipt_waits_for_matching_event(self):
         self.check("reserve();currentTurn=currentTurn+20;born();queueCount=0;pulse();assert(state().phase=='TRAINING');complete();pulse();assert(state().phase=='NAMING')")
     def test_completed_queue_stale_read_waits_with_capacity_reserved(self):

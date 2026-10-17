@@ -52,7 +52,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
    teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,sleepConfirmed=state.sleepConfirmed==true,
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
    taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,error=state.stop,activityFailure=state.activityFailure,
-   trainingReceipt=state.phase=='TRAINING' and (state.trainingBorn~=nil or state.trainingCompleted==true) or nil}
+   trainingReceipt=state.phase=='TRAINING' and (state.trainingBorn~=nil or state.trainingCompleted==true) or nil,
+   trainingQueued=state.phase=='TRAINING' and state.trainingQueued==true or nil}
   v.locked=v.mode~='NONE'
   local changed=false
   for k,value in pairs(v)do if published[k]~=value then changed=true;break end end
@@ -526,6 +527,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
   assert(confirmed:GetX()==state.x and confirmed:GetY()==state.y,'TRAINING_BIRTH_ENDPOINT_CHANGED')
   publishActivity()
  end
+ -- B210: no Expedition-family unit exists for the player (live native read).
+ function T.NoUnits(pid)load(pid);return #list(pid)==0 end
  function T.Cancel(pid,token)
   assert(not storeBlocked and state.owner==pid and state.phase=='TRAINING' and state.trainingToken==token,'TRAINING_RESERVATION_CHANGED')
   assert(not state.trainingBorn and not state.trainingCompleted and #list(pid)==0,'TRAINING_OUTCOME_UNKNOWN')

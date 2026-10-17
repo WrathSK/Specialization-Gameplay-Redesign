@@ -486,3 +486,38 @@ Root cause in the old campaign remains INFERENCE. No repair authorized.
 **Deployment.** B209.236/modinfo236 is **DEVELOP_ACTIVE**, source `3060008723d527b6b50501275244f2011aaf27a2`, receipt `B209.236-3060008-playtest.json`. A fresh OS check confirmed game exit before both guarded switches: B208 restored to stable through its receipt, then B209 activated. 219/219 files MATCH, and there is no pending transaction.
 
 The first exit check reported a false "game running": its pattern also matched the Claude process, whose arguments contain the Civ VI directory path. The check now matches only the game executable (`Civ6.app/Contents`), and no package was touched while it reported running.
+
+## B209 user test failure — 2026-10-16 (USER_GAME_TEST_FAIL)
+
+**What the user ran.** B209.236 in the new campaign, city Stirling at turn 3 (session `…20261017T011932Z-b80b90`, screenshot archived under the Evidence path). The user ordered the 人文考察团 (Expedition), then switched production to an Industrial Zone, through map placement, to build up carried overflow, and purchased a building.
+
+**What happened.**
+- Reserve, marker and queue evidence were normal (seq7–14).
+- The district selection **replaced** the queued Expedition, and the queue read 0 (seq19).
+- Under the B202 rule ("empty queue is not cancellation"), Gameplay kept the reservation and removed the marker. The Expedition therefore disappeared from the production list, and the reservation could only be ended through P0.
+- The B202 replacement hook (`GetBuildInsertMode` → `CancelQueue`) lives only in the production panel; district map placement issues its operation from another context and bypasses it.
+- The P0 `TRAINING_NATIVE_QUEUE_UNCONFIRMED` came from the UI handshake re-reading the replaced queue. It was spurious, because Gameplay already held the queue evidence.
+- Population +1 ×3 was ordinary.
+
+## B210 native-removal release — 2026-10-16 (local)
+
+**Authorization.** The user approved the reviewed plan, including the contract change: an empty queue with no birth/completion receipt and no Expedition-family unit on the map counts as native removal or replacement.
+
+**Runtime change (B210.237 / modinfo237).**
+- **Training.** In `Mod/ExpeditionTraining.lua` Pulse, when TRAINING with queue evidence, an empty source queue, no receipt, and `T.NoUnits(pid)`, the marker is removed and `T.Cancel` releases the reservation to ENDED. Recovery uses the same rule. With any Expedition-family unit present, the old behaviour stays: keep the reservation live, HOLD `TRAINING_LOADED_QUEUE_MISSING` on recovery. A completed order already has its unit, so late completion events cannot be mistaken for removal.
+- **Gate.** In `Mod/ExpeditionSpyGate.lua`, `T.NoUnits(pid)` is a live read of Expedition-family units, and the published activity adds a scalar `trainingQueued`.
+- **Production UI.** In `Mod/UI/ExpeditionTrainingUI.lua`, a pending QUEUE handshake closes silently when Gameplay already has the queue evidence or a receipt, or the reservation ended or changed. A HELD error is still surfaced for the same reservation.
+- **Unchanged.** Cost formula, cap1, source binding, the B209 same-turn receipt rule, the marker lifecycle otherwise, and B206 diagnostics.
+
+**Local validation (L2).**
+- 6 new or updated tests cover:
+  - replacement releases, and reordering works afterwards;
+  - no release with a receipt;
+  - no release with another Expedition-family unit present;
+  - an unconfirmed empty queue is not release evidence;
+  - a late-event empty queue with the unit present waits;
+  - on load, a missing queue with a unit HOLDs and without one releases;
+  - the UI stays quiet after a native replacement.
+- The two tests that encoded the superseded rule were replaced by their approved forms.
+- Targeted gate SQL, training, training UI and trace integration: 117 PASS.
+- All `test_expedition_*` suites (725 tests): the failure set is identical to HEAD (the same 14 historical activity-diagnostic failures).

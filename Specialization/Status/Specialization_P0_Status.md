@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0561
-Implementation Build: source/live B209.236 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0562
+Implementation Build: source B210.237 (live B209.236 DEVELOP_ACTIVE until the authorized switch); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B209_DEPLOYED_AWAITING_USER_TEST
+Work State: B210_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B209 user test: USER_GAME_TEST_FAIL. B210 is locally complete and deployment is authorized.**
+- **Failure.** Replacing the queued 人文考察团 (Expedition) through district map placement bypassed the panel cancel hook. The reservation stayed TRAINING without its marker, so the Expedition vanished from the production list, and a spurious `TRAINING_NATIVE_QUEUE_UNCONFIRMED` appeared.
+- **B210 (user-approved).** An empty queue with no receipt and no Expedition-family unit on the map releases the reservation to ENDED, both live and on recovery. The UI closes such handshakes silently.
+- **Unchanged.** Cap1, cost and source binding.
+- **L2.** 117 targeted PASS. The Expedition-suite failure set is identical to HEAD.
+
+The B209 overflow test was not reached. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b210-native-removal-release--2026-10-16-local).
 
 **B209 is deployed: B209.236 DEVELOP_ACTIVE, source `3060008`, receipt `B209.236-3060008-playtest.json`, 219/219 MATCH; no pending transaction.**
 - The marker support is back to 1, as in Design.
