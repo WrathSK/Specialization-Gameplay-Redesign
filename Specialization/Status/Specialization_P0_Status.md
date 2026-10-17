@@ -1,22 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0603
+Status Revision: S0604
 Implementation Build: source/live B226.253 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B226_DEPLOYED_AWAITING_COMBINED_NATIVE
+Work State: B226_NATIVE_PARTIAL_EXPEDITION_ADVISOR_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B226 Culture Network implemented; combined B225+B226 native gate pending.** [Result, exact retirement and one test session](Validation/Results/Specialization_B226_Culture_Network.md).
-- **Source/live B226.253 / modinfo253**, source `fee812f`, receipt `B226.253-fee812f-playtest.json`,226/226 MATCH. **670 targeted local tests PASS**; native pending. Main stable B069.96; configuration/GC unchanged.
-- **Network:** each Culture ACTIVE IV source independently supplies complete three-category civilization sets; receivers union/deduplicate them. Native matching working specialists receive +1 Culture per complete civilization. Receiver Identity has no additional ACTIVE gate. No received history or recursive propagation.
-- **Exact cutover:** old Culture Eureka normal/TEST generation and1,126 native/HD attachments retired;563 old buildings remain cleanup-only. Research formula, SQL attachments and tests remain separate and unchanged in behavior.
-- **State/update:** existing city history and topology authorities reused; no new permanent field or timer. Source history changes update dependent receivers without route changes; confirmed loss withdraws, UNKNOWN protects, Return waits for committed facts. Existing **文化见闻** provides selected-city network summary/logs.
-- **Pending/authorization:** B225 task/release/city-WORKS/sale checks are explicitly merged, not passed. B226 local checks and guarded deployment complete; next action is the [N3 slice](../Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出) combined session then evidence review. Reattachment, era UI, site movement and unrelated audit work remain held.
+**B226 native partial: Great Work refresh accepted; Expedition task startup failed.** [Evidence and open-topic Advisor handoff](Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md).
+- **Source/live B226.253 / modinfo253** unchanged: source `fee812f`, receipt `B226.253-fee812f-playtest.json`,226/226 MATCH from the previous verified deployment. **670 targeted local PASS** remain scoped; main stable B069.96, configuration/GC unchanged.
+- **Observed:** two WORKS requests reach confirmed TASK_PREPARING without a task clock; no Activity evaluation/ACK is captured. Do not label this another proven native SLEEP denial. Great Work refresh PASS is the user's scoped confirmation.
+- **Pending:** Culture Network native specialist yield/ACTIVE-source withdrawal and remaining B225 mission/release boundaries are not passed. [B226 implementation/cutover](Validation/Results/Specialization_B226_Culture_Network.md) retains independent source3/3, receiver union, exact old Culture retirement and unchanged Research.
+- **Authorized next:** existing Claude Advisor independently investigates the Expedition lifecycle, following relevant source/history/external dependencies; seeds are not a file whitelist or a required theory. No new repair, deployment or user blind test. Reattachment, era UI, site movement and unrelated audit work remain held.
+
+## S0604 — B226 partial native result / Advisor commission
+
+Latest ignored collector session `session-20261017T233523Z-64ba2a`:36 unique records/21 Gate prints; old and newly trained/arrived teams stall at accepted WORKS preparation, without captured Activity evaluation or ACK. [Review/handoff](Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md) preserves hashes, chronology, prior successes/failures and uncertainty. User accepts Great Work refresh and requests independent Advisor investigation, without constraining its relevant directions. Network native arithmetic remains pending. Documentation only; no implementation, tests, configuration, runtime/main or frozen evidence change.
 
 ## S0603 — B226 verified deployment
 
