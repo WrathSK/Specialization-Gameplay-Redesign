@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0600",
+    "status": "S0601",
     "runtime": "B225.252 / modinfo252",
     "military": "D0037",
     "harbor": "D0037",
@@ -803,8 +803,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-    "source": "B225.252/modinfo252 LOCAL_COMPLETE;617 targeted tests PASS. Source commit follows final integrity/publication review. Last verified live B224.251 until the guarded deployment.",
+    "source": "B225.252/modinfo252 DEVELOP_ACTIVE; source 9a732087d71f6130db876d9c74a7f8350a588e13; receipt B225.252-9a73208-playtest.json;224/224 MATCH, digest 10a72d37e04ff43740a27911064f7f6ed459e9ea11880cb6e535bad28fb14634. Fresh automatic OS exit before both receipt/hash-guarded B224/stable/B225 switches; recovery retained, no pending transaction.",
     "native": "B225 pending; original B224 task/sale failures retained. No native PASS from local simulation.",
-    "stop": "One combined B225 native session after verified deployment; no new timer, permanent field, capacity/source/GC change, N3 or unrelated batch."
+    "stop": "B225 deployed after617 targeted local PASS; one combined native session pending. No new timer, permanent field, capacity/source/GC change, N3 or unrelated batch."
   }
 }

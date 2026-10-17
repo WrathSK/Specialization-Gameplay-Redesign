@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0600
-Implementation Build: source B225.252 LOCAL_COMPLETE; live B224.251; stable B069.96
+Status Revision: S0601
+Implementation Build: source/live B225.252 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B225_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B225_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B225 implemented; native verification pending.** [Scheduling/release, city-level WORKS and sale-refresh result](Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md).
-- **Source B225.252 / modinfo252**, 617 targeted local tests PASS; native pending. **Live remains last verified B224.251**, source `ceb883b`, receipt `B224.251-ceb883b-playtest.json`,224/224 MATCH until the guarded B225 deployment completes. Main stable B069.96; configuration/GC unchanged.
+- **Source/live B225.252 / modinfo252**, source `9a73208`, receipt `B225.252-9a73208-playtest.json`,224/224 MATCH. **617 targeted local tests PASS**; native pending. Main stable B069.96; configuration/GC unchanged.
 - **Task boundary:** native-event callbacks request one deferred UI refresh; SLEEP and WAKE observations advance only at a later refresh. No new timer, forced native permission, movement reset or indefinite admission retry. Pre-existing manual sleep now permits verified logical completion without automatic Wake; individual completed categories remain unavailable.
 - **Accepted D0051 implemented:** WORKS depends on current eligible-work existence in the target city, not a specific work/slot/building. Confirmed empty cancels; UNKNOWN protects. PLACES retains its selected-Wonder contract. Capacity, source binding and saved schema remain unchanged.
 - **Shared current facts:** DiplomacyDealEnacted now invalidates the existing local collection for same-turn sale refresh; explicit EMPTY/count0 and all three Culture consumers retain their evidence boundary. Prior user acceptance of source-city Insight Tourism/Floor/isolation and Aesthetic turn-sync/recovery is inherited; the new sale path awaits native verification.
-- **Authorization / stop:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B225 is explicitly authorized through local verification and guarded deployment. Next allowed action is its one combined native session, then evidence review. Reattachment/N3/unrelated audit repairs remain held.
+- **Authorization / stop:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B225 local checks and guarded deployment are complete. Next allowed action is its one combined native session, then evidence review. Reattachment/N3/unrelated audit repairs remain held.
+
+## S0601 — B225 deployment checkpoint
+
+Verified clean/pushed `9a73208`, automatic game exit at both guarded switches, exact receipt-bound B224/stable/B225 hashes and224/224 source/runtime equality. Receipt `B225.252-9a73208-playtest.json`; recovery retained, no pending transaction. Deployment metadata only; native acceptance pending and no config/main/game launch.
 
 ## S0600 — B225 common task lifecycle and city facts
 

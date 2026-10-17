@@ -47,4 +47,4 @@ Stop on an admission/cleanup failure and provide that collector session; do not 
 
 ## Delivery and stop point
 
-Source B225.252 is locally complete; verified deployment metadata is recorded after the guarded switch. User decision: none. User testing: the combined differential session above. Primary next: review B225 evidence; no N3, reattachment or unrelated repair is authorized by this batch.
+B225.252 deployed from `9a73208` after clean/pushed source verification and fresh automatic OS exit checks before both guarded switches. Receipt `B225.252-9a73208-playtest.json`; **224/224 MATCH**, source/runtime digest `10a72d37e04ff43740a27911064f7f6ed459e9ea11880cb6e535bad28fb14634`. B224 and stable recovery retained; no pending transaction, configuration change, main promotion or game launch. Deployment integrity is not native acceptance. User decision: none. User testing: the combined differential session above. Primary next: review B225 evidence; no N3, reattachment or unrelated repair is authorized by this batch.
