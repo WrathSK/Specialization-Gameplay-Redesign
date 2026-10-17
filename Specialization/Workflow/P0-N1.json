@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0578",
+    "status": "S0579",
     "runtime": "B216.243 / modinfo243",
     "military": "D0037",
     "harbor": "D0037",
@@ -681,7 +681,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
-    "source": "B216.243 locally complete; live B215.242 pending guarded switch.",
+    "source": "B216.243/modinfo243 DEVELOP_ACTIVE; source 3aff99b6305e32ca594179ce3db9d8bce8024a14; receipt B216.243-3aff99b-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B215/stable recovery retained, no pending transaction. Configuration unchanged.",
     "native": "B215 user-reported PASS; B214 PEOPLE accepted; B216 pressure/combined travel-save pending, WORKS/PLACES deferred.",
     "stop": "No N3/reattachment/next-batch implementation; native result does not follow from configured percentage."
   }

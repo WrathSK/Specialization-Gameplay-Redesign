@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "93fa70551f3d2a120c6f083085cc79d9330efabd",
-  "runtime": "B215.242/modinfo242 DEVELOP_ACTIVE; source 93fa70551f3d2a120c6f083085cc79d9330efabd; receipt B215.242-93fa705-playtest.json;219/219 MATCH. Fresh automatic OS exit checks before both guarded switches; B214/stable recovery retained, no pending transaction. Config unchanged.",
+  "runtime_commit": "3aff99b6305e32ca594179ce3db9d8bce8024a14",
+  "runtime": "B216.243/modinfo243 DEVELOP_ACTIVE; source 3aff99b6305e32ca594179ce3db9d8bce8024a14; receipt B216.243-3aff99b-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B215/stable recovery retained, no pending transaction. Configuration unchanged.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

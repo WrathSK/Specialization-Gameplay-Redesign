@@ -1,6 +1,6 @@
 # B216 — City Insight Tourism
 
-State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source B216.243; live B215.242 until a verified deployment record is appended. The user accepted B215 and authorized the next proposed local Tourism slice. N3 and source reattachment remain separate.
+State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source/live B216.243; deployment verified below. The user accepted B215 and authorized the next proposed local Tourism slice. N3 and source reattachment remain separate.
 
 ## B215 acceptance and deferred evidence
 
@@ -39,4 +39,6 @@ Context/schema/hash/selector and helper self-test PASS;371 changed-document link
 
 ## Deployment
 
-Pending automatic game-exit verification and existing guarded receipt transaction. No game configuration changes.
+B216.243/modinfo243 DEVELOP_ACTIVE; source 3aff99b6305e32ca594179ce3db9d8bce8024a14; receipt B216.243-3aff99b-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B215/stable recovery retained, no pending transaction. Configuration unchanged.
+
+Source/runtime digest: `d6434d3603013ed97ad13df3ca3f938f7fbce8320b415ce64729475b92f2aab5`. Staged publication check PASS. No native test or game launch performed.
