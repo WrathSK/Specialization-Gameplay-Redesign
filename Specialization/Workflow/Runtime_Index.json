@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "8ab13e478de1d724649a3adac8861267b37e496d80eb941293edb324bbcf369c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
-      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+      "sha256": "3bb6eab3462b6acbf6c2e5acb763b7915cdee50396e30b9e20914dc52b70d853",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
+      "provenance": "B217 event-only initial placement agreement; exact protections and existing native activity handling retained;191 local checks PASS, native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "88d2d3cdf18b51d73158d7b3b2a3c3b365633fc3e637f593c4e704cce3b6e869",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
-      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+      "sha256": "5dc315df15152f0ff66a129622af3e6d5b0c92f75795025fdcc908d11d765877",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
+      "provenance": "B217 event-only initial placement agreement; exact protections and existing native activity handling retained;191 local checks PASS, native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1061,9 +1061,9 @@
       "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "5d40a80ae888dc3f4e5a31fda91b15820bfe6575f6b596ab6f1e3ea0b4760f20",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
-      "provenance": "B201 approved bounded Expedition persistence/load recovery and durable ARM protocol; direct targeted local tests and independent review. Inherited B200 UI; native combined gate pending. Design/general Store/GC/main/tools unchanged."
+      "sha256": "c071b52efce0f8569c51adcd8f0fc7849e6d67d7e1c7c64a4a639c063e42d973",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
+      "provenance": "B217 event-only initial placement agreement; exact protections and existing native activity handling retained;191 local checks PASS, native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",

@@ -6,12 +6,13 @@ local KIND='UNIT_SPC_EXPEDITION_SPY'
 local initialized=false;local stopped=false;local busy=false;local queued=false;local queuedMonitor=false
 local job;local seen={};local lastRevision
 local pump
+local watch
 local function detail(err)return tostring(err):gsub('[%c]',' '):sub(1,180)end
 local function view()return ExposedMembers and ExposedMembers.SPC_ExpeditionActivity end
 local function integer(v)return type(v)=='number' and v>=0 and v%1==0 end
 local function same(v,n)
  return v and v.owner==n.owner and v.unitID==n.unitID and v.activityKey==n.activityKey
-  and v.teamKey==n.teamKey and v.mode==n.mode and v.expectedName==n.expectedName
+  and v.teamKey==n.teamKey and v.mode==n.mode and v.phase==n.phase and v.expectedName==n.expectedName
   and v.x==n.x and v.y==n.y and (v.owned==true)==n.publishedOwned
   and (v.releasePending==true)==n.releasePending
 end
@@ -26,6 +27,13 @@ local function supported(v)
   and type(v.expectedName)=='string' and #v.expectedName>0
   and integer(v.x) and integer(v.y)
 end
+-- B217: initial placement visibility is event-driven; no timer/polling until position agrees.
+local function positionDetail(n)
+ return 'expected='..tostring(n.x)..','..tostring(n.y)..' actual='..tostring(n.actualX)..','..tostring(n.actualY)
+end
+local function positionLog(n,status)
+ print('[SPC][B191][N1_TASK] position='..status..' owner='..n.owner..' unit='..n.unitID..' key='..n.activityKey..' phase='..tostring(n.phase)..' '..positionDetail(n))
+end
 local function read(n)
  assert(Game.GetLocalPlayer()==n.owner and P.IsTestPlayer(n.owner),'ACTIVITY_LOCAL_OWNER_CHANGED')
  local p=Players[n.owner];assert(p and p.GetUnits,'ACTIVITY_PLAYER_UNREADABLE')
@@ -34,8 +42,20 @@ local function read(n)
  local row=GameInfo.Units[u:GetUnitType()]
  assert(row and row.UnitType==KIND,'ACTIVITY_UNIT_TYPE_CHANGED')
  assert(type(u.GetName)=='function' and u:GetName()==n.expectedName,'ACTIVITY_NAME_CHANGED')
- assert(u:GetX()==n.x and u:GetY()==n.y,'ACTIVITY_POSITION_CHANGED')
  assert(type(u.GetSpyOperation)=='function' and u:GetSpyOperation()==-1,'ACTIVITY_NATIVE_MISSION_OR_UNREADABLE')
+ n.actualX=u:GetX();n.actualY=u:GetY()
+ assert(integer(n.actualX) and integer(n.actualY),'ACTIVITY_POSITION_UNREADABLE')
+ if n.actualX~=n.x or n.actualY~=n.y then
+  local initial=n.mode=='SLEEP' and n.phase=='TASK_PREPARING' and not n.owned and not n.requested
+   and seen.key==n.activityKey and not seen.attempted and not seen.positionReady and same(view(),n)
+  if initial then
+   if not n.positionPending then n.positionPending=true;positionLog(n,'WAITING')end
+   return nil -- Only native publications/movement events can resume; no SLEEP/ACK/timer.
+  end
+  positionLog(n,'REJECTED');error('ACTIVITY_POSITION_CHANGED '..positionDetail(n),0)
+ end
+ if n.positionPending then n.positionPending=false;positionLog(n,'CONVERGED')end
+ if seen.key==n.activityKey then seen.positionReady=true end
  assert(UnitManager and type(UnitManager.GetActivityType)=='function' and ActivityTypes,'ACTIVITY_READER_UNAVAILABLE')
  local activity=UnitManager.GetActivityType(u)
  assert(activity~=nil,'ACTIVITY_UNREADABLE')
@@ -156,6 +176,8 @@ end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
  if not ok then fail(n,u);return end
+ if not u then return end -- Initial placement still invisible in this UI context.
+ if job==n and not n.watching then watch(n)end -- Existing native-activity handling starts only after agreement.
  if n.mode=='ASLEEP' then
   if activity~=ActivityTypes.ACTIVITY_SLEEP then fail(n,'ACTIVITY_UNEXPECTED_WAKE')end
   return
@@ -243,12 +265,8 @@ local function evaluate(n)
  if (n.mode=='SLEEP' or n.mode=='ARMED') and after==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP')
  elseif n.mode=='RELEASE' and (after==ActivityTypes.ACTIVITY_AWAKE or after==ActivityTypes.ACTIVITY_HOLD)then acknowledge(n,'RELEASED')end
 end
-local function start(v)
- local n={revision=v.revision,owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,
-  x=v.x,y=v.y,teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,
-  owned=v.owned==true or (v.mode~='RECOVER' and v.releasePending==true and seen.attempted==true),
-  publishedOwned=v.owned==true,releasePending=v.releasePending==true,elapsed=0,poll=0}
- job=n
+watch=function(n)
+ n.watching=true
  ContextPtr:SetUpdate(function(dt)
   if stopped or job~=n then return end
   n.elapsed=n.elapsed+dt;n.poll=n.poll+dt
@@ -262,6 +280,15 @@ local function start(v)
    fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT')
   end
  end)
+end
+local function start(v)
+ local n={revision=v.revision,owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,
+  x=v.x,y=v.y,teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,phase=v.phase,
+  owned=v.owned==true or (v.mode~='RECOVER' and v.releasePending==true and seen.attempted==true),
+  publishedOwned=v.owned==true,releasePending=v.releasePending==true,elapsed=0,poll=0}
+ job=n
+ if n.mode~='SLEEP' or n.phase~='TASK_PREPARING' or n.owned or seen.attempted or seen.positionReady then watch(n)end
+
  return n
 end
 local function refresh(monitor)
@@ -278,7 +305,7 @@ local function refresh(monitor)
   cancel()
   if monitor and not seen.monitor then
    evaluate({owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,x=v.x,y=v.y,
-    teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,owned=v.owned==true,
+    teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,phase=v.phase,owned=v.owned==true,
     publishedOwned=v.owned==true,releasePending=v.releasePending==true})
   end
   return
@@ -311,7 +338,15 @@ local function activityChanged(pid,id)
  local v=view()
  if supported(v) and pid==v.owner and id==v.unitID then pump(true)end
 end
-local function turn()pump(true)end
+local function turn()
+ -- Re-read at the player-turn event; unresolved placement cannot silently carry on.
+ -- This is a lifecycle event boundary, not an elapsed-time or event-count timeout.
+ pump(true)
+ local n=job
+ if n and n.positionPending and same(view(),n)then
+  positionLog(n,'TURN_BOUNDARY_STOP');fail(n,'ACTIVITY_POSITION_UNCONFIRMED_AT_TURN '..positionDetail(n));return
+ end
+end
 local function initialize()
  if initialized then return end
  initialized=true;stopped=false
@@ -320,6 +355,7 @@ local function initialize()
  Events.GameCoreEventPublishComplete.Add(published)
  Events.LocalPlayerTurnBegin.Add(turn)
  if Events.UnitActivityChanged then Events.UnitActivityChanged.Add(activityChanged)end
+ if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(activityChanged)end
  pump(true)
 end
 ContextPtr:SetInitHandler(initialize)
@@ -331,6 +367,7 @@ ContextPtr:SetShutdown(function()
   Events.GameCoreEventPublishComplete.Remove(published)
   Events.LocalPlayerTurnBegin.Remove(turn)
   if Events.UnitActivityChanged then Events.UnitActivityChanged.Remove(activityChanged)end
+  if Events.UnitMoveComplete then Events.UnitMoveComplete.Remove(activityChanged)end
  end
  initialized=false
 end)

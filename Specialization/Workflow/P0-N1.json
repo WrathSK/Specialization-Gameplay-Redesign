@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0580",
-    "runtime": "B216.243 / modinfo243",
+    "status": "S0581",
+    "runtime": "B217.244 / modinfo244",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B216 approved local Insight Tourism projection using existing city history and Film Studio primitive; locally complete, native pressure evidence pending. B215 user-reported PASS; travelling save joins next test.",
+  "goal": "B217 approved event-driven initial position confirmation; no initial-position timer/polling. Exact protections retained; one PLACES native retry pending.",
   "implementation_authorized": true,
   "context": [
     {
@@ -472,6 +472,11 @@
       "path": "DevelopmentTests/test_culture_insights_tourism.py",
       "kind": "full",
       "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_position_wait.py",
+      "kind": "full",
+      "reason": "Direct B217 event-only position convergence, protection, collector and Gate/UI isolation tests."
     }
   ],
   "dependencies": [
@@ -668,21 +673,21 @@
     }
   ],
   "non_scope": [
-    "No N3 Network rewards, reattachment, new profession, native Spy-slot isolation, general Store rewrite, GC/cost/capacity change, old-campaign corruption repair, main/configuration/game launch. B216 changes only accepted local Insight Tourism and direct projection dependencies."
+    "No N3, reattachment, new profession, native Spy-slot isolation, Store/schema rewrite, GC/cost/capacity/binding or Tourism changes. B217 only repairs initial placement visibility and preserves later activity protections. No configuration, main or game launch."
   ],
   "validation": {
     "depth": "Direct actual-module/Gate/task/report/idle and in-memory configured DB closure; no full gameplay/stress.",
-    "local": "123 targeted tests PASS; context/link/publication checks before commit.",
-    "user": "PLACES preparation FAIL; native wonder +4% tooltip confirmed; rounding/settlement and dynamic update unknown/deferred; WORKS untested."
+    "local": "191 actual-module activity/position/Gate/package tests PASS; context/link/publication checks before commit.",
+    "user": "B217 initial position repair pending one PLACES retry. B216 PLACES preparation FAIL; +4% wonder tooltip confirmed, rounding/dynamic updates deferred; WORKS untested."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B216_Native_Review.md",
-    "source": "B216.243/modinfo243 DEVELOP_ACTIVE; source 3aff99b6305e32ca594179ce3db9d8bce8024a14; receipt B216.243-3aff99b-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B215/stable recovery retained, no pending transaction. Configuration unchanged.",
-    "native": "PLACES preparation FAIL; native wonder +4% tooltip confirmed; rounding/settlement and dynamic update unknown/deferred; WORKS untested.",
-    "stop": "Await narrow placement/activity repair approval; no rounding/performance/N3 implementation."
+    "report": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
+    "source": "B217.244 local complete; live B216.243 pending guarded switch.",
+    "native": "B217 initial position repair pending one PLACES retry. B216 PLACES preparation FAIL; +4% wonder tooltip confirmed, rounding/dynamic updates deferred; WORKS untested.",
+    "stop": "One native PLACES retry; no new implementation batch, Tourism rounding/performance or N3."
   }
 }

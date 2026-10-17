@@ -15,7 +15,7 @@ def bridge():
       ExposedMembers={};turn=81;localOwner=2;packets={};allRequests={};arms=0;sleepCalls=0;wakeCalls=0;changed=0
       function event()local e={listeners={}};function e.Add(f)e.listeners[f]=true end;function e.Remove(f)e.listeners[f]=nil end
        return setmetatable(e,{__call=function(self,...)for f in pairs(self.listeners)do f(...)end end})end
-      Events={GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),LocalPlayerTurnBegin=event()}
+      Events={GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),UnitMoveComplete=event(),LocalPlayerTurnBegin=event()}
       LuaEvents={SPC_ExpeditionActivityChanged=event()};LuaEvents.SPC_ExpeditionActivityChanged.Add(function()changed=changed+1 end)
       ContextPtr={SetInitHandler=function(self,f)init=f end,SetShutdown=function(self,f)shutdown=f end,
        SetUpdate=function(self,f)update=f end,ClearUpdate=function()update=nil end}
@@ -116,7 +116,7 @@ class ActivityBridge(unittest.TestCase):
     def test_wrong_identity_or_native_mission_never_writes(self):
         for change in ["units[41]=nil", "units[41].id=99", "units[41].owner=3", "units[41].kind=2", "units[41].name='other'", "units[41].x=16", "units[41].spy=9", "units[41].GetSpyOperation=nil", "readThrow=true"]:
             with self.subTest(change=change):
-                l=bridge();l.execute(change+";publish('SLEEP');assert(sleepCalls==0 and wakeCalls==0 and #packets==1 and packets[1].Result=='FAILED' and not packets[1].Owned and update==nil)")
+                l=bridge();l.execute(change+";publish('SLEEP');"+("assert(#packets==0 and not update);Events.LocalPlayerTurnBegin();" if change=="units[41].x=16" else "")+"assert(sleepCalls==0 and wakeCalls==0 and #packets==1 and packets[1].Result=='FAILED' and not packets[1].Owned and update==nil)")
 
     def test_release_unknown_or_wrong_unit_does_not_wake(self):
         for change in ["units[41].owner=3", "units[41].spy=9", "units[41].name='other'", "units[41].activity=3"]:

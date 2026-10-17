@@ -96,7 +96,7 @@ class ActivityDiagnostic(unittest.TestCase):
         for change in ["units[41]=nil", "units[41].id=99", "units[41].owner=3", "units[41].kind=2", "units[41].name='other'", "units[41].x=16", "units[41].spy=9", "readThrow=true"]:
             with self.subTest(change=change):
                 l=diagnostic_bridge()
-                l.execute(change+";publish('SLEEP');assert(diag()==nil and sleepChecks==0 and readinessReads==0 and endTurnReads==0 and sleepCalls==0 and wakeCalls==0 and #packets==1 and packets[1].Result=='FAILED')")
+                l.execute(change+";publish('SLEEP');"+("assert(#packets==0 and diag()==nil and sleepChecks==0 and not update);Events.LocalPlayerTurnBegin();" if change=="units[41].x=16" else "")+"assert(diag()==nil and sleepChecks==0 and readinessReads==0 and endTurnReads==0 and sleepCalls==0 and wakeCalls==0 and #packets==1 and packets[1].Result=='FAILED')")
 
     def test_normal_task_keeps_exact_writer_and_ack_behavior(self):
         l=diagnostic_bridge()
