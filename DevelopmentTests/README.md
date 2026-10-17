@@ -64,3 +64,12 @@ Run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_arch_v2_d2.py` with
 `test_b051_all_districts.py` wraps `test_b051_background_fix.py` and `test_b051_copy_yields.py` with the historical version67 stamp. It is not today's default test entry; do not invoke old wrappers against a new version assuming compatibility. Seven byte-comparison baselines remain in `Fixtures/B051-before-copy/`, with provenance/hash; no DevelopmentBackups dependency for that historical wrapper. Historical tests and assertions are retained, not rewritten to make an all-history run green.
 
 Missing dependencies are reported as NOT_RUN with the reason, never as PASS. External DB-dependent paths require the configured database; Git-baseline tests require their exact commits locally; Lupa-dependent tests require lua55. Do not weaken assertions or fetch/copy game assets to hide an unavailable prerequisite. Local simulation never certifies native engine behavior.
+
+## Expedition suites (B202–B212 local environment)
+
+The validated local interpreter is `/opt/homebrew/bin/python3.14` with Lupa 2.8 installed at `PYTHONPATH=/tmp/spc-b205-py314`. That path is under `/tmp` and may vanish on reboot; if it does, reinstall Lupa 2.8 (lua55) there or elsewhere. The system `python3` (3.10) has no Lupa. Run from `DevelopmentTests` with `SPC_DEBUG_GAMEPLAY_DB` set (read-only external DB):
+
+`python3.14 -m unittest $(ls test_expedition_*.py | sed 's/\.py$//') test_dialogue_projects test_store_write_boundaries`
+
+At S0567 this gave 783 PASS. Several legacy script-style suites (e.g. `test_b100`–`test_b127`, `test_b130`–`b133`, `test_b137`, `test_b144`, `test_p0_e2*`) already fail at HEAD; they were unchanged by B212. Compare against HEAD in a temporary detached worktree before attributing a failure.
+

@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0568
+Status Revision: S0569
 Implementation Build: source/live B212.239 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
@@ -10,6 +10,24 @@ Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCE
 Work State: B212_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
+
+**Role-switch checkpoint (2026-10-16, prepared by the Claude Primary session at the user's request).** Durable state for the next session:
+- **Git.** develop is clean and pushed. main = B069.96 (stable), untouched.
+- **Live.** B212.239 DEVELOP_ACTIVE, source `05970d0`, receipt `B212.239-05970d0-playtest.json`, 219/219 MATCH, no pending transaction.
+- **Awaiting the user test, B212 (new campaign = test base):** 风土考察 end to end. Check that the unit returns to the centre, Insights = 1 and the category shows completed. Then check repeat rejection, plus 艺文采撷/奇观巡礼 and unrevealed-target entry when targets exist. Native risks: `PlaceUnit` onto foreign district/wonder plots; Gameplay great-work slot reads; entry-city relocation. Run the collector with `--idle-exit 300`; it now records Gate dispatch/task lines.
+- **Next in order (after B212 passes).**
+  1. B213 whole-city Tourism (+2%×effective Insights; native interface to investigate first).
+  2. N3 Culture Network.
+  3. v0.1 close-out: deferred reattachment; removal of the B205/B206 training diagnostics.
+  - Commerce D0050 is Design-only; no implementation authorized.
+- **Standing user decisions** recorded in their formal sources:
+  - save scope (Playtest Workflow);
+  - Chinese conversation / English written artifacts (Workflow language convention);
+  - EnableTuner stays 1 (tools README);
+  - Standard speed only and reattachment deferred (P0_N_Expedition);
+  - old-campaign faults closed.
+- **Operational notes:** develop switch sequence and game-exit pattern in [tools README](../../tools/README.md#develop-switch-sequence-w0003-as-used-b205b212); test environment and legacy failing suites in [DevelopmentTests README](../../DevelopmentTests/README.md#expedition-suites-b202b212-local-environment).
+- **Role assignment** (W0005 table) changes only by explicit user instruction. The incoming session resolves its role under R9 before writing.
 
 **Design D0050 (Commerce) has been synchronized from the user's 2026-10-16 Design Talk handoff and pricing clarification. This is Design-only: no Gameplay, SQL, Lua, test or runtime change, and no implementation authorized.**
 - Commercialization: K=0.05 on the highest eligible total city domain yield.

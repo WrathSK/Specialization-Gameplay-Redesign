@@ -30,6 +30,17 @@ Stable-only gate: apply requires explicit user-approved current-playtest update 
 
 `temporary_playtest.py activate|restore` is a separate, check-only-by-default entry. It requires explicit hashes/config/stable-root/receipt; `--apply --authorize-temporary-switch --confirmed-game-exited` is only used after user authorizes that switch. Never call from normal builds/tests. See Architecture/Playtest_Workflow.md W0002. Ordinary deploy.py remains stable/main only.
 
+### Develop switch sequence (W0003, as used B205–B212)
+
+The tool only switches stable→develop. Each new develop build is therefore two guarded steps, with no game launch in between:
+
+1. **Game-exit check.** Match only the game executable: `pgrep -f 'Civ6.app/Contents'`. A broader pattern such as `Sid Meier` also matches the Claude/agent process, whose arguments contain the Civ VI directory, and falsely reports the game as running.
+2. **Restore stable.** Run `restore` with the **previous** develop receipt (`SpecializationDeploymentBackups/<Bxxx.vvv>-<sha7>-playtest.json`), passing `--expected-source <receipt stable_hash> --expected-runtime <receipt develop_hash>`. Run check-only first; the hashes must equal the receipt.
+3. **Activate develop.** Run `activate` with a **new** receipt named `<Bnew.vnew>-<sha7>-playtest.json` on clean committed develop, passing `--expected-source <check-only source_hash> --expected-runtime <stable_hash>`.
+4. **Verify.** Run `deploy.py --config <main checkout local/config.json>` (read-only). It must report `identical: true` and 219 files, with no `.specialization-deploy-pending.json`. Then record the version, source commit, receipt and MATCH in Status, Authority, Runtime_Index and the result.
+
+The config lives in the main checkout's ignored `local/config.json` (the develop worktree has none). Under zsh, unquoted variables do not word-split: pass hashes literally, or drive loops from Python.
+
 ## External runtime monitor (no deployment)
 
 [Optional macOS monitor](external_monitor/README.md) runs only when the user starts it. Independent bounded process-resource logs; no Mod/package dependency, no game launch/injection. Current game is not auto-attached by setup.
@@ -87,6 +98,8 @@ It does not enable Tuner, launch the game, select arbitrary Lua/context/host or 
 - It deduplicates records and writes `local/diagnostics/B205/session-*/` (`records.log`, `events.jsonl`, `summary.txt`).
 - It flags population changes per city and native/definition cost mismatches.
 - It stops after the game has been gone for `--idle-exit` seconds (default 30), on Ctrl-C/SIGTERM, or at a 12-hour cap.
+- During an in-game reload the Tuner socket **refuses** connections for about 2–3 minutes, which looks the same as a game exit. For multi-load sessions use `--idle-exit 300` and stop with Ctrl-C; the summary is still written.
+- B212: it also records the Expedition Gate's `[SPC][B191][N1_*]` prints (dispatch, task, completion, cancellation, return) as `gate` lines.
 - It sends no gameplay command and changes no configuration.
 
 Tuner policy (user decision, 2026-10-16): during development `EnableTuner` stays 1 and the user toggles it from the terminal with the game closed. `AppOptions.txt` uses CRLF line endings, so a sed pattern must include `\r`. Primary does not restore it after sessions. From repository root:
