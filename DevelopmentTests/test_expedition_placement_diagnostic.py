@@ -1,4 +1,4 @@
-"""B218 actual Gameplay Gate; diagnostic observations never repair a task."""
+"""B220 retained entry-city placement diagnostics; mission-site movement is deferred."""
 import sys
 import unittest
 from pathlib import Path
@@ -13,7 +13,16 @@ class PlacementDiagnostic(unittest.TestCase):
         l.execute("""
          Events.UnitMoveComplete={Add=function(fn)movementEvent=fn end}
          SPCExpeditionSpyGate.Start(P,shared)
-         req('CREATE','a');nativeDispatch('b');arrival(41,true,false)
+         targetCity.y=9
+         entryCity={id=11,owner=3,x=15,y=8}
+         for k,v in pairs(targetCity)do if type(v)=='function'then entryCity[k]=v end end
+         targetCities.Members=function()local a={targetCity,entryCity};local i=0;return function()i=i+1;if a[i]then return i,a[i]end end end
+         PlayersVisibility={[2]={IsRevealed=function(self,x,y)return y~=9 end}}
+         req('CREATE','a');nativeDispatch('b',{TargetY=9,EntryX=15,EntryY=8})
+         function entryArrival()
+          local old=units[40];local u=unit(41,100,2,15,8);u.name=old.name
+          units[40]=nil;units[41]=u;currentTurn=83;ownTurn(2);return req('READ','arrival')
+         end
         """)
         l.execute(MISSION_FIXTURE)
         lines=[];l.globals().print=lines.append
@@ -23,8 +32,8 @@ class PlacementDiagnostic(unittest.TestCase):
         l,lines=self.ready()
         l.execute("""
          foreignUnits[7]=unit(7,101,3,15,9);placeNoop=true
-         local r=startMission('t',PLACES)
-         assert(r.phase=='HELD' and r.error=='EXACT_PLACEMENT_REJECTED' and not r.taskStart and insightWrites==0)
+         local r=entryArrival()
+         assert(r.phase=='HELD' and r.stop=='EXACT_PLACEMENT_REJECTED' and not r.taskStart and insightWrites==0)
          local writes=storeWrites;units[41].y=9;movementEvent(2,41,15,9)
          assert(storeWrites==writes and insightWrites==0 and foreignUnits[7].y==9)
          assert(req('READ','read').phase=='HELD')
@@ -40,28 +49,27 @@ class PlacementDiagnostic(unittest.TestCase):
         l.execute("""
          local original=UnitManager.PlaceUnit
          UnitManager.PlaceUnit=function(u,x,y)original(u,x,y);movementEvent(u:GetOwner(),u:GetID(),x,y)end
-         assert(startMission('t',PLACES).phase=='TASK_RUNNING')
-         currentTurn=85;ownTurn(2);release('r');assert(insightWrites==1 and units[41].y==8)
+         assert(entryArrival().phase=='ARRIVED' and units[41].y==9 and insightWrites==0)
         """)
         self.assertTrue(any('placement=MOVE_EVENT' in x for x in lines))
 
     def test_sync_removal_does_not_hide_post_sample(self):
         l,lines=self.ready()
-        l.execute("UnitManager.PlaceUnit=function(u)units[41]=nil;removed(2,41)end;assert(startMission('t',PLACES).phase=='HELD')")
+        l.execute("UnitManager.PlaceUnit=function(u)units[41]=nil;removed(2,41)end;assert(entryArrival().phase=='HELD')")
         self.assertTrue(any('placement=POST' in x and 'actual=UNKNOWN,UNKNOWN' in x for x in lines))
 
     def test_native_exception_preserved_and_logged(self):
         l,lines=self.ready()
-        l.execute("UnitManager.PlaceUnit=function()error('NATIVE_TEST_ERROR',0)end;local r=startMission('t',PLACES);assert(r.error=='NATIVE_TEST_ERROR' and r.phase=='HELD' and insightWrites==0)")
+        l.execute("UnitManager.PlaceUnit=function()error('NATIVE_TEST_ERROR',0)end;local r=entryArrival();assert(r.stop=='NATIVE_TEST_ERROR' and r.phase=='HELD' and insightWrites==0)")
         self.assertTrue(any('placement=API_ERROR' in x for x in lines))
 
     def test_diagnostic_failure_does_not_change_success(self):
         l,lines=self.ready()
-        l.execute("Units.GetUnitsInPlot=function()error('no diagnostic read')end;assert(startMission('t',PLACES).phase=='TASK_RUNNING' and placeCalls==1)")
+        l.execute("Units.GetUnitsInPlot=function()error('no diagnostic read')end;assert(entryArrival().phase=='ARRIVED' and placeCalls==1)")
         self.assertTrue(any('occupants=UNKNOWN' in x for x in lines))
 
     def test_unrelated_events_ignored_and_watch_bounded(self):
-        l,lines=self.ready();l.execute("placeNoop=true;startMission('t',PLACES)")
+        l,lines=self.ready();l.execute("placeNoop=true;entryArrival()")
         n=len(lines);l.execute("for i=1,100 do movementEvent(3,41,1,1);movementEvent(2,42,1,1)end")
         self.assertEqual(n,len(lines))
         l.execute("for i=1,100 do movementEvent(2,41,15,8)end")
@@ -71,11 +79,11 @@ class PlacementDiagnostic(unittest.TestCase):
     def test_turn_and_end_clear_watch_even_when_held(self):
         for action in ["ownTurn(2)","req('END','end',41)","removed(2,41)"]:
             with self.subTest(action=action):
-                l,lines=self.ready();l.execute("placeNoop=true;startMission('t',PLACES);"+action)
+                l,lines=self.ready();l.execute("placeNoop=true;entryArrival();"+action)
                 n=len(lines);l.execute("movementEvent(2,41,15,9)");self.assertEqual(n,len(lines))
 
     def test_occupant_limit_and_no_persistent_diagnostic_fields(self):
-        l,lines=self.ready();l.execute("for i=1,20 do foreignUnits[i]=unit(i,101,3,15,9)end;placeNoop=true;startMission('t',PLACES)")
+        l,lines=self.ready();l.execute("for i=1,20 do foreignUnits[i]=unit(i,101,3,15,9)end;placeNoop=true;entryArrival()")
         self.assertTrue(any('occupants=TRUNCATED' in x for x in lines))
         self.assertEqual(8,sum('placement=PRE' in x and ' occupant=' in x for x in lines))
         l.execute("for _,v in pairs(gameProperties)do if type(v)=='table' and v.state then assert(v.state.placementWatch==nil and v.state.placementSequence==nil)end end")

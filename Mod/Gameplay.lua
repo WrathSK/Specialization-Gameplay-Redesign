@@ -925,7 +925,6 @@ SPCCultureInsightsTourism.Start(P,shared)
 include('ExpeditionSpyStore')
 include('ExpeditionSpyGate')
 SPCExpeditionSpyGate.Start(P,shared)
-include('ExpeditionMovementProbe')
-SPCExpeditionMovementProbe.Start(P,shared)
+-- B220: B219 movement experiment retained as inactive research; no request handler.
 include('ExpeditionTraining')
 SPCExpeditionTraining.Start(P,shared)

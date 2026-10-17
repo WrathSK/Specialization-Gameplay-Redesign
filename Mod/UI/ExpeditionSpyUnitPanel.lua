@@ -4,6 +4,18 @@ include('ExpeditionSpyUI')
 local R=SPCExpeditionSpyUI
 local baseActions=GetUnitActionsTable
 local baseClick=OnUnitActionClicked
+local function nativeEligible(u,row,command,visible)
+ local ok,yes=pcall(function()
+  if command then
+   if visible then return UnitManager.CanStartCommand(u,row.Hash,true)end
+   return UnitManager.CanStartCommand(u,row.Hash,false,true)
+  end
+  if visible then return UnitManager.CanStartOperation(u,row.Hash,nil,true)end
+  return UnitManager.CanStartOperation(u,row.Hash,nil,false,
+   OperationResultsTypes and OperationResultsTypes.NO_TARGETS)
+ end)
+ return ok and yes==true
+end
 function GetUnitActionsTable(u)
  if not R.IsTeam(u)then return baseActions(u)end
  -- Do not call the base builder first: it also registers native mission hotkeys.
@@ -35,18 +47,7 @@ function GetUnitActionsTable(u)
   local actionType=command and UnitCommandTypes and UnitCommandTypes.TYPE
    or (not command and UnitOperationTypes and UnitOperationTypes.TYPE)
   if not row or type(row.Hash)~='number' or type(actionType)~='number' or not idle(u)then return end
-  local function eligible(selected,visible)
-   local ok,yes=pcall(function()
-    if command then
-     if visible then return UnitManager.CanStartCommand(selected,row.Hash,true)end
-     return UnitManager.CanStartCommand(selected,row.Hash,false,true)
-    end
-    if visible then return UnitManager.CanStartOperation(selected,row.Hash,nil,true)end
-    return UnitManager.CanStartOperation(selected,row.Hash,nil,false,
-     OperationResultsTypes and OperationResultsTypes.NO_TARGETS)
-   end)
-   return ok and yes==true
-  end
+  local function eligible(selected,visible)return nativeEligible(selected,row,command,visible)end
   if not eligible(u,true)then return end
   AddActionToTable(actions,row,not eligible(u,false),Locale.Lookup(row.Description),row.Hash,function()
    local selected=UI.GetHeadSelectedUnit()
@@ -71,15 +72,53 @@ function OnUnitActionClicked_CancelSpyMission(...)
  return baseCancel(...)
 end
 
--- Refresh clears native action/hotkey bindings before rebuilding our exact-type
--- list. Previously captured callbacks still recheck the current task lock.
-local function activityChanged()
- local u=UI.GetHeadSelectedUnit()
- if R.IsTeam(u)then Refresh(u:GetOwner(),u:GetID())end
+-- B220: a Gate revision alone does not describe native action availability.
+-- Read only the selected team's three idle controls at event publication; keep
+-- one disposable signature and rebuild only on change. No frame/timer polling.
+local lastSignature;local refreshing=false
+local function signature(u)
+ local v=R.ActivityView(u)
+ local key=tostring(u:GetOwner())..':'..u:GetID()..':'..tostring(v and v.revision)
+ if not R.CanOpen('TRAVEL',u)then return key..':LOCKED'end
+ local function bits(tableName,name,command)
+  local row=GameInfo[tableName] and GameInfo[tableName][name]
+  if not row or type(row.Hash)~='number'then return ':NA'end
+  return ':'..tostring(nativeEligible(u,row,command,true))..':'..tostring(nativeEligible(u,row,command,false))
+ end
+ return key..bits('UnitOperations','UNITOPERATION_SKIP_TURN',false)
+  ..bits('UnitOperations','UNITOPERATION_SLEEP',false)..bits('UnitCommands','UNITCOMMAND_WAKE',true)
 end
-LuaEvents.SPC_ExpeditionActivityChanged.Add(activityChanged)
--- The inspected native/HD UnitPanel chain has no shutdown handler. Own only
--- this subscription; ordinary UnitPanel behavior and handlers remain intact.
+local function refreshSelected()
+ if refreshing then return end
+ local u=UI.GetHeadSelectedUnit()
+ if not R.IsTeam(u)then lastSignature=nil;return end
+ local nextSignature=signature(u)
+ if nextSignature==lastSignature then return end
+ refreshing=true
+ local ok,err=pcall(Refresh,u:GetOwner(),u:GetID())
+ refreshing=false
+ if ok then
+  lastSignature=nextSignature
+  print('[SPC][B191][N1_TASK] idleActions=REFRESH state='..nextSignature)
+ else
+  print('[SPC][B191][N1_TASK] idleActions=ERROR reason='..tostring(err):sub(1,160))
+ end
+end
+local function unitChanged(pid,id)
+ local u=UI.GetHeadSelectedUnit()
+ if R.IsTeam(u) and pid==u:GetOwner() and id==u:GetID()then refreshSelected()end
+end
+LuaEvents.SPC_ExpeditionActivityChanged.Add(refreshSelected)
+local events={}
+local function listen(event,handler)
+ if event then event.Add(handler);events[#events+1]={event,handler}end
+end
+listen(Events.GameCoreEventPublishComplete,refreshSelected)
+listen(Events.UnitSelectionChanged,refreshSelected)
+listen(Events.UnitActivityChanged,unitChanged)
+listen(Events.UnitOperationDeactivated,unitChanged)
 ContextPtr:SetShutdown(function()
- LuaEvents.SPC_ExpeditionActivityChanged.Remove(activityChanged)
+ LuaEvents.SPC_ExpeditionActivityChanged.Remove(refreshSelected)
+ for _,v in ipairs(events)do v[1].Remove(v[2])end
+ lastSignature=nil
 end)

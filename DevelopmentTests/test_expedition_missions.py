@@ -1,6 +1,6 @@
 """B212 actual Gate: three Design missions, archive-city Insight history, Spy-like
-mission movement and return, target invalidation and entry-city travel.
-Native placement on foreign district/wonder plots and Gameplay great-work reads
+city-centre execution, target invalidation and entry-city travel.
+Native arrival/UI and Gameplay great-work reads
 remain USER_GAME_TEST gates; fixtures model the documented API shapes only.
 """
 import unittest
@@ -81,13 +81,33 @@ class Missions(unittest.TestCase):
           assert(r.error=='MISSION_TARGET_INVALID' and req('READ','r').phase=='ARRIVED' and insightWrites==0)
         """)
 
-    def test_works_moves_to_work_plot_then_returns_to_centre(self):
+    def test_works_retains_site_evidence_while_staying_at_centre(self):
         self.ready().execute("""
-          local r=startMission('w',WORKS);assert(r.phase=='TASK_RUNNING' and placeCalls==1)
-          assert(units[41].x==16 and units[41].y==8 and req('READ','at').missionCategory=='WORKS')
+          local r=startMission('w',WORKS);assert(r.phase=='TASK_RUNNING' and placeCalls==0)
+          assert(units[41].x==15 and units[41].y==8 and req('READ','at').missionCategory=='WORKS' and req('READ','site').missionX==16)
           currentTurn=85;ownTurn(2);r=release('rel')
-          assert(r.phase=='ARRIVED' and units[41].x==15 and units[41].y==8 and placeCalls==2)
+          assert(r.phase=='ARRIVED' and units[41].x==15 and units[41].y==8 and placeCalls==0)
           assert(insightRecords['CIVILIZATION_TARGET:WORKS'] and insightWrites==1)
+        """)
+
+    def test_occupied_sites_never_call_movement_and_preserve_other_units(self):
+        for category in ['WORKS','PLACES']:
+            with self.subTest(category=category):
+                l=self.ready();l.execute("""
+                  foreignUnits[7]=unit(7,101,3,15,9);foreignUnits[8]=unit(8,101,3,15,8)
+                  UnitManager.PlaceUnit=function()error('MOVEMENT_MUST_NOT_RUN')end
+                """)
+                l.execute("local r=startMission('m',"+category+");assert(r.phase=='TASK_RUNNING' and units[41].x==15 and units[41].y==8)")
+                l.execute("""
+                  currentTurn=85;ownTurn(2);local r=release('release')
+                  assert(r.phase=='ARRIVED' and insightWrites==1 and placeCalls==0)
+                  assert(foreignUnits[7].y==9 and foreignUnits[8].y==8 and destroys==0)
+                """)
+
+    def test_displacement_during_site_mission_still_stops_without_award(self):
+        l=self.ready();l.execute("""
+          startMission('m',PLACES);units[41].x=16;currentTurn=85;ownTurn(2)
+          local r=req('READ','drift');assert(r.phase=='HELD' and r.stop=='TEAM_DISPLACED_STOP' and insightWrites==0)
         """)
 
     def test_works_rejects_ineligible_or_empty_slot(self):
@@ -107,9 +127,9 @@ class Missions(unittest.TestCase):
           slotWork=12;r=startMission('w2',WORKS);assert(r.phase=='TASK_RUNNING')
         """)
 
-    def test_places_moves_to_wonder_and_records(self):
+    def test_places_stays_at_centre_and_records_selected_wonder(self):
         self.ready().execute("""
-          local r=startMission('pl',PLACES);assert(r.phase=='TASK_RUNNING' and units[41].y==9)
+          local r=startMission('pl',PLACES);assert(r.phase=='TASK_RUNNING' and units[41].y==8 and r.missionY==9 and placeCalls==0)
           currentTurn=85;ownTurn(2);release('rel')
           assert(insightRecords['CIVILIZATION_TARGET:PLACES'] and units[41].y==8)
           r=startMission('pl2',{Mission='PLACES',MissionX=15,MissionY=8,Building='BUILDING_AMPHITHEATER'})
@@ -128,7 +148,7 @@ class Missions(unittest.TestCase):
         self.ready().execute("""
           WORKS.Building='BUILDING_PYRAMIDS';WORKS.MissionX=15;WORKS.MissionY=9
           local r=startMission('wonder-work',WORKS)
-          assert(r.phase=='TASK_RUNNING' and units[41].y==9 and r.missionWorkID==12)
+          assert(r.phase=='TASK_RUNNING' and units[41].y==8 and r.missionY==9 and placeCalls==0 and r.missionWorkID==12)
           currentTurn=85;ownTurn(2);release('rel')
           assert(insightWrites==1 and insightRecords['CIVILIZATION_TARGET:WORKS'])
           assert(not insightRecords['CIVILIZATION_TARGET:PLACES'] and units[41].y==8)

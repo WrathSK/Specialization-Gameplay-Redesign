@@ -240,7 +240,7 @@ class MovementUI(unittest.TestCase):
         paths=[e.text.strip() for e in doc.findall('./Files/File')]
         for p in ['ExpeditionMovementProbe.lua','UI/ExpeditionMovementProbe.lua','UI/ExpeditionMovementProbe.xml']:
             self.assertEqual(paths.count(p),1)
-        self.assertEqual(len(doc.findall(".//AddUserInterfaces[@id='SPC_ExpeditionMovementUI']")),1)
+        self.assertEqual(len(doc.findall(".//AddUserInterfaces[@id='SPC_ExpeditionMovementUI']")),0)
         ET.parse(R/'Mod/UI/ExpeditionMovementProbe.xml')
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))')
         db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
@@ -249,7 +249,8 @@ class MovementUI(unittest.TestCase):
         keys.discard('STATUS_');keys.update({'STATUS_EXACT','STATUS_NOT_EXACT','STATUS_STOP'})
         for key in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_MOVE_PROBE_'+key,)).fetchone()[0],2,key)
         panel=(R/'Mod/UI/P0Panel.lua').read_text()
-        self.assertIn('Controls.ExpeditionGateButton:RegisterCallback(Mouse.eRClick',panel)
+        self.assertNotIn('Controls.ExpeditionGateButton:RegisterCallback(Mouse.eRClick',panel)
+        self.assertNotIn('SPCExpeditionMovementProbe.Start(P,shared)',(R/'Mod/Gameplay.lua').read_text())
         db.close()
 
 if __name__=='__main__':unittest.main()

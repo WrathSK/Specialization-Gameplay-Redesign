@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="246">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="247">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B219.246: Isolated ordinary Spy and Expedition movement-interface comparison; permanent state unchanged.</Description>
+    <Description>B220.247: City-centre Expedition missions and event-driven idle action refresh.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -16,7 +16,6 @@
     <ReplaceUIScript id="SPC_ExpeditionSpyPopup"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionagePopup</LuaContext><LuaReplace>UI/ExpeditionSpyPopup.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_ExpeditionTrainingName"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionTrainingName.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_ExpeditionActivityUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionSpyActivity.xml</File></AddUserInterfaces>
-    <AddUserInterfaces id="SPC_ExpeditionMovementUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionMovementProbe.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_ExpeditionGateUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionSpyWindow.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_CultureInsightsTourism"><Properties><LoadOrder>10001033</LoadOrder></Properties><File>Data/CultureInsightsTourism.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureInspiration"><Properties><LoadOrder>10001032</LoadOrder></Properties><File>Data/CultureInspiration.sql</File></UpdateDatabase>

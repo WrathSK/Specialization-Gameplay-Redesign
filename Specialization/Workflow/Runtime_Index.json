@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "e117d444da9f6d5d0a18a4513472ddb5662a012f45c1cb22c5424147cf18772e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+      "sha256": "b9a6dac2c78fc5ccbe79c9f516343d075a7b82287aac6dd61856f123ef71526c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "672f10d1467dfc4e426c4b7c06847b010e9b6fb9495e9f9c27690d4c6c1319fe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+      "sha256": "7528133c411e3e314c5a66413426bd44fbd31631d3f20c49e98e5f4ba19759f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8c2d4a0465f390576982a46b2e0cdf95332dde6245813680729c7ea4f49d676b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+      "sha256": "f031130a9cc685f30c6ad0219dd052f14c0e1aefc3e636fc5d9379014d26bb3f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "18c983cfddb12aee96e2ea185ed5faf2070b96d5b68b23ec957989b8362efcc3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+      "sha256": "d072e4913b11c0fc0cd8b33f26e0b07fd1b866acf57c73c907d0df3df48f4879",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3364259ca6d8a7e227d372abae7b2edc0239c8d4d893df435848c4f095715991",
@@ -1021,9 +1021,9 @@
       "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "ffff3e8333d955bfe6a9de8898bbc89dcd6e2b7216d2360558c5d0aa912ce550",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+      "sha256": "acadec6aaac97231065299c87cc001aeceb87abb79573b3a405d6e1815a6b08c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "0f22018ca73289bb949b53e45acf1d201f2cf1162b64681dcf78c8026d5af92a",
@@ -1056,9 +1056,9 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "ab269381e7ca27da71ee661a35a6bcc19c3fe729c6d53720008e9bb4077c6760",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
-      "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
+      "sha256": "ca6a73b119e449715a972e8ea064109aef73c670a24bf4344b7e688ac344d463",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
       "sha256": "c071b52efce0f8569c51adcd8f0fc7849e6d67d7e1c7c64a4a639c063e42d973",

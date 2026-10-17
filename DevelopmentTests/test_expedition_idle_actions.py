@@ -8,6 +8,9 @@ from test_expedition_spy_task import ui, R
 def fixture():
     l = ui('UnitPanel')
     l.execute("""
+      panelShutdown()
+      Events.GameCoreEventPublishComplete=event();Events.UnitOperationDeactivated=event()
+      Refresh=function()calls.Refresh=(calls.Refresh or 0)+1;rendered=GetUnitActionsTable(selected)end
       UnitOperationTypes={TYPE=1};UnitCommandTypes={TYPE=2};OperationResultsTypes={NO_TARGETS=9}
       local function row(hash,key)return {Hash=hash,Description=key,Icon=key,CategoryInUI='INPLACE'}end
       GameInfo.UnitOperations.UNITOPERATION_SKIP_TURN=row(8,'skip')
@@ -85,5 +88,55 @@ class IdleActions(unittest.TestCase):
 
     def test_ordinary_units_still_use_base_builder(self):
         l=fixture();l.execute("selected=ordinary;assert(GetUnitActionsTable(ordinary)=='ordinary' and calls.GetUnitActionsTable==1)")
+
+class ArrivalRefresh(unittest.TestCase):
+    def test_native_availability_changes_without_gate_revision(self):
+        l=fixture();l.execute("""
+          phase('ARRIVED');available=false;Events.GameCoreEventPublishComplete()
+          assert(#rendered.INPLACE==0 and calls.Refresh==1)
+          local rev=ExposedMembers.SPC_ExpeditionActivity.revision
+          available=true;Events.GameCoreEventPublishComplete()
+          assert(#rendered.INPLACE==2 and calls.Refresh==2)
+          for i=1,20 do Events.GameCoreEventPublishComplete()end
+          assert(calls.Refresh==2 and ExposedMembers.SPC_ExpeditionActivity.revision==rev and #requests==0)
+        """)
+
+    def test_sleep_and_wake_update_without_task_or_diagnostic(self):
+        l=fixture();l.execute("""
+          phase('ARRIVED');Events.GameCoreEventPublishComplete()
+          sleeping=true;Events.UnitActivityChanged(2,40)
+          assert(#rendered.INPLACE==1 and rendered.INPLACE[1].icon=='wake')
+          sleeping=false;Events.UnitOperationDeactivated(2,40)
+          assert(#rendered.INPLACE==2 and #requests==0)
+        """)
+
+    def test_replaced_arrival_id_and_selection_rebuild(self):
+        l=fixture();l.execute("""
+          phase('TRAVELLING');Events.GameCoreEventPublishComplete()
+          team.id=52;ExposedMembers.SPC_ExpeditionActivity.unitID=52;phase('ARRIVED')
+          Events.UnitSelectionChanged(2,52,true);assert(#rendered.INPLACE==2)
+          local n=calls.Refresh;selected=ordinary;Events.GameCoreEventPublishComplete()
+          assert(calls.Refresh==n);selected=team;Events.UnitSelectionChanged(2,52,true)
+          assert(calls.Refresh==n+1)
+        """)
+
+    def test_locked_unknown_other_unit_and_shutdown(self):
+        l=fixture();l.execute("""
+          phase('ARRIVED');Events.GameCoreEventPublishComplete();local n=calls.Refresh
+          available=false;Events.UnitOperationDeactivated(3,40);assert(calls.Refresh==n)
+          phase('TASK_RUNNING','ASLEEP',true);ExposedMembers.SPC_ExpeditionActivity.revision=2
+          LuaEvents.SPC_ExpeditionActivityChanged();assert(#rendered.INPLACE==0)
+          phase('ARRIVED');ExposedMembers.SPC_ExpeditionActivity.revision=3;unknown=true
+          Events.GameCoreEventPublishComplete();assert(#rendered.INPLACE==0)
+          n=calls.Refresh;panelShutdown();unknown=false;available=true
+          Events.GameCoreEventPublishComplete();Events.UnitOperationDeactivated(2,40)
+          LuaEvents.SPC_ExpeditionActivityChanged();assert(calls.Refresh==n and #requests==0)
+        """)
+
+    def test_refresh_reentrancy_is_bounded(self):
+        l=fixture();l.execute("""
+          local original=Refresh;Refresh=function(...)Events.GameCoreEventPublishComplete();return original(...)end
+          phase('ARRIVED');Events.GameCoreEventPublishComplete();assert(calls.Refresh==1)
+        """)
 
 if __name__=='__main__':unittest.main()

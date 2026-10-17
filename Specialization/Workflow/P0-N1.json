@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0587",
-    "runtime": "B219.246 / modinfo246",
+    "status": "S0588",
+    "runtime": "B220.247 / modinfo247",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B219 explicit ordinary Spy / Expedition comparison at the same occupied target: PlaceUnit versus adjacent MoveUnit. No formal movement repair.",
+  "goal": "B220 user-approved centre execution of site missions and event-driven arrival idle-control refresh; no timers.",
   "implementation_authorized": true,
   "context": [
     {
@@ -489,29 +489,9 @@
       "reason": "Current diagnostic authorization, local evidence and one native capture."
     },
     {
-      "path": "Mod/ExpeditionMovementProbe.lua",
+      "path": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
       "kind": "full",
-      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
-    },
-    {
-      "path": "Mod/UI/ExpeditionMovementProbe.lua",
-      "kind": "full",
-      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
-    },
-    {
-      "path": "Mod/UI/ExpeditionMovementProbe.xml",
-      "kind": "full",
-      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
-    },
-    {
-      "path": "DevelopmentTests/test_expedition_movement_probe.py",
-      "kind": "full",
-      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "kind": "full",
-      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
+      "reason": "Current B220 approved contract, local evidence and native delta test."
     }
   ],
   "dependencies": [
@@ -708,21 +688,21 @@
     }
   ],
   "non_scope": [
-    "No normal relocation replacement, native espionage missions/rewards, timers/polling, occupant displacement/deletion, unit recreation, permanent/schema/capacity/binding/training/GC/Tourism changes, N3, main or configuration. Diagnostic subject positions are disposable and require reload."
+    "No generic site-movement repair, timers/polling, new native mission, capacity/binding/schema/history/GC/Commerce/N3/main/configuration change. Existing entry-city travel is preserved."
   ],
   "validation": {
-    "depth": "L2: actual probe/UI/Gate isolation, existing direct task/persistence/activity regression and read-only configured DB checks; no full gameplay/stress.",
-    "local": "219 targeted tests PASS, including 22 new probe tests; collision behavior remains native pending.",
-    "user": "B219 pending. Retain B218 empty-wonder completion/Insight and occupied-placement failure evidence."
+    "depth": "L2: direct Gate/UI/activity/mission regressions, configured read-only DB and package checks.",
+    "local": "284 targeted tests PASS.",
+    "user": "B220 pending; B219 stopped without movement-trial evidence."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-    "source": "B219.246/modinfo246 DEVELOP_ACTIVE; source 7dede6ee777fa2db6568932900cb655369f9b17f; receipt B219.246-7dede6e-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B218/stable recovery retained; no pending transaction, configuration or main change.",
-    "native": "B219 pending. Retain B218 empty-wonder completion/Insight and occupied-placement failure evidence.",
-    "stop": "Await approved controlled native comparison only; no formal transport repair or additional batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+    "source": "B220.247/modinfo247 local validated; live remains B219 until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "After authorized deployment, await the one combined native test; no further batch."
   }
 }

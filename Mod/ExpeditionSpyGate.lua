@@ -561,8 +561,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
  returnToCentre=function()
   if state.phase~='TASK_COMPLETE' or not state.target or state.activityMode~='NONE' then return end
   step='RETURN_CENTRE'
-  local u=relocate(tracked(),state.target.x,state.target.y)
-  state.x=u:GetX();state.y=u:GetY()
+  local u=tracked()
+  assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
+  assert(u:GetX()==state.target.x and u:GetY()==state.target.y,'TEAM_NOT_AT_CENTRE')
+  -- No return teleport: all tasks now execute at this exact centre.
   state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil;state.activityKey=nil
   state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil
   print('[SPC][B191][N1_TASK] mission='..tostring(state.missionCategory)..' outcome='..tostring(state.taskOutcome)..' returned=CENTRE')
@@ -663,8 +665,14 @@ function SPCExpeditionSpyGate.Start(P,shared)
    assert(not done[civilization(state.target.owner)..':'..m.category],'MISSION_ALREADY_COMPLETED')
    local evidence=(m.building or '')..'|'..(m.slot and tostring(m.slot) or '')..'|'..(m.work or '')
    assert(#evidence<=160,'MISSION_EVIDENCE_TOO_LONG')
+   -- B220 user-approved interim execution: evidence stays at the selected
+   -- work/wonder, while the exact bound team stays at the destination centre.
+   -- Never turn evidence coordinates into a placement request or accept drift.
+   step='MISSION_CENTRE'
+   assert(u:GetX()==state.target.x and u:GetY()==state.target.y,'TEAM_NOT_AT_CENTRE')
    state.missionCategory=m.category;state.missionX=m.x;state.missionY=m.y;state.missionEvidence=evidence;state.missionWorkID=workID;state.missionCompletionUnknownTurn=nil;state.taskOutcome=nil
-   mutating=true;step='MISSION_MOVE';u=relocate(u,m.x,m.y);state.x=u:GetX();state.y=u:GetY()
+   state.x=u:GetX();state.y=u:GetY()
+   print('[SPC][B191][N1_TASK] mission='..m.category..' execution=CENTRE actual='..state.x..','..state.y..' evidence='..m.x..','..m.y)
    -- Do not advance the independent timer before native sleep is observed.
    -- Next durable revision identifies this attempt, even when the previous one cancelled.
    mutating=true;state.activityKey=state.teamKey..':attempt'..tostring(envelope.revision+1);state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
