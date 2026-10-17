@@ -11,6 +11,7 @@ MISSION_FIXTURE = """
   Map={GetPlot=function(x,y)return {GetIndex=function()return y*100+x end,GetOwner=function()return plotOwner end}end}
   info.BUILDING_AMPHITHEATER={Index=5,BuildingType='BUILDING_AMPHITHEATER',IsWonder=false}
   info.BUILDING_PYRAMIDS={Index=6,BuildingType='BUILDING_PYRAMIDS',IsWonder=true}
+  info[5]=info.BUILDING_AMPHITHEATER;info[6]=info.BUILDING_PYRAMIDS
   info.GREATWORK_TEST={Index=77,GreatWorkType='GREATWORK_TEST'}
   info[77]=info.GREATWORK_TEST;info[99]={GreatWorkType='GREATWORK_OTHER',Index=99}
   SPCGreatWorkCatalog={Resolve=function(adapter,kind)if kind=='GREATWORK_TEST' then return {type=kind}end;return nil,'UNSUPPORTED_TYPE' end}
@@ -21,9 +22,20 @@ MISSION_FIXTURE = """
     GetBuildingLocation=function(self,index)if locationError then error('unavailable')end;return locations[index]end,
     GetGreatWorkInSlot=function(self,index,slot)
      slotReads=slotReads+1;if slotError then error('unavailable')end;if slotNil then return nil end
-     if (index==5 or index==6) and slot==0 and slotWork then return slotWork end;return -1 end,
+     if slot==0 then if index==5 and slotWork then return slotWork elseif index==6 and wonderSlotWork then return wonderSlotWork end end;return -1 end,
     GetGreatWorkTypeFromIndex=function(self,id)if typeError then error('unavailable')end;if typeNil then return nil end
      if id==12 or id==13 then return workType or 77 end end}
+  function uiMissionBuildings:HasBuilding(index)return has[index]end
+  function uiMissionBuildings:GetNumGreatWorkSlots(index)return (index==5 or index==6 and wonderSlotWork~=nil) and 1 or 0 end
+  function uiMissionBuildings:GetBuildingsAtLocation(plot)
+   if locationError then error('unavailable')end
+   local out={};for _,index in ipairs({5,6})do if locations[index]==plot then out[#out+1]=index end end;return out
+  end
+  function targetCity:GetDistricts()return {Members=function()
+   local rows={{IsComplete=function()return true end,GetX=function()return 16 end,GetY=function()return 8 end},
+    {IsComplete=function()return true end,GetX=function()return 15 end,GetY=function()return 9 end}}
+   local i=0;return function()i=i+1;if rows[i]then return i,rows[i]end end
+  end}end
   function targetCity:GetBuildings()return {GetBuildingLocation=uiMissionBuildings.GetBuildingLocation}end
   function startMission(token,mission,unit)
    local p={Action='TASK',Token=token,UnitID=unit or 41,SampleTurn=currentTurn,NativeOperation=-1}
@@ -59,8 +71,8 @@ MISSION_FIXTURE += r"""
 MISSION_FIXTURE += "assert(load([==[" + (base.R/'Mod/ExpeditionSpyRead.lua').read_text() + "]==], 'UI_WorkReader', 't', workReaderEnv))()\n"
 MISSION_FIXTURE += r"""
  SPCExpeditionSpyRead=SPCExpeditionSpyRead or {}
- SPCExpeditionSpyRead.WorkSlot=workReaderEnv.SPCExpeditionSpyRead.WorkSlot
- ExposedMembers.SPC_ExpeditionWorkRead=SPCExpeditionSpyRead.WorkSlot
+ SPCExpeditionSpyRead.WorksCity=workReaderEnv.SPCExpeditionSpyRead.WorksCity
+ ExposedMembers.SPC_ExpeditionWorkRead=SPCExpeditionSpyRead.WorksCity
 """
 
 
@@ -103,7 +115,7 @@ class Missions(unittest.TestCase):
     def test_works_retains_site_evidence_while_staying_at_centre(self):
         self.ready().execute("""
           local r=startMission('w',WORKS);assert(r.phase=='TASK_RUNNING' and placeCalls==0)
-          assert(units[41].x==15 and units[41].y==8 and req('READ','at').missionCategory=='WORKS' and req('READ','site').missionX==16)
+          assert(units[41].x==15 and units[41].y==8 and req('READ','at').missionCategory=='WORKS' and req('READ','site').missionX==15)
           currentTurn=85;ownTurn(2);r=release('rel')
           assert(r.phase=='ARRIVED' and units[41].x==15 and units[41].y==8 and placeCalls==0)
           assert(insightRecords['CIVILIZATION_TARGET:WORKS'] and insightWrites==1)
@@ -129,14 +141,11 @@ class Missions(unittest.TestCase):
           local r=req('READ','drift');assert(r.phase=='HELD' and r.stop=='TEAM_DISPLACED_STOP' and insightWrites==0)
         """)
 
-    def test_works_rejects_ineligible_or_empty_slot(self):
-        for change, code in [("WORKS.Work='GREATWORK_RELIC'", 'MISSION_WORK_INELIGIBLE'),
-                             ('slotWork=nil', 'MISSION_TARGET_INVALID'),
-                             ('has[5]=false', 'MISSION_TARGET_INVALID'),
-                             ('WORKS.MissionX=17', 'MISSION_PLOT_CHANGED')]:
+    def test_works_rejects_city_without_eligible_work_but_ignores_old_hint(self):
+        for change in ["workType=99", "slotWork=nil", "has[5]=false", "locations[5]=nil"]:
             with self.subTest(change=change):
-                l = self.ready()
-                l.execute(change + ";local r=startMission('w',WORKS);assert(r.error=='" + code + "' and placeCalls==0 and insightWrites==0)")
+                self.ready().execute(change + ";local r=startMission('w',WORKS);assert(r.error=='MISSION_TARGET_INVALID' and placeCalls==0 and insightWrites==0)")
+        self.ready().execute("WORKS.Work='GREATWORK_RELIC';WORKS.MissionX=17;local r=startMission('hint',WORKS);assert(r.phase=='TASK_RUNNING' and placeCalls==0)")
 
     def test_losing_the_work_mid_mission_cancels_and_returns(self):
         self.ready().execute("""
@@ -165,30 +174,27 @@ class Missions(unittest.TestCase):
 
     def test_eligible_work_in_a_wonder_uses_the_wonder_location(self):
         self.ready().execute("""
-          WORKS.Building='BUILDING_PYRAMIDS';WORKS.MissionX=15;WORKS.MissionY=9
+          has[5]=false;wonderSlotWork=12;WORKS.Building='BUILDING_PYRAMIDS';WORKS.MissionX=15;WORKS.MissionY=9
           local r=startMission('wonder-work',WORKS)
-          assert(r.phase=='TASK_RUNNING' and units[41].y==8 and r.missionY==9 and placeCalls==0 and r.missionWorkID==12)
+          assert(r.phase=='TASK_RUNNING' and units[41].y==8 and r.missionY==8 and placeCalls==0 and r.missionWorkID==nil)
           currentTurn=85;ownTurn(2);release('rel')
           assert(insightWrites==1 and insightRecords['CIVILIZATION_TARGET:WORKS'])
           assert(not insightRecords['CIVILIZATION_TARGET:PLACES'] and units[41].y==8)
         """)
 
-    def test_selected_work_replacement_cancels_even_when_new_work_has_same_type(self):
+    def test_current_city_work_replacement_continues_without_instance_lock(self):
         self.ready().execute("""
           startMission('w',WORKS);slotWork=13;currentTurn=84;ownTurn(2)
-          local r=req('READ','cancelled')
-          assert(r.phase=='TASK_COMPLETE' and r.taskOutcome=='CANCELLED' and insightWrites==0)
-          assert(r.missionWorkID==12)
-          r=release('rel');assert(r.phase=='ARRIVED')
-          r=startMission('replacement',WORKS);assert(r.phase=='TASK_RUNNING' and r.missionWorkID==13)
+          assert(req('READ','replacement').phase=='TASK_RUNNING' and insightWrites==0)
+          currentTurn=85;ownTurn(2);assert(req('READ','done').taskOutcome=='SUCCESS' and insightWrites==1)
         """)
 
     def test_slot_type_and_location_unknown_reject_start_without_native_mutation(self):
         for change in ['slotError=true', 'slotNil=true', 'typeError=true', 'typeNil=true',
                        'SPCGreatWorkCatalog=nil', "SPCGreatWorkCatalog.Resolve=function()return nil,'ERA_UNAVAILABLE' end",
-                       'locationError=true', 'locations[5]=nil', 'has[5]=nil',
+                       'locationError=true', 'has[5]=nil',
                        "uiMissionBuildings.GetGreatWorkTypeFromIndex=nil",
-                       "local buildings=targetCity:GetBuildings();buildings.GetBuildingLocation=nil;targetCity.GetBuildings=function()return buildings end"]:
+                       "uiMissionBuildings.GetBuildingsAtLocation=nil"]:
             with self.subTest(change=change):
                 self.ready().execute(change + ";local r=startMission('w',WORKS);assert(r.error and r.missionStatus=='UNKNOWN' and r.phase=='ARRIVED' and not r.activityKey and placeCalls==0 and insightWrites==0)")
 
@@ -254,14 +260,10 @@ class Missions(unittest.TestCase):
           assert(r.phase=='TASK_COMPLETE' and r.taskOutcome=='SUCCESS' and insightWrites==1 and not r.missionCompletionUnknownTurn)
         """)
 
-    def test_same_type_replacement_since_ui_selection_is_rejected_before_admission(self):
+    def test_stale_selected_instance_does_not_override_current_city_work(self):
         self.ready().execute("""
-          WORKS.WorkID=12;slotWork=13
-          local r=startMission('stale-work-selection',WORKS)
-          assert(r.phase=='ARRIVED' and r.error=='MISSION_TARGET_INVALID' and placeCalls==0 and insightWrites==0)
-          assert(not r.activityKey and not r.missionWorkID)
-          WORKS.WorkID=13;r=startMission('current-work-selection',WORKS)
-          assert(r.phase=='TASK_RUNNING' and r.missionWorkID==13)
+          WORKS.WorkID=12;slotWork=13;local r=startMission('city-work',WORKS)
+          assert(r.phase=='TASK_RUNNING' and not r.missionWorkID and insightWrites==0)
         """)
 
     def test_nil_current_capital_preserves_unknown_and_no_target_cancellation(self):
@@ -280,11 +282,11 @@ class Missions(unittest.TestCase):
           typeError=false;currentTurn=86;ownTurn(2)
           local r=req('READ','held')
           assert(r.phase=='HELD' and r.stop=='MISSION_COMPLETION_UNCONFIRMED')
-          assert(r.missionStatus=='UNKNOWN' and r.missionCompletionUnknownTurn==85 and r.missionWorkID==12)
+          assert(r.missionStatus=='UNKNOWN' and r.missionCompletionUnknownTurn==85 and r.missionWorkID==nil)
           assert(r.taskStart==83 and r.taskDue==85 and insightWrites==0)
         """)
 
-    def test_saved_pending_work_without_instance_evidence_is_not_adopted(self):
+    def test_saved_pending_city_work_does_not_require_instance_lock(self):
         l=self.ready()
         l.execute("""
           startMission('w',WORKS);gameProperties.SPC_EXPEDITION_TEAM_P2.state.missionWorkID=nil
@@ -293,7 +295,7 @@ class Missions(unittest.TestCase):
           handler(2,{Action='ACTIVITY',Token='recover',UnitID=41,ActivityKey=v.activityKey,Result='RECOVERED',Owned=true,
             Sleeping=true,Awake=false,SampleTurn=currentTurn,NativeOperation=-1})
           local r=req('READ','missing-proof')
-          assert(r.phase=='TASK_RUNNING' and r.missionStatus=='UNKNOWN' and r.missionReason=='MISSION_WORK_ID_UNAVAILABLE')
+          assert(r.phase=='TASK_RUNNING' and r.missionStatus=='VALID')
           assert(insightWrites==0 and r.missionWorkID==nil)
         """)
 
@@ -318,7 +320,7 @@ class Missions(unittest.TestCase):
         l.execute("""
           startMission('w',WORKS)
           SPCExpeditionSpyGate.Start(P,shared)
-          local r=req('READ','loaded');assert(r.missionCategory=='WORKS' and r.missionX==16)
+          local r=req('READ','loaded');assert(r.missionCategory=='WORKS' and r.missionX==15)
         """)
 
     def test_repeated_completion_after_failed_save_is_idempotent(self):

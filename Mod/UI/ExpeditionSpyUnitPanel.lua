@@ -104,43 +104,29 @@ function OnUnitActionClicked_CancelSpyMission(...)
  return baseCancel(...)
 end
 
--- B220: a Gate revision alone does not describe native action availability.
--- Read only the selected team's three idle controls at event publication; keep
--- one disposable signature and rebuild only on change. No frame/timer polling.
-local lastSignature;local refreshing=false
-local function signature(u)
- local v=R.ActivityView(u)
- local key=tostring(u:GetOwner())..':'..u:GetID()..':'..tostring(v and v.revision)
- if not R.CanOpen('TRAVEL',u)then return key..':LOCKED'end
- local function bits(tableName,name,command)
-  local row=GameInfo[tableName] and GameInfo[tableName][name]
-  if not row or type(row.Hash)~='number'then return ':NA'end
-  local _,visible=nativeEligible(u,row,command,true)
-  local _,enabled=nativeEligible(u,row,command,false)
-  return ':'..visible..':'..enabled
- end
- return key..':'..idleKind(u)..bits('UnitOperations','UNITOPERATION_SKIP_TURN',false)
-  ..bits('UnitOperations','UNITOPERATION_SLEEP',false)..bits('UnitCommands','UNITCOMMAND_WAKE',true)
+-- B225: event callbacks only request the native deferred refresh. Exact native
+-- idle eligibility is evaluated by rendering/clicks outside event publication.
+-- The base context owns its refresh handler; ordinary units keep that handler.
+local refreshing=false
+local nativeRefresh=Refresh
+function Refresh(...)
+ if not R.IsTeam(UI.GetHeadSelectedUnit())then return nativeRefresh(...)end
+ if refreshing then return end
+ refreshing=true
+ local ok,value=pcall(nativeRefresh,...)
+ refreshing=false
+ if not ok then error(value,0)end
+ return value
 end
 local function refreshSelected()
  if refreshing then return end
- local u=current(UI.GetHeadSelectedUnit())
- if not R.IsTeam(u)then lastSignature=nil;return end
- local nextSignature=signature(u)
- if nextSignature==lastSignature then return end
- refreshing=true
- local ok,err=pcall(Refresh,u:GetOwner(),u:GetID())
- refreshing=false
- if ok then
-  lastSignature=nextSignature
-  print('[SPC][B191][N1_TASK] idleActions=REFRESH state='..nextSignature)
- else
-  print('[SPC][B191][N1_TASK] idleActions=ERROR reason='..tostring(err):sub(1,160))
- end
+ local u=UI.GetHeadSelectedUnit()
+ if R.IsTeam(u)then ContextPtr:RequestRefresh()end
 end
 local function unitChanged(pid,id)
- local u=current(UI.GetHeadSelectedUnit())
- if R.IsTeam(u) and pid==u:GetOwner() and id==u:GetID()then refreshSelected()end
+ if refreshing then return end
+ local u=UI.GetHeadSelectedUnit()
+ if R.IsTeam(u) and pid==u:GetOwner() and id==u:GetID()then ContextPtr:RequestRefresh()end
 end
 LuaEvents.SPC_ExpeditionActivityChanged.Add(refreshSelected)
 local events={}
@@ -149,10 +135,8 @@ local function listen(event,handler)
 end
 listen(Events.GameCoreEventPublishComplete,refreshSelected)
 listen(Events.UnitSelectionChanged,refreshSelected)
-listen(Events.UnitActivityChanged,unitChanged)
-listen(Events.UnitOperationDeactivated,unitChanged)
+for _,name in ipairs({'UnitActivityChanged','UnitOperationDeactivated','UnitOperationsCleared','UnitOperationAdded','UnitCommandStarted','UnitMovementPointsChanged'})do listen(Events[name],unitChanged)end
 ContextPtr:SetShutdown(function()
  LuaEvents.SPC_ExpeditionActivityChanged.Remove(refreshSelected)
  for _,v in ipairs(events)do v[1].Remove(v[2])end
- lastSignature=nil
 end)

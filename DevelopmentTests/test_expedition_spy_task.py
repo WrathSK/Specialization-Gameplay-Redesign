@@ -175,6 +175,8 @@ def ui(kind):
       function AddActionToTable(actions,row,disabled,tip,hash,callback)table.insert(actions[row.CategoryInUI],{CallbackFunc=callback,userTag=hash,disabled=disabled,tip=tip,icon=row.Icon})end
       UnitManager={GetActivityType=function()return activityType end,CanStartOperation=function(u,op)assert(op==8);return true end,RequestOperation=function(u,op)assert(op==8);calls.skip=(calls.skip or 0)+1 end}
     """)
+    from refresh_fixture import install
+    install(l, handler='function() if selected then Refresh(selected:GetOwner(),selected:GetID())end end')
     l.execute((R/'Mod/ExpeditionSpyUI.lua').read_text());l.execute((R/f'Mod/UI/ExpeditionSpy{kind}.lua').read_text());return l
 
 class UIIsolation(unittest.TestCase):

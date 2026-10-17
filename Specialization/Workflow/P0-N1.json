@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0051",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0599",
-    "runtime": "B224.251 / modinfo251",
+    "status": "S0600",
+    "runtime": "B225.252 / modinfo252",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "Proposed B225 prioritizes common native SLEEP admission/release scheduling with an event-requested safe UI refresh; then logical completion/menu, D0051 city-level WORKS and coalesced deal-event refresh. Await batch authorization.",
-  "implementation_authorized": false,
+  "goal": "B225 explicitly authorized: common native-task scheduling/release, unowned completion/menu, D0051 city-level WORKS and coalesced deal-event current-facts refresh. No new timers; one combined native gate.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -571,17 +571,32 @@
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
       "kind": "full",
-      "reason": "Current B224 native evidence, accepted D0051 delta and bounded proposed B225 scope."
+      "reason": "Direct B224 failure evidence and approved B225 plan; read when investigating the affected native boundary, not a current instruction."
+    },
+    {
+      "path": "DevelopmentTests/refresh_fixture.py",
+      "kind": "full",
+      "reason": "Fixture-only deferred native UI refresh/event phases; no runtime scheduler."
+    },
+    {
+      "path": "DevelopmentTests/test_b225_task_lifecycle.py",
+      "kind": "full",
+      "reason": "B225 differential ordering, release, manual sleep, city Works and deal-only refresh regressions."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "kind": "full",
+      "reason": "Current B225 result, authorization, native delta and stop point."
     }
   ],
   "dependencies": [
     "Existing EffectiveFacts qualification and NetworkInput source reference remain authority. CityProgressionStore owns permanent city Insight records; ExpeditionSpyStore owns the one saved cap1 team/mission transaction. Native units/travel/activity remain engine-owned; UI mirrors and report logs are disposable.",
-    "Every task attempt retains confirmed-revision-derived keys and exact source/team ownership. D0051 proposes city-level WORKS existence rather than saved exact-work locking; PLACES and UNKNOWN/due-time/reward isolation remain. B224 runtime still uses the older work contract.",
+    "Every attempt retains confirmed-revision-derived keys and exact source/team ownership. B225 implements accepted D0051 city-level WORKS existence; PLACES, UNKNOWN, due-time and reward isolation remain. Old exact instance/slot hints are not a continuation lock.",
     "Read complete mission/observation contracts. Native current target readers must distinguish unavailable from confirmed invalid; current-source/owner loss keeps existing protection. Owned SLEEP/release and exact logical keys remain direct consumers.",
     "Training retains B209 immediate source-city completion receipt and B210 three-condition removal/replacement release; do not reintroduce obsolete blanket empty-queue rejection. Exact source/owner/reference and one matching birth remain required; cost/capacity/source unchanged.",
     "Research and Culture share selected-city institution rendering; ACTIVE does not erase established stages. Insight report only reads selected owned city on request, includes effective owner filtering and no reward writer. Native icons do not authorize missions.",
     "Disposable diagnostic trace never authorizes admission or persistence. Missing trace retry is delayed; invalid trace is fatal; explicit report logs are bounded. No additional game polling, global scans or GC changes.",
-    "B224 WORKS gets fresh scalar UI slot evidence via the always-loaded Activity context; Gate alone validates and writes rewards. Explicit EMPTY needs count0 plus complete KNOWN per-city references; it never turns UNKNOWN into zero. Three existing Culture consumers retain their own effect ownership."
+    "WORKS gets fresh city-level eligible-work existence via the always-loaded read-only UI endpoint; Gate alone validates and writes rewards. Explicit EMPTY requires count0 and complete KNOWN references; UNKNOWN never becomes zero. Three Culture consumers retain their existing effect ownership."
   ],
   "old_writers": [
     "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
@@ -775,21 +790,21 @@
     }
   ],
   "non_scope": [
-    "No new timers, forced native permission, automatic Wake, site movement, capacity/binding/Store-schema/history/GC/Design/main/configuration change. No unrelated feature or audit repair."
+    "No new timers, forced native permission, Wake of unowned sleep, site movement, capacity/binding/Store-schema/history/GC/Design/main/configuration change. No unrelated feature or audit repair."
   ],
   "validation": {
-    "depth": "L2 targeted exact source/consumer/UI/mission and shared-facts regressions; inherited native lifecycle evidence, no all-gameplay/stress suite.",
-    "local": "490 targeted tests PASS; current package251 validated. Historical package pins193/199/200 and obsolete standalone Aesthetic SQL bootstrap are not claimed current PASS; actual writer verified via maintained three-consumer integration.",
-    "user": "B224 task workflow FAIL; Ottawa WORKS and PEOPLE success/NEW confirmed, Khmer cancellation and native SLEEP denial/final rejection captured. User confirms source-city Insight Tourism/Floor/isolation and Aesthetic turn-zero/recovery; sale immediate refresh FAIL."
+    "depth": "L2 targeted actual-source event sequencing, Gate/Store/activity/mission/UI and shared work-consumer regressions; one combined native delta session. No all-gameplay/stress suite.",
+    "local": "617 targeted actual-source tests PASS, including18 B225 differential tests; current package252 validated. Three historical package-only pins193/199/200 excluded, not rewritten; actual three-consumer writer integration verified. No native CPU/memory or gameplay-wide claim.",
+    "user": "B225 USER_GAME_TEST_REQUIRED. Inherit B224 source-city Insight Tourism/Floor/isolation and Aesthetic turn-sync/recovery only; recurring task admission/release and immediate sale refresh await the combined session."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
-    "source": "B224.251/modinfo251 DEVELOP_ACTIVE; source ceb883bebe794113006df31a40659ed40b14cf2c; receipt B224.251-ceb883b-playtest.json;224/224 MATCH, digest 274b584d0eb919b14c44e8c91ad99abf78bb849a72b22557145b01d430bf5ca0. Fresh OS exit checks at both guarded B223/stable/B224 switches; recovery retained, no pending transaction, main/configuration change or game launch.",
-    "native": "B224 PARTIAL. No new Mod/native test in this review.",
-    "stop": "Recurring native SLEEP admission is the priority. B225 proposed only: no source edit, timer, forced native operation or deployment."
+    "report": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+    "source": "B225.252/modinfo252 LOCAL_COMPLETE;617 targeted tests PASS. Source commit follows final integrity/publication review. Last verified live B224.251 until the guarded deployment.",
+    "native": "B225 pending; original B224 task/sale failures retained. No native PASS from local simulation.",
+    "stop": "One combined B225 native session after verified deployment; no new timer, permanent field, capacity/source/GC change, N3 or unrelated batch."
   }
 }

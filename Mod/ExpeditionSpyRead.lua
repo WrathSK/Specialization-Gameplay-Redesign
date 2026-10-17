@@ -8,33 +8,59 @@ local function call(obj,name,...)
  if not obj or type(obj[name])~='function' then return nil end
  local ok,v=pcall(obj[name],obj,...);if ok then return v end
 end
--- B224: exact fresh UI-context slot read, callable without opening a panel.
--- No cached target list or saved work inventory is an authority for completion.
-function M.WorkSlot(observer,owner,id,x,y,building,slot)
+-- B225: fresh selected-city eligible-work existence. No exact work/site lock.
+function M.WorksCity(observer,owner,id,x,y)
  assert(observer==Game.GetLocalPlayer() and integer(owner) and integer(id)
-  and integer(x) and integer(y) and integer(slot),'MISSION_WORK_REFERENCE_UNKNOWN')
+  and integer(x) and integer(y),'MISSION_WORK_REFERENCE_UNKNOWN')
  local turn=Game.GetCurrentGameTurn()
- local cities=Players[owner] and Players[owner]:GetCities()
- local c=assert(cities and cities:FindID(id),'MISSION_WORK_REFERENCE_UNKNOWN')
+ local c=assert(Players[owner] and Players[owner]:GetCities():FindID(id),'MISSION_WORK_REFERENCE_UNKNOWN')
  local function sameCity()
   return c:GetOwner()==owner and c:GetID()==id and c:GetX()==x and c:GetY()==y
    and Game.GetCurrentGameTurn()==turn and Game.GetLocalPlayer()==observer
  end
  assert(sameCity(),'MISSION_WORK_REFERENCE_CHANGED')
- local def=assert(GameInfo.Buildings[building],'MISSION_BUILDING_UNKNOWN')
- local b=assert(c:GetBuildings(),'MISSION_BUILDING_UNKNOWN')
- assert(type(b.GetGreatWorkInSlot)=='function','MISSION_WORK_READER_UNAVAILABLE')
- local wid=b:GetGreatWorkInSlot(def.Index,slot)
- assert(wid==-1 or integer(wid),'MISSION_WORK_READER_UNAVAILABLE')
- local kind
- if wid~=-1 then
-  assert(type(b.GetGreatWorkTypeFromIndex)=='function','MISSION_WORK_TYPE_UNAVAILABLE')
-  local row=GameInfo.GreatWorks[b:GetGreatWorkTypeFromIndex(wid)]
-  assert(row and type(row.GreatWorkType)=='string','MISSION_WORK_TYPE_UNAVAILABLE')
-  kind=row.GreatWorkType
+ local sample={owner=owner,city=id,x=x,y=y,turn=turn,status='INVALID'}
+ local b=c:GetBuildings();local ds=c:GetDistricts();local uncertain=false;local checked,slots=0,0
+ local adapter={Info=function(name,key)local t=GameInfo[name];return t and t[key]end}
+ local function building(kind)
+  local def=assert(GameInfo.Buildings[kind],'MISSION_BUILDING_UNKNOWN')
+  local present=b:HasBuilding(def.Index);assert(type(present)=='boolean','MISSION_BUILDING_UNKNOWN')
+  if not present then return end
+  local n=b:GetNumGreatWorkSlots(def.Index);assert(integer(n) and n<=256,'MISSION_WORK_READER_UNAVAILABLE')
+  for slot=0,n-1 do
+   slots=slots+1;assert(slots<=4096,'MISSION_WORK_READER_UNAVAILABLE')
+   local ok,found=pcall(function()
+    local wid=b:GetGreatWorkInSlot(def.Index,slot)
+    assert(wid==-1 or integer(wid),'MISSION_WORK_READER_UNAVAILABLE')
+    if wid==-1 then return false end
+    local row=assert(GameInfo.GreatWorks[b:GetGreatWorkTypeFromIndex(wid)],'MISSION_WORK_TYPE_UNAVAILABLE')
+    local eligible,why=SPCGreatWorkCatalog.Resolve(adapter,row.GreatWorkType)
+    if eligible then sample.status='VALID';sample.work=row.GreatWorkType;return true end
+    assert(why=='UNSUPPORTED_TYPE','MISSION_WORK_TYPE_UNAVAILABLE')
+    return false
+   end)
+   if not ok then uncertain=true elseif found then return true end
+  end
  end
+ for _,district in ds:Members()do
+  checked=checked+1;assert(checked<=256,'MISSION_WORK_READER_UNAVAILABLE')
+  local ok,list=pcall(function()
+   local complete=district:IsComplete();assert(type(complete)=='boolean','MISSION_BUILDING_UNKNOWN')
+   if not complete then return {}end
+   local plot=assert(Map.GetPlot(district:GetX(),district:GetY()),'MISSION_WORK_REFERENCE_UNKNOWN')
+   local at=b:GetBuildingsAtLocation(plot:GetIndex());assert(type(at)=='table' and #at<=512,'MISSION_BUILDING_UNKNOWN');return at
+  end)
+  if not ok then uncertain=true
+  else for _,kind in ipairs(list)do
+   local read,found=pcall(building,kind)
+   if not read then uncertain=true
+   elseif found then break end
+  end end
+  if sample.status=='VALID' then break end
+ end
+ if sample.status~='VALID' and uncertain then sample.status='UNKNOWN'end
  assert(sameCity(),'MISSION_WORK_REFERENCE_CHANGED')
- return {owner=owner,city=id,x=x,y=y,turn=turn,building=building,slot=slot,workID=wid,work=kind}
+ return sample
 end
 function M.Capacity(pid)
  local d=Players[pid] and call(Players[pid],'GetDiplomacy')

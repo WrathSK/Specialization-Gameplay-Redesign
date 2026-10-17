@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "e33f65e801cd169411102acc69f779d482e7bf1eff169d792e2e6f5ccee48bfd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "cc8b285e3b5767eb7ed205e7a398c0f0aaa78fb0daf3fbb099b77b2e90873a75",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "bba5ae7a7a71978b642136299ddd02b7e7e4a77bdd9efbe1d943a3e6eb3e189a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "b10bcc0fc96308e88ae9a8b3c436dfb5078d41bf686d83a29aea9b4f0a83feaf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -511,9 +511,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "19c7812b07d26f2bec114c27e305022020c12c416c7d9a9e537bd3bb83901c3b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
@@ -1016,14 +1016,14 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "37c0b1557d249af1a36cde45b3dd216b04736bcd49a9cafa721fe54b1ed2ec15",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "864d5b58350e7213a3054bd562912df1511f1352b3c571545126ded2748a5128",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "98bfe651ad4404859cc06444c7630ca9c8afa20273085aa670d2b16bb4ddbca4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "f5f438246c4f95e4b3d95016194ec31077cc13a115071604a7803d3e3dd8d4dd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "3fd348b6441f52c844266ada64311665d52b321d9c45a641125aadcc2de70d99",
@@ -1056,14 +1056,14 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "177ccb460dd20bd99992dbe4d787b33c66181d0564f49af375435e584feb0294",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "f74f3279f209d65b9c4069323ff45127323c243a007413c2c6e1d889a23dc105",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "2d577810b34bab1e3ec1c97acc008b506c790c2f6d4e86daf801d8a3942577b5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "0ca81e879ea4673342a6b3100e9aa51fe8f33f33c3d16bc2115d9aa44ec967f1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "a6ef52aa4a3b77e392b1619eafe8101b8306e543ba7b570aab20e3d9a1fd3fe9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-      "provenance": "B223 approved bounded existing-event native-state/final-receipt diagnostic only;416 local PASS. No native writer, new timer, capacity/binding/reward/Store schema or GC change; native cause remains UNKNOWN."
+      "sha256": "de1dd59050a707af2d366e43b7f9b66392008d5c534cd5f7a8eba327597cade7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",

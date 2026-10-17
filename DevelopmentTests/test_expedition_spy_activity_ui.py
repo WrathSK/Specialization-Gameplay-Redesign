@@ -15,10 +15,10 @@ def bridge(with_trace=False):
       ExposedMembers={};turn=81;localOwner=2;packets={};allRequests={};arms=0;sleepCalls=0;wakeCalls=0;changed=0
       function event()local e={listeners={}};function e.Add(f)e.listeners[f]=true end;function e.Remove(f)e.listeners[f]=nil end
        return setmetatable(e,{__call=function(self,...)for f in pairs(self.listeners)do f(...)end end})end
-      Events={GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),UnitMoveComplete=event(),LocalPlayerTurnBegin=event()}
+      Events={GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),UnitMoveComplete=event(),LocalPlayerTurnBegin=event(),UnitOperationAdded=event(),UnitOperationDeactivated=event(),UnitOperationsCleared=event(),UnitCommandStarted=event(),UnitMovementPointsChanged=event()}
       LuaEvents={SPC_ExpeditionActivityChanged=event()};LuaEvents.SPC_ExpeditionActivityChanged.Add(function()changed=changed+1 end)
       ContextPtr={SetInitHandler=function(self,f)init=f end,SetShutdown=function(self,f)shutdown=f end,
-       SetUpdate=function(self,f)update=f end,ClearUpdate=function()update=nil end}
+       SetUpdate=function(self,f)update=function(dt)return refreshEvent(f,dt)end end,ClearUpdate=function()update=nil end}
       Game={GetLocalPlayer=function()return localOwner end,GetCurrentGameTurn=function()return turn end}
       GameInfo={Units={[1]={UnitType='UNIT_SPC_EXPEDITION_SPY'},[2]={UnitType='UNIT_SPY'}},
        UnitOperations={UNITOPERATION_SLEEP={Hash=70}},UnitCommands={UNITCOMMAND_WAKE={Hash=80}}}
@@ -89,10 +89,13 @@ def bridge(with_trace=False):
        end
       end}
     ''')
+    from refresh_fixture import install
+    install(l)
+    l.execute("UI.IsGameCoreBusy=function()return coreBusy==true end")
     if with_trace:
         l.execute((R/'Mod/ExpeditionTrainingDiagnostics.lua').read_text())
     l.execute((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
-    l.execute('init()')
+    l.execute('init();drainRefreshFrames()')
     return l
 
 

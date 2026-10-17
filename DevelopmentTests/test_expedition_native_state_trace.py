@@ -49,7 +49,7 @@ def combined():
     l = integrated()
     l.execute('activityShutdown()')
     enable(l)
-    l.execute('equip(units[41],0,0);activityInit()')
+    l.execute('equip(units[41],0,0);activityInit();drainRefreshFrames()')
     return l
 
 

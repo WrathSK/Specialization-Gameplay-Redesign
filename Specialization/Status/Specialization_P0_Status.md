@@ -1,23 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0599
-Implementation Build: source/live B224.251 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0600
+Implementation Build: source B225.252 LOCAL_COMPLETE; live B224.251; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0051（v0.1艺文采撷按目标城市馆藏维持；仅Design，不授权下一实施）
+Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
-Design Sync State: D0051_WORKS_CITY_SCOPE_ACCEPTED / IMPLEMENTATION_PENDING
-Work State: B224_NATIVE_PARTIAL_B225_PLANNED_NOT_AUTHORIZED
+Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
+Work State: B225_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B224 reviewed: task workflow FAIL; city Insight Tourism and Aesthetic turn-sync/recovery have scoped native acceptance.** [Evidence, D0051 delta and B225 plan](Validation/Results/Specialization_B224_Native_Review.md).
-- **Source/live B224.251 / modinfo251**, source `ceb883b`, receipt `B224.251-ceb883b-playtest.json`, last verified224/224 MATCH. This review changes documents only; main stable B069.96, runtime/configuration/GC unchanged.
-- **Task defects:** manually pre-existing sleep can leave a successful task TASK_COMPLETE, disabling TASK while travel works. Khmer cancellation returns ARRIVED, but subsequent native SLEEP admission is denied; the REJECTED unwind succeeds. No repeat blind test requested.
-- **Accepted rules:** Design/Culture D0051 changes v0.1 WORKS to target-city current eligible-work existence, not a locked work/slot/building. PLACES keeps its selected-Wonder contract. B224 still implements the older work lock.
-- **Yield evidence:** user confirms source-city Insight Tourism with engine Floor and city isolation; no Floor repair. 风雅熏陶 clears on turn sync and recovers when works return; sale lacks immediate invalidation because DiplomacyDealEnacted is not subscribed.
-- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Proposed B225 covers task cleanup/menu, city-level WORKS facts, trade-event refresh and bounded native-admission repair. Implementation is **not yet authorized**; reattachment/N3/unrelated audit repairs remain held.
-- **Priority:** recurring native SLEEP rejection: investigate/fix immediate event-stack admission and release completion before further task behavior. The native event→RequestRefresh pattern provides a timer-free bounded candidate. No source edit, deployment or new native test in this review; B225 remains awaiting authorization.
+**B225 implemented; native verification pending.** [Scheduling/release, city-level WORKS and sale-refresh result](Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md).
+- **Source B225.252 / modinfo252**, 617 targeted local tests PASS; native pending. **Live remains last verified B224.251**, source `ceb883b`, receipt `B224.251-ceb883b-playtest.json`,224/224 MATCH until the guarded B225 deployment completes. Main stable B069.96; configuration/GC unchanged.
+- **Task boundary:** native-event callbacks request one deferred UI refresh; SLEEP and WAKE observations advance only at a later refresh. No new timer, forced native permission, movement reset or indefinite admission retry. Pre-existing manual sleep now permits verified logical completion without automatic Wake; individual completed categories remain unavailable.
+- **Accepted D0051 implemented:** WORKS depends on current eligible-work existence in the target city, not a specific work/slot/building. Confirmed empty cancels; UNKNOWN protects. PLACES retains its selected-Wonder contract. Capacity, source binding and saved schema remain unchanged.
+- **Shared current facts:** DiplomacyDealEnacted now invalidates the existing local collection for same-turn sale refresh; explicit EMPTY/count0 and all three Culture consumers retain their evidence boundary. Prior user acceptance of source-city Insight Tourism/Floor/isolation and Aesthetic turn-sync/recovery is inherited; the new sale path awaits native verification.
+- **Authorization / stop:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B225 is explicitly authorized through local verification and guarded deployment. Next allowed action is its one combined native session, then evidence review. Reattachment/N3/unrelated audit repairs remain held.
+
+## S0600 — B225 common task lifecycle and city facts
+
+User authorized B225 implementation/deployment. [Result and combined native flow](Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md): deferred single-pending event refresh, post-request release observation, unowned completion/menu normalization, D0051 city-level WORKS and coalesced deal invalidation. No new timer, schema, capacity/binding, GC or main change; B224 original failures remain frozen. Local result and deployment are distinguished above.
 
 ## S0599 — B224 native review and D0051 acceptance
 

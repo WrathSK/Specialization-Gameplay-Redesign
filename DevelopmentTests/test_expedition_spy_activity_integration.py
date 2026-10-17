@@ -75,7 +75,7 @@ def integrated(window=False):
       units[41].activity=0
       activityContext={SetInitHandler=function(self,f)activityInit=f end,
        SetShutdown=function(self,f)activityShutdown=f end,
-       SetUpdate=function(self,f)activityUpdate=f end,ClearUpdate=function()activityUpdate=nil end}
+       SetUpdate=function(self,f)activityUpdate=function(dt)return refreshEvent(f,dt)end end,ClearUpdate=function()activityUpdate=nil end}
       activityEnvironment=setmetatable({ContextPtr=activityContext},{__index=_G})
       function beginTask(token)
        handler(2,{Action='TASK',Token=token or 'task1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8})
@@ -83,9 +83,12 @@ def integrated(window=False):
       end
       function view()return ExposedMembers.SPC_ExpeditionActivity end
     """)
+    from refresh_fixture import install
+    install(l, 'activityContext')
+    l.execute('UI.IsGameCoreBusy=function()return coreBusy==true end')
     l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")(
         (R / 'Mod/UI/ExpeditionSpyActivity.lua').read_text())
-    l.execute('activityInit()')
+    l.execute('activityInit();drainRefreshFrames()')
     return l
 
 
@@ -253,7 +256,7 @@ class PersistentActivityIntegration(unittest.TestCase):
     def restart_bridge(self,l):
         l.execute("activityShutdown();SPCExpeditionSpyGate.Start(P,shared)")
         l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
-        l.execute('activityInit()')
+        l.execute('activityInit();drainRefreshFrames()')
 
     def test_durable_arm_precedes_native_sleep_and_cold_running_keeps_due(self):
         l=integrated();l.execute("""
@@ -284,7 +287,7 @@ class PersistentActivityIntegration(unittest.TestCase):
           handler(2,p);Events.GameCoreEventPublishComplete()
           typeError=true;currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
           local s=gameProperties.SPC_EXPEDITION_TEAM_P2.state
-          assert(s.missionWorkID==12 and s.missionCompletionUnknownTurn==85)
+          assert(s.missionWorkID==nil and s.missionCompletionUnknownTurn==85)
           typeError=false;currentTurn=86
         """)
         self.restart_bridge(l)
@@ -292,7 +295,7 @@ class PersistentActivityIntegration(unittest.TestCase):
           assert(view().phase=='HELD' and view().error=='MISSION_COMPLETION_UNCONFIRMED')
           assert(view().mode=='NONE' and wakeCalls==1 and sleepCalls==1 and insightWrites==0 and not activityUpdate)
           local s=gameProperties.SPC_EXPEDITION_TEAM_P2.state
-          assert(s.missionWorkID==12 and s.missionCompletionUnknownTurn==85 and s.taskDue==85)
+          assert(s.missionWorkID==nil and s.missionCompletionUnknownTurn==85 and s.taskDue==85)
         """)
 
     def test_unreadable_cold_recovery_reaches_terminal_block_without_guessed_wake(self):
@@ -327,7 +330,7 @@ class PersistentActivityIntegration(unittest.TestCase):
         l=integrated();l.execute("beginTask();activityShutdown();SPCExpeditionSpyGate.Start(P,shared);city.token=nil;ownTurn(2)")
         l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
         l.execute("""
-          activityInit();assert(view().phase=='HELD' and view().mode=='NONE' and not view().recovering)
+          activityInit();drainRefreshFrames();assert(view().phase=='HELD' and view().mode=='NONE' and not view().recovering)
           assert(view().taskCompletions==0 and not view().taskCompleted and units[41].activity==0)
           assert(sleepCalls==1 and wakeCalls==1 and not activityUpdate)
         """)

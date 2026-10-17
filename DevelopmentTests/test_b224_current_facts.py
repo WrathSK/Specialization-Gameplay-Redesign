@@ -12,7 +12,7 @@ class WorkContext(unittest.TestCase):
   self.ready().execute("""
    assert(targetCity:GetBuildings().GetGreatWorkInSlot==nil)
    assert(targetCity:GetBuildings().GetGreatWorkTypeFromIndex==nil)
-   local r=startMission('w',WORKS);assert(r.phase=='TASK_RUNNING' and r.missionWorkID==12)
+   local r=startMission('w',WORKS);assert(r.phase=='TASK_RUNNING' and r.missionWorkID==nil)
    local n=slotReads;currentTurn=85;ownTurn(2)
    assert(slotReads>n and insightWrites==1 and req('READ','done').taskOutcome=='SUCCESS')
   """)
@@ -21,16 +21,16 @@ class WorkContext(unittest.TestCase):
    "ExposedMembers.SPC_ExpeditionWorkRead=function()error('unavailable')end",
    "ExposedMembers.SPC_ExpeditionWorkRead=function(...)local r=original(...);r.turn=r.turn-1;return r end",
    "ExposedMembers.SPC_ExpeditionWorkRead=function(...)local r=original(...);r.city=99;return r end",
-   "ExposedMembers.SPC_ExpeditionWorkRead=function(...)local r=original(...);r.workID=nil;return r end"]:
+   "ExposedMembers.SPC_ExpeditionWorkRead=function(...)local r=original(...);r.status=nil;return r end"]:
    with self.subTest(change=change):
     l=self.ready();l.execute('local original=ExposedMembers.SPC_ExpeditionWorkRead;'+change+";local r=startMission('w',WORKS);assert(r.phase=='ARRIVED' and r.missionStatus=='UNKNOWN' and insightWrites==0 and not r.activityKey)")
- def test_zero_instance_is_valid_and_replacement_still_cancels(self):
+ def test_zero_instance_and_replacement_remain_city_valid(self):
   self.ready().execute("""
    uiMissionBuildings.GetGreatWorkInSlot=function()return slotWork end
    uiMissionBuildings.GetGreatWorkTypeFromIndex=function()return 77 end
-   slotWork=0;local r=startMission('w',WORKS);assert(r.missionWorkID==0 and r.phase=='TASK_RUNNING')
+   slotWork=0;local r=startMission('w',WORKS);assert(r.missionWorkID==nil and r.phase=='TASK_RUNNING')
    slotWork=1;currentTurn=85;ownTurn(2)
-   assert(req('READ','changed').taskOutcome=='CANCELLED' and insightWrites==0)
+   assert(req('READ','changed').taskOutcome=='SUCCESS' and insightWrites==1)
   """)
  def test_ui_reference_changes_during_native_read_rejected(self):
   self.ready().execute("""
@@ -43,8 +43,8 @@ class ReaderRegistration(unittest.TestCase):
  def test_activity_installs_without_panel_and_shutdown_owns_only_its_reader(self):
   from test_expedition_spy_activity_integration import integrated
   l=integrated(window=False);l.execute("""
-   assert(type(SPCExpeditionSpyRead.WorkSlot)=='function')
-   assert(ExposedMembers.SPC_ExpeditionWorkRead==SPCExpeditionSpyRead.WorkSlot)
+   assert(type(SPCExpeditionSpyRead.WorksCity)=='function')
+   assert(ExposedMembers.SPC_ExpeditionWorkRead==SPCExpeditionSpyRead.WorksCity)
    activityShutdown();assert(ExposedMembers.SPC_ExpeditionWorkRead==nil)
    activityInit();local replacement=function()end
    ExposedMembers.SPC_ExpeditionWorkRead=replacement
@@ -130,7 +130,7 @@ class CurrentPackage(unittest.TestCase):
   import sqlite3
   import xml.etree.ElementTree as ET
   root=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot()
-  self.assertEqual(root.get('version'),'251')
+  self.assertEqual(root.get('version'),'252')
   for item in root.findall('.//File'):
    self.assertTrue((R/'Mod'/item.text).is_file(),item.text)
   db=sqlite3.connect(':memory:')

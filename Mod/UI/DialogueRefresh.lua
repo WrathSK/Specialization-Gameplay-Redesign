@@ -123,6 +123,9 @@ ContextPtr:SetInitHandler(function()
   local ok,c=pcall(function()return Cities.GetCityInPlot(Map.GetPlotIndex(x,y))end)
   mark('GreatWorkCreated',ok and c and c:GetOwner()==pid and c:GetID() or nil,true)
  end)
+ -- Native LaunchBar uses this parameterless event for traded inventory. One
+ -- coalesced local collection; no speculative participant signature or timer.
+ bind('DiplomacyDealEnacted',function()mark('DiplomacyDealEnacted',nil,true)end)
  bind('GreatWorkMoved',function(op,oc,dp,dc)
   local pid=Game.GetLocalPlayer()
   if type(op)~='number' or type(dp)~='number' then mark('GreatWorkMoved_UNLOCATED',nil,true);return end

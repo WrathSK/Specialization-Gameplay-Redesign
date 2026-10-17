@@ -165,7 +165,7 @@ class ActivityReconstruction(unittest.TestCase):
           ready();prepare();restart();activity('RECOVERED','recover',{Owned=false})
           local r=req('READ','sleep');assert(r.phase=='TASK_RUNNING' and not r.activityOwned and r.taskDue==85)
           currentTurn=85;ownTurn(2);r=req('READ','complete')
-          assert(r.phase=='TASK_COMPLETE' and r.activityMode=='NONE' and not r.activityOwned)
+          assert(r.phase=='ARRIVED' and not r.taskStart and not r.activityOwned)
           noNativeSideEffects()
         """)
 

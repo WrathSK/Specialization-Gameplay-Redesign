@@ -10,7 +10,7 @@ def fixture():
     l.execute("""
       panelShutdown()
       Events.GameCoreEventPublishComplete=event();Events.UnitOperationDeactivated=event()
-      Refresh=function()calls.Refresh=(calls.Refresh or 0)+1;rendered=GetUnitActionsTable(selected)end
+      Refresh=function()calls.Refresh=(calls.Refresh or 0)+1;rendered=GetUnitActionsTable(selected);if insideRefresh then insideRefresh()end end
       UnitOperationTypes={TYPE=1};UnitCommandTypes={TYPE=2};OperationResultsTypes={NO_TARGETS=9}
       local function row(hash,key)return {Hash=hash,Description=key,Icon=key,CategoryInUI='INPLACE'}end
       GameInfo.UnitOperations.UNITOPERATION_SKIP_TURN=row(8,'skip')
@@ -106,7 +106,7 @@ class ArrivalRefresh(unittest.TestCase):
           available=true;Events.GameCoreEventPublishComplete()
           assert(#rendered.INPLACE==2 and calls.Refresh==2)
           for i=1,20 do Events.GameCoreEventPublishComplete()end
-          assert(calls.Refresh==2 and ExposedMembers.SPC_ExpeditionActivity.revision==rev and #requests==0)
+          assert(calls.Refresh==22 and ExposedMembers.SPC_ExpeditionActivity.revision==rev and #requests==0)
         """)
 
     def test_sleep_and_wake_update_without_task_or_diagnostic(self):
@@ -143,7 +143,7 @@ class ArrivalRefresh(unittest.TestCase):
 
     def test_refresh_reentrancy_is_bounded(self):
         l=fixture();l.execute("""
-          local original=Refresh;Refresh=function(...)Events.GameCoreEventPublishComplete();return original(...)end
+          insideRefresh=function()Events.GameCoreEventPublishComplete()end
           phase('ARRIVED');Events.GameCoreEventPublishComplete();assert(calls.Refresh==1)
         """)
 

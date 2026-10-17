@@ -199,6 +199,21 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local owner,id,x,y=c:GetOwner(),c:GetID(),c:GetX(),c:GetY()
   missionAssert(int(owner) and int(id) and int(x) and int(y),'UNKNOWN','MISSION_TARGET_UNKNOWN')
   missionAssert(owner==t.owner and id==t.id and x==t.x and y==t.y,'INVALID','MISSION_TARGET_INVALID')
+  if m.category=='WORKS' then
+   local reader=ExposedMembers and ExposedMembers.SPC_ExpeditionWorkRead
+   missionAssert(type(reader)=='function','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   local ok,sample=pcall(reader,pid,t.owner,t.id,t.x,t.y)
+   missionAssert(ok and type(sample)=='table','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   missionAssert(sample.owner==t.owner and sample.city==t.id and sample.x==t.x and sample.y==t.y
+    and sample.turn==Game.GetCurrentGameTurn(),'UNKNOWN','MISSION_WORK_REFERENCE_CHANGED')
+   missionAssert(sample.status=='VALID' or sample.status=='INVALID' or sample.status=='UNKNOWN','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   missionAssert(sample.status~='UNKNOWN','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
+   missionAssert(sample.status=='VALID','INVALID','MISSION_TARGET_INVALID')
+   local eligible=type(sample.work)=='string' and SPCGreatWorkCatalog.Resolve(P,sample.work)
+   missionAssert(eligible~=nil and eligible~=false,'UNKNOWN','MISSION_WORK_INELIGIBLE')
+   m.x=t.x;m.y=t.y;m.building=nil;m.slot=nil;m.work=nil
+   return c -- The target is the city. An observed work is evidence, not a lock.
+  end
   missionAssert(int(m.x) and int(m.y),'UNKNOWN','MISSION_PLOT_UNKNOWN')
   if m.category=='PEOPLE' then
    -- Capital getters are native current facts, not saved destination labels.
@@ -214,7 +229,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local def=type(m.building)=='string' and P.Info('Buildings',m.building)
   missionAssert(def~=nil,'UNKNOWN','MISSION_BUILDING_UNKNOWN')
   local wonder=def.IsWonder==true or def.IsWonder==1
-  -- Works can be held in a completed wonder as well as an ordinary building.
+  -- PLACES retains its exact selected-Wonder location contract.
   missionAssert(m.category~='PLACES' or wonder,'INVALID','MISSION_BUILDING_UNKNOWN')
   local b=missionFact(c:GetBuildings(),'MISSION_BUILDING_UNKNOWN')
   local exists=P.HasBuilding(b,def.Index)
@@ -228,31 +243,6 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local plotOwner=plot:GetOwner()
   missionAssert(type(plotOwner)=='number' and plotOwner==plotOwner and plotOwner%1==0,'UNKNOWN','MISSION_PLOT_UNKNOWN')
   missionAssert(plotOwner==t.owner,'INVALID','MISSION_PLOT_CHANGED')
-  if m.category=='WORKS' then
-   missionAssert(int(m.slot) and type(m.work)=='string','UNKNOWN','MISSION_WORK_UNKNOWN')
-   missionAssert(SPCGreatWorkCatalog and type(SPCGreatWorkCatalog.Resolve)=='function','UNKNOWN','MISSION_WORK_CATALOG_UNAVAILABLE')
-   local eligible,why=SPCGreatWorkCatalog.Resolve(P,m.work)
-   missionAssert(eligible,(why=='UNSUPPORTED_TYPE' or why=='UNREVIEWED_ERA') and 'INVALID' or 'UNKNOWN','MISSION_WORK_INELIGIBLE')
-   -- These native work getters are UI-context APIs. Read the exact slot now,
-   -- at both admission and completion, through the always-loaded UI endpoint.
-   local reader=ExposedMembers and ExposedMembers.SPC_ExpeditionWorkRead
-   missionAssert(type(reader)=='function','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
-   local ok,sample=pcall(reader,pid,t.owner,t.id,t.x,t.y,m.building,m.slot)
-   missionAssert(ok and type(sample)=='table','UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
-   missionAssert(sample.owner==t.owner and sample.city==t.id and sample.x==t.x and sample.y==t.y
-    and sample.turn==Game.GetCurrentGameTurn() and sample.building==m.building and sample.slot==m.slot,
-    'UNKNOWN','MISSION_WORK_REFERENCE_CHANGED')
-   local workID=sample.workID
-   missionAssert(workID==-1 or int(workID),'UNKNOWN','MISSION_WORK_READER_UNAVAILABLE')
-   missionAssert(workID~=-1,'INVALID','MISSION_TARGET_INVALID')
-   if m.requireWorkID then
-    missionAssert(int(m.workID),'UNKNOWN','MISSION_WORK_ID_UNAVAILABLE')
-    missionAssert(workID==m.workID,'INVALID','MISSION_TARGET_INVALID')
-   end
-   missionAssert(type(sample.work)=='string','UNKNOWN','MISSION_WORK_TYPE_UNAVAILABLE')
-   missionAssert(sample.work==m.work,'INVALID','MISSION_TARGET_INVALID')
-   return c,workID
-  end
   return c
  end
  local function mission(pid,t,m)
@@ -498,8 +488,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
    if missionStatus=='INVALID' then
     -- B212 target invalidation: cancel, no Insight, no quota; the unit returns to the centre.
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn();state.taskOutcome='CANCELLED'
-    releaseActivity();state.taskCompletions=0;save()
-    print('[SPC][B191][N1_TASK] mission='..tostring(state.missionCategory)..' outcome=CANCELLED reason=TARGET_INVALID')
+    state.taskCompletions=0;releaseActivity();if state.activityMode=='NONE' then returnToCentre()end;save()
+    print('[SPC][B191][N1_TASK] mission='..tostring(m.category)..' outcome=CANCELLED reason=TARGET_INVALID')
    elseif allowTaskCompletion and turn>=state.taskDue then
     local civ=assert(completionCiv,'MISSION_COMPLETION_UNCONFIRMED')
     state.missionCompletionUnknownTurn=nil
@@ -507,10 +497,9 @@ function SPCExpeditionSpyGate.Start(P,shared)
     local archive=source()
     local added=insightStore().AddExpeditionInsight(state.owner,archive,civ,m.category,Game.GetCurrentGameTurn())
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn();state.taskOutcome='SUCCESS'
-    releaseActivity()
     state.taskCompletions=1
     state.taskCount=(state.taskCount or 0)+1 -- Successful tasks only; never used as an attempt identifier.
-    save()
+    releaseActivity();if state.activityMode=='NONE' then returnToCentre()end;save()
     print('[SPC][B191][N1_TASK] mission='..m.category..' outcome=SUCCESS civ='..civ..' insight='..(added and 'NEW' or 'EXISTING'))
     if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=state.owner,city=archive:GetID()})end
    end

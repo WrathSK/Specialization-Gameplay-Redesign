@@ -5,7 +5,10 @@ include('ExpeditionTrainingDiagnostics')
 include('ExpeditionSpyRead')
 local P=SPCP0
 local KIND='UNIT_SPC_EXPEDITION_SPY'
-local initialized=false;local stopped=false;local busy=false;local queued=false;local queuedMonitor=false
+local initialized=false;local stopped=false;local busy=false
+local pending=false;local pendingMonitor=false;local pendingTurn=false
+local signal='INIT';local coreState='UNAVAILABLE';local operationEvent='NONE';local operationHash='NIL'
+local schedule
 local job;local seen={};local lastRevision
 local pump
 local watch
@@ -175,6 +178,7 @@ end
 local function recordActivity(n,stage,reason,d)
  if not trace or not same(view(),n)then return end
  local v={owner=n.owner,eventUnit=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
+  evaluationOrigin='UI_REFRESH',signalOrigin=signal,coreBusy=coreState,operationEvent=operationEvent,lastOperationHash=operationHash,
   mode=n.mode,phase=n.phase,readStatus=n.readStatus or 'NOT_READ',x=n.x,y=n.y,actualX=n.actualX,actualY=n.actualY,
   activity=n.lastActivity or 'UNAVAILABLE',activitySampleTurn=n.sampleTurn,
   awake=n.sampleAwake,hold=n.sampleHold,sleep=n.sampleSleep,operationEnum=n.sampleOperation,
@@ -344,6 +348,7 @@ local function evaluate(n)
     assert(UnitManager.RequestOperation(u,hash)~=false,'ACTIVITY_SLEEP_REJECTED')
    end)
    if not sent then fail(n,err);return end
+   schedule('SLEEP_REQUEST',false);return -- Observe only at a later UI refresh.
   end
  elseif n.mode=='RELEASE' then
   -- Cancellation can precede the Gameplay acknowledgement. Only this UI lease knows
@@ -352,6 +357,7 @@ local function evaluate(n)
   if activity==ActivityTypes.ACTIVITY_AWAKE or activity==ActivityTypes.ACTIVITY_HOLD then
    -- Awake is not proof that an attempted, unobserved operation cannot still arrive.
    if seen.attempted and not seen.sleepObserved then fail(n,'ACTIVITY_SLEEP_OUTCOME_UNKNOWN');return end
+   recordActivity(n,'ACTIVITY_RELEASE')
    acknowledge(n,'RELEASED');return
   end
   if activity~=ActivityTypes.ACTIVITY_SLEEP then fail(n,'ACTIVITY_RELEASE_STATE_UNKNOWN');return end
@@ -368,6 +374,7 @@ local function evaluate(n)
     assert(UnitManager.RequestCommand(u,hash)~=false,'ACTIVITY_WAKE_REJECTED')
    end)
    if not sent then fail(n,err);return end
+   schedule('WAKE_REQUEST',false);return -- AWAKE in the writer stack is not release completion.
   end
  end
  -- A synchronous writer may have published/reentered; recheck the current lease before readback.
@@ -383,15 +390,9 @@ watch=function(n)
  ContextPtr:SetUpdate(function(dt)
   if stopped or job~=n then return end
   n.elapsed=n.elapsed+dt;n.poll=n.poll+dt
-  if not same(view(),n)then cancel();pump(false);return end
-  if n.poll>=0.25 then n.poll=0;pump(false)end
-  if job==n and n.elapsed>=10 then
-   if n.mode=='SLEEP' or n.mode=='ARMED' then
-    local captured,err=pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)
-    if not captured then print('[SPC][B194][ACTIVITY_TIMEOUT_DIAGNOSTIC_UNAVAILABLE] '..detail(err))end
-   end
-   fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT')
-  end
+  if not same(view(),n)then cancel();schedule('WATCH_CHANGED',false);return end
+  if n.poll>=0.25 then n.poll=0;n.pollDue=true;schedule('EXISTING_READBACK',false)end
+  if job==n and n.elapsed>=10 then n.deadline=true;schedule('EXISTING_DEADLINE',false)end
  end)
 end
 local function start(v)
@@ -438,16 +439,41 @@ local function refresh(monitor)
  if not job or not same(v,job)then cancel();start(v)end
  evaluate(job)
 end
-pump=function(monitor)
+-- One replaceable pending event request. No operation/query is executed here.
+schedule=function(origin,monitor,turnBoundary)
  if stopped then return end
- if busy then queued=true;queuedMonitor=queuedMonitor or monitor;return end
+ signal=origin;pendingMonitor=pendingMonitor or monitor==true;pendingTurn=pendingTurn or turnBoundary==true
+ if not pending then pending=true;ContextPtr:RequestRefresh()end
+end
+pump=function()
+ ContextPtr:ClearRequestRefresh()
+ if stopped or not pending then return end
+ pending=false
+ if busy then schedule('REENTRANT',false);return end
+ local known,value=pcall(function()
+  if not UI or type(UI.IsGameCoreBusy)~='function'then return nil end
+  return UI.IsGameCoreBusy()
+ end)
+ coreState=not known and 'READ_ERROR' or type(value)~='boolean' and 'UNAVAILABLE' or value
+ if value==true and known then return end -- Resume only on a later real event; no self-poll.
  busy=true
+ local monitor,atTurn=pendingMonitor,pendingTurn;pendingMonitor=false;pendingTurn=false
  local ok,err=pcall(function()
-  local rounds=0
-  repeat
-   queued=false;local shouldMonitor=monitor or queuedMonitor;queuedMonitor=false
-   refresh(shouldMonitor);monitor=false;rounds=rounds+1
-  until not queued or rounds>=4
+  local n=job
+  if n and n.deadline and not n.pollDue and same(view(),n)then
+   if n.mode=='SLEEP' or n.mode=='ARMED' then pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)end
+   fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT');return
+  end
+  refresh(monitor)
+  n=job
+  if n then n.pollDue=nil end
+  if n and n.deadline and same(view(),n)then
+   if n.mode=='SLEEP' or n.mode=='ARMED' then pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)end
+   fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT');return
+  end
+  if atTurn and n and n.positionPending and same(view(),n)then
+   positionLog(n,'TURN_BOUNDARY_STOP');fail(n,'ACTIVITY_POSITION_UNCONFIRMED_AT_TURN '..positionDetail(n))
+  end
  end)
  busy=false
  if not ok then
@@ -455,24 +481,26 @@ pump=function(monitor)
   if n then fail(n,err)else print('[SPC][B191][ACTIVITY_READ_FAILED] '..detail(err))end
  end
 end
-local function published()pump(false)end
+local function published()schedule('PUBLICATION',false)end
 local function activityChanged(pid,id)
  local v=view()
- if supported(v) and pid==v.owner and id==v.unitID then pump(true)end
+ if type(v)=='table' and pid==v.owner and id==v.unitID then schedule('ACTIVITY_OR_MOVE',true)end
 end
-local function turn()
- -- Re-read at the player-turn event; unresolved placement cannot silently carry on.
- -- This is a lifecycle event boundary, not an elapsed-time or event-count timeout.
- pump(true)
- local n=job
- if n and n.positionPending and same(view(),n)then
-  positionLog(n,'TURN_BOUNDARY_STOP');fail(n,'ACTIVITY_POSITION_UNCONFIRMED_AT_TURN '..positionDetail(n));return
+local function nativeOperation(name)
+ return function(pid,id,hash)
+  local v=view()
+  if type(v)=='table' and pid==v.owner and id==v.unitID then
+   operationEvent=name;operationHash=type(hash)=='number' and hash or 'NIL'
+   schedule(name,true)
+  end
  end
 end
+local operationHooks={}
+local function turn()schedule('LOCAL_TURN',true,true)end
 local function initialize()
  if initialized then return end
  initialized=true;stopped=false
- workReader=SPCExpeditionSpyRead and SPCExpeditionSpyRead.WorkSlot
+ workReader=SPCExpeditionSpyRead and SPCExpeditionSpyRead.WorksCity
  ExposedMembers.SPC_ExpeditionWorkRead=workReader
  if SPCExpeditionTrainingDiagnostics then
   local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'ACTIVITY_UI')
@@ -484,11 +512,16 @@ local function initialize()
  Events.LocalPlayerTurnBegin.Add(turn)
  if Events.UnitActivityChanged then Events.UnitActivityChanged.Add(activityChanged)end
  if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(activityChanged)end
- pump(true)
+ for _,name in ipairs({'UnitOperationAdded','UnitOperationDeactivated','UnitOperationsCleared','UnitCommandStarted','UnitMovementPointsChanged'})do
+  local e=Events[name]
+  if e then local fn=nativeOperation(name);e.Add(fn);operationHooks[#operationHooks+1]={event=e,fn=fn}end
+ end
+ schedule('INITIALIZE',true)
 end
+ContextPtr:SetRefreshHandler(pump)
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
- stopped=true;cancel()
+ stopped=true;pending=false;pendingMonitor=false;pendingTurn=false;ContextPtr:ClearRequestRefresh();cancel()
  if ExposedMembers.SPC_ExpeditionWorkRead==workReader then ExposedMembers.SPC_ExpeditionWorkRead=nil end
  workReader=nil
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
@@ -499,5 +532,6 @@ ContextPtr:SetShutdown(function()
   if Events.UnitActivityChanged then Events.UnitActivityChanged.Remove(activityChanged)end
   if Events.UnitMoveComplete then Events.UnitMoveComplete.Remove(activityChanged)end
  end
+ for _,h in ipairs(operationHooks)do h.event.Remove(h.fn)end;operationHooks={}
  initialized=false
 end)
