@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0588",
+    "status": "S0589",
     "runtime": "B220.247 / modinfo247",
     "military": "D0037",
     "harbor": "D0037",
@@ -701,8 +701,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-    "source": "B220.247/modinfo247 local validated; live remains B219 until guarded deployment.",
+    "source": "B220.247/modinfo247 DEVELOP_ACTIVE; source 3b7530e975e278ec7a600067cfb00da6a4868edf; receipt B220.247-3b7530e-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B219/stable recovery retained; no pending transaction, configuration or main change.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "After authorized deployment, await the one combined native test; no further batch."
+    "stop": "Await combined native delta test only; no further batch."
   }
 }

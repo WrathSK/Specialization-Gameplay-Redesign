@@ -37,4 +37,8 @@ User decision: interim centre execution accepted; site movement deferred. User t
 
 ## Checks and deployment
 
-Context/schema/hash, document links, diff review and staged publication checks are completed before the source checkpoint. Deployment remains pending until the separate receipt/equality record below.
+Context check PASS (224 runtime / 669 guarded files), self-test PASS,11 current-slice/report links and anchors PASS, diff check/review PASS and staged publication check PASS.
+
+B220.247/modinfo247 DEVELOP_ACTIVE; source 3b7530e975e278ec7a600067cfb00da6a4868edf; receipt B220.247-3b7530e-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B219/stable recovery retained; no pending transaction, configuration or main change.
+
+Source commit `3b7530e`; deployment-record checkpoint follows. No native PASS is implied.
