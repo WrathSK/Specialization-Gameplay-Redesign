@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="241">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="242">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B214.241: Repair Expedition task-start assertion argument; retain B213 mission protection and Culture presentation.</Description>
+    <Description>B215.242: Native idle skip, sleep and wake actions for Expeditions; task-owned activity remains isolated.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

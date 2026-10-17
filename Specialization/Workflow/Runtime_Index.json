@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "443a4ed686dcf37492ab8f4516317d85a3fdc8d456c79027026f5b89b64c9f59",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
-      "provenance": "B214 authorized narrow task-start assertion repair; observed-signature fixture and88 targeted checks PASS. Native pending; all other mission/state contracts unchanged."
+      "sha256": "b75ad560b26aae612c0fc04b8800308e0cba6900aee36187e17fc02b82c6c88f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
+      "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c3a48bceaa5aeadbad3482649d972e5bd40fcbb1aefe6f3673f3f5f602ab0e70",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
-      "provenance": "B214 authorized narrow task-start assertion repair; observed-signature fixture and88 targeted checks PASS. Native pending; all other mission/state contracts unchanged."
+      "sha256": "aa231ce172eeb63064b636d188541cb63e4aed140d12e935be7eb685bb037877",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
+      "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1056,9 +1056,9 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "0ab1c85c6d9a1a7a8fc3074d58d59e33d5e3e620c83e3075e91a9c37388df756",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Local.md",
-      "provenance": "B203 approved bounded name confirmation and diagnostic separation;457 targeted PASS. No persistent/cap/source/travel/task change; native pending."
+      "sha256": "ab269381e7ca27da71ee661a35a6bcc19c3fe729c6d53720008e9bb4077c6760",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
+      "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
       "sha256": "5d40a80ae888dc3f4e5a31fda91b15820bfe6575f6b596ab6f1e3ea0b4760f20",

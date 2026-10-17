@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0575",
-    "runtime": "B214.241 / modinfo241",
+    "status": "S0576",
+    "runtime": "B215.242 / modinfo242",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B214 PEOPLE native continuation accepted in logged scope. WORKS/PLACES native evidence deferred to future available targets. B215 idle-action/Tourism-preparation proposal awaits approval; no new implementation authorized.",
+  "goal": "B215 approved native idle skip/sleep/wake and read-only whole-city Tourism preparation; implementation locally complete, native idle UI pending. WORKS/PLACES evidence deferred.",
   "implementation_authorized": true,
   "context": [
     {
@@ -452,6 +452,11 @@
       "path": "DevelopmentTests/test_culture_institutions.py",
       "kind": "full",
       "reason": "Actual Research/Culture institution render, identity/ACTIVE/UNKNOWN and unchanged-layout regression"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_idle_actions.py",
+      "kind": "full",
+      "reason": "Direct B215 native idle-action/lock and callback tests; action-scoped reading."
     }
   ],
   "dependencies": [
@@ -651,18 +656,18 @@
     "No Tourism/Network rewards, reattachment, new profession, native Spy-slot isolation, general Store rewrite, GC/cost/capacity change, old-campaign corruption repair, main/configuration/game launch. Commerce wording consistency only; no Commerce runtime change."
   ],
   "validation": {
-    "depth": "L3 targeted changed mission/persistence/activity and direct UI/store/tool closure; no full gameplay/stress.",
-    "local": "778 Expedition/tool tests and66 additional institution/Insight/P0/Store/Dialogue/context-helper tests PASS. Historical B128 wrapper stopped on inherited include fixture before assertions, not counted PASS. Changed-source/XML/link/selector/context checks at commit checkpoint; native UI/foreign facts not established.",
-    "user": "B213 task start USER_GAME_TEST_FAIL: three logged MISSION assert message-type errors; creation/arrival/binding observed intact and Culture Lv4 rows displayed. No completion or N1_INSIGHT read event captured; other native scope pending."
+    "depth": "Targeted actual-wrapper and direct task/activity/Gate closure; no full gameplay/stress.",
+    "local": "90 UI/task/activity plus31 Gate/package/database tests PASS. Context/link/publication checks at commit.",
+    "user": "B214 PEOPLE scoped PASS retained. B215 idle controls pending; WORKS/PLACES deferred."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
-    "source": "B214.241/modinfo241 DEVELOP_ACTIVE; source 29391974f1ac887565f4ea8563a73b023acde4cd; receipt B214.241-2939197-playtest.json;219/219 MATCH. Automatic OS exit checks before both guarded switches; B213/stable recovery retained; no pending transaction. Configuration unchanged.",
-    "native": "Two logged PEOPLE SUCCESS/NEW records; Khmer explicit historical/effective1, Hungary returned centre. WORKS/PLACES native checks deferred; collector partial-frame gap disclosed.",
-    "stop": "Await B215 plan approval; manual collector retained; no new implementation or deployment."
+    "report": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
+    "source": "B215.242 locally complete; B214.241 remains live pending guarded switch.",
+    "native": "B214 PEOPLE scoped PASS retained. B215 idle controls pending; WORKS/PLACES deferred.",
+    "stop": "No Tourism writer/N3; wait for native idle check and next implementation approval."
   }
 }
