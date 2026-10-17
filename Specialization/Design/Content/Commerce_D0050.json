@@ -273,7 +273,7 @@
       "feedback": "Commercialization Gold is never recursively included in X. Possible interaction with a future Harbor specialization is deferred; no broad defensive system for hypothetical cross-specialization feedback loops (D0050)."
     },
     "capital_investment": {
-      "domain": "Player selects one investment domain. Eligible domains (D0050): any domain with a corresponding IMPLEMENTED specialization; in v0.1 the implemented specialization domains only (Research, Culture, Commerce, Industry); future/unimplemented domains (e.g. Holy Site, Harbor) are not automatically eligible. The Commerce source city need not have the district of the investment domain. D = source city local absolute infrastructure depth of that domain, D_effective=max(1,D). S = highest eligible CURRENT effective ACTIVE level (not Potential) of that domain's specialization among cities in the same existing specialization network (existing topology; no new connectivity model), S_effective=max(1,S); if no active specialization of that domain exists in the eligible network, S=1. The minimum never makes an unimplemented domain eligible. C=1.25 if this domain is currently commercialized in this source, otherwise1.00. Profit rate r=0.01*D_effective*S_effective*C. Lock the selected concrete S source city (when one exists) according to source_selection.",
+      "domain": "Player selects one investment domain. Eligible domains (D0050, user clarification 2026-10-16): any domain with a corresponding IMPLEMENTED specialization EXCEPT Commerce itself; in v0.1 Research, Culture and Industry. A future specialization becomes eligible once it is implemented (the rule intentionally leaves room); unimplemented domains (e.g. Holy Site, Harbor) are not eligible before then. The Commerce source city need not have the district of the investment domain. D = source city local absolute infrastructure depth of that domain, D_effective=max(1,D). S = highest eligible CURRENT effective ACTIVE level (not Potential) of that domain's specialization among cities in the same existing specialization network, i.e. the current domestic network formed by trade-route connections (user clarification; no new connectivity model), S_effective=max(1,S); if no active specialization of that domain exists in the eligible network, S=1. The minimum never makes an unimplemented domain eligible. C=1.25 if this domain is currently commercialized in this source, otherwise1.00. Profit rate r=0.01*D_effective*S_effective*C. Lock the selected concrete S source city (when one exists) according to source_selection.",
       "stable": {
         "name": "稳健投资",
         "name_status": "LOCKED_USER_CONFIRMED",
@@ -302,7 +302,7 @@
       "parallel": "D0050: at most ONE unsettled Capital Investment contract per Commerce source city per investment domain. Different Commerce source cities may independently hold contracts in the same domain. No nationwide total-contract cap.",
       "continuation": "Confirmed capital contracts retain locked contents/outcome despite Governor departure, ACTIVE decline, Commerce Identity exit, later D/S changes or route/network changes. Lost current qualification only blocks new signing. Specific key-city Owner change is subject rupture under ownership_termination, not ordinary qualification loss.",
       "quote_lock": "Confirmation locks Commerce source city, domain, specific S source city, contemporaneous Owner relation, P/D/S/C/r, mode and venture success probability/rolled outcome, maturity turn, settlement state and quote/state version. Later D/S/C/reputation/route changes never reprice/reroll. Ordinary running-contract reload cannot reroll; no anti-load claim before initial confirmation.",
-      "source_selection": "Among cities in the same existing specialization network, choose the highest current ACTIVE S; tied highest S chooses the city earliest attaining that level, then stable City ID/stable key. Persist specific source identity and attainment evidence so reload cannot randomize choice. With no eligible active source, S_effective=1 (D0050).",
+      "source_selection": "Among cities in the current trade-route-connected domestic network, choose the highest current ACTIVE S; tied highest S chooses the city earliest attaining that level, then stable City ID/stable key. Persist specific source identity and attainment evidence so reload cannot randomize choice. With no eligible active source, S_effective=1 (D0050).",
       "ownership_termination": "If Commerce source city OR locked S source city changes Owner, immediately exceptionally terminate: no principal return, no normal maturity settlement, no venture failure refund, no trigger/change of hidden failure protection. Subject rupture is not a normal locked failure; no reversal of protection already updated at confirmation is authorized.",
       "protection_ownership": "D0050: protection belongs to the Commerce source city AND its owner. A new owner after a city transfer does not inherit it. If the original owner later recaptures the city, that owner's previously accumulated n is restored unless an Identity exit has invalidated it. Protection is distinct from active contracts; key-city Owner change still terminates affected contracts under ownership_termination without manufacturing failures or changing n."
     },
@@ -484,8 +484,8 @@
       },
       "rounding": {
         "value": null,
-        "status": "FLAGGED_NO_EXISTING_COMMERCE_RULE",
-        "note": "Follow applicable native/HD purchase monetary rounding when confirmed."
+        "status": "MARKED_DECIDE_AT_IMPLEMENTATION",
+        "note": "User 2026-10-16: rounding of the 15% investment cost is marked and decided at implementation time."
       },
       "other_speed_scaling": {
         "value": null,
@@ -574,6 +574,11 @@
       "id": "COM-HANDOFF-D0050",
       "status": "RESOLVED_USER_CONFIRMED",
       "topic": "Commercialization K0.05 on total city yield; Capital implemented-domain eligibility, ACTIVE S in existing network, D/S minimum1, per-source-per-domain concurrency; Venture failure count closed form and owner scope; Development replaced by 15% theoretical purchase price +50% district-building Production until next eligible completion, one per target city; Standard speed only; deferred lifecycle boundaries."
+    },
+    {
+      "id": "COM-CLARIFY-D0050",
+      "status": "RESOLVED_USER_CONFIRMED",
+      "topic": "Capital excludes the Commerce domain and admits future specializations once implemented; specialization network = current trade-route-connected domestic network; Development preserved D0045 route/ACTIVE IV/specialist-slot qualification confirmed; investment-cost rounding decided at implementation."
     }
   ],
   "supersession": {

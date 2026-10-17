@@ -6,6 +6,19 @@ Latest Draft Design Revision: NONE
 Latest Accepted Design Revision: D0050
 Document State: ACCEPTED
 
+## Accepted D0050 clarification — 2026-10-16
+
+用户对D0050交接的四处解读作出确认：
+- **资本投资可投领域不包括商业领域本身**；v0.1为科研、文化、工业，未来其它专业一旦实施即自动纳入（规则有意留出空间），未实施前不可投。
+- **专业网络**即当前由商路连接形成的国内网络拓扑。
+- 发展投资沿用D0045的出发商路、商业ACTIVE IV签约资格与每工作专家1名额，确认无误。
+- 发展投资15%费用的**取整方式先标记，实施时决定**。
+
+Current clarified Spec SHA256: dbe69006e1243ed6b1316f11faf4f358e4c899332111a2449c4b1148dc1b924e
+Current clarified Commerce Content SHA256: 41bacacd5c8c7893c57526ca67a87ab8d617ba632ed431aa447b575ba07f8c4b
+
+下方同日原接受记录及其hash保持原样，代表澄清前的接受证据；本条只澄清解读，不是新修订，不授权实现。
+
 ## Accepted D0050 — 2026-10-16
 
 Acceptance: ACCEPTED / Commerce Design Talk handoff synchronization; implementation not authorized
