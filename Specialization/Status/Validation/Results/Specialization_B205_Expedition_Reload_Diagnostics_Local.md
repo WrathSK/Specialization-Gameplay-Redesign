@@ -570,3 +570,13 @@ Deferral rework assessment:
 - All `test_expedition_*` suites: 727 tests, only the 3 environment-dependent name tests fail, identically at HEAD. HEAD itself had those 3 plus the 11 historical failures fixed above.
 
 **Deployment.** B211.238/modinfo238 is **DEVELOP_ACTIVE**, source `c18c0530723b80aa63712ee9afa250b3f7c83dee`, receipt `B211.238-c18c053-playtest.json`. A fresh OS check (game executable only) confirmed game exit before both guarded switches: B210 restored to stable, then B211 activated. 219/219 files MATCH, and there is no pending transaction.
+
+## Name-test realignment — 2026-10-16 (local, test-only)
+
+**Correction.** The B211 section's statement that 3 `test_expedition_spy_name` tests depend on the external `DebugGameplay.sqlite` was **wrong**. They read no external database or file. Run in isolation, they have failed deterministically since `37f1096` (B201), the same commit that drifted the activity-diagnostic suites. Their passing in some earlier full runs was order-dependent.
+
+**Causes and changes (user-approved; no runtime change):**
+- `test_long_city_label_never_becomes_or_truncates_native_identity` used a 160-character (480-byte) label, but B201's Store bounds `sourceName` to 220 bytes. A player cannot reach that bound: the native city-name EditBox is `MaxLength="32"`, so at most 128 bytes even at 4 bytes per character. **It is not a product limitation.** The test now uses the longest enterable label (32 four-byte characters) and keeps the identity assertions.
+- `test_close_cancels_wait_and_reopen_cannot_confirm_late` and `test_close_inside_create_request_does_not_reinstall_cancelled_timer`: closing still cancels the pending wait, and the cancelled timer is neither reinstalled nor allowed to confirm. Since B201, however, reopening deliberately re-runs one fresh exact preparation for the persisted NAMING team. The tests keep the cancellation checks and now assert exactly one fresh confirmation after reopen, with no second packet afterwards.
+
+**Validation.** All `test_expedition_*` suites: **727 tests PASS**.

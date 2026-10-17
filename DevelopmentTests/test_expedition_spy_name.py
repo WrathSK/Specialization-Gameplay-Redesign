@@ -98,7 +98,9 @@ class NamePreparation(unittest.TestCase):
 
     def test_long_city_label_never_becomes_or_truncates_native_identity(self):
         l=gate();l.execute("""
-          city.GetName=function()return string.rep('长城港湾',40) end
+          -- Longest player-enterable label: the native city-name EditBox is MaxLength 32;
+          -- 32 four-byte characters (128 bytes) stay inside the Store's 220-byte bound.
+          city.GetName=function()return string.rep(utf8.char(0x1F3EF),32) end
           local r=req('CREATE','a')
           assert(r.phase=='CREATED' and r.expectedName=='LOC_CITIZEN_TEST_A' and r.sourceCity==1 and properties==0)
         """)
@@ -320,8 +322,11 @@ class NativeNameWindow(unittest.TestCase):
           gateOpen();Controls.CreateButton.click();assert(update);local oldUpdate=update
           Controls.CloseButton.click();assert(not update and ContextPtr.hidden)
           uiReady=true;publish();oldUpdate(11);assert(nameConfirmCalls==0 and nameCalls==0 and nativeCalls==0 and destroys==0 and units[40])
-          gateOpen();publish();assert(nameConfirmCalls==0 and nameCalls==0 and nativeCalls==0 and initCalls==1)
-          assert(Controls.Report.text:find('NAME_STAGE_CANCELLED',1,true));Controls.EndButton.click();assert(destroys==1 and properties==0)
+          -- B201+: reopening re-runs one fresh exact preparation for the persisted NAMING team.
+          gateOpen();assert(nameConfirmCalls==1 and nameCalls==0 and nativeCalls==0 and initCalls==1)
+          assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='CREATED')
+          publish();oldUpdate(11);assert(nameConfirmCalls==1 and nameCalls==0 and nativeCalls==0)
+          Controls.EndButton.click();assert(destroys==1 and properties==0)
         """)
 
     def test_delayed_unit_then_delayed_native_assignment_preserves_both_guards(self):
@@ -352,8 +357,11 @@ class NativeNameWindow(unittest.TestCase):
            if packet.Action=='CREATE' then Controls.CloseButton.click()end;return result
           end
           gateOpen();Controls.CreateButton.click();assert(ContextPtr.hidden and not update and nameConfirmCalls==0 and nameCalls==0 and nativeCalls==0)
-          uiReady=true;publish();gateOpen();publish();assert(nameConfirmCalls==0 and nameCalls==0 and nativeCalls==0 and initCalls==1 and properties==0)
-          assert(Controls.Report.text:find('NAME_STAGE_CANCELLED',1,true));Controls.EndButton.click();assert(destroys==1)
+          uiReady=true;publish();assert(nameConfirmCalls==0 and nameCalls==0 and nativeCalls==0 and not update)
+          -- B201+: reopening re-runs one fresh exact preparation; no second packet afterwards.
+          gateOpen();publish();assert(nameConfirmCalls==1 and nameCalls==0 and nativeCalls==0 and initCalls==1 and properties==0)
+          assert(ExposedMembers.SPC_ExpeditionGateReply.phase=='CREATED')
+          publish();assert(nameConfirmCalls==1);Controls.EndButton.click();assert(destroys==1)
         """)
 
     def test_publish_reentrant_during_name_confirmation_never_sends_second_packet(self):

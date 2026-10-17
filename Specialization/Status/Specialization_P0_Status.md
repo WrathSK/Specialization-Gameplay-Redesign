@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0564
+Status Revision: S0565
 Implementation Build: source/live B211.238 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
@@ -10,6 +10,8 @@ Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCE
 Work State: B211_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
+
+**Name-test realignment (test-only).** The 3 remaining `test_expedition_spy_name` failures were B201 drift, not an external-DB dependency (that earlier note is corrected). All 727 Expedition tests pass. No runtime change; B211.238 remains live and awaits the user test. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#name-test-realignment--2026-10-16-local-test-only).
 
 **B211 is deployed: B211.238 DEVELOP_ACTIVE, source `c18c053`, receipt `B211.238-c18c053-playtest.json`, 219/219 MATCH; no pending transaction.**
 - A completed 人文考察团 (Expedition) can be redispatched after its activity is released and can run another no-reward task.
