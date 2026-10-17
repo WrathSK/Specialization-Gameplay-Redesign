@@ -1,18 +1,18 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0583
-Implementation Build: source B218.245; live B217.244 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0584
+Implementation Build: source/live B218.245 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B218_DIAGNOSTIC_LOCAL_COMPLETE
+Work State: B218_DEPLOYED_AWAITING_DIAGNOSTIC
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B217 native test stopped at Gameplay immediate placement readback; B218 bounded placement diagnostics are locally complete.** Civilian occupancy is a hypothesis, not a confirmed cause. No behavior repair is claimed; +4% Tourism tooltip remains confirmed, rounding/dynamic update and WORKS deferred.
-- **Live B217.244**, source `afd87e4`, receipt `B217.244-afd87e4-playtest.json`,221/221 MATCH. Automatic OS exit checks/guarded switches verified; B216/stable recovery retained, no pending transaction. Main/configuration unchanged.
+**B217 native test stopped at Gameplay immediate placement readback; B218 bounded placement diagnostics are locally complete and deployed; one native capture pending.** Civilian occupancy is a hypothesis, not a confirmed cause. No behavior repair is claimed; +4% Tourism tooltip remains confirmed, rounding/dynamic update and WORKS deferred.
+- **Live B218.245**, source `0638eb5`, receipt `B218.245-0638eb5-playtest.json`,221/221 MATCH. Automatic OS exit/guarded switch verified, B217/stable recovery retained; no pending transaction, configuration or main change.
 - **Current implementation scope:** B216 adds one derived final-value city Tourism carrier (+2pp × effective Insights), exact source-city completion notification, current eligibility/owner/load reconciliation, and configured status in **文化见闻**. Prior B213–B215 mission/UI behavior retained. No training/capacity/binding/save-schema/GC or N3 change.
 - **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. Historical B213: three TASK attempts failed; arrival/binding remained intact, and Culture Lv4 institutions rendered. B214:88 local checks pass and the new logs confirm PEOPLE starts/completions; WORKS/PLACES native evidence is deferred. B213 local and combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
 - **Current contract and task context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Earlier B205–B212 progress below is historical; durable training/persistence contracts remain linked by the plan.

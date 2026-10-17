@@ -1,6 +1,6 @@
 # B218 — Bounded mission-placement diagnostic
 
-State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source B218.245; last verified live B217.244 until a deployment receipt is recorded.
+State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source/live B218.245; deployment verified below.
 
 ## B217 native stop and competing explanations
 
@@ -25,3 +25,9 @@ Lines reuse collector-accepted N1_TASK framing; no collector changes or raw priv
 Start the existing collector manually. Use the established test campaign at a point before the failed mission. Select the same available **奇观巡礼** target and start it once, preferably without changing the suspected target occupancy. This is a diagnostic build: a protected stop may still occur. Do not retry repeatedly or move/delete the other unit to force success. Allow the ordinary UI/action to settle, then stop the test and provide the log. No need to end another turn, save/reload, or manufacture a WORKS target. PRE/POST and any matching movement events distinguish immediate no-op/displacement from later position change; absent events or UNKNOWN reads will be reported as missing evidence, not repaired by inference.
 
 The user decision is diagnostic-only. Primary next: review this one capture before proposing a behavior repair. No new gameplay or automatic retry is authorized.
+
+## Deployment
+
+B218.245/modinfo245 DEVELOP_ACTIVE; source 0638eb5035b121c8f921eaac01b301c4c7bf18b5; receipt B218.245-0638eb5-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B217/stable recovery retained; no pending transaction or configuration change.
+
+Source/runtime digest: `81e28397a7d5b3822d6584a48c2394a6bde2585cc8998fad3d7f1b5b0d681a1e`. Context/selector self-test,372 local links, diff and staged publication checks PASS. No game launch, native PASS or main change.

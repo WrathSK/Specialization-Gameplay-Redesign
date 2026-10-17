@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0583",
-    "runtime": "B217.244 / modinfo244",
+    "status": "S0584",
+    "runtime": "B218.245 / modinfo245",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -696,7 +696,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
-    "source": "B218.245 locally complete; live B217.244 unchanged until receipt verification.",
+    "source": "B218.245/modinfo245 DEVELOP_ACTIVE; source 0638eb5035b121c8f921eaac01b301c4c7bf18b5; receipt B218.245-0638eb5-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B217/stable recovery retained; no pending transaction or configuration change.",
     "native": "B217 Gameplay EXACT_PLACEMENT_REJECTED before UI wait; B218 one diagnostic capture pending.",
     "stop": "Diagnostic-only; review capture before a behavior repair."
   }
