@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0586",
+    "status": "S0587",
     "runtime": "B219.246 / modinfo246",
     "military": "D0037",
     "harbor": "D0037",
@@ -721,8 +721,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-    "source": "B218.245/modinfo245 DEVELOP_ACTIVE; source 0638eb5035b121c8f921eaac01b301c4c7bf18b5; receipt B218.245-0638eb5-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B217/stable recovery retained; no pending transaction or configuration change.",
+    "source": "B219.246/modinfo246 DEVELOP_ACTIVE; source 7dede6ee777fa2db6568932900cb655369f9b17f; receipt B219.246-7dede6e-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B218/stable recovery retained; no pending transaction, configuration or main change.",
     "native": "B219 pending. Retain B218 empty-wonder completion/Insight and occupied-placement failure evidence.",
-    "stop": "Guarded deployment, then approved controlled comparison only. Review native evidence before proposing the next repair."
+    "stop": "Await approved controlled native comparison only; no formal transport repair or additional batch."
   }
 }

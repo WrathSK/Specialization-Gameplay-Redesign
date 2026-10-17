@@ -1,6 +1,6 @@
 # B219 — Ordinary Spy / Expedition movement comparison
 
-State: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B219.246/modinfo246. Live remains B218 until a separately recorded W0003 transaction below. This is the user-authorized minimal comparison following [B218 native evidence](Specialization_B218_Native_Review.md), not a repair of mission placement.
+State: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B219.246/modinfo246. W0003 deployment is verified below. This is the user-authorized minimal comparison following [B218 native evidence](Specialization_B218_Native_Review.md), not a repair of mission placement.
 
 ## Exact scope
 
@@ -57,3 +57,9 @@ If an ordinary/Expedition subject or a matching occupied destination is unavaila
 - MoveUnit offsets/no-ops/activates an unintended operation or changes another unit: not a safe substitute. Preserve evidence and propose the next narrow decision.
 
 User decision: none for this approved prototype. User testing: four controlled one-call rows, no turns or rewards. Primary next: inspect captured evidence, propose a repair only if justified, then stop. No formal movement replacement, N3, rounding or other development is authorized by a positive prototype.
+
+## Deployment and completion checks
+
+B219.246/modinfo246 DEVELOP_ACTIVE; source 7dede6ee777fa2db6568932900cb655369f9b17f; receipt B219.246-7dede6e-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B218/stable recovery retained; no pending transaction, configuration or main change.
+
+Context check PASS (224 runtime / 668 guarded context files), context self-test PASS,374 local document links/anchors checked without issues, diff review/check PASS and staged publication check PASS. Source commit `7dede6e`; documentation checkpoint follows separately. No native outcome is claimed by deployment.

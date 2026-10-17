@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0586
-Implementation Build: source B219.246 LOCAL_COMPLETE; live B218.245; stable B069.96
+Status Revision: S0587
+Implementation Build: source/live B219.246 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B219_MOVEMENT_COMPARISON_LOCAL_COMPLETE
+Work State: B219_MOVEMENT_COMPARISON_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B219 movement-interface comparison implemented, native pending.** User authorized ordinary Spy versus Expedition on the same occupied tile, preserving capacity, source binding and earned Insights. [Prototype, local evidence and controlled test](Validation/Results/Specialization_B219_Movement_Comparison.md).
 - **Source B219.246 / modinfo246:** explicit right-click P0 comparison, empty adjacent staging, one PlaceUnit/MoveUnit trial per load, bounded UnitMoveComplete/UnitTeleported/UI readback. No automatic relocation repair, timer/polling, native espionage, permanent-state or reward changes.
-- **Live B218.245**, source `0638eb5`, receipt `B218.245-0638eb5-playtest.json`,221/221 MATCH; guarded B219 deployment remains pending. Main stable B069.96 unchanged.
+- **Live B219.246**, source `7dede6e`, receipt `B219.246-7dede6e-playtest.json`,224/224 MATCH; fresh OS exit checks and both guarded switches verified. B218/stable recovery retained; no pending transaction. Main stable B069.96 unchanged.
 - **Validation:**219 targeted local tests PASS, including22 new probe tests. Native occupancy, UI rendering and event behavior remain unverified. Existing [B218 evidence](Validation/Results/Specialization_B218_Native_Review.md): empty wonder completion succeeds and records Khmer PLACES; occupied task/return placement offsets. Preserve historical3/effective3 Insights. Configured Tourism6% is not independent settlement/rounding acceptance.
 - **Current contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Training, Store, source binding and formal exact-location protection remain in place; the diagnostic lock is session-only and requires restoring the test baseline before continued play.
 - **Retained boundaries:** accepted new-campaign save scope, standard speed only, source-loss reattachment deferred, native Spy-slot limitation, user-managed Tuner. No configuration/main/Design/GC change; old-campaign corruption evidence remains [historical](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference).
-- **Next boundary:** complete guarded deployment, then one bounded four-row comparison with the existing collector; review evidence before any formal movement repair. No N3, Tourism rounding or unrelated audit repair.
+- **Next boundary:** one bounded four-row comparison with the existing collector; review evidence before any formal movement repair. No N3, Tourism rounding or unrelated audit repair.
 
 ## Historical progress — B205–B212 checkpoint
 
