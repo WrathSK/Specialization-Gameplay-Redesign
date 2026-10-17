@@ -236,11 +236,57 @@ function SPCExpeditionSpyGate.Start(P,shared)
   return {category=state.missionCategory,x=state.missionX,y=state.missionY,building=building~='' and building or nil,
    slot=tonumber(slot),work=work~='' and work or nil,workID=state.missionWorkID,requireWorkID=true}
  end
+ -- B218: bounded read-only placement evidence; never resumes or repairs a task.
+ -- One scalar watch, no persisted fields, timer, polling or global unit scan.
+ local placementWatch;local placementSequence=0
+ local function diagnosticValue(u,key)
+  local ok,value=pcall(function()return u[key](u)end)
+  if ok and (type(value)=='number' or type(value)=='boolean')then return tostring(value)end
+  return 'UNKNOWN'
+ end
+ local function placementSample(stage,ex,ey,record)
+  local w=record or placementWatch;if not w then return end
+  -- Diagnostics must never replace the original placement result/error.
+  pcall(function()
+   local player=Players[w.owner];local u=player and player:GetUnits():FindID(w.id)
+   local prefix='[SPC][B191][N1_TASK] placement='..stage..' seq='..w.sequence..' owner='..w.owner..' unit='..w.id
+   print(prefix..' requested='..w.x..','..w.y..' actual='..diagnosticValue(u,'GetX')..','..diagnosticValue(u,'GetY')
+    ..' readOwner='..diagnosticValue(u,'GetOwner')..' readID='..diagnosticValue(u,'GetID')..' type='..diagnosticValue(u,'GetType')
+    ..' operation='..diagnosticValue(u,'GetSpyOperation')..' event='..tostring(ex or 'NA')..','..tostring(ey or 'NA'))
+   local ok,native=pcall(function()return Units.GetUnitsInPlot(w.x,w.y)end)
+   if not ok or type(native)~='table' then print(prefix..' occupants=UNKNOWN');return end
+   local n=0
+   for _,other in pairs(native)do
+    if n==8 then print(prefix..' occupants=TRUNCATED limit=8');return end
+    n=n+1
+    local kind=diagnosticValue(other,'GetType');local info=P.Info('Units',tonumber(kind)) or {}
+    print(prefix..' occupant='..n..' otherOwner='..diagnosticValue(other,'GetOwner')..' otherID='..diagnosticValue(other,'GetID')
+     ..' type='..kind..' xy='..diagnosticValue(other,'GetX')..','..diagnosticValue(other,'GetY')
+     ..' spy='..tostring(info.Spy)..' stackable='..tostring(info.Stackable))
+   end
+   print(prefix..' occupants='..n)
+  end)
+ end
+ local function closePlacement(stage)
+  placementSample(stage);placementWatch=nil
+ end
+ if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(function(pid,id,x,y)
+  local w=placementWatch;if not w or pid~=w.owner or id~=w.id then return end
+  w.events=w.events+1;placementSample('MOVE_EVENT',x,y)
+  if w.events>=6 then closePlacement('EVENT_LIMIT')end
+ end)end
  local function relocate(u,x,y)
   assert(UnitManager and type(UnitManager.PlaceUnit)=='function','PLACEMENT_UNAVAILABLE')
-  if u:GetX()==x and u:GetY()==y then return u end
+  placementSequence=placementSequence+1
+  placementWatch={owner=state.owner,id=u:GetID(),x=x,y=y,sequence=placementSequence,events=0}
+  local placementRecord=placementWatch
+  placementSample('PRE')
+  pcall(print,'[SPC][B191][N1_TASK] placement=CHANNEL moveEvent='..tostring(Events.UnitMoveComplete~=nil))
+  if u:GetX()==x and u:GetY()==y then closePlacement('ALREADY_THERE');return u end
   if type(UnitManager.RestoreMovement)=='function' then UnitManager.RestoreMovement(u)end
-  UnitManager.PlaceUnit(u,x,y)
+  local placementOK,placementError=pcall(UnitManager.PlaceUnit,u,x,y)
+  placementSample(placementOK and 'POST' or 'API_ERROR',nil,nil,placementRecord)
+  if not placementOK then error(placementError,0)end
   local placed=owned(state.owner,u:GetID())
   assert(placed:GetX()==x and placed:GetY()==y,'EXACT_PLACEMENT_REJECTED')
   if type(UnitManager.FinishMoves)=='function' then UnitManager.FinishMoves(placed)end
@@ -526,6 +572,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
   assert(P.IsTestPlayer(pid),'SUPPORTED_PLAYER_REQUIRED')
   assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='NAME' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='ACTIVITY' or p.Action=='END','BAD_ACTION')
+  if p.Action=='END' or p.Action=='STOP' or p.Action=='DISPATCH' or p.Action=='CREATE' then closePlacement('ACTION_CLOSE')end
   load(pid);step=p.Action
   if p.Action=='READ' then return snapshot(pid)end
   assert(not storeBlocked,'EXPEDITION_STORE_UNAVAILABLE')
@@ -793,6 +840,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)
+  if placementWatch and pid==placementWatch.owner then closePlacement('TURN_CLOSE')end
   if P.IsTestPlayer(pid)then load(pid)end
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
@@ -804,6 +852,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   publishActivity()
  end
  if Events.LoadScreenClose then Events.LoadScreenClose.Add(function()
+  closePlacement('LOAD_CLOSE')
   if state.owner then data.Turn(state.owner)end
  end)end
  Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
@@ -815,6 +864,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   end
  end)end
  if Events.UnitRemovedFromMap then Events.UnitRemovedFromMap.Add(function(pid,id)
+  if placementWatch and pid==placementWatch.owner and id==placementWatch.id then closePlacement('REMOVED_CLOSE')end
   if pid==state.owner and id==state.unitID then state.removedEvents=math.min(99,(state.removedEvents or 0)+1)end
  end)end
 end

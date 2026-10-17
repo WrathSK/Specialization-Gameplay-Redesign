@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0582",
+    "status": "S0583",
     "runtime": "B217.244 / modinfo244",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B217 approved event-driven initial position confirmation; no initial-position timer/polling. Exact protections retained; one PLACES native retry pending.",
+  "goal": "B218 authorized bounded placement diagnostics only; preserve exact position guard and all task behavior; no timer/polling.",
   "implementation_authorized": true,
   "context": [
     {
@@ -477,6 +477,16 @@
       "path": "DevelopmentTests/test_expedition_position_wait.py",
       "kind": "full",
       "reason": "Direct B217 event-only position convergence, protection, collector and Gate/UI isolation tests."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_placement_diagnostic.py",
+      "kind": "full",
+      "reason": "Direct diagnostic failure isolation and bounded event regression."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
+      "kind": "full",
+      "reason": "Current diagnostic authorization, local evidence and one native capture."
     }
   ],
   "dependencies": [
@@ -677,17 +687,17 @@
   ],
   "validation": {
     "depth": "Direct actual-module/Gate/task/report/idle and in-memory configured DB closure; no full gameplay/stress.",
-    "local": "191 actual-module activity/position/Gate/package tests PASS; context/link/publication checks before commit.",
-    "user": "B217 initial position repair pending one PLACES retry. B216 PLACES preparation FAIL; +4% wonder tooltip confirmed, rounding/dynamic updates deferred; WORKS untested."
+    "local": "282 targeted tests PASS; native placement cause remains UNKNOWN.",
+    "user": "B217 Gameplay EXACT_PLACEMENT_REJECTED before UI wait; B218 one diagnostic capture pending."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
-    "source": "B217.244/modinfo244 DEVELOP_ACTIVE; source afd87e465719ebfd60e09e3db45f27651e811aae; receipt B217.244-afd87e4-playtest.json;221/221 MATCH. Automatic OS exit checks before both guarded switches; B216/stable recovery retained, no pending transaction. Configuration unchanged.",
-    "native": "B217 initial position repair pending one PLACES retry. B216 PLACES preparation FAIL; +4% wonder tooltip confirmed, rounding/dynamic updates deferred; WORKS untested.",
-    "stop": "One native PLACES retry; no new implementation batch, Tourism rounding/performance or N3."
+    "report": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
+    "source": "B218.245 locally complete; live B217.244 unchanged until receipt verification.",
+    "native": "B217 Gameplay EXACT_PLACEMENT_REJECTED before UI wait; B218 one diagnostic capture pending.",
+    "stop": "Diagnostic-only; review capture before a behavior repair."
   }
 }

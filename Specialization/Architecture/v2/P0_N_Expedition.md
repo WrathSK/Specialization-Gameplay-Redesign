@@ -7,6 +7,8 @@ Authority: Spec D0050 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts
 
 ## Current slice — B213 Expedition repair and Culture presentation
 
+**B218 authorized diagnostic only:** [native stop and bounded placement observations](../../Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md). B217 stopped earlier at Gameplay immediate readback; its UI wait was not reached. Observe PRE/POST/target occupants and exact-unit movement events without changing placement or task behavior. No timer/polling; native Spy mission coexistence reported by the user is not proof of generic PlaceUnit behavior.
+
 **B217 authorized repair:** [event-driven position confirmation](../../Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md) addresses the B216 PLACES preparation stop. No timer/polling for initial position visibility; exact identity/position protection remains, with fresh native-event reads and unresolved player-turn boundary stop. B216 native wonder tooltip shows+4%, while fractional settlement and Insight-driven update remain deferred. No N3 or unrelated change.
 
 **B216 authorized continuation:** [local Insight Tourism implementation and evidence](../../Status/Validation/Results/Specialization_B216_Insight_Tourism.md) now projects the accepted +2pp × effective city Insights through the Film Studio city-pressure primitive. This supersedes the B213 Tourism exclusions below only; the historical repair/training contracts remain. Source/ACTIVE/owner/load reconciliation owns disposable final-value carriers, with no second saved multiplier. Native pressure settlement remains pending. B215 idle controls are user-reported PASS; the travelling save joins this native session. N3 and reattachment remain out of scope.
