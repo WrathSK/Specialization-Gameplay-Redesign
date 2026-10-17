@@ -30,4 +30,6 @@ User decision: no new decision required. User testing: one attempt after verifie
 
 ## Deployment
 
-Source locally validated. Live remains B220 until a separately verified guarded deployment; no native PASS claimed.
+B221.248/modinfo248 DEVELOP_ACTIVE; source 5662871536008ecbe0036258d1a195acea5ff92e; receipt B221.248-5662871-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B220/stable recovery retained; no pending transaction, main or configuration change.
+
+Source commit `5662871`; staged publication check PASS (13 files). No native PASS or task repair claimed.

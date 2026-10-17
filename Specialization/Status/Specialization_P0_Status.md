@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0590
+Status Revision: S0591
 Implementation Build: source/live B219.246 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
@@ -11,13 +11,13 @@ Work State: B219_MOVEMENT_COMPARISON_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B221 activity diagnostics locally validated; B220 normal-task failure remains unresolved.** [Evidence, scope and one-attempt test](Validation/Results/Specialization_B221_Activity_Failure_Trace.md).
+**B221 activity diagnostics deployed; B220 normal-task failure remains unresolved.** [Evidence, scope and one-attempt test](Validation/Results/Specialization_B221_Activity_Failure_Trace.md).
 - **Source B221.248 / modinfo248:** reconnect-readable startup and actual failure records through the existing bounded trace ring. Preserve task, centre execution, native sleep/position protections, capacity, binding and earned Insights; no new timers or gameplay repair.
-- **Live B220.247**, source `3b7530e`, receipt `B220.247-3b7530e-playtest.json`,224/224 MATCH. B221 deployment requires the normal automatic game-exit and guarded transaction checks. Main stable B069.96 unchanged.
+- **Live B221.248**, source `5662871`, receipt `B221.248-5662871-playtest.json`,224/224 MATCH. Fresh automatic OS exit and guarded switches verified; B220/stable recovery retained, no pending transaction. Main stable B069.96 unchanged.
 - **Validation:**307 targeted local tests PASS. User reports B220 normal missions fail; current logs have a transport gap and do not establish the native cause. No new native PASS. B218 earned-Insight evidence retained; Tourism rounding and unavailable WORKS targets remain separate deferred questions.
 - **Current contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Site movement deferred; real target evidence and displacement protection retained. Training, Store schema, reward semantics and GC unchanged.
 - **Retained boundaries:** new-campaign save scope, standard speed only, source-loss reattachment deferred, native Spy-slot limitation, user-managed Tuner. No main/configuration change.
-- **Next boundary:** guarded diagnostic deployment, one ordinary available mission attempt with the manual collector, then evidence-based repair plan. No repeated blind comparison, N3 or unrelated audit repair.
+- **Next boundary:** one ordinary available mission attempt with the manual collector, then evidence-based repair plan. No repeated blind comparison, N3 or unrelated audit repair.
 
 ## Historical progress — B205–B212 checkpoint
 
