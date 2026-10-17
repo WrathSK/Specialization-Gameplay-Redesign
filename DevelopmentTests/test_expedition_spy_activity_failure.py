@@ -121,7 +121,8 @@ class FailureDiagnostic(unittest.TestCase):
         for change in ["units[41].name='other'", "units[41].owner=3", "units[41].spy=9", "readThrow=true", "sleepDenied=true", "throwBeforeSleep=true"]:
             with self.subTest(change=change):
                 l=failure_bridge()
-                l.execute(change+";publish('SLEEP');assert(failure()==nil and packets[1].Result=='FAILED')")
+                expected='REJECTED' if change=='sleepDenied=true' else 'FAILED'
+                l.execute(change+";publish('SLEEP');assert(failure()==nil and packets[1].Result=='"+expected+"')")
 
     def test_normal_sleep_release_keeps_two_eligibility_reads_and_no_failure_sample(self):
         l=failure_bridge()

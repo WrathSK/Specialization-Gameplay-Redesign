@@ -1,13 +1,13 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: B219_MOVEMENT_COMPARISON / LOCAL_COMPLETE_NATIVE_PENDING. B215 idle controls have user-reported acceptance; PEOPLE and empty-wonder PLACES have scoped native evidence; WORKS and occupied placement remain pending/failed respectively. Local Tourism is implemented in B216; N3, reattachment and U2 remain outside this batch.
+State: B222_TASK_REJECTION / LOCAL_COMPLETE_NATIVE_PENDING. B215 idle controls have user-reported acceptance; PEOPLE and empty-wonder PLACES have scoped native evidence; WORKS and occupied placement remain pending/failed respectively. Local Tourism is implemented in B216; N3, reattachment and U2 remain outside this batch.
 Authority: Spec D0050 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。Earlier UI proposals and Spy0 investigations are historical references. The implemented Spy1 native-style UI, three missions and city history are bounded by the current slice below; native evidence does not establish later Tourism or Network behavior.
 
 ## Current slice — B213 Expedition repair and Culture presentation
 
-**B221 current diagnostic slice:** [activity failure trace](../../Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md). B220 normal-task failure is user-reported; its cause is not established. Reuse the bounded trace ring for startup/actual-guard failure observations and reconnect recovery. No task/movement/SLEEP behavior or new timer; no further functional repair authorized.
+**B222 current authorized repair:** [shared mission-start rejection](../../Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md). All three categories already share the same native activity pipeline. A proven unarmed/unexecuted denial may discard only its current PREPARING draft and return to ARRIVED after fresh identity/source/target/position checks and confirmed save; uncertain, owned, stale or changed-state outcomes retain protection. Bounded native failure reasons use the existing trace. No native permission bypass, new timer, movement, saved schema or automatic HELD recovery. B221's underlying engine denial remains UNKNOWN; native task success is not claimed.
 
 **B220 retained implementation:** [centre missions and arrival idle actions](../../Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md). User defers site movement: WORKS/PLACES retain real target evidence but execute at the destination centre; no task/return teleport. Exact displacement, target validity and reward uniqueness remain enforced. Native idle-control eligibility refreshes on relevant events independently of Gate revisions, with one selected-team signature and no timers. B219 comparison is stopped after an unavailable UI entry; its earlier authorization below is historical, not the next test. Normal native travel/entry continuation, capacity, binding, Insights and GC are unchanged.
 

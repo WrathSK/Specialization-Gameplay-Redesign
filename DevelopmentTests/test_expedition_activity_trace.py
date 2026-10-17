@@ -24,7 +24,7 @@ class ActivityTrace(unittest.TestCase):
          assert(a.eligibilityStatus=='DENIED' and f.guardStatus=='DENIED')
          assert(f.reason=='ACTIVITY_SLEEP_NOT_ALLOWED' and f.activity=='0')
          assert(f.requested=='false' and f.attempted=='false')
-         assert(sleepChecks==2 and sleepCalls==0 and #packets==1 and packets[1].Result=='FAILED')
+         assert(sleepChecks==2 and sleepCalls==0 and #packets==1 and packets[1].Result=='REJECTED')
          assert(f.line:find(' stage=ACTIVITY_FAILURE ',1,true))
         """)
 
@@ -83,7 +83,7 @@ class ActivityTrace(unittest.TestCase):
         l=fixture();l.execute("""
          ExposedMembers.SPC_B205TrainingTrace.entries=nil
          sleepDenied=true;publish('SLEEP')
-         assert(#packets==1 and packets[1].Result=='FAILED' and sleepCalls==0)
+         assert(#packets==1 and packets[1].Result=='REJECTED' and sleepCalls==0)
         """)
 
     def test_budget_and_ring_remain_bounded(self):

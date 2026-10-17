@@ -85,7 +85,8 @@ local function acknowledge(n,result,reason,sleeping,awake)
   UnitID=n.unitID,ActivityKey=n.activityKey,Result=result,Owned=n.owned==true,
   SampleTurn=Game.GetCurrentGameTurn(),Detail=reason and detail(reason) or nil}
  if result~='FAILED' then args.NativeOperation=-1 end
- if result=='RECOVERED' or result=='ARMED'then args.Sleeping=sleeping;args.Awake=awake end
+ if result=='RECOVERED' or result=='ARMED' or result=='REJECTED'then args.Sleeping=sleeping;args.Awake=awake end
+ if result=='REJECTED'then args.Requested=false;args.Attempted=false end
  local ok,err=pcall(function()
   assert(UI and type(UI.RequestPlayerOperation)=='function' and PlayerOperations,'ACTIVITY_REQUEST_UNAVAILABLE')
   UI.RequestPlayerOperation(n.owner,PlayerOperations.EXECUTE_SCRIPT,args)
@@ -132,6 +133,43 @@ local function traceValue(v)
  if v:sub(1,8)=='UNKNOWN:'then return 'UNKNOWN_READ_ERROR'end
  return v:gsub('[^%w_:%-%.|]','_'):sub(1,100)
 end
+-- B222: native UnitPanel reads this second return for denial explanations.
+-- Keep at most four localization keys, never arbitrary native text or objects.
+local function captureNativeReasons(n,result,hash)
+ n.operationHash=hash;n.nativeResultType=type(result);n.nativeReasonStatus='UNKNOWN'
+ n.nativeReasonCount=0;n.nativeReasonTruncated=false
+ for i=1,4 do n['nativeReason'..i]=nil end
+ if result==nil then n.nativeReasonStatus='NO_RESULT';return end
+ if type(result)~='table' and type(result)~='userdata'then n.nativeReasonStatus='INVALID_RESULT';return end
+ local key=UnitOperationResults and UnitOperationResults.FAILURE_REASONS
+ if key==nil then n.nativeReasonStatus='NO_REASON_KEY';return end
+ local reasons=result[key]
+ if reasons==nil then n.nativeReasonStatus='NO_REASONS';return end
+ if type(reasons)~='table'then n.nativeReasonStatus='INVALID_REASONS';return end
+ n.nativeReasonStatus='EMPTY'
+ for i=1,4 do
+  local value=reasons[i];if value==nil then break end
+  n.nativeReasonCount=i;if n.nativeReasonStatus~='PARTIAL_REDACTED'then n.nativeReasonStatus='KEYS'end
+  if type(value)=='string' and #value<=100 and value:match('^LOC_[A-Z0-9_]+$')then n['nativeReason'..i]=value
+  else n['nativeReason'..i]='REDACTED_NON_KEY';n.nativeReasonStatus='PARTIAL_REDACTED' end
+ end
+ n.nativeReasonTruncated=reasons[5]~=nil
+end
+-- The decision query deliberately requests no result payload (false). Only a
+-- denial needs this one observational query, using the native UnitPanel hint.
+-- Missing hints/errors/disagreement never authorize a request or an automatic retry.
+local function captureDeniedReasons(n,u,hash)
+ n.reasonQueryStatus='HINT_UNAVAILABLE'
+ local hint=OperationResultsTypes and OperationResultsTypes.NO_TARGETS
+ if type(hint)~='number' or hint~=hint or hint%1~=0 then
+  n.nativeReasonStatus='RESULT_HINT_UNAVAILABLE';return
+ end
+ n.reasonResultHint=hint;n.reasonQueryStatus='READ_ERROR'
+ local allowed,results=UnitManager.CanStartOperation(u,hash,nil,false,hint)
+ n.reasonQueryStatus='READ_OK'
+ n.reasonPermission=allowed==true and 'ALLOWED' or allowed==false and 'DENIED' or 'UNKNOWN_VALUE'
+ captureNativeReasons(n,results,hash)
+end
 local function recordActivity(n,stage,reason,d)
  if not trace or not same(view(),n)then return end
  local v={owner=n.owner,eventUnit=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
@@ -141,6 +179,8 @@ local function recordActivity(n,stage,reason,d)
   requested=n.requested==true,attempted=seen.attempted==true,
   guardStatus=n.guardStatus or 'NOT_QUERIED',guardError=n.guardError,
   reason=reason and (tostring(reason):match('ACTIVITY_[A-Z_]+') or 'READ_ERROR')}
+ for _,k in ipairs({'operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4'})do v[k]=n[k]end
+ v.unitType=KIND
  -- Startup observations are explicitly separate from the actual decision guard.
  if d then
   for _,k in ipairs({'activity','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus'})do
@@ -153,6 +193,23 @@ traceFailure=function(n,err)
  if seen.traceFailure or not same(view(),n)then return end
  seen.traceFailure=true
  recordActivity(n,'ACTIVITY_FAILURE',err)
+end
+-- A denied operation before durable ARMED has no native side effect to release.
+-- Re-read identity/position/activity before asking Gameplay to discard only this
+-- attempt. UNKNOWN, changed identity and any possibly executed request still fail.
+local function rejectBeforeRequest(n,err)
+ if n.guardStatus~='DENIED' or n.mode~='SLEEP' or n.phase~='TASK_PREPARING'
+  or n.owned or n.publishedOwned or n.requested or seen.armRequested or seen.attempted then return false end
+ local ok,u,activity=pcall(read,n)
+ n.readStatus=not ok and 'READ_ERROR' or (u and 'READ_OK' or 'POSITION_PENDING')
+ if job~=n or not same(view(),n)then return true end
+ if not ok or not u then fail(n,ok and 'ACTIVITY_POSITION_CHANGED' or u);return true end
+ if activity~=ActivityTypes.ACTIVITY_AWAKE and activity~=ActivityTypes.ACTIVITY_HOLD then
+  fail(n,'ACTIVITY_REJECTION_STATE_CHANGED');return true
+ end
+ if traceFailure then pcall(traceFailure,n,err)end
+ acknowledge(n,'REJECTED','ACTIVITY_SLEEP_NOT_ALLOWED',false,true)
+ return true
 end
 local function captureDiagnostic(n,u,activity)
  local d={owner=n.owner,unitID=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
@@ -259,10 +316,19 @@ local function evaluate(n)
     n.guardStatus='READ_ERROR'
     local permission=UnitManager.CanStartOperation(u,hash,nil,false,false)
     n.guardStatus=permission==true and 'ALLOWED' or (permission==false and 'DENIED' or 'UNKNOWN_VALUE')
+    n.operationHash=hash;n.reasonQueryStatus='NOT_NEEDED'
+    if permission==false then
+     local captured=pcall(captureDeniedReasons,n,u,hash)
+     if not captured then n.nativeReasonStatus='READ_ERROR' end
+    end
     assert(permission==true,'ACTIVITY_SLEEP_NOT_ALLOWED')
     return hash
    end)
-   if not allowed then n.guardError=tostring(hash):match('ACTIVITY_[A-Z_]+') or 'NATIVE_READ_ERROR';fail(n,hash);return end
+   if not allowed then
+    n.guardError=tostring(hash):match('ACTIVITY_[A-Z_]+') or 'NATIVE_READ_ERROR'
+    if not rejectBeforeRequest(n,hash)then fail(n,hash)end
+    return
+   end
    if job~=n or not same(view(),n)then return end
    if n.mode=='SLEEP' then
     -- The durable Gate must confirm this intent before the native writer runs.

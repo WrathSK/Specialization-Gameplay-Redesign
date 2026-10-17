@@ -703,3 +703,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_MOVE_PROBE_STATUS_NOT_EXACT','Immediate position differs'),
 ('zh_Hans_CN','LOC_SPC_MOVE_PROBE_STATUS_STOP','已停止；见原因代码'),
 ('en_US','LOC_SPC_MOVE_PROBE_STATUS_STOP','Stopped; see reason code');
+
+-- B222: a clean pre-request denial leaves the team idle, not an accepted task.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','任务未开始：引擎当前不允许休眠，未发出休眠指令，也未计时或发放见闻。本次启动锁定已解除；拒绝信息已记录，请保留日志，不必反复尝试。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','Task not started: the engine currently denies Sleep. No Sleep request, task time or Insight was applied. The startup lock was released; denial details were recorded. Retain the log instead of repeatedly retrying.');

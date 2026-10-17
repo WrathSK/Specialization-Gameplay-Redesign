@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "72447635d9f0fb4387d9269db4dba5a853475707f0cb3db2096f38bcd3d08e32",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
-      "provenance": "B221 diagnostic-only bounded trace and actual guard observations; targeted local PASS, native unresolved."
+      "sha256": "a27ebdf1a7ac2d337b76712a5c6e0b049a6669eb7b8bc0159d86575be56b1e91",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "e21abc1f89d623a22e3366fd878d0f5d22f8ab0cfbe4a615019d2f0a5d924492",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+      "sha256": "70725eec30e8291c6a4b43c28c77700ef6f92cd873d7a7779a3144dac01b7a0b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,14 +1021,14 @@
       "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "acadec6aaac97231065299c87cc001aeceb87abb79573b3a405d6e1815a6b08c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
+      "sha256": "7af57e0fad484dddddc1c1d9896ceac9097953b878acaf6cbee46fb7f5c444f2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "0f22018ca73289bb949b53e45acf1d201f2cf1162b64681dcf78c8026d5af92a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "3fd348b6441f52c844266ada64311665d52b321d9c45a641125aadcc2de70d99",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "c4b33439c6bb1d7b3820be5ec8ae7b1794da2814a25ba1785a9e1ed1c4590067",
@@ -1061,9 +1061,9 @@
       "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "339117b0a5108b6c17905d423c691b9cf97f3a020b0e22c5951efdc2c0f9b51f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
-      "provenance": "B221 diagnostic-only bounded trace and actual guard observations; targeted local PASS, native unresolved."
+      "sha256": "142b10867bf06e9c64da8364bd58c705f71527fa13b20f34cbe07e577e6e4c95",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "75e8349d8c5ecdd0b177b2705743793c4321ae88887e28076605f6dc3d47c6af",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
-      "provenance": "B221 diagnostic-only bounded trace and actual guard observations; targeted local PASS, native unresolved."
+      "sha256": "2c5124f5440c758253ead4a3a6b424a1c872d5bdfcfbe934b57da496a4677225",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",

@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0592",
-    "runtime": "B221.248 / modinfo248",
+    "status": "S0593",
+    "runtime": "B222.249 / modinfo249",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "Review B221 pre-request native SLEEP denial; propose bounded admission/failure-reason repair, not implement.",
-  "implementation_authorized": false,
+  "goal": "B222 shared unexecuted task-rejection repair and bounded native failure reasons; preserve uncertain-action protection and the existing successful mission pipeline.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -489,14 +489,19 @@
       "reason": "Current diagnostic authorization, local evidence and one native capture."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
       "kind": "full",
-      "reason": "Current B221 native failure and next narrow plan; no new implementation authority."
+      "reason": "Current authorized repair, local checks, native uncertainty and bounded continuation."
     },
     {
       "path": "DevelopmentTests/test_expedition_activity_trace.py",
       "kind": "full",
       "reason": "Direct bounded activity diagnostic producer/consumer and delta regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_task_rejection.py",
+      "kind": "full",
+      "reason": "Direct clean-denial/owned-failure, exact attempt, persistence and bounded native reason counterexamples."
     }
   ],
   "dependencies": [
@@ -690,24 +695,30 @@
         "DevelopmentTests/test_unit_panel_action_layout.py",
         "DevelopmentTests/test_native_icon_aliases.py"
       ]
+    },
+    {
+      "trigger": "Review direct B221 native denial or its B194/B214 comparison before changing native permission semantics",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B221_Activity_Native_Review.md"
+      ]
     }
   ],
   "non_scope": [
     "No generic site-movement repair, timers/polling, new native mission, capacity/binding/schema/history/GC/Commerce/N3/main/configuration change. Existing entry-city travel is preserved."
   ],
   "validation": {
-    "depth": "L2: targeted activity/task/persistence and offline collector diagnostics.",
-    "local": "307 targeted tests PASS.",
-    "user": "B221 PLACES USER_GAME_TEST_FAIL; diagnostic capture successful, native SLEEP denial reason UNKNOWN. Current PEOPLE not retested."
+    "depth": "L2: targeted shared task/activity/Store/UI and offline collector checks.",
+    "local": "381 targeted tests PASS (350 runtime/tool fixtures +31 read-only DB/package tests).",
+    "user": "B221 native PLACES DENIED remains unresolved; B222 clean-rejection/native reason result pending. No mission native PASS claimed."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Native_Review.md",
-    "source": "B221.248/modinfo248 DEVELOP_ACTIVE; source 5662871536008ecbe0036258d1a195acea5ff92e; receipt B221.248-5662871-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B220/stable recovery retained; no pending transaction, main or configuration change.",
-    "native": "USER_GAME_TEST_FAIL: pre-request SLEEP denied; task not started.",
-    "stop": "Await narrow plan approval; no new test or implementation."
+    "report": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+    "source": "B222.249/modinfo249 local complete; live B221.248 pending guarded W0003 deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; native denial cause UNKNOWN.",
+    "stop": "One logged attempt, stop on denial; no blind repeats or next implementation batch."
   }
 }

@@ -79,6 +79,9 @@ def bridge(with_trace=False):
        if not noAck then
         if args.Result=='ASLEEP'then publish('ASLEEP',args.Owned)
         elseif args.Result=='RELEASED'then publish('NONE',false)
+        elseif args.Result=='REJECTED'then
+         assert(not args.Owned and args.Requested==false and args.Attempted==false and args.Awake and args.Sleeping==false)
+         publish('NONE',false)
         else
          local v=ExposedMembers.SPC_ExpeditionActivity
          publish(args.Owned and v.mode~='RELEASE' and 'RELEASE' or 'BLOCKED',args.Owned)
@@ -191,7 +194,7 @@ class ActivityBridge(unittest.TestCase):
                     l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_{suffix}',1,true) and packets[{packet}].Owned=={str(action=='WAKE').lower()} and update==nil);assert(sleepChecks=={3*prior} and wakeChecks==0);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(#packets=={packet})")
 
     def test_denied_sleep_or_wake_never_bypasses_guard(self):
-        l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepChecks==2 and sleepCalls==0 and wakeCalls==0 and packets[1].Result=='FAILED' and not packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_NOT_ALLOWED',1,true))")
+        l=bridge();l.execute("sleepDenied=true;publish('SLEEP');assert(sleepChecks==2 and sleepCalls==0 and wakeCalls==0 and packets[1].Result=='REJECTED' and not packets[1].Owned and packets[1].Detail:find('ACTIVITY_SLEEP_NOT_ALLOWED',1,true))")
         l=bridge();l.execute("publish('SLEEP');wakeDenied=true;publish('RELEASE',true);assert(wakeChecks==1 and sleepCalls==1 and wakeCalls==0 and packets[2].Result=='FAILED' and packets[2].Owned and packets[2].Detail:find('ACTIVITY_WAKE_NOT_ALLOWED',1,true))")
 
     def test_missing_native_eligibility_or_writer_api_is_reported_without_native_write(self):

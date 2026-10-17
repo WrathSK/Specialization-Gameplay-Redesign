@@ -639,7 +639,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    state.nativeAllowed=type(p.NativeAllowed)=='boolean' and p.NativeAllowed or false
    state.nativeStatus=p.NativeStatus=='KNOWN' and 'KNOWN' or 'UNKNOWN'
    if again then
-    state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil;state.activityKey=nil
+    state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil;state.activityKey=nil;state.activityFailure=nil
     state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil
    end
    state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil;state.missionWorkID=nil;state.missionCompletionUnknownTurn=nil;state.taskOutcome=nil;missionStatus=nil;missionReason=nil;missionRetryKey=nil;missionUnknownReads=0
@@ -676,11 +676,11 @@ function SPCExpeditionSpyGate.Start(P,shared)
    -- Do not advance the independent timer before native sleep is observed.
    -- Next durable revision identifies this attempt, even when the previous one cancelled.
    mutating=true;state.activityKey=state.teamKey..':attempt'..tostring(envelope.revision+1);state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
-   state.taskCompletions=0;state.phase='TASK_PREPARING'
+   state.activityFailure=nil;state.taskCompletions=0;state.phase='TASK_PREPARING'
   elseif p.Action=='ACTIVITY' then
    assert(state.owner==pid and state.unitID==p.UnitID and state.activityKey==p.ActivityKey,'ACTIVITY_REFERENCE_CHANGED')
    assert(type(p.Owned)=='boolean','ACTIVITY_OWNERSHIP_UNKNOWN')
-   assert(p.Result=='ARMED' or p.Result=='RECOVERED' or p.Result=='ASLEEP' or p.Result=='RELEASED' or p.Result=='FAILED','ACTIVITY_RESULT_UNKNOWN')
+   assert(p.Result=='ARMED' or p.Result=='RECOVERED' or p.Result=='ASLEEP' or p.Result=='RELEASED' or p.Result=='REJECTED' or p.Result=='FAILED','ACTIVITY_RESULT_UNKNOWN')
    if p.Result=='RECOVERED' then
     assert(recovering,'ACTIVITY_NOT_PENDING')
     mutating=true;recovering=false -- Matching one-shot reply is consumed even if stale/invalid.
@@ -705,6 +705,24 @@ function SPCExpeditionSpyGate.Start(P,shared)
      if p.Sleeping then assert(state.activityOwned,'ACTIVITY_UNOWNED_SLEEP');state.sleepConfirmed=true
      else state.activityMode='NONE';state.activityOwned=false;state.activityPending=false;returnToCentre()end
     else error('ACTIVITY_RECOVERY_UNKNOWN')end
+   elseif p.Result=='REJECTED' then
+    -- B222: only a proven unarmed, unexecuted attempt may return to idle.
+    -- A stale/duplicate response cannot cancel a newer lease or an owned action.
+    assert(not recovering and state.phase=='TASK_PREPARING' and state.activityMode=='SLEEP'
+     and state.activityOwned==false and state.activityPending==true and not state.sleepConfirmed
+     and not state.taskStart and not state.taskDue,'ACTIVITY_NOT_PENDING')
+    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1
+     and p.Owned==false and p.Requested==false and p.Attempted==false
+     and p.Awake==true and p.Sleeping==false and p.Detail=='ACTIVITY_SLEEP_NOT_ALLOWED','ACTIVITY_REJECTION_UNCONFIRMED')
+    mutating=true -- A lost reference/readback below still takes the protected stop path.
+    source();target(pid,state.target);local u=tracked()
+    assert(u:GetX()==state.x and u:GetY()==state.y and state.x==state.target.x and state.y==state.target.y,'TEAM_DISPLACED_STOP')
+    if type(u.GetSpyOperation)=='function'then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
+    state.phase='ARRIVED';state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil;state.activityKey=nil
+    state.taskCompletions=nil;state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil;state.missionWorkID=nil;state.missionCompletionUnknownTurn=nil;state.taskOutcome=nil
+    missionStatus=nil;missionReason=nil;missionRetryKey=nil;missionUnknownReads=0
+    state.activityFailure='ACTIVITY_SLEEP_NOT_ALLOWED' -- Replaceable session feedback, not persistent history.
+    print('[SPC][B191][N1_TASK] admission=REJECTED reason=ACTIVITY_SLEEP_NOT_ALLOWED nativeRequested=false')
    elseif p.Result=='ARMED' then
     assert(not recovering and state.phase=='TASK_PREPARING' and state.activityMode=='SLEEP','ACTIVITY_NOT_PENDING')
     assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1 and p.Owned and p.Awake==true and p.Sleeping==false,'STALE_ACTIVITY_SAMPLE')
