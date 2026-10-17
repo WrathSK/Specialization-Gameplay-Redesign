@@ -661,3 +661,5 @@ Deferral rework assessment:
 - `PlaceUnit` onto foreign district and wonder plots, and back.
 - Whether Gameplay can read great-work slots and types on a foreign city.
 - Native Spy travel to an entry city followed by relocation.
+
+**Deployment.** B212.239/modinfo239 is **DEVELOP_ACTIVE**, source `05970d043d4b80fa400bcc7542f23acea7d31008`, receipt `B212.239-05970d0-playtest.json`. A fresh OS check (game executable only) confirmed game exit before both guarded switches: B211 restored to stable, then B212 activated. 219/219 files MATCH, and there is no pending transaction.

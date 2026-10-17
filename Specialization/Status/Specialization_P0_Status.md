@@ -2,16 +2,16 @@
 
 Document Owner: Codex
 Status Revision: S0567
-Implementation Build: source B212.239 (live B211.238 DEVELOP_ACTIVE until the authorized switch); stable B069.96
+Implementation Build: source/live B212.239 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B212_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
+Work State: B212_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B212 is locally complete and deployment is authorized.**
+**B212 is deployed: B212.239 DEVELOP_ACTIVE, source `05970d0`, receipt `B212.239-05970d0-playtest.json`, 219/219 MATCH; no pending transaction.**
 - The three Design missions are in: 风土考察, 艺文采撷 and 奇观巡礼.
 - **Movement:** the team moves Spy-like to the mission plot and returns to the target centre.
 - **Insight history:** first-success Insights are recorded in the archive city's history; historical and effective counts are shown.
