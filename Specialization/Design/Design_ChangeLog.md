@@ -3,8 +3,27 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0049
+Latest Accepted Design Revision: D0050
 Document State: ACCEPTED
+
+## Accepted D0050 — 2026-10-16
+
+Acceptance: ACCEPTED / Commerce Design Talk handoff synchronization; implementation not authorized
+Acceptance Evidence: 用户提交Commerce Design Handoff（D0045基础上的七项决定）及“发展投资使用理论金币购买价”补充说明，授权正式Design／阅读版／metadata同步及commit/push；不授权Gameplay、SQL、Lua、测试修改、部署或新实机测试。
+Accepted Spec SHA256: a4b0bf6a3956723338bfcae4a475a2fc32448df31d6b9546b30eac4aee17643c
+Canonical Commerce Content SHA256: a3da62da67e379ef44d3e8d767ef2263f67057ec5290420ac6917ae16d508eda
+Previous Accepted Revision: D0049
+Frozen D0049: [原文](Revisions/Specialization_Design_Spec_D0049.md)
+Frozen D0049 SHA256: 22a7d50b6539c4e3b7762f1a7d4287e64712b6d382b9cd14b5a14ba6b9ca25d6
+Content: [Commerce D0050](Content/Commerce_D0050.json) / [商业阅读版](Commerce.md)
+
+- **商业化：** 系数0.1→0.05，`G=0.05×D×X×M`；X为合法候选（本城及任意方向直接国内商路的本国城市）中该领域**城市总产出**最高者，各领域独立择优；不做区域／建筑／专家／改良／修正归因；商业化金币不递归进入X；与未来港口的相互作用暂缓，不建假想跨专业防御系统。
+- **资本投资：** 可投领域为有对应已实施专业的领域（v0.1：科研、文化、商业、工业），不自动纳入宗教、港口等；来源城不需该领域区域；S读同一既有专业网络中该领域当前有效ACTIVE最高等级（非Potential），不新建连通模型；`D_eff=max(1,D)`、`S_eff=max(1,S)`，无来源时S=1，最低值不使未实施领域合格；同最高S的决胜规则保持；并发限制为每商业来源城每投资领域1笔，不同来源城可同域并存，无全国总数上限；本金、期限、收益与结算不变。
+- **风险投资失败保护：** 只存连续失败次数n，`P=0.8−(0.8−P_base)×0.75^n`；失败n+1、成功清零、换领域或D／S变化保留n并按新基本面重算、同来源城各领域共享、离开商业身份清零；保护属于来源城及其主人，新主人不继承，原主人夺回时恢复（未因身份退出失效）；与运行合同分开，关键城易主终止合同时不制造失败。
+- **发展投资（重大替换）：** 删除固定10回合、P_low／P_high／P_ref、劳动力优化、粮食供养定价模拟、历史生产记录与按生产力报价（仅在D0045追溯）；新机制为比直接购买更省金币但需等待的选择：目标城须有合格区域且下一级建筑当前可建；费用=15%×该建筑**理论金币购买价**（不要求可用金币购买，不以生产力成本替代；取整按现有规则或标出）；生效期间该区域类型建筑+50%建造生产力，持续到完成下一座合格建筑，无固定期限、无退款补偿；绑定目标城＋区域类型＋生效状态；每目标城最多1份（不分领域／来源）；来源每工作专家1名额、出发商路签约资格、与标准化加算、易主终止均保留。剧院广场（HD＋District Expansion）与社区建筑链为实施时检查。平衡说明`f=0.5/(1+b+0.5)`及示例表只作参考。
+- **游戏速度：** 受影响的投资机制v0.1只支持标准速度；资本期限、发展定价、重组与信誉积累的其它速度缩放暂缓，不套用科研传承速度规则。
+- **暂缓的生命周期边界：** 关键城市摧毁／永久移除；原主人在无可靠关键城转移证据时被消灭；发展投资签约后目标区域／建筑失效。暂缓到v0.1之后，运行时防损坏的保守处理只是技术保护。
+- 交接未提及的商业机制、名称与参数全部保留（含资产重组、商业信誉、商业化配置生命周期、资本收益与确认顺序）。
 
 ## Accepted D0049 clarification — 2026-10-11
 

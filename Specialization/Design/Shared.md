@@ -228,7 +228,7 @@ Tier权重只描述实际基础设施投入，不自动决定每D应给多少收
 - [Design Spec](Specialization_v0.1_Design_Spec.md)：SCOPE、ELIG、TERMS、PROG与SHARED共同规则及明确例外。
 - [Shared正式内容](Content/Shared_D0045.json)与[语义审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)：普通建筑、当前资格、D、份额、领域词汇与消费者边界；旧Shared引用按当前澄清解释，历史原件不改。
 - [机构与能力展示原则](../Architecture/v2/Presentation_Institution_Carrier_Model.md)：已接受的累计机构、能力说明与隐藏载体分层；具体实现建议不升格为玩法。
-- [商业正式内容](Content/Commerce_D0045.json)：重组例外及当前商业身份／历史展示边界，完整商业合同仍见[商业阅读版](Commerce.md)。
+- [商业正式内容](Content/Commerce_D0050.json)：重组例外及当前商业身份／历史展示边界，完整商业合同仍见[商业阅读版](Commerce.md)。
 - [A–D生命周期接受与替代](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：城市、文明、机构和合同分别处理；不扩展未讨论边界。
 - [接受记录](Design_ChangeLog.md)与[内容导航](Content/README.md)：正式来源及取代关系。通用网络另见[Network](Network.md)。
 

@@ -13,7 +13,7 @@
 | 科研 | [Research](Research.md) | 人才、跨领域研究、科研设施与学术传统 | 本地主体已冻结；网络保留旧合同待重设计；精度临时例外单列 |
 | 文化 | [Culture](Culture.md) | 馆藏时代、城市审美、跨领域诠释与对外考察 | 巨作启迪接受当前时代数×3%的本城全类别GPP，原生待验证；Meaning九域六产出保持、原生主题化暂接受待Balance，文化共存仍待验；其它技术与实现另见Status |
 | 工业 | [Industry](Industry.md) | 标准模板、施工力量、工程实践与文明传统 | 主体已冻结；职责与首测值已定、逐模板来源择优；候选命名／原生验证与平衡仍分开 |
-| 商业 | [Commerce](Commerce.md) | 商业化、资本合同、发展投资、重组与信誉 | 主体及主要公式已定、名称锁定；首版参数可调；合同易主终止／信誉身份规则明确，其余精确边界保留 |
+| 商业 | [Commerce](Commerce.md) | 商业化、资本合同、发展投资、重组与信誉 | D0050：商业化0.05×城市总产出、资本资格与失败保护定稿、发展投资改为理论购买价15%＋区域建筑+50%；v0.1只支持标准速度，三项生命周期边界暂缓 |
 
 另有[原始首都一次性特殊改制](Shared.md#未来记录原始首都一次性特殊改制)：三阶段完整1T、保留潜力，**仅未来正式记录，不进入v0.1实施**。
 
@@ -56,7 +56,7 @@ Shared负责共同概念，Network负责共同连接，专业正文直接写全�
 ## 实现、正式来源与历史
 
 - **想看做到哪里、哪些通过、哪些待测：** [Status](../Status/Specialization_P0_Status.md)。本目录阅读页不另存运行版本或PASS清单。
-- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec／市政D0047；文化D0046九域恢复，工业／Shared／商业D0045，科研D0040、军事／港口D0037。市政及其它未来设计不扩大当前四专业实施范围；D0042生命周期与D0038逐领域Floor等未被取代条款继续有效，成熟度逐项保留。
+- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec D0050；商业D0050，文化D0049，市政D0047，工业／Shared D0045，科研D0040、军事／港口D0037。市政及其它未来设计不扩大当前四专业实施范围；D0042生命周期与D0038逐领域Floor等未被取代条款继续有效，成熟度逐项保留。
 - **想查展示接受来源：** [文化馆藏时代方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
 - **想查为什么改过：** [接受与取代记录](Design_ChangeLog.md)、各篇页尾来源及[冻结历史](Revisions/)。较新的文件或更大的编号不自动覆盖未被取代的规则。
 - **Codex／开发者起点：** [项目导航](../README.md)和[AGENTS](../AGENTS.md)，继续按任务读取正式来源，不要求每轮加载全部阅读页。阅读版维护约定集中在[Content导航](Content/README.md#人类阅读入口)。

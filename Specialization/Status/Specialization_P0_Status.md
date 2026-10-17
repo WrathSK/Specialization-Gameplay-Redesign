@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0567
+Status Revision: S0568
 Implementation Build: source/live B212.239 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
-Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
-Latest Accepted Design Revision: D0049
+Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
+Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
 Work State: B212_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
+
+**Design D0050 (Commerce) has been synchronized from the user's 2026-10-16 Design Talk handoff and pricing clarification. This is Design-only: no Gameplay, SQL, Lua, test or runtime change, and no implementation authorized.**
+- Commercialization: K=0.05 on the highest eligible total city domain yield.
+- Capital: implemented-specialization domains, current ACTIVE S in the existing network, D/S minimum 1, one contract per source city per domain.
+- Venture protection: consecutive-failure count, owner-scoped.
+- Development Investment: replaced by 15% of the theoretical purchase price, +50% to the selected district type's buildings until the next eligible completion, one per target city.
+- Speed: Standard only in v0.1.
+- Deferred: key-city destruction, original-owner elimination without transfer evidence, Development target invalidation.
+
+[ChangeLog](../Design/Design_ChangeLog.md#accepted-d0050--2026-10-16) · [Commerce D0050](../Design/Content/Commerce_D0050.json). B212.239 remains live, awaiting the user test.
 
 **B212 is deployed: B212.239 DEVELOP_ACTIVE, source `05970d0`, receipt `B212.239-05970d0-playtest.json`, 219/219 MATCH; no pending transaction.**
 - The three Design missions are in: 风土考察, 艺文采撷 and 奇观巡礼.

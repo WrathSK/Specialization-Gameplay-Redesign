@@ -3,6 +3,8 @@
 State: PREPARATION_COMPLETE / IMPLEMENTATION_NOT_AUTHORIZED。
 Review baseline: develop `f03558be2a8873e12eed6b8aff3257e313f1a398`；Spec D0047 / Commerce D0045 / Shared D0045 / Architecture A0161。
 
+**D0050 notice (2026-10-16):** the current Commerce authority is [Commerce D0050](../../Design/Content/Commerce_D0050.json). This preparation predates it and is not rewritten. D0050 supersedes its commercialization coefficient (0.05 on highest eligible total city yield), the Capital S/eligibility and exclusivity open items, the Venture protection rebase/Owner open items, and the entire Development Investment plan: no plot-only P_low/P_high/P_ref quote; 15% of the theoretical purchase price; +50% to buildings of the selected district type until the next eligible completion; one active investment per target city. Revise these sections before any Commerce implementation plan.
+
 ## 当前范围与停止点
 
 本次只调查、准备计划。B165意义延展原生门禁仍待用户验收；本页不替换当前manifest、不启用新商业功能、不关闭旧writer、不部署。实际运行包、授权和证据只查[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)与[Authority](../../Workflow/Authority.json)。未来按下列最小批次分别审核授权，不把整份准备计划视作实施许可。
