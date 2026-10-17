@@ -10,6 +10,7 @@ def render():
   for amount in range(1,MAX_APPLIED+1):
    m=f'SPC_B058_{kind}_{amount}';b='BUILDING_'+m
    sql.extend([f"INSERT INTO Types(Type,Kind) VALUES ('{b}','KIND_BUILDING');",f"INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('{b}','Specialization integer network boost',1,'DISTRICT_CITY_CENTER',1,0,0);",f"INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('{m}','MODIFIER_PLAYER_ADJUST_{target}_BOOST'),('{m}_HD','MODIFIER_PLAYER_ADJUST_PROPERTY');",f"INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('{m}','Amount','{amount}'),('{m}_HD','Key','HD_Player_Extra_{prop}_Boost'),('{m}_HD','Amount','{amount}');",f"INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('{b}','{m}'),('{b}','{m}_HD');"])
+   if kind=='CULTURE':sql.pop()  # B226: cleanup-only tombstone.
    lua.append(f"SPCBoostIntegerConfig.rows['{kind}:{amount}']='{b}'")
  return {'Mod/Data/NetworkBoostInteger.sql':'\n'.join(sql)+'\n','Mod/BoostIntegerConfig.lua':'\n'.join(lua)+'\n'}
 if __name__=='__main__':

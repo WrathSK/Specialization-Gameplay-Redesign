@@ -2,8 +2,8 @@
 SPCNetworkIsolation={}
 function SPCNetworkIsolation.Start(P,shared)
  local d={active=false,phase='NORMAL',modules={},epoch=shared.NetworkBridge.epoch};shared.NetworkIsolation=d
- local names={'Lv3Effects','NetworkBoost','CopyYields','CommerceConvergence','StandardizationDiscount'}
- local labels={'商业三级连接','网络鼓舞/尤里卡','工业复制','商业汇聚','工业折扣'}
+ local names={'Lv3Effects','NetworkBoost','CopyYields','CommerceConvergence','StandardizationDiscount','CultureNetwork'}
+ local labels={'商业三级连接','科研网络鼓舞','工业复制','商业汇聚','工业折扣','文化见闻网络'}
  local uiNames={'SPC_P0_BackgroundRoutes','SPC_CopyBackground','SPC_DiscountEligibility'}
  local counters={'route_scan','net_send','derive_executed','input_publication','copy_send','discount_send'}
  local function short(e) return tostring(e):gsub('^.-:%d+: ',''):match('[^\r\n]+'):sub(1,150) end
@@ -33,7 +33,7 @@ function SPCNetworkIsolation.Start(P,shared)
    local uiOK,uiError=uiStopped(d.epoch)
    local perf=ExposedMembers.SPC_Performance
    local safe=uiOK and d.phase=='READY' and perf and perf.enabled==true and perf.inflight==0
-   lines[#lines+1]='UI发送退出='..(uiOK and '3/3' or ('未确认 '..tostring(uiError)))..'｜收益撤销='..tostring(d.completed or 0)..'/5'
+   lines[#lines+1]='UI发送退出='..(uiOK and '3/3' or ('未确认 '..tostring(uiError)))..'｜收益撤销='..tostring(d.completed or 0)..'/'..#names
    local changed={}
    for _,k in ipairs(counters) do
     local now=counter(k);local before=d.baseline and d.baseline[k]

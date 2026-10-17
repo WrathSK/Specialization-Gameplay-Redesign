@@ -91,9 +91,9 @@
       "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
     },
     "Mod/Data/BoostIntegerTest.sql": {
-      "sha256": "063262ae3b652682f91d3110e64b53cbc2407517b3e470a88c1da93316497f11",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "78fe221ecc883eeb0948001dc98638ff12111491baa7e254339c853d398f1f1b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Data/Colors.sql": {
       "sha256": "adac5b8d0599024c96d440b56b03af0d32b3e98dcfc36a753fe4a0cfe600ef0c",
@@ -191,14 +191,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/Data/NetworkBoost.sql": {
-      "sha256": "548f682535b9044881ec3b612629d765eded660411b9f707f8cc67879ab4307d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "bfb0b077ca00ab48999dd4c30ff294b48af1c10161d58246e2ec1e2ec3dd33d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Data/NetworkBoostInteger.sql": {
-      "sha256": "64857bb6231f593d0ebb1b55caf29b89a58f688f96653ddf56be853441cd4fb8",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "de5daa69168a6600e09501752fdadbdede59d3e461532529f3efbb52d8a10f70",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Data/PurchaseProbe.sql": {
       "sha256": "ea043f7ee0cf7cdb6aaf198cf971424e9bf2f5cf749e8d1dea2b39ca302f9a75",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "b9a6dac2c78fc5ccbe79c9f516343d075a7b82287aac6dd61856f123ef71526c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
+      "sha256": "7116bdc980d61638e142f7c8bdfe6067d862b9f80eb64b7078ded88a80c509b2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -336,14 +336,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/NetworkBoost.lua": {
-      "sha256": "920d8a7bf8f5820d53de3f29395b96163348606aca47c75787b1c59bea8a3d0b",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "389508a6cae79b85b704e4e2ec9cf75768c7786c802dad69842a52672c40d733",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "1a610337ac1dfef030d1f58c8e1f87f19913d48c51b02bf9f5caf14ed54dd271",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "99e6b05557fde87a3acae71cf59d24e19c637e90c64945d1f67b94254732125c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "cc8b285e3b5767eb7ed205e7a398c0f0aaa78fb0daf3fbb099b77b2e90873a75",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+      "sha256": "7d665ee7d0cef37c7130cee2b510df7eabbaa98a25192f45849b4e2ee11f36f1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b10bcc0fc96308e88ae9a8b3c436dfb5078d41bf686d83a29aea9b4f0a83feaf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+      "sha256": "47d6295ed622f2f72a5261a3db08d5c2f8e0719de75a99cdffbec1a19c519870",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -856,9 +856,9 @@
       "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
     },
     "Mod/NetworkIsolation.lua": {
-      "sha256": "2ec3c021dddd056a90f897b557d159846edcb61a01d7204c84b914b84bcba748",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "724b43692065ed77b75622c11883620c9822f26d8e6b424498e12fe8e8c832e8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "548bcc7f14c411c63b6b27267d944267aa72bffb74d6a89849c17794643b0d2a",
@@ -1021,9 +1021,9 @@
       "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "f5f438246c4f95e4b3d95016194ec31077cc13a115071604a7803d3e3dd8d4dd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+      "sha256": "c19e8661c750f350097065183ca8c9d8a2a9ed3a1220d3f8c3aefad8f8fd148d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "3fd348b6441f52c844266ada64311665d52b321d9c45a641125aadcc2de70d99",
@@ -1124,6 +1124,16 @@
       "sha256": "91593e59267da919a9b433b67e4f0d4b22ede5544005f32469f0c7d078edfdea",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+    },
+    "Mod/CultureNetwork.lua": {
+      "sha256": "459ce7e7cef19684f4dae98fe63919beaad869fceba0707c67f39d858fc613bc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+    },
+    "Mod/Data/CultureNetwork.sql": {
+      "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     }
   }
 }

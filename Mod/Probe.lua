@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-225.252"
+P.VERSION = "P0-B-226.253"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -593,7 +593,7 @@ function P.DescribeCultureInsights(pid,city,store)
   local lines={label('LOC_SPC_CULTURE_INSIGHTS_TITLE')..' · '..label(city:GetName()),
    '历史记录：'..#keys..'份　当前有效：'..effective..'份',
    '自身文明的记录保留，但不计入当前有效数量。',
-   '文化网络效果尚未实施；旅游倍率由下方状态单独显示。'}
+   '历史记录不等于当前网络收益；旅游倍率和网络接收状态分别显示。'}
   if #keys==0 then lines[#lines+1]='本城尚无成功考察记录。' end
   for _,civ in ipairs(civs)do
    local row=GameInfo and GameInfo.Civilizations and GameInfo.Civilizations[civ]

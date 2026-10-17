@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0601",
-    "runtime": "B225.252 / modinfo252",
+    "status": "S0602",
+    "runtime": "B226.253 / modinfo253",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B225 explicitly authorized: common native-task scheduling/release, unowned completion/menu, D0051 city-level WORKS and coalesced deal-event current-facts refresh. No new timers; one combined native gate.",
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出",
+  "goal": "B226 authorized Culture Network N3 with independent source3/3 -> receiver union -> matching specialist Culture, exact old Culture Eureka retirement and retained Research. B225 native gate merged; no new timer.",
   "implementation_authorized": true,
   "context": [
     {
@@ -30,8 +30,8 @@
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
       "kind": "section",
-      "selector": "## Current slice — B213 Expedition repair and Culture presentation",
-      "reason": "Complete approved current repair, dependencies, preserved training boundaries and future exclusions"
+      "selector": "## N3：Culture Network与精确旧Eureka退出",
+      "reason": "Current N3 complete contract and B226 implementation boundary; prior N1/current chronology is conditional, not mandatory recovery."
     },
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
@@ -444,11 +444,6 @@
       "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "kind": "full",
-      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
-    },
-    {
       "path": "DevelopmentTests/test_culture_institutions.py",
       "kind": "full",
       "reason": "Actual Research/Culture institution render, identity/ACTIVE/UNKNOWN and unchanged-layout regression"
@@ -484,16 +479,6 @@
       "reason": "Direct diagnostic failure isolation and bounded event regression."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
-      "kind": "full",
-      "reason": "Current diagnostic authorization, local evidence and one native capture."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "kind": "full",
-      "reason": "Current authorized repair, local checks, native uncertainty and bounded continuation."
-    },
-    {
       "path": "DevelopmentTests/test_expedition_activity_trace.py",
       "kind": "full",
       "reason": "Direct bounded activity diagnostic producer/consumer and delta regression."
@@ -502,16 +487,6 @@
       "path": "DevelopmentTests/test_expedition_task_rejection.py",
       "kind": "full",
       "reason": "Direct clean-denial/owned-failure, exact attempt, persistence and bounded native reason counterexamples."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
-      "kind": "full",
-      "reason": "Direct prior native evidence and missing manual-sleep/dispatch/arrival state plus final receipt motivating B223; action-scoped reading."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-      "kind": "full",
-      "reason": "Current authorized diagnostic, evidence boundaries and one minimal native capture."
     },
     {
       "path": "DevelopmentTests/test_expedition_native_state_trace.py",
@@ -564,16 +539,6 @@
       "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "kind": "full",
-      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
-      "kind": "full",
-      "reason": "Direct B224 failure evidence and approved B225 plan; read when investigating the affected native boundary, not a current instruction."
-    },
-    {
       "path": "DevelopmentTests/refresh_fixture.py",
       "kind": "full",
       "reason": "Fixture-only deferred native UI refresh/event phases; no runtime scheduler."
@@ -587,6 +552,87 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
       "kind": "full",
       "reason": "Current B225 result, authorization, native delta and stop point."
+    },
+    {
+      "path": "Mod/CultureNetwork.lua",
+      "kind": "full",
+      "reason": "New sole Culture network specialist writer; source/receiver/UNKNOWN/exit ownership."
+    },
+    {
+      "path": "Mod/Data/CultureNetwork.sql",
+      "kind": "full",
+      "reason": "32 exact native district specialist Culture carriers; no flat city yield."
+    },
+    {
+      "path": "Mod/NetworkBridge.lua",
+      "kind": "full",
+      "reason": "Complete copied Culture topology and isolated named publication."
+    },
+    {
+      "path": "Mod/NetworkBoost.lua",
+      "kind": "full",
+      "reason": "Research-only generation plus finite all-kind legacy cleanup."
+    },
+    {
+      "path": "Mod/NetworkIsolation.lua",
+      "kind": "full",
+      "reason": "Six exact network writers; no residual Culture projection during isolation."
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Current Identity and ACTIVE authority read facade."
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "Existing bounded update scopes; no new framework."
+    },
+    {
+      "path": "Mod/Data/NetworkBoost.sql",
+      "kind": "full",
+      "reason": "Exact retired Culture native/HD attachments; Research unchanged."
+    },
+    {
+      "path": "Mod/Data/NetworkBoostInteger.sql",
+      "kind": "full",
+      "reason": "Exact integer Culture retirement and retained Research."
+    },
+    {
+      "path": "Mod/Data/BoostIntegerTest.sql",
+      "kind": "full",
+      "reason": "Hidden test Culture attachments disabled."
+    },
+    {
+      "path": "tools/generate_boost.py",
+      "kind": "full",
+      "reason": "Reproducible cleanup-only Culture definitions."
+    },
+    {
+      "path": "tools/generate_boost_integer.py",
+      "kind": "full",
+      "reason": "Reproducible integer retirement."
+    },
+    {
+      "path": "DevelopmentTests/test_culture_network.py",
+      "kind": "full",
+      "reason": "B226 actual consumer/Bridge/retirement/Research differential tests."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "kind": "full",
+      "reason": "Current combined result and one native gate."
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/contracts/network_effect",
+      "reason": "Whole accepted network qualification/merge/ownership/replacement contract."
+    },
+    {
+      "path": "Specialization/Design/Network.md",
+      "kind": "full",
+      "reason": "Complete existing direct-center/capital/distribution/no-recursion rules; linked formal authority unchanged."
     }
   ],
   "dependencies": [
@@ -596,10 +642,12 @@
     "Training retains B209 immediate source-city completion receipt and B210 three-condition removal/replacement release; do not reintroduce obsolete blanket empty-queue rejection. Exact source/owner/reference and one matching birth remain required; cost/capacity/source unchanged.",
     "Research and Culture share selected-city institution rendering; ACTIVE does not erase established stages. Insight report only reads selected owned city on request, includes effective owner filtering and no reward writer. Native icons do not authorize missions.",
     "Disposable diagnostic trace never authorizes admission or persistence. Missing trace retry is delayed; invalid trace is fatal; explicit report logs are bounded. No additional game polling, global scans or GC changes.",
-    "WORKS gets fresh city-level eligible-work existence via the always-loaded read-only UI endpoint; Gate alone validates and writes rewards. Explicit EMPTY requires count0 and complete KNOWN references; UNKNOWN never becomes zero. Three Culture consumers retain their existing effect ownership."
+    "WORKS gets fresh city-level eligible-work existence via the always-loaded read-only UI endpoint; Gate alone validates and writes rewards. Explicit EMPTY requires count0 and complete KNOWN references; UNKNOWN never becomes zero. Three Culture consumers retain their existing effect ownership.",
+    "B226 consumes only copied complete AVAILABLE Culture topology. Each source history is read once per synchronous batch; receiver working count is native, not a cached authority. No partial-network fallback, new wire rows or transport-bound changes."
   ],
   "old_writers": [
-    "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes."
+    "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes.",
+    "B226: retire only Culture normal/TEST Eureka generation and all1126 native/HD attachments for563 exact cleanup IDs. Retain Research and exact saved-carrier withdrawal; never reset shared HD Tech property."
   ],
   "conditional_context": [
     {
@@ -787,24 +835,66 @@
       "paths": [
         "Specialization/Status/Validation/Results/Specialization_B221_Activity_Native_Review.md"
       ]
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
+      "kind": "full",
+      "reason": "Current diagnostic authorization, local evidence and one native capture."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "kind": "full",
+      "reason": "Current authorized repair, local checks, native uncertainty and bounded continuation."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
+      "kind": "full",
+      "reason": "Direct prior native evidence and missing manual-sleep/dispatch/arrival state plus final receipt motivating B223; action-scoped reading."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "kind": "full",
+      "reason": "Current authorized diagnostic, evidence boundaries and one minimal native capture."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
+      "kind": "full",
+      "reason": "Direct B224 failure evidence and approved B225 plan; read when investigating the affected native boundary, not a current instruction."
     }
   ],
   "non_scope": [
-    "No new timers, forced native permission, Wake of unowned sleep, site movement, capacity/binding/Store-schema/history/GC/Design/main/configuration change. No unrelated feature or audit repair."
+    "No new timer, permanent schema/history, capacity/source/travel/task-rule change, partial-network policy, route capacity increase, reattachment/U2/site movement, Research redesign, GC/config/main/deployment-tool change or unrelated audit repair."
   ],
   "validation": {
-    "depth": "L2 targeted actual-source event sequencing, Gate/Store/activity/mission/UI and shared work-consumer regressions; one combined native delta session. No all-gameplay/stress suite.",
-    "local": "617 targeted actual-source tests PASS, including18 B225 differential tests; current package252 validated. Three historical package-only pins193/199/200 excluded, not rewritten; actual three-consumer writer integration verified. No native CPU/memory or gameplay-wide claim.",
-    "user": "B225 USER_GAME_TEST_REQUIRED. Inherit B224 source-city Insight Tourism/Floor/isolation and Aesthetic turn-sync/recovery only; recurring task admission/release and immediate sale refresh await the combined session."
+    "depth": "L2 actual-source targeted network/retirement/projection and combined B225 mission/Store/facts/collector checks; one risk-based native session.",
+    "local": "670 targeted tests PASS, including26 B226 differential cases. Three historical package-only pins excluded, not rewritten or counted PASS. Research normal/TEST values and SQL lines compared with B225.",
+    "user": "B225 and B226 USER_GAME_TEST_REQUIRED, combined once. No extra saved-active/cold-load/re-enable ritual; no native PASS inferred from configured output."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-    "source": "B225.252/modinfo252 DEVELOP_ACTIVE; source 9a732087d71f6130db876d9c74a7f8350a588e13; receipt B225.252-9a73208-playtest.json;224/224 MATCH, digest 10a72d37e04ff43740a27911064f7f6ed459e9ea11880cb6e535bad28fb14634. Fresh automatic OS exit before both receipt/hash-guarded B224/stable/B225 switches; recovery retained, no pending transaction.",
-    "native": "B225 pending; original B224 task/sale failures retained. No native PASS from local simulation.",
-    "stop": "B225 deployed after617 targeted local PASS; one combined native session pending. No new timer, permanent field, capacity/source/GC change, N3 or unrelated batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+    "source": "B226.253/modinfo253 LOCAL_COMPLETE;670 targeted PASS. Last verified live B225.252 until guarded deployment.",
+    "native": "Combined B225+B226 pending; inherited prior scoped native evidence retained only.",
+    "stop": "One combined session after verified deployment, then evidence review. No automatic next feature or audit repair."
   }
 }

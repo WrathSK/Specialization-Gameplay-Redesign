@@ -130,7 +130,7 @@ class CurrentPackage(unittest.TestCase):
   import sqlite3
   import xml.etree.ElementTree as ET
   root=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot()
-  self.assertEqual(root.get('version'),'252')
+  self.assertEqual(root.get('version'),'253')
   for item in root.findall('.//File'):
    self.assertTrue((R/'Mod'/item.text).is_file(),item.text)
   db=sqlite3.connect(':memory:')

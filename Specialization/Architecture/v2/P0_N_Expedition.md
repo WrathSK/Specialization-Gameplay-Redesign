@@ -1,11 +1,13 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: B224_NATIVE_PARTIAL / B225_PROPOSED_NOT_AUTHORIZED. PEOPLE/PLACES retain scoped native evidence; WORKS uses a corrected fresh UI reader and awaits native acceptance. N3, reattachment and U2 remain outside this batch.
+State: B226_N3_LOCAL_COMPLETE_AWAITING_NATIVE; B225 native gate merged into B226. Reattachment, site movement and U2 remain held; actual deployment is in Status.
 Authority: Spec D0051 / Culture D0051 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。Earlier UI proposals and Spy0 investigations are historical references. The implemented Spy1 native-style UI, three missions and city history are bounded by the current slice below; native evidence does not establish later Tourism or Network behavior.
 
 ## Current slice — B213 Expedition repair and Culture presentation
+
+**B226 authorized N3:** [Culture network / exact old Eureka retirement](../../Status/Validation/Results/Specialization_B226_Culture_Network.md). Current work is the N3 slice below; B225 task/sale native checks are merged into its one acceptance session, not marked PASS. Source history and native workers remain separate from the disposable network projection. No new timer, task-scheduler change, permanent field or Research network redesign.
 
 **B225 authorized implementation:** [common task lifecycle and current facts](../../Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md). Native events merge into one deferred UI refresh; each refresh advances one activity transition, exact native guards remain, and WAKE readback cannot acknowledge release in its own request stack. Existing bounded post-request readback is retained; no new timer. Manual pre-existing SLEEP completion/cancellation now clears the finished draft to ARRIVED without claiming or waking it. D0051 WORKS uses current eligible-work existence in the selected target city; exact work/site hints are no longer locks. Confirmed empty cancels, UNKNOWN protects, PLACES remains selected-Wonder. One parameterless deal event invalidates the existing local Great Works producer for same-turn sale withdrawal. Permanent ownership/schema, capacity/source, reward rules and GC stay unchanged. Current verification, deployment and one combined native gate are in [Status](../../Status/Specialization_P0_Status.md#current-authoritative-state). Native SLEEP reliability is pending; a later safe-refresh denial still rejects rather than bypassing permission.
 
@@ -229,7 +231,7 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 
 ## N2：任务事务、城市历史与整城旅游
 
-复用现有E2可靠城市连续性/保存模型，新增专属小型业务块；B212已在CityProgressionStore加入expeditionInsights城市历史块；整城旅游writer尚未实施。分开保存unit当前Owner、有效归档绑定、部署/mission/目标ref与阶段，以及城市唯一成功类别/凭据；不新建cityKey、原Owner分账、全世界建筑历史或统一Legacy框架。Claim timer只提供技术结构，其业务取消规则不直接复制。
+复用现有E2可靠城市连续性/保存模型，新增专属小型业务块；B212已在CityProgressionStore加入expeditionInsights城市历史块；B216已实施整城旅游writer，用户已接受所测本城效果及Floor／隔离范围。分开保存unit当前Owner、有效归档绑定、部署/mission/目标ref与阶段，以及城市唯一成功类别/凭据；不新建cityKey、原Owner分账、全世界建筑历史或统一Legacy框架。Claim timer只提供技术结构，其业务取消规则不直接复制。
 
 开始及成功提交前重验当前有效归档/Owner、目标事实和未成功键；唯一事务一次写城市记录/凭据，再派生有效数、完整集合和本城旅游。重复completion/load不重奖；取消不占键。来源Identity/ACTIVE退出但归档仍合法可收记录；来源易主立即abort，不能延迟向已转移旧城补提交。UI只读确认状态/发送意图，不成为发奖权威。
 
@@ -242,6 +244,8 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 最小native在候选就绪时固定：至少两类可识别旅游来源区分“整城”与“仅巨作”；一条实际新增任务/归档保存或转移路径证明新事务，不要求完成多国全部三类。每一步列出新增信息；现有同路径基础设施证据与local regression继承，本轮不请求用户造fixture或测试。
 
 ## N3：Culture Network与精确旧Eureka退出
+
+**B226 implementation:** CultureNetwork now consumes one copied complete current topology batch, memoizes independent ACTIVE IV source histories, unions complete civilizations and projects32 owned per-district specialist Culture bits. Native workers scale the coefficient; receiver Identity has no extra ACTIVE gate. New task history explicitly invalidates dependent receivers even without route changes. UNKNOWN/HOLD, exact exits, delayed Return and six-module isolation are covered locally. Old Culture native/HD attachments and normal/TEST generation are retired;563 cleanup definitions remain, Research stays active. [Result and combined native gate](../../Status/Validation/Results/Specialization_B226_Culture_Network.md).
 
 前提：N2可靠城市历史与过滤后完整集合、现有共同路线/中心资格、接收城专业实际工作专家事实。
 
@@ -257,7 +261,7 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 
 现有`NetworkBoost`仍同时生成Research/Culture旧`k×L×sqrt(N)`并写首都carrier；共享TEST的testRaw可写两种类型，Culture SQL涉及原生Tech Boost与`HD_Player_Extra_Tech_Boost`。N3才退出旧Culture部分，保留Research既有公式/效果。
 
-实施前精确核对Culture legacy/integer/test owned IDs、SQL附件、生成/Audit/TEST、初始化清理、isolation、owner exit及HD Property/后台writer；本轮只确认直接调用点，**未完成全Mod exact-ID退休审计**。不得停整个NetworkBoost、按前缀扫建筑，或让共享TEST复活旧Culture Eureka；旧清理ID可惰性保留，新旧收益不并行。
+实施前精确核对Culture legacy/integer/test owned IDs、SQL附件、生成/Audit/TEST、初始化清理、isolation、owner exit及HD Property/后台writer；B226已完成这三个具名家族的exact-ID退出核对；不扩为全Mod审计。不得停整个NetworkBoost、按前缀扫建筑，或让共享TEST复活旧Culture Eureka；旧清理ID可惰性保留，新旧收益不并行。
 
 本地覆盖独立3/3后union、Owner过滤变化、首都/中心、同回合专家、无路线变动的新记录、source/receiver退出、重复零写、load清理及Research不回归。native只验新专家Culture投影、决定性接入/撤销与实际改动的旧Eureka退出；集合组合主要本地完成，不要求用户重复多国长测。
 

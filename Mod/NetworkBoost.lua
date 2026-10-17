@@ -15,7 +15,7 @@ end end
 function SPCNetworkBoost.Start(P,shared)
  local d={ready=false,busy=false,applied={},plans={},errors={},changes=0,testRaw={}};shared.NetworkBoost=d
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
- local kinds={'RESEARCH','CULTURE'}
+ local kinds={'RESEARCH'} -- B226: Culture Eureka retired; exact all-kind cleanup below remains.
  local function row(id) return assert(P.Info('Buildings',id),'B055_DATABASE_MISSING') end
  local function set(c,id,want)
   local r=row(id);local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index)
@@ -144,7 +144,7 @@ function SPCNetworkBoost.Start(P,shared)
   return true
  end
  function d.Describe(pid)
-  local out={d.testRaw[pid]~=nil and 'B057 整数接口实验：替换本Mod网络Boost（两种类型）' or 'B058 自动网络：全部浮点计算后一次四舍五入'}
+  local out={d.testRaw[pid]~=nil and 'B057 整数接口实验：仅替换科研网络鼓舞' or 'B058 自动网络：全部浮点计算后一次四舍五入'}
   for _,kind in ipairs(kinds) do
    local p=d.plans[pid] and d.plans[pid][kind];local a=d.applied[pid] and d.applied[pid][kind]
    out[#out+1]=(kind=='RESEARCH' and '科研→鼓舞' or '文化→尤里卡')..(p and string.format(' | ACTIVE=%d N=%d | 预期+%.6f百分点',p.level,p.n,p.amount) or ' | 待后台刷新')
@@ -153,7 +153,7 @@ function SPCNetworkBoost.Start(P,shared)
   end
   if d.testRaw[pid]~=nil then out[#out+1]=string.format('FinalRaw=%.6f → floor(raw+0.5)=%d；重载退出实验',d.testRaw[pid],SPCNetworkBoost.Quantize(d.testRaw[pid])) end
   out[#out+1]='状态='..tostring(d.errors[pid] or (d.ready and 'READY' or 'PENDING'))
-  out[#out+1]='配置≠实测；读取基线后同回合触发一次未触发的尤里卡/鼓舞，再读取。'
+  out[#out+1]='文化旧尤里卡已退出；此处仅显示科研鼓舞。配置不等于原生实测。'
   return table.concat(out,'\n')
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end

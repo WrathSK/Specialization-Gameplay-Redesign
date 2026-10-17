@@ -21,7 +21,7 @@ def fixture():
 
 class InsightReportTests(unittest.TestCase):
     def test_no_team_and_empty_history(self):
-        l=fixture();text=l.eval('read()');self.assertIn('历史记录：0份',text);self.assertIn('尚未实施',text)
+        l=fixture();text=l.eval('read()');self.assertIn('历史记录：0份',text);self.assertIn('网络接收状态',text);self.assertNotIn('尚未实施',text)
         self.assertEqual(l.eval('reads'),1);self.assertEqual(l.eval('#logs'),1)
     def test_history_owner_filter_and_completed_categories(self):
         l=fixture();l.execute("add('CIVILIZATION_OWN','WORKS');add('CIVILIZATION_FOREIGN','PEOPLE');add('CIVILIZATION_FOREIGN','PLACES')")

@@ -165,6 +165,7 @@ local function request(playerID,params)
       local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
       local report=P.DescribeCultureInsights(playerID,c,shared.CityProgressionStore)
       if shared.CultureInsightsTourism and c then report=report..'\n'..shared.CultureInsightsTourism.Describe(playerID,c)end
+      if shared.CultureNetwork and c then report=report..'\n'..shared.CultureNetwork.Describe(playerID,c)end
       return report
     end)
     if not ok then print('[SPC][B191][N1_INSIGHT] status=UNKNOWN') end
@@ -532,6 +533,7 @@ local function request(playerID,params)
     if params.FactsChanged and shared.DialogueEffects then shared.DialogueEffects.Audit({player=playerID})end
     if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
+    if params.FactsChanged and shared.CultureNetwork then shared.CultureNetwork.Mark(playerID)end
     if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
     if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
@@ -921,6 +923,8 @@ SPCPerformance.StartMemory(P,shared)
 -- N2 derived local Tourism; permanent Insight history stays in CityProgressionStore.
 include('CultureInsightsTourism')
 SPCCultureInsightsTourism.Start(P,shared)
+include('CultureNetwork')
+SPCCultureNetwork.Start(P,shared)
 -- Existing Expedition request/task lifecycle; no automatic mission dispatch.
 include('ExpeditionSpyStore')
 include('ExpeditionSpyGate')

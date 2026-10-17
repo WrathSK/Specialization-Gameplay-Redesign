@@ -56,7 +56,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function notify(pid)
   local publication=d.Input(pid)
   -- Existing independent consumer listeners remain Batch D. This publisher only notifies on diff.
-  for _,name in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence','CopyYields'}) do
+  for _,name in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence','CopyYields','CultureNetwork'}) do
    local consumer=shared[name]
    if consumer then local ok,err=pcall(consumer.Audit,publication)
     if not ok then bucket(pid).consumerError=short(err) end
@@ -291,6 +291,13 @@ function SPCNetworkBridge.Start(P,shared)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
   local v=currentView(pid)
   return {input=d.Input(pid),recipients=copy(v.recipients.INDUSTRY or {})}
+ end
+ -- B226: one private-view read/copy per Culture consumer batch. No Refresh,
+ -- all-city fact collection, public mutable bucket or received-payload recursion.
+ function d.CurrentCultureBatch(pid)
+  assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
+  local v=currentView(pid,true)
+  return {input=d.Input(pid),recipients=copy(v.recipients.CULTURE or {})}
  end
  function d.CurrentConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')

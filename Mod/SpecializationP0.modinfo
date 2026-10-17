@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="252">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="253">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B225.252: Event-driven Expedition scheduling, mission cleanup and city collection updates.</Description>
+    <Description>B226.253: Culture Insight network and precise retirement of legacy Culture Eureka; Research retained.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -17,6 +17,7 @@
     <AddUserInterfaces id="SPC_ExpeditionTrainingName"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionTrainingName.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_ExpeditionActivityUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionSpyActivity.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_ExpeditionGateUI"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionSpyWindow.xml</File></AddUserInterfaces>
+    <UpdateDatabase id="SPC_CultureNetwork"><Properties><LoadOrder>10001034</LoadOrder></Properties><File>Data/CultureNetwork.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureInsightsTourism"><Properties><LoadOrder>10001033</LoadOrder></Properties><File>Data/CultureInsightsTourism.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureInspiration"><Properties><LoadOrder>10001032</LoadOrder></Properties><File>Data/CultureInspiration.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_CultureInspirationProbe"><Properties><LoadOrder>10001031</LoadOrder></Properties><File>Data/CultureInspirationProbe.sql</File></UpdateDatabase>
@@ -220,6 +221,7 @@
     <File>CultureInspirationProbe.lua</File>
     <File>CultureInspirationModel.lua</File>
     <File>CultureInspiration.lua</File>
+    <File>CultureNetwork.lua</File>
     <File>CultureInsightsTourism.lua</File>
     <File>InspirationReadout.lua</File>
       <File>CultureAestheticModel.lua</File>
@@ -434,6 +436,8 @@
     <File>CultureInspirationProbe.lua</File>
     <File>CultureInspirationModel.lua</File>
     <File>CultureInspiration.lua</File>
+    <File>CultureNetwork.lua</File>
+    <File>Data/CultureNetwork.sql</File>
     <File>CultureInsightsTourism.lua</File>
     <File>InspirationReadout.lua</File>
     <File>Data/CultureMeaningProbe.sql</File>
