@@ -1,11 +1,13 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: B217_EVENT_POSITION_REPAIR / LOCAL_COMPLETE_NATIVE_PENDING. B215 idle controls have user-reported acceptance; PEOPLE has scoped native evidence, WORKS/PLACES are deferred. Local Tourism is implemented in B216; N3, reattachment and U2 remain outside this batch.
+State: B219_MOVEMENT_COMPARISON / LOCAL_COMPLETE_NATIVE_PENDING. B215 idle controls have user-reported acceptance; PEOPLE and empty-wonder PLACES have scoped native evidence; WORKS and occupied placement remain pending/failed respectively. Local Tourism is implemented in B216; N3, reattachment and U2 remain outside this batch.
 Authority: Spec D0050 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。Earlier UI proposals and Spy0 investigations are historical references. The implemented Spy1 native-style UI, three missions and city history are bounded by the current slice below; native evidence does not establish later Tourism or Network behavior.
 
 ## Current slice — B213 Expedition repair and Culture presentation
+
+**B219 authorized comparison prototype:** [ordinary Spy / Expedition movement comparison](../../Status/Validation/Results/Specialization_B219_Movement_Comparison.md). One explicit call per disposable-save load, deterministic empty adjacent pad and the same occupied target, PlaceUnit vs MoveUnit, bounded move/teleport/UI observations. No normal task transport replacement, timer/polling, capacity/binding/history change or reward replay. Local evidence and live state remain in Status.
 
 **B218 authorized diagnostic only:** [native stop and bounded placement observations](../../Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md). B217 stopped earlier at Gameplay immediate readback; its UI wait was not reached. Observe PRE/POST/target occupants and exact-unit movement events without changing placement or task behavior. No timer/polling; native Spy mission coexistence reported by the user is not proof of generic PlaceUnit behavior.
 

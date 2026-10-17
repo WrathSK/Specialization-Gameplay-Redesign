@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0585",
-    "runtime": "B218.245 / modinfo245",
+    "status": "S0586",
+    "runtime": "B219.246 / modinfo246",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B218 evidence reviewed: occupied generic placement offsets; empty wonder completes and grants Insight; occupied return fails. Further primitive investigation proposed only.",
+  "goal": "B219 explicit ordinary Spy / Expedition comparison at the same occupied target: PlaceUnit versus adjacent MoveUnit. No formal movement repair.",
   "implementation_authorized": true,
   "context": [
     {
@@ -487,6 +487,31 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
       "kind": "full",
       "reason": "Current diagnostic authorization, local evidence and one native capture."
+    },
+    {
+      "path": "Mod/ExpeditionMovementProbe.lua",
+      "kind": "full",
+      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
+    },
+    {
+      "path": "Mod/UI/ExpeditionMovementProbe.lua",
+      "kind": "full",
+      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
+    },
+    {
+      "path": "Mod/UI/ExpeditionMovementProbe.xml",
+      "kind": "full",
+      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_movement_probe.py",
+      "kind": "full",
+      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "kind": "full",
+      "reason": "Direct B219 isolated prototype/one-shot UI/evidence; implementation action only, no blanket daily reading."
     }
   ],
   "dependencies": [
@@ -683,21 +708,21 @@
     }
   ],
   "non_scope": [
-    "No N3, reattachment, new profession, native Spy-slot isolation, Store/schema rewrite, GC/cost/capacity/binding or Tourism changes. B217 only repairs initial placement visibility and preserves later activity protections. No configuration, main or game launch."
+    "No normal relocation replacement, native espionage missions/rewards, timers/polling, occupant displacement/deletion, unit recreation, permanent/schema/capacity/binding/training/GC/Tourism changes, N3, main or configuration. Diagnostic subject positions are disposable and require reload."
   ],
   "validation": {
-    "depth": "Direct actual-module/Gate/task/report/idle and in-memory configured DB closure; no full gameplay/stress.",
-    "local": "282 targeted tests PASS; native placement cause remains UNKNOWN.",
-    "user": "B218 empty-wonder PLACES completion/Insight3 observed; occupied task/return placement FAIL. Native Tourism6% settlement not independently verified."
+    "depth": "L2: actual probe/UI/Gate isolation, existing direct task/persistence/activity regression and read-only configured DB checks; no full gameplay/stress.",
+    "local": "219 targeted tests PASS, including 22 new probe tests; collision behavior remains native pending.",
+    "user": "B219 pending. Retain B218 empty-wonder completion/Insight and occupied-placement failure evidence."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B218_Native_Review.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
     "source": "B218.245/modinfo245 DEVELOP_ACTIVE; source 0638eb5035b121c8f921eaac01b301c4c7bf18b5; receipt B218.245-0638eb5-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B217/stable recovery retained; no pending transaction or configuration change.",
-    "native": "B218 empty-wonder PLACES completion/Insight3 observed; occupied task/return placement FAIL. Native Tourism6% settlement not independently verified.",
-    "stop": "Await review of next primitive investigation; no repair or native espionage authorization."
+    "native": "B219 pending. Retain B218 empty-wonder completion/Insight and occupied-placement failure evidence.",
+    "stop": "Guarded deployment, then approved controlled comparison only. Review native evidence before proposing the next repair."
   }
 }

@@ -9,6 +9,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local TASK_TURNS=2
  local returnToCentre
  local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
+ local movementProbeLocked=false
  local missionStatus,missionReason,missionRetryKey,missionUnknownReads
  local Store=SPCExpeditionSpyStore
  local fields={'trainingToken','trainingBorn','trainingReceiptTurn','trainingTurn','trainingQueued','trainingCompleted','owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','taskCount','missionCategory','missionX','missionY','missionEvidence','missionWorkID','missionCompletionUnknownTurn','taskOutcome','entryX','entryY','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
@@ -751,6 +752,21 @@ function SPCExpeditionSpyGate.Start(P,shared)
  for pid in pairs(Players)do if P.IsTestPlayer(pid)then load(pid);break end end
  publishActivity() -- Restored activity is observation-only until a fresh UI sample.
  local data={};shared.ExpeditionGate=data
+ -- B219 disposable-save experiment: read exact idle binding, then suspend this
+ -- Gate in memory before movement. Never amend saved coordinates or history.
+ function data.MovementProbeRead(pid)
+  load(pid)
+  assert(not movementProbeLocked and not busy and not storeBlocked and not recovering,'PROBE_GATE_NOT_IDLE')
+  assert(state.owner==pid and (state.phase=='CREATED' or state.phase=='ARRIVED')
+   and (not state.activityMode or state.activityMode=='NONE') and not state.activityOwned and not state.activityPending,'PROBE_TEAM_NOT_IDLE')
+  source();local u=owned(pid,state.unitID)
+  assert(state.nameVerified and u:GetName()==state.expectedName and u:GetX()==state.x and u:GetY()==state.y,'PROBE_BINDING_CHANGED')
+  return {unitID=state.unitID,sourceCity=state.sourceCity,teamKey=state.teamKey}
+ end
+ function data.MovementProbeLock(pid,id)
+  assert(data.MovementProbeRead(pid).unitID==id,'PROBE_BINDING_CHANGED')
+  movementProbeLocked=true
+ end
  -- Training shares this exact saved reservation with creation/travel. The
  -- adapter owns native event correlation; it cannot write this record directly.
  data.Training={}
@@ -811,6 +827,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
 
  function data.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token==0 or #p.Token>100 then return end
+  if movementProbeLocked then
+   ExposedMembers.SPC_ExpeditionGateReply={owner=pid,token=p.Token,phase=state.phase,error='MOVEMENT_PROBE_RELOAD_REQUIRED'}
+   return
+  end
   if busy then return end
   local activity=p.Action=='ACTIVITY'
   if activity and p.Token==lastActivityToken then ExposedMembers.SPC_ExpeditionActivityReply=lastActivityReply;return end
@@ -840,6 +860,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
  function data.Turn(pid)
+  if movementProbeLocked then return end
   if placementWatch and pid==placementWatch.owner then closePlacement('TURN_CLOSE')end
   if P.IsTestPlayer(pid)then load(pid)end
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
@@ -857,7 +878,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end)end
  Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
-  if not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then
+  if not movementProbeLocked and not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then
    missionRetryKey=nil;missionUnknownReads=0
    step='REFERENCE';local ok,err=pcall(function()observe();if state.phase=='TRAVELLING' then target(state.owner,state.target)end end);if not ok then hold(err)end
    publishActivity()

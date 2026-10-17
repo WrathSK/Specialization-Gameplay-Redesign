@@ -395,7 +395,14 @@ local function initialize()
   Controls.CultureInsightsButton:SetToolTipString(Locale.Lookup('LOC_SPC_CULTURE_INSIGHTS_TOOLTIP'))
   Controls.CultureInsightsButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_INSIGHTS_READ') end)
   Controls.ExpeditionGateButtonCaption:SetText(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_OPEN'))
-  Controls.ExpeditionGateButton:SetToolTipString(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_INTRO'))
+  Controls.ExpeditionGateButton:SetToolTipString(Locale.Lookup('LOC_SPC_MOVE_PROBE_OPEN_HINT'))
+  Controls.ExpeditionGateButton:RegisterCallback(Mouse.eRClick,function()
+    if ExposedMembers.SPC_ExpeditionMovementUIVersion~=P.VERSION then status(Locale.Lookup('LOC_SPC_MOVE_PROBE_UNAVAILABLE'));return end
+    ExposedMembers.SPC_ExpeditionMovementOpen=nil
+    local ok=pcall(function()LuaEvents.SPC_ExpeditionMovementOpen()end)
+    if ok and ExposedMembers.SPC_ExpeditionMovementOpen==P.VERSION then closeWindow()
+    else status(Locale.Lookup('LOC_SPC_MOVE_PROBE_UNAVAILABLE'))end
+  end)
   Controls.ExpeditionGateButton:RegisterCallback(Mouse.eLClick,function()
     if ExposedMembers.SPC_ExpeditionGateUIVersion~=P.VERSION then
       status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE',P.VERSION));return

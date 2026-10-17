@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "17cc120411ed88e260d0466196e138dc19d78d35b7f55b8e73b855aa0b164234",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
-      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+      "sha256": "e117d444da9f6d5d0a18a4513472ddb5662a012f45c1cb22c5424147cf18772e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "ac87162f324532d29bd2ac34f906a6c24076a02605793d5dc4948206a9d0bad8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
-      "provenance": "B218 approved bounded placement diagnostics and labels;282 targeted local tests. Gameplay rules unchanged; native cause pending."
+      "sha256": "672f10d1467dfc4e426c4b7c06847b010e9b6fb9495e9f9c27690d4c6c1319fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cd5f082f56e100a6afd36f88fe3387c9ad1d0e2040aea75c1bfaf2a92a3fd854",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
-      "provenance": "B218 approved bounded placement diagnostics and labels;282 targeted local tests. Gameplay rules unchanged; native cause pending."
+      "sha256": "8c2d4a0465f390576982a46b2e0cdf95332dde6245813680729c7ea4f49d676b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "d1b4ae875aaf8345eea032eb2424626c6f35a3c76617b35d8f138c86d0df5899",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "18c983cfddb12aee96e2ea185ed5faf2070b96d5b68b23ec957989b8362efcc3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "3364259ca6d8a7e227d372abae7b2edc0239c8d4d893df435848c4f095715991",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "e577eafa83a2d9979e4ebe8429fb1d9e0230037f9e3c463b886cc6e00b62e3c6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
-      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+      "sha256": "e21abc1f89d623a22e3366fd878d0f5d22f8ab0cfbe4a615019d2f0a5d924492",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,9 +1021,9 @@
       "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "5e19a879c571a5a7955bda4e616aebc231dbdfddd652e3ae0f74358fd1fe87fb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
-      "provenance": "B218 approved bounded placement diagnostics and labels;282 targeted local tests. Gameplay rules unchanged; native cause pending."
+      "sha256": "ffff3e8333d955bfe6a9de8898bbc89dcd6e2b7216d2360558c5d0aa912ce550",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "0f22018ca73289bb949b53e45acf1d201f2cf1162b64681dcf78c8026d5af92a",
@@ -1109,6 +1109,21 @@
       "sha256": "9b26e5df06f945ea28685622ebe483f924002e84d7933cc8251422de5091f962",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
       "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+    },
+    "Mod/ExpeditionMovementProbe.lua": {
+      "sha256": "9210477b186ed1cf40bf6a0ae26485242d2f3eae7458f3f4377113dd9dbc8cae",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+    },
+    "Mod/UI/ExpeditionMovementProbe.lua": {
+      "sha256": "3a737d2cd3a6caf49d11b23e805a8248f4d2e7eacc27a03d872614cb154dab55",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+    },
+    "Mod/UI/ExpeditionMovementProbe.xml": {
+      "sha256": "91593e59267da919a9b433b67e4f0d4b22ede5544005f32469f0c7d078edfdea",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     }
   }
 }

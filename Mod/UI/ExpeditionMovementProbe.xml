@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCExpeditionMovementProbe">
+ <Container ID="Window" Anchor="L,T" Size="parent,parent" ConsumeMouse="0" Hidden="1">
+  <Container Anchor="R,T" Offset="20,110" Size="490,360">
+   <Box Size="parent,parent" Color="12,19,27,250" ConsumeMouse="1" />
+   <Label Color="White" Offset="16,14" Style="FontNormal18" String="LOC_SPC_MOVE_PROBE_TITLE" />
+   <GridButton ID="Close" Anchor="R,T" Offset="12,10" Size="70,30" Style="MainButtonSmall"><Label Color="White" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_CLOSE" /></GridButton>
+   <Label Color="White" Offset="16,52" Style="FontNormal14" WrapWidth="454" String="LOC_SPC_MOVE_PROBE_INTRO" />
+   <Label Color="White" ID="Target" Offset="16,140" Style="FontNormal14" WrapWidth="454" />
+   <GridButton ID="Place" Offset="16,185" Size="220,32" Style="MainButtonSmall"><Label Color="White" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_MOVE_PROBE_PLACE" /></GridButton>
+   <GridButton ID="Move" Offset="250,185" Size="220,32" Style="MainButtonSmall"><Label Color="White" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_MOVE_PROBE_MOVE" /></GridButton>
+   <Label Color="White" ID="Report" Offset="16,229" Style="FontNormal14" WrapWidth="454" />
+   <GridButton ID="Read" Anchor="R,B" Offset="16,12" Size="180,30" Style="MainButtonSmall"><Label Color="White" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_MOVE_PROBE_READ" /></GridButton>
+  </Container>
+ </Container>
+</Context>
