@@ -191,7 +191,7 @@ class PendingGameplayIntegration(unittest.TestCase):
          assert(#activityPackets==1 and activityPackets[1].Result=='ASLEEP' and not activityUpdate)
          currentTurn=84;ownTurn(2);Events.LocalPlayerTurnBegin();assert(view().taskCompletions==0)
          currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete();ownTurn(2)
-         assert(view().phase=='TASK_COMPLETE' and view().taskCompletions==1 and view().mode=='NONE')
+         assert(view().phase=='ARRIVED' and view().mode=='NONE' and insightWrites==1)
          assert(sleepCalls==1 and wakeCalls==1 and not activityUpdate and units[41].activity==0)
          assert(properties==0 and nativeCalls==0 and destroys==0 and placeCalls==0 and finishCalls==0)
          handler(2,{Action='READ',Token='after-pending-completion'})

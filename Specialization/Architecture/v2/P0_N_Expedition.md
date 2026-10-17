@@ -1,6 +1,6 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL / B211_REPEAT_DISPATCH_TASK / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
+State: N1_PARTIAL+N2_MISSIONS / B212_MISSIONS_INSIGHT_LEDGER / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
 Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
@@ -32,12 +32,21 @@ Local checks: training eligibility/cost, cap with off-map/held team, competing q
 
 After this batch, prepare source-loss reattachment/repeat-task completion, then N2 mission-specific permanent results, then N3 Network. Each remains a separately bounded implementation decision; no automatic scope expansion.
 
+### B212 — three missions and archive-city Insight history (current)
+
+The user approved the N2 split and the B212 plan on 2026-10-16.
+- **Missions and records:** 风土考察, 艺文采撷 and 奇观巡礼 follow the Design targets. First-success Insights are recorded in the archive city's `CityProgressionStore` block `expeditionInsights`, keyed by civilization:category.
+- **Invalidation:** a lost work, a new capital or an owner change cancels the mission without an Insight. War is not invalidation.
+- **Movement (user decision):** the team moves to the mission plot (centre, Great Work plot or Wonder plot) and returns to the target centre after release.
+- **Targets (user decision):** any city of a met major civilization. When the target is unrevealed, the team enters through a revealed city of that owner and continues on internal routes. The added time is zero, an implementation reading.
+- **Not included:** whole-city Tourism is B213. Reattachment remains deferred.
+
 ### v0.1 scope decisions (user, 2026-10-16)
 
 - **Reattachment deferred** to v0.1 close-out or after v0.1. The user avoids source-city ownership changes during v0.1 play tests. Until reattachment exists, a source Owner change keeps the current terminal HOLD (`SOURCE_REFERENCE_CHANGED`): no insight is written to a lost source, and the unit is not destroyed. This is a known limitation, not the Design rule. Constraint for N2 and later work: the archive binding stays solely in `sourceCity`/`sourceRef`, so reattachment can later rebind it without migrating records.
 - **v0.1 supports standard game speed only.** The Design formula floor(2 × relative turn multiplier) is retained for later. The task duration is a single constant (2) until then.
 
-### B211 — repeat dispatch and task (current)
+### B211 — repeat dispatch and task
 
 After a completed task, and once the native activity is released, the team may be dispatched again and start another task. It is still the no-reward fixture task; the three real missions are N2. Task duration is one standard-speed constant.
 

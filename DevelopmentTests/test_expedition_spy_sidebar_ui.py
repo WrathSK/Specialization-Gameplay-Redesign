@@ -24,7 +24,8 @@ def sidebar(arrived=False, second_target=False):
           anotherCity.GetName=function()return '第二目标' end
           Players[4]={IsMajor=function()return true end,IsAlive=function()return true end,
            GetCities=function()return {FindID=function(self,id)if id==10 then return anotherCity end end,
-            GetCapitalCity=function()return anotherCity end}end}
+            GetCapitalCity=function()return anotherCity end,
+            Members=function()local done=false;return function()if not done then done=true;return 1,anotherCity end end end}end}
         """)
     return lua
 
@@ -77,13 +78,15 @@ class SidebarRouting(unittest.TestCase):
         lua.execute("""
           gateOpen('TASK',41)
           local rows=instanceManagers.SPCExpeditionMission.instances
-          assert(#rows==1 and Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
+          -- B212: three Design missions; the target capital offers 风土考察 (PEOPLE).
+          assert(#rows==3 and Controls.DestinationStack.hidden and not Controls.MissionStack.hidden)
           assert(rows[1].MissionLocation.truncateWidth==135)
           local before=sent;local operations=nativeCalls
           rows[1].MissionButton.click()
           assert(sent==before and nativeCalls==operations and ExposedMembers.SPC_ExpeditionActivity.phase=='ARRIVED')
           Controls.NormalConfirmButton.click()
-          assert(lastPacket.Action=='TASK' and ExposedMembers.SPC_ExpeditionActivity.phase=='TASK_PREPARING')
+          assert(lastPacket.Action=='TASK' and lastPacket.Mission=='PEOPLE' and lastPacket.MissionX==15 and lastPacket.MissionY==8)
+          assert(ExposedMembers.SPC_ExpeditionActivity.phase=='TASK_PREPARING')
           assert(not ExposedMembers.SPC_ExpeditionActivity.taskStart and nativeCalls==operations and properties==0)
         """)
 

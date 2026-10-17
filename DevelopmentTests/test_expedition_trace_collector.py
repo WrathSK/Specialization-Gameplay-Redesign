@@ -154,6 +154,14 @@ class CollectorTests(unittest.TestCase):
             self.assertIn(code, events)
         self.assertEqual(events.count('"waiting"'), 3)  # logged once per code change
 
+    def test_gate_prints_counted_and_logged(self):
+        self.session.add_gate(reader.GATE_PREFIX + '[SPC][B191][N1_TASK] mission=WORKS outcome=SUCCESS civ=CIVILIZATION_X insight=NEW')
+        self.session.add_gate(reader.GATE_PREFIX + '[SPC][B191][N1_SPY] action=DISPATCH owner=2 unit=40 phase=TRAVELLING error=nil')
+        text = self.session.summary('TEST')
+        self.assertIn('gate_prints: 2', text)
+        self.assertIn('gate: TASK:WORKS x1', text)
+        self.assertIn('gate: SPY:DISPATCH x1', text)
+
     def test_session_must_stay_under_local(self):
         with self.assertRaises(reader.CaptureError):
             collector.Session(root=Path(tempfile.gettempdir()) / 'spc-outside', stamp='X')

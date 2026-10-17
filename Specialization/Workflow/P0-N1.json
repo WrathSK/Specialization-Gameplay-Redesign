@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0566",
-    "runtime": "B211.238 / modinfo238",
+    "status": "S0567",
+    "runtime": "B212.239 / modinfo239",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#next-functional-slice--normal-training-and-source-registration",
-  "goal": "B211: completed Expedition team may be redispatched after activity release and run another no-reward task; v0.1 standard-speed task constant; historical activity/package tests realigned. Reattachment deferred (user). Deploy via guarded W0003 switch; user tests in the new campaign.",
+  "goal": "B212 (N2 part 1): three Design missions with Spy-like movement/return, archive-city Insight history (first success only, effective count excludes own civilization), target invalidation cancel, entry-city travel for unrevealed targets, collector traces Gate actions. No Tourism (B213). Deploy via guarded W0003 switch; user tests in the new campaign.",
   "implementation_authorized": true,
   "context": [
     {
@@ -444,6 +444,11 @@
       "path": "DevelopmentTests/test_expedition_trace_collector.py",
       "kind": "full",
       "reason": "Offline collector dedup/alert/reconnect/idle-exit/cap/no-command tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_missions.py",
+      "kind": "full",
+      "reason": "B212 three missions, Insight ledger, movement/return, invalidation and entry travel"
     }
   ],
   "dependencies": [
@@ -624,7 +629,7 @@
   ],
   "validation": {
     "depth": "L3 targeted diagnostic failure isolation and existing direct Expedition closure; no full gameplay/stress.",
-    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately. S0549: reader 36 tests PASS (validates 8963218); collector 6 offline tests PASS on Python 3.10/3.14; smoke wait/SIGTERM summary checked. S0550 B206: +7 tests PASS (population aggregation/order and ON/OFF equivalence, scope rejection, turn flush, spy cost, observer exception, reader HD allowlist/cap, collector HD count); affected suites 139 PASS; full discovery failure set identical to HEAD c37de97. S0553 B207: L2 targeted suites 171 PASS (gate SQL with read-only external DB); +1 collector reload test; no full regression. S0555 B208: L2 targeted suites 171 PASS (gate SQL with read-only external DB); no full regression. S0561 B209: 111 targeted PASS; all test_expedition_* suites failure set identical to HEAD 130cc0d (14 historical activity-diagnostic failures). S0562 B210: 117 targeted PASS; Expedition-suite failure set identical to HEAD. S0564 B211: +3 repeat tests; all test_expedition_* suites only 3 external-DB-dependent name failures (identical at HEAD). S0565: name tests realigned with B201 (not DB-dependent); all 727 test_expedition_* PASS.",
+    "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately. S0549: reader 36 tests PASS (validates 8963218); collector 6 offline tests PASS on Python 3.10/3.14; smoke wait/SIGTERM summary checked. S0550 B206: +7 tests PASS (population aggregation/order and ON/OFF equivalence, scope rejection, turn flush, spy cost, observer exception, reader HD allowlist/cap, collector HD count); affected suites 139 PASS; full discovery failure set identical to HEAD c37de97. S0553 B207: L2 targeted suites 171 PASS (gate SQL with read-only external DB); +1 collector reload test; no full regression. S0555 B208: L2 targeted suites 171 PASS (gate SQL with read-only external DB); no full regression. S0561 B209: 111 targeted PASS; all test_expedition_* suites failure set identical to HEAD 130cc0d (14 historical activity-diagnostic failures). S0562 B210: 117 targeted PASS; Expedition-suite failure set identical to HEAD. S0564 B211: +3 repeat tests; all test_expedition_* suites only 3 external-DB-dependent name failures (identical at HEAD). S0565: name tests realigned with B201 (not DB-dependent); all 727 test_expedition_* PASS. S0567 B212: L3 783 targeted PASS incl. new test_expedition_missions (14); CityProgressionStore consumers identical to HEAD per module/script.",
     "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval. S0550: the first collector session save predates checkpoint A and loaded normally before; user authorized B206 diagnostics and a collector re-run. S0562: B209 USER_GAME_TEST_FAIL (Expedition vanished after district-placement replacement). S0563: B210 USER_GAME_TEST_PASS scoped (replacement release, normal training, overflow-immediate retraining without HELD; new campaign, one city, one load). S0566: B211 USER_GAME_TEST_PASS scoped (queued-save training traced; redispatch/second task user-reported)."
   },
   "full_audit_triggers": [
@@ -635,6 +640,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
     "source": "B211.238/modinfo238 DEVELOP_ACTIVE; source c18c0530723b80aa63712ee9afa250b3f7c83dee; receipt B211.238-c18c053-playtest.json;219/219 MATCH. Fresh OS game-exit checks before guarded B210->stable->B211 switches; outgoing B210 and stable recovery packages retained, no pending deployment transaction. EnableTuner stays1, user-toggled.",
     "native": "B204 scoped success plus USER_REPORTED_FAIL population/memory associated with same-process reload or restored training; cost1 observed at cold load before training; root cause UNKNOWN. Fixed native Tuner query returned; reader rawget defect fixed in 8963218 (tools only, validation pending). S0551: B206 re-run shows one native +2430 population change then +1 at T89 adjacent to Expedition unit creation; ordinary spy native cost60 vs Expedition1 in the same city; final 2447 identical across sessions. S0552: Expedition creation applies one native population delta that varied 0/+2430 across loads of the same save; ordinary spies unaffected; native cost1 despite definition identical to UNIT_SPY. S0554: B207 excludes cost progression; per-load fixed delta 0/+2430 at every Expedition creation; memory runaway recurred; first training after load costs1, later60. S0556: B208 excludes NumSupported; delta +2430/+193189 per load and save; memory runaway recurred; first-after-load cost1 then 75; overflow-immediate completion can HOLD. S0557: delta is city-A-specific (city B 0 across 6+ trainings/3 loads); cost1 occurs in both cities. S0558: read-only investigations: campaign predates appended Expedition index244 (cities hold 242-entry arrays); +2430 = city A Theater plot index; stored mod data not supported as cause; cost1 from stale saved cost cache; HELD from Overflow Bug Fix mod. INFERENCE only. S0559: new campaign clean (no population notification, cost 60/75/90/105/120, no HELD/memory issue; one city, early turns). S0560: user decisions: support only saves started with current build; old-campaign faults closed without repair; no population protection.",
-    "stop": "B211 deployment and user test only."
+    "stop": "B212 deployment and user test only."
   }
 }

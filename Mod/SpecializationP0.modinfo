@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="238">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="239">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
     <Description>B211.238: completed Expedition team may be redispatched and run another no-reward task after its activity is released; v0.1 standard-speed task duration constant.</Description>

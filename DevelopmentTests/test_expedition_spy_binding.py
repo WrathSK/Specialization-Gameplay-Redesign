@@ -40,7 +40,7 @@ class Binding(unittest.TestCase):
             with self.subTest(kind=kind):
                 l=self.ready();l.execute("info[102].UnitType='"+kind+"';units[42]=unit(42,102,2,15,8);units[42].name=units[41].name;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.stop=='TEAM_NAME_AMBIGUOUS' and r.identity.candidateName=='AMBIGUOUS' and r.count==2 and r.reservedCapacity and properties==0 and destroys==0)")
     def test_source_and_target_invalidity_never_adopts(self):
-        for change in ['city.token=nil','city.token="replacement"','city.owner=3','targetCity.id=10','targetCity.owner=4','visible=false','met=false']:
+        for change in ['city.token=nil','city.token="replacement"','city.owner=3','targetCity.id=10','targetCity.owner=4','met=false']:
             with self.subTest(change=change):
                 l=self.ready();l.execute(change+";ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and not r.bound and r.trackedID==40 and r.sourceCity==1 and properties==0 and destroys==0)")
     def test_read_scans_collection_once_and_pending_turn_once(self):

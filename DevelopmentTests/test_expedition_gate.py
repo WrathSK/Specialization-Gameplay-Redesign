@@ -49,7 +49,8 @@ class Gate(unittest.TestCase):
           function targetCity:GetX()return self.x end;function targetCity:GetY()return self.y end
           function targetCity:GetName()return '目标城' end -- Gameplay has no City:IsCapital.
           targetCities={FindID=function(self,id)if id==targetCity.id then return targetCity end end,
-            GetCapitalCity=function()if capital~=false then return targetCity end end}
+            GetCapitalCity=function()if capital~=false then return targetCity end end,
+            Members=function()local done=false;return function()if not done then done=true;return 1,targetCity end end end}
           Players[3]={IsMajor=function()return major~=false end,IsAlive=function()return alive~=false end,
             GetUnits=function()return {FindID=function(self,id)return foreignUnits[id]end}end,
             GetCities=function()return targetCities end}
@@ -200,7 +201,8 @@ class Reader(unittest.TestCase):
           major=true;alive=true;met=true
           Players[3]={IsMajor=function()return major end,IsAlive=function()return alive end,
             GetUnits=function()return {FindID=function(self,id)return foreignUnits[id]end}end,
-            GetCities=function()return {FindID=function(self,id)if id==9 then return targetCity end end,GetCapitalCity=function()return targetCity end}end}
+            GetCities=function()return {FindID=function(self,id)if id==9 then return targetCity end end,GetCapitalCity=function()return targetCity end,
+              Members=function()local done=false;return function()if not done then done=true;return 1,targetCity end end end}end}
           Players[2].GetDiplomacy=function()return {HasMet=function(self,p)return met end,GetSpyCapacity=function()return spyCapacity end}end
           UnitManager.GetTravelTime=function(u,c)helperCalls=helperCalls+1;return travelValue or 3 end
           UnitManager.GetEstablishInCityTime=function(u,c)helperCalls=helperCalls+1;return establishValue or 1 end

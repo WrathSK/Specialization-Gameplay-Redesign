@@ -11,15 +11,35 @@ function M.Capacity(pid)
  local d=Players[pid] and call(Players[pid],'GetDiplomacy')
  local n=call(d,'GetSpyCapacity');return integer(n) and n or nil
 end
+-- B212: native Spy travel needs a revealed city. The Expedition enters a target
+-- civilization through its revealed city nearest the target (the target itself
+-- when revealed) and continues on internal routes; the target need not be revealed.
+local function revealed(pid,c)
+ local vis=PlayersVisibility and PlayersVisibility[pid]
+ return call(vis,'IsRevealed',c:GetX(),c:GetY())==true
+end
+function M.Entry(pid,owner,target)
+ local p=Players[owner];if not p or not target then return nil end
+ if revealed(pid,target)then return target end
+ local best,bestD
+ local cities=call(p,'GetCities')
+ if not cities or type(cities.Members)~='function' then return nil end
+ for _,c in cities:Members()do
+  if c:GetOwner()==owner and revealed(pid,c)then
+   local d=(Map and type(Map.GetPlotDistance)=='function' and Map.GetPlotDistance(c:GetX(),c:GetY(),target:GetX(),target:GetY()))
+    or math.abs(c:GetX()-target:GetX())+math.abs(c:GetY()-target:GetY())
+   if not best or d<bestD or (d==bestD and c:GetID()<best:GetID())then best,bestD=c,d end
+  end
+ end
+ return best
+end
 function M.Target(pid,owner,id)
  local p=Players[owner];local me=Players[pid]
  if not p or not me or pid==owner or call(p,'IsMajor')~=true or call(p,'IsAlive')~=true then return nil end
  if call(call(me,'GetDiplomacy'),'HasMet',owner)~=true then return nil end
  local cities=call(p,'GetCities');local c=cities and call(cities,'FindID',id)
- if not c or c:GetOwner()~=owner or call(c,'IsCapital')~=true then return nil end
- -- Gate-fixture restriction only, not the final Design's foreign-information policy.
- local vis=PlayersVisibility and PlayersVisibility[pid]
- if call(vis,'IsRevealed',c:GetX(),c:GetY())~=true then return nil end
+ if not c or c:GetOwner()~=owner then return nil end
+ if not M.Entry(pid,owner,c)then return nil end
  return c
 end
 function M.Targets(pid)
@@ -27,13 +47,18 @@ function M.Targets(pid)
  for owner,p in pairs(Players)do
   if owner~=pid and call(p,'IsMajor')==true and call(p,'IsAlive')==true
    and call(call(Players[pid],'GetDiplomacy'),'HasMet',owner)==true then
-   local c=call(call(p,'GetCities'),'GetCapitalCity')
-   if c and M.Target(pid,owner,c:GetID())then
-    out[#out+1]={owner=owner,id=c:GetID(),name=c:GetName(),x=c:GetX(),y=c:GetY()}
+   local cities=call(p,'GetCities')
+   if cities and type(cities.Members)=='function' then
+    for _,c in cities:Members()do
+     if M.Target(pid,owner,c:GetID())then
+      out[#out+1]={owner=owner,id=c:GetID(),name=c:GetName(),x=c:GetX(),y=c:GetY(),capital=call(c,'IsCapital')==true}
+     end
+    end
    end
   end
  end
- table.sort(out,function(a,b)return a.owner<b.owner end);return out
+ table.sort(out,function(a,b)if a.owner~=b.owner then return a.owner<b.owner end;if a.capital~=b.capital then return a.capital end;return a.id<b.id end)
+ return out
 end
 -- B199: present actual mission locations, not every city district. This is a
 -- bounded display read of the selected eligible city; it never grants a mission.
@@ -47,7 +72,13 @@ local function locationRequire(value,reason)
  if not value then error(reason,0) end
  return value
 end
+local function site(out,category,plotID,value)
+ local old=out.sites[category]
+ if not old or plotID<old.plot then value.plot=plotID;out.sites[category]=value end
+end
 local function locationSnapshot(city,out)
+ out.sites=out.sites or {}
+ if call(city,'IsCapital')==true then out.sites.PEOPLE={x=city:GetX(),y=city:GetY(),plot=-1} end
  local districtDefs=locationRequire(GameInfo.Districts,'LOCATION_DISTRICT_DEFINITION_UNAVAILABLE')
  local center=locationRequire(districtDefs.DISTRICT_CITY_CENTER,'LOCATION_CENTER_DEFINITION_UNAVAILABLE')
  local items={{icon='ICON_DISTRICT_CITY_CENTER',name=center.Name}}
@@ -82,6 +113,7 @@ local function locationSnapshot(city,out)
       if not seen[key] then
        seen[key]=true;items[#items+1]={icon='ICON_'..building.BuildingType,name=building.Name,kind='WONDER'}
       end
+      site(out,'PLACES',plotID,{x=x,y=y,building=building.BuildingType})
      else
       local slots=locationRead(buildings,'GetNumGreatWorkSlots',building.Index)
       locationRequire(integer(slots) and slots<=256,'LOCATION_SLOT_COUNT_UNKNOWN')
@@ -95,7 +127,7 @@ local function locationSnapshot(city,out)
         locationRequire(SPCGreatWorkCatalog and type(SPCGreatWorkCatalog.Resolve)=='function','LOCATION_WORK_CATALOG_UNAVAILABLE')
         local eligible,why=SPCGreatWorkCatalog.Resolve(adapter,work.GreatWorkType)
         locationRequire(eligible or why=='UNSUPPORTED_TYPE','LOCATION_WORK_METADATA_UNKNOWN')
-        if eligible then hasWork=true end
+        if eligible then hasWork=true;site(out,'WORKS',plotID,{x=x,y=y,building=building.BuildingType,slot=slot,work=work.GreatWorkType})end
        end
       end
      end
@@ -121,7 +153,8 @@ function M.Presentation(pid,id,target)
   local row=unit and GameInfo.Units[unit:GetUnitType()]
   if unit and unit:GetID()==id and unit:GetOwner()==pid and row and row.UnitType==M.KIND then
    local timing,t,e=pcall(function()
-    return UnitManager.GetTravelTime(unit,city),UnitManager.GetEstablishInCityTime(unit,city)
+    local via=assert(M.Entry(pid,target.owner,city))
+    return UnitManager.GetTravelTime(unit,via),UnitManager.GetEstablishInCityTime(unit,via)
    end)
    if timing and integer(t) and integer(e) then out.travel=t;out.establish=e;out.total=t+e end
   end
@@ -148,8 +181,10 @@ function M.Read(pid,unitID,target)
   assert(UnitManager and type(UnitManager.GetTravelTime)=='function' and type(UnitManager.GetEstablishInCityTime)=='function','HELPER_UNAVAILABLE')
   v.fromX=u:GetX();v.fromY=u:GetY();v.targetOwner=target.owner;v.targetID=target.id;v.targetName=c:GetName()
   v.targetX=c:GetX();v.targetY=c:GetY();v.spyBefore=M.Capacity(pid)
-  v.travel=UnitManager.GetTravelTime(u,c)
-  v.establish=UnitManager.GetEstablishInCityTime(u,c)
+  local e=assert(M.Entry(pid,target.owner,c),'ENTRY_UNKNOWN')
+  v.entryX=e:GetX();v.entryY=e:GetY();v.entryID=e:GetID()
+  v.travel=UnitManager.GetTravelTime(u,e)
+  v.establish=UnitManager.GetEstablishInCityTime(u,e)
   v.spyAfter=M.Capacity(pid)
   assert(integer(v.travel) and integer(v.establish),'HELPER_RESULT_INVALID')
   assert(u:GetOwner()==pid and u:GetID()==unitID and u:GetX()==v.fromX and u:GetY()==v.fromY,'UNIT_CHANGED_DURING_READ')
@@ -157,8 +192,8 @@ function M.Read(pid,unitID,target)
   -- Diagnostic only. A false result is not proof that Spy is the only reason.
   local checked,allowed=pcall(function()
    assert(UnitOperationTypes and UnitOperationTypes.SPY_TRAVEL_NEW_CITY and Map and Map.GetPlot)
-   local params={};params[UnitOperationTypes.PARAM_X]=c:GetX();params[UnitOperationTypes.PARAM_Y]=c:GetY()
-   return UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(c:GetX(),c:GetY()),params)
+   local params={};params[UnitOperationTypes.PARAM_X]=e:GetX();params[UnitOperationTypes.PARAM_Y]=e:GetY()
+   return UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(e:GetX(),e:GetY()),params)
   end)
   if checked and type(allowed)=='boolean' then v.nativeStatus='KNOWN';v.nativeAllowed=allowed end
   assert(u:GetOwner()==pid and u:GetID()==unitID and u:GetX()==v.fromX and u:GetY()==v.fromY,'UNIT_CHANGED_DURING_READ')
@@ -372,8 +407,15 @@ function M.SubmitTravel(pid,id,t,permit)
   local u=Players[pid]:GetUnits():FindID(id);local r=u and GameInfo.Units[u:GetUnitType()]
   assert(u and u:GetID()==id and u:GetOwner()==pid and r and r.UnitType==M.KIND and (r.Spy==true or r.Spy==1),'SPY_TEST_TEAM_REQUIRED')
   local c=M.Target(pid,t.owner,t.id);assert(c and c:GetX()==t.x and c:GetY()==t.y,'TARGET_CHANGED')
-  local params={};params[UnitOperationTypes.PARAM_X]=c:GetX();params[UnitOperationTypes.PARAM_Y]=c:GetY()
-  assert(UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(c:GetX(),c:GetY()),params)==true,'NATIVE_TRAVEL_NOT_ALLOWED')
+  -- B212: travel natively to the entry city recorded by Gameplay (the target when revealed).
+  local ex,ey=t.entryX or c:GetX(),t.entryY or c:GetY()
+  local e
+  for _,other in Players[t.owner]:GetCities():Members()do
+   if other:GetX()==ex and other:GetY()==ey then e=other end
+  end
+  assert(e and e:GetOwner()==t.owner and revealed(pid,e),'ENTRY_CHANGED')
+  local params={};params[UnitOperationTypes.PARAM_X]=ex;params[UnitOperationTypes.PARAM_Y]=ey
+  assert(UnitManager.CanStartOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,Map.GetPlot(ex,ey),params)==true,'NATIVE_TRAVEL_NOT_ALLOWED')
   lastPermit=permit -- Reserve BEFORE the request; an ambiguous result is not retried.
   local result=UnitManager.RequestOperation(u,UnitOperationTypes.SPY_TRAVEL_NEW_CITY,params)
   assert(result~=false,'NATIVE_REQUEST_REJECTED') -- nil is common for command submission, not arrival PASS.

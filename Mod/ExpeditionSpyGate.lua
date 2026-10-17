@@ -1,14 +1,16 @@
 -- B201: bounded player-owned identity/intent, exact Property readback.
 -- Native unit/travel/activity are fresh facts; no native mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
+if include and not SPCGreatWorkCatalog then include('GreatWorkCatalog')end
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
  -- v0.1 supports standard speed only; Design floor(2 x speed multiplier) is deferred.
  local TASK_TURNS=2
+ local returnToCentre
  local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
  local Store=SPCExpeditionSpyStore
- local fields={'trainingToken','trainingBorn','trainingReceiptTurn','trainingTurn','trainingQueued','trainingCompleted','owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','taskCount','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
+ local fields={'trainingToken','trainingBorn','trainingReceiptTurn','trainingTurn','trainingQueued','trainingCompleted','owner','phase','unitID','createdID','sourceCity','sourceName','sourceRef','x','y','expectedName','nameVerified','teamKey','startTurn','dueTurn','taskStart','taskDue','taskCompleted','taskCompletions','taskCount','missionCategory','missionX','missionY','missionEvidence','taskOutcome','entryX','entryY','activityKey','activityMode','activityOwned','activityPending','sleepConfirmed','stop','errorStep','errorDetail'}
  local function savedState()
   local out={};for _,k in ipairs(fields)do out[k]=state[k]end
   if state.target then out.target={};for _,k in ipairs({'name','owner','id','x','y'})do out.target[k]=state.target[k]end end
@@ -102,6 +104,9 @@ function SPCExpeditionSpyGate.Start(P,shared)
   assert(c and c:GetOwner()==state.owner and type(state.sourceRef)=='string' and SPCNetworkInput.Reference(c)==state.sourceRef,'SOURCE_REFERENCE_CHANGED')
   return c
  end
+ -- B212: any city of a met, living major civilization. The target need not be
+ -- revealed (user decision); the Expedition enters the civilization through one
+ -- revealed city of that owner and travels on its internal routes.
  local function target(pid,t)
   step='TARGET'
   assert(type(t)=='table' and int(t.owner) and int(t.id) and int(t.x) and int(t.y),'TARGET_CHANGED')
@@ -110,16 +115,100 @@ function SPCExpeditionSpyGate.Start(P,shared)
   assert(Players[pid]:GetDiplomacy():HasMet(t.owner),'TARGET_CHANGED')
   local cities=p:GetCities();local c=cities:FindID(t.id)
   assert(c and c:GetOwner()==t.owner and c:GetX()==t.x and c:GetY()==t.y,'TARGET_CHANGED')
+  return c
+ end
+ local function isCapital(t,c)
   -- City:IsCapital is UI-only. Gameplay reads the player's current capital.
-  step='CAPITAL'
+  local cities=Players[t.owner]:GetCities()
   assert(type(cities.GetCapitalCity)=='function','CAPITAL_API_UNAVAILABLE')
   local capital=cities:GetCapitalCity()
-  assert(capital and capital:GetOwner()==t.owner and capital:GetID()==c:GetID()
-   and capital:GetX()==t.x and capital:GetY()==t.y,'TARGET_CHANGED')
-  step='TARGET'
+  return capital~=nil and capital:GetOwner()==t.owner and capital:GetID()==c:GetID() and capital:GetX()==t.x and capital:GetY()==t.y
+ end
+ local function entry(pid,t,x,y)
+  step='ENTRY'
+  assert(int(x) and int(y),'ENTRY_UNKNOWN')
+  local c
+  if x==t.x and y==t.y then c=target(pid,t);step='ENTRY'
+  else
+   local cities=Players[t.owner]:GetCities()
+   assert(type(cities.Members)=='function','ENTRY_READER_UNAVAILABLE')
+   for _,other in cities:Members()do if other:GetX()==x and other:GetY()==y then c=other end end
+  end
+  assert(c and c:GetOwner()==t.owner and c:GetX()==x and c:GetY()==y,'ENTRY_CHANGED')
   local vis=PlayersVisibility and PlayersVisibility[pid]
-  assert(vis and vis:IsRevealed(t.x,t.y),'TARGET_UNKNOWN')
-  return c -- Capital/revealed restriction belongs only to this bounded fixture.
+  assert(vis and vis:IsRevealed(x,y),'ENTRY_UNKNOWN')
+  return c
+ end
+ local function civilization(owner)
+  local config=PlayerConfigurations and PlayerConfigurations[owner]
+  assert(config and type(config.GetCivilizationTypeName)=='function','TARGET_CIVILIZATION_UNAVAILABLE')
+  local civ=config:GetCivilizationTypeName()
+  assert(type(civ)=='string' and civ:match('^CIVILIZATION_[A-Z0-9_]+$'),'TARGET_CIVILIZATION_UNAVAILABLE')
+  return civ
+ end
+ local function insightStore()
+  return assert(shared.CityProgressionStore,'INSIGHT_STORE_UNAVAILABLE')
+ end
+ local function insights(pid)
+  return insightStore().ExpeditionInsights(pid,source())
+ end
+ -- B212 mission facts are re-read here; UI evidence only names which native object to check.
+ local function plotIndex(x,y)
+  local plot=Map and Map.GetPlot and Map.GetPlot(x,y);assert(plot,'MISSION_PLOT_UNKNOWN')
+  return plot:GetIndex(),plot
+ end
+ local function mission(pid,t,m)
+  step='MISSION'
+  assert(type(m)=='table' and (m.category=='PEOPLE' or m.category=='WORKS' or m.category=='PLACES'),'MISSION_UNKNOWN')
+  local c=target(pid,t);step='MISSION'
+  assert(int(m.x) and int(m.y),'MISSION_PLOT_UNKNOWN')
+  if m.category=='PEOPLE' then
+   assert(isCapital(t,c),'MISSION_TARGET_INVALID')
+   assert(m.x==t.x and m.y==t.y,'MISSION_PLOT_CHANGED')
+   return c
+  end
+  local def=type(m.building)=='string' and P.Info('Buildings',m.building)
+  assert(def,'MISSION_BUILDING_UNKNOWN')
+  local wonder=def.IsWonder==true or def.IsWonder==1
+  assert(wonder==(m.category=='PLACES'),'MISSION_BUILDING_UNKNOWN')
+  local b=c:GetBuildings()
+  assert(P.HasBuilding(b,def.Index)==true,'MISSION_TARGET_INVALID')
+  local index,plot=plotIndex(m.x,m.y)
+  if type(b.GetBuildingLocation)=='function' then
+   local ok,at=pcall(b.GetBuildingLocation,b,def.Index)
+   if ok and type(at)=='number' then assert(at==index,'MISSION_PLOT_CHANGED')end
+  end
+  assert(plot:GetOwner()==t.owner,'MISSION_PLOT_CHANGED')
+  if m.category=='WORKS' then
+   assert(int(m.slot) and type(m.work)=='string','MISSION_WORK_UNKNOWN')
+   assert(SPCGreatWorkCatalog and SPCGreatWorkCatalog.Resolve(P,m.work),'MISSION_WORK_INELIGIBLE')
+   assert(type(b.GetGreatWorkInSlot)=='function','MISSION_WORK_READER_UNAVAILABLE')
+   local workID=b:GetGreatWorkInSlot(def.Index,m.slot)
+   assert(int(workID),'MISSION_TARGET_INVALID')
+   local reader=type(b.GetGreatWorkTypeFromIndex)=='function' and function(id)return b:GetGreatWorkTypeFromIndex(id)end
+    or (Game and type(Game.GetGreatWorkTypeFromIndex)=='function' and Game.GetGreatWorkTypeFromIndex)
+   if reader then
+    local ok,kind=pcall(reader,workID);local row=P.Info('GreatWorks',m.work)
+    if ok and kind~=nil and row then assert(kind==row.Index or kind==row.Hash or kind==m.work,'MISSION_TARGET_INVALID')end
+   end
+  end
+  return c
+ end
+ local function missionOf()
+  if not state.missionCategory then return nil end
+  local e=state.missionEvidence or '';local building,slot,work=e:match('^([^|]*)|([^|]*)|([^|]*)$')
+  return {category=state.missionCategory,x=state.missionX,y=state.missionY,building=building~='' and building or nil,
+   slot=tonumber(slot),work=work~='' and work or nil}
+ end
+ local function relocate(u,x,y)
+  assert(UnitManager and type(UnitManager.PlaceUnit)=='function','PLACEMENT_UNAVAILABLE')
+  if u:GetX()==x and u:GetY()==y then return u end
+  if type(UnitManager.RestoreMovement)=='function' then UnitManager.RestoreMovement(u)end
+  UnitManager.PlaceUnit(u,x,y)
+  local placed=owned(state.owner,u:GetID())
+  assert(placed:GetX()==x and placed:GetY()==y,'EXACT_PLACEMENT_REJECTED')
+  if type(UnitManager.FinishMoves)=='function' then UnitManager.FinishMoves(placed)end
+  return placed
  end
  local function reason(err)
   return tostring(err):match(':%d+:%s*([A-Z][A-Z0-9_]+)') or tostring(err):match('^([A-Z][A-Z0-9_]+)') or 'API_UNAVAILABLE'
@@ -233,13 +322,18 @@ function SPCExpeditionSpyGate.Start(P,shared)
    end
    if candidate then
     assert(#all==1,'TEAM_NAME_AMBIGUOUS')
-    if candidate:GetX()==state.target.x and candidate:GetY()==state.target.y then
+    local ex,ey=state.entryX or state.target.x,state.entryY or state.target.y
+    if candidate:GetX()==ex and candidate:GetY()==ey then
      local id=candidate:GetID()
      -- Validate the actual exact-lookup object as well as the collection item.
      local current=owned(state.owner,id)
      assert(named(current),'TEAM_NAME_UNAVAILABLE')
-     assert(current:GetX()==state.target.x and current:GetY()==state.target.y,'TARGET_CHANGED')
-     state.unitID=id;state.x=current:GetX();state.y=current:GetY();state.phase='ARRIVED'
+     assert(current:GetX()==ex and current:GetY()==ey,'TARGET_CHANGED')
+     state.unitID=id
+     -- B212: entered through another city of the same civilization; continue on its
+     -- internal routes to the target city centre (no added time, implementation reading).
+     if ex~=state.target.x or ey~=state.target.y then step='ENTRY_RELOCATE';current=relocate(current,state.target.x,state.target.y)end
+     state.x=current:GetX();state.y=current:GetY();state.phase='ARRIVED';state.entryX=nil;state.entryY=nil
      save();return
     end
    end
@@ -248,19 +342,28 @@ function SPCExpeditionSpyGate.Start(P,shared)
   end
   local u=tracked()
   assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
-  if state.target then target(state.owner,state.target)end
   if state.phase=='TASK_RUNNING' and not recovering then
    -- GetSpyOperation is established in UI, not assumed present in Gameplay.
    -- If exposed here, also reject a native mission; otherwise the no-reward
    -- fixture relies on the checked start sample + exact-type UI isolation.
    if type(u.GetSpyOperation)=='function' then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
-   if allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
-    state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn()
+   local m=missionOf()
+   local valid=m and pcall(mission,state.owner,state.target,m)
+   if not valid then
+    -- B212 target invalidation: cancel, no Insight, no quota; the unit returns to the centre.
+    state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn();state.taskOutcome='CANCELLED'
+    releaseActivity();state.taskCompletions=0;save()
+    print('[SPC][B191][N1_TASK] mission='..tostring(state.missionCategory)..' outcome=CANCELLED reason=TARGET_INVALID')
+   elseif allowTaskCompletion and Game.GetCurrentGameTurn()>=state.taskDue then
+    local civ=civilization(state.target.owner)
+    -- City history first; a repeated completion after a failed save is idempotent.
+    local added=insightStore().AddExpeditionInsight(state.owner,source(),civ,m.category,Game.GetCurrentGameTurn())
+    state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn();state.taskOutcome='SUCCESS'
     releaseActivity()
-    state.taskCompletions=1 -- This task; completion has no effects.
+    state.taskCompletions=1
     state.taskCount=(state.taskCount or 0)+1 -- B211: completed tasks of this team (unique activity keys).
     save()
-    print('[SPC][B191][N1_TASK] complete=1 reward=NONE nativeMission=NONE')
+    print('[SPC][B191][N1_TASK] mission='..m.category..' outcome=SUCCESS civ='..civ..' insight='..(added and 'NEW' or 'EXISTING'))
    end
   end
  end
@@ -273,11 +376,21 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.unbound=not v.legacy and (state.owner~=pid or state.unitID~=u:GetID())
   end
   if state.owner==pid then
-   for _,k in ipairs({'trainingToken','sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','activityMode','activityOwned','activityKey','activityFailure','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
+   for _,k in ipairs({'trainingToken','sourceCity','sourceName','startTurn','dueTurn','stop','nativeAllowed','nativeStatus','removedEvents','arrivalOthers','errorStep','errorDetail','taskStart','taskDue','taskCompleted','taskCompletions','activityMode','activityOwned','activityKey','activityFailure','missionCategory','missionX','missionY','taskOutcome','entryX','entryY','expectedName','teamKey','nameVerified','namePoolCount','namePoolCivilization'})do
     -- A missing original unit must not be substituted by another discovered unit.
     v[k]=state[k]
    end
    v.createdID=state.createdID;v.trackedID=state.unitID;v.bound=false
+   -- B212 presentation of the archive city's Insight history; display only.
+   if state.sourceCity and state.phase~='TRAINING' then
+    local ok,records=pcall(insights,pid)
+    if ok then
+     local own=pcall(civilization,pid) and civilization(pid) or nil
+     local keys,history,effective={},0,0
+     for k,r in pairs(records)do keys[#keys+1]=k;history=history+1;if r.civ~=own then effective=effective+1 end end
+     table.sort(keys);v.insightKeys=keys;v.insightHistory=history;v.insightEffective=effective
+    else v.insightStatus='UNKNOWN' end
+   end
    v.targetName=state.target and state.target.name
    if state.target then v.targetOwner=state.target.owner;v.targetID=state.target.id;v.targetX=state.target.x;v.targetY=state.target.y end
    if state.unitID then
@@ -326,6 +439,19 @@ function SPCExpeditionSpyGate.Start(P,shared)
    v.identity.plotStatus='OFF_MAP'
   end
   return v
+ end
+ -- B212: after the mission activity is released, return to the target city centre
+ -- (Spy-like) and be ready for another unfinished mission or a new dispatch.
+ returnToCentre=function()
+  if state.phase~='TASK_COMPLETE' or not state.target or state.activityMode~='NONE' then return end
+  step='RETURN_CENTRE'
+  local u=relocate(tracked(),state.target.x,state.target.y)
+  state.x=u:GetX();state.y=u:GetY()
+  state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil;state.activityKey=nil
+  state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil
+  print('[SPC][B191][N1_TASK] mission='..tostring(state.missionCategory)..' outcome='..tostring(state.taskOutcome)..' returned=CENTRE')
+  state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil;state.taskOutcome=nil
+  state.phase='ARRIVED'
  end
  local function handle(pid,p)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
@@ -386,7 +512,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
    assert(p.NativeStatus=='KNOWN' and p.NativeAllowed==true,'NATIVE_TRAVEL_NOT_ALLOWED')
    assert(int(p.Travel) and int(p.Establish) and p.Travel+p.Establish<=1000,'TRAVEL_TIME_UNKNOWN')
    local t={owner=p.TargetOwner,id=p.TargetID,x=p.TargetX,y=p.TargetY}
-   local c=target(pid,t);t.name=c:GetName();step='DISPATCH'
+   local c=target(pid,t);t.name=c:GetName()
+   -- Native Spy travel needs a revealed city; enter the civilization through one.
+   local ex,ey=p.EntryX or t.x,p.EntryY or t.y
+   entry(pid,t,ex,ey);step='DISPATCH'
    state.target=t;state.startTurn=Game.GetCurrentGameTurn();state.dueTurn=state.startTurn+p.Travel+p.Establish
    state.nativeAllowed=type(p.NativeAllowed)=='boolean' and p.NativeAllowed or false
    state.nativeStatus=p.NativeStatus=='KNOWN' and 'KNOWN' or 'UNKNOWN'
@@ -394,14 +523,26 @@ function SPCExpeditionSpyGate.Start(P,shared)
     state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil;state.activityKey=nil
     state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil
    end
+   state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil;state.taskOutcome=nil
+   if ex~=t.x or ey~=t.y then state.entryX=ex;state.entryY=ey else state.entryX=nil;state.entryY=nil end
    mutating=true;state.phase='TRAVELLING';state.permit=p.Token
    save() -- Durable intent precedes the one-shot UI native permit; never replay on load.
   elseif p.Action=='TASK' then
    assert(state.owner==pid and state.unitID==p.UnitID,'BOUND_TEAM_REQUIRED')
    observe();assert(state.phase=='ARRIVED' and not state.taskStart,'TASK_NOT_AVAILABLE')
-   local u=tracked();target(pid,state.target)
+   local u=tracked()
    assert(p.SampleTurn==Game.GetCurrentGameTurn() and p.NativeOperation==-1,'NATIVE_OPERATION_UNKNOWN')
    if type(u.GetSpyOperation)=='function' then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
+   -- B212: one of the three Design missions, revalidated from native facts; a
+   -- completed (archive city x civilization x category) key cannot start again.
+   local m={category=p.Mission,x=p.MissionX,y=p.MissionY,building=p.Building,slot=p.Slot,work=p.Work}
+   mission(pid,state.target,m);step='TASK'
+   local done=insights(pid)
+   assert(not done[civilization(state.target.owner)..':'..m.category],'MISSION_ALREADY_COMPLETED')
+   local evidence=(m.building or '')..'|'..(m.slot and tostring(m.slot) or '')..'|'..(m.work or '')
+   assert(#evidence<=160,'MISSION_EVIDENCE_TOO_LONG')
+   state.missionCategory=m.category;state.missionX=m.x;state.missionY=m.y;state.missionEvidence=evidence;state.taskOutcome=nil
+   mutating=true;step='MISSION_MOVE';u=relocate(u,m.x,m.y);state.x=u:GetX();state.y=u:GetY()
    -- Do not advance the independent timer before native sleep is observed.
    mutating=true;state.activityKey=state.teamKey..':task'..((state.taskCount or 0)+1);state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
    state.taskCompletions=0;state.phase='TASK_PREPARING'
@@ -431,7 +572,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
      source();target(pid,state.target)
     elseif state.activityMode=='RELEASE' then
      if p.Sleeping then assert(state.activityOwned,'ACTIVITY_UNOWNED_SLEEP');state.sleepConfirmed=true
-     else state.activityMode='NONE';state.activityOwned=false;state.activityPending=false end
+     else state.activityMode='NONE';state.activityOwned=false;state.activityPending=false;returnToCentre()end
     else error('ACTIVITY_RECOVERY_UNKNOWN')end
    elseif p.Result=='ARMED' then
     assert(not recovering and state.phase=='TASK_PREPARING' and state.activityMode=='SLEEP','ACTIVITY_NOT_PENDING')
@@ -458,6 +599,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     local u=tracked();assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
     assert(p.NativeOperation==-1,'NATIVE_MISSION_ACTIVE_STOP')
     mutating=true;state.activityMode='NONE';state.activityOwned=false;state.activityPending=false
+    returnToCentre()
    else
     assert(state.activityMode=='SLEEP' or state.activityMode=='ARMED' or state.activityMode=='ASLEEP' or state.activityMode=='RELEASE','ACTIVITY_NOT_PENDING')
     mutating=true;recovering=false

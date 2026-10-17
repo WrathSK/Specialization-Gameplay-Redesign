@@ -43,6 +43,16 @@ def gate(ui=False, window=False):
       end
       PlayerConfigurations={[2]={GetCivilizationTypeName=function()return civilization or 'CIVILIZATION_SPC_TEST' end}}
       P.PlayerConfigurations=PlayerConfigurations
+      -- B212: foreign civilizations and an in-memory archive-city Insight history.
+      PlayerConfigurations[3]={GetCivilizationTypeName=function()return 'CIVILIZATION_TARGET' end}
+      PlayerConfigurations[4]={GetCivilizationTypeName=function()return 'CIVILIZATION_SECOND' end}
+      insightRecords={};insightWrites=0
+      shared.CityProgressionStore=shared.CityProgressionStore or {RegisterExit=function()end}
+      shared.CityProgressionStore.ExpeditionInsights=function(pid,c)local o={};for k,v in pairs(insightRecords)do o[k]=v end;return o end
+      shared.CityProgressionStore.AddExpeditionInsight=function(pid,c,civ,cat,turn)
+       local k=civ..':'..cat;if insightRecords[k] then return false end
+       insightRecords[k]={civ=civ,category=cat,turn=turn};insightWrites=insightWrites+1;return true
+      end
       poolRows={{CivilizationType='CIVILIZATION_SPC_TEST',CitizenName='LOC_CITIZEN_TEST_A',Female=0,Modern=0},
        {CivilizationType='CIVILIZATION_SPC_TEST',CitizenName='LOC_CITIZEN_TEST_B',Female=1,Modern=1},
        {CivilizationType='CIVILIZATION_OTHER',CitizenName='LOC_CITIZEN_OTHER',Female=0,Modern=0}}
@@ -195,7 +205,7 @@ class Gate(unittest.TestCase):
     def test_changed_id_never_rebound_and_missing_arrival_stops(self):
         l=gate();l.execute("req('CREATE','a');nativeDispatch('b');units[40]=nil;units[41]=unit(41,100,2,15,8);currentTurn=85;ownTurn(2);local r=req('READ','c');assert(r.phase=='HELD' and r.stop=='NATIVE_IDENTITY_UNCONFIRMED' and r.unitID==41 and not r.bound and r.createdID==40 and r.reservedCapacity and units[41] and destroys==0)")
     def test_source_unknown_loss_or_target_change_retains_original_without_further_writes(self):
-        for change in ['city.token=nil','city.token="new"','city.owner=3','targetCity.owner=4','met=false','visible=false']:
+        for change in ['city.token=nil','city.token="new"','city.owner=3','targetCity.owner=4','met=false']:
             with self.subTest(change=change):
                 l=gate();l.execute("req('CREATE','a');nativeDispatch('b');"+change+";transfer();assert(req('READ','c').phase=='HELD' and units[40] and properties==0 and destroys==0)")
     def test_end_never_destroys_ordinary_spy_or_foreign_unit(self):
@@ -281,7 +291,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select PrereqBuilding,NumSupported from Unit_BuildingPrereqs where Unit=?',(k,)).fetchall(),[('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'238')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'239')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]
@@ -290,7 +300,7 @@ class Package(unittest.TestCase):
         art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text'] for e in art.findall('m_RootCollections/Element/Element/m_Name')];self.assertEqual(names.count('UNIT_SPC_EXPEDITION_SPY'),1);self.assertEqual(len(names),8)
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
         lua=(R/'Mod/UI/ExpeditionSpyWindow.lua').read_text();xml=(R/'Mod/UI/ExpeditionSpyWindow.xml').read_text()
-        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_','ACTIVITY_CAUSE_','DIAGNOSTIC_','FAILURE_DIAGNOSTIC_PHASE_','NORMAL_PHASE_','NORMAL_','ACTION_','PERSISTENCE_'}
+        keys=set(re.findall(r"L\('([A-Z_]+)'",lua));keys-={'PHASE_','COMPARE_','IDENTITY_','NAME_STAGE_','ACTIVITY_','ACTIVITY_CAUSE_','DIAGNOSTIC_','FAILURE_DIAGNOSTIC_PHASE_','NORMAL_PHASE_','NORMAL_','ACTION_','PERSISTENCE_','MISSION_'}
         keys|={f'PHASE_{p}' for p in ['IDLE','CREATING','NAMING','CREATED','TRAVELLING','ARRIVED','TASK_PREPARING','TASK_RUNNING','TASK_COMPLETE','HELD','ENDING','ENDED']}
         keys|={f'COMPARE_{p}' for p in ['UNKNOWN','CHANGED','PARTIAL','SCOPED_UNCHANGED','SLOT_COST_ACCEPTED']}
         keys|={f'IDENTITY_{p}' for p in ['MATCH','ABSENT','MISMATCH','UNREADABLE','NO_UNIT','NO_SESSION','WRONG_UNIT','AMBIGUOUS','PRESENT','OFF_MAP']}

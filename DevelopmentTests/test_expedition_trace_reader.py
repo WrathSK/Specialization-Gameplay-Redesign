@@ -281,6 +281,13 @@ class RecorderTests(unittest.TestCase):
         self.assertEqual(seen[-1],reader.PREFIX+'WINDOW_COMPLETE passive_records=0 hd_records=3 hd_dropped=1')
         self.assertFalse(any('private' in x or 'abc' in x for x in seen))
 
+    def test_gate_prints_allowlisted(self):
+        # B212: Expedition Gate fixed-format prints are kept; other prints are dropped.
+        self.assertEqual(reader.hd_line('GameCore: [SPC][B191][N1_TASK] mission=PEOPLE outcome=SUCCESS civ=CIVILIZATION_X insight=NEW'),
+                         reader.GATE_PREFIX+'[SPC][B191][N1_TASK] mission=PEOPLE outcome=SUCCESS civ=CIVILIZATION_X insight=NEW')
+        self.assertTrue(reader.hd_line('[SPC][B191][N1_SPY] action=DISPATCH owner=2 unit=40 phase=TRAVELLING error=nil').startswith(reader.GATE_PREFIX))
+        self.assertIsNone(reader.hd_line('[SPC][B191][N1_OTHER] secret'))
+
     def test_quiet_window_not_pass(self):
         fake,clock=self.fixture();seen=[]
         self.capture(fake,clock=clock,record_seconds=1,on_record=seen.append)

@@ -9,7 +9,9 @@ local viewMode='DIAGNOSTIC';local requestedUnitID;local close
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local taskSelected=false;local request;local lastNativePermit
-local refreshHeader;local taskDisplay;local previewRow;local districtStrips={}
+local refreshHeader;local taskDisplay;local previewRow;local districtStrips={};local missionRows={};local missionKey;local missionSite
+-- B212: the three Design missions (Culture D0049).
+local MISSIONS={{key='PEOPLE',icon='ICON_UNITOPERATION_SPY_LISTENING_POST'},{key='WORKS',icon='ICON_UNITOPERATION_SPY_GREAT_WORK_HEIST'},{key='PLACES',icon='ICON_DISTRICT_WONDER'}}
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
 local cityRows=InstanceManager:new('SPCExpeditionDestination','DestinationButton',Controls.DestinationStack)
@@ -24,7 +26,7 @@ local function clearRows()
   strip.DistrictsScrollRightButton:RegisterCallback(Mouse.eLClick,noAction)
   strip.iconPool:ResetInstances()
  end
- districtStrips={};normalRows={};previewRow=nil;cityRows:ResetInstances();taskRows:ResetInstances()
+ districtStrips={};normalRows={};previewRow=nil;missionRows={};cityRows:ResetInstances();taskRows:ResetInstances()
 end
 -- The selected outline is an overlay, never an input to row sizing. An auto
 -- height button with a parent-height brace feeds its previous height back into
@@ -39,7 +41,7 @@ local function resizeSidebar()
  if viewMode=='DIAGNOSTIC' or ContextPtr:IsHidden()then return end
  local _,height=UIManager:GetScreenSizeVal()
  Controls.SlideAnim:SetSizeY(height-30)
- if previewRow then sizeMissionCard(previewRow)end
+ for _,m in ipairs(missionRows)do sizeMissionCard(m.row)end
  Controls.NormalStack:CalculateSize();Controls.NormalScroll:CalculateInternalSize()
  Controls.NormalPreviewStack:CalculateSize();Controls.NormalMissionScroll:CalculateInternalSize()
 end
@@ -180,6 +182,8 @@ local function renderNormal()
   o[#o+1]=L('NORMAL_PHASE_'..v.phase)
   if v.recovering then o[#o+1]=L('ACTIVITY_RECOVER')end
   if v.targetName then o[#o+1]=L('NORMAL_DESTINATION',Locale.Lookup(v.targetName))end
+  if v.insightHistory then o[#o+1]=L('INSIGHTS',v.insightHistory,v.insightEffective or 0)end
+  if v.missionCategory then o[#o+1]=L('MISSION_'..v.missionCategory..'_NAME')end
   if v.phase=='TASK_RUNNING' and v.taskDue then
    o[#o+1]=L('NORMAL_REMAINING',math.max(0,v.taskDue-Game.GetCurrentGameTurn()))
   end
@@ -197,8 +201,8 @@ local function renderNormal()
   or (viewMode=='TASK' and not taskSelected))
  for _,row in ipairs(normalRows)do
   -- City selection lives in the header. A relocation mission is preview-only.
-  row.button:SetDisabled(not can or (row.index==nil and viewMode=='TRAVEL'))
-  row.brace:SetHide(row.index~=nil or viewMode~='TASK' or not taskSelected)
+  row.button:SetDisabled(not can or (row.index==nil and viewMode=='TRAVEL') or row.unavailable==true)
+  row.brace:SetHide(row.index~=nil or viewMode~='TASK' or taskSelected~=row.mission)
  end
  resizeSidebar()
 end
@@ -342,7 +346,7 @@ local function reply()
   prepareName(v);return true
  elseif action=='DISPATCH' and not v.error and v.nativePermit and v.nativePermit~=lastNativePermit then
   lastNativePermit=v.nativePermit -- Consume before a native request, including exceptions.
-  local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY}
+  local target={owner=v.targetOwner,id=v.targetID,x=v.targetX,y=v.targetY,entryX=v.entryX,entryY=v.entryY}
   local ok,err=R.SubmitTravel(v.owner,v.unitID,target,v.nativePermit)
   if not ok then request('STOP',err);return true end
   print('[SPC][B191][N1_SPY_REQUEST] submitted unit='..tostring(v.unitID))
@@ -411,6 +415,17 @@ request=function(action,detail)
   if not current or not current.bound or current.phase~='ARRIVED' then setReport(L('TASK_REQUIRES_ARRIVAL'));return end
   taskBefore=taskRead();taskEventsBefore=missionEvents
   if not taskBefore or taskBefore.status~='KNOWN' or taskBefore.operation~=-1 then setReport(L('TASK_NATIVE_NOT_IDLE'));return end
+  -- B212: the chosen mission (the P0 diagnostic panel uses the first available one).
+  local display=taskDisplay or R.Presentation(pid,current.unitID,{owner=current.targetOwner,id=current.targetID,x=current.targetX,y=current.targetY})
+  local config=PlayerConfigurations and PlayerConfigurations[current.targetOwner]
+  local civ=config and config:GetCivilizationTypeName()
+  local done={};for _,k in ipairs(current.insightKeys or {})do done[k]=true end
+  missionKey=taskSelected
+  if not missionKey then
+   for _,m in ipairs(MISSIONS)do if not missionKey and display.sites and display.sites[m.key] and not (civ and done[civ..':'..m.key])then missionKey=m.key end end
+  end
+  missionSite=missionKey and display.sites and display.sites[missionKey]
+  if not missionSite or (civ and done[civ..':'..missionKey])then setReport(L('MISSION_UNAVAILABLE'));return end
  end
  if action=='DISPATCH' then
   if not readChecks()then return end
@@ -426,11 +441,18 @@ request=function(action,detail)
   -- turn and raw name, while off-map enumeration remains this UI read boundary.
   packet.Name=detail;packet.Detail=nil;packet.NameOffmapChecked=true;packet.NameSampleTurn=Game.GetCurrentGameTurn()
  end
- if action=='TASK' then packet.SampleTurn=Game.GetCurrentGameTurn();packet.NativeOperation=taskBefore.operation end
+ if action=='TASK' then
+  packet.SampleTurn=Game.GetCurrentGameTurn();packet.NativeOperation=taskBefore.operation
+  -- Presentation names the native object; Gameplay re-reads it before accepting.
+  local site=missionSite
+  packet.Mission=missionKey;packet.MissionX=site.x;packet.MissionY=site.y
+  packet.Building=site.building;packet.Slot=site.slot;packet.Work=site.work
+ end
  if action=='DISPATCH' then
   packet.SampleTurn=travel.turn;packet.FromX=travel.fromX;packet.FromY=travel.fromY
   packet.TargetOwner=travel.targetOwner;packet.TargetID=travel.targetID;packet.TargetX=travel.targetX;packet.TargetY=travel.targetY
   packet.Travel=travel.travel;packet.Establish=travel.establish;packet.NativeAllowed=travel.nativeAllowed;packet.NativeStatus=travel.nativeStatus
+  packet.EntryX=travel.entryX;packet.EntryY=travel.entryY
  end
  local token=pending
  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,packet)
@@ -527,10 +549,21 @@ refreshHeader=function()
  Controls.NormalEmptyLabel:SetHide(display~=nil and display.owner~=nil)
  Controls.NormalEmptyLabel:SetText(viewMode=='TRAVEL' and #targets>0 and L('NORMAL_SELECT_CITY') or common('NO_TARGET'))
  Controls.NormalMissionGrid:SetHide(viewMode=='TRAVEL' and not targets[selected])
- if previewRow then
-  TruncateStringWithTooltip(previewRow.MissionLocation,135,display and display.name and Locale.Lookup(display.name) or L('NORMAL_NAME_UNKNOWN'))
-  previewRow.MissionTurns:SetText('2')
-  sizeMissionCard(previewRow)
+ for _,m in ipairs(missionRows)do
+  local row=m.row
+  TruncateStringWithTooltip(row.MissionLocation,135,display and display.name and Locale.Lookup(display.name) or L('NORMAL_NAME_UNKNOWN'))
+  row.MissionTurns:SetText('2')
+  -- Availability from the displayed native facts; completion from the archive city's history.
+  local available=display and display.sites and display.sites[m.key]~=nil
+  local config=display and display.owner and PlayerConfigurations and PlayerConfigurations[display.owner]
+  local civ=config and config:GetCivilizationTypeName()
+  local done=false
+  for _,k in ipairs(current and current.insightKeys or {})do if civ and k==civ..':'..m.key then done=true end end
+  m.entry.unavailable=viewMode=='TASK' and (not available or done)
+  row.MissionDetails:SetText(done and L('MISSION_DONE') or (available and L('MISSION_AVAILABLE') or L('MISSION_NO_TARGET')))
+  row.MissionButton:SetToolTipString(L('MISSION_'..m.key..'_TOOLTIP'))
+  if viewMode=='TASK' and taskSelected==m.key and m.entry.unavailable then taskSelected=false end
+  sizeMissionCard(row)
  end
 end
 local function updateTarget()
@@ -562,15 +595,19 @@ local function populateSidebar()
    end)
   end
  end
- local row=taskRows:GetInstance();previewRow=row
- row.MissionIcon:SetIcon('ICON_UNITOPERATION_SPY_GAIN_SOURCES')
- row.MissionName:SetText(L('SIDEBAR_TASK_NAME'))
- row.MissionDetails:SetText(L(viewMode=='TRAVEL' and 'NORMAL_MISSION_PREVIEW_DETAILS' or 'SIDEBAR_TASK_DETAILS'))
- normalRows[#normalRows+1]={button=row.MissionButton,brace=row.SelectorBrace}
- row.MissionButton:RegisterCallback(Mouse.eLClick,function()
-  if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TASK' or not normalCanAct()then return end
-  taskSelected=true;setReport('');render()
- end)
+ missionRows={}
+ for _,mission in ipairs(MISSIONS)do
+  local row=taskRows:GetInstance();previewRow=previewRow or row
+  local key=mission.key
+  row.MissionIcon:SetIcon(mission.icon)
+  row.MissionName:SetText(L('MISSION_'..key..'_NAME'))
+  local entry={button=row.MissionButton,brace=row.SelectorBrace,mission=key}
+  normalRows[#normalRows+1]=entry;missionRows[#missionRows+1]={row=row,key=key,entry=entry}
+  row.MissionButton:RegisterCallback(Mouse.eLClick,function()
+   if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TASK' or not normalCanAct() or entry.unavailable then return end
+   taskSelected=key;setReport('');render()
+  end)
+ end
  refreshHeader()
 end
 local function refreshTargets()

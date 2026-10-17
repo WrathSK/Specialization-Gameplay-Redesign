@@ -54,9 +54,9 @@ class Selection(unittest.TestCase):
           gateOpen('TRAVEL',40);chooseCity()
           local row=instanceManagers.SPCExpeditionMission.instances[1]
           assert(Controls.NormalTravelTime.text=='4' and row.MissionTurns.text=='2')
-          assert(row.MissionName.text:find('SIDEBAR_TASK_NAME',1,true))
+          assert(row.MissionName.text:find('MISSION_PEOPLE_NAME',1,true))
           assert(Controls.NormalDrawerTitle.text:find('NORMAL_MISSION_PREVIEW',1,true))
-          assert(row.MissionIcon.icon=='ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+          assert(row.MissionIcon.icon=='ICON_UNITOPERATION_SPY_LISTENING_POST')
           assert(row.MissionButton.disabled and row.SelectorBrace.hidden and not row.MissionContent.hidden)
           local before=sent;local reads=helperCalls;row.MissionButton.click()
           assert(sent==before and helperCalls==reads and nativeCalls==0)

@@ -1,15 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0566
-Implementation Build: source/live B211.238 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0567
+Implementation Build: source B212.239 (live B211.238 DEVELOP_ACTIVE until the authorized switch); stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B211_USER_GAME_TEST_PASS_SCOPED
+Work State: B212_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B212 is locally complete and deployment is authorized.**
+- The three Design missions are in: 风土考察, 艺文采撷 and 奇观巡礼.
+- **Movement:** the team moves Spy-like to the mission plot and returns to the target centre.
+- **Insight history:** first-success Insights are recorded in the archive city's history; historical and effective counts are shown.
+- **Invalidation:** an invalidated target cancels the mission without an Insight.
+- **Targets:** any city of a met major. An unrevealed target is entered through a revealed city of that civilization; there is no added internal-travel time, which is an implementation reading.
+- **Collector:** now traces dispatch and task.
+
+No Tourism yet (B213). L3: 783 targeted PASS, and the CityProgressionStore consumers are identical to HEAD. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b212-three-missions-insight-history-and-mission-movement--2026-10-16-local).
 
 **B211: USER_GAME_TEST_PASS (scoped).**
 - Training restored from a queued save completed and reached NAMING (traced).

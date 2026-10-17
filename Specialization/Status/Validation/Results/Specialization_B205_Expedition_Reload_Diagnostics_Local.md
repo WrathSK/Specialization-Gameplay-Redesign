@@ -596,3 +596,68 @@ Deferral rework assessment:
 - USER_GAME_TEST_PASS (traced) for training restored from a queued save.
 - USER_GAME_TEST_PASS (user-reported) for the B211 redispatch and second task.
 - Scope: new campaign, standard speed, one city.
+
+## B212 three missions, Insight history and mission movement — 2026-10-16 (local)
+
+**Authorization and user decisions.**
+- The user approved the N2 split (B212 missions and Insight history; B213 whole-city Tourism) and the B212 plan.
+- **Movement:** the team moves to the mission location like a Spy:
+  - 风土考察 (People) at the city centre;
+  - 艺文采撷 (Works) at the plot holding the eligible Great Work (lowest plot index);
+  - 奇观巡礼 (Places) at the Wonder plot (lowest plot index).
+  - It returns to the **target city's** centre afterwards.
+- **Targets need not be revealed.** It is enough to have seen any city of that civilization. The Expedition enters through a revealed city of that civilization and travels on its internal routes.
+  - Implementation reading, not a Design rule: native Spy travel goes to the revealed city of that owner nearest the target, or to the target itself when revealed. On arrival the unit is moved to the target centre, with **no added time**, because Design specifies none.
+
+**Runtime change (B212.239 / modinfo239).**
+- **Gate** (`Mod/ExpeditionSpyGate.lua`):
+  - Targets are any city of a met, living major civilization; the capital-only/revealed fixture rule is removed. DISPATCH validates an entry city that is revealed and owned by the target civilization.
+  - TASK requires `Mission` = PEOPLE/WORKS/PLACES and re-reads native facts:
+    - **PEOPLE** needs the current capital (`GetCapitalCity`).
+    - **WORKS** needs the named non-wonder building present at the plot (`GetBuildingLocation` when readable), an occupied slot (`GetGreatWorkInSlot`), the work type checked when a type reader exists, and a type that is eligible in `SPCGreatWorkCatalog`.
+    - **PLACES** needs the named Wonder present at the plot.
+  - An already completed archive-city × civilization × category key is rejected (`MISSION_ALREADY_COMPLETED`). The unit is placed on the mission plot (`UnitManager.PlaceUnit`, verified) before the existing sleep/activity flow.
+  - Each turn while running, mission facts are rechecked. Invalidation (e.g. lost work, new capital, owner change) cancels: `taskOutcome=CANCELLED`, no Insight, no quota. War alone is not checked and does not cancel.
+  - On completion, the Insight is written first to the **archive city** (`sourceCity`). The write is idempotent, so a repeat after a failed save does not re-award.
+  - After the activity release, the unit returns to the target centre. Task and mission fields clear, and the phase returns to ARRIVED, so another unfinished mission or a redispatch is possible.
+  - Gate prints the mission start outcome, completion/cancellation and the return.
+- **City store** (`Mod/CityProgressionStore.lua`): optional block `expeditionInsights={version=1,records={['CIVILIZATION_X:CATEGORY']={civ,category,turn}}}`, validated with category ∈ PEOPLE/WORKS/PLACES and at most 3×64 records. `AddExpeditionInsight` is first-success-only, shares the record's commit/readback boundary and only works on an ACTIVE record owned by the player. On city loss the history stays in the record, untouched.
+- **Expedition store** (`Mod/ExpeditionSpyStore.lua`): new fields `missionCategory/X/Y/Evidence`, `taskOutcome`, `entryX/Y`. TASK_COMPLETE accepts a CANCELLED outcome (taskCompletions 0, completed before due).
+- **UI read** (`Mod/ExpeditionSpyRead.lua`): lists all cities of met majors that have an entry city, computes per-city mission sites (capital; first eligible work plot, building, slot and type; first wonder plot), and reads travel time and native travel permission for the entry city.
+- **Window** (`Mod/UI/ExpeditionSpyWindow.lua`):
+  - Three mission cards with the Design names and tooltips. Each shows availability, plus completion for this archive city and civilization.
+  - The TASK packet carries the mission site.
+  - The P0 diagnostic path uses the first available unfinished mission.
+  - The summary shows historical and effective Insight counts. English mission names are placeholders, since Design has no en_US reference.
+- **Tools:** the reader keeps the Gate's `[SPC][B191][N1_*]` prints as `[SPC][B212][GATE]` lines, and the collector logs and counts them. Dispatch, task, completion, cancellation and return are now traceable.
+- **Not included:** whole-city Tourism (B213), Network (N3), reattachment, non-standard speeds.
+
+**Local validation (L3, because a new persistent ledger was added).**
+- New `test_expedition_missions` (14 tests) covers:
+  - PEOPLE success recorded once, with return and a rejected repeat;
+  - capital requirement;
+  - WORKS move to the work plot and return;
+  - WORKS rejections (ineligible type, empty slot, missing building, wrong plot);
+  - mid-mission work loss cancelling, followed by a fresh start;
+  - PLACES move and record, and a wonder/non-wonder mismatch;
+  - three independent keys;
+  - mid-mission reload keeping the mission;
+  - idempotent completion;
+  - entry-city travel and relocation for an unrevealed target;
+  - an invalid entry;
+  - the actual CityProgressionStore: first-success-only, copy isolation, key validation, other-player rejection.
+- Reader/collector Gate-print tests were added.
+- Existing tests were updated to the approved contract:
+  - TASK packets carry `Mission`;
+  - completion now ends at ARRIVED after release (insight asserted);
+  - target change mid-task cancels;
+  - unrevealed targets are no longer invalid;
+  - three mission cards;
+  - test-fixture cities can be iterated (`Members`).
+- All `test_expedition_*` + `test_dialogue_projects` + `test_store_write_boundaries`: **783 PASS**.
+- Every other module that references CityProgressionStore gives an outcome identical to HEAD, compared per module and per script. Several legacy script tests already fail at HEAD, unchanged.
+
+**Native risks for the user test.**
+- `PlaceUnit` onto foreign district and wonder plots, and back.
+- Whether Gameplay can read great-work slots and types on a foreign city.
+- Native Spy travel to an entry city followed by relocation.

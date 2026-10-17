@@ -5,10 +5,10 @@ local M=SPCExpeditionSpyStore
 local phases={TRAINING=true,CREATING=true,NAMING=true,CREATED=true,TRAVELLING=true,ARRIVED=true,
  TASK_PREPARING=true,TASK_RUNNING=true,TASK_COMPLETE=true,HELD=true,ENDING=true,ENDED=true}
 local numbers={owner=true,unitID=true,createdID=true,sourceCity=true,x=true,y=true,
- trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true,taskCount=true}
+ trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true,taskCount=true,missionX=true,missionY=true,entryX=true,entryY=true}
 local booleans={trainingQueued=true,trainingCompleted=true,nameVerified=true,activityOwned=true,activityPending=true,sleepConfirmed=true}
 local strings={trainingToken=100,sourceName=220,sourceRef=2048,expectedName=220,teamKey=100,
- activityKey=100,activityMode=32,stop=100,errorStep=100,errorDetail=220}
+ activityKey=100,activityMode=32,stop=100,errorStep=100,errorDetail=220,missionCategory=16,missionEvidence=160,taskOutcome=16}
 local modes={NONE=true,SLEEP=true,ARMED=true,ASLEEP=true,RELEASE=true,BLOCKED=true}
 local function integer(v)
  return type(v)=='number' and v==v and v>=0 and v<=9007199254740991 and v%1==0
@@ -74,8 +74,8 @@ local function state(value,pid)
    type(out.activityOwned)~='boolean' or out.taskStart==nil or out.taskDue==nil or out.taskDue<out.taskStart then return nil end
  end
  if phase=='TASK_COMPLETE' then
-  if out.taskStart==nil or out.taskDue==nil or out.taskCompleted==nil or out.taskCompletions~=1 or
-   out.taskDue<out.taskStart or out.taskCompleted<out.taskDue or
+  if out.taskStart==nil or out.taskDue==nil or out.taskCompleted==nil or not (out.taskCompletions==1 or (out.taskCompletions==0 and out.taskOutcome=='CANCELLED')) or
+   out.taskDue<out.taskStart or (out.taskOutcome=='CANCELLED' and out.taskCompleted<out.taskStart or out.taskOutcome~='CANCELLED' and out.taskCompleted<out.taskDue) or
    type(out.activityOwned)~='boolean' or type(out.activityPending)~='boolean' then return nil end
   if out.activityMode=='RELEASE' then
    if not out.activityOwned and not out.activityPending then return nil end

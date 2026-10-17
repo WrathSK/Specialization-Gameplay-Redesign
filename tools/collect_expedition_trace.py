@@ -70,6 +70,8 @@ class Session:
         self.cost_seen = set()
         self.contexts = set()
         self.hd = Counter()
+        self.gate = Counter()
+        self.gate_total = 0
         self.hd_total = 0
         self.hd_dropped = 0
 
@@ -130,6 +132,20 @@ class Session:
         self.records.flush()
         return stamp + ' HD ' + text if self.hd_total <= 20 else None
 
+    def add_gate(self, line):
+        """B212: Expedition Gate prints (dispatch/task/completion/return); counted, logged in order."""
+        text = line[len(reader.GATE_PREFIX):]
+        self.gate_total += 1
+        kind = re.search(r'\[N1_([A-Z_]+)\]', text)
+        detail = re.search(r'(?:action|mission|outcome|code)=([A-Za-z_]+)', text)
+        self.gate[(kind.group(1) if kind else '?') + ':' + (detail.group(1) if detail else '?')] += 1
+        if self.gate_total > MAX_HD_LOGGED:
+            return None
+        stamp = datetime.now(timezone.utc).strftime('%H:%M:%S')
+        self.records.write(stamp + ' gate ' + text + '\n')
+        self.records.flush()
+        return stamp + ' GATE ' + text
+
     def summary(self, reason):
         lines = ['B205 trace session summary (read-only collection; not a gameplay PASS)',
                  'end_reason: ' + reason,
@@ -137,6 +153,8 @@ class Session:
                  'observer_contexts: %d' % len(self.contexts),
                  'stages: ' + ', '.join('%s=%d' % kv for kv in sorted(self.stages.items()))]
         lines.append('hd_prints: %d (dropped by reader: %d)' % (self.hd_total, self.hd_dropped))
+        lines.append('gate_prints: %d' % self.gate_total)
+        lines += ['gate: %s x%d' % kv for kv in sorted(self.gate.items())]
         lines += ['hd: %s x%d' % kv for kv in sorted(self.hd.items())]
         lines += ['alert: ' + text for text in self.alerts] or ['alerts: none']
         text = '\n'.join(lines) + '\n'
@@ -166,6 +184,10 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                 record = train_line(line)
                 if record:
                     shown = session.add(record, 'snap' if 'ENTRY ' in line else 'live')
+                    if shown:
+                        out(shown)
+                elif line.startswith(reader.GATE_PREFIX):
+                    shown = session.add_gate(line)
                     if shown:
                         out(shown)
                 elif line.startswith(reader.HD_PREFIX):

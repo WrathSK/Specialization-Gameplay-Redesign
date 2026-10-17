@@ -19,7 +19,7 @@ def gate(ui=False,window=False):
        currentTurn=83;ownTurn(2);return req('READ','arrival')
       end
       function task(token,overrides)
-       local p={Action='TASK',Token=token,UnitID=41,SampleTurn=currentTurn,NativeOperation=-1}
+       local p={Action='TASK',Token=token,UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8}
        for k,v in pairs(overrides or {})do p[k]=v end
        handler(2,p)
        local r=ExposedMembers.SPC_ExpeditionGateReply
@@ -83,7 +83,7 @@ class Timer(unittest.TestCase):
          assert(r.phase=='TRAVELLING' and not r.error and r.taskStart==nil and r.taskCompleted==nil)
          local old=units[41];local u=unit(42,100,2,20,5);u.name=old.name;units[41]=nil;units[42]=u
          currentTurn=currentTurn+2;ownTurn(2);r=req('READ','arrived2');assert(r.phase=='ARRIVED' and r.trackedID==42,tostring(r.phase))
-         handler(2,{Action='TASK',Token='t2',UnitID=42,SampleTurn=currentTurn,NativeOperation=-1})
+         handler(2,{Action='TASK',Token='t2',UnitID=42,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=20,MissionY=5})
          local key=ExposedMembers.SPC_ExpeditionActivity.activityKey;assert(key:match(':task2$'),key)
          handler(2,{Action='ACTIVITY',Token='t2:arm',UnitID=42,ActivityKey=key,Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1})
          handler(2,{Action='ACTIVITY',Token='t2:sleep',UnitID=42,ActivityKey=key,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
@@ -107,9 +107,14 @@ class Timer(unittest.TestCase):
     def test_native_operation_when_readable_stops_completion(self):
         l=self.ready();l.execute("task('t');units[41].operation=9;currentTurn=85;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.taskCompletions==0 and r.stop=='NATIVE_MISSION_ACTIVE_STOP')")
     def test_source_unknown_loss_target_change_name_loss_or_displacement_holds(self):
-        for change in ['city.token=nil','city.owner=3','targetCity.owner=4','targetCity.id=10','units[41].name=nil','units[41].x=16']:
+        for change in ['city.token=nil','city.owner=3','units[41].name=nil','units[41].x=16']:
             with self.subTest(change=change):
                 l=self.ready();l.execute("task('t');"+change+";currentTurn=85;ownTurn(2);local r=req('READ','r');assert(r.phase=='HELD' and r.taskCompletions==0 and destroys==0 and properties==0)")
+    def test_target_invalidation_cancels_without_insight_and_returns(self):
+        # B212 Design: target owner change / city loss cancels; no Insight, no quota; unit kept.
+        for change in ['targetCity.owner=4','targetCity.id=10']:
+            with self.subTest(change=change):
+                l=self.ready();l.execute("task('t');"+change+";currentTurn=84;ownTurn(2);local r=req('READ','r');assert(r.phase=='TASK_COMPLETE' and r.taskOutcome=='CANCELLED' and r.taskCompletions==0 and insightWrites==0 and destroys==0)")
     def test_active_drop_does_not_erase_source_or_advance_on_foreign_turn(self):
         l=self.ready();l.execute("task('t');active=1;currentTurn=85;ownTurn(3);assert(ExposedMembers.SPC_ExpeditionActivity.phase=='TASK_RUNNING');ownTurn(2);local r=req('READ','r');assert(r.phase=='TASK_COMPLETE' and r.sourceCity==1 and r.bound)")
     def test_read_at_due_turn_does_not_replace_player_turn_completion(self):

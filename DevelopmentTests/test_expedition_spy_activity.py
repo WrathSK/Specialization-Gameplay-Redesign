@@ -8,7 +8,7 @@ def ready():
     l.execute("""
       req('CREATE','a');nativeDispatch('b');arrival(41,true,false)
       function begin()
-       handler(2,{Action='TASK',Token='task',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1})
+       handler(2,{Action='TASK',Token='task',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8})
        return ExposedMembers.SPC_ExpeditionGateReply
       end
       seq=0
@@ -31,7 +31,7 @@ class ActivityGate(unittest.TestCase):
         l=ready();l.execute("local r=begin();assert(r.phase=='TASK_PREPARING' and not r.taskStart);currentTurn=85;ownTurn(2);r=req('READ','pending');assert(r.phase=='TASK_PREPARING' and not r.taskStart and r.taskCompletions==0);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.locked and v.mode=='SLEEP' and not v.owned)")
 
     def test_ack_starts_two_turns_then_releases_and_unlocks(self):
-        l=ready();l.execute("begin();currentTurn=84;local r=ack('ASLEEP',true);assert(r.phase=='TASK_RUNNING' and r.taskDue==86);currentTurn=85;ownTurn(2);assert(ExposedMembers.SPC_ExpeditionActivity.mode=='ASLEEP');currentTurn=86;ownTurn(2);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='RELEASE' and v.locked and v.taskCompletions==1);ack('RELEASED',true);v=ExposedMembers.SPC_ExpeditionActivity;assert(v.phase=='TASK_COMPLETE' and v.mode=='NONE' and not v.locked and not v.owned);ownTurn(2);assert(v.taskCompletions==1 and nativeCalls==0 and properties==0)")
+        l=ready();l.execute("begin();currentTurn=84;local r=ack('ASLEEP',true);assert(r.phase=='TASK_RUNNING' and r.taskDue==86);currentTurn=85;ownTurn(2);assert(ExposedMembers.SPC_ExpeditionActivity.mode=='ASLEEP');currentTurn=86;ownTurn(2);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='RELEASE' and v.locked and v.taskCompletions==1);ack('RELEASED',true);v=ExposedMembers.SPC_ExpeditionActivity;assert(v.phase=='ARRIVED' and v.mode=='NONE' and not v.locked and not v.owned);ownTurn(2);assert(insightWrites==1 and nativeCalls==0 and properties==0)")
 
     def test_preexisting_sleep_is_not_released(self):
         l=ready();l.execute("begin();ack('ASLEEP',false);currentTurn=85;ownTurn(2);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='NONE' and not v.owned and v.taskCompletions==1)")
@@ -52,7 +52,7 @@ class ActivityGate(unittest.TestCase):
         l=ready();l.execute("begin();assert(ack('OTHER',true).error);assert(ack('RELEASED',true).error);assert(ack('ASLEEP',true).phase=='TASK_RUNNING')")
 
     def test_duplicate_ack_does_not_restart_timer_or_release(self):
-        l=ready();l.execute("begin();ack('ASLEEP',true);currentTurn=84;assert(ack('ASLEEP',true).error);assert(req('READ','read').taskDue==85);currentTurn=85;ownTurn(2);ack('RELEASED',true);assert(ack('RELEASED',true).error);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='NONE' and v.taskCompletions==1)")
+        l=ready();l.execute("begin();ack('ASLEEP',true);currentTurn=84;assert(ack('ASLEEP',true).error);assert(req('READ','read').taskDue==85);currentTurn=85;ownTurn(2);ack('RELEASED',true);assert(ack('RELEASED',true).error);local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.mode=='NONE' and v.phase=='ARRIVED' and insightWrites==1)")
 
     def test_failed_sleep_before_attempt_has_no_release(self):
         l=ready();l.execute("begin();local r=ack('FAILED',false);assert(r.phase=='HELD' and r.activityMode=='NONE' and not r.taskStart)")

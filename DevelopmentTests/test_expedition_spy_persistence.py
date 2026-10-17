@@ -37,7 +37,7 @@ def fixture():
        handler(2,packet);return ExposedMembers.SPC_ExpeditionActivityReply
       end
       function prepare()
-       handler(2,{Action='TASK',Token='task',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1})
+       handler(2,{Action='TASK',Token='task',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8})
        return ExposedMembers.SPC_ExpeditionGateReply
       end
       function running()
@@ -249,7 +249,8 @@ class ActivityReconstruction(unittest.TestCase):
           activity('RECOVERED','recover');local r=req('READ','before')
           assert(r.phase=='TASK_COMPLETE' and r.taskCompletions==1 and r.activityMode=='RELEASE')
           activity('RELEASED','release');restart();r=req('READ','after')
-          assert(r.phase=='TASK_COMPLETE' and r.taskCompletions==1 and r.activityMode=='NONE' and not r.recovering)
+          -- B212: release returns the team to the target centre, ready for another mission.
+          assert(r.phase=='ARRIVED' and r.activityMode==nil and not r.recovering and insightWrites==1)
         """)
 
     def test_release_already_awake_clears_lease_without_new_native_request(self):
@@ -257,8 +258,8 @@ class ActivityReconstruction(unittest.TestCase):
         lua.execute("""
           running();currentTurn=85;ownTurn(2);restart()
           activity('RECOVERED','recover',{Sleeping=false,Awake=true})
-          local r=req('READ','after');assert(r.phase=='TASK_COMPLETE' and r.activityMode=='NONE' and not r.activityOwned)
-          assert(saved().state.taskCompletions==1);noNativeSideEffects()
+          local r=req('READ','after');assert(r.phase=='ARRIVED' and r.activityMode==nil and not r.activityOwned)
+          assert(saved().state.phase=='ARRIVED' and insightWrites==1);noNativeSideEffects()
         """)
 
     def test_previous_generation_activity_reply_cannot_start_replacement_team(self):
@@ -408,7 +409,7 @@ class LifecycleAndIsolation(unittest.TestCase):
           currentTurn=85;ownTurn(2);n=storeWrites
           ownTurn(2);ownTurn(2);req('READ','complete');assert(storeWrites==n and saved().state.taskCompletions==1)
           activity('RELEASED','release');n=storeWrites;activity('RELEASED','release')
-          assert(storeWrites==n and saved().state.activityMode=='NONE')
+          assert(storeWrites==n and saved().state.phase=='ARRIVED' and saved().state.activityMode==nil and insightWrites==1)
         """)
 
     def test_source_active_or_identity_decline_survives_reload_and_completion(self):

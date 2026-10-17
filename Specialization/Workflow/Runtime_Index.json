@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "864d9e12d2343f6525c355ea43d1d84231ddf9a367fa3a8d8223590dec1b43e9",
+      "sha256": "86304fd9522c7bd12b0cd89f6a1ad01c025e6d578f9b75a3620c370cebff560a",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "281777098cc953a74c586c7afc6f46cca391821cbc7f22a1c53baf03cf087bae",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
-      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+      "sha256": "58f0e3b14b58e27cf4fe4257311ea1f94a1be2ba30bfc40262ae5595c6cdee6c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "2217a86de320a3b8c530fe7988b5684a69231b15fdb769a1dc08393fb4aca9b7",
+      "sha256": "472a6ed1d876430465c385dd1cf340463049423a25b10e7a75ca75eebc627cda",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,19 +1016,19 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "43f6b5e50c01364fac891d2ced718257a13cec80cdbfb46adf4347150bcdf348",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B199_Expedition_Selection_Locations_Local.md",
-      "provenance": "B199 explicit-selection/task-close/display-only mission-location refinement;189 focused checks PASS. Native rendering/foreign visibility pending; Gate/activity/capacity/binding unchanged."
+      "sha256": "aeb23e6d5a999a56634715be2f57a4f09db4c8816d4633bf3a511ac73e1c0b26",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "9fc1e3a26b0c6708b1bcd25db9e6bfcdf12bb506584403a3ab81b29e6552aec2",
+      "sha256": "5f65b2d16f4f4cd18d5335f240a25b0a6055e488a9150cf4863f081cffbba165",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "33c7f00a0851ba7f285a43c2f5b21f3f1652f7f207cebd8bc7d639549a9efa07",
+      "sha256": "7360be0e7ca728644152acf986c7391bcc72d4b4efa76004a52613f20ca6c698",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "bc487d91668746a1b52077d28a0d0306abe5a1b083341c0218491146f09066dc",
@@ -1071,9 +1071,9 @@
       "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
     },
     "Mod/ExpeditionSpyStore.lua": {
-      "sha256": "0cbe7eb2962e71d45d09b62ae26fba36ff346886555c8dbaba0ab9861bbabee2",
+      "sha256": "21a7c30a3f4f49fa3aabea0b3d1482bc7221454e84059f3785257ba4b3584762",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
+      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
     },
     "Mod/ExpeditionTraining.lua": {
       "sha256": "5feeae7bdf2b90a86078fe6c833820cbca7bb2c5c8bf1fdff555e240f61a4e4c",

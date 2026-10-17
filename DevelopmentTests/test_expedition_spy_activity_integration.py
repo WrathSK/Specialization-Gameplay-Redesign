@@ -78,7 +78,7 @@ def integrated(window=False):
        SetUpdate=function(self,f)activityUpdate=f end,ClearUpdate=function()activityUpdate=nil end}
       activityEnvironment=setmetatable({ContextPtr=activityContext},{__index=_G})
       function beginTask()
-       handler(2,{Action='TASK',Token='task1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1})
+       handler(2,{Action='TASK',Token='task1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8})
        Events.GameCoreEventPublishComplete()
       end
       function view()return ExposedMembers.SPC_ExpeditionActivity end
@@ -97,7 +97,7 @@ class ActivityIntegration(unittest.TestCase):
           currentTurn=84;ownTurn(2);Events.LocalPlayerTurnBegin();assert(view().taskCompletions==0)
           currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin()
           ownTurn(2);Events.GameCoreEventPublishComplete()
-          assert(view().phase=='TASK_COMPLETE' and view().mode=='NONE' and view().taskCompletions==1)
+          assert(view().phase=='ARRIVED' and view().mode=='NONE' and insightWrites==1)
           assert(sleepCalls==1 and wakeCalls==1 and units[41].activity==0 and not activityUpdate)
           assert(properties==0 and nativeCalls==0 and destroys==0 and placeCalls==0 and finishCalls==0)
         """)
@@ -215,7 +215,7 @@ class ActivityIntegration(unittest.TestCase):
           local token=reply.token;deliver(activityPackets[1])
           assert(ExposedMembers.SPC_ExpeditionGateReply.token==token and not update)
           Controls.CloseButton.click();currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
-          assert(wakeCalls==1 and view().phase=='TASK_COMPLETE' and view().mode=='NONE')
+          assert(wakeCalls==1 and view().phase=='ARRIVED' and view().mode=='NONE' and insightWrites==1)
         """)
 
 
@@ -242,8 +242,8 @@ class PersistentActivityIntegration(unittest.TestCase):
           assert(view().mode=='ASLEEP' and view().taskDue==85 and sleepCalls==1 and wakeCalls==0)
           assert(allActivityPackets[#allActivityPackets].Result=='RECOVERED')
           currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
-          assert(view().phase=='TASK_COMPLETE' and view().mode=='NONE' and wakeCalls==1 and sleepCalls==1)
-          assert(gameProperties.SPC_EXPEDITION_TEAM_P2.state.taskCompletions==1)
+          assert(view().phase=='ARRIVED' and view().mode=='NONE' and insightWrites==1 and wakeCalls==1 and sleepCalls==1)
+          assert(gameProperties.SPC_EXPEDITION_TEAM_P2.state.phase=='ARRIVED' and insightWrites==1)
         """)
 
     def test_unreadable_cold_recovery_reaches_terminal_block_without_guessed_wake(self):

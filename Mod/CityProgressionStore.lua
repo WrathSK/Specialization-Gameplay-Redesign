@@ -98,6 +98,20 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(r.dialogueKnown==true and type(r.dialogue)=='table','DIALOGUE_HISTORY_UNAVAILABLE')
    SPCDialogueProjectModel.Validate(r.dialogue,r)
   end
+  -- B212: city-owned Expedition Insight history (Design: source city x foreign civ x
+  -- category, first success only). History follows the city; never deleted here.
+  if r.expeditionInsights~=nil then
+   local e=r.expeditionInsights
+   assert(type(e)=='table' and e.version==1 and type(e.records)=='table','EXPEDITION_INSIGHTS_INVALID')
+   local n=0
+   for k,v in pairs(e.records)do
+    local civ,cat=tostring(k):match('^(CIVILIZATION_[A-Z0-9_]+):([A-Z]+)$')
+    assert(civ and (cat=='PEOPLE' or cat=='WORKS' or cat=='PLACES') and type(v)=='table' and v.civ==civ and v.category==cat
+     and type(v.turn)=='number' and v.turn>=0 and v.turn%1==0,'EXPEDITION_INSIGHT_RECORD_INVALID')
+    n=n+1
+   end
+   assert(n<=3*64,'EXPEDITION_INSIGHTS_BOUND')
+  end
   if r.claimTimer then
    local t=r.claimTimer
    assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'
@@ -178,6 +192,18 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(value~=nil,'DIALOGUE_HISTORY_CANNOT_DELETE');SPCDialogueProjectModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.dialogueKnown=true;n.dialogue=cp(value);n.revision=n.revision+1;save(n)
+ end
+ -- B212: Expedition Insight history shares the record's commit/readback boundary.
+ function d.ExpeditionInsights(pid,c)
+  local e=active(pid,c).expeditionInsights;return cp(e and e.records or {})
+ end
+ function d.AddExpeditionInsight(pid,c,civ,category,turn)
+  local r=active(pid,c);local key=tostring(civ)..':'..tostring(category)
+  local e=r.expeditionInsights
+  if e and e.records[key] then return false end -- first success only; repeat is idempotent
+  local n=cp(r);n.expeditionInsights=n.expeditionInsights or {version=1,records={}}
+  n.expeditionInsights.records[key]={civ=civ,category=category,turn=turn};n.revision=n.revision+1;save(n)
+  return true
  end
  function d.ReadTradition(pid,c)return cp(active(pid,c).researchTradition)end
  function d.VisitTradition(pid,fn)
@@ -882,6 +908,8 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
+ function store.ExpeditionInsights(pid,c)return requireCity(c).ExpeditionInsights(pid,c)end
+ function store.AddExpeditionInsight(pid,c,civ,category,turn)return requireCity(c).AddExpeditionInsight(pid,c,civ,category,turn)end
  function store.DialogueState(pid,c)return requireCity(c).DialogueState(pid,c)end
  function store.WriteDialogue(pid,c,old,value)return requireCity(c).WriteDialogue(pid,c,old,value)end
  function store.ReadTradition(pid,c)return requireCity(c).ReadTradition(pid,c)end
