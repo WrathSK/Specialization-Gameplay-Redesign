@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0572",
-    "runtime": "B213.240 / modinfo240",
+    "status": "S0573",
+    "runtime": "B214.241 / modinfo241",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B213: repair audit1–7; selected-target cancellation/UNKNOWN protection, unique task attempts, works in Wonders, bounded collector; Culture institution/Insight report/mission-icon UI. No Tourism/Network or game launch. B213 deployment explicitly authorized and verified; Combined native test found a B213 task-start assert-argument regression; narrow repair awaits authorization.",
+  "goal": "B214: repair only B213 successful mission result passed as assert message; retain B213 mission/capacity/binding/UI contracts.88 targeted local tests PASS; native continuation pending guarded deployment. Steam launcher investigation only, no configuration changes.",
   "implementation_authorized": true,
   "context": [
     {
@@ -660,9 +660,9 @@
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-    "source": "B213.240 deployed from d1ea679368d0e12f905360ba86b76787f525abe1; receipt B213.240-d1ea679-playtest.json;219/219 MATCH.",
-    "native": "B213 task start USER_GAME_TEST_FAIL: three logged MISSION assert message-type errors; creation/arrival/binding observed intact and Culture Lv4 rows displayed. No completion or N1_INSIGHT read event captured; other native scope pending.",
-    "stop": "Await explicit narrow repair authorization; no additional diagnostic native test, gameplay expansion or blanket self-healing adoption."
+    "report": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
+    "source": "B214.241 locally complete; live remains B213.240 pending guarded deployment.",
+    "native": "B213 task-start failure retained; B214 repair awaits native continuation. No new native PASS.",
+    "stop": "No further gameplay batch; minimal mission start/completion and source-city Insight check after deployment."
   }
 }

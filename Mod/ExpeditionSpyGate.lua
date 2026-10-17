@@ -606,7 +606,9 @@ function SPCExpeditionSpyGate.Start(P,shared)
     workID=p.WorkID,requireWorkID=p.WorkID~=nil}
    local valid,result,workID=mission(pid,state.target,m)
    missionStatus=valid;missionReason=valid~='VALID' and result or nil
-   assert(valid=='VALID',result);step='TASK'
+   -- Successful validation returns a city object, not an assertion message.
+   if valid~='VALID' then error(result,0) end
+   step='TASK'
    local done=insights(pid)
    assert(not done[civilization(state.target.owner)..':'..m.category],'MISSION_ALREADY_COMPLETED')
    local evidence=(m.building or '')..'|'..(m.slot and tostring(m.slot) or '')..'|'..(m.work or '')

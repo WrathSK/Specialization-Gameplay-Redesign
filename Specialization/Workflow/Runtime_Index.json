@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "e87cfbb65d31360eb4f8ceac7e4ad186975682619d9f97ace78f782ed5b0ca29",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "443a4ed686dcf37492ab8f4516317d85a3fdc8d456c79027026f5b89b64c9f59",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
+      "provenance": "B214 authorized narrow task-start assertion repair; observed-signature fixture and88 targeted checks PASS. Native pending; all other mission/state contracts unchanged."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6713c5eac1c5d2254053450a9998b49611a12e90487c6517ce04ded5e0ad92b3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "c3a48bceaa5aeadbad3482649d972e5bd40fcbb1aefe6f3673f3f5f602ab0e70",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
+      "provenance": "B214 authorized narrow task-start assertion repair; observed-signature fixture and88 targeted checks PASS. Native pending; all other mission/state contracts unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1021,9 +1021,9 @@
       "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "c42a91f32d53c8c180f828a32160fe86b7108a239bb9b898beda094c4d800a37",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "608a119b2c7f0154cbaa411e988c5d55ce25ac791a308ea27eef4c0f034c48cc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
+      "provenance": "B214 authorized narrow task-start assertion repair; observed-signature fixture and88 targeted checks PASS. Native pending; all other mission/state contracts unchanged."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "0f22018ca73289bb949b53e45acf1d201f2cf1162b64681dcf78c8026d5af92a",

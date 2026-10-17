@@ -50,6 +50,17 @@ class Missions(unittest.TestCase):
     def ready(self):
         l = base.Timer().ready()
         l.execute(MISSION_FIXTURE)
+        # B214: the observed game rejects a table in assert's message slot,
+        # even on success. Stock Lupa accepts it; model this native signature.
+        l.execute("""
+          local originalAssert=assert
+          assert=function(value,message,...)
+            if message~=nil and type(message)~='string' and type(message)~='number' then
+              error("bad argument #2 to 'assert' (string expected, got "..type(message)..")",2)
+            end
+            return originalAssert(value,message,...)
+          end
+        """)
         return l
 
     def test_people_success_records_once_returns_and_cannot_repeat(self):
