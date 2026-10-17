@@ -1,6 +1,6 @@
 # B213 — Expedition repair and Culture presentation
 
-Status: LOCAL_SIMULATION_PASS / DEPLOYED / USER_GAME_TEST_REQUIRED
+Status: LOCAL_SIMULATION_PASS / DEPLOYED / USER_GAME_TEST_FAIL_TASK_START
 Scope: user-approved audit findings 1–7, selected-target cancellation and Culture UI/report/icon additions.
 Inherited diagnosis: the old save contains cost 1 and undersized per-unit arrays; its population delta matches the Theater plot index. This strongly supports a native old-save mismatch, corroborated by the clean new-campaign runs, while the exact native memory path remains inferred. The original B205 record is unchanged; this batch does not reopen that investigation.
 
@@ -70,3 +70,21 @@ The Advisor [Self-Healing Reconciliation Rules](../../../Reports/Advisory/Self_H
 User decision: none newly required; selected concrete target loss cancels, no automatic replacement.
 User testing: combined session above; native acceptance pending.
 Primary next: collect and review the submitted logs/visual exceptions; do not start Tourism/Network or another repair batch automatically.
+
+## Native failure review — 2026-10-16
+
+User reports the combined B212/B213 test stopped. Actual deployed source is B213.240, not unchanged B212. Three screenshots reviewed and archived byte-for-byte under ignored `local/legacy-workspace/Specialization/Status/Validation/Evidence/B213/native-20261016/`; its manifest records all three SHA256 values. Raw collector evidence stays in ignored `local/diagnostics/B205/session-20261017T040254Z-d2d730/`, with hashes referenced by that manifest. No raw images, logs or local reproduction file are published.
+
+**Native observations.** Screenshot1 shows four Culture institution rows with I–III enabled and IV current. This establishes the shown Lv4 presentation only, not low-level/ACTIVE-change/other-scale acceptance. Screenshots2–3 show the old P0 Expedition diagnostics after READ, with arrival/name/source intact; they do not show the new **文化见闻** report. The log has26 training records and15 Gate records: creation/name, dispatch, arrival, then three TASK failures at21:07:56,21:07:58 and21:08:41 local time. All fail at MISSION with `bad argument #2 to 'assert' (string expected, got table)`, exposed under generic `API_UNAVAILABLE`. There is no successful task-start/completion or N1_INSIGHT report event in this run. Earlier initial TASK_COMPLETE/END precedes the new team's creation and is not evidence of a B213 successful task.
+
+**Confirmed B213 regression.** `mission()` returns `VALID, cityObject, workID` on success. The new TASK caller passes that cityObject as the second argument to `assert(valid=='VALID', result)` (Gate line609 at this checkpoint). The native log shows that this environment validates the message argument even when the predicate is true. The failure occurs before task movement, activity ownership, timer start or reward. It does not indicate a missing gameplay API, failed binding or old-save corruption. B212's successful path called `mission()` without passing its returned city object into assert.
+
+**Why local checks missed it.** Existing mocks use standard Lupa assertions, which accept a non-string second argument when the predicate succeeds; the same isolated expression also succeeds in the installed Lua51 and Lua54 runtimes. It would be incorrect to attribute this solely to a known stock Lua-version difference. Applying only the observed native message-type restriction to the actual Gate fixture reproduces ARRIVED/API_UNAVAILABLE and zero Insight writes. The small reproduction is retained with local evidence. Existing778+66 local passes remain scoped evidence, not native correctness proof.
+
+**Collector assessment.** The existing log is sufficient to locate this failure without another screenshot/test. READ clears the request-local error from the displayed snapshot, while the recorded failure remains in the log. The fixed-length stack text is truncated, but its complete parameter error plus source comparison identifies this call. Logs do not establish visual layout, and the absence of N1_INSIGHT cannot prove the new report works or fails. Keep screenshot1 for visuals; screenshots2–3 were not needed for this root cause. No extra native diagnostic step is requested.
+
+**Proposed narrow repair, not implemented.** Use a string-only error on the invalid/unknown branch; never pass a successful native object as assert's message. Add the observed native assertion-signature constraint to the targeted mission fixture and verify valid PEOPLE/WORKS/PLACES starts plus unchanged invalid/UNKNOWN rejection. Review equivalent calls in this changed path; no global assert replacement, capacity redesign, self-healing policy or new gameplay behavior. After approval, resume the same interrupted mission-start test with logs; no repeat training campaign or blanket cold-load ritual.
+
+**User clarification.** The Advisor's self-healing rules are reference directions for later architecture decisions, evaluated case by case at implementation time. They are neither a request to adopt the full proposal nor a reason to reject every useful principle. Preserve the existing proposal and per-feature evidence/authorization boundaries.
+
+Current stop: B213 native task start FAIL; no source/test/runtime/config change in this review. User decision: authorize the narrow repair if desired. User testing: none additionally requested now. Primary next: await repair authorization; Tourism/Network and unrelated work do not advance.

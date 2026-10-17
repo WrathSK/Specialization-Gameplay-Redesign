@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0571
+Status Revision: S0572
 Implementation Build: source/live B213.240 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B213_DEPLOYED_COMBINED_NATIVE_PENDING
+Work State: B213_NATIVE_TASK_START_FAIL_REPAIR_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B213.240 source repair and Culture presentation batch; targeted local verification complete; deployed by explicit user authorization.** The user authorized audit findings1–7 and the Culture UI/Insight/icon additions. Confirmed loss of the selected concrete mission target cancels; another object is not substituted.
+**B213.240 source repair and Culture presentation batch; deployed; native TASK start failed due to a B213 assertion-argument regression.** The user authorized audit findings1–7 and the Culture UI/Insight/icon additions. Confirmed loss of the selected concrete mission target cancels; another object is not substituted.
 - **Live B213.240**, source `d1ea679`, receipt `B213.240-d1ea679-playtest.json`,219/219 MATCH. Automatic OS exit checks passed before both guarded switches; B212/stable recovery retained, no pending transaction. Main stable B069.96 and configuration are unchanged.
 - **Current implementation scope:** fresh mission-attempt identity; VALID/INVALID/UNKNOWN target evidence; eligible works in Wonders; bounded collector failures; Culture institutions, selected-city Insight report/log and mission-specific relocation icons. Source/capacity/cost/GC and Tourism/Network rewards are unchanged.
-- **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. B212 and B213 native acceptance are combined and pending. B213 local and combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
+- **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. Three new TASK attempts failed; arrival/binding remained intact, and the shown Culture Lv4 institutions render. Logs identify the failure without a new test; broader native acceptance remains pending. B213 local and combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
 - **Current contract and task context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Earlier B205–B212 progress below is historical; durable training/persistence contracts remain linked by the plan.
 - **Retained boundaries:** accepted new-campaign save scope; standard speed only; source-loss reattachment deferred; existing native Spy-slot limitation; old-campaign faults closed without repair: saved cost1 is directly evidenced; undersized unit arrays and population delta matching the Theater plot strongly support a native old-save mismatch, while the exact native corruption/memory path remains inferred ([evidence](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference)). EnableTuner remains user-managed; this batch does not change it.
-- **Next boundary:** user runs the single combined B212/B213 session in the batch record, with automatic collector logs as primary evidence and screenshots only for visual or unlogged exceptions. No native PASS yet. Following native review, whole-city Tourism is the next proposal, then Culture Network; neither is implementation-authorized here. Commerce D0050 remains Design-only.
+- **Next boundary:** narrow task-start assertion repair proposed in the batch record, awaiting authorization; no further user test now. Advisor self-healing rules are future architecture references assessed per feature, not a blanket adopted policy. Tourism/Network and Commerce implementation remain unstarted.
 
 ## Historical progress — B205–B212 checkpoint
 
