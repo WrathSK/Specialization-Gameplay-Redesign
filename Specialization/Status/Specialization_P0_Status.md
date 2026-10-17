@@ -1,15 +1,21 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0565
+Status Revision: S0566
 Implementation Build: source/live B211.238 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B211_DEPLOYED_AWAITING_USER_TEST
+Work State: B211_USER_GAME_TEST_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B211: USER_GAME_TEST_PASS (scoped).**
+- Training restored from a queued save completed and reached NAMING (traced).
+- Redispatch and a second task: user-reported with no problem; the collector does not trace dispatch/task.
+
+Next: N2 plan for user review. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b211-user-test--2026-10-16-user_game_test_pass-scoped).
 
 **Name-test realignment (test-only).** The 3 remaining `test_expedition_spy_name` failures were B201 drift, not an external-DB dependency (that earlier note is corrected). All 727 Expedition tests pass. No runtime change; B211.238 remains live and awaits the user test. [Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#name-test-realignment--2026-10-16-local-test-only).
 

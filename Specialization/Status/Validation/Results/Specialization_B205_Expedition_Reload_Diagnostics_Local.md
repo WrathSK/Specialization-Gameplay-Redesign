@@ -580,3 +580,19 @@ Deferral rework assessment:
 - `test_close_cancels_wait_and_reopen_cannot_confirm_late` and `test_close_inside_create_request_does_not_reinstall_cancelled_timer`: closing still cancels the pending wait, and the cancelled timer is neither reinstalled nor allowed to confirm. Since B201, however, reopening deliberately re-runs one fresh exact preparation for the persisted NAMING team. The tests keep the cancellation checks and now assert exactly one fresh confirmation after reopen, with no second packet afterwards.
 
 **Validation.** All `test_expedition_*` suites: **727 tests PASS**.
+
+## B211 user test — 2026-10-16 (USER_GAME_TEST_PASS, scoped)
+
+**What the user ran.** B211.238 in the new campaign. A save made with the 人文考察团 (Expedition) already ordered was loaded, the turn ended, and training completed. The user then ran the B211 flow without opening P0: dispatch, task, redispatch, second task. The user reports no problem.
+
+**Native observations (session `…20261017T022702Z-0c4d40`).**
+- The loaded save restored TRAINING with queue evidence (`TURN_END` T3, queued).
+- At T4: birth (unit 720896) → completion → Finish → NAMING, with no HELD.
+- This is the B202 "queued save / cold load before completion" path, which had not been observed natively since B205.
+
+**Evidence limit.** The collector traces only the training lifecycle. Dispatch, task, release, redispatch and the second task leave no trace record. Those steps are **USER_REPORTED** (no problem perceived), not machine-verified.
+
+**Result.**
+- USER_GAME_TEST_PASS (traced) for training restored from a queued save.
+- USER_GAME_TEST_PASS (user-reported) for the B211 redispatch and second task.
+- Scope: new campaign, standard speed, one city.
