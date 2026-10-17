@@ -2,12 +2,12 @@
 
 Document Owner: Codex
 Status Revision: S0592
-Implementation Build: source/live B219.246 DEVELOP_ACTIVE; stable B069.96
+Implementation Build: source/live B221.248 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B219_MOVEMENT_COMPARISON_DEPLOYED_AWAITING_NATIVE
+Work State: B221_NATIVE_SLEEP_DENIED_REPAIR_PLAN_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
