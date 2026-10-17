@@ -3,8 +3,16 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0050
+Latest Accepted Design Revision: D0051
 Document State: ACCEPTED
+
+## Accepted D0051 — 2026-10-17
+
+用户在B224实机反馈中明确接受：v0.1艺文采撷只要求目标城市当前仍有至少1件合格文化巨作；不再锁定某一件巨作、槽位、建筑或地块。原作品移动／出售／替换但城内仍有其它合格作品，任务继续；可靠确认全城没有合格作品时取消，不给见闻、不消耗成功机会。UNKNOWN不当作空城。
+
+本条只取代下方2026-10-16具体对象锁定中的**艺文采撷**部分；奇观巡礼仍锁定选定奇观。作品池、任务时长、容量、来源绑定、奖励去重、其它外交失效与生命周期规则不变。已完成类别不应使整个任务面板不可打开；具体已完成条目继续受成功额度保护。
+
+[Culture D0051](Content/Culture_D0051.json)、当前Spec及中文阅读版同步；[D0050 Spec冻结原文](Revisions/Specialization_Design_Spec_D0050.md)和Culture D0049原文保留。本次接受不代表B224已实现新规则，也不授权下一Gameplay批次。
 
 ## Accepted target clarification and wording alignment — 2026-10-16
 

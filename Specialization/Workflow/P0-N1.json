@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "batch": "P0-N1",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
-    "design": "D0050",
+    "design": "D0051",
     "research": "D0040",
     "industry": "D0045",
-    "culture": "D0049",
+    "culture": "D0051",
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0598",
+    "status": "S0599",
     "runtime": "B224.251 / modinfo251",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B224 confirmed-empty collection withdrawal, fresh UI-context WORKS admission/completion and current-unit idle controls; no timer or gameplay-rule change.",
-  "implementation_authorized": true,
+  "goal": "Proposed B225 prioritizes common native SLEEP admission/release scheduling with an event-requested safe UI refresh; then logical completion/menu, D0051 city-level WORKS and coalesced deal-event refresh. Await batch authorization.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -40,14 +40,14 @@
       "reason": "Complete accepted mission/history/Tourism contract, current implementation and native evidence boundaries"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "selector": "/abilities/5",
       "reason": "Accepted exact nonhostile unit/travel/source contract, not prototype-derived gameplay",
       "expected_id": "CUL_L4_EXPEDITION"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "selector": "/contracts/expedition",
       "reason": "Accepted exact nonhostile unit/travel/source contract, not prototype-derived gameplay"
@@ -244,7 +244,7 @@
       "reason": "Existing catalog reused by optional location preview; inspect Resolve and observed entry metadata for affected work only."
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "reason": "Exact shared work pool used by display-only host identification.",
       "selector": "/contracts/work_pool"
@@ -365,25 +365,25 @@
       "reason": "B212 three missions, Insight ledger, movement/return, invalidation and entry travel"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "selector": "/missions",
       "reason": "Full target eligibility and per-category first-success rules"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "selector": "/contracts/observations",
       "reason": "City-owned history, owner filter, lifecycle and still-future benefit contract"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "selector": "/institutions",
       "reason": "Accepted Culture names and stages for shared institution UI"
     },
     {
-      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "path": "Specialization/Design/Content/Culture_D0051.json",
       "kind": "json",
       "selector": "/abilities",
       "reason": "Full Culture effect/level descriptions; UI must not infer implementation from accepted Design"
@@ -567,11 +567,16 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
       "kind": "full",
       "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
+      "kind": "full",
+      "reason": "Current B224 native evidence, accepted D0051 delta and bounded proposed B225 scope."
     }
   ],
   "dependencies": [
     "Existing EffectiveFacts qualification and NetworkInput source reference remain authority. CityProgressionStore owns permanent city Insight records; ExpeditionSpyStore owns the one saved cap1 team/mission transaction. Native units/travel/activity remain engine-owned; UI mirrors and report logs are disposable.",
-    "Every task attempt has a confirmed-revision-derived key independent of success count. Optional selected native work ID and due-UNKNOWN evidence survive load; failed/corrupt/unknown writes retain isolation. No replacement target or retrospective success is inferred.",
+    "Every task attempt retains confirmed-revision-derived keys and exact source/team ownership. D0051 proposes city-level WORKS existence rather than saved exact-work locking; PLACES and UNKNOWN/due-time/reward isolation remain. B224 runtime still uses the older work contract.",
     "Read complete mission/observation contracts. Native current target readers must distinguish unavailable from confirmed invalid; current-source/owner loss keeps existing protection. Owned SLEEP/release and exact logical keys remain direct consumers.",
     "Training retains B209 immediate source-city completion receipt and B210 three-condition removal/replacement release; do not reintroduce obsolete blanket empty-queue rejection. Exact source/owner/reference and one matching birth remain required; cost/capacity/source unchanged.",
     "Research and Culture share selected-city institution rendering; ACTIVE does not erase established stages. Insight report only reads selected owned city on request, includes effective owner filtering and no reward writer. Native icons do not authorize missions.",
@@ -775,16 +780,16 @@
   "validation": {
     "depth": "L2 targeted exact source/consumer/UI/mission and shared-facts regressions; inherited native lifecycle evidence, no all-gameplay/stress suite.",
     "local": "490 targeted tests PASS; current package251 validated. Historical package pins193/199/200 and obsolete standalone Aesthetic SQL bootstrap are not claimed current PASS; actual writer verified via maintained three-consumer integration.",
-    "user": "B223 London WORKS reader failure and missing idle controls confirmed; B224 native pending. Existing PEOPLE/PLACES scoped evidence inherited."
+    "user": "B224 task workflow FAIL; Ottawa WORKS and PEOPLE success/NEW confirmed, Khmer cancellation and native SLEEP denial/final rejection captured. User confirms source-city Insight Tourism/Floor/isolation and Aesthetic turn-zero/recovery; sale immediate refresh FAIL."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
     "source": "B224.251/modinfo251 DEVELOP_ACTIVE; source ceb883bebe794113006df31a40659ed40b14cf2c; receipt B224.251-ceb883b-playtest.json;224/224 MATCH, digest 274b584d0eb919b14c44e8c91ad99abf78bb849a72b22557145b01d430bf5ca0. Fresh OS exit checks at both guarded B223/stable/B224 switches; recovery retained, no pending transaction, main/configuration change or game launch.",
-    "native": "USER_GAME_TEST_REQUIRED for changed current-facts paths and idle controls; no blanket cause closure.",
-    "stop": "B224.251 deployed; await the two native deltas. No unrelated batch or repeated blind sleep tests."
+    "native": "B224 PARTIAL. No new Mod/native test in this review.",
+    "stop": "Recurring native SLEEP admission is the priority. B225 proposed only: no source edit, timer, forced native operation or deployment."
   }
 }

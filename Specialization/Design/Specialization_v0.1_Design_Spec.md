@@ -2,16 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0050
+Design Revision: D0051
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-10-16
-Acceptance Evidence: 用户提交Commerce Design Talk交接（商业化、资本投资、风险投资失败保护、发展投资重构、v0.1标准速度、暂缓生命周期边界）及理论购买价补充说明，授权正式设计同步；不授权Gameplay实现或部署。
-Previous Accepted Revision: [D0049冻结原文](Revisions/Specialization_Design_Spec_D0049.md)
-Latest Accepted Design Revision: D0050
+Acceptance Date: 2026-10-17
+Acceptance Evidence: 用户在B224实机反馈中明确修正v0.1艺文采撷：只要目标城市仍有合格巨作就继续，不锁定具体作品；本轮只记录接受与修复计划，不授权新的Gameplay实现或部署。
+Previous Accepted Revision: [D0050冻结原文](Revisions/Specialization_Design_Spec_D0050.md)
+Latest Accepted Design Revision: D0051
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
+
+**SCOPE-001（D0051）** v0.1艺文采撷按目标城市当前至少1件合格文化巨作维持任务，不锁定具体巨作／槽位／建筑；移动、出售或替换原作品但仍有其它合格作品时继续，可靠确认全城无合格作品时取消，UNKNOWN不当作空。只取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼仍锁定具体奇观，其它规则与D0050商业设计保持。接受记录见[ChangeLog](Design_ChangeLog.md#accepted-d0051--2026-10-17)。
 
 2026-10-11用户澄清：人文考察团沿用当前间谍的生产成本公式，但已生产考察团次数独立累计；普通间谍次数不影响该成本。只澄清成本读取口径，其余当前D0049规则保持；接受依据见[ChangeLog](Design_ChangeLog.md#accepted-d0049-clarification--2026-10-11)。
 
@@ -156,7 +158,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **D0048: DESIGN_FROZEN主体保持；主题化许可为USER_ACCEPTED_V0.1_PROVISIONAL／BALANCE_REQUIRED。保留九域六产出、D0045参数、D0042生命周期、Dialogue隔离与D0038逐域Floor；implementation / balance validation pending.**
 
-唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0049](Content/Culture_D0049.json)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0051](Content/Culture_D0051.json)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|

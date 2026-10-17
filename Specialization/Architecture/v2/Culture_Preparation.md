@@ -1,5 +1,7 @@
 # 文化后续模块：计划与调查入口
 
+Current accepted delta D0051: [WORKS target-city continuation and proposed B225](../../Status/Validation/Results/Specialization_B224_Native_Review.md). This overrides the older selected-work lock for v0.1 only; the cited historical preparation does not authorize implementation.
+
 Current Expedition work is governed by the [B213 current slice](P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation) and Status: normal training, persistence, repeat missions and city Insight history are implemented; B212/B213 native acceptance is pending. Earlier stage summaries below are historical preparation/evidence, not current authorization. Tourism, Network, reattachment and era UI remain outside B213.
 
 State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_PARTIAL_B185_CONTINUITY_TIMER_LOCAL_COMPLETE_NATIVE_PENDING / N2_N3_U2_ON_HOLD。

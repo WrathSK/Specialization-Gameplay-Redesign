@@ -9,6 +9,10 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Industry D0045](Industry_D0045.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 
+## D0051 — v0.1艺文采撷按城市馆藏维持
+
+[Culture D0051](Culture_D0051.json)是当前文化结构化正文。只要目标城市当前仍有至少1件合格巨作，艺文采撷继续；不锁定具体作品／槽位／建筑。全城可靠空馆藏才取消，UNKNOWN保护保持。仅取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼及其它文化规则不变。[接受记录](../Design_ChangeLog.md#accepted-d0051--2026-10-17)。Culture D0049及以下旧接受段保留追溯；Design同步不是实现或实机通过。
+
 ## D0050 — 商业交接同步
 
 [Commerce D0050](Commerce_D0050.json)为当前商业结构化正文：商业化系数0.05、X取城市该领域总产出；资本投资可投领域为已实施专业领域、S取同一既有专业网络当前ACTIVE、D／S最低1、每来源城每领域1笔；风险投资失败保护改存连续失败次数n（P=0.8−(0.8−p_base)×0.75^n）并按主人归属；发展投资整体替换为下一级建筑理论购买价15%、所选区域建筑+50%生产力、到下一座合格建筑完成为止、每目标城1份；v0.1只支持标准速度；三项生命周期边界暂缓。[Commerce D0045](Commerce_D0045.json)冻结为历史，旧发展投资参考产能报价只在其中追溯。
@@ -31,7 +35,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 ## D0028共享入口
 
-[Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0049.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0045](Shared_D0045.json)是当前区域基础设施深度、产出份额、普通建筑资格、领域映射及Network层概念的唯一权威（D0028保留历史）；[Culture](Culture_D0051.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 

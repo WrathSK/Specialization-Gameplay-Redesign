@@ -56,7 +56,7 @@ Shared负责共同概念，Network负责共同连接，专业正文直接写全�
 ## 实现、正式来源与历史
 
 - **想看做到哪里、哪些通过、哪些待测：** [Status](../Status/Specialization_P0_Status.md)。本目录阅读页不另存运行版本或PASS清单。
-- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec D0050；商业D0050，文化D0049，市政D0047，工业／Shared D0045，科研D0040、军事／港口D0037。市政及其它未来设计不扩大当前四专业实施范围；D0042生命周期与D0038逐领域Floor等未被取代条款继续有效，成熟度逐项保留。
+- **想查正式规则：** [Design Spec](Specialization_v0.1_Design_Spec.md)与[Content索引](Content/README.md)。当前Spec D0051；商业D0050，文化D0051，市政D0047，工业／Shared D0045，科研D0040、军事／港口D0037。市政及其它未来设计不扩大当前四专业实施范围；D0042生命周期与D0038逐领域Floor等未被取代条款继续有效，成熟度逐项保留。
 - **想查展示接受来源：** [文化馆藏时代方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；机构共同原则见[展示分层](../Architecture/v2/Presentation_Institution_Carrier_Model.md)。
 - **想查为什么改过：** [接受与取代记录](Design_ChangeLog.md)、各篇页尾来源及[冻结历史](Revisions/)。较新的文件或更大的编号不自动覆盖未被取代的规则。
 - **Codex／开发者起点：** [项目导航](../README.md)和[AGENTS](../AGENTS.md)，继续按任务读取正式来源，不要求每轮加载全部阅读页。阅读版维护约定集中在[Content导航](Content/README.md#人类阅读入口)。
