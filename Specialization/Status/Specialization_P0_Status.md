@@ -2,16 +2,16 @@
 
 Document Owner: Codex
 Status Revision: S0562
-Implementation Build: source B210.237 (live B209.236 DEVELOP_ACTIVE until the authorized switch); stable B069.96
+Implementation Build: source/live B210.237 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B210_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
+Work State: B210_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B209 user test: USER_GAME_TEST_FAIL. B210 is locally complete and deployment is authorized.**
+**B209 user test: USER_GAME_TEST_FAIL. B210 is deployed: B210.237 DEVELOP_ACTIVE, source `00d37cc`, receipt `B210.237-00d37cc-playtest.json`, 219/219 MATCH; no pending transaction.**
 - **Failure.** Replacing the queued 人文考察团 (Expedition) through district map placement bypassed the panel cancel hook. The reservation stayed TRAINING without its marker, so the Expedition vanished from the production list, and a spurious `TRAINING_NATIVE_QUEUE_UNCONFIRMED` appeared.
 - **B210 (user-approved).** An empty queue with no receipt and no Expedition-family unit on the map releases the reservation to ENDED, both live and on recovery. The UI closes such handshakes silently.
 - **Unchanged.** Cap1, cost and source binding.

@@ -521,3 +521,5 @@ The first exit check reported a false "game running": its pattern also matched t
 - The two tests that encoded the superseded rule were replaced by their approved forms.
 - Targeted gate SQL, training, training UI and trace integration: 117 PASS.
 - All `test_expedition_*` suites (725 tests): the failure set is identical to HEAD (the same 14 historical activity-diagnostic failures).
+
+**Deployment.** B210.237/modinfo237 is **DEVELOP_ACTIVE**, source `00d37ccb98f87169c9080133865885cd7f886154`, receipt `B210.237-00d37cc-playtest.json`. A fresh OS check (game executable only) confirmed game exit before both guarded switches: B209 restored to stable, then B210 activated. 219/219 files MATCH, and there is no pending transaction.
