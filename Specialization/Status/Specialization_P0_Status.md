@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0596
-Implementation Build: source B223.250 LOCAL_COMPLETE; live B222.249 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0597
+Implementation Build: source/live B223.250 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B223_DIAGNOSTIC_LOCAL_COMPLETE
+Work State: B223_DIAGNOSTIC_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B223 diagnostic-only implementation locally complete; native cause remains UNKNOWN.** [Scope,416 local checks and one minimal capture](Validation/Results/Specialization_B223_Native_State_Diagnostic.md).
+**B223 diagnostic-only package deployed; native cause remains UNKNOWN.** [Scope,416 local checks and one minimal capture](Validation/Results/Specialization_B223_Native_State_Diagnostic.md).
 - **Source B223.250 / modinfo250:** existing-event samples for manual sleep → native dispatch → arrival → task admission; movement/activity/Spy/turn context and reconnect-readable final Gate/save receipt. No new timer, operation, task rule or recovery behavior.
-- **Live remains B222.249**, source `ac321eb`, receipt `B222.249-ac321eb-playtest.json`, last verified224/224 MATCH; B223 deployment not yet performed. Main stable B069.96 unchanged.
+- **Live B223.250**, source `55d0cdb`, receipt `B223.250-55d0cdb-playtest.json`, verified224/224 MATCH after automatic game-exit checks and the guarded B222/stable bridge. Recovery retained, no pending transaction; main stable B069.96 and configuration unchanged.
 - **Inherited native evidence:** [B222 review](Validation/Results/Specialization_B222_Task_Start_Native_Review.md) confirms Khmer PLACES, Gaul PEOPLE and Gaul PLACES completion; Ottawa later reads exact centre/AWAKE/ready but native SLEEP DENIED before any request. User recalls manual sleep before redispatch. This is a hypothesis, not proven cause; the final rejection/save outcome was not captured.
 - **Preserved boundaries:** capacity, source binding, Store schema, rewards/Insight history, centre mission rules and GC unchanged. No automatic HELD recovery. WORKS, Tourism fractional settlement and source-loss reattachment retain their own pending/deferred scope.
-- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B223 is explicitly authorized; deployment follows W0003 exit/hash/receipt gates. No further gameplay repair is authorized.
-- **Next:** after deployment, one manual-sleep/redispatch/arrival/task capture using the existing manual collector. Stop on denial; correlate actual native state with the confirmed final receipt before proposing a narrow repair. No blind repeats or new save/load ritual.
+- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). B223 explicitly authorized and deployed under W0003; no further gameplay repair is authorized.
+- **Next:** one manual-sleep/redispatch/arrival/task capture using the existing manual collector. Stop on denial; correlate actual native state with the confirmed final receipt before proposing a narrow repair. No blind repeats or new save/load ritual.
 
 ## Historical progress — B205–B212 checkpoint
 

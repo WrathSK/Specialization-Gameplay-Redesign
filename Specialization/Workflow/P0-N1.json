@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0596",
+    "status": "S0597",
     "runtime": "B223.250 / modinfo250",
     "military": "D0037",
     "harbor": "D0037",
@@ -732,8 +732,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
-    "source": "B223.250/modinfo250 local implementation complete; live remains B222.249 source ac321eb, receipt B222.249-ac321eb-playtest.json until guarded deployment.",
+    "source": "B223.250/modinfo250 DEVELOP_ACTIVE; source 55d0cdb96cf41a90a063e90347392f1b3b5bfb14; receipt B223.250-55d0cdb-playtest.json;224/224 MATCH. Fresh automatic OS exit checks at both guarded switches; B222/stable recovery retained; no pending transaction, main/configuration change or game launch.",
     "native": "USER_GAME_TEST_REQUIRED; diagnostic-only change, not a root-cause fix.",
-    "stop": "After local verification and W0003 deployment, await one bounded capture. No automatic native-state normalization or next gameplay repair."
+    "stop": "B223.250 deployed; await one bounded native capture. No automatic native-state normalization, timer or next gameplay repair."
   }
 }

@@ -60,6 +60,6 @@ If the path now succeeds, that is a captured successful path, not proof that the
 
 ## Deployment and stop
 
-Local checkpoint: B223.250 is ready; live remains the last verified B222.249 receipt until the W0003 guarded transaction is recorded below. No configuration change or game launch. Raw collector evidence remains ignored.
+W0003 deployment verified: clean/pushed source `55d0cdb`, B223.250 / modinfo250, receipt `B223.250-55d0cdb-playtest.json`, **224/224 MATCH**. Fresh automatic game-exit checks preceded both receipt-bound B222→stable→B223 switches. B222 and stable recovery packages remain retained; no pending transaction, main/configuration change or game launch. Raw collector evidence remains ignored. Deployment integrity is not native diagnostic acceptance.
 
 User decision: none for this authorized diagnostic batch. User testing: one bounded manual-sleep/redispatch/arrival/task capture after deployment. Primary next: review that evidence and propose a cause-specific repair; no forced Wake, retry or further gameplay implementation is authorized by this report.
