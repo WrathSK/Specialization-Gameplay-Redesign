@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "c307f57357be32aa68c4cfb557e7c020e456383c615861fa379cde2d9078d6fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "17cc120411ed88e260d0466196e138dc19d78d35b7f55b8e73b855aa0b164234",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "b75ad560b26aae612c0fc04b8800308e0cba6900aee36187e17fc02b82c6c88f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
-      "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
+      "sha256": "8ab13e478de1d724649a3adac8861267b37e496d80eb941293edb324bbcf369c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "aa231ce172eeb63064b636d188541cb63e4aed140d12e935be7eb685bb037877",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
-      "provenance": "B215 approved idle native action allowlist; exact locks/selection/eligibility and native base callback retained.121 targeted tests PASS; native UI pending."
+      "sha256": "88d2d3cdf18b51d73158d7b3b2a3c3b365633fc3e637f593c4e704cce3b6e869",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "16f5af916cd24247a9dc85365f9fd13420fa89fb2c1d2c2a3b3260bf003b7194",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "e577eafa83a2d9979e4ebe8429fb1d9e0230037f9e3c463b886cc6e00b62e3c6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,9 +1021,9 @@
       "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "608a119b2c7f0154cbaa411e988c5d55ce25ac791a308ea27eef4c0f034c48cc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B214_Expedition_Task_Start.md",
-      "provenance": "B214 authorized narrow task-start assertion repair; observed-signature fixture and88 targeted checks PASS. Native pending; all other mission/state contracts unchanged."
+      "sha256": "9a80f77e2a4f8fc9ec32c851fcaa323f1499b08f2506d9774b66e5ad0b30e026",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "0f22018ca73289bb949b53e45acf1d201f2cf1162b64681dcf78c8026d5af92a",
@@ -1099,6 +1099,16 @@
       "sha256": "d7dd1563344138df7e8ac750d682cb3f9fe0f96bb8f6589a1e20340574ac5086",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
       "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
+    },
+    "Mod/CultureInsightsTourism.lua": {
+      "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+    },
+    "Mod/Data/CultureInsightsTourism.sql": {
+      "sha256": "9b26e5df06f945ea28685622ebe483f924002e84d7933cc8251422de5091f962",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     }
   }
 }

@@ -1,11 +1,13 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: B213_REPAIR_AND_CULTURE_PRESENTATION / LOCAL_COMPLETE_NATIVE_PENDING. B212 three-mission and Insight-ledger source is implemented; native acceptance remains deferred. Whole-city Tourism, N3, reattachment and U2 remain outside this batch.
+State: B216_LOCAL_INSIGHT_TOURISM / LOCAL_COMPLETE_NATIVE_PENDING. B215 idle controls have user-reported acceptance; PEOPLE has scoped native evidence, WORKS/PLACES are deferred. Local Tourism is implemented in B216; N3, reattachment and U2 remain outside this batch.
 Authority: Spec D0050 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。Earlier UI proposals and Spy0 investigations are historical references. The implemented Spy1 native-style UI, three missions and city history are bounded by the current slice below; native evidence does not establish later Tourism or Network behavior.
 
 ## Current slice — B213 Expedition repair and Culture presentation
+
+**B216 authorized continuation:** [local Insight Tourism implementation and evidence](../../Status/Validation/Results/Specialization_B216_Insight_Tourism.md) now projects the accepted +2pp × effective city Insights through the Film Studio city-pressure primitive. This supersedes the B213 Tourism exclusions below only; the historical repair/training contracts remain. Source/ACTIVE/owner/load reconciliation owns disposable final-value carriers, with no second saved multiplier. Native pressure settlement remains pending. B215 idle controls are user-reported PASS; the travelling save joins this native session. N3 and reattachment remain out of scope.
 
 User-authorized repair of audit findings1–7, plus Culture institution UI, a readable Insight report and relocation mission icons. This slice supersedes old progress statements below; their technical evidence remains available. [Status](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns source/live, authorization and native progress. [Batch result](../../Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md) owns verification.
 

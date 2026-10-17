@@ -423,13 +423,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
     local civ=assert(completionCiv,'MISSION_COMPLETION_UNCONFIRMED')
     state.missionCompletionUnknownTurn=nil
     -- City history first; a repeated completion after a failed save is idempotent.
-    local added=insightStore().AddExpeditionInsight(state.owner,source(),civ,m.category,Game.GetCurrentGameTurn())
+    local archive=source()
+    local added=insightStore().AddExpeditionInsight(state.owner,archive,civ,m.category,Game.GetCurrentGameTurn())
     state.phase='TASK_COMPLETE';state.taskCompleted=Game.GetCurrentGameTurn();state.taskOutcome='SUCCESS'
     releaseActivity()
     state.taskCompletions=1
     state.taskCount=(state.taskCount or 0)+1 -- Successful tasks only; never used as an attempt identifier.
     save()
     print('[SPC][B191][N1_TASK] mission='..m.category..' outcome=SUCCESS civ='..civ..' insight='..(added and 'NEW' or 'EXISTING'))
+    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=state.owner,city=archive:GetID()})end
    end
   end
  end

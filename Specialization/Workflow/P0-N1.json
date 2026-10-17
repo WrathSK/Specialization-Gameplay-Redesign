@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0577",
-    "runtime": "B215.242 / modinfo242",
+    "status": "S0578",
+    "runtime": "B216.243 / modinfo243",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B215 approved native idle skip/sleep/wake and read-only whole-city Tourism preparation; implementation locally complete and deployed, native idle UI pending. WORKS/PLACES evidence deferred.",
+  "goal": "B216 approved local Insight Tourism projection using existing city history and Film Studio primitive; locally complete, native pressure evidence pending. B215 user-reported PASS; travelling save joins next test.",
   "implementation_authorized": true,
   "context": [
     {
@@ -37,7 +37,7 @@
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
       "kind": "section",
       "selector": "## N2：任务事务、城市历史与整城旅游",
-      "reason": "Full mission transaction/history contract; distinguish implemented ledger from future Tourism"
+      "reason": "Complete accepted mission/history/Tourism contract, current implementation and native evidence boundaries"
     },
     {
       "path": "Specialization/Design/Content/Culture_D0049.json",
@@ -457,6 +457,21 @@
       "path": "DevelopmentTests/test_expedition_idle_actions.py",
       "kind": "full",
       "reason": "Direct B215 native idle-action/lock and callback tests; action-scoped reading."
+    },
+    {
+      "path": "Mod/CultureInsightsTourism.lua",
+      "kind": "full",
+      "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
+    },
+    {
+      "path": "Mod/Data/CultureInsightsTourism.sql",
+      "kind": "full",
+      "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
+    },
+    {
+      "path": "DevelopmentTests/test_culture_insights_tourism.py",
+      "kind": "full",
+      "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
     }
   ],
   "dependencies": [
@@ -653,21 +668,21 @@
     }
   ],
   "non_scope": [
-    "No Tourism/Network rewards, reattachment, new profession, native Spy-slot isolation, general Store rewrite, GC/cost/capacity change, old-campaign corruption repair, main/configuration/game launch. Commerce wording consistency only; no Commerce runtime change."
+    "No N3 Network rewards, reattachment, new profession, native Spy-slot isolation, general Store rewrite, GC/cost/capacity change, old-campaign corruption repair, main/configuration/game launch. B216 changes only accepted local Insight Tourism and direct projection dependencies."
   ],
   "validation": {
-    "depth": "Targeted actual-wrapper and direct task/activity/Gate closure; no full gameplay/stress.",
-    "local": "90 UI/task/activity plus31 Gate/package/database tests PASS. Context/link/publication checks at commit.",
-    "user": "B214 PEOPLE scoped PASS retained. B215 idle controls pending; WORKS/PLACES deferred."
+    "depth": "Direct actual-module/Gate/task/report/idle and in-memory configured DB closure; no full gameplay/stress.",
+    "local": "123 targeted tests PASS; context/link/publication checks before commit.",
+    "user": "B215 user-reported PASS; B214 PEOPLE accepted; B216 pressure/combined travel-save pending, WORKS/PLACES deferred."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B215_Expedition_Idle_Actions.md",
-    "source": "B215.242/modinfo242 DEVELOP_ACTIVE; source 93fa70551f3d2a120c6f083085cc79d9330efabd; receipt B215.242-93fa705-playtest.json;219/219 MATCH. Fresh automatic OS exit checks before both guarded switches; B214/stable recovery retained, no pending transaction. Config unchanged.",
-    "native": "B214 PEOPLE scoped PASS retained. B215 idle controls pending; WORKS/PLACES deferred.",
-    "stop": "No Tourism writer/N3; wait for native idle check and next implementation approval."
+    "report": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+    "source": "B216.243 locally complete; live B215.242 pending guarded switch.",
+    "native": "B215 user-reported PASS; B214 PEOPLE accepted; B216 pressure/combined travel-save pending, WORKS/PLACES deferred.",
+    "stop": "No N3/reattachment/next-batch implementation; native result does not follow from configured percentage."
   }
 }

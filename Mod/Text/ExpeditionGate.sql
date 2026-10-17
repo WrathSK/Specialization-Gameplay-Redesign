@@ -646,3 +646,11 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_DETAIL','Diagnostic reason: {1_Reason}'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_TARGET_UNKNOWN','目标信息待确认'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_TARGET_UNKNOWN','Target information unconfirmed');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_INSIGHT_TOURISM_NAME','文化见闻旅游'),
+('zh_Hans_CN','LOC_SPC_INSIGHT_TOURISM_CURRENT','本城旅游压力倍率：+{1_Percent}%（已配置；原生结算待本批验证）。'),
+('zh_Hans_CN','LOC_SPC_INSIGHT_TOURISM_UNKNOWN','旅游倍率暂不可确认；未猜测见闻或资格。'),
+('en_US','LOC_SPC_INSIGHT_TOURISM_NAME','Cultural Insight Tourism'),
+('en_US','LOC_SPC_INSIGHT_TOURISM_CURRENT','City Tourism pressure modifier: +{1_Percent}% (configured; native settlement pending validation).'),
+('en_US','LOC_SPC_INSIGHT_TOURISM_UNKNOWN','Tourism projection is unconfirmed; no history or eligibility was inferred.');

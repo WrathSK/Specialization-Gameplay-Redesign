@@ -163,7 +163,9 @@ local function request(playerID,params)
   if params.Action=='CULTURE_INSIGHTS_READ' then
     local ok,text=pcall(function()
       local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
-      return P.DescribeCultureInsights(playerID,c,shared.CityProgressionStore)
+      local report=P.DescribeCultureInsights(playerID,c,shared.CityProgressionStore)
+      if shared.CultureInsightsTourism and c then report=report..'\n'..shared.CultureInsightsTourism.Describe(playerID,c)end
+      return report
     end)
     if not ok then print('[SPC][B191][N1_INSIGHT] status=UNKNOWN') end
     shared.Snapshot=ok and text or '文化见闻暂不可读（UNKNOWN）；请重新选择己方城市。'
@@ -506,6 +508,7 @@ local function request(playerID,params)
     if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
+    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID,city=params.CityID})end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -525,6 +528,7 @@ local function request(playerID,params)
     P.Observe('ui','received')
     if params.FactsChanged and shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if params.FactsChanged and shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID})end
+    if params.FactsChanged and shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID})end
     if params.FactsChanged and shared.DialogueEffects then shared.DialogueEffects.Audit({player=playerID})end
     if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
     if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
@@ -587,6 +591,7 @@ local function request(playerID,params)
     if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
     if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
     if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
+    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID,city=params.CityID})end
     if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
     if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
     if shared.Lv3Effects then shared.Lv3Effects.Audit() end
@@ -913,7 +918,10 @@ include("NetworkIsolation")
 SPCNetworkIsolation.Start(P,shared)
 SPCPerformance.StartMemory(P,shared)
 
--- N1 native gate only: explicit requests, no automatic mission or city-state writes.
+-- N2 derived local Tourism; permanent Insight history stays in CityProgressionStore.
+include('CultureInsightsTourism')
+SPCCultureInsightsTourism.Start(P,shared)
+-- Existing Expedition request/task lifecycle; no automatic mission dispatch.
 include('ExpeditionSpyStore')
 include('ExpeditionSpyGate')
 SPCExpeditionSpyGate.Start(P,shared)
