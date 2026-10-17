@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0589",
-    "runtime": "B220.247 / modinfo247",
+    "status": "S0590",
+    "runtime": "B221.248 / modinfo248",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B220 user-approved centre execution of site missions and event-driven arrival idle-control refresh; no timers.",
+  "goal": "B221 bounded reconnect-readable startup and failure activity diagnostics; preserve all task behavior.",
   "implementation_authorized": true,
   "context": [
     {
@@ -489,9 +489,14 @@
       "reason": "Current diagnostic authorization, local evidence and one native capture."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
       "kind": "full",
-      "reason": "Current B220 approved contract, local evidence and native delta test."
+      "reason": "Current diagnostic authorization, native uncertainty and one-attempt evidence gate."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_activity_trace.py",
+      "kind": "full",
+      "reason": "Direct bounded activity diagnostic producer/consumer and delta regression."
     }
   ],
   "dependencies": [
@@ -691,18 +696,18 @@
     "No generic site-movement repair, timers/polling, new native mission, capacity/binding/schema/history/GC/Commerce/N3/main/configuration change. Existing entry-city travel is preserved."
   ],
   "validation": {
-    "depth": "L2: direct Gate/UI/activity/mission regressions, configured read-only DB and package checks.",
-    "local": "284 targeted tests PASS.",
-    "user": "B220 pending; B219 stopped without movement-trial evidence."
+    "depth": "L2: targeted activity/task/persistence and offline collector diagnostics.",
+    "local": "307 targeted tests PASS.",
+    "user": "B220 normal task USER_GAME_TEST_FAIL; native cause UNKNOWN. B221 diagnostic attempt pending."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-    "source": "B220.247/modinfo247 DEVELOP_ACTIVE; source 3b7530e975e278ec7a600067cfb00da6a4868edf; receipt B220.247-3b7530e-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B219/stable recovery retained; no pending transaction, configuration or main change.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
+    "source": "B221.248 local validated; live B220 pending guarded deployment.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Await combined native delta test only; no further batch."
+    "stop": "After one diagnostic attempt, explain cause and propose repair; no further implementation."
   }
 }

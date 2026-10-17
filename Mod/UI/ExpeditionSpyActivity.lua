@@ -1,12 +1,15 @@
 -- B201: fresh recovery observations and durable arming before one native Sleep request.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
+include('ExpeditionTrainingDiagnostics')
 local P=SPCP0
 local KIND='UNIT_SPC_EXPEDITION_SPY'
 local initialized=false;local stopped=false;local busy=false;local queued=false;local queuedMonitor=false
 local job;local seen={};local lastRevision
 local pump
 local watch
+local trace
+local traceFailure
 local function detail(err)return tostring(err):gsub('[%c]',' '):sub(1,180)end
 local function view()return ExposedMembers and ExposedMembers.SPC_ExpeditionActivity end
 local function integer(v)return type(v)=='number' and v>=0 and v%1==0 end
@@ -92,7 +95,11 @@ local function acknowledge(n,result,reason,sleeping,awake)
   print('[SPC][B191][ACTIVITY_ACK_UNKNOWN] '..detail(err))
  end
 end
-local function fail(n,err)acknowledge(n,'FAILED',err)end
+local function fail(n,err)
+ -- Observational capture must never replace or prevent the existing failure ACK.
+ if traceFailure then pcall(traceFailure,n,err)end
+ acknowledge(n,'FAILED',err)
+end
 -- Native UnitPanel resolves action identifiers through exact GameInfo rows.
 -- Keep the checked hash for the one request; enum aliases and optional result hints
 -- are not portable across the UI contexts used by supported game builds.
@@ -118,6 +125,35 @@ local function observe(fn)
  if not ok then return ('UNKNOWN: '..detail(v):gsub('[%[%]]',' ')):sub(1,100),nil end
  return diagnosticText(v),v
 end
+-- B221: fixed scalar records reuse the bounded, reconnect-readable training ring.
+-- No name, arbitrary native error, object, Property, new timer or writer is logged.
+local function traceValue(v)
+ if type(v)~='string'then return v end
+ if v:sub(1,8)=='UNKNOWN:'then return 'UNKNOWN_READ_ERROR'end
+ return v:gsub('[^%w_:%-%.|]','_'):sub(1,100)
+end
+local function recordActivity(n,stage,reason,d)
+ if not trace or not same(view(),n)then return end
+ local v={owner=n.owner,eventUnit=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
+  mode=n.mode,phase=n.phase,readStatus=n.readStatus or 'NOT_READ',x=n.x,y=n.y,actualX=n.actualX,actualY=n.actualY,
+  activity=n.lastActivity or 'UNAVAILABLE',activitySampleTurn=n.sampleTurn,
+  awake=n.sampleAwake,hold=n.sampleHold,sleep=n.sampleSleep,operationEnum=n.sampleOperation,
+  requested=n.requested==true,attempted=seen.attempted==true,
+  guardStatus=n.guardStatus or 'NOT_QUERIED',guardError=n.guardError,
+  reason=reason and (tostring(reason):match('ACTIVITY_[A-Z_]+') or 'READ_ERROR')}
+ -- Startup observations are explicitly separate from the actual decision guard.
+ if d then
+  for _,k in ipairs({'activity','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus'})do
+   v[k]=traceValue(d[k])
+  end
+ end
+ trace.Record(stage,v)
+end
+traceFailure=function(n,err)
+ if seen.traceFailure or not same(view(),n)then return end
+ seen.traceFailure=true
+ recordActivity(n,'ACTIVITY_FAILURE',err)
+end
 local function captureDiagnostic(n,u,activity)
  local d={owner=n.owner,unitID=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
   expectedName=n.expectedName,x=n.x,y=n.y,turn=Game.GetCurrentGameTurn(),
@@ -140,7 +176,10 @@ local function captureDiagnostic(n,u,activity)
  end)
  d.eligibilityStatus=allowed==true and 'ALLOWED' or (allowed==false and 'DENIED' or 'UNKNOWN')
  -- A reentrant publication may have changed the target during a reader call.
- if same(view(),n) then ExposedMembers.SPC_ExpeditionActivityDiagnostic=d end
+ if same(view(),n) then
+  ExposedMembers.SPC_ExpeditionActivityDiagnostic=d
+  recordActivity(n,'ACTIVITY_START',nil,d)
+ end
 end
 -- Preserve the exact failing evaluation separately from the first startup sample.
 -- This observes existing control flags; an attempted request is not native acceptance.
@@ -175,6 +214,7 @@ local function clearStaleDiagnostic(v,key)
 end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
+ n.readStatus=not ok and 'READ_ERROR' or (u and 'READ_OK' or 'POSITION_PENDING')
  if not ok then fail(n,u);return end
  if not u then return end -- Initial placement still invisible in this UI context.
  if job==n and not n.watching then watch(n)end -- Existing native-activity handling starts only after agreement.
@@ -216,10 +256,13 @@ local function evaluate(n)
    local allowed,hash=pcall(function()
     local hash=actionHash('UnitOperations','UNITOPERATION_SLEEP','SLEEP')
     assert(type(UnitManager.CanStartOperation)=='function' and type(UnitManager.RequestOperation)=='function','ACTIVITY_SLEEP_API_UNAVAILABLE')
-    assert(UnitManager.CanStartOperation(u,hash,nil,false,false)==true,'ACTIVITY_SLEEP_NOT_ALLOWED')
+    n.guardStatus='READ_ERROR'
+    local permission=UnitManager.CanStartOperation(u,hash,nil,false,false)
+    n.guardStatus=permission==true and 'ALLOWED' or (permission==false and 'DENIED' or 'UNKNOWN_VALUE')
+    assert(permission==true,'ACTIVITY_SLEEP_NOT_ALLOWED')
     return hash
    end)
-   if not allowed then fail(n,hash);return end
+   if not allowed then n.guardError=tostring(hash):match('ACTIVITY_[A-Z_]+') or 'NATIVE_READ_ERROR';fail(n,hash);return end
    if job~=n or not same(view(),n)then return end
    if n.mode=='SLEEP' then
     -- The durable Gate must confirm this intent before the native writer runs.
@@ -261,6 +304,7 @@ local function evaluate(n)
  -- A synchronous writer may have published/reentered; recheck the current lease before readback.
  if job~=n or not same(view(),n)then return end
  local readOK,_,after=pcall(read,n)
+ n.readStatus=readOK and 'READ_OK' or 'READ_ERROR'
  if not readOK then fail(n,_);return end
  if (n.mode=='SLEEP' or n.mode=='ARMED') and after==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP')
  elseif n.mode=='RELEASE' and (after==ActivityTypes.ACTIVITY_AWAKE or after==ActivityTypes.ACTIVITY_HOLD)then acknowledge(n,'RELEASED')end
@@ -350,6 +394,10 @@ end
 local function initialize()
  if initialized then return end
  initialized=true;stopped=false
+ if SPCExpeditionTrainingDiagnostics then
+  local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'ACTIVITY_UI')
+  if ok then trace=value end
+ end
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
  ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=nil
  Events.GameCoreEventPublishComplete.Add(published)

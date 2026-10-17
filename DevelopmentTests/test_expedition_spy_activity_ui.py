@@ -7,7 +7,7 @@ from lupa.lua55 import LuaRuntime
 R=Path(__file__).resolve().parents[1]
 
 
-def bridge():
+def bridge(with_trace=False):
     l=LuaRuntime(unpack_returned_tuples=True)
     l.execute(r'''
       include=function()end
@@ -86,6 +86,8 @@ def bridge():
        end
       end}
     ''')
+    if with_trace:
+        l.execute((R/'Mod/ExpeditionTrainingDiagnostics.lua').read_text())
     l.execute((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
     l.execute('init()')
     return l

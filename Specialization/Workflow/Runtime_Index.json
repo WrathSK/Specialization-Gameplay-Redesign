@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f031130a9cc685f30c6ad0219dd052f14c0e1aefc3e636fc5d9379014d26bb3f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B220_Centre_Missions_Idle_Actions.md",
-      "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
+      "sha256": "72447635d9f0fb4387d9269db4dba5a853475707f0cb3db2096f38bcd3d08e32",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
+      "provenance": "B221 diagnostic-only bounded trace and actual guard observations; targeted local PASS, native unresolved."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1061,9 +1061,9 @@
       "provenance": "B220 approved centre execution/event-driven idle control refresh; direct source and targeted local regressions reviewed. Native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "c071b52efce0f8569c51adcd8f0fc7849e6d67d7e1c7c64a4a639c063e42d973",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
-      "provenance": "B217 event-only initial placement agreement; exact protections and existing native activity handling retained;191 local checks PASS, native pending."
+      "sha256": "339117b0a5108b6c17905d423c691b9cf97f3a020b0e22c5951efdc2c0f9b51f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
+      "provenance": "B221 diagnostic-only bounded trace and actual guard observations; targeted local PASS, native unresolved."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "d7dd1563344138df7e8ac750d682cb3f9fe0f96bb8f6589a1e20340574ac5086",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B206 user-authorized diagnostic-only population/turn/spy-cost observation reviewed; +7 local tests PASS, full discovery failure set identical to HEAD. Capacity/source/Store/unit formula/GC unchanged; no native root-cause claim."
+      "sha256": "75e8349d8c5ecdd0b177b2705743793c4321ae88887e28076605f6dc3d47c6af",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B221_Activity_Failure_Trace.md",
+      "provenance": "B221 diagnostic-only bounded trace and actual guard observations; targeted local PASS, native unresolved."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
