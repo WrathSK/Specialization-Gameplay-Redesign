@@ -1,10 +1,10 @@
 # B213 — Expedition repair and Culture presentation
 
-Status: LOCAL_SIMULATION_PASS / NOT_DEPLOYED / USER_GAME_TEST_REQUIRED
+Status: LOCAL_SIMULATION_PASS / DEPLOYED / USER_GAME_TEST_REQUIRED
 Scope: user-approved audit findings 1–7, selected-target cancellation and Culture UI/report/icon additions.
 Inherited diagnosis: the old save contains cost 1 and undersized per-unit arrays; its population delta matches the Theater plot index. This strongly supports a native old-save mismatch, corroborated by the clean new-campaign runs, while the exact native memory path remains inferred. The original B205 record is unchanged; this batch does not reopen that investigation.
 
-Baseline: source 09b2c65; live B212.239 from 05970d0 remains unchanged. B212 native acceptance is deferred.
+Implementation baseline: source 09b2c65; live B212.239 from 05970d0 was unchanged during implementation. The separately authorized deployment is recorded below; native acceptance remains pending.
 
 ## Repair boundary
 
@@ -34,14 +34,39 @@ Culture uses the Research institution row style. P0 **文化见闻** shows the s
 
 Status CURRENT shrank from 132 lines/16060 bytes to a bounded current summary; the prior block is preserved verbatim under historical progress. The new plan slice is 17 lines/4570 bytes. Older native reports and seven unchanged UI/SQL/test references are conditional. The default manifest still has 84 projections: it includes complete current mission/history contracts plus real CityProgressionStore, Gameplay, Probe and institution dependencies, so its total projected bytes increase rather than decrease. This is scoped completeness, not a token/quota saving claim. Final measurement is recorded below; byte counts are reading-volume observations only.
 
-Final measurement: CURRENT 10 lines / 2577 bytes; manifest 84 projections / 1281641 bytes (baseline 84 / 1133473).
+Implementation-checkpoint measurement: CURRENT 10 lines / 2577 bytes; manifest 84 projections / 1281641 bytes (baseline 84 / 1133473).
 
-Original B205 evidence, Spec, frozen Design revisions and validation results, CityProgressionStore, training costs/capacity/source binding, GC, main and the external runtime are unchanged. Two optional fields in the existing Expedition envelope record selected work identity and unresolved due-time evidence; no separate store or migration framework is introduced. Culture's exact-target cancellation is the user's decision, while Commerce changes only align existing accepted wording.
+During implementation, original B205 evidence, Spec, frozen Design revisions and validation results, CityProgressionStore, training costs/capacity/source binding, GC, main and the external runtime are unchanged. Two optional fields in the existing Expedition envelope record selected work identity and unresolved due-time evidence; no separate store or migration framework is introduced. Culture's exact-target cancellation is the user's decision, while Commerce changes only align existing accepted wording.
 
-## One future combined native session
+## Deployment — 2026-10-16
 
-After a separately permitted deployment, continue the B212 mission test with this repair package rather than testing the known defective B212 source separately. Select the archive city: inspect Culture institutions and **文化见闻**; inspect relocation icons where corresponding targets exist. Complete one mission and verify its category/history appears in P0 and collector. If an existing controllable target permits it, invalidate the selected work/site, confirm cancellation/no reward, then start another legal mission to verify it leaves preparation and runs normally. Do not manufacture UNKNOWN reader faults or repeat already-covered cold-load cycles merely for UI. A saved in-progress task is the only newly relevant persistence check if the user already has a convenient test save; otherwise local serialization evidence remains explicitly local.
+The user explicitly authorized deployment and automatic game-exit detection. A restricted process query was unavailable; the OS query with process access returned no Civ6 executable. Both actual switches repeated the successful check. Existing receipt-bound tooling restored the exact stable bridge, retaining outgoing B212, then activated committed source `d1ea679368d0e12f905360ba86b76787f525abe1` as **B213.240/modinfo240**. New receipt: `B213.240-d1ea679-playtest.json`, phase **DEVELOP_ACTIVE**. Per-file equality **219/219 MATCH**; no pending marker. Stable recovery retained. Main, game configuration and Tuner unchanged; no game launch. Deployment is not native acceptance.
 
-User decision: selected concrete target loss cancels; no automatic replacement.
-User testing: deferred; this record claims no native PASS.
-Primary next: preserve this local checkpoint and await the deferred combined native check/deployment step; do not start Tourism/Network or another repair batch.
+## One combined B212/B213 native session
+
+Evidence priority: use the existing unattended collector for dispatch/task/outcome and explicit **文化见闻** reads. Screenshots are only needed for visual layout/icon issues or a result not represented in logs. Do not require per-turn images or an unrelated lifecycle replay.
+
+From the develop checkout, before starting the game:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 tools/collect_expedition_trace.py --idle-exit 300
+```
+
+Keep the terminal running. Output remains ignored under `local/diagnostics/B205/session-*/`; B205 is the inherited folder name, not the loaded package version. Wait for the collector's connected message after loading. On completion use Ctrl-C to flush the summary. If collection fails, retain its reported error; absence of a log is not a gameplay failure or PASS.
+
+1. Use the approved new-campaign test base, never the historical pre-Expedition campaign. Begin with no task already running. Use one bound Expedition and its archive/source Culture city. Inspect the city **专业机构** rows and read P0 **文化见闻** for the baseline. This checks Culture rendering and that the report does not depend on selecting a surviving team. No new reward is expected merely from opening the report.
+2. **派遣到新城市**: choose a met foreign major capital. Check mission opportunities show the civilization icon for **风土考察**, Great Work icon for eligible **艺文采撷**, and the actual Wonder icon for **奇观巡礼** where available. Arrive, start **风土考察**, and allow its displayed Standard-speed two-turn timer to complete. It must return to the target centre. Select the source city and read **文化见闻**: the previously unrecorded civilization/category gains exactly one entry; repeating that completed category is unavailable. This proves the real first-success/history path and duplicate gate.
+3. In that city or another convenient eligible target, complete **艺文采撷** and **奇观巡礼** once each. Observe mission location (work-hosting building / selected Wonder) and return to centre, then read the source city's **文化见闻**. Each previously unrecorded category adds one entry. If all three are for the same civilization and none existed before, the total rises by three. A Wonder hosting an eligible work can cover the WORKS-in-Wonder repair naturally. If a suitable target is absent, report that category NOT_TESTED; do not manufacture a long target-hunting exercise.
+4. Only if the existing test tools make it easy to remove the selected work during an active mission, verify cancellation/no reward and then start another legal task. This distinguishes fresh attempt identity from reuse of the cancelled attempt's acknowledgement. Otherwise retain this as locally verified/native untested; do not require manipulation of a foreign inventory or owner changes just to force the case.
+
+No full save/END/cold-load/re-enable sequence is required. This batch adds an exact selected-work ID to task persistence: a convenient in-progress save/load can provide that narrow additional evidence, but it is not needed to inspect the UI and must not be reported passed if omitted. Native foreign readers/placement, visuals and mission completion remain pending until this session. Insight-derived city Tourism and Culture Network rewards are not implemented and must not be used as this test's expectation.
+
+## Documentation status requested by the user
+
+The read-only Insight UI/log path and bounded collector are implemented and documented in the current Expedition slice. Existing W0004 delta/inherited-evidence rules and project guidance already reduce repeated manual/screenshot testing; this combined session explicitly makes machine-readable logs primary while retaining visual evidence where necessary.
+
+The Advisor [Self-Healing Reconciliation Rules](../../../Reports/Advisory/Self_Healing_Rules/Self_Healing_Reconciliation_Rules.md) includes R2 (derive current native facts; retain unavailable history), but the complete R1–R20 proposal remains advisory. The [Primary qualifications](../../../Reports/Proposals/Audit_Followup_Priorities.md#primary-review-qualifications) explicitly reject automatic adoption. In particular, visible units plus queue entries are not yet a proven complete capacity oracle across off-map travel, queue-admission races or unreadable native state. Current B209/B210/B213 contracts retain a bounded durable reservation and release it only on the established evidence. This deployment adopts no new self-healing policy and changes no capacity/persistence behavior beyond the already implemented B213 batch.
+
+User decision: none newly required; selected concrete target loss cancels, no automatic replacement.
+User testing: combined session above; native acceptance pending.
+Primary next: collect and review the submitted logs/visual exceptions; do not start Tourism/Network or another repair batch automatically.

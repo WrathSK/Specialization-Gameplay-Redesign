@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0570",
-    "runtime": "B213.240 / modinfo240 (source; live B212.239)",
+    "status": "S0571",
+    "runtime": "B213.240 / modinfo240",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B213: repair audit1–7; selected-target cancellation/UNKNOWN protection, unique task attempts, works in Wonders, bounded collector; Culture institution/Insight report/mission-icon UI. No Tourism/Network, deployment or game launch. B212 native gate remains deferred for one combined test.",
+  "goal": "B213: repair audit1–7; selected-target cancellation/UNKNOWN protection, unique task attempts, works in Wonders, bounded collector; Culture institution/Insight report/mission-icon UI. No Tourism/Network or game launch. B213 deployment explicitly authorized and verified; B212/B213 await one combined native test.",
   "implementation_authorized": true,
   "context": [
     {
@@ -648,12 +648,12 @@
     }
   ],
   "non_scope": [
-    "No Tourism/Network rewards, reattachment, new profession, native Spy-slot isolation, general Store rewrite, GC/cost/capacity change, old-campaign corruption repair, deployment/main/configuration/game launch. Commerce wording consistency only; no Commerce runtime change."
+    "No Tourism/Network rewards, reattachment, new profession, native Spy-slot isolation, general Store rewrite, GC/cost/capacity change, old-campaign corruption repair, main/configuration/game launch. Commerce wording consistency only; no Commerce runtime change."
   ],
   "validation": {
     "depth": "L3 targeted changed mission/persistence/activity and direct UI/store/tool closure; no full gameplay/stress.",
     "local": "778 Expedition/tool tests and66 additional institution/Insight/P0/Store/Dialogue/context-helper tests PASS. Historical B128 wrapper stopped on inherited include fixture before assertions, not counted PASS. Changed-source/XML/link/selector/context checks at commit checkpoint; native UI/foreign facts not established.",
-    "user": "B212 native mission test deferred; one combined B212/B213 delta test after separate deployment. No new USER_GAME_TEST_PASS."
+    "user": "One combined B212/B213 session in current result: collector logs for missions/Insights, selective visual evidence for institutions/icons; cancellation/new-attempt native case only if readily controllable. No automatic full cold-load replay. No USER_GAME_TEST_PASS yet."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
@@ -661,8 +661,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-    "source": "B213.240 source locally complete; live remains B212.239 from05970d0, no deployment in this batch.",
+    "source": "B213.240 deployed from d1ea679368d0e12f905360ba86b76787f525abe1; receipt B213.240-d1ea679-playtest.json;219/219 MATCH.",
     "native": "USER_GAME_TEST_REQUIRED; B212 deferred. Earlier B210/B211 scoped evidence remains in original records. Old-save cost1 is evidenced; the appended-unit/native old-save mechanism is strongly supported but exact corruption/memory path remains inferred. Closed without repair, not proven fixed.",
-    "stop": "Commit/push verified source and documents; stop before deployment or next feature batch."
+    "stop": "Await combined native evidence; no later feature batch or wholesale self-healing adoption."
   }
 }
