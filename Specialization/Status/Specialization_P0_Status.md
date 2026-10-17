@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0594
+Status Revision: S0595
 Implementation Build: source/live B222.249 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B222_REJECTION_DEPLOYED_AWAITING_NATIVE
+Work State: B222_PARTIAL_NATIVE_SLEEP_DENIED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B222 shared task rejection repair locally verified; native SLEEP denial cause remains unknown.** [Implementation, evidence boundary and one-attempt continuation](Validation/Results/Specialization_B222_Task_Start_Rejection.md).
-- **Source B222.249 / modinfo249:** proven unarmed/unexecuted denial returns to ARRIVED after exact checks and confirmed save; uncertain/owned outcomes stay protected. Bounded native FAILURE_REASONS and readable feedback added. All categories retain the common sleep/two-turn/completion pipeline; no new timers or movement.
-- **Live B222.249**, source `ac321eb`, receipt `B222.249-ac321eb-playtest.json`,224/224 MATCH. Fresh automatic OS exit checks and both guarded switches verified; B221/stable recovery retained, no pending transaction. Main stable B069.96 unchanged.
-- **Validation:**381 targeted local tests PASS. [B221 native PLACES failure](Validation/Results/Specialization_B221_Activity_Native_Review.md) remains: exact centre/AWAKE/ready, native DENIED, no request, then HELD. Wrong locking is addressed locally; engine denial cause and new native outcome remain UNKNOWN. No current PEOPLE retest inferred. B218 earned-Insight evidence retained; Tourism rounding and unavailable WORKS targets remain deferred.
-- **Current contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Real target evidence and displacement protection retained. Capacity, binding, training, Store schema, reward semantics and GC unchanged; no automatic repair of HELD saves.
-- **Retained boundaries:** approved test-campaign/save scope, standard speed only, source-loss reattachment deferred, native Spy-slot limitation, user-managed Tuner. No main/configuration change.
-- **Next boundary:** one logged available mission attempt. If denied, stop with the new reason record; do not request blind repetition or infer native repair. No N3 or unrelated audit repair.
+**B222 native review: three PEOPLE/PLACES tasks completed; Ottawa task start denied.** [Evidence, manual-sleep transition hypothesis and remaining gap](Validation/Results/Specialization_B222_Task_Start_Native_Review.md).
+- **Source B222.249 / modinfo249:** [shared clean-rejection repair](Validation/Results/Specialization_B222_Task_Start_Rejection.md);381 targeted local tests inherited. All categories use the existing centre/sleep/completion pipeline. No new implementation in this review.
+- **Live B222.249**, source `ac321eb`, receipt `B222.249-ac321eb-playtest.json`, last verified224/224 MATCH. Main stable B069.96 unchanged; no deployment or runtime revalidation performed by this evidence review.
+- **Native evidence:** Khmer PLACES, Gaul PEOPLE and Gaul PLACES each completed with new Insight and released activity. Archive report shows5 effective Insights /10% Tourism projection; native fractional Tourism settlement is not newly verified. WORKS remains untested.
+- **Unresolved:** after user-reported manual sleep in Gaul and redispatch, Ottawa arrival-turn start reads exact centre/AWAKE/ready but native SLEEP DENIED, no request, no supplied reason. Sleep-to-travel transition is a supported hypothesis, not proven cause. Collector reconnection missed the final Gate outcome; B222 clean-rejection unwind is not yet native-certified.
+- **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Capacity, source binding, Store schema, Insight semantics and GC unchanged; no automatic HELD recovery. Retain standard-speed/test-campaign scope, source-loss reattachment deferment and native Spy-slot limitation.
+- **Next boundary:** proposed bounded manual-sleep → dispatch → arrival admission investigation and reconnect-readable rejection outcome. No blind repetition, new native test, permission bypass, timer or next implementation batch authorized.
 
 ## Historical progress — B205–B212 checkpoint
 

@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0594",
+    "status": "S0595",
     "runtime": "B222.249 / modinfo249",
     "military": "D0037",
     "harbor": "D0037",
@@ -502,6 +502,11 @@
       "path": "DevelopmentTests/test_expedition_task_rejection.py",
       "kind": "full",
       "reason": "Direct clean-denial/owned-failure, exact attempt, persistence and bounded native reason counterexamples."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
+      "kind": "full",
+      "reason": "Latest native evidence, manual-sleep redispatch hypothesis, collector limitation and bounded unapproved continuation; action-scoped reading."
     }
   ],
   "dependencies": [
@@ -709,16 +714,16 @@
   "validation": {
     "depth": "L2: targeted shared task/activity/Store/UI and offline collector checks.",
     "local": "381 targeted tests PASS (350 runtime/tool fixtures +31 read-only DB/package tests).",
-    "user": "B221 native PLACES DENIED remains unresolved; B222 clean-rejection/native reason result pending. No mission native PASS claimed."
+    "user": "USER_GAME_TEST_PASS: Khmer PLACES, Gaul PEOPLE and Gaul PLACES captured completions; USER_GAME_TEST_FAIL: Ottawa pre-request SLEEP denial. Manual-sleep/redispatch cause unproven; clean-rejection final ACK not captured; WORKS remains untested."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
     "source": "B222.249/modinfo249 DEVELOP_ACTIVE; source ac321eb10b680be2117fa1284b25fde7e9fcc359; receipt B222.249-ac321eb-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B221/stable recovery retained; no pending transaction, main or configuration change.",
-    "native": "USER_GAME_TEST_REQUIRED; native denial cause UNKNOWN.",
-    "stop": "One logged attempt, stop on denial; no blind repeats or next implementation batch."
+    "native": "PARTIAL: three captured successful missions; Ottawa start DENIED/no native reasons. Clean-rejection unwind remains unverified across a collector reconnect gap.",
+    "stop": "Review complete; manual-sleep/dispatch/arrival investigation proposed only. No new implementation, native test or deployment."
   }
 }
