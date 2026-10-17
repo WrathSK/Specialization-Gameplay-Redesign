@@ -523,3 +523,18 @@ The first exit check reported a false "game running": its pattern also matched t
 - All `test_expedition_*` suites (725 tests): the failure set is identical to HEAD (the same 14 historical activity-diagnostic failures).
 
 **Deployment.** B210.237/modinfo237 is **DEVELOP_ACTIVE**, source `00d37ccb98f87169c9080133865885cd7f886154`, receipt `B210.237-00d37cc-playtest.json`. A fresh OS check (game executable only) confirmed game exit before both guarded switches: B209 restored to stable, then B210 activated. 219/219 files MATCH, and there is no pending transaction.
+
+## B210 user test — 2026-10-16 (USER_GAME_TEST_PASS, scoped)
+
+**What the user ran.** B210.237 in the new campaign, city Stirling (65536), turns 3–4, one load (session `…20261017T013347Z-623584`).
+
+**Native observations.**
+- **Native replacement:** the order was queued (seq14, count1). After replacement through district placement, the queue read 0 (seq19) and the marker was removed. The next order's `RESERVE_ENTRY` (seq23) shows the prior phase **ENDED**: the reservation was released, the 人文考察团 (Expedition) row returned and could be reordered. No spurious error was reported.
+- **Normal training:** ordered T3, it completed at the T4 turn start (birth/completion seq35–40), then Finish → NAMING (seq43–46). The native cost went 105 → 120 for the next order, which is the Design formula.
+- **Overflow-immediate retraining:** ordered at T4 after clearing via P0. It was born and completed within about 2 s of the order (seq56–62), then Finish → NAMING, with **no HELD**. In this run Gameplay already held the queue evidence (count1, seq56) before the birth arrived. The B209 "birth before queue confirmation" branch was therefore not exercised natively here; it remains covered by local tests.
+- Population changes were ordinary (+1 and a user Cheat Panel increase). No population fault occurred.
+
+**Result.**
+- USER_GAME_TEST_PASS for the B210 native-replacement release.
+- USER_GAME_TEST_PASS for normal training and overflow-immediate retraining without HELD.
+- Scope: new campaign, one city, one load, early turns. Reload during a replaced or immediate order was not tested natively.

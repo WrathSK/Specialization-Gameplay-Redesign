@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0562",
+    "status": "S0563",
     "runtime": "B210.237 / modinfo237",
     "military": "D0037",
     "harbor": "D0037",
@@ -625,7 +625,7 @@
   "validation": {
     "depth": "L3 targeted diagnostic failure isolation and existing direct Expedition closure; no full gameplay/stress.",
     "local": "529 distinct targeted tests PASS (478 inherited +51 new); package version assertion only existing test edit. XML/SQL/localization, current context/selectors/hash and changed links checked separately. S0549: reader 36 tests PASS (validates 8963218); collector 6 offline tests PASS on Python 3.10/3.14; smoke wait/SIGTERM summary checked. S0550 B206: +7 tests PASS (population aggregation/order and ON/OFF equivalence, scope rejection, turn flush, spy cost, observer exception, reader HD allowlist/cap, collector HD count); affected suites 139 PASS; full discovery failure set identical to HEAD c37de97. S0553 B207: L2 targeted suites 171 PASS (gate SQL with read-only external DB); +1 collector reload test; no full regression. S0555 B208: L2 targeted suites 171 PASS (gate SQL with read-only external DB); no full regression. S0561 B209: 111 targeted PASS; all test_expedition_* suites failure set identical to HEAD 130cc0d (14 historical activity-diagnostic failures). S0562 B210: 117 targeted PASS; Expedition-suite failure set identical to HEAD.",
-    "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval. S0550: the first collector session save predates checkpoint A and loaded normally before; user authorized B206 diagnostics and a collector re-run. S0562: B209 USER_GAME_TEST_FAIL (Expedition vanished after district-placement replacement)."
+    "user": "Checkpoint A captured and stopped on cost1; two reserve/build cycles in it were the user's manual clicks. Checkpoint B not collected. Development policy: EnableTuner stays1, user-toggled. No new user test requested; a later controlled flow needs separate approval. S0550: the first collector session save predates checkpoint A and loaded normally before; user authorized B206 diagnostics and a collector re-run. S0562: B209 USER_GAME_TEST_FAIL (Expedition vanished after district-placement replacement). S0563: B210 USER_GAME_TEST_PASS scoped (replacement release, normal training, overflow-immediate retraining without HELD; new campaign, one city, one load)."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",

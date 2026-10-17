@@ -1,15 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0562
+Status Revision: S0563
 Implementation Build: source/live B210.237 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B210_DEPLOYED_AWAITING_USER_TEST
+Work State: B210_USER_GAME_TEST_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B210: USER_GAME_TEST_PASS (scoped).**
+- Replacing a queued 人文考察团 (Expedition) through district placement released the reservation, and the row returned and could be reordered.
+- Normal training reached NAMING, and the cost followed the Design formula (105 → 120).
+- An overflow-immediate retraining reached NAMING without HELD. The B209 birth-before-confirmation branch was not hit natively and remains locally covered.
+- Scope: new campaign, one city, one load.
+
+[Record](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#b210-user-test--2026-10-16-user_game_test_pass-scoped).
 
 **B209 user test: USER_GAME_TEST_FAIL. B210 is deployed: B210.237 DEVELOP_ACTIVE, source `00d37cc`, receipt `B210.237-00d37cc-playtest.json`, 219/219 MATCH; no pending transaction.**
 - **Failure.** Replacing the queued 人文考察团 (Expedition) through district map placement bypassed the panel cancel hook. The reservation stayed TRAINING without its marker, so the Expedition vanished from the production list, and a spurious `TRAINING_NATIVE_QUEUE_UNCONFIRMED` appeared.
