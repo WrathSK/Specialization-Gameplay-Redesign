@@ -38,4 +38,4 @@ User decision: none for this bounded repair; any different activity/native-missi
 
 ## Deployment
 
-Source locally validated; live remains B221.248 until the guarded W0003 deployment is verified. No native PASS claimed.
+B222.249/modinfo249 DEVELOP_ACTIVE; source ac321eb10b680be2117fa1284b25fde7e9fcc359; receipt B222.249-ac321eb-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B221/stable recovery retained; no pending transaction, main or configuration change. Runtime digest `caaf2ff7dbb3c5b72397e8bdebc01f0fe39ed4e5e78ed9a13579d37c124895a4`. Source/test bytes remain the validated commit. No game launch or native PASS claimed.

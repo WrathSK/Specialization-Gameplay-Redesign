@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0593",
+    "status": "S0594",
     "runtime": "B222.249 / modinfo249",
     "military": "D0037",
     "harbor": "D0037",
@@ -717,7 +717,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-    "source": "B222.249/modinfo249 local complete; live B221.248 pending guarded W0003 deployment.",
+    "source": "B222.249/modinfo249 DEVELOP_ACTIVE; source ac321eb10b680be2117fa1284b25fde7e9fcc359; receipt B222.249-ac321eb-playtest.json;224/224 MATCH. Fresh automatic OS exit checks before both guarded switches; B221/stable recovery retained; no pending transaction, main or configuration change.",
     "native": "USER_GAME_TEST_REQUIRED; native denial cause UNKNOWN.",
     "stop": "One logged attempt, stop on denial; no blind repeats or next implementation batch."
   }
