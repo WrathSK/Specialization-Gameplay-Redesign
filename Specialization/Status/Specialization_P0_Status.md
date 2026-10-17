@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0584
+Status Revision: S0585
 Implementation Build: source/live B218.245 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B218_DEPLOYED_AWAITING_DIAGNOSTIC
+Work State: B218_OCCUPIED_PLACEMENT_BOUNDARY_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B217 native test stopped at Gameplay immediate placement readback; B218 bounded placement diagnostics are locally complete and deployed; one native capture pending.** Civilian occupancy is a hypothesis, not a confirmed cause. No behavior repair is claimed; +4% Tourism tooltip remains confirmed, rounding/dynamic update and WORKS deferred.
+**B218 occupied placement boundary reviewed:** empty-wonder placement and PLACES completion succeed; occupied wonder and occupied centre return offset to nearby tiles. Khmer PLACES Insight is recorded (3 effective; configured Tourism6%). No behavior repair yet; exact engine predicate remains inferred.
 - **Live B218.245**, source `0638eb5`, receipt `B218.245-0638eb5-playtest.json`,221/221 MATCH. Automatic OS exit/guarded switch verified, B217/stable recovery retained; no pending transaction, configuration or main change.
 - **Current implementation scope:** B216 adds one derived final-value city Tourism carrier (+2pp × effective Insights), exact source-city completion notification, current eligibility/owner/load reconciliation, and configured status in **文化见闻**. Prior B213–B215 mission/UI behavior retained. No training/capacity/binding/save-schema/GC or N3 change.
 - **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. Historical B213: three TASK attempts failed; arrival/binding remained intact, and Culture Lv4 institutions rendered. B214:88 local checks pass and the new logs confirm PEOPLE starts/completions; WORKS/PLACES native evidence is deferred. B213 local and combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
 - **Current contract and task context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Earlier B205–B212 progress below is historical; durable training/persistence contracts remain linked by the plan.
 - **Retained boundaries:** accepted new-campaign save scope; standard speed only; source-loss reattachment deferred; existing native Spy-slot limitation; old-campaign faults closed without repair: saved cost1 is directly evidenced; undersized unit arrays and population delta matching the Theater plot strongly support a native old-save mismatch, while the exact native corruption/memory path remains inferred ([evidence](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference)). EnableTuner remains user-managed; this batch does not change it.
-- **Next boundary:** [B218 diagnostic and minimal capture](Validation/Results/Specialization_B218_Placement_Diagnostic.md):282 targeted checks PASS. Capture one available 奇观巡礼 placement before deciding a repair. No timers/polling, automatic HELD recovery, capacity/binding/reward or unrelated changes.
+- **Next boundary:** [B218 native/Spy-path investigation](Validation/Results/Specialization_B218_Native_Review.md). Earlier native travel coexistence does not prove generic PlaceUnit. Review a bounded movement-primitive comparison before implementation; no timer/polling, reward replay, rounding/performance or N3 work.
 
 ## Historical progress — B205–B212 checkpoint
 

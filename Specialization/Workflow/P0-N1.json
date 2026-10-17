@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0584",
+    "status": "S0585",
     "runtime": "B218.245 / modinfo245",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B218 authorized bounded placement diagnostics only; preserve exact position guard and all task behavior; no timer/polling.",
+  "goal": "B218 evidence reviewed: occupied generic placement offsets; empty wonder completes and grants Insight; occupied return fails. Further primitive investigation proposed only.",
   "implementation_authorized": true,
   "context": [
     {
@@ -688,16 +688,16 @@
   "validation": {
     "depth": "Direct actual-module/Gate/task/report/idle and in-memory configured DB closure; no full gameplay/stress.",
     "local": "282 targeted tests PASS; native placement cause remains UNKNOWN.",
-    "user": "B217 Gameplay EXACT_PLACEMENT_REJECTED before UI wait; B218 one diagnostic capture pending."
+    "user": "B218 empty-wonder PLACES completion/Insight3 observed; occupied task/return placement FAIL. Native Tourism6% settlement not independently verified."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B218_Native_Review.md",
     "source": "B218.245/modinfo245 DEVELOP_ACTIVE; source 0638eb5035b121c8f921eaac01b301c4c7bf18b5; receipt B218.245-0638eb5-playtest.json;221/221 MATCH. Fresh automatic OS exit checks before both guarded switches; B217/stable recovery retained; no pending transaction or configuration change.",
-    "native": "B217 Gameplay EXACT_PLACEMENT_REJECTED before UI wait; B218 one diagnostic capture pending.",
-    "stop": "Diagnostic-only; review capture before a behavior repair."
+    "native": "B218 empty-wonder PLACES completion/Insight3 observed; occupied task/return placement FAIL. Native Tourism6% settlement not independently verified.",
+    "stop": "Await review of next primitive investigation; no repair or native espionage authorization."
   }
 }
