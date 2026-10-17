@@ -1,23 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0579
+Status Revision: S0580
 Implementation Build: source/live B216.243 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B216_DEPLOYED_AWAITING_NATIVE
+Work State: B216_PLACES_ACTIVITY_NATIVE_STOP
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B216.243 local Insight Tourism is implemented and locally validated; deployed; native pressure verification pending.** B215 idle controls accepted by user report; B214 PEOPLE remains scoped PASS. WORKS/PLACES stay deferred.
+**B216 test stopped: 奇观巡礼 enters HELD during activity preparation (ACTIVITY_POSITION_CHANGED).** Native wonder Tourism tooltip shows +4%; rounding/settlement and updates after new Insights remain UNKNOWN and deferred by user. WORKS has no eligible target.
 - **Live B216.243**, source `3aff99b`, receipt `B216.243-3aff99b-playtest.json`,221/221 MATCH. Automatic OS exit checks and guarded switches verified; B215/stable recovery retained, no pending transaction. Main/configuration unchanged.
 - **Current implementation scope:** B216 adds one derived final-value city Tourism carrier (+2pp × effective Insights), exact source-city completion notification, current eligibility/owner/load reconciliation, and configured status in **文化见闻**. Prior B213–B215 mission/UI behavior retained. No training/capacity/binding/save-schema/GC or N3 change.
 - **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. Historical B213: three TASK attempts failed; arrival/binding remained intact, and Culture Lv4 institutions rendered. B214:88 local checks pass and the new logs confirm PEOPLE starts/completions; WORKS/PLACES native evidence is deferred. B213 local and combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
 - **Current contract and task context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Earlier B205–B212 progress below is historical; durable training/persistence contracts remain linked by the plan.
 - **Retained boundaries:** accepted new-campaign save scope; standard speed only; source-loss reattachment deferred; existing native Spy-slot limitation; old-campaign faults closed without repair: saved cost1 is directly evidenced; undersized unit arrays and population delta matching the Theater plot strongly support a native old-save mismatch, while the exact native corruption/memory path remains inferred ([evidence](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference)). EnableTuner remains user-managed; this batch does not change it.
-- **Next boundary:** [B216 result/test](Validation/Results/Specialization_B216_Insight_Tourism.md):123 targeted local tests PASS. One combined travelling-save/arrival and Insight Tourism native check. Configured carrier is not native pressure PASS; base Tourism may remain unchanged. No next implementation batch authorized. Collector remains manual.
+- **Next boundary:** [B216 native review and narrow proposal](Validation/Results/Specialization_B216_Native_Review.md). Diagnose initial Gameplay/UI position agreement before SLEEP; proposed bounded repair requires approval. No Tourism rounding fix, performance investigation or N3. Three screenshots hash-archived; collector corroborates TASK_PREPARING→HELD but lacks actual/expected coordinates. Collector remains manual.
 
 ## Historical progress — B205–B212 checkpoint
 
