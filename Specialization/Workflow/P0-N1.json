@@ -783,8 +783,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-    "source": "B224.251/modinfo251 LOCAL_COMPLETE; live remains receipt-verified B223.250 until separate W0003 switch.",
+    "source": "B224.251/modinfo251 DEVELOP_ACTIVE; source ceb883bebe794113006df31a40659ed40b14cf2c; receipt B224.251-ceb883b-playtest.json;224/224 MATCH, digest 274b584d0eb919b14c44e8c91ad99abf78bb849a72b22557145b01d430bf5ca0. Fresh OS exit checks at both guarded B223/stable/B224 switches; recovery retained, no pending transaction, main/configuration change or game launch.",
     "native": "USER_GAME_TEST_REQUIRED for changed current-facts paths and idle controls; no blanket cause closure.",
-    "stop": "One combined native session after verified deployment; unrelated modules remain held."
+    "stop": "B224.251 deployed; await the two native deltas. No unrelated batch or repeated blind sleep tests."
   }
 }

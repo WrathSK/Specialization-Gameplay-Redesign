@@ -63,4 +63,4 @@ The collector remains the primary evidence. One screenshot is useful only if the
 
 ## Delivery
 
-Source B224.251 locally complete; deployment recorded separately after actual W0003 verification. User decision: none. User testing: the two small deltas above. Primary next: review those results; no unrelated feature batch or audit repair authorized.
+B224.251 deployed from `ceb883b` after fresh automatic process-exit checks and both receipt/hash-guarded switches. Receipt `B224.251-ceb883b-playtest.json`; **224/224 MATCH**; source/runtime digest `274b584d0eb919b14c44e8c91ad99abf78bb849a72b22557145b01d430bf5ca0`. B223 and stable recovery retained, no pending transaction. Main/configuration unchanged; game not launched. Deployment integrity is not native acceptance. User decision: none. User testing: the two small deltas above. Primary next: review those results; no unrelated feature batch or audit repair authorized.

@@ -2,21 +2,21 @@
 
 Document Owner: Codex
 Status Revision: S0598
-Implementation Build: source B224.251 LOCAL_COMPLETE; live B223.250; stable B069.96
+Implementation Build: source/live B224.251 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B224_CURRENT_WORKS_IDLE_LOCAL_COMPLETE
+Work State: B224_CURRENT_WORKS_IDLE_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B224 narrow repairs locally complete; native acceptance pending.** [B223 evidence, repairs and minimal combined flow](Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md).
+**B224 narrow repairs deployed;490 targeted local checks PASS, native acceptance pending.** [B223 evidence, repairs and minimal combined flow](Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md).
 - **Source B224.251 / modinfo251:** confirmed empty collections transmit explicitly; WORKS admission/completion read fresh UI-context slots; idle controls resolve the current unit, retain native gates and show unavailable reasons. No new timer, permanent field, capacity/binding/reward/task-rule or GC change.
-- **Live remains last verified B223.250**, source `55d0cdb`, receipt `B223.250-55d0cdb-playtest.json`,224/224 MATCH. Source completion alone is not deployment. Main stable B069.96 remains unchanged.
+- **Live B224.251**, source `ceb883b`, receipt `B224.251-ceb883b-playtest.json`,224/224 MATCH after fresh automatic exit checks and guarded switches. Recovery retained; no pending transaction. Main stable B069.96/configuration unchanged; no game launch.
 - **Native evidence:** B223 seven captured arrivals and four PEOPLE starts; London WORKS preflight reader failure and disappearing controls confirmed. Later successful attempts do not erase those faults. User reports 风雅熏陶 persists after selling all works; the empty-payload local counterexample and corrected withdrawal are recorded separately from native acceptance.
 - **Contract/context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). User authorized these simultaneous bounded repairs. Existing PEOPLE/PLACES evidence is inherited; Tourism fractional settlement, reattachment, N3 and deferred audit repairs remain outside this batch.
-- **Next:** W0003 verified deployment if game exit is confirmed, then one combined session: collection→zero withdrawal/recovery, and an available WORKS task with arrival idle controls. No blind repeated sleep trials or extra save/load gate.
+- **Next:** one combined native session: collection→zero withdrawal/recovery, and an available WORKS task with arrival idle controls. No blind repeated sleep trials or extra save/load gate.
 
 ## S0598 — B224 current facts and idle-control repair
 
