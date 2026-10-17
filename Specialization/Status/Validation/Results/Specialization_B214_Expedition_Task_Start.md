@@ -29,4 +29,4 @@ Start the existing collector before testing. With an already-arrived bound team,
 
 ## Deployment
 
-Not yet performed for B214; live remains B213.240 pending the guarded game-exit and deployment checks.
+B214.241/modinfo241 DEVELOP_ACTIVE; source 29391974f1ac887565f4ea8563a73b023acde4cd; receipt B214.241-2939197-playtest.json;219/219 MATCH. Automatic OS exit checks before both guarded switches; B213/stable recovery retained; no pending transaction. Configuration unchanged. No game launch or new native PASS.
