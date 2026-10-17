@@ -1,15 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0569
-Implementation Build: source/live B212.239 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0570
+Implementation Build: source B213.240; live B212.239 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0050（Commerce交接同步；仅Design，不授权实现）
 Latest Accepted Design Revision: D0050
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B212_DEPLOYED_AWAITING_USER_TEST
+Work State: B213_LOCAL_COMPLETE_NATIVE_PENDING / B212_NATIVE_TEST_DEFERRED
 
 ## CURRENT AUTHORITATIVE STATE
+
+**B213.240 source repair and Culture presentation batch; targeted local verification complete. Not deployed.** The user authorized audit findings1–7 and the Culture UI/Insight/icon additions. Confirmed loss of the selected concrete mission target cancels; another object is not substituted.
+- **Live remains B212.239**, source `05970d0`, receipt `B212.239-05970d0-playtest.json`; the last deployment check was219/219 MATCH. No runtime/configuration/deployment action in B213. Main stable B069.96 is unchanged.
+- **Current implementation scope:** fresh mission-attempt identity; VALID/INVALID/UNKNOWN target evidence; eligible works in Wonders; bounded collector failures; Culture institutions, selected-city Insight report/log and mission-specific relocation icons. Source/capacity/cost/GC and Tourism/Network rewards are unchanged.
+- **Validation:** 778 Expedition/tool tests and66 additional UI/Store/Dialogue/helper tests PASS locally; the historical B128 wrapper stopped on its inherited fixture before assertions. B212 native test remains deferred. B213 local and future combined native scope are tracked in [batch record](Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md). Local checks do not establish native placement, UI rendering or mission success.
+- **Current contract and task context:** [current slice](../Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation), [P0-N1](../Workflow/P0-N1.json). Earlier B205–B212 progress below is historical; durable training/persistence contracts remain linked by the plan.
+- **Retained boundaries:** accepted new-campaign save scope; standard speed only; source-loss reattachment deferred; existing native Spy-slot limitation; old-campaign faults closed without repair: saved cost1 is directly evidenced; undersized unit arrays and population delta matching the Theater plot strongly support a native old-save mismatch, while the exact native corruption/memory path remains inferred ([evidence](Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md#read-only-investigations--2026-10-16-static--inference)). EnableTuner remains user-managed; this batch does not change it.
+- **Next boundary:** verified B213 source/documents form the commit checkpoint. Deployment and one combined B212/B213 native check remain separate and deferred. Following native review, whole-city Tourism is the next proposal, then Culture Network; neither is implementation-authorized here. Commerce D0050 remains Design-only.
+
+## Historical progress — B205–B212 checkpoint
+
 
 **Role-switch checkpoint (2026-10-16, prepared by the Claude Primary session at the user's request).** Durable state for the next session:
 - **Git.** develop is clean and pushed. main = B069.96 (stable), untouched.

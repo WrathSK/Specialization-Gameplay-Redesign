@@ -3,6 +3,12 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+import re
+import socket
+import struct
+import contextlib
+import io
+from unittest import mock
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -29,6 +35,42 @@ class FakeClock:
         self.now += seconds
 
 
+def frame(tag, text):
+    payload = text.encode('utf-8')
+    return struct.pack('<II', len(payload), tag) + payload
+
+
+class TraceSocket:
+    """Native reply fixture; the real reader still parses commands/frames/errors."""
+    def __init__(self, rows, clock, window, done=True):
+        self.rows, self.clock, self.window, self.done = rows, clock, window, done
+        self.incoming = bytearray(frame(4, '70\0GameCore_Tuner\0'))
+        self.sent = []
+        self.closed = False
+
+    def settimeout(self, value):
+        pass
+
+    def sendall(self, value):
+        text = value[8:].rstrip(b'\0').decode()
+        self.sent.append(text)
+        if text.startswith('CMD:'):
+            marker = re.search(r"print\('([^']+)'\.\.s\)", text).group(1)
+            for row in self.rows + (['DONE'] if self.done else []):
+                self.incoming.extend(frame(0xffffffff, '0\0' + marker + row + '\0'))
+
+    def recv(self, size):
+        if not self.incoming:
+            self.clock.now += self.window
+            raise socket.timeout()
+        result = bytes(self.incoming[:size])
+        del self.incoming[:size]
+        return result
+
+    def close(self):
+        self.closed = True
+
+
 class CollectorTests(unittest.TestCase):
     def setUp(self):
         (ROOT / 'local').mkdir(exist_ok=True)
@@ -48,7 +90,7 @@ class CollectorTests(unittest.TestCase):
 
     def test_dedup_population_and_cost_alerts(self):
         first = self.session.add(TRAIN % (1, 'UI_ROW', 16, '1'), 'snap')
-        self.assertIn('COST_MISMATCH native=1 definition=60', first)
+        self.assertIn('COST_FLOOR_OBSERVED native=1 definition_base=60', first)
         self.assertIsNone(self.session.add(TRAIN % (1, 'UI_ROW', 16, '1'), 'live'))
         again = self.session.add(TRAIN % (2, 'MARKER_AFTER', 16, '1'), 'live')
         self.assertNotIn('!!', again)  # same mismatch reported once
@@ -71,6 +113,7 @@ class CollectorTests(unittest.TestCase):
             step = script.pop(0) if script else 'down'
             if step == 'down':
                 raise reader.CaptureError('SOCKET_UNAVAILABLE')
+            on_record(reader.PREFIX + 'LISTENING seconds=' + str(record_seconds))
             clock.now += record_seconds
             on_record(snap(1, TRAIN % (1, 'UI_ROW', 16, '60')))
             on_record(reader.PREFIX + 'DONE')
@@ -97,6 +140,96 @@ class CollectorTests(unittest.TestCase):
         self.assertIn('trace_error', events)
         self.assertIn('NATIVE_FUNCTION_UNAVAILABLE', events)
 
+    def actual_capture(self, clock, responses, sockets):
+        """Use production reader.capture: errors return ERROR + DONE, not exceptions."""
+        def capture(mode, on_record, record_seconds):
+            rows = responses.pop(0) if len(responses) > 1 else responses[0]
+            fake = TraceSocket(rows, clock, record_seconds)
+            sockets.append(fake)
+            return reader.capture(mode, connect=lambda *a, **kw: fake, clock=clock,
+                                  on_record=on_record, record_seconds=record_seconds)
+        return capture
+
+    def test_actual_reader_trace_unavailable_is_throttled_without_false_connected(self):
+        clock, out, sockets = FakeClock(), [], []
+        reason = collector.run(self.session,
+                               capture=self.actual_capture(clock, [['ERROR TRACE_UNAVAILABLE']], sockets),
+                               clock=clock, sleep=clock.sleep, retry=5, max_seconds=15, out=out.append)
+        self.assertEqual(reason, 'MAX_DURATION')
+        self.assertEqual(len(sockets), 3)  # t=0,5,10, never an immediate spin
+        self.assertTrue(all(fake.closed for fake in sockets))
+        self.assertEqual(sum(len(fake.sent) for fake in sockets), 9)
+        self.assertFalse(any('Connected' in line for line in out))
+        self.assertEqual(sum('Waiting' in line for line in out), 1)
+        events = (self.session.directory / 'events.jsonl').read_text()
+        self.assertEqual(events.count('"trace_error"'), 3)
+        self.assertNotIn('"connected"', events)
+
+    def test_actual_reader_invalid_trace_stops_instead_of_retrying(self):
+        for error in ('TRACE_SCHEMA_INVALID', 'TRACE_ENTRIES_INVALID',
+                      'TRACE_ENTRIES_SPARSE', 'TRACE_ENTRY_INVALID 3', 'TRACE_ENTRIES_OVER_LIMIT'):
+            with self.subTest(error=error):
+                clock, out, sockets = FakeClock(), [], []
+                reason = collector.run(self.session,
+                                       capture=self.actual_capture(clock, [['ERROR ' + error]], sockets),
+                                       clock=clock, sleep=clock.sleep, retry=5, max_seconds=15, out=out.append)
+                self.assertEqual(reason, error.split()[0])
+                self.assertEqual(len(sockets), 1)
+                self.assertTrue(sockets[0].closed)
+                self.assertEqual(clock.now, 0)
+                self.assertTrue(any('collection stopped' in line for line in out))
+                self.assertFalse(any('Connected' in line for line in out))
+
+    def test_invalid_trace_followed_by_disconnect_still_stops(self):
+        clock, out = FakeClock(), []
+        fake = TraceSocket(['ERROR TRACE_SCHEMA_INVALID'], clock, 10, done=False)
+        def capture(mode, on_record, record_seconds):
+            return reader.capture(mode, connect=lambda *a, **kw: fake, clock=clock,
+                                  on_record=on_record, record_seconds=record_seconds)
+        reason = collector.run(self.session, capture=capture, clock=clock, sleep=clock.sleep,
+                               window=10, max_seconds=15, out=out.append)
+        self.assertEqual(reason, 'TRACE_SCHEMA_INVALID')
+        self.assertEqual(len(fake.sent), 3)
+        self.assertTrue(fake.closed)
+        self.assertNotIn('Connected', '\n'.join(out))
+
+    def test_cli_reports_nonzero_for_invalid_trace(self):
+        with mock.patch.object(collector, 'Session', return_value=self.session), \
+             mock.patch.object(collector, 'run', return_value='TRACE_SCHEMA_INVALID'), \
+             mock.patch.object(collector.signal, 'signal'), contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(collector.main([]), 1)
+        summary = (self.session.directory / 'summary.txt').read_text()
+        self.assertIn('end_reason: TRACE_SCHEMA_INVALID', summary)
+
+    def test_actual_reader_recovers_once_trace_becomes_available(self):
+        clock, out, sockets = FakeClock(), [], []
+        responses = [['ERROR TRACE_UNAVAILABLE'],
+                     ['META schema=205 sequence=1', 'ENTRY 1 ' + TRAIN % (1, 'UI_ROW', 16, '75')]]
+        reason = collector.run(self.session, capture=self.actual_capture(clock, responses, sockets),
+                               clock=clock, sleep=clock.sleep, window=10, retry=5,
+                               max_seconds=15, out=lambda line: out.append((clock.now, line)))
+        self.assertEqual(reason, 'MAX_DURATION')
+        self.assertEqual(len(sockets), 2)
+        self.assertEqual([(t, line) for t, line in out if 'Connected' in line],
+                         [(5, 'Connected to the game; collecting. Press Ctrl-C to stop.')])
+        self.assertEqual(len(self.session.seen), 1)
+        self.assertEqual(self.session.alerts, [])
+
+    def test_silent_nonlistening_return_is_not_collection_success(self):
+        out = []
+        reason = collector.run(self.session, capture=lambda *a, **kw: [], out=out.append)
+        self.assertEqual(reason, 'CAPTURE_PROTOCOL_INVALID')
+        self.assertFalse(any('Connected' in line for line in out))
+
+    def test_progressed_native_costs_are_not_compared_to_base_as_errors(self):
+        for i, cost in enumerate(('60', '75', '90', '45'), 1):
+            with self.subTest(cost=cost):
+                line = self.session.add(TRAIN % (i, 'UI_ROW', 16, cost), 'snap')
+                self.assertIn('base/nativeCost=60/' + cost, line)
+                self.assertNotIn('!!', line)
+        self.assertEqual(self.session.alerts, [])
+        self.assertEqual(self.session.cost_seen, set())
+
     def test_loading_context_timeout_counts_as_waiting(self):
         clock = FakeClock()
         out = []
@@ -115,6 +248,7 @@ class CollectorTests(unittest.TestCase):
         out = []
 
         def capture(mode, on_record=None, record_seconds=None):
+            on_record(reader.PREFIX + 'LISTENING seconds=' + str(record_seconds))
             clock.now += record_seconds
             for _ in range(3):
                 on_record(reader.HD_PREFIX + '北京 人口变化 1')
@@ -142,6 +276,7 @@ class CollectorTests(unittest.TestCase):
             step = script.pop(0) if script else reader.CaptureError('SOCKET_UNAVAILABLE')
             if step != 'up':
                 raise step
+            on_record(reader.PREFIX + 'LISTENING seconds=' + str(record_seconds))
             clock.now += record_seconds
             on_record(TRAIN % (len(script), 'LOAD_CLOSE', 16, '1'))
 
@@ -161,6 +296,18 @@ class CollectorTests(unittest.TestCase):
         self.assertIn('gate_prints: 2', text)
         self.assertIn('gate: TASK:WORKS x1', text)
         self.assertIn('gate: SPY:DISPATCH x1', text)
+
+    def test_insight_summary_and_items_are_saved_in_order(self):
+        lines = ['[SPC][B191][N1_INSIGHT] status=KNOWN owner=0 city=1 historical=2 effective=2',
+                 '[SPC][B191][N1_INSIGHT] civ=CIVILIZATION_X category=WORKS effective=true']
+        for line in lines:
+            self.session.add_gate(reader.GATE_PREFIX + line)
+        text = self.session.summary('TEST')
+        self.assertIn('gate: INSIGHT:KNOWN x1', text)
+        self.assertIn('gate: INSIGHT:WORKS x1', text)
+        records = (self.session.directory / 'records.log').read_text().splitlines()
+        self.assertTrue(records[0].endswith(lines[0]))
+        self.assertTrue(records[1].endswith(lines[1]))
 
     def test_session_must_stay_under_local(self):
         with self.assertRaises(reader.CaptureError):

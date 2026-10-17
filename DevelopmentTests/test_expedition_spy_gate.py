@@ -291,7 +291,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select PrereqBuilding,NumSupported from Unit_BuildingPrereqs where Unit=?',(k,)).fetchall(),[('BUILDING_SPC_EXPEDITION_TRAINING_ACCESS',1)])
         db.close()
     def test_package_active_entry_points_art_and_localization(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'239')
+        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(m.attrib['version'],'240')
         files=[e.text for e in m.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
         for e in m.findall('.//File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
         active=[e.text for e in m.findall('./InGameActions/AddUserInterfaces/File')]

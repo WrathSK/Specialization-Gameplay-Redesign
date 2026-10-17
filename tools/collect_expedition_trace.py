@@ -107,14 +107,17 @@ class Session:
             self.last_population[city] = int(pop)
         native, definition = f.get('nativeCost'), f.get('definitionCost')
         if native and definition and native.isdigit() and definition.isdigit() \
-                and native != definition and (native, definition) not in self.cost_seen:
+                and int(native) == 1 and int(definition) > 1 \
+                and (native, definition) not in self.cost_seen:
             self.cost_seen.add((native, definition))
-            alerts.append('COST_MISMATCH native=%s definition=%s first_stage=%s seq=%s'
+            # Definition is a base cost, not the next-copy/modified native price.
+            # Flag the observed floor anomaly only; do not invent a cost formula.
+            alerts.append('COST_FLOOR_OBSERVED native=%s definition_base=%s first_stage=%s seq=%s'
                           % (native, definition, stage, f.get('seq')))
         for text in alerts:
             self.alerts.append(text)
             self.event('alert', text=text)
-        line = '%s %-18s T%s city=%s pop=%s cost=%s/%s phase=%s' % (
+        line = '%s %-18s T%s city=%s pop=%s base/nativeCost=%s/%s phase=%s' % (
             stamp, stage, f.get('turn', '?'), city or '-', pop or '-',
             definition or '?', native or '?', f.get('phase', '-'))
         return '\n'.join([line] + ['  !! ' + a for a in alerts])
@@ -137,7 +140,7 @@ class Session:
         text = line[len(reader.GATE_PREFIX):]
         self.gate_total += 1
         kind = re.search(r'\[N1_([A-Z_]+)\]', text)
-        detail = re.search(r'(?:action|mission|outcome|code)=([A-Za-z_]+)', text)
+        detail = re.search(r'(?:action|mission|outcome|code|status|category)=([A-Za-z_]+)', text)
         self.gate[(kind.group(1) if kind else '?') + ':' + (detail.group(1) if detail else '?')] += 1
         if self.gate_total > MAX_HD_LOGGED:
             return None
@@ -179,8 +182,11 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
         now = clock()
         if now - start >= max_seconds:
             return 'MAX_DURATION'
+        trace_errors = []
+        listening = False
         try:
             def on_record(line):
+                nonlocal listening, connected_once, last_ok, waiting_reported, last_wait
                 record = train_line(line)
                 if record:
                     shown = session.add(record, 'snap' if 'ENTRY ' in line else 'live')
@@ -199,12 +205,46 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                     session.hd_dropped += int(dropped) if dropped.isdigit() else 0
                 elif line.startswith(reader.PREFIX + 'ERROR '):
                     session.event('trace_error', line=line)
+                    code = line[len(reader.PREFIX + 'ERROR '):].split()
+                    trace_errors.append(code[0] if code else 'TRACE_ERROR_INVALID')
+                elif line.startswith(reader.PREFIX + 'LISTENING '):
+                    # Transport success / DONE alone does not mean a valid trace.
+                    listening = True
+                    if not connected_once or waiting_reported:
+                        out('Connected to the game; collecting. Press Ctrl-C to stop.')
+                        session.event('connected')
+                    connected_once, last_ok, waiting_reported, last_wait = True, clock(), False, None
             capture('record', on_record=on_record, record_seconds=window)
-            if not connected_once:
-                out('Connected to the game; collecting. Press Ctrl-C to stop.')
-                session.event('connected')
-            connected_once, last_ok, waiting_reported, last_wait = True, clock(), False, None
+            invalid = next((code for code in trace_errors if code != 'TRACE_UNAVAILABLE'), None)
+            if invalid:
+                out('Trace snapshot invalid (%s); collection stopped.' % invalid)
+                session.event('trace_stopped', code=invalid)
+                return invalid
+            if trace_errors:
+                # The reader returns ERROR + DONE normally when the ring is absent.
+                # Treat it like a loading wait, not a successful passive window.
+                if last_wait != ('TRACE_UNAVAILABLE', 'SNAPSHOT'):
+                    session.event('waiting', code='TRACE_UNAVAILABLE', phase='SNAPSHOT')
+                    last_wait = ('TRACE_UNAVAILABLE', 'SNAPSHOT')
+                if not waiting_reported:
+                    out('Waiting for the Expedition trace to become available...')
+                    waiting_reported = True
+                if connected_once:
+                    last_ok = clock()  # The game answered; it has not exited.
+                sleep(retry)
+                continue
+            if not listening:
+                session.event('trace_stopped', code='CAPTURE_PROTOCOL_INVALID')
+                out('Capture ended without a listening window; collection stopped.')
+                return 'CAPTURE_PROTOCOL_INVALID'
+            last_ok = clock()
         except reader.CaptureError as error:
+            invalid = next((code for code in trace_errors if code != 'TRACE_UNAVAILABLE'), None)
+            if invalid:
+                session.event('capture_error', code=str(error), phase=error.phase)
+                session.event('trace_stopped', code=invalid)
+                out('Trace snapshot invalid (%s); collection stopped.' % invalid)
+                return invalid
             code = str(error)
             # Refused: nothing listens, the game is gone or not started yet.
             # Closed/handshake timeout: the process is alive (e.g. loading a save).
@@ -250,7 +290,7 @@ def main(argv=None):
     finally:
         print(session.summary(reason), flush=True)
         session.close()
-    return 0
+    return 0 if reason in ('INTERRUPTED', 'GAME_EXITED', 'MAX_DURATION') else 1
 
 
 if __name__ == '__main__':

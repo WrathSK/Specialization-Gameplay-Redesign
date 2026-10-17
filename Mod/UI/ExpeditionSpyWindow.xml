@@ -119,6 +119,7 @@
    <Container ID="MissionContent" Anchor="L,T" Size="parent,76" ConsumeMouse="0">
     <Grid Size="55,55" Offset="7,7" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
      <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_UNITOPERATION_SPY_GAIN_SOURCES" />
+     <Image ID="MissionCivilizationIcon" Anchor="C,C" Size="36,36" IconSize="36" Hidden="1" />
     </Grid>
     <Stack ID="DetailsStack" StackGrowth="Down" Offset="70,7">
      <Label ID="MissionName" Style="FontNormal16" WrapWidth="192" />
@@ -145,6 +146,10 @@
   </GridButton>
  </Instance>
  <Instance Name="SPCExpeditionDistrict">
-  <Image ID="DistrictIcon" Size="32,32" IconSize="32" Texture="Districts32" />
+  <Container ID="DistrictIcon" Size="32,32">
+   <Image ID="WonderIcon" Anchor="C,C" Size="32,32" IconSize="32" Hidden="1" />
+   <Image ID="WorksIcon" Anchor="C,C" Size="20,20" IconSize="20" Hidden="1" />
+   <Image ID="CivilizationIcon" Anchor="C,C" Size="30,30" IconSize="30" Hidden="1" />
+  </Container>
  </Instance>
 </Context>

@@ -288,6 +288,28 @@ class RecorderTests(unittest.TestCase):
         self.assertTrue(reader.hd_line('[SPC][B191][N1_SPY] action=DISPATCH owner=2 unit=40 phase=TRAVELLING error=nil').startswith(reader.GATE_PREFIX))
         self.assertIsNone(reader.hd_line('[SPC][B191][N1_OTHER] secret'))
 
+    def test_insight_report_passive_allowlist_and_existing_bounds(self):
+        summary = '[SPC][B191][N1_INSIGHT] status=KNOWN owner=0 city=1 historical=192 effective=192'
+        items = ['[SPC][B191][N1_INSIGHT] civ=CIVILIZATION_%d category=WORKS effective=true' % i
+                 for i in range(192)]
+        lines = [summary] + items
+        extra = b''.join(frame(0xffffffff, '0\0GameCore: ' + line + '\0') for line in lines)
+        fake, clock = self.fixture(extra)
+        seen = []
+        self.capture(fake, clock=clock, record_seconds=1, on_record=seen.append)
+        self.assertEqual([x for x in seen if x.startswith(reader.GATE_PREFIX)],
+                         [reader.GATE_PREFIX + line for line in lines])
+        self.assertIn('hd_records=193 hd_dropped=0', seen[-1])
+        self.assertEqual(sum(text.startswith('CMD:') for _, text in fake.sent), 1)
+        self.assertIsNone(reader.hd_line('[SPC][B191][N1_INSIGHT] ' + 'x' * 401))
+        self.assertIsNone(reader.hd_line('[SPC][B191][N1_INSIGHT] status=KNOWN\x01secret'))
+        fake, clock = self.fixture(extra)
+        seen = []
+        with mock.patch.object(reader, 'MAX_HD_RECORDS', 2):
+            self.capture(fake, clock=clock, record_seconds=1, on_record=seen.append)
+        self.assertEqual(len([x for x in seen if x.startswith(reader.GATE_PREFIX)]), 2)
+        self.assertIn('hd_records=2 hd_dropped=191', seen[-1])
+
     def test_quiet_window_not_pass(self):
         fake,clock=self.fixture();seen=[]
         self.capture(fake,clock=clock,record_seconds=1,on_record=seen.append)

@@ -12,6 +12,7 @@ from lupa.lua55 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / 'Mod' / 'UI'
 ROWS = (
+    ('CultureInsightsButton',),
     ('SourceYieldButton', 'GovernorButton', 'SpecialistsButton'),
     ('GWReadButton', 'AestheticButton', 'MeaningProbeButton'),
     ('MeaningConfigButton', 'GWCityButton', 'ExpeditionGateButton'),
@@ -121,7 +122,7 @@ class CurrentPanelTests(unittest.TestCase):
             with self.subTest(retired=control_id):
                 self.assertTrue(lua.globals().Controls[control_id].hidden)
 
-    def test_three_columns_three_rows_and_report_do_not_overlap(self):
+    def test_four_rows_and_report_do_not_overlap(self):
         tree = ET.parse(PANEL / 'P0Panel.xml')
         window = tree.getroot().find("Container[@ID='Window']")
         self.assertEqual(window.get('Size'), '840,664')
@@ -131,7 +132,7 @@ class CurrentPanelTests(unittest.TestCase):
             for column, control_id in enumerate(row):
                 button = buttons[control_id]
                 self.assertEqual(button.get('Anchor'), 'L,B')
-                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{98 - row_number * 40}')
+                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{138 - row_number * 40}')
                 self.assertEqual(button.get('Size'), '240,32')
                 x, bottom = map(int, button.get('Offset').split(','))
                 width, height = map(int, button.get('Size').split(','))
@@ -139,8 +140,8 @@ class CurrentPanelTests(unittest.TestCase):
                 rectangles.append((control_id, x, y, x + width, y + height))
         report = window.find("ScrollPanel[@ID='ReportScroll']")
         self.assertEqual(report.get('Offset'), '18,58')
-        self.assertEqual(report.get('Size'), '804,460')
-        report_bottom = 58 + 460
+        self.assertEqual(report.get('Size'), '804,420')
+        report_bottom = 58 + 420
         for control_id, x1, y1, x2, y2 in rectangles:
             with self.subTest(control=control_id):
                 self.assertGreaterEqual(x1, 0)
@@ -153,6 +154,11 @@ class CurrentPanelTests(unittest.TestCase):
                     separated = (first[3] <= second[1] or second[3] <= first[1]
                                  or first[4] <= second[2] or second[4] <= first[2])
                     self.assertTrue(separated)
+
+    def test_culture_insights_uses_selected_city_read_only_request(self):
+        _, lua = panel_runtime()
+        lua.execute("Controls.CultureInsightsButton.callbacks[Mouse.eLClick]();assert(#requests==1 and requests[1].Action=='CULTURE_INSIGHTS_READ' and requests[1].CityID==11)")
+        lua.execute("selectedCity=nil;Controls.CultureInsightsButton.callbacks[Mouse.eLClick]();assert(#requests==1)")
 
     def test_inspiration_and_dialogue_are_current_read_only_reports(self):
         _, lua = panel_runtime()

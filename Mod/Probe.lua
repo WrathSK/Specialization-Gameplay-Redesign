@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-205.232"
+P.VERSION = "P0-B-213.240"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -562,4 +562,57 @@ function P.RouteUnitRelevant(pid,id)
  local good,info=pcall(function() return P.Info('Units',u:GetType()) end)
  if not good or not info or info.MakeTradeRoute==nil then return true end
  return info.MakeTradeRoute==true or info.MakeTradeRoute==1
+end
+
+-- B213: explicit selected-city report only. No team, effect writer or event scan.
+function P.DescribeCultureInsights(pid,city,store)
+ local ok,report,logs=pcall(function()
+  assert(city and city:GetOwner()==pid,'INSIGHT_CITY_UNAVAILABLE')
+  assert(store and type(store.ExpeditionInsights)=='function','INSIGHT_STORE_UNAVAILABLE')
+  local cfg=PlayerConfigurations and PlayerConfigurations[pid]
+  local own=cfg and cfg:GetCivilizationTypeName()
+  assert(type(own)=='string' and own:match('^CIVILIZATION_[A-Z0-9_]+$'),'INSIGHT_OWNER_UNKNOWN')
+  local records=store.ExpeditionInsights(pid,city)
+  assert(type(records)=='table','INSIGHT_HISTORY_UNKNOWN')
+  local keys,groups={},{}
+  local labels={PEOPLE='风土考察',WORKS='艺文采撷',PLACES='奇观巡礼'}
+  local effective=0
+  for key,v in pairs(records)do
+   assert(type(v)=='table' and type(v.civ)=='string' and v.civ:match('^CIVILIZATION_[A-Z0-9_]+$')
+    and labels[v.category] and key==v.civ..':'..v.category,'INSIGHT_HISTORY_INVALID')
+   keys[#keys+1]=key;assert(#keys<=192,'INSIGHT_HISTORY_LIMIT')
+   groups[v.civ]=groups[v.civ] or {};groups[v.civ][v.category]=true
+   if v.civ~=own then effective=effective+1 end
+  end
+  table.sort(keys)
+  local civs={};for civ in pairs(groups)do civs[#civs+1]=civ end;table.sort(civs)
+  local function label(key)
+   local found=Locale and Locale.Lookup and Locale.Lookup(key)
+   return found or key
+  end
+  local lines={label('LOC_SPC_CULTURE_INSIGHTS_TITLE')..' · '..label(city:GetName()),
+   '历史记录：'..#keys..'份　当前有效：'..effective..'份',
+   '自身文明的记录保留，但不计入当前有效数量。',
+   '整城旅游业绩与文化网络效果尚未实施；此处只展示见闻记录。'}
+  if #keys==0 then lines[#lines+1]='本城尚无成功考察记录。' end
+  for _,civ in ipairs(civs)do
+   local row=GameInfo and GameInfo.Civilizations and GameInfo.Civilizations[civ]
+   local names={};for _,category in ipairs({'PEOPLE','WORKS','PLACES'})do
+    names[#names+1]=labels[category]..(groups[civ][category] and '：已完成' or '：未完成')
+   end
+   lines[#lines+1]=label(row and row.Name or civ)..(civ==own and '（自身文明，暂不计入）' or '')
+   lines[#lines+1]=table.concat(names,'　')
+  end
+  local out={'status=KNOWN owner='..pid..' city='..city:GetID()..' historical='..#keys..' effective='..effective}
+  for _,key in ipairs(keys)do local v=records[key]
+   out[#out+1]='civ='..v.civ..' category='..v.category..' effective='..tostring(v.civ~=own)
+  end
+  return table.concat(lines,'\n'),out
+ end)
+ if not ok then
+  print('[SPC][B191][N1_INSIGHT] status=UNKNOWN')
+  return '文化见闻暂不可读（UNKNOWN）；未将未知历史显示为0。请选中己方城市后再读取。'
+ end
+ for _,line in ipairs(logs)do print('[SPC][B191][N1_INSIGHT] '..line)end
+ return report
 end

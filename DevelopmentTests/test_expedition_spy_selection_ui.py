@@ -56,7 +56,7 @@ class Selection(unittest.TestCase):
           assert(Controls.NormalTravelTime.text=='4' and row.MissionTurns.text=='2')
           assert(row.MissionName.text:find('MISSION_PEOPLE_NAME',1,true))
           assert(Controls.NormalDrawerTitle.text:find('NORMAL_MISSION_PREVIEW',1,true))
-          assert(row.MissionIcon.icon=='ICON_UNITOPERATION_SPY_LISTENING_POST')
+          assert(row.MissionIcon.hidden and row.MissionCivilizationIcon.icon=='ICON_CIVILIZATION_TARGET')
           assert(row.MissionButton.disabled and row.SelectorBrace.hidden and not row.MissionContent.hidden)
           local before=sent;local reads=helperCalls;row.MissionButton.click()
           assert(sent==before and helperCalls==reads and nativeCalls==0)
@@ -138,13 +138,13 @@ class LocationPresentation(unittest.TestCase):
         for expression,expected in cases.items():
             with self.subTest(expression=expression):
                 lua=sidebar();add_locations(lua);lua.globals().expectedWonderIcon=expected
-                lua.execute("IconManager={FindIconAtlas=function(self,icon,size)assert(size==32);"+expression+" end}")
+                lua.execute("IconManager={FindIconAtlas=function(self,icon,size)assert(size==32 or size==40);"+expression+" end}")
                 lua.execute("""
                   gateOpen('TRAVEL',40);chooseCity()
                   local icons=instanceManagers.SPCExpeditionDestination.instances[1].iconPool.instances
-                  assert(icons[1].DistrictIcon.icon=='ICON_DISTRICT_CITY_CENTER')
-                  assert(icons[2].DistrictIcon.icon=='ICON_DISTRICT_HOST_1')
-                  assert(icons[3].DistrictIcon.icon==expectedWonderIcon)
+                  assert(icons[1].CivilizationIcon.icon=='ICON_CIVILIZATION_TARGET')
+                  assert(icons[2].WorksIcon.icon=='ICON_GREATWORKOBJECT_WRITING')
+                  assert(icons[3].WonderIcon.icon==expectedWonderIcon)
                   assert(icons[3].DistrictIcon.tooltip==Locale.Lookup('LOC_BUILDING_PYRAMIDS'))
                   assert(not Controls.NormalConfirmButton.disabled and properties==0 and nativeCalls==0)
                 """)
@@ -154,8 +154,60 @@ class LocationPresentation(unittest.TestCase):
         lua.execute("""
           IconManager=nil;gateOpen('TRAVEL',40);chooseCity()
           local icons=instanceManagers.SPCExpeditionDestination.instances[1].iconPool.instances
-          assert(icons[3].DistrictIcon.icon=='ICON_DISTRICT_WONDER')
+          assert(icons[3].WonderIcon.icon=='ICON_DISTRICT_WONDER')
           Controls.NormalConfirmButton.click();assert(nativeCalls==1 and ContextPtr.hidden and properties==0)
+        """)
+
+
+class MissionIconAndUnknownDisplay(unittest.TestCase):
+    def test_header_and_cards_use_mission_assets_without_a_universal_center_icon(self):
+        lua=sidebar();add_locations(lua)
+        lua.execute("""
+          IconManager={FindIconAtlas=function(self,name,size)return 0,0,'fixture.dds' end}
+          gateOpen('TRAVEL',40);chooseCity()
+          local icons=instanceManagers.SPCExpeditionDestination.instances[1].iconPool.instances
+          assert(icons[1].CivilizationIcon.icon=='ICON_CIVILIZATION_TARGET' and not icons[1].CivilizationIcon.hidden)
+          assert(icons[1].WorksIcon.hidden and icons[1].WonderIcon.hidden)
+          assert(icons[2].WorksIcon.icon=='ICON_GREATWORKOBJECT_WRITING' and not icons[2].WorksIcon.hidden)
+          assert(icons[3].WonderIcon.icon=='ICON_BUILDING_PYRAMIDS' and not icons[3].WonderIcon.hidden)
+          local cards=instanceManagers.SPCExpeditionMission.instances
+          assert(cards[1].MissionCivilizationIcon.icon=='ICON_CIVILIZATION_TARGET' and cards[1].MissionIcon.hidden)
+          assert(cards[2].MissionIcon.icon=='ICON_GREATWORKOBJECT_WRITING')
+          assert(cards[3].MissionIcon.icon=='ICON_BUILDING_PYRAMIDS')
+          assert(properties==0 and nativeCalls==0)
+        """)
+        root=ET.parse(R/'Mod/UI/ExpeditionSpyWindow.xml').getroot()
+        district=root.find("./Instance[@Name='SPCExpeditionDistrict']")
+        sizes={e.get('ID'):e.get('IconSize') for e in district.iter() if e.tag=='Image'}
+        self.assertEqual(sizes,{'WonderIcon':'32','WorksIcon':'20','CivilizationIcon':'30'})
+
+    def test_mission_cards_preserve_per_category_known_and_unknown_states(self):
+        lua=sidebar();add_locations(lua)
+        lua.execute("""
+          targetCity.IsCapital=function()return nil end
+          gateOpen('TRAVEL',40);chooseCity()
+          local cards=instanceManagers.SPCExpeditionMission.instances
+          assert(cards[1].MissionDetails.text:find('MISSION_TARGET_UNKNOWN',1,true))
+          assert(cards[2].MissionDetails.text:find('MISSION_AVAILABLE',1,true))
+          assert(cards[3].MissionDetails.text:find('MISSION_AVAILABLE',1,true))
+          Controls.NormalCancelButton.click()
+          targetCity.IsCapital=function()return false end;targetCity.GetBuildings=nil
+          gateOpen('TRAVEL',40);chooseCity();cards=instanceManagers.SPCExpeditionMission.instances
+          assert(cards[1].MissionDetails.text:find('MISSION_NO_TARGET',1,true))
+          assert(cards[2].MissionDetails.text:find('MISSION_TARGET_UNKNOWN',1,true))
+          assert(cards[3].MissionDetails.text:find('MISSION_TARGET_UNKNOWN',1,true))
+          assert(properties==0 and nativeCalls==0)
+        """)
+
+    def test_unknown_activity_fact_is_visible_without_error_or_reward_claim(self):
+        lua=sidebar(arrived=True)
+        lua.execute("""
+          gateOpen('TASK',41)
+          local a=ExposedMembers.SPC_ExpeditionActivity
+          a.missionStatus='UNKNOWN';a.missionReason='MISSION_WORK_TYPE_UNAVAILABLE'
+          activityChanged()
+          assert(Controls.NormalSummary.text:find('MISSION_FACTS_UNKNOWN',1,true))
+          assert(ExposedMembers.SPC_ExpeditionActivity.phase=='ARRIVED' and properties==0 and nativeCalls==0)
         """)
 
 
@@ -166,7 +218,7 @@ class AcceptedTaskClose(unittest.TestCase):
           gateOpen('TASK',41);chooseTask();Controls.NormalConfirmButton.click()
           local packet=lastPacket;local a=ExposedMembers.SPC_ExpeditionActivity
           assert(packet.Action=='TASK' and ContextPtr.hidden and a.phase=='TASK_PREPARING')
-          assert(a.activityKey==a.teamKey..':task1' and not a.taskStart and not a.taskDue)
+          assert(a.activityKey:sub(1,#a.teamKey)==a.teamKey and a.activityKey:match(':attempt%d+$') and not a.taskStart and not a.taskDue)
           handler(2,{Action='ACTIVITY',Token=packet.Token..':arm',UnitID=41,ActivityKey=a.activityKey,Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1})
           handler(2,{Action='ACTIVITY',Token=packet.Token..':sleep',UnitID=41,
            ActivityKey=a.activityKey,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})

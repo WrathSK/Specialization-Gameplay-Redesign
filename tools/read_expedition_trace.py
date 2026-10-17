@@ -31,8 +31,8 @@ HD_PREFIX = '[SPC][B206][HD] '
 # B206: fixed allowlist of HD population/hospital print shapes (game text only).
 HD_PATTERNS = (re.compile(r'\S{1,40} 人口变化 -?\d{1,6}$'), re.compile(r'中心医院 [^\x00-\x1f]{1,120}$'))
 GATE_PREFIX = '[SPC][B212][GATE] '
-# B212: the Expedition Gate's own fixed-format action/task prints (dispatch, task, completion, return).
-GATE_PATTERN = re.compile(r'\[SPC\]\[B191\]\[N1_(?:SPY|SPY_ERROR|SPY_REQUEST|TASK)\] [^\x00-\x1f]{1,400}$')
+# Expedition Gate fixed-format action/task prints and explicitly requested Insight reports.
+GATE_PATTERN = re.compile(r'\[SPC\]\[B191\]\[N1_(?:SPY|SPY_ERROR|SPY_REQUEST|TASK|INSIGHT)\] [^\x00-\x1f]{1,400}$')
 MAX_FRAMES = 4096
 PREFIX = '[SPC][B205][READ] '
 TRAIN_PREFIX = '[SPC][B205][TRAIN] '

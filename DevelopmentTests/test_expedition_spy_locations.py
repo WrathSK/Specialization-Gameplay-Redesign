@@ -78,17 +78,17 @@ def locations():
 
 
 class LocationSnapshot(unittest.TestCase):
-    def test_center_positive_work_host_and_each_completed_wonder(self):
+    def test_only_available_missions_use_civilization_greatwork_and_actual_wonder_icons(self):
         lua=locations()
         lua.execute("""
           local v=locationSnapshot()
           assert(v.locationStatus=='READABLE' and v.locationReason==nil and #v.districts==4)
-          local expected={'ICON_DISTRICT_CITY_CENTER','ICON_DISTRICT_HOST_1','ICON_BUILDING_PYRAMIDS','ICON_BUILDING_GREAT_LIBRARY'}
+          local expected={'ICON_CIVILIZATION_TARGET','ICON_GREATWORKOBJECT_WRITING','ICON_BUILDING_PYRAMIDS','ICON_BUILDING_GREAT_LIBRARY'}
           for i,icon in ipairs(expected)do assert(v.districts[i].icon==icon)end
           -- Work-bearing Wonders are one icon each; unsupported and unfinished
           -- buildings do not create false work locations.
           assert(v.districts[3].kind=='WONDER' and v.districts[4].kind=='WONDER')
-          assert(v.total==4 and districtReads==1 and buildingLocationReads==6 and slotReads==3 and workReads==3)
+          assert(v.total==4 and districtReads==1 and buildingLocationReads==6 and slotReads==5 and workReads==6)
           assertNoLocationWrites()
         """)
 
@@ -96,7 +96,7 @@ class LocationSnapshot(unittest.TestCase):
         lua=locations()
         lua.execute("""
           GameInfo.Buildings[1101].PrereqDistrict='DISTRICT_THEATER'
-          local v=locationSnapshot();assert(v.districts[2].icon=='ICON_DISTRICT_HOST_1')
+          local v=locationSnapshot();assert(v.districts[2].icon=='ICON_GREATWORKOBJECT_WRITING' and v.sites.WORKS.x==16 and v.sites.WORKS.workID==100)
           assertNoLocationWrites()
         """)
 
@@ -118,11 +118,11 @@ class LocationSnapshot(unittest.TestCase):
           assert(v.districts[2].icon=='ICON_BUILDING_PYRAMIDS');assertNoLocationWrites()
         """)
 
-    def test_empty_known_slots_are_readable_and_not_work_locations(self):
+    def test_empty_ordinary_slots_still_allow_eligible_work_in_wonder(self):
         lua=locations()
         lua.execute("""
           slotData[1101]={-1,-1};local v=locationSnapshot()
-          assert(v.locationStatus=='READABLE' and #v.districts==3);assertNoLocationWrites()
+          assert(v.locationStatus=='READABLE' and #v.districts==4 and v.sites.WORKS.building=='BUILDING_PYRAMIDS');assertNoLocationWrites()
         """)
 
     def test_missing_api_or_read_failure_is_unknown_not_false_empty(self):
@@ -143,7 +143,7 @@ class LocationSnapshot(unittest.TestCase):
         for change,reason in changes.items():
             with self.subTest(change=change):
                 lua=locations();lua.globals().expectedLocationReason=reason
-                lua.execute(change+";local v=locationSnapshot();assert(v.locationStatus=='UNKNOWN' and v.locationReason==expectedLocationReason, tostring(v.locationReason));assert(v.districts[1].icon=='ICON_DISTRICT_CITY_CENTER' and v.total==4);assertNoLocationWrites()")
+                lua.execute(change+";local v=locationSnapshot();assert(v.locationStatus=='UNKNOWN' and v.locationReason==expectedLocationReason, tostring(v.locationReason));assert(v.districts[1].icon=='ICON_CIVILIZATION_TARGET' and v.total==4);assertNoLocationWrites()")
 
     def test_unrevealed_unmet_or_changed_target_does_not_sample_locations(self):
         for change in ['visible=false','met=false','targetCity.owner=4','targetCity.x=16']:
@@ -167,10 +167,43 @@ class LocationSnapshot(unittest.TestCase):
         lua.execute("""
           local v=locationSnapshot()
           for _,item in ipairs(v.districts)do
-           for key in pairs(item)do assert(key=='icon' or key=='name' or (key=='kind' and item.kind=='WONDER'))end
+           for key in pairs(item)do assert(key=='icon' or key=='name' or key=='category' or (key=='kind' and item.kind=='WONDER'))end
            assert(not item.name:find('Private',1,true))
           end
           assertNoLocationWrites()
+        """)
+
+    def test_no_mission_qualification_does_not_invent_center_or_generic_city_icon(self):
+        lua=locations()
+        lua.execute("""
+          targetCity.IsCapital=function()return false end
+          for key in pairs(slotData)do slotData[key]={}end
+          presentBuildings[2000]=false;presentBuildings[2001]=false
+          local v=locationSnapshot();assert(v.locationStatus=='READABLE' and #v.districts==0)
+          assert(next(v.sites)==nil);assertNoLocationWrites()
+        """)
+
+    def test_unknown_capital_does_not_suppress_independent_work_and_wonder_facts(self):
+        for change in ["targetCity.IsCapital=nil", "targetCity.IsCapital=function()return nil end", "targetCity.IsCapital=function()error('unavailable')end"]:
+            with self.subTest(change=change):
+                lua=locations();lua.execute(change)
+                lua.execute("""
+                  local v=locationSnapshot()
+                  assert(v.locationStatus=='UNKNOWN' and v.locationReason=='LOCATION_CAPITAL_UNKNOWN')
+                  assert(v.siteStatus.PEOPLE=='UNKNOWN' and not v.sites.PEOPLE)
+                  assert(v.siteStatus.WORKS=='VALID' and v.siteStatus.PLACES=='VALID')
+                  assert(v.sites.WORKS.workID==100 and v.sites.PLACES.building=='BUILDING_PYRAMIDS')
+                  assert(#v.districts==3 and districtReads==1 and v.total==4);assertNoLocationWrites()
+                """)
+
+    def test_known_noncapital_stays_invalid_when_building_read_is_unknown(self):
+        lua=locations();lua.execute("""
+          targetCity.IsCapital=function()return false end
+          targetCity.GetBuildings=nil
+          local v=locationSnapshot()
+          assert(v.locationStatus=='UNKNOWN' and v.siteStatus.PEOPLE=='INVALID')
+          assert(v.siteStatus.WORKS=='UNKNOWN' and v.siteStatus.PLACES=='UNKNOWN')
+          assert(not v.sites.PEOPLE and #v.districts==0);assertNoLocationWrites()
         """)
 
     def test_unknown_preview_does_not_become_a_dispatch_gate(self):

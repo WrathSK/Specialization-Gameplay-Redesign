@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "978c58b5f8ce89737671e6a94a0fca3db7855bc12d056e3b564b7023c1eaadfb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
-      "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
+      "sha256": "c307f57357be32aa68c4cfb557e7c020e456383c615861fa379cde2d9078d6fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "b93c1bb46f3f10f41a6c119184f27b5900742e05a519da0fe8c0fcd276988602",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+      "sha256": "e87cfbb65d31360eb4f8ceac7e4ad186975682619d9f97ace78f782ed5b0ca29",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "86304fd9522c7bd12b0cd89f6a1ad01c025e6d578f9b75a3620c370cebff560a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "6713c5eac1c5d2254053450a9998b49611a12e90487c6517ce04ded5e0ad92b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "142f3fd4d70b172de56790a3bb6893c1f80b3b4d7ed2ebe44392121a4b820a2a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "f13080dfa630d6c4d544349f9efe40a2c2c81c4ae17f2341ab03dc3c698b22d3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "1af60e0fdc92f3f68148e84400d9ab44c92ad30d1a54f0eecb161fe306bea7d5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Window_Visibility.md",
-      "provenance": "B180 authorized N1 UI root visibility and acknowledged handoff; targeted local regressions. No Gameplay change; native rendering pending."
+      "sha256": "d1b4ae875aaf8345eea032eb2424626c6f35a3c76617b35d8f138c86d0df5899",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "b5a3c39b5a19d3184d517a5f666184d62ecef5dd5c006a1896f322d477e7c127",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B179_N1_Entry_Repair.md",
-      "provenance": "B179 UI-only entry/caption/visibility repair; direct current panel/window and targeted tests reviewed. Native UI pending."
+      "sha256": "3364259ca6d8a7e227d372abae7b2edc0239c8d4d893df435848c4f095715991",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -721,19 +721,19 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "8167c2de23c9037a011fc72a3b0aa98ea8907f37debe54d250a6293c687b274a",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
+      "sha256": "e64993b708a779349a7a3c924b1e9a25c3c311918fb75c8885dfb9b2aa22fb42",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/InstitutionOverview.lua": {
-      "sha256": "5767e891988dedb2d543025c58753aa088360e50e8797480dfeaad93dca0a765",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "sha256": "d64cdd7eec0a38f09c4e4aba7fc11cc03e503b997a4e019171b6251226358844",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "c204394692e519eabaf6c5e14616b2d542027e1f9451048490a875202e7a59fe",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
+      "sha256": "a95b5c719c517ab58ae92f82e8031a18aa0658a65f365d81bc48321908b16c62",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/Institutions.xml": {
       "sha256": "ae54bf36672439716e828cc24157671660031bffad6cb4e13a8f5fb745bb1b9c",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "472a6ed1d876430465c385dd1cf340463049423a25b10e7a75ca75eebc627cda",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "16f5af916cd24247a9dc85365f9fd13420fa89fb2c1d2c2a3b3260bf003b7194",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1016,24 +1016,24 @@
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
     },
     "Mod/ExpeditionSpyRead.lua": {
-      "sha256": "aeb23e6d5a999a56634715be2f57a4f09db4c8816d4633bf3a511ac73e1c0b26",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "c192e59d6e9d7fd812de811d2a2250e8f99f8d3c7b89964262b4eee946dace73",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "5f65b2d16f4f4cd18d5335f240a25b0a6055e488a9150cf4863f081cffbba165",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "c42a91f32d53c8c180f828a32160fe86b7108a239bb9b898beda094c4d800a37",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "7360be0e7ca728644152acf986c7391bcc72d4b4efa76004a52613f20ca6c698",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "0f22018ca73289bb949b53e45acf1d201f2cf1162b64681dcf78c8026d5af92a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
-      "sha256": "bc487d91668746a1b52077d28a0d0306abe5a1b083341c0218491146f09066dc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+      "sha256": "c4b33439c6bb1d7b3820be5ec8ae7b1794da2814a25ba1785a9e1ed1c4590067",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
       "sha256": "2e4c7595f31c041da028607550671a44fe5188f2876f9919f5081032996f6ce2",
@@ -1071,9 +1071,9 @@
       "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
     },
     "Mod/ExpeditionSpyStore.lua": {
-      "sha256": "21a7c30a3f4f49fa3aabea0b3d1482bc7221454e84059f3785257ba4b3584762",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "e792e7ea8e8f102ad8effce27f3e13e3b5891c0e170a9e1b197153380b9d0c41",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionTraining.lua": {
       "sha256": "5feeae7bdf2b90a86078fe6c833820cbca7bb2c5c8bf1fdff555e240f61a4e4c",

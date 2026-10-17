@@ -209,3 +209,28 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INSPIRATION_DIAG_PROBE','{1_Text}｜启用={2_Text}｜原生Amount={3_Text}｜定义Amount={4_Text}｜类别={5_Text}；ERA为城市%，PROBE为旧基础点数');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INSPIRATION_DIAG_PROBE','{1_Text} | Active={2_Text} | native Amount={3_Text} | DB Amount={4_Text} | class={5_Text}; ERA uses city %, PROBE uses retired base points');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INSPIRATION_CLEANUP_PENDING','有{1_Num}座城市的旧载体清理未确认；相关城市暂停新投影，不能宣称已无残留。'),('en_US','LOC_SPC_INSPIRATION_CLEANUP_PENDING','Old-carrier cleanup is unconfirmed in {1_Num} cities. New projection is paused there; zero residue is not established.');
+
+-- Culture uses the existing cumulative institution display; no new gameplay effects.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_BUTTON','文化见闻'),
+('en_US','LOC_SPC_CULTURE_INSIGHTS_BUTTON','Cultural Insights'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_TITLE','文化见闻'),
+('en_US','LOC_SPC_CULTURE_INSIGHTS_TITLE','Cultural Insights'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','查看所选己方城市的历史与当前有效见闻；整城旅游与网络效果尚未实施。'),
+('en_US','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','View recorded and currently effective Insights for the selected owned city. Citywide Tourism and network effects are not implemented yet.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1','文艺同好会'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_1','文艺同好会'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2','赞助人行会'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_2','赞助人行会'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3','人文联合会'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_3','人文联合会'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4','博雅总院'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_4','博雅总院'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1_HELP','基础专家支持[NEWLINE]每名实际工作的文化专家额外获得3食物、3生产力。原生收益另算；高等级继续使用这一档基础支持。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_1_HELP','Specialist support[NEWLINE]Each working Culture specialist receives +3 Food and +3 Production in addition to native yields. Higher levels retain this same support.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2_HELP','文艺赞助[NEWLINE]本城剧院广场提供1住房；每个存在合格普通建筑的等级再提供1住房，同等级不重复。每名工作的文化专家额外提供2基础大作家、2基础大艺术家和2基础大音乐家点数，接受其它伟人点数百分比修正。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_2_HELP','Arts patronage[NEWLINE]The Theater Square provides +1 Housing, plus +1 per eligible ordinary building tier, once per tier. Each working Culture specialist adds 2 base Writer, Artist and Musician points, subject to GPP percentage modifiers.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3_HELP','时代对话[NEWLINE]同名城市项目完整占用1回合。每城每个启动时代最多成功一次；按完成时本城合格馆藏的不同作品时代数，每时代永久累计5个百分点的巨作原生产出倍率。ACTIVE低于三级或离开文化身份时效果暂停，历史保留；中断项目不消耗成功机会。当前运行范围：原生巨作旅游业绩倍率，不放大意义延展追加值。[NEWLINE][NEWLINE]风雅熏陶[NEWLINE]本城每覆盖一个合格巨作时代，每座合格普通建筑额外提供1旅游业绩。按当前时代覆盖动态计算，被掠夺的建筑不计入。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_3_HELP','Dialogue of Eras[NEWLINE]The city project occupies one full turn. Once per starting game era, it permanently adds 5 percentage points per distinct eligible work era present at completion. Below Culture ACTIVE III or outside Culture, the effect pauses while history remains; cancellation does not spend the successful-era allowance. Current runtime scope: native Great Work Tourism, excluding Meaning additions.[NEWLINE][NEWLINE]Aesthetic Influence[NEWLINE]Each distinct eligible work era currently present adds 1 Tourism to every eligible ordinary building. Pillaged buildings are excluded.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4_HELP','意义延展[NEWLINE]每件合格巨作从本城各合格领域获得0.5×基础设施深度份代表产出：金币每份3点，其它每份1点。各领域分别向下取整后合计，再按作品件数结算；同领域取最高单区域深度。时代对话不放大追加值，原生主题化可作用于追加。当前运行范围暂不计入政府广场、外交区的文化追加，其它领域照常生效。[NEWLINE][NEWLINE]巨作启迪[NEWLINE]本城当前每覆盖一个不同巨作时代，所有伟人点数产出提高3%；最多7时代、21%。没有基础点数的类别不会凭空获得点数。[NEWLINE][NEWLINE]人文考察团[NEWLINE]可训练考察团，按间谍成本公式、独立训练次数计价，全国同时最多1支。派遣到已遇见外国主要文明，进行风土考察、艺文采撷、奇观巡礼；标准速度任务各2回合。每个来源城对每文明、每类别首次成功获得1份文化见闻，归档历史保留。当前批次提供任务与见闻记录；见闻的整城旅游业绩及文化网络收益尚未实施。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_4_HELP','Meaning Extension[NEWLINE]Each eligible work receives 0.5 times infrastructure depth in representative yield shares from each eligible domain. Gold is 3 per share; other yields are 1. Floor each domain separately, combine, then multiply by work count; use the deepest single district per domain. Dialogue does not amplify additions; native theming may. Current runtime excludes Culture additions from the Government Plaza and Diplomatic Quarter; other domains remain active.[NEWLINE][NEWLINE]Great Works Inspiration[NEWLINE]Each distinct eligible work era currently present adds 3% to all city GPP, up to 7 eras and 21%. Categories without base points gain none.[NEWLINE][NEWLINE]Humanities Expedition[NEWLINE]Train an Expedition using the Spy cost formula with independent production history; the player may have one existing team. Send it to met foreign major civilizations for People, Works or Places missions, each 2 turns at Standard speed. First success per archive city, civilization and category records one Insight. Current implementation provides missions and preserved records; citywide Tourism and Culture network rewards are not implemented yet.');

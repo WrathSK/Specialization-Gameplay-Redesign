@@ -77,8 +77,8 @@ def integrated(window=False):
        SetShutdown=function(self,f)activityShutdown=f end,
        SetUpdate=function(self,f)activityUpdate=f end,ClearUpdate=function()activityUpdate=nil end}
       activityEnvironment=setmetatable({ContextPtr=activityContext},{__index=_G})
-      function beginTask()
-       handler(2,{Action='TASK',Token='task1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8})
+      function beginTask(token)
+       handler(2,{Action='TASK',Token=token or 'task1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=15,MissionY=8})
        Events.GameCoreEventPublishComplete()
       end
       function view()return ExposedMembers.SPC_ExpeditionActivity end
@@ -100,6 +100,36 @@ class ActivityIntegration(unittest.TestCase):
           assert(view().phase=='ARRIVED' and view().mode=='NONE' and insightWrites==1)
           assert(sleepCalls==1 and wakeCalls==1 and units[41].activity==0 and not activityUpdate)
           assert(properties==0 and nativeCalls==0 and destroys==0 and placeCalls==0 and finishCalls==0)
+        """)
+
+    def test_cancel_release_and_restart_uses_fresh_actual_bridge_attempt(self):
+        l=integrated();l.execute("""
+          beginTask();local oldKey=view().activityKey
+          assert(sleepCalls==1 and view().taskDue==85)
+          local cities=Players[3]:GetCities();local readCapital=cities.GetCapitalCity
+          cities.GetCapitalCity=function()return city end;Players[3].GetCities=function()return cities end
+          currentTurn=84;ownTurn(2);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='ARRIVED' and wakeCalls==1 and insightWrites==0 and not activityUpdate)
+          cities.GetCapitalCity=readCapital;beginTask('retry')
+          assert(view().activityKey~=oldKey and view().phase=='TASK_RUNNING' and view().taskDue==86)
+          assert(sleepCalls==2 and units[41].activity==1 and not activityUpdate)
+          currentTurn=86;ownTurn(2);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='ARRIVED' and wakeCalls==2 and insightWrites==1 and not activityUpdate)
+        """)
+
+    def test_actual_bridge_keeps_unknown_running_then_releases_unconfirmed_completion(self):
+        from test_expedition_missions import MISSION_FIXTURE
+        l=integrated();l.execute(MISSION_FIXTURE);l.execute("""
+          local p={Action='TASK',Token='work1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1}
+          for k,v in pairs(WORKS)do p[k]=v end
+          handler(2,p);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='TASK_RUNNING' and sleepCalls==1)
+          typeError=true;currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='TASK_RUNNING' and view().missionStatus=='UNKNOWN')
+          assert(sleepCalls==1 and wakeCalls==0 and insightWrites==0 and not activityUpdate)
+          typeError=false;currentTurn=86;ownTurn(2);Events.GameCoreEventPublishComplete()
+          assert(view().phase=='HELD' and view().error=='MISSION_COMPLETION_UNCONFIRMED')
+          assert(view().mode=='NONE' and wakeCalls==1 and units[41].activity==0 and insightWrites==0 and not activityUpdate)
         """)
 
     def test_missing_sleep_row_preserves_specific_failure_without_starting_task(self):
@@ -244,6 +274,25 @@ class PersistentActivityIntegration(unittest.TestCase):
           currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
           assert(view().phase=='ARRIVED' and view().mode=='NONE' and insightWrites==1 and wakeCalls==1 and sleepCalls==1)
           assert(gameProperties.SPC_EXPEDITION_TEAM_P2.state.phase=='ARRIVED' and insightWrites==1)
+        """)
+
+    def test_work_instance_and_unconfirmed_due_time_survive_actual_cold_recovery(self):
+        from test_expedition_missions import MISSION_FIXTURE
+        l=integrated();l.execute(MISSION_FIXTURE);l.execute("""
+          local p={Action='TASK',Token='work1',UnitID=41,SampleTurn=currentTurn,NativeOperation=-1}
+          for k,v in pairs(WORKS)do p[k]=v end
+          handler(2,p);Events.GameCoreEventPublishComplete()
+          typeError=true;currentTurn=85;ownTurn(2);Events.GameCoreEventPublishComplete()
+          local s=gameProperties.SPC_EXPEDITION_TEAM_P2.state
+          assert(s.missionWorkID==12 and s.missionCompletionUnknownTurn==85)
+          typeError=false;currentTurn=86
+        """)
+        self.restart_bridge(l)
+        l.execute("""
+          assert(view().phase=='HELD' and view().error=='MISSION_COMPLETION_UNCONFIRMED')
+          assert(view().mode=='NONE' and wakeCalls==1 and sleepCalls==1 and insightWrites==0 and not activityUpdate)
+          local s=gameProperties.SPC_EXPEDITION_TEAM_P2.state
+          assert(s.missionWorkID==12 and s.missionCompletionUnknownTurn==85 and s.taskDue==85)
         """)
 
     def test_unreadable_cold_recovery_reaches_terminal_block_without_guessed_wake(self):

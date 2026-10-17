@@ -79,6 +79,26 @@ class ReadTests(unittest.TestCase):
           local next=store.Read(2);assert(next.state.sourceName=='Archive' and next.state.target.name=='Target')
         """)
 
+    def test_optional_mission_instance_and_missing_completion_evidence_roundtrip(self):
+        fixture().execute("""
+          local v=record(2,1,1,'TASK_RUNNING')
+          v.state.missionCategory='WORKS';v.state.missionWorkID=12;v.state.missionCompletionUnknownTurn=87
+          local confirmed,err=store.Write(P,2,nil,v)
+          assert(confirmed and not err and confirmed.state.missionWorkID==12 and confirmed.state.missionCompletionUnknownTurn==87)
+          local next=store.Read(2);assert(next.state.missionWorkID==12 and next.state.missionCompletionUnknownTurn==87)
+          confirmed.state.missionWorkID=99;assert(store.Read(2).state.missionWorkID==12)
+          -- The previous schema1 record remains readable, but Gate may not guess a missing work instance.
+          saved.SPC_EXPEDITION_TEAM_P2=record(2,1,1,'TASK_RUNNING')
+          assert(store.Read(2).state.missionWorkID==nil)
+        """)
+
+    def test_invalid_mission_evidence_scalars_are_rejected(self):
+        for change in ["v.state.missionWorkID=-1", "v.state.missionWorkID=1.5",
+                       "v.state.missionCompletionUnknownTurn=86", "v.state.missionCompletionUnknownTurn='87'",
+                       "v.state.missionCompletionUnknownTurn=87;v.state.taskDue=nil"]:
+            with self.subTest(change=change):
+                fixture().execute("local v=record(2,1,1,'TASK_RUNNING');" + change + ";saved.SPC_EXPEDITION_TEAM_P2=v;local value,err=store.Read(2);assert(not value and err=='STORE_CORRUPT')")
+
     def test_unreadable_and_invalid_owner_are_explicit(self):
         lua = fixture()
         lua.execute("readFailure=true;local r,e=store.Read(2);assert(not r and e=='STORE_UNREADABLE');r,e=store.Read(-1);assert(not r and e=='STORE_OWNER_INVALID')")

@@ -637,3 +637,12 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_UNAVAILABLE','The selected mission is unavailable here or already completed.'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_INSIGHTS','文化见闻：历史 {1_History}，当前有效 {2_Effective}'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_INSIGHTS','Cultural Insights: {1_History} recorded, {2_Effective} effective');
+
+-- Explicit uncertainty is not cancellation or successful completion.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_UNKNOWN','任务目标事实暂时无法确认；本次检查未判定失效，也未发放见闻。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_UNKNOWN','Target facts are temporarily unconfirmed. This check has neither invalidated the target nor awarded an Insight.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_DETAIL','诊断原因：{1_Reason}'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_DETAIL','Diagnostic reason: {1_Reason}'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_TARGET_UNKNOWN','目标信息待确认'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_TARGET_UNKNOWN','Target information unconfirmed');

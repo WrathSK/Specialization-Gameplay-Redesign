@@ -1,17 +1,36 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: N1_PARTIAL+N2_MISSIONS / B212_MISSIONS_INSIGHT_LEDGER / GAIN_SOURCES_EXECUTION_BLOCKED. N2/N3 and U2 remain ON_HOLD; later formal N1 scope is not authorized by this prototype.
-Authority: Spec D0049 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
+State: B213_REPAIR_AND_CULTURE_PRESENTATION / LOCAL_COMPLETE_NATIVE_PENDING. B212 three-mission and Insight-ledger source is implemented; native acceptance remains deferred. Whole-city Tourism, N3, reattachment and U2 remain outside this batch.
+Authority: Spec D0050 / Culture D0049 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
-[人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。完整UI布局仍为提案；旧N1 gate已取得所测证据，B182仅实现Spy0独立派遣与共存技术原型。UI借鉴不证明可复用真实Spy管线，N2/N3仍未授权。
+[人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。Earlier UI proposals and Spy0 investigations are historical references. The implemented Spy1 native-style UI, three missions and city history are bounded by the current slice below; native evidence does not establish later Tourism or Network behavior.
 
-## Current slice — N1 travel and protection gate
+## Current slice — B213 Expedition repair and Culture presentation
+
+User-authorized repair of audit findings1–7, plus Culture institution UI, a readable Insight report and relocation mission icons. This slice supersedes old progress statements below; their technical evidence remains available. [Status](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns source/live, authorization and native progress. [Batch result](../../Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md) owns verification.
+
+- **Current mission contract:** the three real mission categories write first-success archive-city history. Capture the exact selected native work instance; confirmed selected work/site loss cancels without reward or quota and returns the team to the centre. Another eligible object is not silently substituted (user decision). WORKS may be in an eligible completed Wonder as well as another building; PLACES requires the selected completed Wonder.
+- **Evidence boundary:** classify fresh mission facts VALID / INVALID / UNKNOWN. Missing, throwing or nil readers do not prove validity or invalidity. UNKNOWN blocks award and cancellation, preserving evidence. A small same-turn retry budget can resolve current evidence; if due-time facts remain unavailable after that turn, quarantine in HELD and release owned activity. Do not infer earlier completion eligibility from later valid facts. HELD is a technical stop requiring diagnosis, not a new gameplay pause/compensation rule.
+- **Attempt ownership:** derive each activity/task key from the durable team identity and next confirmed Store revision, independently of successful task count. Cancellation cannot reuse an old UI SLEEP acknowledgement. The existing single player Store remains owner; optional selected-work-ID and due-UNKNOWN fields preserve exact evidence across load. No new entity store or history reconstruction.
+- **Training contract retained:** one saved TRAINING reservation before queue admission; exact source, owner/reference, completion and one matching birth, no position/name-only adoption. Same-turn immediate completion is admissible under B209. B210 permits native queue removal/replacement release only when the queue is empty of Expedition, no birth/completion receipt exists and no Expedition-family unit exists. All other ambiguous outcomes retain reservation/HOLD. Independent Expedition cost progression, cap1 and source binding are unchanged.
+- **Read-only UI:** reuse Research institution row/layout behavior for Culture; permanent established stages remain visible, current ACTIVE changes only presentation. Explicit selected-city **文化见闻** reads CityProgressionStore without requiring an active team, lists history/effective counts and per-civilization categories, and emits a bounded report to the existing collector. Own-civilization records remain historical but excluded from effective count. This does not apply Tourism or Network effects. Relocation uses available mission/category icons from native assets, not inferred permission.
+- **Collector:** unavailable trace retries with delay; malformed trace stops; connected status requires actual LISTENING. Cost1 is an observation, not a generic base/progression comparison. No new gameplay polling, GC action or Tuner setting.
+- **Change propagation/lifetime:** Gate operates on the single current team/target at existing owner-turn, lifecycle and request boundaries; same-turn UNKNOWN retry is bounded. Institution mirrors remain selected-city and disposable. Insight report allocation occurs only on explicit request, at most192 records; no all-city history scan or report cache. Icons derive from the existing target list, not a second world observer.
+- **Out of scope:** Tourism/Network, reattachment, additional civilizations, old-campaign corruption repair, native Spy-slot removal, pricing/capacity/GC changes, main, deployment and game launch. Commerce corrections only align conditional S-source locking and already-accepted owner-scoped protection wording; no investment implementation.
+
+The default manifest includes this slice, the complete direct expedition/mission/observation contracts, the N2 transaction section, current state consumers and tests. Older training/prototype/native-result records are conditional evidence, not automatic full-context inputs. A source/ownership or native-boundary investigation must still load the specifically relevant historical contract before changing it.
+
+<a id="current-slice--n1-travel-and-protection-gate"></a>
+
+## Historical slice — N1 travel and protection gate
 
 **B201.228 native persistence sequence has scoped PASS; selection auto-opening has USER_REPORTED_FAIL.** [Evidence and proposed bounded UI repair](../../Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md): travelling-save/cold-load retains source/cap/name, native arrival replaces ID correctly, subsequent two-turn no-reward task completes/releases. User confirms selection fails at home and abroad before tasks with diagnostics closed. Exact rejected predicate remains UNKNOWN; no repair is implemented or automatically authorized.
 
 383 targeted local tests remain the prior implementation evidence. B200 card layout and B201 END are not demonstrated in these images. This is inherited B201 evidence; current source/live and authorization are tracked in Status. User has classified selection auto-opening as optional/non-blocking: bundle a bounded fix with functional work if practical, otherwise leave it disabled; explicit buttons remain the supported entry. No standalone repair gate or repeated save/load campaign. Normal training is now locally implemented below; reattachment/repeat missions, broader civilizations, N2/N3/U2/rewards remain held.
 
-## Next functional slice — normal training and source registration
+<a id="next-functional-slice--normal-training-and-source-registration"></a>
+
+## Historical training sequence — normal training and source registration
 
 State: **B204_TRAINING_NATIVE_FAILURE / B205_DIAGNOSTICS_DEPLOYED**. Current diagnostic scope and testing stop override the earlier acceptance flows below; see the B205 subsection. User approved this batch and makes selection auto-opening optional; this does not accept untested behavior or authorize N2/N3 rewards. The completed bounded implementation replaces P0-only creation with normal city training, retaining the established travel/task/persistence core.
 
@@ -32,14 +51,14 @@ Local checks: training eligibility/cost, cap with off-map/held team, competing q
 
 After this batch, prepare source-loss reattachment/repeat-task completion, then N2 mission-specific permanent results, then N3 Network. Each remains a separately bounded implementation decision; no automatic scope expansion.
 
-### B212 — three missions and archive-city Insight history (current)
+### B212 — three missions and archive-city Insight history (implemented baseline)
 
 The user approved the N2 split and the B212 plan on 2026-10-16.
 - **Missions and records:** 风土考察, 艺文采撷 and 奇观巡礼 follow the Design targets. First-success Insights are recorded in the archive city's `CityProgressionStore` block `expeditionInsights`, keyed by civilization:category.
 - **Invalidation:** a lost work, a new capital or an owner change cancels the mission without an Insight. War is not invalidation.
 - **Movement (user decision):** the team moves to the mission plot (centre, Great Work plot or Wonder plot) and returns to the target centre after release.
 - **Targets (user decision):** any city of a met major civilization. When the target is unrevealed, the team enters through a revealed city of that owner and continues on internal routes. The added time is zero, an implementation reading.
-- **Not included:** whole-city Tourism is B213. Reattachment remains deferred.
+- **Not included:** whole-city Tourism remains a later proposal. Reattachment remains deferred.
 
 ### v0.1 scope decisions (user, 2026-10-16)
 
@@ -190,7 +209,7 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 
 ## N2：任务事务、城市历史与整城旅游
 
-复用现有E2可靠城市连续性/保存模型，新增专属小型业务块；当前Store没有新见闻/考察业务字段。分开保存unit当前Owner、有效归档绑定、部署/mission/目标ref与阶段，以及城市唯一成功类别/凭据；不新建cityKey、原Owner分账、全世界建筑历史或统一Legacy框架。Claim timer只提供技术结构，其业务取消规则不直接复制。
+复用现有E2可靠城市连续性/保存模型，新增专属小型业务块；B212已在CityProgressionStore加入expeditionInsights城市历史块；整城旅游writer尚未实施。分开保存unit当前Owner、有效归档绑定、部署/mission/目标ref与阶段，以及城市唯一成功类别/凭据；不新建cityKey、原Owner分账、全世界建筑历史或统一Legacy框架。Claim timer只提供技术结构，其业务取消规则不直接复制。
 
 开始及成功提交前重验当前有效归档/Owner、目标事实和未成功键；唯一事务一次写城市记录/凭据，再派生有效数、完整集合和本城旅游。重复completion/load不重奖；取消不占键。来源Identity/ACTIVE退出但归档仍合法可收记录；来源易主立即abort，不能延迟向已转移旧城补提交。UI只读确认状态/发送意图，不成为发奖权威。
 

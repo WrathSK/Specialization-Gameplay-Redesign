@@ -5,7 +5,7 @@ local M=SPCExpeditionSpyStore
 local phases={TRAINING=true,CREATING=true,NAMING=true,CREATED=true,TRAVELLING=true,ARRIVED=true,
  TASK_PREPARING=true,TASK_RUNNING=true,TASK_COMPLETE=true,HELD=true,ENDING=true,ENDED=true}
 local numbers={owner=true,unitID=true,createdID=true,sourceCity=true,x=true,y=true,
- trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true,taskCount=true,missionX=true,missionY=true,entryX=true,entryY=true}
+ trainingBorn=true,trainingTurn=true,trainingReceiptTurn=true,startTurn=true,dueTurn=true,taskStart=true,taskDue=true,taskCompleted=true,taskCompletions=true,taskCount=true,missionX=true,missionY=true,missionWorkID=true,missionCompletionUnknownTurn=true,entryX=true,entryY=true}
 local booleans={trainingQueued=true,trainingCompleted=true,nameVerified=true,activityOwned=true,activityPending=true,sleepConfirmed=true}
 local strings={trainingToken=100,sourceName=220,sourceRef=2048,expectedName=220,teamKey=100,
  activityKey=100,activityMode=32,stop=100,errorStep=100,errorDetail=220,missionCategory=16,missionEvidence=160,taskOutcome=16}
@@ -41,6 +41,7 @@ local function state(value,pid)
   else return nil end
   out[key]=v
  end
+ if out.missionCompletionUnknownTurn~=nil and (out.taskDue==nil or out.missionCompletionUnknownTurn<out.taskDue)then return nil end
  local phase=out.phase
  if phase=='TRAINING' then
   for _,k in ipairs({'sourceCity','sourceName','sourceRef','x','y','trainingToken','trainingTurn'})do if out[k]==nil then return nil end end

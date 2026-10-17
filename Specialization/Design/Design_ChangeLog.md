@@ -6,6 +6,18 @@ Latest Draft Design Revision: NONE
 Latest Accepted Design Revision: D0050
 Document State: ACCEPTED
 
+## Accepted target clarification and wording alignment — 2026-10-16
+
+User authorized audit findings1–7 and explicitly selected cancellation when the concrete Expedition mission target becomes invalid. Current Culture D0049 now states: the selected work/wonder is not automatically replaced by another eligible object in the city; confirmed loss cancels without reward/quota, while unavailable evidence is not confirmed invalidation. The Culture reading page is synchronized. No other mission, cost, capacity or lifetime rule changes.
+
+Commerce D0050 maintenance aligns secondary wording with already-accepted rules: lock a concrete S-source only when one exists; absent source remains explicit with S=1. Owner-scoped consecutive-failure protection is resolved, not TBD. No formula, number, maturity or contract-lifetime decision changes. No Commerce implementation authorization.
+
+Current Culture Content SHA256: c8919270580fc785a39661f141d73f0664375c88deb3593377998cb2487a6a74
+Current Commerce Content SHA256: 275d97483d96f6893275ce12472ff844343555f7c3071832d1f3467939a17691
+Unchanged current Spec SHA256: dbe69006e1243ed6b1316f11faf4f358e4c899332111a2449c4b1148dc1b924e
+
+Earlier acceptance entries/hashes and frozen revisions remain unchanged. This is a clarification and consistency repair, not a new complete Design revision or native acceptance.
+
 ## Accepted D0050 clarification — 2026-10-16
 
 用户对D0050交接的四处解读作出确认：

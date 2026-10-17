@@ -1,6 +1,6 @@
 # 人文考察团 UI 计划
 
-State: N1_PARTIAL / B200_UI_REFINEMENT_LOCAL_COMPLETE_NATIVE_PENDING. [Current boundary](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate) governs; N2/N3 and era UI remain ON_HOLD.
+State: historical UI plan and applied batch records. [B213 current boundary](P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation) governs current work; three missions/Insight history are implemented, native acceptance pending. Tourism, Network, reattachment and era UI remain outside B213.
 [B194 screenshots](../../Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md) pass the submitted Sleep→two-turn completion→release flow. B196 explicit travel/task interaction has scoped native acceptance; [new review and UI references](../../Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md) distinguish tested prototype function from the desired future sidebar layout. Broader formal UI and N2/N3 are still proposals.
 Date: 2026-10-06。Authority: Culture D0048 `CUL_L4_EXPEDITION`、missions、expedition／observations／network_effect及Shared D0045；原Gameplay不改。B165补测资料已审阅，正旧AUTO所测共存通过，精确结算归因仍开放；本计划不解除门禁、不部署、不产生native UI PASS。
 

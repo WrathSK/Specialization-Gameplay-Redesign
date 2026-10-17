@@ -191,6 +191,7 @@ class PresentationBoundary(unittest.TestCase):
     def test_location_arrows_are_cached_and_retired_with_window(self):
         lua=created_window();add_locations(lua,5)
         lua.execute("""
+          for i=1,4 do addDistrict(200+i,'DISTRICT_WONDER',50+i);addBuilding(4000+i,'BUILDING_EXTRA_WONDER_'..i,50+i,true,{})end
           gateOpen('TRAVEL',40);chooseCity()
           local row=instanceManagers.SPCExpeditionDestination.instances[1]
           local calls=helperCalls;local reads=districtReads;local requests=sent

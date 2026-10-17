@@ -75,14 +75,24 @@ end
 local function site(out,category,plotID,value)
  local old=out.sites[category]
  if not old or plotID<old.plot then value.plot=plotID;out.sites[category]=value end
+ out.siteStatus[category]='VALID'
 end
 local function locationSnapshot(city,out)
  out.sites=out.sites or {}
- if call(city,'IsCapital')==true then out.sites.PEOPLE={x=city:GetX(),y=city:GetY(),plot=-1} end
+ local items={};out.districts=items
+ -- Only positive mission opportunities are shown; no universal city-center icon.
+ -- Capital availability is independent from work and Wonder availability.
+ local capitalRead,capital=pcall(locationRead,city,'IsCapital')
+ if capitalRead and type(capital)=='boolean' then out.siteStatus.PEOPLE=capital and 'VALID' or 'INVALID' end
+ if capitalRead and capital==true then
+  out.sites.PEOPLE={x=city:GetX(),y=city:GetY(),plot=-1}
+  local config=PlayerConfigurations and PlayerConfigurations[city:GetOwner()]
+  local civ=config and call(config,'GetCivilizationTypeName')
+  if type(civ)=='string' then
+   items[#items+1]={icon='ICON_'..civ,name='LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_NAME',category='PEOPLE'}
+  end
+ end
  local districtDefs=locationRequire(GameInfo.Districts,'LOCATION_DISTRICT_DEFINITION_UNAVAILABLE')
- local center=locationRequire(districtDefs.DISTRICT_CITY_CENTER,'LOCATION_CENTER_DEFINITION_UNAVAILABLE')
- local items={{icon='ICON_DISTRICT_CITY_CENTER',name=center.Name}}
- out.districts=items -- Retain positively known locations if a later read is unavailable.
  local buildings=locationRequire(locationRead(city,'GetBuildings'),'LOCATION_BUILDINGS_UNAVAILABLE')
  local districts=locationRequire(locationRead(city,'GetDistricts'),'LOCATION_DISTRICTS_UNAVAILABLE')
  locationRequire(type(districts.Members)=='function','LOCATION_READER_UNAVAILABLE:Members')
@@ -92,7 +102,7 @@ local function locationSnapshot(city,out)
   local complete=locationRead(district,'IsComplete')
   locationRequire(type(complete)=='boolean','LOCATION_DISTRICT_COMPLETION_UNKNOWN')
   if complete then
-   local def=locationRequire(districtDefs[locationRead(district,'GetType')],'LOCATION_DISTRICT_DEFINITION_UNAVAILABLE')
+   locationRequire(districtDefs[locationRead(district,'GetType')],'LOCATION_DISTRICT_DEFINITION_UNAVAILABLE')
    local x,y=locationRead(district,'GetX'),locationRead(district,'GetY')
    locationRequire(integer(x) and integer(y),'LOCATION_COORDINATES_UNKNOWN')
    locationRequire(Map and type(Map.GetPlot)=='function','LOCATION_MAP_READER_UNAVAILABLE')
@@ -100,51 +110,52 @@ local function locationSnapshot(city,out)
    local plotID=locationRead(plot,'GetIndex');locationRequire(integer(plotID),'LOCATION_PLOT_INDEX_UNKNOWN')
    local at=locationRead(buildings,'GetBuildingsAtLocation',plotID)
    locationRequire(type(at)=='table','LOCATION_BUILDINGS_AT_PLOT_UNKNOWN')
-   local hasWork=false
    for _,kind in ipairs(at)do
     local building=locationRequire(definitions[kind],'LOCATION_BUILDING_DEFINITION_UNAVAILABLE')
     local present=locationRead(buildings,'HasBuilding',building.Index)
     locationRequire(type(present)=='boolean','LOCATION_BUILDING_PRESENCE_UNKNOWN')
     if present then
      if building.IsWonder==true or building.IsWonder==1 then
-      -- Wonder location is already eligible for the display regardless of its
-      -- collection. Do not add a second district icon for hosted Great Works.
       local key=tostring(plotID)..':'..building.BuildingType
       if not seen[key] then
-       seen[key]=true;items[#items+1]={icon='ICON_'..building.BuildingType,name=building.Name,kind='WONDER'}
+       seen[key]=true;items[#items+1]={icon='ICON_'..building.BuildingType,name=building.Name,kind='WONDER',category='PLACES'}
       end
       site(out,'PLACES',plotID,{x=x,y=y,building=building.BuildingType})
-     else
-      local slots=locationRead(buildings,'GetNumGreatWorkSlots',building.Index)
-      locationRequire(integer(slots) and slots<=256,'LOCATION_SLOT_COUNT_UNKNOWN')
-      for slot=0,slots-1 do
-       local workID=locationRead(buildings,'GetGreatWorkInSlot',building.Index,slot)
-       locationRequire(workID==-1 or integer(workID),'LOCATION_WORK_SLOT_UNKNOWN')
-       if workID~=-1 then
-        local workType=locationRead(buildings,'GetGreatWorkTypeFromIndex',workID)
-        local work=GameInfo.GreatWorks and GameInfo.GreatWorks[workType]
-        locationRequire(work and type(work.GreatWorkType)=='string','LOCATION_WORK_DEFINITION_UNAVAILABLE')
-        locationRequire(SPCGreatWorkCatalog and type(SPCGreatWorkCatalog.Resolve)=='function','LOCATION_WORK_CATALOG_UNAVAILABLE')
-        local eligible,why=SPCGreatWorkCatalog.Resolve(adapter,work.GreatWorkType)
-        locationRequire(eligible or why=='UNSUPPORTED_TYPE','LOCATION_WORK_METADATA_UNKNOWN')
-        if eligible then hasWork=true;site(out,'WORKS',plotID,{x=x,y=y,building=building.BuildingType,slot=slot,work=work.GreatWorkType})end
+     end
+     -- A Wonder can independently host eligible works; icon deduplication must
+     -- not change mission qualification or skip its slots.
+     local slots=locationRead(buildings,'GetNumGreatWorkSlots',building.Index)
+     locationRequire(integer(slots) and slots<=256,'LOCATION_SLOT_COUNT_UNKNOWN')
+     for slot=0,slots-1 do
+      local workID=locationRead(buildings,'GetGreatWorkInSlot',building.Index,slot)
+      locationRequire(workID==-1 or integer(workID),'LOCATION_WORK_SLOT_UNKNOWN')
+      if workID~=-1 then
+       local workType=locationRead(buildings,'GetGreatWorkTypeFromIndex',workID)
+       local work=GameInfo.GreatWorks and GameInfo.GreatWorks[workType]
+       locationRequire(work and type(work.GreatWorkType)=='string','LOCATION_WORK_DEFINITION_UNAVAILABLE')
+       locationRequire(SPCGreatWorkCatalog and type(SPCGreatWorkCatalog.Resolve)=='function','LOCATION_WORK_CATALOG_UNAVAILABLE')
+       local eligible,why=SPCGreatWorkCatalog.Resolve(adapter,work.GreatWorkType)
+       locationRequire(eligible or why=='UNSUPPORTED_TYPE','LOCATION_WORK_METADATA_UNKNOWN')
+       if eligible then
+        site(out,'WORKS',plotID,{x=x,y=y,building=building.BuildingType,slot=slot,work=work.GreatWorkType,workID=workID})
+        if not seen.WORKS then
+         seen.WORKS=true;items[#items+1]={icon='ICON_GREATWORKOBJECT_WRITING',name='LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_NAME',category='WORKS'}
+        end
        end
       end
      end
     end
    end
-   local key='district:'..tostring(plotID)
-   if hasWork and def.DistrictType~='DISTRICT_CITY_CENTER' and def.DistrictType~='DISTRICT_WONDER' and not seen[key] then
-    seen[key]=true;items[#items+1]={icon='ICON_'..def.DistrictType,name=def.Name}
-   end
   end
  end
+ out.siteStatus.WORKS=out.sites.WORKS and 'VALID' or 'INVALID'
+ out.siteStatus.PLACES=out.sites.PLACES and 'VALID' or 'INVALID'
 end
 -- Optional presentation failures never grant/deny travel. No capacity/operation
 -- reader, permission token, persistent cache or mutation. READABLE means the API
 -- snapshot was readable; it does not certify foreign inventory completeness.
 function M.Presentation(pid,id,target)
- local out={districts={},locationStatus='UNKNOWN',locationReason='LOCATION_TARGET_UNAVAILABLE'}
+ local out={districts={},siteStatus={PEOPLE='UNKNOWN',WORKS='UNKNOWN',PLACES='UNKNOWN'},locationStatus='UNKNOWN',locationReason='LOCATION_TARGET_UNAVAILABLE'}
  local ok=pcall(function()
   local city=target and M.Target(pid,target.owner,target.id)
   if not city or city:GetX()~=target.x or city:GetY()~=target.y then return end
@@ -159,13 +170,14 @@ function M.Presentation(pid,id,target)
    if timing and integer(t) and integer(e) then out.travel=t;out.establish=e;out.total=t+e end
   end
   local read,reason=pcall(locationSnapshot,city,out)
-  if read then out.locationStatus='READABLE';out.locationReason=nil
+  if read and out.siteStatus.PEOPLE~='UNKNOWN' then out.locationStatus='READABLE';out.locationReason=nil
+  elseif read then out.locationReason='LOCATION_CAPITAL_UNKNOWN'
   else out.locationReason=tostring(reason):match('LOCATION_[%w_:]+') or 'LOCATION_READ_FAILED' end
   if city:GetOwner()~=target.owner or city:GetID()~=target.id or city:GetX()~=target.x or city:GetY()~=target.y then
-   out.districts={};out.locationStatus='UNKNOWN';out.locationReason='LOCATION_TARGET_CHANGED'
+   out.districts={};out.sites={};out.siteStatus={PEOPLE='UNKNOWN',WORKS='UNKNOWN',PLACES='UNKNOWN'};out.locationStatus='UNKNOWN';out.locationReason='LOCATION_TARGET_CHANGED'
   end
  end)
- if not ok then out.districts={};out.locationStatus='UNKNOWN';out.locationReason='LOCATION_READ_FAILED' end
+ if not ok then out.districts={};out.sites={};out.siteStatus={PEOPLE='UNKNOWN',WORKS='UNKNOWN',PLACES='UNKNOWN'};out.locationStatus='UNKNOWN';out.locationReason='LOCATION_READ_FAILED' end
  return out
 end
 

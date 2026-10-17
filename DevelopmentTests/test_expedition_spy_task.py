@@ -68,7 +68,7 @@ class Timer(unittest.TestCase):
         # B211: completion -> released activity -> new dispatch -> arrival -> second task with a fresh activity key.
         l=self.ready();l.execute("""
          task('t');currentTurn=85;ownTurn(2);ownTurn(2)
-         local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.phase=='TASK_COMPLETE' and v.mode=='RELEASE')
+         local v=ExposedMembers.SPC_ExpeditionActivity;assert(v.phase=='TASK_COMPLETE' and v.mode=='RELEASE');local firstKey=v.activityKey
          -- A second met major's capital as the new target (v0.1 fixture targets capitals).
          local second={id=12,owner=4,x=20,y=5}
          for k,f in pairs({GetID=function(c)return c.id end,GetOwner=function(c)return c.owner end,GetX=function(c)return c.x end,GetY=function(c)return c.y end,GetName=function()return '第二目标城' end})do second[k]=f end
@@ -84,7 +84,7 @@ class Timer(unittest.TestCase):
          local old=units[41];local u=unit(42,100,2,20,5);u.name=old.name;units[41]=nil;units[42]=u
          currentTurn=currentTurn+2;ownTurn(2);r=req('READ','arrived2');assert(r.phase=='ARRIVED' and r.trackedID==42,tostring(r.phase))
          handler(2,{Action='TASK',Token='t2',UnitID=42,SampleTurn=currentTurn,NativeOperation=-1,Mission='PEOPLE',MissionX=20,MissionY=5})
-         local key=ExposedMembers.SPC_ExpeditionActivity.activityKey;assert(key:match(':task2$'),key)
+         local key=ExposedMembers.SPC_ExpeditionActivity.activityKey;assert(key~=firstKey and key:match(':attempt%d+$'),key)
          handler(2,{Action='ACTIVITY',Token='t2:arm',UnitID=42,ActivityKey=key,Result='ARMED',Owned=true,Awake=true,Sleeping=false,SampleTurn=currentTurn,NativeOperation=-1})
          handler(2,{Action='ACTIVITY',Token='t2:sleep',UnitID=42,ActivityKey=key,Result='ASLEEP',Owned=true,SampleTurn=currentTurn,NativeOperation=-1})
          r=ExposedMembers.SPC_ExpeditionActivityReply;assert(r.phase=='TASK_RUNNING',tostring(r.phase)..tostring(r.error))

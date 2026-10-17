@@ -11,7 +11,7 @@ local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local taskSelected=false;local request;local lastNativePermit
 local refreshHeader;local taskDisplay;local previewRow;local districtStrips={};local missionRows={};local missionKey;local missionSite
 -- B212: the three Design missions (Culture D0049).
-local MISSIONS={{key='PEOPLE',icon='ICON_UNITOPERATION_SPY_LISTENING_POST'},{key='WORKS',icon='ICON_UNITOPERATION_SPY_GREAT_WORK_HEIST'},{key='PLACES',icon='ICON_DISTRICT_WONDER'}}
+local MISSIONS={{key='PEOPLE',icon='ICON_UNITOPERATION_SPY_LISTENING_POST'},{key='WORKS',icon='ICON_GREATWORKOBJECT_WRITING'},{key='PLACES',icon='ICON_DISTRICT_WONDER'}}
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
 local cityRows=InstanceManager:new('SPCExpeditionDestination','DestinationButton',Controls.DestinationStack)
@@ -114,6 +114,7 @@ local function syncActivity()
  current.phase=v.phase or current.phase
  current.activityMode=v.mode;current.activityOwned=v.owned;current.recovering=v.recovering
  current.activityError=v.error;current.activityFailure=v.activityFailure
+ current.missionStatus=v.missionStatus;current.missionReason=v.missionReason
  current.taskStart=v.taskStart;current.taskDue=v.taskDue;current.taskCompleted=v.taskCompleted;current.taskCompletions=v.taskCompletions
  if v.phase=='HELD' then current.bound=false;current.unbound=true end
 end
@@ -184,6 +185,7 @@ local function renderNormal()
   if v.targetName then o[#o+1]=L('NORMAL_DESTINATION',Locale.Lookup(v.targetName))end
   if v.insightHistory then o[#o+1]=L('INSIGHTS',v.insightHistory,v.insightEffective or 0)end
   if v.missionCategory then o[#o+1]=L('MISSION_'..v.missionCategory..'_NAME')end
+  if v.missionStatus=='UNKNOWN' then o[#o+1]=L('MISSION_FACTS_UNKNOWN')end
   if v.phase=='TASK_RUNNING' and v.taskDue then
    o[#o+1]=L('NORMAL_REMAINING',math.max(0,v.taskDue-Game.GetCurrentGameTurn()))
   end
@@ -211,6 +213,7 @@ local function render()
  if viewMode~='DIAGNOSTIC'then renderNormal();return end
  local v=current;if not v then setReport(L('INITIAL'));return end
  local o={L('PHASE_'..v.phase)};local failure=v.error or v.stop
+ if v.missionStatus=='UNKNOWN' then o[#o+1]=L('MISSION_FACTS_UNKNOWN');o[#o+1]=L('MISSION_FACTS_DETAIL',v.missionReason or 'UNKNOWN')end
  if v.persistence then o[#o+1]=L('PERSISTENCE',L('PERSISTENCE_'..v.persistence),v.generation or '—')end
  local activityFailure=v.activityFailure or v.activityError
  if activityFailure then o[#o+1]=activityFailureText(activityFailure)end
@@ -446,7 +449,7 @@ request=function(action,detail)
   -- Presentation names the native object; Gameplay re-reads it before accepting.
   local site=missionSite
   packet.Mission=missionKey;packet.MissionX=site.x;packet.MissionY=site.y
-  packet.Building=site.building;packet.Slot=site.slot;packet.Work=site.work
+  packet.Building=site.building;packet.Slot=site.slot;packet.Work=site.work;packet.WorkID=site.workID
  end
  if action=='DISPATCH' then
   packet.SampleTurn=travel.turn;packet.FromX=travel.fromX;packet.FromY=travel.fromY
@@ -483,7 +486,9 @@ local function paintDistricts(row,items)
  row.iconPool:ResetInstances()
  local icons={};local start=1;local generation=rowGeneration
  for _,item in ipairs(items or {})do
-  local icon=row.iconPool:GetInstance().DistrictIcon
+  local instance=row.iconPool:GetInstance();local icon=instance.DistrictIcon
+  local graphic=item.category=='WORKS' and instance.WorksIcon or (item.category=='PEOPLE' and instance.CivilizationIcon or instance.WonderIcon)
+  instance.WorksIcon:SetHide(graphic~=instance.WorksIcon);instance.CivilizationIcon:SetHide(graphic~=instance.CivilizationIcon);instance.WonderIcon:SetHide(graphic~=instance.WonderIcon)
   local iconName=item.icon
   if item.kind=='WONDER' then
    -- Native IconManager reports missing atlas sizes with a nil/empty sheet.
@@ -491,7 +496,7 @@ local function paintDistricts(row,items)
    local ok,x,y,sheet=pcall(function()return IconManager:FindIconAtlas(iconName,32)end)
    if not ok or type(sheet)~='string' or sheet=='' then iconName='ICON_DISTRICT_WONDER'end
   end
-  icon:SetIcon(iconName);icon:SetToolTipString(Locale.Lookup(item.name));icons[#icons+1]=icon
+  graphic:SetIcon(iconName);icon:SetToolTipString(Locale.Lookup(item.name));icons[#icons+1]=icon
  end
  local function page(delta)
   if generation~=rowGeneration or ContextPtr:IsHidden()then return end
@@ -557,10 +562,21 @@ refreshHeader=function()
   local available=display and display.sites and display.sites[m.key]~=nil
   local config=display and display.owner and PlayerConfigurations and PlayerConfigurations[display.owner]
   local civ=config and config:GetCivilizationTypeName()
+  if m.key=='PEOPLE' then
+   row.MissionIcon:SetHide(civ~=nil);row.MissionCivilizationIcon:SetHide(civ==nil)
+   if civ then row.MissionCivilizationIcon:SetIcon('ICON_'..civ)end
+  elseif m.key=='PLACES' then
+   local site=display and display.sites and display.sites.PLACES
+   local name=site and site.building and ('ICON_'..site.building) or 'ICON_DISTRICT_WONDER'
+   local ok,_,_,sheet=pcall(function()return IconManager:FindIconAtlas(name,40)end)
+   row.MissionIcon:SetIcon(ok and type(sheet)=='string' and sheet~='' and name or 'ICON_DISTRICT_WONDER')
+  end
   local done=false
   for _,k in ipairs(current and current.insightKeys or {})do if civ and k==civ..':'..m.key then done=true end end
   m.entry.unavailable=viewMode=='TASK' and (not available or done)
-  row.MissionDetails:SetText(done and L('MISSION_DONE') or (available and L('MISSION_AVAILABLE') or L('MISSION_NO_TARGET')))
+  local unknown=not available and display and (display.siteStatus and display.siteStatus[m.key]=='UNKNOWN'
+   or not display.siteStatus and display.locationStatus=='UNKNOWN')
+  row.MissionDetails:SetText(done and L('MISSION_DONE') or (available and L('MISSION_AVAILABLE') or L(unknown and 'MISSION_TARGET_UNKNOWN' or 'MISSION_NO_TARGET')))
   row.MissionButton:SetToolTipString(L('MISSION_'..m.key..'_TOOLTIP'))
   if viewMode=='TASK' and taskSelected==m.key and m.entry.unavailable then taskSelected=false end
   sizeMissionCard(row)
@@ -599,7 +615,7 @@ local function populateSidebar()
  for _,mission in ipairs(MISSIONS)do
   local row=taskRows:GetInstance();previewRow=previewRow or row
   local key=mission.key
-  row.MissionIcon:SetIcon(mission.icon)
+  row.MissionIcon:SetIcon(mission.icon);row.MissionCivilizationIcon:SetHide(true)
   row.MissionName:SetText(L('MISSION_'..key..'_NAME'))
   local entry={button=row.MissionButton,brace=row.SelectorBrace,mission=key}
   normalRows[#normalRows+1]=entry;missionRows[#missionRows+1]={row=row,key=key,entry=entry}

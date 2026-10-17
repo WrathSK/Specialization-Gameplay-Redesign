@@ -27,7 +27,7 @@ local function eligible(data)
 end
 local function signature(ok,v)
  if not ok then return 'UNAVAILABLE' end
- return v.owner..':'..v.cityID..':'..v.x..':'..v.y..':'..v.potential..':'..tostring(v.active)..':'..tostring(v.activeStatus)
+ return v.owner..':'..v.cityID..':'..v.x..':'..v.y..':'..tostring(v.specialization)..':'..v.potential..':'..tostring(v.active)..':'..tostring(v.activeStatus)
 end
 function ViewPanelBreakdown(data)
  lastData=data

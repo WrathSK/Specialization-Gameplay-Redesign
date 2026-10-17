@@ -160,6 +160,15 @@ local function request(playerID,params)
     if P.IsTestPlayer(playerID) and shared.NetworkBridge and params.Epoch==shared.NetworkBridge.epoch then shared.NetworkBridge.CheckEvidence(true) end
     return
   end
+  if params.Action=='CULTURE_INSIGHTS_READ' then
+    local ok,text=pcall(function()
+      local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
+      return P.DescribeCultureInsights(playerID,c,shared.CityProgressionStore)
+    end)
+    if not ok then print('[SPC][B191][N1_INSIGHT] status=UNKNOWN') end
+    shared.Snapshot=ok and text or '文化见闻暂不可读（UNKNOWN）；请重新选择己方城市。'
+    shared.LastToken=params.Token;return
+  end
   if params.Action=='RESEARCH_TRADITION_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,text=pcall(function()
