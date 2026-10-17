@@ -1,6 +1,6 @@
 # B217 — Event-driven initial Expedition position confirmation
 
-State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source B217.244; live remains B216.243 until guarded deployment below.
+State: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Source/live B217.244; deployment verified below.
 
 ## Authority and scope
 
@@ -32,4 +32,6 @@ If it still stops, stop there and provide the collector output. Expected/actual 
 
 ## Deployment
 
-Pending clean committed source, automatic game-exit check and existing receipt-bound transaction. No configuration change or game launch.
+B217.244/modinfo244 DEVELOP_ACTIVE; source afd87e465719ebfd60e09e3db45f27651e811aae; receipt B217.244-afd87e4-playtest.json;221/221 MATCH. Automatic OS exit checks before both guarded switches; B216/stable recovery retained, no pending transaction. Configuration unchanged.
+
+Source/runtime digest: `0e4094e3dcdf035284e2c3075c390871d539a858892089232282542e1799eb0d`. Context/self-test,372 Markdown links, staged publication and diff checks PASS. No game launch or native PASS.

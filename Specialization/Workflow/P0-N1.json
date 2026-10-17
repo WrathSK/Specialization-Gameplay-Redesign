@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0581",
+    "status": "S0582",
     "runtime": "B217.244 / modinfo244",
     "military": "D0037",
     "harbor": "D0037",
@@ -686,7 +686,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B217_Expedition_Position_Events.md",
-    "source": "B217.244 local complete; live B216.243 pending guarded switch.",
+    "source": "B217.244/modinfo244 DEVELOP_ACTIVE; source afd87e465719ebfd60e09e3db45f27651e811aae; receipt B217.244-afd87e4-playtest.json;221/221 MATCH. Automatic OS exit checks before both guarded switches; B216/stable recovery retained, no pending transaction. Configuration unchanged.",
     "native": "B217 initial position repair pending one PLACES retry. B216 PLACES preparation FAIL; +4% wonder tooltip confirmed, rounding/dynamic updates deferred; WORKS untested.",
     "stop": "One native PLACES retry; no new implementation batch, Tourism rounding/performance or N3."
   }
