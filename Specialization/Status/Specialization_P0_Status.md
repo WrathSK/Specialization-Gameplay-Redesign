@@ -2,16 +2,16 @@
 
 Document Owner: Codex
 Status Revision: S0564
-Implementation Build: source B211.238 (live B210.237 DEVELOP_ACTIVE until the authorized switch); stable B069.96
+Implementation Build: source/live B211.238 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0049（当前时代全类GPP百分比，本批实现已授权）
 Latest Accepted Design Revision: D0049
 Design Sync State: D0049_INSPIRE_AUTOMATIC_LOCAL_COMPLETE / NATIVE_API_USER_ACCEPTED
-Work State: B211_LOCAL_COMPLETE_DEPLOY_AUTHORIZED
+Work State: B211_DEPLOYED_AWAITING_USER_TEST
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B211 is locally complete and deployment is authorized.**
+**B211 is deployed: B211.238 DEVELOP_ACTIVE, source `c18c053`, receipt `B211.238-c18c053-playtest.json`, 219/219 MATCH; no pending transaction.**
 - A completed 人文考察团 (Expedition) can be redispatched after its activity is released and can run another no-reward task.
 - Task duration is one standard-speed constant.
 - The historical activity-diagnostic and package tests were realigned with B201.

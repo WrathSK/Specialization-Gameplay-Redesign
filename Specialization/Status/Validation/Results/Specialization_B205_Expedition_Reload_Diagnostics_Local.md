@@ -568,3 +568,5 @@ Deferral rework assessment:
   - it redispatches after release to a second capital, arrives with a replaced unit ID and completes a second task with key `:task2`;
   - a released completed team can travel but cannot repeat the task in place.
 - All `test_expedition_*` suites: 727 tests, only the 3 environment-dependent name tests fail, identically at HEAD. HEAD itself had those 3 plus the 11 historical failures fixed above.
+
+**Deployment.** B211.238/modinfo238 is **DEVELOP_ACTIVE**, source `c18c0530723b80aa63712ee9afa250b3f7c83dee`, receipt `B211.238-c18c053-playtest.json`. A fresh OS check (game executable only) confirmed game exit before both guarded switches: B210 restored to stable, then B211 activated. 219/219 files MATCH, and there is no pending transaction.
