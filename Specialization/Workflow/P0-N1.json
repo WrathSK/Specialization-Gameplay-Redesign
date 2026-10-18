@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0162",
-    "status": "S0616",
+    "status": "S0617",
     "runtime": "B232.259 / modinfo259",
     "military": "D0037",
     "harbor": "D0037",
@@ -974,8 +974,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
-    "source": "B232.259/modinfo259 LOCAL_COMPLETE; live remains B231.258 under prior receipt until guarded deployment.",
+    "source": "B232.259/modinfo259 DEVELOP_ACTIVE; source a0e1d4ece94bac690c6a2018add37b96c37c145c; receipt B232.259-a0e1d4e-playtest.json;226/226 MATCH, digest 4830284febe3731cb9d0b0de0970613cf5358a9c98575934e163dc23a91036cb. Automatic game-exit checks before both guarded switches; B231/stable recovery retained, no pending transaction.",
     "native": "B232 USER_GAME_TEST_REQUIRED; B231 initial network/bonus partial evidence remains unchanged.",
-    "stop": "After guarded deployment and minimal test handoff, await user evidence; no next implementation or speculative Expedition repair."
+    "stop": "Verified B232 deployed; await the minimal native network delta. No later implementation or speculative Expedition repair."
   }
 }

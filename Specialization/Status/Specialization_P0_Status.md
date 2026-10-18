@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0616
-Implementation Build: source B232.259 LOCAL_COMPLETE; live B231.258; stable B069.96
+Status Revision: S0617
+Implementation Build: source/live B232.259 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0162
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B232_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B232_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B232 locally complete:** [event-driven proof recovery and active Insight propagation](Validation/Results/Specialization_B232_Network_Revalidation.md). Native update acceptance remains pending; B231 initial network/bonus evidence is retained.
-- **Source B232.259 / modinfo259; live still B231.258** until guarded deployment. Stable main B069.96 unchanged; source existence does not establish live state.
+**B232 deployed; native pending:** [event-driven proof recovery and active Insight propagation](Validation/Results/Specialization_B232_Network_Revalidation.md). Native update acceptance remains pending; B231 initial network/bonus evidence is retained.
+- **Source/live B232.259 / modinfo259:** source `a0e1d4e`, receipt `B232.259-a0e1d4e-playtest.json`,226/226 MATCH. Stable main B069.96 unchanged; prior runtime/stable recovery retained.
 - **Changed:** Gameplay requests pending route proof from the UI; equal-content proof is accepted when needed; proof/availability commit precedes publication; recovery notifies consumers without a fake input version. Successful Insight events update dependent cities immediately or request pending proof.
 - **Validation:**163 scoped unittest tests and B134 shared-scope regression PASS. Historical B137 comparison fails identically on pre-change HEAD; unmodified and not counted as PASS. UNKNOWN, confirmed loss and bounded retries remain.
-- **Authorized next/stop:** W0003 guarded B232 deployment if game exit is verified, then one minimal network-delta user session. No timer, Expedition repair, Design/permanent/GC change or later batch. Actual native yield remains USER_GAME_TEST_REQUIRED.
+- **Authorized next/stop:** Guarded B232 deployment verified; await one minimal network-delta user session. No timer, Expedition repair, Design/permanent/GC change or later batch. Actual native yield remains USER_GAME_TEST_REQUIRED.
+
+## S0617 — B232 verified deployment
+
+Automatic exit checks before both receipt-bound switches;226/226 source/runtime equality, recovery retained and no pending transaction. Native gate pending; main/configuration unchanged and no game launch.
 
 ## S0616 — B232 local checkpoint
 

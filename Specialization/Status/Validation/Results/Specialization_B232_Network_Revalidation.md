@@ -1,6 +1,6 @@
 # B232 — Event-driven network proof recovery and Insight propagation
 
-Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B232.259/modinfo259; live remains B231.258 until the guarded deployment below is completed.
+Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source/live B232.259/modinfo259; verified deployment is recorded below.
 
 ## Approved boundary and cause
 
@@ -54,4 +54,4 @@ User decision: none. User testing: the single network delta above. Primary next:
 
 ## Deployment
 
-Not yet switched at this local checkpoint. Live B231.258/modinfo258 remains governed by receipt `B231.258-168bb25-playtest.json`; stable main B069.96 remains unchanged. W0003 deployment requires committed clean source, automatic game-exit verification, receipt-bound stable restore/activation and exact package equality. A running/unknown game defers replacement.
+B232.259/modinfo259 DEVELOP_ACTIVE; source a0e1d4ece94bac690c6a2018add37b96c37c145c; receipt B232.259-a0e1d4e-playtest.json;226/226 MATCH, digest 4830284febe3731cb9d0b0de0970613cf5358a9c98575934e163dc23a91036cb. Automatic game-exit checks before both guarded switches; B231/stable recovery retained, no pending transaction. Stable main B069.96 remains unchanged; no game launch or configuration change. Native gate remains pending.
