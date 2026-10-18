@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0169",
-    "status": "S0642",
+    "status": "S0643",
     "runtime": "B240.267 / modinfo267",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,10 +35,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "81efaa995c02eb16e3ba41b7b6f88d724a596607",
-  "current_batch": "B240_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "One B240 Commercialization source/Food/Gold/UI session plus pending Commerce configuration/Reputation reload; no next implementation batch authorized.",
+  "current_batch": "B240_NATIVE_ACCEPTED_B241_PLAN_REVIEW",
+  "next_batch": "Proposed B241 Capital Investment stable/venture contract; clarify S attainment tie-break and close source/precision gates, then request implementation authorization.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B240.267/modinfo267 DEVELOP_ACTIVE; source 81efaa995c02eb16e3ba41b7b6f88d724a596607; receipt B240.267-81efaa9-playtest.json;245/245 MATCH, digest 903a0897142582bb338f868805a664eec38e14768fa3467834245ce542ec86c7. Fresh automatic game-exit checks before both guarded switches; B239/stable recovery retained, no pending transaction. Native B240 pending.",
+  "live": "B240.267/modinfo267 DEVELOP_ACTIVE; source 81efaa995c02eb16e3ba41b7b6f88d724a596607; receipt B240.267-81efaa9-playtest.json;245/245 MATCH, digest 903a0897142582bb338f868805a664eec38e14768fa3467834245ce542ec86c7. Fresh automatic game-exit checks before both guarded switches; B239/stable recovery retained, no pending transaction. B240 tested values/city modifiers/source filtering/withdrawal and user-confirmed Commerce reload accepted; no broad performance claim.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0642: explicitly authorized D0055/B240 source/effect/UI reviewed;109 targeted checks, syntax/package/links/context/publication PASS. Deployed from clean/pushed81efaa9 with245/245 equality; native pending.",
+  "context_review_status": "S0643: B240 182 contiguous captured records and 47 domain Floor checks reviewed; user actual-yield/filter/reload acceptance retained in scope. B241 is planning only; runtime/Design/tests unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md"
 }

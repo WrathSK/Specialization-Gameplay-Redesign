@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0642
+Status Revision: S0643
 Implementation Build: source/live B240.267; stable B069.96
 Architecture Revision Reviewed: A0169
 Design Revision Reviewed: D0055
 Latest Accepted Design Revision: D0055
-Design Sync State: D0055_SOURCE_IDENTITY_FOOD_IMPLEMENTED_NATIVE_PENDING
-Work State: B240_DEPLOYED_AWAITING_NATIVE
+Design Sync State: D0055_IMPLEMENTED_SCOPED_NATIVE_ACCEPTED
+Work State: B240_NATIVE_ACCEPTED_B241_PLAN_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B240 deployed; native verification pending:** [D0055 source/Food and UI result](Validation/Results/Specialization_B240_Commercialization_Local.md).
-- External sources require matching Identity and a direct domestic route; self remains exempt with a local domain district. Harbor reads total Food. Repeated Gold sampling is removed; real updates/exit cleanup remain.
-- Source/live B240.267/modinfo267 from `81efaa9`; receipt `B240.267-81efaa9-playtest.json`,245/245 MATCH. Both guarded switches passed automatic game-exit checks; recovery retained, no pending transaction.
-- 109 targeted tests PASS, including no-change/deferred-event zero writes and same-turn real changes. Native Gold/source/Food/refresh and the pending Commerce reload require the single combined session; report configuration is not actual yield evidence.
-- Retain B239 Crew/capacity/report D/Reputation observations. Main B069.96, other professions and Culture HOLD unchanged. Next: the single combined Commerce test; no Capital/Development/Restructuring authorization.
+**B240 accepted in the tested scope:** [native review](Validation/Results/Specialization_B240_Native_Review.md).
+- User confirms values/city percentage modifiers, source Identity filtering, tested partial-domain/carrier withdrawal and the Commerce cold-load step. 182 contiguous captured records agree; 47 domain Floor checks pass, network revalidation recovers.
+- Source/live remains B240.267/modinfo267 from `81efaa9`, receipt `B240.267-81efaa9-playtest.json`; 245/245 MATCH. No runtime/Design/test/configuration change or deployment in this review.
+- No further B240 test requested. The log is not a Treasury measurement, complete restart capture or native performance proof; user observations supply those named acceptance items only.
+- Next: [B241 Capital Investment proposal](../Architecture/v2/Commerce_Preparation.md#b241-proposal--capital-investment), not implementation-authorized. Clarify S attainment tie-break and validate source/precision boundaries first. Main B069.96, Culture HOLD and unrelated audit deferrals remain.
+
+## S0643 — B240 native acceptance and B241 proposal
+
+Reviewed 182 original records (seq 8–189), 47 per-domain arithmetic entries and collector metadata. Same-turn worker/source changes and temporary network holds recover; no new unresolved Commerce failure. The user confirms actual values/normal city modifiers/source filtering and the pending Commerce reload; the one captured context is not substituted for an independently logged restart. Raw hashes retained; no screenshots submitted. Updated the existing COM-B plan with concrete source/attainment/precision and transaction review gates, not new Design. Documentation/context/publication only; runtime/source/main and frozen prior results unchanged.
 
 ## S0642 — B240 verified deployment
 

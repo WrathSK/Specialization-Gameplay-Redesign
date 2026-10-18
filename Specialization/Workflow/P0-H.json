@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0055",
     "research": "D0040",
@@ -11,33 +11,33 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0169",
-    "status": "S0642",
+    "status": "S0643",
     "runtime": "B240.267 / modinfo267",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-  "goal": "B240 authorized: D0055 matching-Identity external sources, Harbor total Food, remove recurring Gold sampling; merge B239 local-prerequisite/report UI correction. Preserve current updates/exit and permanent history.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md",
+  "goal": "Record B240 tested native acceptance and review the existing COM-B/B241 proposal; no new implementation or deployment authorized.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current source/live, evidence and approved stop."
+      "reason": "Accepted native scope, unchanged live source and next authorization boundary."
     },
     {
-      "path": "Specialization/Design/Design_ChangeLog.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md",
       "kind": "section",
-      "selector": "## Accepted D0055 — 2026-10-18",
-      "reason": "Accepted change only; no runtime or native acceptance."
+      "selector": "## Review summary",
+      "reason": "Trace/user evidence separation; no repeated B240 gate."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B240 implementation and validation",
-      "reason": "Current source ownership, D0055 delta, validation and bounded native gate."
+      "selector": "## B241 proposal — Capital Investment",
+      "reason": "Next proposed contract scope and unresolved user/technical gates; planning only."
     }
   ],
   "dependencies": [
@@ -102,19 +102,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L2 changed source/effect/event path plus inherited targeted Store/route/cleanup regressions; L1 UI/package/docs. No new persistence schema.",
-    "local": "109 distinct targeted checks PASS, no failures/errors/skips. Unchanged updates/deferred echoes have zero carrier writes; real same-turn change retained.",
-    "user": "One native source/Food/Gold/UI session, including the pending B239 Commerce selection/Reputation reload; no repeated Crew/Academic Tradition test.",
-    "gap": "D0055 native result and cessation of repeated flash/sound remain unverified; no native CPU/memory claim."
+    "depth": "Evidence/documentation review only; no runtime/test changes or repeated gameplay suite.",
+    "local": "B240 109 targeted checks inherited unchanged; 182 unique trace records and 47 Floor entries independently checked. Source/runtime 245/245 MATCH.",
+    "user": "USER_GAME_TEST_PASS for reported values/city modifiers/source filtering/tested withdrawal and Commerce cold-load step.",
+    "gap": "Trace logs planned output in one captured context, not literal Treasury deltas or a full restart. No broad native performance certification or Capital acceptance."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md",
     "source": "B240.267 deployed from 81efaa995c02eb16e3ba41b7b6f88d724a596607;245/245 MATCH; receipt B240.267-81efaa9-playtest.json",
-    "native": "Inherited B239 observations retained; B240 USER_GAME_TEST_REQUIRED.",
-    "stop": "Stop for the one combined Commerce native session; no next batch authorized."
+    "native": "B240 tested native scope accepted using user observations and trace corroboration.",
+    "stop": "Wait for B241 plan/Design clarification and explicit implementation authorization; no new test or deployment now."
   }
 }
