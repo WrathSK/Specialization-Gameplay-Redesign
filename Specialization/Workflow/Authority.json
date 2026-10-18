@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0614",
+    "status": "S0615",
     "runtime": "B231.258 / modinfo258",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "168bb25df3eaf21d9c411538f1c9bcfc209571a6",
-  "current_batch": "B231_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "User: one network-only readiness/report/yield session with the existing collector. Expedition unchanged; no further implementation authorized.",
+  "current_batch": "B231_NATIVE_PARTIAL_REVALIDATION_REPAIR_PROPOSED",
+  "next_batch": "Proposed B232: repair event-driven route-proof revalidation and consumer recovery notification; awaiting user implementation authorization. No new user test request; Expedition unchanged.",
   "manifest": "Specialization/Workflow/P0-N1.json",
   "live": "B231.258/modinfo258 DEVELOP_ACTIVE; source 168bb25df3eaf21d9c411538f1c9bcfc209571a6; receipt B231.258-168bb25-playtest.json;226/226 MATCH, digest 75e7b7f56789874f42bfa1f27f29628c754625dbf5cfc76a52a8367580be7681. Automatic game-exit checks before both guarded switches; B230/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B231 scoped initialization/public diagnostics/failure metadata review;143 targeted local PASS. Native pending; historical AV2-B wrapper fails on both B230 and B231, unchanged.",
+  "context_review_status": "B231 native partial: initialization/initial bonus and public output confirmed; new complete-civilization update held by route revalidation.8 unchanged-source local counterexample/control assertions confirm sender dedup, recovery notification and candidate-order defects. No code change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B231_Native_Review.md"
 }

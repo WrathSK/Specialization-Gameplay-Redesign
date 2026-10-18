@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0614
+Status Revision: S0615
 Implementation Build: source/live B231.258 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B231_DEPLOYED_AWAITING_NATIVE
+Work State: B231_NATIVE_PARTIAL_REVALIDATION_REPAIR_PROPOSED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B231 local complete:** [network initialization and independent reports](Validation/Results/Specialization_B231_Network_Initialization_Reports.md);143 targeted tests PASS, native pending.
-- **Source/live B231.258 / modinfo258**: source `168bb25`, receipt `B231.258-168bb25-playtest.json`,226/226 MATCH. Stable main B069.96 unchanged.
-- **B230 evidence:** Culture initialization fails despite published VERIFIED/AVAILABLE topology; actual-Lua counterexample identifies unguarded cityless-player iteration. Original native exception was masked. Shared network and Culture consumer readiness are distinct.
-- **Changed:** nil city-collection guard; independent public route/source/center/receiver reports; concrete sanitized failure phase/location. Shared computation, Expedition, Design, permanent state, GC and timers unchanged.
-- **Next:** one network-only native flow with the existing collector; no new Expedition or repeated cold-load gate. No additional implementation authorized.
+**B231 native partial:** [review and proposed revalidation repair](Validation/Results/Specialization_B231_Native_Review.md). Initialization, public diagnostic output and the tested initial Culture bonus work; the bonus does not update after Gaul completes its third Insight.
+- **Source/live B231.258 / modinfo258** unchanged: source `168bb25`, receipt `B231.258-168bb25-playtest.json`,226/226 verified at deployment. Stable main B069.96 unchanged; no new deployment this review.
+- **Evidence:** T85 AVAILABLE/coefficient1; T86 onward NEEDS_REVALIDATION; T89 Gaul WORKS succeeds, historical/effective records9→10 and Tourism report18%→20%. Public report exposes2 routes/2 sources/2 centers/3 recipients; the hold is route revalidation, not initialization or lost history.
+- **Local diagnosis:** unchanged route proofs are suppressed by sender dedup; recovery with identical input does not notify consumers; a changed candidate can publish the old pending flag.8 actual-source counterexample/control assertions confirm these paths; no implementation change.
+- **Next proposed:** B232 event-driven proof/recovery notification repair, retaining UNKNOWN and confirmed-loss guards. Await user implementation authorization; no new test request, Expedition repair, timer or deployment.
+
+## S0615 — B231 native review checkpoint
+
+Recorded partial acceptance and failed second-civilization update with original log hashes. A narrow shared revalidation repair is proposed; actual-source reproduction and raw result remain ignored locally. Code, tests, runtime, Design, Architecture, main and frozen results are unchanged.
 
 ## S0614 — B231 verified deployment
 

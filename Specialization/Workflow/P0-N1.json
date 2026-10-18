@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0614",
+    "status": "S0615",
     "runtime": "B231.258 / modinfo258",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B231 cityless-player initialization guard, independent read-only public network reports and concrete sanitized failure evidence. Expedition unchanged.",
+  "goal": "Review B231 native network success and failed Insight-driven bonus update; propose bounded B232 revalidation recovery repair. No new implementation authorization.",
   "implementation_authorized": false,
   "context": [
     {
@@ -26,6 +26,11 @@
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
       "reason": "Current gate, authorization and source/live distinction"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B231_Native_Review.md",
+      "kind": "full",
+      "reason": "Latest native partial result, source-backed counterexamples and proposed next repair; not implementation authorization."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md",
@@ -940,16 +945,17 @@
   "validation": {
     "depth": "L2 scoped actual-source tests",
     "local": "143 targeted tests PASS; optional historical AV2-B wrapper fails in its inherited B069 fixture on both B230 and B231, unchanged.",
-    "user": "One network-only readiness/report/yield session; existing collector, no new Expedition or cold-load loop."
+    "user": "B231 initial bonus/initialization confirmed; public output recorded; subsequent complete-civilization update failed. No retest requested before authorized repair.",
+    "review": "8 focused unchanged-source reproduction/control assertions PASS; not a repaired implementation or native transport test."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B231_Native_Review.md",
     "source": "B231.258/modinfo258 DEVELOP_ACTIVE; source 168bb25df3eaf21d9c411538f1c9bcfc209571a6; receipt B231.258-168bb25-playtest.json;226/226 MATCH, digest 75e7b7f56789874f42bfa1f27f29628c754625dbf5cfc76a52a8367580be7681. Automatic game-exit checks before both guarded switches; B230/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_REQUIRED for B231 network delta. B230 consumer readiness failed; inherited Expedition issue remains separate.",
-    "stop": "No unrelated implementation authorized."
+    "native": "PARTIAL: USER_GAME_TEST_PASS initialization and tested initial bonus; public diagnostic output confirmed. USER_GAME_TEST_FAIL subsequent complete-civilization update (route revalidation pending). Expedition broader gate remains separate.",
+    "stop": "Await user authorization for proposed B232 shared revalidation repair; no implementation or deployment in this review."
   }
 }
