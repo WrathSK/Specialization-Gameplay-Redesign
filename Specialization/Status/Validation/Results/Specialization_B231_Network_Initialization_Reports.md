@@ -1,6 +1,6 @@
 # B231 — Cityless-player initialization and independent network reports
 
-Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B231.258; live deployment is recorded separately.
+Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source/live B231.258; verified deployment is recorded below.
 
 ## Approved boundary and B230 evidence
 
@@ -50,4 +50,4 @@ User decision: none. User testing: the network delta above only. Primary next: r
 
 ## Deployment
 
-Not deployed at this local checkpoint. Live remains B230.257 from94ce45b until the existing receipt/hash/game-exit transaction verifies B231.258. Stable main remains B069.96.
+B231.258/modinfo258 DEVELOP_ACTIVE; source 168bb25df3eaf21d9c411538f1c9bcfc209571a6; receipt B231.258-168bb25-playtest.json;226/226 MATCH, digest 75e7b7f56789874f42bfa1f27f29628c754625dbf5cfc76a52a8367580be7681. Automatic game-exit checks before both guarded switches; B230/stable recovery retained, no pending transaction. Stable main remains B069.96; no game launch or configuration change. Native gate remains pending.

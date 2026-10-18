@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0613
-Implementation Build: source B231.258 locally complete; live B230.257; stable B069.96
+Status Revision: S0614
+Implementation Build: source/live B231.258 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B231_LOCAL_COMPLETE_DEPLOYMENT_PENDING
+Work State: B231_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B231 local complete:** [network initialization and independent reports](Validation/Results/Specialization_B231_Network_Initialization_Reports.md);143 targeted tests PASS, native pending.
-- **Source B231.258 / modinfo258; live B230.257** remains source `94ce45b`, receipt `B230.257-94ce45b-playtest.json` until guarded deployment. Stable main B069.96 unchanged.
+- **Source/live B231.258 / modinfo258**: source `168bb25`, receipt `B231.258-168bb25-playtest.json`,226/226 MATCH. Stable main B069.96 unchanged.
 - **B230 evidence:** Culture initialization fails despite published VERIFIED/AVAILABLE topology; actual-Lua counterexample identifies unguarded cityless-player iteration. Original native exception was masked. Shared network and Culture consumer readiness are distinct.
 - **Changed:** nil city-collection guard; independent public route/source/center/receiver reports; concrete sanitized failure phase/location. Shared computation, Expedition, Design, permanent state, GC and timers unchanged.
-- **Next authorized:** commit/push, automatic game-exit and receipt/hash gates, then B231 deployment. One network-only native flow; no new Expedition or repeated cold-load gate. No additional implementation authorized.
+- **Next:** one network-only native flow with the existing collector; no new Expedition or repeated cold-load gate. No additional implementation authorized.
+
+## S0614 — B231 verified deployment
+
+Automatic exit checks before both receipt-bound switches;226/226 source/runtime equality, recovery retained, no pending transaction. Native gate pending; main/configuration unchanged and no game launch.
 
 ## S0613 — B231 local checkpoint
 

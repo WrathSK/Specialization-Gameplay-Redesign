@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0613",
-    "runtime": "B230.257 / modinfo257",
+    "status": "S0614",
+    "runtime": "B231.258 / modinfo258",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -948,7 +948,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-    "source": "B231.258 local complete; live still B230.257 pending guarded deployment.",
+    "source": "B231.258/modinfo258 DEVELOP_ACTIVE; source 168bb25df3eaf21d9c411538f1c9bcfc209571a6; receipt B231.258-168bb25-playtest.json;226/226 MATCH, digest 75e7b7f56789874f42bfa1f27f29628c754625dbf5cfc76a52a8367580be7681. Automatic game-exit checks before both guarded switches; B230/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED for B231 network delta. B230 consumer readiness failed; inherited Expedition issue remains separate.",
     "stop": "No unrelated implementation authorized."
   }
