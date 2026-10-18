@@ -88,6 +88,26 @@ class CollectorTests(unittest.TestCase):
         self.assertIsNone(collector.train_line(reader.PREFIX + 'META schema=205 sequence=3'))
         self.assertIsNone(collector.train_line('secret engine output'))
 
+    def test_activity_field_order_snapshot_live_and_dedup(self):
+        record = ('[SPC][B205][TRAIN] seq=9 evaluationOrigin=NATIVE_EVENT '
+                  'signalOrigin=PUBLISH stage=ACTIVITY_FAILURE guardStatus=DENIED')
+        for prefix in ('GameCore_Tuner: ', reader.PREFIX + 'ENTRY 9 '):
+            self.assertEqual(collector.train_line(prefix + record), record)
+            self.assertEqual(reader.training_line(prefix + record), record)
+        self.assertIsNotNone(self.session.add(record, 'snap'))
+        self.assertIsNone(self.session.add(record, 'live'))
+        self.assertEqual(self.session.stages['ACTIVITY_FAILURE'], 1)
+
+    def test_field_order_parser_retains_boundaries(self):
+        base = '[SPC][B205][TRAIN] seq=9 evaluationOrigin=NATIVE_EVENT '
+        for suffix in ('', 'notstage=ACTIVITY_FAILURE', 'stage=bad',
+                       'stage=ACTIVITY_FAILURE stage=OTHER', 'stage=ACTIVITY_FAILURE\nsecret'):
+            self.assertIsNone(collector.train_line(base + suffix))
+        self.assertIsNone(collector.train_line(base.replace('[B205]', '[B204]') + 'stage=OK'))
+        self.assertIsNone(collector.train_line(base.replace('seq=9 ', 'seq=9x ') + 'stage=OK'))
+        with self.assertRaises(reader.CaptureError):
+            collector.train_line(base + 'stage=OK payload=' + 'x' * 4096)
+
     def test_dedup_population_and_cost_alerts(self):
         first = self.session.add(TRAIN % (1, 'UI_ROW', 16, '1'), 'snap')
         self.assertIn('COST_FLOOR_OBSERVED native=1 definition_base=60', first)

@@ -36,13 +36,11 @@ MAX_SEEN = 50000
 MAX_HOURS = 12
 MAX_HD_LOGGED = 2000
 FIELD = re.compile(r'(\w+)=(\S+)')
-TRAIN = re.compile(r'\[SPC\]\[B205\]\[TRAIN\] seq=\d+ stage=[A-Z_]+(?: .*|$)')
 
 
 def train_line(line):
     """Extract one TRAIN record from a snapshot ENTRY line or a passive print."""
-    match = TRAIN.search(line)
-    return match.group(0)[:4096] if match else None
+    return reader.training_line(line)
 
 
 def fields(record):

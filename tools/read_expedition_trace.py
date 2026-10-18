@@ -170,13 +170,18 @@ def native_error(payload):
 
 
 def training_line(line):
-    # An exact batch/stage prefix; other engine output is dropped except hd_line().
-    match = re.search(r'\[SPC\]\[B205\]\[TRAIN\] seq=\d+ stage=[A-Z_]+(?: |$)', line)
+    # Keep the exact batch/sequence boundary; scalar field order is not a protocol.
+    match = re.search(r'\[SPC\]\[B205\]\[TRAIN\] seq=\d+(?= |$)', line)
     if not match:
         return None
     value = line[match.start():]
     if len(value) > 4096:
         raise CaptureError('OUTPUT_LINE_LIMIT')
+    if '\n' in value or '\r' in value:
+        return None
+    stages = re.findall(r'(?:^| )stage=([^ ]+)(?= |$)', value)
+    if len(stages) != 1 or not re.fullmatch(r'[A-Z_]+', stages[0]):
+        return None
     return value
 
 
