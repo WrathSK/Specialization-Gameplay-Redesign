@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0609",
+    "status": "S0610",
     "runtime": "B229.256 / modinfo256",
     "military": "D0037",
     "harbor": "D0037",
@@ -928,7 +928,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
-    "source": "B229.256 local complete; live remains B228.255 until guarded deployment.",
+    "source": "B229.256/modinfo256 DEVELOP_ACTIVE; source 90865599b303f0ee2e575e43378625d6870da7a3; receipt B229.256-9086559-playtest.json;226/226 MATCH, digest d6912eb5658641b2d423ec3edc16d162bb29c9948c8bc20fba3c28d34d6f73a6. Automatic game-exit checks at both guarded switches; B228/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED; recurring native denial and actual network error remain open.",
     "stop": "No unrelated implementation authorized."
   }

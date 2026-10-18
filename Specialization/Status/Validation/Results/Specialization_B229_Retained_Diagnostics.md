@@ -1,6 +1,6 @@
 # B229 — Retained network waiting evidence and complete release diagnostics
 
-Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B229.256; live B228 until verified deployment is recorded.
+Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B229.256; verified deployment below; native acceptance pending.
 
 ## Approved scope and investigation
 
@@ -26,3 +26,7 @@ STATIC_CONFIRMED: the installed Base UnitPanel.lua:4053–4072 uses activity for
 Start the existing collector manually. Perform one ordinary task through completion, then try another task or dispatch. If rejected, retain the log rather than repeat clicks. For the affected culture city, open **文化见闻** once while it shows waiting; the report now remains recoverable through the current bounded ring even if its immediate print was missed. No cold-load or long-test requirement. This batch improves evidence completeness; recurring native denial and the actual network failure are still open until the records identify them.
 
 User decision: none within this batch. Primary next: review retained reasons and release branch/state; do not bypass native permissions or rewrite network qualification.
+
+## Verified deployment
+
+B229.256/modinfo256 DEVELOP_ACTIVE; source 90865599b303f0ee2e575e43378625d6870da7a3; receipt B229.256-9086559-playtest.json;226/226 MATCH, digest d6912eb5658641b2d423ec3edc16d162bb29c9948c8bc20fba3c28d34d6f73a6. Automatic game-exit checks at both guarded switches; B228/stable recovery retained, no pending transaction. No game launch, configuration or main change.

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0609
-Implementation Build: source B229.256; live B228.255 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0610
+Implementation Build: source/live B229.256 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B229_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
+Work State: B229_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B229 local complete:** [retained network waiting and complete release diagnostics](Validation/Results/Specialization_B229_Retained_Diagnostics.md);255 targeted offline tests PASS. Native gate pending.
-- **Source B229.256 / modinfo256; live B228.255**: source `5cacaa0`, receipt `B228.255-5cacaa0-playtest.json`,226/226 MATCH at recorded deployment. Main stable B069.96 unchanged.
+- **Source/live B229.256 / modinfo256**: source `9086559`, receipt `B229.256-9086559-playtest.json`,226/226 MATCH. Main stable B069.96 unchanged.
 - **Evidence:** B228 T75 still rejects Sleep; old/new Wake query shapes agree. Submitted sessions lack a new release chain and network wait prints. No global-lock or topology-absence conclusion. Prior successful tasks/Great Work refresh retained; network yield/source withdrawal unaccepted.
 - **Changed:** waiting-report state now survives missed prints in the existing bounded ring; all release ACK exits retain branch/state. No changed release gate, forced wake, retry, timer, gameplay/history or GC change.
-- **Next:** guarded deployment after exit confirmation, then one normal task/reuse and one **文化见闻** waiting report with collector. No blind repeats, cold-load loop or unrelated batch.
+- **Next:** one normal task/reuse and one **文化见闻** waiting report with collector. No blind repeats, cold-load loop or unrelated batch.
+
+## S0610 — B229 verified deployment
+
+Automatic exit checks before both guarded switches,226/226 source/runtime equality, no pending transaction. B228/stable recovery retained. Native gate pending; no main/configuration change or game launch.
 
 ## S0609 — B229 bounded diagnostic closure
 
