@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0627
+Status Revision: S0628
 Implementation Build: source/live B235.262 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0165
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B235_DEPLOYED / NATIVE_PENDING / DISTRICT_PURCHASE_BLOCKED
+Work State: B235_NATIVE_ACCEPTED_SCOPED / B236_PLANNED_NOT_AUTHORIZED / IV_ENTRY_FOLLOWUP
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B235 / IND-3 deployed, native pending:** [contract](../Architecture/v2/Industry_Preparation.md#b235-implementation-and-validation), [result and minimal native flow](Validation/Results/Specialization_B235_Engineering_Local.md); `P0-H` now routes this approved slice.
-- **Delivered:** full-turn Engineering Study with city L/receipts; per-template actual-holder III10/0, IV10+2L construction/2L building purchase; ACTIVE IV own-production older-Wonder10/20/30. No timers or new world scan.
-- **Evidence/gap:**188 scoped local PASS; native transaction/price/Wonder pending. Target-specific District purchase BLOCKED_TECHNICAL; no broad substitute. B233/B234 acceptance retained; native floor unchanged.
-- **Source/live:** B235.262 `fb7a547`, receipt `B235.262-fb7a547-playtest.json`,235/235 MATCH. Verified game exit before both guarded switches; B234/stable recovery retained. Main B069.96 unchanged.
-- **Next/stop:** one combined native session for the new L transaction, IV projection and older-Wonder primitive. Crew/Engineering Practice, Culture HOLD, Research-network redesign and Balance stay outside this batch.
+**B235 tested scope accepted; B236 planning only:** [native review](Validation/Results/Specialization_B235_Native_Review.md), [next proposal](../Architecture/v2/Industry_Preparation.md#b236-proposal--construction-teams-and-industry-iv-entry).
+- **Evidence:**183+48 contiguous records; L0→1→2, cold restore L2/14% projection, Gold quotes0/2/4%; tested Wonder acceleration user-accepted. Incremental construction arithmetic/cancellation not separately isolated; inherit local/previous native evidence.
+- **Follow-up:** user-reported same-turn Industry IV study/Macro delay joins proposed B236 Crew/Practice. District purchase remains an isolated technical gap; Faith untested. No extra B235-only native session.
+- **Source/live:** B235.262 `fb7a547`, receipt `B235.262-fb7a547-playtest.json`,235/235 MATCH. Main B069.96 unchanged; no deployment this review.
+- **Next/stop:** await approval for B236; no current implementation authorization. Culture HOLD, Research-network redesign and Balance remain outside scope.
+
+## S0628 — B235 native review and B236 proposal
+
+Reviewed both original collector sessions and archived three screenshots with unchanged SHA256. Study layers and fresh-load recovery agree; observed Gold quotes fit downward rounding to5, without compensation. User accepts tested ordinary-Wonder arithmetic and the observed Standardization projection/withdrawal, with incremental construction unmeasured. The IV-entry delay remains a confirmed user-game defect, merged into the proposed Crew/Practice batch; its precise native ordering is not inferred from incomplete signals. Source/runtime235/235 MATCH and main is unchanged. Documentation/context maintenance only: no Design/code/test/configuration edit, deployment or game launch; frozen results/logs preserved.
 
 ## S0627 — B235 verified deployment
 

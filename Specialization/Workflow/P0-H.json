@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0051",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0165",
-    "status": "S0627",
+    "status": "S0628",
     "runtime": "B235.262 / modinfo262",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b235-implementation-and-validation",
-  "goal": "B235.262 / IND-3: city Engineering Study/L, IV actual-holder enhancement and own-production older-Wonder bonus; District purchase is an explicit technical gap.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b236-proposal--construction-teams-and-industry-iv-entry",
+  "goal": "B235 native review and B236 planning: record scoped acceptance, preserve IV-entry failure and propose the next Crew/Practice batch without implementation.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -31,87 +31,18 @@
       "path": "Specialization/Architecture/v2/Industry_Preparation.md",
       "kind": "section",
       "reason": "Approved B235 scope and precise implementation/technical gate.",
-      "selector": "## B235 proposal — engineering study and wonder production"
+      "selector": "## B235 implementation and validation"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md",
+      "kind": "full",
+      "reason": "Current native observations, quote arithmetic, preserved limits and next-batch repair boundary."
     },
     {
       "path": "Specialization/Architecture/v2/Industry_Preparation.md",
       "kind": "section",
-      "reason": "Approved B235 scope and precise implementation/technical gate.",
-      "selector": "## B235 implementation and validation"
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "kind": "full",
-      "reason": "Current local evidence, limits and minimal new native gate."
-    },
-    {
-      "path": "Specialization/Design/Content/Industry_D0045.json",
-      "kind": "json",
-      "reason": "Accepted B235 business/lifecycle and target qualification contract.",
-      "selector": "/contracts/tradition_study"
-    },
-    {
-      "path": "Specialization/Design/Content/Industry_D0045.json",
-      "kind": "json",
-      "reason": "Accepted B235 business/lifecycle and target qualification contract.",
-      "selector": "/contracts/standardization_scope"
-    },
-    {
-      "path": "Specialization/Design/Content/Industry_D0045.json",
-      "kind": "json",
-      "reason": "Accepted B235 business/lifecycle and target qualification contract.",
-      "selector": "/contracts/standardization_efficiency_by_template"
-    },
-    {
-      "path": "Specialization/Design/Content/Industry_D0045.json",
-      "kind": "json",
-      "reason": "Accepted ordinary-Wonder era-gap rule.",
-      "selector": "/abilities/3"
-    },
-    {
-      "path": "Mod/EngineeringStudyModel.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/EngineeringStudyProjects.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/IndustryWonderEffects.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/StandardizationEffects.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/Data/EngineeringStudy.sql",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/CityProgressionStore.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/IndustryHistory.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "Mod/UI/EngineeringStudyUI.lua",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
-    },
-    {
-      "path": "DevelopmentTests/test_b235_engineering.py",
-      "kind": "full",
-      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
+      "selector": "## B236 proposal — construction teams and Industry IV entry",
+      "reason": "Proposed next slice only; no implementation authorization."
     }
   ],
   "dependencies": [
@@ -161,6 +92,22 @@
         "DevelopmentTests/test_b232_network_revalidation.py",
         "Specialization/Status/Validation/Results/Specialization_B234_Native_Review.md"
       ]
+    },
+    {
+      "trigger": "B235 exact local evidence or direct implementation regression; future B236 implementation still requires approval",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+        "Specialization/Design/Content/Industry_D0045.json",
+        "Mod/EngineeringStudyModel.lua",
+        "Mod/EngineeringStudyProjects.lua",
+        "Mod/IndustryWonderEffects.lua",
+        "Mod/StandardizationEffects.lua",
+        "Mod/Data/EngineeringStudy.sql",
+        "Mod/CityProgressionStore.lua",
+        "Mod/IndustryHistory.lua",
+        "Mod/UI/EngineeringStudyUI.lua",
+        "DevelopmentTests/test_b235_engineering.py"
+      ]
     }
   ],
   "non_scope": [
@@ -171,17 +118,17 @@
   "validation": {
     "depth": "Scoped L3 actual Store/model/project/projection/UI plus in-memory current DB; affected old behaviors and L1 syntax/package/context/publication.",
     "local": "188 targeted tests PASS. One historical modinfo201 package assertion excluded explicitly and unchanged; current262 package is checked instead.",
-    "user": "USER_GAME_TEST_REQUIRED: one continuous L0→1, cancellation/fresh→2, actual legal building price/ordinary older-Wonder comparison, then one cold restart for the new persisted L.",
-    "gap": "District purchase BLOCKED_TECHNICAL, no all-District substitute; unavailable legal Faith channel remains untested. No native performance claim."
+    "user": "USER_GAME_TEST_PASS_SCOPED: L0→1→2/cold restore, native Gold quotes and user-tested Macro/projection. Same-turn IV entry FAIL joins proposed B236; no extra B235-only session.",
+    "gap": "Incremental12/14% construction and active-attempt cancellation not independently isolated; existing evidence inherited. District purchase technical gap; Faith untested."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md",
     "source": "B235.262/modinfo262 DEVELOP_ACTIVE; source fb7a547f9c44f2173057dfa0dc5ab227f46e75a9; receipt B235.262-fb7a547-playtest.json;235/235 MATCH, digest 9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf. Automatic game-exit checks before both guarded switches; B234/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "B235 deployed, native acceptance pending. No new Crew/Culture implementation; preserve the isolated District purchase gap."
+    "native": "SCOPED_ACCEPTANCE_WITH_IV_ENTRY_FOLLOWUP",
+    "stop": "B235 review complete; B236 is a proposal, not implementation/deployment authorization. Preserve original evidence and existing HOLD boundaries."
   }
 }
