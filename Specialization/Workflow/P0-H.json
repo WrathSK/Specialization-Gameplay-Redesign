@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0638",
+    "status": "S0639",
     "runtime": "B239.266 / modinfo266",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-  "goal": "B239 deployed: paid Crew occupancy, COM-A Commercialization and city-owned Reputation; per-domain Floor. One combined native delta session remains.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
+  "goal": "B239 Crew continuation occupancy accepted. Commercialization requires a matching local district and explicit selection; resume its existing native gates. No new implementation in this evidence review.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,9 +28,10 @@
       "reason": "Current source/live, evidence and approved stop."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "kind": "full",
-      "reason": "Implemented boundary, actual local/native limits and minimal combined acceptance."
+      "path": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
+      "kind": "section",
+      "selector": "## Review summary",
+      "reason": "Current native outcome, clarified local prerequisite and remaining B239 scope."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
@@ -102,17 +103,17 @@
   "validation": {
     "depth": "L3 new business persistence/ownership and shared route read boundary, L2 effects and source propagation, L1 UI/package/docs.",
     "local": "336 distinct targeted checks PASS. Two fixed historical package stamps excluded unchanged; B239 package independently checked.",
-    "user": "One combined Crew/COM-A/R native session; inherited unrelated/shared evidence not repeated.",
-    "gap": "Actual integer Gold, clean native Gold freshness, presentation/new persistence pending. No blanket native or memory claim."
+    "user": "Crew continuation occupancy accepted. Commerce native Gold/clean-source/LIFO/Reputation/new-state reload remain pending; no repeated Crew test.",
+    "gap": "No eligible local Commerce domains in the submitted setup. UI/report eligibility explanation gap recorded; no source-read/Gold failure established and no new fix authorized."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
     "source": "B239.266 deployed from 972e911cd7635f212ceeffde2280395dda67b9cd;245/245 MATCH; receipt B239.266-972e911-playtest.json",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Stop for one combined native session; COM-B/C/D and Culture HOLD remain outside."
+    "native": "USER_GAME_TEST_PASS scoped Crew occupancy/continuation; Commerce pending eligible setup",
+    "stop": "No new implementation or deployment. Resume existing B239 Commerce acceptance with local infrastructure; COM-B/C/D and Culture HOLD unchanged."
   }
 }

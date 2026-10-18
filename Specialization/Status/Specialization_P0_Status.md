@@ -1,21 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0638
+Status Revision: S0639
 Implementation Build: source/live B239.266; stable B069.96
 Architecture Revision Reviewed: A0168
 Design Revision Reviewed: D0054
 Latest Accepted Design Revision: D0054
 Design Sync State: D0054_COMMERCIALIZATION_PER_DOMAIN_FLOOR_RECORDED
-Work State: B239_DEPLOYED_AWAITING_NATIVE
+Work State: B239_CREW_ACCEPTED_COMMERCE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B239 deployed, native pending:** [scope, checks and combined test](Validation/Results/Specialization_B239_Commercialization_Local.md).
-- Crew paid PAUSED capacity/resume and COM-A/Commercial Reputation delivered; D0054 uses per-domain Floor then sum.
-- 336 targeted local checks plus context/package/links/publication PASS; native Gold/clean-source/UI/new persistence remain pending.
-- Live B239.266 from `972e911`; receipt `B239.266-972e911-playtest.json`,245/245 MATCH. Main B069.96 unchanged; recovery retained, no pending transaction.
-- Next: one combined native session, then review results. COM-B/C/D, Culture HOLD and named rare/conditional gaps remain outside this batch.
+**B239 native review:** [Crew accepted; Commerce eligibility clarified](Validation/Results/Specialization_B239_Native_Review.md#review-summary).
+- Paid Crew continuation/occupancy PASS in the tested path; old cost/progress retained.
+- Medina had none of the five required local districts; disabled Commerce choices match D0054. Public network and Commerce backend reached READY; no domain was enabled.
+- Commerce Gold/clean-source/LIFO/Reputation/new-state reload remain pending. P0/configuration explanations need a narrow presentation improvement, not a route-rule change.
+- Live B239.266 from `972e911`, receipt `B239.266-972e911-playtest.json`; no deployment change. Main B069.96 unchanged.
+- Next: resume existing Commerce gates with an eligible local district. No new implementation, COM-B/C/D or Culture HOLD work authorized by this review.
+
+## S0639 — B239 Crew acceptance and local Commerce prerequisite
+
+Reviewed288 contiguous captured records(seq12–299) and five original network screenshots; archive5/5 SHA256 MATCH. The user accepts Crew continuation occupancy, corroborated by the original14/338 reservation resuming with one living unit and no extra admission. Medina's network becomes VERIFIED/AVAILABLE7→7 and Commerce READY; no SELECT appears. The user confirms no eligible local district existed, so the disabled fields follow D0054. P0 omits unselected fields and the configuration reason hides the local prerequisite; source inspection and a bounded local display reproduction confirm this explanation gap, not a Gold/native failure. Commerce acceptance remains pending. Only result/Status/Authority/manifest/context metadata changed; runtime, Design, Architecture, tests, main, original evidence and deployment unchanged.
 
 ## S0638 — B239 verified deployment
 
