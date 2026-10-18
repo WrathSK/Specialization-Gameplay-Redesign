@@ -1,21 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0621
+Status Revision: S0622
 Implementation Build: source/live B233.260 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0163
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B233_DEPLOYED / USER_GAME_TEST_REQUIRED
+Work State: B233_USER_GAME_TEST_PASS / B234_PROPOSED_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B233 / IND-1 deployed; native pending:** [result and new-save test](Validation/Results/Specialization_B233_Industry_History_Local.md), [implementation contract](../Architecture/v2/Industry_Preparation.md#b233-implementation-contract), manifest `P0-GH1`.
-- **Scope:** event-driven N/E Wonder history, typed District templates, structural/catalog separation and read-only reporting. No new Industry effect, L study or Crew change; foreign completion events are ignored; conquest/Industry entry reconciles present Wonders into N only, retaining saved history.
-- **Source/live:** B233.260 from `b82eabf`, receipt `B233.260-b82eabf-playtest.json`;227/227 files MATCH; recovery retained, no pending transaction. Main B069.96 unchanged. Never infer deployment from HEAD.
-- **Evidence:** 104 targeted offline tests PASS (including inherited B140/B142 cases and Store/collector checks). This is not USER_GAME_TEST_PASS. New campaign selected by the user; one completion/template/cold-load session remains.
-- **Hold/stop:** Expedition issues, remaining Meaning work and era-coverage presentation HOLD/nonblocking; Balance outside scope. No new timers or GC changes. Await B233 native results; IND-2 requires a new authorization.
+**B233 / IND-1 tested native gate accepted:** [evidence](Validation/Results/Specialization_B233_Native_Review.md), [contract](../Architecture/v2/Industry_Preparation.md#b233-implementation-contract), manifest `P0-GH1`.
+- **Accepted scope:** supported completion N/E, typed District/building knowledge and cold restart. N/E1/1 and templates4/2 survive restart; later District write reaches3. No new Industry yield/L/Crew effect is claimed.
+- **Source/live:** B233.260 from `b82eabf`, receipt `B233.260-b82eabf-playtest.json`; prior227/227 MATCH. No deployment this review; main B069.96 unchanged.
+- **Follow-up:** first-turn Industry I specialist support arrived next turn. Actual-source simulation reproduces an eligibility/readiness gap with unchanged BASE samples; exact native event order was not logged. User requests its repair with the next batch.
+- **Next/stop:** [proposed B234 / IND-2](../Architecture/v2/Industry_Preparation.md#b234-proposal--standardization-baseline-and-industry-i-readiness): support propagation + standardization base construction10%/purchase0% + exact old-writer exit. New feature implementation awaits approval; no immediate retest.
+- **Hold:** Expedition, remaining Meaning and era presentation remain nonblocking HOLD; Balance/L/Crew and new timers/GC changes are outside this batch.
+
+## S0622 — B233 native acceptance and B234 proposal
+
+The two retained collector sessions contain27/27 and18/18 contiguous records. Tested N/E and typed templates survive the user-confirmed cold restart and continue accepting a District completion. Early template readiness recovers; the first session's early network READ_ERROR has no later health sample there, while restart is AVAILABLE. IND-2 retains its fresh-city topology check. Industry I first-turn support delay is an adjacent user-reported failure, reproduced locally under two controlled readiness orderings with a successful normal-completion control. Record the narrow next-batch repair and III standardization proposal; no source/test/Design/runtime/main change or new native test request.
 
 ## S0620 — B233 local implementation checkpoint
 
