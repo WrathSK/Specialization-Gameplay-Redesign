@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0612",
+    "status": "S0613",
     "runtime": "B230.257 / modinfo257",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B230 event-driven Culture network initialization, read-only P0 reports and existing bounded log integration. Expedition unchanged.",
+  "goal": "B231 cityless-player initialization guard, independent read-only public network reports and concrete sanitized failure evidence. Expedition unchanged.",
   "implementation_authorized": false,
   "context": [
     {
@@ -678,6 +678,16 @@
       "path": "DevelopmentTests/test_b230_culture_network_ready.py",
       "kind": "full",
       "reason": "Direct B230 authorized delta, local evidence and native gate."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "kind": "full",
+      "reason": "Direct B231 approved delta, B230 evidence, local checks and network-only native gate."
+    },
+    {
+      "path": "DevelopmentTests/test_b231_network_initialization_reports.py",
+      "kind": "full",
+      "reason": "Actual-source initialization, shared-report independence and redaction counterexamples."
     }
   ],
   "dependencies": [
@@ -929,17 +939,17 @@
   ],
   "validation": {
     "depth": "L2 scoped actual-source tests",
-    "local": "121 targeted offline checks PASS; legacy pre-migration network import unavailable, unchanged.",
-    "user": "One combined network/report and ordinary Expedition completion/reuse session; no repeated cold-load loop."
+    "local": "143 targeted tests PASS; optional historical AV2-B wrapper fails in its inherited B069 fixture on both B230 and B231, unchanged.",
+    "user": "One network-only readiness/report/yield session; existing collector, no new Expedition or cold-load loop."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-    "source": "B230.257/modinfo257 DEVELOP_ACTIVE; source 94ce45b5af6f495160137d94dc09a3a7e1946da9; receipt B230.257-94ce45b-playtest.json;226/226 MATCH, digest a00bd750d89f607a986501687616618fc3aea40394ef74a62c9ad58d00ae0afb. Automatic game-exit checks before both guarded switches; B229/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_REQUIRED; network readiness/yield and inherited task release scopes remain distinct.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+    "source": "B231.258 local complete; live still B230.257 pending guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED for B231 network delta. B230 consumer readiness failed; inherited Expedition issue remains separate.",
     "stop": "No unrelated implementation authorized."
   }
 }

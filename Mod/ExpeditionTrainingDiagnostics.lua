@@ -2,7 +2,7 @@
 SPCExpeditionTrainingDiagnostics={ENABLED=true,KEEP=64,BUDGET=96}
 local M=SPCExpeditionTrainingDiagnostics
 local KEY='SPC_B205TrainingTrace'
-local keys={'workers','expected','releaseBranch','networkLayer','networkValidity','networkAvailability','networkInputRevision','networkDerivedFor','networkRevalidation','networkError','bridgeReady','readyToSelect','sleepVisible','sleepAllowed','wakeVisible','wakeAllowed','wakeLegacyAllowed','evaluationOrigin','signalOrigin','coreBusy','operationEvent','lastOperationHash','stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4','nativeOwner','nativeUnit','nativeActivity','movesRemaining','maxMoves','nativeReady','spyOperation','spyEndTurn','ownerTurnActive','localPlayer','interfaceMode','sourceCity','targetOwner','targetCity','targetX','targetY','entryX','entryY','arrivalRoute','requestAction','requestResult','requestKey','requestAccepted','storeStatus','storeRevision','savedPhase','savedMatches','taskStart','taskDue','owned','releasePending','submitStatus','missionCategory','requestMission'}
+local keys={'errorCode','errorClass','errorFile','errorLine','routeCount','sourceCount','centerCount','recipientCount','relation','networkKind','workers','expected','releaseBranch','networkLayer','networkValidity','networkAvailability','networkInputRevision','networkDerivedFor','networkRevalidation','networkError','bridgeReady','readyToSelect','sleepVisible','sleepAllowed','wakeVisible','wakeAllowed','wakeLegacyAllowed','evaluationOrigin','signalOrigin','coreBusy','operationEvent','lastOperationHash','stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4','nativeOwner','nativeUnit','nativeActivity','movesRemaining','maxMoves','nativeReady','spyOperation','spyEndTurn','ownerTurnActive','localPlayer','interfaceMode','sourceCity','targetOwner','targetCity','targetX','targetY','entryX','entryY','arrivalRoute','requestAction','requestResult','requestKey','requestAccepted','storeStatus','storeRevision','savedPhase','savedMatches','taskStart','taskDue','owned','releasePending','submitStatus','missionCategory','requestMission'}
 local function scalar(v)
  local t=type(v)
  if t=='nil'then return 'NIL' end
@@ -11,6 +11,18 @@ local function scalar(v)
  -- No user names, arbitrary errors, paths or object stringification.
  if #v>100 or v:find('[^%w_:%-%.|]')then return 'REDACTED' end
  return v
+end
+-- B231: allowlisted failure metadata only; never retain a path or raw error here.
+function M.Failure(value,phase)
+ local s=type(value)=='string' and value or ''
+ local code=s:match('(CN_[A-Z0-9_]+)') or s:match('(NETWORK_[A-Z0-9_]+)')
+ local class=code and 'CONTRACT' or s:find('nil value',1,true) and 'LUA_NIL'
+  or s:find('attempt to',1,true) and 'LUA_TYPE' or 'READ_ERROR'
+ local file,line=s:match('([%w_]+%.lua):(%d+):')
+ local allowed={CultureNetwork=true,NetworkBridge=true,NetworkInput=true,CurrentSpecializationFacts=true}
+ if not file or not allowed[file:gsub('%.lua$','')]then file='UNKNOWN'end
+ line=tonumber(line or s:match(':(%d+):'))
+ return {phase=phase,errorCode=code or class,errorClass=class,errorFile=file,errorLine=line}
 end
 local function root()
  local r=ExposedMembers[KEY]

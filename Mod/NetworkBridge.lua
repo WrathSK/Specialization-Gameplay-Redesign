@@ -1,5 +1,6 @@
 -- AV2-B: one private derived view per accepted complete input; no consumer-yield cache.
 include("NetworkInput")
+include("ExpeditionTrainingDiagnostics")
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={}};shared.NetworkBridge=d
@@ -17,6 +18,9 @@ function SPCNetworkBridge.Start(P,shared)
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid) end
  local derive
  local views={} -- private, at most one view per player; never keyed by historical versions
+ local reportTrace
+ local traceOK,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'NETWORK_REPORT')
+ if traceOK then reportTrace=value end
  local function copy(v)
   if type(v)~='table' then return v end
   local out={};for k,x in pairs(v) do out[k]=copy(x) end;return out
@@ -335,6 +339,93 @@ function SPCNetworkBridge.Start(P,shared)
   if not ok or type(n)~="string" then return "城市#"..id end
   if Locale and Locale.Lookup then local yes,v=pcall(Locale.Lookup,n);if yes then n=v end end
   return n:gsub("[\r\n]"," ").." (#"..id..")"
+ end
+ -- B231 explicit read only. No Refresh/Verified/Input, publication, recompute,
+ -- carrier write or business cache mutation. Missing and retained inputs differ.
+ function d.ReadSnapshot(pid,selected,details,page)
+  assert(selected and selected:GetOwner()==pid,'NETWORK_SELECTED_OWNER_CHANGED')
+  local id=selected:GetID();local b=d.players[pid];local v=views[pid]
+  local coherent=b and b.validity=='VERIFIED' and v and v.contract==1 and v.epoch==d.epoch and v.player==pid and v.validity=='VERIFIED'
+   and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
+   and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
+  local reason=isolated(pid) and 'NETWORK_ISOLATED' or not d.ready and 'NETWORK_NOT_READY'
+   or not b and 'NETWORK_NO_INPUT' or not coherent and 'NETWORK_VIEW_UNAVAILABLE'
+   or b.availability~='AVAILABLE' and 'NETWORK_REVALIDATION_PENDING' or 'NETWORK_AVAILABLE'
+  local function safeName(owner,cid)
+   local ok,title=pcall(name,owner,cid);return ok and title or ('城市#'..tostring(cid)..'（玩家'..tostring(owner)..'）')
+  end
+  local function emit(stage,fields)if reportTrace then pcall(reportTrace.Record,stage,fields)end end
+  local sources=coherent and v.sources or {};local centers=coherent and v.centers or {};local recipients=coherent and v.recipients or {}
+  local receivers={};for _,set in pairs(recipients)do for cid in pairs(set)do receivers[cid]=true end end
+  local err=b and b.error and SPCExpeditionTrainingDiagnostics.Failure(b.error,'SHARED_INPUT')
+  local header=reason=='NETWORK_AVAILABLE' and '已就绪' or reason=='NETWORK_REVALIDATION_PENDING' and '上次已发布拓扑；当前待核验' or '尚无可用当前拓扑'
+  local lines={'公共网络｜'..safeName(pid,id)..'｜'..header,
+   '输入 '..tostring(b and b.validity or 'UNKNOWN')..' / '..tostring(b and b.availability or 'UNAVAILABLE')
+    ..'；版本 '..tostring(b and b.inputRevision or '无')..' → '..tostring(b and b.derivedFor or '无')}
+  emit('NETWORK_PUBLIC',{owner=pid,city=id,ready=d.ready,reason=reason,
+   networkValidity=b and b.validity,networkAvailability=b and b.availability,
+   networkInputRevision=b and b.inputRevision,networkDerivedFor=b and b.derivedFor,
+   routeCount=b and b.routes and #b.routes,sourceCount=coherent and size(sources),
+   centerCount=coherent and size(centers),recipientCount=coherent and size(receivers),
+   phase=err and err.phase,errorCode=err and err.errorCode,errorClass=err and err.errorClass,
+   errorFile=err and err.errorFile,errorLine=err and err.errorLine})
+  if reason~='NETWORK_AVAILABLE'then lines[#lines+1]='状态：'..reason..(err and ('；错误 '..err.errorCode) or '')end
+  if not details then
+   lines[#lines+1]='已发布商路 '..tostring(b and b.routes and #b.routes or '未知')
+    ..'｜来源城 '..(coherent and size(sources) or '未知')..'｜中心 '..(coherent and size(centers) or '未知')
+   local f=b and b.input and b.input.cities[id]
+   lines[#lines+1]=not coherent and '本城来源 / 中心角色尚未确认。' or '本城：'..(labels[sources[id]] and labels[sources[id]]..'来源' or '非来源')
+    ..' / '..(centers[id] and '贸易中心' or '非中心')..(f and ('；已采样 ACTIVE '..tostring(f.active)) or '；城市事实未采样')
+   for _,kind in ipairs(kinds)do
+    local n=coherent and size((recipients[kind] or {})[id])
+    lines[#lines+1]=labels[kind]..'：本城接入 '..tostring(n or '未知')..' 个来源；全国接收 '..tostring(coherent and size(recipients[kind]) or '未知')..' 城'
+   end
+  else
+   local entries={}
+   local function add(text,relation,kind,sourceCity,targetOwner,targetCity)
+    entries[#entries+1]={text=text,fields={owner=pid,city=id,relation=relation,networkKind=kind,
+     sourceCity=sourceCity,targetOwner=targetOwner,targetCity=targetCity,reason=reason}}
+   end
+   for cid,kind in pairs(sources)do add('来源 '..(labels[kind] or kind)..'：'..safeName(pid,cid),'SOURCE',kind,cid)end
+   for cid in pairs(centers)do add('贸易中心：'..safeName(pid,cid),'CENTER',nil,cid)end
+   for src in pairs(centers[id] or {})do
+    add('本中心接入 '..(labels[sources[src]] or '?')..'：'..safeName(pid,src),'CENTER_INPUT',sources[src],src,pid,id)
+   end
+   for _,kind in ipairs(kinds)do for src in pairs((recipients[kind] or {})[id] or {})do
+    add('本城接收 '..labels[kind]..'：'..safeName(pid,src),'RECEIVES',kind,src,pid,id)
+   end end
+   for _,route in ipairs(b and b.routes or {})do
+    if route.oc==id or route.dp==pid and route.dc==id then
+     add('商路 '..safeName(route.op,route.oc)..' → '..safeName(route.dp,route.dc),'ROUTE',nil,route.oc,route.dp,route.dc)
+    end
+   end
+   table.sort(entries,function(a,z)return a.text<z.text end)
+   local pages=math.max(1,math.ceil(#entries/5));page=integer(page) and page>=1 and ((page-1)%pages+1) or 1
+   lines[#lines+1]='来源 / 接收 / 相关商路 '..page..'/'..pages
+   if #entries==0 then lines[#lines+1]=coherent and '当前记录中无来源、中心或相关商路。' or '尚无可列出的记录；不是已确认零连接。'end
+   for i=(page-1)*5+1,math.min(page*5,#entries)do
+    lines[#lines+1]=entries[i].text;emit('NETWORK_LINK',entries[i].fields)
+   end
+   lines[#lines+1]='再次点击「网络来源 / 接收」翻页。'
+  end
+  lines[#lines+1]='只读已发布记录；查看不触发刷新，接收来源不代表可以转发。'
+  return table.concat(lines,'\n')
+ end
+ -- Consumer reporting is independently protected: it cannot suppress topology.
+ function d.Report(pid,selected,details,page)
+  local ok,public=pcall(d.ReadSnapshot,pid,selected,details,page)
+  if not ok then
+   local f=SPCExpeditionTrainingDiagnostics.Failure(public,'PUBLIC_REPORT')
+   public='公共网络读取失败：'..f.errorCode..'；'..f.errorFile..':'..tostring(f.errorLine or '?')
+   if reportTrace then pcall(reportTrace.Record,'NETWORK_REPORT_ERROR',f)end
+  end
+  local consumer=shared.CultureNetwork
+  if not consumer then return public..'\n文化收益模块：未建立。'end
+  local good,culture=pcall(consumer.Describe,pid,selected)
+  if good then return public..'\n\n'..culture end
+  local f=SPCExpeditionTrainingDiagnostics.Failure(culture,'CULTURE_REPORT')
+  if reportTrace then pcall(reportTrace.Record,'NETWORK_REPORT_ERROR',f)end
+  return public..'\n文化收益报告失败：'..f.errorCode..'；'..f.errorFile..':'..tostring(f.errorLine or '?')
  end
  local detailPage={}
  function d.Read(pid,selected,details)

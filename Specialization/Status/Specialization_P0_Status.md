@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0612
-Implementation Build: source/live B230.257 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0613
+Implementation Build: source B231.258 locally complete; live B230.257; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B230_DEPLOYED_AWAITING_NATIVE
+Work State: B231_LOCAL_COMPLETE_DEPLOYMENT_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B230 local complete:** [Culture network readiness and read-only diagnostics](Validation/Results/Specialization_B230_Culture_Network_Readiness.md);121 targeted offline checks PASS; native pending.
-- **Source/live B230.257 / modinfo257**: source `94ce45b`, receipt `B230.257-94ce45b-playtest.json`,226/226 MATCH. Stable main B069.96 unchanged.
-- **Evidence:** B229 consumer remained not-ready despite built Bridge input. Actual-Lua reproduction confirms exclusive load-event gate; ordinary events now initialize. B229 task logs include native denial and one running task, but no release chain; redispatch is not a reliable recovery.
-- **Changed:** once-per-context initialization from existing business events; restored read-only **网络概况 / 网络来源 / 接收** and bounded automatic state evidence. No task/activity, Design, permanent state, GC or timer changes.
-- **Next:** one combined network observation and ordinary task completion/reuse session with collector. Do not repeat blind tests or expand implementation.
+**B231 local complete:** [network initialization and independent reports](Validation/Results/Specialization_B231_Network_Initialization_Reports.md);143 targeted tests PASS, native pending.
+- **Source B231.258 / modinfo258; live B230.257** remains source `94ce45b`, receipt `B230.257-94ce45b-playtest.json` until guarded deployment. Stable main B069.96 unchanged.
+- **B230 evidence:** Culture initialization fails despite published VERIFIED/AVAILABLE topology; actual-Lua counterexample identifies unguarded cityless-player iteration. Original native exception was masked. Shared network and Culture consumer readiness are distinct.
+- **Changed:** nil city-collection guard; independent public route/source/center/receiver reports; concrete sanitized failure phase/location. Shared computation, Expedition, Design, permanent state, GC and timers unchanged.
+- **Next authorized:** commit/push, automatic game-exit and receipt/hash gates, then B231 deployment. One network-only native flow; no new Expedition or repeated cold-load gate. No additional implementation authorized.
+
+## S0613 — B231 local checkpoint
+
+Three approved narrow network fixes complete;143 targeted local PASS. Optional historical AV2-B wrapper fails in its inherited B069 fixture on both B230 and B231; retained unmodified, not counted as PASS. B230 raw evidence and all frozen results preserved. Deployment/native remain separate.
 
 ## S0612 — B230 verified deployment
 

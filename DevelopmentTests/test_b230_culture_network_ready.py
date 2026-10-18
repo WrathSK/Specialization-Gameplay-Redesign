@@ -43,8 +43,10 @@ class Reports(unittest.TestCase):
  def test_gameplay_routes_reports_without_legacy_refresh(self):
   text=(Path(__file__).resolve().parents[1]/'Mod/Gameplay.lua').read_text()
   branch=text.split('if params.Action=="NETWORK_READ" or params.Action=="NETWORK_DETAIL" then',1)[1].split('return',1)[0]
-  self.assertIn('shared.CultureNetwork.Report',branch)
-  self.assertNotIn('NetworkBridge.Read',branch)
+  # B231 keeps the read-only intent and restores independent shared topology.
+  self.assertIn('shared.NetworkBridge.Report',branch)
+  self.assertNotIn('NetworkBridge.Read(',branch)
+  self.assertNotIn('.Refresh(',branch)
  def test_no_activity_changes_or_timer_added(self):
   text=(Path(__file__).resolve().parents[1]/'Mod/CultureNetwork.lua').read_text()
   for forbidden in ('SetUpdate','SystemUpdateUI','RequestOperation','RequestCommand'):

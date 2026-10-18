@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "d02969c19f7dfc1e748f61fb300c099d75c4fde1575018dcad0ea6e3001195ea",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "3c410e632558096683a4758f0391d32daa3be7f83e93b9310e5300f59e6108b9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -341,9 +341,9 @@
       "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "99e6b05557fde87a3acae71cf59d24e19c637e90c64945d1f67b94254732125c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+      "sha256": "3df1af56b38d7bddd6bcaa6f725b1d230f58ad6f3874d5e6312708c1e679a290",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "307d704c37186d3181df85b5423e0fa16fb23ca10c8a76843c4372be359f6735",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "b5174d482780cf8ca88d32b2d18e676ac1952daf5811ccd91fc14800dde214a7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "894ed956df175673c857d84b7582dfdcc31b4189529d74dfa1a68aeaa50c2a23",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "1199fddc4ee03fdb0724b201114cd6e4368ae74c466b7fe303c10aa08bb973f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "a040ac2ae20a912a669ec067c696c69042e3aa10b70de0e66650a1f3aa2747d3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "f28b66a307542153c289166b11202d628af77ed5b695621d336231d954c5e44d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "30dc172459e52f062fb36f3dbd6e6847eba95e3a37cf3eb855502bfbc3e7e058",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "bfe13376cbbe0367b0e7e4d6333753b045e8bfc02e64a1493beef3643a5d9bfc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "b4ae84facc0ad8a5a992d300accde7bc498998f6dd5bc5e0560426922b99de29",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1126,9 +1126,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "8920a1d37011d092437ebdb350f4a808dcf59b25b98e06d7cd32cdf50e14259e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "7369eab1dfa80d36dbba148262360d6fada64e928e229edfbee363c453caeedf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
     },
     "Mod/Data/CultureNetwork.sql": {
       "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",

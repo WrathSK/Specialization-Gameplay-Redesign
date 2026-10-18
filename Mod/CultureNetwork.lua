@@ -37,12 +37,15 @@ function M.Start(P,shared)
   local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'CULTURE_NETWORK')
   if ok then trace=value end
  end
- local function health(pid,reason)
+ local function health(pid,reason,failure)
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
-  local signature=table.concat({tostring(pid),tostring(d.ready),reason,diagnosticCode(b and b.availability),diagnosticCode(b and b.inputRevision)},':')
+  local signature=table.concat({tostring(pid),tostring(d.ready),reason,diagnosticCode(b and b.availability),diagnosticCode(b and b.inputRevision),failure and failure.phase or '',failure and failure.errorFile or '',failure and tostring(failure.errorLine) or ''},':')
   if signature==lastHealth then return end
   if trace then pcall(trace.Record,'NETWORK_HEALTH',{owner=pid,ready=d.ready,reason=reason,
    bridgeReady=bridge and bridge.ready==true,networkError=reason=='CN_READY' and 'NONE' or reason,
+   phase=failure and failure.phase,errorCode=failure and failure.errorCode,errorClass=failure and failure.errorClass,
+   errorFile=failure and failure.errorFile,errorLine=failure and failure.errorLine,eventOwner=failure and failure.owner,
+   eventCity=failure and failure.city,
    networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
    networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor)})end
   lastHealth=signature
@@ -227,15 +230,24 @@ function M.Start(P,shared)
   -- Real gameplay events/publications can initialize after a missed UI load event.
   if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
   if d.busy then d.Mark(scope and scope.player,scope and scope.city);return end
-  d.busy=true;d.error=nil
+  d.busy=true;d.error=nil;d.failure=nil
+  local phase='DEFINITION_VALIDATION';local failureOwner,failureCity
   local good,why=pcall(function()
    validate()
    if not initialized then
     -- Saved derived carriers may exist under unsupported owners. Once-per-context exact cleanup.
-    for _,player in pairs(Players)do for _,c in player:GetCities():Members()do clear(c)end end
+    for owner,player in pairs(Players)do
+     phase='INITIAL_CITY_COLLECTION';failureOwner=owner;failureCity=nil
+     local cities=player:GetCities()
+     -- Non-city-owning player slots can legitimately have no city collection.
+     if cities then for _,c in cities:Members()do
+      phase='INITIAL_CARRIER_CLEANUP';failureCity=c:GetID();clear(c)
+     end end
+    end
     d.records={};d.errors={};initialized=true;d.ready=true
    end
    for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and not isolated(pid) and (not scope or scope.player==nil or pid==scope.player)then
+    phase='PLAYER_RECONCILIATION';failureOwner=pid;failureCity=nil
     local batch={facts={},sources={}};local viewOk,view=pcall(network,batch,pid);if not viewOk then batch.networkFailed=tostring(view)end;local ids={}
     d.playerError=d.playerError or {};d.playerError[pid]=not viewOk and tostring(view):sub(1,180) or nil
     if viewOk then for cid in pairs(view.recipients)do ids[cid]=true end end
@@ -261,7 +273,11 @@ function M.Start(P,shared)
    end end
   end)
   d.error=not good and tostring(why):sub(1,180) or nil;d.busy=false
-  if not good then health(scope and scope.player,diagnosticCode(why))end
+  if not good then
+   d.failure=SPCExpeditionTrainingDiagnostics.Failure(why,phase)
+   d.failure.owner=failureOwner;d.failure.city=failureCity
+   health(scope and scope.player,d.failure.errorCode,d.failure)
+  end
  end
  function d.SourceChanged(pid,cid)d.Audit({player=pid,changed={[cid]=true}})end
  local function flush()
@@ -275,9 +291,12 @@ function M.Start(P,shared)
   local layer=not d.ready and 'MODULE' or d.errors[key(pid,c:GetID())] and 'CITY' or d.error and 'MODULE'
    or d.playerError and d.playerError[pid] and 'NETWORK'
    or not p and 'NO_RECORD' or 'CURRENT_FACTS'
-  local reason=not d.ready and 'CN_NOT_READY' or diagnosticCode(err or workerError or 'CN_REPORT_PENDING')
+  local failure=d.failure or SPCExpeditionTrainingDiagnostics.Failure(err or workerError,
+   layer=='CITY' and 'CITY_RECONCILIATION' or layer=='NETWORK' and 'NETWORK_INPUT' or 'REPORT_FACTS')
+  local reason=err and failure.errorCode or not d.ready and 'CN_NOT_READY' or diagnosticCode(workerError or 'CN_REPORT_PENDING')
   local fields={'kind=NETWORK_WAIT','owner='..pid,'city='..c:GetID(),
-   'layer='..layer,'reason='..reason,'ready='..tostring(d.ready),
+   'layer='..layer,'reason='..reason,'phase='..failure.phase,'errorClass='..failure.errorClass,
+   'errorFile='..failure.errorFile,'errorLine='..tostring(failure.errorLine or 'NONE'),'ready='..tostring(d.ready),
    'bridgeReady='..tostring(bridge and bridge.ready==true)}
   if not quiet then print('[SPC][B191][N1_INSIGHT] '..table.concat(fields,' '))end
   fields={'kind=NETWORK_INPUT','owner='..pid,'city='..c:GetID()}
@@ -290,6 +309,7 @@ function M.Start(P,shared)
   if signature~=lastWait and trace then
    local ok=pcall(trace.Record,'NETWORK_WAIT',{owner=pid,city=c:GetID(),networkLayer=layer,
     reason=reason,ready=d.ready,bridgeReady=bridge and bridge.ready==true,
+    phase=failure.phase,errorCode=failure.errorCode,errorClass=failure.errorClass,errorFile=failure.errorFile,errorLine=failure.errorLine,
     networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
     networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor),
     networkRevalidation=diagnosticCode(b and b.revalidation),networkError=diagnosticCode(b and b.error)})
@@ -299,7 +319,7 @@ function M.Start(P,shared)
   return '文化网络：等待确认｜'..labels[layer]..'（'..reason..'）\n输入：'
    ..diagnosticCode(b and b.validity)..' / '..diagnosticCode(b and b.availability)
    ..'；版本 '..diagnosticCode(b and b.inputRevision)..' → '..diagnosticCode(b and b.derivedFor)
-   ..'。具体状态已写入采集日志。'
+   ..'。\n阶段：'..failure.phase..'；'..failure.errorFile..':'..tostring(failure.errorLine or '?')..'（'..failure.errorClass..'）。'
  end
  -- Observational only; no Refresh, initialization, fact rebuild or native write.
  observe=function(pid,c,previous,workers)
