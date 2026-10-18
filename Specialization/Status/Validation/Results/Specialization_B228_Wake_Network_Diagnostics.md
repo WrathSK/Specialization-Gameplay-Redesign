@@ -1,6 +1,6 @@
 # B228 — Native wake alignment and Culture Network waiting diagnostics
 
-Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B228.255 / modinfo255. Runtime remains B227 until a separately recorded guarded deployment.
+Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B228.255 / modinfo255. Verified deployment recorded below; native acceptance remains pending.
 
 ## Authorized scope and findings
 
@@ -30,3 +30,7 @@ Start the existing collector manually. One ordinary task → completion → anot
 For the affected culture city, open the existing **文化见闻** report once while the network says waiting. NETWORK_WAIT identifies the failing layer; NETWORK_INPUT records whether topology input is absent, stale or verified. A screenshot is optional unless UI layout itself is wrong. No claim that the network bonus is repaired before this reason is known.
 
 User decision: none for this approved batch. Primary next: review the resulting bounded records; no speculative native recovery or network-rule change.
+
+## Verified deployment
+
+B228.255/modinfo255 DEVELOP_ACTIVE; source 5cacaa03d4e9b4e3c522a10ea3d840f4458371dd; receipt B228.255-5cacaa0-playtest.json;226/226 MATCH, digest b37790789f0f6b6510bdb59f6c5cb06603c7f4fc70eac58a28e001203c942ad6. Automatic game-exit checks at both guarded switches; B227/stable recovery retained, no pending transaction. No main/configuration changes or game launch.

@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0607",
+    "status": "S0608",
     "runtime": "B228.255 / modinfo255",
     "military": "D0037",
     "harbor": "D0037",
@@ -918,7 +918,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
-    "source": "B228.255 local complete; live B227.254 remains as Authority.live until verified deployment.",
+    "source": "B228.255/modinfo255 DEVELOP_ACTIVE; source 5cacaa03d4e9b4e3c522a10ea3d840f4458371dd; receipt B228.255-5cacaa0-playtest.json;226/226 MATCH, digest b37790789f0f6b6510bdb59f6c5cb06603c7f4fc70eac58a28e001203c942ad6. Automatic game-exit checks at both guarded switches; B227/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED; B227 mixed success and recurring denial retained.",
     "stop": "No unrelated implementation authorized."
   }

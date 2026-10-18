@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0607
-Implementation Build: source B228.255; live B227.254 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0608
+Implementation Build: source/live B228.255 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B228_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
+Work State: B228_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B228 local complete:** [native wake query alignment and bounded activity/network diagnostics](Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md);246 targeted offline tests PASS. Native acceptance pending.
-- **Source B228.255 / modinfo255; live B227.254** remains source `9f0f635`, receipt `B227.254-9f0f635-playtest.json`,226/226 MATCH at its recorded deployment. Main stable B069.96 unchanged.
+- **Source/live B228.255 / modinfo255**: source `5cacaa0`, receipt `B228.255-5cacaa0-playtest.json`,226/226 MATCH. Main stable B069.96 unchanged.
 - **B227 evidence:** event processing/rejection unwind works; redispatch followed by task completion/release succeeds. Recurring native denial is unresolved. [Follow-up](Validation/Results/Specialization_B227_Collector_Native_Followup.md). Collector field-order repair is committed separately.
 - **B228 boundary:** native WAKE query shape aligned; no forced wake/retry, timer or gameplay/history change. Existing lifecycle records add readiness/eligibility; Culture Network waiting report exposes retained failure/input state without recompute.
-- **Next:** guarded deployment when game exit is confirmed, then one combined log-first task/reuse and **文化见闻** waiting-report observation. Great Work refresh PASS retained; Culture Network yield/source withdrawal remains pending. No unrelated next batch authorized.
+- **Next:** one combined log-first task/reuse and **文化见闻** waiting-report observation. Great Work refresh PASS retained; Culture Network yield/source withdrawal remains pending. No unrelated next batch authorized.
+
+## S0608 — B228 verified deployment
+
+Automatic game-exit checks before both receipt-bound switches;226/226 exact equality, recovery retained and no pending transaction. Native gate remains pending. No main/configuration change or game launch.
 
 ## S0607 — B228 narrow follow-up
 
