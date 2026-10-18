@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0166",
-    "status": "S0629",
+    "status": "S0630",
     "runtime": "B236.263 / modinfo263",
     "military": "D0037",
     "harbor": "D0037",
@@ -120,8 +120,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-    "source": "Source B236.263 locally complete; live remains B235.262/modinfo262 DEVELOP_ACTIVE; source fb7a547f9c44f2173057dfa0dc5ab227f46e75a9; receipt B235.262-fb7a547-playtest.json;235/235 MATCH, digest 9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf. Automatic game-exit checks before both guarded switches; B234/stable recovery retained, no pending transaction.",
+    "source": "B236.263/modinfo263 DEVELOP_ACTIVE; source 8942cf56b93214a6aeacf67b590801eee1ca83be; receipt B236.263-8942cf5-playtest.json;237/237 MATCH, digest 86becbe9055c302108df86edda5c41d044387f7f70c82e9d48a36823fa233781. Automatic game-exit checks before both guarded switches; B235/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Complete approved W0003 deployment and hand off one native test. Do not advance other batches."
+    "stop": "B236 deployed; stop for the single combined native test. No new implementation or resumed held batches."
   }
 }

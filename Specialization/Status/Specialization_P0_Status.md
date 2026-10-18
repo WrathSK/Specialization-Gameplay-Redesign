@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0629
-Implementation Build: source B236.263 LOCAL_COMPLETE; live B235.262 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0630
+Implementation Build: source/live B236.263 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0166
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B236_LOCAL_COMPLETE / NATIVE_PENDING
+Work State: B236_DEPLOYED / NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B236 / IND-4 locally complete:** [contract](../Architecture/v2/Industry_Preparation.md#b236-implementation-and-validation), [local evidence and minimal test](Validation/Results/Specialization_B236_Crew_Local.md).
+**B236 / IND-4 deployed, native pending:** [contract](../Architecture/v2/Industry_Preparation.md#b236-implementation-and-validation), [local evidence and minimal test](Validation/Results/Specialization_B236_Crew_Local.md).
 - **Delivered:** paid Crew formation/Practice costs, start-locked price, source/two slots, Wonder-only fixed use/protection; same-turn IV receipt repair; Industry institutions.
 - **Evidence:**212 targeted local PASS; native formation/counter timing, use/protection and UI pending. B233–B235 scoped acceptance retained; District purchase remains isolated, Faith untested.
-- **Source/live:** source B236.263; live B235.262 `fb7a547`, receipt `B235.262-fb7a547-playtest.json`,235/235 MATCH until guarded deployment. Main B069.96 unchanged.
-- **Next/stop:** W0003 deployment if exit/hash gates pass, then one combined native session. Culture HOLD, Research-network redesign and Balance remain outside this batch.
+- **Source/live:** B236.263 `8942cf5`, receipt `B236.263-8942cf5-playtest.json`,237/237 MATCH. Automatic game-exit checks passed; B235/stable recovery retained. Main B069.96 unchanged.
+- **Next/stop:** one combined B236 native session, with one cold-load for new Crew source/occupancy. Culture HOLD, Research-network redesign and Balance remain outside this batch.
+
+## S0630 — B236 verified deployment
+
+Clean/pushed source `8942cf5` was deployed through the exact B235 receipt restore and B236 activation, with a fresh automatic game-exit check at both switches.237/237 files MATCH; recovery retained, no pending transaction.212 targeted local tests and the staged publication gate pass; native acceptance remains pending. No main/configuration change or game launch. This batch stops at the combined Crew/IV-entry/institution test.
 
 ## S0629 — B236 local implementation checkpoint
 
