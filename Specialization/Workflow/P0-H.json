@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0053",
     "research": "D0040",
@@ -11,38 +11,38 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0635",
+    "status": "S0636",
     "runtime": "B238.265 / modinfo265",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-  "goal": "Accept applicable native Crew Production modifiers under D0053; restore one guarded use, align base/actual descriptions and combine B237 pending continuity with Industry closeout.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B238_Native_Review.md",
+  "goal": "Record B238 native continuity acceptance and PAUSED occupancy defect; prepare the requested combined Crew repair and first Commerce batch without implementation.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current source/live, accepted scope and pending combined acceptance."
+      "reason": "Current tested scope, unchanged runtime and proposed next boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B238_Native_Review.md",
       "kind": "full",
-      "reason": "Current changed native uncertainty, inherited evidence and single combined Crew acceptance."
+      "reason": "Submitted native evidence, exact defect, bounded reproduction and acceptance limits."
+    },
+    {
+      "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
+      "kind": "section",
+      "selector": "## Proposed B239 combined slice",
+      "reason": "Concrete requested merged scope, native delta and precision gate; not implementation permission."
     },
     {
       "path": "Specialization/Architecture/v2/Industry_Preparation.md",
       "kind": "section",
       "selector": "## B238 modifier acceptance and Industry closeout",
-      "reason": "Current operation/observer boundary, remaining Industry work and user-deferred purchase gap."
-    },
-    {
-      "path": "Specialization/Design/Content/Industry_D0053.json",
-      "kind": "json",
-      "selector": "/contracts/teams",
-      "reason": "Complete accepted Crew contract: modifiers, no-overflow intent, locked costs and lifecycle."
+      "reason": "Accepted Industry main chain and named remaining/deferred items."
     }
   ],
   "dependencies": [
@@ -105,6 +105,19 @@
         "Mod/Text/TestText.sql",
         "tools/collect_expedition_trace.py"
       ]
+    },
+    {
+      "trigger": "User approves the combined Commerce implementation or requests its detailed contract review",
+      "paths": [
+        "Specialization/Architecture/v2/Commerce_Preparation.md",
+        "Specialization/Design/Content/Commerce_D0050.json",
+        "Specialization/Design/Content/Shared_D0045.json",
+        "Mod/NetworkInput.lua",
+        "Mod/NetworkBridge.lua",
+        "Mod/NetworkSender.lua",
+        "Mod/CommerceConvergence.lua",
+        "Mod/Lv3Effects.lua"
+      ]
     }
   ],
   "non_scope": [
@@ -113,19 +126,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L3 actual writer/Store and native-shaped multipliers, inherited continuity/UI; L1 package/context/links/publication.",
-    "local": "276 targeted checks PASS. Three named historical superseded checks excluded, unchanged.",
-    "user": "B233–B236 accepted scope inherited; B237 continuation/cold-load and restored Crew use/protection combined.",
-    "gap": "No exact modifier formula/native performance claim. District-body purchase explicitly user-deferred/nonblocking; conditional Faith/speed and future Commerce combination remain."
+    "depth": "Native evidence review plus one actual-writer counterexample; L1 documentation/context/publication. No implementation validation or broad regression.",
+    "local": "Paused occupancy counterexample reproduced using actual current writer/Store and existing native fixture. Existing B238276 tests remain historical local evidence, not proof against this defect.",
+    "user": "Old14/338 continuation, restart recovery,260 binding and other user-observed checks accepted in scope; PAUSED occupancy FAIL.",
+    "gap": "Gold precision/non-recursion before COM-A; later Capital tie-break; rare District purchase deferred, protection/other conditional evidence kept separate."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-    "source": "B238.265/modinfo265 DEVELOP_ACTIVE; source c97117acac7f89959afbfb48a04d6cc48544f956; receipt B238.265-c97117a-playtest.json;237/237 MATCH, digest d50659f8a2b252501ac0e12dbb5ebb21aac5e17071dbc46fe2c43ec74e98fff0. Automatic game-exit checks passed at both guarded switches; B237/stable recovery retained, no pending transaction. Combined native acceptance pending.",
-    "native": "COMBINED_NATIVE_PENDING",
-    "stop": "B238 deployed; stop for one combined B237/B238 acceptance. No further feature implementation authorized by this checkpoint."
+    "report": "Specialization/Status/Validation/Results/Specialization_B238_Native_Review.md",
+    "source": "B238.265/modinfo265 DEVELOP_ACTIVE; source c97117acac7f89959afbfb48a04d6cc48544f956; receipt B238.265-c97117a-playtest.json;237/237 MATCH, digest d50659f8a2b252501ac0e12dbb5ebb21aac5e17071dbc46fe2c43ec74e98fff0. Automatic game-exit checks passed at both guarded switches; B237/stable recovery retained, no pending transaction. B238 reviewed: scoped continuity/use accepted, paused occupancy FAIL; proposed combined repair not deployed.",
+    "native": "SCOPED_PASS_WITH_PAUSED_OCCUPANCY_FAIL",
+    "stop": "Proposed B239 scope prepared. No implementation/deployment now; no new B238 user test requested."
   }
 }

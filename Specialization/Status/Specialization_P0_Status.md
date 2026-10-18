@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0635
+Status Revision: S0636
 Implementation Build: source/live B238.265 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0168
-Design Revision Reviewed: D0053（施工接受适用原生加成）
+Design Revision Reviewed: D0053
 Latest Accepted Design Revision: D0053
-Design Sync State: D0053_CREW_MODIFIER_ACCEPTANCE_IMPLEMENTED / NATIVE_PENDING
-Work State: B238_DEPLOYED / COMBINED_NATIVE_PENDING
+Design Sync State: D0053_CREW_MODIFIER_ACCEPTANCE_IMPLEMENTED / SCOPED_NATIVE_REVIEWED
+Work State: B238_PAUSED_OCCUPANCY_FAIL / COMMERCE_COMBINED_PLAN_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B238 deployed, combined acceptance pending:** [accepted modifiers / Industry closeout and combined test](Validation/Results/Specialization_B238_Crew_Modifier_Local.md).
-- **Local:** D0053 permits native Crew amplification; pre-debit hold removed, base/actual presentation separated.276 targeted checks pass; B237260/paused continuity retained.
-- **Pending:** combine B237 continuation/cold-load with restored construction and deferred protection. Prior B233–B236 scoped acceptance retained; no blanket native PASS.
-- **Source/live:** B238.265 `c97117a`, receipt `B238.265-c97117a-playtest.json`,237/237 MATCH. B237/stable recovery retained, no pending transaction. Main B069.96 unchanged.
-- **Next/stop:** one combined native session. District-body purchase explicitly user-deferred/nonblocking; future amplified-strength balance, conditional Faith/speed and Commerce integration remain named. Culture HOLD unchanged.
+**B238 reviewed; next combined plan ready:** [native evidence and diagnosis](Validation/Results/Specialization_B238_Native_Review.md).
+- **Accepted:** tested old-price/progress continuation, restart recovery and260 binding; user reports other observed checks normal. Earlier scoped Industry evidence retained.
+- **Defect:** PAUSED orders release reservations; one living+one paused still admits new work, then blocks resume.223 contiguous log records, one screenshot and actual-writer reproduction agree.
+- **Source/live:** unchanged B238.265 `c97117a`, receipt `B238.265-c97117a-playtest.json`,237/237 MATCH. Main B069.96 and runtime/configuration unchanged.
+- **Next/stop:** [proposed B239 Crew occupancy + Commercialization](../Architecture/v2/Commerce_Preparation.md#proposed-b239-combined-slice); plan approval/Gold precision gate precede implementation. No new test now; rare purchase/protection/other conditional gaps and Culture HOLD remain named.
+
+## S0636 — B238 native review and combined Commerce proposal
+
+Two original sessions (96+127 contiguous records) and one byte-preserved archived screenshot confirm old14/338 continuation and new312 pricing, but also the explicit PAUSED-exclusion admission defect. A standalone actual-writer/Store reproduction matches living1+paused1→new admission→resume blocked. No implementation or formal test assertion changes. Six price-mismatch holds belong to another city and remain isolated; no guessed repricing/migration. The user's other normal-result observations are accepted only in their stated scope; no invented contact or exact-delta result.
+
+Read the Stable Commerce Advisor audit and rechecked D0050/current affected source. Refreshed the existing plan and linked implementation rows: COM-A first, then Capital, Development and Restructuring. Merge the requested Crew repair into proposed B239; retain a specific Gold precision gate and later Capital tie-break decision. Advisor originals/raw logs remain unchanged/ignored. Source/runtime237/237 MATCH; main unchanged. Documentation/context/publication checks only beyond the bounded reproduction; no deployment or new gameplay batch started.
 
 ## S0635 — B238 verified deployment
 

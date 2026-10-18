@@ -1,7 +1,7 @@
 # 工业后续模块：调查与实施准备
 
-State: B238_MODIFIER_RULE_IMPLEMENTED / B237_COMBINED_NATIVE_PENDING.
-Review baseline: B237.264 / develop `1c07056`; D0053 explicitly accepts applicable native Production modifiers on Crew base input. The prior fixed-output mismatch is retained as historical evidence, but modifier isolation is no longer a development gate. B237 unfinished-price continuity remains pending native acceptance. Current deployment/acceptance provenance remains in Status.
+State: B238_NATIVE_REVIEWED / PAUSED_OCCUPANCY_REPAIR_PROPOSED_WITH_COM_A.
+Review baseline: B238.265 / develop `519dbac`; D0053 accepts native modifiers. The B238 user test confirms retained price/progress and cold-load continuation but exposes paused admission occupancy. [Native review](../../Status/Validation/Results/Specialization_B238_Native_Review.md) and [proposed combined Commerce batch](Commerce_Preparation.md#proposed-b239-combined-slice) govern this next step; no repair is implemented here. Deployment provenance remains in Status.
 
 ## 当前范围与正式来源
 
@@ -171,16 +171,16 @@ Future balance: compare effective amplified output with formation cost under rep
 | Closeout item | Current evidence / remaining action |
 |---|---|
 | Industry I/II support, typed templates/N/E, III baseline, study/L and IV/Macro | B233–B236 scoped user acceptance; retain the stated local/native boundaries. No repeat of old long tests. |
-| Start-locked incomplete formation, new tier-I260 | B237 local-tested. Combine partial progress → Practice price change → resume → one cold-load/finish in the B238 session. |
-| Restored Crew construction, slot release and player text | B238 local checks; one normal `施工` → `确认施工` use, ideally ending a nearly finished Wonder, checks restored operation/next-target surplus. Amplification itself is now accepted, not a defect. |
-| Completed-unit binding/cap after cold load; non-capture retreat | Reuse that same save and a surviving Crew. Enemy contact only if readily available; otherwise retain this explicit pending item rather than request a separate forced setup. |
+| Start-locked incomplete formation, new tier-I260 | B238 native continuation at14/338, post-restart resume and verified260 binding accepted. PAUSED does not reserve capacity: confirmed defect; repair with COM-A, reuse the old slot on resume. |
+| Restored Crew construction, slot release and player text | User reports other checks normal; two returned uses and count2→1→0 recorded. Exact actual-delta reads are incomplete; no universal overflow or multiplier proof. Do not repeat the full construction test for the occupancy-only repair. |
+| Completed-unit binding/cap after cold load; non-capture retreat | New260 binding and paused-order reconstruction observed; do not invent an unlogged enemy-contact case. Protection remains opportunistic/deferred; new COM-A persistence can share one future reload with Crew occupancy. |
 | Industry institution UI | Existing B236 implementation; glance at its III/IV text during this session. No separate UI acceptance session. |
 | Purchase discount on the District body itself | Unimplemented: established candidate affects all Districts, not the specific known template. User explicitly deems this rare path nonblocking for v0.1; no further investigation/test requested. Accepted Design remains recorded. |
 | Faith price channel / other speeds | Native evidence absent where no legal opportunity exists; inherited model/local coverage is not native PASS. Not a new mandatory scenario for this Standard-speed closeout. |
 | Standardization + future Commerce Development Investment | Additive contract retained; verify the combination when that Commerce writer is introduced, not before it exists. |
 | Original unit Owner extinction / total city destruction | Existing genuinely undefined, separate boundaries; no new lifecycle policy or speculative repair here. |
 
-After the combined Crew gate passes, Industry's main playable chain can hand off to the next authorized profession, with the above named deferred/conditional items still visible. Do not call every purchase/ownership/speed case complete. [Current local result and minimal combined flow](../../Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md); actual deployment and acceptance remain in Status.
+Industry's main ability chain is implemented. The remaining confirmed paused-occupancy repair is proposed together with Commercialization, as requested by the user; no separate Industry feature batch is needed. Named deferred/conditional items remain visible. [B238 native evidence](../../Status/Validation/Results/Specialization_B238_Native_Review.md) supersedes the pending acceptance list in the frozen local result; [combined plan](Commerce_Preparation.md#proposed-b239-combined-slice) awaits implementation approval. Do not call every purchase/ownership/speed case complete.
 
 ## 推荐顺序与最小批次
 
