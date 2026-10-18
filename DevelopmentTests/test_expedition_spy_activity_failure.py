@@ -52,7 +52,7 @@ class FailureDiagnostic(unittest.TestCase):
          assert(d.equalsAwake=='false (boolean)' and d.equalsHold=='false (boolean)' and d.equalsSleep=='false (boolean)')
          assert(d.phase=='POST_REQUEST_READBACK' and d.requested=='true (boolean)' and d.sleepAttempted=='true (boolean)')
          assert(s~=d and sleepCalls==1 and wakeCalls==0 and sleepChecks==3 and wakeChecks==0)
-         assert(activityReads==4 and readinessReads==1 and endTurnReads==1)
+         assert(activityReads==3 and readinessReads==1 and endTurnReads==1)
          assert(#packets==1 and packets[1].Result=='FAILED' and packets[1].Owned)
          assert(packets[1].Detail:find('ACTIVITY_UNEXPECTED_STATE',1,true) and update==nil)
          for k,v in pairs(d)do assert(type(v)~='table' and type(v)~='function' and type(v)~='userdata')end
@@ -70,18 +70,19 @@ class FailureDiagnostic(unittest.TestCase):
          assert(diag().activity=='0 (number)')
         """)
 
-    def test_pending_poll_records_later_third_activity_without_repeat_queries(self):
+    def test_pending_event_records_later_third_activity_without_repeat_eligibility_queries(self):
         l=failure_bridge()
         l.execute("""
-         noAck=true
+         noAck=true;nativeAuto=false
          UnitManager.RequestOperation=function(u,op)assert(op==expectedSleepHash and u.id==41);sleepCalls=sleepCalls+1 end
          publish('SLEEP')
-         assert(failure()==nil and activityReads==3 and sleepCalls==1 and sleepChecks==3 and update)
-         units[41].activity=9;turn=82;update(.25)
+         Events.GameCoreEventPublishComplete();Events.GameCoreEventPublishComplete()
+         assert(failure()==nil and activityReads==4 and sleepCalls==1 and sleepChecks==3 and not update)
+         units[41].activity=9;turn=82;Events.GameCoreEventPublishComplete()
          assert(failure().activity=='9 (number)' and failure().turn==82)
          assert(failure().phase=='POST_REQUEST_READBACK' and failure().requested=='true (boolean)')
          assert(diag().turn==81 and diag().activity=='0 (number)')
-         assert(activityReads==4 and sleepChecks==3 and readinessReads==1 and endTurnReads==1)
+         assert(activityReads==5 and sleepChecks==3 and readinessReads==1 and endTurnReads==1)
          assert(sleepCalls==1 and wakeCalls==0 and #packets==1 and update==nil)
         """)
 

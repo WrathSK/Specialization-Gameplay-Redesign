@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0604
-Implementation Build: source/live B226.253 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0605
+Implementation Build: source B227.254; live B226.253 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B226_NATIVE_PARTIAL_EXPEDITION_ADVISOR_REVIEW
+Work State: B227_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B226 native partial: Great Work refresh accepted; Expedition task startup failed.** [Evidence and open-topic Advisor handoff](Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md).
-- **Source/live B226.253 / modinfo253** unchanged: source `fee812f`, receipt `B226.253-fee812f-playtest.json`,226/226 MATCH from the previous verified deployment. **670 targeted local PASS** remain scoped; main stable B069.96, configuration/GC unchanged.
-- **Observed:** two WORKS requests reach confirmed TASK_PREPARING without a task clock; no Activity evaluation/ACK is captured. Do not label this another proven native SLEEP denial. Great Work refresh PASS is the user's scoped confirmation.
-- **Pending:** Culture Network native specialist yield/ACTIVE-source withdrawal and remaining B225 mission/release boundaries are not passed. [B226 implementation/cutover](Validation/Results/Specialization_B226_Culture_Network.md) retains independent source3/3, receiver union, exact old Culture retirement and unchanged Research.
-- **Authorized next:** existing Claude Advisor independently investigates the Expedition lifecycle, following relevant source/history/external dependencies; seeds are not a file whitelist or a required theory. No new repair, deployment or user blind test. Reattachment, era UI, site movement and unrelated audit work remain held.
+**B227 local complete: event-driven Expedition task processing.** [Implementation,353 targeted tests and minimal native gate](Validation/Results/Specialization_B227_Event_Activity.md).
+- **Source B227.254 / modinfo254; live remains B226.253** until a separately verified deployment checkpoint. B226 source `fee812f`, receipt `B226.253-fee812f-playtest.json`,226/226 MATCH. Main stable B069.96 unchanged.
+- **Changed:** hidden Activity processing no longer requires frames/timers; one pass per real callback. Reliable unarmed startup expires through Gameplay owner-turn events; ARMED/unknown writes retain protection. Capacity/source/history/reward/schema/GC unchanged.
+- **Evidence:**353 LOCAL_SIMULATION_PASS; B226 frame-withheld counterexample reproduced. Native task startup/release remains USER_GAME_TEST_REQUIRED; older native Sleep denial is not declared fixed. Great Work refresh user PASS retained; Culture Network native yield/source withdrawal still pending.
+- **Next:** after normal verified deployment, one log-first task-start → completion → next task/travel session, combined with available Network checks. No repeat blind tests. Reattachment, era UI, site movement and unrelated audit work remain held.
+
+## S0605 — B227 event-first repair
+
+User authorized the reviewed narrow repair without new timers. [Result](Validation/Results/Specialization_B227_Event_Activity.md) separates event delivery, native denial, confirmed-unarmed expiry and ambiguous-write protection.353 local tests pass; native validation pending. Frozen evidence, Design and main unchanged.
 
 ## S0604 — B226 partial native result / Advisor commission
 

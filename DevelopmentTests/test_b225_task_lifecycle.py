@@ -8,63 +8,8 @@ import test_expedition_missions as missions
 from test_expedition_missions import MISSION_FIXTURE
 from test_p0_k import Fixture
 
-class Scheduling(unittest.TestCase):
- def test_burst_coalesces_without_native_query_in_event_stack(self):
-  l=bridge();l.execute("""
-   refreshAuto=false
-   local native=UnitManager.CanStartOperation
-   UnitManager.CanStartOperation=function(...)assert(refreshEventDepth==0);return native(...)end
-   local before=ContextPtr.refreshRequests or 0
-   publish('SLEEP');for i=1,30 do Events.GameCoreEventPublishComplete()end
-   assert(sleepChecks==0 and sleepCalls==0 and arms==0 and ContextPtr.refreshRequests==before+1)
-   drainRefreshFrames(1);assert(arms==1 and sleepCalls==0 and #packets==0)
-   drainRefreshFrames(1);assert(sleepCalls==1 and #packets==0)
-   drainRefreshFrames(1);assert(#packets==1 and packets[1].Result=='ASLEEP')
-   drainRefreshFrames();assert(not ContextPtr.refreshPending)
-  """)
- def test_core_busy_waits_for_real_event_without_self_poll(self):
-  l=bridge();l.execute("""
-   refreshAuto=false;coreBusy=true;publish('SLEEP');drainRefreshFrames()
-   assert(sleepChecks==0 and arms==0 and not ContextPtr.refreshPending and update==nil)
-   coreBusy=false;drainRefreshFrames();assert(arms==0)
-   Events.GameCoreEventPublishComplete();drainRefreshFrames();assert(sleepCalls==1 and #packets==1)
-  """)
- def test_event_time_denial_not_evaluated_before_safe_refresh(self):
-  l=bridge();l.execute("""
-   refreshAuto=false;sleepDenied=true;publish('SLEEP');assert(#packets==0)
-   sleepDenied=false;drainRefreshFrames();assert(sleepCalls==1 and packets[1].Result=='ASLEEP')
-  """)
- def test_safe_refresh_denial_retains_no_bypass(self):
-  l=bridge();l.execute("refreshAuto=false;sleepDenied=true;publish('SLEEP');drainRefreshFrames();assert(sleepCalls==0 and packets[1].Result=='REJECTED')")
- def test_release_awaits_later_refresh_not_writer_stack_or_mandatory_clear_event(self):
-  l=bridge();l.execute("""
-   publish('SLEEP');refreshAuto=false;publish('RELEASE',true)
-   drainRefreshFrames(1);assert(wakeCalls==1 and units[41].activity==0 and #packets==1)
-   drainRefreshFrames(1);assert(#packets==2 and packets[2].Result=='RELEASED')
-   drainRefreshFrames();assert(wakeCalls==1 and not ContextPtr.refreshPending)
-  """)
- def test_operation_events_filter_unit_and_resume_readback(self):
-  l=bridge();l.execute("""
-   refreshAuto=false;delaySleep=true;publish('SLEEP');drainRefreshFrames()
-   assert(sleepCalls==1 and #packets==0)
-   Events.UnitOperationsCleared(2,42);assert(not ContextPtr.refreshPending)
-   units[41].activity=1;Events.UnitOperationsCleared(2,41);assert(ContextPtr.refreshPending)
-   drainRefreshFrames();assert(packets[1].Result=='ASLEEP' and sleepCalls==1 and update==nil)
-  """)
- def test_pending_owner_change_and_shutdown_do_not_write_stale_unit(self):
-  l=bridge();l.execute("refreshAuto=false;publish('SLEEP');localOwner=3;drainRefreshFrames();assert(sleepCalls==0 and arms==0);shutdown();assert(not ContextPtr.refreshPending)")
- def test_missing_busy_api_is_diagnostic_not_permanent_block(self):
-  l=bridge(with_trace=True);l.execute("UI.IsGameCoreBusy=nil;publish('SLEEP');assert(sleepCalls==1 and packets[1].Result=='ASLEEP')")
-
- def test_scheduler_diagnostic_uses_existing_bounded_ring(self):
-  from test_expedition_activity_trace import fixture
-  l=fixture();l.execute("""
-   UI.IsGameCoreBusy=nil;sleepDenied=true;publish('SLEEP')
-   local f=records('ACTIVITY_FAILURE')[1]
-   assert(f.evaluationOrigin=='UI_REFRESH' and f.coreBusy=='UNAVAILABLE' and f.signalOrigin=='PUBLICATION')
-   assert(f.operationEvent=='NONE' and f.lastOperationHash=='NIL')
-  """)
-
+# B225's deferred-frame scheduling assumptions are superseded by the B227
+# event/no-frame regression suite. Preserve the independent lifecycle/Works tests.
 class Completion(unittest.TestCase):
  def test_manual_sleep_success_then_next_category_without_wake_or_locked_menu(self):
   l=integrated();l.execute(MISSION_FIXTURE);l.execute("""

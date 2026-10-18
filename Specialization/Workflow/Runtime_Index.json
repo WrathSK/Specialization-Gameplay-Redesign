@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "fee812f5a142b40d9585f291f208b15791d6ebbb",
-  "runtime": "B226.253/modinfo253 DEVELOP_ACTIVE; source fee812f5a142b40d9585f291f208b15791d6ebbb; receipt B226.253-fee812f-playtest.json;226/226 MATCH, digest 33fd04da7945deaa1758cab42810bdd5283a7a241affbe0ec6b3557859c8f8a1. Fresh automatic OS exit before both receipt/hash-guarded B225/stable/B226 switches; recovery retained, no pending transaction.",
+  "runtime_commit": "B227 implementation commit pending; live source remains fee812f",
+  "runtime": "B227.254 / modinfo254",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "7d665ee7d0cef37c7130cee2b510df7eabbaa98a25192f45849b4e2ee11f36f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+      "sha256": "421bdab02adfae153710d625d8b3c1f0608bcc1a741f731977d5b565ef0f9928",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "47d6295ed622f2f72a5261a3db08d5c2f8e0719de75a99cdffbec1a19c519870",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+      "sha256": "579e8f90744c20eb4855b8dd6393cd9d76a3cc51708e0677faf1d0b6ccb3f147",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "a19a92d8adb9baa69775bb41b472166e0852e417e11045962ce284392119a163",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "979e503e02beab28f8439a597df1ac32738c295c6c6f6e069e80a2e557143160",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1021,14 +1021,14 @@
       "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "c19e8661c750f350097065183ca8c9d8a2a9ed3a1220d3f8c3aefad8f8fd148d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+      "sha256": "c33c5b841625dca974292aa10670b22a8ecaa2e4f8dd97c5e07a144803a20062",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "3fd348b6441f52c844266ada64311665d52b321d9c45a641125aadcc2de70d99",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
-      "provenance": "B222 approved unexecuted denial/idle restoration and bounded native reason capture;381 local PASS. Native predicate unresolved; no permissions bypass, movement, new timer, Store schema or GC change."
+      "sha256": "d124ad0eb9e8b369bee0963dcead309525fa5dd605d993c92a47e958770ea179",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "c4b33439c6bb1d7b3820be5ec8ae7b1794da2814a25ba1785a9e1ed1c4590067",
@@ -1056,14 +1056,14 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "f74f3279f209d65b9c4069323ff45127323c243a007413c2c6e1d889a23dc105",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+      "sha256": "6a70eda14172ecf4820afa2455fa0cbe7643fd67739b1baa1c368b99a9e9d584",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "0ca81e879ea4673342a6b3100e9aa51fe8f33f33c3d16bc2115d9aa44ec967f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+      "sha256": "4b7a380da070563464dbf07ac06db91664da3c6bde94fbd89ad534f973e0d81c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",

@@ -47,3 +47,33 @@ if event then local original=event;event=function(...)return wrapRefreshEvent(or
 def install(lua,context='ContextPtr',handler=None):
  lua.execute(SOURCE)
  lua.execute('refreshContext('+context+(','+handler if handler else '')+')')
+
+
+def install_native_events(lua):
+ """Legacy lifecycle fixtures supply subsequent engine publications explicitly.
+
+ No frame delivers these. B227's ordering/starvation suite sets nativeAuto=false
+ and supplies each event itself; these convenience events are not native evidence.
+ """
+ lua.execute(r"""
+ nativeAuto=true;nativeEventDepth=0;nativeSettling=false
+ for _,e in pairs(Events)do
+  local mt=type(e)=='table' and getmetatable(e)
+  if mt and mt.__call and not mt.nativeWrapped then
+   local call=mt.__call
+   mt.__call=function(...)
+    nativeEventDepth=nativeEventDepth+1
+    local result=table.pack(pcall(call,...))
+    nativeEventDepth=nativeEventDepth-1
+    if nativeEventDepth==0 and nativeAuto and not nativeSettling then
+     nativeSettling=true
+     for i=1,6 do Events.GameCoreEventPublishComplete()end
+     nativeSettling=false
+    end
+    if not result[1]then error(result[2],0)end
+    return table.unpack(result,2,result.n)
+   end
+   mt.nativeWrapped=true
+  end
+ end
+ """)

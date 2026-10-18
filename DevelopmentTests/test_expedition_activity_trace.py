@@ -51,7 +51,7 @@ class ActivityTrace(unittest.TestCase):
         l=fixture();l.execute("""
          delaySleep=true
          UnitManager.RequestOperation=function(u) sleepCalls=sleepCalls+1;u.activity=3 end
-         publish('SLEEP');assert(#packets==0);update(10)
+         publish('SLEEP');assert(#packets==0);turn=turn+1;Events.LocalPlayerTurnBegin()
          local f=records('ACTIVITY_FAILURE')[1]
          assert(f.reason=='ACTIVITY_SLEEP_TIMEOUT' and f.activity=='3')
          assert(f.requested=='true' and f.attempted=='true' and sleepCalls==1)

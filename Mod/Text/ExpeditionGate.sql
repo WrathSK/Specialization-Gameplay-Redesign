@@ -706,7 +706,9 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 -- B222: a clean pre-request denial leaves the team idle, not an accepted task.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_EXPIRED', '任务未能确认启动，已撤销此次准备；未消耗名额或发放文化见闻。可以重新选择任务。'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','任务未开始：引擎当前不允许休眠，未发出休眠指令，也未计时或发放见闻。本次启动锁定已解除；拒绝信息已记录，请保留日志，不必反复尝试。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_EXPIRED', 'Task startup was not confirmed; preparation was cancelled without consuming a mission allowance or awarding Cultural Insight. Select a mission again.'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','Task not started: the engine currently denies Sleep. No Sleep request, task time or Insight was applied. The startup lock was released; denial details were recorded. Retain the log instead of repeatedly retrying.');
 
 -- B224: idle controls remain visible when a fresh native query cannot enable them.

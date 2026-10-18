@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="253">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="254">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B226.253: Culture Insight network and precise retirement of legacy Culture Eureka; Research retained.</Description>
+    <Description>B227.254: event-driven Expedition task processing and confirmed-unarmed startup exit.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

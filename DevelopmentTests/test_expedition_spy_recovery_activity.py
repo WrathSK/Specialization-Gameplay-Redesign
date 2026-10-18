@@ -45,10 +45,10 @@ class RecoveryActivity(unittest.TestCase):
         l=recovery_bridge();l.execute("noRecoveryAck=true;publish('NONE',true);ExposedMembers.SPC_ExpeditionActivity.sleepConfirmed=true;ExposedMembers.SPC_ExpeditionActivity.recovering=true;ExposedMembers.SPC_ExpeditionActivity.mode='RECOVER';Events.GameCoreEventPublishComplete();assert(acks[1].Awake and not acks[1].Sleeping and sleepCalls==0)")
 
     def test_recovery_operation_waits_then_reports_actual_sleep(self):
-        l=recovery_bridge();l.execute("units[41].activity=3;publish('RECOVER',true);assert(update and #acks==0);for i=1,5 do update(.25)end;units[41].activity=1;Events.UnitActivityChanged(2,41);assert(#acks==1 and acks[1].Sleeping and sleepCalls==0 and wakeCalls==0 and sleepChecks==0 and update==nil)")
+        l=recovery_bridge();l.execute("units[41].activity=3;publish('RECOVER',true);assert(not update and #acks==0);for i=1,5 do Events.GameCoreEventPublishComplete()end;units[41].activity=1;Events.UnitActivityChanged(2,41);assert(#acks==1 and acks[1].Sleeping and sleepCalls==0 and wakeCalls==0 and sleepChecks==0 and update==nil)")
 
     def test_recovery_operation_timeout_is_bounded_and_never_retried(self):
-        l=recovery_bridge();l.execute("units[41].activity=3;publish('RECOVER',true);update(10);assert(#acks==1 and acks[1].Result=='FAILED' and acks[1].Detail:find('ACTIVITY_RECOVER_TIMEOUT',1,true) and update==nil);for i=1,10 do Events.LocalPlayerTurnBegin();Events.GameCoreEventPublishComplete()end;assert(#acks==1 and sleepCalls==0 and wakeCalls==0)")
+        l=recovery_bridge();l.execute("units[41].activity=3;publish('RECOVER',true);turn=turn+1;Events.LocalPlayerTurnBegin();assert(#acks==1 and acks[1].Result=='FAILED' and acks[1].Detail:find('ACTIVITY_RECOVER_TIMEOUT',1,true) and update==nil);for i=1,10 do Events.LocalPlayerTurnBegin();Events.GameCoreEventPublishComplete()end;assert(#acks==1 and sleepCalls==0 and wakeCalls==0)")
 
     def test_recovery_unexpected_activity_fails_without_native_action(self):
         for a in [8,"'3'","nil"]:
@@ -81,10 +81,10 @@ class RecoveryActivity(unittest.TestCase):
                 l=recovery_bridge();l.execute("onArm=function()"+change+" end;publish('SLEEP');assert(arms==1 and sleepCalls==0 and wakeCalls==0 and count('ASLEEP')==0 and count('FAILED')==1)")
 
     def test_armed_owned_operation_waits_without_second_request(self):
-        l=recovery_bridge();l.execute("UnitManager.RequestOperation=function(u,op)sleepCalls=sleepCalls+1;u.activity=3;Events.UnitActivityChanged(2,41)end;publish('SLEEP');assert(arms==1 and sleepCalls==1 and count('ASLEEP')==0 and update);for i=1,8 do update(.25)end;units[41].activity=1;Events.UnitActivityChanged(2,41);assert(sleepCalls==1 and count('ASLEEP')==1 and update==nil)")
+        l=recovery_bridge();l.execute("UnitManager.RequestOperation=function(u,op)sleepCalls=sleepCalls+1;u.activity=3;Events.UnitActivityChanged(2,41)end;publish('SLEEP');assert(arms==1 and sleepCalls==1 and count('ASLEEP')==0 and not update);for i=1,8 do Events.GameCoreEventPublishComplete()end;units[41].activity=1;Events.UnitActivityChanged(2,41);assert(sleepCalls==1 and count('ASLEEP')==1 and update==nil)")
 
     def test_armed_timeout_retains_sleep_failure_diagnostic(self):
-        l=recovery_bridge();l.execute("UnitManager.RequestOperation=function(u,op)sleepCalls=sleepCalls+1;u.activity=3 end;publish('SLEEP');update(10);assert(sleepCalls==1 and count('FAILED')==1 and acks[2].Detail:find('ACTIVITY_SLEEP_TIMEOUT',1,true));local d=ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic;assert(d and d.reason=='ACTIVITY_SLEEP_TIMEOUT' and d.phase=='PENDING_TIMEOUT')")
+        l=recovery_bridge();l.execute("UnitManager.RequestOperation=function(u,op)sleepCalls=sleepCalls+1;u.activity=3 end;publish('SLEEP');turn=turn+1;Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and count('FAILED')==1 and acks[2].Detail:find('ACTIVITY_SLEEP_TIMEOUT',1,true));local d=ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic;assert(d and d.reason=='ACTIVITY_SLEEP_TIMEOUT' and d.phase=='PENDING_TIMEOUT')")
 
     def test_fresh_recovered_owned_sleep_is_only_woken_after_gate_release(self):
         l=recovery_bridge();l.execute("units[41].activity=1;recoverMode='RELEASE';recoverOwned=true;publish('RECOVER',true);assert(acks[1].Result=='RECOVERED' and acks[1].Sleeping and wakeCalls==1 and sleepCalls==0 and count('RELEASED')==1 and units[41].activity==0)")
@@ -102,7 +102,7 @@ class RecoveryActivity(unittest.TestCase):
         l=recovery_bridge();l.execute("publish('SLEEP');assert(sleepCalls==1);noRecoveryAck=true;publish('RECOVER',false,nil,true);assert(acks[#acks].Result=='RECOVERED' and not acks[#acks].Owned and acks[#acks].Sleeping and wakeCalls==0)")
 
     def test_shutdown_removes_bounded_recovery_poll(self):
-        l=recovery_bridge();l.execute("units[41].activity=3;publish('RECOVER',true);assert(update);shutdown();assert(update==nil);units[41].activity=1;Events.UnitActivityChanged(2,41);assert(#acks==0 and sleepCalls==0 and wakeCalls==0)")
+        l=recovery_bridge();l.execute("units[41].activity=3;publish('RECOVER',true);assert(not update);shutdown();assert(update==nil);units[41].activity=1;Events.UnitActivityChanged(2,41);assert(#acks==0 and sleepCalls==0 and wakeCalls==0)")
 
 
 if __name__=='__main__':unittest.main()

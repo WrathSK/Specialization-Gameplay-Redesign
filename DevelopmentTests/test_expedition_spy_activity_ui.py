@@ -96,6 +96,8 @@ def bridge(with_trace=False):
         l.execute((R/'Mod/ExpeditionTrainingDiagnostics.lua').read_text())
     l.execute((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
     l.execute('init();drainRefreshFrames()')
+    from refresh_fixture import install_native_events
+    install_native_events(l)
     return l
 
 
@@ -113,10 +115,10 @@ class ActivityBridge(unittest.TestCase):
         l=bridge();l.execute("publish('SLEEP');managementWindowHidden=true;Events.LocalPlayerTurnBegin();assert(#packets==1 and update==nil);publish('RELEASE',true);assert(wakeCalls==1 and packets[2].Result=='RELEASED')")
 
     def test_delayed_sleep_readback_no_repeated_request(self):
-        l=bridge();l.execute("delaySleep=true;publish('SLEEP');assert(sleepCalls==1 and #packets==0 and update);for i=1,5 do update(.25);Events.GameCoreEventPublishComplete()end;units[41].activity=1;Events.UnitActivityChanged(2,41);assert(sleepCalls==1 and #packets==1 and packets[1].Owned and update==nil)")
+        l=bridge();l.execute("delaySleep=true;publish('SLEEP');assert(sleepCalls==1 and #packets==0 and not update);for i=1,5 do Events.GameCoreEventPublishComplete()end;units[41].activity=1;Events.UnitActivityChanged(2,41);assert(sleepCalls==1 and #packets==1 and packets[1].Owned and update==nil)")
 
     def test_sleep_timeout_unobserved_awake_outcome_blocks_without_writer(self):
-        l=bridge();l.execute("delaySleep=true;publish('SLEEP');update(11);assert(sleepCalls==1 and wakeCalls==0 and #packets==2 and packets[1].Result=='FAILED' and packets[1].Owned and packets[1].Detail:find('TIMEOUT') and packets[2].Result=='FAILED' and packets[2].Owned and packets[2].Detail:find('ACTIVITY_SLEEP_OUTCOME_UNKNOWN') and ExposedMembers.SPC_ExpeditionActivity.mode=='BLOCKED' and update==nil)")
+        l=bridge();l.execute("delaySleep=true;publish('SLEEP');turn=turn+1;Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and wakeCalls==0 and #packets==2 and packets[1].Result=='FAILED' and packets[1].Owned and packets[1].Detail:find('TIMEOUT') and packets[2].Result=='FAILED' and packets[2].Owned and packets[2].Detail:find('ACTIVITY_SLEEP_OUTCOME_UNKNOWN') and ExposedMembers.SPC_ExpeditionActivity.mode=='BLOCKED' and update==nil)")
 
     def test_sleep_error_after_effect_releases_once_no_retry(self):
         l=bridge();l.execute("throwAfterSleep=true;publish('SLEEP');assert(sleepCalls==1 and wakeCalls==1 and #packets==2 and packets[1].Result=='FAILED' and packets[1].Owned and packets[2].Result=='RELEASED' and units[41].activity==0)")
@@ -213,7 +215,7 @@ class ActivityBridge(unittest.TestCase):
                 l.execute(f"assert(sleepCalls=={prior} and wakeCalls==0 and #packets=={packet} and packets[{packet}].Result=='FAILED' and packets[{packet}].Detail:find('ACTIVITY_{action}_API_UNAVAILABLE',1,true) and update==nil)")
 
     def test_delayed_wake_timeout_is_bounded(self):
-        l=bridge();l.execute("publish('SLEEP');delayWake=true;publish('RELEASE',true);assert(wakeCalls==1 and update);update(11);assert(wakeCalls==1 and packets[2].Result=='FAILED' and packets[2].Owned and update==nil)")
+        l=bridge();l.execute("publish('SLEEP');delayWake=true;publish('RELEASE',true);assert(wakeCalls==1 and not update);turn=turn+1;Events.LocalPlayerTurnBegin();assert(wakeCalls==1 and packets[2].Result=='FAILED' and packets[2].Owned and update==nil)")
 
     def test_ack_unknown_never_repeats_native_action(self):
         l=bridge();l.execute("noAck=true;publish('SLEEP');for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(sleepCalls==1 and #packets==1 and update==nil)")
@@ -231,7 +233,7 @@ class ActivityBridge(unittest.TestCase):
         l=bridge();l.execute("ExposedMembers.SPC_ExpeditionGateSequence=37;publish('SLEEP');assert(allRequests[1].Result=='ARMED' and allRequests[1].Token=='Activity:38' and packets[1].Token=='Activity:39');publish('RELEASE',true);assert(packets[2].Token=='Activity:40')")
 
     def test_cancel_unacknowledged_sleep_releases_retained_attempt_once(self):
-        l=bridge();l.execute("delaySleep=true;publish('SLEEP');assert(sleepCalls==1 and #packets==0 and update);units[41].activity=1;publish('RELEASE',false,nil,true);assert(wakeCalls==1 and #packets==1 and packets[1].Result=='RELEASED' and packets[1].Owned and units[41].activity==0 and update==nil);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(wakeCalls==1)")
+        l=bridge();l.execute("delaySleep=true;publish('SLEEP');assert(sleepCalls==1 and #packets==0 and not update);units[41].activity=1;publish('RELEASE',false,nil,true);assert(wakeCalls==1 and #packets==1 and packets[1].Result=='RELEASED' and packets[1].Owned and units[41].activity==0 and update==nil);for i=1,10 do Events.GameCoreEventPublishComplete()end;assert(wakeCalls==1)")
 
     def test_cancel_after_delayed_ack_preserves_attempt_ownership(self):
         l=bridge();l.execute("noAck=true;publish('SLEEP');assert(sleepCalls==1 and #packets==1 and packets[1].Result=='ASLEEP' and update==nil);publish('RELEASE',false,nil,true);assert(wakeCalls==1 and #packets==2 and packets[2].Result=='RELEASED' and packets[2].Owned and units[41].activity==0)")
@@ -254,8 +256,8 @@ class ActivityBridge(unittest.TestCase):
     def test_throw_before_observed_effect_keeps_unknown_outcome_blocked(self):
         l=bridge();l.execute("throwBeforeSleep=true;publish('SLEEP');assert(sleepCalls==1 and wakeCalls==0 and #packets==2 and packets[1].Result=='FAILED' and packets[2].Result=='FAILED' and packets[2].Detail:find('ACTIVITY_SLEEP_OUTCOME_UNKNOWN') and ExposedMembers.SPC_ExpeditionActivity.mode=='BLOCKED' and update==nil)")
 
-    def test_removed_lease_and_shutdown_cancel_pending_poll(self):
-        l=bridge();l.execute("delaySleep=true;publish('SLEEP');local tick=update;ExposedMembers.SPC_ExpeditionActivity=nil;Events.GameCoreEventPublishComplete();tick(20);assert(sleepCalls==1 and #packets==0 and update==nil);shutdown();Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and #packets==0)")
+    def test_removed_lease_and_shutdown_cancel_pending_event_work(self):
+        l=bridge();l.execute("delaySleep=true;publish('SLEEP');ExposedMembers.SPC_ExpeditionActivity=nil;Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and #packets==0 and update==nil);shutdown();Events.GameCoreEventPublishComplete();Events.LocalPlayerTurnBegin();assert(sleepCalls==1 and #packets==0)")
 
 
 if __name__=='__main__': unittest.main()

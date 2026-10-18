@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0604",
-    "runtime": "B226.253 / modinfo253",
+    "status": "S0605",
+    "runtime": "B227.254 / modinfo254",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出",
-  "goal": "B226 authorized Culture Network N3 with independent source3/3 -> receiver union -> matching specialist Culture, exact old Culture Eureka retirement and retained Research. B225 native gate merged; no new timer.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
+  "goal": "B227 approved event-first Activity repair, reliably unarmed startup exit and necessary bounded diagnostics. No new timers, capacity/binding/history/schema/reward or GC change.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -638,6 +638,16 @@
       "path": "Specialization/Design/Network.md",
       "kind": "full",
       "reason": "Complete existing direct-center/capital/distribution/no-recursion rules; linked formal authority unchanged."
+    },
+    {
+      "path": "DevelopmentTests/test_b227_event_activity.py",
+      "kind": "full",
+      "reason": "B227 authorized event/ownership delta and exact validation boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "kind": "full",
+      "reason": "B227 authorized event/ownership delta and exact validation boundary."
     }
   ],
   "dependencies": [
@@ -888,18 +898,18 @@
     "No new timer, permanent schema/history, capacity/source/travel/task-rule change, partial-network policy, route capacity increase, reattachment/U2/site movement, Research redesign, GC/config/main/deployment-tool change or unrelated audit repair."
   ],
   "validation": {
-    "depth": "L2 actual-source targeted network/retirement/projection and combined B225 mission/Store/facts/collector checks; one risk-based native session.",
-    "local": "670 targeted tests PASS, including26 B226 differential cases. Three historical package-only pins excluded, not rewritten or counted PASS. Research normal/TEST values and SQL lines compared with B225.",
-    "user": "B226 partial native result: user-confirmed Great Work refresh PASS; Expedition WORKS startup FAIL on both existing and newly trained/arrived teams. Culture Network specialist yield/source withdrawal remain USER_GAME_TEST_REQUIRED. No new user test requested before independent Advisor review."
+    "depth": "L2 actual Lua event/ownership/Store/mission/UI; differential no-frame delivery and risk-matched inherited regressions.",
+    "local": "353 targeted tests PASS (234 core +119 adjacent); B226 baseline21 publications with zero frames produces zero ARM/Sleep/ACK.",
+    "user": "B227 native task start/completion/reuse required; inherited Great Work refresh PASS. Culture Network native gate remains pending."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md",
-    "source": "B226.253/modinfo253 DEVELOP_ACTIVE; source fee812f5a142b40d9585f291f208b15791d6ebbb; receipt B226.253-fee812f-playtest.json;226/226 MATCH, digest 33fd04da7945deaa1758cab42810bdd5283a7a241affbe0ec6b3557859c8f8a1. Fresh automatic OS exit before both receipt/hash-guarded B225/stable/B226 switches; recovery retained, no pending transaction.",
-    "native": "Scoped Great Work refresh PASS by user confirmation. Two accepted WORKS attempts stuck at TASK_PREPARING without captured Activity evaluation/ACK; root cause UNKNOWN. Other B225/B226 native gates not passed.",
-    "stop": "Existing Claude Advisor receives an open-topic independent Expedition lifecycle review commission. No repair/deployment batch authorized; no repeat blind tests. B226 source/live and local results retained."
+    "report": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+    "source": "B227.254 local complete; live B226.253 until verified deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; native eligibility denial not bypassed or declared solved.",
+    "stop": "Complete existing deployment gates; one minimal combined native session. No further implementation authorized."
   }
 }

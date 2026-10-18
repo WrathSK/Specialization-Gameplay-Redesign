@@ -30,6 +30,7 @@ local function idleKind(u)
  if a==ActivityTypes.ACTIVITY_AWAKE or a==ActivityTypes.ACTIVITY_HOLD then return 'AWAKE'end
  return 'OTHER'
 end
+local idleSignature
 function GetUnitActionsTable(u)
  if not R.IsTeam(u)then return baseActions(u)end
  u=current(u)
@@ -57,6 +58,7 @@ function GetUnitActionsTable(u)
   return R.IsTeam(selected) and selected:GetOwner()==owner and selected:GetID()==id
    and R.CanOpen('TRAVEL',selected)
  end
+ local signature={tostring(owner),tostring(id),idleKind(u)}
  local function nativeAction(tableName,key,command)
   local row=GameInfo[tableName] and GameInfo[tableName][key]
   local actionType=command and UnitCommandTypes and UnitCommandTypes.TYPE
@@ -65,6 +67,7 @@ function GetUnitActionsTable(u)
   local function eligible(selected,visible)return nativeEligible(selected,row,command,visible)end
   local visible,visibility=eligible(u,true)
   local enabled,status=eligible(u,false)
+  signature[#signature+1]=key..':'..visibility..':'..status
   local kind=idleKind(u)
   -- Do not silently remove an idle control when the native reader temporarily
   -- denies/unpublishes it. Display only the relevant activity family; execution
@@ -92,6 +95,11 @@ function GetUnitActionsTable(u)
  nativeAction('UnitOperations','UNITOPERATION_SKIP_TURN',false)
  nativeAction('UnitOperations','UNITOPERATION_SLEEP',false)
  nativeAction('UnitCommands','UNITCOMMAND_WAKE',true)
+ local value=table.concat(signature,'|')
+ if value~=idleSignature then
+  idleSignature=value
+  print('[SPC][B191][N1_TASK] idleActions='..value)
+ end
  return actions
 end
 function OnUnitActionClicked(...)

@@ -10,6 +10,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local TASK_TURNS=2
  local returnToCentre
  local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
+ local preparingKey,preparingTurn -- Session observation only; never a saved clock or native permission.
  local movementProbeLocked=false
  local missionStatus,missionReason,missionRetryKey,missionUnknownReads
  local Store=SPCExpeditionSpyStore
@@ -701,6 +702,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    -- Next durable revision identifies this attempt, even when the previous one cancelled.
    mutating=true;state.activityKey=state.teamKey..':attempt'..tostring(envelope.revision+1);state.activityMode='SLEEP';state.activityOwned=false;state.activityPending=true
    state.activityFailure=nil;state.taskCompletions=0;state.phase='TASK_PREPARING'
+   preparingKey=state.activityKey;preparingTurn=Game.GetCurrentGameTurn()
   elseif p.Action=='ACTIVITY' then
    assert(state.owner==pid and state.unitID==p.UnitID and state.activityKey==p.ActivityKey,'ACTIVITY_REFERENCE_CHANGED')
    assert(type(p.Owned)=='boolean','ACTIVITY_OWNERSHIP_UNKNOWN')
@@ -917,7 +919,31 @@ function SPCExpeditionSpyGate.Start(P,shared)
   print('[SPC][B191][N1_SPY] action='..tostring(p.Action)..' owner='..pid..' unit='..tostring(v.unitID)..' phase='..v.phase..' error='..tostring(v.error))
  end
  GameEvents.SPC_ExpeditionGateRequest.Add(data.Request)
- function data.Turn(pid)
+ -- B227: a confirmed SLEEP intent cannot have issued a native request: only
+ -- durable ARMED grants that permission. Re-read the Store before discarding it.
+ local function expireUnarmed(realTurn)
+  if state.phase~='TASK_PREPARING' or state.activityMode~='SLEEP'
+   or state.activityOwned~=false or state.activityPending~=true or state.sleepConfirmed
+   or state.taskStart or state.taskDue or storeBlocked then preparingKey=nil;preparingTurn=nil;return end
+  local now=Game.GetCurrentGameTurn()
+  if preparingKey~=state.activityKey then preparingKey=state.activityKey;preparingTurn=now;return end
+  if not realTurn or now<=preparingTurn then return end
+  local fresh,err=Store.Read(state.owner)
+  assert(not err and fresh and equal(fresh,envelope) and equal(savedState(),fresh.state),'ACTIVITY_UNARMED_STORE_UNCONFIRMED')
+  source();target(state.owner,state.target);local u=tracked()
+  assert(u:GetX()==state.x and u:GetY()==state.y and state.x==state.target.x and state.y==state.target.y,'TEAM_DISPLACED_STOP')
+  if type(u.GetSpyOperation)=='function'then assert(u:GetSpyOperation()==-1,'NATIVE_MISSION_ACTIVE_STOP')end
+  local oldKey=state.activityKey
+  mutating=true;recovering=false
+  state.phase='ARRIVED';state.activityMode=nil;state.activityOwned=nil;state.activityPending=nil;state.sleepConfirmed=nil;state.activityKey=nil
+  state.taskCompletions=nil;state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil;state.missionWorkID=nil;state.missionCompletionUnknownTurn=nil;state.taskOutcome=nil
+  missionStatus=nil;missionReason=nil;missionRetryKey=nil;missionUnknownReads=0
+  preparingKey=nil;preparingTurn=nil
+  state.activityFailure='ACTIVITY_START_NOT_ARMED'
+  save()
+  traceState('ACTIVITY_UNARMED_EXIT',u,{requestKey=oldKey,reason='ACTIVITY_START_NOT_ARMED'})
+ end
+ function data.Turn(pid,loadOnly)
   if movementProbeLocked then return end
   if placementWatch and pid==placementWatch.owner then closePlacement('TURN_CLOSE')end
   if P.IsTestPlayer(pid)then load(pid)end
@@ -925,6 +951,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
   step='TURN';local ok,err=pcall(function()
    observe(true)
+   expireUnarmed(loadOnly~=true)
   end)
   shared.RequestDepth=shared.RequestDepth-1;busy=false
   mutating=false;if not ok then hold(err)end
@@ -932,9 +959,9 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  if Events.LoadScreenClose then Events.LoadScreenClose.Add(function()
   closePlacement('LOAD_CLOSE')
-  if state.owner then data.Turn(state.owner)end
+  if state.owner then data.Turn(state.owner,true)end
  end)end
- Events.PlayerTurnActivated.Add(data.Turn) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
+ Events.PlayerTurnActivated.Add(function(pid)data.Turn(pid,false)end) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
   if not movementProbeLocked and not busy and state.unitID and state.phase~='ENDED' and state.phase~='HELD' then
    missionRetryKey=nil;missionUnknownReads=0

@@ -88,7 +88,9 @@ def integrated(window=False):
     l.execute('UI.IsGameCoreBusy=function()return coreBusy==true end')
     l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")(
         (R / 'Mod/UI/ExpeditionSpyActivity.lua').read_text())
-    l.execute('activityInit();drainRefreshFrames()')
+    l.execute('activityInit();Events.GameCoreEventPublishComplete();drainRefreshFrames()')
+    from refresh_fixture import install_native_events
+    install_native_events(l)
     return l
 
 
@@ -162,7 +164,7 @@ class ActivityIntegration(unittest.TestCase):
 
     def test_source_loss_after_sleep_before_readback_releases_attempt(self):
         l=integrated();l.execute("""
-          delaySleep=true;beginTask();assert(sleepCalls==1 and #activityPackets==0 and activityUpdate)
+          delaySleep=true;beginTask();assert(sleepCalls==1 and #activityPackets==0 and not activityUpdate)
           units[41].activity=1;city.owner=3;transfer();Events.GameCoreEventPublishComplete()
           assert(view().phase=='HELD' and view().mode=='NONE' and not view().owned and not view().releasePending)
           assert(not view().taskStart and view().taskCompletions==0 and wakeCalls==1 and units[41].activity==0)
@@ -256,7 +258,7 @@ class PersistentActivityIntegration(unittest.TestCase):
     def restart_bridge(self,l):
         l.execute("activityShutdown();SPCExpeditionSpyGate.Start(P,shared)")
         l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
-        l.execute('activityInit();drainRefreshFrames()')
+        l.execute('activityInit();Events.GameCoreEventPublishComplete();drainRefreshFrames()')
 
     def test_durable_arm_precedes_native_sleep_and_cold_running_keeps_due(self):
         l=integrated();l.execute("""
@@ -330,7 +332,7 @@ class PersistentActivityIntegration(unittest.TestCase):
         l=integrated();l.execute("beginTask();activityShutdown();SPCExpeditionSpyGate.Start(P,shared);city.token=nil;ownTurn(2)")
         l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
         l.execute("""
-          activityInit();drainRefreshFrames();assert(view().phase=='HELD' and view().mode=='NONE' and not view().recovering)
+          activityInit();Events.GameCoreEventPublishComplete();drainRefreshFrames();assert(view().phase=='HELD' and view().mode=='NONE' and not view().recovering)
           assert(view().taskCompletions==0 and not view().taskCompleted and units[41].activity==0)
           assert(sleepCalls==1 and wakeCalls==1 and not activityUpdate)
         """)
@@ -369,7 +371,7 @@ class PersistentActivityIntegration(unittest.TestCase):
         """)
         self.restart_bridge(l)
         l.execute("""
-          assert(view().mode=='RECOVER' and sleepCalls==1 and activityUpdate)
+          assert(view().mode=='RECOVER' and sleepCalls==1 and not activityUpdate)
           units[41].activity=1;Events.UnitActivityChanged(2,41)
           assert(view().mode=='ASLEEP' and view().taskDue==85 and sleepCalls==1 and not activityUpdate)
         """)

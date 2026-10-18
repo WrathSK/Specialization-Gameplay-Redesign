@@ -162,6 +162,7 @@ local function setReport(s)
  Controls.Report:SetText(s);Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring()
 end
 local function failureText(v)
+ if v.phase=='ARRIVED' and v.activityFailure=='ACTIVITY_START_NOT_ARMED'then return L('ACTIVITY_START_EXPIRED')end
  if v.phase=='ARRIVED' and v.activityFailure=='ACTIVITY_SLEEP_NOT_ALLOWED'then return L('ACTIVITY_START_DECLINED')end
  local code=v.errorDetail or v.activityFailure or v.activityError or v.error or v.stop
  if not code then return nil end
@@ -217,7 +218,7 @@ local function render()
  if v.missionStatus=='UNKNOWN' then o[#o+1]=L('MISSION_FACTS_UNKNOWN');o[#o+1]=L('MISSION_FACTS_DETAIL',v.missionReason or 'UNKNOWN')end
  if v.persistence then o[#o+1]=L('PERSISTENCE',L('PERSISTENCE_'..v.persistence),v.generation or '—')end
  local activityFailure=v.activityFailure or v.activityError
- if activityFailure then o[#o+1]=v.phase=='ARRIVED' and activityFailure=='ACTIVITY_SLEEP_NOT_ALLOWED' and L('ACTIVITY_START_DECLINED') or activityFailureText(activityFailure)end
+ if activityFailure then o[#o+1]=v.phase=='ARRIVED' and activityFailure=='ACTIVITY_START_NOT_ARMED' and L('ACTIVITY_START_EXPIRED') or v.phase=='ARRIVED' and activityFailure=='ACTIVITY_SLEEP_NOT_ALLOWED' and L('ACTIVITY_START_DECLINED') or activityFailureText(activityFailure)end
  appendFailureDiagnostic(o)
  appendActivityDiagnostic(o)
  local held=v.phase=='HELD' and type(v.teamKey)=='string' and v.sourceCity~=nil

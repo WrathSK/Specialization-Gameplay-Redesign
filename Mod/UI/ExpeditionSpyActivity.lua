@@ -11,7 +11,7 @@ local signal='INIT';local coreState='UNAVAILABLE';local operationEvent='NONE';lo
 local schedule
 local job;local seen={};local lastRevision
 local pump
-local watch
+local dispatchSignature
 local trace
 local traceFailure
 local workReader
@@ -25,7 +25,7 @@ local function same(v,n)
   and (v.releasePending==true)==n.releasePending
 end
 local function cancel()
- job=nil;ContextPtr:ClearUpdate()
+ job=nil
 end
 local function supported(v)
  return type(v)=='table' and integer(v.revision) and integer(v.owner) and integer(v.unitID)
@@ -68,7 +68,7 @@ local function read(n)
  local activity=UnitManager.GetActivityType(u)
  assert(activity~=nil,'ACTIVITY_UNREADABLE')
  if n.mode=='SLEEP' or n.mode=='ARMED' or n.mode=='RECOVER' then
-  -- One replaceable last-read sample, not a fresh read at the timeout deadline.
+  -- One replaceable last-read sample; no wall-clock scheduler.
   n.lastActivity=activity;n.sampledElapsed=n.elapsed
   n.sampleAwake=ActivityTypes.ACTIVITY_AWAKE;n.sampleHold=ActivityTypes.ACTIVITY_HOLD
   n.sampleSleep=ActivityTypes.ACTIVITY_SLEEP;n.sampleOperation=ActivityTypes.ACTIVITY_OPERATION
@@ -178,7 +178,7 @@ end
 local function recordActivity(n,stage,reason,d)
  if not trace or not same(view(),n)then return end
  local v={owner=n.owner,eventUnit=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
-  evaluationOrigin='UI_REFRESH',signalOrigin=signal,coreBusy=coreState,operationEvent=operationEvent,lastOperationHash=operationHash,
+  evaluationOrigin='NATIVE_EVENT',signalOrigin=signal,coreBusy=coreState,operationEvent=operationEvent,lastOperationHash=operationHash,
   mode=n.mode,phase=n.phase,readStatus=n.readStatus or 'NOT_READ',x=n.x,y=n.y,actualX=n.actualX,actualY=n.actualY,
   activity=n.lastActivity or 'UNAVAILABLE',activitySampleTurn=n.sampleTurn,
   awake=n.sampleAwake,hold=n.sampleHold,sleep=n.sampleSleep,operationEnum=n.sampleOperation,
@@ -281,7 +281,6 @@ local function evaluate(n)
  n.readStatus=not ok and 'READ_ERROR' or (u and 'READ_OK' or 'POSITION_PENDING')
  if not ok then fail(n,u);return end
  if not u then return end -- Initial placement still invisible in this UI context.
- if job==n and not n.watching then watch(n)end -- Existing native-activity handling starts only after agreement.
  if n.mode=='ASLEEP' then
   if activity~=ActivityTypes.ACTIVITY_SLEEP then fail(n,'ACTIVITY_UNEXPECTED_WAKE')end
   return
@@ -307,7 +306,7 @@ local function evaluate(n)
    acknowledge(n,'ASLEEP');return
   end
   -- Native OPERATION after our own request is pending, never proof of Sleep.
-  -- Reuse the existing deadline; do not request again or start the Gameplay timer.
+  -- Wait for a later real event/owner-turn boundary; never request again.
   if n.requested==true and n.owned==true and seen.attempted==true
    and activity==ActivityTypes.ACTIVITY_OPERATION then return end
   local awake,hold=ActivityTypes.ACTIVITY_AWAKE,ActivityTypes.ACTIVITY_HOLD
@@ -348,7 +347,7 @@ local function evaluate(n)
     assert(UnitManager.RequestOperation(u,hash)~=false,'ACTIVITY_SLEEP_REJECTED')
    end)
    if not sent then fail(n,err);return end
-   schedule('SLEEP_REQUEST',false);return -- Observe only at a later UI refresh.
+   schedule('SLEEP_REQUEST',false);return -- Observe only at a later real event.
   end
  elseif n.mode=='RELEASE' then
   -- Cancellation can precede the Gameplay acknowledgement. Only this UI lease knows
@@ -385,23 +384,12 @@ local function evaluate(n)
  if (n.mode=='SLEEP' or n.mode=='ARMED') and after==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP')
  elseif n.mode=='RELEASE' and (after==ActivityTypes.ACTIVITY_AWAKE or after==ActivityTypes.ACTIVITY_HOLD)then acknowledge(n,'RELEASED')end
 end
-watch=function(n)
- n.watching=true
- ContextPtr:SetUpdate(function(dt)
-  if stopped or job~=n then return end
-  n.elapsed=n.elapsed+dt;n.poll=n.poll+dt
-  if not same(view(),n)then cancel();schedule('WATCH_CHANGED',false);return end
-  if n.poll>=0.25 then n.poll=0;n.pollDue=true;schedule('EXISTING_READBACK',false)end
-  if job==n and n.elapsed>=10 then n.deadline=true;schedule('EXISTING_DEADLINE',false)end
- end)
-end
 local function start(v)
  local n={revision=v.revision,owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,
   x=v.x,y=v.y,teamKey=v.teamKey,activityKey=v.activityKey,mode=v.mode,phase=v.phase,
   owned=v.owned==true or (v.mode~='RECOVER' and v.releasePending==true and seen.attempted==true),
-  publishedOwned=v.owned==true,releasePending=v.releasePending==true,elapsed=0,poll=0}
+  publishedOwned=v.owned==true,releasePending=v.releasePending==true,startedTurn=Game.GetCurrentGameTurn()}
  job=n
- if n.mode~='SLEEP' or n.phase~='TASK_PREPARING' or n.owned or seen.attempted or seen.positionReady then watch(n)end
 
  return n
 end
@@ -439,35 +427,40 @@ local function refresh(monitor)
  if not job or not same(v,job)then cancel();start(v)end
  evaluate(job)
 end
--- One replaceable pending event request. No operation/query is executed here.
+-- One replaceable pending event signal. The outer real callback runs one pass.
 schedule=function(origin,monitor,turnBoundary)
  if stopped then return end
  signal=origin;pendingMonitor=pendingMonitor or monitor==true;pendingTurn=pendingTurn or turnBoundary==true
- if not pending then pending=true;ContextPtr:RequestRefresh()end
+ pending=true
 end
 pump=function()
- ContextPtr:ClearRequestRefresh()
  if stopped or not pending then return end
  pending=false
- if busy then schedule('REENTRANT',false);return end
+ if busy then return end
  local known,value=pcall(function()
   if not UI or type(UI.IsGameCoreBusy)~='function'then return nil end
   return UI.IsGameCoreBusy()
  end)
  coreState=not known and 'READ_ERROR' or type(value)~='boolean' and 'UNAVAILABLE' or value
+ local v=view()
+ if trace and type(v)=='table' and v.activityKey then
+  local signature=tostring(v.revision)..':'..tostring(coreState)
+  if signature~=dispatchSignature then
+   dispatchSignature=signature
+   pcall(trace.Record,'ACTIVITY_EVENT',{owner=v.owner,eventUnit=v.unitID,activityKey=v.activityKey,
+    phase=v.phase,mode=v.mode,evaluationOrigin='NATIVE_EVENT',signalOrigin=signal,coreBusy=coreState})
+  end
+ end
  if value==true and known then return end -- Resume only on a later real event; no self-poll.
  busy=true
  local monitor,atTurn=pendingMonitor,pendingTurn;pendingMonitor=false;pendingTurn=false
  local ok,err=pcall(function()
-  local n=job
-  if n and n.deadline and not n.pollDue and same(view(),n)then
-   if n.mode=='SLEEP' or n.mode=='ARMED' then pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)end
-   fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT');return
-  end
   refresh(monitor)
-  n=job
-  if n then n.pollDue=nil end
-  if n and n.deadline and same(view(),n)then
+  local n=job
+  -- Native events own readback. A later owner turn bounds a non-converging
+  -- native operation, without polling, retrying or clearing uncertain ownership.
+  if atTurn and n and same(view(),n) and Game.GetCurrentGameTurn()>n.startedTurn
+   and not n.positionPending then
    if n.mode=='SLEEP' or n.mode=='ARMED' then pcall(captureFailureDiagnostic,n,n.lastActivity,n.sampleAwake,n.sampleHold,n.sampleSleep,true)end
    fail(n,'ACTIVITY_'..(n.mode=='ARMED' and 'SLEEP' or n.mode)..'_TIMEOUT');return
   end
@@ -481,22 +474,28 @@ pump=function()
   if n then fail(n,err)else print('[SPC][B191][ACTIVITY_READ_FAILED] '..detail(err))end
  end
 end
-local function published()schedule('PUBLICATION',false)end
+-- One pass per real callback. Nested callbacks only mark pending; never drain
+-- recursively or turn a native writer's own stack into its acceptance readback.
+local function event(origin,monitor,turnBoundary)
+ schedule(origin,monitor,turnBoundary)
+ if not busy then pump()end
+end
+local function published()event('PUBLICATION',false)end
 local function activityChanged(pid,id)
  local v=view()
- if type(v)=='table' and pid==v.owner and id==v.unitID then schedule('ACTIVITY_OR_MOVE',true)end
+ if type(v)=='table' and pid==v.owner and id==v.unitID then event('ACTIVITY_OR_MOVE',true)end
 end
 local function nativeOperation(name)
  return function(pid,id,hash)
   local v=view()
   if type(v)=='table' and pid==v.owner and id==v.unitID then
    operationEvent=name;operationHash=type(hash)=='number' and hash or 'NIL'
-   schedule(name,true)
+   event(name,true)
   end
  end
 end
 local operationHooks={}
-local function turn()schedule('LOCAL_TURN',true,true)end
+local function turn()event('LOCAL_TURN',true,true)end
 local function initialize()
  if initialized then return end
  initialized=true;stopped=false
@@ -516,12 +515,11 @@ local function initialize()
   local e=Events[name]
   if e then local fn=nativeOperation(name);e.Add(fn);operationHooks[#operationHooks+1]={event=e,fn=fn}end
  end
- schedule('INITIALIZE',true)
+ event('INITIALIZE',true)
 end
-ContextPtr:SetRefreshHandler(pump)
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
- stopped=true;pending=false;pendingMonitor=false;pendingTurn=false;ContextPtr:ClearRequestRefresh();cancel()
+ stopped=true;pending=false;pendingMonitor=false;pendingTurn=false;cancel()
  if ExposedMembers.SPC_ExpeditionWorkRead==workReader then ExposedMembers.SPC_ExpeditionWorkRead=nil end
  workReader=nil
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
