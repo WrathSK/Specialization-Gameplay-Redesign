@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0166",
-    "status": "S0630",
+    "status": "S0631",
     "runtime": "B236.263 / modinfo263",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Industry_Preparation.md",
   "runtime_commit": "8942cf56b93214a6aeacf67b590801eee1ca83be",
-  "current_batch": "B236_CREW_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "One combined B236 native session: paid formation/source/two slots, start-locked price, fixed Wonder use/protection, same-turn IV entry and Industry institutions; one cold-load for newly saved Crew ownership. Stop at this batch; held work stays held.",
+  "current_batch": "B236_NATIVE_PARTIAL_CREW_REPAIR_REQUIRED",
+  "next_batch": "B237 proposal only: fixed final Crew injection and unfinished start-locked project continuity; merge deferred Crew cold-load/contact into one native session after approval/local checks. No implementation or deployment authorized by result review.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B236.263/modinfo263 DEVELOP_ACTIVE; source 8942cf56b93214a6aeacf67b590801eee1ca83be; receipt B236.263-8942cf5-playtest.json;237/237 MATCH, digest 86becbe9055c302108df86edda5c41d044387f7f70c82e9d48a36823fa233781. Automatic game-exit checks before both guarded switches; B235/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B236 approved IND-4 plus Industry institutions; user accepted price lock at start.212 targeted local tests PASS; native queue completion counter, exact source binding, injection/protection and UI pending. Existing B235 acceptance and isolated District purchase gap retained.",
+  "context_review_status": "B236 native partial:261 continuous records; observed cap/release/no spill/IV entry/Practice and template-holder distinction accepted. Injection amplification and unfinished-price continuity fail; local counterexamples retained. Cold-load/contact deferred; no whole-batch PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md"
 }

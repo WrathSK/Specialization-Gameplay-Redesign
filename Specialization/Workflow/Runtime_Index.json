@@ -77,13 +77,13 @@
     },
     "Mod/CrewPrecision.lua": {
       "sha256": "d769225a71bd53b7865ddd512a7704ed1f378683fc031e1f9875d765393bed83",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
     },
     "Mod/CrewProjects.lua": {
       "sha256": "63b56a7c8a8709d117c4dbd9fd86a414dbc7eaef9b96b83ea0f8c4a43ec302bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -612,8 +612,8 @@
     },
     "Mod/UnitActions.lua": {
       "sha256": "e76a19873e06d6d935355d2408db7385e2b9865c96187ada9ab188054aef39cd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
     },
     "Mod/UnitSiteProbe.lua": {
       "sha256": "f54c582cc46ba965ddbfc3c631dcba198bbb2663e14d982693d0503b8c7f1d43",
@@ -1187,8 +1187,8 @@
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "87b8c6a1414a848df83acf3f92800e7b0d59f07c1ca40c5870da09309d2a1901",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
     }
   }
 }

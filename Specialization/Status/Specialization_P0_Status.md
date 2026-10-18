@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0630
+Status Revision: S0631
 Implementation Build: source/live B236.263 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0166
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B236_DEPLOYED / NATIVE_PENDING
+Work State: B236_NATIVE_PARTIAL / B237_REPAIR_PROPOSED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B236 / IND-4 deployed, native pending:** [contract](../Architecture/v2/Industry_Preparation.md#b236-implementation-and-validation), [local evidence and minimal test](Validation/Results/Specialization_B236_Crew_Local.md).
-- **Delivered:** paid Crew formation/Practice costs, start-locked price, source/two slots, Wonder-only fixed use/protection; same-turn IV receipt repair; Industry institutions.
-- **Evidence:**212 targeted local PASS; native formation/counter timing, use/protection and UI pending. B233–B235 scoped acceptance retained; District purchase remains isolated, Faith untested.
-- **Source/live:** B236.263 `8942cf5`, receipt `B236.263-8942cf5-playtest.json`,237/237 MATCH. Automatic game-exit checks passed; B235/stable recovery retained. Main B069.96 unchanged.
-- **Next/stop:** one combined B236 native session, with one cold-load for new Crew source/occupancy. Culture HOLD, Research-network redesign and Balance remain outside this batch.
+**B236 native partial; two Crew repairs proposed:** [review / B237 plan](Validation/Results/Specialization_B236_Native_Review.md), [local baseline](Validation/Results/Specialization_B236_Crew_Local.md).
+- **Accepted:** observed cap/release, no spill, immediate IV entry, Practice price tiers and recipient template-source distinction.
+- **Failed:** Crew injection receives ordinary Production bonuses; unfinished formation loses usable progress across price changes.261 contiguous log records reviewed; no blanket PASS.
+- **Source/live:** B236.263 `8942cf5`, receipt `B236.263-8942cf5-playtest.json`,237/237 MATCH. Main B069.96 unchanged; no new deployment.
+- **Next/stop:** approve B237 fixed-injection and unfinished-price continuity repair. Crew cold-load/contact deferred into that batch; Culture HOLD, Research-network redesign and Balance unchanged.
+
+## S0631 — B236 native review and two-path repair proposal
+
+The user accepts tested capacity/release, no-overflow observation, immediate IV activation, Practice discount tiers and Standardization source distinction.261/261 contiguous records include six bound Crews and four use calls. Fixed final injection and unfinished formation continuity fail; actual-source counterexamples expose the multiplier-free test assumption and the old-price order/UI gap. The log does not prove deletion of the old native progress bucket or the exact multiplier formula. Cold-load/contact are explicitly deferred to the next combined batch. Documentation-only review; B237 requires approval, source/runtime/main and frozen evidence remain unchanged.
 
 ## S0630 — B236 verified deployment
 

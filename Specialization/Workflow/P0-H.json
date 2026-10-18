@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0051",
     "research": "D0040",
@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0166",
-    "status": "S0630",
+    "status": "S0631",
     "runtime": "B236.263 / modinfo263",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b236-implementation-and-validation",
-  "goal": "B236 / IND-4: Crew formation/Practice, source/two-slot ownership, fixed Wonder use/protection, same-turn IV entry and Industry institution UI.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md#b237-repair-proposal",
+  "goal": "Record scoped B236 native acceptance and two Crew failures; propose B237 fixed-injection/unfinished-price repair without implementing.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -28,15 +28,14 @@
       "reason": "Current source/live/evidence and next allowed action."
     },
     {
-      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
-      "kind": "section",
-      "selector": "## B236 implementation and validation",
-      "reason": "Current implementation ownership and narrow native boundary."
+      "path": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
+      "kind": "full",
+      "reason": "Current native results, actual-source counterexamples, deferred tests and proposed repair boundary."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
       "kind": "full",
-      "reason": "Current batch local evidence, exclusions and one native gate."
+      "reason": "Inherited local implementation/test ownership and limits; native results are in current review."
     },
     {
       "path": "Specialization/Design/Content/Industry_D0045.json",
@@ -111,17 +110,17 @@
   "validation": {
     "depth": "L3 actual source/Store transactions and targeted UI/native-shaped fixtures, in-memory configured DB; L1 syntax/package/context/publication.",
     "local": "212 targeted tests PASS;100 cost matrix subcases. Historical package/old ordinary-building Crew checks excluded explicitly; current263/Wonder-only path checked.",
-    "user": "USER_GAME_TEST_REQUIRED: one combined formation/source/two slots/price lock/Wonder use/protection/IV entry and UI session, one coldload for new ownership.",
-    "gap": "Native repeated-project counter timing, exact yield/protection not proved locally. District purchase technical gap/Faith untested remain separate."
+    "user": "USER_GAME_TEST_PASS scoped: cap/release, no spill, immediate IV entry, new Practice prices, template-holder distinction. FAIL: multiplied injection and unfinished-price continuity. Cold-load/contact deferred into next batch.",
+    "gap": "Native fixed final-progress primitive and exact stored per-project progress continuity require repair. Crew cold-load/contact remain pending; institution visual details not separately accepted. District purchase/Faith gaps unchanged."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
     "source": "B236.263/modinfo263 DEVELOP_ACTIVE; source 8942cf56b93214a6aeacf67b590801eee1ca83be; receipt B236.263-8942cf5-playtest.json;237/237 MATCH, digest 86becbe9055c302108df86edda5c41d044387f7f70c82e9d48a36823fa233781. Automatic game-exit checks before both guarded switches; B235/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "B236 deployed; stop for the single combined native test. No new implementation or resumed held batches."
+    "native": "PARTIAL_PASS_WITH_TWO_CREW_FAILURES",
+    "stop": "Record and commit/push review only. B237 is proposed, not authorized; no new build/deployment. Deferred native checks join next approved batch."
   }
 }
