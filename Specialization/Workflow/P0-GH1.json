@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0163",
-    "status": "S0620",
-    "runtime": "B232.259 / modinfo259",
+    "status": "S0621",
+    "runtime": "B233.260 / modinfo260",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -149,7 +149,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-    "source": "B233.260 local source; verified external runtime remains B232.259 until the separate receipt checkpoint.",
+    "source": "B233.260/modinfo260 DEVELOP_ACTIVE; source b82eabf216810017d56c350e03ccf631bde505ea; receipt B233.260-b82eabf-playtest.json;227/227 MATCH, digest 0530efdf3e1b3da3f153ed45aac8642a39c9e05a9356c5b12fae6c52eb3662e1. Automatic game-exit checks before both guarded switches; B232/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED",
     "stop": "Await scoped B233 native evidence after the guarded deployment; no automatic next batch."
   }

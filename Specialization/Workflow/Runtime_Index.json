@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "a0e1d4ece94bac690c6a2018add37b96c37c145c",
-  "runtime": "B232.259 / modinfo259",
+  "runtime_commit": "b82eabf216810017d56c350e03ccf631bde505ea",
+  "runtime": "B233.260 / modinfo260",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

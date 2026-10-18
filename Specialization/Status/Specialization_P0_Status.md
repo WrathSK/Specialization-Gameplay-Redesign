@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0620
-Implementation Build: source B233.260 / live B232.259 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0621
+Implementation Build: source/live B233.260 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0163
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B233_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
+Work State: B233_DEPLOYED / USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B233 / IND-1 locally complete; native pending:** [result and new-save test](Validation/Results/Specialization_B233_Industry_History_Local.md), [implementation contract](../Architecture/v2/Industry_Preparation.md#b233-implementation-contract), manifest `P0-GH1`.
+**B233 / IND-1 deployed; native pending:** [result and new-save test](Validation/Results/Specialization_B233_Industry_History_Local.md), [implementation contract](../Architecture/v2/Industry_Preparation.md#b233-implementation-contract), manifest `P0-GH1`.
 - **Scope:** event-driven N/E Wonder history, typed District templates, structural/catalog separation and read-only reporting. No new Industry effect, L study or Crew change; foreign completion events are ignored; conquest/Industry entry reconciles present Wonders into N only, retaining saved history.
-- **Source/live:** B233.260 source awaits the existing W0003 transaction; live remains B232.259 from `a0e1d4e`, receipt `B232.259-a0e1d4e-playtest.json`. Main B069.96 unchanged. Never infer deployment from HEAD.
+- **Source/live:** B233.260 from `b82eabf`, receipt `B233.260-b82eabf-playtest.json`;227/227 files MATCH; recovery retained, no pending transaction. Main B069.96 unchanged. Never infer deployment from HEAD.
 - **Evidence:** 104 targeted offline tests PASS (including inherited B140/B142 cases and Store/collector checks). This is not USER_GAME_TEST_PASS. New campaign selected by the user; one completion/template/cold-load session remains.
-- **Hold/stop:** Expedition issues, remaining Meaning work and era-coverage presentation HOLD/nonblocking; Balance outside scope. No new timers or GC changes. After local commit and gated deployment, await B233 native results; IND-2 requires a new authorization.
+- **Hold/stop:** Expedition issues, remaining Meaning work and era-coverage presentation HOLD/nonblocking; Balance outside scope. No new timers or GC changes. Await B233 native results; IND-2 requires a new authorization.
+
+## S0620 — B233 local implementation checkpoint
+
+Approved supported-player N/E completion history, local Industry-entry Wonder reconciliation, typed District knowledge and structural/effect separation passed104 targeted offline tests. Foreign completion tracking was removed following the user clarification before commit. No new Industry effects, Design changes or native acceptance. W0003 later deployed the clean committed source with verified exit, exact receipt-bound restore/activate and227/227 equality.
 
 ## S0619 — Industry plan review and authorization handoff
 

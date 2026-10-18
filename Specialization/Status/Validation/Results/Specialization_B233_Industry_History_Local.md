@@ -46,6 +46,6 @@ The report's key N/E/coverage/template counts and completion receipts are logged
 
 ## Checkpoint and next gate
 
-Source build: B233.260 / modinfo260. External runtime still B232 until a separate verified W0003 transaction is recorded. Main, Design, GC, saves, game configuration, original Advisor/audit evidence and unrelated Culture mechanics are unchanged.
+Source/live build: B233.260 / modinfo260 from `b82eabf216810017d56c350e03ccf631bde505ea`. W0003 receipt `B233.260-b82eabf-playtest.json` confirms227/227 files MATCH, digest `0530efdf3e1b3da3f153ed45aac8642a39c9e05a9356c5b12fae6c52eb3662e1`. OS checks confirmed game exit before both switches; outgoing B232/stable recovery retained and no pending transaction. No game launch or native acceptance. Main, Design, GC, saves, game configuration, original Advisor/audit evidence and unrelated Culture mechanics are unchanged.
 
-User decision: none inside IND-1. User testing: the single new-save flow above, after verified deployment. Primary next: stop at this batch; review its native result, then propose/authorize IND-2 (III standardization + exact old-writer cutover), not automatic implementation.
+User decision: none inside IND-1. User testing: the single new-save flow above, on the verified deployed package. Primary next: stop at this batch; review its native result, then propose/authorize IND-2 (III standardization + exact old-writer cutover), not automatic implementation.
