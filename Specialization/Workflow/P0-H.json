@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0167",
-    "status": "S0632",
+    "status": "S0633",
     "runtime": "B237.264 / modinfo264",
     "military": "D0037",
     "harbor": "D0037",
@@ -120,8 +120,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
-    "source": "B237.264 local source; live remains B236.263 until guarded deployment.",
+    "source": "B237.264/modinfo264 DEVELOP_ACTIVE; source fccac0a23e6e9e44370161b089f1ee4fb60eda0a; receipt B237.264-fccac0a-playtest.json;237/237 MATCH, digest 8d5cf13507220b9af25d1493c01a67755f3f6e2c23187445b29c9fe4ae7ab1cd. Automatic game-exit checks passed before both guarded switches; B236/stable recovery retained, no pending transaction. Fixed Crew injection remains held before debit; native continuation pending.",
     "native": "PARTIAL_DELIVERY_NATIVE_PENDING_FIXED_INJECTION_BLOCKED",
-    "stop": "Complete approved partial checkpoint and stop. No next-batch authorization; no amplified injection."
+    "stop": "B237 partial delivery deployed; stop for optional combined native acceptance and a separately approved injection follow-up. No next-batch authorization."
   }
 }

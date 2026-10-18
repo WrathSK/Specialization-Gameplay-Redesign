@@ -50,8 +50,10 @@ The native continuation check can be deferred to a later combined package; local
 
 ## Checkpoint
 
-Source **B237.264 / modinfo264**; local continuation/value repair ready, fixed injection held. Live remains B236.263 until a clean committed W0003 deployment passes its gates. Main B069.96, Store core, other professions, GC, frozen evidence, external configuration and original logs remain unchanged. Context/reference/package checks and the31-file staged publication gate PASS. Deployment still requires clean committed source and a fresh game-exit check.
+Source **B237.264 / modinfo264**, implementation commit `fccac0a23e6e9e44370161b089f1ee4fb60eda0a` committed/pushed. W0003 deployment **DEVELOP_ACTIVE**, receipt `B237.264-fccac0a-playtest.json`;237/237 source/runtime files MATCH, digest `8d5cf13507220b9af25d1493c01a67755f3f6e2c23187445b29c9fe4ae7ab1cd`. Automatic executable checks confirmed game exit immediately before both guarded switches. B236/stable recovery packages retained; no pending transaction or game launch.
 
-User decision: no new decision is needed for the delivered subpath; any Gameplay alternative to exact fixed injection requires separate explicit approval.
+223 targeted runtime tests plus42 collector/diagnostic tests PASS. The31-file implementation publication gate and scoped package/context/link/Design-delta checks passed; this deployment record receives its own context/publication check. Fixed injection remains **BLOCKED** before debit. Paused continuation/cold-load/contact is **USER_GAME_TEST_REQUIRED**, optionally merged later. Main B069.96, Store core, other professions, GC, configuration, previous frozen evidence and original logs remain unchanged.
+
+User decision: none needed for the delivered continuation/value repair; any Gameplay alternative to exact fixed injection requires separate approval.
 User testing: one minimal continuation/cold-load/contact session, optionally merged later; do not retry the blocked injection.
-Primary next: finish checks, commit/push; deploy only through existing exit/hash gates, then stop. Fixed-injection follow-up remains a bounded technical blocker, not authority for another batch.
+Primary next: record this receipt, commit/push documentation and stop. Exact injection follow-up needs a separately bounded next plan, not automatic work under this checkpoint.

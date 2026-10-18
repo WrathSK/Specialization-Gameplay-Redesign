@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0632
-Implementation Build: source B237.264 LOCAL_PARTIAL; live B236.263 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0633
+Implementation Build: source/live B237.264 DEVELOP_ACTIVE; fixed injection BLOCKED; stable B069.96
 Architecture Revision Reviewed: A0167
 Design Revision Reviewed: D0052（一级施工力260及对应成本）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B237_CONTINUATION_LOCAL_COMPLETE / FIXED_INJECTION_BLOCKED
+Work State: B237_PARTIAL_DEPLOYED / FIXED_INJECTION_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B237 partial delivery:** [repair / native-primitive boundary](Validation/Results/Specialization_B237_Crew_Local.md).
 - **Local:** retained native paused progress and old-price UI; D0052 tier-I260, costs390/364/338/312.223 targeted tests pass; native continuation pending.
 - **Blocked:** exact fixed injection has no established native primitive. Crew construction rejects before consumption; permanent units/other Industry effects stay intact. No whole-batch PASS.
-- **Source/live:** source B237.264; live B236.263 `8942cf5`, receipt `B236.263-8942cf5-playtest.json`,237/237 MATCH until guarded deployment. Main B069.96 unchanged.
-- **Next/stop:** finish W0003 gates; one continuation/cold-load/contact session may join a future batch. Exact injection requires a separately scoped technical continuation; Culture HOLD, Research-network redesign and Balance unchanged.
+- **Source/live:** B237.264 `fccac0a`, receipt `B237.264-fccac0a-playtest.json`,237/237 MATCH. B236/stable recovery retained; no pending transaction. Main B069.96 unchanged.
+- **Next/stop:** one continuation/cold-load/contact session may join a future batch. Exact injection requires a separately scoped technical continuation; Culture HOLD, Research-network redesign and Balance unchanged.
+
+## S0633 — B237 partial delivery verified deployment
+
+Clean/pushed `fccac0a` passed automatic game-exit checks at both receipt-bound switches.237/237 source/runtime files MATCH; B236/stable recovery retained, no pending transaction.223 runtime and42 collector/diagnostic checks passed locally. The package delivers260 and paused progress continuity; fixed injection is intentionally held before any debit, not repaired or accepted. Native continuation/cold-load/contact remain pending. No main/configuration change or game launch; stop at this checkpoint.
 
 ## S0632 — B237 local partial checkpoint
 
