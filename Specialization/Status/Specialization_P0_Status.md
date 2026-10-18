@@ -1,22 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0639
+Status Revision: S0640
 Implementation Build: source/live B239.266; stable B069.96
 Architecture Revision Reviewed: A0168
-Design Revision Reviewed: D0054
-Latest Accepted Design Revision: D0054
-Design Sync State: D0054_COMMERCIALIZATION_PER_DOMAIN_FLOOR_RECORDED
-Work State: B239_CREW_ACCEPTED_COMMERCE_PENDING
+Design Revision Reviewed: D0055
+Latest Accepted Design Revision: D0055
+Design Sync State: D0055_SOURCE_IDENTITY_FOOD_ACCEPTED_RUNTIME_PENDING
+Work State: D0055_DESIGN_SYNC_COMPLETE_IMPLEMENTATION_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B239 native review:** [Crew accepted; Commerce eligibility clarified](Validation/Results/Specialization_B239_Native_Review.md#review-summary).
-- Paid Crew continuation/occupancy PASS in the tested path; old cost/progress retained.
-- Medina had none of the five required local districts; disabled Commerce choices match D0054. Public network and Commerce backend reached READY; no domain was enabled.
-- Commerce Gold/clean-source/LIFO/Reputation/new-state reload remain pending. P0/configuration explanations need a narrow presentation improvement, not a route-rule change.
-- Live B239.266 from `972e911`, receipt `B239.266-972e911-playtest.json`; no deployment change. Main B069.96 unchanged.
-- Next: resume existing Commerce gates with an eligible local district. No new implementation, COM-B/C/D or Culture HOLD work authorized by this review.
+**D0055 Design-only synchronization complete:** [accepted source/Harbor amendment](../Design/Design_ChangeLog.md#accepted-d0055--2026-10-18).
+- External Commercialization sources require matching Identity plus the existing direct domestic route. Self remains exempt from Identity; local district required. Harbor reads total Food, not surplus; output remains Gold.
+- B239.266 source/live `972e911` still implements D0054; Architecture A0168 and runtime have not been synchronized to D0055. No code/test/deployment change or new native PASS.
+- User supplement accepts specialist capacity/report response to D and Reputation growth; actual Gold/source-yield response and Commerce reload remain untested. Harbor repeated refresh/stutter reported; obsolete Gold sampling must be reviewed in the next separately authorized implementation.
+- Crew acceptance retained. Main B069.96 and Culture HOLD unchanged. Next: propose the narrow D0055 implementation and no-change write regression; await authorization. No repeated Academic Tradition test.
+
+## S0640 — D0055 Commercialization source and Harbor input Design
+
+User accepted the handoff and explicitly authorized Design documentation/context synchronization only. Recorded matching-Identity external eligibility with no new ACTIVE/Governor/Potential/district requirement, self exception and total-Food Harbor input. Preserved D0054 Content, prior acceptance hashes and byte-identical Spec snapshot. Formula, Floor, capacity, Reputation, other Commerce contracts and Harbor specialization are unchanged. Latest accepted Design differs intentionally from deployed B239.266; no implementation, native acceptance or deployment is implied.
 
 ## S0639 — B239 Crew acceptance and local Commerce prerequisite
 

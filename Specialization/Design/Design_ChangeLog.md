@@ -3,8 +3,23 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0054
+Latest Accepted Design Revision: D0055
 Document State: ACCEPTED
+
+## Accepted D0055 — 2026-10-18
+
+用户确认并授权正式同步附件“Commerce Design Handoff — Commercialization Source Eligibility & Harbor Yield”的两项决定：
+
+1. 商业化来源为本城及任意方向有效直接国内商路连接、持有对应专业身份的其它己方城市。本城免身份要求但仍需本地区域；外部不要求最低ACTIVE、总督、Potential或对应区域，间接网络不算。取对应城市总产出最高者，不求和、不扣来源。
+2. 港口商业化输入由Gold改为Food：城市总粮食、非余粮，输出仍为金币。本城港口仍可供源；不修改港口专业既有国际化机制与身份。
+
+明确取代旧“外部来源无对应身份限制”和“Harbor→Gold”。ACTIVE III、专家名额、本地D、0.05系数、有效信誉及逐领域Floor后相加不变；其它商业合同保持。后续实现不应为旧金币输入保留循环拆装carrier、历史采样或通用递归求解；实现与性能验证须另行授权。
+
+[Commerce D0055](Content/Commerce_D0055.json)、[商业阅读版](Commerce.md)与当前Spec已同步。[Commerce D0054](Content/Commerce_D0054.json)及[D0054 Spec冻结原文](Revisions/Specialization_Design_Spec_D0054.md)保持原始字节。B239仍为旧实现，本轮不改代码、SQL、测试或部署；不宣称新规则实机通过。
+
+Accepted Spec SHA256: `8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe14299ee4bbaf`
+Commerce D0055 SHA256: `c2d772724b9efb779ab0fc3bef9b580ba5b97af869ea94a6c1f8dad06300681d`
+Frozen D0054 Spec SHA256: `bb55a137c2974cfdc38abb7bdef63a934ef9570935c5c78d135cb7f379310859`
 
 ## Accepted D0054 — 2026-10-18
 

@@ -3,23 +3,23 @@
   "batch": "P0-H",
   "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0054",
+    "design": "D0055",
     "research": "D0040",
     "industry": "D0053",
     "culture": "D0051",
-    "commerce": "D0054",
+    "commerce": "D0055",
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0639",
+    "status": "S0640",
     "runtime": "B239.266 / modinfo266",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
-  "goal": "B239 Crew continuation occupancy accepted. Commercialization requires a matching local district and explicit selection; resume its existing native gates. No new implementation in this evidence review.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Design/Design_ChangeLog.md",
+  "goal": "D0055 Design-only synchronization; B239 old source remains. Next implementation requires explicit authorization.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -28,16 +28,16 @@
       "reason": "Current source/live, evidence and approved stop."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
+      "path": "Specialization/Design/Design_ChangeLog.md",
       "kind": "section",
-      "selector": "## Review summary",
-      "reason": "Current native outcome, clarified local prerequisite and remaining B239 scope."
+      "selector": "## Accepted D0055 — 2026-10-18",
+      "reason": "Accepted change only; no runtime or native acceptance."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
       "selector": "## B239 implementation and validation",
-      "reason": "Current ownership, event flow, precision and retirement contract."
+      "reason": "Historical B239 implementation baseline; D0055 source/Food delta is not yet implemented."
     }
   ],
   "dependencies": [
@@ -59,7 +59,7 @@
         "Mod/CityProgressionStore.lua",
         "Mod/UI/CommerceUI.lua",
         "Mod/UI/CommercePanel.lua",
-        "Specialization/Design/Content/Commerce_D0054.json",
+        "Specialization/Design/Content/Commerce_D0055.json",
         "DevelopmentTests/test_b239_commerce.py",
         "DevelopmentTests/test_b239_commerce_store.py",
         "DevelopmentTests/test_b239_commerce_ui.py"
@@ -103,8 +103,8 @@
   "validation": {
     "depth": "L3 new business persistence/ownership and shared route read boundary, L2 effects and source propagation, L1 UI/package/docs.",
     "local": "336 distinct targeted checks PASS. Two fixed historical package stamps excluded unchanged; B239 package independently checked.",
-    "user": "Crew continuation occupancy accepted. Commerce native Gold/clean-source/LIFO/Reputation/new-state reload remain pending; no repeated Crew test.",
-    "gap": "No eligible local Commerce domains in the submitted setup. UI/report eligibility explanation gap recorded; no source-read/Gold failure established and no new fix authorized."
+    "user": "User supplement: dynamic capacity/report D/Reputation accepted. Actual Gold, source-yield delta and Commerce reload pending; Harbor refresh/stutter reported. No repeated Academic Tradition test.",
+    "gap": "D0055 source Identity/total Food not implemented; old Gold sampling requires replacement, not new native testing of the superseded input."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
@@ -114,6 +114,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
     "source": "B239.266 deployed from 972e911cd7635f212ceeffde2280395dda67b9cd;245/245 MATCH; receipt B239.266-972e911-playtest.json",
     "native": "USER_GAME_TEST_PASS scoped Crew occupancy/continuation; Commerce pending eligible setup",
-    "stop": "No new implementation or deployment. Resume existing B239 Commerce acceptance with local infrastructure; COM-B/C/D and Culture HOLD unchanged."
+    "stop": "Design synchronization only. Await explicit D0055 implementation authorization; no code/tests/deployment changes."
   }
 }
