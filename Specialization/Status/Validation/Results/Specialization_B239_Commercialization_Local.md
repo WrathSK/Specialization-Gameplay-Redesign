@@ -49,6 +49,10 @@ If the local setup lacks a Harbor, the other domains can be accepted, but clean 
 
 ## Checkpoint and stop
 
-Implementation is complete locally. Deployment uses the existing receipt-bound stable restore then new develop activation after automatic game-exit checks. The external package remains B238 until that transaction succeeds; receipt and exact source/live equality belong to the subsequent deployment record. Main is not promoted.
+Implementation is complete locally and the guarded deployment is now verified below. Main is not promoted.
 
-User decision: per-domain Floor is accepted; no further Design question for this batch. User testing: the single combined session above after deployment. Primary next: deploy the committed verified build under W0003, record its receipt/MATCH, then stop for the user's results. COM-B/C/D and unrelated audit findings remain unimplemented.
+User decision: per-domain Floor is accepted; no further Design question for this batch. User testing: the single combined session above after deployment. Primary next: await the user's one combined test and review only its results. COM-B/C/D and unrelated audit findings remain unimplemented.
+
+## Verified deployment — 2026-10-18
+
+Source `972e911cd7635f212ceeffde2280395dda67b9cd` was clean and pushed before switching. The existing tool restored the exact B238 receipt to stable, then activated B239 using `B239.266-972e911-playtest.json`; a reliable OS game-exit check passed immediately before each switch.245/245 files MATCH, digest `ba9af421a89fbc3907f6046d33555f927027132c620496dfaed39c888cfd3b22`; phase DEVELOP_ACTIVE, no pending marker. B238/stable recovery retained, main unchanged, no game launch/configuration edit. Manual staged publication and the commit hook both passed. No USER_GAME_TEST result is inferred from deployment. Stop for the combined session above.

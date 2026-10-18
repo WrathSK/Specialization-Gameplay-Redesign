@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0637
-Implementation Build: source B239.266 LOCAL_COMPLETE; live B238.265; stable B069.96
+Status Revision: S0638
+Implementation Build: source/live B239.266; stable B069.96
 Architecture Revision Reviewed: A0168
 Design Revision Reviewed: D0054
 Latest Accepted Design Revision: D0054
 Design Sync State: D0054_COMMERCIALIZATION_PER_DOMAIN_FLOOR_RECORDED
-Work State: B239_LOCAL_COMPLETE_AWAITING_DEPLOYMENT_AND_NATIVE
+Work State: B239_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B239 local complete:** [scope, checks and combined native flow](Validation/Results/Specialization_B239_Commercialization_Local.md).
-- Crew paid PAUSED work now keeps capacity; resume preserves its price/progress/admission. Existing over-admission is retained with bounded safe continuation.
-- COM-A selection/Gold/Reputation and exact old3+48 retirement implemented; D0054 Floor is per-domain then sum.336 local checks PASS; native Gold/clean-source/UI/new persistence pending.
-- Source B239.266 is not deployed yet; live remains B238.265 `c97117a` / receipt `B238.265-c97117a-playtest.json`. Main B069.96 unchanged.
-- Next: commit/push, automatic exit check and receipt-bound deployment, then one combined test. COM-B/C/D, Culture HOLD and named rare/conditional gaps remain outside this batch.
+**B239 deployed, native pending:** [scope, checks and combined test](Validation/Results/Specialization_B239_Commercialization_Local.md).
+- Crew paid PAUSED capacity/resume and COM-A/Commercial Reputation delivered; D0054 uses per-domain Floor then sum.
+- 336 targeted local checks plus context/package/links/publication PASS; native Gold/clean-source/UI/new persistence remain pending.
+- Live B239.266 from `972e911`; receipt `B239.266-972e911-playtest.json`,245/245 MATCH. Main B069.96 unchanged; recovery retained, no pending transaction.
+- Next: one combined native session, then review results. COM-B/C/D, Culture HOLD and named rare/conditional gaps remain outside this batch.
+
+## S0638 — B239 verified deployment
+
+Clean/pushed source `972e911` passed automatic OS game-exit checks before both exact B238 receipt restore and B239 activation.245/245 source/runtime files MATCH; digest `ba9af421a89fbc3907f6046d33555f927027132c620496dfaed39c888cfd3b22`, receipt `B239.266-972e911-playtest.json`. B238/stable recovery retained, no pending transaction.336 targeted local checks, syntax/package/active links/context and staged publication passed; native acceptance is still pending. No main/configuration change or game launch; stop for the single combined Crew/Commercialization/Reputation session.
 
 ## S0637 — B239 local implementation
 

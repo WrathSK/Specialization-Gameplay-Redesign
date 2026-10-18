@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0637",
+    "status": "S0638",
     "runtime": "B239.266 / modinfo266",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-  "goal": "B239 paid Crew occupancy, COM-A Commercialization and city-owned Reputation; per-domain Floor. Local complete, deploy then one native delta session.",
+  "goal": "B239 deployed: paid Crew occupancy, COM-A Commercialization and city-owned Reputation; per-domain Floor. One combined native delta session remains.",
   "implementation_authorized": true,
   "context": [
     {
@@ -111,8 +111,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-    "source": "B239.266 local-complete; external B238.265 unchanged until guarded deployment.",
+    "source": "B239.266 deployed from 972e911cd7635f212ceeffde2280395dda67b9cd;245/245 MATCH; receipt B239.266-972e911-playtest.json",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Deploy approved B239 and stop for one combined test; COM-B/C/D and Culture HOLD remain outside."
+    "stop": "Stop for one combined native session; COM-B/C/D and Culture HOLD remain outside."
   }
 }

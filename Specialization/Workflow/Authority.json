@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0637",
+    "status": "S0638",
     "runtime": "B239.266 / modinfo266",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
-  "runtime_commit": "c97117acac7f89959afbfb48a04d6cc48544f956",
-  "current_batch": "B239_LOCAL_COMPLETE_AWAITING_DEPLOYMENT_AND_NATIVE",
-  "next_batch": "Deploy verified B239 under W0003, then one combined Crew occupancy/Commercialization/Reputation native test; no further Commerce or Culture implementation.",
+  "runtime_commit": "972e911cd7635f212ceeffde2280395dda67b9cd",
+  "current_batch": "B239_DEPLOYED_AWAITING_NATIVE",
+  "next_batch": "One combined Crew occupancy/Commercialization/Reputation native test, then review; no further Commerce or Culture implementation.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B238.265/modinfo265 DEVELOP_ACTIVE; source c97117acac7f89959afbfb48a04d6cc48544f956; receipt B238.265-c97117a-playtest.json;237/237 MATCH, digest d50659f8a2b252501ac0e12dbb5ebb21aac5e17071dbc46fe2c43ec74e98fff0. Automatic game-exit checks passed at both guarded switches; B237/stable recovery retained, no pending transaction. B238 reviewed: scoped continuity/use accepted, paused occupancy FAIL; proposed combined repair not deployed.",
+  "live": "B239.266/modinfo266 DEVELOP_ACTIVE; source 972e911cd7635f212ceeffde2280395dda67b9cd; receipt B239.266-972e911-playtest.json;245/245 MATCH, digest ba9af421a89fbc3907f6046d33555f927027132c620496dfaed39c888cfd3b22. Automatic game-exit checks passed at both guarded switches; B238/stable recovery retained, no pending transaction. Native acceptance pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "User-approved B239 and D0054 per-domain Floor;336 targeted local checks PASS, native Gold/clean-source/UI/new persistence pending. Live remains B238 until receipt-bound deployment.",
+  "context_review_status": "User-approved B239 and D0054 per-domain Floor;336 targeted local checks and current package/links/context/publication PASS. Receipt-bound deployment verified245/245; native Gold/clean-source/UI/new persistence pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
