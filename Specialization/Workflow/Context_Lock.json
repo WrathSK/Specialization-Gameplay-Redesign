@@ -59,7 +59,7 @@
     "Specialization/Design/Design_ChangeLog.md": "d26f6a9c2ac89bfd63f15d7679ae9e9c77d870793a97bc2e16f412d4080783af",
     "Specialization/Design/Specialization_v0.1_Design_Spec.md": "d7559c1fd89fcd152c01977484ffc3676b8a009760b0b568a762c458a788c0f5",
     "Specialization/README.md": "93a397174ff12daab50f13021cbfbb7ecc210af6eb29615a6cbd8b4f472b3256",
-    "Specialization/Status/Specialization_P0_Status.md": "733d44e9590fe0b28d5c26e3f0e291e2f7a5e07fec0c29667a4cf69a3ccc84ba",
+    "Specialization/Status/Specialization_P0_Status.md": "df97d622c1cfd1f149c591c48ff9c06c7ceb4ac4c27e858801498a976fe07853",
     "DevelopmentTests/test_temporary_playtest.py": "fa3f13464122002e1b6c6c94a1b0efe64adfe107efc9b79b40b95f836d4e752a",
     "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md": "b5d58988395a8f580fba53846d3d4222348c8883d8598fd4438b43d05af3f203",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
@@ -154,7 +154,7 @@
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Architecture/v2/P0_E1_Plan.md": "57366fd549921a017f3fec8524d695eeb749590d8bc9bd30215779d706f684e0",
-    "Specialization/Workflow/Authority.json": "079173b7a8a0fe9ad54dca5f1099be118577c53f9ca96d884443d0ad2ead017d",
+    "Specialization/Workflow/Authority.json": "0f451ff0b90fb22bafbb377581c06fb0bdf4b4ff93220da9852dbf70c1dd1157",
     "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
     "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md": "65b9da69cff281ec747253e9d313efa2074c0e88d840a62a0d738499509570b0",
     "Mod/CityIdentityRead.lua": "c78eef76b28f9bb4a2458382ddf0790217749619aab3bcbd97e56d36e073ac20",
@@ -227,7 +227,7 @@
     "Specialization/Status/Validation/Results/Specialization_B112_Turn_Blocker_Observation.md": "998fc813b5920c8d644af8710985eab31d6fdc03ddfad939600ee633b0135aa1",
     "DevelopmentTests/test_b113_turn_gate.py": "c0dab68164db29ee3ba22e29c9441e9663baeab1cf321a06013a5ad377576a67",
     "Specialization/Status/Validation/Results/Specialization_B113_Notification_Location_Failure.md": "af3bd021662ef073c3ece72f1071d35526ff70505ecd7350d52666072bbeb208",
-    "Specialization/Workflow/Runtime_Index.json": "f2371bb7af7d0669986252b6d839099d6a02c581bab3bc16ffe16a406352749b",
+    "Specialization/Workflow/Runtime_Index.json": "295c8f28cfe737bc51aac80701e72bcf6f18708c67858cda85f660bf523006fc",
     "DevelopmentTests/test_b114_notification_target.py": "4aaae3255004ec1f4e540656dea0912484f2084147e73c5c591a2a0d6d91971d",
     "Specialization/Status/Validation/Results/Specialization_B114_Target_Turn_Pass.md": "91680073d60dac476d62c20ef2cbe2f33520bbe9b85ff32555e7f822f8d95040",
     "Mod/TimedProductionProbe.lua": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
@@ -722,6 +722,6 @@
     "DevelopmentTests/test_b234_standardization.py": "30c160596a764324117025eebacd48d61f3752e9e366174e3899b88a99d8d97a",
     "Mod/Data/StandardizationEffects.sql": "260593ac9ff2b946faa9552f617b0fe2f74fcb90b138465e2894b1b2ecca326f",
     "Mod/StandardizationEffects.lua": "bd52fbbefab69cd4d70d82d40a670c0046ddff09eaa561282d84c40cc3c9be27",
-    "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md": "2b7e78ba6137e27df6b9307910d31a4fce2e913c477c393912827c303f77812a"
+    "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md": "b6586e5b6b21aa9af1f966a39d9308e81422c9dec0523ef5e95e8992b95a1aa0"
   }
 }

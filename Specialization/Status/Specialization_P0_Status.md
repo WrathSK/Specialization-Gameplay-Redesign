@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0623
-Implementation Build: source B234.261; live B233.260 until guarded deployment; stable B069.96
+Status Revision: S0624
+Implementation Build: source/live B234.261 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0164
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
@@ -11,12 +11,16 @@ Work State: B234_LOCAL_PASS / USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B234 / IND-2 implemented, native pending:** [result/test](Validation/Results/Specialization_B234_Industry_Standardization_Local.md), [contract](../Architecture/v2/Industry_Preparation.md#b234-implementation-and-validation), manifest `P0-H`.
+**B234 / IND-2 deployed, native pending:** [result/test](Validation/Results/Specialization_B234_Industry_Standardization_Local.md), [contract](../Architecture/v2/Industry_Preparation.md#b234-implementation-and-validation), manifest `P0-H`.
 - **Scope:** same-turn Industry I readiness; actual III template holders offer self/network construction+10%, purchase0%; exact old Discount/Industry Copy exit. IV L/positive purchase is not implemented here.
 - **User decision:** old Research network boost isolated for v0.1; common topology, Research local abilities and other professions remain. This is deferral, not a new Research design.
-- **Source/live:** source B234.261; live still B233.260 (`b82eabf`) until clean committed source passes W0003. Main B069.96 unchanged.
+- **Source/live:** B234.261 from `91b4da9`, receipt `B234.261-91b4da9-playtest.json`;229/229 MATCH, no pending transaction. Main B069.96 unchanged.
 - **Evidence/next:** scoped local PASS; one combined native session for first-turn support, building/District production and source withdrawal/recovery. B233 history/restart acceptance retained; no new timer or GC change.
-- **Stop:** deploy only through existing gates, then await the native result. Expedition, remaining Meaning and era presentation remain nonblocking HOLD; L/Crew/Balance require their later batch.
+- **Stop:** await the native result; no additional implementation authorized. Expedition, remaining Meaning and era presentation remain nonblocking HOLD; L/Crew/Balance require their later batch.
+
+## S0624 — B234 verified deployment
+
+Automatic game-exit checks passed before both receipt-bound restore/activate operations. The clean committed source and external runtime match229/229 files; B233/stable recovery is retained, no pending transaction. Native acceptance remains pending; no main/configuration change or game launch.
 
 ## S0623 — B234 local implementation checkpoint
 

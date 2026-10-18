@@ -54,4 +54,6 @@ The collector is preferred. One native production-detail screenshot is useful on
 
 ## Source and deployment checkpoint
 
-Source: B234.261 / modinfo261. Implementation locally complete; guarded deployment not yet performed at this checkpoint. Live remains B233.260 until receipt verification. Main B069.96, accepted Design, Store/identity schema, GC, external configuration and frozen prior results are unchanged. Later L/positive-purchase/Wonder/Crew implementation, Culture HOLD items and Balance are not included.
+Source: **B234.261 / modinfo261**, implementation commit `91b4da98e525eb9c95772827605fbd70ab0d297e`. W0003 deployment **DEVELOP_ACTIVE**, receipt `B234.261-91b4da9-playtest.json`. Automatic game-exit checks passed before both guarded switches; source/runtime229/229 MATCH, digest `b1838122089803fb7599106527ecc847fa3d54e972c31d379e7a9ce5cdf58704`. B233 and stable recovery packages retained; no pending transaction or game launch. Native acceptance remains USER_GAME_TEST_REQUIRED.
+
+Publication check passed on the25 staged implementation/doc/test files before commit; the deployment-record commit receives the same gate. Context/checker self-test and3 helper fixtures passed. Diff review confirms no accepted Design, Store/identity schema, GC, external configuration, frozen prior result or main change. Later L/positive-purchase/Wonder/Crew implementation, Culture HOLD items and Balance are not included.

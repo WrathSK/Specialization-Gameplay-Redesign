@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0164",
-    "status": "S0623",
-    "runtime": "B233.260 / modinfo260",
+    "status": "S0624",
+    "runtime": "B234.261 / modinfo261",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -170,7 +170,7 @@
   ],
   "validation": {
     "depth": "Scoped L3 actual-source+SQLite, current network/investment/history regression; L1 syntax/package/context/publication.",
-    "local": "See B234 local result; historical package stamps excluded explicitly, not rewritten.",
+    "local": "150 targeted local tests PASS plus helper3, Lua/package/link/context checks. Two historical package checkpoint methods excluded explicitly and unchanged; see result.",
     "user": "USER_GAME_TEST_REQUIRED: one combined delta session, no separate cold-load ritual.",
     "review": "Explicit source ownership, error isolation, exact retirement, readback, no unrelated Design/permanent/GC changes."
   },
@@ -180,8 +180,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-    "source": "B234.261 source; external runtime separately confirmed by Authority receipt.",
+    "source": "B234.261/modinfo261 DEVELOP_ACTIVE; source 91b4da98e525eb9c95772827605fbd70ab0d297e; receipt B234.261-91b4da9-playtest.json;229/229 MATCH, digest b1838122089803fb7599106527ecc847fa3d54e972c31d379e7a9ce5cdf58704. Automatic game-exit checks before both guarded switches; B233/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Await the combined B234 result after guarded deployment; no next feature batch."
+    "stop": "B234 deployed through W0003. Await the combined native result; no next feature batch."
   }
 }
