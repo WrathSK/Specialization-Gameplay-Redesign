@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0610
-Implementation Build: source/live B229.256 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0611
+Implementation Build: source B230.257; live B229.256 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B229_DEPLOYED_AWAITING_NATIVE
+Work State: B230_LOCAL_COMPLETE_DEPLOY_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B229 local complete:** [retained network waiting and complete release diagnostics](Validation/Results/Specialization_B229_Retained_Diagnostics.md);255 targeted offline tests PASS. Native gate pending.
-- **Source/live B229.256 / modinfo256**: source `9086559`, receipt `B229.256-9086559-playtest.json`,226/226 MATCH. Main stable B069.96 unchanged.
-- **Evidence:** B228 T75 still rejects Sleep; old/new Wake query shapes agree. Submitted sessions lack a new release chain and network wait prints. No global-lock or topology-absence conclusion. Prior successful tasks/Great Work refresh retained; network yield/source withdrawal unaccepted.
-- **Changed:** waiting-report state now survives missed prints in the existing bounded ring; all release ACK exits retain branch/state. No changed release gate, forced wake, retry, timer, gameplay/history or GC change.
-- **Next:** one normal task/reuse and one **文化见闻** waiting report with collector. No blind repeats, cold-load loop or unrelated batch.
+**B230 local complete:** [Culture network readiness and read-only diagnostics](Validation/Results/Specialization_B230_Culture_Network_Readiness.md);121 targeted offline checks PASS; native pending.
+- **Source B230.257 / modinfo257; live B229.256** pending guarded deployment. Stable main B069.96 unchanged.
+- **Evidence:** B229 consumer remained not-ready despite built Bridge input. Actual-Lua reproduction confirms exclusive load-event gate; ordinary events now initialize. B229 task logs include native denial and one running task, but no release chain; redispatch is not a reliable recovery.
+- **Changed:** once-per-context initialization from existing business events; restored read-only **网络概况 / 网络来源 / 接收** and bounded automatic state evidence. No task/activity, Design, permanent state, GC or timer changes.
+- **Next:** authorized guarded deployment, then one combined network observation and ordinary task completion/reuse session with collector. Do not repeat blind tests or expand implementation.
+
+## S0611 — B230 local checkpoint
+
+User-authorized network initialization/diagnostic repair complete.121 scoped checks PASS; legacy network test import depends on obsolete path and remains unrun/unmodified. Expedition release semantics unchanged; native evidence pending.
 
 ## S0610 — B229 verified deployment
 

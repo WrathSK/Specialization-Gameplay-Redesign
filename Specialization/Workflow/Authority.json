@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0610",
-    "runtime": "B229.256 / modinfo256",
+    "status": "S0611",
+    "runtime": "B230.257 / modinfo257",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "90865599b303f0ee2e575e43378625d6870da7a3",
-  "current_batch": "B229_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "User: one task/reuse and Culture Insights waiting-report observation; no further implementation authorized.",
+  "current_batch": "B230_LOCAL_COMPLETE_DEPLOY_PENDING",
+  "next_batch": "Authorized guarded B230 deployment, then one combined network/read-only report and ordinary Expedition completion/reuse observation; no further implementation.",
   "manifest": "Specialization/Workflow/P0-N1.json",
   "live": "B229.256/modinfo256 DEVELOP_ACTIVE; source 90865599b303f0ee2e575e43378625d6870da7a3; receipt B229.256-9086559-playtest.json;226/226 MATCH, digest d6912eb5658641b2d423ec3edc16d162bb29c9948c8bc20fba3c28d34d6f73a6. Automatic game-exit checks at both guarded switches; B228/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B229 retained diagnostics and unchanged release semantics reviewed;255 targeted offline PASS. Native pending.",
+  "context_review_status": "B230 scoped network readiness and read-only UI/log review;121 offline PASS, native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

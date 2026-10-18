@@ -620,7 +620,7 @@ local function request(playerID,params)
     shared.LastToken=params.Token;stage("ACK SOURCE_YIELDS");return
   end
   if params.Action=="NETWORK_READ" or params.Action=="NETWORK_DETAIL" then
-    shared.Snapshot=shared.NetworkBridge.Read(playerID,city,params.Action=="NETWORK_DETAIL")
+    shared.Snapshot=shared.CultureNetwork.Report(playerID,city,params.Action=="NETWORK_DETAIL")
     shared.LastToken=params.Token;stage("ACK NETWORK");return
   end
   if params.Action=="RESEARCH_ON" or params.Action=="RESEARCH_OFF" or params.Action=="RESEARCH_READ" then

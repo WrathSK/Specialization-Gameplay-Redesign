@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0610",
-    "runtime": "B229.256 / modinfo256",
+    "status": "S0611",
+    "runtime": "B230.257 / modinfo257",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B229 approved retained network waiting evidence and complete release diagnostics, with unchanged release criteria and event-only processing.",
+  "goal": "B230 event-driven Culture network initialization, read-only P0 reports and existing bounded log integration. Expedition unchanged.",
   "implementation_authorized": false,
   "context": [
     {
@@ -668,6 +668,16 @@
       "path": "DevelopmentTests/test_b229_retained_diagnostics.py",
       "kind": "full",
       "reason": "Retained snapshot and release-exit actual-source coverage."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
+      "kind": "full",
+      "reason": "Direct B230 authorized delta, local evidence and native gate."
+    },
+    {
+      "path": "DevelopmentTests/test_b230_culture_network_ready.py",
+      "kind": "full",
+      "reason": "Direct B230 authorized delta, local evidence and native gate."
     }
   ],
   "dependencies": [
@@ -919,17 +929,17 @@
   ],
   "validation": {
     "depth": "L2 scoped actual-source tests",
-    "local": "255 targeted offline tests PASS; native not established.",
-    "user": "One ordinary task/reuse and one Culture Insights waiting report; no repeated lifecycle loop."
+    "local": "121 targeted offline checks PASS; legacy pre-migration network import unavailable, unchanged.",
+    "user": "One combined network/report and ordinary Expedition completion/reuse session; no repeated cold-load loop."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
-    "source": "B229.256/modinfo256 DEVELOP_ACTIVE; source 90865599b303f0ee2e575e43378625d6870da7a3; receipt B229.256-9086559-playtest.json;226/226 MATCH, digest d6912eb5658641b2d423ec3edc16d162bb29c9948c8bc20fba3c28d34d6f73a6. Automatic game-exit checks at both guarded switches; B228/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_REQUIRED; recurring native denial and actual network error remain open.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
+    "source": "B230.257 locally complete; live remains B229.256 until verified guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; network readiness/yield and inherited task release scopes remain distinct.",
     "stop": "No unrelated implementation authorized."
   }
 }

@@ -251,6 +251,8 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 
 ## N3：Culture Network与精确旧Eureka退出
 
+**B230 readiness repair:** [result](../../Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md). First real business Audit validates/initializes once per module context; a missed LoadScreenClose cannot permanently disable the consumer. Duplicate load notifications do not clear rebuilt effects. Existing event/dirty and AVAILABLE/UNKNOWN rules remain; no timer or report-driven Refresh. Restored P0 reports are read-only, retain bounded scalar evidence and do not expose isolation commands. Expedition lifecycle unchanged.
+
 **B226 implementation:** CultureNetwork now consumes one copied complete current topology batch, memoizes independent ACTIVE IV source histories, unions complete civilizations and projects32 owned per-district specialist Culture bits. Native workers scale the coefficient; receiver Identity has no extra ACTIVE gate. New task history explicitly invalidates dependent receivers even without route changes. UNKNOWN/HOLD, exact exits, delayed Return and six-module isolation are covered locally. Old Culture native/HD attachments and normal/TEST generation are retired;563 cleanup definitions remain, Research stays active. [Result and combined native gate](../../Status/Validation/Results/Specialization_B226_Culture_Network.md).
 
 前提：N2可靠城市历史与过滤后完整集合、现有共同路线/中心资格、接收城专业实际工作专家事实。

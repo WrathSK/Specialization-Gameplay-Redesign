@@ -12,7 +12,7 @@ from lupa.lua55 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / 'Mod' / 'UI'
 ROWS = (
-    ('CultureInsightsButton',),
+    ('CultureInsightsButton', 'NetworkButton', 'CarrierStepButton'),
     ('SourceYieldButton', 'GovernorButton', 'SpecialistsButton'),
     ('GWReadButton', 'AestheticButton', 'MeaningProbeButton'),
     ('MeaningConfigButton', 'GWCityButton', 'ExpeditionGateButton'),
@@ -116,7 +116,7 @@ class CurrentPanelTests(unittest.TestCase):
         self.assertTrue(lua.globals().Controls.LegacyProbeButtons.hidden)
         for control_id in ('GWAReadButton', 'PerformanceSnapshotButton', 'PerformanceReadButton',
                            'InheritRecordButton', 'InheritReadButton', 'BackgroundRoutesButton',
-                           'NetworkButton', 'CarrierStepButton', 'DiscountsButton',
+                           'DiscountsButton',
                            'DPReadButton','CompletenessButton','DP03Button','TemplatesButton',
                            'DP05Button','UnitReadButton','CopyButton'):
             with self.subTest(retired=control_id):
