@@ -10,6 +10,10 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 [Industry D0053](Industry_D0053.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 当前施工队成本取样时点另按[2026-10-17接受澄清](../Design_ChangeLog.md#accepted-industry-formation-price-clarification--2026-10-17)：开工锁定本次成本，后续新队使用新价；D0052另按用户决定将一级施工力改为260，相关标准速度成本改为390／364／338／312；II–V及其它基础规则不变；D0053另接受施工投入的适用Production加成，未来实测平衡、不阻碍开发。
 
+## D0054 — 商业化逐领域Floor
+
+[Commerce D0054](Commerce_D0054.json)是当前商业正式内容：每个领域独立计算0.05×D×X×(1+0.005×有效信誉)，分别Floor后相加；不先合并同种金币。不推广为资本／发展投资或其它专业的统一取整规则。其它D0050合同与数值保持；旧Commerce D0050原件保留。[接受记录](../Design_ChangeLog.md#accepted-d0054--2026-10-18)。
+
 ## D0053 — 施工接受适用生产力加成
 
 [Industry D0053](Industry_D0053.json)是当前工业正式内容。施工队锁定基础施工力，允许适用的原生Production加成；未来实测综合强度，不在游戏内UI写平衡待办。数值、成本、来源、容量、目标和不溢出规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0053--2026-10-18)。
@@ -24,7 +28,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 ## D0050 — 商业交接同步
 
-[Commerce D0050](Commerce_D0050.json)为当前商业结构化正文：商业化系数0.05、X取城市该领域总产出；资本投资可投领域为已实施专业领域、S取同一既有专业网络当前ACTIVE、D／S最低1、每来源城每领域1笔；风险投资失败保护改存连续失败次数n（P=0.8−(0.8−p_base)×0.75^n）并按主人归属；发展投资整体替换为下一级建筑理论购买价15%、所选区域建筑+50%生产力、到下一座合格建筑完成为止、每目标城1份；v0.1只支持标准速度；三项生命周期边界暂缓。[Commerce D0045](Commerce_D0045.json)冻结为历史，旧发展投资参考产能报价只在其中追溯。
+[Commerce D0050](Commerce_D0050.json)为历史商业交接基线，现行见D0054：商业化系数0.05、X取城市该领域总产出；资本投资可投领域为已实施专业领域、S取同一既有专业网络当前ACTIVE、D／S最低1、每来源城每领域1笔；风险投资失败保护改存连续失败次数n（P=0.8−(0.8−p_base)×0.75^n）并按主人归属；发展投资整体替换为下一级建筑理论购买价15%、所选区域建筑+50%生产力、到下一座合格建筑完成为止、每目标城1份；v0.1只支持标准速度；三项生命周期边界暂缓。[Commerce D0045](Commerce_D0045.json)冻结为历史，旧发展投资参考产能报价只在其中追溯。
 
 ## D0049 — 巨作启迪当前馆藏时代百分比
 

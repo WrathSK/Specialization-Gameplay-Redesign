@@ -181,7 +181,8 @@ class Standardization(unittest.TestCase):
         self.assertIn('SPCNetworkBoost.Start(P,shared,{retired=true})',s)
         self.assertIn('SPCResearchInfrastructure.Start(P,shared)',s)
         self.assertIn('SPCCultureNetwork.Start(P,shared)',s)
-        self.assertIn('SPCCommerceConvergence.Start(P,shared)',s)
+        self.assertIn('SPCCommerceConvergence.Start(P,shared,{retired=true})',s)
+        self.assertIn('SPCCommerce.Start(P,shared)',s)
         self.assertGreater(s.index('shared.IndustrySupport.BindPermanentWrites()'),s.index('shared.OnPermanentCityWrite=nil'))
 
 class InvestmentNotification(unittest.TestCase):

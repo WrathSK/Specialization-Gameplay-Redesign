@@ -1,7 +1,7 @@
 # 工业后续模块：调查与实施准备
 
-State: B238_NATIVE_REVIEWED / PAUSED_OCCUPANCY_REPAIR_PROPOSED_WITH_COM_A.
-Review baseline: B238.265 / develop `519dbac`; D0053 accepts native modifiers. The B238 user test confirms retained price/progress and cold-load continuation but exposes paused admission occupancy. [Native review](../../Status/Validation/Results/Specialization_B238_Native_Review.md) and [proposed combined Commerce batch](Commerce_Preparation.md#proposed-b239-combined-slice) govern this next step; no repair is implemented here. Deployment provenance remains in Status.
+State: B239_PAUSED_OCCUPANCY_LOCAL_COMPLETE / COMBINED_NATIVE_PENDING.
+Review baseline: B238.265 / develop `519dbac`; D0053 accepts native modifiers. The B238 user test confirms retained price/progress and cold-load continuation but exposes paused admission occupancy. [Native review](../../Status/Validation/Results/Specialization_B238_Native_Review.md) and [proposed combined Commerce batch](Commerce_Preparation.md#proposed-b239-combined-slice) govern this next step; the approved B239 repair is now locally complete below, with combined native acceptance pending. Deployment provenance remains in Status.
 
 ## 当前范围与正式来源
 
@@ -171,7 +171,7 @@ Future balance: compare effective amplified output with formation cost under rep
 | Closeout item | Current evidence / remaining action |
 |---|---|
 | Industry I/II support, typed templates/N/E, III baseline, study/L and IV/Macro | B233–B236 scoped user acceptance; retain the stated local/native boundaries. No repeat of old long tests. |
-| Start-locked incomplete formation, new tier-I260 | B238 native continuation at14/338, post-restart resume and verified260 binding accepted. PAUSED does not reserve capacity: confirmed defect; repair with COM-A, reuse the old slot on resume. |
+| Start-locked incomplete formation, new tier-I260 | B238 native continuation at14/338, post-restart resume and verified260 binding accepted. PAUSED does not reserve capacity: confirmed defect; B239 local repair reuses the old slot on resume; combined native pending. |
 | Restored Crew construction, slot release and player text | User reports other checks normal; two returned uses and count2→1→0 recorded. Exact actual-delta reads are incomplete; no universal overflow or multiplier proof. Do not repeat the full construction test for the occupancy-only repair. |
 | Completed-unit binding/cap after cold load; non-capture retreat | New260 binding and paused-order reconstruction observed; do not invent an unlogged enemy-contact case. Protection remains opportunistic/deferred; new COM-A persistence can share one future reload with Crew occupancy. |
 | Industry institution UI | Existing B236 implementation; glance at its III/IV text during this session. No separate UI acceptance session. |
@@ -180,7 +180,7 @@ Future balance: compare effective amplified output with formation cost under rep
 | Standardization + future Commerce Development Investment | Additive contract retained; verify the combination when that Commerce writer is introduced, not before it exists. |
 | Original unit Owner extinction / total city destruction | Existing genuinely undefined, separate boundaries; no new lifecycle policy or speculative repair here. |
 
-Industry's main ability chain is implemented. The remaining confirmed paused-occupancy repair is proposed together with Commercialization, as requested by the user; no separate Industry feature batch is needed. Named deferred/conditional items remain visible. [B238 native evidence](../../Status/Validation/Results/Specialization_B238_Native_Review.md) supersedes the pending acceptance list in the frozen local result; [combined plan](Commerce_Preparation.md#proposed-b239-combined-slice) awaits implementation approval. Do not call every purchase/ownership/speed case complete.
+Industry's main ability chain is implemented. The confirmed paused-occupancy repair is locally complete in B239 together with Commercialization; no separate Industry feature batch is needed. Named deferred/conditional items remain visible. [B238 native evidence](../../Status/Validation/Results/Specialization_B238_Native_Review.md) supersedes the pending acceptance list in the frozen local result; [B239 implementation](Commerce_Preparation.md#b239-implementation-and-validation) awaits combined native acceptance. Do not call every purchase/ownership/speed case complete.
 
 ## 推荐顺序与最小批次
 
@@ -305,3 +305,7 @@ Local L2＋涉及unit保存L3：合法/非法目标、预览到确认变化、�
 普通事实复用现有EffectiveFacts与模板summary，诊断明细按需。N/E collector只在明确完成事件写增量；来源资格、模板/holder/L版本或真实路线变化才更新相关receiver。队伍registry由J负责单位退出/消费和source容量失效；pending1T由Tradition负责完成/取消/加载。缓存/队列有明确owner/失效/替换/结束，不把L或N历史为性能清掉，也不添加每帧/hover、粗粒度每城每回合一次或独立GC。
 
 The preceding planning review was STATIC_CONFIRMED only: accepted contracts, directly relevant source and configured read-only DB, plus the installed DWR_ENHANCED reference. Only documentation/reference/context checks run in this planning task; no new gameplay simulation or native test. Future H/Macro/Practice use scoped L2; new history/template schema/L/unit inventory use the relevant L3 boundaries. B233/B234/B235 local implementation and scoped native acceptance are recorded above. B236 is now approved and locally complete; no additional B235-only test. Primary next: the single combined B236 native gate below. Held Culture work and Balance do not block it. Do not implement the whole Industry plan in one batch.
+
+## B239 occupancy implementation
+
+Paid paused work now reserves its original source slot; resume consumes no new admission. Actual queue cardinality remains separate. Legacy over-admitted work keeps its paid progress/cost, blocks fresh orders, and resumes only within living+queued completion capacity. UNKNOWN/unmatched queues hold rather than guessing. Existing completion receipts, source binding, Production modifiers and no-overflow behavior are unchanged. [Local result and combined COM-A flow](../../Status/Validation/Results/Specialization_B239_Commercialization_Local.md); native occupancy is pending in the one combined acceptance. No new Industry ability or purchase branch.

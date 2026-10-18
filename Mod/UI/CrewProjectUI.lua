@@ -49,6 +49,12 @@ function SPCCrewProjectUI.New(P,send,notify,build)
      item.ToolTip=(item.ToolTip or '')..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_LOCKED_PRICE',retained.price)
     end
     item.ToolTip=(item.ToolTip or '')..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_FORMATION_HELP')
+    if v.count and v.reserved and v.paused then
+     item.ToolTip=item.ToolTip..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_OCCUPANCY',v.count,v.reserved,v.paused)
+    end
+    if retained and retained.stage=='PAUSED' and v.resumeBlocked and v.queueKnown~=false and not v.held then
+     item.ToolTip=item.ToolTip..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_RESUME_CAPACITY_HELD')
+    end
     if ExposedMembers.SPC_CrewUIError then item.ToolTip=item.ToolTip..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_FORMATION_ERROR',ExposedMembers.SPC_CrewUIError)end
     result[#result+1]=item
    end

@@ -2,8 +2,8 @@
 SPCNetworkIsolation={}
 function SPCNetworkIsolation.Start(P,shared)
  local d={active=false,phase='NORMAL',modules={},epoch=shared.NetworkBridge.epoch};shared.NetworkIsolation=d
- local names={'Lv3Effects','NetworkBoost','CopyYields','CommerceConvergence','StandardizationDiscount','CultureNetwork'}
- local labels={'商业三级连接','科研网络鼓舞','工业复制','商业汇聚','工业折扣','文化见闻网络'}
+ local names={'Lv3Effects','NetworkBoost','CopyYields','Commerce','StandardizationDiscount','CultureNetwork'}
+ local labels={'商业三级连接','科研网络鼓舞','工业复制','商业化','工业折扣','文化见闻网络'}
  local uiNames={'SPC_P0_BackgroundRoutes','SPC_CopyBackground','SPC_DiscountEligibility'}
  local counters={'route_scan','net_send','derive_executed','input_publication','copy_send','discount_send'}
  local function short(e) return tostring(e):gsub('^.-:%d+: ',''):match('[^\r\n]+'):sub(1,150) end

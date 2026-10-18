@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCCommercePanel">
+ <Grid ID="Window" Anchor="C,C" Size="800,650" Texture="Controls_ContainerBlue" SliceStart="0,0" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1" Hidden="1">
+  <Box Anchor="C,C" Size="parent-8,parent-8" Color="12,19,27,245" />
+  <Label ID="Title" Anchor="L,T" Offset="20,16" Style="FontFlair20" Color="255,255,255,255" />
+  <GridButton ID="CloseButton" Anchor="R,T" Offset="14,12" Size="90,32" Style="MainButtonSmall"><Label ID="CloseButtonCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <Label ID="CityName" Anchor="L,T" Offset="20,50" Style="FontNormal18" TruncateWidth="740" Color="255,255,255,255" />
+  <Label ID="Summary" Anchor="L,T" Offset="20,80" Style="FontNormal14" TruncateWidth="740" Color="255,255,255,255" />
+  <Label ID="Reputation" Anchor="L,T" Offset="20,104" Style="FontNormal14" TruncateWidth="740" Color="220,228,235,255" />
+  <Label ID="Formula" Anchor="L,T" Offset="20,128" Style="FontNormal12" TruncateWidth="740" Color="190,205,218,255" />
+   <Grid ID="Domain1" Anchor="L,T" Offset="18,146" Size="764,76" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Image ID="Domain1Icon" Anchor="L,T" Offset="8,20" Size="32,32" IconSize="32" />
+    <Label ID="Domain1Name" Anchor="L,T" Offset="50,6" Style="FontNormal16" TruncateWidth="190" Color="255,255,255,255" />
+    <Label ID="Domain1State" Anchor="L,T" Offset="250,8" Style="FontNormal14" TruncateWidth="350" Color="255,255,255,255" />
+    <Label ID="Domain1Details" Anchor="L,T" Offset="50,29" Style="FontNormal12" TruncateWidth="550" Color="220,228,235,255" />
+    <Label ID="Domain1Source" Anchor="L,T" Offset="50,49" Style="FontNormal12" TruncateWidth="550" Color="190,205,218,255" />
+    <GridButton ID="Domain1Toggle" Anchor="R,C" Offset="12,0" Size="132,32" Style="MainButtonSmall"><Label ID="Domain1ToggleCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+   </Grid>
+   <Grid ID="Domain2" Anchor="L,T" Offset="18,226" Size="764,76" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Image ID="Domain2Icon" Anchor="L,T" Offset="8,20" Size="32,32" IconSize="32" />
+    <Label ID="Domain2Name" Anchor="L,T" Offset="50,6" Style="FontNormal16" TruncateWidth="190" Color="255,255,255,255" />
+    <Label ID="Domain2State" Anchor="L,T" Offset="250,8" Style="FontNormal14" TruncateWidth="350" Color="255,255,255,255" />
+    <Label ID="Domain2Details" Anchor="L,T" Offset="50,29" Style="FontNormal12" TruncateWidth="550" Color="220,228,235,255" />
+    <Label ID="Domain2Source" Anchor="L,T" Offset="50,49" Style="FontNormal12" TruncateWidth="550" Color="190,205,218,255" />
+    <GridButton ID="Domain2Toggle" Anchor="R,C" Offset="12,0" Size="132,32" Style="MainButtonSmall"><Label ID="Domain2ToggleCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+   </Grid>
+   <Grid ID="Domain3" Anchor="L,T" Offset="18,306" Size="764,76" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Image ID="Domain3Icon" Anchor="L,T" Offset="8,20" Size="32,32" IconSize="32" />
+    <Label ID="Domain3Name" Anchor="L,T" Offset="50,6" Style="FontNormal16" TruncateWidth="190" Color="255,255,255,255" />
+    <Label ID="Domain3State" Anchor="L,T" Offset="250,8" Style="FontNormal14" TruncateWidth="350" Color="255,255,255,255" />
+    <Label ID="Domain3Details" Anchor="L,T" Offset="50,29" Style="FontNormal12" TruncateWidth="550" Color="220,228,235,255" />
+    <Label ID="Domain3Source" Anchor="L,T" Offset="50,49" Style="FontNormal12" TruncateWidth="550" Color="190,205,218,255" />
+    <GridButton ID="Domain3Toggle" Anchor="R,C" Offset="12,0" Size="132,32" Style="MainButtonSmall"><Label ID="Domain3ToggleCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+   </Grid>
+   <Grid ID="Domain4" Anchor="L,T" Offset="18,386" Size="764,76" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Image ID="Domain4Icon" Anchor="L,T" Offset="8,20" Size="32,32" IconSize="32" />
+    <Label ID="Domain4Name" Anchor="L,T" Offset="50,6" Style="FontNormal16" TruncateWidth="190" Color="255,255,255,255" />
+    <Label ID="Domain4State" Anchor="L,T" Offset="250,8" Style="FontNormal14" TruncateWidth="350" Color="255,255,255,255" />
+    <Label ID="Domain4Details" Anchor="L,T" Offset="50,29" Style="FontNormal12" TruncateWidth="550" Color="220,228,235,255" />
+    <Label ID="Domain4Source" Anchor="L,T" Offset="50,49" Style="FontNormal12" TruncateWidth="550" Color="190,205,218,255" />
+    <GridButton ID="Domain4Toggle" Anchor="R,C" Offset="12,0" Size="132,32" Style="MainButtonSmall"><Label ID="Domain4ToggleCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+   </Grid>
+   <Grid ID="Domain5" Anchor="L,T" Offset="18,466" Size="764,76" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Image ID="Domain5Icon" Anchor="L,T" Offset="8,20" Size="32,32" IconSize="32" />
+    <Label ID="Domain5Name" Anchor="L,T" Offset="50,6" Style="FontNormal16" TruncateWidth="190" Color="255,255,255,255" />
+    <Label ID="Domain5State" Anchor="L,T" Offset="250,8" Style="FontNormal14" TruncateWidth="350" Color="255,255,255,255" />
+    <Label ID="Domain5Details" Anchor="L,T" Offset="50,29" Style="FontNormal12" TruncateWidth="550" Color="220,228,235,255" />
+    <Label ID="Domain5Source" Anchor="L,T" Offset="50,49" Style="FontNormal12" TruncateWidth="550" Color="190,205,218,255" />
+    <GridButton ID="Domain5Toggle" Anchor="R,C" Offset="12,0" Size="132,32" Style="MainButtonSmall"><Label ID="Domain5ToggleCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+   </Grid>
+  <Label ID="Help" Anchor="L,T" Offset="20,558" Style="FontNormal12" WrapWidth="740" Color="190,205,218,255" />
+  <Label ID="Error" Anchor="L,T" Offset="20,606" Style="FontNormal12" WrapWidth="740" Color="255,213,128,255" />
+ </Grid>
+</Context>

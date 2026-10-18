@@ -46,9 +46,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CommerceConvergence.lua": {
-      "sha256": "fee527e9932b3c255d8d29b16a17e4f4487fb75dfb447462c7d5a27d528844a2",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "4f3029c13904a2cdeba2affe857976de414425d829e4efe8bec3571a8986a303",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -81,9 +81,9 @@
       "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "7f3d6e2aec5e0f2308bd6e7de0d892be8e60a15a5bd7c5537277b0db59ae8b3e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "494baacf1841aeec32ffd5079c002142798a79d9b2c655530d8fe4ab1f345b37",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "71206d4f6f73e8d74e142da3dd3404ab2c658130c91312c875308dc9e8887520",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "8094a2d07b6dcd6dde433a2b4f52a0afa791777c2dd4c133a943630254a29f56",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "9aa63c388b56ea8b1edb66fbc0ca983048aad4a8055f4b47e4782a2cbfaf3a56",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "8dc1ff39e627f86d4f843f308939541483e7400db44c5e2f5154ea5e6471f1c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -316,9 +316,9 @@
       "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "45e39d15e1b18613198a0b6ae6a9c8725f3ce334666c4598b440638208cc9aa2",
-      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "sha256": "1eaf445b563091c5337865f5f4210d8460bf24a812fa287f87bb2269169bd438",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Lv3Support.lua": {
       "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
@@ -341,9 +341,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "866bec1ab2978642441261598f0dc276b625f7c9c18de40d5c72f3ded4816372",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "682b785c98f9144396daca9c3e609c74b9b950d61c7b077be1439110b4b412a5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -351,9 +351,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "c61276fc6c88c8b3803954d7a653fce1e9a2a5decf973b78a2c627c138fe7c19",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
-      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+      "sha256": "0e1a2e9b09286520537ec76d4a5404c54cda0c6ec708e43c5cfb10af785c6f59",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "3c55e7b59bebcc6d9a67e5be283a528601ff7e64be6d0327249a02dd98b01cb6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "5abf32b7f7facad676de565026506aab7cf8c758ed7d87de7a4e8d6171331179",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "28d4bf873ccffbf3632da5ba220f6fbfc44600e2bcfa0bd8a4111c30c4349fa4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "a3b80b6048cd79ae3cf1094b40b9605310b6eb61e13760cec237a32e61c91d05",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "95e8adac904408e65527926ef57edf7940ef5401be18e4b69b68c437e3683549",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "e455a72cbe7d4a2f46e1192e1d3c8de4088acfdbd80601354424981c1eb961c2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "7e0b0a5e48daf7744ceaef2f6c21fc470eb110c76dde958969a6d952f870112e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
-      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+      "sha256": "baa0d1ee072bc48154c6ab0ce965cf5176630d37651698ec448a9c39729f1a3c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "126df5b397bff313abc65e4ba1975f4e39522cdd15e6e89a29488d12ce8440ea",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "14580e747caf44c7a9927e2d2421b8a791eb57bdc66a87c9d614eac052a2e02a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "e4b09a37ea259694ecda967f84b2820ed2fb5e72faf19717b0cc148aeaa3946f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "940df72fe1a53c6dc9a13874ee08107a3a2d0377b285b7578ca285d208016385",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -856,9 +856,9 @@
       "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
     },
     "Mod/NetworkIsolation.lua": {
-      "sha256": "724b43692065ed77b75622c11883620c9822f26d8e6b424498e12fe8e8c832e8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+      "sha256": "3b1ac34bd4dc421437e0cfa3968180114959bf98524b5179c148ab8a85bed8d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "548bcc7f14c411c63b6b27267d944267aa72bffb74d6a89849c17794643b0d2a",
@@ -1186,9 +1186,49 @@
       "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UI/CrewProjectUI.lua": {
-      "sha256": "0f259229814d374f0bf481ab431dc0518966a133b99753b59825b7b1e3ab0eb0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
-      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+      "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/Commerce.lua": {
+      "sha256": "9707067eea278e62c81c2e5bb817eb57532ed5b312645803316b653968a3dd57",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/CommerceCalculation.lua": {
+      "sha256": "ab00d8031a0e8357d6f2b9250dba5e86fd3b47f803185e37063a1b0d4ef253c4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/CommerceModel.lua": {
+      "sha256": "8c73cb936ce100f3867a356f5aa3da665bed7c28b0edd264077b857d471691a0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/Data/Commerce.sql": {
+      "sha256": "c20e9646a1da1b96783dc76e486bf84c99247353d208f60624a1c2b214dc73da",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/Text/Commerce.sql": {
+      "sha256": "6e8dc52c20aee26bd7621ffdeb4ea2dd6006a2195d8e25298514f86c64b6aa60",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/UI/CommercePanel.lua": {
+      "sha256": "ce127de6121a5f52b5884926c82e548cfd28f79e11b280d94b50680a57c75900",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/UI/CommercePanel.xml": {
+      "sha256": "73cabe58b2b4888ebcd6f616198e5e9f66612217f4a9658ab58e581e99b695d9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/UI/CommerceUI.lua": {
+      "sha256": "f8e9efaf4e06bf5f54346b39f1558468a98c3fa0ec65fc1c8e853ac144b1d2bb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     }
   }
 }

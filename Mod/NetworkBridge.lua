@@ -44,7 +44,18 @@ function SPCNetworkBridge.Start(P,shared)
    end
    for _ in pairs(n.recipients) do n.n=n.n+1 end
   end
-  return {sources=sources,centers=centers,recipients=recipients,connected=connected,national=national}
+  -- B239 Commerce uses direct pairs, not center distribution or reachability.
+  -- Keep this projection private and rebuild it only with a new verified input.
+  local directDomestic,references={},{}
+  for id,f in pairs(input.cities) do references[id]=f.reference end
+  for _,r in ipairs(rows) do
+   if r.op==pid and r.dp==pid and r.oc~=r.dc then
+    directDomestic[r.oc]=directDomestic[r.oc] or {};directDomestic[r.oc][r.dc]=true
+    directDomestic[r.dc]=directDomestic[r.dc] or {};directDomestic[r.dc][r.oc]=true
+   end
+  end
+  return {sources=sources,centers=centers,recipients=recipients,connected=connected,national=national,
+   directDomestic=directDomestic,references=references}
  end
  local function bucket(pid)
   if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
@@ -70,12 +81,12 @@ function SPCNetworkBridge.Start(P,shared)
   local b=bucket(pid)
   return {contract=1,epoch=d.epoch,player=pid,inputVersion=b.inputRevision,signature=b.inputSignature,
    validity=b.validity,availability=b.availability,routeRevision=b.revision,routeValidity=b.routes and 'VERIFIED' or b.validity,revalidation=b.revalidation,
-   derivedRevision=b.derivedRevision,derivedFor=b.derivedFor,withdrawal=b.withdrawal==true}
+   derivedRevision=b.derivedRevision,derivedFor=b.derivedFor,withdrawal=b.withdrawal==true,transportFailure=b.transportFailure}
  end
  local function notify(pid)
   local publication=d.Input(pid)
   -- Logical input changes and pending-to-available recovery each notify once.
-  for _,name in ipairs({'Lv3Effects','StandardizationEffects','CommerceConvergence','CultureNetwork'}) do
+  for _,name in ipairs({'Lv3Effects','StandardizationEffects','Commerce','CultureNetwork'}) do
    local consumer=shared[name]
    if consumer then local ok,err=pcall(consumer.Audit,publication)
     if not ok then bucket(pid).consumerError=short(err) end
@@ -103,7 +114,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function withdraw(pid,b,reason)
   if isolated(pid) then return false end
   if b.validity=='CONFIRMED_INVALID' and not b.routes then return false end
-  b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.reason='CONFIRMED_INVALID';b.error=reason
+  b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.transportFailure=nil;b.reason='CONFIRMED_INVALID';b.error=reason
   b.revalidation='CONFIRMED_INVALID';b.availability='UNAVAILABLE';b.revision=b.revision+1
   P.Count('confirmed_invalid')
   local input={validity='CONFIRMED_INVALID',routeSignature='',cities={}}
@@ -185,12 +196,12 @@ function SPCNetworkBridge.Start(P,shared)
      if b.fingerprint~=fingerprint or not b.routes then b.revision=b.revision+1;P.Count('publication') end
      b.routes=rows;b.routeReferences=candidate.references;b.fingerprint=fingerprint
      b.turn=candidate.turn;b.signal=candidate.signal;b.reason='READY_BACKGROUND_UI';b.revalidation='VERIFIED'
-     b.acceptedSeq=candidate.seq;b.candidate=nil -- receipt, distinct from merely seen/rejected seq
+     b.acceptedSeq=candidate.seq;b.candidate=nil;b.transportFailure=nil -- receipt, distinct from merely seen/rejected seq
      local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=#rows end
     end
     -- Commit current proof BEFORE exposing availability or notifying a consumer.
     -- A proved route set does not resolve unreadable city facts.
-    b.availability=(input.pending or b.revalidation=='NEEDS_REVALIDATION') and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=nil
+    b.availability=(input.pending or b.revalidation=='NEEDS_REVALIDATION') and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=b.transportFailure
     if duplicate then
      b.input=input;P.Count('input_duplicate')
      if priorAvailability~='AVAILABLE' and b.availability=='AVAILABLE' then notify(pid) end
@@ -229,7 +240,18 @@ function SPCNetworkBridge.Start(P,shared)
   local ok,err=pcall(function()
    assert(d.ready,'LOAD_NOT_READY')
    assert(p.Turn==Game.GetCurrentGameTurn() and p.Signal==(shared.RouteSignalRevision or 0),'STALE_SIGNAL_OR_TURN')
-   if p.Valid~=1 then pendingProof(pid,b,false);return end
+   if p.Valid~=1 then
+    local prior=b.availability
+    pendingProof(pid,b,false)
+    -- A complete collector sample that exceeds transport bounds is UNKNOWN,
+    -- never an empty/partial route publication. Preserve the last accepted view.
+    if p.Failure=='NETWORK_ROUTE_LIMIT' or p.Failure=='NETWORK_PAYLOAD_LIMIT' then
+     local changed=b.transportFailure~=p.Failure
+     b.transportFailure=p.Failure;b.error=p.Failure
+     if changed or prior~=b.availability then notify(pid) end
+    end
+    return
+   end
    local count=p.Count
    if p.WireCount~=nil then
     assert(integer(p.WireCount) and p.WireCount>=1 and p.WireCount<=129,'WIRE_COUNT_INVALID')
@@ -330,6 +352,39 @@ function SPCNetworkBridge.Start(P,shared)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
   local v=currentView(pid,true)
   return {input=d.Input(pid),recipients=copy(v.recipients.CULTURE or {})}
+ end
+ -- B239 read-only per-city direct route projection. No Refresh, proof request,
+ -- all-city scan or reference retention by the caller. UNKNOWN has no partners.
+ function d.CurrentDomesticPartners(pid,selected)
+  local b=d.players[pid];local v=views[pid]
+  local out={validity='UNKNOWN',reason='NETWORK_NO_INPUT'}
+  if b then out.input=d.Input(pid) end
+  if isolated(pid) then out.reason='NETWORK_EXPERIMENT_ISOLATED';return out end
+  if not d.ready or not P.IsTestPlayer(pid) then out.reason='NETWORK_NOT_READY_OR_OWNER';return out end
+  if not b then return out end
+  if b.validity=='CONFIRMED_INVALID' then out.validity='CONFIRMED_INVALID';out.reason=b.error or 'NETWORK_CONFIRMED_INVALID';return out end
+  local matches=b.validity=='VERIFIED' and v and v.contract==1 and v.epoch==d.epoch and v.player==pid
+   and v.validity=='VERIFIED' and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
+   and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
+  if not matches then out.reason='NETWORK_VIEW_UNAVAILABLE';return out end
+  if b.availability~='AVAILABLE' or b.revalidation~='VERIFIED' or b.signal~=(shared.RouteSignalRevision or 0) then
+   out.reason=b.transportFailure or 'NETWORK_REVALIDATION_PENDING';return out
+  end
+  local ok,ids,references,reference=pcall(function()
+   assert(selected and selected:GetOwner()==pid,'NETWORK_SELECTED_OWNER_CHANGED')
+   local id=selected:GetID();local ref=assert(v.references[id],'NETWORK_SELECTED_NOT_SAMPLED')
+   assert(SPCNetworkInput.Reference(city(pid,id))==ref and SPCNetworkInput.Reference(selected)==ref,'NETWORK_SELECTED_REFERENCE_CHANGED')
+   local keys,refs={},{}
+   for cid in pairs(v.directDomestic[id] or {}) do
+    local partner=assert(v.references[cid],'NETWORK_PARTNER_NOT_SAMPLED')
+    assert(SPCNetworkInput.Reference(city(pid,cid))==partner,'NETWORK_PARTNER_REFERENCE_CHANGED')
+    keys[#keys+1]=cid;refs[cid]=partner
+   end
+   table.sort(keys);return keys,refs,ref
+  end)
+  if not ok then out.reason=short(ids);return out end
+  out.validity='VERIFIED';out.reason='NETWORK_AVAILABLE';out.cityID=selected:GetID();out.reference=reference
+  out.partners=ids;out.references=references;return out
  end
  function d.CurrentConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
@@ -518,7 +573,7 @@ function SPCNetworkBridge.Start(P,shared)
   b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.input=nil;b.inputSignature=nil
   b.sources=nil;b.centers=nil;b.recipients=nil;b.derivedFor=nil
   b.validity='EXPERIMENT_ISOLATED';b.availability='EXPERIMENT_ISOLATED';b.reason='EXPERIMENT_ISOLATED'
-  b.revalidation='EXPERIMENT_ISOLATED';b.error=nil
+  b.revalidation='EXPERIMENT_ISOLATED';b.error=nil;b.transportFailure=nil
   detailPage={}
   local perf=ExposedMembers.SPC_Performance;if perf then perf.routes=0 end
   return true -- no Capture/derive/publication/consumer dispatch

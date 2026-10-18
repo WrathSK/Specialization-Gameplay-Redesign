@@ -39,6 +39,10 @@ local function refreshInvestmentSupport(playerID,result)
    local d=shared[name];if d then local ok,err=pcall(d.Refresh,playerID,result.city);if not ok then print('[SPC][Industry entry] '..tostring(err))end end
   end
  end
+ if type(result)=='table' and result.status=='COMMITTED' and shared.Commerce then
+  local ok,err=pcall(shared.Commerce.Refresh,playerID,result.city)
+  if not ok then print('[SPC][Commerce investment entry] '..tostring(err))end
+ end
  if type(result)=='table' and result.status=='COMMITTED' and shared.DialogueProjects
   and not shared.DialogueProjects.startupError and shared.DialogueProjects.Refresh then
   local ok,err=pcall(shared.DialogueProjects.Refresh,playerID,result.city) -- target entry only
@@ -387,14 +391,15 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or ('继承观察未完成：'..tostring(out));shared.LastToken=params.Token;return
   end
   if type(params.Action)=='string' and params.Action:find('^COMMERCE_') then
-    shared.RequestToken=params.Token
     local ok,out=pcall(function()
-      assert(P.IsTestPlayer(playerID),'CONTROL_OWNER')
-      local c=Players[playerID]:GetCities():FindID(params.CityID);assert(c and c:GetOwner()==playerID,'CONTROL_CITY')
-      local d=assert(shared.CommerceConvergence,'COMMERCE_MODULE_NOT_LOADED')
-      d.Control(playerID,c,params.Action:sub(10));return d.Describe(playerID,c)
+      local d=assert(shared.Commerce,'COM_MODULE_NOT_LOADED')
+      assert(params.Action=='COMMERCE_READ' or params.Action=='COMMERCE_SELECT','COM_LEGACY_RETIRED')
+      d.Request(playerID,params)
+      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'COM_CITY_UNKNOWN')
+      return d.Describe(playerID,c)
     end)
-    shared.Snapshot=ok and out or ('商业四读取失败：'..tostring(out));shared.LastToken=params.Token;return
+    shared.Snapshot=ok and out or ('商业化暂不可用：'..(tostring(out):match('COM_[A-Z_]+') or 'COM_STATE_UNKNOWN'))
+    shared.LastToken=params.Token;return
   end
   if params.Action=='GWA_READ' or params.Action=='GWA_OFF' or params.Action=='GWA_AUTO' then
     shared.RequestToken=params.Token
@@ -809,7 +814,7 @@ include("Lv3Support")
 SPCLv3Support.Start(P,shared)
 
 include("Lv3Effects")
-SPCLv3Effects.Start(P,shared)
+SPCLv3Effects.Start(P,shared,{retireCommerce=true})
 
 include("ConstructionProbe")
 SPCConstructionProbe.Start(P,shared)
@@ -885,7 +890,7 @@ include('CultureInspiration')
 SPCCultureInspiration.Start(P,shared)
 
 include("CommerceConvergence")
-SPCCommerceConvergence.Start(P,shared)
+SPCCommerceConvergence.Start(P,shared,{retired=true})
 
 -- B067: ownership work is isolated for the self-founded-city playable scope.
 -- Keep source and saved ledgers intact; no inheritance/backup listeners are installed.
@@ -910,6 +915,9 @@ SPCEngineeringStudyProjects.Start(P,shared)
 include('IndustryWonderEffects')
 SPCIndustryWonderEffects.Start(P,shared)
 shared.CrewProjects.BindPermanentWrites()
+include('Commerce')
+SPCCommerce.Start(P,shared)
+shared.Commerce.BindPermanentWrites()
 
 local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
 if not dialogueOK then

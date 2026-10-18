@@ -1,6 +1,7 @@
 if not SPCResearchTradition then include('ResearchTradition') end
 if not SPCDialogueProjectModel then include('DialogueProjectModel') end
 if not SPCEngineeringStudyModel then include('EngineeringStudyModel') end
+if not SPCCommerceModel then include('CommerceModel') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
@@ -103,6 +104,10 @@ local function CreateProgressionRecord(P,shared,storage)
   if r.engineeringKnown~=nil or r.engineering~=nil then
    assert(r.engineeringKnown==true and type(r.engineering)=='table','EST_HISTORY_UNAVAILABLE')
    SPCEngineeringStudyModel.Validate(r.engineering,r)
+  end
+  if r.commerceKnown~=nil or r.commerce~=nil then
+   assert(r.commerceKnown==true and type(r.commerce)=='table','COMMERCE_HISTORY_UNAVAILABLE')
+   SPCCommerceModel.Validate(r.commerce,r)
   end
   -- B212: city-owned Expedition Insight history (Design: source city x foreign civ x
   -- category, first success only). History follows the city; never deleted here.
@@ -221,6 +226,35 @@ local function CreateProgressionRecord(P,shared,storage)
   if same(old,value)then return end
   local n=cp(r);n.engineeringKnown=true;n.engineering=cp(value);n.revision=n.revision+1;save(n)
  end
+ -- Commerce configuration shares the existing per-record failure boundary.
+ -- Reputation is written only by proven P4 admission/turn/ownership transitions.
+ function d.CommerceState(pid,c)
+  assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
+  local r=active(pid,c)
+  return cp({value=r.commerce,token=r.base.token,reference=r.current or r.origin})
+ end
+ function d.WriteCommerce(pid,c,old,value)
+  assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
+  local r=active(pid,c);assert(same(r.commerce,old),'COMMERCE_HISTORY_STALE')
+  assert(value~=nil,'COMMERCE_HISTORY_CANNOT_DELETE');SPCCommerceModel.Validate(value,r)
+  assert(r.base.specialization=='COMMERCE' and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
+  assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')
+  if same(old,value)then return end
+  local n=cp(r);n.commerceKnown=true;n.commerce=cp(value);n.revision=n.revision+1;save(n)
+ end
+ function d.TickCommerce(pid,turn)
+  if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or root.stage~='ACTIVE' then return end
+  if not SPCCommerceModel.IsStandardSpeed()then return end
+  local t=root.commerce.reputation
+  if root.base.specialization=='COMMERCE' and (not t or t.age==40 or t.state~='COUNTING')then return end
+  local ok,err=pcall(function()
+   local a=root.current or root.origin
+   local c=assert(CityManager.GetCityAt(a.x,a.y),'COMMERCE_CITY_UNKNOWN')
+   local r=active(pid,c);local value=SPCCommerceModel.Advance(r.commerce,turn,r.base.specialization)
+   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n)end
+  end)
+  d.commerceError=not ok and tostring(err) or nil
+ end
  -- B212: Expedition Insight history shares the record's commit/readback boundary.
  function d.ExpeditionInsights(pid,c)
   local e=active(pid,c).expeditionInsights;return cp(e and e.records or {})
@@ -326,6 +360,13 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
     and nextValue.investments[op.receipt]==op.unitUID,'TRADITION_FIRST_P4_UNCONFIRMED')
    n.researchTradition=SPCResearchTradition.Begin(Game.GetCurrentGameTurn(),op.receipt)
+  end
+  if r.base.specialization=='COMMERCE' and receipts(old)==2 and receipts(nextValue)==3 and SPCCommerceModel.IsStandardSpeed()then
+   local op=old and old.pending
+   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
+    and nextValue.investments[op.receipt]==op.unitUID,'COMMERCE_FIRST_P4_UNCONFIRMED')
+   local value=r.commerce or SPCCommerceModel.New(pid)
+   n.commerceKnown=true;n.commerce=SPCCommerceModel.BeginReputation(value,Game.GetCurrentGameTurn(),op.receipt)
   end
   n.revision=n.revision+1;save(n)
   if n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
@@ -650,6 +691,7 @@ local function CreateProgressionRecord(P,shared,storage)
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
   for _,fn in pairs(returns)do fn(root.origin.owner,c)end
+  if n.commerce then n.commerce=SPCCommerceModel.Resume(n.commerce,newOwner,Game.GetCurrentGameTurn())end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
   n.revision=n.revision+1;save(n)
   finished={};attempts={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
@@ -671,6 +713,7 @@ local function CreateProgressionRecord(P,shared,storage)
     if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
+    if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end
@@ -945,6 +988,8 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
  function store.ExpeditionInsights(pid,c)return requireCity(c).ExpeditionInsights(pid,c)end
  function store.AddExpeditionInsight(pid,c,civ,category,turn)return requireCity(c).AddExpeditionInsight(pid,c,civ,category,turn)end
+ function store.CommerceState(pid,c)return requireCity(c).CommerceState(pid,c)end
+ function store.WriteCommerce(pid,c,old,value)return requireCity(c).WriteCommerce(pid,c,old,value)end
  function store.EngineeringState(pid,c)return requireCity(c).EngineeringState(pid,c)end
  function store.WriteEngineering(pid,c,old,value)return requireCity(c).WriteEngineering(pid,c,old,value)end
  function store.DialogueState(pid,c)return requireCity(c).DialogueState(pid,c)end
@@ -960,7 +1005,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   if fault or not P.IsTestPlayer(pid)then return end
   local turn=Game.GetCurrentGameTurn()
   -- Existing registered records only: no world/city/building scan or fact packet.
-  for _,w in pairs(workers)do w.TickTradition(pid,turn)end
+  for _,w in pairs(workers)do w.TickTradition(pid,turn);w.TickCommerce(pid,turn)end
  end
  local turnEvent=P.Field(Events,'PlayerTurnActivated')
  if turnEvent and turnEvent.Add then turnEvent.Add(traditionTick)end

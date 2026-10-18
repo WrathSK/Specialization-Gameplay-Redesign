@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="265">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="266">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B238.265: accepted Production-modified Crew construction, base-value previews and bounded observation. Includes B237 tier-I260 and start-locked unfinished-project continuity.</Description>
+    <Description>B239.266: unfinished Crew capacity, Commercialization selection and Gold, and city-owned Commercial Reputation.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_B239_Commerce"><Properties><LoadOrder>10001070</LoadOrder></Properties><File>Data/Commerce.sql</File></UpdateDatabase>
+    <UpdateText id="SPC_B239_CommerceText"><File>Text/Commerce.sql</File></UpdateText>
+    <AddUserInterfaces id="SPC_B239_CommercePanel"><Properties><Context>InGame</Context></Properties><File>UI/CommercePanel.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B235_EngineeringStudyText"><File>Text/EngineeringStudy.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B234_Standardization">
@@ -232,7 +235,12 @@
       <File>GreatWorkAdjacencyModel.lua</File>
       <File>GreatWorkAdjacency.lua</File>
       <File>Dialogue.lua</File>
-    <File>UI/CityPotential.lua</File><File>DiagnosticLog.lua</File></ImportFiles>
+    <File>UI/CityPotential.lua</File><File>DiagnosticLog.lua</File>
+      <File>CommerceModel.lua</File>
+      <File>CommerceCalculation.lua</File>
+      <File>Commerce.lua</File>
+      <File>UI/CommerceUI.lua</File>
+    </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
         <LoadOrder>1100</LoadOrder>
@@ -642,6 +650,14 @@
     <File>Data/CultureInspirationProbe.sql</File>
     <File>Data/CultureInspiration.sql</File>
     <File>Data/CultureInsightsTourism.sql</File>
+      <File>CommerceModel.lua</File>
+    <File>CommerceCalculation.lua</File>
+    <File>Commerce.lua</File>
+    <File>UI/CommerceUI.lua</File>
+    <File>Data/Commerce.sql</File>
+    <File>Text/Commerce.sql</File>
+    <File>UI/CommercePanel.lua</File>
+    <File>UI/CommercePanel.xml</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />

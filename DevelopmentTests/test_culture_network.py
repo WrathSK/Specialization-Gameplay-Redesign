@@ -243,7 +243,7 @@ class RuntimeRetirement(unittest.TestCase):
  def test_six_module_isolation_includes_actual_new_projection(self):
   l=fixture();l.execute("complete(4,1);cn.SourceChanged(0,4);assert(amount(cities[1])==1)")
   l.execute((M/'NetworkIsolation.lua').read_text());l.execute("""
-   for _,name in ipairs({'Lv3Effects','NetworkBoost','CopyYields','CommerceConvergence','StandardizationDiscount'})do
+   for _,name in ipairs({'Lv3Effects','NetworkBoost','CopyYields','Commerce','StandardizationDiscount'})do
     shared[name]={ExperimentalNetworkWithdraw=function()return true end}
    end
    for _,name in ipairs({'SPC_P0_BackgroundRoutes','SPC_CopyBackground','SPC_DiscountEligibility'})do
@@ -266,7 +266,7 @@ class GateIntegration(unittest.TestCase):
   """)
  def test_failed_consumer_is_isolated_from_other_network_consumers(self):
   l=fixture();l.execute("""
-   local n=0;shared.CommerceConvergence={Audit=function()n=n+1 end}
+   local n=0;shared.Commerce={Audit=function()n=n+1 end}
    shared.CultureNetwork.Audit=function()error('CN_TEST_FAILURE')end
    send('0,4,0,2,10;0,2,0,1,11',2)
    assert(n==1 and net.Input(0).validity=='VERIFIED' and net.players[0].consumerError)

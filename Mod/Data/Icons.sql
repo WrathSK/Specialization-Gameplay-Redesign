@@ -69,3 +69,6 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P140_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P130_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P120_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+
+-- B239: configuration opener reuses native commercial project artwork.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_COMMERCIALIZATION',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';

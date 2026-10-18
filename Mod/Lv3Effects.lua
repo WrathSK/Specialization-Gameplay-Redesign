@@ -1,7 +1,7 @@
 include('RuntimeWork')
 -- B038: native population yield per specialist; Commerce direct connected types.
 SPCLv3Effects={}
-function SPCLv3Effects.Start(P,shared)
+function SPCLv3Effects.Start(P,shared,options)
  local batch
  local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local function districtsFor(pid,c)
@@ -17,6 +17,7 @@ function SPCLv3Effects.Start(P,shared)
   local wanted={}
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
   local f=readFacts(pid,c)
+  if f.specialization=='COMMERCE' and options and options.retireCommerce then return wanted end
   if f.specialization=='COMMERCE' and isolated(pid) then return wanted end
   if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then return wanted end -- P0-D1/P0-L1 own these abilities
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end

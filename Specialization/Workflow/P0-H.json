@@ -1,122 +1,96 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0053",
+    "design": "D0054",
     "research": "D0040",
     "industry": "D0053",
     "culture": "D0051",
-    "commerce": "D0050",
+    "commerce": "D0054",
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0636",
-    "runtime": "B238.265 / modinfo265",
+    "status": "S0637",
+    "runtime": "B239.266 / modinfo266",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B238_Native_Review.md",
-  "goal": "Record B238 native continuity acceptance and PAUSED occupancy defect; prepare the requested combined Crew repair and first Commerce batch without implementation.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+  "goal": "B239 paid Crew occupancy, COM-A Commercialization and city-owned Reputation; per-domain Floor. Local complete, deploy then one native delta session.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current tested scope, unchanged runtime and proposed next boundary."
+      "reason": "Current source/live, evidence and approved stop."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B238_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
       "kind": "full",
-      "reason": "Submitted native evidence, exact defect, bounded reproduction and acceptance limits."
+      "reason": "Implemented boundary, actual local/native limits and minimal combined acceptance."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## Proposed B239 combined slice",
-      "reason": "Concrete requested merged scope, native delta and precision gate; not implementation permission."
-    },
-    {
-      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
-      "kind": "section",
-      "selector": "## B238 modifier acceptance and Industry closeout",
-      "reason": "Accepted Industry main chain and named remaining/deferred items."
+      "selector": "## B239 implementation and validation",
+      "reason": "Current ownership, event flow, precision and retirement contract."
     }
   ],
   "dependencies": [
-    "Existing Store historical reference/exit/return, IndustryHistory N, EffectiveFacts ACTIVE and typed investment receipt.",
-    "Existing receipt-safe UnitActions, actual native Wonder target and B237 order/progress continuity; the observer preserves the typed investment receipt.",
-    "InstitutionPresentation and existing Research/Culture controls; other ability rules unchanged."
+    "Store per-record commit/readback and confirmed transition ownership; optional Commerce stack/R, no framework rewrite.",
+    "Current EffectiveFacts/local Shared D/working specialists and verified direct domestic partner projection; current source total yields.",
+    "Existing Crew paid admission/native queue/current units/receipt and locked price/progress; inherited Industry primitives."
   ],
   "old_writers": [
-    "Remove exact five ProjectCompletionModifiers unit grants; only CrewProjects owns formation/binding. Retire exact old Crew access marker.",
-    "No change to Study/Standardization/Wonder effect ownership; preserve typed investment receipt through observation."
+    "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
+    "Preserve Commerce I/II, Research/Culture/Industry, common topology, Crew construction and historical evidence."
   ],
   "conditional_context": [
     {
-      "trigger": "Inspect Crew cost/admission, binding/slot/use or native UI failure",
+      "trigger": "Commerce native/UI/effect or persistent discrepancy",
       "paths": [
-        "Mod/CrewModel.lua",
+        "Mod/Commerce.lua",
+        "Mod/CommerceCalculation.lua",
+        "Mod/CommerceModel.lua",
+        "Mod/CityProgressionStore.lua",
+        "Mod/UI/CommerceUI.lua",
+        "Mod/UI/CommercePanel.lua",
+        "Specialization/Design/Content/Commerce_D0054.json",
+        "DevelopmentTests/test_b239_commerce.py",
+        "DevelopmentTests/test_b239_commerce_store.py",
+        "DevelopmentTests/test_b239_commerce_ui.py"
+      ]
+    },
+    {
+      "trigger": "Crew reservation/price/progress or source discrepancy",
+      "paths": [
         "Mod/CrewProjects.lua",
         "Mod/UI/CrewProjectUI.lua",
-        "Mod/UI/CrewProjectOrder.lua",
-        "Mod/UnitActions.lua",
-        "Mod/UnitTargets.lua",
-        "Mod/CrewPrecision.lua",
-        "Mod/Data/CrewProjects.sql",
-        "Mod/Data/Crew.sql",
-        "DevelopmentTests/test_b236_crews.py",
-        "DevelopmentTests/test_b236_crew_ui.py",
-        "DevelopmentTests/test_b238_crew_modifiers.py",
-        "DevelopmentTests/test_b237_crew_continuity.py",
-        "Mod/UI/UnitPanelActions.lua",
-        "Mod/UI/UnitSites.lua"
+        "DevelopmentTests/test_b239_crew_occupancy.py",
+        "Specialization/Design/Content/Industry_D0053.json"
       ]
     },
     {
-      "trigger": "Inspect same-turn Industry entry or institution display",
+      "trigger": "Direct-route/proof/transport issue",
       "paths": [
-        "Mod/Gameplay.lua",
-        "Mod/InvestmentAction.lua",
-        "Mod/InstitutionPresentation.lua",
-        "Mod/EngineeringStudyProjects.lua",
-        "Mod/IndustryWonderEffects.lua",
-        "DevelopmentTests/test_b236_entry_ui.py"
-      ]
-    },
-    {
-      "trigger": "Concrete saved source/UNKNOWN/owner or N discrepancy",
-      "paths": [
-        "Mod/CityProgressionStore.lua",
-        "Mod/IndustryHistory.lua",
-        "Mod/EffectiveFacts.lua",
-        "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md"
-      ]
-    },
-    {
-      "trigger": "Collector/precision or package issue",
-      "paths": [
-        "Mod/ExpeditionTrainingDiagnostics.lua",
-        "Mod/UI/UnitSites.lua",
-        "Mod/SpecializationP0.modinfo",
-        "Mod/Data/Icons.sql",
-        "Mod/Text/TestText.sql",
-        "tools/collect_expedition_trace.py"
-      ]
-    },
-    {
-      "trigger": "User approves the combined Commerce implementation or requests its detailed contract review",
-      "paths": [
-        "Specialization/Architecture/v2/Commerce_Preparation.md",
-        "Specialization/Design/Content/Commerce_D0050.json",
-        "Specialization/Design/Content/Shared_D0045.json",
-        "Mod/NetworkInput.lua",
         "Mod/NetworkBridge.lua",
         "Mod/NetworkSender.lua",
+        "Mod/NetworkInput.lua",
+        "DevelopmentTests/test_b239_commerce_network.py"
+      ]
+    },
+    {
+      "trigger": "Package/localization/retirement or deployment review",
+      "paths": [
+        "Mod/SpecializationP0.modinfo",
         "Mod/CommerceConvergence.lua",
-        "Mod/Lv3Effects.lua"
+        "Mod/Lv3Effects.lua",
+        "Mod/Gameplay.lua",
+        "DevelopmentTests/test_b239_commerce_integration.py",
+        "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
   ],
@@ -126,19 +100,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "Native evidence review plus one actual-writer counterexample; L1 documentation/context/publication. No implementation validation or broad regression.",
-    "local": "Paused occupancy counterexample reproduced using actual current writer/Store and existing native fixture. Existing B238276 tests remain historical local evidence, not proof against this defect.",
-    "user": "Old14/338 continuation, restart recovery,260 binding and other user-observed checks accepted in scope; PAUSED occupancy FAIL.",
-    "gap": "Gold precision/non-recursion before COM-A; later Capital tie-break; rare District purchase deferred, protection/other conditional evidence kept separate."
+    "depth": "L3 new business persistence/ownership and shared route read boundary, L2 effects and source propagation, L1 UI/package/docs.",
+    "local": "336 distinct targeted checks PASS. Two fixed historical package stamps excluded unchanged; B239 package independently checked.",
+    "user": "One combined Crew/COM-A/R native session; inherited unrelated/shared evidence not repeated.",
+    "gap": "Actual integer Gold, clean native Gold freshness, presentation/new persistence pending. No blanket native or memory claim."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B238_Native_Review.md",
-    "source": "B238.265/modinfo265 DEVELOP_ACTIVE; source c97117acac7f89959afbfb48a04d6cc48544f956; receipt B238.265-c97117a-playtest.json;237/237 MATCH, digest d50659f8a2b252501ac0e12dbb5ebb21aac5e17071dbc46fe2c43ec74e98fff0. Automatic game-exit checks passed at both guarded switches; B237/stable recovery retained, no pending transaction. B238 reviewed: scoped continuity/use accepted, paused occupancy FAIL; proposed combined repair not deployed.",
-    "native": "SCOPED_PASS_WITH_PAUSED_OCCUPANCY_FAIL",
-    "stop": "Proposed B239 scope prepared. No implementation/deployment now; no new B238 user test requested."
+    "report": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+    "source": "B239.266 local-complete; external B238.265 unchanged until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Deploy approved B239 and stop for one combined test; COM-B/C/D and Culture HOLD remain outside."
   }
 }

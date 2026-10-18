@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0053
+Latest Accepted Design Revision: D0054
 Document State: ACCEPTED
+
+## Accepted D0054 — 2026-10-18
+
+用户明确选择：**商业化每个领域分别Floor，再相加。** 每领域先计算0.05×本地D×最高合法城市总产出X×(1+0.005×有效信誉)，对该领域取Floor，最后合计金币。两个领域各原始2.7时结果为4，而非合计后Floor的5。保留各领域原始值以供解释；不改变D／X／来源／专家容量／信誉／生命周期，不新增额外上限，不将取整外推到资本本金、回款、发展投资报价或其它专业。
+
+[Commerce D0054](Content/Commerce_D0054.json)、[商业阅读版](Commerce.md)和当前Spec同步；Commerce D0050及[D0053 Spec冻结原文](Revisions/Specialization_Design_Spec_D0053.md)保持原样。该Design决定解决B239金币精度边界，不等于原生金币、来源排除或其它商业能力已通过实机。
+
+Accepted Spec SHA256: `bb55a137c2974cfdc38abb7bdef63a934ef9570935c5c78d135cb7f379310859`
+Commerce D0054 SHA256: `8da4f16d70a6a47441cfcdefcbe7d169254c08a6f33360c10c54e6e1b917a7b8`
+Frozen D0053 Spec SHA256: `d5bdaab7e47155a66b7124cb145144aa25dc9f2233cbeca0fe66c98fd30c95f3`
 
 ## Accepted D0053 — 2026-10-18
 

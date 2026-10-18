@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0636
-Implementation Build: source/live B238.265 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0637
+Implementation Build: source B239.266 LOCAL_COMPLETE; live B238.265; stable B069.96
 Architecture Revision Reviewed: A0168
-Design Revision Reviewed: D0053
-Latest Accepted Design Revision: D0053
-Design Sync State: D0053_CREW_MODIFIER_ACCEPTANCE_IMPLEMENTED / SCOPED_NATIVE_REVIEWED
-Work State: B238_PAUSED_OCCUPANCY_FAIL / COMMERCE_COMBINED_PLAN_READY
+Design Revision Reviewed: D0054
+Latest Accepted Design Revision: D0054
+Design Sync State: D0054_COMMERCIALIZATION_PER_DOMAIN_FLOOR_RECORDED
+Work State: B239_LOCAL_COMPLETE_AWAITING_DEPLOYMENT_AND_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B238 reviewed; next combined plan ready:** [native evidence and diagnosis](Validation/Results/Specialization_B238_Native_Review.md).
-- **Accepted:** tested old-price/progress continuation, restart recovery and260 binding; user reports other observed checks normal. Earlier scoped Industry evidence retained.
-- **Defect:** PAUSED orders release reservations; one living+one paused still admits new work, then blocks resume.223 contiguous log records, one screenshot and actual-writer reproduction agree.
-- **Source/live:** unchanged B238.265 `c97117a`, receipt `B238.265-c97117a-playtest.json`,237/237 MATCH. Main B069.96 and runtime/configuration unchanged.
-- **Next/stop:** [proposed B239 Crew occupancy + Commercialization](../Architecture/v2/Commerce_Preparation.md#proposed-b239-combined-slice); plan approval/Gold precision gate precede implementation. No new test now; rare purchase/protection/other conditional gaps and Culture HOLD remain named.
+**B239 local complete:** [scope, checks and combined native flow](Validation/Results/Specialization_B239_Commercialization_Local.md).
+- Crew paid PAUSED work now keeps capacity; resume preserves its price/progress/admission. Existing over-admission is retained with bounded safe continuation.
+- COM-A selection/Gold/Reputation and exact old3+48 retirement implemented; D0054 Floor is per-domain then sum.336 local checks PASS; native Gold/clean-source/UI/new persistence pending.
+- Source B239.266 is not deployed yet; live remains B238.265 `c97117a` / receipt `B238.265-c97117a-playtest.json`. Main B069.96 unchanged.
+- Next: commit/push, automatic exit check and receipt-bound deployment, then one combined test. COM-B/C/D, Culture HOLD and named rare/conditional gaps remain outside this batch.
+
+## S0637 — B239 local implementation
+
+User authorized Crew occupancy + Commercialization + Reputation, and separately chose each-domain Floor then sum (D0054). Added bounded city-record selection/reputation, event-driven source dependencies, visible pre-enqueue dashboard and exact legacy retirement. Removed no permanent history; no timer/frame/GC, main/configuration or unrelated ability change.336 distinct targeted checks PASS; two unmodified historical packaging-stamp methods explicitly excluded and current package independently verified. Local JSON/raw evidence remains ignored. Native/source-live state remains separate; deploy only after the existing guarded transaction succeeds.
 
 ## S0636 — B238 native review and combined Commerce proposal
 

@@ -2,16 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0053
+Design Revision: D0054
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-10-18
-Acceptance Evidence: 用户暂行接受施工队基础施工力受到适用的原生Production加成；不再要求倍率隔离，不阻碍v0.1开发。未来实测平衡在文档中保留，不写入游戏内UI。基础数值、成本、来源／容量、目标及不溢出规则不变。
-Previous Accepted Revision: [D0052冻结原文](Revisions/Specialization_Design_Spec_D0052.md)
-Latest Accepted Design Revision: D0053
+Acceptance Evidence: 用户明确选择商业化每个领域分别Floor后相加；保留各领域原始公式与其它设计，不推广为统一金币取整。
+Previous Accepted Revision: [D0053冻结原文](Revisions/Specialization_Design_Spec_D0053.md)
+Latest Accepted Design Revision: D0054
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
+
+**SCOPE-001（D0054）** 商业化每个领域先独立计算0.05×D×X×(1+0.005×有效信誉)，分别向下取整后相加；不先合并同种金币，不将此规则用于资本／发展投资等其它金币数值。其余D0050合同保留。[接受记录](Design_ChangeLog.md#accepted-d0054--2026-10-18)。
 
 **SCOPE-001（D0053）** 施工队投入锁定基础施工力，可接受适用的原生Production加成（含巨构工程学／奇观政策等），实际进度不要求等于基础投入。未来通过实测检查综合倍率下的强度，作为非阻塞平衡点；不在游戏内UI加入未来平衡说明。不改变基础施工力、锁价、目标、来源／容量、一次消费及余量不结转规则。[接受记录](Design_ChangeLog.md#accepted-d0053--2026-10-18)。
 
@@ -226,7 +228,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **D0050: DESIGN_FROZEN；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-唯一机械合同：[Commerce D0050](Content/Commerce_D0050.json)（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
+唯一机械合同：[Commerce D0054](Content/Commerce_D0054.json)（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
 | Rule ID | 当前权威content |
 |---|---|
@@ -236,7 +238,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 | COM-004 | COM_L4_DEVELOP + COM_L4_RESTRUCTURE + COM_L4_REPUTATION |
 | COM-005至009 | SUPERSEDED：旧Convergence20%/Actual/floor/incoming-only不叠加 |
 
-商业化v0.1五域Campus→Science、Theater→Culture、Industrial→Production、Holy Site→Faith、Harbor→Gold；排除Commercial Hub与未映射Future。本地D×任意方向直接国内商路或本城合法最高X：每域0.05×D×X×(1+0.005×有效信誉)（D0050），X取候选城市该领域**城市总产出**、各领域分别择优，不做区域／建筑／专家／修正归因；信誉当前效果需Commerce ACTIVE IV，商业化Gold不得递归成为X；与未来港口的相互作用暂缓。
+商业化v0.1五域Campus→Science、Theater→Culture、Industrial→Production、Holy Site→Faith、Harbor→Gold；排除Commercial Hub与未映射Future。本地D×任意方向直接国内商路或本城合法最高X：每域Floor(0.05×D×X×(1+0.005×有效信誉))后相加（D0054；其余D0050合同保持），X取候选城市该领域**城市总产出**、各领域分别择优，不做区域／建筑／专家／修正归因；信誉当前效果需Commerce ACTIVE IV，商业化Gold不得递归成为X；与未来港口的相互作用暂缓。
 
 资本投资仍一项两模式；可投领域为已实施专业领域但不含商业本身（v0.1：科研、文化、工业；未来专业实施后自动纳入），来源城不需该领域区域；D取max(1,D)，S取当前由商路连接形成的国内网络中该领域当前有效ACTIVE最高等级并取max(1,S)、无来源时S=1（D0050）。每次本金=确认瞬间剩余国库25%，标准速度10回合，r=0.01DSC（C为商业化时1.25，否则1）。稳健P(1+r)、风险成功P(1+3r)，失败P(0.5+0.005×有效信誉)；p_base=min(0.8,0.4+0.01DS)，C不改概率。失败保护同来源城跨域共享，只保存连续失败次数n，实际成功率P=0.8−(0.8−p_base)×0.75^n，换域或D／S变化保留n并按新p_base重算，成功或Commerce Identity消失清零；保护属于来源城及其主人，新主人不继承，原主人夺回时恢复（D0050）；确认时抽取/锁定/更新保护，到期只揭晓结算。UI显示总预期返还及扣本金后预期净收益，负净收益提示预期亏损但允许选择。每来源城每领域最多一笔未结算（D0050），不同来源城可各自持有同领域合同，不另设全国总数上限。D0040确认锁定具体S来源城与双方Owner关系；最高S相同选最早达到该等级，再稳定ID/key，存读档不随机换源。报价必须显示S城名／等级，保存P/D/S/C/r、mode/probability/outcome、maturity及settlement。
 
@@ -246,7 +248,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 重组团队首版500Production、仅生产训练，明确不可捕获／转Owner，敌方原可捕获／消灭的交互保护撤回且无主动删除；沿用P→P−1及至少5完整混乱回合（v0.1只支持标准速度）、非Food产出/净余粮各−75%。配置前目标被征服立即销毁本次事务/未完成账本/旧当前身份并解散团队；原玩家后续夺回按PROG-011例外重新snapshot/Claim，不恢复半成品。
 
-五域及主要公式/初值已定，不再沿用D0032对应TBD；初值仍可Balance调整。D0050已关闭资本领域/S候选与等级/空池、同域并发作用域、保护组合与跨Owner、X聚合与发展参考态等剩余项；v0.1只支持标准速度。关键城市摧毁／移除、原主人在无可靠关键城转移证据时被消灭、发展投资签约后目标失效三项**暂缓到v0.1之后**，运行时保守处理只是技术保护。无新floor/上限/未来域映射。旧5F5P、网络类型专家加成、20%汇聚、单双向50/100等持续退出；共同中心接收分发不变。
+五域及主要公式/初值已定，不再沿用D0032对应TBD；初值仍可Balance调整。D0050已关闭资本领域/S候选与等级/空池、同域并发作用域、保护组合与跨Owner、X聚合与发展参考态等剩余项；v0.1只支持标准速度。关键城市摧毁／移除、原主人在无可靠关键城转移证据时被消灭、发展投资签约后目标失效三项**暂缓到v0.1之后**，运行时保守处理只是技术保护。除D0054商业化逐领域Floor外，无其它新增floor/上限/未来域映射。旧5F5P、网络类型专家加成、20%汇聚、单双向50/100等持续退出；共同中心接收分发不变。
 
 **COM-LIFECYCLE-002 — ACCEPTED D0042** 商业化选择域及activation order是持久配置：容量减少LIFO暂停而非删除，容量恢复按原顺序前N项自动恢复；主动关闭删除，重开最新。保有Commerce Identity时总督／ACTIVE下降保留配置；Identity退出或易主清空；同Owner同身份读档先恢复配置、再按当前事实派生效果，信誉Owner保留规则独立。已训练重组团队不因训练来源总督／ACTIVE／Identity／Owner变化删除或转交；绑定后随目标REALLOCATING事务，训练来源仅provenance，其易主不能取消另一目标事务。目标易主仍执行既定销毁。
 

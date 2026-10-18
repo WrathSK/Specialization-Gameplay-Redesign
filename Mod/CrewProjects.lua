@@ -1,6 +1,7 @@
 include('CrewModel')
 include('ExpeditionTrainingDiagnostics')
--- B237: paid native projects; paused native progress retains its started admission; saved admission/grant proof; native living inventory.
+-- B239: paid native projects retain one capacity admission while paused; actual queue entries stay separate.
+-- Saved admission/grant proof and native living inventory remain the only capacity sources.
 -- This writer never guesses a source from a new unit's position or name.
 SPCCrewProjects={}
 function SPCCrewProjects.Start(P,shared)
@@ -106,12 +107,13 @@ function SPCCrewProjects.Start(P,shared)
    assert(P.HasBuilding(b,row.Index)==wanted,'CREW_MARKER_WRITE_UNCONFIRMED')
   end
  end
- local function reserved(v)
-  local n=0;for _,o in ipairs(v.orders)do if o.stage~='PAUSED'then n=n+1 end end;return n
+ local function reserved(v)return #v.orders end
+ local function queued(v)
+  local n=0;for _,o in ipairs(v.orders)do if o.stage=='QUEUED'then n=n+1 end end;return n
  end
  local function reconcile(pid,c,v,old,q)
   -- A native project owns one progress bucket even when absent from the queue.
-  -- Keep at most one paused admission per bucket, separate from the two slots.
+  -- Keep at most one paid paused admission per native bucket; it still owns one slot.
   local initial=cp(v);local keep,paused,available={}, {},cp(q.projects)
   for _,o in ipairs(v.orders)do
    local before=o.stage;local retain=true
@@ -147,7 +149,12 @@ function SPCCrewProjects.Start(P,shared)
   for _,o in ipairs(v.orders)do if o.stage=='HELD' or o.stage=='CALLING'then held=true end end
   for _,r in pairs(receipts(pid))do if r.stage=='CALLING' and r.source==a.token then held=true end end
   local ratio,active,N=qualified(pid,c,a)
-  local slots=reserved(v);local room=not held and count+slots<2
+  local slots=reserved(v);local occupied=count+slots;local queueKnown=n==queued(v)
+  local room=not held and queueKnown and occupied<2
+  -- Old B238 states may already over-admit paid work. Never delete it: an
+  -- existing admission can resume only if living + actual queued completions
+  -- still fit the two-unit ceiling. It does not request another reservation.
+  local resumeRoom=not held and queueKnown and count+n<2
   local allowed,startable,retained,wanted={}, {}, {}, {};local paused=0
   for _,o in ipairs(v.orders)do
    if o.stage=='PAUSED'then paused=paused+1 end
@@ -159,7 +166,7 @@ function SPCCrewProjects.Start(P,shared)
   for tier in ipairs(M.CAPACITY)do for _,price in ipairs(M.RATIOS)do
    local idp=M.Project(tier,price,speed());local record=retained[idp]
    local fresh=room and ratio~=nil and price==ratio and tier<=(active==4 and 5 or 3)
-   local resume=room and record and record.stage=='PAUSED'
+   local resume=resumeRoom and record and record.stage=='PAUSED'
    allowed[idp]=not not(record or fresh);startable[idp]=not not(resume or fresh)
    wanted[M.Marker(tier,price)]=allowed[idp]
   end end
@@ -167,10 +174,12 @@ function SPCCrewProjects.Start(P,shared)
   for id,want in pairs(wanted)do if want then marker(c,id,true)end end
   for id,want in pairs(wanted)do if not want then marker(c,id,false)end end
   marker(c,'BUILDING_SPC_CREW_PROJECT_ACCESS',false) -- exact retired B044 access only
-  local view={owner=pid,city=id,source=a.token,active=active,N=N,ratio=ratio,count=count,reserved=slots,paused=paused,
+  local view={owner=pid,city=id,source=a.token,active=active,N=N,ratio=ratio,count=count,reserved=slots,queued=n,paused=paused,
+   occupied=occupied,overCapacity=occupied>2,resumeBlocked=not resumeRoom,queueKnown=queueKnown,
    held=not not held,allowed=allowed,startable=startable,retained=retained}
   if not same(d.views[k],view)then d.views[k]=view;d.revision=d.revision+1
-   observe('CREW_STATE',pid,c,{count=count,queued=slots,paused=paused,wanted=room,expected=ratio,phase=held and 'HELD' or 'READY'})
+   observe('CREW_STATE',pid,c,{count=count,queued=n,paused=paused,wanted=room,expected=ratio,
+    phase=(held or not queueKnown) and 'HELD' or occupied>2 and 'OVER_CAPACITY' or 'READY',reason=not queueKnown and 'CREW_QUEUE_ADMISSION_MISMATCH' or nil})
   end
  end
  local function initialize()
@@ -210,7 +219,8 @@ function SPCCrewProjects.Start(P,shared)
     end
     local count=d.Inventory(pid)[a.token] or 0
     for _,r in pairs(receipts(pid))do assert(r.source~=a.token or r.stage~='CALLING','CREW_GRANT_UNRESOLVED')end
-    assert(count+reserved(v)<2 and n==reserved(v),'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
+    assert(n==queued(v),'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
+    assert(resume and count+n<2 or not resume and count+reserved(v)<2,'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
     local capacity=resume and resume.capacity or M.Amount(tier,speed())
     local price=resume and resume.price or M.Cost(tier,ratio,speed())
     assert(q.costs[p.Project]==price,'CREW_NATIVE_COST_MISMATCH')
@@ -286,9 +296,11 @@ function SPCCrewProjects.Start(P,shared)
  function d.Describe(pid,c)
   d.Refresh(pid,c:GetID());local v=d.views[key(pid,c:GetID())];local err=d.errors[key(pid,c:GetID())]
   if err or not v then return '施工队：暂不可确认；'..tostring(err or 'CREW_NOT_READY')end
-  return '施工队｜本城来源：'..v.count..'/2；在建或预留：'..v.reserved
+  return '施工队｜已占名额：'..v.occupied..'/2；存活：'..v.count..'；未完成组建：'..v.reserved
    ..'\n当前新开工成本：'..(v.ratio and v.ratio..'%' or '未达到工业三级')..'；开工锁价，已完成队伍基础施工力锁定。'
-   ..'\n可续建半成品：'..v.paused..'；暂停不占队伍名额。'
+   ..'\n可续建半成品：'..v.paused..'；续建继续占用原名额，保留已有成本与进度。'
+   ..(v.overCapacity and '\n已有未完成组建超过当前名额；不再接纳新开工，释放存活或已排队名额后可安全续建。' or '')
+   ..(not v.queueKnown and '\n原生队列与开工记录不一致，暂停新开工与续建；已有成本及进度保留。' or '')
    ..'\n施工仅用于在建奇观；基础施工力可受适用生产力加成，余量不结转。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
  end
  function d.BindPermanentWrites()

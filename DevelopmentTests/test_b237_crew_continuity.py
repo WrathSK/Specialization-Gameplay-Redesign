@@ -19,7 +19,7 @@ class Continuity(unittest.TestCase):
    local c=C.make();local p=C.begin(c);local q=c:GetBuildQueue();q.progressByProject[p]=100;q.items={}
    crew.Refresh(0,c:GetID());local serial=c:GetProperty(CP.ORDER_PROPERTY).orders[1].serial
    H.wonder(c,1);crew.Refresh(0,c:GetID());local v=crew.views['0:'..c:GetID()]
-   assert(v.paused==1 and v.reserved==0 and v.allowed[p] and v.startable[p] and v.allowed[CP.Project(1,140)])
+   assert(v.paused==1 and v.reserved==1 and v.allowed[p] and v.startable[p] and v.allowed[CP.Project(1,140)])
    assert(c.buildings[C.rows.Buildings[CP.Marker(1,150)].Index])
    C.begin(c);local o=c:GetProperty(CP.ORDER_PROPERTY).orders[1]
    assert(o.price==390 and o.capacity==260 and o.serial==serial and o.stage=='QUEUED' and q.progressByProject[p]==100)
@@ -33,12 +33,13 @@ class Continuity(unittest.TestCase):
    C.begin(c,4);C.complete(c,p);C.reload(c)
    assert(C.count(c)==1 and crew.Unit(0,C.units[20001]).capacity==1000)
   """)
- def test_pause_does_not_occupy_two_actual_slots_but_resume_reserves_one(self):
+ def test_pause_retains_capacity_and_resume_reuses_the_same_slot(self):
+  # B239 supersedes B237's incorrect assumption that a paid pause frees capacity.
   self.check("""
    local c=C.make();local p=C.begin(c);local q=c:GetBuildQueue();q.progressByProject[p]=50;q.items={};crew.Refresh(0,c:GetID())
-   local a=C.begin(c,2);local b=C.begin(c,3);assert(C.reserve(c).error)
-   q.items[b]=nil;crew.Refresh(0,c:GetID());assert(not C.reserve(c).error)
-   assert(crew.views['0:'..c:GetID()].reserved==2 and q.progressByProject[p]==50)
+   local a=C.begin(c,2);assert(C.reserve(c,3).error)
+   local v=crew.views['0:'..c:GetID()];assert(v.reserved==2 and v.queued==1 and v.paused==1 and v.startable[p])
+   C.begin(c);assert(#c:GetProperty(CP.ORDER_PROPERTY).orders==2 and q.progressByProject[p]==50)
   """)
  def test_same_bucket_two_removed_orders_retain_one_and_no_grant(self):
   self.check("""

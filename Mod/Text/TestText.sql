@@ -304,3 +304,12 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CREW_BASE_CONFIRM','Consume this Crew to supply {1_Input} base Production to the current Wonder, subject to applicable modifiers.[NEWLINE]This cannot be undone.'),
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_READY','锁定基础施工力：{1_Capacity}，可受适用生产力加成。[NEWLINE]点击准备并确认施工。'),
 ('en_US','LOC_SPC_CREW_BASE_READY','Locked base Production: {1_Capacity}, subject to applicable Production modifiers.[NEWLINE]Prepare and confirm construction.');
+
+-- B239: unfinished paid formation retains capacity.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CREW_OCCUPANCY','来源名额：存活{1}，未完成组建{2}（含续建{3}）；未完成组建继续占用名额。'),
+('zh_Hans_CN','LOC_SPC_CREW_RESUME_CAPACITY_HELD','现役施工队及已排队项目已占满可完成名额；保留本次成本与进度，释放名额后可续建。'),
+('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','本城来源施工队及已接入的未完成组建共同占用名额；有进度的暂停项目继续占位。续建沿用原成本与已有进度，不额外申请名额。'),
+('en_US','LOC_SPC_CREW_OCCUPANCY','来源名额：存活{1}，未完成组建{2}（含续建{3}）；未完成组建继续占用名额。'),
+('en_US','LOC_SPC_CREW_RESUME_CAPACITY_HELD','现役施工队及已排队项目已占满可完成名额；保留本次成本与进度，释放名额后可续建。'),
+('en_US','LOC_SPC_CREW_FORMATION_HELP','本城来源施工队及已接入的未完成组建共同占用名额；有进度的暂停项目继续占位。续建沿用原成本与已有进度，不额外申请名额。');

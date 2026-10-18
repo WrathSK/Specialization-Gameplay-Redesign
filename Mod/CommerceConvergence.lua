@@ -1,7 +1,38 @@
 include('RuntimeWork')
 -- D0024: independently planned, absolute city-layer integer grants.
 SPCCommerceConvergence={}
-function SPCCommerceConvergence.Start(P,shared)
+function SPCCommerceConvergence.Start(P,shared,options)
+ if options and options.retired then
+  local d={retired=true,ready=false,busy=false,errors={},writes=0};shared.CommerceConvergence=d
+  local ids={};for _,y in ipairs({'SCIENCE','CULTURE','PRODUCTION'})do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+  function d.Withdraw(c)
+   assert(c and P.IsTestPlayer(c:GetOwner()),'COM_LEGACY_OWNER_UNSUPPORTED')
+   assert(shared.CityProgressionStore.HistoricalReference(c),'COM_LEGACY_REFERENCE_UNKNOWN')
+   local rows={}
+   for _,id in ipairs(ids)do
+    local row=assert(P.Info('Buildings',id),'COM_LEGACY_DEFINITION_UNKNOWN')
+    local has=P.HasBuilding(c:GetBuildings(),row.Index);assert(type(has)=='boolean','COM_LEGACY_PRESENCE_UNKNOWN')
+    rows[#rows+1]={id=row.Index,has=has}
+   end
+   for _,v in ipairs(rows)do if v.has then P.RemoveBuilding(c:GetBuildings(),v.id);assert(P.HasBuilding(c:GetBuildings(),v.id)==false,'COM_LEGACY_REMOVE_UNCONFIRMED');d.writes=d.writes+1 end end
+   return true
+  end
+  function d.Audit(scope)
+   if d.busy then return end;d.busy=true
+   for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid)then
+    local cs=p:GetCities();if cs then for _,c in cs:Members()do
+     local ok,err=pcall(d.Withdraw,c);d.errors[pid..':'..c:GetID()]=not ok and tostring(err) or nil
+    end end
+   end end
+   d.ready=true;d.busy=false
+  end
+  function d.Control(_,_,action)assert(action=='READ','COM_LEGACY_RETIRED')end
+  function d.Describe()return '旧商业汇聚已退出；当前商业化与商业信誉请查看商业化面板。'end
+  function d.ExperimentalNetworkWithdraw(pid)d.Audit({player=pid});for _,e in pairs(d.errors)do assert(not e,'COM_LEGACY_REMOVE_UNCONFIRMED')end;return true end
+  local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function()d.Audit()end)end
+  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)shared.CityProgressionStore.RemoveOwned(c,loss,ids)end)end
+  return
+ end
  local d={busy=false,ready=false,last={},errors={},mode={},testCity={},baseline={},writes=0};shared.CommerceConvergence=d
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local batch

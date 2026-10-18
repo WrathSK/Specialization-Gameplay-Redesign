@@ -1,24 +1,24 @@
 # Commerce implementation preparation
 
-State: PLAN_READY / IMPLEMENTATION_NOT_AUTHORIZED. Updated2026-10-18 against develop `519dbac`, Commerce D0050, Shared D0045 and source/live B238.265. Batch grouping and the requested Crew repair share a proposed next checkpoint; this page does not authorize implementation or deployment.
+State: B239_LOCAL_COMPLETE / NATIVE_PENDING. Updated2026-10-18 against source basis `edf1416`, Commerce D0054 and Shared D0045. The user explicitly authorized B239 and separately accepted per-domain Floor. Implementation/validation and live receipt are distinguished below and in Status.
 
 ## 当前范围与停止点
 
 The user requests combining the remaining Industry Crew occupancy repair with the first Commerce batch. [B238 native review](../../Status/Validation/Results/Specialization_B238_Native_Review.md) records the confirmed counterexample. Industry's implemented main chain needs no additional ability batch; rare District-body purchase remains user-deferred, conditional protection/Faith/other-speed evidence stays explicitly bounded, and future balance is not a gate. Culture HOLD remains unchanged. Current runtime and authorization belong to [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) and [Authority](../../Workflow/Authority.json).
 
-Gameplay authority is [Commerce D0050](../../Design/Content/Commerce_D0050.json), [the Spec Commerce section](../../Design/Specialization_v0.1_Design_Spec.md#8-commerce--commercial-hub--com) and [Shared named lifecycle](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE). This revision replaces the preparation's obsolete0.1 coefficient, unresolved X/S/exclusivity/protection list, plot-only Development quote and fixed10-turn Development term. It records no new Gameplay decision and does not transfer Industry/Meaning Floor to Commerce.
+Gameplay authority is [Commerce D0054](../../Design/Content/Commerce_D0054.json) (D0050 contracts retained except the explicit per-domain Floor), [the Spec Commerce section](../../Design/Specialization_v0.1_Design_Spec.md#8-commerce--commercial-hub--com) and [Shared named lifecycle](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE). This revision replaces the preparation's obsolete0.1 coefficient, unresolved X/S/exclusivity/protection list, plot-only Development quote and fixed10-turn Development term. D0054 records the subsequent user choice to Floor each Commercialization domain separately then sum; this is not transfer of another ability's rounding.
 
 ## 当前落地与可复用范围
 
 | System | Current implementation | Remaining work |
 |---|---|---|
 | Commerce I/II support | Existing automatic support/qualification | Inherit scoped evidence; preserve baseline specialists/housing/GPP |
-| Commercialization | New D0050 writer/configuration absent | Five-domain selection, direct-route source facts, Gold, suspension and exact old-writer cutover |
-| Reputation | Absent | First permanent IV start, complete Identity-retaining turn age, cap40, current-IV effect gate |
+| Commercialization | B239 automatic writer/configuration implemented | Native Gold/clean-source freshness/UI acceptance pending |
+| Reputation | B239 Store-owned history implemented | Native first III→IV start, one complete turn and combined reload pending |
 | Capital Investment | Absent | Quote, debit, specific S source, locked outcome/protection, exactly-once settlement |
 | Development Investment | Absent |15% theoretical purchase quote, one active contract per target city, +50% district-building production and completion exit |
 | Restructuring | Absent |500P Team, REALLOCATING, one permanent Potential debit, disruption and configuration |
-| Old Commerce | Still wired |3 connected-kind specialist carriers and48 Convergence carriers must retire with COM-A |
+| Old Commerce | B239 exact3+48 retired | Definitions retained for cleanup; no old forward writer |
 
 The old [InvestmentAction](../../../Mod/InvestmentAction.lua) is Settler/Potential investment, not a Gold contract. [EffectiveFacts](../../../Mod/EffectiveFacts.lua), [Store](../../../Mod/CityProgressionStore.lua), [NetworkInput](../../../Mod/NetworkInput.lua) and [NetworkBridge](../../../Mod/NetworkBridge.lua) provide reusable facts/references; their presence is not new Commerce acceptance.
 
@@ -37,14 +37,14 @@ Keep the existing O/P/Q/R/S/T decomposition. Group native acceptance by usable c
 
 | Batch | Scope | New uncertainty / dependency |
 |---|---|---|
-| **Proposed B239: Crew occupancy + COM-A** | Crew repair below; O direct-pair facts; P1 selection/order; P2 current Gold and exact cutover; S1 reputation and read-only status | Gold precision/non-recursion, new configuration/reputation persistence, actual action entry; no Capital/Development/Restructuring |
+| **B239 local-complete: Crew occupancy + COM-A** | Crew repair below; O direct-pair facts; P1 selection/order; P2 current Gold and exact cutover; S1 reputation and read-only status | Native integer Gold/clean-input freshness, new configuration/reputation persistence and actual action entry; no Capital/Development/Restructuring |
 | **COM-B Capital** | Q1 stable and Q2 venture, shared quote/confirm/maturity panel | Resolve S tie-break; connected-network source evidence; principal/return precision; reliable debit/locked outcome/one settlement |
 | **COM-C Development** | R outgoing eligibility, theoretical price, selected district's buildings +50%, next eligible completion exit | Price reader and completion selection; one additive Standardization native comparison |
 | **COM-D Restructuring** | T1 protected Team and T2 complete REALLOCATING transaction | Broadest Identity/ownership closure; split primitive and transaction only if native evidence requires it |
 
 ## Proposed B239 combined slice
 
-The user requested one combined Industry/Commerce acceptance. Implementation still requires approval of this concrete scope; no new build is assigned by this planning record.
+The user approved this exact combined scope on2026-10-18. The original proposal heading is retained for earlier evidence links; B239 implementation and acceptance boundaries are recorded below.
 
 **Crew repair.** The current writer explicitly excludes PAUSED admissions from `reserved`, while resumption requests a new free slot. Count each admitted unfinished project, including a positive-progress paused one, once alongside surviving source-bound units. Resuming must reuse its existing admission, including at full occupancy; it must not require another slot. Completion exchanges the admitted slot for the living unit. Preserve native progress, project ID, locked price, capacity, source, receipts, UNKNOWN and no-replay protection. Separate actual queue count from total committed occupancy; do not replace every `reserved` use mechanically. Use existing order records and native inventory, not a new persistent counter or schema.
 
@@ -54,7 +54,7 @@ Synchronize Gameplay admission, published eligibility, the project row/tooltip a
 
 **Prerequisite closure inside the batch.** Read the existing [audit scheduling](../../Reports/Proposals/Audit_Followup_Priorities.md) only for affected findings. AF-06(b)'s global-write-triggered `CommerceConvergence.Audit()` still exists; retire that subscription with the old writer rather than copying it. Extend the current immutable/read-only network boundary for required route facts; do not read mutable `bridge.players` as a second authority. B232 fixed ordinary proof/recovery but did not remove `NetworkSender`'s silent128-route/16384-byte returns: include a minimal explicit transport-limit/unavailable signal and local boundary checks before adding the new route consumer. Do not increase caps, invent partial-route semantics, rewrite every network consumer, or reopen the general performance audit. Shared D/current facts reuse is bounded to a reliable input version and invalidates on real changes.
 
-**Precision gate.** Preserve the raw D0050 formula. Existing fixed-city-yield truncation and old Convergence Floor do not validate fractional Commercialization Gold. Check the selected native writer, actual Gold accounting, applicable city modifiers and exclusion of its own Gold from Harbor X. If exact fractional output/non-recursion cannot be preserved, report the concrete limitation and proposed final quantization boundary for user decision before a formal writer cutover. No silent Floor, hidden cap, guessed inverse multiplier or Treasury lump-sum replacement. Preparatory UI/model work cannot be called delivered Commercialization.
+**Precision decision.** The user chose each-domain Floor then sum (D0054). Preserve raw values; use the existing integer city-yield family. Native actual Gold and clean-input freshness remain scoped acceptance, not a new Design question. No extra cap/clamping, guessed inverse multiplier or Treasury lump-sum replacement.
 
 **Local delta coverage.** Actual Crew writer: paused+living occupancy, full-cap resume, new-start rejection, current/old price, cancel, duplicate completion, failed readback and the existing over-admitted state; do not carry forward the old test asserting pause frees capacity. Actual Commerce path: event publication order, same-turn worker/D/X/route changes, direct versus distributed route inputs, new epoch/UNKNOWN/loss, LIFO3→1→2→3, selection load, reputation age/deactivation/identity exit, own-output recursion, exact3+48 retirement and no hidden-context frames. One readable current-state report and existing bounded log, not a new counter framework.
 
@@ -76,7 +76,7 @@ COM-A adds only the indexes it consumes; later batches extend the same verified 
 
 ## P与S：配置、当前效果与制度历史分开
 
-Commercialization uses `Gold_domain = 0.05 * D_local * X_highest_eligible_total_city_yield * (1 + 0.005 * R_effective)`. D is existing absolute infrastructure depth; X is total city Science/Culture/Production/Faith/Gold for the mapped domain, not district attribution. Exclude Commercialization-created Gold from X. Do not import the retired20% copy, a new cap, Industry Floor or Meaning's per-domain Floor.
+Commercialization uses `Gold_domain = Floor(0.05 * D_local * X_highest_eligible_total_city_yield * (1 + 0.005 * R_effective))`, then sums domains (D0054). D is existing absolute infrastructure depth; X is total city Science/Culture/Production/Faith/Gold for the mapped domain, not district attribution. Exclude Commercialization-created Gold from X. Do not import the retired20% copy or a new cap; the Floor here is its own explicit D0054 decision.
 
 Persist selected domains and activation order. Manual close removes one entry, reopening makes it newest. Capacity loss suspends latest selections; restoration resumes earliest first. Same Identity with ACTIVE loss retains configuration; Identity exit or Owner change clears it. Same-Owner/Identity load restores configuration and recomputes current effective entries, never restores an old yield snapshot.
 
@@ -119,7 +119,7 @@ COM-D reviews actual Identity/ACTIVE and exit/return consumers, validates disrup
 
 | Item | Scope / timing |
 |---|---|
-| Fractional Commercialization Gold and exclusion of own amplified output | COM-A writer gate; no default Floor. A limitation requiring changed semantics goes to user |
+| Commercialization precision / own-output exclusion | D0054 closes rounding: each domain Floor then sum. Native integer Gold/clean getter freshness remain B239 gates |
 | Capital earliest-attainment tie-break | Narrow Design clarification before COM-B; no impact on COM-A |
 | Capital debit/returns and Development15% price precision | Decide at their respective implementation batch; do not pre-approve one rounding rule |
 | Connected-network S source exposure | Technical COM-B boundary; common recipients/national max are not automatically the correct pool |
@@ -133,6 +133,29 @@ X, S ACTIVE/minimum/domain eligibility, Capital concurrency, venture n/Owner pol
 
 Use task-scoped Content objects and direct source/caller closure. Exact cutover IDs and current native getters must be checked at implementation; the Advisor report is not permission. Normal calculation reads only needed facts. Configuration/reputation are persistent business state; route/yield caches are derived, version-scoped and replaceable; UI snapshots are temporary, invalidated on input/selection changes and revalidated on confirmation. Diagnostics are bounded. No periodic timers, per-frame polling, extra GC or broad all-module migration.
 
-This checkpoint contains source review, one actual-writer counterexample and documentation/context checks only. New Commerce has no LOCAL_SIMULATION_PASS or USER_GAME_TEST_PASS. New persistence/writer closure receives targeted L3, ordinary projection L2, text/layout L1. Inherit unchanged shared evidence and combine native steps by marginal information value. Publish only this batch's reviewed documentation; keep raw screenshots/logs and local reproduction ignored.
+The original preparation review contained source evidence and one actual-writer counterexample only. B239 now has the scoped LOCAL_SIMULATION_PASS below; new Commerce has no USER_GAME_TEST_PASS. New persistence/writer closure receives targeted L3, ordinary projection L2, text/layout L1. Inherit unchanged shared evidence and combine native steps by marginal information value. Publish only this batch's reviewed source/tests/documentation; keep raw screenshots/logs and local reproduction ignored.
 
-User decision: proposed B239 scope/precision gate for approval; Capital tie-break deferred to COM-B. User testing: none now. Primary next: implement only after scope approval; stop this planning checkpoint without code, runtime, configuration or deployment changes.
+User decision: B239 and per-domain Floor accepted; Capital tie-break remains for COM-B. User testing/Primary next: see the current B239 implementation section and Status.
+
+## B239 implementation and validation
+
+B239 implements the approved Crew occupancy repair, COM-A configuration/effects and Reputation; [local result and one combined native flow](../../Status/Validation/Results/Specialization_B239_Commercialization_Local.md).336 targeted checks pass; native Gold/clean-source freshness/UI/new persistence are pending. Current source/deployment remains solely in Status/Authority.
+
+| Authority / resource | Owner and lifetime |
+|---|---|
+| Selected domains/order | CommerceModel + optional Store commerceKnown/value; maximum5, same-Identity load restores, Owner change clears; current suspension is derived |
+| Reputation | Store starts at verified third investment, ticks complete Standard turns independently of ACTIVE, caps40 without further writes; unsupported Owner freezes, return excludes foreign gap; missing expected history held |
+| D/X/current ACTIVE/workers | Current native/shared facts; one temporary audit batch, remote X does not require remote district/identity/Store; no stored yield snapshot |
+| Direct routes | NetworkBridge private verified direct-pair index, copied API CurrentDomesticPartners; UNKNOWN distinct empty; transport-limit reason explicit, no partial route set |
+| Gold/access | Commerce owns exactly31 Gold bits + one opener marker; staged own-Gold withdrawal → all plans → publication for Harbor inputs, exact readback/cleanup and residual diagnostics |
+| UI | One pre-enqueue production opener, visible five-domain dashboard, immutable copied view, one explicit scalar select request with reference/token/revision; no hover request or timer |
+| Pending/dependencies | Event-coalesced dirty cities and reverse X dependencies; replace memberships on new inputs, clear on confirmed loss; other profession native writes mark their real source city |
+| Legacy | Exact3 Commerce flags +48 Convergence retired. No forward request/start/global-output audit; startup withdrawal only supported Store-confirmed cities. Other professions/basic support/topology retained |
+
+First entry uses the existing permanent-city callback after Store/Claim commits; investment refresh is immediate and city-scoped. Construction callbacks do not treat district-type argument as cityID. No new periodic scan, GC, persistence framework or general Store rewrite. Existing eight-city Shared D cache remains unchanged; local-only D avoids new remote completeness scans.
+
+The approved Floor is exclusive to Commercialization. New actual-Gold freshness after withdrawal is native-pending; encoding failure holds instead of clamps. Existing P4 without a reliable reputation start is explicitly unavailable; begin native reputation acceptance with III→IV. Failure cleanup does not claim zero while owned carriers remain.
+
+After deployment, the one combined flow covers Crew pause/resume occupancy, two Commercialization selections and specialist restoration, one real same-turn source change, one Reputation turn, and one combined cold load. Inherit previous Industry and shared lifecycle acceptance; do not repeat old Probe rituals. Stop at B239; Capital/Development/Restructuring remain separate.
+
+The current speed must reliably resolve to Standard by GameSpeedType. Other/unknown speeds hold Commerce effects and do not start/tick Reputation, without blocking ordinary investment commits or erasing existing business history. No guessed speed scaling.

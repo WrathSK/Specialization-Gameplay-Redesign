@@ -82,7 +82,7 @@ class Revalidation(unittest.TestCase):
 
     def test_recovery_notifies_all_named_consumers_once_without_new_input(self):
         l=pipeline();l.execute('''
-          watched={};for _,n in ipairs({'Lv3Effects','StandardizationEffects','CommerceConvergence'})do
+          watched={};for _,n in ipairs({'Lv3Effects','StandardizationEffects','Commerce'})do
             local name=n;watched[name]=0;shared[name]={Audit=function(p)
               watched[name]=watched[name]+1;assert(p.player==0 and p.availability=='AVAILABLE')
               local again=net.Refresh(0);assert(again==false)
