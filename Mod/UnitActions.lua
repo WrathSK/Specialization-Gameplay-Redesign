@@ -25,7 +25,10 @@ function SPCUnitActions.Start(P,shared)
   local c=target(pid,u);local s=shared.ConstructionProbe.ReadSnapshot(pid,c)
   local row=s.kind=='Buildings' and P.Info('Buildings',s.target)
   assert(row and (row.IsWonder==true or row.IsWonder==1) and s.progress<s.cost,'CREW_WONDER_REQUIRED')
-  return c,s
+  -- B237 native boundary: AddProgress truncates the input then uses the
+  -- ordinary multiplier path. No exact replacement is established yet.
+  -- Reject before receipt/reservation/debit; never silently ship an estimate.
+  error('CREW_FIXED_INJECTION_UNAVAILABLE')
  end
  -- B045 presentation-only refresh. Reuse exact existing eligibility/queue checks.
  -- Invalidating an ephemeral preview never consumes, grants or changes city facts.
@@ -120,7 +123,7 @@ function SPCUnitActions.Start(P,shared)
    assert(after.target==s.target and after.progress==s.progress and after.cost==s.cost,'TARGET_CHANGED_AFTER_DEBIT')
    record('GRANT_ATTEMPTED') -- Never automatically replay an uncertain engine grant.
    shared.CrewProjects.RecordUse(pid,c,plan.unitID,'CREW_USE_ATTEMPT',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
-   c:GetBuildQueue():AddProgress(math.min(amount,s.cost-s.progress))
+   error('CREW_FIXED_INJECTION_UNAVAILABLE') -- no amplified fallback
    record('GRANT_RETURNED')
    shared.CrewProjects.RecordUse(pid,c,plan.unitID,'CREW_USE_RETURNED',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
    return 'CREW CONSUMED | added='..math.min(amount,s.cost-s.progress)..' | wasted='..math.max(0,amount-(s.cost-s.progress))..'\nVerify native target progress. Repeated confirm cannot grant again.'
@@ -142,6 +145,7 @@ function SPCUnitActions.Start(P,shared)
     PREPARE_THIS_UNIT_FIRST='请先准备当前单位的操作。',
     PREVIEW_TOKEN_CHANGED='准备内容已变化，请重新准备。',
     TARGET_CHANGED_PREPARE_AGAIN='建设目标或进度已变化，请重新准备。',
+    CREW_FIXED_INJECTION_UNAVAILABLE='固定施工量接口仍待解决；本次不消耗施工队、不增加生产力。',
     CREW_SOURCE_UNAVAILABLE='施工队缺少可靠来源绑定，请停止操作并回传日志。',
     CREW_WONDER_REQUIRED='施工队只能用于当前正在建造的奇观。',
     CREW_PAID_FORMATION_REQUIRED='请从工业城市生产列表付费组建施工队。',

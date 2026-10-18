@@ -1,7 +1,7 @@
 -- B236 protected fixed denomination units. No regular training/purchase.
 INSERT INTO Types(Type,Kind) VALUES ('UNIT_SPC_CREW_250','KIND_UNIT');
 INSERT INTO Units(UnitType,Name,Description,BaseSightRange,BaseMoves,Domain,FormationClass,Cost,CanTrain,CanCapture,BuildCharges,CanEarnExperience,CanRetreatWhenCaptured)
-VALUES('UNIT_SPC_CREW_250','LOC_UNIT_SPC_CREW_250_NAME','LOC_UNIT_SPC_CREW_250_DESCRIPTION',2,2,'DOMAIN_LAND','FORMATION_CLASS_CIVILIAN',375,0,0,1,0,1);
+VALUES('UNIT_SPC_CREW_250','LOC_UNIT_SPC_CREW_250_NAME','LOC_UNIT_SPC_CREW_250_DESCRIPTION',2,2,'DOMAIN_LAND','FORMATION_CLASS_CIVILIAN',390,0,0,1,0,1);
 -- Intentionally no CLASS_BUILDER, Improvement_ValidBuildUnits, purchase yield or replacement.
 
 INSERT INTO Types(Type,Kind) VALUES ('UNIT_SPC_CREW_420','KIND_UNIT');

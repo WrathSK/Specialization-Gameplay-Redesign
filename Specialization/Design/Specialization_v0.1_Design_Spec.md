@@ -2,16 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0051
+Design Revision: D0052
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-10-17
-Acceptance Evidence: 用户在B224实机反馈中明确修正v0.1艺文采撷：只要目标城市仍有合格巨作就继续，不锁定具体作品；本轮只记录接受与修复计划，不授权新的Gameplay实现或部署。
-Previous Accepted Revision: [D0050冻结原文](Revisions/Specialization_Design_Spec_D0050.md)
-Latest Accepted Design Revision: D0051
+Acceptance Date: 2026-10-18
+Acceptance Evidence: 用户批准B237，并明确一级施工队基础施工力由250改为260，相关组建成本同步；其它Design规则、名字与成熟度不变。实现和原生验证范围分别由Status记录。
+Previous Accepted Revision: [D0051冻结原文](Revisions/Specialization_Design_Spec_D0051.md)
+Latest Accepted Design Revision: D0052
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
+
+**SCOPE-001（D0052）** 一级施工队标准速度基础施工力为260；150%／140%／130%／120%成本对应390／364／338／312。II–V档420／750／1000／1360、开工锁价、固定注入不受普通Production加成及其它规则不变。[接受记录](Design_ChangeLog.md#accepted-d0052--2026-10-18)。
 
 **SCOPE-001（D0051）** v0.1艺文采撷按目标城市当前至少1件合格文化巨作维持任务，不锁定具体巨作／槽位／建筑；移动、出售或替换原作品但仍有其它合格作品时继续，可靠确认全城无合格作品时取消，UNKNOWN不当作空。只取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼仍锁定具体奇观，其它规则与D0050商业设计保持。接受记录见[ChangeLog](Design_ChangeLog.md#accepted-d0051--2026-10-17)。
 
@@ -183,7 +185,7 @@ D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Cult
 
 **D0045: DESIGN_FROZEN — 在D0044职责／首测值上追加每模板来源绑定、正式Gold/Faith、研习中断、专业单位保护与最终Floor；模板可靠性及历史合同保留，implementation / balance validation pending.**
 
-唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0045.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
+唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0052.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -206,7 +208,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **IND-TRADITION-STUDY-001 — ACCEPTED D0044 / D0045中断增量** 全国E为B文明实际完成奇观自身时代去重历史，从游戏开始计、不要求工业；本城成功研习L为A城市历史。Industry ACTIVE IV且L<E可做完整1 Production Turn，成功提交L+1。IV来源输出建造10%＋2%×L、已有合法Gold／Faith购买折扣2%×L；III保留L／不研习，只输出基础10%／0%；低III或退出身份不输出；恢复IV直接恢复全部L。易主E<L不删除／降级／截断L，E只限制新增，不设五层／人工cap。明确采用与Dialogue相同完整1T事务、以Industry IV资格：ACTIVE不足IV（含总督离开）、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，无L、无半进度；重新合格且L<E重做完整1T，已提交历史L不变。不导入Dialogue时代额度／倍率。
 
-**IND-PRACTICE-COST-001 — ACCEPTED D0044** 工程实践仍为当前ACTIVE IV能力，N为本城真实历史奇观数、不看完成Owner／Identity／ACTIVE／Governor。III成本统一150%；IV N0／1–2／3–5／6+为150／140／130／120%×锁定基础施工力，累计门槛1／3／6。只改组建投入，不强化标准化或队伍施工力。III开放I–III、IV额外IV–V，不要求E4／5或其它传统门槛。五档施工力250／420／750／1000／1360，标准速度首测成本完整表见content。
+**IND-PRACTICE-COST-001 — ACCEPTED D0044** 工程实践仍为当前ACTIVE IV能力，N为本城真实历史奇观数、不看完成Owner／Identity／ACTIVE／Governor。III成本统一150%；IV N0／1–2／3–5／6+为150／140／130／120%×锁定基础施工力，累计门槛1／3／6。只改组建投入，不强化标准化或队伍施工力。III开放I–III、IV额外IV–V，不要求E4／5或其它传统门槛。五档施工力260／420／750／1000／1360（一级按D0052修正），标准速度首测成本完整表见content。
 
 **IND-PRACTICE-COST-002 — ACCEPTED clarification 2026-10-17** 开工时锁定本次施工队组建成本。训练中本城N或ACTIVE改变不重算已开工队伍的成本；下一队按新开工时的资格与价格计算。不改变施工力、既定倍率、来源／容量或其它生命周期合同。
 

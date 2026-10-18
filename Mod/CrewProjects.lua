@@ -1,6 +1,6 @@
 include('CrewModel')
 include('ExpeditionTrainingDiagnostics')
--- B236: paid native projects; saved admission/grant proof; native living inventory.
+-- B237: paid native projects; paused native progress retains its started admission; saved admission/grant proof; native living inventory.
 -- This writer never guesses a source from a new unit's position or name.
 SPCCrewProjects={}
 function SPCCrewProjects.Start(P,shared)
@@ -25,16 +25,19 @@ function SPCCrewProjects.Start(P,shared)
   local a=source(pid,c);local v=c:GetProperty(M.ORDER_PROPERTY)
   if v==nil then return {version=1,source=a.token,x=a.x,y=a.y,owner=pid,serial=0,orders={}},nil,a end
   assert(type(v)=='table' and v.version==1 and v.source==a.token and v.x==a.x and v.y==a.y and M.Int(v.serial)
-   and M.Int(v.owner) and type(v.orders)=='table' and #v.orders<=2,'CREW_ORDER_HISTORY_INVALID')
+   and M.Int(v.owner) and type(v.orders)=='table' and #v.orders<=#M.CAPACITY*#M.RATIOS+2,'CREW_ORDER_HISTORY_INVALID')
   if v.owner~=pid then assert(#v.orders==0,'CREW_PREVIOUS_OWNER_ORDER_HELD');local n=cp(v);n.owner=pid;return n,v,a end
-  local seen={}
+  local seen,paused={},{};local reserved=0
   for _,o in ipairs(v.orders)do
    local tier,ratio=M.Parse(o.project)
    assert(type(o)=='table' and tier and tier==o.tier and ratio==o.ratio and M.Int(o.serial) and o.serial<=v.serial
-    and not seen[o.serial] and M.Int(o.base) and M.Int(o.capacity) and o.capacity>0
-    and (o.stage=='RESERVED' or o.stage=='QUEUED' or o.stage=='CALLING' or o.stage=='HELD'),'CREW_ORDER_HISTORY_INVALID')
+    and not seen[o.serial] and M.Int(o.base) and M.Int(o.capacity) and o.capacity>0 and M.Int(o.price) and o.price>0
+    and (o.stage=='RESERVED' or o.stage=='QUEUED' or o.stage=='CALLING' or o.stage=='HELD' or o.stage=='PAUSED'),'CREW_ORDER_HISTORY_INVALID')
    seen[o.serial]=true
+   if o.stage=='PAUSED'then assert(not paused[o.project],'CREW_ORDER_HISTORY_INVALID');paused[o.project]=true
+   else reserved=reserved+1 end
   end
+  assert(reserved<=2,'CREW_ORDER_HISTORY_INVALID')
   return cp(v),v,a
  end
  local function save(c,old,v)
@@ -46,9 +49,14 @@ function SPCCrewProjects.Start(P,shared)
  local function queue(pid,c)
   local r=assert(ExposedMembers.SPC_CrewNativeRead,'CREW_UI_READER_UNAVAILABLE')(pid,c:GetID())
   assert(type(r)=='table' and r.owner==pid and r.city==c:GetID() and r.x==c:GetX() and r.y==c:GetY()
-   and r.turn==Game.GetCurrentGameTurn() and type(r.projects)=='table' and type(r.completed)=='table','CREW_QUEUE_UNKNOWN')
+   and r.turn==Game.GetCurrentGameTurn() and type(r.projects)=='table' and type(r.completed)=='table' and type(r.progress)=='table','CREW_QUEUE_UNKNOWN')
   local count=0;for id,n in pairs(r.projects)do assert(M.Parse(id) and M.Int(n),'CREW_QUEUE_UNKNOWN');count=count+n end
-  assert(count<=2,'CREW_QUEUE_OVER_CAPACITY');return r,count
+  assert(count<=2,'CREW_QUEUE_OVER_CAPACITY')
+  for tier in ipairs(M.CAPACITY)do for _,ratio in ipairs(M.RATIOS)do
+   local id=M.Project(tier,ratio,speed());local value=r.progress[id]
+   assert(type(value)=='number' and value>=0 and value<1000000000,'CREW_PROJECT_PROGRESS_UNKNOWN')
+  end end
+  return r,count
  end
  function d.Unit(pid,u)
   assert(u and u:GetOwner()==pid,'CREW_OWNER_CHANGED')
@@ -98,21 +106,36 @@ function SPCCrewProjects.Start(P,shared)
    assert(P.HasBuilding(b,row.Index)==wanted,'CREW_MARKER_WRITE_UNCONFIRMED')
   end
  end
+ local function reserved(v)
+  local n=0;for _,o in ipairs(v.orders)do if o.stage~='PAUSED'then n=n+1 end end;return n
+ end
  local function reconcile(pid,c,v,old,q)
-  -- Queue removal is cancellation, never a refund. A proved completion or
-  -- in-flight admission must not be mistaken for removal during nested events.
-  local changed=false;local keep={};local available=cp(q.projects)
+  -- A native project owns one progress bucket even when absent from the queue.
+  -- Keep at most one paused admission per bucket, separate from the two slots.
+  local initial=cp(v);local keep,paused,available={}, {},cp(q.projects)
   for _,o in ipairs(v.orders)do
-   if o.stage=='CALLING' or o.stage=='HELD'then keep[#keep+1]=o
-   elseif (available[o.project] or 0)>0 then
-    available[o.project]=available[o.project]-1
-    if o.stage~='QUEUED'then o.stage='QUEUED';changed=true end;keep[#keep+1]=o
-   elseif o.stage=='RESERVED' and issued[key(pid,c:GetID())..':'..o.serial]then keep[#keep+1]=o
+   local before=o.stage;local retain=true
+   if before=='CALLING' or before=='HELD'then
+   elseif before~='PAUSED' and (available[o.project] or 0)>0 then
+    available[o.project]=available[o.project]-1;o.stage='QUEUED';o.resuming=nil
+   elseif before=='RESERVED' and issued[key(pid,c:GetID())..':'..o.serial]then
+   elseif q.progress[o.project]>0 then
+    -- Positive local progress is not a missed completion in another city.
+    -- Do not duplicate a shared bucket still represented in this city's queue.
+    if not paused[o.project] and (q.projects[o.project] or 0)==0 then
+     o.stage='PAUSED';o.resuming=nil;paused[o.project]=true
+    else retain=false end
    elseif (q.completed[o.project] or -1)>o.base then
-    o.stage='HELD';changed=true;keep[#keep+1]=o -- missed native completion cannot be reconstructed as a grant
-   else changed=true end
+    o.stage='HELD' -- zero progress + new counter is not proof of cancellation
+   else retain=false end
+   if retain then keep[#keep+1]=o end
+   if not retain or before~=o.stage then
+    observe('CREW_ORDER_STATE',pid,c,{projectType=o.project,reservation=o.serial,lockedPrice=o.price,
+     nativeProgress=q.progress[o.project],queued=q.projects[o.project] or 0,phase=retain and o.stage or 'CANCELLED'})
+   end
   end
-  if changed then v.orders=keep;save(c,old,v);old=cp(v)end
+  v.orders=keep
+  if not same(v,initial)then save(c,old,v);old=cp(v)end
   return v,old
  end
  local function audit(pid,id,inventory)
@@ -124,17 +147,31 @@ function SPCCrewProjects.Start(P,shared)
   for _,o in ipairs(v.orders)do if o.stage=='HELD' or o.stage=='CALLING'then held=true end end
   for _,r in pairs(receipts(pid))do if r.stage=='CALLING' and r.source==a.token then held=true end end
   local ratio,active,N=qualified(pid,c,a)
-  local available=not held and count+#v.orders<2 and ratio~=nil
-  local wanted={}
+  local slots=reserved(v);local room=not held and count+slots<2
+  local allowed,startable,retained,wanted={}, {}, {}, {};local paused=0
+  for _,o in ipairs(v.orders)do
+   if o.stage=='PAUSED'then paused=paused+1 end
+   if o.stage=='PAUSED' or o.stage=='QUEUED' or o.stage=='RESERVED'then
+    assert(q.costs[o.project]==o.price,'CREW_NATIVE_COST_MISMATCH')
+    retained[o.project]={stage=o.stage,price=o.price}
+   end
+  end
   for tier in ipairs(M.CAPACITY)do for _,price in ipairs(M.RATIOS)do
-   local idp=M.Project(tier,price,speed())
-   local admitted=false;for _,o in ipairs(v.orders)do if o.project==idp and o.stage~='HELD' and o.stage~='CALLING'then admitted=true end end
-   local value=admitted or available and price==ratio and tier<=(active==4 and 5 or 3)
-   marker(c,M.Marker(tier,price),value);wanted[idp]=not not (available and price==ratio and tier<=(active==4 and 5 or 3))
+   local idp=M.Project(tier,price,speed());local record=retained[idp]
+   local fresh=room and ratio~=nil and price==ratio and tier<=(active==4 and 5 or 3)
+   local resume=room and record and record.stage=='PAUSED'
+   allowed[idp]=not not(record or fresh);startable[idp]=not not(resume or fresh)
+   wanted[M.Marker(tier,price)]=allowed[idp]
   end end
+  -- Add new eligibility before withdrawing obsolete unstarted variants.
+  for id,want in pairs(wanted)do if want then marker(c,id,true)end end
+  for id,want in pairs(wanted)do if not want then marker(c,id,false)end end
   marker(c,'BUILDING_SPC_CREW_PROJECT_ACCESS',false) -- exact retired B044 access only
-  local view={owner=pid,city=id,source=a.token,active=active,N=N,ratio=ratio,count=count,reserved=#v.orders,held=not not held,allowed=wanted}
-  if not same(d.views[k],view)then d.views[k]=view;d.revision=d.revision+1;observe('CREW_STATE',pid,c,{count=count,queued=#v.orders,wanted=available,expected=ratio,phase=held and 'HELD' or 'READY'})end
+  local view={owner=pid,city=id,source=a.token,active=active,N=N,ratio=ratio,count=count,reserved=slots,paused=paused,
+   held=not not held,allowed=allowed,startable=startable,retained=retained}
+  if not same(d.views[k],view)then d.views[k]=view;d.revision=d.revision+1
+   observe('CREW_STATE',pid,c,{count=count,queued=slots,paused=paused,wanted=room,expected=ratio,phase=held and 'HELD' or 'READY'})
+  end
  end
  local function initialize()
   if d.ready then return true end
@@ -163,18 +200,29 @@ function SPCCrewProjects.Start(P,shared)
    if p.Action=='RESERVE'then
     assert(not failed[key(pid,p.CityID)],'CREW_SOURCE_HELD')
     local tier,ratio=M.Parse(p.Project);assert(tier,'CREW_PROJECT_UNKNOWN')
-    local wanted,active=qualified(pid,c,a);assert(ratio==wanted and tier<=(active==4 and 5 or 3),'CREW_PROJECT_NOT_CURRENT_PRICE')
+    local resume
+    for _,o in ipairs(v.orders)do
+     assert(o.stage=='QUEUED' or o.stage=='PAUSED','CREW_ORDER_PENDING')
+     if o.stage=='PAUSED' and o.project==p.Project then resume=o end
+    end
+    if not resume then
+     local wanted,active=qualified(pid,c,a);assert(ratio==wanted and tier<=(active==4 and 5 or 3),'CREW_PROJECT_NOT_CURRENT_PRICE')
+    end
     local count=d.Inventory(pid)[a.token] or 0
     for _,r in pairs(receipts(pid))do assert(r.source~=a.token or r.stage~='CALLING','CREW_GRANT_UNRESOLVED')end
-    for _,o in ipairs(v.orders)do assert(o.stage=='QUEUED','CREW_ORDER_PENDING')end
-    assert(count+#v.orders<2 and n==#v.orders,'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
-    local row=P.Info('Projects',p.Project);local capacity=M.Amount(tier,speed());local price=M.Cost(tier,ratio,speed())
+    assert(count+reserved(v)<2 and n==reserved(v),'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
+    local capacity=resume and resume.capacity or M.Amount(tier,speed())
+    local price=resume and resume.price or M.Cost(tier,ratio,speed())
     assert(q.costs[p.Project]==price,'CREW_NATIVE_COST_MISMATCH')
     local base=q.completed[p.Project];assert(M.Int(base),'CREW_NATIVE_COMPLETION_COUNTER_UNKNOWN')
-    v.serial=v.serial+1;local o={serial=v.serial,project=p.Project,tier=tier,ratio=ratio,capacity=capacity,price=price,
-     base=base,stage='RESERVED',turn=Game.GetCurrentGameTurn(),before=q.projects[p.Project] or 0}
-    v.orders[#v.orders+1]=o;save(c,old,v);issued[key(pid,p.CityID)..':'..o.serial]=true
-    observe('CREW_ORDER',pid,c,{reservation=o.serial,nativeCost=price,expected=capacity,phase='RESERVED'})
+    local o=resume
+    if not o then
+     v.serial=v.serial+1;o={serial=v.serial,project=p.Project,tier=tier,ratio=ratio,capacity=capacity,price=price}
+     v.orders[#v.orders+1]=o
+    else assert(q.progress[p.Project]>0,'CREW_RESUME_PROGRESS_UNKNOWN');o.resuming=true end
+    o.base=base;o.stage='RESERVED';o.turn=Game.GetCurrentGameTurn();o.before=q.projects[p.Project] or 0
+    save(c,old,v);issued[key(pid,p.CityID)..':'..o.serial]=true
+    observe('CREW_ORDER',pid,c,{projectType=o.project,reservation=o.serial,nativeCost=price,lockedPrice=price,nativeProgress=q.progress[o.project],expected=capacity,phase=resume and 'RESUMING' or 'RESERVED'})
     return {reservation=o.serial,project=p.Project,before=o.before,base=o.base}
    end
    local index;for i,o in ipairs(v.orders)do if o.serial==p.Reservation then index=i;break end end
@@ -182,7 +230,8 @@ function SPCCrewProjects.Start(P,shared)
    local o=v.orders[index]
    if p.Action=='CANCEL'then
     assert(o.stage=='RESERVED' and (q.projects[o.project] or 0)==o.before and q.completed[o.project]==o.base,'CREW_CANCEL_UNCONFIRMED')
-    table.remove(v.orders,index);save(c,old,v);issued[key(pid,p.CityID)..':'..o.serial]=nil;return {cancelled=true}
+    if o.resuming then o.stage='PAUSED';o.resuming=nil else table.remove(v.orders,index)end
+    save(c,old,v);issued[key(pid,p.CityID)..':'..o.serial]=nil;return {cancelled=true}
    end
    assert(p.Action=='CONFIRM','CREW_REQUEST_UNKNOWN')
    assert(o.stage=='QUEUED' or o.stage=='RESERVED','CREW_CONFIRM_HELD')
@@ -202,7 +251,7 @@ function SPCCrewProjects.Start(P,shared)
    local native=q.completed[row.ProjectType];assert(M.Int(native),'CREW_NATIVE_COMPLETION_COUNTER_UNKNOWN')
    local all=receipts(pid);local prior=all[row.ProjectType]
    if prior and native<=prior.count then return end -- duplicate/reordered notification, no second grant
-   local which;for i,o in ipairs(v.orders)do if o.project==row.ProjectType then which=i;break end end
+   local which;for i,o in ipairs(v.orders)do if o.project==row.ProjectType and o.stage~='PAUSED'then which=i;break end end
    assert(which,'CREW_COMPLETION_WITHOUT_ADMISSION');local o=v.orders[which]
    assert((o.stage=='QUEUED' or o.stage=='RESERVED') and native>o.base,'CREW_COMPLETION_NOT_PROVED')
    assert(not prior or prior.stage=='BOUND','CREW_PREVIOUS_GRANT_UNRESOLVED')
@@ -213,10 +262,10 @@ function SPCCrewProjects.Start(P,shared)
    local next=cp(all);next[row.ProjectType]={count=native,source=a.token,stage='CALLING'};receiptSave(pid,all,next)
    local grant=pid..':'..row.ProjectType..':'..native
    assert(source(pid,c).token==a.token,'CREW_SOURCE_CHANGED_DURING_GRANT')
-   local u=UnitManager.InitUnit(pid,'UNIT_SPC_CREW_'..M.CAPACITY[tier],c:GetX(),c:GetY())
+   local u=UnitManager.InitUnit(pid,'UNIT_SPC_CREW_'..M.IDS[tier],c:GetX(),c:GetY())
    assert(u and u:GetOwner()==pid and M.Int(u:GetID()) and Players[pid]:GetUnits():FindID(u:GetID()),'CREW_GRANT_RETURN_UNKNOWN')
    assert(source(pid,c).token==a.token,'CREW_SOURCE_CHANGED_DURING_GRANT')
-   assert(P.Info('Units',u:GetType()).UnitType=='UNIT_SPC_CREW_'..M.CAPACITY[tier],'CREW_GRANT_TYPE_MISMATCH')
+   assert(P.Info('Units',u:GetType()).UnitType=='UNIT_SPC_CREW_'..M.IDS[tier],'CREW_GRANT_TYPE_MISMATCH')
    assert(u:GetProperty(M.UNIT_PROPERTY)==nil,'CREW_GRANT_ALREADY_BOUND')
    local binding={version=1,owner=pid,source=a.token,x=a.x,y=a.y,tier=tier,capacity=o.capacity,grant=grant}
    pcall(P.SetProperty,u,M.UNIT_PROPERTY,cp(binding));assert(same(u:GetProperty(M.UNIT_PROPERTY),binding),'CREW_BINDING_UNCONFIRMED')
@@ -230,12 +279,17 @@ function SPCCrewProjects.Start(P,shared)
  function d.RecordUse(pid,c,uid,stage,capacity,progress,cost,amount)
   observe(stage,pid,c,{eventUnit=uid,expected=capacity,nativeProgress=progress,nativeCost=cost,count=amount})
  end
+ function d.RecordPrecision(pid,r)
+  observe('CREW_PRECISION',pid,r.cityID and city(pid,r.cityID) or nil,{eventUnit=r.unitID,nativeProgress=r.before,afterProgress=r.after,
+   expected=r.expected,actualDelta=r.observed,targetChanged=not r.afterReadError and r.afterTarget~=r.target or nil,readStatus=r.error and 'UNKNOWN' or 'OBSERVED'})
+ end
  function d.Describe(pid,c)
   d.Refresh(pid,c:GetID());local v=d.views[key(pid,c:GetID())];local err=d.errors[key(pid,c:GetID())]
   if err or not v then return '施工队：暂不可确认；'..tostring(err or 'CREW_NOT_READY')end
   return '施工队｜本城来源：'..v.count..'/2；在建或预留：'..v.reserved
    ..'\n当前新开工成本：'..(v.ratio and v.ratio..'%' or '未达到工业三级')..'；开工锁价，已完成队伍固定施工力。'
-   ..'\n仅用于奇观；注入不受普通生产力倍率加成，超额不溢出。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
+   ..'\n可续建半成品：'..v.paused..'；暂停不占队伍名额。'
+   ..'\n施工暂不可用：固定注入接口尚未解决，操作不会消耗施工队。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
  end
  function d.BindPermanentWrites()
   local prior=shared.OnPermanentCityWrite

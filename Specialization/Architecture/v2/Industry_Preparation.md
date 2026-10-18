@@ -1,13 +1,13 @@
 # 工业后续模块：调查与实施准备
 
-State: B233_NATIVE_ACCEPTED / B234_NATIVE_ACCEPTED / B235_NATIVE_ACCEPTED_SCOPED / B236_LOCAL_COMPLETE_NATIVE_PENDING.
-Review baseline: B235.262 / develop `324b326`. B235 native review accepts the tested study/restore, quote and Wonder results, retaining the same-turn IV-entry defect; current deployment/acceptance provenance remains in Status. Industry/Shared D0045 are unchanged. The explicit v0.1 Research-network isolation is an implementation deferral, not a replacement Design.
+State: B237_CONTINUATION_LOCAL_COMPLETE / FIXED_INJECTION_BLOCKED / NATIVE_CONTINUATION_PENDING.
+Review baseline: B236.263 / develop `72dc64f`; D0052 changes tier-I260 and its dependent prices only. B236 native results accepted cap/release/IV-entry/new-price behavior but failed fixed injection and unfinished-price continuity. Current deployment/acceptance provenance remains in Status.
 
 ## 当前范围与正式来源
 
-The user accepted B233 history/template evidence and B234 steps1–3: first-turn Industry I support repair, III Standardization baseline, exact old Industry effect retirement, and isolation of the old Research network effect until after v0.1. The common network and other profession abilities remain. B235 / IND-3 has scoped native acceptance; its IV-entry delay is repaired in the authorized B236 / IND-4 batch, locally complete with native acceptance pending. Expedition, remaining Meaning and era presentation stay nonblocking HOLD; Balance is outside this task. [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns current source/live/authorization and native results.
+The user accepted B233 history/template evidence and B234 steps1–3: first-turn Industry I support repair, III Standardization baseline, exact old Industry effect retirement, and isolation of the old Research network effect until after v0.1. The common network and other profession abilities remain. B235 / IND-3 has scoped native acceptance; its IV-entry delay is repaired in the authorized B236 / IND-4 batch, with same-turn IV entry now user-accepted; B237 repairs paused-project continuity and holds fixed injection before debit. Expedition, remaining Meaning and era presentation stay nonblocking HOLD; Balance is outside this task. [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns current source/live/authorization and native results.
 
-[Industry Content](../../Design/Content/Industry_D0045.json)与[Spec工业节](../../Design/Specialization_v0.1_Design_Spec.md#7-industry--industrial-zone--ind)规定玩法；[Shared具名生命周期](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE)规定A城市历史/B文明信用/G专业单位等分别归属。人类设计见[工业阅读版](../../Design/Industry.md)。D0045已给首测值及中断、Gold/Faith、每模板实际holder规则，不能重开成公式TBD。
+[Industry Content](../../Design/Content/Industry_D0052.json)与[Spec工业节](../../Design/Specialization_v0.1_Design_Spec.md#7-industry--industrial-zone--ind)规定玩法；[Shared具名生命周期](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE)规定A城市历史/B文明信用/G专业单位等分别归属。人类设计见[工业阅读版](../../Design/Industry.md)。D0045已给首测值及中断、Gold/Faith、每模板实际holder规则，不能重开成公式TBD。
 
 ## 当前落地矩阵与直接依赖
 
@@ -19,7 +19,7 @@ The user accepted B233 history/template evidence and B234 steps1–3: first-turn
 | 标准化效果 | B234 III native accepted; B235 IV projection/Gold quotes and cold restore accepted in tested scope | [StandardizationEffects](../../../Mod/StandardizationEffects.lua): actual ACTIVE>=III holders, per-template union/MAX; III10%/0%, IV10+2L%/2L%; positive District purchase remains blocked; old Discount retired |
 | 本城标准化/合法币种 | Self works independently of network availability; B235 adds target-specific building cost effect | Native Gold quotes reviewed; no purchase right added. Faith remains untested; target-specific District cost effect unavailable |
 | N/E/L与三项工程能力 | B233 N/E native accepted; B235 L/full-turn completion and cold restore observed; tested ordinary-Wonder acceleration user-accepted | N retains reliable city history and reconciles present Wonders at lawful Industry entry; E uses supported completing owner and Wonder own era. Foreign completions are ignored |
-| 队伍 | 旧项目/单位/施工路径运行 | [CrewProjects](../../../Mod/CrewProjects.lua)、[项目SQL](../../../Mod/Data/CrewProjects.sql)未按III/IV、2槽及新成本；[UnitTargets](../../../Mod/UnitTargets.lua)/[UnitActions](../../../Mod/UnitActions.lua)仍允许普通建筑/区域 |
+| 队伍 | B236 paid III/IV formation, source binding and2slots implemented; B237 tier-I260 and paused continuity local-tested | [CrewProjects](../../../Mod/CrewProjects.lua) retains native old-price progress; [UnitActions](../../../Mod/UnitActions.lua) holds Wonder use before debit until exact fixed injection is supported. Cold-load/contact and native continuation remain pending |
 | 旧工业IV生产网络 | B234 exact retirement implemented | [CopyYields](../../../Mod/CopyYields.lua) keeps definitions/withdrawal only in normal runtime; its UI producer is no longer started |
 
 Historical context: [B164盘点](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md#工业账本已补齐最新效果合同尚未适配)：self来源、typed District、Gold/Faith资格、原生项目直接grant和`CanCapture=0` were real gaps at that checkpoint. B233/B234 address typed knowledge/self/baseline effects; B235 adds tested Gold quotes and L/Macro. District purchase and Crew gaps remain. Use the matrix above for current scope.
@@ -152,6 +152,16 @@ User clarification: formation price locks at start; new orders use fresh qualifi
 
 Native requires one combined formation/source/cost/occupancy/Wonder-use/protection session, with one cold-load for the new saved ownership. Current source/live/receipt and pending acceptance remain in Status/Authority. District-purchase support remains a separate technical gap; no broad substitute and no new B235-only test.
 
+## B237 continuation and fixed-injection boundary
+
+User approval covers the B236 two-path repair and D0052 tier-I260 /390–364–338–312 prices. Prior B236 plan/results above remain historical; current execution evidence is in [B237 result](../../Status/Validation/Results/Specialization_B237_Crew_Local.md).
+
+CrewProjects retains an admitted native project ID, locked capacity/price and positive native per-project progress when it leaves the queue. PAUSED belongs to the same city order property; one record per native project bucket, at most20 paused plus2 active entries. Only actual queued/pending entries reserve the two slots. Resumption reuses its admission and price, reserves a slot and rebases the player-global completion counter; unrelated city completions cannot turn positive local unfinished progress into a missing grant. Confirmed zero progress may cancel; unknown progress never becomes zero. Existing source/owner validation, ambiguous-grant receipts and loss cleanup remain.
+
+UI exposes current and retained variants separately; a paused row says“续建”and shows the locked price. Required access remains while queued/paused. New access is installed before obsolete unstarted access is removed. The writer never rewrites native progress, changes an in-flight project ID, refunds production or adds a timer.20 bounded native progress reads join the existing event-driven queue reader; no new whole-world scan. Stable DB IDs retain their old numerical suffixes; new values come from CrewModel, and completed unit capacity stays the saved asset value. Native cost must still match the saved admitted price; a mismatch is held without rewriting production. No old-build save migration is introduced.
+
+**Fixed injection remains BLOCKED.** The loaded Mac AddProgress wrapper truncates its Lua input to an integer before the ordinary native production path; an exact target-specific bypass is not established. Great Engineer production reaches the same common native path; its overflow flag is not proof of modifier isolation. No approximate normalization, repeated negative correction or third-party effect withdrawal is shipped. UnitActions rejects before reservation, receipt or debit; existing completed Crews stay intact. This safety hold is an implementation limit, not an accepted change to fixed-construction Gameplay. The result documents inspected alternatives and the remaining decision boundary.
+
 ## 推荐顺序与最小批次
 
 复用总计划G/H/I/J ID。G历史与H1知识可分别准备；III标准化基线不依赖E/L研习完成，高档队不依赖工程传统。先关闭每条原语门禁，再切真实writer，不用旧收益填新能力空缺。
@@ -227,13 +237,13 @@ Tradition L3本地：L<E/L=E/L>E、完整回合/中断/Owner与重复成功、�
 
 ### J1来源、2槽与新成本
 
-当前[项目SQL](../../../Mod/Data/CrewProjects.sql)原生modifier直接grant单位，[CrewProjects](../../../Mod/CrewProjects.lua)只按Identity/原锚点开放五档。正式J1须证明完成门禁/grant与实际新单位一一绑定、训练来源token与unit identity/原Owner可靠保存，不能按单位名/相邻坐标猜或重复grant。
+当前[项目SQL](../../../Mod/Data/CrewProjects.sql)定义付费档位；[CrewProjects](../../../Mod/CrewProjects.lua)独占完成与返回单位绑定，原生modifier直接grant已退出。来源token／原Owner与unit保存绑定，不能按单位名或相邻坐标猜。B237补齐原项目续建，证据边界见上文。
 
 III开放I–III，IV额外IV–V，无E4/5门槛。每训练source当前Owner的存活本城出身队伍总2槽，所有档各1；完成队伍属于独立原Owner资产，source总督/ACTIVE/Identity/Owner变化不删、不停止使用。旧Owner队伍不占新Owner来源容量，原Owner夺回重新计其旧存活队；消费/合法移除释放，活着保护撤退不释放。
 
 | 档 | 锁定基础施工力 | III或IV N0成本150% | IV N1–2成本140% | IV N3–5成本130% | IV N6+成本120% |
 |---|---:|---:|---:|---:|---:|
-| I | 250 | 375 | 350 | 325 | 300 |
+| I | 260 | 390 | 364 | 338 | 312 |
 | II | 420 | 630 | 588 | 546 | 504 |
 | III | 750 | 1125 | 1050 | 975 | 900 |
 | IV | 1000 | 1500 | 1400 | 1300 | 1200 |
@@ -241,7 +251,7 @@ III开放I–III，IV额外IV–V，无E4/5门槛。每训练source当前Owner�
 
 均为标准速度首测值；其它速度保留已接受scaling方向，capacity锁为`floor(reference*speed CostMultiplier/100)`，最终Production/Gold/Cost需整数时按D0045 Floor，不做无必要中间Floor。Practice只改投入不改锁定capacity。native其它速度成本载体仍需验证，不能改成另一套玩法舍入。
 
-实际修改依赖包括CrewProjects、项目/单位/动作SQL、[Probe](../../../Mod/Probe.lua)Specs、训练完成handler、Gameplay/modinfo/Text/UI直接caller；这些仍读旧280/460/820/1100/1500，不能只改一个SQL表。`BUILDING_SPC_CREW_PROJECT_ACCESS`、五项目及`SPC_PROJECT_GRANT_CREW_<capacity>`授予附件需要逐项cutover。旧排队项目满槽/资格下降时仍能grant，是实际技术门禁；不能静默删队列、扣锤、退款或删除已完成队伍来绕过。DEV Spawn不得越新来源/库存成为正式资产，未知来源显式隔离。
+实际修改依赖包括CrewProjects、项目/单位/动作SQL、[Probe](../../../Mod/Probe.lua)Specs、训练完成handler、Gameplay/modinfo/Text/UI直接caller；当前数字由CrewModel、对应SQL与展示共同维护，不能只改一个SQL表。`BUILDING_SPC_CREW_PROJECT_ACCESS`、五项目及`SPC_PROJECT_GRANT_CREW_<capacity>`授予附件需要逐项cutover。旧排队项目满槽/资格下降时仍能grant，是实际技术门禁；不能静默删队列、扣锤、退款或删除已完成队伍来绕过。DEV Spawn不得越新来源/库存成为正式资产，未知来源显式隔离。
 
 Local L3：档位门槛、同回合多完成/重复通知、队列满槽、保存、Owner切换/夺回、活着撤退与合法消耗、其它城隔离。Native一个source完成两队→第三受限→合法消耗释放；新的unit-binding/source-owner路径需要定域失城/恢复或重载，不再重复E2城市身份全流程。无法证明grant/容量门禁则只停止J，不影响H或Macro。
 
@@ -249,7 +259,7 @@ Local L3：档位门槛、同回合多完成/重复通知、队列满槽、保�
 
 正式目标只Wonder，Megaproject仅future；停止UnitTargets/UnitActions普通Buildings/Districts授权，保留Settler investment分支。[ConstructionProbe](../../../Mod/ConstructionProbe.lua)仍供正式链必要事实，不能整模块删除。
 
-现有UnitActions为一次destroy→`AddProgress(min(amount,remaining))`，不重放不确定原生执行；新消费确认前重验单位/目标Owner与ref、目标tile/当前Wonder/remaining/1charge及永久训练provenance/unit绑定完整性，成功才精确释放slot一次。不重新要求训练source当前Industry/ACTIVE或Owner与单位相同；来源降级、退出工业或易主均不阻止已有队伍使用。注入只取锁定基础capacity，不受Macro、奇观政策、宜居度或其它普通Production百分比放大；余量浪费，后续目标/空队列不得保存overflow。
+B236原路径为一次destroy→`AddProgress(min(amount,remaining))`；B237因原生放大反证在消费前阻断，尚未交付固定注入；新消费确认前重验单位/目标Owner与ref、目标tile/当前Wonder/remaining/1charge及永久训练provenance/unit绑定完整性，成功才精确释放slot一次。不重新要求训练source当前Industry/ACTIVE或Owner与单位相同；来源降级、退出工业或易主均不阻止已有队伍使用。注入只取锁定基础capacity，不受Macro、奇观政策、宜居度或其它普通Production百分比放大；余量浪费，后续目标/空队列不得保存overflow。
 
 敌方直接capture/Owner转换已被D0045禁止，必须证明保护撤退/安全回归；`CanCapture=0`只禁本单位主动capture，不证明自身受保护。源城变化不取消已有队伍；活着回归仍占库存。未定义的是原unit Owner完全消失等具名处置，不把普通source转移又写成Design TBD。
 

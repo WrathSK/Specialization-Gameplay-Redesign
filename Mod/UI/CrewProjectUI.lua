@@ -15,7 +15,7 @@ function SPCCrewProjectUI.New(P,send,notify,build)
   assert(pid==Game.GetLocalPlayer() and P.IsTestPlayer(pid),'CREW_UI_OWNER')
   local c=assert(Players[pid]:GetCities():FindID(id),'CREW_UI_CITY');assert(c:GetOwner()==pid,'CREW_UI_OWNER')
   local q=c:GetBuildQueue();local n=q:GetSize();assert(M.Int(n) and n<=100,'CREW_QUEUE_SIZE_UNKNOWN')
-  local v={owner=pid,city=id,x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn(),projects={},completed={},costs={}}
+  local v={owner=pid,city=id,x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn(),projects={},completed={},costs={},progress={}}
   for i=0,n-1 do
    local e=assert(q:GetAt(i),'CREW_QUEUE_ENTRY_UNKNOWN')
    if e.Directive==CityProductionDirectives.PROJECT then
@@ -29,6 +29,8 @@ function SPCCrewProjectUI.New(P,send,notify,build)
    local idp=M.Project(tier,ratio,speed);local row=assert(GameInfo.Projects[idp],'CREW_PROJECT_DEFINITION_MISSING')
    local count=stats:GetNumProjectsAdvanced(row.Index);assert(M.Int(count),'CREW_NATIVE_COMPLETION_COUNTER_UNKNOWN')
    v.completed[idp]=count;v.costs[idp]=q:GetProjectCost(row.Index)
+   local progress=q:GetProjectProgress(row.Index)
+   assert(type(progress)=='number' and progress>=0 and progress<1000000000,'CREW_PROJECT_PROGRESS_UNKNOWN');v.progress[idp]=progress
   end end
   return v
  end
@@ -39,7 +41,13 @@ function SPCCrewProjectUI.New(P,send,notify,build)
   for _,item in ipairs(data.ProjectItems or {})do
    if not M.Parse(item.Type)then result[#result+1]=item
    elseif v and v.allowed[item.Type] and not d.errors[c:GetOwner()..':'..c:GetID()]then
-    if pending then item.Disabled=true end
+    if pending or v.startable and not v.startable[item.Type]then item.Disabled=true end
+    local retained=v.retained and v.retained[item.Type]
+    if retained then
+     item.SPC_CrewRetained=true
+     if retained.stage=='PAUSED'then item.Name=Locale.Lookup('LOC_SPC_CREW_RESUME_NAME',item.Name or '')end
+     item.ToolTip=(item.ToolTip or '')..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_LOCKED_PRICE',retained.price)
+    end
     item.ToolTip=(item.ToolTip or '')..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_FORMATION_HELP')
     if ExposedMembers.SPC_CrewUIError then item.ToolTip=item.ToolTip..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_FORMATION_ERROR',ExposedMembers.SPC_CrewUIError)end
     result[#result+1]=item

@@ -36,6 +36,7 @@ local function readView(u)
 end
 local function number(n) return tostring(n):gsub('%.0+$','') end
 local function crewTips(v)
+ if v and v.reason and v.reason:find('CREW_FIXED_INJECTION_UNAVAILABLE',1,true)then return Locale.Lookup('LOC_SPC_CREW_INJECTION_HELD')end
  if v and v.prepared then
   local name=Locale.Lookup(v.targetName)
   return '施工预览[NEWLINE]当前目标：'..name..'[NEWLINE]当前进度：'..number(v.progress)..' / '..number(v.cost)

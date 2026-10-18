@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0631
-Implementation Build: source/live B236.263 DEVELOP_ACTIVE; stable B069.96
-Architecture Revision Reviewed: A0166
-Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
+Status Revision: S0632
+Implementation Build: source B237.264 LOCAL_PARTIAL; live B236.263 DEVELOP_ACTIVE; stable B069.96
+Architecture Revision Reviewed: A0167
+Design Revision Reviewed: D0052（一级施工力260及对应成本）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B236_NATIVE_PARTIAL / B237_REPAIR_PROPOSED
+Work State: B237_CONTINUATION_LOCAL_COMPLETE / FIXED_INJECTION_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B236 native partial; two Crew repairs proposed:** [review / B237 plan](Validation/Results/Specialization_B236_Native_Review.md), [local baseline](Validation/Results/Specialization_B236_Crew_Local.md).
-- **Accepted:** observed cap/release, no spill, immediate IV entry, Practice price tiers and recipient template-source distinction.
-- **Failed:** Crew injection receives ordinary Production bonuses; unfinished formation loses usable progress across price changes.261 contiguous log records reviewed; no blanket PASS.
-- **Source/live:** B236.263 `8942cf5`, receipt `B236.263-8942cf5-playtest.json`,237/237 MATCH. Main B069.96 unchanged; no new deployment.
-- **Next/stop:** approve B237 fixed-injection and unfinished-price continuity repair. Crew cold-load/contact deferred into that batch; Culture HOLD, Research-network redesign and Balance unchanged.
+**B237 partial delivery:** [repair / native-primitive boundary](Validation/Results/Specialization_B237_Crew_Local.md).
+- **Local:** retained native paused progress and old-price UI; D0052 tier-I260, costs390/364/338/312.223 targeted tests pass; native continuation pending.
+- **Blocked:** exact fixed injection has no established native primitive. Crew construction rejects before consumption; permanent units/other Industry effects stay intact. No whole-batch PASS.
+- **Source/live:** source B237.264; live B236.263 `8942cf5`, receipt `B236.263-8942cf5-playtest.json`,237/237 MATCH until guarded deployment. Main B069.96 unchanged.
+- **Next/stop:** finish W0003 gates; one continuation/cold-load/contact session may join a future batch. Exact injection requires a separately scoped technical continuation; Culture HOLD, Research-network redesign and Balance unchanged.
+
+## S0632 — B237 local partial checkpoint
+
+User approved both Crew repairs and explicitly corrected tier-I to260. D0052 records the dependent price matrix without changing other rules. Paused native progress now retains its admitted ID/price independently of actual queue reservations.223 targeted tests pass. The inspected loaded Mac integer AddProgress/one-shot paths do not establish an exact modifier-free partial write; the approved stop condition holds construction before any debit. No approximate compensation or altered Gameplay. Native continuation/cold-load/contact remain pending; frozen results, main, configuration, other professions and GC unchanged.
 
 ## S0631 — B236 native review and two-path repair proposal
 

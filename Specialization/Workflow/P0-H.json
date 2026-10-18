@@ -1,52 +1,53 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0051",
+    "design": "D0052",
     "research": "D0040",
-    "industry": "D0045",
+    "industry": "D0052",
     "culture": "D0051",
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0166",
-    "status": "S0631",
-    "runtime": "B236.263 / modinfo263",
+    "architecture": "A0167",
+    "status": "S0632",
+    "runtime": "B237.264 / modinfo264",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md#b237-repair-proposal",
-  "goal": "Record scoped B236 native acceptance and two Crew failures; propose B237 fixed-injection/unfinished-price repair without implementing.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+  "goal": "Deliver approved tier-I260 and unfinished native-project continuity; hold exact injection before debit when no faithful native primitive is established. This is a partial delivery, not fixed-injection completion.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current source/live/evidence and next allowed action."
+      "reason": "Current source/live, partial delivery and stop boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
       "kind": "full",
-      "reason": "Current native results, actual-source counterexamples, deferred tests and proposed repair boundary."
+      "reason": "Current scoped implementation, fixed-injection blocker, local checks and minimal pending native gate."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "kind": "full",
-      "reason": "Inherited local implementation/test ownership and limits; native results are in current review."
+      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
+      "kind": "section",
+      "selector": "## B237 continuation and fixed-injection boundary",
+      "reason": "Actual order ownership, pause/resumption and fixed-injection hold."
     },
     {
-      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "path": "Specialization/Design/Content/Industry_D0052.json",
       "kind": "json",
       "selector": "/contracts/teams",
-      "reason": "Crew scope, source/capacity, current costs and user-confirmed start lock."
+      "reason": "Current Crew contract, source/capacity, corrected costs and start lock."
     }
   ],
   "dependencies": [
     "Existing Store historical reference/exit/return, IndustryHistory N, EffectiveFacts ACTIVE and typed investment receipt.",
-    "Existing paid native project queue/counter and returned InitUnit, one-use receipt/debit/AddProgress and protected-civilian flag.",
+    "Existing native project queue/progress/counter and returned InitUnit binding; UnitActions preserves Settler commits and holds Crew use before debit.",
     "InstitutionPresentation and existing Research/Culture controls; other ability rules unchanged."
   ],
   "old_writers": [
@@ -108,19 +109,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L3 actual source/Store transactions and targeted UI/native-shaped fixtures, in-memory configured DB; L1 syntax/package/context/publication.",
-    "local": "212 targeted tests PASS;100 cost matrix subcases. Historical package/old ordinary-building Crew checks excluded explicitly; current263/Wonder-only path checked.",
-    "user": "USER_GAME_TEST_PASS scoped: cap/release, no spill, immediate IV entry, new Practice prices, template-holder distinction. FAIL: multiplied injection and unfinished-price continuity. Cold-load/contact deferred into next batch.",
-    "gap": "Native fixed final-progress primitive and exact stored per-project progress continuity require repair. Crew cold-load/contact remain pending; institution visual details not separately accepted. District purchase/Faith gaps unchanged."
+    "depth": "L3 actual writer/Store and targeted native-shaped/UI fixtures; L1 package/context/links/publication.",
+    "local": "223 targeted tests PASS;100 speed/tier/price matrix subcases. Fixed injection tests prove a no-debit hold only.",
+    "user": "B236 scoped acceptance inherited; new continuation/cold-load/contact USER_GAME_TEST_REQUIRED, may be merged later.",
+    "gap": "Exact modifier-free final injection BLOCKED. No full Crew playability or native progress continuity PASS; held Culture and District-purchase gaps unchanged."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
-    "source": "B236.263/modinfo263 DEVELOP_ACTIVE; source 8942cf56b93214a6aeacf67b590801eee1ca83be; receipt B236.263-8942cf5-playtest.json;237/237 MATCH, digest 86becbe9055c302108df86edda5c41d044387f7f70c82e9d48a36823fa233781. Automatic game-exit checks before both guarded switches; B235/stable recovery retained, no pending transaction.",
-    "native": "PARTIAL_PASS_WITH_TWO_CREW_FAILURES",
-    "stop": "Record and commit/push review only. B237 is proposed, not authorized; no new build/deployment. Deferred native checks join next approved batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+    "source": "B237.264 local source; live remains B236.263 until guarded deployment.",
+    "native": "PARTIAL_DELIVERY_NATIVE_PENDING_FIXED_INJECTION_BLOCKED",
+    "stop": "Complete approved partial checkpoint and stop. No next-batch authorization; no amplified injection."
   }
 }

@@ -13,18 +13,18 @@ SELECT Language,Tag,Text FROM
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_UNIT_SPC_CREW_250_NAME','一级施工队'),
-('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供250点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。'),
+('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。'),
 ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_NAME','一级施工队'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供250点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_250_NAME','一级施工队');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供250点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_250_NAME','组建一级施工队');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Industry Lv1. Standard speed: 280 Production creates one 250-Production Crew. Both cost and output scale with game speed.');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Industry ACTIVE III. Standard speed: 390 Production creates one 260-Production Crew. Both cost and output scale with game speed.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_NAME','一级施工队');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供250点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_NAME','组建一级施工队');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业专业Lv1开放。标准速度：成本280生产力，生成1支250生产力的施工队。成本与生产力随游戏速度同比缩放。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业ACTIVE III开放。标准速度：基础成本390生产力，生成1支260生产力的施工队。成本与生产力随游戏速度同比缩放。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_420_NAME','二级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 二级施工队可提供420点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_420_NAME','组建二级施工队');
@@ -263,10 +263,10 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 -- B236 replaces old formation and general-construction wording exactly.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','拥有1次施工。标准速度固定施工力250，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力250，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
-('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','One construction use. Fixed transfer Production 250 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
-('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 250 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','拥有1次施工。标准速度固定施工力260，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力260，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','One construction use. Fixed transfer Production 260 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
+('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 260 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
 ('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','拥有1次施工。标准速度固定施工力420，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
 ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力420，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
 ('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','One construction use. Fixed transfer Production 420 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
@@ -289,3 +289,14 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CREW_FORMATION_ERROR','组建未确认：{1}。请查看工业报告或回传日志。'),
 ('en_US','LOC_SPC_CREW_FORMATION_ERROR','Formation unconfirmed: {1}. Check the Industry report or collect the trace.');
+
+-- B237 continuation and explicit native-primitive hold; no Gameplay change.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CREW_RESUME_NAME','{1_Name}（续建）'),
+('en_US','LOC_SPC_CREW_RESUME_NAME','{1_Name} (resume)'),
+('zh_Hans_CN','LOC_SPC_CREW_LOCKED_PRICE','已开工锁定成本：{1_Cost}；继续使用原项目的已有进度。'),
+('en_US','LOC_SPC_CREW_LOCKED_PRICE','Started price: {1_Cost}. Resume the original project and its native progress.');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CREW_INJECTION_HELD','施工暂不可用[NEWLINE]固定施工量接口尚未解决；不会消耗施工队或增加生产力。'),
+('en_US','LOC_SPC_CREW_INJECTION_HELD','Construction unavailable[NEWLINE]Exact fixed production is not supported yet. No Crew is consumed and no production is added.');

@@ -85,13 +85,13 @@ Gold／Faith均为正式合法购买渠道，设计上使用同一标准化折�
 
 | 档位 | 锁定基础施工力 | 基础150%成本 | IV／N1–2：140% | IV／N3–5：130% | IV／N6+：120% | 解锁 |
 |---|---:|---:|---:|---:|---:|---|
-| I | 250 | 375 | 350 | 325 | 300 | ACTIVE III |
+| I | 260 | 390 | 364 | 338 | 312 | ACTIVE III |
 | II | 420 | 630 | 588 | 546 | 504 | ACTIVE III |
 | III | 750 | 1125 | 1050 | 975 | 900 | ACTIVE III |
 | IV | 1000 | 1500 | 1400 | 1300 | 1200 | ACTIVE IV |
 | V | 1360 | 2040 | 1904 | 1768 | 1632 | ACTIVE IV |
 
-**最终整数Team Cost＝floor(Base Transfer Production×Practice Multiplier)。** 四级N=0仍用150%。表中为标准速度v0.1首测值，取代旧280／460／820／1100／1500成本参考；固定施工力250／420／750／1000／1360保留。实践只改变组建投入，不提高施工队锁定施工力。
+**最终整数Team Cost＝floor(Base Transfer Production×Practice Multiplier)。** 四级N=0仍用150%。表中为标准速度v0.1首测值，取代旧280／460／820／1100／1500成本参考；固定施工力260／420／750／1000／1360（一级按D0052修正）。实践只改变组建投入，不提高施工队锁定施工力。
 
 项目成本保留原有游戏速度缩放方向；队伍基础施工力＝**floor(参考施工力×游戏速度成本倍率／100)**，预览、确认与结算使用同一整数。需要最终落整数的Production／Gold／Cost统一使用floor，避免不必要的多次中间floor，不使用四舍五入、ceiling或补差；其它速度的成本承载与实际最终结算路径仍需技术验证。保留五档，不增1800／2000档让单队包办后期奇观；五档正式名称继续占位。
 
@@ -203,7 +203,7 @@ L属于**A类城市历史账本**，与文明历史B的E、城市真实完成数
 
 [返回Design导航](README.md)。正文是阅读呈现，正式来源保持原权威。
 
-- [工业当前内容](Content/Industry_D0045.json)：全部本地效果、目录、历史、网络、队伍与容量。
+- [工业当前内容](Content/Industry_D0052.json)：全部本地效果、目录、历史、网络、队伍与容量。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0045.json)。
 - [A–D生命周期接受](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：模板与工程实践随城，工程传统属实际完成文明。
 - [冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)、[容量接受记录](Design_ChangeLog.md)：D0032关闭容量2，旧D0031未决描述不覆盖它。

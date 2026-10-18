@@ -15,7 +15,7 @@ for tier in ipairs(SPCCrewModel.CAPACITY)do for _,ratio in ipairs(SPCCrewModel.R
  next=next+1;local id=SPCCrewModel.Project(tier,ratio);local r={Index=next,ProjectType=id,Cost=SPCCrewModel.Cost(tier,ratio,100)};GameInfo.Projects[id]=r;GameInfo.Projects[next]=r
 end end
 CityProductionDirectives={PROJECT=7,TRAIN=8};PlayerOperations={EXECUTE_SCRIPT=5}
-queue={};completed={};q={GetSize=function()return #queue end,GetAt=function(_,i)return queue[i+1]end,GetProjectCost=function(_,id)return GameInfo.Projects[id].Cost end}
+queue={};completed={};progress={};q={GetProjectProgress=function(_,id)return progress[id]or 0 end,GetSize=function()return #queue end,GetAt=function(_,i)return queue[i+1]end,GetProjectCost=function(_,id)return GameInfo.Projects[id].Cost end}
 c={GetOwner=function()return owner end,GetID=function()return 9 end,GetX=function()return 10 end,GetY=function()return 11 end,GetBuildQueue=function()return q end};owner=0
 Players={[0]={GetCities=function()return {FindID=function(_,id)if id==9 then return c end end}end,GetStats=function()return {GetNumProjectsAdvanced=function(_,id)return completed[id]or 0 end}end}}
 selected=c;UI={GetHeadSelectedCity=function()return selected end}
@@ -48,7 +48,7 @@ def fixture():
 class CrewProductionUI(unittest.TestCase):
     def check(self,s):fixture().execute(s)
     def test_single_build_confirm_ack_and_actual_reader(self):
-        self.check("reserve();assert(built==1 and #sent==2 and sent[2].Action=='CONFIRM');local q=ExposedMembers.SPC_CrewNativeRead(0,9);assert(q.projects[item.Type]==1 and q.costs[item.Type]==375 and q.completed[item.Type]==0);reply({confirmed=true});api.Publish();for i=1,10 do api.Publish()end;assert(built==1 and #sent==2 and not ExposedMembers.SPC_CrewUIError)")
+        self.check("reserve();assert(built==1 and #sent==2 and sent[2].Action=='CONFIRM');local q=ExposedMembers.SPC_CrewNativeRead(0,9);assert(q.projects[item.Type]==1 and q.costs[item.Type]==390 and q.completed[item.Type]==0);reply({confirmed=true});api.Publish();for i=1,10 do api.Publish()end;assert(built==1 and #sent==2 and not ExposedMembers.SPC_CrewUIError)")
     def test_delayed_native_queue_waits_for_event_not_return_or_reissued_build(self):
         self.check("delayed=true;reserve();assert(built==1 and #sent==1);for i=1,3 do api.Publish()end;assert(built==1 and #sent==1);queue[1]={Directive=7,ProjectType=GameInfo.Projects[item.Type].Index};api.Publish();assert(#sent==2 and sent[2].Action=='CONFIRM' and built==1)")
     def test_completed_during_native_operation_can_ack_without_queue(self):

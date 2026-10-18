@@ -76,14 +76,14 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/CrewPrecision.lua": {
-      "sha256": "d769225a71bd53b7865ddd512a7704ed1f378683fc031e1f9875d765393bed83",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
+      "sha256": "82a8bc580eb8ab010f91e01cfed9fc3083a166e1a62ccc9bb3b0bf838a212703",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "63b56a7c8a8709d117c4dbd9fd86a414dbc7eaef9b96b83ea0f8c4a43ec302bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
+      "sha256": "da5ef729344e94cd2c08a8a3f850bbfe52c3f7d0de3cf0bb82adc09e8f6c76a2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -116,14 +116,14 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Data/Crew.sql": {
-      "sha256": "084ea1f267d2861e56c9b4cb27a91a8d873cd29db7c59655605a4c363c6339d1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "c29c021ecb0b5475f1a99deaa322d10176e32e41b0cfe5dd78e6283967bea769",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/Data/CrewProjects.sql": {
-      "sha256": "583f19b84c1991e4a2165a38078dc2a9dfa83c48f60787e0021f539b657f7c09",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "782c1363efd48ff934f67b74c9a31c01db981f1827b2f42ef1bfd8347be471e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/Data/Dialogue.sql": {
       "sha256": "488512ffe8d0864120350651777b502808c8fe2f43c5dcf797ad4189a374a82d",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "446d3a85bc1b94a811167add3ad20c3a5416483bfbacaadb221ed549e284d3d6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "60fb55fdf016d37ab28e9888da2a43652967c7c9fd79f50ca1a4b5cfe9f14c22",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b205cbe1a11f1c0503316b4c77a7f550fe82d542bcb3959e92b9cc9582098dfa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "ec8e6d7a2c2a6d3baa9901392b9ef17301d876fd38df10633155df717bbe20c4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "b2d0e191e0938badb1df9159a42a6ed09f6f86201a9f0093ff3ec1103358ffbe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "480cbf667efb9f759847b0b63ba9e070af318a51fab5c8df679ced7a7f10d40e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "21a930d597bcbae12a378474df016f40dc2d85fc303f5555fd49a7ac24615f3f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "7e0b0a5e48daf7744ceaef2f6c21fc470eb110c76dde958969a6d952f870112e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -576,9 +576,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "4f8f0cf6d23c4e1069b41daacd275cff74a2bb2b13128e1e7994a5a1409c9fd9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "8adced8b6ed13174952899bf59cc2fe1b6bf9598789237b0e28845081bbd183a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
@@ -611,14 +611,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UnitActions.lua": {
-      "sha256": "e76a19873e06d6d935355d2408db7385e2b9865c96187ada9ab188054aef39cd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
+      "sha256": "0191ff3d14704dcc48de2c36530bbe4357524aad1ba3d8b29245fb13c110a4be",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UnitSiteProbe.lua": {
-      "sha256": "f54c582cc46ba965ddbfc3c631dcba198bbb2663e14d982693d0503b8c7f1d43",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UnitTargets.lua": {
       "sha256": "8dca19451eda53dc8c5fd7a0bcf195a2855c3cc67409258898ed3fdfbb564397",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "a48fb952824df347b72716ba05632eb691b2e376c3d570f7060a39bd7fc6bac8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+      "sha256": "9fe091c7c1caf1c2fdeac415dfe016ffa48a6e0663e97f49f1c591523d681035",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1181,14 +1181,14 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/CrewModel.lua": {
-      "sha256": "bbc4167914cfffbaa5a491699c264cf28d4f3e3f1666fb98fdaea0831c2591a8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "dd741d672f769601e423af8e192738aff9353d2effc5dcb2b82dbd40372eb269",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UI/CrewProjectUI.lua": {
-      "sha256": "87b8c6a1414a848df83acf3f92800e7b0d59f07c1ca40c5870da09309d2a1901",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change. B236 native review S0631: scoped passes retained; fixed final injection and unfinished-price continuity fail. Actual-source local counterexamples expose missing multiplier isolation and off-queue/order/UI handling. Source unchanged; B237 repair proposed only."
+      "sha256": "0f259229814d374f0bf481ab431dc0518966a133b99753b59825b7b1e3ab0eb0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     }
   }
 }

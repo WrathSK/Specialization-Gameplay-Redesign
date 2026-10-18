@@ -23,7 +23,7 @@ function GetDataHelper(...)
  local items={}
  for _,item in ipairs(data.ProjectItems)do
   local owned=ranks[item.Type] or SPCClaimProjectUI.IsProject(item.Type) or item.Type==SPCDialogueProjectUI.PROJECT or item.Type==SPCEngineeringStudyUI.PROJECT
-  if not owned or item.Disabled~=true or item.IsCurrentProduction==true then items[#items+1]=item end
+  if not owned or item.Disabled~=true or item.IsCurrentProduction==true or item.SPC_CrewRetained==true then items[#items+1]=item end
  end
  data.ProjectItems=items
  local crew,others={},{};local insertion

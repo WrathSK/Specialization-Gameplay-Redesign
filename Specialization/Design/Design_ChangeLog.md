@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0051
+Latest Accepted Design Revision: D0052
 Document State: ACCEPTED
+
+## Accepted D0052 — 2026-10-18
+
+用户批准B237并明确：**一级施工队基础施工力260，不是250；其它相关数值对应更新。** 标准速度150%／140%／130%／120%组建成本为390／364／338／312。II–V施工力420／750／1000／1360及其成本不变；开工锁价、速度／Floor、固定注入不受普通Production倍率放大、来源／容量／生命周期、名字与成熟度不变。
+
+[Industry D0052](Content/Industry_D0052.json)、[工业阅读版](Industry.md)与当前Spec同步。旧[Industry D0045](Content/Industry_D0045.json)和[D0051 Spec](Revisions/Specialization_Design_Spec_D0051.md)保持字节原样。B237实现结果和未解决的原生注入接口限制另见Status；不把技术阻塞写成新Gameplay规则。
+
+Accepted Spec SHA256: `fee5f82512a7f37c6bf0d5b86173bcac8bf41bf63203bfe3e0bc1e8092f7602c`
+Industry D0052 SHA256: `9f89e0a0ccaca6af88560e1e3ce3186baa495a951be9371790fe2572f8f55f44`
+Frozen D0051 Spec SHA256: `01020901195455d07918b7d3f2ca0c3eb517ad051729640527b8322376db9f3e`
 
 ## Accepted Industry formation price clarification — 2026-10-17
 

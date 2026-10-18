@@ -1,18 +1,18 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-236.263"
+P.VERSION = "P0-B-237.264"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
   GREATWORKOBJECT_LANDSCAPE=true, GREATWORKOBJECT_PORTRAIT=true,
   GREATWORKOBJECT_RELIGIOUS=true, GREATWORKOBJECT_SCULPTURE=true,
   GREATWORKOBJECT_ARTIFACT=true}
-P.Specs = {{cost=375,charge=250},{cost=630,charge=420},{cost=1125,charge=750},
+P.Specs = {{id=250,cost=390,charge=260},{cost=630,charge=420},{cost=1125,charge=750},
   {cost=1500,charge=1000},{cost=2040,charge=1360}}
 -- D0012: shared denomination catalog; floor speed-scaled Crew Production for display and execution.
 function P.CrewBase(kind)
- for _,s in ipairs(P.Specs) do if kind=='UNIT_SPC_CREW_'..s.charge then return s.charge end end
+ for _,s in ipairs(P.Specs) do if kind=='UNIT_SPC_CREW_'..(s.id or s.charge) then return s.charge end end
 end
 function P.CrewAmount(kind)
  local base=P.CrewBase(kind);assert(base,'CREW_TYPE_UNKNOWN')

@@ -17,7 +17,7 @@ local oldInfo=P.Info
 C.rows={Projects={},Buildings={},Units={}}
 local index=10000
 for tier,base in ipairs(CP.CAPACITY)do
- local u={UnitType='UNIT_SPC_CREW_'..base,Index=11000+tier,Name='crew',FormationClass='FORMATION_CLASS_CIVILIAN'}
+ local u={UnitType='UNIT_SPC_CREW_'..CP.IDS[tier],Index=11000+tier,Name='crew',FormationClass='FORMATION_CLASS_CIVILIAN'}
  C.rows.Units[u.UnitType]=u;C.rows.Units[u.Index]=u
  for _,ratio in ipairs(CP.RATIOS)do
   index=index+1;local id=CP.Project(tier,ratio)
@@ -33,7 +33,7 @@ function C.install()
  P.Info=function(t,k)return C.rows[t] and C.rows[t][k] or oldInfo(t,k)end
  P.Field=function(o,k)return o and o[k]end
  P.Call=function(o,k,...)if not o or type(o[k])~='function'then return false end;return pcall(o[k],o,...)end
- P.CrewBase=function(kind)for _,base in ipairs(CP.CAPACITY)do if kind=='UNIT_SPC_CREW_'..base then return base end end end
+ P.CrewBase=function(kind)for tier,base in ipairs(CP.CAPACITY)do if kind=='UNIT_SPC_CREW_'..CP.IDS[tier]then return base end end end
  P.HasBuilding=function(b,id)return b:HasBuilding(id)end
  P.SetProperty=function(o,k,v)o:SetProperty(k,v)end
  P.CreateBuilding=function(q,id)q.c.buildings[id]=true end
@@ -67,8 +67,8 @@ function C.install()
  end}
  ExposedMembers.SPC_CrewNativeRead=function(pid,id)
   local c=Players[pid]:GetCities():FindID(id);local q=c:GetBuildQueue()
-  local v={owner=pid,city=id,x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn(),projects=cp(q.items),completed=cp(C.stats),costs={}}
-  for project in pairs(C.stats)do local row=C.rows.Projects[project];v.costs[project]=math.floor(row.Cost*C.speed/100)end
+  local v={owner=pid,city=id,x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn(),projects=cp(q.items),completed=cp(C.stats),costs={},progress={}}
+  for project in pairs(C.stats)do local row=C.rows.Projects[project];v.costs[project]=math.floor(row.Cost*C.speed/100);v.progress[project]=q.progressByProject[project]or 0 end
   if C.costFailure then v.costs.PROJECT_SPC_CREW_250=1 end
   if C.readerFailure then error('native unavailable')end
   return v
@@ -91,7 +91,7 @@ function C.queue(c)
    props[k]=cp(v);return
   end;return oldSet(o,k,v)
  end
- local q={c=c,items={}};c.GetBuildQueue=function()return q end
+ local q={c=c,items={},progressByProject={}};c.GetBuildQueue=function()return q end
  c.GetBuildings=function()return {HasBuilding=function(_,id)return c.buildings[id]==true end,RemoveBuilding=function(_,id)c.buildings[id]=nil end}end
  return q
 end
@@ -113,7 +113,7 @@ function C.begin(c,tier,ratio)
 end
 function C.complete(c,p)
  local q=c:GetBuildQueue();q.items[p]=(q.items[p]or 0)-1;if q.items[p]<=0 then q.items[p]=nil end
- C.stats[p]=C.stats[p]+1;Events.CityProductionChanged.Fire(0,c:GetID())
+ q.progressByProject[p]=0;C.stats[p]=C.stats[p]+1;Events.CityProductionChanged.Fire(0,c:GetID())
  Events.CityProjectCompleted.Fire(0,c:GetID(),C.rows.Projects[p].Index);Events.GameCoreEventPublishComplete.Fire()
 end
 function C.count(c)return crew.Inventory(0)[shared.CityProgressionStore.HistoricalReference(c).token]or 0 end
@@ -173,14 +173,14 @@ class Formation(unittest.TestCase):
 class CostModel(unittest.TestCase):
  def test_complete_standard_matrix(self):
   l=crew_runtime();l.execute("""
-   local expected={{375,350,325,300},{630,588,546,504},{1125,1050,975,900},{1500,1400,1300,1200},{2040,1904,1768,1632}}
+   local expected={{390,364,338,312},{630,588,546,504},{1125,1050,975,900},{1500,1400,1300,1200},{2040,1904,1768,1632}}
    for tier,values in ipairs(expected)do for i,ratio in ipairs(SPCCrewModel.RATIOS)do assert(SPCCrewModel.Cost(tier,ratio,100)==values[i])end end
    for n=0,10 do assert(SPCCrewModel.Multiplier(3,n)==150);assert(SPCCrewModel.Multiplier(4,n)==(n>=6 and 120 or n>=3 and 130 or n>=1 and 140 or 150))end
   """)
  def test_locked_capacity_floor_is_separate_from_price_and_invalid_facts_reject(self):
   l=crew_runtime();l.execute("""
-   assert(SPCCrewModel.Amount(1,67)==167)
-   assert(SPCCrewModel.Cost(1,150,67)==250)
+   assert(SPCCrewModel.Amount(1,67)==174)
+   assert(SPCCrewModel.Cost(1,150,67)==261)
    assert(not pcall(SPCCrewModel.Multiplier,4,nil));assert(not pcall(SPCCrewModel.Amount,1,0))
   """)
 
@@ -203,24 +203,26 @@ function C.use(c,u,token)
 end
 """
 class Consumption(unittest.TestCase):
+ # B236's linear AddProgress fixture did not model the native multiplier.
+ # B237 deliberately holds this path before any debit; it is not fixed-injection PASS.
  def fixture(self):
   l=crew_runtime();l.execute((M/'UnitActions.lua').read_text());l.execute(ACTION);return l
- def test_fixed_cap_no_multiplier_no_overflow_and_slot_release(self):
-  for remaining,expected in ((990,250),(100,100),(250,250)):
-   with self.subTest(remaining=remaining):
-    l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);local q=c:GetBuildQueue();q.progress=q.cost-%d;assert(C.use(c,C.units[20001],'once'):find('CREW CONSUMED'));assert(#q.adds==1 and q.adds[1]==%d and q.progress<=q.cost);assert(C.count(c)==0);shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,Token='again'});assert(#q.adds==1)"%(remaining,expected))
+ def test_known_primitive_limit_rejects_without_writes_or_debit(self):
+  for multiplier in (1,1.54,2):
+   with self.subTest(multiplier=multiplier):
+    l=self.fixture();l.execute("""
+     local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);local q=c:GetBuildQueue()
+     q.AddProgress=function(_,n)q.adds[#q.adds+1]=n;q.progress=q.progress+math.floor(n)*%s end
+     local props=T.encode(C.props);local binding=T.encode(crew.Unit(0,C.units[20001]))
+     local out=shared.UnitActions.Run(0,{Action='UNIT_ACTION_PREPARE',UnitID=20001,Token='hold'})
+     assert(out:find('CREW_FIXED_INJECTION_UNAVAILABLE',1,true),out)
+     local v=shared.UnitActions.ReadView(0,20001,'view');assert(not v.legal and not v.prepared)
+     for i=1,3 do shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,Token='retry'})end
+     assert(#q.adds==0 and q.progress==10 and C.count(c)==1)
+     assert(T.encode(C.props)==props and T.encode(crew.Unit(0,C.units[20001]))==binding)
+    """%multiplier)
  def test_normal_building_rejected_before_debit(self):
   l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);c:GetBuildQueue().target='BUILDING_A';local out=shared.UnitActions.Run(0,{Action='UNIT_ACTION_PREPARE',UnitID=20001,Token='x'});assert(out:find('REJECTED') and C.count(c)==1 and #c:GetBuildQueue().adds==0)")
- def test_stale_target_and_reused_native_id_rejected(self):
-  for change in ("c:GetBuildQueue().progress=11", "local u=C.units[20001];local b=crew.Unit(0,u);b.grant='DIFFERENT';u:SetProperty(SPCCrewModel.UNIT_PROPERTY,b)"):
-   with self.subTest(change=change):
-    l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);shared.UnitActions.Run(0,{Action='UNIT_ACTION_PREPARE',UnitID=20001,Token='x'});"+change+";local out=shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,PlanToken='x'});assert(out:find('REJECTED') and C.count(c)==1 and #c:GetBuildQueue().adds==0)")
- def test_unconfirmed_use_receipt_or_debit_never_injects(self):
-  for change in ("local set=Players[0].SetProperty;Players[0].SetProperty=function(o,k,v)if k~='SPC_CREW_ACTION_RECEIPTS_V1'then set(o,k,v)end end", "local get=Players[0].GetUnits;Players[0].GetUnits=function()local u=get();u.Destroy=function()end;return u end"):
-   with self.subTest(change=change):
-    l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);"+change+";local out=C.use(c,C.units[20001],'x');assert(out:find('HELD') and #c:GetBuildQueue().adds==0);shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,PlanToken='x'});assert(#c:GetBuildQueue().adds==0)")
- def test_injection_throw_does_not_retry(self):
-  l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);local q=c:GetBuildQueue();q.AddProgress=function(_,n)q.adds[#q.adds+1]=n;error('native failure')end;assert(C.use(c,C.units[20001],'x'):find('HELD'));shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,PlanToken='x'});assert(#q.adds==1 and not C.units[20001])")
 
 class ActualTargets(unittest.TestCase):
  def test_only_current_owned_wonder_plot_is_target_no_district_or_building(self):

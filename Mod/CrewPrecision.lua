@@ -39,6 +39,7 @@ function SPCCrewPrecision.Start(P,shared)
     else record.note='TARGET_COMPLETED_OR_CHANGED: do not subtract different targets' end
    end)
    if not ok then record.afterReadError=tostring(err) end
+   if shared.CrewProjects and shared.CrewProjects.RecordPrecision then pcall(shared.CrewProjects.RecordPrecision,pid,record)end
    shared.CrewPrecision=record
    print('[SPC][B046][PRECISION] before='..tostring(record.before)..' after='..tostring(record.after)..' expected='..tostring(record.expected)..' observed='..tostring(record.observed)..' difference='..tostring(record.difference))
   end

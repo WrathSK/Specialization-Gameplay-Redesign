@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="263">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="264">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B236.263: paid Construction Crews, start-locked Practice costs, source-bound capacity, fixed Wonder use, same-turn Industry IV entry and Industry institutions.</Description>
+    <Description>B237.264: tier-I260, retained start-locked Crew progress and paused resumption. Exact fixed Wonder injection is held before consumption pending a supported native primitive.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

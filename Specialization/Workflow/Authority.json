@@ -2,16 +2,16 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Primary is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0051",
+    "design": "D0052",
     "research": "D0040",
-    "industry": "D0045",
+    "industry": "D0052",
     "culture": "D0051",
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0166",
-    "status": "S0631",
-    "runtime": "B236.263 / modinfo263",
+    "architecture": "A0167",
+    "status": "S0632",
+    "runtime": "B237.264 / modinfo264",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -19,7 +19,7 @@
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
     "research": "Specialization/Design/Content/Research_D0040.json",
-    "industry": "Specialization/Design/Content/Industry_D0045.json",
+    "industry": "Specialization/Design/Content/Industry_D0052.json",
     "culture": "Specialization/Design/Content/Culture_D0051.json",
     "commerce": "Specialization/Design/Content/Commerce_D0050.json",
     "shared": "Specialization/Design/Content/Shared_D0045.json",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Industry_Preparation.md",
   "runtime_commit": "8942cf56b93214a6aeacf67b590801eee1ca83be",
-  "current_batch": "B236_NATIVE_PARTIAL_CREW_REPAIR_REQUIRED",
-  "next_batch": "B237 proposal only: fixed final Crew injection and unfinished start-locked project continuity; merge deferred Crew cold-load/contact into one native session after approval/local checks. No implementation or deployment authorized by result review.",
+  "current_batch": "B237_CONTINUATION_LOCAL_COMPLETE_FIXED_INJECTION_BLOCKED",
+  "next_batch": "Finish publication/deployment gates for the approved partial delivery. Native continuation/cold-load/contact can be merged later. Exact fixed injection is BLOCKED; no silent amplified fallback or new batch authorization.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B236.263/modinfo263 DEVELOP_ACTIVE; source 8942cf56b93214a6aeacf67b590801eee1ca83be; receipt B236.263-8942cf5-playtest.json;237/237 MATCH, digest 86becbe9055c302108df86edda5c41d044387f7f70c82e9d48a36823fa233781. Automatic game-exit checks before both guarded switches; B235/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B236 native partial:261 continuous records; observed cap/release/no spill/IV entry/Practice and template-holder distinction accepted. Injection amplification and unfinished-price continuity fail; local counterexamples retained. Cold-load/contact deferred; no whole-batch PASS.",
+  "context_review_status": "B237 approved; tier-I260 and paused native progress repair locally complete with223 targeted tests. Fixed injection rejected before debit under the approved primitive stop condition; native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B236_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md"
 }

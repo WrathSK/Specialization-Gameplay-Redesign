@@ -1,6 +1,8 @@
--- B236 pure Crew definitions. No native calls or mutable runtime ownership.
+-- B237 pure Crew definitions. No native calls or mutable runtime ownership.
 SPCCrewModel={
- CAPACITY={250,420,750,1000,1360},
+ -- Stable native IDs are not capacity values; preserve existing unit provenance.
+ IDS={250,420,750,1000,1360},
+ CAPACITY={260,420,750,1000,1360},
  RATIOS={150,140,130,120},
  UNIT_PROPERTY='SPC_CREW_SOURCE_V1',
  ORDER_PROPERTY='SPC_CREW_ORDERS_V1',
@@ -15,11 +17,11 @@ function M.Same(a,b)
 end
 function M.Int(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
 function M.Project(tier,ratio,speed)
- local base=assert(M.CAPACITY[tier]);local id='PROJECT_SPC_CREW_'..base..(ratio==150 and '' or '_P'..ratio)
+ local base=assert(M.CAPACITY[tier]);local id='PROJECT_SPC_CREW_'..M.IDS[tier]..(ratio==150 and '' or '_P'..ratio)
  if speed and math.floor(math.floor(base*ratio/100)*speed/100)~=M.Cost(tier,ratio,speed)then id=id..'_S'..speed end
  return id
 end
-function M.Marker(tier,ratio)return 'BUILDING_SPC_CREW_ACCESS_'..M.CAPACITY[tier]..'_'..ratio end
+function M.Marker(tier,ratio)return 'BUILDING_SPC_CREW_ACCESS_'..M.IDS[tier]..'_'..ratio end
 function M.Parse(id)
  if type(id)~='string'then return end
  local base,speed=id:match('^(PROJECT_SPC_CREW_[%d_P]+)_S(%d+)$');speed=tonumber(speed)
@@ -42,7 +44,7 @@ function M.Cost(tier,ratio,speed)
 end
 function M.ValidateUnit(v,pid,kind)
  assert(type(v)=='table' and v.version==1 and v.owner==pid and M.Int(v.tier)
-  and kind=='UNIT_SPC_CREW_'..tostring(M.CAPACITY[v.tier]) and M.Int(v.capacity) and v.capacity>0
+  and kind=='UNIT_SPC_CREW_'..tostring(M.IDS[v.tier]) and M.Int(v.capacity) and v.capacity>0
   and type(v.source)=='string' and #v.source>0 and M.Int(v.x) and M.Int(v.y)
   and type(v.grant)=='string' and #v.grant>0,'CREW_SOURCE_UNAVAILABLE')
  return v
