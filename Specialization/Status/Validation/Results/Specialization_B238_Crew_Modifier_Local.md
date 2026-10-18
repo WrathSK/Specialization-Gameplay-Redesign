@@ -48,3 +48,7 @@ The main Industry chain is implemented: support/II, typed templates/N/E, III Sta
 The user explicitly classifies **purchase discounts on the District body itself** as a rare, nonblocking v0.1 deferral. That writer is not implemented; it is not an unaccepted finished feature. Building purchase discounts and District construction acceleration are separate and remain. No all-District substitute or new purchasing right is added. Faith prices/other speeds retain conditional native gaps, not mandatory new scenarios. The future Commerce Development Investment combination belongs to that writer's later integration. Original unit Owner extinction/total city destruction remain existing undefined boundaries.
 
 Once the combined Crew acceptance passes, the implemented Industry main chain can proceed to the next authorized profession without waiting for modifier isolation, balance, District-body purchase or unrelated held Culture work. No future batch is started by this record.
+
+## Verified deployment checkpoint
+
+Clean pushed implementation `c97117acac7f89959afbfb48a04d6cc48544f956` deployed as **B238.265 / modinfo265**, receipt `B238.265-c97117a-playtest.json`. Automatic exit checks passed before both receipt-bound switches.237/237 source/runtime files MATCH; digest `d50659f8a2b252501ac0e12dbb5ebb21aac5e17071dbc46fe2c43ec74e98fff0`. B237/stable recovery retained; no pending transaction. Main and configuration unchanged; no game launch. Source/runtime equality is not native acceptance. Stop for the combined flow above.

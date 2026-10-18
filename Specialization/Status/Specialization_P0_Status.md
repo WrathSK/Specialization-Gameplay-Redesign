@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0634
-Implementation Build: source B238.265; live B237.264; stable B069.96
+Status Revision: S0635
+Implementation Build: source/live B238.265 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0168
 Design Revision Reviewed: D0053（施工接受适用原生加成）
 Latest Accepted Design Revision: D0053
 Design Sync State: D0053_CREW_MODIFIER_ACCEPTANCE_IMPLEMENTED / NATIVE_PENDING
-Work State: B238_LOCAL_COMPLETE / COMBINED_NATIVE_PENDING
+Work State: B238_DEPLOYED / COMBINED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B238 local complete:** [accepted modifiers / Industry closeout and combined test](Validation/Results/Specialization_B238_Crew_Modifier_Local.md).
+**B238 deployed, combined acceptance pending:** [accepted modifiers / Industry closeout and combined test](Validation/Results/Specialization_B238_Crew_Modifier_Local.md).
 - **Local:** D0053 permits native Crew amplification; pre-debit hold removed, base/actual presentation separated.276 targeted checks pass; B237260/paused continuity retained.
 - **Pending:** combine B237 continuation/cold-load with restored construction and deferred protection. Prior B233–B236 scoped acceptance retained; no blanket native PASS.
-- **Source/live:** source B238.265; live B237.264 `fccac0a`, receipt `B237.264-fccac0a-playtest.json`,237/237 last verified. Main B069.96 unchanged; W0003 deployment awaits clean pushed source and game-exit gate.
+- **Source/live:** B238.265 `c97117a`, receipt `B238.265-c97117a-playtest.json`,237/237 MATCH. B237/stable recovery retained, no pending transaction. Main B069.96 unchanged.
 - **Next/stop:** one combined native session. District-body purchase explicitly user-deferred/nonblocking; future amplified-strength balance, conditional Faith/speed and Commerce integration remain named. Culture HOLD unchanged.
+
+## S0635 — B238 verified deployment
+
+Clean/pushed `c97117a` passed both automatic game-exit checks and receipt-bound switches.237/237 source/runtime files MATCH; B237/stable recovery retained and no pending transaction.276 targeted local checks and publication gate passed; B237/B238 combined native acceptance remains pending. No main/configuration change or game launch. Stop here; no next-profession batch started.
 
 ## S0634 — B238 accepted modifier implementation and Industry closeout
 

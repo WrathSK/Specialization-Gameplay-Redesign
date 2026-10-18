@@ -11,8 +11,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0168",
-    "status": "S0634",
-    "runtime": "B237.264 / modinfo264",
+    "status": "S0635",
+    "runtime": "B238.265 / modinfo265",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -124,8 +124,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-    "source": "Source B238.265 local validated; live B237.264 remains until a verified W0003 switch.",
+    "source": "B238.265/modinfo265 DEVELOP_ACTIVE; source c97117acac7f89959afbfb48a04d6cc48544f956; receipt B238.265-c97117a-playtest.json;237/237 MATCH, digest d50659f8a2b252501ac0e12dbb5ebb21aac5e17071dbc46fe2c43ec74e98fff0. Automatic game-exit checks passed at both guarded switches; B237/stable recovery retained, no pending transaction. Combined native acceptance pending.",
     "native": "COMBINED_NATIVE_PENDING",
-    "stop": "Finish clean commit/push and gated deployment, then stop for combined acceptance; no unrelated feature work."
+    "stop": "B238 deployed; stop for one combined B237/B238 acceptance. No further feature implementation authorized by this checkpoint."
   }
 }
