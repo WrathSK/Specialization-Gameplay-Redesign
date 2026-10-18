@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "db474c7776a33f4197846870d19bf1f2165e3acec991807ffb70ce1e1a6cbf1f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
+      "sha256": "231378c0b40373eb7f52356dd2b6b3268b5f95faa55465e5e7e3879c33a98430",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "a8bc88fdeb4b2f496eb2ce6c2b6e4b3690789dcd2f3e59a0ea177c27838a30eb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "39af6cf892d563c6d3c4918f324024e3e313181f3476a329478af88a7c947bde",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "d438b00dd48b3a3cbad639ff0bc2d5c92470453f438ec61b3561880a90af057d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "4243604184464420e46ef84a75724f1c9b244ed74a1dc95e9b613276e21472bf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "92d86e2a83e8e6cf9e706ce0ec1543dc8aef541dc92d5c92fe893990f4eb80b2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "ee9278cd13bad99d773c11ec3cb8f23fc2f1ac6c4199f1fb776b0437ee068ab5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "8bb7c229cccb66767361236b9bc1247bf283460ceb0cf31fde8bd4fa631fd8c9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
-      "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
+      "sha256": "e8a67bdbd0c9f12d8c4ea4306760a3cf91b313a82200000ad1f6b3ffc7bb0538",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -556,9 +556,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "7cfd8a994de90468398ec023e5bf0c18c7443a95974020cdf7afbe7e564b58c5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "126df5b397bff313abc65e4ba1975f4e39522cdd15e6e89a29488d12ce8440ea",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "760a7ce0ba4cd7fbec215f4b1adfbf8caed648a8a804d95c4f493fd723f54297",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+      "sha256": "e4b09a37ea259694ecda967f84b2820ed2fb5e72faf19717b0cc148aeaa3946f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -811,9 +811,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/UI/TimedProjectDisplay.lua": {
-      "sha256": "78c29df3d460a75b9411a0e92874c0711e0363170ccda338072676d7d10690b5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
-      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+      "sha256": "70bd6d122f854a57b49f175a3619a193d356c9b7e8ebf90b76ea23084c9ff62d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/UI/TimedProjectRead.lua": {
       "sha256": "4fdd50853302ca414249532becbdd17f052b31ebaa5860438a888f80d5e83214",
@@ -1136,9 +1136,9 @@
       "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/IndustryHistory.lua": {
-      "sha256": "874eb893b21dce2f7be9bef0ad2a4eef6bca89127ecf5930cbc67c71d4028bcb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+      "sha256": "0dd5e169f11c31caa1d5e9b6509a33a130b4d18c4475ede5991d171168ae4bdd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/Data/StandardizationEffects.sql": {
       "sha256": "260593ac9ff2b946faa9552f617b0fe2f74fcb90b138465e2894b1b2ecca326f",
@@ -1146,9 +1146,39 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "bd52fbbefab69cd4d70d82d40a670c0046ddff09eaa561282d84c40cc3c9be27",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "e17ea4b28fc527be90e9b6c5116e73d438df859d7871220e7c8d106c1115ba46",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/Data/EngineeringStudy.sql": {
+      "sha256": "f2e7ae37ac66d92a375ecee86f2029ba487e4015f5c9f47e44029dbacd2ecf3d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/EngineeringStudyModel.lua": {
+      "sha256": "2a4ee2568ba5eb3c4db5412c9545a71bbe41bd2ab5cc5a53cd5b9ecdc7dae479",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/EngineeringStudyProjects.lua": {
+      "sha256": "6a0c35b9dcd38e7842b3bb09ad975b7d6301885f02cb2530dc21b58d064f4456",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/IndustryWonderEffects.lua": {
+      "sha256": "08b02766fd8a0dcc5cf40f48ddfe74252a12cf38e6ef1b83a6f3f1551afa0311",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/Text/EngineeringStudy.sql": {
+      "sha256": "3cd36c4431d66f52599d333dd7ac8df20ec105897136cf210a521ab1e60f4495",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/UI/EngineeringStudyUI.lua": {
+      "sha256": "b0d50dc7e34d19559721742cecec37276702822b93e485d616db1ae42beb30a3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     }
   }
 }

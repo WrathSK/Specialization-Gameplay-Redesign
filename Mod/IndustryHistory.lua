@@ -111,6 +111,7 @@ function SPCIndustryHistory.Start(P,shared)
   local r=receipt(q);local nextValue=copy(root)
   nextValue.records[id]=r;nextValue.revision=nextValue.revision+1
   commit(root,nextValue)
+  if shared.EngineeringStudy then shared.EngineeringStudy.CreditChanged(r.city.owner)end
   log('INDUSTRY_WONDER_RECORDED',{owner=r.city.owner,city=r.city.cityID,wonderType=id,wonderEra=r.era,
    readStatus=r.token and 'BOUND' or 'CITY_CONTINUITY_UNKNOWN'})
   return true
@@ -188,6 +189,17 @@ function SPCIndustryHistory.Start(P,shared)
   log('INDUSTRY_WONDER_RECONCILED',{owner=pid,city=c:GetID(),readStatus='CURRENT_UNION_RETAINED'})
   return true
  end
+ -- Ordinary study eligibility reads only civilization credit, not city display
+ -- lists or copied Wonder details. One set over existing bounded receipts.
+ function d.Credit(pid)
+  assert(d.ready and root and not fault,'IH_HISTORY_UNAVAILABLE')
+  assert(P.IsTestPlayer(pid),'IH_OWNER_CHANGED')
+  local eras={};local E=0;local known=root.coverage=='COMPLETE'
+  for _,r in pairs(root.records)do if r.city.owner==pid then
+   if r.era=='UNKNOWN'then known=false elseif not eras[r.era]then eras[r.era]=true;E=E+1 end
+  end end
+  return {E=E,known=known,revision=root.revision}
+ end
  function d.Read(pid,c)
   assert(d.ready and root and not fault,'IH_HISTORY_UNAVAILABLE')
   assert(c and c:GetOwner()==pid and P.IsTestPlayer(pid),'IH_OWNER_CHANGED')
@@ -232,7 +244,8 @@ function SPCIndustryHistory.Start(P,shared)
    '奇观自身时代：'..(#eras>0 and table.concat(eras,'、') or '无已记录时代'),
    '本城奇观：'..(#wonders>0 and table.concat(wonders,'、') or '无已记录奇观'),
    '覆盖：'..(value.coverage=='COMPLETE' and '从本局开局采集' or '此前历史未采集；没有按零补造'),
-   '研习层数 L：本批尚未实现。此报告不代表新标准化收益已接入。'},'\n')
+   shared.EngineeringStudy and shared.EngineeringStudy.Describe(pid,c) or '研习模块尚未就绪。',
+   shared.IndustryWonderEffects and shared.IndustryWonderEffects.Describe(pid,c) or '巨构工程学模块尚未就绪。'},'\n')
  end
  local function hook(name,fn)
   local e=P.Field(Events,name);assert(e and e.Add,'IH_EVENT_UNAVAILABLE');e.Add(fn)

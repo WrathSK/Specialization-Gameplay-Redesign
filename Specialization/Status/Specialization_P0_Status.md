@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0625
-Implementation Build: source/live B234.261 DEVELOP_ACTIVE; stable B069.96
-Architecture Revision Reviewed: A0164
+Status Revision: S0626
+Implementation Build: source B235.262 LOCAL_COMPLETE; live B234.261 DEVELOP_ACTIVE; stable B069.96
+Architecture Revision Reviewed: A0165
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B234_NATIVE_PASS_SCOPED / B235_PLANNED_NOT_AUTHORIZED
+Work State: B235_LOCAL_COMPLETE / NATIVE_PENDING / DISTRICT_PURCHASE_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B234 / IND-2 accepted:** [native review](Validation/Results/Specialization_B234_Native_Review.md), [B235 proposal](../Architecture/v2/Industry_Preparation.md#b235-proposal--engineering-study-and-wonder-production); `P0-H` complete.
-- **Evidence:** user steps1–3 PASS;151 contiguous records corroborate same-turn Industry I support, template propagation and recovery. Construction/withdrawal also rely on user observation; native floor retained, no compensation.
-- **Source/live:** B234.261 from `91b4da9`, receipt `B234.261-91b4da9-playtest.json`;229/229 MATCH. Main B069.96 unchanged.
-- **Delivered:** III actual-holder self/network construction+10%, purchase0%, exact old Industry exit. Old Research network remains deferred for v0.1; common topology/local Research remain.
-- **Next/stop:** B235 IV study/L, template enhancement and own-production older-Wonder bonus proposed, not authorized. Positive per-template purchase remains a technical gate. No new B234 test; Culture HOLD, Crew and Balance stay outside this checkpoint.
+**B235 / IND-3 locally complete:** [contract](../Architecture/v2/Industry_Preparation.md#b235-implementation-and-validation), [result and minimal native flow](Validation/Results/Specialization_B235_Engineering_Local.md); `P0-H` now routes this approved slice.
+- **Delivered:** full-turn Engineering Study with city L/receipts; per-template actual-holder III10/0, IV10+2L construction/2L building purchase; ACTIVE IV own-production older-Wonder10/20/30. No timers or new world scan.
+- **Evidence/gap:**188 scoped local PASS; native transaction/price/Wonder pending. Target-specific District purchase BLOCKED_TECHNICAL; no broad substitute. B233/B234 acceptance retained; native floor unchanged.
+- **Source/live:** source B235.262; live remains B234.261 `91b4da9`, receipt `B234.261-91b4da9-playtest.json`,229/229 MATCH until guarded deployment. Main B069.96 unchanged.
+- **Next/stop:** complete W0003 deployment if exit/hash gates pass, then one combined native session. Crew/Engineering Practice, Culture HOLD, Research-network redesign and Balance stay outside this batch.
+
+## S0626 — B235 local implementation checkpoint
+
+User-authorized IND-3 is locally complete. Store gains only the optional Engineering business extension and a reader fence against candidate publication; existing write/reservation and other lifecycle semantics remain.188 targeted tests PASS. Building purchase and Wonder primitives need native evidence; target-specific District purchase is an explicit isolated technical gap. No Design, GC, other profession code, frozen evidence, main or configuration change. Deployment/native acceptance are separate; current manifest and reviewed hashes follow this slice.
 
 ## S0625 — B234 native acceptance and B235 proposal
 

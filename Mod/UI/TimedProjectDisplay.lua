@@ -1,14 +1,16 @@
 include("ClaimProjectUI")
 include("DialogueProjectUI")
+include("EngineeringStudyUI")
 -- Shared cached timing text for independent UI contexts; never changes actual production.
 SPCTimedProjectDisplay={}
 function SPCTimedProjectDisplay.IsCurrent(c)
- if SPCDialogueProjectUI.Current(c) or SPCClaimProjectUI.Current(c) then return true end
+ if SPCEngineeringStudyUI.Current(c) or SPCDialogueProjectUI.Current(c) or SPCClaimProjectUI.Current(c) then return true end
  local row=GameInfo.Projects.PROJECT_SPC_OVERFLOW_SINK_TEST
  return c and c:GetOwner()==Game.GetLocalPlayer() and row and c:GetBuildQueue():GetCurrentProductionTypeHash()==row.Hash
 end
 function SPCTimedProjectDisplay.Text(pid,id)
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
+ if SPCEngineeringStudyUI.Current(c)then return SPCEngineeringStudyUI.Text(pid,id)end
  if SPCDialogueProjectUI.Current(c)then return SPCDialogueProjectUI.Text(pid,id)end
  local claim=SPCClaimProjectUI.Current(c)
  if claim then return SPCClaimProjectUI.Text(pid,id,claim)end
@@ -28,7 +30,10 @@ function SPCTimedProjectDisplay.Text(pid,id)
  return "需重开","本次计时已结束；重新选择项目才会请求新的计时" end
 function SPCTimedProjectDisplay.Items(data)
  for _,item in ipairs(data.ProjectItems or {})do
-  if item.Type==SPCDialogueProjectUI.PROJECT then
+  if item.Type==SPCEngineeringStudyUI.PROJECT then
+   local turns,note=SPCEngineeringStudyUI.Text(data.Owner,data.City:GetID())
+   item.TurnsLeft=turns;item.Progress=0;item.ToolTip=note.."[NEWLINE]"..(item.ToolTip or "")
+  elseif item.Type==SPCDialogueProjectUI.PROJECT then
    local turns,note=SPCDialogueProjectUI.Text(data.Owner,data.City:GetID())
    item.TurnsLeft=turns;item.Progress=0;item.ToolTip=note.."[NEWLINE]"..(item.ToolTip or "")
   elseif SPCClaimProjectUI.IsProject(item.Type)then

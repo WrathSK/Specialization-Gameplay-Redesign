@@ -1,5 +1,6 @@
 if not SPCResearchTradition then include('ResearchTradition') end
 if not SPCDialogueProjectModel then include('DialogueProjectModel') end
+if not SPCEngineeringStudyModel then include('EngineeringStudyModel') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
@@ -10,7 +11,7 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
  local nativeEvents={};local eventSequence=0
- local root,fault,busy;local ready=false
+ local root,fault,busy;local ready=false;local committing=false
  local foreignSeen=false;local transition;local transitionFault;local conquest;local foundation;local firstTransitionFault
  local function observe(name,...)
   if not root then return end
@@ -99,6 +100,10 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(r.dialogueKnown==true and type(r.dialogue)=='table','DIALOGUE_HISTORY_UNAVAILABLE')
    SPCDialogueProjectModel.Validate(r.dialogue,r)
   end
+  if r.engineeringKnown~=nil or r.engineering~=nil then
+   assert(r.engineeringKnown==true and type(r.engineering)=='table','EST_HISTORY_UNAVAILABLE')
+   SPCEngineeringStudyModel.Validate(r.engineering,r)
+  end
   -- B212: city-owned Expedition Insight history (Design: source city x foreign civ x
   -- category, first success only). History follows the city; never deleted here.
   if r.expeditionInsights~=nil then
@@ -186,7 +191,9 @@ local function CreateProgressionRecord(P,shared,storage)
  local function save(nextValue)
   assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
   local previous=root;root=cp(nextValue) -- protect target before engine callbacks
+  committing=true
   local ok,err=pcall(storage.Write,previous,nextValue)
+  committing=false
   if not ok then fault=tostring(err);error(fault)end
  end
  -- Dialogue history shares the existing record's commit/readback and failure boundary.
@@ -199,6 +206,20 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(value~=nil,'DIALOGUE_HISTORY_CANNOT_DELETE');SPCDialogueProjectModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.dialogueKnown=true;n.dialogue=cp(value);n.revision=n.revision+1;save(n)
+ end
+ -- Engineering owns its business schema; Store owns exact city persistence and
+ -- confirmed-loss cancellation. No candidate L escapes native write callbacks.
+ function d.EngineeringState(pid,c)
+  assert(not committing,'EST_COMMIT_IN_PROGRESS')
+  local r=active(pid,c)
+  return cp({value=r.engineering,token=r.base.token,reference=r.current or r.origin})
+ end
+ function d.WriteEngineering(pid,c,old,value)
+  assert(not committing,'EST_COMMIT_IN_PROGRESS')
+  local r=active(pid,c);assert(same(r.engineering,old),'EST_HISTORY_STALE')
+  assert(value~=nil,'EST_HISTORY_CANNOT_DELETE');SPCEngineeringStudyModel.Validate(value,r)
+  if same(old,value)then return end
+  local n=cp(r);n.engineeringKnown=true;n.engineering=cp(value);n.revision=n.revision+1;save(n)
  end
  -- B212: Expedition Insight history shares the record's commit/readback boundary.
  function d.ExpeditionInsights(pid,c)
@@ -647,6 +668,7 @@ local function CreateProgressionRecord(P,shared,storage)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
     local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
+    if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
@@ -923,6 +945,8 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
  function store.ExpeditionInsights(pid,c)return requireCity(c).ExpeditionInsights(pid,c)end
  function store.AddExpeditionInsight(pid,c,civ,category,turn)return requireCity(c).AddExpeditionInsight(pid,c,civ,category,turn)end
+ function store.EngineeringState(pid,c)return requireCity(c).EngineeringState(pid,c)end
+ function store.WriteEngineering(pid,c,old,value)return requireCity(c).WriteEngineering(pid,c,old,value)end
  function store.DialogueState(pid,c)return requireCity(c).DialogueState(pid,c)end
  function store.WriteDialogue(pid,c,old,value)return requireCity(c).WriteDialogue(pid,c,old,value)end
  function store.ReadTradition(pid,c)return requireCity(c).ReadTradition(pid,c)end

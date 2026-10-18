@@ -34,6 +34,11 @@ local function refreshInvestmentSupport(playerID,result)
    consumer.errors[key]=not ok and tostring(err) or nil
   end
  end
+ if type(result)=='table' and result.status=='COMMITTED' then
+  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects'})do
+   local d=shared[name];if d then local ok,err=pcall(d.Refresh,playerID,result.city);if not ok then print('[SPC][Industry entry] '..tostring(err))end end
+  end
+ end
  if type(result)=='table' and result.status=='COMMITTED' and shared.DialogueProjects
   and not shared.DialogueProjects.startupError and shared.DialogueProjects.Refresh then
   local ok,err=pcall(shared.DialogueProjects.Refresh,playerID,result.city) -- target entry only
@@ -77,6 +82,9 @@ local function request(playerID,params)
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
+  end
+  if params.Action=='ENGINEERING_STUDY_BEGIN' then
+    if shared.EngineeringStudy then shared.EngineeringStudy.Request(playerID,params)end;return
   end
   if params.Action=='DIALOGUE_CARRIER_NEXT' and shared.DialogueEffects then
     params.Action='DIALOGUE_PROJECT_READ' -- stale UI cannot re-enable the retired test writer
@@ -897,6 +905,10 @@ end
 
 -- Register after the explicit legacy-inheritance reset and Claim's wrapper.
 shared.IndustrySupport.BindPermanentWrites()
+include('EngineeringStudyProjects')
+SPCEngineeringStudyProjects.Start(P,shared)
+include('IndustryWonderEffects')
+SPCIndustryWonderEffects.Start(P,shared)
 
 local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
 if not dialogueOK then

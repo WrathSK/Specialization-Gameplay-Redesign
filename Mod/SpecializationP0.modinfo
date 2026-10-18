@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="261">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="262">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B234.261: Industry support readiness, III standardization construction baseline and exact legacy effect retirement; Research network deferred for v0.1.</Description>
+    <Description>B235.262: full-turn Engineering Study, city-owned L, IV template enhancement and own-production older-Wonder bonus; district purchase channel remains pending.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
+    <UpdateText id="SPC_B235_EngineeringStudyText"><File>Text/EngineeringStudy.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B234_Standardization">
       <Properties><LoadOrder>2000002</LoadOrder></Properties>
       <File>Data/StandardizationEffects.sql</File>
@@ -72,6 +74,10 @@
       <File>Data/HalfYieldProbe.sql</File>
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
+      <File>EngineeringStudyModel.lua</File>
+      <File>EngineeringStudyProjects.lua</File>
+      <File>IndustryWonderEffects.lua</File>
+      <File>UI/EngineeringStudyUI.lua</File>
       <File>ExpeditionTraining.lua</File>
       <File>ExpeditionTrainingDiagnostics.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
@@ -398,6 +404,12 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>EngineeringStudyModel.lua</File>
+    <File>EngineeringStudyProjects.lua</File>
+    <File>IndustryWonderEffects.lua</File>
+    <File>UI/EngineeringStudyUI.lua</File>
+    <File>Data/EngineeringStudy.sql</File>
+    <File>Text/EngineeringStudy.sql</File>
     <File>ExpeditionTraining.lua</File>
       <File>ExpeditionTrainingDiagnostics.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>

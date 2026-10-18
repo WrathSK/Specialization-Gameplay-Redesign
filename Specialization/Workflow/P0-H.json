@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0051",
     "research": "D0040",
@@ -10,184 +10,178 @@
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0164",
-    "status": "S0625",
-    "runtime": "B234.261 / modinfo261",
+    "architecture": "A0165",
+    "status": "S0626",
+    "runtime": "B235.262 / modinfo262",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b234-implementation-and-validation",
-  "goal": "B234.261 / IND-2: Industry I readiness, III standardization baseline, exact old Industry exit and user-approved v0.1 Research network isolation.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b235-implementation-and-validation",
+  "goal": "B235.262 / IND-3: city Engineering Study/L, IV actual-holder enhancement and own-production older-Wonder bonus; District purchase is an explicit technical gap.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "reason": "Current task, authorization, source/live and stop.",
+      "reason": "Current authority, live/source and next allowed action.",
       "selector": "## CURRENT AUTHORITATIVE STATE"
     },
     {
       "path": "Specialization/Architecture/v2/Industry_Preparation.md",
       "kind": "section",
-      "reason": "Approved baseline, retirement and scope; stable anchor retained.",
-      "selector": "## B234 proposal — standardization baseline and Industry I readiness"
+      "reason": "Approved B235 scope and precise implementation/technical gate.",
+      "selector": "## B235 proposal — engineering study and wonder production"
     },
     {
       "path": "Specialization/Architecture/v2/Industry_Preparation.md",
       "kind": "section",
-      "reason": "Actual ownership, event/temporary-state contract and native test entry.",
-      "selector": "## B234 implementation and validation"
+      "reason": "Approved B235 scope and precise implementation/technical gate.",
+      "selector": "## B235 implementation and validation"
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
       "kind": "full",
-      "reason": "Current scoped local evidence and minimal native gate."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B234_Native_Review.md",
-      "kind": "full",
-      "reason": "Scoped B234 native acceptance, retained evidence limits and next authorization boundary."
+      "reason": "Current local evidence, limits and minimal new native gate."
     },
     {
       "path": "Specialization/Design/Content/Industry_D0045.json",
       "kind": "json",
-      "reason": "Accepted template/eligibility/actual-holder rules; no whole-Design loading.",
-      "selector": "/contracts/template_knowledge"
+      "reason": "Accepted B235 business/lifecycle and target qualification contract.",
+      "selector": "/contracts/tradition_study"
     },
     {
       "path": "Specialization/Design/Content/Industry_D0045.json",
       "kind": "json",
-      "reason": "Accepted template/eligibility/actual-holder rules; no whole-Design loading.",
+      "reason": "Accepted B235 business/lifecycle and target qualification contract.",
       "selector": "/contracts/standardization_scope"
     },
     {
       "path": "Specialization/Design/Content/Industry_D0045.json",
       "kind": "json",
-      "reason": "Accepted template/eligibility/actual-holder rules; no whole-Design loading.",
+      "reason": "Accepted B235 business/lifecycle and target qualification contract.",
       "selector": "/contracts/standardization_efficiency_by_template"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "reason": "Accepted ordinary-Wonder era-gap rule.",
+      "selector": "/abilities/3"
+    },
+    {
+      "path": "Mod/EngineeringStudyModel.lua",
+      "kind": "full",
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
+    },
+    {
+      "path": "Mod/EngineeringStudyProjects.lua",
+      "kind": "full",
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
+    },
+    {
+      "path": "Mod/IndustryWonderEffects.lua",
+      "kind": "full",
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     },
     {
       "path": "Mod/StandardizationEffects.lua",
       "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     },
     {
-      "path": "Mod/Data/StandardizationEffects.sql",
+      "path": "Mod/Data/EngineeringStudy.sql",
       "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     },
     {
-      "path": "Mod/Standardization.lua",
+      "path": "Mod/CityProgressionStore.lua",
       "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     },
     {
-      "path": "Mod/StandardizationCatalog.lua",
+      "path": "Mod/IndustryHistory.lua",
       "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     },
     {
-      "path": "Mod/IndustrySupport.lua",
+      "path": "Mod/UI/EngineeringStudyUI.lua",
       "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     },
     {
-      "path": "Mod/NetworkBridge.lua",
+      "path": "DevelopmentTests/test_b235_engineering.py",
       "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
-    },
-    {
-      "path": "Mod/StandardizationDiscount.lua",
-      "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
-    },
-    {
-      "path": "Mod/CopyYields.lua",
-      "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
-    },
-    {
-      "path": "Mod/NetworkBoost.lua",
-      "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
-    },
-    {
-      "path": "DevelopmentTests/test_b234_standardization.py",
-      "kind": "full",
-      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+      "reason": "Direct B235 transaction/projection/history or targeted validation dependency."
     }
   ],
   "dependencies": [
-    "B233 typed knowledge and existing Store identity/readback; no new persistent fields.",
-    "Existing common network topology, event publication and pending recovery; native target-specific construction modifiers.",
-    "Existing Industry BASE producer, supported-player facts and bounded diagnostics."
+    "B233 reliable N/E and template history; current Store exact per-city persistence, identity/readback/reservations and confirmed exits.",
+    "B234 actual-holder Standardization and common network publication/recovery; existing full-turn/native FinishProgress pattern.",
+    "Target-specific building purchase and Wonder-era native effects; target-specific District purchase remains unestablished."
   ],
   "old_writers": [
-    "Retire normal StandardizationDiscount and CopyYields plus their old UI producer actions; retain exact definitions/withdrawal and all template history.",
-    "Isolate normal Research NetworkBoost, reject old test enablement and clear only its exact owned carriers; retain common topology, local Research and current CultureNetwork.",
-    "No prefix cleanup, foreign Mod Property reset, permanent-history clearing or purchase unlock."
+    "Extend existing StandardizationEffects; retain exact old Discount/Copy withdrawal and Research-network deferral.",
+    "Study owns only its access marker/attempt; Wonder writer owns only listed era carriers; no competing L source or prefix cleanup."
   ],
   "conditional_context": [
     {
-      "trigger": "Review the narrow gameplay/UI/investment notification wiring",
+      "trigger": "Review actual Gameplay/production/UI wiring or package",
       "paths": [
         "Mod/Gameplay.lua",
+        "Mod/UI/CrewProjectOrder.lua",
+        "Mod/UI/TimedProjectDisplay.lua",
         "Mod/UI/P0Panel.lua",
         "Mod/SpecializationP0.modinfo",
-        "Mod/UI/IndustryRefresh.lua",
-        "Mod/SampleLifecycle.lua",
-        "DevelopmentTests/test_investment_update_propagation.py"
+        "Mod/Text/EngineeringStudy.sql",
+        "Mod/Data/Icons.sql"
       ]
     },
     {
-      "trigger": "Investigate an actual Store/return/catalog/history regression",
+      "trigger": "Investigate a concrete Store/project/readback or load regression",
       "paths": [
-        "Mod/CityProgressionStore.lua",
+        "Mod/DialogueProjects.lua",
+        "Mod/DialogueProjectModel.lua",
         "Mod/CityIdentityRead.lua",
-        "DevelopmentTests/test_industry_history.py",
-        "DevelopmentTests/test_industry_catalog.py",
-        "Specialization/Status/Validation/Results/Specialization_B233_Native_Review.md"
+        "DevelopmentTests/test_store_write_boundaries.py",
+        "DevelopmentTests/test_dialogue_projects.py",
+        "DevelopmentTests/test_dialogue_project_ui.py"
       ]
     },
     {
-      "trigger": "Investigate shared publication or other consumer regression",
+      "trigger": "Investigate actual template/network/history/native trace mismatch",
       "paths": [
-        "DevelopmentTests/test_b232_network_revalidation.py",
-        "DevelopmentTests/test_b231_network_initialization_reports.py",
-        "DevelopmentTests/test_culture_network.py",
-        "Mod/NetworkInput.lua"
-      ]
-    },
-    {
-      "trigger": "Check a missing/invalid automatic trace",
-      "paths": [
+        "Mod/Standardization.lua",
+        "Mod/StandardizationCatalog.lua",
+        "Mod/NetworkBridge.lua",
+        "Mod/Data/StandardizationEffects.sql",
         "Mod/ExpeditionTrainingDiagnostics.lua",
-        "tools/read_expedition_trace.py",
-        "tools/collect_expedition_trace.py"
+        "tools/collect_expedition_trace.py",
+        "DevelopmentTests/test_b234_standardization.py",
+        "DevelopmentTests/test_industry_history.py",
+        "DevelopmentTests/test_b232_network_revalidation.py",
+        "Specialization/Status/Validation/Results/Specialization_B234_Native_Review.md"
       ]
     }
   ],
   "non_scope": [
-    "Design or numerical changes; L study/positive purchase/Wonder production/Crew batch.",
-    "Other profession/AI/identity/save schema/GC changes; no new timers or frame callbacks.",
-    "Main/promotion, external Mod/config edits, game launch and repeated native lifecycle suite."
+    "Design/balance changes, Crew/Engineering Practice, Culture HOLD and Research-network redesign.",
+    "General Store/dispatcher rewrite, AI systems, old-save migration, timers/frame polling or GC changes.",
+    "Main/promotion, external Mod/config editing, game launch or repeating old native lifecycle gates."
   ],
   "validation": {
-    "depth": "Scoped L3 actual-source+SQLite, current network/investment/history regression; L1 syntax/package/context/publication.",
-    "local": "150 targeted local tests PASS plus helper3, Lua/package/link/context checks. Two historical package checkpoint methods excluded explicitly and unchanged; see result.",
-    "user": "USER_GAME_TEST_PASS scoped steps1–3: same-turn Industry I support, III construction and source withdrawal/recovery. Native floor observed and retained; no repeat requested.",
-    "review": "151 contiguous native records; all observed Standardization/network waits recover. Target-specific progress samples do not contain the full production breakdown or an identifiable ACTIVE-down/up pair; those acceptance points retain explicit user testimony."
+    "depth": "Scoped L3 actual Store/model/project/projection/UI plus in-memory current DB; affected old behaviors and L1 syntax/package/context/publication.",
+    "local": "188 targeted tests PASS. One historical modinfo201 package assertion excluded explicitly and unchanged; current262 package is checked instead.",
+    "user": "USER_GAME_TEST_REQUIRED: one continuous L0→1, cancellation/fresh→2, actual legal building price/ordinary older-Wonder comparison, then one cold restart for the new persisted L.",
+    "gap": "District purchase BLOCKED_TECHNICAL, no all-District substitute; unavailable legal Faith channel remains untested. No native performance claim."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B234_Native_Review.md",
-    "source": "B234.261/modinfo261 DEVELOP_ACTIVE; source 91b4da98e525eb9c95772827605fbd70ab0d297e; receipt B234.261-91b4da9-playtest.json;229/229 MATCH, digest b1838122089803fb7599106527ecc847fa3d54e972c31d379e7a9ce5cdf58704. Automatic game-exit checks before both guarded switches; B233/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_PASS_SCOPED_STEPS_1_TO_3",
-    "stop": "B234 accepted. B235 proposal requires explicit implementation authorization; no code/deployment in this review. Engine floor retained without correction.",
-    "local_report": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md"
+    "report": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+    "source": "Source B235.262 local complete; external runtime remains B234.261/modinfo261 DEVELOP_ACTIVE; source 91b4da98e525eb9c95772827605fbd70ab0d297e; receipt B234.261-91b4da9-playtest.json;229/229 MATCH, digest b1838122089803fb7599106527ecc847fa3d54e972c31d379e7a9ce5cdf58704. Automatic game-exit checks before both guarded switches; B233/stable recovery retained, no pending transaction.",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Only approved B235; native acceptance pending; no new Crew/Culture implementation. Preserve isolated District purchase gap."
   }
 }

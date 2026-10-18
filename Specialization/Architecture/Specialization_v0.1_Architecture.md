@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0164
+# Specialization v0.1 Architecture — A0165
 
 Document Owner: Codex
-Architecture Revision: A0164
+Architecture Revision: A0165
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,12 +11,13 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0164保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0165保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
 - [B232 shared network recovery contract](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出): event-driven route proof, coherent availability-before-notification, and recovery notification without a new logical input version. Culture history changes actively notify their projection; no persistent state or Gameplay change.
 - [B234 Industry projection and exact retirement](v2/Industry_Preparation.md#b234-implementation-and-validation): Store knowledge and current effect eligibility remain separate; event-driven support readiness, self/network III baseline, exact old Industry exit and user-approved v0.1 Research-network isolation preserve the common topology.
+- [B235 Engineering city history and effects](v2/Industry_Preparation.md#b235-implementation-and-validation): Store owns L/receipts, study owns the full-turn transaction, existing Standardization owns actual-holder enhancement, and a derived city consumer owns older-Wonder production. Target-specific District purchase remains a technical gap.
 - 实施/验证/下一授权边界只在[Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state)维护；部署另需receipt，源码存在不证明已部署。
 - [A–D2事件驱动传播合同](v2/README.md)及[机构/能力/carrier分层](v2/Presentation_Institution_Carrier_Model.md)继续适用；下面旧阶段状态不重启旧任务。
 - 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2当前路由查阅。
@@ -64,7 +65,7 @@ A0164保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 [IND-1 contract](v2/Industry_Preparation.md#b233-implementation-contract) adds one Game-owned source for supported-player Wonder completions and local reconciliation observations. City N and completing-civilization E are distinct projections. Foreign completion events are ignored. Lawful Industry initialization/claim and return union reliable city history with presently existing Wonders, using the existing Store identity and single-city entry; this never grants conquest E credit or invents unseen foreign history. Initialization/empty/unavailable remain distinct; corrupt authority is not rebuilt from current possession.
 
-Typed District knowledge is a separate component of the existing per-city template transaction, normalized through native District replacements. Store recovery validates historical structure/provenance independently of the current effect catalog. B234 adds a transient StandardizationEffects consumer: current ACTIVE>=III holders, local self plus verified network sources, per-template union/max and typed construction+10%/purchase0%. The legacy strict reader remains for historical fixtures; the normal Discount/Copy writers are retired. Current classification only controls effect eligibility, never deletes knowledge. No new save framework or L ledger; native limits remain in Status and the scoped contract.
+Typed District knowledge is a separate component of the existing per-city template transaction, normalized through native District replacements. Store recovery validates historical structure/provenance independently of the current effect catalog. B234 adds a transient StandardizationEffects consumer: current ACTIVE>=III holders, local self plus verified network sources, per-template union/max and typed construction+10%/purchase0%. The legacy strict reader remains for historical fixtures; the normal Discount/Copy writers are retired. Current classification only controls effect eligibility, never deletes knowledge. B235 adds an optional city-owned L/receipt extension through the same Store transaction, a narrowly fenced reader, and cancellation/no-replay semantics. It extends the existing projection rather than adding a competing writer; no new save framework. Native limits remain in Status and the scoped contract.
 
 ### Dialogue project and saved history (B175)
 

@@ -54,7 +54,7 @@ Players={[0]={GetCities=function()return {Members=function()return pairs(cities)
 shared={EffectiveFacts={Read=function(pid,c)factReads[c.id]=(factReads[c.id] or 0)+1;if unknown[c.id]then error('STD_FACTS_UNKNOWN')end;return facts[c.id]end},
  Standardization={ReadKnowledge=function(pid,c)ledgerReads[c.id]=(ledgerReads[c.id] or 0)+1;if ledgers[c.id]==false then error('STD_HISTORY_CORRUPT')end;return ledgers[c.id]end},
  NetworkBridge={Input=function()return {validity=networkValidity}end,CurrentIndustryBatch=function()if networkError then error(networkError)end;return {input={validity=networkValidity,availability='AVAILABLE'},recipients=recipients}end,RequestPendingProof=function()requests=requests+1 end},
- CityProgressionStore={HistoryStartStatus=function()return 'READY'end,RegisterExit=function(k,f)exits[k]=f end,RegisterReturn=function(k,f)returns[k]=f end,
+ CityProgressionStore={EngineeringState=function(pid,c)return {token=c.token}end,HistoryStartStatus=function()return 'READY'end,RegisterExit=function(k,f)exits[k]=f end,RegisterReturn=function(k,f)returns[k]=f end,
  RemoveOwned=function(c,loss,ids)for _,id in ipairs(ids)do local r=P.Info('Buildings',id);if P.HasBuilding(c.built,r.Index)then P.RemoveBuilding(c.built,r.Index);assert(not P.HasBuilding(c.built,r.Index))end end end}}
 function industry(id,level)facts[id].specialization='INDUSTRY';facts[id].active=level;facts[id].potential=level end
 function learn(id,building)
@@ -87,7 +87,7 @@ class Standardization(unittest.TestCase):
             cls.db.execute('DROP TABLE SPC_StandardizationTargets')
         cls.db.executescript((M/'Data/StandardizationEffects.sql').read_text())
         cls.db.row_factory=sqlite3.Row
-        cls.tables={}
+        cls.tables={'SPC_StandardizationLevels':[]} # B234 fixture: no learned IV layers.
         for t in ['Buildings','Districts','DistrictReplaces','HD_BuildingTiers','HD_DUMMY_BUILDINGS','SPC_B054_Targets','SPC_StandardizationTargets']:
             cls.tables[t]=[dict(r) for r in cls.db.execute('SELECT rowid AS "Index",* FROM '+t)]
 
