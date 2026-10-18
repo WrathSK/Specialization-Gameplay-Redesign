@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0608
-Implementation Build: source/live B228.255 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0609
+Implementation Build: source B229.256; live B228.255 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B228_DEPLOYED_AWAITING_NATIVE
+Work State: B229_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B228 local complete:** [native wake query alignment and bounded activity/network diagnostics](Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md);246 targeted offline tests PASS. Native acceptance pending.
-- **Source/live B228.255 / modinfo255**: source `5cacaa0`, receipt `B228.255-5cacaa0-playtest.json`,226/226 MATCH. Main stable B069.96 unchanged.
-- **B227 evidence:** event processing/rejection unwind works; redispatch followed by task completion/release succeeds. Recurring native denial is unresolved. [Follow-up](Validation/Results/Specialization_B227_Collector_Native_Followup.md). Collector field-order repair is committed separately.
-- **B228 boundary:** native WAKE query shape aligned; no forced wake/retry, timer or gameplay/history change. Existing lifecycle records add readiness/eligibility; Culture Network waiting report exposes retained failure/input state without recompute.
-- **Next:** one combined log-first task/reuse and **文化见闻** waiting-report observation. Great Work refresh PASS retained; Culture Network yield/source withdrawal remains pending. No unrelated next batch authorized.
+**B229 local complete:** [retained network waiting and complete release diagnostics](Validation/Results/Specialization_B229_Retained_Diagnostics.md);255 targeted offline tests PASS. Native gate pending.
+- **Source B229.256 / modinfo256; live B228.255**: source `5cacaa0`, receipt `B228.255-5cacaa0-playtest.json`,226/226 MATCH at recorded deployment. Main stable B069.96 unchanged.
+- **Evidence:** B228 T75 still rejects Sleep; old/new Wake query shapes agree. Submitted sessions lack a new release chain and network wait prints. No global-lock or topology-absence conclusion. Prior successful tasks/Great Work refresh retained; network yield/source withdrawal unaccepted.
+- **Changed:** waiting-report state now survives missed prints in the existing bounded ring; all release ACK exits retain branch/state. No changed release gate, forced wake, retry, timer, gameplay/history or GC change.
+- **Next:** guarded deployment after exit confirmation, then one normal task/reuse and one **文化见闻** waiting report with collector. No blind repeats, cold-load loop or unrelated batch.
+
+## S0609 — B229 bounded diagnostic closure
+
+Approved changes locally complete with255 offline PASS. Readiness remains observational; existing release semantics retained after source review. Raw prior evidence and main unchanged; native cause still open.
 
 ## S0608 — B228 verified deployment
 

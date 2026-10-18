@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "5cacaa03d4e9b4e3c522a10ea3d840f4458371dd",
-  "runtime": "B228.255 / modinfo255",
+  "runtime": "B229.256 / modinfo256 (source; live B228.255 until verified switch)",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "9190f2f1208490534293b7c07b9ea78b23c80658b3bbdb31156b2efe7d96de0c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
-      "provenance": "B228 authorized narrow native wake signature and bounded diagnostic changes;246 offline tests PASS, native pending; no timer/schema/gameplay change."
+      "sha256": "fa1a34d40a2f21bfc811701195afe355ea7ee1595a914ea56703c128071a850c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "927f2ffaff3bcde00d45cbbc29d9959644795c0c5c2384c36c30eb0b386f949f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
-      "provenance": "B228 authorized narrow native wake signature and bounded diagnostic changes;246 offline tests PASS, native pending; no timer/schema/gameplay change."
+      "sha256": "47475e62a030caefa51cc497c6301d193efffc15fe973d999dca1408534a3445",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -1061,9 +1061,9 @@
       "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "73215f131dd9f18bd212cbc147c6782c7e27b02f8edb31d1658960d47a26dfb8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
-      "provenance": "B228 authorized narrow native wake signature and bounded diagnostic changes;246 offline tests PASS, native pending; no timer/schema/gameplay change."
+      "sha256": "a3530d1b0321e3a436bf0bcdc4d08fe2025167a4654117905bf8c3b07cf19437",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "cd8f45b020ff013f8641e38fdaf5bf61d9f23dfd4b38f86da0210e39501ec32b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
-      "provenance": "B228 authorized narrow native wake signature and bounded diagnostic changes;246 offline tests PASS, native pending; no timer/schema/gameplay change."
+      "sha256": "f356d77b189f632e93098195ae77d1154f531adf6b307a02942909e2988d1fc0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1126,9 +1126,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "e97c0f04ad927d12aebc198349f5d74dba24febafbc56b039fc2a0dc5fe6715c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
-      "provenance": "B228 authorized narrow native wake signature and bounded diagnostic changes;246 offline tests PASS, native pending; no timer/schema/gameplay change."
+      "sha256": "147fd457284675352c09066d28400b1e15f8db6cc93be97d17e10f34299db942",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
     },
     "Mod/Data/CultureNetwork.sql": {
       "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",

@@ -179,7 +179,7 @@ local function recordActivity(n,stage,reason,d)
  if not trace or not same(view(),n)then return end
  local v={owner=n.owner,eventUnit=n.unitID,teamKey=n.teamKey,activityKey=n.activityKey,
   evaluationOrigin='NATIVE_EVENT',signalOrigin=signal,coreBusy=coreState,operationEvent=operationEvent,lastOperationHash=operationHash,
-  mode=n.mode,phase=n.phase,readStatus=n.readStatus or 'NOT_READ',x=n.x,y=n.y,actualX=n.actualX,actualY=n.actualY,
+  releaseBranch=n.releaseBranch,mode=n.mode,phase=n.phase,readStatus=n.readStatus or 'NOT_READ',x=n.x,y=n.y,actualX=n.actualX,actualY=n.actualY,
   activity=n.lastActivity or 'UNAVAILABLE',activitySampleTurn=n.sampleTurn,
   awake=n.sampleAwake,hold=n.sampleHold,sleep=n.sampleSleep,operationEnum=n.sampleOperation,
   requested=n.requested==true,attempted=seen.attempted==true,
@@ -276,6 +276,13 @@ local function clearStaleDiagnostic(v,key)
   ExposedMembers[key]=nil
  end
 end
+-- All release acknowledgements keep their observed branch in the existing ring.
+-- A diagnostic failure cannot prevent release or authorize a native write.
+local function released(n,branch)
+ n.releaseBranch=branch
+ pcall(recordActivity,n,'ACTIVITY_RELEASE')
+ acknowledge(n,'RELEASED')
+end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
  n.readStatus=not ok and 'READ_ERROR' or (u and 'READ_OK' or 'POSITION_PENDING')
@@ -352,12 +359,11 @@ local function evaluate(n)
  elseif n.mode=='RELEASE' then
   -- Cancellation can precede the Gameplay acknowledgement. Only this UI lease knows
   -- whether a sleep was attempted; never wake a pre-existing, unowned sleep.
-  if not n.owned then acknowledge(n,'RELEASED');return end
+  if not n.owned then released(n,'UNOWNED');return end
   if activity==ActivityTypes.ACTIVITY_AWAKE or activity==ActivityTypes.ACTIVITY_HOLD then
    -- Awake is not proof that an attempted, unobserved operation cannot still arrive.
    if seen.attempted and not seen.sleepObserved then fail(n,'ACTIVITY_SLEEP_OUTCOME_UNKNOWN');return end
-   recordActivity(n,'ACTIVITY_RELEASE')
-   acknowledge(n,'RELEASED');return
+   released(n,'ENTRY_READ');return
   end
   if activity~=ActivityTypes.ACTIVITY_SLEEP then fail(n,'ACTIVITY_RELEASE_STATE_UNKNOWN');return end
   if not n.requested then
@@ -383,7 +389,7 @@ local function evaluate(n)
  n.readStatus=readOK and 'READ_OK' or 'READ_ERROR'
  if not readOK then fail(n,_);return end
  if (n.mode=='SLEEP' or n.mode=='ARMED') and after==ActivityTypes.ACTIVITY_SLEEP then acknowledge(n,'ASLEEP')
- elseif n.mode=='RELEASE' and (after==ActivityTypes.ACTIVITY_AWAKE or after==ActivityTypes.ACTIVITY_HOLD)then acknowledge(n,'RELEASED')end
+ elseif n.mode=='RELEASE' and (after==ActivityTypes.ACTIVITY_AWAKE or after==ActivityTypes.ACTIVITY_HOLD)then released(n,'SECOND_READ')end
 end
 local function start(v)
  local n={revision=v.revision,owner=v.owner,unitID=v.unitID,expectedName=v.expectedName,

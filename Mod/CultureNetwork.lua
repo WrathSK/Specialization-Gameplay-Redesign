@@ -1,5 +1,6 @@
 include('CurrentSpecializationFacts')
 include('NetworkInput')
+include('ExpeditionTrainingDiagnostics')
 -- B226: current network projection only. Store owns history; Bridge owns topology;
 -- native district workers own the yield count. No received history or timer.
 SPCCultureNetwork={Bits=8,Owned={},Districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE',COMMERCE='DISTRICT_COMMERCIAL_HUB'}}
@@ -25,6 +26,11 @@ function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'CN_STORE_REQUIRED')
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureNetwork=d
  local definitions,dirty={},{};local initialized=false
+ local trace;local lastWait
+ if SPCExpeditionTrainingDiagnostics then
+  local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'CULTURE_NETWORK')
+  if ok then trace=value end
+ end
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
  local function ref(c)return SPCNetworkInput.Reference(c)end
  local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
@@ -265,6 +271,16 @@ function M.Start(P,shared)
    fields[#fields+1]=k..'='..diagnosticCode(b and b[k])
   end
   print('[SPC][B191][N1_INSIGHT] '..table.concat(fields,' '))
+  -- One replaceable signature, no per-city history. Existing ring/budget only.
+  local signature=pid..':'..c:GetID()..':'..layer..':'..reason..':'..tostring(d.ready)..':'..tostring(bridge and bridge.ready==true)..':'..table.concat(fields,' ')
+  if signature~=lastWait and trace then
+   local ok=pcall(trace.Record,'NETWORK_WAIT',{owner=pid,city=c:GetID(),networkLayer=layer,
+    reason=reason,ready=d.ready,bridgeReady=bridge and bridge.ready==true,
+    networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
+    networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor),
+    networkRevalidation=diagnosticCode(b and b.revalidation),networkError=diagnosticCode(b and b.error)})
+   if ok then lastWait=signature end
+  end
   local labels={CITY='城市事实或收益应用',MODULE='文化网络初始化',NETWORK='网络输入或拓扑',NO_RECORD='尚无城市计算结果',CURRENT_FACTS='当前城市或专家事实'}
   return '文化网络：等待确认｜'..labels[layer]..'（'..reason..'）\n输入：'
    ..diagnosticCode(b and b.validity)..' / '..diagnosticCode(b and b.availability)
@@ -279,6 +295,7 @@ function M.Start(P,shared)
    local n=Map.GetPlotByIndex(p.plot):GetWorkerCount();assert(int(n),'CN_WORKERS_UNKNOWN');return n
   end)
   if not ok then return pendingReport(pid,c,p,error,workers)end
+  lastWait=nil -- Permit a later report; the shared ring still applies its own dedup/budget.
   print('[SPC][B191][N1_INSIGHT] kind=NETWORK owner='..pid..' city='..c:GetID()..' civilizations='..p.n..' workers='..workers..' expected='..p.n*workers)
   return '文化网络｜完整文明 '..p.n..'｜本专业工作专家 '..workers..'\n每名额外 +'..p.n..' 文化；本城预期 +'..p.n*workers..' 文化。'
  end

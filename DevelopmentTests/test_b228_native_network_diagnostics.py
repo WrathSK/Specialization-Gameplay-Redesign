@@ -53,7 +53,7 @@ class NetworkWaiting(unittest.TestCase):
    cn.records={};cn.errors={};cn.playerError={};net.players[0]=nil
    local s=cn.Describe(0,cities[1]);assert(logs[1]:find('layer=NO_RECORD',1,true))
    assert(net.players[0]==nil)
-   cn.error='CN_CARRIER_MISSING';cn.Describe(0,cities[1]);assert(logs[3]:find('layer=MODULE',1,true))
+   cn.error='CN_CARRIER_MISSING';cn.Describe(0,cities[1]);local found=false;for _,line in ipairs(logs)do if line:find('layer=MODULE',1,true)then found=true end end;assert(found)
   ''')
  def test_arbitrary_error_text_not_logged(self):
   l=self.setup_lua();l.execute('''
@@ -64,7 +64,11 @@ class NetworkWaiting(unittest.TestCase):
  def test_wait_log_accepted_by_existing_collector_allowlist(self):
   l=self.setup_lua();l.execute("cn.playerError={[0]='NETWORK_REFRESH_PENDING'};cn.Describe(0,cities[1])")
   for line in l.globals().logs.values():
-   self.assertLessEqual(len(line.split('] ',1)[1]),400)
-   self.assertIsNotNone(reader.hd_line(line))
+   trace=reader.training_line(line)
+   if trace:
+    self.assertLessEqual(len(trace),4096)
+   else:
+    self.assertLessEqual(len(line.split('] ',1)[1]),400)
+    self.assertIsNotNone(reader.hd_line(line))
 
 if __name__=='__main__':unittest.main()
