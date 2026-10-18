@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0619
-Implementation Build: source/live B232.259 DEVELOP_ACTIVE; stable B069.96
-Architecture Revision Reviewed: A0162
+Status Revision: S0620
+Implementation Build: source B233.260 / live B232.259 DEVELOP_ACTIVE; stable B069.96
+Architecture Revision Reviewed: A0163
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: INDUSTRY_PREPARATION_REVIEWED / IMPLEMENTATION_NOT_AUTHORIZED
+Work State: B233_LOCAL_COMPLETE / USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**Industry planning reviewed; proposed B233 / IND-1 awaits authorization:** [review, external interface evidence and four-batch plan](../Architecture/v2/Industry_Preparation.md#current-planning-review-and-batch-grouping). First proposal: N/E Wonder history and typed District template knowledge; no new effect writer or deployment authorized.
-- **Source/live unchanged:** B232.259/modinfo259, source `a0e1d4e`, receipt `B232.259-a0e1d4e-playtest.json`,226/226 MATCH in the existing deployment record. Stable main B069.96 unchanged; no new runtime comparison here.
-- **Evidence:** [B232 scoped network native PASS](Validation/Results/Specialization_B232_Native_Review.md) retained. Industry review is STATIC_CONFIRMED source/DB evidence only; Detailed Wonder Reminder Enhanced is a read-only API reference, not a runtime dependency or history source.
-- **User HOLD / stop:** Expedition issues, remaining Meaning work and era-coverage presentation are HOLD/nonblocking. Balance is outside this task. [Culture navigation](../Architecture/v2/Culture_Preparation.md) preserves accepted mechanisms/compromises. No new user test requested.
-- **Next allowed action:** user review of proposed B233; then create its scoped implementation gate only if authorized. P0-N1 retains the held Culture envelope, not Industry implementation permission. No Design, timer, GC, source or runtime change.
+**B233 / IND-1 locally complete; native pending:** [result and new-save test](Validation/Results/Specialization_B233_Industry_History_Local.md), [implementation contract](../Architecture/v2/Industry_Preparation.md#b233-implementation-contract), manifest `P0-GH1`.
+- **Scope:** event-driven N/E Wonder history, typed District templates, structural/catalog separation and read-only reporting. No new Industry effect, L study or Crew change; foreign completion events are ignored; conquest/Industry entry reconciles present Wonders into N only, retaining saved history.
+- **Source/live:** B233.260 source awaits the existing W0003 transaction; live remains B232.259 from `a0e1d4e`, receipt `B232.259-a0e1d4e-playtest.json`. Main B069.96 unchanged. Never infer deployment from HEAD.
+- **Evidence:** 104 targeted offline tests PASS (including inherited B140/B142 cases and Store/collector checks). This is not USER_GAME_TEST_PASS. New campaign selected by the user; one completion/template/cold-load session remains.
+- **Hold/stop:** Expedition issues, remaining Meaning work and era-coverage presentation HOLD/nonblocking; Balance outside scope. No new timers or GC changes. After local commit and gated deployment, await B233 native results; IND-2 requires a new authorization.
+
+## S0619 — Industry plan review and authorization handoff
+
+Industry preparation was refreshed against accepted D0045 and current direct source/DB. DWR_ENHANCED provided a read-only native event/own-era reference; no dependency was added. The user subsequently authorized B233 / IND-1 and chose a new campaign. The remaining plan groups were not authorized.
 
 ## S0618 — B232 network native acceptance
 

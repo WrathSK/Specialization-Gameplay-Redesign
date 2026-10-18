@@ -91,6 +91,7 @@ local function CreateProgressionRecord(P,shared,storage)
    local t=r.templateLifecycle
    assert(r.base.specialization=='INDUSTRY' and type(t)=='table' and t.version==1
     and (t.state=='UNINITIALIZED' or t.state=='INITIALIZED') and type(t.reconcilePending)=='boolean','TEMPLATES_LIFECYCLE_INVALID')
+   assert(t.districtsKnown==nil or (t.districtsKnown==true and r.templates and r.templates.knowledgeVersion==1 and r.templates.districts),'TEMPLATES_DISTRICT_HISTORY_UNAVAILABLE')
    assert(t.state~='UNINITIALIZED' or (r.templates==nil and t.reconcilePending),'TEMPLATES_LIFECYCLE_CONFLICT')
   end
   if r.researchTradition then SPCResearchTradition.Validate(r.researchTradition,r) end
@@ -173,6 +174,12 @@ local function CreateProgressionRecord(P,shared,storage)
   v=cp(v);if not v or not r.current then return v end
   local a=investment and v.anchor or v;a.cityID=r.current.cityID;a.first=cp(r.currentFirst)
   return v
+ end
+ -- History reads reuse the established city token; they cannot enroll AI cities.
+ function d.HistoricalReference(c)
+  active(c:GetOwner(),c) -- supported-owner authority only; no AI history reader
+  return {token=root.base.token,foundationTurn=root.base.foundationTurn,
+   founded=root.schema==2,owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
  end
  function d.Base(pid,c)local r=active(pid,c);return projected(r,r.base,false)end
  function d.Investment(pid,c)local r=active(pid,c);return projected(r,r.investment,true)end
@@ -324,7 +331,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(type(value)=='table' and value.initialized==true,'TEMPLATES_VALUE_INVALID')
   if same(old,value) and r.templateLifecycle and not r.templateLifecycle.reconcilePending then return end
   local n=cp(root);n.templates=cp(value)
-  n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=false}
+  n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=false};if value.districts then n.templateLifecycle.districtsKnown=true end
   n.revision=n.revision+1;save(n) -- ledger and initialization acknowledgement share one city-record write
  end
  -- Fresh records use the same fact shape but never create legacy City journals.
@@ -615,8 +622,8 @@ local function CreateProgressionRecord(P,shared,storage)
    -- Preserve reliable city experience; current eligible buildings are unioned
    -- by Standardization only after the authoritative return is committed.
    if n.templatesCaptured and n.templates then
-    assert(shared.Standardization and shared.Standardization.ValidateRetained,'RETURN_TEMPLATE_VALIDATOR_UNAVAILABLE')
-    shared.Standardization.ValidateRetained(c,n.templates)
+    assert(shared.Standardization and shared.Standardization.ValidateHistory,'RETURN_TEMPLATE_VALIDATOR_UNAVAILABLE')
+    shared.Standardization.ValidateHistory(c,n.templates)
    end -- missing pre-loss history holds Standardization reads, not Identity/Potential
    if n.templateLifecycle then n.templateLifecycle.reconcilePending=true end
   end
@@ -681,7 +688,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
  local store={UsesNewAuthority=not legacyTest};shared.CityProgressionStore=store
  local envelope,raw,fault,writing;local workers={};local exits,returns={},{}
- local modern=not legacyTest;local index,positions,capacity;local initialized=false
+ local modern=not legacyTest;local index,positions,capacity;local initialized=false;local freshHistoryStart=false
  local INDEX=SPCCityProgressionStore.INDEX;local PREFIX=SPCCityProgressionStore.RECORD
  local initializeNew
  -- Session-only reservations for held/incomplete records. The committed envelope
@@ -871,7 +878,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     assert(Game:GetProperty(INDEX)==nil and Game:GetProperty(KEY)==nil,'SAVE_AUTHORITY_CHANGED')
     local value={schema=3,counter=0,entries={}}
     P.SetProperty(Game,INDEX,value);assert(same(Game:GetProperty(INDEX),value),'INDEX_WRITE_UNCONFIRMED')
-    loadIndex(value)
+    loadIndex(value);freshHistoryStart=true
    end)
    if not ok then fault=tostring(err)end
   end
@@ -905,6 +912,12 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.ClaimState(pid,c)return requireCity(c).ClaimState(pid,c)end
  function store.WriteClaimTimer(pid,c,old,value)return requireCity(c).WriteClaimTimer(pid,c,old,value)end
  function store.ClaimComplete(pid,c,e)return requireCity(c).ClaimComplete(pid,c,e)end
+ function store.HistoricalReference(c)return requireCity(c).HistoricalReference(c)end
+ function store.HistoryStartStatus()
+  if fault then return 'HELD' end
+  if not modern or not initialized then return 'WAITING' end
+  return freshHistoryStart and 'FRESH' or 'EXISTING'
+ end
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end

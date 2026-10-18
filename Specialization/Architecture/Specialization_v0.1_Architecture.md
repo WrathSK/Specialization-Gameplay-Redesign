@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0162
+# Specialization v0.1 Architecture — A0163
 
 Document Owner: Codex
-Architecture Revision: A0162
+Architecture Revision: A0163
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0162保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0163保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -58,6 +58,12 @@ A0162保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 [EffectiveFacts](../../Mod/EffectiveFacts.lua)从基础进度与已确认投资得到Potential，再从当前总督门槛求ACTIVE；读取失败保留UNKNOWN语义。[Standardization](../../Mod/Standardization.lua)在新模式将自身模板读写路由至进度store，仍由该模块验证模板目录和学习证据。Identity/Potential/明确永久收据与当前总督、路线、收益载体分开。
 
 失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
+
+### Industry history and typed knowledge (B233)
+
+[IND-1 contract](v2/Industry_Preparation.md#b233-implementation-contract) adds one Game-owned source for supported-player Wonder completions and local reconciliation observations. City N and completing-civilization E are distinct projections. Foreign completion events are ignored. Lawful Industry initialization/claim and return union reliable city history with presently existing Wonders, using the existing Store identity and single-city entry; this never grants conquest E credit or invents unseen foreign history. Initialization/empty/unavailable remain distinct; corrupt authority is not rebuilt from current possession.
+
+Typed District knowledge is a separate component of the existing per-city template transaction, normalized through native District replacements. Store recovery validates historical structure/provenance independently of the current effect catalog; legacy building discounts retain their stricter eligibility guard. No new Industry yield writer or universal save framework is introduced. Native/coverage limits and the current test gate remain in Status and the scoped contract.
 
 ### Dialogue project and saved history (B175)
 

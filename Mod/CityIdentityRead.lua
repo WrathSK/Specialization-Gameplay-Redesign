@@ -31,6 +31,34 @@ end
 local function anchor(v,r,token)
  return type(v)=='table' and v.owner==r.owner and v.cityID==r.cityID and v.token==token and v.x==r.x and v.y==r.y
 end
+-- B233: saved knowledge shape/provenance is independent of today's effect catalog.
+-- Building schema/revision stays unchanged for existing building-only consumers.
+function M.ValidateTemplates(t,token,x,y)
+ assert(type(t)=='table' and t.schema==1 and t.initialized==true and type(token)=='string' and t.uid=='STD:'..token
+  and t.foundation==token and t.x==x and t.y==y and type(t.learned)=='table','STD_LEDGER_INVALID')
+ local count=0
+ for id,row in pairs(t.learned)do
+  assert(type(id)=='string' and type(row)=='table' and type(row.district)=='string'
+   and int(row.tier) and int(row.turn) and type(row.evidence)=='string','STD_RECEIPT_INVALID')
+  count=count+1
+ end
+ assert(t.revision==count+1,'STD_REVISION_CONFLICT')
+ if t.knowledgeVersion~=nil or t.districts~=nil then
+  assert(t.knowledgeVersion==1 and type(t.districts)=='table','STD_DISTRICT_HISTORY_UNAVAILABLE')
+  local d=t.districts
+  assert(d.version==1 and d.initialized==true and d.policy=='D0045' and int(d.initializedTurn)
+   and type(d.learned)=='table' and (d.coverage=='FROM_IDENTITY' or d.coverage=='PRESENT_AT_ADOPTION'),'STD_DISTRICT_HISTORY_INVALID')
+  count=0
+  for id,row in pairs(d.learned)do
+   assert(type(id)=='string' and id:match('^DISTRICT_') and type(row)=='table'
+    and type(row.observedType)=='string' and row.observedType:match('^DISTRICT_')
+    and int(row.turn) and type(row.evidence)=='string' and row.policy=='D0045','STD_DISTRICT_RECEIPT_INVALID')
+   count=count+1
+  end
+  assert(d.revision==count+1,'STD_DISTRICT_REVISION_CONFLICT')
+ end
+ return t
+end
 local reasons={NO_TOKEN='缺少旧绑定凭据，不能认领历史',NO_LEDGER='原Owner绑定总账缺失',BAD_LEDGER='绑定总账格式或计数冲突',DUPLICATE_TOKEN='绑定凭据不唯一',POSITION_CHANGED='旧锚点与当前位置冲突',PARTIAL_BINDING='绑定尚未确认',JOURNAL='专业历史缺失或冲突',FLOW='专业提交未完成或与历史不一致',INVEST='投资凭据不完整或冲突',TEMPLATES='模板记录格式或锚点冲突',CROSS_OWNER='原锚点记录仍在，但跨Owner/引用连续性尚未通过原生验证',LOCAL_MATCH='原验证范围内记录一致；仅可作后续迁移候选',READ_FAILED='读取失败或记录过大；未替换上次观察',NO_CITY='原位置无城市，不能推断其历史终止或新城身份'}
 function M.Preview(input)
  local ok,s=pcall(M.Copy,input)
@@ -81,14 +109,7 @@ function M.Preview(input)
  else out.checks.investment='ABSENT_NOT_SYNTHESIZED' end
  local t=v.TEMPLATES
  if t~=nil then
-  if type(t)~='table' or t.schema~=1 or t.initialized~=true or t.uid~='STD:'..token or t.foundation~=token or t.x~=record.x or t.y~=record.y or type(t.learned)~='table' then return stop('TEMPLATES') end
-  local count=0
-  -- Template tiers follow the HD catalog, including city-center Tier 0; not Shared D.
-  for id,row in pairs(t.learned) do
-   if type(id)~='string' or type(row)~='table' or type(row.district)~='string' or not int(row.tier) or not int(row.turn) or type(row.evidence)~='string' then return stop('TEMPLATES') end
-   count=count+1
-  end
-  if t.revision~=count+1 then return stop('TEMPLATES') end
+  if not pcall(M.ValidateTemplates,t,token,record.x,record.y) then return stop('TEMPLATES') end
   out.checks.templates='STRUCTURE_ONLY_CATALOG_REVIEW_REQUIRED'
  else out.checks.templates='ABSENT_NOT_SYNTHESIZED' end
  -- Shape consistency is not current catalog validation, migration authorization, or generation proof.

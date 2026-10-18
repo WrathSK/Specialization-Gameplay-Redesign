@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "3c410e632558096683a4758f0391d32daa3be7f83e93b9310e5300f59e6108b9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "40e11ce98bc36575180cbdebc95afb7554d5c800b4e66b1cce13df3840c4daf7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "69fc4af714abf148076228474dc324a66a50a423e4f0819d3300cdd54725928f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
-      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+      "sha256": "f18a37a75145a205cbe21a79bdd4beb973f40adf9834fdd19351dfba5fa69eb4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,19 +426,19 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "bb6cdb41222d8f5e66185e104d778cd3ccaf6c851c53ad75e20aab38d57ed5d4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
-      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+      "sha256": "9550bfd503f056ee4f883dfb361291cf8b799493613d99a370fb1b7b559c645d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/Standardization.lua": {
-      "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B142 user-authorized legal Tier0 template validation and precise Store error code repair; exact affected callers/current HD ontology and B142/B140/B136 local regressions reviewed. Probe/modinfo identity only. Native pending."
+      "sha256": "f1985562ecaa28af9d8845164b891136f0279faabc85c7f7f48d70f440c5fa9f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/StandardizationCatalog.lua": {
-      "sha256": "df4f28def5d5bca9ed1bc947b89a46149dc6b19d475a34122063b51974c80bfa",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "0bf50cb354ccd9f31c5f992b60c5107aad4ab3fa7c276382594aed20a20f9358",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/StandardizationDiscount.lua": {
       "sha256": "b68e00369689d97163843a2daaa45374f17d30f519afc2d1016d3effb480401f",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "f13080dfa630d6c4d544349f9efe40a2c2c81c4ae17f2341ab03dc3c698b22d3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "9d66fd9520065749da3ba2f2a112170d9ebbd7ee1eb6c768cce72bf2172a114c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -556,14 +556,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "f28b66a307542153c289166b11202d628af77ed5b695621d336231d954c5e44d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "db16f74f3439915b5a76d7fc4911c72421b27f36e12a11b83f7712909b2c0b36",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "30dc172459e52f062fb36f3dbd6e6847eba95e3a37cf3eb855502bfbc3e7e058",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-      "provenance": "B230 scoped event readiness, read-only network UI and bounded diagnostics;121 targeted local checks PASS. Expedition unchanged; native pending."
+      "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/UI/RuntimeAudit.lua": {
       "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
@@ -741,9 +741,9 @@
       "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
     },
     "Mod/CityIdentityRead.lua": {
-      "sha256": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B142 user-authorized legal Tier0 template validation and precise Store error code repair; exact affected callers/current HD ontology and B142/B140/B136 local regressions reviewed. Probe/modinfo identity only. Native pending."
+      "sha256": "c78eef76b28f9bb4a2458382ddf0790217749619aab3bcbd97e56d36e073ac20",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/CityIdentityExperiment.lua": {
       "sha256": "844c16c777649e2ee7126dcb9084cd4e3620e63a1f841493174edcfdced3bb31",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "58f0e3b14b58e27cf4fe4257311ea1f94a1be2ba30bfc40262ae5595c6cdee6c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B212 user-approved: three Design missions, archive-city Insight ledger, Spy-like movement/return, entry-city travel; L3 783 targeted PASS, CityProgressionStore consumers identical to HEAD."
+      "sha256": "760a7ce0ba4cd7fbec215f4b1adfbf8caed648a8a804d95c4f493fd723f54297",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "b4ae84facc0ad8a5a992d300accde7bc498998f6dd5bc5e0560426922b99de29",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "a48fb952824df347b72716ba05632eb691b2e376c3d570f7060a39bd7fc6bac8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1134,6 +1134,11 @@
       "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
       "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+    },
+    "Mod/IndustryHistory.lua": {
+      "sha256": "874eb893b21dce2f7be9bef0ad2a4eef6bca89127ecf5930cbc67c71d4028bcb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     }
   }
 }

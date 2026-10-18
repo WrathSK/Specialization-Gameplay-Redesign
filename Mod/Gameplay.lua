@@ -470,11 +470,14 @@ local function request(playerID,params)
     if not ok then print('[SPC][B053] '..tostring(v)) end
     shared.LastToken=params.Token;return
   end
-  if params.Action=="STANDARDIZATION_READ" then
+  if params.Action=="STANDARDIZATION_READ" or params.Action=="INDUSTRY_HISTORY_READ" then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Snapshot=shared.Standardization.Describe(playerID,c,params.Page)
+    if params.Action=="INDUSTRY_HISTORY_READ" then
+      shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.Snapshot
+    end
     shared.LastToken=params.Token;return
   end
   if params.Action=="LV4_COPY_READ" then
@@ -830,6 +833,9 @@ SPCHalfYieldProbe.Start(P,shared)
 
 include("CopyYields")
 SPCCopyYields.Start(P,shared)
+
+include("IndustryHistory")
+SPCIndustryHistory.Start(P,shared)
 
 include("StandardizationCatalog")
 include("Standardization")
