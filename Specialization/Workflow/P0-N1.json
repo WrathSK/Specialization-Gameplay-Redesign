@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0605",
+    "status": "S0606",
     "runtime": "B227.254 / modinfo254",
     "military": "D0037",
     "harbor": "D0037",
@@ -19,7 +19,7 @@
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
   "goal": "B227 approved event-first Activity repair, reliably unarmed startup exit and necessary bounded diagnostics. No new timers, capacity/binding/history/schema/reward or GC change.",
-  "implementation_authorized": true,
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -908,8 +908,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
-    "source": "B227.254 local complete; live B226.253 until verified deployment.",
+    "source": "B227.254/modinfo254 DEVELOP_ACTIVE; source 9f0f63596df1de519961fa2baf05337b23f89989; receipt B227.254-9f0f635-playtest.json;226/226 MATCH, digest 85bf9d781381919c8faa41fba5a6eee55232742932822ecff7ac48c42357232b. Fresh automatic OS exit at both guarded switches; B226/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED; native eligibility denial not bypassed or declared solved.",
-    "stop": "Complete existing deployment gates; one minimal combined native session. No further implementation authorized."
+    "stop": "Await one minimal combined native session; no further implementation authorized."
   }
 }

@@ -1,6 +1,6 @@
 # B227 — Event-driven Expedition activity and unarmed startup exit
 
-Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B227.254 / modinfo254. Deployment is recorded separately in Status.
+Status: LOCAL_SIMULATION_PASS; USER_GAME_TEST_REQUIRED. Source B227.254 / modinfo254. Deployment verified below; native acceptance remains pending.
 
 ## Approved boundary and evidence
 
@@ -41,3 +41,7 @@ Use the existing automatic collector manually; do not open P0 to make the task p
 3. If a startup fails naturally, stop repeating it. Keep the log; a reliably unarmed attempt should return idle at the next normal player-turn boundary. Do not force repeated failures or replay old save/load loops.
 
 The existing Culture Network specialist-yield/source-withdrawal check may join when its prerequisites are available. No repeat of accepted Great Work sale refresh. No new Design decision required; native denial remaining after this repair must be classified from event/guard/final-state evidence rather than another blind retry.
+
+## Deployment checkpoint
+
+Source `9f0f63596df1de519961fa2baf05337b23f89989` pushed to develop. Receipt `B227.254-9f0f635-playtest.json`,226/226 MATCH, digest `85bf9d781381919c8faa41fba5a6eee55232742932822ecff7ac48c42357232b`. Fresh automatic OS exit before receipt-bound restore and activation; no pending transaction. B226/stable backups retained; main/configuration unchanged and game not launched.

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0605
-Implementation Build: source B227.254; live B226.253 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0606
+Implementation Build: source/live B227.254 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B227_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B227_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B227 local complete: event-driven Expedition task processing.** [Implementation,353 targeted tests and minimal native gate](Validation/Results/Specialization_B227_Event_Activity.md).
-- **Source B227.254 / modinfo254; live remains B226.253** until a separately verified deployment checkpoint. B226 source `fee812f`, receipt `B226.253-fee812f-playtest.json`,226/226 MATCH. Main stable B069.96 unchanged.
+- **Source/live B227.254 / modinfo254 DEVELOP_ACTIVE**: source `9f0f635`, receipt `B227.254-9f0f635-playtest.json`,226/226 MATCH. Automatic game-exit checks and both guarded switches verified; no pending transaction. Main stable B069.96 unchanged.
 - **Changed:** hidden Activity processing no longer requires frames/timers; one pass per real callback. Reliable unarmed startup expires through Gameplay owner-turn events; ARMED/unknown writes retain protection. Capacity/source/history/reward/schema/GC unchanged.
 - **Evidence:**353 LOCAL_SIMULATION_PASS; B226 frame-withheld counterexample reproduced. Native task startup/release remains USER_GAME_TEST_REQUIRED; older native Sleep denial is not declared fixed. Great Work refresh user PASS retained; Culture Network native yield/source withdrawal still pending.
-- **Next:** after normal verified deployment, one log-first task-start → completion → next task/travel session, combined with available Network checks. No repeat blind tests. Reattachment, era UI, site movement and unrelated audit work remain held.
+- **Next:** one log-first task-start → completion → next task/travel session, combined with available Network checks. No repeat blind tests. Reattachment, era UI, site movement and unrelated audit work remain held.
+
+## S0606 — B227 verified deployment
+
+Clean/pushed `9f0f635`, automatic OS exit at both receipt/hash-guarded switches,226/226 source/runtime equality. Receipt `B227.254-9f0f635-playtest.json`; outgoing B226 and stable recovery retained, no pending transaction. Native validation remains pending. No configuration/main change or game launch.
 
 ## S0605 — B227 event-first repair
 
