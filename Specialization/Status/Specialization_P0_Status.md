@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0626
-Implementation Build: source B235.262 LOCAL_COMPLETE; live B234.261 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0627
+Implementation Build: source/live B235.262 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0165
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B235_LOCAL_COMPLETE / NATIVE_PENDING / DISTRICT_PURCHASE_BLOCKED
+Work State: B235_DEPLOYED / NATIVE_PENDING / DISTRICT_PURCHASE_BLOCKED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B235 / IND-3 locally complete:** [contract](../Architecture/v2/Industry_Preparation.md#b235-implementation-and-validation), [result and minimal native flow](Validation/Results/Specialization_B235_Engineering_Local.md); `P0-H` now routes this approved slice.
+**B235 / IND-3 deployed, native pending:** [contract](../Architecture/v2/Industry_Preparation.md#b235-implementation-and-validation), [result and minimal native flow](Validation/Results/Specialization_B235_Engineering_Local.md); `P0-H` now routes this approved slice.
 - **Delivered:** full-turn Engineering Study with city L/receipts; per-template actual-holder III10/0, IV10+2L construction/2L building purchase; ACTIVE IV own-production older-Wonder10/20/30. No timers or new world scan.
 - **Evidence/gap:**188 scoped local PASS; native transaction/price/Wonder pending. Target-specific District purchase BLOCKED_TECHNICAL; no broad substitute. B233/B234 acceptance retained; native floor unchanged.
-- **Source/live:** source B235.262; live remains B234.261 `91b4da9`, receipt `B234.261-91b4da9-playtest.json`,229/229 MATCH until guarded deployment. Main B069.96 unchanged.
-- **Next/stop:** complete W0003 deployment if exit/hash gates pass, then one combined native session. Crew/Engineering Practice, Culture HOLD, Research-network redesign and Balance stay outside this batch.
+- **Source/live:** B235.262 `fb7a547`, receipt `B235.262-fb7a547-playtest.json`,235/235 MATCH. Verified game exit before both guarded switches; B234/stable recovery retained. Main B069.96 unchanged.
+- **Next/stop:** one combined native session for the new L transaction, IV projection and older-Wonder primitive. Crew/Engineering Practice, Culture HOLD, Research-network redesign and Balance stay outside this batch.
+
+## S0627 — B235 verified deployment
+
+Clean source `fb7a547` was committed/pushed before switching. Automatic game-exit checks passed before exact receipt-bound B234 restore and B235 activation;235/235 source/runtime files MATCH. B234/stable recovery is retained and no transaction is pending. Native acceptance remains pending, with target-specific District purchase still isolated. No main/configuration edit or game launch.
 
 ## S0626 — B235 local implementation checkpoint
 

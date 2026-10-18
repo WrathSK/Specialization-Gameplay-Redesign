@@ -65,4 +65,6 @@ Use the manually started existing collector and a campaign started with B235.262
 
 ## Source and deployment checkpoint
 
-Local implementation complete; source B235.262/modinfo262. Deployment is not inferred from the edited source. Until the guarded switch is recorded, external runtime remains the verified B234.261 receipt. Native results remain pending. Main, accepted Design, GC, other profession implementations, frozen prior evidence and configuration are unchanged.
+Source **B235.262 / modinfo262**, implementation commit `fb7a547f9c44f2173057dfa0dc5ab227f46e75a9`. W0003 deployment **DEVELOP_ACTIVE**, receipt `B235.262-fb7a547-playtest.json`;235/235 source/runtime files MATCH, digest `9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf`. Automatic executable-name process checks passed immediately before both receipt-bound restore/activate operations. B234 and stable recovery packages are retained; no pending transaction or game launch.
+
+Publication guard passed on26 implementation/doc/test files before the source commit; the deployment-record commit receives the same gate. Context/hash checks pass; source and main worktrees were clean before the switch. Native results remain pending. Main, accepted Design, GC, other profession implementations, frozen prior evidence and configuration are unchanged.

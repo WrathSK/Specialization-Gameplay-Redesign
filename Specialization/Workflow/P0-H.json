@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0165",
-    "status": "S0626",
+    "status": "S0627",
     "runtime": "B235.262 / modinfo262",
     "military": "D0037",
     "harbor": "D0037",
@@ -180,8 +180,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-    "source": "Source B235.262 local complete; external runtime remains B234.261/modinfo261 DEVELOP_ACTIVE; source 91b4da98e525eb9c95772827605fbd70ab0d297e; receipt B234.261-91b4da9-playtest.json;229/229 MATCH, digest b1838122089803fb7599106527ecc847fa3d54e972c31d379e7a9ce5cdf58704. Automatic game-exit checks before both guarded switches; B233/stable recovery retained, no pending transaction.",
+    "source": "B235.262/modinfo262 DEVELOP_ACTIVE; source fb7a547f9c44f2173057dfa0dc5ab227f46e75a9; receipt B235.262-fb7a547-playtest.json;235/235 MATCH, digest 9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf. Automatic game-exit checks before both guarded switches; B234/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Only approved B235; native acceptance pending; no new Crew/Culture implementation. Preserve isolated District purchase gap."
+    "stop": "B235 deployed, native acceptance pending. No new Crew/Culture implementation; preserve the isolated District purchase gap."
   }
 }
