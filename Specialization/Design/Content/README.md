@@ -8,6 +8,7 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 [Research D0040](Research_D0040.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
 [Industry D0045](Industry_D0045.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
+当前施工队成本取样时点另按[2026-10-17接受澄清](../Design_ChangeLog.md#accepted-industry-formation-price-clarification--2026-10-17)：开工锁定本次成本，后续新队使用新价；不改D0045其它机制或首测值。
 
 ## D0051 — v0.1艺文采撷按城市馆藏维持
 

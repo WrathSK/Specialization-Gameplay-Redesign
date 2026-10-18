@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0051",
     "research": "D0040",
@@ -10,125 +10,118 @@
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0165",
-    "status": "S0628",
-    "runtime": "B235.262 / modinfo262",
+    "architecture": "A0166",
+    "status": "S0629",
+    "runtime": "B236.263 / modinfo263",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b236-proposal--construction-teams-and-industry-iv-entry",
-  "goal": "B235 native review and B236 planning: record scoped acceptance, preserve IV-entry failure and propose the next Crew/Practice batch without implementation.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b236-implementation-and-validation",
+  "goal": "B236 / IND-4: Crew formation/Practice, source/two-slot ownership, fixed Wonder use/protection, same-turn IV entry and Industry institution UI.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "reason": "Current authority, live/source and next allowed action.",
-      "selector": "## CURRENT AUTHORITATIVE STATE"
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current source/live/evidence and next allowed action."
     },
     {
       "path": "Specialization/Architecture/v2/Industry_Preparation.md",
       "kind": "section",
-      "reason": "Approved B235 scope and precise implementation/technical gate.",
-      "selector": "## B235 implementation and validation"
+      "selector": "## B236 implementation and validation",
+      "reason": "Current implementation ownership and narrow native boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
       "kind": "full",
-      "reason": "Current native observations, quote arithmetic, preserved limits and next-batch repair boundary."
+      "reason": "Current batch local evidence, exclusions and one native gate."
     },
     {
-      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
-      "kind": "section",
-      "selector": "## B236 proposal — construction teams and Industry IV entry",
-      "reason": "Proposed next slice only; no implementation authorization."
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "selector": "/contracts/teams",
+      "reason": "Crew scope, source/capacity, current costs and user-confirmed start lock."
     }
   ],
   "dependencies": [
-    "B233 reliable N/E and template history; current Store exact per-city persistence, identity/readback/reservations and confirmed exits.",
-    "B234 actual-holder Standardization and common network publication/recovery; existing full-turn/native FinishProgress pattern.",
-    "Target-specific building purchase and Wonder-era native effects; target-specific District purchase remains unestablished."
+    "Existing Store historical reference/exit/return, IndustryHistory N, EffectiveFacts ACTIVE and typed investment receipt.",
+    "Existing paid native project queue/counter and returned InitUnit, one-use receipt/debit/AddProgress and protected-civilian flag.",
+    "InstitutionPresentation and existing Research/Culture controls; other ability rules unchanged."
   ],
   "old_writers": [
-    "Extend existing StandardizationEffects; retain exact old Discount/Copy withdrawal and Research-network deferral.",
-    "Study owns only its access marker/attempt; Wonder writer owns only listed era carriers; no competing L source or prefix cleanup."
+    "Remove exact five ProjectCompletionModifiers unit grants; only CrewProjects owns formation/binding. Retire exact old Crew access marker.",
+    "No change to Study/Standardization/Wonder effect ownership; preserve typed investment receipt through observation."
   ],
   "conditional_context": [
     {
-      "trigger": "Review actual Gameplay/production/UI wiring or package",
+      "trigger": "Inspect Crew cost/admission, binding/slot/use or native UI failure",
+      "paths": [
+        "Mod/CrewModel.lua",
+        "Mod/CrewProjects.lua",
+        "Mod/UI/CrewProjectUI.lua",
+        "Mod/UI/CrewProjectOrder.lua",
+        "Mod/UnitActions.lua",
+        "Mod/UnitTargets.lua",
+        "Mod/CrewPrecision.lua",
+        "Mod/Data/CrewProjects.sql",
+        "Mod/Data/Crew.sql",
+        "DevelopmentTests/test_b236_crews.py",
+        "DevelopmentTests/test_b236_crew_ui.py"
+      ]
+    },
+    {
+      "trigger": "Inspect same-turn Industry entry or institution display",
       "paths": [
         "Mod/Gameplay.lua",
-        "Mod/UI/CrewProjectOrder.lua",
-        "Mod/UI/TimedProjectDisplay.lua",
-        "Mod/UI/P0Panel.lua",
-        "Mod/SpecializationP0.modinfo",
-        "Mod/Text/EngineeringStudy.sql",
-        "Mod/Data/Icons.sql"
-      ]
-    },
-    {
-      "trigger": "Investigate a concrete Store/project/readback or load regression",
-      "paths": [
-        "Mod/DialogueProjects.lua",
-        "Mod/DialogueProjectModel.lua",
-        "Mod/CityIdentityRead.lua",
-        "DevelopmentTests/test_store_write_boundaries.py",
-        "DevelopmentTests/test_dialogue_projects.py",
-        "DevelopmentTests/test_dialogue_project_ui.py"
-      ]
-    },
-    {
-      "trigger": "Investigate actual template/network/history/native trace mismatch",
-      "paths": [
-        "Mod/Standardization.lua",
-        "Mod/StandardizationCatalog.lua",
-        "Mod/NetworkBridge.lua",
-        "Mod/Data/StandardizationEffects.sql",
-        "Mod/ExpeditionTrainingDiagnostics.lua",
-        "tools/collect_expedition_trace.py",
-        "DevelopmentTests/test_b234_standardization.py",
-        "DevelopmentTests/test_industry_history.py",
-        "DevelopmentTests/test_b232_network_revalidation.py",
-        "Specialization/Status/Validation/Results/Specialization_B234_Native_Review.md"
-      ]
-    },
-    {
-      "trigger": "B235 exact local evidence or direct implementation regression; future B236 implementation still requires approval",
-      "paths": [
-        "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-        "Specialization/Design/Content/Industry_D0045.json",
-        "Mod/EngineeringStudyModel.lua",
+        "Mod/InvestmentAction.lua",
+        "Mod/InstitutionPresentation.lua",
         "Mod/EngineeringStudyProjects.lua",
         "Mod/IndustryWonderEffects.lua",
-        "Mod/StandardizationEffects.lua",
-        "Mod/Data/EngineeringStudy.sql",
+        "DevelopmentTests/test_b236_entry_ui.py"
+      ]
+    },
+    {
+      "trigger": "Concrete saved source/UNKNOWN/owner or N discrepancy",
+      "paths": [
         "Mod/CityProgressionStore.lua",
         "Mod/IndustryHistory.lua",
-        "Mod/UI/EngineeringStudyUI.lua",
-        "DevelopmentTests/test_b235_engineering.py"
+        "Mod/EffectiveFacts.lua",
+        "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Collector/precision or package issue",
+      "paths": [
+        "Mod/ExpeditionTrainingDiagnostics.lua",
+        "Mod/UI/UnitSites.lua",
+        "Mod/SpecializationP0.modinfo",
+        "Mod/Data/Icons.sql",
+        "Mod/Text/TestText.sql",
+        "tools/collect_expedition_trace.py"
       ]
     }
   ],
   "non_scope": [
-    "Design/balance changes, Crew/Engineering Practice, Culture HOLD and Research-network redesign.",
-    "General Store/dispatcher rewrite, AI systems, old-save migration, timers/frame polling or GC changes.",
-    "Main/promotion, external Mod/config editing, game launch or repeating old native lifecycle gates."
+    "Other Design changes, original-owner extinction/city destruction, general Store/dispatcher rewrite, AI or old-save migration.",
+    "Culture HOLD, Research network, balance, timers/frame polling, GC changes or unrelated audit repair.",
+    "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "Scoped L3 actual Store/model/project/projection/UI plus in-memory current DB; affected old behaviors and L1 syntax/package/context/publication.",
-    "local": "188 targeted tests PASS. One historical modinfo201 package assertion excluded explicitly and unchanged; current262 package is checked instead.",
-    "user": "USER_GAME_TEST_PASS_SCOPED: L0→1→2/cold restore, native Gold quotes and user-tested Macro/projection. Same-turn IV entry FAIL joins proposed B236; no extra B235-only session.",
-    "gap": "Incremental12/14% construction and active-attempt cancellation not independently isolated; existing evidence inherited. District purchase technical gap; Faith untested."
+    "depth": "L3 actual source/Store transactions and targeted UI/native-shaped fixtures, in-memory configured DB; L1 syntax/package/context/publication.",
+    "local": "212 targeted tests PASS;100 cost matrix subcases. Historical package/old ordinary-building Crew checks excluded explicitly; current263/Wonder-only path checked.",
+    "user": "USER_GAME_TEST_REQUIRED: one combined formation/source/two slots/price lock/Wonder use/protection/IV entry and UI session, one coldload for new ownership.",
+    "gap": "Native repeated-project counter timing, exact yield/protection not proved locally. District purchase technical gap/Faith untested remain separate."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md",
-    "source": "B235.262/modinfo262 DEVELOP_ACTIVE; source fb7a547f9c44f2173057dfa0dc5ab227f46e75a9; receipt B235.262-fb7a547-playtest.json;235/235 MATCH, digest 9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf. Automatic game-exit checks before both guarded switches; B234/stable recovery retained, no pending transaction.",
-    "native": "SCOPED_ACCEPTANCE_WITH_IV_ENTRY_FOLLOWUP",
-    "stop": "B235 review complete; B236 is a proposal, not implementation/deployment authorization. Preserve original evidence and existing HOLD boundaries."
+    "report": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+    "source": "Source B236.263 locally complete; live remains B235.262/modinfo262 DEVELOP_ACTIVE; source fb7a547f9c44f2173057dfa0dc5ab227f46e75a9; receipt B235.262-fb7a547-playtest.json;235/235 MATCH, digest 9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf. Automatic game-exit checks before both guarded switches; B234/stable recovery retained, no pending transaction.",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Complete approved W0003 deployment and hand off one native test. Do not advance other batches."
   }
 }

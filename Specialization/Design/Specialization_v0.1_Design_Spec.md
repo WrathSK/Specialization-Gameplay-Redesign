@@ -208,6 +208,8 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **IND-PRACTICE-COST-001 — ACCEPTED D0044** 工程实践仍为当前ACTIVE IV能力，N为本城真实历史奇观数、不看完成Owner／Identity／ACTIVE／Governor。III成本统一150%；IV N0／1–2／3–5／6+为150／140／130／120%×锁定基础施工力，累计门槛1／3／6。只改组建投入，不强化标准化或队伍施工力。III开放I–III、IV额外IV–V，不要求E4／5或其它传统门槛。五档施工力250／420／750／1000／1360，标准速度首测成本完整表见content。
 
+**IND-PRACTICE-COST-002 — ACCEPTED clarification 2026-10-17** 开工时锁定本次施工队组建成本。训练中本城N或ACTIVE改变不重算已开工队伍的成本；下一队按新开工时的资格与价格计算。不改变施工力、既定倍率、来源／容量或其它生命周期合同。
+
 **IND-MACRO-INJECTION-001 — ACCEPTED D0044** 工业IV自行生产旧时代奇观：文明当前时代与奇观自身时代差1／2／3+对应+10／20／30%封顶，当前时代无加成。施工队严格只注入min(锁定基础施工力,目标剩余Production)，不接受巨构工程、奇观政策、城市modifier、宜居度或其它未授权生产倍率；余量浪费、不溢出或保存。原有劳动力／目标／容量／来源生命周期不变。
 
 **IND-TEAM-LIFECYCLE-001 — ACCEPTED D0042** 完成施工队为独立原Owner资产，来源总督／ACTIVE／Industry Identity／Owner变化不删除或停止使用；永久训练来源只承担provenance与容量。合法来源当前Owner的存活本城出身队伍占2槽，消费／合法移除释放，存活撤退不释放；易主后旧Owner队伍不占新Owner容量，原Owner夺回重新计入其旧存活队伍。直接单位捕获／Owner转换明确禁止，敌方相关交互用保护撤退／安全回归；原生接口为Technical，非归属TBD。

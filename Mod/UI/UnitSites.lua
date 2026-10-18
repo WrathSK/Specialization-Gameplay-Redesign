@@ -1,4 +1,5 @@
 include('Probe')
+include('CrewModel')
 local P=SPCP0
 local token,elapsed,selection
 local precisionVisible=false
@@ -41,12 +42,15 @@ local function precision()
   assert(city and city:GetOwner()==pid,'请先选中工业专业城市，再读取精度')
   local speed=GameInfo.GameSpeeds[GameConfiguration.GetGameSpeedType()];local multiplier=speed.CostMultiplier
   local function n(v) return type(v)=='number' and string.format('%.17g',v) or tostring(v) end
-  local out={'B046 施工队精度（只读） | 城市：'..Locale.Lookup(city:GetName()),'游戏速度系数：'..n(multiplier)..'%；下列为引擎读取值', '档位：理论成本 / 引擎成本 / 项目当前进度 / 本局生产力'}
+  local d=(ExposedMembers.SPC_P0 or {}).CrewProjects
+  local view=d and d.views[pid..':'..city:GetID()]
+  local ratio=view and view.ratio
+  local out={'施工队精度（只读） | 城市：'..Locale.Lookup(city:GetName()),'游戏速度系数：'..n(multiplier)..'%；新开工倍率：'..n(ratio or '待确认／未达到工业三级'),'档位：锁定施工力 / 新开工理论成本 / 引擎成本 / 该档项目进度'}
   local q=city:GetBuildQueue()
-  for i,s in ipairs(P.Specs) do
-   local project=GameInfo.Projects['PROJECT_SPC_CREW_'..s.charge];assert(project,'B044项目定义缺失')
-   out[#out+1]=i..'：'..n(s.cost*multiplier/100)..' / '..n(q:GetProjectCost(project.Index))..' / '..n(q:GetProjectProgress(project.Index))..' / '..n(P.CrewAmount('UNIT_SPC_CREW_'..s.charge))
-  end
+  if ratio then for i in ipairs(SPCCrewModel.CAPACITY)do
+   local project=GameInfo.Projects[SPCCrewModel.Project(i,ratio,multiplier)];assert(project,'施工队项目定义缺失')
+   out[#out+1]=i..'：'..n(SPCCrewModel.Amount(i,multiplier))..' / '..n(SPCCrewModel.Cost(i,ratio,multiplier))..' / '..n(q:GetProjectCost(project.Index))..' / '..n(q:GetProjectProgress(project.Index))
+  end end
   local counts={};for _,u in Players[pid]:GetUnits():Members() do
    local row=GameInfo.Units[u:GetType()];local base=row and P.CrewBase(row.UnitType)
    if base then counts[base]=(counts[base] or 0)+1 end
@@ -59,7 +63,7 @@ local function precision()
    out[#out+1]='原进度='..n(sample.before)..'；施工后='..n(sample.after)..'；原成本='..n(sample.cost)
    out[#out+1]='预期增加='..n(sample.expected)..'；实际增加='..n(sample.observed)..'；差值='..n(sample.difference)
    out[#out+1]='单位仍存在='..tostring(sample.unitPresent)..'；'..tostring(sample.note or sample.afterReadError or '同一目标可比较')
-   if sample.difference then out[#out+1]=math.abs(sample.difference)<0.000001 and '本次读取数值相符；仍请核对实际游戏结果。' or '本次存在数值差异，请回传此报告；尚未采用取整规则。' end
+   if sample.difference then out[#out+1]=math.abs(sample.difference)<0.000001 and '本次读取数值相符；仍请核对实际游戏结果。' or '本次存在数值差异，请回传此报告和日志。' end
   else out[#out+1]='尚无本次加载后的施工确认记录。' end
   return table.concat(out,'[NEWLINE]')
  end)

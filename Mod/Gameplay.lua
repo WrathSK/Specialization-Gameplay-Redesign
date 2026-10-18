@@ -35,7 +35,7 @@ local function refreshInvestmentSupport(playerID,result)
   end
  end
  if type(result)=='table' and result.status=='COMMITTED' then
-  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects'})do
+  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects','CrewProjects'})do
    local d=shared[name];if d then local ok,err=pcall(d.Refresh,playerID,result.city);if not ok then print('[SPC][Industry entry] '..tostring(err))end end
   end
  end
@@ -489,7 +489,7 @@ local function request(playerID,params)
     if not c or c:GetOwner()~=playerID then return end
     shared.Snapshot=shared.Standardization.Describe(playerID,c,params.Page)
     if params.Action=="INDUSTRY_HISTORY_READ" then
-      shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.Snapshot
+      shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.CrewProjects.Describe(playerID,c)..'\n\n'..shared.Snapshot
     end
     shared.LastToken=params.Token;return
   end
@@ -909,6 +909,7 @@ include('EngineeringStudyProjects')
 SPCEngineeringStudyProjects.Start(P,shared)
 include('IndustryWonderEffects')
 SPCIndustryWonderEffects.Start(P,shared)
+shared.CrewProjects.BindPermanentWrites()
 
 local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
 if not dialogueOK then

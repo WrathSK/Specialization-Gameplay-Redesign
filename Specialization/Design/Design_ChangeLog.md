@@ -6,6 +6,12 @@ Latest Draft Design Revision: NONE
 Latest Accepted Design Revision: D0051
 Document State: ACCEPTED
 
+## Accepted Industry formation price clarification — 2026-10-17
+
+用户明确选择：**开工时锁定本次成本，下一队使用新价。** 施工队组建期间N或ACTIVE改变，不重算这一队的成本。仅补齐成本取样时点，不改变D0045既定倍率／施工力／容量／归属，不新增Design版本；当前[Industry D0045](Content/Industry_D0045.json)、[工业阅读版](Industry.md)和Spec同步，旧冻结原件与历史hash不改。
+
+本条是用户Design决定；B236实现和实机验证仍分别记录于Status。当前Industry Content SHA256：`3fdf0536e2c1d8b124834758f38534c7ce863e630dfd83033e5f7496b1f1375a`；当前Spec SHA256：`01020901195455d07918b7d3f2ca0c3eb517ad051729640527b8322376db9f3e`。
+
 ## Accepted D0051 — 2026-10-17
 
 用户在B224实机反馈中明确接受：v0.1艺文采撷只要求目标城市当前仍有至少1件合格文化巨作；不再锁定某一件巨作、槽位、建筑或地块。原作品移动／出售／替换但城内仍有其它合格作品，任务继续；可靠确认全城没有合格作品时取消，不给见闻、不消耗成功机会。UNKNOWN不当作空城。

@@ -241,3 +241,51 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_HISTORY_BUTTON','工业历史 / 模板'),
 ('en_US','LOC_SPC_INDUSTRY_HISTORY_HINT','选中己方城市，查看本城奇观N、本文明时代E及模板；重复点击翻建筑页。关键结果自动写入有界日志。只读，不初始化或发放收益。'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_HISTORY_HINT','选中己方城市，查看本城奇观N、本文明时代E及模板；重复点击翻建筑页。关键结果自动写入有界日志。只读，不初始化或发放收益。');
+
+-- B236: accepted Industry institution names; display only.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1','匠作坊'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','基础专家支持[NEWLINE]每名实际工作的工业专家额外获得3食物，以及相当于本城工业区基础相邻生产力的生产力；当前系数为1，不计政策等相邻倍率。原生收益另算；各专业等级使用同一公式。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1','匠作坊'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','Specialist support[NEWLINE]Each working Industry specialist receives +3 Food and additional Production equal to the city Industrial Zone base Production adjacency. The current coefficient is 1, excluding adjacency multipliers. Native yields remain separate; all levels use this same formula.'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2','百工会馆'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','专业分工[NEWLINE]本城工业区提供1住房；每个存在合格普通建筑的等级再提供1住房，同等级不重复。每名工作的工业专家额外提供2基础大工程师点数，接受其它伟人点数百分比修正。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2','百工会馆'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','Division of Labor[NEWLINE]The Industrial Zone provides +1 Housing, plus +1 per eligible ordinary building tier, once per tier. Each working Industry specialist adds 2 base Engineer points, subject to GPP percentage modifiers.'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3','工程局'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','标准化[NEWLINE]可靠模板记录城市已经形成的建设经验；符合模板的区域与建筑获得10%建造加成。三级不提供金币购买折扣。联网城市可共享模板，对同一目标采用最强的适用来源，不叠加。[NEWLINE][NEWLINE]施工队[NEWLINE]开放I–III档组建项目，成本为基础施工力的150%。每个来源城市对当前所属玩家最多支持两支存活施工队。施工队只为正在建造的奇观注入固定施工力，不受普通生产力倍率加成，不溢出。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3','工程局'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','Standardization[NEWLINE]Reliable templates preserve city construction experience. Matching districts and buildings receive +10% construction; level III grants no Gold discount. Connected cities share templates; use the strongest applicable source per target, without stacking.[NEWLINE][NEWLINE]Construction Crews[NEWLINE]Formation tiers I–III cost 150% of base transfer Production. A source city supports two surviving Crews for its current owner. A Crew injects fixed Production only into a Wonder under construction, without ordinary Production multipliers or overflow.'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4','土木工程总局'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','工程传统[NEWLINE]全国奇观时代经验提供可研习知识。本城通过完整1回合的工程传统研习，每层使标准化建造加成和金币购买折扣各提高2个百分点。研习成果按城市历史保留；增强仅在工业ACTIVE IV时生效。当前版本尚未支持目标区域的购买折扣。[NEWLINE][NEWLINE]工程实践[NEWLINE]开放IV–V档施工队。本城可靠历史奇观数达到1、3、6时，组建成本依次由150%降至140%、130%、120%。[NEWLINE][NEWLINE]巨构工程学[NEWLINE]本城自行生产落后于本文明时代1、2、3个及以上时代的奇观，分别获得10%、20%、30%生产力加成。此加成不放大施工队注入。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4','土木工程总局'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','Engineering Tradition[NEWLINE]Nationwide Wonder-era experience supplies available knowledge. Each full-turn local study adds 2 percentage points to Standardization construction and Gold purchase discounts. City history is retained; the enhancement requires Industry ACTIVE IV. Target-specific District purchase discounts are not yet supported.[NEWLINE][NEWLINE]Engineering Practice[NEWLINE]Unlocks Crew tiers IV–V. At 1, 3 and 6 reliably recorded local Wonders, formation costs fall from 150% to 140%, 130% and 120%.[NEWLINE][NEWLINE]Macro Engineering[NEWLINE]Local ordinary production of Wonders behind the civilization by 1, 2 or 3+ eras gains 10%, 20% or 30% Production. This does not amplify Crew injections.');
+
+-- B236 replaces old formation and general-construction wording exactly.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','拥有1次施工。标准速度固定施工力250，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力250，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','One construction use. Fixed transfer Production 250 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
+('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 250 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','拥有1次施工。标准速度固定施工力420，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力420，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','One construction use. Fixed transfer Production 420 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
+('en_US','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 420 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_DESCRIPTION','拥有1次施工。标准速度固定施工力750，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力750，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('en_US','LOC_UNIT_SPC_CREW_750_DESCRIPTION','One construction use. Fixed transfer Production 750 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
+('en_US','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 750 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','拥有1次施工。标准速度固定施工力1000，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','工业ACTIVE IV开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力1000，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('en_US','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','One construction use. Fixed transfer Production 1000 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
+('en_US','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','Requires Industry ACTIVE IV. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 1000 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','拥有1次施工。标准速度固定施工力1360，随游戏速度缩放并锁定。仅用于正在建造的奇观；不受普通生产力倍率加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','工业ACTIVE IV开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度固定施工力1360，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('en_US','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','One construction use. Fixed transfer Production 1360 at Standard speed, scaled and locked at formation. Wonders only; no ordinary Production multipliers or overflow. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
+('en_US','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','Requires Industry ACTIVE IV. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Fixed transfer Production 1360 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','本次开工锁价。同一玩家从每座来源城市最多保有2支存活施工队；队列中的施工队会预留名额。仅用于奇观，剩余施工力不结转。'),
+('en_US','LOC_SPC_CREW_FORMATION_HELP','Price locks when ordered. Each player may have two surviving Crews from a source city; queued orders reserve capacity. Wonders only; unused transfer Production is discarded.');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CREW_FORMATION_ERROR','组建未确认：{1}。请查看工业报告或回传日志。'),
+('en_US','LOC_SPC_CREW_FORMATION_ERROR','Formation unconfirmed: {1}. Check the Industry report or collect the trace.');

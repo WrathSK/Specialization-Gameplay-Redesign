@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0628
-Implementation Build: source/live B235.262 DEVELOP_ACTIVE; stable B069.96
-Architecture Revision Reviewed: A0165
+Status Revision: S0629
+Implementation Build: source B236.263 LOCAL_COMPLETE; live B235.262 DEVELOP_ACTIVE; stable B069.96
+Architecture Revision Reviewed: A0166
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B235_NATIVE_ACCEPTED_SCOPED / B236_PLANNED_NOT_AUTHORIZED / IV_ENTRY_FOLLOWUP
+Work State: B236_LOCAL_COMPLETE / NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B235 tested scope accepted; B236 planning only:** [native review](Validation/Results/Specialization_B235_Native_Review.md), [next proposal](../Architecture/v2/Industry_Preparation.md#b236-proposal--construction-teams-and-industry-iv-entry).
-- **Evidence:**183+48 contiguous records; L0→1→2, cold restore L2/14% projection, Gold quotes0/2/4%; tested Wonder acceleration user-accepted. Incremental construction arithmetic/cancellation not separately isolated; inherit local/previous native evidence.
-- **Follow-up:** user-reported same-turn Industry IV study/Macro delay joins proposed B236 Crew/Practice. District purchase remains an isolated technical gap; Faith untested. No extra B235-only native session.
-- **Source/live:** B235.262 `fb7a547`, receipt `B235.262-fb7a547-playtest.json`,235/235 MATCH. Main B069.96 unchanged; no deployment this review.
-- **Next/stop:** await approval for B236; no current implementation authorization. Culture HOLD, Research-network redesign and Balance remain outside scope.
+**B236 / IND-4 locally complete:** [contract](../Architecture/v2/Industry_Preparation.md#b236-implementation-and-validation), [local evidence and minimal test](Validation/Results/Specialization_B236_Crew_Local.md).
+- **Delivered:** paid Crew formation/Practice costs, start-locked price, source/two slots, Wonder-only fixed use/protection; same-turn IV receipt repair; Industry institutions.
+- **Evidence:**212 targeted local PASS; native formation/counter timing, use/protection and UI pending. B233–B235 scoped acceptance retained; District purchase remains isolated, Faith untested.
+- **Source/live:** source B236.263; live B235.262 `fb7a547`, receipt `B235.262-fb7a547-playtest.json`,235/235 MATCH until guarded deployment. Main B069.96 unchanged.
+- **Next/stop:** W0003 deployment if exit/hash gates pass, then one combined native session. Culture HOLD, Research-network redesign and Balance remain outside this batch.
+
+## S0629 — B236 local implementation checkpoint
+
+The user approved Crew/Practice and the IV-entry repair, added Industry institution UI, and explicitly chose start-locked formation cost.212 targeted local tests pass; new source/order/grant persistence is bounded and uncertain native actions do not replay. CrewPrecision now preserves the typed investment receipt. Native unit/counter/protection/use remains pending; no blanket gameplay PASS. Only the cost-timing Design clarification was recorded; other Design semantics, Store schema, GC, frozen evidence, main and configuration remain unchanged.
 
 ## S0628 — B235 native review and B236 proposal
 

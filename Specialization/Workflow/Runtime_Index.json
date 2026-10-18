@@ -76,14 +76,14 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/CrewPrecision.lua": {
-      "sha256": "e086354e1662445191f7518bcf97ce43dba09fe855b60ebcb3d199fb8fbc4215",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "d769225a71bd53b7865ddd512a7704ed1f378683fc031e1f9875d765393bed83",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "faafa2d6ea97d8c2396f3be5d3ed5ea956d154dd9837ad71ad5007ba3bda9661",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "63b56a7c8a8709d117c4dbd9fd86a414dbc7eaef9b96b83ea0f8c4a43ec302bf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -116,14 +116,14 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Data/Crew.sql": {
-      "sha256": "998c2e6a95228f967082be4b93c45fbb32223a899b3641977534187cf22fcc2d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "084ea1f267d2861e56c9b4cb27a91a8d873cd29db7c59655605a4c363c6339d1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/Data/CrewProjects.sql": {
-      "sha256": "3aa635acb83f7786ea7065acb6b594ba3889df2fce196cf2c1e962d28f9d0674",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "583f19b84c1991e4a2165a38078dc2a9dfa83c48f60787e0021f539b657f7c09",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/Data/Dialogue.sql": {
       "sha256": "488512ffe8d0864120350651777b502808c8fe2f43c5dcf797ad4189a374a82d",
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "231378c0b40373eb7f52356dd2b6b3268b5f95faa55465e5e7e3879c33a98430",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "71206d4f6f73e8d74e142da3dd3404ab2c658130c91312c875308dc9e8887520",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "39af6cf892d563c6d3c4918f324024e3e313181f3476a329478af88a7c947bde",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "9aa63c388b56ea8b1edb66fbc0ca983048aad4a8055f4b47e4782a2cbfaf3a56",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "4243604184464420e46ef84a75724f1c9b244ed74a1dc95e9b613276e21472bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "446d3a85bc1b94a811167add3ad20c3a5416483bfbacaadb221ed549e284d3d6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ee9278cd13bad99d773c11ec3cb8f23fc2f1ac6c4199f1fb776b0437ee068ab5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "b205cbe1a11f1c0503316b4c77a7f550fe82d542bcb3959e92b9cc9582098dfa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "9d66fd9520065749da3ba2f2a112170d9ebbd7ee1eb6c768cce72bf2172a114c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+      "sha256": "b2d0e191e0938badb1df9159a42a6ed09f6f86201a9f0093ff3ec1103358ffbe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "e8a67bdbd0c9f12d8c4ea4306760a3cf91b313a82200000ad1f6b3ffc7bb0538",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "21a930d597bcbae12a378474df016f40dc2d85fc303f5555fd49a7ac24615f3f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -576,9 +576,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "3990c60bcf44914cabcbc747863d2ce718a87c4dfbd290af5cb905eb0a454290",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md",
-      "provenance": "B195 presentation-only native backing/compact confirm slots and Spy/district project icons;44 scoped local checks PASS; B194 task code unchanged."
+      "sha256": "4f8f0cf6d23c4e1069b41daacd275cff74a2bb2b13128e1e7994a5a1409c9fd9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
@@ -586,9 +586,9 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/UnitSites.lua": {
-      "sha256": "e9f5f28e6118ec091fff180e7d7a27ade57362f6a109468bb3b9b821a53f542f",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "f574919b9443714d5901d5625e9fa5dc7e6ae06c09529fbd2bff750bef013764",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/UI/UnitSites.xml": {
       "sha256": "70d9f2854b603bfa9922fbb869b5a74e44ec7427b757b047851ee939aecaaa6e",
@@ -611,9 +611,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UnitActions.lua": {
-      "sha256": "be1ec9fb4368293048496eb603d7b417c44589e45e717fef49f63d8adf656503",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "e76a19873e06d6d935355d2408db7385e2b9865c96187ada9ab188054aef39cd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/UnitSiteProbe.lua": {
       "sha256": "f54c582cc46ba965ddbfc3c631dcba198bbb2663e14d982693d0503b8c7f1d43",
@@ -621,9 +621,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UnitTargets.lua": {
-      "sha256": "66f58e958a7ee1ebd4d0e19c2ed6b81c0db9e0e09e89562eaddfde613b88b08f",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "8dca19451eda53dc8c5fd7a0bcf195a2855c3cc67409258898ed3fdfbb564397",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/YieldCarrierProbe.lua": {
       "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
@@ -721,9 +721,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "e64993b708a779349a7a3c924b1e9a25c3c311918fb75c8885dfb9b2aa22fb42",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "4644a9d004554f51d4a7db6886ba08b29da5e25ab9933fe9eb79efd4e3a01d33",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     },
     "Mod/UI/InstitutionOverview.lua": {
       "sha256": "d64cdd7eec0a38f09c4e4aba7fc11cc03e503b997a4e019171b6251226358844",
@@ -1179,6 +1179,16 @@
       "sha256": "b0d50dc7e34d19559721742cecec37276702822b93e485d616db1ae42beb30a3",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/CrewModel.lua": {
+      "sha256": "bbc4167914cfffbaa5a491699c264cf28d4f3e3f1666fb98fdaea0831c2591a8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+    },
+    "Mod/UI/CrewProjectUI.lua": {
+      "sha256": "87b8c6a1414a848df83acf3f92800e7b0d59f07c1ca40c5870da09309d2a1901",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
     }
   }
 }

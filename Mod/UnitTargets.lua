@@ -9,6 +9,8 @@ function SPCUnitTargets.Start(P,shared)
    local u=Players[pid]:GetUnits():FindID(params.UnitID);assert(u and u:GetOwner()==pid,'UNIT_MISSING')
    local row=P.Info('Units',u:GetType());assert(row,'UNIT_TYPE_UNKNOWN')
    local invest=row.UnitType=='UNIT_SETTLER'
+   local crew=P.CrewBase(row.UnitType)~=nil
+   if crew then shared.CrewProjects.Unit(pid,u)end
    assert(invest or P.CrewBase(row.UnitType)~=nil or (row.UnitType=='UNIT_BUILDER' and params.BuilderPreview==true),'UNIT_NOT_ENABLED')
    response.mode=invest and 'INVEST' or (P.CrewBase(row.UnitType)~=nil and 'BUILD' or 'BUILD TEST')
    local districts={}
@@ -37,6 +39,7 @@ function SPCUnitTargets.Start(P,shared)
       local current=c:GetBuildQueue():CurrentlyBuilding()
       local b=P.Info('Buildings',current);local dr=P.Info('Districts',current)
       if not b and not dr then return nil end
+      if crew and not (b and (b.IsWonder==true or b.IsWonder==1))then return nil end
       if b and P.HasBuilding(c:GetBuildings(),b.Index) then return nil end
       if b and b.IsWonder then
        local wi=P.Info('Districts','DISTRICT_WONDER');assert(wi,'WONDER_TYPE_UNKNOWN')

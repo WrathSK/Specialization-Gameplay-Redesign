@@ -9,9 +9,9 @@
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0165",
-    "status": "S0628",
-    "runtime": "B235.262 / modinfo262",
+    "architecture": "A0166",
+    "status": "S0629",
+    "runtime": "B236.263 / modinfo263",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Industry_Preparation.md",
   "runtime_commit": "fb7a547f9c44f2173057dfa0dc5ab227f46e75a9",
-  "current_batch": "B235_NATIVE_ACCEPTED_SCOPED_B236_PLANNED",
-  "next_batch": "Await approval for B236 / IND-4: Crew formation, Practice costs, source/two-slot ownership, Wonder-only fixed use/protection plus same-turn Industry IV entry repair. No new B235-only native test; Culture HOLD and District-purchase gap remain separate.",
+  "current_batch": "B236_CREW_LOCAL_COMPLETE_AWAITING_NATIVE",
+  "next_batch": "Complete W0003 guarded deployment, then one combined B236 native test for paid formation/source/slots, start-locked price, fixed Wonder use/protection, same-turn IV entry and Industry institution UI. No next gameplay batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B235.262/modinfo262 DEVELOP_ACTIVE; source fb7a547f9c44f2173057dfa0dc5ab227f46e75a9; receipt B235.262-fb7a547-playtest.json;235/235 MATCH, digest 9a22af7c2b22fcabb1ae33b9327e05ba06f898a9a1ee48421697e97978ee53cf. Automatic game-exit checks before both guarded switches; B234/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B235 native review:183+48 contiguous records, L0→1→2/cold restore, Gold quote0/2/4% fit; user accepts tested Macro and projection. Incremental construction/cancellation not independently isolated. IV-entry delay retained for B236; no implementation authorization.",
+  "context_review_status": "B236 approved IND-4 plus Industry institutions; user accepted price lock at start.212 targeted local tests PASS; native queue completion counter, exact source binding, injection/protection and UI pending. Existing B235 acceptance and isolated District purchase gap retained.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B235_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md"
 }

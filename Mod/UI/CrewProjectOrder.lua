@@ -1,19 +1,21 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
-local claimSelection,dialogueSelection,trainingSelection,engineeringSelection
+local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
  SPCTimedProjectDisplay.Current(parent,pid,id)
  return result
 end
-local ranks={PROJECT_SPC_CREW_250=1,PROJECT_SPC_CREW_420=2,PROJECT_SPC_CREW_750=3,PROJECT_SPC_CREW_1000=4,PROJECT_SPC_CREW_1360=5}
+include('CrewModel')
+local ranks=setmetatable({},{__index=function(_,id)return SPCCrewModel.Parse(id)end})
 local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
  if trainingSelection then trainingSelection.Items(data)end
+ if crewSelection then crewSelection.Items(data)end
  if claimSelection then claimSelection.Sync(data.City)end
  if dialogueSelection then dialogueSelection.Sync(data.City)end
  SPCTimedProjectDisplay.Items(data)
@@ -55,7 +57,11 @@ dialogueSelection=SPCDialogueProjectUI.New(SPCP0,function(...)return UI.RequestP
 engineeringSelection=SPCEngineeringStudyUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
  function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
 local baseAdvance=AdvanceProject
+include('CrewProjectUI')
+crewSelection=SPCCrewProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseAdvance)
 function AdvanceProject(c,item)
+ if not crewSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not engineeringSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not dialogueSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not claimSelection.Before(c,item,CheckQueueItemSelected()) then return end
@@ -63,6 +69,7 @@ function AdvanceProject(c,item)
  if not projectSelection.Before(c,item) then return end
  return baseAdvance(c,item)
 end
+Events.GameCoreEventPublishComplete.Add(crewSelection.Publish)
 Events.GameCoreEventPublishComplete.Add(engineeringSelection.Publish)
 Events.GameCoreEventPublishComplete.Add(projectSelection.Pulse)
 Events.GameCoreEventPublishComplete.Add(claimSelection.Pulse)

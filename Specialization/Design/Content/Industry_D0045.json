@@ -516,7 +516,8 @@
             "cost_120": 1632
           }
         ],
-        "status": "V0_1_INITIAL_TEST_VALUES_STANDARD_SPEED_BALANCE_PENDING"
+        "status": "V0_1_INITIAL_TEST_VALUES_STANDARD_SPEED_BALANCE_PENDING",
+        "snapshot_timing": "用户于2026-10-17确认：开工时锁定本次施工队组建成本；训练期间本城奇观数N或ACTIVE改变，不重算已开工队伍成本；下一队按新开工时的资格与价格计算。"
       }
     },
     "team_inventory_capacity": {

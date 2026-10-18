@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="262">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="263">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B235.262: full-turn Engineering Study, city-owned L, IV template enhancement and own-production older-Wonder bonus; district purchase channel remains pending.</Description>
+    <Description>B236.263: paid Construction Crews, start-locked Practice costs, source-bound capacity, fixed Wonder use, same-turn Industry IV entry and Industry institutions.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -202,7 +202,9 @@
       <File>UnitSiteProbe.lua</File>
       <File>UnitTargets.lua</File>
       <File>UnitActions.lua</File>
-      <File>CrewProjects.lua</File>
+      <File>CrewModel.lua</File>
+    <File>UI/CrewProjectUI.lua</File>
+    <File>CrewProjects.lua</File>
       <File>CrewPrecision.lua</File>
       <File>Lv4Percent.lua</File>
       <File>BoostConfig.lua</File>
@@ -601,6 +603,8 @@
     <File>ArtDefs/Units.artdef</File>
     <File>UI/UnitPanelActions.xml</File>
     <File>UI/UnitPanelActions.lua</File>
+    <File>CrewModel.lua</File>
+    <File>UI/CrewProjectUI.lua</File>
     <File>CrewProjects.lua</File>
     <File>Data/CrewProjects.sql</File>
     <File>CrewPrecision.lua</File>

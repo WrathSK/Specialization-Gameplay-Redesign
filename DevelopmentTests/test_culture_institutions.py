@@ -100,7 +100,8 @@ class CultureInstitutionDisplay(unittest.TestCase):
           assert(nativeRenders==before+1 and rows.items[1].Name.text=='学者结社')
           assert(rows.items[4].Name.text=='学术总署')
           v.specialization='CULTURE';LuaEvents.SPC_PresentationChanged();assert(rows.items[1].Name.text=='文艺同好会')
-          v.specialization='INDUSTRY';LuaEvents.SPC_PresentationChanged();assert(Controls.InstitutionContainer.hidden and #rows.items==0)
+          v.specialization='INDUSTRY';LuaEvents.SPC_PresentationChanged();assert(rows.items[1].Name.text=='匠作坊')
+          v.specialization='COMMERCE';LuaEvents.SPC_PresentationChanged();assert(Controls.InstitutionContainer.hidden and #rows.items==0)
         ''')
 
     def test_selected_city_and_owner_guard_prevent_stale_presentation(self):

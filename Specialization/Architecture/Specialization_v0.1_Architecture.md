@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0165
+# Specialization v0.1 Architecture — A0166
 
 Document Owner: Codex
-Architecture Revision: A0165
+Architecture Revision: A0166
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0165保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0166保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -66,6 +66,10 @@ A0165保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 [IND-1 contract](v2/Industry_Preparation.md#b233-implementation-contract) adds one Game-owned source for supported-player Wonder completions and local reconciliation observations. City N and completing-civilization E are distinct projections. Foreign completion events are ignored. Lawful Industry initialization/claim and return union reliable city history with presently existing Wonders, using the existing Store identity and single-city entry; this never grants conquest E credit or invents unseen foreign history. Initialization/empty/unavailable remain distinct; corrupt authority is not rebuilt from current possession.
 
 Typed District knowledge is a separate component of the existing per-city template transaction, normalized through native District replacements. Store recovery validates historical structure/provenance independently of the current effect catalog. B234 adds a transient StandardizationEffects consumer: current ACTIVE>=III holders, local self plus verified network sources, per-template union/max and typed construction+10%/purchase0%. The legacy strict reader remains for historical fixtures; the normal Discount/Copy writers are retired. Current classification only controls effect eligibility, never deletes knowledge. B235 adds an optional city-owned L/receipt extension through the same Store transaction, a narrowly fenced reader, and cancellation/no-replay semantics. It extends the existing projection rather than adding a competing writer; no new save framework. Native limits remain in Status and the scoped contract.
+
+### Crew formation and source assets (B236)
+
+[Crew contract](v2/Industry_Preparation.md#b236-implementation-and-validation) keeps irreversible formation separate from presentation: city-owned admission (two orders), player-owned completion proof, returned-unit immutable source/locked capacity, and a fresh native living/queue inventory. Native completion is never inferred from a unit appearing at a city. Ambiguous creation/binding is held across load without replay; confirmed loss cancels pending source admission but does not transfer completed units. Use remains one proved unit debit and one bounded Wonder injection. Ordinary native events and existing publication drive updates; no timer/frame poll or new Store framework. The existing observer must preserve the typed investment commit so Study/Wonder/Crew consumers receive same-turn changes. Industry institution rows consume current presentation facts only.
 
 ### Dialogue project and saved history (B175)
 

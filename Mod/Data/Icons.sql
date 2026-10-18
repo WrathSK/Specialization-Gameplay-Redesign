@@ -43,3 +43,29 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 
 -- B235: study uses the native Industrial Zone project artwork.
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_ENGINEERING_STUDY',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_INDUSTRIAL_ZONE';
+
+-- B236: the same native artwork for each locked-price variant.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1000';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1000';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1000';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1360';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1360';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1360';
+
+-- Loaded Quick-speed integer-price variants use the same icon.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P140_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P120_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P140_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P130_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P120_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';

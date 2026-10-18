@@ -44,7 +44,7 @@ local function crewTips(v)
    '确认施工[NEWLINE]消耗此施工队，在当前建造项目上投入'..number(v.amount)..'点生产力。[NEWLINE]此操作无法撤销。'
  end
  if v and v.legal then return '施工[NEWLINE]准备在当前建造项目上投入'..number(v.amount)..'点生产力。[NEWLINE]点击后可预览施工结果并进行确认。' end
- return '施工[NEWLINE]将施工队移动至正在建造区域、建筑或奇观的单元格，即可进行施工。'
+ return '施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可进行施工。'
 end
 local function investmentTips(v)
  local names={RESEARCH='科研',CULTURE='文化',COMMERCE='商业',INDUSTRY='工业',GOVERNMENT='政府',MILITARY='军事'}

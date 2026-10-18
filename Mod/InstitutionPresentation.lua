@@ -1,4 +1,4 @@
--- Shared Research/Culture institution display model. No gameplay calls or mutations.
+-- Shared institution display model. No gameplay calls or mutations.
 SPCInstitutionPresentation={}
 local M=SPCInstitutionPresentation
 M.Rows={
@@ -8,10 +8,12 @@ M.Rows={
 {level=4,name="学术总署",text="完善的科研设施、学术组织与长期传统，共同支撑深入研究。[NEWLINE][NEWLINE]科研基础设施[NEWLINE]学院每有1点基础设施深度，每名正在工作的科研专家额外提供1点基础科技值。基础设施深度最高10点；达到10点时，5名专家共增加50点基础科技值。[NEWLINE][NEWLINE]学术主持[NEWLINE]每名正在工作的科研专家，使本城每座普通学院一至四级建筑额外提供1点基础科技值。被掠夺的建筑不计入，也不接受此收益。这些额外科技不会提高基础设施深度。[NEWLINE][NEWLINE]学术传统[NEWLINE]本城首次达到科研专业潜力4级后，学术传统开始积累：起始使本城科技值提高5%；标准速度下，满10、20、30、40回合分别提高至10%、15%、20%、25%，最高25%。其它速度按游戏速度同比缩放各阶段回合数并向下取整。仍保有科研专业身份时，即使暂未启用4级能力，传统仍继续积累。转出科研后停止积累但保留已累计年限；重新成为科研时继续积累，不补算离开期间的回合。启用4级能力后按保留的传统年限生效。[NEWLINE][NEWLINE]"}
 }
 -- Keep row lists extensible: one level may contain multiple sibling institutions.
-M.BySpecialization={RESEARCH=M.Rows,CULTURE={}}
+M.BySpecialization={RESEARCH=M.Rows,CULTURE={},INDUSTRY={}}
 for level=1,4 do
- M.BySpecialization.CULTURE[level]={level=level,name='LOC_SPC_CULTURE_INSTITUTION_'..level,
-  text='LOC_SPC_CULTURE_INSTITUTION_'..level..'_HELP',localized=true}
+ for _,kind in ipairs({'CULTURE','INDUSTRY'})do
+  M.BySpecialization[kind][level]={level=level,name='LOC_SPC_'..kind..'_INSTITUTION_'..level,
+   text='LOC_SPC_'..kind..'_INSTITUTION_'..level..'_HELP',localized=true}
+ end
 end
 function M.GetRows(v)return M.BySpecialization[v and v.specialization] or {} end
 function M.Label(entry,key)
