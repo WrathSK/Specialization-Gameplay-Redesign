@@ -243,6 +243,34 @@ function M.Start(P,shared)
   local todo=dirty;dirty={}
   for pid,v in pairs(todo)do d.Audit({player=pid,changed=not v.all and v.cities or nil})end
  end
+ -- Explicit report only; read retained scalar state without Refresh or writes.
+ local function diagnosticCode(value)
+  if value==nil then return 'NONE'end
+  if type(value)=='boolean' or type(value)=='number'then return tostring(value)end
+  if type(value)~='string'then return 'UNKNOWN'end
+  return (value:match('([A-Z][A-Z0-9_]+)$') or 'READ_ERROR'):sub(1,48)
+ end
+ local function pendingReport(pid,c,p,err,workerError)
+  local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
+  local layer=d.errors[key(pid,c:GetID())] and 'CITY' or d.error and 'MODULE'
+   or d.playerError and d.playerError[pid] and 'NETWORK'
+   or not p and 'NO_RECORD' or 'CURRENT_FACTS'
+  local reason=diagnosticCode(err or workerError or 'CN_REPORT_PENDING')
+  local fields={'kind=NETWORK_WAIT','owner='..pid,'city='..c:GetID(),
+   'layer='..layer,'reason='..reason,'ready='..tostring(d.ready),
+   'bridgeReady='..tostring(bridge and bridge.ready==true)}
+  print('[SPC][B191][N1_INSIGHT] '..table.concat(fields,' '))
+  fields={'kind=NETWORK_INPUT','owner='..pid,'city='..c:GetID()}
+  for _,k in ipairs({'validity','availability','inputRevision','derivedFor','revalidation','error'})do
+   fields[#fields+1]=k..'='..diagnosticCode(b and b[k])
+  end
+  print('[SPC][B191][N1_INSIGHT] '..table.concat(fields,' '))
+  local labels={CITY='城市事实或收益应用',MODULE='文化网络初始化',NETWORK='网络输入或拓扑',NO_RECORD='尚无城市计算结果',CURRENT_FACTS='当前城市或专家事实'}
+  return '文化网络：等待确认｜'..labels[layer]..'（'..reason..'）\n输入：'
+   ..diagnosticCode(b and b.validity)..' / '..diagnosticCode(b and b.availability)
+   ..'；版本 '..diagnosticCode(b and b.inputRevision)..' → '..diagnosticCode(b and b.derivedFor)
+   ..'。具体状态已写入采集日志。'
+ end
  function d.Describe(pid,c)
   local k=key(pid,c:GetID());local p=d.records[k];local error=d.errors[k] or d.error or d.playerError and d.playerError[pid]
   local ok,workers=pcall(function()
@@ -250,7 +278,7 @@ function M.Start(P,shared)
    if not p.plot then return 0 end
    local n=Map.GetPlotByIndex(p.plot):GetWorkerCount();assert(int(n),'CN_WORKERS_UNKNOWN');return n
   end)
-  if not ok then return '文化网络：等待当前连接或城市事实确认。'end
+  if not ok then return pendingReport(pid,c,p,error,workers)end
   print('[SPC][B191][N1_INSIGHT] kind=NETWORK owner='..pid..' city='..c:GetID()..' civilizations='..p.n..' workers='..workers..' expected='..p.n*workers)
   return '文化网络｜完整文明 '..p.n..'｜本专业工作专家 '..workers..'\n每名额外 +'..p.n..' 文化；本城预期 +'..p.n*workers..' 文化。'
  end

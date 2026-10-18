@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0606",
-    "runtime": "B227.254 / modinfo254",
+    "status": "S0607",
+    "runtime": "B228.255 / modinfo255",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "B227 approved event-first Activity repair, reliably unarmed startup exit and necessary bounded diagnostics. No new timers, capacity/binding/history/schema/reward or GC change.",
+  "goal": "B228 approved native wake-state and network waiting diagnostics; preserve task rules and event-only processing.",
   "implementation_authorized": false,
   "context": [
     {
@@ -648,6 +648,16 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
       "kind": "full",
       "reason": "B227 authorized event/ownership delta and exact validation boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
+      "kind": "full",
+      "reason": "Current narrow repair and validation boundaries."
+    },
+    {
+      "path": "DevelopmentTests/test_b228_native_network_diagnostics.py",
+      "kind": "full",
+      "reason": "Actual-source wake/network diagnostic counterexamples."
     }
   ],
   "dependencies": [
@@ -898,18 +908,18 @@
     "No new timer, permanent schema/history, capacity/source/travel/task-rule change, partial-network policy, route capacity increase, reattachment/U2/site movement, Research redesign, GC/config/main/deployment-tool change or unrelated audit repair."
   ],
   "validation": {
-    "depth": "L2 actual Lua event/ownership/Store/mission/UI; differential no-frame delivery and risk-matched inherited regressions.",
-    "local": "353 targeted tests PASS (234 core +119 adjacent); B226 baseline21 publications with zero frames produces zero ARM/Sleep/ACK.",
-    "user": "B227 native task start/completion/reuse required; inherited Great Work refresh PASS. Culture Network native gate remains pending."
+    "depth": "L2 actual-source bounded regressions",
+    "local": "246 offline tests PASS; native not established. Historical network package pin253 remains stale and unmodified.",
+    "user": "One ordinary task/reuse and explicit Culture Insights waiting report; no repeated lifecycle loop."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
-    "source": "B227.254/modinfo254 DEVELOP_ACTIVE; source 9f0f63596df1de519961fa2baf05337b23f89989; receipt B227.254-9f0f635-playtest.json;226/226 MATCH, digest 85bf9d781381919c8faa41fba5a6eee55232742932822ecff7ac48c42357232b. Fresh automatic OS exit at both guarded switches; B226/stable recovery retained, no pending transaction.",
-    "native": "USER_GAME_TEST_REQUIRED; native eligibility denial not bypassed or declared solved.",
-    "stop": "Await one minimal combined native session; no further implementation authorized."
+    "report": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
+    "source": "B228.255 local complete; live B227.254 remains as Authority.live until verified deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; B227 mixed success and recurring denial retained.",
+    "stop": "No unrelated implementation authorized."
   }
 }

@@ -2,7 +2,7 @@
 SPCExpeditionTrainingDiagnostics={ENABLED=true,KEEP=64,BUDGET=96}
 local M=SPCExpeditionTrainingDiagnostics
 local KEY='SPC_B205TrainingTrace'
-local keys={'evaluationOrigin','signalOrigin','coreBusy','operationEvent','lastOperationHash','stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4','nativeOwner','nativeUnit','nativeActivity','movesRemaining','maxMoves','nativeReady','spyOperation','spyEndTurn','ownerTurnActive','localPlayer','interfaceMode','sourceCity','targetOwner','targetCity','targetX','targetY','entryX','entryY','arrivalRoute','requestAction','requestResult','requestKey','requestAccepted','storeStatus','storeRevision','savedPhase','savedMatches','taskStart','taskDue','owned','releasePending','submitStatus','missionCategory','requestMission'}
+local keys={'readyToSelect','sleepVisible','sleepAllowed','wakeVisible','wakeAllowed','wakeLegacyAllowed','evaluationOrigin','signalOrigin','coreBusy','operationEvent','lastOperationHash','stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4','nativeOwner','nativeUnit','nativeActivity','movesRemaining','maxMoves','nativeReady','spyOperation','spyEndTurn','ownerTurnActive','localPlayer','interfaceMode','sourceCity','targetOwner','targetCity','targetX','targetY','entryX','entryY','arrivalRoute','requestAction','requestResult','requestKey','requestAccepted','storeStatus','storeRevision','savedPhase','savedMatches','taskStart','taskDue','owned','releasePending','submitStatus','missionCategory','requestMission'}
 local function scalar(v)
  local t=type(v)
  if t=='nil'then return 'NIL' end
@@ -52,6 +52,25 @@ local function unitSample(u)
   spyEndTurn=nativeCall(u,'GetSpyOperationEndTurn',true),ownerTurnActive=nativeCall(player,'IsTurnActive',true),
   localPlayer=nativeCall(Game,'GetLocalPlayer',false),interfaceMode=nativeCall(UI,'GetInterfaceMode',false)}
 end
+-- B228: optional observations at existing UI lifecycle samples only. Never a
+-- permission authority, retry trigger, writer or all-unit scan.
+local function activityEligibility(u,stage)
+ local v={readyToSelect=nativeCall(u,'IsReadyToSelect',true)}
+ local function query(tab,key,fn,...)
+  local row=field(field(GameInfo,tab),key);local hash=field(row,'Hash')
+  if type(hash)~='number'then return 'UNAVAILABLE'end
+  return nativeCall(UnitManager,fn,false,u,hash,...)
+ end
+ if stage=='IDLE_UI'then
+ v.sleepVisible=query('UnitOperations','UNITOPERATION_SLEEP','CanStartOperation',nil,true)
+ v.sleepAllowed=query('UnitOperations','UNITOPERATION_SLEEP','CanStartOperation',nil,false,false)
+ end
+ v.wakeVisible=query('UnitCommands','UNITCOMMAND_WAKE','CanStartCommand',true)
+ v.wakeAllowed=query('UnitCommands','UNITCOMMAND_WAKE','CanStartCommand',false,true)
+ v.wakeLegacyAllowed=query('UnitCommands','UNITCOMMAND_WAKE','CanStartCommand',false)
+ return v
+end
+local activityStages={IDLE_UI=true,ACTIVITY_START=true,ACTIVITY_FAILURE=true,ACTIVITY_RELEASE=true,ACTIVITY_WAKE_REQUEST=true}
 local noop={id='DISABLED',loads=0,Event=function()end,Record=function()end,Unit=function()end,Load=function()end}
 function M.New(P,role)
  if not M.ENABLED then return noop end
@@ -93,6 +112,7 @@ function M.New(P,role)
    sampling=true
    local good=pcall(function()
     local v=unitSample(u)
+    if activityStages[stage] and type(v.nativeActivity)=='number'then for k,value in pairs(activityEligibility(u,stage))do v[k]=value end end
     -- Callers supply only fixed state/attempt scalars. Native samples stay separate
     -- from the activity guard's last-read fields and from persisted authority.
     for _,k in ipairs(keys)do if extra and extra[k]~=nil then v[k]=extra[k]end end

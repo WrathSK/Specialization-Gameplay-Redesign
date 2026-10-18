@@ -1,11 +1,13 @@
 # P0-N1/N2/N3 — 人文考察、文化见闻与网络准备计划
 
-State: B227_EVENT_ACTIVITY_LOCAL_COMPLETE_AWAITING_NATIVE; B226 network native gate remains pending. Reattachment, site movement and U2 remain held; actual deployment is in Status.
+State: B228_WAKE_NETWORK_DIAGNOSTICS_LOCAL_COMPLETE_AWAITING_NATIVE; B226 network native gate remains pending. Reattachment, site movement and U2 remain held; actual deployment is in Status.
 Authority: Spec D0051 / Culture D0051 `CUL_L4_EXPEDITION`、missions、contracts.expedition/observations/network_effect / Shared D0045 A/E3/G及NET-001–004。当前共同合同与最新用户补充的区别见当前切片；只对直接Spy/宗教/移动表面作定域调查，实际运行与授权见[准备入口](Culture_Preparation.md)。
 
 [人文考察团UI计划](P0_N_Expedition_UI.md)基于现行Gameplay与本地Stable调查提出独立管理窗口、目标／任务、重挂靠、历史及Network呈现。Earlier UI proposals and Spy0 investigations are historical references. The implemented Spy1 native-style UI, three missions and city history are bounded by the current slice below; native evidence does not establish later Tourism or Network behavior.
 
 ## Current slice — B213 Expedition repair and Culture presentation
+
+**B228 scoped follow-up:** [native wake alignment and network waiting evidence](../../Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md). Match native UnitPanel command-query shape; preserve owned, single-request/event-readback release. Observe readiness/eligibility only at existing bounded lifecycle samples. Network waiting reports retained failure layer/input revisions without refresh or writes. No new timer, speculative wake or change of network rules.
 
 **B227 current activity contract:** [event-driven processing and unarmed startup exit](../../Status/Validation/Results/Specialization_B227_Event_Activity.md). Hidden-context task progression/recovery must run from real publication, exact-unit activity/operation/movement and owner-turn events, without a SetUpdate/RequestRefresh/frame-delivery dependency. One pass per callback; nested notifications wait for a subsequent real event, never a recursive native-writer pump. Gameplay-confirmed ARMED precedes one native Sleep request. Readback is event-based; unresolved native writes retain ownership protection at a later owner-turn boundary. Reliably unarmed TASK_PREPARING can return to ARRIVED at the next observed owner turn after exact saved-envelope/source/target/unit checks, with no award or wake. Load supplies a fresh session observation interval, not an invented historical clock. Existing visible UI rendering may use native refresh; it is not a business-state scheduler. No new timers, permanent fields, capacity/binding/reward or GC changes.
 

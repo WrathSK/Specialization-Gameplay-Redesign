@@ -364,10 +364,11 @@ local function evaluate(n)
    local allowed,hash=pcall(function()
     local hash=actionHash('UnitCommands','UNITCOMMAND_WAKE','WAKE')
     assert(type(UnitManager.CanStartCommand)=='function' and type(UnitManager.RequestCommand)=='function','ACTIVITY_WAKE_API_UNAVAILABLE')
-    assert(UnitManager.CanStartCommand(u,hash,false)==true,'ACTIVITY_WAKE_NOT_ALLOWED')
+    assert(UnitManager.CanStartCommand(u,hash,false,true)==true,'ACTIVITY_WAKE_NOT_ALLOWED')
     return hash
    end)
    if not allowed then fail(n,hash);return end
+   recordActivity(n,'ACTIVITY_WAKE_REQUEST')
    n.requested=true
    local sent,err=pcall(function()
     assert(UnitManager.RequestCommand(u,hash)~=false,'ACTIVITY_WAKE_REJECTED')

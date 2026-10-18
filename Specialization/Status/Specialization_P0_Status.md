@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0606
-Implementation Build: source/live B227.254 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0607
+Implementation Build: source B228.255; live B227.254 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B227_DEPLOYED_AWAITING_NATIVE
+Work State: B228_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B227 local complete: event-driven Expedition task processing.** [Implementation,353 targeted tests and minimal native gate](Validation/Results/Specialization_B227_Event_Activity.md).
-- **Source/live B227.254 / modinfo254 DEVELOP_ACTIVE**: source `9f0f635`, receipt `B227.254-9f0f635-playtest.json`,226/226 MATCH. Automatic game-exit checks and both guarded switches verified; no pending transaction. Main stable B069.96 unchanged.
-- **Changed:** hidden Activity processing no longer requires frames/timers; one pass per real callback. Reliable unarmed startup expires through Gameplay owner-turn events; ARMED/unknown writes retain protection. Capacity/source/history/reward/schema/GC unchanged.
-- **Evidence:**353 LOCAL_SIMULATION_PASS; B226 frame-withheld counterexample reproduced. Native task startup/release remains USER_GAME_TEST_REQUIRED; older native Sleep denial is not declared fixed. Great Work refresh user PASS retained; Culture Network native yield/source withdrawal still pending.
-- **Next:** one log-first task-start → completion → next task/travel session, combined with available Network checks. No repeat blind tests. Reattachment, era UI, site movement and unrelated audit work remain held.
+**B228 local complete:** [native wake query alignment and bounded activity/network diagnostics](Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md);246 targeted offline tests PASS. Native acceptance pending.
+- **Source B228.255 / modinfo255; live B227.254** remains source `9f0f635`, receipt `B227.254-9f0f635-playtest.json`,226/226 MATCH at its recorded deployment. Main stable B069.96 unchanged.
+- **B227 evidence:** event processing/rejection unwind works; redispatch followed by task completion/release succeeds. Recurring native denial is unresolved. [Follow-up](Validation/Results/Specialization_B227_Collector_Native_Followup.md). Collector field-order repair is committed separately.
+- **B228 boundary:** native WAKE query shape aligned; no forced wake/retry, timer or gameplay/history change. Existing lifecycle records add readiness/eligibility; Culture Network waiting report exposes retained failure/input state without recompute.
+- **Next:** guarded deployment when game exit is confirmed, then one combined log-first task/reuse and **文化见闻** waiting-report observation. Great Work refresh PASS retained; Culture Network yield/source withdrawal remains pending. No unrelated next batch authorized.
+
+## S0607 — B228 narrow follow-up
+
+Approved wake-state investigation and network waiting diagnostics implemented with246 offline PASS. Signature mismatch is confirmed statically, not claimed as the full native cause. Source/live distinguished above; no new Design/schema/GC rule. Older native/frozen evidence unchanged.
 
 ## S0606 — B227 verified deployment
 
