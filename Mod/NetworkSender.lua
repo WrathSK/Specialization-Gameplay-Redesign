@@ -18,7 +18,9 @@ function SPCNetworkSender.New(P)
   if bridge.epoch~=lastEpoch then flight=nil;lastEpoch=bridge.epoch;failedTurn=nil;SPCPerformance.Flight(0) end
   if flight then
    if b and b.seq>=flight.seq then
-    if not b.routes or b.fingerprint~=flight.fingerprint then failedTurn=flight.turn;P.Count('send_timeout') end
+    if not b.routes or b.fingerprint~=flight.fingerprint or (b.acceptedSeq or -1)<flight.seq then
+     failedTurn=flight.turn;P.Count('send_timeout')
+    end
     flight=nil;SPCPerformance.Flight(0)
    elseif Game.GetCurrentGameTurn()==flight.turn then P.Count('send_inflight');return
    else P.Count('send_timeout');flight=nil;SPCPerformance.Flight(0) end
@@ -26,7 +28,9 @@ function SPCNetworkSender.New(P)
   public.awaitingNetwork=false
   if public.status~='COMPLETE_UI_SHADOW' or not public.snapshot then return end
   local s=public.snapshot
-  if b and b.routes and b.fingerprint==s.fingerprint and s.fingerprint~=nil then P.Count('send_duplicate');return end
+  -- Equal content is a duplicate only after its requested route proof is confirmed.
+  if b and b.routes and b.fingerprint==s.fingerprint and s.fingerprint~=nil
+   and b.revalidation=='VERIFIED' then P.Count('send_duplicate');return end
   if s.turn~=Game.GetCurrentGameTurn() or s.signal~=(g.RouteSignalRevision or 0) or failedTurn==s.turn then return end
   if s.count>128 then return end
   local data={}

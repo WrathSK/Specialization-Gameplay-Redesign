@@ -126,6 +126,14 @@ local function mark(reason)
  dirty=true;pendingReason=reason;public.revalidation='NEEDS_REVALIDATION'
  -- The verified snapshot and formal consumer state remain intact.
 end
+-- Gameplay calls this only for a real dirty/source event. Coalesce into the
+-- existing event flush; no inline native query, operation, timer or frame poll.
+local function requestRevalidation(epoch,pid)
+ local game=ExposedMembers.SPC_P0;local bridge=game and game.NetworkBridge
+ if not active or networkBlocked() or not game or game.Version~=P.VERSION or not bridge
+  or epoch~=bridge.epoch or pid~=Game.GetLocalPlayer() or not P.IsTestPlayer(pid) then return false end
+ mark('GAMEPLAY_REVALIDATION_REQUEST');return true
+end
 local function refresh()
  if networkBlocked() then return end
  P.Count('route_scan');generation=generation+1
@@ -188,6 +196,7 @@ local function initialize()
  public={version=P.VERSION,status='UNKNOWN',sourceContext='UI',authority='UI_SHADOW_ONLY'}
  public.ReadNormalizedRoutes=function() return normalized:Read() end
  public.StopNetwork=requestStop
+ public.RequestRevalidation=requestRevalidation
  ExposedMembers.SPC_P0_BackgroundRoutes=public
  lastGame=ExposedMembers.SPC_P0;lastSignal=lastGame and lastGame.RouteSignalRevision
  for _,name in ipairs({'LoadScreenClose','TradeRouteActivityChanged','TradeRouteAddedToMap','TradeRouteRemovedFromMap',

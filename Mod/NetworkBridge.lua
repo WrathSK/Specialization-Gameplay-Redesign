@@ -50,6 +50,21 @@ function SPCNetworkBridge.Start(P,shared)
   if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
   return d.players[pid]
  end
+ -- A dirty event requests one UI resample through its existing event flush.
+ -- This callback only marks work; it never scans or sends a command inline.
+ local function pendingProof(pid,b,request)
+  local first=b.revalidation~='NEEDS_REVALIDATION'
+  b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE'
+  if request==true or request==nil and first then
+   local ui=ExposedMembers.SPC_P0_BackgroundRoutes
+   if ui and type(ui.RequestRevalidation)=='function' then pcall(ui.RequestRevalidation,d.epoch,pid) end
+  end
+ end
+ function d.RequestPendingProof(pid)
+  if isolated(pid) or not d.ready or not P.IsTestPlayer(pid) then return end
+  local b=d.players[pid]
+  if b and b.revalidation=='NEEDS_REVALIDATION' then pendingProof(pid,b,true) end
+ end
  -- Metadata is a value copy. Input revision belongs to this Gameplay epoch, not the save.
  function d.Input(pid)
   local b=bucket(pid)
@@ -59,7 +74,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local function notify(pid)
   local publication=d.Input(pid)
-  -- Existing independent consumer listeners remain Batch D. This publisher only notifies on diff.
+  -- Logical input changes and pending-to-available recovery each notify once.
   for _,name in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence','CopyYields','CultureNetwork'}) do
    local consumer=shared[name]
    if consumer then local ok,err=pcall(consumer.Audit,publication)
@@ -122,7 +137,7 @@ function SPCNetworkBridge.Start(P,shared)
   if ok and invalid then
    b.refreshing=true;withdraw(pid,b,'NATIVE_ROUTE_INVALID');b.refreshing=false;return false
   end
-  if not ok then b.availability='NEEDS_REVALIDATION';b.revalidation='NEEDS_REVALIDATION' end
+  if not ok then pendingProof(pid,b) end
   return true
  end
  -- Capture a coherent complete input before changing any officially published input.
@@ -130,6 +145,7 @@ function SPCNetworkBridge.Start(P,shared)
   if isolated(pid) then return false end
   if not P.IsTestPlayer(pid) or not d.ready then return false end
   local b=bucket(pid)
+  local priorAvailability=b.availability
   if b.refreshing then P.Count('busy_skip');return false end
   if not b.candidate and not d.Verified(pid) then return false end
   b.refreshing=true
@@ -146,13 +162,13 @@ function SPCNetworkBridge.Start(P,shared)
   end)
   local changed=false
   if ok then
-   b.availability=(input.pending or b.revalidation=='NEEDS_REVALIDATION') and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=nil
-   if b.inputSignature==input.signature then
-    b.candidate=nil;P.Count('input_duplicate')
-   else
-    local good,view=pcall(buildView,pid,rows,input)
-    if good then
-     local withdrawal=b.input and b.input.capital~=nil and b.input.capital~=input.capital or false
+   local duplicate=b.inputSignature==input.signature
+   local good,view=true,nil
+   if not duplicate then good,view=pcall(buildView,pid,rows,input) end
+   if good then
+    local withdrawal=false
+    if not duplicate then
+     withdrawal=b.input and b.input.capital~=nil and b.input.capital~=input.capital or false
      if candidate and b.routes then
       local present={};for _,route in ipairs(rows) do present[route.trader..':'..route.oc..':'..route.dp..':'..route.dc]=true end
       for _,route in ipairs(b.routes) do
@@ -164,15 +180,22 @@ function SPCNetworkBridge.Start(P,shared)
       if old.potential>=1 and (not new or new.reference~=old.reference or new.specialization~=old.specialization
        or new.active<old.active or new.potential<1) then withdrawal=true end
      end
-     if candidate then
-      if b.fingerprint~=fingerprint or not b.routes then b.revision=b.revision+1;P.Count('publication') end
-      b.routes=rows;b.routeReferences=candidate.references;b.fingerprint=fingerprint
-      b.turn=candidate.turn;b.signal=candidate.signal;b.reason='READY_BACKGROUND_UI';b.revalidation='VERIFIED';b.candidate=nil
-      local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=#rows end
-     end
-     changed=publish(pid,b,input,view,withdrawal)
-    else b.availability='NEEDS_REVALIDATION';b.error=short(view) end
-   end
+    end
+    if candidate then
+     if b.fingerprint~=fingerprint or not b.routes then b.revision=b.revision+1;P.Count('publication') end
+     b.routes=rows;b.routeReferences=candidate.references;b.fingerprint=fingerprint
+     b.turn=candidate.turn;b.signal=candidate.signal;b.reason='READY_BACKGROUND_UI';b.revalidation='VERIFIED'
+     b.acceptedSeq=candidate.seq;b.candidate=nil -- receipt, distinct from merely seen/rejected seq
+     local perf=ExposedMembers.SPC_Performance;if perf then perf.revision=b.revision;perf.routes=#rows end
+    end
+    -- Commit current proof BEFORE exposing availability or notifying a consumer.
+    -- A proved route set does not resolve unreadable city facts.
+    b.availability=(input.pending or b.revalidation=='NEEDS_REVALIDATION') and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=nil
+    if duplicate then
+     b.input=input;P.Count('input_duplicate')
+     if priorAvailability~='AVAILABLE' and b.availability=='AVAILABLE' then notify(pid) end
+    else changed=publish(pid,b,input,view,withdrawal) end
+   else b.availability='NEEDS_REVALIDATION';b.error=short(view) end
   else
    b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.error=short(input)
    -- A failed new sample cannot hide independently confirmed loss of an old input.
@@ -206,7 +229,7 @@ function SPCNetworkBridge.Start(P,shared)
   local ok,err=pcall(function()
    assert(d.ready,'LOAD_NOT_READY')
    assert(p.Turn==Game.GetCurrentGameTurn() and p.Signal==(shared.RouteSignalRevision or 0),'STALE_SIGNAL_OR_TURN')
-   if p.Valid~=1 then b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';return end
+   if p.Valid~=1 then pendingProof(pid,b,false);return end
    local count=p.Count
    if p.WireCount~=nil then
     assert(integer(p.WireCount) and p.WireCount>=1 and p.WireCount<=129,'WIRE_COUNT_INVALID')
@@ -231,13 +254,13 @@ function SPCNetworkBridge.Start(P,shared)
    assert(Players[pid]:GetTrade():CountOutgoingRoutes()==count,'CURRENT_COUNT_CHANGED')
    table.sort(keys);local fingerprint=table.concat(keys,'\n')
    if b.routes and b.fingerprint==fingerprint then
-    b.turn=p.Turn;b.signal=p.Signal;b.revalidation='VERIFIED';P.Count('same_snapshot');P.Count('revalidate_same');return
+    P.Count('same_snapshot');P.Count('revalidate_same')
    end
    local references={}
    for _,r in ipairs(rows) do references[r.trader]={origin=SPCNetworkInput.Reference(city(r.op,r.oc)),destination=SPCNetworkInput.Reference(city(r.dp,r.dc))} end
-   b.candidate={routes=rows,references=references,fingerprint=fingerprint,turn=p.Turn,signal=p.Signal}
+   b.candidate={routes=rows,references=references,fingerprint=fingerprint,turn=p.Turn,signal=p.Signal,seq=p.Seq}
   end)
-  if not ok then b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.error=short(err);P.Count('route_failure');P.Count('stale_input') end
+  if not ok then pendingProof(pid,b,false);b.error=short(err);P.Count('route_failure');P.Count('stale_input') end
   if ok and p.Valid==1 then d.Refresh(pid) else d.Verified(pid) end
  end
  derive=function(pid,rows,input)
@@ -505,7 +528,7 @@ function SPCNetworkBridge.Start(P,shared)
  function d.CheckEvidence(failedFullRead)
   if isolated() then return end
   for pid,b in pairs(d.players) do
-   if b.routes then b.revalidation='NEEDS_REVALIDATION';d.Verified(pid,failedFullRead) end
+   if b.routes then pendingProof(pid,b,not failedFullRead);d.Verified(pid,failedFullRead) end
    d.Refresh(pid)
   end
  end

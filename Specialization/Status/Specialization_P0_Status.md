@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0615
-Implementation Build: source/live B231.258 DEVELOP_ACTIVE; stable B069.96
-Architecture Revision Reviewed: A0161
+Status Revision: S0616
+Implementation Build: source B232.259 LOCAL_COMPLETE; live B231.258; stable B069.96
+Architecture Revision Reviewed: A0162
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B231_NATIVE_PARTIAL_REVALIDATION_REPAIR_PROPOSED
+Work State: B232_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B231 native partial:** [review and proposed revalidation repair](Validation/Results/Specialization_B231_Native_Review.md). Initialization, public diagnostic output and the tested initial Culture bonus work; the bonus does not update after Gaul completes its third Insight.
-- **Source/live B231.258 / modinfo258** unchanged: source `168bb25`, receipt `B231.258-168bb25-playtest.json`,226/226 verified at deployment. Stable main B069.96 unchanged; no new deployment this review.
-- **Evidence:** T85 AVAILABLE/coefficient1; T86 onward NEEDS_REVALIDATION; T89 Gaul WORKS succeeds, historical/effective records9→10 and Tourism report18%→20%. Public report exposes2 routes/2 sources/2 centers/3 recipients; the hold is route revalidation, not initialization or lost history.
-- **Local diagnosis:** unchanged route proofs are suppressed by sender dedup; recovery with identical input does not notify consumers; a changed candidate can publish the old pending flag.8 actual-source counterexample/control assertions confirm these paths; no implementation change.
-- **Next proposed:** B232 event-driven proof/recovery notification repair, retaining UNKNOWN and confirmed-loss guards. Await user implementation authorization; no new test request, Expedition repair, timer or deployment.
+**B232 locally complete:** [event-driven proof recovery and active Insight propagation](Validation/Results/Specialization_B232_Network_Revalidation.md). Native update acceptance remains pending; B231 initial network/bonus evidence is retained.
+- **Source B232.259 / modinfo259; live still B231.258** until guarded deployment. Stable main B069.96 unchanged; source existence does not establish live state.
+- **Changed:** Gameplay requests pending route proof from the UI; equal-content proof is accepted when needed; proof/availability commit precedes publication; recovery notifies consumers without a fake input version. Successful Insight events update dependent cities immediately or request pending proof.
+- **Validation:**163 scoped unittest tests and B134 shared-scope regression PASS. Historical B137 comparison fails identically on pre-change HEAD; unmodified and not counted as PASS. UNKNOWN, confirmed loss and bounded retries remain.
+- **Authorized next/stop:** W0003 guarded B232 deployment if game exit is verified, then one minimal network-delta user session. No timer, Expedition repair, Design/permanent/GC change or later batch. Actual native yield remains USER_GAME_TEST_REQUIRED.
+
+## S0616 — B232 local checkpoint
+
+Approved revalidation/publication/recovery and Insight-event changes complete with targeted local evidence. A0162 documents the narrow recovery-notification contract; historical contracts/results remain preserved. Only reviewed changed/new hashes are refreshed. Source/main isolation and deployment gates remain.
 
 ## S0615 — B231 native review checkpoint
 

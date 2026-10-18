@@ -10,15 +10,15 @@
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0161",
-    "status": "S0615",
-    "runtime": "B231.258 / modinfo258",
+    "architecture": "A0162",
+    "status": "S0616",
+    "runtime": "B232.259 / modinfo259",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation",
-  "goal": "Review B231 native network success and failed Insight-driven bonus update; propose bounded B232 revalidation recovery repair. No new implementation authorization.",
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出",
+  "goal": "Complete approved B232 shared route-proof revalidation, coherent publication, recovery notification and active Culture Insight propagation; one network-only native delta remains.",
   "implementation_authorized": false,
   "context": [
     {
@@ -41,7 +41,7 @@
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
       "kind": "section",
       "selector": "## N3：Culture Network与精确旧Eureka退出",
-      "reason": "Current N3 complete contract and B226 implementation boundary; prior N1/current chronology is conditional, not mandatory recovery."
+      "reason": "Current N3 topology/history contract and B232 shared recovery boundary; prior N1 chronology stays conditional."
     },
     {
       "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
@@ -693,6 +693,26 @@
       "path": "DevelopmentTests/test_b231_network_initialization_reports.py",
       "kind": "full",
       "reason": "Actual-source initialization, shared-report independence and redaction counterexamples."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "kind": "full",
+      "reason": "Current authorized B232 implementation, targeted checks and minimal native delta."
+    },
+    {
+      "path": "Mod/NetworkSender.lua",
+      "kind": "full",
+      "reason": "Direct proof-pending dedup and accepted sequence/one-flight failure boundary."
+    },
+    {
+      "path": "Mod/UI/BackgroundRoutes.lua",
+      "kind": "full",
+      "reason": "Direct event-driven request callback, coalescing, complete proof and bounded failures."
+    },
+    {
+      "path": "DevelopmentTests/test_b232_network_revalidation.py",
+      "kind": "full",
+      "reason": "Actual sender/collector/bridge/Culture regression and malformed/recovery controls."
     }
   ],
   "dependencies": [
@@ -943,19 +963,19 @@
     "No new timer, permanent schema/history, capacity/source/travel/task-rule change, partial-network policy, route capacity increase, reattachment/U2/site movement, Research redesign, GC/config/main/deployment-tool change or unrelated audit repair."
   ],
   "validation": {
-    "depth": "L2 scoped actual-source tests",
-    "local": "143 targeted tests PASS; optional historical AV2-B wrapper fails in its inherited B069 fixture on both B230 and B231, unchanged.",
-    "user": "B231 initial bonus/initialization confirmed; public output recorded; subsequent complete-civilization update failed. No retest requested before authorized repair.",
-    "review": "8 focused unchanged-source reproduction/control assertions PASS; not a repaired implementation or native transport test."
+    "depth": "L3 scoped shared-infrastructure validation",
+    "local": "163 unittest tests plus B134 actual-bridge scope regression PASS; historical B137 comparison fails identically on pre-B232 HEAD and is not counted. No unrelated wrapper/assertion repair.",
+    "user": "USER_GAME_TEST_REQUIRED for B232 Insight-driven update and ordinary-event recovery; B231 initialization/initial bonus acceptance retained. No repeated shared lifecycle suite.",
+    "review": "Actual sender/collector/bridge/Culture path, failure bounds and named consumer notification reviewed; no native performance or settlement claim."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B231_Native_Review.md",
-    "source": "B231.258/modinfo258 DEVELOP_ACTIVE; source 168bb25df3eaf21d9c411538f1c9bcfc209571a6; receipt B231.258-168bb25-playtest.json;226/226 MATCH, digest 75e7b7f56789874f42bfa1f27f29628c754625dbf5cfc76a52a8367580be7681. Automatic game-exit checks before both guarded switches; B230/stable recovery retained, no pending transaction.",
-    "native": "PARTIAL: USER_GAME_TEST_PASS initialization and tested initial bonus; public diagnostic output confirmed. USER_GAME_TEST_FAIL subsequent complete-civilization update (route revalidation pending). Expedition broader gate remains separate.",
-    "stop": "Await user authorization for proposed B232 shared revalidation repair; no implementation or deployment in this review."
+    "report": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+    "source": "B232.259/modinfo259 LOCAL_COMPLETE; live remains B231.258 under prior receipt until guarded deployment.",
+    "native": "B232 USER_GAME_TEST_REQUIRED; B231 initial network/bonus partial evidence remains unchanged.",
+    "stop": "After guarded deployment and minimal test handoff, await user evidence; no next implementation or speculative Expedition repair."
   }
 }

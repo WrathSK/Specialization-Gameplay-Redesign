@@ -251,6 +251,8 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 
 ## N3：Culture Network与精确旧Eureka退出
 
+**B232 current shared recovery contract (A0162):** [implementation and validation](../../Status/Validation/Results/Specialization_B232_Network_Revalidation.md). Successful Insight writes actively invoke `CultureNetwork.SourceChanged`: AVAILABLE topology updates dependent recipients immediately; pending route proof explicitly marks the existing UI collector dirty. Accepted route proof is committed before availability and consumer publication. Equal-content proof is allowed while pending; pending→AVAILABLE notifies all existing consumers once without increasing the logical input/derived version. This narrowly supersedes historical Batch A unconditional same-content suppression / no-notify wording for recovery only; ordinary AVAILABLE duplicates still do nothing. Unknown city facts remain pending, confirmed loss still withdraws, and read-only reports never refresh. Sender acceptedSeq is disposable epoch state, not a persistent schema change. Existing one-flight/failure bounds and event flushes are reused; no timer/new frame callback, Expedition behavior, history, Research formula or GC change.
+
 **B231 initialization/report correction:** [result](../../Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md). Initialization skips legitimate nil player city collections, while getter/cleanup failures remain explicit. Shared topology diagnostics now read the already published view independently of Culture; a consumer failure cannot hide routes, sources, centers or receivers. Concrete failure phase, allowlisted filename/line and error class/code survive into the existing bounded log. No Refresh/write from reports, timer, Expedition or shared topology calculation change. B230 event initialization remains in place; B230 native did not pass readiness.
 
 **B230 readiness repair:** [result](../../Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md). First real business Audit validates/initializes once per module context; a missed LoadScreenClose cannot permanently disable the consumer. Duplicate load notifications do not clear rebuilt effects. Existing event/dirty and AVAILABLE/UNKNOWN rules remain; no timer or report-driven Refresh. Restored P0 reports are read-only, retain bounded scalar evidence and do not expose isolation commands. Expedition lifecycle unchanged.
@@ -266,10 +268,10 @@ Goal：一个单位的可靠训练来源/全国cap统计→合法外国目标→
 - 接收仅该城单一Identity对应实际工作专家；没有Identity就无受益专家。接收不授见闻、不作为自身成果二次输出。
 - NET-001–004共同规则不变：首都自身专业direct self-connect，source→中心可接收/分发，distribution不递归。无需外国商路或新外交条件。
 - `NetworkBridge.CurrentRecipientSources`只是已确认**拓扑来源**。当前derive以Potential≥1构造来源，不替N按ACTIVE IV/历史过滤；新consumer必须自己重验本能力资格和`S_source`。
-- 拓扑、source资格/Owner过滤、成功历史版本、receiver Identity/实际工作专家分别触发。`NetworkInput.Signature`无见闻版本，`NetworkBridge.notify`无新Culture consumer；即使路线不变，source新成果也须更新payload。
+- 拓扑、source资格/Owner过滤、成功历史版本、receiver Identity/实际工作专家分别触发。`NetworkInput.Signature`无见闻版本；B226已将Culture接入`NetworkBridge.notify`，成功见闻另经`SourceChanged`主动更新payload。B232补齐待核验请求与可用性恢复通知；不靠虚增拓扑版本传播历史变化。
 - 按受影响来源/接收者更新；UNKNOWN按已有桥确认/HOLD，confirmed loss可靠撤销。不把空包当断路，不世界扫描或粗略每城每回合一次。
 
-现有`NetworkBoost`仍同时生成Research/Culture旧`k×L×sqrt(N)`并写首都carrier；共享TEST的testRaw可写两种类型，Culture SQL涉及原生Tech Boost与`HD_Player_Extra_Tech_Boost`。N3才退出旧Culture部分，保留Research既有公式/效果。
+Pre-B226 baseline only: `NetworkBoost` generated both old Research/Culture `k×L×sqrt(N)` capital effects, including native/HD Culture Tech Boost attachments. B226 retired that Culture generation and its TEST path; the Research formula/effect and exact legacy cleanup remain. This paragraph is not an active instruction to restore the old Culture writer.
 
 实施前精确核对Culture legacy/integer/test owned IDs、SQL附件、生成/Audit/TEST、初始化清理、isolation、owner exit及HD Property/后台writer；B226已完成这三个具名家族的exact-ID退出核对；不扩为全Mod审计。不得停整个NetworkBoost、按前缀扫建筑，或让共享TEST复活旧Culture Eureka；旧清理ID可惰性保留，新旧收益不并行。
 

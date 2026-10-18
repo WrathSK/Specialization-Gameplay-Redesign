@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "168bb25df3eaf21d9c411538f1c9bcfc209571a6",
-  "runtime": "B231.258 / modinfo258",
+  "runtime": "B232.259 / modinfo259",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -341,9 +341,9 @@
       "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "3df1af56b38d7bddd6bcaa6f725b1d230f58ad6f3874d5e6312708c1e679a290",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "2f3b5cff3ca1ebf34f716fcf74a14754e332216ada66cf23727c6e25b6f91c10",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -351,9 +351,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "153389e46600e65251fc398158659c261336580e7b21d44af808d16d4488c999",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "c61276fc6c88c8b3803954d7a653fce1e9a2a5decf973b78a2c627c138fe7c19",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "b5174d482780cf8ca88d32b2d18e676ac1952daf5811ccd91fc14800dde214a7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "69fc4af714abf148076228474dc324a66a50a423e4f0819d3300cdd54725928f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "1199fddc4ee03fdb0724b201114cd6e4368ae74c466b7fe303c10aa08bb973f9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "bb6cdb41222d8f5e66185e104d778cd3ccaf6c851c53ad75e20aab38d57ed5d4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
     },
     "Mod/Standardization.lua": {
       "sha256": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
@@ -461,9 +461,9 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "2795eae71356e775d2c62f6c7464f1cea6b39fba5bf7abc7852506967c920b82",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+      "sha256": "bdb9a4ff62c99389695b12e655d7832c649040687b01dbeefb167318eb54fae5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
@@ -1126,9 +1126,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "7369eab1dfa80d36dbba148262360d6fada64e928e229edfbee363c453caeedf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
-      "provenance": "B231 approved nil-city initialization guard, independent read-only network reports and sanitized diagnostics;143 targeted local PASS. Shared computation and Expedition behavior unchanged; native pending."
+      "sha256": "f9481b44dc667c21a60eb98789e96bd848395446a544c3b56bfe2399d202703a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
     },
     "Mod/Data/CultureNetwork.sql": {
       "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",

@@ -279,7 +279,15 @@ function M.Start(P,shared)
    health(scope and scope.player,d.failure.errorCode,d.failure)
   end
  end
- function d.SourceChanged(pid,cid)d.Audit({player=pid,changed={[cid]=true}})end
+ -- The successful Insight writer actively calls this in the same event.
+ -- History is an effect input, not a topology signature: update dependent cities
+ -- directly, or request the outstanding route proof and let recovery notify us.
+ function d.SourceChanged(pid,cid)
+  if not P.IsTestPlayer(pid) or isolated(pid)then return end
+  d.Audit({player=pid,changed={[cid]=true}})
+  local bridge=shared.NetworkBridge
+  if bridge and bridge.RequestPendingProof then bridge.RequestPendingProof(pid)end
+ end
  local function flush()
   if d.busy then return end
   local todo=dirty;dirty={}
