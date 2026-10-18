@@ -1,13 +1,14 @@
 # 文化后续模块：计划与调查入口
 
-Current accepted delta D0051: [WORKS target-city continuation and proposed B225](../../Status/Validation/Results/Specialization_B224_Native_Review.md). This overrides the older selected-work lock for v0.1 only; the cited historical preparation does not authorize implementation.
+Current review: [B232 native acceptance and Culture remaining scope](../../Status/Validation/Results/Specialization_B232_Native_Review.md). Accepted rules are Culture D0051 / Shared D0045 / Presentation D0032; the current technical baseline is A0162. Source/live and authorization remain solely in [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state).
 
-Current Expedition work is governed by the [B213 current slice](P0_N_Expedition.md#current-slice--b213-expedition-repair-and-culture-presentation) and Status: normal training, persistence, repeat missions and city Insight history are implemented; B212/B213 native acceptance is pending. Earlier stage summaries below are historical preparation/evidence, not current authorization. Tourism, Network, reattachment and era UI remain outside B213.
+Normal training, persistence, repeat missions, city Insight history/Tourism and Culture Network are implemented. B232's network update/withdrawal/recovery is accepted in the tested scope. **Expedition issues are HOLD and nonblocking for continued v0.1 development**, by the user's latest decision. Meaning's Government/Diplomacy Culture additions remain deferred; Dialogue uses the accepted Tourism-only fallback. U2 era presentation, optional institution polish and Balance remain separate follow-ups. No new implementation or user test is authorized here.
 
-State: B166_AUTOMATIC_USER_PASS / B173_INSPIRATION_NATIVE_API_ACCEPTED / B175_M1_SCOPED_NATIVE_PASS / B176_CARRIER_COMPARISON_SCOPED_PASS / B177_CUMULATIVE_INTEGRATION_SCOPED_NATIVE_PASS / N1_PARTIAL_B185_CONTINUITY_TIMER_LOCAL_COMPLETE_NATIVE_PENDING / N2_N3_U2_ON_HOLD。
-Authority: Culture D0049 / Shared D0045 / Presentation D0032 / Architecture A0161。这里只维护相关准备范围；实际source/live与授权从[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)读取。
+The older B173–B185 preparation narrative below is historical evidence, not the current task queue. It must not turn already implemented N2/N3 into new development work or reopen completed tests. The module table is the current navigation summary.
 
 ## 当前切片与停止点
+
+Historical preparation snapshot below; current acceptance and HOLD boundaries are in the opening review and module table. Past authorizations are not new instructions.
 
 B173巨作启迪百分比API已获用户按所测范围接受；Scientist/Merchant精确来源与计算顺序仍是非阻塞UNKNOWN，不再派发小数排查。B166自动意义延展及其冷重启人工PASS保留，Culture追加隔离／主题化Balance边界不变。
 
@@ -17,16 +18,17 @@ B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是�
 
 ## 按模块阅读
 
-| 模块 | 计划 / 可复用基础 | 当前准确门槛 |
+| Module | Current implementation / evidence | Remaining scope |
 |---|---|---|
-| 风雅熏陶L1 | [L1](P0_L1_Aesthetic.md#当前切片与停止点)：逐栋Tourism、已测结算/退出 | [B149限定PASS](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)保留，不重开无变化回合时序调查、不扩大未测组合 |
-| 意义延展L2 | [B166自动接入](P0_L2_Meaning.md#b166已授权--意义延展自动接入)：Shared D、逐域Floor、K馆藏与单值原语 | 自动writer／旧GWA退役限定整合获用户人工PASS；证据见Status，Culture追加继续延期，主题化待Balance；不记九域完整PASS |
-| 巨作启迪L3 | [当前L3](P0_L3_Inspiration.md)：3%×当前时代E，本城全类别GPP | B173自动city百分比API获用户按所测范围接受；精确来源/叠加顺序非阻塞UNKNOWN；不使用D/W或Floor |
-| 时代对话M | [M](P0_M_Dialogue.md)：真实1T项目、E2城市保存、K完成时X | B175项目/历史首段限定原生PASS；B176倍率/五项追加/END限定通过，不因同回合城市面板延迟追加测试；B177累计Tourism-only与cutover所测自动整合通过；无新增实机步骤，全原生产出分离未实施 |
-| 人文考察N1/N2/N3 | [N](P0_N_Expedition.md)：远程交互→城市历史/整体旅游→网络；[UI计划](P0_N_Expedition_UI.md)为后续管理提案 | B183已进入派遣计时，但精确到达原生FAIL；用户另报我方城重叠失败。容量1/1和记录来源保留不等于到达后绑定通过。B184已观察到原生派遣/抵达/同格1单位；ID变化与未绑定导致来源续接未通过，END原生分类刷新仍未知。情报源执行禁止；B185连续身份+独立计时及exact-type原生UI隔离本地完成，原生待部署后一次增量验收；正式训练／持久部署／归档未实施，N2/N3暂停 |
-| Hybrid D U2 | [U2](P0_U2_Culture_Era.md)：已批准紧凑摘要+Tooltip、K国内索引 | 真实UI hook、等count/X组成变化通知、缓存及布局；不包含机构排版重做 |
+| 风雅熏陶 L1 | [L1](P0_L1_Aesthetic.md): automatic building Tourism; B149 scoped acceptance plus [B226 Great Work refresh acceptance](../../Status/Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md) | No new standalone test. |
+| 意义延展 L2 | [L2](P0_L2_Meaning.md): B166 automatic seven-domain/five-yield writer and cold-load acceptance | Government/Diplomacy Culture projection deferred; theming interaction accepted for v0.1, Balance open. Not full nine-domain implementation. |
+| 巨作启迪 L3 | [L3](P0_L3_Inspiration.md):3% × current E, local all-category percentage; B173 native API accepted | Exact Scientist/Merchant attribution/stacking order remains nonblocking UNKNOWN. |
+| 时代对话 M | [M](P0_M_Dialogue.md): one-turn project, saved quota/history and B177 accepted cumulative Tourism projection | Accepted Tourism-only fallback; full original-yield isolation unimplemented, not a fallback acceptance gate. |
+| 人文考察 N1/N2 | [N](P0_N_Expedition.md): normal training/binding/persistence, three missions, city history/report and city Tourism; [B224 Tourism acceptance](../../Status/Validation/Results/Specialization_B224_Native_Review.md) | Expedition activity/UI issues HOLD; source-loss reattachment remains later work. Centre-based WORKS/PLACES and temporary native Spy-capacity cost remain acknowledged. No blanket Expedition PASS. |
+| Culture Network N3 | [N3 contract](P0_N_Expedition.md#n3culture-network与精确旧eureka退出), B231 initial acceptance and [B232 update/withdrawal/recovery](../../Status/Validation/Results/Specialization_B232_Native_Review.md) | Current network native gate closed in the tested scope; no repeat long test. |
+| Hybrid D U2 / institutions | [U2](P0_U2_Culture_Era.md): compact covered/missing-era summary and tooltip plan; institution rows already exist | U2 unimplemented/on hold; institution visual polish remains optional follow-up. |
 
-这些计划可以在用户不方便测试时准备，但不会自动连续实施。B165失败只影响真实依赖它的Meaning/M收益隔离路径，不把U2或全部文化都判为阻塞；也不据计划已写好绕开逐批授权。
+The following sections preserve earlier preparation/contracts and evidence boundaries. Their future-tense descriptions do not override the current implementation table or authorize sequential implementation. Design remains the semantic authority.
 
 ## 共同输入与真实缺口
 

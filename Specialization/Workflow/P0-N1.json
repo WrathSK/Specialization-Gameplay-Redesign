@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0162",
-    "status": "S0617",
+    "status": "S0618",
     "runtime": "B232.259 / modinfo259",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出",
-  "goal": "Complete approved B232 shared route-proof revalidation, coherent publication, recovery notification and active Culture Insight propagation; one network-only native delta remains.",
+  "goal": "B232 tested network update, withdrawal and proof recovery accepted; preserve Expedition HOLD as nonblocking for continued v0.1 development. No next implementation or additional native session authorized.",
   "implementation_authorized": false,
   "context": [
     {
@@ -26,6 +26,11 @@
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
       "reason": "Current gate, authorization and source/live distinction"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B232_Native_Review.md",
+      "kind": "full",
+      "reason": "Latest scoped B232 network acceptance, explicit Expedition HOLD and current Culture remaining-scope index; not next-batch implementation authorization."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B231_Native_Review.md",
@@ -963,19 +968,19 @@
     "No new timer, permanent schema/history, capacity/source/travel/task-rule change, partial-network policy, route capacity increase, reattachment/U2/site movement, Research redesign, GC/config/main/deployment-tool change or unrelated audit repair."
   ],
   "validation": {
-    "depth": "L3 scoped shared-infrastructure validation",
+    "depth": "L1 documentation/evidence checkpoint; inherited B232 L3 shared-infrastructure validation",
     "local": "163 unittest tests plus B134 actual-bridge scope regression PASS; historical B137 comparison fails identically on pre-B232 HEAD and is not counted. No unrelated wrapper/assertion repair.",
-    "user": "USER_GAME_TEST_REQUIRED for B232 Insight-driven update and ordinary-event recovery; B231 initialization/initial bonus acceptance retained. No repeated shared lifecycle suite.",
-    "review": "Actual sender/collector/bridge/Culture path, failure bounds and named consumer notification reviewed; no native performance or settlement claim."
+    "user": "USER_GAME_TEST_PASS for tested B232 network update/withdrawal/recovery, with user-observed native effects and automatic projection records; B231 initial bonus retained. Expedition follow-up HOLD, not full PASS; no current retest requested.",
+    "review": "Reviewed contiguous 67-record evidence and current Culture implementation/accepted deferrals; unchanged B232 local results inherited. Held Expedition acceptance keeps the broad N1 envelope open without blocking other v0.1 development."
   },
   "full_audit_triggers": [
     "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
     "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B232_Native_Review.md",
     "source": "B232.259/modinfo259 DEVELOP_ACTIVE; source a0e1d4ece94bac690c6a2018add37b96c37c145c; receipt B232.259-a0e1d4e-playtest.json;226/226 MATCH, digest 4830284febe3731cb9d0b0de0970613cf5358a9c98575934e163dc23a91036cb. Automatic game-exit checks before both guarded switches; B231/stable recovery retained, no pending transaction.",
-    "native": "B232 USER_GAME_TEST_REQUIRED; B231 initial network/bonus partial evidence remains unchanged.",
-    "stop": "Verified B232 deployed; await the minimal native network delta. No later implementation or speculative Expedition repair."
+    "native": "USER_GAME_TEST_PASS for tested B232 network update/withdrawal/recovery, with user-observed native effects and automatic projection records; B231 initial bonus retained. Expedition follow-up HOLD, not full PASS; no current retest requested.",
+    "stop": "B232 network gate closed. Expedition issues HOLD/nonblocking by explicit user instruction; no new implementation, deployment or native test. Next module requires its own authorized plan."
   }
 }
