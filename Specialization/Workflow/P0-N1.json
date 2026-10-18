@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0161",
-    "status": "S0611",
+    "status": "S0612",
     "runtime": "B230.257 / modinfo257",
     "military": "D0037",
     "harbor": "D0037",
@@ -938,7 +938,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
-    "source": "B230.257 locally complete; live remains B229.256 until verified guarded deployment.",
+    "source": "B230.257/modinfo257 DEVELOP_ACTIVE; source 94ce45b5af6f495160137d94dc09a3a7e1946da9; receipt B230.257-94ce45b-playtest.json;226/226 MATCH, digest a00bd750d89f607a986501687616618fc3aea40394ef74a62c9ad58d00ae0afb. Automatic game-exit checks before both guarded switches; B229/stable recovery retained, no pending transaction.",
     "native": "USER_GAME_TEST_REQUIRED; network readiness/yield and inherited task release scopes remain distinct.",
     "stop": "No unrelated implementation authorized."
   }

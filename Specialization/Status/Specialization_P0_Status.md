@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0611
-Implementation Build: source B230.257; live B229.256 DEVELOP_ACTIVE; stable B069.96
+Status Revision: S0612
+Implementation Build: source/live B230.257 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0161
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B230_LOCAL_COMPLETE_DEPLOY_PENDING
+Work State: B230_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
 **B230 local complete:** [Culture network readiness and read-only diagnostics](Validation/Results/Specialization_B230_Culture_Network_Readiness.md);121 targeted offline checks PASS; native pending.
-- **Source B230.257 / modinfo257; live B229.256** pending guarded deployment. Stable main B069.96 unchanged.
+- **Source/live B230.257 / modinfo257**: source `94ce45b`, receipt `B230.257-94ce45b-playtest.json`,226/226 MATCH. Stable main B069.96 unchanged.
 - **Evidence:** B229 consumer remained not-ready despite built Bridge input. Actual-Lua reproduction confirms exclusive load-event gate; ordinary events now initialize. B229 task logs include native denial and one running task, but no release chain; redispatch is not a reliable recovery.
 - **Changed:** once-per-context initialization from existing business events; restored read-only **网络概况 / 网络来源 / 接收** and bounded automatic state evidence. No task/activity, Design, permanent state, GC or timer changes.
-- **Next:** authorized guarded deployment, then one combined network observation and ordinary task completion/reuse session with collector. Do not repeat blind tests or expand implementation.
+- **Next:** one combined network observation and ordinary task completion/reuse session with collector. Do not repeat blind tests or expand implementation.
+
+## S0612 — B230 verified deployment
+
+Automatic exit checks before both receipt-bound switches;226/226 equality, recovery retained, no pending transaction. Native gate pending; no main/configuration change or game launch.
 
 ## S0611 — B230 local checkpoint
 
