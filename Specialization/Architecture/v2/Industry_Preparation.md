@@ -1,11 +1,11 @@
 # 工业后续模块：调查与实施准备
 
-State: PREPARATION_COMPLETE / IMPLEMENTATION_NOT_AUTHORIZED。
-Review baseline: develop `f03558be2a8873e12eed6b8aff3257e313f1a398`；Spec D0047 / Industry D0045 / Shared D0045 / Architecture A0161。
+State: PREPARATION_REVIEWED / IMPLEMENTATION_NOT_AUTHORIZED.
+Review baseline: develop `c1a9fbd`; source/live B232.259 remains unchanged. Spec D0051 / Industry D0045 / Shared D0045 / Architecture A0162. The implementation/evidence boundaries below supersede the obsolete B165 waiting point; they do not authorize a new batch.
 
 ## 当前范围与正式来源
 
-本轮调查、计划，不实现、不改Design/目录/数值、不退出旧工业效果、不部署。B165仍是待验意义延展切片；实际进度/授权看[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)，本页不增加日常必读集合。
+This is an Industry planning review, not implementation, Design/catalog/value changes, old-effect retirement or deployment. The user has placed Expedition issues, remaining Meaning work and era-coverage presentation on HOLD; Balance is outside this development task. These items do not block Industry planning. [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns task authorization and runtime state; this page is read only for the relevant Industry slice.
 
 [Industry Content](../../Design/Content/Industry_D0045.json)与[Spec工业节](../../Design/Specialization_v0.1_Design_Spec.md#7-industry--industrial-zone--ind)规定玩法；[Shared具名生命周期](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE)规定A城市历史/B文明信用/G专业单位等分别归属。人类设计见[工业阅读版](../../Design/Industry.md)。D0045已给首测值及中断、Gold/Faith、每模板实际holder规则，不能重开成公式TBD。
 
@@ -25,6 +25,52 @@ Review baseline: develop `f03558be2a8873e12eed6b8aff3257e313f1a398`；Spec D0047
 新发现补充[B164盘点](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md#工业账本已补齐最新效果合同尚未适配)：self来源、typed District、Gold/Faith资格、原生项目直接grant和`CanCapture=0`均有真实实现差距；不能以文件存在/旧PASS推为新机制落地。
 
 [NetworkBridge](../../../Mod/NetworkBridge.lua)按Potential建立共同topology，工业在自己consumer过滤当前ACTIVE>=III；不要把全桥改为III。C1/D1折扣样本/ACK/dirty、C2引用退出及[公共更新合同](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)可继承，不重新发明事件总线/独立事实collector。
+
+## Current planning review and batch grouping
+
+The Stable Advisor report `Specialization/Reports/Advisory/Industry_Plan_Review/Industry_Plan_Audit.md` was reviewed as advisory input (SHA256 `be53a41d9936e44a4bce6c5ac764eeb95ccb6e4ec2379c883419bf4718ebdd6a`; local, not yet published). Its basis was `94ce45b` / B230.257. Direct Industry source dependencies are unchanged at the current review baseline. The accepted Industry rules and G/H/I/J dependency order remain sound; the stale waiting point, one-turn-project claim and missing native leads are corrected here. This page preserves the actionable basis without making an unpublished report a recovery dependency.
+
+Primary qualifications:
+
+- N/E coverage must have a trustworthy starting point. An older save with no collector history cannot prove complete historical N/E by scanning held wonders. It can still support unrelated/limited checks; do not declare every old-save test invalid or require a long replay. Use a new short test campaign after IND-1 is deployed for the complete-history gate.
+- Dialogue's one-turn execution and saved transaction now have scoped native evidence: [B175](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md) and [B177](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md). Reuse the relevant execution pattern; Engineering Study still owns its distinct L/E eligibility, cancellation and commit semantics.
+- Reuse the event-first initialization, publication and recovery lessons from [B232](../../Status/Validation/Results/Specialization_B232_Native_Review.md). No new timer/frame polling, repeated command requests, diagnostic-required activation, or initialization available only through one past load callback. Do not rewrite unrelated old modules merely because a new consumer follows this rule.
+- The configured read-only gameplay DB exposes `MODIFIER_SINGLE_CITY_ADJUST_WONDER_ERA_PRODUCTION` / `EFFECT_ADJUST_WONDER_ERA_PRODUCTION`, district-specific construction and building-type purchase examples. They are STATIC_CONFIRMED candidates, not native acceptance of our new writer. The observed district-purchase effects are **all-district** effects with `Amount`; no per-`DistrictType` purchase instance was found. This does not prove impossibility and must not silently become an all-district discount. It affects the later positive per-template purchase path, not N/E, H1 or III's 0% purchase baseline. Gold/Faith eligibility remains channel-specific.
+
+Proposed grouping for combined native sessions, retaining separate local checks and failure boundaries:
+
+| Batch | Deliverable | Gate / boundary |
+|---|---|---|
+| **IND-1 / proposed B233: G + H1 facts** | Event-driven N/E history, typed District template knowledge, reliable persistence and concise read-only reporting | No new production/purchase effect, no L study, no Crew change or legacy-writer retirement. See the exact first scope below. |
+| **IND-2: III standardization and cutover** | Self + network actual template holders; construction +10%, purchase 0%; establish H2/H3 plans and retire exact old Discount/Industry Copy writers together | Verify the changed native construction primitive and cleanup. Retain Research; do not claim IV's 2L effect delivered before L/positive purchase gates. Future Commerce +50% remains an integration dependency, not a fake present contract. |
+| **IND-3: IV study and wonder production** | Full-1T Engineering Study and city L; +2L template enhancements; Megaproject Engineering's own-production era bonus | Resolve positive per-template purchase applicability before enabling that path. If blocked, split only the affected writer; never substitute a broader discount or alter accepted rules. |
+| **IND-4: Teams and Engineering Practice** | Source binding/two slots, III/IV tier access, N-based training costs, Wonder-only fixed injection, receipt-safe consumption and protection | Revalidate native grant/binding, dynamic project cost and protection; keep source-owner and unit-owner assets distinct. Exact amount/no overflow must be demonstrated on this path. |
+
+These are four proposed integration groups, not a promise that an unresolved native primitive needs no additional patch. Accepted formulas, rounding and lifecycle contracts below remain unchanged. Keep existing speed scaling; a suggested Standard-only simplification would need a separate user decision before Teams, not before IND-1. No balancing work is included.
+
+## Wonder-source reference: Detailed Wonder Reminder Enhanced
+
+Read-only reference requested by the user. Source label `DWR_ENHANCED` means the installed Workshop item **2794603014**, Mod ID `48219711-51e7-4d25-bf91-0d557e754fd2`, declared modinfo version **1**, author Konomi. A precise upstream release beyond this installed snapshot is not established. Source-relative locators below are local evidence locators, not public source links.
+
+| Path / symbol | Observed interface and purpose | Relevance / limitation |
+|---|---|---|
+| `Scripts/DetailedWonderReminder_Gameplay.lua:18–31`, `OnWonderCompleted` | Gameplay `Events.WonderCompleted(x, y, buildingIndex, playerIndex, cityID, ...)`; resolves `GameInfo.Buildings[buildingIndex]`; saves building type, completion PlayerID, plot and turn via `Game:SetProperty` | A direct completion-event lead for G. It records the event-time player, rather than deriving the completing player from today's holder. Its CityID field is commented out; coordinates are not our durable city identity. |
+| Same file:11–14 and39–49, `ReadWonderData` / `Initialize` | Restores via `Game:GetProperty`; subscribes after `LoadGameViewStateDone`; exposes a read through `GameEvents.ReadWonderData` | Shows persistent history plus a UI read projection. Do **not** consume its Property, depend on the Mod, replace `ExposedMembers.GameEvents`, or copy the single-load-event initialization assumption. |
+| `UI/Additions/DetailedWonderReminder_Panel.lua`, `InitializeWonderEra` | `Buildings.IsWonder`; `PrereqTech → Technologies.EraType`, otherwise `PrereqCivic → Civics.EraType`; sorts with `Eras.ChronologyIndex` | Useful for the wonder's own era, independent of the completing civilization's current era. Its default Ancient era and national-wonder filters are presentation conventions, not our accepted historical-credit rule; unresolved metadata stays UNKNOWN. |
+| Same UI file, `GetWonderProgress` | Alive-major/city traversal; `GetBuildQueue():GetCurrentProductionTypeHash()`, `GetTurnsLeft()`, `GetConstructionPlot()`, `GetBuildingProgress()` | Current construction/display facts, not proof of completed history. G does not need to inherit this all-city UI traversal. |
+
+Installed-file SHA256: modinfo `ed719aed8a8975ab20114be1731488f673f446fb6d8dfdcd00d2255292eceab0`; Gameplay `937b062a8137b869b291758c3d7087cb09dd831adf9c07b9ba0c1c252164dea8`; panel `fdbab9fd45d813dff709f8eb663c958447077bfdba762d658d9d718988601ada`. Only source inspection was performed. The event is a strong implementation lead; callback timing, repeat/load behavior and our city-reference resolution still require scoped validation. No third-party historical data is imported or treated as authoritative.
+
+## Proposed B233 boundary and validation
+
+1. **History owner and coverage.** Implement G's distinct city N and completing-civilization E ownership through existing persistence boundaries, with explicit initialized/empty/unavailable history. Use the wonder's own era and immutable completion provenance, not current possession or current player era. Resolve the event's city through the existing reliable reference contract. Unsupported-owner continuity must be proven or remain explicitly unavailable; it does not authorize AI specialization or a global building-history system. Do not initialize unknown prior history to a claimed complete zero.
+2. **Targeted template knowledge.** Add H1's accepted typed District knowledge/unique-district normalization while preserving B142 building initialize/restore/reconcile behavior. A new district row must not accidentally activate old discounts or invalidate every old building row. Preserve knowledge outside the currently enabled effect directory. No new enabled templates or names are invented.
+3. **Dependency-scoped audit work.** Before adding the persistent fields, check the relevant [Store extension/lifecycle findings](../../Reports/Advisory/Architecture_Engineering_Audit/Architecture_Findings.md) (AF01/AF12/AF13), commit readback and publish order; only necessary integration changes belong here. AF23's current-catalog-dependent template validation is directly relevant to H1: separate structural/provenance checks from current effect eligibility without deleting unknown history or silently remapping it. No general Store rewrite or universal asset framework. The [Crew receipt finding](../../Reports/Audit/P07c_Crew_Transaction_Boundaries.md) belongs before IND-4 irreversible consumption, not this facts batch. See [dependency-triggered follow-up policy](../../Reports/Proposals/Audit_Followup_Priorities.md).
+4. **Update path and report.** Completion/district/re-entry events invalidate only affected city/player facts after confirmed writes. Duplicate notifications are idempotent; full historical rows are constructed only for the read-only report. The report identifies city N, completing civilization E and era set, coverage/UNKNOWN and typed templates; L remains NOT_IMPLEMENTED until its batch. Reuse the bounded collector for evidence where appropriate. No P0 button is required to make collection work, and no new full-world turn scan is introduced.
+5. **Local gate.** Actual-source cases cover completion before Industry/ACTIVE; duplicate/reordered notifications; owner attribution and reliable city continuity; N/E retention without capture credit; typed District/building isolation; missing/corrupt versus initialized-empty; partial/failed writes and withheld publication; save/load reconstruction. Match native callback signatures rather than validating an invented mock interface. Retain current building readers and existing scoped Store regressions; do not run unrelated historical stress suites.
+6. **One proposed native session after authorization/deployment.** Start a short new test campaign with the collector present from the beginning. Complete one recognizable eligible Wonder (accelerated ordinary completion is acceptable; do not seed history directly), confirm N and its own-era E even before Industry specialization, then use a legal Industry initialization/eligible District completion to inspect typed templates. Save/cold-load once and confirm the newly added history/knowledge. New persistent fields make this one reload informative; no repeated default-OFF/re-enable ritual or long campaign is requested. Detailed steps will follow the implemented diagnostic surface, not guessed button names.
+
+Stop after IND-1's verified local checkpoint and one proposed native gate. No implementation is authorized by this planning update. Native callback/identity failure pauses only the dependent history path; no fallback to importing DWR data or reconstructing absent history. A necessary gameplay deviation goes to the user as DESIGN_DECISION_REQUIRED.
 
 ## 推荐顺序与最小批次
 
@@ -91,7 +137,9 @@ Local L2/首次cutover定域L3：holder例、最高来源退出后的回退、se
 | 工程实践 | 当前IV按本城真实N0/1–2/3–5/6+成本150/140/130/120%；III始终150% | N长期保留，但收益按当前IV；只改组建成本，不强化模板/施工力，不新增槽位 |
 | 巨构工程学 | 当前IV本城自行普通生产旧时代Wonder，当前文明Era−Wonder自身Era差1/2/3+给10/20/30%；当前Era无加成 | 当前派生效果、资格下降精确退出；不看N/E/L，不修改已训练队伍的锁定capacity或注入 |
 
-研习未完成时，Governor导致ACTIVE不足IV、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，不增L/不存半进度；再次合格完整重做，已提交L不变。该规则D0045已定，不再标“中断Design TBD”。[TimedProject](../../../Mod/TimedProject.lua)仍是session无奖励/无保存原型；[Claim](../../../Mod/ClaimProjects.lua)已有特定续接，但正式Dialogue1T永久倍率事务还未实现。复用已验1T执行原语不等于L的提交/真实中断/save已PASS，不能导入Dialogue时代配额或倍率。
+研习未完成时，Governor导致ACTIVE不足IV、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，不增L/不存半进度；再次合格完整重做，已提交L不变。该规则D0045已定，不再标“中断Design TBD”。
+
+The session-only [TimedProject](../../../Mod/TimedProject.lua) prototype is not the current reusable transaction contract. [Claim](../../../Mod/ClaimProjects.lua) has scoped recovery evidence, and [Dialogue B175/B177](P0_M_Dialogue.md#current-slice--b177204-earned-projection) now has implemented project/history and scoped native evidence. Reuse the proven full-turn execution path, while validating Engineering Study's own L commit, interruption and persistence; do not import Dialogue era quotas or reward multipliers.
 
 Tradition L3本地：L<E/L=E/L>E、完整回合/中断/Owner与重复成功、提交失败、不重复/跨加载计功、恢复只派生当前效果。Native一轮成功＋一轮真正中断后重做，新增L持久重载有具体信息价值。Practice L2本地成本阈值全矩阵，native只补一个实际成本跨档；Macro L2普通Wonder增量与固定Team隔离，原语证据不同不能一项通过算三项完成。
 
@@ -144,4 +192,4 @@ Local L2＋涉及unit保存L3：合法/非法目标、预览到确认变化、�
 
 普通事实复用现有EffectiveFacts与模板summary，诊断明细按需。N/E collector只在明确完成事件写增量；来源资格、模板/holder/L版本或真实路线变化才更新相关receiver。队伍registry由J负责单位退出/消费和source容量失效；pending1T由Tradition负责完成/取消/加载。缓存/队列有明确owner/失效/替换/结束，不把L或N历史为性能清掉，也不添加每帧/hover、粗粒度每城每回合一次或独立GC。
 
-本轮STATIC_CONFIRMED调查完成；只做文档/context检查，未运行新的玩法模拟或原生测试。未来H/Macro/Practice为L2，历史/模板schema/L与unit库存为L3相关定域验证；无需默认全历史/stress/旧长测。当前用户无需测试、无需重新决定已经冻结的工业机制。Codex下一步等待B165反馈及一个独立最小batch授权；建议工业先G历史门禁或H1知识增量，不直接一次实施整个工业。
+Current review evidence is STATIC_CONFIRMED only: accepted contracts, directly relevant source and configured read-only DB, plus the installed DWR_ENHANCED reference. Only documentation/reference/context checks run in this planning task; no new gameplay simulation or native test. Future H/Macro/Practice use scoped L2; new history/template schema/L/unit inventory use the relevant L3 boundaries. User testing: none now. User decision: authorize or revise proposed B233 / IND-1. Primary next: wait for that batch authorization; held Culture work and Balance do not block it. Do not implement the whole Industry plan in one batch.

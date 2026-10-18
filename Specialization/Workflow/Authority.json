@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0162",
-    "status": "S0618",
+    "status": "S0619",
     "runtime": "B232.259 / modinfo259",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
   "runtime_commit": "a0e1d4ece94bac690c6a2018add37b96c37c145c",
-  "current_batch": "B232_NETWORK_NATIVE_PASS_EXPEDITION_HOLD",
-  "next_batch": "B232 tested network update/withdrawal/recovery accepted. Expedition follow-up HOLD by user and nonblocking for continued v0.1 development. Await next authorized scope; Commerce/Industry planning recommended, no new implementation or user test requested.",
+  "current_batch": "INDUSTRY_PREPARATION_REVIEWED_AWAITING_AUTHORIZATION",
+  "next_batch": "Proposed B233 / IND-1: event-driven N/E Wonder history and typed District template knowledge; user review required before implementation. Expedition issues, remaining Meaning work and era-coverage presentation HOLD/nonblocking. Balance outside current task. P0-N1 retained as held Culture envelope, not Industry authorization.",
   "manifest": "Specialization/Workflow/P0-N1.json",
   "live": "B232.259/modinfo259 DEVELOP_ACTIVE; source a0e1d4ece94bac690c6a2018add37b96c37c145c; receipt B232.259-a0e1d4e-playtest.json;226/226 MATCH, digest 4830284febe3731cb9d0b0de0970613cf5358a9c98575934e163dc23a91036cb. Automatic game-exit checks before both guarded switches; B231/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B232 scoped network USER_GAME_TEST_PASS from user observation plus 67 contiguous automatic records: coefficient2->3, receiver withdrawal/recovery and pending->AVAILABLE. Current Culture delivery/deferrals reviewed; Expedition HOLD, not full acceptance. B232 local 163/B134 evidence inherited, B137 historical comparison failure unchanged. Documentation-only checkpoint.",
+  "context_review_status": "Industry preparation refreshed against D0045, unchanged direct Industry source, current B232 network/Dialogue evidence and configured read-only DB. Stable Advisor audit reviewed with scope qualifications. Installed Detailed Wonder Reminder Enhanced completion-event/era/progress interfaces inspected as a read-only reference only. Documentation-only; no gameplay tests, implementation, Design/runtime/deployment change. B232 scoped native PASS retained.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B232_Native_Review.md"
+  "context_revalidation_report": "Specialization/Architecture/v2/Industry_Preparation.md"
 }

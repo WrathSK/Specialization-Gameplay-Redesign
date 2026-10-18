@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0618
+Status Revision: S0619
 Implementation Build: source/live B232.259 DEVELOP_ACTIVE; stable B069.96
 Architecture Revision Reviewed: A0162
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B232_NETWORK_NATIVE_PASS / EXPEDITION_HOLD_NONBLOCKING
+Work State: INDUSTRY_PREPARATION_REVIEWED / IMPLEMENTATION_NOT_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B232 network native PASS; Expedition follow-up HOLD:** [native review and remaining Culture scope](Validation/Results/Specialization_B232_Native_Review.md). User confirms effects update and withdraw normally; logs show coefficient2→3, receiver0→3 and pending→AVAILABLE recovery. This closes the tested network delta, not all Expedition behavior.
-- **Source/live B232.259 / modinfo259 unchanged:** source `a0e1d4e`, receipt `B232.259-a0e1d4e-playtest.json`,226/226 MATCH in the existing deployment record. Stable main B069.96 and recovery packages unchanged; no new deployment or runtime comparison this review.
-- **Evidence:**67 contiguous scalar records; T90–T92 recover at unchanged input/derived1/1, T93 projections and withdrawal/recovery remain AVAILABLE. B231 initial-bonus acceptance and B232 163 local tests/B134 regression retained; historical B137 comparison failure unchanged.
-- **Culture remainder:** automatic main yield mechanisms and Network implemented within accepted v0.1 compromises. Meaning Government/Diplomacy Culture deferred; Dialogue uses accepted Tourism-only fallback; era summary UI/polish and Balance remain. [Current Culture navigation](../Architecture/v2/Culture_Preparation.md) separates these from historical preparation.
-- **User decision / stop:** Expedition issues are HOLD and do not block continued v0.1 development. No further B232 test requested. Next Commerce/Industry planning is a recommendation, not implementation authorization; no Expedition repair, new timer, Design/GC change or later batch starts here.
+**Industry planning reviewed; proposed B233 / IND-1 awaits authorization:** [review, external interface evidence and four-batch plan](../Architecture/v2/Industry_Preparation.md#current-planning-review-and-batch-grouping). First proposal: N/E Wonder history and typed District template knowledge; no new effect writer or deployment authorized.
+- **Source/live unchanged:** B232.259/modinfo259, source `a0e1d4e`, receipt `B232.259-a0e1d4e-playtest.json`,226/226 MATCH in the existing deployment record. Stable main B069.96 unchanged; no new runtime comparison here.
+- **Evidence:** [B232 scoped network native PASS](Validation/Results/Specialization_B232_Native_Review.md) retained. Industry review is STATIC_CONFIRMED source/DB evidence only; Detailed Wonder Reminder Enhanced is a read-only API reference, not a runtime dependency or history source.
+- **User HOLD / stop:** Expedition issues, remaining Meaning work and era-coverage presentation are HOLD/nonblocking. Balance is outside this task. [Culture navigation](../Architecture/v2/Culture_Preparation.md) preserves accepted mechanisms/compromises. No new user test requested.
+- **Next allowed action:** user review of proposed B233; then create its scoped implementation gate only if authorized. P0-N1 retains the held Culture envelope, not Industry implementation permission. No Design, timer, GC, source or runtime change.
+
+## S0618 — B232 network native acceptance
+
+The user accepted tested network update/withdrawal/recovery;67 contiguous records include coefficient2→3, receiver0→3 and pending→AVAILABLE at unchanged1/1 proof. Expedition follow-up was placed on HOLD. The original native review and inherited local evidence remain unchanged; this was not blanket Expedition acceptance.
 
 ## S0617 — B232 verified deployment
 
