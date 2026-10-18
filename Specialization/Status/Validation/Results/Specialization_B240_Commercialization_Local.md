@@ -46,3 +46,8 @@ Prefer captured COMMERCE_DOMAIN/current-state logs. A report's planned Gold does
 ## Checks and stop
 
 Targeted local tests are complete. Final local checks PASS: four changed Lua files compile, modinfo267 references resolve, all18 added/changed Markdown links/anchors resolve, and current context/hash plus selector self-tests pass. The current manifest reads only3 projections/41 lines. Staged publication and deployment are separately gated; W0003 exit/hash/clean-source checks remain mandatory. No native PASS is claimed here. Capital, Development, Restructuring and Culture HOLD are not started. User decision: none for B240. User testing: the flow above. Primary next: review its result, then stop or prepare the separately authorized next batch.
+
+
+## Verified deployment checkpoint
+
+Clean source commit `81efaa995c02eb16e3ba41b7b6f88d724a596607` was committed and pushed before W0003 deployment. Fresh automatic process checks confirmed game exit at both the exact B239 receipt restore and B240 activation.245/245 files MATCH, digest `903a0897142582bb338f868805a664eec38e14768fa3467834245ce542ec86c7`; receipt `B240.267-81efaa9-playtest.json` is DEVELOP_ACTIVE. B239/stable recovery remains intact; no pending transaction. Main remains `e901a22`/B069.96. Staged publication passed for18 implementation files. No game launch or configuration change. This confirms deployment only; the native gates above remain pending.

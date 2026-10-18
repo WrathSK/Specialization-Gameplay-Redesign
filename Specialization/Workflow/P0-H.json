@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0169",
-    "status": "S0641",
+    "status": "S0642",
     "runtime": "B240.267 / modinfo267",
     "military": "D0037",
     "harbor": "D0037",
@@ -113,8 +113,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-    "source": "B240.267 source local-complete; live remains B239.266 until verified W0003 deployment.",
+    "source": "B240.267 deployed from 81efaa995c02eb16e3ba41b7b6f88d724a596607;245/245 MATCH; receipt B240.267-81efaa9-playtest.json",
     "native": "Inherited B239 observations retained; B240 USER_GAME_TEST_REQUIRED.",
-    "stop": "B240 implementation authorized by user; targeted validation and guarded W0003 deployment only, no next Commerce batch."
+    "stop": "Stop for the one combined Commerce native session; no next batch authorized."
   }
 }
