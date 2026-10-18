@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0622
-Implementation Build: source/live B233.260 DEVELOP_ACTIVE; stable B069.96
-Architecture Revision Reviewed: A0163
+Status Revision: S0623
+Implementation Build: source B234.261; live B233.260 until guarded deployment; stable B069.96
+Architecture Revision Reviewed: A0164
 Design Revision Reviewed: D0051（城市级艺文采撷；B225明确授权实施）
 Latest Accepted Design Revision: D0051
 Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B233_USER_GAME_TEST_PASS / B234_PROPOSED_NOT_AUTHORIZED
+Work State: B234_LOCAL_PASS / USER_GAME_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B233 / IND-1 tested native gate accepted:** [evidence](Validation/Results/Specialization_B233_Native_Review.md), [contract](../Architecture/v2/Industry_Preparation.md#b233-implementation-contract), manifest `P0-GH1`.
-- **Accepted scope:** supported completion N/E, typed District/building knowledge and cold restart. N/E1/1 and templates4/2 survive restart; later District write reaches3. No new Industry yield/L/Crew effect is claimed.
-- **Source/live:** B233.260 from `b82eabf`, receipt `B233.260-b82eabf-playtest.json`; prior227/227 MATCH. No deployment this review; main B069.96 unchanged.
-- **Follow-up:** first-turn Industry I specialist support arrived next turn. Actual-source simulation reproduces an eligibility/readiness gap with unchanged BASE samples; exact native event order was not logged. User requests its repair with the next batch.
-- **Next/stop:** [proposed B234 / IND-2](../Architecture/v2/Industry_Preparation.md#b234-proposal--standardization-baseline-and-industry-i-readiness): support propagation + standardization base construction10%/purchase0% + exact old-writer exit. New feature implementation awaits approval; no immediate retest.
-- **Hold:** Expedition, remaining Meaning and era presentation remain nonblocking HOLD; Balance/L/Crew and new timers/GC changes are outside this batch.
+**B234 / IND-2 implemented, native pending:** [result/test](Validation/Results/Specialization_B234_Industry_Standardization_Local.md), [contract](../Architecture/v2/Industry_Preparation.md#b234-implementation-and-validation), manifest `P0-H`.
+- **Scope:** same-turn Industry I readiness; actual III template holders offer self/network construction+10%, purchase0%; exact old Discount/Industry Copy exit. IV L/positive purchase is not implemented here.
+- **User decision:** old Research network boost isolated for v0.1; common topology, Research local abilities and other professions remain. This is deferral, not a new Research design.
+- **Source/live:** source B234.261; live still B233.260 (`b82eabf`) until clean committed source passes W0003. Main B069.96 unchanged.
+- **Evidence/next:** scoped local PASS; one combined native session for first-turn support, building/District production and source withdrawal/recovery. B233 history/restart acceptance retained; no new timer or GC change.
+- **Stop:** deploy only through existing gates, then await the native result. Expedition, remaining Meaning and era presentation remain nonblocking HOLD; L/Crew/Balance require their later batch.
+
+## S0623 — B234 local implementation checkpoint
+
+User-authorized Industry I readiness, III construction baseline and exact old Industry/Research-network effect isolation are implemented. Current task manifest and reviewed hashes are updated; no Design, persistent schema, GC, common topology rules or other profession code changes. Local result separates new native uncertainty from inherited history/network tests; two historical package-stamp checks remain unmodified and excluded from current behavior counts. Deployment and native acceptance remain separate.
 
 ## S0622 — B233 native acceptance and B234 proposal
 

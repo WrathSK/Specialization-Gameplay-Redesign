@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0163
+# Specialization v0.1 Architecture — A0164
 
 Document Owner: Codex
-Architecture Revision: A0163
+Architecture Revision: A0164
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,11 +11,12 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0163保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0164保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
 - [B232 shared network recovery contract](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出): event-driven route proof, coherent availability-before-notification, and recovery notification without a new logical input version. Culture history changes actively notify their projection; no persistent state or Gameplay change.
+- [B234 Industry projection and exact retirement](v2/Industry_Preparation.md#b234-implementation-and-validation): Store knowledge and current effect eligibility remain separate; event-driven support readiness, self/network III baseline, exact old Industry exit and user-approved v0.1 Research-network isolation preserve the common topology.
 - 实施/验证/下一授权边界只在[Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state)维护；部署另需receipt，源码存在不证明已部署。
 - [A–D2事件驱动传播合同](v2/README.md)及[机构/能力/carrier分层](v2/Presentation_Institution_Carrier_Model.md)继续适用；下面旧阶段状态不重启旧任务。
 - 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2当前路由查阅。
@@ -63,7 +64,7 @@ A0163保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 [IND-1 contract](v2/Industry_Preparation.md#b233-implementation-contract) adds one Game-owned source for supported-player Wonder completions and local reconciliation observations. City N and completing-civilization E are distinct projections. Foreign completion events are ignored. Lawful Industry initialization/claim and return union reliable city history with presently existing Wonders, using the existing Store identity and single-city entry; this never grants conquest E credit or invents unseen foreign history. Initialization/empty/unavailable remain distinct; corrupt authority is not rebuilt from current possession.
 
-Typed District knowledge is a separate component of the existing per-city template transaction, normalized through native District replacements. Store recovery validates historical structure/provenance independently of the current effect catalog; legacy building discounts retain their stricter eligibility guard. No new Industry yield writer or universal save framework is introduced. Native/coverage limits and the current test gate remain in Status and the scoped contract.
+Typed District knowledge is a separate component of the existing per-city template transaction, normalized through native District replacements. Store recovery validates historical structure/provenance independently of the current effect catalog. B234 adds a transient StandardizationEffects consumer: current ACTIVE>=III holders, local self plus verified network sources, per-template union/max and typed construction+10%/purchase0%. The legacy strict reader remains for historical fixtures; the normal Discount/Copy writers are retired. Current classification only controls effect eligibility, never deletes knowledge. No new save framework or L ledger; native limits remain in Status and the scoped contract.
 
 ### Dialogue project and saved history (B175)
 
@@ -99,11 +100,11 @@ The actual Settler transaction now returns call-local final-readback evidence th
 
 [NetworkInput](../../Mod/NetworkInput.lua)结合当前城市引用与EffectiveFacts形成逻辑输入；NetworkBridge发布共享视图。版本、epoch、引用、dirty signal和样本生命周期用于拒绝旧响应，重复读取不重新捕获整城事实。UNKNOWN、暂时等待、确认失效分别处理；source/recipient资格不是永久保存成果。
 
-[版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。当前仍保留部分旧专业consumer。B226已接入[文化完整文明集合并集与专家投影](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出)，并精确退出旧文化尤里卡，科研网络保留；原生验收见Status。Commerce不同方向资格仍不能仅凭共同拓扑存在就宣称已接入。
+[版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。当前仍保留部分旧专业consumer。B226已接入[文化完整文明集合并集与专家投影](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出)，并精确退出旧文化尤里卡。B234按用户决定隔离旧科研网络鼓舞至v0.1之后；共同拓扑与科研本城能力保留，原生验收见Status。Commerce不同方向资格仍不能仅凭共同拓扑存在就宣称已接入。
 
 ### 收益应用与玩家呈现
 
-科研基础设施、跨学科研究、学以致用、学术主持已有正式consumer和各自cutover合同，见[v2收益应用导航](v2/README.md#收益应用与精度)。原生效果通过精确SQL定义和模块自有写入/撤销落地；旧效果按所属切片退出，不按BUILDING前缀全城删除。当前尚启动的CopyYields、Dialogue、GreatWorkAdjacency、CommerceConvergence等旧consumer不能被误称为新冻结设计的全部实现，其退出责任见[迁移矩阵](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+科研基础设施、跨学科研究、学以致用、学术主持已有正式consumer和各自cutover合同，见[v2收益应用导航](v2/README.md#收益应用与精度)。原生效果通过精确SQL定义和模块自有写入/撤销落地；旧效果按所属切片退出，不按BUILDING前缀全城删除。Legacy file presence does not prove a live writer: B234 starts CopyYields and StandardizationDiscount only as exact-withdrawal facades and disables normal NetworkBoost output. Remaining legacy consumers must be checked through their actual Start/guards, not mistaken for the whole accepted design. See [迁移矩阵](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任)。
 
 “每人口可产生小数”不证明“区域/每专家平坦收益可任意小数”；科研两条floor实现分别是汇总后取整、每专家取整，不能推广成全系统精度规则。具体原生路径与用户接受范围见[技术精度证据](../Reports/Technical/README.md#收益精度与原生效果)。
 

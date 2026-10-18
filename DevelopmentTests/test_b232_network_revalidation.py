@@ -72,7 +72,7 @@ class Revalidation(unittest.TestCase):
     def test_changed_candidate_publishes_available_before_consumer_notification(self):
         l=pipeline();l.execute('''
           net.CheckEvidence(false);complete(4,2);routeRows[3].TraderUnitID=13
-          local observed={};shared.NetworkBoost={Audit=function(p)
+          local observed={};shared.StandardizationEffects={Audit=function(p)
             observed[#observed+1]=p;assert(p.availability=='AVAILABLE');assert(net.CurrentNational(0))
           end}
           UP.GameCoreEventPublishComplete.Fire()
@@ -82,11 +82,11 @@ class Revalidation(unittest.TestCase):
 
     def test_recovery_notifies_all_named_consumers_once_without_new_input(self):
         l=pipeline();l.execute('''
-          watched={};for _,n in ipairs({'Lv3Effects','StandardizationDiscount','NetworkBoost','CommerceConvergence','CopyYields'})do
+          watched={};for _,n in ipairs({'Lv3Effects','StandardizationEffects','CommerceConvergence'})do
             local name=n;watched[name]=0;shared[name]={Audit=function(p)
               watched[name]=watched[name]+1;assert(p.player==0 and p.availability=='AVAILABLE')
               local again=net.Refresh(0);assert(again==false)
-              assert(net.CurrentNational(0) and net.CurrentCultureBatch(0).input.availability=='AVAILABLE')
+              assert(net.CurrentNational(0) and net.CurrentCultureBatch(0).input.availability=='AVAILABLE' and net.CurrentIndustryBatch(0).input.availability=='AVAILABLE')
             end}
           end
           local original=cn.Audit;local calls=0;cn.Audit=function(p)calls=calls+1;original(p)end

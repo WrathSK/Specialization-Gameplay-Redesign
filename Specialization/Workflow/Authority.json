@@ -9,8 +9,8 @@
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0163",
-    "status": "S0622",
+    "architecture": "A0164",
+    "status": "S0623",
     "runtime": "B233.260 / modinfo260",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,9 +35,9 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Industry_Preparation.md",
   "runtime_commit": "b82eabf216810017d56c350e03ccf631bde505ea",
-  "current_batch": "B233_NATIVE_ACCEPTED_B234_PROPOSED",
-  "next_batch": "Proposed B234 / IND-2: repair first-turn Industry I support readiness, implement self/network template-holder construction +10% and purchase0% baseline, and retire exact old Discount/Industry Copy writers. New feature batch awaits explicit approval; no immediate retest, Culture HOLD/L/Crew/Balance stay outside.",
-  "manifest": "Specialization/Workflow/P0-GH1.json",
+  "current_batch": "B234_STANDARDIZATION_LOCAL_COMPLETE_AWAITING_NATIVE",
+  "next_batch": "Complete W0003 deployment if safe, then one minimal B234 native session for Industry I same-turn support, III building/District construction and source withdrawal/recovery. Await the result; no IND-3/IND-4, Culture HOLD or unrelated repair authorization.",
+  "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B233.260/modinfo260 DEVELOP_ACTIVE; source b82eabf216810017d56c350e03ccf631bde505ea; receipt B233.260-b82eabf-playtest.json;227/227 MATCH, digest 0530efdf3e1b3da3f153ed45aac8642a39c9e05a9356c5b12fae6c52eb3662e1. Automatic game-exit checks before both guarded switches; B232/stable recovery retained, no pending transaction.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B233 scoped USER_GAME_TEST_PASS: completion N/E, typed District/building knowledge and user-confirmed cold restart. Contiguous27/18 scalar records reviewed with preserved hashes;104 prior local tests inherited. Adjacent Industry I support delay reported; actual-source local readiness reproduction2 cases plus normal-event control, not a native event-order claim. Proposed B234 is not implemented. Only current evidence/plan/metadata updated.",
+  "context_review_status": "B234.261 source: Industry I event-first pending repair, III self/network template-holder construction10%/purchase0%, exact old Discount/Industry Copy retirement and user-authorized old Research network isolation. Local behavior/SQL/negative tests pass; no native effect claim. Common topology, other profession writers, Design, permanent schema and GC retained.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B233_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md"
 }

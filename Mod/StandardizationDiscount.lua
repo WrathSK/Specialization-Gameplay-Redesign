@@ -1,6 +1,28 @@
 -- B054: derived network discount, permanent templates remain owned by Standardization.
 SPCStandardizationDiscount={}
-function SPCStandardizationDiscount.Start(P,shared)
+function SPCStandardizationDiscount.Start(P,shared,options)
+ if options and options.retired then
+  local d={retired=true,ready=false,changes=0,errors={}};shared.StandardizationDiscount=d
+  local rows
+  function d.Withdraw(c)
+   if not rows then
+    rows={};for _,r in ipairs(P.Rows('SPC_B054_Targets'))do
+     local b=assert(P.Info('Buildings',r.CarrierType),'STD_OLD_DISCOUNT_ROW')
+     assert(b.InternalOnly==1 or b.InternalOnly==true,'STD_OLD_DISCOUNT_NOT_INTERNAL');rows[#rows+1]=b.Index
+    end;assert(#rows>0,'STD_OLD_DISCOUNT_CATALOG_EMPTY')
+   end
+   local b=c:GetBuildings()
+   for _,id in ipairs(rows)do
+    local has=P.HasBuilding(b,id);assert(type(has)=='boolean','STD_OLD_DISCOUNT_UNKNOWN')
+    if has then P.RemoveBuilding(b,id);assert(P.HasBuilding(b,id)==false,'STD_OLD_DISCOUNT_REMOVE');d.changes=d.changes+1 end
+   end
+   return true
+  end
+  function d.Audit()return false,'STD_LEGACY_RETIRED'end
+  d.Initialize=d.Audit;d.Receive=d.Audit;d.MarkDirty=d.Audit;d.EnsureReady=d.Audit
+  function d.Describe()return '旧工业购买折扣已退出；当前标准化见「工业标准化」。'end
+  return
+ end
  local d={ready=false,busy=false,generation=0,plans={},samples={},seq={},applied={},errors={},changes=0,responses={},appliedSamples=0,holdLoaded=true};shared.StandardizationDiscount=d
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local dirty,lastTurn,lastNetwork={},{},{} -- bounded by player count; no event history

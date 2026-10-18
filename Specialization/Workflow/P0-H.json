@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "batch": "P0-H",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0051",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0051",
+    "commerce": "D0050",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0164",
+    "status": "S0623",
+    "runtime": "B233.260 / modinfo260",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b234-implementation-and-validation",
+  "goal": "B234.261 / IND-2: Industry I readiness, III standardization baseline, exact old Industry exit and user-approved v0.1 Research network isolation.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current task, authorization, source/live and stop.",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
+      "kind": "section",
+      "reason": "Approved baseline, retirement and scope; stable anchor retained.",
+      "selector": "## B234 proposal — standardization baseline and Industry I readiness"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
+      "kind": "section",
+      "reason": "Actual ownership, event/temporary-state contract and native test entry.",
+      "selector": "## B234 implementation and validation"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "kind": "full",
+      "reason": "Current scoped local evidence and minimal native gate."
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "reason": "Accepted template/eligibility/actual-holder rules; no whole-Design loading.",
+      "selector": "/contracts/template_knowledge"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "reason": "Accepted template/eligibility/actual-holder rules; no whole-Design loading.",
+      "selector": "/contracts/standardization_scope"
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "reason": "Accepted template/eligibility/actual-holder rules; no whole-Design loading.",
+      "selector": "/contracts/standardization_efficiency_by_template"
+    },
+    {
+      "path": "Mod/StandardizationEffects.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/Data/StandardizationEffects.sql",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/Standardization.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/StandardizationCatalog.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/IndustrySupport.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/NetworkBridge.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/StandardizationDiscount.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/CopyYields.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "Mod/NetworkBoost.lua",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_b234_standardization.py",
+      "kind": "full",
+      "reason": "Direct B234 projection, readiness, retirement or targeted test dependency."
+    }
+  ],
+  "dependencies": [
+    "B233 typed knowledge and existing Store identity/readback; no new persistent fields.",
+    "Existing common network topology, event publication and pending recovery; native target-specific construction modifiers.",
+    "Existing Industry BASE producer, supported-player facts and bounded diagnostics."
+  ],
+  "old_writers": [
+    "Retire normal StandardizationDiscount and CopyYields plus their old UI producer actions; retain exact definitions/withdrawal and all template history.",
+    "Isolate normal Research NetworkBoost, reject old test enablement and clear only its exact owned carriers; retain common topology, local Research and current CultureNetwork.",
+    "No prefix cleanup, foreign Mod Property reset, permanent-history clearing or purchase unlock."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "Review the narrow gameplay/UI/investment notification wiring",
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/UI/P0Panel.lua",
+        "Mod/SpecializationP0.modinfo",
+        "Mod/UI/IndustryRefresh.lua",
+        "Mod/SampleLifecycle.lua",
+        "DevelopmentTests/test_investment_update_propagation.py"
+      ]
+    },
+    {
+      "trigger": "Investigate an actual Store/return/catalog/history regression",
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/CityIdentityRead.lua",
+        "DevelopmentTests/test_industry_history.py",
+        "DevelopmentTests/test_industry_catalog.py",
+        "Specialization/Status/Validation/Results/Specialization_B233_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Investigate shared publication or other consumer regression",
+      "paths": [
+        "DevelopmentTests/test_b232_network_revalidation.py",
+        "DevelopmentTests/test_b231_network_initialization_reports.py",
+        "DevelopmentTests/test_culture_network.py",
+        "Mod/NetworkInput.lua"
+      ]
+    },
+    {
+      "trigger": "Check a missing/invalid automatic trace",
+      "paths": [
+        "Mod/ExpeditionTrainingDiagnostics.lua",
+        "tools/read_expedition_trace.py",
+        "tools/collect_expedition_trace.py"
+      ]
+    }
+  ],
+  "non_scope": [
+    "Design or numerical changes; L study/positive purchase/Wonder production/Crew batch.",
+    "Other profession/AI/identity/save schema/GC changes; no new timers or frame callbacks.",
+    "Main/promotion, external Mod/config edits, game launch and repeated native lifecycle suite."
+  ],
+  "validation": {
+    "depth": "Scoped L3 actual-source+SQLite, current network/investment/history regression; L1 syntax/package/context/publication.",
+    "local": "See B234 local result; historical package stamps excluded explicitly, not rewritten.",
+    "user": "USER_GAME_TEST_REQUIRED: one combined delta session, no separate cold-load ritual.",
+    "review": "Explicit source ownership, error isolation, exact retirement, readback, no unrelated Design/permanent/GC changes."
+  },
+  "full_audit_triggers": [
+    "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
+    "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+    "source": "B234.261 source; external runtime separately confirmed by Authority receipt.",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Await the combined B234 result after guarded deployment; no next feature batch."
+  }
+}

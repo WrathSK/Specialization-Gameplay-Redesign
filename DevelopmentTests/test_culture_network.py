@@ -266,7 +266,7 @@ class GateIntegration(unittest.TestCase):
   """)
  def test_failed_consumer_is_isolated_from_other_network_consumers(self):
   l=fixture();l.execute("""
-   local n=0;shared.NetworkBoost={Audit=function()n=n+1 end}
+   local n=0;shared.CommerceConvergence={Audit=function()n=n+1 end}
    shared.CultureNetwork.Audit=function()error('CN_TEST_FAILURE')end
    send('0,4,0,2,10;0,2,0,1,11',2)
    assert(n==1 and net.Input(0).validity=='VERIFIED' and net.players[0].consumerError)

@@ -16,9 +16,14 @@ local function stage(value)
   if #shared.Events>32 then table.remove(shared.Events,1) end
 end
 -- One post-investment contract, shared by DEV and normal Settler confirmation.
--- Only a proved new receipt narrows these two consumers; other actions retain
+-- Only a proved new receipt narrows these consumers; other actions retain
 -- the old player fallback. No facts/cache or native object survives this call.
 local function refreshInvestmentSupport(playerID,result)
+ if type(result)=='table' and result.status=='COMMITTED' and shared.StandardizationEffects then
+  local consumer=shared.StandardizationEffects
+  local ok,err=pcall(consumer.SourceChanged,playerID,result.city)
+  consumer.errors['investment-notify:'..tostring(playerID)]=not ok and tostring(err) or nil
+ end
  for _,name in ipairs({'Lv2Housing','Lv2GPP'})do
   local consumer=shared[name]
   if consumer then
@@ -447,7 +452,7 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
-    shared.Snapshot=shared.StandardizationDiscount.Describe(playerID,c,params.Page);shared.LastToken=params.Token;return
+    shared.Snapshot=shared.StandardizationEffects.Describe(playerID,c,params.Page);shared.LastToken=params.Token;return
   end
   if params.Action=='COPY_YIELD_SAMPLE' then
     if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
@@ -832,7 +837,7 @@ include("HalfYieldProbe")
 SPCHalfYieldProbe.Start(P,shared)
 
 include("CopyYields")
-SPCCopyYields.Start(P,shared)
+SPCCopyYields.Start(P,shared,{retired=true})
 
 include("IndustryHistory")
 SPCIndustryHistory.Start(P,shared)
@@ -845,10 +850,12 @@ include("PurchaseProbe")
 SPCPurchaseProbe.Start(P,shared)
 
 include("StandardizationDiscount")
-SPCStandardizationDiscount.Start(P,shared)
+SPCStandardizationDiscount.Start(P,shared,{retired=true})
+include("StandardizationEffects")
+SPCStandardizationEffects.Start(P,shared)
 
 include("NetworkBoost")
-SPCNetworkBoost.Start(P,shared)
+SPCNetworkBoost.Start(P,shared,{retired=true})
 include("GreatWorkProbe")
 SPCGreatWorkProbe.Start(P,shared)
 
@@ -887,6 +894,9 @@ if not claimOK then
  shared.ClaimProjects.startupError=tostring(claimError):gsub('^.-:%d+: ',''):match('[^\r\n]+')
  print('[SPC][Claim startup] '..tostring(claimError))
 end
+
+-- Register after the explicit legacy-inheritance reset and Claim's wrapper.
+shared.IndustrySupport.BindPermanentWrites()
 
 local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
 if not dialogueOK then

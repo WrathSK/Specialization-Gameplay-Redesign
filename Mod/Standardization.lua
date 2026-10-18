@@ -52,7 +52,8 @@ function SPCStandardization.Start(P,shared)
   data.writes=data.writes+1
   if not same(old,nextValue) then
    log('INDUSTRY_TEMPLATES_COMMITTED',c,nextValue)
-   if shared.StandardizationDiscount and not same(old and old.learned,nextValue.learned) then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
+   if shared.StandardizationEffects then shared.StandardizationEffects.SourceChanged(c:GetOwner(),c:GetID())
+   elseif shared.StandardizationDiscount and not same(old and old.learned,nextValue.learned) then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
   end
  end
  local function facts(pid,c)
@@ -191,6 +192,12 @@ function SPCStandardization.Start(P,shared)
   end
   data.busy=false
  end
+ function data.ReadKnowledge(pid,c)
+  local f=facts(pid,c);assert(f.specialization=='INDUSTRY','STD_SOURCE_CHANGED')
+  local value,pending=read(c);assert(not pending,'STD_RECONCILIATION_PENDING')
+  history(c,value);assert(value.foundation==f.token,'STD_FOUNDATION_CHANGED')
+  return clone(value)
+ end
  function data.ReadLedger(pid,c)
   local f=facts(pid,c);assert(f.specialization=='INDUSTRY','STD_SOURCE_CHANGED')
   local value,pending=read(c);assert(not pending,'STD_RECONCILIATION_PENDING')
@@ -230,7 +237,7 @@ function SPCStandardization.Start(P,shared)
    lines[#lines+1]='本次加载：模板同步扫描='..data.scans..' / 写入='..data.writes
    lines[#lines+1]='最近记录='..tostring(data.last[key(pid,c:GetID())] or '无新增')
    lines[#lines+1]='状态='..tostring(data.errors[key(pid,c:GetID())] or data.warnings[key(pid,c:GetID())] or '正常')
-   lines[#lines+1]='仅记录模板；本批没有新增标准化收益。'
+   lines[#lines+1]='此页记录历史知识；当前生效范围见「工业标准化」，知识不等于建造或购买资格。'
    return table.concat(lines,'\n')
   end)
   if ok then return text end

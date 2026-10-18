@@ -12,10 +12,11 @@ local testRows={}
 for _,kind in ipairs({'RESEARCH','CULTURE'}) do for _,amount in ipairs({2,4}) do
  testRows[#testRows+1]='BUILDING_SPC_B057_'..kind..'_'..amount
 end end
-function SPCNetworkBoost.Start(P,shared)
+function SPCNetworkBoost.Start(P,shared,options)
  local d={ready=false,busy=false,applied={},plans={},errors={},changes=0,testRaw={}};shared.NetworkBoost=d
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
- local kinds={'RESEARCH'} -- B226: Culture Eureka retired; exact all-kind cleanup below remains.
+ d.retired=options and options.retired==true or false
+ local kinds=d.retired and {} or {'RESEARCH'} -- B234: v0.1 Research effect isolated; shared topology remains.
  local function row(id) return assert(P.Info('Buildings',id),'B055_DATABASE_MISSING') end
  local function set(c,id,want)
   local r=row(id);local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index)
@@ -35,6 +36,7 @@ function SPCNetworkBoost.Start(P,shared)
   d.applied={}
  end
  function d.Plan(pid)
+  if d.retired then return {}end
   if isolated(pid) then return {} end
   local result={}
   if d.testRaw[pid]~=nil then
@@ -62,6 +64,7 @@ function SPCNetworkBoost.Start(P,shared)
   return result
  end
  function d.Audit(scope)
+  if d.retired then return end
   if isolated() then return end
   P.Count('audit_boost');
   if P.Observe then P.Observe('audit','NetworkBoost') end
@@ -100,10 +103,15 @@ function SPCNetworkBoost.Start(P,shared)
    d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
    if not ok then d.errors[pid]=tostring(err);return end
    d.ready=true
+   if d.retired and SPCExpeditionTrainingDiagnostics then
+    local trace=SPCExpeditionTrainingDiagnostics.New(P,'RESEARCH_NETWORK_EXIT')
+    trace.Record('NETWORK_EFFECT_RETIRED',{owner=pid,networkKind='RESEARCH',readStatus='VERIFIED',count=d.changes,reason='DEFERRED_V01'})
+   end
   end
   d.Audit()
  end
  function d.Test(pid,raw)
+  assert(not d.retired,'RESEARCH_NETWORK_DEFERRED_V01')
   assert(not isolated(pid),'NETWORK_ISOLATION_ACTIVE')
   assert(P.IsTestPlayer(pid),'B057_TEST_PLAYER_REQUIRED')
   if raw~=nil then
@@ -144,6 +152,7 @@ function SPCNetworkBoost.Start(P,shared)
   return true
  end
  function d.Describe(pid)
+  if d.retired then return '科研网络鼓舞已按用户决定在 v0.1 隔离，重做留待后续。\n公共网络和科研本城能力保留。\n旧载体清理：'..(d.ready and '已确认' or '待完成') end
   local out={d.testRaw[pid]~=nil and 'B057 整数接口实验：仅替换科研网络鼓舞' or 'B058 自动网络：全部浮点计算后一次四舍五入'}
   for _,kind in ipairs(kinds) do
    local p=d.plans[pid] and d.plans[pid][kind];local a=d.applied[pid] and d.applied[pid][kind]
@@ -157,7 +166,20 @@ function SPCNetworkBoost.Start(P,shared)
   return table.concat(out,'\n')
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- for _,n in ipairs({'PlayerTurnActivated'}) do SPCRuntimeWork.Hook(P,Events,n,d.Audit) end
+ if d.retired then
+  -- Exact removal once per Gameplay context; failures retry only on a real turn.
+  local attempted=false
+  local function initialize()
+   if d.ready or d.busy then return end
+   local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
+   attempted=true;d.EnsureReady(pid)
+  end
+  hook(Events,'LoadScreenClose',initialize)
+  hook(Events,'GameCoreEventPublishComplete',function()if not attempted then initialize()end end)
+  hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize()end end)
+ else
+  SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',d.Audit)
+ end
  hook(Events,'CityTransfered',function() if isolated() then return end;if d.ready and not d.busy then
   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
   if not ok then print('[SPC][B055][CLEAN] '..tostring(err));d.ready=false;return end;d.Audit()

@@ -13,6 +13,10 @@ For context-helper maintenance: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTe
 
 For deployment-tool changes only, `test_deployment.py` exercises temporary directories, never live runtime. Deployment itself follows the separate authorized workflow.
 
+## B234 Industry baseline and retirement
+
+`test_b234_standardization.py` uses actual Lua and the configured read-only HD database copied into memory. It covers support readiness, self/network holders, typed targets, UNKNOWN/reference/exit, exact old-writer removal and failure isolation. Current inherited suites and the two excluded historical package-stamp checks are listed in the [B234 result](../Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md). No whole-history runner or game launch; native construction remains a separate user gate. `context.py` registers `P0-H` as a task choice without changing selector/schema/check behavior.
+
 ## Environment and dependencies
 
 Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB` or ignored `local/config.json` (see root template). It is opened mode=ro and backed up into memory; never edited or copied into this repository. SQL integration checks require this external database; Lua-only model tests and deployment tests do not. Install Lupa into a local environment as needed; no game assets or Python environment is vendored. `requirements-test.txt` records the expected distribution (2.8 from the existing installation directory); existing package metadata is incomplete, so fresh installation is not claimed validated. The tested backend is lua55.
