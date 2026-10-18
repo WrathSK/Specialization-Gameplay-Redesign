@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "5abf32b7f7facad676de565026506aab7cf8c758ed7d87de7a4e8d6171331179",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "e4878d43fbb068ec671a9a2bcb0cd48289f190d55fa202c3ea7830a2d2cf77fc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a3b80b6048cd79ae3cf1094b40b9605310b6eb61e13760cec237a32e61c91d05",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "7319f67165bd531add6a3e6219d5bc2c5a0d90801d6dc650155d5d987c2f3231",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -1191,14 +1191,14 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Commerce.lua": {
-      "sha256": "9707067eea278e62c81c2e5bb817eb57532ed5b312645803316b653968a3dd57",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "a16ec36e320f064885b85acf6bfd015995abe1815e0277ed6fbd30ec76c98099",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/CommerceCalculation.lua": {
-      "sha256": "ab00d8031a0e8357d6f2b9250dba5e86fd3b47f803185e37063a1b0d4ef253c4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/CommerceModel.lua": {
       "sha256": "8c73cb936ce100f3867a356f5aa3da665bed7c28b0edd264077b857d471691a0",
@@ -1211,14 +1211,14 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "6e8dc52c20aee26bd7621ffdeb4ea2dd6006a2195d8e25298514f86c64b6aa60",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "d3b7ec744a04cbb506cfbd2008856ae177c44491aefa3dcad6380df172533898",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/UI/CommercePanel.lua": {
-      "sha256": "ce127de6121a5f52b5884926c82e548cfd28f79e11b280d94b50680a57c75900",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "f76067e9f3a012710e0e3ff5073461c6efe6d9268ab437bc8bfd29e7a7de717a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/UI/CommercePanel.xml": {
       "sha256": "73cabe58b2b4888ebcd6f616198e5e9f66612217f4a9658ab58e581e99b695d9",

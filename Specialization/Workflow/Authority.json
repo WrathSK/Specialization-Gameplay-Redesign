@@ -9,9 +9,9 @@
     "commerce": "D0055",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0168",
-    "status": "S0640",
-    "runtime": "B239.266 / modinfo266",
+    "architecture": "A0169",
+    "status": "S0641",
+    "runtime": "B240.267 / modinfo267",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,10 +35,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "972e911cd7635f212ceeffde2280395dda67b9cd",
-  "current_batch": "D0055_DESIGN_SYNC_COMPLETE_IMPLEMENTATION_NOT_AUTHORIZED",
-  "next_batch": "Propose narrow D0055 source Identity/Harbor total Food implementation and removal of obsolete Gold sampling; await explicit authorization.",
+  "current_batch": "B240_LOCAL_COMPLETE_AWAITING_NATIVE",
+  "next_batch": "Guarded W0003 B240 deployment, then one Commercialization source/Food/Gold/UI session with pending Commerce reload; no next batch authorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B239.266/modinfo266 DEVELOP_ACTIVE; source 972e911cd7635f212ceeffde2280395dda67b9cd; receipt B239.266-972e911-playtest.json;245/245 MATCH, digest ba9af421a89fbc3907f6046d33555f927027132c620496dfaed39c888cfd3b22. Automatic game-exit checks passed at both guarded switches; B238/stable recovery retained, no pending transaction. Crew continuation occupancy accepted; Commerce native acceptance pending local eligible setup.",
+  "live": "B239.266/modinfo266 DEVELOP_ACTIVE; source 972e911cd7635f212ceeffde2280395dda67b9cd; receipt B239.266-972e911-playtest.json;245/245 MATCH, digest ba9af421a89fbc3907f6046d33555f927027132c620496dfaed39c888cfd3b22. Automatic game-exit checks passed at both guarded switches; B238/stable recovery retained, no pending transaction. Crew continuation/capacity/report/Reputation observations retained; native Gold/source and Commerce reload pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0640: D0055 Design-only acceptance; runtime B239.266 and Architecture A0168 remain D0054-based. No new native PASS.",
+  "context_review_status": "S0641: D0055 implemented under explicit B240 authorization; A0169 source/ownership and UI reviewed,109 targeted checks PASS. Native delta pending; live remains B239 until verified deployment.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Design/Design_ChangeLog.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md"
 }

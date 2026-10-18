@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="266">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="267">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B239.266: unfinished Crew capacity, Commercialization selection and Gold, and city-owned Commercial Reputation.</Description>
+    <Description>B240.267: Commercialization source identities, Harbor total Food and stable Gold effects with clear domain eligibility.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

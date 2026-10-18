@@ -2,7 +2,7 @@ include('CommerceModel')
 include('CommerceCalculation')
 include('NetworkInput')
 include('ExpeditionTrainingDiagnostics')
--- B239: one current-effect owner. No timer, persisted derived output, generic
+-- B240: one current-effect owner. No timer, persisted derived output, generic
 -- output-revision subscription, or second route authority.
 SPCCommerce={Owned={'BUILDING_SPC_COMMERCIALIZATION_ACCESS'}}
 local M=SPCCommerce
@@ -12,7 +12,7 @@ function M.Start(P,shared)
  local C=SPCCommerceCalculation;local model=SPCCommerceModel;local cp=model.Copy
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
  local views,dependencies,byTarget,dirty,known={},{},{},{},{}
- local definitions,legacy={},{};local initialized=false;local busy=false;local writing=false;local permanentBound=false
+ local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local writing=false;local permanentBound=false
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
@@ -57,6 +57,8 @@ function M.Start(P,shared)
    nextLegacy[#nextLegacy+1]=assert(P.Info('Buildings','BUILDING_SPC_B061_'..y..'_'..bit),'COMMERCE_LEGACY_DEFINITION_MISSING').Index
   end end
   definitions=nextDefinitions;legacy=nextLegacy
+  -- Reuse implemented identity mapping; future professions are not enabled here.
+  for _,domain in ipairs(C.Domains)do sourceKinds[domain.id]=P.Family(domain.id) or false end
  end
  local function present(c,id)local yes=P.HasBuilding(c:GetBuildings(),id);assert(type(yes)=='boolean','COMMERCE_CARRIER_UNKNOWN');return yes end
  local function set(c,id,want)
@@ -159,20 +161,34 @@ function M.Start(P,shared)
   local n=c:GetYield(index);assert(type(n)=='number' and n==n and n>=0 and n<math.huge,'COMMERCE_SOURCE_UNKNOWN')
   batch.yields[k]=n;return n
  end
+ -- Only the Store's base identity is needed: no Governor, investment ledger,
+ -- remote building scan or persistent/cache copy of derived source eligibility.
+ local function sourceIdentity(batch,pid,c)
+  local k=key(pid,c:GetID())
+  if batch.identities[k]~=nil then return batch.identities[k]end
+  local ok,kind=pcall(function()
+   local owns=store.Owns(c);assert(type(owns)=='boolean','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
+   if not owns then return 'NONE' end
+   local f=store.Base(pid,c)
+   assert(f.owner==pid and f.cityID==c:GetID() and type(f.token)=='string'
+    and type(f.specialization)=='string','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
+   return f.specialization
+  end)
+  assert(ok,'COMMERCE_SOURCE_IDENTITY_UNKNOWN')
+  batch.identities[k]=kind;return kind
+ end
  local function resolve(batch,x)
   if not x.rows then return end
   local values={}
   for _,r in ipairs(x.rows)do if r.effective then
    local best
-   if r.yield=='GOLD'then assert(not batch.goldFailure,batch.goldFailure)end
    for sid in pairs(x.sources)do
     local c=assert(city(x.pid,sid),'COMMERCE_SOURCE_UNKNOWN');assert(c:GetOwner()==x.pid,'COMMERCE_SOURCE_OWNER_CHANGED')
     if sid~=x.id then assert(SPCNetworkInput.Reference(c)==x.network.references[sid],'COMMERCE_SOURCE_REFERENCE_CHANGED')end
-    -- Only the local Commerce city needs the domain district. A remote
-    -- candidate contributes its mapped TOTAL yield without a specialization,
-    -- matching district, Store enrollment or another building-fact capture.
-    local n=sourceYield(batch,x.pid,c,r.yield)
-    if not best or n>best.X or n==best.X and sid<best.city then best={city=sid,owner=x.pid,name=title(c),X=n}end
+    if sid==x.id or sourceKinds[r.id] and sourceIdentity(batch,x.pid,c)==sourceKinds[r.id]then
+     local n=sourceYield(batch,x.pid,c,r.yield)
+     if not best or n>best.X or n==best.X and sid<best.city then best={city=sid,owner=x.pid,name=title(c),X=n}end
+    end
    end
    values[r.id]=assert(best,'COMMERCE_SOURCE_UNKNOWN')
   end end
@@ -200,7 +216,7 @@ function M.Start(P,shared)
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
     if changed then for cid in pairs(changed)do addTargets(ids,pid,cid)end else addTargets(ids,pid)end
    end end
-   local batch={facts={},depth={},yields={}};local plans={};local clean={}
+   local batch={facts={},depth={},yields={},identities={}};local plans={}
    for k,pair in pairs(ids)do
     local pid,id=pair[1],pair[2];local c=city(pid,id)
     if c and c:GetOwner()==pid then
@@ -215,26 +231,7 @@ function M.Start(P,shared)
       for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
      else setDependencies(pid,id,x.v.identity=='COMMERCE' and x.sources or {})end
      plans[k]=x;known[k]=(x.v.identity=='COMMERCE' or x.v.stage=='HELD') and {pid,id} or nil
-     if x.rows then for _,r in ipairs(x.rows)do if r.effective and r.yield=='GOLD'then
-      for sid in pairs(x.sources)do local sk=key(pid,sid);if not clean[sk]then
-       local good,sample=pcall(function()
-        local source=assert(city(pid,sid),'COMMERCE_SOURCE_UNKNOWN')
-        return {c=source,reference=SPCNetworkInput.Reference(source),amount=observed(source),pid=pid,id=sid}
-       end)
-       if good then clean[sk]=sample else batch.goldFailure=code(sample)end
-      end end
-     end end end
     else publish(pid,id,nil);setDependencies(pid,id,{});known[k]=nil end
-   end
-   -- Remove only owned Gold, before ANY source sampling or new application.
-   -- This removes its real modifier-amplified contribution without subtraction.
-   for _,x in pairs(clean)do
-    local good,err=pcall(function()
-     if x.amount>0 then local h=store.HistoricalReference(x.c);assert(h.owner==x.pid and h.cityID==x.id,'COMMERCE_BINDING_UNAVAILABLE')end
-     applyGold(x.c,0)
-    end)
-    if not good then batch.goldFailure=code(err)end
-    emit('COMMERCE_CLEAN',{owner=x.pid,city=x.id,previous=x.amount,expected=0,reason=good and 'COMMERCE_GOLD_WITHDRAWN' or batch.goldFailure})
    end
    for _,x in pairs(plans)do
     local good,err=pcall(resolve,batch,x)
@@ -242,7 +239,8 @@ function M.Start(P,shared)
      x.v.effective={};for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
    end
-   -- All plans used the same clean phase. No city's newly applied Gold enters X.
+   -- D0055 inputs exclude Gold. Apply only differences; unchanged reads never
+   -- dismantle effects or write to a remote source merely to sample its yield.
    for k,x in pairs(plans)do
     local binding=false
     local good,err=pcall(function()
@@ -259,27 +257,9 @@ function M.Start(P,shared)
      x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false;x.v.effective={}
      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
-    publish(x.pid,x.id,x.v);clean[k]=nil
+    publish(x.pid,x.id,x.v)
    end
-   -- A source outside the affected receiver set temporarily lost only this
-   -- module's native instances; restore its previously observed exact encoding.
-   for _,x in pairs(clean)do
-    local good,err=pcall(function()
-     assert(SPCNetworkInput.Reference(x.c)==x.reference,'COMMERCE_REFERENCE_CHANGED')
-     if x.amount>0 then local h=store.HistoricalReference(x.c);assert(h.owner==x.pid and h.cityID==x.id,'COMMERCE_BINDING_UNAVAILABLE')end
-     applyGold(x.c,x.amount)
-    end)
-    if not good then
-     pcall(applyGold,x.c,0);d.error=code(err)
-     local v=cp(views[key(x.pid,x.id)])
-     if v then
-      v.stage='HELD';v.reason=d.error;v.totalGold=0;v.totalRaw=0;v.canConfigure=false;v.effective={}
-      for _,r in ipairs(v.domains or {})do r.effective=false;r.suspended=r.selected;r.reason=v.reason;r.raw=0;r.gold=0;r.floor=0 end
-      local checked,n=pcall(observed,x.c);v.cleanupConfirmed=checked and n==0;v.remainingCarrierGold=checked and n or nil
-      publish(x.pid,x.id,v)
-     end
-    end
-   end
+
   end)
   if not ok then d.error=code(why)end
   busy=false;d.busy=false
@@ -318,7 +298,7 @@ function M.Start(P,shared)
   local ok,err=pcall(function()
    assert(P.IsTestPlayer(pid) and type(p)=='table' and integer(p.CityID),'COMMERCE_REQUEST_INVALID')
    local c=assert(city(pid,p.CityID),'COMMERCE_CITY_UNKNOWN');assert(c:GetOwner()==pid,'COMMERCE_OWNER_CHANGED')
-   if p.Action=='COMMERCE_READ'then d.Refresh(pid,p.CityID);accepted=true;return end
+   if p.Action=='COMMERCE_READ'then accepted=true;return end -- report consumes published state only
    assert(p.Action=='COMMERCE_SELECT','COMMERCE_REQUEST_INVALID')
    local old=views[key(pid,p.CityID)]
    assert(old and old.revision==p.Revision and old.reference==p.Reference and old.token==p.CityToken,'COMMERCE_VIEW_STALE')
@@ -334,7 +314,7 @@ function M.Start(P,shared)
    local actual=store.CommerceState(pid,c);assert(same(actual.value,nextValue) and actual.token==s.token,'COMMERCE_WRITE_UNCONFIRMED')
    d.SourceChanged(pid,p.CityID);accepted=true
   end)
-  if not ok then why=code(err);if p and integer(p.CityID)then pcall(d.Refresh,pid,p.CityID)end end
+  if not ok then why=code(err);if p and p.Action~='COMMERCE_READ' and integer(p.CityID)then pcall(d.Refresh,pid,p.CityID)end end
   d.lastRequest={token=p and p.Token,owner=pid,city=p and p.CityID,accepted=accepted,reason=why or 'COMMERCE_READY'}
   emit('COMMERCE_REQUEST',{owner=pid,city=p and p.CityID,requestAction=p and p.Action,requestAccepted=accepted,reason=d.lastRequest.reason})
   return accepted,why
@@ -345,12 +325,17 @@ function M.Start(P,shared)
   local rows={'商业化｜'..title(c)..'｜'..(v.stage=='READY' and '已就绪' or v.reason),
    '工作专家 '..v.workers..'｜生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合',
    '商业信誉 '..tostring(v.reputation and v.reputation.age or 0)..'；当前使用 '..tostring(v.reputation and v.reputation.effective or 0)}
-  for _,r in ipairs(v.domains or {})do if r.selected then
+  for _,r in ipairs(v.domains or {})do
    local n=Locale and Locale.Lookup and Locale.Lookup(r.nameKey) or r.id
-   rows[#rows+1]=n..'：'..(r.effective and string.format('D%d × X%.3f × 5%% × %.3f = %.3f → +%d',r.localD,r.X,1+.005*v.reputation.effective,r.raw,r.gold) or '暂停：'..r.reason)
+   local reasons={COMMERCE_LOCAL_DISTRICT_REQUIRED='本城缺少对应区域',COMMERCE_NOT_SELECTED='未开启',
+    COMMERCE_ACTIVE_III_REQUIRED='当前ACTIVE不足三级',COMMERCE_CAPACITY='专家名额不足，选择保留',
+    COMMERCE_SOURCE_IDENTITY_UNKNOWN='来源专业身份暂不可确认'}
+   rows[#rows+1]=n..(r.yield=='FOOD' and '（总粮食，非余粮）' or '')..'：'..(r.effective and string.format('D%d × X%.3f × 5%% × %.3f = %.3f → +%d',r.localD,r.X,1+.005*v.reputation.effective,r.raw,r.gold) or (reasons[r.reason] or '暂不可用：'..tostring(r.reason)))
    if r.effective then rows[#rows+1]='来源：'..r.sourceName end
-  end end
+  end
   if v.cleanupConfirmed==false then rows[#rows+1]='收益清理尚未确认；残留载体配置：'..tostring(v.remainingCarrierGold or '未知')end
+  rows[#rows+1]='来源：本城，或直接国内商路连接的对应专业城市。'
+  rows[#rows+1]='配置入口：城市生产列表 → 商业化 / 商业信誉；P0这里只读。'
   rows[#rows+1]='各领域分别向下取整后相加；城市既有金币倍率可能进一步调整实际收益。'
   return table.concat(rows,'\n')
  end

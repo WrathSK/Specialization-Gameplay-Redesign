@@ -21,7 +21,7 @@ def fixture():
       GameConfiguration={GetGameSpeedType=function()return 2 end}
       GameInfo=GameInfo or {};GameInfo.GameSpeeds={
         [2]={GameSpeedType='GAMESPEED_STANDARD'},[1]={GameSpeedType='GAMESPEED_QUICK'}}
-      nativeReads={};depthReads={};commerceStates={};commerceWrites=0;cleanOrder={};applyOrder={}
+      nativeReads={};depthReads={};identityReads={};commerceStates={};commerceWrites=0;cleanOrder={};applyOrder={}
       function eq(a,b)
         if type(a)~=type(b)then return false end;if type(a)~='table'then return a==b end
         for k,v in pairs(a)do if not eq(v,b[k])then return false end end
@@ -31,7 +31,7 @@ def fixture():
         local n=0;for bit=0,30 do if c.present['BUILDING_SPC_COMMERCE_GOLD_'..bit]then n=n+2^bit end end;return n
       end
       for _,c in pairs(cities)do
-        c.depths={};c.yields={SCIENCE=0,CULTURE=0,PRODUCTION=0,FAITH=0,GOLD=10};c.goldMultiplier=1
+        c.depths={};c.yields={SCIENCE=0,CULTURE=0,PRODUCTION=0,FAITH=0,FOOD=10,GOLD=10};c.goldMultiplier=1
         function c:GetYield(y)
           local k=c.id..':'..y;nativeReads[k]=(nativeReads[k]or 0)+1
           if c.yieldFail==y then error('COMMERCE_NATIVE_YIELD_UNREADABLE')end
@@ -43,7 +43,7 @@ def fixture():
       cities[4].depths.DISTRICT_THEATER=6;cities[4].yields.CULTURE=80
       cities[5].depths.DISTRICT_INDUSTRIAL_ZONE=6;cities[5].yields.PRODUCTION=60
       cities[2].depths={DISTRICT_CAMPUS=3,DISTRICT_THEATER=2,DISTRICT_INDUSTRIAL_ZONE=4,DISTRICT_HOLY_SITE=2,DISTRICT_HARBOR=3}
-      cities[2].yields={SCIENCE=40,CULTURE=30,PRODUCTION=20,FAITH=10,GOLD=20}
+      cities[2].yields={SCIENCE=40,CULTURE=30,PRODUCTION=20,FAITH=10,FOOD=20,GOLD=20}
       local oldFacts=shared.EffectiveFacts.Read
       shared.EffectiveFacts.Read=function(pid,c)
         local f=oldFacts(pid,c);f.owner=pid;f.cityID=c.id;f.activeStatus=c.active==nil and 'UNKNOWN_GOVERNOR' or 'KNOWN';return f
@@ -57,6 +57,13 @@ def fixture():
           id=c.id,type=families[c.kind],plot=c.id*100,complete=true,pillaged=c.pillaged==true}}}}
       end}
       local st=shared.CityProgressionStore
+      -- B240 uses the authoritative base identity, not remote ACTIVE or investments.
+      st.Owns=function(c)return not c.unregistered end
+      st.Base=function(pid,c)
+        identityReads[c.id]=(identityReads[c.id] or 0)+1
+        assert(pid==c.owner and not c.identityFail,'PROGRESSION_HELD')
+        return {owner=pid,cityID=c.id,token=c.token,specialization=c.kind}
+      end
       st.HistoryStartStatus=function()return 'EXISTING'end
       st.HistoricalReference=function(c)
         assert(c.owner==0 and not c.bindingFail,'COMMERCE_BINDING_UNAVAILABLE')
@@ -136,7 +143,7 @@ class Commercialization(unittest.TestCase):
           assert(domain(2,'DISTRICT_CAMPUS').source==2 and domain(2,'DISTRICT_CAMPUS').X==40)
         ''')
 
-    def test_remote_total_yield_needs_no_matching_district_or_store_record(self):
+    def test_remote_identity_needs_no_matching_district_or_commerce_record(self):
         lua=fixture();lua.execute('''
           cities[1].depths={};cities[1].dcFail=true;cities[1].storeFail=true;cities[1].yields.SCIENCE=400
           assert(toggle(2,'DISTRICT_CAMPUS',true))
@@ -311,13 +318,22 @@ class Commercialization(unittest.TestCase):
           assert(com.Describe(0,cities[2]):find('清理尚未确认',1,true))
         ''')
 
-    def test_unknown_harbor_source_carrier_presence_never_leaves_stale_ready_result(self):
-        lua=fixture();lua.execute('''
+    def test_unreadable_remote_gold_carrier_is_irrelevant_to_food_input(self):
+        lua=fixture();lua.execute("""
           assert(toggle(2,'DISTRICT_HARBOR',true));local original=P.HasBuilding
           P.HasBuilding=function(b,id)if b.city.id==1 and id=='BUILDING_SPC_COMMERCE_GOLD_0'then return nil end;return original(b,id)end
-          com.SourceChanged(0,1)
-          assert(view(2).stage=='HELD' and ownedGold(cities[2])==0 and #view(2).effective==0)
-        ''')
+          com.Refresh(0,2)
+          assert(view(2).stage=='READY' and ownedGold(cities[2])==3 and #view(2).effective==1)
+        """)
+
+    def test_unknown_owned_carrier_reports_unconfirmed_cleanup(self):
+        lua=fixture();lua.execute("""
+          assert(toggle(2,'DISTRICT_HARBOR',true));local original=P.HasBuilding
+          P.HasBuilding=function(b,id)if b.city.id==2 and id=='BUILDING_SPC_COMMERCE_GOLD_0'then return nil end;return original(b,id)end
+          com.Refresh(0,2)
+          assert(view(2).stage=='HELD' and not view(2).cleanupConfirmed and #view(2).effective==0)
+          assert(com.Describe(0,cities[2]):find('清理尚未确认',1,true))
+        """)
 
     def test_domain_log_contains_source_depth_x_raw_and_final_without_names(self):
         lua=fixture();lua.execute('''
@@ -359,42 +375,8 @@ class Commercialization(unittest.TestCase):
         ''')
 
 
-class GoldRecursion(unittest.TestCase):
-    def test_actual_owned_gold_removed_before_harbor_read_with_city_multiplier(self):
-        lua=fixture();lua.execute('''
-          cities[2].goldMultiplier=2;assert(toggle(2,'DISTRICT_CAMPUS',true));assert(ownedGold(cities[2])==15)
-          assert(cities[2]:GetYield('GOLD')==50)
-          cleanOrder={};assert(toggle(2,'DISTRICT_HARBOR',true))
-          local harbor=domain(2,'DISTRICT_HARBOR')
-          assert(harbor.X==20 and harbor.gold==3 and ownedGold(cities[2])==18)
-          for _,r in ipairs(cleanOrder)do assert(r.owned==0)end
-          for i=1,5 do com.SourceChanged(0,2);assert(domain(2,'DISTRICT_HARBOR').X==20 and ownedGold(cities[2])==18)end
-        ''')
-
-    def test_two_commerce_sources_are_planned_clean_before_any_new_gold(self):
-        lua=fixture();lua.execute('''
-          cities[4].kind='COMMERCE';cities[4].potential=3;cities[4].active=3
-          cities[4].depths={DISTRICT_HARBOR=3};cities[4].yields.GOLD=40;cities[4].goldMultiplier=2
-          commerceStates[4]=SPCCommerceModel.Select(SPCCommerceModel.New(0),'DISTRICT_HARBOR',true)
-          com.SourceChanged(0,4);assert(toggle(2,'DISTRICT_HARBOR',true))
-          cleanOrder={};applyOrder={};com.Audit({player=0})
-          assert(domain(2,'DISTRICT_HARBOR').X==40 and domain(4,'DISTRICT_HARBOR').X==40)
-          assert(ownedGold(cities[2])==6 and ownedGold(cities[4])==6)
-          for _,r in ipairs(cleanOrder)do assert(r.owned==0)end
-          assert(#applyOrder>0)
-        ''')
-
-    def test_non_target_gold_source_is_restored_without_its_gold_entering_x(self):
-        lua=fixture();lua.execute('''
-          cities[4].kind='COMMERCE';cities[4].potential=3;cities[4].active=3
-          cities[4].depths={DISTRICT_CAMPUS=3};cities[4].yields.SCIENCE=1000;cities[4].yields.GOLD=50
-          commerceStates[4]=SPCCommerceModel.Select(SPCCommerceModel.New(0),'DISTRICT_CAMPUS',true)
-          com.SourceChanged(0,4);assert(ownedGold(cities[4])==150)
-          assert(toggle(2,'DISTRICT_HARBOR',true))
-          com.SourceChanged(0,1)
-          assert(domain(2,'DISTRICT_HARBOR').X==50 and ownedGold(cities[4])==150)
-        ''')
-
+# D0055 supersedes the B239 clean-Gold algorithm. Food/no-write counterexamples
+# are in test_b240_commerce.py; frozen B239 evidence is unchanged.
 
 if __name__=='__main__':
     unittest.main()

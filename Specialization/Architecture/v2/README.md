@@ -37,7 +37,7 @@
 
 ## 收益应用与精度
 
-- [Commerce preparation](Commerce_Preparation.md): D0054 per-domain Floor with retained D0050 contracts; reviewed Advisor input and four bounded batches. [Proposed B239](Commerce_Preparation.md#proposed-b239-combined-slice) combines Crew occupancy with Commercialization; Capital/Development/Restructuring remain separate. [B239 implementation](Commerce_Preparation.md#b239-implementation-and-validation) is local-complete/native-pending; later batches remain unapproved.
+- [Commerce preparation](Commerce_Preparation.md): D0055 source Identity/Harbor total Food with retained per-domain Floor and D0050 contracts. [B240 implementation](Commerce_Preparation.md#b240-implementation-and-validation) removes recurring Gold sampling and explains local prerequisites; local checks pass, native delta remains pending. Crew acceptance is retained; Capital/Development/Restructuring remain separate and unapproved.
 - [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；记录每模板holder、N/E/L、III/IV成本及D0053允许原生倍率的基础施工。工业当前落地与合并验收见其B238收尾段；商业仍按自己的计划状态。此导航不派发实施，不加入日常全量context。
 
 - [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。现行Culture D0049：L2自动能力已验，L3百分比自动路径本地完成、原生待验；M/N/U2仍逐批审核/授权，不加入日常全量context。

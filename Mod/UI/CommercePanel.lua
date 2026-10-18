@@ -9,9 +9,9 @@ local function number(v)
  local out=string.format('%.6f',v):gsub('0+$',''):gsub('%.$','');return out
 end
 local function reason(k)
- local keys={COMMERCE_EFFECTIVE='EFFECTIVE',COMMERCE_NOT_SELECTED='NOT_SELECTED',COMMERCE_LOCAL_DISTRICT_REQUIRED='UNAVAILABLE',
+ local keys={COMMERCE_EFFECTIVE='EFFECTIVE',COMMERCE_NOT_SELECTED='NOT_SELECTED',COMMERCE_LOCAL_DISTRICT_REQUIRED='LOCAL_DISTRICT_REQUIRED',
   COMMERCE_CAPACITY='NO_WORKERS',COMMERCE_ACTIVE_III_REQUIRED='INACTIVE',COMMERCE_NETWORK_UNKNOWN='NETWORK_WAIT',
-  COMMERCE_REPUTATION_UNKNOWN='REPUTATION_UNKNOWN'}
+  COMMERCE_REPUTATION_UNKNOWN='REPUTATION_UNKNOWN',COMMERCE_SOURCE_IDENTITY_UNKNOWN='SOURCE_IDENTITY_UNKNOWN'}
  return keys[k] and L(keys[k]) or L('ERROR',k or L('WAITING'))
 end
 local function backendView()
@@ -45,9 +45,11 @@ local function render()
   local r=rows[domain.id];local prefix='Domain'..i
   Controls[prefix..'Name']:SetText(L('DOMAIN_'..domain.key))
   Controls[prefix..'Icon']:SetIcon(domain.icon)
-  Controls[prefix..'State']:SetText(r and reason(r.reason or (r.effective and 'COMMERCE_EFFECTIVE' or r.selected and 'COMMERCE_CAPACITY' or 'COMMERCE_NOT_SELECTED')) or L('WAITING'))
+  local state=r and reason(r.reason or (r.effective and 'COMMERCE_EFFECTIVE' or r.selected and 'COMMERCE_CAPACITY' or 'COMMERCE_NOT_SELECTED')) or L('WAITING')
+  Controls[prefix..'State']:SetText(state);Controls[prefix..'State']:SetToolTipString(state)
+  Controls[prefix..'Toggle']:SetToolTipString(state)
   local detail=r and L('DOMAIN_DETAIL',number(r.localD),number(r.X),number(r.raw),number(r.gold or r.floor)) or L('WAITING')
-  local source=L('SOURCE',r and r.sourceName and Locale.Lookup(r.sourceName) or L('EMPTY'))
+  local source=L('SOURCE',r and r.sourceName and Locale.Lookup(r.sourceName) or L('NO_SOURCE'))
   Controls[prefix..'Details']:SetText(detail);Controls[prefix..'Details']:SetToolTipString(detail)
   Controls[prefix..'Source']:SetText(source);Controls[prefix..'Source']:SetToolTipString(source)
   Controls[prefix..'ToggleCaption']:SetText(L(r and r.selected and 'DISABLE' or 'ENABLE'))

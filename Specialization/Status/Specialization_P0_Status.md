@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0640
-Implementation Build: source/live B239.266; stable B069.96
-Architecture Revision Reviewed: A0168
+Status Revision: S0641
+Implementation Build: source B240.267; live B239.266; stable B069.96
+Architecture Revision Reviewed: A0169
 Design Revision Reviewed: D0055
 Latest Accepted Design Revision: D0055
-Design Sync State: D0055_SOURCE_IDENTITY_FOOD_ACCEPTED_RUNTIME_PENDING
-Work State: D0055_DESIGN_SYNC_COMPLETE_IMPLEMENTATION_NOT_AUTHORIZED
+Design Sync State: D0055_SOURCE_IDENTITY_FOOD_IMPLEMENTED_NATIVE_PENDING
+Work State: B240_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**D0055 Design-only synchronization complete:** [accepted source/Harbor amendment](../Design/Design_ChangeLog.md#accepted-d0055--2026-10-18).
-- External Commercialization sources require matching Identity plus the existing direct domestic route. Self remains exempt from Identity; local district required. Harbor reads total Food, not surplus; output remains Gold.
-- B239.266 source/live `972e911` still implements D0054; Architecture A0168 and runtime have not been synchronized to D0055. No code/test/deployment change or new native PASS.
-- User supplement accepts specialist capacity/report response to D and Reputation growth; actual Gold/source-yield response and Commerce reload remain untested. Harbor repeated refresh/stutter reported; obsolete Gold sampling must be reviewed in the next separately authorized implementation.
-- Crew acceptance retained. Main B069.96 and Culture HOLD unchanged. Next: propose the narrow D0055 implementation and no-change write regression; await authorization. No repeated Academic Tradition test.
+**B240 local implementation complete:** [D0055 source/Food and UI result](Validation/Results/Specialization_B240_Commercialization_Local.md).
+- External sources require matching Identity and a direct domestic route; self remains exempt with a local domain district. Harbor reads total Food. Repeated Gold sampling is removed; real updates/exit cleanup remain.
+- Source B240.267/modinfo267; live still B239.266 (`972e911`, receipt B239.266-972e911-playtest.json). Deployment requires a separate verified W0003 transaction.
+-109 targeted tests PASS, including no-change/deferred-event zero writes and same-turn real changes. Native Gold/source/Food/refresh and the pending Commerce reload require the single combined session; report configuration is not actual yield evidence.
+- Retain B239 Crew/capacity/report D/Reputation observations. Main B069.96, other professions and Culture HOLD unchanged. Next: guarded deployment then this test; no Capital/Development/Restructuring authorization.
+
+## S0641 — B240 D0055 implementation and prerequisite UI
+
+Authorized source Identity/Harbor total Food delta replaces the obsolete Gold withdrawal/sample/restore loop. External Identity comes from Store.Base without remote ACTIVE/Governor/D scans; reverse dependencies retain potential future eligible sources. Ordinary effect comparison, UNKNOWN/error cleanup and source loss remain. P0 reads published state only; both reports and configuration expose missing local districts.109 targeted actual-Lua/Store/network/UI/SQL checks PASS; no timer, permanent schema, GC, other-profession or frozen-evidence change. Native animation/Gold/performance claims remain pending; new source and last deployed runtime are explicitly separate.
 
 ## S0640 — D0055 Commercialization source and Harbor input Design
 

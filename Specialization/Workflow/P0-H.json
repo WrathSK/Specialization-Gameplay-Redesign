@@ -10,16 +10,16 @@
     "commerce": "D0055",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0168",
-    "status": "S0640",
-    "runtime": "B239.266 / modinfo266",
+    "architecture": "A0169",
+    "status": "S0641",
+    "runtime": "B240.267 / modinfo267",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Design/Design_ChangeLog.md",
-  "goal": "D0055 Design-only synchronization; B239 old source remains. Next implementation requires explicit authorization.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+  "goal": "B240 authorized: D0055 matching-Identity external sources, Harbor total Food, remove recurring Gold sampling; merge B239 local-prerequisite/report UI correction. Preserve current updates/exit and permanent history.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -36,14 +36,14 @@
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B239 implementation and validation",
-      "reason": "Historical B239 implementation baseline; D0055 source/Food delta is not yet implemented."
+      "selector": "## B240 implementation and validation",
+      "reason": "Current source ownership, D0055 delta, validation and bounded native gate."
     }
   ],
   "dependencies": [
     "Store per-record commit/readback and confirmed transition ownership; optional Commerce stack/R, no framework rewrite.",
     "Current EffectiveFacts/local Shared D/working specialists and verified direct domestic partner projection; current source total yields.",
-    "Existing Crew paid admission/native queue/current units/receipt and locked price/progress; inherited Industry primitives."
+    "Inherit accepted B239 Crew occupancy; no Crew code/price/progress or new native step in B240."
   ],
   "old_writers": [
     "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
@@ -62,7 +62,8 @@
         "Specialization/Design/Content/Commerce_D0055.json",
         "DevelopmentTests/test_b239_commerce.py",
         "DevelopmentTests/test_b239_commerce_store.py",
-        "DevelopmentTests/test_b239_commerce_ui.py"
+        "DevelopmentTests/test_b239_commerce_ui.py",
+        "DevelopmentTests/test_b240_commerce.py"
       ]
     },
     {
@@ -101,19 +102,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L3 new business persistence/ownership and shared route read boundary, L2 effects and source propagation, L1 UI/package/docs.",
-    "local": "336 distinct targeted checks PASS. Two fixed historical package stamps excluded unchanged; B239 package independently checked.",
-    "user": "User supplement: dynamic capacity/report D/Reputation accepted. Actual Gold, source-yield delta and Commerce reload pending; Harbor refresh/stutter reported. No repeated Academic Tradition test.",
-    "gap": "D0055 source Identity/total Food not implemented; old Gold sampling requires replacement, not new native testing of the superseded input."
+    "depth": "L2 changed source/effect/event path plus inherited targeted Store/route/cleanup regressions; L1 UI/package/docs. No new persistence schema.",
+    "local": "109 distinct targeted checks PASS, no failures/errors/skips. Unchanged updates/deferred echoes have zero carrier writes; real same-turn change retained.",
+    "user": "One native source/Food/Gold/UI session, including the pending B239 Commerce selection/Reputation reload; no repeated Crew/Academic Tradition test.",
+    "gap": "D0055 native result and cessation of repeated flash/sound remain unverified; no native CPU/memory claim."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B239_Native_Review.md",
-    "source": "B239.266 deployed from 972e911cd7635f212ceeffde2280395dda67b9cd;245/245 MATCH; receipt B239.266-972e911-playtest.json",
-    "native": "USER_GAME_TEST_PASS scoped Crew occupancy/continuation; Commerce pending eligible setup",
-    "stop": "Design synchronization only. Await explicit D0055 implementation authorization; no code/tests/deployment changes."
+    "report": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+    "source": "B240.267 source local-complete; live remains B239.266 until verified W0003 deployment.",
+    "native": "Inherited B239 observations retained; B240 USER_GAME_TEST_REQUIRED.",
+    "stop": "B240 implementation authorized by user; targeted validation and guarded W0003 deployment only, no next Commerce batch."
   }
 }

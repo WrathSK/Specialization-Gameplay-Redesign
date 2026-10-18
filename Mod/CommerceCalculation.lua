@@ -1,4 +1,4 @@
--- B239 pure Commercialization calculation. Store owns choices/reputation;
+-- B240 / D0055 pure Commercialization calculation. Store owns choices/reputation;
 -- native current facts and the verified route boundary own all inputs.
 SPCCommerceCalculation={}
 local M=SPCCommerceCalculation
@@ -7,7 +7,7 @@ M.Domains={
  {id='DISTRICT_THEATER',yield='CULTURE',nameKey='LOC_DISTRICT_THEATER_NAME'},
  {id='DISTRICT_INDUSTRIAL_ZONE',yield='PRODUCTION',nameKey='LOC_DISTRICT_INDUSTRIAL_ZONE_NAME'},
  {id='DISTRICT_HOLY_SITE',yield='FAITH',nameKey='LOC_DISTRICT_HOLY_SITE_NAME'},
- {id='DISTRICT_HARBOR',yield='GOLD',nameKey='LOC_DISTRICT_HARBOR_NAME'}}
+ {id='DISTRICT_HARBOR',yield='FOOD',nameKey='LOC_DISTRICT_HARBOR_NAME'}}
 local function finite(n)return type(n)=='number' and n==n and n>=0 and n<math.huge end
 function M.Layout(selected,workers,active,localDomains)
  assert(type(selected)=='table' and finite(workers) and workers%1==0,'COMMERCE_CAPACITY_UNKNOWN')
@@ -21,8 +21,8 @@ function M.Layout(selected,workers,active,localDomains)
   local depth=localDomains[def.id]
   assert(depth==nil or finite(depth) and depth<=10 and depth%1==0,'COMMERCE_DEPTH_UNKNOWN')
   local selectedHere=chosen[def.id]~=nil;local enabled=effective[def.id]==true
-  local reason=not selectedHere and 'COMMERCE_NOT_SELECTED' or depth==nil and 'COMMERCE_LOCAL_DISTRICT_REQUIRED'
-   or active<3 and 'COMMERCE_ACTIVE_III_REQUIRED' or not enabled and 'COMMERCE_CAPACITY' or 'COMMERCE_EFFECTIVE'
+  local reason=depth==nil and 'COMMERCE_LOCAL_DISTRICT_REQUIRED' or active<3 and 'COMMERCE_ACTIVE_III_REQUIRED'
+   or not selectedHere and 'COMMERCE_NOT_SELECTED' or not enabled and 'COMMERCE_CAPACITY' or 'COMMERCE_EFFECTIVE'
   rows[#rows+1]={id=def.id,nameKey=def.nameKey,yield=def.yield,localD=depth or 0,eligible=depth~=nil,
    selected=selectedHere,effective=enabled,suspended=selectedHere and not enabled,reason=reason,raw=0,gold=0,floor=0}
  end
