@@ -29,19 +29,19 @@ function SPCCrewPrecision.Start(P,shared)
    record.result=result
    local ok,err=pcall(function()
     assert(not record.error,record.error)
-    record.expected=math.min(record.amount,record.cost-record.before)
+    record.baseInput=math.min(record.amount,record.cost-record.before)
     local city=Players[pid]:GetCities():FindID(record.cityID);assert(city and city:GetOwner()==pid,'CITY_CHANGED')
     local s=shared.ConstructionProbe.ReadSnapshot(pid,city)
     record.afterTarget=s.target;record.after=s.progress
     record.unitPresent=Players[pid]:GetUnits():FindID(record.unitID)~=nil
     if not result:find('CREW CONSUMED',1,true) then record.note='ACTION_NOT_COMPLETED: not a precision measurement'
-    elseif s.target==record.target then record.observed=record.after-record.before;record.difference=record.observed-record.expected
+    elseif s.target==record.target then record.observed=record.after-record.before -- Native modifiers are accepted; this is not an exact-base oracle.
     else record.note='TARGET_COMPLETED_OR_CHANGED: do not subtract different targets' end
    end)
    if not ok then record.afterReadError=tostring(err) end
    if shared.CrewProjects and shared.CrewProjects.RecordPrecision then pcall(shared.CrewProjects.RecordPrecision,pid,record)end
    shared.CrewPrecision=record
-   print('[SPC][B046][PRECISION] before='..tostring(record.before)..' after='..tostring(record.after)..' expected='..tostring(record.expected)..' observed='..tostring(record.observed)..' difference='..tostring(record.difference))
+   print('[SPC][B046][PRECISION] before='..tostring(record.before)..' after='..tostring(record.after)..' baseInput='..tostring(record.baseInput)..' observed='..tostring(record.observed))
   end
   return result,receipt
  end

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0633
-Implementation Build: source/live B237.264 DEVELOP_ACTIVE; fixed injection BLOCKED; stable B069.96
-Architecture Revision Reviewed: A0167
-Design Revision Reviewed: D0052（一级施工力260及对应成本）
-Latest Accepted Design Revision: D0051
-Design Sync State: D0051_WORKS_CITY_SCOPE_IMPLEMENTED / NATIVE_PENDING
-Work State: B237_PARTIAL_DEPLOYED / FIXED_INJECTION_BLOCKED
+Status Revision: S0634
+Implementation Build: source B238.265; live B237.264; stable B069.96
+Architecture Revision Reviewed: A0168
+Design Revision Reviewed: D0053（施工接受适用原生加成）
+Latest Accepted Design Revision: D0053
+Design Sync State: D0053_CREW_MODIFIER_ACCEPTANCE_IMPLEMENTED / NATIVE_PENDING
+Work State: B238_LOCAL_COMPLETE / COMBINED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B237 partial delivery:** [repair / native-primitive boundary](Validation/Results/Specialization_B237_Crew_Local.md).
-- **Local:** retained native paused progress and old-price UI; D0052 tier-I260, costs390/364/338/312.223 targeted tests pass; native continuation pending.
-- **Blocked:** exact fixed injection has no established native primitive. Crew construction rejects before consumption; permanent units/other Industry effects stay intact. No whole-batch PASS.
-- **Source/live:** B237.264 `fccac0a`, receipt `B237.264-fccac0a-playtest.json`,237/237 MATCH. B236/stable recovery retained; no pending transaction. Main B069.96 unchanged.
-- **Next/stop:** one continuation/cold-load/contact session may join a future batch. Exact injection requires a separately scoped technical continuation; Culture HOLD, Research-network redesign and Balance unchanged.
+**B238 local complete:** [accepted modifiers / Industry closeout and combined test](Validation/Results/Specialization_B238_Crew_Modifier_Local.md).
+- **Local:** D0053 permits native Crew amplification; pre-debit hold removed, base/actual presentation separated.276 targeted checks pass; B237260/paused continuity retained.
+- **Pending:** combine B237 continuation/cold-load with restored construction and deferred protection. Prior B233–B236 scoped acceptance retained; no blanket native PASS.
+- **Source/live:** source B238.265; live B237.264 `fccac0a`, receipt `B237.264-fccac0a-playtest.json`,237/237 last verified. Main B069.96 unchanged; W0003 deployment awaits clean pushed source and game-exit gate.
+- **Next/stop:** one combined native session. District-body purchase explicitly user-deferred/nonblocking; future amplified-strength balance, conditional Faith/speed and Commerce integration remain named. Culture HOLD unchanged.
+
+## S0634 — B238 accepted modifier implementation and Industry closeout
+
+The user accepts applicable Production amplification and defers District-body purchase as nonblocking for v0.1. D0053 current sources and A0168 contracts reflect this; frozen D0052/evidence stay unchanged. B238 restores the one-call guarded Crew operation, separates base/actual reporting and retains B237 continuity.276 targeted checks pass (20 collector cases rerun with required local-temp access). Current pending Crew gates share one session; no extra balance or rare District purchase test, no new timer, permanent model, GC or other-profession work. Deployment/native evidence remain separate.
 
 ## S0633 — B237 partial delivery verified deployment
 

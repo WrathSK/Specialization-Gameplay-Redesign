@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0052
+Latest Accepted Design Revision: D0053
 Document State: ACCEPTED
+
+## Accepted D0053 — 2026-10-18
+
+用户暂行接受：**施工队的基础施工力可以受到适用的原生Production加成，不再要求隔离巨构工程学、奇观政策等倍率，不再阻碍开发。** 锁定的是基础施工力；原生实际进度不必等于该基础值。本次不确定新的叠加公式、不调数值。一级260、其它档位与组建成本、开工锁价、目标、来源／容量／生命周期及余量不结转规则不变。
+
+综合倍率下的投入／产出强度作为未来需要实测的非阻塞平衡点；**未来平衡待办不进入游戏内UI**。界面只说明基础施工力可受适用加成，不再承诺固定最终进度。用户另明确：区域本体的模板购买折扣难以遇到，v0.1不以其实现／验收为门禁；保留Design规则，技术状态在Status记录，不扩大本次实现。
+
+[Industry D0053](Content/Industry_D0053.json)、[工业阅读版](Industry.md)与当前Spec同步；旧Industry D0052、[D0052 Spec](Revisions/Specialization_Design_Spec_D0052.md)及B236/B237原始结果保持原样。Design接受不改写以前的实机结果或宣称新包通过。
+
+Accepted Spec SHA256: `d5bdaab7e47155a66b7124cb145144aa25dc9f2233cbeca0fe66c98fd30c95f3`
+Industry D0053 SHA256: `7acc70dec753de348653c6ccfa918fb9596070f38dd3f5ff5f8e9e5b70eeac77`
+Frozen D0052 Spec SHA256: `fee5f82512a7f37c6bf0d5b86173bcac8bf41bf63203bfe3e0bc1e8092f7602c`
 
 ## Accepted D0052 — 2026-10-18
 

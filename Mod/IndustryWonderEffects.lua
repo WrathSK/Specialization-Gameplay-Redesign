@@ -89,7 +89,7 @@ function SPCIndustryWonderEffects.Start(P,shared)
  function d.Describe(pid,c)
   local k=key(pid,c:GetID());local r=d.records[k];local reason=d.errors[k] or d.error
   return '巨构工程学：'..(reason and '等待 '..reason or r and r.active==4 and '本城自行生产旧时代奇观：时代差 1 / 2 / 3+ → +10% / +20% / +30%' or '未生效（需要工业 ACTIVE IV）')
-   ..'\n按本文明时代与奇观自身时代比较；不作用于施工队固定注入。'
+   ..'\n按本文明时代与奇观自身时代比较；适用时也可加成施工队投入的基础施工力。'
  end
  local function hook(n,f)local e=P.Field(Events,n);if e and e.Add then e.Add(f)end end
  hook('CityRemovedFromMap',function(pid)mark(pid)end)

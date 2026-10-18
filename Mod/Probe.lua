@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-237.264"
+P.VERSION = "P0-B-238.265"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -144,7 +144,7 @@ function P.Family(districtType)
   end
 end
 
--- Pure test oracle; does not inject anything into the game.
+-- Base-input oracle only; no injection or prediction of native modifiers/overflow.
 function P.CrewPreview(charge, cost, progress, kind)
   if kind~="DISTRICT" and kind~="BUILDING" and kind~="WONDER" then return nil,"INVALID_TARGET" end
   local values={charge,cost,progress}
@@ -260,7 +260,7 @@ function P.Snapshot(context, playerID, reason, cityID)
           local progress=read(key.." TARGET_PROGRESS",queue,"Get"..stem.."Progress",row.Index)
           for _,spec in ipairs(P.Specs) do
             local preview,status=P.CrewPreview(spec.charge,cost,progress,kind)
-            log(key.." CREW_DRY_RUN",{kind=kind,spec=spec,result=preview,error=status,status="USER_GAME_TEST_REQUIRED_NO_INJECTION"})
+            log(key.." CREW_DRY_RUN",{kind=kind,spec=spec,result=preview,error=status,status="BASE_INPUT_ONLY_NO_NATIVE_PREDICTION"})
           end
         else log(key.." CREW_TARGET","INVALID_OR_UNRESOLVED_NO_INJECTION") end
       end

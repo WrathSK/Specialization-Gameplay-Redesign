@@ -38,7 +38,7 @@
 ## 收益应用与精度
 
 - [商业模块准备](Commerce_Preparation.md)：O商路只读、P商业化、Q资本、R发展、S信誉、T重组；区分当前D0045合同、旧writer和窄未决项。
-- [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；纠正每模板holder、N/E/L、III/IV成本与固定注入。两份仅调查/计划，不派发实施、不替代B165待验，不加入日常全量context。
+- [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；记录每模板holder、N/E/L、III/IV成本及D0053允许原生倍率的基础施工。工业当前落地与合并验收见其B238收尾段；商业仍按自己的计划状态。此导航不派发实施，不加入日常全量context。
 
 - [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。现行Culture D0049：L2自动能力已验，L3百分比自动路径本地完成、原生待验；M/N/U2仍逐批审核/授权，不加入日常全量context。
 - [人文考察团UI计划](P0_N_Expedition_UI.md)：训练、独立管理、目标／任务、失效后重挂靠、城市见闻及Network呈现；仅提案，借UI不等于复用Spy引擎。

@@ -45,7 +45,7 @@ local function precision()
   local d=(ExposedMembers.SPC_P0 or {}).CrewProjects
   local view=d and d.views[pid..':'..city:GetID()]
   local ratio=view and view.ratio
-  local out={'施工队精度（只读） | 城市：'..Locale.Lookup(city:GetName()),'游戏速度系数：'..n(multiplier)..'%；新开工倍率：'..n(ratio or '待确认／未达到工业三级'),'档位：锁定施工力 / 新开工理论成本 / 引擎成本 / 该档项目进度'}
+  local out={'施工队精度（只读） | 城市：'..Locale.Lookup(city:GetName()),'游戏速度系数：'..n(multiplier)..'%；新开工倍率：'..n(ratio or '待确认／未达到工业三级'),'档位：锁定基础施工力 / 新开工理论成本 / 引擎成本 / 该档项目进度'}
   local q=city:GetBuildQueue()
   if ratio then for i in ipairs(SPCCrewModel.CAPACITY)do
    local project=GameInfo.Projects[SPCCrewModel.Project(i,ratio,multiplier)];assert(project,'施工队项目定义缺失')
@@ -61,9 +61,9 @@ local function precision()
    out[#out+1]='最近一次确认（回合'..n(sample.turn)..'，城市ID '..n(sample.cityID)..'）：'
    if sample.error then out[#out+1]='施工前读取未知：'..sample.error end
    out[#out+1]='原进度='..n(sample.before)..'；施工后='..n(sample.after)..'；原成本='..n(sample.cost)
-   out[#out+1]='预期增加='..n(sample.expected)..'；实际增加='..n(sample.observed)..'；差值='..n(sample.difference)
+   out[#out+1]='基础投入='..n(sample.baseInput)..'；同一目标实际增加='..n(sample.observed)
    out[#out+1]='单位仍存在='..tostring(sample.unitPresent)..'；'..tostring(sample.note or sample.afterReadError or '同一目标可比较')
-   if sample.difference then out[#out+1]=math.abs(sample.difference)<0.000001 and '本次读取数值相符；仍请核对实际游戏结果。' or '本次存在数值差异，请回传此报告和日志。' end
+   out[#out+1]='基础投入可受适用生产力加成；实际增加不要求等于基础投入。'
   else out[#out+1]='尚无本次加载后的施工确认记录。' end
   return table.concat(out,'[NEWLINE]')
  end)

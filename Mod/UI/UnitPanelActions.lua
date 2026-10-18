@@ -36,15 +36,13 @@ local function readView(u)
 end
 local function number(n) return tostring(n):gsub('%.0+$','') end
 local function crewTips(v)
- if v and v.reason and v.reason:find('CREW_FIXED_INJECTION_UNAVAILABLE',1,true)then return Locale.Lookup('LOC_SPC_CREW_INJECTION_HELD')end
  if v and v.prepared then
   local name=Locale.Lookup(v.targetName)
   return '施工预览[NEWLINE]当前目标：'..name..'[NEWLINE]当前进度：'..number(v.progress)..' / '..number(v.cost)
-   ..'[NEWLINE]本次投入：'..number(v.amount)..'点生产力[NEWLINE]施工后：'..number(v.after)..' / '..number(v.cost)
-   ..'[NEWLINE]浪费：'..number(v.waste)..'点生产力',
-   '确认施工[NEWLINE]消耗此施工队，在当前建造项目上投入'..number(v.amount)..'点生产力。[NEWLINE]此操作无法撤销。'
+   ..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_PREVIEW',v.amount,v.baseInput,v.baseUnused),
+   '确认施工[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_CONFIRM',v.baseInput)
  end
- if v and v.legal then return '施工[NEWLINE]准备在当前建造项目上投入'..number(v.amount)..'点生产力。[NEWLINE]点击后可预览施工结果并进行确认。' end
+ if v and v.legal then return '施工[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_READY',v.amount) end
  return '施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可进行施工。'
 end
 local function investmentTips(v)

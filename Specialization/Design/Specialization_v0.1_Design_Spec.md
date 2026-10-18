@@ -2,18 +2,20 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0052
+Design Revision: D0053
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-10-18
-Acceptance Evidence: 用户批准B237，并明确一级施工队基础施工力由250改为260，相关组建成本同步；其它Design规则、名字与成熟度不变。实现和原生验证范围分别由Status记录。
-Previous Accepted Revision: [D0051冻结原文](Revisions/Specialization_Design_Spec_D0051.md)
-Latest Accepted Design Revision: D0052
+Acceptance Evidence: 用户暂行接受施工队基础施工力受到适用的原生Production加成；不再要求倍率隔离，不阻碍v0.1开发。未来实测平衡在文档中保留，不写入游戏内UI。基础数值、成本、来源／容量、目标及不溢出规则不变。
+Previous Accepted Revision: [D0052冻结原文](Revisions/Specialization_Design_Spec_D0052.md)
+Latest Accepted Design Revision: D0053
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001（D0052）** 一级施工队标准速度基础施工力为260；150%／140%／130%／120%成本对应390／364／338／312。II–V档420／750／1000／1360、开工锁价、固定注入不受普通Production加成及其它规则不变。[接受记录](Design_ChangeLog.md#accepted-d0052--2026-10-18)。
+**SCOPE-001（D0053）** 施工队投入锁定基础施工力，可接受适用的原生Production加成（含巨构工程学／奇观政策等），实际进度不要求等于基础投入。未来通过实测检查综合倍率下的强度，作为非阻塞平衡点；不在游戏内UI加入未来平衡说明。不改变基础施工力、锁价、目标、来源／容量、一次消费及余量不结转规则。[接受记录](Design_ChangeLog.md#accepted-d0053--2026-10-18)。
+
+**SCOPE-001（D0052，数值保留）** 一级施工队标准速度基础施工力为260；150%／140%／130%／120%成本对应390／364／338／312。II–V档420／750／1000／1360、开工锁价及其它规则保留；倍率隔离由D0053取代。[接受记录](Design_ChangeLog.md#accepted-d0052--2026-10-18)。
 
 **SCOPE-001（D0051）** v0.1艺文采撷按目标城市当前至少1件合格文化巨作维持任务，不锁定具体巨作／槽位／建筑；移动、出售或替换原作品但仍有其它合格作品时继续，可靠确认全城无合格作品时取消，UNKNOWN不当作空。只取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼仍锁定具体奇观，其它规则与D0050商业设计保持。接受记录见[ChangeLog](Design_ChangeLog.md#accepted-d0051--2026-10-17)。
 
@@ -183,9 +185,9 @@ D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Cult
 
 ## 7. Industry / Industrial Zone — IND
 
-**D0045: DESIGN_FROZEN — 在D0044职责／首测值上追加每模板来源绑定、正式Gold/Faith、研习中断、专业单位保护与最终Floor；模板可靠性及历史合同保留，implementation / balance validation pending.**
+**D0053: DESIGN_FROZEN — D0052一级260及成本保留，施工接受适用Production加成并留待未来实测平衡； 在D0044职责／首测值上追加每模板来源绑定、正式Gold/Faith、研习中断、专业单位保护与最终Floor；模板可靠性及历史合同保留，implementation / balance validation pending.**
 
-唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0052.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
+唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0053.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -200,9 +202,9 @@ D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Cult
 
 **IND-HISTORY-001 — ACCEPTED D0040** 模板与工程实践的本城真实Wonder completion属于A城市历史，随城、与实际完成Owner无关；当前利用依Industry资格，工程实践需IV，Identity退出保留／暂停。本城实践可并入当前可证明完成事实，不猜历史。全国工程传统属于B实际完成文明历史，城市转移不转移信用；同一完成分别记录城市经验和文明信用。D0044工程实践仍IV门槛，N只降低施工队成本，不再强化标准化；全国E供本城L研习，不再解锁高档队。历史技术保护保留；Teams来源／容量生命周期见IND-TEAM-LIFECYCLE-001。
 
-IND-REVIEW-01/02保留已接受暂行复审状态；03“模板与全局最高效率完全分离”由D0045正式取代。机构／能力候选名、五档队名和研习项目名保持成熟度。D0044既定首测值、III150%／IV按N折减、高档队按ACTIVE开放与固定注入不重复修改，不再把已给值标成公式TBD；实际强度待Balance Validation。
+IND-REVIEW-01/02保留已接受暂行复审状态；03“模板与全局最高效率完全分离”由D0045正式取代。机构／能力候选名、五档队名和研习项目名保持成熟度。D0044既定首测值、III150%／IV按N折减、高档队按ACTIVE开放保持，施工倍率按D0053新决定，不再把已给值标成公式TBD；实际强度待Balance Validation。
 
-Research及其它未列条款不变；本轮Culture首测值和Commerce专业单位保护增量见其当前Content；共同Network topology保留。旧Industry条文在D0026冻结原文，不能与新能力叠加。其它段落若仍描述旧Industry向外直接输出，以本节新content取代该Industry含义；不据此自行重做Commerce收益。当前Mod尚未实现此新设计。
+Research及其它未列条款不变；本轮Culture首测值和Commerce专业单位保护增量见其当前Content；共同Network topology保留。旧Industry条文在D0026冻结原文，不能与新能力叠加。其它段落若仍描述旧Industry向外直接输出，以本节新content取代该Industry含义；不据此自行重做Commerce收益。当前实现和实机证据以Status为准，本节不维护另一份进度表。
 
 D0031有限库存问题已关闭：每具备工程动员资格的Industry来源城容量2，各档已完成队伍占1，四级不加；来源绑定、消耗/合法移除释放名额，离开Industry后已有队伍保留但不能补充。D0042已关闭来源易主／夺回计槽；单位本体不可捕获／转换Owner、保护回归原生接口待查，原Owner完全消失仍未定义。完整规则以content为准。
 
@@ -212,7 +214,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **IND-PRACTICE-COST-002 — ACCEPTED clarification 2026-10-17** 开工时锁定本次施工队组建成本。训练中本城N或ACTIVE改变不重算已开工队伍的成本；下一队按新开工时的资格与价格计算。不改变施工力、既定倍率、来源／容量或其它生命周期合同。
 
-**IND-MACRO-INJECTION-001 — ACCEPTED D0044** 工业IV自行生产旧时代奇观：文明当前时代与奇观自身时代差1／2／3+对应+10／20／30%封顶，当前时代无加成。施工队严格只注入min(锁定基础施工力,目标剩余Production)，不接受巨构工程、奇观政策、城市modifier、宜居度或其它未授权生产倍率；余量浪费、不溢出或保存。原有劳动力／目标／容量／来源生命周期不变。
+**IND-MACRO-INJECTION-001 — ACCEPTED D0053** 工业IV自行生产旧时代奇观：文明当前时代与奇观自身时代差1／2／3+对应+10／20／30%封顶，当前时代无加成。施工队基础投入为min(锁定基础施工力,目标剩余Production)，允许适用的原生Production加成（包括巨构工程学与奇观政策等）；不要求最终进度严格等于基础投入，不预先断言各倍率的叠加公式。余量浪费、不溢出或保存。原有劳动力／目标／容量／来源生命周期不变。该放大行为暂行接受，未来实测其平衡强度，不阻碍开发；平衡待办不进入游戏内UI。
 
 **IND-TEAM-LIFECYCLE-001 — ACCEPTED D0042** 完成施工队为独立原Owner资产，来源总督／ACTIVE／Industry Identity／Owner变化不删除或停止使用；永久训练来源只承担provenance与容量。合法来源当前Owner的存活本城出身队伍占2槽，消费／合法移除释放，存活撤退不释放；易主后旧Owner队伍不占新Owner容量，原Owner夺回重新计入其旧存活队伍。直接单位捕获／Owner转换明确禁止，敌方相关交互用保护撤退／安全回归；原生接口为Technical，非归属TBD。
 
@@ -563,7 +565,7 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 ### 当前未决与技术适配
 
 - Commerce D0045保留D0039公式／首版值、D0040信誉／合同及D0042配置／来源，只同步单位保护；精确design_detail_required、城市消失／目标非法、hidden protection跨Owner仍未定，不重开已定Owner政策。
-- Industry D0045保留D0044首测职责，关闭独立全局效率／Faith fallback／研习中断／单位捕获Owner Gameplay TBD。原Owner完全消失、城市彻底毁灭的未覆盖处置与候选命名保留；逐模板价格承载、完整1T、固定注入、普通Production modifier、保护回归、最终Floor／速度／保存为技术验证。Culture Hybrid D方向已确认，实机状态见Status。
+- Industry D0045保留D0044首测职责，关闭独立全局效率／Faith fallback／研习中断／单位捕获Owner Gameplay TBD。原Owner完全消失、城市彻底毁灭的未覆盖处置与候选命名保留；逐模板价格承载、完整1T、可受加成的基础施工、不溢出及普通Production modifier、保护回归、最终Floor／速度／保存为技术验证。Culture Hybrid D方向已确认，实机状态见Status。
 
 - D0040取代CUL-REVIEW-01/03原Owner见闻键／不继承；见闻与Dialogue均城市历史、独立资格与有效Owner过滤。CUL-REVIEW-02外交／城邦及04独立完整集合并集保留。City-State inclusion仍Future Candidate。
 - Research Network：NETWORK_REDESIGN_REQUIRED，现有Research规则保留；Culture已替代旧Eureka。

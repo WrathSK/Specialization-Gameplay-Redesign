@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0167
+# Specialization v0.1 Architecture — A0168
 
 Document Owner: Codex
-Architecture Revision: A0167
+Architecture Revision: A0168
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0167保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0168保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -69,7 +69,7 @@ Typed District knowledge is a separate component of the existing per-city templa
 
 ### Crew formation and source assets (B236)
 
-[Crew contract](v2/Industry_Preparation.md#b236-implementation-and-validation) keeps irreversible formation separate from presentation: city-owned admission (two active reservations plus bounded paused progress records), player-owned completion proof, returned-unit immutable source/locked capacity, and a fresh native living/queue inventory. Native completion is never inferred from a unit appearing at a city. Ambiguous creation/binding is held across load without replay; confirmed loss cancels pending source admission but does not transfer completed units. [B237](v2/Industry_Preparation.md#b237-continuation-and-fixed-injection-boundary) preserves native paused progress and locked price; fixed Wonder injection is held before debit pending an exact native primitive. D0052 changes tier-I values only. Ordinary native events and existing publication drive updates; no timer/frame poll or new Store framework. The existing observer must preserve the typed investment commit so Study/Wonder/Crew consumers receive same-turn changes. Industry institution rows consume current presentation facts only.
+[Crew contract](v2/Industry_Preparation.md#b236-implementation-and-validation) keeps irreversible formation separate from presentation: city-owned admission (two active reservations plus bounded paused progress records), player-owned completion proof, returned-unit immutable source/locked capacity, and a fresh native living/queue inventory. Native completion is never inferred from a unit appearing at a city. Ambiguous creation/binding is held across load without replay; confirmed loss cancels pending source admission but does not transfer completed units. [B237](v2/Industry_Preparation.md#b237-continuation-and-fixed-injection-boundary) preserves native paused progress and locked price. [B238](v2/Industry_Preparation.md#b238-modifier-acceptance-and-industry-closeout) restores the guarded one-use Wonder grant under D0053 acceptance of native Production modifiers. Base input and actual same-target delta are distinct; completion cannot be measured by subtracting different targets. D0052 tier-I260/costs remain; no new permanent schema. Amplified strength is a future balance point, not a player-UI disclaimer or blocker. Ordinary native events and existing publication drive updates; no timer/frame poll or new Store framework. The existing observer must preserve the typed investment commit so Study/Wonder/Crew consumers receive same-turn changes. Industry institution rows consume current presentation facts only.
 
 ### Dialogue project and saved history (B175)
 

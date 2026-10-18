@@ -7,12 +7,16 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 
 [Research D0040](Research_D0040.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
-[Industry D0052](Industry_D0052.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
-当前施工队成本取样时点另按[2026-10-17接受澄清](../Design_ChangeLog.md#accepted-industry-formation-price-clarification--2026-10-17)：开工锁定本次成本，后续新队使用新价；D0052另按用户决定将一级施工力改为260，相关标准速度成本改为390／364／338／312；II–V及其它规则不变。
+[Industry D0053](Industry_D0053.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
+当前施工队成本取样时点另按[2026-10-17接受澄清](../Design_ChangeLog.md#accepted-industry-formation-price-clarification--2026-10-17)：开工锁定本次成本，后续新队使用新价；D0052另按用户决定将一级施工力改为260，相关标准速度成本改为390／364／338／312；II–V及其它基础规则不变；D0053另接受施工投入的适用Production加成，未来实测平衡、不阻碍开发。
 
-## D0052 — 一级施工力修正
+## D0053 — 施工接受适用生产力加成
 
-[Industry D0052](Industry_D0052.json)是当前工业正式内容；仅修正一级260及其派生成本。[接受记录](../Design_ChangeLog.md#accepted-d0052--2026-10-18)。Industry D0045和既有冻结原件保留追溯。当前固定注入的技术阻塞见Status，不改变已接受规则。
+[Industry D0053](Industry_D0053.json)是当前工业正式内容。施工队锁定基础施工力，允许适用的原生Production加成；未来实测综合强度，不在游戏内UI写平衡待办。数值、成本、来源、容量、目标和不溢出规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0053--2026-10-18)。
+
+## D0052 — 一级施工力修正（历史接受）
+
+[Industry D0052](Industry_D0052.json)记录一级260及其派生成本的接受；现行规则见D0053。[接受记录](../Design_ChangeLog.md#accepted-d0052--2026-10-18)。Industry D0045和既有冻结原件保留追溯。当时的固定注入技术阻塞保留为历史；D0053已接受倍率，不再以隔离它作为开发门禁。
 
 ## D0051 — v0.1艺文采撷按城市馆藏维持
 

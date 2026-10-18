@@ -2,15 +2,15 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Primary is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0052",
+    "design": "D0053",
     "research": "D0040",
-    "industry": "D0052",
+    "industry": "D0053",
     "culture": "D0051",
     "commerce": "D0050",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0167",
-    "status": "S0633",
+    "architecture": "A0168",
+    "status": "S0634",
     "runtime": "B237.264 / modinfo264",
     "military": "D0037",
     "harbor": "D0037",
@@ -19,7 +19,7 @@
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
     "research": "Specialization/Design/Content/Research_D0040.json",
-    "industry": "Specialization/Design/Content/Industry_D0052.json",
+    "industry": "Specialization/Design/Content/Industry_D0053.json",
     "culture": "Specialization/Design/Content/Culture_D0051.json",
     "commerce": "Specialization/Design/Content/Commerce_D0050.json",
     "shared": "Specialization/Design/Content/Shared_D0045.json",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Industry_Preparation.md",
   "runtime_commit": "fccac0a23e6e9e44370161b089f1ee4fb60eda0a",
-  "current_batch": "B237_PARTIAL_DEPLOYED_FIXED_INJECTION_BLOCKED",
-  "next_batch": "One minimal continuation/cold-load/contact session, optionally merged later. Exact fixed injection remains BLOCKED; next technical continuation/Gameplay alternative requires a scoped plan and approval. Stop at this checkpoint.",
+  "current_batch": "B238_LOCAL_COMPLETE_COMBINED_NATIVE_PENDING",
+  "next_batch": "One combined B237/B238 Crew continuation, cold-load, restored use and available protection session. District-body purchase is user-deferred/nonblocking; future amplified-output balance is not a current gate. No next-profession implementation authorization.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B237.264/modinfo264 DEVELOP_ACTIVE; source fccac0a23e6e9e44370161b089f1ee4fb60eda0a; receipt B237.264-fccac0a-playtest.json;237/237 MATCH, digest 8d5cf13507220b9af25d1493c01a67755f3f6e2c23187445b29c9fe4ae7ab1cd. Automatic game-exit checks passed before both guarded switches; B236/stable recovery retained, no pending transaction. Fixed Crew injection remains held before debit; native continuation pending.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "B237 approved; tier-I260 and paused native progress repair locally complete with223 targeted tests. Fixed injection rejected before debit under the approved primitive stop condition; native pending.",
+  "context_review_status": "B238 approved by D0053 modifier acceptance within the already authorized Crew repair.276 targeted checks pass; native combined acceptance pending. Old evidence unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md"
 }

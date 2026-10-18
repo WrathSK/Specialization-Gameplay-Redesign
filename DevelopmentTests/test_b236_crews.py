@@ -203,26 +203,33 @@ function C.use(c,u,token)
 end
 """
 class Consumption(unittest.TestCase):
- # B236's linear AddProgress fixture did not model the native multiplier.
- # B237 deliberately holds this path before any debit; it is not fixed-injection PASS.
+ # D0053 explicitly accepts native amplification; fixed-base isolation is no longer the oracle.
  def fixture(self):
   l=crew_runtime();l.execute((M/'UnitActions.lua').read_text());l.execute(ACTION);return l
- def test_known_primitive_limit_rejects_without_writes_or_debit(self):
+ def test_accepted_native_multiplier_keeps_base_request_and_one_use(self):
   for multiplier in (1,1.54,2):
    with self.subTest(multiplier=multiplier):
     l=self.fixture();l.execute("""
      local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);local q=c:GetBuildQueue()
      q.AddProgress=function(_,n)q.adds[#q.adds+1]=n;q.progress=q.progress+math.floor(n)*%s end
-     local props=T.encode(C.props);local binding=T.encode(crew.Unit(0,C.units[20001]))
-     local out=shared.UnitActions.Run(0,{Action='UNIT_ACTION_PREPARE',UnitID=20001,Token='hold'})
-     assert(out:find('CREW_FIXED_INJECTION_UNAVAILABLE',1,true),out)
-     local v=shared.UnitActions.ReadView(0,20001,'view');assert(not v.legal and not v.prepared)
+     local v=shared.UnitActions.ReadView(0,20001,'view');assert(v.legal and v.amount==260 and v.baseInput==260 and v.baseUnused==0 and v.after==nil)
+     local out=C.use(c,C.units[20001],'once');assert(out:find('CREW CONSUMED',1,true),out)
+     assert(#q.adds==1 and q.adds[1]==260 and math.abs(q.progress-(10+260*%s))<0.0001)
      for i=1,3 do shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,Token='retry'})end
-     assert(#q.adds==0 and q.progress==10 and C.count(c)==1)
-     assert(T.encode(C.props)==props and T.encode(crew.Unit(0,C.units[20001]))==binding)
-    """%multiplier)
+     assert(#q.adds==1 and C.count(c)==0)
+    """%(multiplier,multiplier))
  def test_normal_building_rejected_before_debit(self):
   l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);c:GetBuildQueue().target='BUILDING_A';local out=shared.UnitActions.Run(0,{Action='UNIT_ACTION_PREPARE',UnitID=20001,Token='x'});assert(out:find('REJECTED') and C.count(c)==1 and #c:GetBuildQueue().adds==0)")
+ def test_stale_target_and_reused_native_id_rejected(self):
+  for change in ("c:GetBuildQueue().progress=11", "local u=C.units[20001];local b=crew.Unit(0,u);b.grant='DIFFERENT';u:SetProperty(SPCCrewModel.UNIT_PROPERTY,b)"):
+   with self.subTest(change=change):
+    l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);shared.UnitActions.Run(0,{Action='UNIT_ACTION_PREPARE',UnitID=20001,Token='x'});"+change+";local out=shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,PlanToken='x'});assert(out:find('REJECTED') and C.count(c)==1 and #c:GetBuildQueue().adds==0)")
+ def test_unconfirmed_use_receipt_or_debit_never_injects(self):
+  for change in ("local set=Players[0].SetProperty;Players[0].SetProperty=function(o,k,v)if k~='SPC_CREW_ACTION_RECEIPTS_V1'then set(o,k,v)end end", "local get=Players[0].GetUnits;Players[0].GetUnits=function()local u=get();u.Destroy=function()end;return u end"):
+   with self.subTest(change=change):
+    l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);"+change+";local out=C.use(c,C.units[20001],'x');assert(out:find('HELD') and #c:GetBuildQueue().adds==0);shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,PlanToken='x'});assert(#c:GetBuildQueue().adds==0)")
+ def test_injection_throw_does_not_retry(self):
+  l=self.fixture();l.execute("local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c);local q=c:GetBuildQueue();q.AddProgress=function(_,n)q.adds[#q.adds+1]=n;error('native failure')end;assert(C.use(c,C.units[20001],'x'):find('HELD'));shared.UnitActions.Run(0,{Action='UNIT_ACTION_CONFIRM',UnitID=20001,PlanToken='x'});assert(#q.adds==1 and not C.units[20001])")
 
 class ActualTargets(unittest.TestCase):
  def test_only_current_owned_wonder_plot_is_target_no_district_or_building(self):

@@ -1,13 +1,13 @@
 # 工业后续模块：调查与实施准备
 
-State: B237_CONTINUATION_LOCAL_COMPLETE / FIXED_INJECTION_BLOCKED / NATIVE_CONTINUATION_PENDING.
-Review baseline: B236.263 / develop `72dc64f`; D0052 changes tier-I260 and its dependent prices only. B236 native results accepted cap/release/IV-entry/new-price behavior but failed fixed injection and unfinished-price continuity. Current deployment/acceptance provenance remains in Status.
+State: B238_MODIFIER_RULE_IMPLEMENTED / B237_COMBINED_NATIVE_PENDING.
+Review baseline: B237.264 / develop `1c07056`; D0053 explicitly accepts applicable native Production modifiers on Crew base input. The prior fixed-output mismatch is retained as historical evidence, but modifier isolation is no longer a development gate. B237 unfinished-price continuity remains pending native acceptance. Current deployment/acceptance provenance remains in Status.
 
 ## 当前范围与正式来源
 
-The user accepted B233 history/template evidence and B234 steps1–3: first-turn Industry I support repair, III Standardization baseline, exact old Industry effect retirement, and isolation of the old Research network effect until after v0.1. The common network and other profession abilities remain. B235 / IND-3 has scoped native acceptance; its IV-entry delay is repaired in the authorized B236 / IND-4 batch, with same-turn IV entry now user-accepted; B237 repairs paused-project continuity and holds fixed injection before debit. Expedition, remaining Meaning and era presentation stay nonblocking HOLD; Balance is outside this task. [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns current source/live/authorization and native results.
+The user accepted B233 history/template evidence and B234 steps1–3: first-turn Industry I support repair, III Standardization baseline, exact old Industry effect retirement, and isolation of the old Research network effect until after v0.1. The common network and other profession abilities remain. B235 / IND-3 has scoped native acceptance; its IV-entry delay is repaired in the authorized B236 / IND-4 batch, with same-turn IV entry now user-accepted; B237 repairs paused-project continuity; B238 removes its pre-debit hold under the accepted D0053 rule. Expedition, remaining Meaning and era presentation stay nonblocking HOLD; Amplified Crew strength is a nonblocking future balance point, recorded here rather than in player UI. [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) owns current source/live/authorization and native results.
 
-[Industry Content](../../Design/Content/Industry_D0052.json)与[Spec工业节](../../Design/Specialization_v0.1_Design_Spec.md#7-industry--industrial-zone--ind)规定玩法；[Shared具名生命周期](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE)规定A城市历史/B文明信用/G专业单位等分别归属。人类设计见[工业阅读版](../../Design/Industry.md)。D0045已给首测值及中断、Gold/Faith、每模板实际holder规则，不能重开成公式TBD。
+[Industry Content](../../Design/Content/Industry_D0053.json)与[Spec工业节](../../Design/Specialization_v0.1_Design_Spec.md#7-industry--industrial-zone--ind)规定玩法；[Shared具名生命周期](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE)规定A城市历史/B文明信用/G专业单位等分别归属。人类设计见[工业阅读版](../../Design/Industry.md)。D0045已给首测值及中断、Gold/Faith、每模板实际holder规则，不能重开成公式TBD。
 
 ## 当前落地矩阵与直接依赖
 
@@ -16,13 +16,13 @@ The user accepted B233 history/template evidence and B234 steps1–3: first-turn
 | 基础支持/II住房/GPP | B234 event-driven pending readiness repair; tested same-turn support accepted | [IndustrySupport](../../../Mod/IndustrySupport.lua) retains the BASE producer and drains only affected pending cities; no general support rewrite |
 | 建筑模板账本 | initialize/restore/reconcile/已初始化空/损坏保护已接入 | [Standardization](../../../Mod/Standardization.lua)、[Store](../../../Mod/CityProgressionStore.lua)；[B142](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)只证明所测记录/重启 |
 | 区域模板 | B233 typed knowledge implemented; tested completion/restart accepted | Separate District receipts and unique-base mapping; B234 uses qualified current rows for construction |
-| 标准化效果 | B234 III native accepted; B235 IV projection/Gold quotes and cold restore accepted in tested scope | [StandardizationEffects](../../../Mod/StandardizationEffects.lua): actual ACTIVE>=III holders, per-template union/MAX; III10%/0%, IV10+2L%/2L%; positive District purchase remains blocked; old Discount retired |
-| 本城标准化/合法币种 | Self works independently of network availability; B235 adds target-specific building cost effect | Native Gold quotes reviewed; no purchase right added. Faith remains untested; target-specific District cost effect unavailable |
+| 标准化效果 | B234 III native accepted; B235 IV projection/Gold quotes and cold restore accepted in tested scope | [StandardizationEffects](../../../Mod/StandardizationEffects.lua): actual ACTIVE>=III holders, per-template union/MAX; III10%/0%, IV10+2L%/2L%; District-body purchase discounts remain unimplemented and user-deferred, nonblocking for v0.1; old Discount retired |
+| 本城标准化/合法币种 | Self works independently of network availability; B235 adds target-specific building cost effect | Native Gold quotes reviewed; no purchase right added. Faith remains untested where unavailable; per-template District-body purchase is unimplemented and user-deferred for v0.1 |
 | N/E/L与三项工程能力 | B233 N/E native accepted; B235 L/full-turn completion and cold restore observed; tested ordinary-Wonder acceleration user-accepted | N retains reliable city history and reconciles present Wonders at lawful Industry entry; E uses supported completing owner and Wonder own era. Foreign completions are ignored |
-| 队伍 | B236 paid III/IV formation, source binding and2slots implemented; B237 tier-I260 and paused continuity local-tested | [CrewProjects](../../../Mod/CrewProjects.lua) retains native old-price progress; [UnitActions](../../../Mod/UnitActions.lua) holds Wonder use before debit until exact fixed injection is supported. Cold-load/contact and native continuation remain pending |
+| 队伍 | B236 paid III/IV formation, source binding and2slots implemented; B237 tier-I260 and paused continuity local-tested | [CrewProjects](../../../Mod/CrewProjects.lua) retains native old-price progress; [UnitActions](../../../Mod/UnitActions.lua) restores one-use Wonder construction with accepted native modifiers. Cold-load/contact and native continuation remain pending |
 | 旧工业IV生产网络 | B234 exact retirement implemented | [CopyYields](../../../Mod/CopyYields.lua) keeps definitions/withdrawal only in normal runtime; its UI producer is no longer started |
 
-Historical context: [B164盘点](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md#工业账本已补齐最新效果合同尚未适配)：self来源、typed District、Gold/Faith资格、原生项目直接grant和`CanCapture=0` were real gaps at that checkpoint. B233/B234 address typed knowledge/self/baseline effects; B235 adds tested Gold quotes and L/Macro. District purchase and Crew gaps remain. Use the matrix above for current scope.
+Historical context: [B164盘点](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md#工业账本已补齐最新效果合同尚未适配)：self来源、typed District、Gold/Faith资格、原生项目直接grant和`CanCapture=0` were real gaps at that checkpoint. B233/B234 address typed knowledge/self/baseline effects; B235 adds tested Gold quotes and L/Macro. District-body purchase is now user-deferred; remaining Crew acceptance is listed in the current closeout section below. Use the matrix above for current scope.
 
 [NetworkBridge](../../../Mod/NetworkBridge.lua)按Potential建立共同topology，工业在自己consumer过滤当前ACTIVE>=III；不要把全桥改为III。C1/D1折扣样本/ACK/dirty、C2引用退出及[公共更新合同](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)可继承，不重新发明事件总线/独立事实collector。
 
@@ -44,7 +44,7 @@ Proposed grouping for combined native sessions, retaining separate local checks 
 | **IND-1 / B233: G + H1 facts — tested gate accepted** | Event-driven N/E history, typed District template knowledge, reliable persistence and concise read-only reporting | No new production/purchase effect, no L study, no Crew change or legacy-writer retirement. See the exact first scope below. |
 | **IND-2 / B234: tested gate accepted** | Narrow Industry I readiness repair plus self + network actual template holders; construction +10%, purchase 0%; establish H2/H3 plans and retire exact old Discount/Industry Copy writers together | User steps1–3 accepted; trace corroborates support/projection/recovery, while withdrawal and construction arithmetic rely on user observations. Common topology and Research local abilities remain; old Research network boost is isolated by the user's added decision. Do not claim IV's 2L effect before L/positive purchase gates. Future Commerce +50% remains an integration dependency, not a fake present contract. |
 | **IND-3 / B235: tested scope accepted** | Full-1T Engineering Study and city L; +2L template enhancements; Megaproject Engineering's own-production era bonus | Resolve positive per-template purchase applicability before enabling that path. If blocked, split only the affected writer; never substitute a broader discount or alter accepted rules. |
-| **IND-4 / B236: Teams and Engineering Practice** | Source binding/two slots, III/IV tier access, N-based training costs, Wonder-only fixed injection, receipt-safe consumption and protection | Revalidate native grant/binding, dynamic project cost and protection; keep source-owner and unit-owner assets distinct. Exact amount/no overflow must be demonstrated on this path. |
+| **IND-4 / B236: Teams and Engineering Practice** | Source binding/two slots, III/IV tier access, N-based training costs, Wonder-only base injection, receipt-safe consumption and protection (modifier isolation superseded by D0053) | Revalidate native grant/binding, dynamic project cost and protection; keep source-owner and unit-owner assets distinct. Base input/actual output must be distinguished; surplus disposal and protection retain their native evidence boundaries. |
 
 These are four proposed integration groups, not a promise that an unresolved native primitive needs no additional patch. Accepted formulas, rounding and lifecycle contracts below remain unchanged. Keep existing speed scaling; a suggested Standard-only simplification would need a separate user decision before Teams, not before IND-1. No balancing work is included.
 
@@ -124,7 +124,7 @@ Likely implementation closure: `IndustryHistory` read/notification, the existing
 
 - **History/transaction:** [EngineeringStudyModel](../../../Mod/EngineeringStudyModel.lua) and [EngineeringStudyProjects](../../../Mod/EngineeringStudyProjects.lua) use the existing [Store](../../../Mod/CityProgressionStore.lua), with a narrow Engineering commit-visibility fence. Reliable E gates new full-turn study; completed city L survives loss/return and may exceed E. Missing established history is not initialized from current facts. Exact completion/readback, cancellation and CALLING no-replay boundaries are in the [local result](../../Status/Validation/Results/Specialization_B235_Engineering_Local.md).
 - **Projection:** [StandardizationEffects](../../../Mod/StandardizationEffects.lua) remains the single per-template actual-holder MAX/cleanup owner; III10/0, IV10+2L/2L. [IndustryWonderEffects](../../../Mod/IndustryWonderEffects.lua) derives own-city ordinary Wonder production from current ACTIVE and civilization/Wonder eras, independent of N/E/L. [Definitions](../../../Mod/Data/EngineeringStudy.sql) add no purchase right or arbitrary L cap.
-- **Partial writer boundary:** positive building purchase uses the existing target-specific effect; native Gold quotes now match the tested discounts, while Faith remains untested where unavailable. Target-specific District purchase is **BLOCKED_TECHNICAL**: only all-District cost effects are established, so no substitute is installed. District construction enhancement is delivered. Do not claim complete IV purchase coverage.
+- **Partial writer boundary:** positive building purchase uses the existing target-specific effect; native Gold quotes now match the tested discounts, while Faith remains untested where unavailable. Target-specific District-body purchase is **UNIMPLEMENTED / USER_DEFERRED_NONBLOCKING_V0_1** (2026-10-18): only all-District cost effects are established, so no substitute is installed. District construction enhancement is delivered. Do not claim complete IV purchase coverage.
 - **Events/lifecycle:** E/L commits, exact queue and current-fact/owner/era events drive scoped work, reusing native publish/load/turn boundaries. No timer/frame polling, new foreign/world-city scan or GC change. Future REALLOCATING must explicitly cancel the unfinished round when that presently unimplemented transition is introduced. Crew injection remains unchanged; its future revised integration has a separate gate.
 - **Evidence:**188 scoped local tests PASS, inherited suites retained; [native review](../../Status/Validation/Results/Specialization_B235_Native_Review.md) confirms L0→1→2, L2 cold restore and Gold quotes, with user acceptance of the tested Wonder acceleration. Incremental12/14% construction arithmetic and cancellation were not independently isolated in this session. Same-turn IV-entry failure is retained for B236. Normal production selection is the intended entry; P0 remains read-only.
 
@@ -160,7 +160,27 @@ CrewProjects retains an admitted native project ID, locked capacity/price and po
 
 UI exposes current and retained variants separately; a paused row says“续建”and shows the locked price. Required access remains while queued/paused. New access is installed before obsolete unstarted access is removed. The writer never rewrites native progress, changes an in-flight project ID, refunds production or adds a timer.20 bounded native progress reads join the existing event-driven queue reader; no new whole-world scan. Stable DB IDs retain their old numerical suffixes; new values come from CrewModel, and completed unit capacity stays the saved asset value. Native cost must still match the saved admitted price; a mismatch is held without rewriting production. No old-build save migration is introduced.
 
-**Fixed injection remains BLOCKED.** The loaded Mac AddProgress wrapper truncates its Lua input to an integer before the ordinary native production path; an exact target-specific bypass is not established. Great Engineer production reaches the same common native path; its overflow flag is not proof of modifier isolation. No approximate normalization, repeated negative correction or third-party effect withdrawal is shipped. UnitActions rejects before reservation, receipt or debit; existing completed Crews stay intact. This safety hold is an implementation limit, not an accepted change to fixed-construction Gameplay. The result documents inspected alternatives and the remaining decision boundary.
+**Historical B237 limit, superseded for current development by D0053/B238.** Fixed injection was blocked. The loaded Mac AddProgress wrapper truncates its Lua input to an integer before the ordinary native production path; an exact target-specific bypass is not established. Great Engineer production reaches the same common native path; its overflow flag is not proof of modifier isolation. No approximate normalization, repeated negative correction or third-party effect withdrawal is shipped. UnitActions rejects before reservation, receipt or debit; existing completed Crews stay intact. This safety hold is an implementation limit, not an accepted change to fixed-construction Gameplay. The result documents inspected alternatives and the remaining decision boundary.
+
+## B238 modifier acceptance and Industry closeout
+
+D0053 accepts applicable native Production modifiers on locked Crew base input; isolation is no longer a release condition. B238 restores the existing guarded one-use `AddProgress(min(base, remaining))` call. It keeps source binding, two slots, prices, admission/PAUSED records, receipt/debit order and no-replay boundaries. No new storage, event subscription, timer or GC work. Preview shows base capacity/input/unused base, never a fabricated exact final progress. The existing bounded observer records base input and an actual delta only while the same target remains readable; completion/target changes are not subtracted across targets. Observation failures do not change the business return or the typed investment receipt.
+
+Future balance: compare effective amplified output with formation cost under representative Macro/policy/city modifiers. No numerical retuning, complete stacking formula, compensating negative write or universal no-overflow proof is claimed. This is a nonblocking future balance item, not player-facing text. B236 observed amplified use/no-overflow is inherited only within its tested scenario; prior B237 negative evidence stays unchanged.
+
+| Closeout item | Current evidence / remaining action |
+|---|---|
+| Industry I/II support, typed templates/N/E, III baseline, study/L and IV/Macro | B233–B236 scoped user acceptance; retain the stated local/native boundaries. No repeat of old long tests. |
+| Start-locked incomplete formation, new tier-I260 | B237 local-tested. Combine partial progress → Practice price change → resume → one cold-load/finish in the B238 session. |
+| Restored Crew construction, slot release and player text | B238 local checks; one normal `施工` → `确认施工` use, ideally ending a nearly finished Wonder, checks restored operation/next-target surplus. Amplification itself is now accepted, not a defect. |
+| Completed-unit binding/cap after cold load; non-capture retreat | Reuse that same save and a surviving Crew. Enemy contact only if readily available; otherwise retain this explicit pending item rather than request a separate forced setup. |
+| Industry institution UI | Existing B236 implementation; glance at its III/IV text during this session. No separate UI acceptance session. |
+| Purchase discount on the District body itself | Unimplemented: established candidate affects all Districts, not the specific known template. User explicitly deems this rare path nonblocking for v0.1; no further investigation/test requested. Accepted Design remains recorded. |
+| Faith price channel / other speeds | Native evidence absent where no legal opportunity exists; inherited model/local coverage is not native PASS. Not a new mandatory scenario for this Standard-speed closeout. |
+| Standardization + future Commerce Development Investment | Additive contract retained; verify the combination when that Commerce writer is introduced, not before it exists. |
+| Original unit Owner extinction / total city destruction | Existing genuinely undefined, separate boundaries; no new lifecycle policy or speculative repair here. |
+
+After the combined Crew gate passes, Industry's main playable chain can hand off to the next authorized profession, with the above named deferred/conditional items still visible. Do not call every purchase/ownership/speed case complete. [Current local result and minimal combined flow](../../Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md); actual deployment and acceptance remain in Status.
 
 ## 推荐顺序与最小批次
 
@@ -175,8 +195,8 @@ UI exposes current and retained variants separately; a paused row says“续建�
 | **H正式基线cutover** | H2/H3原语各自确认后一个定域切换，退旧折扣与Industry Copy | B234 baseline cutover implemented; IV enhancement still requires reliable L and later authorization |
 | **I-Tradition：工程传统研习** | E提供可学额度，IV完整1T成功提交城市L+1并增强标准化 | G、L/E保存、当前资格/真实中断/原子成功；未完成轮不能续半进度 |
 | **J1＋I-Practice：队伍来源/库存/组建成本** | J1先完善训练来源/2槽/III-IV分档；Practice再用N改变成本 | J1资格/原生grant/binding；G提供N，Practice不改capacity或注入 |
-| **J2：Wonder-only固定施工与单位保护** | 一次消费/释放槽、固定注入无溢出、敌方保护回归 | J1及实际保护/注入原语；不允许普通建筑/区域，不重放不确定执行 |
-| **I-Macro：巨构工程学** | 本城普通生产旧时代Wonder10/20/30%，不影响队伍注入 | 当前Era/Wonder own Era、资格、实际Production原语；独立于N/E/L门槛 |
+| **J2：Wonder-only基础施工与单位保护** | 一次消费/释放槽、可受原生加成且余量不结转、敌方保护回归 | J1及实际保护/注入原语；不允许普通建筑/区域，不重放不确定执行 |
+| **I-Macro：巨构工程学** | 本城普通生产旧时代Wonder10/20/30%，适用时可放大队伍基础投入 | 当前Era/Wonder own Era、资格、实际Production原语；独立于N/E/L门槛 |
 
 B234 combines the III baseline and exact retirement under explicit authorization; its scoped native gate is accepted. The following IV work still needs its own approved batch. 每模板IV增强必须有可靠L；首次L初始化要有确切“该账本此前未建立”依据，已有历史缺失不能填0。未来批次需写清支持的初始化起点，不因缺史阻塞不依赖它的III路径。
 
@@ -225,7 +245,7 @@ Local L2/首次cutover定域L3：holder例、最高来源退出后的回退、se
 |---|---|---|
 | 工程传统 | 全国E供新研习；本城IV且L<E完整1 Production Turn成功永久提交L+1；输出建设10+2L与合法购买2L | L为A城市历史、身份/ACTIVE/Owner变化保留；III仅10/0，不研习；低III不输出。未来合法Owner E<L也不截断L |
 | 工程实践 | 当前IV按本城真实N0/1–2/3–5/6+成本150/140/130/120%；III始终150% | N长期保留，但收益按当前IV；只改组建成本，不强化模板/施工力，不新增槽位 |
-| 巨构工程学 | 当前IV本城自行普通生产旧时代Wonder，当前文明Era−Wonder自身Era差1/2/3+给10/20/30%；当前Era无加成 | 当前派生效果、资格下降精确退出；不看N/E/L，不修改已训练队伍的锁定capacity或注入 |
+| 巨构工程学 | 当前IV本城自行普通生产旧时代Wonder，当前文明Era−Wonder自身Era差1/2/3+给10/20/30%；当前Era无加成 | 当前派生效果、资格下降精确退出；不看N/E/L，不修改已训练队伍的锁定基础capacity；适用时原生倍率可放大投入 |
 
 研习未完成时，Governor导致ACTIVE不足IV、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，不增L/不存半进度；再次合格完整重做，已提交L不变。该规则D0045已定，不再标“中断Design TBD”。
 
@@ -233,7 +253,7 @@ The session-only [TimedProject](../../../Mod/TimedProject.lua) prototype is not 
 
 Tradition L3本地：L<E/L=E/L>E、完整回合/中断/Owner与重复成功、提交失败、不重复/跨加载计功、恢复只派生当前效果。Native一轮成功＋一轮真正中断后重做，新增L持久重载有具体信息价值。Practice L2本地成本阈值全矩阵，native只补一个实际成本跨档；Macro L2普通Wonder增量与固定Team隔离，原语证据不同不能一项通过算三项完成。
 
-## J：训练成本、永久队伍、固定施工分开
+## J：训练成本、永久队伍、基础施工分开
 
 ### J1来源、2槽与新成本
 
@@ -255,24 +275,26 @@ III开放I–III，IV额外IV–V，无E4/5门槛。每训练source当前Owner�
 
 Local L3：档位门槛、同回合多完成/重复通知、队列满槽、保存、Owner切换/夺回、活着撤退与合法消耗、其它城隔离。Native一个source完成两队→第三受限→合法消耗释放；新的unit-binding/source-owner路径需要定域失城/恢复或重载，不再重复E2城市身份全流程。无法证明grant/容量门禁则只停止J，不影响H或Macro。
 
-### J2目标、固定注入与保护
+<a id="j2目标固定注入与保护"></a>
+
+### J2目标、基础施工与保护
 
 正式目标只Wonder，Megaproject仅future；停止UnitTargets/UnitActions普通Buildings/Districts授权，保留Settler investment分支。[ConstructionProbe](../../../Mod/ConstructionProbe.lua)仍供正式链必要事实，不能整模块删除。
 
-B236原路径为一次destroy→`AddProgress(min(amount,remaining))`；B237因原生放大反证在消费前阻断，尚未交付固定注入；新消费确认前重验单位/目标Owner与ref、目标tile/当前Wonder/remaining/1charge及永久训练provenance/unit绑定完整性，成功才精确释放slot一次。不重新要求训练source当前Industry/ACTIVE或Owner与单位相同；来源降级、退出工业或易主均不阻止已有队伍使用。注入只取锁定基础capacity，不受Macro、奇观政策、宜居度或其它普通Production百分比放大；余量浪费，后续目标/空队列不得保存overflow。
+B238按D0053恢复B236的一次destroy→`AddProgress(min(base,remaining))`；B237曾因旧固定最终量规则在消费前阻断，其原结果不改；新消费确认前重验单位/目标Owner与ref、目标tile/当前Wonder/remaining/1charge及永久训练provenance/unit绑定完整性，成功才精确释放slot一次。不重新要求训练source当前Industry/ACTIVE或Owner与单位相同；来源降级、退出工业或易主均不阻止已有队伍使用。请求取锁定基础capacity与目标剩余值的较小值，允许原生适用Production倍率放大；不猜测全倍率、不归一化、不撤其它效果、不重复补差。基础投入与实测进度分开记录；余量不结转规则保留。
 
 敌方直接capture/Owner转换已被D0045禁止，必须证明保护撤退/安全回归；`CanCapture=0`只禁本单位主动capture，不证明自身受保护。源城变化不取消已有队伍；活着回归仍占库存。未定义的是原unit Owner完全消失等具名处置，不把普通source转移又写成Design TBD。
 
-Local L2＋涉及unit保存L3：合法/非法目标、预览到确认变化、恰好/超量、失败不消费、未知执行不重放、重复消费/slot只释放一次。Native一个带正常Wonder百分比的目标测固定注入及下一目标无溢出，另一个敌方交互证明不转Owner且回归；这些是新增原语，不用旧Cheat完成或CanCapture字段替代。正式可玩Exit须同时有训练/库存/使用/保护及实际入口，不能只做P0面板手动开关就称落地。
+Local L2＋涉及unit保存L3：合法/非法目标、预览到确认变化、恰好/超量、失败不消费、未知执行不重放、重复消费/slot只释放一次。Native一个带正常Wonder百分比的目标确认恢复施工及下一目标无溢出，另一个敌方交互证明不转Owner且回归；这些是新增原语，不用旧Cheat完成或CanCapture字段替代。正式可玩Exit须同时有训练/库存/使用/保护及实际入口，不能只做P0面板手动开关就称落地。
 
 ## 已确定规则、技术未知与真正未决
 
 | 分类 | 内容 | 影响范围 |
 |---|---|---|
-| 已定，非TBD | 每模板holder内MAX、III10/0及IV2L、Gold/Faith合法渠道、N/E/L归属、研习中断、III/IV开放队档、2槽/Owner计槽、固定注入、非捕获与Floor | 按上述当前规则实施，不重开Design |
-| TECHNICAL | Wonder完成证据/创建起点/外国时期连续性、N/E/L业务保存与恢复、typed District增量、self resolver、逐渠道资格/成本效果、1T提交/中断、项目grant满槽门禁、动态成本/速度、unit绑定与安全回归、固定注入与加算 | 各依赖切片；局部失败不阻塞全部工业或其它专业 |
+| 已定，非TBD | 每模板holder内MAX、III10/0及IV2L、Gold/Faith合法渠道、N/E/L归属、研习中断、III/IV开放队档、2槽/Owner计槽、可受原生加成的基础施工、非捕获与Floor | 按上述当前规则实施，不重开Design |
+| TECHNICAL | Wonder完成证据/创建起点/外国时期连续性、N/E/L业务保存与恢复、typed District增量、self resolver、逐渠道资格/成本效果、1T提交/中断、项目grant满槽门禁、动态成本/速度、unit绑定与安全回归、基础施工的原生加成与余量处置 | 各依赖切片；局部失败不阻塞全部工业或其它专业 |
 | DESIGN未覆盖 | 原unit Owner完全消失等非普通source变化处置；城市彻底摧毁等未涵盖历史/绑定处理 | 只相应路径；不得借本计划建立统一永久资产清理规则 |
-| 成熟度/Balance | 机构/队伍/研习项目候选或TBD名称，首测数值待真实平衡 | 不擅自冻结名称，不把首测认作最终平衡 |
+| 成熟度/Balance | 机构/队伍/研习项目候选或TBD名称，首测数值与施工受加成后的综合强度待未来实测平衡（非阻塞，不进入UI） | 不擅自冻结名称，不把首测认作最终平衡 |
 
 模板可靠性不需要D归一化；标准化本身不是D consumer。Shared普通建筑/D目录覆盖与标准化typed目录是不同责任，不借工业准备扩HD Catalog。三处未衔接future设计边界及AI/MP范围保持，不做全城迁移/new cityKey。
 

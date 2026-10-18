@@ -277,19 +277,19 @@ function SPCCrewProjects.Start(P,shared)
   settling[k]=nil;mark(pid,id) -- normal publish handles removal after completion callbacks
  end
  function d.RecordUse(pid,c,uid,stage,capacity,progress,cost,amount)
-  observe(stage,pid,c,{eventUnit=uid,expected=capacity,nativeProgress=progress,nativeCost=cost,count=amount})
+  observe(stage,pid,c,{eventUnit=uid,baseCapacity=capacity,nativeProgress=progress,nativeCost=cost,baseInput=amount})
  end
  function d.RecordPrecision(pid,r)
   observe('CREW_PRECISION',pid,r.cityID and city(pid,r.cityID) or nil,{eventUnit=r.unitID,nativeProgress=r.before,afterProgress=r.after,
-   expected=r.expected,actualDelta=r.observed,targetChanged=not r.afterReadError and r.afterTarget~=r.target or nil,readStatus=r.error and 'UNKNOWN' or 'OBSERVED'})
+   baseCapacity=r.amount,baseInput=r.baseInput,actualDelta=r.observed,targetChanged=not r.afterReadError and r.afterTarget~=r.target or nil,readStatus=(r.error or r.afterReadError) and 'UNKNOWN' or r.observed~=nil and 'OBSERVED' or 'NOT_MEASURED'})
  end
  function d.Describe(pid,c)
   d.Refresh(pid,c:GetID());local v=d.views[key(pid,c:GetID())];local err=d.errors[key(pid,c:GetID())]
   if err or not v then return '施工队：暂不可确认；'..tostring(err or 'CREW_NOT_READY')end
   return '施工队｜本城来源：'..v.count..'/2；在建或预留：'..v.reserved
-   ..'\n当前新开工成本：'..(v.ratio and v.ratio..'%' or '未达到工业三级')..'；开工锁价，已完成队伍固定施工力。'
+   ..'\n当前新开工成本：'..(v.ratio and v.ratio..'%' or '未达到工业三级')..'；开工锁价，已完成队伍基础施工力锁定。'
    ..'\n可续建半成品：'..v.paused..'；暂停不占队伍名额。'
-   ..'\n施工暂不可用：固定注入接口尚未解决，操作不会消耗施工队。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
+   ..'\n施工仅用于在建奇观；基础施工力可受适用生产力加成，余量不结转。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
  end
  function d.BindPermanentWrites()
   local prior=shared.OnPermanentCityWrite
