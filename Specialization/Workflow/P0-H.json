@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0645",
+    "status": "S0646",
     "runtime": "B241.268 / modinfo268",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
-  "goal": "B241 authorized stable/venture Capital contracts under D0056 permanent-institution tie-break; exact money receipts, ordinary UI and current network source reuse. Local complete, native pending.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
+  "goal": "B241 native first confirmation failed; record evidence and bounded diagnostic proposal, preserving D0056 and all implemented economic/ownership rules.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,10 +28,10 @@
       "reason": "Current source/live and native stop."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
       "kind": "section",
-      "selector": "## Current implementation",
-      "reason": "Implemented delta and ordinary entry."
+      "selector": "## Review summary",
+      "reason": "Observed first confirmation failure and exact uncertainty; no repeat or repair authorization."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
@@ -91,17 +91,17 @@
   "validation": {
     "depth": "L3 new contract/Treasury/persistence failure boundaries; L2 source/calculation/UI; L1 package/docs.",
     "local": "155 distinct targeted tests PASS; actual Store/native-shaped failure and actual network/UI adapters. No native CPU/memory or fractional-Treasury claim.",
-    "user": "One ordinary Capital session: stable + venture in different domains, one midterm save/cold load, one maturity/duplicate-payout check; logs primary.",
-    "gap": "Native fractional Gold retention, actual debit/credit and contract native save/maturity closure pending."
+    "user": "Step1 stopped at confirmation; no immediate repeat. Proposed diagnostics precede continuing the original combined session.",
+    "gap": "Native first-confirmation write/readback cause unresolved; generic error hides Store details. No native money, reload or maturity acceptance."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
     "source": "B241.268 deployed from 66a94b9034e545bca1b621eb18a545a3ba86a031;250/250 MATCH; receipt B241.268-66a94b9-playtest.json",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Stop for the one combined native Capital session; no next implementation or deployment batch authorized."
+    "native": "USER_GAME_TEST_FAIL: first confirmation; exact native cause UNKNOWN",
+    "stop": "Wait for explicit narrow diagnostic/reporting repair authorization. No implementation, deployment or new batch."
   }
 }

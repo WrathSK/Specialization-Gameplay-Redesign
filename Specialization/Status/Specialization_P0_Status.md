@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0645
+Status Revision: S0646
 Implementation Build: source/live B241.268; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_CAPITAL_LOCAL_COMPLETE_NATIVE_PENDING
-Work State: B241_DEPLOYED_AWAITING_NATIVE
+Design Sync State: D0056_CAPITAL_LOCAL_COMPLETE_NATIVE_FAILED
+Work State: B241_NATIVE_CONFIRM_FAILED_DIAGNOSTIC_PROPOSED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B241 Capital Investment deployed; native pending:** [result and one combined flow](Validation/Results/Specialization_B241_Capital_Local.md).
-- D0056: highest current ACTIVE S, then earliest corresponding permanent institution establishment; other rules retained. Stable/venture ordinary panel, locked contracts/n and event-driven maturity implemented.
-- Source/live B241.268/modinfo268 from `66a94b9`; receipt `B241.268-66a94b9-playtest.json`,250/250 MATCH. Fresh automatic game-exit checks passed; recovery retained, no pending transaction.
-- 155 targeted local checks PASS. Native Gold precision/debit/return and one contract cold-load/maturity session remain USER_GAME_TEST_REQUIRED; B240 accepted scope retained.
-- Next: the single Capital session. No COM-C/D authorization. Main B069.96, Culture HOLD, configuration, GC and unrelated audits remain unchanged.
+**B241 first Capital confirmation failed; native test paused:** [review and narrow diagnostic proposal](Validation/Results/Specialization_B241_Native_Review.md).
+- Quote succeeds; confirmation becomes CAPITAL_STATE_UNKNOWN/HELD before any recorded money operation. Current reporting drops Store failure detail; exact native write/readback cause remains UNKNOWN.
+- Source/live remain B241.268/modinfo268 from `66a94b9`; receipt `B241.268-66a94b9-playtest.json`, last full250/250 MATCH. This review verified five direct runtime files only; no new deployment.
+- Existing155 local checks and five new offline counterexamples do not establish native signing, precision, reload or maturity. B240 accepted scope remains intact.
+- Next: proposed bounded failure-stage/readback and honest HELD feedback; implementation not authorized. No immediate user repeat, COM-C/D, main/Culture/GC or unrelated audit change.
+
+## S0646 — B241 first confirmation failure reviewed
+
+71 contiguous native records(seq20–90) show quote then rejected confirmation atT34. No CAPITAL_MONEY/SIGNED appears. The exact logged quote passes the unchanged actual-Lua/Store fixture; three injected Property failures reproduce the generic error with zero money calls, while Treasury rounding produces a distinct MONEY_UNCONFIRMED result. These are local counterexamples, not proof of native Property precision. Error-prefix filtering and discarded catch details are confirmed reporting defects; OPEN/REFRESH acceptance does not establish recovery from HELD. Raw evidence is hash-recorded and unchanged. Only result/current Status/Authority/P0-H/context metadata updated; no runtime, tests, Design, Architecture, configuration, deployment or new batch.
 
 ## S0645 — B241 verified deployment
 

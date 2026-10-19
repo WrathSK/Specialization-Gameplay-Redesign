@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0645",
+    "status": "S0646",
     "runtime": "B241.268 / modinfo268",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,10 +35,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "66a94b9034e545bca1b621eb18a545a3ba86a031",
-  "current_batch": "B241_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "One combined Capital stable/venture debit, midterm cold-load and maturity session; no next implementation batch authorized.",
+  "current_batch": "B241_NATIVE_CONFIRM_FAILED_DIAGNOSTIC_PROPOSED",
+  "next_batch": "Proposed bounded Capital confirmation failure/readback diagnostics and honest HELD feedback; no repair implementation authorized. User test paused.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B241.268/modinfo268 DEVELOP_ACTIVE; source 66a94b9034e545bca1b621eb18a545a3ba86a031; receipt B241.268-66a94b9-playtest.json;250/250 MATCH, digest f0dd425908859fb09478e3af4cdbe290ba0cbfa44b9b5b7e0b6247e7bcf6865a. Both guarded switches passed fresh automatic game-exit checks; B240/stable recovery retained, no pending transaction. Native Capital pending.",
+  "live": "B241.268/modinfo268 DEVELOP_ACTIVE; source 66a94b9034e545bca1b621eb18a545a3ba86a031; receipt B241.268-66a94b9-playtest.json;250/250 MATCH, digest f0dd425908859fb09478e3af4cdbe290ba0cbfa44b9b5b7e0b6247e7bcf6865a. Both guarded switches passed fresh automatic game-exit checks; B240/stable recovery retained, no pending transaction. Native Capital first confirmation failed; signing/precision/reload/maturity remain unaccepted.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0645: authorized D0056/B241 source,155 targeted checks, package/links/context/publication passed; deployed clean/pushed66a94b9 with250/250 equality. Native money and contract reload/maturity pending.",
+  "context_review_status": "S0646: reviewed71 contiguous native records and five direct runtime/source matches; five offline counterexamples discriminate pre-debit Property failures from Treasury rounding. Exact native write/readback cause UNKNOWN; reporting defects confirmed. Evidence-only checkpoint; no source or deployment change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md"
 }
