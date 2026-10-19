@@ -1,23 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0668
+Status Revision: S0669
 Implementation Build: B249.276 / modinfo276; stable B069.96
 Architecture Revision Reviewed: A0176
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B249_CORE_NATIVE_PASS_RECOVERY_PENDING
+Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B249.276: native training access and the continuous restructuring flow PASS; the original REALLOCATING cold-load case remains pending.** [Native review](Validation/Results/Specialization_B249_Native_Review.md).
+**B249.276 remains the functional test baseline. B249's observed core flow is accepted; two integration checks belong to the v0.1 native playtest, and the listed remaining work is high priority after that playtest.** [Current scheduling and Industry audit review](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native evidence](Validation/Results/Specialization_B249_Native_Review.md).
+- The user will avoid loss of own cities during this playtest. Remaining handling/verification of those losses and their consequences, Expedition root-cause/repair work, remaining Meaning Extension work, exact Industry District-body purchase discounts, Research network redesign, era-coverage presentation and all outstanding independent/Advisor audit work are **post-v0.1-playtest high priority**, not entry gates. Original evidence and existing protections remain unchanged; this is not a blanket PASS or rule removal.
+- REALLOCATING save/cold-load and simultaneous Standardization + Development Investment additive output remain unverified combinations to check **during** the v0.1 playtest. Do not require a separate preliminary test or repeat the accepted core flow.
+- Meaning already operates automatically in seven domains/five yields, with B166 user acceptance including cold reconstruction; only the remainder, including Government/Diplomacy Culture projection, is held. Research's old network boost stays isolated; shared topology and other networks are retained. UI polish/text/balance are later work.
+- The new Stable Industry audit was reviewed against its B246 basis and selected current dependencies. It does not reopen accepted Industry results; native-unverified boundaries, stale navigation and unmeasured carrier costs are recorded with their limits in the existing follow-up plan. Its suggested pre-playtest measurement is not adopted as a gate. No new tests, repair or deployment are authorized by this review.
 - The user confirms the earlier city was deliberately ACTIVE III. This run reaches ACTIVE IV in the same T3, immediately grants the marker/native500 entry and records one trained team. Startup is ready before UI load-close; B248's startup failure is not repeated in this session.
 - T3 Culture Potential2 becomes REALLOCATING / NONE / Potential1. The city remains unconfigured at T8 and T9; explicit T9 configuration records SETTLED / Industry Potential1 with the same team. Industry history/templates/support publish in the same turn, and the user confirms the new abilities work.
 - The user verifies -75% other yields / surplus Food, no automatic completion after five turns, rejection at a non-eligible district and rejection of Potential1 liquidation. These manual observations remain distinct from logged state/carrier evidence.136 contiguous records contain no restructuring hold/error; temporary network/Commerce waits recover.
-- 80 selected local methods are inherited unchanged. Only the original in-progress transaction cold-load check remains pending from the combined flow; this one-context submission does not prove it. No repeat of the accepted steps or expanded test matrix is requested.
+- 80 selected local methods are inherited unchanged. The one-context B249 submission does not prove in-progress transaction cold-load; that original check is now scheduled inside the v0.1 playtest alongside the B246 additive check. No repeat of the accepted steps or expanded test matrix is requested.
 - Source/live B249.276/modinfo276 from `ad34b1f`; receipt `B249.276-ad34b1f-playtest.json` DEVELOP_ACTIVE,265/265 MATCH. Stable and outgoing B248 recovery verified. Main/stable B069.96, original evidence, Design, configuration and GC remain unchanged.
 - No subsequent Commerce batch, held Culture feature or unrelated audit repair is advanced.
+
+## S0669 — v0.1 playtest scope and post-playtest priorities
+
+The user explicitly postpones the listed city-loss, Expedition, remaining Meaning, exact District purchase, Research network, era-presentation and outstanding audit work until after the v0.1 native playtest, at high priority. REALLOCATING cold-load and Standardization/Development additive integration remain checks within that playtest. Existing automatic Meaning and accepted Industry/Commerce behavior are preserved. Reviewed the new local Stable Industry audit without rewriting its findings; its B246 basis and static/native/performance limits are retained, and already present B247–B249 Engineering cancellation/publication is distinguished from pending native recovery. Only the existing follow-up plan, current Status/Authority/P0-H and named Context Lock entries change. No implementation, Design, Architecture, test, deployment, main, configuration, GC, Advisor original or frozen evidence changes.
 
 ## S0668 — B249 native core flow accepted
 

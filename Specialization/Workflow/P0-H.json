@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0668",
+    "status": "S0669",
     "runtime": "B249.276 / modinfo276",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
-  "goal": "B249 native core flow accepted; retain the original REALLOCATING cold-load boundary without repeating accepted entry, disruption, refusal or configuration checks.",
+  "goal_reference": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
+  "goal": "Preserve B249 native core acceptance and prepare the scoped v0.1 functional playtest: recovery and additive integration inside the playtest, explicitly held work high priority afterward. No implementation authorized.",
   "implementation_authorized": false,
   "context": [
     {
@@ -26,6 +26,12 @@
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
       "reason": "Actual source/live and native boundary."
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
+      "kind": "section",
+      "selector": "## v0.1 playtest scheduling checkpoint",
+      "reason": "Latest explicit user timing overrides older pre-module gates; distinguishes pending playtest checks from post-playtest work without changing gameplay or evidence."
     },
     {
       "path": "Specialization/Design/Content/Commerce_D0057.json",
@@ -61,7 +67,7 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
       "kind": "section",
       "selector": "## Remaining validation boundary",
-      "reason": "Only the original in-progress transaction cold-load case remains from this combined flow; no inferred recovery PASS."
+      "reason": "Original B249 recovery evidence boundary retained; the current scheduling checkpoint places this check inside the v0.1 playtest."
     }
   ],
   "dependencies": [
@@ -138,8 +144,8 @@
   "validation": {
     "depth": "L3 targeted startup/recovery/event ordering plus retained transaction regressions; not a whole-project rerun.",
     "local": "80 selected methods PASS; startup without load, WAITING/HELD dependencies, duplicate events/pairing/previews, exact recovery and existing transaction/UI/package checks.",
-    "user": "USER_GAME_TEST_PASS: same-turn ACTIVE III to IV entry, training/binding, liquidation, disruption, illegal targets, no automatic configuration and manual Industry configuration/effects. USER_GAME_TEST_REQUIRED: original REALLOCATING cold-load case.",
-    "gap": "This session has one Gameplay context and no in-progress recovery evidence. Other unexercised ownership/retreat combinations retain prior boundaries, without a new test matrix. B246 optional overlap and held Culture items unchanged."
+    "user": "Inherited USER_GAME_TEST_PASS: B249 same-turn access, training/binding, liquidation, disruption, illegal targets, manual configuration and new effects. During v0.1 playtest, USER_GAME_TEST_REQUIRED: original REALLOCATING cold-load and B246 Standardization plus Development additive integration. No extra test now.",
+    "gap": "B249 has one Gameplay context; B246 did not exercise simultaneous Standardization. Remaining own-city-loss handling/verification, Expedition, Meaning, District purchase, Research network, era presentation and outstanding audit work is explicitly high priority after the playtest, not a prerequisite. Existing protections and accepted effects remain; no wider PASS inferred."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
@@ -148,7 +154,7 @@
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
     "source": "B249.276/modinfo276 source ad34b1fe88559e35cdf6b153d6838391556e223e; receipt B249.276-ad34b1f-playtest.json DEVELOP_ACTIVE;265/265 MATCH.",
-    "native": "B249 USER_GAME_TEST_PASS for the observed continuous core flow. Original REALLOCATING cold-load case remains USER_GAME_TEST_REQUIRED. B248 frozen failure evidence unchanged.",
-    "stop": "Record accepted evidence and the one original pending recovery case; stop without another implementation batch or repeat of accepted steps."
+    "native": "B249 USER_GAME_TEST_PASS for its observed continuous core flow is unchanged. REALLOCATING cold-load and Standardization/Development combination remain pending for the v0.1 playtest.",
+    "stop": "Record the approved scheduling and bounded Advisor review; commit/push documentation only. Do not start a repair, deployment, test or additional batch."
   }
 }
