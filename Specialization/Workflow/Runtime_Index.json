@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "3e90e29850e349c6b86995a07107efe475db1496b8b128574d8cf07cfb6d5231",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "d763449c65a9d2c4463104d3fdfdab20a0a563437b4ce20e0a06b54356d5f48b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+      "provenance": "B249 event-driven readiness and reference-bound initial recovery; duplicate load preserves live pairs/previews.80 targeted methods PASS. Other than the service, only two build stamps changed; native acceptance pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2e405ab5279f0870b8170153ec4f41f41322cbd01a1c5b133e097e17c242bbd1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "cd830d7ff35a8a0eb126592445647d527de1a8096c786210dfdf4b8c427b8692",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+      "provenance": "B249 event-driven readiness and reference-bound initial recovery; duplicate load preserves live pairs/previews.80 targeted methods PASS. Other than the service, only two build stamps changed; native acceptance pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1311,9 +1311,9 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Restructuring.lua": {
-      "sha256": "1121180bf153bef9c627a300042a6b526760543e443a8f2bcb8f75a8cb330b52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "b9a2019d21967b8bb8012408b465755be02360a4be561aa3421f2183fe0c03a6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+      "provenance": "B249 event-driven readiness and reference-bound initial recovery; duplicate load preserves live pairs/previews.80 targeted methods PASS. Other than the service, only two build stamps changed; native acceptance pending."
     },
     "Mod/RestructuringModel.lua": {
       "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",

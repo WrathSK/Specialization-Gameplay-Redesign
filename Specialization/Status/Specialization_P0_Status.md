@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0665
-Implementation Build: B248.275 / modinfo275; stable B069.96
-Architecture Revision Reviewed: A0175
+Status Revision: S0666
+Implementation Build: B249.276 / modinfo276; stable B069.96
+Architecture Revision Reviewed: A0176
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B248_DEPLOYED_NATIVE_ENTRY_PENDING
+Work State: B249_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B248.275 deployed; the reported load-time entry failure is not yet closed.** [Evidence and minimal flow](Validation/Results/Specialization_B248_Training_Entry.md).
-- User clarified the unit is missing from the production list of an already-IV Commerce city immediately after loading. Loaded B247 definitions are present; existing logs lack prerequisite/native-list evidence. Do not equate the confirmed investment-notification defect with this load-time case.
-- B248 fixes that definite city-scoped investment notification gap and records service/access/native eligibility in existing bounded logs. Reuses installed Monopoly++ Investor model/icons with an explicit provider dependency.500 Production, no population debit/cap/purchase/copy escalation, histories, contracts and transaction semantics stay unchanged.
-- 58 selected local methods PASS; native list/model and the original liquidation → REALLOCATING cold-load → configuration flow remain pending. If the entry is still absent, stop at that first check and use the discriminating logs.
-- Source/live B248.275/modinfo275 from `cbb9ce2`; receipt `B248.275-cbb9ce2-playtest.json` DEVELOP_ACTIVE,265/265 files MATCH. Main/stable B069.96 and recovery copies remain unchanged.
-- B246 scoped acceptance and optional Standardization overlap remain unchanged. Culture holds, unrelated audit repairs and subsequent batches are not advanced.
+**B248 entry failed in a new game; B249.276 startup repair is locally verified, awaiting guarded deployment/native acceptance.** [Evidence and minimal flow](Validation/Results/Specialization_B249_Restructuring_Startup.md).
+- Eight distinct B248 observations show a present but unready service, absent training marker and correct native500 cost. Actual-source reproduction confirms the sole load-close gate and the duplicate-notification reset defect. B248's separate investment notification fix is retained.
+- B249 initializes once from proven Store readiness at normal Start or existing events; dependency waits retain work. Duplicate load notifications no longer erase live training pairs/previews. Recovery preserves exact references and consumed-receipt protection. No timer, cost/capacity/binding/rule or persistent-schema change.
+- 80 selected local methods PASS. Training entry and the original B247 liquidation → REALLOCATING cold-load → configuration flow remain USER_GAME_TEST_REQUIRED; no completed transaction is inferred from local tests.
+- Current source B249.276/modinfo276; live is still B248.275 from `cbb9ce2` until the W0003 switch. Main/stable B069.96, original evidence, Design, configuration and GC remain unchanged.
+- No subsequent Commerce batch, held Culture feature or unrelated audit repair is advanced.
+
+## S0666 — B249 event-driven startup locally verified
+
+Explicit user approval covers the one-service startup repair, missing/repeated-load regression and guarded deployment. Five new methods first fail on unchanged B248 as expected;80 selected methods pass on B249. One prior pre-load assertion now checks authoritative Store readiness instead, retaining no-premature-read/wrong-owner protection. Original frozen results/logs remain intact. Only the service, two build stamps, targeted tests, current technical/state/manifest records and reviewed hashes change. No native PASS or CPU/memory claim. Proceed through clean commit/push, automatic exit inspection and exact-receipt deployment; then stop for the single combined flow.
 
 ## S0665 — B248 verified deployment
 

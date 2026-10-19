@@ -10,15 +10,15 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0175",
-    "status": "S0665",
-    "runtime": "B248.275 / modinfo275",
+    "architecture": "A0176",
+    "status": "S0666",
+    "runtime": "B249.276 / modinfo276",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-  "goal": "B248: repair proven investment-to-training notification, reuse Investor presentation, and expose the unresolved native load-time entry stage before completing the pending B247 transaction gate.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+  "goal": "B249: initialize Restructuring from authoritative readiness through existing events, preserve live work on duplicate load notifications, then complete the existing native entry/transaction gate.",
   "implementation_authorized": false,
   "context": [
     {
@@ -48,20 +48,20 @@
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B248 training-access follow-up",
-      "reason": "Approved boundary, state ownership and update lifecycle."
+      "selector": "## B249 event-driven readiness",
+      "reason": "Reviewed initializer and transient recovery ownership; unchanged transaction rules."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
       "kind": "section",
-      "selector": "## Reported failure and evidence boundary",
-      "reason": "Do not conflate the same-turn defect with the reported load-time native case."
+      "selector": "## B248 failure evidence and cause",
+      "reason": "Native unready evidence and unchanged-source reproduction; no old-save/model inference."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
       "kind": "section",
       "selector": "## Minimal combined native flow",
-      "reason": "Entry-first observation, then the original pending transaction gate only if available."
+      "reason": "Repaired startup plus still-pending original transaction/cold-load gate."
     }
   ],
   "dependencies": [
@@ -74,6 +74,18 @@
     "Preserve Commerce I/II, Research/Culture/Industry, common topology, Crew construction and historical evidence."
   ],
   "conditional_context": [
+    {
+      "trigger": "B249 startup, recovery or duplicate-event discrepancy",
+      "paths": [
+        "Mod/Restructuring.lua",
+        "Mod/CityProgressionStore.lua",
+        "Mod/EffectiveFacts.lua",
+        "Mod/Gameplay.lua",
+        "DevelopmentTests/test_b249_restructuring_startup.py",
+        "DevelopmentTests/test_b248_training_entry.py",
+        "DevelopmentTests/test_b247_restructuring.py"
+      ]
+    },
     {
       "trigger": "B248 training access or presentation discrepancy",
       "paths": [
@@ -124,19 +136,19 @@
     "General Store/event/framework migration, timers/frame polling, GC changes, main/promotion, external Mod/configuration edits, game launch, frozen evidence mutation."
   ],
   "validation": {
-    "depth": "L2 city-scoped access/diagnostic/art delta plus retained L3 transaction checks.",
-    "local": "58 selected methods PASS; exact investment notification, load fixture, bounded observation, unchanged unit SQL and other art, package/Lua5.1 checks.",
-    "user": "USER_GAME_TEST_REQUIRED: already-IV training entry first, then original B247 transaction/cold-load flow if available.",
-    "gap": "Reported load-time absence remains unresolved; actual native CanProduce and art rendering not proved locally. B246 overlap remains optional."
+    "depth": "L3 targeted startup/recovery/event ordering plus retained transaction regressions; not a whole-project rerun.",
+    "local": "80 selected methods PASS; startup without load, WAITING/HELD dependencies, duplicate events/pairing/previews, exact recovery and existing transaction/UI/package checks.",
+    "user": "USER_GAME_TEST_REQUIRED: entry first, then original B247 liquidation/restructuring cold-load/configuration if available.",
+    "gap": "Native B249 entry and real transaction not yet verified. B246 optional overlap and held Culture items unchanged."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-    "source": "B248.275/modinfo275 source cbb9ce25de4bfc3113f37f7676a9233071a1a9d0; receipt B248.275-cbb9ce2-playtest.json DEVELOP_ACTIVE;265/265 MATCH.",
-    "native": "USER_GAME_TEST_FAIL: B247 entry absent after load. B248 USER_GAME_TEST_REQUIRED; original transaction not yet exercised.",
-    "stop": "Await the combined native gate; do not start further development."
+    "report": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+    "source": "B249.276/modinfo276 locally verified; live B248.275/cbb9ce2 until guarded switch.",
+    "native": "B248 USER_GAME_TEST_FAIL including new game; B249 USER_GAME_TEST_REQUIRED. Original B247 transaction remains pending.",
+    "stop": "Complete authorized deployment, then wait for native result; no further implementation."
   }
 }

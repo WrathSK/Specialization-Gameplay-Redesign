@@ -62,9 +62,9 @@ class Access(unittest.TestCase):
         for _,x in ipairs(traces)do assert(not(x.stage=='REST_ACCESS' and x.v.city==source:GetID() and x.v.markerPresent))end
         markerFail=false;svc.Refresh(0,source:GetID());assert(source.markers.BUILDING_SPC_RESTRUCTURING_ACCESS)
         """)
-    def test_does_not_read_wrong_player_or_before_load(self):
+    def test_does_not_read_wrong_player_or_before_store_ready(self):
         l=runtime()
-        l.execute("SPCRestructuring.Start(P,shared);svc=shared.Restructuring;local read=shared.EffectiveFacts.Read;shared.EffectiveFacts.Read=function()error('UNEXPECTED_READ')end;svc.Refresh(3,source:GetID());svc.Refresh(0,source:GetID());assert(not source.markers.BUILDING_SPC_RESTRUCTURING_ACCESS);shared.EffectiveFacts.Read=read;Events.LoadScreenClose.Fire();assert(source.markers.BUILDING_SPC_RESTRUCTURING_ACCESS)")
+        l.execute("local status=Z.st().HistoryStartStatus;Z.st().HistoryStartStatus=function()return 'WAITING'end;SPCRestructuring.Start(P,shared);svc=shared.Restructuring;local read=shared.EffectiveFacts.Read;shared.EffectiveFacts.Read=function()error('UNEXPECTED_READ')end;svc.Refresh(3,source:GetID());svc.Refresh(0,source:GetID());assert(not svc.ready and not source.markers.BUILDING_SPC_RESTRUCTURING_ACCESS);shared.EffectiveFacts.Read=read;Z.st().HistoryStartStatus=status;Events.GameCoreEventPublishComplete.Fire();assert(source.markers.BUILDING_SPC_RESTRUCTURING_ACCESS)")
 
 
 def training_ui():

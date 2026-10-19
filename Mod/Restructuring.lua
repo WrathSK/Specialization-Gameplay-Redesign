@@ -1,10 +1,11 @@
--- B247 event-driven team admission and city transaction coordinator.
+-- B249 event-driven startup; B247 team admission and transaction rules retained.
 include('RestructuringModel')
 SPCRestructuring={ACCESS='BUILDING_SPC_RESTRUCTURING_ACCESS',DISRUPTION='BUILDING_SPC_REALLOCATING'}
 function SPCRestructuring.Start(P,shared)
  local M=SPCRestructuringModel;local S=SPCRestructuring;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local d={views={},errors={},ready=false};shared.Restructuring=d
  local busy=false;local births,completed,dirty,publication={},{},{},{};local plans={}
+ local recovery={};local initializationStamp
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'RESTRUCTURING')
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
@@ -108,6 +109,34 @@ function SPCRestructuring.Start(P,shared)
   if not P.IsTestPlayer(pid)then return end
   dirty[pid]=dirty[pid] or {};dirty[pid][id or 'all']=true
  end
+ local function initialization(stage,reason,status)
+  local stamp=stage..':'..reason
+  if initializationStamp==stamp then return end;initializationStamp=stamp
+  if trace then trace.Record(stage,{reason=reason,storeStatus=status,ready=d.ready})end
+ end
+ local function initialize(cause)
+  if d.ready then return true end
+  local status
+  local ok,seed=pcall(function()
+   assert(type(store.HistoryStartStatus)=='function','REST_STORE_UNAVAILABLE')
+   status=store.HistoryStartStatus()
+   if status=='WAITING' or status=='HELD'then return false end
+   assert(status=='FRESH' or status=='EXISTING','REST_STORE_STATUS_UNKNOWN')
+   assert(shared.EffectiveFacts and type(shared.EffectiveFacts.Read)=='function','REST_FACTS_UNAVAILABLE')
+   for _,name in ipairs({S.ACCESS,S.DISRUPTION})do assert(P.Info('Buildings',name),'REST_MARKER_MISSING')end
+   local found=false;local cities={}
+   -- One supported-player snapshot per Gameplay context, not a polling scan.
+   for pid,p in pairs(Players)do if P.IsTestPlayer(pid)then
+    found=true;local list=assert(p:GetCities(),'REST_CITIES_UNAVAILABLE')
+    for _,c in list:Members()do if c:GetOwner()==pid and store.Owns(c)then cities[#cities+1]=ref(c)end end
+   end end
+   assert(found,'REST_PLAYER_UNAVAILABLE');return cities
+  end)
+  if not ok then initialization('REST_INIT_HELD',code(seed),status);return false end
+  if not seed then initialization('REST_INIT_WAIT','REST_STORE_'..status,status);return false end
+  for _,r in ipairs(seed)do recovery[key(r.owner,r.cityID)]=r;mark(r.owner,r.cityID)end
+  d.ready=true;initialization('REST_INIT_READY',cause or 'FLUSH',status);return true
+ end
  -- Dependency-specific publication, once per successful identity transition.
  -- Existing consumers own their carriers; no broad RemoveOwned or history deletion.
  function d.Publish(pid,c)
@@ -152,16 +181,25 @@ function SPCRestructuring.Start(P,shared)
    log('REST_RESTORED',pid,c,s)
   end
  end
- function d.Flush(recover)
-  if busy or not d.ready then return end;busy=true
+ function d.Flush(cause)
+  if busy then return end;busy=true
+  -- Keep dirty work and event pairs intact while authoritative dependencies wait.
+  if not initialize(cause)then busy=false;return end
   local todo=dirty;dirty={}
   for pid,ids in pairs(todo)do
-   local function visit(c)
-    if not c or not store.Owns(c)then return end
-    local ok,err=pcall(sync,pid,c,recover);if not ok then d.errors[key(pid,c:GetID())]=code(err);log('REST_SYNC_HELD',pid,c,nil,code(err))end
+   local function visit(c,id)
+    local k=key(pid,id)
+    if not c then recovery[k]=nil;return end
+    local ok,err=pcall(function()
+     if c:GetOwner()~=pid or not store.Owns(c)then recovery[k]=nil;return end
+     local saved=recovery[k]
+     if saved and not M.Same(saved,ref(c))then recovery[k]=nil;saved=nil end
+     sync(pid,c,saved~=nil);recovery[k]=nil
+    end)
+    if not ok then d.errors[k]=code(err);log('REST_SYNC_HELD',pid,c,nil,code(err))end
    end
-   if ids.all then for _,c in Players[pid]:GetCities():Members()do visit(c)end
-   else for id in pairs(ids)do visit(city(pid,id))end end
+   if ids.all then for _,c in Players[pid]:GetCities():Members()do visit(c,c:GetID())end
+   else for id in pairs(ids)do visit(city(pid,id),id)end end
   end
   busy=false
   local changed=publication;publication={}
@@ -170,8 +208,8 @@ function SPCRestructuring.Start(P,shared)
  -- Investment completion already proves the changed city. Reuse the normal
  -- derived-marker writer; no player scan, retained fact packet or timer.
  function d.Refresh(pid,id)
-  if type(id)~='number' then return end
-  mark(pid,id);d.Flush()
+  if not P.IsTestPlayer(pid) or type(id)~='number' then return end
+  mark(pid,id);d.Flush('CITY_REFRESH')
  end
  function d.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token>100 then return end
@@ -248,6 +286,7 @@ function SPCRestructuring.Start(P,shared)
  end)
  hook('GameCoreEventPublishComplete',function()
   if busy then return end
+  if not d.ready then d.Flush('EVENT_PUBLISH');if not d.ready then return end end
   for pid in pairs(births)do local ok,err=pcall(admit,pid);if not ok then log('REST_TRAINING_HELD',pid,nil,nil,code(err))end end
   d.Flush()
  end)
@@ -258,13 +297,15 @@ function SPCRestructuring.Start(P,shared)
  end)
  for _,event in ipairs({'UnitMoveComplete','UnitMovementPointsChanged'})do hook(event,function(pid,id)if P.IsTestPlayer(pid)then local ok=pcall(unit,pid,id);if ok then d.Read(pid,id)end end end)end
  for _,event in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do hook(event,function(pid)
-  if not P.IsTestPlayer(pid)then return end;mark(pid);d.Flush()
+  if not P.IsTestPlayer(pid)then return end;mark(pid);d.Flush('PLAYER_EVENT')
+  if not d.ready then return end
   for _,u in Players[pid]:GetUnits():Members()do local row=P.Info('Units',u:GetType());if row and row.UnitType==M.UNIT then d.Read(pid,u:GetID())end end
  end)end
  hook('LoadScreenClose',function()
-  d.ready=true;births={};completed={};plans={};d.views={};ExposedMembers.SPC_RestructuringViews=d.views
+  -- An optional refresh signal, not the sole startup gate or a new context.
+  -- Session tables belong to Start; duplicate delivery must not erase live work.
   log('REST_LOAD_BEGIN')
-  for pid in pairs(Players)do if P.IsTestPlayer(pid)then mark(pid)end end;d.Flush(true)
+  for pid in pairs(Players)do if P.IsTestPlayer(pid)then mark(pid)end end;d.Flush('LOAD_EVENT')
   log('REST_LOAD_RETURNED')
  end)
  local prior=shared.OnPermanentCityWrite
@@ -273,6 +314,7 @@ function SPCRestructuring.Start(P,shared)
   if c then mark(c:GetOwner(),c:GetID());if reason=='Restructuring' then publication[key(c:GetOwner(),c:GetID())]=c end end
  end
  store.RegisterExit('Restructuring',function(c,loss)
+  for k,r in pairs(recovery)do if r.x==c:GetX() and r.y==c:GetY()then recovery[k]=nil end end
   store.RemoveOwned(c,loss,{S.ACCESS,S.DISRUPTION})
   local s=store.RestructuringExit(c)
   if s and s.phase=='DISCARDED' then
@@ -285,4 +327,6 @@ function SPCRestructuring.Start(P,shared)
   end
  end)
  store.RegisterReturn('Restructuring',function(pid,c)mark(pid,c:GetID())end)
+ -- Handles an already-readable loaded Store even if its load signal preceded us.
+ d.Flush('START')
 end

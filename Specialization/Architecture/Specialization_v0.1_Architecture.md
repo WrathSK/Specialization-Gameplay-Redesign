@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0175
+# Specialization v0.1 Architecture — A0176
 
 Document Owner: Codex
-Architecture Revision: A0175
+Architecture Revision: A0176
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0175保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0176保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -37,6 +37,7 @@ A0175保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 - [B247 current Identity and restructuring](v2/Commerce_Preparation.md#b247-implementation-and-validation): original city admission/history remains intact; an explicit Store transaction projects current Identity/Potential, owns one-time liquidation and separately confirmed native consumption, and publishes committed changes to existing consumers. No general save-framework rewrite. Each profession history and signed contract keeps its own lifecycle. Event-driven native training/UI/disruption; five game turns enable explicit same-city configuration, without wall-clock timers. Native gate pending.
 - [B248 training access follow-up](v2/Commerce_Preparation.md#b248-training-access-follow-up): committed investments notify the affected city; bounded read-only diagnostics separate derived access from native list eligibility. Investor art is presentation only. The reported load-time absence remains a native gate.
+- [B249 event-driven readiness](v2/Commerce_Preparation.md#b249-event-driven-readiness): existing Store readiness gates one context-local initialization and reference-bound recovery. Normal Start/publication/player/city events do not require LoadScreenClose delivery; duplicate load notifications preserve live training pairs/previews. Native entry and original transaction acceptance remain separate from local regression.
 
 ## 系统如何组成
 
