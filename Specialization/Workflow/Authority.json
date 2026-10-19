@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0648",
+    "status": "S0649",
     "runtime": "B242.269 / modinfo269",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "7dda4211280a95102115a943f4194de2e2afa27a",
-  "current_batch": "B242_DIAGNOSTIC_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "One bounded Capital confirmation/paused-refresh diagnostic log, then stop; no COM-C/D authorization.",
+  "current_batch": "B242_NATIVE_PREDEBIT_FAILURE_DIAGNOSTIC_GAP",
+  "next_batch": "Review/authorize proposed B243 reliable failure-observation repair; no immediate native repeat, financial change or COM-C/D authorization.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B242.269/modinfo269 DEVELOP_ACTIVE; source 7dda4211280a95102115a943f4194de2e2afa27a; receipt B242.269-7dda421-playtest.json;251/251 MATCH, digest c02e65a174a5878fb141c0bc02f97c1b33ff043a676aa23cd0f931b0b663f094. Both guarded switches passed fresh automatic game-exit checks; B241/stable recovery retained, no pending transaction. Native confirmation cause remains UNKNOWN.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0648 deployment metadata only after source7dda421:251/251 exact file matches, both game-exit checks, receipt and retained recovery verified. B242 diagnostic tests194 PASS; native failure cause/precision/signing remain unaccepted.",
+  "context_review_status": "S0649 evidence review only:71 contiguous B242 records, DEBIT_INTENT_WRITE/STORE_WRITE_UNCONFIRMED and truthful HELD refresh. Missing readback projection reproduced locally with rawget absent; existing GameCore_Tuner evidence cited. Five discrimination cases; native Property cause UNKNOWN. Runtime/tests/Design/Architecture unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md"
 }

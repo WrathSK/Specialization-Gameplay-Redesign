@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -11,39 +11,39 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0648",
+    "status": "S0649",
     "runtime": "B242.269 / modinfo269",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
-  "goal": "B242 narrow failure-stage/readback and HELD feedback correction; preserve B241 amounts, write guards and no-replay semantics.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
+  "goal": "B242 native evidence reviewed; proposed B243 repairs silent diagnostic failure without changing economic amounts, Store guards or no-replay semantics.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current local/source/live separation and remaining native gate."
+      "reason": "Current failure evidence, unchanged deployment and pending authorization."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
       "kind": "section",
       "selector": "## Review summary",
-      "reason": "Frozen B241 native counterexample and uncertainty; new user message explicitly authorizes B242 diagnostics."
+      "reason": "Native failure phase, truthful paused view and missing readback evidence."
     },
     {
-      "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
       "kind": "section",
-      "selector": "## B242 confirmation diagnostics",
-      "reason": "Current authorized diagnostic boundary; no economic or persistence semantics change."
+      "selector": "## Readback evidence gap and direct cause review",
+      "reason": "Actual observer path and prior restricted-environment counterevidence; underlying Property mismatch remains unknown."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
       "kind": "section",
-      "selector": "## Implementation boundary",
-      "reason": "Completed diagnostic implementation and ownership boundary."
+      "selector": "## B243 proposal — reliable failure observation",
+      "reason": "Proposed bounded diagnostic repair; not implementation authorization."
     }
   ],
   "dependencies": [
@@ -98,19 +98,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L3 actual Store failure/readback/no-replay; L2 diagnostic projection/UI/collector; L1 syntax/package/docs.",
-    "local": "194 targeted tests PASS; native-shaped doubles only. B241/current persisted values and Property counts match; zero cross-record uniqueness visits. Historical stale comparator recorded separately.",
-    "user": "One confirmation and one paused refresh, using existing manual collector. No10-turn or save/load repeat for diagnostics.",
-    "gap": "Underlying native write/readback cause, money precision and new contract acceptance remain unresolved."
+    "depth": "Evidence review; five bounded unchanged actual-Store/service discrimination cases; documentation/context/publication checks.",
+    "local": "Five cases pass. Standard-library capability changes explain lost diagnostics, not native Property precision. Earlier194 checks remain scoped and miss this environment gap.",
+    "user": "B242 log received. No repeat now; after authorized repair, one confirmation/paused refresh observes the new diagnostic boundary only.",
+    "gap": "Exact Property readback shape/value difference unavailable; underlying signing, Treasury and maturity acceptance remain pending."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
     "source": "B242.269/modinfo269 deployed from 7dda4211280a95102115a943f4194de2e2afa27a;251/251 MATCH; receipt B242.269-7dda421-playtest.json",
-    "native": "USER_GAME_TEST_REQUIRED; frozen B241 first-confirmation failure remains valid.",
-    "stop": "Await one confirmation/paused refresh diagnostic log, then review exact native evidence; no next Commerce batch."
+    "native": "USER_GAME_TEST_FAIL signing at DEBIT_INTENT_WRITE; HELD/canSign=false refresh verified. Readback projection absent; native storage cause UNKNOWN.",
+    "stop": "Await user authorization for proposed B243; no implementation, deployment or next Commerce ability in this evidence review."
   }
 }

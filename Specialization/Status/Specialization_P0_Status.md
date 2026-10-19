@@ -1,21 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0648
+Status Revision: S0649
 Implementation Build: source/live B242.269; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_CAPITAL_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
-Work State: B242_DIAGNOSTIC_DEPLOYED_AWAITING_NATIVE
+Design Sync State: D0056_UNCHANGED_CAPITAL_NATIVE_PREDEBIT_FAILURE
+Work State: B242_NATIVE_PREDEBIT_FAILURE_DIAGNOSTIC_GAP
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B242.269 narrow Capital diagnostics deployed:** [result and one short test](Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md).
-- Source/live B242.269/modinfo269 from `7dda421`; receipt `B242.269-7dda421-playtest.json`;251/251 MATCH. Stable/main B069.96 unchanged.
-- Original Store error/stage and existing readback differences now reach the bounded log; HELD refresh remains visibly paused. Amounts, saved schema and no-replay safeguards are unchanged.
--194 targeted tests PASS. The separately recorded stale historical comparator is not a native or new-regression result. B240 acceptance is inherited; B241 underlying native cause remains UNKNOWN.
-- Next: one **资本投资 → 科研 → 确认稳健投资** attempt and one **刷新报价** if paused; return the existing collector log, then stop. No10-turn/reload repeat, COM-C/D, Culture HOLD, GC or unrelated work.
+**B242 native confirmation failed before debit; paused feedback works, readback details are missing:** [evidence and B243 proposal](Validation/Results/Specialization_B242_Native_Review.md).
+- Source/live remains B242.269/modinfo269 from `7dda421`; receipt `B242.269-7dda421-playtest.json`. The prior251/251 deployment match is retained; seven relevant files were rechecked equal in this review. Stable/main B069.96 unchanged.
+- 71 contiguous native records identify DEBIT_INTENT_WRITE / STORE_WRITE_UNCONFIRMED. The confirmation did not reach Treasury mutation. REFRESH correctly returns a HELD/canSign=false view without claiming CAPITAL_READY.
+- No readback difference values were captured. The projection's unguarded rawget call and silently discarded observer errors are concrete diagnostic defects. Existing Mac GameCore_Tuner evidence and five local discrimination cases support the missing-function explanation; the current native Property discrepancy remains UNKNOWN.
+- The 194 earlier local checks remain scoped local evidence; they missed the restricted-library diagnostic gap. New review changes no runtime, money rule, test, Design or Architecture.
+- Next: user review/authorization of proposed B243 diagnostic-boundary repair. No repeat user test now, COM-C/D, Culture HOLD, deployment, timer, GC or unrelated work.
+
+## S0649 — B242 pre-debit failure and diagnostic gap reviewed
+
+Reviewed71 contiguous records(seq20–90), exact quote, intent-save rejection and correctly held refresh. Original raw files are hash-recorded and unchanged. The readback projection reintroduced rawget despite existing GameCore_Tuner counterevidence; swallowed observer failures explain how all readback fields can disappear. Five actual-Store/service local scenarios reproduce that loss under two different injected Property failures with zero money calls. They do not identify native storage precision or authorize financial changes. Proposed B243 captures minimal observation facts before detailed comparison and makes diagnostic failures explicit. Only the new review/current Status/Authority/P0-H/context and ignored reproduction are written; source/tests/Design/Architecture/main/config/runtime remain unchanged. Await implementation authorization.
 
 ## S0648 — B242 verified deployment
 
