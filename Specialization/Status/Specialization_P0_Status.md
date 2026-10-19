@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0659
-Implementation Build: source B246.273; live B245.272; stable B069.96
+Status Revision: S0660
+Implementation Build: source/live B246.273; stable B069.96
 Architecture Revision Reviewed: A0173
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B246_LOCAL_COMPLETE_AWAITING_NATIVE
+Work State: B246_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,8 +15,12 @@ Work State: B246_LOCAL_COMPLETE_AWAITING_NATIVE
 - User explicitly authorized B246 and chose the lowest eligible next-tier theoretical purchase price with a visible quotation basis (D0057). Contracts bind target city+district, not the named quote building;15% price, +50% building Production and accepted lifecycle rules remain.
 - New source is B246.273/modinfo273.137 targeted methods pass (57 new,80 retained), including actual Store/failure/reconstruction, native-shaped price/UI, loaded-HD SQL and direct Capital/network regressions. No timer/frame update or GC change. Local results are not native price/Production acceptance.
 - Source slots use current working specialists and direct outgoing routes at signing. Exact saved terms/actual <=0.01 native receipt, no-replay protection, building completion/owner withdrawal and ordinary same-turn changes remain explicit.
-- Live remains B245.272/modinfo272 from `006bf9c`,251/251 MATCH, receipt `B245.272-006bf9c-playtest.json` DEVELOP_ACTIVE until guarded replacement. Main/stable B069.96 unchanged.
+- Source/live B246.273/modinfo273 from `6398be1`,260/260 MATCH, receipt `B246.273-6398be1-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
 - [B245 native gate](Validation/Results/Specialization_B245_Native_Review.md) stays accepted within submitted cases; no repeated Capital long test. B246 has one combined quote/additive-production/running-contract cold-load/completion test. No Restructuring, held Culture issue or audit repair starts automatically.
+
+## S0660 — B246 verified deployment
+
+Clean/pushed source `6398be1` passed fresh automatic game-exit checks before the exact B245 receipt restore and B246 activation.260/260 source/runtime MATCH, digest `62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020`, receipt `B246.273-6398be1-playtest.json`. Stable/outgoing recovery retained, no pending transaction. Context, diff/links and staged publication checks pass. Only deployment-document/current metadata hashes updated after the source checkpoint; main/configuration/other Mods unchanged, no game launch. Native Development verification remains pending; stop without another implementation batch.
 
 ## S0659 — B246 locally verified
 

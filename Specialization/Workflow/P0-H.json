@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0173",
-    "status": "S0659",
+    "status": "S0660",
     "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
@@ -113,8 +113,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-    "source": "B246.273/modinfo273 locally complete; live remains B245.272 until guarded activation.",
+    "source": "B246.273/modinfo273 DEVELOP_ACTIVE; source 6398be1030651157156679f99de709f6a6f873c6; receipt B246.273-6398be1-playtest.json;260/260 MATCH, digest 62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020. Recovery retained, no pending transaction. Native Development quote/Production/running-contract cold-load/completion remains pending.",
     "native": "USER_GAME_TEST_REQUIRED: one combined minimum quote/actual debit, +50% district-building/Standardization, running-contract cold-load and completion exit.",
-    "stop": "After guarded deployment record receipt and stop for the combined native gate; no automatic next batch."
+    "stop": "B246 deployed; await the single combined native flow, no automatic next batch."
   }
 }

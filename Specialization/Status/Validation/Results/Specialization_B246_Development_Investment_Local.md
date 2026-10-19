@@ -6,7 +6,7 @@ Evidence: STATIC_CONFIRMED / LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED
 
 Source checkpoint: B246.273 / modinfo273; based on develop `fc8bcd5`, B245 runtime `006bf9c`.
 
-Deployment: pending guarded W0003 activation; no native B246 result is claimed here.
+Deployment: verified B246.273 from `6398be1`;260/260 source/live MATCH. No native B246 result is claimed here.
 
 ## Approved scope and decision
 
@@ -61,4 +61,8 @@ Pass/fail distinctions: step1 proves the new native theoretical-price/actual-deb
 
 ## Stop boundary
 
-User decision: minimum eligible theoretical price accepted and recorded; no remaining decision needed for this batch. Native unavailable prices must be reported, never approximated. User testing: the one flow above remains pending. Primary next: commit/push this reviewed batch, safely deploy B246.273 under W0003 if game exit is verified, record the actual receipt, then stop. Main B069.96, original evidence, configuration, other Mods and game launch remain outside scope.
+User decision: minimum eligible theoretical price accepted and recorded; no remaining decision needed for this batch. Native unavailable prices must be reported, never approximated. User testing: the one flow above remains pending. Primary next: source commit/push and guarded B246.273 deployment are complete; await the one native flow, then review its evidence. Main B069.96, original evidence, configuration, other Mods and game launch remain outside scope.
+
+## Verified deployment checkpoint
+
+Clean/pushed source `6398be1030651157156679f99de709f6a6f873c6` passed automatic game-exit checks before both receipt-bound B245 restoration and B246 activation. Source/live260/260 files MATCH, modinfo273, digest `62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020`. Receipt `B246.273-6398be1-playtest.json` is DEVELOP_ACTIVE; stable/outgoing recovery retained, no pending transaction. Context, diff/links and staged publication checks pass. Main remains `e901a22`/B069.96, configuration/other Mods unchanged, no game launch. Only deployment documentation/metadata follow this source checkpoint; no new runtime change or native PASS. Stop for the combined flow above.

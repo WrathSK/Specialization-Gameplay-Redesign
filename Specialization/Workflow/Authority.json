@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0173",
-    "status": "S0659",
+    "status": "S0660",
     "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
-  "runtime_commit": "006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb",
-  "current_batch": "B246_LOCAL_COMPLETE_AWAITING_NATIVE",
-  "next_batch": "B246 local implementation complete; commit/push and guarded deployment authorized, then one combined native Development flow. No automatic Restructuring or unrelated batch.",
+  "runtime_commit": "6398be1030651157156679f99de709f6a6f873c6",
+  "current_batch": "B246_DEPLOYED_AWAITING_NATIVE",
+  "next_batch": "Await the single combined B246 native Development quote/debit, +50% district-building/Standardization, running-contract cold-load and completion exit. No automatic Restructuring or other batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B245.272/modinfo272 DEVELOP_ACTIVE; source 006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb; receipt B245.272-006bf9c-playtest.json;251/251 MATCH, digest 58201248325c9430ccada071ca242211400c394eb1830d6d950edfe496f19a0b. Recovery retained, no pending transaction. B245 signing/running-contract cold-load/maturity accepted within the submitted cases; no runtime change in this review.",
+  "live": "B246.273/modinfo273 DEVELOP_ACTIVE; source 6398be1030651157156679f99de709f6a6f873c6; receipt B246.273-6398be1-playtest.json;260/260 MATCH, digest 62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020. Recovery retained, no pending transaction. Native Development quote/Production/running-contract cold-load/completion remains pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0659: user-authorized Development and D0057 minimum quote decision;137 targeted local methods (57 new,80 retained), Lua5.1 syntax, loaded-HD SQL and direct paths reviewed. Only named runtime/docs/tests hashes updated. Capital/old evidence/main/configuration unchanged; native price/Production/persistence pending.",
+  "context_review_status": "S0659: user-authorized Development and D0057 minimum quote decision;137 targeted local methods (57 new,80 retained), Lua5.1 syntax, loaded-HD SQL and direct paths reviewed. Only named runtime/docs/tests hashes updated. Capital/old evidence/main/configuration unchanged; native price/Production/persistence pending. S0660: exact receipt/stable bridge plus fresh OS exit checks, clean/pushed6398be1 and260/260 MATCH confirmed; five named deployment/navigation hashes only. Native gate still pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
