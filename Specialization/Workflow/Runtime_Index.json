@@ -6,9 +6,9 @@
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
     "Mod/ArtDefs/Units.artdef": {
-      "sha256": "a5f9b2e28825ac77e84023be897a506377dd08e12fc635919ff3ea0f6e406898",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "eae2ffd941b6b2a96c336b49ca5ba95a9f24bc84a2da9654fafa8a59eb8fab30",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/BindingProbe.lua": {
       "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "6b9d0c719397758d801a4069723ff2971de8d1f15016c490e7545b03bea58d60",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "73801a8796f283811923587713fc34e800df7d9fe47182a2b7b2b8ffe03a1fe3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "ae72675b49779d09553e6dc96ccec5e5bf759f20bdf5109d8eec666db82b0ca9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "d5618bab04d964e0f5f5f7bab82b8e865dfdcd721f8ce55bbb48778d56ffc894",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "5fdbc8c70f04c0518ee14616bb0e96479a1a2088746f4741705fd999efe01c30",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "3e90e29850e349c6b86995a07107efe475db1496b8b128574d8cf07cfb6d5231",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -421,14 +421,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Specialization.dep": {
-      "sha256": "2a825b453df53475a7ca858ba4adfcab60e33f017f17b0ac2ef0d5489735e0f8",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "02512deb207a06f5208eb5429f994e7816cb14f7ad56f496e13a4c434b19925a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d000ecf385a724e2d82bd8e90f1e21257772de74ece0a36236ef73df191a7eef",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "2e405ab5279f0870b8170153ec4f41f41322cbd01a1c5b133e097e17c242bbd1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "90652da61c46ee4f0994bbc40b852311e4170639bf4137ef5a1881ba3080573b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "4380fdbabec7979cbada084c5e3d6739e896a96a51f6a68d0d048ecf74ad38cb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -1311,9 +1311,9 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Restructuring.lua": {
-      "sha256": "01b4132cbba5b8c866f03d4dee623653bb6fdde88d3564d989c6f774f5ae4486",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "1121180bf153bef9c627a300042a6b526760543e443a8f2bcb8f75a8cb330b52",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/RestructuringModel.lua": {
       "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",
@@ -1321,9 +1321,9 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/RestructuringUI.lua": {
-      "sha256": "3eb110a278d00060644bcd071a4c1a937b3780add622ea62e721b8208354564a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "f42fb5f3614e52c4f9ac67ad7988d66878a959e5b8f88933e3f9d248213e1cab",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/Text/Restructuring.sql": {
       "sha256": "c473ad7e165a6d1181375b8ad9a0ed878161302a53474196d37d780b44b4c97f",

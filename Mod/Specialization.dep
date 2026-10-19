@@ -9,6 +9,10 @@
       <name text="Civ6" />
       <id text="cb2f71b7-843e-4af3-9ca7-992acda9c195" />
     </Element>
+    <Element>
+      <name text="MonopolyPlus" />
+      <id text="b248a322-3e2a-4a6a-830a-6b0d1f3435fc" />
+    </Element>
   </RequiredGameArtIDs>
   <SystemDependencies>
     <Element>

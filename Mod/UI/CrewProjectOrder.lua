@@ -1,6 +1,7 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
+include('RestructuringUI')
 local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection,developmentSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
@@ -15,6 +16,7 @@ function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
  if trainingSelection then trainingSelection.Items(data)end
+ pcall(SPCRestructuringUI.ObserveTraining,SPCP0,data)
  if crewSelection then crewSelection.Items(data)end
  if capitalSelection then capitalSelection.Items(data)end
  if developmentSelection then developmentSelection.Items(data)end

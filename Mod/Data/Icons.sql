@@ -77,4 +77,8 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_DEVELOPMENT_INVESTMENT',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
 
-INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_RESTRUCTURING_TEAM'),Atlas,"Index" FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
+-- Reuse the installed Monopoly++ Investor atlas entries, including white flag
+-- and civilization portrait variants. No external textures are redistributed.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+ SELECT REPLACE(Name,'UNIT_LEU_INVESTOR','UNIT_SPC_RESTRUCTURING_TEAM'),Atlas,"Index"
+ FROM IconDefinitions WHERE Name='ICON_UNIT_LEU_INVESTOR' OR Name LIKE 'ICON_UNIT_LEU_INVESTOR\_%' ESCAPE '\';

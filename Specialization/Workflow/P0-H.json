@@ -10,15 +10,15 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0174",
-    "status": "S0663",
-    "runtime": "B247.274 / modinfo274",
+    "architecture": "A0175",
+    "status": "S0664",
+    "runtime": "B248.275 / modinfo275",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-  "goal": "Deliver approved B247 protected team and complete same-city restructuring with preserved named histories/contracts; validate the new persistent transaction once natively.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+  "goal": "B248: repair proven investment-to-training notification, reuse Investor presentation, and expose the unresolved native load-time entry stage before completing the pending B247 transaction gate.",
   "implementation_authorized": false,
   "context": [
     {
@@ -48,20 +48,20 @@
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B247 implementation and validation",
+      "selector": "## B248 training-access follow-up",
       "reason": "Approved boundary, state ownership and update lifecycle."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
       "kind": "section",
-      "selector": "## Local verification",
-      "reason": "Risk-matched local evidence and explicit historical-check limitations."
+      "selector": "## Reported failure and evidence boundary",
+      "reason": "Do not conflate the same-turn defect with the reported load-time native case."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
       "kind": "section",
-      "selector": "## One native acceptance flow",
-      "reason": "Only new transaction uncertainty, including reallocation cold load."
+      "selector": "## Minimal combined native flow",
+      "reason": "Entry-first observation, then the original pending transaction gate only if available."
     }
   ],
   "dependencies": [
@@ -74,6 +74,20 @@
     "Preserve Commerce I/II, Research/Culture/Industry, common topology, Crew construction and historical evidence."
   ],
   "conditional_context": [
+    {
+      "trigger": "B248 training access or presentation discrepancy",
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/Restructuring.lua",
+        "Mod/RestructuringUI.lua",
+        "Mod/UI/CrewProjectOrder.lua",
+        "Mod/Data/Icons.sql",
+        "Mod/ArtDefs/Units.artdef",
+        "Mod/Specialization.dep",
+        "Mod/SpecializationP0.modinfo",
+        "DevelopmentTests/test_b248_training_entry.py"
+      ]
+    },
     {
       "trigger": "B247 implementation/native discrepancy",
       "paths": [
@@ -110,19 +124,19 @@
     "General Store/event/framework migration, timers/frame polling, GC changes, main/promotion, external Mod/configuration edits, game launch, frozen evidence mutation."
   ],
   "validation": {
-    "depth": "L3 new current-identity/persistence/native-consumption boundary; direct UI/SQL/package L2.",
-    "local": "240 selected methods PASS:50 B247,190 directly affected retained checks; Lua5.1 and in-memory loaded-HD SQL. Ordinary restructuring writes0 cross-record uniqueness visits, not a native performance claim.",
-    "user": "USER_GAME_TEST_REQUIRED: one normal training/liquidation/reallocation cold-load/configuration flow.",
-    "gap": "Actual net growth/yields and new real-save transaction pending. Historical build-specific assertions/SQL reapply are not current PASS. B246 simultaneous Standardization overlap remains opportunistic."
+    "depth": "L2 city-scoped access/diagnostic/art delta plus retained L3 transaction checks.",
+    "local": "58 selected methods PASS; exact investment notification, load fixture, bounded observation, unchanged unit SQL and other art, package/Lua5.1 checks.",
+    "user": "USER_GAME_TEST_REQUIRED: already-IV training entry first, then original B247 transaction/cold-load flow if available.",
+    "gap": "Reported load-time absence remains unresolved; actual native CanProduce and art rendering not proved locally. B246 overlap remains optional."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-    "source": "B247.274/modinfo274 source 88abdf91cc5136ba44c2fb60602b054bc8e49a95; receipt B247.274-88abdf9-playtest.json DEVELOP_ACTIVE; 265/265 runtime MATCH.",
-    "native": "USER_GAME_TEST_REQUIRED: one normal training/liquidation/reallocation cold-load/configuration flow.",
-    "stop": "Await the one B247 native flow. This completed batch grants no subsequent implementation."
+    "report": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+    "source": "B248.275/modinfo275 locally verified; live B247.274 remains until W0003 deployment.",
+    "native": "USER_GAME_TEST_FAIL: B247 entry absent after load. B248 USER_GAME_TEST_REQUIRED; original transaction not yet exercised.",
+    "stop": "Await the combined native gate; do not start further development."
   }
 }

@@ -9,9 +9,9 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0174",
-    "status": "S0663",
-    "runtime": "B247.274 / modinfo274",
+    "architecture": "A0175",
+    "status": "S0664",
+    "runtime": "B248.275 / modinfo275",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "88abdf91cc5136ba44c2fb60602b054bc8e49a95",
-  "current_batch": "B247_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "Await one B247 liquidation/reallocation cold-load/configuration native flow. No further implementation authorized.",
+  "current_batch": "B248_LOCAL_COMPLETE_NATIVE_ENTRY_UNRESOLVED",
+  "next_batch": "Guarded B248 deployment, then native training-entry check and existing B247 transaction flow only if available; no subsequent batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B247.274/modinfo274 DEVELOP_ACTIVE; source 88abdf91cc5136ba44c2fb60602b054bc8e49a95; receipt B247.274-88abdf9-playtest.json; 265/265 MATCH, digest 12f71dcd6c1c593e64737d0f50f61c489de83e80d347f761847885512093543f. No pending transaction; stable and B246 recovery retained. B247 native gate pending. B246 accepted scope unchanged.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0662: explicitly authorized B247 current-identity transaction, protected team and necessary Store/consumer/UI adaptations reviewed.240 selected methods PASS (50 new,190 retained), Lua5.1, loaded-HD new SQL and package closure. Historical test assumptions disclosed, not rewritten. Only changed/new reviewed hashes refreshed; Design, frozen evidence, main, GC and configuration unchanged. S0663 deployment-only checkpoint: committed B247 source/live 265/265 MATCH; exact B246/stable recovery verified, automatic OS exit checks, no pending marker or game launch. Only named deployment metadata hashes refreshed. B247 native pending.",
+  "context_review_status": "S0664: authorized training-entry follow-up and Investor presentation.58 targeted methods PASS (15 new,38 B247 Store/service,5 UI); Lua5.1/art/icon/package closure. Confirmed missing same-turn investment notification repaired; reported already-IV load-time absence remains unresolved pending new bounded native list evidence. No unit rules/Store/Design/GC/main/configuration changes. Only reviewed changed/new hashes updated.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md"
 }

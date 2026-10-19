@@ -132,7 +132,10 @@ function SPCRestructuring.Start(P,shared)
  end
  local function sync(pid,c,recover)
   local f=shared.EffectiveFacts.Read(pid,c);local s=store.RestructuringState(pid,c)
-  marker(c,S.ACCESS,SPCCommerceModel.IsStandardSpeed() and f.specialization=='COMMERCE' and f.active==4 and not f.investmentPending)
+  local wanted=SPCCommerceModel.IsStandardSpeed() and f.specialization=='COMMERCE' and f.active==4 and not f.investmentPending
+  marker(c,S.ACCESS,wanted)
+  if trace then trace.Record('REST_ACCESS',{owner=pid,city=c:GetID(),mode=f.specialization,
+   expected=f.active,count=f.potential,wanted=wanted,markerPresent=wanted,ready=d.ready})end
   local disrupted=s and (s.phase=='REALLOCATING' or s.phase=='CONSUMING') or false
   marker(c,S.DISRUPTION,disrupted)
   if recover and s and s.phase=='CONSUMING' then
@@ -163,6 +166,12 @@ function SPCRestructuring.Start(P,shared)
   busy=false
   local changed=publication;publication={}
   for _,c in pairs(changed)do if c:GetOwner()>=0 and P.IsTestPlayer(c:GetOwner())then d.Publish(c:GetOwner(),c)end end
+ end
+ -- Investment completion already proves the changed city. Reuse the normal
+ -- derived-marker writer; no player scan, retained fact packet or timer.
+ function d.Refresh(pid,id)
+  if type(id)~='number' then return end
+  mark(pid,id);d.Flush()
  end
  function d.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token>100 then return end
@@ -254,7 +263,9 @@ function SPCRestructuring.Start(P,shared)
  end)end
  hook('LoadScreenClose',function()
   d.ready=true;births={};completed={};plans={};d.views={};ExposedMembers.SPC_RestructuringViews=d.views
+  log('REST_LOAD_BEGIN')
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then mark(pid)end end;d.Flush(true)
+  log('REST_LOAD_RETURNED')
  end)
  local prior=shared.OnPermanentCityWrite
  shared.OnPermanentCityWrite=function(c,reason)

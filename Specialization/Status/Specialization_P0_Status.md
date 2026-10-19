@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0663
-Implementation Build: B247.274 / modinfo274; stable B069.96
-Architecture Revision Reviewed: A0174
+Status Revision: S0664
+Implementation Build: B248.275 / modinfo275; stable B069.96
+Architecture Revision Reviewed: A0175
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B247_DEPLOYED_AWAITING_NATIVE
+Work State: B248_LOCAL_COMPLETE_NATIVE_ENTRY_UNRESOLVED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B247 Asset Restructuring deployed after local validation; native gate pending.** [Result and minimal flow](Validation/Results/Specialization_B247_Restructuring_Local.md).
-- Standard-speed Commerce ACTIVE IV trains a 500-Production protected team; explicit same-city liquidation → REALLOCATING → configuration after at least five full turns. One Potential debit, exact team consumption with separate confirmation, no automatic finish or new timers.
-- Original city/profession history retained; current Identity/ACTIVE effects published separately. Commerce reputation/failure protection resets on actual Identity exit; signed Capital/Development contracts keep their accepted rules. Target transfer during reallocation discards that transaction/team; recapture uses current candidates.
-- 240 targeted local methods PASS; actual dispatcher/support/network input and actual contract persistence/settlement included. Local checks do not prove native growth, unit behavior or real save reconstruction. One native flow includes a cold load during REALLOCATING.
-- Source/live B247.274/modinfo274 from `88abdf9`; receipt `B247.274-88abdf9-playtest.json` DEVELOP_ACTIVE, 265/265 files MATCH. Main/stable B069.96 unchanged.
-- B246 remains [accepted in the submitted scope](Validation/Results/Specialization_B246_Native_Review.md). Simultaneous Standardization+Development remains NOT_EXERCISED; capture once opportunistically, without repeating B246. Culture holds, unrelated audit repairs and further batches do not start automatically.
+**B248 training-access follow-up locally verified; the reported load-time entry failure is not yet closed.** [Evidence and minimal flow](Validation/Results/Specialization_B248_Training_Entry.md).
+- User clarified the unit is missing from the production list of an already-IV Commerce city immediately after loading. Loaded B247 definitions are present; existing logs lack prerequisite/native-list evidence. Do not equate the confirmed investment-notification defect with this load-time case.
+- B248 fixes that definite city-scoped investment notification gap and records service/access/native eligibility in existing bounded logs. Reuses installed Monopoly++ Investor model/icons with an explicit provider dependency.500 Production, no population debit/cap/purchase/copy escalation, histories, contracts and transaction semantics stay unchanged.
+- 58 selected local methods PASS; native list/model and the original liquidation → REALLOCATING cold-load → configuration flow remain pending. If the entry is still absent, stop at that first check and use the discriminating logs.
+- Source B248.275/modinfo275 is separate from live B247.274/modinfo274 (`88abdf9`, receipt `B247.274-88abdf9-playtest.json`, 265/265 verified at its deployment). Main/stable B069.96 unchanged. Guarded deployment follows the committed-source gate.
+- B246 scoped acceptance and optional Standardization overlap remain unchanged. Culture holds, unrelated audit repairs and subsequent batches are not advanced.
+
+## S0664 — B248 scoped follow-up and native-entry evidence boundary
+
+The actual Store/investment dispatcher reproduces a missing same-turn access update; the city-scoped existing writer now receives committed investment notification. Existing-IV load reconstruction passes locally and does not explain away the user's native failure. The production read and load/access stages now supply the missing bounded observations without adding a timer, forced eligibility or UI gameplay writer.58 targeted checks pass; Investor art/atlas dependency is explicit, other unit art and gameplay SQL unchanged. Only implementation-related current metadata and new evidence are written; B247 frozen result remains intact. Await guarded deployment and the minimal entry-first combined flow.
 
 ## S0663 — B247 verified deployment
 

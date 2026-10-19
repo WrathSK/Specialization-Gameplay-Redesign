@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="274">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="275">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B247.274: protected Restructuring Teams and city liquidation, reallocation and configuration.</Description>
+    <Description>B248.275: immediate Restructuring Team training access and reused Investor presentation.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -706,6 +706,7 @@
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />
     <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Gathering Storm" />
+    <Mod id="b248a322-3e2a-4a6a-830a-6b0d1f3435fc" title="Leugi Monopoly++: Tycoons and Investors (reused unit art)" />
   </Dependencies>
   <FrontEndActions>
     <UpdateText id="SPC_FE_Text">

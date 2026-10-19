@@ -51,3 +51,42 @@ function M.BlockDelete(hash)
  local row=GameInfo.UnitCommands.UNITCOMMAND_DELETE
  return M.IsTeam(UI.GetHeadSelectedUnit()) and row and hash==row.Hash
 end
+
+-- B248: one replaceable observation key in this UI context, no gameplay write.
+-- Native CanProduce remains the sole production-list gate; never inject an item.
+local trainingTrace,trainingStamp
+function M.ObserveTraining(P,data)
+ local c=data and data.City
+ if not c or c:GetOwner()~=Game.GetLocalPlayer() or not P.IsTestPlayer(c:GetOwner())then return end
+ local row=GameInfo.Units[M.KIND];local marker=GameInfo.Buildings.BUILDING_SPC_RESTRUCTURING_ACCESS
+ local found,disabled=false,false
+ for _,item in ipairs(data.UnitItems or {})do if item.Type==M.KIND then found=true;disabled=item.Disabled==true;break end end
+ local svc=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.Restructuring
+ local stamp=c:GetOwner()..':'..c:GetID()..':'..Game.GetCurrentGameTurn()..':'..tostring(ExposedMembers.SPC_RuntimeUIRevision)
+  ..':'..tostring(found)..':'..tostring(disabled)..':'..tostring(svc and svc.ready)
+ if stamp==trainingStamp then return end;trainingStamp=stamp
+ if not SPCExpeditionTrainingDiagnostics then return end
+ trainingTrace=trainingTrace or SPCExpeditionTrainingDiagnostics.New(P,'RESTRUCTURING_UI')
+ local v={owner=c:GetOwner(),city=c:GetID(),count=found and 1 or 0,paused=disabled,
+  ready=svc and svc.ready==true or false,guardStatus=svc and 'PRESENT' or 'ABSENT',readStatus='VERIFIED'}
+ local ok=pcall(function()
+  assert(row and marker,'REST_DEFINITION_MISSING')
+  v.unitIndex=row.Index;v.unitHash=row.Hash;v.markerIndex=marker.Index
+  v.markerPresent=c:GetBuildings():HasBuilding(marker.Index)
+  local q=c:GetBuildQueue();local p={UnitType=row.Hash,MilitaryFormationType=MilitaryFormationTypes.STANDARD_MILITARY_FORMATION}
+  v.readyToSelect=q:CanProduce(p,true) -- native production-list visibility, not a permission override
+  local allowed,results=q:CanProduce(p,false,true);v.eligibility=allowed
+  v.nativeCost=q:GetUnitCost(row.Index)
+  local reasons=results and CityCommandResults and results[CityCommandResults.FAILURE_REASONS]
+  v.nativeReasonStatus=type(reasons)=='table' and 'AVAILABLE' or 'UNAVAILABLE'
+  if type(reasons)=='table'then
+   v.nativeReasonCount=#reasons;v.nativeReasonTruncated=#reasons>4
+   for i=1,math.min(4,#reasons)do
+    local value=reasons[i]
+    v['nativeReason'..i]=type(value)=='string' and #value<=100 and value:match('^LOC_[A-Z0-9_]+$')and value or 'REDACTED'
+   end
+  end
+ end)
+ if not ok then v.readStatus='FAILED';v.reason='REST_TRAINING_READ_FAILED'end
+ trainingTrace.Record('REST_TRAINING_LIST',v)
+end

@@ -1,6 +1,6 @@
 # Commerce implementation preparation
 
-State: B246_NATIVE_ACCEPTED_SCOPED / B247_IMPLEMENTED_LOCALLY_AWAITING_NATIVE. Updated 2026-10-18: [B246 native review](../../Status/Validation/Results/Specialization_B246_Native_Review.md) accepts the submitted Development cases; simultaneous Standardization remains unexercised. [B247 implementation](#b247-implementation-and-validation) is explicitly authorized and locally verified. Actual source/live deployment remains in Status.
+State: B246_NATIVE_ACCEPTED_SCOPED / B248_ACCESS_FOLLOWUP_LOCALLY_VERIFIED_NATIVE_ENTRY_UNRESOLVED. Updated 2026-10-18: [B246 native review](../../Status/Validation/Results/Specialization_B246_Native_Review.md) accepts the submitted Development cases; simultaneous Standardization remains unexercised. [B247 implementation](#b247-implementation-and-validation) is explicitly authorized and locally verified. Actual source/live deployment remains in Status.
 
 ## 当前范围与停止点
 
@@ -292,6 +292,13 @@ The completed team owns original-owner provenance; the target city owns the tran
 
 The source/target selection uses current native districts; access, disruption and UI are derived. Successful committed transitions publish through existing network/profession APIs; a local Standardization entry reconciles current eligible facts. Research tradition pauses, completed Culture/Industry histories remain, Commerce reputation/selections/failure protection reset, and signed investment contracts continue under their own owner-change rules. Five elapsed game turns only enable the explicit same-city configuration action. No wall-clock timer/frame fallback, GC change, general save/event refactor or automatic completion.
 
-Native training is fixed 500 Production with PopulationCost 0 and no purchase/copy escalation. Native safe-retreat and Builder art are reused; delete UI/hotkey/callback is blocked only for this team. Established institutions, including Commerce, render as history where no longer current. Temporary event pairs, views, previews and diagnostics have defined replacement/turn/load/removal boundaries.
+Native training is fixed 500 Production with PopulationCost 0 and no purchase/copy escalation. Native safe-retreat is reused; B248 replaces the original Builder presentation with installed Monopoly++ Investor art/icons (explicit provider dependency); delete UI/hotkey/callback is blocked only for this team. Established institutions, including Commerce, render as history where no longer current. Temporary event pairs, views, previews and diagnostics have defined replacement/turn/load/removal boundaries.
 
 240 selected local methods pass, including actual dispatcher/Store/support/network input and real contract persistence/settlement tests; actual yields, protected native movement and the new real-save transaction remain USER_GAME_TEST_REQUIRED. Source and live deployment remain separately recorded in Status. B246 Standardization+Development overlap remains an optional later observation; no unrelated audit repair or next Commerce batch is implied.
+
+
+## B248 training-access follow-up
+
+[Evidence and minimal native gate](../../Status/Validation/Results/Specialization_B248_Training_Entry.md). The reported already-IV city has no training entry after load. Loaded unit definitions exist, but the submitted bounded log lacks the native prerequisite/list observation; that specific cause remains unresolved. A separate actual-Store reproduction confirms the missing committed-investment notification, now connected to a city-scoped Restructuring.Refresh. No new state authority, marker retry loop, timer, training rule or transaction change.
+
+Read-only production-list diagnostics distinguish service readiness, marker readback, native visibility/eligibility and the existing list item. The UI never inserts the unit or substitutes for native qualification. Investor presentation uses the installed provider's art and atlas definitions; its gameplay is not inherited. Existing other-unit art remains unchanged.58 selected local methods pass; the native entry check precedes the original pending B247 transaction/cold-load flow.
