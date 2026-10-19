@@ -1,6 +1,6 @@
 # Commerce implementation preparation
 
-State: B240_NATIVE_ACCEPTED_SCOPED / B241_LOCAL_COMPLETE_NATIVE_PENDING. Updated 2026-10-18: B240 implementation `81efaa9`, review basis `049f6cf`, Commerce D0056 and Shared D0045. The user authorized matching-Identity external sources, Harbor total Food, removal of repeated Gold sampling and the B239 prerequisite/report UI correction. [B241 implementation](#b241-implementation-and-validation) is the current slice; source and deployment remain distinct in Status.
+State: B240_NATIVE_ACCEPTED_SCOPED / B241_NATIVE_CONFIRM_FAILED / B242_DIAGNOSTIC_LOCAL_COMPLETE. Updated 2026-10-18: D0056 and existing economic/ownership contracts are unchanged. [B242 diagnostics](#b242-confirmation-diagnostics) is the current authorized slice; actual source/deployment and native evidence remain separate in Status.
 
 ## 当前范围与停止点
 
@@ -15,7 +15,7 @@ Gameplay authority is [Commerce D0056](../../Design/Content/Commerce_D0056.json)
 | Commerce I/II support | Existing automatic support/qualification | Inherit scoped evidence; preserve baseline specialists/housing/GPP |
 | Commercialization | B240 D0055 source/Food writer and prerequisite UI implemented; tested values/modifiers/Identity/withdrawal accepted | No new blocker in the submitted interval; no broad performance certification |
 | Reputation | B239 Store-owned history; user observed growth and confirms B240 cold-load step | Inherit this evidence; no repeated Research Tradition test |
-| Capital Investment | B241 shared stable/venture quote and persisted contracts locally complete | One native money/term/reload/settlement session; fractional-native precision remains unverified |
+| Capital Investment | B241 business implementation; first native confirmation failed. B242 failure diagnostics locally complete | One bounded confirmation log before resuming native contract acceptance; exact native cause and precision unresolved |
 | Development Investment | Absent |15% theoretical purchase quote, one active contract per target city, +50% district-building production and completion exit |
 | Restructuring | Absent |500P Team, REALLOCATING, one permanent Potential debit, disruption and configuration |
 | Old Commerce | B239 exact3+48 retired | Definitions retained for cleanup; no old forward writer |
@@ -135,7 +135,7 @@ Use task-scoped Content objects and direct source/caller closure. Exact cutover 
 
 The original preparation review contained source evidence and one actual-writer counterexample only. B239/B240 local evidence is scoped below; the user accepts B239 capacity, report D/Reputation response and observed reputation growth, and B240 adds user acceptance of actual values/city modifiers/source filtering/withdrawal and the Commerce reload. New persistence/writer closure receives targeted L3, ordinary projection L2, text/layout L1. Inherit unchanged shared evidence and combine native steps by marginal information value. Publish only this batch's reviewed source/tests/documentation; keep raw screenshots/logs and local reproduction ignored.
 
-User decision: D0056 tie-break and B241 explicitly approved. User testing/Primary next: see the B241 implementation section; no COM-C/D authorization.
+User decision: D0056 remains accepted; B242 narrow diagnostics explicitly authorized. User testing/Primary next: see B242 below; no COM-C/D authorization.
 
 ## B239 implementation and validation
 
@@ -213,3 +213,11 @@ Authoritative contracts/n live in the existing Store's optional per-city capital
 Treasury remains native authority. Persist INTENT/CALLING before the native operation; only immediate matching readback permits ACTIVE/SETTLED. A saved final receipt is not replayed; unknown CALLING holds without guessing from later balances. Quotation and UI are replaceable views; outcome/n stay private until settlement. Three domain slots retain only current/latest contracts. Existing turn/load/confirmed-transfer events drive business transitions; network/Commerce publications mark quote reads dirty. UI/publish never debits, rolls or settles. Access marker has no yield and uses exact loss cleanup.
 
 The new native delta is Gold debit/credit precision and persisted contract settlement. Request the one combined session in the result, including one midterm cold load; inherit B240/old harness evidence. No new timer, frame polling, GC, AI specialization, Development Investment or Restructuring. User decision: accepted tie-break, no new rounding semantics. User testing: pending. Primary next: W0003 safe deployment if the game is verifiably closed, then stop at the native gate.
+
+## B242 confirmation diagnostics
+
+The [B241 first-confirmation review](../../Status/Validation/Results/Specialization_B241_Native_Review.md) supersedes its earlier pending-test handoff, without changing the frozen local result. The user authorizes only stage/readback evidence and honest paused feedback. [B242 implementation, validation and minimal session](../../Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md).
+
+An optional failure-only observer at the existing Store readback boundary passes already obtained values into a bounded pure projection; it performs no additional native read or write. Request-local phase details and a single per-city failure in the existing replaceable view are observational, never persisted authority or permission to replay. Existing debit/credit intent/calling/receipt order, schema, failed-write reservations, per-city isolation and economic calculation remain unchanged. OPEN/REFRESH accepted means the read request was handled; view stage/canSign/reason independently describe whether signing is possible.
+
+No timers, frame checks, new GC or source/world scans.194 targeted tests pass; native cause remains UNKNOWN. User testing is one confirmation plus one paused refresh if needed, with the existing manual collector. No new full save/load/settlement sequence in this diagnostic batch. Stop after guarded deployment and await evidence; COM-C/D remains unauthorized.

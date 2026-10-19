@@ -114,3 +114,13 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CAPITAL_RESULT_SUCCESS','风险投资成功'),
 ('zh_Hans_CN','LOC_SPC_CAPITAL_RESULT_FAILURE','风险投资失败');
 INSERT OR IGNORE INTO LocalizedText(Language,Tag,Text) SELECT 'en_US',Tag,Text FROM LocalizedText WHERE Language='zh_Hans_CN' AND Tag LIKE 'LOC_SPC_CAPITAL_RESULT_%';
+
+-- B242: concise paused-state messages; no implied retry or successful recovery.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CAPITAL_PAUSE_INTENT','投资已暂停：合同意向未能确认保存。本次确认未进入扣款步骤，请回传日志。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_PAUSE_CALLING','投资已暂停：扣款前记录未能确认保存。本次确认未进入扣款步骤，请回传日志。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_PAUSE_DEBIT','投资已暂停：实际扣款结果尚未确认。请勿重复确认，回传日志核对。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_PAUSE_RECEIPT','投资已暂停：已进入扣款步骤，最终合同回执未确认。请勿重复确认，回传日志核对。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_PAUSE_CREDIT','投资已暂停：到期结算记录或金币回执未确认。请回传日志核对。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_PAUSE_STATE','投资已暂停：保存记录暂不可确认。刷新报价不会重新扣款，请回传日志核对。');
+INSERT OR IGNORE INTO LocalizedText(Language,Tag,Text) SELECT 'en_US',Tag,Text FROM LocalizedText WHERE Language='zh_Hans_CN' AND Tag LIKE 'LOC_SPC_CAPITAL_PAUSE_%';

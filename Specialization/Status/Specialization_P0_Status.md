@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0646
-Implementation Build: source/live B241.268; stable B069.96
+Status Revision: S0647
+Implementation Build: source B242.269; live B241.268; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_CAPITAL_LOCAL_COMPLETE_NATIVE_FAILED
-Work State: B241_NATIVE_CONFIRM_FAILED_DIAGNOSTIC_PROPOSED
+Design Sync State: D0056_CAPITAL_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B242_DIAGNOSTIC_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B241 first Capital confirmation failed; native test paused:** [review and narrow diagnostic proposal](Validation/Results/Specialization_B241_Native_Review.md).
-- Quote succeeds; confirmation becomes CAPITAL_STATE_UNKNOWN/HELD before any recorded money operation. Current reporting drops Store failure detail; exact native write/readback cause remains UNKNOWN.
-- Source/live remain B241.268/modinfo268 from `66a94b9`; receipt `B241.268-66a94b9-playtest.json`, last full250/250 MATCH. This review verified five direct runtime files only; no new deployment.
-- Existing155 local checks and five new offline counterexamples do not establish native signing, precision, reload or maturity. B240 accepted scope remains intact.
-- Next: proposed bounded failure-stage/readback and honest HELD feedback; implementation not authorized. No immediate user repeat, COM-C/D, main/Culture/GC or unrelated audit change.
+**B242 narrow Capital diagnostics locally complete:** [result and one short test](Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md).
+- Source B242.269/modinfo269; existing live B241.268 remains receipt-bound to66a94b9 until verified deployment. No native cause/precision/signing acceptance is inferred.
+- Original Store error/stage and existing readback differences now reach the bounded log; HELD refresh remains visibly paused. Amounts, saved schema and no-replay safeguards are unchanged.
+-194 targeted tests PASS. One separately recorded historical whole-schema comparator already fails on B241; its assertions remain unchanged. B240 accepted scope is inherited.
+- Next: commit/push, automatic game-exit check and W0003 deployment, then one confirmation/paused refresh log. No COM-C/D, main/promotion, Culture HOLD, GC or unrelated audit work.
+
+## S0647 — B242 failure diagnostics locally verified
+
+Authorized diagnostic-only delta preserves native write/readback results, original sanitized errors and confirmation stage without additional Property reads, retries or monetary corrections. Request/view feedback separates accepted refresh from usable signing.194 targeted tests pass, including actual Store failure/no-replay isolation, B241/current per-value and Property-work equivalence, UI and collector parsing. The old historical comparator mismatch was independently reproduced on pre-B242 Store and left untouched. Underlying native failure remains UNKNOWN; source/runtime are separate until the guarded deployment record.
 
 ## S0646 — B241 first confirmation failure reviewed
 

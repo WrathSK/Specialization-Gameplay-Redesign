@@ -210,11 +210,11 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.Base(pid,c)local r=active(pid,c);return projected(r,r.base,false)end
  function d.Investment(pid,c)local r=active(pid,c);return projected(r,r.investment,true)end
- local function save(nextValue)
+ local function save(nextValue,observeFailure)
   assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
   local previous=root;root=cp(nextValue) -- protect target before engine callbacks
   committing=true
-  local ok,err=pcall(storage.Write,previous,nextValue)
+  local ok,err=pcall(storage.Write,previous,nextValue,observeFailure)
   committing=false
   if not ok then fault=tostring(err);error(fault)end
  end
@@ -234,12 +234,12 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
   return cp({value=r.capital,token=r.base.token})
  end
- function d.WriteCapital(pid,c,old,value)
+ function d.WriteCapital(pid,c,old,value,observeFailure)
   assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
   assert(same(r.capital,old),'CAPITAL_HISTORY_STALE')
   assert(value~=nil,'CAPITAL_HISTORY_CANNOT_DELETE');SPCCapitalInvestmentModel.Validate(value)
   if same(old,value)then return end
-  local n=cp(r);n.capitalKnown=true;n.capital=cp(value);n.revision=n.revision+1;save(n)
+  local n=cp(r);n.capitalKnown=true;n.capital=cp(value);n.revision=n.revision+1;save(n,observeFailure)
  end
  function d.CapitalReference()
   storage.Check();assert(not committing and ready and not fault and root,'CAPITAL_REFERENCE_UNAVAILABLE')
@@ -890,13 +890,14 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    end
    return cp(envelope.records[token])
   end
-  function storage.Write(old,value)
+  function storage.Write(old,value,observeFailure)
    check();assert(not writing,'STORE_COLLECTION_BUSY');assert(same(envelope.records[token],old),'STORE_STALE')
    assert(value.base.token==token,'STORE_TOKEN_CHANGED')
    if modern then
     local key=PREFIX..token;local before=envelope.records[token]
     local readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
     if not readOK or not same(observed,before) then
+     if observeFailure then pcall(observeFailure,'PREWRITE',readOK,observed,before,'NOT_CALLED',false)end
      protectFailed(token,before,value,readOK,observed)
      error('STORE_RECORD_STALE')
     end
@@ -909,7 +910,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     -- Even a throwing setter may have applied. Read once while the lock is held.
     readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
     local confirmed=ok and readOK and same(observed,value)
-    if not confirmed then protectFailed(token,before,value,readOK,observed)end
+    if not confirmed then
+     -- Diagnostics use the already obtained readback. Observer failure cannot alter guards.
+     if observeFailure then pcall(observeFailure,'POSTWRITE',readOK,observed,value,ok and 'RETURNED' or 'THREW',readOK and same(observed,value))end
+     protectFailed(token,before,value,readOK,observed)
+    end
     writing=false
     assert(confirmed,not ok and err or 'STORE_WRITE_UNCONFIRMED')
     envelope.records[token]=cp(value);reservations[token]=nil;return
@@ -1047,7 +1052,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.CommerceState(pid,c)return requireCity(c).CommerceState(pid,c)end
  function store.WriteCommerce(pid,c,old,value)return requireCity(c).WriteCommerce(pid,c,old,value)end
  function store.CapitalState(pid,c)return requireCity(c).CapitalState(pid,c)end
- function store.WriteCapital(pid,c,old,value)return requireCity(c).WriteCapital(pid,c,old,value)end
+ function store.WriteCapital(pid,c,old,value,observeFailure)return requireCity(c).WriteCapital(pid,c,old,value,observeFailure)end
  function store.InstitutionHistory(pid,c)return requireCity(c).InstitutionHistory(pid,c)end
  function store.CapitalReference(token)
   check();return assert(workers[token],'CAPITAL_REFERENCE_UNAVAILABLE').CapitalReference()

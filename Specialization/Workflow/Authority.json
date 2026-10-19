@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0646",
-    "runtime": "B241.268 / modinfo268",
+    "status": "S0647",
+    "runtime": "B242.269 / modinfo269",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "66a94b9034e545bca1b621eb18a545a3ba86a031",
-  "current_batch": "B241_NATIVE_CONFIRM_FAILED_DIAGNOSTIC_PROPOSED",
-  "next_batch": "Proposed bounded Capital confirmation failure/readback diagnostics and honest HELD feedback; no repair implementation authorized. User test paused.",
+  "current_batch": "B242_DIAGNOSTIC_LOCAL_COMPLETE_AWAITING_DEPLOYMENT",
+  "next_batch": "Authorized B242 narrow diagnostics complete locally; guarded W0003 deployment, one confirmation/paused refresh log, then stop. COM-C/D remain unauthorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B241.268/modinfo268 DEVELOP_ACTIVE; source 66a94b9034e545bca1b621eb18a545a3ba86a031; receipt B241.268-66a94b9-playtest.json;250/250 MATCH, digest f0dd425908859fb09478e3af4cdbe290ba0cbfa44b9b5b7e0b6247e7bcf6865a. Both guarded switches passed fresh automatic game-exit checks; B240/stable recovery retained, no pending transaction. Native Capital first confirmation failed; signing/precision/reload/maturity remain unaccepted.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0646: reviewed71 contiguous native records and five direct runtime/source matches; five offline counterexamples discriminate pre-debit Property failures from Treasury rounding. Exact native write/readback cause UNKNOWN; reporting defects confirmed. Evidence-only checkpoint; no source or deployment change.",
+  "context_review_status": "S0647: B242 stage/readback diagnostics and honest paused feedback reviewed;194 targeted tests PASS, immutable B241 math/schema and zero-cross-record normal writes retained. Exact native cause remains UNKNOWN. Historical pre-B169 comparator failures reproduced at B241 and not rewritten.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md"
 }

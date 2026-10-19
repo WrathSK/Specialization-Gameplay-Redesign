@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -11,33 +11,39 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0646",
-    "runtime": "B241.268 / modinfo268",
+    "status": "S0647",
+    "runtime": "B242.269 / modinfo269",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
-  "goal": "B241 native first confirmation failed; record evidence and bounded diagnostic proposal, preserving D0056 and all implemented economic/ownership rules.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
+  "goal": "B242 narrow failure-stage/readback and HELD feedback correction; preserve B241 amounts, write guards and no-replay semantics.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current source/live and native stop."
+      "reason": "Current local/source/live separation and remaining native gate."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
       "kind": "section",
       "selector": "## Review summary",
-      "reason": "Observed first confirmation failure and exact uncertainty; no repeat or repair authorization."
+      "reason": "Frozen B241 native counterexample and uncertainty; new user message explicitly authorizes B242 diagnostics."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B241 implementation and validation",
-      "reason": "Current transaction/state/network boundaries and minimal native gate."
+      "selector": "## B242 confirmation diagnostics",
+      "reason": "Current authorized diagnostic boundary; no economic or persistence semantics change."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
+      "kind": "section",
+      "selector": "## Implementation boundary",
+      "reason": "Completed diagnostic implementation and ownership boundary."
     }
   ],
   "dependencies": [
@@ -60,7 +66,10 @@
         "Mod/UI/CapitalInvestmentPanel.lua",
         "Specialization/Design/Content/Commerce_D0056.json",
         "DevelopmentTests/test_b241_capital.py",
-        "DevelopmentTests/test_b241_capital_ui.py"
+        "DevelopmentTests/test_b241_capital_ui.py",
+        "Mod/CapitalInvestmentDiagnostics.lua",
+        "Mod/ExpeditionTrainingDiagnostics.lua",
+        "DevelopmentTests/test_b242_capital_diagnostics.py"
       ]
     },
     {
@@ -89,19 +98,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L3 new contract/Treasury/persistence failure boundaries; L2 source/calculation/UI; L1 package/docs.",
-    "local": "155 distinct targeted tests PASS; actual Store/native-shaped failure and actual network/UI adapters. No native CPU/memory or fractional-Treasury claim.",
-    "user": "Step1 stopped at confirmation; no immediate repeat. Proposed diagnostics precede continuing the original combined session.",
-    "gap": "Native first-confirmation write/readback cause unresolved; generic error hides Store details. No native money, reload or maturity acceptance."
+    "depth": "L3 actual Store failure/readback/no-replay; L2 diagnostic projection/UI/collector; L1 syntax/package/docs.",
+    "local": "194 targeted tests PASS; native-shaped doubles only. B241/current persisted values and Property counts match; zero cross-record uniqueness visits. Historical stale comparator recorded separately.",
+    "user": "One confirmation and one paused refresh, using existing manual collector. No10-turn or save/load repeat for diagnostics.",
+    "gap": "Underlying native write/readback cause, money precision and new contract acceptance remain unresolved."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B241_Native_Review.md",
-    "source": "B241.268 deployed from 66a94b9034e545bca1b621eb18a545a3ba86a031;250/250 MATCH; receipt B241.268-66a94b9-playtest.json",
-    "native": "USER_GAME_TEST_FAIL: first confirmation; exact native cause UNKNOWN",
-    "stop": "Wait for explicit narrow diagnostic/reporting repair authorization. No implementation, deployment or new batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
+    "source": "B242.269/modinfo269 locally verified; live still B241.268 until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; frozen B241 first-confirmation failure remains valid.",
+    "stop": "Deploy under existing game-exit/hash safeguards; collect one short diagnostic session, then stop. No next Commerce batch."
   }
 }

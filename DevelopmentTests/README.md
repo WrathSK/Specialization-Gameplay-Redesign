@@ -82,3 +82,7 @@ At S0567 this gave 783 PASS. Several legacy script-style suites (e.g. `test_b100
 ## B241 Capital Investment
 
 `test_b241_capital.py` and `test_b241_capital_ui.py` exercise actual model/Store/service/network/UI with explicit Treasury/control doubles and the existing read-only DB fixture. Run together with the109 B239/B240 Commerce checks using the documented Lupa environment;155 distinct tests pass at this checkpoint. Fractional-double success is not native fractional-Gold evidence. The new normal production action and single midterm cold-load/settlement flow are in the [B241 result](../Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md). No full historical gameplay regression is required.
+
+## B242 Capital failure diagnostics
+
+`test_b242_capital_diagnostics.py` exercises actual Store/service failure stages, bounded readback projection, original code preservation, paused UI and unchanged collector parsing. Combine with B241 and the current B239/B240 modules plus17 applicable `StoreWriteBoundaries` cases:194 tests PASS. The historical `test_ordinary_age_write_cost_and_per_value_baseline` uses a pre-B169 schema and already fails four subcases on B241's institutionTurns; keep it unchanged, and use B242's explicit B241/current per-value and Property-count comparison for this delta. See [B242 result](../Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md). No native precision, performance or signing claim.

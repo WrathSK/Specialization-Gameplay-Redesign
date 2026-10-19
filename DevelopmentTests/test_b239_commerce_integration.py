@@ -115,13 +115,14 @@ class SQLAndPackage(unittest.TestCase):
   src=sqlite3.connect(external_database(ROOT).as_uri()+'?mode=ro',uri=True)
   try:src.backup(cls.db)
   finally:src.close()
-  # Rebuild only exact B239 definitions if a later native cache already has them.
-  own=['BUILDING_SPC_COMMERCIALIZATION_ACCESS']+['BUILDING_SPC_COMMERCE_GOLD_'+str(b) for b in range(31)]
+  # Rebuild only exact Commerce definitions in the memory copy, including B241 access.
+  own=['BUILDING_SPC_COMMERCIALIZATION_ACCESS','BUILDING_SPC_CAPITAL_ACCESS']+['BUILDING_SPC_COMMERCE_GOLD_'+str(b) for b in range(31)]
   for ident in own:
    for table,col in [('ModifierArguments','ModifierId'),('BuildingModifiers','BuildingType'),('Modifiers','ModifierId'),('Buildings','BuildingType'),('Types','Type')]:
     cls.db.execute('DELETE FROM '+table+' WHERE '+col+'=?',(ident,))
-  cls.db.execute("DELETE FROM Projects WHERE ProjectType='PROJECT_SPC_COMMERCIALIZATION'")
-  cls.db.execute("DELETE FROM Types WHERE Type='PROJECT_SPC_COMMERCIALIZATION'")
+  for project in ('PROJECT_SPC_COMMERCIALIZATION','PROJECT_SPC_CAPITAL_INVESTMENT'):
+   cls.db.execute('DELETE FROM Projects WHERE ProjectType=?',(project,))
+   cls.db.execute('DELETE FROM Types WHERE Type=?',(project,))
   cls.db.execute('DROP TABLE IF EXISTS SPC_CommerceGold')
   cls.db.executescript((MOD/'Data/Commerce.sql').read_text())
  @classmethod

@@ -1,4 +1,5 @@
 include('CapitalInvestmentModel')
+include('CapitalInvestmentDiagnostics')
 include('CommerceModel')
 include('ExpeditionTrainingDiagnostics')
 SPCCapitalInvestment={ACCESS='BUILDING_SPC_CAPITAL_ACCESS'}
@@ -11,12 +12,13 @@ function SPCCapitalInvestment.Start(P,shared)
  local epoch=ExposedMembers.SPC_CapitalEpoch
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'CAPITAL')
  local function emit(stage,v)if trace then pcall(trace.Record,stage,v)end end
- local function code(err)return tostring(err):match('(CAPITAL_[A-Z0-9_]+)') or tostring(err):match('(COMMERCE_[A-Z0-9_]+)') or 'CAPITAL_STATE_UNKNOWN'end
- local function failure(err,pid,id,domain,phase)
-  local file,line=tostring(err):match('([%w_]+%.lua):(%d+):')
-  if file~='CapitalInvestment.lua' and file~='CapitalInvestmentModel.lua' and file~='CityProgressionStore.lua' then file='UNKNOWN' end
-  emit('CAPITAL_STATE',{owner=pid,city=id,contractDomain=domain,phase=phase,reason=code(err),
-   errorCode=code(err),errorClass=tostring(err):find('nil value',1,true) and 'LUA_NIL' or 'CONTRACT',errorFile=file,errorLine=tonumber(line)})
+ local D=SPCCapitalInvestmentDiagnostics
+ local function code(err)return D.Error(err).errorCode end
+ local function failure(err,pid,id,domain,attempt)
+  local info=D.Error(err,type(attempt)=='table' and attempt.phase or attempt)
+  for k,v in pairs(type(attempt)=='table' and attempt.readback or {})do info[k]=v end
+  local event=cp(info);event.owner=pid;event.city=id;event.contractDomain=domain;event.reason=info.errorCode
+  emit('CAPITAL_FAILURE',event);return info
  end
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)local p=Players[pid];return p and p:GetCities():FindID(id)end
@@ -31,14 +33,17 @@ function SPCCapitalInvestment.Start(P,shared)
   assert(r.owner==c:GetOwner() and r.cityID==c:GetID() and r.x==c:GetX() and r.y==c:GetY()
    and r.stage=='ACTIVE','CAPITAL_REFERENCE_CHANGED');return r
  end
- local function write(pid,c,old,value)
-  store.WriteCapital(pid,c,old,value)
+ local function write(pid,c,old,value,domain,attempt,phase)
+  if attempt then attempt.phase=phase;attempt.readback=nil end
+  store.WriteCapital(pid,c,old,value,attempt and function(point,readOK,observed,expected,status,matches)
+   attempt.readback=D.Readback(point,readOK,observed,expected,domain,status,matches)
+  end or nil)
   local after=store.CapitalState(pid,c)
   assert(same(after.value,value),'CAPITAL_WRITE_UNCONFIRMED')
  end
- local function setStage(pid,c,old,domain,stage,reason)
+ local function setStage(pid,c,old,domain,stage,reason,attempt)
   local n=cp(old);n.contracts[domain].stage=stage;n.contracts[domain].reason=reason
-  write(pid,c,old,n);return n
+  write(pid,c,old,n,domain,attempt,stage..'_WRITE');return n
  end
  local function validReferences(c)
   for _,r in ipairs({c.source,c.sSource})do
@@ -94,7 +99,7 @@ function SPCCapitalInvestment.Start(P,shared)
   if not qualified then v.reason='CAPITAL_ACTIVE_III_REQUIRED';return v,{} end
   for _,contract in pairs(value.contracts)do
    if contract.stage=='DEBIT_INTENT' or contract.stage=='DEBIT_CALLING' or contract.stage=='HELD'then
-    v.canSign=false;v.reason='CAPITAL_NATIVE_OUTCOME_UNKNOWN';return v,{}
+    v.canSign=false;v.stage='HELD';v.reason='CAPITAL_NATIVE_OUTCOME_UNKNOWN';return v,{}
    end
   end
   local standard,why=SPCCommerceModel.IsStandardSpeed();assert(standard,why or 'CAPITAL_STANDARD_SPEED_ONLY')
@@ -150,41 +155,44 @@ function SPCCapitalInvestment.Start(P,shared)
   if not ok then
    local readError=v
    local old=d.views[k];v={reference=old and old.reference,token=old and old.token,available=old and old.available or false,
-    canSign=false,stage='HELD',reason=code(v),contracts=old and cp(old.contracts) or {},domains={}};internal={}
-   emit('CAPITAL_STATE',{owner=pid,city=id,phase='HELD',reason=v.reason})
+    canSign=false,stage='HELD',reason=code(readError),contracts=old and cp(old.contracts) or {},domains={}};internal={}
+   local detail=failure(readError,pid,id,nil,'REFRESH_READ')
+   v.failure=old and old.failure or detail
   end
+  if v.stage=='HELD' and not v.failure then local old=d.views[k];v.failure=old and cp(old.failure)end
   publish(pid,id,v);known[k]=v.available and {pid,id} or nil
   quotes[k]=internal
   local good,why=pcall(function()if ok then marker(c,v.available==true)end end)
-  if not good then v.stage='HELD';v.reason=code(why);v.canSign=false;publish(pid,id,v)end
+  if not good then v.stage='HELD';v.reason=code(why);v.canSign=false;v.failure=failure(why,pid,id,nil,'ACCESS_UPDATE');publish(pid,id,v)end
   return cp(d.views[k])
  end
- local function changedContract(pid,c,value,domain)
+ local function changedContract(pid,c,value,domain,attempt)
   local contract=value.contracts[domain]
   local okay,reason=validReferences(contract)
   if not okay then
-   value=setStage(pid,c,value,domain,'TERMINATED',reason)
+   value=setStage(pid,c,value,domain,'TERMINATED',reason,attempt)
    emit('CAPITAL_TERMINATED',{owner=pid,city=c:GetID(),contractID=contract.sequence,contractDomain=domain,reason=reason})
    return value
   end
   if contract.stage=='DEBIT_INTENT'then
-   return setStage(pid,c,value,domain,'TERMINATED','CAPITAL_UNUSED_INTENT')
+   return setStage(pid,c,value,domain,'TERMINATED','CAPITAL_UNUSED_INTENT',attempt)
   end
   if contract.stage=='DEBIT_CALLING' or contract.stage=='CREDIT_CALLING'then
-   return setStage(pid,c,value,domain,'HELD','CAPITAL_NATIVE_OUTCOME_UNKNOWN')
+   return setStage(pid,c,value,domain,'HELD','CAPITAL_NATIVE_OUTCOME_UNKNOWN',attempt)
   end
   if contract.stage=='ACTIVE' and Game.GetCurrentGameTurn()>=contract.due then
-   value=setStage(pid,c,value,domain,'CREDIT_INTENT');contract=value.contracts[domain]
+   value=setStage(pid,c,value,domain,'CREDIT_INTENT',nil,attempt);contract=value.contracts[domain]
   end
   if contract.stage=='CREDIT_INTENT'then
    local amount=M.Payout(contract);local before=money(pid)
    local calling=cp(value);calling.contracts[domain].stage='CREDIT_CALLING'
    calling.contracts[domain].creditBefore=before;calling.contracts[domain].creditAfter=before+amount
-   write(pid,c,value,calling)
+   write(pid,c,value,calling,domain,attempt,'CREDIT_CALLING_WRITE')
+   attempt.phase='NATIVE_CREDIT';attempt.readback=nil
    mutate(pid,amount,before,contract,'CREDIT')
    local done=cp(calling);local final=done.contracts[domain]
    final.stage='SETTLED';final.paid=amount;final.settledTurn=Game.GetCurrentGameTurn()
-   write(pid,c,calling,done)
+   write(pid,c,calling,done,domain,attempt,'SETTLED_RECEIPT_WRITE')
    emit('CAPITAL_SETTLED',{owner=pid,city=c:GetID(),contractID=contract.sequence,contractDomain=domain,
     phase='SETTLED',mode=contract.mode,principal=contract.principal,returnAmount=amount,requestResult=contract.won and 'SUCCESS' or 'FAILURE'})
    return done
@@ -200,15 +208,19 @@ function SPCCapitalInvestment.Start(P,shared)
    known[key(pid,r.cityID)]={pid,r.cityID}
    local value=saved
    if r.identity~='COMMERCE' and next(value.protection)then
-    local n=M.ResetProtection(value);write(pid,c,value,n);value=n
+    local n=M.ResetProtection(value);local attempt={phase='PROTECTION_RESET'}
+    local good,err=pcall(write,pid,c,value,n,nil,attempt,'PROTECTION_RESET_WRITE')
+    if not good then failure(err,pid,c:GetID(),nil,attempt);error(err)end;value=n
    end
    -- Only existing three-slot contracts, never a city/building/world facts scan.
    for _,def in ipairs(M.Domains)do
     local domain=def.id;local contract=value.contracts[domain]
     if M.Open(contract)then
-     local good,nextValue=pcall(changedContract,pid,c,value,domain)
+     local attempt={phase='RECONCILE_REFERENCE'}
+     local good,nextValue=pcall(changedContract,pid,c,value,domain,attempt)
      if good then value=nextValue else
-      failure(nextValue,pid,r.cityID,domain,'RECONCILE')
+      local detail=failure(nextValue,pid,r.cityID,domain,attempt)
+      local v=d.views[key(pid,r.cityID)];if v then v=cp(v);v.failure=detail;v.stage='HELD';v.canSign=false;publish(pid,r.cityID,v)end
       -- A callback failure may have persisted CALLING; never overwrite it with
       -- the older snapshot or credit again. Other cities continue independently.
       d.error=code(nextValue);break
@@ -236,12 +248,14 @@ function SPCCapitalInvestment.Start(P,shared)
   end
  end
  function d.Request(pid,p)
+  local attempt={phase='REQUEST_VALIDATE'};local responseView
+  local packet=type(p)=='table' and p or {}
   local good,why=pcall(function()
    assert(P.IsTestPlayer(pid) and type(p)=='table' and type(p.CityID)=='number' and type(p.Token)=='string' and #p.Token<=100,'CAPITAL_REQUEST_INVALID')
    assert(not busy,'CAPITAL_BUSY')
    local c=assert(city(pid,p.CityID),'CAPITAL_CITY_UNKNOWN')
    if p.Action=='CAPITAL_OPEN' or p.Action=='CAPITAL_REFRESH'then
-    local v=d.Refresh(pid,p.CityID)
+    local v=d.Refresh(pid,p.CityID);responseView=v
     for _,row in ipairs(v and v.domains or {})do if row.quote and (p.Domain==nil or p.Domain==row.id)then
      local q=row.quote
      emit('CAPITAL_QUOTE',{owner=pid,city=p.CityID,contractDomain=row.id,sourceCity=q.sSource and q.sSource.cityID,
@@ -250,6 +264,7 @@ function SPCCapitalInvestment.Start(P,shared)
     end end;return
    end
    assert(p.Action=='CAPITAL_CONFIRM' and (p.Mode=='STABLE' or p.Mode=='VENTURE'),'CAPITAL_REQUEST_INVALID')
+   attempt.phase='QUOTE_VALIDATE'
    local k=key(pid,p.CityID);local v=d.views[k]
    assert(v and v.revision==p.Revision and v.token==p.CityToken,'CAPITAL_QUOTE_STALE')
    local entry=quotes[k] and quotes[k][p.Domain]
@@ -265,14 +280,17 @@ function SPCCapitalInvestment.Start(P,shared)
     assert(type(Game.GetRandNum)=='function','CAPITAL_ROLL_UNAVAILABLE')
     roll=Game.GetRandNum(1000000,'SPC Capital Investment')/1000000
    end
+   attempt.phase='CONTRACT_BUILD'
    local value=M.Begin(locked.old,q,p.Mode,roll,p.Token)
    local calling=cp(value);calling.contracts[p.Domain].stage='DEBIT_CALLING'
    busy=true
    local applied,err=pcall(function()
-    write(pid,c,locked.old,value)
-    write(pid,c,value,calling)
+    write(pid,c,locked.old,value,p.Domain,attempt,'DEBIT_INTENT_WRITE')
+    write(pid,c,value,calling,p.Domain,attempt,'DEBIT_CALLING_WRITE')
+    attempt.phase='NATIVE_DEBIT';attempt.readback=nil
     mutate(pid,-q.principal,q.balance,calling.contracts[p.Domain],'DEBIT')
-    local active=M.Activate(calling,p.Domain);write(pid,c,calling,active)
+    attempt.phase='CONTRACT_ACTIVATE'
+    local active=M.Activate(calling,p.Domain);write(pid,c,calling,active,p.Domain,attempt,'ACTIVE_RECEIPT_WRITE')
     emit('CAPITAL_SIGNED',{owner=pid,city=p.CityID,contractID=active.sequence,contractDomain=p.Domain,
      phase='ACTIVE',mode=p.Mode,principal=q.principal,contractDue=q.due,profitRate=q.r,probability=q.probability})
    end)
@@ -280,17 +298,40 @@ function SPCCapitalInvestment.Start(P,shared)
    assert(applied,err)
    d.Mark(pid)
   end)
-  if not good then why=code(why)end
-  d.lastRequest={token=p and p.Token,owner=pid,city=p and p.CityID,accepted=good,reason=good and 'CAPITAL_READY' or why}
-  emit('CAPITAL_REQUEST',{owner=pid,city=p and p.CityID,requestAction=p and p.Action,requestAccepted=good,reason=d.lastRequest.reason})
-  if p and p.Action=='CAPITAL_CONFIRM' and type(p.CityID)=='number' and P.IsTestPlayer(pid)then pcall(d.Refresh,pid,p.CityID)end
+  local detail
+  if not good then detail=failure(why,pid,packet.CityID,packet.Domain,attempt);why=detail.errorCode end
+  if packet.Action=='CAPITAL_CONFIRM' and type(packet.CityID)=='number' and P.IsTestPlayer(pid)then
+   local ok,v=pcall(d.Refresh,pid,packet.CityID)
+   if ok then
+    responseView=v
+    if v and v.stage=='HELD' and detail then
+     -- Keep the first useful failure through later held reads. Never clear Store protection.
+     v.failure=v.failure and v.failure.readPoint and v.failure or detail
+     publish(pid,packet.CityID,v)
+    end
+   end
+  end
+  local responseReason=good and 'CAPITAL_READY' or why
+  if good and responseView then
+   if responseView.stage=='HELD' or not responseView.canSign then
+    responseReason=responseView.reason or 'CAPITAL_UNAVAILABLE'
+   else
+    for _,row in ipairs(responseView.domains or {})do
+     if row.id==packet.Domain and not row.canSign then responseReason=row.reason end
+    end
+   end
+  end
+  d.lastRequest={token=packet.Token,owner=pid,city=packet.CityID,accepted=good,reason=responseReason,
+   viewStage=responseView and responseView.stage,canSign=responseView and responseView.canSign,failure=detail}
+  emit('CAPITAL_REQUEST',{owner=pid,city=packet.CityID,requestAction=packet.Action,requestAccepted=good,
+   phase=attempt.phase,viewStage=responseView and responseView.stage,canSign=responseView and responseView.canSign,reason=responseReason})
   return good,good and nil or why
  end
  function d.Describe(pid,c)
   local v=d.views[key(pid,c:GetID())]
   if not v then return '资本投资：等待城市记录。'end
   local out={'资本投资｜'..title(c),'入口：城市生产列表 → 资本投资。'}
-  if v.stage=='HELD'then out[#out+1]='暂不可用：'..tostring(v.reason)end
+  if v.stage=='HELD'then out[#out+1]='资本投资已暂停，请在投资窗口查看原因并回传日志；刷新不会重新扣款。'end
   for _,def in ipairs(M.Domains)do
    local contract=v.contracts[def.id]
    if contract then

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="268">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="269">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B241.268: stable and venture Capital Investment contracts with locked terms and event-driven settlement.</Description>
+    <Description>B242.269: bounded Capital confirmation/readback diagnostics and accurate paused-state feedback.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -79,6 +79,7 @@
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
       <File>CapitalInvestmentModel.lua</File>
+      <File>CapitalInvestmentDiagnostics.lua</File>
       <File>CapitalInvestment.lua</File>
       <File>UI/CapitalInvestmentUI.lua</File>
       <File>UI/CapitalInvestmentPanel.lua</File>
@@ -422,6 +423,7 @@
   </InGameActions>
   <Files>
       <File>CapitalInvestmentModel.lua</File>
+      <File>CapitalInvestmentDiagnostics.lua</File>
       <File>CapitalInvestment.lua</File>
       <File>UI/CapitalInvestmentUI.lua</File>
       <File>UI/CapitalInvestmentPanel.lua</File>
