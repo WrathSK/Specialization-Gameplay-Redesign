@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0672
+Status Revision: S0673
 Implementation Build: B251.278 / modinfo278; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,13 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B251.278 institution UI is locally complete; native visuals await the next session.** [Scope/read contract/checks](Validation/Results/Specialization_B251_Institution_UI.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
--16 supplied institution icons, all four current-profession levels with explicit previews,3px row spacing and native Gold highlighting for the highest ACTIVE level. History/UNKNOWN remain distinct; no gameplay identity is created by a preview.
+**B251.278 institution UI is deployed; native visuals await the next session.** [Scope/read contract/checks](Validation/Results/Specialization_B251_Institution_UI.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
+
+- 16 supplied institution icons, all four current-profession levels with explicit previews,3px row spacing and native Gold highlighting for the highest ACTIVE level. History/UNKNOWN remain distinct; no gameplay identity is created by a preview.
 - Ability-local numbers cover Research Tradition, Commerce Reputation, Dialogue, count-only Culture Insights, Engineering layers and this city's Standardization templates/offered percentages. Guarded scalar reads perform no ledger initialization or effect write; no new timer or saved state.
--23 targeted local checks PASS. Native atlas loading, truncation/spacing and tooltip readability remain USER_GAME_TEST_REQUIRED; check them during normal play without another shared save/load sequence. No gameplay or performance acceptance is expanded.
-- Live still B250.277/modinfo277 from `d6bb190` pending the guarded B251 deployment; source revision267files. Main/stable B069.96 remains unchanged. Two exact DDS blobs have the user's one-batch publication exception; other content passes the ordinary staged gate.
+- 23 targeted local checks PASS. Native atlas loading, truncation/spacing and tooltip readability remain USER_GAME_TEST_REQUIRED; check them during normal play without another shared save/load sequence. No gameplay or performance acceptance is expanded.
+- Source/live B251.278/modinfo278 from `5be0345`; receipt `B251.278-5be0345-playtest.json` DEVELOP_ACTIVE, 267/267 MATCH. Main/stable B069.96 is unchanged; stable and outgoing B250 recovery are verified. Two exact DDS blobs were committed under the user's one-batch exception (`d3582cf`); all 38 remaining content files passed the unchanged staged gate.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks **during** the v0.1 playtest. Remaining own-city-loss handling, Expedition root-cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage presentation and outstanding audits remain **post-v0.1-playtest high priority**.
 - This authorized UI batch ends after its checked deployment/current record. No next gameplay, audit repair or balance batch is started.
+
+## S0673 — B251 verified deployment
+
+Committed/pushed source `5be0345` passed fresh automatic game-exit checks, exact B250 receipt restoration and B251 activation. All 267 source/runtime files match; stable and outgoing B250 recovery packages are verified, with no pending marker. Ordinary publication checks passed for the 38 text/SVG/source/test/document paths; only the two pre-reviewed DDS blobs used the explicit one-batch exception. No lasting publication rule or hook change. This checkpoint updates only current deployment records and their named hashes; no new native acceptance or gameplay batch.
 
 ## S0672 — B251 institution presentation
 

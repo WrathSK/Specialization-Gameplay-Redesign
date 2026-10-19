@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0672",
+    "status": "S0673",
     "runtime": "B251.278 / modinfo278",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-  "runtime_commit": "d6bb1900b4aae9c9d979acf3ce5e787fc63f9457",
-  "current_batch": "B251_INSTITUTION_UI_LOCAL_COMPLETE",
-  "next_batch": "Guarded B251 deployment, then one visual check during normal play. No further gameplay/audit batch.",
+  "runtime_commit": "5be03451115cf60e29af31a661be483e28a56eb1",
+  "current_batch": "B251_INSTITUTION_UI_DEPLOYED",
+  "next_batch": "Observe the new institution icons, preview states and live tooltips in one normal-session UI check. Prior native gameplay limits and S0669 scheduling remain; no further implementation batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B250.277/modinfo277 DEVELOP_ACTIVE; source d6bb1900b4aae9c9d979acf3ce5e787fc63f9457; receipt B250.277-d6bb190-playtest.json;265/265 MATCH,digest f5bb9f8ad044478fc8bc23c2a749f16f0ddee7fec1a03b40b01c9ca8f1d1f191. Stable and outgoing B249 recovery verified; no pending marker, game launch or configuration change.",
+  "live": "B251.278/modinfo278 DEVELOP_ACTIVE; source 5be03451115cf60e29af31a661be483e28a56eb1; receipt B251.278-5be0345-playtest.json;267/267 MATCH,digest 017a4efdf376648317d4020d9f63fbaf77223886fda6bfbca14c0af591d7b936. Stable and outgoing B250 recovery verified; no pending marker, game launch or configuration change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0672: B251 authorized icon/layout/all-level-preview/scalar-summary implementation, including Standardization. Direct source/dependencies and23 targeted methods reviewed; only named source/test/art/current documents rehashed. Two fixed DDS blobs have explicit one-time publication approval; no rule/configuration change or new native PASS.",
+  "context_review_status": "S0672: B251 authorized icon/layout/all-level-preview/scalar-summary implementation, including Standardization. Direct source/dependencies and23 targeted methods reviewed; only named source/test/art/current documents rehashed. Two fixed DDS blobs have explicit one-time publication approval; no rule/configuration change or new native PASS. S0673: receipt/source/live267/267 and stable/outgoing recovery verified; ordinary staged gate passed38 files, two exact DDS blobs separately user-approved. Only five deployment/current record hashes updated; no source change or new native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

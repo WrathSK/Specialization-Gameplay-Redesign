@@ -1,24 +1,24 @@
 # B251.278 — institution icons, previews and live summaries
 
-Date:2026-10-19. Basis: develop `fce2526`, source/live B250.277 `d6bb190`, D0057 / A0176 / S0671. The user authorized supplied institution icons, all four current-profession levels, inline ability values, count-only Culture Insights, native-style spacing and clearer ACTIVE highlighting; Standardization was explicitly included. This is presentation work with a necessary read-only Store projection, not a gameplay, save-schema, balance or held-feature repair.
+Date: 2026-10-19. Basis: develop `fce2526`, source/live B250.277 `d6bb190`, D0057 / A0176 / S0671. The user authorized supplied institution icons, all four current-profession levels, inline ability values, count-only Culture Insights, native-style spacing and clearer ACTIVE highlighting; Standardization was explicitly included. This is presentation work with a necessary read-only Store projection, not a gameplay, save-schema, balance or held-feature repair.
 
 ## Scope and presentation
 
-- Import16 user-supplied icons under descriptive names. Native `Image:SetIcon` consumes two4×4 DDS atlases,32px and64px. Original SVGs are retained in [Art/Institutions](../../../../Art/Institutions/README.md).
+- Import 16 user-supplied icons under descriptive names. Native `Image:SetIcon` consumes two 4×4 DDS atlases, 32px and 64px. Original SVGs are retained in [Art/Institutions](../../../../Art/Institutions/README.md).
 - Every current profession displays its four configured levels. Unestablished levels say **尚未建立** and explain that they are previews; no institution, Property or ability is created. Previously established other-profession institutions retain their existing history-only behavior. Row data still permits siblings at the same level.
-- Preserve32px row height, add3px spacing, reserve32px for the icon and64px on the right for state. The name is independently truncated before the state column. The highest effective institution and **当前** use the native `Gold` color; other established rows remain readable and previews are lighter. No new background or icon system beyond the supplied assets.
+- Preserve 32px row height, add 3px spacing, reserve 32px for the icon and 64px on the right for state. The name is independently truncated before the state column. The highest effective institution and **当前** use the native `Gold` color; other established rows remain readable and previews are lighter. No new background or icon system beyond the supplied assets.
 - Attach the summary immediately below its own ability description. Values are retained history or a source offer, not proof that an inactive ability is currently applying an effect.
 
 | Ability | Displayed summary |
 |---|---|
 | 学术传统 | Retained turns, existing speed-adjusted percentage, turns to the next threshold and paused accumulation when applicable. |
-| 商业信誉 | Retained progress out of40 and existing Commercialization percentage. |
+| 商业信誉 | Retained progress out of 40 and existing Commercialization percentage. |
 | 时代对话 | Retained earned Great Work Tourism percentage. |
 | 人文考察团 | **文化见闻：N份** only; no civilization-by-mission records or receipts cross this projection. |
 | 标准化 | This city's retained building/District template counts and its own currently offered construction percentage and eligible-building Gold discount. It does not aggregate other Industry sources or promise the deferred precise District purchase discount. |
 | 工程传统 | Completed study layers and the corresponding percentage-point increase conditional on ACTIVE IV. |
 
-For example, an ACTIVE IV Industry source with two study layers shows construction+14% and eligible-building Gold discount4%; at ACTIVE III it shows+10% and0%; below III it preserves known template counts while saying the source currently provides no Standardization. The template list and other-source comparisons remain in the existing detailed report.
+For example, an ACTIVE IV Industry source with two study layers shows construction +14% and eligible-building Gold discount 4%; at ACTIVE III it shows +10% and 0%; below III it preserves known template counts while saying the source currently provides no Standardization. The template list and other-source comparisons remain in the existing detailed report.
 
 ## Read and lifetime contract
 
@@ -30,13 +30,13 @@ Store remains authoritative for history. Research percentage/threshold reuse the
 
 ## Native references and local validation
 
-**STATIC_CONFIRMED:** installed Civ VI `Base/Assets/UI/Panels/CityPanelOverview.lua` uses `Image:SetIcon` for building/District rows and `SetColorByName` for UI colors. `Base/Assets/UI/Civ6_ColorAtlas.xml` defines `Gold` and `White`; the native city-detail XML uses3px list spacing. These read-only sources establish the API/layout convention, not successful rendering of this new package.
+**STATIC_CONFIRMED:** installed Civ VI `Base/Assets/UI/Panels/CityPanelOverview.lua` uses `Image:SetIcon` for building/District rows and `SetColorByName` for UI colors. `Base/Assets/UI/Civ6_ColorAtlas.xml` defines `Gold` and `White`; the native city-detail XML uses 3px list spacing. These read-only sources establish the API/layout convention, not successful rendering of this new package.
 
-**LOCAL_SIMULATION_PASS:**23 selected test methods:15 new B251 checks plus8 directly affected retained display checks. Coverage includes:
+**LOCAL_SIMULATION_PASS:**23 selected test methods: 15 new B251 checks plus 8 directly affected retained display checks. Coverage includes:
 
-- Actual Lua all-four previews, ACTIVE fall/recovery, historical/sibling rows, localized numeric placement, zero and UNKNOWN, selected-city/Owner isolation and1000 duplicate notifications without rebuilding.
+- Actual Lua all-four previews, ACTIVE fall/recovery, historical/sibling rows, localized numeric placement, zero and UNKNOWN, selected-city/Owner isolation and 1000 duplicate notifications without rebuilding.
 - Actual Store/request projection, detached scalar isolation, zero Store writes and zero cross-record uniqueness visits for the read, no lazy template capture, wrong-Owner rejection, uncertain history, failure isolation and reconstruction in a fresh fixture. This is no new native save/load claim.
-- Lua5.1 compilation of six changed files; SQLite icon/text definitions;16unique icons, two DDS headers/dimensions/payloads, import closure and267-file package; reserved name/state widths and no new gameplay write/update hooks.
+- Lua 5.1 compilation of six changed files; SQLite icon/text definitions; 16 unique icons, two DDS headers/dimensions/payloads, import closure and 267-file package; reserved name/state widths and no new gameplay write/update hooks.
 
 Command from repository root, using the existing local Lupa runtime:
 
@@ -58,4 +58,4 @@ The new uncertainty is native atlas loading and layout/readability. No special p
 
 ## Deployment and continuation
 
-Local B251.278 source is ready for the normal reviewed commit/push and W0003 process/hash/receipt gate. Live remains B250 until the guarded switch is verified. Stable/main B069.96 is untouched. All S0669 playtest/deferred decisions remain; this patch neither advances nor closes held gameplay/audit work. Stop after deployment/current checkpoint for the user's next session.
+Verified deployment on 2026-10-19 after clean committed/pushed source and fresh automatic game-exit checks before both switches. B251.278/modinfo278 DEVELOP_ACTIVE; source 5be03451115cf60e29af31a661be483e28a56eb1; receipt B251.278-5be0345-playtest.json;267/267 MATCH,digest 017a4efdf376648317d4020d9f63fbaf77223886fda6bfbca14c0af591d7b936. Stable and outgoing B250 recovery verified; no pending marker, game launch or configuration change. The existing tools restored the exact B250 stable receipt and then activated B251. Stable/main B069.96 is untouched. Context integrity, scoped links, diff and ordinary staged-publication checks pass. The two fixed binary assets are the separately approved exception, not an automated scan PASS. All S0669 playtest/deferred decisions remain; this patch neither advances nor closes held gameplay/audit work. Stop at this deployment/current checkpoint for the user's next session.
