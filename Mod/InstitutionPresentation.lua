@@ -2,10 +2,10 @@
 SPCInstitutionPresentation={}
 local M=SPCInstitutionPresentation
 M.Rows={
-{level=1,name="学者结社",text="学者在此结成稳定的研究共同体，构成城市科研专业化的基础。[NEWLINE][NEWLINE]基础专家支持[NEWLINE]每名工作的科研专家额外获得3食物、3生产力。"},
-{level=2,name="研修院",text="系统的研修与人才培养，使科研从个人志业成为城市的长期事业。[NEWLINE][NEWLINE]人才培养[NEWLINE]每名正在工作的科研专家额外提供2点基础大科学家点数，并受到其它伟人点数百分比加成。本城学院区域及其每一级建筑各提供1点住房。[NEWLINE][NEWLINE]"},
-{level=3,name="学术联合会",text="不同专业领域在此交流，使研究成果与城市实践相互促进。[NEWLINE][NEWLINE]跨学科研究[NEWLINE]本城学院以外的合格专业区域，将基础相邻产出总和的50%转化为科技值。只计算已完成且未被掠夺的区域；不计政策等相邻倍率或其它非相邻产出。适用区域见专业领域表。 当前测试版：汇总后向下取整。[NEWLINE][NEWLINE]学以致用[NEWLINE]每名正在工作的科研专家，从本城每个合格的其它专业领域获得对应产出。该领域每有1点基础设施深度，便提供0.5份对应产出；金币每份为3点，其它产出每份为1点。同产出领域分别计算并相加，同领域多个区域取最高单基础设施深度。 当前测试版：每名专家的各项收益先向下取整，再按人数结算。[NEWLINE][NEWLINE]"},
-{level=4,name="学术总署",text="完善的科研设施、学术组织与长期传统，共同支撑深入研究。[NEWLINE][NEWLINE]科研基础设施[NEWLINE]学院每有1点基础设施深度，每名正在工作的科研专家额外提供1点基础科技值。基础设施深度最高10点；达到10点时，5名专家共增加50点基础科技值。[NEWLINE][NEWLINE]学术主持[NEWLINE]每名正在工作的科研专家，使本城每座普通学院一至四级建筑额外提供1点基础科技值。被掠夺的建筑不计入，也不接受此收益。这些额外科技不会提高基础设施深度。[NEWLINE][NEWLINE]学术传统[NEWLINE]本城首次达到科研专业潜力4级后，学术传统开始积累：起始使本城科技值提高5%；标准速度下，满10、20、30、40回合分别提高至10%、15%、20%、25%，最高25%。其它速度按游戏速度同比缩放各阶段回合数并向下取整。仍保有科研专业身份时，即使暂未启用4级能力，传统仍继续积累。转出科研后停止积累但保留已累计年限；重新成为科研时继续积累，不补算离开期间的回合。启用4级能力后按保留的传统年限生效。[NEWLINE][NEWLINE]"}
+{level=1,name="学者结社",text="学者在此结成稳定的研究共同体，奠定城市科研专业化的基础。[NEWLINE][NEWLINE]基础专家支持[NEWLINE]每名正在工作的科研专家额外提供 +3 食物、+3 生产力。"},
+{level=2,name="研修院",text="系统的研修与人才培养，使科研从个人志业升华为城市的长期事业。[NEWLINE][NEWLINE]人才培养[NEWLINE]每名正在工作的科研专家额外提供 2 点基础大科学家点数（可受其它伟人点数百分比加成影响）。本城学院区域及其每一级建筑各提供 +1 住房。"},
+{level=3,name="学术联合会",text="不同专业领域在此交流碰撞，使研究成果与城市实践相互促进。[NEWLINE][NEWLINE]跨学科研究[NEWLINE]本城除学院外的合格专业区域，将其基础相邻产出总和的 50% 转化为科技值（汇总后向下取整）。仅计入已建成且未被掠夺的区域；不计入政策等相邻加成倍率或其它非相邻产出（适用区域见专业领域表）。[NEWLINE][NEWLINE]学以致用[NEWLINE]每名正在工作的科研专家，可从本城每个其它合格专业领域获得对应产出：该领域每有 1 点基础设施深度，便提供 0.5 份对应产出（金币每份为 3 点，其它产出每份为 1 点）。同产出领域分别计算后相加，同一领域的多个区域取最高单区域基础设施深度。每名专家的各项收益先向下取整，再按专家人数结算。"},
+{level=4,name="学术总署",text="完善的科研设施、学术组织与长期传统，共同支撑起深度的学术研究。[NEWLINE][NEWLINE]科研基础设施[NEWLINE]本城学院每有 1 点基础设施深度，每名正在工作的科研专家便额外提供 +1 基础科技值（基础设施深度上限为 10 点；达到 10 点时，5 名专家共提供 +50 基础科技值）。[NEWLINE][NEWLINE]学术主持[NEWLINE]每名正在工作的科研专家，使本城每座未遭掠夺的普通学院一至四级建筑额外提供 +1 基础科技值。被掠夺的建筑不计入且不享受此收益；此额外科技值不会提高基础设施深度。[NEWLINE][NEWLINE]学术传统[NEWLINE]本城首次达到科研专业潜力 4 级后，开始积累学术传统：初始使本城科技值提高 5%；标准速度下，累计满 10、20、30、40 回合时分别提高至 10%、15%、20%、25%（上限 25%；其它游戏速度按比例缩放各阶段回合数并向下取整）。只要仍保有科研专业身份，即使暂未启用 4 级能力，传统仍继续积累。转出科研专业后停止积累，但保留已累计回合数；重新转入科研专业时继续积累（不补算离开期间的回合）。启用 4 级能力时，按已保留的传统累计进度生效。"}
 }
 -- Keep row lists extensible: one level may contain multiple sibling institutions.
 M.BySpecialization={RESEARCH=M.Rows,CULTURE={},INDUSTRY={},COMMERCE={}}
@@ -53,8 +53,8 @@ function M.Filter(data,owned)
 end
 function M.Tooltip(index,v)
  local entry=M.GetRows(v)[index];if not entry then return '' end
- local state='ACTIVE暂不可确认'
- if entry.historical then state='已建立的历史机构；当前不提供该专业能力'
- elseif type(v.active)=='number' and v.activeStatus~='UNKNOWN' then state=v.active>=entry.level and '已达到本阶段启用等级；实际收益仍按各能力条件结算' or '本阶段能力暂未激活；机构仍保留' end
+ local state='当前启用等级暂待确认'
+ if entry.historical then state='曾建立的历史机构（当前已脱离该专业，不提供对应能力）'
+ elseif type(v.active)=='number' and v.activeStatus~='UNKNOWN' then state=v.active>=entry.level and '已达到本级机构的启用等级（具体收益仍需满足各能力的对应条件）' or '尚未满足本级机构的启用条件（已建成的机构仍予以保留）' end
  return M.Label(entry,'name')..'[NEWLINE]'..state..'[NEWLINE][NEWLINE]'..M.Label(entry,'text')
 end

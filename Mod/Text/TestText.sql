@@ -216,7 +216,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_INSIGHTS_BUTTON','Cultural Insights'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_TITLE','文化见闻'),
 ('en_US','LOC_SPC_CULTURE_INSIGHTS_TITLE','Cultural Insights'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','查看所选己方城市的历史与当前有效见闻；整城旅游与网络效果尚未实施。'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','查看所选己方城市的历史文化见闻与当前有效见闻。'),
 ('en_US','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','View recorded and currently effective Insights for the selected owned city. Citywide Tourism and network effects are not implemented yet.'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1','文艺同好会'),
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_1','文艺同好会'),
@@ -226,13 +226,13 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_3','人文联合会'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4','博雅总院'),
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_4','博雅总院'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1_HELP','基础专家支持[NEWLINE]每名实际工作的文化专家额外获得3食物、3生产力。原生收益另算；高等级继续使用这一档基础支持。'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1_HELP','基础专家支持[NEWLINE]每名正在工作的文化专家额外提供 +3 食物、+3 生产力（与原生专家收益叠加；更高等级继续沿用此基础支持）。'),
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_1_HELP','Specialist support[NEWLINE]Each working Culture specialist receives +3 Food and +3 Production in addition to native yields. Higher levels retain this same support.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2_HELP','文艺赞助[NEWLINE]本城剧院广场提供1住房；每个存在合格普通建筑的等级再提供1住房，同等级不重复。每名工作的文化专家额外提供2基础大作家、2基础大艺术家和2基础大音乐家点数，接受其它伟人点数百分比修正。'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2_HELP','文艺赞助[NEWLINE]本城剧院广场提供 +1 住房；每有一个包含合格普通建筑的建筑等级，再提供 +1 住房（同一等级不重复计算）。每名正在工作的文化专家额外提供 2 点基础大作家、2 点基础大艺术家和 2 点基础大音乐家点数（可受其它伟人点数百分比修正影响）。'),
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_2_HELP','Arts patronage[NEWLINE]The Theater Square provides +1 Housing, plus +1 per eligible ordinary building tier, once per tier. Each working Culture specialist adds 2 base Writer, Artist and Musician points, subject to GPP percentage modifiers.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3_HELP','时代对话[NEWLINE]同名城市项目完整占用1回合。每城每个启动时代最多成功一次；按完成时本城合格馆藏的不同作品时代数，每时代永久累计5个百分点的巨作原生产出倍率。ACTIVE低于三级或离开文化身份时效果暂停，历史保留；中断项目不消耗成功机会。当前运行范围：原生巨作旅游业绩倍率，不放大意义延展追加值。[NEWLINE][NEWLINE]风雅熏陶[NEWLINE]本城每覆盖一个合格巨作时代，每座合格普通建筑额外提供1旅游业绩。按当前时代覆盖动态计算，被掠夺的建筑不计入。'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3_HELP','时代对话[NEWLINE]可开展同名城市项目（需完整占用 1 回合，每城按项目启动时的游戏时代计算，每个时代最多成功完成一次）。项目完成时，本城合格馆藏每覆盖一个不同的作品时代，便为巨作原生旅游业绩倍率永久累加 5 个百分点（不放大「意义延展」的追加产出）。若中断项目，不会消耗该时代的成功次数；当文化启用等级低于 3 级或本城脱离文化专业身份时，加成暂停但保留已累计记录。[NEWLINE][NEWLINE]风雅熏陶[NEWLINE]本城当前每覆盖一个合格巨作时代，城内每座未遭掠夺的合格普通建筑便额外提供 +1 旅游业绩（按当前时代覆盖数动态计算）。'),
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_3_HELP','Dialogue of Eras[NEWLINE]The city project occupies one full turn. Once per starting game era, it permanently adds 5 percentage points per distinct eligible work era present at completion. Below Culture ACTIVE III or outside Culture, the effect pauses while history remains; cancellation does not spend the successful-era allowance. Current runtime scope: native Great Work Tourism, excluding Meaning additions.[NEWLINE][NEWLINE]Aesthetic Influence[NEWLINE]Each distinct eligible work era currently present adds 1 Tourism to every eligible ordinary building. Pillaged buildings are excluded.'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4_HELP','意义延展[NEWLINE]每件合格巨作从本城各合格领域获得0.5×基础设施深度份代表产出：金币每份3点，其它每份1点。各领域分别向下取整后合计，再按作品件数结算；同领域取最高单区域深度。时代对话不放大追加值，原生主题化可作用于追加。当前运行范围暂不计入政府广场、外交区的文化追加，其它领域照常生效。[NEWLINE][NEWLINE]巨作启迪[NEWLINE]本城当前每覆盖一个不同巨作时代，所有伟人点数产出提高3%；最多7时代、21%。没有基础点数的类别不会凭空获得点数。[NEWLINE][NEWLINE]人文考察团[NEWLINE]可训练考察团，按间谍成本公式、独立训练次数计价，全国同时最多1支。派遣到已遇见外国主要文明，进行风土考察、艺文采撷、奇观巡礼；标准速度任务各2回合。每个来源城对每文明、每类别首次成功获得1份文化见闻，归档历史保留。当前批次提供任务与见闻记录；见闻的整城旅游业绩及文化网络收益尚未实施。'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4_HELP','意义延展[NEWLINE]本城每件合格巨作可从城内各合格专业领域获得代表产出：该领域每有 1 点基础设施深度，便提供 0.5 份对应产出（金币每份为 3 点，其它产出每份为 1 点；同一领域的多个区域取最高单区域深度）。各领域收益分别向下取整后相加，再按合格巨作件数结算。此追加产出可受原生主题化加成影响，但不受「时代对话」倍率放大（当前暂不计入市政广场与外交区的文化追加，其它领域正常生效）。[NEWLINE][NEWLINE]巨作启迪[NEWLINE]本城当前每覆盖一个不同的巨作时代，所有已有基础产出的伟人点数便提高 3%（最多计入 7 个时代，即最高 +21%；无基础点数的伟人类别不会因此凭空获得点数）。[NEWLINE][NEWLINE]人文考察团[NEWLINE]可训练「人文考察团」（全国同时最多拥有 1 支，生产成本沿用间谍公式并独立累计训练次数）。可派遣至已遇见的外国主要文明，执行「风土考察」「艺文采撷」「奇观巡礼」任务（标准速度下均耗时 2 回合）。每个来源城市对每个目标文明的每类任务首次成功完成时，可获得 1 份「文化见闻」并归档保留，按当前有效见闻提供旅游业绩与文化网络加成。'),
 ('en_US','LOC_SPC_CULTURE_INSTITUTION_4_HELP','Meaning Extension[NEWLINE]Each eligible work receives 0.5 times infrastructure depth in representative yield shares from each eligible domain. Gold is 3 per share; other yields are 1. Floor each domain separately, combine, then multiply by work count; use the deepest single district per domain. Dialogue does not amplify additions; native theming may. Current runtime excludes Culture additions from the Government Plaza and Diplomatic Quarter; other domains remain active.[NEWLINE][NEWLINE]Great Works Inspiration[NEWLINE]Each distinct eligible work era currently present adds 3% to all city GPP, up to 7 eras and 21%. Categories without base points gain none.[NEWLINE][NEWLINE]Humanities Expedition[NEWLINE]Train an Expedition using the Spy cost formula with independent production history; the player may have one existing team. Send it to met foreign major civilizations for People, Works or Places missions, each 2 turns at Standard speed. First success per archive city, civilization and category records one Insight. Current implementation provides missions and preserved records; citywide Tourism and Culture network rewards are not implemented yet.');
 
 -- B233: read-only Industry history/typed knowledge, no new gameplay effect.
@@ -245,42 +245,42 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 -- B236: accepted Industry institution names; display only.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1','匠作坊'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','基础专家支持[NEWLINE]每名实际工作的工业专家额外获得3食物，以及相当于本城工业区基础相邻生产力的生产力；当前系数为1，不计政策等相邻倍率。原生收益另算；各专业等级使用同一公式。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','基础专家支持[NEWLINE]每名正在工作的工业专家额外提供 +3 食物，以及等同于本城工业区基础相邻生产力加成的生产力（1:1 转化，不计入政策等相邻加成倍率；与原生专家收益叠加，各专业等级均沿用此公式）。'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1','匠作坊'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','Specialist support[NEWLINE]Each working Industry specialist receives +3 Food and additional Production equal to the city Industrial Zone base Production adjacency. The current coefficient is 1, excluding adjacency multipliers. Native yields remain separate; all levels use this same formula.'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2','百工会馆'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','专业分工[NEWLINE]本城工业区提供1住房；每个存在合格普通建筑的等级再提供1住房，同等级不重复。每名工作的工业专家额外提供2基础大工程师点数，接受其它伟人点数百分比修正。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','专业分工[NEWLINE]本城工业区提供 +1 住房；每有一个包含合格普通建筑的建筑等级，再提供 +1 住房（同一等级不重复计算）。每名正在工作的工业专家额外提供 2 点基础大工程师点数（可受其它伟人点数百分比修正影响）。'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2','百工会馆'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','Division of Labor[NEWLINE]The Industrial Zone provides +1 Housing, plus +1 per eligible ordinary building tier, once per tier. Each working Industry specialist adds 2 base Engineer points, subject to GPP percentage modifiers.'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3','工程局'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','标准化[NEWLINE]可靠模板记录城市已经形成的建设经验；符合模板的区域与建筑获得10%建造加成。三级不提供金币购买折扣。联网城市可共享模板，对同一目标采用最强的适用来源，不叠加。[NEWLINE][NEWLINE]施工队[NEWLINE]开放I–III档组建项目，成本为基础施工力的150%。每个来源城市对当前所属玩家最多支持两支存活施工队。施工队只为正在建造的奇观投入基础施工力，可受适用生产力加成；余量不结转。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','标准化[NEWLINE]城市会将已完成的建设经验记录为可靠模板；建造符合模板的区域与建筑时，获得 +10% 生产力加成（3 级时不提供金币购买折扣）。贸易路线相连的城市可共享模板；若同一目标存在多个可用模板来源，仅取加成最高者生效，不叠加。[NEWLINE][NEWLINE]施工队[NEWLINE]解锁一级至三级施工队组建项目，生产成本为基础施工力的 150%。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。施工队仅能为正在建造的奇观一次性投入基础施工力（可受适用生产力加成影响，超出奇观剩余所需的部分不会溢出结转）。'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3','工程局'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','Standardization[NEWLINE]Reliable templates preserve city construction experience. Matching districts and buildings receive +10% construction; level III grants no Gold discount. Connected cities share templates; use the strongest applicable source per target, without stacking.[NEWLINE][NEWLINE]Construction Crews[NEWLINE]Formation tiers I–III cost 150% of base transfer Production. A source city supports two surviving Crews for its current owner. A Crew supplies base Production only to a Wonder under construction. Applicable Production modifiers can increase it; surplus does not carry over.'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4','土木工程总局'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','工程传统[NEWLINE]全国奇观时代经验提供可研习知识。本城通过完整1回合的工程传统研习，每层使标准化建造加成和金币购买折扣各提高2个百分点。研习成果按城市历史保留；增强仅在工业ACTIVE IV时生效。当前版本尚未支持目标区域的购买折扣。[NEWLINE][NEWLINE]工程实践[NEWLINE]开放IV–V档施工队。本城可靠历史奇观数达到1、3、6时，组建成本依次由150%降至140%、130%、120%。[NEWLINE][NEWLINE]巨构工程学[NEWLINE]本城自行生产落后于本文明时代1、2、3个及以上时代的奇观，分别获得10%、20%、30%生产力加成。适用时也可加成施工队投入的基础施工力。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','工程传统[NEWLINE]本文明积累的奇观时代经验可提供研习知识。本城每完成一次耗时 1 个完整回合的「工程传统研习」，便永久积累 1 层研习成果（按城市历史保留）。当本城工业启用等级达到 4 级时，每层研习成果使「标准化」的建造生产力加成与合格建筑金币购买折扣各提高 2 个百分点（当前版本暂不支持目标区域的金币购买折扣）。[NEWLINE][NEWLINE]工程实践[NEWLINE]解锁四级、五级施工队组建项目。当本城可靠历史奇观数达到 1、3、6 座时，施工队的组建成本依次由基础施工力的 150% 降至 140%、130%、120%。[NEWLINE][NEWLINE]巨构工程学[NEWLINE]本城自行建造落后于自身文明当前时代 1 个、2 个、3 个及以上时代的奇观时，分别获得 +10%、+20%、+30% 生产力加成。符合条件时，此加成同样作用于施工队投入的基础施工力。'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4','土木工程总局'),
 ('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','Engineering Tradition[NEWLINE]Nationwide Wonder-era experience supplies available knowledge. Each full-turn local study adds 2 percentage points to Standardization construction and Gold purchase discounts. City history is retained; the enhancement requires Industry ACTIVE IV. Target-specific District purchase discounts are not yet supported.[NEWLINE][NEWLINE]Engineering Practice[NEWLINE]Unlocks Crew tiers IV–V. At 1, 3 and 6 reliably recorded local Wonders, formation costs fall from 150% to 140%, 130% and 120%.[NEWLINE][NEWLINE]Macro Engineering[NEWLINE]Local ordinary production of Wonders behind the civilization by 1, 2 or 3+ eras gains 10%, 20% or 30% Production. This can also amplify Crew base Production when applicable.');
 
 -- B236 replaces old formation and general-construction wording exactly.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','拥有1次施工。标准速度基础施工力260，随游戏速度缩放并锁定。仅用于正在建造的奇观；可受适用生产力加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度基础施工力260，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 260（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','本城工业启用等级达到 3 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 260（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
 ('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','One construction use. Base transfer Production 260 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
 ('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 260 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','拥有1次施工。标准速度基础施工力420，随游戏速度缩放并锁定。仅用于正在建造的奇观；可受适用生产力加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度基础施工力420，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 420（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','本城工业启用等级达到 3 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 420（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
 ('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','One construction use. Base transfer Production 420 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
 ('en_US','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 420 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_DESCRIPTION','拥有1次施工。标准速度基础施工力750，随游戏速度缩放并锁定。仅用于正在建造的奇观；可受适用生产力加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','工业ACTIVE III开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度基础施工力750，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 750（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','本城工业启用等级达到 3 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 750（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
 ('en_US','LOC_UNIT_SPC_CREW_750_DESCRIPTION','One construction use. Base transfer Production 750 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
 ('en_US','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 750 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','拥有1次施工。标准速度基础施工力1000，随游戏速度缩放并锁定。仅用于正在建造的奇观；可受适用生产力加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','工业ACTIVE IV开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度基础施工力1000，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 1000（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','本城工业启用等级达到 4 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 1000（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
 ('en_US','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','One construction use. Base transfer Production 1000 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
 ('en_US','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','Requires Industry ACTIVE IV. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 1000 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','拥有1次施工。标准速度基础施工力1360，随游戏速度缩放并锁定。仅用于正在建造的奇观；可受适用生产力加成，超额浪费不溢出。来源城每当前Owner最多2支存活施工队；来源资格下降或易主不删除已完成队伍。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','工业ACTIVE IV开放。开工锁定本次成本；三级150%，四级按本城奇观数N使用150%/140%/130%/120%。标准速度基础施工力1360，按游戏速度缩放。每来源当前Owner最多2支存活队伍。'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 1360（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','本城工业启用等级达到 4 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 1360（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
 ('en_US','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','One construction use. Base transfer Production 1360 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
 ('en_US','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','Requires Industry ACTIVE IV. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 1360 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
 ('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','本次开工锁价。同一玩家从每座来源城市最多保有2支存活施工队；队列中的施工队会预留名额。仅用于奇观，剩余施工力不结转。'),
@@ -294,22 +294,22 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CREW_RESUME_NAME','{1_Name}（续建）'),
 ('en_US','LOC_SPC_CREW_RESUME_NAME','{1_Name} (resume)'),
-('zh_Hans_CN','LOC_SPC_CREW_LOCKED_PRICE','已开工锁定成本：{1_Cost}；继续使用原项目的已有进度。'),
+('zh_Hans_CN','LOC_SPC_CREW_LOCKED_PRICE','已锁定开工成本：{1_Cost}（续建将沿用原项目的既有进度）。'),
 ('en_US','LOC_SPC_CREW_LOCKED_PRICE','Started price: {1_Cost}. Resume the original project and its native progress.');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_CREW_BASE_PREVIEW','锁定基础施工力：{1_Capacity}[NEWLINE]本次基础投入：{2_Input}；未使用基础施工力：{3_Unused}[NEWLINE]实际生产力可受适用加成；余量不结转。'),
+('zh_Hans_CN','LOC_SPC_CREW_BASE_PREVIEW','已锁定基础施工力：{1_Capacity}[NEWLINE]本次投入基础施工力：{2_Input} ｜ 剩余未使用基础施工力：{3_Unused}[NEWLINE]实际转化的生产力可享受适用加成；未使用的余量不会结转。'),
 ('en_US','LOC_SPC_CREW_BASE_PREVIEW','Locked base Production: {1_Capacity}[NEWLINE]Base input: {2_Input}; unused base: {3_Unused}[NEWLINE]Applicable modifiers can increase actual Production; surplus does not carry over.'),
-('zh_Hans_CN','LOC_SPC_CREW_BASE_CONFIRM','消耗此施工队，为当前奇观投入{1_Input}点基础生产力，可受适用加成。[NEWLINE]此操作无法撤销。'),
+('zh_Hans_CN','LOC_SPC_CREW_BASE_CONFIRM','消耗此施工队，为当前正在建造的奇观投入 {1_Input} 点基础生产力（实际转化量可享受适用生产力加成）。[NEWLINE]此操作一旦确认无法撤销。'),
 ('en_US','LOC_SPC_CREW_BASE_CONFIRM','Consume this Crew to supply {1_Input} base Production to the current Wonder, subject to applicable modifiers.[NEWLINE]This cannot be undone.'),
-('zh_Hans_CN','LOC_SPC_CREW_BASE_READY','锁定基础施工力：{1_Capacity}，可受适用生产力加成。[NEWLINE]点击准备并确认施工。'),
+('zh_Hans_CN','LOC_SPC_CREW_BASE_READY','已锁定基础施工力：{1_Capacity}（可享受适用的生产力加成）。[NEWLINE]点击以预览详情并确认施工。'),
 ('en_US','LOC_SPC_CREW_BASE_READY','Locked base Production: {1_Capacity}, subject to applicable Production modifiers.[NEWLINE]Prepare and confirm construction.');
 
 -- B239: unfinished paid formation retains capacity.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_CREW_OCCUPANCY','来源名额：存活{1}，未完成组建{2}（含续建{3}）；未完成组建继续占用名额。'),
-('zh_Hans_CN','LOC_SPC_CREW_RESUME_CAPACITY_HELD','现役施工队及已排队项目已占满可完成名额；保留本次成本与进度，释放名额后可续建。'),
-('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','本城来源施工队及已接入的未完成组建共同占用名额；有进度的暂停项目继续占位。续建沿用原成本与已有进度，不额外申请名额。'),
+('zh_Hans_CN','LOC_SPC_CREW_OCCUPANCY','本城名额占用：现存队伍 {1} ｜ 未完成组建 {2}（含可续建 {3}；未完成项目仍占用名额）'),
+('zh_Hans_CN','LOC_SPC_CREW_RESUME_CAPACITY_HELD','本城现存施工队及队列中的组建项目已占满名额上限；当前项目的锁定成本与已有进度已保留，待空出名额后即可继续建造。'),
+('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','源于本城的现存施工队与已开工但未完成的组建项目共同占用本城名额（已有进度的暂停项目仍继续占位）。续建项目将沿用已锁定的原成本与既有进度，不会额外占用新名额。'),
 ('en_US','LOC_SPC_CREW_OCCUPANCY','来源名额：存活{1}，未完成组建{2}（含续建{3}）；未完成组建继续占用名额。'),
 ('en_US','LOC_SPC_CREW_RESUME_CAPACITY_HELD','现役施工队及已排队项目已占满可完成名额；保留本次成本与进度，释放名额后可续建。'),
 ('en_US','LOC_SPC_CREW_FORMATION_HELP','本城来源施工队及已接入的未完成组建共同占用名额；有进度的暂停项目继续占位。续建沿用原成本与已有进度，不额外申请名额。');

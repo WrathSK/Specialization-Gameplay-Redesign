@@ -14,7 +14,7 @@ function M.Text(pid,id)
  if v and v.stage=='HELD' then return '已暂停',v.reason end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
  if M.Current(c)then return '确认中','等待Gameplay确认计时；未确认时不会完成项目'end
- return '1','时代对话：连续占用完整一回合；本批验证记录，不增加新倍率产出。'
+ return '1','时代对话：需连续占用完整的 1 个回合；完成后按本城合格馆藏覆盖的作品时代数，永久累计巨作原生旅游业绩倍率。'
 end
 function M.New(P,send,notify)
  local api={};local pending,synced,seen,retry={},{},{},{};local warmed=false;local pulse=0;local revision=-1

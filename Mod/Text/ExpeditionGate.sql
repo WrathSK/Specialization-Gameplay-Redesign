@@ -164,7 +164,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 INSERT INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME','人文考察团'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NAME','Humanities Expedition'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','独立容量/来源绑定的验证团；暂占1个原生间谍名额。自有计时任务，无奖励，不执行原生间谍任务。'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','绑定来源城市且拥有独立名额的特殊文化单位（当前暂占用 1 个原生间谍名额）。可派遣至已遇见的外国主要文明执行专属计时考察任务，首次完成可为来源城市赢得「文化见闻」；不可执行原生间谍任务。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','Own capacity/source probe; temporarily uses one native Spy slot. Independent timer, no reward or native Spy mission.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TITLE','人文考察·Spy=1隔离验证'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_TITLE','Expedition: Spy=1 isolation'),
@@ -460,7 +460,7 @@ INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_REMAINING','Remaining: {1} turns'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_NAME_UNKNOWN','尚未确认'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_NAME_UNKNOWN','Not confirmed'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_ONE_SHOT','任务已结束，考察团返回市中心。可在此城执行其它未完成的考察，或用「派遣到新城市」前往新目标。'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_ONE_SHOT','本次任务已结束，考察团已返回该城市中心。你可在此城继续执行其它未完成的考察任务，或点击「派遣到新城市」前往新的目的地。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_ONE_SHOT','The mission has ended and the team returns to the city centre. Start another unfinished mission here, or travel to a new city.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_CREATED','状态：待派遣'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_CREATED','Status: ready to travel'),
@@ -468,13 +468,13 @@ INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ARRIVED','Status: arrived; task available'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TRAVELLING','状态：派遣中'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TRAVELLING','Status: travelling'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_PREPARING','状态：准备任务中，尚未开始计时'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_PREPARING','状态：任务准备中（尚未开始计时）'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_PREPARING','Status: preparing task; timer not started'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_RUNNING','状态：任务进行中'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_RUNNING','Status: task running'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_COMPLETE','状态：任务已完成，无奖励'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_COMPLETE','状态：考察任务已完成'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_COMPLETE','Status: task complete; no reward'),
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_HELD','状态：已暂停；请查看 P0 详细报告'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_HELD','状态：已暂停（状态待核对）'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_HELD','Status: held; check the P0 detailed report'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDING','状态：结束中'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDING','Status: ending'),
@@ -483,7 +483,7 @@ INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
 
 -- B197: native-style sidebar presentation, no new task or reward.
 INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
- ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','选择目的地，再确认派遣。当前仅列出已遇见文明的已揭示首都；确认时核对派遣时间与条件。'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','请先选择目的地，再点击确认派遣。确认派遣前请核对行程耗时与目标城市的考察条件。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','Select a destination, then confirm travel. Only revealed capitals of met civilizations are listed; travel time and eligibility are checked on confirmation.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','选择任务，使用下方按钮确认开始。'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','Review the task, then use the button below to start it.'),
@@ -557,7 +557,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','Record unavailable; capacity reserved, creation blocked');
 
 -- B202 normal training presentation.
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_HELP','文化专业ACTIVE IV可训练；全国上限1支，队列亦占用名额。生产成本沿用间谍公式，考察团次数独立累计。训练完成后自动绑定来源城；请使用派遣到新城市／任务按钮。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_HELP','本城文化启用等级达到 4 级时可训练。全国同时最多拥有 1 支（生产队列中的项目亦占用名额）。生产成本沿用间谍公式，并独立累计考察团的训练次数。训练完成后将自动绑定来源城市；请通过「派遣到新城市」或「任务」按钮进行操作。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TRAINING','训练中（名额已保留）');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_TRAINING_HELP','文化专业ACTIVE IV可训练；全国上限1支，队列亦占用名额。生产成本沿用间谍公式，考察团次数独立累计。训练完成后自动绑定来源城；请使用派遣到新城市／任务按钮。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TRAINING','训练中（名额已保留）');
@@ -621,21 +621,21 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_NAME','Works Study'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_NAME','奇观巡礼'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_NAME','Wonder Pilgrimage'),
-('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_TOOLTIP','考察该文明的社会生活、风俗、制度与城市文化。首次完成获得1份文化见闻。[NEWLINE]目标：该文明实际控制的现任首都。每个来源城市对该文明的此类考察只能成功完成一次。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_TOOLTIP','深入考察该文明的社会生活、风俗习惯、典章制度与城市文化。首次成功完成可获得 1 份文化见闻。[NEWLINE]目标条件：该文明实际控制的现任首都（每个来源城市对该文明仅能成功完成一次此类考察）。'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_TOOLTIP','Study this civilization''s social life, customs, institutions and urban culture. The first completion grants 1 Cultural Insight.[NEWLINE]Target: its current capital. Each source city can complete this category once per civilization.'),
-('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_TOOLTIP','接触并理解该文明的艺文成果，汲取文化经验。首次完成获得1份文化见闻；不移动、复制、窃取或消耗对方巨作。[NEWLINE]目标：拥有至少1件合格巨作的该文明城市。每个来源城市对该文明的此类考察只能成功完成一次。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_TOOLTIP','接触并品鉴该文明的艺文硕果，从中汲取文化经验。首次成功完成可获得 1 份文化见闻（不会移动、复制、窃取或消耗对方的巨作）。[NEWLINE]目标条件：该文明旗下拥有至少 1 件合格巨作的城市（每个来源城市对该文明仅能成功完成一次此类考察）。'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_TOOLTIP','Study this civilization''s artistic achievements. The first completion grants 1 Cultural Insight; no Great Work is moved, copied, stolen or consumed.[NEWLINE]Target: a city with at least one eligible Great Work. Each source city can complete this category once per civilization.'),
-('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_TOOLTIP','巡访该文明的伟大建筑与物质遗产，理解其中的审美、工程与文明象征。首次完成获得1份文化见闻。[NEWLINE]目标：拥有至少1座已完成奇观的该文明城市。每个来源城市对该文明的此类考察只能成功完成一次。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_TOOLTIP','巡礼该文明的宏伟建筑与物质遗产，体悟其中的审美意趣、工程技艺与文明象征。首次成功完成可获得 1 份文化见闻。[NEWLINE]目标条件：该文明旗下拥有至少 1 座已建成奇观的城市（每个来源城市对该文明仅能成功完成一次此类考察）。'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_TOOLTIP','Visit this civilization''s great buildings and heritage. The first completion grants 1 Cultural Insight.[NEWLINE]Target: a city with at least one completed Wonder. Each source city can complete this category once per civilization.'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_AVAILABLE','可执行 · 2回合'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_AVAILABLE','Available · 2 turns'),
-('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_DONE','已完成（本来源城对该文明）'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_DONE','已完成（当前来源城对该文明已归档）'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_DONE','Completed (this source city, this civilization)'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_NO_TARGET','此城没有符合条件的目标'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_NO_TARGET','No eligible target in this city'),
 ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_UNAVAILABLE','所选任务在此城不可执行或已完成。'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_UNAVAILABLE','The selected mission is unavailable here or already completed.'),
-('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_INSIGHTS','文化见闻：历史 {1_History}，当前有效 {2_Effective}'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_INSIGHTS','文化见闻：历史累计 {1_History} ｜ 当前有效 {2_Effective}'),
 ('en_US','LOC_SPC_EXPEDITION_SPY_INSIGHTS','Cultural Insights: {1_History} recorded, {2_Effective} effective');
 
 -- Explicit uncertainty is not cancellation or successful completion.

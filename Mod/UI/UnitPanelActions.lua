@@ -48,16 +48,16 @@ end
 local function investmentTips(v)
  local names={RESEARCH='科研',CULTURE='文化',COMMERCE='商业',INDUSTRY='工业',GOVERNMENT='政府',MILITARY='军事'}
  if v and v.prepared then
-  return '投资预览[NEWLINE]当前专业：'..(names[v.specialization] or v.specialization)
+  return '专业投资预览[NEWLINE]当前专业：'..(names[v.specialization] or v.specialization)
    ..'[NEWLINE]当前潜力：'..v.potential..'级[NEWLINE]投资后潜力：'..v.nextPotential..'级'
-   ..'[NEWLINE]消耗：1名移民[NEWLINE][NEWLINE]高级专业能力仍需满足对应的总督条件。',
-   '确认投资[NEWLINE]消耗此移民，使本城专业潜力永久提高至'..v.nextPotential..'级。[NEWLINE]此操作无法撤销。'
+   ..'[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]提示：更高阶的专业能力仍需满足对应的总督就职与晋升条件方可启用。',
+   '确认专业投资[NEWLINE]消耗此移民，使本城的专业潜力永久提升至 '..v.nextPotential..' 级。[NEWLINE]此操作一旦确认无法撤销。'
  end
- if v and v.legal then return '投资专业化[NEWLINE]消耗1名移民，使本城专业潜力永久提高1级。'
-  ..'[NEWLINE]当前潜力：'..v.potential..'级 → '..v.nextPotential..'级[NEWLINE]点击后可预览投资结果并进行确认。' end
+ if v and v.legal then return '投资专业化[NEWLINE]消耗 1 名移民，使本城的专业潜力永久提升 1 级。'
+  ..'[NEWLINE]潜力变化：'..v.potential..' 级 → '..v.nextPotential..' 级[NEWLINE]点击以预览投资结果并进行最终确认。' end
  if v and v.reason and v.reason:find('POTENTIAL_CAP_4',1,true) then return '投资专业化[NEWLINE]专业潜力已达到4级，无法继续投资。' end
  if v and v.reason and (v.reason:find('HELD',1,true) or v.reason:find('PENDING',1,true) or v.reason:find('RESERVED',1,true)) then
-  return '投资专业化[NEWLINE]此前投资尚未确认，暂时无法投资。'
+  return '投资专业化[NEWLINE]此前专业投资的结果尚待确认，暂时无法再次投资。'
  end
  return '投资专业化[NEWLINE]将移民移动至本城的专业区域，即可投资城市专业化。'
 end

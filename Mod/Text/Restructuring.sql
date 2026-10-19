@@ -1,21 +1,21 @@
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_REST_TEAM','重组团队'),
- ('zh_Hans_CN','LOC_SPC_REST_TEAM_HELP','商业专业启用四级后可训练。只能用生产力组建。前往专业潜力至少2级城市的当前专业区域进行资产清算，永久降低1级潜力；至少5个完整回合后，在同城另一个合格专业区域完成资产配置并消耗团队。原专业历史按各自规则保留。遭敌军接触时撤退，不转为敌方单位。'),
+ ('zh_Hans_CN','LOC_SPC_REST_TEAM_HELP','本城商业启用等级达到 4 级时可训练（仅能使用生产力组建）。可前往专业潜力至少为 2 级的己方城市，在其当前专业对应的区域执行「资产清算」（永久扣除该城 1 级专业潜力）；经过至少 5 个完整回合后，须在同一城市内另一个合格的专业区域执行「资产配置」并消耗本团队，完成专业转换（原专业的历史记录按各自规则保留）。此单位遭遇敌军时将自动撤退，不会被敌方俘获。'),
  ('zh_Hans_CN','LOC_SPC_REST_PHASE','资产重组中'),
  ('zh_Hans_CN','LOC_SPC_REST_LIQUIDATE','资产清算'),
  ('zh_Hans_CN','LOC_SPC_REST_CONFIGURE','资产配置'),
  ('zh_Hans_CN','LOC_SPC_REST_CONFIRM','确认{1_Name}'),
- ('zh_Hans_CN','LOC_SPC_REST_PREVIEW','目标：{1_City}[NEWLINE]完成后潜力：{2_Potential}级[NEWLINE]清算永久扣除1级潜力；重组期间全部非食物产出及净盈余食物增长降低75%。至少5个完整回合后，须在同城另一个合格专业区域主动完成配置。'),
- ('zh_Hans_CN','LOC_SPC_REST_WAIT','目标：{1_City}[NEWLINE]保留潜力：{2_Potential}级[NEWLINE]距离可配置还有{3_Turns}个完整回合。时间到达不会自动结束重组。'),
- ('zh_Hans_CN','LOC_SPC_REST_MOVE','将团队移动至潜力至少2级城市的当前专业区域。配置时须前往绑定城市内的另一个合格专业区域。'),
+ ('zh_Hans_CN','LOC_SPC_REST_PREVIEW','目标城市：{1_City}[NEWLINE]清算后保留潜力：{2_Potential} 级[NEWLINE]执行「资产清算」将永久扣除该城 1 级专业潜力；资产重组期间，该城所有非食物产出及盈余食物增长均降低 75%。持续至少 5 个完整回合后，须将该团队移动至同城内另一个合格的专业区域，手动执行「资产配置」以完成重组。'),
+ ('zh_Hans_CN','LOC_SPC_REST_WAIT','绑定城市：{1_City}[NEWLINE]当前保留潜力：{2_Potential} 级[NEWLINE]距离可执行「资产配置」还需等待 {3_Turns} 个完整回合（回合数届满后不会自动结束重组，须手动完成配置）。'),
+ ('zh_Hans_CN','LOC_SPC_REST_MOVE','清算阶段：请将团队移动至专业潜力至少为 2 级的城市中，其当前专业对应的区域。[NEWLINE]配置阶段：请将团队移动至已绑定城市内另一个合格的专业区域。'),
  ('zh_Hans_CN','LOC_SPC_REST_PENDING','身份或事务尚未确认；请保留日志，不要重复确认。'),
  ('zh_Hans_CN','LOC_SPC_INSTITUTION_LEGACY','历史机构');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
  ('zh_Hans_CN','LOC_SPC_REST_WAIT_GATE','尚未满5个完整回合。'),
- ('zh_Hans_CN','LOC_SPC_REST_CURRENT_SITE','请前往目标城市当前专业对应的已建成、未被掠夺区域。'),
- ('zh_Hans_CN','LOC_SPC_REST_OTHER_SITE','请选择同城内另一个专业对应的区域。'),
+ ('zh_Hans_CN','LOC_SPC_REST_CURRENT_SITE','请将团队移动至目标城市当前专业所对应的已建成且未被掠夺的区域。'),
+ ('zh_Hans_CN','LOC_SPC_REST_OTHER_SITE','请将该团队移动至同一城市内另一个合格专业所对应的区域。'),
  ('zh_Hans_CN','LOC_SPC_REST_SAME_CITY','资产配置必须在已绑定的同一城市完成。'),
- ('zh_Hans_CN','LOC_SPC_REST_POTENTIAL_GATE','目标城市须至少有2级专业潜力，且没有未确认的移民投资。');
+ ('zh_Hans_CN','LOC_SPC_REST_POTENTIAL_GATE','目标城市须至少拥有 2 级专业潜力，且当前没有待确认的移民专业化投资。');
 -- Existing English fallback; authoritative player-facing copy remains Chinese.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text)
  SELECT 'en_US',Tag,Text FROM LocalizedText WHERE Language='zh_Hans_CN' AND (Tag LIKE 'LOC_SPC_REST_%' OR Tag='LOC_SPC_INSTITUTION_LEGACY');

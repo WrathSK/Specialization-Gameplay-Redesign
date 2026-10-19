@@ -44,7 +44,7 @@ local function update(dt)
     shown=name..v.potential..tostring(v.investments)
     Controls.BadgeCaption:SetText(name..v.potential..'级')
     Controls.Badge:SetToolTipString(title..'[NEWLINE]当前专业：'..name..'[NEWLINE]专业潜力：'..v.potential..'级'
-     ..'[NEWLINE]已完成专业投资：'..tostring(v.investments)..'次[NEWLINE][NEWLINE]专业潜力代表这座城市永久完成的专业化投资。实际启用的专业等级仍取决于已建立总督的晋升条件。')
+     ..'[NEWLINE]已完成专业投资：'..tostring(v.investments)..'次[NEWLINE][NEWLINE]「专业潜力」代表本城已确立的专业化投资等级；实际生效的「启用等级」仍取决于本城就职总督的晋升条件。')
    end
   elseif age>5 then token=nil;hide(true);reportError('PRESENTATION_TIMEOUT') end
  end

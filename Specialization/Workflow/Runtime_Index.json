@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "d763449c65a9d2c4463104d3fdfdab20a0a563437b4ce20e0a06b54356d5f48b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
-      "provenance": "B249 event-driven readiness and reference-bound initial recovery; duplicate load preserves live pairs/previews.80 targeted methods PASS. Other than the service, only two build stamps changed; native acceptance pending."
+      "sha256": "6bddcf60d0adee3f9545614235f32000bcb4e7e40562d8244a394b897cd7a356",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cd830d7ff35a8a0eb126592445647d527de1a8096c786210dfdf4b8c427b8692",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
-      "provenance": "B249 event-driven readiness and reference-bound initial recovery; duplicate load preserves live pairs/previews.80 targeted methods PASS. Other than the service, only two build stamps changed; native acceptance pending."
+      "sha256": "6789eb9c4247144f32e418a433fe5575735f3c44f2703a7f5594855072764325",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "e455a72cbe7d4a2f46e1192e1d3c8de4088acfdbd80601354424981c1eb961c2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "e1481a4cdbd5b6844c0f1c9e4cdfd883dd3932055e5dc797b4cd19ae9702bcee",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -486,9 +486,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CityPotential.lua": {
-      "sha256": "82a25b3f58d08b2bfd26f3797ad35a1f73e4918553957fbc830c775e44983f7f",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "U1 scoped UI prototype; no gameplay writers/SQL changed"
+      "sha256": "64c39ca7434a6631d61c8604a5203a84c2e0f8888d9d07de7dbbc7b5bdd572d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/CityPotential.xml": {
       "sha256": "3971290a3b79bf2b8be2fa603647bafca8c27b48b0d543835610acc5edf8fa40",
@@ -576,9 +576,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "76725973066c8d768f32dbb83980e6dde81b5df45e540ed16f3d3b375b15892d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "c9c89936a1c338f775c905510f139e01b0bb7162a5e222bb54bc1f465b6e5e79",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
@@ -721,9 +721,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "38028281101071bf4c32278e796b0749bc02477b6a33f493a058b14393fb7091",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "603ce9a6e7158f81322d82d00055c7e26c97c9e9fdfc7e3ef97054cc062b250f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/InstitutionOverview.lua": {
       "sha256": "7cf20195db87c52288444e50593b396f8dda16ae88114a55292860740747e7d2",
@@ -846,9 +846,9 @@
       "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
     },
     "Mod/Text/ClaimProjects.sql": {
-      "sha256": "df30be4be4cc7266f49bc14867814b5ebee7ff07eb4418c68f0b668e504fe544",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+      "sha256": "a31dbfc5862df58c043a03adc68423dbabf299e6c389955207dfe21c8b68559c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/ClaimProjectUI.lua": {
       "sha256": "7339d909e206a181c06564ac0b1031278ff1bafe5216262bae45864a1e2b29d8",
@@ -966,14 +966,14 @@
       "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
     },
     "Mod/Text/DialogueProjects.sql": {
-      "sha256": "41bb31edb0b1bdb813f5726011064b3b74137649ef798cd5ab267749a8517498",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+      "sha256": "59d6a739740d9ab93cb5a87d93ef0d729168ef16c1c257962fb0e0971ee94a17",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "81a282d7ec58fa1a7bd22d145ca0e292ba861967c8bc63ddf1069ee1c147bf2b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
-      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+      "sha256": "b9c06b39c2d2c3e5c7398c80f4372b20ce83933fd8b43be6cdfbfd647260625e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/Data/DialogueEffects.sql": {
       "sha256": "ce0448f7a24cebd8fcec2ce0d83218bb54b2f02eda10c13c8bd3cef1b15ef0dd",
@@ -1001,9 +1001,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "979e503e02beab28f8439a597df1ac32738c295c6c6f6e069e80a2e557143160",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
-      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
+      "sha256": "56b6a772a68d3389dd5ccadcecad119beed63d8993367877a27966bd7af57858",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1171,9 +1171,9 @@
       "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
     },
     "Mod/Text/EngineeringStudy.sql": {
-      "sha256": "3cd36c4431d66f52599d333dd7ac8df20ec105897136cf210a521ab1e60f4495",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "5865a1136028a230e5acbf2d38012fa1e9d0155d5550d8a354f2d9b165917ef4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/EngineeringStudyUI.lua": {
       "sha256": "b0d50dc7e34d19559721742cecec37276702822b93e485d616db1ae42beb30a3",
@@ -1211,9 +1211,9 @@
       "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "c93017f5b5c321ce41990e2d5cb0e83a27f1433f512b538f7ae2059fdcb80585",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
-      "provenance": "B242 user-authorized diagnostic-only stage/readback and paused feedback; reviewed194 targeted tests. B241 math/schema/no-replay retained; native cause UNKNOWN. No timer/GC/other gameplay."
+      "sha256": "2e8cbc8fc8a2a52ded50b3367255ca2c41e66ad2a8ef969fba2180ee753ee508",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/CommercePanel.lua": {
       "sha256": "f76067e9f3a012710e0e3ff5073461c6efe6d9268ab437bc8bfd29e7a7de717a",
@@ -1281,9 +1281,9 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
-      "sha256": "2b76d716c6bc4ff901f2cab8fd660eda5088a16a9354dc2ab1d5842eb514154f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "32fd9fc63b5e15ababafdf12875e2c86a38045b631fac7d5b9d99afcf15b4f02",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
       "sha256": "8b8f40010b338c239b43d14d2a3f05b4a01f75b90dc02a201e275dde5ec9f581",
@@ -1326,9 +1326,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/Text/Restructuring.sql": {
-      "sha256": "c473ad7e165a6d1181375b8ad9a0ed878161302a53474196d37d780b44b4c97f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "b2190dc3c00f64a696e8c830e8fea367e6b81e0227c31168d32923c632250ac6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     }
   }
 }

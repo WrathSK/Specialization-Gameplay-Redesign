@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0669",
-    "runtime": "B249.276 / modinfo276",
+    "status": "S0670",
+    "runtime": "B250.277 / modinfo277",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
   "runtime_commit": "ad34b1fe88559e35cdf6b153d6838391556e223e",
-  "current_batch": "V01_PLAYTEST_SCOPE_CONFIRMED",
-  "next_batch": "Use B249 as the v0.1 functional playtest baseline. REALLOCATING cold-load and Standardization plus Development additive output will be checked during that playtest. User excludes own-city loss; listed remaining Culture/Industry/Research and all outstanding audit work are high priority after the playtest. No new implementation authorized.",
+  "current_batch": "B250_UI_COPY_LOCAL_COMPLETE",
+  "next_batch": "Complete the approved B250 copy/archive checkpoint and guarded W0003 deployment. Observe wording during the existing v0.1 playtest; S0669 deferred work and integration checks remain. No new gameplay batch authorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "Recorded deployment unchanged: B249.276/modinfo276 DEVELOP_ACTIVE; source ad34b1fe88559e35cdf6b153d6838391556e223e; receipt B249.276-ad34b1f-playtest.json;265/265 MATCH,digest 89eb1e79d7947ae9b3316dd38c4f6a3e9e23bb7adac80d8843dd65d606b4df00. S0669 records scheduling only; B249 core native acceptance is retained and two integration checks belong to the v0.1 playtest. No deployment or live query in this review.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0669: explicit user scheduling override recorded in the existing Audit_Followup_Priorities plan. Remaining city-loss, Expedition, Meaning, District purchase, Research-network, era-presentation and audit work is post-v0.1-playtest high priority; recovery/additive checks remain within the playtest. Stable Industry audit reviewed with B246 basis and evidence limits; existing B249 cancellation/publication and automatic Meaning checked statically. No new PASS, test run, implementation, Design/Architecture change or deployment.",
+  "context_review_status": "S0670: user-approved 203-entry editorial integration,104 changes/99 KEEP; reviewed seven factual corrections and eight narrow semantic safeguards.12 copy files plus two build stamps; local localization/Lua/token/display/package checks PASS, no new native acceptance. Named hashes only; frozen evidence, gameplay/Design/Architecture/tests/main/configuration unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md"
 }

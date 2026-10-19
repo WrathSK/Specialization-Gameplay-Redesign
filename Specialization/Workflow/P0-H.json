@@ -11,150 +11,97 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0669",
-    "runtime": "B249.276 / modinfo276",
+    "status": "S0670",
+    "runtime": "B250.277 / modinfo277",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
-  "goal": "Preserve B249 native core acceptance and prepare the scoped v0.1 functional playtest: recovery and additive integration inside the playtest, explicitly held work high priority afterward. No implementation authorized.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+  "goal": "B250 copy-only integration of the user-approved four-profession Chinese UI draft. Preserve B249 functional acceptance and S0669 playtest/deferred scope; no new gameplay or visual redesign.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Actual source/live and native boundary."
+      "reason": "Current source/live and playtest boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "kind": "section",
+      "selector": "## Scope and adoption",
+      "reason": "Approved editorial map and independently checked factual corrections."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "kind": "section",
+      "selector": "## Integration safeguards",
+      "reason": "Precise quota/history/held-state wording, without rule changes."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "kind": "section",
+      "selector": "## Local validation",
+      "reason": "Copy-only validation and inherited native limits."
     },
     {
       "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
       "kind": "section",
       "selector": "## v0.1 playtest scheduling checkpoint",
-      "reason": "Latest explicit user timing overrides older pre-module gates; distinguishes pending playtest checks from post-playtest work without changing gameplay or evidence."
-    },
-    {
-      "path": "Specialization/Design/Content/Commerce_D0057.json",
-      "kind": "json",
-      "selector": "/contracts/restructuring",
-      "reason": "Accepted team, transaction and current/history rules."
-    },
-    {
-      "path": "Specialization/Design/Content/Shared_D0045.json",
-      "kind": "json",
-      "selector": "/lifecycle_authority_ref",
-      "reason": "Existing named long-term ownership authority; no universal asset policy."
-    },
-    {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-      "kind": "section",
-      "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current implementation contracts."
-    },
-    {
-      "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
-      "kind": "section",
-      "selector": "## B249 event-driven readiness",
-      "reason": "Reviewed initializer and transient recovery ownership; unchanged transaction rules."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
-      "kind": "section",
-      "selector": "## Accepted results",
-      "reason": "Observed native sequence and user-confirmed results; no expanded PASS."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
-      "kind": "section",
-      "selector": "## Remaining validation boundary",
-      "reason": "Original B249 recovery evidence boundary retained; the current scheduling checkpoint places this check inside the v0.1 playtest."
+      "reason": "Unchanged user scheduling decisions; no held work advanced."
     }
   ],
   "dependencies": [
-    "Original Store origin/token and historical admission are retained; optional current-identity/receipt extension and guarded native consumption, no generic writer rewrite.",
-    "EffectiveFacts feeds existing support/network/profession consumers; named histories and signed Capital/Development contracts keep their separate rules.",
-    "Native unit training/birth events, native safe-retreat, existing UnitPanel art/actions, derived empty marker effects and unchanged bounded collector."
+    "Existing localization keys/control tokens and the same Lua dynamic-value expressions. All16 names and established/active/history display logic unchanged.",
+    "All B249 gameplay, writers, persistent state, calculations, event/GC behavior and prior scoped native evidence inherited without modification."
   ],
   "old_writers": [
-    "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
-    "Preserve Commerce I/II, Research/Culture/Industry, common topology, Crew construction and historical evidence."
+    "No writer cutover. Replace only the104 mapped presentation strings; preserve all keys, formulas and source/runtime isolation."
   ],
   "conditional_context": [
     {
-      "trigger": "B249 startup, recovery or duplicate-event discrepancy",
+      "trigger": "Mapped text, token or gameplay-semantic discrepancy",
       "paths": [
-        "Mod/Restructuring.lua",
-        "Mod/CityProgressionStore.lua",
-        "Mod/EffectiveFacts.lua",
-        "Mod/Gameplay.lua",
-        "DevelopmentTests/test_b249_restructuring_startup.py",
-        "DevelopmentTests/test_b248_training_entry.py",
-        "DevelopmentTests/test_b247_restructuring.py"
-      ]
-    },
-    {
-      "trigger": "B248 training access or presentation discrepancy",
-      "paths": [
-        "Mod/Gameplay.lua",
-        "Mod/Restructuring.lua",
-        "Mod/RestructuringUI.lua",
-        "Mod/UI/CrewProjectOrder.lua",
-        "Mod/Data/Icons.sql",
-        "Mod/ArtDefs/Units.artdef",
-        "Mod/Specialization.dep",
-        "Mod/SpecializationP0.modinfo",
-        "DevelopmentTests/test_b248_training_entry.py"
-      ]
-    },
-    {
-      "trigger": "B247 implementation/native discrepancy",
-      "paths": [
-        "Mod/RestructuringModel.lua",
-        "Mod/Restructuring.lua",
-        "Mod/RestructuringUI.lua",
-        "Mod/Data/Restructuring.sql",
-        "Mod/Text/Restructuring.sql",
-        "Mod/CityProgressionStore.lua",
-        "Mod/EffectiveFacts.lua",
-        "Mod/ResearchTradition.lua",
-        "Mod/CommerceModel.lua",
-        "Mod/Standardization.lua",
-        "Mod/Gameplay.lua",
-        "Mod/UI/ExpeditionSpyUnitPanel.lua",
         "Mod/InstitutionPresentation.lua",
-        "DevelopmentTests/test_b247_restructuring.py",
-        "DevelopmentTests/test_b247_ui_package.py"
+        "Mod/Text/ClaimProjects.sql",
+        "Mod/Text/Commerce.sql",
+        "Mod/Text/DevelopmentInvestment.sql",
+        "Mod/Text/DialogueProjects.sql",
+        "Mod/Text/EngineeringStudy.sql",
+        "Mod/Text/ExpeditionGate.sql",
+        "Mod/Text/Restructuring.sql",
+        "Mod/Text/TestText.sql",
+        "Mod/UI/CityPotential.lua",
+        "Mod/UI/DialogueProjectUI.lua",
+        "Mod/UI/UnitPanelActions.lua"
       ]
     },
     {
-      "trigger": "Direct retained contract or deployment discrepancy",
+      "trigger": "Source/live or deployment discrepancy",
       "paths": [
-        "Mod/CapitalInvestment.lua",
-        "Mod/DevelopmentInvestment.lua",
-        "Mod/NetworkInput.lua",
-        "Mod/NetworkBridge.lua",
         "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
   ],
   "non_scope": [
-    "New Design, AI/future professions/non-Standard speed, destroyed-city/original-owner extinction policies, Culture HOLD and unrelated audit repairs.",
-    "General Store/event/framework migration, timers/frame polling, GC changes, main/promotion, external Mod/configuration edits, game launch, frozen evidence mutation."
+    "Gameplay/Design/Architecture/formal test or UI layout changes; held features, audit repairs, balance, new timers, saved fields, main/promotion, configuration or game launch.",
+    "English translation, other agents' reports, frozen records and the original editorial draft contents. Existing generated Chinese fallback rows keep their normal behavior."
   ],
   "validation": {
-    "depth": "L3 targeted startup/recovery/event ordering plus retained transaction regressions; not a whole-project rerun.",
-    "local": "80 selected methods PASS; startup without load, WAITING/HELD dependencies, duplicate events/pairing/previews, exact recovery and existing transaction/UI/package checks.",
-    "user": "Inherited USER_GAME_TEST_PASS: B249 same-turn access, training/binding, liquidation, disruption, illegal targets, manual configuration and new effects. During v0.1 playtest, USER_GAME_TEST_REQUIRED: original REALLOCATING cold-load and B246 Standardization plus Development additive integration. No extra test now.",
-    "gap": "B249 has one Gameplay context; B246 did not exercise simultaneous Standardization. Remaining own-city-loss handling/verification, Expedition, Meaning, District purchase, Research network, era presentation and outstanding audit work is explicitly high priority after the playtest, not a prerequisite. Existing protections and accepted effects remain; no wider PASS inferred."
+    "depth": "L1 copy-only: effective SQL localization, placeholder/control tokens, Lua syntax/code identity, directly related display regressions and package/context/publication checks.",
+    "local": "203 mappings;104 changes/99 KEEP;90 intended zh rows plus26 existing generated en_US Chinese fallbacks;1102 effective rows;5 Lua files;16 institution rows;6 selected display methods;265-file closure PASS.",
+    "user": "No standalone native test. Observe Chinese wording/wrapping during the planned v0.1 playtest. Prior B249 acceptance remains; REALLOCATING cold-load and Standardization/Development additive integration are still within that playtest.",
+    "gap": "Native typography/layout not newly tested; no claim that held gameplay or audit findings are fixed."
   },
   "full_audit_triggers": [
-    "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
-    "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
+    "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
+    "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
-    "source": "B249.276/modinfo276 source ad34b1fe88559e35cdf6b153d6838391556e223e; receipt B249.276-ad34b1f-playtest.json DEVELOP_ACTIVE;265/265 MATCH.",
-    "native": "B249 USER_GAME_TEST_PASS for its observed continuous core flow is unchanged. REALLOCATING cold-load and Standardization/Development combination remain pending for the v0.1 playtest.",
-    "stop": "Record the approved scheduling and bounded Advisor review; commit/push documentation only. Do not start a repair, deployment, test or additional batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+    "source": "B250.277/modinfo277 local copy changes; recorded live remains B249.276/ad34b1f pending guarded W0003 deployment.",
+    "native": "No new native PASS; inherited B249 and prior scope preserved.",
+    "stop": "Complete approved copy/archive and normal commit/push/deployment checkpoint, then stop. No next gameplay batch."
   }
 }
