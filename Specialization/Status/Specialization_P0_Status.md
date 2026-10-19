@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0670
+Status Revision: S0671
 Implementation Build: B250.277 / modinfo277; stable B069.96
 Architecture Revision Reviewed: A0176
 Design Revision Reviewed: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B250.277 Chinese UI copy is locally complete; B249's functional behavior and native evidence are unchanged.** [Copy integration and checks](Validation/Results/Specialization_B250_UI_Copy_Polish.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
+**B250.277 Chinese UI copy is deployed; B249's functional behavior and native evidence are unchanged.** [Copy integration and checks](Validation/Results/Specialization_B250_UI_Copy_Polish.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
 - The user approved the Gemini Chinese copy:104 mapped entries updated,99 kept. Seven obsolete ordinary-player claims were corrected; eight entries preserve precise existing semantics during integration. Names, gameplay, timers, save data and UI structure are unchanged. The original draft is renamed/hash-verified in ignored local editorial storage.
 - L1 checks: full effective localization comparison, Lua5.1 syntax/non-string code identity, dynamic placeholders/16 institution rows, six existing display regressions and265-file package closure. No native visual or new gameplay PASS; wording/wrapping will be observed during the existing v0.1 playtest, without a separate lifecycle test.
-- Source build is B250.277/modinfo277. Recorded live remains B249.276 from `ad34b1f`, receipt `B249.276-ad34b1f-playtest.json`; deployment of the completed text package is pending normal W0003 checks. Main/stable B069.96 remains unchanged.
+- Source/live B250.277/modinfo277 from `d6bb190`; receipt `B250.277-d6bb190-playtest.json` DEVELOP_ACTIVE,265/265 MATCH. Fresh process checks and stable/outgoing B249 recovery verified; no pending marker or game launch. Main/stable B069.96 remains unchanged.
 - B249's observed same-turn access, training/binding, liquidation, five-turn minimum/manual configuration, disruption and new effects remain accepted. REALLOCATING cold-load and simultaneous Standardization + Development additive output are still to be checked **during** the v0.1 playtest.
 - The user will avoid own-city loss during this playtest. Remaining own-city-loss handling, Expedition root-cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage presentation and all outstanding audit work stay **post-v0.1-playtest high priority**. Existing automatic Meaning and accepted Industry/Culture/Commerce behavior remain; this copy patch does not reopen or close held work.
 - No further gameplay, audit repair, UI restructuring or balance batch is authorized.
+
+## S0671 — B250 verified deployment
+
+Committed/pushed source `d6bb190` was deployed through the existing W0003 restore/activate transaction after fresh game-exit checks. Receipt `B250.277-d6bb190-playtest.json` is DEVELOP_ACTIVE;265/265 source/runtime files match. Stable and outgoing B249 recovery packages were verified; main, game configuration and all frozen evidence remain unchanged. No new native acceptance; only deployment/current navigation records and their named hashes change.
 
 ## S0670 — B250 approved Chinese UI copy
 

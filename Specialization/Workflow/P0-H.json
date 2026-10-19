@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0670",
+    "status": "S0671",
     "runtime": "B250.277 / modinfo277",
     "military": "D0037",
     "harbor": "D0037",
@@ -100,8 +100,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-    "source": "B250.277/modinfo277 local copy changes; recorded live remains B249.276/ad34b1f pending guarded W0003 deployment.",
+    "source": "B250.277/modinfo277 DEVELOP_ACTIVE; source d6bb1900b4aae9c9d979acf3ce5e787fc63f9457; receipt B250.277-d6bb190-playtest.json;265/265 MATCH,digest f5bb9f8ad044478fc8bc23c2a749f16f0ddee7fec1a03b40b01c9ca8f1d1f191. Stable and outgoing B249 recovery verified; no pending marker, game launch or configuration change.",
     "native": "No new native PASS; inherited B249 and prior scope preserved.",
-    "stop": "Complete approved copy/archive and normal commit/push/deployment checkpoint, then stop. No next gameplay batch."
+    "stop": "B250 source, archive, local checks and deployment checkpoint complete. Observe UI copy within the existing v0.1 playtest and wait for the user; no further gameplay batch."
   }
 }
