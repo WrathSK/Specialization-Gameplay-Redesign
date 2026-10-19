@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0654
+Status Revision: S0655
 Implementation Build: source/live B244.271; stable B069.96
 Architecture Revision Reviewed: A0171
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_UNCHANGED_CAPITAL_STORAGE_REPAIR
-Work State: B244_DEPLOYED_AWAITING_NATIVE
+Work State: B244_NATIVE_DEBIT_PRECISION_FAILURE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B244.271 Capital storage repair is deployed; native acceptance is pending:** [implementation, checks and one combined native session](Validation/Results/Specialization_B244_Capital_Storage_Local.md).
-- Source/live B244.271/modinfo271 from `bc69c94`; receipt `B244.271-bc69c94-playtest.json`,251/251 MATCH. Both guarded switches passed fresh automatic exit/hash checks; B243/stable recovery retained, no pending transaction. Main/stable B069.96 unchanged.
-- B243 Property numeric conversion blocked the first intent save before debit. B244 stores ten Capital numeric fields as canonical round-trip text; business values remain numbers. Strict whole-record readback, Treasury amounts and no-replay guards are unchanged.
--121 selected local methods PASS, including26 B244 tests, original-failure counterexample, fresh-VM restoration and failure isolation. Decoded values and Property/money work match B243; generic write/reservation code unchanged. Historical assertion exclusions and their controls are explicit in the result.
-- Next native gate: one **确认稳健投资** from a pre-confirmation baseline, one midterm save/cold-load, then one-time maturity settlement using the manual collector. No prior failed intent repair, money rounding, COM-C/D, Culture HOLD, timer or GC work. Stop after this approved batch.
+**B244 signing reaches the native debit, then pauses on a 0.0029296875-Gold discrepancy:** [native evidence and bounded B245 proposal](Validation/Results/Specialization_B244_Native_Review.md).
+- Source/live remain B244.271/modinfo271 from `bc69c94`;251/251 MATCH, receipt `B244.271-bc69c94-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
+- Both strict pre-debit encoded saves pass in this run. One native call deducts 4501.234375 instead of 4501.2314453125; the 0.000001 readback guard stops activation. Screenshot and 69 contiguous trace records confirm the held response. No signing/cold-load/maturity PASS.
+- Three unchanged-source local comparisons distinguish exact/binary32 balance behavior from a 1/256 quantization model matching the observed debit. Protection holds after refresh/reconstruction without replay in that model; this is not native cold-load evidence or proof of the engine's universal monetary unit.
+- B245 is **PLANNED_NOT_AUTHORIZED**: user decision needed on a proposed <= 0.01-Gold per-call receipt allowance, preserving formulas and exact storage, recording actual transfer separately, and retaining no-replay protections. No new test now; the original combined sign/cold-load/maturity gate resumes only after an approved repair. No automatic hold clearing, amount correction, COM-C/D, timers or GC work.
+
+## S0655 — B244 native Treasury discrepancy
+
+One screenshot was inspected/hash-archived and 69 contiguous T34 records reviewed. The prior Property blocker is passed by the two intent/calling writes; confirmation now fails at NATIVE_DEBIT after a real transfer differing by 0.0029296875 Gold. Actual B244 Store/service matches this under a local 1/256 Treasury model and retains one-call protection. Only review/current navigation and reviewed hashes changed; the proposed monetary precision allowance requires user approval. Source/tests/Design/Architecture/runtime/main/configuration and frozen prior evidence remain unchanged; no deployment.
 
 ## S0654 — B244 verified deployment
 

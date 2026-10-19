@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0171",
-    "status": "S0654",
+    "status": "S0655",
     "runtime": "B244.271 / modinfo271",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,10 +35,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "bc69c947a6442d7bab7a09762905265021e3d844",
-  "current_batch": "B244_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "Await one B244 stable-contract signing/midterm cold-load/maturity session. No automatic next batch, old-contract repair or money-rule change.",
+  "current_batch": "B244_NATIVE_DEBIT_PRECISION_FAILURE",
+  "next_batch": "B245 PLANNED_NOT_AUTHORIZED: user decision on <=0.01-Gold native receipt allowance and narrow implementation; no new test or automatic next batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B244.271/modinfo271 DEVELOP_ACTIVE; source bc69c947a6442d7bab7a09762905265021e3d844; receipt B244.271-bc69c94-playtest.json;251/251 MATCH, digest 3ea15237bc52f0f7af9900906870f6dacc6a283838b8879d5d4b3c21d6e684db. Both guarded switches passed fresh automatic game-exit/hash checks; B243/stable recovery retained, no pending transaction. Native acceptance pending.",
+  "live": "B244.271/modinfo271 DEVELOP_ACTIVE; source bc69c947a6442d7bab7a09762905265021e3d844; receipt B244.271-bc69c94-playtest.json;251/251 MATCH, digest 3ea15237bc52f0f7af9900906870f6dacc6a283838b8879d5d4b3c21d6e684db. Both guarded switches passed fresh automatic game-exit/hash checks; B243/stable recovery retained, no pending transaction. B244 native signing fails at Treasury readback after debit; cold-load/maturity remain pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0653: authorized Capital-only DECIMAL17_V1 and direct Store/diagnostic adapters reviewed;121 selected methods pass, unchanged generic writer/service/math and exact decoded/work comparisons. Native money/save acceptance pending; only reviewed changed/new hashes updated. S0654 deployment verified against clean/pushed source and exact receipt,251/251 MATCH; only current deployment metadata and reviewed hashes updated.",
+  "context_review_status": "S0653: authorized Capital-only DECIMAL17_V1 and direct Store/diagnostic adapters reviewed;121 selected methods pass, unchanged generic writer/service/math and exact decoded/work comparisons. Native money/save acceptance pending; only reviewed changed/new hashes updated. S0654 deployment verified against clean/pushed source and exact receipt,251/251 MATCH; only current deployment metadata and reviewed hashes updated. S0655: reviewed69 contiguous records and one screenshot; native pre-debit saves pass, Treasury mismatch holds. Three unchanged-source precision models checked; only review/Status/Authority/P0-H hashes updated. B245 monetary allowance remains a user decision; runtime and frozen evidence unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B244_Native_Review.md"
 }
