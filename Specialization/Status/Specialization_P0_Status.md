@@ -1,21 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0657
+Status Revision: S0658
 Implementation Build: source/live B245.272; stable B069.96
 Architecture Revision Reviewed: A0172
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_UNCHANGED_CAPITAL_RECEIPT_REPAIR
-Work State: B245_DEPLOYED_AWAITING_NATIVE
+Work State: B245_NATIVE_RECEIPTS_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B245.272 deployed; native sign/cold-load/maturity still pending:** [implementation and one combined test](Validation/Results/Specialization_B245_Capital_Receipts_Local.md).
-- User explicitly accepts <=0.01 Gold per native debit/credit. Original principal/returns/probability and exact Store readback remain; actual amounts are separate persisted receipts. Wrong-direction/zero/unreadable/throwing/out-of-bound calls and uncertain receipt saves never automatically replay.
-- 142 selected local methods PASS; coherent B244/B245 values/work agree apart from intentional receipt state. No native PASS inferred. The old B244 failed intent is not repaired; use a pre-confirmation baseline for the combined test.
+**B245 native signing/cold-load/maturity accepted:** [native receipt review](Validation/Results/Specialization_B245_Native_Review.md).
+- Three contracts across two cities reach T44 settlement. Two T43 reconstructions retain terms and pay once per loaded timeline without another debit; the user confirms at least one full game exit/restart before loading.
+- All 13 captured transfers are within the accepted 0.01-Gold bound: max debit error 0.0029296875, max credit error approximately 0.0030078125. Actual amounts match the saved success receipts; no repeated payment is observed within a loaded timeline. Replaying a pre-maturity save is not cumulative duplicate payment.
+- The 142-method local gate remains separate evidence. Collector boundary gaps, the absence of an explicit repeated panel-reopen trace, and untested native failure branches remain scoped in the review; no extra B245 test is requested. Existing formulas, exact Store readback and no-replay protection are unchanged.
 - Source/live B245.272/modinfo272 from `006bf9c`; 251/251 MATCH, receipt `B245.272-006bf9c-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
-- A0172 records only this accepted technical receipt boundary. No new business formula, COM-C/D, timers, GC, other-module or configuration change. Stop for the user's single combined session.
+- This is evidence/documentation only. No COM-C/D, source, Design, Architecture, test, configuration or deployment change. Stop for the next user-directed batch.
+
+## S0658 — B245 native receipt gate complete
+
+Reviewed 628 unique captured records across four loaded timelines and independently recomputed every native monetary delta/error. All three running contracts preserve principal/return/due terms through T43 reconstruction and settle at T44; complete game exit/restart is user-confirmed. Every transfer has the corresponding signed/settled receipt; no same-timeline duplicate is observed. Maximum debit/credit errors are 0.0029296875 / approximately 0.0030078125 Gold. Temporary Commerce/network waits recover and do not block these settlements. Original logs/results are retained unchanged; only the new review, current navigation and named hashes are updated. Runtime/main/frozen evidence unchanged; no new implementation, deployment or user retest.
 
 ## S0657 — B245 verified deployment
 

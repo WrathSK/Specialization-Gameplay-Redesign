@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -11,21 +11,39 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0172",
-    "status": "S0657",
+    "status": "S0658",
     "runtime": "B245.272 / modinfo272",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-  "goal": "Implement the user-approved <=0.01 native debit/credit allowance with actual receipts, unchanged economic formulas and strict save/no-replay guards; deploy and perform one combined native gate.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
+  "goal": "Close the approved B245 bounded receipt gate from submitted signing, cold-load and maturity evidence; preserve original formulas, strict saved-value validation and no-replay protections.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current source/live distinction and authorized B245 native gate."
+      "reason": "Current accepted B245 receipt gate and stop boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
+      "kind": "section",
+      "selector": "## Accepted results",
+      "reason": "Observed amounts, user-confirmed cold restart and accepted native scope."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
+      "kind": "section",
+      "selector": "## Loaded timelines and repeat-payment check",
+      "reason": "Separate loaded timelines when counting debits and credits."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
+      "kind": "section",
+      "selector": "## Coverage and diagnostic limits",
+      "reason": "Collector gaps and inherited local guards do not expand native PASS."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
@@ -38,12 +56,6 @@
       "kind": "section",
       "selector": "## Local verification",
       "reason": "Targeted local evidence, historical exclusions and limits."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-      "kind": "section",
-      "selector": "## One combined native session",
-      "reason": "One sign/cold-load/maturity test without replaying failed old intents."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
@@ -109,17 +121,17 @@
   "validation": {
     "depth": "L3 scoped Capital receipts/persistence and direct Store/UI regression; no whole-gameplay suite.",
     "local": "142 selected methods PASS (23 new B245,119 retained); coherent baseline14 reads/7 writes/2 calls/0 cross-record uniqueness visits.",
-    "user": "USER_GAME_TEST_REQUIRED: one signed contract, midterm cold load and one-time maturity with exact logs. B244 failed receipt evidence unchanged.",
-    "gap": "Actual native debit/credit within approved allowance and persisted actual receipts require user evidence; no universal engine monetary unit claimed."
+    "user": "USER_GAME_TEST_PASS within submitted scope: three signed contracts, user-confirmed cold restart, two T43 reconstructions and T44 settlement; all 13 captured transfers within 0.01 and no same-timeline repeat observed.",
+    "gap": "No universal native Gold unit or all-case lifecycle/outcome claim; native fault branches and explicit post-settlement reload/reopen are not newly demonstrated. Existing targeted local coverage retained; no additional B245 test requested."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
     "source": "B245.272/modinfo272 deployed from 006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb;251/251 MATCH; receipt B245.272-006bf9c-playtest.json",
-    "native": "USER_GAME_TEST_REQUIRED; previous B244 native debit rejection remains historical evidence.",
-    "stop": "Await the single combined user test, then review exact receipt logs; no new implementation batch."
+    "native": "USER_GAME_TEST_PASS within submitted scope: three signed contracts, user-confirmed cold restart, two T43 reconstructions and T44 settlement; all 13 captured transfers within 0.01 and no same-timeline repeat observed.",
+    "stop": "B245 native gate complete; await next user direction. No new implementation or deployment."
   }
 }
