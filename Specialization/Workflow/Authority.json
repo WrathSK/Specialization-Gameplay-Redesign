@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0651",
+    "status": "S0652",
     "runtime": "B243.270 / modinfo270",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,10 +35,10 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "c696104d3718a2dcd0f1423fea1b3e3961341a2a",
-  "current_batch": "B243_DEPLOYED_AWAITING_NATIVE",
-  "next_batch": "Await one B243 confirmation and paused refresh if needed, then review the captured Property difference; no automatic financial change or COM-C/D.",
+  "current_batch": "B243_NATIVE_PROPERTY_PRECISION_CONFIRMED",
+  "next_batch": "Review/authorize proposed B244 Capital-only lossless numeric persistence; no immediate native repeat, amount change or COM-C/D authorization.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B243.270/modinfo270 DEVELOP_ACTIVE; source c696104d3718a2dcd0f1423fea1b3e3961341a2a; receipt B243.270-c696104-playtest.json;251/251 MATCH, digest 9163784f4cf855974e2bd9a9d5d46f0bd436b958f0e14e85c4ebdd92900d0a43. Fresh automatic game-exit checks passed before both guarded switches; B242/stable recovery retained, no pending transaction. Native signing cause remains UNKNOWN.",
+  "live": "B243.270/modinfo270 DEVELOP_ACTIVE; source c696104d3718a2dcd0f1423fea1b3e3961341a2a; receipt B243.270-c696104-playtest.json;251/251 MATCH, digest 9163784f4cf855974e2bd9a9d5d46f0bd436b958f0e14e85c4ebdd92900d0a43. Fresh automatic game-exit checks passed before both guarded switches; B242/stable recovery retained, no pending transaction. B243 native review identifies a Property numeric precision mismatch before debit; Treasury behavior remains unverified.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0650: user-authorized B243 diagnostic boundary and targeted tests reviewed. 123 methods pass; Store/model/UI and economic/safety behavior unchanged. Only reviewed changed/new hashes refreshed. Native save cause remains UNKNOWN. S0651 deployment verified against clean/pushed source and exact receipt with251/251 equality; only current deployment metadata and reviewed hashes updated.",
+  "context_review_status": "S0652 evidence review:71 contiguous native records show COMPLETE diagnostic, exact binary32 safe-return readback and truthful HELD refresh before debit. Three unchanged-source discrimination cases; no code/test/Design/Architecture/runtime change. Proposed B244 is not authorized.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md"
 }

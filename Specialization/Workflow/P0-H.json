@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -11,39 +11,39 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0651",
+    "status": "S0652",
     "runtime": "B243.270 / modinfo270",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
-  "goal": "B243 removes the restricted-Lua diagnostic dependency and makes failure projection errors explicit without changing economic values, Store validation or no-replay protections.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
+  "goal": "Review B243 native Property precision evidence and proposed B244 lossless Capital numeric persistence, retaining exact save validation and unchanged economics/no replay.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "B243 source versus deployment and scoped next native step."
+      "reason": "Current native precision finding, unchanged deployed build and authorization boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
       "kind": "section",
-      "selector": "## Implementation boundary",
-      "reason": "Authorized diagnostic ownership and unchanged safety/economic behavior."
+      "selector": "## Review summary",
+      "reason": "Exact expected/actual readback, diagnostic result and failure before native debit."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
       "kind": "section",
-      "selector": "## Local verification",
-      "reason": "Actual restricted-Lua fault coverage, value/work equivalence and evidence limits."
+      "selector": "## Bounded local discrimination",
+      "reason": "Native versus injected numeric conversion evidence and its limits."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
       "kind": "section",
-      "selector": "## One minimal native diagnostic session",
-      "reason": "One new observation gate; inherited lifecycle evidence is not repeated."
+      "selector": "## B244 proposal — lossless Capital numeric persistence",
+      "reason": "Proposed representation-only repair; implementation not yet authorized."
     }
   ],
   "dependencies": [
@@ -99,19 +99,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "Targeted local actual-Store/service/UI failure checks, bounded trace/collector regression, syntax/package/context/publication checks.",
-    "local": "123 methods PASS. Restricted-Lua diagnostic exceptions are visible; B242/B243 per-value and Property work match; zero cross-record uniqueness visits.",
-    "user": "After B243 deployment, one confirmation and one paused refresh if needed; manual collector log only. No repeated native lifecycle series.",
-    "gap": "Native Property discrepancy remains UNKNOWN; signing, Treasury precision and maturity acceptance are not promoted by diagnostic local PASS."
+    "depth": "Native evidence review, three bounded unchanged actual-Store/service discrimination cases and documentation/context/publication checks.",
+    "local": "Exact-storage control signs; one/all-field binary32 conversions hold with zero money calls. All-field model matches native first expected/actual pair and diffCount4.",
+    "user": "B243 diagnostic COMPLETE and paused refresh confirmed in captured native session. No repeat before an approved repair.",
+    "gap": "Capital signing/maturity and Treasury mutation precision remain unaccepted. Only safe numeric pair is directly captured; four field identities are a matching local model."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
-    "source": "B243.270/modinfo270 deployed from c696104d3718a2dcd0f1423fea1b3e3961341a2a;251/251 MATCH; receipt B243.270-c696104-playtest.json",
-    "native": "B242 pre-debit confirmation failure retained. B243 USER_GAME_TEST_REQUIRED; unchanged HELD/canSign=false contract.",
-    "stop": "Await the one B243 native confirmation/paused-refresh log. No further implementation, deployment or next Commerce batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
+    "source": "B243.270/modinfo270 remains deployed from c696104d3718a2dcd0f1423fea1b3e3961341a2a; receipt B243.270-c696104-playtest.json unchanged.",
+    "native": "Readback diagnostic and paused-refresh observations pass; signing fails at DEBIT_INTENT_WRITE due to numeric persistence mismatch before debit.",
+    "stop": "Await B244 representation-repair approval. No implementation, deployment, automatic retry or next Commerce ability."
   }
 }

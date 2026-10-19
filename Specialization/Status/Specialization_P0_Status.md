@@ -1,21 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0651
+Status Revision: S0652
 Implementation Build: source/live B243.270; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_UNCHANGED_CAPITAL_DIAGNOSTIC_REPAIR
-Work State: B243_DEPLOYED_AWAITING_NATIVE
+Design Sync State: D0056_UNCHANGED_CAPITAL_PROPERTY_PRECISION
+Work State: B243_NATIVE_PROPERTY_PRECISION_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B243.270 is deployed; native signing cause remains unresolved:** [implementation, checks and minimal session](Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md).
-- Source/live B243.270/modinfo270 from `c696104`; receipt `B243.270-c696104-playtest.json`,251/251 MATCH. Both receipt-bound switches passed fresh automatic game-exit checks; B242/stable recovery retained, no pending transaction. Stable/main B069.96 unchanged.
-- B242 failed at DEBIT_INTENT_WRITE before debit; HELD refresh was truthful but readback fields were missing. Its original evidence is preserved. B243 removes rawget dependence and retains base observation before protected projection/merge; diagnostic errors are explicit and separate from Store errors.
-- 123 targeted methods pass. Store/model/UI, amounts, exact save verification, failed-write protection and no-double-debit behavior remain unchanged. B242/B243 local comparisons preserve all saved values and Property work with zero cross-record uniqueness visits; no native performance or signing PASS is implied.
-- Next native delta: one **确认稳健投资**, then one **刷新报价** only if held; return the automatic collector log. No new screenshot series, full maturity/cold-load test, COM-C/D, Culture HOLD, timer, GC or unrelated work.
+**B243 diagnostics now identify a native Property numeric difference; signing remains held before debit:** [evidence and B244 proposal](Validation/Results/Specialization_B243_Native_Review.md).
+- Source/live remains B243.270/modinfo270 from `c696104`; receipt `B243.270-c696104-playtest.json`, prior251/251 MATCH. Eight relevant files were rechecked equal during review; main/stable B069.96 is unchanged.
+- 71 contiguous records show COMPLETE/POSTWRITE/READABLE, normal setter return and a present DEBIT_INTENT contract. safe return changes4670.0276245117193→4670.02783203125, exactly matching binary32 conversion; the fixed diagnostic counts4 differences. Native debit was not reached.
+- Manual refresh correctly retains PROGRESSION_HELD, HELD/canSign=false. The diagnostic/paused-state observation succeeds; Capital signing/maturity acceptance does not.
+- Three unchanged actual-Store/service discrimination cases reproduce the precision failure and held refresh with zero money calls; exact-storage control signs. Native Treasury precision remains a separate untested boundary.
+- Proposed B244: Capital-only lossless numeric encoding with strict readback, unchanged economics and no replay; no automatic repair of already rounded records. Await implementation authorization, no immediate native repeat. COM-C/D, Culture HOLD, timers/GC and unrelated work remain out of scope.
+
+## S0652 — B243 Property precision identified
+
+Reviewed71 contiguous records(seq20–90) and retained original hashes. Diagnostic projection is COMPLETE; readback exposes a safe-return value exactly equal to its binary32 conversion, with4 differences in the inspected schema. This identifies a numeric-persistence assumption mismatch at the pre-debit intent save, not a failed Treasury call. Refresh remains correctly held. Three unchanged-source local cases discriminate exact, one-field and all-number conversion; the latter matches the native first pair/count. Only evidence/current navigation and ignored reproduction are written. No implementation, formal test, Architecture, Design, runtime/main/configuration change or deployment. B244 requires separate authorization.
 
 ## S0651 — B243 verified deployment
 
