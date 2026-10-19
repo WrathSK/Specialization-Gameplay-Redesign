@@ -35,6 +35,6 @@ Use the existing collector before loading. Open the already Commerce ACTIVE IV c
 
 ## Deployment
 
-Pending guarded W0003 deployment from clean committed source. Current live package remains B247 until separately verified; main/stable remains B069.96. No game launch/configuration change.
+Guarded W0003 deployment completed from clean/pushed `cbb9ce25de4bfc3113f37f7676a9233071a1a9d0` after fresh automatic game-exit checks before both transaction steps. Exact B247 receipt restored the stable bridge; `B248.275-cbb9ce2-playtest.json` now records DEVELOP_ACTIVE.265/265 source/runtime files MATCH, digest `feb2b886e388c038936d4a043b2d31137485716c472a06e2a0d7304336aa747e`. Stable and outgoing B247 recovery remain verified; no pending marker. Main/stable B069.96, configuration and GC unchanged; no game launch. Native entry/rendering and the original transaction gate remain pending.
 
 User decision: none. User testing: the entry check followed by the already pending B247 flow only if available. Primary next: record the scoped result; no subsequent batch is authorized automatically.

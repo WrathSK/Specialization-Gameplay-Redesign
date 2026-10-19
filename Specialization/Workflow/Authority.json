@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0175",
-    "status": "S0664",
+    "status": "S0665",
     "runtime": "B248.275 / modinfo275",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
-  "runtime_commit": "88abdf91cc5136ba44c2fb60602b054bc8e49a95",
-  "current_batch": "B248_LOCAL_COMPLETE_NATIVE_ENTRY_UNRESOLVED",
-  "next_batch": "Guarded B248 deployment, then native training-entry check and existing B247 transaction flow only if available; no subsequent batch.",
+  "runtime_commit": "cbb9ce25de4bfc3113f37f7676a9233071a1a9d0",
+  "current_batch": "B248_DEPLOYED_NATIVE_ENTRY_PENDING",
+  "next_batch": "Await entry-first B248 native observation, then pending B247 restructuring/cold-load flow if training is available. No next implementation authorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B247.274/modinfo274 DEVELOP_ACTIVE; source 88abdf91cc5136ba44c2fb60602b054bc8e49a95; receipt B247.274-88abdf9-playtest.json; 265/265 MATCH, digest 12f71dcd6c1c593e64737d0f50f61c489de83e80d347f761847885512093543f. No pending transaction; stable and B246 recovery retained. B247 native gate pending. B246 accepted scope unchanged.",
+  "live": "B248.275/modinfo275 DEVELOP_ACTIVE; source cbb9ce25de4bfc3113f37f7676a9233071a1a9d0; receipt B248.275-cbb9ce2-playtest.json;265/265 MATCH,digest feb2b886e388c038936d4a043b2d31137485716c472a06e2a0d7304336aa747e. Stable and B247 recovery verified; no pending marker. Native entry failure is not closed by local evidence.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0664: authorized training-entry follow-up and Investor presentation.58 targeted methods PASS (15 new,38 B247 Store/service,5 UI); Lua5.1/art/icon/package closure. Confirmed missing same-turn investment notification repaired; reported already-IV load-time absence remains unresolved pending new bounded native list evidence. No unit rules/Store/Design/GC/main/configuration changes. Only reviewed changed/new hashes updated.",
+  "context_review_status": "S0664: authorized training-entry follow-up and Investor presentation.58 targeted methods PASS (15 new,38 B247 Store/service,5 UI); Lua5.1/art/icon/package closure. Confirmed missing same-turn investment notification repaired; reported already-IV load-time absence remains unresolved pending new bounded native list evidence. No unit rules/Store/Design/GC/main/configuration changes. Only reviewed changed/new hashes updated. S0665 deployment checkpoint: clean pushed source/runtime265/265 MATCH; exact stable/B247 recovery and fresh OS exit checks passed. Only deployment/current metadata hashes changed; no game launch or native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

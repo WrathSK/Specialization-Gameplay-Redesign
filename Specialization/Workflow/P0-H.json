@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0175",
-    "status": "S0664",
+    "status": "S0665",
     "runtime": "B248.275 / modinfo275",
     "military": "D0037",
     "harbor": "D0037",
@@ -135,7 +135,7 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-    "source": "B248.275/modinfo275 locally verified; live B247.274 remains until W0003 deployment.",
+    "source": "B248.275/modinfo275 source cbb9ce25de4bfc3113f37f7676a9233071a1a9d0; receipt B248.275-cbb9ce2-playtest.json DEVELOP_ACTIVE;265/265 MATCH.",
     "native": "USER_GAME_TEST_FAIL: B247 entry absent after load. B248 USER_GAME_TEST_REQUIRED; original transaction not yet exercised.",
     "stop": "Await the combined native gate; do not start further development."
   }

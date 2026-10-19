@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0664
+Status Revision: S0665
 Implementation Build: B248.275 / modinfo275; stable B069.96
 Architecture Revision Reviewed: A0175
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B248_LOCAL_COMPLETE_NATIVE_ENTRY_UNRESOLVED
+Work State: B248_DEPLOYED_NATIVE_ENTRY_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B248 training-access follow-up locally verified; the reported load-time entry failure is not yet closed.** [Evidence and minimal flow](Validation/Results/Specialization_B248_Training_Entry.md).
+**B248.275 deployed; the reported load-time entry failure is not yet closed.** [Evidence and minimal flow](Validation/Results/Specialization_B248_Training_Entry.md).
 - User clarified the unit is missing from the production list of an already-IV Commerce city immediately after loading. Loaded B247 definitions are present; existing logs lack prerequisite/native-list evidence. Do not equate the confirmed investment-notification defect with this load-time case.
 - B248 fixes that definite city-scoped investment notification gap and records service/access/native eligibility in existing bounded logs. Reuses installed Monopoly++ Investor model/icons with an explicit provider dependency.500 Production, no population debit/cap/purchase/copy escalation, histories, contracts and transaction semantics stay unchanged.
 - 58 selected local methods PASS; native list/model and the original liquidation → REALLOCATING cold-load → configuration flow remain pending. If the entry is still absent, stop at that first check and use the discriminating logs.
-- Source B248.275/modinfo275 is separate from live B247.274/modinfo274 (`88abdf9`, receipt `B247.274-88abdf9-playtest.json`, 265/265 verified at its deployment). Main/stable B069.96 unchanged. Guarded deployment follows the committed-source gate.
+- Source/live B248.275/modinfo275 from `cbb9ce2`; receipt `B248.275-cbb9ce2-playtest.json` DEVELOP_ACTIVE,265/265 files MATCH. Main/stable B069.96 and recovery copies remain unchanged.
 - B246 scoped acceptance and optional Standardization overlap remain unchanged. Culture holds, unrelated audit repairs and subsequent batches are not advanced.
+
+## S0665 — B248 verified deployment
+
+Clean/pushed `cbb9ce2` passed fresh automatic OS exit checks before B247 exact-receipt restoration and B248 activation.265/265 source/runtime MATCH, digest `feb2b886e388c038936d4a043b2d31137485716c472a06e2a0d7304336aa747e`, receipt `B248.275-cbb9ce2-playtest.json` DEVELOP_ACTIVE. Stable and outgoing B247 recovery verified; no pending transaction.58 targeted methods, context/changed-link/diff/publication checks passed. New entry-named report/test files avoid generic-key false positives on verified checksum fields; no publication policy or allowlist was changed. Native load-time entry and transaction validation remain pending; no next batch, main/config/GC changes or game launch.
 
 ## S0664 — B248 scoped follow-up and native-entry evidence boundary
 
