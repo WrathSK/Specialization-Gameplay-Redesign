@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0650",
+    "status": "S0651",
     "runtime": "B243.270 / modinfo270",
     "military": "D0037",
     "harbor": "D0037",
@@ -110,8 +110,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
-    "source": "B243.270/modinfo270 source locally complete; live remains B242.269 from 7dda421 until guarded deployment.",
+    "source": "B243.270/modinfo270 deployed from c696104d3718a2dcd0f1423fea1b3e3961341a2a;251/251 MATCH; receipt B243.270-c696104-playtest.json",
     "native": "B242 pre-debit confirmation failure retained. B243 USER_GAME_TEST_REQUIRED; unchanged HELD/canSign=false contract.",
-    "stop": "Complete authorized B243 commit/push and W0003 deployment, then await the single native log. No next Commerce batch."
+    "stop": "Await the one B243 native confirmation/paused-refresh log. No further implementation, deployment or next Commerce batch."
   }
 }

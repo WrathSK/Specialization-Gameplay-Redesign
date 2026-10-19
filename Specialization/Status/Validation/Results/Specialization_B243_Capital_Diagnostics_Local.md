@@ -38,7 +38,7 @@ This is local behavioral/access equivalence, not proof of native CPU, memory, sa
 
 Eight changed/direct Lua files compile. All250 unique modinfo entries exist and, together with modinfo, equal the251-file package; XML/version checks pass. One DB-dependent fixture initially lacked its existing external-DB configuration, and20 collector tests initially lacked permission to create ignored local fixtures; those environment issues were corrected and the unchanged cases rerun successfully. No assertion was weakened. The ignored summary is `local/diagnostics/B243/local-validation.json`.
 
-Current selectors, reviewed hashes, changed document links/anchors and diff checks pass; the staged-publication gate is required immediately before commit. Only reviewed changed/new entries are updated; no all-history rehash. No broad gameplay regression or native PASS is claimed.
+Current selectors, reviewed hashes, changed document links/anchors and diff checks pass; the staged-publication gate passed before commit. Only reviewed changed/new entries are updated; no all-history rehash. No broad gameplay regression or native PASS is claimed.
 
 ## One minimal native diagnostic session
 
@@ -52,4 +52,8 @@ The next decision depends on the captured difference: missing record, numeric di
 
 ## Handoff
 
-User decision: none for this approved diagnostic scope. User testing: the short session above after deployment. Primary next: complete W0003 deployment with verified game exit and clean committed source, then await the log. The build can still pause because B243 does not bypass the unresolved save failure. COM-C/D and other deferred work remain outside scope.
+User decision: none for this approved diagnostic scope. User testing: the short session above after deployment. Primary next: await the single diagnostic log after the verified W0003 deployment below. The build can still pause because B243 does not bypass the unresolved save failure. COM-C/D and other deferred work remain outside scope.
+
+## Verified deployment
+
+B243.270/modinfo270 from clean/pushed `c696104d3718a2dcd0f1423fea1b3e3961341a2a` is DEVELOP_ACTIVE. Receipt `B243.270-c696104-playtest.json`;251/251 source/runtime files MATCH, digest `9163784f4cf855974e2bd9a9d5d46f0bd436b958f0e14e85c4ebdd92900d0a43`. Fresh automatic game-exit checks passed immediately before exact B242 restoration and B243 activation. B242/stable recovery is retained, with no pending transaction. Main/configuration and frozen prior evidence are unchanged; no game launch. Native signing remains unaccepted; stop for the single diagnostic session.

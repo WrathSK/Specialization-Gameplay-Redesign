@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0650
-Implementation Build: source B243.270; live B242.269; stable B069.96
+Status Revision: S0651
+Implementation Build: source/live B243.270; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_UNCHANGED_CAPITAL_DIAGNOSTIC_REPAIR
-Work State: B243_DIAGNOSTIC_LOCAL_COMPLETE
+Work State: B243_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B243.270 diagnostic repair is locally complete; native signing cause remains unresolved:** [implementation, checks and minimal session](Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md).
-- Source is B243.270/modinfo270; last verified live remains B242.269 from `7dda421`, receipt `B242.269-7dda421-playtest.json`,251/251 MATCH. Stable/main B069.96 unchanged. Deployment follows clean commit/push and fresh automatic game-exit gates.
+**B243.270 is deployed; native signing cause remains unresolved:** [implementation, checks and minimal session](Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md).
+- Source/live B243.270/modinfo270 from `c696104`; receipt `B243.270-c696104-playtest.json`,251/251 MATCH. Both receipt-bound switches passed fresh automatic game-exit checks; B242/stable recovery retained, no pending transaction. Stable/main B069.96 unchanged.
 - B242 failed at DEBIT_INTENT_WRITE before debit; HELD refresh was truthful but readback fields were missing. Its original evidence is preserved. B243 removes rawget dependence and retains base observation before protected projection/merge; diagnostic errors are explicit and separate from Store errors.
 - 123 targeted methods pass. Store/model/UI, amounts, exact save verification, failed-write protection and no-double-debit behavior remain unchanged. B242/B243 local comparisons preserve all saved values and Property work with zero cross-record uniqueness visits; no native performance or signing PASS is implied.
 - Next native delta: one **确认稳健投资**, then one **刷新报价** only if held; return the automatic collector log. No new screenshot series, full maturity/cold-load test, COM-C/D, Culture HOLD, timer, GC or unrelated work.
+
+## S0651 — B243 verified deployment
+
+Clean/pushed source `c696104` passed check-only hash review and fresh automatic game-exit checks before exact B242 receipt restoration and B243 activation.251/251 source/runtime MATCH; receipt `B243.270-c696104-playtest.json`, digest `9163784f4cf855974e2bd9a9d5d46f0bd436b958f0e14e85c4ebdd92900d0a43`. Recovery retained, no pending marker. Context, diff and staged publication checks passed; main/configuration unchanged and no game launch. The narrow diagnostic native gate remains pending; no automatic next batch.
 
 ## S0650 — B243 reliable diagnostic boundary locally verified
 
