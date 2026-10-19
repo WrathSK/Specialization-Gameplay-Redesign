@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0666",
+    "status": "S0667",
     "runtime": "B249.276 / modinfo276",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
-  "runtime_commit": "cbb9ce25de4bfc3113f37f7676a9233071a1a9d0",
-  "current_batch": "B249_LOCAL_COMPLETE_AWAITING_DEPLOYMENT",
-  "next_batch": "Guarded B249 deployment, then entry-first native check and the original B247 transaction/cold-load flow. No subsequent implementation authorized.",
+  "runtime_commit": "ad34b1fe88559e35cdf6b153d6838391556e223e",
+  "current_batch": "B249_DEPLOYED_AWAITING_NATIVE",
+  "next_batch": "Await B249 training entry and the original B247 liquidation/restructuring cold-load/configuration flow. No subsequent implementation authorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B248.275/modinfo275 DEVELOP_ACTIVE; source cbb9ce25de4bfc3113f37f7676a9233071a1a9d0; receipt B248.275-cbb9ce2-playtest.json;265/265 MATCH,digest feb2b886e388c038936d4a043b2d31137485716c472a06e2a0d7304336aa747e. Stable and B247 recovery verified; no pending marker. Native entry failure is not closed by local evidence.",
+  "live": "B249.276/modinfo276 DEVELOP_ACTIVE; source ad34b1fe88559e35cdf6b153d6838391556e223e; receipt B249.276-ad34b1f-playtest.json;265/265 MATCH,digest 89eb1e79d7947ae9b3316dd38c4f6a3e9e23bb7adac80d8843dd65d606b4df00. Stable and B248 recovery verified; no pending marker. Native acceptance pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0666/A0176: explicit B249 approval; one event-driven initializer, reference-bound startup recovery and duplicate-load preservation.80 targeted local methods PASS; five new methods reproduced baseline failure before repair. Only reviewed service/stamps/tests/current technical and context records changed. Design, Store, unit SQL/UI/art, capacity/binding, GC, main/configuration and frozen evidence unchanged. Live remains B248 until verified deployment; native acceptance pending.",
+  "context_review_status": "S0666/A0176: explicit B249 approval; one event-driven initializer, reference-bound startup recovery and duplicate-load preservation.80 targeted local methods PASS; five new methods reproduced baseline failure before repair. Only reviewed service/stamps/tests/current technical and context records changed. Design, Store, unit SQL/UI/art, capacity/binding, GC, main/configuration and frozen evidence unchanged. Live remains B248 until verified deployment; native acceptance pending. S0667: clean pushed source deployed through exact-receipt W0003 gates, fresh OS exit checks,265/265 MATCH and verified stable/B248 recovery. Only deployment/current metadata hashes updated; no native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

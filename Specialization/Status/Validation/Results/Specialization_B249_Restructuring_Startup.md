@@ -49,6 +49,6 @@ The transaction steps complete the existing B247 gate; they are not a new transf
 
 ## Deployment
 
-Pending the clean committed source, automatic game-exit and exact-receipt W0003 gates. Live remains B248.275 until the verified switch is recorded here. Main/stable B069.96 is unchanged.
+W0003 deployment completed from clean/pushed `ad34b1fe88559e35cdf6b153d6838391556e223e`. Fresh automatic OS checks verified game exit immediately before both exact-receipt B248 restore and B249 activation. Receipt `B249.276-ad34b1f-playtest.json` records DEVELOP_ACTIVE.265/265 source/runtime files MATCH, digest `89eb1e79d7947ae9b3316dd38c4f6a3e9e23bb7adac80d8843dd65d606b4df00`. Stable and outgoing B248 recovery packages are verified; no pending marker. Main/stable B069.96, configuration and GC are unchanged; no game launch. Native entry and transaction acceptance remain pending.
 
-User decision: none. User testing: the single entry-first combined flow above. Primary next: complete authorized guarded deployment, then stop for native evidence; no subsequent batch is authorized automatically.
+User decision: none. User testing: the single entry-first combined flow above. Primary next: wait for the scoped native evidence; no subsequent batch is authorized automatically.

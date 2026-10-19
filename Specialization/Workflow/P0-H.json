@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0666",
+    "status": "S0667",
     "runtime": "B249.276 / modinfo276",
     "military": "D0037",
     "harbor": "D0037",
@@ -147,8 +147,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
-    "source": "B249.276/modinfo276 locally verified; live B248.275/cbb9ce2 until guarded switch.",
+    "source": "B249.276/modinfo276 source ad34b1fe88559e35cdf6b153d6838391556e223e; receipt B249.276-ad34b1f-playtest.json DEVELOP_ACTIVE;265/265 MATCH.",
     "native": "B248 USER_GAME_TEST_FAIL including new game; B249 USER_GAME_TEST_REQUIRED. Original B247 transaction remains pending.",
-    "stop": "Complete authorized deployment, then wait for native result; no further implementation."
+    "stop": "Await the single combined native flow; do not start another implementation batch."
   }
 }

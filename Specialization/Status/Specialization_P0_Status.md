@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0666
+Status Revision: S0667
 Implementation Build: B249.276 / modinfo276; stable B069.96
 Architecture Revision Reviewed: A0176
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B249_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
+Work State: B249_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B248 entry failed in a new game; B249.276 startup repair is locally verified, awaiting guarded deployment/native acceptance.** [Evidence and minimal flow](Validation/Results/Specialization_B249_Restructuring_Startup.md).
+**B249.276 deployed; event-driven startup repair is locally verified, with native entry/transaction acceptance pending.** [Evidence and minimal flow](Validation/Results/Specialization_B249_Restructuring_Startup.md).
 - Eight distinct B248 observations show a present but unready service, absent training marker and correct native500 cost. Actual-source reproduction confirms the sole load-close gate and the duplicate-notification reset defect. B248's separate investment notification fix is retained.
 - B249 initializes once from proven Store readiness at normal Start or existing events; dependency waits retain work. Duplicate load notifications no longer erase live training pairs/previews. Recovery preserves exact references and consumed-receipt protection. No timer, cost/capacity/binding/rule or persistent-schema change.
 - 80 selected local methods PASS. Training entry and the original B247 liquidation → REALLOCATING cold-load → configuration flow remain USER_GAME_TEST_REQUIRED; no completed transaction is inferred from local tests.
-- Current source B249.276/modinfo276; live is still B248.275 from `cbb9ce2` until the W0003 switch. Main/stable B069.96, original evidence, Design, configuration and GC remain unchanged.
+- Source/live B249.276/modinfo276 from `ad34b1f`; receipt `B249.276-ad34b1f-playtest.json` DEVELOP_ACTIVE,265/265 MATCH. Stable and outgoing B248 recovery verified. Main/stable B069.96, original evidence, Design, configuration and GC remain unchanged.
 - No subsequent Commerce batch, held Culture feature or unrelated audit repair is advanced.
+
+## S0667 — B249 verified deployment
+
+Clean/pushed `ad34b1f` passed fresh automatic game-exit checks before exact B248 receipt restoration and B249 activation.265/265 files MATCH, digest `89eb1e79d7947ae9b3316dd38c4f6a3e9e23bb7adac80d8843dd65d606b4df00`; receipt `B249.276-ad34b1f-playtest.json` DEVELOP_ACTIVE. Stable/B248 recovery retained and verified; no pending transaction.80 selected local methods, context/56 scoped links/diff/publication checks pass. Only five current deployment-document/metadata hashes changed after the source checkpoint. No main/configuration/GC change or game launch. Await the entry-first combined native flow; stop without another implementation batch.
 
 ## S0666 — B249 event-driven startup locally verified
 
