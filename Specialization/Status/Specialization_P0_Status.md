@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0653
-Implementation Build: source B244.271; live B243.270; stable B069.96
+Status Revision: S0654
+Implementation Build: source/live B244.271; stable B069.96
 Architecture Revision Reviewed: A0171
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_UNCHANGED_CAPITAL_STORAGE_REPAIR
-Work State: B244_STORAGE_LOCAL_COMPLETE
+Work State: B244_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B244.271 Capital storage repair is locally complete:** [implementation, checks and one combined native session](Validation/Results/Specialization_B244_Capital_Storage_Local.md).
-- Source B244.271/modinfo271; last verified live B243.270 from `c696104`, receipt `B243.270-c696104-playtest.json`. Main/stable B069.96 unchanged. New deployment follows clean commit/push and fresh automatic exit/hash gates.
+**B244.271 Capital storage repair is deployed; native acceptance is pending:** [implementation, checks and one combined native session](Validation/Results/Specialization_B244_Capital_Storage_Local.md).
+- Source/live B244.271/modinfo271 from `bc69c94`; receipt `B244.271-bc69c94-playtest.json`,251/251 MATCH. Both guarded switches passed fresh automatic exit/hash checks; B243/stable recovery retained, no pending transaction. Main/stable B069.96 unchanged.
 - B243 Property numeric conversion blocked the first intent save before debit. B244 stores ten Capital numeric fields as canonical round-trip text; business values remain numbers. Strict whole-record readback, Treasury amounts and no-replay guards are unchanged.
 -121 selected local methods PASS, including26 B244 tests, original-failure counterexample, fresh-VM restoration and failure isolation. Decoded values and Property/money work match B243; generic write/reservation code unchanged. Historical assertion exclusions and their controls are explicit in the result.
 - Next native gate: one **确认稳健投资** from a pre-confirmation baseline, one midterm save/cold-load, then one-time maturity settlement using the manual collector. No prior failed intent repair, money rounding, COM-C/D, Culture HOLD, timer or GC work. Stop after this approved batch.
+
+## S0654 — B244 verified deployment
+
+Clean/pushed source `bc69c94` passed both fresh automatic game-exit checks and receipt-bound B243 restore/B244 activation.251/251 source/runtime files MATCH; receipt `B244.271-bc69c94-playtest.json`, digest `3ea15237bc52f0f7af9900906870f6dacc6a283838b8879d5d4b3c21d6e684db`. Recovery retained and no pending marker.121 selected local checks and publication/context checks passed; native signing/cold-load/maturity remain pending. No main/configuration change or game launch. Stop for the combined session; no further Commerce or unrelated batch.
 
 ## S0653 — B244 lossless Capital storage locally verified
 

@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0171",
-    "status": "S0653",
+    "status": "S0654",
     "runtime": "B244.271 / modinfo271",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
-  "runtime_commit": "c696104d3718a2dcd0f1423fea1b3e3961341a2a",
-  "current_batch": "B244_STORAGE_LOCAL_COMPLETE",
-  "next_batch": "Complete authorized B244 guarded deployment, then one combined signing/midterm cold-load/maturity session. No next Commerce batch or amount change.",
+  "runtime_commit": "bc69c947a6442d7bab7a09762905265021e3d844",
+  "current_batch": "B244_DEPLOYED_AWAITING_NATIVE",
+  "next_batch": "Await one B244 stable-contract signing/midterm cold-load/maturity session. No automatic next batch, old-contract repair or money-rule change.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B243.270/modinfo270 DEVELOP_ACTIVE; source c696104d3718a2dcd0f1423fea1b3e3961341a2a; receipt B243.270-c696104-playtest.json;251/251 MATCH, digest 9163784f4cf855974e2bd9a9d5d46f0bd436b958f0e14e85c4ebdd92900d0a43. Fresh automatic game-exit checks passed before both guarded switches; B242/stable recovery retained, no pending transaction. B243 native review identifies a Property numeric precision mismatch before debit; Treasury behavior remains unverified.",
+  "live": "B244.271/modinfo271 DEVELOP_ACTIVE; source bc69c947a6442d7bab7a09762905265021e3d844; receipt B244.271-bc69c94-playtest.json;251/251 MATCH, digest 3ea15237bc52f0f7af9900906870f6dacc6a283838b8879d5d4b3c21d6e684db. Both guarded switches passed fresh automatic game-exit/hash checks; B243/stable recovery retained, no pending transaction. Native acceptance pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0653: authorized Capital-only DECIMAL17_V1 and direct Store/diagnostic adapters reviewed;121 selected methods pass, unchanged generic writer/service/math and exact decoded/work comparisons. Native money/save acceptance pending; only reviewed changed/new hashes updated.",
+  "context_review_status": "S0653: authorized Capital-only DECIMAL17_V1 and direct Store/diagnostic adapters reviewed;121 selected methods pass, unchanged generic writer/service/math and exact decoded/work comparisons. Native money/save acceptance pending; only reviewed changed/new hashes updated. S0654 deployment verified against clean/pushed source and exact receipt,251/251 MATCH; only current deployment metadata and reviewed hashes updated.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

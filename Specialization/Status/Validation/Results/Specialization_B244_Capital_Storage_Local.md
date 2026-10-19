@@ -36,7 +36,7 @@ Independent non-Capital age-write comparisons at8/20/40 records and40-record/one
 
 Four historical assertions are outside the selected current gate, without editing them: two frozen model/Store-byte assertions; the B241/B242 raw-record-format comparator (wire format intentionally changes); and the old Store-age comparator against a pre-institutionTurns baseline. The latter's four institutionTurns mismatches were reproduced on unchanged `d33fe78` Store. B244 adds immediate-baseline decoded equality/work and non-Capital age comparisons instead. Original failure/control output is retained locally; no unrelated assertion was weakened.
 
-Eight changed/direct Lua files compile; two Python files parse. All250 unique modinfo entries exist and, with modinfo, match the251-file package/version271. The maintained UI package assertion changes only270→271. Current selectors, reviewed hashes, links, diff and staged publication are checked before commit. Ignored raw local output is under `local/diagnostics/B244/`.
+Eight changed/direct Lua files compile; two Python files parse. All250 unique modinfo entries exist and, with modinfo, match the251-file package/version271. The maintained UI package assertion changes only270→271. Current selectors, reviewed hashes, links, diff and staged publication passed before commit. Ignored raw local output is under `local/diagnostics/B244/`.
 
 ## One combined native session
 
@@ -51,4 +51,8 @@ If any stage becomes paused, stop that contract and submit its log; do not retry
 
 ## Handoff
 
-User decision: none within this approved representation-only repair. User testing: the combined session above after verified deployment. Primary next: ordinary commit/push and W0003 deployment after fresh automatic exit checks, then stop. Capital native acceptance remains pending; COM-C/D, Culture HOLD and other audit/Gameplay batches remain unauthorized. Design, main, configuration, original logs and frozen prior evidence are unchanged.
+User decision: none within this approved representation-only repair. User testing: the combined session above after verified deployment. Primary next: await the combined native session after the verified deployment below; stop further implementation. Capital native acceptance remains pending; COM-C/D, Culture HOLD and other audit/Gameplay batches remain unauthorized. Design, main, configuration, original logs and frozen prior evidence are unchanged.
+
+## Verified deployment
+
+B244.271/modinfo271 is DEVELOP_ACTIVE from clean/pushed `bc69c947a6442d7bab7a09762905265021e3d844`. Receipt `B244.271-bc69c94-playtest.json`;251/251 source/runtime files MATCH, digest `3ea15237bc52f0f7af9900906870f6dacc6a283838b8879d5d4b3c21d6e684db`. Both receipt-bound B243 restoration and B244 activation passed fresh automatic game-exit checks and check-only hashes. B243/stable recovery retained; no pending transaction. Main/configuration and frozen evidence are unchanged; no game launch. Stop for the single combined native session; local success is not native acceptance.
