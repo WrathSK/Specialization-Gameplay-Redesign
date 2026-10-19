@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0056
+Latest Accepted Design Revision: D0057
 Document State: ACCEPTED
+
+## Accepted D0057 — 2026-10-18
+
+用户在B246实施中明确选择：**取合格候选中的最低理论购买价，界面明确列出报价依据。** 同一区域多个当前合格下一阶建筑不再假设同价；合同仍只绑定目标城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。
+
+[Commerce D0057](Content/Commerce_D0057.json)、[商业阅读版](Commerce.md)及当前Spec同步。其它资格、15%费用、+50%加速、名额、完成／易主与暂缓边界保持。B246实现／部署／实机证据分别记录；本条不宣称原生报价或加成已验收。D0056结构化正文及本次冻结的[D0056 Spec](Revisions/Specialization_Design_Spec_D0056.md)保留原字节。
+
+Accepted Spec SHA256: `f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d`
+Commerce D0057 SHA256: `3729ed2a0c81eb5b20982a056f81f06d4e36e980d1358acc35ada4bf6967df19`
+Frozen D0056 Spec SHA256: `7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c211f18e2c366`
 
 ## Accepted D0056 — 2026-10-18
 

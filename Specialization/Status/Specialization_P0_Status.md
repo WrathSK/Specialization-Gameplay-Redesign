@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0658
-Implementation Build: source/live B245.272; stable B069.96
-Architecture Revision Reviewed: A0172
-Design Revision Reviewed: D0056
-Latest Accepted Design Revision: D0056
-Design Sync State: D0056_UNCHANGED_CAPITAL_RECEIPT_REPAIR
-Work State: B245_NATIVE_RECEIPTS_PASS
+Status Revision: S0659
+Implementation Build: source B246.273; live B245.272; stable B069.96
+Architecture Revision Reviewed: A0173
+Design Revision Reviewed: D0057
+Latest Accepted Design Revision: D0057
+Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
+Work State: B246_LOCAL_COMPLETE_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B245 native signing/cold-load/maturity accepted:** [native receipt review](Validation/Results/Specialization_B245_Native_Review.md).
-- Three contracts across two cities reach T44 settlement. Two T43 reconstructions retain terms and pay once per loaded timeline without another debit; the user confirms at least one full game exit/restart before loading.
-- All 13 captured transfers are within the accepted 0.01-Gold bound: max debit error 0.0029296875, max credit error approximately 0.0030078125. Actual amounts match the saved success receipts; no repeated payment is observed within a loaded timeline. Replaying a pre-maturity save is not cumulative duplicate payment.
-- The 142-method local gate remains separate evidence. Collector boundary gaps, the absence of an explicit repeated panel-reopen trace, and untested native failure branches remain scoped in the review; no extra B245 test is requested. Existing formulas, exact Store readback and no-replay protection are unchanged.
-- Source/live B245.272/modinfo272 from `006bf9c`; 251/251 MATCH, receipt `B245.272-006bf9c-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
-- This is evidence/documentation only. No COM-C/D, source, Design, Architecture, test, configuration or deployment change. Stop for the next user-directed batch.
+**B246 Development Investment locally complete; native verification pending:** [implementation/local result and one combined flow](Validation/Results/Specialization_B246_Development_Investment_Local.md).
+- User explicitly authorized B246 and chose the lowest eligible next-tier theoretical purchase price with a visible quotation basis (D0057). Contracts bind target city+district, not the named quote building;15% price, +50% building Production and accepted lifecycle rules remain.
+- New source is B246.273/modinfo273.137 targeted methods pass (57 new,80 retained), including actual Store/failure/reconstruction, native-shaped price/UI, loaded-HD SQL and direct Capital/network regressions. No timer/frame update or GC change. Local results are not native price/Production acceptance.
+- Source slots use current working specialists and direct outgoing routes at signing. Exact saved terms/actual <=0.01 native receipt, no-replay protection, building completion/owner withdrawal and ordinary same-turn changes remain explicit.
+- Live remains B245.272/modinfo272 from `006bf9c`,251/251 MATCH, receipt `B245.272-006bf9c-playtest.json` DEVELOP_ACTIVE until guarded replacement. Main/stable B069.96 unchanged.
+- [B245 native gate](Validation/Results/Specialization_B245_Native_Review.md) stays accepted within submitted cases; no repeated Capital long test. B246 has one combined quote/additive-production/running-contract cold-load/completion test. No Restructuring, held Culture issue or audit repair starts automatically.
+
+## S0659 — B246 locally verified
+
+Development Investment is implemented under explicit user approval. D0057 records only the minimum eligible next-tier quotation decision; D0056 Content and the new frozen Spec preserve original bytes. A0173 records direct ownership/event boundaries.137 selected methods pass; tested normal writes preserve0 cross-record uniqueness visits and unchanged Capital per-value/work behavior. Named reviewed runtime/document/test hashes and current selectors are updated. Native quotation, additive output and this new contract persistence still require the combined flow. Commit/push and guarded deployment are authorized; current live remains B245 until its receipt is replaced. No main/configuration/frozen-evidence change or game launch.
 
 ## S0658 — B245 native receipt gate complete
 

@@ -2,16 +2,16 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Primary is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0056",
+    "design": "D0057",
     "research": "D0040",
     "industry": "D0053",
     "culture": "D0051",
-    "commerce": "D0056",
+    "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0172",
-    "status": "S0658",
-    "runtime": "B245.272 / modinfo272",
+    "architecture": "A0173",
+    "status": "S0659",
+    "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -21,7 +21,7 @@
     "research": "Specialization/Design/Content/Research_D0040.json",
     "industry": "Specialization/Design/Content/Industry_D0053.json",
     "culture": "Specialization/Design/Content/Culture_D0051.json",
-    "commerce": "Specialization/Design/Content/Commerce_D0056.json",
+    "commerce": "Specialization/Design/Content/Commerce_D0057.json",
     "shared": "Specialization/Design/Content/Shared_D0045.json",
     "presentation": "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md",
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb",
-  "current_batch": "B245_NATIVE_RECEIPTS_PASS",
-  "next_batch": "B245 native gate complete; await separate user direction/approval for the next Commerce batch. No automatic COM-C/D, implementation or deployment.",
+  "current_batch": "B246_LOCAL_COMPLETE_AWAITING_NATIVE",
+  "next_batch": "B246 local implementation complete; commit/push and guarded deployment authorized, then one combined native Development flow. No automatic Restructuring or unrelated batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B245.272/modinfo272 DEVELOP_ACTIVE; source 006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb; receipt B245.272-006bf9c-playtest.json;251/251 MATCH, digest 58201248325c9430ccada071ca242211400c394eb1830d6d950edfe496f19a0b. Recovery retained, no pending transaction. B245 signing/running-contract cold-load/maturity accepted within the submitted cases; no runtime change in this review.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0658 evidence-only review: 628 captured records, 13 monetary observations independently recomputed; three contracts and two T43 reconstructions, cold restart user-confirmed. All per-call errors <=0.01; no same-timeline repeated payment observed. Only the native review/current metadata and named hashes updated. Existing 142 local methods inherited, frozen evidence/runtime/tests/Design/Architecture unchanged; no next implementation authorization.",
+  "context_review_status": "S0659: user-authorized Development and D0057 minimum quote decision;137 targeted local methods (57 new,80 retained), Lua5.1 syntax, loaded-HD SQL and direct paths reviewed. Only named runtime/docs/tests hashes updated. Capital/old evidence/main/configuration unchanged; native price/Production/persistence pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md"
 }

@@ -1,7 +1,7 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
-local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection
+local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection,developmentSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
@@ -17,6 +17,7 @@ function GetDataHelper(...)
  if trainingSelection then trainingSelection.Items(data)end
  if crewSelection then crewSelection.Items(data)end
  if capitalSelection then capitalSelection.Items(data)end
+ if developmentSelection then developmentSelection.Items(data)end
  if commerceSelection then commerceSelection.Items(data)end
  if claimSelection then claimSelection.Sync(data.City)end
  if dialogueSelection then dialogueSelection.Sync(data.City)end
@@ -61,6 +62,8 @@ engineeringSelection=SPCEngineeringStudyUI.New(SPCP0,function(...)return UI.Requ
 local baseAdvance=AdvanceProject
 include('CapitalInvestmentUI')
 capitalSelection=SPCCapitalInvestmentUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+include('DevelopmentInvestmentUI')
+developmentSelection=SPCDevelopmentInvestmentUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
 include('CommerceUI')
 commerceSelection=SPCCommerceUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
 include('CrewProjectUI')
@@ -68,6 +71,7 @@ crewSelection=SPCCrewProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOpe
  function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseAdvance)
 function AdvanceProject(c,item)
  if not capitalSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not developmentSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not commerceSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not crewSelection.Before(c,item,CheckQueueItemSelected())then return end
  if not engineeringSelection.Before(c,item,CheckQueueItemSelected())then return end
@@ -78,6 +82,7 @@ function AdvanceProject(c,item)
  return baseAdvance(c,item)
 end
 Events.GameCoreEventPublishComplete.Add(capitalSelection.Publish)
+Events.GameCoreEventPublishComplete.Add(developmentSelection.Publish)
 Events.GameCoreEventPublishComplete.Add(commerceSelection.Publish)
 Events.GameCoreEventPublishComplete.Add(crewSelection.Publish)
 Events.GameCoreEventPublishComplete.Add(engineeringSelection.Publish)

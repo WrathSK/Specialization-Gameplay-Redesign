@@ -10,9 +10,13 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 [Industry D0053](Industry_D0053.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 当前施工队成本取样时点另按[2026-10-17接受澄清](../Design_ChangeLog.md#accepted-industry-formation-price-clarification--2026-10-17)：开工锁定本次成本，后续新队使用新价；D0052另按用户决定将一级施工力改为260，相关标准速度成本改为390／364／338／312；II–V及其它基础规则不变；D0053另接受施工投入的适用Production加成，未来实测平衡、不阻碍开发。
 
+## D0057 — 发展投资多候选报价
+
+[Commerce D0057](Commerce_D0057.json)是当前商业正式内容：同一区域多个合格下一阶建筑取最低理论金币购买价，界面列明报价建筑与价格；合同仍绑定城市＋区域，完成下一座合格建筑结束。取代同阶HD建筑成本必然相同的假设，其它规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0057--2026-10-18)。D0056及其Spec原件冻结保留；Design接受不等于原生报价／加速验收。
+
 ## D0056 — 资本投资同级来源的机构建立时间
 
-[Commerce D0056](Commerce_D0056.json)是当前商业正式内容。资本S仍取最高当前有效ACTIVE；同级按最早建立对应永久机构等级，再按稳定City ID／stable key。不按总督／ACTIVE首次达到或读档观察时间；其它规则全部保留。[接受记录](../Design_ChangeLog.md#accepted-d0056--2026-10-18)。D0055与其Spec冻结原件保持。
+[Commerce D0056](Commerce_D0056.json)记录前版商业正式内容（当前见D0057）。资本S仍取最高当前有效ACTIVE；同级按最早建立对应永久机构等级，再按稳定City ID／stable key。不按总督／ACTIVE首次达到或读档观察时间；其它规则全部保留。[接受记录](../Design_ChangeLog.md#accepted-d0056--2026-10-18)。D0055与其Spec冻结原件保持。
 
 ## D0055 — 商业化来源身份与港口总粮食
 

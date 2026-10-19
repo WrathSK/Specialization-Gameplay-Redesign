@@ -2,16 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0056
+Design Revision: D0057
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-10-18
-Acceptance Evidence: 用户明确确认最高当前ACTIVE S同级时，按最早建立对应机构等级的城市优先，其余资本合同及其它规则全部保留；授权B241实施。
-Previous Accepted Revision: [D0055冻结原文](Revisions/Specialization_Design_Spec_D0055.md)
-Latest Accepted Design Revision: D0056
+Acceptance Evidence: 用户明确确认发展投资同一区域多个合格下一阶候选取最低理论购买价，界面列明报价依据，合同仍绑定城市＋区域而非具体报价建筑；授权B246。
+Previous Accepted Revision: [D0056冻结原文](Revisions/Specialization_Design_Spec_D0056.md)
+Latest Accepted Design Revision: D0057
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
+
+**SCOPE-001（D0057）** 发展投资对同一区域多个合格下一阶建筑取最低理论金币购买价，并在界面明确列出报价依据。合同仍绑定城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。取代同阶HD建筑成本必然相同的旧假设，其它规则不变。[接受记录](Design_ChangeLog.md#accepted-d0057--2026-10-18)。
 
 **SCOPE-001（D0056）** 资本投资仍取当前有效ACTIVE最高的S；同级时按最早建立对应永久机构等级的城市优先，再以稳定City ID／stable key决定。不按ACTIVE首次达到、总督就任或读档观察时间排序；来源绑定与易主终止等其它合同保留。[接受记录](Design_ChangeLog.md#accepted-d0056--2026-10-18)。
 
@@ -230,9 +232,9 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 ## 8. Commerce / Commercial Hub — COM
 
-**D0056: DESIGN_FROZEN；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
+**D0057: DESIGN_FROZEN；发展投资同阶合格候选取最低理论购买价并列明依据、不绑定报价建筑；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-唯一机械合同：[Commerce D0056](Content/Commerce_D0056.json)（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
+唯一机械合同：[Commerce D0057](Content/Commerce_D0057.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
 | Rule ID | 当前权威content |
 |---|---|
@@ -246,7 +248,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 资本投资仍一项两模式；可投领域为已实施专业领域但不含商业本身（v0.1：科研、文化、工业；未来专业实施后自动纳入），来源城不需该领域区域；D取max(1,D)，S取当前由商路连接形成的国内网络中该领域当前有效ACTIVE最高等级并取max(1,S)、无来源时S=1（D0050）。每次本金=确认瞬间剩余国库25%，标准速度10回合，r=0.01DSC（C为商业化时1.25，否则1）。稳健P(1+r)、风险成功P(1+3r)，失败P(0.5+0.005×有效信誉)；p_base=min(0.8,0.4+0.01DS)，C不改概率。失败保护同来源城跨域共享，只保存连续失败次数n，实际成功率P=0.8−(0.8−p_base)×0.75^n，换域或D／S变化保留n并按新p_base重算，成功或Commerce Identity消失清零；保护属于来源城及其主人，新主人不继承，原主人夺回时恢复（D0050）；确认时抽取/锁定/更新保护，到期只揭晓结算。UI显示总预期返还及扣本金后预期净收益，负净收益提示预期亏损但允许选择。每来源城每领域最多一笔未结算（D0050），不同来源城可各自持有同领域合同，不另设全国总数上限。D0040确认锁定具体S来源城与双方Owner关系；最高S相同选最早达到该等级，再稳定ID/key，存读档不随机换源。报价必须显示S城名／等级，保存P/D/S/C/r、mode/probability/outcome、maturity及settlement。
 
-发展投资（D0050重构）：签约仍要求ACTIVE IV来源→目标直接国内出发路线，之后断路不改投资；目标城须有所选类型合格区域且其下一级建筑当前可建。费用=15%×该建筑**理论金币购买价**（不要求可用金币购买，不以生产力成本替代）；生效期间目标城该区域类型建筑+50%建造生产力，持续到完成该区域类型下一座合格建筑为止，无固定期限、无退款补偿；绑定目标城＋区域类型。每工作商业专家1名额，降容量不撤已生效投资；**每座目标城最多1份**，不分领域与来源。旧10回合、P_low／P_high／P_ref及按生产力报价退为历史。剧院广场（HD＋District Expansion）与社区建筑链为实施时检查。与标准化Production百分比加算。已签资本合同与生效中的发展投资不因Governor/ACTIVE/Identity、商路或专家容量等普通变化取消；发展目标Identity变而目标仍合法亦继续。D0040关键城市Owner变化异常终止：资本Commerce城或锁S城任一换主，不返本金／不maturity／不走风险失败或修改保护；发展Commerce城或目标任一换主，不退款、撤+50%、立刻释放slot，不转交新Owner。
+发展投资（D0050重构）：签约仍要求ACTIVE IV来源→目标直接国内出发路线，之后断路不改投资；目标城须有所选类型合格区域且其下一级建筑当前可建。费用=15%×合格下一阶候选中的**最低理论金币购买价**（D0057：界面列明报价建筑和价格；不要求可用金币购买，不以生产力成本替代，不绑定报价建筑）；生效期间目标城该区域类型建筑+50%建造生产力，持续到完成该区域类型下一座合格建筑为止，无固定期限、无退款补偿；绑定目标城＋区域类型。每工作商业专家1名额，降容量不撤已生效投资；**每座目标城最多1份**，不分领域与来源。旧10回合、P_low／P_high／P_ref及按生产力报价退为历史。剧院广场（HD＋District Expansion）与社区建筑链为实施时检查。与标准化Production百分比加算。已签资本合同与生效中的发展投资不因Governor/ACTIVE/Identity、商路或专家容量等普通变化取消；发展目标Identity变而目标仍合法亦继续。D0040关键城市Owner变化异常终止：资本Commerce城或锁S城任一换主，不返本金／不maturity／不走风险失败或修改保护；发展Commerce城或目标任一换主，不退款、撤+50%、立刻释放slot，不转交新Owner。
 
 首次Commerce IV长期机构开始信誉计龄，标准速度保有Commerce Identity每完整回合+1，cap40；ACTIVE下降不暂停年龄，但当前两项信誉效果需ACTIVE IV。商业化每点+0.5%，风险失败本金返还每点+0.5个百分点；不影响稳健、成功利润、成功率、保护公式、发展投资或重组。信誉为持续Commerce机构关系，Owner变化不清零／分账／重置，非支持者冻结使用。失去Commerce Identity立即清零，重新建立从0，不机械套Research暂停保留规则。
 

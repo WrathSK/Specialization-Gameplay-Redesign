@@ -3,6 +3,7 @@ if not SPCDialogueProjectModel then include('DialogueProjectModel') end
 if not SPCEngineeringStudyModel then include('EngineeringStudyModel') end
 if not SPCCommerceModel then include('CommerceModel') end
 if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
+if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
@@ -116,6 +117,14 @@ local function CreateProgressionRecord(P,shared,storage)
    for _,c in pairs(capital.contracts)do
     assert(c.source.token==r.base.token and c.source.owner==r.origin.owner
      and c.source.x==r.origin.x and c.source.y==r.origin.y,'CAPITAL_SOURCE_REFERENCE_INVALID')
+   end
+  end
+  if r.developmentKnown~=nil or r.development~=nil then
+   assert(r.developmentKnown==true and type(r.development)=='table','DEVELOPMENT_HISTORY_UNAVAILABLE')
+   local value=SPCDevelopmentInvestmentModel.Decode(r.development)
+   for _,c in pairs(value.contracts)do
+    assert(c.source.token==r.base.token and c.source.owner==r.origin.owner
+     and c.source.x==r.origin.x and c.source.y==r.origin.y,'DEVELOPMENT_SOURCE_REFERENCE_INVALID')
    end
   end
   if r.ownerChanges~=nil then assert(type(r.ownerChanges)=='number' and r.ownerChanges>=0 and r.ownerChanges%1==0,'CAPITAL_OWNER_HISTORY_INVALID')end
@@ -245,6 +254,23 @@ local function CreateProgressionRecord(P,shared,storage)
   storage.Check();assert(not committing and ready and not fault and root,'CAPITAL_REFERENCE_UNAVAILABLE')
   local a=root.loss and root.loss.target or root.current or root.origin
   return {owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=root.base.token,changes=root.ownerChanges or 0,stage=root.stage,identity=root.base.specialization}
+ end
+ function d.DevelopmentState(pid,c)
+  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  return {value=SPCDevelopmentInvestmentModel.Decode(r.development),token=r.base.token}
+ end
+ function d.WriteDevelopment(pid,c,old,value,observeFailure)
+  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(same(SPCDevelopmentInvestmentModel.Decode(r.development),old),'DEVELOPMENT_HISTORY_STALE')
+  assert(value~=nil,'DEVELOPMENT_HISTORY_CANNOT_DELETE');SPCDevelopmentInvestmentModel.Validate(value)
+  if same(old,value)then return end
+  local n=cp(r);n.developmentKnown=true;n.development=SPCDevelopmentInvestmentModel.Encode(value);n.revision=n.revision+1;save(n,observeFailure)
+ end
+ function d.VisitDevelopment(pid,fn)
+  storage.Check();assert(ready and not fault and root,'DEVELOPMENT_HISTORY_UNAVAILABLE')
+  if root.origin.owner~=pid then return end
+  assert(not root.developmentKnown or root.development,'DEVELOPMENT_HISTORY_UNAVAILABLE')
+  if root.development then fn(SPCDevelopmentInvestmentModel.Decode(root.development),d.CapitalReference())end
  end
  function d.InstitutionHistory(pid,c)
   assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
@@ -772,6 +798,10 @@ local function CreateProgressionRecord(P,shared,storage)
      local C=SPCCapitalInvestmentModel
      n.capital=C.Encode(C.Terminate(C.Decode(n.capital),'CAPITAL_OWNER_CHANGED'))
     end
+    if n.development then
+     local D=SPCDevelopmentInvestmentModel
+     n.development=D.Encode(D.Terminate(D.Decode(n.development),'DEVELOPMENT_OWNER_CHANGED'))
+    end
     if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
@@ -1056,6 +1086,14 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.WriteCommerce(pid,c,old,value)return requireCity(c).WriteCommerce(pid,c,old,value)end
  function store.CapitalState(pid,c)return requireCity(c).CapitalState(pid,c)end
  function store.WriteCapital(pid,c,old,value,observeFailure)return requireCity(c).WriteCapital(pid,c,old,value,observeFailure)end
+ function store.DevelopmentState(pid,c)return requireCity(c).DevelopmentState(pid,c)end
+ function store.WriteDevelopment(pid,c,old,value,observeFailure)return requireCity(c).WriteDevelopment(pid,c,old,value,observeFailure)end
+ function store.VisitDevelopment(pid,fn)
+  check();assert(P.IsTestPlayer(pid),'DEVELOPMENT_OWNER_CHANGED')
+  local firstError
+  for _,w in pairs(workers)do local ok,err=pcall(w.VisitDevelopment,pid,fn);if not ok then firstError=firstError or err end end
+  assert(not firstError,firstError)
+ end
  function store.InstitutionHistory(pid,c)return requireCity(c).InstitutionHistory(pid,c)end
  function store.CapitalReference(token)
   check();return assert(workers[token],'CAPITAL_REFERENCE_UNAVAILABLE').CapitalReference()

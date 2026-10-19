@@ -1,73 +1,67 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0056",
+    "design": "D0057",
     "research": "D0040",
     "industry": "D0053",
     "culture": "D0051",
-    "commerce": "D0056",
+    "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0172",
-    "status": "S0658",
-    "runtime": "B245.272 / modinfo272",
+    "architecture": "A0173",
+    "status": "S0659",
+    "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
-  "goal": "Close the approved B245 bounded receipt gate from submitted signing, cold-load and maturity evidence; preserve original formulas, strict saved-value validation and no-replay protections.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+  "goal": "Deliver approved B246 Development Investment: lowest eligible native theoretical quote, city+district contract, <=0.01 debit receipt, +50% building production and completion/Owner exits; one combined native flow.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current accepted B245 receipt gate and stop boundary."
+      "reason": "Actual source/live/pending native boundary."
+    },
+    {
+      "path": "Specialization/Design/Content/Commerce_D0057.json",
+      "kind": "json",
+      "selector": "/contracts/development_investment",
+      "reason": "Accepted qualification, minimum quote, effect, completion and lifecycle."
+    },
+    {
+      "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
+      "kind": "section",
+      "selector": "## B246 Development Investment",
+      "reason": "Approved ownership/event/storage and narrow implementation boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "kind": "section",
+      "selector": "## Local verification",
+      "reason": "137 selected local methods and evidence limits."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "kind": "section",
+      "selector": "## One combined native flow",
+      "reason": "Only the new price/Production/persistent-contract delta."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
       "kind": "section",
       "selector": "## Accepted results",
-      "reason": "Observed amounts, user-confirmed cold restart and accepted native scope."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
-      "kind": "section",
-      "selector": "## Loaded timelines and repeat-payment check",
-      "reason": "Separate loaded timelines when counting debits and credits."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
-      "kind": "section",
-      "selector": "## Coverage and diagnostic limits",
-      "reason": "Collector gaps and inherited local guards do not expand native PASS."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-      "kind": "section",
-      "selector": "## Implementation boundary",
-      "reason": "Accepted monetary precision boundary and actual receipt semantics."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-      "kind": "section",
-      "selector": "## Local verification",
-      "reason": "Targeted local evidence, historical exclusions and limits."
-    },
-    {
-      "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
-      "kind": "section",
-      "selector": "## B245 bounded native money receipts",
-      "reason": "Current Capital ownership/receipt contract."
+      "reason": "Inherited bounded native monetary receipt evidence; no repeated Capital test."
     }
   ],
   "dependencies": [
-    "Existing CityProgressionStore commit/readback and confirmed-loss routes; no framework rewrite.",
-    "Current EffectiveFacts, DistrictCompleteness, actual Commerce state and verified existing network recipient sources.",
-    "Native Treasury read/change with immediate direction and <=0.01 matching; exact persistent receipts, private RNG and existing bounded diagnostics."
+    "Existing CityProgressionStore optional record extension with exact equality and model-owned decimal encoding; no framework rewrite.",
+    "Current EffectiveFacts/DistrictCompleteness working specialists and existing network direct-outgoing verified projection.",
+    "UI-context native constructibility/theoretical Gold cost; isolated district-building Production family and existing bounded collector."
   ],
   "old_writers": [
     "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
@@ -75,63 +69,52 @@
   ],
   "conditional_context": [
     {
-      "trigger": "Capital implementation or native discrepancy",
+      "trigger": "B246 implementation or native discrepancy",
       "paths": [
-        "Mod/CapitalInvestmentModel.lua",
-        "Mod/CapitalInvestment.lua",
+        "Mod/DevelopmentInvestment.lua",
+        "Mod/DevelopmentInvestmentModel.lua",
+        "Mod/DevelopmentInvestmentCatalog.lua",
+        "Mod/UI/DevelopmentInvestmentRead.lua",
+        "Mod/UI/DevelopmentInvestmentUI.lua",
+        "Mod/UI/DevelopmentInvestmentPanel.lua",
+        "Mod/UI/DevelopmentInvestmentPanel.xml",
+        "Mod/Data/DevelopmentInvestment.sql",
+        "Mod/Text/DevelopmentInvestment.sql",
         "Mod/CityProgressionStore.lua",
-        "Mod/UI/CapitalInvestmentUI.lua",
-        "Mod/UI/CapitalInvestmentPanel.lua",
-        "Specialization/Design/Content/Commerce_D0056.json",
-        "DevelopmentTests/test_b241_capital.py",
-        "DevelopmentTests/test_b241_capital_ui.py",
-        "Mod/CapitalInvestmentDiagnostics.lua",
-        "Mod/ExpeditionTrainingDiagnostics.lua",
-        "DevelopmentTests/test_b242_capital_diagnostics.py",
-        "DevelopmentTests/test_b243_capital_diagnostics.py",
-        "DevelopmentTests/test_b244_capital_storage.py",
-        "DevelopmentTests/test_b245_capital_receipts.py"
+        "DevelopmentTests/test_b246_development.py",
+        "DevelopmentTests/test_b246_development_ui.py"
       ]
     },
     {
-      "trigger": "Source/network/current Commercialization discrepancy",
+      "trigger": "Direct integration or deployment discrepancy",
       "paths": [
         "Mod/NetworkBridge.lua",
         "Mod/Commerce.lua",
-        "Mod/EffectiveFacts.lua",
-        "Mod/DistrictCompleteness.lua"
-      ]
-    },
-    {
-      "trigger": "Package/entry/deployment issue",
-      "paths": [
+        "Mod/Gameplay.lua",
         "Mod/UI/CrewProjectOrder.lua",
-        "Mod/Data/Commerce.sql",
-        "Mod/Text/Commerce.sql",
         "Mod/SpecializationP0.modinfo",
         "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
   ],
   "non_scope": [
-    "Other Design changes, original-owner extinction/city destruction, general Store/dispatcher rewrite, AI or old-save migration.",
-    "Culture HOLD, Research network, balance, timers/frame polling, GC changes or unrelated audit repair.",
-    "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
+    "Restructuring, unrelated Commerce/other-profession changes, Culture HOLD, original-owner extinction/city destruction/target invalidation Design, AI and non-Standard speed.",
+    "General Store/event refactor, timers/frame polling, GC changes, main/promotion, external Mod/config edits, game launch, frozen evidence mutation."
   ],
   "validation": {
-    "depth": "L3 scoped Capital receipts/persistence and direct Store/UI regression; no whole-gameplay suite.",
-    "local": "142 selected methods PASS (23 new B245,119 retained); coherent baseline14 reads/7 writes/2 calls/0 cross-record uniqueness visits.",
-    "user": "USER_GAME_TEST_PASS within submitted scope: three signed contracts, user-confirmed cold restart, two T43 reconstructions and T44 settlement; all 13 captured transfers within 0.01 and no same-timeline repeat observed.",
-    "gap": "No universal native Gold unit or all-case lifecycle/outcome claim; native fault branches and explicit post-settlement reload/reopen are not newly demonstrated. Existing targeted local coverage retained; no additional B245 test requested."
+    "depth": "L3 new contract/persistence/native-write guards and direct UI/network SQL L2; no historical all-suite run.",
+    "local": "137 selected methods PASS:57 B246,80 retained; Lua5.1 and loaded-HD SQL checks. Normal Development writes0 cross-record uniqueness visits; Capital values/work unchanged.",
+    "user": "USER_GAME_TEST_REQUIRED: one combined minimum quote/actual debit, +50% district-building/Standardization, running-contract cold-load and completion exit.",
+    "gap": "Native cost availability, actual additive Production and new contract restoration are not implied by simulation. Unreadable candidate prices hold the district quote; no guessed conversion."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
-    "source": "B245.272/modinfo272 deployed from 006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb;251/251 MATCH; receipt B245.272-006bf9c-playtest.json",
-    "native": "USER_GAME_TEST_PASS within submitted scope: three signed contracts, user-confirmed cold restart, two T43 reconstructions and T44 settlement; all 13 captured transfers within 0.01 and no same-timeline repeat observed.",
-    "stop": "B245 native gate complete; await next user direction. No new implementation or deployment."
+    "report": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+    "source": "B246.273/modinfo273 locally complete; live remains B245.272 until guarded activation.",
+    "native": "USER_GAME_TEST_REQUIRED: one combined minimum quote/actual debit, +50% district-building/Standardization, running-contract cold-load and completion exit.",
+    "stop": "After guarded deployment record receipt and stop for the combined native gate; no automatic next batch."
   }
 }

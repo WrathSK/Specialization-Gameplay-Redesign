@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="272">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="273">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B245.272: bounded native Capital money receipts with unchanged amounts and strict transaction guards.</Description>
+    <Description>B246.273: district Development Investment with direct outgoing routes and bounded native debit receipts.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_B246_Development"><Properties><LoadOrder>10001080</LoadOrder></Properties><File>Data/DevelopmentInvestment.sql</File></UpdateDatabase>
+    <UpdateText id="SPC_B246_DevelopmentText"><File>Text/DevelopmentInvestment.sql</File></UpdateText>
+    <AddUserInterfaces id="SPC_B246_DevelopmentPanel"><Properties><Context>InGame</Context></Properties><File>UI/DevelopmentInvestmentPanel.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B239_Commerce"><Properties><LoadOrder>10001070</LoadOrder></Properties><File>Data/Commerce.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B239_CommerceText"><File>Text/Commerce.sql</File></UpdateText>
     <AddUserInterfaces id="SPC_B241_CapitalPanel"><Properties><Context>InGame</Context></Properties><File>UI/CapitalInvestmentPanel.xml</File></AddUserInterfaces>
@@ -81,6 +84,13 @@
       <File>CapitalInvestmentModel.lua</File>
       <File>CapitalInvestmentDiagnostics.lua</File>
       <File>CapitalInvestment.lua</File>
+      <File>DevelopmentInvestmentModel.lua</File>
+      <File>DevelopmentInvestmentCatalog.lua</File>
+      <File>DevelopmentInvestment.lua</File>
+      <File>UI/DevelopmentInvestmentRead.lua</File>
+      <File>UI/DevelopmentInvestmentUI.lua</File>
+      <File>UI/DevelopmentInvestmentPanel.lua</File>
+      <File>UI/DevelopmentInvestmentPanel.xml</File>
       <File>UI/CapitalInvestmentUI.lua</File>
       <File>UI/CapitalInvestmentPanel.lua</File>
       <File>UI/CapitalInvestmentPanel.xml</File>
@@ -425,6 +435,13 @@
       <File>CapitalInvestmentModel.lua</File>
       <File>CapitalInvestmentDiagnostics.lua</File>
       <File>CapitalInvestment.lua</File>
+      <File>DevelopmentInvestmentModel.lua</File>
+      <File>DevelopmentInvestmentCatalog.lua</File>
+      <File>DevelopmentInvestment.lua</File>
+      <File>UI/DevelopmentInvestmentRead.lua</File>
+      <File>UI/DevelopmentInvestmentUI.lua</File>
+      <File>UI/DevelopmentInvestmentPanel.lua</File>
+      <File>UI/DevelopmentInvestmentPanel.xml</File>
       <File>UI/CapitalInvestmentUI.lua</File>
       <File>UI/CapitalInvestmentPanel.lua</File>
       <File>UI/CapitalInvestmentPanel.xml</File>
@@ -670,6 +687,8 @@
     <File>Commerce.lua</File>
     <File>UI/CommerceUI.lua</File>
     <File>Data/Commerce.sql</File>
+    <File>Data/DevelopmentInvestment.sql</File>
+    <File>Text/DevelopmentInvestment.sql</File>
     <File>Text/Commerce.sql</File>
     <File>UI/CommercePanel.lua</File>
     <File>UI/CommercePanel.xml</File>

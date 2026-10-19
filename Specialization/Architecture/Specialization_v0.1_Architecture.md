@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0172
+# Specialization v0.1 Architecture — A0173
 
 Document Owner: Codex
-Architecture Revision: A0172
+Architecture Revision: A0173
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0172保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0173保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -20,6 +20,7 @@ A0172保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 - [B235 Engineering city history and effects](v2/Industry_Preparation.md#b235-implementation-and-validation): Store owns L/receipts, study owns the full-turn transaction, existing Standardization owns actual-holder enhancement, and a derived city consumer owns older-Wonder production. Target-specific District purchase remains a technical gap.
 - [B241 Capital state/transaction contract](v2/Commerce_Preparation.md#b241-implementation-and-validation): Store owns bounded contracts/n and reliable institution/owner continuity; native Treasury owns balances; current network owns source membership, UI owns no business state. Guarded reads, exact receipts and unresolved-call holds preserve no-replay semantics. Native money/settlement evidence pending.
 - [B244 Capital persistence representation](v2/Commerce_Preparation.md#b244-lossless-capital-storage): model-owned DECIMAL17_V1 stores fractional terms/receipts as canonical text; Store exposes numeric copies while retaining strict raw-envelope comparisons. Confirmed-loss termination uses the same codec; no monetary, replay or generic Store guard change.
+- [B246 Development contracts](v2/Commerce_Preparation.md#b246-development-investment): Store owns district-bound contracts/actual debit receipts; native UI reads current theoretical prices on explicit quotation/confirmation only. Direct outgoing network proof, real working specialists, difference-only owned Production carriers and building/Owner exits remain separate from Capital. No new timer or monetary rounding.
 - [B245 bounded native money receipts](v2/Commerce_Preparation.md#b245-bounded-native-money-receipts): user-approved <=0.01 Gold per debit/credit, observed actual receipts and settled net; original terms, strict Property equality and no-replay protection remain. No old-attempt reconstruction; native acceptance pending.
 - [B240 Commerce source/effect ownership](v2/Commerce_Preparation.md#b240-implementation-and-validation): D0055 matching-Identity direct partners and Harbor total Food; no recurring Gold sampling. Store selection/reputation, event-driven real changes, exact cleanup and per-domain Floor are retained; source/live/native evidence remain separate.
 - 实施/验证/下一授权边界只在[Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state)维护；部署另需receipt，源码存在不证明已部署。

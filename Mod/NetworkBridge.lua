@@ -46,16 +46,17 @@ function SPCNetworkBridge.Start(P,shared)
   end
   -- B239 Commerce uses direct pairs, not center distribution or reachability.
   -- Keep this projection private and rebuild it only with a new verified input.
-  local directDomestic,references={},{}
+  local directDomestic,directOutgoing,references={},{},{}
   for id,f in pairs(input.cities) do references[id]=f.reference end
   for _,r in ipairs(rows) do
    if r.op==pid and r.dp==pid and r.oc~=r.dc then
+    directOutgoing[r.oc]=directOutgoing[r.oc] or {};directOutgoing[r.oc][r.dc]=true
     directDomestic[r.oc]=directDomestic[r.oc] or {};directDomestic[r.oc][r.dc]=true
     directDomestic[r.dc]=directDomestic[r.dc] or {};directDomestic[r.dc][r.oc]=true
    end
   end
   return {sources=sources,centers=centers,recipients=recipients,connected=connected,national=national,
-   directDomestic=directDomestic,references=references}
+   directDomestic=directDomestic,directOutgoing=directOutgoing,references=references}
  end
  local function bucket(pid)
   if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
@@ -86,7 +87,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function notify(pid)
   local publication=d.Input(pid)
   -- Logical input changes and pending-to-available recovery each notify once.
-  for _,name in ipairs({'Lv3Effects','StandardizationEffects','Commerce','CapitalInvestment','CultureNetwork'}) do
+  for _,name in ipairs({'Lv3Effects','StandardizationEffects','Commerce','CapitalInvestment','DevelopmentInvestment','CultureNetwork'}) do
    local consumer=shared[name]
    if consumer then local ok,err=pcall(consumer.Audit,publication)
     if not ok then bucket(pid).consumerError=short(err) end
@@ -355,7 +356,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  -- B239 read-only per-city direct route projection. No Refresh, proof request,
  -- all-city scan or reference retention by the caller. UNKNOWN has no partners.
- function d.CurrentDomesticPartners(pid,selected)
+ local function domesticPartners(pid,selected,outgoing)
   local b=d.players[pid];local v=views[pid]
   local out={validity='UNKNOWN',reason='NETWORK_NO_INPUT'}
   if b then out.input=d.Input(pid) end
@@ -375,7 +376,8 @@ function SPCNetworkBridge.Start(P,shared)
    local id=selected:GetID();local ref=assert(v.references[id],'NETWORK_SELECTED_NOT_SAMPLED')
    assert(SPCNetworkInput.Reference(city(pid,id))==ref and SPCNetworkInput.Reference(selected)==ref,'NETWORK_SELECTED_REFERENCE_CHANGED')
    local keys,refs={},{}
-   for cid in pairs(v.directDomestic[id] or {}) do
+   local projection=outgoing and v.directOutgoing or v.directDomestic
+   for cid in pairs(projection[id] or {}) do
     local partner=assert(v.references[cid],'NETWORK_PARTNER_NOT_SAMPLED')
     assert(SPCNetworkInput.Reference(city(pid,cid))==partner,'NETWORK_PARTNER_REFERENCE_CHANGED')
     keys[#keys+1]=cid;refs[cid]=partner
@@ -386,6 +388,8 @@ function SPCNetworkBridge.Start(P,shared)
   out.validity='VERIFIED';out.reason='NETWORK_AVAILABLE';out.cityID=selected:GetID();out.reference=reference
   out.partners=ids;out.references=references;return out
  end
+ function d.CurrentDomesticPartners(pid,selected)return domesticPartners(pid,selected,false)end
+ function d.CurrentOutgoingDomestic(pid,selected)return domesticPartners(pid,selected,true)end
  -- B241 Capital consumes the existing center/recipient topology, not the
  -- direct-pair Commercialization pool. Require current proof before selecting S.
  function d.CurrentCapitalSources(pid,selected,kind)
