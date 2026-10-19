@@ -48,3 +48,7 @@ No new screenshot series, cold load, timer, special P0 button or configuration c
 ## Handoff
 
 User decision: no new decision needed for this diagnostic scope. User testing: the single short session above. Primary next: perform W0003 guarded deployment when the game is confirmed closed, then stop for evidence. COM-C/D, Culture HOLD and unrelated audits remain outside this batch.
+
+## Verified deployment
+
+B242.269/modinfo269 from clean/pushed `7dda4211280a95102115a943f4194de2e2afa27a` is DEVELOP_ACTIVE. Receipt `B242.269-7dda421-playtest.json`;251/251 source/runtime files MATCH, digest `c02e65a174a5878fb141c0bc02f97c1b33ff043a676aa23cd0f931b0b663f094`. Fresh automatic OS game-exit checks passed immediately before the exact B241 restore and B242 activation. Both recovery packages are retained; no pending transaction, game launch, configuration change or main promotion. Primary next: await the one short diagnostic log; underlying native confirmation cause remains UNKNOWN.

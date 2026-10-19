@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0647
-Implementation Build: source B242.269; live B241.268; stable B069.96
+Status Revision: S0648
+Implementation Build: source/live B242.269; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_CAPITAL_DIAGNOSTIC_LOCAL_COMPLETE_NATIVE_PENDING
-Work State: B242_DIAGNOSTIC_LOCAL_COMPLETE_AWAITING_DEPLOYMENT
+Work State: B242_DIAGNOSTIC_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B242 narrow Capital diagnostics locally complete:** [result and one short test](Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md).
-- Source B242.269/modinfo269; existing live B241.268 remains receipt-bound to66a94b9 until verified deployment. No native cause/precision/signing acceptance is inferred.
+**B242.269 narrow Capital diagnostics deployed:** [result and one short test](Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md).
+- Source/live B242.269/modinfo269 from `7dda421`; receipt `B242.269-7dda421-playtest.json`;251/251 MATCH. Stable/main B069.96 unchanged.
 - Original Store error/stage and existing readback differences now reach the bounded log; HELD refresh remains visibly paused. Amounts, saved schema and no-replay safeguards are unchanged.
--194 targeted tests PASS. One separately recorded historical whole-schema comparator already fails on B241; its assertions remain unchanged. B240 accepted scope is inherited.
-- Next: commit/push, automatic game-exit check and W0003 deployment, then one confirmation/paused refresh log. No COM-C/D, main/promotion, Culture HOLD, GC or unrelated audit work.
+-194 targeted tests PASS. The separately recorded stale historical comparator is not a native or new-regression result. B240 acceptance is inherited; B241 underlying native cause remains UNKNOWN.
+- Next: one **资本投资 → 科研 → 确认稳健投资** attempt and one **刷新报价** if paused; return the existing collector log, then stop. No10-turn/reload repeat, COM-C/D, Culture HOLD, GC or unrelated work.
+
+## S0648 — B242 verified deployment
+
+Clean/pushed `7dda421` passed fresh automatic OS game-exit checks before exact B241 receipt restoration and B242 activation.251/251 source/runtime MATCH, digest `c02e65a174a5878fb141c0bc02f97c1b33ff043a676aa23cd0f931b0b663f094`; receipt `B242.269-7dda421-playtest.json`. Recovery retained, no pending marker. Context/publication and targeted checks passed; no main/configuration change or game launch. The diagnostic package is delivered; native readback cause and contract acceptance await one short session.
 
 ## S0647 — B242 failure diagnostics locally verified
 

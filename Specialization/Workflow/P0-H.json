@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0647",
+    "status": "S0648",
     "runtime": "B242.269 / modinfo269",
     "military": "D0037",
     "harbor": "D0037",
@@ -109,8 +109,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
-    "source": "B242.269/modinfo269 locally verified; live still B241.268 until guarded deployment.",
+    "source": "B242.269/modinfo269 deployed from 7dda4211280a95102115a943f4194de2e2afa27a;251/251 MATCH; receipt B242.269-7dda421-playtest.json",
     "native": "USER_GAME_TEST_REQUIRED; frozen B241 first-confirmation failure remains valid.",
-    "stop": "Deploy under existing game-exit/hash safeguards; collect one short diagnostic session, then stop. No next Commerce batch."
+    "stop": "Await one confirmation/paused refresh diagnostic log, then review exact native evidence; no next Commerce batch."
   }
 }
