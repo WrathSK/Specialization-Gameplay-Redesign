@@ -242,11 +242,25 @@ local function request(playerID,params)
       local c=Players[playerID]:GetCities():FindID(params.CityID)
       assert(c and c:GetOwner()==playerID,'PRESENTATION_CITY_UNAVAILABLE')
       local f=shared.EffectiveFacts.Read(playerID,c)
-      f.institutionArchive=shared.CityProgressionStore.InstitutionArchive(playerID,c);return f
+      f.institutionArchive=shared.CityProgressionStore.InstitutionArchive(playerID,c)
+      local good,s=pcall(shared.CityProgressionStore.InstitutionSummary,playerID,c)
+      if good and s.token==f.token and s.reference.owner==playerID and s.reference.cityID==c:GetID()
+       and s.reference.x==c:GetX() and s.reference.y==c:GetY()then
+       f.institutionSummary=s
+       if s.tradition then
+        local ready,percent,nextAge=pcall(function()
+         local speed=GameInfo.GameSpeeds[GameConfiguration.GetGameSpeedType()]
+         return SPCResearchTradition.Shadow(s.tradition.age,assert(speed and speed.CostMultiplier)/100)
+        end)
+        if ready then s.tradition.percent=percent;s.tradition.nextAge=nextAge end
+       end
+      else f.institutionSummary={known=false}end
+      return f
     end)
     shared.CityPresentationView={token=params.Token,owner=playerID,cityID=params.CityID,
       specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
       progression=ok and f.progression or nil,institutionArchive=ok and f.institutionArchive or nil,
+      institutionSummary=ok and f.institutionSummary or nil,
       investments=ok and f.investmentCount or nil,active=ok and f.active or nil,activeStatus=ok and f.activeStatus or nil,
       x=ok and Players[playerID]:GetCities():FindID(params.CityID):GetX() or nil,
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}

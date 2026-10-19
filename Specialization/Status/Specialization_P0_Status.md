@@ -1,9 +1,9 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0671
-Implementation Build: B250.277 / modinfo277; stable B069.96
-Architecture Revision Reviewed: A0176
+Status Revision: S0672
+Implementation Build: B251.278 / modinfo278; stable B069.96
+Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B250.277 Chinese UI copy is deployed; B249's functional behavior and native evidence are unchanged.** [Copy integration and checks](Validation/Results/Specialization_B250_UI_Copy_Polish.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
-- The user approved the Gemini Chinese copy:104 mapped entries updated,99 kept. Seven obsolete ordinary-player claims were corrected; eight entries preserve precise existing semantics during integration. Names, gameplay, timers, save data and UI structure are unchanged. The original draft is renamed/hash-verified in ignored local editorial storage.
-- L1 checks: full effective localization comparison, Lua5.1 syntax/non-string code identity, dynamic placeholders/16 institution rows, six existing display regressions and265-file package closure. No native visual or new gameplay PASS; wording/wrapping will be observed during the existing v0.1 playtest, without a separate lifecycle test.
-- Source/live B250.277/modinfo277 from `d6bb190`; receipt `B250.277-d6bb190-playtest.json` DEVELOP_ACTIVE,265/265 MATCH. Fresh process checks and stable/outgoing B249 recovery verified; no pending marker or game launch. Main/stable B069.96 remains unchanged.
-- B249's observed same-turn access, training/binding, liquidation, five-turn minimum/manual configuration, disruption and new effects remain accepted. REALLOCATING cold-load and simultaneous Standardization + Development additive output are still to be checked **during** the v0.1 playtest.
-- The user will avoid own-city loss during this playtest. Remaining own-city-loss handling, Expedition root-cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage presentation and all outstanding audit work stay **post-v0.1-playtest high priority**. Existing automatic Meaning and accepted Industry/Culture/Commerce behavior remain; this copy patch does not reopen or close held work.
-- No further gameplay, audit repair, UI restructuring or balance batch is authorized.
+**B251.278 institution UI is locally complete; native visuals await the next session.** [Scope/read contract/checks](Validation/Results/Specialization_B251_Institution_UI.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
+-16 supplied institution icons, all four current-profession levels with explicit previews,3px row spacing and native Gold highlighting for the highest ACTIVE level. History/UNKNOWN remain distinct; no gameplay identity is created by a preview.
+- Ability-local numbers cover Research Tradition, Commerce Reputation, Dialogue, count-only Culture Insights, Engineering layers and this city's Standardization templates/offered percentages. Guarded scalar reads perform no ledger initialization or effect write; no new timer or saved state.
+-23 targeted local checks PASS. Native atlas loading, truncation/spacing and tooltip readability remain USER_GAME_TEST_REQUIRED; check them during normal play without another shared save/load sequence. No gameplay or performance acceptance is expanded.
+- Live still B250.277/modinfo277 from `d6bb190` pending the guarded B251 deployment; source revision267files. Main/stable B069.96 remains unchanged. Two exact DDS blobs have the user's one-batch publication exception; other content passes the ordinary staged gate.
+- B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks **during** the v0.1 playtest. Remaining own-city-loss handling, Expedition root-cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage presentation and outstanding audits remain **post-v0.1-playtest high priority**.
+- This authorized UI batch ends after its checked deployment/current record. No next gameplay, audit repair or balance batch is started.
+
+## S0672 — B251 institution presentation
+
+The user authorized institution artwork, four-level previews, live per-ability values including Standardization, row spacing and current-level emphasis. Read-only Store projection avoids lazy template capture; current-city token/reference and UNKNOWN isolation are retained.23 scoped local methods PASS, no new native acceptance. A0177 records this presentation/read boundary; existing Design, gameplay writers, saves, main/configuration, other roles' work and frozen evidence remain unchanged. Only reviewed batch paths receive new context hashes. The two reviewed DDS blobs have a user-approved one-time binary publication exception, without changing lasting rules.
 
 ## S0671 — B250 verified deployment
 

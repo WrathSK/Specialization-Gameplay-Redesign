@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "73801a8796f283811923587713fc34e800df7d9fe47182a2b7b2b8ffe03a1fe3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "f4bbeee630837f5e268bfe475bd491bc4fece253279f75c1b826d25038ea6dfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "d5618bab04d964e0f5f5f7bab82b8e865dfdcd721f8ce55bbb48778d56ffc894",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "e6bc4a115ba2dc4d839e1ce63a12b33a226031579908fda1913d10750c47a3ea",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "6bddcf60d0adee3f9545614235f32000bcb4e7e40562d8244a394b897cd7a356",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "9ae40fc3bb9e4e90b58be73b8b16e2d01d11185efc15a4d647820a569e1b032d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6789eb9c4247144f32e418a433fe5575735f3c44f2703a7f5594855072764325",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "3648a9be035f0b9abd2f4bb0fc892dbcc63e448b514314af359cbfd50abd4d41",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "e1481a4cdbd5b6844c0f1c9e4cdfd883dd3932055e5dc797b4cd19ae9702bcee",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "a87d3fb01a123acfb7e2247b9a2e330b5a848fa4ca85293f48e06883f169d1ba",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -721,24 +721,24 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "603ce9a6e7158f81322d82d00055c7e26c97c9e9fdfc7e3ef97054cc062b250f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "f40c1392e4bfdde01babb88e5de5a642e37a1dff769c7f2540ce5909503dd35b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/UI/InstitutionOverview.lua": {
-      "sha256": "7cf20195db87c52288444e50593b396f8dda16ae88114a55292860740747e7d2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "c9dd649ecb06487393352e170a796baea536ff732de029012c7568f9ecc73590",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "e7e7f93a0206d4d078db4034adaafff61353cce1c51c20e61dfcfd4dd487b317",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "3546ec42f0ec344a55e2c727d38e78c22112e3de326dd9b3705f70c181a1c42e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/UI/Institutions.xml": {
-      "sha256": "ae54bf36672439716e828cc24157671660031bffad6cb4e13a8f5fb745bb1b9c",
-      "review_source": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
-      "provenance": "B146 authorized compact UI rows; L1 static/local mock pass; native pending"
+      "sha256": "259eb30202f9fc8d2e8de7409b5133c342bc506e7603823be127f20d700fdff5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/CityIdentityRead.lua": {
       "sha256": "c78eef76b28f9bb4a2458382ddf0790217749619aab3bcbd97e56d36e073ac20",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "7c9347c3d2e433d62c66f62eb9e69c121075d7523df66a2e4acc10a02b562bba",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "ca943717080786ebf8f4c1b42efd3c2b967f01f8f77ae6d20de93ebc028c1f98",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -1329,6 +1329,16 @@
       "sha256": "b2190dc3c00f64a696e8c830e8fea367e6b81e0227c31168d32923c632250ac6",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
       "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+    },
+    "Mod/Textures/SPC_Institutions_32.dds": {
+      "sha256": "a3f389f0a82e16599371e42fda5384868d915a3432e92e5f3f14ae678267fa91",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+    },
+    "Mod/Textures/SPC_Institutions_64.dds": {
+      "sha256": "9fb525ddd843b5d3b1d472195804dcce60e4368f3ba3c5123f06504de988be81",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     }
   }
 }

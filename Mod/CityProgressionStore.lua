@@ -461,6 +461,32 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.RestructuringState(pid,c)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return cp(r.restructuring)
  end
+ -- B251 selected-city presentation only. Detached scalars; no lazy capture,
+ -- ledger initialization, native scans or writes, including UNKNOWN templates.
+ function d.InstitutionSummary(pid,c)
+  assert(not committing,'PRESENTATION_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  local t=r.researchTradition;local rep=r.commerce and r.commerce.reputation
+  local out={known=true,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
+   tradition=t and {age=t.age,state=t.state,cursor=t.cursor} or false,
+   reputation=rep and {age=rep.age,state=rep.state} or false,
+   dialogue=r.dialogue and r.dialogue.total or 0,engineering=r.engineering and r.engineering.L or 0,
+   insights=0,templatesKnown=false}
+  for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
+  local lifecycle=r.templateLifecycle
+  if r.templatesCaptured and r.templates and lifecycle and not lifecycle.reconcilePending
+   and shared.Standardization and shared.Standardization.ValidateHistory then
+   local ok=pcall(shared.Standardization.ValidateHistory,c,r.templates)
+   if ok then
+    out.templatesKnown=true;out.buildingTemplates=0
+    for _ in pairs(r.templates.learned)do out.buildingTemplates=out.buildingTemplates+1 end
+    if r.templates.districts then
+     out.districtTemplates=0
+     for _ in pairs(r.templates.districts.learned)do out.districtTemplates=out.districtTemplates+1 end
+    end
+   end
+  end
+  return out
+ end
  function d.InstitutionArchive(pid,c)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return r.restructuring and cp(r.restructuring.established) or nil
  end
@@ -1201,6 +1227,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.RestructuringExit(c)return requireCity(c).RestructuringExit(c)end
  function store.ConfirmRestructuringConsumption(pid,c,team)return requireCity(c).ConfirmRestructuringConsumption(pid,c,team)end
  function store.RestructuringState(pid,c)return requireCity(c).RestructuringState(pid,c)end
+ function store.InstitutionSummary(pid,c)return requireCity(c).InstitutionSummary(pid,c)end
  function store.InstitutionArchive(pid,c)return requireCity(c).InstitutionArchive(pid,c)end
  function store.BeginRestructuring(pid,c,team,receipt)return requireCity(c).BeginRestructuring(pid,c,team,receipt)end
  function store.ConfigureRestructuring(pid,c,team,kind,first)return requireCity(c).ConfigureRestructuring(pid,c,team,kind,first)end

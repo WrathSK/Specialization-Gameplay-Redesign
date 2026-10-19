@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0176
+# Specialization v0.1 Architecture — A0177
 
 Document Owner: Codex
-Architecture Revision: A0176
+Architecture Revision: A0177
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0176保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0177保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -123,6 +123,8 @@ The actual Settler transaction now returns call-local final-readback evidence th
 “每人口可产生小数”不证明“区域/每专家平坦收益可任意小数”；科研两条floor实现分别是汇总后取整、每专家取整，不能推广成全系统精度规则。具体原生路径与用户接受范围见[技术精度证据](../Reports/Technical/README.md#收益精度与原生效果)。
 
 Institution/Ability/Carrier的[分层目标](v2/Presentation_Institution_Carrier_Model.md)与[科研显示原型](v2/U1_Presentation_Prototype.md)分开：原型挂接HD城市详情、追加累计机构展示、过滤该surface已确认科研城的技术载体显示；不删除实际Building，也未完成所有专业、历史机构或所有Tooltip界面。hover使用展示内容，不建立新的Gameplay扫描请求。已有其他UI路径的轮询不能据此宣称全部消除。
+
+B251 extends the selected-city institution surface: all configured levels of the **current** profession are visible, with unestablished rows explicitly treated as previews rather than persisted institutions. Historical other-profession rows retain actual established levels. A guarded Store scalar projection supplies retained history/counts to the existing presentation request, without lazy template initialization, native fact scans or writes; UI summaries and signatures remain disposable mirrors. Unknown reads do not become zero, and Standardization distinguishes this city's source offer from recipient effects. No new update scheduler or save schema. See [B251 contract and checks](../Status/Validation/Results/Specialization_B251_Institution_UI.md#read-and-lifetime-contract).
 
 ### 公共更新与临时状态接入约束
 

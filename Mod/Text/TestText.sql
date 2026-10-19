@@ -313,3 +313,55 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_CREW_OCCUPANCY','来源名额：存活{1}，未完成组建{2}（含续建{3}）；未完成组建继续占用名额。'),
 ('en_US','LOC_SPC_CREW_RESUME_CAPACITY_HELD','现役施工队及已排队项目已占满可完成名额；保留本次成本与进度，释放名额后可续建。'),
 ('en_US','LOC_SPC_CREW_FORMATION_HELP','本城来源施工队及已接入的未完成组建共同占用名额；有进度的暂停项目继续占位。续建沿用原成本与已有进度，不额外申请名额。');
+
+-- B251 institution preview and bounded live summaries.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INSTITUTION_PREVIEW','尚未建立');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INSTITUTION_PREVIEW','尚未建立');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION','学术传统');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION','学术传统');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_REPUTATION','商业信誉');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_REPUTATION','商业信誉');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_DIALOGUE','时代对话');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_DIALOGUE','时代对话');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_EXPEDITION','人文考察团');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_EXPEDITION','人文考察团');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ENGINEERING','工程传统');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ENGINEERING','工程传统');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION','标准化');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION','标准化');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PENDING','当前数值待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PENDING','当前数值待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PENDING_SHORT','待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PENDING_SHORT','待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_NOT_STARTED','尚未开始积累');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_NOT_STARTED','尚未开始积累');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION_VALUE','已累计 {1} 回合；学术传统倍率 +{2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION_VALUE','已累计 {1} 回合；学术传统倍率 +{2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION_NEXT','距下一档还需 {1} 回合。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION_NEXT','距下一档还需 {1} 回合。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACCUMULATION_PAUSED','积累已暂停，历史保留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACCUMULATION_PAUSED','积累已暂停，历史保留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_REPUTATION_VALUE','已累计信誉 {1}/40；商业化增幅 +{2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_REPUTATION_VALUE','已累计信誉 {1}/40；商业化增幅 +{2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_DIALOGUE_VALUE','已累计巨作旅游业绩倍率：+{1}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_DIALOGUE_VALUE','已累计巨作旅游业绩倍率：+{1}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_INSIGHTS_VALUE','文化见闻：{1} 份。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_INSIGHTS_VALUE','文化见闻：{1} 份。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ENGINEERING_VALUE','已完成研习：{1} 层；四级启用时，标准化建造加成与合格建筑金币折扣各增强 {2} 个百分点。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ENGINEERING_VALUE','已完成研习：{1} 层；四级启用时，标准化建造加成与合格建筑金币折扣各增强 {2} 个百分点。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TEMPLATES_VALUE','本城已记录模板：建筑 {1} 项，区域 {2} 项。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TEMPLATES_VALUE','本城已记录模板：建筑 {1} 项，区域 {2} 项。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION_VALUE','本城当前提供：建造生产力 +{1}%，合格建筑金币购买折扣 {2}%。（不含区域购买折扣）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION_VALUE','本城当前提供：建造生产力 +{1}%，合格建筑金币购买折扣 {2}%。（不含区域购买折扣）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION_PAUSED','本城当前不提供标准化加成；已记录模板保留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION_PAUSED','本城当前不提供标准化加成；已记录模板保留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACTIVE_PENDING','当前启用等级暂待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACTIVE_PENDING','当前启用等级暂待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_LEGACY_HELP','曾建立的历史机构（当前已脱离该专业，不提供对应能力）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_LEGACY_HELP','曾建立的历史机构（当前已脱离该专业，不提供对应能力）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PREVIEW_HELP','未来机构预览：专业潜力达到 {1} 级后建立；尚未授予本级能力。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PREVIEW_HELP','未来机构预览：专业潜力达到 {1} 级后建立；尚未授予本级能力。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACTIVE_HELP','已达到本级机构的启用等级（具体收益仍需满足各能力的对应条件）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACTIVE_HELP','已达到本级机构的启用等级（具体收益仍需满足各能力的对应条件）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_INACTIVE_HELP','尚未满足本级机构的启用条件（已建成的机构仍予以保留）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_INACTIVE_HELP','尚未满足本级机构的启用条件（已建成的机构仍予以保留）');

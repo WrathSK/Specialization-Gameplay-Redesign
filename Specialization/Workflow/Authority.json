@@ -9,9 +9,9 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0176",
-    "status": "S0671",
-    "runtime": "B250.277 / modinfo277",
+    "architecture": "A0177",
+    "status": "S0672",
+    "runtime": "B251.278 / modinfo278",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
   "runtime_commit": "d6bb1900b4aae9c9d979acf3ce5e787fc63f9457",
-  "current_batch": "B250_UI_COPY_DEPLOYED",
-  "next_batch": "Observe the approved Chinese copy during the planned v0.1 playtest. B249 functional evidence and S0669 scheduling remain; no separate test session or further implementation authorized.",
+  "current_batch": "B251_INSTITUTION_UI_LOCAL_COMPLETE",
+  "next_batch": "Guarded B251 deployment, then one visual check during normal play. No further gameplay/audit batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B250.277/modinfo277 DEVELOP_ACTIVE; source d6bb1900b4aae9c9d979acf3ce5e787fc63f9457; receipt B250.277-d6bb190-playtest.json;265/265 MATCH,digest f5bb9f8ad044478fc8bc23c2a749f16f0ddee7fec1a03b40b01c9ca8f1d1f191. Stable and outgoing B249 recovery verified; no pending marker, game launch or configuration change.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0670: user-approved 203-entry editorial integration,104 changes/99 KEEP; reviewed seven factual corrections and eight narrow semantic safeguards.12 copy files plus two build stamps; local localization/Lua/token/display/package checks PASS, no new native acceptance. Named hashes only; frozen evidence, gameplay/Design/Architecture/tests/main/configuration unchanged. S0671: deployment receipt/source/live/stable/outgoing recovery inspected; six named deployment/current metadata files reviewed and rehashed, no source/test/Design change or new native PASS.",
+  "context_review_status": "S0672: B251 authorized icon/layout/all-level-preview/scalar-summary implementation, including Standardization. Direct source/dependencies and23 targeted methods reviewed; only named source/test/art/current documents rehashed. Two fixed DDS blobs have explicit one-time publication approval; no rule/configuration change or new native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md"
 }

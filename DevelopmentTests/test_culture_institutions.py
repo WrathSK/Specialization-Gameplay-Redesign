@@ -22,7 +22,7 @@ def display():
     db.close()
     lua.execute('''
       function include()end
-      Locale={Lookup=function(k)return loc[k]or k end}
+      Locale={Lookup=function(k,...)local t=loc[k]or k;for i,x in ipairs({...})do t=t:gsub('{ '..i..' }',tostring(x)):gsub('{'..i..'}',tostring(x))end;return t end}
       local function event()local e={};function e.Add(f)e.f=f end;function e.Remove(f)if e.f==f then e.f=nil end end;return setmetatable(e,{__call=function(_,...)if e.f then return e.f(...)end end})end
       LuaEvents={SPC_InstitutionOverview=event(),SPC_PresentationChanged=event()}
       ExposedMembers={SPC_P0={}};Game={GetLocalPlayer=function()return 0 end}
@@ -30,7 +30,7 @@ def display():
       UI={GetHeadSelectedCity=function()return city end}
       local function control()local c={}
        function c:SetHide(v)self.hidden=v end;function c:IsHidden()return self.hidden or false end
-       function c:SetText(v)self.text=v end;function c:SetAlpha(v)self.alpha=v end
+       function c:SetIcon(v)self.icon=v end;function c:SetText(v)self.text=v end;function c:SetAlpha(v)self.alpha=v end;function c:SetColorByName(v)self.color=v end
        function c:SetToolTipString(v)self.tip=v end;function c:CalculateSize()sizes=sizes+1 end
        function c:ReprocessAnchoring()end;function c:ChangeParent()parents=parents+1 end
        function c:DestroyChild()end
@@ -43,7 +43,7 @@ def display():
       ContextPtr={SetHide=function()end,LookUpControl=function()return parent end,
        SetInitHandler=function(self,f)init=f end,SetShutdown=function(self,f)shutdown=f end}
       InstanceManager={new=function()local m={items={}}
-       function m:GetInstance()local row={Top=control(),Stage=control(),Name=control(),State=control()};self.items[#self.items+1]=row;return row end
+       function m:GetInstance()local row={Top=control(),Icon=control(),Name=control(),State=control()};self.items[#self.items+1]=row;return row end
        function m:ResetInstances()resets=resets+1;self.items={}end
        function m:DestroyInstances()self.items={}end
        rows=m;return m
@@ -68,18 +68,18 @@ class CultureInstitutionDisplay(unittest.TestCase):
         lua=display()
         lua.execute('''
           local expected={'文艺同好会','赞助人行会','人文联合会','博雅总院'}
-          local roman={'Ⅰ','Ⅱ','Ⅲ','Ⅳ'}
+          local icons='ICON_SPC_INSTITUTION_CULTURE_'
           assert(#rows.items==4 and not Controls.InstitutionContainer.hidden)
           for i,row in ipairs(rows.items)do
-           assert(row.Name.text==expected[i] and row.Stage.text==roman[i])
+           assert(row.Name.text==expected[i] and row.Icon.icon==icons..i)
            assert(row.State.text==(i==4 and '当前' or '启用'))
           end
           assert(rows.items[3].Top.tip:find('时代对话',1,true))
           assert(rows.items[4].Top.tip:find('巨作启迪',1,true))
-          assert(rows.items[4].Top.tip:find('尚未实施',1,true))
+          assert(rows.items[4].Top.tip:find('文化见闻',1,true))
           assert(#rendered.BuildingsAndDistricts[1].Buildings==2)
           assert(#data.BuildingsAndDistricts[1].Buildings==3)
-          for potential=1,2 do v.potential=potential;v.active=potential;LuaEvents.SPC_PresentationChanged();assert(#rows.items==potential)end
+          for potential=1,2 do v.potential=potential;v.active=potential;LuaEvents.SPC_PresentationChanged();assert(#rows.items==4 and rows.items[potential+1].State.text=='尚未建立')end
         ''')
 
     def test_active_drop_keeps_established_rows_and_unknown_does_not_erase(self):

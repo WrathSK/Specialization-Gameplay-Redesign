@@ -40,7 +40,7 @@ class UI(unittest.TestCase):
   self.assertIn('function OnPromptToDeleteUnit',s);self.assertIn('SPCRestructuringUI.IsTeam(UnitManager.GetUnit(id.player,id.id))',s)
  def test_current_and_legacy_institutions_render_without_old_active(self):
   from test_culture_institutions import display
-  l=display();l.execute("v.institutionArchive={RESEARCH=4,CULTURE=3,COMMERCE=4};v.specialization='NONE';v.potential=3;v.active=0;v.progression='REALLOCATING';LuaEvents.SPC_PresentationChanged();assert(#rows.items==11);for _,r in ipairs(rows.items)do assert(r.State.text=='历史机构')end;v.specialization='CULTURE';v.progression='SETTLED';v.active=3;LuaEvents.SPC_PresentationChanged();assert(#rows.items==11 and rows.items[7].State.text=='当前' and rows.items[4].State.text=='历史机构')")
+  l=display();l.execute("v.institutionArchive={RESEARCH=4,CULTURE=3,COMMERCE=4};v.specialization='NONE';v.potential=3;v.active=0;v.progression='REALLOCATING';LuaEvents.SPC_PresentationChanged();assert(#rows.items==11);for _,r in ipairs(rows.items)do assert(r.State.text=='历史机构')end;v.specialization='CULTURE';v.progression='SETTLED';v.active=3;LuaEvents.SPC_PresentationChanged();assert(#rows.items==12 and rows.items[7].State.text=='当前' and rows.items[4].State.text=='历史机构')")
 
 class Definitions(unittest.TestCase):
  @classmethod

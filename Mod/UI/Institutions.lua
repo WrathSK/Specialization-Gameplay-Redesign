@@ -4,7 +4,6 @@ include('InstitutionPresentation')
 local M=SPCInstitutionPresentation
 local parent,last
 local rows=InstanceManager:new('InstitutionRowInstance','Top',Controls.InstitutionRows)
-local roman={'Ⅰ','Ⅱ','Ⅲ','Ⅳ'}
 local function top()
  local children=parent:GetChildren()
  local own=tostring(Controls.InstitutionContainer)
@@ -41,19 +40,21 @@ local function render(data,v)
  for _,entry in ipairs(M.GetRows(v)) do
   if not entry.historical and entry.level<=v.potential and known and entry.level<=v.active then highest=math.max(highest,entry.level) end
  end
- for index,entry in ipairs(M.GetRows(v)) do if entry.established or entry.level<=v.potential then
+ for index,entry in ipairs(M.GetRows(v)) do
   local row=rows:GetInstance()
-  local enabled=not entry.historical and known and entry.level<=v.active
+  local enabled=entry.established and not entry.historical and known and entry.level<=v.active
   local current=enabled and entry.level==highest
-  local state=entry.historical and 'LEGACY' or not known and 'UNKNOWN' or (not enabled and 'INACTIVE' or (current and 'CURRENT' or 'ENABLED'))
-  row.Stage:SetText(roman[entry.level] or tostring(entry.level))
+  local state=entry.historical and 'LEGACY' or not entry.established and 'PREVIEW' or not known and 'UNKNOWN' or (not enabled and 'INACTIVE' or (current and 'CURRENT' or 'ENABLED'))
+  row.Icon:SetIcon(entry.icon)
   row.Name:SetText(M.Label(entry,'name'))
   row.State:SetText(Locale.Lookup('LOC_SPC_INSTITUTION_'..state))
-  row.Name:SetAlpha(current and 1 or .9)
-  row.Stage:SetAlpha(current and 1 or .8)
-  row.State:SetAlpha(state=='ENABLED' and .65 or 1)
+  row.Name:SetColorByName(current and 'Gold' or 'White')
+  row.State:SetColorByName(current and 'Gold' or 'White')
+  row.Name:SetAlpha(not entry.established and .65 or current and 1 or .9)
+  row.Icon:SetAlpha(not entry.established and .6 or current and 1 or .85)
+  row.State:SetAlpha(state=='ENABLED' and .65 or state=='PREVIEW' and .7 or 1)
   row.Top:SetToolTipString(M.Tooltip(index,v))
- end end
+ end
  size()
 end
 ContextPtr:SetInitHandler(function() ContextPtr:SetHide(false);Controls.InstitutionContainer:SetHide(true);LuaEvents.SPC_InstitutionOverview.Add(render) end)

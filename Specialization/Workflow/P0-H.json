@@ -10,15 +10,15 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0176",
-    "status": "S0671",
-    "runtime": "B250.277 / modinfo277",
+    "architecture": "A0177",
+    "status": "S0672",
+    "runtime": "B251.278 / modinfo278",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-  "goal": "B250 copy-only integration of the user-approved four-profession Chinese UI draft. Preserve B249 functional acceptance and S0669 playtest/deferred scope; no new gameplay or visual redesign.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+  "goal": "B251 user-supplied institution icons, current-profession four-level previews, ability-local historical values including source Standardization, readable row spacing and ACTIVE emphasis. Gameplay and held scope unchanged.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,53 +28,51 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
       "kind": "section",
-      "selector": "## Scope and adoption",
-      "reason": "Approved editorial map and independently checked factual corrections."
+      "selector": "## Scope and presentation",
+      "reason": "Approved UI behavior and source-vs-recipient distinction."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
       "kind": "section",
-      "selector": "## Integration safeguards",
-      "reason": "Precise quota/history/held-state wording, without rule changes."
+      "selector": "## Read and lifetime contract",
+      "reason": "Read-only scalar ownership, no lazy initialization or new scheduler."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
       "kind": "section",
-      "selector": "## Local validation",
-      "reason": "Copy-only validation and inherited native limits."
+      "selector": "## Native references and local validation",
+      "reason": "Evidence and visual acceptance boundary."
     },
     {
-      "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
       "kind": "section",
-      "selector": "## v0.1 playtest scheduling checkpoint",
-      "reason": "Unchanged user scheduling decisions; no held work advanced."
+      "selector": "## Publication boundary",
+      "reason": "Two fixed user-approved binary blobs; normal remaining gate."
     }
   ],
   "dependencies": [
-    "Existing localization keys/control tokens and the same Lua dynamic-value expressions. All16 names and established/active/history display logic unchanged.",
-    "All B249 gameplay, writers, persistent state, calculations, event/GC behavior and prior scoped native evidence inherited without modification."
+    "Existing selected-city presentation request, EffectiveFacts, Store guarded city identity/history and pure ResearchTradition.Shadow. No new polling or native fact collection.",
+    "Native Image:SetIcon/SetColorByName and supplied16 SVG icons;267-file Mod closure. Prior gameplay evidence and held items remain scoped."
   ],
   "old_writers": [
-    "No writer cutover. Replace only the104 mapped presentation strings; preserve all keys, formulas and source/runtime isolation."
+    "No gameplay writer cutover; replace only the institution display and add a no-write scalar projection. Existing ReadTemplates compatibility writes must never be invoked from this summary."
   ],
   "conditional_context": [
     {
-      "trigger": "Mapped text, token or gameplay-semantic discrepancy",
+      "trigger": "Presentation or historical-number discrepancy",
       "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/Gameplay.lua",
         "Mod/InstitutionPresentation.lua",
-        "Mod/Text/ClaimProjects.sql",
-        "Mod/Text/Commerce.sql",
-        "Mod/Text/DevelopmentInvestment.sql",
-        "Mod/Text/DialogueProjects.sql",
-        "Mod/Text/EngineeringStudy.sql",
-        "Mod/Text/ExpeditionGate.sql",
-        "Mod/Text/Restructuring.sql",
+        "Mod/UI/InstitutionOverview.lua",
+        "Mod/UI/Institutions.lua",
+        "Mod/UI/Institutions.xml",
+        "Mod/Data/Icons.sql",
         "Mod/Text/TestText.sql",
-        "Mod/UI/CityPotential.lua",
-        "Mod/UI/DialogueProjectUI.lua",
-        "Mod/UI/UnitPanelActions.lua"
+        "Mod/Probe.lua",
+        "DevelopmentTests/test_b251_institutions.py"
       ]
     },
     {
@@ -85,23 +83,23 @@
     }
   ],
   "non_scope": [
-    "Gameplay/Design/Architecture/formal test or UI layout changes; held features, audit repairs, balance, new timers, saved fields, main/promotion, configuration or game launch.",
-    "English translation, other agents' reports, frozen records and the original editorial draft contents. Existing generated Chinese fallback rows keep their normal behavior."
+    "Gameplay/Design/balance changes; held features or audits; new timers, saved fields, cache framework, main/promotion, configuration or game launch.",
+    "Publication-policy changes, other agents reports, frozen history and screenshot/log/save publication. The exact two reviewed DDS blobs are the sole one-batch exception."
   ],
   "validation": {
-    "depth": "L1 copy-only: effective SQL localization, placeholder/control tokens, Lua syntax/code identity, directly related display regressions and package/context/publication checks.",
-    "local": "203 mappings;104 changes/99 KEEP;90 intended zh rows plus26 existing generated en_US Chinese fallbacks;1102 effective rows;5 Lua files;16 institution rows;6 selected display methods;265-file closure PASS.",
-    "user": "No standalone native test. Observe Chinese wording/wrapping during the planned v0.1 playtest. Prior B249 acceptance remains; REALLOCATING cold-load and Standardization/Development additive integration are still within that playtest.",
-    "gap": "Native typography/layout not newly tested; no claim that held gameplay or audit findings are fixed."
+    "depth": "L2 targeted actual Lua Store/request/UI plus L1 icon/localization/package/static checks.",
+    "local": "23 methods PASS; six Lua5.1 compilations;16 icon entries; two reviewed DXT5 atlases;267-file closure. Native interfaces checked against installed read-only UI source.",
+    "user": "One normal-session visual check of lower/advanced city rows, icons, spacing, highlighted ACTIVE and available ability values. No extra save/load or yield retest.",
+    "gap": "Native icon/typography/layout pending; local read/counter evidence is not native performance or new gameplay PASS."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-    "source": "B250.277/modinfo277 DEVELOP_ACTIVE; source d6bb1900b4aae9c9d979acf3ce5e787fc63f9457; receipt B250.277-d6bb190-playtest.json;265/265 MATCH,digest f5bb9f8ad044478fc8bc23c2a749f16f0ddee7fec1a03b40b01c9ca8f1d1f191. Stable and outgoing B249 recovery verified; no pending marker, game launch or configuration change.",
-    "native": "No new native PASS; inherited B249 and prior scope preserved.",
-    "stop": "B250 source, archive, local checks and deployment checkpoint complete. Observe UI copy within the existing v0.1 playtest and wait for the user; no further gameplay batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+    "source": "B251.278 local implementation complete; B250 remains live until the verified transaction.",
+    "native": "USER_GAME_TEST_REQUIRED for new visuals; prior gameplay evidence unchanged.",
+    "stop": "Complete current UI commit/deployment checkpoint, then stop. No next implementation batch."
   }
 }

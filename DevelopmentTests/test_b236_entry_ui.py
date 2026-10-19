@@ -50,7 +50,7 @@ class IndustryInstitutions(unittest.TestCase):
           local names={'匠作坊','百工会馆','工程局','土木工程总局'}
           for i=1,4 do
            v.potential=i;v.active=i;LuaEvents.SPC_PresentationChanged()
-           assert(#rows.items==i and rows.items[i].Name.text==names[i] and rows.items[i].State.text=='当前')
+           assert(#rows.items==4 and rows.items[i].Name.text==names[i] and rows.items[i].State.text=='当前')
           end
           assert(rows.items[1].Top.tip:find('基础相邻',1,true))
           assert(rows.items[2].Top.tip:find('专业分工',1,true))

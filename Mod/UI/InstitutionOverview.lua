@@ -22,7 +22,7 @@ local function eligible(data)
  if M.Matches(v,data.Owner,c:GetID(),c:GetX(),c:GetY()) then verified=v;return true,v end
  -- A confirmed different Identity withdraws; temporary unavailable preserves institutions.
  if v and not v.error and v.owner==data.Owner and v.cityID==c:GetID() and v.x==c:GetX() and v.y==c:GetY() then verified=nil end
- if verified then local pending={};for key,value in pairs(verified) do pending[key]=value end;pending.active=nil;pending.activeStatus='UNKNOWN';return true,pending end
+ if verified then local pending={};for key,value in pairs(verified) do pending[key]=value end;pending.active=nil;pending.activeStatus='UNKNOWN';pending.institutionSummary={known=false};return true,pending end
  return false
 end
 local function signature(ok,v)
