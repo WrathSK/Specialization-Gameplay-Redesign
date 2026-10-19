@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0656
-Implementation Build: source B245.272; live B244.271; stable B069.96
+Status Revision: S0657
+Implementation Build: source/live B245.272; stable B069.96
 Architecture Revision Reviewed: A0172
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_UNCHANGED_CAPITAL_RECEIPT_REPAIR
-Work State: B245_LOCAL_COMPLETE_DEPLOYMENT_PENDING
+Work State: B245_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B245.272 locally complete; native sign/cold-load/maturity still pending:** [implementation and one combined test](Validation/Results/Specialization_B245_Capital_Receipts_Local.md).
+**B245.272 deployed; native sign/cold-load/maturity still pending:** [implementation and one combined test](Validation/Results/Specialization_B245_Capital_Receipts_Local.md).
 - User explicitly accepts <=0.01 Gold per native debit/credit. Original principal/returns/probability and exact Store readback remain; actual amounts are separate persisted receipts. Wrong-direction/zero/unreadable/throwing/out-of-bound calls and uncertain receipt saves never automatically replay.
 - 142 selected local methods PASS; coherent B244/B245 values/work agree apart from intentional receipt state. No native PASS inferred. The old B244 failed intent is not repaired; use a pre-confirmation baseline for the combined test.
-- Source B245.272/modinfo272 awaits clean-source/W0003 deployment. Live remains B244.271 from `bc69c94`, receipt `B244.271-bc69c94-playtest.json`; main/stable B069.96 unchanged.
-- A0172 records only this accepted technical receipt boundary. No new business formula, COM-C/D, timers, GC, other-module or configuration change. After deployment stop for the user's single combined session.
+- Source/live B245.272/modinfo272 from `006bf9c`; 251/251 MATCH, receipt `B245.272-006bf9c-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
+- A0172 records only this accepted technical receipt boundary. No new business formula, COM-C/D, timers, GC, other-module or configuration change. Stop for the user's single combined session.
+
+## S0657 — B245 verified deployment
+
+Clean/pushed source `006bf9c` passed fresh automatic game-exit checks before exact B244 receipt restore and B245 activation. 251/251 source/runtime files MATCH; receipt `B245.272-006bf9c-playtest.json`, digest `58201248325c9430ccada071ca242211400c394eb1830d6d950edfe496f19a0b`. Both recovery packages retained; no pending transaction. Context, diff and staged publication checks pass. Main/configuration unchanged, no game launch. The combined signing/cold-load/maturity native gate remains pending; stop without another implementation batch.
 
 ## S0656 — B245 bounded actual receipts locally verified
 

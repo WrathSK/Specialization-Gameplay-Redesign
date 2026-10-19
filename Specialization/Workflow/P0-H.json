@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0172",
-    "status": "S0656",
+    "status": "S0657",
     "runtime": "B245.272 / modinfo272",
     "military": "D0037",
     "harbor": "D0037",
@@ -118,8 +118,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-    "source": "B245.272/modinfo272 locally complete; live still B244.271 from bc69c94 until guarded deployment.",
+    "source": "B245.272/modinfo272 deployed from 006bf9ca6edeffc1b6a5ceca213aa94ebbf2a5cb;251/251 MATCH; receipt B245.272-006bf9c-playtest.json",
     "native": "USER_GAME_TEST_REQUIRED; previous B244 native debit rejection remains historical evidence.",
-    "stop": "Deploy after clean-source/exit/receipt checks, then stop for the one combined user session."
+    "stop": "Await the single combined user test, then review exact receipt logs; no new implementation batch."
   }
 }
