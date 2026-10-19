@@ -105,7 +105,7 @@ local visited;shared.CityProgressionStore.VisitCapital(0,function(v,r)if r.cityI
 assert(C.model.Same(visited,C.state()));visited.contracts.DISTRICT_CAMPUS.safe=1
 assert(C.contract().safe==q.safe)
 local expected=balance+q.safe;T.turn(10)
-assert(C.contract().stage=='SETTLED' and C.contract().paid==q.safe and moneyCalls==2 and balance==expected)
+assert(C.contract().stage=='SETTLED' and C.contract().paid==expected-C.contract().creditBefore and C.model.MoneyMatches(C.contract().creditBefore,q.safe,C.contract().creditActualAfter) and moneyCalls==2 and balance==expected)
 assert(C.contract().creditBefore==q.balance-q.principal and C.contract().creditAfter==expected)
 assert(type(T.record(source).capital.contracts.DISTRICT_CAMPUS.paid)=='string')
 assert(T.encode(T.record(other))==untouched and T.scanCount()==0)
@@ -122,7 +122,7 @@ for domain,c in pairs(state.contracts)do sum=sum+C.model.Payout(c)end
 assert(moneyCalls==3 and rolls==2 and state.protection['0']==0)
 C.reload();assert(C.model.Same(C.state(),state) and rolls==2)
 T.turn(10);assert(moneyCalls==6 and balance==sum)
-for domain,c in pairs(C.state().contracts)do assert(c.stage=='SETTLED' and c.paid==C.model.Payout(state.contracts[domain]))end
+for domain,c in pairs(C.state().contracts)do assert(c.stage=='SETTLED' and c.paid==c.creditActualAfter-c.creditBefore and C.model.MoneyMatches(c.creditBefore,C.model.Payout(state.contracts[domain]),c.creditActualAfter))end
 cap.Reconcile(0);assert(moneyCalls==6)
 ''')
 

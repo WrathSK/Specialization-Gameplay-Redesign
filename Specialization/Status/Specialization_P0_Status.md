@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0655
-Implementation Build: source/live B244.271; stable B069.96
-Architecture Revision Reviewed: A0171
+Status Revision: S0656
+Implementation Build: source B245.272; live B244.271; stable B069.96
+Architecture Revision Reviewed: A0172
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_UNCHANGED_CAPITAL_STORAGE_REPAIR
-Work State: B244_NATIVE_DEBIT_PRECISION_FAILURE
+Design Sync State: D0056_UNCHANGED_CAPITAL_RECEIPT_REPAIR
+Work State: B245_LOCAL_COMPLETE_DEPLOYMENT_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B244 signing reaches the native debit, then pauses on a 0.0029296875-Gold discrepancy:** [native evidence and bounded B245 proposal](Validation/Results/Specialization_B244_Native_Review.md).
-- Source/live remain B244.271/modinfo271 from `bc69c94`;251/251 MATCH, receipt `B244.271-bc69c94-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
-- Both strict pre-debit encoded saves pass in this run. One native call deducts 4501.234375 instead of 4501.2314453125; the 0.000001 readback guard stops activation. Screenshot and 69 contiguous trace records confirm the held response. No signing/cold-load/maturity PASS.
-- Three unchanged-source local comparisons distinguish exact/binary32 balance behavior from a 1/256 quantization model matching the observed debit. Protection holds after refresh/reconstruction without replay in that model; this is not native cold-load evidence or proof of the engine's universal monetary unit.
-- B245 is **PLANNED_NOT_AUTHORIZED**: user decision needed on a proposed <= 0.01-Gold per-call receipt allowance, preserving formulas and exact storage, recording actual transfer separately, and retaining no-replay protections. No new test now; the original combined sign/cold-load/maturity gate resumes only after an approved repair. No automatic hold clearing, amount correction, COM-C/D, timers or GC work.
+**B245.272 locally complete; native sign/cold-load/maturity still pending:** [implementation and one combined test](Validation/Results/Specialization_B245_Capital_Receipts_Local.md).
+- User explicitly accepts <=0.01 Gold per native debit/credit. Original principal/returns/probability and exact Store readback remain; actual amounts are separate persisted receipts. Wrong-direction/zero/unreadable/throwing/out-of-bound calls and uncertain receipt saves never automatically replay.
+- 142 selected local methods PASS; coherent B244/B245 values/work agree apart from intentional receipt state. No native PASS inferred. The old B244 failed intent is not repaired; use a pre-confirmation baseline for the combined test.
+- Source B245.272/modinfo272 awaits clean-source/W0003 deployment. Live remains B244.271 from `bc69c94`, receipt `B244.271-bc69c94-playtest.json`; main/stable B069.96 unchanged.
+- A0172 records only this accepted technical receipt boundary. No new business formula, COM-C/D, timers, GC, other-module or configuration change. After deployment stop for the user's single combined session.
+
+## S0656 — B245 bounded actual receipts locally verified
+
+The approved per-call monetary allowance is limited to native transfer observations; strict stored-value comparisons remain unchanged. Capital version 2 records observed debit/credit and exposes actual settled net, without reconstructing old failed attempts. 142 selected local methods pass, including captured-debit reproduction, coherent baseline comparison, fresh-VM reconstruction, readback corruption, exceptions and no-replay outcomes. Original B244/frozen evidence and Design remain unchanged; named reviewed hashes/current selectors updated. Commit/push and guarded deployment are authorized; native acceptance is pending.
 
 ## S0655 — B244 native Treasury discrepancy
 

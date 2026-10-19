@@ -58,7 +58,7 @@ function M.Readback(point,readOK,observed,expected,domain,writeStatus,matches)
  if difference('contract',actual,wanted,true)then return out end
  if type(actual)=='table' and type(wanted)=='table'then
   for _,k in ipairs({'stage','principal','balanceBefore','balanceAfter','safe','success','failure','probability',
-   'D','S','C','R','start','due','sequence','attained','creditBefore','creditAfter','paid','settledTurn','mode','domain'})do
+   'D','S','C','R','start','due','sequence','attained','creditBefore','creditAfter','paid','debitAfter','debited','creditActualAfter','settledTurn','mode','domain'})do
    difference('contract.'..k,field(actual,k),field(wanted,k))
   end
   for _,k in ipairs({'source','sSource'})do

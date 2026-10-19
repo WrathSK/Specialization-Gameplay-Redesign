@@ -71,15 +71,21 @@ function SPCCapitalInvestment.Start(P,shared)
  end
  local function mutate(pid,delta,expectedBefore,c,phase)
   local before,t=money(pid);assert(before==expectedBefore,'CAPITAL_TREASURY_CHANGED')
-  local called,why=pcall(function()t:ChangeGoldBalance(delta)end)
+  local expected=before+delta
+  assert(M.Finite(expected),'CAPITAL_MONEY_UNCONFIRMED')
+  local called=pcall(function()t:ChangeGoldBalance(delta)end)
   local readable,after=pcall(function()return money(pid)end)
+  local accepted=called and readable and M.MoneyMatches(before,delta,after)
+  local actual=readable and after-before or nil
   emit('CAPITAL_MONEY',{owner=pid,city=c.source.cityID,contractID=c.sequence,contractDomain=c.domain,
    phase=phase,balanceBefore=before,balanceAfter=readable and after or nil,
-   expected=before+delta,actualDelta=readable and after-before or nil,principal=c.principal,
-   contractDue=c.due,readStatus=readable and 'VERIFIED' or 'UNKNOWN',reason=called and 'CAPITAL_MONEY_READBACK' or 'CAPITAL_NATIVE_ERROR'})
-  -- No Floor, epsilon accumulation or silent amount correction. A fractional
-  -- native mismatch is evidence for a precision decision, never permission to retry.
-  assert(called and readable and math.abs(after-(before+delta))<=.000001,'CAPITAL_MONEY_UNCONFIRMED')
+   expected=expected,requestedDelta=delta,actualDelta=actual,principal=c.principal,
+   moneyError=actual and actual-delta or nil,moneyTolerance=M.MONEY_TOLERANCE,moneyAccepted=accepted,
+   contractDue=c.due,readStatus=readable and 'READABLE' or 'UNKNOWN',submitStatus=called and 'RETURNED' or 'THREW',
+   reason=called and 'CAPITAL_MONEY_READBACK' or 'CAPITAL_NATIVE_ERROR'})
+  -- Only native money has the approved allowance. Never round terms, compensate
+  -- with another call, or relax exact Property/receipt persistence checks.
+  assert(accepted,'CAPITAL_MONEY_UNCONFIRMED')
   assert(validReferences(c),'CAPITAL_OWNER_CHANGED')
   return after
  end
@@ -205,12 +211,14 @@ function SPCCapitalInvestment.Start(P,shared)
    calling.contracts[domain].creditBefore=before;calling.contracts[domain].creditAfter=before+amount
    write(pid,c,value,calling,domain,attempt,'CREDIT_CALLING_WRITE')
    attempt.phase='NATIVE_CREDIT';attempt.readback=nil
-   mutate(pid,amount,before,contract,'CREDIT')
+   local after=mutate(pid,amount,before,contract,'CREDIT')
    local done=cp(calling);local final=done.contracts[domain]
-   final.stage='SETTLED';final.paid=amount;final.settledTurn=Game.GetCurrentGameTurn()
+   final.stage='SETTLED';final.creditActualAfter=after;final.paid=after-before
+   final.settledTurn=Game.GetCurrentGameTurn()
    write(pid,c,calling,done,domain,attempt,'SETTLED_RECEIPT_WRITE')
    emit('CAPITAL_SETTLED',{owner=pid,city=c:GetID(),contractID=contract.sequence,contractDomain=domain,
-    phase='SETTLED',mode=contract.mode,principal=contract.principal,returnAmount=amount,requestResult=contract.won and 'SUCCESS' or 'FAILURE'})
+    phase='SETTLED',mode=contract.mode,principal=contract.principal,requestedDelta=amount,returnAmount=final.paid,
+    balanceBefore=before,balanceAfter=after,actualDelta=final.paid,requestResult=contract.won and 'SUCCESS' or 'FAILURE'})
    return done
   end
   return value
@@ -304,11 +312,12 @@ function SPCCapitalInvestment.Start(P,shared)
     write(pid,c,locked.old,value,p.Domain,attempt,'DEBIT_INTENT_WRITE')
     write(pid,c,value,calling,p.Domain,attempt,'DEBIT_CALLING_WRITE')
     attempt.phase='NATIVE_DEBIT';attempt.readback=nil
-    mutate(pid,-q.principal,q.balance,calling.contracts[p.Domain],'DEBIT')
+    local after=mutate(pid,-q.principal,q.balance,calling.contracts[p.Domain],'DEBIT')
     attempt.phase='CONTRACT_ACTIVATE'
-    local active=M.Activate(calling,p.Domain);write(pid,c,calling,active,p.Domain,attempt,'ACTIVE_RECEIPT_WRITE')
+    local active=M.Activate(calling,p.Domain,after);write(pid,c,calling,active,p.Domain,attempt,'ACTIVE_RECEIPT_WRITE')
     emit('CAPITAL_SIGNED',{owner=pid,city=p.CityID,contractID=active.sequence,contractDomain=p.Domain,
-     phase='ACTIVE',mode=p.Mode,principal=q.principal,contractDue=q.due,profitRate=q.r,probability=q.probability})
+     phase='ACTIVE',mode=p.Mode,principal=q.principal,contractDue=q.due,profitRate=q.r,probability=q.probability,
+     balanceBefore=q.balance,balanceAfter=after,actualDelta=after-q.balance})
    end)
    busy=false
    assert(applied,err)

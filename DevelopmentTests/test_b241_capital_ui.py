@@ -62,7 +62,7 @@ class Package(unittest.TestCase):
   xml=ET.parse(MOD/'SpecializationP0.modinfo');files=[e.text for e in xml.findall('./Files/File')];imports={e.text for e in xml.findall('./InGameActions/ImportFiles/File')}
   needed={'CapitalInvestment.lua','CapitalInvestmentModel.lua','UI/CapitalInvestmentUI.lua','UI/CapitalInvestmentPanel.lua','UI/CapitalInvestmentPanel.xml'}
   for p in needed:self.assertEqual(files.count(p),1,p);self.assertIn(p,imports);self.assertTrue((MOD/p).is_file())
-  self.assertEqual(xml.getroot().get('version'),'271')
+  self.assertEqual(xml.getroot().get('version'),'272')
   action=xml.find("./InGameActions/AddUserInterfaces[@id='SPC_B241_CapitalPanel']");self.assertEqual(action.findtext('File'),'UI/CapitalInvestmentPanel.xml')
  def test_access_project_is_no_reward_and_uses_native_commerce_icon(self):
   from test_b239_commerce_integration import SQLAndPackage

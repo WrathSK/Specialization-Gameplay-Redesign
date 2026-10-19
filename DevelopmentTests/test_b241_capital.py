@@ -87,9 +87,9 @@ class Model(unittest.TestCase):
  def test_unknown_historical_time_only_blocks_a_real_tie(self):
   self.run_lua("local a={reference=ref,level=3};assert(M.Choose{a});local b=M.Copy(a);b.reference.cityID=2;b.attained=1;assert(not pcall(M.Choose,{a,b}));assert(select(2,M.Choose{})==1)")
  def test_failure_count_shared_and_success_reset_at_activation(self):
-  self.run_lua("local q=M.Quote{domain='DISTRICT_CAMPUS',source=ref,turn=5,balance=1000,D=1,R=0,failureCount=0};local n=M.Begin(nil,q,'VENTURE',.99,'one');assert(not next(n.protection));n.contracts[q.domain].stage='DEBIT_CALLING';n=M.Activate(n,q.domain);assert(n.protection['0']==1);local nextQ=M.Quote{domain='DISTRICT_THEATER',source=ref,turn=5,balance=750,D=1,R=0,failureCount=1};assert(nextQ.probability>q.probability);n=M.Begin(n,nextQ,'VENTURE',0,'two');n.contracts[nextQ.domain].stage='DEBIT_CALLING';n=M.Activate(n,nextQ.domain);assert(n.protection['0']==0)")
+  self.run_lua("local q=M.Quote{domain='DISTRICT_CAMPUS',source=ref,turn=5,balance=1000,D=1,R=0,failureCount=0};local n=M.Begin(nil,q,'VENTURE',.99,'one');assert(not next(n.protection));n.contracts[q.domain].stage='DEBIT_CALLING';n=M.Activate(n,q.domain,n.contracts[q.domain].balanceAfter);assert(n.protection['0']==1);local nextQ=M.Quote{domain='DISTRICT_THEATER',source=ref,turn=5,balance=750,D=1,R=0,failureCount=1};assert(nextQ.probability>q.probability);n=M.Begin(n,nextQ,'VENTURE',0,'two');n.contracts[nextQ.domain].stage='DEBIT_CALLING';n=M.Activate(n,nextQ.domain,n.contracts[nextQ.domain].balanceAfter);assert(n.protection['0']==0)")
  def test_termination_does_not_change_protection_and_public_hides_outcome(self):
-  self.run_lua("local q=M.Quote{domain='DISTRICT_CAMPUS',source=ref,turn=5,balance=1000,D=1,R=0,failureCount=0};local n=M.Begin(nil,q,'VENTURE',.99,'one');n.contracts[q.domain].stage='DEBIT_CALLING';n=M.Activate(n,q.domain);local p=M.PublicContract(n.contracts[q.domain]);assert(p.won==nil and p.failureCount==nil);n=M.Terminate(n,'CAPITAL_OWNER_CHANGED');assert(n.protection['0']==1 and n.contracts[q.domain].stage=='TERMINATED');assert(not next(M.ResetProtection(n).protection))")
+  self.run_lua("local q=M.Quote{domain='DISTRICT_CAMPUS',source=ref,turn=5,balance=1000,D=1,R=0,failureCount=0};local n=M.Begin(nil,q,'VENTURE',.99,'one');n.contracts[q.domain].stage='DEBIT_CALLING';n=M.Activate(n,q.domain,n.contracts[q.domain].balanceAfter);local p=M.PublicContract(n.contracts[q.domain]);assert(p.won==nil and p.failureCount==nil);n=M.Terminate(n,'CAPITAL_OWNER_CHANGED');assert(n.protection['0']==1 and n.contracts[q.domain].stage=='TERMINATED');assert(not next(M.ResetProtection(n).protection))")
  def test_probability_cap_all_local_D_and_S(self):
   self.run_lua("for D=0,10 do for S=1,4 do for n=0,50 do local q=M.Quote{domain='DISTRICT_CAMPUS',source=ref,turn=0,balance=1000,D=D,R=40,failureCount=n,candidates={{reference=ref,level=S,attained=0}}};assert(q.probability<=.8 and q.probability>=.4 and q.failure==175 and q.safe<=q.success)end end end")
  def test_invalid_sparse_and_corrupt_contracts_rejected(self):
@@ -110,7 +110,7 @@ class Runtime(unittest.TestCase):
  def test_maturity_once_duplicate_turn_and_reload(self):
   self.check("assert(C.confirm());local contract=C.contract();local expected=balance+contract.safe;T.turn(10);assert(C.contract().stage=='SETTLED' and math.abs(balance-expected)<1e-9 and moneyCalls==2);cap.Reconcile(0);assert(moneyCalls==2);C.reload();cap.Reconcile(0);assert(C.contract().stage=='SETTLED' and moneyCalls==2)")
  def test_midterm_coldload_preserves_locked_outcome_and_terms(self):
-  self.check("roll=.99;assert(C.confirm(nil,'VENTURE'));local before=T.encode(C.contract());local b=balance;C.reload();assert(T.encode(C.contract())==before and balance==b and rolls==1);T.turn(10);assert(C.contract().stage=='SETTLED' and rolls==1 and C.contract().paid==C.contract().failure)")
+  self.check("roll=.99;assert(C.confirm(nil,'VENTURE'));local before=T.encode(C.contract());local b=balance;C.reload();assert(T.encode(C.contract())==before and balance==b and rolls==1);T.turn(10);assert(C.contract().stage=='SETTLED' and rolls==1 and C.contract().paid==C.contract().creditActualAfter-C.contract().creditBefore and C.model.MoneyMatches(C.contract().creditBefore,C.contract().failure,C.contract().creditActualAfter))")
  def test_active_loss_and_route_loss_do_not_reprice_or_cancel_signed_contract(self):
   self.check("assert(C.confirm());local original=T.encode(C.contract());T.governor(1);networkFail=true;cap.Refresh(0,source:GetID());assert(not C.view().canSign and T.encode(C.contract())==original);T.turn(10);assert(C.contract().stage=='SETTLED')")
  def test_source_owner_change_terminates_without_return_or_failure_update(self):
@@ -118,7 +118,7 @@ class Runtime(unittest.TestCase):
  def test_S_owner_change_terminates_contract(self):
   self.check("assert(C.confirm());local b=balance;T.loss(research,3,901);cap.Reconcile(0);assert(C.contract().stage=='TERMINATED' and balance==b and moneyCalls==1)")
  def test_calling_reload_holds_without_guessing_balance_or_retry(self):
-  self.check("assert(C.confirm());local c=T.record(source).capital.contracts.DISTRICT_CAMPUS;c.stage='CREDIT_CALLING';C.reload();cap.Reconcile(0);assert(C.contract().stage=='HELD' and moneyCalls==1)")
+  self.check("assert(C.confirm());local v=C.state();local c=v.contracts.DISTRICT_CAMPUS;c.stage='CREDIT_CALLING';c.creditBefore=balance;c.creditAfter=balance+C.model.Payout(c);T.record(source).capital=C.model.Encode(v);C.reload();cap.Reconcile(0);assert(C.contract().stage=='HELD' and moneyCalls==1)")
  def test_failed_native_call_before_or_after_never_retries(self):
   for failure in ('BEFORE','AFTER','IGNORE'):
    with self.subTest(failure=failure):self.check("moneyFail='"+failure+"';assert(not C.confirm());assert(C.contract().stage=='DEBIT_CALLING');local calls=moneyCalls;cap.Reconcile(0);T.turn(1);C.reload();cap.Reconcile(0);assert(C.contract().stage=='HELD' and moneyCalls==calls)")
@@ -136,7 +136,7 @@ class Runtime(unittest.TestCase):
  def test_establishment_time_survives_governor_change_and_reload(self):
   self.check("local times=shared.CityProgressionStore.InstitutionHistory(0,research);assert(times[1]~=nil and times[2]~=nil and times[3]~=nil);local old=T.encode(times);T.governor(1);C.reload();assert(T.encode(shared.CityProgressionStore.InstitutionHistory(0,research))==old)")
  def test_successful_venture_settles_locked_success_amount(self):
-  self.check("roll=0;assert(C.confirm(nil,'VENTURE'));local expected=C.contract().success;T.turn(10);assert(C.contract().stage=='SETTLED' and C.contract().paid==expected and rolls==1)")
+  self.check("roll=0;assert(C.confirm(nil,'VENTURE'));local expected=C.contract().success;T.turn(10);assert(C.contract().stage=='SETTLED' and C.contract().paid==C.contract().creditActualAfter-C.contract().creditBefore and C.model.MoneyMatches(C.contract().creditBefore,expected,C.contract().creditActualAfter) and rolls==1)")
  def test_ordinary_capital_writes_do_not_repeat_cross_record_uniqueness_walk(self):
   self.check("T.scanReset();assert(C.confirm());assert(T.scanCount()==0);T.turn(10);assert(T.scanCount()==0)")
  def test_occupied_domain_does_not_consume_random_roll(self):

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -10,46 +10,52 @@
     "commerce": "D0056",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0171",
-    "status": "S0655",
-    "runtime": "B244.271 / modinfo271",
+    "architecture": "A0172",
+    "status": "S0656",
+    "runtime": "B245.272 / modinfo272",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B244_Native_Review.md",
-  "goal": "Record B244 native debit precision failure and the bounded B245 receipt proposal; no monetary policy or implementation change without user approval.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+  "goal": "Implement the user-approved <=0.01 native debit/credit allowance with actual receipts, unchanged economic formulas and strict save/no-replay guards; deploy and perform one combined native gate.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current B244 evidence and unapproved B245 boundary."
+      "reason": "Current source/live distinction and authorized B245 native gate."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B244_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
       "kind": "section",
-      "selector": "## Confirmed evidence",
-      "reason": "Native debit/readback failure and original evidence scope."
+      "selector": "## Implementation boundary",
+      "reason": "Accepted monetary precision boundary and actual receipt semantics."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B244_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
       "kind": "section",
-      "selector": "## Bounded local discrimination",
-      "reason": "Actual unchanged Store/service counterexample and inference limits."
+      "selector": "## Local verification",
+      "reason": "Targeted local evidence, historical exclusions and limits."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B244_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
       "kind": "section",
-      "selector": "## B245 proposal — bounded Treasury receipts",
-      "reason": "Precision decision and narrow repair pending user approval."
+      "selector": "## One combined native session",
+      "reason": "One sign/cold-load/maturity test without replaying failed old intents."
+    },
+    {
+      "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
+      "kind": "section",
+      "selector": "## B245 bounded native money receipts",
+      "reason": "Current Capital ownership/receipt contract."
     }
   ],
   "dependencies": [
     "Existing CityProgressionStore commit/readback and confirmed-loss routes; no framework rewrite.",
     "Current EffectiveFacts, DistrictCompleteness, actual Commerce state and verified existing network recipient sources.",
-    "Native Treasury read/change with immediate exact readback; private RNG and bounded diagnostics."
+    "Native Treasury read/change with immediate direction and <=0.01 matching; exact persistent receipts, private RNG and existing bounded diagnostics."
   ],
   "old_writers": [
     "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
@@ -71,7 +77,8 @@
         "Mod/ExpeditionTrainingDiagnostics.lua",
         "DevelopmentTests/test_b242_capital_diagnostics.py",
         "DevelopmentTests/test_b243_capital_diagnostics.py",
-        "DevelopmentTests/test_b244_capital_storage.py"
+        "DevelopmentTests/test_b244_capital_storage.py",
+        "DevelopmentTests/test_b245_capital_receipts.py"
       ]
     },
     {
@@ -100,20 +107,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "L3 scoped Capital persistence and shared Store regression; no whole-gameplay suite.",
-    "local": "121 selected methods PASS:26 new B244 plus95 retained checks. Original four-difference failure reproduced; exact decoded values and Property/money counts preserved.",
-    "user": "B244 signing FAIL at NATIVE_DEBIT after one actual transfer; two pre-debit saves passed. No midterm cold-load or maturity evidence.",
-    "gap": "0.0029296875-Gold native discrepancy; the engine monetary unit and positive-credit behavior are not universally established. A <=0.01 allowance is proposed, not accepted.",
-    "review": "Three unchanged-source local monetary models PASS their expected outcomes; matching quantization model holds without replay after reconstruction."
+    "depth": "L3 scoped Capital receipts/persistence and direct Store/UI regression; no whole-gameplay suite.",
+    "local": "142 selected methods PASS (23 new B245,119 retained); coherent baseline14 reads/7 writes/2 calls/0 cross-record uniqueness visits.",
+    "user": "USER_GAME_TEST_REQUIRED: one signed contract, midterm cold load and one-time maturity with exact logs. B244 failed receipt evidence unchanged.",
+    "gap": "Actual native debit/credit within approved allowance and persisted actual receipts require user evidence; no universal engine monetary unit claimed."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B244_Native_Review.md",
-    "source": "B244.271/modinfo271 deployed from bc69c947a6442d7bab7a09762905265021e3d844;251/251 MATCH; receipt B244.271-bc69c94-playtest.json",
-    "native": "USER_GAME_TEST_FAIL: debit happened, exact amount guard held before ACTIVE. Storage readback succeeded for this attempt only.",
-    "stop": "Await user precision decision and B245 authorization; no implementation/deployment or new native test now."
+    "report": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+    "source": "B245.272/modinfo272 locally complete; live still B244.271 from bc69c94 until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; previous B244 native debit rejection remains historical evidence.",
+    "stop": "Deploy after clean-source/exit/receipt checks, then stop for the one combined user session."
   }
 }

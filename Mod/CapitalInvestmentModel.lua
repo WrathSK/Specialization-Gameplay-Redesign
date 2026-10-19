@@ -14,15 +14,24 @@ function M.Same(a,b)
  for k in pairs(b)do if a[k]==nil then return false end end;return true
 end
 function M.Finite(n)return type(n)=='number' and n==n and n>=0 and n<math.huge end
+-- B245 user-approved per-call allowance, not an engine quantization constant.
+M.MONEY_TOLERANCE=.01
+function M.MoneyMatches(before,delta,after)
+ if not M.Finite(before) or not M.Finite(after) or type(delta)~='number'
+  or delta~=delta or delta==0 or math.abs(delta)==math.huge then return false end
+ local actual=after-before
+ return ((delta<0 and actual<0) or (delta>0 and actual>0))
+  and math.abs(actual-delta)<=M.MONEY_TOLERANCE
+end
 local function int(n)return M.Finite(n) and n%1==0 and n<2147483648 end
 local function reference(r)
  return type(r)=='table' and int(r.owner) and int(r.cityID) and int(r.x) and int(r.y)
   and type(r.token)=='string' and #r.token>0 and int(r.changes)
 end
 local stages={DEBIT_INTENT=true,DEBIT_CALLING=true,ACTIVE=true,CREDIT_INTENT=true,CREDIT_CALLING=true,SETTLED=true,TERMINATED=true,HELD=true}
-function M.New()return {version=1,sequence=0,contracts={},protection={}}end
+function M.New()return {version=2,sequence=0,contracts={},protection={}}end
 function M.Validate(v)
- assert(type(v)=='table' and v.version==1 and int(v.sequence) and type(v.contracts)=='table' and type(v.protection)=='table','CAPITAL_HISTORY_INVALID')
+ assert(type(v)=='table' and v.version==2 and int(v.sequence) and type(v.contracts)=='table' and type(v.protection)=='table','CAPITAL_HISTORY_INVALID')
  local owners=0;for k,n in pairs(v.protection)do
   assert(type(k)=='string' and k:match('^%d+$') and tonumber(k)<64 and int(n),'CAPITAL_PROTECTION_INVALID');owners=owners+1
  end;assert(owners<=64,'CAPITAL_PROTECTION_INVALID')
@@ -37,7 +46,28 @@ function M.Validate(v)
    and int(c.D) and c.D>=1 and c.D<=10 and int(c.S) and c.S>=1 and c.S<=4
    and (c.C==1 or c.C==1.25) and int(c.R) and c.R<=40 and int(c.failureCount)
    and M.Finite(c.balanceBefore) and M.Finite(c.balanceAfter),'CAPITAL_CONTRACT_INVALID')
-  if c.stage=='SETTLED'then assert(M.Finite(c.paid) and int(c.settledTurn),'CAPITAL_RECEIPT_INVALID')end
+  -- Actual receipts are separate from locked theoretical balances/amounts.
+  local debit=c.debitAfter~=nil or c.debited~=nil
+  if debit then
+   assert(M.MoneyMatches(c.balanceBefore,-c.principal,c.debitAfter)
+    and M.Finite(c.debited) and c.debited==c.balanceBefore-c.debitAfter,'CAPITAL_DEBIT_RECEIPT_INVALID')
+  end
+  if c.stage=='ACTIVE' or c.stage=='CREDIT_INTENT' or c.stage=='CREDIT_CALLING' or c.stage=='SETTLED'then
+   assert(debit,'CAPITAL_DEBIT_RECEIPT_MISSING')
+  end
+  if c.stage=='DEBIT_INTENT' or c.stage=='DEBIT_CALLING'then assert(not debit,'CAPITAL_RECEIPT_STAGE')end
+  local credit=c.creditBefore~=nil or c.creditAfter~=nil
+  if credit then
+   assert(M.Finite(c.creditBefore) and M.Finite(c.creditAfter)
+    and c.creditAfter==c.creditBefore+M.Payout(c),'CAPITAL_CREDIT_INTENT_INVALID')
+  end
+  if c.stage=='CREDIT_CALLING' or c.stage=='SETTLED'then assert(credit,'CAPITAL_CREDIT_INTENT_MISSING')end
+  local paid=c.creditActualAfter~=nil or c.paid~=nil
+  if paid then
+   assert(credit and M.MoneyMatches(c.creditBefore,M.Payout(c),c.creditActualAfter)
+    and M.Finite(c.paid) and c.paid==c.creditActualAfter-c.creditBefore,'CAPITAL_CREDIT_RECEIPT_INVALID')
+  end
+  if c.stage=='SETTLED'then assert(paid and int(c.settledTurn),'CAPITAL_RECEIPT_INVALID')end
  end;assert(count<=3,'CAPITAL_CONTRACT_BOUND')
  return v
 end
@@ -46,7 +76,8 @@ end
 -- and Store APIs remain numeric; raw Store pre/post comparisons remain exact.
 local numberEncoding='DECIMAL17_V1'
 local storedNumbers={principal=true,balanceBefore=true,balanceAfter=true,safe=true,
- success=true,failure=true,probability=true,creditBefore=false,creditAfter=false,paid=false}
+ success=true,failure=true,probability=true,creditBefore=false,creditAfter=false,paid=false,
+ debitAfter=false,debited=false,creditActualAfter=false}
 function M.StoredNumber(field,value)
  if storedNumbers[field]==nil or type(value)~='string' or #value>32 then return nil end
  local n=tonumber(value)
@@ -133,8 +164,10 @@ function M.Begin(old,q,mode,roll,request)
   balanceBefore=q.balance,balanceAfter=q.balance-q.principal,stage='DEBIT_INTENT'}
  return M.Validate(n)
 end
-function M.Activate(value,domain)
+function M.Activate(value,domain,actualAfter)
  local n=copy(value);local c=assert(n.contracts[domain]);assert(c.stage=='DEBIT_CALLING','CAPITAL_DEBIT_STAGE')
+ assert(M.MoneyMatches(c.balanceBefore,-c.principal,actualAfter),'CAPITAL_MONEY_UNCONFIRMED')
+ c.debitAfter=actualAfter;c.debited=c.balanceBefore-actualAfter
  local owner=tostring(c.source.owner)
  assert((n.protection[owner] or 0)==c.failureCount,'CAPITAL_PROTECTION_STALE')
  if c.mode=='VENTURE'then n.protection[owner]=c.won and 0 or c.failureCount+1 end

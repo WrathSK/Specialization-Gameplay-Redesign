@@ -75,7 +75,7 @@ render=function()
   text=text..'[NEWLINE]'..L('LOCKED_TERMS',contract.D,contract.S,number(contract.C),contract.sSourceName or L('SOURCE_NONE'))
   if contract.stage=='SETTLED'then
    if contract.mode=='VENTURE'then text=text..'[NEWLINE]'..L(contract.won and 'RESULT_SUCCESS' or 'RESULT_FAILURE')end
-   text=text..'[NEWLINE]'..L('SETTLED',number(contract.paid),number(contract.paid-contract.principal))
+   text=text..'[NEWLINE]'..L('SETTLED',number(contract.paid),number(contract.paid-(contract.debited or contract.principal)))
   elseif contract.stage=='TERMINATED'then text=text..'[NEWLINE]'..L('TERMINATED')end
  end
  Controls.Contract:SetText(text);Controls.Contract:SetToolTipString(text)

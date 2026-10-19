@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "41d0f1afe65be579336e8797a715496a1964fc9d3a9f8c07ac5ea214c1325a34",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
-      "provenance": "B244 explicitly authorized Capital-only numeric wire format and direct Store/diagnostic adapters.121 selected checks PASS; decoded values/work, monetary rules, exact writer/reservations and no replay unchanged. Native acceptance pending."
+      "sha256": "479f09cb8c034c410951fd18cdef50d92ff07879e043d91bea5d980ef12ee4fc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "1b0312f322306ad7f074736f0dfc3b0cfe7ace5841df43d3f77e9a4e7d978be1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
-      "provenance": "B244 explicitly authorized Capital-only numeric wire format and direct Store/diagnostic adapters.121 selected checks PASS; decoded values/work, monetary rules, exact writer/reservations and no replay unchanged. Native acceptance pending."
+      "sha256": "83663da5bc79ea5150878b4dff3bf467f2cf01b1849570f46a010b30497b6282",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "9b93f53346c1bb5e6ce2dd6eec0071d8ea1a84683ea3be3bbd5562367547ceee",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
-      "provenance": "B243 authorized restricted-Lua diagnostic repair: retain base readback, make projection errors visible and preserve numeric diagnostic precision.123 targeted methods pass; Store/model/UI and money/save/no-replay rules unchanged; native cause pending."
+      "sha256": "8455991837a40eec0edbe1b557b73d68cd087fbbc707f2f1660cded60abf180f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1231,19 +1231,19 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "1616f03102b63b3f6ac5c247a03e3e402004997f55d23bd5b31d8c7214793663",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
-      "provenance": "B243 authorized restricted-Lua diagnostic repair: retain base readback, make projection errors visible and preserve numeric diagnostic precision.123 targeted methods pass; Store/model/UI and money/save/no-replay rules unchanged; native cause pending."
+      "sha256": "584456fc371760e6f27376f816e9b9f39015e33178de646bdd69dfbe1115f288",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/CapitalInvestmentModel.lua": {
-      "sha256": "96a2bc2383c313684a1143e07f00e09d7cd3e71359375dca4b9b620eedc0a92e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
-      "provenance": "B244 explicitly authorized Capital-only numeric wire format and direct Store/diagnostic adapters.121 selected checks PASS; decoded values/work, monetary rules, exact writer/reservations and no replay unchanged. Native acceptance pending."
+      "sha256": "70cd65bc15f3353ca59f32f0eed6c4cb4124a0212e9f6737f7f67a529e31ba06",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/UI/CapitalInvestmentPanel.lua": {
-      "sha256": "6d82ac86c6228482a0a67c7dc3d09cf81a4e161ab4a7ea22e71a2cd166b87b5c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B242_Capital_Diagnostics_Local.md",
-      "provenance": "B242 user-authorized diagnostic-only stage/readback and paused feedback; reviewed194 targeted tests. B241 math/schema/no-replay retained; native cause UNKNOWN. No timer/GC/other gameplay."
+      "sha256": "a8bfefb9bd159fc7f67705ec65d1ad84e57d0d2d8a4ed49f3244cc8a3b1fc5e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/UI/CapitalInvestmentPanel.xml": {
       "sha256": "a932b9be98aa0f95027dae239ed39565b0ce41357af60dc6b246df128f460c46",
@@ -1256,9 +1256,9 @@
       "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
-      "sha256": "4ee791e3beee66d5cb4706bd0dc9c5127d05386b4fbddde0f2d744fa847b81b4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
-      "provenance": "B244 explicitly authorized Capital-only numeric wire format and direct Store/diagnostic adapters.121 selected checks PASS; decoded values/work, monetary rules, exact writer/reservations and no replay unchanged. Native acceptance pending."
+      "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     }
   }
 }
