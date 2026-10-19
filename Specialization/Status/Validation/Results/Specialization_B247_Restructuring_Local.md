@@ -46,6 +46,6 @@ A source/city transfer matrix remains local evidence this batch; unchanged prote
 
 ## Deployment
 
-Pending guarded W0003 deployment after the source checkpoint. Main remains B069.96. No game launch/configuration/GC change.
+W0003 deployment completed from clean/pushed source `88abdf91cc5136ba44c2fb60602b054bc8e49a95` after fresh automatic OS game-exit checks before both transaction steps. The exact B246 receipt restored the stable bridge; `B247.274-88abdf9-playtest.json` now records DEVELOP_ACTIVE. All 265 source/runtime files MATCH; digest `12f71dcd6c1c593e64737d0f50f61c489de83e80d347f761847885512093543f`. Stable and outgoing B246 recovery packages remain retained and verified, with no pending marker. Main remains B069.96. No game launch, configuration or GC change. Native acceptance is still pending.
 
-User decision: none; B247 scope explicitly authorized. User testing: the single new transaction flow above. Primary next: deploy after checks, then wait for this evidence; no next batch automatically.
+User decision: none; B247 scope explicitly authorized. User testing: the single new transaction flow above. Primary next: wait for this evidence; no next batch automatically.

@@ -11,15 +11,15 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0174",
-    "status": "S0662",
-    "runtime": "B246.273 / modinfo273",
+    "status": "S0663",
+    "runtime": "B247.274 / modinfo274",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
   "goal": "Deliver approved B247 protected team and complete same-city restructuring with preserved named histories/contracts; validate the new persistent transaction once natively.",
-  "implementation_authorized": true,
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -121,8 +121,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-    "source": "B247.274 local source; live B246.273 pending W0003 checkpoint.",
+    "source": "B247.274/modinfo274 source 88abdf91cc5136ba44c2fb60602b054bc8e49a95; receipt B247.274-88abdf9-playtest.json DEVELOP_ACTIVE; 265/265 runtime MATCH.",
     "native": "USER_GAME_TEST_REQUIRED: one normal training/liquidation/reallocation cold-load/configuration flow.",
-    "stop": "After authorized deployment, wait for the one new native flow. No further implementation."
+    "stop": "Await the one B247 native flow. This completed batch grants no subsequent implementation."
   }
 }

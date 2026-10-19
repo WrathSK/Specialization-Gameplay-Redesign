@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0662
-Implementation Build: source B247.274; live B246.273; stable B069.96
+Status Revision: S0663
+Implementation Build: B247.274 / modinfo274; stable B069.96
 Architecture Revision Reviewed: A0174
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B247_LOCALLY_VALIDATED_PENDING_DEPLOYMENT
+Work State: B247_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B247 Asset Restructuring implemented and locally verified; native gate pending.** [Result and minimal flow](Validation/Results/Specialization_B247_Restructuring_Local.md).
+**B247 Asset Restructuring deployed after local validation; native gate pending.** [Result and minimal flow](Validation/Results/Specialization_B247_Restructuring_Local.md).
 - Standard-speed Commerce ACTIVE IV trains a 500-Production protected team; explicit same-city liquidation → REALLOCATING → configuration after at least five full turns. One Potential debit, exact team consumption with separate confirmation, no automatic finish or new timers.
 - Original city/profession history retained; current Identity/ACTIVE effects published separately. Commerce reputation/failure protection resets on actual Identity exit; signed Capital/Development contracts keep their accepted rules. Target transfer during reallocation discards that transaction/team; recapture uses current candidates.
 - 240 targeted local methods PASS; actual dispatcher/support/network input and actual contract persistence/settlement included. Local checks do not prove native growth, unit behavior or real save reconstruction. One native flow includes a cold load during REALLOCATING.
-- Source B247.274/modinfo274; live remains B246.273 from 6398be1 until the guarded deployment checkpoint. Main/stable B069.96 unchanged.
+- Source/live B247.274/modinfo274 from `88abdf9`; receipt `B247.274-88abdf9-playtest.json` DEVELOP_ACTIVE, 265/265 files MATCH. Main/stable B069.96 unchanged.
 - B246 remains [accepted in the submitted scope](Validation/Results/Specialization_B246_Native_Review.md). Simultaneous Standardization+Development remains NOT_EXERCISED; capture once opportunistically, without repeating B246. Culture holds, unrelated audit repairs and further batches do not start automatically.
+
+## S0663 — B247 verified deployment
+
+Clean/pushed source `88abdf9` passed fresh automatic game-exit checks before the exact B246 receipt restore and B247 activation. All 265 source/runtime files MATCH, digest `12f71dcd6c1c593e64737d0f50f61c489de83e80d347f761847885512093543f`, receipt `B247.274-88abdf9-playtest.json` DEVELOP_ACTIVE. Stable and outgoing B246 recovery packages are retained and verified; no pending transaction. Context, 123 scoped Markdown destinations/anchors, reviewed diff and staged publication checks pass. Only deployment/current metadata hashes changed after the implementation checkpoint. Main, Design, configuration and GC remain unchanged; no game launch. Await the single new liquidation → reallocation cold-load → configuration test, without starting another batch.
 
 ## S0662 — B247 local implementation
 
