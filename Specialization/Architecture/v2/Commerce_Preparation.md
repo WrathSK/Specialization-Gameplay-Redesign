@@ -1,6 +1,6 @@
 # Commerce implementation preparation
 
-State: B240_NATIVE_ACCEPTED_SCOPED / B241_NATIVE_CONFIRM_FAILED / B242_DIAGNOSTIC_LOCAL_COMPLETE. Updated 2026-10-18: D0056 and existing economic/ownership contracts are unchanged. [B242 diagnostics](#b242-confirmation-diagnostics) is the current authorized slice; actual source/deployment and native evidence remain separate in Status.
+State: B240_NATIVE_ACCEPTED_SCOPED / B241_NATIVE_CONFIRM_FAILED / B242_NATIVE_DIAGNOSTIC_GAP / B243_DIAGNOSTIC_LOCAL_COMPLETE. Updated 2026-10-18: D0056 and existing economic/ownership contracts are unchanged. [B243 reliable failure observation](#b243-reliable-failure-observation) is the current authorized slice; actual source/deployment and native evidence remain separate in Status.
 
 ## 当前范围与停止点
 
@@ -15,7 +15,7 @@ Gameplay authority is [Commerce D0056](../../Design/Content/Commerce_D0056.json)
 | Commerce I/II support | Existing automatic support/qualification | Inherit scoped evidence; preserve baseline specialists/housing/GPP |
 | Commercialization | B240 D0055 source/Food writer and prerequisite UI implemented; tested values/modifiers/Identity/withdrawal accepted | No new blocker in the submitted interval; no broad performance certification |
 | Reputation | B239 Store-owned history; user observed growth and confirms B240 cold-load step | Inherit this evidence; no repeated Research Tradition test |
-| Capital Investment | B241 business implementation; first native confirmation failed. B242 failure diagnostics locally complete | One bounded confirmation log before resuming native contract acceptance; exact native cause and precision unresolved |
+| Capital Investment | B241 business implementation; first native confirmation failed. B242 diagnostic gap confirmed; B243 restricted-Lua diagnostics locally complete | One bounded confirmation log before resuming native contract acceptance; exact native cause and precision unresolved |
 | Development Investment | Absent |15% theoretical purchase quote, one active contract per target city, +50% district-building production and completion exit |
 | Restructuring | Absent |500P Team, REALLOCATING, one permanent Potential debit, disruption and configuration |
 | Old Commerce | B239 exact3+48 retired | Definitions retained for cleanup; no old forward writer |
@@ -135,7 +135,7 @@ Use task-scoped Content objects and direct source/caller closure. Exact cutover 
 
 The original preparation review contained source evidence and one actual-writer counterexample only. B239/B240 local evidence is scoped below; the user accepts B239 capacity, report D/Reputation response and observed reputation growth, and B240 adds user acceptance of actual values/city modifiers/source filtering/withdrawal and the Commerce reload. New persistence/writer closure receives targeted L3, ordinary projection L2, text/layout L1. Inherit unchanged shared evidence and combine native steps by marginal information value. Publish only this batch's reviewed source/tests/documentation; keep raw screenshots/logs and local reproduction ignored.
 
-User decision: D0056 remains accepted; B242 narrow diagnostics explicitly authorized. User testing/Primary next: see B242 below; no COM-C/D authorization.
+User decision: D0056 remains accepted; B243 narrow diagnostic repair explicitly authorized. User testing/Primary next: see B243 below; no COM-C/D authorization.
 
 ## B239 implementation and validation
 
@@ -221,3 +221,9 @@ The [B241 first-confirmation review](../../Status/Validation/Results/Specializat
 An optional failure-only observer at the existing Store readback boundary passes already obtained values into a bounded pure projection; it performs no additional native read or write. Request-local phase details and a single per-city failure in the existing replaceable view are observational, never persisted authority or permission to replay. Existing debit/credit intent/calling/receipt order, schema, failed-write reservations, per-city isolation and economic calculation remain unchanged. OPEN/REFRESH accepted means the read request was handled; view stage/canSign/reason independently describe whether signing is possible.
 
 No timers, frame checks, new GC or source/world scans.194 targeted tests pass; native cause remains UNKNOWN. User testing is one confirmation plus one paused refresh if needed, with the existing manual collector. No new full save/load/settlement sequence in this diagnostic batch. Stop after guarded deployment and await evidence; COM-C/D remains unauthorized.
+
+## B243 reliable failure observation
+
+The [B242 native evidence](../../Status/Validation/Results/Specialization_B242_Native_Review.md) remains frozen. The user explicitly authorizes the [B243 restricted-Lua diagnostic repair](../../Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md). Ordinary guarded table reads remove the rawget dependency. The request retains base observation facts before protected detail projection/merge and distinguishes COMPLETE, ERROR and NOT_OBSERVED without changing the original Store error or allowing retry. Expected/actual numeric log values preserve round-trip precision; gameplay values remain unchanged.
+
+123 targeted methods pass, including actual-Store failures, no-replay/isolation, unchanged per-value/Property-work comparison and existing bounded collector behavior. Store/model/UI, economic rules, permanent state and validation protections are unchanged. No timer, scan, GC or framework rewrite. After guarded deployment, one confirmation and one paused refresh if needed provide the missing native evidence; this batch does not claim that native signing is fixed. Stop for the log, without COM-C/D or new Design work.

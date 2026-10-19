@@ -1,11 +1,12 @@
--- B242 failure-only observations. No native reads, authority, retries or saved state.
+-- B243 failure-only observations. No native reads, authority, retries or saved state.
 SPCCapitalInvestmentDiagnostics={}
 local M=SPCCapitalInvestmentDiagnostics
 local files={['CapitalInvestment.lua']=true,['CapitalInvestmentModel.lua']=true,
- ['CityProgressionStore.lua']=true,['CurrentSpecializationFacts.lua']=true}
+ ['CityProgressionStore.lua']=true,['CurrentSpecializationFacts.lua']=true,['CapitalInvestmentDiagnostics.lua']=true}
 local stages={DEBIT_INTENT=true,DEBIT_CALLING=true,ACTIVE=true,CREDIT_INTENT=true,
  CREDIT_CALLING=true,SETTLED=true,TERMINATED=true,HELD=true}
-local function field(t,k)if type(t)=='table'then return rawget(t,k)end end
+-- Store supplies copied plain tables; Mac GameCore does not guarantee rawget.
+local function field(t,k)if type(t)=='table'then return t[k]end end
 local function finite(v)return type(v)=='number' and v==v and v>-math.huge and v<math.huge end
 function M.Error(err,phase)
  local s=type(err)=='string' and err or ''

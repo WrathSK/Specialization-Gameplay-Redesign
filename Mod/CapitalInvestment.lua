@@ -34,9 +34,25 @@ function SPCCapitalInvestment.Start(P,shared)
    and r.stage=='ACTIVE','CAPITAL_REFERENCE_CHANGED');return r
  end
  local function write(pid,c,old,value,domain,attempt,phase)
-  if attempt then attempt.phase=phase;attempt.readback=nil end
+  if attempt then attempt.phase=phase;attempt.readback={diagnosticStatus='NOT_OBSERVED'}end
   store.WriteCapital(pid,c,old,value,attempt and function(point,readOK,observed,expected,status,matches)
-   attempt.readback=D.Readback(point,readOK,observed,expected,domain,status,matches)
+   -- Retain the Store's existing observation even if detailed projection fails.
+   local out={readPoint=point,readStatus=readOK and 'READABLE' or 'READ_ERROR',writeStatus=status,
+    savedMatches=readOK and matches or false,recordType=readOK and type(observed) or 'UNKNOWN',diagnosticStatus='STARTED'}
+   attempt.readback=out
+   local ok,err=pcall(function()
+    local detail=D.Readback(point,readOK,observed,expected,domain,status,matches)
+    assert(type(detail)=='table','CAPITAL_DIAGNOSTIC_RESULT_INVALID')
+    for k,v in pairs(detail)do out[k]=v end
+   end)
+   if ok then out.diagnosticStatus='COMPLETE'
+   else
+    -- Keep this separate from the original Store error; it cannot authorize replay.
+    out.diagnosticStatus='ERROR'
+    local detail=D.Error(err)
+    out.diagnosticErrorCode=detail.errorCode;out.diagnosticErrorClass=detail.errorClass
+    out.diagnosticErrorFile=detail.errorFile;out.diagnosticErrorLine=detail.errorLine
+   end
   end or nil)
   local after=store.CapitalState(pid,c)
   assert(same(after.value,value),'CAPITAL_WRITE_UNCONFIRMED')

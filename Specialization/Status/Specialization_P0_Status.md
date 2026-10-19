@@ -1,22 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0649
-Implementation Build: source/live B242.269; stable B069.96
+Status Revision: S0650
+Implementation Build: source B243.270; live B242.269; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_UNCHANGED_CAPITAL_NATIVE_PREDEBIT_FAILURE
-Work State: B242_NATIVE_PREDEBIT_FAILURE_DIAGNOSTIC_GAP
+Design Sync State: D0056_UNCHANGED_CAPITAL_DIAGNOSTIC_REPAIR
+Work State: B243_DIAGNOSTIC_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B242 native confirmation failed before debit; paused feedback works, readback details are missing:** [evidence and B243 proposal](Validation/Results/Specialization_B242_Native_Review.md).
-- Source/live remains B242.269/modinfo269 from `7dda421`; receipt `B242.269-7dda421-playtest.json`. The prior251/251 deployment match is retained; seven relevant files were rechecked equal in this review. Stable/main B069.96 unchanged.
-- 71 contiguous native records identify DEBIT_INTENT_WRITE / STORE_WRITE_UNCONFIRMED. The confirmation did not reach Treasury mutation. REFRESH correctly returns a HELD/canSign=false view without claiming CAPITAL_READY.
-- No readback difference values were captured. The projection's unguarded rawget call and silently discarded observer errors are concrete diagnostic defects. Existing Mac GameCore_Tuner evidence and five local discrimination cases support the missing-function explanation; the current native Property discrepancy remains UNKNOWN.
-- The 194 earlier local checks remain scoped local evidence; they missed the restricted-library diagnostic gap. New review changes no runtime, money rule, test, Design or Architecture.
-- Next: user review/authorization of proposed B243 diagnostic-boundary repair. No repeat user test now, COM-C/D, Culture HOLD, deployment, timer, GC or unrelated work.
+**B243.270 diagnostic repair is locally complete; native signing cause remains unresolved:** [implementation, checks and minimal session](Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md).
+- Source is B243.270/modinfo270; last verified live remains B242.269 from `7dda421`, receipt `B242.269-7dda421-playtest.json`,251/251 MATCH. Stable/main B069.96 unchanged. Deployment follows clean commit/push and fresh automatic game-exit gates.
+- B242 failed at DEBIT_INTENT_WRITE before debit; HELD refresh was truthful but readback fields were missing. Its original evidence is preserved. B243 removes rawget dependence and retains base observation before protected projection/merge; diagnostic errors are explicit and separate from Store errors.
+- 123 targeted methods pass. Store/model/UI, amounts, exact save verification, failed-write protection and no-double-debit behavior remain unchanged. B242/B243 local comparisons preserve all saved values and Property work with zero cross-record uniqueness visits; no native performance or signing PASS is implied.
+- Next native delta: one **确认稳健投资**, then one **刷新报价** only if held; return the automatic collector log. No new screenshot series, full maturity/cold-load test, COM-C/D, Culture HOLD, timer, GC or unrelated work.
+
+## S0650 — B243 reliable diagnostic boundary locally verified
+
+User-authorized rawget removal and explicit diagnostic-error handling are complete. Minimal readback metadata survives projection/merge exceptions; a callback not reached is NOT_OBSERVED, never guessed successful. Round-trip formatting is limited to diagnostic expected/actual numbers.123 targeted methods, eight Lua syntax checks and251-file package checks pass. Existing Store/model/UI and all economic/safety rules remain unchanged; no native Property cause inferred. Current selectors and only reviewed changed hashes are maintained. Source and deployed runtime remain separate until W0003 verification; proceed with authorized commit/push and guarded deployment, then stop for one diagnostic session.
 
 ## S0649 — B242 pre-debit failure and diagnostic gap reviewed
 

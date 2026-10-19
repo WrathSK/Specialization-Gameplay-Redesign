@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -11,39 +11,39 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0649",
-    "runtime": "B242.269 / modinfo269",
+    "status": "S0650",
+    "runtime": "B243.270 / modinfo270",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
-  "goal": "B242 native evidence reviewed; proposed B243 repairs silent diagnostic failure without changing economic amounts, Store guards or no-replay semantics.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
+  "goal": "B243 removes the restricted-Lua diagnostic dependency and makes failure projection errors explicit without changing economic values, Store validation or no-replay protections.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current failure evidence, unchanged deployment and pending authorization."
+      "reason": "B243 source versus deployment and scoped next native step."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
       "kind": "section",
-      "selector": "## Review summary",
-      "reason": "Native failure phase, truthful paused view and missing readback evidence."
+      "selector": "## Implementation boundary",
+      "reason": "Authorized diagnostic ownership and unchanged safety/economic behavior."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
       "kind": "section",
-      "selector": "## Readback evidence gap and direct cause review",
-      "reason": "Actual observer path and prior restricted-environment counterevidence; underlying Property mismatch remains unknown."
+      "selector": "## Local verification",
+      "reason": "Actual restricted-Lua fault coverage, value/work equivalence and evidence limits."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
       "kind": "section",
-      "selector": "## B243 proposal — reliable failure observation",
-      "reason": "Proposed bounded diagnostic repair; not implementation authorization."
+      "selector": "## One minimal native diagnostic session",
+      "reason": "One new observation gate; inherited lifecycle evidence is not repeated."
     }
   ],
   "dependencies": [
@@ -69,7 +69,8 @@
         "DevelopmentTests/test_b241_capital_ui.py",
         "Mod/CapitalInvestmentDiagnostics.lua",
         "Mod/ExpeditionTrainingDiagnostics.lua",
-        "DevelopmentTests/test_b242_capital_diagnostics.py"
+        "DevelopmentTests/test_b242_capital_diagnostics.py",
+        "DevelopmentTests/test_b243_capital_diagnostics.py"
       ]
     },
     {
@@ -98,19 +99,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "Evidence review; five bounded unchanged actual-Store/service discrimination cases; documentation/context/publication checks.",
-    "local": "Five cases pass. Standard-library capability changes explain lost diagnostics, not native Property precision. Earlier194 checks remain scoped and miss this environment gap.",
-    "user": "B242 log received. No repeat now; after authorized repair, one confirmation/paused refresh observes the new diagnostic boundary only.",
-    "gap": "Exact Property readback shape/value difference unavailable; underlying signing, Treasury and maturity acceptance remain pending."
+    "depth": "Targeted local actual-Store/service/UI failure checks, bounded trace/collector regression, syntax/package/context/publication checks.",
+    "local": "123 methods PASS. Restricted-Lua diagnostic exceptions are visible; B242/B243 per-value and Property work match; zero cross-record uniqueness visits.",
+    "user": "After B243 deployment, one confirmation and one paused refresh if needed; manual collector log only. No repeated native lifecycle series.",
+    "gap": "Native Property discrepancy remains UNKNOWN; signing, Treasury precision and maturity acceptance are not promoted by diagnostic local PASS."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B242_Native_Review.md",
-    "source": "B242.269/modinfo269 deployed from 7dda4211280a95102115a943f4194de2e2afa27a;251/251 MATCH; receipt B242.269-7dda421-playtest.json",
-    "native": "USER_GAME_TEST_FAIL signing at DEBIT_INTENT_WRITE; HELD/canSign=false refresh verified. Readback projection absent; native storage cause UNKNOWN.",
-    "stop": "Await user authorization for proposed B243; no implementation, deployment or next Commerce ability in this evidence review."
+    "report": "Specialization/Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md",
+    "source": "B243.270/modinfo270 source locally complete; live remains B242.269 from 7dda421 until guarded deployment.",
+    "native": "B242 pre-debit confirmation failure retained. B243 USER_GAME_TEST_REQUIRED; unchanged HELD/canSign=false contract.",
+    "stop": "Complete authorized B243 commit/push and W0003 deployment, then await the single native log. No next Commerce batch."
   }
 }
