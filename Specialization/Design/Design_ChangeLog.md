@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0055
+Latest Accepted Design Revision: D0056
 Document State: ACCEPTED
+
+## Accepted D0056 — 2026-10-18
+
+用户明确确认：资本投资S仍使用最高当前有效ACTIVE；多个最高S同级时，优先选择最早建立对应永久机构等级的城市，不按ACTIVE首次达到／总督就任排序；再按稳定City ID／stable key。其它规则全部保留，包括锁定具体S来源、普通资格下降继续、关键合同城市易主异常终止。此澄清不取消来源绑定，不改变收益公式、期限、保护或其它专业。用户另明确授权B241实施；Design接受与本地／实机证据分别记录。
+
+[Commerce D0056](Content/Commerce_D0056.json)、[商业阅读版](Commerce.md)与当前Spec已同步。D0055结构化原件及本次冻结的[D0055 Spec](Revisions/Specialization_Design_Spec_D0055.md)保持原字节。
+
+Accepted Spec SHA256: `7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c211f18e2c366`
+Commerce D0056 SHA256: `8c56fdc71927359443e4a8cf5b423f7d1fec049046380010bf0f544fce39b6da`
+Frozen D0055 Spec SHA256: `8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe14299ee4bbaf`
 
 ## Accepted D0055 — 2026-10-18
 

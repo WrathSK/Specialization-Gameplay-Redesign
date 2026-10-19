@@ -10,9 +10,13 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 [Industry D0053](Industry_D0053.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。
 当前施工队成本取样时点另按[2026-10-17接受澄清](../Design_ChangeLog.md#accepted-industry-formation-price-clarification--2026-10-17)：开工锁定本次成本，后续新队使用新价；D0052另按用户决定将一级施工力改为260，相关标准速度成本改为390／364／338／312；II–V及其它基础规则不变；D0053另接受施工投入的适用Production加成，未来实测平衡、不阻碍开发。
 
+## D0056 — 资本投资同级来源的机构建立时间
+
+[Commerce D0056](Commerce_D0056.json)是当前商业正式内容。资本S仍取最高当前有效ACTIVE；同级按最早建立对应永久机构等级，再按稳定City ID／stable key。不按总督／ACTIVE首次达到或读档观察时间；其它规则全部保留。[接受记录](../Design_ChangeLog.md#accepted-d0056--2026-10-18)。D0055与其Spec冻结原件保持。
+
 ## D0055 — 商业化来源身份与港口总粮食
 
-[Commerce D0055](Commerce_D0055.json)是当前商业正式内容：本城免对应身份要求但需本地区域；外部来源须直接国内商路＋对应专业身份，不加ACTIVE／总督／Potential／对应区域要求。港口输入改为总粮食（非余粮），输出仍为金币。其它公式／Floor／信誉与合同保留，不改港口专业；D0054原件保持。[接受记录](../Design_ChangeLog.md#accepted-d0055--2026-10-18)。
+[Commerce D0055](Commerce_D0055.json)记录前版商业正式内容（当前见D0056）：本城免对应身份要求但需本地区域；外部来源须直接国内商路＋对应专业身份，不加ACTIVE／总督／Potential／对应区域要求。港口输入改为总粮食（非余粮），输出仍为金币。其它公式／Floor／信誉与合同保留，不改港口专业；D0054原件保持。[接受记录](../Design_ChangeLog.md#accepted-d0055--2026-10-18)。
 
 ## D0054 — 商业化逐领域Floor
 

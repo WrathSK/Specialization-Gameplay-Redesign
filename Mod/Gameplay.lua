@@ -390,6 +390,14 @@ local function request(playerID,params)
     end)
     shared.Snapshot=ok and out or ('继承观察未完成：'..tostring(out));shared.LastToken=params.Token;return
   end
+  if type(params.Action)=='string' and params.Action:find('^CAPITAL_') then
+    local ok,out=pcall(function()
+      local d=assert(shared.CapitalInvestment,'CAPITAL_MODULE_NOT_LOADED')
+      d.Request(playerID,params)
+      return d.Describe(playerID,assert(Players[playerID]:GetCities():FindID(params.CityID),'CAPITAL_CITY_UNKNOWN'))
+    end)
+    shared.Snapshot=ok and out or '资本投资暂不可用，请查看合同面板。';shared.LastToken=params.Token;return
+  end
   if type(params.Action)=='string' and params.Action:find('^COMMERCE_') then
     local ok,out=pcall(function()
       local d=assert(shared.Commerce,'COM_MODULE_NOT_LOADED')
@@ -918,6 +926,8 @@ shared.CrewProjects.BindPermanentWrites()
 include('Commerce')
 SPCCommerce.Start(P,shared)
 shared.Commerce.BindPermanentWrites()
+include('CapitalInvestment')
+SPCCapitalInvestment.Start(P,shared)
 
 local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
 if not dialogueOK then

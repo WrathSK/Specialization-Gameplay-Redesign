@@ -135,7 +135,7 @@ D0050已确定聚合口径：X取对应城市该领域的**城市总产出**，�
 
 `r = 0.01 × max(1,D) × max(1,S) × C`
 
-存在合格S来源时，签约必须锁定**具体S来源城市**，不能只保存抽象S。多个合法候选同为最高S，选最早达到该等级的城市；仍完全同序再用稳定City ID／stable key决定，保存读档不能随机换来源。没有合格S来源时，明确记录没有来源城市并按S=1计算，不虚构来源城市。
+存在合格S来源时，签约必须锁定**具体S来源城市**，不能只保存抽象S。多个合法候选同为最高S，选最早建立对应永久机构等级的城市（D0056），不按ACTIVE首次达到或总督就任时间；仍完全同序再用稳定City ID／stable key决定，保存读档不能随机换来源。没有合格S来源时，明确记录没有来源城市并按S=1计算，不虚构来源城市。
 
 **可投领域（D0050）：** 任何有对应**已实施专业**的领域，但**不包括商业领域本身**。v0.1为科研、文化、工业；未来其它专业一旦实施即自动纳入，宗教、港口等在实施前不可投。商业来源城**不需要拥有**该投资领域的区域。S按当前由商路连接形成的国内网络读取，不另建新的网络连通模型；S与D的最低值1只用于计算，不会让未实施专业的领域变成可投。
 
@@ -403,7 +403,7 @@ v0.1只支持标准速度（D0050）；资本投资期限、发展投资定价�
 
 [返回Design导航](README.md)。本文是完整阅读呈现，不是独立Gameplay authority。用户Design Talk经确认后由Codex维护正式来源，并同步实际受影响的阅读章节。
 
-- [商业D0055正式内容](Content/Commerce_D0055.json)（[D0050](Content/Commerce_D0050.json)与[D0045](Content/Commerce_D0045.json)保留为历史）：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
+- [商业D0056正式内容](Content/Commerce_D0056.json)（[D0055](Content/Commerce_D0055.json)保留）（[D0050](Content/Commerce_D0050.json)与[D0045](Content/Commerce_D0045.json)保留为历史）：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
 - [A–D生命周期接受审阅](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)及[D0039公式收口](../Historical/Design/Reviews/Commerce_D0039_Review.md)与[ChangeLog](Design_ChangeLog.md)：关闭项、代数解释和真实未决；不在Review另设公式权威。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：共同成长、参与资格、PROG-011显式重组征服例外、COM和NET。
 - [Shared D0045](Content/Shared_D0045.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。

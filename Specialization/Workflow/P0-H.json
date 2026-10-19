@@ -1,49 +1,49 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
-    "design": "D0055",
+    "design": "D0056",
     "research": "D0040",
     "industry": "D0053",
     "culture": "D0051",
-    "commerce": "D0055",
+    "commerce": "D0056",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0169",
-    "status": "S0643",
-    "runtime": "B240.267 / modinfo267",
+    "architecture": "A0170",
+    "status": "S0644",
+    "runtime": "B241.268 / modinfo268",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md",
-  "goal": "Record B240 tested native acceptance and review the existing COM-B/B241 proposal; no new implementation or deployment authorized.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+  "goal": "B241 authorized stable/venture Capital contracts under D0056 permanent-institution tie-break; exact money receipts, ordinary UI and current network source reuse. Local complete, native pending.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Accepted native scope, unchanged live source and next authorization boundary."
+      "reason": "Current source/live and native stop."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
       "kind": "section",
-      "selector": "## Review summary",
-      "reason": "Trace/user evidence separation; no repeated B240 gate."
+      "selector": "## Current implementation",
+      "reason": "Implemented delta and ordinary entry."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B241 proposal — Capital Investment",
-      "reason": "Next proposed contract scope and unresolved user/technical gates; planning only."
+      "selector": "## B241 implementation and validation",
+      "reason": "Current transaction/state/network boundaries and minimal native gate."
     }
   ],
   "dependencies": [
-    "Store per-record commit/readback and confirmed transition ownership; optional Commerce stack/R, no framework rewrite.",
-    "Current EffectiveFacts/local Shared D/working specialists and verified direct domestic partner projection; current source total yields.",
-    "Inherit accepted B239 Crew occupancy; no Crew code/price/progress or new native step in B240."
+    "Existing CityProgressionStore commit/readback and confirmed-loss routes; no framework rewrite.",
+    "Current EffectiveFacts, DistrictCompleteness, actual Commerce state and verified existing network recipient sources.",
+    "Native Treasury read/change with immediate exact readback; private RNG and bounded diagnostics."
   ],
   "old_writers": [
     "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
@@ -51,47 +51,34 @@
   ],
   "conditional_context": [
     {
-      "trigger": "Commerce native/UI/effect or persistent discrepancy",
+      "trigger": "Capital implementation or native discrepancy",
       "paths": [
-        "Mod/Commerce.lua",
-        "Mod/CommerceCalculation.lua",
-        "Mod/CommerceModel.lua",
+        "Mod/CapitalInvestmentModel.lua",
+        "Mod/CapitalInvestment.lua",
         "Mod/CityProgressionStore.lua",
-        "Mod/UI/CommerceUI.lua",
-        "Mod/UI/CommercePanel.lua",
-        "Specialization/Design/Content/Commerce_D0055.json",
-        "DevelopmentTests/test_b239_commerce.py",
-        "DevelopmentTests/test_b239_commerce_store.py",
-        "DevelopmentTests/test_b239_commerce_ui.py",
-        "DevelopmentTests/test_b240_commerce.py"
+        "Mod/UI/CapitalInvestmentUI.lua",
+        "Mod/UI/CapitalInvestmentPanel.lua",
+        "Specialization/Design/Content/Commerce_D0056.json",
+        "DevelopmentTests/test_b241_capital.py",
+        "DevelopmentTests/test_b241_capital_ui.py"
       ]
     },
     {
-      "trigger": "Crew reservation/price/progress or source discrepancy",
-      "paths": [
-        "Mod/CrewProjects.lua",
-        "Mod/UI/CrewProjectUI.lua",
-        "DevelopmentTests/test_b239_crew_occupancy.py",
-        "Specialization/Design/Content/Industry_D0053.json"
-      ]
-    },
-    {
-      "trigger": "Direct-route/proof/transport issue",
+      "trigger": "Source/network/current Commercialization discrepancy",
       "paths": [
         "Mod/NetworkBridge.lua",
-        "Mod/NetworkSender.lua",
-        "Mod/NetworkInput.lua",
-        "DevelopmentTests/test_b239_commerce_network.py"
+        "Mod/Commerce.lua",
+        "Mod/EffectiveFacts.lua",
+        "Mod/DistrictCompleteness.lua"
       ]
     },
     {
-      "trigger": "Package/localization/retirement or deployment review",
+      "trigger": "Package/entry/deployment issue",
       "paths": [
+        "Mod/UI/CrewProjectOrder.lua",
+        "Mod/Data/Commerce.sql",
+        "Mod/Text/Commerce.sql",
         "Mod/SpecializationP0.modinfo",
-        "Mod/CommerceConvergence.lua",
-        "Mod/Lv3Effects.lua",
-        "Mod/Gameplay.lua",
-        "DevelopmentTests/test_b239_commerce_integration.py",
         "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
@@ -102,19 +89,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "Evidence/documentation review only; no runtime/test changes or repeated gameplay suite.",
-    "local": "B240 109 targeted checks inherited unchanged; 182 unique trace records and 47 Floor entries independently checked. Source/runtime 245/245 MATCH.",
-    "user": "USER_GAME_TEST_PASS for reported values/city modifiers/source filtering/tested withdrawal and Commerce cold-load step.",
-    "gap": "Trace logs planned output in one captured context, not literal Treasury deltas or a full restart. No broad native performance certification or Capital acceptance."
+    "depth": "L3 new contract/Treasury/persistence failure boundaries; L2 source/calculation/UI; L1 package/docs.",
+    "local": "155 distinct targeted tests PASS; actual Store/native-shaped failure and actual network/UI adapters. No native CPU/memory or fractional-Treasury claim.",
+    "user": "One ordinary Capital session: stable + venture in different domains, one midterm save/cold load, one maturity/duplicate-payout check; logs primary.",
+    "gap": "Native fractional Gold retention, actual debit/credit and contract native save/maturity closure pending."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B240_Native_Review.md",
-    "source": "B240.267 deployed from 81efaa995c02eb16e3ba41b7b6f88d724a596607;245/245 MATCH; receipt B240.267-81efaa9-playtest.json",
-    "native": "B240 tested native scope accepted using user observations and trace corroboration.",
-    "stop": "Wait for B241 plan/Design clarification and explicit implementation authorization; no new test or deployment now."
+    "report": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+    "source": "B241.268 local complete; live B240.267 until actual deployment record.",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "stop": "Safe W0003 deployment if exited, then stop for the one native Capital flow; no COM-C/D."
   }
 }

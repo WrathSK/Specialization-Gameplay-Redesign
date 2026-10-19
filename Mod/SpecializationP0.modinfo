@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="267">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="268">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B240.267: Commercialization source identities, Harbor total Food and stable Gold effects with clear domain eligibility.</Description>
+    <Description>B241.268: stable and venture Capital Investment contracts with locked terms and event-driven settlement.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -10,6 +10,7 @@
   <InGameActions>
     <UpdateDatabase id="SPC_B239_Commerce"><Properties><LoadOrder>10001070</LoadOrder></Properties><File>Data/Commerce.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B239_CommerceText"><File>Text/Commerce.sql</File></UpdateText>
+    <AddUserInterfaces id="SPC_B241_CapitalPanel"><Properties><Context>InGame</Context></Properties><File>UI/CapitalInvestmentPanel.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_B239_CommercePanel"><Properties><Context>InGame</Context></Properties><File>UI/CommercePanel.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B235_EngineeringStudyText"><File>Text/EngineeringStudy.sql</File></UpdateText>
@@ -77,6 +78,12 @@
       <File>Data/HalfYieldProbe.sql</File>
     </UpdateDatabase>
     <ImportFiles id="SPCP0_Common">
+      <File>CapitalInvestmentModel.lua</File>
+      <File>CapitalInvestment.lua</File>
+      <File>UI/CapitalInvestmentUI.lua</File>
+      <File>UI/CapitalInvestmentPanel.lua</File>
+      <File>UI/CapitalInvestmentPanel.xml</File>
+
       <File>EngineeringStudyModel.lua</File>
       <File>EngineeringStudyProjects.lua</File>
       <File>IndustryWonderEffects.lua</File>
@@ -414,6 +421,12 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+      <File>CapitalInvestmentModel.lua</File>
+      <File>CapitalInvestment.lua</File>
+      <File>UI/CapitalInvestmentUI.lua</File>
+      <File>UI/CapitalInvestmentPanel.lua</File>
+      <File>UI/CapitalInvestmentPanel.xml</File>
+
     <File>EngineeringStudyModel.lua</File>
     <File>EngineeringStudyProjects.lua</File>
     <File>IndustryWonderEffects.lua</File>

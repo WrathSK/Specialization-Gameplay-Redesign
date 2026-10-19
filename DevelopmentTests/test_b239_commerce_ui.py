@@ -61,6 +61,8 @@ LuaEvents.SPC_CommerceOpen.Add(function()opens=opens+1 end)
 '''
 def fixture(panel=False):
  l=LuaRuntime(unpack_returned_tuples=True);l.execute(SETUP)
+ # B241 adds this explicit adapter dependency; all previous assertions are retained.
+ l.execute((UI/'CapitalInvestmentUI.lua').read_text())
  l.execute((UI/'CommerceUI.lua').read_text())
  if panel:
   l.execute((UI/'CommercePanel.lua').read_text());l.execute('ContextPtr.initialize()')

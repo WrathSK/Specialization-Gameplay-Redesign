@@ -1,12 +1,12 @@
 # Commerce implementation preparation
 
-State: B240_NATIVE_ACCEPTED_SCOPED / B241_PROPOSED_NOT_AUTHORIZED. Updated 2026-10-18: B240 implementation `81efaa9`, review basis `049f6cf`, Commerce D0055 and Shared D0045. The user authorized matching-Identity external sources, Harbor total Food, removal of repeated Gold sampling and the B239 prerequisite/report UI correction. [B240 implementation](#b240-implementation-and-validation) is the current slice; source and deployment remain distinct in Status.
+State: B240_NATIVE_ACCEPTED_SCOPED / B241_LOCAL_COMPLETE_NATIVE_PENDING. Updated 2026-10-18: B240 implementation `81efaa9`, review basis `049f6cf`, Commerce D0056 and Shared D0045. The user authorized matching-Identity external sources, Harbor total Food, removal of repeated Gold sampling and the B239 prerequisite/report UI correction. [B241 implementation](#b241-implementation-and-validation) is the current slice; source and deployment remain distinct in Status.
 
 ## 当前范围与停止点
 
 B239 delivered the combined Industry Crew occupancy repair and first Commerce batch; the user has accepted the tested continuation occupancy. B240 is limited to the accepted D0055 Commercialization correction and existing UI explanation gap. [B238 native review](../../Status/Validation/Results/Specialization_B238_Native_Review.md) records the confirmed counterexample. Industry's implemented main chain needs no additional ability batch; rare District-body purchase remains user-deferred, conditional protection/Faith/other-speed evidence stays explicitly bounded, and future balance is not a gate. Culture HOLD remains unchanged. Current runtime and authorization belong to [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) and [Authority](../../Workflow/Authority.json).
 
-Gameplay authority is [Commerce D0055](../../Design/Content/Commerce_D0055.json) (D0050 contracts and D0054 per-domain Floor retained; D0055 replaces unrestricted external sources and Harbor Gold input), [the Spec Commerce section](../../Design/Specialization_v0.1_Design_Spec.md#8-commerce--commercial-hub--com) and [Shared named lifecycle](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE). This revision replaces the preparation's obsolete0.1 coefficient, unresolved X/S/exclusivity/protection list, plot-only Development quote and fixed10-turn Development term. D0054 records the subsequent user choice to Floor each Commercialization domain separately then sum; this is not transfer of another ability's rounding.
+Gameplay authority is [Commerce D0056](../../Design/Content/Commerce_D0056.json) (D0050 contracts and D0054 per-domain Floor retained; D0055 replaces unrestricted external sources and Harbor Gold input), [the Spec Commerce section](../../Design/Specialization_v0.1_Design_Spec.md#8-commerce--commercial-hub--com) and [Shared named lifecycle](../../Design/Content/Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE). This revision replaces the preparation's obsolete0.1 coefficient, unresolved X/S/exclusivity/protection list, plot-only Development quote and fixed10-turn Development term. D0054 records the subsequent user choice to Floor each Commercialization domain separately then sum; this is not transfer of another ability's rounding.
 
 ## 当前落地与可复用范围
 
@@ -15,7 +15,7 @@ Gameplay authority is [Commerce D0055](../../Design/Content/Commerce_D0055.json)
 | Commerce I/II support | Existing automatic support/qualification | Inherit scoped evidence; preserve baseline specialists/housing/GPP |
 | Commercialization | B240 D0055 source/Food writer and prerequisite UI implemented; tested values/modifiers/Identity/withdrawal accepted | No new blocker in the submitted interval; no broad performance certification |
 | Reputation | B239 Store-owned history; user observed growth and confirms B240 cold-load step | Inherit this evidence; no repeated Research Tradition test |
-| Capital Investment | Absent | Quote, debit, specific S source, locked outcome/protection, exactly-once settlement |
+| Capital Investment | B241 shared stable/venture quote and persisted contracts locally complete | One native money/term/reload/settlement session; fractional-native precision remains unverified |
 | Development Investment | Absent |15% theoretical purchase quote, one active contract per target city, +50% district-building production and completion exit |
 | Restructuring | Absent |500P Team, REALLOCATING, one permanent Potential debit, disruption and configuration |
 | Old Commerce | B239 exact3+48 retired | Definitions retained for cleanup; no old forward writer |
@@ -44,7 +44,7 @@ Keep the existing O/P/Q/R/S/T decomposition. Group native acceptance by usable c
 
 ## Proposed B239 combined slice
 
-Historical B239 proposal, approved on2026-10-18 and retained for earlier links. Its unrestricted external source, Harbor/Gold and clean-Gold sampling requirements are superseded by D0055/B240 below; this section is not the current native test assignment.
+Historical B239 proposal, approved on 2026-10-18 and retained for earlier links. Its unrestricted external source, Harbor/Gold and clean-Gold sampling requirements are superseded by D0055/B240 below; this section is not the current native test assignment.
 
 **Crew repair.** The current writer explicitly excludes PAUSED admissions from `reserved`, while resumption requests a new free slot. Count each admitted unfinished project, including a positive-progress paused one, once alongside surviving source-bound units. Resuming must reuse its existing admission, including at full occupancy; it must not require another slot. Completion exchanges the admitted slot for the living unit. Preserve native progress, project ID, locked price, capacity, source, receipts, UNKNOWN and no-replay protection. Separate actual queue count from total committed occupancy; do not replace every `reserved` use mechanically. Use existing order records and native inventory, not a new persistent counter or schema.
 
@@ -120,7 +120,7 @@ COM-D reviews actual Identity/ACTIVE and exit/return consumers, validates disrup
 | Item | Scope / timing |
 |---|---|
 | Commercialization source / precision | D0055 and per-domain Floor implemented; B240 tested values/city modifiers/source filtering/withdrawal accepted. Treasury contract precision is a separate upcoming gate |
-| Capital earliest-attainment tie-break | Narrow Design clarification before COM-B; no impact on COM-A |
+| Capital earliest-attainment tie-break | D0056 user confirms earliest establishment of the corresponding permanent institution level; missing reliable dates are not guessed |
 | Capital debit/returns and Development15% price precision | Decide at their respective implementation batch; do not pre-approve one rounding rule |
 | Connected-network S source exposure | Technical COM-B boundary; common recipients/national max are not automatically the correct pool |
 | Eligibility-independent theoretical purchase price / next-tier completion | Technical COM-C; no guessed formula |
@@ -135,7 +135,7 @@ Use task-scoped Content objects and direct source/caller closure. Exact cutover 
 
 The original preparation review contained source evidence and one actual-writer counterexample only. B239/B240 local evidence is scoped below; the user accepts B239 capacity, report D/Reputation response and observed reputation growth, and B240 adds user acceptance of actual values/city modifiers/source filtering/withdrawal and the Commerce reload. New persistence/writer closure receives targeted L3, ordinary projection L2, text/layout L1. Inherit unchanged shared evidence and combine native steps by marginal information value. Publish only this batch's reviewed source/tests/documentation; keep raw screenshots/logs and local reproduction ignored.
 
-User decision: D0055 and B240 accepted/authorized; Capital tie-break remains for COM-B. User testing/Primary next: see the B240 section and Status; stop before another batch.
+User decision: D0056 tie-break and B241 explicitly approved. User testing/Primary next: see the B241 implementation section; no COM-C/D authorization.
 
 ## B239 implementation and validation
 
@@ -182,14 +182,14 @@ Native verification is one continuous Commerce session: local prerequisite/repor
 
 ## B241 proposal — Capital Investment
 
-Planning only; no implementation/deployment authorization. Continue the existing COM-B sequence after B240, without reopening accepted Commercialization or the Culture HOLD items.
+Original COM-B proposal, approved by the user on 2026-10-18 with the D0056 tie-break clarification. The implementation and remaining native gate are recorded below; this retained plan does not authorize COM-C/D.
 
 **Deliverable.** One ordinary **资本投资** entry and single-layer shared quote/confirmation/status panel for **稳健投资** and **风险投资**. Commerce ACTIVE III can sign in implemented Research/Culture/Industry domains, without requiring that local district. Each confirmation invests 25% of the then-current Treasury for 10 Standard turns, one unsettled contract per source city/domain. Use the accepted D/S/C, return, probability, Reputation and hidden-failure rules; no new balance decision or copied Commercialization Floor.
 
 **Resolve before writing the transaction.**
 
 1. Bind S to a concrete eligible source in the existing domestic specialization network, never the Commercialization direct-pair pool or an unrelated national maximum. The canonical D0055 Capital contract says existing trade-connected network; the reading version still cautions against equating it with one route table. Check the existing `CurrentRecipientSources`/verified projection against that authority, documenting any specific ambiguity for the user; do not invent connected components or extra forwarding.
-2. `DESIGN_DECISION_REQUIRED`: tied highest S chooses the earliest city attaining that level, but current ACTIVE versus permanent institution attainment is not specified. Confirm that meaning before persisting timestamps or choosing a source. Do not infer attainment from city age or save observation order.
+2. Resolved by D0056: tied highest current ACTIVE S chooses earliest establishment of that corresponding permanent institution level, then stable City ID/key. Do not infer history from city age, Governor activation or save observation order.
 3. Inspect actual Treasury read/debit/credit precision and native readback. Keep fractional values where supported. If a gameplay rounding choice is necessary, report the concrete limitation and request it; per-domain Commercialization Floor is not authorization for rounding principal/returns.
 4. Recheck only relevant [deferred audit boundaries](../../Reports/Proposals/Audit_Followup_Priorities.md): Store commit visibility/failed write and native-action uncertainty (AF-01/12/13, P06a/P07), plus the network partial/UNKNOWN boundary already strengthened by B239. Preserve completed Store/propagation repairs. No broad save-framework rewrite or unrelated audit clearance is a prerequisite; any newly required structural repair must be explicitly bounded before dependent work.
 
@@ -201,4 +201,15 @@ Native Treasury mutation and Store commit are not automatically atomic. Define p
 
 **One proposed native session.** Sign one stable and one venture contract in different legal domains in parallel; check immediate Treasury debit and the displayed locked quote. Save/cold-load once during the 10-turn term, then compare one-time actual maturity returns with the original terms. One observed venture outcome is sufficient for that session; both branches receive deterministic local coverage. Existing bounded collector records contract transitions and money before/after; do not require repeated screenshots or force rerolls. Exact steps and integer/fractional expectations follow the interface/precision review.
 
-No Development Investment, Restructuring, new profession, timer, Culture repair or deployment is part of this planning checkpoint. User decision: authorize the bounded batch after resolving the S tie-break and any demonstrated precision/design conflict. User testing: no new test now. Primary next: stop at plan review.
+COM-B was subsequently explicitly authorized. Development Investment, Restructuring, new professions, timers and Culture repairs remain outside this batch. See current implementation below.
+
+
+## B241 implementation and validation
+
+D0056 is implemented as B241.268: [local result, state/failure contract and one native flow](../../Status/Validation/Results/Specialization_B241_Capital_Local.md). 155 targeted checks pass; native money and the new contract save/maturity closure are pending. One ordinary capital panel covers stable and venture modes; old Commercialization/Floor and other modules retain their contracts.
+
+Authoritative contracts/n live in the existing Store's optional per-city capital extension; pure schema/math live in CapitalInvestmentModel. The Store records actual permanent-institution establishment times on new confirmed investments, exposes guarded capital reads, and increments a confirmed-loss continuity counter. `CurrentCapitalSources` exposes the existing verified center/recipient source IDs, with current proof/reference checks. Unknown real tie dates hold that quote instead of inventing history. No separate topology, reverse city index or shared save-framework rewrite.
+
+Treasury remains native authority. Persist INTENT/CALLING before the native operation; only immediate matching readback permits ACTIVE/SETTLED. A saved final receipt is not replayed; unknown CALLING holds without guessing from later balances. Quotation and UI are replaceable views; outcome/n stay private until settlement. Three domain slots retain only current/latest contracts. Existing turn/load/confirmed-transfer events drive business transitions; network/Commerce publications mark quote reads dirty. UI/publish never debits, rolls or settles. Access marker has no yield and uses exact loss cleanup.
+
+The new native delta is Gold debit/credit precision and persisted contract settlement. Request the one combined session in the result, including one midterm cold load; inherit B240/old harness evidence. No new timer, frame polling, GC, AI specialization, Development Investment or Restructuring. User decision: accepted tie-break, no new rounding semantics. User testing: pending. Primary next: W0003 safe deployment if the game is verifiably closed, then stop at the native gate.

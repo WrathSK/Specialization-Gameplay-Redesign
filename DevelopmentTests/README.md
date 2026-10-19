@@ -77,3 +77,8 @@ The validated local interpreter is `/opt/homebrew/bin/python3.14` with Lupa 2.8 
 
 At S0567 this gave 783 PASS. Several legacy script-style suites (e.g. `test_b100`–`test_b127`, `test_b130`–`b133`, `test_b137`, `test_b144`, `test_p0_e2*`) already fail at HEAD; they were unchanged by B212. Compare against HEAD in a temporary detached worktree before attributing a failure.
 
+
+
+## B241 Capital Investment
+
+`test_b241_capital.py` and `test_b241_capital_ui.py` exercise actual model/Store/service/network/UI with explicit Treasury/control doubles and the existing read-only DB fixture. Run together with the109 B239/B240 Commerce checks using the documented Lupa environment;155 distinct tests pass at this checkpoint. Fractional-double success is not native fractional-Gold evidence. The new normal production action and single midterm cold-load/settlement flow are in the [B241 result](../Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md). No full historical gameplay regression is required.

@@ -33,6 +33,7 @@ function M.Start(P,shared)
   if same(old,v)then return end
   d.revision=d.revision+1;if v then v.revision=d.revision end
   views[k]=cp(v);d.views[k]=cp(v)
+  if shared.CapitalInvestment then shared.CapitalInvestment.Mark(pid,id)end
   if v then emit('COMMERCE',{owner=pid,city=id,phase=v.stage,reason=v.reason,workers=v.workers,
    count=v.reputation and v.reputation.age,expected=v.totalGold,baseInput=v.totalRaw,readStatus=v.stage=='HELD' and 'UNKNOWN' or 'VERIFIED'})end
   if v then for _,r in ipairs(v.domains or {})do if r.effective then

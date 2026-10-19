@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCCapitalInvestmentPanel">
+ <Grid ID="Window" Anchor="C,C" Size="780,650" Texture="Controls_ContainerBlue" SliceStart="0,0" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1" Hidden="1">
+  <Box Anchor="C,C" Size="parent-8,parent-8" Color="12,19,27,245" />
+  <Label ID="Title" Anchor="L,T" Offset="20,16" Style="FontFlair20" Color="255,255,255,255" />
+  <GridButton ID="Close" Anchor="R,T" Offset="16,12" Size="90,32" Style="MainButtonSmall"><Label ID="CloseCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <Label ID="CityName" Anchor="L,T" Offset="20,50" Style="FontNormal18" TruncateWidth="700" Color="255,255,255,255" />
+  <Label ID="Balance" Anchor="L,T" Offset="20,78" Style="FontNormal14" TruncateWidth="700" Color="220,228,235,255" />
+  <GridButton ID="Domain1" Anchor="L,T" Offset="20,110" Size="180,32" Style="MainButtonSmall"><Label ID="Domain1Caption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="Domain2" Anchor="L,T" Offset="210,110" Size="180,32" Style="MainButtonSmall"><Label ID="Domain2Caption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="Domain3" Anchor="L,T" Offset="400,110" Size="180,32" Style="MainButtonSmall"><Label ID="Domain3Caption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <Label ID="Subject" Anchor="L,T" Offset="20,160" Style="FontNormal18" TruncateWidth="730" Color="255,255,255,255" />
+  <Label ID="Source" Anchor="L,T" Offset="20,190" Style="FontNormal14" TruncateWidth="730" Color="220,228,235,255" />
+  <Label ID="Fundamentals" Anchor="L,T" Offset="20,216" Style="FontNormal14" TruncateWidth="730" Color="220,228,235,255" />
+  <Label ID="Principal" Anchor="L,T" Offset="20,244" Style="FontNormal14" TruncateWidth="730" Color="255,255,255,255" />
+  <Label ID="Stable" Anchor="L,T" Offset="20,280" Style="FontNormal14" WrapWidth="730" Color="255,255,255,255" />
+  <Label ID="Venture" Anchor="L,T" Offset="20,314" Style="FontNormal14" WrapWidth="730" Color="255,255,255,255" />
+  <Label ID="Warning" Anchor="L,T" Offset="20,366" Style="FontNormal12" TruncateWidth="730" Color="255,213,128,255" />
+  <Label ID="Contract" Anchor="L,T" Offset="20,394" Style="FontNormal14" WrapWidth="730" Color="220,228,235,255" />
+  <GridButton ID="StableConfirm" Anchor="L,T" Offset="20,494" Size="220,34" Style="MainButtonSmall"><Label ID="StableCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="VentureConfirm" Anchor="L,T" Offset="254,494" Size="220,34" Style="MainButtonSmall"><Label ID="VentureCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <GridButton ID="Refresh" Anchor="L,T" Offset="488,494" Size="160,34" Style="MainButtonSmall"><Label ID="RefreshCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
+  <Label ID="Help" Anchor="L,T" Offset="20,546" Style="FontNormal12" WrapWidth="730" Color="190,205,218,255" />
+  <Label ID="Error" Anchor="L,T" Offset="20,604" Style="FontNormal12" WrapWidth="730" Color="255,213,128,255" />
+ </Grid>
+</Context>

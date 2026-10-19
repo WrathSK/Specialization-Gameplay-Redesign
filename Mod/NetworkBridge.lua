@@ -86,7 +86,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function notify(pid)
   local publication=d.Input(pid)
   -- Logical input changes and pending-to-available recovery each notify once.
-  for _,name in ipairs({'Lv3Effects','StandardizationEffects','Commerce','CultureNetwork'}) do
+  for _,name in ipairs({'Lv3Effects','StandardizationEffects','Commerce','CapitalInvestment','CultureNetwork'}) do
    local consumer=shared[name]
    if consumer then local ok,err=pcall(consumer.Audit,publication)
     if not ok then bucket(pid).consumerError=short(err) end
@@ -385,6 +385,19 @@ function SPCNetworkBridge.Start(P,shared)
   if not ok then out.reason=short(ids);return out end
   out.validity='VERIFIED';out.reason='NETWORK_AVAILABLE';out.cityID=selected:GetID();out.reference=reference
   out.partners=ids;out.references=references;return out
+ end
+ -- B241 Capital consumes the existing center/recipient topology, not the
+ -- direct-pair Commercialization pool. Require current proof before selecting S.
+ function d.CurrentCapitalSources(pid,selected,kind)
+  local b=d.players[pid]
+  assert(b and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
+   and b.signal==(shared.RouteSignalRevision or 0),'CAPITAL_NETWORK_PENDING')
+  local v=currentView(pid,true);local id=selected:GetID()
+  assert(selected:GetOwner()==pid and v.references[id]==SPCNetworkInput.Reference(city(pid,id)),'CAPITAL_REFERENCE_CHANGED')
+  local out={};for sid in pairs((v.recipients[kind] or {})[id] or {})do
+   assert(v.references[sid]==SPCNetworkInput.Reference(city(pid,sid)),'CAPITAL_REFERENCE_CHANGED')
+   out[#out+1]=sid
+  end;table.sort(out);return out
  end
  function d.CurrentConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')

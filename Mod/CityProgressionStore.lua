@@ -2,6 +2,7 @@ if not SPCResearchTradition then include('ResearchTradition') end
 if not SPCDialogueProjectModel then include('DialogueProjectModel') end
 if not SPCEngineeringStudyModel then include('EngineeringStudyModel') end
 if not SPCCommerceModel then include('CommerceModel') end
+if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
@@ -109,6 +110,22 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(r.commerceKnown==true and type(r.commerce)=='table','COMMERCE_HISTORY_UNAVAILABLE')
    SPCCommerceModel.Validate(r.commerce,r)
   end
+  if r.capitalKnown~=nil or r.capital~=nil then
+   assert(r.capitalKnown==true and type(r.capital)=='table','CAPITAL_HISTORY_UNAVAILABLE')
+   SPCCapitalInvestmentModel.Validate(r.capital)
+   for _,c in pairs(r.capital.contracts)do
+    assert(c.source.token==r.base.token and c.source.owner==r.origin.owner
+     and c.source.x==r.origin.x and c.source.y==r.origin.y,'CAPITAL_SOURCE_REFERENCE_INVALID')
+   end
+  end
+  if r.ownerChanges~=nil then assert(type(r.ownerChanges)=='number' and r.ownerChanges>=0 and r.ownerChanges%1==0,'CAPITAL_OWNER_HISTORY_INVALID')end
+  if r.institutionTurns~=nil then
+   assert(type(r.institutionTurns)=='table','INSTITUTION_HISTORY_INVALID')
+   for level,turn in pairs(r.institutionTurns)do
+    assert(type(level)=='number' and level>=2 and level<=4 and level%1==0 and type(turn)=='number'
+     and turn>=r.base.first.turn and turn%1==0,'INSTITUTION_HISTORY_INVALID')
+   end
+  end
   -- B212: city-owned Expedition Insight history (Design: source city x foreign civ x
   -- category, first success only). History follows the city; never deleted here.
   if r.expeditionInsights~=nil then
@@ -211,6 +228,35 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(value~=nil,'DIALOGUE_HISTORY_CANNOT_DELETE');SPCDialogueProjectModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.dialogueKnown=true;n.dialogue=cp(value);n.revision=n.revision+1;save(n)
+ end
+ -- B241 APIs never expose an optimistic candidate during a native setter.
+ function d.CapitalState(pid,c)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  return cp({value=r.capital,token=r.base.token})
+ end
+ function d.WriteCapital(pid,c,old,value)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(same(r.capital,old),'CAPITAL_HISTORY_STALE')
+  assert(value~=nil,'CAPITAL_HISTORY_CANNOT_DELETE');SPCCapitalInvestmentModel.Validate(value)
+  if same(old,value)then return end
+  local n=cp(r);n.capitalKnown=true;n.capital=cp(value);n.revision=n.revision+1;save(n)
+ end
+ function d.CapitalReference()
+  storage.Check();assert(not committing and ready and not fault and root,'CAPITAL_REFERENCE_UNAVAILABLE')
+  local a=root.loss and root.loss.target or root.current or root.origin
+  return {owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=root.base.token,changes=root.ownerChanges or 0,stage=root.stage,identity=root.base.specialization}
+ end
+ function d.InstitutionHistory(pid,c)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  local times=cp(r.institutionTurns or {});times[1]=r.base.first and r.base.first.turn
+  -- These existing first-P4 receipts prove a historical time; never use load time.
+  if times[4]==nil and r.researchTradition then times[4]=r.researchTradition.start end
+  if times[4]==nil and r.commerce and r.commerce.reputation then times[4]=r.commerce.reputation.start end
+  return times
+ end
+ function d.VisitCapital(pid,fn)
+  if not root or root.origin.owner~=pid or not root.capital then return end
+  local reference=d.CapitalReference();fn(cp(root.capital),reference)
  end
  -- Engineering owns its business schema; Store owns exact city persistence and
  -- confirmed-loss cancellation. No candidate L escapes native write callbacks.
@@ -355,6 +401,14 @@ local function CreateProgressionRecord(P,shared,storage)
   local n=cp(r);n.investment=cp(nextValue)
   if n.investment then n.investment.anchor.cityID=r.origin.cityID;n.investment.anchor.first=cp(r.base.first)end
   local function receipts(v)local count=0;for _ in pairs(v and v.investments or {})do count=count+1 end;return count end
+  if receipts(nextValue)==receipts(old)+1 then
+   local op=old and old.pending
+   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
+    and nextValue.investments[op.receipt]==op.unitUID,'INSTITUTION_ESTABLISHMENT_UNCONFIRMED')
+   n.institutionTurns=cp(r.institutionTurns or {})
+   local level=receipts(nextValue)+1
+   if n.institutionTurns[level]==nil then n.institutionTurns[level]=Game.GetCurrentGameTurn()end
+  end
   if r.base.specialization=='RESEARCH' and not r.researchTradition and receipts(old)==2 and receipts(nextValue)==3 then
    local op=old and old.pending
    assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
@@ -713,6 +767,8 @@ local function CreateProgressionRecord(P,shared,storage)
     if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
+    n.ownerChanges=(n.ownerChanges or 0)+1
+    if n.capital then n.capital=SPCCapitalInvestmentModel.Terminate(n.capital,'CAPITAL_OWNER_CHANGED')end
     if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
@@ -990,6 +1046,18 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.AddExpeditionInsight(pid,c,civ,category,turn)return requireCity(c).AddExpeditionInsight(pid,c,civ,category,turn)end
  function store.CommerceState(pid,c)return requireCity(c).CommerceState(pid,c)end
  function store.WriteCommerce(pid,c,old,value)return requireCity(c).WriteCommerce(pid,c,old,value)end
+ function store.CapitalState(pid,c)return requireCity(c).CapitalState(pid,c)end
+ function store.WriteCapital(pid,c,old,value)return requireCity(c).WriteCapital(pid,c,old,value)end
+ function store.InstitutionHistory(pid,c)return requireCity(c).InstitutionHistory(pid,c)end
+ function store.CapitalReference(token)
+  check();return assert(workers[token],'CAPITAL_REFERENCE_UNAVAILABLE').CapitalReference()
+ end
+ function store.VisitCapital(pid,fn)
+  check();assert(P.IsTestPlayer(pid),'CAPITAL_OWNER_CHANGED')
+  local firstError
+  for _,w in pairs(workers)do local ok,err=pcall(w.VisitCapital,pid,fn);if not ok then firstError=firstError or err end end
+  assert(not firstError,firstError)
+ end
  function store.EngineeringState(pid,c)return requireCity(c).EngineeringState(pid,c)end
  function store.WriteEngineering(pid,c,old,value)return requireCity(c).WriteEngineering(pid,c,old,value)end
  function store.DialogueState(pid,c)return requireCity(c).DialogueState(pid,c)end

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0643
-Implementation Build: source/live B240.267; stable B069.96
-Architecture Revision Reviewed: A0169
-Design Revision Reviewed: D0055
-Latest Accepted Design Revision: D0055
-Design Sync State: D0055_IMPLEMENTED_SCOPED_NATIVE_ACCEPTED
-Work State: B240_NATIVE_ACCEPTED_B241_PLAN_REVIEW
+Status Revision: S0644
+Implementation Build: source B241.268; live B240.267; stable B069.96
+Architecture Revision Reviewed: A0170
+Design Revision Reviewed: D0056
+Latest Accepted Design Revision: D0056
+Design Sync State: D0056_CAPITAL_LOCAL_COMPLETE_NATIVE_PENDING
+Work State: B241_LOCAL_COMPLETE_AWAITING_SAFE_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B240 accepted in the tested scope:** [native review](Validation/Results/Specialization_B240_Native_Review.md).
-- User confirms values/city percentage modifiers, source Identity filtering, tested partial-domain/carrier withdrawal and the Commerce cold-load step. 182 contiguous captured records agree; 47 domain Floor checks pass, network revalidation recovers.
-- Source/live remains B240.267/modinfo267 from `81efaa9`, receipt `B240.267-81efaa9-playtest.json`; 245/245 MATCH. No runtime/Design/test/configuration change or deployment in this review.
-- No further B240 test requested. The log is not a Treasury measurement, complete restart capture or native performance proof; user observations supply those named acceptance items only.
-- Next: [B241 Capital Investment proposal](../Architecture/v2/Commerce_Preparation.md#b241-proposal--capital-investment), not implementation-authorized. Clarify S attainment tie-break and validate source/precision boundaries first. Main B069.96, Culture HOLD and unrelated audit deferrals remain.
+**B241 Capital Investment locally complete:** [result and one native flow](Validation/Results/Specialization_B241_Capital_Local.md).
+- D0056 confirms highest current ACTIVE S, then earliest corresponding permanent institution establishment. Other rules retained. Stable/venture ordinary panel, locked contracts/n, exact money receipts and event-driven maturity implemented.
+- Source B241.268/modinfo268; live remains verified B240.267 from `81efaa9` until an actual W0003 switch. No promotion/main/configuration change.
+- 155 targeted checks PASS. Native Gold precision/debit/return and the new contract's one cold-load/maturity gate remain USER_GAME_TEST_REQUIRED; B240 accepted scope retained.
+- Next: safe automatic deployment if exited, then the single Capital session. COM-C/D, Culture HOLD and unrelated audits remain outside authorization.
+
+## S0644 — D0056 and B241 local implementation
+
+User explicitly confirms the permanent-institution tie-break and authorizes COM-B/B241. Optional Store capital state has guarded reads and exact native-action receipts; matched owner changes preserve contractual termination. Existing network recipients supply S; no new connectivity model. New investment receipts record actual level-establishment turns without guessed backfill.155 targeted checks,11 changed/direct Lua syntax checks and current UI/package/SQL checks pass. Native precision is not inferred from local doubles; unknown readback holds without replay. Source-only pending actual safe deployment; frozen D0055/audits/results, main, GC and unrelated modules preserved.
 
 ## S0643 — B240 native acceptance and B241 proposal
 

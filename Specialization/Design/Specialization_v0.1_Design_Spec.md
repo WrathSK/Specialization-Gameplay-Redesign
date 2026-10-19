@@ -2,16 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0055
+Design Revision: D0056
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-10-18
-Acceptance Evidence: 用户确认商业化外部来源对应专业身份与港口总粮食输入交接，并明确授权Design同步；本城例外、逐领域Floor和其它合同保留，实施另行授权。
-Previous Accepted Revision: [D0054冻结原文](Revisions/Specialization_Design_Spec_D0054.md)
-Latest Accepted Design Revision: D0055
+Acceptance Evidence: 用户明确确认最高当前ACTIVE S同级时，按最早建立对应机构等级的城市优先，其余资本合同及其它规则全部保留；授权B241实施。
+Previous Accepted Revision: [D0055冻结原文](Revisions/Specialization_Design_Spec_D0055.md)
+Latest Accepted Design Revision: D0056
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
+
+**SCOPE-001（D0056）** 资本投资仍取当前有效ACTIVE最高的S；同级时按最早建立对应永久机构等级的城市优先，再以稳定City ID／stable key决定。不按ACTIVE首次达到、总督就任或读档观察时间排序；来源绑定与易主终止等其它合同保留。[接受记录](Design_ChangeLog.md#accepted-d0056--2026-10-18)。
 
 **SCOPE-001（D0055）** 商业化外部来源须持有对应专业身份；本城免身份要求，但仍需对应区域。外部来源不要求ACTIVE／总督／Potential／对应区域，直接国内商路资格不变。港口输入由金币改为城市总粮食（非余粮），输出仍为金币；港口专业本身不变。两项旧规则被取代，代码和原生验证未同步。[接受记录](Design_ChangeLog.md#accepted-d0055--2026-10-18)。
 
@@ -228,9 +230,9 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 ## 8. Commerce / Commercial Hub — COM
 
-**D0055: DESIGN_FROZEN；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
+**D0056: DESIGN_FROZEN；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-唯一机械合同：[Commerce D0055](Content/Commerce_D0055.json)（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
+唯一机械合同：[Commerce D0056](Content/Commerce_D0056.json)（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
 | Rule ID | 当前权威content |
 |---|---|

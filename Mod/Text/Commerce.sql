@@ -76,3 +76,41 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_COMMERCE_NO_SOURCE','尚未计算（领域未生效或事实待确认）'),
 ('zh_Hans_CN','LOC_SPC_COMMERCE_SOURCE_IDENTITY_UNKNOWN','来源专业身份暂不可确认'),
 ('en_US','LOC_SPC_COMMERCE_SOURCE_IDENTITY_UNKNOWN','来源专业身份暂不可确认');
+
+-- B241 ordinary contract panel.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CAPITAL_TITLE','资本投资'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_OPEN_HELP','打开资本投资：稳健投资或风险投资。此入口不进入生产队列。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_CLOSE','关闭'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_BALANCE','当前国库：{1} 金币'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_RESEARCH','科研'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_CULTURE','文化'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_INDUSTRY','工业'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_SUBJECT','投资领域：{1}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_SOURCE','S 来源：{1} · ACTIVE {2}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_SOURCE_NONE','无合格来源'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_NO_SOURCE','无合格 S 来源，按 S=1 计算'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_FUNDAMENTALS','D={1} · S={2} · C={3} · 利润率 {4}%'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_PRINCIPAL','本次本金：{1} 金币（当前国库25%）；10回合，到期 T{2}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_STABLE_DETAIL','稳健：总返还 {1}；净收益 +{2}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_VENTURE_DETAIL','风险：成功率 {1}%；成功返还 {2}／失败返还 {3}[NEWLINE]预期总返还 {4}；预期净收益 {5}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_NEGATIVE_EV','本次风险投资预期亏损。你仍可自主选择。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_BELOW_SAFE','风险投资的预期净收益低于本次稳健投资。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_NO_CONTRACT','本领域尚无合同。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_CONTRACT','合同：{1}；本金 {2}；到期 T{3}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_LOCKED_TERMS','锁定 D={1}／S={2}／C={3}；S 来源：{4}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_SETTLED','已返还 {1}；实际净收益 {2}'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_TERMINATED','关键合同城市易主，合同终止，本金不返还。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_CONFIRM_STABLE','确认稳健投资'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_CONFIRM_VENTURE','确认风险投资'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_REFRESH','刷新报价'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_HELP','每城每领域最多1笔未结算合同。每次确认以剩余国库重新报价。[NEWLINE]确认后条件与风险结果锁定；商业城或锁定S来源城易主，合同终止。'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_WAITING','等待城市与报价更新'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_REQUEST_WAIT','正在确认，请稍候…'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_ERROR','暂不可用：{1}');
+INSERT OR IGNORE INTO LocalizedText(Language,Tag,Text) SELECT 'en_US',Tag,Text FROM LocalizedText WHERE Language='zh_Hans_CN' AND Tag LIKE 'LOC_SPC_CAPITAL_%';
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_CAPITAL_RESULT_SUCCESS','风险投资成功'),
+('zh_Hans_CN','LOC_SPC_CAPITAL_RESULT_FAILURE','风险投资失败');
+INSERT OR IGNORE INTO LocalizedText(Language,Tag,Text) SELECT 'en_US',Tag,Text FROM LocalizedText WHERE Language='zh_Hans_CN' AND Tag LIKE 'LOC_SPC_CAPITAL_RESULT_%';

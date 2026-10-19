@@ -15,3 +15,10 @@ INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,Citizen
 -- The UI intercepts this configuration opener before native enqueue.
 INSERT INTO Projects(ProjectType,Name,ShortName,Description,Cost,CostProgressionModel,PrereqDistrict,RequiredBuilding)
  VALUES ('PROJECT_SPC_COMMERCIALIZATION','LOC_SPC_COMMERCE_TITLE','LOC_SPC_COMMERCE_TITLE','LOC_SPC_COMMERCE_OPEN_HELP',1,'NO_PROGRESSION_MODEL','DISTRICT_CITY_CENTER','BUILDING_SPC_COMMERCIALIZATION_ACCESS');
+
+-- B241 access is a presentation marker only; no yield or production effect.
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_CAPITAL_ACCESS','KIND_BUILDING'),('PROJECT_SPC_CAPITAL_INVESTMENT','KIND_PROJECT');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)
+ VALUES ('BUILDING_SPC_CAPITAL_ACCESS','LOC_SPC_CAPITAL_TITLE',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Projects(ProjectType,Name,ShortName,Description,Cost,CostProgressionModel,PrereqDistrict,RequiredBuilding)
+ VALUES ('PROJECT_SPC_CAPITAL_INVESTMENT','LOC_SPC_CAPITAL_TITLE','LOC_SPC_CAPITAL_TITLE','LOC_SPC_CAPITAL_OPEN_HELP',1,'NO_PROGRESSION_MODEL','DISTRICT_CITY_CENTER','BUILDING_SPC_CAPITAL_ACCESS');

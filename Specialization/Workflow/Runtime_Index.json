@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "8094a2d07b6dcd6dde433a2b4f52a0afa791777c2dd4c133a943630254a29f56",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "1871f0dc003df1d0d212f289fdbf39fdea5df0c37cf4aaa18259c652aabc81a5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "8dc1ff39e627f86d4f843f308939541483e7400db44c5e2f5154ea5e6471f1c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "6763cdc9ae66e62b814114a20c3d945579630baf760e76e2a7e6451e53dc0440",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -341,9 +341,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "682b785c98f9144396daca9c3e609c74b9b950d61c7b077be1439110b4b412a5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "ca07c51811fbdba47cfc05bc28abb80ce00a786e236e55d9012ffa0aeb22267e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "e4878d43fbb068ec671a9a2bcb0cd48289f190d55fa202c3ea7830a2d2cf77fc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+      "sha256": "d693e7e8893238c5ec33aeee72cb578c4d61485092af4e375ab3182ce6e49bb7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7319f67165bd531add6a3e6219d5bc2c5a0d90801d6dc650155d5d987c2f3231",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+      "sha256": "e4801bcb6291b9d11bc40c91e6c3e9b3dd637e053f553a8e4625eaeff9bc35ac",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/Standardization.lua": {
       "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "baa0d1ee072bc48154c6ab0ce965cf5176630d37651698ec448a9c39729f1a3c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "7ddc39108d80cfb6fdacebceea6ef998a33c17734887f9ea403d557ba4d4c05d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "940df72fe1a53c6dc9a13874ee08107a3a2d0377b285b7578ca285d208016385",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "d43c7f4c364f0cf7a489bf57870aede9f9c171fb99181f7b62c95365334f3153",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -1096,9 +1096,9 @@
       "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "5dc2fcc78dbadd26b7b75077924258b265377da94df029af1c72038b605798e3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "38a44d3a7b09d53b0b64afef9a6e651a589f8a12df30833f819fd965e9443639",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1191,9 +1191,9 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Commerce.lua": {
-      "sha256": "a16ec36e320f064885b85acf6bfd015995abe1815e0277ed6fbd30ec76c98099",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+      "sha256": "a4aaaae8197fe9e09439f0d0dee4ae5075422aaff1aa6eb3f1f450a953f2c119",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -1206,14 +1206,14 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Data/Commerce.sql": {
-      "sha256": "c20e9646a1da1b96783dc76e486bf84c99247353d208f60624a1c2b214dc73da",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "5c1097c1b2ba54f62afb8a5d7749a7f9c79e5f1fa279c71508f942f8628b54cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "d3b7ec744a04cbb506cfbd2008856ae177c44491aefa3dcad6380df172533898",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+      "sha256": "3b4ffc201158dd6657f90261346c630578ddeeafc78b9167fb8a84088c362fad",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/UI/CommercePanel.lua": {
       "sha256": "f76067e9f3a012710e0e3ff5073461c6efe6d9268ab437bc8bfd29e7a7de717a",
@@ -1229,6 +1229,31 @@
       "sha256": "f8e9efaf4e06bf5f54346b39f1558468a98c3fa0ec65fc1c8e853ac144b1d2bb",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/CapitalInvestment.lua": {
+      "sha256": "c3e0548f942b0e509c08220d04ad284825c571dc55d9b2ad86e8fea5d7865971",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+    },
+    "Mod/CapitalInvestmentModel.lua": {
+      "sha256": "45159ee284e78d61cff78e260020f8e68a4a1ab0f7b5b92bbb02e4760104b6da",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+    },
+    "Mod/UI/CapitalInvestmentPanel.lua": {
+      "sha256": "c3110f0dffbef428254a1edb7c5757f0a993bbd2c3763acd9e24a8ebbfae6cad",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+    },
+    "Mod/UI/CapitalInvestmentPanel.xml": {
+      "sha256": "a932b9be98aa0f95027dae239ed39565b0ce41357af60dc6b246df128f460c46",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+    },
+    "Mod/UI/CapitalInvestmentUI.lua": {
+      "sha256": "e3ce29cc55a65ec356660a26f5b8d03b830111cf0adc62a89cbf6b78220955fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     }
   }
 }
