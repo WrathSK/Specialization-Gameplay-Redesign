@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -10,58 +10,64 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0173",
-    "status": "S0661",
+    "architecture": "A0174",
+    "status": "S0662",
     "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
-  "goal": "Record scoped B246 native Development acceptance and its one unexercised additive case; prepare the next COM-D proposal without implementation.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+  "goal": "Deliver approved B247 protected team and complete same-city restructuring with preserved named histories/contracts; validate the new persistent transaction once natively.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Actual source/live, accepted scope and next authorization boundary."
+      "reason": "Actual source/live and native boundary."
     },
     {
       "path": "Specialization/Design/Content/Commerce_D0057.json",
       "kind": "json",
-      "selector": "/contracts/development_investment",
-      "reason": "Retained quotation, contract, effect and exit authority."
+      "selector": "/contracts/restructuring",
+      "reason": "Accepted team, transaction and current/history rules."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
-      "kind": "section",
-      "selector": "## Accepted results",
-      "reason": "Native quote/debit and user-observed Production evidence; no widened PASS."
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "selector": "/lifecycle_authority_ref",
+      "reason": "Existing named long-term ownership authority; no universal asset policy."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "## Standardization and remaining evidence boundaries",
-      "reason": "One unexercised combination and inherited local coverage."
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current implementation contracts."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B247 proposal — Asset Restructuring",
-      "reason": "Next planning boundary only; implementation requires explicit approval."
+      "selector": "## B247 implementation and validation",
+      "reason": "Approved boundary, state ownership and update lifecycle."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
       "kind": "section",
       "selector": "## Local verification",
-      "reason": "Inherited137 selected local methods; not rerun or promoted to native evidence."
+      "reason": "Risk-matched local evidence and explicit historical-check limitations."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "kind": "section",
+      "selector": "## One native acceptance flow",
+      "reason": "Only new transaction uncertainty, including reallocation cold load."
     }
   ],
   "dependencies": [
-    "Existing CityProgressionStore optional record extension with exact equality and model-owned decimal encoding; no framework rewrite.",
-    "Current EffectiveFacts/DistrictCompleteness working specialists and existing network direct-outgoing verified projection.",
-    "UI-context native constructibility/theoretical Gold cost; isolated district-building Production family and existing bounded collector."
+    "Original Store origin/token and historical admission are retained; optional current-identity/receipt extension and guarded native consumption, no generic writer rewrite.",
+    "EffectiveFacts feeds existing support/network/profession consumers; named histories and signed Capital/Development contracts keep their separate rules.",
+    "Native unit training/birth events, native safe-retreat, existing UnitPanel art/actions, derived empty marker effects and unchanged bounded collector."
   ],
   "old_writers": [
     "Retire exact3 old Commerce specialist flags and48 Convergence effects; no old forward startup/request/output subscription.",
@@ -69,52 +75,54 @@
   ],
   "conditional_context": [
     {
-      "trigger": "B246 implementation or native discrepancy",
+      "trigger": "B247 implementation/native discrepancy",
       "paths": [
-        "Mod/DevelopmentInvestment.lua",
-        "Mod/DevelopmentInvestmentModel.lua",
-        "Mod/DevelopmentInvestmentCatalog.lua",
-        "Mod/UI/DevelopmentInvestmentRead.lua",
-        "Mod/UI/DevelopmentInvestmentUI.lua",
-        "Mod/UI/DevelopmentInvestmentPanel.lua",
-        "Mod/UI/DevelopmentInvestmentPanel.xml",
-        "Mod/Data/DevelopmentInvestment.sql",
-        "Mod/Text/DevelopmentInvestment.sql",
+        "Mod/RestructuringModel.lua",
+        "Mod/Restructuring.lua",
+        "Mod/RestructuringUI.lua",
+        "Mod/Data/Restructuring.sql",
+        "Mod/Text/Restructuring.sql",
         "Mod/CityProgressionStore.lua",
-        "DevelopmentTests/test_b246_development.py",
-        "DevelopmentTests/test_b246_development_ui.py"
+        "Mod/EffectiveFacts.lua",
+        "Mod/ResearchTradition.lua",
+        "Mod/CommerceModel.lua",
+        "Mod/Standardization.lua",
+        "Mod/Gameplay.lua",
+        "Mod/UI/ExpeditionSpyUnitPanel.lua",
+        "Mod/InstitutionPresentation.lua",
+        "DevelopmentTests/test_b247_restructuring.py",
+        "DevelopmentTests/test_b247_ui_package.py"
       ]
     },
     {
-      "trigger": "Direct integration or deployment discrepancy",
+      "trigger": "Direct retained contract or deployment discrepancy",
       "paths": [
+        "Mod/CapitalInvestment.lua",
+        "Mod/DevelopmentInvestment.lua",
+        "Mod/NetworkInput.lua",
         "Mod/NetworkBridge.lua",
-        "Mod/Commerce.lua",
-        "Mod/Gameplay.lua",
-        "Mod/UI/CrewProjectOrder.lua",
-        "Mod/SpecializationP0.modinfo",
         "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
   ],
   "non_scope": [
-    "Restructuring, unrelated Commerce/other-profession changes, Culture HOLD, original-owner extinction/city destruction/target invalidation Design, AI and non-Standard speed.",
-    "General Store/event refactor, timers/frame polling, GC changes, main/promotion, external Mod/config edits, game launch, frozen evidence mutation."
+    "New Design, AI/future professions/non-Standard speed, destroyed-city/original-owner extinction policies, Culture HOLD and unrelated audit repairs.",
+    "General Store/event/framework migration, timers/frame polling, GC changes, main/promotion, external Mod/configuration edits, game launch, frozen evidence mutation."
   ],
   "validation": {
-    "depth": "L3 new contract/persistence/native-write guards and direct UI/network SQL L2; no historical all-suite run.",
-    "local": "137 selected methods PASS:57 B246,80 retained; Lua5.1 and loaded-HD SQL checks. Normal Development writes0 cross-record uniqueness visits; Capital values/work unchanged.",
-    "user": "USER_GAME_TEST_PASS within submitted quotation/debit,+50% selected-domain effect,specialist decline,cold-load,completion withdrawal and slot reuse. Four debit errors0;three active contracts restored without new debit.",
-    "gap": "NOT_EXERCISED: simultaneous Standardization+Development on one building (observed investment targets all Standardization0). Carry forward once opportunistically, not a new defect or immediate retest. Alternative prices not individually logged; selected minimum logic inherits local coverage."
+    "depth": "L3 new current-identity/persistence/native-consumption boundary; direct UI/SQL/package L2.",
+    "local": "240 selected methods PASS:50 B247,190 directly affected retained checks; Lua5.1 and in-memory loaded-HD SQL. Ordinary restructuring writes0 cross-record uniqueness visits, not a native performance claim.",
+    "user": "USER_GAME_TEST_REQUIRED: one normal training/liquidation/reallocation cold-load/configuration flow.",
+    "gap": "Actual net growth/yields and new real-save transaction pending. Historical build-specific assertions/SQL reapply are not current PASS. B246 simultaneous Standardization overlap remains opportunistic."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
-    "source": "B246.273/modinfo273 DEVELOP_ACTIVE; source6398be1030651157156679f99de709f6a6f873c6; receipt B246.273-6398be1-playtest.json;260/260 MATCH, digest62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020. No pending transaction. B246 submitted quote/debit/Production/worker/cold-load/completion cases accepted; simultaneous Standardization unexercised.",
-    "native": "USER_GAME_TEST_PASS within submitted quotation/debit,+50% selected-domain effect,specialist decline,cold-load,completion withdrawal and slot reuse. Four debit errors0;three active contracts restored without new debit.",
-    "stop": "B246 evidence checkpoint complete in submitted scope. B247 COM-D proposal awaits approval; no implementation, deployment or extra native test now."
+    "report": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+    "source": "B247.274 local source; live B246.273 pending W0003 checkpoint.",
+    "native": "USER_GAME_TEST_REQUIRED: one normal training/liquidation/reallocation cold-load/configuration flow.",
+    "stop": "After authorized deployment, wait for the one new native flow. No further implementation."
   }
 }

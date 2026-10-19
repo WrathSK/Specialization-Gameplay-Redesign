@@ -19,9 +19,9 @@ function SPCEffectiveFacts.Start(P,shared)
   if store and store.Owns(city) then ledger=store.Investment(pid,city) else ledger=city:GetProperty(KEY) end
   local n=0
   if f.specialization=='NONE' then
-   assert(f.potential==0 and ledger==nil,'UNASSIGNED_INVESTMENT_CONFLICT')
+   assert(ledger==nil and (f.potential==0 or f.restructuring and (f.progression=='REALLOCATING' or f.progression=='CONSUMING') and f.potential>=1 and f.potential<=3),'UNASSIGNED_INVESTMENT_CONFLICT')
   else
-   assert(kinds[f.specialization] and f.potential==1 and type(f.first)=='table','EFFECTIVE_FOUNDATION_INVALID')
+   assert(kinds[f.specialization] and (f.potential==1 or f.restructuring and f.potential>=1 and f.potential<=3) and type(f.first)=='table','EFFECTIVE_FOUNDATION_INVALID')
    if ledger~=nil then
     -- Comparison only: borrow first here; the returned facts below still deep-copy it.
     local anchor={owner=pid,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization}
@@ -30,7 +30,7 @@ function SPCEffectiveFacts.Start(P,shared)
     local units={}
     for receipt,unit in pairs(ledger.investments) do
      assert(type(receipt)=='string' and #receipt>0 and type(unit)=='string' and #unit>0 and not units[unit],'INVESTMENT_RECEIPT_INVALID')
-     units[unit]=true;n=n+1;assert(n<=3,'INVESTMENT_CAP_EXCEEDED')
+     units[unit]=true;n=n+1;assert(n+f.potential<=4,'INVESTMENT_CAP_EXCEEDED')
     end
     assert(ledger.revision==1+n,'INVESTMENT_REVISION_INVALID')
     if ledger.pending~=nil then
@@ -39,7 +39,7 @@ function SPCEffectiveFacts.Start(P,shared)
       and type(op.unitID)=='number' and op.unitID>=0 and op.unitID%1==0
       and op.owner==pid and op.cityUID==f.token and op.expectedRevision==ledger.revision
       and type(op.receipt)=='string' and #op.receipt>0 and type(op.unitUID)=='string' and #op.unitUID>0
-      and not ledger.investments[op.receipt] and not units[op.unitUID] and n<3,'INVESTMENT_PENDING_INVALID')
+      and not ledger.investments[op.receipt] and not units[op.unitUID] and n+f.potential<4,'INVESTMENT_PENDING_INVALID')
     end
    end
   end
@@ -47,7 +47,8 @@ function SPCEffectiveFacts.Start(P,shared)
   out.investmentCount=n;out.investmentPending=ledger and ledger.pending~=nil or false
   out.ledgerStatus=ledger and 'PRESENT' or 'ABSENT_NO_WRITES'
   out.active=out.potential;out.activeStatus='KNOWN'
-  if out.potential>1 then
+  if f.specialization=='NONE' then out.active=0
+  elseif out.potential>1 then
    local gateOwner,gateCityID,gateStatus,ceiling=P.GovernorGate(city)
    if gateOwner==pid and gateCityID==f.cityID and gateStatus=='KNOWN'
     and type(ceiling)=='number' and ceiling%1==0 and ceiling>=1 and ceiling<=4 then

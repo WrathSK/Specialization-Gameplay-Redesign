@@ -1,3 +1,4 @@
+if not SPCRestructuringModel then include('RestructuringModel') end
 if not SPCResearchTradition then include('ResearchTradition') end
 if not SPCDialogueProjectModel then include('DialogueProjectModel') end
 if not SPCEngineeringStudyModel then include('EngineeringStudyModel') end
@@ -7,7 +8,7 @@ if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') 
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function CreateProgressionRecord(P,shared,storage)
- local M=SPCCityIdentityRead;local cp=M.Copy
+ local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
@@ -89,11 +90,12 @@ local function CreateProgressionRecord(P,shared,storage)
      and r.investment==nil and r.templates==nil and r.currentFirst==nil,'STORE_UNASSIGNED')
    else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
   end
+  if r.restructuring then R.Validate(r.restructuring,r)end
   -- B140: missing history is not proof of first initialization. The optional
   -- extension adopts only validated existing ledgers; old ambiguous nil stays held.
   if r.templateLifecycle then
    local t=r.templateLifecycle
-   assert(r.base.specialization=='INDUSTRY' and type(t)=='table' and t.version==1
+   assert((r.base.specialization=='INDUSTRY' or r.restructuring and r.restructuring.established.INDUSTRY) and type(t)=='table' and t.version==1
     and (t.state=='UNINITIALIZED' or t.state=='INITIALIZED') and type(t.reconcilePending)=='boolean','TEMPLATES_LIFECYCLE_INVALID')
    assert(t.districtsKnown==nil or (t.districtsKnown==true and r.templates and r.templates.knowledgeVersion==1 and r.templates.districts),'TEMPLATES_DISTRICT_HISTORY_UNAVAILABLE')
    assert(t.state~='UNINITIALIZED' or (r.templates==nil and t.reconcilePending),'TEMPLATES_LIFECYCLE_CONFLICT')
@@ -151,10 +153,12 @@ local function CreateProgressionRecord(P,shared,storage)
   end
   if r.claimTimer then
    local t=r.claimTimer
-   assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'
+   local restored=r.restructuring and r.restructuring.phase=='UNASSIGNED' and next(r.restructuring.candidates)~=nil
+   local candidates=restored and r.restructuring.candidates or r.acquisition and r.acquisition.legacySet
+   assert((restored or r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED')
     and t.version==1 and t.token==r.base.token and same(t.reference,r.current or r.origin)
-    and r.acquisition.legacySet[t.kind] and t.project=='PROJECT_SPC_CLAIM_'..t.kind
-    and type(t.start)=='number' and t.start%1==0 and t.start>=r.acquisition.turn
+    and candidates[t.kind] and t.project=='PROJECT_SPC_CLAIM_'..t.kind
+    and type(t.start)=='number' and t.start%1==0 and t.start>=(restored and r.restructuring.recaptureTurn or r.acquisition.turn)
     and type(t.deactivated)=='boolean' and (t.stage=='ACTIVE' or t.stage=='CALLING' or t.stage=='STOPPED')
     and type(t.reason)=='string','CLAIM_TIMER_INVALID')
   end
@@ -208,7 +212,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  local function projected(r,v,investment)
   v=cp(v);if not v or not r.current then return v end
-  local a=investment and v.anchor or v;a.cityID=r.current.cityID;a.first=cp(r.currentFirst)
+  local a=investment and v.anchor or v;a.cityID=r.current.cityID;if not r.restructuring then a.first=cp(r.currentFirst)end
   return v
  end
  -- History reads reuse the established city token; they cannot enroll AI cities.
@@ -217,8 +221,8 @@ local function CreateProgressionRecord(P,shared,storage)
   return {token=root.base.token,foundationTurn=root.base.foundationTurn,
    founded=root.schema==2,owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
  end
- function d.Base(pid,c)local r=active(pid,c);return projected(r,r.base,false)end
- function d.Investment(pid,c)local r=active(pid,c);return projected(r,r.investment,true)end
+ function d.Base(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=R.Current(r);return projected(r,b,false)end
+ function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
  local function save(nextValue,observeFailure)
   assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
   local previous=root;root=cp(nextValue) -- protect target before engine callbacks
@@ -253,7 +257,7 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.CapitalReference()
   storage.Check();assert(not committing and ready and not fault and root,'CAPITAL_REFERENCE_UNAVAILABLE')
   local a=root.loss and root.loss.target or root.current or root.origin
-  return {owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=root.base.token,changes=root.ownerChanges or 0,stage=root.stage,identity=root.base.specialization}
+  return {owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=root.base.token,changes=root.ownerChanges or 0,stage=root.stage,identity=R.Current(root).specialization}
  end
  function d.DevelopmentState(pid,c)
   assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
@@ -274,6 +278,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.InstitutionHistory(pid,c)
   assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  if r.restructuring then return cp(r.restructuring.institutions[r.restructuring.identity] or {})end
   local times=cp(r.institutionTurns or {});times[1]=r.base.first and r.base.first.turn
   -- These existing first-P4 receipts prove a historical time; never use load time.
   if times[4]==nil and r.researchTradition then times[4]=r.researchTradition.start end
@@ -309,7 +314,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
   local r=active(pid,c);assert(same(r.commerce,old),'COMMERCE_HISTORY_STALE')
   assert(value~=nil,'COMMERCE_HISTORY_CANNOT_DELETE');SPCCommerceModel.Validate(value,r)
-  assert(r.base.specialization=='COMMERCE' and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
+  assert(R.Current(r).specialization=='COMMERCE' and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
   assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')
   if same(old,value)then return end
   local n=cp(r);n.commerceKnown=true;n.commerce=cp(value);n.revision=n.revision+1;save(n)
@@ -318,11 +323,11 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or root.stage~='ACTIVE' then return end
   if not SPCCommerceModel.IsStandardSpeed()then return end
   local t=root.commerce.reputation
-  if root.base.specialization=='COMMERCE' and (not t or t.age==40 or t.state~='COUNTING')then return end
+  if R.Current(root).specialization=='COMMERCE' and (not t or t.age==40 or t.state~='COUNTING')then return end
   local ok,err=pcall(function()
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'COMMERCE_CITY_UNKNOWN')
-   local r=active(pid,c);local value=SPCCommerceModel.Advance(r.commerce,turn,r.base.specialization)
+   local r=active(pid,c);local value=SPCCommerceModel.Advance(r.commerce,turn,R.Current(r).specialization)
    if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n)end
   end)
   d.commerceError=not ok and tostring(err) or nil
@@ -354,7 +359,7 @@ local function CreateProgressionRecord(P,shared,storage)
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'TRADITION_CITY_UNKNOWN')
    local r=active(pid,c)
-   local value=SPCResearchTradition.Advance(r.researchTradition,turn,r.base.specialization)
+   local value=SPCResearchTradition.Advance(r.researchTradition,turn,R.Current(r).specialization)
    if not same(value,r.researchTradition) then
     local n=cp(r);n.researchTradition=value;n.revision=n.revision+1;save(n)
    end
@@ -423,33 +428,86 @@ local function CreateProgressionRecord(P,shared,storage)
   rememberFault(name)
  end
  function d.WriteInvestment(pid,c,old,nextValue)
-  local r=active(pid,c);assert(same(projected(r,r.investment,true),old),'STALE_LEDGER')
-  local n=cp(r);n.investment=cp(nextValue)
-  if n.investment then n.investment.anchor.cityID=r.origin.cityID;n.investment.anchor.first=cp(r.base.first)end
-  local function receipts(v)local count=0;for _ in pairs(v and v.investments or {})do count=count+1 end;return count end
-  if receipts(nextValue)==receipts(old)+1 then
+  local r=active(pid,c);local base,inv=R.Current(r)
+  assert(same(projected(r,inv,true),old),'STALE_LEDGER')
+  local n=cp(r);local target=n.restructuring or n;target.investment=cp(nextValue)
+  if target.investment then target.investment.anchor.cityID=r.origin.cityID;target.investment.anchor.first=cp(base.first)end
+  if R.Count(nextValue)==R.Count(old)+1 then
    local op=old and old.pending
-   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
-    and nextValue.investments[op.receipt]==op.unitUID,'INSTITUTION_ESTABLISHMENT_UNCONFIRMED')
-   n.institutionTurns=cp(r.institutionTurns or {})
-   local level=receipts(nextValue)+1
-   if n.institutionTurns[level]==nil then n.institutionTurns[level]=Game.GetCurrentGameTurn()end
-  end
-  if r.base.specialization=='RESEARCH' and not r.researchTradition and receipts(old)==2 and receipts(nextValue)==3 then
-   local op=old and old.pending
-   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
-    and nextValue.investments[op.receipt]==op.unitUID,'TRADITION_FIRST_P4_UNCONFIRMED')
-   n.researchTradition=SPCResearchTradition.Begin(Game.GetCurrentGameTurn(),op.receipt)
-  end
-  if r.base.specialization=='COMMERCE' and receipts(old)==2 and receipts(nextValue)==3 and SPCCommerceModel.IsStandardSpeed()then
-   local op=old and old.pending
-   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil
-    and nextValue.investments[op.receipt]==op.unitUID,'COMMERCE_FIRST_P4_UNCONFIRMED')
-   local value=r.commerce or SPCCommerceModel.New(pid)
-   n.commerceKnown=true;n.commerce=SPCCommerceModel.BeginReputation(value,Game.GetCurrentGameTurn(),op.receipt)
+   assert(op and op.stage=='CONSUMED_CONFIRMED' and nextValue.pending==nil and nextValue.investments[op.receipt]==op.unitUID,'INSTITUTION_ESTABLISHMENT_UNCONFIRMED')
+   local level=R.Count(nextValue)+base.potential;local turn=Game.GetCurrentGameTurn()
+   local times
+   if n.restructuring then
+    times=n.restructuring.institutions[base.specialization];assert(times,'REST_INSTITUTIONS_MISSING')
+    n.restructuring.established[base.specialization]=math.max(n.restructuring.established[base.specialization] or 0,level)
+   else n.institutionTurns=cp(r.institutionTurns or {});times=n.institutionTurns end
+   times[level]=times[level] or turn
+   if level==4 then
+    local q=n.restructuring and R.Qualification(n,base,target.investment,op.receipt)
+    if base.specialization=='RESEARCH' and not r.researchTradition then
+     n.researchTradition=SPCResearchTradition.Begin(turn,op.receipt);n.researchTradition.qualification=q
+    end
+    if base.specialization=='COMMERCE' and SPCCommerceModel.IsStandardSpeed() and not (r.commerce and r.commerce.reputation) then
+     n.commerceKnown=true;n.commerce=SPCCommerceModel.BeginReputation(r.commerce or SPCCommerceModel.New(pid),turn,op.receipt)
+     n.commerce.reputation.qualification=q
+    end
+   end
   end
   n.revision=n.revision+1;save(n)
   if n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
+ end
+ -- The record owns current Identity, the one-time Potential debit and the native
+ -- consumption intent. Callers provide proved native references, not UI authority.
+ function d.RestructuringState(pid,c)
+  assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return cp(r.restructuring)
+ end
+ function d.InstitutionArchive(pid,c)
+  assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return r.restructuring and cp(r.restructuring.established) or nil
+ end
+ local function publishIdentity(c)
+  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Restructuring')end
+ end
+ function d.BeginRestructuring(pid,c,team,receipt)
+  assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  if r.restructuring and r.restructuring.receipt==receipt and same(r.restructuring.team,team) then return cp(r.restructuring)end
+  local f=shared.EffectiveFacts.Read(pid,c);local n=cp(r);local turn=Game.GetCurrentGameTurn()
+  n.restructuring=R.Begin(r,f,team,receipt,turn)
+  if n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
+  if n.commerce then n.commerce=SPCCommerceModel.Exit(n.commerce);n.commerceKnown=true end
+  if n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
+  if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
+  if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
+  n.revision=n.revision+1;save(n);publishIdentity(c);return cp(n.restructuring)
+ end
+ function d.ConfigureRestructuring(pid,c,team,kind,first)
+  assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(r.restructuring and same(r.restructuring.team,team),'REST_BOUND_TEAM_CHANGED')
+  local n=cp(r);n.restructuring=R.Configure(r.restructuring,kind,first,Game.GetCurrentGameTurn())
+  n.revision=n.revision+1;save(n);return cp(n.restructuring)
+ end
+ function d.RestructuringExit(c)
+  storage.Check();assert(not committing and ready and not fault and root and root.loss and d.IsExitTarget(c,root.loss),'REST_EXIT_UNCONFIRMED')
+  return cp(root.restructuring)
+ end
+ function d.ConfirmRestructuringConsumption(pid,c,team)
+  assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);local s=assert(r.restructuring,'REST_MISSING')
+  assert(s.phase=='CONSUMING' and same(s.team,team) and not Players[pid]:GetUnits():FindID(team.id),'REST_CONSUMPTION_UNCONFIRMED')
+  if s.consumed then return end
+  local n=cp(r);n.restructuring.consumed=true;n.revision=n.revision+1;save(n)
+ end
+ function d.FinishRestructuring(pid,c,team)
+  assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);local s=assert(r.restructuring,'REST_MISSING')
+  assert(same(s.team,team),'REST_BOUND_TEAM_CHANGED')
+  if s.phase=='SETTLED' then return false end
+  assert(not Players[pid]:GetUnits():FindID(team.id),'REST_UNIT_STILL_PRESENT')
+  local n=cp(r);n.restructuring=R.Finish(s)
+  if n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,Game.GetCurrentGameTurn(),n.restructuring.identity)end
+  if n.restructuring.identity=='INDUSTRY' then
+   if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
+   elseif n.templates then n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=true}
+   elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+  end
+  n.revision=n.revision+1;save(n);publishIdentity(c);return true
  end
  -- Only the existing Standardization module owns interpretation of this ledger.
  function d.ReadTemplates(c)
@@ -459,7 +517,7 @@ local function CreateProgressionRecord(P,shared,storage)
    local n=cp(r);n.templates=c:GetProperty(M.Keys.TEMPLATES);n.templatesCaptured=true;n.revision=n.revision+1;save(n)
   end
   local t=root.templateLifecycle
-  if root.base.specialization=='INDUSTRY' then
+  if R.Current(root).specialization=='INDUSTRY' then
    assert(root.templates~=nil or (t and t.state=='UNINITIALIZED'),'TEMPLATES_HISTORY_UNAVAILABLE')
    return cp(root.templates),t==nil or t.reconcilePending
   end
@@ -469,7 +527,7 @@ local function CreateProgressionRecord(P,shared,storage)
   local r=active(c:GetOwner(),c)
   local current=d.ReadTemplates(c) -- same missing-history guard for every writer
   r=active(c:GetOwner(),c) -- a legacy capture may have replaced the record
-  assert(r.base.specialization=='INDUSTRY' and r.templatesCaptured and same(current,old),'TEMPLATES_STALE')
+  assert(R.Current(r).specialization=='INDUSTRY' and r.templatesCaptured and same(current,old),'TEMPLATES_STALE')
   assert(type(value)=='table' and value.initialized==true,'TEMPLATES_VALUE_INVALID')
   if same(old,value) and r.templateLifecycle and not r.templateLifecycle.reconcilePending then return end
   local n=cp(root);n.templates=cp(value)
@@ -496,6 +554,19 @@ local function CreateProgressionRecord(P,shared,storage)
   local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n)
  end
  function d.Complete(pid,c,e)
+  if root and root.restructuring then
+   local s=root.restructuring
+   if s.phase=='UNASSIGNED' and next(s.candidates)==nil then
+    local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
+    local n=cp(r);n.restructuring=R.Claim(s,e.specialization,{districtID=e.districtID,type=e.type,turn=e.turn})
+    if e.specialization=='INDUSTRY' then
+     if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
+     elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+    end
+    n.revision=n.revision+1;save(n);publishIdentity(c)
+   end
+   return
+  end
   if not root or root.schema<2 or root.progression~='UNASSIGNED' then return end
   if root.acquisition and root.acquisition.mode=='LEGACY_CLAIM' then return end
   -- Transfer reconstruction is not a new local completion. Await confirmed return.
@@ -511,19 +582,35 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Claim state belongs to the existing city record, not UI or a second property.
  function d.ClaimState(pid,c)
   local r=active(pid,c)
+  if r.restructuring then
+   local s=r.restructuring
+   if s.phase~='UNASSIGNED' or next(s.candidates)==nil then return nil end
+   return cp({token=r.base.token,reference=r.current or r.origin,set=s.candidates,eligible=true,timer=r.claimTimer,revision=r.revision})
+  end
   if r.schema~=3 or r.acquisition.mode~='LEGACY_CLAIM' then return nil end
   return cp({token=r.base.token,reference=r.current or r.origin,set=r.acquisition.legacySet,
    eligible=r.progression=='UNASSIGNED',timer=r.claimTimer,receipt=r.claim,revision=r.revision})
  end
  function d.WriteClaimTimer(pid,c,old,value)
   local r=active(pid,c)
-  assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED','CLAIM_INELIGIBLE')
+  assert((r.restructuring and r.restructuring.phase=='UNASSIGNED' and next(r.restructuring.candidates)~=nil) or (not r.restructuring and r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'),'CLAIM_INELIGIBLE')
   assert(same(r.claimTimer,old),'CLAIM_TIMER_STALE')
   if same(old,value) then return end
   local n=cp(r);n.claimTimer=cp(value);n.revision=n.revision+1;save(n)
  end
  function d.ClaimComplete(pid,c,e)
   local r=active(pid,c)
+  if r.restructuring then
+   local s=r.restructuring;if s.phase=='SETTLED' then return false end
+   assert(s.phase=='UNASSIGNED' and s.candidates[e.kind] and e.token==r.base.token and same(e.reference,r.current or r.origin)
+    and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'REST_CLAIM_PROOF')
+   local n=cp(r);n.restructuring=R.Claim(s,e.kind,{districtID=e.districtID,type=e.type,turn=e.turn});n.claimTimer=nil
+   if e.kind=='INDUSTRY' then
+    if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
+    elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+   end
+   n.revision=n.revision+1;save(n);publishIdentity(c);return true
+  end
   if r.claim then return false end -- duplicate native completion/readback
   assert(r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED','CLAIM_INELIGIBLE')
   assert(same(e.reference,r.current or r.origin) and e.token==r.base.token and r.acquisition.legacySet[e.kind]
@@ -568,11 +655,19 @@ local function CreateProgressionRecord(P,shared,storage)
   c=c or CityManager.GetCityAt(root.origin.x,root.origin.y)
   local ok,f=pcall(shared.EffectiveFacts.Read,pid,c)
   if not ok then return '进度记录已保存；当前事实未确认：'..tostring(f)end
+  if root.restructuring then
+   local s=root.restructuring;local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业',NONE='无当前专业'}
+   local phase={REALLOCATING='资产重组中',CONSUMING='配置确认中；结果不明时不重复操作',SETTLED='资产配置完成',UNASSIGNED='重组已因易主终止；等待重新认领'}
+   return P.VERSION..' | '..(phase[s.phase] or s.phase)..'\n'..(names[f.specialization] or f.specialization)
+    ..' | Potential '..f.potential..' | ACTIVE '..tostring(f.active)
+    ..((s.phase=='REALLOCATING' or s.phase=='CONSUMING') and ('\n清算前 '..s.before..' 级 → 保留 '..s.potential..' 级；尚需 '..math.max(0,s.started+5-Game.GetCurrentGameTurn())..' 个完整回合。\n期满不会自动配置；同一团队须前往同城另一个合格专业区域。') or '')
+    ..'\n各专业历史分别保留；历史机构不代表当前能力生效。'
+  end
   if root.schema==3 then
    local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业'};local list={}
    for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do if root.acquisition.legacySet[k]then list[#list+1]=names[k]end end
    local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目' or '等待征服后的首个合格区域完成'
-   if root.progression=='SPECIALIZED' then mode='专业已锁定：'..names[f.specialization]end
+   if root.progression=='SPECIALIZED' then mode=f.progression=='REALLOCATING' and '资产重组中' or ('当前专业：'..(names[f.specialization] or f.specialization))end
    return P.VERSION..' | 征服城市进度\n取得已确认 | '..mode..'\n冻结候选：'..(#list>0 and table.concat(list,'、') or '无')
     ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..('\n认领：'..(shared.ClaimProjects and (shared.ClaimProjects.startupError or (shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()] or {}).reason or shared.ClaimProjects.status) or '模块未初始化；请保留报告'))
     ..'\n独立记录已保存；候选不会随之后建设增加。'
@@ -651,7 +746,7 @@ local function CreateProgressionRecord(P,shared,storage)
     '原引用 '..label(root.origin)..' | record rev '..root.revision,
     '原凭据 '..root.base.token..' | 当前匹配 '..binding..' | 恢复依据 '..tostring(root.returnEvidence or '尚未确认'),
     '当前 '..(readable and label(live) or 'UNKNOWN')..' | token '..(tokenOK and tostring(token) or 'UNKNOWN'),
-    '永久 '..root.base.specialization..' | Potential '..(1+receipts)..' | 投资 '..receipts,
+    '原始身份凭据 '..root.base.specialization..' | 原投资 '..receipts..' | 当前专业 '..(fOK and f.specialization or 'UNKNOWN')..' / Potential '..(fOK and f.potential or 'UNKNOWN'),
     '当前ACTIVE '..(fOK and tostring(f.active)..' / '..tostring(f.activeStatus) or '未激活/UNKNOWN'),
     '失城确认 '..(root.loss and label(root.loss.target) or root.lastLoss and ('历史 '..label(root.lastLoss.target)) or 'NONE'),
     '退出 '..d.exitStatus..' | 完成 '..done..'/'..total..' | 核验ID '..checked..' / 移除 '..removed,
@@ -747,7 +842,8 @@ local function CreateProgressionRecord(P,shared,storage)
   end
   local count=0;for name in pairs(exits)do count=count+1;assert(finished[name],'RETURN_WITHDRAWAL_UNCONFIRMED')end
   assert(count>0,'RETURN_WITHDRAWAL_UNCONFIRMED')
-  assert(not root.investment or root.investment.pending==nil,'RETURN_PENDING_INVESTMENT')
+  local _,currentInvestment=R.Current(root)
+  assert(not currentInvestment or currentInvestment.pending==nil,'RETURN_PENDING_INVESTMENT')
   -- Rebind the current district reference, never invent new historical completion.
   local first
   if root.progression~='UNASSIGNED' then
@@ -760,7 +856,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(first,'RETURN_DISTRICT_UNAVAILABLE')
   end -- P0 has no historical professional district to rebind.
   local n=cp(root)
-  if n.base.specialization=='INDUSTRY' then
+  if R.Current(n).specialization=='INDUSTRY' then
    -- Preserve reliable city experience; current eligible buildings are unioned
    -- by Standardization only after the authoritative return is committed.
    if n.templatesCaptured and n.templates then
@@ -768,6 +864,30 @@ local function CreateProgressionRecord(P,shared,storage)
     shared.Standardization.ValidateHistory(c,n.templates)
    end -- missing pre-loss history holds Standardization reads, not Identity/Potential
    if n.templateLifecycle then n.templateLifecycle.reconcilePending=true end
+  end
+  if n.restructuring then
+   local s=n.restructuring
+   if s.phase=='DISCARDED' then
+    local candidates={}
+    for _,district in Players[newOwner]:GetDistricts():Members()do
+     local dc=district:GetCity();local row=P.Info('Districts',district:GetType())
+     if dc and same(ref(dc),current) and row and district:IsComplete() then
+      local kind=P.Family and P.Family(row.DistrictType) or P.Families[row.DistrictType]
+      if kinds[kind]then candidates[kind]=true end
+     end
+    end
+    n.restructuring=R.Recapture(s,candidates,Game.GetCurrentGameTurn())
+   elseif s.phase=='SETTLED' then
+    local mapped
+    for _,district in Players[newOwner]:GetDistricts():Members()do
+     local dc=district:GetCity();local row=P.Info('Districts',district:GetType())
+     if dc and same(ref(dc),current) and row and row.DistrictType==s.first.type and district:IsComplete()then
+      assert(not mapped,'REST_RETURN_DISTRICT_AMBIGUOUS');mapped=district:GetID()
+     end
+    end
+    assert(mapped,'REST_RETURN_DISTRICT_UNAVAILABLE');s.first.districtID=mapped
+    if s.investment then s.investment.anchor.first=cp(s.first)end
+   end
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
   for _,fn in pairs(returns)do fn(root.origin.owner,c)end
@@ -790,6 +910,7 @@ local function CreateProgressionRecord(P,shared,storage)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
     local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
+    if n.restructuring and (n.restructuring.phase=='REALLOCATING' or n.restructuring.phase=='CONSUMING')then n.restructuring=R.Discard(n.restructuring)end
     if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
@@ -1077,6 +1198,13 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   if not modern or not initialized then return 'WAITING' end
   return freshHistoryStart and 'FRESH' or 'EXISTING'
  end
+ function store.RestructuringExit(c)return requireCity(c).RestructuringExit(c)end
+ function store.ConfirmRestructuringConsumption(pid,c,team)return requireCity(c).ConfirmRestructuringConsumption(pid,c,team)end
+ function store.RestructuringState(pid,c)return requireCity(c).RestructuringState(pid,c)end
+ function store.InstitutionArchive(pid,c)return requireCity(c).InstitutionArchive(pid,c)end
+ function store.BeginRestructuring(pid,c,team,receipt)return requireCity(c).BeginRestructuring(pid,c,team,receipt)end
+ function store.ConfigureRestructuring(pid,c,team,kind,first)return requireCity(c).ConfigureRestructuring(pid,c,team,kind,first)end
+ function store.FinishRestructuring(pid,c,team)return requireCity(c).FinishRestructuring(pid,c,team)end
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end

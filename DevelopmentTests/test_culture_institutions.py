@@ -17,6 +17,7 @@ def display():
     db=sqlite3.connect(':memory:')
     db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))')
     db.executescript((ROOT/'Mod/Text/TestText.sql').read_text())
+    db.executescript((ROOT/'Mod/Text/Restructuring.sql').read_text())
     lua.globals().loc=lua.table_from(dict(db.execute("select Tag,Text from LocalizedText where Language='zh_Hans_CN'")))
     db.close()
     lua.execute('''
@@ -101,7 +102,7 @@ class CultureInstitutionDisplay(unittest.TestCase):
           assert(rows.items[4].Name.text=='学术总署')
           v.specialization='CULTURE';LuaEvents.SPC_PresentationChanged();assert(rows.items[1].Name.text=='文艺同好会')
           v.specialization='INDUSTRY';LuaEvents.SPC_PresentationChanged();assert(rows.items[1].Name.text=='匠作坊')
-          v.specialization='COMMERCE';LuaEvents.SPC_PresentationChanged();assert(Controls.InstitutionContainer.hidden and #rows.items==0)
+          v.specialization='COMMERCE';LuaEvents.SPC_PresentationChanged();assert(not Controls.InstitutionContainer.hidden and #rows.items==4 and rows.items[4].Name.text=='资本信托')
         ''')
 
     def test_selected_city_and_owner_guard_prevent_stale_presentation(self):

@@ -31,7 +31,7 @@ local function render(data,v)
  end
  top()
  if not v then Controls.InstitutionContainer:SetHide(true);rows:ResetInstances();last=nil;size();return end
- local signature=tostring(v.owner)..':'..v.cityID..':'..tostring(v.specialization)..':'..v.potential..':'..tostring(v.active)..':'..tostring(v.activeStatus)
+ local signature=tostring(v.owner)..':'..v.cityID..':'..M.Signature(v)
  if signature==last then return end;last=signature
  Controls.InstitutionContainer:SetHide(false)
  Controls.InstitutionHeader:SetText(Locale.Lookup('LOC_SPC_INSTITUTIONS_HEADER'))
@@ -39,13 +39,13 @@ local function render(data,v)
  local known=type(v.active)=='number' and v.activeStatus~='UNKNOWN'
  local highest=0
  for _,entry in ipairs(M.GetRows(v)) do
-  if entry.level<=v.potential and known and entry.level<=v.active then highest=math.max(highest,entry.level) end
+  if not entry.historical and entry.level<=v.potential and known and entry.level<=v.active then highest=math.max(highest,entry.level) end
  end
- for index,entry in ipairs(M.GetRows(v)) do if entry.level<=v.potential then
+ for index,entry in ipairs(M.GetRows(v)) do if entry.established or entry.level<=v.potential then
   local row=rows:GetInstance()
-  local enabled=known and entry.level<=v.active
+  local enabled=not entry.historical and known and entry.level<=v.active
   local current=enabled and entry.level==highest
-  local state=not known and 'UNKNOWN' or (not enabled and 'INACTIVE' or (current and 'CURRENT' or 'ENABLED'))
+  local state=entry.historical and 'LEGACY' or not known and 'UNKNOWN' or (not enabled and 'INACTIVE' or (current and 'CURRENT' or 'ENABLED'))
   row.Stage:SetText(roman[entry.level] or tostring(entry.level))
   row.Name:SetText(M.Label(entry,'name'))
   row.State:SetText(Locale.Lookup('LOC_SPC_INSTITUTION_'..state))

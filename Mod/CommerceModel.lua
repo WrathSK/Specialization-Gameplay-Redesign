@@ -39,7 +39,8 @@ function M.Validate(v,r)
    and int(t.age) and t.age<=40 and t.age<=t.cursor-t.start
    and type(t.receipt)=='string' and #t.receipt>0
    and (t.state=='COUNTING' or t.state=='DORMANT_OWNER' or t.state=='UNKNOWN_INTERVAL'),'COMMERCE_REPUTATION_INVALID')
-  if r then
+  if r and t.qualification then SPCRestructuringModel.ValidateQualification(t.qualification,r,t.receipt,t.start,'COMMERCE')
+  elseif r then
    assert(r.base.specialization=='COMMERCE' and r.investment and r.investment.investments[t.receipt]
     and r.base.first and t.start>=r.base.first.turn,'COMMERCE_REPUTATION_ORIGIN_UNAVAILABLE')
    local count=0;for _ in pairs(r.investment.investments)do count=count+1 end

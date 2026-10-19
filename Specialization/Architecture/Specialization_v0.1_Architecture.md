@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0173
+# Specialization v0.1 Architecture — A0174
 
 Document Owner: Codex
-Architecture Revision: A0173
+Architecture Revision: A0174
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -11,7 +11,7 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 
 ## CURRENT AUTHORITATIVE STATE
 
-A0173保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
+A0174保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
 - [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
@@ -35,6 +35,8 @@ A0173保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 
 意义延展：[B166自动接入合同](v2/P0_L2_Meaning.md#b166已授权--意义延展自动接入)复用K确认馆藏、Shared D与现有单值原语，正常writer拥有当前每城投影；旧GWA仅保留具名撤销和冻结定义，正常旧BASE采样／正向入口关闭。Probe不在正常Start启动；五产出范围／Culture延期、加载与原生证据以定域合同／Status为准。
 
+- [B247 current Identity and restructuring](v2/Commerce_Preparation.md#b247-implementation-and-validation): original city admission/history remains intact; an explicit Store transaction projects current Identity/Potential, owns one-time liquidation and separately confirmed native consumption, and publishes committed changes to existing consumers. No general save-framework rewrite. Each profession history and signed contract keeps its own lifecycle. Event-driven native training/UI/disruption; five game turns enable explicit same-city configuration, without wall-clock timers. Native gate pending.
+
 ## 系统如何组成
 
 这是一套同时使用Gameplay Lua、UI Lua和原生数据库效果的系统。Gameplay维护可信城市进度、验证行动并协调收益；UI读取引擎在该context公开的当前事实、呈现结果；SQL定义原生Modifier与内部载体。UI、单位和载体都不能单独充当永久专业历史。
@@ -54,7 +56,7 @@ A0173保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 | 网络输入与共享结果 | BackgroundRoutes/NetworkSender → NetworkBridge、NetworkInput | 当前路线快照、版本/引用验证、共享派生视图；专业consumer各自解释收益 |
 | 巨作事实 | DialogueRefresh → GreatWorkFacts / GreatWorkCatalog | 会话资格、时代、位置和国内索引；旧Dialogue独立投影保留；GWA在B166源码退役，新Meaning消费确认摘要 |
 | 原生收益 | ResearchSupport/IndustrySupport、Lv2Housing/GPP及各能力consumer | 模块拥有各自carrier和退出路径；保存记录不是收益快照 |
-| 玩家呈现与诊断 | CityPotential、P0Panel、InstitutionOverview/Institutions | 读取已确认结果；机构显示目前有科研原型，不能当成四专业完整UI |
+| 玩家呈现与诊断 | CityPotential、P0Panel、InstitutionOverview/Institutions | 读取已确认结果；四个当前专业的机构行读取已确认事实；B247另区分历史机构与当前能力，不代表所有玩法已通过实机验收 |
 
 ### 事实、保存与当前资格
 

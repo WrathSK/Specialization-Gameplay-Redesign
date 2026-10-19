@@ -7,7 +7,8 @@ function M.Validate(t,r)
  assert(type(t)=='table' and t.version==1 and integer(t.start) and integer(t.age)
   and integer(t.cursor) and t.cursor>=t.start and t.age<=t.cursor-t.start
   and states[t.state] and type(t.receipt)=='string' and #t.receipt>0,'TRADITION_RECORD_INVALID')
- if r then
+ if r and t.qualification then SPCRestructuringModel.ValidateQualification(t.qualification,r,t.receipt,t.start,'RESEARCH')
+ elseif r then
   assert(r.investment and r.investment.investments[t.receipt] and r.base.first
    and t.start>=r.base.first.turn,'TRADITION_ORIGIN_RECEIPT_MISSING')
   local count=0;for _ in pairs(r.investment.investments)do count=count+1 end
@@ -23,7 +24,7 @@ end
 function M.Advance(t,turn,identity)
  M.Validate(t);assert(integer(turn) and turn>=t.cursor,'TRADITION_TURN_INVALID')
  assert(type(identity)=='string','TRADITION_IDENTITY_UNKNOWN')
- local n={version=1,start=t.start,age=t.age,cursor=t.cursor,state=t.state,receipt=t.receipt}
+ local n={version=1,start=t.start,age=t.age,cursor=t.cursor,state=t.state,receipt=t.receipt,qualification=t.qualification}
  if t.state=='OWNER_POLICY_UNRESOLVED' or t.state=='UNKNOWN_INTERVAL' then return n end
  local delta=turn-t.cursor
  if delta>1 then n.state='UNKNOWN_INTERVAL';return n end

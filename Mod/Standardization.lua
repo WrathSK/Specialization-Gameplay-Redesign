@@ -128,6 +128,11 @@ function SPCStandardization.Start(P,shared)
   else data.errors[k]=nil end
   return ok
  end
+ function data.Refresh(pid,cid)
+  if not data.ready or data.busy then return end
+  local c=Players[pid] and Players[pid]:GetCities():FindID(cid);if not c then return end
+  data.busy=true;guard(pid,c,function()initialize(pid,c)end);data.busy=false
+ end
  function data.Discover(pid)
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
   for id,player in pairs(Players) do if (pid==nil or pid==id) and P.IsTestPlayer(id) then

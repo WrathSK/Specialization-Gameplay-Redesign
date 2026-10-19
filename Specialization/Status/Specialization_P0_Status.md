@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0661
-Implementation Build: source/live B246.273; stable B069.96
-Architecture Revision Reviewed: A0173
+Status Revision: S0662
+Implementation Build: source B247.274; live B246.273; stable B069.96
+Architecture Revision Reviewed: A0174
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B246_NATIVE_ACCEPTED_SCOPED
+Work State: B247_LOCALLY_VALIDATED_PENDING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B246 Development Investment accepted in the submitted scope:** [native review](Validation/Results/Specialization_B246_Native_Review.md).
-- 69 observed quotations follow15% of the native theoretical price. Four signed contracts debit180/135/135/270 Gold (720 total); actual errors are all0, within the accepted0.01 per-call bound. No repeated Development debit appears.
-- The user confirms actual +50%, selected-domain isolation, continued effect after specialist removal, completion withdrawal/slot release and full restart. Logs show one completed contract, actual slot reuse and three active contracts restored without another debit; the closed target is not restored.
-- Standardization plus Development is **NOT_EXERCISED**: all40 observed Standardization entries for investment targets have0 contribution. Retain one convenient later combination check; do not repeat the completed flow or treat this as a new implementation defect.
-- Source/live remains B246.273/modinfo273 from `6398be1`,260/260 MATCH, receipt `B246.273-6398be1-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged. The137 selected local methods and [B245 Capital evidence](Validation/Results/Specialization_B245_Native_Review.md) remain inherited within their scopes.
-- [B247 Asset Restructuring proposal](../Architecture/v2/Commerce_Preparation.md#b247-proposal--asset-restructuring) is the next new Commerce main-chain slice, **not authorized**. No next implementation/deployment, held Culture work or unrelated audit repair starts automatically.
+**B247 Asset Restructuring implemented and locally verified; native gate pending.** [Result and minimal flow](Validation/Results/Specialization_B247_Restructuring_Local.md).
+- Standard-speed Commerce ACTIVE IV trains a 500-Production protected team; explicit same-city liquidation → REALLOCATING → configuration after at least five full turns. One Potential debit, exact team consumption with separate confirmation, no automatic finish or new timers.
+- Original city/profession history retained; current Identity/ACTIVE effects published separately. Commerce reputation/failure protection resets on actual Identity exit; signed Capital/Development contracts keep their accepted rules. Target transfer during reallocation discards that transaction/team; recapture uses current candidates.
+- 240 targeted local methods PASS; actual dispatcher/support/network input and actual contract persistence/settlement included. Local checks do not prove native growth, unit behavior or real save reconstruction. One native flow includes a cold load during REALLOCATING.
+- Source B247.274/modinfo274; live remains B246.273 from 6398be1 until the guarded deployment checkpoint. Main/stable B069.96 unchanged.
+- B246 remains [accepted in the submitted scope](Validation/Results/Specialization_B246_Native_Review.md). Simultaneous Standardization+Development remains NOT_EXERCISED; capture once opportunistically, without repeating B246. Culture holds, unrelated audit repairs and further batches do not start automatically.
+
+## S0662 — B247 local implementation
+
+Explicit user approval covers COM-D and necessary current-identity/history/save/UI adaptation. 50 new plus 190 retained local methods pass. Store preserves original receipts and named history policies; configuration intent does not masquerade as confirmed native consumption. Loaded-HD new SQL, Lua 5.1, UI/art/package closure pass. Historical build-pinned/file-equality/SQL-reapply limitations are recorded without weakening unrelated assertions. Only named reviewed source/tests/current technical documents and context metadata changed; native gate and guarded deployment remain separate. Main, Design, old evidence, configuration and GC unchanged.
 
 ## S0661 — B246 native Development review
 

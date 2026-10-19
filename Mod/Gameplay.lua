@@ -67,6 +67,9 @@ local function request(playerID,params)
     shared.Stage="ERROR 玩家资格检查未通过："..tostring(eligibilityReason)
     return
   end
+  if type(params.Action)=='string' and params.Action:match('^REST_') then
+    if shared.Restructuring then shared.Restructuring.Request(playerID,params)end;return
+  end
   if params.Action=='NETWORK_ISOLATE' or params.Action=='NETWORK_ISOLATION_READ' then
     local ok,out=pcall(function()
       if params.Action=='NETWORK_ISOLATE' then return shared.NetworkIsolation.Begin(playerID,params.Epoch) end
@@ -238,10 +241,12 @@ local function request(playerID,params)
     local ok,f=pcall(function()
       local c=Players[playerID]:GetCities():FindID(params.CityID)
       assert(c and c:GetOwner()==playerID,'PRESENTATION_CITY_UNAVAILABLE')
-      return shared.EffectiveFacts.Read(playerID,c)
+      local f=shared.EffectiveFacts.Read(playerID,c)
+      f.institutionArchive=shared.CityProgressionStore.InstitutionArchive(playerID,c);return f
     end)
     shared.CityPresentationView={token=params.Token,owner=playerID,cityID=params.CityID,
       specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
+      progression=ok and f.progression or nil,institutionArchive=ok and f.institutionArchive or nil,
       investments=ok and f.investmentCount or nil,active=ok and f.active or nil,activeStatus=ok and f.activeStatus or nil,
       x=ok and Players[playerID]:GetCities():FindID(params.CityID):GetX() or nil,
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
@@ -989,3 +994,6 @@ SPCExpeditionSpyGate.Start(P,shared)
 -- B220: B219 movement experiment retained as inactive research; no request handler.
 include('ExpeditionTraining')
 SPCExpeditionTraining.Start(P,shared)
+
+include("Restructuring")
+SPCRestructuring.Start(P,shared)

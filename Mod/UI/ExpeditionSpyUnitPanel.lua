@@ -1,9 +1,20 @@
 -- Keep HD/native rendering and ordinary-unit callbacks intact.
 include('DL_UnitPanel')
 include('ExpeditionSpyUI')
+include('RestructuringUI')
 local R=SPCExpeditionSpyUI
 local baseActions=GetUnitActionsTable
 local baseClick=OnUnitActionClicked
+local baseDeletePrompt=OnPromptToDeleteUnit
+local baseDelete=OnDeleteUnit
+function OnPromptToDeleteUnit(...)
+ if SPCRestructuringUI.IsTeam(UI.GetHeadSelectedUnit())then return end
+ return baseDeletePrompt(...)
+end
+function OnDeleteUnit(id,...)
+ if id and SPCRestructuringUI.IsTeam(UnitManager.GetUnit(id.player,id.id))then return end
+ return baseDelete(id,...)
+end
 local function nativeEligible(u,row,command,visible)
  local ok,yes=pcall(function()
   if command then
@@ -32,6 +43,7 @@ local function idleKind(u)
 end
 local idleSignature
 function GetUnitActionsTable(u)
+ if SPCRestructuringUI.IsTeam(u)then return SPCRestructuringUI.Actions(u,baseActions(u))end
  if not R.IsTeam(u)then return baseActions(u)end
  u=current(u)
  -- Do not call the base builder first: it also registers native mission hotkeys.
@@ -103,6 +115,7 @@ function GetUnitActionsTable(u)
  return actions
 end
 function OnUnitActionClicked(...)
+ if SPCRestructuringUI.BlockDelete(select(2,...))then return end
  if R.IsTeam(UI.GetHeadSelectedUnit())then R.SuppressNative();return end
  return baseClick(...)
 end
@@ -129,7 +142,7 @@ end
 local function refreshSelected()
  if refreshing then return end
  local u=UI.GetHeadSelectedUnit()
- if R.IsTeam(u)then ContextPtr:RequestRefresh()end
+ if R.IsTeam(u) or SPCRestructuringUI.IsTeam(u)then ContextPtr:RequestRefresh()end
 end
 local function unitChanged(pid,id)
  if refreshing then return end
@@ -143,6 +156,10 @@ local function listen(event,handler)
 end
 listen(Events.GameCoreEventPublishComplete,refreshSelected)
 listen(Events.UnitSelectionChanged,refreshSelected)
+listen(Events.UnitSelectionChanged,SPCRestructuringUI.SelectedChanged)
+listen(Events.UnitMoveComplete,function(pid,id)
+ local u=UI.GetHeadSelectedUnit();if SPCRestructuringUI.IsTeam(u) and u:GetOwner()==pid and u:GetID()==id then SPCRestructuringUI.SelectedChanged()end
+end)
 for _,name in ipairs({'UnitActivityChanged','UnitOperationDeactivated','UnitOperationsCleared','UnitOperationAdded','UnitCommandStarted','UnitMovementPointsChanged'})do listen(Events[name],unitChanged)end
 ContextPtr:SetShutdown(function()
  LuaEvents.SPC_ExpeditionActivityChanged.Remove(refreshSelected)

@@ -9,8 +9,8 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0173",
-    "status": "S0661",
+    "architecture": "A0174",
+    "status": "S0662",
     "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "6398be1030651157156679f99de709f6a6f873c6",
-  "current_batch": "B246_NATIVE_ACCEPTED_SCOPED",
-  "next_batch": "Proposed B247 Asset Restructuring: protected500P Team and complete same-city liquidation/REALLOCATING/configuration transaction; user approval required. Carry forward one opportunistic Standardization+Development comparison; no repeated B246 flow or automatic implementation/deployment.",
+  "current_batch": "B247_LOCALLY_VALIDATED_PENDING_DEPLOYMENT",
+  "next_batch": "Complete authorized B247 guarded deployment, then one liquidation/reallocation cold-load/configuration native flow. No subsequent batch authorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B246.273/modinfo273 DEVELOP_ACTIVE; source6398be1030651157156679f99de709f6a6f873c6; receipt B246.273-6398be1-playtest.json;260/260 MATCH, digest62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020. No pending transaction. B246 submitted quote/debit/Production/worker/cold-load/completion cases accepted; simultaneous Standardization unexercised.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0659: user-authorized Development and D0057 minimum quote decision;137 targeted local methods (57 new,80 retained), Lua5.1 syntax, loaded-HD SQL and direct paths reviewed. Only named runtime/docs/tests hashes updated. Capital/old evidence/main/configuration unchanged; native price/Production/persistence pending. S0660: exact receipt/stable bridge plus fresh OS exit checks, clean/pushed6398be1 and260/260 MATCH confirmed; five named deployment/navigation hashes only. Native gate still pending. S0661: reviewed387 native records,69 quote calculations,four exact debits and matching receipts, completion/slot reuse and three cold-restored effects. Restart and actual Production scope user-confirmed; Standardization overlap unexercised. Only new result/current plan/Status/Authority/P0-H reviewed hashes updated; source/tests/Design/runtime/frozen evidence unchanged. B247 proposal only.",
+  "context_review_status": "S0662: explicitly authorized B247 current-identity transaction, protected team and necessary Store/consumer/UI adaptations reviewed.240 selected methods PASS (50 new,190 retained), Lua5.1, loaded-HD new SQL and package closure. Historical test assumptions disclosed, not rewritten. Only changed/new reviewed hashes refreshed; Design, frozen evidence, main, GC and configuration unchanged. Source B247.274; live B246.273 until a separate deployment checkpoint.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md"
 }

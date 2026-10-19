@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="273">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="274">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B246.273: district Development Investment with direct outgoing routes and bounded native debit receipts.</Description>
+    <Description>B247.274: protected Restructuring Teams and city liquidation, reallocation and configuration.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
   <InGameActions>
+    <UpdateDatabase id="SPC_B247_Restructuring"><Properties><LoadOrder>10001090</LoadOrder></Properties><File>Data/Restructuring.sql</File></UpdateDatabase>
+    <UpdateText id="SPC_B247_RestructuringText"><File>Text/Restructuring.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B246_Development"><Properties><LoadOrder>10001080</LoadOrder></Properties><File>Data/DevelopmentInvestment.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B246_DevelopmentText"><File>Text/DevelopmentInvestment.sql</File></UpdateText>
     <AddUserInterfaces id="SPC_B246_DevelopmentPanel"><Properties><Context>InGame</Context></Properties><File>UI/DevelopmentInvestmentPanel.xml</File></AddUserInterfaces>
@@ -258,6 +260,9 @@
       <File>CommerceCalculation.lua</File>
       <File>Commerce.lua</File>
       <File>UI/CommerceUI.lua</File>
+      <File>Restructuring.lua</File>
+      <File>RestructuringModel.lua</File>
+      <File>RestructuringUI.lua</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -432,6 +437,11 @@
     <AddUserInterfaces id="SPC_B059_Dialogue"><Properties><Context>InGame</Context></Properties><File>UI/DialogueRefresh.xml</File></AddUserInterfaces>
   </InGameActions>
   <Files>
+    <File>Restructuring.lua</File>
+    <File>RestructuringModel.lua</File>
+    <File>RestructuringUI.lua</File>
+    <File>Data/Restructuring.sql</File>
+    <File>Text/Restructuring.sql</File>
       <File>CapitalInvestmentModel.lua</File>
       <File>CapitalInvestmentDiagnostics.lua</File>
       <File>CapitalInvestment.lua</File>

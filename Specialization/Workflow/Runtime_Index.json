@@ -6,9 +6,9 @@
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
     "Mod/ArtDefs/Units.artdef": {
-      "sha256": "8f3b2c1c81874a19906dd6e407d7b068f2d8a8a0e417fa2c6131f071e51357b7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md",
-      "provenance": "B184 explicitly authorized isolated Spy1/native travel probe, exact own cap/source and identity guard, blocked Gain Sources; reviewed actual source and targeted local checks. Ordinary Spy/HD, Design, Store and GC unchanged; native pending."
+      "sha256": "a5f9b2e28825ac77e84023be897a506377dd08e12fc635919ff3ea0f6e406898",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/BindingProbe.lua": {
       "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "c5c6fc27ea13e2cf27f350a95fd65343fb7e73bdf0ee7efbddcd6068aa916b28",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "6b9d0c719397758d801a4069723ff2971de8d1f15016c490e7545b03bea58d60",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -241,9 +241,9 @@
       "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "969b4ab656c6cb59de0d343438d3d0c42eb9a563f6ed96353ebbe9b81ef4283d",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B136 user-authorized fresh governor scalar gate/read-only anchor comparison; direct caller review, 847 differential/Network checks and scoped E2/V3 LOCAL_SIMULATION_PASS; native pending"
+      "sha256": "5ef1f6ed384c43b3932cb3de435aea55a734f9d257920b9ecc1d6dfc81d8d563",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "4e0ef7aa2cba2fd47adf11efd40cc7d1d976f94ad16484643b3edd0533e540f3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "ae72675b49779d09553e6dc96ccec5e5bf759f20bdf5109d8eec666db82b0ca9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "2731d01556bd1e39e5bae21117328aae1cf589d6f03a3b03c48c580cd003d856",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "5fdbc8c70f04c0518ee14616bb0e96479a1a2088746f4741705fd999efe01c30",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,14 +426,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "75f98a8583a769ce905705424c2bfe2ed9e1ba0294c012f779f098368d72c51b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "d000ecf385a724e2d82bd8e90f1e21257772de74ece0a36236ef73df191a7eef",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Standardization.lua": {
-      "sha256": "6e995b1aff70bf39aeeb9b4de8f9ec28bd7c6bc4e49b4ef3d58fba0bc1e6df9a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/StandardizationCatalog.lua": {
       "sha256": "0bf50cb354ccd9f31c5f992b60c5107aad4ab3fa7c276382594aed20a20f9358",
@@ -721,19 +721,19 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "4644a9d004554f51d4a7db6886ba08b29da5e25ab9933fe9eb79efd4e3a01d33",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "38028281101071bf4c32278e796b0749bc02477b6a33f493a058b14393fb7091",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/UI/InstitutionOverview.lua": {
-      "sha256": "d64cdd7eec0a38f09c4e4aba7fc11cc03e503b997a4e019171b6251226358844",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "7cf20195db87c52288444e50593b396f8dda16ae88114a55292860740747e7d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "a95b5c719c517ab58ae92f82e8031a18aa0658a65f365d81bc48321908b16c62",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "e7e7f93a0206d4d078db4034adaafff61353cce1c51c20e61dfcfd4dd487b317",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/UI/Institutions.xml": {
       "sha256": "ae54bf36672439716e828cc24157671660031bffad6cb4e13a8f5fb745bb1b9c",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "a4a86efddfdcc1b2c132a767008621847ea015c6c5d049288555bb6b6038e222",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "7c9347c3d2e433d62c66f62eb9e69c121075d7523df66a2e4acc10a02b562bba",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -861,9 +861,9 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/ResearchTradition.lua": {
-      "sha256": "548bcc7f14c411c63b6b27267d944267aa72bffb74d6a89849c17794643b0d2a",
-      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+      "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Data/ResearchTradition.sql": {
       "sha256": "7259c9cf380803b2d4035a6d30183f21db304089b85509eed153ae57d9ae480b",
@@ -1056,9 +1056,9 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "6a70eda14172ecf4820afa2455fa0cbe7643fd67739b1baa1c368b99a9e9d584",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
-      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
+      "sha256": "b95c9dd962f9e95445007b1854c660cd2ecb0732677856ec0bfeb640b504b7c9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
       "sha256": "a3530d1b0321e3a436bf0bcdc4d08fe2025167a4654117905bf8c3b07cf19437",
@@ -1201,9 +1201,9 @@
       "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/CommerceModel.lua": {
-      "sha256": "8c73cb936ce100f3867a356f5aa3da665bed7c28b0edd264077b857d471691a0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "48d885109e162057c00eae73bb3ad80f024c7034fbdb44535b05cff12558e525",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Data/Commerce.sql": {
       "sha256": "5c1097c1b2ba54f62afb8a5d7749a7f9c79e5f1fa279c71508f942f8628b54cf",
@@ -1304,6 +1304,31 @@
       "sha256": "f9be17cc361ba1be6dc8a18a17f95b7f8d9ec618287c90513298e0d8d83a4662",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/Data/Restructuring.sql": {
+      "sha256": "54058527d27f32c730231629077510cd40b7b66d0ce1fa223a5813c73dbddeb1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/Restructuring.lua": {
+      "sha256": "01b4132cbba5b8c866f03d4dee623653bb6fdde88d3564d989c6f774f5ae4486",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/RestructuringModel.lua": {
+      "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/RestructuringUI.lua": {
+      "sha256": "3eb110a278d00060644bcd071a4c1a937b3780add622ea62e721b8208354564a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/Text/Restructuring.sql": {
+      "sha256": "c473ad7e165a6d1181375b8ad9a0ed878161302a53474196d37d780b44b4c97f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     }
   }
 }

@@ -8,21 +8,37 @@ M.Rows={
 {level=4,name="学术总署",text="完善的科研设施、学术组织与长期传统，共同支撑深入研究。[NEWLINE][NEWLINE]科研基础设施[NEWLINE]学院每有1点基础设施深度，每名正在工作的科研专家额外提供1点基础科技值。基础设施深度最高10点；达到10点时，5名专家共增加50点基础科技值。[NEWLINE][NEWLINE]学术主持[NEWLINE]每名正在工作的科研专家，使本城每座普通学院一至四级建筑额外提供1点基础科技值。被掠夺的建筑不计入，也不接受此收益。这些额外科技不会提高基础设施深度。[NEWLINE][NEWLINE]学术传统[NEWLINE]本城首次达到科研专业潜力4级后，学术传统开始积累：起始使本城科技值提高5%；标准速度下，满10、20、30、40回合分别提高至10%、15%、20%、25%，最高25%。其它速度按游戏速度同比缩放各阶段回合数并向下取整。仍保有科研专业身份时，即使暂未启用4级能力，传统仍继续积累。转出科研后停止积累但保留已累计年限；重新成为科研时继续积累，不补算离开期间的回合。启用4级能力后按保留的传统年限生效。[NEWLINE][NEWLINE]"}
 }
 -- Keep row lists extensible: one level may contain multiple sibling institutions.
-M.BySpecialization={RESEARCH=M.Rows,CULTURE={},INDUSTRY={}}
+M.BySpecialization={RESEARCH=M.Rows,CULTURE={},INDUSTRY={},COMMERCE={}}
 for level=1,4 do
- for _,kind in ipairs({'CULTURE','INDUSTRY'})do
+ for _,kind in ipairs({'CULTURE','INDUSTRY','COMMERCE'})do
   M.BySpecialization[kind][level]={level=level,name='LOC_SPC_'..kind..'_INSTITUTION_'..level,
    text='LOC_SPC_'..kind..'_INSTITUTION_'..level..'_HELP',localized=true}
  end
 end
-function M.GetRows(v)return M.BySpecialization[v and v.specialization] or {} end
+function M.GetRows(v)
+ if not v or not v.institutionArchive then return M.BySpecialization[v and v.specialization] or {}end
+ local out={}
+ for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do
+  local limit=math.max(v.institutionArchive[kind] or 0,kind==v.specialization and v.potential or 0)
+  for _,entry in ipairs(M.BySpecialization[kind] or {})do if entry.level<=limit then
+   local row={};for k,x in pairs(entry)do row[k]=x end
+   row.historical=kind~=v.specialization;row.established=true;row.kind=kind;out[#out+1]=row
+  end end
+ end
+ return out
+end
+function M.Signature(v)
+ local parts={tostring(v.specialization),tostring(v.potential),tostring(v.active),tostring(v.activeStatus),tostring(v.progression)}
+ for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do parts[#parts+1]=tostring(v.institutionArchive and v.institutionArchive[kind] or '')end
+ return table.concat(parts,':')
+end
 function M.Label(entry,key)
  local value=entry[key]
  return entry.localized and Locale.Lookup(value) or value
 end
 function M.Matches(v,pid,cid,x,y)
  return type(v)=='table' and not v.error and v.owner==pid and v.cityID==cid and v.x==x and v.y==y
-  and M.BySpecialization[v.specialization]~=nil and type(v.potential)=='number' and v.potential>=1 and v.potential<=4
+  and (M.BySpecialization[v.specialization]~=nil or type(v.institutionArchive)=='table') and type(v.potential)=='number' and v.potential>=0 and v.potential<=4
 end
 function M.Filter(data,owned)
  -- Copy only display tables we change; never edit CitySupport's shared data.
@@ -38,6 +54,7 @@ end
 function M.Tooltip(index,v)
  local entry=M.GetRows(v)[index];if not entry then return '' end
  local state='ACTIVE暂不可确认'
- if type(v.active)=='number' and v.activeStatus~='UNKNOWN' then state=v.active>=entry.level and '已达到本阶段启用等级；实际收益仍按各能力条件结算' or '本阶段能力暂未激活；机构仍保留' end
+ if entry.historical then state='已建立的历史机构；当前不提供该专业能力'
+ elseif type(v.active)=='number' and v.activeStatus~='UNKNOWN' then state=v.active>=entry.level and '已达到本阶段启用等级；实际收益仍按各能力条件结算' or '本阶段能力暂未激活；机构仍保留' end
  return M.Label(entry,'name')..'[NEWLINE]'..state..'[NEWLINE][NEWLINE]'..M.Label(entry,'text')
 end
