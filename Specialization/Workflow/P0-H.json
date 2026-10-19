@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0176",
-    "status": "S0667",
+    "status": "S0668",
     "runtime": "B249.276 / modinfo276",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
-  "goal": "B249: initialize Restructuring from authoritative readiness through existing events, preserve live work on duplicate load notifications, then complete the existing native entry/transaction gate.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
+  "goal": "B249 native core flow accepted; retain the original REALLOCATING cold-load boundary without repeating accepted entry, disruption, refusal or configuration checks.",
   "implementation_authorized": false,
   "context": [
     {
@@ -52,16 +52,16 @@
       "reason": "Reviewed initializer and transient recovery ownership; unchanged transaction rules."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
       "kind": "section",
-      "selector": "## B248 failure evidence and cause",
-      "reason": "Native unready evidence and unchanged-source reproduction; no old-save/model inference."
+      "selector": "## Accepted results",
+      "reason": "Observed native sequence and user-confirmed results; no expanded PASS."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
       "kind": "section",
-      "selector": "## Minimal combined native flow",
-      "reason": "Repaired startup plus still-pending original transaction/cold-load gate."
+      "selector": "## Remaining validation boundary",
+      "reason": "Only the original in-progress transaction cold-load case remains from this combined flow; no inferred recovery PASS."
     }
   ],
   "dependencies": [
@@ -138,17 +138,17 @@
   "validation": {
     "depth": "L3 targeted startup/recovery/event ordering plus retained transaction regressions; not a whole-project rerun.",
     "local": "80 selected methods PASS; startup without load, WAITING/HELD dependencies, duplicate events/pairing/previews, exact recovery and existing transaction/UI/package checks.",
-    "user": "USER_GAME_TEST_REQUIRED: entry first, then original B247 liquidation/restructuring cold-load/configuration if available.",
-    "gap": "Native B249 entry and real transaction not yet verified. B246 optional overlap and held Culture items unchanged."
+    "user": "USER_GAME_TEST_PASS: same-turn ACTIVE III to IV entry, training/binding, liquidation, disruption, illegal targets, no automatic configuration and manual Industry configuration/effects. USER_GAME_TEST_REQUIRED: original REALLOCATING cold-load case.",
+    "gap": "This session has one Gameplay context and no in-progress recovery evidence. Other unexercised ownership/retreat combinations retain prior boundaries, without a new test matrix. B246 optional overlap and held Culture items unchanged."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
     "source": "B249.276/modinfo276 source ad34b1fe88559e35cdf6b153d6838391556e223e; receipt B249.276-ad34b1f-playtest.json DEVELOP_ACTIVE;265/265 MATCH.",
-    "native": "B248 USER_GAME_TEST_FAIL including new game; B249 USER_GAME_TEST_REQUIRED. Original B247 transaction remains pending.",
-    "stop": "Await the single combined native flow; do not start another implementation batch."
+    "native": "B249 USER_GAME_TEST_PASS for the observed continuous core flow. Original REALLOCATING cold-load case remains USER_GAME_TEST_REQUIRED. B248 frozen failure evidence unchanged.",
+    "stop": "Record accepted evidence and the one original pending recovery case; stop without another implementation batch or repeat of accepted steps."
   }
 }

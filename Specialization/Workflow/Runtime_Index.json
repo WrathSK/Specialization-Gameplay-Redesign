@@ -1312,8 +1312,8 @@
     },
     "Mod/Restructuring.lua": {
       "sha256": "b9a2019d21967b8bb8012408b465755be02360a4be561aa3421f2183fe0c03a6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Restructuring_Startup.md",
-      "provenance": "B249 event-driven readiness and reference-bound initial recovery; duplicate load preserves live pairs/previews.80 targeted methods PASS. Other than the service, only two build stamps changed; native acceptance pending."
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
+      "provenance": "Unchanged B249 source;80 targeted local methods inherited. S0668 native evidence accepts same-turn access and continuous liquidation/wait/configuration, with manual disruption/refusal/effect confirmation. REALLOCATING cold-load remains pending; no expanded ownership or retreat PASS."
     },
     "Mod/RestructuringModel.lua": {
       "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",

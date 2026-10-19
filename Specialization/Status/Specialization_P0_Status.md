@@ -1,22 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0667
+Status Revision: S0668
 Implementation Build: B249.276 / modinfo276; stable B069.96
 Architecture Revision Reviewed: A0176
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B249_DEPLOYED_AWAITING_NATIVE
+Work State: B249_CORE_NATIVE_PASS_RECOVERY_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B249.276 deployed; event-driven startup repair is locally verified, with native entry/transaction acceptance pending.** [Evidence and minimal flow](Validation/Results/Specialization_B249_Restructuring_Startup.md).
-- Eight distinct B248 observations show a present but unready service, absent training marker and correct native500 cost. Actual-source reproduction confirms the sole load-close gate and the duplicate-notification reset defect. B248's separate investment notification fix is retained.
-- B249 initializes once from proven Store readiness at normal Start or existing events; dependency waits retain work. Duplicate load notifications no longer erase live training pairs/previews. Recovery preserves exact references and consumed-receipt protection. No timer, cost/capacity/binding/rule or persistent-schema change.
-- 80 selected local methods PASS. Training entry and the original B247 liquidation → REALLOCATING cold-load → configuration flow remain USER_GAME_TEST_REQUIRED; no completed transaction is inferred from local tests.
+**B249.276: native training access and the continuous restructuring flow PASS; the original REALLOCATING cold-load case remains pending.** [Native review](Validation/Results/Specialization_B249_Native_Review.md).
+- The user confirms the earlier city was deliberately ACTIVE III. This run reaches ACTIVE IV in the same T3, immediately grants the marker/native500 entry and records one trained team. Startup is ready before UI load-close; B248's startup failure is not repeated in this session.
+- T3 Culture Potential2 becomes REALLOCATING / NONE / Potential1. The city remains unconfigured at T8 and T9; explicit T9 configuration records SETTLED / Industry Potential1 with the same team. Industry history/templates/support publish in the same turn, and the user confirms the new abilities work.
+- The user verifies -75% other yields / surplus Food, no automatic completion after five turns, rejection at a non-eligible district and rejection of Potential1 liquidation. These manual observations remain distinct from logged state/carrier evidence.136 contiguous records contain no restructuring hold/error; temporary network/Commerce waits recover.
+- 80 selected local methods are inherited unchanged. Only the original in-progress transaction cold-load check remains pending from the combined flow; this one-context submission does not prove it. No repeat of the accepted steps or expanded test matrix is requested.
 - Source/live B249.276/modinfo276 from `ad34b1f`; receipt `B249.276-ad34b1f-playtest.json` DEVELOP_ACTIVE,265/265 MATCH. Stable and outgoing B248 recovery verified. Main/stable B069.96, original evidence, Design, configuration and GC remain unchanged.
 - No subsequent Commerce batch, held Culture feature or unrelated audit repair is advanced.
+
+## S0668 — B249 native core flow accepted
+
+Reviewed136 contiguous records(seq1–136,T3–9), source event semantics and explicit user observations. Same-turn ACTIVE III→IV unlock, one training/binding, one Potential2→1 liquidation, continued unconfigured state beyond the five-turn minimum and one manual Industry configuration are corroborated. Native disruption/illegal-target/effect behavior is user-confirmed. The new transaction's REALLOCATING cold-load case remains pending, without restarting the completed checks. Raw logs and prior results are unchanged/hash-recorded. Only the new native review and current Status/Authority/P0-H/runtime-review/context metadata change; no gameplay, Architecture, Design, formal test, deployment, main or configuration change.
 
 ## S0667 — B249 verified deployment
 
