@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,51 +11,51 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0173",
-    "status": "S0660",
+    "status": "S0661",
     "runtime": "B246.273 / modinfo273",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-  "goal": "Deliver approved B246 Development Investment: lowest eligible native theoretical quote, city+district contract, <=0.01 debit receipt, +50% building production and completion/Owner exits; one combined native flow.",
-  "implementation_authorized": true,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
+  "goal": "Record scoped B246 native Development acceptance and its one unexercised additive case; prepare the next COM-D proposal without implementation.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Actual source/live/pending native boundary."
+      "reason": "Actual source/live, accepted scope and next authorization boundary."
     },
     {
       "path": "Specialization/Design/Content/Commerce_D0057.json",
       "kind": "json",
       "selector": "/contracts/development_investment",
-      "reason": "Accepted qualification, minimum quote, effect, completion and lifecycle."
+      "reason": "Retained quotation, contract, effect and exit authority."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
+      "kind": "section",
+      "selector": "## Accepted results",
+      "reason": "Native quote/debit and user-observed Production evidence; no widened PASS."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
+      "kind": "section",
+      "selector": "## Standardization and remaining evidence boundaries",
+      "reason": "One unexercised combination and inherited local coverage."
     },
     {
       "path": "Specialization/Architecture/v2/Commerce_Preparation.md",
       "kind": "section",
-      "selector": "## B246 Development Investment",
-      "reason": "Approved ownership/event/storage and narrow implementation boundary."
+      "selector": "## B247 proposal — Asset Restructuring",
+      "reason": "Next planning boundary only; implementation requires explicit approval."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
       "kind": "section",
       "selector": "## Local verification",
-      "reason": "137 selected local methods and evidence limits."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "kind": "section",
-      "selector": "## One combined native flow",
-      "reason": "Only the new price/Production/persistent-contract delta."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B245_Native_Review.md",
-      "kind": "section",
-      "selector": "## Accepted results",
-      "reason": "Inherited bounded native monetary receipt evidence; no repeated Capital test."
+      "reason": "Inherited137 selected local methods; not rerun or promoted to native evidence."
     }
   ],
   "dependencies": [
@@ -104,17 +104,17 @@
   "validation": {
     "depth": "L3 new contract/persistence/native-write guards and direct UI/network SQL L2; no historical all-suite run.",
     "local": "137 selected methods PASS:57 B246,80 retained; Lua5.1 and loaded-HD SQL checks. Normal Development writes0 cross-record uniqueness visits; Capital values/work unchanged.",
-    "user": "USER_GAME_TEST_REQUIRED: one combined minimum quote/actual debit, +50% district-building/Standardization, running-contract cold-load and completion exit.",
-    "gap": "Native cost availability, actual additive Production and new contract restoration are not implied by simulation. Unreadable candidate prices hold the district quote; no guessed conversion."
+    "user": "USER_GAME_TEST_PASS within submitted quotation/debit,+50% selected-domain effect,specialist decline,cold-load,completion withdrawal and slot reuse. Four debit errors0;three active contracts restored without new debit.",
+    "gap": "NOT_EXERCISED: simultaneous Standardization+Development on one building (observed investment targets all Standardization0). Carry forward once opportunistically, not a new defect or immediate retest. Alternative prices not individually logged; selected minimum logic inherits local coverage."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-    "source": "B246.273/modinfo273 DEVELOP_ACTIVE; source 6398be1030651157156679f99de709f6a6f873c6; receipt B246.273-6398be1-playtest.json;260/260 MATCH, digest 62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020. Recovery retained, no pending transaction. Native Development quote/Production/running-contract cold-load/completion remains pending.",
-    "native": "USER_GAME_TEST_REQUIRED: one combined minimum quote/actual debit, +50% district-building/Standardization, running-contract cold-load and completion exit.",
-    "stop": "B246 deployed; await the single combined native flow, no automatic next batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B246_Native_Review.md",
+    "source": "B246.273/modinfo273 DEVELOP_ACTIVE; source6398be1030651157156679f99de709f6a6f873c6; receipt B246.273-6398be1-playtest.json;260/260 MATCH, digest62d72cfdb6c3986de9c6e7199967dae2106d3d96ef60a777598236a8cf36d020. No pending transaction. B246 submitted quote/debit/Production/worker/cold-load/completion cases accepted; simultaneous Standardization unexercised.",
+    "native": "USER_GAME_TEST_PASS within submitted quotation/debit,+50% selected-domain effect,specialist decline,cold-load,completion withdrawal and slot reuse. Four debit errors0;three active contracts restored without new debit.",
+    "stop": "B246 evidence checkpoint complete in submitted scope. B247 COM-D proposal awaits approval; no implementation, deployment or extra native test now."
   }
 }

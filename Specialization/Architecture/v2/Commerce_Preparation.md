@@ -1,6 +1,6 @@
 # Commerce implementation preparation
 
-State: B245_NATIVE_ACCEPTED_SCOPED / B246_LOCAL_COMPLETE_AWAITING_NATIVE. Updated 2026-10-18: D0057 adds only the user-confirmed minimum eligible theoretical-price rule. [B246 Development Investment](#b246-development-investment) is the approved current slice; actual source/deployment and native evidence remain separate in Status.
+State: B246_NATIVE_ACCEPTED_SCOPED / B247_PLANNED_NOT_AUTHORIZED. Updated 2026-10-18: [B246 native review](../../Status/Validation/Results/Specialization_B246_Native_Review.md) accepts the submitted Development cases; the simultaneous Standardization case remains unexercised. [B247 Asset Restructuring](#b247-proposal--asset-restructuring) is a proposal only. Actual runtime and authorization remain in Status.
 
 ## 当前范围与停止点
 
@@ -16,7 +16,7 @@ Gameplay authority is [Commerce D0057](../../Design/Content/Commerce_D0057.json)
 | Commercialization | B240 D0055 source/Food writer and prerequisite UI implemented; tested values/modifiers/Identity/withdrawal accepted | No new blocker in the submitted interval; no broad performance certification |
 | Reputation | B239 Store-owned history; user observed growth and confirms B240 cold-load step | Inherit this evidence; no repeated Research Tradition test |
 | Capital Investment | B245 signing, cold-load and maturity accepted in submitted cases | Inherit the bounded <=0.01 receipt evidence; no universal native rounding claim |
-| Development Investment | B246 locally verified: D0057 minimum theoretical-price quote, source/target contract, +50% effect and completion exit | One combined native quotation/Standardization/persistence/completion session pending |
+| Development Investment | B246 submitted quotation/debit, native +50% scope, specialist decline, cold-load and completion/slot reuse accepted | Same-building Standardization addition remains unexercised; carry forward opportunistically without repeating the completed flow |
 | Restructuring | Absent |500P Team, REALLOCATING, one permanent Potential debit, disruption and configuration |
 | Old Commerce | B239 exact3+48 retired | Definitions retained for cleanup; no old forward writer |
 
@@ -27,7 +27,7 @@ The old [InvestmentAction](../../../Mod/InvestmentAction.lua) is Settler/Potenti
 - Primary read the local Stable Advisor report `Specialization/Reports/Advisory/Commerce_Plan_Review/Commerce_Plan_Audit.md` (SHA256 `7e94a5be592d771bea8142c7b2887da200e3b77aa92e89381f7d7b1de8f18458`, basis B231/`0ee4dc9`). It remains advisory and unchanged. Its linked unpublished dependency reports are not silently added to this checkpoint; the necessary planning conclusions are recorded here independently.
 - C1 is confirmed: D0050 closes most old Design blockers. C3 is useful, but the three route relationships must remain separate. C4's S tie-break is still a narrow user decision for COM-B, not a COM-A blocker. C5 is interface-specific precision, not permission to round.
 - Revalidated since the Advisor baseline: B232 proof/recovery publishing, B233 typed Industry knowledge, B234 current Standardization/Research-network retirement, and B235 Engineering state. Research's retired network effect is not a dependency of Capital's future ACTIVE lookup. Current `NetworkBridge.CurrentNational` covers Research/Culture aggregate projections, not a general per-domain connected-component membership API; it must not stand in for S selection.
-- C2 primitive suggestions remain STATIC_CONFIRMED in the Advisor's cited loaded database, not re-executed native results here. Reuse current Industry production primitives for COM-C where semantics match; do not create a second modifier framework. Quote availability independent of purchase eligibility remains unproved.
+- C2 primitive suggestions remain STATIC_CONFIRMED in the Advisor's cited loaded database, not re-executed native results here. Reuse current Industry production primitives for COM-C where semantics match; do not create a second modifier framework. B246 now supplies native quotation evidence for the submitted candidates; broader candidate/purchase-state combinations are not inferred.
 - C6's event-first, Gameplay-owned writer, pre-native project interception, bounded diagnostics and context-faithful tests are adopted as implementation requirements. No timer/frame polling, extra GC or UI-open dependency.
 - C7/C8 are planning advice: use existing specialization vocabulary, keep owners/lifecycles separate and schedule Restructuring last. Do not add a generic future-profession registry in COM-A or unify contracts merely because they share a Modifier API.
 
@@ -105,7 +105,7 @@ Commerce ACTIVE IV plus a direct outgoing domestic route may fund an eligible ta
 
 Bind target city+district type. +50% Production applies only to that district type's buildings until its next eligible building completion, then withdraw and release occupancy. One active investment per target city across domains/sources; one source slot per working Commerce specialist. Existing contracts survive route, capacity, ACTIVE or Identity loss. Source/target Owner change ends with no refund and exact withdrawal. Later target invalidation remains an explicitly deferred edge, not invented compensation.
 
-Reuse current Industry's effect family where appropriate, preserving separate owners and exact IDs. Standardization and Development percentages add; verify the combination once here. Inspect HD building prerequisites for alternative next-tier Theater/Neighborhood buildings only when they actually enter the catalogue. No new purchase rights, unit/Wonder/District acceleration or general Mod-compatibility framework.
+Reuse current Industry's effect family where appropriate, preserving separate owners and exact IDs. Standardization and Development percentages add; the submitted B246 targets had no Standardization contribution, so verify this combination once in a later convenient session. Inspect HD building prerequisites for alternative next-tier Theater/Neighborhood buildings only when they actually enter the catalogue. No new purchase rights, unit/Wonder/District acceleration or general Mod-compatibility framework.
 
 ## T：团队存续与绑定事务分别管理
 
@@ -121,9 +121,9 @@ COM-D reviews actual Identity/ACTIVE and exit/return consumers, validates disrup
 |---|---|
 | Commercialization source / precision | D0055 and per-domain Floor implemented; B240 tested values/city modifiers/source filtering/withdrawal accepted. Treasury contract precision is a separate upcoming gate |
 | Capital earliest-attainment tie-break | D0056 user confirms earliest establishment of the corresponding permanent institution level; missing reliable dates are not guessed |
-| Capital debit/returns and Development15% price precision | B245 native accepted within observed cases; B246 reuses the user-authorized <=0.01 native-call guard, preserves fractional quote and awaits its own native flow |
+| Capital debit/returns and Development15% price precision | B245 native accepted within observed cases; all four B246 debits match their quotes exactly. Preserve the <=0.01 per-call guard and fractional pricing; no universal precision claim |
 | Connected-network S source exposure | Technical COM-B boundary; common recipients/national max are not automatically the correct pool |
-| Eligibility-independent theoretical purchase price / next-tier completion | Technical COM-C; no guessed formula |
+| Eligibility-independent theoretical purchase price / next-tier completion | B246 submitted native prices and one eligible completion accepted; no guessed formula or claim for every alternative |
 | Team protection and actual net-food disruption | Technical COM-D; existing evidence is inherited only where the native path matches |
 | Non-Standard speed; key city destroyed, original owner eliminated without transfer, Development target later invalid | D0050 deferred, nonblocking outside their named cases; retain conservative technical holds |
 
@@ -135,7 +135,7 @@ Use task-scoped Content objects and direct source/caller closure. Exact cutover 
 
 The original preparation review contained source evidence and one actual-writer counterexample only. B239/B240 local evidence is scoped below; the user accepts B239 capacity, report D/Reputation response and observed reputation growth, and B240 adds user acceptance of actual values/city modifiers/source filtering/withdrawal and the Commerce reload. New persistence/writer closure receives targeted L3, ordinary projection L2, text/layout L1. Inherit unchanged shared evidence and combine native steps by marginal information value. Publish only this batch's reviewed source/tests/documentation; keep raw screenshots/logs and local reproduction ignored.
 
-User decision: D0057 minimum eligible quote accepted; B246 Development explicitly authorized. User testing: combined flow below. Primary next: guarded B246 deployment, then stop; COM-D remains unauthorized.
+User decision: D0057 retained; B247 proposal awaits approval. User testing: B246 submitted scope accepted, additive Standardization remains a later opportunistic check. Primary next: record this checkpoint and stop; no new implementation or deployment.
 
 ## B239 implementation and validation
 
@@ -251,3 +251,33 @@ Approved scope: Development Investment only, plus its direct Store/network/UI ad
 - **Event and temporary lifecycle.** Existing building/transfer/load/turn/publication events and source/network invalidations drive work. A building event visits relevant outstanding records; normal publication processes only dirty source views and never constructs full quotes. Turn-boundary reconciliation checks only saved outstanding contract targets. Quotes are replaceable per-source snapshots and invalidated on relevant input changes; current UI selection is local and discarded on close/owner/load. Service mirrors are rebuilt from Store, occupancy is derived, session reservations survive uncertainty only within their context. Diagnostics reuse the existing bounded96-entry channel and collector. No parallel persistence/cache framework or polling fallback.
 
 [Local verification and the single native flow](../../Status/Validation/Results/Specialization_B246_Development_Investment_Local.md) report137 selected methods (57 new,80 direct retained), Lua5.1 syntax, loaded-HD SQL and UI protocol checks. Static getter/Modifier evidence is not native pricing/additive-output proof. Ordinary publication has zero repeated native quote calls/effect writes in the tested idle case; this is not a native CPU or memory improvement claim. B245 Capital acceptance remains inherited and separate.
+
+## B247 proposal — Asset Restructuring
+
+**PLANNED_NOT_AUTHORIZED.** B246 is [accepted in the submitted scope](../../Status/Validation/Results/Specialization_B246_Native_Review.md); one native Standardization-plus-Development combination remains opportunistic evidence, not a newly identified blocker. COM-D is the remaining new Commerce main-chain mechanism. Do not start it from this proposal alone.
+
+### Intended usable slice
+
+Deliver one Standard-speed transaction: Commerce ACTIVE IV trains a500Production **重组团队**, the team performs **资产清算** in a qualifying city's current specialty district, then **资产配置** in another legal specialty district of that same city after at least five full turns. Target Potential must be at least2. Liquidation snapshots P and debits exactly1 once; successful configuration establishes the new Identity at P−1, recomputes ACTIVE, withdraws disruption and consumes that team once. No Gold/Faith purchase, instant reward, new capacity limit or intercity transfer is added.
+
+REALLOCATING is an explicit in-progress state. Ordinary turn events establish elapsed game turns; no wall-clock timer, frame poll or automatic completion is introduced. The target remains disrupted until configuration succeeds. Apply the accepted−75% non-Food city yields and−75% net Food surplus/growth; never substitute total-Food removal, population damage or a permanent penalty.
+
+### Direct implementation boundary and preflight
+
+1. **Current Identity and permanent history.** The present Store validator accepts PREPARED/ACTIVE/HELD_TRANSFER storage stages and UNASSIGNED/SPECIALIZED progression; it has no restructuring transaction. Base Potential is1 with later investment receipts, and some profession-history validations directly require the matching base specialization. This feature cannot be implemented as an unreviewed `Identity=NONE` or a negative Settler receipt. Before mutation, trace `CityProgressionStore`, its actual facts projection, current qualification/claim paths and each affected current consumer. Choose the smallest explicit transaction/current-identity extension that retains existing origin/investment receipts and profession history. No generic save-framework rewrite or invented preexisting history.
+2. **Separate ownership.** Training source is provenance only. The completed team remains an original-owner asset across source ACTIVE/Identity/Owner changes. The later bound target owns the restructuring transaction. A target transfer during REALLOCATING destroys that transaction and its team, clears old current Identity and follows the accepted conquest exception; it must not erase unrelated historical assets or restore the abandoned transaction on recapture.
+3. **Effects and propagation.** Successful liquidation/configuration publishes the actual changed current Identity/Potential/ACTIVE once through existing event paths. Review Research/Culture/Industry/Commerce support, network source eligibility, Commercialization, qualification/claim and relevant unit/source consumers. Withdraw old current effects while preserving each named history contract. Existing signed Capital/Development contracts follow their own key-city rules and survive ordinary source Identity exit. Do not convert all permanent assets to one generic exit policy.
+4. **Unit and UI.** Use existing professional-unit/native safe-retreat evidence only where semantics and native flags match; retain no capture/conversion and no player delete button. Bind the exact team to the exact target; no Expedition Spy/sleep-control reuse. Show the two actions, affected city, one-time Potential cost and remaining full turns in the existing unit/UI conventions. UI reads current published state and does not own the transaction.
+5. **Direct audit gates.** Recheck the already recorded Store/native-action receipt, history-preservation and update-propagation findings against these exact paths. A saved transaction does not make native unit consumption atomic. Define readback/unknown handling, repeat-click and load recovery before implementing irreversible steps. Any necessary repair stays within this dependency; do not reopen unrelated audit findings or claim they were all resolved here.
+
+The implementation approval, if given, covers this bounded usable slice and its necessary local schema/caller/UI adaptations. It does not cover a general profession registry, AI/other-speed behavior, original-owner extinction, destroyed-city policies, held Culture work, GC changes or cleanup of unrelated architecture. If reliable native net-surplus/protection behavior would require changed Gameplay, stop that affected path for a concrete user decision; do not invent a substitute.
+
+### Local verification and one native flow
+
+Use actual Store/service tests for one Potential debit, correct current/history separation, five-full-turn boundary, legal same-city configuration, duplicate requests, failure/readback holds, save reconstruction, team loss/protection ownership, source transfer versus target-transfer destruction, original-owner recapture and isolation. Verify old current effects/network qualification withdraw and new ones rebuild, while signed Capital/Development contracts and the relevant profession histories retain their accepted semantics. Exercise the actual dispatcher and same-turn publication; do not merely test an isolated new helper. Reuse unchanged shared lifecycle evidence.
+
+After local validation and the existing guarded deployment procedure, propose one continuous native flow in a city with two legal specialty districts and Potential>=2: train the team -> liquidate -> observe one Potential loss, old-effect withdrawal and correct disruption -> save/cold-load once while REALLOCATING -> after five full turns configure -> confirm new Identity/Potential, withdrawn disruption and consumed team. That reload validates a genuinely new persistent transaction, not the old diagnostic harness. Add a native protected-retreat check only if the final implementation uses a materially different path from accepted professional-unit evidence. Logs should capture the relevant receipts and transitions; screenshots are only needed for a native yield/UI discrepancy.
+
+If this session conveniently includes a Development target with an active Standardization template on the same building, check the remaining additive case once. It is not a reason to repeat B246 quotation, debit and cold-load acceptance or enlarge the restructuring scenario unnecessarily.
+
+User decision: approve/adjust B247 scope. User testing: no immediate new test; the native flow is prepared only after implementation. Primary next: stop at this planning checkpoint.

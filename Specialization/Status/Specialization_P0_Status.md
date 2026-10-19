@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0660
+Status Revision: S0661
 Implementation Build: source/live B246.273; stable B069.96
 Architecture Revision Reviewed: A0173
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B246_DEPLOYED_AWAITING_NATIVE
+Work State: B246_NATIVE_ACCEPTED_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B246 Development Investment locally complete; native verification pending:** [implementation/local result and one combined flow](Validation/Results/Specialization_B246_Development_Investment_Local.md).
-- User explicitly authorized B246 and chose the lowest eligible next-tier theoretical purchase price with a visible quotation basis (D0057). Contracts bind target city+district, not the named quote building;15% price, +50% building Production and accepted lifecycle rules remain.
-- New source is B246.273/modinfo273.137 targeted methods pass (57 new,80 retained), including actual Store/failure/reconstruction, native-shaped price/UI, loaded-HD SQL and direct Capital/network regressions. No timer/frame update or GC change. Local results are not native price/Production acceptance.
-- Source slots use current working specialists and direct outgoing routes at signing. Exact saved terms/actual <=0.01 native receipt, no-replay protection, building completion/owner withdrawal and ordinary same-turn changes remain explicit.
-- Source/live B246.273/modinfo273 from `6398be1`,260/260 MATCH, receipt `B246.273-6398be1-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged.
-- [B245 native gate](Validation/Results/Specialization_B245_Native_Review.md) stays accepted within submitted cases; no repeated Capital long test. B246 has one combined quote/additive-production/running-contract cold-load/completion test. No Restructuring, held Culture issue or audit repair starts automatically.
+**B246 Development Investment accepted in the submitted scope:** [native review](Validation/Results/Specialization_B246_Native_Review.md).
+- 69 observed quotations follow15% of the native theoretical price. Four signed contracts debit180/135/135/270 Gold (720 total); actual errors are all0, within the accepted0.01 per-call bound. No repeated Development debit appears.
+- The user confirms actual +50%, selected-domain isolation, continued effect after specialist removal, completion withdrawal/slot release and full restart. Logs show one completed contract, actual slot reuse and three active contracts restored without another debit; the closed target is not restored.
+- Standardization plus Development is **NOT_EXERCISED**: all40 observed Standardization entries for investment targets have0 contribution. Retain one convenient later combination check; do not repeat the completed flow or treat this as a new implementation defect.
+- Source/live remains B246.273/modinfo273 from `6398be1`,260/260 MATCH, receipt `B246.273-6398be1-playtest.json` DEVELOP_ACTIVE, no pending transaction. Main/stable B069.96 unchanged. The137 selected local methods and [B245 Capital evidence](Validation/Results/Specialization_B245_Native_Review.md) remain inherited within their scopes.
+- [B247 Asset Restructuring proposal](../Architecture/v2/Commerce_Preparation.md#b247-proposal--asset-restructuring) is the next new Commerce main-chain slice, **not authorized**. No next implementation/deployment, held Culture work or unrelated audit repair starts automatically.
+
+## S0661 — B246 native Development review
+
+Reviewed387 unique records in two internally contiguous captured Gameplay windows. Independent arithmetic verifies69 quotations and all four exact debit/saved-receipt pairs. Completion removes the target effect and permits the next contract; cold reconstruction restores only three active effects with no new debit. User confirms process restart and actual Production/scope behavior. The simultaneous Standardization case is explicitly unexercised and carried forward without reopening accepted tests. Original logs are hash-recorded and unchanged; offline analysis stays ignored. Only this new result, existing Commerce proposal/current navigation and their reviewed hashes change. Runtime, Design, formal tests, main, external configuration and frozen evidence remain unchanged; no deployment. B247 awaits explicit approval.
 
 ## S0660 — B246 verified deployment
 
