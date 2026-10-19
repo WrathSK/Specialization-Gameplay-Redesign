@@ -41,6 +41,49 @@ function M.Validate(v)
  end;assert(count<=3,'CAPITAL_CONTRACT_BOUND')
  return v
 end
+-- B244: native Property numbers lose precision in the observed Mac runtime.
+-- Only Capital's fractional business values use this wire format. Public model
+-- and Store APIs remain numeric; raw Store pre/post comparisons remain exact.
+local numberEncoding='DECIMAL17_V1'
+local storedNumbers={principal=true,balanceBefore=true,balanceAfter=true,safe=true,
+ success=true,failure=true,probability=true,creditBefore=false,creditAfter=false,paid=false}
+function M.StoredNumber(field,value)
+ if storedNumbers[field]==nil or type(value)~='string' or #value>32 then return nil end
+ local n=tonumber(value)
+ if M.Finite(n) and string.format('%.17g',n)==value then return n end
+ return nil
+end
+function M.Encode(value)
+ M.Validate(value);assert(value.numberEncoding==nil,'CAPITAL_ENCODING_INVALID')
+ local out=copy(value);out.numberEncoding=numberEncoding
+ for _,c in pairs(out.contracts)do
+  for field,required in pairs(storedNumbers)do
+   local n=c[field]
+   if n~=nil or required then
+    assert(M.Finite(n),'CAPITAL_NUMBER_INVALID')
+    local text=string.format('%.17g',n)
+    assert(M.StoredNumber(field,text)==n,'CAPITAL_NUMBER_ROUNDTRIP')
+    c[field]=text
+   end
+  end
+ end
+ return out
+end
+function M.Decode(value)
+ if value==nil then return nil end
+ assert(type(value)=='table' and value.numberEncoding==numberEncoding
+  and type(value.contracts)=='table','CAPITAL_ENCODING_INVALID')
+ local out=copy(value);out.numberEncoding=nil
+ for _,c in pairs(out.contracts)do
+  assert(type(c)=='table','CAPITAL_CONTRACT_INVALID')
+  for field,required in pairs(storedNumbers)do
+   if c[field]~=nil or required then
+    c[field]=assert(M.StoredNumber(field,c[field]),'CAPITAL_NUMBER_INVALID')
+   end
+  end
+ end
+ return M.Validate(out)
+end
 function M.Open(c)return c and c.stage~='SETTLED' and c.stage~='TERMINATED'end
 function M.Choose(candidates)
  local best,tied=0,{}

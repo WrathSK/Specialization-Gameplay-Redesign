@@ -112,8 +112,8 @@ local function CreateProgressionRecord(P,shared,storage)
   end
   if r.capitalKnown~=nil or r.capital~=nil then
    assert(r.capitalKnown==true and type(r.capital)=='table','CAPITAL_HISTORY_UNAVAILABLE')
-   SPCCapitalInvestmentModel.Validate(r.capital)
-   for _,c in pairs(r.capital.contracts)do
+   local capital=SPCCapitalInvestmentModel.Decode(r.capital)
+   for _,c in pairs(capital.contracts)do
     assert(c.source.token==r.base.token and c.source.owner==r.origin.owner
      and c.source.x==r.origin.x and c.source.y==r.origin.y,'CAPITAL_SOURCE_REFERENCE_INVALID')
    end
@@ -232,14 +232,14 @@ local function CreateProgressionRecord(P,shared,storage)
  -- B241 APIs never expose an optimistic candidate during a native setter.
  function d.CapitalState(pid,c)
   assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
-  return cp({value=r.capital,token=r.base.token})
+  return {value=SPCCapitalInvestmentModel.Decode(r.capital),token=r.base.token}
  end
  function d.WriteCapital(pid,c,old,value,observeFailure)
   assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
-  assert(same(r.capital,old),'CAPITAL_HISTORY_STALE')
+  assert(same(SPCCapitalInvestmentModel.Decode(r.capital),old),'CAPITAL_HISTORY_STALE')
   assert(value~=nil,'CAPITAL_HISTORY_CANNOT_DELETE');SPCCapitalInvestmentModel.Validate(value)
   if same(old,value)then return end
-  local n=cp(r);n.capitalKnown=true;n.capital=cp(value);n.revision=n.revision+1;save(n,observeFailure)
+  local n=cp(r);n.capitalKnown=true;n.capital=SPCCapitalInvestmentModel.Encode(value);n.revision=n.revision+1;save(n,observeFailure)
  end
  function d.CapitalReference()
   storage.Check();assert(not committing and ready and not fault and root,'CAPITAL_REFERENCE_UNAVAILABLE')
@@ -256,7 +256,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.VisitCapital(pid,fn)
   if not root or root.origin.owner~=pid or not root.capital then return end
-  local reference=d.CapitalReference();fn(cp(root.capital),reference)
+  local reference=d.CapitalReference();fn(SPCCapitalInvestmentModel.Decode(root.capital),reference)
  end
  -- Engineering owns its business schema; Store owns exact city persistence and
  -- confirmed-loss cancellation. No candidate L escapes native write callbacks.
@@ -768,7 +768,10 @@ local function CreateProgressionRecord(P,shared,storage)
     if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.ownerChanges=(n.ownerChanges or 0)+1
-    if n.capital then n.capital=SPCCapitalInvestmentModel.Terminate(n.capital,'CAPITAL_OWNER_CHANGED')end
+    if n.capital then
+     local C=SPCCapitalInvestmentModel
+     n.capital=C.Encode(C.Terminate(C.Decode(n.capital),'CAPITAL_OWNER_CHANGED'))
+    end
     if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false

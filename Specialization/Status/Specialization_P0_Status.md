@@ -1,22 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0652
-Implementation Build: source/live B243.270; stable B069.96
-Architecture Revision Reviewed: A0170
+Status Revision: S0653
+Implementation Build: source B244.271; live B243.270; stable B069.96
+Architecture Revision Reviewed: A0171
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
-Design Sync State: D0056_UNCHANGED_CAPITAL_PROPERTY_PRECISION
-Work State: B243_NATIVE_PROPERTY_PRECISION_CONFIRMED
+Design Sync State: D0056_UNCHANGED_CAPITAL_STORAGE_REPAIR
+Work State: B244_STORAGE_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B243 diagnostics now identify a native Property numeric difference; signing remains held before debit:** [evidence and B244 proposal](Validation/Results/Specialization_B243_Native_Review.md).
-- Source/live remains B243.270/modinfo270 from `c696104`; receipt `B243.270-c696104-playtest.json`, prior251/251 MATCH. Eight relevant files were rechecked equal during review; main/stable B069.96 is unchanged.
-- 71 contiguous records show COMPLETE/POSTWRITE/READABLE, normal setter return and a present DEBIT_INTENT contract. safe return changes4670.0276245117193→4670.02783203125, exactly matching binary32 conversion; the fixed diagnostic counts4 differences. Native debit was not reached.
-- Manual refresh correctly retains PROGRESSION_HELD, HELD/canSign=false. The diagnostic/paused-state observation succeeds; Capital signing/maturity acceptance does not.
-- Three unchanged actual-Store/service discrimination cases reproduce the precision failure and held refresh with zero money calls; exact-storage control signs. Native Treasury precision remains a separate untested boundary.
-- Proposed B244: Capital-only lossless numeric encoding with strict readback, unchanged economics and no replay; no automatic repair of already rounded records. Await implementation authorization, no immediate native repeat. COM-C/D, Culture HOLD, timers/GC and unrelated work remain out of scope.
+**B244.271 Capital storage repair is locally complete:** [implementation, checks and one combined native session](Validation/Results/Specialization_B244_Capital_Storage_Local.md).
+- Source B244.271/modinfo271; last verified live B243.270 from `c696104`, receipt `B243.270-c696104-playtest.json`. Main/stable B069.96 unchanged. New deployment follows clean commit/push and fresh automatic exit/hash gates.
+- B243 Property numeric conversion blocked the first intent save before debit. B244 stores ten Capital numeric fields as canonical round-trip text; business values remain numbers. Strict whole-record readback, Treasury amounts and no-replay guards are unchanged.
+-121 selected local methods PASS, including26 B244 tests, original-failure counterexample, fresh-VM restoration and failure isolation. Decoded values and Property/money work match B243; generic write/reservation code unchanged. Historical assertion exclusions and their controls are explicit in the result.
+- Next native gate: one **确认稳健投资** from a pre-confirmation baseline, one midterm save/cold-load, then one-time maturity settlement using the manual collector. No prior failed intent repair, money rounding, COM-C/D, Culture HOLD, timer or GC work. Stop after this approved batch.
+
+## S0653 — B244 lossless Capital storage locally verified
+
+Explicit authorization limits this batch to Capital numeric representation. Model codec and direct Store adapters preserve original numeric terms through simulated Property conversion, including Owner-loss termination and payment receipts. The generic Store writer/reservations, service/math/UI and monetary guards remain unchanged.121 selected local methods pass; immediate-baseline values and work match. A0171 records only the wire-format boundary. Original B243 evidence, Design, main and configuration remain unchanged; native signing/Treasury/cold-load/maturity are pending. Current metadata and only reviewed hashes are updated; deploy after the existing clean-source/exit/receipt gates.
 
 ## S0652 — B243 Property precision identified
 

@@ -32,11 +32,18 @@ function M.Readback(point,readOK,observed,expected,domain,writeStatus,matches)
  local actual=field(field(actualCapital,'contracts'),domain);local wanted=field(field(wantedCapital,'contracts'),domain)
  out.capitalType=type(actualCapital);out.contractType=type(actual)
  local stage=field(actual,'stage');out.savedPhase=stages[stage] and stage or stage==nil and 'ABSENT' or 'INVALID'
+ local function numeric(path,v)
+  if finite(v)then return v end
+  -- Decode only an allowlisted amount/probability, never emit arbitrary strings.
+  local fieldName=path:match('^contract%.([%w]+)$')
+  local model=SPCCapitalInvestmentModel
+  return model and model.StoredNumber and model.StoredNumber(fieldName,v) or nil
+ end
  local function difference(path,a,b,structure)
   if type(a)==type(b) and (structure or a==b)then return false end
   if not out.diffPath then
    out.diffPath=path;out.expectedType=type(b);out.actualType=type(a)
-   out.expectedNumber=finite(b) and b or nil;out.actualNumber=finite(a) and a or nil
+   out.expectedNumber=numeric(path,b);out.actualNumber=numeric(path,a)
   end
   out.diffCount=(out.diffCount or 0)+1;return true
  end
@@ -46,7 +53,7 @@ function M.Readback(point,readOK,observed,expected,domain,writeStatus,matches)
   for _,k in ipairs({'revision','capitalKnown'})do difference('record.'..k,field(observed,k),field(expected,k))end
   if not out.diffPath then out.diffPath=matches and 'NONE' or 'OTHER_RECORD_OR_UNLISTED'end;return out
  end
- for _,k in ipairs({'version','sequence'})do difference('capital.'..k,field(actualCapital,k),field(wantedCapital,k))end
+ for _,k in ipairs({'version','sequence','numberEncoding'})do difference('capital.'..k,field(actualCapital,k),field(wantedCapital,k))end
  if difference('capital.contracts',field(actualCapital,'contracts'),field(wantedCapital,'contracts'),true)then return out end
  if difference('contract',actual,wanted,true)then return out end
  if type(actual)=='table' and type(wanted)=='table'then

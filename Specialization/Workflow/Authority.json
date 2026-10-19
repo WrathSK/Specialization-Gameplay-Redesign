@@ -9,9 +9,9 @@
     "commerce": "D0056",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0170",
-    "status": "S0652",
-    "runtime": "B243.270 / modinfo270",
+    "architecture": "A0171",
+    "status": "S0653",
+    "runtime": "B244.271 / modinfo271",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
   "runtime_commit": "c696104d3718a2dcd0f1423fea1b3e3961341a2a",
-  "current_batch": "B243_NATIVE_PROPERTY_PRECISION_CONFIRMED",
-  "next_batch": "Review/authorize proposed B244 Capital-only lossless numeric persistence; no immediate native repeat, amount change or COM-C/D authorization.",
+  "current_batch": "B244_STORAGE_LOCAL_COMPLETE",
+  "next_batch": "Complete authorized B244 guarded deployment, then one combined signing/midterm cold-load/maturity session. No next Commerce batch or amount change.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B243.270/modinfo270 DEVELOP_ACTIVE; source c696104d3718a2dcd0f1423fea1b3e3961341a2a; receipt B243.270-c696104-playtest.json;251/251 MATCH, digest 9163784f4cf855974e2bd9a9d5d46f0bd436b958f0e14e85c4ebdd92900d0a43. Fresh automatic game-exit checks passed before both guarded switches; B242/stable recovery retained, no pending transaction. B243 native review identifies a Property numeric precision mismatch before debit; Treasury behavior remains unverified.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0652 evidence review:71 contiguous native records show COMPLETE diagnostic, exact binary32 safe-return readback and truthful HELD refresh before debit. Three unchanged-source discrimination cases; no code/test/Design/Architecture/runtime change. Proposed B244 is not authorized.",
+  "context_review_status": "S0653: authorized Capital-only DECIMAL17_V1 and direct Store/diagnostic adapters reviewed;121 selected methods pass, unchanged generic writer/service/math and exact decoded/work comparisons. Native money/save acceptance pending; only reviewed changed/new hashes updated.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md"
 }

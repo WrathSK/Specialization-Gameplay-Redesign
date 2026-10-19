@@ -1,6 +1,6 @@
 # Commerce implementation preparation
 
-State: B240_NATIVE_ACCEPTED_SCOPED / B241_NATIVE_CONFIRM_FAILED / B242_NATIVE_DIAGNOSTIC_GAP / B243_DIAGNOSTIC_LOCAL_COMPLETE. Updated 2026-10-18: D0056 and existing economic/ownership contracts are unchanged. [B243 reliable failure observation](#b243-reliable-failure-observation) is the current authorized slice; actual source/deployment and native evidence remain separate in Status.
+State: B240_NATIVE_ACCEPTED_SCOPED / B241_NATIVE_CONFIRM_FAILED / B242_NATIVE_DIAGNOSTIC_GAP / B243_NATIVE_PRECISION_CONFIRMED / B244_STORAGE_LOCAL_COMPLETE. Updated 2026-10-18: D0056 and existing economic/ownership contracts are unchanged. [B244 lossless Capital storage](#b244-lossless-capital-storage) is the current authorized slice; actual source/deployment and native evidence remain separate in Status.
 
 ## 当前范围与停止点
 
@@ -15,7 +15,7 @@ Gameplay authority is [Commerce D0056](../../Design/Content/Commerce_D0056.json)
 | Commerce I/II support | Existing automatic support/qualification | Inherit scoped evidence; preserve baseline specialists/housing/GPP |
 | Commercialization | B240 D0055 source/Food writer and prerequisite UI implemented; tested values/modifiers/Identity/withdrawal accepted | No new blocker in the submitted interval; no broad performance certification |
 | Reputation | B239 Store-owned history; user observed growth and confirms B240 cold-load step | Inherit this evidence; no repeated Research Tradition test |
-| Capital Investment | B241 business implementation; first native confirmation failed. B242 diagnostic gap confirmed; B243 restricted-Lua diagnostics locally complete | One bounded confirmation log before resuming native contract acceptance; exact native cause and precision unresolved |
+| Capital Investment | B243 native Property precision loss confirmed; B244 lossless contract storage locally verified | One combined signing/cold-load/maturity session; native Treasury precision remains separate |
 | Development Investment | Absent |15% theoretical purchase quote, one active contract per target city, +50% district-building production and completion exit |
 | Restructuring | Absent |500P Team, REALLOCATING, one permanent Potential debit, disruption and configuration |
 | Old Commerce | B239 exact3+48 retired | Definitions retained for cleanup; no old forward writer |
@@ -227,3 +227,9 @@ No timers, frame checks, new GC or source/world scans.194 targeted tests pass; n
 The [B242 native evidence](../../Status/Validation/Results/Specialization_B242_Native_Review.md) remains frozen. The user explicitly authorizes the [B243 restricted-Lua diagnostic repair](../../Status/Validation/Results/Specialization_B243_Capital_Diagnostics_Local.md). Ordinary guarded table reads remove the rawget dependency. The request retains base observation facts before protected detail projection/merge and distinguishes COMPLETE, ERROR and NOT_OBSERVED without changing the original Store error or allowing retry. Expected/actual numeric log values preserve round-trip precision; gameplay values remain unchanged.
 
 123 targeted methods pass, including actual-Store failures, no-replay/isolation, unchanged per-value/Property-work comparison and existing bounded collector behavior. Store/model/UI, economic rules, permanent state and validation protections are unchanged. No timer, scan, GC or framework rewrite. After guarded deployment, one confirmation and one paused refresh if needed provide the missing native evidence; this batch does not claim that native signing is fixed. Stop for the log, without COM-C/D or new Design work.
+
+## B244 lossless Capital storage
+
+The user explicitly authorizes the [B244 representation-only repair](../../Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md) after the [B243 native precision finding](../../Status/Validation/Results/Specialization_B243_Native_Review.md). Model-owned `DECIMAL17_V1` stores the ten monetary/probability/receipt fields as canonical round-trip text; Store's Capital readers/writers, validator and confirmed-loss termination adapt at that boundary. Public consumers still receive numeric business state. Raw Store envelopes retain exact pre/post comparisons; malformed/unknown encoding holds. No old-record reconstruction or second ledger.
+
+A0171 documents only this Capital wire-format contract. Monetary rules, Treasury mutation/readback, no-replay receipts, hidden protection, references and generic Store guards are unchanged.121 selected methods pass, including26 new precision/failure/fresh-VM checks and immediate-baseline value/work comparisons. No timer, new scan, GC or collector/UI change. After safe deployment, one contract covers signing, midterm cold load and one-time maturity; local conversion is not native acceptance. Stop for that evidence, without COM-C/D or a money-rounding decision.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0056",
     "research": "D0040",
@@ -10,40 +10,40 @@
     "commerce": "D0056",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0170",
-    "status": "S0652",
-    "runtime": "B243.270 / modinfo270",
+    "architecture": "A0171",
+    "status": "S0653",
+    "runtime": "B244.271 / modinfo271",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
-  "goal": "Review B243 native Property precision evidence and proposed B244 lossless Capital numeric persistence, retaining exact save validation and unchanged economics/no replay.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
+  "goal": "B244 stores Capital contract numbers losslessly without changing monetary rules, strict save validation, failed-write protection or native debit/credit replay rules.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current native precision finding, unchanged deployed build and authorization boundary."
+      "reason": "Current B244 source/deployment and authorization boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
       "kind": "section",
-      "selector": "## Review summary",
-      "reason": "Exact expected/actual readback, diagnostic result and failure before native debit."
+      "selector": "## Implementation boundary",
+      "reason": "Capital wire-format ownership and unchanged transaction guards."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
       "kind": "section",
-      "selector": "## Bounded local discrimination",
-      "reason": "Native versus injected numeric conversion evidence and its limits."
+      "selector": "## Local verification",
+      "reason": "Observed precision model, actual-Store regressions and historical exclusions."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
       "kind": "section",
-      "selector": "## B244 proposal — lossless Capital numeric persistence",
-      "reason": "Proposed representation-only repair; implementation not yet authorized."
+      "selector": "## One combined native session",
+      "reason": "Only the new persistence/debit/settlement uncertainty in one session."
     }
   ],
   "dependencies": [
@@ -70,7 +70,8 @@
         "Mod/CapitalInvestmentDiagnostics.lua",
         "Mod/ExpeditionTrainingDiagnostics.lua",
         "DevelopmentTests/test_b242_capital_diagnostics.py",
-        "DevelopmentTests/test_b243_capital_diagnostics.py"
+        "DevelopmentTests/test_b243_capital_diagnostics.py",
+        "DevelopmentTests/test_b244_capital_storage.py"
       ]
     },
     {
@@ -99,19 +100,19 @@
     "Main/promotion, external Mod/config edits, game launch or repeated old native lifecycle tests."
   ],
   "validation": {
-    "depth": "Native evidence review, three bounded unchanged actual-Store/service discrimination cases and documentation/context/publication checks.",
-    "local": "Exact-storage control signs; one/all-field binary32 conversions hold with zero money calls. All-field model matches native first expected/actual pair and diffCount4.",
-    "user": "B243 diagnostic COMPLETE and paused refresh confirmed in captured native session. No repeat before an approved repair.",
-    "gap": "Capital signing/maturity and Treasury mutation precision remain unaccepted. Only safe numeric pair is directly captured; four field identities are a matching local model."
+    "depth": "L3 scoped Capital persistence and shared Store regression; no whole-gameplay suite.",
+    "local": "121 selected methods PASS:26 new B244 plus95 retained checks. Original four-difference failure reproduced; exact decoded values and Property/money counts preserved.",
+    "user": "One stable contract, one midterm save/cold-load, maturity plus no repeated payment; manual collector records, no screenshot series.",
+    "gap": "Native codec/save-file and Treasury precision remain pending; old failed numeric contracts are not repaired/migrated."
   },
   "full_audit_triggers": [
     "Unprovable history/ref or native construction mismatch: hold the affected path, retain evidence; no guessed reconstruction.",
     "New gameplay semantics or expanded scope required: DESIGN_DECISION_REQUIRED, no silent substitute."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B243_Native_Review.md",
-    "source": "B243.270/modinfo270 remains deployed from c696104d3718a2dcd0f1423fea1b3e3961341a2a; receipt B243.270-c696104-playtest.json unchanged.",
-    "native": "Readback diagnostic and paused-refresh observations pass; signing fails at DEBIT_INTENT_WRITE due to numeric persistence mismatch before debit.",
-    "stop": "Await B244 representation-repair approval. No implementation, deployment, automatic retry or next Commerce ability."
+    "report": "Specialization/Status/Validation/Results/Specialization_B244_Capital_Storage_Local.md",
+    "source": "B244.271/modinfo271 source locally complete; live remains B243.270 from c696104 until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED: signing, midterm cold-load and one-time settlement. No financial rule or guard relaxation.",
+    "stop": "Complete authorized commit/push and guarded B244 deployment, then stop for the single combined session."
   }
 }
