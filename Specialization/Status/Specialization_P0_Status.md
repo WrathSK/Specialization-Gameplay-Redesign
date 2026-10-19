@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0644
-Implementation Build: source B241.268; live B240.267; stable B069.96
+Status Revision: S0645
+Implementation Build: source/live B241.268; stable B069.96
 Architecture Revision Reviewed: A0170
 Design Revision Reviewed: D0056
 Latest Accepted Design Revision: D0056
 Design Sync State: D0056_CAPITAL_LOCAL_COMPLETE_NATIVE_PENDING
-Work State: B241_LOCAL_COMPLETE_AWAITING_SAFE_DEPLOYMENT
+Work State: B241_DEPLOYED_AWAITING_NATIVE
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B241 Capital Investment locally complete:** [result and one native flow](Validation/Results/Specialization_B241_Capital_Local.md).
-- D0056 confirms highest current ACTIVE S, then earliest corresponding permanent institution establishment. Other rules retained. Stable/venture ordinary panel, locked contracts/n, exact money receipts and event-driven maturity implemented.
-- Source B241.268/modinfo268; live remains verified B240.267 from `81efaa9` until an actual W0003 switch. No promotion/main/configuration change.
-- 155 targeted checks PASS. Native Gold precision/debit/return and the new contract's one cold-load/maturity gate remain USER_GAME_TEST_REQUIRED; B240 accepted scope retained.
-- Next: safe automatic deployment if exited, then the single Capital session. COM-C/D, Culture HOLD and unrelated audits remain outside authorization.
+**B241 Capital Investment deployed; native pending:** [result and one combined flow](Validation/Results/Specialization_B241_Capital_Local.md).
+- D0056: highest current ACTIVE S, then earliest corresponding permanent institution establishment; other rules retained. Stable/venture ordinary panel, locked contracts/n and event-driven maturity implemented.
+- Source/live B241.268/modinfo268 from `66a94b9`; receipt `B241.268-66a94b9-playtest.json`,250/250 MATCH. Fresh automatic game-exit checks passed; recovery retained, no pending transaction.
+- 155 targeted local checks PASS. Native Gold precision/debit/return and one contract cold-load/maturity session remain USER_GAME_TEST_REQUIRED; B240 accepted scope retained.
+- Next: the single Capital session. No COM-C/D authorization. Main B069.96, Culture HOLD, configuration, GC and unrelated audits remain unchanged.
+
+## S0645 — B241 verified deployment
+
+Clean/pushed `66a94b9` passed fresh OS game-exit checks before exact B240 receipt restoration and B241 activation.250/250 source/runtime MATCH, digest `f0dd425908859fb09478e3af4cdbe290ba0cbfa44b9b5b7e0b6247e7bcf6865a`; receipt `B241.268-66a94b9-playtest.json`. Both recovery packages retained, no pending marker. No game launch or configuration/main change; native precision and new contract closure await the user.
 
 ## S0644 — D0056 and B241 local implementation
 

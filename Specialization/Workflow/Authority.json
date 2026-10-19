@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0644",
+    "status": "S0645",
     "runtime": "B241.268 / modinfo268",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/v2/Commerce_Preparation.md",
-  "runtime_commit": "81efaa995c02eb16e3ba41b7b6f88d724a596607",
-  "current_batch": "B241_LOCAL_COMPLETE_AWAITING_SAFE_DEPLOYMENT",
-  "next_batch": "W0003 safe deployment if game exited; one combined native Capital debit/contract/reload/maturity session. No COM-C/D authorization.",
+  "runtime_commit": "66a94b9034e545bca1b621eb18a545a3ba86a031",
+  "current_batch": "B241_DEPLOYED_AWAITING_NATIVE",
+  "next_batch": "One combined Capital stable/venture debit, midterm cold-load and maturity session; no next implementation batch authorized.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B240.267/modinfo267 DEVELOP_ACTIVE; source 81efaa995c02eb16e3ba41b7b6f88d724a596607; receipt B240.267-81efaa9-playtest.json;245/245 MATCH, digest 903a0897142582bb338f868805a664eec38e14768fa3467834245ce542ec86c7. Fresh automatic game-exit checks before both guarded switches; B239/stable recovery retained, no pending transaction. B240 tested values/city modifiers/source filtering/withdrawal and user-confirmed Commerce reload accepted; no broad performance claim.",
+  "live": "B241.268/modinfo268 DEVELOP_ACTIVE; source 66a94b9034e545bca1b621eb18a545a3ba86a031; receipt B241.268-66a94b9-playtest.json;250/250 MATCH, digest f0dd425908859fb09478e3af4cdbe290ba0cbfa44b9b5b7e0b6247e7bcf6865a. Both guarded switches passed fresh automatic game-exit checks; B240/stable recovery retained, no pending transaction. Native Capital pending.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0644: user-authorized D0056 tie-break and B241 actual Store/network/transaction/UI source reviewed;155 targeted local checks pass. Native Gold precision/contract settlement pending; live remains B240 until verified switch.",
+  "context_review_status": "S0645: authorized D0056/B241 source,155 targeted checks, package/links/context/publication passed; deployed clean/pushed66a94b9 with250/250 equality. Native money and contract reload/maturity pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -54,3 +54,8 @@ This tests the new native Gold primitive and contract persistence/settlement onc
 ## Stop / delivery
 
 User decision: institution tie-break confirmed; no further gameplay decision inferred. User testing: the single session above. Primary next: record actual deployment outcome, then stop for native evidence. Capital acceptance does not advance Development Investment or Restructuring. Main, Culture HOLD, external configuration and prior evidence stay unchanged.
+
+
+## Verified deployment
+
+B241.268/modinfo268 from clean/pushed `66a94b9034e545bca1b621eb18a545a3ba86a031` is DEVELOP_ACTIVE. Receipt `B241.268-66a94b9-playtest.json`;250/250 source/runtime files MATCH, digest `f0dd425908859fb09478e3af4cdbe290ba0cbfa44b9b5b7e0b6247e7bcf6865a`. Both guarded switches passed fresh automatic OS game-exit checks; exact B240/stable recovery retained, no pending transaction. No game/configuration/main change. Native Capital evidence remains pending.

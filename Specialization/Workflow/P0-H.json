@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0170",
-    "status": "S0644",
+    "status": "S0645",
     "runtime": "B241.268 / modinfo268",
     "military": "D0037",
     "harbor": "D0037",
@@ -19,7 +19,7 @@
   },
   "goal_reference": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
   "goal": "B241 authorized stable/venture Capital contracts under D0056 permanent-institution tie-break; exact money receipts, ordinary UI and current network source reuse. Local complete, native pending.",
-  "implementation_authorized": true,
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -100,8 +100,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
-    "source": "B241.268 local complete; live B240.267 until actual deployment record.",
+    "source": "B241.268 deployed from 66a94b9034e545bca1b621eb18a545a3ba86a031;250/250 MATCH; receipt B241.268-66a94b9-playtest.json",
     "native": "USER_GAME_TEST_REQUIRED",
-    "stop": "Safe W0003 deployment if exited, then stop for the one native Capital flow; no COM-C/D."
+    "stop": "Stop for the one combined native Capital session; no next implementation or deployment batch authorized."
   }
 }
