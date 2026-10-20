@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0673",
-    "runtime": "B251.278 / modinfo278",
+    "status": "S0674",
+    "runtime": "B252.279 / modinfo279",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-  "goal": "B251 user-supplied institution icons, current-profession four-level previews, ability-local historical values including source Standardization, readable row spacing and ACTIVE emphasis. Gameplay and held scope unchanged.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
+  "goal": "B252 complete Commerce institution help, gradient district-style backdrops with native Roman labels, and city → district → details Development Investment sidebar. Gameplay and held scope unchanged.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,51 +28,60 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
       "kind": "section",
       "selector": "## Scope and presentation",
-      "reason": "Approved UI behavior and source-vs-recipient distinction."
+      "reason": "Approved copy and UI behavior."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
       "kind": "section",
       "selector": "## Read and lifetime contract",
-      "reason": "Read-only scalar ownership, no lazy initialization or new scheduler."
+      "reason": "Transient UI ownership and unchanged quotation/confirmation protocol."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
       "kind": "section",
-      "selector": "## Native references and local validation",
-      "reason": "Evidence and visual acceptance boundary."
+      "selector": "## Local validation",
+      "reason": "Targeted actual Lua tests and native visual evidence boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
       "kind": "section",
       "selector": "## Publication boundary",
-      "reason": "Two fixed user-approved binary blobs; normal remaining gate."
+      "reason": "Two exact user-approved DDS blobs only; normal gate otherwise."
     }
   ],
   "dependencies": [
-    "Existing selected-city presentation request, EffectiveFacts, Store guarded city identity/history and pure ResearchTradition.Shadow. No new polling or native fact collection.",
-    "Native Image:SetIcon/SetColorByName and supplied16 SVG icons;267-file Mod closure. Prior gameplay evidence and held items remain scoped."
+    "Existing selected-city institution presentation and scalar summaries unchanged; native Image:SetIcon/CityPanelText and gradient backdrops.",
+    "Existing DevelopmentInvestmentUI/backend quote snapshots and revalidating confirm writer; transient grouped UI state, one FindID per displayed target per render, ScreenResize-only layout.269-file package closure."
   ],
   "old_writers": [
-    "No gameplay writer cutover; replace only the institution display and add a no-write scalar projection. Existing ReadTemplates compatibility writes must never be invoked from this summary."
+    "No gameplay writer cutover; replace only institution artwork/help and Development Investment presentation. No new saved state, native collector or scheduler."
   ],
   "conditional_context": [
     {
-      "trigger": "Presentation or historical-number discrepancy",
+      "trigger": "Institution badge/help or summary discrepancy",
       "paths": [
-        "Mod/CityProgressionStore.lua",
-        "Mod/Gameplay.lua",
-        "Mod/InstitutionPresentation.lua",
-        "Mod/UI/InstitutionOverview.lua",
         "Mod/UI/Institutions.lua",
         "Mod/UI/Institutions.xml",
+        "Mod/InstitutionPresentation.lua",
+        "Mod/Text/Restructuring.sql",
         "Mod/Data/Icons.sql",
-        "Mod/Text/TestText.sql",
-        "Mod/Probe.lua",
-        "DevelopmentTests/test_b251_institutions.py"
+        "Art/Institutions/README.md",
+        "DevelopmentTests/test_b252_sidebar.py"
+      ]
+    },
+    {
+      "trigger": "Sidebar quotation, selection or confirmation discrepancy",
+      "paths": [
+        "Mod/UI/DevelopmentInvestmentPanel.lua",
+        "Mod/UI/DevelopmentInvestmentPanel.xml",
+        "Mod/UI/DevelopmentInvestmentUI.lua",
+        "Mod/DevelopmentInvestment.lua",
+        "Mod/Text/DevelopmentInvestment.sql",
+        "DevelopmentTests/test_b246_development_ui.py",
+        "DevelopmentTests/test_b252_sidebar.py"
       ]
     },
     {
@@ -87,19 +96,19 @@
     "Publication-policy changes, other agents reports, frozen history and screenshot/log/save publication. The exact two reviewed DDS blobs are the sole one-batch exception."
   ],
   "validation": {
-    "depth": "L2 targeted actual Lua Store/request/UI plus L1 icon/localization/package/static checks.",
-    "local": "23 methods PASS; six Lua5.1 compilations;16 icon entries; two reviewed DXT5 atlases;267-file closure. Native interfaces checked against installed read-only UI source.",
-    "user": "One normal-session visual check of lower/advanced city rows, icons, spacing, highlighted ACTIVE and available ability values. No extra save/load or yield retest.",
-    "gap": "Native icon/typography/layout pending; local read/counter evidence is not native performance or new gameplay PASS."
+    "depth": "L2 targeted actual Lua UI protocols and retained presentation regressions; L1 text/icon/XML/package checks.",
+    "local": "41 selected methods PASS; two Lua5.1 compilations; four new icon entries and two reviewed BGRA8 atlases;269-file closure.",
+    "user": "One normal-session institution/readability and city→district→quote/confirm UI flow. No repeated contract maturity, save/load or yield gate.",
+    "gap": "Native texture loading, font/column/card fit and UI click path pending; local fixtures are not native rendering or gameplay PASS."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-    "source": "B251.278/modinfo278 DEVELOP_ACTIVE; source 5be03451115cf60e29af31a661be483e28a56eb1; receipt B251.278-5be0345-playtest.json;267/267 MATCH,digest 017a4efdf376648317d4020d9f63fbaf77223886fda6bfbca14c0af591d7b936. Stable and outgoing B250 recovery verified; no pending marker, game launch or configuration change.",
-    "native": "USER_GAME_TEST_REQUIRED for new visuals; prior gameplay evidence unchanged.",
-    "stop": "B251 source, local checks and verified deployment/current checkpoint complete. Await one visual check during normal play; no further gameplay/audit batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
+    "source": "B252.279/modinfo279 locally verified; live B251.278 remains until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED for new visuals and presentation click path; prior gameplay evidence unchanged.",
+    "stop": "Complete the existing guarded deployment/current checkpoint, then one institution/sidebar native UI flow. No new gameplay, audit repair or balance batch; S0669 scheduling unchanged."
   }
 }

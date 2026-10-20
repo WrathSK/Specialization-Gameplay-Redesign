@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="278">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="279">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B251.278: institution icons, four-level previews and read-only live ability summaries.</Description>
+    <Description>B252.279: district-style institution badges, Commerce descriptions and three-column Development Investment.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -264,7 +264,9 @@
       <File>RestructuringModel.lua</File>
       <File>RestructuringUI.lua</File>
       <File>Textures/SPC_Institutions_32.dds</File>
+      <File>Textures/SPC_Institution_Backdrops_32.dds</File>
       <File>Textures/SPC_Institutions_64.dds</File>
+      <File>Textures/SPC_Institution_Backdrops_64.dds</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -705,7 +707,9 @@
     <File>UI/CommercePanel.lua</File>
     <File>UI/CommercePanel.xml</File>
     <File>Textures/SPC_Institutions_32.dds</File>
+    <File>Textures/SPC_Institution_Backdrops_32.dds</File>
     <File>Textures/SPC_Institutions_64.dds</File>
+    <File>Textures/SPC_Institution_Backdrops_64.dds</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />

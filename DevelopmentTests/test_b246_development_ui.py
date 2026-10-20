@@ -6,32 +6,18 @@ from test_b239_commerce_ui import SETUP
 from project_paths import external_database
 R=Path(__file__).resolve().parents[1];MOD=R/'Mod'
 def ui():
- l=LuaRuntime(unpack_returned_tuples=True);l.execute(SETUP)
- l.execute((MOD/'UI/DevelopmentInvestmentUI.lua').read_text())
- l.execute(r'''
-GameInfo={Buildings={BUILDING_LIB={Name='图书馆'}},Districts={DISTRICT_CAMPUS={Name='学院'}}}
-function Controls.Choices:CalculateSize()end;function Controls.Choices:ReprocessAnchoring()end;function Controls.Scroll:CalculateInternalSize()end
-instances={};InstanceManager={new=function()return {
- ResetInstances=function()instances={}end,
- GetInstance=function()local i=#instances+1;local o={Root=Controls['Row'..i],Caption=Controls['Caption'..i],State=Controls['State'..i]};instances[i]=o;return o end}end}
-local r={owner=0,cityID=9,x=10,y=11,token='city',changes=0}
-developmentView={available=true,stage='READY',canSign=true,token='city',reference=r,revision=1,balance=1000,used=0,workers=2,contracts={},options={
- {targetCity=2,targetName='目标城',domain='DISTRICT_CAMPUS',building='BUILDING_LIB',price=400,cost=60,candidates=2,canSign=true,reason='DEVELOPMENT_READY'},
- {targetCity=3,targetName='第二城',domain='DISTRICT_CAMPUS',canSign=false,reason='DEVELOPMENT_PRICE_UNAVAILABLE'}}}
-backend={views={['0:9']=developmentView},revision=1};ExposedMembers.SPC_P0.DevelopmentInvestment=backend
-function ack(ok,reason)local p=sent[#sent];backend.lastRequest={owner=0,city=9,token=p.Token,accepted=ok~=false,reason=reason};Events.GameCoreEventPublishComplete.Fire()end
-''')
- l.execute((MOD/'UI/DevelopmentInvestmentPanel.lua').read_text());l.execute('ContextPtr.initialize()')
- return l
+ # B252 changes only presentation/selection controls; keep protocol assertions.
+ from test_b252_sidebar import ui as current_ui
+ return current_ui()
 class UI(unittest.TestCase):
  def test_one_open_snapshot_selection_and_hover_never_request(self):
-  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);assert(#sent==1 and sent[1].Action=='DEVELOPMENT_OPEN');ack();assert(Controls.Confirm.disabled);instances[1].Root.click();instances[2].Root.click();assert(#sent==1 and Controls.Confirm.disabled);instances[1].Root.click();assert(not Controls.Confirm.disabled and #sent==1)")
+  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);assert(#sent==1 and sent[1].Action=='DEVELOPMENT_OPEN');ack();assert(Controls.Confirm.disabled);pick(1);pick(2);assert(#sent==1 and Controls.Confirm.disabled);pick(1);assert(not Controls.Confirm.disabled and #sent==1)")
  def test_scalar_confirmation_and_double_click_latch(self):
-  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);ack();instances[1].Root.click();Controls.Confirm.click();Controls.Confirm.click();assert(#sent==2 and sent[2].Action=='DEVELOPMENT_CONFIRM' and sent[2].TargetCity==2 and sent[2].Domain=='DISTRICT_CAMPUS' and sent[2].Revision==1)")
+  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);ack();pick(1);Controls.Confirm.click();Controls.Confirm.click();assert(#sent==2 and sent[2].Action=='DEVELOPMENT_CONFIRM' and sent[2].TargetCity==2 and sent[2].Domain=='DISTRICT_CAMPUS' and sent[2].Revision==1)")
  def test_rejection_and_stale_publication_never_retry(self):
-  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);ack();instances[1].Root.click();Controls.Confirm.click();ack(false,'DEVELOPMENT_QUOTE_STALE');assert(#sent==2 and Controls.Error.text:find('STALE'));developmentView.quoteStale=true;developmentView.revision=2;Events.GameCoreEventPublishComplete.Fire();assert(Controls.Confirm.disabled and #sent==2);Controls.Refresh.click();assert(#sent==3 and sent[3].Action=='DEVELOPMENT_REFRESH')")
+  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);ack();pick(1);Controls.Confirm.click();ack(false,'DEVELOPMENT_QUOTE_STALE');assert(#sent==2 and Controls.Error.text:find('STALE'));developmentView.quoteStale=true;developmentView.revision=2;Events.GameCoreEventPublishComplete.Fire();assert(Controls.Confirm.disabled and #sent==2);Controls.Refresh.click();assert(#sent==3 and sent[3].Action=='DEVELOPMENT_REFRESH')")
  def test_current_contract_visible_without_source_active_or_route(self):
-  ui().execute("developmentView.canSign=false;developmentView.options={};developmentView.used=1;developmentView.contracts.target={target={cityID=2},domain='DISTRICT_CAMPUS',cost=60,debited=60,stage='ACTIVE'};LuaEvents.SPC_DevelopmentOpen(0,9);ack();assert(#instances==1);instances[1].Root.click();assert(Controls.Contract.text:find('60') and Controls.Confirm.disabled)")
+  ui().execute("developmentView.canSign=false;developmentView.options={};developmentView.used=1;developmentView.contracts.target={target={cityID=2,x=20,y=21,token='target'},domain='DISTRICT_CAMPUS',cost=60,debited=60,stage='ACTIVE'};LuaEvents.SPC_DevelopmentOpen(0,9);ack();assert(#cityRows.items==1);pick(1);assert(Controls.Contract.text:find('60') and Controls.Confirm.disabled)")
  def test_foreign_selection_and_shutdown_close(self):
   ui().execute("LuaEvents.SPC_DevelopmentOpen(1,9);assert(#sent==0);LuaEvents.SPC_DevelopmentOpen(0,9);ack();owner=1;Events.GameCoreEventPublishComplete.Fire();assert(Controls.Window.hidden);owner=0;ContextPtr.shutdown();LuaEvents.SPC_DevelopmentOpen(0,9);assert(#sent==1)")
  def test_action_intercept_never_enqueues_and_only_own_project(self):

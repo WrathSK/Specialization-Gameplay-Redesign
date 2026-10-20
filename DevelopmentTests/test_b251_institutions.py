@@ -160,7 +160,7 @@ class Package(unittest.TestCase):
   self.assertEqual(controls['Icon'].get('Size'),'32,32')
   self.assertEqual(controls['State'].get('Anchor'),'R,C')
   self.assertEqual(controls['Name'].get('TruncateWidth'),'parent')
-  self.assertNotIn('Stage',controls)
+  self.assertEqual(controls['Stage'].get('Style'),controls['Name'].get('Style')) # B252 native numerals
   source=(ROOT/'Mod/CityProgressionStore.lua').read_text()
   function=source.split(' function d.InstitutionSummary(pid,c)',1)[1].split(' function d.InstitutionArchive',1)[0]
   for bad in ('save(', 'ReadTemplates(', 'Refresh(', 'Discover(', ':Members(', 'SetProperty(', 'SetUpdate('):self.assertNotIn(bad,function)

@@ -43,7 +43,7 @@ def display():
       ContextPtr={SetHide=function()end,LookUpControl=function()return parent end,
        SetInitHandler=function(self,f)init=f end,SetShutdown=function(self,f)shutdown=f end}
       InstanceManager={new=function()local m={items={}}
-       function m:GetInstance()local row={Top=control(),Icon=control(),Name=control(),State=control()};self.items[#self.items+1]=row;return row end
+       function m:GetInstance()local row={Top=control(),Icon=control(),Stage=control(),Name=control(),State=control()};self.items[#self.items+1]=row;return row end
        function m:ResetInstances()resets=resets+1;self.items={}end
        function m:DestroyInstances()self.items={}end
        rows=m;return m
@@ -68,10 +68,10 @@ class CultureInstitutionDisplay(unittest.TestCase):
         lua=display()
         lua.execute('''
           local expected={'文艺同好会','赞助人行会','人文联合会','博雅总院'}
-          local icons='ICON_SPC_INSTITUTION_CULTURE_'
+          local icons='ICON_SPC_INSTITUTION_CULTURE_BASE';local roman={'Ⅰ','Ⅱ','Ⅲ','Ⅳ'}
           assert(#rows.items==4 and not Controls.InstitutionContainer.hidden)
           for i,row in ipairs(rows.items)do
-           assert(row.Name.text==expected[i] and row.Icon.icon==icons..i)
+           assert(row.Name.text==expected[i] and row.Icon.icon==icons and row.Stage.text==roman[i])
            assert(row.State.text==(i==4 and '当前' or '启用'))
           end
           assert(rows.items[3].Top.tip:find('时代对话',1,true))

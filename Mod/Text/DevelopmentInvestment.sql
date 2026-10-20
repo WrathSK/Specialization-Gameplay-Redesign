@@ -32,3 +32,22 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_STATE_TERMINATED','已终止');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_STATE_UNKNOWN','状态暂不可确认：{1}');
+
+-- B252 three-column presentation. No new transaction or gameplay state.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_CITIES','目标城市'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_DISTRICTS','投资区域'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_DETAILS','投资详情'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_SELECT_CITY','请选择目标城市'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_SELECT_DISTRICT','请选择投资区域'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_CITY_OPTIONS','{1} 个区域可投资'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_DISTRICT_READY','可签约 · {1} [ICON_Gold]'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_QUOTE_TITLE','报价依据'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_EFFECT_TITLE','合同效果与完成条件'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_RULES_TITLE','签约与延续'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_CONTRACT_TITLE','最近一份合同'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_SOURCE','发起城市：{1}'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_BACK','返回上一级'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_NO_OPTIONS','当前没有可展示的目标城市，请查看签约条件或刷新报价。'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_NO_DISTRICTS','当前没有可投资的区域。'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_STATUS_TITLE','当前状态');
