@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0678
+Status Revision: S0679
 Implementation Build: B254.281 / modinfo281; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B254.281 is locally verified; native icon/banner visuals await review.** [Scope and checks](Validation/Results/Specialization_B254_Level_Icons.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
+**B254.281 is deployed; native icon/banner visuals await review.** [Scope and checks](Validation/Results/Specialization_B254_Level_Icons.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
 
 - Approved A-palette embedded serif I–IV replace native text in institution rows. A40-unit outside-left city-banner emblem shows ACTIVE plus four ACTIVE/Potential segments; tooltip explains the two values.
 - Derived canonical level projection is read-only and event-driven, with native banner visibility/lifetime and no new timers, persistent fields or gameplay writes.32 scoped local checks PASS; native loading/overlap/scaling remain USER_GAME_TEST_REQUIRED.
-- Source B254.281/modinfo281; live remains B253.280 from72e7b15 pending the normal verified deployment transaction. Main/stable B069.96 unchanged.
+- Source/live B254.281/modinfo281 from `6553643`; receipt `B254.281-6553643-playtest.json`;277/277 MATCH. Stable and outgoing B253 recovery verified. Main/stable B069.96 unchanged.
 - Development Investment sidebar refinement feedback remains pending and is not included in this icon/banner batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: normal publication/deployment gates, then one minimal visual flow. No new gameplay or audit repair batch.
+- Commit/push and guarded deployment complete. Next: one minimal visual flow; no further batch starts automatically.
+
+## S0679 — B254 verified deployment
+
+B254.281/modinfo281 DEVELOP_ACTIVE; source `655364337af6fde1acb835f28649ba0411c6e7ec`; receipt `B254.281-6553643-playtest.json`;277/277 MATCH; digest `b1d61b7de9f28036ac66c62fa889b329011fb6d023515b3e96e405f7341514cb`. Fresh game-exit checks, exact B253 restoration and B254 activation passed. Stable and outgoing recovery verified; no pending marker, game launch, configuration or main change.32 local checks and publication gates passed; no new native PASS. Only current deployment records/hashes updated.
 
 ## S0678 — B254 level emblem implementation
 

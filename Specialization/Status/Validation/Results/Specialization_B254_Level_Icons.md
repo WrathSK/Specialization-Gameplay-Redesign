@@ -39,4 +39,6 @@ In one normal session:
 
 Two new lossless BGRA8 DDS atlases contain only the16 approved vector icons. Browser rasterization uses a temporary isolated profile; decode exactly matches source pixels. No external image, personal path, account data or embedded font file. Exact fixed blobs received explicit one-batch publication authorization; all source/SVG/test/document files use the unchanged normal staged gate. No lasting checker/hook exception. Old B251/B252 art and frozen evidence remain unchanged.
 
-B254.281 locally verified; live remains B253.280 until the normal clean-source/game-exit/receipt transaction succeeds. Main/stable B069.96 remains unchanged. Stop after this batch and its minimal visual handoff.
+B254.281/modinfo281 DEVELOP_ACTIVE; source `655364337af6fde1acb835f28649ba0411c6e7ec`; receipt `B254.281-6553643-playtest.json`;277/277 MATCH; digest `b1d61b7de9f28036ac66c62fa889b329011fb6d023515b3e96e405f7341514cb`. Fresh game-exit checks, exact B253 restoration and B254 activation passed. Stable and outgoing recovery verified; no pending marker, game launch, configuration or main change.
+
+37 source/text/SVG/test/current files passed the normal staged publication gate; the two exact authorized DDS blobs were committed separately.277 runtime/889 guarded Context check PASS. Main/stable B069.96 remains unchanged. Native acceptance is pending; stop for the minimal visual flow.
