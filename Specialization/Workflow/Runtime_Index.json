@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "835c29ead08303a358d4f484fd1c5db835e33ce7c201571f4c4164384e8bdcee",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
+      "sha256": "75bb54fed12d66957a6ab1b2519515cb6ce6a9fe2f614b577d363cf82ff2ed6d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8053848351629c5f55d6201dea61a2b9674a2f8ab28c17c752b7f75dbc0da97c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
+      "sha256": "cdbc4c20c25f10aa0fd5c342d4b2cc8c863cdd913d3d2384bd7c23554fc47730",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1211,19 +1211,19 @@
       "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "2e8cbc8fc8a2a52ded50b3367255ca2c41e66ad2a8ef969fba2180ee753ee508",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "191097a1173a1f8048adccd7c4f09db2d0815305a7e35293ff70f0513df11551",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
     },
     "Mod/UI/CommercePanel.lua": {
-      "sha256": "f76067e9f3a012710e0e3ff5073461c6efe6d9268ab437bc8bfd29e7a7de717a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+      "sha256": "cf88b447765ee2f47559f717e1f713f1ad803fb040c02e86c35222b6628179a5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
     },
     "Mod/UI/CommercePanel.xml": {
-      "sha256": "73cabe58b2b4888ebcd6f616198e5e9f66612217f4a9658ab58e581e99b695d9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "6b64e0cef065f9dff1a716d6db824c7b90fe686a9327fb34c33ae3eece8c7182",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
     },
     "Mod/UI/CommerceUI.lua": {
       "sha256": "f8e9efaf4e06bf5f54346b39f1558468a98c3fa0ec65fc1c8e853ac144b1d2bb",
@@ -1286,9 +1286,9 @@
       "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
-      "sha256": "164f687f3341affce3e5a013566744551c6bec04f74dcab2c811dff39e37e3a1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
+      "sha256": "8ec0d4a6506e480c3801b652b7dff3a4e37768e8b6c8cc96e97f6b6ddba2d140",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
       "sha256": "48035d87eabd91a3df41c4c0c09274c4314f37e7a40aa6b5b1b73008ff433ec6",

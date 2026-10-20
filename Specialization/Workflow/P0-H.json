@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0691",
-    "runtime": "B260.287 / modinfo287",
+    "status": "S0692",
+    "runtime": "B261.288 / modinfo288",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-  "goal": "B260 Refresh label, native district backing and upper-segment name-strip badge alignment.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+  "goal": "B261 Commercialization sidebar and Commerce/Development Escape routing.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,63 +28,51 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
       "kind": "section",
       "selector": "## Scope and evidence",
       "reason": "Current authorization and steering."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
       "kind": "section",
-      "selector": "## Measurement and implementation",
+      "selector": "## Implementation",
       "reason": "Measured UI delta and native reference."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
       "kind": "section",
       "selector": "## Validation",
       "reason": "Scoped evidence."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
       "kind": "section",
       "selector": "## Deployment",
       "reason": "Existing deployment gates."
     }
   ],
   "dependencies": [
-    "Existing EffectiveFacts and permanent-write notifications; native governor/city/load/publish/playback events.",
-    "Native Expansion2 CityBanner UpdateName/Uninitialize/Container wildcard surface; existing institution presentation."
+    "Existing Commerce published snapshot and scalar selection operation/ack protocol.",
+    "Accepted Development Investment UI layout and native input object API."
   ],
   "old_writers": [
     "No gameplay cutover; existing UI texture/geometry only."
   ],
   "conditional_context": [
     {
-      "trigger": "Icon or banner discrepancy",
+      "trigger": "Commercialization presentation or input discrepancy",
       "paths": [
-        "Mod/LevelBannerState.lua",
-        "Mod/UI/LevelBannerModel.lua",
-        "Mod/UI/LevelBanners.lua",
-        "Mod/UI/LevelBanners.xml",
-        "Mod/UI/CityBannerManager_SPC_Levels.lua",
-        "Mod/UI/Institutions.lua",
-        "Mod/UI/Institutions.xml",
-        "Mod/EffectiveFacts.lua",
-        "Mod/Data/Icons.sql",
-        "Art/Institutions/README.md",
-        "DevelopmentTests/test_b254_levels.py",
-        "Mod/Gameplay.lua",
-        "Mod/InvestmentAction.lua",
-        "Mod/CityProgressionStore.lua",
-        "DevelopmentTests/test_b257_banner_updates.py",
+        "Mod/UI/CommercePanel.lua",
+        "Mod/UI/CommercePanel.xml",
+        "Mod/UI/CommerceUI.lua",
+        "Mod/CommerceModel.lua",
+        "Mod/CommerceCalculation.lua",
+        "Mod/Text/Commerce.sql",
         "Mod/UI/DevelopmentInvestmentPanel.lua",
         "Mod/UI/DevelopmentInvestmentPanel.xml",
-        "Mod/Text/DevelopmentInvestment.sql",
-        "Mod/DevelopmentInvestmentModel.lua",
-        "DevelopmentTests/test_b258_ui.py",
-        "DevelopmentTests/test_b259_ui.py",
-        "DevelopmentTests/test_b260_ui.py"
+        "DevelopmentTests/test_b261_commerce.py",
+        "Specialization/Design/Content/Commerce_D0057.json"
       ]
     },
     {
@@ -99,19 +87,19 @@
     "Institution32px assets and held gameplay/audit work."
   ],
   "validation": {
-    "depth": "L2 scoped UI/state; L1 dimensions/package.",
-    "local": "22 scoped methods PASS.",
-    "user": "Badge name-strip alignment, district backing, Refresh label.",
-    "gap": "Native visual review pending."
+    "depth": "L2 actual UI/protocol; L1 package and layout bounds.",
+    "local": "19 scoped methods PASS.",
+    "user": "Domain order/toggle/cards and Escape on both panels.",
+    "gap": "Native layout/font/input routing pending."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-    "source": "B260.287/modinfo287 DEVELOP_ACTIVE; source f9442e784ddb00e7177df909ed900c810bab84ef; receipt B260.287-f9442e7-playtest.json;279/279 MATCH; digest ea615e1b262c1ac8921e805525faa64c33ce6c2bb1aa4738c01ab3576e819cff. Fresh game-exit checks, exact B259 restoration and B260 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
-    "native": "Other B259 UI accepted; three requested refinements pending.",
-    "stop": "User visual check: badge name-strip alignment, upper segments, district backing and Refresh label; stop."
+    "report": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+    "source": "B261 local complete; live B260 pending deployment.",
+    "native": "B260 accepted; B261 pending.",
+    "stop": "Guarded deployment then Commercialization two-column and dual-panel Escape native check."
   }
 }

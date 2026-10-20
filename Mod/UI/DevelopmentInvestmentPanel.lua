@@ -247,7 +247,14 @@ local function initialize()
  Controls.DetailBack:RegisterCallback(Mouse.eLClick,function()if current and not pending then current.domain=nil;render()end end)
  LuaEvents.SPC_DevelopmentOpen.Add(open);Events.GameCoreEventPublishComplete.Add(publish)
  Events.LoadScreenClose.Add(close);Events.LocalPlayerChanged.Add(close);Events.SystemUpdateUI.Add(resizeEvent)
- ContextPtr:SetInputHandler(function(message,key)if current and message==KeyEvents.KeyUp and key==Keys.VK_ESCAPE then close();return true end;return false end,true)
+ ContextPtr:SetInputHandler(function(message,key)
+  if type(message)=='table' or type(message)=='userdata'then key=message:GetKey();message=message:GetMessageType()end
+  if current and key==Keys.VK_ESCAPE then
+   if message==KeyEvents.KeyUp then close()end
+   return true
+  end
+  return false
+ end,true)
  close()
 end
 ContextPtr:SetInitHandler(initialize)

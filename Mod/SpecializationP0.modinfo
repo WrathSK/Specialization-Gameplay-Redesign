@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="287">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="288">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B260.287: city-name aligned badge with upper segments and native investment card spacing.</Description>
+    <Description>B261.288: Commercialization two-column sidebar and Escape interception.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
