@@ -1,4 +1,4 @@
--- B252: one existing quotation snapshot, three UI-only selection columns.
+-- B253: one existing quotation snapshot, three UI-only selection columns.
 include('Probe')
 include('DevelopmentInvestmentUI')
 include('InstanceManager')
@@ -9,7 +9,9 @@ local current,pending,requestError,lastRevision
 local groups,groupByKey={},{}
 local render
 local function L(k,...)return Locale.Lookup('LOC_SPC_DEVELOPMENT_'..k,...)end
-local function num(v)return type(v)=='number' and string.format('%.6f',v):gsub('0+$',''):gsub('%.$','') or '—'end
+-- Display only: transaction values and native receipts remain untouched.
+local function num(v)return type(v)=='number' and string.format('%.0f',v) or '—'end
+local function treasury(v)return type(v)=='number' and string.format('%.0f',math.floor(v)) or '—'end
 local function label(tab,id)local r=id and GameInfo[tab][id];return r and Locale.Lookup(r.Name) or '—'end
 local function reason(k)
  local keys={DEVELOPMENT_ACTIVE_IV_REQUIRED='ACTIVE_REQUIRED',DEVELOPMENT_CAPACITY_FULL='CAPACITY_FULL',DEVELOPMENT_TARGET_OCCUPIED='OCCUPIED',
@@ -83,6 +85,7 @@ local function collect(v)
  end
  table.sort(groups,function(a,b)if a.id==b.id then return a.key<b.key end;return a.id<b.id end)
  for _,g in ipairs(groups)do table.sort(g.rows,function(a,b)return a.domain<b.domain end)end
+ for key in pairs(current.iconPages)do if not groupByKey[key]then current.iconPages[key]=nil end end
  -- Keep identity, never list position, across reordered/new/removed quote rows.
  local g=groupByKey[current.target]
  if not g then current.target=nil;current.domain=nil
@@ -92,52 +95,55 @@ local function layout()
  local width,height=UIManager:GetScreenSizeVal()
  local available=math.max(220,width-16)
  local narrow=available<800
- local a=narrow and math.min(360,available) or math.min(295,math.floor(available*.30))
- local b=narrow and a or math.min(280,math.floor(available*.29))
- local d=narrow and a or math.min(360,available-a-b-2)
- local h=math.max(240,height-114)
- Controls.Window:SetSizeVal(narrow and a or a+b+d+2,h)
+ local column=narrow and math.min(360,available) or math.min(295,math.floor((available-2)/3))
+ -- Same top inset as native ChooserAnim; extend to the viewport bottom.
+ local h=math.max(240,height-27)
+ Controls.Window:SetSizeVal(narrow and column or column*3+2,h)
  local contentHeight=h-(narrow and 40 or 0)
- Controls.CityColumn:SetSizeVal(a,contentHeight);Controls.DistrictColumn:SetSizeVal(b,contentHeight);Controls.DetailColumn:SetSizeVal(d,contentHeight)
+ for _,name in ipairs({'CityColumn','DistrictColumn','DetailColumn'})do Controls[name]:SetSizeVal(column,contentHeight)end
  Controls.CompactBar:SetHide(not narrow)
- Controls.DistrictColumn:SetOffsetX(narrow and 0 or a+1);Controls.DetailColumn:SetOffsetX(narrow and 0 or a+b+2)
+ Controls.DistrictColumn:SetOffsetX(narrow and 0 or column+1);Controls.DetailColumn:SetOffsetX(narrow and 0 or column*2+2)
  local g,row=selection()
  Controls.CityColumn:SetHide(narrow and g~=nil)
  Controls.DistrictColumn:SetHide(narrow and (not g or row~=nil))
  Controls.DetailColumn:SetHide(narrow and row==nil)
  Controls.DistrictBack:SetHide(not narrow);Controls.DetailBack:SetHide(not narrow)
- Controls.CityName:SetTruncateWidth(a-36);Controls.Balance:SetWrapWidth(a-36)
- Controls.EmptyCities:SetWrapWidth(a-38);Controls.EmptyDistricts:SetWrapWidth(b-38)
- Controls.DistrictCity:SetTruncateWidth(b-36);Controls.Subject:SetWrapWidth(d-38)
- Controls.QuoteTitle:SetTruncateWidth(d-90)
- for _,name in ipairs({'Quote','Contract','Terms','Help'})do Controls[name]:SetWrapWidth(d-62)end
- Controls.Error:SetWrapWidth(d-24)
- for _,part in ipairs({{'Quote',52},{'Contract',40},{'Terms',40},{'Help',40}})do
-  Controls[part[1]..'Card']:SetSizeY(Controls[part[1]]:GetSizeY()+part[2]+14)
- end
+ Controls.DistrictScroll:SetSizeY(contentHeight-(narrow and 140 or 96))
+ Controls.CityName:SetTruncateWidth(column-86)
+ Controls.Balance:SetTruncateWidth(column-44);Controls.Capacity:SetTruncateWidth(column-44)
+ Controls.EmptyCities:SetWrapWidth(column-38);Controls.EmptyDistricts:SetWrapWidth(column-38)
+ Controls.DistrictCity:SetTruncateWidth(column-36)
+ for _,name in ipairs({'QuoteTitle','TermsTitle','HelpTitle'})do Controls[name]:SetTruncateWidth(column-42)end
+ for _,name in ipairs({'Quote','Contract','Terms','Help','ContractTitle'})do Controls[name]:SetWrapWidth(column-42)end
+ Controls.Error:SetWrapWidth(column-24)
  local statusHeight=Controls.Error:GetSizeY()
  local footer=math.max(98,statusHeight+86)+(narrow and 28 or 0)
  Controls.Footer:SetSizeY(footer);Controls.Confirm:SetOffsetY(footer-(narrow and 28 or 0)-72)
  Controls.Refresh:SetOffsetY(footer-(narrow and 28 or 0)-29);Controls.DetailBack:SetOffsetY(footer-29)
- Controls.DetailScroll:SetSizeY(math.max(50,contentHeight-58-footer-8))
- return a,b
+ local sectionHeight=math.max(50,math.floor((contentHeight-58-footer-8-16)/3))
+ Controls.Details:SetSizeY(sectionHeight*3+16)
+ for i,name in ipairs({'Quote','Terms','Help'})do
+  Controls[name..'Card']:SetOffsetY((i-1)*(sectionHeight+8));Controls[name..'Card']:SetSizeY(sectionHeight)
+  Controls[name..'Scroll']:SetSizeY(sectionHeight-48)
+ end
+ return column,column
 end
 render=function()
  local c=city();if not c then close();return end
  local b,v=backend();collect(v)
  local g,row=selection();local contract=row and row.contract
- Controls.CityName:SetText(L('SOURCE',Locale.Lookup(c:GetName())))
- Controls.Balance:SetText(L('BALANCE',num(v and v.balance),v and v.used or 0,v and v.workers or 0))
+ Controls.CityName:SetText(Locale.Lookup(c:GetName()))
+ Controls.Balance:SetText(L('TREASURY',treasury(v and v.balance)))
+ Controls.Capacity:SetText(L('CAPACITY',v and v.used or 0,v and v.workers or 0))
  Controls.EmptyCities:SetText(#groups==0 and (reason(v and v.reason)~='' and reason(v.reason) or L('NO_OPTIONS')) or '')
  Controls.EmptyCities:SetHide(#groups>0)
  Controls.DistrictCity:SetText(g and g.name or L('SELECT_CITY'))
  Controls.EmptyDistricts:SetText(not g and L('SELECT_CITY') or reason(g.reason)~='' and reason(g.reason) or L('NO_DISTRICTS'))
  Controls.EmptyDistricts:SetHide(g and #g.rows>0 or false)
- Controls.Subject:SetText(row and g.name..'[NEWLINE]'..label('Districts',row.domain) or L(g and 'SELECT_DISTRICT' or 'SELECT_CITY'))
- Controls.Quote:SetText(row and row.price and L('QUOTE',label('Buildings',row.building),num(row.price),num(row.cost),row.candidates) or '')
- Controls.QuoteCard:SetHide(not (row and row.price))
+ Controls.Quote:SetText(row and row.price and L('QUOTE',label('Buildings',row.building),num(row.price),num(row.cost),row.candidates) or L(row and 'NO_QUOTE' or g and 'SELECT_DISTRICT' or 'SELECT_CITY'))
+ Controls.QuoteIcon:SetHide(not (row and row.price and row.building))
  if row and row.building then Controls.QuoteIcon:SetIcon('ICON_'..row.building)end
- Controls.Terms:SetText(row and L('TERMS') or '');Controls.TermsCard:SetHide(not row)
+ Controls.Terms:SetText(L('TERMS'))
  Controls.Contract:SetText(contract and L('CONTRACT',L('STATE_'..contract.stage),num(contract.cost),num(contract.debited)) or '')
  Controls.ContractCard:SetHide(not contract)
  Controls.Confirm:SetDisabled(not canConfirm(v,row));Controls.Refresh:SetDisabled(pending~=nil);Controls.CompactRefresh:SetDisabled(pending~=nil)
@@ -152,9 +158,23 @@ render=function()
   for _,option in ipairs(target.rows)do if option.canSign then count=count+1 end end
   instance.Caption:SetText(target.name);instance.Caption:SetTruncateWidth(cityWidth-90)
   local text=target.reason and reason(target.reason) or L('CITY_OPTIONS',count)
-  instance.State:SetText(text);instance.State:SetWrapWidth(cityWidth-64)
-  instance.Root:SetSizeY(math.max(74,instance.State:GetSizeY()+54))
-  instance.State:SetColorByName(current.target==key and 'Gold' or 'White')
+  instance.State:SetText(text);instance.State:SetTruncateWidth(cityWidth-78);instance.State:SetHide(#target.rows>0)
+  instance.Root:SetSizeY(72);instance.DistrictInfo:SetSizeVal(cityWidth-70,30)
+  local slots=math.max(1,math.min(7,math.floor((cityWidth-70)/32)))
+  local pages=math.max(1,math.ceil(#target.rows/slots))
+  local page=math.min(current.iconPages[key] or 1,pages);current.iconPages[key]=page
+  for i=1,7 do
+   local icon=instance['DistrictIcon'..i];local option=i<=slots and target.rows[(page-1)*slots+i]
+   icon:SetHide(not option)
+   if option then
+    icon:SetIcon('ICON_'..option.domain)
+    icon:SetToolTipString(label('Districts',option.domain)..'[NEWLINE]'..(option.canSign and L('DISTRICT_READY',num(option.cost)) or option.contract and L('STATE_'..option.contract.stage) or reason(option.reason)))
+   end
+  end
+  instance.PreviousIcons:SetHide(pages==1);instance.NextIcons:SetHide(pages==1)
+  instance.PreviousIcons:SetDisabled(page==1);instance.NextIcons:SetDisabled(page==pages)
+  instance.PreviousIcons:RegisterCallback(Mouse.eLClick,function()if current and not pending and page>1 then current.iconPages[key]=page-1;render()end end)
+  instance.NextIcons:RegisterCallback(Mouse.eLClick,function()if current and not pending and page<pages then current.iconPages[key]=page+1;render()end end)
   instance.Root:SetToolTipString(target.name..'[NEWLINE]'..text)
   instance.Root:RegisterCallback(Mouse.eLClick,function()
    if current and not pending then current.target=key;current.domain=nil;requestError=nil;render()end
@@ -173,14 +193,14 @@ render=function()
    if current and not pending then current.domain=domain;requestError=nil;render()end
   end)
  end
- for _,name in ipairs({'Cities','CityStack','Districts','DistrictStack','Details'})do Controls[name]:CalculateSize();Controls[name]:ReprocessAnchoring()end
- for _,name in ipairs({'CityScroll','DistrictScroll','DetailScroll'})do Controls[name]:CalculateInternalSize()end
+ for _,name in ipairs({'Cities','CityStack','Districts','DistrictStack','ContractCard','QuoteContent','TermsContent','HelpContent'})do Controls[name]:CalculateSize();Controls[name]:ReprocessAnchoring()end
+ for _,name in ipairs({'CityScroll','DistrictScroll','QuoteScroll','TermsScroll','HelpScroll'})do Controls[name]:CalculateInternalSize()end
  Controls.Window:ReprocessAnchoring();lastRevision=v and v.revision
 end
 local function open(pid,id)
  if pid~=Game.GetLocalPlayer() or not P.IsTestPlayer(pid)then return end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id);if not c then return end
- current={owner=pid,city=id,reference=U.Reference(pid,c)};pending=nil;requestError=nil;lastRevision=nil
+ current={owner=pid,city=id,reference=U.Reference(pid,c),iconPages={}};pending=nil;requestError=nil;lastRevision=nil
  ContextPtr:SetHide(false);Controls.Window:SetHide(false);send('DEVELOPMENT_OPEN')
 end
 local function publish()

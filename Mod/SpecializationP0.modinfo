@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="279">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="280">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B252.279: district-style institution badges, Commerce descriptions and three-column Development Investment.</Description>
+    <Description>B253.280: full-color institution backdrops and native-style equal-column Development Investment.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

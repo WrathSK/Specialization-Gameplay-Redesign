@@ -42,7 +42,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_SELECT_DISTRICT','请选择投资区域'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_CITY_OPTIONS','{1} 个区域可投资'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_DISTRICT_READY','可签约 · {1} [ICON_Gold]'),
-('zh_Hans_CN','LOC_SPC_DEVELOPMENT_QUOTE_TITLE','报价依据'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_QUOTE_TITLE','报价与投入'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_EFFECT_TITLE','合同效果与完成条件'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_RULES_TITLE','签约与延续'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_CONTRACT_TITLE','最近一份合同'),
@@ -51,3 +51,9 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_NO_OPTIONS','当前没有可展示的目标城市，请查看签约条件或刷新报价。'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_NO_DISTRICTS','当前没有可投资的区域。'),
 ('zh_Hans_CN','LOC_SPC_DEVELOPMENT_STATUS_TITLE','当前状态');
+
+-- B253 display-only source summary. Monetary authority is unchanged.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_TREASURY','国库：{1} [ICON_Gold]'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_CAPACITY','已占用名额：{1} / {2}'),
+('zh_Hans_CN','LOC_SPC_DEVELOPMENT_NO_QUOTE','当前没有可用报价，请查看合同状态或刷新报价。');

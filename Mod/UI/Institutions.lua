@@ -54,7 +54,7 @@ local function render(data,v)
   row.Name:SetColorByName(current and 'Gold' or 'White')
   row.State:SetColorByName(current and 'Gold' or 'White')
   row.Name:SetAlpha(not entry.established and .65 or current and 1 or .9)
-  row.Icon:SetAlpha(not entry.established and .6 or current and 1 or .85)
+  row.Icon:SetAlpha(1) -- Keep the original district palette; text/status carry stage emphasis.
   row.State:SetAlpha(state=='ENABLED' and .65 or state=='PREVIEW' and .7 or 1)
   row.Top:SetToolTipString(M.Tooltip(index,v))
  end

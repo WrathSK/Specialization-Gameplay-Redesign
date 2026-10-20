@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "63ad101d9ff46115263427f5065af514e4a47b17915aa4dba6773b9cea2ccdd6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "8a33ac974fe2163d323d064bccedb71c76bc29e726b91469e292c90f40beccbe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cdb008bf51f1915a94e9787f2619a5dd68b183ddf1f61fd841f3765367ac79a4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "84a96d9f9541619279259211bf042740953aec024e34689dcd1137646de0d382",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -731,9 +731,9 @@
       "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "09fcca968f5efea95b751b177877886ae9b41bc2ce096f421abe22f1d86385af",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "b02e749d9ae1238639e1de8254a8dcabe2e83e985f8e94317dbd4863a32d6405",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
     },
     "Mod/UI/Institutions.xml": {
       "sha256": "37fe3a26c921de456cb282264de5d5eeaa125917ba8a634a56ac3477825fca20",
@@ -1281,19 +1281,19 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
-      "sha256": "588151b72dd0d557e5af9a19705b46aa856f746246414d578134ffc0a03bd04a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "c0722c0af16d807c4c137cc4c037116f62e8ca426cd138696588e9a6499100ce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
-      "sha256": "3a4ca17f2c04e085abbfef453c9dae022cc71b65badc1066c8ed1cc65905dd85",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "25d0e6a3cff0c9bbc8a2739426b9bb9fe1d7cdbb3741931339befe9a8f16e510",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
-      "sha256": "ab22dddac51a8fafe2fffb3f00ec3283aa055635b5651a2194fc21308e7330f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "a332c0c0876d5abc8cebaedc7d7584142b610bcf3cb30d5ff577f6266c6ef95c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
     },
     "Mod/UI/DevelopmentInvestmentRead.lua": {
       "sha256": "47f1b5543ee82591fee607ac29e021067ebf22c42324861716648e0bc36551d5",
