@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0686",
+    "status": "S0687",
     "runtime": "B258.285 / modinfo285",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-  "runtime_commit": "adeae34b4ddf8f2fe768a90be0e6c8ef700a2081",
-  "current_batch": "B258_BADGE_INVESTMENT_UI_LOCAL_COMPLETE",
-  "next_batch": "Guarded deployment then combined map badge/Development Investment visual check; held work unchanged.",
+  "runtime_commit": "7752de4a58314125cb7e3cfe246a82b9ad032b35",
+  "current_batch": "B258_BADGE_INVESTMENT_UI_DEPLOYED",
+  "next_batch": "Combined map badge and Development Investment visual check; held work unchanged.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B257.284/modinfo284 DEVELOP_ACTIVE; source adeae34b4ddf8f2fe768a90be0e6c8ef700a2081; receipt B257.284-adeae34-playtest.json;277/277 MATCH; digest 3293e333700b85b275cb59f8b32f5d8bcfe5a0b912e6e12444b55a2a1dabc937. Fresh game-exit checks, exact B256 restoration and B257 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
+  "live": "B258.285/modinfo285 DEVELOP_ACTIVE; source 7752de4a58314125cb7e3cfe246a82b9ad032b35; receipt B258.285-7752de4-playtest.json;278/278 MATCH; digest cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0686/B258: canonical presentation and contract stages reviewed;40 scoped methods PASS. B257 update/alignment accepted, main badge failed; exact58px Image and pending sidebar refinement authorized. No gameplay or timers.",
+  "context_review_status": "S0686/B258: canonical presentation and contract stages reviewed;40 scoped methods PASS. B257 update/alignment accepted, main badge failed; exact58px Image and pending sidebar refinement authorized. No gameplay or timers. S0687: clean/pushed source deployed;278/278 MATCH and recovery verified. Native visual check pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

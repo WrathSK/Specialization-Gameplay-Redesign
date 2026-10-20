@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0686",
+    "status": "S0687",
     "runtime": "B258.285 / modinfo285",
     "military": "D0037",
     "harbor": "D0037",
@@ -108,8 +108,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-    "source": "B258.285 locally verified; live B257 pending guarded deployment.",
+    "source": "B258.285/modinfo285 DEVELOP_ACTIVE; source 7752de4a58314125cb7e3cfe246a82b9ad032b35; receipt B258.285-7752de4-playtest.json;278/278 MATCH; digest cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
     "native": "B257 investment refresh/segment alignment accepted; main badge failed. B258 visual pending.",
-    "stop": "Guarded deployment then combined map badge/Development Investment visual check; held work unchanged."
+    "stop": "Combined map badge and Development Investment visual check; held work unchanged."
   }
 }

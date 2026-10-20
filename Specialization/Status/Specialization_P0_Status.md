@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0686
+Status Revision: S0687
 Implementation Build: B258.285 / modinfo285; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B258.285 locally restores the map badge and refines Development Investment presentation.** [Scope and checks](Validation/Results/Specialization_B258_Badge_Investment_UI.md).
+**B258.285 is deployed: it restores the map badge and refines Development Investment presentation.** [Scope and checks](Validation/Results/Specialization_B258_Badge_Investment_UI.md).
 
 - B257 no-governor investment refresh and segment-bottom alignment accepted by user; missing main badge failed. Exact58px Image replaces Grid while preserving accepted geometry and updates.
 - Development Investment: lowered equal-width side columns, left titles, measured cards/single detail overflow, clearer quote layout, raised footer; ACTIVE cities marked and sorted first. Transactions/rules unchanged.
--40 scoped local checks PASS; native visual acceptance pending. Source B258.285; live B257 pending guarded deployment. Main/stable B069.96 unchanged.
+-40 scoped local checks PASS; native visual acceptance pending. Source/live B258.285 from `7752de4`;278/278 MATCH; receipt `B258.285-7752de4-playtest.json`. Main/stable B069.96 unchanged.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment and one combined visual check; no further batch starts automatically.
+- Next: one combined visual check; commit/push and guarded deployment complete. No further batch starts automatically.
+
+## S0687 — B258 verified deployment
+
+B258.285/modinfo285 DEVELOP_ACTIVE; source `7752de4a58314125cb7e3cfe246a82b9ad032b35`; receipt `B258.285-7752de4-playtest.json`;278/278 MATCH; digest `cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab`. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. Only current deployment records/hashes updated; no native PASS added.
 
 ## S0686 — B258 presentation repair
 

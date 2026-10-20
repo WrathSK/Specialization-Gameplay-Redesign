@@ -28,4 +28,6 @@ Historical B252/B253 equal-third/per-card-scroll assertions are superseded by th
 
 ## Publication and deployment
 
-B258.285/modinfo285 locally verified; live remains B257 pending normal guarded deployment. Main/stable B069.96, institution softness, held gameplay and audits remain unchanged.
+B258.285/modinfo285 DEVELOP_ACTIVE; source `7752de4a58314125cb7e3cfe246a82b9ad032b35`; receipt `B258.285-7752de4-playtest.json`;278/278 MATCH; digest `cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab`. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.
+
+40 scoped local methods and278-runtime/896-context integrity checks PASS.18 staged text/source files passed publication checks; the separately reviewed DDS used only its explicit one-time exception. Main/stable B069.96, institution softness, held gameplay and audits remain unchanged. Native visuals pending.
