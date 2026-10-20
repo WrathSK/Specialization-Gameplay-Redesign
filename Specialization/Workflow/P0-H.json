@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0685",
-    "runtime": "B257.284 / modinfo284",
+    "status": "S0686",
+    "runtime": "B258.285 / modinfo285",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-  "goal": "B257 city-scoped committed investment banner refresh and reversible larger map emblem; institution softness deferred.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+  "goal": "B258 exact-size map badge restoration and pending Development Investment presentation refinements.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,31 +28,25 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
       "kind": "section",
       "selector": "## Approved scope and evidence",
-      "reason": "User feedback and direct implementation authorization."
+      "reason": "Current authorization and native feedback."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
       "kind": "section",
-      "selector": "## Cause and repair",
-      "reason": "Actual Store and commit dispatcher boundary."
+      "selector": "## Implementation",
+      "reason": "UI-only delta and fixed-blob approval."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "kind": "section",
-      "selector": "## Reversible map layout trial",
-      "reason": "Native source references and exact rollback."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
       "kind": "section",
       "selector": "## Local validation",
-      "reason": "41 scoped checks; historical exceptions."
+      "reason": "Scoped local evidence."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
       "kind": "section",
       "selector": "## Publication and deployment",
       "reason": "Existing gates."
@@ -83,7 +77,12 @@
         "Mod/Gameplay.lua",
         "Mod/InvestmentAction.lua",
         "Mod/CityProgressionStore.lua",
-        "DevelopmentTests/test_b257_banner_updates.py"
+        "DevelopmentTests/test_b257_banner_updates.py",
+        "Mod/UI/DevelopmentInvestmentPanel.lua",
+        "Mod/UI/DevelopmentInvestmentPanel.xml",
+        "Mod/Text/DevelopmentInvestment.sql",
+        "Mod/DevelopmentInvestmentModel.lua",
+        "DevelopmentTests/test_b258_ui.py"
       ]
     },
     {
@@ -94,23 +93,23 @@
     }
   ],
   "non_scope": [
-    "Gameplay, Design, Architecture, saved state, new events/timers, atlas modifications, main, configuration or game launch.",
-    "Development Investment sidebar and held gameplay/audit work remain pending."
+    "Gameplay, Design, Architecture, saved state, new timers, main/configuration/game launch.",
+    "Institution32px assets and held gameplay/audit work."
   ],
   "validation": {
-    "depth": "L2 actual investment request/transaction and UI models; L1 native geometry/package.",
-    "local": "41 selected methods PASS; two unrelated historical failures documented.",
-    "user": "No-governor P1→P2 outline update and defense-top/flag-bottom layout.",
-    "gap": "Native Grid raster/edge alignment not simulated; institution softness deferred."
+    "depth": "L2 UI/model/protocol and L1 package/art checks.",
+    "local": "40 scoped methods PASS.",
+    "user": "Main badge and combined Development Investment visual check.",
+    "gap": "Native raster/spacing remains pending; softness deferred."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-    "source": "B257.284/modinfo284 DEVELOP_ACTIVE; source adeae34b4ddf8f2fe768a90be0e6c8ef700a2081; receipt B257.284-adeae34-playtest.json;277/277 MATCH; digest 3293e333700b85b275cb59f8b32f5d8bcfe5a0b912e6e12444b55a2a1dabc937. Fresh game-exit checks, exact B256 restoration and B257 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
-    "native": "B256 size accepted; Potential-only update/alignment failed; B257 confirmation pending.",
-    "stop": "One no-governor Potential-only segment and reversible layout native check. Institution softness deferred; held work unchanged."
+    "report": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+    "source": "B258.285 locally verified; live B257 pending guarded deployment.",
+    "native": "B257 investment refresh/segment alignment accepted; main badge failed. B258 visual pending.",
+    "stop": "Guarded deployment then combined map badge/Development Investment visual check; held work unchanged."
   }
 }

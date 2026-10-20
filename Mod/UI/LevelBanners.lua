@@ -12,10 +12,8 @@ local function render(e)
  local v=d and d.views[e.pid..':'..e.id]
  local m=Game.GetLocalPlayer()==e.pid and M.View(v,e.pid,e.id,e.x,e.y) or nil
  local c=e.controls;c.Root:SetHide(not m);if not m then return end
- -- Grid source rectangle is64px; zero corners scale the complete cell to58px.
- local tx,ty,sheet=IconManager:FindIconAtlas(m.icon,64)
- if not sheet then c.Root:SetHide(true);return end
- c.Badge:SetTexture(tx,ty,sheet)
+ -- Exact cell and control size: use the proven Image icon path without stretching.
+ c.Badge:SetIcon(m.icon,58);c.Badge:SetSizeVal(58,58)
  local bright=M.Colors[m.kind];local dark={19,35,55,255};local dim={70,83,103,255}
  for i,state in ipairs(m.segments)do
   color(c['Rim'..i],state=='DIM' and dim or bright)

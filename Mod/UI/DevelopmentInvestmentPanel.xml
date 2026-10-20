@@ -14,43 +14,43 @@
     <Label ID="Capacity" Offset="26,74" Style="FontNormal14" Color="Dark_Gray" TruncateWidth="250"/>
    </Grid>
    <Button ID="Close" Anchor="R,T" Offset="4,2" Style="CloseButtonSmall"/>
-   <ScrollPanel ID="CityScroll" Offset="16,154" Size="parent-22,parent-158" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="CityStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"><Label ID="EmptyCities" Style="FontNormal14" WrapWidth="250"/><Stack ID="Cities" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"/></Stack></ScrollPanel>
+   <ScrollPanel ID="CityScroll" Offset="16,154" Size="parent-22,parent-158" Vertical="1" AutoScrollBar="1" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="CityStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"><Label ID="EmptyCities" Style="FontNormal14" WrapWidth="250"/><Stack ID="Cities" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"/></Stack></ScrollPanel>
   </Grid>
   <Grid ID="DistrictColumn" Offset="296,0" Size="295,parent" Texture="Controls_ContainerBlue" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1">
-   <Grid Size="parent,50" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34"><Label ID="DistrictTitle" Anchor="C,C" Style="FontFlair20"/></Grid>
+   <Grid Size="parent,50" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34"><Label ID="DistrictTitle" Anchor="L,C" Offset="16,0" Style="FontFlair20"/></Grid>
    <Label ID="DistrictCity" Offset="18,58" Style="FontFlair16" TruncateWidth="240"/>
-   <ScrollPanel ID="DistrictScroll" Offset="16,92" Size="parent-22,parent-96" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="DistrictStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"><Label ID="EmptyDistricts" Style="FontNormal14" WrapWidth="240"/><Stack ID="Districts" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"/></Stack></ScrollPanel>
+   <ScrollPanel ID="DistrictScroll" Offset="16,92" Size="parent-22,parent-96" Vertical="1" AutoScrollBar="1" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="DistrictStack" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"><Label ID="EmptyDistricts" Style="FontNormal14" WrapWidth="240"/><Stack ID="Districts" Size="parent,auto" StackGrowth="Bottom" StackPadding="3"/></Stack></ScrollPanel>
    <GridButton ID="DistrictBack" Anchor="C,B" Offset="0,8" Size="parent-20,30"><GridData Style="ButtonLightWeightGrid"/><Label ID="DistrictBackCaption" Anchor="C,C" Style="FontFlair14"/></GridButton>
   </Grid>
   <Grid ID="DetailColumn" Offset="592,0" Size="295,parent" Texture="Controls_ContainerBlue" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1">
-   <Grid Size="parent,50" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34"><Label ID="DetailTitle" Anchor="C,C" Style="FontFlair20"/></Grid>
-   <Container ID="Details" Offset="6,58" Size="parent-12,parent-170">
+   <Grid Size="parent,50" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34"><Label ID="DetailTitle" Anchor="L,C" Offset="16,0" Style="FontFlair20"/></Grid>
+   <ScrollPanel ID="DetailScroll" Offset="8,54" Size="parent-20,parent-170" Vertical="1" AutoScrollBar="1" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="R,C" AnchorSide="O,I" Offset="2,0" Size="8,parent" Style="ScrollVerticalBar"/><Container ID="Details" Size="parent,600">
 <Grid ID="QuoteCard" Offset="0,0" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
  <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50"/>
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150"/>
  <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255"/>
- <Label ID="QuoteTitle" Anchor="C,C" Offset="0,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
+ <Label ID="QuoteTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
 </Grid>
- <ScrollPanel ID="QuoteScroll" Offset="16,42" Size="parent-22,parent-48" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="QuoteContent" Size="parent,auto" StackGrowth="Bottom" StackPadding="8"><Image ID="QuoteIcon" Size="32,32" IconSize="32"/><Label ID="Quote" Style="FontNormal14" WrapWidth="245"/></Stack></ScrollPanel>
+ <Container ID="QuoteBody" Offset="12,46" Size="parent-24,auto"><Stack ID="QuoteContent" Size="parent,auto" StackGrowth="Bottom" StackPadding="10"><Container ID="QuoteBuildingRow" Size="parent,36"><Image ID="QuoteIcon" Anchor="L,C" Size="32,32" IconSize="32"/><Label ID="QuoteBuilding" Anchor="L,C" Offset="42,0" Style="FontNormal16" TruncateWidth="190"/></Container><Label ID="Quote" Style="FontNormal14" WrapWidth="245"/></Stack></Container>
 </Grid><Grid ID="TermsCard" Offset="0,180" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
  <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50"/>
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150"/>
  <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255"/>
- <Label ID="TermsTitle" Anchor="C,C" Offset="0,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
+ <Label ID="TermsTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
 </Grid>
- <ScrollPanel ID="TermsScroll" Offset="16,42" Size="parent-22,parent-48" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="TermsContent" Size="parent,auto" StackGrowth="Bottom" StackPadding="8"><Label ID="Terms" Style="FontNormal14" WrapWidth="245"/></Stack></ScrollPanel>
+ <Container ID="TermsBody" Offset="12,46" Size="parent-24,auto"><Stack ID="TermsContent" Size="parent,auto" StackGrowth="Bottom" StackPadding="8"><Label ID="Terms" Style="FontNormal14" WrapWidth="245"/></Stack></Container>
 </Grid><Grid ID="HelpCard" Offset="0,360" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
  <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50"/>
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150"/>
  <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255"/>
- <Label ID="HelpTitle" Anchor="C,C" Offset="0,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
+ <Label ID="HelpTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
 </Grid>
- <ScrollPanel ID="HelpScroll" Offset="16,42" Size="parent-22,parent-48" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1"><ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar"/><Stack ID="HelpContent" Size="parent,auto" StackGrowth="Bottom" StackPadding="8"><Label ID="Help" Style="FontNormal14" WrapWidth="245"/><Stack ID="ContractCard" Size="parent,auto" StackGrowth="Bottom" StackPadding="5"><Label ID="ContractTitle" Style="FontFlair14" WrapWidth="245"/><Label ID="Contract" Style="FontNormal14" WrapWidth="245"/></Stack></Stack></ScrollPanel>
+ <Container ID="HelpBody" Offset="12,46" Size="parent-24,auto"><Stack ID="HelpContent" Size="parent,auto" StackGrowth="Bottom" StackPadding="8"><Label ID="Help" Style="FontNormal14" WrapWidth="245"/><Stack ID="ContractCard" Size="parent,auto" StackGrowth="Bottom" StackPadding="5"><Label ID="ContractTitle" Style="FontFlair14" WrapWidth="245"/><Label ID="Contract" Style="FontNormal14" WrapWidth="245"/></Stack></Stack></Container>
 </Grid>
-   </Container>
+   </Container></ScrollPanel>
    <Grid ID="Footer" Anchor="C,B" Size="parent,112" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" ConsumeMouse="1">
     <Label ID="Error" Offset="12,8" Style="FontNormal12" WrapWidth="324" Color="255,213,128,255"/>
     <GridButton ID="Confirm" Anchor="C,T" Offset="0,36" Size="parent-10,41">
@@ -73,7 +73,7 @@
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50"/>
  <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150"/>
  <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255"/>
- <Image ID="Icon" Anchor="L,C" Offset="10,-3" Size="22,22" IconSize="22" Icon="ICON_DISTRICT_CITY_CENTER"/><Label ID="Caption" Anchor="L,C" Offset="34,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/>
+ <Image ID="Icon" Anchor="L,C" Offset="10,-3" Size="22,22" IconSize="22" Icon="ICON_DISTRICT_CITY_CENTER"/><Label ID="Caption" Anchor="L,C" Offset="34,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210"/><Label ID="Investing" Anchor="R,C" Offset="12,-3" Style="FontNormal12" Color="0,43,84,255" Hidden="1"/>
 </Grid>
   <Button ID="PreviousIcons" Anchor="L,B" Offset="3,10" Style="ArrowButtonLeft" Hidden="1"/>
   <Grid ID="DistrictInfo" Anchor="C,B" Offset="-1,6" Size="225,30" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">

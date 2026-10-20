@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="284">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="285">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B257.284: committed Potential banner refresh and reversible expanded map emblem layout.</Description>
+    <Description>B258.285: exact-size map badge restoration and Development Investment sidebar refinement.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -157,6 +157,7 @@
       <File>Text/LevelBanners.sql</File>
       <File>Textures/SPC_Level_Icons_32.dds</File>
       <File>Textures/SPC_Level_Icons_64.dds</File>
+      <File>Textures/SPC_Level_Icons_58.dds</File>
       <File>UI/Institutions.lua</File>
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
@@ -559,6 +560,7 @@
       <File>Text/LevelBanners.sql</File>
       <File>Textures/SPC_Level_Icons_32.dds</File>
       <File>Textures/SPC_Level_Icons_64.dds</File>
+      <File>Textures/SPC_Level_Icons_58.dds</File>
       <File>UI/Institutions.lua</File>
     <File>UI/Institutions.xml</File>
     <File>PerformanceCounters.lua</File>

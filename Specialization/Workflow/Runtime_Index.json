@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "565283df9cf5bf35b59ae650b11c1421ae93a77e35b3c7a548259e429e9bc7e6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "sha256": "4762ef07a1d23c99abb182f942349b67755ea0eddf72d2e7bd97b5103ccdff27",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "ceccead93d2ed4d3ed4d9c3094c439b3c86bc87b9338feee92728f99f4a7dd0a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+      "sha256": "9c9e3341dcea83576a16ed9d8e5b85c0100202bea938fd45f065b6ddeb4292cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "502105a82f4b5065baca5593f7181cfb8ad7b4a7aa50d6861351574cfd0af014",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+      "sha256": "d2e7e6b194fd2c15e4eee881010ca27ca9f6562286be6d93511b3d76997e59e2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1281,19 +1281,19 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
-      "sha256": "c0722c0af16d807c4c137cc4c037116f62e8ca426cd138696588e9a6499100ce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
+      "sha256": "6afe30671cf9fe1072ffe9e4653f0f932049041a034238c2cdc0c9c23df3b0c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
-      "sha256": "25d0e6a3cff0c9bbc8a2739426b9bb9fe1d7cdbb3741931339befe9a8f16e510",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
+      "sha256": "dd0c438876ce2b5b16fd5de2c20f990e3f07dc361fd14fc7f1f4fc89b79b5b45",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
-      "sha256": "a332c0c0876d5abc8cebaedc7d7584142b610bcf3cb30d5ff577f6266c6ef95c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
+      "sha256": "edef01ee63cf72d5acc3a8986651225cf5355054dc49ec56a96a21abc1b3d504",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentRead.lua": {
       "sha256": "47f1b5543ee82591fee607ac29e021067ebf22c42324861716648e0bc36551d5",
@@ -1366,14 +1366,14 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/UI/LevelBanners.lua": {
-      "sha256": "904d0d6d32ed16a97b73bd0b6c7daa85121f03e980f6033b60c470e6dcd0b6b1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+      "sha256": "9979ff4158b7ce36800a7f45a74d17ac0944ae0d434371426bfc1562cc6a91e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/UI/LevelBanners.xml": {
-      "sha256": "a4d27bc9b87cce0180461b974c158a582564bc82ed453fa93618a649815989cc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+      "sha256": "29b6ab2f80df56fc811906a475e155016746c894dfa309872caccaab41f535ef",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",
@@ -1389,6 +1389,11 @@
       "sha256": "308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Textures/SPC_Level_Icons_58.dds": {
+      "sha256": "9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
     }
   }
 }

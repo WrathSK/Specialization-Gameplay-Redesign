@@ -130,3 +130,6 @@ INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE
 INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_2','ICON_ATLAS_SPC_LEVELS',13);
 INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_3','ICON_ATLAS_SPC_LEVELS',14);
 INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_4','ICON_ATLAS_SPC_LEVELS',15);
+
+-- B258 exact-size city-banner Image cell.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',58,4,4,'SPC_Level_Icons_58.dds');

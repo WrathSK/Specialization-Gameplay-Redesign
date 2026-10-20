@@ -52,3 +52,7 @@ Render16 SVGs at256px per cell with the isolated browser SVG renderer, downsampl
 | `SPC_Level_Icons_64.dds` |262272|`308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e`|
 
 The user explicitly approved a one-time publication exception for exactly these two blobs. They are committed separately; no permanent binary allowance or hook-policy change. Source/SVGs and all other changes use the normal publication gate.
+
+## B258 exact map size
+
+The existing approved B254 SVGs produce an additional58px-cell atlas for the58-unit map Image control. Institution32px and existing64px files remain unchanged. Lossless BGRA8,232x232, no mipmaps; decoded raw pixels match exactly. `SPC_Level_Icons_58.dds`:215424 bytes; SHA256 `9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54`. The user explicitly approves a one-time publication exception for this exact blob only. See [B258](../../Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md).

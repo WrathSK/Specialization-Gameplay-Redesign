@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0685
-Implementation Build: B257.284 / modinfo284; stable B069.96
+Status Revision: S0686
+Implementation Build: B258.285 / modinfo285; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,15 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B257.284 is deployed: Potential-only banner publication repair and reversible larger map layout await native review.** [Scope, evidence and rollback](Validation/Results/Specialization_B257_Banner_Update_Layout.md).
+**B258.285 locally restores the map badge and refines Development Investment presentation.** [Scope and checks](Validation/Results/Specialization_B258_Badge_Investment_UI.md).
 
-- B256 size is user-accepted; slight institution-icon softness is deferred. Potential-only outline updates and bottom alignment failed native review. B254/B256 filled-ACTIVE, zoom and click observations retain their limited scope.
-- LevelBanners now participates in the existing COMMITTED-only target-city refresh. No timer, Store notification expansion or gameplay rule change.
-- Map-only58-unit Grid badge/62-unit group with6-unit bottom inset trials the defense-top/flag-bottom span. B256 checkpoint6548c45 is the documented visual rollback; keep the new update repair if reverting layout.
-- Source/live B257.284/modinfo284 from `adeae34`; receipt `B257.284-adeae34-playtest.json`;277/277 MATCH.41 scoped local checks PASS; two historical unrelated failures documented, not rewritten. Native visuals/update pending; main/stable B069.96 unchanged.
-- Development Investment sidebar refinement feedback remains pending and is not included in this batch.
-- B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: one no-governor P1→P2 update and map-layout check. No further batch starts automatically.
+- B257 no-governor investment refresh and segment-bottom alignment accepted by user; missing main badge failed. Exact58px Image replaces Grid while preserving accepted geometry and updates.
+- Development Investment: lowered equal-width side columns, left titles, measured cards/single detail overflow, clearer quote layout, raised footer; ACTIVE cities marked and sorted first. Transactions/rules unchanged.
+-40 scoped local checks PASS; native visual acceptance pending. Source B258.285; live B257 pending guarded deployment. Main/stable B069.96 unchanged.
+- Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
+- Next: guarded deployment and one combined visual check; no further batch starts automatically.
+
+## S0686 — B258 presentation repair
+
+Explicit user approval covers the exact-size badge and pending Investment sidebar.40 scoped checks PASS; exact DDS publication exception approved. Gameplay, saved state, main and configuration remain unchanged. B257 feedback is recorded without rewriting frozen evidence.
 
 ## S0685 — B257 verified deployment
 

@@ -15,6 +15,7 @@ local function decorate(c)
  function c:SetOffsetX(x)self.x=x end;function c:SetOffsetY(y)self.y=y end
  function c:SetTruncateWidth(w)self.truncate=w end;function c:SetWrapWidth(w)self.wrap=w end
  function c:SetColorByName(v)self.color=v end
+ function c:IsHidden()return self.hidden==true end
  function c:GetSizeY()return self.height or math.max(18,math.ceil(#self.text/math.max(1,(self.wrap or 240)/9))*18)end
  function c:CalculateSize()end;function c:ReprocessAnchoring()end;function c:CalculateInternalSize()end
  return c
@@ -28,7 +29,7 @@ Players[0].GetCities=function()return {FindID=function(_,id)return nativeCities[
 managers={};InstanceManager={new=function(_,name)
  local m={items={},resets=0};managers[name]=m
  function m:ResetInstances()self.items={};self.resets=self.resets+1 end
- function m:GetInstance()local i=#self.items+1;local o={};for _,key in ipairs({'Root','Caption','State','Icon','DistrictInfo','PreviousIcons','NextIcons','DistrictIcon1','DistrictIcon2','DistrictIcon3','DistrictIcon4','DistrictIcon5','DistrictIcon6','DistrictIcon7'})do o[key]=Controls[name..key..i]end;self.items[i]=o;return o end
+ function m:GetInstance()local i=#self.items+1;local o={};for _,key in ipairs({'Root','Caption','Investing','State','Icon','DistrictInfo','PreviousIcons','NextIcons','DistrictIcon1','DistrictIcon2','DistrictIcon3','DistrictIcon4','DistrictIcon5','DistrictIcon6','DistrictIcon7'})do o[key]=Controls[name..key..i]end;self.items[i]=o;return o end
  return m
 end}
 local r={owner=0,cityID=9,x=10,y=11,token='city',changes=0}
