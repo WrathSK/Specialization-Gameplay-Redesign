@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0690
+Status Revision: S0691
 Implementation Build: B260.287 / modinfo287; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,12 +11,16 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B260.287 locally completes three authorized UI refinements.** [Measurement and evidence](Validation/Results/Specialization_B260_UI_Alignment.md).
+**B260.287 is deployed and completes three authorized UI refinements.** [Measurement and evidence](Validation/Results/Specialization_B260_UI_Alignment.md).
 
 - User accepts other B259 UI; Refresh label, district backing and badge arrangement refined. Badge32px aligns with name strip; four segments above. Existing atlas reused.
--22 scoped checks PASS. Live remains B259 pending guarded deployment; native visual alignment pending.
+-22 scoped checks PASS; source/live B260.287 from `f9442e7`;279/279 MATCH. Native visual alignment pending.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment and minimal visual review; no further batch automatically.
+- Commit/push and guarded deployment complete. Next: minimal visual review; no further batch automatically.
+
+## S0691 — B260 verified deployment
+
+B260.287/modinfo287 DEVELOP_ACTIVE; source `f9442e784ddb00e7177df909ed900c810bab84ef`; receipt `B260.287-f9442e7-playtest.json`;279/279 MATCH; digest `ea615e1b262c1ac8921e805525faa64c33ce6c2bb1aa4738c01ab3576e819cff`. Fresh game-exit checks, exact B259 restoration and B260 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. Native review remains pending.
 
 ## S0690 — B260 presentation refinement
 

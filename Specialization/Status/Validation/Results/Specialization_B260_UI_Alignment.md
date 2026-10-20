@@ -25,4 +25,6 @@ LOCAL_SIMULATION_PASS:22 targeted methods covering actual Lua state projection/l
 
 ## Deployment
 
-B260.287/modinfo287 locally validated; live B259 pending guarded deployment. No new binary publication exception required.
+B260.287/modinfo287 DEVELOP_ACTIVE; source `f9442e784ddb00e7177df909ed900c810bab84ef`; receipt `B260.287-f9442e7-playtest.json`;279/279 MATCH; digest `ea615e1b262c1ac8921e805525faa64c33ce6c2bb1aa4738c01ab3576e819cff`. Fresh game-exit checks, exact B259 restoration and B260 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.
+
+22 scoped checks and279-runtime/901-context integrity checks PASS;14 staged files passed publication scan. No new binary publication exception required. Native visual review pending.

@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0690",
+    "status": "S0691",
     "runtime": "B260.287 / modinfo287",
     "military": "D0037",
     "harbor": "D0037",
@@ -110,8 +110,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-    "source": "B260 local complete; live B259 pending gated deployment.",
+    "source": "B260.287/modinfo287 DEVELOP_ACTIVE; source f9442e784ddb00e7177df909ed900c810bab84ef; receipt B260.287-f9442e7-playtest.json;279/279 MATCH; digest ea615e1b262c1ac8921e805525faa64c33ce6c2bb1aa4738c01ab3576e819cff. Fresh game-exit checks, exact B259 restoration and B260 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
     "native": "Other B259 UI accepted; three requested refinements pending.",
-    "stop": "Guarded deployment then minimal badge and Investment visual review."
+    "stop": "User visual check: badge name-strip alignment, upper segments, district backing and Refresh label; stop."
   }
 }
