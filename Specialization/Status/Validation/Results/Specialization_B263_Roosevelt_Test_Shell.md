@@ -45,4 +45,6 @@ USER_GAME_TEST_REQUIRED: selection presence/absence, original loading presentati
 
 ## Deployment
 
-B263.290/modinfo290 locally complete. Live remains B262.289 until the clean-source/game-exit/receipt deployment gates pass. Stop for user feedback after deployment. No PR.
+B263.290/modinfo290 DEVELOP_ACTIVE; source `c9a0ddabf00d825d9dd16035f93d4ca441e08e7b`; receipt `B263.290-c9a0dda-playtest.json`; 288/288 MATCH; digest `ad9c356641e23d09f43b5cf783daa8de95955dc71ad4a07bf9ee74aaaad36a8f`. Fresh automatic game-exit checks, exact B262 restoration and B263 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. No PR.
+
+Fourteen targeted unittest methods, eligibility ingress and external native-schema/art-reference checks passed. Context integrity covers 288 runtime / 917 guarded files; the 22-file staged publication gate passed. Native shell review remains pending. Stop for the user's test.

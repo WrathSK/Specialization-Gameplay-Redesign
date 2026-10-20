@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0696",
+    "status": "S0697",
     "runtime": "B263.290 / modinfo290",
     "military": "D0037",
     "harbor": "D0037",
@@ -111,8 +111,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-    "source": "B263 local complete; live B262 pending guarded deployment.",
+    "source": "B263.290/modinfo290 DEVELOP_ACTIVE; source c9a0ddabf00d825d9dd16035f93d4ca441e08e7b; receipt B263.290-c9a0dda-playtest.json; 288/288 MATCH; digest ad9c356641e23d09f43b5cf783daa8de95955dc71ad4a07bf9ee74aaaad36a8f. Fresh automatic game-exit checks, exact B262 restoration and B263 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. No PR.",
     "native": "B262 user UI acceptance recorded; B263 new-shell native check pending.",
-    "stop": "Guarded deployment, then user new-game Roosevelt shell presentation and specialization-access check; no PR or next batch."
+    "stop": "Wait for user new-game Roosevelt shell presentation and specialization-access check. No PR, promotion or new batch."
   }
 }

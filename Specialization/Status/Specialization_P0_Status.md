@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0696
+Status Revision: S0697
 Implementation Build: B263.290 / modinfo290; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,12 +11,16 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B263.290 Roosevelt (Bull Moose) neutral test shell locally complete.** [Implementation and validation](Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md).
+**B263.290 Roosevelt (Bull Moose) neutral test shell deployed.** [Implementation and validation](Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md).
 
 - B262 UI accepted by the user. New independent America/Roosevelt selection uses Chinese presentation and specialization access, with no native civilization/leader powers. Legacy Scotland new-game selection is disabled; original IDs/data remain for existing saves.
-- Fourteen targeted unittest methods, existing eligibility ingress check and read-only native-schema/art-reference verification PASS. Native presentation/access remain pending; live remains B262 until guarded deployment.
+- Fourteen targeted unittest methods, existing eligibility ingress check and read-only native-schema/art-reference verification PASS. Native presentation/access remain pending; source/live B263.290 from `c9a0dda`, 288/288 MATCH.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded B263 deployment, then user new-game shell check. No PR, main promotion or next development batch.
+- Next: wait for the user's new-game shell check. No PR, main promotion or next development batch.
+
+## S0697 — B263 verified deployment
+
+B263.290/modinfo290 DEVELOP_ACTIVE; source `c9a0ddabf00d825d9dd16035f93d4ca441e08e7b`; receipt `B263.290-c9a0dda-playtest.json`; 288/288 MATCH; digest `ad9c356641e23d09f43b5cf783daa8de95955dc71ad4a07bf9ee74aaaad36a8f`. Fresh automatic game-exit checks, exact B262 restoration and B263 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. No PR. Native review remains pending.
 
 ## S0696 — B263 Roosevelt test shell
 
