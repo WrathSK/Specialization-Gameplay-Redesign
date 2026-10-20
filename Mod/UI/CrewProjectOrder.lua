@@ -113,6 +113,10 @@ function RemoveQueueItem(index)
  return baseRemoveQueueItem(index)
 end
 Events.GameCoreEventPublishComplete.Add(trainingSelection.Pulse)
+Events.GameCoreEventPlaybackComplete.Add(trainingSelection.RefreshFacts)
+for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do
+ local e=Events[name];if e then e.Add(trainingSelection.Invalidate)end
+end
 
 -- Observe native replacement intent without changing its parameters. This also
 -- covers ordinary building/project selection replacing the reserved queue slot.

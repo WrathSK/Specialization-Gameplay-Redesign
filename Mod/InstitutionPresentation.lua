@@ -99,11 +99,12 @@ local function metric(entry,v)
  end
  return results
 end
+local metricColors={RESEARCH='ResScienceLabelCS',CULTURE='ResCultureLabelCS',COMMERCE='ResGoldLabelCS',INDUSTRY='ResProductionLabelCS'}
 local function help(entry,v)
  local text=M.Label(entry,'text')
  for _,m in ipairs(metric(entry,v))do
   local needle=m.title..'：[NEWLINE]';local first=text:find(needle,1,true)
-  local extra='[NEWLINE][COLOR:ResGoldLabelCS]'..m.text..'[ENDCOLOR]'
+  local extra='[NEWLINE][COLOR:'..metricColors[entry.kind]..']'..m.text..'[ENDCOLOR]'
   if first then
    local finish=text:find('[NEWLINE][NEWLINE]',first+#needle,true) or #text+1
    text=text:sub(1,finish-1)..extra..text:sub(finish)

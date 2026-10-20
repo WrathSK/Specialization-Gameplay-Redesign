@@ -1,62 +1,116 @@
--- B068: UI-only mirror. The validated Gameplay read is the only state source.
+-- B265: selected-city reads and native ACTIVE shortcut. The legacy context name
+-- is retained for package continuity; no WorldTracker badge or update timer.
 include('Probe')
-local P=SPCP0
-local parent,parentWidth,key,token,age,lastError
-local timer=0;local observedTurn,observedWrites;local dirty=true;local shown
-local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业'}
-local hidden
-local function hide(v) if hidden~=v then hidden=v;Controls.Badge:SetHide(v) end end
-local titles={'专业城市','专业名城','专业都会','专业中心'}
-local function reportError(err)
- if err~=lastError then
-  if err then print('[SPC][POTENTIAL_UI] '..tostring(err)) end
-  lastError=err
+include('InstitutionPresentation')
+include('LevelBannerModel')
+include('ExpeditionTrainingDiagnostics')
+local P=SPCP0;local M=SPCInstitutionPresentation;local B=SPCLevelBannerModel
+local parent,key,pending,view,observed,backend,shown
+local dirty=true;local pumping=false;local bindings={}
+local diag=SPCExpeditionTrainingDiagnostics.New(P,'CITY_PRESENTATION_UI')
+local function record(stage,c,extra)
+ if not diag then return end
+ local v=extra or {};v.owner=c:GetOwner();v.city=c:GetID()
+ pcall(diag.Record,stage,v)
+end
+local function layout()
+ local c=parent
+ -- ActionStack, its native recessed backing, and the outer centered stack.
+ for i=1,3 do
+  if not c then break end
+  c:CalculateSize();c:ReprocessAnchoring();c=c:GetParent()
  end
 end
-local function update(dt)
- timer=timer+dt;if timer<0.5 then return end
- local step=timer;timer=0
+local hidden=true
+local function hide(value)
+ if hidden~=value then hidden=value;Controls.ActiveShortcut:SetHide(value);layout()end
+end
+local function selected()
  local pid=Game.GetLocalPlayer();local c=UI.GetHeadSelectedCity()
- if not P.IsTestPlayer(pid) or not c or c:GetOwner()~=pid then
-  hide(true);key=nil;token=nil;return
- end
+ if c and c:GetOwner()==pid and P.IsTestPlayer(pid)then return c end
+end
+local function render(c)
+ local m=view and B.View(view,c:GetOwner(),c:GetID(),c:GetX(),c:GetY())
  if not parent then
-  parent=ContextPtr:LookUpControl('/InGame/WorldTracker/WorldTrackerHeader')
-  if not parent then reportError('POTENTIAL_HEADER_UNAVAILABLE');return end
-  Controls.Badge:ChangeParent(parent)
+  parent=ContextPtr:LookUpControl('/InGame/CityPanel/ActionStack')
+  if parent then Controls.ActiveShortcut:ChangeParent(parent);layout()end
  end
- local width=parent:GetSizeX()
- if width~=parentWidth then parentWidth=width;Controls.Badge:SetOffsetVal(width+8,36) end
- local k=pid..':'..c:GetID()
- local turn=Game.GetCurrentGameTurn();local writes=ExposedMembers.SPC_RuntimeUIRevision or 0
- if k~=key or turn~=observedTurn or writes~=observedWrites then dirty=true end
- observedTurn=turn;observedWrites=writes
- if k~=key then key=k;token=nil;age=10;shown=nil;hide(true) end
- age=(age or 0)+step
- if token then
-  local v=(ExposedMembers.SPC_P0 or {}).CityPresentationView
-  if v and v.token==token and v.owner==pid and v.cityID==c:GetID() then
-   token=nil;reportError(v.error)
-   if LuaEvents and LuaEvents.SPC_PresentationChanged then LuaEvents.SPC_PresentationChanged() end
-   local name=names[v.specialization];local title=titles[v.potential]
-   hide(not (name and title))
-   if name and title and shown~=name..v.potential..tostring(v.investments) then
-    shown=name..v.potential..tostring(v.investments)
-    Controls.BadgeCaption:SetText(name..v.potential..'级')
-    Controls.Badge:SetToolTipString(title..'[NEWLINE]当前专业：'..name..'[NEWLINE]专业潜力：'..v.potential..'级'
-     ..'[NEWLINE]已完成专业投资：'..tostring(v.investments)..'次[NEWLINE][NEWLINE]「专业潜力」代表本城已确立的专业化投资等级；实际生效的「启用等级」仍取决于本城就职总督的晋升条件。')
-   end
-  elseif age>5 then token=nil;hide(true);reportError('PRESENTATION_TIMEOUT') end
+ hide(not (m and parent));if not m or not parent then return end
+ local text=Locale.Lookup('LOC_SPC_CITY_INSTITUTION_SHORTCUT',Locale.Lookup('LOC_SPC_LEVEL_'..m.kind),m.active)
+ local signature=m.icon..':'..text
+ if signature~=shown then
+  shown=signature;Controls.ActiveIcon:SetIcon(m.icon,32);Controls.ActiveIcon:SetSizeVal(32,32)
+  Controls.ActiveShortcut:SetToolTipString(text)
  end
- -- Only the selected city; no city enumeration or state mutation.
- if not token and dirty and not UI.IsGameCoreBusy() then
+end
+local function consume(c)
+ local reply=(ExposedMembers.SPC_P0 or {}).CityPresentationView
+ if not pending or not reply or reply.token~=pending then return end
+ pending=nil
+ view=M.Matches(reply,c:GetOwner(),c:GetID(),c:GetX(),c:GetY()) and reply or nil
+ record('INSTITUTION_UI_APPLIED',c,{requestKey=reply.token,specialization=reply.specialization,
+  potential=reply.potential,active=reply.active,activeStatus=reply.activeStatus,readStatus=view and 'READY' or 'UNAVAILABLE'})
+ LuaEvents.SPC_PresentationChanged()
+end
+local function pump()
+ if pumping then return end
+ pumping=true
+ local c=selected()
+ if not c then
+  hide(true);key=nil;pending=nil;view=nil;observed=nil;shown=nil;pumping=false;return
+ end
+ local pid,id=c:GetOwner(),c:GetID();local k=pid..':'..id..':'..c:GetX()..':'..c:GetY()
+ local shared=ExposedMembers.SPC_P0
+ if type(shared)~='table' then hide(true);pending=nil;view=nil;backend=nil;pumping=false;return end
+ local d=shared.LevelBanners
+ if k~=key or backend~=shared then
+  key=k;backend=shared;pending=nil;view=nil;observed=nil;shown=nil;dirty=true
+ end
+ local f=d and d.views[pid..':'..id] or {}
+ local signature=table.concat({Game.GetCurrentGameTurn(),ExposedMembers.SPC_RuntimeUIRevision or 0,
+  f.specialization or '',f.potential or -1,f.active or -1,f.activeStatus or ''},':')
+ if signature~=observed then observed=signature;dirty=true end
+ consume(c)
+ -- Superseding a read is safe: only a new semantic signal can do it. Idle
+ -- publication never retries, polls native facts or enumerates other cities.
+ if dirty and not UI.IsGameCoreBusy()then
   dirty=false
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
-  token=P.VERSION..':POTENTIAL:'..ExposedMembers.SPC_P0_UISequence;age=0
-  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
-   {OnStart='SPC_P0_Request',Action='CITY_PRESENTATION_READ',CityID=c:GetID(),Token=token})
-  if not ok then token=nil;reportError(err) end
+  pending=P.VERSION..':PRESENTATION:'..ExposedMembers.SPC_P0_UISequence
+  record('INSTITUTION_UI_REQUEST',c,{requestKey=pending,projectionRevision=d and d.revision,
+   specialization=f.specialization,potential=f.potential,active=f.active,activeStatus=f.activeStatus})
+  local ok=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
+   {OnStart='SPC_P0_Request',Action='CITY_PRESENTATION_READ',CityID=id,Token=pending})
+  if not ok then pending=nil;view=nil;record('INSTITUTION_UI_SEND_FAILED',c,{readStatus='SEND_ERROR'})
+  else consume(c)end
  end
+ render(c);pumping=false
 end
-ContextPtr:SetInitHandler(function() ContextPtr:SetHide(false);ContextPtr:SetUpdate(update) end)
-ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();hide(true) end)
+local function invalidate(pid)
+ if pid==nil or pid==Game.GetLocalPlayer()then dirty=true end
+end
+local function bind(source,name,fn)
+ local e=source[name];if e then e.Add(fn);bindings[#bindings+1]={e,fn}end
+end
+ContextPtr:SetInitHandler(function()
+ ContextPtr:SetHide(false)
+ Controls.ActiveShortcut:RegisterCallback(Mouse.eLClick,function()
+  local c=selected();if not c then return end
+  dirty=true;pump()
+  if view and B.View(view,c:GetOwner(),c:GetID(),c:GetX(),c:GetY())then
+   LuaEvents.SPC_OpenInstitutions(c:GetOwner(),c:GetID())
+  end
+ end)
+ for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do bind(Events,name,invalidate)end
+ bind(Events,'CitySelectionChanged',function()dirty=true;pump()end)
+ bind(Events,'LocalPlayerChanged',function()key=nil;dirty=true;pump()end)
+ bind(Events,'LoadScreenClose',function()backend=nil;dirty=true;pump()end)
+ bind(Events,'GameCoreEventPublishComplete',pump)
+ bind(Events,'GameCoreEventPlaybackComplete',pump)
+ bind(LuaEvents,'CityPanel_LiveCityDataChanged',pump)
+ pump()
+end)
+ContextPtr:SetShutdown(function()
+ for _,b in ipairs(bindings)do b[1].Remove(b[2])end
+ hide(true);if parent then parent:DestroyChild(Controls.ActiveShortcut);layout();parent=nil end
+end)

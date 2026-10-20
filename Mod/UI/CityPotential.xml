@@ -1,4 +1,7 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <Context Name="SPCCityPotential">
- <GridButton ID="Badge" Anchor="L,T" Offset="8,156" Size="165,28" Style="MainButton" Hidden="1"><Label ID="BadgeCaption" Anchor="C,C" Style="FontNormal14" String="" Color="255,255,255,255" /></GridButton>
+ <!-- The parent ActionStack supplies the native recessed backing. -->
+ <Button ID="ActiveShortcut" Size="44,53" Texture="UnitPanel_ActionButton" Hidden="1">
+  <Image ID="ActiveIcon" Anchor="L,T" Offset="6,8" Size="32,32" />
+ </Button>
 </Context>

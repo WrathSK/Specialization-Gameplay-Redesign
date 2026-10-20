@@ -45,6 +45,27 @@ local function changed()
   end
  end
 end
+-- Native overview open/close functions remain responsible for lens, input,
+-- animation and checkbox state. Unlike the stock toggle, this shortcut opens.
+local showing=false
+local baseShow,baseClose=OnShowOverviewPanel,Close
+if baseShow then
+ function OnShowOverviewPanel(value)
+  if value then showing=true end
+  return baseShow(value)
+ end
+end
+if baseClose then
+ function Close()showing=false;return baseClose()end
+end
+local function openInstitutions(pid,id)
+ local c=UI.GetHeadSelectedCity()
+ if pid~=Game.GetLocalPlayer() or not c or c:GetOwner()~=pid or c:GetID()~=id then return end
+ if not showing then OnShowOverviewPanel(true)end
+ if GetSelectedTabButton()~=Controls.BuildingsButton then OnToggleBuildingsTab()end
+end
+local openEvent=LuaEvents.SPC_OpenInstitutions
+if openEvent then openEvent.Add(openInstitutions)end
 LuaEvents.SPC_PresentationChanged.Add(changed)
 local shutdown=OnShutdown
-ContextPtr:SetShutdown(function() LuaEvents.SPC_PresentationChanged.Remove(changed);lastData=nil;if shutdown then shutdown() end end)
+ContextPtr:SetShutdown(function() LuaEvents.SPC_PresentationChanged.Remove(changed);if openEvent then openEvent.Remove(openInstitutions)end;lastData=nil;if shutdown then shutdown() end end)

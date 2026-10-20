@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0700
-Implementation Build: B264.291 / modinfo291; stable B069.96
+Status Revision: S0701
+Implementation Build: B265.292 / modinfo292; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B263/B264 presentation accepted; intermittent Culture refresh defect investigated.** [Acceptance, logs and proposed city-panel shortcut](Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md).
+**B265 implemented and locally validated; native review pending.** [Implementation, evidence and combined check](Validation/Results/Specialization_B265_City_Presentation_Refresh.md).
 
-- The user accepted the neutral Roosevelt shell and institution-tooltip batch, while reporting one Culture IV institution/training availability mismatch after consecutive governor promotions. Banner/P0 facts remained correct; governor replacement restored availability. Later Research/Commerce/Industry checks were normal. Acceptance is limited to the reviewed presentation scope.
-- Current Lua locally reproduces the stale institution and training eligibility results when ACTIVE changes without a city/turn/owned-write revision change. Captured logs prove later normal training, arrival and a PEOPLE task; they do not contain the failure-time governor/presentation replies. No runtime repair has been made.
-- A native-style ACTIVE shortcut can use the existing city-panel ActionStack and open the Buildings tab containing institutions/districts/wonders. Proposed B265 combines this shortcut with event-driven refresh repair, removal of the user-retired profession/Potential entry below P0, and bounded diagnostics; batch implementation remains unapproved.
-- Live remains B264.291 from `3da40dc`, with the existing 288/288 deployment receipt. Main remains B069.96. No deployment, configuration, gameplay, tests or Architecture changed during this review.
+- Event-driven selected-city presentation and Expedition admission now invalidate on governor/fact changes; the legacy 0.5-second polling driver and profession/Potential entry below P0 are retired. P0's current factual report remains unchanged.
+- New native city-panel ACTIVE shortcut opens the Buildings tab without toggling an already-open page closed. Existing artwork and city banner geometry remain. Dynamic institution information uses each profession's native color; Standardization is included and Insights remains a count.
+- 94 targeted local tests, changed Lua 5.1 compilation, localization/XML and 288-file package closure PASS. Native delivery/layout/readability remain USER_GAME_TEST_REQUIRED. Costs, capacity, binding, permanent state, rewards and held mission bugs are unchanged; no new timers/frames.
+- Live remains B264.291 until the guarded W0003 switch. Main stays B069.96. No PR or main promotion is authorized.
 - Institution softness remains deferred. B249 functional acceptance and earlier scoped evidence remain. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain v0.1 playtest checks. Own-city-loss handling, held Expedition mission root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: user review of proposed B265. No PR, main promotion or new implementation authorization.
+- Next: complete the verified B265 deployment, then wait for the minimal combined user check. No further development batch is authorized.
+
+## S0701 — B265 event-driven city presentation and shortcut
+
+User-approved event refresh, ACTIVE shortcut, legacy-entry retirement, bounded diagnostics and profession-colored live metrics implemented. 94 targeted tests and static package checks PASS; native review pending. No gameplay rule/persistent-state/asset/main/configuration change. Local result linked above; deployment is a separate verified checkpoint.
 
 ## S0700 — B264 acceptance and targeted city UI investigation
 

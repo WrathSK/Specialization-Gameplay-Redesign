@@ -48,9 +48,13 @@ function SPCExpeditionTraining.Start(P,shared)
    type(v.count)=='number' and v.count>=0 and v.count%1==0,'TRAINING_QUEUE_UNKNOWN')
   return v.count
  end
- local function eligible(pid,c)
+ local function eligible(pid,c,observation)
   assert(c and c:GetOwner()==pid,'OWN_CITY_REQUIRED')
   local f=shared.EffectiveFacts.Read(pid,c)
+  if observation then
+   observation.specialization=f.specialization;observation.potential=f.potential
+   observation.active=f.active;observation.activeStatus=f.activeStatus
+  end
   assert(f.specialization=='CULTURE' and f.active==4 and not f.investmentPending,'CULTURE_ACTIVE_IV_REQUIRED')
   assert(f.token and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')==f.token,'SOURCE_REFERENCE_UNKNOWN')
  end
@@ -80,8 +84,12 @@ function SPCExpeditionTraining.Start(P,shared)
   local ok,value=run(pid,function()
    local s=T.Read(pid);local c=city(pid,p.CityID)
    if p.Action=='SYNC' then
-    local valid=pcall(eligible,pid,c)
-    return {eligible=valid and T.Available(pid),phase=s.phase or 'IDLE'}
+    local sample={owner=pid,city=p.CityID,requestKey=p.Token}
+    local valid=pcall(eligible,pid,c,sample)
+    local allowed=valid and T.Available(pid)
+    sample.eligibility=allowed;sample.reason=not valid and 'FACTS_INELIGIBLE' or not allowed and 'CAPACITY_UNAVAILABLE' or 'AVAILABLE'
+    if diag then pcall(diag.Record,'TRAINING_SYNC_FACTS',sample)end
+    return {eligible=allowed,phase=s.phase or 'IDLE'}
    elseif p.Action=='RESERVE' then
     observe('RESERVE_ENTRY',c,s)
     eligible(pid,c);assert(T.Available(pid),'TRAINING_CAPACITY_RESERVED')

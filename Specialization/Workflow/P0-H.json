@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,101 +11,81 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0700",
-    "runtime": "B264.291 / modinfo291",
+    "status": "S0701",
+    "runtime": "B265.292 / modinfo292",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-  "goal": "B264 native-style formatting and icons for all 16 institution tooltips; Gold existing dynamic values, unchanged rules and refresh.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+  "goal": "B265 event-driven institution/admission refresh, native ACTIVE shortcut, retired legacy entry, bounded diagnostics and profession-colored live metrics.",
+  "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Specialization_P0_Status.md",
-      "kind": "section",
-      "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current implementation/live and combined native-review boundary."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "kind": "section",
-      "selector": "## Scope and evidence",
-      "reason": "Approved presentation-only scope."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "kind": "section",
-      "selector": "## Implementation",
-      "reason": "Changed formatter/localizations and native source references."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "kind": "section",
-      "selector": "## Validation",
-      "reason": "Scoped static/local checks and pending native visual evidence."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "kind": "section",
-      "selector": "## Deployment",
-      "reason": "Existing guarded switch contract."
+      "path": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "kind": "full",
+      "reason": "Explicitly authorized current batch, implementation and validation boundary."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md",
       "kind": "full",
-      "reason": "Combined user acceptance, intermittent refresh evidence and unapproved shortcut/repair proposal."
+      "reason": "Verified stale-consumer reproduction and native/HD UI evidence."
     }
   ],
   "dependencies": [
-    "Existing read-only InstitutionPresentation/InstitutionOverview/Institutions pipeline and its scalar projection.",
-    "Existing Chinese localization and native tooltip bullet/icon/Gold colorset.",
-    "Current B263 neutral test shell and guarded W0003 deployment."
+    "Existing EffectiveFacts and detached LevelBanners publication; selected-city presentation read and Expedition SYNC.",
+    "Native/HD CityPanel ActionStack and CityPanelOverview Buildings tab.",
+    "Existing bounded scalar diagnostics and native yield color tokens."
   ],
   "old_writers": [
-    "No gameplay writer cutover. Existing institution help strings and dynamic CYAN formatting are replaced only in the presentation layer."
+    "Retire CityPotential SetUpdate polling and old visible badge; preserve only event-driven selected-city reads. No gameplay writer cutover."
   ],
   "conditional_context": [
     {
-      "trigger": "Unexpected institution rendering or metric placement",
+      "trigger": "Approved implementation and targeted verification",
       "paths": [
+        "Mod/UI/CityPotential.lua",
+        "Mod/UI/CityPotential.xml",
+        "Mod/UI/InstitutionOverview.lua",
+        "Mod/UI/ExpeditionTrainingUI.lua",
+        "Mod/UI/CrewProjectOrder.lua",
         "Mod/InstitutionPresentation.lua",
-        "Mod/Text/TestText.sql",
-        "Mod/Text/Restructuring.sql",
+        "Mod/Gameplay.lua",
+        "Mod/ExpeditionTraining.lua",
+        "Mod/ExpeditionTrainingDiagnostics.lua",
+        "Mod/LevelBannerState.lua",
         "Mod/Probe.lua",
         "Mod/SpecializationP0.modinfo",
-        "Mod/UI/Institutions.lua",
-        "Mod/UI/InstitutionOverview.lua",
-        "Mod/UI/Institutions.xml",
+        "DevelopmentTests/test_b265_city_presentation.py",
+        "DevelopmentTests/test_expedition_training_ui.py",
         "DevelopmentTests/test_culture_institutions.py",
         "DevelopmentTests/test_b251_institutions.py"
       ]
     },
     {
-      "trigger": "Deployment discrepancy",
+      "trigger": "Deployment",
       "paths": [
         "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
   ],
   "non_scope": [
-    "Gameplay/Design/A0177 semantics, factual reads, permanent state, gameplay tests, timers/frames, assets, held audit/Expedition fixes.",
-    "Main promotion, PR creation, game launch/configuration and external native/HD/other-Mod edits."
+    "Gameplay rules, permanent state, costs, capacity, source binding, rewards, held Expedition mission issues, new timers/frame updates.",
+    "Main promotion, PR, game launch/configuration, external native/HD/other-Mod edits."
   ],
   "validation": {
-    "depth": "L1 presentation and package only.",
-    "local": "12 existing display methods plus 16 rendered/localized descriptions, six metric placements, 15 native icon references, Lua 5.1 and manifest checks PASS.",
-    "user": "B263 shell and B264 tooltip presentation accepted by user; transient Culture institution/training refresh anomaly recorded separately.",
-    "gap": "Failure-time governor/presentation replies are absent. Stale-consumer path reproduced locally; proposed repair and shortcut need explicit approval and later scoped native verification."
+    "depth": "L2 consumer invalidation/ownership and admission handshake; L1 native layout/colors/package.",
+    "local": "94 scoped tests, 9 changed Lua sources compiled as Lua 5.1, localization/XML/288-file closure and whitespace PASS.",
+    "user": "USER_GAME_TEST_REQUIRED: promotion refresh, native ACTIVE shortcut, per-profession live-metric colors."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md",
-    "source": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 presentation accepted with a separately recorded transient refresh anomaly; no deployment during this review. No PR.",
-    "native": "B263 shell and B264 tooltip presentation accepted by user; transient Culture institution/training refresh anomaly recorded separately.",
-    "stop": "Proposed B265: event-driven institution/training eligibility refresh, native ACTIVE city-panel shortcut, and user-requested retirement of the old profession/Potential entry below P0. Await batch implementation approval. No PR or main promotion."
+    "report": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+    "source": "B265.292 local implementation validated; live B264.291 unchanged pending guarded deployment.",
+    "native": "Pending",
+    "stop": "Perform W0003 guarded B265 deployment, then await the minimal combined user review. No new batch, PR or main promotion."
   }
 }

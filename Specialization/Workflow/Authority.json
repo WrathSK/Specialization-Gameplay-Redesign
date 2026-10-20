@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0700",
-    "runtime": "B264.291 / modinfo291",
+    "status": "S0701",
+    "runtime": "B265.292 / modinfo292",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
   "runtime_commit": "3da40dc0ca7681f1d417bef1025bf047d8680ef2",
-  "current_batch": "B264_USER_ACCEPTED_REFRESH_GAP_INVESTIGATED",
-  "next_batch": "Proposed B265: event-driven institution/training eligibility refresh, native ACTIVE city-panel shortcut, and user-requested retirement of the old profession/Potential entry below P0. Await batch implementation approval. No PR or main promotion.",
+  "current_batch": "B265_LOCAL_VALIDATED_AWAITING_DEPLOYMENT",
+  "next_batch": "Perform W0003 guarded B265 deployment, then await the minimal combined user review. No new batch, PR or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 presentation accepted with a separately recorded transient refresh anomaly; no deployment during this review. No PR.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0700: B263/B264 presentation acceptance and submitted B264 traces reviewed; current institution/training UI cache gap reproduced in isolated existing Lua fixtures. Native/HD ActionStack and Buildings-tab path inspected. Only acceptance/investigation/current record hashes changed; runtime and existing deployment unchanged. Proposed B265 not authorized.",
+  "context_review_status": "S0701: user-approved B265; 94 scoped tests, Lua 5.1/localization/XML/package checks PASS. Only reviewed batch sources/current records and new regression/report hashes updated; B264 deployed checkpoint retained until switch.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md"
 }

@@ -33,7 +33,11 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
  end
  function api.Sync(c)
   if not localCity(c)then return end
-  local revision=tostring(ExposedMembers.SPC_RuntimeUIRevision)..':'..Game.GetCurrentGameTurn()..':'..tostring((ExposedMembers.SPC_ExpeditionActivity or {}).revision)
+  local d=(ExposedMembers.SPC_P0 or {}).LevelBanners
+  local f=d and d.views[c:GetOwner()..':'..c:GetID()] or {}
+  local revision=table.concat({tostring(ExposedMembers.SPC_RuntimeUIRevision),Game.GetCurrentGameTurn(),
+   tostring((ExposedMembers.SPC_ExpeditionActivity or {}).revision),f.specialization or '',
+   f.potential or -1,f.active or -1,f.activeStatus or ''},':')
   if selected~=c:GetID() or lastRevision~=revision then
    selected=c:GetID();view=nil;sync=nil;lastRevision=revision
   end
@@ -87,13 +91,24 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
   ExposedMembers.SPC_ExpeditionTrainingUIError=err
   notify(p.owner,p.city)
  end
- function api.Pulse()
+ function api.Invalidate(pid)
+  if pid==nil or pid==Game.GetLocalPlayer()then lastRevision=nil end
+ end
+ function api.RefreshFacts()
+  local c=UI.GetHeadSelectedCity()
+  if not pending and localCity(c) and selected==c:GetID()then api.Sync(c)end
   local reply=ExposedMembers.SPC_ExpeditionTrainingReply
   if sync and reply and reply.token==sync.token then
    local s=sync;view=reply
    -- Set before notify: Refresh can re-enter Sync.
-   sync={token='CONSUMED',owner=s.owner,city=s.city};notify(s.owner,s.city)
+   sync={token='CONSUMED',owner=s.owner,city=s.city}
+   if diag then pcall(diag.Record,'TRAINING_UI_APPLIED',{owner=s.owner,city=s.city,requestKey=reply.token,eligibility=reply.eligible})end
+   notify(s.owner,s.city)
   end
+ end
+ function api.Pulse()
+  api.RefreshFacts()
+  local reply=ExposedMembers.SPC_ExpeditionTrainingReply
   local p=pending;if not p then return end
   p.age=(p.age or 0)+1
   if p.age>12 then clear(p,'TRAINING_HANDSHAKE_UNCONFIRMED');return end

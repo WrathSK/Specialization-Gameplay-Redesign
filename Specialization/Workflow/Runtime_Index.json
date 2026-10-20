@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "28adfccebe51f60df81b806a8f282bfab17f6ab159f1c1c05670ef2915487211",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+      "sha256": "4881b7d360a39a0fc766a727501279f37643b18374c2cec6850ae1fa1f77bdd1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "650e8368c6687e9f686dc860037a234af24c79875bed9dbc92579903297ace07",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
+      "sha256": "8b782e0e8dade990e508ffc08fb2c3125df0e6658049a4b058903b194eab3aec",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d1bcf1e407d2d01d4d02cb26d9ab8522ce08e962c861dde963467180bd7c5e96",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
+      "sha256": "857146dae2b5e1e3d4e81d8a72c64aa43fcd5f38577ba82f87261044775a10f2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "881e46d8f0ba66f8f234a9ae74f137113a97777527adbcfc27515044a2a5103c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
+      "sha256": "e395aafd1f5508903adcd5edaf9d0529da0d75ba8a488fa75b61a29a145b9300",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -486,14 +486,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CityPotential.lua": {
-      "sha256": "64c39ca7434a6631d61c8604a5203a84c2e0f8888d9d07de7dbbc7b5bdd572d2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "0064cf4511f920f0dbd50a6470e2a2e8a9302c76b401a37a8c8c8db1b401951f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/UI/CityPotential.xml": {
-      "sha256": "3971290a3b79bf2b8be2fa603647bafca8c27b48b0d543835610acc5edf8fa40",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "ee21aabc5a688151475978bc1fbd261edfeb64368c8f73e7f91789ed35e24043",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/UI/CopyYieldRefresh.lua": {
       "sha256": "b2d133cd6860fb60e0f3398032d77575b4332cfe6ff7834d1079327b8a4c1032",
@@ -506,9 +506,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "4380fdbabec7979cbada084c5e3d6739e896a96a51f6a68d0d048ecf74ad38cb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "9f3470c486adb4435075f166f9ed7405920faaa99fa1d6c1e7ff170dea3c95f6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
@@ -721,14 +721,14 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "f8eab72908f48d5e990e169b99642613badd3c1d9a07d6a89c2a0b427bc85d96",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
+      "sha256": "fab127ba8195fdf1c4f5891a8af77b7a7fedc96efafd2fb86f64d8ed8673533f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/UI/InstitutionOverview.lua": {
-      "sha256": "c9dd649ecb06487393352e170a796baea536ff732de029012c7568f9ecc73590",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+      "sha256": "5b85c0a88a59fcf285ee5dc3cdc079e6a201b6afa265905433a95870dcd9a013",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/UI/Institutions.lua": {
       "sha256": "f239ef9364fbbeb9d1b7574fd236253c51df7ffd5fed44da6df42373b9919864",
@@ -1076,9 +1076,9 @@
       "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "5feeae7bdf2b90a86078fe6c833820cbca7bb2c5c8bf1fdff555e240f61a4e4c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "sha256": "e37203dfc87afe07456cdb22e4ff7a03086bf2380cc7b4da31090329b44b3142",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/UI/ExpeditionTrainingName.lua": {
       "sha256": "e795a4ec009c61358f28deef878da9d2415871532c3876153f3b5b60420b201b",
@@ -1091,14 +1091,14 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/ExpeditionTrainingUI.lua": {
-      "sha256": "8242c44d60af4fb4da71b28cc0769d32e480ef0fb6c4b9252e2e57f5dd04b0c5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B210 user-approved: native removal/replacement releases the Expedition reservation (empty queue, no receipt, no unit); UI quiet close; 117 targeted PASS, Expedition-suite failure set identical to HEAD."
+      "sha256": "8015d6e8164ea8bcbcd7121db2db2663d6333d6775c2374fdc106fee91e0c50f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "8455991837a40eec0edbe1b557b73d68cd087fbbc707f2f1660cded60abf180f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
+      "sha256": "d84166ef7f6d972aee0153ef41ff577ffa7d92f9451515b31c214acd2d968c9f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",

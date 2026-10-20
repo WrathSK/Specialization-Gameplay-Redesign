@@ -264,6 +264,13 @@ local function request(playerID,params)
       investments=ok and f.investmentCount or nil,active=ok and f.active or nil,activeStatus=ok and f.activeStatus or nil,
       x=ok and Players[playerID]:GetCities():FindID(params.CityID):GetX() or nil,
       y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
+    -- Existing bounded trace, scalar results only; no extra native reads.
+    if SPCExpeditionTrainingDiagnostics then
+      if not shared.PresentationDiagnostics then shared.PresentationDiagnostics=SPCExpeditionTrainingDiagnostics.New(P,'PRESENTATION_GAMEPLAY')end
+      local d=shared.PresentationDiagnostics;local v=shared.CityPresentationView
+      if d then pcall(d.Record,'INSTITUTION_FACTS',{owner=playerID,city=params.CityID,requestKey=params.Token,
+        specialization=v.specialization,potential=v.potential,active=v.active,activeStatus=v.activeStatus,readStatus=ok and 'READY' or 'UNAVAILABLE'})end
+    end
     return
   end
   if type(params.Action)=='string' and params.Action:find('^INSPIRE_') then
