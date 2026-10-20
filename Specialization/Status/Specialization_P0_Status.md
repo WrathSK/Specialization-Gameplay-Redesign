@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0687
-Implementation Build: B258.285 / modinfo285; stable B069.96
+Status Revision: S0688
+Implementation Build: B259.286 / modinfo286; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B258.285 is deployed: it restores the map badge and refines Development Investment presentation.** [Scope and checks](Validation/Results/Specialization_B258_Badge_Investment_UI.md).
+**B259.286 locally refines measured map size and Investment layout.** [Measurement and evidence](Validation/Results/Specialization_B259_Measured_UI.md).
 
-- B257 no-governor investment refresh and segment-bottom alignment accepted by user; missing main badge failed. Exact58px Image replaces Grid while preserving accepted geometry and updates.
-- Development Investment: lowered equal-width side columns, left titles, measured cards/single detail overflow, clearer quote layout, raised footer; ACTIVE cities marked and sorted first. Transactions/rules unchanged.
--40 scoped local checks PASS; native visual acceptance pending. Source/live B258.285 from `7752de4`;278/278 MATCH; receipt `B258.285-7752de4-playtest.json`. Main/stable B069.96 unchanged.
+- B258 restored badge and other observed repairs accepted; size/alignment/footer refinements requested.49px Image retains accepted segment bottom and update behavior.
+- Native90-high two-button footer; independent fourth Current Contract/error card; separate amount lines. No repeated district city name, native left scrollbars restored, column top/bottom calibrated.
+-39 scoped checks PASS; source B259.286, live B258 until guarded deployment. Native visuals pending; no new gameplay acceptance.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: one combined visual check; commit/push and guarded deployment complete. No further batch starts automatically.
+- Next: guarded deployment then one visual check. No further batch starts automatically.
+
+## S0688 — B259 measured UI refinement
+
+User approved investigation/direct repair and latest district/scrollbar steering.39 scoped checks PASS; one exact DDS exception approved. Gameplay, saved state, main/configuration unchanged; B258 evidence archived, frozen records preserved.
 
 ## S0687 — B258 verified deployment
 

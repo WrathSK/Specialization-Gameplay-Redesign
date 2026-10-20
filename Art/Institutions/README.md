@@ -56,3 +56,7 @@ The user explicitly approved a one-time publication exception for exactly these 
 ## B258 exact map size
 
 The existing approved B254 SVGs produce an additional58px-cell atlas for the58-unit map Image control. Institution32px and existing64px files remain unchanged. Lossless BGRA8,232x232, no mipmaps; decoded raw pixels match exactly. `SPC_Level_Icons_58.dds`:215424 bytes; SHA256 `9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54`. The user explicitly approves a one-time publication exception for this exact blob only. See [B258](../../Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md).
+
+## B259 measured map size
+
+Additional49px cell/control atlas derived from the same approved B254 artwork.4x4 cells,196x196 BGRA8, no mipmaps;153792 bytes. SHA256 `f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6`. Reviewed decode matches raw pixels. User approved this exact blob for a one-time publication exception; old assets remain unchanged. [Measurement](../../Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md).

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="285">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="286">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B258.285: exact-size map badge restoration and Development Investment sidebar refinement.</Description>
+    <Description>B259.286: measured map badge size and native-proportioned investment footer with separate contract card.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -158,6 +158,7 @@
       <File>Textures/SPC_Level_Icons_32.dds</File>
       <File>Textures/SPC_Level_Icons_64.dds</File>
       <File>Textures/SPC_Level_Icons_58.dds</File>
+      <File>Textures/SPC_Level_Icons_49.dds</File>
       <File>UI/Institutions.lua</File>
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
@@ -561,6 +562,7 @@
       <File>Textures/SPC_Level_Icons_32.dds</File>
       <File>Textures/SPC_Level_Icons_64.dds</File>
       <File>Textures/SPC_Level_Icons_58.dds</File>
+      <File>Textures/SPC_Level_Icons_49.dds</File>
       <File>UI/Institutions.lua</File>
     <File>UI/Institutions.xml</File>
     <File>PerformanceCounters.lua</File>

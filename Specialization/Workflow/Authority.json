@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0687",
-    "runtime": "B258.285 / modinfo285",
+    "status": "S0688",
+    "runtime": "B259.286 / modinfo286",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
   "runtime_commit": "7752de4a58314125cb7e3cfe246a82b9ad032b35",
-  "current_batch": "B258_BADGE_INVESTMENT_UI_DEPLOYED",
-  "next_batch": "Combined map badge and Development Investment visual check; held work unchanged.",
+  "current_batch": "B259_MEASURED_UI_LOCAL_COMPLETE",
+  "next_batch": "Guarded deployment then measured badge/Investment four-card and native footer visual check.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B258.285/modinfo285 DEVELOP_ACTIVE; source 7752de4a58314125cb7e3cfe246a82b9ad032b35; receipt B258.285-7752de4-playtest.json;278/278 MATCH; digest cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0686/B258: canonical presentation and contract stages reviewed;40 scoped methods PASS. B257 update/alignment accepted, main badge failed; exact58px Image and pending sidebar refinement authorized. No gameplay or timers. S0687: clean/pushed source deployed;278/278 MATCH and recovery verified. Native visual check pending.",
+  "context_review_status": "S0688: two B258 screenshots and native Spy footer reviewed;39 local checks PASS. Presentation-only authorized refinement; no new gameplay/timers.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md"
 }

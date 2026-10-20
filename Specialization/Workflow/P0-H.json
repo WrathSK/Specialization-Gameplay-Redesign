@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0687",
-    "runtime": "B258.285 / modinfo285",
+    "status": "S0688",
+    "runtime": "B259.286 / modinfo286",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-  "goal": "B258 exact-size map badge restoration and pending Development Investment presentation refinements.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+  "goal": "B259 measured map badge and Investment native footer/fourth contract card.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,28 +28,28 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
       "kind": "section",
-      "selector": "## Approved scope and evidence",
-      "reason": "Current authorization and native feedback."
+      "selector": "## Scope and evidence",
+      "reason": "Current authorization and steering."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
       "kind": "section",
-      "selector": "## Implementation",
-      "reason": "UI-only delta and fixed-blob approval."
+      "selector": "## Measurement and implementation",
+      "reason": "Measured UI delta and native reference."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
       "kind": "section",
-      "selector": "## Local validation",
-      "reason": "Scoped local evidence."
+      "selector": "## Validation",
+      "reason": "Scoped evidence."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
       "kind": "section",
-      "selector": "## Publication and deployment",
-      "reason": "Existing gates."
+      "selector": "## Deployment",
+      "reason": "Existing deployment gates."
     }
   ],
   "dependencies": [
@@ -82,7 +82,8 @@
         "Mod/UI/DevelopmentInvestmentPanel.xml",
         "Mod/Text/DevelopmentInvestment.sql",
         "Mod/DevelopmentInvestmentModel.lua",
-        "DevelopmentTests/test_b258_ui.py"
+        "DevelopmentTests/test_b258_ui.py",
+        "DevelopmentTests/test_b259_ui.py"
       ]
     },
     {
@@ -97,19 +98,19 @@
     "Institution32px assets and held gameplay/audit work."
   ],
   "validation": {
-    "depth": "L2 UI/model/protocol and L1 package/art checks.",
-    "local": "40 scoped methods PASS.",
-    "user": "Main badge and combined Development Investment visual check.",
-    "gap": "Native raster/spacing remains pending; softness deferred."
+    "depth": "L2 UI/protocol, L1 native dimensions and art/package.",
+    "local": "39 scoped methods PASS.",
+    "user": "Measured badge, four cards, native footer and column alignment.",
+    "gap": "Native raster/layout pending."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-    "source": "B258.285/modinfo285 DEVELOP_ACTIVE; source 7752de4a58314125cb7e3cfe246a82b9ad032b35; receipt B258.285-7752de4-playtest.json;278/278 MATCH; digest cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
-    "native": "B257 investment refresh/segment alignment accepted; main badge failed. B258 visual pending.",
-    "stop": "Combined map badge and Development Investment visual check; held work unchanged."
+    "report": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+    "source": "B259 locally verified; live B258 pending gated deployment.",
+    "native": "B258 other repairs accepted; visual refinements requested.",
+    "stop": "Guarded deployment then measured badge/Investment four-card and native footer visual check."
   }
 }

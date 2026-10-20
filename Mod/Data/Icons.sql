@@ -133,3 +133,6 @@ INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE
 
 -- B258 exact-size city-banner Image cell.
 INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',58,4,4,'SPC_Level_Icons_58.dds');
+
+-- B259 screenshot-calibrated map cell.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',49,4,4,'SPC_Level_Icons_49.dds');

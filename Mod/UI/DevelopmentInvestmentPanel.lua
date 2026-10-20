@@ -1,4 +1,4 @@
--- B258: one existing quotation snapshot, three UI-only selection columns.
+-- B259: one existing quotation snapshot, three UI-only selection columns.
 include('Probe')
 include('DevelopmentInvestmentUI')
 include('InstanceManager')
@@ -97,12 +97,12 @@ local function layout()
  local available=math.max(220,width-16)
  local narrow=available<800
  local column=narrow and math.min(360,available) or math.min(295,math.floor((available-2)/3))
- -- Native ChooserAnim top inset, with12 units of bottom clearance.
- local h=math.max(240,height-39)
+ -- Native ChooserAnim top inset; all column bottoms reach the viewport.
+ local h=math.max(240,height-27)
  Controls.Window:SetSizeVal(narrow and column or column*3+2,h)
  local contentHeight=h-(narrow and 40 or 0)
  Controls.CityColumn:SetSizeVal(column,contentHeight)
- local top=narrow and 0 or 150
+ local top=narrow and 0 or 148
  local sideHeight=contentHeight-top
  for _,name in ipairs({'DistrictColumn','DetailColumn'})do Controls[name]:SetSizeVal(column,sideHeight);Controls[name]:SetOffsetY(top)end
  Controls.CompactBar:SetHide(not narrow)
@@ -111,27 +111,31 @@ local function layout()
  Controls.CityColumn:SetHide(narrow and g~=nil)
  Controls.DistrictColumn:SetHide(narrow and (not g or row~=nil))
  Controls.DetailColumn:SetHide(narrow and row==nil)
- Controls.DistrictBack:SetHide(not narrow);Controls.DetailBack:SetHide(not narrow)
- Controls.DistrictScroll:SetSizeY(sideHeight-(narrow and 140 or 96))
+ Controls.DistrictBack:SetHide(not narrow);Controls.DetailBack:SetHide(not narrow or row==nil)
+ Controls.CompactRefresh:SetHide(narrow and row~=nil)
+ Controls.DistrictScroll:SetSizeY(sideHeight-(narrow and 102 or 58))
  Controls.CityName:SetTruncateWidth(column-86)
  Controls.Balance:SetTruncateWidth(column-44);Controls.Capacity:SetTruncateWidth(column-44)
  Controls.EmptyCities:SetWrapWidth(column-38);Controls.EmptyDistricts:SetWrapWidth(column-38)
- Controls.DistrictCity:SetTruncateWidth(column-36)
- for _,name in ipairs({'QuoteTitle','TermsTitle','HelpTitle'})do Controls[name]:SetTruncateWidth(column-42)end
+ for _,name in ipairs({'QuoteTitle','TermsTitle','HelpTitle','CurrentTitle'})do Controls[name]:SetTruncateWidth(column-42)end
  for _,name in ipairs({'Quote','Contract','Terms','Help','ContractTitle'})do Controls[name]:SetWrapWidth(column-42)end
  Controls.QuoteBuilding:SetTruncateWidth(column-78)
- Controls.Error:SetWrapWidth(column-24)
- local statusHeight=Controls.Error:GetSizeY()
- local footer=math.max(110,statusHeight+98)+(narrow and 32 or 0)
+ Controls.Error:SetWrapWidth(column-44)
+ local footer=90
  Controls.Footer:SetSizeY(footer)
- Controls.Confirm:SetOffsetY(footer-(narrow and 32 or 0)-90)
- Controls.Refresh:SetOffsetY(footer-(narrow and 32 or 0)-45);Controls.DetailBack:SetOffsetY(footer-38)
+ Controls.Confirm:SetSizeVal(math.min(285,column-10),41)
+ Controls.Refresh:SetSizeVal(math.min(285,column-10),24)
  -- Measure wrapped text before assigning content heights. Only the overall column scrolls.
  local y=0
- for _,name in ipairs({'Quote','Terms','Help'})do
-  local body=Controls[name]:GetSizeY()
+ for _,name in ipairs({'Quote','Terms','Help','Current'})do
+  local body=name=='Current' and 0 or Controls[name]:GetSizeY()
   if name=='Quote' and not Controls.QuoteBuildingRow:IsHidden() then body=body+46 end
-  if name=='Help' and not Controls.ContractCard:IsHidden() then body=body+18+Controls.ContractTitle:GetSizeY()+Controls.Contract:GetSizeY() end
+  if name=='Current' then
+   body=Controls.ContractTitle:IsHidden() and 0 or Controls.ContractTitle:GetSizeY()
+   if not Controls.ContractCard:IsHidden() then body=body+5+Controls.Contract:GetSizeY() else body=0 end
+   if not Controls.Error:IsHidden() then body=body+(body>0 and 8 or 0)+Controls.Error:GetSizeY() end
+   body=math.max(18,body)
+  end
   local cardHeight=body+62
   Controls[name..'Body']:SetSizeY(body)
   Controls[name..'Card']:SetOffsetY(y);Controls[name..'Card']:SetSizeY(cardHeight)
@@ -150,7 +154,6 @@ render=function()
  Controls.Capacity:SetText(L('CAPACITY',v and v.used or 0,v and v.workers or 0))
  Controls.EmptyCities:SetText(#groups==0 and (reason(v and v.reason)~='' and reason(v.reason) or L('NO_OPTIONS')) or '')
  Controls.EmptyCities:SetHide(#groups>0)
- Controls.DistrictCity:SetText(g and g.name or L('SELECT_CITY'))
  Controls.EmptyDistricts:SetText(not g and L('SELECT_CITY') or reason(g.reason)~='' and reason(g.reason) or L('NO_DISTRICTS'))
  Controls.EmptyDistricts:SetHide(g and #g.rows>0 or false)
  Controls.Quote:SetText(row and row.price and L('QUOTE_VALUES',num(row.price),num(row.cost),row.candidates) or L(row and 'NO_QUOTE' or g and 'SELECT_DISTRICT' or 'SELECT_CITY'))
@@ -159,13 +162,14 @@ render=function()
  Controls.QuoteBuilding:SetText(row and row.building and label('Buildings',row.building) or '')
  if row and row.building then Controls.QuoteIcon:SetIcon('ICON_'..row.building,32);Controls.QuoteIcon:SetSizeVal(32,32)end
  Controls.Terms:SetText(L('TERMS'))
- Controls.Contract:SetText(contract and L('CONTRACT',L('STATE_'..contract.stage),num(contract.cost),num(contract.debited)) or '')
- Controls.ContractCard:SetHide(not contract)
+ Controls.Contract:SetText(contract and L('CONTRACT',L('STATE_'..contract.stage),num(contract.cost),num(contract.debited)) or L('NO_CONTRACT'))
+ Controls.ContractCard:SetHide(false)
+ Controls.ContractTitle:SetHide(not contract)
  Controls.Confirm:SetDisabled(not canConfirm(v,row));Controls.Refresh:SetDisabled(pending~=nil);Controls.CompactRefresh:SetDisabled(pending~=nil)
  local message=pending and L('WAITING') or requestError and reason(requestError) or v and v.stage=='HELD' and reason(v.reason)
   or v and v.quoteStale and L('STALE') or row and not row.canSign and not contract and reason(row.reason)
   or v and not v.canSign and reason(v.reason) or #groups==0 and reason(v and v.reason) or ''
- Controls.Error:SetText(message);Controls.Error:SetToolTipString(message)
+ Controls.Error:SetText(message);Controls.Error:SetToolTipString(message);Controls.Error:SetHide(message=='')
  local cityWidth,districtWidth=layout()
  cities:ResetInstances();districts:ResetInstances()
  for _,target in ipairs(groups)do
@@ -209,7 +213,7 @@ render=function()
    if current and not pending then current.domain=domain;requestError=nil;render()end
   end)
  end
- for _,name in ipairs({'Cities','CityStack','Districts','DistrictStack','ContractCard','QuoteContent','TermsContent','HelpContent'})do Controls[name]:CalculateSize();Controls[name]:ReprocessAnchoring()end
+ for _,name in ipairs({'Cities','CityStack','Districts','DistrictStack','ContractCard','QuoteContent','TermsContent','HelpContent','CurrentContent'})do Controls[name]:CalculateSize();Controls[name]:ReprocessAnchoring()end
  for _,name in ipairs({'CityScroll','DistrictScroll','DetailScroll'})do Controls[name]:CalculateInternalSize()end
  Controls.Window:ReprocessAnchoring();lastRevision=v and v.revision
 end
@@ -232,7 +236,7 @@ local function resizeEvent(kind)
 end
 local function initialize()
  for _,pair in ipairs({{'Title','TITLE'},{'DistrictTitle','DISTRICTS'},{'DetailTitle','DETAILS'},{'QuoteTitle','QUOTE_TITLE'},{'TermsTitle','EFFECT_TITLE'},
- {'ContractTitle','CONTRACT_TITLE'},{'HelpTitle','RULES_TITLE'},{'ConfirmCaption','CONFIRM'},{'RefreshCaption','REFRESH'},{'Help','HELP'},
+ {'CurrentTitle','CURRENT_TITLE'},{'ContractTitle','CONTRACT_TITLE'},{'HelpTitle','RULES_TITLE'},{'ConfirmCaption','CONFIRM'},{'RefreshCaption','REFRESH'},{'Help','HELP'},
  {'DistrictBackCaption','BACK'},{'DetailBackCaption','BACK'},{'CompactCloseCaption','CLOSE'},{'CompactRefreshCaption','REFRESH'}})do Controls[pair[1]]:SetText(L(pair[2]))end
  Controls.Close:SetToolTipString(L('CLOSE'));Controls.Close:RegisterCallback(Mouse.eLClick,close)
  Controls.Confirm:RegisterCallback(Mouse.eLClick,function()send('DEVELOPMENT_CONFIRM')end)

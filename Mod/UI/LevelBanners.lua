@@ -13,7 +13,7 @@ local function render(e)
  local m=Game.GetLocalPlayer()==e.pid and M.View(v,e.pid,e.id,e.x,e.y) or nil
  local c=e.controls;c.Root:SetHide(not m);if not m then return end
  -- Exact cell and control size: use the proven Image icon path without stretching.
- c.Badge:SetIcon(m.icon,58);c.Badge:SetSizeVal(58,58)
+ c.Badge:SetIcon(m.icon,49);c.Badge:SetSizeVal(49,49)
  local bright=M.Colors[m.kind];local dark={19,35,55,255};local dim={70,83,103,255}
  for i,state in ipairs(m.segments)do
   color(c['Rim'..i],state=='DIM' and dim or bright)

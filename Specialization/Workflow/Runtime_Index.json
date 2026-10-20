@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "4762ef07a1d23c99abb182f942349b67755ea0eddf72d2e7bd97b5103ccdff27",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "55a2c7980c686d3a5f46d328dd94645140883a282096e2209af9cc08ffff25e9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "9c9e3341dcea83576a16ed9d8e5b85c0100202bea938fd45f065b6ddeb4292cf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "fda7540abadb5c5d47e0af3a2519c67e62b56ced2e7c4934a870b4072169c979",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d2e7e6b194fd2c15e4eee881010ca27ca9f6562286be6d93511b3d76997e59e2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "59bb62f82cdca9d32e87c1206c11eb2b7dfd49a81a7c13890e40a66a072743c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1281,19 +1281,19 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
-      "sha256": "6afe30671cf9fe1072ffe9e4653f0f932049041a034238c2cdc0c9c23df3b0c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "3b705eb02457d81262653d9c10d04aa5019d34fc9b61ab8df14f6dc3d6189a1c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
-      "sha256": "dd0c438876ce2b5b16fd5de2c20f990e3f07dc361fd14fc7f1f4fc89b79b5b45",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "f470a939b7fefd387464ff859d2381458d0344d9dc30a1d803bcbd48f4891af5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
-      "sha256": "edef01ee63cf72d5acc3a8986651225cf5355054dc49ec56a96a21abc1b3d504",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "6a48d37a380b99dd7d097ae7d5200ccce11b4f179a3ecd19ea9d7e388ce3df24",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentRead.lua": {
       "sha256": "47f1b5543ee82591fee607ac29e021067ebf22c42324861716648e0bc36551d5",
@@ -1366,14 +1366,14 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/UI/LevelBanners.lua": {
-      "sha256": "9979ff4158b7ce36800a7f45a74d17ac0944ae0d434371426bfc1562cc6a91e1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "b1d86b190f2ef073e135c61bf2e294cc70e3da5bf632ad13d737639dbb293e1f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/UI/LevelBanners.xml": {
-      "sha256": "29b6ab2f80df56fc811906a475e155016746c894dfa309872caccaab41f535ef",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "sha256": "750085203b0d65452cd9227695a5f70d59c7d4e757fb7903a45dc375b8427ab8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",
@@ -1394,6 +1394,11 @@
       "sha256": "9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
       "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+    },
+    "Mod/Textures/SPC_Level_Icons_49.dds": {
+      "sha256": "f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     }
   }
 }
