@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0692",
+    "status": "S0693",
     "runtime": "B261.288 / modinfo288",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
-  "runtime_commit": "f9442e784ddb00e7177df909ed900c810bab84ef",
-  "current_batch": "B261_COMMERCE_SIDEBAR_LOCAL_COMPLETE",
-  "next_batch": "Guarded deployment then Commercialization two-column and dual-panel Escape native check.",
+  "runtime_commit": "ded19d276f3b07740777bc28d5cd1a1daa6af989",
+  "current_batch": "B261_COMMERCE_SIDEBAR_DEPLOYED",
+  "next_batch": "User Commercialization order/toggle/cards and Commerce/Development Escape check; stop.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B260.287/modinfo287 DEVELOP_ACTIVE; source f9442e784ddb00e7177df909ed900c810bab84ef; receipt B260.287-f9442e7-playtest.json;279/279 MATCH; digest ea615e1b262c1ac8921e805525faa64c33ce6c2bb1aa4738c01ab3576e819cff. Fresh game-exit checks, exact B259 restoration and B260 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
+  "live": "B261.288/modinfo288 DEVELOP_ACTIVE; source ded19d276f3b07740777bc28d5cd1a1daa6af989; receipt B261.288-ded19d2-playtest.json;279/279 MATCH; digest 1e021fde126745d7f5ac3bd78f6b334f6004444e8050ab930fd52f37bf9185c1. Fresh game-exit checks, exact B260 restoration and B261 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0692: explicit B260 acceptance; approved B261 and Escape addition. Native input support and existing Commerce model reviewed;19 scoped checks PASS.",
+  "context_review_status": "S0692: explicit B260 acceptance; approved B261 and Escape addition. Native input support and existing Commerce model reviewed;19 scoped checks PASS. S0693: clean/pushed source deployed279/279; recovery verified; native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

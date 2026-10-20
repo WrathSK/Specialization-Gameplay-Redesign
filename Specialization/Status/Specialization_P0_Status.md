@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0692
+Status Revision: S0693
 Implementation Build: B261.288 / modinfo288; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B261.288 Commercialization sidebar and Escape routing locally complete.** [Implementation and validation](Validation/Results/Specialization_B261_Commerce_Sidebar.md).
+**B261.288 Commercialization sidebar and Escape routing deployed.** [Implementation and validation](Validation/Results/Specialization_B261_Commerce_Sidebar.md).
 
 - B260 UI accepted by user. B261 two-column domain/details UI retains selection order, effective/suspended distinction and existing toggle guards; no gameplay change.
 - Commercialization and Development Investment normalize native input objects and consume Escape while open.
--19 scoped checks PASS. Live remains B260 pending guarded deployment; native layout/input routing pending.
+-19 scoped checks PASS; source/live B261.288 from `ded19d2`;279/279 MATCH. Native layout/input routing pending.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment and minimal Commercialization/Escape review; stop at this batch.
+- Commit/push and guarded deployment complete. Next: minimal Commercialization/Escape review; stop at this batch.
+
+## S0693 — B261 verified deployment
+
+B261.288/modinfo288 DEVELOP_ACTIVE; source `ded19d276f3b07740777bc28d5cd1a1daa6af989`; receipt `B261.288-ded19d2-playtest.json`;279/279 MATCH; digest `1e021fde126745d7f5ac3bd78f6b334f6004444e8050ab930fd52f37bf9185c1`. Fresh game-exit checks, exact B260 restoration and B261 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. Native review remains pending.
 
 ## S0692 — B261 Commercialization UI
 

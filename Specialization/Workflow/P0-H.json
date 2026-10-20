@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0692",
+    "status": "S0693",
     "runtime": "B261.288 / modinfo288",
     "military": "D0037",
     "harbor": "D0037",
@@ -98,8 +98,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
-    "source": "B261 local complete; live B260 pending deployment.",
+    "source": "B261.288/modinfo288 DEVELOP_ACTIVE; source ded19d276f3b07740777bc28d5cd1a1daa6af989; receipt B261.288-ded19d2-playtest.json;279/279 MATCH; digest 1e021fde126745d7f5ac3bd78f6b334f6004444e8050ab930fd52f37bf9185c1. Fresh game-exit checks, exact B260 restoration and B261 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
     "native": "B260 accepted; B261 pending.",
-    "stop": "Guarded deployment then Commercialization two-column and dual-panel Escape native check."
+    "stop": "User Commercialization order/toggle/cards and Commerce/Development Escape check; stop."
   }
 }

@@ -26,4 +26,6 @@ LOCAL_SIMULATION_PASS:19 selected methods covering actual Commerce Lua rendering
 
 ## Deployment
 
-B261.288/modinfo288 locally validated; live B260 pending guarded deployment. B260 acceptance is recorded from the user's explicit confirmation; no other native acceptance expanded.
+B261.288/modinfo288 DEVELOP_ACTIVE; source `ded19d276f3b07740777bc28d5cd1a1daa6af989`; receipt `B261.288-ded19d2-playtest.json`;279/279 MATCH; digest `1e021fde126745d7f5ac3bd78f6b334f6004444e8050ab930fd52f37bf9185c1`. Fresh game-exit checks, exact B260 restoration and B261 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.
+
+19 scoped checks,279-runtime/903-context integrity checks and14-file publication scan PASS. Native review pending. B260 acceptance is recorded from the user's explicit confirmation; no other native acceptance expanded.
