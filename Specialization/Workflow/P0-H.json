@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0683",
-    "runtime": "B256.283 / modinfo283",
+    "status": "S0684",
+    "runtime": "B257.284 / modinfo284",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-  "goal": "B256 restore complete icons by matching32px atlas cells and32-unit controls; preserve bottom-aligned layout.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+  "goal": "B257 city-scoped committed investment banner refresh and reversible larger map emblem; institution softness deferred.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,25 +28,31 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
       "kind": "section",
-      "selector": "## Approved scope",
-      "reason": "Authorized regression repair."
+      "selector": "## Approved scope and evidence",
+      "reason": "User feedback and direct implementation authorization."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
       "kind": "section",
-      "selector": "## Native evidence and cause",
-      "reason": "B255 failure and local mock limits."
+      "selector": "## Cause and repair",
+      "reason": "Actual Store and commit dispatcher boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
       "kind": "section",
-      "selector": "## Implementation and validation",
-      "reason": "Two size arguments, unchanged geometry and atlas."
+      "selector": "## Reversible map layout trial",
+      "reason": "Native source references and exact rollback."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "kind": "section",
+      "selector": "## Local validation",
+      "reason": "41 scoped checks; historical exceptions."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
       "kind": "section",
       "selector": "## Publication and deployment",
       "reason": "Existing gates."
@@ -73,7 +79,11 @@
         "Mod/EffectiveFacts.lua",
         "Mod/Data/Icons.sql",
         "Art/Institutions/README.md",
-        "DevelopmentTests/test_b254_levels.py"
+        "DevelopmentTests/test_b254_levels.py",
+        "Mod/Gameplay.lua",
+        "Mod/InvestmentAction.lua",
+        "Mod/CityProgressionStore.lua",
+        "DevelopmentTests/test_b257_banner_updates.py"
       ]
     },
     {
@@ -88,19 +98,19 @@
     "Development Investment sidebar and held gameplay/audit work remain pending."
   ],
   "validation": {
-    "depth": "L1 texture/package/XML geometry; existing L2 UI/state regression.",
-    "local": "32 selected methods PASS;32px cells/controls, atlas/XML unchanged.",
-    "user": "Complete institution/map icons at normal size; held segment update if convenient.",
-    "gap": "Native raster behavior is not simulated."
+    "depth": "L2 actual investment request/transaction and UI models; L1 native geometry/package.",
+    "local": "41 selected methods PASS; two unrelated historical failures documented.",
+    "user": "No-governor P1→P2 outline update and defense-top/flag-bottom layout.",
+    "gap": "Native Grid raster/edge alignment not simulated; institution softness deferred."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-    "source": "B256.283/modinfo283 DEVELOP_ACTIVE; source 3259a50e982a2e8349e8a00ba936f8319a97fd6a; receipt B256.283-3259a50-playtest.json;277/277 MATCH; digest 6f4ade5802d1f80d2c88208e1afbaac40f898e162d52ab64d4d4a754aeb3a688. Fresh game-exit checks, exact B255 restoration and B256 activation passed. Stable and outgoing recovery verified; no pending marker, main/configuration change or game launch.",
-    "native": "B255 USER_GAME_TEST_FAIL; B256 visuals and four-segment dynamics pending.",
-    "stop": "One complete-icon/normal-size native check; held four-segment observation if convenient. Sidebar and held work unchanged."
+    "report": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+    "source": "B257.284 locally verified; live B256 pending gated deployment.",
+    "native": "B256 size accepted; Potential-only update/alignment failed; B257 confirmation pending.",
+    "stop": "Guarded deployment, then no-governor Potential-only segment and reversible layout native check. Institution softness deferred; held work unchanged."
   }
 }

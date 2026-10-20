@@ -32,6 +32,10 @@ function SPCLevelBannerState.Start(P,shared)
    if signature(v)~=signature(d.views[k])then d.views[k]=v;d.revision=d.revision+1 end
   end
  end
+ -- Called only by the existing proved-commit dispatcher; publish before UI consumers.
+ function d.Refresh(pid,id)
+  mark(pid,id);d.Flush()
+ end
  local prior=shared.OnPermanentCityWrite
  shared.OnPermanentCityWrite=function(c,reason)
   if prior then prior(c,reason)end

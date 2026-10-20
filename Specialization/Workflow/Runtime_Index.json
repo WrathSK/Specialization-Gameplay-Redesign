@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "542b617fd19a98c6f7e0298310a217255f4adb8429c2bee4f4b12acc40d9b18c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "sha256": "28adfccebe51f60df81b806a8f282bfab17f6ab159f1c1c05670ef2915487211",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "69c4ed5860249664eff9f130494b84181054a2b515f64310f6075f6d18f2fe23",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
+      "sha256": "ceccead93d2ed4d3ed4d9c3094c439b3c86bc87b9338feee92728f99f4a7dd0a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c1962732f304a83d4aa463c3e0c5bad42e27ae92e282e967e754d3d2705ac509",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
+      "sha256": "502105a82f4b5065baca5593f7181cfb8ad7b4a7aa50d6861351574cfd0af014",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1351,9 +1351,9 @@
       "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
     },
     "Mod/LevelBannerState.lua": {
-      "sha256": "39c066358008c6895304e40c4e3fddbea253690c28e6d20d5f17f1eadb3b0d04",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "sha256": "a0e8e70cbdd183e750fb700d71d2cdda10a87c9a205a67e46311b5e3cfbea1a3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/UI/LevelBannerModel.lua": {
       "sha256": "e22793c3e794fca50ef89ac7752634549e1b67833f24859f206f5142760d3b73",
@@ -1366,14 +1366,14 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/UI/LevelBanners.lua": {
-      "sha256": "428bcc8c212d4bbcd83425721107018a6fe0f0f6505c485229e61767b7a374ac",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
+      "sha256": "904d0d6d32ed16a97b73bd0b6c7daa85121f03e980f6033b60c470e6dcd0b6b1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/UI/LevelBanners.xml": {
-      "sha256": "8b270aa871a937341a8202eeb361b4e50ca28b2f90b9492cb64368d9f3278eeb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-      "provenance": "B255 approved UI sampling/geometry and build stamps only;32 selected local methods PASS, native visual check pending."
+      "sha256": "a4d27bc9b87cce0180461b974c158a582564bc82ed453fa93618a649815989cc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",

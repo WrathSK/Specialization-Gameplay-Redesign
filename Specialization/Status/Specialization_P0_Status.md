@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0683
-Implementation Build: B256.283 / modinfo283; stable B069.96
+Status Revision: S0684
+Implementation Build: B257.284 / modinfo284; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,14 +11,19 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B256.283 is deployed to repair the B255 icon cropping regression; native review pending.** [Scope and checks](Validation/Results/Specialization_B256_Icon_Size_Repair.md).
+**B257.284 locally fixes Potential-only banner publication and trials the larger map layout.** [Scope, evidence and rollback](Validation/Results/Specialization_B257_Banner_Update_Layout.md).
 
-- B255 USER_GAME_TEST_FAIL: enlarged/cropped institution and map icons. Both now select32px cells for32-unit controls; bottom anchoring and four-segment layout remain unchanged. No artwork/gameplay/event changes.
-- B254 zoom/click/main ACTIVE observations remain accepted; four-segment dynamic behavior remains pending. Local mocks do not simulate native raster filtering.
-- Source/live B256.283/modinfo283 from `3259a50`; receipt `B256.283-3259a50-playtest.json`;277/277 MATCH.32 selected local checks PASS; main/stable B069.96 unchanged.
+- B256 size is user-accepted; slight institution-icon softness is deferred. Potential-only outline updates and bottom alignment failed native review. B254/B256 filled-ACTIVE, zoom and click observations retain their limited scope.
+- LevelBanners now participates in the existing COMMITTED-only target-city refresh. No timer, Store notification expansion or gameplay rule change.
+- Map-only58-unit Grid badge/62-unit group with6-unit bottom inset trials the defense-top/flag-bottom span. B256 checkpoint6548c45 is the documented visual rollback; keep the new update repair if reverting layout.
+- Source B257.284/modinfo284; live B256.283 pending guarded deployment.41 scoped local checks PASS; two historical unrelated failures documented, not rewritten. Native visuals/update pending; main/stable B069.96 unchanged.
 - Development Investment sidebar refinement feedback remains pending and is not included in this batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: one complete-icon/size check, then held segment observation if convenient. Stop at this batch boundary.
+- Next: guarded deployment, then one no-governor P1→P2 update and map-layout check. No further batch starts automatically.
+
+## S0684 — B257 Potential-only refresh and layout trial
+
+User authorized direct implementation after analysis. Missing Store-investment-to-banner dispatch reproduced locally on normal/DEV routes, fixed via existing proved-commit consumer list.41 scoped checks PASS; two unrelated historical failures retained. Source/art/saved mechanics unchanged except presentation dispatch/rendering; rollback preserves the refresh repair. Native visual confirmation remains pending.
 
 ## S0683 — B256 verified deployment
 

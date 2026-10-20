@@ -35,7 +35,7 @@ local function refreshInvestmentSupport(playerID,result)
   end
  end
  if type(result)=='table' and result.status=='COMMITTED' then
-  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects','CrewProjects','Restructuring'})do
+  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects','CrewProjects','Restructuring','LevelBanners'})do
    local d=shared[name];if d then local ok,err=pcall(d.Refresh,playerID,result.city);if not ok then print('[SPC][Investment entry '..name..'] '..tostring(err))end end
   end
  end

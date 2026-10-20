@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context>
 <Instance Name="SPCLevelBannerInstance">
- <Container ID="Root" Anchor="L,B" AnchorSide="O,I" Offset="4,0" Size="32,37" Hidden="1">
-  <Image ID="Badge" Anchor="C,T" Size="32,32"/>
-  <Container Anchor="L,T" Offset="1,33" Size="6,4">
-   <Box ID="Rim1" Size="6,4" Color="139,221,233,255"/>
-   <Box ID="Fill1" Anchor="C,C" Size="4,2" Color="19,35,55,255"/>
+ <Container ID="Root" Anchor="L,B" AnchorSide="O,I" Offset="4,6" Size="58,62" Hidden="1">
+  <!-- Native Grid stretches the complete64px source cell; Image resizing cropped it in B255. -->
+  <Grid ID="Badge" Anchor="C,T" Size="58,58" SliceCorner="0,0" SliceSize="64,64" SliceTextureSize="64,64"/>
+  <Container Anchor="L,T" Offset="2,58" Size="12,4">
+   <Box ID="Rim1" Size="12,4" Color="139,221,233,255"/>
+   <Box ID="Fill1" Anchor="C,C" Size="10,2" Color="19,35,55,255"/>
   </Container>
-  <Container Anchor="L,T" Offset="9,33" Size="6,4">
-   <Box ID="Rim2" Size="6,4" Color="139,221,233,255"/>
-   <Box ID="Fill2" Anchor="C,C" Size="4,2" Color="19,35,55,255"/>
+  <Container Anchor="L,T" Offset="16,58" Size="12,4">
+   <Box ID="Rim2" Size="12,4" Color="139,221,233,255"/>
+   <Box ID="Fill2" Anchor="C,C" Size="10,2" Color="19,35,55,255"/>
   </Container>
-  <Container Anchor="L,T" Offset="17,33" Size="6,4">
-   <Box ID="Rim3" Size="6,4" Color="139,221,233,255"/>
-   <Box ID="Fill3" Anchor="C,C" Size="4,2" Color="19,35,55,255"/>
+  <Container Anchor="L,T" Offset="30,58" Size="12,4">
+   <Box ID="Rim3" Size="12,4" Color="139,221,233,255"/>
+   <Box ID="Fill3" Anchor="C,C" Size="10,2" Color="19,35,55,255"/>
   </Container>
-  <Container Anchor="L,T" Offset="25,33" Size="6,4">
-   <Box ID="Rim4" Size="6,4" Color="139,221,233,255"/>
-   <Box ID="Fill4" Anchor="C,C" Size="4,2" Color="19,35,55,255"/>
+  <Container Anchor="L,T" Offset="44,58" Size="12,4">
+   <Box ID="Rim4" Size="12,4" Color="139,221,233,255"/>
+   <Box ID="Fill4" Anchor="C,C" Size="10,2" Color="19,35,55,255"/>
   </Container>
  </Container>
 </Instance>
