@@ -1,0 +1,8 @@
+-- Reuse named native definitions, including portrait variants, never guessed indices.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'CIVILIZATION_AMERICA','CIVILIZATION_SPC_AMERICA'),Atlas,"Index"
+FROM IconDefinitions WHERE Name='ICON_CIVILIZATION_AMERICA' OR Name GLOB 'ICON_CIVILIZATION_AMERICA_*';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'LEADER_T_ROOSEVELT','LEADER_SPC_T_ROOSEVELT'),Atlas,"Index"
+FROM IconDefinitions WHERE Name='ICON_LEADER_T_ROOSEVELT'
+ OR (Name GLOB 'ICON_LEADER_T_ROOSEVELT_*' AND Name NOT GLOB 'ICON_LEADER_T_ROOSEVELT_ROUGHRIDER*');

@@ -13,6 +13,10 @@
       <name text="MonopolyPlus" />
       <id text="b248a322-3e2a-4a6a-830a-6b0d1f3435fc" />
     </Element>
+    <Element>
+      <name text="TeddyRoosevelt" />
+      <id text="8fd1919b-25b9-47e0-befd-e9560bfe7abe" />
+    </Element>
   </RequiredGameArtIDs>
   <SystemDependencies>
     <Element>
@@ -27,12 +31,91 @@
       </LibraryDependencies>
       <LoadsLibraries>true</LoadsLibraries>
     </Element>
+    <Element>
+      <ConsumerName text="Leaders" />
+      <ArtDefDependencyPaths>
+        <Element text="Leaders.artdef" />
+      </ArtDefDependencyPaths>
+      <LibraryDependencies>
+        <Element text="Leader" />
+        <Element text="LeaderLighting" />
+        <Element text="ColorKey" />
+      </LibraryDependencies>
+      <LoadsLibraries>true</LoadsLibraries>
+    </Element>
+    <Element>
+      <ConsumerName text="LeaderFallback" />
+      <ArtDefDependencyPaths>
+        <Element text="FallbackLeaders.artdef" />
+      </ArtDefDependencyPaths>
+      <LibraryDependencies>
+        <Element text="LeaderFallback" />
+      </LibraryDependencies>
+      <LoadsLibraries>true</LoadsLibraries>
+    </Element>
+    <Element>
+      <ConsumerName text="LeaderLighting" />
+      <ArtDefDependencyPaths />
+      <LibraryDependencies>
+        <Element text="LeaderLighting" />
+      </LibraryDependencies>
+      <LoadsLibraries>true</LoadsLibraries>
+    </Element>
+    <Element>
+      <ConsumerName text="Civilizations" />
+      <ArtDefDependencyPaths>
+        <Element text="Civilizations.artdef" />
+      </ArtDefDependencyPaths>
+      <LibraryDependencies />
+      <LoadsLibraries>true</LoadsLibraries>
+    </Element>
+    <Element>
+      <ConsumerName text="Cultures" />
+      <ArtDefDependencyPaths>
+        <Element text="Cultures.artdef" />
+      </ArtDefDependencyPaths>
+      <LibraryDependencies />
+      <LoadsLibraries>true</LoadsLibraries>
+    </Element>
+    <Element>
+      <ConsumerName text="Audio" />
+      <ArtDefDependencyPaths>
+        <Element text="Leaders.artdef" />
+        <Element text="Civilizations.artdef" />
+      </ArtDefDependencyPaths>
+      <LibraryDependencies />
+      <LoadsLibraries>true</LoadsLibraries>
+    </Element>
   </SystemDependencies>
   <ArtDefDependencies>
     <Element>
       <ArtDefPath text="Units.artdef" />
       <ArtDefDependencyPaths>
         <Element text="Units.artdef" />
+      </ArtDefDependencyPaths>
+    </Element>
+    <Element>
+      <ArtDefPath text="Leaders.artdef" />
+      <ArtDefDependencyPaths>
+        <Element text="Leaders.artdef" />
+      </ArtDefDependencyPaths>
+    </Element>
+    <Element>
+      <ArtDefPath text="FallbackLeaders.artdef" />
+      <ArtDefDependencyPaths>
+        <Element text="FallbackLeaders.artdef" />
+      </ArtDefDependencyPaths>
+    </Element>
+    <Element>
+      <ArtDefPath text="Civilizations.artdef" />
+      <ArtDefDependencyPaths>
+        <Element text="Civilizations.artdef" />
+      </ArtDefDependencyPaths>
+    </Element>
+    <Element>
+      <ArtDefPath text="Cultures.artdef" />
+      <ArtDefDependencyPaths>
+        <Element text="Cultures.artdef" />
       </ArtDefDependencyPaths>
     </Element>
   </ArtDefDependencies>
@@ -47,6 +130,22 @@
     </Element>
     <Element>
       <LibraryName text="VFX" />
+      <PackageDependencies />
+    </Element>
+    <Element>
+      <LibraryName text="Leader" />
+      <PackageDependencies />
+    </Element>
+    <Element>
+      <LibraryName text="LeaderLighting" />
+      <PackageDependencies />
+    </Element>
+    <Element>
+      <LibraryName text="LeaderFallback" />
+      <PackageDependencies />
+    </Element>
+    <Element>
+      <LibraryName text="ColorKey" />
       <PackageDependencies />
     </Element>
   </LibraryDependencies>

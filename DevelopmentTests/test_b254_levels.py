@@ -90,7 +90,7 @@ class Presentation(unittest.TestCase):
   ''');load(l,'Mod/UI/CityBannerManager_SPC_Levels.lua');l.execute("b:UpdateName();assert(named==1 and attached==1);LuaEvents.SPC_LevelBannerReady();assert(attached==2);b:Uninitialize();assert(gone==1 and detached==1);OnShutdown();assert(#LuaEvents.SPC_LevelBannerReady.fs==0)")
 class Package(unittest.TestCase):
  def test_package_closure_syntax_and_assets(self):
-  mod=ROOT/'Mod';tree=ET.parse(mod/'SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'289')
+  mod=ROOT/'Mod';tree=ET.parse(mod/'SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'290')
   files=[e.text for e in tree.findall('./Files/File')];actual={str(p.relative_to(mod))for p in mod.rglob('*')if p.is_file()and p.name not in('.DS_Store','SpecializationP0.modinfo')}
   self.assertEqual(set(files),actual);self.assertEqual(len(files),len(set(files)))
   l=LuaRuntime();check=l.eval('function(s)return assert(loadstring(s))end')

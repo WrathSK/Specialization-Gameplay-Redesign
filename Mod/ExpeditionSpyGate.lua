@@ -353,7 +353,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   local config=PlayerConfigurations and PlayerConfigurations[pid]
   assert(config and type(config.GetCivilizationTypeName)=='function','NAME_CIVILIZATION_UNAVAILABLE')
   local civ=config:GetCivilizationTypeName()
-  assert(civ=='CIVILIZATION_SPC_TEST','NAME_TEST_CIVILIZATION_REQUIRED')
+  assert(civ=='CIVILIZATION_SPC_AMERICA' or civ=='CIVILIZATION_SPC_TEST','NAME_TEST_CIVILIZATION_REQUIRED')
   assert(GameInfo and GameInfo.CivilizationCitizenNames,'NAME_POOL_UNAVAILABLE')
   local names={};local count=0
   for r in GameInfo.CivilizationCitizenNames()do

@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0695
-Implementation Build: B262.289 / modinfo289; stable B069.96
+Status Revision: S0696
+Implementation Build: B263.290 / modinfo290; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,13 +11,16 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B262.289 Capital Investment sidebar and Commerce footer deployed.** [Implementation and validation](Validation/Results/Specialization_B262_Capital_Sidebar.md).
+**B263.290 Roosevelt (Bull Moose) neutral test shell locally complete.** [Implementation and validation](Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md).
 
-- Approved domain/mode/detail sidebar uses existing quotations and locked contract records. No gameplay or payment changes.
-- Commercialization single-action footer reduced90→66; narrow two-action mode remains90. B261 screenshot archived; no unobserved native acceptance inferred.
--20 scoped checks PASS; source/live B262.289 from `aeb59f5`;279/279 MATCH. Native layout/input routing pending.
+- B262 UI accepted by the user. New independent America/Roosevelt selection uses Chinese presentation and specialization access, with no native civilization/leader powers. Legacy Scotland new-game selection is disabled; original IDs/data remain for existing saves.
+- Fourteen targeted unittest methods, existing eligibility ingress check and read-only native-schema/art-reference verification PASS. Native presentation/access remain pending; live remains B262 until guarded deployment.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: minimal UI review; stop at this batch.
+- Next: guarded B263 deployment, then user new-game shell check. No PR, main promotion or next development batch.
+
+## S0696 — B263 Roosevelt test shell
+
+Approved independent test identity, native presentation/name pools and exact access-pair update; legacy identity retained. Scoped local/native-schema checks passed, native UI pending. D0057/A0177 and profession rules unchanged. User explicitly prohibits PR creation.
 
 ## S0695 — B262 verified deployment
 

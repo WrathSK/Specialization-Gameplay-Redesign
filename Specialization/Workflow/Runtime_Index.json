@@ -61,9 +61,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/Config/Players.sql": {
-      "sha256": "ca577b88faa4fa150bd786031f7f23754331b3fb9ceafac0d175b0c578de7ada",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "3483a8e6119486bb11032306501fff90e834e6f5a2a1d11ff88c533229d83284",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/ConstructionProbe.lua": {
       "sha256": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "8c188cdb72cba5e3717f07c230b3ea200123e2e4eb1b59e8b43b54646356c277",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "sha256": "4876162c36cabbed5b2fad4f054671fab6e707052721b7e6feed794692684893",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -421,14 +421,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Specialization.dep": {
-      "sha256": "02512deb207a06f5208eb5429f994e7816cb14f7ad56f496e13a4c434b19925a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3baeed8bc6adb7efdeb5d4325a1550556652edb40a1a3a857e9f8d76e1a88c90",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "sha256": "67ea28ee0a62ea7ea17c076b730d9b6e4b35bae8f3491fa0fbcae1a287bd5ff3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1021,9 +1021,9 @@
       "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "c33c5b841625dca974292aa10670b22a8ecaa2e4f8dd97c5e07a144803a20062",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
-      "provenance": "B227 approved event-driven Activity and reliable unarmed exit;353 local tests PASS; native pending. No new timer/schema/capacity/history/GC change."
+      "sha256": "d444f721d3e27571674d27dcc607b6fad0bf475135789eb0e02366e49771b08a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "d124ad0eb9e8b369bee0963dcead309525fa5dd605d993c92a47e958770ea179",
@@ -1399,6 +1399,51 @@
       "sha256": "f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
       "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+    },
+    "Mod/ArtDefs/Civilizations.artdef": {
+      "sha256": "b05df83d41ed1b5e1ff50ad778d59d3d088a24dd7acee5550de39e7455ffd926",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/Cultures.artdef": {
+      "sha256": "3a27a4c4650366605bcf6f40c2632c26b4a8c7aa1f532cd5b9ca9056a16953c1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/FallbackLeaders.artdef": {
+      "sha256": "d9ef152a001be47404b7a0a71b3c7bb3166c879f324fba9bb8a2e8228c6028a2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/Leaders.artdef": {
+      "sha256": "444dd8087884d35bd0aa9777647e0aae28a9f748b60a3adb22e022bcefbf230c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Config/TestAmerica.sql": {
+      "sha256": "1b463ca162e4fcc784a8a902cfcea635dde1ba04dc21ec651a081dc42e7d3905",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Data/TestAmerica.sql": {
+      "sha256": "786e8af3a34adffb77a0dbe0a2f119e2ddf67d900df356293306dbf967cc0619",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Data/TestAmericaColors.xml": {
+      "sha256": "b00b9049a181f2507fd06de6b3603e208ca4120bcad357623dc684c4f20e7ac7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Data/TestAmericaIcons.sql": {
+      "sha256": "d4baa13a1f3369ef1d21996e8939d28bca8e952c48807f556c03a1d5ed73619a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Text/TestAmerica.sql": {
+      "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     }
   }
 }

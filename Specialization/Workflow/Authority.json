@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0695",
-    "runtime": "B262.289 / modinfo289",
+    "status": "S0696",
+    "runtime": "B263.290 / modinfo290",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
   "runtime_commit": "aeb59f5774a1a604221b9a4e466ba19a4a8eba67",
-  "current_batch": "B262_CAPITAL_SIDEBAR_DEPLOYED",
-  "next_batch": "User Capital Investment sidebar, quote/contract display, Escape and Commerce footer check; stop.",
+  "current_batch": "B263_ROOSEVELT_TEST_SHELL_LOCAL_COMPLETE",
+  "next_batch": "Guarded deployment, then user new-game Roosevelt shell presentation and specialization-access check; no PR or next batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B262.289/modinfo289 DEVELOP_ACTIVE; source aeb59f5774a1a604221b9a4e466ba19a4a8eba67; receipt B262.289-aeb59f5-playtest.json;279/279 MATCH; digest 605fa73b39ce13021eaa11b3f5c4fe5885ac3abe89a04f5faac366bd1b9e9bdd. Fresh game-exit checks, exact B261 restoration and B262 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0694: approved Capital sidebar and Commerce footer addition; B261 screenshot reviewed;20 scoped checks PASS. No financial semantics changed. S0695: clean/pushed source deployed279/279; recovery verified; native pending.",
+  "context_review_status": "S0696: approved neutral Roosevelt shell, explicit legacy isolation, public identity/name-pool consumers and native presentation references reviewed. Fourteen targeted methods plus eligibility and external schema/art checks PASS. B262 user UI acceptance recorded without widening older gameplay evidence.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -62,7 +62,7 @@
       "other future specializations"
     ],
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
-    "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
+    "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
 }

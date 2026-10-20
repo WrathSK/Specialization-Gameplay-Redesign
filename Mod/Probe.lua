@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-262.289"
+P.VERSION = "P0-B-263.290"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -38,7 +38,10 @@ function P.IsTestPlayer(playerID)
   local ok,civ=P.Call(config,"GetCivilizationTypeName")
   local leaderOK,leader=P.Call(config,"GetLeaderTypeName")
   if not ok or not leaderOK then return false,"玩家配置暂不可读" end
-  if civ~="CIVILIZATION_SPC_TEST" or leader~="LEADER_SPC_TEST" then return false,"非测试文明或领袖" end
+  -- B263: exact identity pairs; legacy pair remains valid for preserved saves.
+  local matched=(civ=="CIVILIZATION_SPC_AMERICA" and leader=="LEADER_SPC_T_ROOSEVELT")
+    or (civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST")
+  if not matched then return false,"非测试文明或领袖" end
   local humanOK,human=P.Call(Players and Players[playerID],"IsHuman")
   if not humanOK or type(human)~="boolean" then return false,"玩家人类身份暂不可读（Player.IsHuman）" end
   if not human then return false,"AI玩家未启用" end
@@ -57,7 +60,9 @@ function P.Summary(playerID,cityID)
     local ok,v=P.Call(object,method,...)
     return ok and (v==nil and "nil" or v) or "API_UNAVAILABLE"
   end
-  out[#out+1]="City="..tostring(cityID).." "..city:GetName().." | CIVILIZATION_SPC_TEST / LEADER_SPC_TEST"
+  local cfg=PlayerConfigurations[playerID]
+  out[#out+1]="City="..tostring(cityID).." "..city:GetName().." | "
+    ..cfg:GetCivilizationTypeName().." / "..cfg:GetLeaderTypeName()
   out[#out+1]="Marker="..tostring(val(city,"GetProperty","SPC_P0_MARKER")).." | Spec(test)="..tostring(val(city,"GetProperty","SPC_P0_FIRST_SPEC"))
   out[#out+1]="Potential/Active=NOT_IMPLEMENTED (no invented levels)"
   local ok,gov=P.Call(city,"GetAssignedGovernor")

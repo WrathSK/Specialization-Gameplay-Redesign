@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0695",
-    "runtime": "B262.289 / modinfo289",
+    "status": "S0696",
+    "runtime": "B263.290 / modinfo290",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-  "goal": "B262 Capital Investment three-column UI and Commercialization single-action footer.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+  "goal": "B263 independent neutral America/Roosevelt (Bull Moose) test shell, legacy Scotland selection isolation and specialization access compatibility.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,50 +28,64 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "kind": "section",
       "selector": "## Scope and evidence",
       "reason": "Current authorization and steering."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "kind": "section",
       "selector": "## Implementation",
-      "reason": "Measured UI delta and native reference."
+      "reason": "Identity/presentation allow-list and legacy compatibility."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "kind": "section",
       "selector": "## Validation",
       "reason": "Scoped evidence."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "kind": "section",
       "selector": "## Deployment",
       "reason": "Existing deployment gates."
     }
   ],
   "dependencies": [
-    "Existing Capital quote/confirm/receipt protocol and locked contract records.",
-    "Accepted Investment geometry and B261 native input handling."
+    "Installed native America and Bull Moose presentation, base/GS naming data and persona pack.",
+    "Existing specialization trait/public human-only single-player gate and Expedition citizen-name confirmation.",
+    "Existing neutral legacy identity and guarded W0003 deployment."
   ],
   "old_writers": [
-    "No gameplay cutover; existing UI texture/geometry only."
+    "Old Config/Players.sql selection disabled without deleting legacy gameplay identity.",
+    "Probe.IsTestPlayer exact identity-pair gate and ExpeditionSpyGate namePool are the directly changed consumers; no saved-state writer change."
   ],
   "conditional_context": [
     {
-      "trigger": "Capital Investment UI discrepancy",
+      "trigger": "Identity, presentation or source-name mismatch",
       "paths": [
-        "Mod/UI/CapitalInvestmentPanel.lua",
-        "Mod/UI/CapitalInvestmentPanel.xml",
-        "Mod/UI/CapitalInvestmentUI.lua",
-        "Mod/CapitalInvestment.lua",
-        "Mod/CapitalInvestmentModel.lua",
-        "Mod/Text/Commerce.sql",
-        "Mod/UI/CommercePanel.lua",
-        "Mod/UI/CommercePanel.xml",
-        "DevelopmentTests/test_b262_capital_sidebar.py"
+        "DevelopmentTests/test_b254_levels.py",
+        "DevelopmentTests/test_b263_test_civilization.py",
+        "Mod/ArtDefs/Civilizations.artdef",
+        "Mod/ArtDefs/Cultures.artdef",
+        "Mod/ArtDefs/FallbackLeaders.artdef",
+        "Mod/ArtDefs/Leaders.artdef",
+        "Mod/Config/Players.sql",
+        "Mod/Config/TestAmerica.sql",
+        "Mod/Data/TestAmerica.sql",
+        "Mod/Data/TestAmericaColors.xml",
+        "Mod/Data/TestAmericaIcons.sql",
+        "Mod/ExpeditionSpyGate.lua",
+        "Mod/Probe.lua",
+        "Mod/Specialization.dep",
+        "Mod/SpecializationP0.modinfo",
+        "Mod/Text/TestAmerica.sql",
+        "Mod/Data/Identity.sql",
+        "Mod/QualificationProbe.lua",
+        "Mod/EligibilityProbe.lua",
+        "Mod/ExpeditionTraining.lua",
+        "Mod/ExpeditionSpyStore.lua"
       ]
     },
     {
@@ -82,23 +96,23 @@
     }
   ],
   "non_scope": [
-    "Gameplay, Design, Architecture, saved state, new timers, main/configuration/game launch.",
-    "Institution32px assets and held gameplay/audit work."
+    "Profession mechanics, Design/A0177 semantics, permanent state/migration, capacity/binding/task/reward rules, timers/frames, held audit fixes.",
+    "Main promotion, PR creation, game launch/configuration, external native/HD/other-Mod edits, old-save conversion."
   ],
   "validation": {
-    "depth": "L2 UI/protocol; L1 package and layout bounds.",
-    "local": "20 scoped methods PASS.",
-    "user": "Capital sidebar/quote/contract display, Escape and Commerce footer.",
-    "gap": "Native visual review pending."
+    "depth": "L3 scoped identity/access compatibility; L1 presentation/package. No persistent schema migration.",
+    "local": "14 unittest methods plus existing eligibility ingress and in-memory native schema/art comparison PASS.",
+    "user": "New-game selection, Chinese presentation, original Roosevelt scene and specialization access; American name assignment during normal play.",
+    "gap": "Native visual/audio and new-shell playtest pending; no blanket old-save or Expedition task acceptance."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-    "source": "B262.289/modinfo289 DEVELOP_ACTIVE; source aeb59f5774a1a604221b9a4e466ba19a4a8eba67; receipt B262.289-aeb59f5-playtest.json;279/279 MATCH; digest 605fa73b39ce13021eaa11b3f5c4fe5885ac3abe89a04f5faac366bd1b9e9bdd. Fresh game-exit checks, exact B261 restoration and B262 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
-    "native": "B261 screenshot reviewed, footer fix requested; B262 pending.",
-    "stop": "User Capital Investment sidebar, quote/contract display, Escape and Commerce footer check; stop."
+    "report": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+    "source": "B263 local complete; live B262 pending guarded deployment.",
+    "native": "B262 user UI acceptance recorded; B263 new-shell native check pending.",
+    "stop": "Guarded deployment, then user new-game Roosevelt shell presentation and specialization-access check; no PR or next batch."
   }
 }
