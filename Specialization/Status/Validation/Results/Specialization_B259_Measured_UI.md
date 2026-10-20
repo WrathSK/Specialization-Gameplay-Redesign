@@ -28,4 +28,6 @@ LOCAL_SIMULATION_PASS:39 scoped methods: exact atlas/control geometry and existi
 
 ## Deployment
 
-B259.286/modinfo286 locally verified; live remains B258 pending guarded deployment. Main/stable, institution softness and held gameplay/audits unchanged.
+B259.286/modinfo286 DEVELOP_ACTIVE; source `acd0c0dfb96b0c3b25c0aa0385ba069256a74a90`; receipt `B259.286-acd0c0d-playtest.json`;279/279 MATCH; digest `a4c17e17df845e1ecb0cdfb4681a2156eb328ca0d149d67d83d74a516015fd70`. Fresh game-exit, exact B258 restoration and B259 activation verified; stable/outgoing recovery intact; no pending marker, game launch, main or configuration change.
+
+39 scoped checks and279-runtime/899-context integrity checks PASS.17 source/text files passed publication scanning; exact DDS used its user-approved one-time exception. Native visual review pending. Main/stable, institution softness and held gameplay/audits unchanged.

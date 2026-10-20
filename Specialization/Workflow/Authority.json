@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0688",
+    "status": "S0689",
     "runtime": "B259.286 / modinfo286",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-  "runtime_commit": "7752de4a58314125cb7e3cfe246a82b9ad032b35",
-  "current_batch": "B259_MEASURED_UI_LOCAL_COMPLETE",
-  "next_batch": "Guarded deployment then measured badge/Investment four-card and native footer visual check.",
+  "runtime_commit": "acd0c0dfb96b0c3b25c0aa0385ba069256a74a90",
+  "current_batch": "B259_MEASURED_UI_DEPLOYED",
+  "next_batch": "One measured badge and Investment four-card/native-footer visual check; held work unchanged.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B258.285/modinfo285 DEVELOP_ACTIVE; source 7752de4a58314125cb7e3cfe246a82b9ad032b35; receipt B258.285-7752de4-playtest.json;278/278 MATCH; digest cff1405448b0ddb922cccc3af88ae49851ab4a39e2d064b67ef6e2819a7a92ab. Fresh game-exit checks, exact B257 restoration and B258 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
+  "live": "B259.286/modinfo286 DEVELOP_ACTIVE; source acd0c0dfb96b0c3b25c0aa0385ba069256a74a90; receipt B259.286-acd0c0d-playtest.json;279/279 MATCH; digest a4c17e17df845e1ecb0cdfb4681a2156eb328ca0d149d67d83d74a516015fd70. Fresh game-exit, exact B258 restoration and B259 activation verified; stable/outgoing recovery intact; no pending marker, game launch, main or configuration change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0688: two B258 screenshots and native Spy footer reviewed;39 local checks PASS. Presentation-only authorized refinement; no new gameplay/timers.",
+  "context_review_status": "S0688: two B258 screenshots and native Spy footer reviewed;39 local checks PASS. Presentation-only authorized refinement; no new gameplay/timers. S0689: clean/pushed source deployed279/279, recovery verified; native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

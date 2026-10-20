@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0688
+Status Revision: S0689
 Implementation Build: B259.286 / modinfo286; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B259.286 locally refines measured map size and Investment layout.** [Measurement and evidence](Validation/Results/Specialization_B259_Measured_UI.md).
+**B259.286 is deployed and refines measured map size and Investment layout.** [Measurement and evidence](Validation/Results/Specialization_B259_Measured_UI.md).
 
 - B258 restored badge and other observed repairs accepted; size/alignment/footer refinements requested.49px Image retains accepted segment bottom and update behavior.
 - Native90-high two-button footer; independent fourth Current Contract/error card; separate amount lines. No repeated district city name, native left scrollbars restored, column top/bottom calibrated.
--39 scoped checks PASS; source B259.286, live B258 until guarded deployment. Native visuals pending; no new gameplay acceptance.
+-39 scoped checks PASS; source/live B259.286 from `acd0c0d`;279/279 MATCH, receipt `B259.286-acd0c0d-playtest.json`. Native visuals pending; no new gameplay acceptance.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment then one visual check. No further batch starts automatically.
+- Commit/push and guarded deployment complete. Next: one visual check; no further batch starts automatically.
+
+## S0689 — B259 verified deployment
+
+B259.286/modinfo286 DEVELOP_ACTIVE; source `acd0c0dfb96b0c3b25c0aa0385ba069256a74a90`; receipt `B259.286-acd0c0d-playtest.json`;279/279 MATCH; digest `a4c17e17df845e1ecb0cdfb4681a2156eb328ca0d149d67d83d74a516015fd70`. Fresh game-exit, exact B258 restoration and B259 activation verified; stable/outgoing recovery intact; no pending marker, game launch, main or configuration change. Only current deployment records/hashes updated; no native PASS added.
 
 ## S0688 — B259 measured UI refinement
 
