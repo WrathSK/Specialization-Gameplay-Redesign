@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0694",
+    "status": "S0695",
     "runtime": "B262.289 / modinfo289",
     "military": "D0037",
     "harbor": "D0037",
@@ -97,8 +97,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-    "source": "B262 local complete; live B261 pending deployment.",
+    "source": "B262.289/modinfo289 DEVELOP_ACTIVE; source aeb59f5774a1a604221b9a4e466ba19a4a8eba67; receipt B262.289-aeb59f5-playtest.json;279/279 MATCH; digest 605fa73b39ce13021eaa11b3f5c4fe5885ac3abe89a04f5faac366bd1b9e9bdd. Fresh game-exit checks, exact B261 restoration and B262 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
     "native": "B261 screenshot reviewed, footer fix requested; B262 pending.",
-    "stop": "Guarded deployment then Capital Investment sidebar and Commerce single-action spacing review."
+    "stop": "User Capital Investment sidebar, quote/contract display, Escape and Commerce footer check; stop."
   }
 }

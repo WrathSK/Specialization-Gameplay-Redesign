@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0694
+Status Revision: S0695
 Implementation Build: B262.289 / modinfo289; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B262.289 Capital Investment sidebar and Commerce footer locally complete.** [Implementation and validation](Validation/Results/Specialization_B262_Capital_Sidebar.md).
+**B262.289 Capital Investment sidebar and Commerce footer deployed.** [Implementation and validation](Validation/Results/Specialization_B262_Capital_Sidebar.md).
 
 - Approved domain/mode/detail sidebar uses existing quotations and locked contract records. No gameplay or payment changes.
 - Commercialization single-action footer reduced90→66; narrow two-action mode remains90. B261 screenshot archived; no unobserved native acceptance inferred.
--20 scoped checks PASS. Live remains B261 pending guarded deployment; native presentation pending.
+-20 scoped checks PASS; source/live B262.289 from `aeb59f5`;279/279 MATCH. Native layout/input routing pending.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment and minimal UI review; stop at this batch.
+- Commit/push and guarded deployment complete. Next: minimal UI review; stop at this batch.
+
+## S0695 — B262 verified deployment
+
+B262.289/modinfo289 DEVELOP_ACTIVE; source `aeb59f5774a1a604221b9a4e466ba19a4a8eba67`; receipt `B262.289-aeb59f5-playtest.json`;279/279 MATCH; digest `605fa73b39ce13021eaa11b3f5c4fe5885ac3abe89a04f5faac366bd1b9e9bdd`. Fresh game-exit checks, exact B261 restoration and B262 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. Native review remains pending.
 
 ## S0694 — B262 Capital Investment UI
 

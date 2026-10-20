@@ -28,4 +28,6 @@ LOCAL_SIMULATION_PASS:20 targeted methods, including actual Lua callbacks for no
 
 ## Deployment
 
-B262.289/modinfo289 locally complete; live B261 pending guarded deployment. Stop after minimal UI feedback.
+B262.289/modinfo289 DEVELOP_ACTIVE; source `aeb59f5774a1a604221b9a4e466ba19a4a8eba67`; receipt `B262.289-aeb59f5-playtest.json`;279/279 MATCH; digest `605fa73b39ce13021eaa11b3f5c4fe5885ac3abe89a04f5faac366bd1b9e9bdd`. Fresh game-exit checks, exact B261 restoration and B262 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.
+
+20 scoped checks,279-runtime/905-context integrity checks and16-file publication scan PASS. Native review pending. Stop after minimal UI feedback.
