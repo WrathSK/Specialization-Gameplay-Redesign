@@ -1,24 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0704
+Status Revision: S0705
 Implementation Build: B266.293 / modinfo293; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: V01_PLAYTEST_SCOPE_CONFIRMED
+Work State: V01_PLAYTEST_CANDIDATE_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B266 deployed and locally validated; native recovery review pending.** [B265 evidence, diagnosis and B266 validation](Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md).
+**B266 accepted; final scoped v0.1 readiness check complete.** [Readiness, scope and exact candidate](Validation/Results/Specialization_V01_Playtest_Readiness_B266.md).
 
-- B265 native result: new-city institutions absent; loaded Culture city retained them. Current Research/Industry/Commerce facts remain readable. Culture dynamic color accepted; Research/Industry colors pending. Consecutive governor promotions are deferred to ordinary future play, without forced retesting.
-- Corrected the native Stack/Grid layout calls and guaranteed release of the selected-city refresh guard after exceptions. Existing bounded diagnostics record failure stage and numeric city identity. All refresh remains event-driven; no new timers/frame updates, gameplay or permanent-state change.
-- 64 targeted local tests, Lua 5.1 compilation, XML/package closure and whitespace PASS. Actual B265 Lua reproduced the locked bridge; the submitted snapshot did not retain its exact native exception. New-city native recovery and shortcut/color review remain required.
-- Live is B266.293/modinfo293 from `0c2c4ae`; 288/288 files match receipt `B266.293-0c2c4ae-playtest.json`. Stable/outgoing recovery and absent pending marker verified. Main remains B069.96. No PR or main promotion.
-- Institution softness remains deferred. B249 functional acceptance and earlier scoped evidence remain. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain v0.1 playtest checks. Own-city-loss handling, held Expedition mission root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: wait for the focused new-city institution/shortcut and Research/Industry color check. No further development batch is authorized.
+- The user accepted the combined B266 new-city institution recovery, city-panel shortcut and remaining profession-color review. Prior B265 failure evidence stays frozen. Consecutive governor promotions remain an ordinary-play observation; no forced reproduction or expanded PASS.
+- Research, Culture, Commerce and Industry mainlines have the recorded scoped acceptance. B263 neutral Roosevelt entry and B264/B262 presentation acceptance are retained. No new blocker was found for the user's defined first v0.1 playtest.
+- Current candidate/live remains B266.293/modinfo293 from `0c2c4ae`; 288/288 files match the deployment receipt. All 185 Lua files compile, 32 XML/artdef/dep files parse, exact package closure and recovery checks pass. B266's 64 local tests are inherited without rerunning.
+- REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks inside the v0.1 playtest. Own-city-loss handling, held Expedition task/root-cause work, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-playtest high priority. Institution softness stays deferred.
+- Supported first-test scope remains Standard-speed single-player human with the dedicated America/Roosevelt shell, installed HD/GS/persona dependencies and four professions. No ordinary-civilization/AI/multiplayer/future-profession expansion.
+- Main remains clean at B069.96. This checkpoint changes records only: no runtime/test/Design/Architecture/configuration changes, new deployment, tag, PR or main promotion.
+- Next: await the user's first-playtest baseline designation; stop without another development batch. W0003 is not changed by this readiness recommendation.
+
+## S0705 — B266 acceptance and v0.1 readiness checkpoint
+
+User accepted B266 and requested the final v0.1 check without a PR. Current scoped functional/UI evidence, deferred priorities, 21 unchanged core modules since the B249 checkpoint, later presentation/publication deltas, all runtime Lua/XML/package files and source/live/recovery equality were reviewed. No new entry blocker found within the accepted scope. Only the new readiness report, current Status/Authority/P0-H and named Context Lock entries change. Prior native/local boundaries remain; no code, test, deployment, main or configuration change.
 
 ## S0704 — B266 verified deployment
 

@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0704",
+    "status": "S0705",
     "runtime": "B266.293 / modinfo293",
     "military": "D0037",
     "harbor": "D0037",
@@ -33,12 +33,12 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
   "runtime_commit": "0c2c4aec852411c40c0998c2693dad1346f470dd",
-  "current_batch": "B266_DEPLOYED_AWAITING_USER",
-  "next_batch": "Wait for focused new-city institution visibility, ACTIVE shortcut and Research/Industry metric color review. Consecutive governor promotions remain deferred to ordinary play. No new batch, PR or main promotion.",
+  "current_batch": "B266_ACCEPTED_V01_READINESS_COMPLETE",
+  "next_batch": "B266 accepted; four-profession v0.1 readiness check complete. Await the user's first-playtest baseline designation. Carry REALLOCATING cold-load and Standardization + Development additive output into that playtest; retain all user-deferred post-playtest work. No new batch, deployment, PR or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B266.293/modinfo293 DEVELOP_ACTIVE; source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Fresh automatic game-exit checks, exact B265 restoration and B266 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native recovery review pending; no PR.",
+  "live": "B266.293/modinfo293 DEVELOP_ACTIVE; unchanged source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Read-only readiness check reverified source/live/receipt, stable and outgoing B265 recovery, and absent pending marker. B266 UI acceptance received. No new deployment, game operation or configuration/main change; no PR.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0704: 64 scoped tests and static checks PASS. Context/publication gates passed; B266 source 0c2c4aec852411c40c0998c2693dad1346f470dd deployed under W0003 with 288/288 MATCH and verified recovery. Only deployment/current-record hashes changed after the source commit. Native recovery review pending.",
+  "context_review_status": "S0705: user accepts B266 UI recovery; final scoped v0.1 readiness review found no new entry blocker. 288-file package closure/source-live-receipt equality, 185 Lua 5.1 compilations, 32 XML/artdef/dep parses and stable/outgoing recovery verified. Prior 64 local tests inherited, not rerun. Only owned readiness/current records and their reviewed hashes change; runtime/D0057/A0177 unchanged. Deferred findings remain open; no PR or baseline promotion.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md"
 }
