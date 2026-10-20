@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0674
+Status Revision: S0675
 Implementation Build: B252.279 / modinfo279; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B252.279 is locally verified; guarded deployment and native UI review remain.** [Scope, read contract and checks](Validation/Results/Specialization_B252_Commerce_UI.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
+**B252.279 is deployed; the new visuals await one native UI review.** [Scope, read contract and checks](Validation/Results/Specialization_B252_Commerce_UI.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
 
 - Commerce institution descriptions now include the existing ability rules. New gradient district-style backdrops use native Roman labels at the institution-name font size; four-level previews, spacing, ACTIVE highlighting and ability-local values remain.
 - Development Investment now presents cities → selectable districts → details cards in three columns, with responsive narrow-page navigation. Selection is transient and identity-based; the existing quote/confirm protocol, payment safety and contract rules are unchanged. No timer, frame update or new gameplay state.
 - 41 targeted local methods PASS, including actual UI protocol/selection regressions, SQLite/XML/Lua checks and269-file package closure. Native texture loading, column fit and text readability remain USER_GAME_TEST_REQUIRED. Existing gameplay evidence is inherited without a new save/load sequence.
-- Source B252.279/modinfo279; live remains B251.278/modinfo278 from `5be0345`, receipt `B251.278-5be0345-playtest.json`,267/267 MATCH. Main/stable B069.96 is unchanged. Two exact new DDS blobs have the user's one-time publication exception; all other files must pass the unchanged staged gate.
+- Source/live B252.279/modinfo279 from `efd54c0`; receipt `B252.279-efd54c0-playtest.json` DEVELOP_ACTIVE,269/269 MATCH. Stable and outgoing B251 recovery are verified; main/stable B069.96 is unchanged. Two exact DDS blobs used the user's one-time exception (`62154a3`); all24 other batch files passed the unchanged staged gate.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks **during** the v0.1 playtest. Remaining own-city-loss handling, Expedition root-cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage presentation and outstanding audits remain **post-v0.1-playtest high priority**.
-- Complete clean commit/push and guarded deployment/current checkpoint, then stop for one minimal UI flow. No next gameplay, audit repair or balance batch is started.
+- Clean commit/push and guarded deployment are complete. Stop for one minimal UI flow; no next gameplay, audit repair or balance batch is started.
+
+## S0675 — B252 verified deployment
+
+Clean/pushed `efd54c0` passed fresh automatic game-exit checks, exact B251 receipt restoration and B252 activation.269 source/runtime files MATCH; stable and outgoing B251 recovery packages are verified, with no pending marker.41 targeted local methods, context, scoped links, reviewed diff and the ordinary publication gate passed. The separate fixed-DDS exception remains bounded to `62154a3`, without a lasting policy/hook change. Only current deployment metadata and its named hashes change; no new native acceptance, main/configuration change or game launch. Await the one UI flow and stop.
 
 ## S0674 — B252 presentation batch locally verified
 

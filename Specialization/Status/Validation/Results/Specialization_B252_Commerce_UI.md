@@ -51,4 +51,6 @@ The user explicitly approved a one-time publication exception for **only** `Mod/
 
 ## Deployment and continuation
 
-Source B252.279/modinfo279 is locally verified; live remains B251.278 until clean commit/push and the existing game-exit/receipt transaction complete. No game launch or configuration change. After verified deployment/current record, stop for the single UI flow; no gameplay, audit repair or balance batch follows automatically.
+Verified deployment on 2026-10-19 after clean committed/pushed source and fresh automatic game-exit checks before both guarded switches. B252.279/modinfo279 DEVELOP_ACTIVE; source efd54c0f353fcaa6751f0271c9a9461570ebb149; receipt B252.279-efd54c0-playtest.json;269/269 MATCH,digest ddd0d8bc6aec6ae9ff558586911494065c9f2498828d4d851cbc43a76537d281. Stable and outgoing B251 recovery verified; no pending marker, game launch or configuration change. The exact B251 receipt restored the stable bridge, then the new B252 receipt activated the reviewed package. Stable/main B069.96 remains untouched. Context integrity (269 runtime /861 guarded files), eight scoped document links/anchors, diff review and the normal staged publication gate passed for all24 non-binary batch files; the two fixed DDS blobs were the separately approved exception (`62154a3`).
+
+The source/current checkpoint is complete. Stop for the single native UI flow; no gameplay, audit repair or balance batch follows automatically. Native visuals remain USER_GAME_TEST_REQUIRED and all S0669 deferred/in-playtest boundaries remain unchanged.

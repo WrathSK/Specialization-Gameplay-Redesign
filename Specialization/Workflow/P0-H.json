@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0674",
+    "status": "S0675",
     "runtime": "B252.279 / modinfo279",
     "military": "D0037",
     "harbor": "D0037",
@@ -107,8 +107,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-    "source": "B252.279/modinfo279 locally verified; live B251.278 remains until guarded deployment.",
+    "source": "B252.279/modinfo279 DEVELOP_ACTIVE; source efd54c0f353fcaa6751f0271c9a9461570ebb149; receipt B252.279-efd54c0-playtest.json;269/269 MATCH,digest ddd0d8bc6aec6ae9ff558586911494065c9f2498828d4d851cbc43a76537d281. Stable and outgoing B251 recovery verified; no pending marker, game launch or configuration change.",
     "native": "USER_GAME_TEST_REQUIRED for new visuals and presentation click path; prior gameplay evidence unchanged.",
-    "stop": "Complete the existing guarded deployment/current checkpoint, then one institution/sidebar native UI flow. No new gameplay, audit repair or balance batch; S0669 scheduling unchanged."
+    "stop": "B252 source, local checks and verified deployment/current checkpoint complete. Await one visual/confirmation check during normal play; no further gameplay/audit batch."
   }
 }
