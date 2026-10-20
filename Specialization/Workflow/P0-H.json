@@ -11,25 +11,25 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0702",
-    "runtime": "B265.292 / modinfo292",
+    "status": "S0703",
+    "runtime": "B266.293 / modinfo293",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-  "goal": "B265 event-driven institution/admission refresh, native ACTIVE shortcut, retired legacy entry, bounded diagnostics and profession-colored live metrics.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+  "goal": "B266 repair the selected-city presentation bridge after the B265 new-city institution regression; preserve gameplay and event-driven refresh.",
   "implementation_authorized": false,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
       "kind": "full",
-      "reason": "Explicitly authorized current batch, implementation and validation boundary."
+      "reason": "Current user-authorized investigation and direct narrow repair."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
       "kind": "full",
-      "reason": "Verified stale-consumer reproduction and native/HD UI evidence."
+      "reason": "Preceding bridge change and inherited validation boundaries."
     }
   ],
   "dependencies": [
@@ -38,28 +38,23 @@
     "Existing bounded scalar diagnostics and native yield color tokens."
   ],
   "old_writers": [
-    "Retire CityPotential SetUpdate polling and old visible badge; preserve only event-driven selected-city reads. No gameplay writer cutover."
+    "No gameplay writer cutover. Correct native layout calls and release the existing UI reentrancy guard on every exit."
   ],
   "conditional_context": [
     {
       "trigger": "Approved implementation and targeted verification",
       "paths": [
         "Mod/UI/CityPotential.lua",
-        "Mod/UI/CityPotential.xml",
         "Mod/UI/InstitutionOverview.lua",
-        "Mod/UI/ExpeditionTrainingUI.lua",
-        "Mod/UI/CrewProjectOrder.lua",
+        "Mod/UI/Institutions.lua",
         "Mod/InstitutionPresentation.lua",
-        "Mod/Gameplay.lua",
-        "Mod/ExpeditionTraining.lua",
+        "Mod/UI/LevelBannerModel.lua",
         "Mod/ExpeditionTrainingDiagnostics.lua",
-        "Mod/LevelBannerState.lua",
         "Mod/Probe.lua",
         "Mod/SpecializationP0.modinfo",
         "DevelopmentTests/test_b265_city_presentation.py",
-        "DevelopmentTests/test_expedition_training_ui.py",
-        "DevelopmentTests/test_culture_institutions.py",
-        "DevelopmentTests/test_b251_institutions.py"
+        "DevelopmentTests/test_b266_institution_recovery.py",
+        "DevelopmentTests/test_culture_institutions.py"
       ]
     },
     {
@@ -74,18 +69,18 @@
     "Main promotion, PR, game launch/configuration, external native/HD/other-Mod edits."
   ],
   "validation": {
-    "depth": "L2 consumer invalidation/ownership and admission handshake; L1 native layout/colors/package.",
-    "local": "94 scoped tests, 9 changed Lua sources compiled as Lua 5.1, localization/XML/288-file closure and whitespace PASS.",
-    "user": "USER_GAME_TEST_REQUIRED: promotion refresh, native ACTIVE shortcut, per-profession live-metric colors."
+    "depth": "L2 selected-city lifecycle and native-shaped control boundary; L1 syntax/package.",
+    "local": "64 scoped tests; Lua 5.1, XML, exact 288-file closure and whitespace PASS. Corrected native-shaped fixture reproduces pre-repair failure.",
+    "user": "Culture metric color accepted. New-city institution visibility failed. Research/Industry colors pending; consecutive governor promotions deferred to ordinary future play."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-    "source": "B265.292/modinfo292 DEVELOP_ACTIVE; source 25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0; receipt B265.292-25b812f-playtest.json; 288/288 MATCH; digest 82a841b616a8f6b7ea904e70d4d7f81150c2d0b35ab99f5bfc58ed8f65d0a114. Fresh automatic game-exit checks, exact B264 restoration and B265 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native review pending; no PR.",
-    "native": "Pending",
-    "stop": "Wait for the combined B265 native check: same-turn governor refresh, ACTIVE city-panel shortcut and profession-colored dynamic lines. No new development batch, PR or main promotion."
+    "report": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+    "source": "B266.293 local complete; live B265.292 pending W0003 deployment.",
+    "native": "New-city institutions USER_GAME_TEST_FAIL; culture metric color USER_GAME_TEST_PASS.",
+    "stop": "Complete guarded B266 deployment, then wait for new-city institution/shortcut review and Research/Industry metric colors. Consecutive governor promotions deferred to ordinary play. No PR/main promotion."
   }
 }

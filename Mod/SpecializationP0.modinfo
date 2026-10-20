@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="292">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="293">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B265.292：机构与训练资格事件刷新、城市专业快捷入口及专业配色动态数值。</Description>
+    <Description>B266.293：修复新城机构显示与城市专业快捷入口的原生布局和刷新退出。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

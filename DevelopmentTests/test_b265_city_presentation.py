@@ -8,7 +8,7 @@ from test_expedition_training_ui import ui
 R=Path(__file__).resolve().parents[1]
 
 
-def presentation():
+def presentation(setup=None):
  l=display()
  l.execute("""
   function event()
@@ -34,6 +34,8 @@ def presentation():
    return c
   end
   layouts=0;actionParent=control();actionParent.parent=control();actionParent.parent.parent=control()
+  actionParent.parent.CalculateSize=nil
+  actionParent.parent.DoAutoSize=function()layouts=layouts+1 end
   Controls.ActiveShortcut=control();Controls.ActiveIcon=control()
   ContextPtr={SetHide=function()end,LookUpControl=function()if not missingParent then return actionParent end end,
    SetInitHandler=function(_,f)startBridge=f end,SetShutdown=function(_,f)stopBridge=f end}
@@ -56,6 +58,7 @@ def presentation():
   end
  """)
  l.execute((R/'Mod/UI/LevelBannerModel.lua').read_text())
+ if setup:l.execute(setup)
  l.execute((R/'Mod/UI/CityPotential.lua').read_text())
  l.execute('startBridge()')
  return l

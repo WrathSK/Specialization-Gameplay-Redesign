@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "8b782e0e8dade990e508ffc08fb2c3125df0e6658049a4b058903b194eab3aec",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "8d11de913a0d6e4752a09261fd327db385813065ca933319da3c478f3932eb98",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "857146dae2b5e1e3d4e81d8a72c64aa43fcd5f38577ba82f87261044775a10f2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "42ca0834b2caeef1ac0900531aa393989b9bc53dde9eb9d65a8da70bfd0e8041",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -486,9 +486,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CityPotential.lua": {
-      "sha256": "0064cf4511f920f0dbd50a6470e2a2e8a9302c76b401a37a8c8c8db1b401951f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "ecaa2a77de27ac5aa16a46bfdfc796e6320f0dc9424ff1338b5d8bdf606d9deb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
     },
     "Mod/UI/CityPotential.xml": {
       "sha256": "ee21aabc5a688151475978bc1fbd261edfeb64368c8f73e7f91789ed35e24043",
