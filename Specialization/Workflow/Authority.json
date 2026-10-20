@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0698",
+    "status": "S0699",
     "runtime": "B264.291 / modinfo291",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-  "runtime_commit": "c9a0ddabf00d825d9dd16035f93d4ca441e08e7b",
-  "current_batch": "B264_INSTITUTION_TOOLTIPS_LOCAL_VERIFIED",
-  "next_batch": "Guarded W0003 deployment, then wait for combined B263 shell/B264 tooltip review. No PR, promotion or new batch.",
+  "runtime_commit": "3da40dc0ca7681f1d417bef1025bf047d8680ef2",
+  "current_batch": "B264_INSTITUTION_TOOLTIPS_DEPLOYED",
+  "next_batch": "Wait for combined B263 shell/B264 tooltip user review. No PR, promotion or new batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B263.290/modinfo290 DEVELOP_ACTIVE; source c9a0ddabf00d825d9dd16035f93d4ca441e08e7b; receipt B263.290-c9a0dda-playtest.json; 288/288 MATCH; digest ad9c356641e23d09f43b5cf783daa8de95955dc71ad4a07bf9ee74aaaad36a8f. Fresh automatic game-exit checks, exact B262 restoration and B263 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. No PR.",
+  "live": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 combined native review remains pending. No PR.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0698: approved 16-institution presentation, native Gold token/icons, unchanged factual reads/arithmetic and 12 targeted display methods reviewed. Localization/rendering/Lua/package checks PASS. Only owned presentation/build/current record hashes updated; native review pending, no PR.",
+  "context_review_status": "S0698: approved 16-institution presentation, native Gold token/icons, unchanged factual reads/arithmetic and 12 targeted display methods reviewed. Localization/rendering/Lua/package checks PASS. Only owned presentation/build/current record hashes updated; native review pending, no PR. S0699: clean pushed source deployed 288/288; exact receipt and stable/B263 recovery verified. Only deployment records/hashes updated; native pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

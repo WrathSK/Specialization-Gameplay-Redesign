@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0698
+Status Revision: S0699
 Implementation Build: B264.291 / modinfo291; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,12 +11,16 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B264.291 native-style institution tooltips locally verified; deployment pending.** [Implementation and validation](Validation/Results/Specialization_B264_Institution_Tooltips.md).
+**B264.291 native-style institution tooltips deployed; combined native review pending.** [Implementation and validation](Validation/Results/Specialization_B264_Institution_Tooltips.md).
 
 - User approved the 16-institution formatting plan: native headings/bullets/icons and Gold dynamic values under their abilities. Existing facts/formulas/status distinctions are preserved. Twelve targeted display methods plus localization, rendered-tooltip, native-symbol, Lua and package checks PASS.
-- B263 Roosevelt shell and B264 tooltip visuals await the user's combined review. Live remains B263.290 from `c9a0dda`, 288/288 verified at its deployment. B262 UI acceptance and older scoped evidence remain unchanged.
+- B263 Roosevelt shell and B264 tooltip visuals await the user's combined review. Live B264.291 from `3da40dc`, 288/288 MATCH; stable/outgoing recovery verified. B262 UI acceptance and older scoped evidence remain unchanged.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: clean-source W0003 deployment, then wait for combined B263/B264 user review. No PR, main promotion or next development batch.
+- Next: wait for combined B263/B264 user review. No PR, main promotion or next development batch.
+
+## S0699 — B264 verified deployment
+
+B264.291/modinfo291 DEVELOP_ACTIVE; source `3da40dc0ca7681f1d417bef1025bf047d8680ef2`; receipt `B264.291-3da40dc-playtest.json`; 288/288 MATCH; digest `d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d`. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 combined native review remains pending. No PR.
 
 ## S0698 — B264 institution tooltip presentation
 

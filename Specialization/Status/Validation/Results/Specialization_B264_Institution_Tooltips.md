@@ -26,7 +26,7 @@ Risk depth: **L1 presentation only**.
 
 ## Deployment
 
-Source is B264.291 / modinfo291. At this implementation checkpoint, live remains B263.290. Commit/push clean develop, then use W0003's fresh process checks, exact previous receipt restoration, new receipt activation and source/live equality checks. If the game is running or its status cannot be established, leave the existing package unchanged.
+B264.291/modinfo291 DEVELOP_ACTIVE; source `3da40dc0ca7681f1d417bef1025bf047d8680ef2`; receipt `B264.291-3da40dc-playtest.json`; 288/288 MATCH; digest `d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d`. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 combined native review remains pending. No PR.
 
 ## Combined user check and stop
 
@@ -34,4 +34,4 @@ During the user's combined B263/B264 review, hover institution entries in the fo
 
 - User decision: none.
 - User testing: combined B263 shell and B264 tooltip visual review.
-- Primary next: finish guarded deployment if possible, then wait. No PR or next batch.
+- Primary next: wait for the combined user review. No PR or next batch.

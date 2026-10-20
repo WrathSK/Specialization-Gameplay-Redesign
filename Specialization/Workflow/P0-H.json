@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0698",
+    "status": "S0699",
     "runtime": "B264.291 / modinfo291",
     "military": "D0037",
     "harbor": "D0037",
@@ -99,8 +99,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-    "source": "B264.291 locally verified; live remains B263.290 until guarded deployment.",
+    "source": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 combined native review remains pending. No PR.",
     "native": "B263 shell and B264 tooltip review combined and pending; earlier acceptance not widened.",
-    "stop": "Guarded W0003 deployment, then wait for combined B263 shell/B264 tooltip review. No PR, promotion or new batch."
+    "stop": "Wait for combined B263 shell/B264 tooltip user review. No PR, promotion or new batch."
   }
 }
