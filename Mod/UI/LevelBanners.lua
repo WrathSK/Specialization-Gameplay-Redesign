@@ -12,7 +12,7 @@ local function render(e)
  local v=d and d.views[e.pid..':'..e.id]
  local m=Game.GetLocalPlayer()==e.pid and M.View(v,e.pid,e.id,e.x,e.y) or nil
  local c=e.controls;c.Root:SetHide(not m);if not m then return end
- c.Badge:SetIcon(m.icon,64);c.Badge:SetSizeVal(32,32)
+ c.Badge:SetIcon(m.icon,32);c.Badge:SetSizeVal(32,32)
  local bright=M.Colors[m.kind];local dark={19,35,55,255};local dim={70,83,103,255}
  for i,state in ipairs(m.segments)do
   color(c['Rim'..i],state=='DIM' and dim or bright)

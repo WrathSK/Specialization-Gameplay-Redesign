@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0681",
-    "runtime": "B255.282 / modinfo282",
+    "status": "S0682",
+    "runtime": "B256.283 / modinfo283",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-  "goal": "B255 explicit64px institution sampling at32-unit display and compact bottom-aligned map emblem; UI only.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+  "goal": "B256 restore complete icons by matching32px atlas cells and32-unit controls; preserve bottom-aligned layout.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,34 +28,28 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
       "kind": "section",
       "selector": "## Approved scope",
-      "reason": "Two authorized presentation adjustments."
+      "reason": "Authorized regression repair."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
       "kind": "section",
-      "selector": "## B254 native evidence",
-      "reason": "Scoped user acceptance and held four-segment check."
+      "selector": "## Native evidence and cause",
+      "reason": "B255 failure and local mock limits."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
       "kind": "section",
-      "selector": "## Implementation and source of truth",
-      "reason": "Texture and geometry delta only."
+      "selector": "## Implementation and validation",
+      "reason": "Two size arguments, unchanged geometry and atlas."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-      "kind": "section",
-      "selector": "## Local validation",
-      "reason": "32 selected local methods."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
       "kind": "section",
       "selector": "## Publication and deployment",
-      "reason": "Existing gated deployment."
+      "reason": "Existing gates."
     }
   ],
   "dependencies": [
@@ -95,18 +89,18 @@
   ],
   "validation": {
     "depth": "L1 texture/package/XML geometry; existing L2 UI/state regression.",
-    "local": "32 selected methods PASS; atlas bytes unchanged.",
-    "user": "Institution sharpness, map bottom alignment and held four-segment dynamic update.",
-    "gap": "Native sampling/filtering and visual alignment require user review."
+    "local": "32 selected methods PASS;32px cells/controls, atlas/XML unchanged.",
+    "user": "Complete institution/map icons at normal size; held segment update if convenient.",
+    "gap": "Native raster behavior is not simulated."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-    "source": "B255.282/modinfo282 DEVELOP_ACTIVE; source 6e64d96831978049b98726bbe463133a8e9fc0ca; receipt B255.282-6e64d96-playtest.json;277/277 MATCH; digest f3ee4d3a7864a52a1b6bc253f44ad7890edf5572185ae75b5f33b2fce49f63bb. Fresh game-exit checks, exact B254 restoration and B255 activation passed. Stable and outgoing B254 recovery verified; no pending marker, game launch, configuration or main change.",
-    "native": "B254 zoom/click/main ACTIVE user-confirmed; four-segment dynamics and B255 visuals pending.",
-    "stop": "One institution sharpness/map alignment/four-segment update native check. Sidebar and held work remain pending."
+    "report": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+    "source": "B256.283 locally verified; live B255 pending guarded deployment.",
+    "native": "B255 USER_GAME_TEST_FAIL; B256 visuals and four-segment dynamics pending.",
+    "stop": "Guarded deployment, then complete-icon/normal-size native check. Four-segment dynamics remain pending; held work unchanged."
   }
 }

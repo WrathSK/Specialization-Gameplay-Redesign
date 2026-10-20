@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0681
-Implementation Build: B255.282 / modinfo282; stable B069.96
+Status Revision: S0682
+Implementation Build: B256.283 / modinfo283; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B255.282 is deployed; institution sampling and map-emblem sizing/alignment await native review.** [Scope and checks](Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
+**B256.283 locally repairs the B255 icon cropping regression; native review pending.** [Scope and checks](Validation/Results/Specialization_B256_Icon_Size_Repair.md).
 
-- Institution rows select existing64px texture at unchanged32-unit size. Map badge is32 units; four segments terminate at the bottom of the native city-name banner container. Artwork/gameplay/events remain unchanged.
-- B254 user confirms zoom, normal banner clicking and main ACTIVE updates after governor relocation. Four-segment dynamic behavior remains pending; no blanket native PASS.
-- Source/live B255.282/modinfo282 from `6e64d96`; receipt `B255.282-6e64d96-playtest.json`;277/277 MATCH.32 selected local methods PASS. Main/stable B069.96 unchanged.
+- B255 USER_GAME_TEST_FAIL: enlarged/cropped institution and map icons. Both now select32px cells for32-unit controls; bottom anchoring and four-segment layout remain unchanged. No artwork/gameplay/event changes.
+- B254 zoom/click/main ACTIVE observations remain accepted; four-segment dynamic behavior remains pending. Local mocks do not simulate native raster filtering.
+- Source B256.283/modinfo283; live remains B255.282 pending guarded deployment.32 selected local checks PASS; main/stable B069.96 unchanged.
 - Development Investment sidebar refinement feedback remains pending and is not included in this batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: one minimal visual/segment check; no further batch starts automatically.
+- Next: guarded deployment and one complete-icon/size check, then held segment observation if convenient. Stop at this batch boundary.
+
+## S0682 — B256 matched-size icon repair
+
+Explicit user approval covers the two atlas-size corrections.32 selected local checks PASS; XML, DDS, gameplay and events unchanged. B255 failure recorded without rewriting frozen reports. Exact native rendering remains pending; no claimed high-resolution improvement.
 
 ## S0681 — B255 verified deployment
 

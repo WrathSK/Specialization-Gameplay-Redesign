@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "3cb3166435535f90314f5c4049d3019b8b59f2fd74499e045b3e27704ba88500",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-      "provenance": "B255 approved UI sampling/geometry and build stamps only;32 selected local methods PASS, native visual check pending."
+      "sha256": "69c4ed5860249664eff9f130494b84181054a2b515f64310f6075f6d18f2fe23",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "93d30b75477bbb93dd5cab5a461e3bbb21a17c959a6d3cd8e4b40ca7a9c0c036",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-      "provenance": "B255 approved UI sampling/geometry and build stamps only;32 selected local methods PASS, native visual check pending."
+      "sha256": "c1962732f304a83d4aa463c3e0c5bad42e27ae92e282e967e754d3d2705ac509",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -731,9 +731,9 @@
       "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "ac9ea476a8a521f8722c8727b9a37f764678fa490e5e6ffb2ffe99430c020913",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-      "provenance": "B255 approved UI sampling/geometry and build stamps only;32 selected local methods PASS, native visual check pending."
+      "sha256": "f239ef9364fbbeb9d1b7574fd236253c51df7ffd5fed44da6df42373b9919864",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
     },
     "Mod/UI/Institutions.xml": {
       "sha256": "212d7dd48aa2318d2cfba2fe396191cb7e1e506195229af9d40335ebca323f3c",
@@ -1366,9 +1366,9 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/UI/LevelBanners.lua": {
-      "sha256": "7b8c11d0ac955701feb53d4456d6e115c4536dfb3281e8122248d4c6ff66f490",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-      "provenance": "B255 approved UI sampling/geometry and build stamps only;32 selected local methods PASS, native visual check pending."
+      "sha256": "428bcc8c212d4bbcd83425721107018a6fe0f0f6505c485229e61767b7a374ac",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
     },
     "Mod/UI/LevelBanners.xml": {
       "sha256": "8b270aa871a937341a8202eeb361b4e50ca28b2f90b9492cb64368d9f3278eeb",

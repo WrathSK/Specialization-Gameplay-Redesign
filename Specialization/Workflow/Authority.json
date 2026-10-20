@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0681",
-    "runtime": "B255.282 / modinfo282",
+    "status": "S0682",
+    "runtime": "B256.283 / modinfo283",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
   "runtime_commit": "6e64d96831978049b98726bbe463133a8e9fc0ca",
-  "current_batch": "B255_ICON_SAMPLING_ALIGNMENT_DEPLOYED",
-  "next_batch": "One institution sharpness/map alignment/four-segment update native check. Sidebar and held work remain pending.",
+  "current_batch": "B256_ICON_SIZE_REPAIR_LOCAL_COMPLETE",
+  "next_batch": "Guarded deployment, then complete-icon/normal-size native check. Four-segment dynamics remain pending; held work unchanged.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B255.282/modinfo282 DEVELOP_ACTIVE; source 6e64d96831978049b98726bbe463133a8e9fc0ca; receipt B255.282-6e64d96-playtest.json;277/277 MATCH; digest f3ee4d3a7864a52a1b6bc253f44ad7890edf5572185ae75b5f33b2fce49f63bb. Fresh game-exit checks, exact B254 restoration and B255 activation passed. Stable and outgoing B254 recovery verified; no pending marker, game launch, configuration or main change.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0680/B255: scoped institution and native banner geometry review;32 selected local methods PASS. Existing atlases unchanged. B254 zoom/click/main ACTIVE user-confirmed; four-segment dynamics and B255 visuals pending. S0681: clean/pushed B255 deployed after fresh game-exit and exact receipt gates;277/277 MATCH and recovery verified. Only current deployment records rehashed; no new native PASS.",
+  "context_review_status": "S0682: reviewed B255 cropped-icon native failure and approved two-argument atlas-size repair;32 local checks PASS. XML/atlas/gameplay/events unchanged. Native visual check pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md"
 }
