@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0680",
+    "status": "S0681",
     "runtime": "B255.282 / modinfo282",
     "military": "D0037",
     "harbor": "D0037",
@@ -105,8 +105,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
-    "source": "B255.282 locally verified; live B254 until guarded deployment.",
+    "source": "B255.282/modinfo282 DEVELOP_ACTIVE; source 6e64d96831978049b98726bbe463133a8e9fc0ca; receipt B255.282-6e64d96-playtest.json;277/277 MATCH; digest f3ee4d3a7864a52a1b6bc253f44ad7890edf5572185ae75b5f33b2fce49f63bb. Fresh game-exit checks, exact B254 restoration and B255 activation passed. Stable and outgoing B254 recovery verified; no pending marker, game launch, configuration or main change.",
     "native": "B254 zoom/click/main ACTIVE user-confirmed; four-segment dynamics and B255 visuals pending.",
-    "stop": "Guarded B255 deployment, then one institution sharpness/map alignment/four-segment update check. Sidebar and held work remain pending."
+    "stop": "One institution sharpness/map alignment/four-segment update native check. Sidebar and held work remain pending."
   }
 }

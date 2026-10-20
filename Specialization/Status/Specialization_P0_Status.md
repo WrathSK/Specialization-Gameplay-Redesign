@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0680
+Status Revision: S0681
 Implementation Build: B255.282 / modinfo282; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B255.282 is locally verified; institution sampling and map-emblem sizing/alignment await native review.** [Scope and checks](Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
+**B255.282 is deployed; institution sampling and map-emblem sizing/alignment await native review.** [Scope and checks](Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
 
 - Institution rows select existing64px texture at unchanged32-unit size. Map badge is32 units; four segments terminate at the bottom of the native city-name banner container. Artwork/gameplay/events remain unchanged.
 - B254 user confirms zoom, normal banner clicking and main ACTIVE updates after governor relocation. Four-segment dynamic behavior remains pending; no blanket native PASS.
-- Source B255.282/modinfo282; live B254.281 pending the guarded deployment.32 selected local methods PASS. Main/stable B069.96 unchanged.
+- Source/live B255.282/modinfo282 from `6e64d96`; receipt `B255.282-6e64d96-playtest.json`;277/277 MATCH.32 selected local methods PASS. Main/stable B069.96 unchanged.
 - Development Investment sidebar refinement feedback remains pending and is not included in this batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: commit/push and guarded deployment, then one minimal visual/segment check. No further batch starts automatically.
+- Commit/push and guarded deployment complete. Next: one minimal visual/segment check; no further batch starts automatically.
+
+## S0681 — B255 verified deployment
+
+B255.282/modinfo282 DEVELOP_ACTIVE; source `6e64d96831978049b98726bbe463133a8e9fc0ca`; receipt `B255.282-6e64d96-playtest.json`;277/277 MATCH; digest `f3ee4d3a7864a52a1b6bc253f44ad7890edf5572185ae75b5f33b2fce49f63bb`. Fresh game-exit checks, exact B254 restoration and B255 activation passed. Stable and outgoing B254 recovery verified; no pending marker, game launch, configuration or main change. Only current deployment records and their named hashes updated. No new native visual PASS.
 
 ## S0680 — B255 icon sampling and alignment
 

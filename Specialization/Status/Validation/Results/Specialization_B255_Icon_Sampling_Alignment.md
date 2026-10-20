@@ -30,4 +30,6 @@ LOCAL_SIMULATION_PASS:32 selected existing methods. Updated UI assertions verify
 
 ## Publication and deployment
 
-Source B255.282/modinfo282 locally verified; live remains B254.281 until the normal clean-source, game-exit and receipt gates succeed. No binary changes or new publication exception. Main/stable B069.96 unchanged. Stop after the approved batch.
+B255.282/modinfo282 DEVELOP_ACTIVE; source `6e64d96831978049b98726bbe463133a8e9fc0ca`; receipt `B255.282-6e64d96-playtest.json`;277/277 MATCH; digest `f3ee4d3a7864a52a1b6bc253f44ad7890edf5572185ae75b5f33b2fce49f63bb`. Fresh game-exit checks, exact B254 restoration and B255 activation passed. Stable and outgoing B254 recovery verified; no pending marker, game launch, configuration or main change.
+
+13 batch-owned files passed the ordinary staged publication gate.32 selected local methods and277-runtime/890-guarded-file context checks PASS. No binary changes or new publication exception. Native visual/segment acceptance remains pending. Stop at this batch boundary.
