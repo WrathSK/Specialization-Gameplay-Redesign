@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0679
-Implementation Build: B254.281 / modinfo281; stable B069.96
+Status Revision: S0680
+Implementation Build: B255.282 / modinfo282; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B254.281 is deployed; native icon/banner visuals await review.** [Scope and checks](Validation/Results/Specialization_B254_Level_Icons.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
+**B255.282 is locally verified; institution sampling and map-emblem sizing/alignment await native review.** [Scope and checks](Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
 
-- Approved A-palette embedded serif I–IV replace native text in institution rows. A40-unit outside-left city-banner emblem shows ACTIVE plus four ACTIVE/Potential segments; tooltip explains the two values.
-- Derived canonical level projection is read-only and event-driven, with native banner visibility/lifetime and no new timers, persistent fields or gameplay writes.32 scoped local checks PASS; native loading/overlap/scaling remain USER_GAME_TEST_REQUIRED.
-- Source/live B254.281/modinfo281 from `6553643`; receipt `B254.281-6553643-playtest.json`;277/277 MATCH. Stable and outgoing B253 recovery verified. Main/stable B069.96 unchanged.
-- Development Investment sidebar refinement feedback remains pending and is not included in this icon/banner batch.
+- Institution rows select existing64px texture at unchanged32-unit size. Map badge is32 units; four segments terminate at the bottom of the native city-name banner container. Artwork/gameplay/events remain unchanged.
+- B254 user confirms zoom, normal banner clicking and main ACTIVE updates after governor relocation. Four-segment dynamic behavior remains pending; no blanket native PASS.
+- Source B255.282/modinfo282; live B254.281 pending the guarded deployment.32 selected local methods PASS. Main/stable B069.96 unchanged.
+- Development Investment sidebar refinement feedback remains pending and is not included in this batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: one minimal visual flow; no further batch starts automatically.
+- Next: commit/push and guarded deployment, then one minimal visual/segment check. No further batch starts automatically.
+
+## S0680 — B255 icon sampling and alignment
+
+Explicit approval covers only64px institution sampling at32-unit display and a smaller bottom-aligned map emblem.32 local methods PASS; existing atlas hashes, canonical facts and event/lifetime behavior preserved. B254 native acceptance remains limited to the user's zoom/click/main-ACTIVE observations. Four-segment updates, crispness and exact visual alignment await the combined check. No binary, Design, Architecture, gameplay, main or configuration change.
 
 ## S0679 — B254 verified deployment
 

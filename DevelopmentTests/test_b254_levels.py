@@ -64,7 +64,7 @@ class Presentation(unittest.TestCase):
   """)
  def test_lifetime_attach_update_replace_detach_shutdown(self):
   ui().execute("""
-  LuaEvents.SPC_LevelBannerAttach(0,1,1,9,p1);assert(created==1 and not last.Root.hidden and last.Badge.icon=='ICON_SPC_LEVEL_CULTURE_2' and last.Badge.w==40)
+  LuaEvents.SPC_LevelBannerAttach(0,1,1,9,p1);assert(created==1 and not last.Root.hidden and last.Badge.icon=='ICON_SPC_LEVEL_CULTURE_2' and last.Badge.w==32 and last.Badge.h==32 and last.Badge.iconSize==64)
   assert(last.Fill1.color==last.Rim1.color and last.Fill3.color~=last.Rim3.color)
   LuaEvents.SPC_LevelBannerAttach(0,1,1,9,p1);assert(created==1)
   v.active=3;ExposedMembers.SPC_P0.LevelBanners.revision=2;Events.GameCoreEventPublishComplete();assert(last.Badge.icon=='ICON_SPC_LEVEL_CULTURE_3')
@@ -76,7 +76,7 @@ class Presentation(unittest.TestCase):
  def test_unknown_withdrawal_backend_reload_and_foreign_exclusion(self):
   ui().execute("LuaEvents.SPC_LevelBannerAttach(1,1,1,9,p1);assert(created==0);LuaEvents.SPC_LevelBannerAttach(0,1,1,9,p1);ExposedMembers.SPC_P0={};Events.GameCoreEventPlaybackComplete();assert(last.Root.hidden);ExposedMembers.SPC_P0={LevelBanners={revision=1,views={['0:1']=v}}};Events.GameCoreEventPublishComplete();assert(not last.Root.hidden);v.x=99;ExposedMembers.SPC_P0.LevelBanners.revision=2;Events.GameCoreEventPublishComplete();assert(last.Root.hidden)")
  def test_institution_embedded_icon_all_tiers(self):
-  display().execute("for i,row in ipairs(rows.items)do assert(row.Icon.icon=='ICON_SPC_LEVEL_CULTURE_'..i and row.Icon.alpha==1 and row.Stage.text==nil)end")
+  display().execute("for i,row in ipairs(rows.items)do assert(row.Icon.icon=='ICON_SPC_LEVEL_CULTURE_'..i and row.Icon.iconSize==64 and row.Icon.w==32 and row.Icon.h==32 and row.Icon.alpha==1 and row.Stage.text==nil)end")
  def test_native_wrapper_preserves_callbacks_and_ready_bootstrap(self):
   l=LuaRuntime();l.execute(COMMON+'''
   named=0;gone=0;attached=0;detached=0
@@ -89,7 +89,7 @@ class Presentation(unittest.TestCase):
   ''');load(l,'Mod/UI/CityBannerManager_SPC_Levels.lua');l.execute("b:UpdateName();assert(named==1 and attached==1);LuaEvents.SPC_LevelBannerReady();assert(attached==2);b:Uninitialize();assert(gone==1 and detached==1);OnShutdown();assert(#LuaEvents.SPC_LevelBannerReady.fs==0)")
 class Package(unittest.TestCase):
  def test_package_closure_syntax_and_assets(self):
-  mod=ROOT/'Mod';tree=ET.parse(mod/'SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'281')
+  mod=ROOT/'Mod';tree=ET.parse(mod/'SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'282')
   files=[e.text for e in tree.findall('./Files/File')];actual={str(p.relative_to(mod))for p in mod.rglob('*')if p.is_file()and p.name not in('.DS_Store','SpecializationP0.modinfo')}
   self.assertEqual(set(files),actual);self.assertEqual(len(files),len(set(files)))
   l=LuaRuntime();check=l.eval('function(s)return assert(loadstring(s))end')
@@ -97,6 +97,9 @@ class Package(unittest.TestCase):
   for size,digest in [(32,'b08fe38e9a66bb0b157d9baf0b6ab818cb6431e4fdaa39cb6a801273559fde89'),(64,'308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e')]:
    b=(mod/f'Textures/SPC_Level_Icons_{size}.dds').read_bytes();self.assertEqual(hashlib.sha256(b).hexdigest(),digest);self.assertEqual(len(b),128+16*size*size*4);self.assertEqual(struct.unpack_from('<II',b,12),(size*4,size*4))
   t=ET.parse(mod/'UI/LevelBanners.xml');self.assertEqual(t.find('.//Container[@ID="Root"]').get('AnchorSide'),'O,I')
+  root=t.find('.//Container[@ID="Root"]');self.assertEqual(root.get('Anchor'),'L,B');self.assertEqual(root.get('Size'),'32,37')
+  for segment in root.findall('./Container'):
+   x,y=map(int,segment.get('Offset').split(','));w,h=map(int,segment.get('Size').split(','));self.assertEqual(y+h,37);self.assertLessEqual(x+w,32)
   for name in ['LevelBannerState.lua','UI/LevelBanners.lua','UI/CityBannerManager_SPC_Levels.lua']:
    source=(mod/name).read_text();self.assertNotIn('SetUpdate',source);self.assertNotIn('SetProperty',source);self.assertNotIn('RequestPlayerOperation',source)
  def test_atlas_and_localization_sql(self):

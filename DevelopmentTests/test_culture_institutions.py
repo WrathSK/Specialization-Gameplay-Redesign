@@ -30,7 +30,7 @@ def display():
       UI={GetHeadSelectedCity=function()return city end}
       local function control()local c={}
        function c:SetHide(v)self.hidden=v end;function c:IsHidden()return self.hidden or false end
-       function c:SetIcon(v)self.icon=v end;function c:SetText(v)self.text=v end;function c:SetAlpha(v)self.alpha=v end;function c:SetColorByName(v)self.color=v end
+       function c:SetIcon(v,size)self.icon=v;self.iconSize=size end;function c:SetSizeVal(w,h)self.w=w;self.h=h end;function c:SetText(v)self.text=v end;function c:SetAlpha(v)self.alpha=v end;function c:SetColorByName(v)self.color=v end
        function c:SetToolTipString(v)self.tip=v end;function c:CalculateSize()sizes=sizes+1 end
        function c:ReprocessAnchoring()end;function c:ChangeParent()parents=parents+1 end
        function c:DestroyChild()end

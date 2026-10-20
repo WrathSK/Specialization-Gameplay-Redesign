@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0679",
-    "runtime": "B254.281 / modinfo281",
+    "status": "S0680",
+    "runtime": "B255.282 / modinfo282",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-  "goal": "B254 embedded institution levels and event-driven outside-left city-banner ACTIVE/Potential emblem. Presentation only.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+  "goal": "B255 explicit64px institution sampling at32-unit display and compact bottom-aligned map emblem; UI only.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,28 +28,34 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
       "kind": "section",
       "selector": "## Approved scope",
-      "reason": "Explicit B254 preview acceptance and scope boundary."
+      "reason": "Two authorized presentation adjustments."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+      "kind": "section",
+      "selector": "## B254 native evidence",
+      "reason": "Scoped user acceptance and held four-segment check."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
       "kind": "section",
       "selector": "## Implementation and source of truth",
-      "reason": "Canonical facts, derived publication and native lifetime."
+      "reason": "Texture and geometry delta only."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
       "kind": "section",
       "selector": "## Local validation",
-      "reason": "32 scoped methods; native limits."
+      "reason": "32 selected local methods."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
       "kind": "section",
       "selector": "## Publication and deployment",
-      "reason": "Exact asset exception and guarded runtime switch."
+      "reason": "Existing gated deployment."
     }
   ],
   "dependencies": [
@@ -57,7 +63,7 @@
     "Native Expansion2 CityBanner UpdateName/Uninitialize/Container wildcard surface; existing institution presentation."
   ],
   "old_writers": [
-    "No gameplay cutover. Native institution numeral label replaced by embedded artwork only."
+    "No gameplay cutover; existing UI texture/geometry only."
   ],
   "conditional_context": [
     {
@@ -84,23 +90,23 @@
     }
   ],
   "non_scope": [
-    "Gameplay/Design/balance changes; new timers, persistent fields, save migration, foreign/AI specialization, banner collision framework, main/promotion, configuration, game launch.",
-    "Development Investment sidebar refinements, held audits and gameplay. Frozen evidence and old atlas bytes unchanged; only two exact reviewed B254 DDS blobs receive the approved one-batch exception."
+    "Gameplay, Design, Architecture, saved state, new events/timers, atlas modifications, main, configuration or game launch.",
+    "Development Investment sidebar and held gameplay/audit work remain pending."
   ],
   "validation": {
-    "depth": "L2 actual Lua state/model/lifetime and Store/EffectiveFacts; L1 syntax/XML/SQL/assets/package.",
-    "local": "32 selected methods PASS;277 runtime files;exact DDS decode/hash validation.",
-    "user": "One institution and map-emblem visual flow.",
-    "gap": "Native loading, clipping, zoom/UI scaling and adjacent-city overlap pending."
+    "depth": "L1 texture/package/XML geometry; existing L2 UI/state regression.",
+    "local": "32 selected methods PASS; atlas bytes unchanged.",
+    "user": "Institution sharpness, map bottom alignment and held four-segment dynamic update.",
+    "gap": "Native sampling/filtering and visual alignment require user review."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-    "source": "B254.281/modinfo281 DEVELOP_ACTIVE; source 655364337af6fde1acb835f28649ba0411c6e7ec; receipt B254.281-6553643-playtest.json;277/277 MATCH; digest b1d61b7de9f28036ac66c62fa889b329011fb6d023515b3e96e405f7341514cb. Fresh game-exit checks, exact B253 restoration and B254 activation passed. Stable and outgoing recovery verified; no pending marker, game launch, configuration or main change.",
-    "native": "USER_GAME_TEST_REQUIRED; no expanded gameplay PASS.",
-    "stop": "One minimal institution/map-emblem native visual check, including normal level change if available. Sidebar refinement and held gameplay/audits remain pending."
+    "report": "Specialization/Status/Validation/Results/Specialization_B255_Icon_Sampling_Alignment.md",
+    "source": "B255.282 locally verified; live B254 until guarded deployment.",
+    "native": "B254 zoom/click/main ACTIVE user-confirmed; four-segment dynamics and B255 visuals pending.",
+    "stop": "Guarded B255 deployment, then one institution sharpness/map alignment/four-segment update check. Sidebar and held work remain pending."
   }
 }
