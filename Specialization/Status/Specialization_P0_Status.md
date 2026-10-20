@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0697
-Implementation Build: B263.290 / modinfo290; stable B069.96
+Status Revision: S0698
+Implementation Build: B264.291 / modinfo291; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,12 +11,16 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B263.290 Roosevelt (Bull Moose) neutral test shell deployed.** [Implementation and validation](Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md).
+**B264.291 native-style institution tooltips locally verified; deployment pending.** [Implementation and validation](Validation/Results/Specialization_B264_Institution_Tooltips.md).
 
-- B262 UI accepted by the user. New independent America/Roosevelt selection uses Chinese presentation and specialization access, with no native civilization/leader powers. Legacy Scotland new-game selection is disabled; original IDs/data remain for existing saves.
-- Fourteen targeted unittest methods, existing eligibility ingress check and read-only native-schema/art-reference verification PASS. Native presentation/access remain pending; source/live B263.290 from `c9a0dda`, 288/288 MATCH.
+- User approved the 16-institution formatting plan: native headings/bullets/icons and Gold dynamic values under their abilities. Existing facts/formulas/status distinctions are preserved. Twelve targeted display methods plus localization, rendered-tooltip, native-symbol, Lua and package checks PASS.
+- B263 Roosevelt shell and B264 tooltip visuals await the user's combined review. Live remains B263.290 from `c9a0dda`, 288/288 verified at its deployment. B262 UI acceptance and older scoped evidence remain unchanged.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: wait for the user's new-game shell check. No PR, main promotion or next development batch.
+- Next: clean-source W0003 deployment, then wait for combined B263/B264 user review. No PR, main promotion or next development batch.
+
+## S0698 — B264 institution tooltip presentation
+
+Approved formatting and Gold-value presentation implemented for all 16 institutions. Twelve scoped display regressions and local text/format/native-reference/package checks PASS. Existing mechanics, state, refresh, artwork and D0057/A0177 contracts are unchanged; no timer, game launch, configuration or main change. B263 native acceptance remains pending and is combined with this batch's visual check. Live remains B263 until guarded deployment.
 
 ## S0697 — B263 verified deployment
 

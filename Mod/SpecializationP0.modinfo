@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="290">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="291">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B263.290：罗斯福（进步党）测试文明外壳；保留科研、文化、商业与工业专业系统。</Description>
+    <Description>B264.291：四专业机构说明采用原生分项格式、产出图标与金色动态数值。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

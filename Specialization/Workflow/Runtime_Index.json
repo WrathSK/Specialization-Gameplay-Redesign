@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "4876162c36cabbed5b2fad4f054671fab6e707052721b7e6feed794692684893",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "sha256": "650e8368c6687e9f686dc860037a234af24c79875bed9dbc92579903297ace07",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
+      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "67ea28ee0a62ea7ea17c076b730d9b6e4b35bae8f3491fa0fbcae1a287bd5ff3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "sha256": "d1bcf1e407d2d01d4d02cb26d9ab8522ce08e962c861dde963467180bd7c5e96",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
+      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "a87d3fb01a123acfb7e2247b9a2e330b5a848fa4ca85293f48e06883f169d1ba",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+      "sha256": "881e46d8f0ba66f8f234a9ae74f137113a97777527adbcfc27515044a2a5103c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
+      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
     },
     "Mod/TradeRouteProbe.lua": {
       "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
@@ -721,9 +721,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "f40c1392e4bfdde01babb88e5de5a642e37a1dff769c7f2540ce5909503dd35b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+      "sha256": "f8eab72908f48d5e990e169b99642613badd3c1d9a07d6a89c2a0b427bc85d96",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
+      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
     },
     "Mod/UI/InstitutionOverview.lua": {
       "sha256": "c9dd649ecb06487393352e170a796baea536ff732de029012c7568f9ecc73590",
@@ -1326,9 +1326,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/Text/Restructuring.sql": {
-      "sha256": "ddf3241d4ac33ea885c078a08d876c1165c5ad8dc7f90c77cd36706b3e350692",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "ba463cb8f4d3310b8157f0381506cce3f750c49a79678a887dced2b562dbef89",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
+      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
     },
     "Mod/Textures/SPC_Institutions_32.dds": {
       "sha256": "a3f389f0a82e16599371e42fda5384868d915a3432e92e5f3f14ae678267fa91",
