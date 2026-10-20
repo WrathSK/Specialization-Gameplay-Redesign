@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0682
+Status Revision: S0683
 Implementation Build: B256.283 / modinfo283; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B256.283 locally repairs the B255 icon cropping regression; native review pending.** [Scope and checks](Validation/Results/Specialization_B256_Icon_Size_Repair.md).
+**B256.283 is deployed to repair the B255 icon cropping regression; native review pending.** [Scope and checks](Validation/Results/Specialization_B256_Icon_Size_Repair.md).
 
 - B255 USER_GAME_TEST_FAIL: enlarged/cropped institution and map icons. Both now select32px cells for32-unit controls; bottom anchoring and four-segment layout remain unchanged. No artwork/gameplay/event changes.
 - B254 zoom/click/main ACTIVE observations remain accepted; four-segment dynamic behavior remains pending. Local mocks do not simulate native raster filtering.
-- Source B256.283/modinfo283; live remains B255.282 pending guarded deployment.32 selected local checks PASS; main/stable B069.96 unchanged.
+- Source/live B256.283/modinfo283 from `3259a50`; receipt `B256.283-3259a50-playtest.json`;277/277 MATCH.32 selected local checks PASS; main/stable B069.96 unchanged.
 - Development Investment sidebar refinement feedback remains pending and is not included in this batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment and one complete-icon/size check, then held segment observation if convenient. Stop at this batch boundary.
+- Commit/push and guarded deployment complete. Next: one complete-icon/size check, then held segment observation if convenient. Stop at this batch boundary.
+
+## S0683 — B256 verified deployment
+
+B256.283/modinfo283 DEVELOP_ACTIVE; source `3259a50e982a2e8349e8a00ba936f8319a97fd6a`; receipt `B256.283-3259a50-playtest.json`;277/277 MATCH; digest `6f4ade5802d1f80d2c88208e1afbaac40f898e162d52ab64d4d4a754aeb3a688`. Fresh game-exit checks, exact B255 restoration and B256 activation passed. Stable and outgoing recovery verified; no pending marker, main/configuration change or game launch. Native visual acceptance remains pending; only current deployment records and their hashes updated.
 
 ## S0682 — B256 matched-size icon repair
 

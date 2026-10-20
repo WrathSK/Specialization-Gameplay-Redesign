@@ -22,4 +22,6 @@ Open **城市详情 → 专业机构** and inspect one map emblem. I–IV and he
 
 ## Publication and deployment
 
-B256.283/modinfo283 locally verified; live remains B255.282 pending the existing clean-source/game-exit/receipt gates. No binary exception is needed. Main/stable B069.96 and held work remain unchanged.
+B256.283/modinfo283 DEVELOP_ACTIVE; source `3259a50e982a2e8349e8a00ba936f8319a97fd6a`; receipt `B256.283-3259a50-playtest.json`;277/277 MATCH; digest `6f4ade5802d1f80d2c88208e1afbaac40f898e162d52ab64d4d4a754aeb3a688`. Fresh game-exit checks, exact B255 restoration and B256 activation passed. Stable and outgoing recovery verified; no pending marker, main/configuration change or game launch.
+
+11 batch-owned files passed the ordinary publication gate;32 local methods and277-runtime/891-guarded context checks PASS. Main/stable B069.96 and held work unchanged. Native complete-icon/size confirmation remains pending.

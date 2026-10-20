@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0682",
+    "status": "S0683",
     "runtime": "B256.283 / modinfo283",
     "military": "D0037",
     "harbor": "D0037",
@@ -99,8 +99,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-    "source": "B256.283 locally verified; live B255 pending guarded deployment.",
+    "source": "B256.283/modinfo283 DEVELOP_ACTIVE; source 3259a50e982a2e8349e8a00ba936f8319a97fd6a; receipt B256.283-3259a50-playtest.json;277/277 MATCH; digest 6f4ade5802d1f80d2c88208e1afbaac40f898e162d52ab64d4d4a754aeb3a688. Fresh game-exit checks, exact B255 restoration and B256 activation passed. Stable and outgoing recovery verified; no pending marker, main/configuration change or game launch.",
     "native": "B255 USER_GAME_TEST_FAIL; B256 visuals and four-segment dynamics pending.",
-    "stop": "Guarded deployment, then complete-icon/normal-size native check. Four-segment dynamics remain pending; held work unchanged."
+    "stop": "One complete-icon/normal-size native check; held four-segment observation if convenient. Sidebar and held work unchanged."
   }
 }
