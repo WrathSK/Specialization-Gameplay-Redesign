@@ -11,7 +11,6 @@
 <Grid ID="Top" Size="parent,32" Style="CityPanelSubPanelContainer">
 <Container Anchor="L,C" Offset="4,0" Size="32,32">
  <Image ID="Icon" Anchor="C,C" Size="32,32"/>
- <Label ID="Stage" Anchor="C,C" Style="CityPanelText" FontStyle="Shadow" Color="White" String=""/>
 </Container>
 <Container Anchor="L,C" Offset="42,0" Size="parent-120,32"><Label ID="Name" Anchor="L,C" Style="CityPanelText" TruncateWidth="parent" String=""/></Container>
 <Container Anchor="R,C" Offset="8,0" Size="64,32"><Label ID="State" Anchor="R,C" Style="CityPanelTextSmall" TruncateWidth="parent" String=""/></Container>

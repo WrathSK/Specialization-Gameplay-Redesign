@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="280">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="281">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B253.280: full-color institution backdrops and native-style equal-column Development Investment.</Description>
+    <Description>B254.281: embedded serif institution icons and event-driven city-banner level emblems.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -12,6 +12,7 @@
     <UpdateText id="SPC_B247_RestructuringText"><File>Text/Restructuring.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B246_Development"><Properties><LoadOrder>10001080</LoadOrder></Properties><File>Data/DevelopmentInvestment.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B246_DevelopmentText"><File>Text/DevelopmentInvestment.sql</File></UpdateText>
+    <UpdateText id="SPC_LevelBannerText"><File>Text/LevelBanners.sql</File></UpdateText>
     <AddUserInterfaces id="SPC_B246_DevelopmentPanel"><Properties><Context>InGame</Context></Properties><File>UI/DevelopmentInvestmentPanel.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B239_Commerce"><Properties><LoadOrder>10001070</LoadOrder></Properties><File>Data/Commerce.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B239_CommerceText"><File>Text/Commerce.sql</File></UpdateText>
@@ -48,6 +49,7 @@
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
     <ReplaceUIScript id="SPC_TimedTurnProbe"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_InstitutionOverview"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/InstitutionOverview.lua</LuaReplace></Properties></ReplaceUIScript>
+    <AddUserInterfaces id="SPC_LevelBanners"><Properties><Context>InGame</Context></Properties><File>UI/LevelBanners.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_Institutions"><Properties><Context>InGame</Context></Properties><File>UI/Institutions.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_ResearchChair"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchChair.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ResearchApply"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchApply.sql</File></UpdateDatabase>
@@ -147,6 +149,14 @@
       <File>CityIdentityRead.lua</File>
       <File>InstitutionPresentation.lua</File>
       <File>UI/InstitutionOverview.lua</File>
+      <File>LevelBannerState.lua</File>
+      <File>UI/LevelBannerModel.lua</File>
+      <File>UI/CityBannerManager_SPC_Levels.lua</File>
+      <File>UI/LevelBanners.lua</File>
+      <File>UI/LevelBanners.xml</File>
+      <File>Text/LevelBanners.sql</File>
+      <File>Textures/SPC_Level_Icons_32.dds</File>
+      <File>Textures/SPC_Level_Icons_64.dds</File>
       <File>UI/Institutions.lua</File>
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
@@ -541,7 +551,15 @@
       <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>
     <File>UI/InstitutionOverview.lua</File>
-    <File>UI/Institutions.lua</File>
+    <File>LevelBannerState.lua</File>
+      <File>UI/LevelBannerModel.lua</File>
+      <File>UI/CityBannerManager_SPC_Levels.lua</File>
+      <File>UI/LevelBanners.lua</File>
+      <File>UI/LevelBanners.xml</File>
+      <File>Text/LevelBanners.sql</File>
+      <File>Textures/SPC_Level_Icons_32.dds</File>
+      <File>Textures/SPC_Level_Icons_64.dds</File>
+      <File>UI/Institutions.lua</File>
     <File>UI/Institutions.xml</File>
     <File>PerformanceCounters.lua</File>
     <File>RuntimeAuditCore.lua</File>

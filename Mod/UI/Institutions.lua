@@ -3,7 +3,6 @@ include('InstanceManager')
 include('InstitutionPresentation')
 local M=SPCInstitutionPresentation
 local parent,last
-local roman={'Ⅰ','Ⅱ','Ⅲ','Ⅳ'}
 local rows=InstanceManager:new('InstitutionRowInstance','Top',Controls.InstitutionRows)
 local function top()
  local children=parent:GetChildren()
@@ -46,9 +45,7 @@ local function render(data,v)
   local enabled=entry.established and not entry.historical and known and entry.level<=v.active
   local current=enabled and entry.level==highest
   local state=entry.historical and 'LEGACY' or not entry.established and 'PREVIEW' or not known and 'UNKNOWN' or (not enabled and 'INACTIVE' or (current and 'CURRENT' or 'ENABLED'))
-  row.Icon:SetIcon('ICON_SPC_INSTITUTION_'..entry.kind..'_BASE')
-  row.Stage:SetText(roman[entry.level] or tostring(entry.level))
-  row.Stage:SetAlpha(not entry.established and .65 or current and 1 or .9)
+  row.Icon:SetIcon('ICON_SPC_LEVEL_'..entry.kind..'_'..entry.level)
   row.Name:SetText(M.Label(entry,'name'))
   row.State:SetText(Locale.Lookup('LOC_SPC_INSTITUTION_'..state))
   row.Name:SetColorByName(current and 'Gold' or 'White')

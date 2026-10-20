@@ -151,9 +151,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "6834b9668556172708f852a372ae2c912423b286630d4f407a9792713ad1f81b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "565283df9cf5bf35b59ae650b11c1421ae93a77e35b3c7a548259e429e9bc7e6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "e6bc4a115ba2dc4d839e1ce63a12b33a226031579908fda1913d10750c47a3ea",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+      "sha256": "542b617fd19a98c6f7e0298310a217255f4adb8429c2bee4f4b12acc40d9b18c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "8a33ac974fe2163d323d064bccedb71c76bc29e726b91469e292c90f40beccbe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
+      "sha256": "abd676f4c3efad14ab484a24b8390cfde98f64bdfcf7b4157a0d6d07f951e060",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "84a96d9f9541619279259211bf042740953aec024e34689dcd1137646de0d382",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
+      "sha256": "486cadffd52eb1257168ea403de7750edf976ac86e97c263b1dadde0b996dd49",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -731,14 +731,14 @@
       "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
     },
     "Mod/UI/Institutions.lua": {
-      "sha256": "b02e749d9ae1238639e1de8254a8dcabe2e83e985f8e94317dbd4863a32d6405",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "provenance": "B253 presentation only: native numerals/full-opacity existing art, equal-width bottom-aligned sidebar and native city banners/three detail sections.47 targeted local methods PASS; native visual acceptance pending. No gameplay, save, transaction or timer change."
+      "sha256": "0f31e079d1645922240b5c76619dbc4880bf3a28a27dbcba907da4c913ecda77",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/UI/Institutions.xml": {
-      "sha256": "37fe3a26c921de456cb282264de5d5eeaa125917ba8a634a56ac3477825fca20",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "sha256": "212d7dd48aa2318d2cfba2fe396191cb7e1e506195229af9d40335ebca323f3c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/CityIdentityRead.lua": {
       "sha256": "c78eef76b28f9bb4a2458382ddf0790217749619aab3bcbd97e56d36e073ac20",
@@ -1349,6 +1349,46 @@
       "sha256": "912e8f148ea8698941d5e0be5482b70fdef9966340364b806b9b05c3ff03b0ce",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
       "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+    },
+    "Mod/LevelBannerState.lua": {
+      "sha256": "39c066358008c6895304e40c4e3fddbea253690c28e6d20d5f17f1eadb3b0d04",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/LevelBannerModel.lua": {
+      "sha256": "e22793c3e794fca50ef89ac7752634549e1b67833f24859f206f5142760d3b73",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/CityBannerManager_SPC_Levels.lua": {
+      "sha256": "849d2a82448990deb91f7b51b273cb71f6a086cd9d0cae047463209673d6f067",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/LevelBanners.lua": {
+      "sha256": "97e2962d269a125c5b44a80fc536a207e98ea63292a8e7e0835fd27efc37ba6e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/LevelBanners.xml": {
+      "sha256": "67c7385137894ca37dd5cc88fa67aeb75933f5db75efc27ca9002b3651105c9e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Text/LevelBanners.sql": {
+      "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Textures/SPC_Level_Icons_32.dds": {
+      "sha256": "b08fe38e9a66bb0b157d9baf0b6ab818cb6431e4fdaa39cb6a801273559fde89",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Textures/SPC_Level_Icons_64.dds": {
+      "sha256": "308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     }
   }
 }

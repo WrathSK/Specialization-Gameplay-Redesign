@@ -1011,3 +1011,7 @@ SPCExpeditionTraining.Start(P,shared)
 
 include("Restructuring")
 SPCRestructuring.Start(P,shared)
+
+-- B254 read-only banner projection, installed after existing permanent-write observers.
+include('LevelBannerState')
+SPCLevelBannerState.Start(P,shared)

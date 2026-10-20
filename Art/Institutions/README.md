@@ -39,3 +39,16 @@ Generation: render the256px SVGs as one transparent4×1 atlas with the installed
 | `SPC_Institution_Backdrops_64.dds` |65664|`912e8f148ea8698941d5e0be5482b70fdef9966340364b806b9b05c3ff03b0ce`|
 
 The user explicitly approved only these two fixed blobs for a separate, one-time binary publication exception. Every other B252 file still uses the ordinary staged gate. No permanent policy/hook/configuration change. See [B252 scope and checks](../../Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md).
+
+## B254 embedded serif levels
+
+`SPC_Level_{Research,Culture,Industry,Commerce}_{1..4}.svg` are the approved A-palette refinements: explicit serif paths, uniform7% numeral reduction, shortened serif overhangs and optical spacing; no horizontal compression or font dependency. They share the B252 gradient/bevel palette. Institution rows select their own tier; banner emblems select ACTIVE and draw the four segments with native Box controls. Original B251 and B252 sources/blobs remain unchanged.
+
+Render16 SVGs at256px per cell with the isolated browser SVG renderer, downsample a4×4 atlas once to32/64px cells, and encode lossless BGRA8 DDS without mipmaps. Decode must reproduce the raw raster exactly. See [B254 scope and validation](../../Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md).
+
+| Runtime asset | Bytes | Reviewed SHA256 |
+|---|---:|---|
+| `SPC_Level_Icons_32.dds` |65664|`b08fe38e9a66bb0b157d9baf0b6ab818cb6431e4fdaa39cb6a801273559fde89`|
+| `SPC_Level_Icons_64.dds` |262272|`308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e`|
+
+The user explicitly approved a one-time publication exception for exactly these two blobs. They are committed separately; no permanent binary allowance or hook-policy change. Source/SVGs and all other changes use the normal publication gate.

@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0677
-Implementation Build: B253.280 / modinfo280; stable B069.96
+Status Revision: S0678
+Implementation Build: B254.281 / modinfo281; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B253.280 is deployed; native visuals await review.** [Scope, feedback and checks](Validation/Results/Specialization_B253_UI_Refinement.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
+**B254.281 is locally verified; native icon/banner visuals await review.** [Scope and checks](Validation/Results/Specialization_B254_Level_Icons.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint).
 
-- Native Roman labels and B252 artwork remain; all institution backdrops now retain full opacity. Text/status continue to distinguish preview/history/current stages. No new DDS assets.
-- Development Investment uses equal-width, bottom-aligned columns, native city banners/district strips, a two-line integer Treasury/capacity summary and three equal-height scrollable detail sections. Selection, signing, actual money precision and gameplay remain unchanged; no timer or new native scan.
-- 47 targeted local methods PASS and269-file closure; native typography, clipping, bottom fit and selection/confirm presentation remain USER_GAME_TEST_REQUIRED. Existing gameplay/lifecycle evidence is inherited.
-- Source/live B253.280/modinfo280 from `72e7b15`; receipt `B253.280-72e7b15-playtest.json`,269/269 MATCH. Stable and outgoing B252 recovery verified; no pending marker. Main/stable B069.96 unchanged.
-- B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks **during** v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain **post-v0.1-playtest high priority**.
-- Commit/push and guarded deployment are complete. Next: one minimal UI flow. No next gameplay, audit repair or balance batch is started.
+- Approved A-palette embedded serif I–IV replace native text in institution rows. A40-unit outside-left city-banner emblem shows ACTIVE plus four ACTIVE/Potential segments; tooltip explains the two values.
+- Derived canonical level projection is read-only and event-driven, with native banner visibility/lifetime and no new timers, persistent fields or gameplay writes.32 scoped local checks PASS; native loading/overlap/scaling remain USER_GAME_TEST_REQUIRED.
+- Source B254.281/modinfo281; live remains B253.280 from72e7b15 pending the normal verified deployment transaction. Main/stable B069.96 unchanged.
+- Development Investment sidebar refinement feedback remains pending and is not included in this icon/banner batch.
+- B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
+- Next: normal publication/deployment gates, then one minimal visual flow. No new gameplay or audit repair batch.
+
+## S0678 — B254 level emblem implementation
+
+Explicit approval follows the serif/icon handoff preview.32 local methods PASS, including actual Store/EffectiveFacts read-only proof, event coalescing and native callback/child lifetime. No Design/Architecture semantic change or new native PASS. Only batch-owned source/art/tests/current records reviewed and hashed; two exact DDS blobs have explicit one-time publication approval. Live remains B253 until the guarded switch.
 
 ## S0677 — B253 verified deployment
 

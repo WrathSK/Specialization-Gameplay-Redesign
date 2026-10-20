@@ -68,10 +68,10 @@ class CultureInstitutionDisplay(unittest.TestCase):
         lua=display()
         lua.execute('''
           local expected={'文艺同好会','赞助人行会','人文联合会','博雅总院'}
-          local icons='ICON_SPC_INSTITUTION_CULTURE_BASE';local roman={'Ⅰ','Ⅱ','Ⅲ','Ⅳ'}
+          local icons='ICON_SPC_LEVEL_CULTURE_'
           assert(#rows.items==4 and not Controls.InstitutionContainer.hidden)
           for i,row in ipairs(rows.items)do
-           assert(row.Name.text==expected[i] and row.Icon.icon==icons and row.Stage.text==roman[i])
+           assert(row.Name.text==expected[i] and row.Icon.icon==icons..i and row.Stage.text==nil)
            assert(row.State.text==(i==4 and '当前' or '启用'))
           end
           assert(rows.items[3].Top.tip:find('时代对话',1,true))

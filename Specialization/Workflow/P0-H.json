@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0677",
-    "runtime": "B253.280 / modinfo280",
+    "status": "S0678",
+    "runtime": "B254.281 / modinfo281",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-  "goal": "B253 native numerals with full-opacity original backdrops; native-style, equal-column Development Investment layout. Presentation only.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+  "goal": "B254 embedded institution levels and event-driven outside-left city-banner ACTIVE/Potential emblem. Presentation only.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,95 +28,79 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
       "kind": "section",
-      "selector": "## Feedback and approved scope",
-      "reason": "Current user feedback and explicit B253 approval."
+      "selector": "## Approved scope",
+      "reason": "Explicit B254 preview acceptance and scope boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
       "kind": "section",
-      "selector": "## Scope and presentation",
-      "reason": "Changed visual/readout surfaces."
+      "selector": "## Implementation and source of truth",
+      "reason": "Canonical facts, derived publication and native lifetime."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-      "kind": "section",
-      "selector": "## Read and lifetime contract",
-      "reason": "No gameplay or ownership change."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
       "kind": "section",
       "selector": "## Local validation",
-      "reason": "47 scoped checks and native limitations."
+      "reason": "32 scoped methods; native limits."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
       "kind": "section",
       "selector": "## Publication and deployment",
-      "reason": "Normal gate; no new DDS or exception."
+      "reason": "Exact asset exception and guarded runtime switch."
     }
   ],
   "dependencies": [
-    "Original B252 backdrops and native CityPanelText; current selected-city presentation unchanged.",
-    "Existing Development Investment quote/contract snapshot and scalar revalidating writer; local icon pagination and ScreenResize-only reflow.269-file package closure."
+    "Existing EffectiveFacts and permanent-write notifications; native governor/city/load/publish/playback events.",
+    "Native Expansion2 CityBanner UpdateName/Uninitialize/Container wildcard surface; existing institution presentation."
   ],
   "old_writers": [
-    "No gameplay writer cutover; presentation-only opacity/layout/display formatting."
+    "No gameplay cutover. Native institution numeral label replaced by embedded artwork only."
   ],
   "conditional_context": [
     {
-      "trigger": "Institution badge/help or summary discrepancy",
+      "trigger": "Icon or banner discrepancy",
       "paths": [
+        "Mod/LevelBannerState.lua",
+        "Mod/UI/LevelBannerModel.lua",
+        "Mod/UI/LevelBanners.lua",
+        "Mod/UI/LevelBanners.xml",
+        "Mod/UI/CityBannerManager_SPC_Levels.lua",
         "Mod/UI/Institutions.lua",
         "Mod/UI/Institutions.xml",
-        "Mod/InstitutionPresentation.lua",
-        "Mod/Text/Restructuring.sql",
+        "Mod/EffectiveFacts.lua",
         "Mod/Data/Icons.sql",
         "Art/Institutions/README.md",
-        "DevelopmentTests/test_b252_sidebar.py",
-        "DevelopmentTests/test_b253_sidebar.py"
+        "DevelopmentTests/test_b254_levels.py"
       ]
     },
     {
-      "trigger": "Sidebar quotation, selection or confirmation discrepancy",
-      "paths": [
-        "Mod/UI/DevelopmentInvestmentPanel.lua",
-        "Mod/UI/DevelopmentInvestmentPanel.xml",
-        "Mod/UI/DevelopmentInvestmentUI.lua",
-        "Mod/DevelopmentInvestment.lua",
-        "Mod/Text/DevelopmentInvestment.sql",
-        "DevelopmentTests/test_b246_development_ui.py",
-        "DevelopmentTests/test_b252_sidebar.py",
-        "DevelopmentTests/test_b253_sidebar.py"
-      ]
-    },
-    {
-      "trigger": "Source/live or deployment discrepancy",
+      "trigger": "Deployment discrepancy",
       "paths": [
         "Specialization/Architecture/Playtest_Workflow.md"
       ]
     }
   ],
   "non_scope": [
-    "Gameplay/Design/balance changes; held features or audits; new timers, saved fields, cache framework, main/promotion, configuration or game launch.",
-    "Publication-policy changes, other agents reports, frozen history and screenshot/log/save publication. The exact two reviewed DDS blobs are the sole one-batch exception."
+    "Gameplay/Design/balance changes; new timers, persistent fields, save migration, foreign/AI specialization, banner collision framework, main/promotion, configuration, game launch.",
+    "Development Investment sidebar refinements, held audits and gameplay. Frozen evidence and old atlas bytes unchanged; only two exact reviewed B254 DDS blobs receive the approved one-batch exception."
   ],
   "validation": {
-    "depth": "L2 actual Lua presentation/protocol; L1 XML/localization/Lua51/package closure.",
-    "local": "47 selected methods PASS; unchanged original DDS hashes;269 runtime files.",
-    "user": "One institution/sidebar UI flow; no repeated save/load, maturity or yield test.",
-    "gap": "Native typography, clip/scroll/bottom alignment and input hit areas remain pending."
+    "depth": "L2 actual Lua state/model/lifetime and Store/EffectiveFacts; L1 syntax/XML/SQL/assets/package.",
+    "local": "32 selected methods PASS;277 runtime files;exact DDS decode/hash validation.",
+    "user": "One institution and map-emblem visual flow.",
+    "gap": "Native loading, clipping, zoom/UI scaling and adjacent-city overlap pending."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-    "source": "B253.280/modinfo280 DEVELOP_ACTIVE; source 72e7b15a816a79b953098fcbe1cf38a52b6debaf; receipt B253.280-72e7b15-playtest.json;269/269 MATCH, digest 92641e178fc2d9c06e1e97abbf195bc8ea692bf183987b432e9004fbdfb92e9d. Fresh game-exit checks, exact B252 receipt restoration and B253 activation passed; stable and outgoing B252 recovery are verified. No pending marker, game launch, configuration or main change.",
-    "native": "USER_GAME_TEST_REQUIRED for new presentation; inherited gameplay evidence unchanged.",
-    "stop": "One normal-session institution opacity/native-numeral and Development Investment layout/selection review. No repeated lifecycle test or next implementation batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+    "source": "B254.281 locally verified; live B253 until guarded deployment.",
+    "native": "USER_GAME_TEST_REQUIRED; no expanded gameplay PASS.",
+    "stop": "Publish/deploy B254 under existing gates, then minimal institution/map-emblem visual review. Sidebar feedback and held gameplay/audit work remain pending."
   }
 }
