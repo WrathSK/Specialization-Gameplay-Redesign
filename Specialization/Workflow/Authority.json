@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0676",
+    "status": "S0677",
     "runtime": "B253.280 / modinfo280",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-  "runtime_commit": "efd54c0f353fcaa6751f0271c9a9461570ebb149",
-  "current_batch": "B253_UI_REFINEMENT_LOCAL_COMPLETE",
-  "next_batch": "Publish/deploy B253 under existing gates, then one minimal institution/sidebar native UI flow. No new gameplay or deferred audit batch.",
+  "runtime_commit": "72e7b15a816a79b953098fcbe1cf38a52b6debaf",
+  "current_batch": "B253_UI_REFINEMENT_DEPLOYED",
+  "next_batch": "One normal-session institution opacity/native-numeral and Development Investment layout/selection review. No repeated lifecycle test or next implementation batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B252.279/modinfo279 DEVELOP_ACTIVE; source efd54c0f353fcaa6751f0271c9a9461570ebb149; receipt B252.279-efd54c0-playtest.json;269/269 MATCH,digest ddd0d8bc6aec6ae9ff558586911494065c9f2498828d4d851cbc43a76537d281. Stable and outgoing B251 recovery verified; no pending marker, game launch or configuration change.",
+  "live": "B253.280/modinfo280 DEVELOP_ACTIVE; source 72e7b15a816a79b953098fcbe1cf38a52b6debaf; receipt B253.280-72e7b15-playtest.json;269/269 MATCH, digest 92641e178fc2d9c06e1e97abbf195bc8ea692bf183987b432e9004fbdfb92e9d. Fresh game-exit checks, exact B252 receipt restoration and B253 activation passed; stable and outgoing B252 recovery are verified. No pending marker, game launch, configuration or main change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0676/B253: explicit presentation-only approval; native numeral/backdrop opacity and sidebar geometry/selection reviewed.47 targeted local methods and269-file closure PASS. Original DDS/Design/A0177/gameplay remain unchanged; only named changed paths rehashed. Native visuals pending.",
+  "context_review_status": "S0676/B253: explicit presentation-only approval; native numeral/backdrop opacity and sidebar geometry/selection reviewed.47 targeted local methods and269-file closure PASS. Original DDS/Design/A0177/gameplay remain unchanged; only named changed paths rehashed. Native visuals pending. S0677: clean/pushed B253 source activated through exact B252/stable receipt gates;269/269 and both recovery packages verified. Only five current deployment records rehashed; no new native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

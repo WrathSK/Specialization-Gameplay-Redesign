@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0676
+Status Revision: S0677
 Implementation Build: B253.280 / modinfo280; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B253.280 is locally verified; native visuals await review.** [Scope, feedback and checks](Validation/Results/Specialization_B253_UI_Refinement.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
+**B253.280 is deployed; native visuals await review.** [Scope, feedback and checks](Validation/Results/Specialization_B253_UI_Refinement.md); [v0.1 scheduling](../Reports/Proposals/Audit_Followup_Priorities.md#v01-playtest-scheduling-checkpoint); [B249 native core acceptance](Validation/Results/Specialization_B249_Native_Review.md).
 
 - Native Roman labels and B252 artwork remain; all institution backdrops now retain full opacity. Text/status continue to distinguish preview/history/current stages. No new DDS assets.
 - Development Investment uses equal-width, bottom-aligned columns, native city banners/district strips, a two-line integer Treasury/capacity summary and three equal-height scrollable detail sections. Selection, signing, actual money precision and gameplay remain unchanged; no timer or new native scan.
 - 47 targeted local methods PASS and269-file closure; native typography, clipping, bottom fit and selection/confirm presentation remain USER_GAME_TEST_REQUIRED. Existing gameplay/lifecycle evidence is inherited.
-- Source B253.280/modinfo280; live still B252.279/modinfo279 from `efd54c0`, receipt `B252.279-efd54c0-playtest.json`,269/269 at its verified checkpoint. Main/stable B069.96 unchanged. Deploy only after clean-source and game-exit gates.
+- Source/live B253.280/modinfo280 from `72e7b15`; receipt `B253.280-72e7b15-playtest.json`,269/269 MATCH. Stable and outgoing B252 recovery verified; no pending marker. Main/stable B069.96 unchanged.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks **during** v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain **post-v0.1-playtest high priority**.
-- Next: normal publication/deployment gates, then one minimal UI flow. No next gameplay, audit repair or balance batch is started.
+- Commit/push and guarded deployment are complete. Next: one minimal UI flow. No next gameplay, audit repair or balance batch is started.
+
+## S0677 — B253 verified deployment
+
+B253.280/modinfo280 DEVELOP_ACTIVE; source `72e7b15a816a79b953098fcbe1cf38a52b6debaf`; receipt `B253.280-72e7b15-playtest.json`;269/269 MATCH, digest `92641e178fc2d9c06e1e97abbf195bc8ea692bf183987b432e9004fbdfb92e9d`. Fresh game-exit checks, exact B252 receipt restoration and B253 activation passed; stable and outgoing B252 recovery are verified. No pending marker, game launch, configuration or main change.47 targeted local methods and the unchanged publication gate passed; source checkpoint is committed/pushed. Only current deployment records/hashes change. Native visual review remains pending; held gameplay/audit work is unchanged.
 
 ## S0676 — B253 presentation refinement locally verified
 

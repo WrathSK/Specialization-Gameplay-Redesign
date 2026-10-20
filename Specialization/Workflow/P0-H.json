@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0676",
+    "status": "S0677",
     "runtime": "B253.280 / modinfo280",
     "military": "D0037",
     "harbor": "D0037",
@@ -115,8 +115,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B253_UI_Refinement.md",
-    "source": "B253.280 locally verified; live B252 until guarded deployment.",
+    "source": "B253.280/modinfo280 DEVELOP_ACTIVE; source 72e7b15a816a79b953098fcbe1cf38a52b6debaf; receipt B253.280-72e7b15-playtest.json;269/269 MATCH, digest 92641e178fc2d9c06e1e97abbf195bc8ea692bf183987b432e9004fbdfb92e9d. Fresh game-exit checks, exact B252 receipt restoration and B253 activation passed; stable and outgoing B252 recovery are verified. No pending marker, game launch, configuration or main change.",
     "native": "USER_GAME_TEST_REQUIRED for new presentation; inherited gameplay evidence unchanged.",
-    "stop": "Publish/deploy B253 under existing gates, then one minimal institution/sidebar native UI flow. No new gameplay or deferred audit batch."
+    "stop": "One normal-session institution opacity/native-numeral and Development Investment layout/selection review. No repeated lifecycle test or next implementation batch."
   }
 }

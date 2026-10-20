@@ -40,4 +40,6 @@ One continuous UI session, without repeated save/load or contract maturity:
 
 All changes are text/source/test/current metadata and use the unchanged staged publication gate. No preview artwork, screenshot, local path, log or binary is added. B252 evidence, assets and other deferred work remain unchanged. Main/stable B069.96 is not promoted.
 
-B253.280 is locally verified; external live remains B252.279 until the normal clean-source/game-exit/receipt transaction succeeds. Record the actual outcome here after the guarded switch. Stop at this batch boundary.
+B253.280/modinfo280 DEVELOP_ACTIVE; source `72e7b15a816a79b953098fcbe1cf38a52b6debaf`; receipt `B253.280-72e7b15-playtest.json`;269/269 MATCH, digest `92641e178fc2d9c06e1e97abbf195bc8ea692bf183987b432e9004fbdfb92e9d`. Fresh game-exit checks, exact B252 receipt restoration and B253 activation passed; stable and outgoing B252 recovery are verified. No pending marker, game launch, configuration or main change.
+
+All14 source/checkpoint files passed the ordinary publication gate. Context integrity (269 runtime/863 guarded), four scoped Markdown links and diff review passed. This deployment does not establish native visual acceptance. Stop for the minimal UI flow; no further batch starts automatically.
