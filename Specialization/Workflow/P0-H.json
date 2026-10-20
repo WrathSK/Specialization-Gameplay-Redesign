@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0699",
+    "status": "S0700",
     "runtime": "B264.291 / modinfo291",
     "military": "D0037",
     "harbor": "D0037",
@@ -19,7 +19,7 @@
   },
   "goal_reference": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
   "goal": "B264 native-style formatting and icons for all 16 institution tooltips; Gold existing dynamic values, unchanged rules and refresh.",
-  "implementation_authorized": true,
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -50,6 +50,11 @@
       "kind": "section",
       "selector": "## Deployment",
       "reason": "Existing guarded switch contract."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md",
+      "kind": "full",
+      "reason": "Combined user acceptance, intermittent refresh evidence and unapproved shortcut/repair proposal."
     }
   ],
   "dependencies": [
@@ -90,17 +95,17 @@
   "validation": {
     "depth": "L1 presentation and package only.",
     "local": "12 existing display methods plus 16 rendered/localized descriptions, six metric placements, 15 native icon references, Lua 5.1 and manifest checks PASS.",
-    "user": "Combined B263 shell review and B264 tooltip layout/icons/Gold readability; no repeated gameplay or cold-load test.",
-    "gap": "Native typography/wrapping/colors and B263 shell remain pending."
+    "user": "B263 shell and B264 tooltip presentation accepted by user; transient Culture institution/training refresh anomaly recorded separately.",
+    "gap": "Failure-time governor/presentation replies are absent. Stale-consumer path reproduced locally; proposed repair and shortcut need explicit approval and later scoped native verification."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-    "source": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 combined native review remains pending. No PR.",
-    "native": "B263 shell and B264 tooltip review combined and pending; earlier acceptance not widened.",
-    "stop": "Wait for combined B263 shell/B264 tooltip user review. No PR, promotion or new batch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md",
+    "source": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 presentation accepted with a separately recorded transient refresh anomaly; no deployment during this review. No PR.",
+    "native": "B263 shell and B264 tooltip presentation accepted by user; transient Culture institution/training refresh anomaly recorded separately.",
+    "stop": "Proposed B265: event-driven institution/training eligibility refresh, native ACTIVE city-panel shortcut, and user-requested retirement of the old profession/Potential entry below P0. Await batch implementation approval. No PR or main promotion."
   }
 }

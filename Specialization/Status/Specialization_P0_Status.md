@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0699
+Status Revision: S0700
 Implementation Build: B264.291 / modinfo291; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,12 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B264.291 native-style institution tooltips deployed; combined native review pending.** [Implementation and validation](Validation/Results/Specialization_B264_Institution_Tooltips.md).
+**B263/B264 presentation accepted; intermittent Culture refresh defect investigated.** [Acceptance, logs and proposed city-panel shortcut](Validation/Results/Specialization_B264_Acceptance_and_City_UI_Investigation.md).
 
-- User approved the 16-institution formatting plan: native headings/bullets/icons and Gold dynamic values under their abilities. Existing facts/formulas/status distinctions are preserved. Twelve targeted display methods plus localization, rendered-tooltip, native-symbol, Lua and package checks PASS.
-- B263 Roosevelt shell and B264 tooltip visuals await the user's combined review. Live B264.291 from `3da40dc`, 288/288 MATCH; stable/outgoing recovery verified. B262 UI acceptance and older scoped evidence remain unchanged.
-- Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: wait for combined B263/B264 user review. No PR, main promotion or next development batch.
+- The user accepted the neutral Roosevelt shell and institution-tooltip batch, while reporting one Culture IV institution/training availability mismatch after consecutive governor promotions. Banner/P0 facts remained correct; governor replacement restored availability. Later Research/Commerce/Industry checks were normal. Acceptance is limited to the reviewed presentation scope.
+- Current Lua locally reproduces the stale institution and training eligibility results when ACTIVE changes without a city/turn/owned-write revision change. Captured logs prove later normal training, arrival and a PEOPLE task; they do not contain the failure-time governor/presentation replies. No runtime repair has been made.
+- A native-style ACTIVE shortcut can use the existing city-panel ActionStack and open the Buildings tab containing institutions/districts/wonders. Proposed B265 combines this shortcut with event-driven refresh repair, removal of the user-retired profession/Potential entry below P0, and bounded diagnostics; batch implementation remains unapproved.
+- Live remains B264.291 from `3da40dc`, with the existing 288/288 deployment receipt. Main remains B069.96. No deployment, configuration, gameplay, tests or Architecture changed during this review.
+- Institution softness remains deferred. B249 functional acceptance and earlier scoped evidence remain. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain v0.1 playtest checks. Own-city-loss handling, held Expedition mission root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
+- Next: user review of proposed B265. No PR, main promotion or new implementation authorization.
+
+## S0700 — B264 acceptance and targeted city UI investigation
+
+User accepted the combined B263/B264 presentation review, with one transient Culture activation/availability anomaly recorded. Two submitted collector sessions were reviewed; the actual current Lua reproduced the stale consumer cache in isolated display/training fixtures. Native/HD sources establish the city-panel shortcut route. This is records-only work: no runtime/test edits, deployment, game launch or configuration change. Proposed B265 remains unapproved. See the linked current report for source evidence, limitations and the bounded plan.
 
 ## S0699 — B264 verified deployment
 
