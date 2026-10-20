@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0689",
-    "runtime": "B259.286 / modinfo286",
+    "status": "S0690",
+    "runtime": "B260.287 / modinfo287",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-  "goal": "B259 measured map badge and Investment native footer/fourth contract card.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+  "goal": "B260 Refresh label, native district backing and upper-segment name-strip badge alignment.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,25 +28,25 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
       "kind": "section",
       "selector": "## Scope and evidence",
       "reason": "Current authorization and steering."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
       "kind": "section",
       "selector": "## Measurement and implementation",
       "reason": "Measured UI delta and native reference."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
       "kind": "section",
       "selector": "## Validation",
       "reason": "Scoped evidence."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
       "kind": "section",
       "selector": "## Deployment",
       "reason": "Existing deployment gates."
@@ -83,7 +83,8 @@
         "Mod/Text/DevelopmentInvestment.sql",
         "Mod/DevelopmentInvestmentModel.lua",
         "DevelopmentTests/test_b258_ui.py",
-        "DevelopmentTests/test_b259_ui.py"
+        "DevelopmentTests/test_b259_ui.py",
+        "DevelopmentTests/test_b260_ui.py"
       ]
     },
     {
@@ -98,19 +99,19 @@
     "Institution32px assets and held gameplay/audit work."
   ],
   "validation": {
-    "depth": "L2 UI/protocol, L1 native dimensions and art/package.",
-    "local": "39 scoped methods PASS.",
-    "user": "Measured badge, four cards, native footer and column alignment.",
-    "gap": "Native raster/layout pending."
+    "depth": "L2 scoped UI/state; L1 dimensions/package.",
+    "local": "22 scoped methods PASS.",
+    "user": "Badge name-strip alignment, district backing, Refresh label.",
+    "gap": "Native visual review pending."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-    "source": "B259.286/modinfo286 DEVELOP_ACTIVE; source acd0c0dfb96b0c3b25c0aa0385ba069256a74a90; receipt B259.286-acd0c0d-playtest.json;279/279 MATCH; digest a4c17e17df845e1ecb0cdfb4681a2156eb328ca0d149d67d83d74a516015fd70. Fresh game-exit, exact B258 restoration and B259 activation verified; stable/outgoing recovery intact; no pending marker, game launch, main or configuration change.",
-    "native": "B258 other repairs accepted; visual refinements requested.",
-    "stop": "One measured badge and Investment four-card/native-footer visual check; held work unchanged."
+    "report": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+    "source": "B260 local complete; live B259 pending gated deployment.",
+    "native": "Other B259 UI accepted; three requested refinements pending.",
+    "stop": "Guarded deployment then minimal badge and Investment visual review."
   }
 }

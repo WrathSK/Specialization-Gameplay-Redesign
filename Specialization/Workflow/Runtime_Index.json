@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "fda7540abadb5c5d47e0af3a2519c67e62b56ced2e7c4934a870b4072169c979",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "835c29ead08303a358d4f484fd1c5db835e33ce7c201571f4c4164384e8bdcee",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "59bb62f82cdca9d32e87c1206c11eb2b7dfd49a81a7c13890e40a66a072743c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "8053848351629c5f55d6201dea61a2b9674a2f8ab28c17c752b7f75dbc0da97c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1286,14 +1286,14 @@
       "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
-      "sha256": "f470a939b7fefd387464ff859d2381458d0344d9dc30a1d803bcbd48f4891af5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "164f687f3341affce3e5a013566744551c6bec04f74dcab2c811dff39e37e3a1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
-      "sha256": "6a48d37a380b99dd7d097ae7d5200ccce11b4f179a3ecd19ea9d7e388ce3df24",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "48035d87eabd91a3df41c4c0c09274c4314f37e7a40aa6b5b1b73008ff433ec6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentRead.lua": {
       "sha256": "47f1b5543ee82591fee607ac29e021067ebf22c42324861716648e0bc36551d5",
@@ -1366,14 +1366,14 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/UI/LevelBanners.lua": {
-      "sha256": "b1d86b190f2ef073e135c61bf2e294cc70e3da5bf632ad13d737639dbb293e1f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "701afecd4c5ca40a8779082ebdf3740e895c00e782ace2f317e8601563a4c486",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/UI/LevelBanners.xml": {
-      "sha256": "750085203b0d65452cd9227695a5f70d59c7d4e757fb7903a45dc375b8427ab8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "759bf83b80565aac7c8e23f4f057548dea22c10add4ca60a1b8cc89486d7d480",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",

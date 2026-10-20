@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0689
-Implementation Build: B259.286 / modinfo286; stable B069.96
+Status Revision: S0690
+Implementation Build: B260.287 / modinfo287; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,13 +11,16 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B259.286 is deployed and refines measured map size and Investment layout.** [Measurement and evidence](Validation/Results/Specialization_B259_Measured_UI.md).
+**B260.287 locally completes three authorized UI refinements.** [Measurement and evidence](Validation/Results/Specialization_B260_UI_Alignment.md).
 
-- B258 restored badge and other observed repairs accepted; size/alignment/footer refinements requested.49px Image retains accepted segment bottom and update behavior.
-- Native90-high two-button footer; independent fourth Current Contract/error card; separate amount lines. No repeated district city name, native left scrollbars restored, column top/bottom calibrated.
--39 scoped checks PASS; source/live B259.286 from `acd0c0d`;279/279 MATCH, receipt `B259.286-acd0c0d-playtest.json`. Native visuals pending; no new gameplay acceptance.
+- User accepts other B259 UI; Refresh label, district backing and badge arrangement refined. Badge32px aligns with name strip; four segments above. Existing atlas reused.
+-22 scoped checks PASS. Live remains B259 pending guarded deployment; native visual alignment pending.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: one visual check; no further batch starts automatically.
+- Next: guarded deployment and minimal visual review; no further batch automatically.
+
+## S0690 — B260 presentation refinement
+
+User-authorized three-item UI batch;22 scoped checks PASS. B259 screenshot archived with verified hash; existing assets reused. No gameplay, timers, configuration or main change.
 
 ## S0689 — B259 verified deployment
 
