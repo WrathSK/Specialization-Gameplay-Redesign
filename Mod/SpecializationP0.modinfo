@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="288">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="289">
   <Properties>
     <Name>Scotland (Specialization Test) + P0</Name>
-    <Description>B261.288: Commercialization two-column sidebar and Escape interception.</Description>
+    <Description>B262.289: Capital Investment three-column sidebar and Commercialization action spacing.</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

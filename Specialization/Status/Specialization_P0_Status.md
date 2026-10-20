@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0693
-Implementation Build: B261.288 / modinfo288; stable B069.96
+Status Revision: S0694
+Implementation Build: B262.289 / modinfo289; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
@@ -11,13 +11,17 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B261.288 Commercialization sidebar and Escape routing deployed.** [Implementation and validation](Validation/Results/Specialization_B261_Commerce_Sidebar.md).
+**B262.289 Capital Investment sidebar and Commerce footer locally complete.** [Implementation and validation](Validation/Results/Specialization_B262_Capital_Sidebar.md).
 
-- B260 UI accepted by user. B261 two-column domain/details UI retains selection order, effective/suspended distinction and existing toggle guards; no gameplay change.
-- Commercialization and Development Investment normalize native input objects and consume Escape while open.
--19 scoped checks PASS; source/live B261.288 from `ded19d2`;279/279 MATCH. Native layout/input routing pending.
+- Approved domain/mode/detail sidebar uses existing quotations and locked contract records. No gameplay or payment changes.
+- Commercialization single-action footer reduced90→66; narrow two-action mode remains90. B261 screenshot archived; no unobserved native acceptance inferred.
+-20 scoped checks PASS. Live remains B261 pending guarded deployment; native presentation pending.
 - Institution softness remains deferred. B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Commit/push and guarded deployment complete. Next: minimal Commercialization/Escape review; stop at this batch.
+- Next: guarded deployment and minimal UI review; stop at this batch.
+
+## S0694 — B262 Capital Investment UI
+
+Approved three-column presentation and Commerce footer fix;20 scoped checks PASS. Existing contract/payment semantics retained; no timers, new binary assets, configuration or main change.
 
 ## S0693 — B261 verified deployment
 

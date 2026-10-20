@@ -10,8 +10,8 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0693",
-    "runtime": "B261.288 / modinfo288",
+    "status": "S0694",
+    "runtime": "B262.289 / modinfo289",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
   "runtime_commit": "ded19d276f3b07740777bc28d5cd1a1daa6af989",
-  "current_batch": "B261_COMMERCE_SIDEBAR_DEPLOYED",
-  "next_batch": "User Commercialization order/toggle/cards and Commerce/Development Escape check; stop.",
+  "current_batch": "B262_CAPITAL_SIDEBAR_LOCAL_COMPLETE",
+  "next_batch": "Guarded deployment then Capital Investment sidebar and Commerce single-action spacing review.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B261.288/modinfo288 DEVELOP_ACTIVE; source ded19d276f3b07740777bc28d5cd1a1daa6af989; receipt B261.288-ded19d2-playtest.json;279/279 MATCH; digest 1e021fde126745d7f5ac3bd78f6b334f6004444e8050ab930fd52f37bf9185c1. Fresh game-exit checks, exact B260 restoration and B261 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0692: explicit B260 acceptance; approved B261 and Escape addition. Native input support and existing Commerce model reviewed;19 scoped checks PASS. S0693: clean/pushed source deployed279/279; recovery verified; native pending.",
+  "context_review_status": "S0694: approved Capital sidebar and Commerce footer addition; B261 screenshot reviewed;20 scoped checks PASS. No financial semantics changed.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md"
 }

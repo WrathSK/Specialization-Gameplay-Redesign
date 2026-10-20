@@ -77,7 +77,7 @@
      </Grid>
     </Container>
    </ScrollPanel>
-   <Grid ID="Footer" Anchor="C,B" Size="parent,90" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" ConsumeMouse="1">
+   <Grid ID="Footer" Anchor="C,B" Size="parent,66" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" ConsumeMouse="1">
     <Stack Anchor="C,C">
      <GridButton ID="Confirm" Anchor="C,B" Offset="0,-3" Size="285,41">
       <GridData Texture="Controls_Confirm" StateOffsetIncrement="0,41" SliceCorner="40,21" SliceSize="1,1" SliceTextureSize="80,41" />

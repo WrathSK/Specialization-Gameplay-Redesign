@@ -57,7 +57,7 @@ class Sidebar(unittest.TestCase):
   ui().execute("rows.items[1].Root.click();view.canConfigure=false;view.stage='HELD';notify();assert(Controls.Confirm.disabled);Controls.Confirm.click();assert(#sent==0);owner=1;notify();assert(ContextPtr.hidden);ContextPtr.shutdown();assert(ContextPtr.hidden)")
  def test_xml_controls_footer_and_native_backing(self):
   t=ET.parse(ROOT/'Mod/UI/CommercePanel.xml');ids={e.get('ID'):e for e in t.iter()if e.get('ID')}
-  self.assertEqual(ids['Window'].get('Offset'),'0,27');self.assertEqual(ids['Footer'].get('Size'),'parent,90')
+  self.assertEqual(ids['Window'].get('Offset'),'0,27');self.assertEqual(ids['Footer'].get('Size'),'parent,66')
   self.assertEqual(ids['DomainScroll'].find('ScrollBar').get('Anchor'),'L,C')
   self.assertEqual(ids['ConfirmCaption'].get('Anchor'),'C,C');self.assertIsNone(ids['ConfirmCaption'].get('Offset'))
   self.assertEqual(len(ids),len([e for e in t.iter()if e.get('ID')]))

@@ -47,7 +47,9 @@ local function layout()
   Controls[name..'Title']:SetTruncateWidth(column-42);Controls[name]:SetWrapWidth(column-44)
   local body=Controls[name]:GetSizeY();Controls[name..'Card']:SetOffsetY(y);Controls[name..'Card']:SetSizeY(body+62);y=y+body+74
  end
- Controls.Details:SetSizeY(y-12);Controls.DetailScroll:SetSizeY(math.max(40,h-top-54-90-8))
+ local footer=narrow and 90 or 66
+ Controls.Footer:SetSizeY(footer)
+ Controls.Details:SetSizeY(y-12);Controls.DetailScroll:SetSizeY(math.max(40,h-top-54-footer-8))
  return column
 end
 render=function()

@@ -1,26 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Context Name="SPCCapitalInvestmentPanel">
- <Grid ID="Window" Anchor="C,C" Size="780,650" Texture="Controls_ContainerBlue" SliceStart="0,0" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1" Hidden="1">
-  <Box Anchor="C,C" Size="parent-8,parent-8" Color="12,19,27,245" />
-  <Label ID="Title" Anchor="L,T" Offset="20,16" Style="FontFlair20" Color="255,255,255,255" />
-  <GridButton ID="Close" Anchor="R,T" Offset="16,12" Size="90,32" Style="MainButtonSmall"><Label ID="CloseCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <Label ID="CityName" Anchor="L,T" Offset="20,50" Style="FontNormal18" TruncateWidth="700" Color="255,255,255,255" />
-  <Label ID="Balance" Anchor="L,T" Offset="20,78" Style="FontNormal14" TruncateWidth="700" Color="220,228,235,255" />
-  <GridButton ID="Domain1" Anchor="L,T" Offset="20,110" Size="180,32" Style="MainButtonSmall"><Label ID="Domain1Caption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <GridButton ID="Domain2" Anchor="L,T" Offset="210,110" Size="180,32" Style="MainButtonSmall"><Label ID="Domain2Caption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <GridButton ID="Domain3" Anchor="L,T" Offset="400,110" Size="180,32" Style="MainButtonSmall"><Label ID="Domain3Caption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <Label ID="Subject" Anchor="L,T" Offset="20,160" Style="FontNormal18" TruncateWidth="730" Color="255,255,255,255" />
-  <Label ID="Source" Anchor="L,T" Offset="20,190" Style="FontNormal14" TruncateWidth="730" Color="220,228,235,255" />
-  <Label ID="Fundamentals" Anchor="L,T" Offset="20,216" Style="FontNormal14" TruncateWidth="730" Color="220,228,235,255" />
-  <Label ID="Principal" Anchor="L,T" Offset="20,244" Style="FontNormal14" TruncateWidth="730" Color="255,255,255,255" />
-  <Label ID="Stable" Anchor="L,T" Offset="20,280" Style="FontNormal14" WrapWidth="730" Color="255,255,255,255" />
-  <Label ID="Venture" Anchor="L,T" Offset="20,314" Style="FontNormal14" WrapWidth="730" Color="255,255,255,255" />
-  <Label ID="Warning" Anchor="L,T" Offset="20,366" Style="FontNormal12" TruncateWidth="730" Color="255,213,128,255" />
-  <Label ID="Contract" Anchor="L,T" Offset="20,394" Style="FontNormal14" WrapWidth="730" Color="220,228,235,255" />
-  <GridButton ID="StableConfirm" Anchor="L,T" Offset="20,494" Size="220,34" Style="MainButtonSmall"><Label ID="StableCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <GridButton ID="VentureConfirm" Anchor="L,T" Offset="254,494" Size="220,34" Style="MainButtonSmall"><Label ID="VentureCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <GridButton ID="Refresh" Anchor="L,T" Offset="488,494" Size="160,34" Style="MainButtonSmall"><Label ID="RefreshCaption" Anchor="C,C" Style="FontNormal14" Color="255,255,255,255" /></GridButton>
-  <Label ID="Help" Anchor="L,T" Offset="20,546" Style="FontNormal12" WrapWidth="730" Color="190,205,218,255" />
-  <Label ID="Error" Anchor="L,T" Offset="20,604" Style="FontNormal12" WrapWidth="730" Color="255,213,128,255" />
- </Grid>
+<?xml version='1.0' encoding='utf-8'?>
+<Context Name="SPCCapitalInvestmentPanel" ColorSet="BodyTextCool" FontStyle="Shadow">
+ <Container ID="Window" Anchor="L,T" Offset="0,27" Size="887,650" Hidden="1" ConsumeMouse="0">
+  <Grid ID="DomainColumn" Size="295,parent" Style="WindowFillHUD" ConsumeMouse="1">
+   <Grid Size="parent,59" Style="HeaderBannerLeft">
+    <Container Size="parent-20,parent-27">
+     <Label ID="Title" Anchor="C,C" Style="BannerHeaderText" />
+    </Container>
+   </Grid>
+   <Grid Anchor="C,T" Offset="0,28" Size="parent+7,122" Texture="DestinationChooser_CurrentSlot" SliceStart="0,0" SliceCorner="23,23" SliceSize="250,70" SliceTextureSize="308,173">
+    <Grid Anchor="C,T" Offset="0,14" Size="parent-26,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
+     <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50" />
+     <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150" />
+     <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+     <Image Anchor="L,C" Offset="10,-3" Size="22,22" IconSize="22" Icon="ICON_DISTRICT_CITY_CENTER" />
+     <Label ID="CityName" Anchor="L,C" Offset="34,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210" />
+    </Grid>
+    <Label ID="Balance" Offset="26,52" Style="FontNormal14" Color="Dark_Gray" TruncateWidth="250" />
+   </Grid>
+   <Button ID="Close" Anchor="R,T" Offset="4,2" Style="CloseButtonSmall" />
+   <ScrollPanel ID="DomainScroll" Offset="16,154" Size="parent-22,parent-158" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1">
+    <ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar" />
+    <Stack ID="Domains" Size="parent,auto" StackGrowth="Bottom" StackPadding="3" />
+   </ScrollPanel>
+  </Grid>
+  <Grid ID="ModeColumn" Offset="296,0" Size="295,parent" Texture="Controls_ContainerBlue" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1">
+   <Grid Size="parent,50" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34">
+    <Label ID="ModeTitle" Anchor="L,C" Offset="16,0" Style="FontFlair20" />
+   </Grid>
+   <ScrollPanel ID="ModeScroll" Offset="16,54" Size="parent-22,parent-58" Vertical="1" AutoScrollBar="0" FullClip="1" ConsumeMouse="1">
+    <ScrollBar Anchor="L,C" AnchorSide="O,I" Offset="4,0" Size="11,parent" Style="ScrollVerticalBar" />
+    <Stack ID="Modes" Size="parent,auto" StackGrowth="Bottom" StackPadding="3" />
+   </ScrollPanel>
+  </Grid>
+  <Grid ID="DetailColumn" Offset="592,148" Size="295,parent" Texture="Controls_ContainerBlue" SliceCorner="3,3" SliceSize="9,9" SliceTextureSize="16,16" ConsumeMouse="1">
+   <Grid Size="parent,50" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34">
+    <Label ID="DetailTitle" Anchor="L,C" Offset="16,0" Style="FontFlair20" />
+   </Grid>
+   <ScrollPanel ID="DetailScroll" Offset="8,54" Size="parent-20,parent-170" Vertical="1" AutoScrollBar="1" FullClip="1" ConsumeMouse="1">
+    <ScrollBar Anchor="R,C" AnchorSide="O,I" Offset="2,0" Size="8,parent" Style="ScrollVerticalBar" />
+    <Container ID="Details" Size="parent,600">
+     <Grid ID="QuoteCard" Offset="0,180" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50" />
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150" />
+       <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+       <Label ID="QuoteTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210" />
+      </Grid>
+      <Container ID="QuoteBody" Offset="12,46" Size="parent-24,auto">
+       <Label ID="Quote" Style="FontNormal14" WrapWidth="245" />
+      </Container>
+     </Grid>
+     <Grid ID="ReturnsCard" Offset="0,180" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50" />
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150" />
+       <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+       <Label ID="ReturnsTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210" />
+      </Grid>
+      <Container ID="ReturnsBody" Offset="12,46" Size="parent-24,auto">
+       <Label ID="Returns" Style="FontNormal14" WrapWidth="245" />
+      </Container>
+     </Grid>
+     <Grid ID="BasisCard" Offset="0,180" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50" />
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150" />
+       <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+       <Label ID="BasisTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210" />
+      </Grid>
+      <Container ID="BasisBody" Offset="12,46" Size="parent-24,auto">
+       <Label ID="Basis" Style="FontNormal14" WrapWidth="245" />
+      </Container>
+     </Grid>
+     <Grid ID="CurrentCard" Offset="0,180" Size="parent,172" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Grid Anchor="C,T" Offset="0,5" Size="parent-10,33" Texture="CityPanel_BannerBase" SliceCorner="20,10" SliceSize="160,1" SliceTextureSize="199,33" Color="200,211,222,255">
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerDarker" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="0,0,0,50" />
+       <Grid Anchor="L,T" Offset="4,2" Size="parent-8,parent-10" Texture="CityPanel_BannerLighter" SliceCorner="95,10" SliceSize="1,1" SliceTextureSize="191,23" Color="255,255,255,150" />
+       <Grid Anchor="L,T" Offset="6,2" Size="parent-10,parent-8" Texture="CityPanel_BannerNone" SliceCorner="70,10" SliceSize="1,1" SliceTextureSize="179,20" Color="255,0,0,255" />
+       <Label ID="CurrentTitle" Anchor="L,C" Offset="14,-3" Style="FontFlair16" FontStyle="Stroke" EffectColor="0,0,0,25" Color="0,43,84,255" TruncateWidth="210" />
+      </Grid>
+      <Container ID="CurrentBody" Offset="12,46" Size="parent-24,auto">
+       <Label ID="Current" Style="FontNormal14" WrapWidth="245" />
+      </Container>
+     </Grid>
+    </Container>
+   </ScrollPanel>
+   <Grid ID="Footer" Anchor="C,B" Size="parent,90" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" ConsumeMouse="1">
+    <Stack Anchor="C,C">
+     <GridButton ID="Confirm" Anchor="C,B" Offset="0,-3" Size="285,41">
+      <GridData Texture="Controls_Confirm" StateOffsetIncrement="0,41" SliceCorner="40,21" SliceSize="1,1" SliceTextureSize="80,41" />
+      <Label ID="ConfirmCaption" Anchor="C,C" Style="FontFlair14" FontStyle="Shadows" EffectColor="0,0,0,255" SmallCaps="18" SmallCapsType="EveryWord" Color="White" />
+     </GridButton>
+     <GridButton ID="Refresh" Anchor="C,B" Offset="0,4" Size="285,24">
+      <GridData Style="ButtonLightWeightGrid" />
+      <Label ID="RefreshCaption" Anchor="C,C" Style="FontFlair14" FontStyle="Shadows" EffectColor="0,0,0,255" />
+     </GridButton>
+    </Stack>
+   </Grid>
+  </Grid>
+  <Grid ID="CompactBar" Anchor="L,B" Size="parent,40" Texture="Controls_DrawerUp" SliceCorner="5,4" SliceSize="3,2" SliceTextureSize="14,8" Hidden="1">
+   <GridButton ID="CompactClose" Anchor="L,C" Offset="12,0" Size="110,28">
+    <GridData Style="ButtonLightWeightGrid" />
+    <Label ID="CompactCloseCaption" Anchor="C,C" Style="FontFlair14" />
+   </GridButton>
+   <GridButton ID="Back" Anchor="R,C" Offset="12,0" Size="110,28">
+    <GridData Style="ButtonLightWeightGrid" />
+    <Label ID="BackCaption" Anchor="C,C" Style="FontFlair14" />
+   </GridButton>
+  </Grid>
+ </Container>
+ <Instance Name="CapitalDomain">
+  <GridButton ID="Root" Size="parent,100">
+   <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" />
+   <Grid Offset="7,7" Size="55,55" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+    <Image ID="Icon" Anchor="C,C" Size="32,32" IconSize="32" />
+   </Grid>
+   <Label ID="Caption" Offset="70,7" Style="FontNormal16" TruncateWidth="180" />
+   <Label ID="State" Offset="70,64" Style="FontNormal12" WrapWidth="180" />
+   <Label ID="Marker" Anchor="R,T" Offset="10,34" Style="FontNormal12" TruncateWidth="185" Color="Gold" />
+  </GridButton>
+ </Instance>
+ <Instance Name="CapitalMode">
+  <GridButton ID="Root" Size="parent,96">
+   <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" />
+   <Label ID="Caption" Offset="14,10" Style="FontNormal16" TruncateWidth="240" />
+   <Label ID="State" Offset="14,36" Style="FontNormal14" WrapWidth="240" />
+  </GridButton>
+ </Instance>
 </Context>

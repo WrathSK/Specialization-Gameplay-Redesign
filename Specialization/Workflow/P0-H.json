@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0693",
-    "runtime": "B261.288 / modinfo288",
+    "status": "S0694",
+    "runtime": "B262.289 / modinfo289",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
-  "goal": "B261 Commercialization sidebar and Commerce/Development Escape routing.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+  "goal": "B262 Capital Investment three-column UI and Commercialization single-action footer.",
   "implementation_authorized": true,
   "context": [
     {
@@ -28,51 +28,50 @@
       "reason": "Current source/live and playtest boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
       "kind": "section",
       "selector": "## Scope and evidence",
       "reason": "Current authorization and steering."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
       "kind": "section",
       "selector": "## Implementation",
       "reason": "Measured UI delta and native reference."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
       "kind": "section",
       "selector": "## Validation",
       "reason": "Scoped evidence."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
       "kind": "section",
       "selector": "## Deployment",
       "reason": "Existing deployment gates."
     }
   ],
   "dependencies": [
-    "Existing Commerce published snapshot and scalar selection operation/ack protocol.",
-    "Accepted Development Investment UI layout and native input object API."
+    "Existing Capital quote/confirm/receipt protocol and locked contract records.",
+    "Accepted Investment geometry and B261 native input handling."
   ],
   "old_writers": [
     "No gameplay cutover; existing UI texture/geometry only."
   ],
   "conditional_context": [
     {
-      "trigger": "Commercialization presentation or input discrepancy",
+      "trigger": "Capital Investment UI discrepancy",
       "paths": [
+        "Mod/UI/CapitalInvestmentPanel.lua",
+        "Mod/UI/CapitalInvestmentPanel.xml",
+        "Mod/UI/CapitalInvestmentUI.lua",
+        "Mod/CapitalInvestment.lua",
+        "Mod/CapitalInvestmentModel.lua",
+        "Mod/Text/Commerce.sql",
         "Mod/UI/CommercePanel.lua",
         "Mod/UI/CommercePanel.xml",
-        "Mod/UI/CommerceUI.lua",
-        "Mod/CommerceModel.lua",
-        "Mod/CommerceCalculation.lua",
-        "Mod/Text/Commerce.sql",
-        "Mod/UI/DevelopmentInvestmentPanel.lua",
-        "Mod/UI/DevelopmentInvestmentPanel.xml",
-        "DevelopmentTests/test_b261_commerce.py",
-        "Specialization/Design/Content/Commerce_D0057.json"
+        "DevelopmentTests/test_b262_capital_sidebar.py"
       ]
     },
     {
@@ -87,19 +86,19 @@
     "Institution32px assets and held gameplay/audit work."
   ],
   "validation": {
-    "depth": "L2 actual UI/protocol; L1 package and layout bounds.",
-    "local": "19 scoped methods PASS.",
-    "user": "Domain order/toggle/cards and Escape on both panels.",
-    "gap": "Native layout/font/input routing pending."
+    "depth": "L2 UI/protocol; L1 package and layout bounds.",
+    "local": "20 scoped methods PASS.",
+    "user": "Capital sidebar/quote/contract display, Escape and Commerce footer.",
+    "gap": "Native visual review pending."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
-    "source": "B261.288/modinfo288 DEVELOP_ACTIVE; source ded19d276f3b07740777bc28d5cd1a1daa6af989; receipt B261.288-ded19d2-playtest.json;279/279 MATCH; digest 1e021fde126745d7f5ac3bd78f6b334f6004444e8050ab930fd52f37bf9185c1. Fresh game-exit checks, exact B260 restoration and B261 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
-    "native": "B260 accepted; B261 pending.",
-    "stop": "User Commercialization order/toggle/cards and Commerce/Development Escape check; stop."
+    "report": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+    "source": "B262 local complete; live B261 pending deployment.",
+    "native": "B261 screenshot reviewed, footer fix requested; B262 pending.",
+    "stop": "Guarded deployment then Capital Investment sidebar and Commerce single-action spacing review."
   }
 }
