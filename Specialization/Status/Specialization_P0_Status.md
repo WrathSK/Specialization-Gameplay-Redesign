@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0703
+Status Revision: S0704
 Implementation Build: B266.293 / modinfo293; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B266 local repair complete; guarded deployment pending.** [B265 evidence, diagnosis and B266 validation](Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md).
+**B266 deployed and locally validated; native recovery review pending.** [B265 evidence, diagnosis and B266 validation](Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md).
 
 - B265 native result: new-city institutions absent; loaded Culture city retained them. Current Research/Industry/Commerce facts remain readable. Culture dynamic color accepted; Research/Industry colors pending. Consecutive governor promotions are deferred to ordinary future play, without forced retesting.
 - Corrected the native Stack/Grid layout calls and guaranteed release of the selected-city refresh guard after exceptions. Existing bounded diagnostics record failure stage and numeric city identity. All refresh remains event-driven; no new timers/frame updates, gameplay or permanent-state change.
 - 64 targeted local tests, Lua 5.1 compilation, XML/package closure and whitespace PASS. Actual B265 Lua reproduced the locked bridge; the submitted snapshot did not retain its exact native exception. New-city native recovery and shortcut/color review remain required.
-- Live remains B265.292/modinfo292 from `25b812f` pending the W0003 switch. Main remains B069.96. No PR or main promotion.
+- Live is B266.293/modinfo293 from `0c2c4ae`; 288/288 files match receipt `B266.293-0c2c4ae-playtest.json`. Stable/outgoing recovery and absent pending marker verified. Main remains B069.96. No PR or main promotion.
 - Institution softness remains deferred. B249 functional acceptance and earlier scoped evidence remain. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain v0.1 playtest checks. Own-city-loss handling, held Expedition mission root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: publish the verified narrow fix, automatically verify game exit and deploy through the existing safeguards, then wait for scoped user review.
+- Next: wait for the focused new-city institution/shortcut and Research/Industry color check. No further development batch is authorized.
+
+## S0704 — B266 verified deployment
+
+B266.293/modinfo293 DEVELOP_ACTIVE; source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Fresh automatic game-exit checks, exact B265 restoration and B266 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native recovery review pending; no PR.
 
 ## S0703 — B266 new-city institution refresh recovery
 

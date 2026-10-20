@@ -34,13 +34,13 @@ One reviewed original moved from `ScreenShots/` to ignored `local/legacy-workspa
 - 19 B265 tests retain same-turn governor invalidation, admission behavior, unknown/backends, shortcut opening/cleanup, color containment and no timer/frame API. Its fixture now distinguishes Grid from Stack instead of granting every control every method; previous assertions remain intact.
 - 35 existing institution, B251 presentation/Store summary and Expedition training UI tests retain their covered scopes. An expected negative training test emits its pre-existing multiple-birth diagnostic; the suite passes.
 
-Both changed Lua files compile as Lua 5.1. XML parses, package registration has exact 288-file closure with no duplicates, and whitespace checks pass. Final context/publication gates accompany the checkpoint. No game execution is part of these tests.
+Both changed Lua files compile as Lua 5.1. XML parses, package registration has exact 288-file closure with no duplicates, and whitespace checks pass. Context check PASS (288 runtime / 924 guarded files); staged publication and pre-commit gates PASS. One prose-only generic-api-key false positive was resolved by rewording the explanation; no scanner exception or policy change. No game execution is part of these tests.
 
 **Native boundaries:** culture live-metric color is USER_GAME_TEST_PASS from the user's report. New-city institution visibility is USER_GAME_TEST_FAIL on B265 and USER_GAME_TEST_REQUIRED on B266. Research/Industry colors remain pending. The precise native exception was not captured, so its attribution remains a source-backed, locally reproduced explanation. Gameplay bonuses are not newly accepted from a carrier log alone. Consecutive governor promotions stay a deferred observation, not a required retest.
 
 ## Deployment and minimal check
 
-Local B266 is complete; live remains B265.292 until W0003 verifies the committed build, game exit, restoration/activation and per-file equality. Main remains B069.96; no PR.
+B266.293/modinfo293 DEVELOP_ACTIVE; source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Fresh automatic game-exit checks, exact B265 restoration and B266 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native recovery review pending; no PR. Main remains B069.96 at e901a22.
 
 1. Start the manual collector before the relevant city operations. Use an existing testing save with the reported new Research/Industry cities; reselect them and open city details directly. Four institution rows should appear, with the current/preview states matching each city's actual Potential/ACTIVE. Internal support carriers should no longer replace the category.
 2. Click the ACTIVE shortcut once; it should open institutions/buildings/districts/wonders. Switch between one new city and the loaded Culture city. Hover available Research/Industry dynamic values to finish their color review.
@@ -48,4 +48,4 @@ Local B266 is complete; live remains B265.292 until W0003 verifies the committed
 
 - User decision: none.
 - User testing: the focused UI check above; use the collector for read/failure stages and screenshots only for a remaining visual issue.
-- Primary next: guarded deployment, then wait for scoped native review. No new batch, PR or main promotion.
+- Primary next: wait for scoped native review. No new batch, PR or main promotion.

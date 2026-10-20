@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0703",
+    "status": "S0704",
     "runtime": "B266.293 / modinfo293",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
-  "runtime_commit": "25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0",
-  "current_batch": "B266_LOCAL_COMPLETE_DEPLOYMENT_PENDING",
-  "next_batch": "Complete guarded B266 deployment, then wait for new-city institution/shortcut review and Research/Industry metric colors. Consecutive governor promotions deferred to ordinary play. No PR/main promotion.",
+  "runtime_commit": "0c2c4aec852411c40c0998c2693dad1346f470dd",
+  "current_batch": "B266_DEPLOYED_AWAITING_USER",
+  "next_batch": "Wait for focused new-city institution visibility, ACTIVE shortcut and Research/Industry metric color review. Consecutive governor promotions remain deferred to ordinary play. No new batch, PR or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B265.292/modinfo292 DEVELOP_ACTIVE; source 25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0; receipt B265.292-25b812f-playtest.json; 288/288 MATCH; digest 82a841b616a8f6b7ea904e70d4d7f81150c2d0b35ab99f5bfc58ed8f65d0a114. Fresh automatic game-exit checks, exact B264 restoration and B265 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native review pending; no PR.",
+  "live": "B266.293/modinfo293 DEVELOP_ACTIVE; source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Fresh automatic game-exit checks, exact B265 restoration and B266 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native recovery review pending; no PR.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0703: B265 native evidence reviewed; Grid/Stack and stuck UI guard defect locally reproduced. B266 narrow UI repair passes 64 scoped tests and Lua 5.1/XML/package checks. Context/publication gates and guarded deployment pending.",
+  "context_review_status": "S0704: 64 scoped tests and static checks PASS. Context/publication gates passed; B266 source 0c2c4aec852411c40c0998c2693dad1346f470dd deployed under W0003 with 288/288 MATCH and verified recovery. Only deployment/current-record hashes changed after the source commit. Native recovery review pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

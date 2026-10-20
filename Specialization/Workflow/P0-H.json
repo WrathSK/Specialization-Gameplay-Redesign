@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0703",
+    "status": "S0704",
     "runtime": "B266.293 / modinfo293",
     "military": "D0037",
     "harbor": "D0037",
@@ -79,8 +79,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
-    "source": "B266.293 local complete; live B265.292 pending W0003 deployment.",
+    "source": "B266.293/modinfo293 DEVELOP_ACTIVE; source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Fresh automatic game-exit checks, exact B265 restoration and B266 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native recovery review pending; no PR.",
     "native": "New-city institutions USER_GAME_TEST_FAIL; culture metric color USER_GAME_TEST_PASS.",
-    "stop": "Complete guarded B266 deployment, then wait for new-city institution/shortcut review and Research/Industry metric colors. Consecutive governor promotions deferred to ordinary play. No PR/main promotion."
+    "stop": "Wait for focused new-city institution visibility, ACTIVE shortcut and Research/Industry metric color review. Consecutive governor promotions remain deferred to ordinary play. No new batch, PR or main promotion."
   }
 }
