@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0684",
+    "status": "S0685",
     "runtime": "B257.284 / modinfo284",
     "military": "D0037",
     "harbor": "D0037",
@@ -109,8 +109,8 @@
   ],
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-    "source": "B257.284 locally verified; live B256 pending gated deployment.",
+    "source": "B257.284/modinfo284 DEVELOP_ACTIVE; source adeae34b4ddf8f2fe768a90be0e6c8ef700a2081; receipt B257.284-adeae34-playtest.json;277/277 MATCH; digest 3293e333700b85b275cb59f8b32f5d8bcfe5a0b912e6e12444b55a2a1dabc937. Fresh game-exit checks, exact B256 restoration and B257 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.",
     "native": "B256 size accepted; Potential-only update/alignment failed; B257 confirmation pending.",
-    "stop": "Guarded deployment, then no-governor Potential-only segment and reversible layout native check. Institution softness deferred; held work unchanged."
+    "stop": "One no-governor Potential-only segment and reversible layout native check. Institution softness deferred; held work unchanged."
   }
 }

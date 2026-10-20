@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0684
+Status Revision: S0685
 Implementation Build: B257.284 / modinfo284; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,15 +11,19 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B257.284 locally fixes Potential-only banner publication and trials the larger map layout.** [Scope, evidence and rollback](Validation/Results/Specialization_B257_Banner_Update_Layout.md).
+**B257.284 is deployed: Potential-only banner publication repair and reversible larger map layout await native review.** [Scope, evidence and rollback](Validation/Results/Specialization_B257_Banner_Update_Layout.md).
 
 - B256 size is user-accepted; slight institution-icon softness is deferred. Potential-only outline updates and bottom alignment failed native review. B254/B256 filled-ACTIVE, zoom and click observations retain their limited scope.
 - LevelBanners now participates in the existing COMMITTED-only target-city refresh. No timer, Store notification expansion or gameplay rule change.
 - Map-only58-unit Grid badge/62-unit group with6-unit bottom inset trials the defense-top/flag-bottom span. B256 checkpoint6548c45 is the documented visual rollback; keep the new update repair if reverting layout.
-- Source B257.284/modinfo284; live B256.283 pending guarded deployment.41 scoped local checks PASS; two historical unrelated failures documented, not rewritten. Native visuals/update pending; main/stable B069.96 unchanged.
+- Source/live B257.284/modinfo284 from `adeae34`; receipt `B257.284-adeae34-playtest.json`;277/277 MATCH.41 scoped local checks PASS; two historical unrelated failures documented, not rewritten. Native visuals/update pending; main/stable B069.96 unchanged.
 - Development Investment sidebar refinement feedback remains pending and is not included in this batch.
 - B249 functional acceptance remains. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks during v0.1 playtest. Own-city-loss handling, Expedition root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: guarded deployment, then one no-governor P1→P2 update and map-layout check. No further batch starts automatically.
+- Commit/push and guarded deployment complete. Next: one no-governor P1→P2 update and map-layout check. No further batch starts automatically.
+
+## S0685 — B257 verified deployment
+
+B257.284/modinfo284 DEVELOP_ACTIVE; source `adeae34b4ddf8f2fe768a90be0e6c8ef700a2081`; receipt `B257.284-adeae34-playtest.json`;277/277 MATCH; digest `3293e333700b85b275cb59f8b32f5d8bcfe5a0b912e6e12444b55a2a1dabc937`. Fresh game-exit checks, exact B256 restoration and B257 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. Only current deployment records/hashes updated; no new native PASS.
 
 ## S0684 — B257 Potential-only refresh and layout trial
 

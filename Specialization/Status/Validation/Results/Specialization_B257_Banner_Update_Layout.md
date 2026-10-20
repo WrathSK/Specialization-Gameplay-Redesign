@@ -34,4 +34,6 @@ Existing atlas hashes, Lua syntax, package closure, native callback lifetime, in
 
 ## Publication and deployment
 
-B257.284/modinfo284 locally verified; live remains B256.283 pending normal clean-source/game-exit/receipt gates. Main/stable B069.96, held gameplay/audits and Investment sidebar work remain unchanged.
+B257.284/modinfo284 DEVELOP_ACTIVE; source `adeae34b4ddf8f2fe768a90be0e6c8ef700a2081`; receipt `B257.284-adeae34-playtest.json`;277/277 MATCH; digest `3293e333700b85b275cb59f8b32f5d8bcfe5a0b912e6e12444b55a2a1dabc937`. Fresh game-exit checks, exact B256 restoration and B257 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change.
+
+14 batch-owned files passed the ordinary publication gate.41 scoped methods and277-runtime/893-guarded context checks PASS, with the two historical exclusions recorded above. Native update/layout review pending. Main/stable B069.96 and held work unchanged.
