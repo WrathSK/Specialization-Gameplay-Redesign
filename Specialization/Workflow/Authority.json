@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0701",
+    "status": "S0702",
     "runtime": "B265.292 / modinfo292",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-  "runtime_commit": "3da40dc0ca7681f1d417bef1025bf047d8680ef2",
-  "current_batch": "B265_LOCAL_VALIDATED_AWAITING_DEPLOYMENT",
-  "next_batch": "Perform W0003 guarded B265 deployment, then await the minimal combined user review. No new batch, PR or main promotion.",
+  "runtime_commit": "25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0",
+  "current_batch": "B265_DEPLOYED_AWAITING_USER",
+  "next_batch": "Wait for the combined B265 native check: same-turn governor refresh, ACTIVE city-panel shortcut and profession-colored dynamic lines. No new development batch, PR or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B264.291/modinfo291 DEVELOP_ACTIVE; source 3da40dc0ca7681f1d417bef1025bf047d8680ef2; receipt B264.291-3da40dc-playtest.json; 288/288 MATCH; digest d243dd6caf3111ebe8c9a0991e6fe3166a8251db8328af48fa6a14b87172928d. Fresh automatic game-exit checks, exact B263 receipt restoration and B264 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, main or configuration change. B263/B264 presentation accepted with a separately recorded transient refresh anomaly; no deployment during this review. No PR.",
+  "live": "B265.292/modinfo292 DEVELOP_ACTIVE; source 25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0; receipt B265.292-25b812f-playtest.json; 288/288 MATCH; digest 82a841b616a8f6b7ea904e70d4d7f81150c2d0b35ab99f5bfc58ed8f65d0a114. Fresh automatic game-exit checks, exact B264 restoration and B265 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native review pending; no PR.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0701: user-approved B265; 94 scoped tests, Lua 5.1/localization/XML/package checks PASS. Only reviewed batch sources/current records and new regression/report hashes updated; B264 deployed checkpoint retained until switch.",
+  "context_review_status": "S0702: 94 scoped tests and static checks PASS. Context/publication gates passed; B265 source 25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0 deployed under W0003 with 288/288 MATCH and verified recovery. Only deployment/current-record hashes changed after the source commit. Native review pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

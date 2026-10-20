@@ -42,7 +42,7 @@ All nine changed Lua sources compile as Lua 5.1. XML and both shortcut localizat
 
 ## Deployment
 
-Local B265 implementation validated; live remains B264.291 until the guarded W0003 switch. Main stays B069.96. No PR, game launch or configuration change.
+B265.292/modinfo292 DEVELOP_ACTIVE; source 25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0; receipt B265.292-25b812f-playtest.json; 288/288 MATCH; digest 82a841b616a8f6b7ea904e70d4d7f81150c2d0b35ab99f5bfc58ed8f65d0a114. Fresh automatic game-exit checks, exact B264 restoration and B265 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native review pending; no PR. Main remains B069.96 at e901a22. Context check PASS (288 runtime / 922 guarded files); staged publication and pre-commit gates PASS.
 
 ## Minimal combined user check
 
@@ -54,4 +54,4 @@ The collector is primary evidence for facts/admission. A screenshot is needed on
 
 - User decision: none.
 - User testing: the combined check above after verified deployment.
-- Primary next: guarded deployment, then wait for scoped native review. No PR or main promotion.
+- Primary next: wait for scoped native review. No new development batch, PR or main promotion.

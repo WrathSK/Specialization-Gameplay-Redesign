@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0701
+Status Revision: S0702
 Implementation Build: B265.292 / modinfo292; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -11,14 +11,18 @@ Work State: V01_PLAYTEST_SCOPE_CONFIRMED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B265 implemented and locally validated; native review pending.** [Implementation, evidence and combined check](Validation/Results/Specialization_B265_City_Presentation_Refresh.md).
+**B265 deployed and locally validated; native review pending.** [Implementation, evidence and combined check](Validation/Results/Specialization_B265_City_Presentation_Refresh.md).
 
 - Event-driven selected-city presentation and Expedition admission now invalidate on governor/fact changes; the legacy 0.5-second polling driver and profession/Potential entry below P0 are retired. P0's current factual report remains unchanged.
 - New native city-panel ACTIVE shortcut opens the Buildings tab without toggling an already-open page closed. Existing artwork and city banner geometry remain. Dynamic institution information uses each profession's native color; Standardization is included and Insights remains a count.
 - 94 targeted local tests, changed Lua 5.1 compilation, localization/XML and 288-file package closure PASS. Native delivery/layout/readability remain USER_GAME_TEST_REQUIRED. Costs, capacity, binding, permanent state, rewards and held mission bugs are unchanged; no new timers/frames.
-- Live remains B264.291 until the guarded W0003 switch. Main stays B069.96. No PR or main promotion is authorized.
+- Live is B265.292/modinfo292 from `25b812f`; 288/288 files match receipt `B265.292-25b812f-playtest.json`. Stable/outgoing recovery and absent pending marker verified. Main stays B069.96. No PR or main promotion is authorized.
 - Institution softness remains deferred. B249 functional acceptance and earlier scoped evidence remain. REALLOCATING cold-load and simultaneous Standardization + Development additive output remain v0.1 playtest checks. Own-city-loss handling, held Expedition mission root cause/repair, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-v0.1-playtest high priority.
-- Next: complete the verified B265 deployment, then wait for the minimal combined user check. No further development batch is authorized.
+- Next: wait for the minimal combined user check. No further development batch is authorized.
+
+## S0702 — B265 verified deployment
+
+B265.292/modinfo292 DEVELOP_ACTIVE; source 25b812fa5ab2d21feb1a4e7e6e2b4925f73867d0; receipt B265.292-25b812f-playtest.json; 288/288 MATCH; digest 82a841b616a8f6b7ea904e70d4d7f81150c2d0b35ab99f5bfc58ed8f65d0a114. Fresh automatic game-exit checks, exact B264 restoration and B265 activation passed. Stable/outgoing recovery verified; no pending marker, game launch, configuration or main change. Native review pending; no PR.
 
 ## S0701 — B265 event-driven city presentation and shortcut
 
