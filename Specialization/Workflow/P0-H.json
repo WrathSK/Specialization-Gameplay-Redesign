@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0178",
-    "status": "S0708",
+    "status": "S0709",
     "runtime": "B267.294 / modinfo294",
     "military": "D0037",
     "harbor": "D0037",
@@ -77,6 +77,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED; first integrated session observations only",
-    "deployment": "DEFERRED_APPROVAL_REVIEW; B266 unchanged, explicit B267 activation approval required"
+    "deployment": "B267.294 DEVELOP_ACTIVE; B267.294-f385c48-playtest.json; 290/290 MATCH; stable/outgoing recovery verified"
   }
 }

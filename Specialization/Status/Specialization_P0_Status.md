@@ -1,24 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0708
+Status Revision: S0709
 Implementation Build: B267.294 / modinfo294; stable B069.96
 Architecture Revision Reviewed: A0178
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B267_IMPLEMENTED_AWAITING_ACTIVATION_APPROVAL
+Work State: B267_DEPLOYED_AWAITING_INTEGRATED_PLAYTEST
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B267 PRE-01–05 implemented and locally verified; native delivery pending.** [Scope, results and testing boundary](Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md).
+**B267.294 deployed; ready for the agreed integrated playtest.** [Scope, results and testing boundary](Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md).
 
 - The user authorizes the five pre-playtest fixes and Primary engineering choices. Meaningful diagnostics, readiness/load timing, Commerce/network/sender evidence, the fixed carrier-health observer and the overflow experimental-project gate are implemented. 243 scoped tests PASS; no gameplay policy change was needed.
 - B266 functional/UI acceptance remains the inherited mainline evidence. New trace delivery, Treasury timing, hidden-carrier behavior and project-list hiding need the first integrated campaign. Ready flags are not effect PASS; buffers are bounded and collection gaps explicit.
-- Source is B267.294/modinfo294. Live remains B266 until the guarded deployment checkpoint. No game launch, configuration change, art application, release designation, PR or main promotion.
+- Source/live is B267.294/modinfo294 from `f385c48`; 290/290 files MATCH. Explicit user-approved restoration/activation and recovery checks completed; no pending marker. No game launch, configuration/artwork change, release tag, PR or main promotion.
 - Follow the [approved roadmap](../Reports/Proposals/Audit_Followup_Priorities.md#v01-approved-roadmap--2026-10-21): approximately 3–4 integrated campaigns, dependency-driven foundations, then ownership/Expedition and remaining scoped work before freeze. Deferred findings remain open.
 - Carry REALLOCATING cold-load and Standardization + Development additive output into play. Supported scope remains Standard-speed single-player human, dedicated America/Roosevelt, installed HD/GS/persona dependencies and four professions; existing deferred acquisition/loss and Expedition precautions remain.
-- Source `5b421e8` is committed/pushed. Automatic approval review rejected B267 activation before execution and requires explicit approval for this package. Read-only verification confirms B266 receipt/hash unchanged, no B267 receipt and no pending marker. Next: obtain activation approval, then repeat guarded checks. Integrated-test baseline designation remains separate.
+- The later explicit B267 deployment approval resolves the earlier automatic-review block. EnableTuner=1 was confirmed read-only. The user may start a new integrated campaign after starting collection and confirming initial delivery. Next: user testing; Primary awaits evidence.
+
+## S0709 — B267 approved deployment verified
+
+The user explicitly approved B267 activation. Fresh game-exit checks, exact outgoing B266 receipt restoration and B267 activation passed. Receipt `B267.294-f385c48-playtest.json`; source `f385c48eb86ffde66f15029b9c16fdfa2c3d5fed`; 290/290 MATCH; digest `af5ef23f6c1f9a368ec8b2e381e982dd05d01fb503736369d8aed65b5662ea01`. Stable and outgoing recovery MATCH, no pending marker. EnableTuner=1 confirmed without configuration writes. Ready for the agreed integrated campaign; native observations remain pending. No PR, main promotion or game launch.
 
 ## S0708 — B267 published; activation deferred
 

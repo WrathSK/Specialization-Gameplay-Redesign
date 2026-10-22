@@ -1,7 +1,7 @@
 # B267 — bounded pre-playtest diagnostics and experimental-project gate
 
 Date: 2026-10-21
-Status: LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED
+Status: DEPLOYED / LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED
 Basis: B266.293 / `0c2c4ae`; documentation HEAD `31f785a`; D0057 / A0177.
 
 The user authorizes Primary to implement PRE-01 through PRE-05, choosing engineering details and stopping only for genuine gameplay decisions. Scope follows the [approved roadmap](../../../Reports/Proposals/Audit_Followup_Priorities.md#explicit-pre-playtest-implementation-list). No PR, main promotion, artwork application or release designation.
@@ -49,3 +49,12 @@ Implementation source `5b421e8aec064e4b435e903ac82a2fd85aef39e8` is committed an
 The guarded activation command was rejected by automatic approval review before process creation. The reviewer requires explicit approval for this B267 activation and did not accept the recorded W0003 standing authorization as sufficient. Primary did not bypass the rejection. Read-only revalidation confirms B266.293 remains unchanged and DEVELOP_ACTIVE under its original receipt; no B267 receipt or pending transaction marker exists. B267 source package: 290 files, digest `af5ef23f6c1f9a368ec8b2e381e982dd05d01fb503736369d8aed65b5662ea01`.
 
 User decision: approve this exact B267.294 activation. User testing: after activation, use the first integrated session's diagnostic/native checks. Primary next: on approval, repeat game-exit/source/live/recovery checks and execute the existing receipt-bound deployment tool. PRE-01–05 implementation itself is complete.
+
+
+## Approved activation — 2026-10-21
+
+The user explicitly approved this B267.294 deployment and asked whether integrated testing may start. Fresh process checks confirmed the game exited before each transaction step. Exact B266 receipt restoration and B267 activation completed using the existing tool, with no game launch between steps. Receipt: `B267.294-f385c48-playtest.json`; deployed source commit `f385c48eb86ffde66f15029b9c16fdfa2c3d5fed`; 290/290 source/live files MATCH; digest `af5ef23f6c1f9a368ec8b2e381e982dd05d01fb503736369d8aed65b5662ea01`. Stable and outgoing B266 recovery packages also MATCH, with no pending marker. Main/configuration/artwork remain unchanged; no PR or release tag.
+
+B267 is available for the first integrated campaign. Read-only inspection confirms EnableTuner=1; game launch and native acceptance remain the user's work. Start the collector with `--idle-exit 300` before launching/loading, confirm records arrive, and begin a new Standard-speed game with the dedicated America/Roosevelt test identity and the previously agreed scope/precautions. Native diagnostics, REALLOCATING cold-load and Standardization + Development combination checks remain open until observed.
+
+User decision: none required to begin the agreed tests. User testing: first integrated campaign and evidence delivery. Primary next: await the user's logs/observations; no further repair, deployment, PR or promotion is dispatched by this record.

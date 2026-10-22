@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "0c2c4aec852411c40c0998c2693dad1346f470dd",
-  "runtime": "B266.293 / modinfo293",
+  "runtime_commit": "f385c48eb86ffde66f15029b9c16fdfa2c3d5fed",
+  "runtime": "B267.294 / modinfo294",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1456,5 +1456,5 @@
       "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     }
   },
-  "source_review": "B267.294 local implementation; top-level runtime_commit/runtime retain the last verified deployment until guarded switch."
+  "source_review": "B267.294 approved PRE-01–05 delta reviewed and deployed from f385c48eb86ffde66f15029b9c16fdfa2c3d5fed; 290-file receipt/source/live equality. Unchanged file review provenance inherited."
 }

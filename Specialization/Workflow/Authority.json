@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0178",
-    "status": "S0708",
+    "status": "S0709",
     "runtime": "B267.294 / modinfo294",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-  "runtime_commit": "0c2c4aec852411c40c0998c2693dad1346f470dd",
-  "current_batch": "B267_IMPLEMENTED_AWAITING_ACTIVATION_APPROVAL",
-  "next_batch": "Obtain explicit B267.294 activation approval after automatic review rejected standing W0003 evidence; then repeat game-exit/source/live/recovery checks and receipt-bound switch. Implementation 5b421e8 is pushed; live B266 unchanged. No PR/main promotion/tag.",
+  "runtime_commit": "f385c48eb86ffde66f15029b9c16fdfa2c3d5fed",
+  "current_batch": "B267_DEPLOYED_AWAITING_INTEGRATED_PLAYTEST",
+  "next_batch": "User may start the agreed new integrated campaign on B267.294 after starting collection and checking initial delivery. Primary awaits logs/observations. No new repair, deployment, PR/main promotion or release tag dispatched.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B266.293/modinfo293 DEVELOP_ACTIVE; unchanged source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Read-only readiness check reverified source/live/receipt, stable and outgoing B265 recovery, and absent pending marker. B266 UI acceptance received. No new deployment, game operation or configuration/main change; no PR.",
+  "live": "B267.294/modinfo294 DEVELOP_ACTIVE; source f385c48eb86ffde66f15029b9c16fdfa2c3d5fed; receipt B267.294-f385c48-playtest.json; 290/290 MATCH; digest af5ef23f6c1f9a368ec8b2e381e982dd05d01fb503736369d8aed65b5662ea01. Explicit user deployment approval, fresh game-exit checks, exact B266 restoration and B267 activation verified. Stable/outgoing recovery MATCH, no pending marker; no game launch/configuration/main/art change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0708: B267 source 5b421e8 published after 243 local tests and publication PASS. Activation rejected before execution by automatic review; live B266 receipt/hash unchanged with no pending marker/new receipt. No gameplay decision remains for PRE-01–05.",
+  "context_review_status": "S0709: B267 explicitly approved and deployed, 290-file source/live equality and stable/outgoing recovery verified. Implementation/local tests inherited unchanged from 5b421e8; native delivery/treasury/pillage/project hiding remain first-session observations.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
